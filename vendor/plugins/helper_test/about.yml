@@ -1,0 +1,7 @@
+author: topfunky
+summary: Generates a test case for testing plugins that work as view helpers.
+homepage: http://nubyonrails.com
+plugin: http://topfunky.net/svn/plugins/helper_test
+license: MIT
+version: 0.2
+rails_version: 1.0+
