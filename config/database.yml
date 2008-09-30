@@ -1,0 +1,35 @@
+<% PASSWORD_FILE = File.join(RAILS_ROOT, '..', '..', 'shared', 'config', 'dbpassword') %>
+
+development:
+  adapter: mysql
+  database: <%= PROJECT_NAME %>_development
+  username: root
+  password: 
+  host: localhost
+  encoding: utf8
+  
+test:
+  adapter: mysql
+  database: <%= PROJECT_NAME %>_test
+  username: root
+  password: 
+  host: localhost
+  encoding: utf8
+  
+staging:
+  adapter: mysql
+  database: <%= PROJECT_NAME %>_staging
+  username: <%= PROJECT_NAME %>
+  password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
+  host: localhost
+  encoding: utf8
+  socket: /var/lib/mysql/mysql.sock
+  
+production:
+  adapter: mysql
+  database: <%= PROJECT_NAME %>_production
+  username: <%= PROJECT_NAME %>
+  password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
+  host: localhost
+  encoding: utf8
+  socket: /var/lib/mysql/mysql.sock
