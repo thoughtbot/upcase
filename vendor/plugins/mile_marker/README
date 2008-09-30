@@ -1,0 +1,54 @@
+= MileMarker Plugin
+
+Author::     Chad Pytel (mailto:cpytel@thoughtbot.com)
+Copyright::  Copyright(c) 2007 thoughtbot, inc.
+License::    Distributes under the same terms as Ruby
+
+A Ruby on Rails plugin for visually setting expectations throughout application development.
+
+Adds a helper for marking page elements with the milestone they are slated to be developed, and makes them unable to be interacted with.
+
+Usage:
+
+Once the plugin has been installed, in your views you can now do:
+
+<div class="person" <%= mile 6 %>>
+  <div class="name">Your Name<div>
+</div>
+
+When viewed in development mode, the person div would be overlaid with a grey box with the words "Milestone 6" in it.
+
+If you happen to not call your milestones, "milestones", or for any other reason want the label to be something different, just supply a string instead:
+
+<div class="person" <%= mile "Next Week" %>>
+  <div class="name">Your Name<div>
+</div>
+
+And that will still result in the marker being labeled with "Next Week" instead.
+
+By default, the milestone markers will be only appear in the Rails development environment.  To customize this, add the following to the config file of the other environments you want the markers to appear:
+
+Thoughtbot::MileMarker.enable
+
+If you prefer not to have it on in development, add the following to development.rb
+
+Thoughtbot::MileMarker.disable
+
+Or, if you prefer, add something like the following to environment.rb:
+
+Thoughtbot::MileMarker.environments = %w(development staging production)
+
+You can also change some of the styling options (as of right now, just the z-index and background color) by modifying the options hash:
+
+Thoughtbot::MileMarker.options.update(
+	:z_index => 100,
+	:background_color => "purple"
+)
+
+== Requirements
+
+The overlay functionality requires javascript, and uses the prototype library.  So, any page that is using this functionality must also include prototype.
+
+== Todo
+
+* Rake task to find and print out (with line numbers) all of the milestone markers
