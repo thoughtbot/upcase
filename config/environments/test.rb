@@ -21,7 +21,5 @@ config.action_controller.allow_forgery_protection    = false
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
 
-# Comment for testing the rails-template
-
 require 'mocha'
 require 'factory_girl'
