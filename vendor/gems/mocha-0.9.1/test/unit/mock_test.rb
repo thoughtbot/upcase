@@ -54,7 +54,7 @@ class MockTest < Test::Unit::TestCase
     mock = Mock.new
     OBJECT_METHODS.each { |method| mock.__expects__(method.to_sym).returns(method) }
     OBJECT_METHODS.each { |method| assert_equal method, mock.__send__(method.to_sym) }
-    assert mock.verified?
+    assert mock.__verified__?
   end
   
   def test_should_be_able_to_stub_standard_object_methods
@@ -113,22 +113,10 @@ class MockTest < Test::Unit::TestCase
     error = assert_raise(ExpectationError) do
       mock.unexpected_method_called(:my_method, :argument1, :argument2)
     end
+    assert_match(/unexpected invocation/, error.message)
     assert_match(/my_method/, error.message)
     assert_match(/argument1/, error.message)
     assert_match(/argument2/, error.message)
-  end
-  
-  def test_should_indicate_unexpected_method_called
-    mock = Mock.new
-    class << mock
-      attr_accessor :symbol, :arguments
-      def unexpected_method_called(symbol, *arguments)
-        self.symbol, self.arguments = symbol, arguments
-      end
-    end
-    mock.my_method(:argument1, :argument2)
-    assert_equal :my_method, mock.symbol
-    assert_equal [:argument1, :argument2], mock.arguments
   end
   
   def test_should_not_verify_successfully_because_not_all_expectations_have_been_satisfied
@@ -136,7 +124,7 @@ class MockTest < Test::Unit::TestCase
     mock.expects(:method1)
     mock.expects(:method2)
     mock.method1
-    assert !mock.verified?
+    assert !mock.__verified__?
   end
   
   def test_should_increment_assertion_counter_for_every_verified_expectation
@@ -150,7 +138,7 @@ class MockTest < Test::Unit::TestCase
     
     assertion_counter = SimpleCounter.new
     
-    mock.verified?(assertion_counter)
+    mock.__verified__?(assertion_counter)
     
     assert_equal 2, assertion_counter.count
   end

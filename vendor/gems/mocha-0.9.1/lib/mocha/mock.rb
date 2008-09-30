@@ -5,6 +5,7 @@ require 'mocha/names'
 require 'mocha/mockery'
 require 'mocha/method_matcher'
 require 'mocha/parameters_matcher'
+require 'mocha/unexpected_invocation'
 
 module Mocha # :nodoc:
   
@@ -145,10 +146,6 @@ module Mocha # :nodoc:
     
     alias_method :quacks_like, :responds_like
 
-    def add_expectation(expectation)
-      @expectations.add(expectation)
-    end
-    
     def stub_everything
       @everything_stubbed = true
     end
@@ -157,13 +154,14 @@ module Mocha # :nodoc:
       if @responder and not @responder.respond_to?(symbol)
         raise NoMethodError, "undefined method `#{symbol}' for #{self.mocha_inspect} which responds like #{@responder.mocha_inspect}"
       end
-      matching_expectation = @expectations.detect(symbol, *arguments)
-      if matching_expectation then
-        matching_expectation.invoke(&block)
-      elsif @everything_stubbed then
-        return
+      if matching_expectation_allowing_invocation = @expectations.match_allowing_invocation(symbol, *arguments)
+        matching_expectation_allowing_invocation.invoke(&block)
       else
-        unexpected_method_called(symbol, *arguments)
+        if (matching_expectation = @expectations.match(symbol, *arguments)) || (!matching_expectation && !@everything_stubbed)
+          message = UnexpectedInvocation.new(self, symbol, *arguments).to_s
+          message << Mockery.instance.mocha_inspect
+          raise ExpectationError.new(message, caller)
+        end
       end
     end
     
@@ -175,16 +173,7 @@ module Mocha # :nodoc:
       end
     end
     
-    def unexpected_method_called(symbol, *arguments)
-      method_matcher = MethodMatcher.new(symbol)
-      parameters_matcher = ParametersMatcher.new(arguments)
-      method_signature = "#{mocha_inspect}.#{method_matcher.mocha_inspect}#{parameters_matcher.mocha_inspect}"
-      message = "unexpected invocation: #{method_signature}\n"
-      message << Mockery.instance.mocha_inspect
-      raise ExpectationError.new(message, caller)
-    end
-    
-    def verified?(assertion_counter = nil)
+    def __verified__?(assertion_counter = nil)
       @expectations.verified?(assertion_counter)
     end
     

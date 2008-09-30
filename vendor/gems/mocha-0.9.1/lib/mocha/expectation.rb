@@ -354,7 +354,7 @@ module Mocha # :nodoc:
 
     def initialize(mock, expected_method_name, backtrace = nil)
       @mock = mock
-      @method_matcher = MethodMatcher.new(expected_method_name)
+      @method_matcher = MethodMatcher.new(expected_method_name.to_sym)
       @parameters_matcher = ParametersMatcher.new
       @ordering_constraints = []
       @side_effects = []
@@ -422,11 +422,11 @@ module Mocha # :nodoc:
     
     def mocha_inspect
       message = "#{@cardinality.mocha_inspect}, "
-      if @invocation_count > 0
-        message << "already invoked #{@invocation_count} time"
-        message << "s" if @invocation_count > 1
-      else
-        message << "never invoked"
+      message << case @invocation_count
+        when 0 then "not yet invoked"
+        when 1 then "already invoked once"
+        when 2 then "already invoked twice"
+        else "already invoked #{@invocation_count} times"
       end
       message << ": "
       message << method_signature

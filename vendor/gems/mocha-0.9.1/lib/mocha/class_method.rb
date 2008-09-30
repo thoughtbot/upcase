@@ -7,7 +7,8 @@ module Mocha
     attr_reader :stubbee, :method
    
     def initialize(stubbee, method)
-      @stubbee, @method = stubbee, method
+      @stubbee = stubbee
+      @method = RUBY_VERSION < '1.9' ? method.to_s : method.to_sym
     end
   
     def stub
@@ -59,7 +60,8 @@ module Mocha
       else
         method_name = method.to_s.gsub(/\W/) { |s| "_substituted_character_#{s.ord}_" }
       end
-      "__stubba__#{method_name}__stubba__"
+      hidden_method = "__stubba__#{method_name}__stubba__"
+      RUBY_VERSION < '1.9' ? hidden_method.to_s : hidden_method.to_sym
     end  
   
     def eql?(other)
@@ -74,11 +76,9 @@ module Mocha
     end
     
     def method_exists?(method)
-      existing_methods = []
-      existing_methods += stubbee.public_methods(true) - stubbee.superclass.public_methods(true)
-      existing_methods += stubbee.protected_methods(true) - stubbee.superclass.protected_methods(true)
-      existing_methods += stubbee.private_methods(true) - stubbee.superclass.private_methods(true)
-      existing_methods.any? { |m| m.to_s == method.to_s }
+      symbol = method.to_sym
+      metaclass = stubbee.__metaclass__
+      metaclass.public_method_defined?(symbol) || metaclass.protected_method_defined?(symbol) || metaclass.private_method_defined?(symbol)
     end
 
   end

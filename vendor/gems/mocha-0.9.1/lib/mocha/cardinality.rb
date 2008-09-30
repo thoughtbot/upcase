@@ -20,10 +20,8 @@ module Mocha
       
       def times(range_or_count)
         case range_or_count
-        when Range
-          new(range_or_count.first, range_or_count.last)
-        else
-          new(range_or_count, range_or_count)
+          when Range then new(range_or_count.first, range_or_count.last)
+          else new(range_or_count, range_or_count)
         end
       end
       
@@ -80,7 +78,12 @@ module Mocha
     attr_reader :required, :maximum
     
     def times(number)
-      number == 1 ? "once" : "#{number} times"
+      case number
+        when 0 then "no times"
+        when 1 then "once"
+        when 2 then "twice"
+        else "#{number} times"
+      end
     end
     
     def infinite?(number)
