@@ -1,7 +1,9 @@
 require 'active_support'
 require 'factory_girl/factory'
 require 'factory_girl/attribute_proxy'
+require 'factory_girl/attribute'
 require 'factory_girl/sequence'
+require 'factory_girl/aliases'
 
 # Shortcut for Factory.create.
 #
@@ -10,3 +12,5 @@ require 'factory_girl/sequence'
 def Factory (name, attrs = {})
   Factory.create(name, attrs)
 end
+
+Factory.find_definitions

@@ -1,11 +1,14 @@
 class Factory
   
-  class AttributeDefinitionError < RuntimeError
-  end
-  
-  cattr_accessor :factories, :sequences #:nodoc:
+  cattr_accessor :factories #:nodoc:
   self.factories = {}
-  self.sequences = {}
+
+  # An Array of strings specifying locations that should be searched for
+  # factory definitions. By default, factory_girl will attempt to require
+  # "factories," "test/factories," and "spec/factories." Only the first
+  # existing file will be loaded.
+  cattr_accessor :definition_file_paths
+  self.definition_file_paths = %w(factories test/factories spec/factories)
 
   attr_reader :factory_name
 
@@ -28,41 +31,6 @@ class Factory
     self.factories[instance.factory_name] = instance
   end
 
-  # Defines a new sequence that can be used to generate unique values in a specific format.
-  #
-  # Arguments:
-  #   name: (Symbol)
-  #     A unique name for this sequence. This name will be referenced when
-  #     calling next to generate new values from this sequence.
-  #   block: (Proc)
-  #     The code to generate each value in the sequence. This block will be
-  #     called with a unique number each time a value in the sequence is to be
-  #     generated. The block should return the generated value for the
-  #     sequence.
-  #
-  # Example:
-  #   
-  #   Factory.sequence(:email) {|n| "somebody_#{n}@example.com" }
-  def self.sequence (name, &block)
-    self.sequences[name] = Sequence.new(&block)
-  end
-
-  # Generates and returns the next value in a sequence.
-  #
-  # Arguments:
-  #   name: (Symbol)
-  #     The name of the sequence that a value should be generated for.
-  #
-  # Returns:
-  #   The next value in the sequence. (Object)
-  def self.next (sequence)
-    unless self.sequences.key?(sequence)
-      raise "No such sequence: #{sequence}"
-    end
-
-    self.sequences[sequence].next
-  end
-
   def build_class #:nodoc:
     @build_class ||= class_for(@options[:class] || factory_name)
   end
@@ -71,10 +39,7 @@ class Factory
     options.assert_valid_keys(:class)
     @factory_name = factory_name_for(name)
     @options      = options
-
-    @static_attributes     = {}
-    @lazy_attribute_blocks = {}
-    @lazy_attribute_names  = []
+    @attributes   = []
   end
 
   # Adds an attribute that should be assigned on generated instances for this
@@ -96,23 +61,13 @@ class Factory
   #   value: (Object)
   #     If no block is given, this value will be used for this attribute.
   def add_attribute (name, value = nil, &block)
-    name = name.to_sym
+    attribute = Attribute.new(name, value, block)
 
-    if name.to_s =~ /=$/
-      raise AttributeDefinitionError, 
-        "factory_girl uses 'f.#{name.to_s.chop} #{value}' syntax " +
-        "rather than 'f.#{name} #{value}'" 
+    if attribute_defined?(attribute.name)
+      raise AttributeDefinitionError, "Attribute already defined: #{name}"
     end
-    
-    if block_given?
-      unless value.nil?
-        raise ArgumentError, "Both value and block given"
-      end
-      @lazy_attribute_blocks[name] = block
-      @lazy_attribute_names << name
-    else
-      @static_attributes[name] = value
-    end
+
+    @attributes << attribute
   end
 
   # Calls add_attribute using the missing method name as the name of the
@@ -225,6 +180,16 @@ class Factory
       factory_by_name(name).create(attrs)
     end
 
+    def find_definitions #:nodoc:
+      definition_file_paths.each do |path|
+        begin
+          require(path)
+          break
+        rescue LoadError
+        end
+      end
+    end
+
     private
 
     def factory_by_name (name)
@@ -235,14 +200,16 @@ class Factory
 
   private
 
-  def build_attributes_hash (override, strategy)
-    override = override.symbolize_keys
-    result = @static_attributes.merge(override)
-    @lazy_attribute_names.each do |name|
-      proxy = AttributeProxy.new(self, name, strategy, result)
-      result[name] = @lazy_attribute_blocks[name].call(proxy) unless override.key?(name)
+  def build_attributes_hash (values, strategy)
+    values = values.symbolize_keys
+    passed_keys = values.keys.collect {|key| Factory.aliases_for(key) }.flatten
+    @attributes.each do |attribute|
+      unless passed_keys.include?(attribute.name)
+        proxy = AttributeProxy.new(self, attribute.name, strategy, values)
+        values[attribute.name] = attribute.value(proxy)
+      end
     end
-    result
+    values
   end
 
   def build_instance (override, strategy)
@@ -268,6 +235,10 @@ class Factory
     else
       class_or_to_s.to_s.underscore.to_sym
     end
+  end
+
+  def attribute_defined? (name)
+    !@attributes.detect {|attr| attr.name == name }.nil?
   end
 
 end

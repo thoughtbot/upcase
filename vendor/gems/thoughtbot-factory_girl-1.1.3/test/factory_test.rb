@@ -53,36 +53,6 @@ class FactoryTest < Test::Unit::TestCase
 
   end
   
-  should "raise an error when defining a factory when using attribute setters" do
-    assert_raise Factory::AttributeDefinitionError do
-      Factory.define(:user) do |f|
-        f.name = 'test'
-      end
-    end
-  end
-
-  context "defining a sequence" do
-
-    setup do
-      @sequence = mock('sequence')
-      @name     = :count
-      Factory::Sequence.stubs(:new).returns(@sequence)
-    end
-
-    should "create a new sequence" do
-      Factory::Sequence.expects(:new).with().returns(@sequence)
-      Factory.sequence(@name)
-    end
-
-    should "use the supplied block as the sequence generator" do
-      Factory::Sequence.stubs(:new).yields(1)
-      yielded = false
-      Factory.sequence(@name) {|n| yielded = true }
-      assert yielded
-    end
-
-  end
-
   context "a factory" do
 
     setup do
@@ -97,6 +67,12 @@ class FactoryTest < Test::Unit::TestCase
 
     should "have a build class" do
       assert_equal @class, @factory.build_class
+    end
+
+    should "not allow the same attribute to be added twice" do
+      assert_raise(Factory::AttributeDefinitionError) do
+        2.times { @factory.add_attribute @name }
+      end
     end
 
     context "when adding an attribute with a value parameter" do
@@ -223,12 +199,6 @@ class FactoryTest < Test::Unit::TestCase
       assert_equal @value, @factory.attributes_for[@attr]
     end
 
-    should "not allow attributes to be added with both a value parameter and a block" do
-      assert_raise(ArgumentError) do
-        @factory.add_attribute(:name, 'value') {}
-      end
-    end
-
     should "allow attributes to be added with strings as names" do
       @factory.add_attribute('name', 'value')
       assert_equal 'value', @factory.attributes_for[:name]
@@ -256,6 +226,24 @@ class FactoryTest < Test::Unit::TestCase
         @factory.add_attribute(@attr, 'The price is wrong, Bob!')
         @hash = { @attr.to_s => @value }
         assert_equal @value, @factory.attributes_for(@hash)[@attr]
+      end
+
+    end
+
+    context "overriding an attribute with an alias" do
+
+      setup do
+        @factory.add_attribute(:test, 'original')
+        Factory.alias(/(.*)_alias/, '\1')
+        @result = @factory.attributes_for(:test_alias => 'new')
+      end
+
+      should "use the passed in value for the alias" do
+        assert_equal 'new', @result[:test_alias]
+      end
+
+      should "discard the predefined value for the attribute" do
+        assert_nil @result[:test]
       end
 
     end
@@ -427,29 +415,20 @@ class FactoryTest < Test::Unit::TestCase
 
   end
 
-  context "after defining a sequence" do
-
-    setup do
-      @sequence = mock('sequence')
-      @name     = :test
-      @value    = '1 2 5'
-
-      @sequence.        stubs(:next).returns(@value)
-      Factory::Sequence.stubs(:new). returns(@sequence)
-
-      Factory.sequence(@name) {}
+  Factory.definition_file_paths.each do |file|
+    should "automatically load definitions from #{file}.rb" do
+      Factory.stubs(:require).raises(LoadError)
+      Factory.expects(:require).with(file)
+      Factory.find_definitions
     end
+  end
 
-    should "call next on the sequence when sent next" do
-      @sequence.expects(:next)
-
-      Factory.next(@name)
-    end
-
-    should "return the value from the sequence" do
-      assert_equal @value, Factory.next(@name)
-    end
-
+  should "only load the first set of factories detected" do
+    first, second, third = Factory.definition_file_paths
+    Factory.expects(:require).with(first).raises(LoadError)
+    Factory.expects(:require).with(second)
+    Factory.expects(:require).with(third).never
+    Factory.find_definitions
   end
 
 end
