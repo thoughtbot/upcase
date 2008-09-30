@@ -1,9 +1,0 @@
-History.txt
-Manifest.txt
-README.txt
-Rakefile
-init.rb
-lib/aliasing.rb
-lib/attribute_accessors.rb
-lib/quietbacktrace.rb
-test/quiet_backtrace_test.rb
