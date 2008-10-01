@@ -68,7 +68,7 @@ Rake Tasks
   bootstrap
   Provides rake tasks for loading data into the database.  These are used for an initial application dataset needed for production.
   
-  capstrano
+  capistrano
   Standard capistrano deployment tasks
   
   git_tasks
