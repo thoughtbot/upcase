@@ -428,7 +428,7 @@ module ActiveRecord
 
         db_cols = begin
           column_names
-        rescue ActiveRecord::StatementInvalid
+        rescue Exception # To ignore both statement and connection errors
           []
         end
         names = attr_names.reject { |name| db_cols.include?(name.to_s) }
@@ -590,7 +590,7 @@ module ActiveRecord
       # Configuration options:
       # * <tt>:message</tt> - Specifies a custom error message (default is: "has already been taken").
       # * <tt>:scope</tt> - One or more columns by which to limit the scope of the uniqueness constraint.
-      # * <tt>:case_sensitive</tt> - Looks for an exact match.  Ignored by non-text columns (+false+ by default).
+      # * <tt>:case_sensitive</tt> - Looks for an exact match.  Ignored by non-text columns (+true+ by default).
       # * <tt>:allow_nil</tt> - If set to true, skips this validation if the attribute is +nil+ (default is +false+).
       # * <tt>:allow_blank</tt> - If set to true, skips this validation if the attribute is blank (default is +false+).
       # * <tt>:if</tt> - Specifies a method, proc or string to call to determine if the validation should
