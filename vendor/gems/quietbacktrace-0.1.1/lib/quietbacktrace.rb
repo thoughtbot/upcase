@@ -67,7 +67,7 @@
 # * James Golick (james@giraffesoft.ca, http://jamesgolick.com) 
 # * Joe Ferris (jferris@thoughtbot.com)
 # 
-# Special thanks to the Boston.rb group (http://bostonrb.org)
+# Special thanks to the Boston.rb group (http://boston.rubygroup.org)
 # for cultivating this idea at our inaugural hackfest. 
 # 
 # == Requirements
@@ -97,7 +97,6 @@ module QuietBacktrace # :nodoc: all
     def filter_backtrace_with_quieting(backtrace)
       filter_backtrace_without_quieting(backtrace)
 
-      # Rails view backtraces are flattened into one String. Adjust.
       backtrace = backtrace.first.split("\n") if backtrace.size == 1
 
       if Test::Unit::TestCase.quiet_backtrace
@@ -125,34 +124,16 @@ module QuietBacktrace # :nodoc: all
         self.backtrace_filters, self.backtrace_silencers = [], []
         
         extend ClassMethods
+        new_backtrace_silencer(:test_unit)    { |line| (line.include?("ruby") && line.include?("/test/unit")) }
+        new_backtrace_silencer(:gem_root)     { |line| line =~ /ruby\/gems/i }
+        new_backtrace_silencer(:e1)           { |line| line == "-e:1" }
+        new_backtrace_silencer(:rails_vendor) { |line| (line.include?("vendor/plugins") || line.include?("vendor/gems") || line.include?("vendor/rails")) }
         
-        new_backtrace_silencer(:test_unit) do |line|
-          (line.include?("ruby") && line.include?("/test/unit"))
-        end
-        new_backtrace_silencer(:os_x_ruby) do |line| 
-          line.include?('Ruby.framework')
-        end
-        new_backtrace_silencer(:gem_root) do |line| 
-          line =~ /ruby\/gems/i
-        end
-        new_backtrace_silencer(:e1) do |line| 
-          line == "-e:1"
-        end
-        new_backtrace_silencer(:rails_vendor) do |line| 
-          (line.include?("vendor/plugins") || 
-            line.include?("vendor/gems") || 
-            line.include?("vendor/rails"))
-        end
-        
-        new_backtrace_filter(:method_name) do |line| 
-          line.slice!((line =~ /:in /)..line.length) if (line =~ /:in /)
-        end
-        new_backtrace_filter(:rails_root) do |line| 
-          line.sub!("#{RAILS_ROOT}/", '') if (defined?(RAILS_ROOT) && line.include?(RAILS_ROOT))
-        end
+        new_backtrace_filter(:method_name)   { |line| line.slice!((line =~ /:in /)..line.length) if (line =~ /:in /) }
+        new_backtrace_filter(:rails_root)    { |line| line.sub!("#{RAILS_ROOT}/", '') if (defined?(RAILS_ROOT) && line.include?(RAILS_ROOT)) }
         
         self.quiet_backtrace = true
-        self.backtrace_silencers = [:test_unit, :os_x_ruby, :gem_root, :e1]
+        self.backtrace_silencers = [:test_unit, :gem_root, :e1]
         self.backtrace_filters = [:method_name]
       end
     end

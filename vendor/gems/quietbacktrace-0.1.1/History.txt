@@ -1,0 +1,50 @@
+== 0.1.1 / 2007-12-04
+
+* Added Seth Fitzsimmons' fix for view backtraces, which are a special case.
+* View backtraces are an array with a single element, not an array of all lines.
+
+== 0.1.0 / 2007-12-03
+
+* Protected the ActiveSupport snippets with unless defined?(ActiveSupport).
+* That way, alias_method_chain, etc. won't be overridden in Rails apps.
+
+== 0.0.9 / 2007-12-03
+
+* Fixed file path bugs with File.expand_path
+
+== 0.0.8 / 2007-12-03
+
+* Attempt to fix ERROR:  While executing gem ... (OpenURI::HTTPError)
+
+== 0.0.7 / 2007-12-03
+
+* Updated the README and RDocs to reflect API changes.
+
+== 0.0.6 / 2007-12-03
+
+* Reworked the API again.
+* Step one - create new silencers/filters.
+* Step two - add them to the backtrace_silencers and backtrace_filters Arrays.
+
+== 0.0.5 / 2007-12-03
+
+* Improved the API with James Golick's code
+* Dan Croak renamed the methods silences_backtrace and filters_backtrace
+
+== 0.0.4 / 2007-12-03
+
+* Added an init file so it can be added to Rails with gemsonrails
+
+== 0.0.3 / 2007-12-03
+
+* Trying to get RDoc with Allison template showing on home page
+
+== 0.0.2 / 2007-12-03
+
+* Cleaned up README
+
+== 0.0.1 / 2007-12-03
+
+* Dan Croak and James Golick announce Quiet Backtrace. Features include:
+  * hooks into quiet_backtrace to add and remove silencers and filters
+  * ability to turn quiet_backtrace on and off at any level in your test suite
