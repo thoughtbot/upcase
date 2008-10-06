@@ -26,19 +26,15 @@ Rails::Initializer.run do |config|
 
   # Specify gems that this application depends on.
   config.gem 'mislav-will_paginate', 
-    :lib => 'will_paginate', 
-    :source => 'http://gems.github.com', 
-    :version => '~> 2.3.4'
+             :lib => 'will_paginate', 
+             :source => 'http://gems.github.com', 
+             :version => '~> 2.3.4'
   config.gem 'thoughtbot-shoulda', 
-    :lib => 'shoulda/rails', 
-    :source => 'http://gems.github.com'
+             :lib => 'shoulda/rails', 
+             :source => 'http://gems.github.com'
   config.gem 'thoughtbot-factory_girl', 
-    :lib => 'factory_girl', 
-    :source => 'http://gems.github.com'
-  config.gem "thoughtbot-quietbacktrace", 
-    :lib => "quietbacktrace", 
-    :source => "http://gems.github.com"
-  config.gem "redgreen"
+             :lib => 'factory_girl', 
+             :source => 'http://gems.github.com'
   
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
