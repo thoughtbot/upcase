@@ -2,7 +2,7 @@ require 'fileutils'
 require 'pathname'
 
 namespace :backup do
-  desc 'Backup the current database.  Timestamped file is created as :rails_root/../db-name-timestamp.sql'
+  desc "Backup the current database. Timestamped file is created as :rails_root/../db-name-timestamp.sql"
   task :db => :environment do 
     config    = ActiveRecord::Base.configurations[RAILS_ENV || 'development']
     filename  = "#{config['database'].gsub(/_/, '-')}-#{Time.now.strftime('%Y-%m-%d-%H-%M-%S')}.sql"
@@ -22,7 +22,7 @@ namespace :backup do
   end
 
 
-  desc 'Backup all assets under public/system.  File is created as :rails_root/../system.tgz'
+  desc "Backup all assets under public/system. File is created as :rails_root/../system.tgz"
   task :assets do 
     path       = (Pathname.new(RAILS_ROOT) + 'public' + 'system').realpath
     base_dir   = path.parent
