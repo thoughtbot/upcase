@@ -1,7 +1,7 @@
 This is Suspenders, the thoughtbot rails template. To create a new project, checkout this
 repository and run:
 
-  ./script/create_project.rb projectname
+  ./script/create_project projectname
 
 This will create a project in ../projectname.  You should then follow the
 instructions on Github to upload that project there.  This script creates an
