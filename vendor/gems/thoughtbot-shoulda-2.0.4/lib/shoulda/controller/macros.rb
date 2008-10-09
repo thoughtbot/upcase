@@ -100,6 +100,24 @@ module ThoughtBot # :nodoc:
         def should_not_set_the_flash
           should_set_the_flash_to nil
         end
+        
+        # Macro that creates a test asserting that filter_parameter_logging
+        # is set for the specified keys
+        #
+        # Example:
+        #
+        #   should_filter_params :password, :ssn
+        def should_filter_params(*keys)
+          keys.each do |key|
+            should "filter #{key}" do
+              assert @controller.respond_to?(:filter_parameters),
+                "The key #{key} is not filtered"
+              filtered = @controller.send(:filter_parameters, {key.to_s => key.to_s})
+              assert_equal '[FILTERED]', filtered[key.to_s],
+                "The key #{key} is not filtered"
+            end
+          end
+        end
 
         # Macro that creates a test asserting that the controller assigned to
         # each of the named instance variable(s).
@@ -164,6 +182,8 @@ module ThoughtBot # :nodoc:
         # Example:
         #
         #   should_respond_with_content_type 'application/rss+xml'
+        #   should_respond_with_content_type :rss
+        #   should_respond_with_content_type /rss/
         def should_respond_with_content_type(content_type)
           should "respond with content type of #{content_type}" do
             content_type = Mime::EXTENSION_LOOKUP[content_type.to_s].to_s if content_type.is_a? Symbol
@@ -233,7 +253,8 @@ module ThoughtBot # :nodoc:
         # Example:
         #
         #   should_redirect_to '"/"'
-        #   should_redirect_to "users_url(@user)"
+        #   should_redirect_to "user_url(@user)"
+        #   should_redirect_to "users_url"
         def should_redirect_to(url)
           should "redirect to #{url.inspect}" do
             instantiate_variables_from_assigns do
@@ -260,12 +281,15 @@ module ThoughtBot # :nodoc:
         #
         # Examples:
         #
-        #   should_route :get, '/posts', :action => :index
-        #   should_route :post, '/posts', :controller => :posts, :action => :create
-        #   should_route :get, '/posts/1', :action => :show, :id => 1
-        #   should_route :put, '/posts/1', :action => :update, :id => "1"
-        #   should_route :delete, '/posts/1', :action => :destroy, :id => 1
-        #   should_route :get, '/posts/new', :action => :new
+        #   should_route :get, "/posts", :controller => :posts, :action => :index
+        #   should_route :get, "/posts/new", :action => :new
+        #   should_route :post, "/posts", :action => :create
+        #   should_route :get, "/posts/1", :action => :show, :id => 1
+        #   should_route :edit, "/posts/1", :action => :show, :id => 1
+        #   should_route :put, "/posts/1", :action => :update, :id => 1
+        #   should_route :delete, "/posts/1", :action => :destroy, :id => 1
+        #   should_route :get, "/users/1/posts/1", 
+        #     :action => :show, :id => 1, :user_id => 1
         #
         def should_route(method, path, options)
           unless options[:controller]
