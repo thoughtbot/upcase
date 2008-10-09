@@ -31,11 +31,11 @@ Rails::Initializer.run do |config|
              :version => '~> 2.3.5'
   config.gem 'thoughtbot-shoulda', 
              :lib => 'shoulda',
-             :source => 'http://gems.github.com'
+             :source => 'http://gems.github.com',
              :version => '>= 2.0.4'
   config.gem 'thoughtbot-factory_girl', 
              :lib => 'factory_girl', 
-             :source => 'http://gems.github.com'
+             :source => 'http://gems.github.com',
              :version => '>= 1.1.3'
   
   # Only load the plugins named here, in the order given. By default, all plugins 
