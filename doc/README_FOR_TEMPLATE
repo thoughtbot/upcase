@@ -32,17 +32,18 @@ Gems (unpacked in vendor/gems):
 For testing:
 
   mocha 0.9.1
+  redgreen-1.2.2
   factory_girl 1.1.3
   shoulda 2.0.2
-  quietbacktrace
+  quietbacktrace 1.1.4
 
 Plugins (in vendor/plugins):
 ----------------------------
 
   hoptoad_notifier
+  limerick_rake
   mile_marker
   squirrel
-  limerick_rake
 
 For testing:
 
