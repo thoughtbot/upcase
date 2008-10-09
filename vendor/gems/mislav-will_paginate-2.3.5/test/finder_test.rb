@@ -261,6 +261,12 @@ class FinderTest < ActiveRecordTestCase
       assert_equal 1, entries.total_entries, 'only one topic should be found'
     end
   end
+  
+  def test_named_scope_with_include
+    project = projects(:active_record)
+    entries = project.topics.with_replies_starting_with('AR ').paginate(:page => 1, :per_page => 1)
+    assert_equal 1, entries.size
+  end
 
   ## misc ##
 
@@ -427,6 +433,12 @@ class FinderTest < ActiveRecordTestCase
       assert_equal 14, Developer.paginated_each(:page => '2') { }
     end
 
+    def test_paginated_each_with_named_scope
+      assert_equal 2, Developer.poor.paginated_each(:per_page => 1) {
+        assert_equal 11, Developer.count
+      }
+    end
+
     # detect ActiveRecord 2.1
     if ActiveRecord::Base.private_methods.include?('references_eager_loaded_tables?')
       def test_removes_irrelevant_includes_in_count
@@ -443,6 +455,22 @@ class FinderTest < ActiveRecordTestCase
         Developer.paginate :page => 1, :per_page => 1,
           :include => :projects, :conditions => 'projects.id > 2'
       end
+    end
+    
+    def test_paginate_from
+      result = Developer.paginate(:from => 'users', :page => 1, :per_page => 1)
+      assert_equal 1, result.size
+    end
+    
+    def test_hmt_with_include
+      # ticket #220
+      reply = projects(:active_record).replies.find(:first, :order => 'replies.id')
+      assert_equal replies(:decisive), reply
+      
+      # ticket #223
+      Project.find(1, :include => :replies)
+      
+      # I cannot reproduce any of the failures from those reports :(
     end
   end
 end

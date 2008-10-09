@@ -104,7 +104,10 @@ module WillPaginate
         
         begin 
           collection = paginate(options)
-          total += collection.each(&block).size
+          with_exclusive_scope(:find => {}) do
+            # using exclusive scope so that the block is yielded in scope-free context
+            total += collection.each(&block).size
+          end
           options[:page] += 1
         end until collection.size < collection.per_page
         
@@ -181,6 +184,7 @@ module WillPaginate
       # in the database. It relies on the ActiveRecord +count+ method.
       def wp_count(options, args, finder)
         excludees = [:count, :order, :limit, :offset, :readonly]
+        excludees << :from unless ActiveRecord::Calculations::CALCULATIONS_OPTIONS.include?(:from)
 
         # we may be in a model or an association proxy
         klass = (@owner and @reflection) ? @reflection.klass : self
