@@ -39,8 +39,8 @@ end
 run("mkdir #{project_directory}")
 Dir.chdir(project_directory) or fail("Couldn't change to #{project_directory}")
 run("git init")
-run("git remote add template #{template_url}")
-run("git pull template master")
+run("git remote add suspenders #{template_url}")
+run("git pull suspenders master")
 
 Dir.glob("#{project_directory}/**/*").each do |file|
   search_and_replace(file, changeme, project_name)
