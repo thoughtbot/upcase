@@ -43,6 +43,11 @@ h2. Subversion
 * rake svn:log - Writes the log file to doc/svn_log.txt
 * rake svn:update\_svn\_ignore - Updates svn:ignore from .svnignore
 
+h2. Test Coverage
+
+rake test:coverage - Uses rcov to provide reports about test coverage of your application. 
+                     Install the rcov from http://github.com/mergulhao/rcov
+
 The Limerick Rake
 =================
 
