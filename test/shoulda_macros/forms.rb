@@ -16,4 +16,13 @@ class Test::Unit::TestCase
       end
     end
   end
+
+  def self.form_http_method(http_method)
+    http_method = http_method.nil? ? 'post' : http_method.to_s
+    if http_method == "post" || http_method == "get"
+      return http_method, nil
+    else
+      return "post", http_method
+    end
+  end  
 end
