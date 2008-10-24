@@ -26,7 +26,12 @@ Suspenders currently includes Rails 2.1.1
 Gems (unpacked in vendor/gems):
 -------------------------------
 
+For record pagination:
+
   will_paginate 2.3.5
+
+For text formatting:
+
   RedCloth 3.0.4
 
 For testing:
@@ -43,10 +48,6 @@ Plugins (in vendor/plugins):
   limerick_rake
   mile_marker
   squirrel
-
-For testing:
-
-  helper_test
     
 Initializers (in config/initializers)
 -------------------------------------
