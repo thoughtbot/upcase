@@ -21,7 +21,7 @@ config.action_controller.allow_forgery_protection    = false
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
 
-HOST = "localhost"
+HOST = 'localhost'
 
 config.gem 'thoughtbot-shoulda', 
            :lib => 'shoulda',
@@ -31,9 +31,8 @@ config.gem 'thoughtbot-factory_girl',
            :lib => 'factory_girl', 
            :source => 'http://gems.github.com',
            :version => '>= 1.1.3'
-config.gem 'redgreen'
 
 require 'quietbacktrace'
 require 'factory_girl'
-require 'redgreen'
 require 'mocha'
+begin require 'redgreen'; rescue LoadError; end
