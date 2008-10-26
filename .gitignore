@@ -6,3 +6,5 @@ public/system
 *.DS_Store
 coverage/*
 *.swp
+
+!.keep
