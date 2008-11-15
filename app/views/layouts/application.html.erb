@@ -4,8 +4,8 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title><%= PROJECT_NAME.humanize %></title>
-    <%= stylesheet_link_tag 'screen', :media => 'all' %>
-    <%= javascript_include_tag :defaults %>
+    <%= stylesheet_link_tag 'screen', :media => 'all', :cache => true %>
+    <%= javascript_include_tag :defaults, :cache => true %>
   </head>
   <body class="<%= body_class %>">
     <%= render :partial => 'layouts/flashes' -%>
