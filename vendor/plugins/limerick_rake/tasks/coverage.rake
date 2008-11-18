@@ -4,7 +4,7 @@ namespace :test do
   task :coverage do
     rm_f "coverage"
     rm_f "coverage.data"
-    rcov = "rcov --rails --aggregate coverage.data -T -x \" rubygems/*,gems/*,rcov*\""
+    rcov = "rcov -Itest --rails --aggregate coverage.data -T -x \" rubygems/*,/Library/Ruby/Site/*,gems/*,rcov*\""
     system("#{rcov} --no-html test/unit/*_test.rb test/unit/helpers/*_test.rb")
     system("#{rcov} --no-html test/functional/*_test.rb")
     system("#{rcov} --html test/integration/*_test.rb")
