@@ -36,6 +36,10 @@ h2. Haml & Sass
 * rake sass:all_sass2css - Convert all Sass files to CSS.
 * rake haml:all_html2haml - Convert all HTML files to Haml.
 
+h2. Rails 2+
+
+* rake rails_two:rename_views - Renames all .rhtml views to .html.erb, .rjs to .js.rjs, .rxml to .xml.builder and .haml to .html.haml.
+
 h2. Subversion
 
 * rake svn:add - Adds all files with an svn status flag of '?'
@@ -45,8 +49,15 @@ h2. Subversion
 
 h2. Test Coverage
 
-rake test:coverage - Uses rcov to provide reports about test coverage of your application. 
-                     Install the rcov from http://github.com/mergulhao/rcov
+Install rcov from http://github.com/mergulhao/rcov
+
+* rake test:coverage - Uses rcov to provide reports about test coverage of your application. 
+
+h2. Mass Assignment
+
+From "mhartl":http://github.com/mhartl/find_mass_assignment
+
+* rake find_mass_assignment
 
 The Limerick Rake
 =================
