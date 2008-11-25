@@ -25,10 +25,24 @@ Rails::Initializer.run do |config|
   # config.frameworks -= [ :active_record, :active_resource, :action_mailer ]
 
   # Specify gems that this application depends on.
+  config.gem 'redcloth', 
+             :version => '~> 3.0.4'
   config.gem 'mislav-will_paginate', 
              :lib => 'will_paginate', 
              :source => 'http://gems.github.com', 
              :version => '~> 2.3.5'
+  config.gem 'mocha', 
+             :version => '>= 0.9.2'
+  config.gem 'quietbacktrace', 
+             :version => '>= 0.1.1'
+  config.gem 'thoughtbot-factory_girl', 
+             :lib => 'factory_girl', 
+             :source => 'http://gems.github.com', 
+             :version => '>= 1.1.3'
+  config.gem 'thoughtbot-shoulda', 
+             :lib => 'shoulda', 
+             :source => 'http://gems.github.com', 
+             :version => '>= 2.0.5'
   
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
