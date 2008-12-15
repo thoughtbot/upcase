@@ -1,0 +1,61 @@
+--- !ruby/object:Gem::Specification 
+name: quietbacktrace
+version: !ruby/object:Gem::Version 
+  version: 0.1.1
+platform: ruby
+authors: []
+
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2008-11-24 00:00:00 -05:00
+default_executable: 
+dependencies: []
+
+description: 
+email: 
+executables: []
+
+extensions: []
+
+extra_rdoc_files: []
+
+files: 
+- lib
+- lib/quietbacktrace.rb
+- lib/attribute_accessors.rb~HEAD
+- lib/quietbacktrace.rb~HEAD
+- lib/attribute_accessors.rb
+- lib/aliasing.rb~HEAD
+- lib/aliasing.rb
+has_rdoc: false
+homepage: 
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- bin
+- bin
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.2.0
+signing_key: 
+specification_version: 2
+summary: 
+test_files: []
+
