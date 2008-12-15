@@ -3,46 +3,57 @@ name: quietbacktrace
 version: !ruby/object:Gem::Version 
   version: 0.1.1
 platform: ruby
-authors: []
-
+authors: 
+- Dan Croak
 autorequire: 
 bindir: bin
-cert_chain: []
-
-date: 2008-11-24 00:00:00 -05:00
+cert_chain: 
+date: 2007-12-04 00:00:00 -05:00
 default_executable: 
-dependencies: []
-
-description: 
-email: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: hoe
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.3.0
+    version: 
+description: "== Install  sudo gem install quietbacktrace  == Usage  Quiet Backtrace works by adding new attributes to Test::Unit::TestCase.  By default, their values are:  self.quiet_backtrace = true self.backtrace_silencers = [:test_unit, :gem_root, :e1] self.backtrace_filters = [:method_name]"
+email: dcroak@thoughtbot.com
 executables: []
 
 extensions: []
 
-extra_rdoc_files: []
-
+extra_rdoc_files: 
+- History.txt
+- Manifest.txt
+- README.txt
 files: 
-- lib
-- lib/quietbacktrace.rb
-- lib/attribute_accessors.rb~HEAD
-- lib/quietbacktrace.rb~HEAD
-- lib/attribute_accessors.rb
-- lib/aliasing.rb~HEAD
+- History.txt
+- Manifest.txt
+- README.txt
+- Rakefile
+- init.rb
 - lib/aliasing.rb
-has_rdoc: false
+- lib/attribute_accessors.rb
+- lib/quietbacktrace.rb
+- test/quiet_backtrace_test.rb
+has_rdoc: true
 homepage: 
 post_install_message: 
-rdoc_options: []
-
+rdoc_options: 
+- --main
+- README.txt
 require_paths: 
-- bin
-- bin
 - lib
 required_ruby_version: !ruby/object:Gem::Requirement 
   requirements: 
-  - - ">="
+  - - ">"
     - !ruby/object:Gem::Version 
-      version: "0"
+      version: 0.0.0
   version: 
 required_rubygems_version: !ruby/object:Gem::Requirement 
   requirements: 
@@ -52,10 +63,10 @@ required_rubygems_version: !ruby/object:Gem::Requirement
   version: 
 requirements: []
 
-rubyforge_project: 
-rubygems_version: 1.2.0
+rubyforge_project: quietbacktrace
+rubygems_version: 1.3.1
 signing_key: 
-specification_version: 2
-summary: 
+specification_version: 1
+summary: quiet_backtrace suppresses the noise in your Test::Unit backtrace. It also provides hooks for you to add additional filters.
 test_files: []
 
