@@ -14,8 +14,16 @@ class Test::Unit::TestCase
 end
 
 class ActionView::TestCase
-  # Enable UrlWriter when testing helpers
-  include ActionController::UrlWriter
-  # Default host for helper tests
-  default_url_options[:host] = HOST
+  class TestController < ActionController::Base
+    attr_accessor :request, :response, :params
+ 
+    def initialize
+      @request = ActionController::TestRequest.new
+      @response = ActionController::TestResponse.new
+      
+      # TestCase doesn't have context of a current url so cheat a bit
+      @params = {}
+      send(:initialize_current_url)
+    end
+  end
 end
