@@ -21,7 +21,7 @@ Suspenders was created for use at thoughtbot, inc. (http://thoughtbot.com) as a
 baseline application setup, with reasonable default plugins that the majority (if not all)
 of our applications used, as well as best-practice configuration options.
 
-Suspenders currently includes Rails 2.1.1
+Suspenders currently includes Rails 2.2.2
 
 Gems (unpacked in vendor/gems):
 -------------------------------
@@ -36,9 +36,9 @@ For text formatting:
 
 For testing:
 
-  mocha 0.9.1
-  factory_girl 1.1.3
-  shoulda 2.0.5
+  mocha 0.9.3
+  factory_girl 1.1.5
+  shoulda 2.0.6
   quietbacktrace 0.1.1
 
 Plugins (in vendor/plugins):
