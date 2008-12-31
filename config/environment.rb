@@ -33,7 +33,7 @@ Rails::Initializer.run do |config|
              :source => 'http://gems.github.com', 
              :version => '~> 2.3.6'
   config.gem 'mocha', 
-             :version => '>= 0.9.3'
+             :version => '>= 0.9.4'
   config.gem 'quietbacktrace', 
              :version => '>= 0.1.1'
   config.gem 'thoughtbot-factory_girl', 

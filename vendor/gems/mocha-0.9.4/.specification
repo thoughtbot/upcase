@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: mocha
 version: !ruby/object:Gem::Version 
-  version: 0.9.3
+  version: 0.9.4
 platform: ruby
 authors: 
 - James Mead
@@ -9,7 +9,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2008-11-26 00:00:00 -05:00
+date: 2008-12-29 00:00:00 -05:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
@@ -23,7 +23,7 @@ dependencies:
         version: "0"
     version: 
 description: Mocking and stubbing library with JMock/SchMock syntax, which allows mocking and stubbing of methods on real (non-mock) classes.
-email: mocha-developer@rubyforge.org
+email: mocha-developer@googlegroups.com
 executables: []
 
 extensions: []
@@ -33,6 +33,7 @@ extra_rdoc_files:
 - COPYING
 files: 
 - lib/mocha/any_instance_method.rb
+- lib/mocha/argument_iterator.rb
 - lib/mocha/backtrace_filter.rb
 - lib/mocha/cardinality.rb
 - lib/mocha/central.rb
@@ -132,7 +133,6 @@ files:
 - test/acceptance/stubbing_non_public_class_method_test.rb
 - test/acceptance/stubbing_non_public_instance_method_test.rb
 - test/acceptance/stubbing_on_non_mock_object_test.rb
-- test/active_record_test_case.rb
 - test/deprecation_disabler.rb
 - test/execution_point.rb
 - test/method_definer.rb
