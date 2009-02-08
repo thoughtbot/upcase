@@ -32,18 +32,6 @@ Rails::Initializer.run do |config|
              :lib => 'will_paginate', 
              :source => 'http://gems.github.com', 
              :version => '~> 2.3.6'
-  config.gem 'mocha', 
-             :version => '>= 0.9.4'
-  config.gem 'quietbacktrace', 
-             :version => '>= 0.1.1'
-  config.gem 'thoughtbot-factory_girl', 
-             :lib => 'factory_girl', 
-             :source => 'http://gems.github.com', 
-             :version => '>= 1.1.5'
-  config.gem 'thoughtbot-shoulda', 
-             :lib => 'shoulda', 
-             :source => 'http://gems.github.com', 
-             :version => '>= 2.0.6'
   
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
