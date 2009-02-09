@@ -43,6 +43,31 @@ module Mocha # :nodoc:
       self
     end
   
+    # :call-seq: twice() -> expectation
+    #
+    # Modifies expectation so that the expected method must be called exactly twice.
+    #   object = mock()
+    #   object.expects(:expected_method).twice
+    #   object.expected_method
+    #   object.expected_method
+    #   # => verify succeeds
+    #
+    #   object = mock()
+    #   object.expects(:expected_method).twice
+    #   object.expected_method
+    #   object.expected_method
+    #   object.expected_method
+    #   # => verify fails
+    #
+    #   object = mock()
+    #   object.expects(:expected_method).twice
+    #   object.expected_method
+    #   # => verify fails
+    def twice
+      @cardinality = Cardinality.exactly(2)
+      self
+    end
+  
     # :call-seq: once() -> expectation
     #
     # Modifies expectation so that the expected method must be called exactly once.
