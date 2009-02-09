@@ -22,7 +22,7 @@ config.action_controller.allow_forgery_protection    = false
 config.action_mailer.delivery_method = :test
 
 config.gem 'mocha', 
-           :version => '>= 0.9.4'
+           :version => '>= 0.9.5'
 config.gem 'quietbacktrace', 
            :version => '>= 0.1.1'
 config.gem 'thoughtbot-factory_girl', 
