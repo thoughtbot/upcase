@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: thoughtbot-shoulda
 version: !ruby/object:Gem::Version 
-  version: 2.10.0
+  version: 2.10.1
 platform: ruby
 authors: 
 - Tammer Saleh
@@ -9,7 +9,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2009-03-04 00:00:00 -05:00
+date: 2009-03-05 00:00:00 -05:00
 default_executable: convert_to_should_syntax
 dependencies: []
 
