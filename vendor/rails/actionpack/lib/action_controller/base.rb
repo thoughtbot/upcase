@@ -22,7 +22,7 @@ module ActionController #:nodoc:
     attr_reader :allowed_methods
 
     def initialize(*allowed_methods)
-      super("Only #{allowed_methods.to_sentence} requests are allowed.")
+      super("Only #{allowed_methods.to_sentence(:locale => :en)} requests are allowed.")
       @allowed_methods = allowed_methods
     end
 
@@ -784,9 +784,37 @@ module ActionController #:nodoc:
       #   # placed in "app/views/layouts/special.r(html|xml)"
       #   render :text => "Hi there!", :layout => "special"
       #
-      # The <tt>:text</tt> option can also accept a Proc object, which can be used to manually control the page generation. This should
-      # generally be avoided, as it violates the separation between code and content, and because almost everything that can be
-      # done with this method can also be done more cleanly using one of the other rendering methods, most notably templates.
+      # === Streaming data and/or controlling the page generation
+      #
+      # The <tt>:text</tt> option can also accept a Proc object, which can be used to:
+      #
+      # 1. stream on-the-fly generated data to the browser. Note that you should
+      #    use the methods provided by ActionController::Steaming instead if you
+      #    want to stream a buffer or a file.
+      # 2. manually control the page generation. This should generally be avoided,
+      #    as it violates the separation between code and content, and because almost
+      #    everything that can be done with this method can also be done more cleanly
+      #    using one of the other rendering methods, most notably templates.
+      #
+      # Two arguments are passed to the proc, a <tt>response</tt> object and an
+      # <tt>output</tt> object. The response object is equivalent to the return
+      # value of the ActionController::Base#response method, and can be used to
+      # control various things in the HTTP response, such as setting the
+      # Content-Type header. The output object is an writable <tt>IO</tt>-like
+      # object, so one can call <tt>write</tt> and <tt>flush</tt> on it.
+      #
+      # The following example demonstrates how one can stream a large amount of
+      # on-the-fly generated data to the browser:
+      #
+      #   # Streams about 180 MB of generated data to the browser.
+      #   render :text => proc { |response, output|
+      #     10_000_000.times do |i|
+      #       output.write("This is line #{i}\n")
+      #       output.flush
+      #     end
+      #   }
+      #
+      # Another example:
       #
       #   # Renders "Hello from code!"
       #   render :text => proc { |response, output| output.write("Hello from code!") }
@@ -885,6 +913,7 @@ module ActionController #:nodoc:
         layout = pick_layout(options)
         response.layout = layout.path_without_format_and_extension if layout
         logger.info("Rendering template within #{layout.path_without_format_and_extension}") if logger && layout
+        layout = layout.path_without_format_and_extension if layout
 
         if content_type = options[:content_type]
           response.content_type = content_type.to_s
@@ -1072,7 +1101,6 @@ module ActionController #:nodoc:
         end
 
         response.redirected_to = options
-        logger.info("Redirected to #{options}") if logger && logger.info?
 
         case options
           # The scheme name consist of a letter followed by any combination of
@@ -1095,6 +1123,7 @@ module ActionController #:nodoc:
 
       def redirect_to_full_url(url, status)
         raise DoubleRenderError if performed?
+        logger.info("Redirected to #{url}") if logger && logger.info?
         response.redirect(url, interpret_status(status))
         @performed_redirect = true
       end
@@ -1103,6 +1132,11 @@ module ActionController #:nodoc:
       # the client request. If the request doesn't match the options provided, the
       # request is considered stale and should be generated from scratch. Otherwise,
       # it's fresh and we don't need to generate anything and a reply of "304 Not Modified" is sent.
+      #
+      # Parameters:
+      # * <tt>:etag</tt>
+      # * <tt>:last_modified</tt> 
+      # * <tt>:public</tt> By default the Cache-Control header is private, set this to true if you want your application to be cachable by other devices (proxy caches).
       #
       # Example:
       #
@@ -1124,20 +1158,34 @@ module ActionController #:nodoc:
       # Sets the etag, last_modified, or both on the response and renders a
       # "304 Not Modified" response if the request is already fresh.
       #
+      # Parameters:
+      # * <tt>:etag</tt>
+      # * <tt>:last_modified</tt> 
+      # * <tt>:public</tt> By default the Cache-Control header is private, set this to true if you want your application to be cachable by other devices (proxy caches).
+      #
       # Example:
       #
       #   def show
       #     @article = Article.find(params[:id])
-      #     fresh_when(:etag => @article, :last_modified => @article.created_at.utc)
+      #     fresh_when(:etag => @article, :last_modified => @article.created_at.utc, :public => true)
       #   end
       #
       # This will render the show template if the request isn't sending a matching etag or
       # If-Modified-Since header and just a "304 Not Modified" response if there's a match.
+      #
       def fresh_when(options)
-        options.assert_valid_keys(:etag, :last_modified)
+        options.assert_valid_keys(:etag, :last_modified, :public)
 
         response.etag          = options[:etag]          if options[:etag]
         response.last_modified = options[:last_modified] if options[:last_modified]
+        
+        if options[:public] 
+          cache_control = response.headers["Cache-Control"].split(",").map {|k| k.strip }
+          cache_control.delete("private")
+          cache_control.delete("no-cache")
+          cache_control << "public"
+          response.headers["Cache-Control"] = cache_control.join(', ')
+        end
 
         if request.fresh?(response)
           head :not_modified
@@ -1149,15 +1197,24 @@ module ActionController #:nodoc:
       #
       # Examples:
       #   expires_in 20.minutes
-      #   expires_in 3.hours, :private => false
-      #   expires in 3.hours, 'max-stale' => 5.hours, :private => nil, :public => true
+      #   expires_in 3.hours, :public => true
+      #   expires in 3.hours, 'max-stale' => 5.hours, :public => true
       #
       # This method will overwrite an existing Cache-Control header.
       # See http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html for more possibilities.
       def expires_in(seconds, options = {}) #:doc:
-        cache_options = { 'max-age' => seconds, 'private' => true }.symbolize_keys.merge!(options.symbolize_keys)
-        cache_options.delete_if { |k,v| v.nil? or v == false }
-        cache_control = cache_options.map{ |k,v| v == true ? k.to_s : "#{k.to_s}=#{v.to_s}"}
+        cache_control = response.headers["Cache-Control"].split(",").map {|k| k.strip }
+
+        cache_control << "max-age=#{seconds}"
+        if options[:public]
+          cache_control.delete("private")
+          cache_control.delete("no-cache")
+          cache_control << "public"
+        end
+        
+        # This allows for additional headers to be passed through like 'max-stale' => 5.hours
+        cache_control += options.symbolize_keys.reject{|k,v| k == :public || k == :private }.map{ |k,v| v == true ? k.to_s : "#{k.to_s}=#{v.to_s}"}
+        
         response.headers["Cache-Control"] = cache_control.join(', ')
       end
 
@@ -1269,7 +1326,7 @@ module ActionController #:nodoc:
           rescue ActionView::MissingTemplate => e
             # Was the implicit template missing, or was it another template?
             if e.path == default_template_name
-              raise UnknownAction, "No action responded to #{action_name}. Actions: #{action_methods.sort.to_sentence}", caller
+              raise UnknownAction, "No action responded to #{action_name}. Actions: #{action_methods.sort.to_sentence(:locale => :en)}", caller
             else
               raise e
             end
