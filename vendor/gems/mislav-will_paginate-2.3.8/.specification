@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: mislav-will_paginate
 version: !ruby/object:Gem::Version 
-  version: 2.3.7
+  version: 2.3.8
 platform: ruby
 authors: 
 - "Mislav Marohni\xC4\x87"
@@ -10,7 +10,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2009-02-10 00:00:00 -05:00
+date: 2009-03-09 00:00:00 -04:00
 default_executable: 
 dependencies: []
 
@@ -29,15 +29,12 @@ files:
 - LICENSE
 - README.rdoc
 - Rakefile
-- examples
 - examples/apple-circle.gif
 - examples/index.haml
 - examples/index.html
 - examples/pagination.css
 - examples/pagination.sass
 - init.rb
-- lib
-- lib/will_paginate
 - lib/will_paginate.rb
 - lib/will_paginate/array.rb
 - lib/will_paginate/collection.rb
@@ -47,13 +44,11 @@ files:
 - lib/will_paginate/named_scope_patch.rb
 - lib/will_paginate/version.rb
 - lib/will_paginate/view_helpers.rb
-- test
 - test/boot.rb
 - test/collection_test.rb
 - test/console
 - test/database.yml
 - test/finder_test.rb
-- test/fixtures
 - test/fixtures/admin.rb
 - test/fixtures/developer.rb
 - test/fixtures/developers_projects.yml
@@ -67,7 +62,6 @@ files:
 - test/fixtures/user.rb
 - test/fixtures/users.yml
 - test/helper.rb
-- test/lib
 - test/lib/activerecord_test_case.rb
 - test/lib/activerecord_test_connector.rb
 - test/lib/load_fixtures.rb
@@ -109,7 +103,6 @@ test_files:
 - test/console
 - test/database.yml
 - test/finder_test.rb
-- test/fixtures
 - test/fixtures/admin.rb
 - test/fixtures/developer.rb
 - test/fixtures/developers_projects.yml
@@ -123,7 +116,6 @@ test_files:
 - test/fixtures/user.rb
 - test/fixtures/users.yml
 - test/helper.rb
-- test/lib
 - test/lib/activerecord_test_case.rb
 - test/lib/activerecord_test_connector.rb
 - test/lib/load_fixtures.rb
