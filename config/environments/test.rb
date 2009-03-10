@@ -32,7 +32,7 @@ config.gem 'thoughtbot-factory_girl',
 config.gem 'thoughtbot-shoulda', 
            :lib => 'shoulda', 
            :source => 'http://gems.github.com', 
-           :version => '>= 2.9.1'
+           :version => '>= 2.10.1'
 
 HOST = 'localhost'
 
