@@ -47,12 +47,12 @@ module ActiveRecord
           options[:include] = @reflection.source_reflection.options[:include] if options[:include].nil?
         end
         
-        def insert_record(record, force=true)
+        def insert_record(record, force = true, validate = true)
           if record.new_record?
             if force
               record.save!
             else
-              return false unless record.save
+              return false unless record.save(validate)
             end
           end
           through_reflection = @reflection.through_reflection
@@ -160,9 +160,9 @@ module ActiveRecord
           end
 
           "INNER JOIN %s ON %s.%s = %s.%s %s #{@reflection.options[:joins]} #{custom_joins}" % [
-            @reflection.through_reflection.table_name,
-            @reflection.table_name, reflection_primary_key,
-            @reflection.through_reflection.table_name, source_primary_key,
+            @reflection.through_reflection.quoted_table_name,
+            @reflection.quoted_table_name, reflection_primary_key,
+            @reflection.through_reflection.quoted_table_name, source_primary_key,
             polymorphic_join
           ]
         end

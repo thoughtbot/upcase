@@ -1,14 +1,7 @@
 # Be sure to restart your server when you modify this file
 
-# Change this to the name of your rails project, like carbonrally.  
-# Just use the same name as the svn repo.
-PROJECT_NAME = "CHANGEME"
-
-throw "The project's name in environment.rb is blank" if PROJECT_NAME.empty?
-throw "Project name (#{PROJECT_NAME}) must_be_like_this" unless PROJECT_NAME =~ /^[a-z_]*$/
-
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.1.1' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.1' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -27,7 +20,7 @@ Rails::Initializer.run do |config|
   # Specify gems that this application depends on.
   config.gem 'RedCloth',
              :lib => 'redcloth', 
-             :version => '~> 3.0.4'
+             :version => '~> 4.1.9'
   config.gem 'mislav-will_paginate', 
              :lib => 'will_paginate', 
              :source => 'http://gems.github.com', 
@@ -49,21 +42,6 @@ Rails::Initializer.run do |config|
   # in the database in UTC, and return them converted to the specified local zone.
   # Run "rake -D time" for a list of tasks for finding time zone names. Uncomment to use default local time.
   config.time_zone = 'UTC'
-
-  # Your secret key for verifying cookie session data integrity.
-  # If you change this key, all old sessions will become invalid!
-  # Make sure the secret is at least 30 characters and all random, 
-  # no regular words or you'll be exposed to dictionary attacks.
-  SESSION_KEY = "CHANGESESSION" 
-  config.action_controller.session = {
-    :session_key => "_#{PROJECT_NAME}_session",
-    :secret      => SESSION_KEY
-  }
-
-  # Use the database for sessions instead of the cookie-based default,
-  # which shouldn't be used to store highly confidential information
-  # (create the session table with "rake db:sessions:create")
-  # config.action_controller.session_store = :active_record_store
 
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper,

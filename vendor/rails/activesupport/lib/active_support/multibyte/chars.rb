@@ -344,6 +344,14 @@ module ActiveSupport #:nodoc:
       end
       alias_method :[], :slice
 
+      # Converts first character in the string to Unicode value
+      #
+      # Example:
+      #   'こんにちは'.mb_chars.ord #=> 12371
+      def ord
+        self.class.u_unpack(@wrapped_string)[0]
+      end
+
       # Convert characters in the string to uppercase.
       #
       # Example:
@@ -609,6 +617,8 @@ module ActiveSupport #:nodoc:
         # Replaces all ISO-8859-1 or CP1252 characters by their UTF-8 equivalent resulting in a valid UTF-8 string.
         def tidy_bytes(string)
           string.split(//u).map do |c|
+            c.force_encoding(Encoding::ASCII) if c.respond_to?(:force_encoding)
+
             if !UTF8_PAT.match(c)
               n = c.unpack('C')[0]
               n < 128 ? n.chr :

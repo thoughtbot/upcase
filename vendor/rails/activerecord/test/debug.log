@@ -1,0 +1,299 @@
+# Logfile created on Mon Feb 23 11:47:55 +0100 2009 by /
+  [4;36;1mPost Load (0.7ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (1.1ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (2.8ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (2.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mPost Load (0.8ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (0.7ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mPost Load (1.2ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (0.4ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id >= 0) ORDER BY posts.id ASC LIMIT 2[0m
+  [4;35;1mPost Load (0.8ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (1.0ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (0.3ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id >= 0) ORDER BY posts.id ASC LIMIT 2[0m
+  [4;35;1mPost Load (0.8ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (0.9ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (0.3ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id >= 0) ORDER BY posts.id ASC LIMIT 2[0m
+  [4;35;1mPost Load (0.9ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (1.2ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (0.3ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id >= 0) ORDER BY posts.id ASC LIMIT 2[0m
+  [4;35;1mPost Load (0.7ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (0.9ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.7ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (1.1ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.8ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (1.0ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.7ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (0.7ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.7ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (0.8ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (1.0ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (1.0ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (0.8ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.7ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.6ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (0.8ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.6ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.6ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (0.9ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.8ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.6ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (1.0ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (0.7ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mPost Load (1.0ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (1.0ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id >= 0) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mSQL (2.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mPost Load (0.7ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id >= 0) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 1) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 2) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 3) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 4) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.3ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 5) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.3ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 6) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.1ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 7) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (1.0ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id >= 0) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 1) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 2) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 3) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 4) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 5) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 6) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.1ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 7) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.8ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.3ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id >= 0) ORDER BY posts.id ASC LIMIT 2[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 2) ORDER BY posts.id ASC LIMIT 2[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 4) ORDER BY posts.id ASC LIMIT 2[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 6) ORDER BY posts.id ASC LIMIT 2[0m
+  [4;35;1mPost Load (0.1ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 7) ORDER BY posts.id ASC LIMIT 2[0m
+  [4;36;1mPost Load (1.1ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.4ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id >= 0) ORDER BY posts.id ASC LIMIT 2[0m
+  [4;36;1mPost Load (0.3ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 2) ORDER BY posts.id ASC LIMIT 2[0m
+  [4;35;1mPost Load (0.3ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 4) ORDER BY posts.id ASC LIMIT 2[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 6) ORDER BY posts.id ASC LIMIT 2[0m
+  [4;35;1mPost Load (0.1ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 7) ORDER BY posts.id ASC LIMIT 2[0m
+  [4;36;1mPost Load (0.8ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id >= 0) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 1) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 2) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 3) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 4) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 5) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 6) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.1ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 7) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.8ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id >= 0) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.6ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 1) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 2) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 3) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 4) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 5) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 6) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.1ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 7) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.8ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id >= 0) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 1) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 2) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 3) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 4) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 5) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 6) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.1ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 7) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.6ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.7ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (1.1ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.3ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id >= 0) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 1) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 2) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 3) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 4) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 5) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 6) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.1ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 7) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.7ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.7ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.7ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id >= 0) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 1) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 2) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 3) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 4) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 5) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.4ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 6) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.1ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 7) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (1.0ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id >= 0) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.3ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 1) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 2) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 3) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 4) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 5) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 6) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.1ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 7) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.7ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.7ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.6ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id >= 0) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.3ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 1) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 2) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.3ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 3) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 4) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 5) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 6) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.1ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 7) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.7ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id >= 2) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 2) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 3) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 4) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 5) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 6) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.1ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 7) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (1.0ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id >= 0) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 1) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 2) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 3) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 4) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 5) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 6) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.1ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 7) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.7ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.6ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.6ms)[0m   [0mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id >= 0) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 1) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 2) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 3) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 4) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 5) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 6) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.1ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 7) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.6ms)[0m   [0;1mSELECT * FROM "posts" ORDER BY id asc[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "posts" [0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id >= 2) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 2) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 3) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 4) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.2ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 5) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;36;1mPost Load (0.2ms)[0m   [0;1mSELECT * FROM "posts" WHERE (posts.id > 6) ORDER BY posts.id ASC LIMIT 1[0m
+  [4;35;1mPost Load (0.1ms)[0m   [0mSELECT * FROM "posts" WHERE (posts.id > 7) ORDER BY posts.id ASC LIMIT 1[0m
