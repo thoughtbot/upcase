@@ -1,3 +1,4 @@
+require 'net/smtp'
 # Example:
 #   begin
 #     some http call

@@ -2,7 +2,7 @@
 
 development:
   adapter: mysql
-  database: <%= PROJECT_NAME %>_development
+  database: CHANGEME_development
   username: root
   password: 
   host: localhost
@@ -10,7 +10,7 @@ development:
   
 test:
   adapter: mysql
-  database: <%= PROJECT_NAME %>_test
+  database: CHANGEME_test
   username: root
   password: 
   host: localhost
@@ -18,8 +18,8 @@ test:
   
 staging:
   adapter: mysql
-  database: <%= PROJECT_NAME %>_staging
-  username: <%= PROJECT_NAME %>
+  database: CHANGEME_staging
+  username: CHANGEME
   password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
   host: localhost
   encoding: utf8
@@ -27,8 +27,8 @@ staging:
   
 production:
   adapter: mysql
-  database: <%= PROJECT_NAME %>_production
-  username: <%= PROJECT_NAME %>
+  database: CHANGEME_production
+  username: CHANGEME
   password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
   host: localhost
   encoding: utf8
