@@ -23,8 +23,6 @@ config.action_mailer.delivery_method = :test
 
 config.gem 'mocha', 
            :version => '>= 0.9.5'
-config.gem 'quietbacktrace', 
-           :version => '>= 0.1.1'
 config.gem 'thoughtbot-factory_girl', 
            :lib => 'factory_girl', 
            :source => 'http://gems.github.com', 
@@ -36,7 +34,6 @@ config.gem 'thoughtbot-shoulda',
 
 HOST = 'localhost'
 
-require 'quietbacktrace'
 require 'factory_girl'
 require 'mocha'
 begin require 'redgreen'; rescue LoadError; end
