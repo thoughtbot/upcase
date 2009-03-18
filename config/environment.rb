@@ -20,7 +20,7 @@ Rails::Initializer.run do |config|
   # Specify gems that this application depends on.
   config.gem 'RedCloth',
              :lib => 'redcloth', 
-             :version => '~> 4.1.9'
+             :version => '>= 3.0.4'
   config.gem 'mislav-will_paginate', 
              :lib => 'will_paginate', 
              :source => 'http://gems.github.com', 
