@@ -47,7 +47,7 @@ Dir.glob("#{project_directory}/**/*").each do |file|
   search_and_replace(file, changeme, project_name)
 end
 
-Dir.glob("#{project_directory}/**/environment.rb").each do |file|
+Dir.glob("#{project_directory}/**/session_store.rb").each do |file|
   datestring = Time.now.strftime("%j %U %w %A %B %d %Y %I %M %S %p %Z")
   search_and_replace(file, changesession, Digest::MD5.hexdigest("#{project_name} #{datestring}"))
 end
