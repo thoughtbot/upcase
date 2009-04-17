@@ -29,6 +29,12 @@ namespace :deploy do
   task :after_default do
     cleanup
   end
+
+  before :deploy do
+    if real_revision.empty?
+      raise "The tag, revision, or branch #{revision} does not exist."
+    end
+  end
 end
 
 namespace :db do
