@@ -34,35 +34,30 @@ module GitCommands
     puts run("git diff origin/staging origin/production")
   end
 
-  def self.push_to(src_branch, dst_branch)
+  def self.push(src_branch, dst_branch)
     raise "origin/#{dst_branch} branch does not exist" unless remote_branch_exists?("origin/#{dst_branch}")
     ensure_clean_working_directory!
     begin
       run "git fetch"
-      run "git branch -f #{dst_branch} origin/#{dst_branch}"
-      run "git checkout #{dst_branch}"
-      run "git pull origin #{src_branch}"
-      run "git push origin #{dst_branch}"
+      run "git push -f origin #{src_branch}:#{dst_branch}"
     rescue
-      puts "Pushing to origin/#{src_branch} to origin/#{dst_branch} failed."
+      puts "Pushing #{src_branch} to origin/#{dst_branch} failed."
       raise
-    ensure
-      run "git checkout master"
-      run "git branch -D #{dst_branch}"
     end
   end
  
   def self.push_staging
-    push_to("master", "staging")
+    push(current_branch, "staging")
   end
  
   def self.push_production
-    push_to("staging", "production")
+    push("origin/staging", "production")
   end
  
   def self.branch_production(branch)
-    raise "Branch must not be blank" if branch.blank?
+    raise "You must specify a branch name." if branch.blank?
     ensure_clean_working_directory!
+    run "git fetch"
     run "git branch -f #{branch} origin/production"
     run "git checkout #{branch}"
   end
@@ -75,12 +70,12 @@ end
  
 namespace :git do
   namespace :push do
-    desc "Merge origin/master into the origin/staging branch."
+    desc "Reset origin's staging branch to be the current branch."
     task :staging do
       GitCommands.push_staging
     end
  
-    desc "Merge origin/staging branch into origin/production for launch."
+    desc "Reset origin's production branch to origin's staging branch."
     task :production do
       GitCommands.push_production
     end
@@ -108,8 +103,6 @@ namespace :git do
   namespace :branch do
     desc "Branch origin/production into BRANCH locally."
     task :production do
-      branch = ENV['BRANCH'].blank? ? GitCommands.current_branch : ENV['BRANCH']
-      puts "Branching origin/production into #{branch}"
       GitCommands.branch_production(branch)
     end
   end
