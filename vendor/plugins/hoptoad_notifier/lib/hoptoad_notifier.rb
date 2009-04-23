@@ -237,7 +237,9 @@ module HoptoadNotifier
       if self.respond_to? :session
         data[:session] = {
           :key         => session.instance_variable_get("@session_id"),
-          :data        => session.instance_variable_get("@data")
+          :data        => session.respond_to?(:to_hash) ?
+                            session.to_hash :
+                            session.instance_variable_get("@data")
         }
       end
 
@@ -337,7 +339,11 @@ module HoptoadNotifier
     end
 
     def serializable?(value) #:nodoc:
-      !(value.is_a?(Module) || value.kind_of?(IO))
+      value.is_a?(Fixnum) || 
+      value.is_a?(Array)  || 
+      value.is_a?(String) || 
+      value.is_a?(Hash)   || 
+      value.is_a?(Bignum)
     end
 
     def stringify_keys(hash) #:nodoc:
@@ -357,3 +363,4 @@ module HoptoadNotifier
     include HoptoadNotifier::Catcher
   end
 end
+
