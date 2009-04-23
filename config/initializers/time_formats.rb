@@ -1,4 +1,5 @@
-# Example time formats
-{ :short_date => "%x", :long_date => "%a, %b %d, %Y" }.each do |k, v|
+{ :short_date  => "%x",              # 04/13/10
+  :long_date   => "%a, %b %d, %Y"   # Tue, Apr 13, 2010
+}.each do |k, v|
   ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.update(k => v)
 end
