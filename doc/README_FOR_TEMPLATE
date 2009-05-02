@@ -21,25 +21,24 @@ Suspenders was created for use at thoughtbot, inc. (http://thoughtbot.com) as a
 baseline application setup, with reasonable default plugins that the majority (if not all)
 of our applications used, as well as best-practice configuration options.
 
-Suspenders currently includes Rails 2.2.2
+Suspenders currently includes Rails 2.3.2
 
 Gems (unpacked in vendor/gems):
 -------------------------------
 
 For record pagination:
 
-  will_paginate 2.3.5
+  will_paginate
 
 For text formatting:
 
-  RedCloth 3.0.4
+  RedCloth
 
 For testing:
 
-  mocha 0.9.3
-  factory_girl 1.1.5
-  shoulda 2.0.6
-  quietbacktrace 0.1.1
+  mocha
+  factory_girl
+  shoulda
 
 Plugins (in vendor/plugins):
 ----------------------------
