@@ -141,7 +141,7 @@ module WillPaginate
             count_query = original_query.sub /\bORDER\s+BY\s+[\w`,\s]+$/mi, ''
             count_query = "SELECT COUNT(*) FROM (#{count_query})"
             
-            unless ['oracle', 'oci'].include?(self.connection.adapter_name.downcase)
+            unless self.connection.adapter_name =~ /^(oracle|oci$)/i
               count_query << ' AS count_table'
             end
             # perform the count query
@@ -214,7 +214,7 @@ module WillPaginate
 
         # forget about includes if they are irrelevant (Rails 2.1)
         if count_options[:include] and
-            klass.private_methods.include?('references_eager_loaded_tables?') and
+            klass.private_methods.include_method?(:references_eager_loaded_tables?) and
             !klass.send(:references_eager_loaded_tables?, count_options)
           count_options.delete :include
         end

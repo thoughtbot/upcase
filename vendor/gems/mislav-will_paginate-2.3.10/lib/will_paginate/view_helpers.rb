@@ -332,21 +332,21 @@ module WillPaginate
         return url if page_one
         
         if complex
-          @url_string = url.sub(%r!((?:\?|&amp;)#{CGI.escape param_name}=)#{page}!, '\1@')
+          @url_string = url.sub(%r!((?:\?|&amp;)#{CGI.escape param_name}=)#{page}!, "\\1\0")
           return url
         else
           @url_string = url
           @url_params[param_name] = 3
           @template.url_for(@url_params).split(//).each_with_index do |char, i|
             if char == '3' and url[i, 1] == '2'
-              @url_string[i] = '@'
+              @url_string[i] = "\0"
               break
             end
           end
         end
       end
       # finally!
-      @url_string.sub '@', page.to_s
+      @url_string.sub "\0", page.to_s
     end
 
   private
@@ -386,16 +386,18 @@ module WillPaginate
     end
 
     def parse_query_parameters(params)
-      if defined?(CGIMethods)
-        CGIMethods.parse_query_parameters(params)
+      if defined? Rack::Utils
+        # For Rails > 2.3
+        Rack::Utils.parse_nested_query(params)
       elsif defined?(ActionController::AbstractRequest)
         ActionController::AbstractRequest.parse_query_parameters(params)
       elsif defined?(ActionController::UrlEncodedPairParser)
         # For Rails > 2.2
         ActionController::UrlEncodedPairParser.parse_query_parameters(params)
+      elsif defined?(CGIMethods)
+        CGIMethods.parse_query_parameters(params)
       else
-        # For Rails > 2.3
-        Rack::Utils.parse_nested_query(params)
+        raise "unsupported ActionPack version"
       end
     end
   end
