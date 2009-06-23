@@ -21,8 +21,10 @@ config.action_controller.allow_forgery_protection    = false
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
 
-config.gem 'mocha', 
-           :version => '>= 0.9.5'
+config.gem 'jferris-mocha', 
+           :version => '0.9.5.0.1241126838',
+           :source  => 'http://gems.github.com', 
+           :lib     => 'mocha'
 config.gem 'thoughtbot-factory_girl', 
            :lib => 'factory_girl', 
            :source => 'http://gems.github.com', 
@@ -35,5 +37,4 @@ config.gem 'thoughtbot-shoulda',
 HOST = 'localhost'
 
 require 'factory_girl'
-require 'mocha'
 begin require 'redgreen'; rescue LoadError; end
