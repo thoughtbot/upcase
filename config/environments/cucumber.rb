@@ -41,3 +41,5 @@ config.gem 'nokogiri',
            :lib     => false
 config.gem 'webrat',
            :version => '0.4.4'
+
+HOST = 'localhost'
