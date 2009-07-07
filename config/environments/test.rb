@@ -34,6 +34,14 @@ config.gem 'thoughtbot-shoulda',
            :source => 'http://gems.github.com', 
            :version => '>= 2.10.1'
 
+# Webrat and dependencies
+# NOTE: don't vendor nokogiri - it's a binary Gem
+config.gem 'nokogiri',
+           :version => '1.3.2',
+           :lib     => false
+config.gem 'webrat',
+           :version => '0.4.4'
+
 HOST = 'localhost'
 
 require 'factory_girl'

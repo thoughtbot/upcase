@@ -8,7 +8,7 @@ development:
   host: localhost
   encoding: utf8
   
-test:
+test: &TEST
   adapter: mysql
   database: CHANGEME_test
   username: root
@@ -33,3 +33,6 @@ production:
   host: localhost
   encoding: utf8
   socket: /var/lib/mysql/mysql.sock
+
+cucumber:
+  <<: *TEST
