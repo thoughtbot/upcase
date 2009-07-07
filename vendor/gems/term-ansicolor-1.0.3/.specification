@@ -1,0 +1,69 @@
+--- !ruby/object:Gem::Specification 
+name: term-ansicolor
+version: !ruby/object:Gem::Version 
+  version: 1.0.3
+platform: ruby
+authors: 
+- Florian Frank
+autorequire: 
+bindir: bin
+cert_chain: 
+date: 2007-10-04 00:00:00 -04:00
+default_executable: 
+dependencies: []
+
+description: ""
+email: flori@ping.de
+executables: []
+
+extensions: []
+
+extra_rdoc_files: []
+
+files: 
+- install.rb
+- lib
+- make_doc.rb
+- CHANGES
+- README.en
+- VERSION
+- Rakefile
+- GPL
+- examples
+- lib/term
+- lib/term/ansicolor.rb
+- examples/cdiff.rb
+- examples/example.rb
+has_rdoc: true
+homepage: http://term-ansicolor.rubyforge.org
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --title
+- Term::ANSIColor
+- --inline-source
+- --line-numbers
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">"
+    - !ruby/object:Gem::Version 
+      version: 0.0.0
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: term-ansicolor
+rubygems_version: 1.3.4
+signing_key: 
+specification_version: 1
+summary: Ruby library that colors strings using ANSI escape sequences
+test_files: []
+

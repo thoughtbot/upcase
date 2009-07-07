@@ -1,0 +1,80 @@
+--- !ruby/object:Gem::Specification 
+name: diff-lcs
+version: !ruby/object:Gem::Version 
+  version: 1.1.2
+platform: ruby
+authors: []
+
+autorequire: diff/lcs
+bindir: bin
+cert_chain: 
+date: 2004-10-20 00:00:00 -04:00
+default_executable: 
+dependencies: []
+
+description: Diff::LCS is a port of Algorithm::Diff that uses the McIlroy-Hunt longest common subsequence (LCS) algorithm to compute intelligent differences between two sequenced enumerable containers. The implementation is based on Mario I. Wolczko's Smalltalk version (1.2, 1993) and Ned Konz's Perl version (Algorithm::Diff).
+email: diff-lcs@halostatue.ca
+executables: 
+- ldiff
+- htmldiff
+extensions: []
+
+extra_rdoc_files: 
+- README
+- ChangeLog
+- Install
+files: 
+- bin
+- ChangeLog
+- Install
+- lib
+- Rakefile
+- README
+- tests
+- bin/htmldiff
+- bin/ldiff
+- lib/diff
+- lib/diff/lcs
+- lib/diff/lcs.rb
+- lib/diff/lcs/array.rb
+- lib/diff/lcs/block.rb
+- lib/diff/lcs/callbacks.rb
+- lib/diff/lcs/change.rb
+- lib/diff/lcs/hunk.rb
+- lib/diff/lcs/ldiff.rb
+- lib/diff/lcs/string.rb
+- tests/00test.rb
+has_rdoc: true
+homepage: http://rubyforge.org/projects/ruwiki/
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --title
+- Diff::LCS -- A Diff Algorithm
+- --main
+- README
+- --line-numbers
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: 1.8.1
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: ruwiki
+rubygems_version: 1.3.4
+signing_key: 
+specification_version: 1
+summary: Provides a list of changes that represent the difference between two sequenced collections.
+test_files: 
+- tests/00test.rb
