@@ -25,6 +25,8 @@ Rails::Initializer.run do |config|
              :lib => 'will_paginate', 
              :source => 'http://gems.github.com', 
              :version => '~> 2.3.11'
+  config.gem 'rack',
+             :version => '>= 1.0.0'
   
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
