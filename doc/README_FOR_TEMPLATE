@@ -1,5 +1,5 @@
-This is Suspenders, the thoughtbot rails template. To create a new project, checkout this
-repository and run:
+This is Suspenders, the thoughtbot rails template. To create a new project,
+checkout this repository and run:
 
   ./script/create_project projectname
 
@@ -18,8 +18,9 @@ About Suspenders
 ----------------
 
 Suspenders was created for use at thoughtbot, inc. (http://thoughtbot.com) as a
-baseline application setup, with reasonable default plugins that the majority (if not all)
-of our applications used, as well as best-practice configuration options.
+baseline application setup, with reasonable default plugins that the majority
+(if not all) of our applications used, as well as best-practice configuration
+options.
 
 Suspenders currently includes Rails 2.3.2
 
@@ -39,6 +40,7 @@ For testing:
   mocha
   factory_girl
   shoulda
+  timecop
 
 Plugins (in vendor/plugins):
 ----------------------------
@@ -74,7 +76,8 @@ Rake Tasks
 Rake tasks are contained in the limerick_rake gem.
 
   bootstrap
-  Provides rake tasks for loading data into the database.  These are used for an initial application dataset needed for production.
+  Provides rake tasks for loading data into the database.  These are used for
+  an initial application dataset needed for production.
   
   capistrano
   Standard capistrano deployment tasks
@@ -84,23 +87,28 @@ Testing
 
 Testing is done utilizing Test::Unit, Shoulda, factory_girl, and mocha.
 
-factory_girl is a fixture replacement library, following the factory pattern.  Place your
-factories in test/factories.rb.  The fixture directory has been removed, as fixtures are not
-used.
+factory_girl is a fixture replacement library, following the factory pattern.
+Place your factories in test/factories.rb.  The fixture directory has been
+removed, as fixtures are not used.
 
-Shoulda is a pragmatic testing framework for TDD and BDD built on top of Test::Unit.  A number of additional
-testing macros are provided in test/shoulda_macros:
+Shoulda is a pragmatic testing framework for TDD and BDD built on top of
+Test::Unit.  A number of additional testing macros are provided in
+test/shoulda_macros:
 
   shoulda_have_form
   shoulda_paginate_collection
 
+Timecop is used to freeze the time for the entire test suite. It is frozen to
+the value of Time.now; that is, the time that the tests suite starts running.
+
 Deployment
 ----------
 
-Deployment is done using capistrano, and deploys to a mongrel cluster, running under Apache.
+Deployment is done using capistrano, and deploys to a mongrel cluster, running
+under Apache.
 
-Rake tasks are provided for managing git branches which the different environments pull from
-for deploy.
+Rake tasks are provided for managing git branches which the different
+environments pull from for deploy.
 
 To push the git master to git staging branch run:
 
