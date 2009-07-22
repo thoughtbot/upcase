@@ -33,6 +33,10 @@ config.gem 'thoughtbot-shoulda',
            :lib => 'shoulda', 
            :source => 'http://gems.github.com', 
            :version => '>= 2.10.2'
+config.gem 'jtrupiano-timecop',
+           :version => '0.2.1',
+           :source => 'http://gems.github.com',
+           :lib => 'timecop'
 
 # Webrat and dependencies
 # NOTE: don't vendor nokogiri - it's a binary Gem
@@ -46,3 +50,7 @@ HOST = 'localhost'
 
 require 'factory_girl'
 begin require 'redgreen'; rescue LoadError; end
+
+config.after_initialize do
+  Timecop.travel(Time.now)
+end
