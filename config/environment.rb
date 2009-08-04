@@ -25,6 +25,10 @@ Rails::Initializer.run do |config|
              :lib => 'will_paginate',
              :source => 'http://gems.github.com',
              :version => '~> 2.3.11'
+  config.gem 'justinfrench-formtastic', 
+             :lib => 'formtastic', 
+             :source => 'http://gems.github.com', 
+             :version => '~> 0.2.1'
   config.gem 'rack',
              :version => '>= 1.0.0'
   
