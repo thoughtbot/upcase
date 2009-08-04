@@ -29,6 +29,10 @@ Rails::Initializer.run do |config|
              :lib => 'formtastic', 
              :source => 'http://gems.github.com', 
              :version => '~> 0.2.1'
+  config.gem 'thoughtbot-paperclip',
+             :lib => 'paperclip',
+             :source => 'http://gems.github.com',
+             :version => '>= 2.3.0'
   config.gem 'rack',
              :version => '>= 1.0.0'
   
