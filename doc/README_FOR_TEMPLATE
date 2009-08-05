@@ -22,34 +22,46 @@ baseline application setup, with reasonable default plugins that the majority
 (if not all) of our applications used, as well as best-practice configuration
 options.
 
-Suspenders currently includes Rails 2.3.2
+Suspenders currently includes a version of Rails from the 2.3 stable branch.
+You can determine the changeset with the vendor/rails/REVISION_xxxxx file.
 
-Gems (unpacked in vendor/gems):
--------------------------------
+Gems (unpacked in vendor/gems, unless they are compiled gems):
+--------------------------------------------------------------
 
 For record pagination:
 
-  will_paginate
+  will_paginate (2.3.11)
 
 For text formatting:
 
-  RedCloth
+  RedCloth (4.2.2, not unpacked, this is a compiled gem)
+
+Form builder:
+
+  Formtastic (0.2.1)
+
+File attachments:
+
+  Paperclip (2.3.0)
+
+Basic user auth:
+
+  Clearance (0.7.0 engine)
 
 For testing:
 
-  mocha
-  factory_girl
-  shoulda
-  timecop
+  jferris-mocha (standard mocha plus test spies)
+  factory_girl (fixture replacement for test data)
+  shoulda (rails test helpers and context framework)
+  timecop (for time sensitive tests)
 
 Plugins (in vendor/plugins):
 ----------------------------
 
   hoptoad_notifier
   limerick_rake
-  mile_marker
-  squirrel
-    
+  validation_reflection (used by formtastic to find required fields)
+
 Initializers (in config/initializers)
 -------------------------------------
 
