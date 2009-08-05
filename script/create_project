@@ -65,7 +65,6 @@ if not_installed?("nokogiri")
 end
 
 run("script/generate clearance")
-run("rake db:migrate")
 run("script/generate clearance_features")
 run("script/generate clearance_views")
 
