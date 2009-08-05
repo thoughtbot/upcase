@@ -64,6 +64,14 @@ if not_installed?("nokogiri")
   run "sudo gem install nokogiri --version='1.3.2'"
 end
 
+run("script/generate clearance")
+run("rake db:migrate")
+run("script/generate clearance_features")
+run("script/generate clearance_views")
+
+run("git add .")
+run("git commit -m 'installed clearance'")
+
 puts
 puts "Now login to github and add a new project named '#{project_name.humanize.titleize}'"
 
