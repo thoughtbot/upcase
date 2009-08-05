@@ -37,9 +37,9 @@ def search_and_replace(file, search, replace)
   end
 end
 
-def not_installed?(gem_name)
+def installed?(gem_name)
   gems = Gem.source_index.find_name(gem_name)
-  gems.detect { |gem| gem.name == gem_name }.nil?
+  gems.any? { |gem| gem.name == gem_name }
 end
 
 run("mkdir #{project_directory}")
@@ -60,7 +60,7 @@ end
 run("git commit -a -m 'Initial commit'")
 
 # can't vendor nokogiri because it has native extensions
-if not_installed?("nokogiri")
+unless installed?("nokogiri")
   run "sudo gem install nokogiri --version='1.3.2'"
 end
 
