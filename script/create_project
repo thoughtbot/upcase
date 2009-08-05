@@ -38,8 +38,8 @@ def search_and_replace(file, search, replace)
 end
 
 def installed?(gem_name)
-  gems = Gem.source_index.find_name(gem_name)
-  gems.any? { |gem| gem.name == gem_name }
+  installed_gems = Gem.source_index.find_name(gem_name)
+  installed_gems.any?
 end
 
 run("mkdir #{project_directory}")
