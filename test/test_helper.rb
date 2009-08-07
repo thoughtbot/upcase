@@ -27,3 +27,7 @@ class ActionView::TestCase
     end
   end
 end
+
+class ActionController::TestCase
+  include ActionView::Helpers::RecordIdentificationHelper
+end
