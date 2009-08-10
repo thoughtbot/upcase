@@ -1,0 +1,7 @@
+# Sample localization file for English.
+# Add more files in this directory for other locales.
+# http://guides.rubyonrails.org/i18n.html
+
+en:
+  hello: "Hello world"
+
