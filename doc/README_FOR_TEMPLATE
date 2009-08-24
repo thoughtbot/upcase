@@ -13,7 +13,7 @@ whether it's a change that should be made across all projects.  If so, then
 make the change in this template, and pull it into your project via:
 
   git pull suspenders master
-  
+
 About Suspenders
 ----------------
 
@@ -54,6 +54,7 @@ For testing:
   factory_girl (fixture replacement for test data)
   shoulda (rails test helpers and context framework)
   timecop (for time sensitive tests)
+  fakeweb (for blocking HTTP calls to third-party services)
 
 Plugins (in vendor/plugins):
 ----------------------------
