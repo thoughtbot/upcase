@@ -33,6 +33,9 @@ config.gem 'jtrupiano-timecop',
            :version => '0.2.1',
            :source => 'http://gems.github.com',
            :lib => 'timecop'
+config.gem 'fakeweb',
+           :lib     => 'fakeweb',
+           :version => '>= 1.2.5'
 
 # Webrat and dependencies
 # NOTE: don't vendor nokogiri - it's a binary Gem
