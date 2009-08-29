@@ -1,5 +1,10 @@
-This is Suspenders, the thoughtbot rails template. To create a new project,
-checkout this repository and run:
+This is Suspenders, the thoughtbot rails template.
+
+To create a new project, first checkout the repository:
+
+  git clone git://github.com/thoughtbot/suspenders.git
+
+Change into the new 'suspenders' directory and run:
 
   ./script/create_project projectname
 
@@ -10,7 +15,12 @@ repo.
 
 When making a change to a project that was created via this template, consider
 whether it's a change that should be made across all projects.  If so, then
-make the change in this template, and pull it into your project via:
+make the change in suspenders instead of your project.  Note: If you don't
+have commit access to suspenders, create a github ticket and we'll review your
+suggestion.
+
+Once that's committed, you can pull into your project to get all the changes 
+that have been made in suspenders since your last pull:
 
   git pull suspenders master
 
