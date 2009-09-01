@@ -7,8 +7,8 @@
     <%= stylesheet_link_tag 'screen', :media => 'all', :cache => true %>
   </head>
   <body class="<%= body_class %>">
-    <%= render :partial => 'layouts/flashes' -%>
+    <%= render :partial => 'shared/flashes' -%>
     <%= yield %>
-    <%= render :partial => 'layouts/javascript' %>
+    <%= render :partial => 'shared/javascript' %>
   </body>
 </html>
