@@ -32,7 +32,7 @@ Rails::Initializer.run do |config|
   config.gem 'justinfrench-formtastic',
              :lib => 'formtastic',
              :source => 'http://gems.github.com',
-             :version => '~> 0.2.1'
+             :version => '>= 0.2.4'
   config.gem 'thoughtbot-paperclip',
              :lib => 'paperclip',
              :source => 'http://gems.github.com',
