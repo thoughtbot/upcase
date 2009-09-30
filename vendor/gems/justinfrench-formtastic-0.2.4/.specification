@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: justinfrench-formtastic
 version: !ruby/object:Gem::Version 
-  version: 0.2.1
+  version: 0.2.4
 platform: ruby
 authors: 
 - Justin French
@@ -9,7 +9,7 @@ autorequire: formtastic
 bindir: bin
 cert_chain: []
 
-date: 2009-06-17 00:00:00 -04:00
+date: 2009-09-10 00:00:00 -04:00
 default_executable: 
 dependencies: []
 
