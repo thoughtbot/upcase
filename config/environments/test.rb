@@ -30,12 +30,12 @@ config.gem 'thoughtbot-shoulda',
            :source => 'http://gems.github.com', 
            :version => '>= 2.10.2'
 config.gem 'jtrupiano-timecop',
-           :version => '0.2.1',
+           :version => '0.3.0',
            :source => 'http://gems.github.com',
            :lib => 'timecop'
 config.gem 'fakeweb',
            :lib     => 'fakeweb',
-           :version => '>= 1.2.5'
+           :version => '>= 1.2.6'
 
 # Webrat and dependencies
 # NOTE: don't vendor nokogiri - it's a binary Gem
@@ -43,11 +43,11 @@ config.gem 'nokogiri',
            :version => '1.3.3',
            :lib     => false
 config.gem 'webrat',
-           :version => '0.4.4'
+           :version => '0.5.3'
 
 # At the bottom due to a loading bug in Rails
 config.gem 'jferris-mocha', 
-           :version => '0.9.5.0.1241126838',
+           :version => '0.9.7.20090911190113',
            :source  => 'http://gems.github.com', 
            :lib     => 'mocha'
 
