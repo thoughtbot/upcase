@@ -25,18 +25,14 @@ Rails::Initializer.run do |config|
              :lib => 'will_paginate',
              :source => 'http://gems.github.com',
              :version => '~> 2.3.11'
-  config.gem 'thoughtbot-clearance',
-             :lib => 'clearance',
-             :source => 'http://gems.github.com',
-             :version => '>= 0.8.2'
+  config.gem 'clearance',
+             :version => '>= 0.8.3'
   config.gem 'justinfrench-formtastic',
              :lib => 'formtastic',
              :source => 'http://gems.github.com',
              :version => '>= 0.2.4'
-  config.gem 'thoughtbot-paperclip',
-             :lib => 'paperclip',
-             :source => 'http://gems.github.com',
-             :version => '>= 2.3.0'
+  config.gem 'paperclip',
+             :version => '>= 2.3.1.1'
   config.gem 'rack',
              :version => '>= 1.0.1'
   
