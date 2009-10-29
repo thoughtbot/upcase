@@ -19,10 +19,8 @@ config.action_controller.allow_forgery_protection    = false
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
 
-config.gem 'thoughtbot-factory_girl', 
-           :lib => 'factory_girl', 
-           :source => 'http://gems.github.com', 
-           :version => '>= 1.2.0'
+config.gem 'factory_girl', 
+           :version => '>= 1.2.3'
 
 # Cucumber and dependencies
 config.gem 'polyglot',
