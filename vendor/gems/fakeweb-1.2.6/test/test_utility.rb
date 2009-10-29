@@ -1,0 +1,91 @@
+require File.join(File.dirname(__FILE__), "test_helper")
+
+class TestUtility < Test::Unit::TestCase
+
+  def test_decode_userinfo_from_header_handles_basic_auth
+    authorization_header = "Basic dXNlcm5hbWU6c2VjcmV0"
+    userinfo = FakeWeb::Utility.decode_userinfo_from_header(authorization_header)
+    assert_equal "username:secret", userinfo
+  end
+
+  def test_encode_unsafe_chars_in_userinfo_does_not_encode_userinfo_safe_punctuation
+    userinfo = "user;&=+$,:secret"
+    assert_equal userinfo, FakeWeb::Utility.encode_unsafe_chars_in_userinfo(userinfo)
+  end
+
+  def test_encode_unsafe_chars_in_userinfo_does_not_encode_rfc_3986_unreserved_characters
+    userinfo = "-_.!~*'()abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:secret"
+    assert_equal userinfo, FakeWeb::Utility.encode_unsafe_chars_in_userinfo(userinfo)
+  end
+
+  def test_encode_unsafe_chars_in_userinfo_does_encode_other_characters
+    userinfo, safe_userinfo = 'us#rn@me:sec//ret?"', 'us%23rn%40me:sec%2F%2Fret%3F%22'
+    assert_equal safe_userinfo, FakeWeb::Utility.encode_unsafe_chars_in_userinfo(userinfo)
+  end
+
+  def test_strip_default_port_from_uri_strips_80_from_http_with_path
+    uri = "http://example.com:80/foo/bar"
+    stripped_uri = FakeWeb::Utility.strip_default_port_from_uri(uri)
+    assert_equal "http://example.com/foo/bar", stripped_uri
+  end
+
+  def test_strip_default_port_from_uri_strips_80_from_http_without_path
+    uri = "http://example.com:80"
+    stripped_uri = FakeWeb::Utility.strip_default_port_from_uri(uri)
+    assert_equal "http://example.com", stripped_uri
+  end
+
+  def test_strip_default_port_from_uri_strips_443_from_https_without_path
+    uri = "https://example.com:443"
+    stripped_uri = FakeWeb::Utility.strip_default_port_from_uri(uri)
+    assert_equal "https://example.com", stripped_uri
+  end
+
+  def test_strip_default_port_from_uri_strips_443_from_https
+    uri = "https://example.com:443/foo/bar"
+    stripped_uri = FakeWeb::Utility.strip_default_port_from_uri(uri)
+    assert_equal "https://example.com/foo/bar", stripped_uri
+  end
+
+  def test_strip_default_port_from_uri_does_not_strip_8080_from_http
+    uri = "http://example.com:8080/foo/bar"
+    assert_equal uri, FakeWeb::Utility.strip_default_port_from_uri(uri)
+  end
+
+  def test_strip_default_port_from_uri_does_not_strip_443_from_http
+    uri = "http://example.com:443/foo/bar"
+    assert_equal uri, FakeWeb::Utility.strip_default_port_from_uri(uri)
+  end
+
+  def test_strip_default_port_from_uri_does_not_strip_80_from_query_string
+    uri = "http://example.com/?a=:80&b=c"
+    assert_equal uri, FakeWeb::Utility.strip_default_port_from_uri(uri)
+  end
+
+  def test_strip_default_port_from_uri_does_not_modify_strings_that_do_not_start_with_http_or_https
+    uri = "httpz://example.com:80/"
+    assert_equal uri, FakeWeb::Utility.strip_default_port_from_uri(uri)
+  end
+
+  def test_simple_array_permutation_with_one_element
+    array, permutations = [1], [[1]]
+    FakeWeb::Utility.simple_array_permutation(array) do |permutation|
+      permutations.delete(permutation)
+    end
+    assert permutations.empty?
+  end
+
+  def test_simple_array_permutation_with_three_elements
+    array = [1, 2, 3]
+    permutations = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+    FakeWeb::Utility.simple_array_permutation(array) do |permutation|
+      permutations.delete(permutation)
+    end
+    assert permutations.empty?
+  end
+
+  def test_simple_array_permutation_return_value
+    array = [1, 2, 3]
+    assert array, FakeWeb::Utility.simple_array_permutation(array) { }
+  end
+end
