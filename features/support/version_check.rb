@@ -1,12 +1,12 @@
 require 'cucumber/formatter/ansicolor'
 extend Cucumber::Formatter::ANSIColor
-if Cucumber::VERSION != '0.4.3'
+if Cucumber::VERSION != '0.4.4'
 warning = <<-WARNING
 #{red_cukes(15)} 
 
          #{red_cukes(1)}   R O T T E N   C U C U M B E R   A L E R T    #{red_cukes(1)}
 
-Your #{__FILE__.gsub(/version_check.rb$/, 'env.rb')} file was generated with Cucumber 0.4.3,
+Your #{__FILE__.gsub(/version_check.rb$/, 'env.rb')} file was generated with Cucumber 0.4.4,
 but you seem to be running Cucumber #{Cucumber::VERSION}. If you're running an older 
 version than #{Cucumber::VERSION}, just upgrade your gem. If you're running a newer 
 version than #{Cucumber::VERSION} you should:
