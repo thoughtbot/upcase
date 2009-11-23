@@ -27,10 +27,8 @@ Rails::Initializer.run do |config|
              :version => '~> 2.3.11'
   config.gem 'clearance',
              :version => '>= 0.8.3'
-  config.gem 'justinfrench-formtastic',
-             :lib => 'formtastic',
-             :source => 'http://gems.github.com',
-             :version => '>= 0.2.4'
+  config.gem 'formtastic',
+             :version => '>= 0.9.3'
   config.gem 'paperclip',
              :version => '>= 2.3.1.1'
   config.gem 'rack',
