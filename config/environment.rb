@@ -21,9 +21,7 @@ Rails::Initializer.run do |config|
   config.gem 'RedCloth',
              :lib => 'redcloth',
              :version => '>= 4.2.2'
-  config.gem 'mislav-will_paginate',
-             :lib => 'will_paginate',
-             :source => 'http://gems.github.com',
+  config.gem 'will_paginate',
              :version => '~> 2.3.11'
   config.gem 'clearance',
              :version => '>= 0.8.3'
