@@ -41,7 +41,7 @@ config.gem 'nokogiri',
            :version => '1.3.3',
            :lib     => false
 config.gem 'webrat',
-           :version => '0.5.3'
+           :version => '0.6.0'
 
 # At the bottom due to a loading bug in Rails
 config.gem 'jferris-mocha', 
