@@ -6,7 +6,7 @@ require 'fakeweb'
 
 FakeWeb.allow_net_connect = false
 
-class HoptoadTasksTest < ActiveSupport::TestCase
+class HoptoadTasksTest < Test::Unit::TestCase
   def successful_response(body = "")
     response = Net::HTTPSuccess.new('1.2', '200', 'OK')
     response.stubs(:body).returns(body)
@@ -50,7 +50,7 @@ class HoptoadTasksTest < ActiveSupport::TestCase
 
           before_should "use the project api key" do
             Net::HTTP.expects(:post_form).
-              with(kind_of(URI), has_entries(:api_key => "1234123412341234")).
+              with(kind_of(URI), has_entries('api_key' => "1234123412341234")).
               returns(successful_response)
           end
 
