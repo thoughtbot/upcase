@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: formtastic
 version: !ruby/object:Gem::Version 
-  version: 0.9.3
+  version: 0.9.5
 platform: ruby
 authors: 
 - Justin French
@@ -9,7 +9,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2009-11-22 00:00:00 -05:00
+date: 2009-12-02 00:00:00 -05:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
@@ -43,17 +43,7 @@ dependencies:
         version: 1.2.6
     version: 
 - !ruby/object:Gem::Dependency 
-  name: hpricot
-  type: :development
-  version_requirement: 
-  version_requirements: !ruby/object:Gem::Requirement 
-    requirements: 
-    - - ">="
-      - !ruby/object:Gem::Version 
-        version: 0.6.1
-    version: 
-- !ruby/object:Gem::Dependency 
-  name: rspec_hpricot_matchers
+  name: rspec_tag_matchers
   type: :development
   version_requirement: 
   version_requirements: !ruby/object:Gem::Requirement 
@@ -91,6 +81,7 @@ files:
 - spec/commit_button_spec.rb
 - spec/custom_builder_spec.rb
 - spec/custom_macros.rb
+- spec/defaults_spec.rb
 - spec/error_proc_spec.rb
 - spec/errors_spec.rb
 - spec/form_helper_spec.rb
@@ -121,7 +112,7 @@ has_rdoc: true
 homepage: http://github.com/justinfrench/formtastic/tree/master
 licenses: []
 
-post_install_message: "\n  ========================================================================\n  Thanks for installing Formtastic!\n  ------------------------------------------------------------------------\n  You can now (optionally) run the generater to copy some stylesheets and\n  a config initializer into your application:\n    ./script/generate formtastic\n\n  To generate some semantic form markup for your exisiting models, just run:\n    ./script/generate form MODEL_NAME\n\n  Find out more and get involved:\n    http://github.com/justinfrench/formtastic\n    http://groups.google.com.au/group/formtastic\n  ========================================================================\n  "
+post_install_message: "\n  ========================================================================\n  Thanks for installing Formtastic!\n  ------------------------------------------------------------------------\n  You can now (optionally) run the generator to copy some stylesheets and\n  a config initializer into your application:\n    ./script/generate formtastic\n\n  To generate some semantic form markup for your exisiting models, just run:\n    ./script/generate form MODEL_NAME\n\n  Find out more and get involved:\n    http://github.com/justinfrench/formtastic\n    http://groups.google.com.au/group/formtastic\n  ========================================================================\n  "
 rdoc_options: 
 - --charset=UTF-8
 require_paths: 
@@ -150,6 +141,7 @@ test_files:
 - spec/commit_button_spec.rb
 - spec/custom_builder_spec.rb
 - spec/custom_macros.rb
+- spec/defaults_spec.rb
 - spec/error_proc_spec.rb
 - spec/errors_spec.rb
 - spec/form_helper_spec.rb
