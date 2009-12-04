@@ -26,7 +26,7 @@ Rails::Initializer.run do |config|
   config.gem 'clearance',
              :version => '>= 0.8.3'
   config.gem 'formtastic',
-             :version => '>= 0.9.5'
+             :version => '>= 0.9.7'
   config.gem 'paperclip',
              :version => '>= 2.3.1.1'
   config.gem 'rack',
