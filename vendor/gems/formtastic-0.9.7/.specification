@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: formtastic
 version: !ruby/object:Gem::Version 
-  version: 0.9.5
+  version: 0.9.7
 platform: ruby
 authors: 
 - Justin French
@@ -9,7 +9,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2009-12-02 00:00:00 -05:00
+date: 2009-12-03 00:00:00 -05:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
