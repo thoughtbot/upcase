@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
-name: jtrupiano-timecop
+name: timecop
 version: !ruby/object:Gem::Version 
-  version: 0.3.0
+  version: 0.3.4
 platform: ruby
 authors: 
 - John Trupiano
@@ -9,7 +9,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2009-09-20 00:00:00 -04:00
+date: 2009-12-07 00:00:00 -05:00
 default_executable: 
 dependencies: []
 
@@ -23,19 +23,21 @@ extra_rdoc_files:
 - LICENSE
 - README.rdoc
 files: 
-- History.txt
+- History.rdoc
 - LICENSE
 - README.rdoc
 - Rakefile
 - VERSION.yml
 - lib/timecop.rb
-- lib/timecop/stack_item.rb
 - lib/timecop/time_extensions.rb
+- lib/timecop/time_stack_item.rb
 - lib/timecop/timecop.rb
 - test/run_tests.sh
+- test/test_helper.rb
+- test/test_time_stack_item.rb
 - test/test_timecop.rb
-- test/test_timecop_internals.rb
 - test/test_timecop_without_date.rb
+- test/test_timecop_without_date_but_with_time.rb
 has_rdoc: true
 homepage: http://github.com/jtrupiano/timecop
 licenses: []
@@ -65,6 +67,8 @@ signing_key:
 specification_version: 3
 summary: A gem providing "time travel" and "time freezing" capabilities, making it dead simple to test time-dependent code.  It provides a unified method to mock Time.now, Date.today, and DateTime.now in a single call.
 test_files: 
+- test/test_helper.rb
+- test/test_time_stack_item.rb
 - test/test_timecop.rb
-- test/test_timecop_internals.rb
 - test/test_timecop_without_date.rb
+- test/test_timecop_without_date_but_with_time.rb
