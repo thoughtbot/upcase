@@ -23,16 +23,11 @@ config.action_mailer.delivery_method = :test
 
 config.gem 'factory_girl', 
            :version => '>= 1.2.3'
-config.gem 'thoughtbot-shoulda', 
-           :lib => 'shoulda', 
-           :source => 'http://gems.github.com', 
+config.gem 'shoulda', 
            :version => '>= 2.10.2'
-config.gem 'jtrupiano-timecop',
-           :version => '0.3.0',
-           :source => 'http://gems.github.com',
-           :lib => 'timecop'
+config.gem 'timecop',
+           :version => '>= 0.3.4'
 config.gem 'fakeweb',
-           :lib     => 'fakeweb',
            :version => '>= 1.2.6'
 
 # Webrat and dependencies
