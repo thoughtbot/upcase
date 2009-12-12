@@ -1,3 +1,19 @@
+== 0.3.5, 2009-10-09
+* version bump
+
+== 0.3.4, 2009-10-09
+* Enhancements from Jonas Grimfelt
+  ** Don't include instead of explicit namespaces to make the code much DRY:er and readable
+  ** Avoid mutable strings
+  ** Be clear about the namespaces for external classes (to avoid Ruby 1.9.x issues)
+  ** Fixing gem loading issues on Ruby 1.9.x
+  ** Removed the freezing of validations
+
+== 0.3.3, 2009-09-12
+* version bump
+
+== 0.3.2, 2009-09-12
+* gemified by Christopher Redinger
 
 == 0.3.1, 2008-01-03
 * require 'ostruct'; thanks to Georg Friedrich.
