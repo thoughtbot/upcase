@@ -25,10 +25,9 @@ namespace :deploy do
   task :restart do
     send(run_method, "cd #{deploy_to}/#{current_dir} && #{mongrel_rails} cluster::restart --config #{mongrel_cluster_config}")
   end
-  desc "Run this after every successful deployment" 
-  task :after_default do
-    cleanup
-  end
+
+  # Clean up old releases after each deployment
+  after "deploy", "deploy:cleanup"
 
   before :deploy do
     if real_revision.empty?
