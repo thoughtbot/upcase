@@ -1,0 +1,59 @@
+Feature: Manage <%= plural_name %>
+  In order to [goal]
+  [stakeholder]
+  wants [behaviour]
+  
+  Scenario: Register new <%= singular_name %>
+    Given I am on the new <%= singular_name %> page
+<% keyword = 'When' -%>
+<% named_args.each do |arg| -%>
+  <% if arg.type == 'boolean' -%>
+  <%= keyword %> I uncheck "<%= arg.name.humanize %>"
+  <% else -%>
+  <%= keyword %> I fill in "<%= arg.name.humanize %>" with "<%= arg.value(1) %>"
+  <% end -%>
+<% keyword = 'And' -%>
+<% end -%>
+    And I press "Create"
+<% keyword = 'Then' -%>
+<% named_args.each do |arg| -%>
+    <%= keyword %> I should see "<%= arg.value(1) %>"
+<% keyword = 'And' -%>
+<% end -%>
+
+<% if IO.read('features/support/env.rb') =~ /capybara/n -%>
+  # Rails generates Delete links that use Javascript to pop up a confirmation
+  # dialog and then do a HTTP POST request (emulated DELETE request).
+  #
+  # Capybara must use Culerity or Selenium2 (webdriver) when pages rely on
+  # Javascript events. Only Culerity supports confirmation dialogs.
+  # 
+  # cucumber-rails will turn off transactions for scenarios tagged with 
+  # @selenium, @culerity, @javascript or @no-txn and clean the database with 
+  # DatabaseCleaner after the scenario has finished. This is to prevent data 
+  # from leaking into the next scenario.
+  #
+  # Culerity has some performance overhead, and there are two alternatives to using
+  # Culerity:
+  #
+  # a) You can remove the @culerity tag and run everything in-process, but then you 
+  # also have to modify your views to use <button> instead: http://github.com/jnicklas/capybara/issues#issue/12
+  #
+  # b) Replace the @culerity tag with @emulate_rails_javascript. This will detect
+  # the onclick javascript and emulate its behaviour without a real Javascript
+  # interpreter.
+  #
+  @culerity
+<% end -%>
+  Scenario: Delete <%= singular_name %>
+    Given the following <%= plural_name %>:
+      |<%= named_args.map(&:name).join('|') %>|
+<% (1..4).each do |n| -%>
+      |<%= named_args.map{|arg| arg.value(n)}.join('|') %>|
+<% end -%>
+    When I delete the 3rd <%= singular_name %>
+    Then I should see the following <%= plural_name %>:
+      |<%= named_args.map{|arg| arg.name.humanize}.join('|') %>|
+<% [1,2,4].each do |n| -%>
+      |<%= named_args.map{|arg| arg.value(n)}.join('|') %>|
+<% end -%>

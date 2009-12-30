@@ -1,0 +1,56 @@
+== 0.2.2 2009-12-21
+
+=== Bugfixes
+* Fix bad link in gemspec. (Aslak Hellesøy)
+* Unified file attaching step names. (Jiří Zajpt)
+* Fix typos in variable names in several step definitions. (Jiří Zajpt)
+* cucumber.rake finds the wrong vendored cucumber when a plugin name starts with "cucumber" (#4 James Herdman, Paco Benavent, Aslak Hellesøy)
+
+=== New features
+* Czech translations. (Jiří Zajpt)
+
+== 0.2.1 2009-12-15
+
+Small bugfix release
+
+=== Bugfixes
+* Made sure database_cleaner is always set up as a dependency in config/environments/cucumber.rb. (Aslak Hellesøy)
+
+== 0.2.0 2009-12-14
+
+This is the first release of cucumber-rails, which was factored out of cucumber.
+We're calling it 0.2.0 just because we did some prereleases in the 0.1 series,
+and to celebrate that cucumber-rails now supports Capybara as an alternative to Webrat.
+
+=== UPGRADING FROM A PREVIOUS CUCUMBER SETUP
+
+1) Remove your features/support/version_check.rb
+2) Remove your features/step_definitions/webrat_steps.rb
+   If you have added your own custom step definitions to this file,
+   put them in a different file under features/step_definitions
+3) run "ruby script/generate cucumber --help" to see what options you have.
+4) run "ruby script/generate cucumber" - plus whatever options you think fit for you.
+   Answer "n" (no) when asked to overwrite paths.rb.
+   Answer "y" (yes) when asked to overwrite other files, but do "d" (diff) first.
+   If you have edits in some of these files that you want to keep, store the diff
+   in a temporary file and reapply after you have overwritten the file. ALso consider
+   adding your custom code to another file that won't be overwritten the next time
+   you upgrade.
+   
+   Many people have edits in their env.rb file. This is something you should try
+   to avoid in the future. Instead, keep your custom setup in a different file
+   under features/support - Cucumber loads all files under features/**/*.rb anyway.
+   
+   If you have a Spork setup, see the end of this thread:
+   http://groups.google.com/group/cukes/browse_thread/thread/475385cc26377215
+
+=== New features
+* Added an @emulate_rails_javascript tag that will emulate onclick with Capybara (Aslak Hellesøy, Rob Holland)
+* Added a smart config/cucumber.yml file that will rerun previously failing scenarios (Aslak Hellesøy)
+* Support for Capybara. Run "script/generate --capybara" if you want that. (Rob Holland, Aslak Hellesøy)
+* New #tableish method to extract table-like data from a HTML page. Pure Nokogiri/CSS3/XPath. (Aslak Hellesøy)
+
+=== Bugfixes
+* Webrat step "Then I should be on" should use request_uri instead of path for missing query string parameters (ZhangJinzhu)
+* Added MIME type parameter to attach file step definition (Felix Flores)
+* Added check when including ActiveSupport::Testing::SetupAndTeardown for older Rails versions (Jeremy Durham)
