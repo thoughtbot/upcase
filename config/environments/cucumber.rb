@@ -27,7 +27,7 @@ config.gem 'polyglot',
            :version => '0.2.9',
            :lib     => false
 config.gem 'treetop',
-           :version => '1.4.2',
+           :version => '1.4.3',
            :lib     => false
 config.gem 'term-ansicolor',
            :version => '1.0.4',

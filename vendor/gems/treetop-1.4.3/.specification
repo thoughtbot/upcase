@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: treetop
 version: !ruby/object:Gem::Version 
-  version: 1.4.2
+  version: 1.4.3
 platform: ruby
 authors: 
 - Nathan Sobo
@@ -9,7 +9,7 @@ autorequire: treetop
 bindir: bin
 cert_chain: []
 
-date: 2009-09-10 00:00:00 -04:00
+date: 2009-12-07 00:00:00 -05:00
 default_executable: tt
 dependencies: 
 - !ruby/object:Gem::Dependency 
