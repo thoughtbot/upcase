@@ -29,7 +29,7 @@ config.gem 'shoulda',
 config.gem 'timecop',
            :version => '>= 0.3.4'
 config.gem 'fakeweb',
-           :version => '>= 1.2.6'
+           :version => '>= 1.2.8'
 
 # Webrat and dependencies
 # NOTE: don't vendor nokogiri - it's a binary Gem
