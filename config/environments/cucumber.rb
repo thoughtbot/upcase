@@ -44,7 +44,8 @@ config.gem 'builder',
 config.gem 'cucumber',
            :version => '>= 0.5.3'
 config.gem 'cucumber-rails',
-           :version => '>= 0.2.2'
+           :version => '>= 0.2.2',
+           :lib => false
 config.gem 'database_cleaner',
            :version => '>= 0.2.3'
 
