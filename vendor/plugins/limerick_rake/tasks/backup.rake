@@ -10,8 +10,8 @@ namespace :backup do
     filepath  = File.join(backupdir, filename)
     mysqldump = `which mysqldump`.strip
     options   =  "-e -u #{config['username']}"
-    options   += " -p#{config['password']}" if config['password']
-    options   += " -h #{config['host']}"    if config['host']
+    options   += " -p'#{config['password']}'" if config['password']
+    options   += " -h #{config['host']}"      if config['host']
 
     raise RuntimeError, "I only work with mysql." unless config['adapter'] == 'mysql'
     raise RuntimeError, "Cannot find mysqldump." if mysqldump.blank?
