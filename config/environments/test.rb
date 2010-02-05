@@ -25,7 +25,7 @@ config.action_mailer.delivery_method = :test
 config.gem 'factory_girl', 
            :version => '>= 1.2.3'
 config.gem 'shoulda', 
-           :version => '>= 2.10.2'
+           :version => '>= 2.10.3'
 config.gem 'timecop',
            :version => '>= 0.3.4'
 config.gem 'fakeweb',

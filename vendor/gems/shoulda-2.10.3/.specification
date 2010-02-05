@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: shoulda
 version: !ruby/object:Gem::Version 
-  version: 2.10.2
+  version: 2.10.3
 platform: ruby
 authors: 
 - Tammer Saleh
@@ -9,7 +9,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2009-07-15 00:00:00 -04:00
+date: 2010-01-16 00:00:00 -05:00
 default_executable: convert_to_should_syntax
 dependencies: []
 

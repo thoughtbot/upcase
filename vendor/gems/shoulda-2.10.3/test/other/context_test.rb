@@ -169,6 +169,12 @@ class ContextTest < ActiveSupport::TestCase # :nodoc:
       should "return the result of the block as the subject" do
         assert_equal @expected, subject
       end
+      
+      context "nested context block without a subject block" do
+        should "return the result of the parent context's subject block" do
+          assert_equal @expected, subject
+        end
+      end
     end
   end
 end
@@ -185,5 +191,13 @@ class SubjectTest < ActiveSupport::TestCase
 
   should "return a specified subject" do
     assert_equal @expected, subject
+  end
+end
+
+class SubjectLazinessTest < ActiveSupport::TestCase
+  subject { Subject.new }
+  
+  should "only build the subject once" do
+    assert_equal subject, subject
   end
 end
