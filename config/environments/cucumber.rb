@@ -42,12 +42,12 @@ config.gem 'builder',
            :version => '2.1.2',
            :lib     => false
 config.gem 'cucumber',
-           :version => '>= 0.5.3'
+           :version => '>= 0.6.2'
 config.gem 'cucumber-rails',
-           :version => '>= 0.2.2',
+           :version => '>= 0.2.4',
            :lib => false
 config.gem 'database_cleaner',
-           :version => '>= 0.2.3'
+           :version => '>= 0.4.3'
 
 # Webrat and dependencies
 # NOTE: don't vendor nokogiri - it's a binary Gem
@@ -55,6 +55,6 @@ config.gem 'nokogiri',
            :version => '>= 1.4.0',
            :lib     => false
 config.gem 'webrat',
-           :version => '0.6.0'
+           :version => '0.7.0'
 
 HOST = 'localhost'
