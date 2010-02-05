@@ -1,3 +1,0 @@
-vendor/plugins/webrat
-tmp/pids/*.pid
-log/*.log

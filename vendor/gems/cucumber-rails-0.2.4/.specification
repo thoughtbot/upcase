@@ -1,0 +1,107 @@
+--- !ruby/object:Gem::Specification 
+name: cucumber-rails
+version: !ruby/object:Gem::Version 
+  version: 0.2.4
+platform: ruby
+authors: 
+- "Dennis Bl\xC3\xB6te"
+- "Aslak Helles\xC3\xB8y"
+- Rob Holland
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2010-01-17 00:00:00 -05:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: cucumber
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 0.6.2
+    version: 
+description: Cucumber Generators and Runtime for Rails
+email: cukes@googlegroups.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- README.rdoc
+files: 
+- .gitignore
+- History.txt
+- README.rdoc
+- Rakefile
+- VERSION
+- cucumber-rails.gemspec
+- generators/cucumber/USAGE
+- generators/cucumber/cucumber_generator.rb
+- generators/cucumber/templates/config/cucumber.yml.erb
+- generators/cucumber/templates/environments/cucumber.rb.erb
+- generators/cucumber/templates/script/cucumber
+- generators/cucumber/templates/step_definitions/capybara_steps.rb.erb
+- generators/cucumber/templates/step_definitions/web_steps_cs.rb.erb
+- generators/cucumber/templates/step_definitions/web_steps_de.rb.erb
+- generators/cucumber/templates/step_definitions/web_steps_es.rb.erb
+- generators/cucumber/templates/step_definitions/web_steps_no.rb.erb
+- generators/cucumber/templates/step_definitions/web_steps_pt-BR.rb.erb
+- generators/cucumber/templates/step_definitions/webrat_steps.rb.erb
+- generators/cucumber/templates/support/_rails_each_run.rb
+- generators/cucumber/templates/support/_rails_prefork.rb.erb
+- generators/cucumber/templates/support/capybara.rb
+- generators/cucumber/templates/support/edit_warning.txt
+- generators/cucumber/templates/support/paths.rb
+- generators/cucumber/templates/support/rails.rb.erb
+- generators/cucumber/templates/support/rails_spork.rb.erb
+- generators/cucumber/templates/support/webrat.rb
+- generators/cucumber/templates/tasks/cucumber.rake.erb
+- generators/feature/USAGE
+- generators/feature/feature_generator.rb
+- generators/feature/templates/feature.erb
+- generators/feature/templates/steps.erb
+- lib/cucumber/rails/action_controller.rb
+- lib/cucumber/rails/active_record.rb
+- lib/cucumber/rails/capybara_javascript_emulation.rb
+- lib/cucumber/rails/rspec.rb
+- lib/cucumber/rails/test_unit.rb
+- lib/cucumber/rails/world.rb
+- lib/cucumber/web/tableish.rb
+- spec/cucumber/web/tableish_spec.rb
+- spec/spec_helper.rb
+- tasks/rspec.rake
+has_rdoc: true
+homepage: http://github.com/aslakhellesoy/cucumber-rails
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --charset=UTF-8
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.5
+signing_key: 
+specification_version: 3
+summary: Cucumber Generators and Runtime for Rails
+test_files: 
+- spec/cucumber/web/tableish_spec.rb
+- spec/spec_helper.rb
