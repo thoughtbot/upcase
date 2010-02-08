@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require File.dirname(__FILE__) + '/../config/boot'
 require 'rubygems'
-require 'activesupport'
+require 'active_support'
 require 'pathname'
 require 'digest/md5'
 
@@ -13,6 +13,7 @@ base_directory = Pathname.new(File.join(File.dirname(__FILE__), '..', '..')).rea
 project_directory = base_directory + project_name
 fail("Project directory (#{project_directory}) already exists") if project_directory.exist?
 
+local_url = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 template_url = "git://github.com/thoughtbot/suspenders.git"
 changeme = "CHANGEME"
 changesession = "CHANGESESSION"
@@ -45,6 +46,9 @@ end
 run("mkdir #{project_directory}")
 Dir.chdir(project_directory) or fail("Couldn't change to #{project_directory}")
 run("git init")
+run("git remote add local-suspenders #{local_url}")
+run("git pull local-suspenders master")
+run("git remote rm local-suspenders")
 run("git remote add suspenders #{template_url}")
 run("git pull suspenders master")
 
