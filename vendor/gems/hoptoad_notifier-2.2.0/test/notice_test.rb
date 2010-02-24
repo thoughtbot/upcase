@@ -143,7 +143,7 @@ class NoticeTest < Test::Unit::TestCase
   end
 
   should "use the caller as the backtrace for an exception without a backtrace" do
-    filters = HoptoadNotifier.configuration.backtrace_filters
+    filters = HoptoadNotifier::Configuration.new.backtrace_filters
     backtrace = HoptoadNotifier::Backtrace.parse(caller, :filters => filters)
     notice = build_notice(:exception => StandardError.new('error'), :backtrace => nil)
 
@@ -336,6 +336,21 @@ class NoticeTest < Test::Unit::TestCase
     assert_nothing_raised do
       build_notice(:session => { :object => stub(:to_hash => {}) })
     end
+  end
+
+  should "extract data from a rack environment hash" do
+    # TODO: extract session data
+    # TODO: extract controller
+    # TODO: extract action
+    url = "https://subdomain.happylane.com:100/test/file.rb?var=value&var2=value2"
+    parameters = { 'var' => 'value', 'var2' => 'value2' }
+    env = Rack::MockRequest.env_for(url)
+
+    notice = build_notice(:rack_env => env)
+
+    assert_equal url, notice.url
+    assert_equal parameters, notice.parameters
+    assert_equal 'GET', notice.cgi_data['REQUEST_METHOD']
   end
 
   def assert_accepts_exception_attribute(attribute, args = {}, &block)
