@@ -1,8 +1,8 @@
-When /^I save and open the page$/ do
+When 'I save and open the page' do
   save_and_open_page
 end
 
-Then "show me the sent emails?" do
+Then /^show me the sent emails?$/ do
   pretty_emails = ActionMailer::Base.deliveries.map do |mail|
     <<-OUT
 To: #{mail.to.inspect}
