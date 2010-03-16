@@ -121,7 +121,7 @@ module ActiveRecordExtensions # :nodoc:
         #
         def remember_validation_metadata(validation_type, *attr_names)
           configuration = attr_names.last.is_a?(::Hash) ? attr_names.pop : {}
-          attr_names.each do |attr_name|
+          attr_names.flatten.each do |attr_name|
             self.write_inheritable_array :validations,
               [::ActiveRecord::Reflection::MacroReflection.new(validation_type, attr_name.to_sym, configuration, self)]
           end

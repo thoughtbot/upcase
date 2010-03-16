@@ -42,6 +42,8 @@ class ValidationReflectionTest < Test::Unit::TestCase
         [
          create_fake_column('col0'),
          create_fake_column('col1'),
+         create_fake_column('col1a'),
+         create_fake_column('col1b'),
          create_fake_column('col2', false, 100),
          create_fake_column('col3'),
          create_fake_column('col4'),
@@ -55,6 +57,7 @@ class ValidationReflectionTest < Test::Unit::TestCase
     has_one :nothing
 
     validates_presence_of :col1
+    validates_presence_of [ :col1a, :col1b ]
     validates_length_of :col2, :maximum => 100
     validates_format_of :col3, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
     validates_numericality_of :col4, :only_integer => true

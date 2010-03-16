@@ -23,12 +23,7 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
 end
 
 begin
-  begin
-    require 'jeweler'
-  rescue LoadError
-    gem 'technicalpickles-jeweler', '>= 1.0.0'
-    require 'jeweler'
-  end
+  require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
     gemspec.name = "validation_reflection"
     gemspec.summary = "Adds reflective access to validations"
@@ -37,6 +32,7 @@ begin
     gemspec.homepage = "http://github.com/redinger/validation_reflection"
     gemspec.authors = ["Christopher Redinger"]
   end
+  Jeweler::RubyforgeTasks.new
 rescue LoadError
-  puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
+  puts "Jeweler not available. Install it with: sudo gem install jeweler"
 end
