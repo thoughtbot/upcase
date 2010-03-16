@@ -30,13 +30,13 @@ config.gem 'database_cleaner', :lib => false, :version => '>=0.5.0' unless File.
 config.gem 'webrat',           :lib => false, :version => '>=0.7.0' unless File.directory?(File.join(Rails.root, 'vendor/plugins/webrat'))
 
 config.gem 'polyglot',
-           :version => '0.2.9',
+           :version => '0.3.0',
            :lib     => false
 config.gem 'treetop',
-           :version => '1.4.3',
+           :version => '1.4.4',
            :lib     => false
 config.gem 'term-ansicolor',
-           :version => '1.0.4',
+           :version => '1.0.5',
            :lib     => false
 config.gem 'diff-lcs',
            :version => '1.1.2',
