@@ -31,6 +31,8 @@ Rails::Initializer.run do |config|
              :version => '>= 2.3.1.1'
   config.gem 'rack',
              :version => '>= 1.0.1'
+  config.gem 'validation_reflection',
+             :version => '>= 0.3.6'
   config.gem 'hoptoad_notifier'
 
   # Only load the plugins named here, in the order given. By default, all plugins 
