@@ -1,0 +1,64 @@
+= Cucumber-Rails
+
+Cucumber-Rails brings Cucumber to Rails2 and Rails3. It contains 2 generators - one
+for bootstrapping your Rails app for Cucumber, and a second one for generating features.
+
+Cucumber-Rails also contains Cucumber Step Definitions that wrap Capybara or Webrat,
+giving you a head start for writing Cucumber features against your Rails app.
+
+== Installation
+
+=== Rails 3:
+
+Before you can use the generator, add the necessary gems to your project's Gemfile as follows:
+
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'cucumber-rails'
+
+Or if you prefer the latest and greatest:
+
+  gem 'capybara',         :git => 'git://github.com/jnicklas/capybara.git'
+  gem 'database_cleaner', :git => 'git://github.com/bmabey/database_cleaner.git'
+  gem 'cucumber-rails',   :git => 'git://github.com/aslakhellesoy/cucumber-rails3.git'
+
+Then install the gems by running:
+
+  bundle install
+
+Finally, bootstrap your Rails app by running:
+
+  ruby script/rails generate cucumber:skeleton
+
+=== Rails 2.x:
+
+Before you can use the generator, install the gem by running:
+
+  gem install cucumber-rails
+
+Finally, bootstrap your Rails app by running:
+
+  script/generate cucumber
+
+== Generating a Cucumber feature
+
+IMPORTANT: Only do this if you are new to Cucumber. We recommend you write your
+Cucumber features by hand once you get the hang of it.
+
+=== Rails 3:
+
+Example:
+
+  ruby script/rails generate cucumber:feature post title:string body:text published:boolean
+  ruby script/rails generate scaffold post title:string body:text published:boolean
+  rake db:migrate
+  rake cucumber
+
+=== Rails 2:
+
+Example:
+
+  ruby script/generate feature post title:string body:text published:boolean
+  ruby script/generate scaffold post title:string body:text published:boolean
+  rake db:migrate
+  rake cucumber
