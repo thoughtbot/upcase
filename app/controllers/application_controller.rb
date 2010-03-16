@@ -4,6 +4,4 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-  include HoptoadNotifier::Catcher
-
 end
