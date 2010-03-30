@@ -5,8 +5,8 @@ version: !ruby/object:Gem::Version
   segments: 
   - 1
   - 4
-  - 4
-  version: 1.4.4
+  - 5
+  version: 1.4.5
 platform: ruby
 authors: 
 - Nathan Sobo
@@ -14,7 +14,7 @@ autorequire: treetop
 bindir: bin
 cert_chain: []
 
-date: 2010-02-19 00:00:00 -05:00
+date: 2010-03-28 00:00:00 -04:00
 default_executable: tt
 dependencies: 
 - !ruby/object:Gem::Dependency 
@@ -27,8 +27,8 @@ dependencies:
         segments: 
         - 0
         - 3
-        - 0
-        version: 0.3.0
+        - 1
+        version: 0.3.1
   type: :runtime
   version_requirements: *id001
 description: 
@@ -70,6 +70,7 @@ files:
 - lib/treetop/compiler/node_classes.rb
 - lib/treetop/compiler/ruby_builder.rb
 - lib/treetop/compiler.rb
+- lib/treetop/polyglot.rb
 - lib/treetop/ruby_extensions/string.rb
 - lib/treetop/ruby_extensions.rb
 - lib/treetop/runtime/compiled_parser.rb

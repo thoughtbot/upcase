@@ -1,4 +1,3 @@
-$:.unshift File.dirname(__FILE__)
 require 'pathname'
 
 module Polyglot
@@ -17,7 +16,7 @@ module Polyglot
   end
 
   def self.register(extension, klass)
-    extension = [extension] unless Enumerable === extension
+    extension = [extension] unless Array === extension
     extension.each{|e|
       @registrations[e] = klass
     }

@@ -5,8 +5,8 @@ version: !ruby/object:Gem::Version
   segments: 
   - 0
   - 3
-  - 0
-  version: 0.3.0
+  - 1
+  version: 0.3.1
 platform: ruby
 authors: 
 - Clifford Heath
@@ -14,7 +14,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2010-02-13 00:00:00 -05:00
+date: 2010-03-28 00:00:00 -04:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
