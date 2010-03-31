@@ -53,3 +53,6 @@ begin require 'redgreen'; rescue LoadError; end
 config.after_initialize do
   Timecop.travel(Time.now)
 end
+
+config.gem "rspec", :lib => false, :version => "1.3.0"
+config.gem "rspec-rails", :lib => false, :version => "= 1.3.2"

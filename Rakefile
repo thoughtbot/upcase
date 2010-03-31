@@ -9,5 +9,5 @@ require 'rake/rdoctask'
 
 require 'tasks/rails'
 
-desc "Run all tests and features"
-task :default => [:test, :cucumber]
+desc "Run all specs and features"
+task :default => [:spec, :cucumber]
