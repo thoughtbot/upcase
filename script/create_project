@@ -21,8 +21,8 @@ changesession = "CHANGESESSION"
 def run(cmd)
   puts "Running '#{cmd}'"
   out = `#{cmd}`
-  if $? != 0 
-    fail "Command #{cmd} failed: #$?\n#{out}" 
+  if $? != 0
+    fail "Command #{cmd} failed: #$?\n#{out}"
   end
   out
 end
