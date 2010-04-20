@@ -1,5 +1,6 @@
 module ApplicationHelper
   def body_class
-    "#{controller.controller_name} #{controller.controller_name}-#{controller.action_name}"
+    qualified_controller_name = controller.controller_path.gsub('/','-')
+    "#{qualified_controller_name} #{qualified_controller_name}-#{controller.action_name}"
   end
 end
