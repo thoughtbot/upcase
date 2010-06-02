@@ -1,15 +1,15 @@
 This is Suspenders, the thoughtbot rails template.
 
-To create a new project, first checkout the repository:
+To create a new project, first install the suspenders gem:
 
-  git clone git://github.com/thoughtbot/suspenders.git
+  gem install suspenders
 
-Change into the new 'suspenders' directory and run:
+Then run:
 
-  ./script/create_project projectname
+  suspenders create projectname
 
 This will create a project in ../projectname.  You should then follow the
-instructions on Github to upload that project there.  This script creates an
+instructions on Github to upload that project there.  This creates an
 entirely new git repository, and is not meant to be used against an existing
 repo.
 
@@ -22,7 +22,7 @@ suggestion.
 Once that's committed, you can pull into your project to get all the changes 
 that have been made in suspenders since your last pull:
 
-  git pull suspenders master
+  rake git:pull:suspenders
 
 About Suspenders
 ----------------
@@ -48,15 +48,15 @@ For text formatting:
 
 Form builder:
 
-  Formtastic (0.2.1)
+  Formtastic
 
 File attachments:
 
-  Paperclip (2.3.0)
+  Paperclip
 
 Basic user auth:
 
-  Clearance (0.7.0 engine)
+  Clearance
 
 For testing:
 
@@ -66,12 +66,16 @@ For testing:
   timecop (for time sensitive tests)
   fakeweb (for blocking HTTP calls to third-party services)
 
+Error notification:
+
+  hoptoad_notifier
+
 Plugins (in vendor/plugins):
 ----------------------------
 
-  hoptoad_notifier
-  limerick_rake
+  limerick_rake (useful rake tasks)
   validation_reflection (used by formtastic to find required fields)
+  high_voltage (Rails engine for static pages)
 
 Initializers (in config/initializers)
 -------------------------------------
