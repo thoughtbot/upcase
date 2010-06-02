@@ -40,7 +40,7 @@ Gems (unpacked in vendor/gems, unless they are compiled gems):
 
 For record pagination:
 
-  will_paginate (2.3.11)
+  will_paginate
 
 For text formatting:
 
