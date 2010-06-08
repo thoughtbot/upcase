@@ -28,6 +28,19 @@ Remove the vendor/plugins/hoptoad_notifier directory before installing the gem, 
 
   script/plugin remove hoptoad_notifier
 
+=== Rails 3.x
+
+Add the hoptoad_notifier gem to your Gemfile.  In Gemfile:
+
+  gem 'hoptoad_notifier'
+
+Then from your project's RAILS_ROOT, run:
+
+  bundle install
+  script/rails generate hoptoad --api-key your_key_here
+
+That's it!
+
 === Rails 2.x
 
 Add the hoptoad_notifier gem to your app. In config/environment.rb:
@@ -37,11 +50,8 @@ Add the hoptoad_notifier gem to your app. In config/environment.rb:
 Then from your project's RAILS_ROOT, run:
 
   rake gems:install
-  script/generate hoptoad --api-key your_key_here
-
-Once installed, you should vendor the hoptoad_notifier gem.
-
   rake gems:unpack GEM=hoptoad_notifier
+  script/generate hoptoad --api-key your_key_here
 
 As always, if you choose not to vendor the hoptoad_notifier gem, make sure
 every server you deploy to has the gem installed or your application won't start.
@@ -93,6 +103,13 @@ Add the hoptoad_notifier gem to your app. In config/environment.rb:
 Remove the plugin:
 
     rm -rf vendor/plugins/hoptoad_notifier
+
+Make sure the following line DOES NOT appear in your ApplicationController file:
+
+    include HoptoadNotifier::Catcher
+
+If it does, remove it.  The new catcher is automatically included by the gem
+version of Hoptoad.
 
 Before running the hoptoad generator, you need to find your project's API key.
 Log in to your account at hoptoadapp.com, and click on the "Projects" button.
@@ -256,6 +273,15 @@ Hoptoad merges the hash you pass with these default options:
   }
 
 You can override any of those parameters.
+
+=== Sending shell environment variables when "Going beyond exceptions"
+
+One common request we see is to send shell environment variables along with
+manual exception notification.  We recommend sending them along with CGI data
+or Rack environment (:cgi_data or :rack_env keys, respectively.)
+
+See HoptoadNotifier::Notice#initialize in lib/hoptoad_notifier/notice.rb for
+more details.
 
 == Filtering
 
