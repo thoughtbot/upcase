@@ -30,7 +30,7 @@ Rails::Initializer.run do |config|
   config.gem 'paperclip',
              :version => '>= 2.3.1.1'
   config.gem 'rack',
-             :version => '>= 1.0.1'
+             :version => '>= 1.1.0'
   config.gem 'validation_reflection',
              :version => '>= 0.3.6'
   config.gem 'hoptoad_notifier'
