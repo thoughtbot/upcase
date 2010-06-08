@@ -1,8 +1,8 @@
 # coding: utf-8
 require 'rubygems'
 
-gem 'activesupport', '2.3.5'
-gem 'actionpack', '2.3.5'
+gem 'activesupport', '2.3.8'
+gem 'actionpack', '2.3.8'
 require 'active_support'
 require 'action_pack'
 require 'action_view'
@@ -22,6 +22,7 @@ Spec::Runner.configure do |config|
 end
 
 require File.expand_path(File.join(File.dirname(__FILE__), '../lib/formtastic'))
+require File.expand_path(File.join(File.dirname(__FILE__), '../lib/formtastic/util'))
 require File.expand_path(File.join(File.dirname(__FILE__), '../lib/formtastic/layout_helper'))
 
 
@@ -126,6 +127,7 @@ module FormtasticSpecHelper
     @new_post.stub!(:new_record?).and_return(true)
     @new_post.stub!(:errors).and_return(mock('errors', :[] => nil))
     @new_post.stub!(:author).and_return(nil)
+		@new_post.stub!(:reviewer).and_return(nil)
     @new_post.stub!(:main_post).and_return(nil)
     @new_post.stub!(:sub_posts).and_return([]) #TODO should be a mock with methods for adding sub posts
 
@@ -146,10 +148,15 @@ module FormtasticSpecHelper
     ::Post.stub!(:human_name).and_return('Post')
     ::Post.stub!(:reflect_on_all_validations).and_return([])
     ::Post.stub!(:reflect_on_validations_for).and_return([])
+    ::Post.stub!(:reflections).and_return({})
     ::Post.stub!(:reflect_on_association).and_return do |column_name|
       case column_name
       when :author, :author_status
         mock = mock('reflection', :options => {}, :klass => ::Author, :macro => :belongs_to)
+        mock.stub!(:[]).with(:class_name).and_return("Author")
+        mock
+			when :reviewer
+				mock = mock('reflection', :options => {:class_name => 'Author'}, :klass => ::Author, :macro => :belongs_to)
         mock.stub!(:[]).with(:class_name).and_return("Author")
         mock
       when :authors
@@ -173,6 +180,9 @@ module FormtasticSpecHelper
     @new_post.stub!(:time_zone)
     @new_post.stub!(:category_name)
     @new_post.stub!(:allow_comments)
+    @new_post.stub!(:country)
+    @new_post.stub!(:country_subdivision)
+    @new_post.stub!(:country_code)
     @new_post.stub!(:column_for_attribute).with(:meta_description).and_return(mock('column', :type => :string, :limit => 255))
     @new_post.stub!(:column_for_attribute).with(:title).and_return(mock('column', :type => :string, :limit => 50))
     @new_post.stub!(:column_for_attribute).with(:body).and_return(mock('column', :type => :text))
@@ -180,9 +190,16 @@ module FormtasticSpecHelper
     @new_post.stub!(:column_for_attribute).with(:publish_at).and_return(mock('column', :type => :date))
     @new_post.stub!(:column_for_attribute).with(:time_zone).and_return(mock('column', :type => :string))
     @new_post.stub!(:column_for_attribute).with(:allow_comments).and_return(mock('column', :type => :boolean))
+    @new_post.stub!(:column_for_attribute).with(:author).and_return(mock('column', :type => :integer))
+    @new_post.stub!(:column_for_attribute).with(:country).and_return(mock('column', :type => :string, :limit => 255))
+    @new_post.stub!(:column_for_attribute).with(:country_subdivision).and_return(mock('column', :type => :string, :limit => 255))
+    @new_post.stub!(:column_for_attribute).with(:country_code).and_return(mock('column', :type => :string, :limit => 255))
     
     @new_post.stub!(:author).and_return(@bob)
     @new_post.stub!(:author_id).and_return(@bob.id)
+
+		@new_post.stub!(:reviewer).and_return(@fred)
+		@new_post.stub!(:reviewer_id).and_return(@fred.id)
 
     @new_post.should_receive(:publish_at=).any_number_of_times
     @new_post.should_receive(:title=).any_number_of_times

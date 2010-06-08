@@ -94,6 +94,7 @@ describe 'select input' do
     before do
       semantic_form_for(@new_post) do |builder|
         concat(builder.input(:author, :as => :select))
+				concat(builder.input(:reviewer, :as => :select))
       end
     end
 
@@ -108,11 +109,13 @@ describe 'select input' do
     it 'should have a select inside the wrapper' do
       output_buffer.should have_tag('form li select')
       output_buffer.should have_tag('form li select#post_author_id')
+			output_buffer.should have_tag('form li select#post_reviewer_id')
     end
 
     it 'should have a valid name' do
       output_buffer.should have_tag("form li select[@name='post[author_id]']")
       output_buffer.should_not have_tag("form li select[@name='post[author_id][]']")
+			output_buffer.should_not have_tag("form li select[@name='post[reviewer_id][]']")
     end
 
     it 'should not create a multi-select' do
@@ -128,14 +131,14 @@ describe 'select input' do
     end
 
     it 'should have a select option for each Author' do
-      output_buffer.should have_tag('form li select option', :count => ::Author.find(:all).size + 1)
+      output_buffer.should have_tag("form li select[@name='post[author_id]'] option", :count => ::Author.find(:all).size + 1)
       ::Author.find(:all).each do |author|
         output_buffer.should have_tag("form li select option[@value='#{author.id}']", /#{author.to_label}/)
       end
     end
 
     it 'should have one option with a "selected" attribute' do
-      output_buffer.should have_tag('form li select option[@selected]', :count => 1)
+      output_buffer.should have_tag("form li select[@name='post[author_id]'] option[@selected]", :count => 1)
     end
 
     it 'should not singularize the association name' do
@@ -149,20 +152,6 @@ describe 'select input' do
 
       output_buffer.should have_tag('form li select#post_author_status_id')
     end
-
-    it 'should use the "class_name" option' do
-      @new_post.stub!(:status).and_return(@bob)
-      @new_post.stub!(:author_status_id).and_return(@bob.id)
-   
-      ::Post.stub!(:reflect_on_association).with(:status).and_return(
-        mock('reflection', :options => {:class_name => 'AuthorStatus'}, :klass => ::Author, :macro => :belongs_to))
-
-      semantic_form_for(@new_post) do |builder|
-        concat(builder.input(:status, :as => :select))
-      end
-
-      output_buffer.should have_tag('form li select#post_author_status_id')
-    end
   end
   
   describe "for a belongs_to association with :group_by => :author" do
@@ -172,6 +161,34 @@ describe 'select input' do
 
       semantic_form_for(@new_post) do |builder|
         concat(builder.input(:main_post, :as => :select, :group_by => :author ) )
+      end
+    end
+  end
+
+  describe "for a belongs_to association with :conditions" do
+    before do
+      ::Post.stub!(:reflect_on_association).with(:author).and_return do
+        mock = mock('reflection', :options => {:conditions => {:active => true}}, :klass => ::Author, :macro => :belongs_to)
+        mock.stub!(:[]).with(:class_name).and_return("Author")
+        mock
+      end
+    end
+
+    it "should call author.find with association conditions" do
+      ::Author.should_receive(:merge_conditions).with({:active => true}, nil).and_return(:active => true)
+      ::Author.should_receive(:find).with(:all, :conditions => {:active => true})
+
+      semantic_form_for(@new_post) do |builder|
+        concat(builder.input(:author, :as => :select))
+      end
+    end
+
+    it "should call author.find with association conditions and find_options conditions" do
+      ::Author.should_receive(:merge_conditions).with({:active => true}, {:publisher => true}).and_return(:active => true, :publisher => true)
+      ::Author.should_receive(:find).with(:all, :conditions => {:active => true, :publisher => true})
+
+      semantic_form_for(@new_post) do |builder|
+        concat(builder.input(:author, :as => :select, :find_options => {:conditions => {:publisher => true}}))
       end
     end
   end

@@ -1,5 +1,6 @@
 # coding: utf-8
 require File.join(File.dirname(__FILE__), *%w[formtastic i18n])
+require File.join(File.dirname(__FILE__), *%w[formtastic util])
 
 module Formtastic #:nodoc:
 
@@ -9,7 +10,7 @@ module Formtastic #:nodoc:
     @@default_text_area_height = 20
     @@all_fields_required_by_default = true
     @@include_blank_for_select_by_default = true
-    @@required_string = proc { %{<abbr title="#{::Formtastic::I18n.t(:required)}">*</abbr>} }
+    @@required_string = proc { ::Formtastic::Util.html_safe(%{<abbr title="#{::Formtastic::I18n.t(:required)}">*</abbr>}) }
     @@optional_string = ''
     @@inline_errors = :sentence
     @@label_str_method = :humanize
@@ -105,7 +106,7 @@ module Formtastic #:nodoc:
         send(:"inline_#{type}_for", method, options)
       end.compact.join("\n")
 
-      return template.content_tag(:li, list_item_content, wrapper_html)
+      return template.content_tag(:li, Formtastic::Util.html_safe(list_item_content), wrapper_html)
     end
 
     # Creates an input fieldset and ol tag wrapping for use around a set of inputs.  It can be
@@ -342,7 +343,7 @@ module Formtastic #:nodoc:
       element_class = ['commit', options.delete(:class)].compact.join(' ') # TODO: Add class reflecting on form action.
       accesskey = (options.delete(:accesskey) || @@default_commit_button_accesskey) unless button_html.has_key?(:accesskey)
       button_html = button_html.merge(:accesskey => accesskey) if accesskey  
-      template.content_tag(:li, self.submit(text, button_html), :class => element_class)
+      template.content_tag(:li, Formtastic::Util.html_safe(self.submit(text, button_html)), :class => element_class)
     end
 
     # A thin wrapper around #fields_for to set :builder => Formtastic::SemanticFormBuilder
@@ -399,11 +400,15 @@ module Formtastic #:nodoc:
         text = options_or_text
         options ||= {}
       end
+
       text = localized_string(method, text, :label) || humanized_attribute_name(method)
       text += required_or_optional_string(options.delete(:required))
+      text = Formtastic::Util.html_safe(text)
 
       # special case for boolean (checkbox) labels, which have a nested input
-      text = (options.delete(:label_prefix_for_nested_input) || "") + text
+      if options.key?(:label_prefix_for_nested_input)
+        text = options.delete(:label_prefix_for_nested_input) + text
+      end
 
       input_name = options.delete(:input_name) || method
       super(input_name, text, options)
@@ -422,8 +427,10 @@ module Formtastic #:nodoc:
     #
     def inline_errors_for(method, options = nil) #:nodoc:
       if render_inline_errors?
-        errors = @object.errors[method.to_sym]
-        send(:"error_#{@@inline_errors}", [*errors]) if errors.present?
+        errors = [@object.errors[method.to_sym]]
+        errors << [@object.errors[association_primary_key(method)]] if association_macro_for_method(method) == :belongs_to
+        errors = errors.flatten.compact.uniq
+        send(:"error_#{@@inline_errors}", [*errors]) if errors.any?
       else
         nil
       end
@@ -452,7 +459,7 @@ module Formtastic #:nodoc:
       return nil if full_errors.blank?
       html_options[:class] ||= "errors"
       template.content_tag(:ul, html_options) do
-        full_errors.map { |error| template.content_tag(:li, error) }.join
+        Formtastic::Util.html_safe(full_errors.map { |error| template.content_tag(:li, Formtastic::Util.html_safe(error)) }.join)
       end
     end
 
@@ -483,6 +490,18 @@ module Formtastic #:nodoc:
           []
         end
       end
+      
+      # Returns nil, or a symbol like :belongs_to or :has_many
+      def association_macro_for_method(method) #:nodoc:
+        reflection = self.reflection_for(method)
+        reflection.macro if reflection
+      end
+      
+      def association_primary_key(method)
+        reflection = self.reflection_for(method)
+        reflection.options[:foreign_key] if reflection && !reflection.options[:foreign_key].blank?
+        :"#{method}_id"
+      end
 
       # Prepare options to be sent to label
       #
@@ -504,9 +523,9 @@ module Formtastic #:nodoc:
           raise ArgumentError, 'You gave :for option with a block to inputs method, ' <<
                                'but the block does not accept any argument.' if block.arity <= 0
 
-          proc { |f| f.inputs(*args){ block.call(f) } }
+          proc { |f| return f.inputs(*args){ block.call(f) } }
         else
-          proc { |f| f.inputs(*args) }
+          proc { |f| return f.inputs(*args) }
         end
 
         fields_for_args = [options.delete(:for), options.delete(:for_options) || {}].flatten
@@ -859,12 +878,12 @@ module Formtastic #:nodoc:
           html_options[:checked] = selected_value == value if selected_option_is_present
 
           li_content = template.content_tag(:label,
-            "#{self.radio_button(input_name, value, html_options)} #{label}",
+            Formtastic::Util.html_safe("#{self.radio_button(input_name, value, html_options)} #{label}"),
             :for => input_id
           )
 
           li_options = value_as_class ? { :class => [method.to_s.singularize, value.to_s.downcase].join('_') } : {}
-          template.content_tag(:li, li_content, li_options)
+          template.content_tag(:li, Formtastic::Util.html_safe(li_content), li_options)
         end
 
         field_set_and_list_wrapping_for_method(method, options, list_item_content)
@@ -994,8 +1013,8 @@ module Formtastic #:nodoc:
         list_items_capture = ""
         hidden_fields_capture = ""
 
-        datetime = options.key?(:selected) ? options[:selected] : Time.now # can't do an || because nil is an important value
-        datetime = @object.send(method) if @object && @object.send(method) # object trumps :selected
+        datetime = options[:selected]
+        datetime = @object.send(method) if @object && @object.send(method) # object value trumps :selected value
 
         html_options = options.delete(:input_html) || {}
         input_ids    = []
@@ -1013,10 +1032,10 @@ module Formtastic #:nodoc:
             opts = strip_formtastic_options(options).merge(:prefix => @object_name, :field_name => field_name, :default => datetime)
             item_label_text = labels[input] || ::I18n.t(input.to_s, :default => input.to_s.humanize, :scope => [:datetime, :prompts])
 
-            list_items_capture << template.content_tag(:li, [
-                !item_label_text.blank? ? template.content_tag(:label, item_label_text, :for => input_id) : "",
+            list_items_capture << template.content_tag(:li, Formtastic::Util.html_safe([
+                !item_label_text.blank? ? template.content_tag(:label, Formtastic::Util.html_safe(item_label_text), :for => input_id) : "",
                 template.send(:"select_#{input}", datetime, opts, html_options.merge(:id => input_id))
-              ].join("")
+              ].join(""))
             )
           end
         end
@@ -1110,7 +1129,10 @@ module Formtastic #:nodoc:
         selected_option_is_present = [:selected, :checked].any? { |k| options.key?(k) }
         selected_values = (options.key?(:checked) ? options[:checked] : options[:selected]) if selected_option_is_present
         selected_values  = [*selected_values].compact
-        
+
+        disabled_option_is_present = options.key?(:disabled)
+        disabled_values = [*options[:disabled]] if disabled_option_is_present
+
         list_item_content = collection.map do |c|
           label = c.is_a?(Array) ? c.first : c
           value = c.is_a?(Array) ? c.last : c
@@ -1118,15 +1140,16 @@ module Formtastic #:nodoc:
           input_ids << input_id
 
           html_options[:checked] = selected_values.include?(value) if selected_option_is_present
+          html_options[:disabled] = disabled_values.include?(value) if disabled_option_is_present
           html_options[:id] = input_id
 
           li_content = template.content_tag(:label,
-            "#{self.check_box(input_name, html_options, value, unchecked_value)} #{label}",
+            Formtastic::Util.html_safe("#{self.check_box(input_name, html_options, value, unchecked_value)} #{label}"),
             :for => input_id
           )
 
           li_options = value_as_class ? { :class => [method.to_s.singularize, value.to_s.downcase].join('_') } : {}
-          template.content_tag(:li, li_content, li_options)
+          template.content_tag(:li, Formtastic::Util.html_safe(li_content), li_options)
         end
 
         field_set_and_list_wrapping_for_method(method, options, list_item_content)
@@ -1191,13 +1214,13 @@ module Formtastic #:nodoc:
       def inline_hints_for(method, options) #:nodoc:
         options[:hint] = localized_string(method, options[:hint], :hint)
         return if options[:hint].blank?
-        template.content_tag(:p, options[:hint], :class => 'inline-hints')
+        template.content_tag(:p, Formtastic::Util.html_safe(options[:hint]), :class => 'inline-hints')
       end
 
       # Creates an error sentence by calling to_sentence on the errors array.
       #
       def error_sentence(errors) #:nodoc:
-        template.content_tag(:p, errors.to_sentence.untaint, :class => 'inline-errors')
+        template.content_tag(:p, Formtastic::Util.html_safe(errors.to_sentence.untaint), :class => 'inline-errors')
       end
 
       # Creates an error li list.
@@ -1205,15 +1228,15 @@ module Formtastic #:nodoc:
       def error_list(errors) #:nodoc:
         list_elements = []
         errors.each do |error|
-          list_elements <<  template.content_tag(:li, error.untaint)
+          list_elements <<  template.content_tag(:li, Formtastic::Util.html_safe(error.untaint))
         end
-        template.content_tag(:ul, list_elements.join("\n"), :class => 'errors')
+        template.content_tag(:ul, Formtastic::Util.html_safe(list_elements.join("\n")), :class => 'errors')
       end
 
       # Creates an error sentence containing only the first error
       #
       def error_first(errors) #:nodoc:
-        template.content_tag(:p, errors.first.untaint, :class => 'inline-errors')
+        template.content_tag(:p, Formtastic::Util.html_safe(errors.first.untaint), :class => 'inline-errors')
       end
 
       # Generates the required or optional string. If the value set is a proc,
@@ -1260,7 +1283,7 @@ module Formtastic #:nodoc:
 
         legend  = html_options.delete(:name).to_s
         legend %= parent_child_index(html_options[:parent]) if html_options[:parent]
-        legend  = template.content_tag(:legend, template.content_tag(:span, legend)) unless legend.blank?
+        legend  = template.content_tag(:legend, template.content_tag(:span, Formtastic::Util.html_safe(legend))) unless legend.blank?
 
         if block_given?
           contents = if template.respond_to?(:is_haml?) && template.is_haml?
@@ -1273,11 +1296,11 @@ module Formtastic #:nodoc:
         # Ruby 1.9: String#to_s behavior changed, need to make an explicit join.
         contents = contents.join if contents.respond_to?(:join)
         fieldset = template.content_tag(:fieldset,
-          legend << template.content_tag(:ol, contents),
+          Formtastic::Util.html_safe(legend) << template.content_tag(:ol, Formtastic::Util.html_safe(contents)),
           html_options.except(:builder, :parent)
         )
 
-        template.concat(fieldset) if block_given?
+        template.concat(fieldset) if block_given? && (!defined?(Rails::VERSION) || Rails::VERSION::MAJOR == 2)
         fieldset
       end
 
@@ -1305,7 +1328,7 @@ module Formtastic #:nodoc:
             template.content_tag(:legend,
                 self.label(method, options_for_label(options).merge(:for => options.delete(:label_for))), :class => 'label'
               ) <<
-            template.content_tag(:ol, contents)
+            template.content_tag(:ol, Formtastic::Util.html_safe(contents))
           )
       end
 
@@ -1323,7 +1346,7 @@ module Formtastic #:nodoc:
           case column.type
           when :string
             return :password  if method.to_s =~ /password/
-            return :country   if method.to_s =~ /country/
+            return :country   if method.to_s =~ /country$/
             return :time_zone if method.to_s =~ /time_zone/
           when :integer
             return :select    if method.to_s =~ /_id$/
@@ -1380,7 +1403,13 @@ module Formtastic #:nodoc:
         collection = if options[:collection]
           options.delete(:collection)
         elsif reflection = self.reflection_for(column)
-          reflection.klass.find(:all, options[:find_options] || {})
+          options[:find_options] ||= {}
+
+          if conditions = reflection.options[:conditions]
+            options[:find_options][:conditions] = reflection.klass.merge_conditions(conditions, options[:find_options][:conditions])
+          end
+
+          reflection.klass.find(:all, options[:find_options])
         else
           create_boolean_collection(options)
         end
@@ -1471,7 +1500,7 @@ module Formtastic #:nodoc:
           if [:has_and_belongs_to_many, :has_many].include?(reflection.macro)
             "#{method.to_s.singularize}_ids"
           else
-            reflection.options[:foreign_key] || reflection.options[:class_name].try(:foreign_key) || "#{method}_id"
+            reflection.options[:foreign_key] || "#{method}_id"
           end
         else
           method
@@ -1587,7 +1616,7 @@ module Formtastic #:nodoc:
           use_i18n = value.nil? ? @@i18n_lookups_by_default : (value != false)
 
           if use_i18n
-            model_name  = self.model_name.underscore
+            model_name, nested_model_name  = normalize_model_name(self.model_name.underscore)
             action_name = template.params[:action].to_s rescue ''
             attribute_name = key.to_s
 
@@ -1595,6 +1624,7 @@ module Formtastic #:nodoc:
               i18n_path = i18n_scope.dup
               i18n_path.gsub!('{{action}}', action_name)
               i18n_path.gsub!('{{model}}', model_name)
+              i18n_path.gsub!('{{nested_model}}', nested_model_name) unless nested_model_name.nil?
               i18n_path.gsub!('{{attribute}}', attribute_name)
               i18n_path.gsub!('..', '.')
               i18n_path.to_sym
@@ -1610,6 +1640,14 @@ module Formtastic #:nodoc:
 
       def model_name
         @object.present? ? @object.class.name : @object_name.to_s.classify
+      end
+
+      def normalize_model_name(name)
+        if name =~ /(.+)\[(.+)\]/
+          [$1, $2]
+        else
+          [name]
+        end
       end
 
       def send_or_call(duck, object)

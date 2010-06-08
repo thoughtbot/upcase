@@ -24,7 +24,6 @@ describe 'Formtastic::I18n' do
     
     before do
       @formtastic_strings = {
-          :required       => 'Default Required',
           :yes            => 'Default Yes',
           :no             => 'Default No',
           :create         => 'Default Create {{model}}',
@@ -36,8 +35,13 @@ describe 'Formtastic::I18n' do
         }
       ::I18n.backend.store_translations :en, :formtastic => @formtastic_strings
     end
+
+    after do
+      ::I18n.backend.reload!
+    end
     
     it "should translate core strings correctly" do
+      ::I18n.backend.store_translations :en, {:formtastic => {:required => 'Default Required'}}
       ::Formtastic::I18n.t(:required).should  == "Default Required"
       ::Formtastic::I18n.t(:yes).should       == "Default Yes"
       ::Formtastic::I18n.t(:no).should        == "Default No"
@@ -54,7 +58,6 @@ describe 'Formtastic::I18n' do
     end
     
     it "should be possible to override default values" do
-      ::I18n.backend.store_translations :en, {:formtastic => {:required => nil}}
       ::Formtastic::I18n.t(:required, :default => 'Nothing found!').should == 'Nothing found!'
     end
     
@@ -63,15 +66,9 @@ describe 'Formtastic::I18n' do
   describe "when no I18n locales are available" do
     
     before do
-      ::I18n.backend.store_translations :en, :formtastic => {
-          :required => nil,
-          :yes => nil,
-          :no => nil,
-          :create => nil,
-          :update => nil
-        }
+      ::I18n.backend.reload!
     end
-    
+
     it "should use default strings" do
       (::Formtastic::I18n::DEFAULT_VALUES.keys).each do |key|
         ::Formtastic::I18n.t(key, :model => '{{model}}').should == ::Formtastic::I18n::DEFAULT_VALUES[key]
@@ -92,7 +89,8 @@ describe 'Formtastic::I18n' do
           :labels => {
               :title    => "Hello world!",
               :post     => {:title => "Hello post!"},
-              :project  => {:title => "Hello project!"}
+              :project  => {:title => "Hello project!", :task => {:name => "Hello task name!"}},
+              :line_item => {:name => "Hello line item name!"}
             }
         }
       ::Formtastic::SemanticFormBuilder.i18n_lookups_by_default = true
@@ -102,7 +100,7 @@ describe 'Formtastic::I18n' do
     end
     
     after do
-      ::I18n.backend.store_translations :en, :formtastic => nil
+      ::I18n.backend.reload!
       ::Formtastic::SemanticFormBuilder.i18n_lookups_by_default = false
     end
     
@@ -124,6 +122,25 @@ describe 'Formtastic::I18n' do
       output_buffer.should have_tag("form label", /Hello project!/)
     end
     
+    it 'should be able to translate nested objects with nested translations' do
+      semantic_form_for(:project, :url => 'http://test.host') do |builder|
+        builder.semantic_fields_for(:task) do |f|
+          concat(f.input(:name))
+        end
+      end
+      output_buffer.should have_tag("form label", /Hello task name!/)
+    end
+
+    it 'should be able to translated nested objects with top level translations' do
+      semantic_form_for(:order, :url => 'http://test.host') do |builder|
+        builder.semantic_fields_for(:line_item) do |f|
+          concat(f.input(:name))
+        end
+      end
+      output_buffer.should have_tag("form label", /Hello line item name!/)
+    end
+
+
     # TODO: Add spec for namespaced models?
     
   end

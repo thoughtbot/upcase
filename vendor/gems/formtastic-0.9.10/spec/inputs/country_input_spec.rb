@@ -26,7 +26,7 @@ describe 'country input' do
     
     before do
       semantic_form_for(@new_post) do |builder|
-        builder.stub!(:country_select).and_return("<select><option>...</option></select>")
+        builder.stub!(:country_select).and_return(Formtastic::Util.html_safe("<select><option>...</option></select>"))
         concat(builder.input(:country, :as => :country))
       end
     end
@@ -54,8 +54,8 @@ describe 'country input' do
     it "should be passed down to the country_select helper when provided" do
       priority_countries = ["Foo", "Bah"]
       semantic_form_for(@new_post) do |builder|
-        builder.stub!(:country_select).and_return("<select><option>...</option></select>")
-        builder.should_receive(:country_select).with(:country, priority_countries, {}, {}).and_return("<select><option>...</option></select>")
+        builder.stub!(:country_select).and_return(Formtastic::Util.html_safe("<select><option>...</option></select>"))
+        builder.should_receive(:country_select).with(:country, priority_countries, {}, {}).and_return(Formtastic::Util.html_safe("<select><option>...</option></select>"))
         
         concat(builder.input(:country, :as => :country, :priority_countries => priority_countries))
       end
@@ -68,13 +68,47 @@ describe 'country input' do
       
       semantic_form_for(@new_post) do |builder|
         builder.stub!(:country_select).and_return("<select><option>...</option></select>")
-        builder.should_receive(:country_select).with(:country, priority_countries, {}, {}).and_return("<select><option>...</option></select>")
+        builder.should_receive(:country_select).with(:country, priority_countries, {}, {}).and_return(Formtastic::Util.html_safe("<select><option>...</option></select>"))
         
         concat(builder.input(:country, :as => :country))
       end
     end
     
   end
-
+  
+  describe "matching" do
+    
+    describe "when the attribute is 'country'" do
+      
+      before do
+        semantic_form_for(@new_post) do |builder|
+          builder.stub!(:country_select).and_return(Formtastic::Util.html_safe("<select><option>...</option></select>"))
+          concat(builder.input(:country))
+        end
+      end
+      
+      it "should render a country input" do
+        output_buffer.should have_tag "form li.country"
+      end
+    end
+    
+    describe "whent the attribute is 'country_something'" do
+      
+      before do
+        semantic_form_for(@new_post) do |builder|
+          concat(builder.input(:country_subdivision))
+          concat(builder.input(:country_code))
+        end
+      end
+      
+      it "should render a country input" do
+        output_buffer.should_not have_tag "form li.country"
+        output_buffer.should have_tag "form li.string", :count => 2
+      end
+      
+    end
+    
+  end
+  
 end
 
