@@ -22,7 +22,7 @@ Rails::Initializer.run do |config|
              :lib => 'redcloth',
              :version => '>= 4.2.2'
   config.gem 'will_paginate',
-             :version => '~> 2.3.12'
+             :version => '~> 2.3.14'
   config.gem 'clearance',
              :version => '>= 0.8.8'
   config.gem 'formtastic',
