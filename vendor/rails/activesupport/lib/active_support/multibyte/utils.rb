@@ -26,11 +26,11 @@ module ActiveSupport #:nodoc:
     else
       def self.verify(string)
         if expression = valid_character
-          # Splits the string on character boundaries, which are determined based on $KCODE.
-          string.split(//).all? { |c| expression =~ c }
-        else
-          true
+          for c in string.split(//)
+            return false unless expression.match(c)
+          end
         end
+        true
       end
     end
 
@@ -49,8 +49,9 @@ module ActiveSupport #:nodoc:
     else
       def self.clean(string)
         if expression = valid_character
-          # Splits the string on character boundaries, which are determined based on $KCODE.
-          string.split(//).grep(expression).join
+          stripped = []; for c in string.split(//)
+            stripped << c if expression.match(c)
+          end; stripped.join
         else
           string
         end

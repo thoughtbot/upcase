@@ -12,7 +12,7 @@ module ActiveSupport
       if string.blank?
         {}
       else
-        doc = Nokogiri::XML(string)
+        doc = Nokogiri::XML(string) { |cfg| cfg.noblanks }
         raise doc.errors.first if doc.errors.length > 0
         doc.to_hash
       end
@@ -26,42 +26,39 @@ module ActiveSupport
       end
 
       module Node
-        CONTENT_ROOT = '__content__'.freeze
+        CONTENT_ROOT = '__content__'
 
         # Convert XML document to hash
         #
         # hash::
         #   Hash to merge the converted element into.
         def to_hash(hash = {})
-          node_hash = {}
-
-          # Insert node hash into parent hash correctly.
-          case hash[name]
-            when Array then hash[name] << node_hash
-            when Hash  then hash[name] = [hash[name], node_hash]
-            when nil   then hash[name] = node_hash
-            else raise "Unexpected error during hash insertion!"
+          attributes = attributes_as_hash
+          if hash[name]
+            hash[name] = [hash[name]].flatten
+            hash[name] << attributes
+          else
+            hash[name] ||= attributes
           end
 
-          # Handle child elements
-          children.each do |c|
-            if c.element?
-              c.to_hash(node_hash)
-            elsif c.text? || c.cdata?
-              node_hash[CONTENT_ROOT] ||= ''
-              node_hash[CONTENT_ROOT] << c.content
-             end
-          end
+          children.each { |child|
+            next if child.blank? && 'file' != self['type']
 
-          # Remove content node if it is blank and there are child tags
-          if node_hash.length > 1 && node_hash[CONTENT_ROOT].blank?
-            node_hash.delete(CONTENT_ROOT)
-          end
+            if child.text? || child.cdata?
+              (attributes[CONTENT_ROOT] ||= '') << child.content
+              next
+            end
 
-          # Handle attributes
-          attribute_nodes.each { |a| node_hash[a.node_name] = a.value }
+            child.to_hash attributes
+          }
 
           hash
+        end
+
+        def attributes_as_hash
+          Hash[*(attribute_nodes.map { |node|
+            [node.node_name, node.value]
+          }.flatten)]
         end
       end
     end

@@ -111,10 +111,4 @@ module Enumerable
   def none?(&block)
     !any?(&block)
   end unless [].respond_to?(:none?)
-
-  
-  # The negative of the Enumerable#include?. Returns true if the collection does not include the object.
-  def exclude?(object)
-    !include?(object)
-  end
 end

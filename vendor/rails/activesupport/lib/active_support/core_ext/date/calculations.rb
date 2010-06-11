@@ -135,30 +135,20 @@ module ActiveSupport #:nodoc:
           advance(:years => years)
         end
 
-        def last_year # :nodoc:
-          ActiveSupport::Deprecation.warn("Date#last_year is deprecated and has been removed in Rails 3, please use Date#prev_year instead", caller)
-          prev_year
-        end
-
         # Short-hand for years_ago(1)
-        def prev_year
+        def last_year
           years_ago(1)
-        end unless method_defined?(:prev_year)
+        end
 
         # Short-hand for years_since(1)
         def next_year
           years_since(1)
         end
 
-        def last_month # :nodoc:
-          ActiveSupport::Deprecation.warn("Date#last_month is deprecated and has been removed in Rails 3, please use Date#prev_month instead", caller)
-          prev_month
-        end
-
         # Short-hand for months_ago(1)
-        def prev_month
+        def last_month
           months_ago(1)
-        end unless method_defined?(:prev_month)
+        end
 
         # Short-hand for months_since(1)
         def next_month

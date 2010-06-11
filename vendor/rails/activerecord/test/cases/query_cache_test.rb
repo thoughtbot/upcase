@@ -49,14 +49,8 @@ class QueryCacheTest < ActiveRecord::TestCase
   end
 
   def test_cache_does_not_wrap_string_results_in_arrays
-    require 'sqlite3/version' if current_adapter?(:SQLite3Adapter)
-
     Task.cache do
-      if current_adapter?(:SQLite3Adapter) && SQLite3::Version::VERSION > '1.2.5'
-        assert_instance_of Fixnum, Task.connection.select_value("SELECT count(*) AS count_all FROM tasks")
-      else
-        assert_instance_of String, Task.connection.select_value("SELECT count(*) AS count_all FROM tasks")
-      end
+      assert_instance_of String, Task.connection.select_value("SELECT count(*) AS count_all FROM tasks")
     end
   end
 end

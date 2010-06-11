@@ -157,13 +157,8 @@ module ActiveSupport #:nodoc:
           advance(:years => years)
         end
 
-        def last_year # :nodoc:
-          ActiveSupport::Deprecation.warn("Time#last_year is deprecated and has been removed in Rails 3, please use Time#prev_year instead", caller)
-          prev_year
-        end
-
         # Short-hand for years_ago(1)
-        def prev_year
+        def last_year
           years_ago(1)
         end
 
@@ -172,13 +167,9 @@ module ActiveSupport #:nodoc:
           years_since(1)
         end
 
-        def last_month # :nodoc:
-          ActiveSupport::Deprecation.warn("Time#last_month is deprecated and has been removed in Rails 3, please use Time#prev_month instead", caller)
-          prev_month
-        end
 
         # Short-hand for months_ago(1)
-        def prev_month
+        def last_month
           months_ago(1)
         end
 
@@ -292,7 +283,7 @@ module ActiveSupport #:nodoc:
         # are coerced into values that Time#- will recognize
         def minus_with_coercion(other)
           other = other.comparable_time if other.respond_to?(:comparable_time)
-          other.is_a?(::DateTime) ? to_f - other.to_f : minus_without_coercion(other)
+          minus_without_coercion(other)
         end
 
         # Layers additional behavior on Time#<=> so that DateTime and ActiveSupport::TimeWithZone instances

@@ -8,10 +8,10 @@ module ActiveSupport #:nodoc:
         #   -21_600.to_utc_offset_s   # => "-06:00"
         def to_utc_offset_s(colon=true)
           seconds = self
-          sign = (seconds < 0 ? '-' : '+')
+          sign = (seconds < 0 ? -1 : 1)
           hours = seconds.abs / 3600
           minutes = (seconds.abs % 3600) / 60
-          "%s%02d%s%02d" % [ sign, hours, colon ? ":" : "", minutes ]
+          "%+03d%s%02d" % [ hours * sign, colon ? ":" : "", minutes ]
         end
       end
     end

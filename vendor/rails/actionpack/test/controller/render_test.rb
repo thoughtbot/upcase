@@ -652,10 +652,6 @@ class TestController < ActionController::Base
     render :partial => "customer_counter", :collection => [ Customer.new("david"), Customer.new("mary") ]
   end
 
-  def partial_collection_with_as_and_counter
-    render :partial => "customer_counter_with_as", :collection => [ Customer.new("david"), Customer.new("mary") ], :as => :client
-  end
-
   def partial_collection_with_locals
     render :partial => "customer_greeting", :collection => [ Customer.new("david"), Customer.new("mary") ], :locals => { :greeting => "Bonjour" }
   end
@@ -1474,11 +1470,6 @@ class RenderTest < ActionController::TestCase
     assert_equal "david0mary1", @response.body
   end
 
-  def test_partial_collection_with_as_and_counter
-    get :partial_collection_with_as_and_counter
-    assert_equal "david0mary1", @response.body
-  end
-
   def test_partial_collection_with_locals
     get :partial_collection_with_locals
     assert_equal "Bonjour: davidBonjour: mary", @response.body
@@ -1599,7 +1590,7 @@ class EtagRenderTest < ActionController::TestCase
 
   def test_render_blank_body_shouldnt_set_etag
     get :blank_response
-    assert !@response.etag?, @response.headers.inspect
+    assert !@response.etag?
   end
 
   def test_render_200_should_set_etag
@@ -1618,7 +1609,7 @@ class EtagRenderTest < ActionController::TestCase
   def test_render_against_etag_request_should_have_no_content_length_when_match
     @request.if_none_match = etag_for("hello david")
     get :render_hello_world_from_variable
-    assert_nil @response.headers["Content-Length"], @response.headers.inspect
+    assert !@response.headers.has_key?("Content-Length"), @response.headers['Content-Length']
   end
 
   def test_render_against_etag_request_should_200_when_no_match

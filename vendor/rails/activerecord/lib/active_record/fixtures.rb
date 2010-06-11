@@ -891,7 +891,6 @@ module ActiveRecord
 
             instances.size == 1 ? instances.first : instances
           end
-          private table_name
         end
       end
 

@@ -5,15 +5,12 @@ module ActiveSupport
   mattr_accessor :parse_json_times
 
   module JSON
-    # Listed in order of preference.
-    DECODERS = %w(Yajl Yaml)
-
     class << self
       attr_reader :parse_error
       delegate :decode, :to => :backend
 
       def backend
-        set_default_backend unless defined?(@backend)
+        self.backend = "Yaml" unless defined?(@backend)
         @backend
       end
 
@@ -32,18 +29,6 @@ module ActiveSupport
         yield
       ensure
         self.backend = old_backend
-      end
-
-      def set_default_backend
-        DECODERS.find do |name|
-          begin
-            self.backend = name
-            true
-          rescue LoadError
-            # Try next decoder.
-            false
-          end
-        end
       end
     end
   end

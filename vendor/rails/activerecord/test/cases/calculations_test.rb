@@ -23,7 +23,8 @@ class CalculationsTest < ActiveRecord::TestCase
 
   def test_should_average_field
     value = Account.average(:credit_limit)
-    assert_equal 53.0, value
+    assert_kind_of BigDecimal, value
+    assert_equal BigDecimal.new('53.0'), value
   end
 
   def test_should_return_nil_as_average
@@ -297,7 +298,7 @@ class CalculationsTest < ActiveRecord::TestCase
   end
 
   def test_should_sum_expression
-    assert_equal 636, Account.sum("2 * credit_limit").to_i
+    assert_equal '636', Account.sum("2 * credit_limit")
   end
 
   def test_count_with_from_option

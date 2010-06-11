@@ -227,9 +227,6 @@ module ActiveResource
     # The logger for diagnosing and tracing Active Resource calls.
     cattr_accessor :logger
 
-    # Controls the top-level behavior of JSON serialization
-    cattr_accessor :include_root_in_json, :instance_writer => false
-
     class << self
       # Gets the URI of the REST resources to map for this class.  The site variable is required for
       # Active Resource's mapping to work.
@@ -434,11 +431,11 @@ module ActiveResource
         @prefix_parameters = nil
 
         # Redefine the new methods.
-        code, line = <<-end_code, __LINE__ + 1
+        code = <<-end_code
           def prefix_source() "#{value}" end
           def prefix(options={}) "#{prefix_call}" end
         end_code
-        silence_warnings { instance_eval code, __FILE__, line }
+        silence_warnings { instance_eval code, __FILE__, __LINE__ }
       rescue
         logger.error "Couldn't set prefix: #{$!}\n  #{code}"
         raise
@@ -974,12 +971,6 @@ module ActiveResource
       case self.class.format
         when ActiveResource::Formats[:xml]
           self.class.format.encode(attributes, {:root => self.class.element_name}.merge(options))
-        when ActiveResource::Formats::JsonFormat
-          if ActiveResource::Base.include_root_in_json
-            self.class.format.encode({self.class.element_name => attributes}, options)
-          else
-            self.class.format.encode(attributes, options)
-          end
         else
           self.class.format.encode(attributes, options)
       end

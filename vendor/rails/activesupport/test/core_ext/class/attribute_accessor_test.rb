@@ -4,8 +4,7 @@ class ClassAttributeAccessorTest < Test::Unit::TestCase
   def setup
     @class = Class.new do
       cattr_accessor :foo
-      cattr_accessor :bar,  :instance_writer => false
-      cattr_reader   :shaq, :instance_reader => false
+      cattr_accessor :bar, :instance_writer => false
     end
     @object = @class.new
   end
@@ -28,11 +27,5 @@ class ClassAttributeAccessorTest < Test::Unit::TestCase
     assert @class.respond_to?(:foo=)
     assert @object.respond_to?(:bar)
     assert !@object.respond_to?(:bar=)
-  end
-
-
-  def test_should_not_create_instance_reader
-    assert @class.respond_to?(:shaq)
-    assert !@object.respond_to?(:shaq)
   end
 end

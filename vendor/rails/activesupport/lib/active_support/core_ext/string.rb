@@ -21,4 +21,5 @@ class String #:nodoc:
   include ActiveSupport::CoreExtensions::String::Iterators
   include ActiveSupport::CoreExtensions::String::Behavior
   include ActiveSupport::CoreExtensions::String::Multibyte
+  include ActiveSupport::CoreExtensions::String::OutputSafety
 end

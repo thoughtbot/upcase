@@ -259,10 +259,10 @@ module ActiveResource
       save_without_validation
       true
     rescue ResourceInvalid => error
-      case self.class.format
-      when ActiveResource::Formats[:xml]
+      case error.response['Content-Type']
+      when /xml/
         errors.from_xml(error.response.body)
-      when ActiveResource::Formats[:json]
+      when /json/
         errors.from_json(error.response.body)
       end
       false

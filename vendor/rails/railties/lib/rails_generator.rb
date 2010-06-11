@@ -21,11 +21,8 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-railties = File.expand_path("..", __FILE__)
-$:.unshift(railties) unless $:.include?(railties)
-
-activesupport = File.expand_path("../../../activesupport/lib", __FILE__)
-$:.unshift(activesupport) unless $:.include?(activesupport)
+$:.unshift(File.dirname(__FILE__))
+$:.unshift(File.dirname(__FILE__) + "/../../activesupport/lib")
 
 begin
   require 'active_support'  

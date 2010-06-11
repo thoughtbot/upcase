@@ -89,7 +89,7 @@ module ActionView
             :precision => precision,
             :delimiter => delimiter,
             :separator => separator)
-          ).gsub(/%u/, unit).html_safe
+          ).gsub(/%u/, unit)
         rescue
           number
         end

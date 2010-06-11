@@ -300,13 +300,6 @@ class ArrayToXmlTests < Test::Unit::TestCase
 
     assert xml.include?(%(<count>2</count>)), xml
   end
-  
-  class Namespaced < Hash
-  end
-  def test_to_xml_with_namespaced_classes
-    xml = [Namespaced.new(:name => "David")].to_xml
-    assert_match(/<array\-to\-xml\-tests\-namespaceds/, xml)
-  end
 
   def test_to_xml_with_empty
     xml = [].to_xml
@@ -323,19 +316,15 @@ class ArrayExtractOptionsTests < Test::Unit::TestCase
   end
 end
 
-class ArrayExtRandomTests < ActiveSupport::TestCase
+class ArrayExtRandomTests < Test::Unit::TestCase
   def test_random_element_from_array
-    assert_nil [].random_element
+    assert_nil [].rand
 
     Kernel.expects(:rand).with(1).returns(0)
-    assert_equal 'x', ['x'].random_element
+    assert_equal 'x', ['x'].rand
 
     Kernel.expects(:rand).with(3).returns(1)
-    assert_equal 2, [1, 2, 3].random_element
-  end
-
-  def test_deprecated_rand_on_array
-    assert_deprecated { [].rand }
+    assert_equal 2, [1, 2, 3].rand
   end
 end
 

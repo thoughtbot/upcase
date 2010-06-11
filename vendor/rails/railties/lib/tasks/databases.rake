@@ -94,7 +94,11 @@ namespace :db do
   desc 'Drops the database for the current RAILS_ENV'
   task :drop => :load_config do
     config = ActiveRecord::Base.configurations[RAILS_ENV || 'development']
-    drop_database(config)
+    begin
+      drop_database(config)
+    rescue Exception => e
+      puts "Couldn't drop #{config['database']} : #{e.inspect}"
+    end
   end
 
   def local_database?(config, &block)
@@ -406,19 +410,15 @@ namespace :db do
 end
 
 def drop_database(config)
-  begin
-    case config['adapter']
-    when 'mysql'
-      ActiveRecord::Base.establish_connection(config)
-      ActiveRecord::Base.connection.drop_database config['database']
-    when /^sqlite/
-      FileUtils.rm(File.join(RAILS_ROOT, config['database']))
-    when 'postgresql'
-      ActiveRecord::Base.establish_connection(config.merge('database' => 'postgres', 'schema_search_path' => 'public'))
-      ActiveRecord::Base.connection.drop_database config['database']
-    end
-  rescue Exception => e
-    puts "Couldn't drop #{config['database']} : #{e.inspect}"
+  case config['adapter']
+  when 'mysql'
+    ActiveRecord::Base.establish_connection(config)
+    ActiveRecord::Base.connection.drop_database config['database']
+  when /^sqlite/
+    FileUtils.rm(File.join(RAILS_ROOT, config['database']))
+  when 'postgresql'
+    ActiveRecord::Base.establish_connection(config.merge('database' => 'postgres', 'schema_search_path' => 'public'))
+    ActiveRecord::Base.connection.drop_database config['database']
   end
 end
 

@@ -52,8 +52,7 @@ module ActiveSupport
       private
         def deprecation_message(callstack, message = nil)
           message ||= "You are using deprecated behavior which will be removed from the next major or minor release."
-          message += '.' unless message =~ /\.$/
-          "DEPRECATION WARNING: #{message} #{deprecation_caller_message(callstack)}"
+          "DEPRECATION WARNING: #{message}. #{deprecation_caller_message(callstack)}"
         end
 
         def deprecation_caller_message(callstack)
@@ -90,7 +89,7 @@ module ActiveSupport
         method_names = method_names + options.keys
         method_names.each do |method_name|
           alias_method_chain(method_name, :deprecation) do |target, punctuation|
-            class_eval(<<-EOS, __FILE__, __LINE__ + 1)
+            class_eval(<<-EOS, __FILE__, __LINE__)
               def #{target}_with_deprecation#{punctuation}(*args, &block)          # def generate_secret_with_deprecation(*args, &block)
                 ::ActiveSupport::Deprecation.warn(                                 #   ::ActiveSupport::Deprecation.warn(
                   self.class.deprecated_method_warning(                            #     self.class.deprecated_method_warning(

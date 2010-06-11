@@ -65,30 +65,16 @@ module ActionView
       def compile!(render_symbol, local_assigns)
         locals_code = local_assigns.keys.map { |key| "#{key} = local_assigns[:#{key}];" }.join
 
-        code = compiled_source
-        if code.sub!(/\A(#.*coding.*)\n/, '')
-          encoding_comment = $1
-        elsif defined?(Encoding) && Encoding.respond_to?(:default_external)
-          encoding_comment = "#coding:#{Encoding.default_external}"
-        end
-
         source = <<-end_src
           def #{render_symbol}(local_assigns)
-            old_output_buffer = output_buffer;#{locals_code};#{code}
+            old_output_buffer = output_buffer;#{locals_code};#{compiled_source}
           ensure
             self.output_buffer = old_output_buffer
           end
         end_src
 
-        if encoding_comment
-          source = "#{encoding_comment}\n#{source}"
-          line = -1
-        else
-          line = 0
-        end
-
         begin
-          ActionView::Base::CompiledTemplates.module_eval(source, filename, line)
+          ActionView::Base::CompiledTemplates.module_eval(source, filename, 0)
         rescue Errno::ENOENT => e
           raise e # Missing template file, re-raise for Base to rescue
         rescue Exception => e # errors from template code
