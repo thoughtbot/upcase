@@ -4,6 +4,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path(File.join(File.dirname(__FILE__),'..','config','environment'))
 require 'spec/autorun'
 require 'spec/rails'
+require 'paperclip/matchers'
 
 Mocha::Configuration.warn_when(:stubbing_non_existent_method)
 Mocha::Configuration.warn_when(:stubbing_non_public_method)
