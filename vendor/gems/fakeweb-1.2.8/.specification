@@ -1,6 +1,11 @@
 --- !ruby/object:Gem::Specification 
 name: fakeweb
 version: !ruby/object:Gem::Version 
+  hash: 15
+  segments: 
+  - 1
+  - 2
+  - 8
   version: 1.2.8
 platform: ruby
 authors: 
@@ -15,14 +20,20 @@ default_executable:
 dependencies: 
 - !ruby/object:Gem::Dependency 
   name: mocha
-  type: :development
-  version_requirement: 
-  version_requirements: !ruby/object:Gem::Requirement 
+  requirement: &id001 !ruby/object:Gem::Requirement 
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
+        hash: 49
+        segments: 
+        - 0
+        - 9
+        - 5
         version: 0.9.5
     version: 
+  type: :development
+  version_requirement: 
+  version_requirements: *id001
 description: FakeWeb is a helper for faking web requests in Ruby. It works at a global level, without modifying code or writing extensive stubs.
 email: 
 - chris@kampers.net
@@ -103,18 +114,24 @@ required_ruby_version: !ruby/object:Gem::Requirement
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
       version: "0"
   version: 
 required_rubygems_version: !ruby/object:Gem::Requirement 
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
       version: "0"
   version: 
 requirements: []
 
 rubyforge_project: fakeweb
-rubygems_version: 1.3.5
+rubygems_version: 1.3.7
 signing_key: 
 specification_version: 3
 summary: A tool for faking responses to HTTP requests
