@@ -27,8 +27,7 @@ Rails::Initializer.run do |config|
              :version => '>= 0.8.8'
   config.gem 'formtastic',
              :version => '>= 0.9.10'
-  config.gem 'paperclip',
-             :version => '>= 2.3.1.1'
+  config.gem 'paperclip'
   config.gem 'rack',
              :version => '>= 1.0.1'
   config.gem 'validation_reflection',
