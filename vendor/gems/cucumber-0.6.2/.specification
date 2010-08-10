@@ -1,7 +1,6 @@
 --- !ruby/object:Gem::Specification 
 name: cucumber
 version: !ruby/object:Gem::Version 
-  hash: 3
   prerelease: false
   segments: 
   - 0
@@ -22,11 +21,9 @@ dependencies:
   name: term-ansicolor
   prerelease: false
   requirement: &id001 !ruby/object:Gem::Requirement 
-    none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 31
         segments: 
         - 1
         - 0
@@ -38,11 +35,9 @@ dependencies:
   name: treetop
   prerelease: false
   requirement: &id002 !ruby/object:Gem::Requirement 
-    none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 3
         segments: 
         - 1
         - 4
@@ -54,11 +49,9 @@ dependencies:
   name: polyglot
   prerelease: false
   requirement: &id003 !ruby/object:Gem::Requirement 
-    none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 5
         segments: 
         - 0
         - 2
@@ -70,11 +63,9 @@ dependencies:
   name: builder
   prerelease: false
   requirement: &id004 !ruby/object:Gem::Requirement 
-    none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 15
         segments: 
         - 2
         - 1
@@ -86,11 +77,9 @@ dependencies:
   name: diff-lcs
   prerelease: false
   requirement: &id005 !ruby/object:Gem::Requirement 
-    none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 23
         segments: 
         - 1
         - 1
@@ -102,11 +91,9 @@ dependencies:
   name: json_pure
   prerelease: false
   requirement: &id006 !ruby/object:Gem::Requirement 
-    none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 31
         segments: 
         - 1
         - 2
@@ -118,11 +105,9 @@ dependencies:
   name: nokogiri
   prerelease: false
   requirement: &id007 !ruby/object:Gem::Requirement 
-    none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 5
         segments: 
         - 1
         - 4
@@ -134,11 +119,9 @@ dependencies:
   name: prawn
   prerelease: false
   requirement: &id008 !ruby/object:Gem::Requirement 
-    none: false
     requirements: 
     - - "="
       - !ruby/object:Gem::Version 
-        hash: 1
         segments: 
         - 0
         - 6
@@ -150,11 +133,9 @@ dependencies:
   name: prawn-format
   prerelease: false
   requirement: &id009 !ruby/object:Gem::Requirement 
-    none: false
     requirements: 
     - - "="
       - !ruby/object:Gem::Version 
-        hash: 17
         segments: 
         - 0
         - 2
@@ -166,11 +147,9 @@ dependencies:
   name: rspec
   prerelease: false
   requirement: &id010 !ruby/object:Gem::Requirement 
-    none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 27
         segments: 
         - 1
         - 3
@@ -182,11 +161,9 @@ dependencies:
   name: syntax
   prerelease: false
   requirement: &id011 !ruby/object:Gem::Requirement 
-    none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 23
         segments: 
         - 1
         - 0
@@ -198,11 +175,9 @@ dependencies:
   name: spork
   prerelease: false
   requirement: &id012 !ruby/object:Gem::Requirement 
-    none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 9
         segments: 
         - 0
         - 7
@@ -762,27 +737,23 @@ rdoc_options:
 require_paths: 
 - lib
 required_ruby_version: !ruby/object:Gem::Requirement 
-  none: false
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
-      hash: 3
       segments: 
       - 0
       version: "0"
 required_rubygems_version: !ruby/object:Gem::Requirement 
-  none: false
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
-      hash: 3
       segments: 
       - 0
       version: "0"
 requirements: []
 
 rubyforge_project: rspec
-rubygems_version: 1.3.7
+rubygems_version: 1.3.6
 signing_key: 
 specification_version: 3
 summary: Behaviour Driven Development with elegance and joy

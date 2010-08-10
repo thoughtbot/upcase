@@ -197,7 +197,7 @@ required_rubygems_version: !ruby/object:Gem::Requirement
 requirements: 
 - ImageMagick
 rubyforge_project: paperclip
-rubygems_version: 1.3.7
+rubygems_version: 1.3.6
 signing_key: 
 specification_version: 3
 summary: File attachments as attributes for ActiveRecord

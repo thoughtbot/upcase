@@ -1,7 +1,6 @@
 --- !ruby/object:Gem::Specification 
 name: formtastic
 version: !ruby/object:Gem::Version 
-  hash: 47
   prerelease: false
   segments: 
   - 0
@@ -22,11 +21,9 @@ dependencies:
   name: activesupport
   prerelease: false
   requirement: &id001 !ruby/object:Gem::Requirement 
-    none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 3
         segments: 
         - 2
         - 3
@@ -38,11 +35,9 @@ dependencies:
   name: actionpack
   prerelease: false
   requirement: &id002 !ruby/object:Gem::Requirement 
-    none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 3
         segments: 
         - 2
         - 3
@@ -54,11 +49,9 @@ dependencies:
   name: rspec-rails
   prerelease: false
   requirement: &id003 !ruby/object:Gem::Requirement 
-    none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 19
         segments: 
         - 1
         - 2
@@ -70,11 +63,9 @@ dependencies:
   name: rspec_tag_matchers
   prerelease: false
   requirement: &id004 !ruby/object:Gem::Requirement 
-    none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 23
         segments: 
         - 1
         - 0
@@ -152,27 +143,23 @@ rdoc_options:
 require_paths: 
 - lib
 required_ruby_version: !ruby/object:Gem::Requirement 
-  none: false
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
-      hash: 3
       segments: 
       - 0
       version: "0"
 required_rubygems_version: !ruby/object:Gem::Requirement 
-  none: false
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
-      hash: 3
       segments: 
       - 0
       version: "0"
 requirements: []
 
 rubyforge_project: 
-rubygems_version: 1.3.7
+rubygems_version: 1.3.6
 signing_key: 
 specification_version: 3
 summary: A Rails form builder plugin/gem with semantically rich and accessible markup
