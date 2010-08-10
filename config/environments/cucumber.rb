@@ -52,6 +52,7 @@ config.gem 'nokogiri',
            :lib     => false
 
 HOST = 'localhost'
+config.action_mailer.default_url_options = {:host => HOST}
 
 class RackRailsCookieHeaderHack
   def initialize(app)
