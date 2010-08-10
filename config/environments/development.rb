@@ -17,3 +17,4 @@ config.action_controller.perform_caching             = false
 config.action_mailer.raise_delivery_errors = false
 
 HOST = 'localhost'
+config.action_mailer.default_url_options = {:host => HOST}

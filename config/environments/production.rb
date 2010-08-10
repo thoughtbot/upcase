@@ -26,3 +26,6 @@ config.action_mailer.raise_delivery_errors = false
 
 # Enable threaded mode
 # config.threadsafe!
+
+HOST = 'training.thoughtbot.com'
+config.action_mailer.default_url_options = {:host => HOST}
