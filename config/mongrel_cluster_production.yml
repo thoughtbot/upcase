@@ -1,5 +1,5 @@
 --- 
-# cwd: /home/CHANGEME/apps/CHANGEME/current
+# cwd: /home/workshops/apps/workshops/current
 # port: "3030"
 environment: production
 address: 127.0.0.1

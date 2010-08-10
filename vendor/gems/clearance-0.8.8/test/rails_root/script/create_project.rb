@@ -12,7 +12,7 @@ project_directory = base_directory + project_name
 fail("Project directory (#{project_directory}) already exists") if project_directory.exist?
 
 template_url = "git@github.com:thoughtbot/rails-template.git"
-changeme = "CHANGEME"
+changeme = "workshops"
 
 def run(cmd)
   puts "Running '#{cmd}'"
