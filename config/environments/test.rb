@@ -46,6 +46,7 @@ config.gem 'jferris-mocha',
            :lib     => 'mocha'
 
 HOST = 'localhost'
+config.action_mailer.default_url_options = {:host => HOST}
 
 require 'factory_girl'
 begin require 'redgreen'; rescue LoadError; end
