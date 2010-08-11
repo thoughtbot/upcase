@@ -33,7 +33,8 @@ Rails::Initializer.run do |config|
   config.gem 'validation_reflection',
              :version => '>= 0.3.6'
   config.gem 'hoptoad_notifier'
-
+  config.gem 'haml'
+  
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named

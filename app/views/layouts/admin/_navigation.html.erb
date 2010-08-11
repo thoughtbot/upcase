@@ -1,0 +1,8 @@
+<ul id="navigation">
+  <% if signed_in? -%>
+    <li id="dashboard" class="dashboard"><%= link_to 'Dashboard', admin_home_url  %></li>
+    <li id="courses" class="courses"><%= link_to 'Courses', admin_courses_url %></li>
+    <li id="settings" class="account"><%= link_to 'Settings', "#" %></li>  
+    <li id="users" class="users"><%= link_to 'Users', users_url %></li>
+  <% end -%>
+</ul>

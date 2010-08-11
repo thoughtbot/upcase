@@ -1,0 +1,37 @@
+/* Headings */
+
+h1,h2,h3,h4,h5,h6 { font-weight: bold; color: #a71914; margin: 0; padding: 0; }
+
+/* Text elements */
+body        { font-weight: bold; color:#464646; }
+p.last      { margin-bottom: 0; }
+p img.top   { margin-top: 0; } /* Use this if the image is at the top of the <p>. */
+
+abbr, 
+acronym     { border-bottom: 1px dotted #666; cursor: help; }
+address     { margin-top: 1.5em; font-style: italic; }
+del         { color:#666; }
+
+a, a:link   {color: #a71914; text-decoration: underline;}
+#course-overview h2 a { text-decoration: none; }
+a:visited   {color: #a71914;}
+a:hover     {color: #c41e18;}
+a:active, a:focus    {color: #c41e18;}
+
+blockquote  { margin: 1.5em 0; color: #666; font-style: italic; padding-left: 1em; border-left: 4px solid #d1d1d1;}
+strong      { font-weight: bold; }
+em,dfn      { font-style: italic;  }
+dfn         { font-weight: bold; }
+pre,code    { margin: 1.5em 0; white-space: pre; }
+pre,code,tt { font: 1em 'andale mono', 'monotype.com', 'lucida console', monospace; line-height: 1.5; }
+pre.code    { background: #000; color: #fff; padding: 20px;}
+tt          { display: block; margin: 1.5em 0; line-height: 1.5; }
+
+@font-face {
+	font-family: 'AlexandriaFLF Bold';
+	src: url('/AlexandriaFLF-Bold.eot');
+	src: local('AlexandriaFLF Bold'), local('AlexandriaFLF-Bold'), url('/AlexandriaFLF-Bold.ttf') format('truetype');
+}
+
+.strong { font-weight: bold; }
+.em { font-style:italic; }
