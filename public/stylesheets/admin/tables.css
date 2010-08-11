@@ -1,0 +1,487 @@
+/*-----------------------------------------------------------------------------------------------
+Tables
+-----------------------------------------------------------------------------------------------*/
+
+table {
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+}
+
+th {
+	text-align: left;	
+}
+
+
+/*****************************
++ Index Table Styles
+*****************************/
+
+table.groups {
+  clear: both;
+}
+
+table.groups thead {
+  background: #f2f2f2 url(/images/admin/header_gradient.png) bottom left repeat-x;
+  border-bottom: 1px solid #ababab;
+}
+
+table.groups thead th {
+  padding: 18px 0 18px 0;
+  text-transform: uppercase;
+}
+
+table.groups  td.message {
+  padding-top: 5px;
+}
+
+table.groups  td.project {
+  overflow: hidden;
+  padding-right: 0;
+}
+
+table.groups  td.project a {
+  white-space:nowrap;
+  display: block;
+  width: 140px;
+  font-weight: bold;
+}
+
+table.groups  td.message {
+  overflow: hidden;
+  padding-right: 0;  
+}
+
+table.groups .latest {overflow: hidden;padding-right: 20px;}
+table.groups .latest span{white-space:nowrap;display: block;}
+
+table.groups .deploy {overflow: hidden;padding-right: 20px;}
+table.groups .deploy span{white-space:nowrap;display: block;}
+
+table.groups  td.message a {
+  white-space:nowrap;
+   display: block;
+   width: 260px; 
+
+}
+
+.white_fade {
+  width: 37px;
+  /* height: 20px; */
+  background: transparent url(/images/admin/white_fade.png) top right repeat-y;
+  float: right;
+  position: relative;
+  z-index: 9999;
+}
+
+
+table.groups thead th.project,
+table.groups thead th.projectname,
+table.groups thead th.username,
+table.groups thead th.message.environment,
+table.groups thead th.created_at {
+  padding: 18px 0 18px 10px;
+}
+
+table.groups thead th.count,
+table.groups tbody td.count {
+  text-align: center;
+}
+
+table.groups tbody tr:first-child {
+  background: #fff url(/images/admin/table_shade.png) top left repeat-x;
+}
+
+table.groups td {
+  padding: 10px 8px 10px 0;
+  vertical-align:middle;
+}
+
+table.groups td.project,
+table.groups td.projectname,
+table.groups td.username,
+table.groups td.message.environment,
+table.groups td.created_at {
+/*    background: transparent url(/images/admin/table_tr.png) top left repeat-y; */
+    padding-left: 10px;
+}
+
+table.groups td.message a,
+table.groups td.username a {
+  display: block;
+  padding: 4px 4px 0 0;
+  margin: 0 0 0px 0;
+}
+
+table.groups td.count {
+  text-align: center;
+}
+
+#content table.groups td.count a {
+  background: #cfcfcf;
+  -moz-border-radius: 9px;
+  -webkit-border-radius: 9px;
+  padding: 5px 8px;
+  color: #fff;
+}
+
+#content table.groups td.count a:hover {
+  text-decoration: none;
+  background: #b9b9b9;  
+}
+
+table.groups tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+#content .project span a {
+  color: #999999;
+  font-weight: normal;  
+}
+
+
+#content table .message span  {
+  color: #999999;
+  font-weight: normal;
+}
+
+
+table tr.resolved, #content table tr.resolved a, #content tr.resolved .project  span a {
+  color: #d2d2d2;
+}
+
+#content table.groups tr.resolved td.count a, #content table.groups tr.resolved td.count a:hover {
+  background: #d2d2d2;
+}
+
+
+/******************************
++ Plans
+******************************/
+
+.account-edit #plans {
+  width: 100%;
+  border-bottom: 1px solid #e1e1e1;
+  margin: 0 0 20px 0;
+}
+
+.account-edit #plans td {
+  border: 1px solid #e1e1e1;
+}
+
+/******************************
++ Plans
+******************************/
+
+.account-edit #plans {
+  width: 100%;
+  border-bottom: 1px solid #e1e1e1;
+  margin: 0 0 20px 0;
+}
+
+.account-edit #plans td {
+  border: 1px solid #e1e1e1;
+}
+
+
+table.summary, table.summary_secundus {
+  margin: 20px 20px 0px 20px;
+  width: 96%;
+  font-size: 12px;
+}
+
+table.summary {
+  border-bottom: 5px solid #cbcbcb;
+}
+
+table.summary th, table.summary_secundus th {
+  width: 150px;
+}
+
+table.summary tr, table.summary_secundus tr {
+  border-bottom: 1px solid #cbcbcb;
+}
+
+table.summary td, table.summary_secundus td {
+  padding: 12px 0;
+}
+
+
+table.summary .pruned_warning {
+  font-weight: bold;
+  background: #e9f3f8 url(/images/admin/pruned_note.png) left center no-repeat;
+  padding: 15px 40px;
+  color: #1e3946;
+  border-bottom: 1px solid #bfd6e2;
+  border-top: 1px solid #bfd6e2;  
+}
+
+.upgrade_downgrade {
+  min-width: 94px;
+}
+
+.downgrade-warning {
+  font-size: .8em;
+  padding: 0 5px;
+  width: 94px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+table#plans .select_your_plan {
+  text-align: right;
+  padding-right: .5em;
+}
+
+
+
+/***************************************
+Environment Stuff
+***************************************/
+
+table.groups .environment_icon {
+  width: 21px;
+  padding-right: 0;
+}
+
+.environment_icon div {
+  width: 31px;
+  overflow: visible;
+  margin: 0 0 0 10px;
+}
+
+#content .environment_icon a {
+  display: block;
+  width: 18px;
+  padding: 5px 0 0 10px;
+  height: 17px;
+  font-weight: bold;
+  text-shadow: #bedf9d 0 1px 1px;
+  text-decoration: none;
+  -moz-border-radius: 9px;
+  -webkit-border-radius: 9px;
+  background-color: ;
+}
+
+#content .environment_icon a.green_lit {
+  color: #172a04;  
+  background: #71aa35 url(/images/admin/greenlit_fade.png) top left repeat-x;
+  text-shadow: #bedf9d 0 1px 1px;  
+  }
+  
+#content .environment_icon a.grey_lit {
+  color: #949494;
+  text-shadow: #fff 0 1px 1px;  
+  background: #dadada url(/images/admin/greylit_fade.png) top left repeat-x;
+  }
+
+#content .environment_icon a em {display: none;}
+
+#content .environment_icon a:hover {
+  width: 6em;
+  padding-right: 5px;
+  z-index: 9999;
+  position: relative;
+}
+
+#content .environment_icon a:hover em {
+  display: inline;
+  font-style: normal;
+}
+
+
+/*************************************
+ +Plans
+*************************************/
+
+table#illustrations     {width: 96%;  margin: 0 auto;}
+table#illustrations th  {width:160px;}
+table#illustrations td  {width: auto; text-align: center;}
+
+#plan_header {
+  text-align: center;
+  padding: 5px 0 20px 0;
+}
+
+#plan_header h5, #welcome h1 {
+  color: #426f00;
+  font-size: 2.8em;
+  margin: 0 0 4px 0;
+  letter-spacing: -.05em;
+}
+
+#plan_header h6, #welcome p {
+  font-size: 1.3em;
+  color: #719c32;
+}
+
+#welcome p {font-weight: bold;}
+
+#welcome {
+	text-align: center;
+	padding-bottom: 10px;
+	background: #fff;
+}
+
+#welcome_top {
+  background: #f4f4f4;
+  padding: 0 0 20px 0;
+}
+
+#admin_new_project a{
+  display: block;
+  width: 408px;
+  height: 51px;
+  text-indent: -5000px;
+  background: #fff url(/images/admin/new_project.png) top left no-repeat;
+  margin: 20px auto 0 auto;
+}
+
+#admin_new_project a:active {
+ background: #fff url(/images/admin/new_project.png) 0 -51px no-repeat;  
+}
+
+
+#signup_table {
+  padding: 5px 0 10px 0;
+}
+
+table#plans {
+  width: 96%;
+  margin: 0 auto;
+  font-size: 1.1em;
+}
+
+table#plans  th {
+	text-align: left;
+	background: #eee;
+}
+
+table#plans  tr.names th {
+  color: #FFF;
+  height: 35px;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  font-family: Arial, sans-serif;
+	background: #6fb800 url(/images/admin/th.png) 0 0 repeat-x;
+}
+
+table#plans  tr.price th,
+table#plans  tr.brands th,
+table#plans  tr.users th,
+table#plans  tr.signups th, 
+table#plans tr.price th,
+table#plans tr.projects th,
+table#plans tr.users th,
+table#plans tr.deploys th,
+table#plans tr.github th,
+table#plans tr.lighthouse th,
+table#plans tr.ssl th,
+table#plans tr.signups th
+{
+	height: 35px;
+	width: 160px;
+	font-weight: bold;
+  padding: 0 .5em 0 0;
+	text-align: right;
+  vertical-align: middle;
+  border-right: 1px solid #FFF;
+  border-bottom: 1px solid #FFF;
+}
+
+
+
+table#plans tr.names:last-child,
+table#plans tr.price:last-child,
+table#plans tr.projects:last-child,
+table#plans tr.users:last-child,
+table#plans tr.deploys:last-child,
+table#plans tr.github:last-child,
+table#plans tr.lighthouse:last-child,
+table#plans tr.ssl:last-child,
+table#plans tr.signups:last-child
+{
+  border-right: none;
+}
+
+
+#tables_shadow {
+  width: 96%;
+  margin: 0 auto;
+  height: 5px;
+  background: transparent url(/images/admin/table_shadow.png) top left repeat-x;
+  position: relative;
+  top: 39px;
+  display: block;
+  *display: none;
+  _display: none;
+}
+
+
+
+table#plans td {
+	height: 35px;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  border-right: 1px solid #FFF;
+  border-bottom: 1px solid #FFF;
+}
+
+table#plans tr.signups td {
+  height: 55px;
+}
+
+table#plans col {
+	background: #EDEDED;
+}
+
+table#plans col.odd {
+	background: #E7E7E7;
+}
+
+table#plans tr.signups td a {
+  width: 83px;
+  height: 27px;
+  margin: 0 auto;
+  display: block;
+  text-indent: -9999px;
+  text-decoration: none;
+  background: url(/images/admin/buttons/signup.png) 0 0 no-repeat;
+}
+
+table#plans tr.signups td a:hover {background: url(/images/admin/buttons/signup.png) 0 -27px no-repeat;}
+table#plans tr.signups td a:active {background: url(/images/admin/buttons/signup.png) 0 -54px no-repeat;}
+
+#very_helpful_text {
+  padding: 20px 0 0 0;
+  margin: 30px 0 0 0;
+  border-top: 4px solid #e1e1e1;
+}
+
+#very_helpful_text #helpful_text {
+  width: 100%;
+}
+
+#change_plan #signup_table table, #change_plan #signup_table #tables_shadow {
+  width: 100%;
+}
+
+
+#helpful_text {
+  margin: 0 auto;
+  width: 96%;
+}
+
+#content #main #helpful_text p {
+  border-bottom: 1px solid #e1e1e1;
+  padding: 0 0 10px 0;
+  line-height: 1.3;  
+}
+
+#content #main #helpful_text h2 {
+  padding: 0;
+  margin: 10px 0 2px 0 ;  
+}
+

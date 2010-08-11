@@ -1,0 +1,13 @@
+<div id="ralph-bottom"></div>
+<h1><%= link_to 'thoughtbot training', root_path %></h1>
+
+<%- if signed_in? -%>
+  <ul id="session">
+    <li id="user">
+      Signed in as <%= link_to h(current_user.name), edit_user_url(current_user) %>
+    </li>
+    <li id="destroy_session">
+      <%= link_to 'Logout', sign_out_url -%>
+    </li>
+  </ul>
+<%- end -%>
