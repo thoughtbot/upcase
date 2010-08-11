@@ -495,6 +495,7 @@ body {
       background: -webkit-gradient(linear, left top, left bottom, color-stop(1, rgba(0, 0, 0, 0.05)), color-stop(0, rgba(0, 0, 0, 0.15)));
       background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.15) 100%);
       -webkit-box-shadow: inset 0 1px 2px #000;
+      -moz-box-shadow: inset 0 1px 2px #000;
       line-height: 30px;
       color: rgba(255, 255, 255, 0.7); }
 #content.admin .course-list {
@@ -519,7 +520,8 @@ body {
       -moz-border-radius-topright: 5px;
       background: -webkit-gradient(linear, left top, left bottom, color-stop(1, rgba(0, 0, 0, 0.5)), color-stop(0, rgba(0, 0, 0, 0.25)));
       background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.25) 100%);
-      -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12); }
+      -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12); }
       #content.admin .course-list h3 a:hover {
         background: -webkit-gradient(linear, left top, left bottom, color-stop(1, rgba(0, 0, 0, 0.4)), color-stop(0, rgba(136, 120, 91, 0.15)));
         background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.4) 0%, rgba(136, 120, 91, 0.15) 100%); }
@@ -553,6 +555,7 @@ body {
         background: -webkit-gradient(linear, left top, left bottom, color-stop(1, rgba(0, 0, 0, 0.05)), color-stop(0, rgba(0, 0, 0, 0.15)));
         background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.15) 100%);
         -webkit-box-shadow: inset 0 1px 2px #000;
+        -moz-box-shadow: inset 0 1px 2px #000;
         line-height: 26px;
         color: rgba(255, 255, 255, 0.7); }
   #content.admin .course-list ul li {
@@ -572,6 +575,29 @@ body {
       #content.admin .course-list ul li a:hover {
         background: -webkit-gradient(linear, left top, left bottom, color-stop(1, rgba(255, 255, 255, 0.15)), color-stop(0, rgba(255, 255, 255, 0.08)));
         background: -moz-linear-gradient(bottom, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%); }
+#content.admin label {
+  font-size: 16px; }
+#content.admin input[type="text"] {
+  font-size: 18px;
+  padding: 10px; }
+#content.admin textarea {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px;
+  width: 430px; }
+#content.admin #course-description-li {
+  float: left;
+  width: 450px; }
+#content.admin #course-details-right {
+  width: 310px;
+  float: right; }
+  #content.admin #course-details-right input {
+    width: 285px; }
+#content.admin #course-price-li input {
+  padding: 10px 10px 10px 30px;
+  width: 265px;
+  background: url(/images/price-icon.png) 10px 8px no-repeat, -webkit-gradient(linear, left top, left bottom, color-stop(1, white), color-stop(0, #eeeeee));
+  background: -moz-linear-gradient(bottom, white 0%, #eeeeee 100%); }
 
 .right {
   float: right; }
