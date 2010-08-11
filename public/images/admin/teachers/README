@@ -1,0 +1,3 @@
+I made these like this:
+  % cd raw
+  % for i (*); convert -thumbnail x34 $i ../$i:r.png

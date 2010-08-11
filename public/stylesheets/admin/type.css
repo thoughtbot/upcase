@@ -1,0 +1,72 @@
+body {
+  font-family: Arial, "Helvetica Neue", Helvetica,  sans-serif;
+  font-size: .625em; /* 10px */
+  color: #363636;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover
+{
+  text-decoration: underline;
+}
+
+.green {
+  color: #67c963;
+}
+
+.yellow {
+  color: #edb200;
+}
+
+.red {
+  color: #d9514c;
+}
+
+#header #session {
+  font-size: 1.3em;
+  color: #FFF;
+}
+
+#header #session a {
+  color: #FFF;
+}
+
+#header #session #user a {
+  font-weight: bold;
+}
+
+#content h2 {
+  color: #333;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+}
+
+.main_top_content h2 {float: left; padding-left: 22px;}
+
+#index_headings h2 {
+  color:#808080;
+  float:left;
+  font-size:1.3em; 
+}
+
+#content ul.actions {
+  font-size: 1.3em;
+}
+
+#content a {
+  color: #1F6FBA;
+}
+
+#content .main, #content .main_sidebar {
+  font-size: 1.2em;
+}
+
+.main_sidebar h2 {
+  font-size: 1.2em;
+  margin: 0;
+}

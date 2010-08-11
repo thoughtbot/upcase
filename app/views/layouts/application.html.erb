@@ -1,14 +1,26 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title>workshops</title>
-    <%= stylesheet_link_tag 'screen', :media => 'all', :cache => true %>
+    <meta charset="utf-8" />
+    <title>thoughtbot training</title>
+    <%= stylesheet_link_tag 'reset', 'defaults', 'type', 'forms', 'tables', 'lists', 'screen' %>
   </head>
   <body class="<%= body_class %>">
-    <%= render :partial => 'shared/flashes' -%>
-    <%= yield %>
-    <%= render :partial => 'shared/javascript' %>
+    <div class="top">
+      <div class="wrapper">
+        <div id="header">
+          <%= render :partial => 'shared/flashes' -%>
+          <h1 id="logo"><a href="/">thoughtbot training</a></h1>
+          <ul id="nav">
+            <% [link_to("Admin",    "#"),
+             link_to("Sign out", "#")].each do |link| %>
+              <li><%= link %></li>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <%= yield %>
+      <%= render :partial => 'shared/javascript' %>
+    </div>
   </body>
 </html>
