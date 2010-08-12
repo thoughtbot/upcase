@@ -11,13 +11,80 @@
         <li class="raquo">&raquo;</li>
         <li><a href="/pages/admin-course">Ruby on Rails</a></li>
         <li class="raquo">&raquo;</li>
-        <li><a href="/pages/admin-course">August 9-11, 2010</a></li>
+        <li><a href="/pages/admin-section">August 9-11, 2010</a></li>
       </ul>
       <a href="/pages/admin-new-course" id="new-course">New Course</a>
     </div>
-    <div class="dark-content">
-      <h3>August 9-11, 2010</h3>
-      <h4>Ruby on Rails</h4>
+    <div class="dark-content clearfix">
+      <div class="clearfix">
+        <ol class="clearfix">
+          <li>
+            <label>Section Name</label>
+            <input type="text" value="August 9-11, 2010" />
+          </li>
+        </ol>
+        <div id="admin-section-left">
+          <div id="section-datepicker">Datepicker here</div>
+          <div id="teacher-list" class="cool-list">
+            <h3>
+              Teachers
+              <a href="/pages/admin-new-section" class="new-section">Add Teacher</a>
+            </h3>
+            <ul>
+              <li class="add-teacher">
+                <select>
+                  <option>Select a teacher</option>
+                  <option>Chad Mazzola</option>
+                  <option>Dan Croak</option>
+                  <option>Tristan Dunn</option>
+                </select>
+                <a href="/pages/admin-new-teacher" id="new-teacher">Create New Teacher</a>
+                <a href="#" class="remove-teacher">X</a>
+              </li>
+              <li>
+                <a href="/pages/admin-section">Mike Burns</a>
+                <a href="#" class="remove-teacher">X</a>
+              </li>
+              <li>
+                <a href="/pages/admin-section">Fred Yates</a>
+                <a href="#" class="remove-teacher">X</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="admin-section-right">
+          <div id="student-list" class="cool-list">
+            <h3>
+              4 Students
+              <div id="seats-available">
+                <label>
+                  Seats Available:
+                  <input type="text" >
+                </label>
+              </div>
+            </h3>
+            <ul>
+              <li>
+                <a href="/pages/admin-section">Arnold Palmer</a>
+                <a href="#" class="remove-teacher">X</a>
+              </li>
+              <li>
+                <a href="/pages/admin-section">Jack Nicklaus</a>
+                <a href="#" class="remove-teacher">X</a>
+              </li>
+              <li>
+                <a href="/pages/admin-section">Gary Player</a>
+                <a href="#" class="remove-teacher">X</a>
+              </li>
+              <li>
+                <a href="/pages/admin-section">Sam Snead</a>
+                <a href="#" class="remove-teacher">X</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <input type="submit" value="Save Section" />
     </div>
   </div>
 </div>
