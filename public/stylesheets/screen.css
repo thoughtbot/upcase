@@ -814,29 +814,24 @@ body {
   -border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
   border: 2px solid rgba(0, 0, 0, 0.4); }
-#content.admin #student-list #seats-available {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 135px;
-  padding: 5px 0; }
-  #content.admin #student-list #seats-available label {
-    font-size: 12px;
-    padding: 0;
-    line-height: 26px; }
-    #content.admin #student-list #seats-available label input {
-      background: rgba(255, 255, 255, 0.1);
-      -webkit-box-shadow: inset 0 1px 3px black;
-      -moz-box-shadow: inset 0 1px 3px black;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-      border-top: 0;
-      width: 25px;
-      height: 24px;
-      color: #fff;
-      font-size: 12px;
-      padding: 0 5px;
-      margin: 0 0 0 3px;
-      text-align: center; }
+#content.admin #seats-available {
+  padding: 10px;
+  margin: 0 0 10px 0;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1, rgba(0, 0, 0, 0.5)), color-stop(0, rgba(0, 0, 0, 0.25)));
+  background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.25) 100%);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  padding: 10px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -border-radius: 5px; }
+  #content.admin #seats-available label {
+    padding: 0; }
+    #content.admin #seats-available label input {
+      width: 30px;
+      text-align: center;
+      margin: 0 5px 0 0;
+      padding: 5px; }
 
 .right {
   float: right; }
