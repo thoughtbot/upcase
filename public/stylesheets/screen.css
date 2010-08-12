@@ -598,6 +598,73 @@ body {
   width: 265px;
   background: url(/images/price-icon.png) 10px 8px no-repeat, -webkit-gradient(linear, left top, left bottom, color-stop(1, white), color-stop(0, #eeeeee));
   background: -moz-linear-gradient(bottom, white 0%, #eeeeee 100%); }
+#content.admin #faq-form {
+  margin: 25px 0; }
+  #content.admin #faq-form ul li {
+    margin: 5px 0 0 0;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1, rgba(0, 0, 0, 0.5)), color-stop(0, rgba(0, 0, 0, 0.25)));
+    background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.25) 100%);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    padding: 10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -border-radius: 5px; }
+    #content.admin #faq-form ul li input::-webkit-input-placeholder {
+      color: rgba(255, 255, 255, 0.3); }
+    #content.admin #faq-form ul li textarea::-webkit-input-placeholder {
+      color: rgba(0, 0, 0, 0.2); }
+    #content.admin #faq-form ul li input[type="text"] {
+      background: rgba(255, 255, 255, 0.1);
+      -webkit-box-shadow: inset 0 1px 3px black;
+      -moz-box-shadow: inset 0 1px 3px black;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 0;
+      width: 740px;
+      margin: 0 0 7px 0;
+      color: #e5dccb;
+      font-size: 16px; }
+    #content.admin #faq-form ul li textarea {
+      width: 740px;
+      height: 60px;
+      font-size: 13px;
+      font-weight: normal;
+      color: #252525;
+      margin: 0; }
+  #content.admin #faq-form a#add-question {
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -border-radius: 3px;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1, rgba(0, 0, 0, 0.4)), color-stop(0, rgba(0, 0, 0, 0.1)));
+    background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.1) 100%);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    display: block;
+    padding: 10px;
+    color: #fff;
+    float: left;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 7px 0 0 0; }
+    #content.admin #faq-form a#add-question:hover {
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(1, rgba(0, 0, 0, 0.4)), color-stop(0, rgba(136, 120, 91, 0.15)));
+      background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.4) 0%, rgba(136, 120, 91, 0.15) 100%); }
+#content.admin #terms-form {
+  float: left;
+  width: 385px; }
+  #content.admin #terms-form textarea {
+    width: 365px;
+    margin: 7px 0 0 0; }
+#content.admin #email-form {
+  float: right;
+  width: 385px; }
+  #content.admin #email-form textarea {
+    width: 365px;
+    margin: 7px 0 0 0; }
+#content.admin input[type="submit"] {
+  margin: 15px 0 0 0;
+  padding: 12px;
+  font-size: 16px; }
 
 .right {
   float: right; }
