@@ -841,6 +841,24 @@ body {
     width: 230px; }
   #content.admin ol#add-new-student li:last-child {
     margin: 0; }
+#content.admin #new-teacher-form ol li {
+  width: 380px;
+  margin: 0 15px 0 0;
+  float: left; }
+  #content.admin #new-teacher-form ol li input,
+  #content.admin #new-teacher-form ol li textarea {
+    width: 360px; }
+  #content.admin #new-teacher-form ol li textarea {
+    height: 75px; }
+  #content.admin #new-teacher-form ol li:nth-of-type(odd) {
+    margin: 0; }
+#content.admin #new-teacher-form ol li#teacher-photo {
+  width: 780px; }
+  #content.admin #new-teacher-form ol li#teacher-photo label {
+    width: 780px; }
+  #content.admin #new-teacher-form ol li#teacher-photo input {
+    background: #fff;
+    padding: 5px; }
 
 .right {
   float: right; }

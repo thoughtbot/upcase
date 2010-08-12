@@ -1018,6 +1018,35 @@ body {
      } 
     }
   }
+  #new-teacher-form {
+    ol {
+     li {
+       width: 380px;
+       margin: 0 15px 0 0;
+       float: left;
+       input,
+       textarea {
+        width: 360px; 
+       }
+       textarea {
+         height: 75px;
+       }
+       &:nth-of-type(odd) {
+         margin: 0;
+       }
+      } 
+      li#teacher-photo {
+        width: 780px;
+        label {
+          width: 780px;
+        }
+        input {
+          background: #fff;
+          padding: 5px;
+        }
+      }
+    }
+  }
 }
 
 .right {
