@@ -813,7 +813,8 @@ body {
   padding: 5px 0; }
   #content.admin #student-list #seats-available label {
     font-size: 12px;
-    padding: 0; }
+    padding: 0;
+    line-height: 26px; }
     #content.admin #student-list #seats-available label input {
       background: rgba(255, 255, 255, 0.1);
       -webkit-box-shadow: inset 0 1px 3px black;
@@ -825,7 +826,8 @@ body {
       color: #fff;
       font-size: 12px;
       padding: 0 5px;
-      margin: 0 0 0 3px; }
+      margin: 0 0 0 3px;
+      text-align: center; }
 
 .right {
   float: right; }
