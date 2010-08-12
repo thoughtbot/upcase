@@ -832,6 +832,15 @@ body {
       text-align: center;
       margin: 0 5px 0 0;
       padding: 5px; }
+#content.admin ol#add-new-student li {
+  float: left;
+  width: 250px;
+  margin: 0 15px 0 0; }
+  #content.admin ol#add-new-student li input,
+  #content.admin ol#add-new-student li label {
+    width: 230px; }
+  #content.admin ol#add-new-student li:last-child {
+    margin: 0; }
 
 .right {
   float: right; }
