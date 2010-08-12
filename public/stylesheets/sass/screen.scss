@@ -714,6 +714,14 @@ body {
     ul {
      li {
        background: url(/images/user.png) 14px 8px no-repeat;
+       a {
+        span {
+          font-family: Georgia;
+          color: #aaa;
+          font-size: 11px;
+          font-style: italic;
+        } 
+       }
       } 
     }
   }
