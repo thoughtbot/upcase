@@ -1,6 +1,5 @@
 Feature: Selecting a course and registering for it
 
-  @wip
   Scenario: No courses
     When I go to the home page
     Then I see the empty section description
