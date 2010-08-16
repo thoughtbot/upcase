@@ -457,7 +457,7 @@ body {
       #content.admin #admin-nav ul li a {
         color: #fff;
         text-decoration: none;
-        text-shadow: 0 -1px 2px #000;
+        text-shadow: 0 -1px 2px black;
         font-weight: bold;
         font-size: 12px;
         display: block;
@@ -473,7 +473,7 @@ body {
       font-size: 20px;
       height: 43px;
       line-height: 41px;
-      text-shadow: 0 -1px 0 #000; }
+      text-shadow: 0 -1px 0 black; }
   #content.admin #admin-nav a#new-course {
     margin: 4px 0 3px;
     float: right;
@@ -485,7 +485,7 @@ body {
     font-weight: bold;
     height: 28px;
     line-height: 28px;
-    text-shadow: 0 -1px 2px #000;
+    text-shadow: 0 -1px 2px black;
     border: 3px solid rgba(0, 0, 0, 0.75);
     border-bottom: 2px solid rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.12);
@@ -807,7 +807,7 @@ body {
   text-align: center;
   line-height: 20px;
   font-size: 11px;
-  text-shadow: 0 -1px 1px #000;
+  text-shadow: 0 -1px 1px black;
   color: #fff;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
