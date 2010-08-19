@@ -1,1 +1,9 @@
-No courses are running at this time.
+<% if @sections.empty? %>
+  <p>No courses are running at this time.</p>
+<% else %>
+  <ul>
+    <% @sections.each do |section| %>
+      <li><%= link_to section.course_name, section_path(section) %></li>
+    <% end %>
+  </ul>
+<% end %>

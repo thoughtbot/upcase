@@ -18,6 +18,17 @@ module NavigationHelpers
         "Now, go and add a mapping in #{__FILE__}"
     end
   end
+
+  def link_to(link_description)
+    case link_description
+    when /the (.*) course/
+      $1
+    when /register for a section/
+      'register-button'
+    else
+      raise %{Can't find a mapping from #{link_description.inspect} to a path: #{__FILE__}}
+    end
+  end
 end
 
 World(NavigationHelpers)
