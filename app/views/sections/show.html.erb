@@ -1,0 +1,78 @@
+<div class="top">
+  <div class="wrapper">
+    <h2><%= h(@section.course_name) %></h2>
+  </div>
+</div>
+<div id="content">
+  <div class="wrapper">
+    <div class="dark-content clearfix">
+      <div id="register-info" class="clearfix">
+        <div id="register-right">
+          <a href="#" id="location">
+            <strong>thoughtbot</strong>
+            <span>41 Winter Street Boston, MA 02108</span>
+          </a>
+          <a href="#" id="register-button">
+            <div id="register-button-top">
+              <div id="register-date"> format_date_range(@course.date_range) </div>
+              <div id="register-time"> format_time_range(@course.date_range) </div>
+              <div id="total-price">
+                <div id="amount">number_to_currency @registration.calculate_price, :precision => 0, :delimiter => '' </div>
+              </div>
+            </div>
+            <div id="register-for-class"><%= link_to 'Register for class', @section.registration_link %></div>
+          </a>
+        </div>
+        <div id="register-description">
+          <%= textilize @section.course_description %> 
+        </div>
+      </div>
+      <div class="clearfix">
+        <div id="learning" class="col">
+          <h3>What you will learn</h3>
+          <ul>
+            <li>I had to</li>
+            <li>remove the list</li>
+            <li>that I originally</li>
+            <li>had here because</li>
+            <li>it consisted of</li>
+            <li>somewhat private</li>
+            <li>and potentially very</li>
+            <li>damaging information.</li>
+          </ul>
+        </div>
+        <div id="teachers" class="col">
+          <h3>Teachers</h3>
+          <ul>
+            <li>
+              <%= image_tag("/images/_teachers/fyates.jpg", :alt => 'fyates' )%>
+              <h4>Fred Yates</h4>
+              <span>
+                Fred Yates is an all star programmer who will teach you everything ever.
+              </span>
+              <a href="http://thoughtbot.com/about#fyates">More about Fred</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <% link_to @section.registration_link do %>
+        <div>
+          Register for <%= h(@section.course_name) %>
+        </div>
+        <span>
+           format_date_range(@course.date_range) 
+        </span>
+      <% end %>
+      <div id="faq" class="col clearfix">
+        <h4>Frequently asked questions</h4>
+        <dl>
+           textilize @course.faq 
+        </dl>
+      </div>
+      <div id="terms" class="col clearfix">
+        <h4>Terms and conditions</h4>
+         textilize @course.tos 
+      </div> 
+    </div>
+  </div>
+</div>
