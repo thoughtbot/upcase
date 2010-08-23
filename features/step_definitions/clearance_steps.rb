@@ -1,13 +1,7 @@
-# General
-
-Then /^I should see error messages$/ do
-  assert_match /error(s)? prohibited/m, response.body
-end
-
 # Database
 
 Given /^no user exists with an email of "(.*)"$/ do |email|
-  assert_nil User.find_by_email(email)
+  User.find_by_email(email).should be_nil
 end
 
 Given /^I signed up with "(.*)\/(.*)"$/ do |email, password|
@@ -15,7 +9,7 @@ Given /^I signed up with "(.*)\/(.*)"$/ do |email, password|
     :email                 => email,
     :password              => password,
     :password_confirmation => password
-end 
+end
 
 Given /^I am signed up and confirmed as "(.*)\/(.*)"$/ do |email, password|
   user = Factory :email_confirmed_user,
@@ -27,21 +21,41 @@ end
 # Session
 
 Then /^I should be signed in$/ do
-  assert controller.signed_in?
+  current_user.should_not be_nil
 end
 
 Then /^I should be signed out$/ do
-  assert ! controller.signed_in?
+  current_user.should be_nil
 end
 
 When /^session is cleared$/ do
-  request.reset_session
-  controller.instance_variable_set(:@_current_user, nil)
+  cookies['_hedgehog_session'] = nil
 end
 
 Given /^I have signed in with "(.*)\/(.*)"$/ do |email, password|
   Given %{I am signed up and confirmed as "#{email}/#{password}"}
   And %{I sign in as "#{email}/#{password}"}
+end
+
+Given /^I am signed in as a member of the "([^\"]+)" account$/ do |account_name|
+  account = Account.find_by_name!(account_name)
+  user = Factory(:user, :account => account)
+  sign_in_as user
+end
+
+Given /^I am signed in as a member of the "([^\"]+)" account with project "([^\"]+)"$/ do |account_name, project_name|
+  steps %{
+    Given the following account exists:
+      | name            |
+      | #{account_name} |
+    Given I am signed in as a member of the "#{account_name}" account
+    And the following projects exist:
+      | name            | account               |
+      | #{project_name} | name: #{account_name} |
+    And I am a member of the following projects:
+      | project         |
+      | #{project_name} |
+  }
 end
 
 # Emails
@@ -119,4 +133,10 @@ end
 When /^I return next time$/ do
   When %{session is cleared}
   And %{I go to the homepage}
+end
+
+Given /^I am signed in as an admin of "([^"]*)"$/ do |account_name|
+  account = Account.find_by_name(account_name) || Factory(:account, :name => account_name)
+  user = Factory(:user, :account => account, :admin => true)
+  sign_in_as user
 end
