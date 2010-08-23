@@ -4,20 +4,24 @@ Feature: Selecting a course and registering for it
     When I go to the home page
     Then I see the empty section description
 
-  Scenario: User registers for a section
+  Scenario: User registers for a section then is signed in
     Given today is June 10, 2010
-    And the following course exists:
-      | name                |
-      | Test-Driven Haskell |
-    And the following section exists:
-      | course                    | starts on      | ends on        | registration link    |
-      | name: Test-Driven Haskell | June 13, 2010  | June 16, 2010  | http://example.com/1 |
+    And the following course exists on Chargify:
+      | name                | chargify id |
+      | Test-Driven Haskell | 1234        |
+    And the following section exists on Chargify:
+      | id   | course                    | starts on      | ends on        | chargify id | registration link                                                 |
+      | 1234 | name: Test-Driven Haskell | June 13, 2010  | June 16, 2010  | 1234        | http://thoughtbot-workshops.chargify.com/h/1234/subscriptions/new |
     When I go to the home page
     And I follow the link to the Test-Driven Haskell course
-    Then I see the external registration link to "http://example.com/1"
-
-  @wip
-  Scenario: User registers for a section then is signed in
+    And I follow the external registration link
+    And I fill in the following Chargify customer:
+      | first name | last name | email              |
+      | Mike       | Jones     | mjones@example.com |
+    And I press the button to submit the Chargify form
+    Then I am signed in as:
+      | first name | last name | email              |
+      | Mike       | Jones     | mjones@example.com |
 
   @wip
   Scenario: Existing user registers for a section

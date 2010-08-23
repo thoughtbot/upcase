@@ -20,7 +20,7 @@
                 <div id="amount">number_to_currency @registration.calculate_price, :precision => 0, :delimiter => '' </div>
               </div>
             </div>
-            <div id="register-for-class"><%= link_to 'Register for class', @section.registration_link %></div>
+            <div id="register-for-class"><%= link_to 'Register for class', @section.registration_link, :id => 'registration-link' %></div>
           </a>
         </div>
         <div id="register-description">
