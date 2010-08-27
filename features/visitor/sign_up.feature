@@ -9,7 +9,6 @@ Feature: Sign up
       And I fill in "Password" with "password"
       And I fill in "Confirm password" with ""
       And I press "Sign up"
-      Then I should see error messages
 
     Scenario: User signs up with valid data
       When I go to the sign up page
