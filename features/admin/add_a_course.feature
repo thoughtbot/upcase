@@ -1,18 +1,17 @@
 Feature: Adding a course
 
-  @wip
   Scenario: Add a course with blank required fields
     Given I am signed in as an admin
     When I go to the home page
     And I follow the link to create a new course
     And I press the button to create a course
     Then I see the "can't be blank" error for the following fields:
-      | name        |
-      | description |
-      | price       |
-      | starts on   |
-      | ends on     |
-      | location    |
+      | course name        |
+      | course description |
+      | course price       |
+      | start time         |
+      | end time           |
+      | location           |
 
   Scenario: Add a course with the required fields
     Given I am signed in as an admin
