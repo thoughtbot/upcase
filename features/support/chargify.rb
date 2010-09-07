@@ -49,7 +49,7 @@ get '/h/:id/subscriptions/new' do |id|
     <input type="text" name="first_name" id="first-name" />
     <input type="text" name="last_name" id="last-name" />
     <input type="text" name="email" id="email" />
-    <input type="submit" id="chargify-submit" />
+    <input type="submit" id="chargify-submit" value="Chargify Submit" />
   </form>
   HTML
 end

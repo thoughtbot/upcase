@@ -1,6 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: database_cleaner
 version: !ruby/object:Gem::Version 
+  hash: 11
   prerelease: false
   segments: 
   - 0
@@ -72,23 +73,27 @@ rdoc_options:
 require_paths: 
 - lib
 required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
+      hash: 3
       segments: 
       - 0
       version: "0"
 required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
+      hash: 3
       segments: 
       - 0
       version: "0"
 requirements: []
 
 rubyforge_project: 
-rubygems_version: 1.3.6
+rubygems_version: 1.3.7
 signing_key: 
 specification_version: 3
 summary: Strategies for cleaning databases.  Can be used to ensure a clean state for testing.

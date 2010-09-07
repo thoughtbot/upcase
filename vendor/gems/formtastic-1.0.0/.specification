@@ -1,56 +1,48 @@
 --- !ruby/object:Gem::Specification 
-name: validation_reflection
+name: formtastic
 version: !ruby/object:Gem::Version 
-  hash: 31
+  hash: 23
   prerelease: false
   segments: 
+  - 1
   - 0
-  - 3
-  - 6
-  version: 0.3.6
+  - 0
+  version: 1.0.0
 platform: ruby
-authors: 
-- Christopher Redinger
+authors: []
+
 autorequire: 
 bindir: bin
 cert_chain: []
 
-date: 2010-02-14 00:00:00 -05:00
+date: 2010-09-07 00:00:00 -04:00
 default_executable: 
 dependencies: []
 
-description: Adds reflective access to validations
-email: redinger@gmail.com
+description: 
+email: 
 executables: []
 
 extensions: []
 
-extra_rdoc_files: 
-- LICENSE
-- README
+extra_rdoc_files: []
+
 files: 
-- .gitignore
-- CHANGELOG
-- LICENSE
-- README
-- Rakefile
-- VERSION.yml
-- about.yml
-- lib/validation_reflection.rb
-- rails/init.rb
-- test/test_helper.rb
-- test/validation_reflection_test.rb
-- validation_reflection.gemspec
+- lib
+- lib/formtastic
+- lib/locale
+- lib/formtastic.rb
 has_rdoc: true
-homepage: http://github.com/redinger/validation_reflection
+homepage: 
 licenses: []
 
 post_install_message: 
-rdoc_options: 
-- --charset=UTF-8
+rdoc_options: []
+
 require_paths: 
 - lib
 required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
@@ -59,6 +51,7 @@ required_ruby_version: !ruby/object:Gem::Requirement
       - 0
       version: "0"
 required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
@@ -72,7 +65,6 @@ rubyforge_project:
 rubygems_version: 1.3.7
 signing_key: 
 specification_version: 3
-summary: Adds reflective access to validations
-test_files: 
-- test/test_helper.rb
-- test/validation_reflection_test.rb
+summary: 
+test_files: []
+

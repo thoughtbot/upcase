@@ -47,7 +47,3 @@ When 'I fill in the following Chargify customer:' do |table|
     end
   end
 end
-
-When 'I press the button to submit the Chargify form' do
-  click_button 'chargify-submit'
-end

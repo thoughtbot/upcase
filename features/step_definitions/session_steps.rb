@@ -5,3 +5,10 @@ Given 'I am signed in as "$email"' do |email|
                  :password_confirmation => 'password')
   Given %{I sign in as "#{user.email}/password"}
 end
+
+Given 'I am signed in as an admin' do
+  user = Factory(:admin,
+                 :password => 'password',
+                 :password_confirmation => 'password')
+  Given %{I sign in as "#{user.email}/password"}
+end

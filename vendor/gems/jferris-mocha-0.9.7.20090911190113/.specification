@@ -1,6 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: jferris-mocha
 version: !ruby/object:Gem::Version 
+  hash: 40181822380249
   prerelease: false
   segments: 
   - 0
@@ -22,9 +23,11 @@ dependencies:
   name: rake
   prerelease: false
   requirement: &id001 !ruby/object:Gem::Requirement 
+    none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
+        hash: 3
         segments: 
         - 0
         version: "0"
@@ -230,23 +233,27 @@ rdoc_options:
 require_paths: 
 - lib
 required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
+      hash: 3
       segments: 
       - 0
       version: "0"
 required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
+      hash: 3
       segments: 
       - 0
       version: "0"
 requirements: []
 
 rubyforge_project: mocha
-rubygems_version: 1.3.6
+rubygems_version: 1.3.7
 signing_key: 
 specification_version: 2
 summary: Mocking and stubbing library

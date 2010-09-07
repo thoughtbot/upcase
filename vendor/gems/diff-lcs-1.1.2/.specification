@@ -1,6 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: diff-lcs
 version: !ruby/object:Gem::Version 
+  hash: 23
   prerelease: false
   segments: 
   - 1
@@ -63,25 +64,29 @@ rdoc_options:
 require_paths: 
 - lib
 required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
+      hash: 53
       segments: 
       - 1
       - 8
       - 1
       version: 1.8.1
 required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
+      hash: 3
       segments: 
       - 0
       version: "0"
 requirements: []
 
 rubyforge_project: ruwiki
-rubygems_version: 1.3.6
+rubygems_version: 1.3.7
 signing_key: 
 specification_version: 1
 summary: Provides a list of changes that represent the difference between two sequenced collections.
