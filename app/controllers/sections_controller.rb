@@ -5,5 +5,7 @@ class SectionsController < ApplicationController
 
   def show
     @section = Section.find(params[:id])
+
+    render 'resources' if current_user.try(:registered_for?, @section)
   end
 end
