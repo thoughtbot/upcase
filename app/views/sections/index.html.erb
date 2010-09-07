@@ -10,7 +10,7 @@
       </h3>
 
       <% if @sections.empty? %>
-        <p>No courses are running at this time.</p>
+        <p id="no-courses">No courses are running at this time.</p>
       <% else %>
         <ul id="list-of-classes">
           <% @sections.each do |section| %>
