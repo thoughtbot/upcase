@@ -1,0 +1,63 @@
+<div class="top">
+  <div class="wrapper">
+    <h2>Admin</h2>
+  </div>
+</div>
+<div id="content" class="admin">
+  <div class="wrapper">
+    <div id="admin-nav" class="clearfix">
+      <ul>
+        <li><a href="/pages/admin-courses">Courses</a></li>
+        <li class="raquo">&raquo;</li>
+        <li><a href="/pages/admin-course">Ruby on Rails</a></li>
+      </ul>
+    </div>
+    <div class="dark-content clearfix">
+      <% semantic_form_for @course do |form| %>
+        <% form.inputs do %>
+          <%= form.input :name, :label => 'Course Name' %>
+          <%= form.input :description, :label => 'Course Description' %>
+          <div id="course-details-right">
+            <%= form.input :price, :wrapper_html => {:id => 'course-price-li'} %>
+            <li>
+              <label>Location Name</label>
+              <input type="text" value="thoughtbot" />
+            </li>
+            <%= form.input :location, :label => 'Location Address' %>
+          </div>
+          <%= form.input :start_at, :as => :text %>
+          <%= form.input :stop_at, :as => :text %>
+        <% end %>
+        <div id="resources-form" class="clearfix">
+          <h3>Resources</h3>
+          <ul>
+            <li>
+              <input type="text" placeholder="Resource Name" class="resource-name" />
+              <input type="text" placeholder="Resource Link" class="resource-link" />
+            </li>
+          </ul>
+          <a href="#" id="add-resource">Add Resource</a>
+        </div>
+        <div id="faq-form" class="clearfix">
+          <h3>FAQ</h3>
+          <ul>
+            <li>
+              <input type="text" placeholder="Question" />
+              <textarea placeholder="Answer" ></textarea>
+            </li>
+          </ul>
+          <a href="#" id="add-question">Add Question</a>
+        </div>
+        <div id="terms-form">
+          <h3>Terms &amp; Conditions</h3>
+          <textarea></textarea>
+        </div>
+        <div id="email-form">
+          <h3>Reminder Email</h3>
+          <textarea></textarea>
+        </div>
+        <input type="submit" value="Save Course" />
+      <% end %>
+    </div>
+  </div>
+</div>

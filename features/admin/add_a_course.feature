@@ -14,20 +14,19 @@ Feature: Adding a course
       | ends on     |
       | location    |
 
-  @wip
   Scenario: Add a course with the required fields
     Given I am signed in as an admin
     When I go to the home page
     And I follow the link to create a new course
-    And I fill in the course name with "Test-Drive Haskell"
+    And I fill in the course name with "Test-Driven Haskell"
     And I fill in the course description with "Learn Haskell the thoughtbot way"
     And I fill in the course price with "1900"
-    And I select the start time as "09:00"
-    And I select the end time as "17:00"
+    And I fill in the start time with "09:00"
+    And I fill in the end time with "17:00"
     And I fill in the location with "41 Winter St 02108"
     And I press the button to create a course
     Then I see the successful course creation notice
-    And I see the course named "Test-Driven Haskell"
+    And I see the admin listing include a course named "Test-Driven Haskell"
 
   @wip
   Scenario: Add a course with all the trimmings
@@ -64,3 +63,6 @@ Feature: Adding a course
     And I press the button to create a course
     Then I see the successful course creation notice
     And I see the course named "Test-Driven Haskell"
+
+  @wip
+  Scenario: Adding a course as a non-admin

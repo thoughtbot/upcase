@@ -25,8 +25,49 @@ module NavigationHelpers
       $1
     when /register for a section/
       'register-button'
+    when /create a new course/
+      'New Course'
     else
       raise %{Can't find a mapping from #{link_description.inspect} to a path: #{__FILE__}}
+    end
+  end
+
+  def field_id_for(field_description)
+    case field_description
+    when 'course name'
+      'course_name'
+    when 'course description'
+      'course_description'
+    when 'course price'
+      'course_price'
+    when 'start time'
+      'course_start_at'
+    when 'end time'
+      'course_stop_at'
+    when 'location'
+      'course_location'
+    else
+      raise %{Can't find a mapping from #{field_description.inspect} to an id: #{__FILE__}}
+    end
+  end
+
+  def button_text_for(button_text)
+    case button_text
+    when 'create a course'
+      'Save Course'
+    when 'submit the Chargify form'
+      'Chargify Submit'
+    else
+      raise %{Can't find a mapping from #{button_text.inspect} to text: #{__FILE__}}
+    end
+  end
+
+  def flash_text_for(flash_text)
+    case flash_text
+    when 'course creation'
+      'Course was successfully created'
+    else
+      raise %{Can't find a mapping from #{flash_text.inspect} to text: #{__FILE__}}
     end
   end
 end

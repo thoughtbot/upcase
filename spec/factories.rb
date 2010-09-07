@@ -12,6 +12,10 @@ Factory.define :email_confirmed_user, :parent => :user do |user|
   user.email_confirmed { true }
 end
 
+Factory.define :admin, :parent => :email_confirmed_user do |user_factory|
+  user_factory.admin true
+end
+
 Factory.define(:course) do |course_factory|
 end
 
