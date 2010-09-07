@@ -1,0 +1,31 @@
+<div class="top">
+  <div class="wrapper">
+    <h2>Admin</h2>
+  </div>
+</div>
+<div id="content" class="admin">
+  <div class="wrapper">
+    <div id="admin-nav" class="clearfix">
+      <ul>
+        <!-- no breadcrumbs on Courses list page -->
+        <li><span>Courses</span></li>
+      </ul>
+      <%= link_to 'New Course', new_course_path, :id => 'new-course' %>
+    </div>
+    <div class="dark-content">
+        <% @courses.each do |course| %>
+        <div class="course-list cool-list">
+          <h3>
+            <%= link_to h(course.name), '#'%>
+            <%= link_to 'New Section', '#', :class => 'new-section' %>
+          </h3>
+          <ul>
+            <li><a href="/pages/admin-section">August 9-11, 2010</a></li>
+            <li><a href="/pages/admin-section">July 7-9, 2010</a></li>
+            <li><a href="/pages/admin-section">June 18-20, 2010</a></li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
