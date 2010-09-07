@@ -32,7 +32,7 @@ Rails::Initializer.run do |config|
              :version => '>= 1.1.0'
   config.gem 'validation_reflection',
              :version => '>= 0.3.6'
-  config.gem 'hoptoad_notifier'
+  config.gem 'hoptoad_notifier', '>= 2.3.5'
   config.gem 'haml',
              :version => '3.0.16'
 
