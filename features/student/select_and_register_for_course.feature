@@ -22,11 +22,29 @@ Feature: Selecting a course and registering for it
     Then I am signed in as:
       | first name | last name | email              |
       | Mike       | Jones     | mjones@example.com |
+    And mjones@example.com is registered for the Test-Driven Haskell course
 
-  @wip
   Scenario: Existing user registers for a section
+    Given today is June 10, 2010
+    And the following course exists on Chargify:
+      | name                | chargify id |
+      | Test-Driven Haskell | 1234        |
+    And the following section exists on Chargify:
+      | id   | course                    | starts on      | ends on        | chargify id | registration link                                                 |
+      | 1234 | name: Test-Driven Haskell | June 13, 2010  | June 16, 2010  | 1234        | http://thoughtbot-workshops.chargify.com/h/1234/subscriptions/new |
+    And I am signed in as "mjones@example.com"
+    When I go to the home page
+    And I follow the link to the Test-Driven Haskell course
+    And I follow the external registration link
+    And I fill in the following Chargify customer:
+      | first name | last name | email              |
+      | Mike       | Jones     | mjones@example.com |
+    And I press the button to submit the Chargify form
+    Then I am signed in as:
+      | first name | last name | email              |
+      | Mike       | Jones     | mjones@example.com |
+    And mjones@example.com is registered for the Test-Driven Haskell course
 
-  @wip
   Scenario: Registered user views course
     Given today is June 10, 2010
     And the following course exists:
@@ -39,12 +57,11 @@ Feature: Selecting a course and registering for it
       | name: Test-Driven Haskell | June 13, 2010  | June 16, 2010  |
       | name: Test-Driven COBOL   | June 12, 2010  | June 30, 2010  |
       | name: Test-Driven JS      | June 18, 2009  | June 19, 2009  |
-    And a user exists with an email of "spj@example.com"
-    And the following registration exists:
-      | section                  | user                   |
-      | starts_on: June 13, 2010 | email: spj@example.com |
-      | starts_on: June 18, 2009 | email: spj@example.com |
     And I am signed in as "spj@example.com"
+    And the following registration exists:
+      | section               | user                   |
+      | starts_on: 2010-06-13 | email: spj@example.com |
+      | starts_on: 2009-06-18 | email: spj@example.com |
     When I go to the home page
     And I follow the link to the Test-Driven Haskell course
     Then I see the course resource page for "Test-Driven Haskell"
