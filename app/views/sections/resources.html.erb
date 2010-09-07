@@ -1,0 +1,44 @@
+<div class="top">
+  <div class="wrapper">
+    <h2><%= @section.course_name %></h2>
+    <h3>August 9-11, 2010</h3>
+  </div>  
+</div>
+<div id="content">
+  <div class="wrapper">
+    <div class="dark-content clearfix">
+      <div id="course-overview-left">
+        <%= textilize @section.course_description %>
+        <div id="resources">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="#">jferris/config files</a></li>
+          </ul>
+        </div>
+      </div>
+      <div id="course-overview-right">
+        <div id="date-time">
+          <div id="date">August 9-11, 2010</div>
+          <div id="time">9AM to 5PM</div>
+        </div>
+        <a href="#" id="location">
+          <strong>thoughtbot</strong>
+          <span>41 Winter Street Boston, MA 02108</span>
+        </a>
+        <div id="teachers">
+          <h3>Who's teaching</h3>
+          <ul>
+            <li>
+              <%= image_tag("/images/_teachers/fyates.jpg", :alt => 'fyates' )%>
+              <h4>Fred Yates</h4>
+              <span>
+                Fred Yates is an all star programmer who will teach you everything ever.
+              </span>
+              <a href="http://thoughtbot.com/about#fyates">More about Fred</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
