@@ -46,6 +46,16 @@ module NavigationHelpers
       'course_stop_at'
     when 'location'
       'course_location'
+    when 'location name'
+      'course_location_name'
+    when 'max students'
+      'course_maximum_students'
+    when 'terms of service'
+      'course_terms_of_service'
+    when 'reminder email text'
+      'course_reminder_email'
+    when 'that the course is public'
+      'course_public'
     else
       raise %{Can't find a mapping from #{field_description.inspect} to an id: #{__FILE__}}
     end
