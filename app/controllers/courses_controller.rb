@@ -9,8 +9,11 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(params[:course])
-    @course.save
-    flash[:success] = 'Course was successfully created.'
-    redirect_to courses_url
+    if @course.save
+      flash[:success] = 'Course was successfully created.'
+      redirect_to courses_url
+    else
+      render :new
+    end
   end
 end
