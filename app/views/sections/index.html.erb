@@ -1,9 +1,56 @@
-<% if @sections.empty? %>
-  <p>No courses are running at this time.</p>
-<% else %>
-  <ul>
-    <% @sections.each do |section| %>
-      <li><%= link_to section.course_name, section_path(section) %></li>
-    <% end %>
-  </ul>
-<% end %>
+<div class="top last">
+  <div class="wrapper">
+    <div id="sub-header">
+      <h2 id="learn-from-the-experts">Learn from the experts</h2>
+      <h3>
+        We're an acknowledged authority in the Rails community. 
+        In our workshops, we've shared our knowledge with over 
+        100 developers from organizations such as Harvard 
+        University, The New York Times, and Boston.com.
+      </h3>
+
+      <% if @sections.empty? %>
+        <p>No courses are running at this time.</p>
+      <% else %>
+        <ul id="list-of-classes">
+          <% @sections.each do |section| %>
+            <li><% link_to section_path(section) do %>
+                <h4><%=h section.course_name %></h4>
+                <div>
+                  date range here
+                </div>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+        
+    </div>
+  </div>
+</div>
+
+<div id="content">
+  <div class="wrapper">
+    <div class="dark-content">
+      <%= image_tag("/images/home-photo1.jpg", :alt => "thoughtbot training" )%>
+      <%= image_tag("/images/home-photo2.jpg", :alt => "thoughtbot training", :class => 'right' )%>
+      <h4 id="why-we-rule">
+      We believe the best learning occurs during hands-on, intimate time with passionate experts. Our workshops never have more than a 5-to-1 student-teacher ratio. They are short lectures followed by long pair programming sessions where students develop a real Rails app.
+      </h4>
+      <ul id="testimonials" class="clearfix">
+        <li>
+          Having taken a Thoughtbot training class on my own dime I can say it’s 110% worth it. If you can hook it up, do it.
+          <a href="http://joeloliveira.com/">Joel Oliveira</a>
+        </li>
+        <li>
+          After the training session my code style is so fresh, Vogue wants to publish my tests.
+          <a href="http://gregsterndale.com/">Greg Sterndale</a>
+        </li>
+        <li>
+         If you're a freelance developer you owe it to your clients to come and learn Rails development &amp; delivery from the team at Thoughtbot. 
+         <a href="http://bigroomtechnology.com/">Mike Breen</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
