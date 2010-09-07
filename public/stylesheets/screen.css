@@ -618,7 +618,7 @@ body {
   float: right; }
   #content.admin #course-details-right input {
     width: 285px; }
-#content.admin #course-price-li input {
+#content.admin .course-price-li input {
   padding: 10px 10px 10px 30px;
   width: 265px;
   background: url(/images/price-icon.png) 10px 8px no-repeat, -webkit-gradient(linear, left top, left bottom, color-stop(1, white), color-stop(0, #eeeeee));
