@@ -1,18 +1,16 @@
 module NavigationHelpers
   def path_to(page_name)
     case page_name
-
-    when /the home\s?page/
+    when /^the home\s?page$/
       '/'
-    when /the sign up page/i
+    when 'the sign up page'
       sign_up_path
-    when /the sign in page/i
+    when 'the sign in page'
       sign_in_path
-    when /the password reset request page/i
+    when 'the password reset request page'
       new_password_path
-
-    # Add more page name => path mappings here
-
+    when 'the list of courses'
+      courses_path
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
         "Now, go and add a mapping in #{__FILE__}"
@@ -76,6 +74,8 @@ module NavigationHelpers
     case flash_text
     when 'course creation'
       'Course was successfully created'
+    when 'permission denied'
+      'You do not have permission to view that page'
     else
       raise %{Can't find a mapping from #{flash_text.inspect} to text: #{__FILE__}}
     end

@@ -63,5 +63,7 @@ Feature: Adding a course
     Then I see the successful course creation notice
     And I see the course named "Test-Driven Haskell"
 
-  @wip
   Scenario: Adding a course as a non-admin
+    Given I am signed in as a student
+    When I go to the list of courses
+    Then I see the permission denied error
