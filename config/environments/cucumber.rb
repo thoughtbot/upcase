@@ -56,6 +56,10 @@ config.gem 'nokogiri',
            :version => '>= 1.4.0',
            :lib     => false
 
+config.gem 'envjs'
+config.gem "capybara-envjs", :version => "~>0.1.6", :lib => false
+config.gem "capybara-envjs-fixes", :version => "~>0.0.5", :lib => false
+
 HOST = 'localhost'
 config.action_mailer.default_url_options = {:host => HOST}
 
