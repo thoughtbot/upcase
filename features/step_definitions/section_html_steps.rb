@@ -10,3 +10,18 @@ When 'I follow the external registration link' do
   Capybara.app = Sinatra::Application
   visit url
 end
+
+Then 'I see the section from "$start_date" to "$end_date"' do |start_date_string, end_date_string|
+  start_date = Date.parse(start_date_string)
+  end_date = Date.parse(end_date_string)
+  section = Section.find_by_starts_on_and_ends_on!(start_date, end_date)
+  course = section.course
+  date_string = "#{Date::MONTHNAMES[start_date.month]} #{start_date.day}-#{end_date.day}, #{start_date.year}"
+  within("#course_#{course.id}") do
+    page.should have_content(date_string)
+  end
+end
+
+Then 'I see that "$teacher_name" is teaching' do |teacher_name|
+  fail ### probably needs to look at the nested attributes in the section edit form
+end

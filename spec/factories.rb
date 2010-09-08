@@ -12,7 +12,7 @@ Factory.define :email_confirmed_user, :parent => :user do |user|
   user.email_confirmed { true }
 end
 
-Factory.define :admin, :parent => :email_confirmed_user do |user_factory|
+Factory.define(:admin, :parent => :email_confirmed_user) do |user_factory|
   user_factory.admin true
 end
 
@@ -32,4 +32,7 @@ end
 Factory.define(:registration) do |registration_factory|
   registration_factory.association :section
   registration_factory.association :user
+end
+
+Factory.define(:teacher) do |teacher_factory|
 end
