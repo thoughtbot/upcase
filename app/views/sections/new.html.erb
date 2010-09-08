@@ -1,0 +1,16 @@
+<% semantic_form_for [@course, @section] do |form| %>
+  <% form.inputs do %>
+    <%= form.input :starts_on, :as => :text %>
+    <%= form.input :ends_on, :as => :text %>
+
+    <li><select id="teachers" name="teachers">
+      <%= options_for_select @teachers.map{|teacher| [teacher.name, teacher.id]} %>
+    </select></li>
+
+  <% end %>
+
+  <% form.buttons do %>
+    <%= form.commit_button 'Save Section' %>
+  <% end %>
+
+<% end %>

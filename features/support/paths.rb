@@ -21,10 +21,16 @@ module NavigationHelpers
     case link_description
     when /the (.*) course/
       $1
-    when /register for a section/
+    when 'register for a section'
       'register-button'
-    when /create a new course/
+    when 'create a new course'
       'New Course'
+    when /^re-run the course "([^"]+)"$/
+      course = Course.find_by_name!($1)
+      "new-section-#{course.id}"
+    when /^the section from "([^"]+)" to "([^"]+)"$/
+      section = Section.find_by_starts_on_and_ends_on!(Date.parse($1), Date.parse($2))
+      "section_#{section.id}"
     else
       raise %{Can't find a mapping from #{link_description.inspect} to a path: #{__FILE__}}
     end
@@ -65,6 +71,8 @@ module NavigationHelpers
       'Save Course'
     when 'submit the Chargify form'
       'Chargify Submit'
+    when 're-run a course'
+      'Save Section'
     else
       raise %{Can't find a mapping from #{button_text.inspect} to text: #{__FILE__}}
     end
@@ -76,6 +84,8 @@ module NavigationHelpers
       'Course was successfully created'
     when 'permission denied'
       'You do not have permission to view that page'
+    when 'section creation'
+      'Section was successfully created'
     else
       raise %{Can't find a mapping from #{flash_text.inspect} to text: #{__FILE__}}
     end
