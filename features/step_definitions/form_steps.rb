@@ -17,3 +17,15 @@ Then 'I see the "$error_message" error for the following fields:' do |error_mess
     end
   end
 end
+
+When 'I select the start date of "$date_string"' do |date_string|
+  fill_in 'section_starts_on', :with => date_string
+end
+
+When 'I select the end date of "$date_string"' do |date_string|
+  fill_in 'section_ends_on', :with => date_string
+end
+
+When 'I select the teacher "$teacher_name"' do |teacher_name|
+  select teacher_name, :from => 'teachers'
+end
