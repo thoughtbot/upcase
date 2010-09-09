@@ -21,7 +21,7 @@
           </h3>
           <ul>
             <% course.sections.each do |section| %>
-              <li><%= link_to section.date_range, '#', :id => dom_id(section) %></li>
+              <li><%= link_to section.date_range, edit_course_section_path(course, section), :id => dom_id(section) %></li>
             <% end %>
           </ul>
         <% end %>
