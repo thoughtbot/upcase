@@ -23,5 +23,5 @@ Then 'I see the section from "$start_date" to "$end_date"' do |start_date_string
 end
 
 Then 'I see that "$teacher_name" is teaching' do |teacher_name|
-  fail ### probably needs to look at the nested attributes in the section edit form
+  find_field(teacher_name).node.attributes['checked'].value.should == 'checked'
 end

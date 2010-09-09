@@ -27,5 +27,5 @@ When 'I select the end date of "$date_string"' do |date_string|
 end
 
 When 'I select the teacher "$teacher_name"' do |teacher_name|
-  select teacher_name, :from => 'teachers'
+  check teacher_name
 end

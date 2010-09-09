@@ -21,3 +21,6 @@ Feature: Scheduling a new course
   @wip
   Scenario: Adding a new section and a new teacher
     # must populate the teachers.gravatar_hash field
+ 
+  @wip
+  Scenario: Adding a new section as a student
