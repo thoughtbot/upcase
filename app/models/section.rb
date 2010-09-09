@@ -1,7 +1,11 @@
 class Section < ActiveRecord::Base
   belongs_to :course
+  has_many :section_teachers
+  has_many :teachers, :through => :section_teachers
 
   delegate :name, :description, :to => :course, :prefix => :course
+
+  accepts_nested_attributes_for :section_teachers
 
   def date_range
     if starts_on.year == ends_on.year

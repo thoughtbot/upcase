@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :courses, :only => [:index, :new, :create] do |courses|
-    courses.resources :sections, :only => [:new, :create]
+    courses.resources :sections, :only => [:new, :create, :edit, :update]
   end
 
   HighVoltage::Routes.draw(map)
