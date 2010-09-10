@@ -35,7 +35,9 @@ module NavigationHelpers
       section = Section.find_by_starts_on_and_ends_on!(Date.parse($1), Date.parse($2))
       "section_#{section.id}"
     when 'create a new teacher'
-      'Create New Teacher' 
+      'Create New Teacher'
+    when 'add a new student'
+      'Add Student'
     else
       raise %{Can't find a mapping from #{link_description.inspect} to a path: #{__FILE__}}
     end
@@ -77,6 +79,12 @@ module NavigationHelpers
       'teacher_bio'
     when "teacher's email"
       'teacher_email'
+    when "student's first name"
+      'user_first_name'
+    when "student's last name"
+      'user_last_name'
+    when "student's email"
+      'user_email'
     else
       raise %{Can't find a mapping from #{field_description.inspect} to an id: #{__FILE__}}
     end
@@ -92,6 +100,8 @@ module NavigationHelpers
       'Save Section'
     when 'add a teacher'
       'Save Teacher'
+    when 'enroll a new student'
+      'Save New Student'
     else
       raise %{Can't find a mapping from #{button_text.inspect} to text: #{__FILE__}}
     end

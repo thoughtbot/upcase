@@ -9,6 +9,42 @@
 
   <% end %>
 
+        <div id="admin-section-right">
+          <div id="seats-available" class="clearfix">
+            <label>
+              <input type="text" value="12" />
+              Seats Available
+            </label>
+          </div>
+          <div id="student-list" class="cool-list">
+            <h3>
+              4 Students
+              <%= link_to 'Add Student', new_course_section_registration_path(@course, @section), :id => 'add-student' %>
+            </h3>
+            <ul>
+              <li>
+                <a href="/pages/admin-section">
+                  Arnold Palmer
+                  <span>(7/12/10)</span>
+                </a>
+                <a href="#" class="remove-teacher">X</a>
+              </li>
+              <li>
+                <a href="/pages/admin-section">Jack Nicklaus</a>
+                <a href="#" class="remove-teacher">X</a>
+              </li>
+              <li>
+                <a href="/pages/admin-section">Gary Player</a>
+                <a href="#" class="remove-teacher">X</a>
+              </li>
+              <li>
+                <a href="/pages/admin-section">Sam Snead</a>
+                <a href="#" class="remove-teacher">X</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
   <% form.buttons do %>
     <%= form.commit_button 'Save Section' %>
   <% end %>

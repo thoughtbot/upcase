@@ -6,6 +6,7 @@ class Section < ActiveRecord::Base
   belongs_to :course
   has_many :section_teachers
   has_many :teachers, :through => :section_teachers
+  has_many :registrations
 
   delegate :name, :description, :to => :course, :prefix => :course
 
