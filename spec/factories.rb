@@ -40,6 +40,8 @@ Factory.define(:registration) do |registration_factory|
 end
 
 Factory.define(:teacher) do |teacher_factory|
+  teacher_factory.name  "Billy Madison"
+  teacher_factory.email "bmadison@example.com"
 end
 
 Factory.define(:section_teacher) do |section_teacher_factory|
