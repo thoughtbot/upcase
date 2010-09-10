@@ -22,25 +22,12 @@
               <%= link_to 'Add Student', new_course_section_registration_path(@course, @section), :id => 'add-student' %>
             </h3>
             <ul>
-              <li>
-                <a href="/pages/admin-section">
-                  Arnold Palmer
-                  <span>(7/12/10)</span>
-                </a>
-                <a href="#" class="remove-teacher">X</a>
-              </li>
-              <li>
-                <a href="/pages/admin-section">Jack Nicklaus</a>
-                <a href="#" class="remove-teacher">X</a>
-              </li>
-              <li>
-                <a href="/pages/admin-section">Gary Player</a>
-                <a href="#" class="remove-teacher">X</a>
-              </li>
-              <li>
-                <a href="/pages/admin-section">Sam Snead</a>
-                <a href="#" class="remove-teacher">X</a>
-              </li>
+              <% @section.students.each do |user| %>
+                <li>
+                  <%= link_to h(user.name), '#' %>
+                  <a href="#" class="remove-teacher">X</a>
+                </li>
+              <% end %>
             </ul>
           </div>
         </div>
