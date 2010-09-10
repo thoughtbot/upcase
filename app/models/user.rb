@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
   def registered_for?(section)
     sections.include?(section)
   end
+
+  def name
+    [first_name, last_name].join(' ')
+  end
 end
