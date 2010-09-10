@@ -27,6 +27,11 @@ end
 
 Factory.define(:section) do |section_factory|
   section_factory.association :course
+  section_factory.starts_on { 1.day.ago }
+  section_factory.ends_on { 1.day.from_now }
+  section_factory.after_build {|s|
+    s.section_teachers << Factory.build(:section_teacher, :section => s)
+  }
 end
 
 Factory.define(:registration) do |registration_factory|
@@ -35,4 +40,9 @@ Factory.define(:registration) do |registration_factory|
 end
 
 Factory.define(:teacher) do |teacher_factory|
+end
+
+Factory.define(:section_teacher) do |section_teacher_factory|
+  section_teacher_factory.association :section
+  section_teacher_factory.association :teacher
 end
