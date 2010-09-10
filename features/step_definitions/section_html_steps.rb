@@ -25,3 +25,7 @@ end
 Then 'I see that "$teacher_name" is teaching' do |teacher_name|
   find_field(teacher_name).node.attributes['checked'].value.should == 'checked'
 end
+
+Then "I see that the section teacher can't be blank" do
+  page.should have_content("must specify at least one teacher")
+end

@@ -21,9 +21,14 @@ class SectionsController < ApplicationController
   def create
     @course = Course.find(params[:course_id])
     @section = @course.sections.build(params[:section])
-    @section.save
-    flash[:success] = 'Section was successfully created'
-    redirect_to courses_path
+    if @section.save
+      flash[:success] = 'Section was successfully created'
+      redirect_to courses_path
+    else
+      @teachers = Teacher.all
+      @section.section_teachers.build
+      render :new
+    end
   end
 
   def edit
