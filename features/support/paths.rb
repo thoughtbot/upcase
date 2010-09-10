@@ -34,6 +34,8 @@ module NavigationHelpers
     when /^the section from "([^"]+)" to "([^"]+)"$/
       section = Section.find_by_starts_on_and_ends_on!(Date.parse($1), Date.parse($2))
       "section_#{section.id}"
+    when 'create a new teacher'
+      'Create New Teacher' 
     else
       raise %{Can't find a mapping from #{link_description.inspect} to a path: #{__FILE__}}
     end
@@ -69,6 +71,12 @@ module NavigationHelpers
       'section_ends_on'
     when 'section teacher'
       'section_section_teachers_attributes_0_teacher_id'
+    when "teacher's name"
+      'teacher_name'
+    when "teacher's bio"
+      'teacher_bio'
+    when "teacher's email"
+      'teacher_email'
     else
       raise %{Can't find a mapping from #{field_description.inspect} to an id: #{__FILE__}}
     end
@@ -82,6 +90,8 @@ module NavigationHelpers
       'Chargify Submit'
     when 're-run a course'
       'Save Section'
+    when 'add a teacher'
+      'Save Teacher'
     else
       raise %{Can't find a mapping from #{button_text.inspect} to text: #{__FILE__}}
     end
