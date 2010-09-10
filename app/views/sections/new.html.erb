@@ -1,4 +1,5 @@
 <% semantic_form_for [@course, @section] do |form| %>
+  <%= form.semantic_errors %>
   <% form.inputs do %>
     <%= form.input :starts_on, :as => :text %>
     <%= form.input :ends_on, :as => :text %>

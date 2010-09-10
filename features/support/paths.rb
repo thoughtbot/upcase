@@ -60,6 +60,12 @@ module NavigationHelpers
       'course_reminder_email'
     when 'that the course is public'
       'course_public'
+    when 'section start'
+      'section_starts_on'
+    when 'section end'
+      'section_ends_on'
+    when 'section teacher'
+      'section_section_teachers_attributes_0_teacher_id'
     else
       raise %{Can't find a mapping from #{field_description.inspect} to an id: #{__FILE__}}
     end

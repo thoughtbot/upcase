@@ -1,4 +1,8 @@
 class Section < ActiveRecord::Base
+  validates_presence_of :starts_on, :ends_on
+
+  validate :must_have_at_least_one_teacher
+
   belongs_to :course
   has_many :section_teachers
   has_many :teachers, :through => :section_teachers
@@ -21,5 +25,11 @@ class Section < ActiveRecord::Base
     else
       "#{starts_on.to_s(:simple)}-#{ends_on.to_s(:simple)}"
     end
+  end
+
+  protected
+
+  def must_have_at_least_one_teacher
+    errors.add_to_base("must specify at least one teacher") unless self.section_teachers.any?
   end
 end

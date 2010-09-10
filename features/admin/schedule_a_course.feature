@@ -15,8 +15,16 @@ Feature: Scheduling a new course
     When I follow the link to the section from "June 14, 2010" to "June 17, 2010"
     Then I see that "Albert Einstein" is teaching
 
-  @wip
   Scenario: Adding a new section without filling in the teacher
+    Given I am signed in as an admin
+    And a course exists with a name of "Test-Driven Sleeping"
+    When I go to the home page
+    And I follow the link to re-run the course "Test-Driven Sleeping"
+    And I press the button to re-run a course
+    Then I see the "can't be blank" error for the following fields:
+      | section start   |
+      | section end     |
+    And I see that the section teacher can't be blank
 
   @wip
   Scenario: Adding a new section and a new teacher
