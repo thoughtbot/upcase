@@ -30,5 +30,8 @@ Feature: Scheduling a new course
   Scenario: Adding a new section and a new teacher
     # must populate the teachers.gravatar_hash field
  
-  @wip
   Scenario: Adding a new section as a student
+    Given I am signed in as a student
+    And a course exists with a name of "Test-Driven Sleeping"
+    When I go to the new section page for "Test-Driven Sleeping"
+    Then I see the permission denied error
