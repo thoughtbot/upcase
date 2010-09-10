@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include Clearance::User
 
+  validates_presence_of :first_name, :last_name
+
   has_many :registrations
   has_many :sections, :through => :registrations
 

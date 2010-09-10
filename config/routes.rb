@@ -6,7 +6,9 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :courses, :only => [:index, :new, :create] do |courses|
-    courses.resources :sections, :only => [:new, :create, :edit, :update]
+    courses.resources :sections, :only => [:new, :create, :edit, :update] do |sections|
+      sections.resources :registrations, :only => [:new, :create]
+    end
     courses.resources :teachers, :only => [:new, :create]
   end
 
