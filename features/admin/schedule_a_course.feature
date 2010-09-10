@@ -45,7 +45,18 @@ Feature: Scheduling a new course
     When I follow the link to the section from "June 14, 2010" to "June 17, 2010"
     Then I see that "Samuel Beckett" is teaching
     And "Samuel Beckett" has a Gravatar for "sbeckett@example.com"
- 
+
+  Scenario: Adding a new teacher with invalid data
+    Given I am signed in as an admin
+    And a course exists with a name of "Test-Driven Sleeping"
+    When I go to the home page
+    And I follow the link to re-run the course "Test-Driven Sleeping"
+    And I follow the link to create a new teacher
+    And I press the button to add a teacher
+    Then I see the "can't be blank" error for the following fields:
+      | teacher's name  |
+      | teacher's email |
+
   Scenario: Adding a new section as a student
     Given I am signed in as a student
     And a course exists with a name of "Test-Driven Sleeping"
