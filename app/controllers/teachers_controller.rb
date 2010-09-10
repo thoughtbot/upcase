@@ -5,9 +5,12 @@ class TeachersController < ApplicationController
   end
 
   def create
-    teacher = Teacher.new(params[:teacher])
-    teacher.save
-    course = Course.find(params[:course_id])
-    redirect_to new_course_section_url(course)
+    @course = Course.find(params[:course_id])
+    @teacher = Teacher.new(params[:teacher])
+    if @teacher.save
+      redirect_to new_course_section_url(@course)
+    else
+      render :new
+    end
   end
 end
