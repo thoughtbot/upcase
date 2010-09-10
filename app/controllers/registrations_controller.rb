@@ -20,8 +20,13 @@ class RegistrationsController < ApplicationController
     @course = Course.find(params[:course_id])
     @section = @course.sections.find(params[:section_id])
     @registration = @section.registrations.build
-    @user = @registration.build_user(params[:user])
-    @registration.save
-    render :new
+    @user = @registration.build_user(params[:user].
+              merge(:password => '12343', :password_confirmation => '12343'))
+    if @registration.save
+      flash[:success] ='Student has been enrolled.'
+      redirect_to edit_course_section_url(@course, @section)
+    else
+      render :new
+    end
   end
 end

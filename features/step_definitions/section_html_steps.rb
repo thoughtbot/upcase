@@ -35,3 +35,9 @@ Then '"$teacher_name" has a Gravatar for "$teacher_email"' do |teacher_name, tea
   teacher = Teacher.find_by_email!(teacher_email)
   page.should have_css(%{img[src="http://www.gravatar.com/avatar/#{gravatar_hash}?s=20"]})
 end
+
+Then 'I see the user "$user_name" in the list of users' do |user_name|
+  within('#student-list ul') do
+    page.should have_content(user_name)
+  end
+end

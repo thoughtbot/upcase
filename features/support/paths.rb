@@ -115,6 +115,8 @@ module NavigationHelpers
       'You do not have permission to view that page'
     when 'section creation'
       'Section was successfully created'
+    when 'section enrollment'
+      'Student has been enrolled'
     else
       raise %{Can't find a mapping from #{flash_text.inspect} to text: #{__FILE__}}
     end
