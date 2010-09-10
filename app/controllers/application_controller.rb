@@ -5,4 +5,10 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
+  def must_be_admin
+    unless current_user && current_user.admin?
+      flash[:error] = 'You do not have permission to view that page.'
+      redirect_to root_url
+    end
+  end
 end

@@ -11,6 +11,9 @@ module NavigationHelpers
       new_password_path
     when 'the list of courses'
       courses_path
+    when /^the new section page for "([^"]+)"$/
+      course = Course.find_by_name!($1)
+      new_course_section_path(course)
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
         "Now, go and add a mapping in #{__FILE__}"
