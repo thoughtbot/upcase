@@ -29,3 +29,9 @@ end
 Then "I see that the section teacher can't be blank" do
   page.should have_content("must specify at least one teacher")
 end
+
+Then '"$teacher_name" has a Gravatar for "$teacher_email"' do |teacher_name, teacher_email|
+  gravatar_hash = Digest::MD5.hexdigest(teacher_email.strip.downcase)
+  teacher = Teacher.find_by_email!(teacher_email)
+  page.should have_css(%{img[src="http://www.gravatar.com/avatar/#{gravatar_hash}?s=20"]})
+end
