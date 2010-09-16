@@ -38,6 +38,18 @@ class SectionsController < ApplicationController
     @teachers = Teacher.all
   end
 
+  def update
+    @course = Course.find(params[:course_id])
+    @section = @course.sections.find(params[:id])
+    @teachers = Teacher.all
+    if @section.update_attributes(params[:section])
+      flash[:success] = 'Section was successfully updated'
+      redirect_to courses_path
+    else
+      render :action => 'edit'
+    end
+  end
+
   protected
 
   def dashboard_if_admin
