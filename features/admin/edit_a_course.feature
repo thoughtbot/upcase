@@ -45,3 +45,21 @@ Feature: Editing a course
       | Do you wear pants?  | Define "Pants." |
       | Do I need a helmet? | Of course.      |
 
+  @javascript
+  Scenario: Edit a course and add more than one FAQ
+    Given I am signed in as an admin
+    And a course exists with a name of "Test-Driven Sleeping"
+    When I go to the home page
+    And I follow the link to edit the course "Test-Driven Sleeping"
+    And I follow "Add Question"
+    And I fill in the following questions:
+      | question            | answer          |
+      | Do you wear pants?  | Define "Pants." |
+      | Do I need a helmet? | Of course.      |
+    And I press the button to update a course
+    Then I see the successful course update notice
+    When I follow the link to edit the course "Test-Driven Sleeping"
+    Then I see the following questions:
+      | question            | answer          |
+      | Do you wear pants?  | Define "Pants." |
+      | Do I need a helmet? | Of course.      |
