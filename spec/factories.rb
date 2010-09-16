@@ -50,3 +50,9 @@ Factory.define(:section_teacher) do |section_teacher_factory|
   section_teacher_factory.association :section
   section_teacher_factory.association :teacher
 end
+
+Factory.define(:question) do |question_factory|
+  question_factory.association :course
+  question_factory.question    "What's up, buddy?"
+  question_factory.answer      "Not much, bro."
+end
