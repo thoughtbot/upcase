@@ -9,3 +9,5 @@ coverage/*
 rerun.txt
 tags
 !.keep
+tmp/*
+
