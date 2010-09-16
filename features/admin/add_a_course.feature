@@ -5,7 +5,8 @@ Feature: Adding a course
     When I go to the home page
     And I follow the link to create a new course
     And I press the button to create a course
-    Then I see the "can't be blank" error for the following fields:
+    Then I should see the admin header
+    And I see the "can't be blank" error for the following fields:
       | course name        |
       | course description |
       | course price       |
@@ -17,7 +18,8 @@ Feature: Adding a course
     Given I am signed in as an admin
     When I go to the home page
     And I follow the link to create a new course
-    And I fill in the course name with "Test-Driven Haskell"
+    Then I should see the admin header
+    When I fill in the course name with "Test-Driven Haskell"
     And I fill in the course description with "Learn Haskell the thoughtbot way"
     And I fill in the course price with "1900"
     And I fill in the start time with "09:00"

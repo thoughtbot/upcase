@@ -6,7 +6,8 @@ Feature: Scheduling a new course
     And a teacher exists with a name of "Albert Einstein"
     When I go to the home page
     And I follow the link to re-run the course "Test-Driven Sleeping"
-    And I select the start date of "June 14, 2010"
+    Then I should see the admin header
+    When I select the start date of "June 14, 2010"
     And I select the end date of "June 17, 2010"
     And I select the teacher "Albert Einstein"
     And I press the button to re-run a course
@@ -21,7 +22,8 @@ Feature: Scheduling a new course
     When I go to the home page
     And I follow the link to re-run the course "Test-Driven Sleeping"
     And I press the button to re-run a course
-    Then I see the "can't be blank" error for the following fields:
+    Then I should see the admin header
+    And I see the "can't be blank" error for the following fields:
       | section start   |
       | section end     |
     And I see that the section teacher can't be blank
@@ -71,7 +73,8 @@ Feature: Scheduling a new course
       | name: Test-Driven Sleeping | June 11, 2010 | June 14, 2010 |
     When I go to the home page
     And I follow the link to the section from "June 11, 2010" to "June 14, 2010"
-    And I select the start date of "June 14, 2010"
+    Then I should see the admin header
+    When I select the start date of "June 14, 2010"
     And I select the end date of "June 17, 2010"
     And I press the button to update a section
     Then I see the successful section update notice
@@ -88,3 +91,4 @@ Feature: Scheduling a new course
     And I blank the section start field
     And I press the button to update a section
     Then I see the "can't be blank" error for the section start field
+    And I should see the admin header

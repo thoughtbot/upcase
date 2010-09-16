@@ -1,24 +1,14 @@
-<div class="top">
-  <div class="wrapper">
-    <h2>Admin</h2>
-  </div>
-</div>
-<div id="content" class="admin">
-  <div class="wrapper">
-    <div id="admin-nav" class="clearfix">
-      <ul>
-        <li><a href="/pages/admin-courses">Courses</a></li>
-        <li class="raquo">&raquo;</li>
-        <li><a href="/pages/admin-course">Ruby on Rails</a></li>
-      </ul>
-    </div>
-    <div class="dark-content clearfix">
-      <% semantic_form_for @course do |form| %>
-        <%= render :partial => 'fields', :locals => { :form => form } %>
-        <% form.buttons do -%>
-          <%= form.commit_button 'Save Course' %>
-        <% end -%>
-      <% end %>
-    </div>
-  </div>
-</div>
+<% content_for :nav do -%>
+  <ul>
+    <li><a href="/pages/admin-courses">Courses</a></li>
+    <li class="raquo">&raquo;</li>
+    <li><a href="/pages/admin-course">Ruby on Rails</a></li>
+  </ul>
+<% end -%>
+
+<% semantic_form_for @course do |form| %>
+  <%= render :partial => 'fields', :locals => { :form => form } %>
+  <% form.buttons do -%>
+    <%= form.commit_button 'Save Course' %>
+  <% end -%>
+<% end %>

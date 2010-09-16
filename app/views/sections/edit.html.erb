@@ -1,48 +1,33 @@
-<div class="top">
-  <div class="wrapper">
-    <h2>Admin</h2>
-  </div>
-</div>
-<div id="content" class="admin">
-  <div class="wrapper">
-    <div class="dark-content clearfix">
+<% semantic_form_for [@course, @section] do |form| %>
+  <%= render :partial => 'inputs',
+             :locals  => { :form     => form,
+                           :course   => @course,
+                           :teachers => @teachers } %>
 
-      <% semantic_form_for [@course, @section] do |form| %>
-
-        <%= render :partial => 'inputs',
-                   :locals  => { :form     => form,
-                                 :course   => @course,
-                                 :teachers => @teachers } %>
-
-        <div id="admin-section-right">
-          <div id="seats-available" class="clearfix">
-            <label>
-              <input type="text" value="12" />
-              Seats Available
-            </label>
-          </div>
-          <div id="student-list" class="cool-list">
-            <h3>
-              4 Students
-              <%= link_to 'Add Student', new_course_section_registration_path(@course, @section), :id => 'add-student' %>
-            </h3>
-            <ul>
-              <% @section.students.each do |user| %>
-                <li>
-                  <%= link_to h(user.name), '#' %>
-                  <a href="#" class="remove-teacher">X</a>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-
-        <% form.buttons do %>
-          <%= form.commit_button 'Save Section' %>
+  <div id="admin-section-right">
+    <div id="seats-available" class="clearfix">
+      <label>
+        <input type="text" value="12" />
+        Seats Available
+      </label>
+    </div>
+    <div id="student-list" class="cool-list">
+      <h3>
+        4 Students
+        <%= link_to 'Add Student', new_course_section_registration_path(@course, @section), :id => 'add-student' %>
+      </h3>
+      <ul>
+        <% @section.students.each do |user| %>
+          <li>
+            <%= link_to h(user.name), '#' %>
+            <a href="#" class="remove-teacher">X</a>
+          </li>
         <% end %>
-
-      <% end %>
-
+      </ul>
     </div>
   </div>
-</div>
+
+  <% form.buttons do %>
+    <%= form.commit_button 'Save Section' %>
+  <% end %>
+<% end %>

@@ -1,12 +1,15 @@
 class CoursesController < ApplicationController
   before_filter :must_be_admin
+  layout 'admin'
 
   def index
     @courses = Course.all
+    render
   end
 
   def new
     @course = Course.new
+    render
   end
 
   def create
@@ -30,7 +33,7 @@ class CoursesController < ApplicationController
       flash[:success] = 'Course was successfully updated.'
       redirect_to courses_url
     else
-      render :action => 'edit'
+      render 'edit'
     end
   end
 end

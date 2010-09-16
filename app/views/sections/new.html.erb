@@ -1,25 +1,12 @@
-<div class="top">
-  <div class="wrapper">
-    <h2>Admin</h2>
-  </div>
-</div>
-<div id="content" class="admin">
-  <div class="wrapper">
-    <div class="dark-content clearfix">
+<% semantic_form_for [@course, @section] do |form| %>
 
-      <% semantic_form_for [@course, @section] do |form| %>
+  <%= render :partial => 'inputs',
+             :locals  => { :form     => form,
+                           :course   => @course,
+                           :teachers => @teachers } %>
 
-        <%= render :partial => 'inputs',
-                   :locals  => { :form     => form,
-                                 :course   => @course,
-                                 :teachers => @teachers } %>
+  <% form.buttons do %>
+    <%= form.commit_button 'Save Section' %>
+  <% end %>
 
-        <% form.buttons do %>
-          <%= form.commit_button 'Save Section' %>
-        <% end %>
-
-      <% end %>
-
-    </div>
-  </div>
-</div>
+<% end %>
