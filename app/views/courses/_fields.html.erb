@@ -24,10 +24,12 @@
 <div id="faq-form" class="clearfix">
   <h3>FAQ</h3>
   <ul>
-    <li>
-      <input type="text" placeholder="Question" />
-      <textarea placeholder="Answer" ></textarea>
-    </li>
+    <% form.fields_for :questions, form.object.questions_with_blank do |question_fields| -%>
+      <li>
+        <%= question_fields.text_field :question, :placeholder => 'Question' %>
+        <%= question_fields.text_area :answer, :placeholder => 'Answer' %>
+      </li>
+    <% end -%>
   </ul>
   <a href="#" id="add-question">Add Question</a>
 </div>
