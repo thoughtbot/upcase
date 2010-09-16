@@ -107,7 +107,7 @@ module NavigationHelpers
       'Save Course'
     when 'submit the Chargify form'
       'Chargify Submit'
-    when 're-run a course'
+    when 're-run a course', 'update a section'
       'Save Section'
     when 'add a teacher'
       'Save Teacher'
@@ -128,6 +128,8 @@ module NavigationHelpers
       'You do not have permission to view that page'
     when 'section creation'
       'Section was successfully created'
+    when 'section update'
+      'Section was successfully updated'
     when 'section enrollment'
       'Student has been enrolled'
     else
