@@ -2,6 +2,10 @@ When 'I fill in the $field_name with "$value"' do |field_name,value|
   fill_in field_id_for(field_name), :with => value
 end
 
+When 'I blank the $field_name field' do |field_name|
+  fill_in field_id_for(field_name), :with => ''
+end
+
 When 'I press the button to $button_action' do |button_action|
   click_button button_text_for(button_action)
 end
@@ -16,6 +20,13 @@ Then 'I see the "$error_message" error for the following fields:' do |error_mess
       page.should have_content(error_message), "expected #{field} to have the error: #{error_message}"
     end
   end
+end
+
+Then 'I see the "$error_message" error for the $field_name field' do |error_message, field_name|
+  steps %{
+    Then I see the "#{error_message}" error for the following fields:
+      | #{field_name} |
+  }
 end
 
 When 'I select the start date of "$date_string"' do |date_string|
