@@ -40,3 +40,10 @@ end
 When 'I select the teacher "$teacher_name"' do |teacher_name|
   check teacher_name
 end
+
+Then 'the $field_name field should contain "$value"' do |field_name, expected_value|
+  field = find_field(field_id_for(field_name))
+  actual_value = (field.tag_name == 'textarea') ? field.text : field.value
+  actual_value.should == expected_value
+end
+

@@ -46,22 +46,19 @@ Feature: Adding a course
     Then I see the successful course creation notice
     And I see the admin listing include a course named "Test-Driven Haskell"
 
-  @wip
   Scenario: Add a course with a FAQ
     Given I am signed in as an admin
     When I go to the home page
     And I follow the link to create a new course
-    And I fill in the course name with "Test-Driven Haskell"
-    And I fill in the course description with "Learn Haskell the thoughtbot way"
-    And I fill in the course price with "1900"
-    And I select the start time as "09:00"
-    And I select the end time as "17:00"
-    And I fill in the location with "41 Winter St 02108"
+    And I fill in the required course fields
+    And I fill in the course name with "Haskell"
     And I fill in the question 1 with "Do I need a helmet?"
     And I fill in the answer 1 with "Of course."
     And I press the button to create a course
     Then I see the successful course creation notice
-    And I see the course named "Test-Driven Haskell"
+    When I follow the link to edit the course "Haskell"
+    Then the question 1 field should contain "Do I need a helmet?"
+    And the answer 1 field should contain "Of course."
 
   Scenario: Adding a course as a non-admin
     Given I am signed in as a student
