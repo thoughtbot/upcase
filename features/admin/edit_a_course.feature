@@ -27,14 +27,21 @@ Feature: Editing a course
     Then I see the successful course update notice
     And I see the course named "Test-Driven Haskell"
 
-  @wip
   Scenario: Edit a course's FAQ
     Given I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
+    And the following questions exist:
+      | course                     | question           | answer          |
+      | name: Test-Driven Sleeping | Do you wear pants? | Define "Pants." |
     When I go to the home page
     And I follow the link to edit the course "Test-Driven Sleeping"
     And I fill in the question 2 with "Do I need a helmet?"
     And I fill in the answer 2 with "Of course."
-    And I press the button to create a course
+    And I press the button to update a course
     Then I see the successful course update notice
-    And I see the course named "Test-Driven Haskell"
+    When I follow the link to edit the course "Test-Driven Sleeping"
+    Then I see the following questions:
+      | question            | answer          |
+      | Do you wear pants?  | Define "Pants." |
+      | Do I need a helmet? | Of course.      |
+
