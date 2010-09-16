@@ -15,7 +15,9 @@
     <div class="dark-content clearfix">
       <% semantic_form_for @course do |form| %>
         <%= render :partial => 'fields', :locals => { :form => form } %>
-        <input type="submit" value="Save Course" />
+        <% form.buttons do -%>
+          <%= form.commit_button 'Save Course' %>
+        <% end -%>
       <% end %>
     </div>
   </div>
