@@ -1,13 +1,18 @@
-<% semantic_form_for [@course, @section] do |form| %>
-  <% form.inputs do %>
-    <%= form.input :starts_on, :as => :text %>
-    <%= form.input :ends_on, :as => :text %>
+<div class="top">
+  <div class="wrapper">
+    <h2>Admin</h2>
+  </div>
+</div>
+<div id="content" class="admin">
+  <div class="wrapper">
+    <div class="dark-content clearfix">
 
-    <% form.semantic_fields_for :section_teachers do |section_teacher| %>
-      <%= section_teacher.input :teacher_id, :collection => @teachers, :as => :check_boxes, :label_method => teacher_label %>
-    <% end %>
+      <% semantic_form_for [@course, @section] do |form| %>
 
-  <% end %>
+        <%= render :partial => 'inputs',
+                   :locals  => { :form     => form,
+                                 :course   => @course,
+                                 :teachers => @teachers } %>
 
         <div id="admin-section-right">
           <div id="seats-available" class="clearfix">
@@ -32,8 +37,12 @@
           </div>
         </div>
 
-  <% form.buttons do %>
-    <%= form.commit_button 'Save Section' %>
-  <% end %>
+        <% form.buttons do %>
+          <%= form.commit_button 'Save Section' %>
+        <% end %>
 
-<% end %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
