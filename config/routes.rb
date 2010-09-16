@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
     sections.resources :registrations, :only => [:index]
   end
 
-  map.resources :courses, :only => [:index, :new, :create] do |courses|
+  map.resources :courses, :only => [:index, :new, :create, :edit, :update] do |courses|
     courses.resources :sections, :only => [:new, :create, :edit, :update] do |sections|
       sections.resources :registrations, :only => [:new, :create]
     end
