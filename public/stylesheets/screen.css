@@ -610,19 +610,6 @@ body {
   font-weight: bold;
   padding: 10px;
   width: 430px; }
-#content.admin #course-description-li {
-  float: left;
-  width: 450px; }
-#content.admin #course-details-right {
-  width: 310px;
-  float: right; }
-  #content.admin #course-details-right input {
-    width: 285px; }
-#content.admin .course-price-li input {
-  padding: 10px 10px 10px 30px;
-  width: 265px;
-  background: url(/images/price-icon.png) 10px 8px no-repeat, -webkit-gradient(linear, left top, left bottom, color-stop(1, white), color-stop(0, #eeeeee));
-  background: -moz-linear-gradient(bottom, white 0%, #eeeeee 100%); }
 #content.admin #resources-form {
   margin: 25px 0; }
   #content.admin #resources-form ul li {

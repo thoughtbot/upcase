@@ -739,36 +739,6 @@ body {
     padding: 10px;
     width: 430px;
   }
-  #course-description-li {
-    float: left;
-    width: 450px;
-  }
-  #course-details-right {
-    width: 310px;
-    float: right;
-    input {
-     width: 285px; 
-    }
-  }
-  .course-price-li {
-    input {
-      padding: 10px 10px 10px 30px; 
-      width: 265px;
-      background:
-        url(/images/price-icon.png) 10px 8px no-repeat,
-        -webkit-gradient(
-          linear,
-          left top,
-          left bottom,
-          color-stop(1, #fff),
-          color-stop(0, #eee));
-          background:
-        -moz-linear-gradient(
-            bottom,
-            #fff 0%,
-            #eee 100%);
-    }
-  }
   #resources-form {
     margin: 25px 0;
     ul {
