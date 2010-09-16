@@ -41,3 +41,25 @@
   <h3>Reminder Email</h3>
   <%= form.input :reminder_email, :label => nil %>
 </div>
+
+<% content_for :javascript do -%>
+  <script type="text/javascript">
+    var questionTemplate = $('#faq-form li').last().clone();
+    var addBlankQuestion = function () {
+      var clone = questionTemplate.clone();
+      var index = $('#faq-form li').length;
+      $(clone).find('input, select, textarea').each(function () {
+        var replacedAttrs = ['id', 'name'];
+        for (var attrIndex in replacedAttrs) {
+          var attr = replacedAttrs[attrIndex];
+          if (this[attr]) {
+            this[attr] = this[attr].replace(/\d+/, index);
+          }
+        }
+      });
+      $('#faq-form ul').append(clone);
+      return false;
+    };
+    $('#add-question').click(addBlankQuestion);
+  </script>
+<% end -%>

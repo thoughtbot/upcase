@@ -60,6 +60,26 @@ Feature: Adding a course
     Then the question 1 field should contain "Do I need a helmet?"
     And the answer 1 field should contain "Of course."
 
+  @javascript
+  Scenario: Add a course with more than one FAQ
+    Given I am signed in as an admin
+    When I go to the home page
+    And I follow the link to create a new course
+    And I fill in the required course fields
+    And I fill in the course name with "Haskell"
+    And I follow "Add Question"
+    And I fill in the following questions:
+      | question            | answer          |
+      | Do you wear pants?  | Define "Pants." |
+      | Do I need a helmet? | Of course.      |
+    And I press the button to create a course
+    Then I see the successful course creation notice
+    When I follow the link to edit the course "Haskell"
+    Then I see the following questions:
+      | question            | answer          |
+      | Do you wear pants?  | Define "Pants." |
+      | Do I need a helmet? | Of course.      |
+
   Scenario: Adding a course as a non-admin
     Given I am signed in as a student
     When I go to the list of courses
