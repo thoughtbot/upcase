@@ -17,6 +17,7 @@ class SectionsController < ApplicationController
     @section = @course.sections.build
     @teachers = Teacher.all
     @section.section_teachers.build
+    render :layout => 'admin'
   end
 
   def create
@@ -28,7 +29,7 @@ class SectionsController < ApplicationController
     else
       @teachers = Teacher.all
       @section.section_teachers.build
-      render :new
+      render :new, :layout => 'admin'
     end
   end
 
@@ -36,6 +37,7 @@ class SectionsController < ApplicationController
     @course = Course.find(params[:course_id])
     @section = @course.sections.find(params[:id])
     @teachers = Teacher.all
+    render :layout => 'admin'
   end
 
   def update
@@ -46,7 +48,7 @@ class SectionsController < ApplicationController
       flash[:success] = 'Section was successfully updated'
       redirect_to courses_path
     else
-      render :action => 'edit'
+      render 'edit', :layout => 'admin'
     end
   end
 
