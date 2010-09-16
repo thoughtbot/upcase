@@ -88,6 +88,14 @@ module NavigationHelpers
       'user_last_name'
     when "student's email"
       'user_email'
+    when /question (\d+)/
+      question_number = $1.to_i
+      question_index = question_number - 1
+      "course_questions_attributes_#{question_index}_question"
+    when /answer (\d+)/
+      answer_number = $1.to_i
+      answer_index = answer_number - 1
+      "course_questions_attributes_#{answer_index}_answer"
     else
       raise %{Can't find a mapping from #{field_description.inspect} to an id: #{__FILE__}}
     end
