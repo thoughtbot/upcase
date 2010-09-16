@@ -49,6 +49,7 @@ config.gem 'builder',
            :lib     => false
 config.gem 'sham_rack',
            :version => '1.3.1'
+config.gem 'sinatra'
 
 # Webrat and dependencies
 # NOTE: don't vendor nokogiri - it's a binary Gem
