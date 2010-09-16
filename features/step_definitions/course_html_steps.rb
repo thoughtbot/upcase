@@ -23,6 +23,16 @@ When 'I fill in the required course fields' do
   }
 end
 
+When 'I fill in the following questions:' do |question_table|
+  question_table.hashes.each_with_index do |question_hash, index|
+    number = index + 1
+    steps %{
+      When I fill in the question #{number} field with "#{question_hash['question']}"
+      And I fill in the answer #{number} field with "#{question_hash['answer']}"
+    }
+  end
+end
+
 Then 'I see the following questions:' do |question_table|
   question_table.hashes.each_with_index do |question_hash, index|
     number = index + 1
