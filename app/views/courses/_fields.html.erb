@@ -1,0 +1,41 @@
+<% form.inputs do %>
+  <%= form.input :name, :label => 'Course Name' %>
+  <%= form.input :description, :label => 'Course Description' %>
+  <div id="course-details-right">
+    <%= form.input :price, :wrapper_html => {:class => 'course-price-li'} %>
+    <%= form.input :location_name, :label => 'Location Name' %>
+    <%= form.input :location, :label => 'Location Address' %>
+  </div>
+  <%= form.input :maximum_students, :label => 'Max Enrollment' %>
+  <%= form.input :public %>
+  <%= form.input :start_at, :as => :text %>
+  <%= form.input :stop_at, :as => :text %>
+<% end %>
+<div id="resources-form" class="clearfix">
+  <h3>Resources</h3>
+  <ul>
+    <li>
+      <input type="text" placeholder="Resource Name" class="resource-name" />
+      <input type="text" placeholder="Resource Link" class="resource-link" />
+    </li>
+  </ul>
+  <a href="#" id="add-resource">Add Resource</a>
+</div>
+<div id="faq-form" class="clearfix">
+  <h3>FAQ</h3>
+  <ul>
+    <li>
+      <input type="text" placeholder="Question" />
+      <textarea placeholder="Answer" ></textarea>
+    </li>
+  </ul>
+  <a href="#" id="add-question">Add Question</a>
+</div>
+<div id="terms-form">
+  <h3>Terms &amp; Conditions</h3>
+  <%= form.input :terms_of_service, :label => nil %>
+</div>
+<div id="email-form">
+  <h3>Reminder Email</h3>
+  <%= form.input :reminder_email, :label => nil %>
+</div>

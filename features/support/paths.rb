@@ -38,6 +38,9 @@ module NavigationHelpers
       'Create New Teacher'
     when 'add a new student'
       'Add Student'
+    when /^edit the course "([^"]+)"$/
+      course = Course.find_by_name!($1)
+      course.name
     else
       raise %{Can't find a mapping from #{link_description.inspect} to a path: #{__FILE__}}
     end
@@ -92,7 +95,7 @@ module NavigationHelpers
 
   def button_text_for(button_text)
     case button_text
-    when 'create a course'
+    when 'create a course', 'update a course'
       'Save Course'
     when 'submit the Chargify form'
       'Chargify Submit'
@@ -111,6 +114,8 @@ module NavigationHelpers
     case flash_text
     when 'course creation'
       'Course was successfully created'
+    when 'course update'
+      'Course was successfully updated'
     when 'permission denied'
       'You do not have permission to view that page'
     when 'section creation'
