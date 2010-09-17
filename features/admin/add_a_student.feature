@@ -50,5 +50,11 @@ Feature: Adding a student to a course
     Then I see the successful section enrollment notice
     And I see the user "Jimbo Jones" in the list of users
 
-  @wip
   Scenario: Adding a user as a student
+    Given I am signed in as a student
+    And a course exists with a name of "Test-Driven Sleeping"
+    And the following section exists:
+      | course                     | starts on    | ends on       |
+      | name: Test-Driven Sleeping | June 14,2010 | June 18, 2010 |
+    When I go to the page to add a new student to the section from "June 14, 2010" to "June 18, 2010"
+    Then I see the permission denied error
