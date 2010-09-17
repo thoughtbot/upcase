@@ -10,18 +10,22 @@
   <%= form.input :stop_at, :as => :string %>
 <% end %>
 
-<!--
 <div id="resources-form" class="clearfix">
   <h3>Resources</h3>
   <ul>
-    <li>
-      <input type="text" placeholder="Resource Name" class="resource-name" />
-      <input type="text" placeholder="Resource Link" class="resource-link" />
-    </li>
+    <% form.fields_for :resources, form.object.resources_with_blank do |resource_fields| -%>
+      <li>
+        <%= resource_fields.text_field :name,
+                                       :placeholder => 'Resource Name',
+                                       :class       => 'resource-name' %>
+        <%= resource_fields.text_field :url,
+                                       :placeholder => 'Resource Link',
+                                       :class       => 'resource-link' %>
+      </li>
+    <% end -%>
   </ul>
   <a href="#" id="add-resource">Add Resource</a>
 </div>
--->
 
 <div id="faq-form" class="clearfix">
   <h3>FAQ</h3>
@@ -48,22 +52,27 @@
 
 <% content_for :javascript do -%>
   <script type="text/javascript">
-    var questionTemplate = $('#faq-form li').last().clone();
-    var addBlankQuestion = function () {
-      var clone = questionTemplate.clone();
-      var index = $('#faq-form li').length;
-      $(clone).find('input, select, textarea').each(function () {
-        var replacedAttrs = ['id', 'name'];
-        for (var attrIndex in replacedAttrs) {
-          var attr = replacedAttrs[attrIndex];
-          if (this[attr]) {
-            this[attr] = this[attr].replace(/\d+/, index);
+    var templateField = function (fieldSelector, containerSelector, triggerSelector) {
+      var template = $(fieldSelector).last().clone();
+      var addBlank = function () {
+        var clone = template.clone();
+        var index = $(fieldSelector).length;
+        $(clone).find('input, select, textarea').each(function () {
+          var replacedAttrs = ['id', 'name'];
+          for (var attrIndex in replacedAttrs) {
+            var attr = replacedAttrs[attrIndex];
+            if (this[attr]) {
+              this[attr] = this[attr].replace(/\d+/, index);
+            }
           }
-        }
-      });
-      $('#faq-form ul').append(clone);
-      return false;
+        });
+        $(containerSelector).append(clone);
+        return false;
+      };
+      $(triggerSelector).click(addBlank);
     };
-    $('#add-question').click(addBlankQuestion);
+
+    templateField('#faq-form li', '#faq-form ul', '#add-question');
+    templateField('#resources-form li', '#resources-form ul', '#add-resource');
   </script>
 <% end -%>
