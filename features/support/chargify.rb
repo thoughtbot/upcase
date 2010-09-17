@@ -43,6 +43,17 @@ class Customers
   end
 end
 
+class Subscriptions
+  def self.add!(params)
+    @subscriptions ||= []
+    @subscriptions << params
+  end
+
+  def self.find_by_id(id)
+    @subscriptions.detect{|subscription| subscription[:id] == id}
+  end
+end
+
 get '/h/:id/subscriptions/new' do |id|
   <<-HTML
   <form action="http://thoughtbot-workshops.chargify.com/h/#{id}/subscriptions" method="post">
@@ -58,14 +69,26 @@ post '/h/:id/subscriptions' do |id|
   course_id = id_to_course_id(id)
   section_id = id_to_section_id(id)
   create_customer!(params.merge(:id => id))
-
+  create_subscription!(id)
   Capybara.app = Misc.rails_app if Misc.rails_app
   begin
-    Capybara.current_session.visit "http://www.example.com/sections/#{section_id}/registrations?customer_id=#{id}"
+    Capybara.current_session.visit "http://www.example.com/sections/#{section_id}/registrations?customer_id=#{id}&subscription_id=#{id}"
   rescue => e
     p e
     raise e
   end
+end
+
+get '/subscriptions/:id.xml' do |id|
+  subscription = id_to_subscription(id)
+
+  <<-XML
+    <?xml version="1.0" encoding="UTF-8"?>
+    <subscription>
+      <id type="integer">#{subscription[:id]}</id>
+      <state>#{subscription[:state]}</state>
+    </subscription>
+  XML
 end
 
 get '/customers/:id.xml' do |id|
@@ -97,8 +120,16 @@ helpers do
     Customers.find_by_id(id)
   end
 
+  def id_to_subscription(id)
+    Subscriptions.find_by_id(id)
+  end
+
   def create_customer!(params)
     Customers.add!(params)
+  end
+
+  def create_subscription!(id)
+    Subscriptions.add!(:id => id, :state => 'active')
   end
 end
 
