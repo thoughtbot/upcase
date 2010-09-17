@@ -12,6 +12,15 @@ class Customer
     end
   end
 
+  def self.valid_subscription?(subscription_id)
+    open("http://thoughtbot-workshops.chargify.com/subscriptions/#{subscription_id}.xml") do |f|
+      doc = Nokogiri::XML(f.read)
+      xml_content(doc, 'state') == 'active'
+    end
+  rescue
+    false
+  end
+
   protected
 
   def self.xml_content(document, tag_name)

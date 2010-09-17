@@ -14,6 +14,9 @@ module NavigationHelpers
     when /^the new section page for "([^"]+)"$/
       course = Course.find_by_name!($1)
       new_course_section_path(course)
+    when /the page to add a new student to the section from "([^"]+)" to "([^"]+)"/
+      section = Section.find_by_starts_on_and_ends_on!(Date.parse($1), Date.parse($2))
+      new_course_section_registration_path(section.course, section)
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
         "Now, go and add a mapping in #{__FILE__}"
