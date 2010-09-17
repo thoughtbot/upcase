@@ -96,6 +96,14 @@ module NavigationHelpers
       answer_number = $1.to_i
       answer_index = answer_number - 1
       "course_questions_attributes_#{answer_index}_answer"
+    when /resource (\d+)/
+      resource_number = $1.to_i
+      resource_index = resource_number - 1
+      "course_resources_attributes_#{resource_index}_name"
+    when /url (\d+)/
+      url_number = $1.to_i
+      url_index = url_number - 1
+      "course_resources_attributes_#{url_index}_url"
     else
       raise %{Can't find a mapping from #{field_description.inspect} to an id: #{__FILE__}}
     end
