@@ -11,3 +11,13 @@ require 'tasks/rails'
 
 desc "Run all specs and features"
 task :default => [:spec, :cucumber]
+
+namespace :rcov do
+  desc "Run features with coverage"
+  Cucumber::Rake::Task.new(:cucumber) do |t|
+    t.rcov = true
+    t.rcov_opts = %w(--rails --exclude features\/,osx\/objc,gems\/)
+    t.fork = true
+  end
+end
+
