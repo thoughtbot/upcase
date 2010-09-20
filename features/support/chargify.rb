@@ -119,7 +119,8 @@ get '/products/:id.xml' do |id|
       <description>`your value`</description>
       <interval type="integer">1</interval>
       <interval_unit>month</interval_unit>
-      <price_in_cents type="integer">#{course.price*100}</price_in_cents>
+      <price_in_cents type="integer">`your value`</price_in_cents>
+      <initial_charge_in_cents type="integer">#{course.price.to_i * 1000}</initial_charge_in_cents>
       <product_family>
         <accounting_code>`your value`</accounting_code>
         <description >`your value`</description>
