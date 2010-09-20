@@ -31,6 +31,7 @@ Factory.define(:section) do |section_factory|
   section_factory.association :course
   section_factory.starts_on { 1.day.ago }
   section_factory.ends_on { 1.day.from_now }
+  section_factory.chargify_id "1234"
   section_factory.after_build {|s|
     s.section_teachers << Factory.build(:section_teacher, :section => s)
   }

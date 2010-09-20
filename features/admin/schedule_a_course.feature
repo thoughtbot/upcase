@@ -10,6 +10,7 @@ Feature: Scheduling a new course
     When I select the start date of "June 14, 2010"
     And I select the end date of "June 17, 2010"
     And I select the teacher "Albert Einstein"
+    And I fill in the section chargify id with "1234"
     And I press the button to re-run a course
     Then I see the successful section creation notice
     And I see the section from "June 14, 2010" to "June 17, 2010"
@@ -24,8 +25,9 @@ Feature: Scheduling a new course
     And I press the button to re-run a course
     Then I should see the admin header
     And I see the "can't be blank" error for the following fields:
-      | section start   |
-      | section end     |
+      | section start       |
+      | section end         |
+      | section chargify id |
     And I see that the section teacher can't be blank
 
   Scenario: Adding a new section and a new teacher
@@ -41,6 +43,7 @@ Feature: Scheduling a new course
     And I select the start date of "June 14, 2010"
     And I select the end date of "June 17, 2010"
     And I select the teacher "Samuel Beckett"
+    And I fill in the section chargify id with "1234"
     And I press the button to re-run a course
     Then I see the successful section creation notice
     And I see the section from "June 14, 2010" to "June 17, 2010"
