@@ -35,6 +35,9 @@ Rails::Initializer.run do |config|
   config.gem 'hoptoad_notifier', '>= 2.3.5'
   config.gem 'haml',
              :version => '3.0.16'
+  config.gem 'nokogiri',
+             :version => '>= 1.4.0',
+             :lib     => false
 
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
