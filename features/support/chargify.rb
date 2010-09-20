@@ -167,3 +167,7 @@ end
 ShamRack.at('thoughtbot-workshops.chargify.com').rackup do
   run Sinatra::Application
 end
+
+ShamRack.at('thoughtbot-workshops.chargify.com', 443).rackup do
+  run Sinatra::Application
+end
