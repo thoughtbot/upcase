@@ -44,13 +44,16 @@
         <div id="teachers" class="col">
           <h3>Teachers</h3>
           <ul>
+            <% @section.teachers.each do |teacher| %>
+              <% content_tag(:li, teacher) do %>
+                <%= image_tag("/images/_teachers/#{teacher.image_name}.jpg", :alt => teacher.image_name)%>
+                <h4><%=h teacher.name %></h4>
+                <span>
+                  <%=h teacher.bio %>
+                </span>
+              <% end %>
+            <% end %>
             <li>
-              <%= image_tag("/images/_teachers/fyates.jpg", :alt => 'fyates' )%>
-              <h4>Fred Yates</h4>
-              <span>
-                Fred Yates is an all star programmer who will teach you everything ever.
-              </span>
-              <a href="http://thoughtbot.com/about#fyates">More about Fred</a>
             </li>
           </ul>
         </div>

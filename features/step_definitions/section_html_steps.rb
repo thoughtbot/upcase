@@ -65,3 +65,14 @@ Then 'I see the section price is "$price"' do |price|
     page.should have_content(price)
   end
 end
+
+Then 'I see that one of the teachers is "$teacher_name"' do |teacher_name|
+  within('#teachers') do
+    page.should have_content(teacher_name)
+  end
+end
+
+Then %{I see "$teacher_name"'s avatar} do |teacher_name|
+  teacher = Teacher.find_by_name!(teacher_name)
+  page.should have_css("img[alt='#{teacher.image_name}']")
+end
