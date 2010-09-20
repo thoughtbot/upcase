@@ -1,7 +1,0 @@
-rvm 1.8.7@workshops --create > /dev/null 2>&1
-
-if [[ -s "./workshops.gems" ]]; then
-  if ! rvm gemset import workshops.gems >/dev/null 2>&1; then
-    echo "ERROR: Unable to bootstrap the gems" >&2
-  fi
-fi
