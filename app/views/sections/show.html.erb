@@ -28,18 +28,11 @@
         </div>
       </div>
       <div class="clearfix">
-        <div id="learning" class="col">
-          <h3>What you will learn</h3>
-          <ul>
-            <li>I had to</li>
-            <li>remove the list</li>
-            <li>that I originally</li>
-            <li>had here because</li>
-            <li>it consisted of</li>
-            <li>somewhat private</li>
-            <li>and potentially very</li>
-            <li>damaging information.</li>
-          </ul>
+        <div id="faq" class="col">
+          <h3>Frequently asked questions</h3>
+          <dl>
+             textilize @course.faq
+          </dl>
         </div>
         <div id="teachers" class="col">
           <h3>Teachers</h3>
@@ -53,12 +46,10 @@
                 </span>
               <% end %>
             <% end %>
-            <li>
-            </li>
           </ul>
         </div>
       </div>
-      <% link_to @section.registration_link do %>
+      <% link_to @section.registration_link, :id => "register-button-bottom" do %>
         <div>
           Register for <%= h(@section.course_name) %>
         </div>
@@ -66,12 +57,6 @@
           <%= h(@section.date_range) %>
         </span>
       <% end %>
-      <div id="faq" class="col clearfix">
-        <h4>Frequently asked questions</h4>
-        <dl>
-           textilize @course.faq
-        </dl>
-      </div>
       <div id="terms" class="col clearfix">
         <h4>Terms and conditions</h4>
         <%= textilize @section.course.terms_of_service %>
