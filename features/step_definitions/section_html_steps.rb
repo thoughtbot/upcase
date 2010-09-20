@@ -41,3 +41,27 @@ Then 'I see the user "$user_name" in the list of users' do |user_name|
     page.should have_content(user_name)
   end
 end
+
+Then 'I see the section location is "$location"' do |location|
+  within("#section-location") do
+    page.should have_content(location)
+  end
+end
+
+Then 'I see the section date is "$section_date_range"' do |section_date_range|
+  within("#register-date") do
+    page.should have_content(section_date_range)
+  end
+end
+
+Then 'I see the section time is "$section_time_range"' do |section_time_range|
+  within("#register-time") do
+    page.should have_content(section_time_range)
+  end
+end
+
+Then 'I see the section price is "$price"' do |price|
+  within("#amount") do
+    page.should have_content(price)
+  end
+end
