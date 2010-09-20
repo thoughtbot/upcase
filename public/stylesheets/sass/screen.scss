@@ -5,7 +5,7 @@ $tan: #e5dccb;
   -border-radius: ($radius);
 }
 @mixin gradient($startcolor, $endcolor) {
-    background: 
+    background:
       -webkit-gradient(
         linear,
         left top,
@@ -80,7 +80,7 @@ body {
         background: url(/images/workshops-logo.png);
         text-indent: -9999px;
         display: block;
-      } 
+      }
     }
     ul#nav {
       position: absolute;
@@ -102,7 +102,7 @@ body {
          &:hover {
            background: rgba(255,255,255,.13);
          }
-        } 
+        }
       }
     }
   }
@@ -165,7 +165,7 @@ body {
             text-align: right;
             border-left: 1px solid #c70600;
           }
-        } 
+        }
       }
     }
   }
@@ -206,7 +206,7 @@ body {
          background: url(/images/location.png) 0 0 no-repeat;
          text-align: left;
          font-size: 12px;
-         display: block; 
+         display: block;
          margin: 0 0 15px 0;
          padding: 0 0 0 40px;
          text-decoration: none;
@@ -240,7 +240,7 @@ body {
            width: 256px;
          }
          #register-date {
-           color: #000; 
+           color: #000;
            text-shadow: 0 1px 0 rgba(255,255,255,.2);
            font-size: 16px;
          }
@@ -252,7 +252,7 @@ body {
            font-size: 36px;
          }
          #register-for-class {
-           color: #fff; 
+           color: #fff;
            font-weight: bold;
            text-shadow: 0 -1px 2px rgba(0,0,0,.5);
            height: 50px;
@@ -295,7 +295,7 @@ body {
            text-shadow: 0 -1px 2px rgba(0,0,0,.5);
            color: #fff;
            font-size: 24px;
-           padding: 15px 0;  
+           padding: 15px 0;
         }
         span {
           color: #000;
@@ -326,7 +326,7 @@ body {
         width: 425px;
         p {
          margin: 0 0 14px 0;
-         line-height: 22px; 
+         line-height: 22px;
          font-size: 14px;
          font-weight: 200;
          &:last-child {
@@ -354,14 +354,14 @@ body {
         float: right;
         ul {
          li {
-           padding: 0 0 0 64px;
+
            margin: 25px 0 0 0;
            h4 {
              letter-spacing: 0;
              font-size: 15px;
              color: #fff;
              font-weight: bold;
-             padding: 0 0 8px 0;
+             padding: 0 0 8px 64px;
              border: none;
              -webkit-box-shadow: none;
              -moz-box-shadow: none;
@@ -371,11 +371,17 @@ body {
               line-height: 18px;
               color: #dfd5c5;
               display: block;
+              padding-left: 64px;
             }
             a {
               display: block;
               margin: 5px 0 0 0;
+              padding-left: 64px;
             }
+          }
+          img {
+            float: left;
+            margin: 0;
           }
           li#cpytel {
             background: url(/images/_teachers/cpytel.jpg) 0 0 no-repeat;
@@ -433,7 +439,7 @@ body {
           }
         }
       }
-      #learning {
+      #faq {
         width: 460px;
         float: left;
         ul {
@@ -442,25 +448,14 @@ body {
            float: left;
            width: 185px;
            list-style-type: square;
-           margin: 10px 0 0 0; 
+           margin: 10px 0 0 0;
           }
         }
-      }
-      #faq, 
-      #terms {
-        float: right;
-        width: 380px;
-        p {
-         margin: 15px 0 0 0; 
-        }
-      }
-      #faq {
-        float: left;
         dl {
           margin: 15px 0 0 0;
           dt {
            font-weight: bold;
-           color: #fff; 
+           color: #fff;
            font-size: 16px;
            padding: 0 0 10px 0;
           }
@@ -474,12 +469,17 @@ body {
           }
         }
       }
+      #terms {
+        p {
+         margin: 15px 0 0 0;
+        }
+      }
       .col {
         padding: 25px 0 0 0;
         h3, h4 {
          border-bottom: 1px solid #000;
          padding: 0 0 10px 0;
-         @include shadow(0,1px,0,rgba(255,255,255,.12)); 
+         @include shadow(0,1px,0,rgba(255,255,255,.12));
         }
       }
       h4#why-we-rule {
@@ -637,7 +637,7 @@ body {
       -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
       -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
       a {
-       display: block; 
+       display: block;
        color: $tan;
        text-decoration: none;
        padding: 10px;
@@ -707,7 +707,7 @@ body {
     ul {
      li {
        background: url(/images/calendar-icon.png) 14px 8px no-repeat;
-      } 
+      }
     }
   }
   #teacher-list,
@@ -721,9 +721,9 @@ body {
           color: #aaa;
           font-size: 11px;
           font-style: italic;
-        } 
+        }
        }
-      } 
+      }
     }
   }
   label {
@@ -767,7 +767,7 @@ body {
          width: 742px;
        }
        input.resource-link {
-         padding: 10px 10px 10px 40px; 
+         padding: 10px 10px 10px 40px;
          width: 710px;
          background:
            url(/images/link.png) 10px 8px no-repeat,
@@ -783,7 +783,7 @@ body {
                #fff 0%,
                #eee 100%);
        }
-      } 
+      }
     }
     a#add-resource {
       @include rounded(3px);
@@ -837,7 +837,7 @@ body {
          color: #252525;
          margin: 0;
        }
-      } 
+      }
     }
     a#add-question {
       @include rounded(3px);
@@ -930,7 +930,7 @@ body {
           position: absolute;
           right: 30px;
           top: 0;
-          text-decoration: underline; 
+          text-decoration: underline;
           padding: 0 10px;
           font-size: 12px;
           color: $tan;
@@ -985,7 +985,7 @@ body {
      }
      &:last-child {
        margin: 0;
-     } 
+     }
     }
   }
   #new-teacher-form {
@@ -996,7 +996,7 @@ body {
        float: left;
        input,
        textarea {
-        width: 360px; 
+        width: 360px;
        }
        textarea {
          height: 75px;
@@ -1004,7 +1004,7 @@ body {
        &:nth-of-type(odd) {
          margin: 0;
        }
-      } 
+      }
       li#teacher-photo {
         width: 780px;
         label {
