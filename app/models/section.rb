@@ -22,7 +22,7 @@ class Section < ActiveRecord::Base
   end
 
   def calculate_price
-    open("http://thoughtbot-workshops.chargify.com/products/#{chargify_id}.xml") do |f|
+    open("https://thoughtbot-workshops.chargify.com/products/#{chargify_id}.xml") do |f|
       doc = Nokogiri::XML(f.read)
       (self.class.xml_content(doc, "price_in_cents").to_i / 100.0).to_i
     end
