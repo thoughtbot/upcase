@@ -10,21 +10,21 @@
         <div id="register-right">
           <a href="#" id="location">
             <strong>thoughtbot</strong>
-            <span>41 Winter Street Boston, MA 02108</span>
+            <span id="section-location"><%= h(@section.course_location) %></span>
           </a>
           <a href="#" id="register-button">
             <div id="register-button-top">
-              <div id="register-date"> format_date_range(@course.date_range) </div>
-              <div id="register-time"> format_time_range(@course.date_range) </div>
+              <div id="register-date"><%= h(@section.date_range) %></div>
+              <div id="register-time"><%= h(@section.time_range) %></div>
               <div id="total-price">
-                <div id="amount">number_to_currency @registration.calculate_price, :precision => 0, :delimiter => '' </div>
+                <div id="amount"><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></div>
               </div>
             </div>
             <div id="register-for-class"><%= link_to 'Register for class', @section.registration_link, :id => 'registration-link' %></div>
           </a>
         </div>
         <div id="register-description">
-          <%= textilize @section.course_description %> 
+          <%= textilize @section.course_description %>
         </div>
       </div>
       <div class="clearfix">
@@ -60,19 +60,19 @@
           Register for <%= h(@section.course_name) %>
         </div>
         <span>
-           format_date_range(@course.date_range) 
+          <%= h(@section.date_range) %>
         </span>
       <% end %>
       <div id="faq" class="col clearfix">
         <h4>Frequently asked questions</h4>
         <dl>
-           textilize @course.faq 
+           textilize @course.faq
         </dl>
       </div>
       <div id="terms" class="col clearfix">
         <h4>Terms and conditions</h4>
-         textilize @course.tos 
-      </div> 
+         textilize @course.tos
+      </div>
     </div>
   </div>
 </div>

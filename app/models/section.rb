@@ -9,9 +9,24 @@ class Section < ActiveRecord::Base
   has_many :registrations
   has_many :students, :through => :registrations, :source => :user
 
-  delegate :name, :description, :to => :course, :prefix => :course
+  delegate :name, :description, :location, :to => :course, :prefix => :course
 
   accepts_nested_attributes_for :section_teachers
+
+  def time_range
+    "#{course.start_at.to_s(:time)}-#{course.stop_at.to_s(:time)}"
+  end
+
+  def registration_link
+    "http://thoughtbot-workshops.chargify.com/h/#{chargify_id}/subscriptions/new"
+  end
+
+  def calculate_price
+    open("http://thoughtbot-workshops.chargify.com/products/#{chargify_id}.xml") do |f|
+      doc = Nokogiri::XML(f.read)
+      (self.class.xml_content(doc, "price_in_cents").to_i / 100.0).to_i
+    end
+  end
 
   def date_range
     if starts_on.year == ends_on.year
@@ -30,6 +45,10 @@ class Section < ActiveRecord::Base
   end
 
   protected
+
+  def self.xml_content(document, tag_name)
+    document.search(tag_name).first.try(:content)
+  end
 
   def must_have_at_least_one_teacher
     errors.add_to_base("must specify at least one teacher") unless self.section_teachers.any?
