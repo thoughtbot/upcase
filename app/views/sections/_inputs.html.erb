@@ -2,6 +2,7 @@
 <% form.inputs do %>
   <%= form.input :starts_on, :as => :string %>
   <%= form.input :ends_on, :as => :string %>
+  <%= form.input :chargify_id %>
 
   <%= link_to 'Create New Teacher', new_course_teacher_path(@course), :id => 'new-teacher' %>
   <% form.semantic_fields_for :section_teachers do |section_teacher| %>

@@ -1,5 +1,5 @@
 class Section < ActiveRecord::Base
-  validates_presence_of :starts_on, :ends_on
+  validates_presence_of :starts_on, :ends_on, :chargify_id
 
   validate :must_have_at_least_one_teacher
 

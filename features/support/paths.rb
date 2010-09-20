@@ -79,6 +79,8 @@ module NavigationHelpers
       'section_ends_on'
     when 'section teacher'
       'section_section_teachers_attributes_0_teacher_id'
+    when 'section chargify id'
+      'section_chargify_id'
     when "teacher's name"
       'teacher_name'
     when "teacher's bio"
