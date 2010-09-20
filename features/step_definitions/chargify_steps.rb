@@ -30,6 +30,11 @@ Given 'the following section exists on Chargify:' do |table|
   Given %{the following section exists:}, table
 end
 
+Given 'the following section taught by "$teacher_name" exists on Chargify:' do |teacher_name, table|
+  Sections.add!(table.hashes.first)
+  Given %{the following section taught by "#{teacher_name}" exists:}, table
+end
+
 When 'I fill in the following Chargify customer:' do |table|
   table.hashes.each do |customer_hash|
     customer_hash.each do |field,value|
