@@ -9,6 +9,10 @@ Feature: Viewing section details
     And the following section exists on Chargify:
       | course                    | starts on     | ends on       | chargify id |
       | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 | 1234        |
+    And the following questions exist:
+      | course                    | question      | answer |
+      | name: Test-Driven Haskell | What color?   | Blue   |
+      | name: Test-Driven Haskell | Pets allowed? | No     |
     And "Ralph Bot" is teaching the section from "June 13, 2010" to "June 16, 2010"
     When I go to the home page
     Then I should see "Test-Driven Haskell"
@@ -20,3 +24,7 @@ Feature: Viewing section details
     And I see the section terms of service is "No pets allowed"
     And I see that one of the teachers is "Ralph Bot"
     And I see "Ralph Bot"'s avatar
+    And I see the question "What color?"
+    And I see the answer "Blue"
+    And I see the question "Pets allowed?"
+    And I see the answer "No"
