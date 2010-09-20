@@ -3,9 +3,9 @@
     <div id="sub-header">
       <h2 id="learn-from-the-experts">Learn from the experts</h2>
       <h3>
-        We're an acknowledged authority in the Rails community. 
-        In our workshops, we've shared our knowledge with over 
-        100 developers from organizations such as Harvard 
+        We're an acknowledged authority in the Rails community.
+        In our workshops, we've shared our knowledge with over
+        100 developers from organizations such as Harvard
         University, The New York Times, and Boston.com.
       </h3>
 
@@ -14,17 +14,17 @@
       <% else %>
         <ul id="list-of-classes">
           <% @sections.each do |section| %>
-            <li><% link_to section_path(section) do %>
+            <li><% link_to section_path(section), :id => dom_id(section) do %>
                 <h4><%=h section.course_name %></h4>
                 <div>
-                  date range here
+                  <%=h section.date_range %>
                 </div>
               <% end %>
             </li>
           <% end %>
         </ul>
       <% end %>
-        
+
     </div>
   </div>
 </div>
@@ -47,7 +47,7 @@
           <a href="http://gregsterndale.com/">Greg Sterndale</a>
         </li>
         <li>
-         If you're a freelance developer you owe it to your clients to come and learn Rails development &amp; delivery from the team at Thoughtbot. 
+         If you're a freelance developer you owe it to your clients to come and learn Rails development &amp; delivery from the team at Thoughtbot.
          <a href="http://bigroomtechnology.com/">Mike Breen</a>
         </li>
       </ul>

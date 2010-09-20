@@ -27,17 +27,7 @@ end
 
 Given 'the following section exists on Chargify:' do |table|
   Sections.add!(table.hashes.first)
-
-  chargify_id_row = false
-  new_raw_table = table.raw.map do |row|
-    new_row = row.dup
-    chargify_id_row ||= new_row.index('chargify id')
-    new_row.delete_at(chargify_id_row)
-    new_row
-  end
-  new_table = Cucumber::Ast::Table.new(new_raw_table)
-
-  Given %{the following section exists:}, new_table
+  Given %{the following section exists:}, table
 end
 
 When 'I fill in the following Chargify customer:' do |table|

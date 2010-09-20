@@ -15,3 +15,8 @@ Body:
   end
   puts pretty_emails.join("\n")
 end
+
+When 'I enter the debugger' do
+  require 'ruby-debug'
+  debugger
+end

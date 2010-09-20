@@ -107,6 +107,29 @@ get '/customers/:id.xml' do |id|
   XML
 end
 
+get '/products/:id.xml' do |id|
+  course = Section.find_by_chargify_id(id).course
+
+  <<-XML
+    <?xml version="1.0" encoding="UTF-8"?>
+    <product>
+      <name>Basic</name>
+      <handle>basic</handle>
+      <accounting_code>`your value`</accounting_code>
+      <description>`your value`</description>
+      <interval type="integer">1</interval>
+      <interval_unit>month</interval_unit>
+      <price_in_cents type="integer">#{course.price*100}</price_in_cents>
+      <product_family>
+        <accounting_code>`your value`</accounting_code>
+        <description >`your value`</description>
+        <handle>`your value`</handle>
+        <name>`your value`</name>
+      </product_family>
+    </product>
+  XML
+end
+
 helpers do
   def id_to_course_id(id)
     Courses.find_by_id(id)['chargify id']
@@ -122,6 +145,14 @@ helpers do
 
   def id_to_subscription(id)
     Subscriptions.find_by_id(id)
+  end
+
+  def id_to_section(id)
+    Sections.find_by_id(id)
+  end
+
+  def id_to_course(id)
+    Courses.find_by_id(id)
   end
 
   def create_customer!(params)
