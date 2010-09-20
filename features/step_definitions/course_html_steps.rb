@@ -63,5 +63,17 @@ Then 'I see the following resources:' do |resource_table|
   end
 end
 
+Then 'I see the question "$question"' do |question|
+  within("#faq") do
+    page.should have_content(question)
+  end
+end
+
+Then 'I see the answer "$answer"'do |answer|
+  within("#faq") do
+    page.should have_content(answer)
+  end
+end
+
 World(ActionController::RecordIdentifier)
 
