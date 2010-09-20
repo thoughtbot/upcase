@@ -12,7 +12,7 @@
             <strong>thoughtbot</strong>
             <span id="section-location"><%= h(@section.course_location) %></span>
           </a>
-          <a href="#" id="register-button">
+          <% link_to @section.registration_link, :id => 'register-button' do %>
             <div id="register-button-top">
               <div id="register-date"><%= h(@section.date_range) %></div>
               <div id="register-time"><%= h(@section.time_range) %></div>
@@ -20,8 +20,8 @@
                 <div id="amount"><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></div>
               </div>
             </div>
-            <div id="register-for-class"><%= link_to 'Register for class', @section.registration_link, :id => 'registration-link' %></div>
-          </a>
+            <div id="register-for-class">Register</div>
+          <% end %>
         </div>
         <div id="register-description">
           <%= textilize @section.course_description %>
