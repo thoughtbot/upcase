@@ -1,31 +1,34 @@
 <div class="top">
   <div class="wrapper">
     <h2><%= @section.course_name %></h2>
-    <h3>August 9-11, 2010</h3>
-  </div>  
+  </div>
 </div>
 <div id="content">
   <div class="wrapper">
     <div class="dark-content clearfix">
-      <div id="course-overview-left">
-        <%= textilize @section.course_description %>
-        <div id="resources">
+      <div id="course-overview" class="clearfix">
+        <div id="course-overview-left">
+          <%= textilize @section.course_description %>
+        </div>
+        <div id="course-overview-right">
+          <a href="#" id="location">
+            <strong>thoughtbot</strong>
+            <span>41 Winter Street Boston, MA 02108</span>
+          </a>
+          <div id="course-date-time">
+            <div id="date">August 9-11, 2010</div>
+            <div id="time">9AM to 5PM</div>
+          </div>
+        </div>
+      </div>
+
+        <div id="resources" class="clearfix col">
           <h3>Resources</h3>
           <ul>
             <li><a href="#">jferris/config files</a></li>
           </ul>
         </div>
-      </div>
-      <div id="course-overview-right">
-        <div id="date-time">
-          <div id="date">August 9-11, 2010</div>
-          <div id="time">9AM to 5PM</div>
-        </div>
-        <a href="#" id="location">
-          <strong>thoughtbot</strong>
-          <span>41 Winter Street Boston, MA 02108</span>
-        </a>
-        <div id="teachers">
+        <div id="teachers" class="clearfix col">
           <h3>Who's teaching</h3>
           <ul>
             <li>

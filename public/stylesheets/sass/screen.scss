@@ -188,14 +188,14 @@ body {
         @include rounded(3px);
         margin: 20px 20px 0 20px;
       }
-      #register-info {
+      #register-info, #course-overview {
         background: rgba(255,255,255,.05);
         border: 1px solid #000;
         border-top: 1px solid rgba(255,255,255,.12);
         @include rounded(5px);
         padding: 15px;
       }
-      #register-right {
+      #register-right, #course-overview-right {
         text-align: right;
         display: block;
         font-size: 16px;
@@ -221,6 +221,25 @@ body {
            color: #fff;
          }
         }
+        #course-date-time {
+          padding: 15px 0;
+           @include gradient(#740300, #c81a15);
+           -webkit-border-top-left-radius: 3px;
+           -webkit-border-top-right-radius: 3px;
+           -moz-border-radius-topleft: 3px;
+           -moz-border-radius-topright: 3px;
+           width: 256px;
+          @include rounded(5px);
+           border: 2px solid #970906;
+           border-bottom: 2px solid #820200;
+           border-top: 2px solid #c81a14;
+           display: block;
+           text-decoration: none;
+           text-align: center;
+          color: #000;
+          text-shadow: 0 1px 0 rgba(255,255,255,.2);
+          line-height: 1.3em;
+        }
         a#register-button {
          @include rounded(5px);
          border: 2px solid #970906;
@@ -239,10 +258,11 @@ body {
            -moz-border-radius-topright: 3px;
            width: 256px;
          }
-         #register-date {
+         #register-date, #register-time {
            color: #000;
            text-shadow: 0 1px 0 rgba(255,255,255,.2);
            font-size: 16px;
+           line-height: 1.3em;
          }
          #amount {
            padding: 10px 0 15px 0;
@@ -439,7 +459,7 @@ body {
           }
         }
       }
-      #faq {
+      #faq, #resources {
         width: 460px;
         float: left;
         ul {
