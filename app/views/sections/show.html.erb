@@ -9,7 +9,7 @@
       <div id="register-info" class="clearfix">
         <div id="register-right">
           <% google_map_link_to(@section.course_location, :id => 'location') do %>
-            <strong>thoughtbot</strong>
+            <strong><%= h(@section.course_location_name) %></strong>
             <span id="section-location"><%= h(@section.course_location) %></span>
           <% end %>
           <% link_to @section.registration_link, :id => 'register-button' do %>
@@ -39,17 +39,7 @@
         </div>
         <div id="teachers" class="col">
           <h3>Teachers</h3>
-          <ul>
-            <% @section.teachers.each do |teacher| %>
-              <% content_tag(:li, teacher) do %>
-                <%= image_tag("/images/_teachers/#{teacher.image_name}.jpg", :alt => teacher.image_name)%>
-                <h4><%=h teacher.name %></h4>
-                <span>
-                  <%=h teacher.bio %>
-                </span>
-              <% end %>
-            <% end %>
-          </ul>
+          <%= render 'teachers', :teachers => @section.teachers %>
         </div>
       </div>
       <% link_to @section.registration_link, :id => "register-button-bottom" do %>

@@ -1,0 +1,11 @@
+<ul>
+  <% teachers.each do |teacher| %>
+    <% content_tag(:li, teacher) do %>
+      <%= image_tag("/images/_teachers/#{teacher.image_name}.jpg", :alt => teacher.image_name)%>
+      <h4><%=h teacher.name %></h4>
+      <span>
+        <%=h teacher.bio %>
+      </span>
+    <% end %>
+  <% end %>
+</ul>

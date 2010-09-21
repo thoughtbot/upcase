@@ -48,6 +48,12 @@ Then 'I see the section location is "$location"' do |location|
   end
 end
 
+Then %{I see the section location's name is "$location_name"} do |location_name|
+  within("#location") do
+    page.should have_content(location_name)
+  end
+end
+
 Then 'I see the section date is "$section_date_range"' do |section_date_range|
   within("#register-date") do
     page.should have_content(section_date_range)
@@ -81,4 +87,8 @@ end
 Then %{I see "$teacher_name"'s avatar} do |teacher_name|
   teacher = Teacher.find_by_name!(teacher_name)
   page.should have_css("img[alt='#{teacher.image_name}']")
+end
+
+Then 'the resource "$link_name" links to "$link"' do |link_name, link|
+  page.should have_xpath("//a[@href='#{link}' and contains(.,'#{link_name}')]")
 end

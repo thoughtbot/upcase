@@ -9,7 +9,7 @@ class Section < ActiveRecord::Base
   has_many :registrations
   has_many :students, :through => :registrations, :source => :user
 
-  delegate :name, :description, :location, :to => :course, :prefix => :course
+  delegate :name, :description, :location, :location_name, :to => :course, :prefix => :course
 
   accepts_nested_attributes_for :section_teachers
 
