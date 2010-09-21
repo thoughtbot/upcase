@@ -11,13 +11,13 @@
           <%= textilize @section.course_description %>
         </div>
         <div id="course-overview-right">
-          <a href="#" id="location">
+          <% google_map_link_to(@section.course_location, :id => 'location') do %>
             <strong>thoughtbot</strong>
-            <span>41 Winter Street Boston, MA 02108</span>
-          </a>
+            <span id="section-location"><%= h(@section.course_location) %></span>
+          <% end %>
           <div id="course-date-time">
-            <div id="date">August 9-11, 2010</div>
-            <div id="time">9AM to 5PM</div>
+            <div id="date"><%= h(@section.date_range) %></div>
+            <div id="time"><%= h(@section.time_range) %></div>
           </div>
         </div>
       </div>
@@ -25,21 +25,14 @@
         <div id="resources" class="clearfix col">
           <h3>Resources</h3>
           <ul>
-            <li><a href="#">jferris/config files</a></li>
+            <% @section.course.resources.each do |resource| %>
+              <li><%= link_to resource.name, resource.url %></li>
+            <% end %>
           </ul>
         </div>
         <div id="teachers" class="clearfix col">
           <h3>Who's teaching</h3>
-          <ul>
-            <li>
-              <%= image_tag("/images/_teachers/fyates.jpg", :alt => 'fyates' )%>
-              <h4>Fred Yates</h4>
-              <span>
-                Fred Yates is an all star programmer who will teach you everything ever.
-              </span>
-              <a href="http://thoughtbot.com/about#fyates">More about Fred</a>
-            </li>
-          </ul>
+          <%= render 'teachers', :teachers => @section.teachers %>
         </div>
       </div>
       <div id="resources_faq" class="col clearfix">

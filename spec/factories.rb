@@ -57,3 +57,7 @@ Factory.define(:question) do |question_factory|
   question_factory.question    "What's up, buddy?"
   question_factory.answer      "Not much, bro."
 end
+
+Factory.define(:resource) do |resource_factory|
+  resource_factory.association :course
+end
