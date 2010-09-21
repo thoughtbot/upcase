@@ -8,10 +8,10 @@
     <div class="dark-content clearfix">
       <div id="register-info" class="clearfix">
         <div id="register-right">
-          <a href="#" id="location">
+          <% google_map_link_to(@section.course_location, :id => 'location') do %>
             <strong>thoughtbot</strong>
             <span id="section-location"><%= h(@section.course_location) %></span>
-          </a>
+          <% end %>
           <% link_to @section.registration_link, :id => 'register-button' do %>
             <div id="register-button-top">
               <div id="register-date"><%= h(@section.date_range) %></div>
