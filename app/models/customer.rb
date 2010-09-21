@@ -1,6 +1,6 @@
 class Customer
   def self.user_from_customer_id(customer_id)
-    open("http://thoughtbot-workshops.chargify.com/customers/#{customer_id}.xml") do |f|
+    open("https://thoughtbot-workshops.chargify.com/customers/#{customer_id}.xml", :http_basic_authentication => [CHARGIFY_API_KEY, "x"]) do |f|
       doc = Nokogiri::XML(f.read)
       user = the_user(doc)
       user.first_name = xml_content(doc, 'first_name')
@@ -13,7 +13,7 @@ class Customer
   end
 
   def self.valid_subscription?(subscription_id)
-    open("http://thoughtbot-workshops.chargify.com/subscriptions/#{subscription_id}.xml") do |f|
+    open("https://thoughtbot-workshops.chargify.com/subscriptions/#{subscription_id}.xml", :http_basic_authentication => [CHARGIFY_API_KEY, "x"]) do |f|
       doc = Nokogiri::XML(f.read)
       xml_content(doc, 'state') == 'active'
     end
