@@ -46,6 +46,8 @@ module NavigationHelpers
       course.name
     when /sign out/
       'Sign out'
+    when /sign in/
+      'Sign in'
     else
       raise %{Can't find a mapping from #{link_description.inspect} to a path: #{__FILE__}}
     end
@@ -83,6 +85,10 @@ module NavigationHelpers
       'section_section_teachers_attributes_0_teacher_id'
     when 'section chargify id'
       'section_chargify_id'
+    when 'session email'
+      'session_email'
+    when 'session password'
+      'session_password'
     when "teacher's name"
       'teacher_name'
     when "teacher's bio"
@@ -128,6 +134,8 @@ module NavigationHelpers
       'Save Teacher'
     when 'enroll a new student'
       'Save New Student'
+    when 'sign in'
+      'Sign in'
     else
       raise %{Can't find a mapping from #{button_text.inspect} to text: #{__FILE__}}
     end
@@ -149,6 +157,8 @@ module NavigationHelpers
       'Student has been enrolled'
     when 'sign out'
       'Signed out.'
+    when 'sign in'
+      'Signed in.'
     else
       raise %{Can't find a mapping from #{flash_text.inspect} to text: #{__FILE__}}
     end
