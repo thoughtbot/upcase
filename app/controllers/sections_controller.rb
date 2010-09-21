@@ -1,5 +1,4 @@
 class SectionsController < ApplicationController
-  before_filter :dashboard_if_admin, :only => [:index]
   before_filter :must_be_admin, :only => [:new, :create,:edit]
 
   def index
