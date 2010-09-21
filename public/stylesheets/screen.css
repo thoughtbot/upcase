@@ -141,7 +141,7 @@ body {
         -webkit-border-radius: 3px;
         -border-radius: 3px;
         margin: 20px 20px 0 20px; }
-      #content .wrapper .dark-content #register-info {
+      #content .wrapper .dark-content #register-info, #content .wrapper .dark-content #course-overview {
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid #000;
         border-top: 1px solid rgba(255, 255, 255, 0.12);
@@ -149,14 +149,14 @@ body {
         -webkit-border-radius: 5px;
         -border-radius: 5px;
         padding: 15px; }
-      #content .wrapper .dark-content #register-right {
+      #content .wrapper .dark-content #register-right, #content .wrapper .dark-content #course-overview-right {
         text-align: right;
         display: block;
         font-size: 16px;
         color: #e5dccb;
         width: 260px;
         float: right; }
-        #content .wrapper .dark-content #register-right a#location {
+        #content .wrapper .dark-content #register-right a#location, #content .wrapper .dark-content #course-overview-right a#location {
           background: url(/images/location.png) 0 0 no-repeat;
           text-align: left;
           font-size: 12px;
@@ -164,15 +164,36 @@ body {
           margin: 0 0 15px 0;
           padding: 0 0 0 40px;
           text-decoration: none; }
-          #content .wrapper .dark-content #register-right a#location strong {
+          #content .wrapper .dark-content #register-right a#location strong, #content .wrapper .dark-content #course-overview-right a#location strong {
             display: block;
             font-size: 16px;
             color: #DFD5C5;
             padding: 0 0 5px 0; }
-          #content .wrapper .dark-content #register-right a#location span {
+          #content .wrapper .dark-content #register-right a#location span, #content .wrapper .dark-content #course-overview-right a#location span {
             text-decoration: underline;
             color: #fff; }
-        #content .wrapper .dark-content #register-right a#register-button {
+        #content .wrapper .dark-content #register-right #course-date-time, #content .wrapper .dark-content #course-overview-right #course-date-time {
+          padding: 15px 0;
+          background: -webkit-gradient(linear, left top, left bottom, color-stop(1, #740300), color-stop(0, #c81a15));
+          background: -moz-linear-gradient(bottom, #740300 0%, #c81a15 100%);
+          -webkit-border-top-left-radius: 3px;
+          -webkit-border-top-right-radius: 3px;
+          -moz-border-radius-topleft: 3px;
+          -moz-border-radius-topright: 3px;
+          width: 256px;
+          -moz-border-radius: 5px;
+          -webkit-border-radius: 5px;
+          -border-radius: 5px;
+          border: 2px solid #970906;
+          border-bottom: 2px solid #820200;
+          border-top: 2px solid #c81a14;
+          display: block;
+          text-decoration: none;
+          text-align: center;
+          color: #000;
+          text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+          line-height: 1.3em; }
+        #content .wrapper .dark-content #register-right a#register-button, #content .wrapper .dark-content #course-overview-right a#register-button {
           -moz-border-radius: 5px;
           -webkit-border-radius: 5px;
           -border-radius: 5px;
@@ -183,7 +204,7 @@ body {
           text-decoration: none;
           text-align: center;
           width: 256px; }
-          #content .wrapper .dark-content #register-right a#register-button #register-button-top {
+          #content .wrapper .dark-content #register-right a#register-button #register-button-top, #content .wrapper .dark-content #course-overview-right a#register-button #register-button-top {
             padding: 15px 0 0 0;
             background: -webkit-gradient(linear, left top, left bottom, color-stop(1, #740300), color-stop(0, #c81a15));
             background: -moz-linear-gradient(bottom, #740300 0%, #c81a15 100%);
@@ -192,17 +213,18 @@ body {
             -moz-border-radius-topleft: 3px;
             -moz-border-radius-topright: 3px;
             width: 256px; }
-          #content .wrapper .dark-content #register-right a#register-button #register-date {
+          #content .wrapper .dark-content #register-right a#register-button #register-date, #content .wrapper .dark-content #register-right a#register-button #register-time, #content .wrapper .dark-content #course-overview-right a#register-button #register-date, #content .wrapper .dark-content #course-overview-right a#register-button #register-time {
             color: #000;
             text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
-            font-size: 16px; }
-          #content .wrapper .dark-content #register-right a#register-button #amount {
+            font-size: 16px;
+            line-height: 1.3em; }
+          #content .wrapper .dark-content #register-right a#register-button #amount, #content .wrapper .dark-content #course-overview-right a#register-button #amount {
             padding: 10px 0 15px 0;
             color: #fff;
             font-weight: 200;
             color: #fff;
             font-size: 36px; }
-          #content .wrapper .dark-content #register-right a#register-button #register-for-class {
+          #content .wrapper .dark-content #register-right a#register-button #register-for-class, #content .wrapper .dark-content #course-overview-right a#register-button #register-for-class {
             color: #fff;
             font-weight: bold;
             text-shadow: 0 -1px 2px rgba(0, 0, 0, 0.5);
@@ -216,10 +238,10 @@ body {
             -moz-border-radius-bottomright: 3px;
             border-top: 1px solid #bc0400;
             font-size: 20px; }
-          #content .wrapper .dark-content #register-right a#register-button:hover #register-button-top {
+          #content .wrapper .dark-content #register-right a#register-button:hover #register-button-top, #content .wrapper .dark-content #course-overview-right a#register-button:hover #register-button-top {
             background: -webkit-gradient(linear, left top, left bottom, color-stop(1, #880400), color-stop(0, #db0600));
             background: -moz-linear-gradient(bottom, #880400 0%, #db0600 100%); }
-          #content .wrapper .dark-content #register-right a#register-button:hover #register-for-class {
+          #content .wrapper .dark-content #register-right a#register-button:hover #register-for-class, #content .wrapper .dark-content #course-overview-right a#register-button:hover #register-for-class {
             background: #9f0300; }
       #content .wrapper .dark-content a#register-button-bottom {
         -moz-border-radius: 5px;
@@ -348,28 +370,28 @@ body {
           background: url(/images/_teachers/kfiedler.jpg) 0 0 no-repeat; }
         #content .wrapper .dark-content #teachers ul li#fyates {
           background: url(/images/_teachers/fyates.jpg) 0 0 no-repeat; }
-      #content .wrapper .dark-content #faq {
+      #content .wrapper .dark-content #faq, #content .wrapper .dark-content #resources {
         width: 460px;
         float: left; }
-        #content .wrapper .dark-content #faq ul {
+        #content .wrapper .dark-content #faq ul, #content .wrapper .dark-content #resources ul {
           padding: 15px 40px 10px 50px; }
-          #content .wrapper .dark-content #faq ul li {
+          #content .wrapper .dark-content #faq ul li, #content .wrapper .dark-content #resources ul li {
             float: left;
             width: 185px;
             list-style-type: square;
             margin: 10px 0 0 0; }
-        #content .wrapper .dark-content #faq dl {
+        #content .wrapper .dark-content #faq dl, #content .wrapper .dark-content #resources dl {
           margin: 15px 0 0 0; }
-          #content .wrapper .dark-content #faq dl dt {
+          #content .wrapper .dark-content #faq dl dt, #content .wrapper .dark-content #resources dl dt {
             font-weight: bold;
             color: #fff;
             font-size: 16px;
             padding: 0 0 10px 0; }
-          #content .wrapper .dark-content #faq dl dd {
+          #content .wrapper .dark-content #faq dl dd, #content .wrapper .dark-content #resources dl dd {
             font-size: 12px;
             font-weight: normal;
             padding: 0 0 25px 0; }
-            #content .wrapper .dark-content #faq dl dd:last-child {
+            #content .wrapper .dark-content #faq dl dd:last-child, #content .wrapper .dark-content #resources dl dd:last-child {
               padding: 0; }
       #content .wrapper .dark-content #terms p {
         margin: 15px 0 0 0; }
