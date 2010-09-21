@@ -44,6 +44,8 @@ module NavigationHelpers
     when /^edit the course "([^"]+)"$/
       course = Course.find_by_name!($1)
       course.name
+    when /sign out/
+      'Sign out'
     else
       raise %{Can't find a mapping from #{link_description.inspect} to a path: #{__FILE__}}
     end
@@ -145,6 +147,8 @@ module NavigationHelpers
       'Section was successfully updated'
     when 'section enrollment'
       'Student has been enrolled'
+    when 'sign out'
+      'Signed out.'
     else
       raise %{Can't find a mapping from #{flash_text.inspect} to text: #{__FILE__}}
     end
