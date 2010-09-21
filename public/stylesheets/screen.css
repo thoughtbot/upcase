@@ -422,6 +422,12 @@ body {
             color: #fff;
             font-weight: bold;
             text-decoration: none; }
+  #content #sign_in, #content #sign_up {
+    width: 600px; }
+    #content #sign_in input[type="text"], #content #sign_in input[type="password"], #content #sign_in textarea, #content #sign_up input[type="text"], #content #sign_up input[type="password"], #content #sign_up textarea {
+      width: auto; }
+    #content #sign_in ul, #content #sign_up ul {
+      margin-top: 20px; }
 
 #content.admin h4#course-name-subtitle {
   font-weight: bold;
