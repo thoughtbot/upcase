@@ -528,6 +528,15 @@ body {
       }
     }
   }
+  #sign_in, #sign_up {
+    width: 600px;
+    input[type="text"], input[type="password"], textarea {
+      width: auto;
+    }
+    ul {
+      margin-top: 20px;
+    }
+  }
 }
 
 #content.admin {

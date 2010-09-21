@@ -57,15 +57,6 @@
           <%= h(@section.date_range) %>
         </span>
       <% end %>
-      <div id="faq" class="col clearfix">
-        <h4>Frequently asked questions</h4>
-        <dl>
-          <% @section.course.questions.each do |question| %>
-            <dt><%= textilize question.question %></dt>
-            <dd><%= textilize question.answer %></dd>
-          <% end %>
-        </dl>
-      </div>
       <div id="terms" class="col clearfix">
         <h4>Terms and conditions</h4>
         <%= textilize @section.course.terms_of_service %>
