@@ -21,7 +21,7 @@
           </div>
         </div>
       </div>
-
+      <div class="clearfix">
         <div id="resources" class="clearfix col">
           <h3>Resources</h3>
           <ul>
@@ -41,6 +41,15 @@
             </li>
           </ul>
         </div>
+      </div>
+      <div id="resources_faq" class="col clearfix">
+        <h4>Frequently asked questions</h4>
+        <dl>
+          <% @section.course.questions.each do |question| %>
+            <dt><%= textilize question.question %></dt>
+            <dd><%= textilize question.answer %></dd>
+          <% end %>
+        </dl>
       </div>
     </div>
   </div>

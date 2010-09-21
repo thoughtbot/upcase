@@ -393,7 +393,7 @@ body {
             padding: 0 0 25px 0; }
             #content .wrapper .dark-content #faq dl dd:last-child, #content .wrapper .dark-content #resources dl dd:last-child {
               padding: 0; }
-      #content .wrapper .dark-content #terms p {
+      #content .wrapper .dark-content #terms p, #content .wrapper .dark-content #resources_faq p {
         margin: 15px 0 0 0; }
       #content .wrapper .dark-content .col {
         padding: 25px 0 0 0; }
