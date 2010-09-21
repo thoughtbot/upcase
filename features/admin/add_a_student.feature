@@ -6,7 +6,7 @@ Feature: Adding a student to a course
     And the following section exists:
       | course                     | starts on    | ends on       |
       | name: Test-Driven Sleeping | June 14,2010 | June 18, 2010 |
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to the section from "June 14, 2010" to "June 18, 2010"
     And I follow the link to add a new student
     And I press the button to enroll a new student
@@ -24,7 +24,7 @@ Feature: Adding a student to a course
     And the following section exists:
       | course                     | starts on     | ends on       |
       | name: Test-Driven Sleeping | June 14, 2010 | June 18, 2010 |
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to the section from "June 14, 2010" to "June 18, 2010"
     And I follow the link to add a new student
     And I fill in the student's first name with "Jimbo"
@@ -40,7 +40,7 @@ Feature: Adding a student to a course
     And the following section exists:
       | course                     | starts on    | ends on       |
       | name: Test-Driven Sleeping | June 14,2010 | June 18, 2010 |
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to the section from "June 14, 2010" to "June 18, 2010"
     And I follow the link to add a new student
     And I fill in the student's first name with "Jimbo"
