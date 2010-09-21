@@ -31,7 +31,10 @@
         <div id="faq" class="col">
           <h3>Frequently asked questions</h3>
           <dl>
-             textilize @course.faq
+            <% @section.course.questions.each do |question| %>
+              <dt><%= textilize question.question %></dt>
+              <dd><%= textilize question.answer %></dd>
+            <% end %>
           </dl>
         </div>
         <div id="teachers" class="col">
