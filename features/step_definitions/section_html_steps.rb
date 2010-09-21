@@ -3,7 +3,7 @@ Then 'I see the empty section description' do
 end
 
 When 'I follow the external registration link' do
-  url = find("*[@id='registration-link']")[:href]
+  url = find("*[@id='register-button']")[:href]
   url.should_not be_nil, "cannot find the external registration link"
 
   Misc.rails_app = Capybara.app
