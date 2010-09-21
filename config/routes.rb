@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.admin '/admin', :controller => :courses
   map.root :controller => :sections, :action => :index
 
   map.resources :sections, :only => [:index,:show] do |sections|

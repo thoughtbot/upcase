@@ -4,7 +4,7 @@ Feature: Scheduling a new course
     Given I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
     And a teacher exists with a name of "Albert Einstein"
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to re-run the course "Test-Driven Sleeping"
     Then I should see the admin header
     When I select the start date of "June 14, 2010"
@@ -20,7 +20,7 @@ Feature: Scheduling a new course
   Scenario: Adding a new section without filling in the teacher
     Given I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to re-run the course "Test-Driven Sleeping"
     And I press the button to re-run a course
     Then I should see the admin header
@@ -33,7 +33,7 @@ Feature: Scheduling a new course
   Scenario: Adding a new section and a new teacher
     Given I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to re-run the course "Test-Driven Sleeping"
     And I follow the link to create a new teacher
     And I fill in the teacher's name with "Samuel Beckett"
@@ -54,7 +54,7 @@ Feature: Scheduling a new course
   Scenario: Adding a new teacher with invalid data
     Given I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to re-run the course "Test-Driven Sleeping"
     And I follow the link to create a new teacher
     And I press the button to add a teacher
@@ -74,7 +74,7 @@ Feature: Scheduling a new course
     And the following section exists:
       | course                     | starts on     | ends on       |
       | name: Test-Driven Sleeping | June 11, 2010 | June 14, 2010 |
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to the section from "June 11, 2010" to "June 14, 2010"
     Then I should see the admin header
     When I select the start date of "June 14, 2010"
@@ -89,7 +89,7 @@ Feature: Scheduling a new course
     And the following section exists:
       | course                     | starts on     | ends on       |
       | name: Test-Driven Sleeping | June 14, 2010 | June 17, 2010 |
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to the section from "June 14, 2010" to "June 17, 2010"
     And I blank the section start field
     And I press the button to update a section

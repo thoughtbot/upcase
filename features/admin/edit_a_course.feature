@@ -3,7 +3,7 @@ Feature: Editing a course
   Scenario Outline: Edit a course and clear a required field
     Given I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to edit the course "Test-Driven Sleeping"
     And I blank the <field> field
     And I press the button to update a course
@@ -21,7 +21,7 @@ Feature: Editing a course
   Scenario: Edit a course successfully
     Given I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to edit the course "Test-Driven Sleeping"
     Then I should see the admin header
     When I fill in the course name with "Test-Driven Haskell"
@@ -35,7 +35,7 @@ Feature: Editing a course
     And the following questions exist:
       | course                     | question           | answer          |
       | name: Test-Driven Sleeping | Do you wear pants? | Define "Pants." |
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to edit the course "Test-Driven Sleeping"
     And I fill in the question 2 with "Do I need a helmet?"
     And I fill in the answer 2 with "Of course."
@@ -51,7 +51,7 @@ Feature: Editing a course
   Scenario: Edit a course and add more than one FAQ
     Given I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to edit the course "Test-Driven Sleeping"
     And I follow "Add Question"
     And I fill in the following questions:

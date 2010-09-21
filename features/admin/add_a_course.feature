@@ -2,7 +2,7 @@ Feature: Adding a course
 
   Scenario: Add a course with blank required fields
     Given I am signed in as an admin
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to create a new course
     And I press the button to create a course
     Then I should see the admin header
@@ -16,7 +16,7 @@ Feature: Adding a course
 
   Scenario: Add a course with the required fields
     Given I am signed in as an admin
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to create a new course
     Then I should see the admin header
     When I fill in the course name with "Test-Driven Haskell"
@@ -31,7 +31,7 @@ Feature: Adding a course
 
   Scenario: Add a course with all the trimmings
     Given I am signed in as an admin
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to create a new course
     And I fill in the course name with "Test-Driven Haskell"
     And I fill in the course description with "Learn Haskell the thoughtbot way"
@@ -50,7 +50,7 @@ Feature: Adding a course
 
   Scenario: Add a course with a FAQ
     Given I am signed in as an admin
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to create a new course
     And I fill in the required course fields
     And I fill in the course name with "Haskell"
@@ -65,7 +65,7 @@ Feature: Adding a course
   @javascript
   Scenario: Add a course with more than one FAQ
     Given I am signed in as an admin
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to create a new course
     And I fill in the required course fields
     And I fill in the course name with "Haskell"
@@ -84,7 +84,7 @@ Feature: Adding a course
 
   Scenario: Add a course with a resource
     Given I am signed in as an admin
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to create a new course
     And I fill in the required course fields
     And I fill in the course name with "Haskell"
@@ -99,7 +99,7 @@ Feature: Adding a course
   @javascript
   Scenario: Add a course with more than one resource
     Given I am signed in as an admin
-    When I go to the home page
+    When I go to the admin page
     And I follow the link to create a new course
     And I fill in the required course fields
     And I fill in the course name with "Haskell"
