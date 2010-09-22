@@ -548,13 +548,21 @@ body {
       }
     }
   }
-  #sign_in, #sign_up {
+  #sign_in, #sign_up, #change_password {
     width: 600px;
     input[type="text"], input[type="password"], textarea {
-      width: auto;
+      width: 580px;
     }
     ul {
       margin-top: 20px;
+    }
+    p.flash_success {
+      background: #1A160F;
+      width: auto;
+      padding: 15px;
+      margin-bottom: 20px;
+      @include rounded(5px);
+      @include shadow( 0, 1px, 0, rgba(255, 255, 255, 0.10));
     }
   }
 }
