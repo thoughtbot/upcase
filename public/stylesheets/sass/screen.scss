@@ -210,6 +210,7 @@ body {
          margin: 0 0 15px 0;
          padding: 0 0 0 40px;
          text-decoration: none;
+        min-height: 32px;
          strong {
            display: block;
            font-size: 16px;
@@ -340,7 +341,7 @@ body {
           }
          }
       }
-      #register-description {
+      #register-description, #course-overview-left {
         color: #fff;
         float: left;
         width: 425px;
