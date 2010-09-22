@@ -444,12 +444,23 @@ body {
             color: #fff;
             font-weight: bold;
             text-decoration: none; }
-  #content #sign_in, #content #sign_up {
+  #content #sign_in, #content #sign_up, #content #change_password {
     width: 600px; }
-    #content #sign_in input[type="text"], #content #sign_in input[type="password"], #content #sign_in textarea, #content #sign_up input[type="text"], #content #sign_up input[type="password"], #content #sign_up textarea {
-      width: auto; }
-    #content #sign_in ul, #content #sign_up ul {
+    #content #sign_in input[type="text"], #content #sign_in input[type="password"], #content #sign_in textarea, #content #sign_up input[type="text"], #content #sign_up input[type="password"], #content #sign_up textarea, #content #change_password input[type="text"], #content #change_password input[type="password"], #content #change_password textarea {
+      width: 580px; }
+    #content #sign_in ul, #content #sign_up ul, #content #change_password ul {
       margin-top: 20px; }
+    #content #sign_in p.flash_success, #content #sign_up p.flash_success, #content #change_password p.flash_success {
+      background: #1A160F;
+      width: auto;
+      padding: 15px;
+      margin-bottom: 20px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -border-radius: 5px;
+      -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+      -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1); }
 
 #content.admin h4#course-name-subtitle {
   font-weight: bold;
