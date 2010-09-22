@@ -49,6 +49,7 @@ Feature: Adding a student to a course
     And I press the button to enroll a new student
     Then I see the successful section enrollment notice
     And I see the user "Jimbo Jones" in the list of users
+    And "jones@example.com" receives a set your password link
 
   Scenario: Adding a user as a student
     Given I am signed in as a student
