@@ -4,6 +4,7 @@ gem "mysql"
 gem "RedCloth"
 gem "will_paginate"
 gem "formtastic"
+gem "nokogiri", ">= 1.4.0"
 
 group :test do
   gem "cucumber", "0.8.5"
@@ -13,7 +14,6 @@ group :test do
   gem "capybara-envjs-fixes"
   gem "johnson"
   gem "launchy"
-  gem "nokogiri"
   gem "factory_girl", "1.2.3"
   gem "database_cleaner", "0.5.0"
   gem "rspec-rails", "1.3.2"

@@ -105,7 +105,7 @@ DEPENDENCIES
   johnson
   launchy
   mysql
-  nokogiri
+  nokogiri (>= 1.4.0)
   polyglot (= 0.3.1)
   rails (= 2.3.8)
   rspec-rails (= 1.3.2)
