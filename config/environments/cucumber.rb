@@ -23,6 +23,7 @@ config.action_mailer.delivery_method = :test
 
 config.gem 'factory_girl', 
            :version => '>= 1.2.3'
+require 'factory_girl'
 
 # Cucumber and dependencies
 config.gem 'cucumber-rails',   :lib => false, :version => '>=0.3.2' unless File.directory?(File.join(Rails.root, 'vendor/plugins/cucumber-rails'))
