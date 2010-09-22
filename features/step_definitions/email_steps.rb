@@ -4,7 +4,7 @@ Then '"$email" receives a set your password link' do |email|
   assert !ActionMailer::Base.deliveries.empty?
   result = ActionMailer::Base.deliveries.any? do |email|
     email.to == [user.email] &&
-    email.subject =~ /password/i &&
+    email.subject =~ /Welcome/i &&
     email.body =~ /#{user.confirmation_token}/
   end
   assert result

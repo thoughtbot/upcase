@@ -3,8 +3,6 @@ class UserMailer < ActionMailer::Base
     @user = user
     from       Clearance.configuration.mailer_sender
     recipients @user.email
-    subject    I18n.t(:change_password,
-                      :scope   => [:clearance, :models, :clearance_mailer],
-                      :default => "Change your password")
+    subject    "Welcome to Thoughbot Workshops"
   end
 end
