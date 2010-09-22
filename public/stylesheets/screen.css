@@ -284,18 +284,18 @@ body {
           background: -moz-linear-gradient(bottom, #880400 0%, #db0600 100%); }
         #content .wrapper .dark-content a#register-button-bottom:hover span {
           background: #9f0300; }
-      #content .wrapper .dark-content #register-description {
+      #content .wrapper .dark-content #register-description, #content .wrapper .dark-content #course-overview-left {
         color: #fff;
         float: left;
         width: 425px; }
-        #content .wrapper .dark-content #register-description p {
+        #content .wrapper .dark-content #register-description p, #content .wrapper .dark-content #course-overview-left p {
           margin: 0 0 14px 0;
           line-height: 22px;
           font-size: 14px;
           font-weight: 200; }
-          #content .wrapper .dark-content #register-description p:last-child {
+          #content .wrapper .dark-content #register-description p:last-child, #content .wrapper .dark-content #course-overview-left p:last-child {
             margin: 0; }
-        #content .wrapper .dark-content #register-description a {
+        #content .wrapper .dark-content #register-description a, #content .wrapper .dark-content #course-overview-left a {
           display: inline-block; }
       #content .wrapper .dark-content h3 {
         font-weight: 100;
