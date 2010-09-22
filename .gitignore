@@ -12,3 +12,4 @@ tags
 tmp/*
 
 .rvmrc
+.bundle/*
