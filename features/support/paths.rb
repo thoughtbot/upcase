@@ -81,6 +81,10 @@ module NavigationHelpers
       'course_reminder_email'
     when 'that the course is public'
       'course_public'
+    when 'login email'
+      'session_email'
+    when 'login password'
+      'session_password'
     when 'section start'
       'section_starts_on'
     when 'section end'
@@ -105,6 +109,10 @@ module NavigationHelpers
       'user_last_name'
     when "student's email"
       'user_email'
+    when "student's password"
+      'user_password'
+    when "student's password confirmation"
+      'user_password_confirmation'
     when /question (\d+)/
       question_number = $1.to_i
       question_index = question_number - 1
@@ -140,6 +148,8 @@ module NavigationHelpers
       'Save New Student'
     when 'sign in'
       'Sign in'
+    when 'set the new password'
+      'Save this password'
     else
       raise %{Can't find a mapping from #{button_text.inspect} to text: #{__FILE__}}
     end
