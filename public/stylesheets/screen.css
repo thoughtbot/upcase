@@ -163,7 +163,8 @@ body {
           display: block;
           margin: 0 0 15px 0;
           padding: 0 0 0 40px;
-          text-decoration: none; }
+          text-decoration: none;
+          min-height: 32px; }
           #content .wrapper .dark-content #register-right a#location strong, #content .wrapper .dark-content #course-overview-right a#location strong {
             display: block;
             font-size: 16px;
@@ -395,6 +396,11 @@ body {
               padding: 0; }
       #content .wrapper .dark-content #terms p, #content .wrapper .dark-content #resources_faq p {
         margin: 15px 0 0 0; }
+      #content .wrapper .dark-content #terms ul, #content .wrapper .dark-content #resources_faq ul {
+        padding: 15px 40px 10px 50px; }
+        #content .wrapper .dark-content #terms ul li, #content .wrapper .dark-content #resources_faq ul li {
+          list-style-type: square;
+          margin: 10px 0 0 0; }
       #content .wrapper .dark-content .col {
         padding: 25px 0 0 0; }
         #content .wrapper .dark-content .col h3, #content .wrapper .dark-content .col h4 {
