@@ -21,4 +21,5 @@ group :test do
   gem "polyglot", "0.3.1"
   gem "treetop", "1.4.5"
   gem "sinatra"
+  gem "ruby-debug"
 end

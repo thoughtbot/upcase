@@ -14,4 +14,12 @@ When 'I follow the set your password link sent to "$email"' do |email|
   When %{I follow the password reset link sent to "#{email}"}
 end
 
+Then '"$email" does not receive a confirmation message' do |email|
+  user = User.find_by_email(email)
+  result = ActionMailer::Base.deliveries.any? do |email|
+    email.to == [user.email] &&
+    email.subject =~ /confirm/i
+  end
+  assert !result
+end
 

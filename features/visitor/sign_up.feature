@@ -16,6 +16,7 @@ Feature: Signing up
       | Mike       | Jones     | mjones@example.com |
     And I press the button to submit the Chargify form
     Then "mjones@example.com" receives a set your password link
+    And "mjones@example.com" does not receive a confirmation message
     When I follow the set your password link sent to "mjones@example.com"
     And I fill in the student's password with "testing"
     And I fill in the student's password confirmation with "testing"
