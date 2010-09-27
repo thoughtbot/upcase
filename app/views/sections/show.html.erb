@@ -42,7 +42,12 @@
           <%= render 'teachers', :teachers => @section.teachers %>
         </div>
       </div>
-      <% link_to @section.registration_link, :id => "register-button-bottom" do %>
+
+      <div id="terms" class="col clearfix">
+        <h4>Terms and conditions</h4>
+        <%= textilize @section.course.terms_of_service %>
+      </div>
+      <% link_to @section.registration_link, :id => "register-button-bottom", :class => "clearfix" do %>
         <div>
           Register for <%= h(@section.course_name) %>
         </div>
@@ -50,10 +55,6 @@
           <%= h(@section.date_range) %>
         </span>
       <% end %>
-      <div id="terms" class="col clearfix">
-        <h4>Terms and conditions</h4>
-        <%= textilize @section.course.terms_of_service %>
-      </div>
     </div>
   </div>
 </div>
