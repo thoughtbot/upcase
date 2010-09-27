@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   after_create :send_set_password_email
 
   def registered_for?(section)
-    sections.include?(section)
+    admin? || sections.include?(section)
   end
 
   def name
