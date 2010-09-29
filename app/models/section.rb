@@ -18,11 +18,11 @@ class Section < ActiveRecord::Base
   end
 
   def registration_link
-    "http://thoughtbot-workshops.chargify.com/h/#{chargify_id}/subscriptions/new"
+    "http://#{CHARGIFY_URL}/h/#{chargify_id}/subscriptions/new"
   end
 
   def calculate_price
-    open("https://thoughtbot-workshops.chargify.com/products/#{chargify_id}.xml", :http_basic_authentication => [CHARGIFY_API_KEY, "x"]) do |f|
+    open("https://#{CHARGIFY_URL}/products/#{chargify_id}.xml", :http_basic_authentication => [CHARGIFY_API_KEY, "x"]) do |f|
       doc = Nokogiri::XML(f.read)
       (self.class.xml_content(doc, "initial_charge_in_cents").to_i / 100.0).to_i
     end
