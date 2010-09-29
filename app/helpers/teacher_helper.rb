@@ -5,7 +5,7 @@ module TeacherHelper
     end
   end
 
-  def teacher_gravatar(teacher)
-    image_tag("http://www.gravatar.com/avatar/#{teacher.gravatar_hash}?s=20", :alt => teacher.name)
+  def teacher_gravatar(teacher, size=20)
+    image_tag("http://www.gravatar.com/avatar/#{teacher.gravatar_hash}?s=#{size}", :alt => teacher.name)
   end
 end
