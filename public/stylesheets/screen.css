@@ -381,21 +381,21 @@ body {
           #content .wrapper .dark-content #faq ul li, #content .wrapper .dark-content #resources ul li, #content .wrapper .dark-content #terms ul li, #content .wrapper .dark-content #resources_faq ul li {
             list-style-type: square;
             margin: 10px 0 0 0; }
-        #content .wrapper .dark-content #faq dl, #content .wrapper .dark-content #resources dl, #content .wrapper .dark-content #terms dl, #content .wrapper .dark-content #resources_faq dl {
-          margin: 15px 0 0 0; }
-          #content .wrapper .dark-content #faq dl dt, #content .wrapper .dark-content #resources dl dt, #content .wrapper .dark-content #terms dl dt, #content .wrapper .dark-content #resources_faq dl dt {
-            font-weight: bold;
-            -webkit-font-smoothing: antialiased;
-            color: #fff;
-            font-size: 16px;
-            padding: 0 0 10px 0; }
-          #content .wrapper .dark-content #faq dl dd, #content .wrapper .dark-content #resources dl dd, #content .wrapper .dark-content #terms dl dd, #content .wrapper .dark-content #resources_faq dl dd {
-            font-size: 12px;
-            font-weight: normal;
-            line-height: 1.5em;
-            padding: 0 0 25px 0; }
-            #content .wrapper .dark-content #faq dl dd:last-child, #content .wrapper .dark-content #resources dl dd:last-child, #content .wrapper .dark-content #terms dl dd:last-child, #content .wrapper .dark-content #resources_faq dl dd:last-child {
-              padding: 0; }
+        #content .wrapper .dark-content #faq dl dt, #content .wrapper .dark-content #resources dl dt, #content .wrapper .dark-content #terms dl dt, #content .wrapper .dark-content #resources_faq dl dt {
+          font-weight: bold;
+          -webkit-font-smoothing: antialiased;
+          color: #fff;
+          font-size: 16px;
+          padding: 0 0 10px 0; }
+        #content .wrapper .dark-content #faq dl dd, #content .wrapper .dark-content #resources dl dd, #content .wrapper .dark-content #terms dl dd, #content .wrapper .dark-content #resources_faq dl dd {
+          font-size: 12px;
+          font-weight: normal;
+          line-height: 1.5em;
+          padding: 0 0 25px 0; }
+          #content .wrapper .dark-content #faq dl dd p, #content .wrapper .dark-content #resources dl dd p, #content .wrapper .dark-content #terms dl dd p, #content .wrapper .dark-content #resources_faq dl dd p {
+            margin: 0; }
+          #content .wrapper .dark-content #faq dl dd:last-child, #content .wrapper .dark-content #resources dl dd:last-child, #content .wrapper .dark-content #terms dl dd:last-child, #content .wrapper .dark-content #resources_faq dl dd:last-child {
+            padding: 0; }
       #content .wrapper .dark-content .col {
         padding: 25px 0 40px; }
         #content .wrapper .dark-content .col h3, #content .wrapper .dark-content .col h4 {
@@ -403,7 +403,8 @@ body {
           padding: 0 0 10px 0;
           -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
           -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
-          box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12); }
+          box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
+          margin-bottom: 15px; }
       #content .wrapper .dark-content h4#why-we-rule {
         text-align: center;
         font-size: 13px;
