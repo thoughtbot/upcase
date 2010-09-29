@@ -86,7 +86,7 @@ end
 
 Then %{I see "$teacher_name"'s avatar} do |teacher_name|
   teacher = Teacher.find_by_name!(teacher_name)
-  page.should have_css("img[alt='#{teacher.image_name}']")
+  page.should have_css("img[src^='http://www.gravatar.com/avatar/#{teacher.gravatar_hash}?s=20']")
 end
 
 Then 'the resource "$link_name" links to "$link"' do |link_name, link|
