@@ -56,7 +56,7 @@ end
 
 get '/h/:id/subscriptions/new' do |id|
   <<-HTML
-  <form action="http://thoughtbot-workshops.chargify.com/h/#{id}/subscriptions" method="post">
+  <form action="http://thoughtbot-workshops-staging.chargify.com/h/#{id}/subscriptions" method="post">
     <input type="text" name="first_name" id="first-name" />
     <input type="text" name="last_name" id="last-name" />
     <input type="text" name="email" id="email" />
@@ -165,10 +165,10 @@ helpers do
   end
 end
 
-ShamRack.at('thoughtbot-workshops.chargify.com').rackup do
+ShamRack.at('thoughtbot-workshops-staging.chargify.com').rackup do
   run Sinatra::Application
 end
 
-ShamRack.at('thoughtbot-workshops.chargify.com', 443).rackup do
+ShamRack.at('thoughtbot-workshops-staging.chargify.com', 443).rackup do
   run Sinatra::Application
 end
