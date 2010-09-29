@@ -376,7 +376,7 @@ body {
         float: right;
         ul {
          li {
-
+          min-height: 48px;
            margin: 25px 0 0 0;
            h4 {
              letter-spacing: 0;
@@ -464,6 +464,9 @@ body {
       #faq, #resources, #terms, #resources_faq {
         width: 460px;
         float: left;
+        p {
+          margin-top: 15px;
+        }
         ul {
           padding: 15px 40px 10px 50px;
           li {

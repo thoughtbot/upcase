@@ -313,6 +313,7 @@ body {
         width: 280px;
         float: right; }
         #content .wrapper .dark-content #teachers ul li {
+          min-height: 48px;
           margin: 25px 0 0 0; }
           #content .wrapper .dark-content #teachers ul li h4 {
             letter-spacing: 0;
