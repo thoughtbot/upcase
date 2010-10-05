@@ -12,4 +12,11 @@ class UserMailer < ActionMailer::Base
     recipients follow_up.email
     subject "The #{@section.course.name} workshop has been scheduled"
   end
+
+  def teacher_notification teacher, section
+    @section = section
+    from Clearance.configuration.mailer_sender
+    recipients teacher.email
+    subject "You have been scheduled to teach #{@section.course.name}"
+  end
 end

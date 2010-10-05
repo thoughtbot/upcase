@@ -43,3 +43,12 @@ Then '"$email_address" does not receive a follow up email for "$course_title"' d
   end
   assert !result
 end
+
+Then '"$email_address" is notified that they are scheduled to teach "$course_title"' do |email_address, course_title|
+  assert !ActionMailer::Base.deliveries.empty?
+  result = ActionMailer::Base.deliveries.any? do |email|
+    email.to == [email_address] &&
+    email.subject =~ /You have been scheduled to teach #{course_title}/i
+  end
+  assert result
+end
