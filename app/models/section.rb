@@ -58,7 +58,7 @@ class Section < ActiveRecord::Base
   def send_follow_up_emails
     if self.course.follow_ups.present?
       self.course.follow_ups.each do |follow_up|
-        UserMailer.deliver_follow_up(follow_up, self.course)
+        UserMailer.deliver_follow_up(follow_up, self)
       end
       self.course.follow_ups.delete_all
     end
