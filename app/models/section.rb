@@ -10,7 +10,7 @@ class Section < ActiveRecord::Base
   has_many :students, :through => :registrations, :source => :user
 
   delegate :name, :description, :location, :location_name, :to => :course, :prefix => :course
-  after_create :send_follow_up_emails
+  after_create :send_follow_up_emails, :send_teacher_notifications
 
   accepts_nested_attributes_for :section_teachers
 
@@ -61,6 +61,12 @@ class Section < ActiveRecord::Base
         UserMailer.deliver_follow_up(follow_up, self)
       end
       self.course.follow_ups.delete_all
+    end
+  end
+
+  def send_teacher_notifications
+    self.teachers.each do |teacher|
+      UserMailer.deliver_teacher_notification(teacher, self)
     end
   end
 end

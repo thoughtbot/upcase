@@ -17,6 +17,21 @@ Feature: Scheduling a new course
     When I follow the link to the section from "June 14, 2010" to "June 17, 2010"
     Then I see that "Albert Einstein" is teaching
 
+  Scenario: Scheduling a section emails teachers about the section
+    Given I am signed in as an admin
+    And a course exists with a name of "Test-Driven Sleeping"
+    And the following teacher exists:
+      | name            | email                 |
+      | Albert Einstein | aeinstein@example.com |
+    When I go to the admin page
+    And I follow the link to re-run the course "Test-Driven Sleeping"
+    And I select the start date of "June 14, 2010"
+    And I select the end date of "June 17, 2010"
+    And I select the teacher "Albert Einstein"
+    And I fill in the section chargify id with "1234"
+    And I press the button to re-run a course
+    Then "aeinstein@example.com" is notified that they are scheduled to teach "Test-Driven Sleeping"
+
   Scenario: Adding a new section without filling in the teacher
     Given I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
