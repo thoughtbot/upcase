@@ -40,6 +40,18 @@
   <a href="#" id="add-question">Add Question</a>
 </div>
 
+<div id="follow-up-form" class="clearfix">
+  <h3>Follow ups</h3>
+  <ul>
+    <% form.fields_for :follow_ups, form.object.follow_ups_with_blank do |follow_up_fields| -%>
+      <li>
+        <%= follow_up_fields.text_field :email, :placeholder => 'Email address' %>
+      </li>
+    <% end -%>
+  </ul>
+  <a href="#" id="add-follow-up">Add Follow up</a>
+</div>
+
 <div id="terms-form">
   <h3>Terms &amp; Conditions</h3>
   <ul><%= form.input :terms_of_service, :label => nil %></ul>
@@ -74,5 +86,6 @@
 
     templateField('#faq-form li', '#faq-form ul', '#add-question');
     templateField('#resources-form li', '#resources-form ul', '#add-resource');
+    templateField('#follow-up-form li', '#follow-up-form ul', '#add-follow-up');
   </script>
 <% end -%>

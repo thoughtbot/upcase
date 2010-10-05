@@ -5,6 +5,11 @@ gem "RedCloth"
 gem "will_paginate"
 gem "formtastic"
 gem "nokogiri", ">= 1.4.0"
+gem "clearance", ">= 0.8.8"
+gem "validation_reflection", ">= 0.3.6"
+gem "haml", "= 3.0.16"
+gem "paperclip"
+gem "hoptoad_notifier"
 
 group :test do
   gem "cucumber", "0.8.5"
@@ -22,4 +27,5 @@ group :test do
   gem "treetop", "1.4.5"
   gem "sinatra"
   gem "ruby-debug"
+  gem "timecop"
 end

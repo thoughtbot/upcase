@@ -10,6 +10,7 @@ class Section < ActiveRecord::Base
   has_many :students, :through => :registrations, :source => :user
 
   delegate :name, :description, :location, :location_name, :to => :course, :prefix => :course
+  after_create :send_follow_up_emails
 
   accepts_nested_attributes_for :section_teachers
 
@@ -52,5 +53,14 @@ class Section < ActiveRecord::Base
 
   def must_have_at_least_one_teacher
     errors.add_to_base("must specify at least one teacher") unless self.teachers.any?
+  end
+
+  def send_follow_up_emails
+    if self.course.follow_ups.present?
+      self.course.follow_ups.each do |follow_up|
+        UserMailer.deliver_follow_up(follow_up, self.course)
+      end
+      self.course.follow_ups.delete_all
+    end
   end
 end

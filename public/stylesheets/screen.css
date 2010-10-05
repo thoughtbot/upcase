@@ -748,6 +748,50 @@ body {
     #content.admin #faq-form a#add-question:hover {
       background: -webkit-gradient(linear, left top, left bottom, color-stop(1, rgba(0, 0, 0, 0.4)), color-stop(0, rgba(136, 120, 91, 0.15)));
       background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.4) 0%, rgba(136, 120, 91, 0.15) 100%); }
+#content.admin #follow-up-form {
+  margin: 25px 0; }
+  #content.admin #follow-up-form ul li {
+    margin: 5px 0 0 0;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1, rgba(0, 0, 0, 0.5)), color-stop(0, rgba(0, 0, 0, 0.25)));
+    background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.25) 100%);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    padding: 10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -border-radius: 5px; }
+    #content.admin #follow-up-form ul li input::-webkit-input-placeholder {
+      color: rgba(255, 255, 255, 0.3); }
+    #content.admin #follow-up-form ul li textarea::-webkit-input-placeholder {
+      color: rgba(0, 0, 0, 0.2); }
+    #content.admin #follow-up-form ul li input[type="text"] {
+      background: rgba(255, 255, 255, 0.1);
+      -webkit-box-shadow: inset 0 1px 3px black;
+      -moz-box-shadow: inset 0 1px 3px black;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 0;
+      width: 742px;
+      margin: 0 0 7px 0;
+      color: #e5dccb;
+      font-size: 16px; }
+  #content.admin #follow-up-form a#add-follow-up {
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -border-radius: 3px;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1, rgba(0, 0, 0, 0.4)), color-stop(0, rgba(0, 0, 0, 0.1)));
+    background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.1) 100%);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    display: block;
+    padding: 10px;
+    float: left;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 7px 0 0 0;
+    color: #e5dccb; }
+    #content.admin #follow-up-form a#add-follow-up:hover {
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(1, rgba(0, 0, 0, 0.4)), color-stop(0, rgba(136, 120, 91, 0.15)));
+      background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.4) 0%, rgba(136, 120, 91, 0.15) 100%); }
 #content.admin #terms-form {
   float: left;
   width: 385px; }

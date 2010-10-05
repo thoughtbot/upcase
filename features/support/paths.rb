@@ -79,6 +79,8 @@ module NavigationHelpers
       'course_terms_of_service'
     when 'reminder email text'
       'course_reminder_email'
+    when 'course follow up email'
+      'course_followup_email'
     when 'that the course is public'
       'course_public'
     when 'login email'
@@ -125,6 +127,10 @@ module NavigationHelpers
       resource_number = $1.to_i
       resource_index = resource_number - 1
       "course_resources_attributes_#{resource_index}_name"
+    when /follow up (\d+)/
+      follow_up_number = $1.to_i
+      follow_up_index = follow_up_number - 1
+      "course_follow_ups_attributes_#{follow_up_index}_email"
     when /url (\d+)/
       url_number = $1.to_i
       url_index = url_number - 1
