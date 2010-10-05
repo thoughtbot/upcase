@@ -23,3 +23,23 @@ Then '"$email" does not receive a confirmation message' do |email|
   assert !result
 end
 
+Then '"$email_address" receives a follow up email for "$course_title"' do |email_address, course_title|
+  assert !ActionMailer::Base.deliveries.empty?
+  result = ActionMailer::Base.deliveries.any? do |email|
+    email.to == [email_address] &&
+    email.subject =~ /#{course_title} workshop has been scheduled/i
+  end
+  assert result
+end
+
+When 'emails are cleared' do
+  ActionMailer::Base.deliveries.clear
+end
+
+Then '"$email_address" does not receive a follow up email for "$course_title"' do |email_address, course_title|
+  result = ActionMailer::Base.deliveries.any? do |email|
+    email.to == [email_address] &&
+    email.subject =~ /#{course_title} workshop has been scheduled/i
+  end
+  assert !result
+end

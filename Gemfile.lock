@@ -25,6 +25,7 @@ GEM
       envjs (>= 0.3.7)
     capybara-envjs-fixes (0.0.5)
       capybara-envjs (>= 0.1.6)
+    clearance (0.8.8)
     columnize (0.3.1)
     configuration (1.1.0)
     cucumber (0.8.5)
@@ -49,6 +50,9 @@ GEM
       i18n (< 0.4)
     gherkin (2.1.5)
       trollop (~> 1.16.2)
+    haml (3.0.16)
+    hoptoad_notifier (2.3.8)
+      activesupport
     i18n (0.3.7)
     johnson (2.0.0.pre3)
       stackdeck (~> 0.2)
@@ -60,6 +64,9 @@ GEM
     mime-types (1.16)
     mysql (2.8.1)
     nokogiri (1.4.3.1)
+    paperclip (2.3.3)
+      activerecord
+      activesupport
     polyglot (0.3.1)
     rack (1.1.0)
     rack-test (0.5.5)
@@ -91,9 +98,11 @@ GEM
       rack (>= 1.0)
     stackdeck (0.2.0)
     term-ansicolor (1.0.5)
+    timecop (0.3.5)
     treetop (1.4.5)
       polyglot (>= 0.3.1)
     trollop (1.16.2)
+    validation_reflection (0.3.8)
     will_paginate (2.3.14)
 
 PLATFORMS
@@ -104,20 +113,26 @@ DEPENDENCIES
   capybara
   capybara-envjs
   capybara-envjs-fixes
+  clearance (>= 0.8.8)
   cucumber (= 0.8.5)
   cucumber-rails
   database_cleaner (= 0.5.0)
   factory_girl (= 1.2.3)
   formtastic
+  haml (= 3.0.16)
+  hoptoad_notifier
   johnson
   launchy
   mysql
   nokogiri (>= 1.4.0)
+  paperclip
   polyglot (= 0.3.1)
   rails (= 2.3.8)
   rspec-rails (= 1.3.2)
   ruby-debug
   sham_rack (= 1.3.1)
   sinatra
+  timecop
   treetop (= 1.4.5)
+  validation_reflection (>= 0.3.6)
   will_paginate
