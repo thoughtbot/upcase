@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sham_rack'
 
 class Courses
   def self.add!(params)

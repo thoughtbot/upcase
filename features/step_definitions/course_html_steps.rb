@@ -33,6 +33,15 @@ When 'I fill in the following questions:' do |question_table|
   end
 end
 
+When 'I fill in the following follow ups:' do |follow_up_table|
+  follow_up_table.hashes.each_with_index do |follow_up_hash, index|
+    number = index + 1
+    steps %{
+      When I fill in the follow up #{number} field with "#{follow_up_hash['email']}"
+    }
+  end
+end
+
 Then 'I see the following questions:' do |question_table|
   question_table.hashes.each_with_index do |question_hash, index|
     number = index + 1
@@ -76,4 +85,3 @@ Then 'I see the answer "$answer"'do |answer|
 end
 
 World(ActionController::RecordIdentifier)
-
