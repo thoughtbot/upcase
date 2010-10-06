@@ -10,9 +10,9 @@ gem "validation_reflection", ">= 0.3.6"
 gem "haml", "= 3.0.16"
 gem "paperclip"
 gem "hoptoad_notifier"
+gem "cucumber", "0.8.5"
 
 group :test do
-  gem "cucumber", "0.8.5"
   gem "cucumber-rails"
   gem "capybara"
   gem "capybara-envjs"
