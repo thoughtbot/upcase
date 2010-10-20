@@ -995,3 +995,17 @@ body {
   left: 0;
   top: 5px;
   width: 250px; }
+
+a#survey {
+  float: right;
+  display: block;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: rgba(255, 255, 255, 0.07) url(/images/survey-icon.png) 5px 5px no-repeat;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.8);
+  font-size: 12px;
+  text-decoration: none;
+  line-height: 14px;
+  padding: 10px 10px 10px 34px;
+  height: 14px;
+  color: rgba(255, 255, 255, 0.3); }
