@@ -61,7 +61,7 @@ body {
           .top #header ul#nav li a:hover {
             background: rgba(255, 255, 255, 0.13); }
   .top #sub-header {
-    padding: 60px 80px 30px;
+    padding: 60px 80px 20px;
     width: 780px; }
     .top #sub-header h2#learn-from-the-experts {
       width: 689px;
@@ -109,8 +109,7 @@ body {
           -webkit-border-bottom-right-radius: 5px;
           -webkit-border-radius-topright: 5px;
           -webkit-border-radius-bottomright: 5px;
-          background: -webkit-gradient(linear, left top, left bottom, color-stop(1, #720200), color-stop(0, #ba0400));
-          background: -moz-linear-gradient(bottom, #720200 0%, #ba0400 100%);
+          background: rgba(0, 0, 0, 0.15);
           -webkit-box-shadow: inset 3px -3px 9px rgba(0, 0, 0, 0.2);
           float: right;
           padding: 25px 20px;
@@ -118,6 +117,17 @@ body {
           font-size: 16px;
           text-align: right;
           border-left: 1px solid #c70600; }
+    .top #sub-header ul#list-of-classes li.inactive a {
+      border: 2px solid #24221b;
+      border-top: 2px solid #32302a;
+      border-bottom: 2px solid #120d00;
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(1, #19160e), color-stop(0, #32302a));
+      background: -moz-linear-gradient(bottom, #19160e 0%, #32302a 100%); }
+      .top #sub-header ul#list-of-classes li.inactive a:hover {
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(1, #19160e), color-stop(0, #36342b));
+        background: -moz-linear-gradient(bottom, #19160e 0%, #36342b 100%); }
+      .top #sub-header ul#list-of-classes li.inactive a div {
+        border-left: 1px solid #32302a; }
 
 #content {
   padding: 25px 0;
@@ -307,8 +317,7 @@ body {
       #content .wrapper .dark-content h4 {
         font-size: 18px;
         color: #fff;
-        font-weight: 100;
-        letter-spacing: 1px; }
+        font-weight: 100; }
       #content .wrapper .dark-content #teachers {
         width: 280px;
         float: right; }
@@ -424,7 +433,6 @@ body {
           margin: 0 25px 0 0;
           width: 220px;
           height: 100px;
-          font-weight: 200;
           position: relative;
           padding: 0 0 50px 0;
           font-size: 13px;
@@ -931,7 +939,7 @@ body {
 
 #no-courses {
   display: block;
-  width: 940px;
+  width: 820px;
   margin: 0 auto;
   text-align: center;
   padding: 25px 0;
@@ -941,3 +949,33 @@ body {
 
 .right {
   float: right; }
+
+#inactive-notify-me {
+  margin: 0 0 10px 0; }
+  #inactive-notify-me label {
+    padding: 0 0 5px 30px;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 18px;
+    height: 24px;
+    line-height: 24px;
+    background: url(/images/alert.png) no-repeat; }
+  #inactive-notify-me input[type="text"] {
+    width: 684px;
+    padding: 10px;
+    font-size: 14px; }
+
+a#survey {
+  float: right;
+  display: block;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: rgba(255, 255, 255, 0.07) url(/images/survey-icon.png) 5px 5px no-repeat;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.8);
+  font-size: 12px;
+  text-decoration: none;
+  line-height: 14px;
+  padding: 10px 10px 10px 34px;
+  height: 14px;
+  color: rgba(255, 255, 255, 0.3); }
