@@ -35,6 +35,7 @@ body {
 
 .wrapper {
   width: 940px;
+  position: relative;
   margin: 0 auto;
 }
 
@@ -126,6 +127,7 @@ body {
       line-height: 22px;
       margin: 0 0 45px 0;
     }
+
     ul#list-of-classes {
       li {
         margin: 0 0 20px 0;
@@ -182,6 +184,20 @@ body {
         }
       }
     }
+  }
+  a#survey {
+    float: right;
+    display: block;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background: rgba(255,255,255,.07) url(/images/survey-icon.png) 5px 5px no-repeat;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 3px rgba(0,0,0,.8);
+    font-size: 12px;
+    text-decoration: none;
+    line-height: 14px;
+    padding: 10px 10px 10px 34px;
+    height: 14px;
+    color: rgba(255,255,255,.3);
   }
 }
 
@@ -563,10 +579,11 @@ body {
   #sign_in, #sign_up, #change_password {
     width: 600px;
     input[type="text"], input[type="password"], textarea {
-      width: 580px;
+      width: 540px;
     }
-    ul {
-      margin-top: 20px;
+    a {
+      float: right;
+      margin-top: -25px;
     }
     p.flash_success {
       background: #1A160F;
@@ -1150,17 +1167,19 @@ body {
   }
 }
 
-a#survey {
-  float: right;
-  display: block;
-  -moz-border-radius: 5px;
+#flash div {
+  padding: 10px;
+  background: rgba(0,0,0,.15);
   -webkit-border-radius: 5px;
-  background: rgba(255,255,255,.07) url(/images/survey-icon.png) 5px 5px no-repeat;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 3px rgba(0,0,0,.8);
-  font-size: 12px;
-  text-decoration: none;
-  line-height: 14px;
-  padding: 10px 10px 10px 34px;
-  height: 14px;
-  color: rgba(255,255,255,.3);
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 1px 3px #000, 0 1px 0 rgba(255,255,255,.1);
+  -moz-box-shadow: inset 0 2px 5px #000, 0 1px 0 rgba(255,255,255,.1);
+  box-shadow: inset 0 2px 5px #000, 0 1px 0 rgba(255,255,255,.1);
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 250px;
 }
+
+
