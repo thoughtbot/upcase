@@ -6,12 +6,14 @@
 
 <div id="content">
   <div id="sign_up" class="wrapper">
-    <% semantic_form_for @user do |form| %>
-      <%= form.error_messages %>
-      <%= render :partial => "/users/inputs", :locals => { :form => form } %>
-      <% form.buttons do %>
-        <%= form.commit_button "Sign up" %>
+    <div class="dark-content clearfix">
+      <% semantic_form_for @user do |form| %>
+        <%= form.error_messages %>
+        <%= render :partial => "/users/inputs", :locals => { :form => form } %>
+        <% form.buttons do %>
+          <%= form.commit_button "Sign up" %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
