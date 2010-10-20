@@ -1,0 +1,1098 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- $Id: README.html 244 2009-02-01 08:43:39Z tommy $ -->
+<html>
+  <head>
+    <meta http-equiv="content-style-type" content="text/css">
+    <link rel=stylesheet type="text/css" href="tommy.css">
+    <link rev=made href="mailto:tommy@tmtm.org">
+    <title>MySQL/Ruby</title>
+  </head>
+
+  <body>
+    <h1>MySQL/Ruby</h1>
+    <p><a href="README_ja.html">[Japanese]</a></p>
+    <hr>
+    <p>
+      This is the <a href="http://www.mysql.com">MySQL</a> API module for Ruby.
+      It provides the same functions for Ruby programs that the MySQL C API provides for C programs.
+    </p>
+
+    <h2>Download</h2>
+    <a href="http://tmtm.org/downloads/mysql/ruby/">tmtm.org</a>
+
+    <h2>Requirement</h2>
+    <ul>
+      <li>MySQL 5.0.67
+      <li>Ruby 1.8.7, 1.9.1
+    </ul>
+    <p>
+      The module may work for other versions, but that has not been verified.
+    </p>
+
+    <h2>License</h2>
+    <p>
+      This program is under <a href="http://www.ruby-lang.org/en/LICENSE.txt">Ruby's license</a>.
+    </p>
+
+    <h2>Install</h2>
+    <p>
+      1st:
+    </p>
+    <pre class="code">
+% ruby extconf.rb
+</pre>
+    <p>
+      or
+    </p>
+    <pre class="code">
+% ruby extconf.rb --with-mysql-dir=/usr/local/mysql
+</pre>
+    <p>
+      or
+    </p>
+    <pre clas="code">
+% ruby extconf.rb --with-mysql-config
+</pre>
+    <p>
+      then
+    </p>
+    <pre>
+% make
+</pre>
+    <p>
+      extconf.rb has following options:
+    </p>
+    <dl>
+      <dt>--with-mysql-include=<i>dir</i>
+      <dd>
+	MySQL header file directory. Default is /usr/local/include.
+
+      <dt>--with-mysql-lib=<i>dir</i>
+      <dd>
+	MySQL library directory. Default is /usr/local/lib.
+
+      <dt>--with-mysql-dir=<i>dir</i>
+      <dd>
+	Same as --with-mysql-include=<i>dir</i>/include,
+	--with-mysql-lib=<i>dir</i>/lib.
+
+      <dt>--with-mysql-config[=<i>/path/to/mysql_config</i>]
+      <dd>
+	Get compile-parameter from mysql_config command.
+    </dl>
+    <p>
+      2nd:
+    </p>
+    <pre class="code">
+% ruby ./test.rb -- [<i>hostname</i> [<i>user</i> [<i>passwd</i> [<i>dbname</i> [<i>port</i> [<i>socket</i> [<i>flag</i>]]]]]]]
+</pre>
+
+    <p>
+      3rd:
+    </p>
+    <pre class="code">
+# make install
+</pre>
+
+    <h3>Note</h3>
+    <p>
+      If you get error like 'libmysqlclient not found' when testing,
+      you need to specify the directory in which the library is
+      located so that make can find it.
+    </p>
+    <pre class="code">
+% env LD_RUN_PATH=<i>libmysqlclient.so directory</i> make
+</pre>
+    <p>
+      test.rb is tested on Linux only.
+    </p>
+
+    <h2>Usage</h2>
+    <p>
+      The names of methods provided by this module basically are the
+      same as the names of the functions in the C API, except that the
+      Ruby method names do not begin with a 'mysql_' prefix. For
+      example, the Ruby query() method corresponds to the C API
+      mysql_query() function. For details on the use of each Ruby
+      method, see the descriptions of the corresponding C functions in
+      the MySQL Reference Manual.
+    </p>
+    <p>
+      Some Ruby methods may be invoked under other names that serve as
+      equivalent aliases, as noted below.
+    </p>
+    <p>
+      If an error occurs when a method executes, it raises a
+      Mysql::Error exception.
+    </p>
+
+    <h2>Mysql class</h2>
+    <h3>CLASS METHODS</h3>
+    <dl>
+      <dt>init()
+      <dd>
+	<p>
+	  It return Mysql object. It not connect to mysqld.
+	</p>
+
+      <dt>real_connect(host=nil, user=nil, passwd=nil, db=nil, port=nil, sock=nil, flag=nil)
+      <dt>connect(host=nil, user=nil, passwd=nil, db=nil, port=nil, sock=nil, flag=nil)
+      <dt>new(host=nil, user=nil, passwd=nil, db=nil, port=nil, sock=nil, flag=nil)
+      <dd>
+	<p>
+	  connect to mysqld and return Mysql object.
+	</p>
+
+      <dt>escape_string(str)
+      <dt>quote(str)
+      <dd>
+	<p>
+	  quote string for insert/update.
+	</p>
+
+      <dt>get_client_info()
+      <dt>client_info()
+      <dd>
+	<p>
+	  return client version information.
+	</p>
+
+      <dt>get_client_version()
+      <dt>client_version()
+      <dd>
+	<p>
+	  return client version as number.
+	</p>
+
+      <dt>debug(str)
+      <dd>
+	<p>
+	  same as C API mysql_debug().
+	</p>
+    </dl>
+
+    <h3>OBJECT METHODS</h3>
+    <dl>
+      <dt>options(opt, val=nil)
+      <dd>
+	<p>
+	  same as C API mysql_options().
+	</p>
+
+      <dt>real_connect(host=nil, user=nil, passwd=nil, db=nil, port=nil, sock=nil, flag=nil)
+      <dt>connect(host=nil, user=nil, passwd=nil, db=nil, port=nil, sock=nil, flag=nil)
+      <dd>
+	<p>
+	  same as Mysql.real_connect().
+	</p>
+
+      <dt>affected_rows()
+      <dd>
+	<p>
+	  return affected rows.
+	</p>
+
+      <dt>autocommit(mode)
+      <dd>
+	<p>
+	  set autocommit mode.
+	</p>
+
+      <dt>change_user(user=nil, passwd=nil, db=nil)
+      <dd>
+	<p>
+	  change user.
+	</p>
+
+      <dt>character_set_name()
+      <dd>
+	<p>
+	  return character set.
+	</p>
+
+      <dt>close()
+      <dd>
+	<p>
+	  close connection.
+	</p>
+
+      <dt>commit()
+      <dd>
+	<p>
+	  commit transaction.
+	</p>
+
+      <dt>create_db(db)
+      <dd>
+	<p>
+	  create database.
+	</p>
+
+      <dt>drop_db(db)
+      <dd>
+	<p>
+	  drop database.
+	</p>
+
+      <dt>dump_debug_info()
+      <dd>
+	<p>
+	  same as C API mysql_dump_debug_info().
+	</p>
+
+      <dt>errno()
+      <dd>
+	<p>
+	  return error number.
+	</p>
+
+      <dt>error()
+      <dd>
+	<p>
+	  return error message.
+	</p>
+
+      <dt>escape_string(str)
+      <dt>quote(str)
+      <dd>
+	<p>
+	  quote strings for insert/update.
+	  same as C API mysql_real_escape_string().
+	</p>
+
+      <dt>field_count()
+      <dd>
+	<p>
+	  return number of columns of last query.
+	</p>
+
+      <dt>get_client_info()
+      <dt>client_info()
+      <dd>
+	<p>
+	  return client version information.
+	</p>
+
+      <dt>get_client_version()
+      <dt>client_version()
+      <dd>
+	<p>
+	  return client version number.
+	</p>
+
+      <dt>get_host_info()
+      <dt>host_info()
+      <dd>
+	<p>
+	  return connection information.
+	</p>
+
+      <dt>get_proto_info()
+      <dt>proto_info()
+      <dd>
+	<p>
+	  return connection protocol version.
+	</p>
+
+      <dt>get_server_info()
+      <dt>server_info()
+      <dd>
+	<p>
+	  return server version information.
+	</p>
+
+      <dt>get_server_version()
+      <dt>server_version()
+      <dd>
+	<p>
+	  return server version number.
+	</p>
+
+      <dt>info()
+      <dd>
+	<p>
+	  return information of last query.
+	</p>
+
+      <dt>insert_id()
+      <dd>
+	<p>
+	  return last AUTO_INCREMENT value.
+	</p>
+
+      <dt>kill(id)
+      <dd>
+	<p>
+	  kill thread.
+	</p>
+
+      <dt>list_dbs(db=nil)
+      <dd>
+	<p>
+	  return database list.
+	</p>
+
+      <dt>list_fields(table, field=nil)
+      <dd>
+	<p>
+	  return Mysql::Result object.
+	</p>
+
+      <dt>list_processes()
+      <dd>
+	<p>
+	  return Mysql::Result object.
+	</p>
+
+      <dt>list_tables(table=nil)
+      <dd>
+	<p>
+	  return table list Array.
+	</p>
+
+      <dt>more_results?()
+      <dd>
+	<p>
+	  returns true if more results exist from the currently executed query.
+	</p>
+
+      <dt>next_result()
+      <dd>
+	<p>
+	  returns true if more results exist from the currently executed query.
+	  after this, you do store_result() to get result table of query.
+	</p>
+
+      <dt>ping()
+      <dd>
+	<p>
+	  check server.
+	</p>
+
+      <dt>prepare(q)
+      <dd>
+	<p>
+	</p>
+
+      <dt>query(q)
+      <dt>real_query(q)
+      <dd>
+	<p>
+	  do query and store_result(). return Mysql::Result object.
+	  If query_with_result is false, it does not store_result().
+	</p>
+
+      <dt>query(q) {|res| ...}
+      <dt>real_query(q) {|res| ...}
+      <dd>
+	<p>
+	  do query and execute block with Mysql::Result object.
+          Mysql::Result object is freed when exiting block.
+          If multiple statement mode, it does repeat block each query.
+        </p>
+        <p>
+          Since MySQL/Ruby 2.8, it no longer turn on multiple statement mode automatically.
+          If you want to turn on multiple statement mode, set Mysql::CLIENT_MULTI_STATEMENTS for Mysql.connect or execute Mysql#set_server_option(Mysql::OPTION_MULTI_STATEMENTS_ON).
+        </p>
+
+      <dt>refresh(r)
+      <dd>
+	<p>
+	  flush server log or cache.
+	</p>
+
+      <dt>reload()
+      <dd>
+	<p>
+	  reload access privilege table.
+	</p>
+
+      <dt>rollback()
+      <dd>
+	<p>
+	  rollback transaction.
+	</p>
+
+      <dt>select_db(db)
+      <dd>
+	<p>
+	  select database.
+	</p>
+
+      <dt>set_server_option(opt)
+      <dd>
+	<p>
+	  set option to server.
+	  options is one of Mysql::OPTION_MULTI_STATEMENTS_ON, Mysql::OPTION_MULTI_STATEMENTS_OFF.
+	</p>
+
+      <dt>shutdown()
+      <dd>
+	<p>
+	  shutdown server.
+	</p>
+
+      <dt>ssl_set(key=nil, cert=nil, ca=nil, capath=nil, cipher=nil)
+      <dd>
+	<p>
+	  use SSL.
+	</p>
+
+      <dt>stat()
+      <dd>
+	<p>
+	  return server status.
+	</p>
+
+      <dt>stmt_init()
+      <dd>
+	<p>
+	  return Mysql::Stmt class object.
+	</p>
+
+      <dt>store_result()
+      <dd>
+	<p>
+	  return Mysql::Result object.
+	</p>
+
+      <dt>thread_id()
+      <dd>
+	<p>
+	  retrun thread id.
+	</p>
+
+      <dt>use_result()
+      <dd>
+	<p>
+	  return Mysql::Result object.
+	</p>
+
+      <dt>warning_count()
+      <dd>
+	<p>
+	  return warning count last query.
+	</p>
+    </dl>
+
+    <h3>OBJECT VARIABLES</h3>
+
+    <dl>
+      <dt>query_with_result
+      <dd>
+	<p>
+	  If true, query() also invokes store_result() and returns a
+	  Mysql::Result object.  Default is true.
+	</p>
+
+      <dt>reconnect
+      <dd>
+	<p>
+	  If true, reconnect to server automatically when disconect to server.
+	  Default is false.
+	</p>
+
+    </dl>
+
+    <h2>Mysql::Result class</h2>
+
+    <h3>OBJECT METHODS</h3>
+    <dl>
+      <dt>free()
+      <dd>
+	<p>
+	  free memory of result table.
+	</p>
+
+      <dt>data_seek(offset)
+      <dd>
+	<p>
+	  seek row.
+	</p>
+
+      <dt>fetch_field()
+      <dd>
+	<p>
+	  return next Mysql::Field object.
+	</p>
+
+      <dt>fetch_fields()
+      <dd>
+	<p>
+	  return Array of Mysql::Field object.
+	</p>
+
+      <dt>fetch_field_direct(fieldnr)
+      <dd>
+	<p>
+	  return Mysql::Field object.
+	</p>
+
+      <dt>fetch_lengths()
+      <dd>
+	<p>
+	  return Array of field length.
+	</p>
+
+      <dt>fetch_row()
+      <dd>
+	<p>
+	  return row as Array.
+	</p>
+
+      <dt>fetch_hash(with_table=false)
+      <dd>
+	<p>
+	  return row as Hash.
+	  If with_table is true, hash key format is "tablename.fieldname".
+	</p>
+
+      <dt>field_seek(offset)
+      <dd>
+	<p>
+	  seek field.
+	</p>
+
+      <dt>field_tell()
+      <dd>
+	<p>
+	  return field position.
+	</p>
+
+      <dt>num_fields()
+      <dd>
+	<p>
+	  return number of fields.
+	</p>
+
+      <dt>num_rows()
+      <dd>
+	<p>
+	  return number of rows.
+	</p>
+
+      <dt>row_seek(offset)
+      <dd>
+	<p>
+	  seek row.
+	</p>
+
+      <dt>row_tell()
+      <dd>
+	<p>
+	  return row position.
+	</p>
+    </dl>
+
+    <h3>ITERATOR</h3>
+    <dl>
+      <dt>each() {|x| ...}
+      <dd>
+	<p>
+	  'x' is array of column values.
+	</p>
+
+      <dt>each_hash(with_table=false) {|x| ...}
+      <dd>
+	<p>
+	  'x' is hash of column values, and the keys are the column names.
+	</p>
+    </dl>
+
+    <h2>Mysql::Field class</h2>
+
+    <h3>OBJECT VARIABLES(read only)</h3>
+    <dl>
+      <dt>name<dd>field name
+      <dt>table<dd>table name
+      <dt>def<dd>default value
+      <dt>type<dd>field type
+      <dt>length<dd>field length
+      <dt>max_length<dd>max field length
+      <dt>flags<dd>field flag
+      <dt>decimals<dd>number of decimals
+    </dl>
+
+    <h3>OBJECT METHODS</h3>
+    <dl>
+      <dt>hash()
+      <dd>
+	<p>
+	  return field as Hash.
+	</p>
+	<p>
+	  ex.) obj.name == obj.hash['name']
+	</p>
+
+      <dt>is_not_null?()
+      <dd>
+	<p>
+	  True if this field is defined as NOT NULL.
+	</p>
+
+      <dt>is_num?()
+      <dd>
+	<p>
+	  True if this field type is numeric.
+	</p>
+
+      <dt>is_pri_key?()
+      <dd>
+	<p>
+	  True if this field is a primary key.
+	</p>
+
+      <dt>inspect()
+      <dd>
+	<p>
+	  return "#&lt;Mysql::Field:fieldname&gt;"
+	</p>
+    </dl>
+
+    <h2>Mysql::Stmt class</h2>
+    <p>
+      Example:
+    </p>
+    <pre class="code">
+my = Mysql.new(hostname, username, password, databasename)
+st = my.prepare("insert into tblname (col1,col2,col3) values (?,?,?)")
+st.execute("abc",123,Time.now)
+st.prepare("select col1,col2,col3 from tblname")
+st.execute
+st.fetch  # => ["abc", 123, #&lt;Mysql::Time:2005-07-24 23:52:55&gt;]
+st.close
+</pre>
+
+    <h3>OBJECT METHODS</h3>
+    <dl>
+      <dt>affected_rows()
+      <dd>
+	<p>
+	</p>
+
+      <dt>bind_result(class, ...)
+      <dd>
+        <p>
+        </p>
+
+      <dt>close()
+      <dd>
+	<p>
+	</p>
+
+      <dt>data_seek(offset)
+      <dd>
+	<p>
+	</p>
+
+      <dt>execute(arg, ...)
+      <dd>
+	<p>
+	</p>
+
+      <dt>fetch()
+      <dd>
+	<p>
+	</p>
+	<p>
+	  Type mapping:
+	</p>
+	<table>
+	    <tr><th>MySQL type<th>Ruby class
+	    <tr><td>TINYINT, SMALLINT, MEDIUMINT, YEAR<td>Fixnum
+	    <tr><td>INT, BIGINT<td>Fixnum or Bignum
+	    <tr><td>FLOAT, DOUBLE<td>Float
+	    <tr><td>DECIMAL<td>String
+	    <tr><td>DATE, DATETIME, TIMESTAMP, TIME<td>Mysql::Time
+	    <tr><td>CHAR, VARCHAR, BINARY, VARBINARY, TINYBLOB, TINYTEXT, TINYBLOB, TINYTEXT, MEDIUMBLOB, MEDIUMTEXT, LONGBLOB, LONGTEXT, ENUM, SET, BIT<td>String
+	    <tr><td>NULL<td>NilClass
+	</table>
+
+      <dt>field_count()
+      <dd>
+	<p>
+	</p>
+
+      <dt>free_result()
+      <dd>
+	<p>
+	</p>
+
+      <dt>insert_id()
+      <dd>
+	<p>
+	</p>
+
+      <dt>num_rows()
+      <dd>
+	<p>
+	</p>
+
+      <dt>param_count()
+      <dd>
+	<p>
+	</p>
+
+      <dt>prepare(q)
+      <dd>
+	<p>
+	</p>
+
+      <dt>result_metadata()
+      <dd>
+	<p>
+	</p>
+
+      <dt>row_seek(offset)
+      <dd>
+	<p>
+	</p>
+
+      <dt>row_tell()
+      <dd>
+	<p>
+	</p>
+
+      <dt>sqlstate()
+      <dd>
+	<p>
+	</p>
+    </dl>
+
+    <h3>ITERATOR</h3>
+    <dl>
+      <dt>each() {|x| ...}
+      <dd>
+	<p>
+	</p>
+    </dl>
+
+    <h2>Mysql::Time class</h2>
+    <p>
+    </p>
+
+    <h3>CLASS METHODS</h3>
+    <dl>
+      <dt>new(year=0,month=0,day=0,hour=0,minute=0,second=0,neg=false,second_part=0)
+      <dd>
+	<p>
+	</p>
+    </dl>
+
+    <h3>OBJECT VARIABLES</h3>
+    <dl>
+      <dt>year
+      <dd>
+
+      <dt>month
+      <dd>
+
+      <dt>day
+      <dd>
+
+      <dt>hour
+      <dd>
+
+      <dt>minute
+      <dd>
+
+      <dt>second
+      <dd>
+
+      <dt>neg
+      <dd>
+
+      <dt>second_part
+      <dd>
+    </dl>
+
+    <h2>Mysql::Error class</h2>
+
+    <h3>OBJECT VARIABLES(read only)</h3>
+    <dl>
+      <dt>error
+      <dd>eror message
+      <dt>errno
+      <dd>error number
+    </dl>
+
+    <h2>History</h2>
+    <dl>
+      <dt>2009-02-01
+      <dd>
+        version 2.8.1<br>
+        <ul>
+          <li>correspond to Ruby 1.9.1
+        </ul>
+
+      <dt>2008-09-29
+      <dd>
+        version 2.8<br>
+        version 2.7.7
+        <ul>
+          <li>When connecting to MySQL, EINTR is occurred sometimes ([ruby-dev:31842])
+          <li>MySQL/Ruby 2.7.* can not be compiled on Ruby 1.8.5.
+        </ul>
+
+      <dt>2008-06-20
+      <dd>
+        version 2.8pre4<br>
+        <ul>
+          <li>[ruby-dev:35152]
+        </ul>
+
+      <dt>2008-06-17
+      <dd>
+        version 2.8pre3<br>
+        version 2.7.6
+        <ul>
+          <li>On 64bit machine, Mysql::Stmt#execute raise error on large numeric value(>= 2**30).
+        </ul>
+
+      <dt>2008-03-08
+      <dd>
+        version 2.8pre2<br>
+        version 2.7.5
+        <ul>
+          <li>On 64bit machine, Mysql::Stmt#fetch return invalid numeric value.
+        </ul>
+
+      <dt>2007-12-26
+      <dd>
+        version 2.8pre1
+        <ul>
+          <li>for Ruby 1.9.0
+          <li>Incompat: Mysql::Result#each_hash don't create column name string each row. it's shared.
+          <li>Incompat: Mysql#query with block no longer turn on multi-statements mode automatically.
+        </ul>
+
+      <dt>2007-08-22
+      <dd>
+        version 2.7.4
+        <ul>
+          <li>BUG: Mysql::Stmt#execute memory leak.
+        </ul>
+
+      <dt>2006-12-20
+      <dd>
+        version 2.7.3
+        <ul>
+          <li>BUG: Mysql#query with block is stopped when last query failed.
+        </ul>
+
+      <dt>2006-10-28
+      <dd>
+        version 2.7.2
+        <ul>
+          <li>BUG: Mysql::Stmt#result_metadata don't return nil. (Thanks to Hidetoshi)
+          <li>BUG: Mysql#close check mysql_errno.
+          <li>BUG: multistatement Mysql#query with block ignore error.
+          <li>extconf.rb for Visual C++. (Thanks to Shugo Maeda)
+          <li>support MySQL BIT type.
+          <li>add Mysql::Field::TYPE_BIT, TYPE_NEWDECIMAL.
+        </ul>
+
+      <dt>2006-06-04
+      <dd>
+        version  2.7.1
+        <ul>
+          <li>change free() to xfree(). To avoid crash on Windows. (Thanks Tobias Grimm)
+        </ul>
+
+      <dt>2005-08-22
+      <dd>
+        version 2.7
+        <ul>
+          <li>add constants for Mysql#options: Mysql::OPT_GUESS_CONNECTION, Mysql::OPT_USE_EMBEDDED_CONNECTION, Mysql::OPT_USE_REMOTE_CONNECTION, Mysql::SET_CLIENT_IP
+          <li>test.rb: for 4.0.x, 5.0.x
+        </ul>
+
+      <dt>2005-08-16
+      <dd>
+        version 2.7-beta3
+        <ul>
+          <li>add Mysql::Stmt#bind_result
+        </ul>
+
+      <dt>2005-08-02
+      <dd>
+	version 2.7-beta2
+	<ul>
+	  <li>BUG: mysql.c.in: fetch_hash: nil value doesn't exist in hash. (Thanks Stefan Kaes)
+	  <li>add constant Mysql::VERSION.
+	  <li>add Mysql#prepare
+	</ul>
+
+      <dt>2005-07-24
+      <dd>
+	version 2.7-beta
+	<ul>
+	  <li>add Mysql#stmt_init method
+	  <li>add Mysql::Stmt, Mysql::Time, Mysql::RowOffset class
+	  <li>add Mysql::Error#sqlstate method
+	  <li>change offset value to Mysql::RowOffset object that is used by Mysql::Result#row_seek,row_tell
+	</ul>
+
+      <dt>2005-07-31
+      <dd>
+	version 2.6.3
+	<ul>
+	  <li>add constant Mysql::VERSION.
+	</ul>
+
+      <dt>2005-07-26
+      <dd>
+	version 2.6.2
+	<ul>
+	  <li>BUG: mysql.c.in: fetch_hash: nil value doesn't exist in hash. (Thanks Stefan Kaes)
+	</ul>
+
+      <dt>2005-06-28
+      <dd>
+	version 2.6.1
+	<ul>
+	  <li>mysql.c.in: fix to compile error on MacOSX.
+	</ul>
+
+      <dt>2005-04-25
+      <dd>
+	version 2.6
+	<ul>
+	  <li>add constants for Mysql#option():
+	    Mysql::OPT_PROTOCOL, Mysql::OPT_READ_TIMEOUT,
+	    Mysql::OPT_WRITE_TIMEOUT, Mysql::SET_CHARSET_DIR,
+	    Mysql::SET_CHARSET_NAME, Mysql::SHARED_MEMORY_BASE_NAME,
+	    Mysql::SECURE_AUTH
+	  <li>add methods: Mysql#more_results?(), Mysql#next_result(), 
+	    Mysql#set_server_option(), Mysql#sqlstate()
+	  <li>add constants for Mysql#connect():
+	    Mysql::CLIENT_MULTI_STATEMENTS, Mysql::CLIENT_MULTI_RESULTS
+	  <li>add constants for Mysql#set_server_option():
+	    Mysql::OPTION_MULTI_STATEMENTS_ON,
+	    Mysql::OPTION_MULTI_STATEMENTS_OFF
+	  <li>add Mysql#query() with block
+	  <li>add Mysql#reconnect(), Mysql#reconnect=()
+	  <li>When connection was closed, it don't try to reconnect by default.
+	</ul>
+
+      <dt>2005-02-12
+      <dd>
+	version 2.5.2
+	<ul>
+	  <li>BUG: Mysql#connect make object to not close. (Thanks Andres Salomon)
+	</ul>
+
+      <dt>2004-09-20
+      <dd>
+	version 2.5.1
+	<ul>
+	  <li>add Mysql#set_ssl().
+	</ul>
+
+      <dt>2004-08-31
+      <dd>
+	version 2.5
+	<ul>
+	  <li>correspond to MySQL 4.1.x.
+	  <li>change MysqlRes, MysqlField, MysqlError to Mysql::Result, Mysql::Field, Mysql::Error.
+	  <li>add Mysql.client_version(), Mysql.get_client_version(),
+	    Mysql#client_version(), Mysql#get_client_version(),
+	    Mysql#server_version(), Mysql#get_server_version(),
+	    Mysql#warning_count(), Mysql#commit(), Mysql#rollback(),
+	    Mysql#autocommit().
+	  <li>add Mysql::Field#is_not_null?(), Mysql::Field#is_pri_key?(),
+	    Mysql::Field#is_num?().
+	  <li>add MysqlField::TYPE_VAR_STRING.
+	</ul>
+
+      <dt>2003-08-10
+      <dd>
+	version 2.4.5
+	<ul>
+	  <li>extconf.rb: correspond to MySQL 4.1.
+	  <li>mysql.c.in: correspond to Ruby 1.8.
+	</ul>
+
+      <dt>2003-02-23
+      <dd>
+	version 2.4.4a
+	<ul>
+	  <li>make extconf.rb to correspond to Ruby 1.8.0
+	</ul>
+
+      <dt>2003-01-29
+      <dd>
+	version 2.4.4
+	<ul>
+	  <li>add Mysql::OPT_LOCAL_INFILE.
+	  <li>add --with-mysql-config option to extconf.rb.
+	  <li>extconf.rb automatically detect typical library.
+	</ul>
+
+      <dt>2003-01-05
+      <dd>
+	version 2.4.3c
+	<ul>
+	  <li>modified English README. Thanks to Paul DuBois.
+	</ul>
+
+      <dt>2002-12-24
+      <dd>
+	version 2.4.3b
+	<ul>
+	  <li>make extconf.rb to correspond to Ruby 1.6.8.
+	</ul>
+
+      <dt>2002-11-07
+      <dd>
+	version 2.4.3a
+	<ul>
+	  <li>fix bug duplicating constant.
+	</ul>
+
+      <dt>2002-09-10
+      <dd>
+	version 2.4.3
+	<ul>
+	  <li>for error number with prefix ER_ .
+	  <li>get error constant from errmsg.h and mysqld_error.h automatically.
+	</ul>
+
+      <dt>2002-01-07
+      <dd>
+	version 2.4.2
+	<ul>
+	  <li>for MySQL 4.0.
+	  <li>change `uint' to `unsigned int' (for mswin).
+	</ul>
+
+      <dt>2001-12-02
+      <dd>
+	version 2.4.1
+	<ul>
+	  <li>remove `extern' (for Cygiwn).
+	  <li>change option of extconf.rb.
+	</ul>
+
+      <dt>2001-10-12
+      <dd>
+	version 2.4.0
+	<ul>
+	  <li>for Ruby 1.7.
+	  <li>add Mysql::debug(), Mysql#change_user(), Mysql#character_set_name(), Mysql#dump_debug_info().
+	</ul>
+    </dl>
+
+    <h2>Author</h2>
+    <p>
+      e-mail: TOMITA Masahiro <a href="mailto:tommy@tmtm.org">tommy@tmtm.org</a>
+      <a href="http://tmtm.org">http://tmtm.org</a>
+    </p>
+    <hr>
+    <address><a href="mailto:tommy@tmtm.org">TOMITA Masahiro</a></address>
+<!-- Created: Sun Aug 29 11:52:09 JST 2004 -->
+<!-- hhmts start -->
+Last modified: Sun Feb  1 17:40:49 JST 2009
+<!-- hhmts end -->
+  </body>
+</html>

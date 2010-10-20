@@ -1,0 +1,57 @@
+=== 0.3.8 / 2010-09-14
+
+* don't use static  variable in cookie processing
+* return name() lower case in html
+* update url even when only hash change
+* don't error out trying to remove event that doesn't exist (orslumen)
+* When serializing multipart/form-data forms we need a pair of \r\n between the boundary and headers and the data value.  Not just one. [Murray Steele]
+* Fix for http://github.com/smparkes/env-js/issues/issue/19 [fiann]
+* rejigger things so the xml parser works on XHR requests; pretty much just moving code
+* add some dimensions that query ui needs to (barely) function
+* include document ref in defaultView
+* add some properties that help d&d simulation
+
+=== 0.3.7 / 2010-07-05
+
+* Add support for https (heathkit)
+* allow inserting <select multiple=multiple> tags with innerHTML [Tim Cowlishaw]
+
+=== 0.3.6 / 2010-05-31
+
+* don't be sensitive to method case
+* use different syntax for method lookup to work around Johnson wierdness
+* fix sloppy syntax and handle formless form inputs
+
+=== 0.3.5 / 2010-05-19
+
+* dont remove the gemspec so it can be used via gh (though not commited ... ?)
+* Handle location on external redirects
+* weird table issue; commented out upstream so ...
+
+=== 0.3.4 / 2010-04-22
+
+* Hack file prot urls with hash change (for now); add hash change test
+* add test; otherwise formating only
+
+=== 0.3.3 / 2010-04-21
+
+* fix case where option parent missing (during parse)
+* handle preventDefault (at least simple cases)
+
+=== 0.3.2 / 2010-04-21
+
+* don't error out on empty options and handle options within optgroups
+
+=== 0.3.1 / 2010-03-30
+
+* fix problem with set history fn name
+* add jslintrb infra
+
+=== 0.3.0 / 2010-03-29
+
+* minor changes for dependences and cleanup
+* Tweak reload on about:blank and default waiting
+
+=== 0.1.0 / 2010-03-11
+
+* First Hoe build

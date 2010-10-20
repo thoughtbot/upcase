@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Env" default="all" basedir=".">
+    <description>Builds, tests, and runs the project Env.</description>
+    <tstamp/>
+    
+    <property name="SRC_DIR"        
+            location="src"           
+            description="Source Folder"/>
+    <property name="TOOLS_DIR"      
+            location="tools"         
+            description="Files for parsing etc." />
+    <property name="RHINO_JAR"      
+            location="rhino/js.jar"  
+            description="Rhino JS Engine"/>
+
+    <property name="PREFIX"         
+            location="${basedir}/dist/"       
+            description="Target parent folder for built files"   />
+    <property name="DOCS_DIR"       
+            location="${PREFIX}/docs"         
+            description="Folder for docs target"  />
+    <property name="TEST_DIR"       
+            location="${PREFIX}/test"         
+            description="Folder for test target"  />
+    <property name="DIST_DIR"       
+            location="${PREFIX}/"             
+            description="Folder for concatenated, min, lite and packed target" />
+
+    
+    <property file="build.properties"/>
+    
+    <!-- Files names for distribution -->
+    <property name="ENV_DIST"  
+            location="${DIST_DIR}/env.${BUILD_MAJOR}.${BUILD_MINOR}.${BUILD_ID}.js" />
+    <property name="ENV_RHINO"
+            location="${DIST_DIR}/env.rhino.${BUILD_MAJOR}.${BUILD_MINOR}.${BUILD_ID}.js"/>
+    <property name="ENV_LATEST_DIST"  
+            location="${DIST_DIR}/env.js" />
+    <property name="ENV_LATEST_RHINO"
+            location="${DIST_DIR}/env.rhino.js"/>
+    
+    <!-- BUILD TARGETS -->
+    <target name="all" depends="concat,test"/>
+    <target name="rhino">
+        <ant antfile="rhino/build.xml" target="all" inheritAll="false"/>
+    </target>
+
+    <target name="concat" description="Main ENV build">
+        <mkdir dir="${DIST_DIR}" />
+          <!-- CORE -->
+        <echo message="Building ${ENV_DIST}" />
+        <concat destfile="${ENV_DIST}">
+            <filterchain>    
+                <replacetokens>
+                    <token key="VERSION" value="${BUILD}"/>
+                </replacetokens>
+            </filterchain>
+            <!--
+            <fileset dir="${SRC_DIR}" includes="build.js" />
+            <fileset dir="${SRC_DIR}" includes="intro.js" />
+            -->
+            <fileset dir="${SRC_DIR}" includes="base64.js" />
+            <fileset dir="${SRC_DIR}" includes="window/window.js" />
+            <fileset dir="${SRC_DIR}" includes="dom/nodelist.js" />
+            <fileset dir="${SRC_DIR}" includes="dom/namednodemap.js" />
+            <fileset dir="${SRC_DIR}" includes="dom/node.js" />
+            <fileset dir="${SRC_DIR}" includes="dom/namespace.js" />
+            <fileset dir="${SRC_DIR}" includes="dom/characterdata.js" />
+            <fileset dir="${SRC_DIR}" includes="dom/text.js" />
+            <fileset dir="${SRC_DIR}" includes="dom/cdatasection.js" />
+            <fileset dir="${SRC_DIR}" includes="dom/comment.js" />
+            <fileset dir="${SRC_DIR}" includes="dom/doctype.js" />
+            <fileset dir="${SRC_DIR}" includes="dom/attr.js" />
+            <fileset dir="${SRC_DIR}" includes="dom/element.js" />
+            <fileset dir="${SRC_DIR}" includes="dom/exception.js" />
+            <fileset dir="${SRC_DIR}" includes="dom/fragment.js" />
+            <fileset dir="${SRC_DIR}" includes="dom/instruction.js" />
+            <fileset dir="${SRC_DIR}" includes="dom/parser.js" />
+            <fileset dir="${SRC_DIR}" includes="dom/entities.js" />
+            <fileset dir="${SRC_DIR}" includes="dom/implementation.js" />
+            <fileset dir="${SRC_DIR}" includes="dom/document.js" />
+            <fileset dir="${SRC_DIR}" includes="html/html.js" />
+            <fileset dir="${SRC_DIR}" includes="html/document.js" />
+            <fileset dir="${SRC_DIR}" includes="html/element.js" />
+            <fileset dir="${SRC_DIR}" includes="html/collection.js" />
+            <fileset dir="${SRC_DIR}" includes="html/input-elements.js" />
+                <!-- in alpha order, EXCEPT for dependencies -->
+            <fileset dir="${SRC_DIR}" includes="html/a.js" />
+            <fileset dir="${SRC_DIR}" includes="html/anchor.js" />
+            <fileset dir="${SRC_DIR}" includes="html/area.js" />
+            <fileset dir="${SRC_DIR}" includes="html/base.js" />
+            <fileset dir="${SRC_DIR}" includes="html/blockquote-q.js" />
+            <fileset dir="${SRC_DIR}" includes="html/body.js" />
+            <fileset dir="${SRC_DIR}" includes="html/button.js" />
+            <fileset dir="${SRC_DIR}" includes="html/col-colgroup.js" />
+            <fileset dir="${SRC_DIR}" includes="html/del-ins.js" />
+            <fileset dir="${SRC_DIR}" includes="html/div.js" />
+            <fileset dir="${SRC_DIR}" includes="html/legend.js" />
+            <fileset dir="${SRC_DIR}" includes="html/fieldset.js" />
+            <fileset dir="${SRC_DIR}" includes="html/form.js" />
+            <fileset dir="${SRC_DIR}" includes="html/frame.js" />
+            <fileset dir="${SRC_DIR}" includes="html/frameset.js" />
+            <fileset dir="${SRC_DIR}" includes="html/head.js" />
+            <fileset dir="${SRC_DIR}" includes="html/iframe.js" />
+            <fileset dir="${SRC_DIR}" includes="html/image.js" />
+            <fileset dir="${SRC_DIR}" includes="html/img.js" />
+            <fileset dir="${SRC_DIR}" includes="html/input.js" />
+            <fileset dir="${SRC_DIR}" includes="html/label.js" />
+            <fileset dir="${SRC_DIR}" includes="html/link.js" />
+            <fileset dir="${SRC_DIR}" includes="html/map.js" />
+            <fileset dir="${SRC_DIR}" includes="html/meta.js" />
+            <fileset dir="${SRC_DIR}" includes="html/object.js" />
+            <fileset dir="${SRC_DIR}" includes="html/optgroup.js" />
+            <fileset dir="${SRC_DIR}" includes="html/option.js" />
+            <fileset dir="${SRC_DIR}" includes="html/param.js" />
+            <fileset dir="${SRC_DIR}" includes="html/script.js" />
+            <fileset dir="${SRC_DIR}" includes="html/select.js" />
+            <fileset dir="${SRC_DIR}" includes="html/style.js" />
+            <fileset dir="${SRC_DIR}" includes="html/table.js" />
+            <fileset dir="${SRC_DIR}" includes="html/tbody-thead-tfoot.js" />
+            <fileset dir="${SRC_DIR}" includes="html/td-th.js" />
+            <fileset dir="${SRC_DIR}" includes="html/textarea.js" />
+            <fileset dir="${SRC_DIR}" includes="html/title.js" />
+            <fileset dir="${SRC_DIR}" includes="html/tr.js" />
+
+            <fileset dir="${SRC_DIR}" includes="svg/document.js" />
+            <fileset dir="${SRC_DIR}" includes="svg/element.js" />
+            <fileset dir="${SRC_DIR}" includes="svg/animatedstring.js" />
+            <fileset dir="${SRC_DIR}" includes="svg/stylable.js" />
+            <fileset dir="${SRC_DIR}" includes="svg/rect.js" />
+            <fileset dir="${SRC_DIR}" includes="svg/locatable.js" />
+            <fileset dir="${SRC_DIR}" includes="svg/transformable.js" />
+            <fileset dir="${SRC_DIR}" includes="svg/svgelement.js" />
+            <fileset dir="${SRC_DIR}" includes="svg/rectelement.js" />
+
+            <fileset dir="${SRC_DIR}" includes="serializer/xml.js" />
+            <fileset dir="${SRC_DIR}" includes="xpath/xmltoken.js" />
+            <fileset dir="${SRC_DIR}" includes="xpath/expression.js" />
+            <fileset dir="${SRC_DIR}" includes="xpath/result.js" />
+            <fileset dir="${SRC_DIR}" includes="xpath/implementation.js" />
+            <fileset dir="${SRC_DIR}" includes="xpath/util.js" />
+            <fileset dir="${SRC_DIR}" includes="event/event.js" />
+            <fileset dir="${SRC_DIR}" includes="event/mouseevent.js" />
+            <fileset dir="${SRC_DIR}" includes="event/uievent.js" />
+            <fileset dir="${SRC_DIR}" includes="css/properties.js" />
+            <fileset dir="${SRC_DIR}" includes="css/rule.js" />
+            <fileset dir="${SRC_DIR}" includes="css/stylesheet.js" />
+            <fileset dir="${SRC_DIR}" includes="window/location.js" />
+            <fileset dir="${SRC_DIR}" includes="window/history.js" />
+            <fileset dir="${SRC_DIR}" includes="window/navigator.js" />
+            <fileset dir="${SRC_DIR}" includes="window/timer.js" />
+            <fileset dir="${SRC_DIR}" includes="window/event.js" />
+            <fileset dir="${SRC_DIR}" includes="window/xhr.js" />
+            <fileset dir="${SRC_DIR}" includes="window/css.js" />
+            <fileset dir="${SRC_DIR}" includes="window/screen.js" />
+            <fileset dir="${SRC_DIR}" includes="window/dialog.js" />
+<!--
+            <fileset dir="${SRC_DIR}" includes="profile/aop.js" />
+            <fileset dir="${SRC_DIR}" includes="profile/profile.js" />
+-->
+            <fileset dir="${SRC_DIR}" includes="window/document.js" />
+            <fileset dir="${SRC_DIR}" includes="html/cookie.js" />                
+            <fileset dir="${SRC_DIR}" includes="parser/intro.js" />
+            <!-- <fileset dir="${SRC_DIR}" includes="parser/html5.min.js" /> needs update from thatcher -->
+            <fileset dir="${SRC_DIR}" includes="parser/html5.pretty.js" />
+            <fileset dir="${SRC_DIR}" includes="parser/outro.js" />
+        </concat>
+        <echo message="${ENV_DIST} built." />
+        <copy tofile="${ENV_LATEST_DIST}" file="${ENV_DIST}"/>
+        
+        <!-- RHINO -->
+        <echo message="Building ${ENV_RHINO}" />
+        <concat destfile="${ENV_RHINO}">
+            <filterchain>    
+                <replacetokens>
+                    <token key="VERSION" value="${BUILD}"/>
+                </replacetokens>
+            </filterchain>
+            <fileset dir="${DIST_DIR}" includes="build.js" />
+            <fileset dir="${DIST_DIR}" includes="intro.js" />
+            <fileset dir="${SRC_DIR}"  includes="platform/rhino.js" />
+            <fileset dir="${SRC_DIR}"  includes="platform/core.js" />
+            <fileset dir="${DIST_DIR}" includes="env.js" />
+            <fileset dir="${SRC_DIR}" includes="outro.js" />
+        </concat>
+        <echo message="${ENV_RHINO} built." />
+        <copy tofile="${ENV_LATEST_RHINO}" file="${ENV_RHINO}"/>
+    </target>
+    
+    <target name="test" description="Run the tests">
+      <java fork="true" jar="${DIST_DIR}/env-js.jar" failonerror="true">
+        <arg value="-opt"/>
+        <arg value="-1"/>
+        <arg value="test/test.js"/>
+        <arg value="envjs"/>
+        <arg value="primary-tests"/>
+        <jvmarg value="-Dfile.encoding=utf-8"/>
+        <jvmarg value="-Xmx256m"/>
+      </java>
+      <java fork="true" jar="${DIST_DIR}/env-js.jar" failonerror="true">
+        <arg value="-opt"/>
+        <arg value="-1"/>
+        <arg value="test/test.js"/>
+        <arg value="envjs"/>
+        <arg value="call-load-test"/>
+        <jvmarg value="-Dfile.encoding=utf-8"/>
+        <jvmarg value="-Xmx256m"/>
+      </java>
+      <java fork="true" jar="${DIST_DIR}/env-js.jar" failonerror="true">
+        <arg value="-opt"/>
+        <arg value="-1"/>
+        <arg value="test/test.js"/>
+        <arg value="envjs"/>
+        <arg value="prototype-test"/>
+        <jvmarg value="-Dfile.encoding=utf-8"/>
+        <jvmarg value="-Xmx256m"/>
+      </java>
+      <java fork="true" jar="${RHINO_JAR}" failonerror="true">
+        <arg value="-opt"/>
+        <arg value="-1"/>
+        <arg value="test/test.js"/>
+        <arg value="rhino"/>
+        <arg value="primary-tests"/>
+        <jvmarg value="-Dfile.encoding=utf-8"/>
+        <jvmarg value="-Xmx256m"/>
+      </java>
+      <java fork="true" jar="${RHINO_JAR}" failonerror="true">
+        <arg value="-opt"/>
+        <arg value="-1"/>
+        <arg value="test/test.js"/>
+        <arg value="rhino"/>
+        <arg value="call-load-test"/>
+        <jvmarg value="-Dfile.encoding=utf-8"/>
+        <jvmarg value="-Xmx256m"/>
+      </java>
+      <java fork="true" jar="${RHINO_JAR}" failonerror="true">
+        <arg value="-opt"/>
+        <arg value="-1"/>
+        <arg value="test/test.js"/>
+        <arg value="rhino"/>
+        <arg value="prototype-test"/>
+        <jvmarg value="-Dfile.encoding=utf-8"/>
+        <jvmarg value="-Xmx256m"/>
+      </java>
+    </target>
+    
+</project>

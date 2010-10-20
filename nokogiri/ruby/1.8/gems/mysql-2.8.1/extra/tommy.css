@@ -1,0 +1,134 @@
+body {
+	color: black;
+	background: white;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+h1 {
+	color: white;
+	background: #08d;
+	width: 100%;
+}
+
+h1 a {
+	color: white;
+}
+
+h1 a:link {
+}
+
+h1 a:visited {
+	color: white;
+}
+
+h1 a:hover {
+}
+
+h2 {
+	width: 100%;
+	border: thin #0cc;
+	border-style: solid none;
+	background: #cff;
+}
+
+h3 {
+	width: 100%;
+	border: thin #0cc;
+	border-style: none none solid;
+	background: #eff;
+}
+
+h4 {
+	border: thin #0cc;
+	border-style: none none solid;
+}
+
+dt {
+	font-weight: bold;
+}
+
+dd {
+	margin-bottom: 3ex;
+}
+
+table {
+	border-collapse: collapse;
+	border: thin solid;
+}
+
+tr,th,td {
+	border: thin solid;
+	padding: 3px;
+}
+
+th {
+	background-color: #00ffff;
+}
+
+td {
+	background-color: #eeeeee;
+}
+
+div.intro {
+	margin-right: 10%;
+	margin-left: 10%;
+	font-size: 90%;
+}
+
+div.code {
+	margin-left: 10%;
+	color: white;
+	background: black;
+	border: thin inset;
+	padding: 4px;
+}
+
+div.code2 {
+	margin-left: 10%;
+	color: white;
+	background: darkgreen;
+	border: thin inset;
+	padding: 4px;
+}
+
+pre {
+	margin: 20px;
+	padding: 4px;
+	border: #363 inset;
+	color: #fff;
+	background: #232;
+	width: 80%;
+}
+
+
+/*
+a {
+	background: #eee;
+}
+*/
+
+a:link {
+	color: #008;
+}
+
+a:visited {
+	color: black;
+}
+
+a:hover {
+	background: #fcc;
+}
+
+.red {
+  color: red;
+}
+
+.notice {
+	font-weight: bold;
+	background: #f88;
+}
+
+.input { 
+  font-weight:bold;
+}

@@ -1,0 +1,106 @@
+#!/usr/bin/env ruby
+
+require "readline"
+require "johnson/cli"
+
+RUNTIME = js = Johnson::Runtime.new
+RUNTIME.evaluate(Johnson::CLI::JS)
+
+EXIT_VERBS = [nil] + %w(exit quit)
+
+local_binding = binding
+ruby_readline = []
+
+def copy_history
+  new_history = []
+  until Readline::HISTORY.empty?
+    new_history.push(Readline::HISTORY.pop)
+  end
+  new_history
+end
+
+def paste_history(old_history)
+  until old_history.empty?
+    Readline::HISTORY << old_history.pop
+  end
+end
+
+def handle_exit(input)
+  if EXIT_VERBS.include?(input)
+    puts if input.nil?
+    exit
+  end
+end
+
+def rescued(&block)
+  yield
+rescue Exception => e
+  exit if SystemExit === e
+
+  puts e.message
+  puts e.backtrace.reject { |l| l =~ /bin\/johnson/ }
+end
+
+def eval_in_js(expression)
+  rescued { puts "=> " + RUNTIME.evaluate(expression, "(console)").inspect }
+end
+
+def eval_in_ruby(expression, bind_to)
+  rescued { puts "=> " + eval(expression, bind_to).inspect }
+end
+
+options = Johnson::CLI::Options.parse!(ARGV)
+
+options.load_paths.each { |d| $LOAD_PATH << d }
+options.paths_to_require.each { |p| RUNTIME.evaluate("Johnson.require('#{p}')") }
+options.files_to_preload.each { |f| RUNTIME.load(f) }
+
+unless options.expressions.empty?
+  options.expressions.each { |e| RUNTIME.evaluate(e, '-e') }
+  exit if options.files_to_evaluate.empty?
+end
+
+unless options.files_to_evaluate.empty?
+  RUNTIME[:arguments] = options.arguments
+  
+  options.files_to_evaluate.each do |file|
+    RUNTIME.load(file)
+  end
+  
+  exit
+end
+
+loop do
+  input = Readline.readline("js> ", true)
+  handle_exit(input)
+  
+  if input =~ /^rb\s+(.+)$/
+    eval_in_ruby($1, local_binding)
+    next
+  end
+  
+  if input == "rb"
+    js_readline = copy_history
+    paste_history(ruby_readline)
+    
+    loop do
+      input = Readline.readline("rb> ", true)
+      handle_exit(input)
+
+      break if input == "js"
+
+      if input =~ /^js\s+(.+)$/
+        eval_in_js($1)
+        next
+      end
+
+      eval_in_ruby(input, local_binding)
+    end
+    
+    ruby_readline = copy_history
+    paste_history(js_readline)
+    next
+  end
+  
+  eval_in_js(input)
+end

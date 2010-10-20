@@ -1,0 +1,1323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- $Id: README_ja.html 244 2009-02-01 08:43:39Z tommy $ -->
+<html>
+  <head>
+    <meta http-equiv="content-style-type" content="text/css">
+    <link rel=stylesheet type="text/css" href="tommy.css">
+    <link rev=made href="mailto:tommy@tmtm.org">
+    <title>MySQL/Ruby</title>
+  </head>
+
+  <body>
+    <h1>MySQL/Ruby</h1>
+    <p><a href="README.html">[English]</a></p>
+    <hr>
+    <p>
+      これは <a href="http://www.mysql.com">MySQL</a> の Ruby API です。MySQL の C API とほぼ同等の機能があります。
+    </p>
+
+    <h2>ダウンロード</h2>
+    <a href="http://tmtm.org/downloads/mysql/ruby/">tmtm.org</a>
+
+    <h2>必要なもの</h2>
+    <ul>
+      <li>MySQL 5.0.67
+      <li>Ruby 1.8.7, 1.9.1
+    </ul>
+    <p>
+      これら以外でも make できるかもしれませんが、確認してません。
+    </p>
+
+    <h2>ライセンス</h2>
+    <p>
+      このプログラムは <a href="http://www.ruby-lang.org/ja/LICENSE.txt">Ruby ライセンス</a> に従います。
+    </p>
+
+    <h2>インストール</h2>
+    <p>
+      次を実行してください。
+    </p>
+    <pre class="code">
+% ruby extconf.rb
+</pre>
+    <p>
+      または
+    </p>
+    <pre class="code">
+% ruby extconf.rb --with-mysql-dir=/usr/local/mysql
+</pre>
+    <p>
+      または
+    </p>
+    <pre clas="code">
+% ruby extconf.rb --with-mysql-config
+</pre>
+    <p>
+      それから
+    </p>
+    <pre>
+% make
+</pre>
+    <p>
+      extconf.rb には次のオプションを指定できます。
+    </p>
+    <dl>
+      <dt>--with-mysql-include=<i>dir</i>
+      <dd>
+	MySQL のへッダファイルの場所として /usr/local/include の代わりのディレクトリを指定します。
+
+      <dt>--with-mysql-lib=<i>dir</i>
+      <dd>
+	MySQL のライブラリの場所として /usr/local/lib の代わりのディレクトリを指定します。
+
+      <dt>--with-mysql-dir=<i>dir</i>
+      <dd>--with-mysql-include=<i>dir</i>/include, --with-mysql-lib=<i>dir</i>/lib と同じです。
+
+      <dt>--with-mysql-config[=<i>/path/to/mysql_config</i>]
+      <dd>mysql_config コマンドの結果からコンパイルパラメータを得ます。
+    </dl>
+    <p>
+      次で簡単なテストができます。
+    </p>
+    <pre class="code">
+% ruby ./test.rb -- [<i>hostname</i> [<i>user</i> [<i>passwd</i> [<i>dbname</i> [<i>port</i> [<i>socket</i> [<i>flag</i>]]]]]]]
+</pre>
+
+    <p>
+      test.rb に与える引数は Mysql.real_connect() の引数と同じです。
+    </p>
+    <p>
+      問題なければ、スーパーユーザでインストールしてください。
+    </p>
+    <pre class="code">
+# make install
+</pre>
+
+    <h3>注意</h3>
+    <p>
+      テスト時にライブラリ libmysqlclient が見つからないというエラーが出る場合は、make 時にライブラリの場所を指定する必要があります。次のようにして make してみてください。
+    </p>
+    <pre class="code">
+% env LD_RUN_PATH=<i>libmysqlclient.soの場所</i> make
+</pre>
+    <p>
+      test.rb は Linux 上での動作しか確認していません。
+      他のプラットフォームではエラーが出るかもしれません。
+    </p>
+
+    <h2>使い方</h2>
+    <p>
+      メソッド名は C API の関数から mysql_ 接頭辞を除いたものと同じです。メソッドの使用方法も基本的に対応する C API 関数と同様ですので、詳細は MySQL のマニュアルを見てください。
+    </p>
+    <p>
+      メソッド中でエラーが発生した場合は Mysql::Error 例外が発生します。
+    </p>
+    <p>
+      特に意味のある値を返さない関数は self を返します。
+    </p>
+
+    <h2>Mysql クラス</h2>
+    <p>
+      MySQL を操作するためのクラスです。
+    </p>
+
+    <h3>クラスメソッド</h3>
+    <dl>
+      <dt>init()
+      <dd>
+	<p>
+	  Mysql クラスオブジェクトを返します。mysqld に接続はしません。
+	  Mysql#options() が必要な場合は、これを呼んだ後に行ないます。
+	</p>
+
+      <dt>real_connect(host=nil, user=nil, passwd=nil, db=nil, port=nil, sock=nil, flag=nil)
+      <dt>connect(host=nil, user=nil, passwd=nil, db=nil, port=nil, sock=nil, flag=nil)
+      <dt>new(host=nil, user=nil, passwd=nil, db=nil, port=nil, sock=nil, flag=nil)
+      <dd>
+	<p>
+	  mysqld に接続し、Mysql クラスオブジェクトを返します。
+	  flag の定数は C API のものと同じです。
+	</p>
+	<p>
+	  例) Mysql::CLIENT_FOUND_ROWS
+	</p>
+
+      <dt>escape_string(str)
+      <dt>quote(str)
+      <dd>
+	<p>
+	  insert, update 用に文字列をクオートします。
+	</p>
+
+      <dt>get_client_info()
+      <dt>client_info()
+      <dd>
+	<p>
+	  クライアントバージョン情報の文字列を返します。
+	</p>
+
+      <dt>get_client_version()
+      <dt>client_version()
+      <dd>
+	<p>
+	  クライアントバージョン情報を数値で返します。
+	</p>
+
+      <dt>debug(str)
+      <dd>
+	<p>
+	  C API mysql_debug() と同じ。
+	</p>
+    </dl>
+
+    <h3>オブジェクトメソッド</h3>
+    <dl>
+      <dt>options(opt, val=nil)
+      <dd>
+	<p>
+	  C API の mysql_options() と同じです。
+	  opt に指定する定数は C API から MYSQL_ 接頭辞を取り除いたものです。
+	</p>
+	<p>
+	  例) Mysql::OPT_CONNECT_TIMEOUT
+	</p>
+
+      <dt>real_connect(host=nil, user=nil, passwd=nil, db=nil, port=nil, sock=nil, flag=nil)
+      <dt>connect(host=nil, user=nil, passwd=nil, db=nil, port=nil, sock=nil, flag=nil)
+      <dd>
+	<p>
+	  Mysql.real_connect() と同じです。Mysql.init() で生成したオブジェクトをサーバに接続するために使用します。
+	</p>
+
+      <dt>affected_rows()
+      <dd>
+	<p>
+	  影響された行数を返します。
+	</p>
+
+      <dt>autocommit(mode)
+      <dd>
+	<p>
+	  autocommit モードを mode に設定します。mode が nil, false, 0 の時はオフ、それ以外の場合はオンです。
+	</p>
+
+      <dt>change_user(user=nil, passwd=nil, db=nil)
+      <dd>
+	<p>
+	  接続ユーザを変更します。
+	</p>
+
+      <dt>character_set_name()
+      <dd>
+	<p>
+	  現在の文字セットを返します。
+	</p>
+
+      <dt>close()
+      <dd>
+	<p>
+	  接続を切断します。
+	</p>
+
+      <dt>commit()
+      <dd>
+	<p>
+	  トランザクションをコミットします。
+	</p>
+
+      <dt>create_db(db)
+      <dd>
+	<p>
+	  データベースを作成します。
+	</p>
+
+      <dt>drop_db(db)
+      <dd>
+	<p>
+	  データベースを破棄します。
+	</p>
+
+      <dt>dump_debug_info()
+      <dd>
+	<p>
+	  C API mysql_dump_debug_info() と同じ。
+	</p>
+
+      <dt>errno()
+      <dd>
+	<p>
+	  エラー番号を返します。
+	</p>
+
+      <dt>error()
+      <dd>
+	<p>
+	  エラーメッセージを返します。
+	</p>
+
+      <dt>escape_string(str)
+      <dt>quote(str)
+      <dd>
+	<p>
+	  insert, update 用に文字列をクオートします。
+	  C API の mysql_real_escape_string() と同じ。
+	</p>
+
+      <dt>field_count()
+      <dd>
+	<p>
+	  最後に実行されたクエリの項目数を返します。
+	</p>
+
+      <dt>get_client_info()
+      <dt>client_info()
+      <dd>
+	<p>
+	  クライアントバージョン情報の文字列を返します。
+	</p>
+
+      <dt>get_client_version()
+      <dt>client_version()
+      <dd>
+	<p>
+	  クライアントバージョン情報を数値で返します。
+	</p>
+
+      <dt>get_host_info()
+      <dt>host_info()
+      <dd>
+	<p>
+	  接続情報を文字列で返します。
+	</p>
+
+      <dt>get_proto_info()
+      <dt>proto_info()
+      <dd>
+	<p>
+	  接続プロトコルバージョンを数値で返します。
+	</p>
+
+      <dt>get_server_info()
+      <dt>server_info()
+      <dd>
+	<p>
+	  サーバのバージョン情報を文字列で返します。
+	</p>
+
+      <dt>get_server_version()
+      <dt>server_version()
+      <dd>
+	<p>
+	  サーバのバージョン情報を数値で返します。
+	</p>
+
+      <dt>info()
+      <dd>
+	<p>
+	  直前のクエリの情報を文字列で返します。特に情報がなければ nil が返ります。
+	</p>
+
+      <dt>insert_id()
+      <dd>
+	<p>
+	  最後に生成された AUTO_INCREMENT 項目の値を返します。
+	</p>
+
+      <dt>kill(id)
+      <dd>
+	<p>
+	  id で指定したスレッドを殺します。
+	</p>
+
+      <dt>list_dbs(db=nil)
+      <dd>
+	<p>
+	  データベースの一覧を配列で返します。
+	</p>
+
+      <dt>list_fields(table, field=nil)
+      <dd>
+	<p>
+	  テーブル内の項目情報の一覧を示す Mysql::Result クラスオブジェクトを返します。
+	</p>
+
+      <dt>list_processes()
+      <dd>
+	<p>
+	  サーバ上の現在のスレッドの一覧を示す Mysql::Result クラスオブジェクトを返します。
+	</p>
+
+      <dt>list_tables(table=nil)
+      <dd>
+	<p>
+	  テーブルの一覧を配列で返します。
+	</p>
+
+      <dt>more_results?()
+      <dd>
+	<p>
+	  取得していないクエリ結果がある場合は真を返します。
+	</p>
+
+      <dt>next_result()
+      <dd>
+	<p>
+	  取得していないクエリ結果がある場合は真を返します。
+	  この後に store_result() を実行するとクエリ結果を取得できます。
+	</p>
+
+      <dt>ping()
+      <dd>
+	<p>
+	  サーバが生きているかどうかをチェックします。
+	</p>
+
+      <dt>prepare(q)
+      <dd>
+	<p>
+	  クエリをサーバに送ります。この時点ではまだ実行されません。
+	  Mysql::Stmt クラスオブジェクトを返します。
+	</p>
+	<p>
+	  Mysql#stmt_init.prepare(q) と同じです。
+	</p>
+
+      <dt>query(q)
+      <dt>real_query(q)
+      <dd>
+	<p>
+	  クエリを実行します。
+	  クエリが結果を返す場合、自動的に store_result() も実行して、Mysql::Result クラスオブジェクトを返します。
+	  query_with_result に false が設定されていれば、store_result() は実行しません。
+	</p>
+
+      <dt>query(q) {|res| ...}
+      <dt>real_query(q) {|res| ...}
+      <dd>
+	<p>
+	  クエリを実行します。
+	  クエリが結果を返す場合、Mysql::Result オブジェクトを引数としてブロックを実行します。
+          ブロック終了時に Mysql::Result オブジェクトは解放されます。
+          マルチステートメントモードで、引数に「;」で区切られた複数のクエリを指定した場合は、クエリの数だけブロックを繰り返します。
+        </p>
+        <p>
+          MySQL/Ruby 2.8 からは、自動的にマルチステートメントモードにはならなくなりました。
+          Mysql.connect の flag に Mysql::CLIENT_MULTI_STATEMENTS を指定するか、Mysql#set_server_option(Mysql::OPTION_MULTI_STATEMENTS_ON) を実行してください。
+        </p>
+
+      <dt>refresh(r)
+      <dd>
+	<p>
+	  サーバのログやキャッシュ等をフラッシュします。
+	</p>
+
+      <dt>reload()
+      <dd>
+	<p>
+	  アクセス権テーブルを再読み込みします。
+	</p>
+
+      <dt>rollback()
+      <dd>
+	<p>
+	  トランザクションをロールバックします。
+	</p>
+
+      <dt>select_db(db)
+      <dd>
+	<p>
+	  データベースを選択します。
+	</p>
+
+      <dt>set_server_option(opt)
+      <dd>
+	<p>
+	  引数で指定したオプションをサーバに設定します。
+	  引数には、Mysql::OPTION_MULTI_STATEMENTS_ON, Mysql::OPTION_MULTI_STATEMENTS_OFF が指定できます。
+	</p>
+
+      <dt>shutdown()
+      <dd>
+	<p>
+	  サーバを停止します。
+	</p>
+
+      <dt>ssl_set(key=nil, cert=nil, ca=nil, capath=nil, cipher=nil)
+      <dd>
+	<p>
+	  SSL接続を使用します。Mysql.init() 後、Mysql#connect() 前に行なう必要があります。
+	</p>
+
+      <dt>stat()
+      <dd>
+	<p>
+	  サーバの状態を文字列で返します。
+	</p>
+
+      <dt>stmt_init()
+      <dd>
+	<p>
+	  Mysql::Stmt クラスオブジェクトを返します。
+	</p>
+
+      <dt>store_result()
+      <dd>
+	<p>
+	  クエリの結果の Mysql::Result クラスオブジェクトを返します。
+	</p>
+
+      <dt>thread_id()
+      <dd>
+	<p>
+	  現在の接続のスレッドIDを返します。
+	</p>
+
+      <dt>use_result()
+      <dd>
+	<p>
+	  クエリの結果の Mysql::Result クラスオブジェクトを返します。
+	</p>
+
+      <dt>warning_count()
+      <dd>
+	<p>
+	  直前のクエリの警告数を返します。
+	</p>
+    </dl>
+
+    <h3>オブジェクト変数</h3>
+
+    <dl>
+      <dt>query_with_result
+      <dd>
+	<p>
+	  true に設定すると query() 時に store_result() も実行して、Mysql::Result クラスオブジェクトを返します。
+	  false に設定するとその動作は行われません。デフォルトは true です。
+	</p>
+
+      <dt>reconnect
+      <dd>
+	<p>
+	  true に設定すると MySQL サーバとの接続が切れたときに自動的に再接続します。
+	  デフォルトは false です。
+	</p>
+    </dl>
+
+    <h2>Mysql::Result クラス</h2>
+    <p>
+      クエリ結果のクラスです。
+    </p>
+
+    <h3>オブジェクトメソッド</h3>
+    <dl>
+      <dt>free()
+      <dd>
+	<p>
+	  結果テーブル用メモリを解放します。
+	</p>
+
+      <dt>data_seek(offset)
+      <dd>
+	<p>
+	  現在の行の位置を offset 番目の行にします。
+	</p>
+
+      <dt>fetch_field()
+      <dd>
+	<p>
+	  現在の項目の Mysql::Field クラスオブジェクトを返します。
+	  次に呼ばれた時は次の項目を返します。
+	</p>
+
+      <dt>fetch_fields()
+      <dd>
+	<p>
+	  項目全体を表す Mysql::Field クラスオブジェクトの配列を返します。
+	</p>
+
+      <dt>fetch_field_direct(fieldnr)
+      <dd>
+	<p>
+	  fieldnr 番目の項目の Mysql::Field クラスオブジェクトを返します。
+	</p>
+
+      <dt>fetch_lengths()
+      <dd>
+	<p>
+	  現在の行の各項目値の長さの配列を返します。
+	</p>
+
+      <dt>fetch_row()
+      <dd>
+	<p>
+	  検索結果の１行を返します。次に呼ばれた時は次の行を返します。
+	  戻り値は項目値の配列です。
+	</p>
+
+      <dt>fetch_hash(with_table=false)
+      <dd>
+	<p>
+	  検索結果の１行を返します。次に呼ばれた時は次の行を返します。
+	  戻り値は項目名をキーとした項目値のハッシュです。
+	  with_table が true の場合はキーにテーブル名も付加され、"テーブル名.項目名" という形式のキーになります。
+	</p>
+
+      <dt>field_seek(offset)
+      <dd>
+	<p>
+	  現在の項目位置を offset 番目の項目にします。
+	</p>
+
+      <dt>field_tell()
+      <dd>
+	<p>
+	  現在の項目の位置を返します。
+	</p>
+
+      <dt>num_fields()
+      <dd>
+	<p>
+	  項目数を返します。
+	</p>
+
+      <dt>num_rows()
+      <dd>
+	<p>
+	  検索件数を返します。
+	</p>
+
+      <dt>row_seek(offset)
+      <dd>
+	<p>
+	  現在の行の位置を設定します。
+	  offset は内部表現で row_tell() が返した Mysql::RowOffset クラスオブジェクトです。
+	</p>
+
+      <dt>row_tell()
+      <dd>
+	<p>
+	  現在の行の位置を Mysql::RowOffset クラスオブジェクトで返します。
+	</p>
+    </dl>
+
+    <h3>イテレータ</h3>
+    <dl>
+      <dt>each() {|x| 〜}
+      <dd>
+	<p>
+	  検索結果の各行ごとに {〜} を繰り返します。x は項目値の配列です。
+	</p>
+
+      <dt>each_hash(with_table=false) {|x| 〜}
+      <dd>
+	<p>
+	  検索結果の各行ごとに {〜} を繰り返します。
+	  x は項目名をキーとした項目値のハッシュです。
+	  with_table が true の場合はキーにテーブル名も付加され、"テーブル名.項目名" という形式のキーになります。
+	</p>
+    </dl>
+
+    <h2>Mysql::Field クラス</h2>
+    <p>
+      項目の詳細を表すクラスです。C API と異なり、オブジェクトは Mysql::Result とは独立して存在するので、Mysql::Result クラスオブジェクトが解放された後でも利用できます。が、そのため C API よりもメモリを使用します。
+    </p>
+
+    <h3>オブジェクト変数(読み出しのみ)</h3>
+    <dl>
+      <dt>name<dd>項目名
+      <dt>table<dd>テーブル名
+      <dt>def<dd>デフォルト値
+      <dt>type<dd>項目の型
+      <dt>length<dd>項目の長さ
+      <dt>max_length<dd>検索結果中の項目値の最大長
+      <dt>flags<dd>フラグ
+      <dt>decimals<dd>小数部桁数
+    </dl>
+    <p>
+      type に対応する定数は C API のものから FIELD_ 接頭辞を除いたものです。
+    </p>
+    <p>
+      例) Mysql::Field::TYPE_STRING
+    </p>
+    <p>
+      flag に対応する定数は C API のものと同じです。
+    </p>
+    <p>
+      例) Mysql::Field::BLOB_FLAG
+    </p>
+
+    <h3>オブジェクトメソッド</h3>
+    <dl>
+      <dt>hash()
+      <dd>
+	<p>
+	  上記の変数名をキーとするハッシュを返します。
+	</p>
+	<p>
+	  例) obj.name == obj.hash['name']
+	</p>
+
+      <dt>is_not_null?()
+      <dd>
+	<p>
+	  フィールドが "NOT NULL" と定義されていれば真を返します。
+	</p>
+
+      <dt>is_num?()
+      <dd>
+	<p>
+	  フィールドが数値の場合は真を返します。
+	</p>
+
+      <dt>is_pri_key?()
+      <dd>
+	<p>
+	  フィールドがプライマリキーの場合は真を返します。
+	</p>
+
+      <dt>inspect()
+      <dd>
+	<p>
+	  文字列 "#&lt;Mysql::Field:項目名&gt;" を返します。
+	</p>
+    </dl>
+
+    <h2>Mysql::Stmt クラス</h2>
+    <p>
+      MySQL でプリペアドステートメントを扱うためのクラスです。
+    </p>
+    <p>
+      使用例:
+    </p>
+    <pre class="code">
+my = Mysql.new(hostname, username, password, databasename)
+st = my.prepare("insert into tblname (col1,col2,col3) values (?,?,?)")
+st.execute("abc",123,Time.now)
+st.prepare("select col1,col2,col3 from tblname")
+st.execute
+st.fetch  # => ["abc", 123, #&lt;Mysql::Time:2005-07-24 23:52:55&gt;]
+st.close
+</pre>
+
+    <h3>オブジェクトメソッド</h3>
+    <dl>
+      <dt>affected_rows()
+      <dd>
+	<p>
+	  影響された行数を返します。
+	</p>
+
+      <dt>bind_result(class, ...)
+      <dd>
+        <p>
+          結果を返すクエリの場合に、取り出される値のクラスを指定します。
+          指定できるクラスは、Numeric, Integer, Fixnum, Float, Mysql::Time です。
+          nil を指定すると、自動判別します。
+          bind_result を実行しない場合は自動判別します。
+        </p>
+
+      <dt>close()
+      <dd>
+	<p>
+	  Mysql::Stmt オブジェクトを解放します。
+	</p>
+
+      <dt>data_seek(offset)
+      <dd>
+	<p>
+	  次に fetch() で取り出される行を offset 番目の行にします。
+	  offset は 0 から始まります。
+	</p>
+
+      <dt>execute(arg, ...)
+      <dd>
+	<p>
+	  prepare() したクエリにパラメータを与えて実行します。
+	</p>
+
+      <dt>fetch()
+      <dd>
+	<p>
+	  execute() で実行したクエリの結果の値を配列で取り出します。
+	  値を返さないクエリの場合や、最後まで取り出した場合は nil を返します。
+	</p>
+	<p>
+	  配列の各要素は MySQL の型に応じて次のようになります。
+	</p>
+	<table>
+	    <tr><th>MySQLの型<th>Rubyのクラス
+	    <tr><td>TINYINT, SMALLINT, MEDIUMINT, YEAR<td>Fixnum
+	    <tr><td>INT, BIGINT<td>FixnumまたはBignum
+	    <tr><td>FLOAT, DOUBLE<td>Float
+	    <tr><td>DECIMAL<td>String
+	    <tr><td>DATE, DATETIME, TIMESTAMP, TIME<td>Mysql::Time
+	    <tr><td>CHAR, VARCHAR, BINARY, VARBINARY, TINYBLOB, TINYTEXT, TINYBLOB, TINYTEXT, MEDIUMBLOB, MEDIUMTEXT, LONGBLOB, LONGTEXT, ENUM, SET, BIT<td>String
+	    <tr><td>NULL<td>NilClass
+	</table>
+
+      <dt>field_count()
+      <dd>
+	<p>
+	  prepare したクエリが返す結果のフィールド数を返します。
+	</p>
+
+      <dt>free_result()
+      <dd>
+	<p>
+	  検索結果を解放します。
+	</p>
+
+      <dt>insert_id()
+      <dd>
+	<p>
+	  生成された AUTO_INCREMENT 項目の値を返します。
+	</p>
+
+      <dt>num_rows()
+      <dd>
+	<p>
+	  検索結果の行数を返します。
+	</p>
+
+      <dt>param_count()
+      <dd>
+	<p>
+	  prepare() したクエリのパラメータ「?」の数を返します。
+	</p>
+
+      <dt>prepare(q)
+      <dd>
+	<p>
+	  クエリをサーバに送ります。この時点ではまだ実行されません。
+	  execute() で実行されます。
+	</p>
+
+      <dt>result_metadata()
+      <dd>
+	<p>
+	  prepare() したクエリの返される結果のフィールドを Mysql::Result クラスオブジェクトで返します。
+	</p>
+
+      <dt>row_seek(offset)
+      <dd>
+	<p>
+	  次に fetch() で取り出される行を offset の位置にします。
+	  data_seek と異なり offset は row_tell() で返される Mysql::RowOffset クラスオブジェクトです。
+	</p>
+
+      <dt>row_tell()
+      <dd>
+	<p>
+	  現在の行の位置を Mysql::RowOffset クラスオブジェクトで返します。
+	</p>
+
+      <dt>sqlstate()
+      <dd>
+	<p>
+	  エラーコードを SQLSTATE 文字列で返します。
+	</p>
+    </dl>
+
+    <h3>イテレータ</h3>
+    <dl>
+      <dt>each() {|x| 〜}
+      <dd>
+	<p>
+	  検索結果の各行ごとに {〜} を繰り返します。
+	  x は fetch() で返されるものと同じ配列です。
+	</p>
+    </dl>
+
+    <h2>Mysql::Time クラス</h2>
+    <p>
+      Mysql::Stmt で使われる日時を表すためのクラスです。
+    </p>
+
+    <h3>クラスメソッド</h3>
+    <dl>
+      <dt>new(year=0,month=0,day=0,hour=0,minute=0,second=0,neg=false,second_part=0)
+      <dd>
+	<p>
+	  Mysql::Timeクラスを作成します。
+	</p>
+    </dl>
+
+    <h3>オブジェクト変数</h3>
+    <dl>
+      <dt>year
+      <dd>
+	年
+
+      <dt>month
+      <dd>
+	月
+
+      <dt>day
+      <dd>
+	日
+
+      <dt>hour
+      <dd>
+	時
+
+      <dt>minute
+      <dd>
+	分
+
+      <dt>second
+      <dd>
+	秒
+
+      <dt>neg
+      <dd>
+	時刻が正の場合は false, 負の場合は true
+
+      <dt>second_part
+      <dd>
+	秒の小数点以下。未使用
+    </dl>
+
+    <h2>Mysql::Error クラス</h2>
+    <p>
+      MySQL のエラーを表わすクラスです。
+      MySQL のエラーが発生した場合に例外として生成されます。
+    </p>
+
+    <h3>オブジェクト変数(読み出しのみ)</h3>
+    <dl>
+      <dt>error
+      <dd>エラーメッセージ
+      <dt>errno
+      <dd>エラー番号
+    </dl>
+    <p>
+      errno に対応する定数は C API のものと同じです。
+    </p>
+    <p>
+      例) Mysql::Error::CR_UNKNOWN_HOST
+    </p>
+
+    <h2>履歴</h2>
+    <dl>
+      <dt>2009-02-01
+      <dd>
+        version 2.8.1<br>
+        <ul>
+          <li>Ruby 1.9.1 に対応。
+        </ul>
+
+      <dt>2008-09-29
+      <dd>
+        version 2.8<br>
+        version 2.7.7
+        <ul>
+          <li>MySQLへの接続時に SIGVTALRM で EINTR になることがある問題を修正 ([ruby-dev:31842])
+          <li>MySQL/Ruby 2.7.* が Ruby 1.8.5 でコンパイルできなかった。
+        </ul>
+
+      <dt>2008-06-20
+      <dd>
+        version 2.8pre4
+        <ul>
+          <li>エラー定義ファイルを外だし。その他。[ruby-dev:35152]
+        </ul>
+
+      <dt>2008-06-17
+      <dd>
+        version 2.8pre3<br>
+        version 2.7.6
+        <ul>
+          <li>64bit 環境で Mysql::Stmt#execute で大きな数値(2**30 以上)でエラーになる問題を修正。
+        </ul>
+
+      <dt>2008-03-08
+      <dd>
+        version 2.8pre2<br>
+        version 2.7.5
+        <ul>
+          <li>64bit 環境で Mysql::Stmt#fetch で数値が壊れる問題を修正。
+        </ul>
+
+      <dt>2007-12-26
+      <dd>
+        version 2.8pre1
+        <ul>
+          <li>Ruby 1.9.0 対応
+          <li>Incompat: Mysql::Result#each_hash が行毎にカラム名文字列を生成するのではなく、共有するようにした。
+          <li>Incompat: ブロックつき Mysql#query で自動的にマルチステートメントモードにならないようにした。
+        </ul>
+
+      <dt>2007-08-22
+      <dd>
+        version 2.7.4
+        <ul>
+          <li>BUG: Mysql::Stmt#execute がメモリリークしていた。
+        </ul>
+
+      <dt>2006-12-20
+      <dd>
+        version 2.7.3
+        <ul>
+          <li>BUG: ブロックつき Mysql#query が、最後のクエリがエラーの場合に停止してしまう。
+        </ul>
+
+      <dt>2006-10-28
+      <dd>
+        version 2.7.2
+        <ul>
+          <li>BUG: 結果を返さないクエリで Mysql::Stmt#result_metadata が nil を変えすようにした (Thanks to Hidetoshi)
+          <li>BUG: Mysql#close で mysql_errno を見ないように変更
+          <li>BUG: ブロックつき Mysql#query で複数ステートメント時にエラーを無視していた。
+          <li>extconf.rb の Visual C++ 対応 (Thanks to Shugo Maeda)
+          <li>BIT型に対応
+          <li>Mysql::Field に TYPE_BIT, TYPE_NEWDECIMAL 追加
+        </ul>
+
+      <dt>2006-06-04
+      <dd>
+        version 2.7.1
+        <ul>
+          <li>free() を xfree() に変更。Windows でのクラッシュの回避のため。(Tobias Grimm に感謝)
+        </ul>
+
+      <dt>2005-08-22
+      <dd>
+        version 2.7
+        <ul>
+          <li>Mysql#options用定数追加。Mysql::OPT_GUESS_CONNECTION, Mysql::OPT_USE_EMBEDDED_CONNECTION, Mysql::OPT_USE_REMOTE_CONNECTION, Mysql::SET_CLIENT_IP
+          <li>test.rb: 4.0.x, 5.0.x 対応
+        </ul>
+
+      <dt>2005-08-16
+      <dd>
+        version 2.7-beta3
+        <ul>
+          <li>Mysql::Stmt#bind_result 追加
+        </ul>
+
+      <dt>2005-08-02
+      <dd>
+	version 2.7-beta2
+	<ul>
+	  <li>BUG: mysql.c.in: fetch_hash: 値が nil の要素がハッシュに含まれない。(Stefan Kaes に感謝)
+	  <li>定数 Mysql::VERSION 追加
+	  <li>Mysql#prepare 追加
+	</ul>
+
+      <dt>2005-07-24
+      <dd>
+	version 2.7-beta
+	<ul>
+	  <li>Mysql#stmt_init 追加
+	  <li>Mysql::Stmt, Mysql::Time, Mysql::RowOffset クラス追加
+	  <li>Mysql::Error#sqlstate 追加
+	  <li>Mysql::Result#row_seek,row_tell が扱う offset 値を Mysql::RowOffset オブジェクトに変更
+	</ul>
+
+      <dt>2005-07-31
+      <dd>
+	version 2.6.3
+	<ul>
+	  <li>定数 Mysql::VERSION 追加
+	</ul>
+
+      <dt>2005-07-26
+      <dd>
+	version 2.6.2
+	<ul>
+	  <li>BUG: mysql.c.in: fetch_hash: 値が nil の要素がハッシュに含まれない。(Stefan Kaes に感謝)
+	</ul>
+
+      <dt>2005-06-28
+      <dd>
+	version 2.6.1
+	<ul>
+	  <li>mysql.c.in: MacOSX でのコンパイルエラーを修正。
+	</ul>
+
+      <dt>2005-04-25
+      <dd>
+	version 2.6
+	<ul>
+	  <li>Mysql#option() 用の定数追加
+	    Mysql::OPT_PROTOCOL, Mysql::OPT_READ_TIMEOUT,
+	    Mysql::OPT_WRITE_TIMEOUT, Mysql::SET_CHARSET_DIR,
+	    Mysql::SET_CHARSET_NAME, Mysql::SHARED_MEMORY_BASE_NAME,
+	    Mysql::SECURE_AUTH
+	  <li>Mysql#more_results?(), Mysql#next_result(), 
+	    Mysql#set_server_option(), Mysql#sqlstate() 追加
+	  <li>Mysql#connect() のフラグ用定数追加
+	    Mysql::CLIENT_MULTI_STATEMENTS, Mysql::CLIENT_MULTI_RESULTS
+	  <li>Mysql#set_server_option() 用の定数追加
+	    Mysql::OPTION_MULTI_STATEMENTS_ON,
+	    Mysql::OPTION_MULTI_STATEMENTS_OFF
+	  <li>ブロック付き Mysql#query()
+	  <li>Mysql#reconnect(), Mysql#reconnect=() 追加
+	  <li>MySQL との接続が切れたときに、デフォルトでは再接続しないようにした。
+	</ul>
+
+      <dt>2005-02-12
+      <dd>
+	version 2.5.2
+	<ul>
+	  <li>BUG: Mysql#connect で接続すると接続が切断されない。(Andres Salomon に感謝)
+	</ul>
+
+      <dt>2004-09-20
+      <dd>
+	version 2.5.1
+	<ul>
+	  <li>Mysql#set_ssl() 追加。
+	</ul>
+
+      <dt>2004-08-31
+      <dd>
+	version 2.5
+	<ul>
+	  <li>MySQL 4.1.x 対応
+	  <li>MysqlRes, MysqlField, MysqlError を Mysql::Result, Mysql::Field,
+	    Mysql::Error に変更。
+	  <li>Mysql.client_version(), Mysql.get_client_version(),
+	    Mysql#client_version(), Mysql#get_client_version(),
+	    Mysql#server_version(), Mysql#get_server_version(),
+	    Mysql#warning_count(), Mysql#commit(), Mysql#rollback(),
+	    Mysql#autocommit() 追加。
+	  <li>Mysql::Field#is_not_null?(), Mysql::Field#is_pri_key?(),
+	    Mysql::Field#is_num?() 追加。
+	  <li>MysqlField::TYPE_VAR_STRING 追加。
+	</ul>
+
+      <dt>2003-08-10
+      <dd>
+	version 2.4.5
+	<ul>
+	  <li>extconf.rb: MySQL 4.1 対応。
+	  <li>mysql.c.in: Ruby 1.8 対応。
+	</ul>
+
+      <dt>2003-02-23
+      <dd>
+	version 2.4.4a
+	<ul>
+	  <li>extconf.rb の Ruby 1.8.0 対応。
+	</ul>
+
+      <dt>2003-01-29
+      <dd>
+	version 2.4.4
+	<ul>
+	  <li>Mysql::OPT_LOCAL_INFILE を追加。
+	  <li>extconf.rb に --with-mysql-config オプションを追加
+	  <li>extconf.rb 時に主なライブラリを自動検出するようにした。
+	</ul>
+
+      <dt>2003-01-05
+      <dd>
+	version 2.4.3c
+	<ul>
+	  <li>英語の README の改版。Paul DuBois に感謝。
+	</ul>
+
+      <dt>2002-12-24
+      <dd>
+	version 2.4.3b
+	<ul>
+	  <li>extconf.rb の Ruby 1.6.8 対応。
+	</ul>
+
+      <dt>2002-11-07
+      <dd>
+	version 2.4.3a
+	<ul>
+	  <li>エラー定数が重複定義されることがあるバグを修正。
+	</ul>
+
+      <dt>2002-09-10
+      <dd>
+	version 2.4.3
+	<ul>
+	  <li>ER_ で始まるエラー定数にも対応した。
+	  <li>errmsg.h と mysqld_error.h から自動的にエラー定数を取得するようにした。
+	</ul>
+
+      <dt>2002-01-07
+      <dd>
+	version 2.4.2
+	<ul>
+	  <li>MySQL 4.0 対応。
+	  <li>uint を unsigned int に変更（mswin対応）。
+	</ul>
+
+      <dt>2001-12-02
+      <dd>
+	version 2.4.1
+	<ul>
+	  <li>不要な extern を削除（Cygiwn対応）。
+	  <li>extconf.rb のオプションを変更。
+	</ul>
+
+      <dt>2001-10-12
+      <dd>
+	version 2.4.0
+	<ul>
+	  <li>Ruby 1.7 に対応。
+	  <li>Mysql::debug(), Mysql#change_user(), Mysql#character_set_name(),
+	    Mysql#dump_debug_info() を追加。
+	</ul>
+
+      <dt>2001-03-25
+      <dd>
+	version 2.3.2a
+	<ul>
+	  <li>t/50update.rb の判定方法を変更
+	</ul>
+
+      <dt>2001-03-19
+      <dd>
+	version 2.3.2
+	<ul>
+	  <li>一定数(20回) MysqlRes オブジェクトを生成したら、強制的に GC するようにした。
+	  <li>Mysql#escape_string(), Mysql#quote() は mysql_real_escape_string() を使用するようにした。
+	</ul>
+
+      <dt>2000-09-02
+      <dd>
+	version 2.3.1
+	<ul>
+	  <li>Mysql#initialize() を追加(Ruby 1.6 対応)。
+	</ul>
+
+      <dt>2000-07-22
+      <dd>
+	version 2.3.0
+	<ul>
+	  <li>MysqlRes#free() を追加。
+	  <li>Mysql#initialize(), MysqlRes#initialize() を有効にした。
+	  <li>true を返していたメソッドを、self を返すようにした。
+	</ul>
+
+      <dt>2000-05-27
+      <dd>
+	version 2.2.1a
+	<ul>
+	  <li>test.rb を引数でパラメータを指定できるようにした。
+	</ul>
+
+      <dt>2000-05-10
+      <dd>
+	version 2.2.1
+	<ul>
+	  <li>データベースからのデータを「汚染された」文字列に変更。
+	  <li>テストスクリプト追加。
+	</ul>
+
+      <dt>1999-09-28
+      <dd>
+	version 2.2.0
+	<ul>
+	  <li>Mysql::init(), Mysql#options(), Mysql#real_connect() を追加。
+	  <li>Mysql#field_count を追加。
+	</ul>
+
+      <dt>1999-09-24
+      <dd>
+	version 2.1.7
+	<ul>
+	  <li>MySQL 3.22.26 に対応。
+	  <li>MysqlField#inspect() を追加。
+	</ul>
+
+      <dt>1999-06-17
+      <dd>
+	version 2.1.6
+	<ul>
+	  <li>fetch_field で落ちることがあった。
+	</ul>
+
+      <dt>1999-06-12
+      <dd>
+	version 2.1.5
+	<ul>
+	  <li>Ruby 1.3.x 対応が中途半端だった。
+	</ul>
+
+      <dt>1999-05-30
+      <dd>
+	version 2.1.4
+	<ul>
+	  <li>Ruby 1.3.x に対応。
+	</ul>
+
+      <dt>1999-04-13
+      <dd>
+	version 2.1.3
+	<ul>
+	  <li>fetch_hash/each_hash の引数の数の定義が間違っていた。
+	  <li>fetch_hash/each_hash に true を指定した時の項目名が欠けていた。
+	  <li>NULL値の項目があると fetch_hash/each_hash の動きがおかしかった。
+	</ul>
+
+      <dt>1999-02-01
+      <dd>
+	version 2.1.2
+	<ul>
+	  <li>Mysql#refresh() と Mysql::REFRESH_* を追加。
+	  <li>MySQL 3.21.xx にも対応(させたつもり…)。
+	</ul>
+
+      <dt>1999-01-24
+      <dd>
+	version 2.1.1
+	<ul>
+	  <li>MysqlError#error(), MysqlError#errno() を追加。
+	  <li>MysqlError::CR_* を追加。
+	</ul>
+
+      <dt>1999-01-17
+      <dd>
+	version 2.1
+	<ul>
+	  <li>fetch_hash, each_hash を C ソースに移動。
+	  <li>MysqlField#hash() を追加。
+	  <li>escape_string, get_client_info をオブジェクトメソッドとしても使えるようにした。
+	</ul>
+
+      <dt>1998-11-29
+      <dd>
+	version 2.0.1
+	<ul>
+	  <li>fetch_hash, each_hash に with_table 引数を追加。
+	  <li>やっぱり get_* メソッド名も C API と同じにした。
+	  <li>mysql-compat.rb を alias で書き直した。
+	  <li>Mysql の定数 CLIENT_* が MysqlField の定数になっていた。
+	</ul>
+
+      <dt>1998-11-15
+      <dd>
+	version 2.0
+	<ul>
+	  <li>メソッド名を C API と同じにした。
+	  <li>C++ でも通るように書き直した。
+	</ul>
+
+      <dt>1998-08-13
+      <dd>
+	version 1.0
+	<ul>
+	  <li>初期バージョン。
+	</ul>
+    </dl>
+
+    <h2>作者</h2>
+    <p>
+      e-mail: とみたまさひろ <a href="mailto:tommy@tmtm.org">tommy@tmtm.org</a>
+      <a href="http://tmtm.org">http://tmtm.org</a>
+    </p>
+    <hr>
+    <address><a href="mailto:tommy@tmtm.org">TOMITA Masahiro</a></address>
+<!-- Created: Sun Aug 29 11:52:09 JST 2004 -->
+<!-- hhmts start -->
+Last modified: Sun Feb  1 17:41:18 JST 2009
+<!-- hhmts end -->
+  </body>
+</html>

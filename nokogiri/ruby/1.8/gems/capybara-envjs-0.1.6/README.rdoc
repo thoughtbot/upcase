@@ -1,0 +1,54 @@
+= capybara-envjs
+
+* http://github.com/smparkes/capybara-envjs
+
+== Description:
+
+capybara-envjs is a {Capybara}[http://github.com/jnicklas/capybara] driver for the envjs gem ({GitHub}[http://github.com/smparkes/env-js],
+{rubygems.org}[http://rubygems.org/gems/envjs]).
+It is similar to Capybara's rack-test driver in that it runs tests against your rack application directly but fully supports javascript in your application.
+
+== Install:
+
+Install as a gem:
+
+    gem install capybara-envjs
+
+== Development:
+
+* Source hosted at {GitHub}[http://github.com/smparkes/capybara-envjs].
+* Report issues on {GitHub Issues}[http://github.com/smparkes/capybara-envjs/issues]
+
+== Using with Capybara
+
+See the Capybara docs. Use the symbol :envjs for the driver/default_driver as appropriate.
+
+If you are using cucumber, you might add the following lines to your features/support/env.rb
+
+  require 'capybara/envjs'
+  Capybara.javascript_driver = :envjs
+
+== License:
+
+(The MIT License)
+
+Copyright (c) 2010 Steven Parkes
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

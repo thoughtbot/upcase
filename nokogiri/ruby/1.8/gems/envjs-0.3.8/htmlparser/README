@@ -1,0 +1,34 @@
+Envjs make use the awesome project 'http://about.validator.nu/htmlparser/'
+which generates an HTML5 compliant parsing engine, written in Java, into
+javascript via GWT.
+
+The generated files are available in 
+    env-js/
+        src/
+            parser/
+                html5.js  
+                html5.min.js
+                html5.detailed.js
+                
+The various versions are simply generated with varying verbosity of source.
+html.js is the most readable at 60KB, html.detailed.js is almost too verbose at 
+over 120KB, and finally html5.min.js is totally unreadable but weighs in at only
+30KB.  By default the html5.min.js is included in Envjs releases because most
+folks aren't too worried about the gory details of the parser. 
+
+The scripts in this folder can be used to checkout and download the various
+components you will need to generate these yourself.
+
+Once generated, there are a couple very small and specific changes that must be
+made by hand to allow the parser to be initialized with the usual GWT hooks.
+
+You will need to download the appropiate gwt for your platform
+
+http://google-web-toolkit.googlecode.com/files/gwt-mac-1.5.1.tar.gz
+http://google-web-toolkit.googlecode.com/files/gwt-windows-1.5.1.zip
+http://google-web-toolkit.googlecode.com/files/gwt-linux-1.5.1.tar.bz2
+
+Our scripts expect that it will be available at 
+    env-js/
+        htmlparser/
+            gwt-1.5.1/

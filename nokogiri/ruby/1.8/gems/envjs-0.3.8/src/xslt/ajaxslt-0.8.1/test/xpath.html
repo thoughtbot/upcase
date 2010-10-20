@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <script src="../util.js" language="JavaScript"></script>
+    <script src="../xmltoken.js" language="JavaScript"></script>
+    <script src="../dom.js" language="JavaScript"></script>
+    <script src="../xpath.js" language="JavaScript"></script>
+    <script src="../xpath_unittest.js" language="JavaScript"></script>
+    <script src="../xpathdebug.js" language="JavaScript"></script>
+    <script src="../simplelog.js" language="JavaScript"></script>    
+    <script src="xpath_script.js" language="JavaScript"></script>
+  </head>
+  <body onload="load_expr()">
+    <form onsubmit="xpath_test(this);return false" action="javascript:void(0)">
+      <select id="s" multiple="1" size="30" name="cases"></select>
+      <input type="submit" value="parse" align="top"/>
+    </form>
+  </body>
+</html>
