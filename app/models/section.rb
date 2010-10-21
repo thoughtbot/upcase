@@ -16,7 +16,7 @@ class Section < ActiveRecord::Base
   named_scope :active, lambda { { :conditions => ["sections.ends_on >= ?", Date.today] } }
 
   def time_range
-    "#{course.start_at.to_s(:time)}-#{course.stop_at.to_s(:time)}"
+    "#{course.start_at.to_s(:time).strip}-#{course.stop_at.to_s(:time).strip}"
   end
 
   def registration_link
