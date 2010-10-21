@@ -20,7 +20,7 @@ Feature: Viewing section details
     Then I see the section location is "41 Winter St., Boston, MA 02108"
     And I see the section location's name is "Thoughtbot Office"
     And I see the section date is "June 13-16, 2010"
-    And I see the section time is "09:00AM-12:00PM"
+    And I see the section time is "9:00AM-12:00PM"
     And I see the section price is "$100"
     And I see the section terms of service is "No pets allowed"
     And I see that one of the teachers is "Ralph Bot"
