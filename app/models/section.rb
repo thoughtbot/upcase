@@ -13,6 +13,7 @@ class Section < ActiveRecord::Base
   after_create :send_follow_up_emails, :send_teacher_notifications
 
   accepts_nested_attributes_for :section_teachers
+  named_scope :active, lambda { { :conditions => ["sections.ends_on >= ?", Date.today] } }
 
   def time_range
     "#{course.start_at.to_s(:time)}-#{course.stop_at.to_s(:time)}"

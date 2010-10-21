@@ -2,7 +2,7 @@ class SectionsController < ApplicationController
   before_filter :must_be_admin, :only => [:new, :create,:edit]
 
   def index
-    @sections = Section.all
+    @sections = Section.active
   end
 
   def show
