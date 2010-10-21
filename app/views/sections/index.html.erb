@@ -22,17 +22,18 @@
               <% end %>
             </li>
           <% end %>
-          <li class="inactive">
-            <a href="#">
-              <h4>HTML5 and CSS3</h4>
-              <div>
-                Not currently running
-              </div>
-            </a>
-          </li>
+          <% @unscheduled_courses.each do |course| %>
+            <li class="inactive">
+              <a href="#">
+                <h4><%= course.name %></h4>
+                <div>
+                  Not currently running
+                </div>
+              </a>
+            </li>
+          <% end %>
         </ul>
       <% end %>
-      <a href="#" id="survey">Which course is right for me?</a>
     </div>
   </div>
 </div>
