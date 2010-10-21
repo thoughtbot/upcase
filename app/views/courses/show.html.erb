@@ -1,0 +1,49 @@
+<div class="top">
+  <div class="wrapper">
+    <h2><%= h(@course.name) %></h2>
+  </div>
+</div>
+<div id="content">
+  <div class="wrapper">
+
+    <div id="inactive-notify-me" class="dark-content clearfix">
+      <% form_for [@course, @follow_up] do |form| %>
+        <%= form.label :email, "Want to be notified when this course is scheduled?" %>
+        <%= form.text_field :email, :placeholder => "Enter your email address to be notified" %>
+        <input type="submit" value="Submit" />
+      <% end %>
+    </div>
+    <div class="dark-content clearfix">
+      <div id="register-info" class="clearfix">
+        <div id="register-right">
+          <% google_map_link_to(@course.location, :id => 'location') do %>
+            <strong><%= h(@course.location_name) %></strong>
+            <span id="section-location"><%= h(@course.location) %></span>
+          <% end %>
+        </div>
+        <div id="register-description">
+          <%= textilize @course.description %>
+        </div>
+      </div>
+      <% unless @course.questions.empty? %>
+        <div class="clearfix">
+          <div id="faq" class="col">
+            <h3>Frequently asked questions</h3>
+            <dl>
+              <% @course.questions.each do |question| %>
+                <dt><%= textilize question.question %></dt>
+                <dd><%= textilize question.answer %></dd>
+              <% end %>
+            </dl>
+          </div>
+        </div>
+      <% end %>
+
+      <div id="terms" class="col clearfix">
+        <h4>Terms and conditions</h4>
+        <%= textilize @course.terms_of_service %>
+      </div>
+    </div>
+  </div>
+</div>
+

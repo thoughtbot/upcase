@@ -975,7 +975,8 @@ body {
     font-size: 18px;
     height: 24px;
     line-height: 24px;
-    background: url(/images/alert.png) no-repeat; }
+    background: url(/images/alert.png) no-repeat;
+    width: auto; }
   #inactive-notify-me input[type="text"] {
     width: 684px;
     padding: 10px;
