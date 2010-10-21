@@ -67,7 +67,8 @@ Feature: Scheduling a new course
     And "Samuel Beckett" has a Gravatar for "sbeckett@example.com"
 
   Scenario: Adding a new section with multiple teachers
-    Given I am signed in as an admin
+    Given today is "June 13, 2010"
+    And I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
     When I go to the admin page
     And I follow the link to re-run the course "Test-Driven Sleeping"
