@@ -9,7 +9,7 @@
         University, The New York Times, and Boston.com.
       </h3>
 
-      <% if @sections.empty? %>
+      <% if @unscheduled_courses.empty? && @sections.empty? %>
         <p id="no-courses">No courses are running at this time.</p>
       <% else %>
         <ul id="list-of-classes">
@@ -21,6 +21,12 @@
                 </div>
               <% end %>
             </li>
+          <% end %>
+          <% @unscheduled_courses.each do |course| %>
+            <li class='inactive'><% link_to course_path(course), :id => dom_id(course) do %>
+              <h4><%=h course.name %></h4>
+              <div>Register your interest</div>
+            <% end %></li>
           <% end %>
         </ul>
       <% end %>

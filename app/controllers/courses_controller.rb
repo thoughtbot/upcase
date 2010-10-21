@@ -1,10 +1,16 @@
 class CoursesController < ApplicationController
-  before_filter :must_be_admin
+  before_filter :must_be_admin, :except => [:show]
   layout 'admin'
 
   def index
     @courses = Course.all
     render
+  end
+
+  def show
+    @course = Course.find(params[:id])
+    @follow_up = @course.follow_ups.build
+    render :layout => 'application'
   end
 
   def new
