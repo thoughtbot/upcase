@@ -22,16 +22,6 @@
               <% end %>
             </li>
           <% end %>
-          <% @unscheduled_courses.each do |course| %>
-            <li class="inactive">
-              <a href="#">
-                <h4><%= course.name %></h4>
-                <div>
-                  Not currently running
-                </div>
-              </a>
-            </li>
-          <% end %>
         </ul>
       <% end %>
     </div>
