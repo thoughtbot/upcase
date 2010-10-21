@@ -3,6 +3,7 @@ class SectionsController < ApplicationController
 
   def index
     @sections = Section.active
+    @unscheduled_courses = Course.unscheduled
   end
 
   def show
