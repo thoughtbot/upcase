@@ -9,7 +9,7 @@
     <div id="inactive-notify-me" class="dark-content clearfix">
       <% form_for [@course, @follow_up] do |form| %>
         <%= form.label :email, "Want to be notified when this course is scheduled?" %>
-        <%= form.text_field :email, :placeholder => "Enter your email address to be notified" %>
+        <%= form.text_field :email, :placeholder => "Enter your email address" %>
         <input type="submit" value="Submit" />
       <% end %>
     </div>

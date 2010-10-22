@@ -25,7 +25,7 @@
           <% @unscheduled_courses.each do |course| %>
             <li class='inactive'><% link_to course_path(course), :id => dom_id(course) do %>
               <h4><%=h course.name %></h4>
-              <div>Register your interest</div>
+              <div>Tell Me More</div>
             <% end %></li>
           <% end %>
         </ul>
