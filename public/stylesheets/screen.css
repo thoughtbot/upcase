@@ -333,8 +333,7 @@ body {
         color: #fff;
         font-weight: 100; }
       #content .wrapper .dark-content #teachers {
-        width: 280px;
-        float: right; }
+        padding-top: 25px; }
         #content .wrapper .dark-content #teachers ul li {
           min-height: 48px;
           margin: 25px 0 0 0; }
@@ -396,38 +395,48 @@ body {
           background: url(/images/_teachers/kfiedler.jpg) 0 0 no-repeat; }
         #content .wrapper .dark-content #teachers ul li#fyates {
           background: url(/images/_teachers/fyates.jpg) 0 0 no-repeat; }
-      #content .wrapper .dark-content #faq, #content .wrapper .dark-content #resources, #content .wrapper .dark-content #terms, #content .wrapper .dark-content #resources_faq {
+      #content .wrapper .dark-content #faq h3, #content .wrapper .dark-content #faq h4, #content .wrapper .dark-content #resources h3, #content .wrapper .dark-content #resources h4, #content .wrapper .dark-content #terms h3, #content .wrapper .dark-content #terms h4, #content .wrapper .dark-content #resources_faq h3, #content .wrapper .dark-content #resources_faq h4 {
+        border-bottom: 1px solid #000;
+        padding: 0 0 10px 0;
+        -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
+        -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
+        margin-bottom: 15px; }
+      #content .wrapper .dark-content #faq ul, #content .wrapper .dark-content #resources ul, #content .wrapper .dark-content #terms ul, #content .wrapper .dark-content #resources_faq ul {
+        padding: 15px 40px 10px 50px; }
+        #content .wrapper .dark-content #faq ul li, #content .wrapper .dark-content #resources ul li, #content .wrapper .dark-content #terms ul li, #content .wrapper .dark-content #resources_faq ul li {
+          list-style-type: square;
+          margin: 10px 0 0 0; }
+      #content .wrapper .dark-content #faq dl dt, #content .wrapper .dark-content #resources dl dt, #content .wrapper .dark-content #terms dl dt, #content .wrapper .dark-content #resources_faq dl dt {
+        font-weight: bold;
+        -webkit-font-smoothing: antialiased;
+        color: #fff;
+        font-size: 16px;
+        padding: 0 0 10px 0; }
+      #content .wrapper .dark-content #faq dl dd, #content .wrapper .dark-content #resources dl dd, #content .wrapper .dark-content #terms dl dd, #content .wrapper .dark-content #resources_faq dl dd {
+        font-size: 12px;
+        font-weight: normal;
+        line-height: 1.5em;
+        padding: 0 0 25px 0; }
+        #content .wrapper .dark-content #faq dl dd p, #content .wrapper .dark-content #resources dl dd p, #content .wrapper .dark-content #terms dl dd p, #content .wrapper .dark-content #resources_faq dl dd p {
+          margin: 0; }
+        #content .wrapper .dark-content #faq dl dd:last-child, #content .wrapper .dark-content #resources dl dd:last-child, #content .wrapper .dark-content #terms dl dd:last-child, #content .wrapper .dark-content #resources_faq dl dd:last-child {
+          padding: 0; }
+      #content .wrapper .dark-content .main-content {
         width: 460px;
         float: left; }
-        #content .wrapper .dark-content #faq ul, #content .wrapper .dark-content #resources ul, #content .wrapper .dark-content #terms ul, #content .wrapper .dark-content #resources_faq ul {
-          padding: 15px 40px 10px 50px; }
-          #content .wrapper .dark-content #faq ul li, #content .wrapper .dark-content #resources ul li, #content .wrapper .dark-content #terms ul li, #content .wrapper .dark-content #resources_faq ul li {
-            list-style-type: square;
-            margin: 10px 0 0 0; }
-        #content .wrapper .dark-content #faq dl dt, #content .wrapper .dark-content #resources dl dt, #content .wrapper .dark-content #terms dl dt, #content .wrapper .dark-content #resources_faq dl dt {
-          font-weight: bold;
-          -webkit-font-smoothing: antialiased;
-          color: #fff;
-          font-size: 16px;
-          padding: 0 0 10px 0; }
-        #content .wrapper .dark-content #faq dl dd, #content .wrapper .dark-content #resources dl dd, #content .wrapper .dark-content #terms dl dd, #content .wrapper .dark-content #resources_faq dl dd {
-          font-size: 12px;
-          font-weight: normal;
-          line-height: 1.5em;
-          padding: 0 0 25px 0; }
-          #content .wrapper .dark-content #faq dl dd p, #content .wrapper .dark-content #resources dl dd p, #content .wrapper .dark-content #terms dl dd p, #content .wrapper .dark-content #resources_faq dl dd p {
-            margin: 0; }
-          #content .wrapper .dark-content #faq dl dd:last-child, #content .wrapper .dark-content #resources dl dd:last-child, #content .wrapper .dark-content #terms dl dd:last-child, #content .wrapper .dark-content #resources_faq dl dd:last-child {
-            padding: 0; }
-      #content .wrapper .dark-content .col {
-        padding: 25px 0 40px; }
-        #content .wrapper .dark-content .col h3, #content .wrapper .dark-content .col h4 {
+      #content .wrapper .dark-content .sidebar {
+        float: right;
+        width: 280px; }
+        #content .wrapper .dark-content .sidebar h3, #content .wrapper .dark-content .sidebar h4 {
           border-bottom: 1px solid #000;
           padding: 0 0 10px 0;
           -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
           -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
           box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
           margin-bottom: 15px; }
+      #content .wrapper .dark-content .col {
+        padding: 25px 0 40px; }
       #content .wrapper .dark-content h4#why-we-rule {
         text-align: center;
         font-size: 13px;
