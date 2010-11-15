@@ -330,13 +330,14 @@ body {
       a#register-button-bottom {
         clear: both;
         @include rounded(5px);
-         border: 2px solid #970906;
-         border-bottom: 2px solid #820200;
-         border-top: 2px solid #c81a14;
-         display: block;
-         text-decoration: none;
-         text-align: center;
-         margin: 40px 0 10px;
+        border: 2px solid #970906;
+        border-bottom: 2px solid #820200;
+        border-top: 2px solid #c81a14;
+        display: block;
+        text-decoration: none;
+        text-align: center;
+        margin: 40px 0 10px;
+
         div {
            @include gradient(#740300, #c81a15);
            -webkit-border-top-left-radius: 3px;
@@ -401,9 +402,10 @@ body {
         font-weight: 100;
       }
       #teachers {
-        width: 280px;
-        float: right;
+        padding-top: 25px;
+
         ul {
+
          li {
           min-height: 48px;
            margin: 25px 0 0 0;
@@ -490,9 +492,15 @@ body {
           }
         }
       }
+
       #faq, #resources, #terms, #resources_faq {
-        width: 460px;
-        float: left;
+
+        h3, h4 {
+          border-bottom: 1px solid #000;
+          padding: 0 0 10px 0;
+          @include shadow(0,1px,0,rgba(255,255,255,.12));
+          margin-bottom: 15px;
+        }
         ul {
           padding: 15px 40px 10px 50px;
           li {
@@ -522,14 +530,22 @@ body {
           }
         }
       }
+      .main-content {
+        width: 460px;
+        float: left;
+      }
+      .sidebar {
+        float: right;
+        width: 280px;
+        h3, h4 {
+          border-bottom: 1px solid #000;
+          padding: 0 0 10px 0;
+          @include shadow(0,1px,0,rgba(255,255,255,.12));
+          margin-bottom: 15px;
+        }
+      }
       .col {
         padding: 25px 0 40px;
-        h3, h4 {
-         border-bottom: 1px solid #000;
-         padding: 0 0 10px 0;
-         @include shadow(0,1px,0,rgba(255,255,255,.12));
-         margin-bottom: 15px;
-        }
       }
       h4#why-we-rule {
         text-align: center;
