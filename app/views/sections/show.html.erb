@@ -40,15 +40,6 @@
           </dl>
         </div><!-- end of faq -->
 
-        <% link_to @section.registration_link, :id => "register-button-bottom", :class => "clearfix" do %>
-          <div>
-            Register for <%= h(@section.course_name) %>
-          </div>
-          <span>
-            <%= h(@section.date_range) %>
-          </span>
-        <% end %>
-
         <div id="terms" class="col clearfix">
           <h3>Terms and conditions</h3>
           <%= textilize @section.course.terms_of_service %>
@@ -61,7 +52,14 @@
         <%= render 'teachers', :teachers => @section.teachers %>
       </div>
 
-
+      <% link_to @section.registration_link, :id => "register-button-bottom", :class => "clearfix" do %>
+        <div>
+          Register for <%= h(@section.course_name) %>
+        </div>
+        <span>
+          <%= h(@section.date_range) %>
+        </span>
+      <% end %>
     </div>
   </div>
 </div>
