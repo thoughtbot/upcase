@@ -116,3 +116,7 @@ end
 Then 'the resource "$link_name" links to "$link"' do |link_name, link|
   page.should have_xpath("//a[@href='#{link}' and contains(.,'#{link_name}')]")
 end
+
+When /^I should see "([^"]*)" before "([^"]*)"$/ do |section1_name, section2_name|
+  page.body.should =~ /#{section1_name}.*#{section2_name}/m
+end

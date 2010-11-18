@@ -14,6 +14,7 @@ class Section < ActiveRecord::Base
 
   accepts_nested_attributes_for :section_teachers
   named_scope :active, lambda { { :conditions => ["sections.ends_on >= ?", Date.today] } }
+  named_scope :by_starts_on, :order => "starts_on asc"
 
   def time_range
     "#{course.start_at.to_s(:time).strip}-#{course.stop_at.to_s(:time).strip}"
