@@ -14,6 +14,9 @@ module NavigationHelpers
     when /^the new section page for "([^"]+)"$/
       course = Course.find_by_name!($1)
       new_course_section_path(course)
+    when /the course resource page for "([^"]+)"/
+      course = Course.find_by_name!($1)
+      section_path(course.sections.first)
     when /the page to add a new student to the section from "([^"]+)" to "([^"]+)"/
       section = Section.find_by_starts_on_and_ends_on!(Date.parse($1), Date.parse($2))
       new_course_section_registration_path(section.course, section)
