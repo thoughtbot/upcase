@@ -25,10 +25,11 @@ class Section < ActiveRecord::Base
   end
 
   def calculate_price
-    open("https://#{CHARGIFY_URL}/products/#{chargify_id}.xml", :http_basic_authentication => [CHARGIFY_API_KEY, "x"]) do |f|
-      doc = Nokogiri::XML(f.read)
-      (self.class.xml_content(doc, "initial_charge_in_cents").to_i / 100.0).to_i
-    end
+    course.price
+    # open("https://#{CHARGIFY_URL}/products/#{chargify_id}.xml", :http_basic_authentication => [CHARGIFY_API_KEY, "x"]) do |f|
+    #   doc = Nokogiri::XML(f.read)
+    #   (self.class.xml_content(doc, "initial_charge_in_cents").to_i / 100.0).to_i
+    # end
   end
 
   def date_range
