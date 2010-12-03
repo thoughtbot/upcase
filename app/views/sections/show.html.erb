@@ -13,15 +13,19 @@
             <strong><%= h(@section.course_location_name) %></strong>
             <span id="section-location"><%= h(@section.course_location) %></span>
           <% end %>
-          <% link_to @section.registration_link, :id => 'register-button' do %>
-            <div id="register-button-top">
-              <div id="register-date"><%= h(@section.date_range) %></div>
-              <div id="register-time"><%= h(@section.time_range) %></div>
-              <div id="total-price">
-                <div id="amount"><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></div>
+          <% unless @section.full? %>
+            <% link_to @section.registration_link, :id => 'register-button' do %>
+              <div id="register-button-top">
+                <div id="register-date"><%= h(@section.date_range) %></div>
+                <div id="register-time"><%= h(@section.time_range) %></div>
+                <div id="total-price">
+                  <div id="amount"><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></div>
+                </div>
               </div>
-            </div>
-            <div id="register-for-class">Register</div>
+              <div id="register-for-class">Register</div>
+            <% end %>
+          <% else %>
+            <div class='register-closed'>Registrations are closed</div>
           <% end %>
         </div>
         <div id="register-description">
@@ -52,13 +56,17 @@
         <%= render 'teachers', :teachers => @section.teachers %>
       </div>
 
-      <% link_to @section.registration_link, :id => "register-button-bottom", :class => "clearfix" do %>
-        <div>
-          Register for <%= h(@section.course_name) %>
-        </div>
-        <span>
-          <%= h(@section.date_range) %>
-        </span>
+      <% unless @section.full? %>
+        <% link_to @section.registration_link, :id => "register-button-bottom", :class => "clearfix" do %>
+          <div>
+            Register for <%= h(@section.course_name) %>
+          </div>
+          <span>
+            <%= h(@section.date_range) %>
+          </span>
+        <% end %>
+      <% else %>
+        <div class='register-closed'>Registrations are closed</div>
       <% end %>
     </div>
   </div>

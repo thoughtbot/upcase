@@ -29,3 +29,17 @@ Feature: Viewing section details
     And I see the answer "Blue"
     And I see the question "Pets allowed?"
     And I see the answer "No"
+
+  Scenario: Viewing a section that is full
+    Given today is June 10, 2010
+    And the following course exists on Chargify:
+      | name                | chargify id | maximum students |
+      | Test-Driven Haskell | 1234        | 5                |
+    And the following section exists on Chargify:
+      | id   | course                    | starts on     | ends on       | chargify id |
+      | 1234 | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 | 1234        |
+    And "Test-Driven Haskell" has 5 registrations
+    When I go to the home page
+    And I follow the link to the Test-Driven Haskell course
+    Then I should not see the external registration link
+    And I should see "Registrations are closed"

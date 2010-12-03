@@ -11,6 +11,11 @@ When 'I follow the external registration link' do
   visit url
 end
 
+
+Then /^I should not see the external registration link$/ do
+  page.should have_no_css("#register-button")
+end
+
 Then 'I see the section from "$start_date" to "$end_date"' do |start_date_string, end_date_string|
   start_date = Date.parse(start_date_string)
   end_date = Date.parse(end_date_string)
