@@ -42,4 +42,4 @@ Feature: Viewing section details
     When I go to the home page
     And I follow the link to the Test-Driven Haskell course
     Then I should not see the external registration link
-    And I should see "Registrations are closed"
+    And I should see "Workshop is full"

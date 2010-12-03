@@ -225,6 +225,22 @@ body {
         @include rounded(5px);
         padding: 15px;
       }
+
+      .register-closed {
+        border: 2px solid #24221b;
+        border-top: 2px solid #32302a;
+        border-bottom: 2px solid #120d00;
+        text-align:center;
+        @include gradient(#19160e, #32302a);
+        @include rounded(5px);
+        padding: 40px 0;
+        color:#fff;
+        font-weight: BOLD;
+        text-shadow: rgba(0, 0, 0, 0.496094) 0px -1px 2px;
+        clear: both;
+        font-size: 18px;
+      }
+
       #register-right, #course-overview-right {
         text-align: right;
         display: block;
@@ -232,6 +248,7 @@ body {
         color: $tan;
         width: 260px;
         float: right;
+
         a#location {
          background: url(/images/location.png) 0 0 no-repeat;
          text-align: left;
@@ -240,7 +257,7 @@ body {
          margin: 0 0 15px 0;
          padding: 0 0 0 40px;
          text-decoration: none;
-        min-height: 32px;
+          min-height: 32px;
          strong {
            display: block;
            font-size: 16px;
@@ -289,6 +306,7 @@ body {
            -moz-border-radius-topright: 3px;
            width: 256px;
          }
+
          #register-date, #register-time {
            color: #000;
            text-shadow: 0 1px 0 rgba(255,255,255,.2);
