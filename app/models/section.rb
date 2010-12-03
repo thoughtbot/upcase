@@ -24,6 +24,10 @@ class Section < ActiveRecord::Base
     "http://#{CHARGIFY_URL}/h/#{chargify_id}/subscriptions/new"
   end
 
+  def full?
+    registrations.count >= course.maximum_students
+  end
+
   def calculate_price
     course.price
     # open("https://#{CHARGIFY_URL}/products/#{chargify_id}.xml", :http_basic_authentication => [CHARGIFY_API_KEY, "x"]) do |f|

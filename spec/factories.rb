@@ -25,6 +25,7 @@ Factory.define(:course) do |course_factory|
   course_factory.start_at    '9:00'
   course_factory.stop_at     '17:00'
   course_factory.location    '41 Winter St Boston, MA'
+  course_factory.maximum_students 12
 end
 
 Factory.define(:section) do |section_factory|
