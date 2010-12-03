@@ -173,6 +173,22 @@ body {
         -webkit-border-radius: 5px;
         -border-radius: 5px;
         padding: 15px; }
+      #content .wrapper .dark-content .register-closed {
+        border: 2px solid #24221b;
+        border-top: 2px solid #32302a;
+        border-bottom: 2px solid #120d00;
+        text-align: center;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(1, #19160e), color-stop(0, #32302a));
+        background: -moz-linear-gradient(bottom, #19160e 0%, #32302a 100%);
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -border-radius: 5px;
+        padding: 40px 0;
+        color: #fff;
+        font-weight: BOLD;
+        text-shadow: rgba(0, 0, 0, 0.496094) 0px -1px 2px;
+        clear: both;
+        font-size: 18px; }
       #content .wrapper .dark-content #register-right, #content .wrapper .dark-content #course-overview-right {
         text-align: right;
         display: block;
