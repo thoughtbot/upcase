@@ -11,7 +11,7 @@ ActionController::Routing::Routes.draw do |map|
       sections.resources :registrations, :only => [:new, :create]
     end
     courses.resources :teachers, :only => [:new, :create]
-    courses.resources :follow_ups, :only => [:create]
+    courses.resources :follow_ups, :only => [:create, :destroy]
   end
 
   HighVoltage::Routes.draw(map)
