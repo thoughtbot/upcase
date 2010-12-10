@@ -43,8 +43,16 @@
 <div id="follow-up-form" class="clearfix">
   <h3>Follow ups</h3>
   <ul>
-    <% form.fields_for :follow_ups, form.object.follow_ups_with_blank do |follow_up_fields| -%>
-      <li>
+    <% @course.follow_ups.each_with_index do |follow_up, index| %>
+      <% form.fields_for(:follow_ups, follow_up) do |follow_up_fields| %>
+        <% content_tag_for(:li, follow_up) do %>
+          <%= follow_up_fields.text_field :email, :placeholder => 'Email address' %>
+          <%= link_to '&#x2716;', [@course, follow_up], :method => :delete, :class => 'remove-followup' %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% form.fields_for :follow_ups, FollowUp.new do |follow_up_fields| -%>
+      <li class='follow-up-email'>
         <%= follow_up_fields.text_field :email, :placeholder => 'Email address' %>
       </li>
     <% end -%>

@@ -9,4 +9,12 @@ class FollowUpsController < ApplicationController
     end
     redirect_to course
   end
+
+  def destroy
+    course = Course.find(params[:course_id])
+    follow_up = course.follow_ups.find(params[:id])
+    follow_up.destroy
+    flash[:notice] = "Follow up removed"
+    redirect_to edit_course_path(course)
+  end
 end

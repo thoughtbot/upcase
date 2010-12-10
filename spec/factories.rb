@@ -62,3 +62,7 @@ end
 Factory.define(:resource) do |resource_factory|
   resource_factory.association :course
 end
+
+Factory.define(:follow_up) do |factory|
+  factory.association :course
+end
