@@ -1,0 +1,27 @@
+find_header: checking for jsautocfg.h in /Users/fred/Documents/thoughtbot/workshops/rake/ruby/1.8/gems/johnson-2.0.0.pre3/vendor/tracemonkey... -------------------- yes
+
+"gcc -E -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    conftest.c -o conftest.i"
+conftest.c:1:23: error: jsautocfg.h: No such file or directory
+checked program was:
+/* begin */
+1: #include <jsautocfg.h>
+/* end */
+
+"gcc -E -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common   -I/Users/fred/Documents/thoughtbot/workshops/rake/ruby/1.8/gems/johnson-2.0.0.pre3/vendor/tracemonkey conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include <jsautocfg.h>
+/* end */
+
+--------------------
+
+find_header: checking for jsapi.h in /Users/fred/Documents/thoughtbot/workshops/rake/ruby/1.8/gems/johnson-2.0.0.pre3/vendor/tracemonkey... -------------------- yes
+
+"gcc -E -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I/Users/fred/Documents/thoughtbot/workshops/rake/ruby/1.8/gems/johnson-2.0.0.pre3/vendor/tracemonkey  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include <jsapi.h>
+/* end */
+
+--------------------
+

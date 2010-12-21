@@ -1,0 +1,43 @@
+=== 0.1.6 / 2010-07-05
+
+* scope select to node
+* Select bug fix and bring up to date with recent capy changes
+* implement value for textareas
+* doc tweaks [Kurt Werle]
+
+=== 0.1.5 / 2010-06-02
+
+* Finish cleanup of rack-test host handling
+* follow capy rack-test pattern
+
+=== 0.1.4 / 2010-05-31
+
+* Fix URL handling edge cases
+* World is defined on self/main, not Object
+* make sure header lookup is case insensitive
+
+=== 0.1.3 / 2010-05-19
+
+* alway return headers from doc ... the rack request might not be current
+* handle off-site scripts, pass redirects to envjs
+* match escaping from capy 0.3.8
+* don't assume cucumber if no world ... some people had trouble
+
+=== 0.1.2 / 2010-04-22
+
+* Spelling corrections in the README.rdoc [Brian Cardarella]
+
+=== 0.1.1 / 2010-04-22
+
+* neglected to set the ready state on XHR requests
+
+=== 0.1.0 / 2010-03-29
+
+* updated to use stock capybara 3.6
+* add support for both rack-test and external modes
+
+=== 0.1.0.pre2 / 2010-02-25
+
+* initial commit
+* provide a fake http://host prefix for URLs
+* cucumber support (tested for a simple app)

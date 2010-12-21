@@ -1,0 +1,273 @@
+find_header: checking for libxml/parser.h... -------------------- yes
+
+"gcc -E -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include <libxml/parser.h>
+/* end */
+
+--------------------
+
+find_header: checking for libxslt/xslt.h... -------------------- yes
+
+"gcc -E -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include <libxslt/xslt.h>
+/* end */
+
+--------------------
+
+find_header: checking for libexslt/exslt.h... -------------------- yes
+
+"gcc -E -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include <libexslt/exslt.h>
+/* end */
+
+--------------------
+
+find_library: checking for xmlParseDoc() in -lxml2... -------------------- yes
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/opt/local/lib -L/usr/local/lib -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/usr/lib -L.      -lruby-static -lxml2  -ldl -lobjc   "
+conftest.c: In function ‘t’:
+conftest.c:3: error: ‘xmlParseDoc’ undeclared (first use in this function)
+conftest.c:3: error: (Each undeclared identifier is reported only once
+conftest.c:3: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { void ((*volatile p)()); p = (void ((*)()))xmlParseDoc; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/opt/local/lib -L/usr/local/lib -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/usr/lib -L.      -lruby-static -lxml2  -ldl -lobjc   "
+conftest.c: In function ‘t’:
+conftest.c:3: warning: implicit declaration of function ‘xmlParseDoc’
+ld: warning: directory '/opt/local/lib' following -L not found
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { xmlParseDoc(); return 0; }
+/* end */
+
+--------------------
+
+find_library: checking for xsltParseStylesheetDoc() in -lxslt... -------------------- yes
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/opt/local/lib -L/usr/local/lib -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/usr/lib -L.     -lxml2  -lruby-static -lxslt -lxml2  -ldl -lobjc   "
+conftest.c: In function ‘t’:
+conftest.c:3: error: ‘xsltParseStylesheetDoc’ undeclared (first use in this function)
+conftest.c:3: error: (Each undeclared identifier is reported only once
+conftest.c:3: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { void ((*volatile p)()); p = (void ((*)()))xsltParseStylesheetDoc; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/opt/local/lib -L/usr/local/lib -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/usr/lib -L.     -lxml2  -lruby-static -lxslt -lxml2  -ldl -lobjc   "
+conftest.c: In function ‘t’:
+conftest.c:3: warning: implicit declaration of function ‘xsltParseStylesheetDoc’
+ld: warning: directory '/opt/local/lib' following -L not found
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { xsltParseStylesheetDoc(); return 0; }
+/* end */
+
+--------------------
+
+find_library: checking for exsltFuncRegister() in -lexslt... -------------------- yes
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/opt/local/lib -L/usr/local/lib -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/usr/lib -L.     -lxslt -lxml2  -lruby-static -lexslt -lxslt -lxml2  -ldl -lobjc   "
+conftest.c: In function ‘t’:
+conftest.c:3: error: ‘exsltFuncRegister’ undeclared (first use in this function)
+conftest.c:3: error: (Each undeclared identifier is reported only once
+conftest.c:3: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { void ((*volatile p)()); p = (void ((*)()))exsltFuncRegister; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/opt/local/lib -L/usr/local/lib -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/usr/lib -L.     -lxslt -lxml2  -lruby-static -lexslt -lxslt -lxml2  -ldl -lobjc   "
+conftest.c: In function ‘t’:
+conftest.c:3: warning: implicit declaration of function ‘exsltFuncRegister’
+ld: warning: directory '/opt/local/lib' following -L not found
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { exsltFuncRegister(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlFirstElementChild()... -------------------- yes
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/opt/local/lib -L/usr/local/lib -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/usr/lib -L.     -lexslt -lxslt -lxml2  -lruby-static -lexslt -lxslt -lxml2  -ldl -lobjc   "
+conftest.c: In function ‘t’:
+conftest.c:3: error: ‘xmlFirstElementChild’ undeclared (first use in this function)
+conftest.c:3: error: (Each undeclared identifier is reported only once
+conftest.c:3: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { void ((*volatile p)()); p = (void ((*)()))xmlFirstElementChild; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/opt/local/lib -L/usr/local/lib -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/usr/lib -L.     -lexslt -lxslt -lxml2  -lruby-static -lexslt -lxslt -lxml2  -ldl -lobjc   "
+conftest.c: In function ‘t’:
+conftest.c:3: warning: implicit declaration of function ‘xmlFirstElementChild’
+ld: warning: directory '/opt/local/lib' following -L not found
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { xmlFirstElementChild(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlRelaxNGSetParserStructuredErrors()... -------------------- yes
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/opt/local/lib -L/usr/local/lib -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/usr/lib -L.     -lexslt -lxslt -lxml2  -lruby-static -lexslt -lxslt -lxml2  -ldl -lobjc   "
+conftest.c: In function ‘t’:
+conftest.c:3: error: ‘xmlRelaxNGSetParserStructuredErrors’ undeclared (first use in this function)
+conftest.c:3: error: (Each undeclared identifier is reported only once
+conftest.c:3: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { void ((*volatile p)()); p = (void ((*)()))xmlRelaxNGSetParserStructuredErrors; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/opt/local/lib -L/usr/local/lib -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/usr/lib -L.     -lexslt -lxslt -lxml2  -lruby-static -lexslt -lxslt -lxml2  -ldl -lobjc   "
+conftest.c: In function ‘t’:
+conftest.c:3: warning: implicit declaration of function ‘xmlRelaxNGSetParserStructuredErrors’
+ld: warning: directory '/opt/local/lib' following -L not found
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { xmlRelaxNGSetParserStructuredErrors(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlRelaxNGSetParserStructuredErrors()... -------------------- yes
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/opt/local/lib -L/usr/local/lib -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/usr/lib -L.     -lexslt -lxslt -lxml2  -lruby-static -lexslt -lxslt -lxml2  -ldl -lobjc   "
+conftest.c: In function ‘t’:
+conftest.c:3: error: ‘xmlRelaxNGSetParserStructuredErrors’ undeclared (first use in this function)
+conftest.c:3: error: (Each undeclared identifier is reported only once
+conftest.c:3: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { void ((*volatile p)()); p = (void ((*)()))xmlRelaxNGSetParserStructuredErrors; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/opt/local/lib -L/usr/local/lib -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/usr/lib -L.     -lexslt -lxslt -lxml2  -lruby-static -lexslt -lxslt -lxml2  -ldl -lobjc   "
+conftest.c: In function ‘t’:
+conftest.c:3: warning: implicit declaration of function ‘xmlRelaxNGSetParserStructuredErrors’
+ld: warning: directory '/opt/local/lib' following -L not found
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { xmlRelaxNGSetParserStructuredErrors(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlRelaxNGSetValidStructuredErrors()... -------------------- yes
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/opt/local/lib -L/usr/local/lib -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/usr/lib -L.     -lexslt -lxslt -lxml2  -lruby-static -lexslt -lxslt -lxml2  -ldl -lobjc   "
+conftest.c: In function ‘t’:
+conftest.c:3: error: ‘xmlRelaxNGSetValidStructuredErrors’ undeclared (first use in this function)
+conftest.c:3: error: (Each undeclared identifier is reported only once
+conftest.c:3: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { void ((*volatile p)()); p = (void ((*)()))xmlRelaxNGSetValidStructuredErrors; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/opt/local/lib -L/usr/local/lib -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/usr/lib -L.     -lexslt -lxslt -lxml2  -lruby-static -lexslt -lxslt -lxml2  -ldl -lobjc   "
+conftest.c: In function ‘t’:
+conftest.c:3: warning: implicit declaration of function ‘xmlRelaxNGSetValidStructuredErrors’
+ld: warning: directory '/opt/local/lib' following -L not found
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { xmlRelaxNGSetValidStructuredErrors(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlSchemaSetValidStructuredErrors()... -------------------- yes
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/opt/local/lib -L/usr/local/lib -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/usr/lib -L.     -lexslt -lxslt -lxml2  -lruby-static -lexslt -lxslt -lxml2  -ldl -lobjc   "
+conftest.c: In function ‘t’:
+conftest.c:3: error: ‘xmlSchemaSetValidStructuredErrors’ undeclared (first use in this function)
+conftest.c:3: error: (Each undeclared identifier is reported only once
+conftest.c:3: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { void ((*volatile p)()); p = (void ((*)()))xmlSchemaSetValidStructuredErrors; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/opt/local/lib -L/usr/local/lib -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/usr/lib -L.     -lexslt -lxslt -lxml2  -lruby-static -lexslt -lxslt -lxml2  -ldl -lobjc   "
+conftest.c: In function ‘t’:
+conftest.c:3: warning: implicit declaration of function ‘xmlSchemaSetValidStructuredErrors’
+ld: warning: directory '/opt/local/lib' following -L not found
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { xmlSchemaSetValidStructuredErrors(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlSchemaSetParserStructuredErrors()... -------------------- yes
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/opt/local/lib -L/usr/local/lib -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/usr/lib -L.     -lexslt -lxslt -lxml2  -lruby-static -lexslt -lxslt -lxml2  -ldl -lobjc   "
+conftest.c: In function ‘t’:
+conftest.c:3: error: ‘xmlSchemaSetParserStructuredErrors’ undeclared (first use in this function)
+conftest.c:3: error: (Each undeclared identifier is reported only once
+conftest.c:3: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { void ((*volatile p)()); p = (void ((*)()))xmlSchemaSetParserStructuredErrors; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I. -I-I-I/opt/local/include -I-I-I/usr/local/include -I-I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I-I/usr/include -I-I-I/usr/include/libxml2 -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include/libxml2 -I-I/opt/local/include -I-I/usr/local/include -I-I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I-I/usr/include -I-I/usr/include/libxml2 -I/opt/local/include -I/usr/local/include -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/include -I/usr/include -I/usr/include/libxml2  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/opt/local/lib -L/usr/local/lib -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L/usr/lib -L.     -lexslt -lxslt -lxml2  -lruby-static -lexslt -lxslt -lxml2  -ldl -lobjc   "
+conftest.c: In function ‘t’:
+conftest.c:3: warning: implicit declaration of function ‘xmlSchemaSetParserStructuredErrors’
+ld: warning: directory '/opt/local/lib' following -L not found
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { xmlSchemaSetParserStructuredErrors(); return 0; }
+/* end */
+
+--------------------
+

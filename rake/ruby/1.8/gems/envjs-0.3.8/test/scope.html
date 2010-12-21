@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>
+</title>
+<script>
+var foo = 10;
+if(foo!=10) {
+  throw new Error("scope problem occured");
+}
+</script>
+<script>
+if(foo!=10) {
+  throw new Error("scope problem occured");
+}
+</script>
+</head>
+<body>
+</body>
+</html>

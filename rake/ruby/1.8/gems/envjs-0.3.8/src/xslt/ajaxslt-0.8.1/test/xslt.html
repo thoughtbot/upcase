@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Simple XSLT test</title>
+    <script src="../util.js" type="text/javascript"></script>
+    <script src="../xmltoken.js" type="text/javascript"></script>
+    <script src="../dom.js" type="text/javascript"></script>
+    <script src="../xpath.js" type="text/javascript"></script>
+    <script src="../xslt.js" type="text/javascript"></script>
+    <script src="xslt_script.js" type="text/javascript"></script>
+  </head>
+  <body onload="cleanxml()">
+    <form onsubmit="test_xslt();return false">
+      <table>
+        <tr>
+          <td>
+            <textarea id="xml" cols="40" rows="10">
+              <page>
+                <message>
+                  Hello World.
+                </message>
+              </page>
+            </textarea>
+          </td>
+          <td>
+            <textarea id="xslt" cols="40" rows="10">
+              <xsl:stylesheet>
+                <xsl:template match="/">
+                  <xsl:apply-templates select="page/message"/>
+                </xsl:template>
+                
+                <xsl:template match="page/message">
+                  <div style="color:green">
+                    <xsl:value-of select="."/>
+                  </div>
+                </xsl:template>
+              </xsl:stylesheet>
+            </textarea>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input type="submit" value="process"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <textarea id="html" cols="40" rows="10">
+            </textarea>
+          </td>
+          <td>
+            <div id="htmldisplay"></div>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

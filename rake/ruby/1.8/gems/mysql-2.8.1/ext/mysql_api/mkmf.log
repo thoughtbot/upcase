@@ -1,0 +1,82 @@
+have_func: checking for mysql_ssl_set()... -------------------- yes
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/usr/local/Cellar/mysql/5.1.51/include/mysql  -D_P1003_1B_VISIBLE -DSIGNAL_WITH_VIO_CLOSE -DSIGNALS_DONT_BREAK_READ -DIGNORE_SIGHUP_SIGQUIT  -DDONT_DECLARE_CXA_PURE_VIRTUAL -g -O2  -fno-common -pipe -fno-common   conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L.     -L/usr/local/Cellar/readline/6.1/lib  -L/usr/local/Cellar/mysql/5.1.51/lib/mysql -lmysqlclient -lz -lm  -lruby-static -L/usr/local/Cellar/readline/6.1/lib  -L/usr/local/Cellar/mysql/5.1.51/lib/mysql -lmysqlclient -lz -lm  -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:3: error: ‘mysql_ssl_set’ undeclared (first use in this function)
+conftest.c:3: error: (Each undeclared identifier is reported only once
+conftest.c:3: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { void ((*volatile p)()); p = (void ((*)()))mysql_ssl_set; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/usr/local/Cellar/mysql/5.1.51/include/mysql  -D_P1003_1B_VISIBLE -DSIGNAL_WITH_VIO_CLOSE -DSIGNALS_DONT_BREAK_READ -DIGNORE_SIGHUP_SIGQUIT  -DDONT_DECLARE_CXA_PURE_VIRTUAL -g -O2  -fno-common -pipe -fno-common   conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L.     -L/usr/local/Cellar/readline/6.1/lib  -L/usr/local/Cellar/mysql/5.1.51/lib/mysql -lmysqlclient -lz -lm  -lruby-static -L/usr/local/Cellar/readline/6.1/lib  -L/usr/local/Cellar/mysql/5.1.51/lib/mysql -lmysqlclient -lz -lm  -ldl -lobjc  "
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { mysql_ssl_set(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for rb_str_set_len()... -------------------- yes
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/usr/local/Cellar/mysql/5.1.51/include/mysql  -D_P1003_1B_VISIBLE -DSIGNAL_WITH_VIO_CLOSE -DSIGNALS_DONT_BREAK_READ -DIGNORE_SIGHUP_SIGQUIT  -DDONT_DECLARE_CXA_PURE_VIRTUAL -g -O2  -fno-common -pipe -fno-common   conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L.     -L/usr/local/Cellar/readline/6.1/lib  -L/usr/local/Cellar/mysql/5.1.51/lib/mysql -lmysqlclient -lz -lm  -lruby-static -L/usr/local/Cellar/readline/6.1/lib  -L/usr/local/Cellar/mysql/5.1.51/lib/mysql -lmysqlclient -lz -lm  -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:3: error: ‘rb_str_set_len’ undeclared (first use in this function)
+conftest.c:3: error: (Each undeclared identifier is reported only once
+conftest.c:3: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { void ((*volatile p)()); p = (void ((*)()))rb_str_set_len; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/usr/local/Cellar/mysql/5.1.51/include/mysql  -D_P1003_1B_VISIBLE -DSIGNAL_WITH_VIO_CLOSE -DSIGNALS_DONT_BREAK_READ -DIGNORE_SIGHUP_SIGQUIT  -DDONT_DECLARE_CXA_PURE_VIRTUAL -g -O2  -fno-common -pipe -fno-common   conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L.     -L/usr/local/Cellar/readline/6.1/lib  -L/usr/local/Cellar/mysql/5.1.51/lib/mysql -lmysqlclient -lz -lm  -lruby-static -L/usr/local/Cellar/readline/6.1/lib  -L/usr/local/Cellar/mysql/5.1.51/lib/mysql -lmysqlclient -lz -lm  -ldl -lobjc  "
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { rb_str_set_len(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for rb_thread_start_timer()... -------------------- yes
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/usr/local/Cellar/mysql/5.1.51/include/mysql  -D_P1003_1B_VISIBLE -DSIGNAL_WITH_VIO_CLOSE -DSIGNALS_DONT_BREAK_READ -DIGNORE_SIGHUP_SIGQUIT  -DDONT_DECLARE_CXA_PURE_VIRTUAL -g -O2  -fno-common -pipe -fno-common   conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L.     -L/usr/local/Cellar/readline/6.1/lib  -L/usr/local/Cellar/mysql/5.1.51/lib/mysql -lmysqlclient -lz -lm  -lruby-static -L/usr/local/Cellar/readline/6.1/lib  -L/usr/local/Cellar/mysql/5.1.51/lib/mysql -lmysqlclient -lz -lm  -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:3: error: ‘rb_thread_start_timer’ undeclared (first use in this function)
+conftest.c:3: error: (Each undeclared identifier is reported only once
+conftest.c:3: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { void ((*volatile p)()); p = (void ((*)()))rb_thread_start_timer; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/usr/local/Cellar/mysql/5.1.51/include/mysql  -D_P1003_1B_VISIBLE -DSIGNAL_WITH_VIO_CLOSE -DSIGNALS_DONT_BREAK_READ -DIGNORE_SIGHUP_SIGQUIT  -DDONT_DECLARE_CXA_PURE_VIRTUAL -g -O2  -fno-common -pipe -fno-common   conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L.     -L/usr/local/Cellar/readline/6.1/lib  -L/usr/local/Cellar/mysql/5.1.51/lib/mysql -lmysqlclient -lz -lm  -lruby-static -L/usr/local/Cellar/readline/6.1/lib  -L/usr/local/Cellar/mysql/5.1.51/lib/mysql -lmysqlclient -lz -lm  -ldl -lobjc  "
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { rb_thread_start_timer(); return 0; }
+/* end */
+
+--------------------
+
+have_header: checking for mysql.h... -------------------- yes
+
+"gcc -E -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/usr/local/Cellar/mysql/5.1.51/include/mysql  -D_P1003_1B_VISIBLE -DSIGNAL_WITH_VIO_CLOSE -DSIGNALS_DONT_BREAK_READ -DIGNORE_SIGHUP_SIGQUIT  -DDONT_DECLARE_CXA_PURE_VIRTUAL -g -O2  -fno-common -pipe -fno-common    conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include <mysql.h>
+/* end */
+
+--------------------
+

@@ -1,0 +1,76 @@
+<html>
+<head>
+</head>
+<body>
+ 
+<script type="text/javascript" src="http://www.json.org/json2.js"></script>
+<!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> -->
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<!--<script type="text/javascript" src="sensx.js"></script>-->
+ 
+<script type="text/javascript">
+  var geocoder;
+  var directionsService;
+ 
+  geocoder = new google.maps.Geocoder();
+print("?",geocoder);
+  directionsService = new google.maps.DirectionsService();
+ 
+  function codeAddress() {
+print("CA",geocoder,"?");
+    var address = document.getElementById("address").value;
+    if (geocoder) {
+print("0",address,geocoder.geocode);
+      geocoder.geocode( { 'address': address}, function(results, status) {
+print("CA ++++++++++++++++",JSON.stringify(results),status);
+        if (status == google.maps.GeocoderStatus.OK) {
+          document.getElementById("geocode").value = JSON.stringify(results, null, 2);
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        }
+      });
+    }
+  }
+ 
+function calcRoute() {
+print("CR");
+  var start = document.getElementById("start").value;
+  var end = document.getElementById("end").value;
+  var request = {
+    origin:start,
+    destination:end,
+    travelMode: google.maps.DirectionsTravelMode.DRIVING
+  };
+  directionsService.route(request, function(result, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      document.getElementById("directions").value = JSON.stringify(result, null, 2);
+    } else {
+      alert("Routing was not successful for the following reason: " + status);
+    }
+  });
+}
+</script>
+ 
+ 
+ 
+ 
+ 
+Hi
+  <div>
+    <input id="address" type="textbox" value="200 Fifth Ave New York, NY">
+    <input id="addr" type="button" value="Geocode" onclick="codeAddress()">
+    <br />
+    <textarea id="geocode" cols="100" rows="50"></textarea>
+  </div>
+ 
+  <br />
+  <div>
+    <input id="start" type="textbox" value="200 Fifth Ave New York, NY">
+    <input id="end" type="textbox" value="LGA">
+    <input id="route" type="button" value="Calc Route" onclick="calcRoute()">
+    <br />
+    <textarea id="directions" cols="100" rows="50"></textarea>
+  </div>
+ 
+</body>
+</html>

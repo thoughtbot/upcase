@@ -1,0 +1,48 @@
+package configuration for libffi is not found
+find_header: checking for ffi.h in /usr/local/include... -------------------- no
+
+"gcc -E -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common    conftest.c -o conftest.i"
+conftest.c:1:17: error: ffi.h: No such file or directory
+checked program was:
+/* begin */
+1: #include <ffi.h>
+/* end */
+
+"gcc -E -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common   -I/usr/local/include conftest.c -o conftest.i"
+conftest.c:1:17: error: ffi.h: No such file or directory
+checked program was:
+/* begin */
+1: #include <ffi.h>
+/* end */
+
+--------------------
+
+have_func: checking for rb_thread_blocking_region()... -------------------- no
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common   conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L.      -lruby-static  -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:3: error: ‘rb_thread_blocking_region’ undeclared (first use in this function)
+conftest.c:3: error: (Each undeclared identifier is reported only once
+conftest.c:3: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { void ((*volatile p)()); p = (void ((*)()))rb_thread_blocking_region; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/1.8/i686-darwin10.4.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -g -O2  -fno-common -pipe -fno-common   conftest.c  -L. -L/Users/fred/.rvm/rubies/ruby-1.8.7-p302/lib -L.      -lruby-static  -ldl -lobjc  "
+Undefined symbols:
+  "_rb_thread_blocking_region", referenced from:
+      _t in ccf0VyBe.o
+ld: symbol(s) not found
+collect2: ld returned 1 exit status
+checked program was:
+/* begin */
+1: /*top*/
+2: int main() { return 0; }
+3: int t() { rb_thread_blocking_region(); return 0; }
+/* end */
+
+--------------------
+

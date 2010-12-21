@@ -1,0 +1,16 @@
+COPYING
+COPYING.ja
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+ext/mysql_api/extconf.rb
+ext/mysql_api/mysql.c
+extra/README.html
+extra/README_ja.html
+extra/tommy.css
+lib/mysql.rb
+tasks/gem.rake
+tasks/native.rake
+tasks/vendor_mysql.rake
+test/test_mysql.rb
