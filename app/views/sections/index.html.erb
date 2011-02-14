@@ -1,12 +1,9 @@
 <div class="top last">
   <div class="wrapper">
     <div id="sub-header" class="clearfix">
-      <h2 id="learn-from-the-experts">Learn from the experts</h2>
+      <h2 id="learn-from-the-experts"><%= t(".headline", :default => "Learn from the experts") %></h2>
       <h3>
-        We're an acknowledged authority in the Rails community.
-        In our workshops, we've shared our knowledge with over
-        100 developers from organizations such as Harvard
-        University, The New York Times, and Boston.com.
+        <%= t(".teaser", :default => "We've worked on more than 50 Ruby on Rails apps. We share what we've learned in our workshops, where we've trained hundreds of designers and developers from Harvard University, The New York Times, Raytheon, Mitre and more.") %>
       </h3>
 
       <% if @unscheduled_courses.empty? && @sections.empty? %>

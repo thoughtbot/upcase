@@ -28,6 +28,9 @@ GEM
     clearance (0.8.8)
     columnize (0.3.1)
     configuration (1.1.0)
+    copycopter_client (1.0.1)
+      i18n (~> 0.5.0)
+      json
     cucumber (0.8.5)
       builder (~> 2.1.2)
       diff-lcs (~> 1.1.2)
@@ -44,18 +47,19 @@ GEM
     factory_girl (1.2.3)
     ffi (0.6.3)
       rake (>= 0.8.7)
-    formtastic (1.0.0)
-      actionpack (>= 2.3.0, < 3.0.0)
-      activesupport (>= 2.3.0, < 3.0.0)
-      i18n (< 0.4)
+    formtastic (1.2.3)
+      actionpack (>= 2.3.7)
+      activesupport (>= 2.3.7)
+      i18n (~> 0.4)
     gherkin (2.1.5)
       trollop (~> 1.16.2)
     haml (3.0.16)
     hoptoad_notifier (2.3.8)
       activesupport
-    i18n (0.3.7)
+    i18n (0.5.0)
     johnson (2.0.0.pre3)
       stackdeck (~> 0.2)
+    json (1.5.1)
     json_pure (1.4.6)
     launchy (0.3.7)
       configuration (>= 0.0.5)
@@ -114,11 +118,12 @@ DEPENDENCIES
   capybara-envjs
   capybara-envjs-fixes
   clearance (>= 0.8.8)
+  copycopter_client (~> 1.0.1)
   cucumber (= 0.8.5)
   cucumber-rails
   database_cleaner (= 0.5.0)
   factory_girl (= 1.2.3)
-  formtastic
+  formtastic (~> 1.2.3)
   haml (= 3.0.16)
   hoptoad_notifier
   johnson

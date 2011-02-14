@@ -3,5 +3,5 @@
 <%= stylesheet_link_tag 'reset', 'defaults', 'type', 'forms', 'tables',
                         'lists', 'screen', :cache => true %>
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
-<meta http-equiv="Description" name="Description" content="<% yield(:meta_description) || 'Workshops to help you get a job as a designer or developer at a web startup.' %>" />
-<meta http-equiv="Keywords" name="Keywords" content="<% yield(:meta_keywords) || 'web designer job, web design job, web development job, startup designer, startup developer, web startup job, startup job' %>" />
+<meta http-equiv="Description" name="Description" content="<%= t(".meta-description", :default => "Workshops to help you get a job as a designer or developer at a web startup.") %>" />
+<meta http-equiv="Keywords" name="Keywords" content="<%= t(".meta-keywords", :default => "web designer job, web design job, web development job, startup designer, startup developer, web startup job, startup job") %>" />
