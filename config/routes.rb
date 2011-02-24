@@ -18,6 +18,6 @@ ActionController::Routing::Routes.draw do |map|
   Clearance::Routes.draw(map)
 
   map.fairhaven '/fairhaven', :controller => "high_voltage/pages", :action => "show", :id => "fairhaven"
-  map.fairhaven '/fairhaven/registered', :controller => "high_voltage/pages", :action => "show", :id => "fairhaven-registered"
-  map.fairhaven '/fairhaven/resources', :controller => "high_voltage/pages", :action => "show", :id => "fairhaven-resources"
+  map.fairhaven_registered '/fairhaven/registered', :controller => "high_voltage/pages", :action => "show", :id => "fairhaven-registered"
+  map.fairhaven_resources '/fairhaven/resources', :controller => "high_voltage/pages", :action => "show", :id => "fairhaven-resources"
 end
