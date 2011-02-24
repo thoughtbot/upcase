@@ -1370,3 +1370,27 @@ a.remove-followup:hover {
     }
   }
 }
+
+/* fairhaven resources page */
+#fairhaven-content {
+  pre {
+    background: #ddd;
+    color: #333;
+    padding: 10px;
+  }
+
+  code {
+  }
+
+  ul {
+    margin: 0 0 20px 0;
+
+    li {
+      color: #555;
+      font-size: 13px;
+      line-height: 21px;
+      list-style: disc outside;
+      margin: 0 0 8px 0;
+    }
+  }
+}

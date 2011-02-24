@@ -10,23 +10,20 @@
         <a href="http://fairhavencapital.com" id="fairhaven-link">Fairhaven Capital</a>
         <h3><%= t(".laptop-setup", :default => "Laptop Setup") %></h3>
         <p>If you're looking to get a good Ruby on Rails development environment installed on Mac OS X, install XCode (from a CD if you have it, otherwise <a href="http://developer.apple.com/technologies/tools/xcode.html">download it</a>), then:</p>
-<pre><code>
-  ruby -e "$(curl -fsSL https://gist.github.com/raw/323731/install_homebrew.rb)"
-  brew install postgres imagemagick redis git
-  bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
-  rvm install 1.9.2-p136
-  rvm --default use 1.9.2
-  gem install bundler suspenders heroku
-  ssh-keygen
-  git config --global user.name "Your Name"
-  git config --global user.email "your_email@whatever.com"
-</code></pre>
+<pre><code>ruby -e "$(curl -fsSL https://gist.github.com/raw/323731/install_homebrew.rb)"
+brew install postgres imagemagick redis git
+bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
+rvm install 1.9.2-p136
+rvm --default use 1.9.2
+gem install bundler suspenders heroku
+ssh-keygen
+git config --global user.name "Your Name"
+git config --global user.email "your_email@whatever.com"</code></pre>
         <p>Here's how to create a Rails app with thoughtbot's standards included, then deploy it to Heroku:</p>
-<pre><code>
-  suspenders create my-app
-  cd my-app
-  heroku create
-  git push heroku master
+<pre><code>suspenders create my-app
+cd my-app
+heroku create
+git push heroku master
 </code></pre>
         <h3><%= t(".brushing-up", :default => "Brushing Up") %></h3>
         <p>The more the class is familiar with the enabling technologies of Ruby on Rails development and deployment, the more we can cover in the class. We'll be using git, HTML, and SQL at times during the class, so we would appreciate if you brush up on some of these skills if they are new to you or you don't use them that often.</p>
