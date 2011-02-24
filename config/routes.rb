@@ -19,4 +19,5 @@ ActionController::Routing::Routes.draw do |map|
 
   map.fairhaven '/fairhaven', :controller => "high_voltage/pages", :action => "show", :id => "fairhaven"
   map.fairhaven '/fairhaven/registered', :controller => "high_voltage/pages", :action => "show", :id => "fairhaven-registered"
+  map.fairhaven '/fairhaven/resources', :controller => "high_voltage/pages", :action => "show", :id => "fairhaven-resources"
 end
