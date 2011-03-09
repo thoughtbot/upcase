@@ -1,6 +1,5 @@
 class CoursesController < ApplicationController
   before_filter :must_be_admin, :except => [:show]
-  layout 'admin'
 
   def index
     @courses = Course.all

@@ -1,0 +1,13 @@
+<div class="coupon clearfix" style="display: none;">
+  <% semantic_form_for :coupon, :url => new_section_redemption_path(@section) do |form| %>
+    <% form.inputs do %>
+      <%= form.input :code %>
+      <li class="error" style="display: none;">
+        <p class="inline-errors">The coupon code you supplied is not valid.</p>
+      </li>
+    <% end %>
+    <% form.buttons do %>
+      <%= form.commit_button "Apply Coupon" %>
+    <% end %>
+  <% end %>
+</div>

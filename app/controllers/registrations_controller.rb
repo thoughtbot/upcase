@@ -1,6 +1,4 @@
 class RegistrationsController < ApplicationController
-  before_filter :must_be_admin_or_chargify
-  # This is hit by Chargify.
   def index
     section  = Section.find(params[:section_id])
     user     = Customer.user_from_customer_id(params[:customer_id]) # raise 404 as needed
@@ -11,32 +9,40 @@ class RegistrationsController < ApplicationController
   end
 
   def new
-    @course = Course.find(params[:course_id])
-    @section = @course.sections.find(params[:section_id])
+    @user         = current_user || User.new
+    @section      = Section.find(params[:section_id])
     @registration = @section.registrations.build
-    @user = @registration.build_user
   end
 
   def create
-    @course = Course.find(params[:course_id])
-    @section = @course.sections.find(params[:section_id])
-    @registration = @section.registrations.build
-    @registration.assign_user(params[:user])
-    @user = @registration.user
-    if @registration.save
-      flash[:success] ='Student has been enrolled.'
-      redirect_to edit_course_section_url(@course, @section)
+    @section      = Section.find(params[:section_id])
+    if locate_user
+      sign_in(@user) unless current_user
+      @user.update_attributes(params[:user])
+      section                = Section.find(params[:section_id])
+      registration           = section.registrations.build
+      registration.user      = @user
+      registration.coupon    = Coupon.find_by_id_and_active(params[:coupon_id], true)
+      if registration.save
+        redirect_to registration.freshbooks_invoice_url
+      else
+        render :new
+      end
     else
+      flash[:failure] = 'Please check the errors below and correct them to register'
       render :new
     end
   end
 
   private
 
-  def must_be_admin_or_chargify
-    unless current_user.try(:admin?) || Customer.valid_subscription?(params[:subscription_id])
-      flash[:error] = 'You do not have permission to view that page.'
-      redirect_to root_url
+  def locate_user
+    @user = current_user
+    if @user
+      @user
+    else
+      @user = User.new(params[:user])
+      @user.save
     end
   end
 end

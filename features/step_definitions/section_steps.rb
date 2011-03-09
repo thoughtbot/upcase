@@ -6,3 +6,17 @@ Given '"$teacher_name" is teaching the section from "$section_start" to "$sectio
   Factory(:section_teacher, :section => section, :teacher => teacher)
 end
 
+Given 'I create the following section for "$course_name":' do |course_name, section_data|
+  steps %{
+    Given a teacher exists with a name of "Albert Einstein"
+    When I go to the admin page
+    And I follow the link to re-run the course "#{course_name}"
+    When I select the start date of "June 14, 2010"
+  }
+  And "I fill in the following:", section_data
+  steps %{
+    And I select the teacher "Albert Einstein"
+    And I press the button to re-run a course
+    Then I see the successful section creation notice
+  }
+end

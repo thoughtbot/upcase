@@ -5,7 +5,28 @@
   </head>
   <body class="<%= body_class %>">
     <%= render :partial => 'shared/header' %>
-    <%= yield %>
+
+    <div class="top">
+      <div class="wrapper">
+        <%= yield :page_header  %>
+      </div>
+    </div>
+
+    <div id="content">
+      <div class="wrapper">
+        <% if yield(:nav) -%>
+          <div id="nav" class="clearfix">
+            <%= yield :nav %>
+          </div>
+        <% end %>
+
+        <%= yield :content_header %>
+
+        <div class="dark-content clearfix">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
     <%= render :partial => 'shared/javascript' %>
   </body>
 </html>

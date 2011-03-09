@@ -2,6 +2,10 @@ Factory.sequence :email do |n|
   "user#{n}@example.com"
 end
 
+Factory.sequence :code do |n|
+  "code#{n}"
+end
+
 Factory.define :user do |user|
   user.email                 { Factory.next :email }
   user.password              "password"
@@ -32,7 +36,6 @@ Factory.define(:section) do |section_factory|
   section_factory.association :course
   section_factory.starts_on { 1.day.ago }
   section_factory.ends_on { 1.day.from_now }
-  section_factory.chargify_id "1234"
   section_factory.after_build {|s|
     s.teachers << Factory.build(:teacher)
   }
@@ -65,4 +68,9 @@ end
 
 Factory.define(:follow_up) do |factory|
   factory.association :course
+end
+
+Factory.define(:coupon) do |factory|
+  factory.code       { Factory.next :email }
+  factory.percentage 10
 end

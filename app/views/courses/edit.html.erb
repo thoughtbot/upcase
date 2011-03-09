@@ -1,8 +1,8 @@
 <% content_for :nav do -%>
   <ul>
-    <li><a href="/pages/admin-courses">Courses</a></li>
+    <li><%= link_to "Courses", courses_path %></li>
     <li class="raquo">&raquo;</li>
-    <li><a href="/pages/admin-course">Ruby on Rails</a></li>
+    <li><%= link_to @course.name, edit_course_path(@course) %></li>
   </ul>
 <% end -%>
 

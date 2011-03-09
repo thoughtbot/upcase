@@ -26,6 +26,7 @@ Feature: Adding a student to a course
       | name: Test-Driven Sleeping | June 14, 2010 | June 18, 2010 |
     When I go to the admin page
     And I follow the link to the section from "June 14, 2010" to "June 18, 2010"
+    Then I should see "0 Students"
     And I follow the link to add a new student
     And I fill in the student's first name with "Jimbo"
     And I fill in the student's last name with "Ones"
@@ -33,6 +34,7 @@ Feature: Adding a student to a course
     And I press the button to enroll a new student
     Then I see the successful section enrollment notice
     And I see the user "Jimbo Ones" in the list of users
+    And I should see "1 Student"
 
   Scenario: Add a new user to a section
     Given I am signed in as an admin

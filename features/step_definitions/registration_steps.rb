@@ -9,14 +9,8 @@ Given /^"([^"]*)" has registered for "([^"]*)"$/ do |email, course_name|
   steps %{
     When I go to the home page
     And I follow the link to the #{course_name} course
-    And I follow the external registration link
-    And I fill in the following Chargify customer:
-      | first name | last name | email    |
-      | Mike       | Jones     | #{email} |
-    And I press the button to submit the Chargify form
-    Then I am signed in as:
-      | first name | last name | email    |
-      | Mike       | Jones     | #{email} |
+    And I follow the link to register for a section
+    And I press "Proceed to checkout"
   }
 end
 
