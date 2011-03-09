@@ -1,4 +1,4 @@
-source :gemcutter
+source :rubygems
 gem "rails", "2.3.8"
 gem "mysql"
 gem "RedCloth"
@@ -12,6 +12,7 @@ gem "paperclip"
 gem "hoptoad_notifier"
 gem "cucumber", "0.8.5"
 gem "copycopter_client", "~> 1.0.1"
+gem "ruby-freshbooks"
 
 group :test do
   gem "cucumber-rails"
@@ -23,10 +24,13 @@ group :test do
   gem "factory_girl", "1.2.3"
   gem "database_cleaner", "0.5.0"
   gem "rspec-rails", "1.3.2"
-  gem "sham_rack", "1.3.1"
   gem "polyglot", "0.3.1"
   gem "treetop", "1.4.5"
   gem "sinatra"
   gem "ruby-debug"
   gem "timecop"
+end
+
+group :test, :cucumber do
+  gem "sham_rack", "1.3.1"
 end

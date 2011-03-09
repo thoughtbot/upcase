@@ -1,2 +1,6 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+To create an admin user
+
+script/dbconsole
+user = User.create!(:email => "cpytel@thoughtbot.com", :password => "test", :password_confirmation => "test", :first_name => "Chad", :last_name => "Pytel")
+user.admin = true
+user.save!

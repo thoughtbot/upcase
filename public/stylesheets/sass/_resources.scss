@@ -1,0 +1,63 @@
+#resources-form {
+  margin: 25px 0;
+  ul {
+   li {
+     input::-webkit-input-placeholder {
+       color: rgba(255,255,255,.3);
+     }
+     textarea::-webkit-input-placeholder {
+        color: rgba(0,0,0,.2);
+     }
+     margin: 5px 0 0 0;
+     @include gradient(rgba(0,0,0,.5), rgba(0,0,0,.25));
+     -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+     -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+     padding: 10px;
+     @include rounded(5px);
+     input.resource-name {
+      background: rgba(255,255,255,.1);
+       -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,1);
+       -moz-box-shadow: inset 0 1px 3px rgba(0,0,0,1);
+       border-bottom: 1px solid rgba(255,255,255,.12);
+       border-top: 0;
+       margin: 0 0 7px 0;
+       color: $tan;
+       font-size: 16px;
+       width: 742px;
+     }
+     input.resource-link {
+       padding: 10px 10px 10px 40px;
+       width: 710px;
+       background:
+         url(/images/link.png) 10px 8px no-repeat,
+         -webkit-gradient(
+           linear,
+           left top,
+           left bottom,
+           color-stop(1, #fff),
+           color-stop(0, #eee));
+           background:
+         -moz-linear-gradient(
+             bottom,
+             #fff 0%,
+             #eee 100%);
+     }
+    }
+  }
+  a#add-resource {
+    @include rounded(3px);
+    @include gradient(rgba(0,0,0,.4), rgba(0,0,0,.1));
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+    display: block;
+    padding: 10px;
+    float: left;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 7px 0 0 0;
+    color: $tan;
+    &:hover {
+      @include gradient(rgba(0,0,0,.4), rgba(136,120,91,.15));
+    }
+  }
+}

@@ -1,5 +1,5 @@
 class Section < ActiveRecord::Base
-  validates_presence_of :starts_on, :ends_on, :chargify_id
+  validates_presence_of :starts_on, :ends_on
 
   validate :must_have_at_least_one_teacher
 
@@ -20,20 +20,16 @@ class Section < ActiveRecord::Base
     "#{course.start_at.to_s(:time).strip}-#{course.stop_at.to_s(:time).strip}"
   end
 
-  def registration_link
-    "http://#{CHARGIFY_URL}/h/#{chargify_id}/subscriptions/new"
-  end
-
   def full?
     registrations.count >= course.maximum_students
   end
 
-  def calculate_price
-    course.price
-    # open("https://#{CHARGIFY_URL}/products/#{chargify_id}.xml", :http_basic_authentication => [CHARGIFY_API_KEY, "x"]) do |f|
-    #   doc = Nokogiri::XML(f.read)
-    #   (self.class.xml_content(doc, "initial_charge_in_cents").to_i / 100.0).to_i
-    # end
+  def calculate_price(coupon = nil)
+    if coupon
+      course.price - (course.price * (coupon.percentage * 0.01))
+    else
+      course.price
+    end
   end
 
   def date_range

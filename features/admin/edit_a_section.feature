@@ -1,7 +1,5 @@
 Feature: Editing a Section
 
-  Scenario: Removing a teacher
-
   Scenario: Can not remove all teachers
     Given I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
@@ -13,7 +11,6 @@ Feature: Editing a Section
     And I select the end date of "June 14, 2010"
     And I select the teacher "Albert Einstein"
     And I select the teacher "Nikola Tesla"
-    And I fill in the section chargify id with "1234"
     And I press the button to re-run a course
     And I follow the link to the section from "June 14, 2010" to "June 14, 2010"
     Then I see that "Albert Einstein" is teaching

@@ -61,13 +61,11 @@
 </div>
 
 <div id="terms-form">
-  <h3>Terms &amp; Conditions</h3>
-  <ul><%= form.input :terms_of_service, :label => nil %></ul>
+  <ul><%= form.input :terms_of_service %></ul>
 </div>
 
 <div id="email-form">
-  <h3>Reminder Email</h3>
-  <ul><%= form.input :reminder_email, :label => nil %></ul>
+  <ul><%= form.input :reminder_email %></ul>
 </div>
 
 <% content_for :javascript do -%>
