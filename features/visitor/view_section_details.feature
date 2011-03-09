@@ -3,12 +3,12 @@ Feature: Viewing section details
   Scenario: Viewing details for a current section
     Given today is June 10, 2010
     And a teacher exists with a name of "Ralph Bot"
-    And the following course exists on Chargify:
-      | name                | location name     | location                        | start at | stop at  | price | chargify id | terms of service |
-      | Test-Driven Haskell | Thoughtbot Office | 41 Winter St., Boston, MA 02108 | 09:00:00 | 12:00:00 | 100   | 1234        | No pets allowed  |
-    And the following section exists on Chargify:
-      | course                    | starts on     | ends on       | chargify id |
-      | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 | 1234        |
+    And the following course exists:
+      | name                | location name     | location                        | start at | stop at  | price | terms of service |
+      | Test-Driven Haskell | Thoughtbot Office | 41 Winter St., Boston, MA 02108 | 09:00:00 | 12:00:00 | 100   | No pets allowed  |
+    And the following section exists:
+      | course                    | starts on     | ends on       |
+      | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
     And the following questions exist:
       | course                    | question      | answer |
       | name: Test-Driven Haskell | What color?   | Blue   |
@@ -32,12 +32,12 @@ Feature: Viewing section details
 
   Scenario: Viewing a section that is full
     Given today is June 10, 2010
-    And the following course exists on Chargify:
-      | name                | chargify id | maximum students |
-      | Test-Driven Haskell | 1234        | 5                |
-    And the following section exists on Chargify:
-      | id   | course                    | starts on     | ends on       | chargify id |
-      | 1234 | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 | 1234        |
+    And the following course exists:
+      | name                | maximum students |
+      | Test-Driven Haskell | 5                |
+    And the following section exists:
+      | id   | course                    | starts on     | ends on       |
+      | 1234 | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
     And "Test-Driven Haskell" has 5 registrations
     When I go to the home page
     And I follow the link to the Test-Driven Haskell course

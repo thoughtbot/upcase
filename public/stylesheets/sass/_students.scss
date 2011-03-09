@@ -1,0 +1,14 @@
+ol#add-new-student {
+  li {
+   float: left;
+   width: 250px;
+   margin: 0 15px 0 0;
+   input,
+   label {
+     width: 230px;
+   }
+   &:last-child {
+     margin: 0;
+   }
+  }
+}

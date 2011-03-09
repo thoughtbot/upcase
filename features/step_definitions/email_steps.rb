@@ -1,5 +1,5 @@
 Then '"$email" receives a set your password link' do |email|
-  user = User.find_by_email(email)
+  user = User.find_by_email!(email)
   assert !user.confirmation_token.blank?
   assert !ActionMailer::Base.deliveries.empty?
   result = ActionMailer::Base.deliveries.any? do |email|
@@ -8,6 +8,16 @@ Then '"$email" receives a set your password link' do |email|
     email.body =~ /#{user.confirmation_token}/
   end
   assert result
+end
+
+Then '"$email" does not receive a set your password link' do |email|
+  user = User.find_by_email!(email)
+  user.confirmation_token.should_not be_blank
+  ActionMailer::Base.deliveries.any? do |email|
+    email.to == [user.email] &&
+      email.subject =~ /Welcome/i &&
+      email.body =~ /#{user.confirmation_token}/
+  end.should_not be, "Expected no 'set your password' email to be sent to #{user.email}"
 end
 
 When 'I follow the set your password link sent to "$email"' do |email|

@@ -19,9 +19,14 @@ module NavigationHelpers
       section_path(course.sections.first)
     when /the page to add a new student to the section from "([^"]+)" to "([^"]+)"/
       section = Section.find_by_starts_on_and_ends_on!(Date.parse($1), Date.parse($2))
-      new_course_section_registration_path(section.course, section)
+      new_admin_section_registration_path(section)
     when /the admin page/
       admin_path
+    when /the freshbooks invoice page for "([^\"]+)" on "([^\"]+)"/
+      user   = User.find_by_email!($1)
+      course = Course.find_by_name!($2)
+      registration = course.sections.map(&:registrations).flatten.detect { |r| r.user == user }
+      registration.freshbooks_invoice_url
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
         "Now, go and add a mapping in #{__FILE__}"
@@ -55,6 +60,8 @@ module NavigationHelpers
       'Sign in'
     when /admin interface/
       'Admin'
+    when /register/
+      'Register'
     else
       raise %{Can't find a mapping from #{link_description.inspect} to a path: #{__FILE__}}
     end
@@ -96,8 +103,6 @@ module NavigationHelpers
       'section_ends_on'
     when 'section teacher'
       'section_section_teachers_attributes_0_teacher_id'
-    when 'section chargify id'
-      'section_chargify_id'
     when 'session email'
       'session_email'
     when 'session password'
@@ -118,6 +123,12 @@ module NavigationHelpers
       'user_password'
     when "student's password confirmation"
       'user_password_confirmation'
+    when "code"
+      'coupon_code'
+    when "percentage"
+      'coupon_percentage'
+    when "that the coupon is active"
+      'coupon_active'
     when /question (\d+)/
       question_number = $1.to_i
       question_index = question_number - 1
@@ -147,8 +158,6 @@ module NavigationHelpers
     case button_text
     when 'create a course', 'update a course'
       'Save Course'
-    when 'submit the Chargify form'
-      'Chargify Submit'
     when 're-run a course', 'update a section'
       'Save Section'
     when 'add a teacher'
@@ -182,6 +191,8 @@ module NavigationHelpers
       'Signed out.'
     when 'sign in'
       'Signed in.'
+    when 'User info invalid'
+      'Please check the errors below and correct them to register'
     else
       raise %{Can't find a mapping from #{flash_text.inspect} to text: #{__FILE__}}
     end

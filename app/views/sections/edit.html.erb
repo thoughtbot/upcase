@@ -13,8 +13,8 @@
     </div>
     <div id="student-list" class="cool-list">
       <h3>
-        4 Students
-        <%= link_to 'Add Student', new_course_section_registration_path(@course, @section), :id => 'add-student' %>
+        <%= pluralize @section.students.size, "Student" %>
+        <%= link_to 'Add Student', new_admin_section_registration_path(@section), :id => 'add-student' %>
       </h3>
       <ul>
         <% @section.students.each do |user| %>

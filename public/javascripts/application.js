@@ -1,2 +1,18 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+$("#total a").click(function() {
+  $(".coupon").show();
+  return false;
+});
+
+$(".coupon form").submit(function(e) {
+  var data = $(this).serializeArray();
+
+  $.ajax({
+    url: $(this).attr('action'),
+    data: data,
+    dataType: 'script',
+    type: 'GET'
+  });
+
+  e.preventDefault();
+  return false;
+});

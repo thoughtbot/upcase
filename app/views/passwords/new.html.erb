@@ -1,24 +1,14 @@
-<div class="top">
-  <div class="wrapper">
-    <h2>Reset your password</h2>
-  </div>
-</div>
+<% content_for :page_header do %>
+  <h2>Reset your password</h2>
+<% end %>
 
-<div id="content">
-  <div id="sign_up" class="wrapper">
-    <div class="dark-content clearfix">
-      <p>
-        We will email you a link to reset your password.
-      </p>
-      <% semantic_form_for :password, :url => passwords_path do |form| -%>
-        <% form.inputs do -%>
-          <%= form.input :email, :label => "Email address" %>
-        <% end -%>
-        <% form.buttons do -%>
-          <%= form.commit_button "Reset password" %>
-        <% end -%>
-      <% end -%>
-    </div>
-  </div>
-</div>
+<p>We will email you a link to reset your password.</p>
 
+<% semantic_form_for :password, :url => passwords_path do |form| -%>
+  <% form.inputs do -%>
+    <%= form.input :email, :label => "Email address" %>
+  <% end -%>
+  <% form.buttons do -%>
+    <%= form.commit_button "Reset password" %>
+  <% end -%>
+<% end -%>

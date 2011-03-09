@@ -7,7 +7,6 @@ Feature: Editing a course
     And I follow the link to edit the course "Test-Driven Sleeping"
     And I blank the <field> field
     And I press the button to update a course
-    Then I should see the admin header
     And I see the "can't be blank" error for the <field> field
   Examples:
     | field              |
@@ -23,7 +22,6 @@ Feature: Editing a course
     And a course exists with a name of "Test-Driven Sleeping"
     When I go to the admin page
     And I follow the link to edit the course "Test-Driven Sleeping"
-    Then I should see the admin header
     When I fill in the course name with "Test-Driven Haskell"
     And I press the button to update a course
     Then I see the successful course update notice

@@ -1,58 +1,50 @@
-<div class="top last">
-  <div class="wrapper">
-    <div id="sub-header" class="clearfix">
-      <h2 id="learn-from-the-experts"><%= t(".headline", :default => "Learn from the experts") %></h2>
-      <h3>
-        <%= t(".teaser", :default => "We've worked on more than 50 Ruby on Rails apps. We share what we've learned in our workshops, where we've trained hundreds of designers and developers from Harvard University, The New York Times, Raytheon, Mitre and more.") %>
-      </h3>
+<% content_for :page_header do %>
+  <div id="sub-header" class="clearfix">
+    <h2 id="learn-from-the-experts"><%= t(".headline", :default => "Learn from the experts") %></h2>
+    <h3>
+      <%= t(".teaser", :default => "We've worked on more than 50 Ruby on Rails apps. We share what we've learned in our workshops, where we've trained hundreds of designers and developers from Harvard University, The New York Times, Raytheon, Mitre and more.") %>
+    </h3>
 
-      <% if @unscheduled_courses.empty? && @sections.empty? %>
-        <p id="no-courses">No courses are running at this time.</p>
-      <% else %>
-        <ul id="list-of-classes">
-          <% @sections.each do |section| %>
-            <li><% link_to section_path(section), :id => dom_id(section) do %>
-                <h4><%=h section.course_name %></h4>
-                <div>
-                  <%=h section.date_range %>
-                </div>
-              <% end %>
-            </li>
-          <% end %>
-          <% @unscheduled_courses.each do |course| %>
-            <li class='inactive'><% link_to course_path(course), :id => dom_id(course) do %>
+    <% if @unscheduled_courses.empty? && @sections.empty? %>
+      <p id="no-courses">No courses are running at this time.</p>
+    <% else %>
+      <ul id="list-of-classes">
+        <% @sections.each do |section| %>
+          <li><% link_to section_path(section), :id => dom_id(section) do %>
+              <h4><%=h section.course_name %></h4>
+              <div>
+                <%=h section.date_range %>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
+        <% @unscheduled_courses.each do |course| %>
+          <li class='inactive'><% link_to course_path(course), :id => dom_id(course) do %>
               <h4><%=h course.name %></h4>
               <div>Tell Me More</div>
             <% end %></li>
-          <% end %>
-        </ul>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-<div id="content">
-  <div class="wrapper">
-    <div class="dark-content">
-      <%= image_tag("/images/home-photo1.jpg", :alt => "thoughtbot training" )%>
-      <%= image_tag("/images/home-photo2.jpg", :alt => "thoughtbot training", :class => 'right' )%>
-      <h4 id="why-we-rule">
-      We believe the best learning occurs during hands-on, intimate time with passionate experts. Our workshops never have more than a 5-to-1 student-teacher ratio. They are short lectures followed by long pair programming sessions where students develop a real Rails app.
-      </h4>
-      <ul id="testimonials" class="clearfix">
-        <li>
-          Having taken a Thoughtbot training class on my own dime I can say it’s 110% worth it. If you can hook it up, do it.
-          <a href="http://joeloliveira.com/">Joel Oliveira</a>
-        </li>
-        <li>
-          After the training session my code style is so fresh, Vogue wants to publish my tests.
-          <a href="http://gregsterndale.com/">Greg Sterndale</a>
-        </li>
-        <li>
-         If you're a freelance developer you owe it to your clients to come and learn Rails development &amp; delivery from the team at Thoughtbot.
-         <a href="http://bigroomtechnology.com/">Mike Breen</a>
-        </li>
+        <% end %>
       </ul>
-    </div>
+    <% end %>
   </div>
-</div>
+<% end %>
+
+<%= image_tag("/images/home-photo1.jpg", :alt => "thoughtbot training" )%>
+<%= image_tag("/images/home-photo2.jpg", :alt => "thoughtbot training", :class => 'right' )%>
+<h4 id="why-we-rule">
+  We believe the best learning occurs during hands-on, intimate time with passionate experts. Our workshops never have more than a 5-to-1 student-teacher ratio. They are short lectures followed by long pair programming sessions where students develop a real Rails app.
+</h4>
+<ul id="testimonials" class="clearfix">
+  <li>
+    Having taken a Thoughtbot training class on my own dime I can say it’s 110% worth it. If you can hook it up, do it.
+    <a href="http://joeloliveira.com/">Joel Oliveira</a>
+  </li>
+  <li>
+    After the training session my code style is so fresh, Vogue wants to publish my tests.
+    <a href="http://gregsterndale.com/">Greg Sterndale</a>
+  </li>
+  <li>
+    If you're a freelance developer you owe it to your clients to come and learn Rails development &amp; delivery from the team at Thoughtbot.
+    <a href="http://bigroomtechnology.com/">Mike Breen</a>
+  </li>
+</ul>

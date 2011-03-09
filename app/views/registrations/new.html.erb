@@ -1,10 +1,35 @@
-<% semantic_form_for @user, :url => [@course, @section, @registration] do |form| %>
-  <% form.inputs do %>
-    <%= form.input :first_name %>
-    <%= form.input :last_name %>
-    <%= form.input :email %>
+<h1 class="course-title">You're registering for <span><%= h(@section.course_name) %></span></h1>
+
+<div id="total">
+  <p class="price"><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></p>
+  <p class="coupon-note"><%= link_to "Have a coupon code?", "#" %></p>
+</div>
+
+<%= render :partial => 'redemptions/form' %>
+
+<% semantic_form_for @user, :url => section_registrations_path(@section), :html => { :method => 'post' } do |form| %>
+  <%= hidden_field_tag 'coupon_id' %>
+  <% unless current_user %>
+    <% form.inputs 'Your information' do %>
+      <%= form.input :first_name %>
+      <%= form.input :last_name %>
+      <%= form.input :email %>
+      <%= form.input :password %>
+      <%= form.input :password_confirmation %>
+    <% end %>
   <% end %>
+
+  <% form.inputs 'For your receipt' do %>
+    <%= form.input :organization %>
+    <%= form.input :phone %>
+    <%= form.input :address1, :label => 'Address 1' %>
+    <%= form.input :address2, :label => 'Address 2' %>
+    <%= form.input :city %>
+    <%= form.input :state %>
+    <%= form.input :zip_code %>
+  <% end %>
+
   <% form.buttons do %>
-    <%= form.commit_button 'Save New Student' %>
+    <%= form.commit_button 'Proceed to checkout' %>
   <% end %>
 <% end %>

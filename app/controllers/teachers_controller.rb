@@ -1,4 +1,6 @@
 class TeachersController < ApplicationController
+  before_filter :must_be_admin
+
   def new
     @course = Course.find(params[:course_id])
     @teacher = Teacher.new

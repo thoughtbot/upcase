@@ -1,8 +1,9 @@
 <% content_for :nav do -%>
   <ul>
-    <li><span>Courses</span></li>
+    <li><%= link_to "Courses", courses_path %></li>
+    <li><%= link_to 'New Course', new_course_path, :id => 'new-course' %></li>
+    <li><%= link_to "Coupons", coupons_path %></li>
   </ul>
-  <%= link_to 'New Course', new_course_path, :id => 'new-course' %>
 <% end -%>
 
 <% @courses.each do |course| %>
