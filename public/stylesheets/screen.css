@@ -1071,7 +1071,7 @@ a.remove-followup:hover {
     color: #003672;
     font-weight: 500;
     font-size: 20px;
-    margin: 0 0 7px 0;
+    margin: 7px 0;
     letter-spacing: normal; }
   #content .wrapper .dark-content #fairhaven-content h4 {
     color: #003672;
@@ -1081,6 +1081,8 @@ a.remove-followup:hover {
     letter-spacing: normal;
     font-style: italic;
     font-family: Georgia, serif; }
+  #content .wrapper .dark-content #fairhaven-content h4.reference {
+    margin-bottom: 15px; }
   #content .wrapper .dark-content #fairhaven-content p {
     color: #555;
     line-height: 21px;
