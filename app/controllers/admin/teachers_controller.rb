@@ -1,6 +1,4 @@
-class TeachersController < ApplicationController
-  before_filter :must_be_admin
-
+class Admin::TeachersController < AdminController
   def new
     @course = Course.find(params[:course_id])
     @teacher = Teacher.new
@@ -10,7 +8,7 @@ class TeachersController < ApplicationController
     @course = Course.find(params[:course_id])
     @teacher = Teacher.new(params[:teacher])
     if @teacher.save
-      redirect_to new_course_section_url(@course)
+      redirect_to new_admin_course_section_url(@course)
     else
       render :new
     end
