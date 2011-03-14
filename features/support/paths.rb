@@ -10,10 +10,10 @@ module NavigationHelpers
     when 'the password reset request page'
       new_password_path
     when 'the list of courses'
-      courses_path
+      admin_courses_path
     when /^the new section page for "([^"]+)"$/
       course = Course.find_by_name!($1)
-      new_course_section_path(course)
+      new_admin_course_section_path(course)
     when /the course resource page for "([^"]+)"/
       course = Course.find_by_name!($1)
       section_path(course.sections.first)

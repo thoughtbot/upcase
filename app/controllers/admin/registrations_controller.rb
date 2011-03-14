@@ -14,14 +14,14 @@ class Admin::RegistrationsController < ApplicationController
       @registration.user = @user
       @registration.save
       flash[:success] = "Student has been enrolled"
-      redirect_to edit_course_section_path(@section.course, @section)
+      redirect_to edit_admin_course_section_path(@section.course, @section)
     else
       render :new
     end
   end
 
-
   private
+
   def build_new_user
     random_password = Digest::SHA1.hexdigest(Time.now.to_s)
     User.new(params[:user].merge(:password              => random_password,
