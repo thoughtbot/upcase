@@ -1,0 +1,11 @@
+<% content_for :nav do -%>
+  <ul>
+    <li><%= link_to "Coupons", admin_coupons_path %></li>
+    <li class="raquo">&raquo;</li>
+    <li><%= link_to "New Coupon", new_admin_coupon_path %></li>
+  </ul>
+<% end -%>
+
+<% semantic_form_for [:admin, @coupon] do |form| %>
+  <%= render form %>
+<% end %>
