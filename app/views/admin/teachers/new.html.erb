@@ -1,4 +1,4 @@
-<% semantic_form_for [@course,@teacher] do |form| %>
+<% semantic_form_for [:admin, @course, @teacher] do |form| %>
   <% form.inputs do %>
     <%= form.input :name %>
     <%= form.input :bio %>

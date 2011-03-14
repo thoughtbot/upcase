@@ -1,12 +1,12 @@
 <% content_for :nav do -%>
   <ul>
-    <li><%= link_to "Courses", courses_path %></li>
+    <li><%= link_to "Courses", admin_courses_path %></li>
     <li class="raquo">&raquo;</li>
-    <li><%= link_to "New Course", new_course_path %></li>
+    <li><%= link_to "New Course", new_admin_course_path %></li>
   </ul>
 <% end -%>
 
-<% semantic_form_for @course do |form| %>
+<% semantic_form_for [:admin, @course] do |form| %>
   <%= render :partial => 'fields', :locals => { :form => form } %>
   <input type="submit" value="Save Course" />
 <% end %>
