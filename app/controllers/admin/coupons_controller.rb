@@ -1,6 +1,4 @@
-class CouponsController < ApplicationController
-  before_filter :must_be_admin
-
+class CouponsController < AdminController
   def index
     @coupons = Coupon.all
   end
