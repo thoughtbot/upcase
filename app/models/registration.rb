@@ -13,6 +13,8 @@ class Registration < ActiveRecord::Base
     if response.success?
       self.freshbooks_invoice_id = response['invoice_id']
       self.save
+    else
+      Rails.logger.error response.inspect
     end
   end
 
