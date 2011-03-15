@@ -33,6 +33,8 @@ class User < ActiveRecord::Base
     if response.success?
       self.freshbooks_client_id = response['client_id']
       self.save
+    else
+      Rails.logger.error response.inspect
     end
   end
 
