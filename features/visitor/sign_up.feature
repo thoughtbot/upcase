@@ -37,11 +37,8 @@ Feature: Signing up
     Given I follow the link to the Test-Driven Haskell course
     And I follow the link to register
     And I press "Proceed to checkout"
-    Then I see the failure User info invalid notice
-    When I fill in the following:
-      | First name            | Mike               |
-      | Last name             | Jones              |
-      | Email                 | mjones@example.com |
-      | Password              | password           |
-      | Password confirmation | password           |
-    And I press "Proceed to checkout"
+    Then I see the "can't be blank" error for the following fields:
+      | first name                      |
+      | last name                       |
+      | student's password              |
+      | student's email                 |
