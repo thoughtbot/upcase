@@ -6,10 +6,12 @@ class User < ActiveRecord::Base
         :send_set_password
 
   attr_accessor :send_set_password
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :first_name, :last_name, :organization
 
   has_many :registrations
   has_many :sections, :through => :registrations
+
+  before_validation_on_create :populate_organization
 
   after_create :send_set_password_email, :if     => 'send_set_password'
   after_create :store_freshbooks_client, :unless => 'admin?'
@@ -23,6 +25,12 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def populate_organization
+    if organization.blank?
+      self.organization = "#{first_name} #{last_name}"
+    end
+  end
 
   def send_set_password_email
     UserMailer.deliver_set_password(self)
