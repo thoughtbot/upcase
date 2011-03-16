@@ -1,3 +1,5 @@
+@import "reset";
+
 $tan: #e5dccb;
 @mixin rounded($radius) {
   -moz-border-radius: ($radius);
@@ -24,11 +26,462 @@ $tan: #e5dccb;
   box-shadow: $x $y $blur $color;
 }
 
-@import "resources";
-@import "faqs";
-@import "follow_ups";
-@import "students";
-@import "teachers";
+#resources-form {
+  margin: 25px 0;
+  ul {
+   li {
+     input::-webkit-input-placeholder {
+       color: rgba(255,255,255,.3);
+     }
+     textarea::-webkit-input-placeholder {
+        color: rgba(0,0,0,.2);
+     }
+     margin: 5px 0 0 0;
+     @include gradient(rgba(0,0,0,.5), rgba(0,0,0,.25));
+     -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+     -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+     padding: 10px;
+     @include rounded(5px);
+     input.resource-name {
+      background: rgba(255,255,255,.1);
+       -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,1);
+       -moz-box-shadow: inset 0 1px 3px rgba(0,0,0,1);
+       border-bottom: 1px solid rgba(255,255,255,.12);
+       border-top: 0;
+       margin: 0 0 7px 0;
+       color: $tan;
+       font-size: 16px;
+       width: 742px;
+     }
+     input.resource-link {
+       padding: 10px 10px 10px 40px;
+       width: 710px;
+       background:
+         url(/images/link.png) 10px 8px no-repeat,
+         -webkit-gradient(
+           linear,
+           left top,
+           left bottom,
+           color-stop(1, #fff),
+           color-stop(0, #eee));
+           background:
+         -moz-linear-gradient(
+             bottom,
+             #fff 0%,
+             #eee 100%);
+     }
+    }
+  }
+  a#add-resource {
+    @include rounded(3px);
+    @include gradient(rgba(0,0,0,.4), rgba(0,0,0,.1));
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+    display: block;
+    padding: 10px;
+    float: left;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 7px 0 0 0;
+    color: $tan;
+    &:hover {
+      @include gradient(rgba(0,0,0,.4), rgba(136,120,91,.15));
+    }
+  }
+}
+
+#faq-form {
+  margin: 25px 0;
+  ul {
+   li {
+     input::-webkit-input-placeholder {
+       color: rgba(255,255,255,.3);
+     }
+     textarea::-webkit-input-placeholder {
+        color: rgba(0,0,0,.2);
+     }
+     margin: 5px 0 0 0;
+     @include gradient(rgba(0,0,0,.5), rgba(0,0,0,.25));
+     -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+     -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+     padding: 10px;
+     @include rounded(5px);
+     input[type="text"] {
+      background: rgba(255,255,255,.1);
+       -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,1);
+       -moz-box-shadow: inset 0 1px 3px rgba(0,0,0,1);
+       border-bottom: 1px solid rgba(255,255,255,.12);
+       border-top: 0;
+       width: 742px;
+       margin: 0 0 7px 0;
+       color: $tan;
+       font-size: 16px;
+     }
+     textarea {
+       width: 742px;
+       height: 60px;
+       font-size: 13px;
+       font-weight: normal;
+       color: #252525;
+       margin: 0;
+     }
+    }
+  }
+  a#add-question {
+    @include rounded(3px);
+    @include gradient(rgba(0,0,0,.4), rgba(0,0,0,.1));
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+    display: block;
+    padding: 10px;
+    float: left;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 7px 0 0 0;
+    color: $tan;
+    &:hover {
+      @include gradient(rgba(0,0,0,.4), rgba(136,120,91,.15));
+    }
+  }
+}
+
+#follow-up-form {
+  margin: 25px 0;
+  ul {
+   li {
+     input::-webkit-input-placeholder {
+       color: rgba(255,255,255,.3);
+     }
+     textarea::-webkit-input-placeholder {
+        color: rgba(0,0,0,.2);
+     }
+     margin: 5px 0 0 0;
+     @include gradient(rgba(0,0,0,.5), rgba(0,0,0,.25));
+     -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+     -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+     padding: 10px;
+     @include rounded(5px);
+     input[type="text"] {
+      background: rgba(255,255,255,.1);
+       -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,1);
+       -moz-box-shadow: inset 0 1px 3px rgba(0,0,0,1);
+       border-bottom: 1px solid rgba(255,255,255,.12);
+       border-top: 0;
+       width: 742px;
+       margin: 0 0 7px 0;
+       color: $tan;
+       font-size: 16px;
+     }
+    }
+  }
+  a#add-follow-up {
+    @include rounded(3px);
+    @include gradient(rgba(0,0,0,.4), rgba(0,0,0,.1));
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+    display: block;
+    padding: 10px;
+    float: left;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 7px 0 0 0;
+    color: $tan;
+    &:hover {
+      @include gradient(rgba(0,0,0,.4), rgba(136,120,91,.15));
+    }
+  }
+}
+
+ol#add-new-student {
+  li {
+   float: left;
+   width: 250px;
+   margin: 0 15px 0 0;
+   input,
+   label {
+     width: 230px;
+   }
+   &:last-child {
+     margin: 0;
+   }
+  }
+}
+
+#new-teacher-form {
+  ol {
+   li {
+     width: 380px;
+     margin: 0 15px 0 0;
+     float: left;
+     input,
+     textarea {
+      width: 360px;
+     }
+     textarea {
+       height: 75px;
+     }
+     &:nth-of-type(odd) {
+       margin: 0;
+     }
+    }
+    li#teacher-photo {
+      width: 780px;
+      label {
+        width: 780px;
+      }
+      input {
+        background: #fff;
+        padding: 5px;
+      }
+    }
+  }
+}
+
+body {
+  color: #222;
+  font-size: 13px;
+  font-family: "Helvetica Neue", "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+
+}
+
+.signin h2 {
+  font-size: 24px;
+}
+
+.signin label {
+  padding: 10px 0 3px 0;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+/* Success, error & notice boxes for messages and errors. */
+div.error,
+div.notice,
+div.success    { padding: .8em; margin-bottom: 1em; border: 1px solid #ddd; -moz-border-radius: 8px; -webkit-border-radius: 8px;}
+div.error      { background: #FBE3E4; color: #D12F19; border-color: #FBC2C4; }
+div.notice     { background: #FFF6BF; color: #817134; border-color: #FFD324; }
+div.success    { background: #E6EFC2; color: #529214; border-color: #C6D880; }
+div.error a    { color: #D12F19; }
+div.notice a   { color: #817134; }
+div.success a  { color: #529214; }
+
+/* Misc classes and elements */
+
+/* Use a .box to create a padded box inside a column.  */
+.box {
+  padding: 1.5em;
+  margin-bottom: 1.5em;
+  background: #eee;
+}
+
+/* Use this to create a horizontal ruler across a column. */
+hr {
+  background: #ddd;
+  color: #ddd;
+  clear: both;
+  float: none;
+  width: 100%;
+  height: 1px;
+  margin: 0 0 1.4em;
+  border: none;
+}
+hr.space {
+  background: #fff;
+  color: #fff;
+}
+
+/* Headings */
+
+h1,h2,h3,h4,h5,h6 { font-weight: bold; color: #a71914; margin: 0; padding: 0; }
+
+/* Text elements */
+body        { font-weight: bold; color:#464646; }
+p.last      { margin-bottom: 0; }
+p img.top   { margin-top: 0; } /* Use this if the image is at the top of the <p>. */
+
+abbr,
+acronym     { border-bottom: 1px dotted #666; cursor: help; }
+address     { margin-top: 1.5em; font-style: italic; }
+del         { color:#666; }
+
+a, a:link   {color: #a71914; text-decoration: underline;}
+#course-overview h2 a { text-decoration: none; }
+a:visited   {color: #a71914;}
+a:hover     {color: #c41e18;}
+a:active, a:focus    {color: #c41e18;}
+
+blockquote  { margin: 1.5em 0; color: #666; font-style: italic; padding-left: 1em; border-left: 4px solid #d1d1d1;}
+strong      { font-weight: bold; }
+em,dfn      { font-style: italic;  }
+dfn         { font-weight: bold; }
+pre,code    { margin: 1.5em 0; white-space: pre; }
+pre,code,tt { font: 1em 'andale mono', 'monotype.com', 'lucida console', monospace; line-height: 1.5; }
+pre.code    { background: #000; color: #fff; padding: 20px;}
+tt          { display: block; margin: 1.5em 0; line-height: 1.5; }
+
+@font-face {
+	font-family: 'AlexandriaFLF Bold';
+	src: url('/AlexandriaFLF-Bold.eot');
+	src: local('AlexandriaFLF Bold'), local('AlexandriaFLF-Bold'), url('/AlexandriaFLF-Bold.ttf') format('truetype');
+}
+
+.strong { font-weight: bold; }
+.em { font-style:italic; }
+
+
+/* Forms */
+
+form ol             {list-style: none; margin: 0;}
+form ol ol          {margin-left: 0;}
+form ol li          {margin: 0 0 1em 0;}
+form ol ol li       {margin: 0 0 .25em 0;}
+form ol li.error input {background: #FBE3E4;}
+p.inline-errors     {color: #D12F19;}
+form ol li.file     {background: #e1e1e1; border: 1px solid #c8c8c8; padding: 10px;}
+
+form abbr           {border-bottom: 0;}
+
+label               {display: block;}
+.required label     {font-weight: bold;}
+.checkbox_field label, .radio_field label { font-weight: normal; }
+
+form .legend        {}
+a.cancel            {color: #7d0d0d;}
+.inline-hints       {font-size: .8em;color: #666; margin-bottom: .25em;}
+
+/* Fieldsets */
+fieldset fieldset,
+fieldset fieldset fieldset   {padding: 0; border: 0;}
+legend              {font-weight: bold;}
+fieldset.buttons    {background: inherit; border: 0; padding: 0 ;}
+fieldset.buttons li {display: inline;}
+.radio fieldset     {padding: 0; margin: 0;}
+
+/* Text fields */
+input[type="text"],
+input[type="password"],
+textarea {
+  font-family: Helvetica, Arial, sans-serif;
+  padding: 15px 10px;
+  font-size: 24px;
+  color: #000;
+  width: 755px;
+  background:
+    -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(1, #fff),
+      color-stop(0, #eee));
+      background:
+    -moz-linear-gradient(
+        bottom,
+        #fff 0%,
+        #eee 100%);
+  border: 0;
+  border-top: 2px solid #fff;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+input.half { width: 168px; }
+input[disabled='disabled']  {background-color: #fcfcfc; cursor:default;}
+input[type="checkbox"] {margin: 0 3px 0 0; vertical-align: middle; position: relative; top: -2px;}
+input[type="radio"]    {margin: 0 3px 0 0; vertical-align: middle; position: relative; top: -2px;}
+.check_boxes label      {vertical-align: middle; padding: 0; display: inline;}
+.radio       label     {padding: 0;}
+label, span.label {
+  font-size: 20px;
+  float: left;
+  width: 370px;
+  clear: both;
+  padding: 15px 0 10px; }
+
+/* Textareas */
+textarea            {width: 440px; height: 200px; margin:0 0.5em 0.5em 0; padding:5px; font-size: inherit;}
+
+/* Select fields */
+fieldset .select select              { width:200px; font-size: .9em;}
+select:focus        { }
+
+optgroup            {margin: 0 0 .5em 0;}
+
+/* Date & Time */
+
+form ol li.date ol li,
+form ol li.time ol li{
+  display: inline;
+}
+
+form ol li.datetime ol li {
+  display: inline-block;
+}
+
+form ol li.datetime select,
+form ol li.date     select,
+form ol li.time     select{
+  display: inline;
+  width: auto;
+}
+
+form ol li.date     label,
+form ol li.time     label{
+  display: none;
+}
+
+#registration_expiration_date_input span.label {
+  position: relative; /* Webkit-only */
+}
+
+.forgot_pw {
+  float: right;
+  display: block;
+  padding: 10px 0 0;
+}
+
+input[type="submit"] {
+  margin: 15px 0 0 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  text-shadow: 0 -1px 2px rgba(0,0,0,.35);
+  border: 0;
+  padding: 12px;
+  -moz-box-shadow: 0 1px 2px #000;
+  -webkit-box-shadow: 0 1px 2px #000;
+  color: #fff;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  background:
+    -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(1, #990300),
+      color-stop(0, #de0500));
+      background:
+    -moz-linear-gradient(
+        bottom,
+        #990300 0%,
+        #de0500 100%);
+}
+
+/* Tables */
+
+table   { margin-bottom: 2em; width: 100%; }
+th      { border-bottom: 2px solid #ccc; font-weight: bold; text-align: left; }
+td      { border-bottom: 1px solid #ddd; }
+caption, th,td {
+  padding: 4px 10px 4px 0;
+}
+tfoot   { }
+caption { background: #f1f1f1; padding: 10px 0; margin-bottom: 1em; }
+
+/* Use this if you use span-x classes on th/td. */
+table .last { padding-right: 0; }
+
 
 body {
   background: url(/images/main-content.png) 0px -3px;
