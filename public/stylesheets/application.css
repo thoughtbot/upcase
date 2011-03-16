@@ -1,0 +1,93 @@
+/* Global Reset
+------------------------------------------------------------------------------*/
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* Clear Floated Elements
+------------------------------------------------------------------------------*/
+.clearfix:after, #homepage-top header:after {
+  clear: both;
+  content: ' ';
+  display: block;
+  font-size: 0;
+  line-height: 0;
+  visibility: hidden;
+  width: 0;
+  height: 0; }
+
+/* variables */
+/* mixins
+---------------------------------------- */
+/* this hack is courtesy of gbbowers on github
+   https://gist.github.com/601810 */
+body {
+  background: url("/images/public/chalkboard.jpg") center top no-repeat;
+  font-family: "helvetica neue", helvetica; }
+
+#container {
+  margin: 0 auto;
+  width: 978px; }
+
+#homepage-top {
+  padding: 88px 0 0 0; }
+  #homepage-top header h1 {
+    float: left;
+    text-indent: -9999px;
+    width: 138px; }
+  #homepage-top header #the-sell {
+    float: left;
+    width: 726px; }
+    #homepage-top header #the-sell h2 {
+      color: #fff;
+      font: 300 42px/46px "helvetica neue", helvetica;
+      letter-spacing: 1px;
+      text-shadow: 0 0 1px #333; }
+    #homepage-top header #the-sell p.tagline {
+      color: #ccc;
+      font: 300 18px/22px "helvetica neue", helvetica;
+      margin: 12px 0 0 0;
+      text-shadow: 0 0 1px #333; }
