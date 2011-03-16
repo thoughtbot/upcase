@@ -1,0 +1,45 @@
+@import "reset";
+@import "mixins";
+
+body {
+  background: url("/images/public/chalkboard.jpg") center top no-repeat;
+  font-family: $helvetica;
+}
+
+#container {
+  margin: 0 auto;
+  width: 978px;
+}
+
+#homepage-top {
+  padding: 88px 0 0 0;
+
+  header {
+    @extend .clearfix;
+
+    h1 {
+      float: left;
+      text-indent: -9999px;
+      width: 138px;
+    }
+
+    #the-sell {
+      float: left;
+      width: 726px;
+
+      h2 {
+        color: #fff;
+        font: 300 42px/46px $helvetica;
+        letter-spacing: 1px;
+        text-shadow: 0 0 1px #333;
+      }
+
+      p.tagline {
+        color: #ccc;
+        font: 300 18px/22px $helvetica;
+        margin: 12px 0 0 0;
+        text-shadow: 0 0 1px #333;
+      }
+    }
+  }
+}
