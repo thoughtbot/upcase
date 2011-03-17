@@ -7,24 +7,35 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <meta http-equiv="Description" name="Description" content="<%= t(".meta-description", :default => "Workshops to help you get a job as a designer or developer at a web startup.") %>" />
     <meta http-equiv="Keywords" name="Keywords" content="<%= t(".meta-keywords", :default => "web designer job, web design job, web development job, startup designer, startup developer, web startup job, startup job") %>" />
+    <script type="text/javascript" src="http://use.typekit.com/jes4mbj.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   </head>
 
   <body class="<%= body_class %>">
-    <section id="container">
 
+    <section id="head-wrapper">
         <%= yield :page_header  %>
+    </section>
 
+    <section id="class-photos">
+      <ul>
+        <li class="first"><%= image_tag("/images/public/class-photo-3.jpg", :alt => "thoughtbot training" )%></li>
+        <li class="center"><%= image_tag("/images/public/class-photo-2.jpg", :alt => "thoughtbot training" )%></li>
+        <li class="last"><%= image_tag("/images/public/class-photo-1.jpg", :alt => "thoughtbot training" )%></li>
+      </ul>
+    </section>
+
+    <section id="container">
         <% if yield(:nav) -%>
-
             <%= yield :nav %>
-
         <% end %>
 
         <%= yield :content_header %>
+        <%= yield %>
 
-
-          <%= yield %>
-
+        <footer>
+          <p>hello</p>
+        </footer>
     </section>
 
     <%= render :partial => 'shared/javascript' %>
