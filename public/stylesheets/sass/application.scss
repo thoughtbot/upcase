@@ -38,7 +38,7 @@ body {
   #homepage-top {
     background: url("/images/public/transparent-ralph.png") 678px bottom no-repeat;
     margin: 0 auto;
-    padding: 50px 0 102px 0;
+    padding: 50px 0 96px 0;
     width: 978px;
 
     header {
@@ -74,11 +74,12 @@ body {
     }
 
     #workshop-list {
-      margin: 48px 0 0 168px;
+      margin: 54px 0 0 168px;
 
       ul {
         li {
-          margin: 0 0 24px 0;
+          margin: 0 0 36px 0;
+          position: relative;
 
           a {
             display: inline-block;
@@ -90,9 +91,16 @@ body {
             }
 
             p.date {
-              color: #ccc;
-              font: 500 14px $proxima-nova;
+              color: #e73a34;
+              display: block;
+              font: 400 14px $proxima-nova;
+              left: -240px;
+              margin: 4px 0 0 0;
+              position: absolute;
+              text-align: right;
               text-transform: uppercase;
+              top: 13px;
+              width: 222px;
             }
           }
         }
@@ -187,11 +195,12 @@ body {
     ul {
       li {
         color: #333;
-        font: 400 16px $proxima-nova;
+        font: 400 16px/20px $proxima-nova;
         margin: 0 0 12px 0;
 
         strong {
           color: #e73a34;
+          display: block;
           font-weight: 700;
         }
       }
@@ -204,7 +213,7 @@ body {
 
     q {
       display: block;
-      font: 400 13px $proxima-nova;
+      font: 400 14px $proxima-nova;
       line-height: 150%;
       margin: 0 0 0 18px;
       position: relative;
@@ -221,7 +230,7 @@ body {
 
     p.source {
       color: #e73a34;
-      font: 600 13px $proxima-nova;
+      font: 600 12px $proxima-nova;
       margin: 2px 0 18px 6px;
 
       a {
