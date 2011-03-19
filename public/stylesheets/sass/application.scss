@@ -1,28 +1,6 @@
 @import "reset";
 @import "mixins";
 
-@font-face {
-    font-family: 'SketcheticaBold';
-    src: url('/fonts/sketchetica-bold-webfont.eot');
-    src: url('/fonts/sketchetica-bold-webfont.eot?iefix') format('eot'),
-         url('/fonts/sketchetica-bold-webfont.woff') format('woff'),
-         url('/fonts/sketchetica-bold-webfont.ttf') format('truetype'),
-         url('/fonts/sketchetica-bold-webfont.svg#webfontF5kvpAPw') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'SketchetikLight';
-    src: url('/fonts/sketchetik-light-webfont.eot');
-    src: url('/fonts/sketchetik-light-webfont.eot?iefix') format('eot'),
-         url('/fonts/sketchetik-light-webfont.woff') format('woff'),
-         url('/fonts/sketchetik-light-webfont.ttf') format('truetype'),
-         url('/fonts/sketchetik-light-webfont.svg#webfont0HK2ADsk') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
 body {
   font-family: $proxima-nova;
 }
@@ -90,8 +68,14 @@ body {
               font: 700 36px/36px $proxima-nova;
             }
 
+            p.teaser {
+              color: #aaa;
+              font: 300 14px/18px $proxima-nova;
+              margin: 4px 122px 0 0;
+            }
+
             p.date {
-              color: #e73a34;
+              color: $red;
               display: block;
               font: 400 14px $proxima-nova;
               left: -240px;
@@ -101,6 +85,16 @@ body {
               text-transform: uppercase;
               top: 13px;
               width: 222px;
+            }
+
+            &:hover {
+              h3 {
+                color: $red;
+              }
+
+              p.teaser {
+                color: #fff;
+              }
             }
           }
         }
@@ -179,7 +173,7 @@ body {
 
 #more-information {
   @extend .clearfix;
-  margin: 24px 0 0 0;
+  margin: 14px 0 0 0;
 
   h4 {
     color: #333;
@@ -199,7 +193,7 @@ body {
         margin: 0 0 12px 0;
 
         strong {
-          color: #e73a34;
+          color: $red;
           display: block;
           font-weight: 700;
         }
@@ -229,12 +223,12 @@ body {
     }
 
     p.source {
-      color: #e73a34;
-      font: 600 12px $proxima-nova;
+      color: $red;
+      font: 600 14px $proxima-nova;
       margin: 2px 0 18px 6px;
 
       a {
-        color: #e73a34;
+        color: $red;
         margin: 0 0 0 1px;
         text-decoration: none;
       }
