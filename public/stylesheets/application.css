@@ -64,20 +64,6 @@ table {
 ---------------------------------------- */
 /* this hack is courtesy of gbbowers on github
    https://gist.github.com/601810 */
-@font-face {
-  font-family: 'SketcheticaBold';
-  src: url("/fonts/sketchetica-bold-webfont.eot");
-  src: url("/fonts/sketchetica-bold-webfont.eot?iefix") format("eot"), url("/fonts/sketchetica-bold-webfont.woff") format("woff"), url("/fonts/sketchetica-bold-webfont.ttf") format("truetype"), url("/fonts/sketchetica-bold-webfont.svg#webfontF5kvpAPw") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'SketchetikLight';
-  src: url("/fonts/sketchetik-light-webfont.eot");
-  src: url("/fonts/sketchetik-light-webfont.eot?iefix") format("eot"), url("/fonts/sketchetik-light-webfont.woff") format("woff"), url("/fonts/sketchetik-light-webfont.ttf") format("truetype"), url("/fonts/sketchetik-light-webfont.svg#webfont0HK2ADsk") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
 body {
   font-family: "proxima-nova-1", "proxima-nova-2"; }
 
@@ -123,6 +109,10 @@ body {
           #head-wrapper #homepage-top #workshop-list ul li a h3 {
             color: #fff;
             font: 700 36px/36px "proxima-nova-1", "proxima-nova-2"; }
+          #head-wrapper #homepage-top #workshop-list ul li a p.teaser {
+            color: #aaa;
+            font: 300 14px/18px "proxima-nova-1", "proxima-nova-2";
+            margin: 4px 122px 0 0; }
           #head-wrapper #homepage-top #workshop-list ul li a p.date {
             color: #e73a34;
             display: block;
@@ -134,6 +124,10 @@ body {
             text-transform: uppercase;
             top: 13px;
             width: 222px; }
+          #head-wrapper #homepage-top #workshop-list ul li a:hover h3 {
+            color: #e73a34; }
+          #head-wrapper #homepage-top #workshop-list ul li a:hover p.teaser {
+            color: #fff; }
 
 #class-photos {
   margin: -30px auto 0;
@@ -187,7 +181,7 @@ body {
       -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); }
 
 #more-information {
-  margin: 24px 0 0 0; }
+  margin: 14px 0 0 0; }
   #more-information h4 {
     color: #333;
     font: 300 24px "proxima-nova-1", "proxima-nova-2";
@@ -222,7 +216,7 @@ body {
         top: -8px; }
     #more-information #testimonials p.source {
       color: #e73a34;
-      font: 600 12px "proxima-nova-1", "proxima-nova-2";
+      font: 600 14px "proxima-nova-1", "proxima-nova-2";
       margin: 2px 0 18px 6px; }
       #more-information #testimonials p.source a {
         color: #e73a34;
