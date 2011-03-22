@@ -1,0 +1,80 @@
+body.sections-show {
+  #head-wrapper {
+    #homepage-top {
+      @extend .clearfix;
+      padding: 25px 0 0 0;
+
+      header {
+        h1 {
+          background-size: 72px;
+          color: #fff;
+          height: 60px;
+          text-indent: 0;
+          font: 100 26px $proxima-nova;
+          padding: 23px 0 0 95px;
+          width: 400px;
+        }
+      }
+
+      #course-info {
+        float: left;
+        margin: 0 114px 0 0;
+        padding: 32px 0;
+        width: 642px;
+
+        h2 {
+          color: #fff;
+          font: 300 36px $proxima-nova;
+          margin: 0 0 12px 0;
+        }
+
+        p {
+          color: #fff;
+          font: 300 16px/24px $proxima-nova;
+        }
+
+        #register {
+          padding: 32px 0 68px 0;
+
+          a {
+            @include border-radius(5px);
+            color: #fff;
+            display: block;
+            font: 600 20px $proxima-nova;
+            @include linear-gradient(#c71a14, #990300);
+            line-height: 1.3em;
+            padding: 12px 0;
+            text-align: center;
+            text-decoration: none;
+            text-shadow: 0 1px 0 rgba(255,255,255,.2);
+            width: 222px;
+          }
+        }
+      }
+
+      #workshop-details {
+        float: left;
+        margin: 24px 0 0 0;
+        width: 222px;
+
+        h3 {
+          color: #e73a34;
+          font: 300 16px $proxima-nova;
+          margin: 20px 0 2px 0;
+          text-transform: uppercase;
+        }
+
+        p {
+          color: #fff;
+          font: 300 16px/20px $proxima-nova;
+        }
+
+        a {
+          border-bottom: 1px solid $red;
+          color: #fff;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

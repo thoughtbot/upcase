@@ -37,6 +37,16 @@
   </section>
 <% end %>
 
+<% content_for :class_photos do %>
+<section id="class-photos">
+  <ul>
+    <li class="first"><%= image_tag("/images/public/class-photo-3.jpg", :alt => "thoughtbot training" )%></li>
+    <li class="center"><%= image_tag("/images/public/class-photo-2.jpg", :alt => "thoughtbot training" )%></li>
+    <li class="last"><%= image_tag("/images/public/class-photo-1.jpg", :alt => "thoughtbot training" )%></li>
+  </ul>
+</section>
+<% end %>
+
 <section id="more-information">
   <section id="why-love">
     <h4>Why you&rsquo;ll love our workshops</h4>
