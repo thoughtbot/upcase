@@ -1,77 +1,71 @@
 <% content_for :page_header do %>
-  <h2><%= h(@section.course_name) %></h2>
-<% end %>
+<section id="homepage-top">
+  <header>
+    <h1>thoughtbot workshops</h1>
+  </header>
 
-<% if @section.full? %>
-  <div id="inactive-notify-me" class="dark-content clearfix">
-    <% form_for [@section.course, @follow_up] do |form| %>
-      <%= form.label :email, "Want to be notified when this course is rescheduled?" %>
-      <%= form.text_field :email, :placeholder => "Enter your email address" %>
-      <input type="submit" value="Submit" />
-    <% end %>
-  </div>
-<% end %>
+  <section id="course-info">
+    <h2><%= h(@section.course_name) %></h2>
+    <p><%= textilize @section.course_description %></p>
 
-<div class="dark-content clearfix">
-  <div id="register-info" class="clearfix">
-    <div id="register-right">
-      <% google_map_link_to(@section.course_location, :id => 'location') do %>
-        <strong><%= h(@section.course_location_name) %></strong>
-        <span id="section-location"><%= h(@section.course_location) %></span>
-      <% end %>
+    <section id="register">
       <% unless @section.full? %>
         <% link_to new_section_registration_path(@section), :id => 'register-button' do %>
-          <div id="register-button-top">
-            <div id="register-date"><%= h(@section.date_range) %></div>
-            <div id="register-time"><%= h(@section.time_range) %></div>
-            <div id="total-price">
-              <div id="amount"><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></div>
-            </div>
-          </div>
-          <div id="register-for-class">Register</div>
+          Register
         <% end %>
       <% else %>
         <div class='register-closed'>Workshop is full</div>
       <% end %>
-    </div>
-    <div id="register-description">
-      <%= textilize @section.course_description %>
-    </div>
-  </div>
+    </section>
 
-  <div class="clearfix main-content">
-    <div id="faq" class="col">
-      <h3>Frequently asked questions</h3>
-      <dl>
-        <% @section.course.questions.each do |question| %>
-          <dt><%= textilize question.question %></dt>
-          <dd><%= textilize question.answer %></dd>
+    <% if @section.full? %>
+      <div id="inactive-notify-me" class="dark-content clearfix">
+        <% form_for [@section.course, @follow_up] do |form| %>
+          <%= form.label :email, "Want to be notified when this course is rescheduled?" %>
+          <%= form.text_field :email, :placeholder => "Enter your email address" %>
+          <input type="submit" value="Submit" />
         <% end %>
-      </dl>
-    </div><!-- end of faq -->
+      </div>
+    <% end %>
+  </section>
 
-    <div id="terms" class="col clearfix">
-      <h3 class="terms">Terms and conditions</h3>
-      <%= textilize @section.course.terms_of_service %>
-    </div>
+  <section id="workshop-details">
+    <h3>When</h3>
+    <p><%= h(@section.date_range) %><br><%= h(@section.time_range) %></p>
 
-  </div>
+    <h3>Where</h3>
+    <p>
+      <% google_map_link_to(@section.course_location, :id => 'location') do %>
+        <%= h(@section.course_location_name) %><br>
+        <%= h(@section.course_location) %>
+      <% end %>
+    </p>
 
-  <div id="teachers" class="sidebar">
+    <h3>Cost</h3>
+    <p><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></p>
+  </section>
+</section>
+<% end %>
+
+<section id="additional-information">
+  <section id="faq">
+    <h3>Frequently asked questions</h3>
+    <dl>
+      <% @section.course.questions.each do |question| %>
+        <dt><%= textilize question.question %></dt>
+        <dd><%= textilize question.answer %></dd>
+      <% end %>
+    </dl>
+  </section>
+
+  <section id="teachers">
     <h3>Teachers</h3>
     <%= render 'teachers', :teachers => @section.teachers %>
-  </div>
+  </section>
+</section>
 
-  <% unless @section.full? %>
-    <% link_to new_section_registration_path(@section), :id => "register-button-bottom", :class => "clearfix" do %>
-      <div>
-        Register for <%= h(@section.course_name) %>
-      </div>
-      <span>
-        <%= h(@section.date_range) %>
-      </span>
-    <% end %>
-  <% else %>
-    <div class='register-closed'>Workshop is full</div>
-  <% end %>
+
+<section id="terms">
+  <h3 class="terms">Terms and conditions</h3>
+  <%= textilize @section.course.terms_of_service %>
 </div>

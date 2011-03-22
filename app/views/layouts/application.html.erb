@@ -17,13 +17,7 @@
         <%= yield :page_header  %>
     </section>
 
-    <section id="class-photos">
-      <ul>
-        <li class="first"><%= image_tag("/images/public/class-photo-3.jpg", :alt => "thoughtbot training" )%></li>
-        <li class="center"><%= image_tag("/images/public/class-photo-2.jpg", :alt => "thoughtbot training" )%></li>
-        <li class="last"><%= image_tag("/images/public/class-photo-1.jpg", :alt => "thoughtbot training" )%></li>
-      </ul>
-    </section>
+    <%= yield :class_photos  %>
 
     <section id="container">
         <% if yield(:nav) -%>
