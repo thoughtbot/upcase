@@ -49,7 +49,7 @@ table {
 
 /* Clear Floated Elements
 ------------------------------------------------------------------------------*/
-.clearfix:after, body.sections-show #head-wrapper #homepage-top:after, #head-wrapper #homepage-top header:after, #class-photos:after, #more-information:after {
+.clearfix:after, body.sections-show #head-wrapper #homepage-top:after, body.sections-show #additional-information:after, #head-wrapper #homepage-top header:after, #class-photos:after, #more-information:after {
   clear: both;
   content: ' ';
   display: block;
@@ -81,7 +81,7 @@ body.sections-show #head-wrapper #homepage-top {
     width: 642px; }
     body.sections-show #head-wrapper #homepage-top #course-info h2 {
       color: #fff;
-      font: 300 36px "proxima-nova-1", "proxima-nova-2";
+      font: 400 36px "proxima-nova-1", "proxima-nova-2";
       margin: 0 0 12px 0; }
     body.sections-show #head-wrapper #homepage-top #course-info p {
       color: #fff;
@@ -120,6 +120,40 @@ body.sections-show #head-wrapper #homepage-top {
       border-bottom: 1px solid #e73a34;
       color: #fff;
       text-decoration: none; }
+body.sections-show #additional-information {
+  margin: 24px 0 0 0; }
+  body.sections-show #additional-information h4 {
+    color: #222;
+    font: 600 20px "proxima-nova-1", "proxima-nova-2";
+    margin: 0 0 12px 0; }
+  body.sections-show #additional-information #faq {
+    float: left;
+    margin: 0 30px 0 0;
+    width: 474px; }
+    body.sections-show #additional-information #faq dl dt {
+      color: #e73a34;
+      display: block;
+      font-size: 16px;
+      font-weight: 700; }
+    body.sections-show #additional-information #faq dl dd {
+      color: #333;
+      font: 400 14px/20px "proxima-nova-1", "proxima-nova-2";
+      margin: 0 0 12px 0; }
+  body.sections-show #additional-information #teachers {
+    float: left;
+    width: 474px; }
+body.sections-show #terms {
+  float: left;
+  margin: 0 30px 0 0;
+  width: 474px; }
+  body.sections-show #terms h4.terms {
+    color: #333;
+    font: 600 16px "proxima-nova-1", "proxima-nova-2"; }
+  body.sections-show #terms ul li,
+  body.sections-show #terms p {
+    color: #666;
+    font: 400 14px "proxima-nova-1", "proxima-nova-2";
+    margin: 0 0 6px 0; }
 
 body {
   font-family: "proxima-nova-1", "proxima-nova-2"; }
