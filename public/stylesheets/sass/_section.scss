@@ -24,7 +24,7 @@ body.sections-show {
 
         h2 {
           color: #fff;
-          font: 300 36px $proxima-nova;
+          font: 400 36px $proxima-nova;
           margin: 0 0 12px 0;
         }
 
@@ -75,6 +75,61 @@ body.sections-show {
           text-decoration: none;
         }
       }
+    }
+  }
+
+  #additional-information {
+    @extend .clearfix;
+    margin: 24px 0 0 0;
+
+    h4 {
+      color: #222;
+      font: 600 20px $proxima-nova;
+      margin: 0 0 12px 0;
+    }
+
+    #faq {
+      float: left;
+      margin: 0 30px 0 0;
+      width: 474px;
+
+      dl {
+        dt {
+          color: $red;
+          display: block;
+          font-size: 16px;
+          font-weight: 700;
+        }
+
+        dd {
+          color: #333;
+          font: 400 14px/20px $proxima-nova;
+          margin: 0 0 12px 0;
+        }
+      }
+    }
+
+    #teachers {
+      float: left;
+      width: 474px;
+    }
+  }
+
+  #terms {
+    float: left;
+    margin: 0 30px 0 0;
+    width: 474px;
+
+    h4.terms {
+      color: #333;
+      font: 600 16px $proxima-nova;
+    }
+
+    ul li,
+    p {
+      color: #666;
+      font: 400 14px $proxima-nova;
+      margin: 0 0 6px 0;
     }
   }
 }
