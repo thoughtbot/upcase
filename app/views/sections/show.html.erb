@@ -49,7 +49,7 @@
 
 <section id="additional-information">
   <section id="faq">
-    <h3>Frequently asked questions</h3>
+    <h4>Frequently asked questions</h3>
     <dl>
       <% @section.course.questions.each do |question| %>
         <dt><%= textilize question.question %></dt>
@@ -59,13 +59,12 @@
   </section>
 
   <section id="teachers">
-    <h3>Teachers</h3>
+    <h4>Teachers</h3>
     <%= render 'teachers', :teachers => @section.teachers %>
   </section>
 </section>
 
-
 <section id="terms">
-  <h3 class="terms">Terms and conditions</h3>
+  <h4 class="terms">Terms and conditions</h3>
   <%= textilize @section.course.terms_of_service %>
 </div>
