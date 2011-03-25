@@ -13,21 +13,16 @@
 
     <q>Having taken a thoughtbot training class on my own dime I can say it&rsquo;s 110% worth it. If you can hook it up, do it.</q>
     <p class="source">&mdash;<a href="http://joeloliveira.com/">Joel Oliveira</a></p>
-
-    <% if @section.full? %>
-      <div id="inactive-notify-me" class="dark-content clearfix">
-        <% form_for [@section.course, @follow_up] do |form| %>
-          <%= form.label :email, "Want to be notified when this course is rescheduled?" %>
-          <%= form.text_field :email, :placeholder => "Enter your email address" %>
-          <input type="submit" value="Submit" />
-        <% end %>
-      </div>
-    <% end %>
   </section>
 
   <section id="workshop-details">
     <h3>Cost</h3>
-    <p class="cost"><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></p>
+    <% unless @section.full? %>
+      <p class="cost"><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></p>
+    <% else %>
+      <p class="cost">SOLD OUT</p>
+    <% end %>
+
 
     <h3>When</h3>
     <p><%= h(@section.date_range) %><br><%= h(@section.time_range) %></p>
@@ -46,7 +41,13 @@
           Register
         <% end %>
       <% else %>
-        <div class='register-closed'>Workshop is full</div>
+        <section id="notify-me">
+          <% form_for [@section.course, @follow_up] do |form| %>
+            <%= form.label :email, "Want to be notified the next time we run this workshop?" %>
+            <%= form.text_field :email, :placeholder => "Enter your email address" %>
+            <input type="submit" value="Submit" />
+          <% end %>
+        </section>
       <% end %>
     </section>
   </section>
