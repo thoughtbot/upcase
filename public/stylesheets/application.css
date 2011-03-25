@@ -49,7 +49,7 @@ table {
 
 /* Clear Floated Elements
 ------------------------------------------------------------------------------*/
-.clearfix:after, body.sections-show #head-wrapper #homepage-top:after, body.sections-show #additional-information:after, #head-wrapper #homepage-top header:after, #class-photos:after, #more-information:after {
+.clearfix:after, body.sections-show #head-wrapper #homepage-top:after, body.sections-show #additional-information:after, body.sections-show #additional-information #teachers li:after, #head-wrapper #homepage-top header:after, #class-photos:after, #more-information:after {
   clear: both;
   content: ' ';
   display: block;
@@ -78,58 +78,102 @@ body.sections-show #head-wrapper #homepage-top {
     float: left;
     margin: 0 114px 0 0;
     padding: 32px 0;
-    width: 642px; }
+    width: 558px; }
     body.sections-show #head-wrapper #homepage-top #course-info h2 {
       color: #fff;
-      font: 400 36px "proxima-nova-1", "proxima-nova-2";
+      font: 600 36px "proxima-nova-1", "proxima-nova-2";
       margin: 0 0 12px 0; }
     body.sections-show #head-wrapper #homepage-top #course-info p {
       color: #fff;
-      font: 300 16px/24px "proxima-nova-1", "proxima-nova-2"; }
-    body.sections-show #head-wrapper #homepage-top #course-info #register {
-      padding: 32px 0 68px 0; }
-      body.sections-show #head-wrapper #homepage-top #course-info #register a {
-        -moz-border-radius: 5px;
-        -webkit-border-radius: 5px;
-        border-radius: 5px;
+      font: 400 16px/24px "proxima-nova-1", "proxima-nova-2";
+      text-shadow: 0 1px 0 #222; }
+    body.sections-show #head-wrapper #homepage-top #course-info q {
+      color: #fff;
+      display: block;
+      font: 400 14px "proxima-nova-1", "proxima-nova-2";
+      line-height: 150%;
+      margin: 24px 0 0 12px;
+      position: relative; }
+      body.sections-show #head-wrapper #homepage-top #course-info q:before {
         color: #fff;
-        display: block;
-        font: 600 20px "proxima-nova-1", "proxima-nova-2";
-        background: #c71a14;
-        background: -moz-linear-gradient(top, #c71a14, #990300);
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #c71a14), color-stop(1, #990300));
-        line-height: 1.3em;
-        padding: 12px 0;
-        text-align: center;
-        text-decoration: none;
-        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
-        width: 222px; }
+        content: "\201C";
+        font: 300 40px "proxima-nova-1", "proxima-nova-2";
+        left: -16px;
+        position: absolute;
+        top: -4px; }
+    body.sections-show #head-wrapper #homepage-top #course-info p.source {
+      color: #e73a34;
+      font: 600 14px "proxima-nova-1", "proxima-nova-2";
+      margin: 2px 0 18px 6px; }
+      body.sections-show #head-wrapper #homepage-top #course-info p.source a {
+        color: #e73a34;
+        margin: 0 0 0 1px;
+        text-decoration: none; }
   body.sections-show #head-wrapper #homepage-top #workshop-details {
     float: left;
     margin: 24px 0 0 0;
     width: 222px; }
+    body.sections-show #head-wrapper #homepage-top #workshop-details #register {
+      padding: 32px 0 68px 0;
+      /* red button */ }
+      body.sections-show #head-wrapper #homepage-top #workshop-details #register a {
+        background: #c22323;
+        background: -moz-linear-gradient(top, #f28080 0%, #d14545 50%, #c22323 50%, #c42b2b 100%);
+        background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #f28080), color-stop(0.5, #d14545), color-stop(0.5, #c22323), color-stop(1, #c42b2b));
+        border: 1px solid #8e0202;
+        border-bottom: 1px solid #750101;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        -moz-box-shadow: inset 0 1px 0 0 #ffabab;
+        -webkit-box-shadow: inset 0 1px 0 0 #ffabab;
+        box-shadow: inset 0 1px 0 0 #ffabab;
+        color: #fff;
+        display: block;
+        font-family: "helvetica neue", helvetica, arial, sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 12px 0 13px 0;
+        text-decoration: none;
+        text-align: center;
+        text-shadow: 0 -1px 1px #320000;
+        width: 222px; }
+      body.sections-show #head-wrapper #homepage-top #workshop-details #register a:hover {
+        background: #b02020;
+        background: -moz-linear-gradient(top, #e07777 0%, #bf3f3f 50%, #b02020 50%, #b32727 100%);
+        background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #e07777), color-stop(0.5, #bf3f3f), color-stop(0.5, #b02020), color-stop(1, #b32727));
+        cursor: pointer; }
+      body.sections-show #head-wrapper #homepage-top #workshop-details #register a:active {
+        cursor: pointer;
+        -moz-box-shadow: inset 0 0 20px 0 #781a1a, 0 1px 0 #fff;
+        -webkit-box-shadow: inset 0 0 20px 0 #781a1a, 0 1px 0 #fff;
+        box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #444; }
     body.sections-show #head-wrapper #homepage-top #workshop-details h3 {
       color: #e73a34;
-      font: 300 16px "proxima-nova-1", "proxima-nova-2";
+      font: 300 14px "proxima-nova-1", "proxima-nova-2";
       margin: 20px 0 2px 0;
       text-transform: uppercase; }
     body.sections-show #head-wrapper #homepage-top #workshop-details p {
       color: #fff;
-      font: 300 16px/20px "proxima-nova-1", "proxima-nova-2"; }
+      font: 300 16px/22px "proxima-nova-1", "proxima-nova-2"; }
+      body.sections-show #head-wrapper #homepage-top #workshop-details p.cost {
+        font-size: 30px;
+        font-weight: 400;
+        margin: 8px 0 32px 0; }
     body.sections-show #head-wrapper #homepage-top #workshop-details a {
       border-bottom: 1px solid #e73a34;
       color: #fff;
       text-decoration: none; }
 body.sections-show #additional-information {
-  margin: 24px 0 0 0; }
+  margin: 24px 0 24px 0; }
   body.sections-show #additional-information h4 {
     color: #222;
     font: 600 20px "proxima-nova-1", "proxima-nova-2";
     margin: 0 0 12px 0; }
   body.sections-show #additional-information #faq {
     float: left;
-    margin: 0 30px 0 0;
-    width: 474px; }
+    margin: 0 114px 0 0;
+    width: 558px; }
     body.sections-show #additional-information #faq dl dt {
       color: #e73a34;
       display: block;
@@ -141,11 +185,20 @@ body.sections-show #additional-information {
       margin: 0 0 12px 0; }
   body.sections-show #additional-information #teachers {
     float: left;
-    width: 474px; }
+    width: 306px; }
+    body.sections-show #additional-information #teachers li {
+      margin: 0 0 18px 0; }
+    body.sections-show #additional-information #teachers img {
+      float: right;
+      margin: 24px 0px 10px 20px; }
+    body.sections-show #additional-information #teachers h5 {
+      color: #e73a34;
+      font: 700 16px/20px "proxima-nova-1", "proxima-nova-2";
+      margin: 0 0 2px 0; }
+    body.sections-show #additional-information #teachers p.bio {
+      font: 400 14px/20px "proxima-nova-1", "proxima-nova-2"; }
 body.sections-show #terms {
-  float: left;
-  margin: 0 30px 0 0;
-  width: 474px; }
+  margin: 48px 0 0 0; }
   body.sections-show #terms h4.terms {
     color: #333;
     font: 600 16px "proxima-nova-1", "proxima-nova-2"; }
