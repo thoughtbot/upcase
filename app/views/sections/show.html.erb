@@ -8,15 +8,11 @@
     <h2><%= h(@section.course_name) %></h2>
     <p><%= textilize @section.course_description %></p>
 
-    <section id="register">
-      <% unless @section.full? %>
-        <% link_to new_section_registration_path(@section), :id => 'register-button' do %>
-          Register
-        <% end %>
-      <% else %>
-        <div class='register-closed'>Workshop is full</div>
-      <% end %>
-    </section>
+    <q>Cannot recommend [Design for Developers] more. It&rsquo;s amazing and I have a totally different outlook on design and web development.</q>
+    <p class="source">&mdash;<a href="#">Chuck Vose</a></p>
+
+    <q>Having taken a thoughtbot training class on my own dime I can say it&rsquo;s 110% worth it. If you can hook it up, do it.</q>
+    <p class="source">&mdash;<a href="http://joeloliveira.com/">Joel Oliveira</a></p>
 
     <% if @section.full? %>
       <div id="inactive-notify-me" class="dark-content clearfix">
@@ -30,6 +26,9 @@
   </section>
 
   <section id="workshop-details">
+    <h3>Cost</h3>
+    <p class="cost"><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></p>
+
     <h3>When</h3>
     <p><%= h(@section.date_range) %><br><%= h(@section.time_range) %></p>
 
@@ -41,8 +40,15 @@
       <% end %>
     </p>
 
-    <h3>Cost</h3>
-    <p><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></p>
+    <section id="register">
+      <% unless @section.full? %>
+        <% link_to new_section_registration_path(@section), :id => 'register-button' do %>
+          Register
+        <% end %>
+      <% else %>
+        <div class='register-closed'>Workshop is full</div>
+      <% end %>
+    </section>
   </section>
 </section>
 <% end %>
@@ -56,15 +62,16 @@
         <dd><%= textilize question.answer %></dd>
       <% end %>
     </dl>
+
+    <section id="terms">
+      <h4 class="terms">Terms and conditions</h3>
+      <%= textilize @section.course.terms_of_service %>
+    </section>
   </section>
 
   <section id="teachers">
-    <h4>Teachers</h3>
+    <h4>Who's teaching the workshop</h3>
     <%= render 'teachers', :teachers => @section.teachers %>
   </section>
 </section>
 
-<section id="terms">
-  <h4 class="terms">Terms and conditions</h3>
-  <%= textilize @section.course.terms_of_service %>
-</div>
