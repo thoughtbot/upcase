@@ -1,5 +1,7 @@
 body.sections-show {
   #head-wrapper {
+    border-bottom: 5px solid #777;
+
     #homepage-top {
       @extend .clearfix;
       padding: 25px 0 0 0;
