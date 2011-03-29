@@ -1,4 +1,12 @@
-<h1 class="course-title">You're registering for <span><%= h(@section.course_name) %></span></h1>
+<% content_for :page_header do %>
+<section id="homepage-top">
+  <header>
+    <h1><a href="/">thoughtbot workshops</a></h1>
+  </header>
+</section>
+<% end %>
+
+<h1 class="course-title">Complete your registration for <span><%= h(@section.course_name) %></span></h1>
 
 <div id="total">
   <p class="price"><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></p>
