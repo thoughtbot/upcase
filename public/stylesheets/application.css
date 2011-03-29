@@ -49,7 +49,7 @@ table {
 
 /* Clear Floated Elements
 ------------------------------------------------------------------------------*/
-.clearfix:after, body.sections-show #head-wrapper #homepage-top:after, body.sections-show #additional-information:after, body.sections-show #additional-information #teachers li:after, #head-wrapper #homepage-top header:after, #class-photos:after, #more-information:after {
+.clearfix:after, body.sections-show #head-wrapper #homepage-top:after, body.sections-show #additional-information:after, body.sections-show #additional-information #sidebar li:after, #head-wrapper #homepage-top header:after, #class-photos:after, #more-information:after {
   clear: both;
   content: ' ';
   display: block;
@@ -66,32 +66,41 @@ table {
    https://gist.github.com/601810 */
 body.sections-show #head-wrapper #homepage-top {
   padding: 25px 0 0 0; }
-  body.sections-show #head-wrapper #homepage-top header h1 {
-    background-size: 72px;
-    color: #fff;
-    height: 60px;
-    text-indent: 0;
-    font: 100 26px "proxima-nova-1", "proxima-nova-2";
-    padding: 23px 0 0 95px;
-    width: 400px; }
+  body.sections-show #head-wrapper #homepage-top header {
+    margin: 0 0 24px 0; }
+    body.sections-show #head-wrapper #homepage-top header h1 {
+      background-size: 72px;
+      color: #fff;
+      height: 60px;
+      text-indent: 0;
+      font: 100 26px "proxima-nova-1", "proxima-nova-2";
+      padding: 23px 0 0 95px;
+      width: 400px; }
+      body.sections-show #head-wrapper #homepage-top header h1 a {
+        color: #fff;
+        text-decoration: none; }
   body.sections-show #head-wrapper #homepage-top #course-info {
     float: left;
-    margin: 0 114px 0 0;
-    padding: 32px 0;
-    width: 558px; }
+    margin: 0 30px 0 0;
+    padding: 32px 0 32px 8px;
+    width: 630px; }
     body.sections-show #head-wrapper #homepage-top #course-info h2 {
       color: #fff;
-      font: 600 36px "proxima-nova-1", "proxima-nova-2";
-      margin: 0 0 12px 0; }
+      font: 600 34px "proxima-nova-1", "proxima-nova-2";
+      margin: 0 0 8px 0;
+      text-shadow: 0 1px 0 #222; }
+    body.sections-show #head-wrapper #homepage-top #course-info #course-description {
+      margin: 0 0 36px 0; }
     body.sections-show #head-wrapper #homepage-top #course-info p {
-      color: #fff;
-      font: 400 16px/24px "proxima-nova-1", "proxima-nova-2";
+      color: #CDC5C2;
+      font: 300 16px/24px "proxima-nova-1", "proxima-nova-2";
       text-shadow: 0 1px 0 #222; }
     body.sections-show #head-wrapper #homepage-top #course-info q {
       color: #fff;
       display: block;
       font: 400 14px "proxima-nova-1", "proxima-nova-2";
       line-height: 150%;
+      left: -12px;
       margin: 24px 0 0 12px;
       position: relative; }
       body.sections-show #head-wrapper #homepage-top #course-info q:before {
@@ -102,16 +111,16 @@ body.sections-show #head-wrapper #homepage-top {
         position: absolute;
         top: -4px; }
     body.sections-show #head-wrapper #homepage-top #course-info p.source {
-      color: #e73a34;
-      font: 600 14px "proxima-nova-1", "proxima-nova-2";
-      margin: 2px 0 18px 6px; }
+      color: #CDC5C2;
+      font: 400 14px "proxima-nova-1", "proxima-nova-2";
+      margin: 2px 0 18px 0px; }
       body.sections-show #head-wrapper #homepage-top #course-info p.source a {
-        color: #e73a34;
+        color: #CDC5C2;
         margin: 0 0 0 1px;
         text-decoration: none; }
   body.sections-show #head-wrapper #homepage-top #workshop-details {
     float: left;
-    margin: 24px 0 0 0;
+    margin: 20px 0 0 0;
     width: 306px; }
     body.sections-show #head-wrapper #homepage-top #workshop-details #register {
       padding: 32px 0 68px 0;
@@ -172,8 +181,8 @@ body.sections-show #additional-information {
     margin: 0 0 12px 0; }
   body.sections-show #additional-information #faq {
     float: left;
-    margin: 0 114px 0 0;
-    width: 558px; }
+    margin: 0 30px 0 0;
+    width: 638px; }
     body.sections-show #additional-information #faq dl dt {
       color: #e73a34;
       display: block;
@@ -183,30 +192,34 @@ body.sections-show #additional-information {
       color: #333;
       font: 400 14px/20px "proxima-nova-1", "proxima-nova-2";
       margin: 0 0 12px 0; }
-  body.sections-show #additional-information #teachers {
+  body.sections-show #additional-information #sidebar {
     float: left;
     width: 306px; }
-    body.sections-show #additional-information #teachers li {
+    body.sections-show #additional-information #sidebar li {
       margin: 0 0 18px 0; }
-    body.sections-show #additional-information #teachers img {
+    body.sections-show #additional-information #sidebar img {
       float: right;
       margin: 24px 0px 10px 20px; }
-    body.sections-show #additional-information #teachers h5 {
+    body.sections-show #additional-information #sidebar h5 {
       color: #e73a34;
       font: 700 16px/20px "proxima-nova-1", "proxima-nova-2";
       margin: 0 0 2px 0; }
-    body.sections-show #additional-information #teachers p.bio {
+    body.sections-show #additional-information #sidebar p.bio {
       font: 400 14px/20px "proxima-nova-1", "proxima-nova-2"; }
-body.sections-show #terms {
-  margin: 48px 0 0 0; }
-  body.sections-show #terms h4.terms {
-    color: #333;
-    font: 600 16px "proxima-nova-1", "proxima-nova-2"; }
-  body.sections-show #terms ul li,
-  body.sections-show #terms p {
-    color: #666;
-    font: 400 14px "proxima-nova-1", "proxima-nova-2";
-    margin: 0 0 6px 0; }
+    body.sections-show #additional-information #sidebar #terms {
+      border-top: 1px solid #ddd;
+      margin: 12px 0 0 0;
+      padding: 12px 0 0 0; }
+      body.sections-show #additional-information #sidebar #terms h4.terms {
+        color: #555;
+        font: 600 16px "proxima-nova-1", "proxima-nova-2"; }
+      body.sections-show #additional-information #sidebar #terms ul {
+        margin: 12px 0 0 0; }
+      body.sections-show #additional-information #sidebar #terms li,
+      body.sections-show #additional-information #sidebar #terms p {
+        color: #666;
+        font: 400 14px/18px "proxima-nova-1", "proxima-nova-2";
+        margin: 0 0 6px 0; }
 
 #notify-me {
   background: rgba(0, 0, 0, 0.4);
@@ -219,15 +232,18 @@ body.sections-show #terms {
     margin: 0 0 8px 0; }
   #notify-me input[type="text"] {
     border: 0;
+    border-radius: 2px;
     margin: 0 0 8px 0;
-    padding: 6px 0;
-    width: 276px; }
+    padding: 8px 4px;
+    width: 268px; }
   #notify-me input[type="submit"] {
     background: #c22323;
     background: -moz-linear-gradient(top, #f28080 0%, #d14545 50%, #c22323 50%, #c42b2b 100%);
     background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #f28080), color-stop(0.5, #d14545), color-stop(0.5, #c22323), color-stop(1, #c42b2b));
-    border: 1px solid #8e0202;
-    border-bottom: 1px solid #750101;
+    border: 0;
+    /*    border: 1px solid #8e0202;
+        border-bottom: 1px solid #750101;
+    */
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -236,13 +252,12 @@ body.sections-show #terms {
     box-shadow: inset 0 1px 0 0 #ffabab;
     color: #fff;
     display: block;
-    font-family: "helvetica neue", helvetica, arial, sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 7px 10px 8px;
+    font: 600 13px "proxima-nova-1", "proxima-nova-2";
+    margin: 0;
+    padding: 4px 10px 4px;
     text-decoration: none;
     text-align: center;
-    text-shadow: 0 -1px 1px #320000; }
+    text-shadow: 0 -1px 1px #512b2b; }
 
 body {
   font-family: "proxima-nova-1", "proxima-nova-2"; }
@@ -294,7 +309,7 @@ body {
             color: #aaa;
             font: 400 14px/18px "proxima-nova-1", "proxima-nova-2";
             margin: 4px 122px 0 0;
-            text-shadow: 0 1px 1px #222; }
+            /*text-shadow: 0 1px 1px #222;*/ }
           #head-wrapper #homepage-top #workshop-list ul li a p.date {
             color: #e73a34;
             display: block;
@@ -306,10 +321,19 @@ body {
             text-transform: uppercase;
             top: 13px;
             width: 222px; }
+          #head-wrapper #homepage-top #workshop-list ul li a p.where {
+            color: #eee;
+            display: block;
+            font: 400 14px "proxima-nova-1", "proxima-nova-2";
+            left: -240px;
+            margin: 4px 0 0 0;
+            position: absolute;
+            text-align: right;
+            /*text-transform: uppercase;*/
+            bottom: 0;
+            width: 222px; }
           #head-wrapper #homepage-top #workshop-list ul li a:hover h3 {
             color: #e73a34; }
-          #head-wrapper #homepage-top #workshop-list ul li a:hover p.teaser {
-            color: #fff; }
 
 #class-photos {
   margin: -30px auto 0;
@@ -415,4 +439,10 @@ body {
 
 footer {
   border-top: 1px solid #ddd;
-  padding: 8px 0 0 0; }
+  padding: 8px 222px 0 0; }
+  footer p {
+    color: #666;
+    font: 400 14px "proxima-nova-1", "proxima-nova-2"; }
+    footer p a {
+      color: #333;
+      text-decoration: none; }

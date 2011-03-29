@@ -74,7 +74,7 @@ body {
               color: #aaa;
               font: 400 14px/18px $proxima-nova;
               margin: 4px 122px 0 0;
-              text-shadow: 0 1px 1px #222;
+              /*text-shadow: 0 1px 1px #222;*/
             }
 
             p.date {
@@ -90,13 +90,22 @@ body {
               width: 222px;
             }
 
+            p.where {
+              color: #eee;
+              display: block;
+              font: 400 14px $proxima-nova;
+              left: -240px;
+              margin: 4px 0 0 0;
+              position: absolute;
+              text-align: right;
+              /*text-transform: uppercase;*/
+              bottom: 0;
+              width: 222px;
+            }
+
             &:hover {
               h3 {
                 color: $red;
-              }
-
-              p.teaser {
-                color: #fff;
               }
             }
           }
@@ -253,5 +262,15 @@ body {
 
 footer {
   border-top: 1px solid #ddd;
-  padding: 8px 0 0 0;
+  padding: 8px 222px 0 0;
+
+  p {
+    color: #666;
+    font: 400 14px $proxima-nova;
+
+    a {
+      color: #333;
+      text-decoration: none;
+    }
+  }
 }
