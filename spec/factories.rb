@@ -23,8 +23,9 @@ Factory.define(:admin, :parent => :email_confirmed_user) do |user_factory|
 end
 
 Factory.define(:course) do |course_factory|
-  course_factory.name        "Test-Driven Prolog"
-  course_factory.description "Solve 8-Queens over and over again"
+  course_factory.name              "Test-Driven Prolog"
+  course_factory.description       "Solve 8-Queens over and over again"
+  course_factory.short_description "Solve 8-Queens"
   course_factory.price       "500"
   course_factory.start_at    '9:00'
   course_factory.stop_at     '17:00'
