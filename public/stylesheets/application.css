@@ -262,9 +262,10 @@ body.sections-show #additional-information {
     text-shadow: 0 -1px 1px #512b2b; }
 
 body.registrations #head-wrapper #homepage-top {
-  padding: 25px 0 0 0; }
+  padding: 25px 0 0px 0; }
   body.registrations #head-wrapper #homepage-top header {
-    margin: 0 0 24px 0; }
+    margin: 0 0 30px 0;
+    padding: 0 0 10px 0; }
     body.registrations #head-wrapper #homepage-top header h1 {
       background-size: 72px;
       color: #fff;
@@ -277,7 +278,7 @@ body.registrations #head-wrapper #homepage-top {
         color: #fff;
         text-decoration: none; }
 body.registrations h1.course-title {
-  font: 600 32px "proxima-nova-1", "proxima-nova-2";
+  font: 400 32px "proxima-nova-1", "proxima-nova-2";
   margin: 0 0 12px 0; }
 body.registrations #total p.price {
   display: inline-block;
@@ -288,6 +289,8 @@ body.registrations #total p.coupon-note {
   body.registrations #total p.coupon-note a {
     color: #e73a34;
     font: 700 16px "proxima-nova-1", "proxima-nova-2"; }
+body.registrations div.coupon {
+  margin: 12px 0; }
 body.registrations form {
   margin: 0 0 48px 0; }
   body.registrations form fieldset legend {
@@ -498,7 +501,7 @@ a {
       font: 400 14px/20px "proxima-nova-1", "proxima-nova-2";
       margin: 0 0 12px 0; }
       #more-information #why-love ul li strong {
-        color: #444;
+        color: #333;
         display: block;
         font-size: 16px;
         font-weight: 700; }
