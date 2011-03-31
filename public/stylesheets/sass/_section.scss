@@ -1,6 +1,5 @@
 body.sections-show {
   #head-wrapper {
-    border-bottom: 5px solid #777;
 
     #homepage-top {
       @extend .clearfix;
@@ -43,22 +42,22 @@ body.sections-show {
         }
 
         p {
-          color: #CDC5C2;
-          font: 300 16px/24px $proxima-nova;
+          color: #ddd;
+          font: 400 16px/24px $proxima-nova;
           text-shadow: 0 1px 0 #222;
         }
 
         q {
-          color: #fff;
+          color: #ddd;
           display: block;
-          font: 400 14px $proxima-nova;
+          font: 400 16px/24px $proxima-nova;
           line-height: 150%;
           left: -12px;
           margin: 24px 0 0 12px;
           position: relative;
 
           &:before {
-           color: #fff;
+           color: #ddd;
            content: "\201C";
            font: 300 40px $proxima-nova;
            left: -16px;
@@ -68,12 +67,12 @@ body.sections-show {
         }
 
         p.source {
-          color: #CDC5C2;
+          color: $red;
           font: 400 14px $proxima-nova;
           margin: 2px 0 18px 0px;
 
           a {
-            color: #CDC5C2;
+            color: $red;
             margin: 0 0 0 1px;
             text-decoration: none;
           }
@@ -237,23 +236,25 @@ body.sections-show {
 }
 
 #notify-me {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   color: #ddd;
+  margin: 20px 20px 20px 0;
   padding: 15px;
 
   label {
     display: block;
-    font: 400 14px $proxima-nova;
-    margin: 0 0 8px 0;
+    font: 400 16px $proxima-nova;
+    margin: 0 0 12px 0;
   }
 
   input[type="text"] {
     border: 0;
     border-radius: 2px;
+    font-size: 14px;
     margin: 0 0 8px 0;
-    padding: 8px 4px;
-    width: 268px;
+    padding: 10px 4px;
+    width: 570px;
   }
 
   input[type="submit"] {
@@ -271,9 +272,9 @@ body.sections-show {
     box-shadow: inset 0 1px 0 0 #ffabab;
     color: #fff;
     display: block;
-    font: 600 13px $proxima-nova;
+    font: 600 16px $proxima-nova;
     margin: 0;
-    padding: 4px 10px 4px;
+    padding: 8px 14px;
     text-decoration: none;
     text-align: center;
     text-shadow: 0 -1px 1px #512b2b;
