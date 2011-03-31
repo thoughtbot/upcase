@@ -18,7 +18,7 @@
             <li>
               <% link_to section_path(section), :id => dom_id(section) do %>
                 <h3><%=h section.course_name %></h3>
-                <p class="teaser">Android is catching on like wildfire. We teach the fundamentals of Android development.</p>
+                <p class="teaser"><%=h section.course.short_description %></p>
                 <p class="date"><%=h section.date_range %></p>
                 <p class="where">Boston, MA</p>
               <% end %>

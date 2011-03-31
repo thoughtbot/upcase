@@ -9,6 +9,7 @@ Feature: Adding a course
       | course name        |
       | course description |
       | course price       |
+      | short description  |
       | start time         |
       | end time           |
       | location           |
@@ -19,6 +20,7 @@ Feature: Adding a course
     And I follow the link to create a new course
     When I fill in the course name with "Test-Driven Haskell"
     And I fill in the course description with "Learn Haskell the thoughtbot way"
+    And I fill in the short description with "Learn Haskell the thoughtbot way"
     And I fill in the course price with "1900"
     And I fill in the start time with "09:00"
     And I fill in the end time with "17:00"
@@ -33,6 +35,7 @@ Feature: Adding a course
     And I follow the link to create a new course
     And I fill in the course name with "Test-Driven Haskell"
     And I fill in the course description with "Learn Haskell the thoughtbot way"
+    And I fill in the short description with "Learn Haskell the thoughtbot way"
     And I fill in the course price with "1900"
     And I fill in the start time with "09:00"
     And I fill in the end time with "17:00"
