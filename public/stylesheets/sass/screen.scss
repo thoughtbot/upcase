@@ -532,9 +532,10 @@ body {
           margin-bottom: 15px;
         }
         ul {
-          padding: 15px 40px 10px 50px;
+          padding: 10px 40px 10px 15px;
           li {
            list-style-type: square;
+           line-height: 150%;
            margin: 10px 0 0 0;
           }
         }
@@ -561,7 +562,7 @@ body {
         }
       }
       .main-content {
-        width: 460px;
+        width: 420px;
         float: left;
       }
       .sidebar {
