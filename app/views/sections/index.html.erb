@@ -1,4 +1,5 @@
 <% content_for :page_header do %>
+<section id="head-wrapper">
   <section id="homepage-top">
     <header>
       <h1>thoughtbot workshops</h1>
@@ -36,9 +37,9 @@
       <% end %>
     </section>
   </section>
+</section>
 <% end %>
 
-<% content_for :class_photos do %>
 <section id="class-photos">
   <ul>
     <li class="first"><%= image_tag("/images/public/class-photo-3.jpg", :alt => "thoughtbot training" )%></li>
@@ -46,7 +47,6 @@
     <li class="last"><%= image_tag("/images/public/class-photo-1.jpg", :alt => "thoughtbot training" )%></li>
   </ul>
 </section>
-<% end %>
 
 <section id="more-information">
   <section id="why-love">
