@@ -24,6 +24,8 @@
             <%= yield :nav %>
         <% end %>
 
+        <%= render 'shared/flashes' %>
+
         <%= yield :content_header %>
         <%= yield %>
 
