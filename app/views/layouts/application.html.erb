@@ -12,12 +12,7 @@
   </head>
 
   <body class="<%= body_class %>">
-
-    <section id="head-wrapper">
-        <%= yield :page_header  %>
-    </section>
-
-    <%= yield :class_photos  %>
+    <%= yield :page_header  %>
 
     <section id="container">
         <% if yield(:nav) -%>
