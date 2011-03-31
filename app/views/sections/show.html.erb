@@ -5,14 +5,20 @@
   </header>
 
   <section id="course-info">
+
     <h2><%= h(@section.course_name) %></h2>
+
+    <% if @section.full? %>
+    <section id="notify-me">
+      <% form_for [@section.course, @follow_up] do |form| %>
+        <%= form.label :email, "Want to be notified the next time we run this workshop?" %>
+        <%= form.text_field :email, :placeholder => "Enter your email address" %>
+        <input type="submit" value="Submit" />
+      <% end %>
+    </section>
+    <% end %>
+
     <section id="course-description"><%= textilize @section.course_description %></section>
-
-    <q>Cannot recommend [Design for Developers] more. It&rsquo;s amazing and I have a totally different outlook on design and web development.</q>
-    <p class="source">&mdash;<a href="#">Chuck Vose</a></p>
-
-    <q>Having taken a thoughtbot training class on my own dime I can say it&rsquo;s 110% worth it. If you can hook it up, do it.</q>
-    <p class="source">&mdash;<a href="http://joeloliveira.com/">Joel Oliveira</a></p>
   </section>
 
   <section id="workshop-details">
@@ -40,13 +46,6 @@
         <% link_to new_section_registration_path(@section), :id => 'register-button' do %>
           Register
         <% end %>
-      <% else %>
-        <section id="notify-me">
-          <% form_for [@section.course, @follow_up] do |form| %>
-            <%= form.label :email, "Want to be notified the next time we run this workshop?" %>
-            <%= form.text_field :email, :placeholder => "Enter your email address" %>
-            <input type="submit" value="Submit" />
-          <% end %>
         </section>
       <% end %>
     </section>
