@@ -9,6 +9,7 @@ Feature: Selecting a course and registering for it
     And I am signed in as an admin
     And I create the following course:
       | Course Name        | Test-Driven Haskell |
+      | Short description  | Short description   |
       | Course Description | It is great!        |
       | Price              | 10000000            |
       | Location Address   | 123 Main St.        |
@@ -22,7 +23,7 @@ Feature: Selecting a course and registering for it
     When I go to the home page
     And I follow the link to the Test-Driven Haskell course
     And I follow the link to register
-    Then I should see "You're registering for Test-Driven Haskell"
+    Then I should see "Complete your registration for Test-Driven Haskell"
     And I should see "$10000000"
     And I fill in the following:
       | First name            | Carlos             |
@@ -61,6 +62,7 @@ Feature: Selecting a course and registering for it
     And I am signed in as an admin
     And I create the following course:
       | Course Name        | Test-Driven Haskell |
+      | Short description  | Short description   |
       | Course Description | It is great!        |
       | Price              | 10000000            |
       | Location Address   | 123 Main St.        |
@@ -160,6 +162,7 @@ Feature: Selecting a course and registering for it
     And I am signed in as an admin
     And I create the following course:
       | Course Name        | Test-Driven Haskell |
+      | Short description  | Short description   |
       | Course Description | It is great!        |
       | Price              | 100                 |
       | Location Address   | 123 Main St.        |
@@ -173,7 +176,7 @@ Feature: Selecting a course and registering for it
     When I go to the home page
     And I follow the link to the Test-Driven Haskell course
     And I follow the link to register
-    Then I should see "You're registering for Test-Driven Haskell"
+    Then I should see "Complete your registration for Test-Driven Haskell"
     And I should see "$100"
     When I follow "Have a coupon code?"
     Then the coupon form should be visible
@@ -221,6 +224,7 @@ Feature: Selecting a course and registering for it
     And I am signed in as an admin
     And I create the following course:
       | Course Name        | Test-Driven Haskell |
+      | Short description  | Short description   |
       | Course Description | It is great!        |
       | Price              | 100                 |
       | Location Address   | 123 Main St.        |
@@ -234,7 +238,7 @@ Feature: Selecting a course and registering for it
     When I go to the home page
     And I follow the link to the Test-Driven Haskell course
     And I follow the link to register
-    Then I should see "You're registering for Test-Driven Haskell"
+    Then I should see "Complete your registration for Test-Driven Haskell"
     And I should see "$100"
     When I follow "Have a coupon code?"
     Then the coupon form should be visible
@@ -253,6 +257,7 @@ Feature: Selecting a course and registering for it
     And I am signed in as an admin
     And I create the following course:
       | Course Name        | Test-Driven Haskell |
+      | Short description  | Short description   |
       | Course Description | It is great!        |
       | Price              | 100                 |
       | Location Address   | 123 Main St.        |
@@ -266,7 +271,7 @@ Feature: Selecting a course and registering for it
     When I go to the home page
     And I follow the link to the Test-Driven Haskell course
     And I follow the link to register
-    Then I should see "You're registering for Test-Driven Haskell"
+    Then I should see "Complete your registration for Test-Driven Haskell"
     And I should see "$100"
     When I follow "Have a coupon code?"
     Then the coupon form should be visible

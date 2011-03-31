@@ -73,6 +73,8 @@ module NavigationHelpers
       'course_name'
     when 'course description'
       'course_description'
+    when 'short description'
+      'course_short_description'
     when 'course price'
       'course_price'
     when 'start time'
