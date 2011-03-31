@@ -7,13 +7,17 @@ body {
   font-family: $proxima-nova;
 }
 
+a {
+  color: $red;
+}
+
 #container {
   margin: 0 auto 100px;
   width: 978px;
 }
 
 #head-wrapper {
-  background: url("/images/public/chalkboard.jpg") center top no-repeat;
+  background: url("/images/public/chalkboard.jpg") center top;
 
   #homepage-top {
     background: url("/images/public/transparent-ralph.png") 678px bottom no-repeat;
@@ -206,7 +210,7 @@ body {
         margin: 0 0 12px 0;
 
         strong {
-          color: $red;
+          color: #444;
           display: block;
           font-size: 16px;
           font-weight: 700;
