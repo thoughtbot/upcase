@@ -600,9 +600,10 @@ body {
         box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
         margin-bottom: 15px; }
       #content .wrapper .dark-content #faq ul, #content .wrapper .dark-content #resources ul, #content .wrapper .dark-content #terms ul, #content .wrapper .dark-content #resources_faq ul {
-        padding: 15px 40px 10px 50px; }
+        padding: 10px 40px 10px 15px; }
         #content .wrapper .dark-content #faq ul li, #content .wrapper .dark-content #resources ul li, #content .wrapper .dark-content #terms ul li, #content .wrapper .dark-content #resources_faq ul li {
           list-style-type: square;
+          line-height: 150%;
           margin: 10px 0 0 0; }
       #content .wrapper .dark-content #faq dl dt, #content .wrapper .dark-content #resources dl dt, #content .wrapper .dark-content #terms dl dt, #content .wrapper .dark-content #resources_faq dl dt {
         font-weight: bold;
@@ -620,7 +621,7 @@ body {
         #content .wrapper .dark-content #faq dl dd:last-child, #content .wrapper .dark-content #resources dl dd:last-child, #content .wrapper .dark-content #terms dl dd:last-child, #content .wrapper .dark-content #resources_faq dl dd:last-child {
           padding: 0; }
       #content .wrapper .dark-content .main-content {
-        width: 460px;
+        width: 420px;
         float: left; }
       #content .wrapper .dark-content .sidebar {
         float: right;
