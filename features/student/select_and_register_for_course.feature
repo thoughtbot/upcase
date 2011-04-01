@@ -52,6 +52,7 @@ Feature: Selecting a course and registering for it
       | name     | unit_cost | quantity | description         |
       | Workshop | 10000000  | 1        | Test-Driven Haskell |
     Then I am redirected to the freshbooks invoice page for "carlos@santana.com" on "Test-Driven Haskell"
+    Then "workshops@thoughtbot.com" receives a registration notification email
 
   Scenario: Existing user registers for a section
     Given today is June 10, 2010
