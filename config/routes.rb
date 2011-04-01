@@ -27,6 +27,8 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   HighVoltage::Routes.draw(map)
+
+  map.resource :session, :controller => 'sessions'
   Clearance::Routes.draw(map)
 
   map.fairhaven '/fairhaven', :controller => "high_voltage/pages", :action => "show", :id => "fairhaven"
