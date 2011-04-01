@@ -5,6 +5,7 @@ class Registration < ActiveRecord::Base
   belongs_to :coupon
 
   after_create :store_freshbooks_invoice
+  after_create :send_notification_email
 
   validates_associated :user
 
@@ -21,6 +22,11 @@ class Registration < ActiveRecord::Base
   end
 
   private
+
+  def send_notification_email
+    Mailer.deliver_registration_notification(self)
+  end
+
   def freshbooks_client
     @freshbooks_client ||= FreshBooks::Client.new(FRESHBOOKS_PATH, FRESHBOOKS_TOKEN)
   end
