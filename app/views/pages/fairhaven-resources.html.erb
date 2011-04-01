@@ -77,12 +77,38 @@ git push heroku master
         <h4 class="reference"><%= t(".outline-day-two", :default => "Day Two") %></h4>
         <p>Day Two is focused on the performance of your production Rails app and scaling it as traffic and users increase.</p>
         <ul>
-          <li>When the cloud works and when it doesn't</li>
+          <li>Cloud</li>
           <li>Metrics and monitoring</li>
-          <li>Relational database strategies</li>
+          <li>Front end performance</li>
+          <li>SQL</li>
           <li>Background processes</li>
-          <li>HTTP caching</li>
-          <li>NoSQL options</li>
+          <li>Caching</li>
+          <li>Redis</li>
+          <li>em_proxy</li>
+          <li>Rack Middleware</li>
+        </ul>
+
+        <h3>Slides</h3>
+        <p>Download slides to study later:</p>
+        <ul>
+          <li><a href="https://thoughtbot_workshops.s3.amazonaws.com/slides/tdd_ruby_on_rails.zip">TDD</a></li>
+          <li><a href="https://thoughtbot_workshops.s3.amazonaws.com/slides/scaling_rails.zip">Scaling Rails</a></li>
+        </ul>
+        <p>You can either read the raw Markdown files or run the slides to view them in a browser. To run them, follow these instructions:</p>
+<pre><code>gem install showoff
+cd slide-folder
+showoff serve
+</code></pre>
+
+        <h3>Code</h3>
+        <p>Download code to study it later:</p>
+        <ul>
+          <li><a href="https://thoughtbot_workshops.s3.amazonaws.com/code/sinatra-json-api.zip">Sinatra JSON API</a></li>
+          <li><a href="https://github.com/thoughtbot/fistface/blob/master/lib/fistface.rb">Fist Face</a>: Sinatra API with Expires and Cache-Control headers.</li>
+          <li><a href="https://thoughtbot_workshops.s3.amazonaws.com/code/avatar.zip">Avatar</a>: Sinatra API with Cache-Control headers and DelayedJob background processes.</li>
+          <li><a href="https://github.com/defunkt/cijoe/blob/master/lib/cijoe/server.rb">CI Joe</a>: Sinatra app running Continuous Integration.</li>
+          <li><a href="https://github.com/rubygems/gemcutter/blob/master/app/middleware/hostess.rb">Rubygems' Hostess</a>: Sinatra API that gets hit when you <code>gem install</code>.</li>
+        </ul>
       </div>
     </div>
   </div>
