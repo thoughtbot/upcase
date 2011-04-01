@@ -26,11 +26,6 @@ Feature: Signing up
     And I fill in the student's password with "testing"
     And I fill in the student's password confirmation with "testing"
     And I press the button to set the new password
-    And I follow the link to sign out
-    And I follow the link to sign in
-    And I fill in the login email with "mjones@example.com"
-    And I fill in the login password with "testing"
-    And I press the button to sign in
     Then I see the successful sign in notice
 
   Scenario: Not entering valid user info
