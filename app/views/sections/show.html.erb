@@ -1,53 +1,55 @@
 <% content_for :page_header do %>
-<section id="homepage-top">
-  <header>
-    <h1><a href="/">thoughtbot workshops</a></h1>
-  </header>
+<section id="head-wrapper">
+  <section id="homepage-top">
+    <header>
+      <h1><a href="/">thoughtbot workshops</a></h1>
+    </header>
 
-  <section id="course-info">
+    <section id="course-info">
 
-    <h2><%= h(@section.course_name) %></h2>
+      <h2><%= h(@section.course_name) %></h2>
 
-    <% if @section.full? %>
-    <section id="notify-me">
-      <% form_for [@section.course, @follow_up] do |form| %>
-        <%= form.label :email, "Want to be notified the next time we run this workshop?" %>
-        <%= form.text_field :email, :placeholder => "Enter your email address" %>
-        <input type="submit" value="Submit" />
-      <% end %>
-    </section>
-    <% end %>
-
-    <section id="course-description"><%= textilize @section.course_description %></section>
-  </section>
-
-  <section id="workshop-details">
-    <h3>Cost</h3>
-    <% unless @section.full? %>
-      <p class="cost"><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></p>
-    <% else %>
-      <p class="cost">SOLD OUT</p>
-    <% end %>
-
-
-    <h3>When</h3>
-    <p><%= h(@section.date_range) %><br><%= h(@section.time_range) %></p>
-
-    <h3>Where</h3>
-    <p id="section-location">
-      <% google_map_link_to(@section.course_location, :id => 'location') do %>
-        <%= h(@section.course_location_name) %><br>
-        <%= h(@section.course_location) %>
-      <% end %>
-    </p>
-
-    <section id="register">
-      <% unless @section.full? %>
-        <% link_to new_section_registration_path(@section), :id => 'register-button' do %>
-          Register
+      <% if @section.full? %>
+      <section id="notify-me">
+        <% form_for [@section.course, @follow_up] do |form| %>
+          <%= form.label :email, "Want to be notified the next time we run this workshop?" %>
+          <%= form.text_field :email, :placeholder => "Enter your email address" %>
+          <input type="submit" value="Submit" />
         <% end %>
-        </section>
+      </section>
       <% end %>
+
+      <section id="course-description"><%= textilize @section.course_description %></section>
+    </section>
+
+    <section id="workshop-details">
+      <h3>Cost</h3>
+      <% unless @section.full? %>
+        <p class="cost"><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></p>
+      <% else %>
+        <p class="cost">SOLD OUT</p>
+      <% end %>
+
+
+      <h3>When</h3>
+      <p><%= h(@section.date_range) %><br><%= h(@section.time_range) %></p>
+
+      <h3>Where</h3>
+      <p id="section-location">
+        <% google_map_link_to(@section.course_location, :id => 'location') do %>
+          <%= h(@section.course_location_name) %><br>
+          <%= h(@section.course_location) %>
+        <% end %>
+      </p>
+
+      <section id="register">
+        <% unless @section.full? %>
+          <% link_to new_section_registration_path(@section), :id => 'register-button' do %>
+            Register
+          <% end %>
+          </section>
+        <% end %>
+      </section>
     </section>
   </section>
 </section>
