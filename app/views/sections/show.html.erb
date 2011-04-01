@@ -34,7 +34,7 @@
     <p><%= h(@section.date_range) %><br><%= h(@section.time_range) %></p>
 
     <h3>Where</h3>
-    <p>
+    <p id="section-location">
       <% google_map_link_to(@section.course_location, :id => 'location') do %>
         <%= h(@section.course_location_name) %><br>
         <%= h(@section.course_location) %>
