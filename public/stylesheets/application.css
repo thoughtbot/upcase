@@ -73,7 +73,7 @@ body.sections-show #head-wrapper #homepage-top {
       color: #fff;
       height: 60px;
       text-indent: 0;
-      font: 100 26px "proxima-nova-1", "proxima-nova-2";
+      font: 100 26px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
       padding: 23px 0 0 95px;
       width: 400px; }
       body.sections-show #head-wrapper #homepage-top header h1 a {
@@ -86,19 +86,19 @@ body.sections-show #head-wrapper #homepage-top {
     width: 630px; }
     body.sections-show #head-wrapper #homepage-top #course-info h2 {
       color: #fff;
-      font: 600 34px "proxima-nova-1", "proxima-nova-2";
+      font: 600 34px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
       margin: 0 0 8px 0;
       text-shadow: 0 1px 0 #222; }
     body.sections-show #head-wrapper #homepage-top #course-info #course-description {
       margin: 0 0 36px 0; }
     body.sections-show #head-wrapper #homepage-top #course-info p {
       color: #ddd;
-      font: 400 16px/24px "proxima-nova-1", "proxima-nova-2";
+      font: 400 16px/24px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
       text-shadow: 0 1px 0 #222; }
     body.sections-show #head-wrapper #homepage-top #course-info q {
       color: #ddd;
       display: block;
-      font: 400 16px/24px "proxima-nova-1", "proxima-nova-2";
+      font: 400 16px/24px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
       line-height: 150%;
       left: -12px;
       margin: 24px 0 0 12px;
@@ -106,13 +106,13 @@ body.sections-show #head-wrapper #homepage-top {
       body.sections-show #head-wrapper #homepage-top #course-info q:before {
         color: #ddd;
         content: "\201C";
-        font: 300 40px "proxima-nova-1", "proxima-nova-2";
+        font: 300 40px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
         left: -16px;
         position: absolute;
         top: -4px; }
     body.sections-show #head-wrapper #homepage-top #course-info p.source {
       color: #e73a34;
-      font: 400 14px "proxima-nova-1", "proxima-nova-2";
+      font: 400 14px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
       margin: 2px 0 18px 0px; }
       body.sections-show #head-wrapper #homepage-top #course-info p.source a {
         color: #e73a34;
@@ -159,12 +159,12 @@ body.sections-show #head-wrapper #homepage-top {
         box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #444; }
     body.sections-show #head-wrapper #homepage-top #workshop-details h3 {
       color: #e73a34;
-      font: 300 14px "proxima-nova-1", "proxima-nova-2";
+      font: 300 14px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
       margin: 20px 0 2px 0;
       text-transform: uppercase; }
     body.sections-show #head-wrapper #homepage-top #workshop-details p {
       color: #fff;
-      font: 300 16px/22px "proxima-nova-1", "proxima-nova-2"; }
+      font: 300 16px/22px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif; }
       body.sections-show #head-wrapper #homepage-top #workshop-details p.cost {
         font-size: 30px;
         font-weight: 400;
@@ -177,7 +177,7 @@ body.sections-show #additional-information {
   margin: 24px 0 24px 0; }
   body.sections-show #additional-information h4 {
     color: #222;
-    font: 600 20px "proxima-nova-1", "proxima-nova-2";
+    font: 600 20px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
     margin: 0 0 12px 0; }
   body.sections-show #additional-information #faq {
     float: left;
@@ -190,7 +190,7 @@ body.sections-show #additional-information {
       font-weight: 700; }
     body.sections-show #additional-information #faq dl dd {
       color: #333;
-      font: 400 14px/20px "proxima-nova-1", "proxima-nova-2";
+      font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
       margin: 0 0 12px 0; }
   body.sections-show #additional-information #sidebar {
     float: left;
@@ -202,23 +202,23 @@ body.sections-show #additional-information {
       margin: 24px 0px 10px 20px; }
     body.sections-show #additional-information #sidebar h5 {
       color: #e73a34;
-      font: 700 16px/20px "proxima-nova-1", "proxima-nova-2";
+      font: 700 16px/20px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
       margin: 0 0 2px 0; }
     body.sections-show #additional-information #sidebar p.bio {
-      font: 400 14px/20px "proxima-nova-1", "proxima-nova-2"; }
+      font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif; }
     body.sections-show #additional-information #sidebar #terms {
       border-top: 1px solid #ddd;
       margin: 12px 0 0 0;
       padding: 12px 0 0 0; }
       body.sections-show #additional-information #sidebar #terms h4.terms {
         color: #555;
-        font: 600 16px "proxima-nova-1", "proxima-nova-2"; }
+        font: 600 16px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif; }
       body.sections-show #additional-information #sidebar #terms ul {
         margin: 12px 0 0 0; }
       body.sections-show #additional-information #sidebar #terms li,
       body.sections-show #additional-information #sidebar #terms p {
         color: #666;
-        font: 400 14px/18px "proxima-nova-1", "proxima-nova-2";
+        font: 400 14px/18px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
         margin: 0 0 6px 0; }
 
 #notify-me {
@@ -229,7 +229,7 @@ body.sections-show #additional-information {
   padding: 15px; }
   #notify-me label {
     display: block;
-    font: 400 16px "proxima-nova-1", "proxima-nova-2";
+    font: 400 16px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
     margin: 0 0 12px 0; }
   #notify-me input[type="text"] {
     border: 0;
@@ -254,7 +254,7 @@ body.sections-show #additional-information {
     box-shadow: inset 0 1px 0 0 #ffabab;
     color: #fff;
     display: block;
-    font: 600 16px "proxima-nova-1", "proxima-nova-2";
+    font: 600 16px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
     margin: 0;
     padding: 8px 14px;
     text-decoration: none;
@@ -262,36 +262,39 @@ body.sections-show #additional-information {
     text-shadow: 0 -1px 1px #512b2b; }
 
 body.registrations #head-wrapper #homepage-top {
-  padding: 25px 0 0 0; }
+  padding: 25px 0 0px 0; }
   body.registrations #head-wrapper #homepage-top header {
-    margin: 0 0 24px 0; }
+    margin: 0 0 30px 0;
+    padding: 0 0 10px 0; }
     body.registrations #head-wrapper #homepage-top header h1 {
       background-size: 72px;
       color: #fff;
       height: 60px;
       text-indent: 0;
-      font: 100 26px "proxima-nova-1", "proxima-nova-2";
+      font: 100 26px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
       padding: 23px 0 0 95px;
       width: 400px; }
       body.registrations #head-wrapper #homepage-top header h1 a {
         color: #fff;
         text-decoration: none; }
 body.registrations h1.course-title {
-  font: 600 32px "proxima-nova-1", "proxima-nova-2";
+  font: 400 32px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
   margin: 0 0 12px 0; }
 body.registrations #total p.price {
   display: inline-block;
-  font: 400 24px "proxima-nova-1", "proxima-nova-2"; }
+  font: 400 24px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif; }
 body.registrations #total p.coupon-note {
   display: inline-block;
   margin: 0 0 0 8px; }
   body.registrations #total p.coupon-note a {
     color: #e73a34;
-    font: 700 16px "proxima-nova-1", "proxima-nova-2"; }
+    font: 700 16px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif; }
+body.registrations div.coupon {
+  margin: 12px 0; }
 body.registrations form {
   margin: 0 0 48px 0; }
   body.registrations form fieldset legend {
-    font: 600 18px "proxima-nova-1", "proxima-nova-2";
+    font: 600 18px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
     padding: 24px 0 12px 0; }
   body.registrations form fieldset ol li {
     margin: 0 0 8px 0;
@@ -313,7 +316,7 @@ body.registrations form {
       width: 123px; }
     body.registrations form fieldset ol li label {
       display: block;
-      font: 400 14px "proxima-nova-1", "proxima-nova-2"; }
+      font: 400 14px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif; }
     body.registrations form fieldset ol li input[type="text"],
     body.registrations form fieldset ol li input[type="password"] {
       padding: 6px 4px;
@@ -354,7 +357,7 @@ body.registrations form {
       box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #444; }
 
 body {
-  font-family: "proxima-nova-1", "proxima-nova-2"; }
+  font-family: "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif; }
 
 a {
   color: #e73a34; }
@@ -382,12 +385,12 @@ a {
       width: 726px; }
       #head-wrapper #homepage-top header #the-sell h2 {
         color: #fff;
-        font: 300 42px/42px "proxima-nova-1", "proxima-nova-2";
+        font: 300 42px/42px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
         letter-spacing: 1px;
         text-shadow: 0 0 1px #333; }
       #head-wrapper #homepage-top header #the-sell p.tagline {
         color: #ccc;
-        font: 500 18px/22px "proxima-nova-1", "proxima-nova-2";
+        font: 500 18px/22px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
         margin: 6px 0 0 0;
         text-shadow: 0 0 1px #333; }
     #head-wrapper #homepage-top #workshop-list {
@@ -400,17 +403,17 @@ a {
           text-decoration: none; }
           #head-wrapper #homepage-top #workshop-list ul li a h3 {
             color: #fff;
-            font: 600 36px/36px "proxima-nova-1", "proxima-nova-2";
+            font: 600 36px/36px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
             text-shadow: 0 1px 1px #222; }
           #head-wrapper #homepage-top #workshop-list ul li a p.teaser {
             color: #aaa;
-            font: 400 14px/18px "proxima-nova-1", "proxima-nova-2";
+            font: 400 14px/18px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
             margin: 4px 122px 0 0;
             /*text-shadow: 0 1px 1px #222;*/ }
           #head-wrapper #homepage-top #workshop-list ul li a p.date {
             color: #e73a34;
             display: block;
-            font: 400 14px "proxima-nova-1", "proxima-nova-2";
+            font: 400 14px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
             left: -240px;
             margin: 4px 0 0 0;
             position: absolute;
@@ -421,7 +424,7 @@ a {
           #head-wrapper #homepage-top #workshop-list ul li a p.where {
             color: #eee;
             display: block;
-            font: 400 14px "proxima-nova-1", "proxima-nova-2";
+            font: 400 14px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
             left: -240px;
             margin: 4px 0 0 0;
             position: absolute;
@@ -487,7 +490,7 @@ a {
   margin: 14px 0 0 0; }
   #more-information h4 {
     color: #222;
-    font: 600 20px "proxima-nova-1", "proxima-nova-2";
+    font: 600 20px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
     margin: 0 0 12px 0; }
   #more-information #why-love {
     float: left;
@@ -495,10 +498,10 @@ a {
     width: 474px; }
     #more-information #why-love ul li {
       color: #333;
-      font: 400 14px/20px "proxima-nova-1", "proxima-nova-2";
+      font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
       margin: 0 0 12px 0; }
       #more-information #why-love ul li strong {
-        color: #444;
+        color: #333;
         display: block;
         font-size: 16px;
         font-weight: 700; }
@@ -507,20 +510,20 @@ a {
     width: 474px; }
     #more-information #testimonials q {
       display: block;
-      font: 400 14px "proxima-nova-1", "proxima-nova-2";
+      font: 400 14px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
       line-height: 150%;
       margin: 0 0 0 18px;
       position: relative; }
       #more-information #testimonials q:before {
         color: #333;
         content: "\201C";
-        font: 300 40px "proxima-nova-1", "proxima-nova-2";
+        font: 300 40px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
         left: -16px;
         position: absolute;
         top: -4px; }
     #more-information #testimonials p.source {
       color: #e73a34;
-      font: 600 14px "proxima-nova-1", "proxima-nova-2";
+      font: 600 14px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif;
       margin: 2px 0 18px 6px; }
       #more-information #testimonials p.source a {
         color: #e73a34;
@@ -539,7 +542,7 @@ footer {
   padding: 8px 222px 0 0; }
   footer p {
     color: #666;
-    font: 400 14px "proxima-nova-1", "proxima-nova-2"; }
+    font: 400 14px "proxima-nova-1", "proxima-nova-2", helvetica neue, helvetica, arial, sans-serif; }
     footer p a {
       color: #333;
       text-decoration: none; }

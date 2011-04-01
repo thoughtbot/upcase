@@ -1,4 +1,5 @@
 <% content_for :page_header do %>
+<section id="head-wrapper">
   <section id="homepage-top">
     <header>
       <h1>thoughtbot workshops</h1>
@@ -36,9 +37,9 @@
       <% end %>
     </section>
   </section>
+</section>
 <% end %>
 
-<% content_for :class_photos do %>
 <section id="class-photos">
   <ul>
     <li class="first"><%= image_tag("/images/public/class-photo-3.jpg", :alt => "thoughtbot training" )%></li>
@@ -46,7 +47,6 @@
     <li class="last"><%= image_tag("/images/public/class-photo-1.jpg", :alt => "thoughtbot training" )%></li>
   </ul>
 </section>
-<% end %>
 
 <section id="more-information">
   <section id="why-love">
@@ -62,7 +62,7 @@
     <h4>What our students say</h4>
     <section id="column-1">
       <q>Cannot recommend [Design for Developers] more. It&rsquo;s amazing and I have a totally different outlook on design and web development.</q>
-      <p class="source">&mdash;<a href="#">Chuck Vose</a></p>
+      <p class="source">&mdash;<a href="http://chuckvose.com/">Chuck Vose</a></p>
 
       <q>Having taken a thoughtbot training class on my own dime I can say it&rsquo;s 110% worth it. If you can hook it up, do it.</q>
       <p class="source">&mdash;<a href="http://joeloliveira.com/">Joel Oliveira</a></p>
