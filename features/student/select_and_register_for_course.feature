@@ -51,11 +51,7 @@ Feature: Selecting a course and registering for it
     And the invoice for "carlos@santana.com" has the following line item:
       | name     | unit_cost | quantity | description         |
       | Workshop | 10000000  | 1        | Test-Driven Haskell |
-    And I am redirected to the freshbooks invoice page for "carlos@santana.com" on "Test-Driven Haskell"
-    When I go to the home page
-    Then I am signed in as:
-      | first name | last name | email              |
-      | Carlos     | Santana   | carlos@santana.com |
+    Then I am redirected to the freshbooks invoice page for "carlos@santana.com" on "Test-Driven Haskell"
 
   Scenario: Existing user registers for a section
     Given today is June 10, 2010
@@ -104,11 +100,7 @@ Feature: Selecting a course and registering for it
     And the invoice for "carlos@santana.com" has the following line item:
       | name     | unit_cost | quantity | description         |
       | Workshop | 10000000  | 1        | Test-Driven Haskell |
-    And I am redirected to the freshbooks invoice page for "carlos@santana.com" on "Test-Driven Haskell"
-    When I go to the home page
-    Then I am signed in as:
-      | first name | last name | email              |
-      | Carlos     | Santana   | carlos@santana.com |
+    Then I am redirected to the freshbooks invoice page for "carlos@santana.com" on "Test-Driven Haskell"
 
   Scenario: Registered user views course
     Given today is June 10, 2010
@@ -212,12 +204,8 @@ Feature: Selecting a course and registering for it
     And the invoice for "carlos@santana.com" has the following line item:
       | name     | unit_cost  | quantity | description         |
       | Workshop | 100        | 1        | Test-Driven Haskell |
-    And I am redirected to the freshbooks invoice page for "carlos@santana.com" on "Test-Driven Haskell"
-    When I go to the home page
-    Then I am signed in as:
-      | first name | last name | email              |
-      | Carlos     | Santana   | carlos@santana.com |
-
+    Then I am redirected to the freshbooks invoice page for "carlos@santana.com" on "Test-Driven Haskell"
+  
   @javascript
   Scenario: User registers with an invalid coupon
     Given today is June 10, 2010
