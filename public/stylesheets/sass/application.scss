@@ -4,7 +4,7 @@
 @import "registrations";
 
 body {
-  font-family: $proxima-nova;
+  font-family: $sans-serif;
 }
 
 a {
@@ -16,11 +16,16 @@ a {
   width: 978px;
 }
 
+body.sections-index {
+  #homepage-top {
+    background: url("/images/public/transparent-ralph.png") 638px bottom no-repeat;
+  }
+}
+
 #head-wrapper {
   background: url("/images/public/chalkboard.jpg") center top;
 
   #homepage-top {
-    background: url("/images/public/transparent-ralph.png") 678px bottom no-repeat;
     margin: 0 auto;
     padding: 50px 0 72px 0;
     width: 978px;
@@ -43,14 +48,14 @@ a {
 
         h2 {
           color: #fff;
-          font: 300 42px/42px $proxima-nova;
+          font: 300 42px/42px $sans-serif;
           letter-spacing: 1px;
           text-shadow: 0 0 1px #333;
         }
 
         p.tagline {
           color: #ccc;
-          font: 500 18px/22px $proxima-nova;
+          font: 300 18px/22px $sans-serif;
           margin: 6px 0 0 0;
           text-shadow: 0 0 1px #333;
         }
@@ -62,7 +67,8 @@ a {
 
       ul {
         li {
-          margin: 0 0 36px 0;
+          margin: 0 0 18px 0;
+          padding: 0 0 18px 0;
           position: relative;
 
           a {
@@ -71,40 +77,39 @@ a {
 
             h3 {
               color: #fff;
-              font: 600 36px/36px $proxima-nova;
+              font: 700 30px/32px $sans-serif;
               text-shadow: 0 1px 1px #222;
             }
 
             p.teaser {
               color: #aaa;
-              font: 400 14px/18px $proxima-nova;
+              font: 300 16px/18px $sans-serif;
               margin: 4px 122px 0 0;
-              /*text-shadow: 0 1px 1px #222;*/
             }
 
             p.date {
               color: $red;
               display: block;
-              font: 400 14px $proxima-nova;
+              font: 400 14px $sans-serif;
               left: -240px;
               margin: 4px 0 0 0;
               position: absolute;
               text-align: right;
               text-transform: uppercase;
-              top: 13px;
+              top: 9px;
               width: 222px;
             }
 
             p.where {
               color: #eee;
               display: block;
-              font: 400 14px $proxima-nova;
+              font: 400 14px $sans-serif;
               left: -240px;
               margin: 4px 0 0 0;
               position: absolute;
               text-align: right;
               /*text-transform: uppercase;*/
-              bottom: 0;
+              bottom: 17px;
               width: 222px;
             }
 
@@ -131,11 +136,8 @@ a {
   }
 
   ul {
-
     li {
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-      -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 60px rgba(0, 0, 0, 0.1) inset;
-      -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+      @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset);
       float: left;
       height: 205px;
       list-style-type: none;
@@ -144,7 +146,7 @@ a {
       position: relative;
 
       &.first {
-        margin: 0 30px 0 10px;
+        margin: 0 30px 0 0;
       }
 
       &.last {
@@ -152,7 +154,7 @@ a {
       }
 
       &:after {
-        z-index: -1;
+        @include box-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
         position: absolute;
         background: transparent;
         width: 70%;
@@ -163,12 +165,11 @@ a {
         transform: skew(15deg) rotate(6deg);
         -webkit-transform: skew(15deg) rotate(6deg);
         -moz-transform: skew(15deg) rotate(6deg);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-        -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-        -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        z-index: -1;
       }
 
       &:before {
+        @include box-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
         z-index: -2;
         position: absolute;
         background: transparent;
@@ -180,9 +181,6 @@ a {
         transform: skew(-15deg) rotate(-6deg);
         -webkit-transform: skew(-15deg) rotate(-6deg);
         -moz-transform: skew(-15deg) rotate(-6deg);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-        -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-        -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
       }
     }
   }
@@ -194,7 +192,7 @@ a {
 
   h4 {
     color: #222;
-    font: 600 20px $proxima-nova;
+    font: 500 20px $sans-serif;
     margin: 0 0 12px 0;
   }
 
@@ -206,14 +204,14 @@ a {
     ul {
       li {
         color: #333;
-        font: 400 14px/20px $proxima-nova;
+        font: 400 14px/20px $sans-serif;
         margin: 0 0 12px 0;
 
         strong {
           color: #333;
           display: block;
           font-size: 16px;
-          font-weight: 700;
+          font-weight: 600;
         }
       }
     }
@@ -225,7 +223,7 @@ a {
 
     q {
       display: block;
-      font: 400 14px $proxima-nova;
+      font: 400 14px $sans-serif;
       line-height: 150%;
       margin: 0 0 0 18px;
       position: relative;
@@ -233,7 +231,7 @@ a {
       &:before {
        color: #333;
        content: "\201C";
-       font: 300 40px $proxima-nova;
+       font: 400 40px $sans-serif;
        left: -16px;
        position: absolute;
        top: -4px;
@@ -242,7 +240,7 @@ a {
 
     p.source {
       color: $red;
-      font: 600 14px $proxima-nova;
+      font: 600 14px $sans-serif;
       margin: 2px 0 18px 6px;
 
       a {
@@ -271,7 +269,7 @@ footer {
 
   p {
     color: #666;
-    font: 400 14px $proxima-nova;
+    font: 400 14px $sans-serif;
 
     a {
       color: #333;

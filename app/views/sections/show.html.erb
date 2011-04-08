@@ -27,7 +27,8 @@
       <% unless @section.full? %>
         <p class="cost"><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></p>
       <% else %>
-        <p class="cost">SOLD OUT</p>
+        <p class="cost sold-out"><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></p>
+        <p class="notice">Sold Out</p>
       <% end %>
 
 

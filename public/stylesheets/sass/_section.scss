@@ -13,7 +13,7 @@ body.sections-show {
           color: #fff;
           height: 60px;
           text-indent: 0;
-          font: 100 26px $proxima-nova;
+          font: 100 26px $sans-serif;
           padding: 23px 0 0 95px;
           width: 400px;
 
@@ -32,7 +32,7 @@ body.sections-show {
 
         h2 {
           color: #fff;
-          font: 600 34px $proxima-nova;
+          font: 700 30px/32px $sans-serif;
           margin: 0 0 8px 0;
           text-shadow: 0 1px 0 #222;
         }
@@ -42,15 +42,15 @@ body.sections-show {
         }
 
         p {
-          color: #ddd;
-          font: 400 16px/24px $proxima-nova;
+          color: #eee;
+          font: 300 16px/24px $sans-serif;
           text-shadow: 0 1px 0 #222;
         }
 
         q {
           color: #ddd;
           display: block;
-          font: 400 16px/24px $proxima-nova;
+          font: 300 16px/24px $sans-serif;
           line-height: 150%;
           left: -12px;
           margin: 24px 0 0 12px;
@@ -59,7 +59,7 @@ body.sections-show {
           &:before {
            color: #ddd;
            content: "\201C";
-           font: 300 40px $proxima-nova;
+           font: 300 40px $sans-serif;
            left: -16px;
            position: absolute;
            top: -4px;
@@ -68,7 +68,7 @@ body.sections-show {
 
         p.source {
           color: $red;
-          font: 400 14px $proxima-nova;
+          font: 400 14px $sans-serif;
           margin: 2px 0 18px 0px;
 
           a {
@@ -130,19 +130,31 @@ body.sections-show {
 
         h3 {
           color: $red;
-          font: 300 14px $proxima-nova;
+          font: 300 14px $sans-serif;
           margin: 20px 0 2px 0;
           text-transform: uppercase;
         }
 
         p {
           color: #fff;
-          font: 300 16px/22px $proxima-nova;
+          font: 300 16px/22px $sans-serif;
 
           &.cost {
             font-size: 30px;
             font-weight: 400;
             margin: 8px 0 32px 0;
+          }
+
+          &.cost.sold-out {
+            text-decoration: line-through;
+            margin-bottom: 4px;
+          }
+
+          &.notice {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
           }
         }
 
@@ -161,7 +173,7 @@ body.sections-show {
 
     h4 {
       color: #222;
-      font: 600 20px $proxima-nova;
+      font: 600 20px $sans-serif;
       margin: 0 0 12px 0;
     }
 
@@ -180,7 +192,7 @@ body.sections-show {
 
         dd {
           color: #333;
-          font: 400 14px/20px $proxima-nova;
+          font: 400 14px/20px $sans-serif;
           margin: 0 0 12px 0;
         }
       }
@@ -202,12 +214,12 @@ body.sections-show {
 
       h5 {
         color: $red;
-        font: 700 16px/20px $proxima-nova;
+        font: 700 16px/20px $sans-serif;
         margin: 0 0 2px 0;
       }
 
       p.bio {
-        font: 400 14px/20px $proxima-nova;
+        font: 400 14px/20px $sans-serif;
       }
 
       #terms {
@@ -217,7 +229,7 @@ body.sections-show {
 
         h4.terms {
           color: #555;
-          font: 600 16px $proxima-nova;
+          font: 600 16px $sans-serif;
         }
 
         ul {
@@ -227,7 +239,7 @@ body.sections-show {
         li,
         p {
           color: #666;
-          font: 400 14px/18px $proxima-nova;
+          font: 400 14px/18px $sans-serif;
           margin: 0 0 6px 0;
         }
       }
@@ -240,11 +252,11 @@ body.sections-show {
   border-radius: 5px;
   color: #ddd;
   margin: 20px 20px 20px 0;
-  padding: 15px;
+  padding: 20px;
 
   label {
     display: block;
-    font: 400 16px $proxima-nova;
+    font: 400 16px $sans-serif;
     margin: 0 0 12px 0;
   }
 
@@ -254,7 +266,7 @@ body.sections-show {
     font-size: 14px;
     margin: 0 0 8px 0;
     padding: 10px 4px;
-    width: 570px;
+    width: 550px;
   }
 
   input[type="submit"] {
@@ -272,7 +284,7 @@ body.sections-show {
     box-shadow: inset 0 1px 0 0 #ffabab;
     color: #fff;
     display: block;
-    font: 600 16px $proxima-nova;
+    font: 600 16px $sans-serif;
     margin: 0;
     padding: 8px 14px;
     text-decoration: none;
