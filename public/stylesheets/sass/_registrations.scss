@@ -13,7 +13,7 @@ body.registrations {
           color: #fff;
           height: 60px;
           text-indent: 0;
-          font: 100 26px $proxima-nova;
+          font: 100 26px $sans-serif;
           padding: 23px 0 0 95px;
           width: 400px;
 
@@ -27,14 +27,14 @@ body.registrations {
   }
 
   h1.course-title {
-    font: 400 32px $proxima-nova;
+    font: 400 32px $sans-serif;
     margin: 0 0 12px 0;
   }
 
   #total {
     p.price {
       display: inline-block;
-      font: 400 24px $proxima-nova;
+      font: 400 24px $sans-serif;
     }
 
     p.coupon-note {
@@ -43,7 +43,7 @@ body.registrations {
 
       a {
         color: $red;
-        font: 700 16px $proxima-nova;
+        font: 700 16px $sans-serif;
       }
     }
   }
@@ -57,7 +57,7 @@ body.registrations {
 
     fieldset {
       legend {
-        font: 600 18px $proxima-nova;
+        font: 600 18px $sans-serif;
         padding: 24px 0 12px 0;
       }
 
@@ -93,7 +93,7 @@ body.registrations {
 
           label {
             display: block;
-            font: 400 14px $proxima-nova;
+            font: 400 14px $sans-serif;
           }
 
           input[type="text"],
