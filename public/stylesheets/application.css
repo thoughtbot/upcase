@@ -269,6 +269,11 @@ body.sections-show #additional-information {
     text-align: center;
     text-shadow: 0 -1px 1px #512b2b; }
 
+#flash #flash_failure {
+  background: #f8bcba;
+  margin: 0 0 15px 0;
+  padding: 15px; }
+
 body.registrations #head-wrapper #homepage-top {
   padding: 25px 0 0px 0; }
   body.registrations #head-wrapper #homepage-top header {
@@ -322,6 +327,10 @@ body.registrations form {
     body.registrations form fieldset ol li#user_zip_code_input {
       float: left;
       width: 123px; }
+    body.registrations form fieldset ol li.error p.inline-errors {
+      color: #e73a34; }
+    body.registrations form fieldset ol li.error input {
+      background: #f8bcba; }
     body.registrations form fieldset ol li label {
       display: block;
       font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
