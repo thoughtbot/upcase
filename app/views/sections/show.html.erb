@@ -55,15 +55,7 @@
 <% end %>
 
 <section id="additional-information">
-  <section id="faq">
-    <h4>Frequently asked questions</h3>
-    <dl>
-      <% @section.course.questions.each do |question| %>
-        <dt><%= textilize question.question %></dt>
-        <dd><%= textilize question.answer %></dd>
-      <% end %>
-    </dl>
-  </section>
+  <%= render :partial => 'courses/questions', :locals => { :course => @section.course }  %>
 
   <section id="sidebar">
     <h4>Who's teaching the workshop</h3>
