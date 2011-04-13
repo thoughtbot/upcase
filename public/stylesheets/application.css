@@ -353,22 +353,42 @@ body.courses-show #additional-information {
     color: #222;
     font: 600 20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
     margin: 0 0 12px 0; }
-  body.sections-show #additional-information #faq,
-  body.courses-show #additional-information #faq {
+  body.sections-show #additional-information #main-content,
+  body.courses-show #additional-information #main-content {
     float: left;
     margin: 0 30px 0 0;
     width: 638px; }
-    body.sections-show #additional-information #faq dl dt,
-    body.courses-show #additional-information #faq dl dt {
-      color: #e73a34;
-      display: block;
-      font-size: 16px;
-      font-weight: 700; }
-    body.sections-show #additional-information #faq dl dd,
-    body.courses-show #additional-information #faq dl dd {
-      color: #333;
-      font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      margin: 0 0 12px 0; }
+  body.sections-show #additional-information #faq dl dt,
+  body.courses-show #additional-information #faq dl dt {
+    color: #e73a34;
+    display: block;
+    font-size: 16px;
+    font-weight: 700; }
+  body.sections-show #additional-information #faq dl dd,
+  body.courses-show #additional-information #faq dl dd {
+    color: #333;
+    font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+    margin: 0 0 12px 0; }
+  body.sections-show #additional-information #terms,
+  body.courses-show #additional-information #terms {
+    border-top: 1px solid #ddd;
+    float: left;
+    margin-top: 12px;
+    padding-top: 12px; }
+    body.sections-show #additional-information #terms h4.terms,
+    body.courses-show #additional-information #terms h4.terms {
+      color: #555;
+      font: 600 16px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
+    body.sections-show #additional-information #terms ul,
+    body.courses-show #additional-information #terms ul {
+      margin: 12px 0 0 0; }
+    body.sections-show #additional-information #terms li,
+    body.sections-show #additional-information #terms p,
+    body.courses-show #additional-information #terms li,
+    body.courses-show #additional-information #terms p {
+      color: #666;
+      font: 400 14px/18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      margin: 0 0 6px 0; }
   body.sections-show #additional-information #sidebar,
   body.courses-show #additional-information #sidebar {
     float: right;
@@ -388,25 +408,6 @@ body.courses-show #additional-information {
     body.sections-show #additional-information #sidebar p.bio,
     body.courses-show #additional-information #sidebar p.bio {
       font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
-    body.sections-show #additional-information #sidebar #terms,
-    body.courses-show #additional-information #sidebar #terms {
-      border-top: 1px solid #ddd;
-      margin: 12px 0 0 0;
-      padding: 12px 0 0 0; }
-      body.sections-show #additional-information #sidebar #terms h4.terms,
-      body.courses-show #additional-information #sidebar #terms h4.terms {
-        color: #555;
-        font: 600 16px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
-      body.sections-show #additional-information #sidebar #terms ul,
-      body.courses-show #additional-information #sidebar #terms ul {
-        margin: 12px 0 0 0; }
-      body.sections-show #additional-information #sidebar #terms li,
-      body.sections-show #additional-information #sidebar #terms p,
-      body.courses-show #additional-information #sidebar #terms li,
-      body.courses-show #additional-information #sidebar #terms p {
-        color: #666;
-        font: 400 14px/18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-        margin: 0 0 6px 0; }
 
 #notify-me {
   background: rgba(0, 0, 0, 0.2);
