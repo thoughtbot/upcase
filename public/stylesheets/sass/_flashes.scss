@@ -1,0 +1,140 @@
+div#flash {
+  font-size: 15px;
+  max-height: 50px;
+  position: absolute;
+  top: 0px;
+  width: 978px;
+  z-index: 100;
+
+  p,
+  div#flash_close,
+  div#flash_icon,
+  div#flash-vrule {
+    display: inline-block;
+    *display: inline;
+    vertical-align: top;
+    zoom: 1;
+  }
+
+  div.flash_message {
+    background: #3c3c3c;
+    background: -webkit-gradient(linear, left top, left bottom, from(#595959), to(#3c3c3c));
+    background: -moz-linear-gradient(top, #595959, #3c3c3c);
+    border: 1px solid #353535;
+    border-top: 0;
+    @include border-radius (0 0 8px 8px);
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    @include box-shadow (inset #727272 0px -1px 0px 0px);
+    height: 50px;
+    margin: -50px 0 0; /*****/
+    padding: 12px 15px;
+    overflow: hidden;
+
+    p {
+      color: #FFF;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      font-weight: bold;
+      margin: 2px 0px;
+      position: relative;
+      text-shadow: #161616 1px 1px 1px;
+    }
+  }
+
+  div#flash_close {
+    background: #434343;
+    border: 1px solid #353535;
+    @include border-radius (20px);
+    cursor: pointer;
+    float: right;
+    height: 20px;
+    text-align: center;
+    -webkit-transition: all 0.15s ease-out;
+    -moz-transition: all 0.15s ease-out;
+    -o-transition: all 0.15s ease-out;
+    transition: all 0.15s ease-out;
+    width: 20px;
+
+    &:hover {
+      -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+  }
+
+  span.close {
+    color: #CCC;
+    display: block;
+    font-family: Helvetica, 'lucida grande', Tahoma, Arial, sans-serif; /* font-stack should degrade somewhat gracefully for X button */
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1em;
+    text-align: center;
+  }
+
+  div#flash_icon {
+    background: #303030;
+    bottom: 4px;
+    -moz-border-radius: 30px;
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+    @include box-shadow (inset #000 0px 1px 0px 0px, #727272 0px 1px 0px 0px);
+    height: 30px;
+    margin-right: 12px;
+    position: relative;
+    width: 30px;
+
+    div#icon_status {
+      height: 20px;
+      margin: 5px auto 0;
+      @include border-radius (20px);
+      width: 20px;
+
+      div#gloss {
+        background: transparent;
+        background: rgba(255, 255, 255, 0);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$first', endColorstr='$second');
+        background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.7)), to(rgba(255, 255, 255, 0)));
+        background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+        height: 16px;
+        margin: 0 auto;
+        position: relative;
+        @include border-radius (16px);
+        top: 1px;
+        width: 16px;
+      }
+
+      &.icon_success {
+        background: #009900;
+      }
+
+      &.icon_failure {
+        background: red;
+      }
+
+      &.icon_notice {
+        background: #F3BC00;
+
+        div#gloss {
+          background: rgba(255, 255, 255, 0);
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$first', endColorstr='$second');
+          background: -webkit-gradient(linear, left top, left bottom, from(white), to(rgba(255, 255, 255, 0)));
+          background: -moz-linear-gradient(top, white, rgba(255, 255, 255, 0));
+        }
+      }
+    }
+  }
+
+  div#flash-vrule {
+    background: #353535;
+    border-left: 1px solid #727272;
+    bottom: 12px;
+    height: 48px;
+    margin-right: 12px;
+    position: relative;
+    width: 1px;
+  }
+}
