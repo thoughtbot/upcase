@@ -1,4 +1,5 @@
-body.sections-show {
+body.sections-show,
+body.courses-show {
   #head-wrapper {
 
     #homepage-top {
@@ -249,7 +250,7 @@ body.sections-show {
 
 #notify-me {
   background: rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
+  @include border-radius (5px);
   color: #ddd;
   margin: 20px 20px 20px 0;
   padding: 20px;

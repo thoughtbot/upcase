@@ -49,7 +49,10 @@ table {
 
 /* Clear Floated Elements
 ------------------------------------------------------------------------------*/
-.clearfix:after, body.sections-show #head-wrapper #homepage-top:after, body.sections-show #additional-information:after, body.sections-show #additional-information #sidebar li:after, body.registrations #head-wrapper #homepage-top:after, #head-wrapper #homepage-top header:after, #class-photos:after, #more-information:after {
+.clearfix:after, body.sections-show #head-wrapper #homepage-top:after,
+body.courses-show #head-wrapper #homepage-top:after, body.sections-show #additional-information:after,
+body.courses-show #additional-information:after, body.sections-show #additional-information #sidebar li:after,
+body.courses-show #additional-information #sidebar li:after, body.registrations #head-wrapper #homepage-top:after, #head-wrapper #homepage-top header:after, #class-photos:after, #more-information:after {
   clear: both;
   content: ' ';
   display: block;
@@ -64,11 +67,14 @@ table {
 ---------------------------------------- */
 /* this hack is courtesy of gbbowers on github
    https://gist.github.com/601810 */
-body.sections-show #head-wrapper #homepage-top {
+body.sections-show #head-wrapper #homepage-top,
+body.courses-show #head-wrapper #homepage-top {
   padding: 25px 0 0 0; }
-  body.sections-show #head-wrapper #homepage-top header {
+  body.sections-show #head-wrapper #homepage-top header,
+  body.courses-show #head-wrapper #homepage-top header {
     margin: 0 0 24px 0; }
-    body.sections-show #head-wrapper #homepage-top header h1 {
+    body.sections-show #head-wrapper #homepage-top header h1,
+    body.courses-show #head-wrapper #homepage-top header h1 {
       background-size: 72px;
       color: #fff;
       height: 60px;
@@ -76,26 +82,32 @@ body.sections-show #head-wrapper #homepage-top {
       font: 100 26px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       padding: 23px 0 0 95px;
       width: 400px; }
-      body.sections-show #head-wrapper #homepage-top header h1 a {
+      body.sections-show #head-wrapper #homepage-top header h1 a,
+      body.courses-show #head-wrapper #homepage-top header h1 a {
         color: #fff;
         text-decoration: none; }
-  body.sections-show #head-wrapper #homepage-top #course-info {
+  body.sections-show #head-wrapper #homepage-top #course-info,
+  body.courses-show #head-wrapper #homepage-top #course-info {
     float: left;
     margin: 0 30px 0 0;
     padding: 32px 0 32px 8px;
     width: 630px; }
-    body.sections-show #head-wrapper #homepage-top #course-info h2 {
+    body.sections-show #head-wrapper #homepage-top #course-info h2,
+    body.courses-show #head-wrapper #homepage-top #course-info h2 {
       color: #fff;
       font: 700 30px/32px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 0 0 8px 0;
       text-shadow: 0 1px 0 #222; }
-    body.sections-show #head-wrapper #homepage-top #course-info #course-description {
+    body.sections-show #head-wrapper #homepage-top #course-info #course-description,
+    body.courses-show #head-wrapper #homepage-top #course-info #course-description {
       margin: 0 0 36px 0; }
-    body.sections-show #head-wrapper #homepage-top #course-info p {
+    body.sections-show #head-wrapper #homepage-top #course-info p,
+    body.courses-show #head-wrapper #homepage-top #course-info p {
       color: #eee;
       font: 300 16px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       text-shadow: 0 1px 0 #222; }
-    body.sections-show #head-wrapper #homepage-top #course-info q {
+    body.sections-show #head-wrapper #homepage-top #course-info q,
+    body.courses-show #head-wrapper #homepage-top #course-info q {
       color: #ddd;
       display: block;
       font: 300 16px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
@@ -103,29 +115,35 @@ body.sections-show #head-wrapper #homepage-top {
       left: -12px;
       margin: 24px 0 0 12px;
       position: relative; }
-      body.sections-show #head-wrapper #homepage-top #course-info q:before {
+      body.sections-show #head-wrapper #homepage-top #course-info q:before,
+      body.courses-show #head-wrapper #homepage-top #course-info q:before {
         color: #ddd;
         content: "\201C";
         font: 300 40px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
         left: -16px;
         position: absolute;
         top: -4px; }
-    body.sections-show #head-wrapper #homepage-top #course-info p.source {
+    body.sections-show #head-wrapper #homepage-top #course-info p.source,
+    body.courses-show #head-wrapper #homepage-top #course-info p.source {
       color: #e73a34;
       font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 2px 0 18px 0px; }
-      body.sections-show #head-wrapper #homepage-top #course-info p.source a {
+      body.sections-show #head-wrapper #homepage-top #course-info p.source a,
+      body.courses-show #head-wrapper #homepage-top #course-info p.source a {
         color: #e73a34;
         margin: 0 0 0 1px;
         text-decoration: none; }
-  body.sections-show #head-wrapper #homepage-top #workshop-details {
+  body.sections-show #head-wrapper #homepage-top #workshop-details,
+  body.courses-show #head-wrapper #homepage-top #workshop-details {
     float: left;
     margin: 20px 0 0 0;
     width: 306px; }
-    body.sections-show #head-wrapper #homepage-top #workshop-details #register {
+    body.sections-show #head-wrapper #homepage-top #workshop-details #register,
+    body.courses-show #head-wrapper #homepage-top #workshop-details #register {
       padding: 32px 0 68px 0;
       /* red button */ }
-      body.sections-show #head-wrapper #homepage-top #workshop-details #register a {
+      body.sections-show #head-wrapper #homepage-top #workshop-details #register a,
+      body.courses-show #head-wrapper #homepage-top #workshop-details #register a {
         background: #c22323;
         background: -moz-linear-gradient(top, #f28080 0%, #d14545 50%, #c22323 50%, #c42b2b 100%);
         background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #f28080), color-stop(0.5, #d14545), color-stop(0.5, #c22323), color-stop(1, #c42b2b));
@@ -147,90 +165,115 @@ body.sections-show #head-wrapper #homepage-top {
         text-align: center;
         text-shadow: 0 -1px 1px #320000;
         width: 222px; }
-      body.sections-show #head-wrapper #homepage-top #workshop-details #register a:hover {
+      body.sections-show #head-wrapper #homepage-top #workshop-details #register a:hover,
+      body.courses-show #head-wrapper #homepage-top #workshop-details #register a:hover {
         background: #b02020;
         background: -moz-linear-gradient(top, #e07777 0%, #bf3f3f 50%, #b02020 50%, #b32727 100%);
         background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #e07777), color-stop(0.5, #bf3f3f), color-stop(0.5, #b02020), color-stop(1, #b32727));
         cursor: pointer; }
-      body.sections-show #head-wrapper #homepage-top #workshop-details #register a:active {
+      body.sections-show #head-wrapper #homepage-top #workshop-details #register a:active,
+      body.courses-show #head-wrapper #homepage-top #workshop-details #register a:active {
         cursor: pointer;
         -moz-box-shadow: inset 0 0 20px 0 #781a1a, 0 1px 0 #fff;
         -webkit-box-shadow: inset 0 0 20px 0 #781a1a, 0 1px 0 #fff;
         box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #444; }
-    body.sections-show #head-wrapper #homepage-top #workshop-details h3 {
+    body.sections-show #head-wrapper #homepage-top #workshop-details h3,
+    body.courses-show #head-wrapper #homepage-top #workshop-details h3 {
       color: #e73a34;
       font: 300 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 20px 0 2px 0;
       text-transform: uppercase; }
-    body.sections-show #head-wrapper #homepage-top #workshop-details p {
+    body.sections-show #head-wrapper #homepage-top #workshop-details p,
+    body.courses-show #head-wrapper #homepage-top #workshop-details p {
       color: #fff;
       font: 300 16px/22px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
-      body.sections-show #head-wrapper #homepage-top #workshop-details p.cost {
+      body.sections-show #head-wrapper #homepage-top #workshop-details p.cost,
+      body.courses-show #head-wrapper #homepage-top #workshop-details p.cost {
         font-size: 30px;
         font-weight: 400;
         margin: 8px 0 32px 0; }
-      body.sections-show #head-wrapper #homepage-top #workshop-details p.cost.sold-out {
+      body.sections-show #head-wrapper #homepage-top #workshop-details p.cost.sold-out,
+      body.courses-show #head-wrapper #homepage-top #workshop-details p.cost.sold-out {
         text-decoration: line-through;
         margin-bottom: 4px; }
-      body.sections-show #head-wrapper #homepage-top #workshop-details p.notice {
+      body.sections-show #head-wrapper #homepage-top #workshop-details p.notice,
+      body.courses-show #head-wrapper #homepage-top #workshop-details p.notice {
         color: #fff;
         font-size: 14px;
         font-weight: 600;
         text-transform: uppercase; }
-    body.sections-show #head-wrapper #homepage-top #workshop-details a {
+    body.sections-show #head-wrapper #homepage-top #workshop-details a,
+    body.courses-show #head-wrapper #homepage-top #workshop-details a {
       border-bottom: 1px solid #e73a34;
       color: #fff;
       text-decoration: none; }
-body.sections-show #additional-information {
+body.sections-show #additional-information,
+body.courses-show #additional-information {
   margin: 24px 0 24px 0; }
-  body.sections-show #additional-information h4 {
+  body.sections-show #additional-information h4,
+  body.courses-show #additional-information h4 {
     color: #222;
     font: 600 20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
     margin: 0 0 12px 0; }
-  body.sections-show #additional-information #faq {
+  body.sections-show #additional-information #faq,
+  body.courses-show #additional-information #faq {
     float: left;
     margin: 0 30px 0 0;
     width: 638px; }
-    body.sections-show #additional-information #faq dl dt {
+    body.sections-show #additional-information #faq dl dt,
+    body.courses-show #additional-information #faq dl dt {
       color: #e73a34;
       display: block;
       font-size: 16px;
       font-weight: 700; }
-    body.sections-show #additional-information #faq dl dd {
+    body.sections-show #additional-information #faq dl dd,
+    body.courses-show #additional-information #faq dl dd {
       color: #333;
       font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 0 0 12px 0; }
-  body.sections-show #additional-information #sidebar {
+  body.sections-show #additional-information #sidebar,
+  body.courses-show #additional-information #sidebar {
     float: left;
     width: 306px; }
-    body.sections-show #additional-information #sidebar li {
+    body.sections-show #additional-information #sidebar li,
+    body.courses-show #additional-information #sidebar li {
       margin: 0 0 18px 0; }
-    body.sections-show #additional-information #sidebar img {
+    body.sections-show #additional-information #sidebar img,
+    body.courses-show #additional-information #sidebar img {
       float: right;
       margin: 24px 0px 10px 20px; }
-    body.sections-show #additional-information #sidebar h5 {
+    body.sections-show #additional-information #sidebar h5,
+    body.courses-show #additional-information #sidebar h5 {
       color: #e73a34;
       font: 700 16px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 0 0 2px 0; }
-    body.sections-show #additional-information #sidebar p.bio {
+    body.sections-show #additional-information #sidebar p.bio,
+    body.courses-show #additional-information #sidebar p.bio {
       font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
-    body.sections-show #additional-information #sidebar #terms {
+    body.sections-show #additional-information #sidebar #terms,
+    body.courses-show #additional-information #sidebar #terms {
       border-top: 1px solid #ddd;
       margin: 12px 0 0 0;
       padding: 12px 0 0 0; }
-      body.sections-show #additional-information #sidebar #terms h4.terms {
+      body.sections-show #additional-information #sidebar #terms h4.terms,
+      body.courses-show #additional-information #sidebar #terms h4.terms {
         color: #555;
         font: 600 16px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
-      body.sections-show #additional-information #sidebar #terms ul {
+      body.sections-show #additional-information #sidebar #terms ul,
+      body.courses-show #additional-information #sidebar #terms ul {
         margin: 12px 0 0 0; }
       body.sections-show #additional-information #sidebar #terms li,
-      body.sections-show #additional-information #sidebar #terms p {
+      body.sections-show #additional-information #sidebar #terms p,
+      body.courses-show #additional-information #sidebar #terms li,
+      body.courses-show #additional-information #sidebar #terms p {
         color: #666;
         font: 400 14px/18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
         margin: 0 0 6px 0; }
 
 #notify-me {
   background: rgba(0, 0, 0, 0.2);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
   border-radius: 5px;
   color: #ddd;
   margin: 20px 20px 20px 0;
@@ -568,3 +611,13 @@ footer {
     footer p a {
       color: #333;
       text-decoration: none; }
+
+#flash #flash_notice {
+  background: rgba(0, 0, 0, 0.2);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  color: #e73a34;
+  font-size: 16px;
+  margin: 0 20px 20px 0;
+  padding: 15px; }
