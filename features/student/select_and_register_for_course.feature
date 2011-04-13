@@ -103,49 +103,6 @@ Feature: Selecting a course and registering for it
       | Workshop | 10000000  | 1        | Test-Driven Haskell |
     Then I am redirected to the freshbooks invoice page for "carlos@santana.com" on "Test-Driven Haskell"
 
-  Scenario: Registered user views course
-    Given today is June 10, 2010
-    And the following courses exist:
-      | name                |
-      | Test-Driven Haskell |
-      | Test-Driven COBOL   |
-    And the following sections exist:
-      | course                    | starts on     | ends on       |
-      | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
-      | name: Test-Driven COBOL   | June 12, 2010 | June 30, 2010 |
-    And I am signed in as "spj@example.com"
-    And the following registration exists:
-      | section               | user                   |
-      | starts_on: 2010-06-13 | email: spj@example.com |
-    When I go to the home page
-    And I follow the link to the Test-Driven Haskell course
-    Then I see the course resource page for "Test-Driven Haskell"
-    When I go to the home page
-    And I follow the link to the Test-Driven COBOL course
-    Then I see the course registration page for "Test-Driven COBOL"
-
-  Scenario: Register for a course with resources
-    Given today is June 10, 2010
-    And the following course exists:
-      | name                |
-      | Test-Driven Haskell |
-    And the following resources exist:
-      | course                    | name           | url                       |
-      | name: Test-Driven Haskell | The google     | http://www.google.com     |
-      | name: Test-Driven Haskell | The thoughtbot | http://www.thoughtbot.com |
-    And the following section exists:
-      | course                    | starts on     | ends on       |
-      | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
-    And I am signed in as "spj@example.com"
-    And the following registration exists:
-      | section               | user                   |
-      | starts_on: 2010-06-13 | email: spj@example.com |
-    When I go to the home page
-    And I follow the link to the Test-Driven Haskell course
-    Then I see the course resource page for "Test-Driven Haskell"
-    And the resource "The google" links to "http://www.google.com"
-    And the resource "The thoughtbot" links to "http://www.thoughtbot.com"
-
   @javascript
   Scenario: User registers with a valid coupon
     Given today is June 10, 2010
