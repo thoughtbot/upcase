@@ -67,6 +67,134 @@ body.courses-show #additional-information #sidebar li:after, body.registrations 
 ---------------------------------------- */
 /* this hack is courtesy of gbbowers on github
    https://gist.github.com/601810 */
+div#flash {
+  font-size: 15px;
+  max-height: 50px;
+  position: absolute;
+  top: 0px;
+  width: 978px;
+  z-index: 100; }
+  div#flash p,
+  div#flash div#flash_close,
+  div#flash div#flash_icon,
+  div#flash div#flash-vrule {
+    display: inline-block;
+    *display: inline;
+    vertical-align: top;
+    zoom: 1; }
+  div#flash div.flash_message {
+    background: #3c3c3c;
+    background: -webkit-gradient(linear, left top, left bottom, from(#595959), to(#3c3c3c));
+    background: -moz-linear-gradient(top, #595959, #3c3c3c);
+    border: 1px solid #353535;
+    border-top: 0;
+    -moz-border-radius: 0 0 8px 8px;
+    -webkit-border-radius: 0 0 8px 8px;
+    border-radius: 0 0 8px 8px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-shadow: inset #727272 0px -1px 0px 0px;
+    -webkit-box-shadow: inset #727272 0px -1px 0px 0px;
+    -o-box-shadow: inset #727272 0px -1px 0px 0px;
+    box-shadow: inset #727272 0px -1px 0px 0px;
+    height: 50px;
+    margin: -50px 0 0;
+    /*****/
+    padding: 12px 15px;
+    overflow: hidden; }
+    div#flash div.flash_message p {
+      color: #FFF;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      font-weight: bold;
+      margin: 2px 0px;
+      position: relative;
+      text-shadow: #161616 1px 1px 1px; }
+  div#flash div#flash_close {
+    background: #434343;
+    border: 1px solid #353535;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    float: right;
+    height: 20px;
+    text-align: center;
+    -webkit-transition: all 0.15s ease-out;
+    -moz-transition: all 0.15s ease-out;
+    -o-transition: all 0.15s ease-out;
+    transition: all 0.15s ease-out;
+    width: 20px; }
+    div#flash div#flash_close:hover {
+      -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      transform: scale(1.2); }
+  div#flash span.close {
+    color: #CCC;
+    display: block;
+    font-family: Helvetica, 'lucida grande', Tahoma, Arial, sans-serif;
+    /* font-stack should degrade somewhat gracefully for X button */
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1em;
+    text-align: center; }
+  div#flash div#flash_icon {
+    background: #303030;
+    bottom: 4px;
+    -moz-border-radius: 30px;
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+    -moz-box-shadow: inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px;
+    -webkit-box-shadow: inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px;
+    -o-box-shadow: inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px;
+    box-shadow: inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px;
+    height: 30px;
+    margin-right: 12px;
+    position: relative;
+    width: 30px; }
+    div#flash div#flash_icon div#icon_status {
+      height: 20px;
+      margin: 5px auto 0;
+      -moz-border-radius: 20px;
+      -webkit-border-radius: 20px;
+      border-radius: 20px;
+      width: 20px; }
+      div#flash div#flash_icon div#icon_status div#gloss {
+        background: transparent;
+        background: rgba(255, 255, 255, 0);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$first', endColorstr='$second');
+        background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.7)), to(rgba(255, 255, 255, 0)));
+        background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+        height: 16px;
+        margin: 0 auto;
+        position: relative;
+        -moz-border-radius: 16px;
+        -webkit-border-radius: 16px;
+        border-radius: 16px;
+        top: 1px;
+        width: 16px; }
+      div#flash div#flash_icon div#icon_status.icon_success {
+        background: #009900; }
+      div#flash div#flash_icon div#icon_status.icon_failure {
+        background: red; }
+      div#flash div#flash_icon div#icon_status.icon_notice {
+        background: #F3BC00; }
+        div#flash div#flash_icon div#icon_status.icon_notice div#gloss {
+          background: rgba(255, 255, 255, 0);
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$first', endColorstr='$second');
+          background: -webkit-gradient(linear, left top, left bottom, from(white), to(rgba(255, 255, 255, 0)));
+          background: -moz-linear-gradient(top, white, rgba(255, 255, 255, 0)); }
+  div#flash div#flash-vrule {
+    background: #353535;
+    border-left: 1px solid #727272;
+    bottom: 12px;
+    height: 48px;
+    margin-right: 12px;
+    position: relative;
+    width: 1px; }
+
 body.sections-show #head-wrapper #homepage-top,
 body.courses-show #head-wrapper #homepage-top {
   padding: 25px 0 0 0; }
@@ -611,13 +739,3 @@ footer {
     footer p a {
       color: #333;
       text-decoration: none; }
-
-#flash #flash_notice {
-  background: rgba(0, 0, 0, 0.2);
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  color: #e73a34;
-  font-size: 16px;
-  margin: 0 20px 20px 0;
-  padding: 15px; }

@@ -1,5 +1,6 @@
 @import "reset";
 @import "mixins";
+@import "flashes";
 @import "section";
 @import "registrations";
 
@@ -247,6 +248,7 @@ body.sections-index {
         color: $red;
         margin: 0 0 0 1px;
         text-decoration: none;
+
       }
     }
 
@@ -275,16 +277,5 @@ footer {
       color: #333;
       text-decoration: none;
     }
-  }
-}
-
-#flash {
-  #flash_notice {
-    background: rgba(0, 0, 0, 0.2);
-    @include border-radius (5px);
-    color: $red;
-    font-size: 16px;
-    margin: 0 20px 20px 0;
-    padding: 15px;
   }
 }
