@@ -371,7 +371,7 @@ body.courses-show #additional-information {
       margin: 0 0 12px 0; }
   body.sections-show #additional-information #sidebar,
   body.courses-show #additional-information #sidebar {
-    float: left;
+    float: right;
     width: 306px; }
     body.sections-show #additional-information #sidebar li,
     body.courses-show #additional-information #sidebar li {
