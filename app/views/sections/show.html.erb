@@ -31,7 +31,6 @@
         <p class="notice">Sold Out</p>
       <% end %>
 
-
       <h3>When</h3>
       <p><%= h(@section.date_range) %><br><%= h(@section.time_range) %></p>
 
@@ -45,7 +44,7 @@
 
       <section id="register">
         <% unless @section.full? %>
-          <% link_to new_section_registration_path(@section), :id => 'register-button' do %>
+          <% link_to registration_url(@section), :id => 'register-button' do %>
             Register
           <% end %>
           </section>
