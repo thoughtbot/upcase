@@ -16,4 +16,12 @@ module ApplicationHelper
       link_to address, google_link, *options
     end
   end
+
+  def registration_url(section)
+    if section.course.external_registration_url.blank?
+      new_section_registration_path(section)
+    else
+      section.course.external_registration_url
+    end
+  end
 end
