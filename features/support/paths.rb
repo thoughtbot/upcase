@@ -135,6 +135,8 @@ module NavigationHelpers
       'user_first_name'
     when 'last name'
       'user_last_name'
+    when 'external registration url'
+      'course_external_registration_url'
     when /question (\d+)/
       question_number = $1.to_i
       question_index = question_number - 1
