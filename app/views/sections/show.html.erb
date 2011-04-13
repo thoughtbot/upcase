@@ -55,16 +55,18 @@
 <% end %>
 
 <section id="additional-information">
-  <%= render :partial => 'courses/questions', :locals => { :course => @section.course }  %>
-
-  <section id="sidebar">
-    <h4>Who's teaching the workshop</h3>
-    <%= render 'teachers', :teachers => @section.teachers %>
+  <section id="main-content">
+    <%= render :partial => 'courses/questions', :locals => { :course => @section.course }  %>
 
     <section id="terms">
       <h4 class="terms">Terms and conditions</h3>
       <%= textilize @section.course.terms_of_service %>
     </section>
+  </section>
+
+  <section id="sidebar">
+    <h4>Who's teaching the workshop</h3>
+    <%= render 'teachers', :teachers => @section.teachers %>
   </section>
 </section>
 
