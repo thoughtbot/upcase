@@ -83,43 +83,7 @@ Feature: Adding a course
       | Do you wear pants?  | Define "Pants." |
       | Do I need a helmet? | Of course.      |
 
-  Scenario: Add a course with a resource
-    Given I am signed in as an admin
-    When I go to the admin page
-    And I follow the link to create a new course
-    And I fill in the required course fields
-    And I fill in the course name with "Haskell"
-    And I fill in the resource 1 with "Github"
-    And I fill in the url 1 with "http://github.com"
-    And I press the button to create a course
-    Then I see the successful course creation notice
-    When I follow the link to edit the course "Haskell"
-    Then the resource 1 field should contain "Github"
-    And the url 1 field should contain "http://github.com"
-
-  @javascript
-  Scenario: Add a course with more than one resource
-    Given I am signed in as an admin
-    When I go to the admin page
-    And I follow the link to create a new course
-    And I fill in the required course fields
-    And I fill in the course name with "Haskell"
-    And I follow "Add Resource"
-    And I fill in the following resources:
-      | name   | url                    |
-      | Github | http://github.com      |
-      | Rails  | http://rubyonrails.org |
-    And I press the button to create a course
-    Then I see the successful course creation notice
-    When I follow the link to edit the course "Haskell"
-    Then I see the following resources:
-      | name   | url                    |
-      | Github | http://github.com      |
-      | Rails  | http://rubyonrails.org |
-
-
   Scenario: Adding a course as a non-admin
     Given I am signed in as a student
     When I go to the list of courses
     Then I see the permission denied error
-

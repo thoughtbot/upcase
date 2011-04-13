@@ -12,23 +12,6 @@
   <%= form.input :stop_at, :as => :string %>
 <% end %>
 
-<div id="resources-form" class="clearfix">
-  <h3>Resources</h3>
-  <ul>
-    <% form.fields_for :resources, form.object.resources_with_blank do |resource_fields| -%>
-      <li>
-        <%= resource_fields.text_field :name,
-                                       :placeholder => 'Resource Name',
-                                       :class       => 'resource-name' %>
-        <%= resource_fields.text_field :url,
-                                       :placeholder => 'Resource Link',
-                                       :class       => 'resource-link' %>
-      </li>
-    <% end -%>
-  </ul>
-  <a href="#" id="add-resource">Add Resource</a>
-</div>
-
 <div id="faq-form" class="clearfix">
   <h3>FAQ</h3>
   <ul>
@@ -93,7 +76,6 @@
     };
 
     templateField('#faq-form li', '#faq-form ul', '#add-question');
-    templateField('#resources-form li', '#resources-form ul', '#add-resource');
     templateField('#follow-up-form li', '#follow-up-form ul', '#add-follow-up');
   </script>
 <% end -%>

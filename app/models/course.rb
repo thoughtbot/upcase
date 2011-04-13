@@ -3,20 +3,14 @@ class Course < ActiveRecord::Base
 
   has_many :sections
   has_many :questions
-  has_many :resources
   has_many :follow_ups
   accepts_nested_attributes_for :questions, :reject_if => :all_blank
-  accepts_nested_attributes_for :resources, :reject_if => :all_blank
   accepts_nested_attributes_for :follow_ups, :reject_if => :all_blank
 
   named_scope :unscheduled, lambda { { :conditions => ["courses.id not in (select sections.course_id from sections where sections.ends_on >= ?)", Date.today] } }
 
   def questions_with_blank
     questions + [questions.new]
-  end
-
-  def resources_with_blank
-    resources + [resources.new]
   end
 
   def follow_ups_with_blank
