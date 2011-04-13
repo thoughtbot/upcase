@@ -277,3 +277,14 @@ footer {
     }
   }
 }
+
+#flash {
+  #flash_notice {
+    background: rgba(0, 0, 0, 0.2);
+    @include border-radius (5px);
+    color: $red;
+    font-size: 16px;
+    margin: 0 20px 20px 0;
+    padding: 15px;
+  }
+}
