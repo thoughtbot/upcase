@@ -1,0 +1,11 @@
+<% if course.questions.any? -%>
+  <section id="faq">
+    <h4>Frequently asked questions</h3>
+    <dl>
+      <% course.questions.each do |question| %>
+        <dt><%= textilize question.question %></dt>
+        <dd><%= textilize question.answer %></dd>
+      <% end %>
+    </dl>
+  </section>
+<% end -%>

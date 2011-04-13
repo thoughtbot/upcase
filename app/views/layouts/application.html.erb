@@ -15,10 +15,6 @@
     <%= yield :page_header  %>
 
     <section id="container">
-        <% if yield(:nav) -%>
-            <%= yield :nav %>
-        <% end %>
-
         <%= render 'shared/flashes' %>
 
         <%= yield :content_header %>
