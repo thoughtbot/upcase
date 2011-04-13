@@ -131,6 +131,14 @@ module NavigationHelpers
       'coupon_percentage'
     when "that the coupon is active"
       'coupon_active'
+    when 'organization'
+      'user_organization'
+    when 'first name'
+      'user_first_name'
+    when 'last name'
+      'user_last_name'
+    when 'external registration url'
+      'course_external_registration_url'
     when /question (\d+)/
       question_number = $1.to_i
       question_index = question_number - 1
@@ -193,8 +201,6 @@ module NavigationHelpers
       'Signed out.'
     when 'sign in'
       'Signed in.'
-    when 'User info invalid'
-      'Please check the errors below and correct them to register'
     else
       raise %{Can't find a mapping from #{flash_text.inspect} to text: #{__FILE__}}
     end

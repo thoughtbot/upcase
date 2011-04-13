@@ -30,7 +30,7 @@
   <% end %>
 
   <% form.inputs 'For your receipt' do %>
-    <%= form.input :organization %>
+    <%= form.input :organization, :required => false %>
     <%= form.input :phone %>
     <%= form.input :address1, :label => 'Address 1' %>
     <%= form.input :address2, :label => 'Address 2' %>
