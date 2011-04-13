@@ -569,13 +569,15 @@ body {
   #sub-header {
     padding: 60px 80px 20px;
     width: 780px;
-    h2#learn-from-the-experts {
+    h2#main-headline {
+      font: 700 64px/36px "proxima-nova-1","proxima-nova-2";
       width: 689px;
       height: 55px;
-      text-indent: -9999px;
+      letter-spacing: 1px;
+      /*text-indent: -9999px;*/
       padding: 0;
-      margin: 0 auto 15px;
-      background: url(/images/learn-from-the-experts.png);
+      margin: 0 auto 5px;
+      /*background: url(/images/learn-from-the-experts.png);*/
     }
     h3 {
       text-align: center;
@@ -983,9 +985,10 @@ body {
           margin-bottom: 15px;
         }
         ul {
-          padding: 15px 40px 10px 50px;
+          padding: 10px 40px 10px 15px;
           li {
            list-style-type: square;
+           line-height: 150%;
            margin: 10px 0 0 0;
           }
         }
@@ -1012,7 +1015,7 @@ body {
         }
       }
       .main-content {
-        width: 460px;
+        width: 420px;
         float: left;
       }
       .sidebar {

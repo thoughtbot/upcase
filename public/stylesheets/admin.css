@@ -662,13 +662,15 @@ body {
   .top #sub-header {
     padding: 60px 80px 20px;
     width: 780px; }
-    .top #sub-header h2#learn-from-the-experts {
+    .top #sub-header h2#main-headline {
+      font: 700 64px/36px "proxima-nova-1", "proxima-nova-2";
       width: 689px;
       height: 55px;
-      text-indent: -9999px;
+      letter-spacing: 1px;
+      /*text-indent: -9999px;*/
       padding: 0;
-      margin: 0 auto 15px;
-      background: url(/images/learn-from-the-experts.png); }
+      margin: 0 auto 5px;
+      /*background: url(/images/learn-from-the-experts.png);*/ }
     .top #sub-header h3 {
       text-align: center;
       padding: 0 30px;
@@ -1020,9 +1022,10 @@ body {
         box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
         margin-bottom: 15px; }
       #content .wrapper .dark-content #faq ul, #content .wrapper .dark-content #resources ul, #content .wrapper .dark-content #terms ul, #content .wrapper .dark-content #resources_faq ul {
-        padding: 15px 40px 10px 50px; }
+        padding: 10px 40px 10px 15px; }
         #content .wrapper .dark-content #faq ul li, #content .wrapper .dark-content #resources ul li, #content .wrapper .dark-content #terms ul li, #content .wrapper .dark-content #resources_faq ul li {
           list-style-type: square;
+          line-height: 150%;
           margin: 10px 0 0 0; }
       #content .wrapper .dark-content #faq dl dt, #content .wrapper .dark-content #resources dl dt, #content .wrapper .dark-content #terms dl dt, #content .wrapper .dark-content #resources_faq dl dt {
         font-weight: bold;
@@ -1040,7 +1043,7 @@ body {
         #content .wrapper .dark-content #faq dl dd:last-child, #content .wrapper .dark-content #resources dl dd:last-child, #content .wrapper .dark-content #terms dl dd:last-child, #content .wrapper .dark-content #resources_faq dl dd:last-child {
           padding: 0; }
       #content .wrapper .dark-content .main-content {
-        width: 460px;
+        width: 420px;
         float: left; }
       #content .wrapper .dark-content .sidebar {
         float: right;

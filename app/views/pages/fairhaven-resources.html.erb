@@ -9,9 +9,10 @@
       <div id="fairhaven-content">
         <a href="http://fairhavencapital.com" id="fairhaven-link">Fairhaven Capital</a>
         <h3><%= t(".laptop-setup", :default => "Laptop Setup") %></h3>
-        <p>If you're looking to get a good Ruby on Rails development environment installed on Mac OS X, install XCode (from a CD if you have it, otherwise <a href="http://developer.apple.com/technologies/tools/xcode.html">download it</a>), then:</p>
+        <p>If you're looking to get a good Ruby on Rails development environment installed on Mac OS X, install XCode (from a CD if you have it, otherwise <a href="http://developer.apple.com/technologies/tools/xcode.html">download it</a>), then edit your ~/.bashrc or ~/.zshenv:</p>
 <pre><code>ruby -e "$(curl -fsSL https://gist.github.com/raw/323731/install_homebrew.rb)"
-brew install postgres imagemagick redis git
+brew install imagemagick redis git
+brew install postgres --no-python
 bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
 rvm install 1.9.2-p136
 rvm --default use 1.9.2
@@ -76,12 +77,47 @@ git push heroku master
         <h4 class="reference"><%= t(".outline-day-two", :default => "Day Two") %></h4>
         <p>Day Two is focused on the performance of your production Rails app and scaling it as traffic and users increase.</p>
         <ul>
-          <li>When the cloud works and when it doesn't</li>
+          <li>Cloud</li>
           <li>Metrics and monitoring</li>
-          <li>Relational database strategies</li>
+          <li>Front end performance</li>
+          <li>SQL</li>
           <li>Background processes</li>
-          <li>HTTP caching</li>
-          <li>NoSQL options</li>
+          <li>Caching</li>
+          <li>Redis</li>
+          <li>em_proxy</li>
+          <li>Rack Middleware</li>
+        </ul>
+
+        <h3>Slides</h3>
+        <p>Download slides to study later:</p>
+        <ul>
+          <li><a href="https://thoughtbot_workshops.s3.amazonaws.com/slides/tdd_ruby_on_rails.zip">TDD</a></li>
+          <li><a href="https://thoughtbot_workshops.s3.amazonaws.com/slides/scaling_rails.zip">Scaling Rails</a></li>
+        </ul>
+        <p>You can either read the raw Markdown files or run the slides to view them in a browser. To run them, follow these instructions:</p>
+<pre><code>gem install showoff
+cd slide-folder
+showoff serve
+</code></pre>
+
+        <h3>Code</h3>
+        <p>Download code to study it later:</p>
+        <ul>
+          <li><a href="https://thoughtbot_workshops.s3.amazonaws.com/code/sinatra-json-api.zip">Sinatra JSON API</a></li>
+          <li><a href="https://github.com/thoughtbot/fistface/blob/master/lib/fistface.rb">Fist Face</a>: Sinatra API with Expires and Cache-Control headers.</li>
+          <li><a href="https://thoughtbot_workshops.s3.amazonaws.com/code/avatar.zip">Avatar</a>: Sinatra API with Cache-Control headers and DelayedJob background processes.</li>
+          <li><a href="https://github.com/defunkt/cijoe/blob/master/lib/cijoe/server.rb">CI Joe</a>: Sinatra app running Continuous Integration.</li>
+          <li><a href="https://github.com/rubygems/gemcutter/blob/master/app/middleware/hostess.rb">Rubygems' Hostess</a>: Sinatra API that gets hit when you <code>gem install</code>.</li>
+        </ul>
+
+        <h3>Blog posts</h3>
+        <p>Some recipes and information to study later:</p>
+        <ul>
+          <li><a href="http://robots.thoughtbot.com/post/613420732/recipe-ajax-searching-and-filtering">Ajax searching and filtering</a></li>
+          <li><a href="http://robots.thoughtbot.com/post/3215611590/recipe-delivering-email-on-behalf-of-users">Delivering email on behalf of users</a>: uses Amazon Simple Email Service</li>
+          <li><a href="http://robots.thoughtbot.com/post/159806234/simple-test-metrics-in-your-rails-app-and-what-they">Simple test metrics in your Rails app and what they mean</a>: C0 coverage.</li>
+          <li><a href="http://robots.thoughtbot.com/post/4026880618/javascript-integration-testing-example-installing-and">Javascript integration testing example</a>: installing and using Mixpanel</li>
+        </ul>
       </div>
     </div>
   </div>

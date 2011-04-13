@@ -210,36 +210,6 @@ Feature: Selecting a course and registering for it
   @javascript
   Scenario: User registers with an invalid coupon
     Given today is June 10, 2010
-    And I am signed in as an admin
-    And I create the following course:
-      | Course Name        | Test-Driven Haskell |
-      | Short description  | Short description   |
-      | Course Description | It is great!        |
-      | Price              | 100                 |
-      | Location Address   | 123 Main St.        |
-      | Max Enrollment     | 5                   |
-      | Start at           | 09:00               |
-      | Stop at            | 13:00               |
-    And I create the following section for "Test-Driven Haskell":
-      | Starts on | January 13, 2011 |
-      | Ends on   | January 15, 2011 |
-    And I sign out
-    When I go to the home page
-    And I follow the link to the Test-Driven Haskell course
-    And I follow the link to register
-    Then I should see "Complete your registration for Test-Driven Haskell"
-    And I should see "$100"
-    When I follow "Have a coupon code?"
-    Then the coupon form should be visible
-    And I fill in "Code" with "VALENTINES"
-    And I press "Apply Coupon"
-    Then I should see "$100"
-    And I should see "The coupon code you supplied is not valid"
-    And the coupon form should be visible
-
-  @javascript
-  Scenario: User registers with an invalid coupon
-    Given today is June 10, 2010
     And the following coupon exists:
       | code       | percentage | active |
       | VALENTINES | 10         | false  |
@@ -269,3 +239,24 @@ Feature: Selecting a course and registering for it
     Then I should see "$100"
     And I should see "The coupon code you supplied is not valid"
     And the coupon form should be visible
+
+  Scenario: User views a course with an external registration url
+    Given today is June 10, 2010
+    And I am signed in as an admin
+    And I create the following course:
+      | Course Name               | Test-Driven Haskell   |
+      | Short description         | Short description     |
+      | Course Description        | It is great!          |
+      | Price                     | 10000000              |
+      | Location Address          | 123 Main St.          |
+      | Max Enrollment            | 5                     |
+      | Start at                  | 09:00                 |
+      | Stop at                   | 13:00                 |
+      | External registration url | http://engineyard.com |
+    And I create the following section for "Test-Driven Haskell":
+      | Starts on | January 13, 2011 |
+      | Ends on   | January 15, 2011 |
+    And I sign out
+    When I go to the home page
+    And I follow the link to the Test-Driven Haskell course
+    Then the registration button should link to "http://engineyard.com"
