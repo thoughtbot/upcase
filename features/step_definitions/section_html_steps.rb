@@ -118,10 +118,6 @@ Then %{I see "$teacher_name"'s avatar} do |teacher_name|
   page.should have_css("img[src^='http://www.gravatar.com/avatar/#{teacher.gravatar_hash}']")
 end
 
-Then 'the resource "$link_name" links to "$link"' do |link_name, link|
-  page.should have_xpath("//a[@href='#{link}' and contains(.,'#{link_name}')]")
-end
-
 When /^I should see "([^"]*)" before "([^"]*)"$/ do |section1_name, section2_name|
   page.body.should =~ /#{section1_name}.*#{section2_name}/m
 end

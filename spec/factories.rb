@@ -63,10 +63,6 @@ Factory.define(:question) do |question_factory|
   question_factory.answer      "Not much, bro."
 end
 
-Factory.define(:resource) do |resource_factory|
-  resource_factory.association :course
-end
-
 Factory.define(:follow_up) do |factory|
   factory.association :course
 end
