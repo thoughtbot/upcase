@@ -20,7 +20,7 @@
         <span id="section-location"><%= h(@section.course_location) %></span>
       <% end %>
       <% unless @section.full? %>
-        <% link_to new_section_registration_path(@section), :id => 'register-button' do %>
+        <% link_to registration_url(@section), :id => 'register-button' do %>
           <div id="register-button-top">
             <div id="register-date"><%= h(@section.date_range) %></div>
             <div id="register-time"><%= h(@section.time_range) %></div>
