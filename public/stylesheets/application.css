@@ -234,6 +234,16 @@ body.courses-show #head-wrapper #homepage-top {
       color: #eee;
       font: 300 16px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       text-shadow: 0 1px 0 #222; }
+    body.sections-show #head-wrapper #homepage-top #course-info ul,
+    body.courses-show #head-wrapper #homepage-top #course-info ul {
+      margin: 12px 0 12px 0; }
+      body.sections-show #head-wrapper #homepage-top #course-info ul li,
+      body.courses-show #head-wrapper #homepage-top #course-info ul li {
+        color: #eee;
+        font: 300 16px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        list-style: disc;
+        margin: 0 0 4px 0;
+        text-shadow: 0 1px 0 #222; }
     body.sections-show #head-wrapper #homepage-top #course-info q,
     body.courses-show #head-wrapper #homepage-top #course-info q {
       color: #ddd;
