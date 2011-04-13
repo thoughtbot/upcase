@@ -75,7 +75,7 @@ body.courses-show #head-wrapper #homepage-top {
     margin: 0 0 24px 0; }
     body.sections-show #head-wrapper #homepage-top header h1,
     body.courses-show #head-wrapper #homepage-top header h1 {
-      background-size: 72px;
+      background: url("/images/public/logo_small.png") 5px 5px no-repeat;
       color: #fff;
       height: 60px;
       text-indent: 0;
