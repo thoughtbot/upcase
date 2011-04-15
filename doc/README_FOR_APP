@@ -4,3 +4,10 @@ script/dbconsole
 user = User.create!(:email => "cpytel@thoughtbot.com", :password => "test", :password_confirmation => "test", :first_name => "Chad", :last_name => "Pytel")
 user.admin = true
 user.save!
+
+Acceptance and invoices
+=======================
+
+When you test or do acceptance on staging and create invoices, be sure to void
+the invoices in Freshbooks afterwards.  The login information is in the
+Technical Information writeboard.
