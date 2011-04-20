@@ -233,6 +233,7 @@ body.courses-show #head-wrapper #homepage-top {
     body.courses-show #head-wrapper #homepage-top #course-info p {
       color: #ddd;
       font: 300 16px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      margin: 0 0 8px 0;
       text-shadow: 0 1px 0 #222; }
     body.sections-show #head-wrapper #homepage-top #course-info ul,
     body.courses-show #head-wrapper #homepage-top #course-info ul {
@@ -373,7 +374,10 @@ body.courses-show #additional-information {
     body.courses-show #additional-information #faq dl dd {
       color: #333;
       font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      margin: 0 0 12px 0; }
+      margin: 0 0 14px 0; }
+      body.sections-show #additional-information #faq dl dd p,
+      body.courses-show #additional-information #faq dl dd p {
+        margin: 0 0 8px 0; }
   body.sections-show #additional-information #terms,
   body.courses-show #additional-information #terms {
     float: left; }
