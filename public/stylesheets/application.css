@@ -231,7 +231,7 @@ body.courses-show #head-wrapper #homepage-top {
       margin: 0 0 36px 0; }
     body.sections-show #head-wrapper #homepage-top #course-info p,
     body.courses-show #head-wrapper #homepage-top #course-info p {
-      color: #eee;
+      color: #ddd;
       font: 300 16px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       text-shadow: 0 1px 0 #222; }
     body.sections-show #head-wrapper #homepage-top #course-info ul,
@@ -239,7 +239,7 @@ body.courses-show #head-wrapper #homepage-top {
       margin: 12px 0 12px 0; }
       body.sections-show #head-wrapper #homepage-top #course-info ul li,
       body.courses-show #head-wrapper #homepage-top #course-info ul li {
-        color: #eee;
+        color: #ddd;
         font: 300 16px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
         list-style: disc;
         margin: 0 0 4px 0;
@@ -410,6 +410,9 @@ body.courses-show #additional-information {
     body.sections-show #additional-information #sidebar p.bio,
     body.courses-show #additional-information #sidebar p.bio {
       font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
+
+body.courses #additional-information #faq {
+  border-bottom: none; }
 
 #notify-me {
   background: rgba(0, 0, 0, 0.2);
