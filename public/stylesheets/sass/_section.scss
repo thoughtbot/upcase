@@ -197,6 +197,9 @@ body.courses-show {
     }
 
     #faq {
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
 
       dl {
         dt {
@@ -215,10 +218,7 @@ body.courses-show {
     }
 
     #terms {
-      border-top: 1px solid #ddd;
       float: left;
-      margin-top: 12px;
-      padding-top: 12px;
 
       h4.terms {
         color: #555;

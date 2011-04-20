@@ -40,8 +40,7 @@
 <% end %>
 
 <section id="additional-information">
-  <%= render :partial => 'questions', :locals => { :course => @course } %>
-
-  <section id="sidebar">
+  <section id="main-content">
+    <%= render :partial => 'questions', :locals => { :course => @course } %>
   </section>
 </section>
