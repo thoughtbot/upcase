@@ -43,7 +43,7 @@ body.courses-show {
         }
 
         p {
-          color: #eee;
+          color: #ddd;
           font: 300 16px/24px $sans-serif;
           text-shadow: 0 1px 0 #222;
         }
@@ -52,7 +52,7 @@ body.courses-show {
           margin: 12px 0 12px 0;
 
           li {
-            color: #eee;
+            color: #ddd;
             font: 300 16px/24px $sans-serif;
             list-style: disc;
             margin: 0 0 4px 0;
@@ -263,6 +263,10 @@ body.courses-show {
       }
     }
   }
+}
+
+body.courses #additional-information #faq {
+  border-bottom: none;
 }
 
 #notify-me {
