@@ -378,6 +378,14 @@ body.courses-show #additional-information {
       body.sections-show #additional-information #faq dl dd p,
       body.courses-show #additional-information #faq dl dd p {
         margin: 0 0 8px 0; }
+  body.sections-show #additional-information #notify-me,
+  body.courses-show #additional-information #notify-me {
+    background: #ddd;
+    color: #333;
+    margin-right: 0; }
+    body.sections-show #additional-information #notify-me input[type="text"],
+    body.courses-show #additional-information #notify-me input[type="text"] {
+      width: 580px; }
   body.sections-show #additional-information #terms,
   body.courses-show #additional-information #terms {
     float: left; }
@@ -434,7 +442,7 @@ body.courses #additional-information #faq {
     border: 0;
     border-radius: 2px;
     font-size: 14px;
-    margin: 0 0 8px 0;
+    margin: 0 0 12px 0;
     padding: 10px 4px;
     width: 550px; }
   #notify-me input[type="submit"] {
@@ -442,9 +450,6 @@ body.courses #additional-information #faq {
     background: -moz-linear-gradient(top, #f28080 0%, #d14545 50%, #c22323 50%, #c42b2b 100%);
     background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #f28080), color-stop(0.5, #d14545), color-stop(0.5, #c22323), color-stop(1, #c42b2b));
     border: 0;
-    /*    border: 1px solid #8e0202;
-        border-bottom: 1px solid #750101;
-    */
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -452,13 +457,20 @@ body.courses #additional-information #faq {
     -webkit-box-shadow: inset 0 1px 0 0 #ffabab;
     box-shadow: inset 0 1px 0 0 #ffabab;
     color: #fff;
-    display: block;
+    display: inline;
     font: 600 16px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-    margin: 0;
+    margin: 0 10px 0 0;
     padding: 8px 14px;
     text-decoration: none;
     text-align: center;
     text-shadow: 0 -1px 1px #512b2b; }
+    #notify-me input[type="submit"]:hover {
+      cursor: pointer; }
+  #notify-me p.group-training {
+    color: #666;
+    display: inline;
+    font-size: 14px;
+    margin: 0; }
 
 #flash #flash_failure {
   background: #f8bcba;
