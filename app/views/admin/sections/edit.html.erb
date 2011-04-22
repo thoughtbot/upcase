@@ -13,7 +13,7 @@
     </div>
     <div id="student-list" class="cool-list">
       <h3>
-        <%= pluralize @section.students.size, "Student" %>
+        <%= pluralize @section.students.size, "Student" %> [<%= mail_to 'workshops@thoughtbot.com', 'email', :subject => @section.course.name, :bcc => @section.students.map(&:email).join(",") %>]
         <%= link_to 'Add Student', new_admin_section_registration_path(@section), :id => 'add-student' %>
       </h3>
       <ul>
