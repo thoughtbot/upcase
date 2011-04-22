@@ -20,6 +20,14 @@ class Admin::RegistrationsController < ApplicationController
     end
   end
 
+  def destroy
+    @section = Section.find(params[:section_id])
+    @registration = @section.registrations.find(params[:id])
+    @registration.destroy
+    flash[:success] = "Student registration has been deleted"
+    redirect_to edit_admin_course_section_path(@section.course, @section)
+  end
+
   private
 
   def build_new_user
