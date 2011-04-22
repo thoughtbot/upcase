@@ -10,7 +10,7 @@ ActionController::Routing::Routes.draw do |map|
     end
     admin.resources :coupons, :controlelr
     admin.resources :sections, :only => [] do |section|
-      section.resources :registrations, :only => [:new, :create]
+      section.resources :registrations, :only => [:new, :create, :destroy]
     end
   end
 
