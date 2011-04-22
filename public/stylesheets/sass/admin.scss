@@ -1182,9 +1182,11 @@ body.clearance-sessions, body.clearance-passwords {
 
 .cool-list {
   margin: 0 0 25px 0;
+
   &:last-child {
     margin-bottom: 0;
   }
+
   h3 {
     position: relative;
     font-size: 16px;
@@ -1199,17 +1201,20 @@ body.clearance-sessions, body.clearance-passwords {
     @include gradient(rgba(0,0,0,.5), rgba(0,0,0,.25));
     -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
     -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+
     a {
-     display: block;
+     display: inline-block;
      color: $tan;
      text-decoration: none;
      padding: 10px;
     }
+
     a {
       &:hover {
         @include gradient(rgba(0,0,0,.4), rgba(136,120,91,.15));
       }
     }
+
     a.new-section,
     a.students-link,
     a#add-student {
@@ -1250,14 +1255,15 @@ body.clearance-sessions, body.clearance-passwords {
      border-bottom: 1px solid #000;
      color: #fff;
      position: relative;
+
      a {
-      display: block;
+      display: inline-block;
       color: #fff;
       text-decoration: none;
       height: 32px;
       line-height: 32px;
       position: relative;
-      padding: 0 40px;
+      padding: 0 10px;
       @include gradient(rgba(255,255,255,.12), rgba(255,255,255,.05));
       &:hover {
         @include gradient(rgba(255,255,255,.15), rgba(255,255,255,.08));
