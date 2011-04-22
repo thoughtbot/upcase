@@ -8,13 +8,7 @@
     <section id="course-info">
       <h2><%= h(@course.name) %></h2>
 
-      <section id="notify-me">
-        <% form_for [@course, @follow_up] do |form| %>
-          <%= form.label :email, "Want to be notified the next time we run this workshop?" %>
-          <%= form.text_field :email, :placeholder => "Enter your email address" %>
-          <input type="submit" value="Submit" />
-        <% end %>
-      </section>
+      <%= render :partial => 'follow_up', :locals => { :course => @course } %>
 
       <section id="course-description"><%= textilize @course.description %></section>
     </section>
