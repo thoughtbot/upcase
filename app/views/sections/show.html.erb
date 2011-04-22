@@ -55,6 +55,9 @@
 <% end %>
 
 <section id="additional-information">
+
+  <%= render :partial => 'courses/follow_up', :locals => { :course => @section.course } %>
+
   <section id="main-content">
     <%= render :partial => 'courses/questions', :locals => { :course => @section.course }  %>
 
