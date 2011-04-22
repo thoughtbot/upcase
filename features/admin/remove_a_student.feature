@@ -17,7 +17,6 @@ Feature: Removing a student from a course
     And I fill in the student's email with "jones@example.com"
     And I press the button to enroll a new student
     Then I should see "1 Student"
-    Then show me the page
     And I follow "Delete" within the registration for "jones@example.com"
     Then I should see "Student registration has been deleted"
     And should see "0 Students"
