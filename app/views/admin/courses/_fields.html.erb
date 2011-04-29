@@ -1,4 +1,4 @@
-<% form.inputs do %>
+<%= form.inputs do %>
   <%= form.input :name, :label => 'Course Name' %>
   <%= form.input :short_description %>
   <%= form.input :description, :label => 'Course Description' %>
@@ -15,7 +15,7 @@
 <div id="faq-form" class="clearfix">
   <h3>FAQ</h3>
   <ul>
-    <% form.fields_for :questions, form.object.questions_with_blank do |question_fields| -%>
+    <%= form.fields_for :questions, form.object.questions_with_blank do |question_fields| -%>
       <li>
         <%= question_fields.text_field :question, :placeholder => 'Question' %>
         <%= question_fields.text_area :answer, :placeholder => 'Answer' %>
@@ -29,14 +29,14 @@
   <h3>Follow ups</h3>
   <ul>
     <% @course.follow_ups.each_with_index do |follow_up, index| %>
-      <% form.fields_for(:follow_ups, follow_up) do |follow_up_fields| %>
-        <% content_tag_for(:li, follow_up) do %>
+      <%= form.fields_for(:follow_ups, follow_up) do |follow_up_fields| %>
+        <%= content_tag_for(:li, follow_up) do %>
           <%= follow_up_fields.text_field :email, :placeholder => 'Email address' %>
           <%= link_to '&#x2716;', [:admin, @course, follow_up], :method => :delete, :class => 'remove-followup' %>
         <% end %>
       <% end %>
     <% end %>
-    <% form.fields_for :follow_ups, FollowUp.new do |follow_up_fields| -%>
+    <%= form.fields_for :follow_ups, FollowUp.new do |follow_up_fields| -%>
       <li class='follow-up-email'>
         <%= follow_up_fields.text_field :email, :placeholder => 'Email address' %>
       </li>

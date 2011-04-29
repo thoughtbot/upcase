@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include Clearance::User
 
-  attr_accessible :city, :address1, :address2, :zip_code, :password_confirmation,
+  attr_accessible :city, :address1, :address2, :zip_code,
         :phone, :last_name, :organization, :password, :state, :email, :first_name,
         :send_set_password
 
@@ -11,10 +11,10 @@ class User < ActiveRecord::Base
   has_many :registrations
   has_many :sections, :through => :registrations
 
-  before_validation_on_create :populate_organization
+  before_validation :populate_organization, :on => :create
 
-  after_create :send_set_password_email, :if     => 'send_set_password'
-  after_create :store_freshbooks_client, :unless => 'admin?'
+  after_create :send_set_password_email, :if     => :send_set_password
+  after_create :store_freshbooks_client, :unless => :admin?
 
   def registered_for?(section)
     admin? || sections.include?(section)
@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   end
 
   def send_set_password_email
-    UserMailer.deliver_set_password(self)
+    UserMailer.set_password(self).deliver
   end
 
   def store_freshbooks_client

@@ -3,8 +3,8 @@
     <h4>Frequently asked questions</h3>
     <dl>
       <% course.questions.each do |question| %>
-        <dt><%= textilize question.question %></dt>
-        <dd><%= textilize question.answer %></dd>
+        <dt><%=raw textilize question.question %></dt>
+        <dd><%=raw textilize question.answer %></dd>
       <% end %>
     </dl>
   </section>

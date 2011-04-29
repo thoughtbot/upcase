@@ -3,5 +3,5 @@
   :simple      => "%B %d, %Y",       # April 13, 2010
   :time        => "%l:%M%p"          # 08:52PM
 }.each do |k, v|
-  ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.update(k => v)
+  Time::DATE_FORMATS[k] = v
 end

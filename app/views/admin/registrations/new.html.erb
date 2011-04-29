@@ -1,10 +1,10 @@
-<% semantic_form_for @user, :url => admin_section_registrations_path(@section), :html => { :method => 'post' } do |form| %>
-  <% form.inputs do %>
+<%= semantic_form_for @user, :url => admin_section_registrations_path(@section), :html => { :method => 'post' } do |form| %>
+  <%= form.inputs do %>
     <%= form.input :first_name %>
     <%= form.input :last_name %>
     <%= form.input :email %>
   <% end %>
-  <% form.buttons do %>
+  <%= form.buttons do %>
     <%= form.commit_button 'Save New Student' %>
   <% end %>
 <% end %>

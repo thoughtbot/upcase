@@ -1,10 +1,10 @@
-<% semantic_form_for [:admin, @course, @teacher] do |form| %>
-  <% form.inputs do %>
+<%= semantic_form_for [:admin, @course, @teacher] do |form| %>
+  <%= form.inputs do %>
     <%= form.input :name %>
     <%= form.input :bio %>
     <%= form.input :email %>
   <% end %>
-  <% form.buttons do %>
+  <%= form.buttons do %>
     <%= form.commit_button 'Save Teacher' %>
   <% end %>
 <% end %>

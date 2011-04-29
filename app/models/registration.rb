@@ -26,7 +26,7 @@ class Registration < ActiveRecord::Base
   private
 
   def send_notification_email
-    Mailer.deliver_registration_notification(self)
+    Mailer.registration_notification(self).deliver
   end
 
   def freshbooks_client

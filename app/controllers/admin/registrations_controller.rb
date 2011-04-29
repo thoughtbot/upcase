@@ -33,7 +33,6 @@ class Admin::RegistrationsController < ApplicationController
   def build_new_user
     random_password = Digest::SHA1.hexdigest(Time.now.to_s)
     User.new(params[:user].merge(:password              => random_password,
-                                 :password_confirmation => random_password,
                                  :send_set_password     => true ))
   end
 end

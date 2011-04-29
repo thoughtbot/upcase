@@ -13,8 +13,14 @@ class Section < ActiveRecord::Base
   after_create :send_follow_up_emails, :send_teacher_notifications
 
   accepts_nested_attributes_for :section_teachers
-  named_scope :active, lambda { { :conditions => ["sections.ends_on >= ?", Date.today] } }
-  named_scope :by_starts_on, :order => "starts_on asc"
+
+  def self.active
+    where("sections.ends_on >= ?", Date.today)
+  end
+
+  def self.by_starts_on
+    order("starts_on asc")
+  end
 
   def time_range
     "#{course.start_at.to_s(:time).strip}-#{course.stop_at.to_s(:time).strip}"
@@ -61,7 +67,7 @@ class Section < ActiveRecord::Base
   def send_follow_up_emails
     if self.course.follow_ups.present?
       self.course.follow_ups.each do |follow_up|
-        UserMailer.deliver_follow_up(follow_up, self)
+        UserMailer.follow_up(follow_up, self).deliver
       end
       self.course.follow_ups.delete_all
     end
@@ -69,7 +75,7 @@ class Section < ActiveRecord::Base
 
   def send_teacher_notifications
     self.teachers.each do |teacher|
-      UserMailer.deliver_teacher_notification(teacher, self)
+      UserMailer.teacher_notification(teacher, self).deliver
     end
   end
 end
