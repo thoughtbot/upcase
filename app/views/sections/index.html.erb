@@ -17,7 +17,7 @@
         <ul>
           <% @sections.each do |section| %>
             <li>
-              <% link_to section_path(section), :id => dom_id(section) do %>ehh 
+              <% link_to section_path(section), :id => dom_id(section) do %>
                 <h3><%=h section.course_name %></h3>
                 <p class="teaser"><%=h section.course.short_description %></p>
                 <p class="date"><%=h section.date_range %></p>
