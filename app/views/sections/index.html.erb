@@ -6,7 +6,7 @@
 
       <section id="the-sell">
         <h2><%= t(".home-headline", :default => "Kickstart your <br>career with us") %></h2>
-        <p class="tagline"><%= t(".home-tagline", :default => "We&rsquo;ve trained hundred of people in small, hands-on<br> workshops taught by passionate experts.") %></p>
+        <p class="tagline"><%= t(".home-tagline", :default => "We&rsquo;ve trained hundreds of people in small, hands-on<br> workshops taught by passionate experts.") %></p>
       </section>
     </header>
 
@@ -17,7 +17,7 @@
         <ul>
           <% @sections.each do |section| %>
             <li>
-              <% link_to section_path(section), :id => dom_id(section) do %>
+              <% link_to section_path(section), :id => dom_id(section) do %>ehh 
                 <h3><%=h section.course_name %></h3>
                 <p class="teaser"><%=h section.course.short_description %></p>
                 <p class="date"><%=h section.date_range %></p>

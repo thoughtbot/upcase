@@ -3,6 +3,7 @@ body.high_voltage-pages {
     #homepage-top {
       @extend .clearfix;
       padding: 25px 0 0px 0;
+      width: 660px;
 
       header {
         margin: 0 0 30px 0;
@@ -25,137 +26,13 @@ body.high_voltage-pages {
       }
     }
   }
-
-  h1.course-title {
-    font: 400 32px $sans-serif;
-    margin: 0 0 12px 0;
-  }
-
-  #total {
-    p.price {
-      display: inline-block;
-      font: 400 24px $sans-serif;
-    }
-
-    p.coupon-note {
-      display: inline-block;
-      margin: 0 0 0 8px;
-
-      a {
-        color: $red;
-        font: 700 16px $sans-serif;
-      }
-    }
-  }
-
-  div.coupon {
-    margin: 12px 0;
-  }
-
-  form {
-    margin: 0 0 48px 0;
-
-    fieldset {
-      legend {
-        font: 600 18px $sans-serif;
-        padding: 24px 0 12px 0;
-      }
-
-      ol {
-        li {
-          margin: 0 0 8px 0;
-          width: 466px;
-
-          &#user_first_name_input,
-          &#user_password_input,
-          &#user_city_input {
-            float: left;
-            margin-right: 20px;
-            width: 223px;
-          }
-
-          &#user_last_name_input,
-          &#user_password_confirmation_input {
-            float: left;
-            width: 223px;
-          }
-
-          &#user_state_input {
-            float: left;
-            margin-right: 20px;
-            width: 80px;
-          }
-
-          &#user_zip_code_input {
-            float: left;
-            width: 123px;
-          }
-
-          &.error {
-            p.inline-errors {
-              color: $red;
-            }
-
-            input {
-              background: #f8bcba;
-            }
-          }
-
-          label {
-            display: block;
-            font: 400 14px $sans-serif;
-          }
-
-          input[type="text"],
-          input[type="password"] {
-            padding: 6px 4px;
-            width: 100%;
-          }
-
-          &.commit {
-            margin-top: 24px;
-          }
-
-          /* red button */
-          input[type="submit"] {
-            background: #c22323;
-            background: -moz-linear-gradient(top, #f28080 0%, #d14545 50%, #c22323 50%, #c42b2b 100%);
-            background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #f28080), color-stop(0.5, #d14545), color-stop(0.5, #c22323), color-stop(1, #c42b2b));
-            border: 1px solid #8e0202;
-            border-bottom: 1px solid #750101;
-            -moz-border-radius: 5px;
-            -webkit-border-radius: 5px;
-            border-radius: 5px;
-            -moz-box-shadow: inset 0 1px 0 0 #ffabab;
-            -webkit-box-shadow: inset 0 1px 0 0 #ffabab;
-            box-shadow: inset 0 1px 0 0 #ffabab;
-            color: #fff;
-            display: block;
-            font-family: "helvetica neue", helvetica, arial, sans-serif;
-            font-size: 16px;
-            font-weight: bold;
-            padding: 12px 0 13px 0;
-            text-decoration: none;
-            text-align: center;
-            text-shadow: 0 -1px 1px #320000;
-            width: 222px;
-          }
-
-          input[type="submit"]:hover {
-            background: #b02020;
-            background: -moz-linear-gradient(top, #e07777 0%, #bf3f3f 50%, #b02020 50%, #b32727 100%);
-            background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #e07777), color-stop(0.5, #bf3f3f), color-stop(0.5, #b02020), color-stop(1, #b32727));
-            cursor: pointer;
-          }
-
-          input[type="submit"]:active {
-            cursor: pointer;
-            -moz-box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #fff;
-            -webkit-box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #fff;
-            box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #444;
-          }
-        }
-      }
-    }
+  section#container {
+    width: 640px;
+    
+    h1 {
+      font: 400 32p $sans-serif;
+      margin: 0 0 12px 0;
+    } 
+    
   }
 }
