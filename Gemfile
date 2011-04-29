@@ -34,3 +34,7 @@ end
 group :test, :cucumber do
   gem "sham_rack", "1.3.1"
 end
+
+group :production do
+  gem 'rack-rewrite'
+end
