@@ -1,36 +1,36 @@
 <% content_for :page_header do %>
-<section id="head-wrapper">
-  <section id="homepage-top">
-    <header>
-      <h1><a href="/">thoughtbot workshops</a></h1>
-    </header>
-
-    <section id="course-info">
-      <h2><%= h(@course.name) %></h2>
-
-      <%= render :partial => 'follow_up', :locals => { :course => @course } %>
-
-      <section id="course-description"><%= textilize @course.description %></section>
-    </section>
-
-    <section id="workshop-details">
-      <h3>Cost</h3>
-      <p class="cost"><%= number_to_currency @course.price, :precision => 0, :delimiter => '' %></p>
-
-
-      <h3>Where</h3>
-      <p id="section-location">
-        <% google_map_link_to(@course.location, :id => 'location') do %>
-          <%= h(@course.location_name) %><br>
-          <%= h(@course.location) %>
-        <% end %>
-      </p>
-
-      <section id="register">
+  <section id="head-wrapper">
+    <section id="homepage-top">
+      <header>
+        <h1><a href="/">thoughtbot workshops</a></h1>
+      </header>
+  
+      <section id="course-info">
+        <h2><%= @course.name %></h2>
+  
+        <%= render :partial => 'follow_up', :locals => { :course => @course } %>
+  
+        <section id="course-description"><%=raw textilize @course.description %></section>
+      </section>
+  
+      <section id="workshop-details">
+        <h3>Cost</h3>
+        <p class="cost"><%= number_to_currency @course.price, :precision => 0, :delimiter => '' %></p>
+  
+  
+        <h3>Where</h3>
+        <p id="section-location">
+          <%= google_map_link_to(@course.location, :id => 'location') do %>
+            <%= @course.location_name %><br>
+            <%= @course.location %>
+          <% end %>
+        </p>
+  
+        <section id="register">
+        </section>
       </section>
     </section>
   </section>
-</section>
 <% end %>
 
 <section id="additional-information">

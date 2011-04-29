@@ -1,38 +1,18 @@
-<% PASSWORD_FILE = File.join(RAILS_ROOT, '..', '..', 'shared', 'config', 'dbpassword') %>
-
 development:
-  adapter: mysql
+  adapter: mysql2
   database: workshops_development
   username: root
   password: 
   host: localhost
   encoding: utf8
   
-test: &TEST
-  adapter: mysql
+test: &test
+  adapter: mysql2
   database: workshops_test
   username: root
   password: 
   host: localhost
   encoding: utf8
-  
-staging:
-  adapter: mysql
-  database: workshops_staging
-  username: workshops
-  password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
-  host: localhost
-  encoding: utf8
-  socket: /var/lib/mysql/mysql.sock
-  
-production:
-  adapter: mysql
-  database: workshops_production
-  username: workshops
-  password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
-  host: localhost
-  encoding: utf8
-  socket: /var/lib/mysql/mysql.sock
 
 cucumber:
-  <<: *TEST
+  <<: *test

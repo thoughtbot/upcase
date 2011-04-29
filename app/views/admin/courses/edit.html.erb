@@ -6,9 +6,9 @@
   </ul>
 <% end -%>
 
-<% semantic_form_for [:admin, @course] do |form| %>
+<%= semantic_form_for [:admin, @course] do |form| %>
   <%= render :partial => 'fields', :locals => { :form => form } %>
-  <% form.buttons do -%>
+  <%= form.buttons do -%>
     <%= form.commit_button 'Save Course' %>
   <% end -%>
 <% end %>

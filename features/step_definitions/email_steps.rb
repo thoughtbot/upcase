@@ -1,13 +1,12 @@
 Then '"$email" receives a set your password link' do |email|
   user = User.find_by_email!(email)
-  assert !user.confirmation_token.blank?
-  assert !ActionMailer::Base.deliveries.empty?
+  ActionMailer::Base.deliveries.should_not be_empty
   result = ActionMailer::Base.deliveries.any? do |email|
     email.to == [user.email] &&
     email.subject =~ /Welcome/i &&
     email.body =~ /#{user.confirmation_token}/
   end
-  assert result
+  result.should be
 end
 
 Then '"$email" does not receive a set your password link' do |email|
@@ -30,16 +29,16 @@ Then '"$email" does not receive a confirmation message' do |email|
     email.to == [user.email] &&
     email.subject =~ /confirm/i
   end
-  assert !result
+  result.should_not be
 end
 
 Then '"$email_address" receives a follow up email for "$course_title"' do |email_address, course_title|
-  assert !ActionMailer::Base.deliveries.empty?
+  ActionMailer::Base.deliveries.should_not be_empty
   result = ActionMailer::Base.deliveries.any? do |email|
     email.to == [email_address] &&
     email.subject =~ /#{course_title} workshop has been scheduled/i
   end
-  assert result
+  result.should be
 end
 
 When 'emails are cleared' do
@@ -51,23 +50,23 @@ Then '"$email_address" does not receive a follow up email for "$course_title"' d
     email.to == [email_address] &&
     email.subject =~ /#{course_title} workshop has been scheduled/i
   end
-  assert !result
+  result.should_not be
 end
 
 Then '"$email_address" is notified that they are scheduled to teach "$course_title"' do |email_address, course_title|
-  assert !ActionMailer::Base.deliveries.empty?
+  ActionMailer::Base.deliveries.should_not be_empty
   result = ActionMailer::Base.deliveries.any? do |email|
     email.to == [email_address] &&
     email.subject =~ /You have been scheduled to teach #{course_title}/i
   end
-  assert result
+  result.should be
 end
 
 Then '"$email_address" receives a registration notification email' do |email_address|
-  assert !ActionMailer::Base.deliveries.empty?
+  ActionMailer::Base.deliveries.should be_empty
   result = ActionMailer::Base.deliveries.any? do |email|
     email.to == [email_address] &&
     email.subject =~ /New registration notification/i
   end
-  assert result
+  result.should be
 end

@@ -1,25 +1,23 @@
-Factory.sequence :email do |n|
-  "user#{n}@example.com"
-end
-
 Factory.sequence :code do |n|
   "code#{n}"
 end
 
+Factory.sequence :email do |n|
+  "user#{n}@example.com"
+end
+
 Factory.define :user do |user|
-  user.email                 { Factory.next :email }
-  user.password              "password"
-  user.password_confirmation "password"
-  user.first_name "Dan"
-  user.last_name "Deacon"
+  user.first_name 'Dan'
+  user.last_name  'Deacon'
+  user.organization 'company'
+  user.email    { Factory.next :email }
+  user.password "password"
 end
 
-Factory.define :email_confirmed_user, :parent => :user do |user|
-  user.email_confirmed { true }
-end
-
-Factory.define(:admin, :parent => :email_confirmed_user) do |user_factory|
-  user_factory.admin true
+Factory.define(:admin, :parent => :user) do |user_factory|
+  user_factory.email    { Factory.next :email }
+  user_factory.password "password"
+  user_factory.admin    true
 end
 
 Factory.define(:course) do |course_factory|
@@ -68,6 +66,6 @@ Factory.define(:follow_up) do |factory|
 end
 
 Factory.define(:coupon) do |factory|
-  factory.code       { Factory.next :email }
+  factory.code       { Factory.next :code }
   factory.percentage 10
 end

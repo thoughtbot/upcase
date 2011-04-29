@@ -1,9 +1,8 @@
 <%= form.semantic_errors %>
-<% form.inputs do %>
+<%= form.inputs do %>
   <%= form.input :starts_on, :as => :string %>
   <%= form.input :ends_on,   :as => :string %>
 
   <%= link_to 'Create New Teacher', new_admin_course_teacher_path(@course), :id => 'new-teacher' %>
   <%= form.input :teachers, :as => :check_boxes, :collection => @teachers, :label_method => teacher_label %>
-
 <% end %>

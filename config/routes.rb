@@ -1,37 +1,36 @@
-ActionController::Routing::Routes.draw do |map|
-  map.admin '/admin', :controller => 'admin/courses'
-  map.root :controller => :sections, :action => :index
+Workshops::Application.routes.draw do
+  root :to => 'sections#index'
 
-  map.namespace :admin do |admin|
-    admin.resources :courses do |courses|
-      courses.resources :sections, :only => [:new, :create, :edit, :update]
-      courses.resources :teachers, :only => [:new, :create]
-      courses.resources :follow_ups, :only => [:create, :destroy]
+  match '/admin' => 'admin/courses#index', :as => :admin
+
+  namespace :admin do
+    resources :courses do
+      resources :sections
+      resources :teachers
+      resources :follow_ups
     end
-    admin.resources :coupons, :controlelr
-    admin.resources :sections, :only => [] do |section|
-      section.resources :registrations, :only => [:new, :create, :destroy]
+    resources :coupons
+    resources :controlelr
+    resources :sections do
+      resources :registrations
     end
   end
 
-  map.resources :sections, :only => [:index, :show] do |sections|
-    sections.resources :registrations, :only => [:index, :new, :create]
-    sections.resources :redemptions, :only => [:new]
+  resources :sections do
+    resources :registrations
+    resources :redemptions
   end
 
-  map.resources :courses, :only => [:show] do |courses|
-    courses.resources :sections, :only => [] do |sections|
-      sections.resources :registrations, :only => [:new, :create]
+  resources :courses do
+    resources :sections do
+      resources :registrations
     end
-    courses.resources :follow_ups, :only => [:create]
+    resources :follow_ups
   end
 
-  HighVoltage::Routes.draw(map)
+  resource :session, :controller => 'sessions'
 
-  map.resource :session, :controller => 'sessions'
-  Clearance::Routes.draw(map)
-
-  map.fairhaven '/fairhaven', :controller => "high_voltage/pages", :action => "show", :id => "fairhaven"
-  map.fairhaven_registered '/fairhaven/registered', :controller => "high_voltage/pages", :action => "show", :id => "fairhaven-registered"
-  map.fairhaven_resources '/fairhaven/resources', :controller => "high_voltage/pages", :action => "show", :id => "fairhaven-resources"
+  match '/fairhaven' => 'high_voltage/pages#show', :as => :fairhaven, :id => 'fairhaven'
+  match '/fairhaven/registered' => 'high_voltage/pages#show', :as => :fairhaven_registered, :id => 'fairhaven-registered'
+  match '/fairhaven/resources' => 'high_voltage/pages#show', :as => :fairhaven_resources, :id => 'fairhaven-resources'
 end

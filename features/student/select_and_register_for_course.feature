@@ -30,7 +30,6 @@ Feature: Selecting a course and registering for it
       | Last name             | Santana            |
       | Email                 | carlos@santana.com |
       | Password              | password           |
-      | Password confirmation | password           |
       | Organization          | Guitar Center      |
       | Phone                 | 617 123 1234       |
       | Address 1             | 123 Main St.       |
@@ -71,8 +70,8 @@ Feature: Selecting a course and registering for it
       | Ends on   | January 15, 2011 |
     And I sign out
     And the following user exists:
-      | email              | first name | last name | organization  | address1     | password | password_confirmation |
-      | carlos@santana.com | Carlos     | Santana   | Guitar Center | 123 Main St. | test     | test                  |
+      | email              | first name | last name | organization  | address1     | password |
+      | carlos@santana.com | Carlos     | Santana   | Guitar Center | 123 Main St. | test     |
     And I sign in as "carlos@santana.com/test"
     When I go to the home page
     And I follow the link to the Test-Driven Haskell course
@@ -140,7 +139,6 @@ Feature: Selecting a course and registering for it
       | Last name             | Santana            |
       | Email                 | carlos@santana.com |
       | Password              | password           |
-      | Password confirmation | password           |
       | Organization          | Guitar Center      |
       | Phone                 | 617 123 1234       |
       | Address 1             | 123 Main St.       |

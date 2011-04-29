@@ -7,7 +7,9 @@ class Course < ActiveRecord::Base
   accepts_nested_attributes_for :questions, :reject_if => :all_blank
   accepts_nested_attributes_for :follow_ups, :reject_if => :all_blank
 
-  named_scope :unscheduled, lambda { { :conditions => ["courses.id not in (select sections.course_id from sections where sections.ends_on >= ?)", Date.today] } }
+  def self.unscheduled
+    where("courses.id not in (select sections.course_id from sections where sections.ends_on >= ?)", Date.today)
+  end
 
   def questions_with_blank
     questions + [questions.new]
