@@ -1,36 +1,34 @@
 source :rubygems
-gem "rails", "2.3.8"
-gem "mysql"
-gem "RedCloth"
+
+gem "rails", "3.0.7"
+gem "rack"
+
+gem "mysql2", "0.2.7"
+gem "RedCloth", :require => "redcloth"
 gem "will_paginate"
-gem "formtastic", "~> 1.2.3"
-gem "nokogiri", ">= 1.4.0"
-gem "clearance", ">= 0.8.8"
+gem "formtastic"
+gem "nokogiri"
+gem "clearance"
 gem "validation_reflection", ">= 0.3.6"
-gem "haml", "= 3.0.16"
+gem "sass"
 gem "paperclip"
 gem "hoptoad_notifier"
-gem "cucumber", "0.8.5"
 gem "copycopter_client", "~> 1.0.1"
 gem "ruby-freshbooks"
+gem "high_voltage"
 
 group :test do
+  gem "capybara-webkit"
   gem "cucumber-rails"
   gem "capybara"
-  gem "capybara-envjs"
-  gem "capybara-envjs-fixes"
-  gem "johnson"
+  gem "factory_girl_rails"
   gem "launchy"
-  gem "factory_girl", "1.2.3"
-  gem "database_cleaner", "0.5.0"
-  gem "rspec-rails", "1.3.2"
-  gem "polyglot", "0.3.1"
-  gem "treetop", "1.4.5"
+  gem "database_cleaner"
+  gem "rspec-rails", "~> 2.0.0.rc"
+  gem "treetop"
   gem "sinatra"
   gem "ruby-debug"
   gem "timecop"
-end
-
-group :test, :cucumber do
+  gem "shoulda"
   gem "sham_rack", "1.3.1"
 end

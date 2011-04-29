@@ -1,7 +1,7 @@
 When /^I follow the remove link for the "([^"]*)" follow up$/ do |email|
   follow_up = FollowUp.find_by_email!(email)
   within "#follow_up_#{follow_up.id}" do
-    locate("a.remove-followup").click
+    find("a.remove-followup").click
   end
 end
 

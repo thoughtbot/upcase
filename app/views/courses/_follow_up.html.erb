@@ -1,5 +1,5 @@
 <section id="notify-me">
-  <% form_for [course, FollowUp.new] do |form| %>
+  <%= form_for [course, FollowUp.new] do |form| %>
     <%= form.label :email, "Want to be notified the next time we run this workshop?" %>
     <%= form.text_field :email, :placeholder => "Enter your email address" %>
     <input type="submit" value="Submit" />

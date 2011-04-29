@@ -48,11 +48,11 @@ Then 'I do not see the home page section from "$start_date" to "$end_date"' do |
 end
 
 Then 'I see that "$teacher_name" is teaching' do |teacher_name|
-  find_field(teacher_name).node.attributes['checked'].value.should == 'checked'
+  find_field(teacher_name)['checked'].should be
 end
 
 Then 'I do not see that "$teacher_name" is teaching' do |teacher_name|
-  find_field(teacher_name).node.attributes['checked'].should be_nil
+  find_field(teacher_name)['checked'].should_not be
 end
 
 Then "I see that the section teacher can't be blank" do
