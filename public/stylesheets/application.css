@@ -492,8 +492,22 @@ body.high_voltage-pages #head-wrapper #homepage-top {
 body.high_voltage-pages section#container {
   width: 640px; }
   body.high_voltage-pages section#container h1 {
-    font: 400 32p "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+    font: 400 32px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
     margin: 0 0 12px 0; }
+  body.high_voltage-pages section#container section {
+    border-bottom: 1px solid #cfcfcf;
+    margin: 0 0 30px 0; }
+    body.high_voltage-pages section#container section.no-border {
+      border: 0; }
+  body.high_voltage-pages section#container article {
+    margin: 0 0 30px 0; }
+  body.high_voltage-pages section#container pre {
+    background: #efefef;
+    line-height: 180%;
+    margin: 12px 0;
+    padding: 14px 0; }
+  body.high_voltage-pages section#container strong {
+    font-weight: bold; }
 
 #flash #flash_failure {
   background: #f8bcba;
@@ -610,25 +624,26 @@ a {
 h1, h2, h3, h4, h5, h6 {
   color: #222;
   font: 400 "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-  line-height: 160%; }
+  line-height: 150%; }
 
 h1 {
-  font-size: 42px; }
-
-h2 {
   font-size: 32px; }
 
-h3 {
+h2 {
   font-size: 24px; }
 
-h4 {
+h3 {
   font-size: 20px; }
+
+h4 {
+  font-size: 18px; }
 
 h5, h6 {
   font-size: 14px; }
 
 p {
-  font-size: 14px; }
+  font-size: 14px;
+  margin-bottom: 0.5em; }
 
 #container {
   margin: 0 auto 100px;

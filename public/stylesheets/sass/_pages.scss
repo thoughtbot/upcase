@@ -30,9 +30,27 @@ body.high_voltage-pages {
     width: 640px;
     
     h1 {
-      font: 400 32p $sans-serif;
+      font: 400 32px $sans-serif;
       margin: 0 0 12px 0;
     } 
-    
+    section {
+      border-bottom: 1px solid #cfcfcf;
+      margin: 0 0 30px 0;
+      &.no-border {
+        border: 0;
+      }
+    }
+    article {
+      margin: 0 0 30px 0;
+    }
+    pre {
+      background: #efefef;
+      line-height: 180%;
+      margin: 12px 0;
+      padding: 14px 0;
+    }
+    strong {
+      font-weight: bold;
+    }
   }
 }

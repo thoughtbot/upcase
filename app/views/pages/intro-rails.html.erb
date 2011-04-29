@@ -12,34 +12,19 @@
 
 <section>
   <article id="code">
-    <h3>Code</h3>
-    <p>Download code to study it later:</p>
-
-    <ul>
-      <li><a href="https://thoughtbot_workshops.s3.amazonaws.com/code/shouter.zip">Shouter</a>: The app we built together in class.</li>
-      <li><a href="https://thoughtbot_workshops.s3.amazonaws.com/code/sinatra-json-api.zip">Sinatra JSON API</a>: A very common task you might want to do in your own app.</li>
-    </ul>
+    <h2>Code</h2>
+    <p>Download the code to <strong><a href="https://thoughtbot_workshops.s3.amazonaws.com/code/shouter.zip">Shouter</a></strong>, the app we built together in class, to study later.</p>
   </article>
 
   <article>
-    <h3>Slides</h3>
-    <p>Download slides to study later:</p>
-    <ul>
-      <li>
-        <a href="https://thoughtbot_workshops.s3.amazonaws.com/slides/intro_ruby.zip">Intro Ruby</a>
-      </li>
-      <li>
-        <a href="https://thoughtbot_workshops.s3.amazonaws.com/slides/intro_rails.zip">Intro Rails</a>
-      </li>
-    </ul>
+    <h2>Slides</h2>
+    <p>Download the <strong><a href="https://thoughtbot_workshops.s3.amazonaws.com/slides/intro_ruby.zip">Intro Ruby</a></strong> and <strong><a href="https://thoughtbot_workshops.s3.amazonaws.com/slides/intro_rails.zip">Intro Rails</a></strong> slides to study later:</p>
+
     <p>You can either read the raw Markdown files or run the slides to view them in a browser. To run them, follow these instructions:</p>
     <pre>
-      <code>
-        gem install showoff
+        <code>gem install showoff
         cd slide-folder
-        showoff serve
-      </code>
-    </pre>
+        showoff serve</code></pre>
   </article>
 </section>
 
@@ -47,12 +32,11 @@
 
 <section>
   <article id="laptop-setup">
-    <h3><%= t(".laptop-setup", :default => "Laptop Setup") %></h3>
+    <h2><%= t(".laptop-setup", :default => "Laptop Setup") %></h2>
     <p>If you're looking to get a good Ruby on Rails development environment installed on Mac OS X, install XCode (from a CD if you have it, otherwise <a href="http://developer.apple.com/technologies/tools/xcode.html">download it</a>), then edit your ~/.bashrc or ~/.zshenv:</p>
 
     <pre>
-      <code>
-        ruby -e "$(curl -fsSL https://gist.github.com/raw/323731/install_homebrew.rb)"
+        <code>ruby -e "$(curl -fsSL https://gist.github.com/raw/323731/install_homebrew.rb)"
         brew install imagemagick redis git
         brew install postgres --no-python
         bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
@@ -61,22 +45,20 @@
         gem install bundler suspenders heroku
         ssh-keygen
         git config --global user.name "Your Name"
-        git config --global user.email "your_email@whatever.com"
-      </code>
-    </pre>
+        git config --global user.email "your_email@whatever.com"</code></pre>
   </article>
 
   <article id="accounts">
-    <h3><%= t(".accounts", :default => "Accounts") %></h3>
+    <h2><%= t(".accounts", :default => "Accounts") %></h2>
     <p>You should have <a href="http://github.com">Github</a> and <a href="http://heroku.com">Heroku</a> accounts.</p>
   </article>
 </section>
 
 <!-- BRUSHING UP SECTION -->
 
-<section>
+<section class="no-border">
   <article id="tutorials">
-    <h3><%= t(".tutorials", :default => "Tutorials") %></h3>
+    <h2><%= t(".tutorials", :default => "Tutorials") %></h2>
     <p>We recommend these tutorials.</p>
     <ul>
       <li>
@@ -91,11 +73,13 @@
     </ul>
   </article>
 
-  <article id="reference">
-    <h3><%= t(".reference", :default => "Reference") %></h3>
+  <article>
+    <h2><%= t(".reference", :default => "Reference") %></h2>
     <p>Have these by your side day-to-day, after the class, when you're developing and need to look something up.</p>
+  </article>
 
-    <h4 class="reference"><%= t(".reference-rails", :default => "Ruby on Rails") %></h4>
+  <article>
+    <h2 class="reference"><%= t(".reference-rails", :default => "Ruby on Rails") %></h3>
     <ul>
       <li>
         <a href="http://railsapi.com/doc/rails-v3.0.3/">Ruby on Rails API</a>: This version of the docs has a killer "fast search" feature.
@@ -104,8 +88,10 @@
         <a href="http://guides.rubyonrails.org/">Ruby on Rails Guides</a>: When you need a quick refresher on routing, or what ActiveRecord's new syntax is, or how to send e-mail, go here.
       </li>
     </ul>
+  </article>
 
-    <h4 class="reference"><%= t(".reference-sql", :default => "SQL") %></h4>
+  <article>
+    <h2 class="reference"><%= t(".reference-sql", :default => "SQL") %></h3>
     <ul>
       <li>
         <a href="http://www.cryer.co.uk/brian/sql/sql_crib_sheet.htm">SQL crib sheet</a>: The basics.
