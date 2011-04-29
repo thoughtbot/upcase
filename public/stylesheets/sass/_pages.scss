@@ -28,7 +28,11 @@ body.high_voltage-pages {
   }
   section#container {
     width: 640px;
-    
+
+    p {
+      font-size: 14px;
+      margin-bottom: 0.5em;
+    }
     h1 {
       font: 400 32px $sans-serif;
       margin: 0 0 12px 0;
