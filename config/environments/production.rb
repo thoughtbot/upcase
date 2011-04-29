@@ -48,7 +48,6 @@ ActionMailer::Base.smtp_settings = {
   :password => "4e7LRALZ"
 }
 
-require 'rack/rewrite'
 config.middleware.insert_before(Rack::Lock, Rack::Rewrite) do
   r301 %r{.*}, "http://#{HOST}$&", :if => Proc.new {|rack_env|
     rack_env['SERVER_NAME'] != HOST
