@@ -35,5 +35,6 @@ ActionController::Routing::Routes.draw do |map|
   map.fairhaven_registered '/fairhaven/registered', :controller => "high_voltage/pages", :action => "show", :id => "fairhaven-registered"
   map.fairhaven_resources '/fairhaven/resources', :controller => "high_voltage/pages", :action => "show", :id => "fairhaven-resources"
 
-  map.intro_rails '/intro-rails', :controller => "high_voltage/pages", :action => "show", :id => "intro-rails"
+  map.intro_rails     '/intro-rails', :controller => "high_voltage/pages", :action => "show", :id => "intro-rails"
+  map.everybody_codes '/everybody-codes', :controller => "high_voltage/pages", :action => "show", :id => "everybody-codes"
 end

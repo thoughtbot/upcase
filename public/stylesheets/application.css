@@ -507,8 +507,8 @@ body.high_voltage-pages section#container {
   body.high_voltage-pages section#container pre {
     background: #efefef;
     line-height: 180%;
-    margin: 12px 0;
-    padding: 14px 0; }
+    margin: 10px 0;
+    padding: 0; }
   body.high_voltage-pages section#container strong {
     font-weight: bold; }
 
