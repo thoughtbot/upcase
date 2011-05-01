@@ -10,16 +10,18 @@
 
 <h1>Everybody Codes</h1>
 
-<!-- LAPTOP SETUP SECTION -->
-
 <section>
   <article>
     <h2><%= t(".laptop-setup", :default => "Laptop Setup") %></h2>
-    <p>Get a good development environment installed on your laptop. Please try to do this before the class.</p>
+    <p>Get a good development environment installed on your laptop. Please attempt this before the class. We will spend the first hour helping work through problems.</p>
 
-    <p>Our recommendation is that you use a Mac OS X machine. If have a Windows machine, we recommend installing <a href="http://www.ubuntu.com/download">Ubuntu</a> (a consumer-friendly version of Linux) on your laptop.</p>
+    <p>Installation instructions are slightly different for each operating system (Mac OS X, Linux, Windows).</p>
 
-    <p>If neither of those options are possible for you, we have Windows instructions but don't recommend it.</p>
+    <p>You'll find that most developers use a Unix-based laptop such as Mac OS X or Linux. One reason is that most web apps are deployed to Unix environments and it's a good idea to try to match your production environment on your laptop (your "development environment").</p>
+
+    <p>Our recommendation is that you use a Mac OS X machine or install <a href="http://www.ubuntu.com/download">Ubuntu</a> (a consumer-friendly version of Linux) on your laptop. Our instructions below cover those operating systems.</p>
+
+    <p>If you absolutely have to use Windows, please follow the <a href="http://railsinstaller.org/">Rails Installer</a> guide.</p>
   </article>
 <section>
 
@@ -35,13 +37,13 @@
        bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
      </code></pre>
 
-    <p>After RVM is installed, we need to tell our <code>~/.bash_profile</code> about it. This file is simply a configuration file that gets loaded each time you open a UNIX shell using Terminal.app.</p>
+    <p>After RVM is installed, we need to tell our <code>~/.bash_profile</code> about it. This file handles your UNIX shell's configuration each time you open a shell using Terminal.app.</p>
 
     <pre><code>
        echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"' >> ~/.bash_profile
     </code></pre>
 
-    <p>Close Terminal.app, then re-open it. The line we added to our <code>~/.bash_profile</code> should now take effect.</p>
+    <p>Close Terminal.app, then re-open it. The line we added to our <code>~/.bash_profile</code> will now take effect.</p>
 
     <p>Next, we're going to install Ruby 1.9.2. This is <a href="http://ruby-lang.org/en/downloads">the latest stable version</a> of Ruby and will be required in the next version of Rails (3.1).</p>
 
@@ -81,6 +83,12 @@
     <pre><code>
       cat ~/.ssh/id_rsa.pub | pbcopy
     </code></pre>
+  </article>
+</section>
+
+<section>
+  <article>
+    <h2>Github and Heroku</h2>
 
     <p>At this point, you should get <a href="http://github.com">Github</a> and <a href="http://heroku.com">Heroku</a> accounts.</p>
 
