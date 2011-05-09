@@ -474,17 +474,18 @@ body.courses-show #head-wrapper #homepage-top {
         border-radius: 5px;
         -moz-box-shadow: inset 0 1px 0 0 #ffabab;
         -webkit-box-shadow: inset 0 1px 0 0 #ffabab;
+        -o-box-shadow: inset 0 1px 0 0 #ffabab;
         box-shadow: inset 0 1px 0 0 #ffabab;
         color: #fff;
         display: block;
-        font-family: "helvetica neue", helvetica, arial, sans-serif;
-        font-size: 16px;
-        font-weight: bold;
-        padding: 12px 0 13px 0;
+        font-family: "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        padding: 12px 0;
         text-decoration: none;
         text-align: center;
         text-shadow: 0 -1px 1px #320000;
-        width: 222px; }
+        width: 180px; }
       body.sections-show #head-wrapper #homepage-top #workshop-details #register a:hover,
       body.courses-show #head-wrapper #homepage-top #workshop-details #register a:hover {
         background: #b02020;
@@ -699,20 +700,24 @@ body.high_voltage-pages section#container {
   padding: 15px; }
 
 body.registrations #head-wrapper #homepage-top {
-  padding: 25px 0 0px 0; }
+  padding: 25px 0 0 0; }
   body.registrations #head-wrapper #homepage-top header {
     margin: 0 0 30px 0;
     padding: 0 0 10px 0; }
     body.registrations #head-wrapper #homepage-top header h1 {
-      background-size: 72px;
+      background: none;
       color: #fff;
       height: 60px;
       text-indent: 0;
       font: 100 26px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      padding: 23px 0 0 95px;
+      padding: 0 0 23px 0;
       width: 400px; }
       body.registrations #head-wrapper #homepage-top header h1 a {
+        background: url("/images/public/logo_small.png") 5px 5px no-repeat;
         color: #fff;
+        display: block;
+        height: 60px;
+        padding: 23px 0 0 95px;
         text-decoration: none; }
 body.registrations h1.course-title {
   font: 400 32px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
@@ -775,17 +780,18 @@ body.registrations form {
       border-radius: 5px;
       -moz-box-shadow: inset 0 1px 0 0 #ffabab;
       -webkit-box-shadow: inset 0 1px 0 0 #ffabab;
+      -o-box-shadow: inset 0 1px 0 0 #ffabab;
       box-shadow: inset 0 1px 0 0 #ffabab;
       color: #fff;
       display: block;
-      font-family: "helvetica neue", helvetica, arial, sans-serif;
+      font-family: "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       font-size: 16px;
-      font-weight: bold;
-      padding: 12px 0 13px 0;
+      font-weight: 700;
+      padding: 10px 0;
       text-decoration: none;
       text-align: center;
       text-shadow: 0 -1px 1px #320000;
-      width: 222px; }
+      width: 200px; }
     body.registrations form fieldset ol li input[type="submit"]:hover {
       background: #b02020;
       background: -moz-linear-gradient(top, #e07777 0%, #bf3f3f 50%, #b02020 50%, #b32727 100%);

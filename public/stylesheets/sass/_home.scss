@@ -1,0 +1,246 @@
+body.sections-index {
+  #homepage-top {
+    background: url("/images/public/transparent-ralph.png") 638px bottom no-repeat;
+  }
+}
+
+#head-wrapper {
+  background: url("/images/public/blackboard.jpg") center top;
+
+  #homepage-top {
+    margin: 0 auto;
+    padding: 50px 0 72px 0;
+    width: 978px;
+
+    header {
+      @extend .clearfix;
+
+      h1 {
+        background: url("/images/public/logo.png") 5px 0 no-repeat;
+        float: left;
+        height: 150px;
+        text-indent: -9999px;
+        width: 168px;
+      }
+
+      #the-sell {
+        float: left;
+        margin: 10px 0 0 0;
+        width: 726px;
+
+        h2 {
+          color: #fff;
+          font: 300 42px/42px $sans-serif;
+          letter-spacing: 1px;
+          text-shadow: 0 0 1px #333;
+        }
+
+        p.tagline {
+          color: #ccc;
+          font: 300 18px/22px $sans-serif;
+          margin: 6px 0 0 0;
+          text-shadow: 0 0 1px #333;
+        }
+      }
+    }
+
+    #workshop-list {
+      margin: 54px 0 0 168px;
+
+      ul {
+        li {
+          margin: 0 0 18px 0;
+          padding: 0 0 18px 0;
+          position: relative;
+
+          a {
+            display: inline-block;
+            text-decoration: none;
+
+            h3 {
+              color: #fff;
+              font: 700 30px/32px $sans-serif;
+              text-shadow: 0 1px 1px #222;
+            }
+
+            p.teaser {
+              color: #aaa;
+              font: 300 16px/18px $sans-serif;
+              margin: 4px 122px 0 0;
+            }
+
+            p.date {
+              color: $red;
+              display: block;
+              font: 400 14px $sans-serif;
+              left: -240px;
+              margin: 4px 0 0 0;
+              position: absolute;
+              text-align: right;
+              text-transform: uppercase;
+              top: 9px;
+              width: 222px;
+            }
+
+            p.where {
+              color: #eee;
+              display: block;
+              font: 400 14px $sans-serif;
+              left: -240px;
+              margin: 4px 0 0 0;
+              position: absolute;
+              text-align: right;
+              bottom: 20px;
+              width: 222px;
+            }
+
+            &:hover {
+              h3 {
+                color: $red;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#class-photos {
+  @extend .clearfix;
+  margin: -30px auto 0;
+  width: 998px;
+
+  img {
+    background: #fff;
+    width: 306px;
+  }
+
+  ul {
+    li {
+      @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset);
+      float: left;
+      height: 205px;
+      list-style-type: none;
+      margin-bottom: 20px;
+      width: 306px;
+      position: relative;
+
+      &.first {
+        margin: 0 30px 0 0;
+      }
+
+      &.last {
+        margin: 0 10px 0 30px;
+      }
+
+      &:after {
+        @include box-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+        position: absolute;
+        background: transparent;
+        width: 70%;
+        height: 55%;
+        content: '';
+        right: 11px;
+        bottom: 11px;
+        transform: skew(15deg) rotate(6deg);
+        -webkit-transform: skew(15deg) rotate(6deg);
+        -moz-transform: skew(15deg) rotate(6deg);
+        z-index: -1;
+      }
+
+      &:before {
+        @include box-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+        z-index: -2;
+        position: absolute;
+        background: transparent;
+        width: 70%;
+        height: 55%;
+        content: '';
+        left: 11px;
+        bottom: 11px;
+        transform: skew(-15deg) rotate(-6deg);
+        -webkit-transform: skew(-15deg) rotate(-6deg);
+        -moz-transform: skew(-15deg) rotate(-6deg);
+      }
+    }
+  }
+}
+
+#more-information {
+  @extend .clearfix;
+  margin: 14px 0 0 0;
+
+  h4 {
+    color: #222;
+    font: 500 20px $sans-serif;
+    margin: 0 0 12px 0;
+  }
+
+  #why-love {
+    float: left;
+    margin: 0 30px 0 0;
+    width: 474px;
+
+    ul {
+      li {
+        color: #333;
+        font: 400 14px/20px $sans-serif;
+        margin: 0 0 12px 0;
+
+        strong {
+          color: #333;
+          display: block;
+          font-size: 16px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  #testimonials {
+    float: left;
+    width: 474px;
+
+    q {
+      display: block;
+      font: 400 14px $sans-serif;
+      line-height: 150%;
+      margin: 0 0 0 18px;
+      position: relative;
+
+      &:before {
+       color: #333;
+       content: "\201C";
+       font: 400 40px $sans-serif;
+       left: -16px;
+       position: absolute;
+       top: -4px;
+      }
+    }
+
+    p.source {
+      color: $red;
+      font: 600 14px $sans-serif;
+      margin: 2px 0 18px 6px;
+
+      a {
+        color: $red;
+        margin: 0 0 0 1px;
+        text-decoration: none;
+
+      }
+    }
+
+    #column-1 {
+      float: left;
+      margin: 0 30px 0 0;
+      width: 222px;
+    }
+
+    #column-2 {
+      float: left;
+      width: 222px;
+    }
+  }
+}
