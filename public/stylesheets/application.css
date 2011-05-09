@@ -49,10 +49,10 @@ table {
 
 /* Clear Floated Elements
 ------------------------------------------------------------------------------*/
-.clearfix:after, body.sections-show #head-wrapper #homepage-top:after,
+.clearfix:after, #head-wrapper #homepage-top header:after, #class-photos:after, #more-information:after, body.sections-show #head-wrapper #homepage-top:after,
 body.courses-show #head-wrapper #homepage-top:after, body.sections-show #additional-information:after,
 body.courses-show #additional-information:after, body.sections-show #additional-information #sidebar li:after,
-body.courses-show #additional-information #sidebar li:after, body.high_voltage-pages #head-wrapper #homepage-top:after, body.registrations #head-wrapper #homepage-top:after, #head-wrapper #homepage-top header:after, #class-photos:after, #more-information:after {
+body.courses-show #additional-information #sidebar li:after, body.high_voltage-pages #head-wrapper #homepage-top:after, body.registrations #head-wrapper #homepage-top:after {
   clear: both;
   content: ' ';
   display: block;
@@ -195,6 +195,181 @@ div#flash {
     position: relative;
     width: 1px; }
 
+body.sections-index #homepage-top {
+  background: url("/images/public/transparent-ralph.png") 638px bottom no-repeat; }
+
+#head-wrapper {
+  background: url("/images/public/blackboard.jpg") center top; }
+  #head-wrapper #homepage-top {
+    margin: 0 auto;
+    padding: 50px 0 72px 0;
+    width: 978px; }
+    #head-wrapper #homepage-top header h1 {
+      background: url("/images/public/logo.png") 5px 0 no-repeat;
+      float: left;
+      height: 150px;
+      text-indent: -9999px;
+      width: 168px; }
+    #head-wrapper #homepage-top header #the-sell {
+      float: left;
+      margin: 10px 0 0 0;
+      width: 726px; }
+      #head-wrapper #homepage-top header #the-sell h2 {
+        color: #fff;
+        font: 300 42px/42px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        letter-spacing: 1px;
+        text-shadow: 0 0 1px #333; }
+      #head-wrapper #homepage-top header #the-sell p.tagline {
+        color: #ccc;
+        font: 300 18px/22px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        margin: 6px 0 0 0;
+        text-shadow: 0 0 1px #333; }
+    #head-wrapper #homepage-top #workshop-list {
+      margin: 54px 0 0 168px; }
+      #head-wrapper #homepage-top #workshop-list ul li {
+        margin: 0 0 18px 0;
+        padding: 0 0 18px 0;
+        position: relative; }
+        #head-wrapper #homepage-top #workshop-list ul li a {
+          display: inline-block;
+          text-decoration: none; }
+          #head-wrapper #homepage-top #workshop-list ul li a h3 {
+            color: #fff;
+            font: 700 30px/32px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+            text-shadow: 0 1px 1px #222; }
+          #head-wrapper #homepage-top #workshop-list ul li a p.teaser {
+            color: #aaa;
+            font: 300 16px/18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+            margin: 4px 122px 0 0; }
+          #head-wrapper #homepage-top #workshop-list ul li a p.date {
+            color: #e73a34;
+            display: block;
+            font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+            left: -240px;
+            margin: 4px 0 0 0;
+            position: absolute;
+            text-align: right;
+            text-transform: uppercase;
+            top: 9px;
+            width: 222px; }
+          #head-wrapper #homepage-top #workshop-list ul li a p.where {
+            color: #eee;
+            display: block;
+            font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+            left: -240px;
+            margin: 4px 0 0 0;
+            position: absolute;
+            text-align: right;
+            bottom: 20px;
+            width: 222px; }
+          #head-wrapper #homepage-top #workshop-list ul li a:hover h3 {
+            color: #e73a34; }
+
+#class-photos {
+  margin: -30px auto 0;
+  width: 998px; }
+  #class-photos img {
+    background: #fff;
+    width: 306px; }
+  #class-photos ul li {
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    -o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    float: left;
+    height: 205px;
+    list-style-type: none;
+    margin-bottom: 20px;
+    width: 306px;
+    position: relative; }
+    #class-photos ul li.first {
+      margin: 0 30px 0 0; }
+    #class-photos ul li.last {
+      margin: 0 10px 0 30px; }
+    #class-photos ul li:after {
+      -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      -o-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      position: absolute;
+      background: transparent;
+      width: 70%;
+      height: 55%;
+      content: '';
+      right: 11px;
+      bottom: 11px;
+      transform: skew(15deg) rotate(6deg);
+      -webkit-transform: skew(15deg) rotate(6deg);
+      -moz-transform: skew(15deg) rotate(6deg);
+      z-index: -1; }
+    #class-photos ul li:before {
+      -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      -o-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      z-index: -2;
+      position: absolute;
+      background: transparent;
+      width: 70%;
+      height: 55%;
+      content: '';
+      left: 11px;
+      bottom: 11px;
+      transform: skew(-15deg) rotate(-6deg);
+      -webkit-transform: skew(-15deg) rotate(-6deg);
+      -moz-transform: skew(-15deg) rotate(-6deg); }
+
+#more-information {
+  margin: 14px 0 0 0; }
+  #more-information h4 {
+    color: #222;
+    font: 500 20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+    margin: 0 0 12px 0; }
+  #more-information #why-love {
+    float: left;
+    margin: 0 30px 0 0;
+    width: 474px; }
+    #more-information #why-love ul li {
+      color: #333;
+      font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      margin: 0 0 12px 0; }
+      #more-information #why-love ul li strong {
+        color: #333;
+        display: block;
+        font-size: 16px;
+        font-weight: 600; }
+  #more-information #testimonials {
+    float: left;
+    width: 474px; }
+    #more-information #testimonials q {
+      display: block;
+      font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      line-height: 150%;
+      margin: 0 0 0 18px;
+      position: relative; }
+      #more-information #testimonials q:before {
+        color: #333;
+        content: "\201C";
+        font: 400 40px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        left: -16px;
+        position: absolute;
+        top: -4px; }
+    #more-information #testimonials p.source {
+      color: #e73a34;
+      font: 600 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      margin: 2px 0 18px 6px; }
+      #more-information #testimonials p.source a {
+        color: #e73a34;
+        margin: 0 0 0 1px;
+        text-decoration: none; }
+    #more-information #testimonials #column-1 {
+      float: left;
+      margin: 0 30px 0 0;
+      width: 222px; }
+    #more-information #testimonials #column-2 {
+      float: left;
+      width: 222px; }
+
 body.sections-show #head-wrapper #homepage-top,
 body.courses-show #head-wrapper #homepage-top {
   padding: 25px 0 0 0; }
@@ -203,17 +378,23 @@ body.courses-show #head-wrapper #homepage-top {
     margin: 0 0 24px 0; }
     body.sections-show #head-wrapper #homepage-top header h1,
     body.courses-show #head-wrapper #homepage-top header h1 {
-      background: url("/images/public/logo_small.png") 5px 5px no-repeat;
+      background: none;
       color: #fff;
       height: 60px;
       text-indent: 0;
       font: 100 26px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      padding: 23px 0 0 95px;
       width: 400px; }
       body.sections-show #head-wrapper #homepage-top header h1 a,
       body.courses-show #head-wrapper #homepage-top header h1 a {
+        background: url("/images/public/logo_small.png") 5px 5px no-repeat;
         color: #fff;
+        display: block;
+        height: 60px;
+        padding: 23px 0 0 95px;
         text-decoration: none; }
+        body.sections-show #head-wrapper #homepage-top header h1 a:hover,
+        body.courses-show #head-wrapper #homepage-top header h1 a:hover {
+          color: #ddd; }
   body.sections-show #head-wrapper #homepage-top #course-info,
   body.courses-show #head-wrapper #homepage-top #course-info {
     float: left;
@@ -647,182 +828,6 @@ h5, h6 {
 #container {
   margin: 0 auto 100px;
   width: 978px; }
-
-body.sections-index #homepage-top {
-  background: url("/images/public/transparent-ralph.png") 638px bottom no-repeat; }
-
-#head-wrapper {
-  background: url("/images/public/blackboard.jpg") center top; }
-  #head-wrapper #homepage-top {
-    margin: 0 auto;
-    padding: 50px 0 72px 0;
-    width: 978px; }
-    #head-wrapper #homepage-top header h1 {
-      background: url("/images/public/logo.png") 5px 0 no-repeat;
-      float: left;
-      height: 150px;
-      text-indent: -9999px;
-      width: 168px; }
-    #head-wrapper #homepage-top header #the-sell {
-      float: left;
-      margin: 10px 0 0 0;
-      width: 726px; }
-      #head-wrapper #homepage-top header #the-sell h2 {
-        color: #fff;
-        font: 300 42px/42px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-        letter-spacing: 1px;
-        text-shadow: 0 0 1px #333; }
-      #head-wrapper #homepage-top header #the-sell p.tagline {
-        color: #ccc;
-        font: 300 18px/22px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-        margin: 6px 0 0 0;
-        text-shadow: 0 0 1px #333; }
-    #head-wrapper #homepage-top #workshop-list {
-      margin: 54px 0 0 168px; }
-      #head-wrapper #homepage-top #workshop-list ul li {
-        margin: 0 0 18px 0;
-        padding: 0 0 18px 0;
-        position: relative; }
-        #head-wrapper #homepage-top #workshop-list ul li a {
-          display: inline-block;
-          text-decoration: none; }
-          #head-wrapper #homepage-top #workshop-list ul li a h3 {
-            color: #fff;
-            font: 700 30px/32px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-            text-shadow: 0 1px 1px #222; }
-          #head-wrapper #homepage-top #workshop-list ul li a p.teaser {
-            color: #aaa;
-            font: 300 16px/18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-            margin: 4px 122px 0 0; }
-          #head-wrapper #homepage-top #workshop-list ul li a p.date {
-            color: #e73a34;
-            display: block;
-            font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-            left: -240px;
-            margin: 4px 0 0 0;
-            position: absolute;
-            text-align: right;
-            text-transform: uppercase;
-            top: 9px;
-            width: 222px; }
-          #head-wrapper #homepage-top #workshop-list ul li a p.where {
-            color: #eee;
-            display: block;
-            font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-            left: -240px;
-            margin: 4px 0 0 0;
-            position: absolute;
-            text-align: right;
-            /*text-transform: uppercase;*/
-            bottom: 17px;
-            width: 222px; }
-          #head-wrapper #homepage-top #workshop-list ul li a:hover h3 {
-            color: #e73a34; }
-
-#class-photos {
-  margin: -30px auto 0;
-  width: 998px; }
-  #class-photos img {
-    background: #fff;
-    width: 306px; }
-  #class-photos ul li {
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-    -o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-    float: left;
-    height: 205px;
-    list-style-type: none;
-    margin-bottom: 20px;
-    width: 306px;
-    position: relative; }
-    #class-photos ul li.first {
-      margin: 0 30px 0 0; }
-    #class-photos ul li.last {
-      margin: 0 10px 0 30px; }
-    #class-photos ul li:after {
-      -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      -o-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      position: absolute;
-      background: transparent;
-      width: 70%;
-      height: 55%;
-      content: '';
-      right: 11px;
-      bottom: 11px;
-      transform: skew(15deg) rotate(6deg);
-      -webkit-transform: skew(15deg) rotate(6deg);
-      -moz-transform: skew(15deg) rotate(6deg);
-      z-index: -1; }
-    #class-photos ul li:before {
-      -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      -o-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      z-index: -2;
-      position: absolute;
-      background: transparent;
-      width: 70%;
-      height: 55%;
-      content: '';
-      left: 11px;
-      bottom: 11px;
-      transform: skew(-15deg) rotate(-6deg);
-      -webkit-transform: skew(-15deg) rotate(-6deg);
-      -moz-transform: skew(-15deg) rotate(-6deg); }
-
-#more-information {
-  margin: 14px 0 0 0; }
-  #more-information h4 {
-    color: #222;
-    font: 500 20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-    margin: 0 0 12px 0; }
-  #more-information #why-love {
-    float: left;
-    margin: 0 30px 0 0;
-    width: 474px; }
-    #more-information #why-love ul li {
-      color: #333;
-      font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      margin: 0 0 12px 0; }
-      #more-information #why-love ul li strong {
-        color: #333;
-        display: block;
-        font-size: 16px;
-        font-weight: 600; }
-  #more-information #testimonials {
-    float: left;
-    width: 474px; }
-    #more-information #testimonials q {
-      display: block;
-      font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      line-height: 150%;
-      margin: 0 0 0 18px;
-      position: relative; }
-      #more-information #testimonials q:before {
-        color: #333;
-        content: "\201C";
-        font: 400 40px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-        left: -16px;
-        position: absolute;
-        top: -4px; }
-    #more-information #testimonials p.source {
-      color: #e73a34;
-      font: 600 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      margin: 2px 0 18px 6px; }
-      #more-information #testimonials p.source a {
-        color: #e73a34;
-        margin: 0 0 0 1px;
-        text-decoration: none; }
-    #more-information #testimonials #column-1 {
-      float: left;
-      margin: 0 30px 0 0;
-      width: 222px; }
-    #more-information #testimonials #column-2 {
-      float: left;
-      width: 222px; }
 
 footer {
   border-top: 1px solid #ddd;
