@@ -10,17 +10,24 @@ body.courses-show {
         margin: 0 0 24px 0;
 
         h1 {
-          background: url("/images/public/logo_small.png") 5px 5px no-repeat;
+          background: none;
           color: #fff;
           height: 60px;
           text-indent: 0;
           font: 100 26px $sans-serif;
-          padding: 23px 0 0 95px;
           width: 400px;
 
           a {
+            background: url("/images/public/logo_small.png") 5px 5px no-repeat;
             color: #fff;
+            display: block;
+            height: 60px;
+            padding: 23px 0 0 95px;
             text-decoration: none;
+
+            &:hover {
+              color: #ddd;
+            }
           }
         }
       }
