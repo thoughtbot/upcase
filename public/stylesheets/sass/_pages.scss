@@ -26,6 +26,7 @@ body.high_voltage-pages {
       }
     }
   }
+
   section#container {
     width: 640px;
 
@@ -33,28 +34,41 @@ body.high_voltage-pages {
       font-size: 14px;
       margin-bottom: 0.5em;
     }
+
     h1 {
       font: 400 32px $sans-serif;
       margin: 0 0 12px 0;
-    } 
+    }
+
+    h3 {
+      margin-top: 18px;
+    }
+
     section {
-      border-bottom: 1px solid #cfcfcf;
       margin: 0 0 30px 0;
+
       &.no-border {
         border: 0;
       }
     }
+
     article {
       margin: 0 0 30px 0;
     }
+
     pre {
       background: #efefef;
       line-height: 180%;
       margin: 10px 0;
       padding: 0;
     }
+
     strong {
       font-weight: bold;
     }
   }
+
+  footer {
+  }
+
 }
