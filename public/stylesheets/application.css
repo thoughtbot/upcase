@@ -679,8 +679,9 @@ body.high_voltage-pages section#container {
   body.high_voltage-pages section#container h1 {
     font: 400 32px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
     margin: 0 0 12px 0; }
+  body.high_voltage-pages section#container h3 {
+    margin-top: 18px; }
   body.high_voltage-pages section#container section {
-    border-bottom: 1px solid #cfcfcf;
     margin: 0 0 30px 0; }
     body.high_voltage-pages section#container section.no-border {
       border: 0; }
