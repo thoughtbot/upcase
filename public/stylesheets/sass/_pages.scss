@@ -44,6 +44,15 @@ body.high_voltage-pages {
       margin-top: 18px;
     }
 
+    ul {
+      list-style: outside;
+      margin: 0 0 12px 0;
+
+      li {
+        margin: 0 0 6px 0;
+      }
+    }
+
     section {
       margin: 0 0 30px 0;
 

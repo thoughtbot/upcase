@@ -39,4 +39,5 @@ ActionController::Routing::Routes.draw do |map|
   map.everybody_codes '/everybody-codes', :controller => "high_voltage/pages", :action => "show", :id => "everybody-codes"
 
   map.directions '/directions', :controller => "high_voltage/pages", :action => "show", :id => "directions"
+  map.group_training '/group-training', :controller => "high_voltage/pages", :action => "show", :id => "group-training"
 end
