@@ -53,11 +53,22 @@ footer {
 
   p {
     color: #666;
+    display: inline;
     font: 400 14px $sans-serif;
+    float: left;
+
+    &.footer-links {
+      float: right;
+    }
 
     a {
-      color: #333;
       text-decoration: none;
     }
+  }
+}
+
+body.high_voltage-pages footer {
+  p.footer-links {
+    float: left;
   }
 }
