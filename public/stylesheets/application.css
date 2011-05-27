@@ -846,7 +846,13 @@ footer {
   padding: 8px 0 0 0; }
   footer p {
     color: #666;
-    font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
+    display: inline;
+    font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+    float: left; }
+    footer p.footer-links {
+      float: right; }
     footer p a {
-      color: #333;
       text-decoration: none; }
+
+body.high_voltage-pages footer p.footer-links {
+  float: left; }
