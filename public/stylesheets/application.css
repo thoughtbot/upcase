@@ -681,9 +681,11 @@ body.high_voltage-pages section#container {
     margin: 0 0 12px 0; }
   body.high_voltage-pages section#container h3 {
     margin-top: 18px; }
+  body.high_voltage-pages section#container h4 {
+    font-size: 16px; }
   body.high_voltage-pages section#container ul {
     list-style: outside;
-    margin: 0 0 12px 0; }
+    margin: 8px 0 12px 16px; }
     body.high_voltage-pages section#container ul li {
       margin: 0 0 6px 0; }
   body.high_voltage-pages section#container section {
