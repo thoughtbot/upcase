@@ -681,6 +681,12 @@ body.high_voltage-pages section#container {
     margin: 0 0 12px 0; }
   body.high_voltage-pages section#container h3 {
     margin-top: 18px; }
+    body.high_voltage-pages section#container h3.offer {
+      color: #444;
+      font-size: 18px;
+      line-height: 27px; }
+      body.high_voltage-pages section#container h3.offer strong {
+        color: #e73a34; }
   body.high_voltage-pages section#container h4 {
     font-size: 16px; }
   body.high_voltage-pages section#container ul {
