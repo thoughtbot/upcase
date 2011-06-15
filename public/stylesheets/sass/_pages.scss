@@ -42,6 +42,16 @@ body.high_voltage-pages {
 
     h3 {
       margin-top: 18px;
+
+      &.offer {
+        color: #444;
+        font-size: 18px;
+        line-height: 27px;
+
+        strong {
+          color: $red;
+        }
+      }
     }
 
     h4 {
