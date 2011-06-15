@@ -210,10 +210,10 @@ body.sections-index {
       position: relative;
 
       &:before {
-       color: #333;
+       color: #444;
        content: "\201C";
        font: 400 40px $sans-serif;
-       left: -16px;
+       left: -17px;
        position: absolute;
        top: -4px;
       }
@@ -222,7 +222,7 @@ body.sections-index {
     p.source {
       color: $red;
       font: 600 14px $sans-serif;
-      margin: 2px 0 18px 6px;
+      margin: 2px 0 18px 5px;
 
       a {
         color: $red;
