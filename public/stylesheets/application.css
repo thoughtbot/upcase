@@ -348,16 +348,16 @@ body.sections-index #homepage-top {
       margin: 0 0 0 18px;
       position: relative; }
       #more-information #testimonials q:before {
-        color: #333;
+        color: #444;
         content: "\201C";
         font: 400 40px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-        left: -16px;
+        left: -17px;
         position: absolute;
         top: -4px; }
     #more-information #testimonials p.source {
       color: #e73a34;
       font: 600 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      margin: 2px 0 18px 6px; }
+      margin: 2px 0 18px 5px; }
       #more-information #testimonials p.source a {
         color: #e73a34;
         margin: 0 0 0 1px;
