@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     from       Clearance.configuration.mailer_sender
     recipients @user.email
-    subject    "Welcome to Thoughbot Workshops"
+    subject    "Welcome to thoughtbot Workshops"
   end
 
   def follow_up follow_up, section
