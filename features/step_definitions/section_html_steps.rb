@@ -101,12 +101,6 @@ Then 'I see the section price is "$price"' do |price|
   end
 end
 
-Then 'I see the section terms of service is "$terms_of_service"' do |terms_of_service|
-  within("#terms") do
-    page.should have_content(terms_of_service)
-  end
-end
-
 Then 'I see that one of the teachers is "$teacher_name"' do |teacher_name|
   within('#teachers') do
     page.should have_content(teacher_name)
