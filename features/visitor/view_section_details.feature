@@ -22,7 +22,6 @@ Feature: Viewing section details
     And I should see "June 13-16, 2010"
     And I should see "9:00AM-12:00PM"
     And I should see "$100"
-    And I see the section terms of service is "No pets allowed"
     And I see that one of the teachers is "Ralph Bot"
     And I see "Ralph Bot"'s avatar
     And I see the question "What color?"
