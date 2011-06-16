@@ -38,6 +38,16 @@ body.registrations {
     }
   }
 
+  #form-container {
+    @extend .clearfix;
+  }
+
+  #form-column {
+    float: left;
+    margin: 0 30px 0 0;
+    width: 526px;
+  }
+
   h1.course-title {
     font: 400 32px $sans-serif;
     margin: 0 0 12px 0;
@@ -164,6 +174,33 @@ body.registrations {
           }
         }
       }
+    }
+  }
+
+  #form-sidebar {
+    float: left;
+    padding: 50px 0 0 0;
+    width: 418px;
+
+    h4 {
+      color: #666;
+      font-weight: 600;
+      margin: 0 0 8px 0;
+    }
+
+    p {
+      color: #666;
+      margin: 0 0 6px 0;
+    }
+
+    ul {
+      color: #666;
+    }
+
+    li {
+      color: #666;
+      list-style: outside;
+      margin: 0 0 4px 0;
     }
   }
 }
