@@ -9,6 +9,7 @@
     <meta http-equiv="Keywords" name="Keywords" content="<%= t(".meta-keywords", :default => "web designer job, web design job, web development job, startup designer, startup developer, web startup job, startup job") %>" />
     <script type="text/javascript" src="http://use.typekit.com/jes4mbj.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <%= csrf_meta_tag %>
   </head>
 
   <body class="<%= body_class %>">
@@ -23,6 +24,9 @@
         <footer>
           <%= t(".footer", :default => "<p><a href=\"http://thoughtbot.com\">thoughtbot</a> is a web design and development company based in Boston, MA. We build sites for local startups, run our own services, and share what we learn along the way with other designers and developers.</p>
           ") %>
+          <% if signed_in? && current_user.admin? -%>
+            <p><%= link_to('Admin', admin_path) %> | <%= link_to('Sign out', sign_out_path, :method => :delete) %></p>
+          <% end -%>
         </footer>
     </section>
 

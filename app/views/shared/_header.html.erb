@@ -8,7 +8,7 @@
           <% if current_user.admin? %>
             <li><%= link_to('Admin', admin_path) %></li>
           <% end %>
-          <li><%= link_to('Sign out', sign_out_path) %></li>
+          <li><%= link_to('Sign out', sign_out_path, :method => :delete) %></li>
         <% else %>
           <li><%= link_to('Sign in', sign_in_path) %></li>
         <% end %>

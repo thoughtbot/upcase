@@ -46,7 +46,7 @@ GEM
     celerity (0.8.9)
     childprocess (0.1.8)
       ffi (~> 1.0.6)
-    clearance (0.11.0)
+    clearance (0.11.1)
       diesel (~> 0.1.4)
       rails (~> 3.0.0)
     columnize (0.3.2)
@@ -91,6 +91,9 @@ GEM
     httparty (0.7.7)
       crack (= 0.1.8)
     i18n (0.5.0)
+    jquery-rails (1.0.11)
+      railties (~> 3.0)
+      thor (~> 0.14)
     json (1.5.1)
     json_pure (1.5.1)
     launchy (0.4.0)
@@ -179,7 +182,7 @@ DEPENDENCIES
   RedCloth
   capybara
   capybara-webkit
-  clearance
+  clearance (~> 0.11.0)
   copycopter_client (~> 1.0.1)
   cucumber-rails
   database_cleaner
@@ -187,6 +190,7 @@ DEPENDENCIES
   formtastic
   high_voltage
   hoptoad_notifier
+  jquery-rails (~> 1.0.11)
   launchy
   mysql2 (= 0.2.7)
   nokogiri
