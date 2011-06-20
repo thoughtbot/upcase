@@ -23,7 +23,7 @@ Feature: Adding followups for a course
     And I press the button to re-run a course
     Then "followup@example.com" does not receive a follow up email for "Test-Driven Sleeping"
 
-  @javascript
+  @selenium
   Scenario: Adding more than one followup for a course
     Given I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
