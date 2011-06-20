@@ -4,6 +4,7 @@ Feature: Selecting a course and registering for it
     When I go to the home page
     Then I see the empty section description
 
+  @javascript
   Scenario: User registers for a section then is signed in
     Given today is June 10, 2010
     And I am signed in as an admin
@@ -53,6 +54,7 @@ Feature: Selecting a course and registering for it
     Then I am redirected to the freshbooks invoice page for "carlos@santana.com" on "Test-Driven Haskell"
     Then "workshops@thoughtbot.com" receives a registration notification email
 
+  @javascript
   Scenario: Existing user registers for a section
     Given today is June 10, 2010
     And I am signed in as an admin
@@ -160,7 +162,6 @@ Feature: Selecting a course and registering for it
     And the invoice for "carlos@santana.com" has the following line item:
       | name     | unit_cost  | quantity | description         |
       | Workshop | 100        | 1        | Test-Driven Haskell |
-    Then I am redirected to the freshbooks invoice page for "carlos@santana.com" on "Test-Driven Haskell"
   
   @javascript
   Scenario: User registers with an invalid coupon
