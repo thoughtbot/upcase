@@ -19,6 +19,7 @@ gem "high_voltage"
 gem "jquery-rails", "~> 1.0.11"
 
 group :test do
+  gem "headless"
   gem "cucumber-rails"
   gem "capybara"
   gem "factory_girl_rails"
