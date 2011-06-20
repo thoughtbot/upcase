@@ -1,6 +1,6 @@
 Feature: Sign up
 
-  In order to get access to protected sections of the site
+  In order to access protected sections of the site
   As a visitor
   I want to sign up
 
@@ -12,7 +12,7 @@ Feature: Sign up
     When I fill in "Email" with "invalidemail"
     And I fill in "Password" with "password"
     And I press "Sign up"
-    Then I should see "Email is invalid"
+    Then I should see "Must be a valid email address"
 
   Scenario: Visitor signs up with blank password
     When I fill in "Email" with "email@example.com"
@@ -25,3 +25,4 @@ Feature: Sign up
     And I fill in "Password" with "password"
     And I press "Sign up"
     Then I should see "signed up"
+    And I should be on the home page
