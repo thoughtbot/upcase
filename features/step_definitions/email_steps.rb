@@ -63,7 +63,7 @@ Then '"$email_address" is notified that they are scheduled to teach "$course_tit
 end
 
 Then '"$email_address" receives a registration notification email' do |email_address|
-  ActionMailer::Base.deliveries.should be_empty
+  ActionMailer::Base.deliveries.should_not be_empty
   result = ActionMailer::Base.deliveries.any? do |email|
     email.to == [email_address] &&
     email.subject =~ /New registration notification/i
