@@ -1,0 +1,97 @@
+body.high_voltage-pages {
+  #head-wrapper {
+    #homepage-top {
+      @extend .clearfix;
+      padding: 25px 0 0px 0;
+      width: 660px;
+
+      header {
+        margin: 0 0 30px 0;
+        padding: 0 0 10px 0;
+
+        h1 {
+          background-size: 72px;
+          color: #fff;
+          height: 60px;
+          text-indent: 0;
+          font: 100 26px $sans-serif;
+          padding: 23px 0 0 95px;
+          width: 400px;
+
+          a {
+            color: #fff;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+
+  section#container {
+    width: 640px;
+
+    p {
+      font-size: 14px;
+      margin-bottom: 0.5em;
+    }
+
+    h1 {
+      font: 400 32px $sans-serif;
+      margin: 0 0 12px 0;
+    }
+
+    h3 {
+      margin-top: 18px;
+
+      &.offer {
+        color: #444;
+        font-size: 18px;
+        line-height: 27px;
+
+        strong {
+          color: $red;
+        }
+      }
+    }
+
+    h4 {
+      font-size: 16px;
+    }
+
+    ul {
+      list-style: outside;
+      margin: 8px 0 12px 16px;
+
+      li {
+        margin: 0 0 6px 0;
+      }
+    }
+
+    section {
+      margin: 0 0 30px 0;
+
+      &.no-border {
+        border: 0;
+      }
+    }
+
+    article {
+      margin: 0 0 30px 0;
+    }
+
+    pre {
+      background: #efefef;
+      line-height: 180%;
+      margin: 10px 0;
+      padding: 0;
+    }
+
+    strong {
+      font-weight: bold;
+    }
+  }
+
+  footer {
+  }
+
+}
