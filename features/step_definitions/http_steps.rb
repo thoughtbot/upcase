@@ -1,4 +1,7 @@
 Then /^I am redirected to (.+)$/ do |page_name|
-  url = URI.parse(path_to(page_name))
-  page.should have_content("Current location: #{url.path} on #{url.host}")
+  if current_url.respond_to? :should
+    current_url.should == path_to(page_name)
+  else
+    assert_equal path_to(page_name), current_url
+  end
 end
