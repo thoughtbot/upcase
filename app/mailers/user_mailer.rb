@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def set_password(user)
     @user = user
-    mail(:to => @user.email, :subject => "Welcome to Thoughbot Workshops")
+    mail(:to => @user.email, :subject => "Welcome to thoughtbot Workshops")
   end
 
   def follow_up(follow_up, section)
