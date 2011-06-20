@@ -63,7 +63,7 @@ Feature: Adding a course
     Then the question 1 field should contain "Do I need a helmet?"
     And the answer 1 field should contain "Of course."
 
-  @javascript
+  @selenium
   Scenario: Add a course with more than one FAQ
     Given I am signed in as an admin
     When I go to the admin page

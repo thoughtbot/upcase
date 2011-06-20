@@ -45,7 +45,7 @@ Feature: Editing a course
       | Do you wear pants?  | Define "Pants." |
       | Do I need a helmet? | Of course.      |
 
-  @javascript
+  @selenium
   Scenario: Edit a course and add more than one FAQ
     Given I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
