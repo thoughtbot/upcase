@@ -20,7 +20,7 @@
   
         <section id="course-description"><%=raw textilize @section.course_description %></section>
       </section>
-  
+
       <section id="workshop-details">
         <h3>Cost</h3>
         <% unless @section.full? %>
@@ -35,10 +35,7 @@
   
         <h3>Where</h3>
         <p id="section-location">
-          <%= google_map_link_to("#{@section.course_location} #{@section.course_location_name}", :id => 'location') do %>
-            <%= @section.course_location %><br>
-            <%= @section.course_location_name %>
-          <% end %>
+          <%= google_map_link_to("#{@section.course_location} #{@section.course_location_name}", :id => 'location') %>
         </p>
   
         <section id="register">
@@ -46,10 +43,12 @@
             <%= link_to registration_url(@section), :id => 'register-button' do %>
               Register
             <% end %>
-            </section>
           <% end %>
         </section>
       </section>
+
+
+
     </section>
   </section>
 <% end %>
