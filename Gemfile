@@ -3,7 +3,7 @@ source :rubygems
 gem "rails", "3.0.7"
 gem "rack"
 
-gem "mysql2", "0.2.7"
+gem "pg"
 gem "RedCloth", :require => "redcloth"
 gem "will_paginate"
 gem "formtastic"
