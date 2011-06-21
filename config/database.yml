@@ -1,18 +1,11 @@
-development:
-  adapter: mysql2
+development: &default
+  adapter: postgresql
   database: workshops_development
-  username: root
-  password: 
-  host: localhost
-  encoding: utf8
-  
+  min_messages: WARNING
+
 test: &test
-  adapter: mysql2
+  <<: *default
   database: workshops_test
-  username: root
-  password: 
-  host: localhost
-  encoding: utf8
 
 cucumber:
   <<: *test
