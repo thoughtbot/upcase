@@ -89,15 +89,13 @@ body.registrations {
           width: 466px;
 
           &#user_first_name_input,
-          &#user_password_input,
           &#user_city_input {
             float: left;
             margin-right: 20px;
             width: 223px;
           }
 
-          &#user_last_name_input,
-          &#user_password_confirmation_input {
+          &#user_last_name_input {
             float: left;
             width: 223px;
           }
@@ -129,7 +127,9 @@ body.registrations {
           }
 
           input[type="text"],
-          input[type="password"] {
+          input[type="password"],
+          input[type="tel"],
+          input[type="email"] {
             padding: 6px 4px;
             width: 100%;
           }
