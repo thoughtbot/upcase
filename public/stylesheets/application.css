@@ -760,11 +760,11 @@ body.registrations form {
     margin: 0 0 8px 0;
     width: 466px;
     /* red button */ }
-    body.registrations form fieldset ol li#user_first_name_input, body.registrations form fieldset ol li#user_password_input, body.registrations form fieldset ol li#user_city_input {
+    body.registrations form fieldset ol li#user_first_name_input, body.registrations form fieldset ol li#user_city_input {
       float: left;
       margin-right: 20px;
       width: 223px; }
-    body.registrations form fieldset ol li#user_last_name_input, body.registrations form fieldset ol li#user_password_confirmation_input {
+    body.registrations form fieldset ol li#user_last_name_input {
       float: left;
       width: 223px; }
     body.registrations form fieldset ol li#user_state_input {
@@ -782,7 +782,9 @@ body.registrations form {
       display: block;
       font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
     body.registrations form fieldset ol li input[type="text"],
-    body.registrations form fieldset ol li input[type="password"] {
+    body.registrations form fieldset ol li input[type="password"],
+    body.registrations form fieldset ol li input[type="tel"],
+    body.registrations form fieldset ol li input[type="email"] {
       padding: 6px 4px;
       width: 100%; }
     body.registrations form fieldset ol li.commit {
