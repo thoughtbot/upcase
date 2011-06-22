@@ -17,6 +17,7 @@ gem "copycopter_client", "~> 1.0.1"
 gem "ruby-freshbooks"
 gem "high_voltage"
 gem "jquery-rails", "~> 1.0.11"
+gem "heroku"
 
 group :test do
   gem "headless"
