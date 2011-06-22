@@ -4,25 +4,25 @@
       <header>
         <h1><a href="/">thoughtbot workshops</a></h1>
       </header>
-  
+
       <section id="course-info">
         <h2><%= @course.name %></h2>
-  
+
         <%= render :partial => 'follow_up', :locals => { :course => @course } %>
-  
+
         <section id="course-description"><%=raw textilize @course.description %></section>
       </section>
-  
+
       <section id="workshop-details">
         <h3>Cost</h3>
         <p class="cost"><%= number_to_currency @course.price, :precision => 0, :delimiter => '' %></p>
-  
-  
+
+
         <h3>Where</h3>
         <p id="section-location">
           <%= google_map_link_to("#{@course.location} #{@course.location_name}", :id => 'location') %>
         </p>
-  
+
         <section id="register"></section>
       </section>
     </section>

@@ -23,10 +23,10 @@
 
         <footer>
           <p class="about-us"><a href="http://thoughtbot.com">thoughtbot</a> is a web design and development company based in Boston, MA.</p>
-
           <p class="footer-links"><a href="/pages/directions.html">Directions to our office</a> &bull; <a href="mailto:workshops@thoughtbot.com">Contact us</a></p>
+
           <% if signed_in? && current_user.admin? -%>
-            <p><%= link_to('Admin', admin_path) %> | <%= link_to('Sign out', sign_out_path, :method => :delete) %></p>
+            <p class="admin"><%= link_to('Admin', admin_path) %> | <%= link_to('Sign out', sign_out_path, :method => :delete) %></p>
           <% end -%>
         </footer>
     </section>
