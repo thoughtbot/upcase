@@ -146,10 +146,10 @@ div#flash {
     -moz-border-radius: 30px;
     -webkit-border-radius: 30px;
     border-radius: 30px;
-    -moz-box-shadow: inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px;
-    -webkit-box-shadow: inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px;
-    -o-box-shadow: inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px;
-    box-shadow: inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px;
+    -moz-box-shadow: "inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px";
+    -webkit-box-shadow: "inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px";
+    -o-box-shadow: "inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px";
+    box-shadow: "inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px";
     height: 30px;
     margin-right: 12px;
     position: relative;
@@ -272,10 +272,10 @@ body.sections-index #homepage-top {
     background: #fff;
     width: 306px; }
   #class-photos ul li {
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-    -o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    -moz-box-shadow: "0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset";
+    -webkit-box-shadow: "0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset";
+    -o-box-shadow: "0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset";
+    box-shadow: "0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset";
     float: left;
     height: 205px;
     list-style-type: none;
@@ -882,6 +882,9 @@ footer {
       float: right; }
     footer p a {
       text-decoration: none; }
+    footer p.admin {
+      clear: both;
+      margin: 12px 0 0 0; }
 
 body.high_voltage-pages footer p.footer-links {
   float: left; }
