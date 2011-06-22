@@ -111,37 +111,7 @@ body.courses-show {
 
           /* red button */
           a {
-            background: #c22323;
-            background: -moz-linear-gradient(top, #f28080 0%, #d14545 50%, #c22323 50%, #c42b2b 100%);
-            background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #f28080), color-stop(0.5, #d14545), color-stop(0.5, #c22323), color-stop(1, #c42b2b));
-            border: 1px solid #8e0202;
-            border-bottom: 1px solid #750101;
-            @include border-radius(5px);
-            @include box-shadow(inset 0 1px 0 0 #ffabab);
-            color: #fff;
-            display: block;
-            font-family: $sans-serif;
-            font-size: 20px;
-            font-weight: 700;
-            padding: 12px 0;
-            text-decoration: none;
-            text-align: center;
-            text-shadow: 0 -1px 1px #320000;
-            width: 180px;
-          }
-
-          a:hover {
-            background: #b02020;
-            background: -moz-linear-gradient(top, #e07777 0%, #bf3f3f 50%, #b02020 50%, #b32727 100%);
-            background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #e07777), color-stop(0.5, #bf3f3f), color-stop(0.5, #b02020), color-stop(1, #b32727));
-            cursor: pointer;
-          }
-
-          a:active {
-            cursor: pointer;
-            -moz-box-shadow: inset 0 0 20px 0 #781a1a, 0 1px 0 #fff;
-            -webkit-box-shadow: inset 0 0 20px 0 #781a1a, 0 1px 0 #fff;
-            box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #444;
+            @include button;
           }
         }
 
@@ -245,6 +215,7 @@ body.courses-show {
 
       ul {
         margin: 12px 0 0 0;
+        list-style: outside;
       }
 
       li,
@@ -301,8 +272,8 @@ body.courses #additional-information #faq {
   }
 
   input[type="text"] {
-    border: 0;
-    border-radius: 2px;
+    border: 1px solid #cacaca;
+    @include border-radius(4px);
     font-size: 14px;
     margin: 0 0 12px 0;
     padding: 10px 4px;
@@ -310,28 +281,11 @@ body.courses #additional-information #faq {
   }
 
   input[type="submit"] {
-    background: #c22323;
-    background: -moz-linear-gradient(top, #f28080 0%, #d14545 50%, #c22323 50%, #c42b2b 100%);
-    background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #f28080), color-stop(0.5, #d14545), color-stop(0.5, #c22323), color-stop(1, #c42b2b));
-    border: 0;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    -moz-box-shadow: inset 0 1px 0 0 #ffabab;
-    -webkit-box-shadow: inset 0 1px 0 0 #ffabab;
-    box-shadow: inset 0 1px 0 0 #ffabab;
-    color: #fff;
+    @include button;
     display: inline;
-    font: 600 16px $sans-serif;
-    margin: 0 10px 0 0;
-    padding: 8px 14px;
-    text-decoration: none;
-    text-align: center;
-    text-shadow: 0 -1px 1px #512b2b;
-
-    &:hover {
-     cursor: pointer;
-    }
+    margin-right: 10px;
+    padding: 8px 0;
+    width: 80px;
   }
 
   p.group-training {
