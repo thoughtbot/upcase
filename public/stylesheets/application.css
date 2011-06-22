@@ -67,6 +67,7 @@ body.courses-show #additional-information #sidebar li:after, body.high_voltage-p
 ---------------------------------------- */
 /* this hack is courtesy of gbbowers on github
    https://gist.github.com/601810 */
+/* red button */
 div#flash {
   font-size: 15px;
   max-height: 50px;
@@ -479,25 +480,25 @@ body.courses-show #head-wrapper #homepage-top {
         color: #fff;
         display: block;
         font-family: "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 700;
-        padding: 12px 0;
+        padding: 10px 0;
         text-decoration: none;
         text-align: center;
         text-shadow: 0 -1px 1px #320000;
-        width: 180px; }
-      body.sections-show #head-wrapper #homepage-top #workshop-details #register a:hover,
-      body.courses-show #head-wrapper #homepage-top #workshop-details #register a:hover {
-        background: #b02020;
-        background: -moz-linear-gradient(top, #e07777 0%, #bf3f3f 50%, #b02020 50%, #b32727 100%);
-        background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #e07777), color-stop(0.5, #bf3f3f), color-stop(0.5, #b02020), color-stop(1, #b32727));
-        cursor: pointer; }
-      body.sections-show #head-wrapper #homepage-top #workshop-details #register a:active,
-      body.courses-show #head-wrapper #homepage-top #workshop-details #register a:active {
-        cursor: pointer;
-        -moz-box-shadow: inset 0 0 20px 0 #781a1a, 0 1px 0 #fff;
-        -webkit-box-shadow: inset 0 0 20px 0 #781a1a, 0 1px 0 #fff;
-        box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #444; }
+        width: 200px; }
+        body.sections-show #head-wrapper #homepage-top #workshop-details #register a:hover,
+        body.courses-show #head-wrapper #homepage-top #workshop-details #register a:hover {
+          background: #b02020;
+          background: -moz-linear-gradient(top, #e07777 0%, #bf3f3f 50%, #b02020 50%, #b32727 100%);
+          background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #e07777), color-stop(0.5, #bf3f3f), color-stop(0.5, #b02020), color-stop(1, #b32727));
+          cursor: pointer; }
+        body.sections-show #head-wrapper #homepage-top #workshop-details #register a:active,
+        body.courses-show #head-wrapper #homepage-top #workshop-details #register a:active {
+          cursor: pointer;
+          -moz-box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #fff;
+          -webkit-box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #fff;
+          box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #444; }
     body.sections-show #head-wrapper #homepage-top #workshop-details h3,
     body.courses-show #head-wrapper #homepage-top #workshop-details h3 {
       color: #e73a34;
@@ -577,7 +578,8 @@ body.courses-show #additional-information {
       font: 600 16px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
     body.sections-show #additional-information #terms ul,
     body.courses-show #additional-information #terms ul {
-      margin: 12px 0 0 0; }
+      margin: 12px 0 0 0;
+      list-style: outside; }
     body.sections-show #additional-information #terms li,
     body.sections-show #additional-information #terms p,
     body.courses-show #additional-information #terms li,
@@ -621,8 +623,10 @@ body.courses #additional-information #faq {
     font: 400 16px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
     margin: 0 0 12px 0; }
   #notify-me input[type="text"] {
-    border: 0;
-    border-radius: 2px;
+    border: 1px solid #cacaca;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
     font-size: 14px;
     margin: 0 0 12px 0;
     padding: 10px 4px;
@@ -631,23 +635,39 @@ body.courses #additional-information #faq {
     background: #c22323;
     background: -moz-linear-gradient(top, #f28080 0%, #d14545 50%, #c22323 50%, #c42b2b 100%);
     background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #f28080), color-stop(0.5, #d14545), color-stop(0.5, #c22323), color-stop(1, #c42b2b));
-    border: 0;
+    border: 1px solid #8e0202;
+    border-bottom: 1px solid #750101;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
     -moz-box-shadow: inset 0 1px 0 0 #ffabab;
     -webkit-box-shadow: inset 0 1px 0 0 #ffabab;
+    -o-box-shadow: inset 0 1px 0 0 #ffabab;
     box-shadow: inset 0 1px 0 0 #ffabab;
     color: #fff;
-    display: inline;
-    font: 600 16px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-    margin: 0 10px 0 0;
-    padding: 8px 14px;
+    display: block;
+    font-family: "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 0;
     text-decoration: none;
     text-align: center;
-    text-shadow: 0 -1px 1px #512b2b; }
+    text-shadow: 0 -1px 1px #320000;
+    width: 200px;
+    display: inline;
+    margin-right: 10px;
+    padding: 8px 0;
+    width: 80px; }
     #notify-me input[type="submit"]:hover {
+      background: #b02020;
+      background: -moz-linear-gradient(top, #e07777 0%, #bf3f3f 50%, #b02020 50%, #b32727 100%);
+      background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #e07777), color-stop(0.5, #bf3f3f), color-stop(0.5, #b02020), color-stop(1, #b32727));
       cursor: pointer; }
+    #notify-me input[type="submit"]:active {
+      cursor: pointer;
+      -moz-box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #fff;
+      -webkit-box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #fff;
+      box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #444; }
   #notify-me p.group-training {
     color: #666;
     display: inline;
@@ -812,16 +832,16 @@ body.registrations form {
       text-align: center;
       text-shadow: 0 -1px 1px #320000;
       width: 200px; }
-    body.registrations form fieldset ol li input[type="submit"]:hover {
-      background: #b02020;
-      background: -moz-linear-gradient(top, #e07777 0%, #bf3f3f 50%, #b02020 50%, #b32727 100%);
-      background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #e07777), color-stop(0.5, #bf3f3f), color-stop(0.5, #b02020), color-stop(1, #b32727));
-      cursor: pointer; }
-    body.registrations form fieldset ol li input[type="submit"]:active {
-      cursor: pointer;
-      -moz-box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #fff;
-      -webkit-box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #fff;
-      box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #444; }
+      body.registrations form fieldset ol li input[type="submit"]:hover {
+        background: #b02020;
+        background: -moz-linear-gradient(top, #e07777 0%, #bf3f3f 50%, #b02020 50%, #b32727 100%);
+        background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #e07777), color-stop(0.5, #bf3f3f), color-stop(0.5, #b02020), color-stop(1, #b32727));
+        cursor: pointer; }
+      body.registrations form fieldset ol li input[type="submit"]:active {
+        cursor: pointer;
+        -moz-box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #fff;
+        -webkit-box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #fff;
+        box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #444; }
 body.registrations #form-sidebar {
   float: left;
   padding: 50px 0 0 0;
