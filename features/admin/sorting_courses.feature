@@ -23,5 +23,3 @@ Feature: Sorting courses
       | Test-Driven Machine Code   |
       | Test-Driven Testing        |
       | Test-Driven Coloring Books |
-
-
