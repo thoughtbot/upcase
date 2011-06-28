@@ -25,10 +25,6 @@ class Course < ActiveRecord::Base
     follow_ups + [follow_ups.new]
   end
 
-  def new_position=(new_position)
-    insert_at(new_position) if valid?
-  end
-
   def active?
     active_section.present?
   end

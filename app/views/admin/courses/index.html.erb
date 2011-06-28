@@ -24,12 +24,12 @@
 <% content_for :javascript do %>
   <%= javascript_tag do %>
     $(function() {
-    $('#course_list').sortable({ axis: 'y' })
+      $('#course_list').sortable({ axis: 'y' })
       $('#course_list').bind('sortupdate', function(event, ui) {
         course_id = ui.item.data("course_id");
         position = $(this).children().index(ui.item) + 1;
-        $.ajax("/admin/courses/"+course_id+".js", {
-        data: { course : { new_position: position } },
+        $.ajax("/admin/courses/"+course_id+"/position.js", {
+          data: { position: position },
           type: "PUT"
         });
       });

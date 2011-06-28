@@ -13,6 +13,7 @@ Workshops::Application.routes.draw do
   match '/admin' => 'admin/courses#index', :as => :admin
   namespace :admin do
     resources :courses do
+      resource :position
       resources :sections
       resources :teachers
       resources :follow_ups
