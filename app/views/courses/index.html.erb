@@ -15,18 +15,7 @@
           <p id="no-courses">No courses are running at this time.</p>
         <% else %>
           <ul>
-            <% @courses.each do |course| %>
-              <%= content_tag_for(:li, course, :class => course.active? ? 'active' : 'inactive' ) do %>
-                <%= link_to course_path(course) do %>
-                  <h3><%= course.name %></h3>
-                  <p class="teaser"><%= course.short_description %></p>
-                  <% if course.active? %>
-                    <p class="date"><%= course.active_date_range %></p>
-                    <p class="where"><%= course.location_name %></p>
-                  <% end %>
-                <% end %>
-              <% end %>
-            <% end %>
+            <%= render @courses %>
           </ul>
         <% end %>
       </section>
