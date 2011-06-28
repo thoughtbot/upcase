@@ -1,6 +1,6 @@
 class Admin::CoursesController < AdminController
   def index
-    @courses = Course.all
+    @courses = Course.by_position
     render
   end
 
