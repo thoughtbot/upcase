@@ -16,7 +16,7 @@ Feature: Viewing section details
     And "Ralph Bot" is teaching the section from "June 13, 2010" to "June 16, 2010"
     When I go to the home page
     Then I should see "Test-Driven Haskell"
-    When I follow the link to the section from "June 13, 2010" to "June 16, 2010"
+    When I follow "Test-Driven Haskell"
     Then I see the section location is "41 Winter St., Boston, MA 02108"
     And I see the section location's name is "Thoughtbot Office"
     And I should see "June 13-16, 2010"

@@ -7,6 +7,12 @@ class Course < ActiveRecord::Base
   accepts_nested_attributes_for :questions, :reject_if => :all_blank
   accepts_nested_attributes_for :follow_ups, :reject_if => :all_blank
 
+  acts_as_list
+
+  def self.by_position
+    order("courses.position asc")
+  end
+
   def self.unscheduled
     where("courses.id not in (select sections.course_id from sections where sections.ends_on >= ?)", Date.today)
   end
@@ -17,5 +23,21 @@ class Course < ActiveRecord::Base
 
   def follow_ups_with_blank
     follow_ups + [follow_ups.new]
+  end
+
+  def new_position=(new_position)
+    insert_at(new_position) if valid?
+  end
+
+  def active?
+    active_section.present?
+  end
+
+  def active_section
+    sections.active[0]
+  end
+
+  def active_date_range
+    active_section.try(:date_range)
   end
 end

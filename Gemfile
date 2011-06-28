@@ -18,6 +18,7 @@ gem "ruby-freshbooks"
 gem "high_voltage"
 gem "jquery-rails", "~> 1.0.11"
 gem "heroku"
+gem "acts_as_list"
 
 group :test do
   gem "headless"

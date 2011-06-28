@@ -85,7 +85,7 @@ Feature: Scheduling a new course
     And I see the section from "June 14, 2010" to "June 17, 2010"
     When I sign out
     And I go to the home page
-    And I follow the link to the section from "June 14, 2010" to "June 17, 2010"
+    And I follow "Test-Driven Sleeping"
     And I see that one of the teachers is "Samuel Beckett"
     And I see that one of the teachers is "Ralph Bot"
 
