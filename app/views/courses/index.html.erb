@@ -3,37 +3,19 @@
     <section id="homepage-top">
       <header>
         <h1>thoughtbot workshops</h1>
-  
+
         <section id="the-sell">
           <h2><%= t(".home-headline", :default => "Kickstart your <br>career with us") %></h2>
           <p class="tagline"><%= t(".home-tagline", :default => "We&rsquo;ve trained hundred of people in small, hands-on<br> workshops taught by passionate experts.") %></p>
         </section>
       </header>
-  
+
       <section id="workshop-list">
-        <% if @unscheduled_courses.empty? && @sections.empty? %>
+        <% if @courses.empty? %>
           <p id="no-courses">No courses are running at this time.</p>
         <% else %>
           <ul>
-            <% @sections.each do |section| %>
-              <li>
-                <%= link_to section_path(section), :id => dom_id(section) do %>
-                  <h3><%= section.course_name %></h3>
-                  <p class="teaser"><%= section.course.short_description %></p>
-                  <p class="date"><%= section.date_range %></p>
-                  <p class="where"><%= section.course_location_name %></p>
-                <% end %>
-              </li>
-            <% end %>
-            <% @unscheduled_courses.each do |course| %>
-              <li class="inactive">
-                <%= link_to course_path(course), :id => dom_id(course) do %>
-                  <h3><%= course.name %></h3>
-                  <p class="teaser"><%= course.short_description %></p>
-                  <p class="date">Find Out More</p>
-                <% end %>
-              </li>
-            <% end %>
+            <%= render @courses %>
           </ul>
         <% end %>
       </section>

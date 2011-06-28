@@ -1,10 +1,11 @@
 Workshops::Application.routes.draw do
-  root :to => 'sections#index'
+  root :to => 'courses#index'
 
   match '/admin' => 'admin/courses#index', :as => :admin
 
   namespace :admin do
     resources :courses do
+      resource :position
       resources :sections
       resources :teachers
       resources :follow_ups
@@ -16,16 +17,13 @@ Workshops::Application.routes.draw do
     end
   end
 
-  resources :sections do
-    resources :registrations
-    resources :redemptions
+  resources :sections, :only => [:show] do
+    resources :registrations, :only => [:index, :new, :create]
+    resources :redemptions, :only => [:new]
   end
 
-  resources :courses do
-    resources :sections do
-      resources :registrations
-    end
-    resources :follow_ups
+  resources :courses, :only => [:index, :show] do
+    resources :follow_ups, :only => [:create]
   end
 
   resource :session, :controller => 'sessions'
