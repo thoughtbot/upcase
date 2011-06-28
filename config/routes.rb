@@ -1,8 +1,16 @@
 Workshops::Application.routes.draw do
   root :to => 'courses#index'
 
-  match '/admin' => 'admin/courses#index', :as => :admin
+  resource :session, :controller => 'sessions'
+  resources :sections, :only => [:show] do
+    resources :registrations, :only => [:index, :new, :create]
+    resources :redemptions, :only => [:new]
+  end
+  resources :courses, :only => [:index, :show] do
+    resources :follow_ups, :only => [:create]
+  end
 
+  match '/admin' => 'admin/courses#index', :as => :admin
   namespace :admin do
     resources :courses do
       resources :sections
@@ -15,17 +23,6 @@ Workshops::Application.routes.draw do
       resources :registrations
     end
   end
-
-  resources :sections, :only => [:show] do
-    resources :registrations, :only => [:index, :new, :create]
-    resources :redemptions, :only => [:new]
-  end
-
-  resources :courses, :only => [:index, :show] do
-    resources :follow_ups, :only => [:create]
-  end
-
-  resource :session, :controller => 'sessions'
 
   match '/fairhaven' => 'high_voltage/pages#show', :as => :fairhaven, :id => 'fairhaven'
   match '/fairhaven/registered' => 'high_voltage/pages#show', :as => :fairhaven_registered, :id => 'fairhaven-registered'
