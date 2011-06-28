@@ -1,6 +1,6 @@
 class Admin::CoursesController < AdminController
   def index
-    @courses = Course.all
+    @courses = Course.by_position
     render
   end
 
@@ -27,8 +27,13 @@ class Admin::CoursesController < AdminController
   def update
     @course = Course.find(params[:id])
     if @course.update_attributes(params[:course])
-      flash[:success] = 'Course was successfully updated.'
-      redirect_to admin_courses_path
+      respond_to do |format|
+        format.html do
+          flash[:success] = 'Course was successfully updated.'
+          redirect_to admin_courses_path
+        end
+        format.js { render :nothing => true }
+      end
     else
       render 'edit'
     end

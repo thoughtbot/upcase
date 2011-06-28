@@ -1,5 +1,5 @@
 Workshops::Application.routes.draw do
-  root :to => 'sections#index'
+  root :to => 'courses#index'
 
   match '/admin' => 'admin/courses#index', :as => :admin
 

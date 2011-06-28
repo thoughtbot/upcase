@@ -1,8 +1,8 @@
 class SectionsController < ApplicationController
-  def index
-    @sections            = Section.active.by_starts_on
-    @unscheduled_courses = Course.unscheduled
-  end
+  # def index
+  #   @sections            = Section.active.by_starts_on
+  #   @unscheduled_courses = Course.unscheduled
+  # end
 
   def show
     @section   = Section.find(params[:id])

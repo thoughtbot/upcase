@@ -60,4 +60,30 @@ Then 'I see the answer "$answer"'do |answer|
   end
 end
 
+When /^I drag the course "([^"]*)" before "([^"]*)"$/ do |first_name, second_name|
+  first_course = Course.find_by_name!(first_name)
+  second_course = Course.find_by_name!(second_name)
+  first_course_dom = "#course_#{first_course.id}"
+  second_course_dom = "#course_#{second_course.id}"
+  page.execute_script <<-JS
+    $("#{first_course_dom}").insertBefore($("#{second_course_dom}"))
+    $("#course_list").trigger('sortupdate', [{item: $('#{first_course_dom}')}]);
+  JS
+
+end
+
+Then /^I see "([^"]*)" is scheduled from "([^"]*)" to "([^"]*)"$/ do |course_name, start_date, end_date|
+  course = Course.find_by_name!(course_name)
+  date_string = course_date_string(start_date, end_date)
+  within "##{dom_id(course)}" do
+    page.should have_content(date_string)
+  end
+end
+
+Then /^I should see the following courses in order:$/ do |table|
+  course_titles = table.raw.join(".*")
+  regexp = Regexp.new(course_titles, Regexp::MULTILINE)
+  page.body.should =~ regexp
+end
+
 World(ActionController::RecordIdentifier)
