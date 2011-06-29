@@ -19,3 +19,7 @@ Given /^"([^"]*)" has (\d+) registrations$/ do |course_name, count|
   section = course.sections.first
   count.to_i.times { Factory(:registration, :section => section) }
 end
+
+Then /^I workshops is notified of my registration$/ do
+  open_email("workshops@thoughtbot.com", :with_text => /just registered for/)
+end

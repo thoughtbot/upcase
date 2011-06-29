@@ -26,7 +26,7 @@ Feature: Selecting a course and registering for it
     And I follow the link to register
     Then I should see "Complete your registration for Test-Driven Haskell"
     And I should see "$10000000"
-    And I fill in the following:
+    When I fill in the following:
       | First name            | Carlos             |
       | Last name             | Santana            |
       | Email                 | carlos@santana.com |
@@ -38,6 +38,7 @@ Feature: Selecting a course and registering for it
       | State                 | MA                 |
       | Zip code              | 02114              |
     And I press "Proceed to checkout"
+    Then I workshops is notified of my registration
     And carlos@santana.com is registered for the Test-Driven Haskell course
     And the freshbooks client id for "carlos@santana.com" is set correctly
     And a freshbooks invoice for "carlos@santana.com" is created with:

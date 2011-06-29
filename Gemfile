@@ -34,4 +34,5 @@ group :test do
   gem "timecop"
   gem "shoulda"
   gem "sham_rack", "1.3.1"
+  gem "email_spec"
 end
