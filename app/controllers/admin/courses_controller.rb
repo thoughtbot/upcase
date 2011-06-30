@@ -1,6 +1,6 @@
 class Admin::CoursesController < AdminController
   def index
-    @courses = Course.by_position
+    @courses = Course.by_position.includes(:sections)
     render
   end
 
