@@ -43,7 +43,7 @@ module NavigationHelpers
       "new-section-#{course.id}"
     when /^the section from "([^"]+)" to "([^"]+)"$/
       section = Section.find_by_starts_on_and_ends_on!(Date.parse($1), Date.parse($2))
-      "section_#{section.id}"
+      section.date_range
     when 'create a new teacher'
       'Create New Teacher'
     when 'add a new student'
