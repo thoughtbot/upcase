@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
-  respond_to :html, :json, :only => [:index]
+
   def index
-    respond_with(@courses = Course.by_position)
+    @courses = Course.by_position
   end
 
   def show

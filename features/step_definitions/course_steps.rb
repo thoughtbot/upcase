@@ -12,5 +12,14 @@ end
 
 Then /^I should see the json for the courses$/ do
   courses = Course.all
-  JSON.parse(page.body).should == JSON.parse(courses.to_json)
+  JSON.parse(page.body).should == JSON.parse(courses_json(courses))
 end
+
+Then /^I should see the json for the courses with the callback "([^"]*)"$/ do |callback|
+  courses = Course.all
+  matcher = /#{callback}\(([^\)]+)\)/
+  matches = matcher.match(page.body)
+  JSON.parse(matches[1]).should == JSON.parse(courses_json(courses))
+end
+
+World(CoursesHelper)
