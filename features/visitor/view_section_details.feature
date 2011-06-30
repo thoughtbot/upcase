@@ -4,8 +4,8 @@ Feature: Viewing section details
     Given today is June 10, 2010
     And a teacher exists with a name of "Ralph Bot"
     And the following course exists:
-      | name                | location name     | location                        | start at | stop at  | price | terms of service |
-      | Test-Driven Haskell | Thoughtbot Office | 41 Winter St., Boston, MA 02108 | 09:00:00 | 12:00:00 | 100   | No pets allowed  |
+      | name                | location name     | location                        | start at | stop at  | price |
+      | Test-Driven Haskell | Thoughtbot Office | 41 Winter St., Boston, MA 02108 | 09:00:00 | 12:00:00 | 100   |
     And the following section exists:
       | course                    | starts on     | ends on       |
       | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
