@@ -19,6 +19,7 @@ gem "high_voltage"
 gem "jquery-rails", "~> 1.0.11"
 gem "heroku"
 gem "acts_as_list"
+gem "dynamic_form"
 
 group :test do
   gem "headless"
