@@ -5,6 +5,8 @@ module NavigationHelpers
       '/'
     when 'the courses json page'
       courses_path(:format => :json)
+    when /the courses json page with the callback "([^"]+)"/
+      courses_path(:format => :json, :callback => $1)
     when 'the sign up page'
       sign_up_path
     when 'the sign in page'
