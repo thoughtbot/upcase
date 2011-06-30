@@ -9,3 +9,8 @@ Given 'I create the following course:' do |course_fields|
     Then I see the successful course creation notice
   }
 end
+
+Then /^I should see the json for the courses$/ do
+  courses = Course.all
+  JSON.parse(page.body).should == JSON.parse(courses.to_json)
+end

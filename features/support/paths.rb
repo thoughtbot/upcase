@@ -3,6 +3,8 @@ module NavigationHelpers
     case page_name
     when /^the home\s?page$/
       '/'
+    when 'the courses json page'
+      courses_path(:format => :json)
     when 'the sign up page'
       sign_up_path
     when 'the sign in page'
