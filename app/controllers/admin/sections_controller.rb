@@ -20,8 +20,8 @@ class Admin::SectionsController < AdminController
   end
 
   def edit
-    @course   = Course.find(params[:course_id])
-    @section  = @course.sections.find(params[:id])
+    @section  = Section.find(params[:id])
+    @course   = @section.course
     @teachers = Teacher.all
   end
 
@@ -35,5 +35,11 @@ class Admin::SectionsController < AdminController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    section = Section.find(params[:id])
+    section.destroy
+    redirect_to admin_courses_path, :notice => "Section deleted"
   end
 end
