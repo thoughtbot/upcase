@@ -16,34 +16,28 @@ Then /^I should not see the external registration link$/ do
   page.should have_no_css("#register-button")
 end
 
-Then 'I see the section from "$start_date" to "$end_date"' do |start_date_string, end_date_string|
-  start_date = Date.parse(start_date_string)
-  end_date = Date.parse(end_date_string)
-  section = Section.find_by_starts_on_and_ends_on!(start_date, end_date)
+Then 'I see the section from "$start_date" to "$end_date"' do |start_date, end_date|
+  section = section(start_date, end_date)
   course = section.course
-  date_string = "#{Date::MONTHNAMES[start_date.month]} #{start_date.day}-#{end_date.day}, #{start_date.year}"
+  date_string = course_date_string(start_date, end_date)
   within("#course_#{course.id}") do
     page.should have_content(date_string)
   end
 end
 
-Then 'I see the home page section from "$start_date" to "$end_date"' do |start_date_string, end_date_string|
-  start_date = Date.parse(start_date_string)
-  end_date = Date.parse(end_date_string)
-  section = Section.find_by_starts_on_and_ends_on!(start_date, end_date)
+Then 'I see the home page section from "$start_date" to "$end_date"' do |start_date, end_date|
+  section = section(start_date, end_date)
   course = section.course
-  date_string = "#{Date::MONTHNAMES[start_date.month]} #{start_date.day}-#{end_date.day}, #{start_date.year}"
+  date_string = course_date_string(start_date, end_date)
   within("#section_#{section.id}") do
     page.should have_content(date_string)
   end
 end
 
-Then 'I do not see the home page section from "$start_date" to "$end_date"' do |start_date_string, end_date_string|
-  start_date = Date.parse(start_date_string)
-  end_date = Date.parse(end_date_string)
-  section = Section.find_by_starts_on_and_ends_on!(start_date, end_date)
+Then 'I do not see the home page section from "$start_date" to "$end_date"' do |start_date, end_date|
+  section = section(start_date, end_date)
   course = section.course
-  date_string = "#{Date::MONTHNAMES[start_date.month]} #{start_date.day}-#{end_date.day}, #{start_date.year}"
+  date_string = course_date_string(start_date, end_date)
   page.should_not have_css("#section_#{section.id}:contains('#{date_string}')")
 end
 
@@ -114,4 +108,16 @@ end
 
 When /^I should see "([^"]*)" before "([^"]*)"$/ do |section1_name, section2_name|
   page.body.should =~ /#{section1_name}.*#{section2_name}/m
+end
+
+When /^I follow the delete link to the section from "([^"]*)" to "([^"]*)"$/ do |start_date, end_date|
+  section = section(start_date, end_date)
+  inside section do
+    click_link "Delete"
+  end
+end
+
+Then /^I should not see the section from "([^"]*)" to "([^"]*)"$/ do |start_date, end_date|
+  date_string = course_date_string(start_date, end_date)
+  page.should have_no_css(".section", :text => date_string)
 end
