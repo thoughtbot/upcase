@@ -84,8 +84,6 @@ module NavigationHelpers
       'course_location_name'
     when 'max students'
       'course_maximum_students'
-    when 'terms of service'
-      'course_terms_of_service'
     when 'reminder email text'
       'course_reminder_email'
     when 'course follow up email'
