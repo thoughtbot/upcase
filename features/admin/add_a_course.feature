@@ -42,7 +42,6 @@ Feature: Adding a course
     And I fill in the location name with "thoughtbot"
     And I fill in the location with "41 Winter St 02108"
     And I fill in the max students with "16"
-    And I fill in the terms of service with "You are stuck here"
     And I fill in the reminder email text with "This is really happening"
     And I check that the course is public
     And I press the button to create a course
