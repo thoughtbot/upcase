@@ -12,6 +12,7 @@ class RegistrationsController < ApplicationController
     @user         = current_user || User.new
     @section      = Section.find(params[:section_id])
     @registration = @section.registrations.build
+    km.record("Started Registration", { "Course Name" => @section.course.name })
   end
 
   def create

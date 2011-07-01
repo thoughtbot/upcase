@@ -24,6 +24,8 @@ Feature: Selecting a course and registering for it
     When I go to the home page
     And I follow the link to the Test-Driven Haskell course
     And I follow the link to register
+    And KISSmetrics receives the "Started Registration" event with:
+      | Course Name | Test-Driven Haskell |
     Then I should see "Complete your registration for Test-Driven Haskell"
     And I should see "$10000000"
     When I fill in the following:
