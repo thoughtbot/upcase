@@ -13,6 +13,8 @@ Feature: Viewing upcoming course details
     And I see the answer "Blue"
     And I see the question "Pets allowed?"
     And I see the answer "No"
+    And KISSmetrics receives the "Viewed Inactive Course" event with:
+      | Course Name | Test-Driven Erlang |
 
   Scenario: Course does not have FAQ
     Given a course exists with a name of "Test-Driven Erlang"
