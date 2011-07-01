@@ -20,6 +20,7 @@ gem "jquery-rails", "~> 1.0.11"
 gem "heroku"
 gem "acts_as_list"
 gem "dynamic_form"
+gem "snogmetrics"
 
 group :test do
   gem "headless"
