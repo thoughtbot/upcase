@@ -10,6 +10,7 @@ class CoursesController < ApplicationController
       redirect_to(@course.active_section)
     else
       @follow_up = @course.follow_ups.build
+      km.record('Viewed Inactive Course', { 'Course Name' => @course.name })
     end
   end
 end
