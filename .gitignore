@@ -5,7 +5,7 @@ db/*.sqlite3
 public/system
 *.DS_Store
 coverage/*
-*.swp
+*.sw[op]
 rerun.txt
 tags
 !.keep
