@@ -4,7 +4,7 @@ Feature: Editing a course
     Given I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
     When I go to the admin page
-    And I follow the link to edit the course "Test-Driven Sleeping"
+    And I follow "Test-Driven Sleeping"
     And I blank the <field> field
     And I press the button to update a course
     And I see the "can't be blank" error for the <field> field
@@ -21,7 +21,7 @@ Feature: Editing a course
     Given I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
     When I go to the admin page
-    And I follow the link to edit the course "Test-Driven Sleeping"
+    And I follow "Test-Driven Sleeping"
     When I fill in the course name with "Test-Driven Haskell"
     And I press the button to update a course
     Then I see the successful course update notice
@@ -34,12 +34,12 @@ Feature: Editing a course
       | course                     | question           | answer          |
       | name: Test-Driven Sleeping | Do you wear pants? | Define "Pants." |
     When I go to the admin page
-    And I follow the link to edit the course "Test-Driven Sleeping"
+    And I follow "Test-Driven Sleeping"
     And I fill in the question 2 with "Do I need a helmet?"
     And I fill in the answer 2 with "Of course."
     And I press the button to update a course
     Then I see the successful course update notice
-    When I follow the link to edit the course "Test-Driven Sleeping"
+    When I follow "Test-Driven Sleeping"
     Then I see the following questions:
       | question            | answer          |
       | Do you wear pants?  | Define "Pants." |
@@ -50,7 +50,7 @@ Feature: Editing a course
     Given I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
     When I go to the admin page
-    And I follow the link to edit the course "Test-Driven Sleeping"
+    And I follow "Test-Driven Sleeping"
     And I follow "Add Question"
     And I fill in the following questions:
       | question            | answer          |
@@ -58,7 +58,7 @@ Feature: Editing a course
       | Do I need a helmet? | Of course.      |
     And I press the button to update a course
     Then I see the successful course update notice
-    When I follow the link to edit the course "Test-Driven Sleeping"
+    When I follow "Test-Driven Sleeping"
     Then I see the following questions:
       | question            | answer          |
       | Do you wear pants?  | Define "Pants." |

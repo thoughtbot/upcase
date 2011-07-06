@@ -42,21 +42,6 @@ module NavigationHelpers
       'register-button'
     when 'create a new course'
       'New Course'
-    when /^re-run the course "([^"]+)"$/
-      course = Course.find_by_name!($1)
-      "new-section-#{course.id}"
-    when /^the section from "([^"]+)" to "([^"]+)"$/
-      section = Section.find_by_starts_on_and_ends_on!(Date.parse($1), Date.parse($2))
-      section.date_range
-    when 'create a new teacher'
-      'Create New Teacher'
-    when 'add a new student'
-      'Add Student'
-    when /^edit the course "([^"]+)"$/
-      course = Course.find_by_name!($1)
-      course.name
-    when /sign out/
-      'Sign out'
     when /sign in/
       'Sign in'
     when /admin interface/
@@ -92,8 +77,6 @@ module NavigationHelpers
       'course_reminder_email'
     when 'course follow up email'
       'course_followup_email'
-    when 'that the course is public'
-      'course_public'
     when 'login email'
       'session_email'
     when 'login password'
@@ -128,8 +111,6 @@ module NavigationHelpers
       'coupon_code'
     when "percentage"
       'coupon_percentage'
-    when "that the coupon is active"
-      'coupon_active'
     when 'organization'
       'user_organization'
     when 'first name'

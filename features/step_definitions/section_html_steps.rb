@@ -121,3 +121,8 @@ Then /^I should not see the section from "([^"]*)" to "([^"]*)"$/ do |start_date
   date_string = course_date_string(start_date, end_date)
   page.should have_no_css(".section", :text => date_string)
 end
+
+When /^I follow the link to the section from "([^"]*)" to "([^"]*)"$/ do |starts_on, ends_on|
+  section = Section.find_by_starts_on_and_ends_on!(Date.parse(starts_on), Date.parse(ends_on))
+  find("a:contains('#{section.date_range}')").click
+end

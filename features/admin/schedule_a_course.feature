@@ -5,11 +5,11 @@ Feature: Scheduling a new course
     And a course exists with a name of "Test-Driven Sleeping"
     And a teacher exists with a name of "Albert Einstein"
     When I go to the admin page
-    And I follow the link to re-run the course "Test-Driven Sleeping"
+    And I follow "New Section" within the course "Test-Driven Sleeping"
     When I select the start date of "June 14, 2010"
     And I select the end date of "June 17, 2010"
     And I select the teacher "Albert Einstein"
-    And I press the button to re-run a course
+    And I press "Save Section"
     Then I see the successful section creation notice
     And I see the section from "June 14, 2010" to "June 17, 2010"
     When I follow the link to the section from "June 14, 2010" to "June 17, 2010"
@@ -22,19 +22,19 @@ Feature: Scheduling a new course
       | name            | email                 |
       | Albert Einstein | aeinstein@example.com |
     When I go to the admin page
-    And I follow the link to re-run the course "Test-Driven Sleeping"
+    And I follow "New Section" within the course "Test-Driven Sleeping"
     And I select the start date of "June 14, 2010"
     And I select the end date of "June 17, 2010"
     And I select the teacher "Albert Einstein"
-    And I press the button to re-run a course
+    And I press "Save Section"
     Then "aeinstein@example.com" is notified that they are scheduled to teach "Test-Driven Sleeping"
 
   Scenario: Adding a new section without filling in the teacher
     Given I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
     When I go to the admin page
-    And I follow the link to re-run the course "Test-Driven Sleeping"
-    And I press the button to re-run a course
+    And I follow "New Section" within the course "Test-Driven Sleeping"
+    And I press "Save Section"
     And I see the "can't be blank" error for the following fields:
       | section start       |
       | section end         |
@@ -44,8 +44,8 @@ Feature: Scheduling a new course
     Given I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
     When I go to the admin page
-    And I follow the link to re-run the course "Test-Driven Sleeping"
-    And I follow the link to create a new teacher
+    And I follow "New Section" within the course "Test-Driven Sleeping"
+    And I follow "Create New Teacher"
     And I fill in the teacher's name with "Samuel Beckett"
     And I fill in the teacher's bio with "He's, like, famous or something."
     And I fill in the teacher's email with "sbeckett@example.com"
@@ -53,7 +53,7 @@ Feature: Scheduling a new course
     And I select the start date of "June 14, 2010"
     And I select the end date of "June 17, 2010"
     And I select the teacher "Samuel Beckett"
-    And I press the button to re-run a course
+    And I press "Save Section"
     Then I see the successful section creation notice
     And I see the section from "June 14, 2010" to "June 17, 2010"
     When I follow the link to the section from "June 14, 2010" to "June 17, 2010"
@@ -65,13 +65,13 @@ Feature: Scheduling a new course
     And I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
     When I go to the admin page
-    And I follow the link to re-run the course "Test-Driven Sleeping"
-    And I follow the link to create a new teacher
+    And I follow "New Section" within the course "Test-Driven Sleeping"
+    And I follow "Create New Teacher"
     And I fill in the teacher's name with "Samuel Beckett"
     And I fill in the teacher's bio with "He's, like, famous or something."
     And I fill in the teacher's email with "sbeckett@example.com"
     And I press the button to add a teacher
-    And I follow the link to create a new teacher
+    And I follow "Create New Teacher"
     And I fill in the teacher's name with "Ralph Bot"
     And I fill in the teacher's bio with "Ralph knows his stuff."
     And I fill in the teacher's email with "rbot@example.com"
@@ -80,7 +80,7 @@ Feature: Scheduling a new course
     And I select the end date of "June 17, 2010"
     And I select the teacher "Samuel Beckett"
     And I select the teacher "Ralph Bot"
-    And I press the button to re-run a course
+    And I press "Save Section"
     Then I see the successful section creation notice
     And I see the section from "June 14, 2010" to "June 17, 2010"
     When I sign out
@@ -93,8 +93,8 @@ Feature: Scheduling a new course
     Given I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
     When I go to the admin page
-    And I follow the link to re-run the course "Test-Driven Sleeping"
-    And I follow the link to create a new teacher
+    And I follow "New Section" within the course "Test-Driven Sleeping"
+    And I follow "Create New Teacher"
     And I press the button to add a teacher
     Then I see the "can't be blank" error for the following fields:
       | teacher's name  |
