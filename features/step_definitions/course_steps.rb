@@ -1,7 +1,7 @@
 Given 'I create the following course:' do |course_fields|
   steps %{
     Given I go to the admin page
-    And I follow the link to create a new course
+    And I follow "New Course"
   }
   And "I fill in the following:", course_fields
   steps %{

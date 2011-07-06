@@ -5,22 +5,22 @@ Feature: Adding followups for a course
     And a course exists with a name of "Test-Driven Sleeping"
     And a teacher exists with a name of "Albert Einstein"
     When I go to the admin page
-    And I follow the link to edit the course "Test-Driven Sleeping"
+    And I follow "Test-Driven Sleeping"
     And I fill in the follow up 1 with "followup@example.com"
     And I press the button to update a course
     When I go to the admin page
-    And I follow the link to re-run the course "Test-Driven Sleeping"
+    And I follow "New Section" within the course "Test-Driven Sleeping"
     And I select the start date of "June 14, 2010"
     And I select the end date of "June 14, 2010"
     And I select the teacher "Albert Einstein"
-    And I press the button to re-run a course
+    And I press "Save Section"
     Then "followup@example.com" receives a follow up email for "Test-Driven Sleeping"
     Given emails are cleared
-    When I follow the link to re-run the course "Test-Driven Sleeping"
+    When I follow "New Section" within the course "Test-Driven Sleeping"
     And I select the start date of "June 15, 2010"
     And I select the end date of "June 15, 2010"
     And I select the teacher "Albert Einstein"
-    And I press the button to re-run a course
+    And I press "Save Section"
     Then "followup@example.com" does not receive a follow up email for "Test-Driven Sleeping"
 
   @selenium
@@ -29,7 +29,7 @@ Feature: Adding followups for a course
     And a course exists with a name of "Test-Driven Sleeping"
     And a teacher exists with a name of "Albert Einstein"
     When I go to the admin page
-    And I follow the link to edit the course "Test-Driven Sleeping"
+    And I follow "Test-Driven Sleeping"
     And I follow "Add Follow up"
     And I fill in the following follow ups:
       | email                 |
@@ -37,19 +37,19 @@ Feature: Adding followups for a course
       | followup2@example.com |
     And I press the button to update a course
     When I go to the admin page
-    And I follow the link to re-run the course "Test-Driven Sleeping"
+    And I follow "New Section" within the course "Test-Driven Sleeping"
     And I select the start date of "June 14, 2010"
     And I select the end date of "June 14, 2010"
     And I select the teacher "Albert Einstein"
-    And I press the button to re-run a course
+    And I press "Save Section"
     Then "followup1@example.com" receives a follow up email for "Test-Driven Sleeping"
     Then "followup2@example.com" receives a follow up email for "Test-Driven Sleeping"
     When emails are cleared
-    And I follow the link to re-run the course "Test-Driven Sleeping"
+    And I follow "New Section" within the course "Test-Driven Sleeping"
     And I select the start date of "June 15, 2010"
     And I select the end date of "June 15, 2010"
     And I select the teacher "Albert Einstein"
-    And I press the button to re-run a course
+    And I press "Save Section"
     Then "followup1@example.com" does not receive a follow up email for "Test-Driven Sleeping"
     Then "followup2@example.com" does not receive a follow up email for "Test-Driven Sleeping"
 

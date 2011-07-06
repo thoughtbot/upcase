@@ -786,7 +786,7 @@ body {
         padding: 40px 0;
         color: #fff;
         font-weight: BOLD;
-        text-shadow: rgba(0, 0, 0, 0.496094) 0px -1px 2px;
+        text-shadow: rgba(0, 0, 0, 0.496) 0px -1px 2px;
         clear: both;
         font-size: 18px; }
       #content .wrapper .dark-content #register-right, #content .wrapper .dark-content #course-overview-right {
@@ -1450,13 +1450,14 @@ a#survey {
 li.follow_up {
   position: relative; }
 
+a.remove-question,
 a.remove-followup {
   text-decoration: none;
   color: #FFF;
-  position: absolute;
-  top: 17px;
+  position: relative;
+  top: 37px;
   right: 14px;
-  height: 26px;
+  left: 727px;
   width: 26px;
   display: block;
   text-align: center;
@@ -1468,6 +1469,7 @@ a.remove-followup {
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
   -webkit-opacity: 0.7; }
 
+a.remove-question:hover,
 a.remove-followup:hover {
   -webkit-opacity: 1; }
 

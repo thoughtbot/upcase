@@ -17,7 +17,7 @@ Feature: Adding a coupon
     And I follow "New Coupon"
     When I fill in "Code" with "VALENTINES"
     And I fill in "Percentage" with "20"
-    And I check that the coupon is active
+    And I check "Active"
     When I press "Create Coupon"
     Then I should see "Coupon successfully created"
     And I should see "VALENTINES (20%)"

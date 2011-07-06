@@ -1471,13 +1471,14 @@ li.follow_up {
   position: relative;
 }
 
+a.remove-question,
 a.remove-followup {
   text-decoration: none;
   color: #FFF;
-  position: absolute;
-  top: 17px;
+  position: relative;
+  top: 37px;
   right: 14px;
-  height: 26px;
+  left: 727px;
   width: 26px;
   display: block;
   text-align:center;
@@ -1490,6 +1491,7 @@ a.remove-followup {
   -webkit-opacity: 0.7;
 }
 
+a.remove-question:hover,
 a.remove-followup:hover {
   -webkit-opacity: 1;
 }

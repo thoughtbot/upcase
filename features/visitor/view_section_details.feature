@@ -39,7 +39,7 @@ Feature: Viewing section details
       | 1234 | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
     And "Test-Driven Haskell" has 5 registrations
     When I go to the home page
-    And I follow the link to the Test-Driven Haskell course
+    And I follow "Test-Driven Haskell"
     Then I should not see the external registration link
     And I should see "Sold Out"
     And I should see "Want to be notified the next time we run this workshop?"

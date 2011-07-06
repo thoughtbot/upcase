@@ -22,8 +22,8 @@ Feature: Selecting a course and registering for it
       | Ends on   | January 15, 2011 |
     And I sign out
     When I go to the home page
-    And I follow the link to the Test-Driven Haskell course
-    And I follow the link to register
+    And I follow "Test-Driven Haskell"
+    And I follow "Register"
     And KISSmetrics receives the "Started Registration" event with:
       | Course Name | Test-Driven Haskell |
     Then I should see "Complete your registration for Test-Driven Haskell"
@@ -79,8 +79,8 @@ Feature: Selecting a course and registering for it
       | carlos@santana.com | Carlos     | Santana   | Guitar Center | 123 Main St. | test     |
     And I sign in as "carlos@santana.com/test"
     When I go to the home page
-    And I follow the link to the Test-Driven Haskell course
-    And I follow the link to register
+    And I follow "Test-Driven Haskell"
+    And I follow "Register"
     Then I should not see "First name"
     And I should not see "Last name"
     And I should not see "Email"
@@ -128,8 +128,8 @@ Feature: Selecting a course and registering for it
       | Ends on   | January 15, 2011 |
     And I sign out
     When I go to the home page
-    And I follow the link to the Test-Driven Haskell course
-    And I follow the link to register
+    And I follow "Test-Driven Haskell"
+    And I follow "Register"
     Then I should see "Complete your registration for Test-Driven Haskell"
     And I should see "$100"
     When I follow "Have a coupon code?"
@@ -187,8 +187,8 @@ Feature: Selecting a course and registering for it
       | Ends on   | January 15, 2011 |
     And I sign out
     When I go to the home page
-    And I follow the link to the Test-Driven Haskell course
-    And I follow the link to register
+    And I follow "Test-Driven Haskell"
+    And I follow "Register"
     Then I should see "Complete your registration for Test-Driven Haskell"
     And I should see "$100"
     When I follow "Have a coupon code?"
@@ -217,5 +217,5 @@ Feature: Selecting a course and registering for it
       | Ends on   | January 15, 2011 |
     And I sign out
     When I go to the home page
-    And I follow the link to the Test-Driven Haskell course
+    And I follow "Test-Driven Haskell"
     Then the registration button should link to "http://engineyard.com"

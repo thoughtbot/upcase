@@ -9,7 +9,19 @@ module HtmlSelectorsHelpers
     case locator
 
     when /the page/
-      "html > body"
+      "html > body"    
+    when /the question remove link/
+      '.remove-question'
+    when /the "(.+)" question/
+      question = Question.find_by_question($1)
+      "##{dom_id(question)}"
+    when /the coupon form/
+      '.coupon form'
+    when /the coupon form link/
+      '#total a'
+    when /the course "([^"]+)"/
+      course = Course.find_by_name!($1)
+      "##{dom_id(course)}"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

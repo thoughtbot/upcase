@@ -17,6 +17,7 @@ Workshops::Application.routes.draw do
       resources :sections
       resources :teachers
       resources :follow_ups
+      resources :questions, :only => [:destroy]
     end
     resources :coupons
     resources :controlelr

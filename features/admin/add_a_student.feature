@@ -8,7 +8,7 @@ Feature: Adding a student to a course
       | name: Test-Driven Sleeping | June 14,2010 | June 18, 2010 |
     When I go to the admin page
     And I follow the link to the section from "June 14, 2010" to "June 18, 2010"
-    And I follow the link to add a new student
+    And I follow "Add Student"
     And I press the button to enroll a new student
     Then I see the "can't be blank" error for the following fields:
       | student's first name  |
@@ -27,7 +27,7 @@ Feature: Adding a student to a course
     When I go to the admin page
     And I follow the link to the section from "June 14, 2010" to "June 18, 2010"
     Then I should see "0 Students"
-    And I follow the link to add a new student
+    And I follow "Add Student"
     And I fill in the student's first name with "Jimbo"
     And I fill in the student's last name with "Ones"
     And I fill in the student's email with "jones@example.com"
@@ -44,7 +44,7 @@ Feature: Adding a student to a course
       | name: Test-Driven Sleeping | June 14,2010 | June 18, 2010 |
     When I go to the admin page
     And I follow the link to the section from "June 14, 2010" to "June 18, 2010"
-    And I follow the link to add a new student
+    And I follow "Add Student"
     And I fill in the student's first name with "Jimbo"
     And I fill in the student's last name with "Jones"
     And I fill in the student's email with "jones@example.com"

@@ -10,13 +10,13 @@ Given 'I create the following section for "$course_name":' do |course_name, sect
   steps %{
     Given a teacher exists with a name of "Albert Einstein"
     When I go to the admin page
-    And I follow the link to re-run the course "#{course_name}"
+    And I follow "New Section" within the course "#{course_name}"
     When I select the start date of "June 14, 2010"
   }
   And "I fill in the following:", section_data
   steps %{
     And I select the teacher "Albert Einstein"
-    And I press the button to re-run a course
+    And I press "Save Section"
     Then I see the successful section creation notice
   }
 end
