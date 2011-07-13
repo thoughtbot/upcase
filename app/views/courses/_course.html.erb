@@ -1,12 +1,12 @@
 <%= content_tag_for(:li, course, :class => course.active? ? 'active' : 'inactive' ) do %>
   <%= link_to course do %>
-    <h3><%= course.name %></h3>
+    <h3><%= course.name %> <%#= course.active_date_range %> <%#= course.location_name %></h3>
     <p class="teaser"><%= course.short_description %></p>
     <% if course.active? %>
-      <p class="date"><%= course.active_date_range %></p>
-      <p class="where"><%= course.location_name %></p>
+      <!--<p class="date"></p>-->
+      <!--<p class="where"><%= course.location_name %></p>-->
     <% else %>
-      <p class="date">Find out more</p>
+      <!-- <p class="date">Find out more</p>-->
     <% end %>
   <% end %>
 <% end %>
