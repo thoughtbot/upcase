@@ -1,16 +1,13 @@
 <% content_for :page_header do %>
   <section id="head-wrapper">
     <section id="homepage-top">
-      <header>
-        <h1><a href="/">thoughtbot workshops</a></h1>
-      </header>
-
       <section id="course-info">
         <h2><%= @course.name %></h2>
 
-        <%= render :partial => 'follow_up', :locals => { :course => @course } %>
 
         <section id="course-description"><%=raw textilize @course.description %></section>
+
+    <%= render :partial => 'questions', :locals => { :course => @course } %>
       </section>
 
       <section id="workshop-details">
@@ -30,7 +27,9 @@
 <% end %>
 
 <section id="additional-information">
-  <section id="main-content">
-    <%= render :partial => 'questions', :locals => { :course => @course } %>
+  <section id="additional-information-wrapper">
+    <section id="main-content">
+      <%= render :partial => 'follow_up', :locals => { :course => @course } %>
+    </section>
   </section>
 </section>

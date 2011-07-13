@@ -1,6 +1,6 @@
 /* variables */
 $sans-serif: "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-$red: #e73a34;
+$red: #ad141e;
 
 /* mixins
 ---------------------------------------- */
@@ -10,38 +10,25 @@ $red: #e73a34;
   border-radius: $radii;
 }
 
-/* this hack is courtesy of gbbowers on github
-   https://gist.github.com/601810 */
-@mixin box-shadow ($shadow-1, $shadow-2: false, $shadow-3: false, $shadow-4: false, $shadow-5: false, $shadow-6: false, $shadow-7: false, $shadow-8: false, $shadow-9: false) {
-  $full: $shadow-1;
-
-  @if $shadow-2 {
-    $full: $full + ", " + $shadow-2;
-  }
-  @if $shadow-3 {
-    $full: $full + ", " + $shadow-3;
-  }
-  @if $shadow-4 {
-    $full: $full + ", " + $shadow-4;
-  }
-  @if $shadow-5 {
-    $full: $full + ", " + $shadow-5;
-  }
-  @if $shadow-6 {
-    $full: $full + ", " + $shadow-6;
-  }
-  @if $shadow-7 {
-    $full: $full + ", " + $shadow-7;
-  }
-  @if $shadow-8 {
-    $full: $full + ", " + $shadow-8;
-  }
-  @if $shadow-9 {
-    $full: $full + ", " + $shadow-9;
-  }
-
-  -moz-box-shadow: $full;
+// Box-Shadow Mixin Requires Sass v3.1.1+
+@mixin box-shadow ($shadow-1,
+  $shadow-2: false, $shadow-3: false,
+  $shadow-4: false, $shadow-5: false,
+  $shadow-6: false, $shadow-7: false,
+  $shadow-8: false, $shadow-9: false)
+  {
+    $full: $shadow-1;
+    @each $shadow in
+      $shadow-2, $shadow-3,
+      $shadow-4, $shadow-5,
+      $shadow-6, $shadow-7,
+      $shadow-8, $shadow-9{
+        @if $shadow {
+          $full: $full, $shadow;
+        }
+      }
   -webkit-box-shadow: $full;
+  -moz-box-shadow: $full;
   -o-box-shadow: $full;
   box-shadow: $full;
 }
@@ -50,6 +37,26 @@ $red: #e73a34;
   background: $from;
   background: -moz-linear-gradient(top, $from, $to);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, $from), color-stop(1, $to));
+}
+
+@mixin transition ($transition) {
+  -webkit-transition: $transition;
+  -moz-transitition: $transition;
+  transitition: $transition;
+}
+
+@mixin transform ($transform) {
+  -webkit-transform: $transform;
+  -moz-transform: $transform;
+  transform: $transform;
+}
+
+$lh: 20px; /*line-height of all the type on the site*/
+$unit: 60px; /*one grid column*/
+$gutter: 25px; /*size of one gutter*/
+
+@function grid-width($n) {
+  @return $n * $unit + ($n - 1) * $gutter;
 }
 
 /* red button */

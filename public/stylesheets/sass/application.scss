@@ -1,12 +1,16 @@
 @import "reset";
 @import "mixins";
 @import "flashes";
+@import "header";
 @import "home";
 @import "section";
 @import "pages";
 @import "registrations";
+@import "footer";
 
 body {
+  background: #fcfcfc;
+  border-top: 4px solid #AD141E;
   font-family: $sans-serif;
   font-size: 14px;
   line-height: 20px;
@@ -44,7 +48,7 @@ h5, h6 {
 
 #container {
   margin: 0 auto 100px;
-  width: 978px;
+  width: 995px;
 }
 
 footer {

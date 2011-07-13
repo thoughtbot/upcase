@@ -1,4 +1,4 @@
-<%= javascript_include_tag :defaults, 'prefilled_input', 'application' %>
+<%= javascript_include_tag :defaults, 'prefilled_input'  %>
 
 <%== km.js! %>
 
@@ -26,3 +26,18 @@
     $.ajaxSetup({ async: false });
   <% end %>
 <% end %>
+<script type="text/javascript">
+  function tumblr(resp) {
+    var posts = resp.posts;
+    $('#blog-footer .loading').replaceWith('<ul/>');
+    $ul = $('#blog-footer ul');
+    for (var i=0; i<posts.length; i++) {
+      var p = posts[i];
+                  var title = p['regular-title'] || p['link-text'] || null;
+      if (title)
+        $ul.append('<li><a href="'+p['url']+'">'+title+'</a></li>');
+    }
+  }
+</script>
+<script src="http://robots.thoughtbot.com/api/read/json?callback=tumblr&amp;num=4" type="text/javascript"></script>
+

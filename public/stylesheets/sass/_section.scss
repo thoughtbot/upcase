@@ -34,26 +34,24 @@ body.courses-show {
 
       #course-info {
         float: left;
-        margin: 0 30px 0 0;
-        padding: 32px 0 32px 8px;
-        width: 630px;
+        margin: 0 $gutter 0 0;
+        padding: 32px 0 32px 0px;
+        width: grid-width(8);
 
         h2 {
-          color: #fff;
+          color: #333;
           font: 700 30px/32px $sans-serif;
           margin: 0 0 8px 0;
-          text-shadow: 0 1px 0 #222;
         }
 
         #course-description {
-          margin: 0 0 36px 0;
+          //margin: 0 0 36px 0;
         }
 
         p {
-          color: #ddd;
-          font: 300 16px/24px $sans-serif;
+          color: #666;
+          font: 400 15px/24px $sans-serif;
           margin: 0 0 8px 0;
-          text-shadow: 0 1px 0 #222;
         }
 
         ul {
@@ -61,7 +59,7 @@ body.courses-show {
 
           li {
             color: #ddd;
-            font: 300 16px/24px $sans-serif;
+            font: 400 15px/24px $sans-serif;
             list-style: disc;
             margin: 0 0 4px 0;
             text-shadow: 0 1px 0 #222;
@@ -69,16 +67,16 @@ body.courses-show {
         }
 
         q {
-          color: #ddd;
+          color: #666;
           display: block;
-          font: 300 16px/24px $sans-serif;
+          font: 400 15px/24px $sans-serif;
           line-height: 150%;
           left: -12px;
           margin: 24px 0 0 12px;
           position: relative;
 
           &:before {
-           color: #ddd;
+           color: #777;
            content: "\201C";
            font: 300 40px $sans-serif;
            left: -16px;
@@ -99,15 +97,38 @@ body.courses-show {
           }
         }
 
+        #faq {
+          dl {
+            dt {
+              p {
+                color: $red;
+                display: block;
+                font-size: 16px;
+                font-weight: 700;
+                margin-bottom: 0;
+              }
+            }
+
+            dd {
+              color: #333;
+              font: 400 14px/20px $sans-serif;
+              margin: 0 0 14px 0;
+
+              p {
+                margin: 0 0 8px 0;
+              }
+            }
+          }
+        }
       }
 
       #workshop-details {
         float: left;
-        margin: 20px 0 0 0;
-        width: 306px;
+        margin: 57px 0 0 0;
+        width: grid-width(4);
 
         #register {
-          padding: 32px 0 68px 0;
+          padding: 21px 0 20px 0;
 
           /* red button */
           a {
@@ -117,14 +138,14 @@ body.courses-show {
 
         h3 {
           color: $red;
-          font: 300 14px $sans-serif;
+          font: 600 13px $sans-serif;
           margin: 20px 0 2px 0;
           text-transform: uppercase;
         }
 
         p {
-          color: #fff;
-          font: 300 16px/22px $sans-serif;
+          color: #333;
+          font: 400 15px/22px $sans-serif;
 
           &.cost {
             font-size: 30px;
@@ -138,7 +159,7 @@ body.courses-show {
           }
 
           &.notice {
-            color: #fff;
+            color: #333;
             font-size: 14px;
             font-weight: 600;
             text-transform: uppercase;
@@ -147,7 +168,7 @@ body.courses-show {
 
         a {
           border-bottom: 1px solid $red;
-          color: #fff;
+          color: #333;
           text-decoration: none;
         }
       }
@@ -156,99 +177,83 @@ body.courses-show {
 
   #additional-information {
     @extend .clearfix;
-    margin: 24px 0 24px 0;
+    background: rgba(228, 228, 228, 0.7) url("/images/shadowing.png") center 0 no-repeat;
+    border-top: 1px solid #DCDCDC;
+    margin: 14px 0 0 0;
+    padding: 40px 0;
 
-    h4 {
-      color: #222;
-      font: 600 20px $sans-serif;
-      margin: 0 0 12px 0;
-    }
+    #additional-information-wrapper {
+      margin: 0 auto;
+      width: 995px;
 
-    #main-content {
-      float: left;
-      margin: 0 30px 0 0;
-      width: 638px;
-    }
+      h4 {
+        color: #222;
+        font: 600 20px $sans-serif;
+        margin: 0 0 12px 0;
+      }
 
-    #faq {
-      border-bottom: 1px solid #ddd;
-      margin-bottom: 12px;
-      padding-bottom: 12px;
+      #main-content {
+        float: left;
+        margin: 0 25px 0 0;
+        width: grid-width(8);
+      }
 
-      dl {
-        dt {
-          color: $red;
-          display: block;
-          font-size: 16px;
-          font-weight: 700;
-        }
 
-        dd {
-          color: #333;
-          font: 400 14px/20px $sans-serif;
-          margin: 0 0 14px 0;
+      #notify-me {
+        background: #ddd;
+        color: #333;
+        margin-right: 0;
 
-          p {
-            margin: 0 0 8px 0;
-          }
+        input[type="text"] {
+          width: 580px;
         }
       }
-    }
 
-    #notify-me {
-      background: #ddd;
-      color: #333;
-      margin-right: 0;
+      #terms {
+        float: left;
 
-      input[type="text"] {
-        width: 580px;
-      }
-    }
+        h4.terms {
+          color: #555;
+          font: 600 16px $sans-serif;
+        }
 
-    #terms {
-      float: left;
+        ul {
+          margin: 12px 0 0 0;
+          list-style: outside;
+        }
 
-      h4.terms {
-        color: #555;
-        font: 600 16px $sans-serif;
-      }
-
-      ul {
-        margin: 12px 0 0 0;
-        list-style: outside;
+        li,
+        p {
+          color: #666;
+          font: 400 14px/18px $sans-serif;
+          margin: 0 0 6px 0;
+        }
       }
 
-      li,
-      p {
-        color: #666;
-        font: 400 14px/18px $sans-serif;
-        margin: 0 0 6px 0;
-      }
-    }
 
-
-    #sidebar {
-      float: right;
-      width: 306px;
-
-      li {
-        @extend .clearfix;
-        margin: 0 0 18px 0;
-      }
-
-      img {
+      #sidebar {
         float: right;
-        margin: 24px 0px 10px 20px;
-      }
+        width: grid-width(4);
 
-      h5 {
-        color: $red;
-        font: 700 16px/20px $sans-serif;
-        margin: 0 0 2px 0;
-      }
+        li {
+          @extend .clearfix;
+          margin: 0 0 18px 0;
+        }
 
-      p.bio {
-        font: 400 14px/20px $sans-serif;
+        img {
+          float: right;
+          margin: 24px 0px 10px 20px;
+        }
+
+        h5 {
+          color: $red;
+          font: 700 16px/20px $sans-serif;
+          margin: 0 0 2px 0;
+        }
+
+        p.bio {
+          font: 400 14px/20px $sans-serif;
+        }
       }
     }
   }
@@ -262,7 +267,7 @@ body.courses #additional-information #faq {
   background: rgba(0, 0, 0, 0.2);
   @include border-radius (5px);
   color: #ddd;
-  margin: 20px 20px 20px 0;
+  margin: 0px 20px 20px 0;
   padding: 20px;
 
   label {
