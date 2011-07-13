@@ -13,23 +13,18 @@
   </head>
 
   <body class="<%= body_class %>">
-    <%= yield :page_header  %>
 
-    <section id="container">
-        <%= render 'shared/flashes' %>
+    <!-- <section id="container">-->
+      <%= render 'shared/header' %>
 
-        <%= yield :content_header %>
+      <%= yield :page_header  %>
+
+      <%= render 'shared/flashes' %>
+
         <%= yield %>
 
-        <footer>
-          <p class="about-us"><a href="http://thoughtbot.com">thoughtbot</a> is a web design and development company based in Boston, MA.</p>
-          <p class="footer-links"><a href="/pages/directions.html">Directions to our office</a> &bull; <a href="mailto:workshops@thoughtbot.com">Contact us</a></p>
-
-          <% if signed_in? && current_user.admin? -%>
-            <p class="admin"><%= link_to('Admin', admin_path) %> | <%= link_to('Sign out', sign_out_path, :method => :delete) %></p>
-          <% end -%>
-        </footer>
-    </section>
+      <%= render 'shared/footer' %>
+        <!--</section>-->
 
     <%= render :partial => 'shared/javascript' %>
   </body>

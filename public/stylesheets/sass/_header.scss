@@ -1,0 +1,49 @@
+header#main-header {
+  @extend .wrapper;
+  @extend .clearfix;
+  margin: 0 auto;
+  width: 995px;
+
+  border-bottom: 1px solid #DCDCDC;
+  padding-bottom: 20px;
+
+  h1 {
+    float: left;
+    margin: 42px 0 24px;
+
+    a {
+      background: url('/images/thoughtbot-logo.png') 0 0 no-repeat;
+      display: block;
+      height: 65px;
+      text-indent: -9999px;
+      width: 242px;
+    }
+  }
+
+  ul {
+    display: block;
+    float: right;
+    margin-top: 72px;
+
+    @extend .clearfix;
+
+    li {
+      float: left;
+
+      a {
+        color: #2b2b2b;
+        display: block;
+        font: 500 16px $sans-serif;
+        line-height: 20px;
+        margin: 0 20px;
+        text-decoration: none;
+        //@include transition(color .2s);
+
+        &:hover {
+          color: $red;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

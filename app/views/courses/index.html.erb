@@ -1,14 +1,10 @@
 <% content_for :page_header do %>
   <section id="head-wrapper">
     <section id="homepage-top">
-      <header>
-        <h1>thoughtbot workshops</h1>
 
-        <section id="the-sell">
-          <h2><%= t(".home-headline", :default => "Kickstart your <br>career with us") %></h2>
-          <p class="tagline"><%= t(".home-tagline", :default => "We&rsquo;ve trained hundred of people in small, hands-on<br> workshops taught by passionate experts.") %></p>
-        </section>
-      </header>
+<header id="page-header" class="primary">
+<h1>We build applications<br> that run businesses.</h1>
+</header>
 
       <section id="workshop-list">
         <% if @courses.empty? %>
@@ -23,40 +19,42 @@
   </section>
 <% end %>
 
-<section id="class-photos">
-  <ul>
-    <li class="first"><%= image_tag("/images/public/class-photo-3.jpg", :alt => "thoughtbot training" )%></li>
-    <li class="center"><%= image_tag("/images/public/class-photo-2.jpg", :alt => "thoughtbot training" )%></li>
-    <li class="last"><%= image_tag("/images/public/class-photo-1.jpg", :alt => "thoughtbot training" )%></li>
-  </ul>
-</section>
 
 <section id="more-information">
-  <section id="why-love">
-    <h4>Why you&rsquo;ll love our workshops</h4>
-    <%= t(".why-love", :default => "<ul>
-      <li><strong>Real life skills</strong> Our instructors build sites every day using the technology and skills we teach in our workshops. We focus on the things you need to know when doing real work.</li>
-      <li><strong>Human touch</strong> We keep our workshops small, so there&rsquo;s always someone ready to answer your questions. We also provide a delicious group lunch, a great chance to get to know your classmates and the <a href=\"http://thoughtbot.com/about/\">thoughtbot team</a>.</li>
-      <li><strong>A beautiful office</strong> Our workshops are run in our newly renovated office, in a comfortable, spacious room, with a great view of the Common in downtown Boston.</li>
-    </ul>") %>
-  </section>
+  <section id="more-information-wrapper">
 
-  <section id="testimonials">
-    <h4>What our students say</h4>
-    <section id="column-1">
-      <q>Cannot recommend Design for Developers more. It&rsquo;s amazing and I have a totally different outlook on design and web development.</q>
-      <p class="source">&mdash;<a href="http://chuckvose.com/">Chuck Vose</a></p>
-
-      <q>Having taken a thoughtbot training class on my own dime I can say it&rsquo;s 110% worth it. If you can hook it up, do it.</q>
-      <p class="source">&mdash;<a href="http://joeloliveira.com/">Joel Oliveira</a></p>
+    <section id="class-photos">
+      <ul>
+        <li class="first"><%= image_tag("/images/public/class-photo-3.jpg", :alt => "thoughtbot training" )%></li>
+        <li class="center"><%= image_tag("/images/public/class-photo-2.jpg", :alt => "thoughtbot training" )%></li>
+        <li class="last"><%= image_tag("/images/public/class-photo-1.jpg", :alt => "thoughtbot training" )%></li>
+      </ul>
     </section>
 
-    <section id="column-2">
-      <q>After the training session my code style is so fresh, Vogue wants to publish my tests.</q>
-      <p class="source">&mdash;<a href="http://gregsterndale.com/">Greg Sterndale</a></p>
+    <section id="why-love">
+      <%= t(".why-love", :default => "<ul>
+        <li><strong>Real life skills</strong> Our instructors build sites every day using the technology and skills we teach in our workshops. We focus on the things you need to know when doing real work.</li>
+        <li><strong>Human touch</strong> We keep our workshops small, so there&rsquo;s always someone ready to answer your questions. We also provide a delicious group lunch, a great chance to get to know your classmates and the <a href=\"http://thoughtbot.com/about/\">thoughtbot team</a>.</li>
+        <li><strong>A beautiful office</strong> Our workshops are run in our newly renovated office, in a comfortable, spacious room, with a great view of the Common in downtown Boston.</li>
+      </ul>") %>
+    </section>
 
-      <q>As an alumnus of Design for Developers, let me heartily recommend it to other devs who want to develop a better eye for design and learn the basics of implementing visually pleasing sites.</q>
-      <p class="source">&mdash;<a href="http://mikefurtak.com/">Mike Furtak</a></p>
+    <section id="testimonials">
+      <section id="column-1">
+        <q>Cannot recommend Design for Developers more. It&rsquo;s amazing and I have a totally different outlook on design and web development.</q>
+        <p class="source">&mdash;<a href="http://chuckvose.com/">Chuck Vose</a></p>
+
+        <q>Having taken a thoughtbot training class on my own dime I can say it&rsquo;s 110% worth it. If you can hook it up, do it.</q>
+        <p class="source">&mdash;<a href="http://joeloliveira.com/">Joel Oliveira</a></p>
+      </section>
+
+      <section id="column-2">
+        <q>After the training session my code style is so fresh, Vogue wants to publish my tests.</q>
+        <p class="source">&mdash;<a href="http://gregsterndale.com/">Greg Sterndale</a></p>
+
+        <q>As an alumnus of Design for Developers, let me heartily recommend it to other devs who want to develop a better eye for design and learn the basics of implementing visually pleasing sites.</q>
+        <p class="source">&mdash;<a href="http://mikefurtak.com/">Mike Furtak</a></p>
+      </section>
     </section>
   </section>
 </section>

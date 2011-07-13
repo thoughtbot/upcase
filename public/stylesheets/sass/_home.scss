@@ -1,46 +1,26 @@
 body.sections-index {
   #homepage-top {
-    background: url("/images/public/transparent-ralph.png") 638px bottom no-repeat;
+    //background: url("/images/public/transparent-ralph.png") 638px bottom no-repeat;
   }
 }
 
 #head-wrapper {
-  background: url("/images/public/blackboard.jpg") center top;
+  //background: url("/images/public/blackboard.jpg") center top;
 
   #homepage-top {
+    background: url("/images/shadowing.png") center top no-repeat;
     margin: 0 auto;
-    padding: 50px 0 72px 0;
-    width: 978px;
+    padding: 1px 0 72px 0;
+    width: 995px;
 
     header {
       @extend .clearfix;
-
+      
       h1 {
-        background: url("/images/public/logo.png") 5px 0 no-repeat;
-        float: left;
-        height: 150px;
-        text-indent: -9999px;
-        width: 168px;
-      }
-
-      #the-sell {
-        float: left;
-        margin: 10px 0 0 0;
-        width: 726px;
-
-        h2 {
-          color: #fff;
-          font: 300 42px/42px $sans-serif;
-          letter-spacing: 1px;
-          text-shadow: 0 0 1px #333;
-        }
-
-        p.tagline {
-          color: #ccc;
-          font: 300 18px/22px $sans-serif;
-          margin: 6px 0 0 0;
-          text-shadow: 0 0 1px #333;
-        }
+        color: #2b2b2b;
+        font: 900 60px/60px $sans-serif;
+        margin: 60px 0 20px;
+        text-align: center;
       }
     }
 
@@ -58,13 +38,12 @@ body.sections-index {
             text-decoration: none;
 
             h3 {
-              color: #fff;
+              color: #333;
               font: 700 30px/32px $sans-serif;
-              text-shadow: 0 1px 1px #222;
             }
 
             p.teaser {
-              color: #aaa;
+              color: #777;
               font: 300 16px/18px $sans-serif;
               margin: 4px 122px 0 0;
             }
@@ -83,7 +62,7 @@ body.sections-index {
             }
 
             p.where {
-              color: #eee;
+              color: #777;
               display: block;
               font: 400 14px $sans-serif;
               left: -240px;
@@ -108,7 +87,7 @@ body.sections-index {
 
 #class-photos {
   @extend .clearfix;
-  margin: -30px auto 0;
+  margin: 0px auto 0;
   width: 998px;
 
   img {
@@ -169,78 +148,88 @@ body.sections-index {
 
 #more-information {
   @extend .clearfix;
+  background: rgba(228, 228, 228, 0.7) url("/images/shadowing.png") center 0 no-repeat;
+  border-top: 1px solid #DCDCDC;
   margin: 14px 0 0 0;
+  padding: 40px 0;
 
-  h4 {
-    color: #222;
-    font: 500 20px $sans-serif;
-    margin: 0 0 12px 0;
-  }
+  #more-information-wrapper {
+    margin: 0 auto;
+    width: 995px;
 
-  #why-love {
-    float: left;
-    margin: 0 30px 0 0;
-    width: 474px;
+    h4 {
+      color: #555;
+      font: 500 20px $sans-serif;
+      margin: 0 0 12px 0;
+    }
 
-    ul {
-      li {
-        color: #333;
-        font: 400 14px/20px $sans-serif;
-        margin: 0 0 12px 0;
+    #why-love {
+      float: left;
+      margin: 0 $gutter 0 0;
+      width: grid-width(6);
 
-        strong {
-          color: #333;
-          display: block;
-          font-size: 16px;
-          font-weight: 600;
+      ul {
+        li {
+          color: #555;
+          font: 400 14px/20px $sans-serif;
+          margin: 0 0 12px 0;
+
+          strong {
+            color: #555;
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+          }
         }
       }
     }
-  }
 
-  #testimonials {
-    float: left;
-    width: 474px;
+    #testimonials {
+      float: left;
+      margin: 20px 0 0 0;
+      width: grid-width(6);
 
-    q {
-      display: block;
-      font: 400 14px $sans-serif;
-      line-height: 150%;
-      margin: 0 0 0 18px;
-      position: relative;
+      q {
+        color: #555;
+        display: block;
+        font: 400 14px $sans-serif;
+        line-height: 150%;
+        margin: 0 0 0 18px;
+        position: relative;
 
-      &:before {
-       color: #444;
-       content: "\201C";
-       font: 400 40px $sans-serif;
-       left: -17px;
-       position: absolute;
-       top: -4px;
+        &:before {
+         color: #666;
+         content: "\201C";
+         font: 400 40px $sans-serif;
+         left: -17px;
+         position: absolute;
+         top: -4px;
+        }
       }
-    }
 
-    p.source {
-      color: $red;
-      font: 600 14px $sans-serif;
-      margin: 2px 0 18px 5px;
-
-      a {
+      p.source {
         color: $red;
-        margin: 0 0 0 1px;
-        text-decoration: none;
+        font: 600 14px $sans-serif;
+        margin: 2px 0 18px 5px;
 
+        a {
+          color: $red;
+          margin: 0 0 0 1px;
+          text-decoration: none;
+
+        }
       }
-    }
 
-    #column-1 {
-      float: left;
-      margin: 0 30px 0 0;
-      width: 222px;
-    }
+      #column-1 {
+        float: left;
+        margin: 0 30px 0 0;
+        width: 222px;
+      }
 
-    #column-2 {
-      float: left;
-      width: 222px;
+      #column-2 {
+        float: left;
+        width: 222px;
+      }
     }
   }
 }

@@ -1,6 +1,5 @@
 <% if course.questions.any? -%>
   <section id="faq">
-    <h4>Frequently asked questions</h3>
     <dl>
       <% course.questions.each do |question| %>
         <dt><%=raw textilize question.question %></dt>

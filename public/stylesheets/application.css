@@ -49,10 +49,10 @@ table {
 
 /* Clear Floated Elements
 ------------------------------------------------------------------------------*/
-.clearfix:after, #head-wrapper #homepage-top header:after, #class-photos:after, #more-information:after, body.sections-show #head-wrapper #homepage-top:after,
+.clearfix:after, header#main-header:after, header#main-header ul:after, #head-wrapper #homepage-top header:after, #class-photos:after, #more-information:after, body.sections-show #head-wrapper #homepage-top:after,
 body.courses-show #head-wrapper #homepage-top:after, body.sections-show #additional-information:after,
-body.courses-show #additional-information:after, body.sections-show #additional-information #sidebar li:after,
-body.courses-show #additional-information #sidebar li:after, body.high_voltage-pages #head-wrapper #homepage-top:after, body.registrations #head-wrapper #homepage-top:after, body.registrations #form-container:after {
+body.courses-show #additional-information:after, body.sections-show #additional-information #additional-information-wrapper #sidebar li:after,
+body.courses-show #additional-information #additional-information-wrapper #sidebar li:after, body.high_voltage-pages #head-wrapper #homepage-top:after, body.registrations #head-wrapper #homepage-top:after, body.registrations #form-container:after, footer#main-footer:after, footer#main-footer nav:after {
   clear: both;
   content: ' ';
   display: block;
@@ -65,8 +65,9 @@ body.courses-show #additional-information #sidebar li:after, body.high_voltage-p
 /* variables */
 /* mixins
 ---------------------------------------- */
-/* this hack is courtesy of gbbowers on github
-   https://gist.github.com/601810 */
+/*line-height of all the type on the site*/
+/*one grid column*/
+/*size of one gutter*/
 /* red button */
 div#flash {
   font-size: 15px;
@@ -95,8 +96,8 @@ div#flash {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    -moz-box-shadow: inset #727272 0px -1px 0px 0px;
     -webkit-box-shadow: inset #727272 0px -1px 0px 0px;
+    -moz-box-shadow: inset #727272 0px -1px 0px 0px;
     -o-box-shadow: inset #727272 0px -1px 0px 0px;
     box-shadow: inset #727272 0px -1px 0px 0px;
     height: 50px;
@@ -147,10 +148,10 @@ div#flash {
     -moz-border-radius: 30px;
     -webkit-border-radius: 30px;
     border-radius: 30px;
-    -moz-box-shadow: "inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px";
-    -webkit-box-shadow: "inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px";
-    -o-box-shadow: "inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px";
-    box-shadow: "inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px";
+    -webkit-box-shadow: inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px;
+    -moz-box-shadow: inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px;
+    -o-box-shadow: inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px;
+    box-shadow: inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px;
     height: 30px;
     margin-right: 12px;
     position: relative;
@@ -196,87 +197,98 @@ div#flash {
     position: relative;
     width: 1px; }
 
-body.sections-index #homepage-top {
-  background: url("/images/public/transparent-ralph.png") 638px bottom no-repeat; }
-
-#head-wrapper {
-  background: url("/images/public/blackboard.jpg") center top; }
-  #head-wrapper #homepage-top {
-    margin: 0 auto;
-    padding: 50px 0 72px 0;
-    width: 978px; }
-    #head-wrapper #homepage-top header h1 {
-      background: url("/images/public/logo.png") 5px 0 no-repeat;
-      float: left;
-      height: 150px;
+header#main-header {
+  margin: 0 auto;
+  width: 995px;
+  border-bottom: 1px solid #DCDCDC;
+  padding-bottom: 20px; }
+  header#main-header h1 {
+    float: left;
+    margin: 42px 0 24px; }
+    header#main-header h1 a {
+      background: url("/images/thoughtbot-logo.png") 0 0 no-repeat;
+      display: block;
+      height: 65px;
       text-indent: -9999px;
-      width: 168px; }
-    #head-wrapper #homepage-top header #the-sell {
-      float: left;
-      margin: 10px 0 0 0;
-      width: 726px; }
-      #head-wrapper #homepage-top header #the-sell h2 {
-        color: #fff;
-        font: 300 42px/42px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-        letter-spacing: 1px;
-        text-shadow: 0 0 1px #333; }
-      #head-wrapper #homepage-top header #the-sell p.tagline {
-        color: #ccc;
-        font: 300 18px/22px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-        margin: 6px 0 0 0;
-        text-shadow: 0 0 1px #333; }
-    #head-wrapper #homepage-top #workshop-list {
-      margin: 54px 0 0 168px; }
-      #head-wrapper #homepage-top #workshop-list ul li {
-        margin: 0 0 18px 0;
-        padding: 0 0 18px 0;
-        position: relative; }
-        #head-wrapper #homepage-top #workshop-list ul li a {
-          display: inline-block;
+      width: 242px; }
+  header#main-header ul {
+    display: block;
+    float: right;
+    margin-top: 72px; }
+    header#main-header ul li {
+      float: left; }
+      header#main-header ul li a {
+        color: #2b2b2b;
+        display: block;
+        font: 500 16px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        line-height: 20px;
+        margin: 0 20px;
+        text-decoration: none; }
+        header#main-header ul li a:hover {
+          color: #ad141e;
           text-decoration: none; }
-          #head-wrapper #homepage-top #workshop-list ul li a h3 {
-            color: #fff;
-            font: 700 30px/32px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-            text-shadow: 0 1px 1px #222; }
-          #head-wrapper #homepage-top #workshop-list ul li a p.teaser {
-            color: #aaa;
-            font: 300 16px/18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-            margin: 4px 122px 0 0; }
-          #head-wrapper #homepage-top #workshop-list ul li a p.date {
-            color: #e73a34;
-            display: block;
-            font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-            left: -240px;
-            margin: 4px 0 0 0;
-            position: absolute;
-            text-align: right;
-            text-transform: uppercase;
-            top: 9px;
-            width: 222px; }
-          #head-wrapper #homepage-top #workshop-list ul li a p.where {
-            color: #eee;
-            display: block;
-            font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-            left: -240px;
-            margin: 4px 0 0 0;
-            position: absolute;
-            text-align: right;
-            bottom: 20px;
-            width: 222px; }
-          #head-wrapper #homepage-top #workshop-list ul li a:hover h3 {
-            color: #e73a34; }
+
+#head-wrapper #homepage-top {
+  background: url("/images/shadowing.png") center top no-repeat;
+  margin: 0 auto;
+  padding: 1px 0 72px 0;
+  width: 995px; }
+  #head-wrapper #homepage-top header h1 {
+    color: #2b2b2b;
+    font: 900 60px/60px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+    margin: 60px 0 20px;
+    text-align: center; }
+  #head-wrapper #homepage-top #workshop-list {
+    margin: 54px 0 0 168px; }
+    #head-wrapper #homepage-top #workshop-list ul li {
+      margin: 0 0 18px 0;
+      padding: 0 0 18px 0;
+      position: relative; }
+      #head-wrapper #homepage-top #workshop-list ul li a {
+        display: inline-block;
+        text-decoration: none; }
+        #head-wrapper #homepage-top #workshop-list ul li a h3 {
+          color: #333;
+          font: 700 30px/32px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
+        #head-wrapper #homepage-top #workshop-list ul li a p.teaser {
+          color: #777;
+          font: 300 16px/18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+          margin: 4px 122px 0 0; }
+        #head-wrapper #homepage-top #workshop-list ul li a p.date {
+          color: #ad141e;
+          display: block;
+          font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+          left: -240px;
+          margin: 4px 0 0 0;
+          position: absolute;
+          text-align: right;
+          text-transform: uppercase;
+          top: 9px;
+          width: 222px; }
+        #head-wrapper #homepage-top #workshop-list ul li a p.where {
+          color: #777;
+          display: block;
+          font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+          left: -240px;
+          margin: 4px 0 0 0;
+          position: absolute;
+          text-align: right;
+          bottom: 20px;
+          width: 222px; }
+        #head-wrapper #homepage-top #workshop-list ul li a:hover h3 {
+          color: #ad141e; }
 
 #class-photos {
-  margin: -30px auto 0;
+  margin: 0px auto 0;
   width: 998px; }
   #class-photos img {
     background: #fff;
     width: 306px; }
   #class-photos ul li {
-    -moz-box-shadow: "0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset";
-    -webkit-box-shadow: "0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset";
-    -o-box-shadow: "0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset";
-    box-shadow: "0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset";
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    -o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
     float: left;
     height: 205px;
     list-style-type: none;
@@ -288,8 +300,8 @@ body.sections-index #homepage-top {
     #class-photos ul li.last {
       margin: 0 10px 0 30px; }
     #class-photos ul li:after {
-      -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
       -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
       -o-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
       position: absolute;
@@ -304,8 +316,8 @@ body.sections-index #homepage-top {
       -moz-transform: skew(15deg) rotate(6deg);
       z-index: -1; }
     #class-photos ul li:before {
-      -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
       -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
       -o-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
       z-index: -2;
@@ -321,55 +333,63 @@ body.sections-index #homepage-top {
       -moz-transform: skew(-15deg) rotate(-6deg); }
 
 #more-information {
-  margin: 14px 0 0 0; }
-  #more-information h4 {
-    color: #222;
-    font: 500 20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-    margin: 0 0 12px 0; }
-  #more-information #why-love {
-    float: left;
-    margin: 0 30px 0 0;
-    width: 474px; }
-    #more-information #why-love ul li {
-      color: #333;
-      font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+  background: rgba(228, 228, 228, 0.7) url("/images/shadowing.png") center 0 no-repeat;
+  border-top: 1px solid #DCDCDC;
+  margin: 14px 0 0 0;
+  padding: 40px 0; }
+  #more-information #more-information-wrapper {
+    margin: 0 auto;
+    width: 995px; }
+    #more-information #more-information-wrapper h4 {
+      color: #555;
+      font: 500 20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 0 0 12px 0; }
-      #more-information #why-love ul li strong {
-        color: #333;
+    #more-information #more-information-wrapper #why-love {
+      float: left;
+      margin: 0 25px 0 0;
+      width: 485px; }
+      #more-information #more-information-wrapper #why-love ul li {
+        color: #555;
+        font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        margin: 0 0 12px 0; }
+        #more-information #more-information-wrapper #why-love ul li strong {
+          color: #555;
+          display: block;
+          font-size: 16px;
+          font-weight: 600; }
+    #more-information #more-information-wrapper #testimonials {
+      float: left;
+      margin: 20px 0 0 0;
+      width: 485px; }
+      #more-information #more-information-wrapper #testimonials q {
+        color: #555;
         display: block;
-        font-size: 16px;
-        font-weight: 600; }
-  #more-information #testimonials {
-    float: left;
-    width: 474px; }
-    #more-information #testimonials q {
-      display: block;
-      font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      line-height: 150%;
-      margin: 0 0 0 18px;
-      position: relative; }
-      #more-information #testimonials q:before {
-        color: #444;
-        content: "\201C";
-        font: 400 40px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-        left: -17px;
-        position: absolute;
-        top: -4px; }
-    #more-information #testimonials p.source {
-      color: #e73a34;
-      font: 600 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      margin: 2px 0 18px 5px; }
-      #more-information #testimonials p.source a {
-        color: #e73a34;
-        margin: 0 0 0 1px;
-        text-decoration: none; }
-    #more-information #testimonials #column-1 {
-      float: left;
-      margin: 0 30px 0 0;
-      width: 222px; }
-    #more-information #testimonials #column-2 {
-      float: left;
-      width: 222px; }
+        font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        line-height: 150%;
+        margin: 0 0 0 18px;
+        position: relative; }
+        #more-information #more-information-wrapper #testimonials q:before {
+          color: #666;
+          content: "\201C";
+          font: 400 40px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+          left: -17px;
+          position: absolute;
+          top: -4px; }
+      #more-information #more-information-wrapper #testimonials p.source {
+        color: #ad141e;
+        font: 600 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        margin: 2px 0 18px 5px; }
+        #more-information #more-information-wrapper #testimonials p.source a {
+          color: #ad141e;
+          margin: 0 0 0 1px;
+          text-decoration: none; }
+      #more-information #more-information-wrapper #testimonials #column-1 {
+        float: left;
+        margin: 0 30px 0 0;
+        width: 222px; }
+      #more-information #more-information-wrapper #testimonials #column-2 {
+        float: left;
+        width: 222px; }
 
 body.sections-show #head-wrapper #homepage-top,
 body.courses-show #head-wrapper #homepage-top {
@@ -399,46 +419,41 @@ body.courses-show #head-wrapper #homepage-top {
   body.sections-show #head-wrapper #homepage-top #course-info,
   body.courses-show #head-wrapper #homepage-top #course-info {
     float: left;
-    margin: 0 30px 0 0;
-    padding: 32px 0 32px 8px;
-    width: 630px; }
+    margin: 0 25px 0 0;
+    padding: 32px 0 32px 0px;
+    width: 655px; }
     body.sections-show #head-wrapper #homepage-top #course-info h2,
     body.courses-show #head-wrapper #homepage-top #course-info h2 {
-      color: #fff;
+      color: #333;
       font: 700 30px/32px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      margin: 0 0 8px 0;
-      text-shadow: 0 1px 0 #222; }
-    body.sections-show #head-wrapper #homepage-top #course-info #course-description,
-    body.courses-show #head-wrapper #homepage-top #course-info #course-description {
-      margin: 0 0 36px 0; }
+      margin: 0 0 8px 0; }
     body.sections-show #head-wrapper #homepage-top #course-info p,
     body.courses-show #head-wrapper #homepage-top #course-info p {
-      color: #ddd;
-      font: 300 16px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      margin: 0 0 8px 0;
-      text-shadow: 0 1px 0 #222; }
+      color: #666;
+      font: 400 15px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      margin: 0 0 8px 0; }
     body.sections-show #head-wrapper #homepage-top #course-info ul,
     body.courses-show #head-wrapper #homepage-top #course-info ul {
       margin: 12px 0 12px 0; }
       body.sections-show #head-wrapper #homepage-top #course-info ul li,
       body.courses-show #head-wrapper #homepage-top #course-info ul li {
         color: #ddd;
-        font: 300 16px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        font: 400 15px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
         list-style: disc;
         margin: 0 0 4px 0;
         text-shadow: 0 1px 0 #222; }
     body.sections-show #head-wrapper #homepage-top #course-info q,
     body.courses-show #head-wrapper #homepage-top #course-info q {
-      color: #ddd;
+      color: #666;
       display: block;
-      font: 300 16px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      font: 400 15px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       line-height: 150%;
       left: -12px;
       margin: 24px 0 0 12px;
       position: relative; }
       body.sections-show #head-wrapper #homepage-top #course-info q:before,
       body.courses-show #head-wrapper #homepage-top #course-info q:before {
-        color: #ddd;
+        color: #777;
         content: "\201C";
         font: 300 40px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
         left: -16px;
@@ -446,22 +461,37 @@ body.courses-show #head-wrapper #homepage-top {
         top: -4px; }
     body.sections-show #head-wrapper #homepage-top #course-info p.source,
     body.courses-show #head-wrapper #homepage-top #course-info p.source {
-      color: #e73a34;
+      color: #ad141e;
       font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 2px 0 18px 0px; }
       body.sections-show #head-wrapper #homepage-top #course-info p.source a,
       body.courses-show #head-wrapper #homepage-top #course-info p.source a {
-        color: #e73a34;
+        color: #ad141e;
         margin: 0 0 0 1px;
         text-decoration: none; }
+    body.sections-show #head-wrapper #homepage-top #course-info #faq dl dt p,
+    body.courses-show #head-wrapper #homepage-top #course-info #faq dl dt p {
+      color: #ad141e;
+      display: block;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 0; }
+    body.sections-show #head-wrapper #homepage-top #course-info #faq dl dd,
+    body.courses-show #head-wrapper #homepage-top #course-info #faq dl dd {
+      color: #333;
+      font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      margin: 0 0 14px 0; }
+      body.sections-show #head-wrapper #homepage-top #course-info #faq dl dd p,
+      body.courses-show #head-wrapper #homepage-top #course-info #faq dl dd p {
+        margin: 0 0 8px 0; }
   body.sections-show #head-wrapper #homepage-top #workshop-details,
   body.courses-show #head-wrapper #homepage-top #workshop-details {
     float: left;
-    margin: 20px 0 0 0;
-    width: 306px; }
+    margin: 57px 0 0 0;
+    width: 315px; }
     body.sections-show #head-wrapper #homepage-top #workshop-details #register,
     body.courses-show #head-wrapper #homepage-top #workshop-details #register {
-      padding: 32px 0 68px 0;
+      padding: 21px 0 20px 0;
       /* red button */ }
       body.sections-show #head-wrapper #homepage-top #workshop-details #register a,
       body.courses-show #head-wrapper #homepage-top #workshop-details #register a {
@@ -473,8 +503,8 @@ body.courses-show #head-wrapper #homepage-top {
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
         border-radius: 5px;
-        -moz-box-shadow: inset 0 1px 0 0 #ffabab;
         -webkit-box-shadow: inset 0 1px 0 0 #ffabab;
+        -moz-box-shadow: inset 0 1px 0 0 #ffabab;
         -o-box-shadow: inset 0 1px 0 0 #ffabab;
         box-shadow: inset 0 1px 0 0 #ffabab;
         color: #fff;
@@ -501,14 +531,14 @@ body.courses-show #head-wrapper #homepage-top {
           box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #444; }
     body.sections-show #head-wrapper #homepage-top #workshop-details h3,
     body.courses-show #head-wrapper #homepage-top #workshop-details h3 {
-      color: #e73a34;
-      font: 300 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      color: #ad141e;
+      font: 600 13px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 20px 0 2px 0;
       text-transform: uppercase; }
     body.sections-show #head-wrapper #homepage-top #workshop-details p,
     body.courses-show #head-wrapper #homepage-top #workshop-details p {
-      color: #fff;
-      font: 300 16px/22px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
+      color: #333;
+      font: 400 15px/22px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
       body.sections-show #head-wrapper #homepage-top #workshop-details p.cost,
       body.courses-show #head-wrapper #homepage-top #workshop-details p.cost {
         font-size: 30px;
@@ -520,92 +550,80 @@ body.courses-show #head-wrapper #homepage-top {
         margin-bottom: 4px; }
       body.sections-show #head-wrapper #homepage-top #workshop-details p.notice,
       body.courses-show #head-wrapper #homepage-top #workshop-details p.notice {
-        color: #fff;
+        color: #333;
         font-size: 14px;
         font-weight: 600;
         text-transform: uppercase; }
     body.sections-show #head-wrapper #homepage-top #workshop-details a,
     body.courses-show #head-wrapper #homepage-top #workshop-details a {
-      border-bottom: 1px solid #e73a34;
-      color: #fff;
+      border-bottom: 1px solid #ad141e;
+      color: #333;
       text-decoration: none; }
 body.sections-show #additional-information,
 body.courses-show #additional-information {
-  margin: 24px 0 24px 0; }
-  body.sections-show #additional-information h4,
-  body.courses-show #additional-information h4 {
-    color: #222;
-    font: 600 20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-    margin: 0 0 12px 0; }
-  body.sections-show #additional-information #main-content,
-  body.courses-show #additional-information #main-content {
-    float: left;
-    margin: 0 30px 0 0;
-    width: 638px; }
-  body.sections-show #additional-information #faq,
-  body.courses-show #additional-information #faq {
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 12px;
-    padding-bottom: 12px; }
-    body.sections-show #additional-information #faq dl dt,
-    body.courses-show #additional-information #faq dl dt {
-      color: #e73a34;
-      display: block;
-      font-size: 16px;
-      font-weight: 700; }
-    body.sections-show #additional-information #faq dl dd,
-    body.courses-show #additional-information #faq dl dd {
+  background: rgba(228, 228, 228, 0.7) url("/images/shadowing.png") center 0 no-repeat;
+  border-top: 1px solid #DCDCDC;
+  margin: 14px 0 0 0;
+  padding: 40px 0; }
+  body.sections-show #additional-information #additional-information-wrapper,
+  body.courses-show #additional-information #additional-information-wrapper {
+    margin: 0 auto;
+    width: 995px; }
+    body.sections-show #additional-information #additional-information-wrapper h4,
+    body.courses-show #additional-information #additional-information-wrapper h4 {
+      color: #222;
+      font: 600 20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      margin: 0 0 12px 0; }
+    body.sections-show #additional-information #additional-information-wrapper #main-content,
+    body.courses-show #additional-information #additional-information-wrapper #main-content {
+      float: left;
+      margin: 0 25px 0 0;
+      width: 655px; }
+    body.sections-show #additional-information #additional-information-wrapper #notify-me,
+    body.courses-show #additional-information #additional-information-wrapper #notify-me {
+      background: #ddd;
       color: #333;
-      font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      margin: 0 0 14px 0; }
-      body.sections-show #additional-information #faq dl dd p,
-      body.courses-show #additional-information #faq dl dd p {
-        margin: 0 0 8px 0; }
-  body.sections-show #additional-information #notify-me,
-  body.courses-show #additional-information #notify-me {
-    background: #ddd;
-    color: #333;
-    margin-right: 0; }
-    body.sections-show #additional-information #notify-me input[type="text"],
-    body.courses-show #additional-information #notify-me input[type="text"] {
-      width: 580px; }
-  body.sections-show #additional-information #terms,
-  body.courses-show #additional-information #terms {
-    float: left; }
-    body.sections-show #additional-information #terms h4.terms,
-    body.courses-show #additional-information #terms h4.terms {
-      color: #555;
-      font: 600 16px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
-    body.sections-show #additional-information #terms ul,
-    body.courses-show #additional-information #terms ul {
-      margin: 12px 0 0 0;
-      list-style: outside; }
-    body.sections-show #additional-information #terms li,
-    body.sections-show #additional-information #terms p,
-    body.courses-show #additional-information #terms li,
-    body.courses-show #additional-information #terms p {
-      color: #666;
-      font: 400 14px/18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      margin: 0 0 6px 0; }
-  body.sections-show #additional-information #sidebar,
-  body.courses-show #additional-information #sidebar {
-    float: right;
-    width: 306px; }
-    body.sections-show #additional-information #sidebar li,
-    body.courses-show #additional-information #sidebar li {
-      margin: 0 0 18px 0; }
-    body.sections-show #additional-information #sidebar img,
-    body.courses-show #additional-information #sidebar img {
+      margin-right: 0; }
+      body.sections-show #additional-information #additional-information-wrapper #notify-me input[type="text"],
+      body.courses-show #additional-information #additional-information-wrapper #notify-me input[type="text"] {
+        width: 580px; }
+    body.sections-show #additional-information #additional-information-wrapper #terms,
+    body.courses-show #additional-information #additional-information-wrapper #terms {
+      float: left; }
+      body.sections-show #additional-information #additional-information-wrapper #terms h4.terms,
+      body.courses-show #additional-information #additional-information-wrapper #terms h4.terms {
+        color: #555;
+        font: 600 16px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
+      body.sections-show #additional-information #additional-information-wrapper #terms ul,
+      body.courses-show #additional-information #additional-information-wrapper #terms ul {
+        margin: 12px 0 0 0;
+        list-style: outside; }
+      body.sections-show #additional-information #additional-information-wrapper #terms li,
+      body.sections-show #additional-information #additional-information-wrapper #terms p,
+      body.courses-show #additional-information #additional-information-wrapper #terms li,
+      body.courses-show #additional-information #additional-information-wrapper #terms p {
+        color: #666;
+        font: 400 14px/18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        margin: 0 0 6px 0; }
+    body.sections-show #additional-information #additional-information-wrapper #sidebar,
+    body.courses-show #additional-information #additional-information-wrapper #sidebar {
       float: right;
-      margin: 24px 0px 10px 20px; }
-    body.sections-show #additional-information #sidebar h5,
-    body.courses-show #additional-information #sidebar h5 {
-      color: #e73a34;
-      font: 700 16px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      margin: 0 0 2px 0; }
-    body.sections-show #additional-information #sidebar p.bio,
-    body.courses-show #additional-information #sidebar p.bio {
-      font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
+      width: 315px; }
+      body.sections-show #additional-information #additional-information-wrapper #sidebar li,
+      body.courses-show #additional-information #additional-information-wrapper #sidebar li {
+        margin: 0 0 18px 0; }
+      body.sections-show #additional-information #additional-information-wrapper #sidebar img,
+      body.courses-show #additional-information #additional-information-wrapper #sidebar img {
+        float: right;
+        margin: 24px 0px 10px 20px; }
+      body.sections-show #additional-information #additional-information-wrapper #sidebar h5,
+      body.courses-show #additional-information #additional-information-wrapper #sidebar h5 {
+        color: #ad141e;
+        font: 700 16px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        margin: 0 0 2px 0; }
+      body.sections-show #additional-information #additional-information-wrapper #sidebar p.bio,
+      body.courses-show #additional-information #additional-information-wrapper #sidebar p.bio {
+        font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
 
 body.courses #additional-information #faq {
   border-bottom: none; }
@@ -616,7 +634,7 @@ body.courses #additional-information #faq {
   -webkit-border-radius: 5px;
   border-radius: 5px;
   color: #ddd;
-  margin: 20px 20px 20px 0;
+  margin: 0px 20px 20px 0;
   padding: 20px; }
   #notify-me label {
     display: block;
@@ -640,8 +658,8 @@ body.courses #additional-information #faq {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    -moz-box-shadow: inset 0 1px 0 0 #ffabab;
     -webkit-box-shadow: inset 0 1px 0 0 #ffabab;
+    -moz-box-shadow: inset 0 1px 0 0 #ffabab;
     -o-box-shadow: inset 0 1px 0 0 #ffabab;
     box-shadow: inset 0 1px 0 0 #ffabab;
     color: #fff;
@@ -706,7 +724,7 @@ body.high_voltage-pages section#container {
       font-size: 18px;
       line-height: 27px; }
       body.high_voltage-pages section#container h3.offer strong {
-        color: #e73a34; }
+        color: #ad141e; }
   body.high_voltage-pages section#container h4 {
     font-size: 16px; }
   body.high_voltage-pages section#container ul {
@@ -767,7 +785,7 @@ body.registrations #total p.coupon-note {
   display: inline-block;
   margin: 0 0 0 8px; }
   body.registrations #total p.coupon-note a {
-    color: #e73a34;
+    color: #ad141e;
     font: 700 16px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
 body.registrations div.coupon {
   margin: 12px 0; }
@@ -795,7 +813,7 @@ body.registrations form {
       float: left;
       width: 123px; }
     body.registrations form fieldset ol li.error p.inline-errors {
-      color: #e73a34; }
+      color: #ad141e; }
     body.registrations form fieldset ol li.error input {
       background: #f8bcba; }
     body.registrations form fieldset ol li label {
@@ -818,8 +836,8 @@ body.registrations form {
       -moz-border-radius: 5px;
       -webkit-border-radius: 5px;
       border-radius: 5px;
-      -moz-box-shadow: inset 0 1px 0 0 #ffabab;
       -webkit-box-shadow: inset 0 1px 0 0 #ffabab;
+      -moz-box-shadow: inset 0 1px 0 0 #ffabab;
       -o-box-shadow: inset 0 1px 0 0 #ffabab;
       box-shadow: inset 0 1px 0 0 #ffabab;
       color: #fff;
@@ -860,13 +878,57 @@ body.registrations #form-sidebar {
     list-style: outside;
     margin: 0 0 4px 0; }
 
+footer#main-footer {
+  margin: 0 auto;
+  opacity: .5;
+  padding-top: 80px;
+  width: 995px;
+  -webkit-transition: opacity 0.5s;
+  -moz-transitition: opacity 0.5s;
+  transitition: opacity 0.5s; }
+  footer#main-footer:hover {
+    opacity: 1; }
+  footer#main-footer h3 {
+    color: #545454; }
+  footer#main-footer a {
+    color: #7a7a7a;
+    text-decoration: none; }
+    footer#main-footer a:link {
+      color: #7a7a7a; }
+    footer#main-footer a:hover {
+      color: #ad141e; }
+  footer#main-footer nav section {
+    float: left;
+    margin-right: 25px;
+    width: 145px; }
+    footer#main-footer nav section#thoughtbot-footer {
+      width: 315px; }
+      footer#main-footer nav section#thoughtbot-footer ul li {
+        float: left;
+        margin-right: 25px;
+        width: 145px; }
+        footer#main-footer nav section#thoughtbot-footer ul li:nth-child(2n) {
+          margin-right: 0; }
+    footer#main-footer nav section#blog-footer {
+      width: 315px; }
+    footer#main-footer nav section:last-child {
+      margin-right: 0; }
+    footer#main-footer nav section ul {
+      list-style: none; }
+  footer#main-footer p#copyright {
+    color: #7a7a7a;
+    margin-top: 40px;
+    /*line-height to maintain baseline grid*/ }
+
 body {
+  background: #fcfcfc;
+  border-top: 4px solid #AD141E;
   font-family: "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
   font-size: 14px;
   line-height: 20px; }
 
 a {
-  color: #e73a34; }
+  color: #ad141e; }
 
 h1, h2, h3, h4, h5, h6 {
   color: #222;
@@ -890,7 +952,7 @@ h5, h6 {
 
 #container {
   margin: 0 auto 100px;
-  width: 978px; }
+  width: 995px; }
 
 footer {
   border-top: 1px solid #ddd;
