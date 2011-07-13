@@ -8,29 +8,31 @@ body.sections-index {
   //background: url("/images/public/blackboard.jpg") center top;
 
   #homepage-top {
+    @extend .clearfix;
     background: url("/images/shadowing.png") center top no-repeat;
     margin: 0 auto;
-    padding: 1px 0 72px 0;
+    padding: 1px 0 40px 0;
     width: 995px;
 
     header {
       @extend .clearfix;
-      
+
       h1 {
         color: #2b2b2b;
         font: 900 60px/60px $sans-serif;
         margin: 60px 0 20px;
-        text-align: center;
       }
     }
 
     #workshop-list {
-      margin: 54px 0 0 168px;
+      float: left;
+      margin: 20px 0 0 0;
+      width: grid-width(8);
 
       ul {
         li {
-          margin: 0 0 18px 0;
-          padding: 0 0 18px 0;
+          margin: 0 0 12px 0;
+          padding: 0 0 12px 0;
           position: relative;
 
           a {
@@ -38,13 +40,13 @@ body.sections-index {
             text-decoration: none;
 
             h3 {
-              color: #333;
-              font: 700 30px/32px $sans-serif;
+              color: $red;
+              font: 700 24px/28px $sans-serif;
             }
 
             p.teaser {
-              color: #777;
-              font: 300 16px/18px $sans-serif;
+              color: #444;
+              font: 300 16px/18px $serif;
               margin: 4px 122px 0 0;
             }
 
@@ -52,10 +54,9 @@ body.sections-index {
               color: $red;
               display: block;
               font: 400 14px $sans-serif;
-              left: -240px;
+              //left: -240px;
               margin: 4px 0 0 0;
-              position: absolute;
-              text-align: right;
+              //position: absolute;
               text-transform: uppercase;
               top: 9px;
               width: 222px;
@@ -65,10 +66,9 @@ body.sections-index {
               color: #777;
               display: block;
               font: 400 14px $sans-serif;
-              left: -240px;
+              //left: -240px;
               margin: 4px 0 0 0;
-              position: absolute;
-              text-align: right;
+              //position: absolute;
               bottom: 20px;
               width: 222px;
             }
@@ -80,6 +80,19 @@ body.sections-index {
             }
           }
         }
+      }
+    }
+
+    aside {
+      border-top: 5px solid $red;
+      float: left;
+      margin: 24px 0 0 25px;
+      padding: 10px 0 0 0;
+      width: grid-width(4);
+
+      h2 {
+        font: 700 20px $sans-serif;
+        margin: 0 0 10px 0;
       }
     }
   }

@@ -7,35 +7,10 @@
 }
 
 body.registrations {
-  #head-wrapper {
-    #homepage-top {
-      @extend .clearfix;
-      padding: 25px 0 0 0;
 
-      header {
-        margin: 0 0 30px 0;
-        padding: 0 0 10px 0;
-
-        h1 {
-          background: none;
-          color: #fff;
-          height: 60px;
-          text-indent: 0;
-          font: 100 26px $sans-serif;
-          padding: 0 0 23px 0;
-          width: 400px;
-
-          a {
-            background: url("/images/public/logo_small.png") 5px 5px no-repeat;
-            color: #fff;
-            display: block;
-            height: 60px;
-            padding: 23px 0 0 95px;
-            text-decoration: none;
-          }
-        }
-      }
-    }
+  #container {
+    background: url("/images/shadowing.png") center top no-repeat;
+    padding: 40px 0 0 0;
   }
 
   #form-container {
@@ -44,8 +19,8 @@ body.registrations {
 
   #form-column {
     float: left;
-    margin: 0 30px 0 0;
-    width: 526px;
+    margin: 0 25px 0 0;
+    width: grid-width(6);
   }
 
   h1.course-title {
@@ -150,7 +125,7 @@ body.registrations {
   #form-sidebar {
     float: left;
     padding: 50px 0 0 0;
-    width: 418px;
+    width: grid-width(6); 
 
     h4 {
       color: #666;
@@ -170,7 +145,7 @@ body.registrations {
     li {
       color: #666;
       list-style: outside;
-      margin: 0 0 4px 0;
+      margin: 0 0 4px 15px;
     }
   }
 }
