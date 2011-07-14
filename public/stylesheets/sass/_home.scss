@@ -1,12 +1,7 @@
 body.sections-index {
-  #homepage-top {
-    //background: url("/images/public/transparent-ralph.png") 638px bottom no-repeat;
-  }
 }
 
 #head-wrapper {
-  //background: url("/images/public/blackboard.jpg") center top;
-
   #homepage-top {
     @extend .clearfix;
     background: url("/images/shadowing.png") center top no-repeat;
@@ -20,7 +15,7 @@ body.sections-index {
       h1 {
         color: #2b2b2b;
         font: 900 60px/60px $sans-serif;
-        margin: 60px 0 20px;
+        margin: 40px 0 20px;
       }
     }
 
@@ -31,8 +26,8 @@ body.sections-index {
 
       ul {
         li {
-          margin: 0 0 12px 0;
-          padding: 0 0 12px 0;
+          margin: 0 0 10px 0;
+          padding: 0 0 10px 0;
           position: relative;
 
           a {
@@ -41,13 +36,23 @@ body.sections-index {
 
             h3 {
               color: $red;
-              font: 700 24px/28px $sans-serif;
+              font: 700 24px/30px $sans-serif;
+
+              span {
+                color: #333;
+                font-size: 16px;
+
+                &:before {
+                  content: "/";
+                  margin: 0 4px 0 0;
+                }
+              }
             }
 
             p.teaser {
               color: #444;
-              font: 300 16px/18px $serif;
-              margin: 4px 122px 0 0;
+              font: 300 15px/20px $serif;
+              margin: 0;
             }
 
             p.date {
@@ -91,8 +96,14 @@ body.sections-index {
       width: grid-width(4);
 
       h2 {
-        font: 700 20px $sans-serif;
+        color: #333;
+        font: 700 24px $sans-serif;
         margin: 0 0 10px 0;
+      }
+
+      p {
+        color: #444;
+        font: 400 15px/21px $serif;
       }
     }
   }
@@ -178,20 +189,19 @@ body.sections-index {
 
     #why-love {
       float: left;
-      margin: 0 $gutter 0 0;
+      margin: 22px $gutter 0 0;
       width: grid-width(6);
 
       ul {
         li {
           color: #555;
-          font: 400 14px/20px $sans-serif;
-          margin: 0 0 12px 0;
+          font: 400 14px/20px $serif;
+          margin: 0 0 20px 0;
 
           strong {
-            color: #555;
+            color: #333;
             display: block;
-            font-size: 16px;
-            font-weight: 600;
+            font: 600 16px $sans-serif;
           }
         }
       }
@@ -205,9 +215,8 @@ body.sections-index {
       q {
         color: #555;
         display: block;
-        font: 400 14px $sans-serif;
-        line-height: 150%;
-        margin: 0 0 0 18px;
+        font: 400 14px/20px $serif;
+        margin: 0 0 0 20px;
         position: relative;
 
         &:before {

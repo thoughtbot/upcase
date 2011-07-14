@@ -1,3 +1,4 @@
+body.high_voltage-pages,
 body.sections-show,
 body.courses-show {
   #head-wrapper {
@@ -40,7 +41,7 @@ body.courses-show {
 
         h2 {
           color: #333;
-          font: 700 30px/32px $sans-serif;
+          font: 700 36px/40px $sans-serif;
           margin: 0 0 8px 0;
         }
 
@@ -49,7 +50,7 @@ body.courses-show {
         }
 
         p {
-          color: #666;
+          color: #444;
           font: 400 15px/24px $sans-serif;
           margin: 0 0 8px 0;
         }
@@ -67,7 +68,7 @@ body.courses-show {
         }
 
         q {
-          color: #666;
+          color: #444;
           display: block;
           font: 400 15px/24px $sans-serif;
           line-height: 150%;
@@ -124,7 +125,7 @@ body.courses-show {
 
       #workshop-details {
         float: left;
-        margin: 57px 0 0 0;
+        margin: 67px 0 20px 0;
         width: grid-width(4);
 
         #register {
@@ -144,13 +145,13 @@ body.courses-show {
         }
 
         p {
-          color: #333;
-          font: 400 15px/22px $sans-serif;
+          color: #444;
+          font: 400 16px/24px $serif;
 
           &.cost {
-            font-size: 30px;
+            font-size: 20px;
             font-weight: 400;
-            margin: 8px 0 32px 0;
+            margin: 0px 0 0px 0;
           }
 
           &.cost.sold-out {
