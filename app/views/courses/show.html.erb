@@ -4,16 +4,14 @@
       <section id="course-info">
         <h2><%= @course.name %></h2>
 
-
         <section id="course-description"><%=raw textilize @course.description %></section>
 
-    <%= render :partial => 'questions', :locals => { :course => @course } %>
+        <%= render :partial => 'questions', :locals => { :course => @course } %>
       </section>
 
       <section id="workshop-details">
         <h3>Cost</h3>
         <p class="cost"><%= number_to_currency @course.price, :precision => 0, :delimiter => '' %></p>
-
 
         <h3>Where</h3>
         <p id="section-location">

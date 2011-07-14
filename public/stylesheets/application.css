@@ -264,21 +264,6 @@ header#main-header {
           color: #444;
           font: 300 15px/20px skolar-1, skolar-2, serif;
           margin: 0; }
-        #head-wrapper #homepage-top #workshop-list ul li a p.date {
-          color: #ad141e;
-          display: block;
-          font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-          margin: 4px 0 0 0;
-          text-transform: uppercase;
-          top: 9px;
-          width: 222px; }
-        #head-wrapper #homepage-top #workshop-list ul li a p.where {
-          color: #777;
-          display: block;
-          font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-          margin: 4px 0 0 0;
-          bottom: 20px;
-          width: 222px; }
         #head-wrapper #homepage-top #workshop-list ul li a:hover h3 {
           color: #ad141e; }
   #head-wrapper #homepage-top aside {
@@ -296,11 +281,10 @@ header#main-header {
       font: 400 15px/21px skolar-1, skolar-2, serif; }
 
 #class-photos {
-  margin: 0px auto 0;
-  width: 998px; }
+  margin: 0px auto 0; }
   #class-photos img {
     background: #fff;
-    width: 306px; }
+    width: 315px; }
   #class-photos ul li {
     -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
     -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
@@ -310,12 +294,12 @@ header#main-header {
     height: 205px;
     list-style-type: none;
     margin-bottom: 20px;
-    width: 306px;
+    width: 315px;
     position: relative; }
     #class-photos ul li.first {
-      margin: 0 30px 0 0; }
+      margin: 0 25px 0 0; }
     #class-photos ul li.last {
-      margin: 0 10px 0 30px; }
+      margin: 0 0 0 25px; }
     #class-photos ul li:after {
       -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
       -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
@@ -400,11 +384,11 @@ header#main-header {
           text-decoration: none; }
       #more-information #more-information-wrapper #testimonials #column-1 {
         float: left;
-        margin: 0 30px 0 0;
-        width: 222px; }
+        margin: 0 25px 0 0;
+        width: 230px; }
       #more-information #more-information-wrapper #testimonials #column-2 {
         float: left;
-        width: 222px; }
+        width: 230px; }
 
 body.high_voltage-pages #head-wrapper #homepage-top,
 body.sections-show #head-wrapper #homepage-top,
@@ -581,7 +565,7 @@ body.courses-show #head-wrapper #homepage-top {
     body.high_voltage-pages #head-wrapper #homepage-top #workshop-details p,
     body.sections-show #head-wrapper #homepage-top #workshop-details p,
     body.courses-show #head-wrapper #homepage-top #workshop-details p {
-      color: #444;
+      color: #555;
       font: 400 16px/24px skolar-1, skolar-2, serif; }
       body.high_voltage-pages #head-wrapper #homepage-top #workshop-details p.cost,
       body.sections-show #head-wrapper #homepage-top #workshop-details p.cost,
@@ -683,7 +667,7 @@ body.courses-show #additional-information {
       body.sections-show #additional-information #additional-information-wrapper #sidebar img,
       body.courses-show #additional-information #additional-information-wrapper #sidebar img {
         float: right;
-        margin: 24px 0px 10px 20px; }
+        margin: 3px 0px 10px 20px; }
       body.high_voltage-pages #additional-information #additional-information-wrapper #sidebar h5,
       body.sections-show #additional-information #additional-information-wrapper #sidebar h5,
       body.courses-show #additional-information #additional-information-wrapper #sidebar h5 {
@@ -929,6 +913,7 @@ footer#main-footer {
   margin: 0 auto;
   opacity: .5;
   padding-top: 80px;
+  padding-bottom: 40px;
   width: 995px;
   -webkit-transition: opacity 0.5s;
   -moz-transitition: opacity 0.5s;

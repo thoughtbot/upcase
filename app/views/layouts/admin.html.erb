@@ -5,13 +5,13 @@
     <%= csrf_meta_tag %>
   </head>
   <body class="<%= body_class %>">
-    <%= render :partial => 'shared/header' %>
-
     <div class="top">
       <div class="wrapper">
         <%= yield :page_header  %>
       </div>
     </div>
+
+    <%= render 'shared/flashes' %>
 
     <div id="content">
       <div class="wrapper">
@@ -28,6 +28,7 @@
         </div>
       </div>
     </div>
+    <%= render :partial => 'shared/admin_sign_out' %>
     <%= render :partial => 'shared/javascript' %>
   </body>
 </html>

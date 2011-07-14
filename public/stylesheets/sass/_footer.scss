@@ -4,6 +4,7 @@ footer#main-footer {
   margin: 0 auto;
   opacity: .5;
   padding-top: $lh*4;
+  padding-bottom: 40px;
   width: 995px;
 
   @include transition(opacity .5s);

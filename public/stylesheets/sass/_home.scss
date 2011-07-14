@@ -55,29 +55,6 @@ body.sections-index {
               margin: 0;
             }
 
-            p.date {
-              color: $red;
-              display: block;
-              font: 400 14px $sans-serif;
-              //left: -240px;
-              margin: 4px 0 0 0;
-              //position: absolute;
-              text-transform: uppercase;
-              top: 9px;
-              width: 222px;
-            }
-
-            p.where {
-              color: #777;
-              display: block;
-              font: 400 14px $sans-serif;
-              //left: -240px;
-              margin: 4px 0 0 0;
-              //position: absolute;
-              bottom: 20px;
-              width: 222px;
-            }
-
             &:hover {
               h3 {
                 color: $red;
@@ -112,11 +89,10 @@ body.sections-index {
 #class-photos {
   @extend .clearfix;
   margin: 0px auto 0;
-  width: 998px;
 
   img {
     background: #fff;
-    width: 306px;
+    width: grid-width(4);
   }
 
   ul {
@@ -126,15 +102,15 @@ body.sections-index {
       height: 205px;
       list-style-type: none;
       margin-bottom: 20px;
-      width: 306px;
+      width: grid-width(4); 
       position: relative;
 
       &.first {
-        margin: 0 30px 0 0;
+        margin: 0 25px 0 0;
       }
 
       &.last {
-        margin: 0 10px 0 30px;
+        margin: 0 0 0 25px;
       }
 
       &:after {
@@ -244,13 +220,13 @@ body.sections-index {
 
       #column-1 {
         float: left;
-        margin: 0 30px 0 0;
-        width: 222px;
+        margin: 0 25px 0 0;
+        width: grid-width(3);
       }
 
       #column-2 {
         float: left;
-        width: 222px;
+        width: grid-width(3);
       }
     }
   }
