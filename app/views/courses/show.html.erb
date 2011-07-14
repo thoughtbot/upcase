@@ -17,7 +17,9 @@
 
         <h3>Where</h3>
         <p id="section-location">
-          <%= google_map_link_to("#{@course.location} #{@course.location_name}", :id => 'location') %>
+          <%= google_map_link_to("#{@course.location} #{@course.location_name}", :id => 'location') do %>
+            <%= @course.location %> <br> <%= @course.location_name %>
+          <% end %>
         </p>
 
         <section id="register"></section>

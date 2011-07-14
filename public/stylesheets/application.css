@@ -49,9 +49,12 @@ table {
 
 /* Clear Floated Elements
 ------------------------------------------------------------------------------*/
-.clearfix:after, header#main-header:after, header#main-header ul:after, #head-wrapper #homepage-top:after, #head-wrapper #homepage-top header:after, #class-photos:after, #more-information:after, body.sections-show #head-wrapper #homepage-top:after,
-body.courses-show #head-wrapper #homepage-top:after, body.sections-show #additional-information:after,
-body.courses-show #additional-information:after, body.sections-show #additional-information #additional-information-wrapper #sidebar li:after,
+.clearfix:after, header#main-header:after, header#main-header ul:after, #head-wrapper #homepage-top:after, #head-wrapper #homepage-top header:after, #class-photos:after, #more-information:after, body.high_voltage-pages #head-wrapper #homepage-top:after,
+body.sections-show #head-wrapper #homepage-top:after,
+body.courses-show #head-wrapper #homepage-top:after, body.high_voltage-pages #additional-information:after,
+body.sections-show #additional-information:after,
+body.courses-show #additional-information:after, body.high_voltage-pages #additional-information #additional-information-wrapper #sidebar li:after,
+body.sections-show #additional-information #additional-information-wrapper #sidebar li:after,
 body.courses-show #additional-information #additional-information-wrapper #sidebar li:after, body.registrations #form-container:after, footer#main-footer:after, footer#main-footer nav:after {
   clear: both;
   content: ' ';
@@ -236,25 +239,31 @@ header#main-header {
   #head-wrapper #homepage-top header h1 {
     color: #2b2b2b;
     font: 900 60px/60px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-    margin: 60px 0 20px; }
+    margin: 40px 0 20px; }
   #head-wrapper #homepage-top #workshop-list {
     float: left;
     margin: 20px 0 0 0;
     width: 655px; }
     #head-wrapper #homepage-top #workshop-list ul li {
-      margin: 0 0 12px 0;
-      padding: 0 0 12px 0;
+      margin: 0 0 10px 0;
+      padding: 0 0 10px 0;
       position: relative; }
       #head-wrapper #homepage-top #workshop-list ul li a {
         display: inline-block;
         text-decoration: none; }
         #head-wrapper #homepage-top #workshop-list ul li a h3 {
           color: #ad141e;
-          font: 700 24px/28px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
+          font: 700 24px/30px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
+          #head-wrapper #homepage-top #workshop-list ul li a h3 span {
+            color: #333;
+            font-size: 16px; }
+            #head-wrapper #homepage-top #workshop-list ul li a h3 span:before {
+              content: "/";
+              margin: 0 4px 0 0; }
         #head-wrapper #homepage-top #workshop-list ul li a p.teaser {
           color: #444;
-          font: 300 16px/18px skolar-1, skolar-2, serif;
-          margin: 4px 122px 0 0; }
+          font: 300 15px/20px skolar-1, skolar-2, serif;
+          margin: 0; }
         #head-wrapper #homepage-top #workshop-list ul li a p.date {
           color: #ad141e;
           display: block;
@@ -279,8 +288,12 @@ header#main-header {
     padding: 10px 0 0 0;
     width: 315px; }
     #head-wrapper #homepage-top aside h2 {
-      font: 700 20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      color: #333;
+      font: 700 24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 0 0 10px 0; }
+    #head-wrapper #homepage-top aside p {
+      color: #444;
+      font: 400 15px/21px skolar-1, skolar-2, serif; }
 
 #class-photos {
   margin: 0px auto 0;
@@ -350,17 +363,16 @@ header#main-header {
       margin: 0 0 12px 0; }
     #more-information #more-information-wrapper #why-love {
       float: left;
-      margin: 0 25px 0 0;
+      margin: 22px 25px 0 0;
       width: 485px; }
       #more-information #more-information-wrapper #why-love ul li {
         color: #555;
-        font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-        margin: 0 0 12px 0; }
+        font: 400 14px/20px skolar-1, skolar-2, serif;
+        margin: 0 0 20px 0; }
         #more-information #more-information-wrapper #why-love ul li strong {
-          color: #555;
+          color: #333;
           display: block;
-          font-size: 16px;
-          font-weight: 600; }
+          font: 600 16px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
     #more-information #more-information-wrapper #testimonials {
       float: left;
       margin: 20px 0 0 0;
@@ -368,9 +380,8 @@ header#main-header {
       #more-information #more-information-wrapper #testimonials q {
         color: #555;
         display: block;
-        font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-        line-height: 150%;
-        margin: 0 0 0 18px;
+        font: 400 14px/20px skolar-1, skolar-2, serif;
+        margin: 0 0 0 20px;
         position: relative; }
         #more-information #more-information-wrapper #testimonials q:before {
           color: #666;
@@ -395,12 +406,15 @@ header#main-header {
         float: left;
         width: 222px; }
 
+body.high_voltage-pages #head-wrapper #homepage-top,
 body.sections-show #head-wrapper #homepage-top,
 body.courses-show #head-wrapper #homepage-top {
   padding: 25px 0 0 0; }
+  body.high_voltage-pages #head-wrapper #homepage-top header,
   body.sections-show #head-wrapper #homepage-top header,
   body.courses-show #head-wrapper #homepage-top header {
     margin: 0 0 24px 0; }
+    body.high_voltage-pages #head-wrapper #homepage-top header h1,
     body.sections-show #head-wrapper #homepage-top header h1,
     body.courses-show #head-wrapper #homepage-top header h1 {
       background: none;
@@ -409,6 +423,7 @@ body.courses-show #head-wrapper #homepage-top {
       text-indent: 0;
       font: 100 26px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       width: 400px; }
+      body.high_voltage-pages #head-wrapper #homepage-top header h1 a,
       body.sections-show #head-wrapper #homepage-top header h1 a,
       body.courses-show #head-wrapper #homepage-top header h1 a {
         background: url("/images/public/logo_small.png") 5px 5px no-repeat;
@@ -417,28 +432,34 @@ body.courses-show #head-wrapper #homepage-top {
         height: 60px;
         padding: 23px 0 0 95px;
         text-decoration: none; }
+        body.high_voltage-pages #head-wrapper #homepage-top header h1 a:hover,
         body.sections-show #head-wrapper #homepage-top header h1 a:hover,
         body.courses-show #head-wrapper #homepage-top header h1 a:hover {
           color: #ddd; }
+  body.high_voltage-pages #head-wrapper #homepage-top #course-info,
   body.sections-show #head-wrapper #homepage-top #course-info,
   body.courses-show #head-wrapper #homepage-top #course-info {
     float: left;
     margin: 0 25px 0 0;
     padding: 32px 0 32px 0px;
     width: 655px; }
+    body.high_voltage-pages #head-wrapper #homepage-top #course-info h2,
     body.sections-show #head-wrapper #homepage-top #course-info h2,
     body.courses-show #head-wrapper #homepage-top #course-info h2 {
       color: #333;
-      font: 700 30px/32px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      font: 700 36px/40px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 0 0 8px 0; }
+    body.high_voltage-pages #head-wrapper #homepage-top #course-info p,
     body.sections-show #head-wrapper #homepage-top #course-info p,
     body.courses-show #head-wrapper #homepage-top #course-info p {
-      color: #666;
+      color: #444;
       font: 400 15px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 0 0 8px 0; }
+    body.high_voltage-pages #head-wrapper #homepage-top #course-info ul,
     body.sections-show #head-wrapper #homepage-top #course-info ul,
     body.courses-show #head-wrapper #homepage-top #course-info ul {
       margin: 12px 0 12px 0; }
+      body.high_voltage-pages #head-wrapper #homepage-top #course-info ul li,
       body.sections-show #head-wrapper #homepage-top #course-info ul li,
       body.courses-show #head-wrapper #homepage-top #course-info ul li {
         color: #ddd;
@@ -446,15 +467,17 @@ body.courses-show #head-wrapper #homepage-top {
         list-style: disc;
         margin: 0 0 4px 0;
         text-shadow: 0 1px 0 #222; }
+    body.high_voltage-pages #head-wrapper #homepage-top #course-info q,
     body.sections-show #head-wrapper #homepage-top #course-info q,
     body.courses-show #head-wrapper #homepage-top #course-info q {
-      color: #666;
+      color: #444;
       display: block;
       font: 400 15px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       line-height: 150%;
       left: -12px;
       margin: 24px 0 0 12px;
       position: relative; }
+      body.high_voltage-pages #head-wrapper #homepage-top #course-info q:before,
       body.sections-show #head-wrapper #homepage-top #course-info q:before,
       body.courses-show #head-wrapper #homepage-top #course-info q:before {
         color: #777;
@@ -463,16 +486,19 @@ body.courses-show #head-wrapper #homepage-top {
         left: -16px;
         position: absolute;
         top: -4px; }
+    body.high_voltage-pages #head-wrapper #homepage-top #course-info p.source,
     body.sections-show #head-wrapper #homepage-top #course-info p.source,
     body.courses-show #head-wrapper #homepage-top #course-info p.source {
       color: #ad141e;
       font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 2px 0 18px 0px; }
+      body.high_voltage-pages #head-wrapper #homepage-top #course-info p.source a,
       body.sections-show #head-wrapper #homepage-top #course-info p.source a,
       body.courses-show #head-wrapper #homepage-top #course-info p.source a {
         color: #ad141e;
         margin: 0 0 0 1px;
         text-decoration: none; }
+    body.high_voltage-pages #head-wrapper #homepage-top #course-info #faq dl dt p,
     body.sections-show #head-wrapper #homepage-top #course-info #faq dl dt p,
     body.courses-show #head-wrapper #homepage-top #course-info #faq dl dt p {
       color: #ad141e;
@@ -480,128 +506,157 @@ body.courses-show #head-wrapper #homepage-top {
       font-size: 16px;
       font-weight: 700;
       margin-bottom: 0; }
+    body.high_voltage-pages #head-wrapper #homepage-top #course-info #faq dl dd,
     body.sections-show #head-wrapper #homepage-top #course-info #faq dl dd,
     body.courses-show #head-wrapper #homepage-top #course-info #faq dl dd {
       color: #333;
       font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 0 0 14px 0; }
+      body.high_voltage-pages #head-wrapper #homepage-top #course-info #faq dl dd p,
       body.sections-show #head-wrapper #homepage-top #course-info #faq dl dd p,
       body.courses-show #head-wrapper #homepage-top #course-info #faq dl dd p {
         margin: 0 0 8px 0; }
+  body.high_voltage-pages #head-wrapper #homepage-top #workshop-details,
   body.sections-show #head-wrapper #homepage-top #workshop-details,
   body.courses-show #head-wrapper #homepage-top #workshop-details {
     float: left;
-    margin: 57px 0 0 0;
+    margin: 67px 0 20px 0;
     width: 315px; }
+    body.high_voltage-pages #head-wrapper #homepage-top #workshop-details #register,
     body.sections-show #head-wrapper #homepage-top #workshop-details #register,
     body.courses-show #head-wrapper #homepage-top #workshop-details #register {
       padding: 21px 0 20px 0;
       /* red button */ }
+      body.high_voltage-pages #head-wrapper #homepage-top #workshop-details #register a,
       body.sections-show #head-wrapper #homepage-top #workshop-details #register a,
       body.courses-show #head-wrapper #homepage-top #workshop-details #register a {
-        background: #c22323;
-        background: -moz-linear-gradient(top, #f28080 0%, #d14545 50%, #c22323 50%, #c42b2b 100%);
-        background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #f28080), color-stop(0.5, #d14545), color-stop(0.5, #c22323), color-stop(1, #c42b2b));
-        border: 1px solid #8e0202;
-        border-bottom: 1px solid #750101;
-        -moz-border-radius: 5px;
-        -webkit-border-radius: 5px;
-        border-radius: 5px;
-        -webkit-box-shadow: inset 0 1px 0 0 #ffabab;
-        -moz-box-shadow: inset 0 1px 0 0 #ffabab;
-        -o-box-shadow: inset 0 1px 0 0 #ffabab;
-        box-shadow: inset 0 1px 0 0 #ffabab;
+        background: #ad141e;
+        border: 1px solid #52090e;
         color: #fff;
         display: block;
-        font-family: "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-        font-size: 16px;
-        font-weight: 700;
-        padding: 10px 0;
-        text-decoration: none;
+        line-height: 20px;
+        padding: 10px;
+        font: 700 18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        -webkit-font-smoothing: antialiased;
         text-align: center;
-        text-shadow: 0 -1px 1px #320000;
-        width: 200px; }
+        text-shadow: 0 -1px 0 #7f0f16;
+        width: 200px;
+        -webkit-box-shadow: inset 0 1px 0 #e93e49;
+        -moz-box-shadow: inset 0 1px 0 #e93e49;
+        -o-box-shadow: inset 0 1px 0 #e93e49;
+        box-shadow: inset 0 1px 0 #e93e49;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        -webkit-transition: all 0.3s;
+        -moz-transitition: all 0.3s;
+        transitition: all 0.3s; }
+        body.high_voltage-pages #head-wrapper #homepage-top #workshop-details #register a:hover,
         body.sections-show #head-wrapper #homepage-top #workshop-details #register a:hover,
         body.courses-show #head-wrapper #homepage-top #workshop-details #register a:hover {
-          background: #b02020;
-          background: -moz-linear-gradient(top, #e07777 0%, #bf3f3f 50%, #b02020 50%, #b32727 100%);
-          background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #e07777), color-stop(0.5, #bf3f3f), color-stop(0.5, #b02020), color-stop(1, #b32727));
+          background: #c41722;
+          border: 1px solid #7f0f16;
+          text-shadow: 0 -1px 0 #96111a;
+          -webkit-box-shadow: inset 0 1px 0 #ee6c74;
+          -moz-box-shadow: inset 0 1px 0 #ee6c74;
+          -o-box-shadow: inset 0 1px 0 #ee6c74;
+          box-shadow: inset 0 1px 0 #ee6c74;
           cursor: pointer; }
+        body.high_voltage-pages #head-wrapper #homepage-top #workshop-details #register a:active,
         body.sections-show #head-wrapper #homepage-top #workshop-details #register a:active,
         body.courses-show #head-wrapper #homepage-top #workshop-details #register a:active {
-          cursor: pointer;
-          -moz-box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #fff;
-          -webkit-box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #fff;
-          box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #444; }
+          background: #96111a;
+          text-shadow: none;
+          -webkit-box-shadow: inset 0 -1px 3px #680c12;
+          -moz-box-shadow: inset 0 -1px 3px #680c12;
+          -o-box-shadow: inset 0 -1px 3px #680c12;
+          box-shadow: inset 0 -1px 3px #680c12; }
+    body.high_voltage-pages #head-wrapper #homepage-top #workshop-details h3,
     body.sections-show #head-wrapper #homepage-top #workshop-details h3,
     body.courses-show #head-wrapper #homepage-top #workshop-details h3 {
       color: #ad141e;
       font: 600 13px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 20px 0 2px 0;
       text-transform: uppercase; }
+    body.high_voltage-pages #head-wrapper #homepage-top #workshop-details p,
     body.sections-show #head-wrapper #homepage-top #workshop-details p,
     body.courses-show #head-wrapper #homepage-top #workshop-details p {
-      color: #333;
-      font: 400 15px/22px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
+      color: #444;
+      font: 400 16px/24px skolar-1, skolar-2, serif; }
+      body.high_voltage-pages #head-wrapper #homepage-top #workshop-details p.cost,
       body.sections-show #head-wrapper #homepage-top #workshop-details p.cost,
       body.courses-show #head-wrapper #homepage-top #workshop-details p.cost {
-        font-size: 30px;
+        font-size: 20px;
         font-weight: 400;
-        margin: 8px 0 32px 0; }
+        margin: 0px 0 0px 0; }
+      body.high_voltage-pages #head-wrapper #homepage-top #workshop-details p.cost.sold-out,
       body.sections-show #head-wrapper #homepage-top #workshop-details p.cost.sold-out,
       body.courses-show #head-wrapper #homepage-top #workshop-details p.cost.sold-out {
         text-decoration: line-through;
         margin-bottom: 4px; }
+      body.high_voltage-pages #head-wrapper #homepage-top #workshop-details p.notice,
       body.sections-show #head-wrapper #homepage-top #workshop-details p.notice,
       body.courses-show #head-wrapper #homepage-top #workshop-details p.notice {
         color: #333;
         font-size: 14px;
         font-weight: 600;
         text-transform: uppercase; }
+    body.high_voltage-pages #head-wrapper #homepage-top #workshop-details a,
     body.sections-show #head-wrapper #homepage-top #workshop-details a,
     body.courses-show #head-wrapper #homepage-top #workshop-details a {
       border-bottom: 1px solid #ad141e;
       color: #333;
       text-decoration: none; }
+body.high_voltage-pages #additional-information,
 body.sections-show #additional-information,
 body.courses-show #additional-information {
   background: rgba(228, 228, 228, 0.7) url("/images/shadowing.png") center 0 no-repeat;
   border-top: 1px solid #DCDCDC;
   margin: 14px 0 0 0;
   padding: 40px 0; }
+  body.high_voltage-pages #additional-information #additional-information-wrapper,
   body.sections-show #additional-information #additional-information-wrapper,
   body.courses-show #additional-information #additional-information-wrapper {
     margin: 0 auto;
     width: 995px; }
+    body.high_voltage-pages #additional-information #additional-information-wrapper h4,
     body.sections-show #additional-information #additional-information-wrapper h4,
     body.courses-show #additional-information #additional-information-wrapper h4 {
       color: #222;
       font: 600 20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 0 0 12px 0; }
+    body.high_voltage-pages #additional-information #additional-information-wrapper #main-content,
     body.sections-show #additional-information #additional-information-wrapper #main-content,
     body.courses-show #additional-information #additional-information-wrapper #main-content {
       float: left;
       margin: 0 25px 0 0;
       width: 655px; }
+    body.high_voltage-pages #additional-information #additional-information-wrapper #notify-me,
     body.sections-show #additional-information #additional-information-wrapper #notify-me,
     body.courses-show #additional-information #additional-information-wrapper #notify-me {
       background: #ddd;
       color: #333;
       margin-right: 0; }
+      body.high_voltage-pages #additional-information #additional-information-wrapper #notify-me input[type="text"],
       body.sections-show #additional-information #additional-information-wrapper #notify-me input[type="text"],
       body.courses-show #additional-information #additional-information-wrapper #notify-me input[type="text"] {
         width: 580px; }
+    body.high_voltage-pages #additional-information #additional-information-wrapper #terms,
     body.sections-show #additional-information #additional-information-wrapper #terms,
     body.courses-show #additional-information #additional-information-wrapper #terms {
       float: left; }
+      body.high_voltage-pages #additional-information #additional-information-wrapper #terms h4.terms,
       body.sections-show #additional-information #additional-information-wrapper #terms h4.terms,
       body.courses-show #additional-information #additional-information-wrapper #terms h4.terms {
         color: #555;
         font: 600 16px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
+      body.high_voltage-pages #additional-information #additional-information-wrapper #terms ul,
       body.sections-show #additional-information #additional-information-wrapper #terms ul,
       body.courses-show #additional-information #additional-information-wrapper #terms ul {
         margin: 12px 0 0 0;
         list-style: outside; }
+      body.high_voltage-pages #additional-information #additional-information-wrapper #terms li,
+      body.high_voltage-pages #additional-information #additional-information-wrapper #terms p,
       body.sections-show #additional-information #additional-information-wrapper #terms li,
       body.sections-show #additional-information #additional-information-wrapper #terms p,
       body.courses-show #additional-information #additional-information-wrapper #terms li,
@@ -609,22 +664,27 @@ body.courses-show #additional-information {
         color: #666;
         font: 400 14px/18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
         margin: 0 0 6px 0; }
+    body.high_voltage-pages #additional-information #additional-information-wrapper #sidebar,
     body.sections-show #additional-information #additional-information-wrapper #sidebar,
     body.courses-show #additional-information #additional-information-wrapper #sidebar {
       float: right;
       width: 315px; }
+      body.high_voltage-pages #additional-information #additional-information-wrapper #sidebar li,
       body.sections-show #additional-information #additional-information-wrapper #sidebar li,
       body.courses-show #additional-information #additional-information-wrapper #sidebar li {
         margin: 0 0 18px 0; }
+      body.high_voltage-pages #additional-information #additional-information-wrapper #sidebar img,
       body.sections-show #additional-information #additional-information-wrapper #sidebar img,
       body.courses-show #additional-information #additional-information-wrapper #sidebar img {
         float: right;
         margin: 24px 0px 10px 20px; }
+      body.high_voltage-pages #additional-information #additional-information-wrapper #sidebar h5,
       body.sections-show #additional-information #additional-information-wrapper #sidebar h5,
       body.courses-show #additional-information #additional-information-wrapper #sidebar h5 {
         color: #ad141e;
         font: 700 16px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
         margin: 0 0 2px 0; }
+      body.high_voltage-pages #additional-information #additional-information-wrapper #sidebar p.bio,
       body.sections-show #additional-information #additional-information-wrapper #sidebar p.bio,
       body.courses-show #additional-information #additional-information-wrapper #sidebar p.bio {
         font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
@@ -654,42 +714,47 @@ body.courses #additional-information #faq {
     padding: 10px 4px;
     width: 550px; }
   #notify-me input[type="submit"] {
-    background: #c22323;
-    background: -moz-linear-gradient(top, #f28080 0%, #d14545 50%, #c22323 50%, #c42b2b 100%);
-    background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #f28080), color-stop(0.5, #d14545), color-stop(0.5, #c22323), color-stop(1, #c42b2b));
-    border: 1px solid #8e0202;
-    border-bottom: 1px solid #750101;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    -webkit-box-shadow: inset 0 1px 0 0 #ffabab;
-    -moz-box-shadow: inset 0 1px 0 0 #ffabab;
-    -o-box-shadow: inset 0 1px 0 0 #ffabab;
-    box-shadow: inset 0 1px 0 0 #ffabab;
+    background: #ad141e;
+    border: 1px solid #52090e;
     color: #fff;
     display: block;
-    font-family: "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    padding: 10px 0;
-    text-decoration: none;
+    line-height: 20px;
+    padding: 10px;
+    font: 700 18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+    -webkit-font-smoothing: antialiased;
     text-align: center;
-    text-shadow: 0 -1px 1px #320000;
+    text-shadow: 0 -1px 0 #7f0f16;
     width: 200px;
+    -webkit-box-shadow: inset 0 1px 0 #e93e49;
+    -moz-box-shadow: inset 0 1px 0 #e93e49;
+    -o-box-shadow: inset 0 1px 0 #e93e49;
+    box-shadow: inset 0 1px 0 #e93e49;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: all 0.3s;
+    -moz-transitition: all 0.3s;
+    transitition: all 0.3s;
     display: inline;
     margin-right: 10px;
     padding: 8px 0;
     width: 80px; }
     #notify-me input[type="submit"]:hover {
-      background: #b02020;
-      background: -moz-linear-gradient(top, #e07777 0%, #bf3f3f 50%, #b02020 50%, #b32727 100%);
-      background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #e07777), color-stop(0.5, #bf3f3f), color-stop(0.5, #b02020), color-stop(1, #b32727));
+      background: #c41722;
+      border: 1px solid #7f0f16;
+      text-shadow: 0 -1px 0 #96111a;
+      -webkit-box-shadow: inset 0 1px 0 #ee6c74;
+      -moz-box-shadow: inset 0 1px 0 #ee6c74;
+      -o-box-shadow: inset 0 1px 0 #ee6c74;
+      box-shadow: inset 0 1px 0 #ee6c74;
       cursor: pointer; }
     #notify-me input[type="submit"]:active {
-      cursor: pointer;
-      -moz-box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #fff;
-      -webkit-box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #fff;
-      box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #444; }
+      background: #96111a;
+      text-shadow: none;
+      -webkit-box-shadow: inset 0 -1px 3px #680c12;
+      -moz-box-shadow: inset 0 -1px 3px #680c12;
+      -o-box-shadow: inset 0 -1px 3px #680c12;
+      box-shadow: inset 0 -1px 3px #680c12; }
   #notify-me p.group-training {
     color: #666;
     display: inline;
@@ -799,38 +864,43 @@ body.registrations form {
     body.registrations form fieldset ol li.commit {
       margin-top: 24px; }
     body.registrations form fieldset ol li input[type="submit"] {
-      background: #c22323;
-      background: -moz-linear-gradient(top, #f28080 0%, #d14545 50%, #c22323 50%, #c42b2b 100%);
-      background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #f28080), color-stop(0.5, #d14545), color-stop(0.5, #c22323), color-stop(1, #c42b2b));
-      border: 1px solid #8e0202;
-      border-bottom: 1px solid #750101;
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      border-radius: 5px;
-      -webkit-box-shadow: inset 0 1px 0 0 #ffabab;
-      -moz-box-shadow: inset 0 1px 0 0 #ffabab;
-      -o-box-shadow: inset 0 1px 0 0 #ffabab;
-      box-shadow: inset 0 1px 0 0 #ffabab;
+      background: #ad141e;
+      border: 1px solid #52090e;
       color: #fff;
       display: block;
-      font-family: "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      padding: 10px 0;
-      text-decoration: none;
+      line-height: 20px;
+      padding: 10px;
+      font: 700 18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      -webkit-font-smoothing: antialiased;
       text-align: center;
-      text-shadow: 0 -1px 1px #320000;
-      width: 200px; }
+      text-shadow: 0 -1px 0 #7f0f16;
+      width: 200px;
+      -webkit-box-shadow: inset 0 1px 0 #e93e49;
+      -moz-box-shadow: inset 0 1px 0 #e93e49;
+      -o-box-shadow: inset 0 1px 0 #e93e49;
+      box-shadow: inset 0 1px 0 #e93e49;
+      -moz-border-radius: 3px;
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+      -webkit-transition: all 0.3s;
+      -moz-transitition: all 0.3s;
+      transitition: all 0.3s; }
       body.registrations form fieldset ol li input[type="submit"]:hover {
-        background: #b02020;
-        background: -moz-linear-gradient(top, #e07777 0%, #bf3f3f 50%, #b02020 50%, #b32727 100%);
-        background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #e07777), color-stop(0.5, #bf3f3f), color-stop(0.5, #b02020), color-stop(1, #b32727));
+        background: #c41722;
+        border: 1px solid #7f0f16;
+        text-shadow: 0 -1px 0 #96111a;
+        -webkit-box-shadow: inset 0 1px 0 #ee6c74;
+        -moz-box-shadow: inset 0 1px 0 #ee6c74;
+        -o-box-shadow: inset 0 1px 0 #ee6c74;
+        box-shadow: inset 0 1px 0 #ee6c74;
         cursor: pointer; }
       body.registrations form fieldset ol li input[type="submit"]:active {
-        cursor: pointer;
-        -moz-box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #fff;
-        -webkit-box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #fff;
-        box-shadow: inset 0 0 40px 0 #781a1a, 0 1px 0 #444; }
+        background: #96111a;
+        text-shadow: none;
+        -webkit-box-shadow: inset 0 -1px 3px #680c12;
+        -moz-box-shadow: inset 0 -1px 3px #680c12;
+        -o-box-shadow: inset 0 -1px 3px #680c12;
+        box-shadow: inset 0 -1px 3px #680c12; }
 body.registrations #form-sidebar {
   float: left;
   padding: 50px 0 0 0;

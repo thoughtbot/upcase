@@ -13,18 +13,15 @@
   </head>
 
   <body class="<%= body_class %>">
+    <%= render 'shared/header' %>
 
-    <!-- <section id="container">-->
-      <%= render 'shared/header' %>
+    <%= yield :page_header  %>
 
-      <%= yield :page_header  %>
+    <%= render 'shared/flashes' %>
 
-      <%= render 'shared/flashes' %>
+    <%= yield %>
 
-        <%= yield %>
-
-      <%= render 'shared/footer' %>
-        <!--</section>-->
+    <%= render 'shared/footer' %>
 
     <%= render :partial => 'shared/javascript' %>
   </body>

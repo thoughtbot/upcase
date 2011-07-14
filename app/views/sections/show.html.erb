@@ -42,7 +42,9 @@
   
         <h3>Where</h3>
         <p id="section-location">
-          <%= google_map_link_to("#{@section.course_location} #{@section.course_location_name}", :id => 'location') %>
+          <% google_map_link_to("#{@section.course_location} #{@section.course_location_name}", :id => 'location') do %>
+            <%= @section.course_location %><br> <%= @section.course_location_name %>
+          <% end %>
         </p>
   
       </section>
