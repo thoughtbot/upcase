@@ -152,6 +152,12 @@ body.courses-show {
             font-size: 20px;
             font-weight: 400;
             margin: 0px 0 0px 0;
+
+            &.highlight {
+              color: $red;
+              font-size: 30px;
+              margin: 20px 0 5px 0;
+            }
           }
 
           &.cost.sold-out {

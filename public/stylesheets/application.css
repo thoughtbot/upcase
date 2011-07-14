@@ -589,6 +589,12 @@ body.courses-show #head-wrapper #homepage-top {
         font-size: 20px;
         font-weight: 400;
         margin: 0px 0 0px 0; }
+        body.high_voltage-pages #head-wrapper #homepage-top #workshop-details p.cost.highlight,
+        body.sections-show #head-wrapper #homepage-top #workshop-details p.cost.highlight,
+        body.courses-show #head-wrapper #homepage-top #workshop-details p.cost.highlight {
+          color: #ad141e;
+          font-size: 30px;
+          margin: 20px 0 5px 0; }
       body.high_voltage-pages #head-wrapper #homepage-top #workshop-details p.cost.sold-out,
       body.sections-show #head-wrapper #homepage-top #workshop-details p.cost.sold-out,
       body.courses-show #head-wrapper #homepage-top #workshop-details p.cost.sold-out {
