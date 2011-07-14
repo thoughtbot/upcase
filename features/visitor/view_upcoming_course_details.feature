@@ -8,7 +8,6 @@ Feature: Viewing upcoming course details
       | name: Test-Driven Erlang | Pets allowed? | No     |
     When I go to the home page
     And I follow "Test-Driven Erlang"
-    Then I should see "Frequently asked questions"
     And I see the question "What color?"
     And I see the answer "Blue"
     And I see the question "Pets allowed?"

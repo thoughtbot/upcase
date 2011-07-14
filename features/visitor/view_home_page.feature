@@ -16,7 +16,6 @@ Feature: Viewing Courses on the home page
     When I go to the home page
     Then I see "Test-Driven Haskell" is scheduled from "June 13, 2010" to "June 16, 2010"
     And I should see "short description"
-    And I can find out more about the "Test-Driven Assembly" course
 
   Scenario: Scheduled Courses Appear in Order
     Given today is June 10, 2010

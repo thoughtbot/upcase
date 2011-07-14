@@ -7,6 +7,7 @@ Feature: Selecting a course and registering for it
   @selenium
   Scenario: User registers for a section then is signed in
     Given today is June 10, 2010
+    And time is unfrozen
     And I am signed in as an admin
     And I create the following course:
       | Course Name        | Test-Driven Haskell |
@@ -60,6 +61,7 @@ Feature: Selecting a course and registering for it
   @selenium
   Scenario: Existing user registers for a section
     Given today is June 10, 2010
+    And time is unfrozen
     And I am signed in as an admin
     And I create the following course:
       | Course Name        | Test-Driven Haskell |
@@ -110,6 +112,7 @@ Feature: Selecting a course and registering for it
   @selenium
   Scenario: User registers with a valid coupon
     Given today is June 10, 2010
+    And time is unfrozen
     And the following coupon exists:
       | code       | percentage |
       | VALENTINES | 10         |
@@ -201,6 +204,7 @@ Feature: Selecting a course and registering for it
 
   Scenario: User views a course with an external registration url
     Given today is June 10, 2010
+    And time is unfrozen
     And I am signed in as an admin
     And I create the following course:
       | Course Name               | Test-Driven Haskell   |

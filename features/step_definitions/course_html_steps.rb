@@ -86,11 +86,4 @@ Then /^I should see the following courses in order:$/ do |table|
   page.body.should =~ regexp
 end
 
-Then /^I can find out more about the "([^"]*)" course$/ do |course_name|
-  course = Course.find_by_name!(course_name)
-  inside course do
-    page.should have_content("Find out more")
-  end
-end
-
 World(ActionController::RecordIdentifier)
