@@ -717,6 +717,10 @@ body.courses-show #additional-information {
       body.sections-show #additional-information #additional-information-wrapper #terms li ul,
       body.courses-show #additional-information #additional-information-wrapper #terms li ul {
         margin-left: 24px; }
+      body.high_voltage-pages #additional-information #additional-information-wrapper #terms dt p,
+      body.sections-show #additional-information #additional-information-wrapper #terms dt p,
+      body.courses-show #additional-information #additional-information-wrapper #terms dt p {
+        font-weight: bold; }
     body.high_voltage-pages #additional-information #additional-information-wrapper #sidebar,
     body.sections-show #additional-information #additional-information-wrapper #sidebar,
     body.courses-show #additional-information #additional-information-wrapper #sidebar {
