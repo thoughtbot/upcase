@@ -117,7 +117,7 @@ For cheap and easy branchse:
 Create an admin user
 --------------------
 
-    script/dbconsole
+    bundle exec rails console
     user = User.create!(:email => "cpytel@thoughtbot.com", :password => "test", :password_confirmation => "test", :first_name => "Chad", :last_name => "Pytel")
     user.admin = true
     user.save!
