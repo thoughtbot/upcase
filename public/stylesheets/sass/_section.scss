@@ -94,7 +94,7 @@ body.courses-show {
           }
         }
 
-        #faq {
+        #faq, #benefits {
           dl {
             dt {
               p {
@@ -132,6 +132,7 @@ body.courses-show {
             @include button;
           }
         }
+
 
         h3 {
           color: $red;
@@ -178,6 +179,18 @@ body.courses-show {
     }
   }
 
+  #register-below-the-fold {
+    padding: 21px 0 20px 0;
+
+    /* red button */
+    a {
+      @include button;
+      width: 800px;
+      margin: 0 auto;
+      text-decoration: none;
+    }
+  }
+  
   #additional-information {
     @extend .clearfix;
     background: rgba(228, 228, 228, 0.7) url("/images/shadowing.png") center 0 no-repeat;
@@ -230,6 +243,10 @@ body.courses-show {
           color: #666;
           font: 400 14px/18px $sans-serif;
           margin: 0 0 6px 0;
+        }
+
+        li ul {
+          margin-left: 24px;
         }
       }
 

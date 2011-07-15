@@ -483,23 +483,29 @@ body.courses-show #head-wrapper #homepage-top {
         color: #ad141e;
         margin: 0 0 0 1px;
         text-decoration: none; }
-    body.high_voltage-pages #head-wrapper #homepage-top #course-info #faq dl dt p,
+    body.high_voltage-pages #head-wrapper #homepage-top #course-info #faq dl dt p, body.high_voltage-pages #head-wrapper #homepage-top #course-info #benefits dl dt p,
     body.sections-show #head-wrapper #homepage-top #course-info #faq dl dt p,
-    body.courses-show #head-wrapper #homepage-top #course-info #faq dl dt p {
+    body.sections-show #head-wrapper #homepage-top #course-info #benefits dl dt p,
+    body.courses-show #head-wrapper #homepage-top #course-info #faq dl dt p,
+    body.courses-show #head-wrapper #homepage-top #course-info #benefits dl dt p {
       color: #ad141e;
       display: block;
       font-size: 16px;
       font-weight: 700;
       margin-bottom: 0; }
-    body.high_voltage-pages #head-wrapper #homepage-top #course-info #faq dl dd,
+    body.high_voltage-pages #head-wrapper #homepage-top #course-info #faq dl dd, body.high_voltage-pages #head-wrapper #homepage-top #course-info #benefits dl dd,
     body.sections-show #head-wrapper #homepage-top #course-info #faq dl dd,
-    body.courses-show #head-wrapper #homepage-top #course-info #faq dl dd {
+    body.sections-show #head-wrapper #homepage-top #course-info #benefits dl dd,
+    body.courses-show #head-wrapper #homepage-top #course-info #faq dl dd,
+    body.courses-show #head-wrapper #homepage-top #course-info #benefits dl dd {
       color: #333;
       font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 0 0 14px 0; }
-      body.high_voltage-pages #head-wrapper #homepage-top #course-info #faq dl dd p,
+      body.high_voltage-pages #head-wrapper #homepage-top #course-info #faq dl dd p, body.high_voltage-pages #head-wrapper #homepage-top #course-info #benefits dl dd p,
       body.sections-show #head-wrapper #homepage-top #course-info #faq dl dd p,
-      body.courses-show #head-wrapper #homepage-top #course-info #faq dl dd p {
+      body.sections-show #head-wrapper #homepage-top #course-info #benefits dl dd p,
+      body.courses-show #head-wrapper #homepage-top #course-info #faq dl dd p,
+      body.courses-show #head-wrapper #homepage-top #course-info #benefits dl dd p {
         margin: 0 0 8px 0; }
   body.high_voltage-pages #head-wrapper #homepage-top #workshop-details,
   body.sections-show #head-wrapper #homepage-top #workshop-details,
@@ -598,6 +604,58 @@ body.courses-show #head-wrapper #homepage-top {
       border-bottom: 1px solid #ad141e;
       color: #333;
       text-decoration: none; }
+body.high_voltage-pages #register-below-the-fold,
+body.sections-show #register-below-the-fold,
+body.courses-show #register-below-the-fold {
+  padding: 21px 0 20px 0;
+  /* red button */ }
+  body.high_voltage-pages #register-below-the-fold a,
+  body.sections-show #register-below-the-fold a,
+  body.courses-show #register-below-the-fold a {
+    background: #ad141e;
+    border: 1px solid #52090e;
+    color: #fff;
+    display: block;
+    line-height: 20px;
+    padding: 10px;
+    font: 700 18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+    text-shadow: 0 -1px 0 #7f0f16;
+    width: 200px;
+    -webkit-box-shadow: inset 0 1px 0 #e93e49;
+    -moz-box-shadow: inset 0 1px 0 #e93e49;
+    -o-box-shadow: inset 0 1px 0 #e93e49;
+    box-shadow: inset 0 1px 0 #e93e49;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: all 0.3s;
+    -moz-transitition: all 0.3s;
+    transitition: all 0.3s;
+    width: 800px;
+    margin: 0 auto;
+    text-decoration: none; }
+    body.high_voltage-pages #register-below-the-fold a:hover,
+    body.sections-show #register-below-the-fold a:hover,
+    body.courses-show #register-below-the-fold a:hover {
+      background: #c41722;
+      border: 1px solid #7f0f16;
+      text-shadow: 0 -1px 0 #96111a;
+      -webkit-box-shadow: inset 0 1px 0 #ee6c74;
+      -moz-box-shadow: inset 0 1px 0 #ee6c74;
+      -o-box-shadow: inset 0 1px 0 #ee6c74;
+      box-shadow: inset 0 1px 0 #ee6c74;
+      cursor: pointer; }
+    body.high_voltage-pages #register-below-the-fold a:active,
+    body.sections-show #register-below-the-fold a:active,
+    body.courses-show #register-below-the-fold a:active {
+      background: #96111a;
+      text-shadow: none;
+      -webkit-box-shadow: inset 0 -1px 3px #680c12;
+      -moz-box-shadow: inset 0 -1px 3px #680c12;
+      -o-box-shadow: inset 0 -1px 3px #680c12;
+      box-shadow: inset 0 -1px 3px #680c12; }
 body.high_voltage-pages #additional-information,
 body.sections-show #additional-information,
 body.courses-show #additional-information {
@@ -655,6 +713,10 @@ body.courses-show #additional-information {
         color: #666;
         font: 400 14px/18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
         margin: 0 0 6px 0; }
+      body.high_voltage-pages #additional-information #additional-information-wrapper #terms li ul,
+      body.sections-show #additional-information #additional-information-wrapper #terms li ul,
+      body.courses-show #additional-information #additional-information-wrapper #terms li ul {
+        margin-left: 24px; }
     body.high_voltage-pages #additional-information #additional-information-wrapper #sidebar,
     body.sections-show #additional-information #additional-information-wrapper #sidebar,
     body.courses-show #additional-information #additional-information-wrapper #sidebar {
@@ -752,6 +814,10 @@ body.courses #additional-information #faq {
     font-size: 14px;
     margin: 0; }
 
+body.high_voltage-pages section#homepage-top h1 {
+  color: #2b2b2b;
+  font: 900 60px/60px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+  margin: 40px 0 20px; }
 body.high_voltage-pages section#container {
   margin: 40px auto;
   width: 640px; }
