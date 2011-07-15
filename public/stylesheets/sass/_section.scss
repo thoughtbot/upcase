@@ -55,11 +55,14 @@ body.courses-show {
           margin: 12px 0 12px 0;
 
           li {
-            color: #ddd;
+            color: #444;
             font: 400 15px/24px $sans-serif;
             list-style: disc;
             margin: 0 0 4px 0;
-            text-shadow: 0 1px 0 #222;
+
+            ul {
+              margin: 6px 0 12px 15px;
+            }
           }
         }
 
@@ -251,6 +254,13 @@ body.courses-show {
 
         dt p {
           font-weight: bold;
+          line-height: 18px;
+          margin: 0;
+        }
+
+        dd {
+          margin: 0 0 12px 0;
+          line-height: 18px;
         }
       }
 
