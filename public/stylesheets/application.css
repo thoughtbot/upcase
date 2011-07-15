@@ -447,11 +447,14 @@ body.courses-show #head-wrapper #homepage-top {
       body.high_voltage-pages #head-wrapper #homepage-top #course-info ul li,
       body.sections-show #head-wrapper #homepage-top #course-info ul li,
       body.courses-show #head-wrapper #homepage-top #course-info ul li {
-        color: #ddd;
+        color: #444;
         font: 400 15px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
         list-style: disc;
-        margin: 0 0 4px 0;
-        text-shadow: 0 1px 0 #222; }
+        margin: 0 0 4px 0; }
+        body.high_voltage-pages #head-wrapper #homepage-top #course-info ul li ul,
+        body.sections-show #head-wrapper #homepage-top #course-info ul li ul,
+        body.courses-show #head-wrapper #homepage-top #course-info ul li ul {
+          margin: 6px 0 12px 15px; }
     body.high_voltage-pages #head-wrapper #homepage-top #course-info q,
     body.sections-show #head-wrapper #homepage-top #course-info q,
     body.courses-show #head-wrapper #homepage-top #course-info q {
@@ -720,7 +723,14 @@ body.courses-show #additional-information {
       body.high_voltage-pages #additional-information #additional-information-wrapper #terms dt p,
       body.sections-show #additional-information #additional-information-wrapper #terms dt p,
       body.courses-show #additional-information #additional-information-wrapper #terms dt p {
-        font-weight: bold; }
+        font-weight: bold;
+        line-height: 18px;
+        margin: 0; }
+      body.high_voltage-pages #additional-information #additional-information-wrapper #terms dd,
+      body.sections-show #additional-information #additional-information-wrapper #terms dd,
+      body.courses-show #additional-information #additional-information-wrapper #terms dd {
+        margin: 0 0 12px 0;
+        line-height: 18px; }
     body.high_voltage-pages #additional-information #additional-information-wrapper #sidebar,
     body.sections-show #additional-information #additional-information-wrapper #sidebar,
     body.courses-show #additional-information #additional-information-wrapper #sidebar {
