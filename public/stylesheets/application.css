@@ -71,7 +71,6 @@ body.courses-show #additional-information #additional-information-wrapper #sideb
 /*line-height of all the type on the site*/
 /*one grid column*/
 /*size of one gutter*/
-/* red button */
 div#flash {
   font-size: 15px;
   max-height: 50px;
@@ -567,7 +566,7 @@ body.courses-show #head-wrapper #homepage-top {
     body.high_voltage-pages #head-wrapper #homepage-top #workshop-details p,
     body.sections-show #head-wrapper #homepage-top #workshop-details p,
     body.courses-show #head-wrapper #homepage-top #workshop-details p {
-      color: #555;
+      color: #474747;
       font: 400 16px/24px skolar-1, skolar-2, serif; }
       body.high_voltage-pages #head-wrapper #homepage-top #workshop-details p.cost,
       body.sections-show #head-wrapper #homepage-top #workshop-details p.cost,
