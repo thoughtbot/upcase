@@ -69,14 +69,14 @@ body.courses-show {
         q {
           color: #444;
           display: block;
-          font: 400 15px/24px $sans-serif;
+          font: 600 15px/24px $sans-serif;
           line-height: 150%;
           left: -12px;
           margin: 24px 0 0 12px;
           position: relative;
 
           &:before {
-           color: #777;
+           color: #555;
            content: "\201C";
            font: 300 40px $sans-serif;
            left: -16px;
@@ -149,9 +149,10 @@ body.courses-show {
           font: 400 16px/24px $serif;
 
           &.cost {
-            font-size: 20px;
+            color: #333;
+            font-size: 28px;
             font-weight: 400;
-            margin: 0px 0 0px 0;
+            padding: 0 0 20px 0;
 
             &.highlight {
               color: $red;

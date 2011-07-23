@@ -460,7 +460,7 @@ body.courses-show #head-wrapper #homepage-top {
     body.courses-show #head-wrapper #homepage-top #course-info q {
       color: #444;
       display: block;
-      font: 400 15px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      font: 600 15px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       line-height: 150%;
       left: -12px;
       margin: 24px 0 0 12px;
@@ -468,7 +468,7 @@ body.courses-show #head-wrapper #homepage-top {
       body.high_voltage-pages #head-wrapper #homepage-top #course-info q:before,
       body.sections-show #head-wrapper #homepage-top #course-info q:before,
       body.courses-show #head-wrapper #homepage-top #course-info q:before {
-        color: #777;
+        color: #555;
         content: "\201C";
         font: 300 40px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
         left: -16px;
@@ -580,9 +580,10 @@ body.courses-show #head-wrapper #homepage-top {
       body.high_voltage-pages #head-wrapper #homepage-top #workshop-details p.cost,
       body.sections-show #head-wrapper #homepage-top #workshop-details p.cost,
       body.courses-show #head-wrapper #homepage-top #workshop-details p.cost {
-        font-size: 20px;
+        color: #333;
+        font-size: 28px;
         font-weight: 400;
-        margin: 0px 0 0px 0; }
+        padding: 0 0 20px 0; }
         body.high_voltage-pages #head-wrapper #homepage-top #workshop-details p.cost.highlight,
         body.sections-show #head-wrapper #homepage-top #workshop-details p.cost.highlight,
         body.courses-show #head-wrapper #homepage-top #workshop-details p.cost.highlight {
