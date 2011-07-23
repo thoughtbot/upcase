@@ -1,28 +1,26 @@
-<% content_for :page_header do %>
-  <section id="head-wrapper">
-    <section id="homepage-top">
+<section id="head-wrapper">
+  <section id="homepage-top">
 
-      <header id="page-header" class="primary">
-        <h1><%= t(".home-header", :default => "Get better, faster in our small, hands-on workshops") %></h1>
-      </header>
+    <header id="page-header" class="primary">
+      <h1><%= t(".home-header", :default => "Get better, faster in our small, hands-on workshops") %></h1>
+    </header>
 
-      <section id="workshop-list">
-        <% if @courses.empty? %>
-          <p id="no-courses">No courses are running at this time.</p>
-        <% else %>
-          <ul>
-            <%= render @courses %>
-          </ul>
-        <% end %>
-      </section>
+    <section id="workshop-list">
+      <% if @courses.empty? %>
+        <p id="no-courses">No courses are running at this time.</p>
+      <% else %>
+        <ul>
+          <%= render @courses %>
+        </ul>
+      <% end %>
+    </section>
 
-      <aside>
+    <aside>
       <h2><a href="/backbone-js-on-rails"><%= t ".backbone_ebook_header", :default => "Backbone.js on Rails eBook" %></a></h2>
       <p><%= t ".backbone_ebook_description", :default => "Learn how to build snappier, more interactive apps with cleaner code and better tests in less time." %></p>
-      </aside>
-    </section>
+    </aside>
   </section>
-<% end %>
+</section>
 
 
 <section id="more-information">
