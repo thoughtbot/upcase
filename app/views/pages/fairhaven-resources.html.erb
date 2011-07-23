@@ -1,184 +1,174 @@
-<% content_for :page_header do %>
-<section id="head-wrapper">
-  <section id="homepage-top">
-    <header>
-      <h1><a href="/">thoughtbot resources</a></h1>
-    </header>
+<section id="container">
+  <section>
+    <article id="laptop-setup">
+      <h2><%= t(".laptop-setup", :default => "Laptop Setup") %></h2>
+      <p>If you're looking to get a good Ruby on Rails development environment installed on Mac OS X, install XCode (from a CD if you have it, otherwise <a href="http://developer.apple.com/technologies/tools/xcode.html">download it</a>), then edit your ~/.bashrc or ~/.zshenv:</p>
+
+      <pre>
+        <code>
+          ruby -e "$(curl -fsSL https://gist.github.com/raw/323731/install_homebrew.rb)"
+          brew install imagemagick redis git
+          brew install postgres --no-python
+          bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
+          rvm install 1.9.2-p136
+          rvm --default use 1.9.2
+          gem install bundler suspenders heroku
+          ssh-keygen
+          git config --global user.name "Your Name"
+          git config --global user.email "your_email@whatever.com"
+        </code>
+      </pre>
+    </article>
+
+    <article id="accounts">
+      <h2><%= t(".accounts", :default => "Accounts") %></h2>
+      <p>If you don't already have them, please create <a href="http://github.com">Github</a> and <a href="http://heroku.com">Heroku</a> accounts.</p>
+
+      <h2><%= t(".new-app", :default => "Create a New Rails App") %></h2>
+      <p>Here's how to create a Rails app with thoughtbot's standards included, then deploy it to Heroku:</p>
+      <pre>
+        <code>
+          suspenders create my-app
+          cd my-app
+          heroku create
+          git push heroku master
+        </code>
+      </pre>
+    </article>
   </section>
-</section>
-<% end %>
-
-<!-- LAPTOP SETUP SECTION -->
-
-<section>
-  <article id="laptop-setup">
-    <h2><%= t(".laptop-setup", :default => "Laptop Setup") %></h2>
-    <p>If you're looking to get a good Ruby on Rails development environment installed on Mac OS X, install XCode (from a CD if you have it, otherwise <a href="http://developer.apple.com/technologies/tools/xcode.html">download it</a>), then edit your ~/.bashrc or ~/.zshenv:</p>
-
-    <pre>
-      <code>
-        ruby -e "$(curl -fsSL https://gist.github.com/raw/323731/install_homebrew.rb)"
-        brew install imagemagick redis git
-        brew install postgres --no-python
-        bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
-        rvm install 1.9.2-p136
-        rvm --default use 1.9.2
-        gem install bundler suspenders heroku
-        ssh-keygen
-        git config --global user.name "Your Name"
-        git config --global user.email "your_email@whatever.com"
-      </code>
-    </pre>
-  </article>
-
-  <article id="accounts">
-    <h2><%= t(".accounts", :default => "Accounts") %></h2>
-    <p>If you don't already have them, please create <a href="http://github.com">Github</a> and <a href="http://heroku.com">Heroku</a> accounts.</p>
-
-    <h2><%= t(".new-app", :default => "Create a New Rails App") %></h2>
-    <p>Here's how to create a Rails app with thoughtbot's standards included, then deploy it to Heroku:</p>
-    <pre>
-      <code>
-        suspenders create my-app
-        cd my-app
-        heroku create
-        git push heroku master
-      </code>
-    </pre>
-  </article>
-</section>
 
 
-<!-- BRUSHING UP SECTION -->
+  <!-- BRUSHING UP SECTION -->
 
-<section>
-  <article id="brushing up">
-    <h2><%= t(".brushing-up", :default => "Brushing Up") %></h2>
-    <p>The more the class is familiar with the enabling technologies of Ruby on Rails development and deployment, the more we can cover in the class. If you want to brush up on some of these technologies, here is a quick hit list.</p>
-    <ul>
-      <li>
-        <a href="http://gitimmersion.com/lab_03.html">Git Immersion</a>: It's a quick interactive tutorial on the git version control system.
-      </li>
-      <li>
-        <a href="http://diveintohtml5.org/">Dive Into HTML5</a>: It's a free, very detailed overview of HTML5.
-      </li>
-      <li>
-        <a href="http://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530">Test-Driven Development: By Example</a>: The bible of TDD.
-      </li>
-    </ul>
-  </article>
+  <section>
+    <article id="brushing up">
+      <h2><%= t(".brushing-up", :default => "Brushing Up") %></h2>
+      <p>The more the class is familiar with the enabling technologies of Ruby on Rails development and deployment, the more we can cover in the class. If you want to brush up on some of these technologies, here is a quick hit list.</p>
+      <ul>
+        <li>
+          <a href="http://gitimmersion.com/lab_03.html">Git Immersion</a>: It's a quick interactive tutorial on the git version control system.
+        </li>
+        <li>
+          <a href="http://diveintohtml5.org/">Dive Into HTML5</a>: It's a free, very detailed overview of HTML5.
+        </li>
+        <li>
+          <a href="http://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530">Test-Driven Development: By Example</a>: The bible of TDD.
+        </li>
+      </ul>
+    </article>
 
-  <article id="reference">
-    <h2><%= t(".reference", :default => "Reference") %></h2>
-    <p>Have these by your side day-to-day, after the class, when you're developing and need to look something up.</p>
+    <article id="reference">
+      <h2><%= t(".reference", :default => "Reference") %></h2>
+      <p>Have these by your side day-to-day, after the class, when you're developing and need to look something up.</p>
 
-    <h3 class="reference"><%= t(".reference-rails", :default => "Ruby on Rails") %></h3>
-    <ul>
-      <li>
-        <a href="http://railsapi.com/doc/rails-v3.0.3/">Ruby on Rails API</a>: This version of the docs has a killer "fast search" feature.
-      </li>
-      <li>
-        <a href="http://guides.rubyonrails.org/">Ruby on Rails Guides</a>: When you need a quick refresher on routing, or what ActiveRecord's new syntax is, or how to send e-mail, go here.
-      </li>
-    </ul>
+      <h3 class="reference"><%= t(".reference-rails", :default => "Ruby on Rails") %></h3>
+      <ul>
+        <li>
+          <a href="http://railsapi.com/doc/rails-v3.0.3/">Ruby on Rails API</a>: This version of the docs has a killer "fast search" feature.
+        </li>
+        <li>
+          <a href="http://guides.rubyonrails.org/">Ruby on Rails Guides</a>: When you need a quick refresher on routing, or what ActiveRecord's new syntax is, or how to send e-mail, go here.
+        </li>
+      </ul>
 
-    <h3 class="reference"><%= t(".reference-sql", :default => "SQL") %></h3>
-    <ul>
-      <li>
-        <a href="http://www.cryer.co.uk/brian/sql/sql_crib_sheet.htm">SQL crib sheet</a>: The basics.
-      </li>
-      <li>
-        <a href="http://www.amazon.com/Cookbook-Cookbooks-OReilly-Anthony-Molinaro/dp/0596009763">SQL Cookbook</a>: Quick recipes for every major SQL situation.
-      </li>
-    </ul>
+      <h3 class="reference"><%= t(".reference-sql", :default => "SQL") %></h3>
+      <ul>
+        <li>
+          <a href="http://www.cryer.co.uk/brian/sql/sql_crib_sheet.htm">SQL crib sheet</a>: The basics.
+        </li>
+        <li>
+          <a href="http://www.amazon.com/Cookbook-Cookbooks-OReilly-Anthony-Molinaro/dp/0596009763">SQL Cookbook</a>: Quick recipes for every major SQL situation.
+        </li>
+      </ul>
 
-    <h3 class="reference"><%= t(".reference-testing", :default => "Testing") %></h3>
-    <ul>
-      <li>
-        <a href="http://relishapp.com/rspec/rspec-rails">rspec-rails</a>: Most important is model specs, mailer specs, and matchers.
-      </li>
-      <li>
-        <a href="http://www.amazon.com/xUnit-Test-Patterns-Refactoring-Code/dp/0131495054">xUnit Text Patterns</a>: All testing knowledge contained in one book.
-      </li>
-    </ul>
+      <h3 class="reference"><%= t(".reference-testing", :default => "Testing") %></h3>
+      <ul>
+        <li>
+          <a href="http://relishapp.com/rspec/rspec-rails">rspec-rails</a>: Most important is model specs, mailer specs, and matchers.
+        </li>
+        <li>
+          <a href="http://www.amazon.com/xUnit-Test-Patterns-Refactoring-Code/dp/0131495054">xUnit Text Patterns</a>: All testing knowledge contained in one book.
+        </li>
+      </ul>
 
-    <h2><%= t(".scaling-rails-outline", :default => "Scaling Rails Outline") %></h2>
-    <p>Here's the plan. Subject to change on game day if the attending students want something slightly different.</p>
+      <h2><%= t(".scaling-rails-outline", :default => "Scaling Rails Outline") %></h2>
+      <p>Here's the plan. Subject to change on game day if the attending students want something slightly different.</p>
 
-    <h3 class="reference"><%= t(".outline-day-one", :default => "Day One") %></h3>
-    <p>Day One is focused on version control and automated testing, both important components of achieving a continuous deployment environment.</p>
-    <ul>
-      <li>Review of the many parts of Rails</li>
-      <li>Review of TDD in a git development cycle</li>
-      <li>Review of RSpec, Shoulda, and Factory Girl</li>
-      <li>Workshop writing a photo app using Outside-In process with Cucumber and Capybara</li>
-      <li>Javascript integration testing</li>
-    </ul>
+      <h3 class="reference"><%= t(".outline-day-one", :default => "Day One") %></h3>
+      <p>Day One is focused on version control and automated testing, both important components of achieving a continuous deployment environment.</p>
+      <ul>
+        <li>Review of the many parts of Rails</li>
+        <li>Review of TDD in a git development cycle</li>
+        <li>Review of RSpec, Shoulda, and Factory Girl</li>
+        <li>Workshop writing a photo app using Outside-In process with Cucumber and Capybara</li>
+        <li>Javascript integration testing</li>
+      </ul>
 
-    <h3 class="reference"><%= t(".outline-day-two", :default => "Day Two") %></h3>
-    <p>Day Two is focused on the performance of your production Rails app and scaling it as traffic and users increase.</p>
-    <ul>
-      <li>Cloud</li>
-      <li>Metrics and monitoring</li>
-      <li>Front end performance</li>
-      <li>SQL</li>
-      <li>Background processes</li>
-      <li>Caching</li>
-      <li>Redis</li>
-      <li>em_proxy</li>
-      <li>Rack Middleware</li>
-    </ul>
+      <h3 class="reference"><%= t(".outline-day-two", :default => "Day Two") %></h3>
+      <p>Day Two is focused on the performance of your production Rails app and scaling it as traffic and users increase.</p>
+      <ul>
+        <li>Cloud</li>
+        <li>Metrics and monitoring</li>
+        <li>Front end performance</li>
+        <li>SQL</li>
+        <li>Background processes</li>
+        <li>Caching</li>
+        <li>Redis</li>
+        <li>em_proxy</li>
+        <li>Rack Middleware</li>
+      </ul>
 
-  </article>
+    </article>
 
-  <article>
-    <h2>Slides</h2>
-    <p>Download slides to study later:</p>
-    <ul>
-      <li>
-        <a href="https://thoughtbot_workshops.s3.amazonaws.com/slides/tdd_ruby_on_rails.zip">TDD</a>
-      </li>
-      <li>
-        <a href="https://thoughtbot_workshops.s3.amazonaws.com/slides/scaling_rails.zip">Scaling Rails</a>
-      </li>
-    </ul>
-    <p>You can either read the raw Markdown files or run the slides to view them in a browser. To run them, follow these instructions:</p>
-    <pre>
-      <code>
-        gem install showoff
-        cd slide-folder
-        showoff serve
-      </code>
-    </pre>
-  </article>
+    <article>
+      <h2>Slides</h2>
+      <p>Download slides to study later:</p>
+      <ul>
+        <li>
+          <a href="https://thoughtbot_workshops.s3.amazonaws.com/slides/tdd_ruby_on_rails.zip">TDD</a>
+        </li>
+        <li>
+          <a href="https://thoughtbot_workshops.s3.amazonaws.com/slides/scaling_rails.zip">Scaling Rails</a>
+        </li>
+      </ul>
+      <p>You can either read the raw Markdown files or run the slides to view them in a browser. To run them, follow these instructions:</p>
+      <pre>
+        <code>
+          gem install showoff
+          cd slide-folder
+          showoff serve
+        </code>
+      </pre>
+    </article>
 
-</section>
+  </section>
 
 
-<!-- CODE SECTION -->
+  <!-- CODE SECTION -->
 
-<section>
-  <article id="code">
-    <ul>
-      <li><a href="https://thoughtbot_workshops.s3.amazonaws.com/code/sinatra-json-api.zip">Sinatra JSON API</a></li>
-      <li><a href="https://github.com/thoughtbot/fistface/blob/master/lib/fistface.rb">Fist Face</a>: Sinatra API with Expires and Cache-Control headers.</li>
-      <li><a href="https://thoughtbot_workshops.s3.amazonaws.com/code/avatar.zip">Avatar</a>: Sinatra API with Cache-Control headers and DelayedJob background processes.</li>
-      <li><a href="https://github.com/defunkt/cijoe/blob/master/lib/cijoe/server.rb">CI Joe</a>: Sinatra app running Continuous Integration.</li>
-      <li><a href="https://github.com/rubygems/gemcutter/blob/master/app/middleware/hostess.rb">Rubygems' Hostess</a>: Sinatra API that gets hit when you <code>gem install</code>.</li>
-    </ul>
-  </article>
+  <section>
+    <article id="code">
+      <ul>
+        <li><a href="https://thoughtbot_workshops.s3.amazonaws.com/code/sinatra-json-api.zip">Sinatra JSON API</a></li>
+        <li><a href="https://github.com/thoughtbot/fistface/blob/master/lib/fistface.rb">Fist Face</a>: Sinatra API with Expires and Cache-Control headers.</li>
+        <li><a href="https://thoughtbot_workshops.s3.amazonaws.com/code/avatar.zip">Avatar</a>: Sinatra API with Cache-Control headers and DelayedJob background processes.</li>
+        <li><a href="https://github.com/defunkt/cijoe/blob/master/lib/cijoe/server.rb">CI Joe</a>: Sinatra app running Continuous Integration.</li>
+        <li><a href="https://github.com/rubygems/gemcutter/blob/master/app/middleware/hostess.rb">Rubygems' Hostess</a>: Sinatra API that gets hit when you <code>gem install</code>.</li>
+      </ul>
+    </article>
 
-  <article id="blog_posts">
-    <h2>Code</h2>
-    <p>Download code to study it later:</p>
+    <article id="blog_posts">
+      <h2>Code</h2>
+      <p>Download code to study it later:</p>
 
-    <h2>Blog posts</h2>
-    <p>Some recipes and information to study later:</p>
-    <ul>
-      <li><a href="http://robots.thoughtbot.com/post/613420732/recipe-ajax-searching-and-filtering">Ajax searching and filtering</a></li>
-      <li><a href="http://robots.thoughtbot.com/post/3215611590/recipe-delivering-email-on-behalf-of-users">Delivering email on behalf of users</a>: uses Amazon Simple Email Service</li>
-      <li><a href="http://robots.thoughtbot.com/post/159806234/simple-test-metrics-in-your-rails-app-and-what-they">Simple test metrics in your Rails app and what they mean</a>: C0 coverage.</li>
-      <li><a href="http://robots.thoughtbot.com/post/4026880618/javascript-integration-testing-example-installing-and">Javascript integration testing example</a>: installing and using Mixpanel</li>
-    </ul>
-  </article>
+      <h2>Blog posts</h2>
+      <p>Some recipes and information to study later:</p>
+      <ul>
+        <li><a href="http://robots.thoughtbot.com/post/613420732/recipe-ajax-searching-and-filtering">Ajax searching and filtering</a></li>
+        <li><a href="http://robots.thoughtbot.com/post/3215611590/recipe-delivering-email-on-behalf-of-users">Delivering email on behalf of users</a>: uses Amazon Simple Email Service</li>
+        <li><a href="http://robots.thoughtbot.com/post/159806234/simple-test-metrics-in-your-rails-app-and-what-they">Simple test metrics in your Rails app and what they mean</a>: C0 coverage.</li>
+        <li><a href="http://robots.thoughtbot.com/post/4026880618/javascript-integration-testing-example-installing-and">Javascript integration testing example</a>: installing and using Mixpanel</li>
+      </ul>
+    </article>
+  </section>
 </section>

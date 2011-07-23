@@ -1,147 +1,139 @@
-<% content_for :page_header do %>
-<section id="head-wrapper">
-  <section id="homepage-top">
-    <header>
-      <h1><a href="/">thoughtbot workshops</a></h1>
-    </header>
+<section id="container">
+  <h1>Everybody Codes</h1>
+
+  <section>
+    <article>
+      <h2><%= t(".laptop-setup", :default => "Laptop Setup") %></h2>
+      <p>Get a good development environment installed on your laptop. Please attempt this before the class. We will spend the first hour helping work through problems.</p>
+
+      <p>Installation instructions are slightly different for each operating system (Mac OS X, Linux, Windows).</p>
+
+      <p>You'll find that most developers use a Unix-based laptop such as Mac OS X or Linux. One reason is that most web apps are deployed to Unix environments and it's a good idea to try to match your production environment on your laptop (your "development environment").</p>
+
+      <p>Our recommendation is that you use a Mac OS X machine or install <a href="http://www.ubuntu.com/download">Ubuntu</a> (a consumer-friendly version of Linux) on your laptop. Our instructions below cover those operating systems.</p>
+
+      <p>If you absolutely have to use Windows, please follow the <a href="http://railsinstaller.org/">Rails Installer</a> guide.</p>
+    </article>
+  <section>
+
+  <section>
+    <article>
+      <h2>Mac OS X</h2>
+
+      <p>First, install XCode version 3.2.1 or later. It comes with your OS X CD or you can <a href="http://developer.apple.com/technologies/tools/xcode.html">download it</a> for free.</p>
+
+      <p>After XCode is installed, we're going to install RVM (Ruby Version Manager). Copy the following into Terminal.app:</p>
+
+      <pre><code>
+         bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
+       </code></pre>
+
+      <p>After RVM is installed, we need to tell our <code>~/.bash_profile</code> about it. This file handles your UNIX shell's configuration each time you open a shell using Terminal.app.</p>
+
+      <pre><code>
+         echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"' >> ~/.bash_profile
+      </code></pre>
+
+      <p>Close Terminal.app, then re-open it. The line we added to our <code>~/.bash_profile</code> will now take effect.</p>
+
+      <p>Next, we're going to install Ruby 1.9.2. This is <a href="http://ruby-lang.org/en/downloads">the latest stable version</a> of Ruby and will be required in the next version of Rails (3.1).</p>
+
+      <pre><code>
+        rvm install 1.9.2-p180
+        rvm use 1.9.2-p180 --default
+      </code></pre>
+
+      <p>We've now installed Ruby 1.9.2 and set it to our default Ruby. This is why RVM exists, so that as new versions of Ruby come out in the future, we can switch between them to test our apps against new versions of the language.</p>
+
+      <p>Now that we're working in the context of Ruby 1.9.2, let's install a few Ruby gems. These are Ruby libraries that will help us develop and deploy Rails applications.</p>
+
+      <pre><code>
+        gem install bundler rails heroku taps
+      </code></pre>
+
+      <p>Next, we're going to install Homebrew. This is a handy way of installing non-Ruby libraries. If your team ever wants to use things like a NoSQL database, or develop Android apps using the Android SDK, you'll need to install those libraries via <a href="https://github.com/mxcl/homebrew/tree/master/Library/Formula">Homebrew formulas</a> on your laptop to run your app in development.</p>
+
+      <pre><code>
+        curl -LsSf https://github.com/mxcl/homebrew/tarball/master | sudo /usr/bin/tar xvz -C/usr/local --strip 1
+        brew install imagemagick redis git
+        brew install postgres --no-python
+      </code></pre>
+
+      <p>You can see we installed Homebrew, then used Homebrew to install ImageMagick, Redis, git, and Postgres. We will use git frequently during the class. Postgres is our recommended relational (SQL) database. Redis is an awesome key-value database. ImageMagick is good for cropping and re-sizing images.</p>
+
+      <p>Next, we want to set up our SSH keys.</p>
+
+      <pre><code>
+        ssh-keygen
+      </code></pre>
+
+      <p>Just hit "enter" after each of the prompts. What you've just done is set up public/private keys, which help authenticate your laptop against your accounts on Github and Heroku, or help you access servers directly if you deploy directly to a server.</p>
+
+      <p>Let's copy your new public key to the Mac OS X clipboard.</p>
+
+      <pre><code>
+        cat ~/.ssh/id_rsa.pub | pbcopy
+      </code></pre>
+    </article>
   </section>
-</section>
-<% end %>
 
-<h1>Everybody Codes</h1>
+  <section>
+    <article>
+      <h2>Github and Heroku</h2>
 
-<section>
-  <article>
-    <h2><%= t(".laptop-setup", :default => "Laptop Setup") %></h2>
-    <p>Get a good development environment installed on your laptop. Please attempt this before the class. We will spend the first hour helping work through problems.</p>
+      <p>At this point, you should get <a href="http://github.com">Github</a> and <a href="http://heroku.com">Heroku</a> accounts.</p>
 
-    <p>Installation instructions are slightly different for each operating system (Mac OS X, Linux, Windows).</p>
+      <p>After you've created a Github account, go to your <a href="https://github.com/account/ssh">SSH Public Keys</a> page. Click "Add another public key". Give it a title like "Black Macbook", named after your laptop. Paste in the public key that we copied to your clipboard a moment ago.</p>
 
-    <p>You'll find that most developers use a Unix-based laptop such as Mac OS X or Linux. One reason is that most web apps are deployed to Unix environments and it's a good idea to try to match your production environment on your laptop (your "development environment").</p>
+      <p>Lastly, let's configure our global git settings to be your name and email. This is so when you commit changes to your app, it will look right in the version history.</p>
 
-    <p>Our recommendation is that you use a Mac OS X machine or install <a href="http://www.ubuntu.com/download">Ubuntu</a> (a consumer-friendly version of Linux) on your laptop. Our instructions below cover those operating systems.</p>
+      <pre><code>
+        git config --global user.name "Your Name"
+        git config --global user.email "your_email@whatever.com"
+      </code></pre>
+    </article>
+  </section>
 
-    <p>If you absolutely have to use Windows, please follow the <a href="http://railsinstaller.org/">Rails Installer</a> guide.</p>
-  </article>
-<section>
+  <!-- BRUSHING UP SECTION -->
 
-<section>
-  <article>
-    <h2>Mac OS X</h2>
+  <section class="no-border">
+    <article id="tutorials">
+      <h2>Free Tutorials</h2>
+      <ul>
+        <li>
+          <a href="http://gitimmersion.com/lab_03.html">Git Immersion</a>: It's a quick interactive tutorial on the git version control system.
+        </li>
+        <li>
+          <a href="http://diveintohtml5.org/">Dive Into HTML5</a>: It's a free, very detailed overview of HTML5.
+        </li>
+        <li>
+          <a href="http://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530">Test-Driven Development: By Example</a>: The bible of TDD.
+        </li>
+      </ul>
+    </article>
 
-    <p>First, install XCode version 3.2.1 or later. It comes with your OS X CD or you can <a href="http://developer.apple.com/technologies/tools/xcode.html">download it</a> for free.</p>
+    <article>
+      <h2 class="reference"><%= t(".reference-rails", :default => "Ruby on Rails") %></h3>
+      <ul>
+        <li>
+          <a href="http://railsapi.com/doc/rails-v3.0.3/">Ruby on Rails API</a>: This version of the docs has a killer "fast search" feature.
+        </li>
+        <li>
+          <a href="http://guides.rubyonrails.org/">Ruby on Rails Guides</a>: When you need a quick refresher on routing, or what ActiveRecord's new syntax is, or how to send e-mail, go here.
+        </li>
+      </ul>
+    </article>
 
-    <p>After XCode is installed, we're going to install RVM (Ruby Version Manager). Copy the following into Terminal.app:</p>
-
-    <pre><code>
-       bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
-     </code></pre>
-
-    <p>After RVM is installed, we need to tell our <code>~/.bash_profile</code> about it. This file handles your UNIX shell's configuration each time you open a shell using Terminal.app.</p>
-
-    <pre><code>
-       echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"' >> ~/.bash_profile
-    </code></pre>
-
-    <p>Close Terminal.app, then re-open it. The line we added to our <code>~/.bash_profile</code> will now take effect.</p>
-
-    <p>Next, we're going to install Ruby 1.9.2. This is <a href="http://ruby-lang.org/en/downloads">the latest stable version</a> of Ruby and will be required in the next version of Rails (3.1).</p>
-
-    <pre><code>
-      rvm install 1.9.2-p180
-      rvm use 1.9.2-p180 --default
-    </code></pre>
-
-    <p>We've now installed Ruby 1.9.2 and set it to our default Ruby. This is why RVM exists, so that as new versions of Ruby come out in the future, we can switch between them to test our apps against new versions of the language.</p>
-
-    <p>Now that we're working in the context of Ruby 1.9.2, let's install a few Ruby gems. These are Ruby libraries that will help us develop and deploy Rails applications.</p>
-
-    <pre><code>
-      gem install bundler rails heroku taps
-    </code></pre>
-
-    <p>Next, we're going to install Homebrew. This is a handy way of installing non-Ruby libraries. If your team ever wants to use things like a NoSQL database, or develop Android apps using the Android SDK, you'll need to install those libraries via <a href="https://github.com/mxcl/homebrew/tree/master/Library/Formula">Homebrew formulas</a> on your laptop to run your app in development.</p>
-
-    <pre><code>
-      curl -LsSf https://github.com/mxcl/homebrew/tarball/master | sudo /usr/bin/tar xvz -C/usr/local --strip 1
-      brew install imagemagick redis git
-      brew install postgres --no-python
-    </code></pre>
-
-    <p>You can see we installed Homebrew, then used Homebrew to install ImageMagick, Redis, git, and Postgres. We will use git frequently during the class. Postgres is our recommended relational (SQL) database. Redis is an awesome key-value database. ImageMagick is good for cropping and re-sizing images.</p>
-
-    <p>Next, we want to set up our SSH keys.</p>
-
-    <pre><code>
-      ssh-keygen
-    </code></pre>
-
-    <p>Just hit "enter" after each of the prompts. What you've just done is set up public/private keys, which help authenticate your laptop against your accounts on Github and Heroku, or help you access servers directly if you deploy directly to a server.</p>
-
-    <p>Let's copy your new public key to the Mac OS X clipboard.</p>
-
-    <pre><code>
-      cat ~/.ssh/id_rsa.pub | pbcopy
-    </code></pre>
-  </article>
-</section>
-
-<section>
-  <article>
-    <h2>Github and Heroku</h2>
-
-    <p>At this point, you should get <a href="http://github.com">Github</a> and <a href="http://heroku.com">Heroku</a> accounts.</p>
-
-    <p>After you've created a Github account, go to your <a href="https://github.com/account/ssh">SSH Public Keys</a> page. Click "Add another public key". Give it a title like "Black Macbook", named after your laptop. Paste in the public key that we copied to your clipboard a moment ago.</p>
-
-    <p>Lastly, let's configure our global git settings to be your name and email. This is so when you commit changes to your app, it will look right in the version history.</p>
-
-    <pre><code>
-      git config --global user.name "Your Name"
-      git config --global user.email "your_email@whatever.com"
-    </code></pre>
-  </article>
-</section>
-
-<!-- BRUSHING UP SECTION -->
-
-<section class="no-border">
-  <article id="tutorials">
-    <h2>Free Tutorials</h2>
-    <ul>
-      <li>
-        <a href="http://gitimmersion.com/lab_03.html">Git Immersion</a>: It's a quick interactive tutorial on the git version control system.
-      </li>
-      <li>
-        <a href="http://diveintohtml5.org/">Dive Into HTML5</a>: It's a free, very detailed overview of HTML5.
-      </li>
-      <li>
-        <a href="http://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530">Test-Driven Development: By Example</a>: The bible of TDD.
-      </li>
-    </ul>
-  </article>
-
-  <article>
-    <h2 class="reference"><%= t(".reference-rails", :default => "Ruby on Rails") %></h3>
-    <ul>
-      <li>
-        <a href="http://railsapi.com/doc/rails-v3.0.3/">Ruby on Rails API</a>: This version of the docs has a killer "fast search" feature.
-      </li>
-      <li>
-        <a href="http://guides.rubyonrails.org/">Ruby on Rails Guides</a>: When you need a quick refresher on routing, or what ActiveRecord's new syntax is, or how to send e-mail, go here.
-      </li>
-    </ul>
-  </article>
-
-  <article>
-    <h2 class="reference"><%= t(".reference-sql", :default => "SQL") %></h3>
-    <ul>
-      <li>
-        <a href="http://www.cryer.co.uk/brian/sql/sql_crib_sheet.htm">SQL crib sheet</a>: The basics.
-      </li>
-      <li>
-        <a href="http://www.amazon.com/Cookbook-Cookbooks-OReilly-Anthony-Molinaro/dp/0596009763">SQL Cookbook</a>: Quick recipes for every major SQL situation.
-      </li>
-    </ul>
-  </article>
+    <article>
+      <h2 class="reference"><%= t(".reference-sql", :default => "SQL") %></h3>
+      <ul>
+        <li>
+          <a href="http://www.cryer.co.uk/brian/sql/sql_crib_sheet.htm">SQL crib sheet</a>: The basics.
+        </li>
+        <li>
+          <a href="http://www.amazon.com/Cookbook-Cookbooks-OReilly-Anthony-Molinaro/dp/0596009763">SQL Cookbook</a>: Quick recipes for every major SQL situation.
+        </li>
+      </ul>
+    </article>
+  </section>
 </section>
