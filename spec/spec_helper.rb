@@ -1,15 +1,16 @@
-# This file is copied to ~/spec when you run 'ruby script/generate rspec'
-# from the project root directory.
+# This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path(File.join(File.dirname(__FILE__),'..','config','environment'))
+require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/autorun'
 require 'rspec/rails'
 require 'paperclip/matchers'
 require "email_spec"
 
-Mocha::Configuration.warn_when(:stubbing_non_existent_method)
-Mocha::Configuration.warn_when(:stubbing_non_public_method)
+# Requires supporting ruby files with custom matchers and macros, etc,
+# in spec/support/ and its subdirectories.
+Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+<<<<<<< HEAD
 # Uncomment the next line to use webrat's matchers
 #require 'webrat/integrations/rspec-rails'
 
@@ -23,7 +24,7 @@ RSpec.configure do |config|
   # in your config/boot.rb
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures  = false
-  config.fixture_path = Rails.root + '/spec/fixtures/'
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.include Paperclip::Shoulda::Matchers
   config.include EmailSpec::Helpers
@@ -50,14 +51,10 @@ RSpec.configure do |config|
   #
   # == Mock Framework
   #
-  # RSpec uses its own mocking framework by default. If you prefer to
-  # use mocha, flexmock or RR, uncomment the appropriate line:
+  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
   #
   config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
-  #
-  # == Notes
-  #
-  # For more information take a look at Spec::Runner::Configuration and Spec::Runner
+  # config.mock_with :rspec
 end
