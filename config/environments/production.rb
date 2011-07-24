@@ -58,7 +58,7 @@ Workshops::Application.configure do
 
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.perform_deliveries = true
-  ActionMailer::Base.default_charset = "utf-8"
+  ActionMailer::Base.default(:charset => "utf-8")
 
   ActionMailer::Base.raise_delivery_errors = true
 
