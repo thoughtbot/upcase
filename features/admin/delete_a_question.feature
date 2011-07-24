@@ -10,7 +10,7 @@ Feature: Removing a question
     And I follow "Test-Driven Sleeping"
     And I fill in the question 2 with "Do I need a helmet?"
     And I fill in the answer 2 with "Of course."
-    And I press the button to update a course
+    And I press "Save Course"
     Then I see the successful course update notice
     When I follow "Test-Driven Sleeping"
     Then I see the following questions:

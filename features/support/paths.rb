@@ -153,8 +153,6 @@ module NavigationHelpers
 
   def button_text_for(button_text)
     case button_text
-    when 'create a course', 'update a course'
-      'Save Course'
     when 're-run a course', 'update a section'
       'Save Section'
     when 'add a teacher'

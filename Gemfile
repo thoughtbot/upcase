@@ -11,7 +11,6 @@ gem "will_paginate", :git => "git://github.com/xspond/will_paginate.git", :branc
 gem "formtastic", "~> 2.0.0.rc3"
 gem "nokogiri"
 gem "clearance", "~> 0.12.0"
-gem "validation_reflection", ">= 0.3.6"
 gem "sass"
 gem "paperclip"
 gem "airbrake"
