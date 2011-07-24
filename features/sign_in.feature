@@ -9,8 +9,7 @@ Feature: Signing in
     And I fill in the session email with "ralph@example.com"
     And I fill in the session password with "ralph_was_here"
     And I press the button to sign in
-    Then I see the successful sign in notice
-    And I should be on the home page
+    Then I should be on the home page
 
   Scenario: Admin Signing in
     Given the following admin exists:
@@ -21,5 +20,4 @@ Feature: Signing in
     And I fill in the session email with "ralph@example.com"
     And I fill in the session password with "ralph_was_here"
     And I press the button to sign in
-    Then I see the successful sign in notice
-    And I should be on the admin page
+    Then I should be on the admin page

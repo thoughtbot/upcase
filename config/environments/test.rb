@@ -11,6 +11,9 @@ Workshops::Application.configure do
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=3600"
 
+  # Do not compress assets
+  config.assets.compress = false
+
   # Log error messages when you accidentally call methods on nil
   config.whiny_nils = true
 

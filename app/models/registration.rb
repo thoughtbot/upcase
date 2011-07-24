@@ -1,5 +1,6 @@
 class Registration < ActiveRecord::Base
   include Rails.application.routes.url_helpers
+
   belongs_to :section
   belongs_to :coupon
 

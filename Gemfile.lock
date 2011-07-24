@@ -123,7 +123,6 @@ GEM
       rack (~> 1.1)
     faraday_middleware (0.8.6)
       faraday (>= 0.7.4, < 0.9)
-      faraday (>= 0.7.4, < 0.9)
     ffi (1.0.11)
     formtastic (2.0.2)
       rails (~> 3.0)
@@ -304,7 +303,7 @@ DEPENDENCIES
   headless
   heroku (~> 2.13)
   high_voltage
-  jquery-rails (~> 1.0.11)
+  jquery-rails (~> 1.0.12)
   kissmetrics
   launchy
   mocha
@@ -317,7 +316,7 @@ DEPENDENCIES
   rack-rewrite
   rack-ssl-enforcer (~> 0.2.4)
   rails (= 3.1.4)
-  rspec-rails (= 2.6.1)
+  rspec-rails (~> 2.6.1)
   ruby-debug19
   ruby-freshbooks
   sass
