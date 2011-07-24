@@ -5,8 +5,7 @@ Given 'I create the following course:' do |course_fields|
   }
   And "I fill in the following:", course_fields
   steps %{
-    And I press the button to create a course
-    Then show me the page
+    And I press "Create Course"
     Then I see the successful course creation notice
   }
 end
@@ -19,7 +18,7 @@ end
 Then /^I should see the json for the public courses with the callback "([^"]*)"$/ do |callback|
   courses = Course.only_public
   matcher = /#{callback}\(([^\)]+)\)/
-  matches = matcher.match(page.body)
+  matches = matcher.match(page.source)
   JSON.parse(matches[1]).should == JSON.parse(courses_json(courses))
 end
 
