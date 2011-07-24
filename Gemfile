@@ -44,6 +44,11 @@ group :development, :test do
   gem "rspec-rails", "2.6.1"
 end
 
+group :development, :test do
+  gem "rspec-rails", "~> 2.6.1"
+  gem "ruby-debug"
+end
+
 group :test do
   gem 'selenium-webdriver', '~> 2.16.0'
   gem "headless"
