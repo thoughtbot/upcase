@@ -22,10 +22,8 @@ Given /^no user exists with an email of "(.*)"$/ do |email|
   assert_nil User.find_by_email(email)
 end
 
-Given /^(?:I am|I have|I) signed up (?:as|with) "(.*)\/(.*)"$/ do |email, password|
-  Factory(:user,
-          :email    => email,
-          :password => password)
+Given /^(?:I am|I have|I) signed up (?:as|with) "(.*)"$/ do |email|
+  Factory(:user, :email => email)
 end
 
 Given /^a user "([^"]*)" exists without a salt, remember token, or password$/ do |email|
@@ -50,23 +48,14 @@ Then /^I should be signed out$/ do
   }
 end
 
-When /^session is cleared$/ do
-  # TODO: This doesn't work with Capybara
-  # TODO: I tried Capybara.reset_sessions! but that didn't work
-  #request.reset_session
-  #controller.instance_variable_set(:@_current_user, nil)
-end
-
-Given /^(?:I am|I have|I) signed in (?:with|as) "(.*)\/(.*)"$/ do |email, password|
-  steps %{
-    Given I am signed up as "#{email}/#{password}"
-    And I sign in as "#{email}/#{password}"
-  }
+Given /^(?:I am|I have|I) signed in (?:with|as) "(.*)"$/ do |email|
+  Given %{I am signed up as "#{email}"}
+  And %{I sign in as "#{email}"}
 end
 
 Given /^I sign in$/ do
   email = Factory.next(:email)
-  step %{Given I have signed in with "#{email}/password"}
+  Given %{I have signed in with "#{email}"}
 end
 
 # Emails
@@ -96,13 +85,11 @@ end
 
 # Actions
 
-When /^I sign in (?:with|as) "(.*)\/(.*)"$/ do |email, password|
-  steps %{
-    When I go to the sign in page
-    And I fill in "Email" with "#{email}"
-    And I fill in "Password" with "#{password}"
-    And I press "Sign in"
-  }
+When /^I sign in (?:with|as) "(.*)"$/ do |email|
+  When %{I go to the sign in page}
+  And %{I fill in "Email" with "#{email}"}
+  And %{I fill in "Password" with "password"}
+  And %{I press "Sign in"}
 end
 
 When "I sign out" do

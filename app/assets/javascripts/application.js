@@ -1,3 +1,7 @@
+//= require jquery
+//= require jquery_ujs
+//= require jquery-ui
+
 $("#total a").click(function() {
   $(".coupon").show();
   return false;

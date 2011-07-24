@@ -1,6 +1,7 @@
 source :rubygems
 
 gem "rails", "3.1.4"
+gem "jquery-rails", "~> 1.0.12"
 gem "rack", "~> 1.3.1"
 
 gem "pg"
@@ -17,7 +18,6 @@ gem "airbrake"
 gem "copycopter_client", "~> 2.0.1"
 gem "ruby-freshbooks"
 gem "high_voltage"
-gem "jquery-rails", "~> 1.0.11"
 gem "heroku", "~> 2.13"
 gem "acts_as_list"
 gem "dynamic_form"
@@ -36,17 +36,9 @@ gem 'csv_rails'
 # Fix the warning: regexp match /.../n against to UTF-8 string issue
 gem "escape_utils"
 
-group :development do
-  gem 'ruby-debug19', :require => 'ruby-debug', :platform => :ruby_19
-end
-
-group :development, :test do
-  gem "rspec-rails", "2.6.1"
-end
-
 group :development, :test do
   gem "rspec-rails", "~> 2.6.1"
-  gem "ruby-debug"
+  gem 'ruby-debug19', :require => 'ruby-debug', :platform => :ruby_19
 end
 
 group :test do
