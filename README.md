@@ -27,6 +27,11 @@ App:
     rake db:create:all
     rake db:migrate
 
+Development data:
+
+    rake dev:prime
+
+
 Development process
 -------------------
 
@@ -113,14 +118,6 @@ For rebasing and maintaining a clean history, edit your ~/.gitconfig to include 
 For cheap and easy branchse:
 
     gem install git_remote_branch
-
-Create an admin user
---------------------
-
-    bundle exec rails console
-    user = User.create!(:email => "cpytel@thoughtbot.com", :password => "test", :password_confirmation => "test", :first_name => "Chad", :last_name => "Pytel")
-    user.admin = true
-    user.save!
 
 Acceptance and invoices
 -----------------------
