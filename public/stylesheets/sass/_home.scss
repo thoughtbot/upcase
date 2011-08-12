@@ -21,7 +21,16 @@
       margin: 20px 0 0 0;
       width: grid-width(8);
 
+      h2 {
+        color: #444;
+        font: 700 14px $sans-serif;
+        margin: 0 0 4px 0;
+        text-transform: uppercase;
+      }
+
       ul {
+        margin: 0 0 20px 10px;
+
         li {
           margin: 0 0 10px 0;
           padding: 0 0 10px 0;
@@ -55,6 +64,7 @@
             &:hover {
               h3 {
                 color: $red;
+                text-decoration: underline;
               }
             }
           }
