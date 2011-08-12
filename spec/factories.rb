@@ -1,71 +1,76 @@
-Factory.sequence :code do |n|
-  "code#{n}"
-end
+FactoryGirl.define do
+  sequence :code do |n|
+    "code#{n}"
+  end
 
-Factory.sequence :email do |n|
-  "user#{n}@example.com"
-end
+  sequence :email do |n|
+    "user#{n}@example.com"
+  end
 
-Factory.define :user do |user|
-  user.first_name 'Dan'
-  user.last_name  'Deacon'
-  user.organization 'company'
-  user.email    { Factory.next :email }
-  user.password "password"
-end
+  factory :user do
+    first_name 'Dan'
+    last_name  'Deacon'
+    organization 'company'
+    email
+    password "password"
 
-Factory.define(:admin, :parent => :user) do |user_factory|
-  user_factory.email    { Factory.next :email }
-  user_factory.password "password"
-  user_factory.admin    true
-end
+    factory :admin do
+      admin true
+    end
+  end
 
-Factory.define(:course) do |course_factory|
-  course_factory.name              "Test-Driven Prolog"
-  course_factory.description       "Solve 8-Queens over and over again"
-  course_factory.short_description "Solve 8-Queens"
-  course_factory.price       "500"
-  course_factory.start_at    '9:00'
-  course_factory.stop_at     '17:00'
-  course_factory.location    '41 Winter St Boston, MA'
-  course_factory.maximum_students 12
-end
+  factory :audience do
+    name "Web Designer"
+  end
 
-Factory.define(:section) do |section_factory|
-  section_factory.association :course
-  section_factory.starts_on { 1.day.ago }
-  section_factory.ends_on { 1.day.from_now }
-  section_factory.after_build {|s|
-    s.teachers << Factory.build(:teacher)
-  }
-end
+  factory :course do
+    audience
+    name              "Test-Driven Prolog"
+    description       "Solve 8-Queens over and over again"
+    short_description "Solve 8-Queens"
+    price       "500"
+    start_at    '9:00'
+    stop_at     '17:00'
+    location    '41 Winter St Boston, MA'
+    maximum_students 12
+  end
 
-Factory.define(:registration) do |registration_factory|
-  registration_factory.association :section
-  registration_factory.association :user
-end
+  factory :section do
+    association :course
+    starts_on { 1.day.ago }
+    ends_on   { 1.day.from_now }
+    after_build do |s|
+      s.teachers << Factory.build(:teacher)
+    end
+  end
 
-Factory.define(:teacher) do |teacher_factory|
-  teacher_factory.name  "Billy Madison"
-  teacher_factory.email "bmadison@example.com"
-end
+  factory :registration do
+    section
+    user
+  end
 
-Factory.define(:section_teacher) do |section_teacher_factory|
-  section_teacher_factory.association :section
-  section_teacher_factory.association :teacher
-end
+  factory :teacher do
+    name  "Billy Madison"
+    email "bmadison@example.com"
+  end
 
-Factory.define(:question) do |question_factory|
-  question_factory.association :course
-  question_factory.question    "What's up, buddy?"
-  question_factory.answer      "Not much, bro."
-end
+  factory :section_teacher do
+    section
+    teacher
+  end
 
-Factory.define(:follow_up) do |factory|
-  factory.association :course
-end
+  factory :question do
+    course
+    question "What's up, buddy?"
+    answer   "Not much, bro."
+  end
 
-Factory.define(:coupon) do |factory|
-  factory.code       { Factory.next :code }
-  factory.percentage 10
+  factory :follow_up do
+    course
+  end
+
+  factory :coupon do
+    code
+    percentage 10
+  end
 end
