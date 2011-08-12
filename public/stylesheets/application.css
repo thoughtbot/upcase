@@ -243,28 +243,36 @@ header#main-header {
     float: left;
     margin: 20px 0 0 0;
     width: 655px; }
-    #head-wrapper #homepage-top #workshop-list ul li {
-      margin: 0 0 10px 0;
-      padding: 0 0 10px 0;
-      position: relative; }
-      #head-wrapper #homepage-top #workshop-list ul li a {
-        display: inline-block;
-        text-decoration: none; }
-        #head-wrapper #homepage-top #workshop-list ul li a h3 {
-          color: #ad141e;
-          font: 700 24px/30px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
-          #head-wrapper #homepage-top #workshop-list ul li a h3 span {
-            color: #333;
-            font-size: 16px; }
-            #head-wrapper #homepage-top #workshop-list ul li a h3 span:before {
-              content: "/";
-              margin: 0 4px 0 0; }
-        #head-wrapper #homepage-top #workshop-list ul li a p.teaser {
-          color: #444;
-          font: 300 15px/20px skolar-1, skolar-2, serif;
-          margin: 0; }
-        #head-wrapper #homepage-top #workshop-list ul li a:hover h3 {
-          color: #ad141e; }
+    #head-wrapper #homepage-top #workshop-list h2 {
+      color: #444;
+      font: 700 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      margin: 0 0 4px 0;
+      text-transform: uppercase; }
+    #head-wrapper #homepage-top #workshop-list ul {
+      margin: 0 0 20px 10px; }
+      #head-wrapper #homepage-top #workshop-list ul li {
+        margin: 0 0 10px 0;
+        padding: 0 0 10px 0;
+        position: relative; }
+        #head-wrapper #homepage-top #workshop-list ul li a {
+          display: inline-block;
+          text-decoration: none; }
+          #head-wrapper #homepage-top #workshop-list ul li a h3 {
+            color: #ad141e;
+            font: 700 24px/30px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
+            #head-wrapper #homepage-top #workshop-list ul li a h3 span {
+              color: #333;
+              font-size: 16px; }
+              #head-wrapper #homepage-top #workshop-list ul li a h3 span:before {
+                content: "/";
+                margin: 0 4px 0 0; }
+          #head-wrapper #homepage-top #workshop-list ul li a p.teaser {
+            color: #444;
+            font: 300 15px/20px skolar-1, skolar-2, serif;
+            margin: 0; }
+          #head-wrapper #homepage-top #workshop-list ul li a:hover h3 {
+            color: #ad141e;
+            text-decoration: underline; }
   #head-wrapper #homepage-top aside {
     border-top: 5px solid #ad141e;
     float: left;
