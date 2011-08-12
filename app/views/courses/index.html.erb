@@ -5,12 +5,17 @@
     </header>
 
     <section id="workshop-list">
-      <% if @courses.empty? %>
+      <% if @audiences.empty? %>
         <p id="no-courses">No courses are running at this time.</p>
       <% else %>
-        <ul>
-          <%= render @courses %>
-        </ul>
+        <% @audiences.each do |audience| %>
+          <% if audience.courses.any? %>
+            <h2><%= audience.name %></h2>
+            <ul>
+              <%= render audience.courses %>
+            </ul>
+          <% end %>
+        <% end %>
       <% end %>
     </section>
 

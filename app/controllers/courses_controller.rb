@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   def index
-    @courses = Course.by_position
+    @audiences = Audience.by_position
   end
 
   def show
