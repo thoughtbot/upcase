@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
   validates_presence_of :name, :description, :price, :start_at, :stop_at, :location, :maximum_students, :short_description
 
+  belongs_to :audience
   has_many :sections
   has_many :questions, :order => "created_at asc"
   has_many :follow_ups
