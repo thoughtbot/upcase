@@ -1,5 +1,4 @@
 class CoursesController < ApplicationController
-
   def index
     @courses = Course.by_position
   end

@@ -3,7 +3,7 @@
 
       <section id="course-info">
         <h2><%= @section.course_name %></h2>
-  
+
         <% if @section.full? %>
           <section id="notify-me">
             <%= form_for [@section.course, @follow_up] do |form| %>
@@ -13,7 +13,7 @@
             <% end %>
           </section>
         <% end %>
-  
+
         <section id="course-description"><%=raw textilize @section.course_description %></section>
 
         <%= render :partial => 'courses/questions', :locals => { :course => @section.course }  %>

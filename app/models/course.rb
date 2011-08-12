@@ -36,5 +36,4 @@ class Course < ActiveRecord::Base
   def active_date_range
     active_section.try(:date_range)
   end
-
 end
