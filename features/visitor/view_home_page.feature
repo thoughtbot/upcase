@@ -19,12 +19,17 @@ Feature: Viewing Courses on the home page
 
   Scenario: Scheduled Courses Appear in Order
     Given today is June 10, 2010
+    And the following audiences exist:
+      | name             | position |
+      | Web Developer    | 1        |
+      | Product Manager  | 2        |
     And the following course exists:
-      | name                | position |
-      | Test-Driven Go      | 3        |
-      | Test-Driven Haskell | 1        |
-      | Test-Driven Erlang  | 2        |
+      | name                | position | audience              |
+      | Test-Driven Go      | 1        | name: Product Manager |
+      | Test-Driven Haskell | 1        | name: Web Developer   |
+      | Test-Driven Erlang  | 2        | name: Web Developer   |
     When I go to the home page
+    Then I should see "Web Developer" before "Product Manager"
     And I should see "Test-Driven Haskell" before "Test-Driven Erlang"
     And I should see "Test-Driven Erlang" before "Test-Driven Go"
 
