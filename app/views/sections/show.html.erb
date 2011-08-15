@@ -35,17 +35,17 @@
           <p class="cost sold-out"><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></p>
           <p class="notice">Sold Out</p>
         <% end %>
-  
+
         <h3>When</h3>
         <p><%= @section.date_range %><br><%= @section.time_range %></p>
-  
+
         <h3>Where</h3>
         <p id="section-location">
-          <% google_map_link_to("#{@section.course_location} #{@section.course_location_name}", :id => 'location') do %>
+          <%= google_map_link_to("#{@section.course_location} #{@section.course_location_name}", :id => 'location') do %>
             <%= @section.course_location %><br> <%= @section.course_location_name %>
           <% end %>
         </p>
-  
+
       </section>
 
     </section>
