@@ -271,8 +271,7 @@ header#main-header {
             font: 300 15px/20px skolar-1, skolar-2, serif;
             margin: 0; }
           #head-wrapper #homepage-top #workshop-list ul li a:hover h3 {
-            color: #ad141e;
-            text-decoration: underline; }
+            color: #ad141e; }
   #head-wrapper #homepage-top aside {
     border-top: 5px solid #ad141e;
     float: left;
