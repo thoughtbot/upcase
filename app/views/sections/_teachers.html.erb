@@ -4,7 +4,7 @@
       <%= teacher_gravatar(teacher, 92) %>
       <h5><%= teacher.name %></h5>
       <p class="bio">
-        <%= teacher.bio %>
+        <%= raw textilize teacher.bio %>
       </p>
     <% end %>
   <% end %>
