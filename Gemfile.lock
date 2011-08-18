@@ -111,6 +111,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    mocha (0.9.8)
+      rake
     nokogiri (1.4.4)
     paperclip (2.3.11)
       activerecord (>= 2.3.0)
@@ -206,6 +208,7 @@ DEPENDENCIES
   hoptoad_notifier
   jquery-rails (~> 1.0.11)
   launchy
+  mocha
   nokogiri
   paperclip
   pg

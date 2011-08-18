@@ -38,4 +38,5 @@ group :test do
   gem "shoulda"
   gem "sham_rack", "1.3.1"
   gem "email_spec"
+  gem "mocha"
 end
