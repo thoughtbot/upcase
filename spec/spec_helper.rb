@@ -2,8 +2,8 @@
 # from the project root directory.
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path(File.join(File.dirname(__FILE__),'..','config','environment'))
-require 'spec/autorun'
-require 'spec/rails'
+require 'rspec/autorun'
+require 'rspec/rails'
 require 'paperclip/matchers'
 
 Mocha::Configuration.warn_when(:stubbing_non_existent_method)
@@ -22,7 +22,7 @@ Spec::Runner.configure do |config|
   # in your config/boot.rb
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures  = false
-  config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
+  config.fixture_path = Rails.root + '/spec/fixtures/'
 
   config.include Paperclip::Shoulda::Matchers
 
@@ -43,7 +43,7 @@ Spec::Runner.configure do |config|
   #
   # You can also declare which fixtures to use (for example fixtures for test/fixtures):
   #
-  # config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
+  # config.fixture_path = Rails.root + '/spec/fixtures/'
   #
   # == Mock Framework
   #
