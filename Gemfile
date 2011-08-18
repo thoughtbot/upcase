@@ -30,7 +30,7 @@ group :test do
   gem "factory_girl_rails", "~> 1.1.0"
   gem "launchy"
   gem "database_cleaner"
-  gem "rspec-rails", "~> 2.0.0.rc"
+  gem "rspec-rails", "2.6.1"
   gem "treetop"
   gem "sinatra"
   gem "ruby-debug"
