@@ -7,17 +7,24 @@ Feature: Selecting a course and registering for it
   @selenium
   Scenario: User registers for a section then is signed in
     Given today is June 10, 2010
+    And the following audience exists:
+      | name       |
+      | Developers |
     And time is unfrozen
     And I am signed in as an admin
-    And I create the following course:
-      | Course Name        | Test-Driven Haskell |
-      | Short description  | Short description   |
-      | Course Description | It is great!        |
-      | Price              | 10000000            |
-      | Location Address   | 123 Main St.        |
-      | Max Enrollment     | 5                   |
-      | Start at           | 09:00               |
-      | Stop at            | 13:00               |
+    When I go to the admin page
+    And I follow "New Course"
+    And I fill in "Course Name" with "Test-Driven Haskell"
+    And I fill in "Short description" with "Short description"
+    And I fill in "Course Description" with "It is great!"
+    And I select "Developers" from "Audience"
+    And I fill in "Price" with "10000000"
+    And I fill in "Location Address" with "123 Main St."
+    And I fill in "Max Enrollment" with "5"
+    And I fill in "Start at" with "09:00"
+    And I fill in "Stop at" with "13:00"
+    And I press the button to create a course
+    Then I see the successful course creation notice
     And I create the following section for "Test-Driven Haskell":
       | Starts on | January 13, 2011 |
       | Ends on   | January 15, 2011 |
@@ -61,17 +68,24 @@ Feature: Selecting a course and registering for it
   @selenium
   Scenario: Existing user registers for a section
     Given today is June 10, 2010
+    And the following audience exists:
+      | name       |
+      | Developers |
     And time is unfrozen
     And I am signed in as an admin
-    And I create the following course:
-      | Course Name        | Test-Driven Haskell |
-      | Short description  | Short description   |
-      | Course Description | It is great!        |
-      | Price              | 10000000            |
-      | Location Address   | 123 Main St.        |
-      | Max Enrollment     | 5                   |
-      | Start at           | 09:00               |
-      | Stop at            | 13:00               |
+    When I go to the admin page
+    And I follow "New Course"
+    And I fill in "Course Name" with "Test-Driven Haskell"
+    And I fill in "Short description" with "Short description"
+    And I fill in "Course Description" with "It is great!"
+    And I select "Developers" from "Audience"
+    And I fill in "Price" with "10000000"
+    And I fill in "Location Address" with "123 Main St."
+    And I fill in "Max Enrollment" with "5"
+    And I fill in "Start at" with "09:00"
+    And I fill in "Stop at" with "13:00"
+    And I press the button to create a course
+    Then I see the successful course creation notice
     And I create the following section for "Test-Driven Haskell":
       | Starts on | January 13, 2011 |
       | Ends on   | January 15, 2011 |
@@ -112,20 +126,27 @@ Feature: Selecting a course and registering for it
   @selenium
   Scenario: User registers with a valid coupon
     Given today is June 10, 2010
+    And the following audience exists:
+      | name       |
+      | Developers |
     And time is unfrozen
     And the following coupon exists:
       | code       | percentage |
       | VALENTINES | 10         |
     And I am signed in as an admin
-    And I create the following course:
-      | Course Name        | Test-Driven Haskell |
-      | Short description  | Short description   |
-      | Course Description | It is great!        |
-      | Price              | 100                 |
-      | Location Address   | 123 Main St.        |
-      | Max Enrollment     | 5                   |
-      | Start at           | 09:00               |
-      | Stop at            | 13:00               |
+    When I go to the admin page
+    And I follow "New Course"
+    And I fill in "Course Name" with "Test-Driven Haskell"
+    And I fill in "Short description" with "Short description"
+    And I fill in "Course Description" with "It is great!"
+    And I select "Developers" from "Audience"
+    And I fill in "Price" with "100"
+    And I fill in "Location Address" with "123 Main St."
+    And I fill in "Max Enrollment" with "5"
+    And I fill in "Start at" with "09:00"
+    And I fill in "Stop at" with "13:00"
+    And I press the button to create a course
+    Then I see the successful course creation notice
     And I create the following section for "Test-Driven Haskell":
       | Starts on | January 13, 2011 |
       | Ends on   | January 15, 2011 |
@@ -172,19 +193,26 @@ Feature: Selecting a course and registering for it
   @selenium
   Scenario: User registers with an invalid coupon
     Given today is June 10, 2010
+    And the following audience exists:
+      | name       |
+      | Developers |
     And the following coupon exists:
       | code       | percentage | active |
       | VALENTINES | 10         | false  |
     And I am signed in as an admin
-    And I create the following course:
-      | Course Name        | Test-Driven Haskell |
-      | Short description  | Short description   |
-      | Course Description | It is great!        |
-      | Price              | 100                 |
-      | Location Address   | 123 Main St.        |
-      | Max Enrollment     | 5                   |
-      | Start at           | 09:00               |
-      | Stop at            | 13:00               |
+    When I go to the admin page
+    And I follow "New Course"
+    And I fill in "Course Name" with "Test-Driven Haskell"
+    And I fill in "Short description" with "Short description"
+    And I fill in "Course Description" with "It is great!"
+    And I select "Developers" from "Audience"
+    And I fill in "Price" with "100"
+    And I fill in "Location Address" with "123 Main St."
+    And I fill in "Max Enrollment" with "5"
+    And I fill in "Start at" with "09:00"
+    And I fill in "Stop at" with "13:00"
+    And I press the button to create a course
+    Then I see the successful course creation notice
     And I create the following section for "Test-Driven Haskell":
       | Starts on | January 13, 2011 |
       | Ends on   | January 15, 2011 |
@@ -204,18 +232,25 @@ Feature: Selecting a course and registering for it
 
   Scenario: User views a course with an external registration url
     Given today is June 10, 2010
+    And the following audience exists:
+      | name       |
+      | Developers |
     And time is unfrozen
     And I am signed in as an admin
-    And I create the following course:
-      | Course Name               | Test-Driven Haskell   |
-      | Short description         | Short description     |
-      | Course Description        | It is great!          |
-      | Price                     | 10000000              |
-      | Location Address          | 123 Main St.          |
-      | Max Enrollment            | 5                     |
-      | Start at                  | 09:00                 |
-      | Stop at                   | 13:00                 |
-      | External registration url | http://engineyard.com |
+    When I go to the admin page
+    And I follow "New Course"
+    And I fill in "Course Name" with "Test-Driven Haskell"
+    And I fill in "Short description" with "Short description"
+    And I fill in "Course Description" with "It is great!"
+    And I select "Developers" from "Audience"
+    And I fill in "Price" with "10000000"
+    And I fill in "Location Address" with "123 Main St."
+    And I fill in "Max Enrollment" with "5"
+    And I fill in "Start at" with "09:00"
+    And I fill in "Stop at" with "13:00"
+    And I fill in "External registration url" with "http://engineyard.com"
+    And I press the button to create a course
+    Then I see the successful course creation notice
     And I create the following section for "Test-Driven Haskell":
       | Starts on | January 13, 2011 |
       | Ends on   | January 15, 2011 |

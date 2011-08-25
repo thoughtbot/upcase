@@ -20,7 +20,7 @@ Workshops::Application.routes.draw do
       resources :questions, :only => [:destroy]
     end
     resources :coupons
-    resources :controlelr
+    resources :audiences
     resources :sections do
       resources :registrations
     end
