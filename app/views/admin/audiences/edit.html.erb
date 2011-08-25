@@ -1,0 +1,11 @@
+<% content_for :nav do -%>
+  <ul>
+    <li><%= link_to "Audiences", admin_audiences_path %></li>
+    <li class="raquo">&raquo;</li>
+    <li><%= link_to @audience.name, edit_admin_audience_path(@audience) %></li>
+  </ul>
+<% end -%>
+
+<%= semantic_form_for [:admin, @audience] do |form| %>
+  <%= render form %>
+<% end %>

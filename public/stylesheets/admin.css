@@ -465,6 +465,7 @@ fieldset.buttons li {
 /* Text fields */
 input[type="text"],
 input[type="password"],
+input[type="url"],
 textarea {
   font-family: Helvetica, Arial, sans-serif;
   padding: 15px 10px;
@@ -522,8 +523,11 @@ textarea {
 
 /* Select fields */
 fieldset .select select {
-  width: 200px;
-  font-size: .9em; }
+  font-family: Helvetica, Arial, sans-serif;
+  padding: 15px 10px;
+  font-size: 24px;
+  color: #000;
+  width: 755px; }
 
 optgroup {
   margin: 0 0 .5em 0; }
