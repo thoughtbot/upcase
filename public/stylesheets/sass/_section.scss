@@ -36,12 +36,12 @@ body.courses-show {
       #course-info {
         float: left;
         margin: 0 $gutter 0 0;
-        padding: 32px 0 32px 0px;
+        padding: 20px 0 32px 0px;
         width: grid-width(8);
 
         h2 {
           color: #333;
-          font: 700 36px/40px $sans-serif;
+          font: 300 36px/40px $sans-serif;
           margin: 0 0 8px 0;
         }
 
@@ -69,8 +69,8 @@ body.courses-show {
         q {
           color: #444;
           display: block;
-          font: 600 15px/24px $sans-serif;
-          line-height: 150%;
+          font: 400 15px/24px $serif;
+          font-style: italic;
           left: -12px;
           margin: 24px 0 0 12px;
           position: relative;
@@ -86,12 +86,12 @@ body.courses-show {
         }
 
         p.source {
-          color: $red;
-          font: 400 14px $sans-serif;
-          margin: 2px 0 18px 0px;
+          color: #555;
+          font: 700 13px $sans-serif;
+          margin: 2px 0 24px 0px;
 
           a {
-            color: $red;
+            color: #333;
             margin: 0 0 0 1px;
             text-decoration: none;
           }
@@ -124,18 +124,16 @@ body.courses-show {
 
       #workshop-details {
         float: left;
-        margin: 67px 0 20px 0;
+        margin: 55px 0 20px 0;
         width: grid-width(4);
 
         #register {
           padding: 21px 0 20px 0;
 
-          /* red button */
           a {
             @include button;
           }
         }
-
 
         h3 {
           color: $red;
@@ -145,14 +143,14 @@ body.courses-show {
         }
 
         p {
-          color: #474747;
-          font: 400 16px/24px $serif;
+          color: #373737;
+          font: 400 18px/24px $serif;
 
           &.cost {
             color: #333;
             font-size: 32px;
             font-weight: 400;
-            padding: 0 0 20px 0;
+            padding: 0 0 16px 0;
 
             &.highlight {
               color: $red;
@@ -187,7 +185,6 @@ body.courses-show {
   #register-below-the-fold {
     padding: 21px 0 20px 0;
 
-    /* red button */
     a {
       @include button;
       width: 800px;

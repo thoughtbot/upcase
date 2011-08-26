@@ -433,13 +433,13 @@ body.courses-show #head-wrapper #homepage-top {
   body.courses-show #head-wrapper #homepage-top #course-info {
     float: left;
     margin: 0 25px 0 0;
-    padding: 32px 0 32px 0px;
+    padding: 20px 0 32px 0px;
     width: 655px; }
     body.high_voltage-pages #head-wrapper #homepage-top #course-info h2,
     body.sections-show #head-wrapper #homepage-top #course-info h2,
     body.courses-show #head-wrapper #homepage-top #course-info h2 {
       color: #333;
-      font: 700 36px/40px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      font: 300 36px/40px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 0 0 8px 0; }
     body.high_voltage-pages #head-wrapper #homepage-top #course-info p,
     body.sections-show #head-wrapper #homepage-top #course-info p,
@@ -467,8 +467,8 @@ body.courses-show #head-wrapper #homepage-top {
     body.courses-show #head-wrapper #homepage-top #course-info q {
       color: #444;
       display: block;
-      font: 600 15px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      line-height: 150%;
+      font: 400 15px/24px skolar-1, skolar-2, serif;
+      font-style: italic;
       left: -12px;
       margin: 24px 0 0 12px;
       position: relative; }
@@ -484,13 +484,13 @@ body.courses-show #head-wrapper #homepage-top {
     body.high_voltage-pages #head-wrapper #homepage-top #course-info p.source,
     body.sections-show #head-wrapper #homepage-top #course-info p.source,
     body.courses-show #head-wrapper #homepage-top #course-info p.source {
-      color: #ad141e;
-      font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      margin: 2px 0 18px 0px; }
+      color: #555;
+      font: 700 13px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      margin: 2px 0 24px 0px; }
       body.high_voltage-pages #head-wrapper #homepage-top #course-info p.source a,
       body.sections-show #head-wrapper #homepage-top #course-info p.source a,
       body.courses-show #head-wrapper #homepage-top #course-info p.source a {
-        color: #ad141e;
+        color: #333;
         margin: 0 0 0 1px;
         text-decoration: none; }
     body.high_voltage-pages #head-wrapper #homepage-top #course-info #faq dl dt p, body.high_voltage-pages #head-wrapper #homepage-top #course-info #benefits dl dt p,
@@ -521,13 +521,12 @@ body.courses-show #head-wrapper #homepage-top {
   body.sections-show #head-wrapper #homepage-top #workshop-details,
   body.courses-show #head-wrapper #homepage-top #workshop-details {
     float: left;
-    margin: 67px 0 20px 0;
+    margin: 55px 0 20px 0;
     width: 315px; }
     body.high_voltage-pages #head-wrapper #homepage-top #workshop-details #register,
     body.sections-show #head-wrapper #homepage-top #workshop-details #register,
     body.courses-show #head-wrapper #homepage-top #workshop-details #register {
-      padding: 21px 0 20px 0;
-      /* red button */ }
+      padding: 21px 0 20px 0; }
       body.high_voltage-pages #head-wrapper #homepage-top #workshop-details #register a,
       body.sections-show #head-wrapper #homepage-top #workshop-details #register a,
       body.courses-show #head-wrapper #homepage-top #workshop-details #register a {
@@ -582,15 +581,15 @@ body.courses-show #head-wrapper #homepage-top {
     body.high_voltage-pages #head-wrapper #homepage-top #workshop-details p,
     body.sections-show #head-wrapper #homepage-top #workshop-details p,
     body.courses-show #head-wrapper #homepage-top #workshop-details p {
-      color: #474747;
-      font: 400 16px/24px skolar-1, skolar-2, serif; }
+      color: #373737;
+      font: 400 18px/24px skolar-1, skolar-2, serif; }
       body.high_voltage-pages #head-wrapper #homepage-top #workshop-details p.cost,
       body.sections-show #head-wrapper #homepage-top #workshop-details p.cost,
       body.courses-show #head-wrapper #homepage-top #workshop-details p.cost {
         color: #333;
         font-size: 32px;
         font-weight: 400;
-        padding: 0 0 20px 0; }
+        padding: 0 0 16px 0; }
         body.high_voltage-pages #head-wrapper #homepage-top #workshop-details p.cost.highlight,
         body.sections-show #head-wrapper #homepage-top #workshop-details p.cost.highlight,
         body.courses-show #head-wrapper #homepage-top #workshop-details p.cost.highlight {
@@ -619,8 +618,7 @@ body.courses-show #head-wrapper #homepage-top {
 body.high_voltage-pages #register-below-the-fold,
 body.sections-show #register-below-the-fold,
 body.courses-show #register-below-the-fold {
-  padding: 21px 0 20px 0;
-  /* red button */ }
+  padding: 21px 0 20px 0; }
   body.high_voltage-pages #register-below-the-fold a,
   body.sections-show #register-below-the-fold a,
   body.courses-show #register-below-the-fold a {
