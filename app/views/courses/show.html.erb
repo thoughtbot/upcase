@@ -9,6 +9,10 @@
       </section>
 
       <section id="workshop-details">
+        <section id="register">
+          <a href="#new_follow_up" id="register-button">Get notified</a>
+        </section>
+
         <h3>Cost</h3>
         <p class="cost"><%= number_to_currency @course.price, :precision => 0, :delimiter => '' %></p>
 
@@ -18,8 +22,6 @@
             <%= @course.location %> <br> <%= @course.location_name %>
           <% end %>
         </p>
-
-        <section id="register"></section>
       </section>
     </section>
   </section>
