@@ -106,6 +106,21 @@ To check the status of running app servers, background jobs, cron jobs, etc:
     heroku ps --remote staging
     heroku ps --remote production
 
+Getting admin access
+--------------------
+
+Sign up [here](http://workshops.thoughtbot.com/sign_up).
+
+Then at the terminal, do this:
+
+    heroku console --app workshops-production
+    user = User.find_by_email("YOUR_EMAIL_HERE")
+    user.admin = true
+    user.save!
+    exit
+
+Now you can access http://workshops.thoughtbot.com/admin
+
 Working faster
 --------------
 
