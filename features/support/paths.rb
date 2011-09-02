@@ -3,6 +3,8 @@ module NavigationHelpers
     case page_name
     when /^the home\s?page$/
       '/'
+    when /^the home page with the "([^"]+)" alternative for the "([^"]+)" experiment/
+      "/?#{$2}=#{$1}"
     when 'the courses json page'
       courses_path(:format => :json)
     when /the courses json page with the callback "([^"]+)"/

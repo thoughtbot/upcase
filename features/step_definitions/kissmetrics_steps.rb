@@ -21,3 +21,13 @@ Then /^KISSmetrics does not receive the "([^"]*)" event$/ do |event_name|
     page.should have_no_content(unexpected_javascript)
   end
 end
+
+Then /^KISSmetrics receives the following properties:$/ do |table|
+  table.hashes.each do |hash|
+    property            = hash['property']
+    value               = hash['value']
+    expected_javascript = %Q{_kmq.push(['set', { '#{property}': '#{value}' }]);}
+
+    page.should have_content(expected_javascript)
+  end
+end
