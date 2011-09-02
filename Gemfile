@@ -23,6 +23,12 @@ gem "dynamic_form"
 gem "snogmetrics"
 gem "split", :git => "git://github.com/jasonm/split.git"
 
+group :development do
+  # Only needed locally in development. On Heroku, Workshops runs 1.9.2 which 
+  # doesn't need it.
+  gem 'SystemTimer'
+end
+
 group :test do
   gem "headless"
   gem "cucumber-rails", "1.0.2"
