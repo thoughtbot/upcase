@@ -22,11 +22,10 @@ gem "acts_as_list"
 gem "dynamic_form"
 gem "snogmetrics"
 gem "split", :git => "git://github.com/jasonm/split.git"
+gem 'SystemTimer', :platform => :ruby_18
 
 group :development do
-  # Only needed locally in development. On Heroku, Workshops runs 1.9.2 which 
-  # doesn't need it.
-  gem 'SystemTimer'
+  gem 'ruby-debug19', :require => 'ruby-debug', :platform => :ruby_19
 end
 
 group :test do
@@ -40,7 +39,6 @@ group :test do
   gem "rspec-rails", "2.6.1"
   gem "treetop"
   gem "sinatra"
-  gem "ruby-debug"
   gem "timecop"
   gem "shoulda"
   gem "sham_rack", "1.3.1"
