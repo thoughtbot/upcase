@@ -12,7 +12,7 @@ end
 
 Then /^I should see the json for the courses$/ do
   courses = Course.all
-  JSON.parse(page.body).should == JSON.parse(courses_json(courses))
+  JSON.parse(page.source).should == JSON.parse(courses_json(courses))
 end
 
 Then /^I should see the json for the courses with the callback "([^"]*)"$/ do |callback|
