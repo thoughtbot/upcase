@@ -18,7 +18,8 @@ Feature: A/B testing different headlines
 
   Scenario: Learn from experts copy
     Given I go to the home page with the "learn_from_experts" alternative for the "landing_page_headline" experiment
-    Then I should see "Learn from experts; become one yourself"
+    Then I should see "Learn from experts."
+    And I should see "Become one yourself."
     And KISSmetrics receives the following properties:
       | property              | value              |
       | landing_page_headline | learn_from_experts |
