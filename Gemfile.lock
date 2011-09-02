@@ -79,6 +79,7 @@ GEM
     email_spec (1.0.0)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    escape_utils (0.2.3)
     factory_girl (2.0.4)
     factory_girl_rails (1.1.0)
       factory_girl (~> 2.0.0)
@@ -218,6 +219,7 @@ DEPENDENCIES
   database_cleaner
   dynamic_form
   email_spec
+  escape_utils
   factory_girl (~> 2.0.4)
   factory_girl_rails (~> 1.1.0)
   formtastic
