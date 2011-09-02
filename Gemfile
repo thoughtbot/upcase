@@ -21,6 +21,7 @@ gem "heroku"
 gem "acts_as_list"
 gem "dynamic_form"
 gem "snogmetrics"
+gem "split", :git => "git://github.com/jasonm/split.git"
 
 group :test do
   gem "headless"
