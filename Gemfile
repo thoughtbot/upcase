@@ -24,6 +24,9 @@ gem "snogmetrics"
 gem "split", :git => "git://github.com/jasonm/split.git"
 gem 'SystemTimer', :platform => :ruby_18
 
+# Fix the warning: regexp match /.../n against to UTF-8 string issue
+gem "escape_utils"
+
 group :development do
   gem 'ruby-debug19', :require => 'ruby-debug', :platform => :ruby_19
 end
