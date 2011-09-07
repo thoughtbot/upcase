@@ -26,6 +26,7 @@ Workshops::Application.routes.draw do
     end
   end
 
+  match '/watch' => 'high_voltage/pages#show', :as => :watch, :id => 'watch'
   match '/fairhaven' => 'high_voltage/pages#show', :as => :fairhaven, :id => 'fairhaven'
   match '/fairhaven/registered' => 'high_voltage/pages#show', :as => :fairhaven_registered, :id => 'fairhaven-registered'
   match '/fairhaven/resources' => 'high_voltage/pages#show', :as => :fairhaven_resources, :id => 'fairhaven-resources'
