@@ -6,6 +6,7 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     if @course.active?
+      flash.keep
       redirect_to(@course.active_section)
     else
       @follow_up = @course.follow_ups.build

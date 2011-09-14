@@ -54,3 +54,22 @@ Feature: Registering for a followup
     And I fill in "Want to be notified the next time we run this workshop?" with "yes!!"
     And I press "Submit"
     Then I should see "Could not save follow up. Please check your email address."
+
+  Scenario: Request a follow up with invalid email on a scheduled section
+    Given today is June 17, 2010
+    And the following course exists:
+      | name                |
+      | Test-Driven Haskell |
+    And the following section exists:
+      | id   | course                    | starts on     | ends on       |
+      | 1235 | name: Test-Driven Haskell | July 17, 2010 | July 18, 2010 |
+    When I go to the home page
+    When I follow "Test-Driven Haskell"
+    And I press "Submit"
+    Then I should see "Could not save follow up. Please check your email address."
+    And KISSmetrics does not receive the "Followed up" event
+    When I go to the home page
+    When I follow "Test-Driven Haskell"
+    And I fill in "Want to be notified the next time we run this workshop?" with "yes!!"
+    And I press "Submit"
+    Then I should see "Could not save follow up. Please check your email address."
