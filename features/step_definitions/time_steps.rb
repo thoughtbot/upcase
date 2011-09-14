@@ -1,7 +1,7 @@
 require 'timecop'
 
 Given 'today is $date' do |date_string|
-  Timecop.freeze(Date.parse(date_string))
+  Timecop.freeze(DateTime.parse(date_string))
 end
 
 Given 'time is unfrozen' do
