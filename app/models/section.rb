@@ -54,6 +54,10 @@ class Section < ActiveRecord::Base
     end
   end
 
+  def to_param
+    "#{id}-#{course_name.parameterize}"
+  end
+
   protected
 
   def self.xml_content(document, tag_name)

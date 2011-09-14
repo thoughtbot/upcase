@@ -37,4 +37,8 @@ class Course < ActiveRecord::Base
   def active_date_range
     active_section.try(:date_range)
   end
+
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
 end
