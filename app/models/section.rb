@@ -65,12 +65,7 @@ class Section < ActiveRecord::Base
   end
 
   def send_follow_up_emails
-    if self.course.follow_ups.present?
-      self.course.follow_ups.each do |follow_up|
-        UserMailer.follow_up(follow_up, self).deliver
-      end
-      self.course.follow_ups.delete_all
-    end
+    self.course.follow_ups.have_not_notified.each { |follow_up| follow_up.notify(self) }
   end
 
   def send_teacher_notifications
