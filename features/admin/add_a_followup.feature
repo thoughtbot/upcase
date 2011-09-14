@@ -15,8 +15,8 @@ Feature: Adding followups for a course
     And I select the teacher "Albert Einstein"
     And I press "Save Section"
     Then "followup@example.com" receives a follow up email for "Test-Driven Sleeping"
-    Given emails are cleared
-    When I follow "New Section" within the course "Test-Driven Sleeping"
+    When emails are cleared
+    And I follow "New Section" within the course "Test-Driven Sleeping"
     And I select the start date of "June 15, 2010"
     And I select the end date of "June 15, 2010"
     And I select the teacher "Albert Einstein"
