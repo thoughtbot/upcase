@@ -14,7 +14,7 @@ end
 Then /^KISSmetrics does not receive the "([^"]*)" event$/ do |event_name|
   if using_javascript_driver?
     kmq = JSON.parse(page.evaluate_script("JSON.stringify(_kmq)"))
-    matched_event = kmq.detect { |call| call == ["record", event_name, properties] }
+    matched_event = kmq.detect { |call| call == ["record", event_name] }
     matched_event.should be_nil
   else
     unexpected_javascript = %Q{_kmq.push(["record","#{event_name}"}
