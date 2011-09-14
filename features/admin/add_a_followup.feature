@@ -1,7 +1,8 @@
 Feature: Adding followups for a course
 
   Scenario: Adding a followup for a course
-    Given I am signed in as an admin
+    Given today is June 13, 2010
+    And I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
     And a teacher exists with a name of "Albert Einstein"
     When I go to the admin page
@@ -22,6 +23,8 @@ Feature: Adding followups for a course
     And I select the teacher "Albert Einstein"
     And I press "Save Section"
     Then "followup@example.com" does not receive a follow up email for "Test-Driven Sleeping"
+    When I follow "Test-Driven Sleeping"
+    Then I should see that "followup@example.com" has been notified on "June 13, 2010"
 
   @selenium
   Scenario: Adding more than one followup for a course
