@@ -9,7 +9,7 @@ namespace :dev do
       $LOAD_PATH << path
     end
     require 'factory_girl'
-    Factory.find_definitions
+    FactoryGirl.find_definitions
 
     puts "Creating development data..."
 
