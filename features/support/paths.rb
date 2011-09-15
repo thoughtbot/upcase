@@ -30,6 +30,8 @@ module NavigationHelpers
       course = Course.find_by_name!($2)
       registration = course.sections.map(&:registrations).flatten.detect { |r| r.user == user }
       registration.freshbooks_invoice_url
+    when /the URL "([^\"]+)"/
+      $1
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
         "Now, go and add a mapping in #{__FILE__}"
