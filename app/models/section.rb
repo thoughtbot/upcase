@@ -65,7 +65,7 @@ class Section < ActiveRecord::Base
   end
 
   def must_have_at_least_one_teacher
-    errors.add_to_base("must specify at least one teacher") unless self.teachers.any?
+    errors.add(:base, "must specify at least one teacher") unless self.teachers.any?
   end
 
   def send_follow_up_emails
