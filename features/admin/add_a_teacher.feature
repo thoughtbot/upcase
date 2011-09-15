@@ -22,6 +22,10 @@ Feature: Add a teacher
     When I go to the admin page
     And I follow "New Section" within the course "Test-Driven Sleeping"
     And I follow "Create New Teacher"
+    When I fill in the teacher's name with ""
+    And I fill in the teacher's email with ""
+    And I press "Save Teacher"
+    Then I should see "can't be blank"
     And I fill in the teacher's name with "Samuel Beckett"
     And I fill in the teacher's bio with "He's, like, famous or something."
     And I fill in the teacher's email with "sbeckett@example.com"
