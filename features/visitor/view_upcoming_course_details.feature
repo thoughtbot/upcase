@@ -1,5 +1,14 @@
 Feature: Viewing upcoming course details
 
+  Scenario: Upcoming course price format
+    Given the following course exists:
+      | name                | location name     | location                        | start at | stop at  | price |
+      | Test-Driven Haskell | Thoughtbot Office | 41 Winter St., Boston, MA 02108 | 09:00:00 | 12:00:00 | 1000  |
+    When I go to the home page
+    Then I should see "Test-Driven Haskell"
+    When I follow "Test-Driven Haskell"
+    Then I should see "$1,000"
+
   Scenario: Course has FAQ
     Given a course exists with a name of "Test-Driven Erlang"
     And the following questions exist:

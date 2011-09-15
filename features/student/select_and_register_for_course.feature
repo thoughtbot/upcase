@@ -35,7 +35,7 @@ Feature: Selecting a course and registering for it
     And KISSmetrics receives the "Started Registration" event with:
       | Course Name | Test-Driven Haskell |
     Then I should see "Complete your registration for Test-Driven Haskell"
-    And I should see "$10000000"
+    And I should see "$10,000,000"
     When I fill in the following:
       | First name            | Carlos             |
       | Last name             | Santana            |
@@ -140,7 +140,7 @@ Feature: Selecting a course and registering for it
     And I fill in "Short description" with "Short description"
     And I fill in "Course Description" with "It is great!"
     And I select "Developers" from "Audience"
-    And I fill in "Price" with "100"
+    And I fill in "Price" with "10000"
     And I fill in "Location Address" with "123 Main St."
     And I fill in "Max Enrollment" with "5"
     And I fill in "Start at" with "09:00"
@@ -155,12 +155,12 @@ Feature: Selecting a course and registering for it
     And I follow "Test-Driven Haskell"
     And I follow "Register"
     Then I should see "Complete your registration for Test-Driven Haskell"
-    And I should see "$100"
+    And I should see "$10,000"
     When I follow "Have a coupon code?"
     Then the coupon form should be visible
     And I fill in "Code" with "VALENTINES"
     And I press "Apply Coupon"
-    Then I should see "$90"
+    Then I should see "$9,000"
     And the coupon form should be hidden
     And the coupon form link should be hidden
     And I fill in the following:
@@ -188,8 +188,8 @@ Feature: Selecting a course and registering for it
     And the invoice for "carlos@santana.com" has a discount of "10"
     And the invoice for "carlos@santana.com" has the following line item:
       | name     | unit_cost  | quantity | description         |
-      | Workshop | 100        | 1        | Test-Driven Haskell |
-  
+      | Workshop | 10000      | 1        | Test-Driven Haskell |
+
   @selenium
   Scenario: User registers with an invalid coupon
     Given today is June 10, 2010

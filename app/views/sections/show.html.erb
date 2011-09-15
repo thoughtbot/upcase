@@ -30,9 +30,9 @@
 
         <h3>Cost</h3>
         <% unless @section.full? %>
-          <p class="cost"><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></p>
+          <p class="cost"><%= number_to_currency @section.calculate_price, :precision => 0 %></p>
         <% else %>
-          <p class="cost sold-out"><%= number_to_currency @section.calculate_price, :precision => 0, :delimiter => '' %></p>
+          <p class="cost sold-out"><%= number_to_currency @section.calculate_price, :precision => 0 %></p>
           <p class="notice">Sold Out</p>
         <% end %>
 

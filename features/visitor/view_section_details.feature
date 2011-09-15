@@ -5,7 +5,7 @@ Feature: Viewing section details
     And a teacher exists with a name of "Ralph Bot"
     And the following course exists:
       | name                | location name     | location                        | start at | stop at  | price |
-      | Test-Driven Haskell | Thoughtbot Office | 41 Winter St., Boston, MA 02108 | 09:00:00 | 12:00:00 | 100   |
+      | Test-Driven Haskell | Thoughtbot Office | 41 Winter St., Boston, MA 02108 | 09:00:00 | 12:00:00 | 1000  |
     And the following section exists:
       | course                    | starts on     | ends on       |
       | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
@@ -21,7 +21,7 @@ Feature: Viewing section details
     And I see the section location's name is "Thoughtbot Office"
     And I should see "June 13-16, 2010"
     And I should see "9:00AM-12:00PM"
-    And I should see "$100"
+    And I should see "$1,000"
     And I see that one of the teachers is "Ralph Bot"
     And I see "Ralph Bot"'s avatar
     And I see the question "What color?"
