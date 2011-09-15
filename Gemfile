@@ -23,6 +23,7 @@ gem "dynamic_form"
 gem "snogmetrics"
 gem "split", :git => "git://github.com/jasonm/split.git"
 gem 'SystemTimer', :platform => :ruby_18
+gem "rack-rewrite"
 
 # Fix the warning: regexp match /.../n against to UTF-8 string issue
 gem "escape_utils"
