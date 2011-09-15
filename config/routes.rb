@@ -15,7 +15,6 @@ Workshops::Application.routes.draw do
     resources :courses do
       resource :position
       resources :sections
-      resources :teachers
       resources :follow_ups
       resources :questions, :only => [:destroy]
     end
@@ -24,6 +23,7 @@ Workshops::Application.routes.draw do
     resources :sections do
       resources :registrations
     end
+    resources :teachers, :except => :destroy
   end
 
   match '/watch' => 'high_voltage/pages#show', :as => :watch, :id => 'watch'
