@@ -17,6 +17,10 @@ module NavigationHelpers
       new_password_path
     when 'the list of courses'
       admin_courses_path
+    when 'the new teacher page'
+      new_admin_teacher_path
+    when 'the list of teachers page'
+      admin_teachers_path
     when /^the new section page for "([^"]+)"$/
       course = Course.find_by_name!($1)
       new_admin_course_section_path(course)
