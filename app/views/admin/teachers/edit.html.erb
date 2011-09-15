@@ -1,1 +1,10 @@
+<% content_for :nav do -%>
+  <ul>
+    <li><%= link_to "Courses", admin_courses_path %></li>
+    <li><%= link_to "Teachers", admin_teachers_path %></li>
+    <li class="raquo">&raquo;</li>
+    <li><%= link_to @teacher.name, "#" %></li>
+  </ul>
+<% end -%>
+
 <%= render "inputs" %>
