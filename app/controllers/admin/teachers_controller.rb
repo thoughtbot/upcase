@@ -17,4 +17,17 @@ class Admin::TeachersController < AdminController
       render :new
     end
   end
+
+  def edit
+    @teacher = Teacher.find(params[:id])
+  end
+
+  def update
+    @teacher = Teacher.find(params[:id])
+    if @teacher.update_attributes(params[:teacher])
+      redirect_to admin_teachers_path
+    else
+      render :edit
+    end
+  end
 end
