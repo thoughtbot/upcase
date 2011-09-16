@@ -46,3 +46,5 @@
     _kmq.push(['set', { '<%= experiment.name %>': '<%= ab_test(experiment.name, *experiment.alternative_names) %>' }]);
   <% end %>
 </script>
+
+<%= render 'shared/javascript_olark' %>
