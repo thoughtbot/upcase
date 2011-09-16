@@ -57,8 +57,8 @@ GEM
       rails (~> 3.0.0)
     columnize (0.3.4)
     configuration (1.2.0)
-    copycopter_client (1.0.2)
-      i18n (~> 0.5.0)
+    copycopter_client (1.1.0)
+      i18n (>= 0.5.0)
       json
     crack (0.1.8)
     cucumber (1.0.6)
@@ -215,7 +215,7 @@ DEPENDENCIES
   acts_as_list
   capybara
   clearance (~> 0.11.0)
-  copycopter_client (~> 1.0.1)
+  copycopter_client (~> 1.1.0)
   cucumber-rails (= 1.0.2)
   database_cleaner
   dynamic_form
