@@ -9,6 +9,10 @@ module NavigationHelpers
       courses_path(:format => :json)
     when /the courses json page with the callback "([^"]+)"/
       courses_path(:format => :json, :callback => $1)
+    when /the course page of "([^"]+)"/
+      course_path(Course.find_by_name!($1))
+    when /the section page of "([^"]+)"/
+      section_path(Course.find_by_name!($1).active_section)
     when 'the sign up page'
       sign_up_path
     when 'the sign in page'

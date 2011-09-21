@@ -22,6 +22,10 @@ class Section < ActiveRecord::Base
     order("starts_on asc")
   end
 
+  def self.in_public_course
+    joins(:course).where(:courses => {:public => true})
+  end
+
   def time_range
     "#{course.start_at.to_s(:time).strip}-#{course.stop_at.to_s(:time).strip}"
   end
