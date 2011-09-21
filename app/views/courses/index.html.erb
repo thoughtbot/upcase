@@ -12,7 +12,7 @@
           <% if audience.courses.only_public.any? %>
             <h2><%= audience.name %></h2>
             <ul>
-              <%= render audience.courses %>
+              <%= render audience.courses.only_public %>
             </ul>
           <% end %>
         <% end %>
