@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find(params[:id])
+    @course = Course.only_public.find(params[:id])
     if @course.active?
       flash.keep
       redirect_to(@course.active_section)

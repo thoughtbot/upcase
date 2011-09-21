@@ -9,7 +9,7 @@
         <p id="no-courses">No courses are running at this time.</p>
       <% else %>
         <% @audiences.each do |audience| %>
-          <% if audience.courses.any? %>
+          <% if audience.courses.only_public.any? %>
             <h2><%= audience.name %></h2>
             <ul>
               <%= render audience.courses %>

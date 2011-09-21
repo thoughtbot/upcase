@@ -18,6 +18,10 @@ class Course < ActiveRecord::Base
     where("courses.id not in (select sections.course_id from sections where sections.ends_on >= ?)", Date.today)
   end
 
+  def self.only_public
+    where(:public => true)
+  end
+
   def questions_with_blank
     questions + [questions.new]
   end

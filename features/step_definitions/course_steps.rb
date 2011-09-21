@@ -22,4 +22,10 @@ Then /^I should see the json for the courses with the callback "([^"]*)"$/ do |c
   JSON.parse(matches[1]).should == JSON.parse(courses_json(courses))
 end
 
+Given /^a course "([^"]*)" is maked as unpublic$/ do |course_name|
+  course = Course.find_by_name!(course_name)
+  course.public = false
+  course.save!
+end
+
 World(CoursesHelper)
