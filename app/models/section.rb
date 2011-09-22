@@ -62,6 +62,10 @@ class Section < ActiveRecord::Base
     "#{id}-#{course_name.parameterize}"
   end
 
+  def seats_available
+    self[:seats_available] || course.maximum_students
+  end
+
   protected
 
   def self.xml_content(document, tag_name)

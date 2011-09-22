@@ -2,18 +2,23 @@ Feature: Scheduling a new course
 
   Scenario: Adding a new section for a course
     Given I am signed in as an admin
-    And a course exists with a name of "Test-Driven Sleeping"
+    And the following course exists:
+      | name                 | maximum students |
+      | Test-Driven Sleeping | 10               |
     And a teacher exists with a name of "Albert Einstein"
     When I go to the admin page
     And I follow "New Section" within the course "Test-Driven Sleeping"
+    Then the seats available field should contain "10"
     When I select the start date of "June 14, 2010"
     And I select the end date of "June 17, 2010"
     And I select the teacher "Albert Einstein"
+    And I fill in the seats available with "8"
     And I press "Save Section"
     Then I see the successful section creation notice
     And I see the section from "June 14, 2010" to "June 17, 2010"
     When I follow the link to the section from "June 14, 2010" to "June 17, 2010"
     Then I see that "Albert Einstein" is teaching
+    Then the seats available field should contain "8"
 
   Scenario: Scheduling a section emails teachers about the section
     Given I am signed in as an admin
