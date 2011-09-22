@@ -29,7 +29,7 @@ Feature: Viewing section details
     And I see the question "Pets allowed?"
     And I see the answer "No"
 
-  Scenario: Viewing a section that is full
+  Scenario: Viewing a course that is full
     Given today is June 10, 2010
     And the following course exists:
       | name                | maximum students |
@@ -37,6 +37,21 @@ Feature: Viewing section details
     And the following section exists:
       | id   | course                    | starts on     | ends on       |
       | 1234 | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
+    And "Test-Driven Haskell" has 5 registrations
+    When I go to the home page
+    And I follow "Test-Driven Haskell"
+    Then I should not see the external registration link
+    And I should see "Sold Out"
+    And I should see "Want to be notified the next time we run this workshop?"
+
+  Scenario: Viewing a smaller section that is full
+    Given today is June 10, 2010
+    And the following course exists:
+      | name                | maximum students |
+      | Test-Driven Haskell | 20               |
+    And the following section exists:
+      | id   | course                    | starts on     | ends on       | seats available |
+      | 1234 | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 | 5               |
     And "Test-Driven Haskell" has 5 registrations
     When I go to the home page
     And I follow "Test-Driven Haskell"
