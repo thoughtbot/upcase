@@ -31,7 +31,7 @@ class Section < ActiveRecord::Base
   end
 
   def full?
-    registrations.count >= course.maximum_students
+    registrations.count >= seats_available
   end
 
   def calculate_price(coupon = nil)
@@ -63,7 +63,7 @@ class Section < ActiveRecord::Base
   end
 
   def seats_available
-    self[:seats_available] || course.maximum_students
+    super || course.maximum_students
   end
 
   protected
