@@ -5,12 +5,6 @@
                            :teachers => @teachers } %>
 
   <div id="admin-section-right">
-    <div id="seats-available" class="clearfix">
-      <label>
-        <input type="text" value="12" />
-        Seats Available
-      </label>
-    </div>
     <div id="student-list" class="cool-list">
       <h3>
         <%= pluralize @section.students.size, "Student" %> [<%= mail_to 'workshops@thoughtbot.com', 'email', :subject => @section.course.name, :bcc => @section.students.map(&:email).join(",") %>]
