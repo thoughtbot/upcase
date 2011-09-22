@@ -101,6 +101,8 @@ module NavigationHelpers
       'section_ends_on'
     when 'section teacher'
       'section_section_teachers_attributes_0_teacher_id'
+    when 'seats available'
+      'section_seats_available'
     when 'session email'
       'session_email'
     when 'session password'
