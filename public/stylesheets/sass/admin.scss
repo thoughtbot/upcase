@@ -1366,7 +1366,14 @@ body.clearance-sessions, body.clearance-passwords {
           padding: 0 10px;
           font-size: 12px;
           color: $tan;
-         }
+        }
+      }
+      li.registration {
+        padding: 0 8px;
+        .name {
+          padding-right: 10px;
+          font-weight: bold;
+        }
       }
       a.remove-teacher {
         position: absolute;

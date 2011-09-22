@@ -1353,6 +1353,13 @@ body.clearance-sessions #content .wrapper, body.clearance-passwords #content .wr
     padding: 0 10px;
     font-size: 12px;
     color: #e5dccb; }
+#content .wrapper .dark-content #teacher-list ul li.registration,
+#content .wrapper .dark-content #student-list ul li.registration {
+  padding: 0 8px; }
+  #content .wrapper .dark-content #teacher-list ul li.registration .name,
+  #content .wrapper .dark-content #student-list ul li.registration .name {
+    padding-right: 10px;
+    font-weight: bold; }
 #content .wrapper .dark-content #teacher-list ul a.remove-teacher,
 #content .wrapper .dark-content #student-list ul a.remove-teacher {
   position: absolute;
