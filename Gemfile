@@ -32,6 +32,10 @@ group :development do
   gem 'ruby-debug19', :require => 'ruby-debug', :platform => :ruby_19
 end
 
+group :development, :test do
+  gem "rspec-rails", "2.6.1"
+end
+
 group :test do
   gem "headless"
   gem "cucumber-rails", "1.0.2"
@@ -40,7 +44,6 @@ group :test do
   gem "factory_girl_rails", "~> 1.1.0"
   gem "launchy"
   gem "database_cleaner"
-  gem "rspec-rails", "2.6.1"
   gem "treetop"
   gem "sinatra"
   gem "timecop"
