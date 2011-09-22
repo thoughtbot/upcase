@@ -20,3 +20,19 @@ Feature: Editing a Section
     And I follow the link to the section from "June 14, 2010" to "June 14, 2010"
     Then I do not see that "Albert Einstein" is teaching
     And I see that "Nikola Tesla" is teaching
+
+  Scenario: Edit number of seats available
+    Given I am signed in as an admin
+    And the following course exists:
+      | name                 | maximum students |
+      | Test-Driven Sleeping | 20               |
+    And I create the following section for "Test-Driven Sleeping":
+      | Starts on | January 13, 2011 |
+      | Ends on   | January 15, 2011 |
+    When I go to the admin page
+    And I follow the link to the section from "January 13, 2011" to "January 15, 2011"
+    Then the seats available field should contain "20"
+    When I fill in the seats available with "8"
+    And I press "Save Section"
+    And I follow the link to the section from "January 13, 2011" to "January 15, 2011"
+    Then the seats available field should contain "8"
