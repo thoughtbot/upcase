@@ -38,4 +38,5 @@ Workshops::Application.routes.draw do
   match '/group-training' => "high_voltage/pages#show", :as => :group_training, :id => "group-training"
 
   match '/backbone-js-on-rails' => "high_voltage/pages#show", :as => :backbone_js_on_rails, :id => "backbone-js-on-rails"
+  match '/charlotte' => "high_voltage/pages#show", :as => :charlotte, :id => "charlotte"
 end
