@@ -758,10 +758,11 @@ body.courses-show #additional-information {
         color: #ad141e;
         font: 700 16px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
         margin: 0 0 2px 0; }
-      body.high_voltage-pages #additional-information #additional-information-wrapper #sidebar p.bio,
-      body.sections-show #additional-information #additional-information-wrapper #sidebar p.bio,
-      body.courses-show #additional-information #additional-information-wrapper #sidebar p.bio {
-        font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
+      body.high_voltage-pages #additional-information #additional-information-wrapper #sidebar .bio p,
+      body.sections-show #additional-information #additional-information-wrapper #sidebar .bio p,
+      body.courses-show #additional-information #additional-information-wrapper #sidebar .bio p {
+        font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        margin: 0 0 6px 0; }
 
 body.courses #additional-information #faq {
   border-bottom: none; }
