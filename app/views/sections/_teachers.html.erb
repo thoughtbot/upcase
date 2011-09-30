@@ -3,9 +3,9 @@
     <%= content_tag(:li, teacher) do %>
       <%= teacher_gravatar(teacher, 92) %>
       <h5><%= teacher.name %></h5>
-      <p class="bio">
+      <section class="bio">
         <%= raw textilize teacher.bio %>
-      </p>
+      </section>
     <% end %>
   <% end %>
 </ul>
