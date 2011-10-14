@@ -1310,9 +1310,15 @@ body.clearance-sessions #content .wrapper, body.clearance-passwords #content .wr
     background: #000; }
 
 #admin-section-right {
-  width: 385px;
-  float: right;
   margin: 10px 0 0 0; }
+
+#section_teachers_input {
+  border-radius: 5px;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1, rgba(0, 0, 0, 0.5)), color-stop(0, rgba(0, 0, 0, 0.25)));
+  background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.25) 100%);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  padding: 0 10px 15px 10px; }
 
 #content .wrapper .dark-content #teacher-list h3,
 #content .wrapper .dark-content #student-list h3 {
