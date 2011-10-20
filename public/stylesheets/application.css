@@ -402,6 +402,10 @@ body.high_voltage-pages #head-wrapper #homepage-top,
 body.sections-show #head-wrapper #homepage-top,
 body.courses-show #head-wrapper #homepage-top {
   padding: 25px 0 0 0; }
+  body.high_voltage-pages #head-wrapper #homepage-top em,
+  body.sections-show #head-wrapper #homepage-top em,
+  body.courses-show #head-wrapper #homepage-top em {
+    font-style: italic; }
   body.high_voltage-pages #head-wrapper #homepage-top header,
   body.sections-show #head-wrapper #homepage-top header,
   body.courses-show #head-wrapper #homepage-top header {
@@ -615,6 +619,17 @@ body.courses-show #head-wrapper #homepage-top {
       border-bottom: 1px solid #ad141e;
       color: #333;
       text-decoration: none; }
+  body.high_voltage-pages #head-wrapper #homepage-top ul.two-column,
+  body.sections-show #head-wrapper #homepage-top ul.two-column,
+  body.courses-show #head-wrapper #homepage-top ul.two-column {
+    display: inline-block;
+    vertical-align: top;
+    width: 280px;
+    padding-right: 40px; }
+  body.high_voltage-pages #head-wrapper #homepage-top section#backbone-js-on-rails-qa-live-chat-full-notes h3,
+  body.sections-show #head-wrapper #homepage-top section#backbone-js-on-rails-qa-live-chat-full-notes h3,
+  body.courses-show #head-wrapper #homepage-top section#backbone-js-on-rails-qa-live-chat-full-notes h3 {
+    margin-top: 3em; }
 body.high_voltage-pages #register-below-the-fold,
 body.sections-show #register-below-the-fold,
 body.courses-show #register-below-the-fold {

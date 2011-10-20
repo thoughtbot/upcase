@@ -7,6 +7,10 @@ body.courses-show {
       @extend .clearfix;
       padding: 25px 0 0 0;
 
+      em {
+        font-style: italic;
+      }
+
       header {
         margin: 0 0 24px 0;
 
@@ -179,6 +183,21 @@ body.courses-show {
           text-decoration: none;
         }
       }
+
+      ul.two-column {
+        display: inline-block;
+        vertical-align: top;
+        width: 280px;
+        padding-right: 40px;
+      }
+
+      section#backbone-js-on-rails-qa-live-chat-full-notes {
+
+        h3 {
+          margin-top: 3em;
+        }
+      }
+
     }
   }
 
