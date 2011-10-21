@@ -223,7 +223,7 @@ DEPENDENCIES
   escape_utils
   factory_girl (~> 2.0.4)
   factory_girl_rails (~> 1.1.0)
-  formtastic
+  formtastic (~> 1.0)
   headless
   heroku
   high_voltage
