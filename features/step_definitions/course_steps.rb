@@ -10,13 +10,13 @@ Given 'I create the following course:' do |course_fields|
   }
 end
 
-Then /^I should see the json for the courses$/ do
-  courses = Course.all
+Then /^I should see the json for the public courses$/ do
+  courses = Course.only_public
   JSON.parse(page.source).should == JSON.parse(courses_json(courses))
 end
 
-Then /^I should see the json for the courses with the callback "([^"]*)"$/ do |callback|
-  courses = Course.all
+Then /^I should see the json for the public courses with the callback "([^"]*)"$/ do |callback|
+  courses = Course.only_public
   matcher = /#{callback}\(([^\)]+)\)/
   matches = matcher.match(page.body)
   JSON.parse(matches[1]).should == JSON.parse(courses_json(courses))

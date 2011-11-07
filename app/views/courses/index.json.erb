@@ -1,1 +1,1 @@
-<%= courses_json(@audiences.collect {|a| a.courses}.flatten, params[:callback]) -%>
+<%= courses_json(@audiences.collect {|a| a.courses.only_public}.flatten, params[:callback]) -%>
