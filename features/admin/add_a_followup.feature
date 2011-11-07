@@ -1,7 +1,7 @@
 Feature: Adding followups for a course
 
   Scenario: Adding a followup for a course
-    Given today is June 13, 2010
+    Given today is June 13, 2010 12:00pm
     And I am signed in as an admin
     And a course exists with a name of "Test-Driven Sleeping"
     And a teacher exists with a name of "Albert Einstein"
