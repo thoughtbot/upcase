@@ -1,4 +1,5 @@
 @import "reset";
+@import "bourbon/bourbon";
 @import "mixins";
 @import "flashes";
 @import "header";
@@ -7,6 +8,7 @@
 @import "pages";
 @import "registrations";
 @import "footer";
+
 
 body {
   background: #fcfcfc;

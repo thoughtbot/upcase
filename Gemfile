@@ -4,6 +4,7 @@ gem "rails", "3.0.10"
 gem "rack"
 
 gem "pg"
+gem "bourbon", "~> 1.2.0"
 gem "RedCloth", :require => "redcloth"
 gem "will_paginate"
 gem "formtastic", "~> 1.0"

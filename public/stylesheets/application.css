@@ -66,8 +66,6 @@ body.courses-show #additional-information #additional-information-wrapper #sideb
   height: 0; }
 
 /* variables */
-/* mixins
----------------------------------------- */
 /*line-height of all the type on the site*/
 /*one grid column*/
 /*size of one gutter*/
@@ -92,16 +90,19 @@ div#flash {
     background: -moz-linear-gradient(top, #595959, #3c3c3c);
     border: 1px solid #353535;
     border-top: 0;
-    -moz-border-radius: 0 0 8px 8px;
     -webkit-border-radius: 0 0 8px 8px;
+    -moz-border-radius: 0 0 8px 8px;
+    -ms-border-radius: 0 0 8px 8px;
+    -o-border-radius: 0 0 8px 8px;
     border-radius: 0 0 8px 8px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    -webkit-box-shadow: inset #727272 0px -1px 0px 0px;
-    -moz-box-shadow: inset #727272 0px -1px 0px 0px;
-    -o-box-shadow: inset #727272 0px -1px 0px 0px;
-    box-shadow: inset #727272 0px -1px 0px 0px;
+    -webkit-box-shadow: compact(inset #727272 0px -1px 0px 0px, false, false, false, false, false, false, false, false);
+    -moz-box-shadow: compact(inset #727272 0px -1px 0px 0px, false, false, false, false, false, false, false, false);
+    -ms-box-shadow: compact(inset #727272 0px -1px 0px 0px, false, false, false, false, false, false, false, false);
+    -o-box-shadow: compact(inset #727272 0px -1px 0px 0px, false, false, false, false, false, false, false, false);
+    box-shadow: compact(inset #727272 0px -1px 0px 0px, false, false, false, false, false, false, false, false);
     height: 50px;
     margin: -50px 0 0;
     /*****/
@@ -118,8 +119,10 @@ div#flash {
   div#flash div#flash_close {
     background: #434343;
     border: 1px solid #353535;
-    -moz-border-radius: 20px;
     -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
     border-radius: 20px;
     cursor: pointer;
     float: right;
@@ -150,10 +153,11 @@ div#flash {
     -moz-border-radius: 30px;
     -webkit-border-radius: 30px;
     border-radius: 30px;
-    -webkit-box-shadow: inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px;
-    -moz-box-shadow: inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px;
-    -o-box-shadow: inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px;
-    box-shadow: inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px;
+    -webkit-box-shadow: compact(inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px, false, false, false, false, false, false, false);
+    -moz-box-shadow: compact(inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px, false, false, false, false, false, false, false);
+    -ms-box-shadow: compact(inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px, false, false, false, false, false, false, false);
+    -o-box-shadow: compact(inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px, false, false, false, false, false, false, false);
+    box-shadow: compact(inset black 0px 1px 0px 0px, #727272 0px 1px 0px 0px, false, false, false, false, false, false, false);
     height: 30px;
     margin-right: 12px;
     position: relative;
@@ -161,8 +165,10 @@ div#flash {
     div#flash div#flash_icon div#icon_status {
       height: 20px;
       margin: 5px auto 0;
-      -moz-border-radius: 20px;
       -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      -ms-border-radius: 20px;
+      -o-border-radius: 20px;
       border-radius: 20px;
       width: 20px; }
       div#flash div#flash_icon div#icon_status div#gloss {
@@ -174,8 +180,10 @@ div#flash {
         height: 16px;
         margin: 0 auto;
         position: relative;
-        -moz-border-radius: 16px;
         -webkit-border-radius: 16px;
+        -moz-border-radius: 16px;
+        -ms-border-radius: 16px;
+        -o-border-radius: 16px;
         border-radius: 16px;
         top: 1px;
         width: 16px; }
@@ -294,10 +302,11 @@ header#main-header {
     background: #fff;
     width: 315px; }
   #class-photos ul li {
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-    -o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    -webkit-box-shadow: compact(0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset, false, false, false, false, false, false, false);
+    -moz-box-shadow: compact(0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset, false, false, false, false, false, false, false);
+    -ms-box-shadow: compact(0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset, false, false, false, false, false, false, false);
+    -o-box-shadow: compact(0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset, false, false, false, false, false, false, false);
+    box-shadow: compact(0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset, false, false, false, false, false, false, false);
     float: left;
     height: 205px;
     list-style-type: none;
@@ -309,10 +318,11 @@ header#main-header {
     #class-photos ul li.last {
       margin: 0 0 0 25px; }
     #class-photos ul li:after {
-      -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      -o-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      -webkit-box-shadow: compact(0 8px 16px rgba(0, 0, 0, 0.3), false, false, false, false, false, false, false, false);
+      -moz-box-shadow: compact(0 8px 16px rgba(0, 0, 0, 0.3), false, false, false, false, false, false, false, false);
+      -ms-box-shadow: compact(0 8px 16px rgba(0, 0, 0, 0.3), false, false, false, false, false, false, false, false);
+      -o-box-shadow: compact(0 8px 16px rgba(0, 0, 0, 0.3), false, false, false, false, false, false, false, false);
+      box-shadow: compact(0 8px 16px rgba(0, 0, 0, 0.3), false, false, false, false, false, false, false, false);
       position: absolute;
       background: transparent;
       width: 70%;
@@ -325,10 +335,11 @@ header#main-header {
       -moz-transform: skew(15deg) rotate(6deg);
       z-index: -1; }
     #class-photos ul li:before {
-      -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      -o-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      -webkit-box-shadow: compact(0 8px 16px rgba(0, 0, 0, 0.3), false, false, false, false, false, false, false, false);
+      -moz-box-shadow: compact(0 8px 16px rgba(0, 0, 0, 0.3), false, false, false, false, false, false, false, false);
+      -ms-box-shadow: compact(0 8px 16px rgba(0, 0, 0, 0.3), false, false, false, false, false, false, false, false);
+      -o-box-shadow: compact(0 8px 16px rgba(0, 0, 0, 0.3), false, false, false, false, false, false, false, false);
+      box-shadow: compact(0 8px 16px rgba(0, 0, 0, 0.3), false, false, false, false, false, false, false, false);
       z-index: -2;
       position: absolute;
       background: transparent;
@@ -545,36 +556,58 @@ body.courses-show #head-wrapper #homepage-top {
         text-align: center;
         text-shadow: 0 -1px 0 #7f0f16;
         width: 200px;
-        -webkit-box-shadow: inset 0 1px 0 #e93e49;
-        -moz-box-shadow: inset 0 1px 0 #e93e49;
-        -o-box-shadow: inset 0 1px 0 #e93e49;
-        box-shadow: inset 0 1px 0 #e93e49;
-        -moz-border-radius: 3px;
+        -webkit-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+        -moz-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+        -ms-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+        -o-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+        box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
         -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
         border-radius: 3px;
-        -webkit-transition: all 0.3s;
-        -moz-transitition: all 0.3s;
-        transitition: all 0.3s; }
+        -webkit-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+        -moz-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+        -ms-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+        -o-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+        transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+        -webkit-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+        -moz-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+        -ms-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+        -o-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+        transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+        -webkit-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+        -moz-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+        -ms-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+        -o-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+        transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+        -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+        -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+        -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+        -o-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+        transition-delay: compact(0, false, false, false, false, false, false, false, false); }
         body.high_voltage-pages #head-wrapper #homepage-top #workshop-details #register a:hover,
         body.sections-show #head-wrapper #homepage-top #workshop-details #register a:hover,
         body.courses-show #head-wrapper #homepage-top #workshop-details #register a:hover {
           background: #c41722;
           border: 1px solid #7f0f16;
           text-shadow: 0 -1px 0 #96111a;
-          -webkit-box-shadow: inset 0 1px 0 #ee6c74;
-          -moz-box-shadow: inset 0 1px 0 #ee6c74;
-          -o-box-shadow: inset 0 1px 0 #ee6c74;
-          box-shadow: inset 0 1px 0 #ee6c74;
+          -webkit-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+          -moz-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+          -ms-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+          -o-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+          box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
           cursor: pointer; }
         body.high_voltage-pages #head-wrapper #homepage-top #workshop-details #register a:active,
         body.sections-show #head-wrapper #homepage-top #workshop-details #register a:active,
         body.courses-show #head-wrapper #homepage-top #workshop-details #register a:active {
           background: #96111a;
           text-shadow: none;
-          -webkit-box-shadow: inset 0 -1px 3px #680c12;
-          -moz-box-shadow: inset 0 -1px 3px #680c12;
-          -o-box-shadow: inset 0 -1px 3px #680c12;
-          box-shadow: inset 0 -1px 3px #680c12; }
+          -webkit-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+          -moz-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+          -ms-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+          -o-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+          box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false); }
     body.high_voltage-pages #head-wrapper #homepage-top #workshop-details h3,
     body.sections-show #head-wrapper #homepage-top #workshop-details h3,
     body.courses-show #head-wrapper #homepage-top #workshop-details h3 {
@@ -648,16 +681,36 @@ body.courses-show #register-below-the-fold {
     text-align: center;
     text-shadow: 0 -1px 0 #7f0f16;
     width: 200px;
-    -webkit-box-shadow: inset 0 1px 0 #e93e49;
-    -moz-box-shadow: inset 0 1px 0 #e93e49;
-    -o-box-shadow: inset 0 1px 0 #e93e49;
-    box-shadow: inset 0 1px 0 #e93e49;
-    -moz-border-radius: 3px;
+    -webkit-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+    -moz-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+    -ms-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+    -o-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+    box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
     -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
     border-radius: 3px;
-    -webkit-transition: all 0.3s;
-    -moz-transitition: all 0.3s;
-    transitition: all 0.3s;
+    -webkit-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+    -moz-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+    -ms-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+    -o-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+    transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+    -webkit-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+    -moz-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+    -ms-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+    -o-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+    transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+    -webkit-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+    -moz-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+    -ms-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+    -o-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+    transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+    -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+    -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+    -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+    -o-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+    transition-delay: compact(0, false, false, false, false, false, false, false, false);
     width: 800px;
     margin: 0 auto;
     text-decoration: none; }
@@ -667,20 +720,22 @@ body.courses-show #register-below-the-fold {
       background: #c41722;
       border: 1px solid #7f0f16;
       text-shadow: 0 -1px 0 #96111a;
-      -webkit-box-shadow: inset 0 1px 0 #ee6c74;
-      -moz-box-shadow: inset 0 1px 0 #ee6c74;
-      -o-box-shadow: inset 0 1px 0 #ee6c74;
-      box-shadow: inset 0 1px 0 #ee6c74;
+      -webkit-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+      -moz-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+      -ms-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+      -o-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+      box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
       cursor: pointer; }
     body.high_voltage-pages #register-below-the-fold a:active,
     body.sections-show #register-below-the-fold a:active,
     body.courses-show #register-below-the-fold a:active {
       background: #96111a;
       text-shadow: none;
-      -webkit-box-shadow: inset 0 -1px 3px #680c12;
-      -moz-box-shadow: inset 0 -1px 3px #680c12;
-      -o-box-shadow: inset 0 -1px 3px #680c12;
-      box-shadow: inset 0 -1px 3px #680c12; }
+      -webkit-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+      -moz-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+      -ms-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+      -o-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+      box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false); }
 body.high_voltage-pages #additional-information,
 body.sections-show #additional-information,
 body.courses-show #additional-information {
@@ -784,8 +839,10 @@ body.courses #additional-information #faq {
 
 #notify-me {
   background: rgba(0, 0, 0, 0.2);
-  -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
   border-radius: 5px;
   color: #ddd;
   margin: 0px 20px 20px 0;
@@ -796,8 +853,10 @@ body.courses #additional-information #faq {
     margin: 0 0 12px 0; }
   #notify-me input[type="text"] {
     border: 1px solid #cacaca;
-    -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
     border-radius: 4px;
     font-size: 14px;
     margin: 0 0 12px 0;
@@ -815,16 +874,36 @@ body.courses #additional-information #faq {
     text-align: center;
     text-shadow: 0 -1px 0 #7f0f16;
     width: 200px;
-    -webkit-box-shadow: inset 0 1px 0 #e93e49;
-    -moz-box-shadow: inset 0 1px 0 #e93e49;
-    -o-box-shadow: inset 0 1px 0 #e93e49;
-    box-shadow: inset 0 1px 0 #e93e49;
-    -moz-border-radius: 3px;
+    -webkit-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+    -moz-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+    -ms-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+    -o-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+    box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
     -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
     border-radius: 3px;
-    -webkit-transition: all 0.3s;
-    -moz-transitition: all 0.3s;
-    transitition: all 0.3s;
+    -webkit-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+    -moz-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+    -ms-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+    -o-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+    transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+    -webkit-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+    -moz-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+    -ms-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+    -o-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+    transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+    -webkit-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+    -moz-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+    -ms-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+    -o-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+    transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+    -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+    -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+    -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+    -o-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+    transition-delay: compact(0, false, false, false, false, false, false, false, false);
     display: inline;
     margin-right: 10px;
     padding: 8px 0;
@@ -833,18 +912,20 @@ body.courses #additional-information #faq {
       background: #c41722;
       border: 1px solid #7f0f16;
       text-shadow: 0 -1px 0 #96111a;
-      -webkit-box-shadow: inset 0 1px 0 #ee6c74;
-      -moz-box-shadow: inset 0 1px 0 #ee6c74;
-      -o-box-shadow: inset 0 1px 0 #ee6c74;
-      box-shadow: inset 0 1px 0 #ee6c74;
+      -webkit-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+      -moz-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+      -ms-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+      -o-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+      box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
       cursor: pointer; }
     #notify-me input[type="submit"]:active {
       background: #96111a;
       text-shadow: none;
-      -webkit-box-shadow: inset 0 -1px 3px #680c12;
-      -moz-box-shadow: inset 0 -1px 3px #680c12;
-      -o-box-shadow: inset 0 -1px 3px #680c12;
-      box-shadow: inset 0 -1px 3px #680c12; }
+      -webkit-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+      -moz-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+      -ms-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+      -o-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+      box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false); }
   #notify-me p.group-training {
     color: #666;
     display: inline;
@@ -969,32 +1050,54 @@ body.registrations form {
       text-align: center;
       text-shadow: 0 -1px 0 #7f0f16;
       width: 200px;
-      -webkit-box-shadow: inset 0 1px 0 #e93e49;
-      -moz-box-shadow: inset 0 1px 0 #e93e49;
-      -o-box-shadow: inset 0 1px 0 #e93e49;
-      box-shadow: inset 0 1px 0 #e93e49;
-      -moz-border-radius: 3px;
+      -webkit-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+      -moz-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+      -ms-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+      -o-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+      box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
       -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
       border-radius: 3px;
-      -webkit-transition: all 0.3s;
-      -moz-transitition: all 0.3s;
-      transitition: all 0.3s; }
+      -webkit-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+      -moz-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+      -ms-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+      -o-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+      transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
+      -webkit-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+      -moz-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+      -ms-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+      -o-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+      transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+      -webkit-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+      -moz-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+      -ms-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+      -o-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+      transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+      -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+      -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+      -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+      -o-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+      transition-delay: compact(0, false, false, false, false, false, false, false, false); }
       body.registrations form fieldset ol li input[type="submit"]:hover {
         background: #c41722;
         border: 1px solid #7f0f16;
         text-shadow: 0 -1px 0 #96111a;
-        -webkit-box-shadow: inset 0 1px 0 #ee6c74;
-        -moz-box-shadow: inset 0 1px 0 #ee6c74;
-        -o-box-shadow: inset 0 1px 0 #ee6c74;
-        box-shadow: inset 0 1px 0 #ee6c74;
+        -webkit-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+        -moz-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+        -ms-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+        -o-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+        box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
         cursor: pointer; }
       body.registrations form fieldset ol li input[type="submit"]:active {
         background: #96111a;
         text-shadow: none;
-        -webkit-box-shadow: inset 0 -1px 3px #680c12;
-        -moz-box-shadow: inset 0 -1px 3px #680c12;
-        -o-box-shadow: inset 0 -1px 3px #680c12;
-        box-shadow: inset 0 -1px 3px #680c12; }
+        -webkit-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+        -moz-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+        -ms-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+        -o-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+        box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false); }
 body.registrations #form-sidebar {
   float: left;
   padding: 50px 0 0 0;
@@ -1019,9 +1122,26 @@ footer#main-footer {
   padding-top: 80px;
   padding-bottom: 40px;
   width: 995px;
-  -webkit-transition: opacity 0.5s;
-  -moz-transitition: opacity 0.5s;
-  transitition: opacity 0.5s; }
+  -webkit-transition-property: compact(zip(opacity 0.5s), false, false, false, false, false, false, false, false);
+  -moz-transition-property: compact(zip(opacity 0.5s), false, false, false, false, false, false, false, false);
+  -ms-transition-property: compact(zip(opacity 0.5s), false, false, false, false, false, false, false, false);
+  -o-transition-property: compact(zip(opacity 0.5s), false, false, false, false, false, false, false, false);
+  transition-property: compact(zip(opacity 0.5s), false, false, false, false, false, false, false, false);
+  -webkit-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+  -moz-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+  -ms-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+  -o-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+  transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
+  -webkit-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+  -moz-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+  -ms-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+  -o-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+  transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+  -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+  -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+  -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+  -o-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+  transition-delay: compact(0, false, false, false, false, false, false, false, false); }
   footer#main-footer:hover {
     opacity: 1; }
   footer#main-footer h3 {
