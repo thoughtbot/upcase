@@ -3,62 +3,11 @@ $sans-serif: "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2",
 $serif: skolar-1, skolar-2, serif;
 $red: #ad141e;
 
-/* mixins
----------------------------------------- */
-@mixin border-radius ($radii) {
-  -moz-border-radius: $radii;
-  -webkit-border-radius: $radii;
-  border-radius: $radii;
-}
-
-// Box-Shadow Mixin Requires Sass v3.1.1+
-@mixin box-shadow ($shadow-1,
-  $shadow-2: false, $shadow-3: false,
-  $shadow-4: false, $shadow-5: false,
-  $shadow-6: false, $shadow-7: false,
-  $shadow-8: false, $shadow-9: false)
-  {
-    $full: $shadow-1;
-    @each $shadow in
-      $shadow-2, $shadow-3,
-      $shadow-4, $shadow-5,
-      $shadow-6, $shadow-7,
-      $shadow-8, $shadow-9{
-        @if $shadow {
-          $full: $full, $shadow;
-        }
-      }
-  -webkit-box-shadow: $full;
-  -moz-box-shadow: $full;
-  -o-box-shadow: $full;
-  box-shadow: $full;
-}
-
-@mixin linear-gradient ($from, $to) {
-  background: $from;
-  background: -moz-linear-gradient(top, $from, $to);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, $from), color-stop(1, $to));
-}
-
-@mixin transition ($transition) {
-  -webkit-transition: $transition;
-  -moz-transitition: $transition;
-  transitition: $transition;
-}
-
-@mixin transform ($transform) {
-  -webkit-transform: $transform;
-  -moz-transform: $transform;
-  transform: $transform;
-}
-
 $lh: 20px; /*line-height of all the type on the site*/
 $unit: 60px; /*one grid column*/
 $gutter: 25px; /*size of one gutter*/
-
-@function grid-width($n) {
-  @return $n * $unit + ($n - 1) * $gutter;
-}
+$gw-gutter: $gutter; // For Bourbon
+$gw-column: $unit;   // For Bourbon
 
 @mixin button {
   background: $red;

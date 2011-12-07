@@ -1,0 +1,210 @@
+$body: "skolar-1","skolar-2", Georgia, serif;
+
+/* Forms
+---------------------------------------- */
+
+// Extends
+//************************************************************************//
+.subtle {
+  color: #aaa;
+  font-size: 11px;
+  font-style: italic;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+
+//************************************************************************//
+// Base Form Styles
+//************************************************************************//
+form.wufoo {
+  margin-left: 0;
+  width: 630px;
+
+  header#header {
+    display: none;
+  }
+
+  $half-width-input: grid-width(3.5);
+
+  ul {
+    list-style: none;
+    margin-top: $lh;
+    padding: 4px;
+
+    li {
+      margin-bottom: $lh + 10px;
+      width: grid-width(8);
+      padding: 0;
+      margin-right: $gutter;
+
+      &.section {
+        padding-top: 25px;
+        margin-bottom: 10px;
+
+        h3 {
+          color: $red;
+          font-size: 24px;
+          padding: 0;
+          border-top: 0 !important;
+        }
+      }
+
+      fieldset {
+        background: none;
+        border: 0;
+        padding: 0;
+      }
+
+      label.desc, legend.desc, label, legend {
+        -webkit-font-smoothing: antialiased;
+        font: 14px $body;
+        font-weight: bold; // BECAUSE I SAID SO!!
+        line-height: $lh;
+        margin: 0 0 5px;
+        padding: 0;
+
+        &.choice {
+          display: inline;
+          font-weight: normal;
+        }
+      }
+
+      .req {
+        color: $red;
+      }
+
+      input.checkbox, input.radio {
+        display: inline-block;
+      }
+
+      // Default Input Styles
+      //************************************************************************//
+      input[type="text"], input[type="email"], input.text, textarea {
+        $input-width: grid-width(7) + $gutter; /*6 columns minus line-heigh for the padding and 2px for the border*/
+        border: 1px solid #999;
+        @include box-shadow( inset 0 1px 2px #aaa);
+        @include box-sizing(border-box);
+        font: 14px $body;
+        line-height: $lh;
+        margin: 0;
+        max-width: $input-width;
+        padding: ($lh/2)-(1) ($lh/2); /*line-height divided by two so that the bottom and top will align to the baseline grid*/
+        width: $input-width;
+
+        &:focus {
+          outline-color: $red;
+        }
+      }
+
+      input[type="text"], input[type="email"], input.text {
+
+      }
+
+      input#saveForm {
+        @extend .button;
+        display: block;
+        margin: 0;
+        padding: ($lh/2)-(2) ($lh*2); /*line-height divided by two so that the bottom and top will align to the baseline grid*/
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &:active {
+          background: darken($red, 5%);
+        }
+      }
+
+      .instruct {
+        color: #aaa;
+        font-size: 14px;
+        font-style: italic;
+        font-weight: normal;
+        margin: $lh $lh $lh*2;
+      }
+
+      &.focused {
+        background: none;
+        label {
+          color: #000;
+        }
+      }
+
+      // Phone & Email
+      //************************************************************************//
+      &.phone {
+        margin-right: 0;
+      }
+
+      &.email, &.phone {
+        width: 50%;
+        float: left;
+        clear: none;
+
+        input[type="text"], input.text, input[type="email"] {
+          width: $half-width-input;
+        }
+      }
+
+      // Name Input
+      //************************************************************************//
+      &.name {
+        @extend .clearfix;
+        float: none;
+        margin-bottom: 10px;
+        width: grid-width(6)+$gutter;
+
+        span {
+          display: block;
+          float: left;
+          margin-right: $gutter;
+          width: $half-width-input;
+
+          &:nth-child(odd) {
+            margin-right: 0;
+          }
+
+          input[type="text"] {
+            width: 100%;
+          }
+
+          &.req {
+            display: inline;
+            float: none;
+            margin: 0;
+            width: auto;
+          }
+
+          label {
+            @extend .subtle;
+          }
+        }
+      }
+
+      // Elevator Pitch
+      //************************************************************************//
+      &.pitch {
+        div label {
+          @extend .subtle;
+          line-height: 0.8em;
+        }
+      }
+
+      // Services list
+      //************************************************************************//
+      &.services {
+        legend {
+          padding-bottom: 10px;
+        }
+
+        span {
+          margin-bottom: 8px;
+
+          label {
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+  }
+}
