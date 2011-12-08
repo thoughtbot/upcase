@@ -189,7 +189,7 @@
         <%= if ab_test("wufoo", "embed", "direct") == "direct" %>
           <a href="https://thoughtbot.wufoo.com/forms/backbonejs-on-rails/" id="register-button">Get access to the book<br>and example app now</a>
         <% else %>
-          <a href="https://workshops.thoughtbot.com/pages/backbone-js-on-rails-checkout" id="register-button">Get access to the book<br>and example app now</a>
+          <a href="/pages/backbone-js-on-rails-checkout" id="register-button">Get access to the book<br>and example app now</a>
         <% end %>
       </section>
 
@@ -207,7 +207,7 @@
   <%= if ab_test("wufoo", "embed", "direct") == "direct" %>
     <a href="https://thoughtbot.wufoo.com/forms/backbonejs-on-rails/">Get access for just $49 and build amazing apps faster, with cleaner code &rarr;</a>
   <% else %>
-    <a href="https://workshops.thoughtbot.com/pages/backbone-js-on-rails-checkout">Get access for just $49 and build amazing apps faster, with cleaner code &rarr;</a>
+    <a href="/pages/backbone-js-on-rails-checkout">Get access for just $49 and build amazing apps faster, with cleaner code &rarr;</a>
   <% end %>
 </section>
 
