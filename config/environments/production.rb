@@ -52,7 +52,7 @@ Workshops::Application.configure do
 
   config.middleware.use Rack::SslEnforcer,
                         :hsts => false,
-                        :redirect_to => 'https://#{HOST}'
+                        :redirect_to => "https://#{HOST}"
 
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.perform_deliveries = true
