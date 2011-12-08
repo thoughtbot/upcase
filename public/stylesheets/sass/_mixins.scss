@@ -23,7 +23,7 @@ $gw-column: $unit;   // For Bourbon
   width: 200px;
   @include box-shadow(inset 0 1px 0 lighten($red, 20%));
   @include border-radius(3px);
-  @include transition(all .3s);
+  @include transition(all, 0.3s, linear);
 
   &:hover {
     background: lighten($red, 5%);
