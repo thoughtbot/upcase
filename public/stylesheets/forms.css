@@ -65,7 +65,7 @@ table {
 /*size of one gutter*/
 /* Forms
 ---------------------------------------- */
-.subtle, form.wufoo ul li.name span label, form.wufoo ul li.pitch div label {
+.subtle, form.wufoo ul li.name span label, form.wufoo ul li.pitch div label, form.wufoo ul #ppSection div span label, form.wufoo ul #ccSection div span label, form.wufoo ul #invoiceSection div span label, form.wufoo ul #billSection div span label {
   color: #aaa;
   font-size: 11px;
   font-style: italic;
@@ -147,11 +147,11 @@ form.wufoo {
       form.wufoo ul li input[type="text"], form.wufoo ul li input[type="email"], form.wufoo ul li input.text, form.wufoo ul li textarea {
         /*6 columns minus line-heigh for the padding and 2px for the border*/
         border: 1px solid #999;
-        -webkit-box-shadow: compact(inset 0 1px 2px #aaaaaa, false, false, false, false, false, false, false, false);
-        -moz-box-shadow: compact(inset 0 1px 2px #aaaaaa, false, false, false, false, false, false, false, false);
-        -ms-box-shadow: compact(inset 0 1px 2px #aaaaaa, false, false, false, false, false, false, false, false);
-        -o-box-shadow: compact(inset 0 1px 2px #aaaaaa, false, false, false, false, false, false, false, false);
-        box-shadow: compact(inset 0 1px 2px #aaaaaa, false, false, false, false, false, false, false, false);
+        -webkit-box-shadow: inset 0 1px 2px #aaaaaa;
+        -moz-box-shadow: inset 0 1px 2px #aaaaaa;
+        -ms-box-shadow: inset 0 1px 2px #aaaaaa;
+        -o-box-shadow: inset 0 1px 2px #aaaaaa;
+        box-shadow: inset 0 1px 2px #aaaaaa;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         -ms-box-sizing: border-box;
@@ -178,36 +178,36 @@ form.wufoo {
         text-align: center;
         text-shadow: 0 -1px 0 #7f0f16;
         width: 200px;
-        -webkit-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
-        -moz-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
-        -ms-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
-        -o-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
-        box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+        -webkit-box-shadow: inset 0 1px 0 #e93e49;
+        -moz-box-shadow: inset 0 1px 0 #e93e49;
+        -ms-box-shadow: inset 0 1px 0 #e93e49;
+        -o-box-shadow: inset 0 1px 0 #e93e49;
+        box-shadow: inset 0 1px 0 #e93e49;
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
         -ms-border-radius: 3px;
         -o-border-radius: 3px;
         border-radius: 3px;
-        -webkit-transition-property: compact(all, false, false, false, false, false, false, false, false);
-        -moz-transition-property: compact(all, false, false, false, false, false, false, false, false);
-        -ms-transition-property: compact(all, false, false, false, false, false, false, false, false);
-        -o-transition-property: compact(all, false, false, false, false, false, false, false, false);
-        transition-property: compact(all, false, false, false, false, false, false, false, false);
-        -webkit-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-        -moz-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-        -ms-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-        -o-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-        transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-        -webkit-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
-        -moz-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
-        -ms-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
-        -o-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
-        transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
-        -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-        -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-        -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-        -o-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-        transition-delay: compact(0, false, false, false, false, false, false, false, false);
+        -webkit-transition-property: all;
+        -moz-transition-property: all;
+        -ms-transition-property: all;
+        -o-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: 0.3s;
+        -moz-transition-duration: 0.3s;
+        -ms-transition-duration: 0.3s;
+        -o-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-timing-function: linear;
+        -moz-transition-timing-function: linear;
+        -ms-transition-timing-function: linear;
+        -o-transition-timing-function: linear;
+        transition-timing-function: linear;
+        -webkit-transition-delay: 0;
+        -moz-transition-delay: 0;
+        -ms-transition-delay: 0;
+        -o-transition-delay: 0;
+        transition-delay: 0;
         display: block;
         margin: 0;
         padding: 8px 40px;
@@ -216,20 +216,20 @@ form.wufoo {
           background: #c41722;
           border: 1px solid #7f0f16;
           text-shadow: 0 -1px 0 #96111a;
-          -webkit-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
-          -moz-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
-          -ms-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
-          -o-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
-          box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+          -webkit-box-shadow: inset 0 1px 0 #ee6c74;
+          -moz-box-shadow: inset 0 1px 0 #ee6c74;
+          -ms-box-shadow: inset 0 1px 0 #ee6c74;
+          -o-box-shadow: inset 0 1px 0 #ee6c74;
+          box-shadow: inset 0 1px 0 #ee6c74;
           cursor: pointer; }
         form.wufoo ul li input#saveForm:active, form.wufoo ul li input#submitFormButton:active {
           background: #96111a;
           text-shadow: none;
-          -webkit-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
-          -moz-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
-          -ms-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
-          -o-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
-          box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false); }
+          -webkit-box-shadow: inset 0 -1px 3px #680c12;
+          -moz-box-shadow: inset 0 -1px 3px #680c12;
+          -ms-box-shadow: inset 0 -1px 3px #680c12;
+          -o-box-shadow: inset 0 -1px 3px #680c12;
+          box-shadow: inset 0 -1px 3px #680c12; }
         form.wufoo ul li input#saveForm:hover, form.wufoo ul li input#submitFormButton:hover {
           cursor: pointer; }
         form.wufoo ul li input#saveForm:active, form.wufoo ul li input#submitFormButton:active {
@@ -255,9 +255,9 @@ form.wufoo {
       form.wufoo ul li.phone {
         margin-right: 0; }
       form.wufoo ul li.email, form.wufoo ul li.phone {
-        width: 50%;
+        clear: none;
         float: left;
-        clear: none; }
+        width: 50%; }
         form.wufoo ul li.email input[type="text"], form.wufoo ul li.email input.text, form.wufoo ul li.email input[type="email"], form.wufoo ul li.phone input[type="text"], form.wufoo ul li.phone input.text, form.wufoo ul li.phone input[type="email"] {
           width: 272.5px; }
       form.wufoo ul li.name {
@@ -282,9 +282,27 @@ form.wufoo {
         line-height: 0.8em; }
       form.wufoo ul li.subscription legend {
         padding-bottom: 10px; }
-      form.wufoo ul li.subscription span {
-        margin-bottom: 8px; }
-        form.wufoo ul li.subscription span label {
-          margin-left: 5px; }
-      form.wufoo ul li.complex {
-        padding: 20px 0; }
+      form.wufoo ul li.subscription div {
+        background: #eee;
+        border: 1px solid #999;
+        max-width: 595px;
+        padding: 20px 0;
+        width: 595px; }
+        form.wufoo ul li.subscription div span {
+          margin-left: 30px;
+          width: auto; }
+          form.wufoo ul li.subscription div span input[type="radio"]:checked + label {
+            font-weight: bold; }
+          form.wufoo ul li.subscription div span label {
+            margin-left: 5px; }
+    form.wufoo ul .invoice thead th, form.wufoo ul .invoice tbody th, form.wufoo ul .invoice tbody td, form.wufoo ul .invoice tfoot th, form.wufoo ul .invoice .total, form.wufoo ul .invoice tfoot .last th, form.wufoo ul .invoice tfoot .last td, form.wufoo ul .invoice tfoot th, form.wufoo ul .invoice tfoot td {
+      border-color: #999; }
+    form.wufoo ul li.invoice thead th {
+      background: #eee; }
+    form.wufoo ul #ppSection, form.wufoo ul #ccSection, form.wufoo ul #invoiceSection, form.wufoo ul #billSection {
+      border-bottom: none;
+      border-top: 1px solid #DCDCDC;
+      margin-bottom: 30px;
+      padding: 40px 0px 0px 0px; }
+      form.wufoo ul #ppSection div span input[type="text"]:focus + label, form.wufoo ul #ppSection div span input[type="email"]:focus + label, form.wufoo ul #ccSection div span input[type="text"]:focus + label, form.wufoo ul #ccSection div span input[type="email"]:focus + label, form.wufoo ul #invoiceSection div span input[type="text"]:focus + label, form.wufoo ul #invoiceSection div span input[type="email"]:focus + label, form.wufoo ul #billSection div span input[type="text"]:focus + label, form.wufoo ul #billSection div span input[type="email"]:focus + label {
+        color: #444; }
