@@ -197,9 +197,9 @@ form.wufoo {
       }
 
       &.email, &.phone {
-        width: 50%;
-        float: left;
         clear: none;
+        float: left;
+        width: 50%;
 
         input[type="text"], input.text, input[type="email"] {
           width: $half-width-input;
@@ -257,17 +257,54 @@ form.wufoo {
           padding-bottom: 10px;
         }
 
-        span {
-          margin-bottom: 8px;
+        div {
+          background: #eee;
+          border: 1px solid #999;
+          max-width: grid-width(7) + $gutter;
+          padding: 20px 0;
+          width: grid-width(7) + $gutter;
 
-          label {
-            margin-left: 5px;
+          span {
+            margin-left: 30px;
+            width: auto;
+
+            input[type="radio"]:checked + label {
+              font-weight: bold;
+            }
+
+            label {
+              margin-left: 5px;
+            }
           }
         }
       }
+    }
 
-      &.complex {
-        padding: 20px 0;
+    .invoice thead th, .invoice tbody th, .invoice tbody td, .invoice tfoot th, .invoice .total, .invoice tfoot .last th, .invoice tfoot .last td, .invoice tfoot th, .invoice tfoot td {
+      border-color: #999;
+    }
+
+    li.invoice thead th {
+      background: #eee;
+    }
+
+    #ppSection, #ccSection, #invoiceSection, #billSection {
+      border-bottom: none;
+      border-top: 1px solid #DCDCDC;
+      margin-bottom: 30px;
+      padding: 40px 0px 0px 0px;
+
+      div {
+        span {
+
+          input[type="text"]:focus + label, input[type="email"]:focus + label {
+            color: #444;
+          }
+
+          label {
+            @extend .subtle;
+          }
+        }
       }
     }
   }
