@@ -40,10 +40,6 @@
   }
 </script>
 
-<% unless request.ssl? %>
-  <script src="http://robots.thoughtbot.com/api/read/json?callback=tumblr&amp;num=4" type="text/javascript"></script>
-<% end %>
-
 <script type="text/javascript">
   <% Split::Experiment.all.each do |experiment| %>
     _kmq.push(['set', { '<%= experiment.name %>': '<%= ab_test(experiment.name, *experiment.alternative_names) %>' }]);
