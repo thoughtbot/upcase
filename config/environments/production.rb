@@ -50,6 +50,10 @@ Workshops::Application.configure do
   HOST = 'workshops.thoughtbot.com'
   config.action_mailer.default_url_options = {:host => HOST}
 
+  config.middleware.use Rack::SslEnforcer,
+                        :hsts => false,
+                        :redirect_to => 'https://#{HOST}'
+
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.perform_deliveries = true
   ActionMailer::Base.default_charset = "utf-8"
