@@ -72,6 +72,36 @@ table {
   font-weight: normal;
   margin-bottom: 0; }
 
+body {
+  background: #fcfcfc;
+  border-top: 4px solid #AD141E;
+  font-family: "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+  font-size: 14px;
+  line-height: 20px; }
+
+a {
+  color: #ad141e; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: #222;
+  font: 400 "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+  line-height: 150%; }
+
+h1 {
+  font-size: 32px; }
+
+h2 {
+  font-size: 24px; }
+
+h3 {
+  font-size: 20px; }
+
+h4 {
+  font-size: 18px; }
+
+h5, h6 {
+  font-size: 14px; }
+
 form.wufoo {
   margin-left: 0;
   width: 630px; }
@@ -94,6 +124,8 @@ form.wufoo {
           font-size: 24px;
           padding: 0;
           border-top: 0 !important; }
+        form.wufoo ul li.section div {
+          padding: 0; }
       form.wufoo ul li fieldset {
         background: none;
         border: 0;
@@ -134,15 +166,77 @@ form.wufoo {
         width: 595px; }
         form.wufoo ul li input[type="text"]:focus, form.wufoo ul li input[type="email"]:focus, form.wufoo ul li input.text:focus, form.wufoo ul li textarea:focus {
           outline-color: #ad141e; }
-      form.wufoo ul li input#saveForm {
+      form.wufoo ul li input#saveForm, form.wufoo ul li input#submitFormButton {
+        background: #ad141e;
+        border: 1px solid #52090e;
+        color: #fff;
+        display: block;
+        line-height: 20px;
+        padding: 10px;
+        font: 700 18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-align: center;
+        text-shadow: 0 -1px 0 #7f0f16;
+        width: 200px;
+        -webkit-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+        -moz-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+        -ms-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+        -o-box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+        box-shadow: compact(inset 0 1px 0 #e93e49, false, false, false, false, false, false, false, false);
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+        border-radius: 3px;
+        -webkit-transition-property: compact(all, false, false, false, false, false, false, false, false);
+        -moz-transition-property: compact(all, false, false, false, false, false, false, false, false);
+        -ms-transition-property: compact(all, false, false, false, false, false, false, false, false);
+        -o-transition-property: compact(all, false, false, false, false, false, false, false, false);
+        transition-property: compact(all, false, false, false, false, false, false, false, false);
+        -webkit-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+        -moz-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+        -ms-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+        -o-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+        transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+        -webkit-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+        -moz-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+        -ms-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+        -o-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+        transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+        -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+        -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+        -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+        -o-transition-delay: compact(0, false, false, false, false, false, false, false, false);
+        transition-delay: compact(0, false, false, false, false, false, false, false, false);
         display: block;
         margin: 0;
         padding: 8px 40px;
         /*line-height divided by two so that the bottom and top will align to the baseline grid*/ }
-        form.wufoo ul li input#saveForm:hover {
+        form.wufoo ul li input#saveForm:hover, form.wufoo ul li input#submitFormButton:hover {
+          background: #c41722;
+          border: 1px solid #7f0f16;
+          text-shadow: 0 -1px 0 #96111a;
+          -webkit-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+          -moz-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+          -ms-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+          -o-box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
+          box-shadow: compact(inset 0 1px 0 #ee6c74, false, false, false, false, false, false, false, false);
           cursor: pointer; }
-        form.wufoo ul li input#saveForm:active {
+        form.wufoo ul li input#saveForm:active, form.wufoo ul li input#submitFormButton:active {
+          background: #96111a;
+          text-shadow: none;
+          -webkit-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+          -moz-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+          -ms-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+          -o-box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false);
+          box-shadow: compact(inset 0 -1px 3px #680c12, false, false, false, false, false, false, false, false); }
+        form.wufoo ul li input#saveForm:hover, form.wufoo ul li input#submitFormButton:hover {
+          cursor: pointer; }
+        form.wufoo ul li input#saveForm:active, form.wufoo ul li input#submitFormButton:active {
           background: #96111a; }
+      form.wufoo ul li input#submitFormButton {
+        margin-left: 185px;
+        width: auto; }
       form.wufoo ul li .instruct {
         color: #aaa;
         font-size: 14px;
@@ -153,6 +247,11 @@ form.wufoo {
         background: none; }
         form.wufoo ul li.focused label {
           color: #000; }
+      form.wufoo ul li.buttons {
+        padding: 0 !important; }
+        form.wufoo ul li.buttons div {
+          margin: 0px !important;
+          padding: 0px; }
       form.wufoo ul li.phone {
         margin-right: 0; }
       form.wufoo ul li.email, form.wufoo ul li.phone {
@@ -164,7 +263,7 @@ form.wufoo {
       form.wufoo ul li.name {
         float: none;
         margin-bottom: 10px;
-        width: 510px; }
+        width: 100%; }
         form.wufoo ul li.name span {
           display: block;
           float: left;
@@ -181,9 +280,11 @@ form.wufoo {
             width: auto; }
       form.wufoo ul li.pitch div label {
         line-height: 0.8em; }
-      form.wufoo ul li.services legend {
+      form.wufoo ul li.subscription legend {
         padding-bottom: 10px; }
-      form.wufoo ul li.services span {
+      form.wufoo ul li.subscription span {
         margin-bottom: 8px; }
-        form.wufoo ul li.services span label {
+        form.wufoo ul li.subscription span label {
           margin-left: 5px; }
+      form.wufoo ul li.complex {
+        padding: 20px 0; }

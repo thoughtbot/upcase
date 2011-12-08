@@ -566,21 +566,21 @@ body.courses-show #head-wrapper #homepage-top {
         -ms-border-radius: 3px;
         -o-border-radius: 3px;
         border-radius: 3px;
-        -webkit-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-        -moz-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-        -ms-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-        -o-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-        transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-        -webkit-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-        -moz-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-        -ms-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-        -o-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-        transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-        -webkit-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-        -moz-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-        -ms-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-        -o-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-        transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+        -webkit-transition-property: compact(all, false, false, false, false, false, false, false, false);
+        -moz-transition-property: compact(all, false, false, false, false, false, false, false, false);
+        -ms-transition-property: compact(all, false, false, false, false, false, false, false, false);
+        -o-transition-property: compact(all, false, false, false, false, false, false, false, false);
+        transition-property: compact(all, false, false, false, false, false, false, false, false);
+        -webkit-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+        -moz-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+        -ms-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+        -o-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+        transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+        -webkit-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+        -moz-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+        -ms-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+        -o-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+        transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
         -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
         -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
         -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
@@ -691,21 +691,21 @@ body.courses-show #register-below-the-fold {
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
     border-radius: 3px;
-    -webkit-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-    -moz-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-    -ms-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-    -o-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-    transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-    -webkit-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-    -moz-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-    -ms-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-    -o-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-    transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-    -webkit-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-    -moz-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-    -ms-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-    -o-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-    transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+    -webkit-transition-property: compact(all, false, false, false, false, false, false, false, false);
+    -moz-transition-property: compact(all, false, false, false, false, false, false, false, false);
+    -ms-transition-property: compact(all, false, false, false, false, false, false, false, false);
+    -o-transition-property: compact(all, false, false, false, false, false, false, false, false);
+    transition-property: compact(all, false, false, false, false, false, false, false, false);
+    -webkit-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+    -moz-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+    -ms-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+    -o-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+    transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+    -webkit-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+    -moz-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+    -ms-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+    -o-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+    transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
     -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
     -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
     -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
@@ -884,21 +884,21 @@ body.courses #additional-information #faq {
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
     border-radius: 3px;
-    -webkit-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-    -moz-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-    -ms-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-    -o-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-    transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-    -webkit-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-    -moz-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-    -ms-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-    -o-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-    transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-    -webkit-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-    -moz-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-    -ms-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-    -o-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-    transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+    -webkit-transition-property: compact(all, false, false, false, false, false, false, false, false);
+    -moz-transition-property: compact(all, false, false, false, false, false, false, false, false);
+    -ms-transition-property: compact(all, false, false, false, false, false, false, false, false);
+    -o-transition-property: compact(all, false, false, false, false, false, false, false, false);
+    transition-property: compact(all, false, false, false, false, false, false, false, false);
+    -webkit-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+    -moz-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+    -ms-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+    -o-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+    transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+    -webkit-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+    -moz-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+    -ms-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+    -o-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+    transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
     -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
     -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
     -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
@@ -936,43 +936,40 @@ body.high_voltage-pages section#homepage-top h1 {
   color: #2b2b2b;
   font: 900 60px/60px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
   margin: 40px 0 20px; }
-body.high_voltage-pages section#container {
-  margin: 40px auto;
-  width: 640px; }
-  body.high_voltage-pages section#container p {
-    font-size: 14px;
-    margin-bottom: 0.5em; }
-  body.high_voltage-pages section#container h1 {
-    font: 400 32px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-    margin: 0 0 12px 0; }
-  body.high_voltage-pages section#container h3 {
-    margin-top: 18px; }
-    body.high_voltage-pages section#container h3.offer {
-      color: #444;
-      font-size: 18px;
-      line-height: 27px; }
-      body.high_voltage-pages section#container h3.offer strong {
-        color: #ad141e; }
-  body.high_voltage-pages section#container h4 {
-    font-size: 16px; }
-  body.high_voltage-pages section#container ul {
-    list-style: outside;
-    margin: 8px 0 12px 16px; }
-    body.high_voltage-pages section#container ul li {
-      margin: 0 0 6px 0; }
-  body.high_voltage-pages section#container section {
-    margin: 0 0 30px 0; }
-    body.high_voltage-pages section#container section.no-border {
-      border: 0; }
-  body.high_voltage-pages section#container article {
-    margin: 0 0 30px 0; }
-  body.high_voltage-pages section#container pre {
-    background: #efefef;
-    line-height: 180%;
-    margin: 10px 0;
-    padding: 0; }
-  body.high_voltage-pages section#container strong {
-    font-weight: bold; }
+body.high_voltage-pages section#container p {
+  font-size: 14px;
+  margin-bottom: 0.5em; }
+body.high_voltage-pages section#container h1 {
+  font: 400 32px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+  margin: 0 0 12px 0; }
+body.high_voltage-pages section#container h3 {
+  margin-top: 18px; }
+  body.high_voltage-pages section#container h3.offer {
+    color: #444;
+    font-size: 18px;
+    line-height: 27px; }
+    body.high_voltage-pages section#container h3.offer strong {
+      color: #ad141e; }
+body.high_voltage-pages section#container h4 {
+  font-size: 16px; }
+body.high_voltage-pages section#container ul {
+  list-style: outside;
+  margin: 8px 0 12px 16px; }
+  body.high_voltage-pages section#container ul li {
+    margin: 0 0 6px 0; }
+body.high_voltage-pages section#container section {
+  margin: 0 0 30px 0; }
+  body.high_voltage-pages section#container section.no-border {
+    border: 0; }
+body.high_voltage-pages section#container article {
+  margin: 0 0 30px 0; }
+body.high_voltage-pages section#container pre {
+  background: #efefef;
+  line-height: 180%;
+  margin: 10px 0;
+  padding: 0; }
+body.high_voltage-pages section#container strong {
+  font-weight: bold; }
 
 #flash #flash_failure {
   background: #f8bcba;
@@ -1060,21 +1057,21 @@ body.registrations form {
       -ms-border-radius: 3px;
       -o-border-radius: 3px;
       border-radius: 3px;
-      -webkit-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-      -moz-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-      -ms-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-      -o-transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-      transition-property: compact(zip(all 0.3s), false, false, false, false, false, false, false, false);
-      -webkit-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-      -moz-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-      -ms-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-      -o-transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-      transition-duration: compact(0.15s, false, false, false, false, false, false, false, false);
-      -webkit-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-      -moz-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-      -ms-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-      -o-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-      transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
+      -webkit-transition-property: compact(all, false, false, false, false, false, false, false, false);
+      -moz-transition-property: compact(all, false, false, false, false, false, false, false, false);
+      -ms-transition-property: compact(all, false, false, false, false, false, false, false, false);
+      -o-transition-property: compact(all, false, false, false, false, false, false, false, false);
+      transition-property: compact(all, false, false, false, false, false, false, false, false);
+      -webkit-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+      -moz-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+      -ms-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+      -o-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+      transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
+      -webkit-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+      -moz-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+      -ms-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+      -o-transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
+      transition-timing-function: compact(linear, false, false, false, false, false, false, false, false);
       -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
       -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
       -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
@@ -1178,6 +1175,10 @@ footer#main-footer {
     font: normal 14px skolar-1, skolar-2, serif;
     margin-top: 40px;
     /*line-height to maintain baseline grid*/ }
+
+body.high_voltage-pages section#container section#checkout-form {
+  margin: 50px auto 0;
+  width: 630px; }
 
 body {
   background: #fcfcfc;
