@@ -107,6 +107,8 @@ form.wufoo {
   width: 630px; }
   form.wufoo header#header {
     display: none; }
+  form.wufoo #lola {
+    display: none !important; }
   form.wufoo ul {
     list-style: none;
     margin-top: 20px;
@@ -166,6 +168,8 @@ form.wufoo {
         width: 595px; }
         form.wufoo ul li input[type="text"]:focus, form.wufoo ul li input[type="email"]:focus, form.wufoo ul li input.text:focus, form.wufoo ul li textarea:focus {
           outline-color: #ad141e; }
+        form.wufoo ul li input[type="text"].medium, form.wufoo ul li input[type="email"].medium, form.wufoo ul li input.text.medium, form.wufoo ul li textarea.medium {
+          min-width: 570px; }
       form.wufoo ul li input#saveForm, form.wufoo ul li input#submitFormButton {
         background: #ad141e;
         border: 1px solid #52090e;
@@ -267,7 +271,7 @@ form.wufoo {
         form.wufoo ul li.name span {
           display: block;
           float: left;
-          margin-right: 25px;
+          margin-right: 50px;
           width: 272.5px; }
           form.wufoo ul li.name span:nth-child(odd) {
             margin-right: 0; }
