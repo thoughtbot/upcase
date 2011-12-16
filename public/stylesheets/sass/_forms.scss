@@ -55,6 +55,7 @@ h5, h6 {
   font-size: 14px;
 }
 
+
 //************************************************************************//
 // Base Form Styles
 //************************************************************************//
@@ -67,6 +68,11 @@ form.wufoo {
   }
 
   $half-width-input: grid-width(3.5);
+
+  // hack to hide the floating price box that wufoo helpfully added.
+  #lola {
+    display: none !important;
+  }
 
   ul {
     list-style: none;
@@ -123,6 +129,7 @@ form.wufoo {
         display: inline-block;
       }
 
+
       // Default Input Styles
       //************************************************************************//
       input[type="text"], input[type="email"], input.text, textarea {
@@ -140,10 +147,13 @@ form.wufoo {
         &:focus {
           outline-color: $red;
         }
+
+        &.medium {
+          min-width: grid-width(6);
+        }
       }
 
       input[type="text"], input[type="email"], input.text {
-
       }
 
       input#saveForm, input#submitFormButton {
@@ -217,7 +227,7 @@ form.wufoo {
         span {
           display: block;
           float: left;
-          margin-right: $gutter;
+          margin-right: 2 * $gutter;
           width: $half-width-input;
 
           &:nth-child(odd) {
