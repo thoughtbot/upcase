@@ -39,4 +39,7 @@ Workshops::Application.routes.draw do
 
   match '/backbone-js-on-rails' => "high_voltage/pages#show", :as => :backbone_js_on_rails, :id => "backbone-js-on-rails"
   match '/vim' => "high_voltage/pages#show", :as => :vim, :id => "vim"
+  match '/charlotte' => "high_voltage/pages#show", :as => :charlotte, :id => "charlotte"
+
+  match '/rubyist-booster-shot' => "high_voltage/pages#show", :as => :rubyist_booster_shot, :id => "rubyist-booster-shot"
 end
