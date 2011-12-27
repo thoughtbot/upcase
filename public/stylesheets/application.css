@@ -281,11 +281,12 @@ header#main-header {
           #head-wrapper #homepage-top #workshop-list ul li a:hover h3 {
             color: #ad141e; }
   #head-wrapper #homepage-top aside {
-    border-top: 5px solid #ad141e;
     float: left;
     margin: 25px 0 0 25px;
     padding: 10px 0 0 0;
     width: 315px; }
+    #head-wrapper #homepage-top aside.first {
+      border-top: 5px solid #ad141e; }
     #head-wrapper #homepage-top aside h2 {
       color: #333;
       font: 700 24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
