@@ -204,11 +204,20 @@ body.courses-show {
   #register-below-the-fold {
     padding: 21px 0 20px 0;
 
-    a {
+    > a {
       @include button;
       width: 800px;
       margin: 0 auto;
       text-decoration: none;
+    }
+
+    p {
+      margin: 0 auto;
+      font-weight: bold;
+      width: 800px;
+      font-size: 1.2em;
+      text-align: center;
+      margin-top: 12px;
     }
   }
   
