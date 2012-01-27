@@ -31,14 +31,14 @@
       <p>Single viewer</p>
 
       <section id="register">
-        <a id="register-button" href="http://thoughtbot.myshopify.com/cart/add" onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href; var v = document.createElement('input'); v.setAttribute('type', 'hidden'); v.setAttribute('name', 'id'); v.setAttribute('value', '176948782'); f.appendChild(v); var r = document.createElement('input'); r.setAttribute('type', 'hidden'); r.setAttribute('name', 'return_to'); r.setAttribute('value', 'http://thoughtbot.myshopify.com/checkout'); f.appendChild(r); f.submit(); return false;">Purchase for Yourself</a>
+        <a id="vim-purchase-individual" href="http://thoughtbot.myshopify.com/cart/add" onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href; var v = document.createElement('input'); v.setAttribute('type', 'hidden'); v.setAttribute('name', 'id'); v.setAttribute('value', '176948782'); f.appendChild(v); var r = document.createElement('input'); r.setAttribute('type', 'hidden'); r.setAttribute('name', 'return_to'); r.setAttribute('value', 'http://thoughtbot.myshopify.com/checkout'); f.appendChild(r); f.submit(); return false;">Purchase for Yourself</a>
       </section>
 
       <p class="cost highlight">$50</p>
       <p>Unlimited sharing within your company</p>
 
       <section id="register">
-      <a id="register-button" href="http://thoughtbot.myshopify.com/cart/add" onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href; var v = document.createElement('input'); v.setAttribute('type', 'hidden'); v.setAttribute('name', 'id'); v.setAttribute('value', '177699042'); f.appendChild(v); var r = document.createElement('input'); r.setAttribute('type', 'hidden'); r.setAttribute('name', 'return_to'); r.setAttribute('value', 'http://thoughtbot.myshopify.com/checkout'); f.appendChild(r); f.submit(); return false;">Purchase for<br/>Your Company</a>
+      <a id="vim-purchase-company" href="http://thoughtbot.myshopify.com/cart/add" onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href; var v = document.createElement('input'); v.setAttribute('type', 'hidden'); v.setAttribute('name', 'id'); v.setAttribute('value', '177699042'); f.appendChild(v); var r = document.createElement('input'); r.setAttribute('type', 'hidden'); r.setAttribute('name', 'return_to'); r.setAttribute('value', 'http://thoughtbot.myshopify.com/checkout'); f.appendChild(r); f.submit(); return false;">Purchase for<br/>Your Company</a>
       </section>
     </section>
 
@@ -46,8 +46,8 @@
 </section>
 
 <section id="register-below-the-fold">
-<a href="http://thoughtbot.myshopify.com/cart/add" onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href; var v = document.createElement('input'); v.setAttribute('type', 'hidden'); v.setAttribute('name', 'id'); v.setAttribute('value', '176948782'); f.appendChild(v); var r = document.createElement('input'); r.setAttribute('type', 'hidden'); r.setAttribute('name', 'return_to'); r.setAttribute('value', 'http://thoughtbot.myshopify.com/checkout'); f.appendChild(r); f.submit(); return false;">Purchase this screencast for just $15 and start editing your Rails code more efficiently with Vim&rarr;</a>
-<p>Purchase <a href="http://thoughtbot.myshopify.com/cart/add" onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href; var v = document.createElement('input'); v.setAttribute('type', 'hidden'); v.setAttribute('name', 'id'); v.setAttribute('value', '177699042'); f.appendChild(v); var r = document.createElement('input'); r.setAttribute('type', 'hidden'); r.setAttribute('name', 'return_to'); r.setAttribute('value', 'http://thoughtbot.myshopify.com/checkout'); f.appendChild(r); f.submit(); return false;">unlimited sharing within your company</a> for just $50.</p>
+<a id="vim-purchase-individual" href="http://thoughtbot.myshopify.com/cart/add" onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href; var v = document.createElement('input'); v.setAttribute('type', 'hidden'); v.setAttribute('name', 'id'); v.setAttribute('value', '176948782'); f.appendChild(v); var r = document.createElement('input'); r.setAttribute('type', 'hidden'); r.setAttribute('name', 'return_to'); r.setAttribute('value', 'http://thoughtbot.myshopify.com/checkout'); f.appendChild(r); f.submit(); return false;">Purchase this screencast for just $15 and start editing your Rails code more efficiently with Vim&rarr;</a>
+<p>Purchase <a id="vim-purchase-company" href="http://thoughtbot.myshopify.com/cart/add" onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href; var v = document.createElement('input'); v.setAttribute('type', 'hidden'); v.setAttribute('name', 'id'); v.setAttribute('value', '177699042'); f.appendChild(v); var r = document.createElement('input'); r.setAttribute('type', 'hidden'); r.setAttribute('name', 'return_to'); r.setAttribute('value', 'http://thoughtbot.myshopify.com/checkout'); f.appendChild(r); f.submit(); return false;">unlimited sharing within your company</a> for just $50.</p>
 </section>
 
 
@@ -74,3 +74,7 @@
     </section>
   </section>
 </section>
+
+<%= javascript_tag do %>
+  _kmq.push(['record', 'Viewed Vim Landing Page']);
+<% end %>
