@@ -10,18 +10,16 @@
 
     <%= render :partial => 'redemptions/form' %>
 
-    <%= semantic_form_for @user, :url => section_registrations_path(@section), :html => { :method => 'post' } do |form| %>
+    <%= semantic_form_for @registration, :url => section_registrations_path(@section), :html => { :method => 'post' } do |form| %>
       <%= hidden_field_tag 'coupon_id' %>
-      <% unless current_user %>
-        <%= form.inputs 'Your information' do %>
-          <%= form.input :first_name %>
-          <%= form.input :last_name %>
-          <%= form.input :email %>
-          <%= form.input :password %>
-        <% end %>
+      <%= form.inputs 'Your information' do %>
+        <%= form.input :first_name %>
+        <%= form.input :last_name %>
+        <%= form.input :email %>
       <% end %>
 
       <%= form.inputs 'For your receipt' do %>
+        <%= form.input :billing_email, :required => false, :hint => "The receipt will be sent to this address." %>
         <%= form.input :organization, :required => false %>
         <%= form.input :phone %>
         <%= form.input :address1, :label => 'Address 1' %>

@@ -1016,18 +1016,18 @@ body.registrations form {
     margin: 0 0 8px 0;
     width: 466px;
     /* red button */ }
-    body.registrations form fieldset ol li#user_first_name_input, body.registrations form fieldset ol li#user_city_input {
+    body.registrations form fieldset ol li#registration_first_name_input, body.registrations form fieldset ol li#registration_city_input {
       float: left;
       margin-right: 20px;
       width: 223px; }
-    body.registrations form fieldset ol li#user_last_name_input {
+    body.registrations form fieldset ol li#registration_last_name_input {
       float: left;
       width: 223px; }
-    body.registrations form fieldset ol li#user_state_input {
+    body.registrations form fieldset ol li#registration_state_input {
       float: left;
       margin-right: 20px;
       width: 80px; }
-    body.registrations form fieldset ol li#user_zip_code_input {
+    body.registrations form fieldset ol li#registration_zip_code_input {
       float: left;
       width: 123px; }
     body.registrations form fieldset ol li.error p.inline-errors {

@@ -63,25 +63,25 @@ body.registrations {
           margin: 0 0 8px 0;
           width: 466px;
 
-          &#user_first_name_input,
-          &#user_city_input {
+          &#registration_first_name_input,
+          &#registration_city_input {
             float: left;
             margin-right: 20px;
             width: 223px;
           }
 
-          &#user_last_name_input {
+          &#registration_last_name_input {
             float: left;
             width: 223px;
           }
 
-          &#user_state_input {
+          &#registration_state_input {
             float: left;
             margin-right: 20px;
             width: 80px;
           }
 
-          &#user_zip_code_input {
+          &#registration_zip_code_input {
             float: left;
             width: 123px;
           }

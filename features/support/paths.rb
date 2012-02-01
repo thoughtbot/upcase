@@ -34,9 +34,8 @@ module NavigationHelpers
     when /the admin page/
       admin_path
     when /the freshbooks invoice page for "([^\"]+)" on "([^\"]+)"/
-      user   = User.find_by_email!($1)
       course = Course.find_by_name!($2)
-      registration = course.sections.map(&:registrations).flatten.detect { |r| r.user == user }
+      registration = course.registrations.find_by_email($1)
       registration.freshbooks_invoice_url
     when /the URL "([^\"]+)"/
       $1
@@ -114,25 +113,21 @@ module NavigationHelpers
     when "teacher's email"
       'teacher_email'
     when "student's first name"
-      'user_first_name'
+      'registration_first_name'
     when "student's last name"
-      'user_last_name'
+      'registration_last_name'
     when "student's email"
-      'user_email'
-    when "student's password"
-      'user_password'
-    when "student's password confirmation"
-      'user_password_confirmation'
+      'registration_email'
     when "code"
       'coupon_code'
     when "percentage"
       'coupon_percentage'
     when 'organization'
-      'user_organization'
+      'registration_organization'
     when 'first name'
-      'user_first_name'
+      'registration_first_name'
     when 'last name'
-      'user_last_name'
+      'registration_last_name'
     when 'external registration url'
       'course_external_registration_url'
     when /question (\d+)/
