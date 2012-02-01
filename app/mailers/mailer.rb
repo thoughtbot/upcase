@@ -7,4 +7,20 @@ class Mailer < ActionMailer::Base
          :subject => "New registration notification",
          :from => Clearance.configuration.mailer_sender)
   end
+
+  def invoice(registration)
+    @registration = registration
+
+    mail(:to => registration.billing_email,
+         :subject => "Your invoice for #{registration.section.course_name}",
+         :from => Clearance.configuration.mailer_sender)
+  end
+
+  def registration_confirmation(registration)
+    @registration = registration
+
+    mail(:to => registration.email,
+         :subject => "You're registered for #{registration.section.course_name}",
+         :from => Clearance.configuration.mailer_sender)
+  end
 end

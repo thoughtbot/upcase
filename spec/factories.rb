@@ -10,7 +10,6 @@ FactoryGirl.define do
   factory :user do
     first_name 'Dan'
     last_name  'Deacon'
-    organization 'company'
     email
     password "password"
 
@@ -45,8 +44,12 @@ FactoryGirl.define do
   end
 
   factory :registration do
+    first_name 'Dan'
+    last_name  'Deacon'
+    organization 'company'
+    email
+    billing_email 'billing@example.com'
     section
-    user
   end
 
   factory :teacher do

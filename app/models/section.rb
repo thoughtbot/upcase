@@ -7,7 +7,6 @@ class Section < ActiveRecord::Base
   has_many :section_teachers
   has_many :teachers, :through => :section_teachers
   has_many :registrations
-  has_many :students, :through => :registrations, :source => :user
 
   delegate :name, :description, :location, :location_name, :to => :course, :prefix => :course
   after_create :send_follow_up_emails, :send_teacher_notifications

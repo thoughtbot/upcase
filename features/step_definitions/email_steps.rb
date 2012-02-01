@@ -71,6 +71,24 @@ Then '"$email_address" receives a registration notification email' do |email_add
   result.should be
 end
 
+Then '"$email_address" receives an invoice email' do |email_address|
+  ActionMailer::Base.deliveries.should_not be_empty
+  result = ActionMailer::Base.deliveries.any? do |email|
+    email.to == [email_address] &&
+    email.subject =~ /Your invoice for/i
+  end
+  result.should be
+end
+
+Then '"$email_address" receives a registration confirmation email' do |email_address|
+  ActionMailer::Base.deliveries.should_not be_empty
+  result = ActionMailer::Base.deliveries.any? do |email|
+    email.to == [email_address] &&
+    email.subject =~ /You're registered for/i
+  end
+  result.should be
+end
+
 # EMAIL_SPEC STEPS
 
 # Commonly used email steps

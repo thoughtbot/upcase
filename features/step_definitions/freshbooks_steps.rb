@@ -1,12 +1,12 @@
 Then /^the freshbooks client id for "([^"]+)" is set correctly$/ do |user_email|
-  user        = User.find_by_email!(user_email)
+  registration = Registration.find_by_email!(user_email)
   last_client = FakeFreshbooks.last_client
-  last_client.client_id.to_i.should == user.freshbooks_client_id.to_i
+  last_client.client_id.to_i.should == registration.freshbooks_client_id.to_i
 end
 
 Then /^a freshbooks invoice for "([^"]+)" is created with:$/ do |user_email, invoice_data|
-  user         = User.find_by_email!(user_email)
-  section      = user.sections.last
+  registration = Registration.find_by_email!(user_email)
+  section      = registration.section
   last_invoice = FakeFreshbooks.last_invoice
   last_invoice.should be, "Expected an invoice on Freshbooks, but couldn't find one"
   invoice_doc = last_invoice.request_doc
@@ -18,7 +18,7 @@ Then /^a freshbooks invoice for "([^"]+)" is created with:$/ do |user_email, inv
 end
 
 Then /^the invoice for "([^"]*)" has the following line items?:$/ do |user_email, line_items|
-  user         = User.find_by_email!(user_email)
+  registration = Registration.find_by_email!(user_email)
   last_invoice = FakeFreshbooks.last_invoice
   last_invoice.should be, "Expected an invoice on Freshbooks, but couldn't find one"
   invoice_doc = last_invoice.request_doc
@@ -30,7 +30,7 @@ Then /^the invoice for "([^"]*)" has the following line items?:$/ do |user_email
 end
 
 Then /^the invoice for "([^"]*)" has a discount of "([^"]*)"$/ do |user_email, discount|
-  user         = User.find_by_email!(user_email)
+  registration = Registration.find_by_email!(user_email)
   last_invoice = FakeFreshbooks.last_invoice
   last_invoice.should be, "Expected an invoice on Freshbooks, but couldn't find one"
   invoice_doc = last_invoice.request_doc

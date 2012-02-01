@@ -5,6 +5,7 @@ class Course < ActiveRecord::Base
   has_many :sections
   has_many :questions, :order => "created_at asc"
   has_many :follow_ups
+  has_many :registrations, :through => :sections
   accepts_nested_attributes_for :questions, :reject_if => :all_blank
   accepts_nested_attributes_for :follow_ups, :reject_if => :all_blank
 
