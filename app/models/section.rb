@@ -7,6 +7,8 @@ class Section < ActiveRecord::Base
   has_many :section_teachers
   has_many :teachers, :through => :section_teachers
   has_many :registrations
+  has_many :paid_registrations, :class_name => "Registration", :conditions => { :paid => true }
+  has_many :unpaid_registrations, :class_name => "Registration", :conditions => { :paid => false }
 
   delegate :name, :description, :location, :location_name, :to => :course, :prefix => :course
   after_create :send_follow_up_emails, :send_teacher_notifications

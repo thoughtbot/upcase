@@ -33,8 +33,7 @@ Feature: Adding a student to a course
     And I fill in the student's email with "jones@example.com"
     And I press the button to enroll a new student
     Then I see the successful section enrollment notice
-    And I see the user "Jimbo Ones" in the list of users
-    And I should see "1 Student"
+    And I see that "Jimbo Ones" has not paid
 
   Scenario: Add a new user to a section
     Given I am signed in as an admin
@@ -50,7 +49,7 @@ Feature: Adding a student to a course
     And I fill in the student's email with "jones@example.com"
     And I press the button to enroll a new student
     Then I see the successful section enrollment notice
-    And I see the user "Jimbo Jones" in the list of users
+    And I see that "Jimbo Jones" has not paid
 
   Scenario: Adding a user as a student
     Given I am signed in as a student

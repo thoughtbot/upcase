@@ -44,6 +44,8 @@ GEM
     arel (2.0.10)
     bourbon (1.2.0)
       sass (>= 3.1)
+    bourne (1.0)
+      mocha (= 0.9.8)
     builder (2.1.2)
     capybara (1.1.2)
       mime-types (>= 1.16)
@@ -217,6 +219,7 @@ DEPENDENCIES
   SystemTimer
   acts_as_list
   bourbon (~> 1.2.0)
+  bourne (~> 1.0)
   capybara (~> 1.1.2)
   clearance (~> 0.11.0)
   copycopter_client (~> 1.1.0)

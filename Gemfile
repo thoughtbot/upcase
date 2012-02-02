@@ -54,4 +54,5 @@ group :test do
   gem "sham_rack", "1.3.1"
   gem "email_spec"
   gem "mocha"
+  gem "bourne", "~> 1.0"
 end

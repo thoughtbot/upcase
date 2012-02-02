@@ -48,7 +48,6 @@ Feature: Selecting a course and registering for it
       | State                 | MA                 |
       | Zip code              | 02114              |
     And I press "Proceed to checkout"
-    Then I workshops is notified of my registration
     And carlos@santana.com is registered for the Test-Driven Haskell course
     And the freshbooks client id for "carlos@santana.com" is set correctly
     And a freshbooks invoice for "carlos@santana.com" is created with:
@@ -63,9 +62,15 @@ Feature: Selecting a course and registering for it
       | name     | unit_cost | quantity | description         |
       | Workshop | 10000000  | 1        | Test-Driven Haskell |
     Then I am redirected to the freshbooks invoice page for "carlos@santana.com" on "Test-Driven Haskell"
+    And "workshops@thoughtbot.com" should receive no emails
+    And "billing@santana.com" should receive no emails
+    And "carlos@santana.com" should receive no emails
+    And the registration for "carlos@santana.com" taking "Test-Driven Haskell" should not be paid
+    When I pay for "carlos@santana.com" taking "Test-Driven Haskell"
     Then "workshops@thoughtbot.com" receives a registration notification email
     Then "billing@santana.com" receives an invoice email
     Then "carlos@santana.com" receives a registration confirmation email
+    And the registration for "carlos@santana.com" taking "Test-Driven Haskell" should be paid
 
   @selenium
   Scenario: User registers with a valid coupon
