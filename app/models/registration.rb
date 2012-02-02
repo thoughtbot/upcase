@@ -10,6 +10,7 @@ class Registration < ActiveRecord::Base
 
   after_create :store_freshbooks_client
   after_create :store_freshbooks_invoice
+  after_create :send_invoice
 
   def name
     [first_name, last_name].join(' ')
@@ -23,11 +24,14 @@ class Registration < ActiveRecord::Base
     self.paid = true
     save!
     Mailer.registration_notification(self).deliver
-    Mailer.invoice(self).deliver
     Mailer.registration_confirmation(self).deliver
   end
 
   private
+
+  def send_invoice
+    Mailer.invoice(self).deliver
+  end
 
   def populate_organization
     if organization.blank?
