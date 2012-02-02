@@ -1,4 +1,5 @@
 class PaymentsController < ApplicationController
+  before_filter :print_params
   before_filter :verify_callback, :if => :callback_request?
 
   def create
@@ -13,6 +14,10 @@ class PaymentsController < ApplicationController
 
   protected
 
+  def print_params
+    p params
+  end
+
   def get_freshbooks_payment(payment_id)
     freshbooks_client.payment.get(:payment_id => payment_id)
   end
@@ -26,6 +31,7 @@ class PaymentsController < ApplicationController
   end
 
   def verify_callback
+    p "verifying callback"
     freshbooks_client.callback.verify(:callback_id => params[:object_id], :verifier => params[:verifier])
     head :created
   end
