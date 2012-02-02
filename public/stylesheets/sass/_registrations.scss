@@ -63,6 +63,10 @@ body.registrations {
           margin: 0 0 8px 0;
           width: 466px;
 
+          p.inline-hints {
+            color: #666;
+          }
+
           &#registration_first_name_input,
           &#registration_city_input {
             float: left;
@@ -84,6 +88,11 @@ body.registrations {
           &#registration_zip_code_input {
             float: left;
             width: 123px;
+          }
+
+          #registration_comments {
+            width: 472px;
+            height: 100px;
           }
 
           &.error {

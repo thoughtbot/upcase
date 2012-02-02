@@ -1016,6 +1016,8 @@ body.registrations form {
     margin: 0 0 8px 0;
     width: 466px;
     /* red button */ }
+    body.registrations form fieldset ol li p.inline-hints {
+      color: #666; }
     body.registrations form fieldset ol li#registration_first_name_input, body.registrations form fieldset ol li#registration_city_input {
       float: left;
       margin-right: 20px;
@@ -1030,6 +1032,9 @@ body.registrations form {
     body.registrations form fieldset ol li#registration_zip_code_input {
       float: left;
       width: 123px; }
+    body.registrations form fieldset ol li #registration_comments {
+      width: 472px;
+      height: 100px; }
     body.registrations form fieldset ol li.error p.inline-errors {
       color: #ad141e; }
     body.registrations form fieldset ol li.error input {

@@ -1,6 +1,10 @@
 <%= @registration.name %> is now registered for <%= @registration.section.course_name %>.
 
-If you have any special dietary restrictions, please let us know by replying to this email.
+<% if @registration.comments.present? -%>
+You provided us with the following comments:
+<%= @registration.comments %>
+<% end %>
+If you have any special dietary restrictions, and you have not done so already, please let us know by replying to this email.
 
 When
 <%= @registration.section.date_range %>
