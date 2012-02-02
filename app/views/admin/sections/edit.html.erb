@@ -16,7 +16,7 @@
             <span class="name">
               <%= registration.name %>
               <% if registration.comments.present? %>
-                <%= link_to "Note", "#", :title => registration.comments %>
+                <%= link_to "Note", "javascript:void(0)", :title => registration.comments %>
               <% end %>
             </span>
             <%= link_to "View receipt", registration.freshbooks_invoice_url %>
