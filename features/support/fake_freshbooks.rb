@@ -14,6 +14,8 @@ class FakeFreshbooks
         handle_invoice_create
       elsif doc.at('request')['method'] == 'invoice.get'
         handle_invoice_get
+      elsif doc.at('request')['method'] == 'payment.get'
+        handle_payment_get
       end
     end
   end
@@ -56,6 +58,21 @@ class FakeFreshbooks
           xml.links do
             xml.client_view "https://thoughtbot.freshbooks.com/view/#{invoice.invoice_id}"
           end
+        end
+      end
+    end.to_xml
+    [200, { 'Content-Length' => response.length, 'Content-Type' => 'application/xml' }, [response] ]
+  end
+
+  def handle_payment_get
+    request = @@requests.last
+    payment_id = request.at('payment_id').text.to_i
+    invoice_id = @@invoices.last.invoice_id
+    response = Nokogiri::XML::Builder.new do |xml|
+      xml.response :xmlns => 'http://www.freshbooks.com/api/', :status => 'ok' do
+        xml.payment do
+          xml.payment_id payment_id
+          xml.invoice_id invoice_id
         end
       end
     end.to_xml

@@ -10,7 +10,6 @@ class Registration < ActiveRecord::Base
 
   after_create :store_freshbooks_client
   after_create :store_freshbooks_invoice
-  after_create :send_emails
 
   def name
     [first_name, last_name].join(' ')
@@ -18,6 +17,14 @@ class Registration < ActiveRecord::Base
 
   def freshbooks_invoice_url
     self.attributes['freshbooks_invoice_url'] || fetch_invoice_url
+  end
+
+  def receive_payment!
+    self.paid = true
+    save!
+    Mailer.registration_notification(self).deliver
+    Mailer.invoice(self).deliver
+    Mailer.registration_confirmation(self).deliver
   end
 
   private
@@ -74,12 +81,6 @@ class Registration < ActiveRecord::Base
 
   def freshbooks_client
     @freshbooks_client ||= FreshBooks::Client.new(FRESHBOOKS_PATH, FRESHBOOKS_TOKEN)
-  end
-
-  def send_emails
-    Mailer.registration_notification(self).deliver
-    Mailer.invoice(self).deliver
-    Mailer.registration_confirmation(self).deliver
   end
 
   def create_freshbooks_invoice

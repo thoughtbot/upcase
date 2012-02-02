@@ -10,6 +10,8 @@ Workshops::Application.routes.draw do
     resources :follow_ups, :only => [:create]
   end
 
+  resources :payments, :only => [:create]
+
   match '/admin' => 'admin/courses#index', :as => :admin
   namespace :admin do
     resources :courses do

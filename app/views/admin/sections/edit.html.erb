@@ -7,23 +7,15 @@
   <div id="admin-section-right">
     <div id="student-list" class="cool-list">
       <h3>
-        <%= pluralize @section.registrations.size, "Student" %> [<%= mail_to 'workshops@thoughtbot.com', 'email', :subject => @section.course.name, :bcc => @section.registrations.map(&:email).join(",") %>]
+        <%= pluralize @section.paid_registrations.size, "Student" %> [<%= mail_to 'workshops@thoughtbot.com', 'email', :subject => @section.course.name, :bcc => @section.paid_registrations.map(&:email).join(",") %>]
         <%= link_to 'Add Student', new_admin_section_registration_path(@section), :id => 'add-student' %>
       </h3>
-      <ul>
-        <% @section.registrations.each do |registration| %>
-          <%= content_tag_for :li, registration do %>
-            <span class="name">
-              <%= registration.name %>
-              <% if registration.comments.present? %>
-                <%= link_to "Note", "javascript:void(0)", :title => registration.comments %>
-              <% end %>
-            </span>
-            <%= link_to "View receipt", registration.freshbooks_invoice_url %>
-            <%= mail_to registration.email, 'email', :title => "Email" %>
-            <%= link_to "X", admin_section_registration_path(@section, registration), :method => :delete, :confirm => "Are you sure want to delete the registration for this student?", :class => "remove-teacher", :title => "Delete" %>
-          <% end %>
-        <% end %>
+      <ul id="paid">
+        <%= render @section.paid_registrations %>
+      </ul>
+      <h3>Pending Payment</h3>
+      <ul id="unpaid">
+        <%= render @section.unpaid_registrations %>
       </ul>
     </div>
   </div>

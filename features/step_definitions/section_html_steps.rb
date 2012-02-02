@@ -56,7 +56,7 @@ end
 Then '"$teacher_name" has a Gravatar for "$teacher_email"' do |teacher_name, teacher_email|
   gravatar_hash = Digest::MD5.hexdigest(teacher_email.strip.downcase)
   teacher = Teacher.find_by_email!(teacher_email)
-  page.should have_css(%{img[src="http://www.gravatar.com/avatar/#{gravatar_hash}?s=20"]})
+  page.should have_css(%{img[src="https://secure.gravatar.com/avatar/#{gravatar_hash}?s=20"]})
 end
 
 Then 'I see the user "$user_name" in the list of users' do |user_name|
@@ -103,7 +103,7 @@ end
 
 Then %{I see "$teacher_name"'s avatar} do |teacher_name|
   teacher = Teacher.find_by_name!(teacher_name)
-  page.should have_css("img[src^='http://www.gravatar.com/avatar/#{teacher.gravatar_hash}']")
+  page.should have_css("img[src^='https://secure.gravatar.com/avatar/#{teacher.gravatar_hash}']")
 end
 
 When /^I should see "([^"]*)" before "([^"]*)"$/ do |section1_name, section2_name|
@@ -125,4 +125,16 @@ end
 When /^I follow the link to the section from "([^"]*)" to "([^"]*)"$/ do |starts_on, ends_on|
   section = Section.find_by_starts_on_and_ends_on!(Date.parse(starts_on), Date.parse(ends_on))
   find("a:contains('#{section.date_range}')").click
+end
+
+Then 'I see that "$student_name" has paid' do |student_name|
+  within('ul#paid') do
+    page.should have_content(student_name)
+  end
+end
+
+Then 'I see that "$student_name" has not paid' do |student_name|
+  within('ul#unpaid') do
+    page.should have_content(student_name)
+  end
 end

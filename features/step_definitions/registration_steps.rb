@@ -22,3 +22,13 @@ end
 Then /^I workshops is notified of my registration$/ do
   open_email("workshops@thoughtbot.com", :with_text => /just registered for/)
 end
+
+Then /^the registration for "([^"]*)" taking "([^"]*)" should be paid$/ do |email, course_name|
+  course = Course.find_by_name!(course_name)
+  course.registrations.find_by_email!(email).should be_paid
+end
+
+Then /^the registration for "([^"]*)" taking "([^"]*)" should not be paid$/ do |email, course_name|
+  course = Course.find_by_name!(course_name)
+  course.registrations.find_by_email!(email).should_not be_paid
+end
