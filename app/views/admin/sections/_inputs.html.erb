@@ -2,6 +2,8 @@
 <%= form.inputs do %>
   <%= form.input :starts_on, :as => :string %>
   <%= form.input :ends_on,   :as => :string %>
+  <%= form.input :start_at,  :as => :string %>
+  <%= form.input :stop_at,   :as => :string %>
   <%= form.input :seats_available, :input_html => { :value => form.object.seats_available } %>
 
   <%= link_to 'Create New Teacher', new_admin_teacher_path(:to => request.path), :id => 'new-teacher' %>
