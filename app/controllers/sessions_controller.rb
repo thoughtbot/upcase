@@ -1,4 +1,6 @@
 class SessionsController < Clearance::SessionsController
+  layout 'admin'
+
   private
 
   def url_after_create
