@@ -7,8 +7,8 @@ Feature: Viewing section details
       | name                | location name     | location                        | start at | stop at  | price |
       | Test-Driven Haskell | Thoughtbot Office | 41 Winter St., Boston, MA 02108 | 09:00:00 | 12:00:00 | 1000  |
     And the following section exists:
-      | course                    | starts on     | ends on       |
-      | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
+      | course                    | starts on     | ends on       | start at | stop at  |
+      | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 | 09:00:00 | 12:00:00 |
     And the following questions exist:
       | course                    | question      | answer |
       | name: Test-Driven Haskell | What color?   | Blue   |
