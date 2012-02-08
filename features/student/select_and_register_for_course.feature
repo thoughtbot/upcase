@@ -49,6 +49,8 @@ Feature: Selecting a course and registering for it
       | Zip code              | 02114              |
     And I press "Proceed to checkout"
     And carlos@santana.com is registered for the Test-Driven Haskell course
+    And KISSmetrics receives the "Submitted Registration" event for "carlos@santana.com" over HTTP with:
+      | Course Name | Test-Driven Haskell |
     And the freshbooks client id for "carlos@santana.com" is set correctly
     And a freshbooks invoice for "carlos@santana.com" is created with:
       | first_name   | Carlos        |
