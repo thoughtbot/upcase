@@ -13,7 +13,7 @@ Given 'I create the following section for "$course_name":' do |course_name, sect
     And I follow "New Section" within the course "#{course_name}"
     When I select the start date of "June 14, 2010"
   }
-  And "I fill in the following:", section_data
+  step "I fill in the following:", section_data
   steps %{
     And I select the teacher "Albert Einstein"
     And I press "Save Section"
