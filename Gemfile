@@ -41,7 +41,7 @@ end
 group :test do
   gem 'selenium-webdriver', '~> 2.16.0'
   gem "headless"
-  gem "cucumber-rails", "1.0.2"
+  gem "cucumber-rails", "~> 1.1.1"
   gem 'capybara', "~> 1.1.2"
   gem "factory_girl", "~> 2.0.4"
   gem "factory_girl_rails", "~> 1.1.0"
