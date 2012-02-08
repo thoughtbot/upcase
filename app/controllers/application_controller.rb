@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
     end
   end
+
+  def km_http_client
+    KISSMETRICS_CLIENT_CLASS.new(KISSMETRICS_API_KEY)
+  end
 end
