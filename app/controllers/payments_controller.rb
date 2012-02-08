@@ -6,6 +6,7 @@ class PaymentsController < ApplicationController
       payment = get_freshbooks_payment(params[:object_id])["payment"]
       if registration = Registration.find_by_freshbooks_invoice_id(payment["invoice_id"])
         registration.receive_payment!
+        km_http_client.record(registration.email, "Paid", { "Course Name" => registration.section.course_name })
       end
     end
     head :created
