@@ -92,4 +92,11 @@ class Section < ActiveRecord::Base
       Mailer.section_reminder(registration, self).deliver
     end
   end
+  
+  def self.send_section_reminders
+    sections = Section.where("sections.starts_on = ?", Date.parse(Time.now.to_s) + 1.week)
+    sections.each do |section|
+      section.send_section_reminder
+    end
+  end
 end
