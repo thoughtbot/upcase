@@ -1,0 +1,24 @@
+Hey - just a friendly reminder that <%= @registration.name %> is registered for <%= @registration.section.course_name %>.
+
+<% if @registration.comments.present? -%>
+You provided us with the following comments:
+<%= @registration.comments %>
+<% end %>
+
+If you have any special dietary restrictions, and you have not done so already, please let us know by replying to this email.
+
+<% if @section.course.reminder_email.present? -%>
+  <%= @section.course.reminder_email %>
+<% end %>
+
+When:
+<%= @registration.section.date_range %>
+<%= @registration.section.time_range %>
+
+Where:
+<%= @registration.section.course_location %>
+<%= @registration.section.course_location_name %>
+
+We will be in touch before <%= @registration.section.starts_on.to_time.to_s(:simple) %> with any further instructions. However, please don't hesitate to get in touch with us at workshops@thoughtbot.com should you have any questions or concerns.
+
+Thanks very much, we'll see you at <%= @registration.section.start_at.to_s(:time).strip %> on <%= @registration.section.starts_on.to_time.to_s(:simple) %>!

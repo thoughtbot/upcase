@@ -52,6 +52,10 @@ FactoryGirl.define do
     email
     billing_email 'billing@example.com'
     section
+
+    factory :paid_registration do
+      paid true
+    end
   end
 
   factory :teacher do
