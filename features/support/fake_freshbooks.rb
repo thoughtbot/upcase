@@ -8,13 +8,15 @@ class FakeFreshbooks
       doc = Nokogiri::XML(request.body.read)
       request.body.rewind
       @@requests << doc
-      if doc.at('request')['method'] == 'client.create'
+
+      case doc.at('request')['method']
+      when 'client.create'
         handle_client_create
-      elsif doc.at('request')['method'] == 'invoice.create'
+      when 'invoice.create'
         handle_invoice_create
-      elsif doc.at('request')['method'] == 'invoice.get'
+      when 'invoice.get'
         handle_invoice_get
-      elsif doc.at('request')['method'] == 'payment.get'
+      when 'payment.get'
         handle_payment_get
       end
     end
