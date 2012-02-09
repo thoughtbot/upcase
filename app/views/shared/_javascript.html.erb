@@ -48,3 +48,8 @@
 </script>
 
 <%= render 'shared/javascript_olark' %>
+<%= javascript_tag do %>
+  olark('api.chat.onBeginConversation', function() {
+    _kmq.push(["set", {"Olark chat": "yes"}]);
+  });
+<%= end %>
