@@ -14,7 +14,7 @@ Setting up Postgres:
 
 Follow [this tutorial](https://willj.net/2011/05/31/setting-up-postgresql-for-ruby-on-rails-development-on-os-x/)
 
-The app depends on Redis (used with the switch gem for A/B testing:
+The app depends on Redis (used with the Split gem for A/B testing):
 
     brew install redis
     redis-server /usr/local/etc/redis.conf
@@ -35,7 +35,6 @@ App:
 Development data:
 
     rake dev:prime
-
 
 Development process
 -------------------
