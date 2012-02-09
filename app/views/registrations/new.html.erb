@@ -51,3 +51,14 @@
     </section>
   </section>
 </section>
+
+<% content_for :javascript do -%>
+  <%= javascript_tag do %>
+    $(document).ready(function(){
+      $('#new_registration').submit(function(){
+        var email = $('#registration_email').val();
+        _kmq.push(['identify', email]);
+      });
+    });
+  <% end %>
+<% end %>
