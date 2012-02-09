@@ -83,13 +83,13 @@ class Section < ActiveRecord::Base
 
   def send_teacher_notifications
     self.teachers.each do |teacher|
-      UserMailer.teacher_notification(teacher, self).deliver
+      Mailer.teacher_notification(teacher, self).deliver
     end
   end
 
-  def send_before_section_reminder
+  def send_section_reminder
     self.paid_registrations.each do |registration|
-      UserMailer.before_section_reminder(registration, self).deliver
+      Mailer.section_reminder(registration, self).deliver
     end
   end
 end
