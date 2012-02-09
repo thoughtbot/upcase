@@ -35,7 +35,6 @@ class FakeFreshbooks
   def handle_invoice_create
     invoice_id = FakeFreshbooks.next_sequence
     response   = <<-END.strip
-      invoice response
       <?xml version="1.0" encoding="utf-8"?>
       <response xmlns="http://www.freshbooks.com/api/" status="ok">
         <invoice_id>#{invoice_id}</invoice_id>
