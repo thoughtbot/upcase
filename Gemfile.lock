@@ -98,9 +98,10 @@ GEM
     gherkin (2.6.3)
       json (>= 1.4.6)
     headless (0.1.0)
-    heroku (2.3.3)
+    heroku (2.13.0)
       launchy (>= 0.3.2)
       rest-client (~> 1.6.1)
+      rubyzip
       term-ansicolor (~> 1.0.5)
     high_voltage (0.9.3)
     hoptoad_notifier (2.4.9)
@@ -160,7 +161,7 @@ GEM
     redis (2.2.2)
     redis-namespace (1.0.3)
       redis (< 3.0.0)
-    rest-client (1.6.1)
+    rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
@@ -235,7 +236,7 @@ DEPENDENCIES
   factory_girl_rails (~> 1.1.0)
   formtastic (~> 1.0)
   headless
-  heroku
+  heroku (~> 2.13)
   high_voltage
   hoptoad_notifier
   jquery-rails (~> 1.0.11)
