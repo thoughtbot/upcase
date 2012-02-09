@@ -88,7 +88,7 @@ class Section < ActiveRecord::Base
   end
 
   def send_before_section_reminder
-    self.registrations.each do |registration|
+    self.paid_registrations.each do |registration|
       UserMailer.before_section_reminder(registration, self).deliver
     end
   end
