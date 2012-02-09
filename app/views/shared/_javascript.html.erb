@@ -47,9 +47,11 @@
   <% end %>
 </script>
 
-<%= render 'shared/javascript_olark' %>
-<%= javascript_tag do %>
-  olark('api.chat.onBeginConversation', function() {
-    _kmq.push(["set", {"Olark chat": "yes"}]);
-  });
-<%= end %>
+<% if Rails.env.staging? || Rails.env.production? %>
+  <%= render 'shared/javascript_olark' %>
+  <%= javascript_tag do %>
+    olark('api.chat.onBeginConversation', function() {
+      _kmq.push(["set", {"Olark chat": "yes"}]);
+    });
+  <% end %>
+<% end -%>
