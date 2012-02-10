@@ -94,7 +94,7 @@ class Section < ActiveRecord::Base
   end
   
   def self.send_section_reminders
-    sections = Section.where("sections.starts_on = ?", Date.parse(Time.now.to_s) + 1.week)
+    sections = Section.where("sections.starts_on = ?", 1.week.from_now)
     sections.each do |section|
       section.send_section_reminder
     end
