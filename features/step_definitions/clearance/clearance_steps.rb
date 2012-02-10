@@ -1,11 +1,11 @@
 # General
 
 Then /^I should see error messages$/ do
-  Then %{I should see "errors prohibited"}
+  step %{Then I should see "errors prohibited"}
 end
 
 Then /^I should see an error message$/ do
-  Then %{I should see "error prohibited"}
+  step %{Then I should see "error prohibited"}
 end
 
 Then /^I should see an email field$/ do
@@ -37,13 +37,17 @@ end
 # Session
 
 Then /^I should be signed in$/ do
-  Given %{I am on the homepage}
-  Then %{I should see "Sign out"}
+  steps %{
+    Given I am on the homepage
+    Then I should see "Sign out"
+  }
 end
 
 Then /^I should be signed out$/ do
-  Given %{I am on the homepage}
-  Then %{I should see "Sign in"}
+  steps %{
+    Given I am on the homepage
+    Then I should see "Sign in"
+  }
 end
 
 When /^session is cleared$/ do
@@ -54,13 +58,15 @@ When /^session is cleared$/ do
 end
 
 Given /^(?:I am|I have|I) signed in (?:with|as) "(.*)\/(.*)"$/ do |email, password|
-  Given %{I am signed up as "#{email}/#{password}"}
-  And %{I sign in as "#{email}/#{password}"}
+  steps %{
+    Given I am signed up as "#{email}/#{password}"
+    And I sign in as "#{email}/#{password}"
+  }
 end
 
 Given /^I sign in$/ do
   email = Factory.next(:email)
-  Given %{I have signed in with "#{email}/password"}
+  step %{Given I have signed in with "#{email}/password"}
 end
 
 # Emails
@@ -91,10 +97,12 @@ end
 # Actions
 
 When /^I sign in (?:with|as) "(.*)\/(.*)"$/ do |email, password|
-  When %{I go to the sign in page}
-  And %{I fill in "Email" with "#{email}"}
-  And %{I fill in "Password" with "#{password}"}
-  And %{I press "Sign in"}
+  steps %{
+    When I go to the sign in page
+    And I fill in "Email" with "#{email}"
+    And I fill in "Password" with "#{password}"
+    And I press "Sign in"
+  }
 end
 
 When "I sign out" do
@@ -105,17 +113,23 @@ When "I sign out" do
 end
 
 When /^I request password reset link to be sent to "(.*)"$/ do |email|
-  When %{I go to the password reset request page}
-  And %{I fill in "Email address" with "#{email}"}
-  And %{I press "Reset password"}
+  steps %{
+    When I go to the password reset request page
+    And I fill in "Email address" with "#{email}"
+    And I press "Reset password"
+  }
 end
 
 When /^I update my password with "(.*)"$/ do |password|
-  And %{I fill in "Choose password" with "#{password}"}
-  And %{I press "Save this password"}
+  steps %{
+    And I fill in "Choose password" with "#{password}"
+    And I press "Save this password"
+  }
 end
 
 When /^I return next time$/ do
-  When %{session is cleared}
-  And %{I go to the homepage}
+  steps %{
+    When session is cleared
+    And I go to the homepage
+  }
 end

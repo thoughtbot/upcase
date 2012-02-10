@@ -65,22 +65,24 @@ GEM
       i18n (>= 0.5.0)
       json
     crack (0.1.8)
-    cucumber (1.0.6)
+    cucumber (1.1.2)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.2)
-      gherkin (~> 2.4.18)
+      gherkin (~> 2.6.2)
       json (>= 1.4.6)
       term-ansicolor (>= 1.0.6)
-    cucumber-rails (1.0.2)
-      capybara (>= 1.0.0)
-      cucumber (~> 1.0.0)
-      nokogiri (>= 1.4.6)
+    cucumber-rails (1.1.1)
+      capybara (>= 1.1.1)
+      cucumber (>= 1.1.0)
+      nokogiri (>= 1.5.0)
     database_cleaner (0.6.7)
     diesel (0.1.4)
       railties (~> 3.0.3)
     diff-lcs (1.1.3)
     dynamic_form (1.1.4)
-    email_spec (1.0.0)
+    email_spec (1.2.1)
+      mail (~> 2.2)
+      rspec (~> 2.0)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     escape_utils (0.2.3)
@@ -93,12 +95,13 @@ GEM
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
       i18n (~> 0.4)
-    gherkin (2.4.18)
+    gherkin (2.6.3)
       json (>= 1.4.6)
     headless (0.1.0)
-    heroku (2.3.3)
+    heroku (2.13.0)
       launchy (>= 0.3.2)
       rest-client (~> 1.6.1)
+      rubyzip
       term-ansicolor (~> 1.0.5)
     high_voltage (0.9.3)
     hoptoad_notifier (2.4.9)
@@ -111,6 +114,7 @@ GEM
       railties (~> 3.0)
       thor (~> 0.14)
     json (1.6.0)
+    kissmetrics (2.0.0)
     launchy (0.4.0)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
@@ -157,7 +161,7 @@ GEM
     redis (2.2.2)
     redis-namespace (1.0.3)
       redis (< 3.0.0)
-    rest-client (1.6.1)
+    rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
@@ -223,7 +227,7 @@ DEPENDENCIES
   capybara (~> 1.1.2)
   clearance (~> 0.11.0)
   copycopter_client (~> 1.1.0)
-  cucumber-rails (= 1.0.2)
+  cucumber-rails (~> 1.1.1)
   database_cleaner
   dynamic_form
   email_spec
@@ -232,10 +236,11 @@ DEPENDENCIES
   factory_girl_rails (~> 1.1.0)
   formtastic (~> 1.0)
   headless
-  heroku
+  heroku (~> 2.13)
   high_voltage
   hoptoad_notifier
   jquery-rails (~> 1.0.11)
+  kissmetrics
   launchy
   mocha
   nokogiri

@@ -44,5 +44,6 @@ Workshops::Application.routes.draw do
   match '/charlotte' => "high_voltage/pages#show", :as => :charlotte, :id => "charlotte"
 
   match '/rubyist-booster-shot' => "high_voltage/pages#show", :as => :rubyist_booster_shot, :id => "rubyist-booster-shot"
+  match 'sign_in'  => 'sessions#new', :as => 'sign_in'
   match '/playbook' => "high_voltage/pages#show", :as => :playbook, :id => "playbook"
 end

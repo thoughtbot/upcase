@@ -3,12 +3,14 @@ Feature: Scheduling a new course
   Scenario: Adding a new section for a course
     Given I am signed in as an admin
     And the following course exists:
-      | name                 | maximum students |
-      | Test-Driven Sleeping | 10               |
+      | name                 | maximum students | start_at | stop_at |
+      | Test-Driven Sleeping | 10               | 09:00    | 17:00   |
     And a teacher exists with a name of "Albert Einstein"
     When I go to the admin page
     And I follow "New Section" within the course "Test-Driven Sleeping"
     Then the seats available field should contain "10"
+    And the section start time field should contain "2000-01-01 09:00:00 UTC"
+    And the section stop time field should contain "2000-01-01 17:00:00 UTC"
     When I select the start date of "June 14, 2010"
     And I select the end date of "June 17, 2010"
     And I select the teacher "Albert Einstein"
