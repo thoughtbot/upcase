@@ -38,6 +38,8 @@ FactoryGirl.define do
     association :course
     starts_on { 1.day.ago }
     ends_on   { 1.day.from_now }
+    start_at    '9:00'
+    stop_at     '17:00'
     after_build do |s|
       s.teachers << Factory.build(:teacher)
     end

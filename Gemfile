@@ -18,7 +18,7 @@ gem "copycopter_client", "~> 1.1.0"
 gem "ruby-freshbooks"
 gem "high_voltage"
 gem "jquery-rails", "~> 1.0.11"
-gem "heroku"
+gem "heroku", "~> 2.13"
 gem "acts_as_list"
 gem "dynamic_form"
 gem "snogmetrics"
@@ -26,6 +26,7 @@ gem "split", :git => "git://github.com/jasonm/split.git"
 gem 'SystemTimer', :platform => :ruby_18
 gem "rack-rewrite"
 gem "rack-ssl-enforcer", "~> 0.2.4"
+gem "kissmetrics"
 
 # Fix the warning: regexp match /.../n against to UTF-8 string issue
 gem "escape_utils"
@@ -41,7 +42,7 @@ end
 group :test do
   gem 'selenium-webdriver', '~> 2.16.0'
   gem "headless"
-  gem "cucumber-rails", "1.0.2"
+  gem "cucumber-rails", "~> 1.1.1"
   gem 'capybara', "~> 1.1.2"
   gem "factory_girl", "~> 2.0.4"
   gem "factory_girl_rails", "~> 1.1.0"

@@ -1,5 +1,5 @@
 class Section < ActiveRecord::Base
-  validates_presence_of :starts_on, :ends_on
+  validates_presence_of :starts_on, :ends_on, :start_at, :stop_at
 
   validate :must_have_at_least_one_teacher
 
@@ -28,7 +28,7 @@ class Section < ActiveRecord::Base
   end
 
   def time_range
-    "#{course.start_at.to_s(:time).strip}-#{course.stop_at.to_s(:time).strip}"
+    "#{self.start_at.to_s(:time).strip}-#{self.stop_at.to_s(:time).strip}"
   end
 
   def full?

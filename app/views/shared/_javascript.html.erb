@@ -26,19 +26,20 @@
     $.ajaxSetup({ async: false });
   <% end %>
 <% end %>
-<script type="text/javascript">
+<%= javascript_tag do %>
   function tumblr(resp) {
     var posts = resp.posts;
     $('#blog-footer .loading').replaceWith('<ul/>');
-    $ul = $('#blog-footer ul');
+    var $ul = $('#blog-footer ul');
     for (var i=0; i<posts.length; i++) {
       var p = posts[i];
-                  var title = p['regular-title'] || p['link-text'] || null;
-      if (title)
+      var title = p['regular-title'] || p['link-text'] || null;
+      if (title) {
         $ul.append('<li><a href="'+p['url']+'">'+title+'</a></li>');
+      }
     }
   }
-</script>
+<% end %>
 
 <script type="text/javascript">
   <% Split::Experiment.all.each do |experiment| %>
@@ -46,4 +47,11 @@
   <% end %>
 </script>
 
-<%= render 'shared/javascript_olark' %>
+<% if Rails.env.staging? || Rails.env.production? %>
+  <%= render 'shared/javascript_olark' %>
+  <%= javascript_tag do %>
+    olark('api.chat.onBeginConversation', function() {
+      _kmq.push(["set", {"Olark chat": "yes"}]);
+    });
+  <% end %>
+<% end -%>

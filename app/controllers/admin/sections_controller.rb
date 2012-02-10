@@ -1,7 +1,8 @@
 class Admin::SectionsController < AdminController
   def new
     @course   = Course.find(params[:course_id])
-    @section  = @course.sections.build
+    @section  = @course.sections.build(:start_at => @course.start_at,
+                                       :stop_at  => @course.stop_at)
     @teachers = Teacher.all
     @section.section_teachers.build
   end

@@ -1,7 +1,9 @@
 Workshops
 ========
 
-Workshops is a Rails 3.0 app running on Ruby 1.9.2 and deployed to Heroku. It has an RSpec and Cucumber test suite which should be run before commiting to the master branch.
+Workshops is a Rails 3.0 app running on Ruby 1.9.2 and deployed to Heroku. It
+has an RSpec and Cucumber test suite which should be run before committing to
+the master branch.
 
 Laptop setup
 ------------
@@ -14,7 +16,7 @@ Setting up Postgres:
 
 Follow [this tutorial](https://willj.net/2011/05/31/setting-up-postgresql-for-ruby-on-rails-development-on-os-x/)
 
-The app depends on Redis (used with the switch gem for A/B testing:
+The app depends on Redis (used with the Split gem for A/B testing):
 
     brew install redis
     redis-server /usr/local/etc/redis.conf
@@ -36,7 +38,6 @@ Development data:
 
     rake dev:prime
 
-
 Development process
 -------------------
 
@@ -55,6 +56,8 @@ Open up the Github repo, change into your feature-branch branch. Press the "Pull
     git up
     git mm
     git push origin master
+
+(Note: these commands won't work without adding the appropriate aliases to your .gitconfig file as seen in the "Working Faster" section below)
 
 For more details and screenshots of the feature branch code review process, read [this blog post](http://robots.thoughtbot.com/post/2831837714/feature-branch-code-reviews).
 
@@ -135,7 +138,7 @@ For rebasing and maintaining a clean history, edit your ~/.gitconfig to include 
       up = !git fetch origin && git rebase origin/master
       mm = !test `git rev-parse master` = $(git merge-base HEAD master) && git checkout master && git merge HEAD@{1} || echo "Non-fastforward"
 
-For cheap and easy branchse:
+For cheap and easy branches:
 
     gem install git_remote_branch
 
@@ -145,3 +148,9 @@ Acceptance and invoices
 When you test or do acceptance on staging and create invoices, be sure to void
 the invoices in Freshbooks afterwards.  The login information is in the
 Technical Information writeboard.
+
+Web hooks
+---------
+
+Freshbooks has [web hooks](http://developers.freshbooks.com/webhooks/). We have
+the `payment.create` hook in place. It POSTs to PaymentsController#create.
