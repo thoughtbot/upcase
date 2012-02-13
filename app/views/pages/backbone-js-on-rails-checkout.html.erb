@@ -4,7 +4,7 @@
     <h1>Purchase Backbone.js on Rails</h1>
     <%= render :partial => 'shared/backbone_checkout_intro' %>
 
-    <%= semantic_form_for :cart, :url => "https://thoughtbot.myshopify.com/cart/add", :html => { :method => 'post' } do |form| %>
+    <%= semantic_form_for :cart, :url => "https://thoughtbot.myshopify.com/cart/add", :html => { :id => "backbone_form", :method => 'post' } do |form| %>
       <%= hidden_field_tag 'id', '198224892' %>
       <%= hidden_field_tag 'return_to', "https://thoughtbot.myshopify.com/checkout" %>
       <%= form.inputs 'GitHub Username(s)' do %>
