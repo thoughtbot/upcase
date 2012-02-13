@@ -7,7 +7,7 @@
     <%= semantic_form_for :cart, :url => "https://thoughtbot.myshopify.com/cart/add", :html => { :id => "backbone_form", :method => 'post' } do |form| %>
       <%= hidden_field_tag 'id', '198224892' %>
       <%= hidden_field_tag 'return_to', "https://thoughtbot.myshopify.com/checkout" %>
-      <%= form.inputs 'GitHub Username(s)' do %>
+      <%= form.inputs 'GitHub Username' do %>
         <li>Enter the <strong>GitHub usernames</strong> of everyone you'd like to purchase access for. You can add more names later.  If you don't have a Github account, you can <a href="https://github.com/signup/free">create one for free here</a>.</li>
         <li class="string required">
           <label for="first_reader">First Reader<abbr title="required">*</abbr></label>
