@@ -27,7 +27,7 @@ gem 'SystemTimer', :platform => :ruby_18
 gem "rack-rewrite"
 gem "rack-ssl-enforcer", "~> 0.2.4"
 gem "kissmetrics"
-gem "octokit"
+gem "octokit", "1.0.0"
 
 # Fix the warning: regexp match /.../n against to UTF-8 string issue
 gem "escape_utils"
