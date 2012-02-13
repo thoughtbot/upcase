@@ -1,13 +1,19 @@
 body.high_voltage-pages {
 
   section#container {
+    @extend .clearfix;
 
     section#checkout-form {
-      margin: 50px auto 0;
-      width: ($unit*8)+($gutter*6);
+      @extend .clearfix;
 
-      p {
-        padding-bottom: 20px;
+      form {
+        float: left;
+        width: grid-width(6);
+      }
+
+      h1 {
+        font: 400 32px $sans-serif;
+        margin: 25px 25px 12px 0;
       }
     }
   }

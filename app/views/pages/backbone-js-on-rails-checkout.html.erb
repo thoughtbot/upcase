@@ -1,24 +1,25 @@
 <section id="container">
 
   <section id="checkout-form">
-    <h1>Purchase the Backbone.js on Rails eBook</h1>
-    <p>We're writing an eBook that covers intermediate to advanced topics on using Backbone.js. The book is still in progress – but that's the best part! You get full access to the GitHub repository as we write. In addition to the book, your purchase gets you access to a complete example application, all future updates to the book and example app, and the ability to ask us questions and receive Rails and Backbone.js support via GitHub issues.</p>
+    <h1>Purchase Backbone.js on Rails</h1>
+    <%= render :partial => 'shared/backbone_checkout_intro' %>
 
-    <script type="text/javascript">var host = (("https:" == document.location.protocol) ? "https://secure." : "http://");document.write(unescape("%3Cscript src='" + host + "wufoo.com/scripts/embed/form.js' type='text/javascript'%3E%3C/script%3E"));</script>
-
-    <script type="text/javascript">
-      var q7p3r7 = new WufooForm();
-      q7p3r7.initialize({
-      'userName':'thoughtbot', 
-      'formHash':'q7p3r7', 
-      'autoResize':true,
-      'height':'1281',
-      'header':'show', 
-      'ssl':true});
-      q7p3r7.display();
-    </script>
+    <%= semantic_form_for :cart, :url => "https://thoughtbot.myshopify.com/cart/add", :html => { :method => 'post' } do |form| %>
+      <%= hidden_field_tag 'id', '198224892' %>
+      <%= hidden_field_tag 'return_to', "https://thoughtbot.myshopify.com/checkout" %>
+      <%= form.inputs 'GitHub Username(s)' do %>
+        <li>Enter the <strong>GitHub usernames</strong> of everyone you'd like to purchase access for. You can add more names later.  If you don't have a Github account, you can <a href="https://github.com/signup/free">create one for free here</a>.</li>
+        <li class="string required">
+          <label for="first_reader">First Reader<abbr title="required">*</abbr></label>
+          <input type="text" name="attributes[first-reader]" id="first_reader"/>
+          <p class="inline-hints">Be sure to enter a valid GitHub username.</p>
+        </li>
+      <% end %>
+      <%= form.buttons do %>
+        <%= form.commit_button "Proceed to Checkout" %>
+      <% end %>
+    <% end %>
 
   </section>
 
 </section>
-

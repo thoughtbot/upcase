@@ -55,7 +55,7 @@ body.courses-show #head-wrapper #homepage-top:after, body.high_voltage-pages #ad
 body.sections-show #additional-information:after,
 body.courses-show #additional-information:after, body.high_voltage-pages #additional-information #additional-information-wrapper #sidebar li:after,
 body.sections-show #additional-information #additional-information-wrapper #sidebar li:after,
-body.courses-show #additional-information #additional-information-wrapper #sidebar li:after, body.registrations #form-container:after, footer#main-footer:after, footer#main-footer nav:after {
+body.courses-show #additional-information #additional-information-wrapper #sidebar li:after, body.registrations #form-container:after, footer#main-footer:after, footer#main-footer nav:after, body.high_voltage-pages section#container:after, body.high_voltage-pages section#container section#checkout-form:after {
   clear: both;
   content: ' ';
   display: block;
@@ -1007,109 +1007,23 @@ body.registrations #total p.coupon-note {
     font: 700 16px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
 body.registrations div.coupon {
   margin: 12px 0; }
-body.registrations form {
-  margin: 0 0 48px 0; }
-  body.registrations form fieldset legend {
-    font: 600 18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-    padding: 24px 0 12px 0; }
-  body.registrations form fieldset ol li {
-    margin: 0 0 8px 0;
-    width: 466px;
-    /* red button */ }
-    body.registrations form fieldset ol li p.inline-hints {
-      color: #666; }
-    body.registrations form fieldset ol li#registration_first_name_input, body.registrations form fieldset ol li#registration_city_input {
-      float: left;
-      margin-right: 20px;
-      width: 223px; }
-    body.registrations form fieldset ol li#registration_last_name_input {
-      float: left;
-      width: 223px; }
-    body.registrations form fieldset ol li#registration_state_input {
-      float: left;
-      margin-right: 20px;
-      width: 80px; }
-    body.registrations form fieldset ol li#registration_zip_code_input {
-      float: left;
-      width: 123px; }
-    body.registrations form fieldset ol li #registration_comments {
-      width: 472px;
-      height: 100px; }
-    body.registrations form fieldset ol li.error p.inline-errors {
-      color: #ad141e; }
-    body.registrations form fieldset ol li.error input {
-      background: #f8bcba; }
-    body.registrations form fieldset ol li label {
-      display: block;
-      font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
-    body.registrations form fieldset ol li input[type="text"],
-    body.registrations form fieldset ol li input[type="password"],
-    body.registrations form fieldset ol li input[type="tel"],
-    body.registrations form fieldset ol li input[type="email"] {
-      padding: 6px 4px;
-      width: 100%; }
-    body.registrations form fieldset ol li.commit {
-      margin-top: 24px; }
-    body.registrations form fieldset ol li input[type="submit"] {
-      background: #ad141e;
-      border: 1px solid #52090e;
-      color: #fff;
-      display: block;
-      line-height: 20px;
-      padding: 10px;
-      font: 700 18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      text-align: center;
-      text-shadow: 0 -1px 0 #7f0f16;
-      width: 200px;
-      -webkit-box-shadow: inset 0 1px 0 #e93e49;
-      -moz-box-shadow: inset 0 1px 0 #e93e49;
-      -ms-box-shadow: inset 0 1px 0 #e93e49;
-      -o-box-shadow: inset 0 1px 0 #e93e49;
-      box-shadow: inset 0 1px 0 #e93e49;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      -ms-border-radius: 3px;
-      -o-border-radius: 3px;
-      border-radius: 3px;
-      -webkit-transition-property: all;
-      -moz-transition-property: all;
-      -ms-transition-property: all;
-      -o-transition-property: all;
-      transition-property: all;
-      -webkit-transition-duration: 0.3s;
-      -moz-transition-duration: 0.3s;
-      -ms-transition-duration: 0.3s;
-      -o-transition-duration: 0.3s;
-      transition-duration: 0.3s;
-      -webkit-transition-timing-function: linear;
-      -moz-transition-timing-function: linear;
-      -ms-transition-timing-function: linear;
-      -o-transition-timing-function: linear;
-      transition-timing-function: linear;
-      -webkit-transition-delay: 0;
-      -moz-transition-delay: 0;
-      -ms-transition-delay: 0;
-      -o-transition-delay: 0;
-      transition-delay: 0; }
-      body.registrations form fieldset ol li input[type="submit"]:hover {
-        background: #c41722;
-        border: 1px solid #7f0f16;
-        text-shadow: 0 -1px 0 #96111a;
-        -webkit-box-shadow: inset 0 1px 0 #ee6c74;
-        -moz-box-shadow: inset 0 1px 0 #ee6c74;
-        -ms-box-shadow: inset 0 1px 0 #ee6c74;
-        -o-box-shadow: inset 0 1px 0 #ee6c74;
-        box-shadow: inset 0 1px 0 #ee6c74;
-        cursor: pointer; }
-      body.registrations form fieldset ol li input[type="submit"]:active {
-        background: #96111a;
-        text-shadow: none;
-        -webkit-box-shadow: inset 0 -1px 3px #680c12;
-        -moz-box-shadow: inset 0 -1px 3px #680c12;
-        -ms-box-shadow: inset 0 -1px 3px #680c12;
-        -o-box-shadow: inset 0 -1px 3px #680c12;
-        box-shadow: inset 0 -1px 3px #680c12; }
+body.registrations form fieldset ol li#registration_first_name_input, body.registrations form fieldset ol li#registration_city_input {
+  float: left;
+  margin-right: 20px;
+  width: 223px; }
+body.registrations form fieldset ol li#registration_last_name_input {
+  float: left;
+  width: 223px; }
+body.registrations form fieldset ol li#registration_state_input {
+  float: left;
+  margin-right: 20px;
+  width: 80px; }
+body.registrations form fieldset ol li#registration_zip_code_input {
+  float: left;
+  width: 123px; }
+body.registrations form fieldset ol li #registration_comments {
+  width: 472px;
+  height: 100px; }
 body.registrations #form-sidebar {
   float: left;
   padding: 50px 0 0 0;
@@ -1191,11 +1105,99 @@ footer#main-footer {
     margin-top: 40px;
     /*line-height to maintain baseline grid*/ }
 
-body.high_voltage-pages section#container section#checkout-form {
-  margin: 50px auto 0;
-  width: 630px; }
-  body.high_voltage-pages section#container section#checkout-form p {
-    padding-bottom: 20px; }
+body.high_voltage-pages section#container section#checkout-form form {
+  float: left;
+  width: 485px; }
+body.high_voltage-pages section#container section#checkout-form h1 {
+  font: 400 32px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+  margin: 25px 25px 12px 0; }
+
+form {
+  margin: 0 0 48px 0; }
+  form fieldset legend {
+    font: 600 18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+    padding: 24px 0 12px 0; }
+  form fieldset ol li {
+    margin: 0 0 8px 0;
+    width: 466px;
+    /* red button */ }
+    form fieldset ol li p.inline-hints {
+      color: #666; }
+    form fieldset ol li.error p.inline-errors {
+      color: #ad141e; }
+    form fieldset ol li.error input {
+      background: #f8bcba; }
+    form fieldset ol li label {
+      display: block;
+      font: 400 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
+    form fieldset ol li input[type="text"],
+    form fieldset ol li input[type="password"],
+    form fieldset ol li input[type="tel"],
+    form fieldset ol li input[type="email"] {
+      padding: 6px 4px;
+      width: 100%; }
+    form fieldset ol li.commit {
+      margin-top: 24px; }
+    form fieldset ol li input[type="submit"] {
+      background: #ad141e;
+      border: 1px solid #52090e;
+      color: #fff;
+      display: block;
+      line-height: 20px;
+      padding: 10px;
+      font: 700 18px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-align: center;
+      text-shadow: 0 -1px 0 #7f0f16;
+      width: 200px;
+      -webkit-box-shadow: inset 0 1px 0 #e93e49;
+      -moz-box-shadow: inset 0 1px 0 #e93e49;
+      -ms-box-shadow: inset 0 1px 0 #e93e49;
+      -o-box-shadow: inset 0 1px 0 #e93e49;
+      box-shadow: inset 0 1px 0 #e93e49;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
+      border-radius: 3px;
+      -webkit-transition-property: all;
+      -moz-transition-property: all;
+      -ms-transition-property: all;
+      -o-transition-property: all;
+      transition-property: all;
+      -webkit-transition-duration: 0.3s;
+      -moz-transition-duration: 0.3s;
+      -ms-transition-duration: 0.3s;
+      -o-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+      -webkit-transition-timing-function: linear;
+      -moz-transition-timing-function: linear;
+      -ms-transition-timing-function: linear;
+      -o-transition-timing-function: linear;
+      transition-timing-function: linear;
+      -webkit-transition-delay: 0;
+      -moz-transition-delay: 0;
+      -ms-transition-delay: 0;
+      -o-transition-delay: 0;
+      transition-delay: 0; }
+      form fieldset ol li input[type="submit"]:hover {
+        background: #c41722;
+        border: 1px solid #7f0f16;
+        text-shadow: 0 -1px 0 #96111a;
+        -webkit-box-shadow: inset 0 1px 0 #ee6c74;
+        -moz-box-shadow: inset 0 1px 0 #ee6c74;
+        -ms-box-shadow: inset 0 1px 0 #ee6c74;
+        -o-box-shadow: inset 0 1px 0 #ee6c74;
+        box-shadow: inset 0 1px 0 #ee6c74;
+        cursor: pointer; }
+      form fieldset ol li input[type="submit"]:active {
+        background: #96111a;
+        text-shadow: none;
+        -webkit-box-shadow: inset 0 -1px 3px #680c12;
+        -moz-box-shadow: inset 0 -1px 3px #680c12;
+        -ms-box-shadow: inset 0 -1px 3px #680c12;
+        -o-box-shadow: inset 0 -1px 3px #680c12;
+        box-shadow: inset 0 -1px 3px #680c12; }
 
 body {
   background: #fcfcfc;
