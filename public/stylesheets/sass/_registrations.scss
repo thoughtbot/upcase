@@ -50,23 +50,9 @@ body.registrations {
   }
 
   form {
-    margin: 0 0 48px 0;
-
     fieldset {
-      legend {
-        font: 600 18px $sans-serif;
-        padding: 24px 0 12px 0;
-      }
-
       ol {
         li {
-          margin: 0 0 8px 0;
-          width: 466px;
-
-          p.inline-hints {
-            color: #666;
-          }
-
           &#registration_first_name_input,
           &#registration_city_input {
             float: left;
@@ -93,38 +79,6 @@ body.registrations {
           #registration_comments {
             width: 472px;
             height: 100px;
-          }
-
-          &.error {
-            p.inline-errors {
-              color: $red;
-            }
-
-            input {
-              background: #f8bcba;
-            }
-          }
-
-          label {
-            display: block;
-            font: 400 14px $sans-serif;
-          }
-
-          input[type="text"],
-          input[type="password"],
-          input[type="tel"],
-          input[type="email"] {
-            padding: 6px 4px;
-            width: 100%;
-          }
-
-          &.commit {
-            margin-top: 24px;
-          }
-
-          /* red button */
-          input[type="submit"] {
-            @include button;
           }
         }
       }

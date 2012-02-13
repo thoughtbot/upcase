@@ -11,6 +11,11 @@ Workshops::Application.routes.draw do
   end
 
   resources :payments, :only => [:create]
+  resource :shopify, :controller => 'shopify' do
+    member do
+      post 'order_paid'
+    end
+  end
 
   match '/admin' => 'admin/courses#index', :as => :admin
   namespace :admin do

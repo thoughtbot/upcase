@@ -1,319 +1,54 @@
-$body: "skolar-1","skolar-2", Georgia, serif;
-
-/* Forms
----------------------------------------- */
-
-// Extends
-//************************************************************************//
-.subtle {
-  color: #aaa;
-  font-size: 11px;
-  font-style: italic;
-  font-weight: normal;
-  margin-bottom: 0;
-}
-
-//************************************************************************//
-// Base Site Styles
-//************************************************************************//
-
-body {
-  background: #fcfcfc;
-  border-top: 4px solid #AD141E;
-  font-family: $sans-serif;
-  font-size: 14px;
-  line-height: 20px;
-}
-
-a {
-  color: $red;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: #222;
-  font: 400 $sans-serif;
-  line-height: 150%;
-}
-
-h1 {
-  font-size: 32px;
-}
-
-h2 {
-  font-size: 24px;
-}
-
-h3 {
-  font-size: 20px;
-}
-
-h4 {
-  font-size: 18px;
-}
-
-h5, h6 {
-  font-size: 14px;
-}
-
-
 //************************************************************************//
 // Base Form Styles
 //************************************************************************//
-form.wufoo {
-  margin-left: 0;
-  width: 630px;
+form {
+  margin: 0 0 48px 0;
 
-  header#header {
-    display: none;
-  }
+  fieldset {
+    legend {
+      font: 600 18px $sans-serif;
+      padding: 24px 0 12px 0;
+    }
 
-  $half-width-input: grid-width(3.5);
+    ol {
+      li {
+        margin: 0 0 8px 0;
+        width: 466px;
 
-  // hack to hide the floating price box that wufoo helpfully added.
-  #lola {
-    display: none !important;
-  }
-
-  ul {
-    list-style: none;
-    margin-top: $lh;
-    padding: 4px;
-
-    li {
-      margin-bottom: $lh + 10px;
-      width: grid-width(8);
-      padding: 0;
-      margin-right: $gutter;
-
-      &.section {
-        padding-top: 25px;
-        margin-bottom: 10px;
-
-        h3 {
-          color: $red;
-          font-size: 24px;
-          padding: 0;
-          border-top: 0 !important;
+        p.inline-hints {
+          color: #666;
         }
 
-        div {
-          padding: 0;
-        }
-      }
+        &.error {
+          p.inline-errors {
+            color: $red;
+          }
 
-      fieldset {
-        background: none;
-        border: 0;
-        padding: 0;
-      }
-
-      label.desc, legend.desc, label, legend {
-        -webkit-font-smoothing: antialiased;
-        font: 14px $body;
-        font-weight: bold; // BECAUSE I SAID SO!!
-        line-height: $lh;
-        margin: 0 0 5px;
-        padding: 0;
-
-        &.choice {
-          display: inline;
-          font-weight: normal;
-        }
-      }
-
-      .req {
-        color: $red;
-      }
-
-      input.checkbox, input.radio {
-        display: inline-block;
-      }
-
-
-      // Default Input Styles
-      //************************************************************************//
-      input[type="text"], input[type="email"], input.text, textarea {
-        $input-width: grid-width(7) + $gutter; /*6 columns minus line-heigh for the padding and 2px for the border*/
-        border: 1px solid #999;
-        @include box-shadow( inset 0 1px 2px #aaa);
-        @include box-sizing(border-box);
-        font: 14px $body;
-        line-height: $lh;
-        margin: 0;
-        max-width: $input-width;
-        padding: ($lh/2)-(1) ($lh/2); /*line-height divided by two so that the bottom and top will align to the baseline grid*/
-        width: $input-width;
-
-        &:focus {
-          outline-color: $red;
+          input {
+            background: #f8bcba;
+          }
         }
 
-        &.medium {
-          min-width: grid-width(6);
-        }
-      }
-
-      input[type="text"], input[type="email"], input.text {
-      }
-
-      input#saveForm, input#submitFormButton {
-        @include button;
-        display: block;
-        margin: 0;
-        padding: ($lh/2)-(2) ($lh*2); /*line-height divided by two so that the bottom and top will align to the baseline grid*/
-
-        &:hover {
-          cursor: pointer;
-        }
-
-        &:active {
-          background: darken($red, 5%);
-        }
-      }
-
-      input#submitFormButton {
-        margin-left: 185px;
-        width: auto;
-      }
-
-      .instruct {
-        color: #aaa;
-        font-size: 14px;
-        font-style: italic;
-        font-weight: normal;
-        margin: $lh $lh $lh*2;
-      }
-
-      &.focused {
-        background: none;
         label {
-          color: #000;
-        }
-      }
-
-      &.buttons {
-        padding: 0 !important;
-
-        div {
-          margin: 0px !important;
-          padding: 0px;
-        }
-      }
-
-      // Phone & Email
-      //************************************************************************//
-      &.phone {
-        margin-right: 0;
-      }
-
-      &.email, &.phone {
-        clear: none;
-        float: left;
-        width: 50%;
-
-        input[type="text"], input.text, input[type="email"] {
-          width: $half-width-input;
-        }
-      }
-
-      // Name Input
-      //************************************************************************//
-      &.name {
-        @extend .clearfix;
-        float: none;
-        margin-bottom: 10px;
-        width: 100%;
-
-        span {
           display: block;
-          float: left;
-          margin-right: 2 * $gutter;
-          width: $half-width-input;
-
-          &:nth-child(odd) {
-            margin-right: 0;
-          }
-
-          input[type="text"] {
-            width: 100%;
-          }
-
-          &.req {
-            display: inline;
-            float: none;
-            margin: 0;
-            width: auto;
-          }
-
-          label {
-            @extend .subtle;
-          }
-        }
-      }
-
-      // Elevator Pitch
-      //************************************************************************//
-      &.pitch {
-        div label {
-          @extend .subtle;
-          line-height: 0.8em;
-        }
-      }
-
-      // Services list
-      //************************************************************************//
-      &.subscription {
-        legend {
-          padding-bottom: 10px;
+          font: 400 14px $sans-serif;
         }
 
-        div {
-          background: #eee;
-          border: 1px solid #999;
-          max-width: grid-width(7) + $gutter;
-          padding: 20px 0;
-          width: grid-width(7) + $gutter;
-
-          span {
-            margin-left: 30px;
-            width: auto;
-
-            input[type="radio"]:checked + label {
-              font-weight: bold;
-            }
-
-            label {
-              margin-left: 5px;
-            }
-          }
+        input[type="text"],
+        input[type="password"],
+        input[type="tel"],
+        input[type="email"] {
+          padding: 6px 4px;
+          width: 100%;
         }
-      }
-    }
 
-    .invoice thead th, .invoice tbody th, .invoice tbody td, .invoice tfoot th, .invoice .total, .invoice tfoot .last th, .invoice tfoot .last td, .invoice tfoot th, .invoice tfoot td {
-      border-color: #999;
-    }
+        &.commit {
+          margin-top: 24px;
+        }
 
-    li.invoice thead th {
-      background: #eee;
-    }
-
-    #ppSection, #ccSection, #invoiceSection, #billSection {
-      border-bottom: none;
-      border-top: 1px solid #DCDCDC;
-      margin-bottom: 30px;
-      padding: 40px 0px 0px 0px;
-
-      div {
-        span {
-
-          input[type="text"]:focus + label, input[type="email"]:focus + label {
-            color: #444;
-          }
-
-          label {
-            @extend .subtle;
-          }
+        /* red button */
+        input[type="submit"] {
+          @include button;
         }
       }
     }
