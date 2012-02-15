@@ -1123,7 +1123,13 @@ form {
     /* red button */ }
     form fieldset ol li p.inline-hints {
       color: #666; }
+    form fieldset ol li p.inline-errors {
+      color: #ad141e;
+      display: none; }
     form fieldset ol li.error p.inline-errors {
+      color: #ad141e;
+      display: block; }
+    form fieldset ol li.error p.inline-hints {
       color: #ad141e; }
     form fieldset ol li.error input {
       background: #f8bcba; }

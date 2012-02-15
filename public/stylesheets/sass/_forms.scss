@@ -19,8 +19,18 @@ form {
           color: #666;
         }
 
+        p.inline-errors {
+          color: $red;
+          display: none;
+        }
+
         &.error {
           p.inline-errors {
+            color: $red;
+            display: block;
+          }
+
+          p.inline-hints {
             color: $red;
           }
 
