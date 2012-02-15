@@ -1,0 +1,32 @@
+<%= content_for :javascript do %>
+  <%= javascript_tag do %>
+    function checkReader() {
+      var element = $(this);
+      if(element.val() != "") {
+        var url = "https://github.com/api/v2/json/user/show/" + element.val();
+        var req = $.ajax({
+          url : url,
+          dataType : "jsonp",
+          timeout : 1000
+        });
+        req.success(function() {
+          element.parent("li").removeClass("error");
+        });
+        req.error(function() {
+          element.parent("li").addClass("error");
+          element.focus();
+          return false;
+        });
+      }
+    }
+    $("input.reader").blur(checkReader);
+    $("#backbone_form").submit(function() {
+      $("input[type='submit']").val("Please wait...");
+      $("input.reader").each(checkReader);
+      if($("#backbone_form .error").length) {
+        $("input[type='submit']").val("Proceed to Checkout");
+        return false;
+      }
+    });
+  <% end %>
+<% end %>
