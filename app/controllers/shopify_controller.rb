@@ -21,6 +21,6 @@ class ShopifyController < ApplicationController
   end
 
   def readers
-    params[:note_attributes].collect { |attribute| attribute[:value] if attribute[:name] =~ /reader/ }.compact
+    params[:note_attributes].collect { |attribute| attribute[:value] if attribute[:name] =~ /reader/ && attribute[:value].strip.present? }.compact
   end
 end
