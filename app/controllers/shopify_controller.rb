@@ -3,7 +3,11 @@ class ShopifyController < ApplicationController
     if backbone_book?
       client = Octokit::Client.new(:login => "cpytel", :password => "cambridge")
       readers.each do |username|
-        client.add_team_member(github_team_id, username)
+        begin
+          client.add_team_member(github_team_id, username)
+        rescue Octokit::NotFound => e
+          Airbrake.notify(e)
+        end
         sleep 0.2
       end
     end
