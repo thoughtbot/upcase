@@ -5,7 +5,14 @@ describe ShopifyController do
     client = stub(:add_team_member => nil)
     Octokit::Client.stubs(:new => client)
     post :order_paid, "note_attributes"=>[{"name"=>"first-reader", "value"=>"cpytel"}], "line_items"=>[{"id"=>198671572, "product_id"=>84369372, "quantity"=>1, "sku"=>"NOTBACKBONE"}]
-    client.should_not have_received(:add_team_member)
+    client.should have_received(:add_team_member).never
+  end
+
+  it "doesn't add any users to github when there are blank usernames" do
+    client = stub(:add_team_member => nil)
+    Octokit::Client.stubs(:new => client)
+    post :order_paid, "note_attributes"=>[{"name"=>"first-reader", "value"=>" "}, {"name"=>"second-reader", "value"=>""}], "line_items"=>[{"id"=>198671572, "product_id"=>84369372, "quantity"=>1, "sku"=>"BACKBONE"}]
+    client.should have_received(:add_team_member).never
   end
 
   it "adds any users to github when it is a backbone book sale" do
