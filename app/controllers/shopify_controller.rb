@@ -5,7 +5,7 @@ class ShopifyController < ApplicationController
       readers.each do |username|
         begin
           client.add_team_member(github_team_id, username)
-        rescue Octokit::NotFound => e
+        rescue Octokit::NotFound, Net::HTTPBadResponse => e
           Airbrake.notify(e)
         end
         sleep 0.2
