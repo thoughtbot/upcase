@@ -30,7 +30,7 @@ describe ShopifyController do
     client.should have_received(:add_team_member).with(73110, "reader2")
   end
 
-  it "still responds with 200 when username not found, not notify hoptoad" do
+  it "still responds with 200 when username not found, and notify hoptoad" do
     Airbrake.stubs(:notify)
     client = stub()
     client.stubs(:add_team_member).raises(Octokit::NotFound)
@@ -40,4 +40,13 @@ describe ShopifyController do
     Airbrake.should have_received(:notify).once
   end
 
+  it "still responds with 200 when Net::HTTPBadResponse, and notify hoptoad" do
+    Airbrake.stubs(:notify)
+    client = stub()
+    client.stubs(:add_team_member).raises(Net::HTTPBadResponse)
+    Octokit::Client.stubs(:new => client)
+    post :order_paid, "note_attributes"=>[{"name"=>"first-reader", "value"=>"cpytel"}], "line_items"=>[{"id"=>198671572, "product_id"=>84369372, "quantity"=>1, "sku"=>"BACKBONE"}]
+    should respond_with(:ok)
+    Airbrake.should have_received(:notify).once
+  end
 end
