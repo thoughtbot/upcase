@@ -132,10 +132,28 @@ body.courses-show {
         width: grid-width(4);
 
         #register {
-          padding: 21px 0 20px 0;
+          padding: 21px 0 10px 0;
 
           a {
             @include button;
+          }
+
+          p.travel {
+            text-align: center;
+            width: 200px;
+
+            a {
+              background: transparent;
+              border: 0;
+              @include box-shadow(none);
+              color: #555;
+              display: block;
+              font-size: 12px;
+              line-height: 16px;
+              margin: 8px 0 0 0;
+              padding: 0;
+              text-shadow: none;
+            }
           }
         }
 
