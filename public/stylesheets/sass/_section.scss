@@ -140,7 +140,7 @@ body.courses-show {
 
           p.travel {
             text-align: center;
-            width: 200px;
+            width: 220px;
 
             a {
               background: transparent;
@@ -151,8 +151,13 @@ body.courses-show {
               font-size: 12px;
               line-height: 16px;
               margin: 8px 0 0 0;
-              padding: 0;
+              padding: 0 10px;
               text-shadow: none;
+              width: 200px;
+
+              &:hover {
+                text-decoration: underline;
+              }
             }
           }
         }
