@@ -613,7 +613,7 @@ body.courses-show #head-wrapper #homepage-top {
       body.sections-show #head-wrapper #homepage-top #workshop-details #register p.travel,
       body.courses-show #head-wrapper #homepage-top #workshop-details #register p.travel {
         text-align: center;
-        width: 200px; }
+        width: 220px; }
         body.high_voltage-pages #head-wrapper #homepage-top #workshop-details #register p.travel a,
         body.sections-show #head-wrapper #homepage-top #workshop-details #register p.travel a,
         body.courses-show #head-wrapper #homepage-top #workshop-details #register p.travel a {
@@ -629,8 +629,13 @@ body.courses-show #head-wrapper #homepage-top {
           font-size: 12px;
           line-height: 16px;
           margin: 8px 0 0 0;
-          padding: 0;
-          text-shadow: none; }
+          padding: 0 10px;
+          text-shadow: none;
+          width: 200px; }
+          body.high_voltage-pages #head-wrapper #homepage-top #workshop-details #register p.travel a:hover,
+          body.sections-show #head-wrapper #homepage-top #workshop-details #register p.travel a:hover,
+          body.courses-show #head-wrapper #homepage-top #workshop-details #register p.travel a:hover {
+            text-decoration: underline; }
     body.high_voltage-pages #head-wrapper #homepage-top #workshop-details h3,
     body.sections-show #head-wrapper #homepage-top #workshop-details h3,
     body.courses-show #head-wrapper #homepage-top #workshop-details h3 {
