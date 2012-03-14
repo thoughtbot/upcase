@@ -8,6 +8,8 @@ class Registration < ActiveRecord::Base
 
   validates_presence_of :organization, :first_name, :last_name, :email, :billing_email
 
+  after_create :push_payment_for_zero_cost
+
   after_create :store_freshbooks_client
   after_create :store_freshbooks_invoice
   after_create :send_invoice
@@ -23,11 +25,23 @@ class Registration < ActiveRecord::Base
   def receive_payment!
     self.paid = true
     save!
+    send_payment_confirmations
+ end
+
+  private
+
+  def push_payment_for_zero_cost
+    if section.calculate_price(coupon) == 0
+      self.paid = true
+      save!
+      send_payment_confirmations
+    end
+  end
+
+  def send_payment_confirmations 
     Mailer.registration_notification(self).deliver
     Mailer.registration_confirmation(self).deliver
   end
-
-  private
 
   def send_invoice
     Mailer.invoice(self).deliver
