@@ -77,8 +77,12 @@
       padding: 10px 0 0 0;
       width: grid-width(4);
 
-      &.first {
+      &.first, &.humans {
         border-top: 5px solid $red;
+      }
+
+      &.humans {
+        margin-top: 40px;
       }
 
       h2 {

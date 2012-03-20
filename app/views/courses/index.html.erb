@@ -33,6 +33,11 @@
       <h2><a href="/playbook"><%= t ".playbook_header", :default => "The Playbook" %></a></h2>
       <p><%= t ".playbook_description", :default => "The who, what, why, where, when, and how of modern web development." %></p>
     </aside>
+
+    <aside class="humans">
+      <h2><%= t ".humans_present_header", :default => "Humans Present" %></h2>
+      <p><%= link_to "tmux", page_path("tmux") %> &mdash; <%= t(".tmux_description", :default => "Become a faster, happier developer with this terminal multiplexer that's growing in popularity.") %></p>
+    </aside>
   </section>
 </section>
 
