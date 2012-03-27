@@ -73,23 +73,28 @@ body.purchases {
           }
 
           &#registration_first_name_input,
-          &#registration_city_input,
-          &#purchase_city_input {
+          &#registration_city_input {
             float: left;
             margin-right: 20px;
             width: 223px;
           }
 
+          &#purchase_city_input {
+            float: left;
+            margin-right: 20px;
+            width: 216px;
+          }
+
           &#registration_last_name_input {
             float: left;
-            width: 223px;
+            width: 203px;
           }
 
           &#registration_state_input,
           &#purchase_state_input {
             float: left;
             margin-right: 20px;
-            width: 80px;
+            width: 100px;
           }
 
           &#purchase_cvc_input {
@@ -98,10 +103,14 @@ body.purchases {
             width: 100px;
           }
 
+          &#purchase_country_input {
+            clear: left;
+          }
+
           &#registration_zip_code_input,
           &#purchase_zip_code_input {
             float: left;
-            width: 123px;
+            width: 110px;
           }
 
           #registration_comments {
