@@ -10,7 +10,7 @@
   <%= div_for(coupon, :class => 'coupon-list cool-list') do %>
     <h3>
       <%= link_to edit_admin_coupon_path(coupon) do %>
-        <%= coupon.code %> (<%= number_to_percentage coupon.percentage, :precision => 0 %>)
+        <%= coupon.code %> (<%= coupon_amount(coupon) %>)
       <% end %>
     </h3>
   <% end %>

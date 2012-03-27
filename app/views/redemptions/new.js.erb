@@ -1,5 +1,5 @@
 <% if @coupon %>
-  $("#total .price").html('<%= number_to_currency @buying.calculate_price(@coupon), :precision => 2 %>');
+  $("#total .price").html('<%= number_to_currency @buying.price, :precision => 2 %> (<%= coupon_amount(@coupon) %> off)');
   $(".coupon .error").hide();
   $("#total a").hide();
   $(".coupon").hide();

@@ -124,8 +124,8 @@ module NavigationHelpers
       'registration_email'
     when "code"
       'coupon_code'
-    when "percentage"
-      'coupon_percentage'
+    when "amount"
+      'coupon_amount'
     when 'organization'
       'registration_organization'
     when 'first name'

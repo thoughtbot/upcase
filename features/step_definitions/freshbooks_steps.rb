@@ -29,14 +29,6 @@ Then /^the invoice for "([^"]*)" has the following line items?:$/ do |user_email
   end
 end
 
-Then /^the invoice for "([^"]*)" has a discount of "([^"]*)"$/ do |user_email, discount|
-  registration = Registration.find_by_email!(user_email)
-  last_invoice = FakeFreshbooks.last_invoice
-  last_invoice.should be, "Expected an invoice on Freshbooks, but couldn't find one"
-  invoice_doc = last_invoice.request_doc
-  invoice_doc.at("discount").text.should == discount
-end
-
 When /^I pay for "([^"]*)" taking "([^"]*)"$/ do |email, course_name|
   post "/payments", "name" => "payment.create", "object_id" => "30"
 end

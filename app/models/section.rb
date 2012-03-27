@@ -10,7 +10,7 @@ class Section < ActiveRecord::Base
   has_many :paid_registrations, :class_name => "Registration", :conditions => { :paid => true }
   has_many :unpaid_registrations, :class_name => "Registration", :conditions => { :paid => false }
 
-  delegate :name, :description, :location, :location_name, :to => :course, :prefix => :course
+  delegate :name, :description, :location, :location_name, :price, :to => :course, :prefix => :course
   after_create :send_follow_up_emails, :send_teacher_notifications
 
   accepts_nested_attributes_for :section_teachers
@@ -33,14 +33,6 @@ class Section < ActiveRecord::Base
 
   def full?
     registrations.count >= seats_available
-  end
-
-  def calculate_price(coupon = nil)
-    if coupon
-      course.price - (course.price * (coupon.percentage * 0.01))
-    else
-      course.price
-    end
   end
 
   def date_range

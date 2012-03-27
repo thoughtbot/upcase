@@ -44,8 +44,8 @@ Feature: Purchase a Product
   @selenium
   Scenario: A visitor purchases with a valid coupon
     Given the following coupon exists:
-      | code       | percentage |
-      | VALENTINES | 10         |
+      | code       | discount_type | amount |
+      | VALENTINES | percentage    | 10     |
     When I go to the home page
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"
@@ -54,6 +54,6 @@ Feature: Purchase a Product
     Then the coupon form should be visible
     And I fill in "Code" with "VALENTINES"
     And I press "Apply Coupon"
-    Then I should see "$13.50"
+    Then I should see "$13.50 (10% off)"
     And the coupon form should be hidden
     And the coupon form link should be hidden

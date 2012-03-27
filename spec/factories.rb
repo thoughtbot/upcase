@@ -76,7 +76,8 @@ FactoryGirl.define do
 
   factory :coupon do
     code
-    percentage 10
+    discount_type "percentage"
+    amount 10
   end
 
   factory :product do

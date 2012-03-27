@@ -25,11 +25,11 @@
 <% end -%>
 <%= @purchase.city %>, <%= @purchase.state %> <%= @purchase.zip_code %></p>
 
-<p class="item"><strong><%= @purchase.product.name %> - <%= @purchase.variant %></strong> for <strong><%= number_to_currency @purchase.calculate_price(@purchase.coupon), :precision => 2 %></strong></td>
+<p class="item"><strong><%= @purchase.product.name %> - <%= @purchase.variant %></strong> for <strong><%= number_to_currency @purchase.price, :precision => 2 %></strong></td>
 
 <table>
   <tr>
-    <td>Subtotal</td><td class="amount"><%= number_to_currency @purchase.calculate_price(@purchase.coupon), :precision => 2 %> USD</td>
+    <td>Subtotal</td><td class="amount"><%= number_to_currency @purchase.price, :precision => 2 %> USD</td>
   </tr>
   <tr>
     <td>Tax</td><td class="amount">$0.00 USD</td>
@@ -38,7 +38,7 @@
     <td>Shipping</td><td class="amount">$0.00 USD</td>
   </tr>
   <tr>
-    <td><strong>Total</strong></td><td class="amount"><%= number_to_currency @purchase.calculate_price(@purchase.coupon), :precision => 2 %> USD</td>
+    <td><strong>Total</strong></td><td class="amount"><%= number_to_currency @purchase.price, :precision => 2 %> USD</td>
   </tr>
 </table>
 </section>

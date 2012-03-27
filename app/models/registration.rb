@@ -26,12 +26,24 @@ class Registration < ActiveRecord::Base
     self.paid = true
     save!
     send_payment_confirmations
- end
+  end
+
+  def section_price
+    section.course_price
+  end
+
+  def price
+    if coupon
+      coupon.apply(section_price)
+    else
+      section_price
+    end
+  end
 
   private
 
   def push_payment_for_zero_cost
-    if section.calculate_price(coupon) == 0
+    if price == 0
       self.paid = true
       save!
       send_payment_confirmations
@@ -113,11 +125,10 @@ class Registration < ActiveRecord::Base
                                     :p_code        => self.zip_code,
                                     :status        => 'sent',
                                     :terms         => 'UPON RECEIPT',
-                                    :discount      => (coupon.percentage if coupon),
                                     :lines => [{ :line => {
                                         :name         => 'Workshop',
                                         :description  => self.section.course_name,
-                                        :unit_cost    => self.section.calculate_price,
+                                        :unit_cost    => price,
                                         :quantity     => 1
                                       }}]
                                     })

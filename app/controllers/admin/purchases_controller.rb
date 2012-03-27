@@ -4,7 +4,7 @@ class Admin::PurchasesController < AdminController
       format.html
       format.csv do
         @purchases = Purchase.from_month(Date.parse(params[:date]))
-        render :csv => @purchases, :fields => [:id, :paid, :payment_method, :product_name, :charge_price, :created_at]
+        render :csv => @purchases, :fields => [:id, :paid, :payment_method, :product_name, :price, :created_at]
       end
     end
   end
