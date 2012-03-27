@@ -20,11 +20,11 @@
       }
     }
     $("input.reader").blur(checkReader);
-    $("#backbone_form").submit(function() {
+    $("form").submit(function() {
       $("input[type='submit']").val("Please wait...");
       $("input.reader").each(checkReader);
-      if($("#backbone_form .error").length) {
-        $("input[type='submit']").val("Proceed to Checkout");
+      if($("form .error").length) {
+        $("input[type='submit']").val("Submit Payment");
         return false;
       }
     });

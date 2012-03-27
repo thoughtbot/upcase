@@ -1,0 +1,133 @@
+<section id="container">
+<h1 class="course-title">Complete your purchase for <span><%= @product.name %></span></h1>
+
+  <section id="form-container">
+  <section id="form-column">
+    <div id="total">
+      <p class="price"><%= number_to_currency @purchase.price, :precision => 0 %></p>
+      <p class="coupon-note"><%= link_to "Have a coupon code?", "#" %></p>
+    </div>
+
+    <%= render :partial => 'redemptions/form' %>
+
+    <%= semantic_form_for @purchase, :url => product_purchases_path(@product), :html => { :method => 'post' } do |form| %>
+      <%= hidden_field_tag 'coupon_id' %>
+      <%= form.inputs 'Your information' do %>
+        <%= form.input :variant, :as => :hidden %>
+        <%= form.input :name %>
+        <%= form.input :email, :hint => "The receipt will be sent to this address." %>
+      <% end %>
+
+      <%= render :partial => 'purchases/readers', :locals => { :purchase => @purchase, :form => form } %>
+
+      <%= form.inputs 'For your receipt' do %>
+        <%= form.input :organization %>
+        <%= form.input :address1, :label => 'Address 1' %>
+        <%= form.input :address2, :label => 'Address 2' %>
+        <%= form.input :city %>
+        <%= form.input :state %>
+        <%= form.input :zip_code %>
+      <% end %>
+
+      <%= form.inputs 'Billing Information' do %>
+        <li class="radio required" id="purchase_payment_method_input">
+          <%= radio_button_tag "purchase[payment_method]", "stripe", @purchase.stripe?, :id => "purchase_payment_method_stripe" %>
+          <label for="purchase_payment_method_stripe">
+            <%= image_tag "icons/visa.png" %><%= image_tag "icons/master.png" %><%= image_tag "icons/american_express.png" %>
+          <label>
+          <%= radio_button_tag "purchase[payment_method]", "paypal", @purchase.paypal?, :id => "purchase_payment_method_paypal" %>
+          <label for="purchase_payment_method_paypal">
+            <img src="https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif" alt="PayPal Express Logo">
+          </label>
+        </li>
+        <li class="payment-errors"></li>
+        <li id="purchase_cc_input" class="stripe">
+          <label>Card Number</label>
+          <input type="text" size="20" autocomplete="off" class="card-number"/>
+        </li>
+        <li id="purchase_cvc_input" class="stripe">
+          <label>CVC</label>
+          <input type="text" size="4" autocomplete="off" class="card-cvc"/>
+        </li>
+        <li id="purchase_expiration_input" class="stripe">
+          <label>Expiration (MM/YYYY)</label>
+          <input type="text" size="2" class="card-expiry-month"/>
+          <span> / </span>
+          <input type="text" size="4" class="card-expiry-year"/>
+        </div>
+      <% end %>
+
+      <%= form.buttons do %>
+        <%= form.commit_button 'Submit Payment' %>
+      <% end %>
+    <% end %>
+  </section>
+
+    <section id="form-sidebar">
+      <h4 class="terms">Terms and conditions</h3>
+      <p>By purchasing this product you agree to the following terms and conditions:</p>
+      <ul>
+        <%== @product.terms %>
+        <li>If you&rsquo;re not happy with the product, just let us know and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</li>
+      </ul>
+    </section>
+  </section>
+</section>
+
+<% content_for :javascript do -%>
+  <%= javascript_tag do %>
+    $(document).ready(function(){
+      $('#new_purchase').submit(function(){
+        var email = $('#purchase_email').val();
+        _kmq.push(['identify', email]);
+      });
+      $('#purchase_payment_method_input input').change(function() {
+        $("li.stripe").toggle($("#purchase_payment_method_stripe").is(":checked"));
+        if($("#purchase_payment_method_stripe").is(":checked")) {
+          $('#new_purchase fieldset.buttons input').val("Submit Payment");
+        } else {
+          $('#new_purchase fieldset.buttons input').val("Proceed to Checkout");
+        }
+      });
+    });
+  <% end %>
+
+  <script type="text/javascript">
+    // this identifies your website in the createToken call below
+  Stripe.setPublishableKey('<%= STRIPE_PUBLIC_KEY %>');
+
+  function stripeResponseHandler(status, response) {
+    if (response.error) {
+      // re-enable the submit button
+      $('fieldset.buttons input').removeAttr("disabled");
+      // show the errors on the form
+      $(".payment-errors").html(response.error.message);
+    } else {
+      var form$ = $("#new_purchase");
+      // token contains id, last4, and card type
+      var token = response['id'];
+      // insert the token into the form so it gets submitted to the server
+      form$.append("<input type='hidden' name='purchase[stripe_token]' value='" + token + "' />");
+      // and submit
+      form$.get(0).submit();
+    }
+  }
+
+  $(document).ready(function() {
+    $("#new_purchase").submit(function(event) {
+      if($("#purchase_payment_method_stripe").is(":checked")) {
+      // disable the submit button to prevent repeated clicks
+        $('fieldset.buttons input').attr("disabled", "disabled");
+        // createToken returns immediately - the supplied callback submits the form if there are no errors
+        Stripe.createToken({
+          number: $('.card-number').val(),
+          cvc: $('.card-cvc').val(),
+          exp_month: $('.card-expiry-month').val(),
+          exp_year: $('.card-expiry-year').val()
+        }, stripeResponseHandler);
+        return false; // submit from callback
+      }
+    });
+  });
+</script>
+<% end %>

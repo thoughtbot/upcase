@@ -1,0 +1,31 @@
+Thank you for placing your order with thoughtbot!
+
+<% if @purchase.product.fulfillment_method == "fetch" -%>
+You can download your purchase at <%= @purchase.fetch_order.link_full %>
+<% elsif @purchase.product.fulfillment_method == "github" -%>
+You have been added to the GitHub repo at <%= @purchase.product.github_url %>.
+You will also receive a notification from GitHub. Please contact us at 
+workshops@thoughtbot.com if you do not get access to this repository.
+<% end -%>
+
+RECEIPT
+
+Date <%= @purchase.created_at.to_s(:short_date) %>
+
+Billing address
+  <%= @purchase.name %>
+  <% unless @purchase.organization.blank? -%>
+  <%= @purchase.organization %>
+  <% end -%>
+  <%= @purchase.address1 %>
+  <% unless @purchase.address2.blank? -%>
+  <%= @purchase.address2 %>
+  <% end -%>
+  <%= @purchase.city %>, <%= @purchase.state %> <%= @purchase.zip_code %>
+
+<%= @purchase.product.name %> - <%= @purchase.variant %> for <%= number_to_currency @purchase.calculate_price(@purchase.coupon), :precision => 2 %>
+
+Subtotal  : <%= number_to_currency @purchase.calculate_price(@purchase.coupon), :precision => 2 %> USD
+Tax       : $0.00 USD
+Shipping  : $0.00 USD
+Total     : <%= number_to_currency @purchase.calculate_price(@purchase.coupon), :precision => 2 %> USD

@@ -78,4 +78,20 @@ FactoryGirl.define do
     code
     percentage 10
   end
+
+  factory :product do
+    name "Test Product"
+    sku "TEST"
+    individual_price 15
+    company_price 50
+    fulfillment_method "fetch"
+  end
+
+  factory :purchase do
+    product
+    name "Test User"
+    email "joe@example.com"
+    variant "individual"
+    payment_method "stripe"
+  end
 end

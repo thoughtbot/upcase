@@ -23,4 +23,12 @@ class Mailer < ActionMailer::Base
          :subject => "You're registered for #{registration.section.course_name}",
          :from => Clearance.configuration.mailer_sender)
   end
+
+  def purchase_receipt(purchase)
+    @purchase = purchase
+
+    mail(:to => purchase.email,
+         :subject => "Your receipt for #{purchase.product.name}",
+         :from => Clearance.configuration.mailer_sender)
+  end
 end

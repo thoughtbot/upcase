@@ -6,7 +6,8 @@
   }
 }
 
-body.registrations {
+body.registrations,
+body.purchases {
 
   #container {
     background: url("/images/shadowing.png") center top no-repeat;
@@ -53,8 +54,27 @@ body.registrations {
     fieldset {
       ol {
         li {
+          &.payment-errors {
+            color: $red;
+          }
+
+          &#purchase_payment_method_input {
+            * {
+              vertical-align: middle;
+            }
+            label, input {
+              display: inline-block;
+
+              img {
+                display: inline-block;
+                margin-right: 3px;
+              }
+            }
+          }
+
           &#registration_first_name_input,
-          &#registration_city_input {
+          &#registration_city_input,
+          &#purchase_city_input {
             float: left;
             margin-right: 20px;
             width: 223px;
@@ -65,13 +85,21 @@ body.registrations {
             width: 223px;
           }
 
-          &#registration_state_input {
+          &#registration_state_input,
+          &#purchase_state_input {
             float: left;
             margin-right: 20px;
             width: 80px;
           }
 
-          &#registration_zip_code_input {
+          &#purchase_cvc_input {
+            float: left;
+            margin-right: 20px;
+            width: 100px;
+          }
+
+          &#registration_zip_code_input,
+          &#purchase_zip_code_input {
             float: left;
             width: 123px;
           }
@@ -79,6 +107,12 @@ body.registrations {
           #registration_comments {
             width: 472px;
             height: 100px;
+          }
+
+          .card-expiry-month,
+          .card-expiry-year,
+          .card-cvc {
+            width: 80px;
           }
         }
       }
@@ -109,6 +143,28 @@ body.registrations {
       color: #666;
       list-style: outside;
       margin: 0 0 4px 15px;
+    }
+  }
+
+  section.receipt {
+    margin-top: 25px;
+    strong {
+      font-weight: bold;
+    }
+    p {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .item {
+      margin-top: 20px;
+    }
+    table {
+      width: 200px;
+      margin-top: 20px;
+
+      td {
+        text-align: right;
+      }
     }
   }
 }

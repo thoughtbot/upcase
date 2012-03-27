@@ -5,6 +5,7 @@ require File.expand_path(File.join(File.dirname(__FILE__),'..','config','environ
 require 'rspec/autorun'
 require 'rspec/rails'
 require 'paperclip/matchers'
+require "email_spec"
 
 Mocha::Configuration.warn_when(:stubbing_non_existent_method)
 Mocha::Configuration.warn_when(:stubbing_non_public_method)
@@ -25,6 +26,8 @@ RSpec.configure do |config|
   config.fixture_path = Rails.root + '/spec/fixtures/'
 
   config.include Paperclip::Shoulda::Matchers
+  config.include EmailSpec::Helpers
+  config.include EmailSpec::Matchers
 
   # == Fixtures
   #

@@ -1,0 +1,45 @@
+<section id="container">
+<h2>Thank you for purchasing <%= @purchase.product.name %>.</h2>
+
+<% if @purchase.product.fulfillment_method == "fetch" %>
+  <p>You can download your purchase at <%= link_to @purchase.fetch_order.link_full, @purchase.fetch_order.link_full %>.</p>
+  <p>You will also receive an email with a link to download your purchase.</p>
+<% elsif @purchase.product.fulfillment_method == "github" -%>
+  <p>You have been added to the GitHub repo at <%= link_to @purchase.product.github_url, @purchase.product.github_url %>.</p>
+  <p>You should also receive a notification from GitHub. Please contact us at <%= mail_to "workshops@thoughtbot.com", "workshops@thoughtbot.com" %> if you do not get access to this repository.</p>
+<% end -%>
+
+<section class="receipt">
+<h3>RECEIPT</h3>
+
+<p>Date <%= @purchase.created_at.to_s(:short_date) %></p>
+
+<p><strong>Billing address</strong><br/>
+<%= @purchase.name %><br/>
+<% unless @purchase.organization.blank? -%>
+  <%= @purchase.organization %><br/>
+<% end -%>
+<%= @purchase.address1 %><br/>
+<% unless @purchase.address2.blank? -%>
+  <%= @purchase.address2 %><br/>
+<% end -%>
+<%= @purchase.city %>, <%= @purchase.state %> <%= @purchase.zip_code %></p>
+
+<p class="item"><strong><%= @purchase.product.name %> - <%= @purchase.variant %></strong> for <strong><%= number_to_currency @purchase.calculate_price(@purchase.coupon), :precision => 2 %></strong></td>
+
+<table>
+  <tr>
+    <td>Subtotal</td><td class="amount"><%= number_to_currency @purchase.calculate_price(@purchase.coupon), :precision => 2 %> USD</td>
+  </tr>
+  <tr>
+    <td>Tax</td><td class="amount">$0.00 USD</td>
+  </tr>
+  <tr>
+    <td>Shipping</td><td class="amount">$0.00 USD</td>
+  </tr>
+  <tr>
+    <td><strong>Total</strong></td><td class="amount"><%= number_to_currency @purchase.calculate_price(@purchase.coupon), :precision => 2 %> USD</td>
+  </tr>
+</table>
+</section>
+</section>
