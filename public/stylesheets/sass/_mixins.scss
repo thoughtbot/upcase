@@ -2,6 +2,7 @@
 $sans-serif: "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
 $serif: skolar-1, skolar-2, serif;
 $red: #ad141e;
+$gray: #eee;
 
 $lh: 20px; /*line-height of all the type on the site*/
 $unit: 60px; /*one grid column*/
@@ -40,3 +41,22 @@ $gw-column: $unit;   // For Bourbon
   }
 }
 
+@mixin disabled-button {
+  background: $gray;
+  border: 1px solid darken($gray, 20%);
+  text-shadow: 0 -1px 0 darken($gray, 10%);
+  @include box-shadow(inset 0 1px 0 lighten($gray, 20%));
+
+  &:hover {
+    background: $gray;
+    border: 1px solid darken($gray, 20%);
+    text-shadow: 0 -1px 0 darken($gray, 10%);
+    @include box-shadow(inset 0 1px 0 lighten($gray, 20%));
+  }
+
+  &:active {
+    background: $gray;
+    text-shadow: 0 -1px 0 darken($gray, 10%);
+    @include box-shadow(inset 0 1px 0 lighten($gray, 20%));
+  }
+}
