@@ -115,9 +115,9 @@
 
   $(document).ready(function() {
     $("#new_purchase").submit(function(event) {
+      $('fieldset.buttons input').attr("disabled", "disabled");
       if($("#purchase_payment_method_stripe").is(":checked")) {
       // disable the submit button to prevent repeated clicks
-        $('fieldset.buttons input').attr("disabled", "disabled");
         // createToken returns immediately - the supplied callback submits the form if there are no errors
         Stripe.createToken({
           number: $('.card-number').val(),
