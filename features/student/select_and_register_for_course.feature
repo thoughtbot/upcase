@@ -82,8 +82,8 @@ Feature: Selecting a course and registering for it
       | Developers |
     And time is unfrozen
     And the following coupon exists:
-      | code       | percentage |
-      | VALENTINES | 10         |
+      | code       | discount_type | amount |
+      | VALENTINES | percentage    | 10     |
     And I am signed in as an admin
     When I go to the admin page
     And I follow "New Course"
@@ -111,7 +111,7 @@ Feature: Selecting a course and registering for it
     Then the coupon form should be visible
     And I fill in "Code" with "VALENTINES"
     And I press "Apply Coupon"
-    Then I should see "$9,000"
+    Then I should see "$9,000.00 (10% off)"
     And the coupon form should be hidden
     And the coupon form link should be hidden
     And I fill in the following:
@@ -136,10 +136,9 @@ Feature: Selecting a course and registering for it
       | p_city       | Boston        |
       | p_code       | 02114         |
       | status       | sent          |
-    And the invoice for "carlos@santana.com" has a discount of "10"
     And the invoice for "carlos@santana.com" has the following line item:
-      | name     | unit_cost  | quantity | description         |
-      | Workshop | 10000      | 1        | Test-Driven Haskell |
+      | name     | unit_cost   | quantity | description         |
+      | Workshop | 9000.0      | 1        | Test-Driven Haskell |
 
   @selenium
   Scenario: User registers with a valid coupon which brings the price to 0 
@@ -149,8 +148,8 @@ Feature: Selecting a course and registering for it
       | Developers |
     And time is unfrozen
     And the following coupon exists:
-      | code       | percentage |
-      | VALENTINES | 100        |
+      | code       | amount | discount_type |
+      | VALENTINES | 100    | percentage    |
     And I am signed in as an admin
     When I go to the admin page
     And I follow "New Course"
@@ -203,10 +202,9 @@ Feature: Selecting a course and registering for it
       | p_city       | Boston        |
       | p_code       | 02114         |
       | status       | sent          |
-    And the invoice for "carlos@santana.com" has a discount of "100"
     And the invoice for "carlos@santana.com" has the following line item:
       | name     | unit_cost  | quantity | description         |
-      | Workshop | 10000      | 1        | Test-Driven Haskell |
+      | Workshop | 0.0        | 1        | Test-Driven Haskell |
 
   @selenium
   Scenario: User registers with an invalid coupon
@@ -215,8 +213,8 @@ Feature: Selecting a course and registering for it
       | name       |
       | Developers |
     And the following coupon exists:
-      | code       | percentage | active |
-      | VALENTINES | 10         | false  |
+      | code       | discount_type | amount | active |
+      | VALENTINES | percentage    | 10     | false  |
     And I am signed in as an admin
     When I go to the admin page
     And I follow "New Course"

@@ -26,7 +26,12 @@ class Purchase < ActiveRecord::Base
   end
 
   def price
-    product.send(:"#{variant}_price")
+    full_price = product.send(:"#{variant}_price")
+    if coupon
+      coupon.apply(full_price)
+    else
+      full_price
+    end
   end
 
   def first_name
@@ -48,18 +53,6 @@ class Purchase < ActiveRecord::Base
     lookup
   end
 
-  def charge_price
-    calculate_price(coupon)
-  end
-
-  def calculate_price(coupon = nil)
-    if coupon
-      price - (price * (coupon.percentage * 0.01))
-    else
-      price
-    end
-  end
-
   def stripe?
     payment_method == "stripe"
   end
@@ -69,7 +62,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def complete_paypal_payment!(token, payer_id)
-    p paypal_request.checkout!(
+    paypal_request.checkout!(
       token,
       payer_id,
       paypal_payment_request
@@ -96,7 +89,7 @@ class Purchase < ActiveRecord::Base
     )
 
     Stripe::Charge.create(
-      :amount => charge_price * 100, # in cents
+      :amount => price * 100, # in cents
       :currency => "usd",
       :customer => customer.id,
       :description => product_name
@@ -127,9 +120,9 @@ class Purchase < ActiveRecord::Base
   def paypal_payment_request
     Paypal::Payment::Request.new(
       :currency_code => :USD,
-      :amount        => charge_price,
+      :amount        => price,
       :description   => product_name,
-      :items => [{ :amount => charge_price,
+      :items => [{ :amount => price,
                    :description => product_name }]
     )
   end

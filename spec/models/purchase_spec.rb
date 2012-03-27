@@ -38,7 +38,7 @@ describe Purchase, "with stripe" do
   end
 
   it "uses its coupon in its charged price" do
-    subject.coupon = Factory(:coupon, :percentage => 25)
+    subject.coupon = Factory(:coupon, :amount => 25)
     subject.save!
     Stripe::Charge.should have_received(:create).with(:amount => 1125, :currency => "usd", :customer => "stripe", :description => product.name)
   end
@@ -124,7 +124,7 @@ describe Purchase, "with paypal" do
 
   it "starts a paypal transaction" do
     subject.save!
-    Paypal::Payment::Request.should have_received(:new).with(:currency_code => :USD, :amount => subject.charge_price, :description => subject.product_name, :items => [{ :amount => subject.charge_price, :description => subject.product_name }])
+    Paypal::Payment::Request.should have_received(:new).with(:currency_code => :USD, :amount => subject.price, :description => subject.product_name, :items => [{ :amount => subject.price, :description => subject.product_name }])
     paypal_request.should have_received(:setup).with(paypal_payment_request, paypal_product_purchase_url(subject.product, subject, :host => ActionMailer::Base.default_url_options[:host]), courses_url(:host => ActionMailer::Base.default_url_options[:host]))
     subject.paypal_url.should == "http://paypalurl"
     subject.should_not be_paid

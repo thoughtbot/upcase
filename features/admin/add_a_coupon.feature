@@ -7,8 +7,8 @@ Feature: Adding a coupon
     And I follow "New Coupon"
     And I press "Create Coupon"
     And I see the "can't be blank" error for the following fields:
-      | code       |
-      | percentage |
+      | code   |
+      | amount |
 
   Scenario: Add a coupon with the required fields
     Given I am signed in as an admin
@@ -16,7 +16,7 @@ Feature: Adding a coupon
     And I follow "Coupons"
     And I follow "New Coupon"
     When I fill in "Code" with "VALENTINES"
-    And I fill in "Percentage" with "20"
+    And I fill in "Amount" with "20"
     And I check "Active"
     When I press "Create Coupon"
     Then I should see "Coupon successfully created"
@@ -25,8 +25,8 @@ Feature: Adding a coupon
   Scenario: Edit a coupon
     Given I am signed in as an admin
     And the following coupon exists:
-      | code | percentage |
-      | CODE | 10         |
+      | code | amount |
+      | CODE | 10     |
     When I go to the admin page
     And I follow "Coupons"
     And I follow "CODE"
