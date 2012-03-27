@@ -59,6 +59,10 @@ form {
         /* red button */
         input[type="submit"] {
           @include button;
+
+          &[disabled] {
+            @include disabled-button;
+          }
         }
       }
     }
