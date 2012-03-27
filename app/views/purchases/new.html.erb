@@ -25,8 +25,9 @@
         <%= form.input :address1, :label => 'Address 1' %>
         <%= form.input :address2, :label => 'Address 2' %>
         <%= form.input :city %>
-        <%= form.input :state %>
-        <%= form.input :zip_code %>
+        <%= form.input :state, :label => "State / Province" %>
+        <%= form.input :zip_code, :label => "Postal / Zip Code" %>
+        <%= form.input :country, :as => :string %>
       <% end %>
 
       <%= form.inputs 'Billing Information' do %>

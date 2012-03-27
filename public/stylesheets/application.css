@@ -1139,33 +1139,40 @@ body.purchases form fieldset ol li#purchase_payment_method_input input {
   body.purchases form fieldset ol li#purchase_payment_method_input input img {
     display: inline-block;
     margin-right: 3px; }
-body.registrations form fieldset ol li#registration_first_name_input, body.registrations form fieldset ol li#registration_city_input, body.registrations form fieldset ol li#purchase_city_input,
+body.registrations form fieldset ol li#registration_first_name_input, body.registrations form fieldset ol li#registration_city_input,
 body.purchases form fieldset ol li#registration_first_name_input,
-body.purchases form fieldset ol li#registration_city_input,
-body.purchases form fieldset ol li#purchase_city_input {
+body.purchases form fieldset ol li#registration_city_input {
   float: left;
   margin-right: 20px;
   width: 223px; }
+body.registrations form fieldset ol li#purchase_city_input,
+body.purchases form fieldset ol li#purchase_city_input {
+  float: left;
+  margin-right: 20px;
+  width: 216px; }
 body.registrations form fieldset ol li#registration_last_name_input,
 body.purchases form fieldset ol li#registration_last_name_input {
   float: left;
-  width: 223px; }
+  width: 203px; }
 body.registrations form fieldset ol li#registration_state_input, body.registrations form fieldset ol li#purchase_state_input,
 body.purchases form fieldset ol li#registration_state_input,
 body.purchases form fieldset ol li#purchase_state_input {
   float: left;
   margin-right: 20px;
-  width: 80px; }
+  width: 100px; }
 body.registrations form fieldset ol li#purchase_cvc_input,
 body.purchases form fieldset ol li#purchase_cvc_input {
   float: left;
   margin-right: 20px;
   width: 100px; }
+body.registrations form fieldset ol li#purchase_country_input,
+body.purchases form fieldset ol li#purchase_country_input {
+  clear: left; }
 body.registrations form fieldset ol li#registration_zip_code_input, body.registrations form fieldset ol li#purchase_zip_code_input,
 body.purchases form fieldset ol li#registration_zip_code_input,
 body.purchases form fieldset ol li#purchase_zip_code_input {
   float: left;
-  width: 123px; }
+  width: 110px; }
 body.registrations form fieldset ol li #registration_comments,
 body.purchases form fieldset ol li #registration_comments {
   width: 472px;
