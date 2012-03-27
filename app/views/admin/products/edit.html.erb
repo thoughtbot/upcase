@@ -1,0 +1,11 @@
+<% content_for :nav do -%>
+  <ul>
+    <li><%= link_to "Products", admin_products_path %></li>
+    <li class="raquo">&raquo;</li>
+    <li><%= link_to @product.name, edit_admin_product_path(@product) %></li>
+  </ul>
+<% end -%>
+
+<%= semantic_form_for [:admin, @product] do |form| %>
+  <%= render form %>
+<% end %>

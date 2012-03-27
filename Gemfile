@@ -28,6 +28,10 @@ gem "rack-rewrite"
 gem "rack-ssl-enforcer", "~> 0.2.4"
 gem "kissmetrics"
 gem "octokit", "1.0.0"
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem "fetchapi-ruby", "~> 1.2"
+gem "paypal-express", "~> 0.4.6"
+gem 'csv_rails'
 
 # Fix the warning: regexp match /.../n against to UTF-8 string issue
 gem "escape_utils"
@@ -54,7 +58,7 @@ group :test do
   gem "timecop"
   gem "shoulda"
   gem "sham_rack", "1.3.1"
-  gem "email_spec"
+  gem "email_spec", "~> 1.2.1"
   gem "mocha"
   gem "bourne", "~> 1.0"
 end

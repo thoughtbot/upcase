@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
 
   attr_accessible :last_name, :password, :email, :first_name
 
-  attr_accessor :send_set_password
   validates_presence_of :first_name, :last_name
 
   def name

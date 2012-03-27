@@ -10,6 +10,15 @@ Workshops::Application.routes.draw do
     resources :follow_ups, :only => [:create]
   end
 
+  resources :products, :only => [:show] do
+    resources :redemptions, :only => [:new]
+    resources :purchases, :only => [:new, :create, :show] do
+      member do
+        get 'paypal'
+      end
+    end
+  end
+
   resources :payments, :only => [:create]
   resource :shopify, :controller => 'shopify' do
     member do
@@ -31,6 +40,8 @@ Workshops::Application.routes.draw do
       resources :registrations
     end
     resources :teachers, :except => :destroy
+    resources :products, :except => :destroy
+    resources :purchases, :only => :index
   end
 
   match '/watch' => 'high_voltage/pages#show', :as => :watch, :id => 'watch'
@@ -44,11 +55,10 @@ Workshops::Application.routes.draw do
   match '/directions' => "high_voltage/pages#show", :as => :directions, :id => "directions"
   match '/group-training' => "high_voltage/pages#show", :as => :group_training, :id => "group-training"
 
-  match '/backbone-js-on-rails' => "high_voltage/pages#show", :as => :backbone_js_on_rails, :id => "backbone-js-on-rails"
-  match '/vim' => "high_voltage/pages#show", :as => :vim, :id => "vim"
-  match '/charlotte' => "high_voltage/pages#show", :as => :charlotte, :id => "charlotte"
+  match '/backbone-js-on-rails' => redirect("/products/1-backbone-js-on-rails")
+  match '/vim' => redirect("/products/2-vim")
+  match '/playbook' => redirect("/products/3-playbook")
 
   match '/rubyist-booster-shot' => "high_voltage/pages#show", :as => :rubyist_booster_shot, :id => "rubyist-booster-shot"
   match 'sign_in'  => 'sessions#new', :as => 'sign_in'
-  match '/playbook' => "high_voltage/pages#show", :as => :playbook, :id => "playbook"
 end
