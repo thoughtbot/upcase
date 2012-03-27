@@ -10,6 +10,7 @@ describe Purchase, "with stripe" do
     Stripe::Charge.stubs(:create)
     FetchAPI::Order.stubs(:create)
     FetchAPI::Base.stubs(:basic_auth)
+    FetchAPI::Order.stubs(:find).returns(stub(:link_full => "http://fetchurl"))
   end
 
   it "generates a lookup on save" do
@@ -51,7 +52,7 @@ describe Purchase, "with stripe" do
     end
 
     it "fulfills the order through fetch" do
-      FetchAPI::Base.should have_received(:basic_auth).with(FETCH_DOMAIN, FETCH_USERNAME, FETCH_PASSWORD)
+      FetchAPI::Base.should have_received(:basic_auth).with(FETCH_DOMAIN, FETCH_USERNAME, FETCH_PASSWORD).at_least_once
       FetchAPI::Order.should have_received(:create).with(:id => subject.id, :title => subject.product.name, :first_name => subject.first_name, :last_name => subject.last_name, :email => subject.email, :order_items => [{:sku => subject.product.sku}])
     end
   end
@@ -123,7 +124,7 @@ describe Purchase, "with paypal" do
 
   it "starts a paypal transaction" do
     subject.save!
-    Paypal::Payment::Request.should have_received(:new).with(:amount => 1500, :description => product.name)
+    Paypal::Payment::Request.should have_received(:new).with(:currency_code => :USD, :amount => subject.charge_price, :description => subject.product_name, :items => [{ :amount => subject.charge_price, :description => subject.product_name }])
     paypal_request.should have_received(:setup).with(paypal_payment_request, paypal_product_purchase_url(subject.product, subject, :host => ActionMailer::Base.default_url_options[:host]), courses_url(:host => ActionMailer::Base.default_url_options[:host]))
     subject.paypal_url.should == "http://paypalurl"
     subject.should_not be_paid
