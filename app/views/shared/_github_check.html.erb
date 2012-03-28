@@ -20,13 +20,5 @@
       }
     }
     $("input.reader").blur(checkReader);
-    $("form").submit(function() {
-      $("input[type='submit']").val("Please wait...");
-      $("input.reader").each(checkReader);
-      if($("form .error").length) {
-        $("input[type='submit']").val("Submit Payment");
-        return false;
-      }
-    });
   <% end %>
 <% end %>
