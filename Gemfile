@@ -30,7 +30,7 @@ gem "kissmetrics"
 gem "octokit", "1.0.0"
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem "fetchapi-ruby", "~> 1.2"
-gem "paypal-express", "~> 0.4.6"
+gem "paypal-express", "~> 0.4.6", :require => 'paypal'
 gem 'csv_rails'
 
 # Fix the warning: regexp match /.../n against to UTF-8 string issue
