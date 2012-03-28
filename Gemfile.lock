@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/cpytel/fetchapp-api-ruby.git
+  revision: a7314c564244a6584b3b71bd256076653ee09009
+  specs:
+    fetchapp-api-ruby (1.2.1)
+      httparty
+
+GIT
   remote: git://github.com/jasonm/split.git
   revision: 08f489b56aaffdf81d9247af5ea3b7cdb91fcb84
   specs:
@@ -110,8 +117,6 @@ GEM
       rack (~> 1.1)
     faraday_middleware (0.8.4)
       faraday (>= 0.7.4, < 0.9)
-    fetchapp-api-ruby (1.2.1)
-      httparty
     ffi (1.0.11)
     formtastic (1.2.3)
       actionpack (>= 2.3.7)
@@ -270,7 +275,7 @@ DEPENDENCIES
   escape_utils
   factory_girl (~> 2.0.4)
   factory_girl_rails (~> 1.1.0)
-  fetchapp-api-ruby (~> 1.2.1)
+  fetchapp-api-ruby (~> 1.2.1)!
   formtastic (~> 1.0)
   headless
   heroku (~> 2.13)
