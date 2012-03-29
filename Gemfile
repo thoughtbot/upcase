@@ -5,7 +5,7 @@ gem "jquery-rails", "~> 1.0.12"
 gem "rack", "~> 1.3.1"
 
 gem "pg"
-gem "bourbon", "~> 1.2.0"
+gem "bourbon", "~> 1.4.0"
 gem "RedCloth", :require => "redcloth"
 gem "will_paginate", :git => "git://github.com/xspond/will_paginate.git", :branch => "rails3-1"
 gem "formtastic", "~> 2.0.0.rc3"
@@ -41,7 +41,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'selenium-webdriver', '~> 2.16.0'
+  gem "selenium-webdriver", "~> 2.20.0"
   gem "headless"
   gem "cucumber-rails", "~> 1.1.1"
   gem 'capybara', "~> 1.1.2"

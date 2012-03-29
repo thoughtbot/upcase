@@ -24,7 +24,7 @@ Feature: Selecting a course and registering for it
     And I fill in "Max Enrollment" with "5"
     And I fill in "Start at" with "09:00"
     And I fill in "Stop at" with "13:00"
-    And I press the button to create a course
+    And I press "Create Course"
     Then I see the successful course creation notice
     And I create the following section for "Test-Driven Haskell":
       | Starts on | January 13, 2011 |
@@ -96,7 +96,7 @@ Feature: Selecting a course and registering for it
     And I fill in "Max Enrollment" with "5"
     And I fill in "Start at" with "09:00"
     And I fill in "Stop at" with "13:00"
-    And I press the button to create a course
+    And I press "Create Course"
     Then I see the successful course creation notice
     And I create the following section for "Test-Driven Haskell":
       | Starts on | January 13, 2011 |
@@ -162,7 +162,7 @@ Feature: Selecting a course and registering for it
     And I fill in "Max Enrollment" with "5"
     And I fill in "Start at" with "09:00"
     And I fill in "Stop at" with "13:00"
-    And I press the button to create a course
+    And I press "Create Course"
     Then I see the successful course creation notice
     And I create the following section for "Test-Driven Haskell":
       | Starts on | January 13, 2011 |
@@ -227,7 +227,7 @@ Feature: Selecting a course and registering for it
     And I fill in "Max Enrollment" with "5"
     And I fill in "Start at" with "09:00"
     And I fill in "Stop at" with "13:00"
-    And I press the button to create a course
+    And I press "Create Course"
     Then I see the successful course creation notice
     And I create the following section for "Test-Driven Haskell":
       | Starts on | January 13, 2011 |
@@ -265,7 +265,7 @@ Feature: Selecting a course and registering for it
     And I fill in "Start at" with "09:00"
     And I fill in "Stop at" with "13:00"
     And I fill in "External registration url" with "http://engineyard.com"
-    And I press the button to create a course
+    And I press "Create Course"
     Then I see the successful course creation notice
     And I create the following section for "Test-Driven Haskell":
       | Starts on | January 13, 2011 |
@@ -294,7 +294,7 @@ Feature: Selecting a course and registering for it
     And I fill in "Max Enrollment" with "5"
     And I fill in "Start at" with "09:00"
     And I fill in "Stop at" with "13:00"
-    And I press the button to create a course
+    And I press "Create Course"
     Then I see the successful course creation notice
     And I create the following section for "Test-Driven Haskell":
       | Starts on | January 13, 2011 |
