@@ -27,7 +27,7 @@ class PaymentsController < ApplicationController
   end
 
   def verify_callback
-    freshbooks_client.callback.verify(:callback_id => params[:object_id], :verifier => params[:verifier])
+    freshbooks_client.callback.verify(:callback_id => params[:callback_id], :verifier => params[:verifier])
     head :created
   end
 end

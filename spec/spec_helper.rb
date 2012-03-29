@@ -6,11 +6,6 @@ require 'rspec/rails'
 require 'paperclip/matchers'
 require "email_spec"
 
-# Requires supporting ruby files with custom matchers and macros, etc,
-# in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
-
-<<<<<<< HEAD
 # Uncomment the next line to use webrat's matchers
 #require 'webrat/integrations/rspec-rails'
 

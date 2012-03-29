@@ -14,7 +14,7 @@ Feature: Archive a course
     And I follow "Test-Driven Sleeping"
     Then the "Public" checkbox should be checked
     When I uncheck "Public"
-    And I press the button to update a course
+    And I press "Save Course"
     Then I see the successful course update notice
     When I go to the home page
     Then I should not see "Test-Driven Sleeping"
@@ -25,7 +25,7 @@ Feature: Archive a course
     And I follow "Test-Driven Sleeping"
     Then the "Public" checkbox should not be checked
     When I check "Public"
-    And I press the button to update a course
+    And I press "Save Course"
     Then I see the successful course update notice
     When I go to the home page
     Then I should see "Test-Driven Sleeping"
