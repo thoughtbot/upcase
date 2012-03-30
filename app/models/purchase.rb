@@ -137,7 +137,12 @@ class Purchase < ActiveRecord::Base
 
   def fulfill_with_fetch
     FetchAPI::Base.basic_auth(FETCH_DOMAIN, FETCH_USERNAME, FETCH_PASSWORD)
-    p { :id => id, :title => product_name, :first_name => first_name, :last_name => last_name, :email => email, :order_items => [{:sku => product.sku}] }.inspect
+    p id
+    p product_name
+    p first_name
+    p last_name
+    p email
+    p product.sku
     FetchAPI::Order.create(:id => id, :title => product_name, :first_name => first_name, :last_name => last_name, :email => email, :order_items => [{:sku => product.sku}])
   end
 
