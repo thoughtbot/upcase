@@ -43,3 +43,11 @@
 </table>
 </section>
 </section>
+
+<% content_for :javascript do %>
+  <%= javascript_tag do %>
+    $(document).ready(function(){
+      _kmq.push(['record', 'Viewed Receipt', {'Product':'<%= @purchase.product.name %>'}]);
+    });
+  <% end %>
+<% end %>
