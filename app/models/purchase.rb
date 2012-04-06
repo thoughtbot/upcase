@@ -25,6 +25,14 @@ class Purchase < ActiveRecord::Base
     where(["created_at >= ? AND created_at <= ?", date.beginning_of_month, date.end_of_month])
   end
 
+  def self.last_30_days
+    (0..30).to_a.collect { |day| Purchase.where("created_at >= ? and created_at <= ?", day.days.ago.beginning_of_day, day.days.ago.end_of_day).all.sum(&:price) }.reverse
+  end
+
+  def self.from_day(date)
+    Purchase.where("created_at >= ? and created_at <= ?", date.beginning_of_day, date.end_of_day).all.sum(&:price)
+  end
+
   def price
     full_price = product.send(:"#{variant}_price")
     if coupon
