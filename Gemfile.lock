@@ -73,6 +73,7 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    chameleon (0.2.2)
     childprocess (0.3.0)
       ffi (~> 1.0.6)
     clearance (0.11.1)
@@ -265,6 +266,7 @@ DEPENDENCIES
   bourbon (~> 1.2.0)
   bourne (~> 1.0)
   capybara (~> 1.1.2)
+  chameleon
   clearance (~> 0.11.0)
   copycopter_client (~> 1.1.0)
   csv_rails
