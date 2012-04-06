@@ -4,7 +4,8 @@ widget :daily_purchases do
   data do
     {
       :value => Purchase.where("created_at >= ? and created_at <= ?", Date.today.beginning_of_day, Date.today.end_of_day).all.sum(&:price),
-      :previous => Purchase.where("created_at >= ? and created_at <= ?", Date.yesterday.beginning_of_day, Date.yesterday.end_of_day).all.sum(&:price)
+      :previous => Purchase.where("created_at >= ? and created_at <= ?", Date.yesterday.beginning_of_day, Date.yesterday.end_of_day).all.sum(&:price),
+      :prefix => "$"
     }
   end
 end
