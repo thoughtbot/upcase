@@ -70,11 +70,13 @@ class Purchase < ActiveRecord::Base
   end
 
   def complete_paypal_payment!(token, payer_id)
-    paypal_request.checkout!(
+    response = paypal_request.checkout!(
       token,
       payer_id,
       paypal_payment_request
     )
+
+    self.payment_transaction_id = response.transaction_id
     self.paid = true
     save!
   end
@@ -96,13 +98,14 @@ class Purchase < ActiveRecord::Base
       :email => email
     )
 
-    Stripe::Charge.create(
+    charge = Stripe::Charge.create(
       :amount => price * 100, # in cents
       :currency => "usd",
       :customer => customer.id,
       :description => product_name
     )
 
+    self.payment_transaction_id = charge.id
     self.stripe_customer = customer.id
     self.paid = true
   end
