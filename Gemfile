@@ -1,8 +1,7 @@
 source :rubygems
 
-gem "rails", "3.1.4"
-gem "jquery-rails", "~> 1.0.12"
-gem "rack", "~> 1.3.1"
+gem "rails", "3.2.3"
+gem "jquery-rails"
 
 gem "pg"
 gem "bourbon", "~> 1.4.0"
@@ -11,7 +10,6 @@ gem "will_paginate", :git => "git://github.com/xspond/will_paginate.git", :branc
 gem "formtastic", "~> 2.0.0.rc3"
 gem "nokogiri"
 gem "clearance", "~> 0.12.0"
-gem 'sass-rails', "~> 3.1.0.rc"
 gem "paperclip"
 gem "airbrake"
 gem "copycopter_client", "~> 2.0.1"
