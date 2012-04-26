@@ -1038,6 +1038,18 @@ body.courses #additional-information #faq {
     font-size: 14px;
     margin: 0; }
 
+body.high_voltage-pages .assets,
+body.products-show .assets {
+  margin-bottom: 10px;
+  text-align: center; }
+  body.high_voltage-pages .assets a,
+  body.products-show .assets a {
+    display: inline-block;
+    margin-right: 5px; }
+    body.high_voltage-pages .assets a span.size,
+    body.products-show .assets a span.size {
+      font-size: 80%;
+      font-variant: small-caps; }
 body.high_voltage-pages section#homepage-top h1,
 body.products-show section#homepage-top h1 {
   color: #2b2b2b;
