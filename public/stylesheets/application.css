@@ -1090,6 +1090,39 @@ body.products-show section#container pre {
 body.high_voltage-pages section#container strong,
 body.products-show section#container strong {
   font-weight: bold; }
+body.high_voltage-pages #products,
+body.products-show #products {
+  float: right;
+  width: 315px; }
+  body.high_voltage-pages #products h2,
+  body.products-show #products h2 {
+    margin: 10px 0 0 25px;
+    padding: 10px 0 0 0; }
+  body.high_voltage-pages #products aside,
+  body.products-show #products aside {
+    float: left;
+    margin: 10px 0 0 25px;
+    padding: 10px 0 0 0;
+    width: 315px; }
+    body.high_voltage-pages #products aside.first, body.high_voltage-pages #products aside.humans,
+    body.products-show #products aside.first,
+    body.products-show #products aside.humans {
+      border-top: 5px solid #ad141e; }
+    body.high_voltage-pages #products aside.humans,
+    body.products-show #products aside.humans {
+      margin-top: 40px; }
+    body.high_voltage-pages #products aside h2,
+    body.products-show #products aside h2 {
+      color: #333;
+      font: 700 24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      margin: 0 0 10px 0; }
+      body.high_voltage-pages #products aside h2 a,
+      body.products-show #products aside h2 a {
+        text-decoration: none; }
+    body.high_voltage-pages #products aside p,
+    body.products-show #products aside p {
+      color: #444;
+      font: 400 15px/21px skolar-1, skolar-2, serif; }
 
 #flash #flash_failure {
   background: #f8bcba;
