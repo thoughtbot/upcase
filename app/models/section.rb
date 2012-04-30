@@ -75,7 +75,20 @@ class Section < ActiveRecord::Base
 
   def send_teacher_notifications
     self.teachers.each do |teacher|
-      UserMailer.teacher_notification(teacher, self).deliver
+      Mailer.teacher_notification(teacher, self).deliver
+    end
+  end
+
+  def send_section_reminder
+    self.paid_registrations.each do |registration|
+      Mailer.section_reminder(registration, self).deliver
+    end
+  end
+  
+  def self.send_section_reminders
+    sections = Section.where("sections.starts_on = ?", 1.week.from_now)
+    sections.each do |section|
+      section.send_section_reminder
     end
   end
 end
