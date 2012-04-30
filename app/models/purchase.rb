@@ -76,6 +76,7 @@ class Purchase < ActiveRecord::Base
       paypal_payment_request
     )
 
+    p response
     self.payment_transaction_id = response.transaction_id
     self.paid = true
     save!
