@@ -60,8 +60,8 @@
           <p class="inline-errors">Be sure to enter a valid GitHub username.</p>
         </li>
       <% end %>
-      <%= form.buttons do %>
-        <%= form.commit_button "Proceed to Checkout" %>
+      <%= form.actions do %>
+        <%= form.action :submit, :label => "Proceed to Checkout" %>
       <% end %>
     <% end %>
 

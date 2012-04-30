@@ -43,7 +43,7 @@ end
 
 Then 'the $field_name field should contain "$value"' do |field_name, expected_value|
   field = find_field(field_id_for(field_name))
-  actual_value = (field.tag_name == 'textarea') ? field.text : field.value
+  actual_value = (field.tag_name == 'textarea') ? field.text.strip : field.value
   actual_value.should == expected_value
 end
 

@@ -4,7 +4,7 @@
     <%= form.input :last_name %>
     <%= form.input :email %>
   <% end %>
-  <%= form.buttons do %>
-    <%= form.commit_button 'Save New Student' %>
+  <%= form.actions do %>
+    <%= form.action :submit, :label => 'Save New Student' %>
   <% end %>
 <% end %>

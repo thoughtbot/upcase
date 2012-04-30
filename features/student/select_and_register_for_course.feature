@@ -5,7 +5,7 @@ Feature: Selecting a course and registering for it
     Then I see the empty section description
 
 
-  @selenium
+  @selenium @allow-rescue
   Scenario: User registers for a section
     Given today is June 10, 2010
     And the following audience exists:
