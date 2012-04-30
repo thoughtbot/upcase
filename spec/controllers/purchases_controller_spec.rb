@@ -7,7 +7,7 @@ describe PurchasesController, "processing on stripe" do
 
   before do
     Stripe::Customer.stubs(:create).returns(customer)
-    Stripe::Charge.stubs(:create)
+    Stripe::Charge.stubs(:create).returns(stub(:id => "TRANSACTION-ID"))
     FetchAPI::Order.stubs(:create)
     FetchAPI::Order.stubs(:find).returns(stub(:link_full => "http://fetchurl"))
   end

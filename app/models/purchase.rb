@@ -25,6 +25,14 @@ class Purchase < ActiveRecord::Base
     where(["created_at >= ? AND created_at <= ?", date.beginning_of_month, date.end_of_month])
   end
 
+  def self.last_30_days
+    (0..30).to_a.collect { |day| Purchase.where("created_at >= ? and created_at <= ?", day.days.ago.beginning_of_day, day.days.ago.end_of_day).all.sum(&:price) }.reverse
+  end
+
+  def self.from_period(start_time, end_time)
+    Purchase.where("created_at >= ? and created_at <= ?", start_time, end_time).all.sum(&:price)
+  end
+
   def price
     full_price = product.send(:"#{variant}_price")
     if coupon
@@ -62,11 +70,13 @@ class Purchase < ActiveRecord::Base
   end
 
   def complete_paypal_payment!(token, payer_id)
-    paypal_request.checkout!(
+    response = paypal_request.checkout!(
       token,
       payer_id,
       paypal_payment_request
     )
+
+    self.payment_transaction_id = response.transaction_id
     self.paid = true
     save!
   end
@@ -88,13 +98,14 @@ class Purchase < ActiveRecord::Base
       :email => email
     )
 
-    Stripe::Charge.create(
+    charge = Stripe::Charge.create(
       :amount => price * 100, # in cents
       :currency => "usd",
       :customer => customer.id,
       :description => product_name
     )
 
+    self.payment_transaction_id = charge.id
     self.stripe_customer = customer.id
     self.paid = true
   end
@@ -137,6 +148,12 @@ class Purchase < ActiveRecord::Base
 
   def fulfill_with_fetch
     FetchAPI::Base.basic_auth(FETCH_DOMAIN, FETCH_USERNAME, FETCH_PASSWORD)
+    p id
+    p product_name
+    p first_name
+    p last_name
+    p email
+    p product.sku
     FetchAPI::Order.create(:id => id, :title => product_name, :first_name => first_name, :last_name => last_name, :email => email, :order_items => [{:sku => product.sku}])
   end
 

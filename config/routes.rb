@@ -54,6 +54,7 @@ Workshops::Application.routes.draw do
 
   match '/directions' => "high_voltage/pages#show", :as => :directions, :id => "directions"
   match '/group-training' => "high_voltage/pages#show", :as => :group_training, :id => "group-training"
+  match '/humans-present/oss' => "high_voltage/pages#show", :as => :humans_present_oss, :id => "humans-present-oss"
 
   match '/backbone-js-on-rails' => redirect("/products/1-backbone-js-on-rails")
   match '/vim' => redirect("/products/2-vim")

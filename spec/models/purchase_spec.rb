@@ -7,7 +7,7 @@ describe Purchase, "with stripe" do
 
   before do
     Stripe::Customer.stubs(:create).returns(stub(:id => "stripe"))
-    Stripe::Charge.stubs(:create)
+    Stripe::Charge.stubs(:create).returns(stub(:id => "TRANSACTION-ID"))
     FetchAPI::Order.stubs(:create)
     FetchAPI::Base.stubs(:basic_auth)
     FetchAPI::Order.stubs(:find).returns(stub(:link_full => "http://fetchurl"))
@@ -28,6 +28,11 @@ describe Purchase, "with stripe" do
   it "uses its lookup for its param" do
     subject.save!
     subject.lookup.should == subject.to_param
+  end
+
+  it "saves the transaction id on save" do
+    subject.save!
+    subject.payment_transaction_id.should ==  "TRANSACTION-ID"
   end
 
   it "computes its final price off its product variant" do
@@ -112,7 +117,8 @@ describe Purchase, "with paypal" do
   include Rails.application.routes.url_helpers
 
   let(:product) { Factory(:product, :individual_price => 15, :company_price => 50) }
-  let(:paypal_request) { stub(:setup => stub(:redirect_uri => "http://paypalurl")) }
+  let(:paypal_request) { stub(:setup => stub(:redirect_uri => "http://paypalurl"), 
+                              :checkout! => stub(:transaction_id => "TRANSACTION-ID")) }
   let(:paypal_payment_request) { stub }
 
   subject { Factory.build(:purchase, :product => product, :payment_method => "paypal") }
@@ -120,6 +126,9 @@ describe Purchase, "with paypal" do
   before do
     Paypal::Express::Request.stubs(:new => paypal_request)
     Paypal::Payment::Request.stubs(:new => paypal_payment_request)
+    FetchAPI::Order.stubs(:create)
+    FetchAPI::Base.stubs(:basic_auth)
+    FetchAPI::Order.stubs(:find).returns(stub(:link_full => "http://fetchurl"))
   end
 
   it "starts a paypal transaction" do
@@ -128,5 +137,20 @@ describe Purchase, "with paypal" do
     paypal_request.should have_received(:setup).with(paypal_payment_request, paypal_product_purchase_url(subject.product, subject, :host => ActionMailer::Base.default_url_options[:host]), courses_url(:host => ActionMailer::Base.default_url_options[:host]))
     subject.paypal_url.should == "http://paypalurl"
     subject.should_not be_paid
+  end
+
+  context "after completing a paypal payment" do
+    before do
+      subject.save!
+      subject.complete_paypal_payment!("TOKEN", "PAYERID")
+    end
+
+    it "marks an order as paid" do
+      subject.should be_paid
+    end
+
+    it "saves a transaction id" do
+      subject.payment_transaction_id.should == "TRANSACTION-ID"
+    end
   end
 end
