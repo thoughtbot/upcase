@@ -135,8 +135,8 @@ GEM
       rubyzip
     high_voltage (1.1.1)
     hike (1.2.1)
-    httparty (0.8.3)
-      multi_json (~> 1.0)
+    httparty (0.8.1)
+      multi_json
       multi_xml
     i18n (0.6.0)
     journey (1.0.3)
@@ -304,6 +304,7 @@ DEPENDENCIES
   headless
   heroku (~> 2.13)
   high_voltage
+  httparty (= 0.8.1)
   jquery-rails
   kissmetrics
   launchy
