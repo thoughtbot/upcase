@@ -156,29 +156,28 @@ form {
         -o-box-shadow: inset 0 -1px 3px #680c12;
         box-shadow: inset 0 -1px 3px #680c12; }
       form fieldset ol li input[type="submit"][disabled] {
-        background: #cccccc;
-        border: 1px solid #999999;
-        text-shadow: 0 -1px 0 #b3b3b3;
+        background: #eeeeee;
+        border: 1px solid #bbbbbb;
+        text-shadow: 0 -1px 0 #d4d4d4;
         -webkit-box-shadow: inset 0 1px 0 white;
         -moz-box-shadow: inset 0 1px 0 white;
         -ms-box-shadow: inset 0 1px 0 white;
         -o-box-shadow: inset 0 1px 0 white;
         box-shadow: inset 0 1px 0 white; }
         form fieldset ol li input[type="submit"][disabled]:hover {
-          background: #d9d9d9;
-          border: 1px solid #b3b3b3;
-          text-shadow: 0 -1px 0 #bfbfbf;
+          background: #eeeeee;
+          border: 1px solid #bbbbbb;
+          text-shadow: 0 -1px 0 #d4d4d4;
           -webkit-box-shadow: inset 0 1px 0 white;
           -moz-box-shadow: inset 0 1px 0 white;
           -ms-box-shadow: inset 0 1px 0 white;
           -o-box-shadow: inset 0 1px 0 white;
-          box-shadow: inset 0 1px 0 white;
-          cursor: pointer; }
+          box-shadow: inset 0 1px 0 white; }
         form fieldset ol li input[type="submit"][disabled]:active {
-          background: #bfbfbf;
-          text-shadow: none;
-          -webkit-box-shadow: inset 0 -1px 3px #a6a6a6;
-          -moz-box-shadow: inset 0 -1px 3px #a6a6a6;
-          -ms-box-shadow: inset 0 -1px 3px #a6a6a6;
-          -o-box-shadow: inset 0 -1px 3px #a6a6a6;
-          box-shadow: inset 0 -1px 3px #a6a6a6; }
+          background: #eeeeee;
+          text-shadow: 0 -1px 0 #d4d4d4;
+          -webkit-box-shadow: inset 0 1px 0 white;
+          -moz-box-shadow: inset 0 1px 0 white;
+          -ms-box-shadow: inset 0 1px 0 white;
+          -o-box-shadow: inset 0 1px 0 white;
+          box-shadow: inset 0 1px 0 white; }
