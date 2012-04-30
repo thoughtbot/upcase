@@ -118,7 +118,7 @@ describe Purchase, "with paypal" do
 
   let(:product) { Factory(:product, :individual_price => 15, :company_price => 50) }
   let(:paypal_request) { stub(:setup => stub(:redirect_uri => "http://paypalurl"), 
-                              :checkout! => stub(:transaction_id => "TRANSACTION-ID")) }
+                              :checkout! => stub(:payment_info => [stub(:transaction_id => "TRANSACTION-ID")])) }
   let(:paypal_payment_request) { stub }
 
   subject { Factory.build(:purchase, :product => product, :payment_method => "paypal") }
