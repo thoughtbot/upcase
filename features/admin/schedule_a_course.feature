@@ -65,7 +65,6 @@ Feature: Scheduling a new course
     And I see the section from "June 14, 2010" to "June 17, 2010"
     When I follow the link to the section from "June 14, 2010" to "June 17, 2010"
     Then I see that "Samuel Beckett" is teaching
-    Then show me the page
     And "Samuel Beckett" has a Gravatar for "sbeckett@example.com"
 
   Scenario: Adding a new section with multiple teachers
