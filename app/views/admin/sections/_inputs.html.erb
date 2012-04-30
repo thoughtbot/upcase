@@ -7,5 +7,5 @@
   <%= form.input :seats_available, :input_html => { :value => form.object.seats_available } %>
 
   <%= link_to 'Create New Teacher', new_admin_teacher_path(:to => request.path), :id => 'new-teacher' %>
-  <%= form.input :teachers, :as => :check_boxes, :collection => @teachers, :label_method => teacher_label %>
+  <%= form.input :teachers, :as => :check_boxes, :collection => @teachers, :member_label => teacher_label %>
 <% end %>

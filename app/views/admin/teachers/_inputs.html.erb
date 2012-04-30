@@ -4,7 +4,7 @@
     <%= form.input :bio %>
     <%= form.input :email %>
   <% end %>
-  <%= form.buttons do %>
-    <%= form.commit_button 'Save Teacher' %>
+  <%= form.actions do %>
+    <%= form.action :submit, :label => 'Save Teacher' %>
   <% end %>
 <% end %>

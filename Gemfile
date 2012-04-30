@@ -2,14 +2,15 @@ source :rubygems
 
 gem "rails", "3.2.3"
 gem "jquery-rails"
+gem "sass-rails"
 
 gem "pg"
 gem "bourbon", "~> 1.4.0"
 gem "RedCloth", :require => "redcloth"
 gem "will_paginate", :git => "git://github.com/xspond/will_paginate.git", :branch => "rails3-1"
-gem "formtastic", "~> 2.0.0.rc3"
+gem "formtastic", "~> 2.2.0"
 gem "nokogiri"
-gem "clearance", "~> 0.12.0"
+gem "clearance", "~> 0.16.1"
 gem "paperclip"
 gem "airbrake"
 gem "copycopter_client", "~> 2.0.1"
@@ -34,14 +35,14 @@ gem 'csv_rails'
 gem "escape_utils"
 
 group :development, :test do
-  gem "rspec-rails", "~> 2.6.1"
+  gem "rspec-rails", "~> 2.9.0"
   gem 'ruby-debug19', :require => 'ruby-debug', :platform => :ruby_19
 end
 
 group :test do
   gem "selenium-webdriver", "~> 2.20.0"
   gem "headless"
-  gem "cucumber-rails", "~> 1.1.1"
+  gem "cucumber-rails", "~> 1.1", :require => false
   gem 'capybara', "~> 1.1.2"
   gem "factory_girl", "~> 2.0.4"
   gem "factory_girl_rails", "~> 1.1.0"

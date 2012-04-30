@@ -4,7 +4,7 @@
                            :course   => @course,
                            :teachers => @teachers } %>
 
-  <%= form.buttons do %>
-    <%= form.commit_button 'Save Section' %>
+  <%= form.actions do %>
+    <%= form.action :submit, :label => 'Save Section' %>
   <% end %>
 <% end %>
