@@ -30,6 +30,7 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem "fetchapp-api-ruby", "~> 1.2.1", :git => "git://github.com/cpytel/fetchapp-api-ruby.git"
 gem "paypal-express", "~> 0.4.6", :require => 'paypal'
 gem 'csv_rails'
+gem 'chameleon'
 
 # Fix the warning: regexp match /.../n against to UTF-8 string issue
 gem "escape_utils"

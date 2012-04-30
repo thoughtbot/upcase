@@ -1,5 +1,20 @@
 body.high_voltage-pages,
 body.products-show {
+  .assets {
+    margin-bottom: 10px;
+    text-align: center;
+
+    a {
+      display: inline-block;
+      margin-right: 5px;
+
+      span.size {
+        font-size: 80%;
+        font-variant: small-caps;
+      }
+    }
+  }
+
   section#homepage-top {
     h1 {
       color: #2b2b2b;
@@ -76,4 +91,43 @@ body.products-show {
   footer {
   }
 
+  #products {
+    float: right;
+    width: grid-width(4);
+
+    h2 {
+      margin: 10px 0 0 25px;
+      padding: 10px 0 0 0;
+    }
+
+    aside {
+      float: left;
+      margin: 10px 0 0 25px;
+      padding: 10px 0 0 0;
+      width: grid-width(4);
+
+      &.first, &.humans {
+        border-top: 5px solid $red;
+      }
+
+      &.humans {
+        margin-top: 40px;
+      }
+
+      h2 {
+        color: #333;
+        font: 700 24px $sans-serif;
+        margin: 0 0 10px 0;
+
+        a {
+          text-decoration: none;
+        }
+      }
+
+      p {
+        color: #444;
+        font: 400 15px/21px $serif;
+      }
+    }
+  }
 }

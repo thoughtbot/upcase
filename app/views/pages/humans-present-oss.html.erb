@@ -1,0 +1,51 @@
+<section id="head-wrapper">
+  <section id="homepage-top">
+    <h1>Humans Present: An OSS Lifestyle</h1>
+    <section id="course-info">
+      <h2>An interview with a Ruby developer who uses Linux and full Open Source stack</h2>
+
+      <section id="course-description">
+        <p>In this <b>free 34 minute video</b> Mike Burns, Linux user and thoughtbot developer, and Chad Pytel, Founder and CEO of thoughtbot, discuss the current state of using Linux as your operating system and why, as a developer, you might want to use it.</p>
+        <p><iframe src="https://fast.wistia.com/embed/iframe/39245f55fd?videoWidth=653&videoHeight=367&controlsVisibleOnLoad=true&plugin%5BpostRoll%5D%5Bversion%5D=v1&plugin%5BpostRoll%5D%5Btext%5D=Get%20more%20learning%20%3Cbr%2F%3Efrom%20thoughtbot!&plugin%5BpostRoll%5D%5Blink%5D=http%3A%2F%2Fworkshops.thoughtbot.com%3Furm_source%3Doss&plugin%5BpostRoll%5D%5Bstyle%5D%5BbackgroundColor%5D=%23616161&plugin%5BpostRoll%5D%5Bstyle%5D%5Bcolor%5D=%23ffffff&plugin%5BpostRoll%5D%5Bstyle%5D%5BfontSize%5D=36px&plugin%5BpostRoll%5D%5Bstyle%5D%5BfontFamily%5D=Gill%20Sans%2C%20Helvetica%2C%20Arial%2C%20sans-serif&plugin%5Bsocialbar%5D%5Bversion%5D=v1&plugin%5Bsocialbar%5D%5Bbuttons%5D=twitter&plugin%5Bsocialbar%5D%5BtweetText%5D=Humans%20Present%3A%20An%20Open%20Source%20Lifestyle" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="653" height="392"></iframe></iframe></p>
+        <div class='assets'>
+          Download:
+          <a class='asset original' href='http://thoughtbot.wistia.com/medias/1094741/download?asset=original'>
+            Original (720p)
+            <span class='size'>3 GB</span>
+          </a>
+          <a class='asset iphone' href='http://thoughtbot.wistia.com/medias/1094741/download?asset=iphone'>
+            iPhone
+            <span class='size'>200 MB</span>
+          </a>
+          <a class='asset hd_mp4' href='http://thoughtbot.wistia.com/medias/1094741/download?asset=hd_mp4'>
+            HD MP4
+            <span class='size'>500 MB</span>
+          </a>
+          <a class='asset hd_flash' href='http://thoughtbot.wistia.com/medias/1094741/download?asset=hd_flash'>
+            HD Flash
+            <span class='size'>500 MB</span>
+          </a>
+          <a class='asset flash' href='http://thoughtbot.wistia.com/medias/1094741/download?asset=flash'>
+            Flash
+            <span class='size'>200 MB</span>
+          </a>
+        </div>
+
+        <h3>Humans Present</h3>
+        <p>This video is part of the Humans Present series by thoughtbot. These interesting and innovative videos combine a screencast with real live human interviews from some of the most skilled developers and designers in the world, talking and showing you the things about which they are passionate.</p>
+      </section>
+    </section>
+
+    <section id="products">
+      <h2>More from thoughtbot</h2>
+      <% Product.active.each_with_index do |product, index| %>
+        <aside class="<%= 'first' if index.zero? %>">
+          <h2><%= link_to product.name, product_path(product, :utm_source => "oss") %></h2>
+          <p><%= product.short_description %></p>
+        </aside>
+      <% end %>
+    </section>
+  </section>
+</section>
+
+<div id="flash"></div>
