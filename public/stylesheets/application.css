@@ -1567,13 +1567,13 @@ body.products-show #head-wrapper #homepage-top {
       margin: 0 0 14px 0; }
       body.products-show #head-wrapper #homepage-top #course-info #faq dl dd p, body.products-show #head-wrapper #homepage-top #course-info #benefits dl dd p {
         margin: 0 0 8px 0; }
-  body.products-show #head-wrapper #homepage-top #workshop-details {
+  body.products-show #head-wrapper #homepage-top #purchasing-details {
     float: left;
     margin: 55px 0 20px 0;
     width: 315px; }
-    body.products-show #head-wrapper #homepage-top #workshop-details #register {
+    body.products-show #head-wrapper #homepage-top #purchasing-details #register {
       padding: 21px 0 10px 0; }
-      body.products-show #head-wrapper #homepage-top #workshop-details #register a {
+      body.products-show #head-wrapper #homepage-top #purchasing-details #register a {
         background: #ad141e;
         border: 1px solid #52090e;
         color: #fff;
@@ -1615,7 +1615,7 @@ body.products-show #head-wrapper #homepage-top {
         -ms-transition-delay: 0;
         -o-transition-delay: 0;
         transition-delay: 0; }
-        body.products-show #head-wrapper #homepage-top #workshop-details #register a:hover {
+        body.products-show #head-wrapper #homepage-top #purchasing-details #register a:hover {
           background: #c41722;
           border: 1px solid #7f0f16;
           text-shadow: 0 -1px 0 #96111a;
@@ -1625,7 +1625,7 @@ body.products-show #head-wrapper #homepage-top {
           -o-box-shadow: inset 0 1px 0 #ee6c74;
           box-shadow: inset 0 1px 0 #ee6c74;
           cursor: pointer; }
-        body.products-show #head-wrapper #homepage-top #workshop-details #register a:active {
+        body.products-show #head-wrapper #homepage-top #purchasing-details #register a:active {
           background: #96111a;
           text-shadow: none;
           -webkit-box-shadow: inset 0 -1px 3px #680c12;
@@ -1633,10 +1633,10 @@ body.products-show #head-wrapper #homepage-top {
           -ms-box-shadow: inset 0 -1px 3px #680c12;
           -o-box-shadow: inset 0 -1px 3px #680c12;
           box-shadow: inset 0 -1px 3px #680c12; }
-      body.products-show #head-wrapper #homepage-top #workshop-details #register p.travel {
+      body.products-show #head-wrapper #homepage-top #purchasing-details #register p.travel {
         text-align: center;
         width: 220px; }
-        body.products-show #head-wrapper #homepage-top #workshop-details #register p.travel a {
+        body.products-show #head-wrapper #homepage-top #purchasing-details #register p.travel a {
           background: transparent;
           border: 0;
           -webkit-box-shadow: none;
@@ -1652,35 +1652,35 @@ body.products-show #head-wrapper #homepage-top {
           padding: 0 10px;
           text-shadow: none;
           width: 200px; }
-          body.products-show #head-wrapper #homepage-top #workshop-details #register p.travel a:hover {
+          body.products-show #head-wrapper #homepage-top #purchasing-details #register p.travel a:hover {
             text-decoration: underline; }
-    body.products-show #head-wrapper #homepage-top #workshop-details h3 {
+    body.products-show #head-wrapper #homepage-top #purchasing-details h3 {
       color: #ad141e;
       font: 600 13px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 20px 0 2px 0;
       text-transform: uppercase; }
-    body.products-show #head-wrapper #homepage-top #workshop-details p {
+    body.products-show #head-wrapper #homepage-top #purchasing-details p {
       color: #373737;
       font: 400 18px/24px skolar-1, skolar-2, serif; }
-      body.products-show #head-wrapper #homepage-top #workshop-details p.cost {
+      body.products-show #head-wrapper #homepage-top #purchasing-details p.cost {
         color: #333;
         font-size: 32px;
         font-weight: 400;
         padding: 0 0 16px 0; }
-        body.products-show #head-wrapper #homepage-top #workshop-details p.cost.highlight {
+        body.products-show #head-wrapper #homepage-top #purchasing-details p.cost.highlight {
           color: #ad141e;
           font-size: 32px;
           margin: 20px 0 5px 0;
           padding: 0; }
-      body.products-show #head-wrapper #homepage-top #workshop-details p.cost.sold-out {
+      body.products-show #head-wrapper #homepage-top #purchasing-details p.cost.sold-out {
         text-decoration: line-through;
         margin-bottom: 4px; }
-      body.products-show #head-wrapper #homepage-top #workshop-details p.notice {
+      body.products-show #head-wrapper #homepage-top #purchasing-details p.notice {
         color: #333;
         font-size: 14px;
         font-weight: 600;
         text-transform: uppercase; }
-    body.products-show #head-wrapper #homepage-top #workshop-details a {
+    body.products-show #head-wrapper #homepage-top #purchasing-details a {
       border-bottom: 1px solid #ad141e;
       color: #333;
       text-decoration: none; }
