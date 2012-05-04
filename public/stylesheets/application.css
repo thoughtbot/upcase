@@ -1496,6 +1496,29 @@ body.products-show #head-wrapper #homepage-top {
         margin: 0 0 4px 0; }
         body.products-show #head-wrapper #homepage-top #product-info ul li ul {
           margin: 6px 0 12px 15px; }
+    body.products-show #head-wrapper #homepage-top #product-info q {
+      color: #444;
+      display: block;
+      font: 400 15px/24px skolar-1, skolar-2, serif;
+      font-style: italic;
+      left: -12px;
+      margin: 24px 0 0 12px;
+      position: relative; }
+      body.products-show #head-wrapper #homepage-top #product-info q:before {
+        color: #555;
+        content: "\201C";
+        font: 300 40px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        left: -16px;
+        position: absolute;
+        top: -4px; }
+    body.products-show #head-wrapper #homepage-top #product-info p.source {
+      color: #555;
+      font: 700 13px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      margin: 2px 0 24px 0px; }
+      body.products-show #head-wrapper #homepage-top #product-info p.source a {
+        color: #333;
+        margin: 0 0 0 1px;
+        text-decoration: none; }
     body.products-show #head-wrapper #homepage-top #product-info hr {
       margin: 20px 0 20px 0; }
     body.products-show #head-wrapper #homepage-top #product-info #benefits dl dt p {

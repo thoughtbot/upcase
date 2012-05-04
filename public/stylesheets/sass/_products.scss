@@ -67,6 +67,38 @@ body.products-show {
           }
         }
 
+        q {
+          color: #444;
+          display: block;
+          font: 400 15px/24px $serif;
+          font-style: italic;
+          left: -12px;
+          margin: 24px 0 0 12px;
+          position: relative;
+
+          &:before {
+           color: #555;
+           content: "\201C";
+           font: 300 40px $sans-serif;
+           left: -16px;
+           position: absolute;
+           top: -4px;
+          }
+        }
+
+        p.source {
+          color: #555;
+          font: 700 13px $sans-serif;
+          margin: 2px 0 24px 0px;
+
+          a {
+            color: #333;
+            margin: 0 0 0 1px;
+            text-decoration: none;
+          }
+        }
+
+
         hr {
           margin: 20px 0 20px 0;
         }
