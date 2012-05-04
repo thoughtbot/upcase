@@ -4,12 +4,10 @@
     <section id="product-info">
       <h2><%= @product.tagline %></h2>
 
-      <section id="course-description">
-        <%== @product.description %>
-      </section>
+      <%== @product.description %>
     </section>
 
-    <section id="workshop-details">
+    <section id="purchasing-details">
     <p class="cost highlight"><%= number_to_currency @product.individual_price, :precision => 0 %></p>
       <p>Single viewer</p>
 
