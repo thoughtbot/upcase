@@ -62,4 +62,6 @@ Workshops::Application.routes.draw do
 
   match '/rubyist-booster-shot' => "high_voltage/pages#show", :as => :rubyist_booster_shot, :id => "rubyist-booster-shot"
   match 'sign_in'  => 'sessions#new', :as => 'sign_in'
+
+  mount Split::Dashboard, at: 'split'
 end
