@@ -1,9 +1,5 @@
-body.high_voltage-pages,
-body.sections-show,
-body.courses-show,
 body.products-show {
   #head-wrapper {
-
     #homepage-top {
       @extend .clearfix;
       padding: 25px 0 0 0;
@@ -283,7 +279,6 @@ body.products-show {
           margin-top: 3em;
         }
       }
-
     }
   }
 
@@ -407,44 +402,6 @@ body.products-show {
   }
 }
 
-body.courses #additional-information #faq {
+#additional-information #faq {
   border-bottom: none;
-}
-
-#notify-me {
-  background: rgba(0, 0, 0, 0.2);
-  @include border-radius (5px);
-  color: #ddd;
-  margin: 0px 20px 20px 0;
-  padding: 20px;
-
-  label {
-    display: block;
-    font: 400 16px $sans-serif;
-    margin: 0 0 12px 0;
-  }
-
-  input[type="text"] {
-    border: 1px solid #cacaca;
-    @include border-radius(4px);
-    font-size: 14px;
-    margin: 0 0 12px 0;
-    padding: 10px 4px;
-    width: 550px;
-  }
-
-  input[type="submit"] {
-    @include button;
-    display: inline;
-    margin-right: 10px;
-    padding: 8px 0;
-    width: 80px;
-  }
-
-  p.group-training {
-    color: #666;
-    display: inline;
-    font-size: 14px;
-    margin: 0;
-  }
 }
