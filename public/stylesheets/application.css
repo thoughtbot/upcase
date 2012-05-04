@@ -457,6 +457,72 @@ body.products-show #head-wrapper #homepage-top {
         body.courses-show #head-wrapper #homepage-top header h1 a:hover,
         body.products-show #head-wrapper #homepage-top header h1 a:hover {
           color: #ddd; }
+  body.high_voltage-pages #head-wrapper #homepage-top #product-info,
+  body.sections-show #head-wrapper #homepage-top #product-info,
+  body.courses-show #head-wrapper #homepage-top #product-info,
+  body.products-show #head-wrapper #homepage-top #product-info {
+    float: left;
+    margin: 0 25px 0 0;
+    padding: 20px 0 32px 0px;
+    width: 655px; }
+    body.high_voltage-pages #head-wrapper #homepage-top #product-info h2,
+    body.sections-show #head-wrapper #homepage-top #product-info h2,
+    body.courses-show #head-wrapper #homepage-top #product-info h2,
+    body.products-show #head-wrapper #homepage-top #product-info h2 {
+      color: #333;
+      font: 300 36px/40px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      margin: 0 0 20px 0; }
+    body.high_voltage-pages #head-wrapper #homepage-top #product-info p,
+    body.sections-show #head-wrapper #homepage-top #product-info p,
+    body.courses-show #head-wrapper #homepage-top #product-info p,
+    body.products-show #head-wrapper #homepage-top #product-info p {
+      color: #444;
+      font: 400 15px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      margin: 0 0 8px 0; }
+    body.high_voltage-pages #head-wrapper #homepage-top #product-info ul,
+    body.sections-show #head-wrapper #homepage-top #product-info ul,
+    body.courses-show #head-wrapper #homepage-top #product-info ul,
+    body.products-show #head-wrapper #homepage-top #product-info ul {
+      margin: 12px 0 12px 0; }
+      body.high_voltage-pages #head-wrapper #homepage-top #product-info ul li,
+      body.sections-show #head-wrapper #homepage-top #product-info ul li,
+      body.courses-show #head-wrapper #homepage-top #product-info ul li,
+      body.products-show #head-wrapper #homepage-top #product-info ul li {
+        color: #444;
+        font: 400 15px/24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        list-style: disc;
+        margin: 0 0 4px 0; }
+        body.high_voltage-pages #head-wrapper #homepage-top #product-info ul li ul,
+        body.sections-show #head-wrapper #homepage-top #product-info ul li ul,
+        body.courses-show #head-wrapper #homepage-top #product-info ul li ul,
+        body.products-show #head-wrapper #homepage-top #product-info ul li ul {
+          margin: 6px 0 12px 15px; }
+    body.high_voltage-pages #head-wrapper #homepage-top #product-info hr,
+    body.sections-show #head-wrapper #homepage-top #product-info hr,
+    body.courses-show #head-wrapper #homepage-top #product-info hr,
+    body.products-show #head-wrapper #homepage-top #product-info hr {
+      margin: 20px 0 20px 0; }
+    body.high_voltage-pages #head-wrapper #homepage-top #product-info #benefits dl dt p,
+    body.sections-show #head-wrapper #homepage-top #product-info #benefits dl dt p,
+    body.courses-show #head-wrapper #homepage-top #product-info #benefits dl dt p,
+    body.products-show #head-wrapper #homepage-top #product-info #benefits dl dt p {
+      color: #ad141e;
+      display: block;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 0; }
+    body.high_voltage-pages #head-wrapper #homepage-top #product-info #benefits dl dd,
+    body.sections-show #head-wrapper #homepage-top #product-info #benefits dl dd,
+    body.courses-show #head-wrapper #homepage-top #product-info #benefits dl dd,
+    body.products-show #head-wrapper #homepage-top #product-info #benefits dl dd {
+      color: #333;
+      font: 400 14px/20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+      margin: 0 0 14px 0; }
+      body.high_voltage-pages #head-wrapper #homepage-top #product-info #benefits dl dd p,
+      body.sections-show #head-wrapper #homepage-top #product-info #benefits dl dd p,
+      body.courses-show #head-wrapper #homepage-top #product-info #benefits dl dd p,
+      body.products-show #head-wrapper #homepage-top #product-info #benefits dl dd p {
+        margin: 0 0 8px 0; }
   body.high_voltage-pages #head-wrapper #homepage-top #course-info,
   body.sections-show #head-wrapper #homepage-top #course-info,
   body.courses-show #head-wrapper #homepage-top #course-info,
