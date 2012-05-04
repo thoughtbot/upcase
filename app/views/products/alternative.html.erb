@@ -1,0 +1,54 @@
+<section id="head-wrapper">
+  <section id="homepage-top">
+    <h1><%= @product.name %></h1>
+    <section id="course-info">
+      <h2><%= @product.tagline %></h2>
+
+      <section id="course-description">
+        <%== @product.alternative_description %>
+      </section>
+    </section>
+
+    <section id="workshop-details">
+    <p class="cost highlight"><%= number_to_currency @product.individual_price, :precision => 0 %></p>
+      <p>Single viewer</p>
+
+      <section id="register">
+        <%= link_to "Purchase for Yourself", new_product_purchase_path(@product, :variant => :individual), :id => "#{@product.sku}-purchase-individual" %>
+      </section>
+
+      <p class="cost highlight"><%= number_to_currency @product.company_price, :precision => 0 %></p>
+      <p>Unlimited sharing within your company</p>
+
+      <section id="register">
+        <%= link_to "Purchase for<br/>Your Company".html_safe, new_product_purchase_path(@product, :variant => :company), :id => "#{@product.sku}-purchase-company" %>
+      </section>
+    </section>
+
+  </section>
+</section>
+
+<section id="register-below-the-fold">
+  <%= link_to "Purchase this #{@product.product_type} for just #{number_to_currency @product.individual_price, :precision => 0} and #{@product.call_to_action}&rarr;".html_safe, new_product_purchase_path(@product, :variant => :individual), :id => "#{@product.sku}-purchase-individual" %>
+  <p>Purchase <%= link_to "unlimited sharing within your company", new_product_purchase_path(@product, :variant => :company), :id => "#{@product.sku}-purchase-company" %> for just <%= number_to_currency @product.company_price, :precision => 0 %>.</p>
+</section>
+
+<div id="flash"></div>
+
+<section id="additional-information">
+  <section id="additional-information-wrapper">
+    <section id="main-content">
+      <section id="terms">
+        <h4 class="terms">The fine print</h3>
+        <ul>
+          <dt><p>What if I'm not happy?</p></dt>
+          <dd><p>If you&rsquo;re not happy, just let us know and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</p></dd>
+          <%== @product.questions %>
+        </ul>
+      </section>
+    </section>
+
+    <section id="sidebar">
+    </section>
+  </section>
+</section>
