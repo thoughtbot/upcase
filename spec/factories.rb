@@ -45,7 +45,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :registration do
+  factory :registration, aliases: [:unpaid_registration] do
     first_name 'Dan'
     last_name  'Deacon'
     organization 'company'

@@ -32,3 +32,30 @@ Then /^the registration for "([^"]*)" taking "([^"]*)" should not be paid$/ do |
   course = Course.find_by_name!(course_name)
   course.registrations.find_by_email!(email).should_not be_paid
 end
+
+Given /^a visitor named "([^"]*)" registered for "([^"]*)" on ([0-9-]+)$/ do |student_name, course_name, date|
+  course = create(:course, name: course_name)
+  section = create(:section, course: course, starts_on: date)
+  create(:unpaid_registration, section: section, first_name: student_name)
+end
+
+When /^I mark "([^"]*)" as paid for "([^"]*)" on ([0-9-]+)$/ do |student_name, course_name, date|
+  course = Course.find_by_name!(course_name)
+  section = course.sections.find_by_starts_on!(date)
+  registration = section.registrations.find_by_first_name!(student_name)
+
+  visit edit_admin_course_section_path(course, section)
+  within("#registration_#{registration.id}") do
+    click_button 'Mark as paid'
+  end
+end
+
+Then /^"([^"]*)" should be marked as paid for "([^"]*)" on ([0-9-]+)$/ do |student_name, course_name, date|
+  course = Course.find_by_name!(course_name)
+  section = course.sections.find_by_starts_on!(date)
+  registration = section.registrations.find_by_first_name!(student_name)
+
+  within("#registration_#{registration.id}") do
+    page.should have_no_css("form")
+  end
+end
