@@ -46,7 +46,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'selenium-webdriver', '~> 2.16.0'
   gem "headless"
   gem "cucumber-rails", "~> 1.1.1"
   gem 'capybara', "~> 1.1.2"
