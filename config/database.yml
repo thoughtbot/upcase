@@ -1,13 +1,10 @@
 development: &default
   adapter: postgresql
   database: workshops_development
-  min_messages: WARNING
-  host: localhost
 
 test: &test
   <<: *default
   database: workshops_test
-  host: localhost
 
 cucumber:
   <<: *test
