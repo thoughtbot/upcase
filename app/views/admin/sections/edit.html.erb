@@ -4,23 +4,23 @@
                            :course   => @course,
                            :teachers => @teachers } %>
 
-  <div id="admin-section-right">
-    <div id="student-list" class="cool-list">
-      <h3>
-        <%= pluralize @section.paid_registrations.size, "Student" %> [<%= mail_to 'workshops@thoughtbot.com', 'email', :subject => @section.course.name, :bcc => @section.paid_registrations.map(&:email).join(",") %>]
-        <%= link_to 'Add Student', new_admin_section_registration_path(@section), :id => 'add-student' %>
-      </h3>
-      <ul id="paid">
-        <%= render @section.paid_registrations %>
-      </ul>
-      <h3>Pending Payment</h3>
-      <ul id="unpaid">
-        <%= render @section.unpaid_registrations %>
-      </ul>
-    </div>
-  </div>
-
   <%= form.buttons do %>
     <%= form.commit_button 'Save Section' %>
   <% end %>
 <% end %>
+
+<div id="admin-section-right">
+  <div id="student-list" class="cool-list">
+    <h3>
+      <%= pluralize @section.paid_registrations.size, "Student" %> [<%= mail_to 'workshops@thoughtbot.com', 'email', :subject => @section.course.name, :bcc => @section.paid_registrations.map(&:email).join(",") %>]
+      <%= link_to 'Add Student', new_admin_section_registration_path(@section), :id => 'add-student' %>
+    </h3>
+    <ul id="paid">
+      <%= render @section.paid_registrations %>
+    </ul>
+    <h3>Pending Payment</h3>
+    <ul id="unpaid">
+      <%= render @section.unpaid_registrations %>
+    </ul>
+  </div>
+</div>
