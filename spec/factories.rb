@@ -92,11 +92,10 @@ FactoryGirl.define do
     fulfillment_method "fetch"
   end
 
-  factory :purchase do
+  factory :purchase, aliases: [:individual_purchase] do
     product
     name "Test User"
     email "joe@example.com"
     variant "individual"
-    payment_method "stripe"
   end
 end

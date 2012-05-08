@@ -1,9 +1,11 @@
 require 'spec_helper'
 
 describe Purchase, "with stripe" do
-  let(:product) { Factory(:product, :individual_price => 15, :company_price => 50) }
-
-  subject { Factory.build(:purchase, :product => product, :payment_method => "stripe") }
+  include Rails.application.routes.url_helpers
+  let(:product) { create(:product, :individual_price => 15, :company_price => 50) }
+  let(:purchase) { build(:purchase, :product => product, :payment_method => "stripe") }
+  let(:host) { ActionMailer::Base.default_url_options[:host] }
+  subject { purchase }
 
   before do
     Stripe::Customer.stubs(:create).returns(stub(:id => "stripe"))
@@ -25,16 +27,6 @@ describe Purchase, "with stripe" do
     Mailer.should have_received(:purchase_receipt).with(subject)
   end
 
-  it "uses its lookup for its param" do
-    subject.save!
-    subject.lookup.should == subject.to_param
-  end
-
-  it "saves the transaction id on save" do
-    subject.save!
-    subject.payment_transaction_id.should ==  "TRANSACTION-ID"
-  end
-
   it "computes its final price off its product variant" do
     subject.variant = "individual"
     subject.price.should == 15
@@ -46,6 +38,22 @@ describe Purchase, "with stripe" do
     subject.coupon = Factory(:coupon, :amount => 25)
     subject.save!
     Stripe::Charge.should have_received(:create).with(:amount => 1125, :currency => "usd", :customer => "stripe", :description => product.name)
+  end
+
+  context 'saved' do
+    before do
+      subject.save!
+    end
+
+    it "uses its lookup for its param" do
+      subject.lookup.should == subject.to_param
+    end
+
+    it "saves the transaction id on save" do
+      subject.payment_transaction_id.should ==  "TRANSACTION-ID"
+    end
+
+    its(:success_url) { should == product_purchase_path(product, purchase, host: host) }
   end
 
   context "when the product is fulfilled by fetch" do
@@ -129,10 +137,10 @@ describe Purchase, "with paypal" do
     FetchAPI::Order.stubs(:create)
     FetchAPI::Base.stubs(:basic_auth)
     FetchAPI::Order.stubs(:find).returns(stub(:link_full => "http://fetchurl"))
+    subject.save!
   end
 
   it "starts a paypal transaction" do
-    subject.save!
     Paypal::Payment::Request.should have_received(:new).with(:currency_code => :USD, :amount => subject.price, :description => subject.product_name, :items => [{ :amount => subject.price, :description => subject.product_name }])
     paypal_request.should have_received(:setup).with(paypal_payment_request, paypal_product_purchase_url(subject.product, subject, :host => ActionMailer::Base.default_url_options[:host]), courses_url(:host => ActionMailer::Base.default_url_options[:host]))
     subject.paypal_url.should == "http://paypalurl"
@@ -141,7 +149,6 @@ describe Purchase, "with paypal" do
 
   context "after completing a paypal payment" do
     before do
-      subject.save!
       subject.complete_paypal_payment!("TOKEN", "PAYERID")
     end
 
@@ -152,5 +159,36 @@ describe Purchase, "with paypal" do
     it "saves a transaction id" do
       subject.payment_transaction_id.should == "TRANSACTION-ID"
     end
+  end
+
+  its(:success_url) { should == 'http://paypalurl' }
+end
+
+describe Purchase, 'with no price' do
+  include Rails.application.routes.url_helpers
+  let(:host) { ActionMailer::Base.default_url_options[:host] }
+
+  context "a valid purchase" do
+    let(:product) { create(:product, individual_price: 0) }
+    let(:purchase) do
+      FetchAPI::Order.stubs(:create)
+      FetchAPI::Base.stubs(:basic_auth)
+      FetchAPI::Order.stubs(:find).returns(stub(:link_full => "http://fetchurl"))
+      create(:individual_purchase, product: product)
+    end
+
+    subject { purchase }
+
+    it { should be_free }
+    it { should be_paid }
+    its(:payment_method) { should == 'free' }
+    its(:success_url) { should == product_purchase_path(product, purchase, host: host) }
+  end
+
+  context "a purchase with an invalid payment method" do
+    let(:product) { create(:product, individual_price: 1000) }
+    let(:purchase) { build(:purchase, product: product, payment_method: "free") }
+    subject { purchase }
+    it { should_not be_valid }
   end
 end
