@@ -57,3 +57,13 @@ Feature: Purchase a Product
     Then I should see "$13.50 (10% off)"
     And the coupon form should be hidden
     And the coupon form link should be hidden
+
+  @selenium
+  Scenario: A visitor purchase a product with 100%-off coupon
+    Given the following coupon exists:
+      | code | discount_type | amount |
+      | 100  | percentage    | 100    |
+    When I apply coupon code "100" to product named "Test Fetch"
+    Then I should not see payment options
+    When I completed the purchase
+    Then I should see that product "Test Fetch" is successfully purchased

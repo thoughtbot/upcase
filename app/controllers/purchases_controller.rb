@@ -11,11 +11,7 @@ class PurchasesController < ApplicationController
     @purchase.coupon = Coupon.find_by_id_and_active(params[:coupon_id], true) unless params[:coupon_id].blank?
 
     if @purchase.save
-      if @purchase.stripe?
-        redirect_to product_purchase_path(@purchase.product, @purchase)
-      else
-        redirect_to @purchase.paypal_url
-      end
+      redirect_to @purchase.success_url
     else
       render :new
     end

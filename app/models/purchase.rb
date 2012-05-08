@@ -3,7 +3,7 @@ require 'digest/md5'
 class Purchase < ActiveRecord::Base
   include Rails.application.routes.url_helpers
 
-  PAYMENT_METHODS = %w(stripe paypal)
+  PAYMENT_METHODS = %w(stripe paypal free)
 
   belongs_to :product
   belongs_to :coupon
@@ -12,10 +12,12 @@ class Purchase < ActiveRecord::Base
   attr_accessor :stripe_token, :paypal_url
 
   validates_presence_of :variant, :product_id, :name, :email, :lookup, :payment_method
+  validate :payment_method_must_match_price
 
   before_validation :generate_lookup, :on => :create
   before_create :create_and_charge_customer, :if => :stripe?
   before_create :setup_payal_payment, :if => :paypal?
+  before_create :set_as_paid, :if => :free?
   after_save :fulfill, :if => :being_paid?
   after_save :send_receipt, :if => :being_paid?
 
@@ -69,6 +71,18 @@ class Purchase < ActiveRecord::Base
     payment_method == "paypal"
   end
 
+  def free?
+    payment_method == "free"
+  end
+
+  def payment_method
+    if price.zero?
+      "free"
+    else
+      read_attribute :payment_method
+    end
+  end
+
   def complete_paypal_payment!(token, payer_id)
     response = paypal_request.checkout!(
       token,
@@ -81,7 +95,19 @@ class Purchase < ActiveRecord::Base
     save!
   end
 
+  def success_url
+    if paypal?
+      paypal_url
+    else
+      product_purchase_path(product, self, host: host)
+    end
+  end
+
   private
+
+  def host
+    ActionMailer::Base.default_url_options[:host]
+  end
 
   def being_paid?
     paid? && paid_was == false
@@ -113,11 +139,15 @@ class Purchase < ActiveRecord::Base
   def setup_payal_payment
     response = paypal_request.setup(
       paypal_payment_request,
-      paypal_product_purchase_url(self.product, self, :host => ActionMailer::Base.default_url_options[:host]),
-      courses_url(:host => ActionMailer::Base.default_url_options[:host])
+      paypal_product_purchase_url(self.product, self, host: host),
+      courses_url(:host => host)
     )
     self.paid = false
     self.paypal_url = response.redirect_uri
+  end
+
+  def set_as_paid
+    self.paid = true
   end
 
   def paypal_request
@@ -165,5 +195,11 @@ class Purchase < ActiveRecord::Base
 
   def send_receipt
     Mailer.purchase_receipt(self).deliver
+  end
+
+  def payment_method_must_match_price
+    if free? && price > 0
+      errors.add(:payment_method, 'cannot be free')
+    end
   end
 end

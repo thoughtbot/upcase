@@ -30,7 +30,7 @@
         <%= form.input :country, :as => :string %>
       <% end %>
 
-      <%= form.inputs 'Billing Information' do %>
+      <%= form.inputs 'Billing Information', id: 'billing-information' do %>
         <li class="radio required" id="purchase_payment_method_input">
           <%= radio_button_tag "purchase[payment_method]", "stripe", @purchase.stripe?, :id => "purchase_payment_method_stripe" %>
           <label for="purchase_payment_method_stripe">
