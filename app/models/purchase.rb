@@ -16,7 +16,7 @@ class Purchase < ActiveRecord::Base
 
   before_validation :generate_lookup, :on => :create
   before_create :create_and_charge_customer, :if => :stripe?
-  before_create :setup_payal_payment, :if => :paypal?
+  before_create :setup_paypal_payment, :if => :paypal?
   before_create :set_as_paid, :if => :free?
   after_save :fulfill, :if => :being_paid?
   after_save :send_receipt, :if => :being_paid?
@@ -33,6 +33,18 @@ class Purchase < ActiveRecord::Base
 
   def self.from_period(start_time, end_time)
     Purchase.where("created_at >= ? and created_at <= ?", start_time, end_time).all.sum(&:price)
+  end
+
+  def self.host
+    if defined?(@@host)
+      @@host
+    else
+      ActionMailer::Base.default_url_options[:host]
+    end
+  end
+
+  def self.host=(host)
+    @@host = host
   end
 
   def price
@@ -99,15 +111,11 @@ class Purchase < ActiveRecord::Base
     if paypal?
       paypal_url
     else
-      product_purchase_path(product, self, host: host)
+      product_purchase_path(product, self, host: self.class.host)
     end
   end
 
   private
-
-  def host
-    ActionMailer::Base.default_url_options[:host]
-  end
 
   def being_paid?
     paid? && paid_was == false
@@ -136,11 +144,11 @@ class Purchase < ActiveRecord::Base
     self.paid = true
   end
 
-  def setup_payal_payment
+  def setup_paypal_payment
     response = paypal_request.setup(
       paypal_payment_request,
-      paypal_product_purchase_url(self.product, self, host: host),
-      courses_url(:host => host)
+      paypal_product_purchase_url(self.product, self, host: self.class.host),
+      courses_url(:host => self.class.host)
     )
     self.paid = false
     self.paypal_url = response.redirect_uri

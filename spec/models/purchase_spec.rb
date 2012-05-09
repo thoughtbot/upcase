@@ -1,5 +1,17 @@
 require 'spec_helper'
 
+describe Purchase do
+  it 'can produce the host after setting it' do
+    Purchase.host = 'hottiesandcreepers.com:123467'
+    Purchase.host.should == 'hottiesandcreepers.com:123467'
+  end
+
+  it 'gives default host when host is not set' do
+    Purchase.remove_class_variable('@@host')
+    Purchase.host.should == ActionMailer::Base.default_url_options[:host]
+  end
+end
+
 describe Purchase, "with stripe" do
   include Rails.application.routes.url_helpers
   let(:product) { create(:product, :individual_price => 15, :company_price => 50) }

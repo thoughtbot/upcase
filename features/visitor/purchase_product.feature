@@ -9,6 +9,7 @@ Feature: Purchase a Product
       | Test Fetch   | TEST | 15               | 50            | screencast   | fetch              |
       | Test GitHub  | TEST | 15               | 199           | book         | github             |
 
+  @selenium
   Scenario: A visitor purchases a product
     When I go to the home page
     And I follow "Test Fetch"
@@ -18,6 +19,9 @@ Feature: Purchase a Product
     And I follow "Test Fetch"
     And I follow "Your Company"
     Then I should see "$50"
+    When I pay using Paypal
+    And I submit the Paypal form
+    Then I should see that product "Test Fetch" is successfully purchased
 
   Scenario: A visitor purchases a product with readers
     When I go to the home page
