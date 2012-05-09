@@ -12,15 +12,25 @@ Then /^I should not see payment options$/ do
 end
 
 When /^I completed the purchase$/ do
-  FetchAPI::Order.stubs(:create)
-  FetchAPI::Base.stubs(:basic_auth)
-  FetchAPI::Order.stubs(:find).returns(stub(:link_full => "http://fetchurl"))
-
-  fill_in 'Name', with: 'Eugene'
-  fill_in 'Email', with: 'mr-the-plague@example.com'
+  stub_fetch_api
+  fill_in_name_and_email
   click_button 'Submit Payment'
 end
 
 Then /^I should see that product "([^"]*)" is successfully purchased$/ do |product_name|
   page.body.should =~ /Thank you.*#{product_name}/
+end
+
+When 'I pay using Paypal' do
+  stub_fetch_api
+  uri = URI.parse(current_url)
+  Purchase.host = "#{uri.host}:#{uri.port}"
+
+  choose 'purchase_payment_method_paypal'
+  fill_in_name_and_email
+  click_button 'Proceed to Checkout'
+end
+
+When 'I submit the Paypal form' do
+  click_button 'Pay using Paypal'
 end
