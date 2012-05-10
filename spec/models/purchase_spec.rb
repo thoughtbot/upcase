@@ -65,6 +65,10 @@ describe Purchase, "with stripe" do
       subject.payment_transaction_id.should ==  "TRANSACTION-ID"
     end
 
+    it 'sets the stripe customer on save' do
+      subject.stripe_customer.should == "stripe"
+    end
+
     its(:success_url) { should == product_purchase_path(product, purchase, host: host) }
   end
 
