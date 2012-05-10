@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'capybara_server_runner'
 
 module Paypal
   module NVP
@@ -22,39 +23,8 @@ module Paypal
   end
 end
 
-
 class FakePaypal < Sinatra::Base
-  def self.boot
-    with_webrick_runner do
-      @server = Capybara::Server.new(new)
-      @server.boot
-    end
-    Paypal::NVP::Request.endpoint = url
-    Paypal.endpoint = url
-  end
-
-  def self.url
-    URI.parse(@server.url("/")).to_s
-  end
-
-  private
-
-  def self.with_webrick_runner
-    default_server_process = Capybara.server
-    Capybara.server do |app, port|
-      require 'rack/handler/webrick'
-      Rack::Handler::WEBrick.run(app, :Port => port, :AccessLog => [], :Logger => WEBrick::Log::new(nil, 0))
-    end
-    yield
-  ensure
-    Capybara.server(&default_server_process)
-  end
-
-  public
-
-  def self.outgoing_uri
-    @@outgoing_uri
-  end
+  cattr_reader :outgoing_uri
 
   get '/*' do
     <<-HTML
@@ -105,4 +75,10 @@ class FakePaypal < Sinatra::Base
       response.inject('') {|acc,(k,v)| "#{acc}&#{k}=#{v}"}
     end
   end
+end
+
+FakePaypalRunner = CapybaraServerRunner.new(FakePaypal) do |server|
+  url = server.url('/')
+  Paypal::NVP::Request.endpoint = url
+  Paypal.endpoint = url
 end
