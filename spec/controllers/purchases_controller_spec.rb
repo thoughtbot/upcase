@@ -25,12 +25,8 @@ end
 
 describe PurchasesController, "processing on paypal" do
   let(:product) { Factory(:product, :individual_price => 15) }
-  let(:paypal_request) { stub(:setup => stub(:redirect_uri => "http://paypalurl", :checkout! => true)) }
-  let(:paypal_payment_request) { stub }
 
   before do
-    Paypal::Express::Request.stubs(:new => paypal_request)
-    Paypal::Payment::Request.stubs(:new => paypal_payment_request)
     FetchAPI::Order.stubs(:create)
     FetchAPI::Order.stubs(:find).returns(stub(:link_full => "http://fetchurl"))
   end
@@ -40,7 +36,7 @@ describe PurchasesController, "processing on paypal" do
     post :create, :purchase => { :variant => "individual", :name => "User", :email => "test@example.com", :payment_method => "paypal" }, :product_id => product.to_param
 
     response.status.should == 302
-    response.location.should == "http://paypalurl"
+    response.location.should == FakePaypal.outgoing_uri
     assigns(:purchase).should_not be_paid
   end
 end
