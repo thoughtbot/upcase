@@ -26,16 +26,12 @@
 
 header.primary, header.secondary {
   @include full-width;
-  padding: 40px 0 50px 0;
+  padding: 40px 0;
 
   h1 {
     color: #2b2b2b;
     font: 900 60px/60px $sans-serif;
   }
-}
-
-header.secondary {
-  padding: 50px 0;
 }
 
 header.primary {
@@ -95,16 +91,15 @@ header.primary {
       color: #000;
       float: left;
       height: 122px;
-      margin: 0 $gw-gutter $gw-gutter 0;
+      margin: 0 $gw-gutter/2 $gw-gutter/2 0;
       padding: 1em;
       text-decoration: none;
-      width: grid-width(2);
+      width: grid-width(2) + $gw-gutter * .32;
 
       h2 {
         font-size: 115%;
         font-weight: normal;
         line-height: 1.2em;
-        text-transform: uppercase;
       }
 
       p {
@@ -126,7 +121,7 @@ header.primary {
   position: relative;
 
   .workshops-background {
-    min-width: 1520px;
+    min-width: 1600px;
     position: absolute;
     top: 0;
     width: 100%;
@@ -136,7 +131,7 @@ header.primary {
 
 #workshops {
   @include full-width;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
 
   h2 {
     color: #444;
@@ -194,7 +189,7 @@ header.primary {
               display: block;
               font-size: 18px;
               font-weight: normal;
-              margin-top: 1.25em;
+              margin-top: 1.15em;
             }
           }
         }
@@ -223,7 +218,7 @@ header.primary {
 .advantages_wrapper {
   width: 100%;
   background: rgba(0,0,0,.5);
-  padding: 50px 0;
+  padding: 40px 0;
 }
 
 .advantages {
