@@ -6,12 +6,26 @@
 </header>
 
 <section id="products">
-  <% Product.active.each_with_index do |product, index| %>
-    <div class="<%= 'first' if index.zero? %>">
-      <h2><%= link_to product.name, product_path(product) %></h2>
-      <p><%= product.short_description %></p>
-    </div>
-  <% end %>
+  <section id="books">
+    <% Product.active.each_with_index do |product, index| %>
+      <% if product.product_type.include? 'book' %>
+        <%= link_to product_path(product), class: product.product_type do %>
+          <h2><%= product.name %></h2>
+          <p><%= product.short_description %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+  </section>
+  <section id="screencasts">
+    <% Product.active.each_with_index do |product, index| %>
+      <% if product.product_type.include? 'screencast' %>
+        <%= link_to product_path(product), class: product.product_type do %>
+          <h2><%= product.name %></h2>
+          <p><%= product.short_description %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+  </section>
 </section>
 
 <section id="workshops_wrapper">
