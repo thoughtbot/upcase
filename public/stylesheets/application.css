@@ -252,13 +252,10 @@ header#main-header {
 header.primary, header.secondary {
   margin: 0 auto;
   width: 995px;
-  padding: 40px 0 50px 0; }
+  padding: 40px 0; }
   header.primary h1, header.secondary h1 {
     color: #2b2b2b;
     font: 900 60px/60px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
-
-header.secondary {
-  padding: 50px 0; }
 
 header.primary {
   background: url("/images/shadowing.png") center top no-repeat; }
@@ -309,15 +306,14 @@ header.primary {
     color: #000;
     float: left;
     height: 122px;
-    margin: 0 25px 25px 0;
+    margin: 0 12.5px 12.5px 0;
     padding: 1em;
     text-decoration: none;
-    width: 145px; }
+    width: 153px; }
     #products #screencasts .screencast h2 {
       font-size: 115%;
       font-weight: normal;
-      line-height: 1.2em;
-      text-transform: uppercase; }
+      line-height: 1.2em; }
     #products #screencasts .screencast p {
       display: none;
       font-size: 115%; }
@@ -336,7 +332,7 @@ header.primary {
   overflow: hidden;
   position: relative; }
   #workshops_wrapper .workshops-background {
-    min-width: 1520px;
+    min-width: 1600px;
     position: absolute;
     top: 0;
     width: 100%;
@@ -345,7 +341,7 @@ header.primary {
 #workshops {
   margin: 0 auto;
   width: 995px;
-  margin-bottom: 40px; }
+  margin-bottom: 35px; }
   #workshops h2 {
     color: #444;
     font: 700 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
@@ -395,7 +391,7 @@ header.primary {
             display: block;
             font-size: 18px;
             font-weight: normal;
-            margin-top: 1.25em; }
+            margin-top: 1.15em; }
       #workshops ul.courses li a:hover h3 {
         background: rgba(0, 0, 0, 0.8);
         height: 100%;
@@ -409,7 +405,7 @@ header.primary {
 .advantages_wrapper {
   width: 100%;
   background: rgba(0, 0, 0, 0.5);
-  padding: 50px 0; }
+  padding: 40px 0; }
 
 .advantages {
   margin: 0 auto;
