@@ -34,13 +34,89 @@ header.primary, header.secondary {
   }
 }
 
+header.secondary {
+  padding: 50px 0;
+}
+
 header.primary {
   background: url("/images/shadowing.png") center top no-repeat;
 }
 
 #products {
   @include full-width;
-  padding: 0 0 40px 0;
+
+  #books, #screencasts {
+    float: left;
+    overflow: auto;
+    width: grid-width(6);
+  }
+
+  #books {
+    margin-right: $gw-gutter;
+
+    .book {
+      background: #ccc;
+      border-left: 5px solid #666;
+      @include box-sizing(border-box);
+      color: #000;
+      float: left;
+      height: 300px;
+      margin-right: $gw-gutter;
+      padding: 3.2em 3.2em 2em 1.6em;
+      text-decoration: none;
+      width: grid-width(3);
+
+      h2 {
+        font-size: 115%;
+        line-height: 1.2em;
+        margin-bottom: 1em;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      p {
+        font-size: 115%;
+      }
+
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+
+      &:hover {
+        background: #999;
+      }
+    }
+  }
+
+  #screencasts {
+    .screencast {
+      background: #ccc;
+      @include box-sizing(border-box);
+      color: #000;
+      float: left;
+      height: 122px;
+      margin: 0 $gw-gutter $gw-gutter 0;
+      padding: 1em;
+      text-decoration: none;
+      width: grid-width(2);
+
+      h2 {
+        font-size: 115%;
+        font-weight: normal;
+        line-height: 1.2em;
+        text-transform: uppercase;
+      }
+
+      p {
+        display: none;
+        font-size: 115%;
+      }
+
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+  }
 }
 
 #workshops_wrapper {
@@ -92,7 +168,7 @@ header.primary {
         h3 {
           background: rgba(0,0,0,.55);
           color: #fff;
-          font: 700 30px/32px $sans-serif;
+          font: 700 30px/30px $sans-serif;
           font-weight: normal;
           margin: 1em 0 0 0;
           padding: .5em 1.5em;
