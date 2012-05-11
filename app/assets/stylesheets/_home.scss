@@ -1,3 +1,9 @@
+@mixin full-width {
+  @extend .clearfix;
+  margin: 0 auto;
+  width: 995px;
+}
+
 #head-wrapper {
   #homepage-top {
     @extend .clearfix;
@@ -15,236 +21,157 @@
         margin: 40px 0 20px;
       }
     }
+  }
+}
 
-    #workshop-list {
+header.primary, header.secondary {
+  @include full-width;
+  padding: 40px 0 50px 0;
+
+  h1 {
+    color: #2b2b2b;
+    font: 900 60px/60px $sans-serif;
+  }
+}
+
+header.primary {
+  background: url("/images/shadowing.png") center top no-repeat;
+}
+
+#products {
+  @include full-width;
+  padding: 0 0 40px 0;
+}
+
+#workshops_wrapper {
+  @include linear-gradient(white, rgba(255, 255, 255, 0) 20%);
+  background-color: transparent;
+  overflow: hidden;
+  position: relative;
+
+  .workshops-background {
+    min-width: 1520px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+  }
+}
+
+#workshops {
+  @include full-width;
+  margin-bottom: 40px;
+
+  h2 {
+    color: #444;
+    font: 700 14px $sans-serif;
+    margin: 0 0 4px 0;
+    text-transform: uppercase;
+  }
+
+  ul.courses {
+    li {
+      background: url(/images/workshops_thumbs/designfordev.png) no-repeat #ccc;
+      border: 1px solid rgba(255,255,255,.1);
+      @include box-sizing(border-box);
       float: left;
-      margin: 20px 0 0 0;
-      min-height: 800px;
-      width: grid-width(8);
+      margin: 0 $gw-gutter $gw-gutter 0;
+      position: relative;
+      width: grid-width(4);
 
-      h2 {
-        color: #444;
-        font: 700 14px $sans-serif;
-        margin: 0 0 4px 0;
-        text-transform: uppercase;
+      &:nth-child(3n) {
+        margin-right: 0;
       }
 
-      ul {
-        margin: 0 0 20px 10px;
+      a {
+        display: block;
+        height: 220px;
+        overflow: hidden;
+        text-decoration: none;
 
-        li {
-          margin: 0 0 10px 0;
-          padding: 0 0 10px 0;
-          position: relative;
+        h3 {
+          background: rgba(0,0,0,.55);
+          color: #fff;
+          font: 700 30px/32px $sans-serif;
+          font-weight: normal;
+          margin: 1em 0 0 0;
+          padding: .5em 1.5em;
+          text-shadow: 0 1px 0 rgba(0,0,0,.8);
+          text-transform: uppercase;
 
-          a {
-            display: inline-block;
-            text-decoration: none;
+          em {
+            font-family: "adobe-caslon-pro-1", "adobe-caslon-pro-2";
+            font-style: italic;
+            text-transform: lowercase;
+            font-size: 32px;
+          }
 
-            h3 {
-              color: $red;
-              font: 700 24px/30px $sans-serif;
+          span {
+            display: none;
+            font-size: 24px;
+            line-height: 1em;
+            text-transform: none;
 
-              span {
-                color: #333;
-                font-size: 16px;
-
-                &:before {
-                  content: "/";
-                  margin: 0 4px 0 0;
-                }
-              }
-            }
-
-            p.teaser {
-              color: #444;
-              font: 300 15px/20px $serif;
-              margin: 0;
-            }
-
-            &:hover {
-              h3 {
-                color: $red;
-              }
+            &:before {
+              color: rgba(255,255,255,.6);
+              content: 'next workshop';
+              display: block;
+              font-size: 18px;
+              font-weight: normal;
+              margin-top: 1.25em;
             }
           }
         }
-      }
-    }
 
-    aside {
-      float: left;
-      margin: 10px 0 0 25px;
-      padding: 10px 0 0 0;
-      width: grid-width(4);
+        &:hover {
+          h3 {
+            background: rgba(0,0,0,.8);
+            height: 100%;
+            margin: 0;
+            padding: 1.5em;
+          }
 
-      &.first, &.humans {
-        border-top: 5px solid $red;
-      }
-
-      &.humans {
-        margin-top: 40px;
-      }
-
-      h2 {
-        color: #333;
-        font: 700 24px $sans-serif;
-        margin: 0 0 10px 0;
-
-        a {
-          text-decoration: none;
+          span {
+            display: block;
+          }
         }
-      }
 
-      p {
-        color: #444;
-        font: 400 15px/21px $serif;
+        p.teaser {
+          display: none;
+        }
       }
     }
   }
 }
 
-#class-photos {
-  @extend .clearfix;
-  margin: 0px auto 0;
+.advantages_wrapper {
+  width: 100%;
+  background: rgba(0,0,0,.5);
+  padding: 50px 0;
+}
 
-  img {
-    background: #fff;
-    width: grid-width(4);
-  }
+.advantages {
+  @include full-width;
 
   ul {
     li {
-      @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset);
+      color: #fff;
       float: left;
-      height: 205px;
-      list-style-type: none;
-      margin-bottom: 20px;
-      width: grid-width(4); 
-      position: relative;
+      font-size: 18px;
+      line-height: 1.4em;
+      margin-right: $gw-gutter;
+      text-shadow: 0 1px 0 rgba(0,0,0,.6);
+      width: grid-width(4);
 
-      &.first {
-        margin: 0 25px 0 0;
+      h3 {
+        color: #fff;
+        font-size: 22px;
+        text-transform: uppercase;
+        margin-bottom: .25em;
       }
 
-      &.last {
-        margin: 0 0 0 25px;
-      }
-
-      &:after {
-        @include box-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
-        position: absolute;
-        background: transparent;
-        width: 70%;
-        height: 55%;
-        content: '';
-        right: 11px;
-        bottom: 11px;
-        transform: skew(15deg) rotate(6deg);
-        -webkit-transform: skew(15deg) rotate(6deg);
-        -moz-transform: skew(15deg) rotate(6deg);
-        z-index: -1;
-      }
-
-      &:before {
-        @include box-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
-        z-index: -2;
-        position: absolute;
-        background: transparent;
-        width: 70%;
-        height: 55%;
-        content: '';
-        left: 11px;
-        bottom: 11px;
-        transform: skew(-15deg) rotate(-6deg);
-        -webkit-transform: skew(-15deg) rotate(-6deg);
-        -moz-transform: skew(-15deg) rotate(-6deg);
-      }
-    }
-  }
-}
-
-#more-information {
-  @extend .clearfix;
-  background: rgba(228, 228, 228, 0.7) url("/images/shadowing.png") center 0 no-repeat;
-  border-top: 1px solid #DCDCDC;
-  margin: 14px 0 0 0;
-  padding: 40px 0;
-
-  #more-information-wrapper {
-    margin: 0 auto;
-    width: 995px;
-
-    h4 {
-      color: #555;
-      font: 500 20px $sans-serif;
-      margin: 0 0 12px 0;
-    }
-
-    #why-love {
-      float: left;
-      margin: 22px $gutter 0 0;
-      width: grid-width(6);
-
-      ul {
-        li {
-          color: #555;
-          font: 400 14px/20px $serif;
-          margin: 0 0 20px 0;
-
-          strong {
-            color: #333;
-            display: block;
-            font: 600 16px $sans-serif;
-          }
-        }
-      }
-    }
-
-    #testimonials {
-      float: left;
-      margin: 20px 0 0 0;
-      width: grid-width(6);
-
-      q {
-        color: #555;
-        display: block;
-        font: 400 14px/20px $serif;
-        margin: 0 0 0 20px;
-        position: relative;
-
-        &:before {
-         color: #666;
-         content: "\201C";
-         font: 400 40px $sans-serif;
-         left: -17px;
-         position: absolute;
-         top: -4px;
-        }
-      }
-
-      p.source {
-        color: $red;
-        font: 600 14px $sans-serif;
-        margin: 2px 0 18px 5px;
-
-        a {
-          color: $red;
-          margin: 0 0 0 1px;
-          text-decoration: none;
-
-        }
-      }
-
-      #column-1 {
-        float: left;
-        margin: 0 25px 0 0;
-        width: grid-width(3);
-      }
-
-      #column-2 {
-        float: left;
-        width: grid-width(3);
+      &:nth-child(3n) {
+        margin-right: 0;
       }
     }
   }
