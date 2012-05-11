@@ -178,10 +178,17 @@ header.primary {
           }
 
           span {
+            background: #000;
+            bottom: 0;
+            @include box-sizing(border-box);
             display: none;
             font-size: 24px;
+            left: 0;
             line-height: 1em;
+            padding: .5em 2em;
+            position: absolute;
             text-transform: none;
+            width: 100%;
 
             &:before {
               color: rgba(255,255,255,.6);
@@ -189,7 +196,6 @@ header.primary {
               display: block;
               font-size: 18px;
               font-weight: normal;
-              margin-top: 1.15em;
             }
           }
         }

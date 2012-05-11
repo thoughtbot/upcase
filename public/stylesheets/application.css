@@ -381,17 +381,27 @@ header.primary {
           text-transform: lowercase;
           font-size: 32px; }
         #workshops ul.courses li a h3 span {
+          background: #000;
+          bottom: 0;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          -ms-box-sizing: border-box;
+          -o-box-sizing: border-box;
+          box-sizing: border-box;
           display: none;
           font-size: 24px;
+          left: 0;
           line-height: 1em;
-          text-transform: none; }
+          padding: .5em 2em;
+          position: absolute;
+          text-transform: none;
+          width: 100%; }
           #workshops ul.courses li a h3 span:before {
             color: rgba(255, 255, 255, 0.6);
             content: 'next workshop';
             display: block;
             font-size: 18px;
-            font-weight: normal;
-            margin-top: 1.15em; }
+            font-weight: normal; }
       #workshops ul.courses li a:hover h3 {
         background: rgba(0, 0, 0, 0.8);
         height: 100%;
