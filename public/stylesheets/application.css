@@ -49,7 +49,7 @@ table {
 
 /* Clear Floated Elements
 ------------------------------------------------------------------------------*/
-.clearfix:after, header#main-header:after, header#main-header ul:after, #head-wrapper #homepage-top:after, #head-wrapper #homepage-top header:after, #class-photos:after, #more-information:after, body.high_voltage-pages #head-wrapper #homepage-top:after,
+.clearfix:after, header#main-header:after, header#main-header ul:after, #head-wrapper #homepage-top:after, #head-wrapper #homepage-top header:after, header.primary:after, header.secondary:after, #products:after, #workshops:after, .advantages:after, body.high_voltage-pages #head-wrapper #homepage-top:after,
 body.sections-show #head-wrapper #homepage-top:after,
 body.courses-show #head-wrapper #homepage-top:after, body.high_voltage-pages #additional-information:after,
 body.sections-show #additional-information:after,
@@ -248,171 +248,128 @@ header#main-header {
     color: #2b2b2b;
     font: 900 60px/60px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
     margin: 40px 0 20px; }
-  #head-wrapper #homepage-top #workshop-list {
-    float: left;
-    margin: 20px 0 0 0;
-    min-height: 800px;
-    width: 655px; }
-    #head-wrapper #homepage-top #workshop-list h2 {
-      color: #444;
-      font: 700 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      margin: 0 0 4px 0;
-      text-transform: uppercase; }
-    #head-wrapper #homepage-top #workshop-list ul {
-      margin: 0 0 20px 10px; }
-      #head-wrapper #homepage-top #workshop-list ul li {
-        margin: 0 0 10px 0;
-        padding: 0 0 10px 0;
-        position: relative; }
-        #head-wrapper #homepage-top #workshop-list ul li a {
-          display: inline-block;
-          text-decoration: none; }
-          #head-wrapper #homepage-top #workshop-list ul li a h3 {
-            color: #ad141e;
-            font: 700 24px/30px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
-            #head-wrapper #homepage-top #workshop-list ul li a h3 span {
-              color: #333;
-              font-size: 16px; }
-              #head-wrapper #homepage-top #workshop-list ul li a h3 span:before {
-                content: "/";
-                margin: 0 4px 0 0; }
-          #head-wrapper #homepage-top #workshop-list ul li a p.teaser {
-            color: #444;
-            font: 300 15px/20px skolar-1, skolar-2, serif;
-            margin: 0; }
-          #head-wrapper #homepage-top #workshop-list ul li a:hover h3 {
-            color: #ad141e; }
-  #head-wrapper #homepage-top aside {
-    float: left;
-    margin: 10px 0 0 25px;
-    padding: 10px 0 0 0;
-    width: 315px; }
-    #head-wrapper #homepage-top aside.first, #head-wrapper #homepage-top aside.humans {
-      border-top: 5px solid #ad141e; }
-    #head-wrapper #homepage-top aside.humans {
-      margin-top: 40px; }
-    #head-wrapper #homepage-top aside h2 {
-      color: #333;
-      font: 700 24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      margin: 0 0 10px 0; }
-      #head-wrapper #homepage-top aside h2 a {
-        text-decoration: none; }
-    #head-wrapper #homepage-top aside p {
-      color: #444;
-      font: 400 15px/21px skolar-1, skolar-2, serif; }
 
-#class-photos {
-  margin: 0px auto 0; }
-  #class-photos img {
-    background: #fff;
-    width: 315px; }
-  #class-photos ul li {
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-    -ms-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-    -o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-    float: left;
-    height: 205px;
-    list-style-type: none;
-    margin-bottom: 20px;
-    width: 315px;
-    position: relative; }
-    #class-photos ul li.first {
-      margin: 0 25px 0 0; }
-    #class-photos ul li.last {
-      margin: 0 0 0 25px; }
-    #class-photos ul li:after {
-      -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      -ms-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      -o-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      position: absolute;
-      background: transparent;
-      width: 70%;
-      height: 55%;
-      content: '';
-      right: 11px;
-      bottom: 11px;
-      transform: skew(15deg) rotate(6deg);
-      -webkit-transform: skew(15deg) rotate(6deg);
-      -moz-transform: skew(15deg) rotate(6deg);
-      z-index: -1; }
-    #class-photos ul li:before {
-      -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      -ms-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      -o-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      z-index: -2;
-      position: absolute;
-      background: transparent;
-      width: 70%;
-      height: 55%;
-      content: '';
-      left: 11px;
-      bottom: 11px;
-      transform: skew(-15deg) rotate(-6deg);
-      -webkit-transform: skew(-15deg) rotate(-6deg);
-      -moz-transform: skew(-15deg) rotate(-6deg); }
+header.primary, header.secondary {
+  margin: 0 auto;
+  width: 995px;
+  padding: 40px 0 50px 0; }
+  header.primary h1, header.secondary h1 {
+    color: #2b2b2b;
+    font: 900 60px/60px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
 
-#more-information {
-  background: rgba(228, 228, 228, 0.7) url("/images/shadowing.png") center 0 no-repeat;
-  border-top: 1px solid #DCDCDC;
-  margin: 14px 0 0 0;
-  padding: 40px 0; }
-  #more-information #more-information-wrapper {
-    margin: 0 auto;
-    width: 995px; }
-    #more-information #more-information-wrapper h4 {
-      color: #555;
-      font: 500 20px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-      margin: 0 0 12px 0; }
-    #more-information #more-information-wrapper #why-love {
-      float: left;
-      margin: 22px 25px 0 0;
-      width: 485px; }
-      #more-information #more-information-wrapper #why-love ul li {
-        color: #555;
-        font: 400 14px/20px skolar-1, skolar-2, serif;
-        margin: 0 0 20px 0; }
-        #more-information #more-information-wrapper #why-love ul li strong {
-          color: #333;
-          display: block;
-          font: 600 16px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
-    #more-information #more-information-wrapper #testimonials {
-      float: left;
-      margin: 20px 0 0 0;
-      width: 485px; }
-      #more-information #more-information-wrapper #testimonials q {
-        color: #555;
-        display: block;
-        font: 400 14px/20px skolar-1, skolar-2, serif;
-        margin: 0 0 0 20px;
-        position: relative; }
-        #more-information #more-information-wrapper #testimonials q:before {
-          color: #666;
-          content: "\201C";
-          font: 400 40px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-          left: -17px;
-          position: absolute;
-          top: -4px; }
-      #more-information #more-information-wrapper #testimonials p.source {
-        color: #ad141e;
-        font: 600 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-        margin: 2px 0 18px 5px; }
-        #more-information #more-information-wrapper #testimonials p.source a {
-          color: #ad141e;
-          margin: 0 0 0 1px;
-          text-decoration: none; }
-      #more-information #more-information-wrapper #testimonials #column-1 {
-        float: left;
-        margin: 0 25px 0 0;
-        width: 230px; }
-      #more-information #more-information-wrapper #testimonials #column-2 {
-        float: left;
-        width: 230px; }
+header.primary {
+  background: url("/images/shadowing.png") center top no-repeat; }
+
+#products {
+  margin: 0 auto;
+  width: 995px;
+  padding: 0 0 40px 0; }
+
+#workshops_wrapper {
+  background-color: white;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(20%, rgba(255, 255, 255, 0)));
+  background-image: -webkit-linear-gradient(top, white, rgba(255, 255, 255, 0) 20%);
+  background-image: -moz-linear-gradient(top, white, rgba(255, 255, 255, 0) 20%);
+  background-image: -ms-linear-gradient(top, white, rgba(255, 255, 255, 0) 20%);
+  background-image: -o-linear-gradient(top, white, rgba(255, 255, 255, 0) 20%);
+  background-image: linear-gradient(top, white, rgba(255, 255, 255, 0) 20%);
+  background-color: transparent;
+  overflow: hidden;
+  position: relative; }
+  #workshops_wrapper .workshops-background {
+    min-width: 1520px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1; }
+
+#workshops {
+  margin: 0 auto;
+  width: 995px;
+  margin-bottom: 40px; }
+  #workshops h2 {
+    color: #444;
+    font: 700 14px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+    margin: 0 0 4px 0;
+    text-transform: uppercase; }
+  #workshops ul.courses li {
+    background: url(/images/workshops_thumbs/designfordev.png) no-repeat #cccccc;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 25px 25px 0;
+    position: relative;
+    width: 315px; }
+    #workshops ul.courses li:nth-child(3n) {
+      margin-right: 0; }
+    #workshops ul.courses li a {
+      display: block;
+      height: 220px;
+      overflow: hidden;
+      text-decoration: none; }
+      #workshops ul.courses li a h3 {
+        background: rgba(0, 0, 0, 0.55);
+        color: #fff;
+        font: 700 30px/32px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        font-weight: normal;
+        margin: 1em 0 0 0;
+        padding: .5em 1.5em;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
+        text-transform: uppercase; }
+        #workshops ul.courses li a h3 em {
+          font-family: "adobe-caslon-pro-1", "adobe-caslon-pro-2";
+          font-style: italic;
+          text-transform: lowercase;
+          font-size: 32px; }
+        #workshops ul.courses li a h3 span {
+          display: none;
+          font-size: 24px;
+          line-height: 1em;
+          text-transform: none; }
+          #workshops ul.courses li a h3 span:before {
+            color: rgba(255, 255, 255, 0.6);
+            content: 'next workshop';
+            display: block;
+            font-size: 18px;
+            font-weight: normal;
+            margin-top: 1.25em; }
+      #workshops ul.courses li a:hover h3 {
+        background: rgba(0, 0, 0, 0.8);
+        height: 100%;
+        margin: 0;
+        padding: 1.5em; }
+      #workshops ul.courses li a:hover span {
+        display: block; }
+      #workshops ul.courses li a p.teaser {
+        display: none; }
+
+.advantages_wrapper {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 50px 0; }
+
+.advantages {
+  margin: 0 auto;
+  width: 995px; }
+  .advantages ul li {
+    color: #fff;
+    float: left;
+    font-size: 18px;
+    line-height: 1.4em;
+    margin-right: 25px;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+    width: 315px; }
+    .advantages ul li h3 {
+      color: #fff;
+      font-size: 22px;
+      text-transform: uppercase;
+      margin-bottom: .25em; }
+    .advantages ul li:nth-child(3n) {
+      margin-right: 0; }
 
 body.high_voltage-pages #head-wrapper #homepage-top,
 body.sections-show #head-wrapper #homepage-top,
@@ -597,7 +554,7 @@ body.courses-show #head-wrapper #homepage-top {
   body.sections-show #head-wrapper #homepage-top #workshop-details,
   body.courses-show #head-wrapper #homepage-top #workshop-details {
     float: left;
-    margin: 55px 0 20px 0;
+    margin: 0 0 20px 0;
     width: 315px; }
     body.high_voltage-pages #head-wrapper #homepage-top #workshop-details #register,
     body.sections-show #head-wrapper #homepage-top #workshop-details #register,
@@ -1030,100 +987,100 @@ body.courses #additional-information #faq {
     margin: 0; }
 
 body.high_voltage-pages .assets,
-body.products-show .assets {
+body.products-show .assets, body.sections-show .assets {
   margin-bottom: 10px;
   text-align: center; }
   body.high_voltage-pages .assets a,
-  body.products-show .assets a {
+  body.products-show .assets a, body.sections-show .assets a {
     display: inline-block;
     margin-right: 5px; }
     body.high_voltage-pages .assets a span.size,
-    body.products-show .assets a span.size {
+    body.products-show .assets a span.size, body.sections-show .assets a span.size {
       font-size: 80%;
       font-variant: small-caps; }
 body.high_voltage-pages section#homepage-top h1,
-body.products-show section#homepage-top h1 {
+body.products-show section#homepage-top h1, body.sections-show section#homepage-top h1 {
   color: #2b2b2b;
   font: 900 60px/60px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
   margin: 40px 0 20px; }
 body.high_voltage-pages section#container p,
-body.products-show section#container p {
+body.products-show section#container p, body.sections-show section#container p {
   font-size: 14px;
   margin-bottom: 0.5em; }
 body.high_voltage-pages section#container h1,
-body.products-show section#container h1 {
+body.products-show section#container h1, body.sections-show section#container h1 {
   font: 400 32px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
   margin: 0 0 12px 0; }
 body.high_voltage-pages section#container h3,
-body.products-show section#container h3 {
+body.products-show section#container h3, body.sections-show section#container h3 {
   margin-top: 18px; }
   body.high_voltage-pages section#container h3.offer,
-  body.products-show section#container h3.offer {
+  body.products-show section#container h3.offer, body.sections-show section#container h3.offer {
     color: #444;
     font-size: 18px;
     line-height: 27px; }
     body.high_voltage-pages section#container h3.offer strong,
-    body.products-show section#container h3.offer strong {
+    body.products-show section#container h3.offer strong, body.sections-show section#container h3.offer strong {
       color: #ad141e; }
 body.high_voltage-pages section#container h4,
-body.products-show section#container h4 {
+body.products-show section#container h4, body.sections-show section#container h4 {
   font-size: 16px; }
 body.high_voltage-pages section#container ul,
-body.products-show section#container ul {
+body.products-show section#container ul, body.sections-show section#container ul {
   list-style: outside;
   margin: 8px 0 12px 16px; }
   body.high_voltage-pages section#container ul li,
-  body.products-show section#container ul li {
+  body.products-show section#container ul li, body.sections-show section#container ul li {
     margin: 0 0 6px 0; }
 body.high_voltage-pages section#container section,
-body.products-show section#container section {
+body.products-show section#container section, body.sections-show section#container section {
   margin: 0 0 30px 0; }
   body.high_voltage-pages section#container section.no-border,
-  body.products-show section#container section.no-border {
+  body.products-show section#container section.no-border, body.sections-show section#container section.no-border {
     border: 0; }
 body.high_voltage-pages section#container article,
-body.products-show section#container article {
+body.products-show section#container article, body.sections-show section#container article {
   margin: 0 0 30px 0; }
 body.high_voltage-pages section#container pre,
-body.products-show section#container pre {
+body.products-show section#container pre, body.sections-show section#container pre {
   background: #efefef;
   line-height: 180%;
   margin: 10px 0;
   padding: 0; }
 body.high_voltage-pages section#container strong,
-body.products-show section#container strong {
+body.products-show section#container strong, body.sections-show section#container strong {
   font-weight: bold; }
 body.high_voltage-pages #products,
-body.products-show #products {
+body.products-show #products, body.sections-show #products {
   float: right;
   width: 315px; }
   body.high_voltage-pages #products h2,
-  body.products-show #products h2 {
+  body.products-show #products h2, body.sections-show #products h2 {
     margin: 10px 0 0 25px;
     padding: 10px 0 0 0; }
   body.high_voltage-pages #products aside,
-  body.products-show #products aside {
+  body.products-show #products aside, body.sections-show #products aside {
     float: left;
     margin: 10px 0 0 25px;
     padding: 10px 0 0 0;
     width: 315px; }
     body.high_voltage-pages #products aside.first, body.high_voltage-pages #products aside.humans,
     body.products-show #products aside.first,
-    body.products-show #products aside.humans {
+    body.products-show #products aside.humans, body.sections-show #products aside.first, body.sections-show #products aside.humans {
       border-top: 5px solid #ad141e; }
     body.high_voltage-pages #products aside.humans,
-    body.products-show #products aside.humans {
+    body.products-show #products aside.humans, body.sections-show #products aside.humans {
       margin-top: 40px; }
     body.high_voltage-pages #products aside h2,
-    body.products-show #products aside h2 {
+    body.products-show #products aside h2, body.sections-show #products aside h2 {
       color: #333;
       font: 700 24px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
       margin: 0 0 10px 0; }
       body.high_voltage-pages #products aside h2 a,
-      body.products-show #products aside h2 a {
+      body.products-show #products aside h2 a, body.sections-show #products aside h2 a {
         text-decoration: none; }
     body.high_voltage-pages #products aside p,
-    body.products-show #products aside p {
+    body.products-show #products aside p, body.sections-show #products aside p {
       color: #444;
       font: 400 15px/21px skolar-1, skolar-2, serif; }
 
