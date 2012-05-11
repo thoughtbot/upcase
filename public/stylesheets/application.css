@@ -257,13 +257,72 @@ header.primary, header.secondary {
     color: #2b2b2b;
     font: 900 60px/60px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif; }
 
+header.secondary {
+  padding: 50px 0; }
+
 header.primary {
   background: url("/images/shadowing.png") center top no-repeat; }
 
 #products {
   margin: 0 auto;
-  width: 995px;
-  padding: 0 0 40px 0; }
+  width: 995px; }
+  #products #books, #products #screencasts {
+    float: left;
+    overflow: auto;
+    width: 485px; }
+  #products #books {
+    margin-right: 25px; }
+    #products #books .book {
+      background: #ccc;
+      border-left: 5px solid #666;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      -o-box-sizing: border-box;
+      box-sizing: border-box;
+      color: #000;
+      float: left;
+      height: 300px;
+      margin-right: 25px;
+      padding: 3.2em 3.2em 2em 1.6em;
+      text-decoration: none;
+      width: 230px; }
+      #products #books .book h2 {
+        font-size: 115%;
+        line-height: 1.2em;
+        margin-bottom: 1em;
+        font-weight: bold;
+        text-transform: uppercase; }
+      #products #books .book p {
+        font-size: 115%; }
+      #products #books .book:nth-child(2n) {
+        margin-right: 0; }
+      #products #books .book:hover {
+        background: #999; }
+  #products #screencasts .screencast {
+    background: #ccc;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #000;
+    float: left;
+    height: 122px;
+    margin: 0 25px 25px 0;
+    padding: 1em;
+    text-decoration: none;
+    width: 145px; }
+    #products #screencasts .screencast h2 {
+      font-size: 115%;
+      font-weight: normal;
+      line-height: 1.2em;
+      text-transform: uppercase; }
+    #products #screencasts .screencast p {
+      display: none;
+      font-size: 115%; }
+    #products #screencasts .screencast:nth-child(3n) {
+      margin-right: 0; }
 
 #workshops_wrapper {
   background-color: white;
@@ -314,7 +373,7 @@ header.primary {
       #workshops ul.courses li a h3 {
         background: rgba(0, 0, 0, 0.55);
         color: #fff;
-        font: 700 30px/32px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
+        font: 700 30px/30px "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
         font-weight: normal;
         margin: 1em 0 0 0;
         padding: .5em 1.5em;
