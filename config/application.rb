@@ -44,5 +44,9 @@ module Workshops
 
     # Enable the asset pipeline
     config.assets.enabled = true
+
+    # Don't connect to database when precompiling assets.
+    # https://devcenter.heroku.com/articles/rails3x-asset-pipeline-cedar#troubleshooting
+    config.assets.initialize_on_precompile = false
   end
 end
