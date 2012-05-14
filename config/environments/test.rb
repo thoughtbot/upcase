@@ -34,7 +34,7 @@ Workshops::Application.configure do
   config.active_support.deprecation = :stderr
 
   HOST = 'www.example.com'
-  config.action_mailer.default_url_options = { :host => HOST }
+  config.action_mailer.default_url_options = { host: HOST }
 
   config.after_initialize do
     Timecop.travel(Time.now)

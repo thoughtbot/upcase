@@ -1,7 +1,7 @@
 class ShopifyController < ApplicationController
   def order_paid
     if backbone_book?
-      client = Octokit::Client.new(:login => "cpytel", :password => "cambridge")
+      client = Octokit::Client.new(login: "cpytel", password: "cambridge")
       readers.each do |username|
         begin
           client.add_team_member(github_team_id, username)
@@ -25,6 +25,6 @@ class ShopifyController < ApplicationController
   end
 
   def readers
-    params[:note_attributes].collect { |attribute| attribute[:value] if attribute[:name] =~ /reader/ && attribute[:value].strip.present? }.compact
+    params[:note_attributes].map { |attribute| attribute[:value] if attribute[:name] =~ /reader/ && attribute[:value].strip.present? }.compact
   end
 end

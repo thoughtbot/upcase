@@ -5,7 +5,7 @@
 
         <section id="course-description"><%=raw textilize @course.description %></section>
 
-        <%= render :partial => 'questions', :locals => { :course => @course } %>
+        <%= render partial: 'questions', locals: { course: @course } %>
       </section>
 
       <section id="workshop-details">
@@ -14,11 +14,11 @@
         </section>
 
         <h3>Cost</h3>
-        <p class="cost"><%= number_to_currency @course.price, :precision => 0 %></p>
+        <p class="cost"><%= number_to_currency @course.price, precision: 0 %></p>
 
         <h3>Where</h3>
         <p id="section-location">
-          <%= google_map_link_to("#{@course.location} #{@course.location_name}", :id => 'location') do %>
+          <%= google_map_link_to("#{@course.location} #{@course.location_name}", id: 'location') do %>
             <%= @course.location %> <br> <%= @course.location_name %>
           <% end %>
         </p>
@@ -29,7 +29,7 @@
 <section id="additional-information">
   <section id="additional-information-wrapper">
     <section id="main-content">
-      <%= render :partial => 'follow_up', :locals => { :course => @course } %>
+      <%= render partial: 'follow_up', locals: { course: @course } %>
     </section>
   </section>
 </section>

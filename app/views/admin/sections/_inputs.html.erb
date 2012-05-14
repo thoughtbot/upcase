@@ -1,11 +1,11 @@
 <%= form.semantic_errors %>
 <%= form.inputs do %>
-  <%= form.input :starts_on, :as => :string %>
-  <%= form.input :ends_on,   :as => :string %>
-  <%= form.input :start_at,  :as => :string %>
-  <%= form.input :stop_at,   :as => :string %>
-  <%= form.input :seats_available, :input_html => { :value => form.object.seats_available } %>
+  <%= form.input :starts_on, as: :string %>
+  <%= form.input :ends_on,   as: :string %>
+  <%= form.input :start_at,  as: :string %>
+  <%= form.input :stop_at,   as: :string %>
+  <%= form.input :seats_available, input_html: { value: form.object.seats_available } %>
 
-  <%= link_to 'Create New Teacher', new_admin_teacher_path(:to => request.path), :id => 'new-teacher' %>
-  <%= form.input :teachers, :as => :check_boxes, :collection => @teachers, :label_method => teacher_label %>
+  <%= link_to 'Create New Teacher', new_admin_teacher_path(to: request.path), id: 'new-teacher' %>
+  <%= form.input :teachers, as: :check_boxes, collection: @teachers, label_method: teacher_label %>
 <% end %>

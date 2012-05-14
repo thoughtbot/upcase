@@ -4,27 +4,27 @@
   <section id="form-container">
   <section id="form-column">
     <div id="total">
-      <p class="price"><%= number_to_currency @registration.price, :precision => 0 %></p>
+      <p class="price"><%= number_to_currency @registration.price, precision: 0 %></p>
       <p class="coupon-note"><%= link_to "Have a coupon code?", "#" %></p>
     </div>
 
-    <%= render :partial => 'redemptions/form' %>
+    <%= render partial: 'redemptions/form' %>
 
-    <%= semantic_form_for @registration, :url => section_registrations_path(@section), :html => { :method => 'post' } do |form| %>
+    <%= semantic_form_for @registration, url: section_registrations_path(@section), html: { method: 'post' } do |form| %>
       <%= hidden_field_tag 'coupon_id' %>
       <%= form.inputs 'Your information' do %>
         <%= form.input :first_name %>
         <%= form.input :last_name %>
         <%= form.input :email %>
-        <%= form.input :comments, :hint => "Please let us know if you have any dietary restrictions or any other comments" %>
+        <%= form.input :comments, hint: "Please let us know if you have any dietary restrictions or any other comments" %>
       <% end %>
 
       <%= form.inputs 'For your receipt' do %>
-        <%= form.input :billing_email, :required => false, :hint => "The receipt will be sent to this address." %>
-        <%= form.input :organization, :required => false %>
+        <%= form.input :billing_email, required: false, hint: "The receipt will be sent to this address." %>
+        <%= form.input :organization, required: false %>
         <%= form.input :phone %>
-        <%= form.input :address1, :label => 'Address 1' %>
-        <%= form.input :address2, :label => 'Address 2' %>
+        <%= form.input :address1, label: 'Address 1' %>
+        <%= form.input :address2, label: 'Address 2' %>
         <%= form.input :city %>
         <%= form.input :state %>
         <%= form.input :zip_code %>
@@ -38,7 +38,7 @@
 
   <section id="form-sidebar">
       <h4 class="terms">Terms and conditions</h3>
-        <%= t(".terms-conditions", :default => "
+        <%= t(".terms-conditions", default: "
         <p>By registering for this workshop you agree to the following terms and conditions:</p>
         <ul>
         <li>If you&rsquo;re not happy with a workshop you took, just let us know and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</li>

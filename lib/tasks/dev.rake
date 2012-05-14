@@ -1,6 +1,6 @@
 namespace :dev do
   desc "Creates some sample data for testing locally"
-  task :prime => 'db:migrate' do
+  task prime: 'db:migrate' do
     require 'database_cleaner'
     require 'factory_girl_rails'
 

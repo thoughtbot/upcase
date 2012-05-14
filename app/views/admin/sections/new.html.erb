@@ -1,8 +1,8 @@
 <%= semantic_form_for [:admin, @course, @section] do |form| %>
-  <%= render :partial => 'inputs',
-             :locals  => { :form     => form,
-                           :course   => @course,
-                           :teachers => @teachers } %>
+  <%= render partial: 'inputs',
+             locals: { form: form,
+                       course: @course,
+                       teachers: @teachers } %>
 
   <%= form.buttons do %>
     <%= form.commit_button 'Save Section' %>

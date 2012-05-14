@@ -24,12 +24,12 @@ end
 
 Given /^(?:I am|I have|I) signed up (?:as|with) "(.*)\/(.*)"$/ do |email, password|
   create(:user,
-         :email    => email,
-         :password => password)
+         email: email,
+         password: password)
 end
 
 Given /^a user "([^"]*)" exists without a salt, remember token, or password$/ do |email|
-  user = create(:user, :email => email)
+  user = create(:user, email: email)
   sql  = "update users set salt = NULL, encrypted_password = NULL, remember_token = NULL where id = #{user.id}"
   ActiveRecord::Base.connection.update(sql)
 end
@@ -85,13 +85,13 @@ end
 
 When /^I follow the password reset link sent to "(.*)"$/ do |email|
   user = User.find_by_email(email)
-  visit edit_user_password_path(:user_id => user,
-                                :token   => user.confirmation_token)
+  visit edit_user_password_path(user_id: user,
+                                token: user.confirmation_token)
 end
 
 When /^I try to change the password of "(.*)" without token$/ do |email|
   user = User.find_by_email(email)
-  visit edit_user_password_path(:user_id => user)
+  visit edit_user_password_path(user_id: user)
 end
 
 # Actions

@@ -119,7 +119,7 @@ end
 
 Then /^I should not see the section from "([^"]*)" to "([^"]*)"$/ do |start_date, end_date|
   date_string = course_date_string(start_date, end_date)
-  page.should have_no_css(".section", :text => date_string)
+  page.should have_no_css(".section", text: date_string)
 end
 
 When /^I follow the link to the section from "([^"]*)" to "([^"]*)"$/ do |starts_on, ends_on|
