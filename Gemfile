@@ -2,7 +2,6 @@ source :rubygems
 
 gem "rails", "3.2.3"
 gem "jquery-rails"
-gem "sass-rails"
 
 gem "pg"
 gem "bourbon", "~> 1.4.0"
@@ -40,6 +39,13 @@ gem "escape_utils"
 group :development, :test do
   gem "rspec-rails", "~> 2.9.0"
   gem 'ruby-debug19', :require => 'ruby-debug', :platform => :ruby_19
+end
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'uglifier', '>= 1.0.3'
 end
 
 group :test do
