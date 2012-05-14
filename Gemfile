@@ -18,7 +18,6 @@ gem "copycopter_client", "~> 1.1.0"
 gem "ruby-freshbooks"
 gem "high_voltage"
 gem "jquery-rails", "~> 1.0.11"
-gem "heroku", "~> 2.13"
 gem "acts_as_list"
 gem "dynamic_form"
 gem "snogmetrics"
@@ -38,6 +37,7 @@ gem 'chameleon'
 gem "escape_utils"
 
 group :development do
+  gem "heroku", "~> 2.13"
   gem 'ruby-debug19', :require => 'ruby-debug', :platform => :ruby_19
 end
 
