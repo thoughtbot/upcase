@@ -21,7 +21,7 @@ gem "heroku", "~> 2.13"
 gem "acts_as_list"
 gem "dynamic_form"
 gem "snogmetrics"
-gem "split", :git => "git://github.com/jasonm/split.git"
+gem "split", require: 'split/dashboard'
 gem 'SystemTimer', :platform => :ruby_18
 gem "rack-rewrite"
 gem "rack-ssl-enforcer", "~> 0.2.4"

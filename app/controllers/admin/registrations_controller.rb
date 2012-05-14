@@ -17,6 +17,13 @@ class Admin::RegistrationsController < ApplicationController
     end
   end
 
+  def update
+    section = Section.find(params[:section_id])
+    registration = section.registrations.find(params[:id])
+    registration.update_attributes(params[:registration])
+    redirect_to edit_admin_section_url(section)
+  end
+
   def destroy
     @section = Section.find(params[:section_id])
     @registration = @section.registrations.find(params[:id])

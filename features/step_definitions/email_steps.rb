@@ -1,3 +1,11 @@
+Then /^I should have a reminder email for "([^"]*)"$/ do |course_name|
+  result = ActionMailer::Base.deliveries.detect do |email|
+    email.subject =~ /#{course_name}/ && email.to.include?(@registration.email)
+  end
+
+  result.should_not be_nil
+end
+
 Then '"$email" receives a set your password link' do |email|
   user = User.find_by_email!(email)
   ActionMailer::Base.deliveries.should_not be_empty

@@ -27,6 +27,14 @@ class Section < ActiveRecord::Base
     joins(:course).where(:courses => {:public => true})
   end
 
+  def self.upcoming
+    where("starts_on = ?", 1.week.from_now)
+  end
+
+  def self.send_reminders
+    upcoming.each(&:send_reminders)
+  end
+
   def time_range
     "#{self.start_at.to_s(:time).strip}-#{self.stop_at.to_s(:time).strip}"
   end
@@ -59,6 +67,12 @@ class Section < ActiveRecord::Base
     super || course.maximum_students
   end
 
+  def send_reminders
+    paid_registrations.each do |registration|
+      Mailer.section_reminder(registration, self).deliver
+    end
+  end
+
   protected
 
   def self.xml_content(document, tag_name)
@@ -75,7 +89,7 @@ class Section < ActiveRecord::Base
 
   def send_teacher_notifications
     self.teachers.each do |teacher|
-      UserMailer.teacher_notification(teacher, self).deliver
+      Mailer.teacher_notification(teacher, self).deliver
     end
   end
 end

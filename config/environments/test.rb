@@ -46,4 +46,8 @@ Workshops::Application.configure do
   config.after_initialize do
     Timecop.travel(Time.now)
   end
+
+  PAYPAL_USERNAME = "username"
+  PAYPAL_PASSWORD = "password"
+  PAYPAL_SIGNATURE = "signature"
 end
