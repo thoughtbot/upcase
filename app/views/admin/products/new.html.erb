@@ -6,6 +6,5 @@
   </ul>
 <% end -%>
 
-<%= semantic_form_for [:admin, @product] do |form| %>
-  <%= render form %>
-<% end %>
+<%=render partial: "form", locals: { product: @product } %>
+

@@ -1,10 +1,9 @@
 require 'spec_helper'
 
 describe "Signup Email" do
-  let(:purchase) { build(:purchase, email: "joe@example.com", name: "Joe Smith", created_at: Time.now) }
+  let(:purchase) { build(:purchase, :email => "joe@example.com", :name => "Joe Smith", :lookup => "asdf", :created_at => Time.now) }
 
   before(:all) do
-    FetchAPI::Order.stubs(:find).returns(stub(link_full: "http://fetchurl"))
     @email = Mailer.purchase_receipt(purchase)
   end
 

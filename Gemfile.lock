@@ -1,16 +1,14 @@
 GIT
-  remote: git://github.com/cpytel/fetchapp-api-ruby.git
-  revision: 18ba657fe054206a55c0cfaa794d6f4f2f533911
+  remote: git://github.com/ryanb/nested_form.git
+  revision: 63dcbcc6c6dbe07b3761ae8cc0cd04cc2a45024a
   specs:
-    fetchapp-api-ruby (1.2.5)
-      httparty
+    nested_form (0.2.0)
 
 GIT
   remote: git://github.com/xspond/will_paginate.git
   revision: 7dfc31d01982a801b1c96211ad4b0d83b1dd0804
   branch: rails3-1
   specs:
-    will_paginate (3.0.pre3)
 
 GIT
   remote: https://github.com/stripe/stripe-ruby
@@ -59,6 +57,10 @@ GEM
     archive-tar-minitar (0.5.2)
     arel (3.0.2)
     attr_required (0.0.5)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
     bourbon (1.4.0)
       sass (>= 3.1)
     bourne (1.1.2)
@@ -277,10 +279,12 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.33)
+    tzinfo (0.3.29)
     uglifier (1.2.4)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
+    will_paginate (2.3.15)
+    xml-simple (1.1.1)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 
@@ -292,6 +296,7 @@ DEPENDENCIES
   SystemTimer
   acts_as_list
   airbrake
+  aws-s3
   bourbon (~> 1.4.0)
   bourne (~> 1.1.2)
   capybara (~> 1.1.2)
@@ -315,6 +320,7 @@ DEPENDENCIES
   kissmetrics
   launchy
   mocha
+  nested_form!
   nokogiri
   octokit (= 1.1.0)
   paperclip

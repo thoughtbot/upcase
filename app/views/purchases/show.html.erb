@@ -1,8 +1,16 @@
 <section id="container">
 <h2>Thank you for purchasing <%= @purchase.product.name %>.</h2>
 
-<% if @purchase.product.fulfillment_method == "fetch" %>
-  <p>You can download your purchase at <%= link_to @purchase.fetch_order.link_full, @purchase.fetch_order.link_full %>.</p>
+<% if @purchase.product.fulfillment_method != "github" %>
+  <p>You can download your purchase at the following links. If the download links expire, you can reload this web page to get valid links again.</p>
+  <ul class = "download_items">
+    <% @product.downloads.each do |download|%>
+      <li>
+        <%= link_to download.display_name, download.download.expiring_url(300), target: "_blank" %>
+        <p><%= download.description %></p>
+      </li>
+    <% end %>
+  </ul>  
   <p>You will also receive an email with a link to download your purchase.</p>
 <% elsif @purchase.product.fulfillment_method == "github" -%>
   <p>You have been added to the GitHub repo at <%= link_to @purchase.product.github_url, @purchase.product.github_url %>.</p>
