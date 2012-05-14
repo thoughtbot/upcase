@@ -16,7 +16,6 @@ Then /^I should see payment options$/ do
 end
 
 When /^I completed the purchase$/ do
-  stub_fetch_api
   fill_in_name_and_email
   click_button 'Submit Payment'
 end
@@ -26,7 +25,6 @@ Then /^I should see that product "([^"]*)" is successfully purchased$/ do |produ
 end
 
 When 'I pay using Paypal' do
-  stub_fetch_api
   uri = URI.parse(current_url)
   Purchase.host = "#{uri.host}:#{uri.port}"
 

@@ -20,11 +20,8 @@ describe Purchase, "with stripe" do
   subject { purchase }
 
   before do
-    Stripe::Customer.stubs(:create).returns(stub(id: "stripe"))
-    Stripe::Charge.stubs(:create).returns(stub(id: "TRANSACTION-ID"))
-    FetchAPI::Order.stubs(:create)
-    FetchAPI::Base.stubs(:basic_auth)
-    FetchAPI::Order.stubs(:find).returns(stub(link_full: "http://fetchurl"))
+    Stripe::Customer.stubs(:create).returns(stub(:id => "stripe"))
+    Stripe::Charge.stubs(:create).returns(stub(:id => "TRANSACTION-ID"))
   end
 
   it "generates a lookup on save" do
@@ -70,20 +67,6 @@ describe Purchase, "with stripe" do
     end
 
     its(:success_url) { should == product_purchase_path(product, purchase, host: host) }
-  end
-
-  context "when the product is fulfilled by fetch" do
-    before do
-      product.fulfillment_method = "fetch"
-      product.save!
-      subject.save!
-      subject.should be_paid
-    end
-
-    it "fulfills the order through fetch" do
-      FetchAPI::Base.should have_received(:basic_auth).with(FETCH_DOMAIN, FETCH_USERNAME, FETCH_PASSWORD).at_least_once
-      FetchAPI::Order.should have_received(:create).with(id: subject.id, title: subject.product.name, first_name: subject.first_name, last_name: subject.last_name, email: subject.email, order_items: [{sku: subject.product.sku}])
-    end
   end
 
   context "when the product is fulfilled by github" do
@@ -148,11 +131,8 @@ describe Purchase, "with paypal" do
   subject { build(:purchase, product: product, payment_method: "paypal") }
 
   before do
-    Paypal::Express::Request.stubs(new: paypal_request)
-    Paypal::Payment::Request.stubs(new: paypal_payment_request)
-    FetchAPI::Order.stubs(:create)
-    FetchAPI::Base.stubs(:basic_auth)
-    FetchAPI::Order.stubs(:find).returns(stub(link_full: "http://fetchurl"))
+    Paypal::Express::Request.stubs(:new => paypal_request)
+    Paypal::Payment::Request.stubs(:new => paypal_payment_request)
     subject.save!
   end
 
@@ -187,9 +167,6 @@ describe Purchase, 'with no price' do
   context "a valid purchase" do
     let(:product) { create(:product, individual_price: 0) }
     let(:purchase) do
-      FetchAPI::Order.stubs(:create)
-      FetchAPI::Base.stubs(:basic_auth)
-      FetchAPI::Order.stubs(:find).returns(stub(link_full: "http://fetchurl"))
       create(:individual_purchase, product: product)
     end
 

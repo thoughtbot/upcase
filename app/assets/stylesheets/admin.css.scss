@@ -1768,4 +1768,7 @@ form#new_user {
 input[type="submit"]:hover {
   cursor: pointer;
 }
-
+input[type="file"]{
+  display: inline-block;
+  clear: both;
+}

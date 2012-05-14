@@ -8,9 +8,11 @@ gem "bourbon", "~> 1.4.0"
 gem "RedCloth", require: "redcloth"
 gem "will_paginate", git: "git://github.com/xspond/will_paginate.git", branch: "rails3-1"
 gem "formtastic", "~> 2.2.0"
+gem "nested_form", :git => "git://github.com/ryanb/nested_form.git"
 gem "nokogiri"
 gem "clearance", "~> 0.16.1"
 gem "paperclip"
+gem 'aws-s3', :require => "aws/s3"
 gem "airbrake"
 gem "copycopter_client", "~> 2.0.1"
 gem "httparty", "0.8.1"
@@ -27,7 +29,6 @@ gem "rack-ssl-enforcer", "~> 0.2.4"
 gem "kissmetrics"
 gem "octokit", "1.1.0"
 gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
-gem "fetchapp-api-ruby", "~> 1.2.1", git: "git://github.com/cpytel/fetchapp-api-ruby.git"
 gem "paypal-express", "~> 0.4.6", require: 'paypal'
 gem 'csv_rails'
 gem 'chameleon'

@@ -5,9 +5,12 @@ Feature: Purchase a Product
 
   Background:
     Given the following products exist:
-      | name         | sku  | individual_price | company_price | product_type | fulfillment_method |
-      | Test Fetch   | TEST | 15               | 50            | screencast   | fetch              |
-      | Test GitHub  | TEST | 15               | 199           | book         | github             |
+      | name         | id | sku  | individual_price | company_price | product_type | fulfillment_method |
+      | Test Fetch   | 1  | TEST | 15               | 50            | screencast   | fetch              |
+      | Test GitHub  | 2  | TEST | 15               | 199           | book         | github             |
+    Given the following downloads exist:
+      | download_file_name  | product_id    | description |
+      | test.txt            | 1             | test desc   |
 
   @selenium
   Scenario: A visitor purchases a product
@@ -22,6 +25,8 @@ Feature: Purchase a Product
     When I pay using Paypal
     And I submit the Paypal form
     Then I should see that product "Test Fetch" is successfully purchased
+    And I should see "test.txt"
+    And I should see "test desc"
 
   Scenario: A visitor purchases a product with readers
     When I go to the home page

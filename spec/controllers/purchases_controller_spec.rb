@@ -4,11 +4,6 @@ describe PurchasesController, "processing on stripe" do
   let(:stripe_token) { "stripetoken" }
   let(:product) { create(:product, individual_price: 15) }
 
-  before do
-    FetchAPI::Order.stubs(:create)
-    FetchAPI::Order.stubs(:find).returns(stub(link_full: "http://fetchurl"))
-  end
-
   it "creates and saves a stripe customer and charges it for the product" do
     product = create(:product)
     customer_params = {
@@ -28,11 +23,14 @@ end
 describe PurchasesController, "processing on paypal" do
   let(:product) { create(:product, individual_price: 15) }
 
+<<<<<<< HEAD
   before do
     FetchAPI::Order.stubs(:create)
     FetchAPI::Order.stubs(:find).returns(stub(link_full: "http://fetchurl"))
   end
 
+=======
+>>>>>>> replace fetch with s3
   it "starts a paypal transaction and saves a purchase for the product" do
     product = create(:product)
     post :create, purchase: { variant: "individual", name: "User", email: "test@example.com", payment_method: "paypal" }, product_id: product.to_param
