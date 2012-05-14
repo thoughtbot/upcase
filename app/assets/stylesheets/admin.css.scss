@@ -356,8 +356,8 @@ a.cancel            {color: #7d0d0d;}
 fieldset fieldset,
 fieldset fieldset fieldset   {padding: 0; border: 0;}
 legend              {font-weight: bold;}
-fieldset.buttons    {background: inherit; border: 0; padding: 0 ;}
-fieldset.buttons li {display: inline;}
+fieldset.actions    {background: inherit; border: 0; padding: 0 ;}
+fieldset.actions li {display: inline;}
 .radio fieldset     {padding: 0; margin: 0;}
 
 /* Text fields */
@@ -1709,7 +1709,7 @@ form.coupon {
     }
   }
 
-  fieldset.buttons {
+  fieldset.actions {
     float: left;
     margin: 32px 0 0 25px;
     width: 200px;

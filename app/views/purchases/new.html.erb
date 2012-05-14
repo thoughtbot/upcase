@@ -58,8 +58,8 @@
         </div>
       <% end %>
 
-      <%= form.buttons do %>
-        <%= form.commit_button 'Submit Payment' %>
+      <%= form.actions do %>
+        <%= form.action :submit, :label => 'Submit Payment' %>
       <% end %>
     <% end %>
   </section>
@@ -85,9 +85,9 @@
       $('#purchase_payment_method_input input').change(function() {
         $("li.stripe").toggle($("#purchase_payment_method_stripe").is(":checked"));
         if($("#purchase_payment_method_stripe").is(":checked")) {
-          $('#new_purchase fieldset.buttons input').val("Submit Payment");
+          $('#new_purchase fieldset.actions input').val("Submit Payment");
         } else {
-          $('#new_purchase fieldset.buttons input').val("Proceed to Checkout");
+          $('#new_purchase fieldset.actions input').val("Proceed to Checkout");
         }
       });
     });
@@ -100,7 +100,7 @@
   function stripeResponseHandler(status, response) {
     if (response.error) {
       // re-enable the submit button
-      $('fieldset.buttons input').removeAttr("disabled");
+      $('fieldset.actions input').removeAttr("disabled");
       // show the errors on the form
       $(".payment-errors").html(response.error.message);
     } else {
@@ -117,7 +117,7 @@
   $(document).ready(function() {
     $("#new_purchase").submit(function(event) {
       // disable the submit button to prevent repeated clicks
-      $('fieldset.buttons input').prop("disabled", true);
+      $('fieldset.actions input').prop("disabled", true);
       if($("#purchase_payment_method_stripe").is(":checked")) {
         // createToken returns immediately - the supplied callback submits the form if there are no errors
         Stripe.createToken({

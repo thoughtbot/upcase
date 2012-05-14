@@ -8,8 +8,8 @@
     <%= form.inputs do -%>
       <%= form.input :password, :as => :password, :label => "Choose password" %>
     <% end -%>
-    <%= form.buttons do -%>
-      <%= form.commit_button "Save this password" %>
+    <%= form.actions do -%>
+      <%= form.action :submit, :label => "Save this password" %>
     <% end -%>
   <% end %>
 </section>

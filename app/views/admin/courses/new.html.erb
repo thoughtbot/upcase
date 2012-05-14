@@ -8,5 +8,5 @@
 
 <%= semantic_form_for [:admin, @course] do |form| %>
   <%= render :partial => 'fields', :locals => { :form => form } %>
-  <input type="submit" value="Save Course" />
+  <%= form.actions %>
 <% end %>

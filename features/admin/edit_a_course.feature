@@ -6,7 +6,7 @@ Feature: Editing a course
     When I go to the admin page
     And I follow "Test-Driven Sleeping"
     And I blank the <field> field
-    And I press the button to update a course
+    And I press "Save Course"
     And I see the "can't be blank" error for the <field> field
   Examples:
     | field              |
@@ -23,7 +23,7 @@ Feature: Editing a course
     When I go to the admin page
     And I follow "Test-Driven Sleeping"
     When I fill in the course name with "Test-Driven Haskell"
-    And I press the button to update a course
+    And I press "Save Course"
     Then I see the successful course update notice
     And I see the course named "Test-Driven Haskell"
 
@@ -37,7 +37,7 @@ Feature: Editing a course
     And I follow "Test-Driven Sleeping"
     And I fill in the question 2 with "Do I need a helmet?"
     And I fill in the answer 2 with "Of course."
-    And I press the button to update a course
+    And I press "Save Course"
     Then I see the successful course update notice
     When I follow "Test-Driven Sleeping"
     Then I see the following questions:
@@ -56,7 +56,7 @@ Feature: Editing a course
       | question            | answer          |
       | Do you wear pants?  | Define "Pants." |
       | Do I need a helmet? | Of course.      |
-    And I press the button to update a course
+    And I press "Save Course"
     Then I see the successful course update notice
     When I follow "Test-Driven Sleeping"
     Then I see the following questions:

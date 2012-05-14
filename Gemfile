@@ -1,23 +1,22 @@
 source :rubygems
 
-gem "rails", "3.0.10"
-gem "rack"
+gem "rails", "3.2.3"
+gem "jquery-rails"
+gem "sass-rails"
 
 gem "pg"
-gem "bourbon", "~> 1.2.0"
+gem "bourbon", "~> 1.4.0"
 gem "RedCloth", :require => "redcloth"
-gem "will_paginate"
-gem "formtastic", "~> 1.0"
+gem "will_paginate", :git => "git://github.com/xspond/will_paginate.git", :branch => "rails3-1"
+gem "formtastic", "~> 2.2.0"
 gem "nokogiri"
-gem "clearance", "~> 0.11.0"
-gem "validation_reflection", ">= 0.3.6"
-gem "sass"
+gem "clearance", "~> 0.16.1"
 gem "paperclip"
 gem "airbrake"
-gem "copycopter_client", "~> 1.1.0"
+gem "copycopter_client", "~> 2.0.1"
+gem "httparty", "0.8.1"
 gem "ruby-freshbooks"
 gem "high_voltage"
-gem "jquery-rails", "~> 1.0.11"
 gem "heroku", "~> 2.13"
 gem "acts_as_list"
 gem "dynamic_form"
@@ -37,17 +36,15 @@ gem 'chameleon'
 # Fix the warning: regexp match /.../n against to UTF-8 string issue
 gem "escape_utils"
 
-group :development do
+group :development, :test do
+  gem "rspec-rails", "~> 2.9.0"
   gem 'ruby-debug19', :require => 'ruby-debug', :platform => :ruby_19
 end
 
-group :development, :test do
-  gem "rspec-rails", "2.6.1"
-end
-
 group :test do
+  gem "selenium-webdriver", "~> 2.20.0"
   gem "headless"
-  gem "cucumber-rails", "~> 1.1.1"
+  gem "cucumber-rails", "~> 1.1", :require => false
   gem 'capybara', "~> 1.1.2"
   gem "factory_girl", "~> 2.0.4"
   gem "factory_girl_rails", "~> 1.1.0"

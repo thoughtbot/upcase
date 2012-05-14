@@ -12,3 +12,4 @@ tags
 tmp/*
 eyrc
 .bundle/*
+.sass-cache/*

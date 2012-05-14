@@ -6,8 +6,8 @@
         <p class="inline-errors">The coupon code you supplied is not valid.</p>
       </li>
     <% end %>
-    <%= form.buttons do %>
-      <%= form.commit_button "Apply Coupon" %>
+    <%= form.actions do %>
+      <%= form.action :submit, :label => "Apply Coupon" %>
     <% end %>
   <% end %>
 </div>

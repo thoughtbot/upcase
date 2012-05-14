@@ -9,7 +9,7 @@ Feature: Scheduling a new course
     When I go to the admin page
     And I follow "Test-Driven Sleeping"
     And I follow the remove link for the "foo@example.com" follow up
-    And I press the button to update a course
+    And I press "Save Course"
     And I go to the admin page
     And I follow "Test-Driven Sleeping"
     Then I should not see the "foo@example.com" follow up

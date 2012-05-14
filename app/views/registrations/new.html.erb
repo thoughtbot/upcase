@@ -30,8 +30,8 @@
         <%= form.input :zip_code %>
       <% end %>
 
-      <%= form.buttons do %>
-        <%= form.commit_button 'Proceed to checkout' %>
+      <%= form.actions do %>
+        <%= form.action :submit, :label => 'Proceed to checkout' %>
       <% end %>
     <% end %>
   </section>

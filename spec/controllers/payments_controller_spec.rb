@@ -3,8 +3,8 @@ require 'spec_helper'
 describe PaymentsController do
   it "verifies the callback when requested" do
     client = stubbed_freshbooks_client
-    post :create, :name => "callback.verify", :object_id => 20, :verifier => "verifier string"
-    client.should have_received(:verify).with(:callback_id => 20, :verifier => "verifier string")
+    post :create, :name => "callback.verify", :callback_id => 20, :verifier => "verifier string"
+    client.should have_received(:verify).with(:callback_id => "20", :verifier => "verifier string")
   end
 
   it "sends the 'Paid' event to KISSmetrics on payment.create" do

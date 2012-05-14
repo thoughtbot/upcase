@@ -8,7 +8,7 @@ Feature: Adding followups for a course
     When I go to the admin page
     And I follow "Test-Driven Sleeping"
     And I fill in the follow up 1 with "followup@example.com"
-    And I press the button to update a course
+    And I press "Save Course"
     When I go to the admin page
     And I follow "New Section" within the course "Test-Driven Sleeping"
     And I select the start date of "June 14, 2010"
@@ -38,7 +38,7 @@ Feature: Adding followups for a course
       | email                 |
       | followup1@example.com |
       | followup2@example.com |
-    And I press the button to update a course
+    And I press "Save Course"
     When I go to the admin page
     And I follow "New Section" within the course "Test-Driven Sleeping"
     And I select the start date of "June 14, 2010"
