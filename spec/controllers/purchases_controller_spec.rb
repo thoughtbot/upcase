@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe PurchasesController, "processing on stripe" do
   let(:stripe_token) { "stripetoken" }
-  let(:product) { Factory(:product, :individual_price => 15) }
+  let(:product) { create(:product, :individual_price => 15) }
 
   before do
     FetchAPI::Order.stubs(:create)
@@ -10,7 +10,7 @@ describe PurchasesController, "processing on stripe" do
   end
 
   it "creates and saves a stripe customer and charges it for the product" do
-    product = Factory(:product)
+    product = create(:product)
     customer_params = {
       name: 'User',
       email: 'test@example.com',
@@ -26,7 +26,7 @@ describe PurchasesController, "processing on stripe" do
 end
 
 describe PurchasesController, "processing on paypal" do
-  let(:product) { Factory(:product, :individual_price => 15) }
+  let(:product) { create(:product, :individual_price => 15) }
 
   before do
     FetchAPI::Order.stubs(:create)
@@ -34,7 +34,7 @@ describe PurchasesController, "processing on paypal" do
   end
 
   it "starts a paypal transaction and saves a purchase for the product" do
-    product = Factory(:product)
+    product = create(:product)
     post :create, :purchase => { :variant => "individual", :name => "User", :email => "test@example.com", :payment_method => "paypal" }, :product_id => product.to_param
 
     response.status.should == 302

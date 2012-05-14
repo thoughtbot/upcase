@@ -98,9 +98,10 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     escape_utils (0.2.3)
-    factory_girl (2.0.4)
-    factory_girl_rails (1.1.0)
-      factory_girl (~> 2.0.0)
+    factory_girl (3.3.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (3.3.0)
+      factory_girl (~> 3.3.0)
       railties (>= 3.0.0)
     faraday (0.7.6)
       addressable (~> 2.2)
@@ -274,8 +275,7 @@ DEPENDENCIES
   dynamic_form
   email_spec (~> 1.2.1)
   escape_utils
-  factory_girl (~> 2.0.4)
-  factory_girl_rails (~> 1.1.0)
+  factory_girl_rails (~> 3.3.0)
   fetchapp-api-ruby (~> 1.2.1)!
   formtastic (~> 1.0)
   headless
