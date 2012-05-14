@@ -32,6 +32,7 @@ gem "fetchapp-api-ruby", "~> 1.2.1", :git => "git://github.com/cpytel/fetchapp-a
 gem "paypal-express", "~> 0.4.6", :require => 'paypal'
 gem 'csv_rails'
 gem 'chameleon'
+gem "thin", "~> 1.3.1"
 
 # Fix the warning: regexp match /.../n against to UTF-8 string issue
 gem "escape_utils"
