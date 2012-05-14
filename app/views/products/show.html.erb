@@ -8,18 +8,18 @@
     </section>
 
     <section id="purchasing-details">
-    <p class="cost highlight"><%= number_to_currency @product.individual_price, :precision => 0 %></p>
+    <p class="cost highlight"><%= number_to_currency @product.individual_price, precision: 0 %></p>
       <p>Single viewer</p>
 
       <section id="register">
-        <%= link_to "Purchase for Yourself", new_product_purchase_path(@product, :variant => :individual), :id => "#{@product.sku}-purchase-individual" %>
+        <%= link_to "Purchase for Yourself", new_product_purchase_path(@product, variant: :individual), id: "#{@product.sku}-purchase-individual" %>
       </section>
 
-      <p class="cost highlight"><%= number_to_currency @product.company_price, :precision => 0 %></p>
+      <p class="cost highlight"><%= number_to_currency @product.company_price, precision: 0 %></p>
       <p>Unlimited sharing within your company</p>
 
       <section id="register">
-        <%= link_to "Purchase for<br/>Your Company".html_safe, new_product_purchase_path(@product, :variant => :company), :id => "#{@product.sku}-purchase-company" %>
+        <%= link_to "Purchase for<br/>Your Company".html_safe, new_product_purchase_path(@product, variant: :company), id: "#{@product.sku}-purchase-company" %>
       </section>
     </section>
 
@@ -27,8 +27,8 @@
 </section>
 
 <section id="register-below-the-fold">
-  <%= link_to "Purchase this #{@product.product_type} for just #{number_to_currency @product.individual_price, :precision => 0} and #{@product.call_to_action}&rarr;".html_safe, new_product_purchase_path(@product, :variant => :individual), :id => "#{@product.sku}-purchase-individual" %>
-  <p>Purchase <%= link_to "unlimited sharing within your company", new_product_purchase_path(@product, :variant => :company), :id => "#{@product.sku}-purchase-company" %> for just <%= number_to_currency @product.company_price, :precision => 0 %>.</p>
+  <%= link_to "Purchase this #{@product.product_type} for just #{number_to_currency @product.individual_price, precision: 0} and #{@product.call_to_action}&rarr;".html_safe, new_product_purchase_path(@product, variant: :individual), id: "#{@product.sku}-purchase-individual" %>
+  <p>Purchase <%= link_to "unlimited sharing within your company", new_product_purchase_path(@product, variant: :company), id: "#{@product.sku}-purchase-company" %> for just <%= number_to_currency @product.company_price, precision: 0 %>.</p>
 </section>
 
 <div id="flash"></div>

@@ -12,16 +12,16 @@ describe Section do
   end
 
   context "#seats_available" do
-    let(:course) { create(:course, :maximum_students => 8) }
+    let(:course) { create(:course, maximum_students: 8) }
     context "with no seats available set" do
-      subject { create(:section, :course => course) }
+      subject { create(:section, course: course) }
       it "returns course's maximum students" do
         subject.seats_available.should == 8
       end
     end
 
     context "with seats available set" do
-      subject { create(:section, :course => course, :seats_available => 12) }
+      subject { create(:section, course: course, seats_available: 12) }
       it "returns section's seats available" do
         subject.seats_available.should == 12
       end
@@ -58,8 +58,7 @@ describe Section, 'sending reminders' do
 
   it 'sends reminder emails to all paid registrants' do
     section = create(:section)
-    create(:registration, section: section, paid: true)
-    create(:registration, section: section, paid: true)
+    create_list(2, :registration, section: section, paid: true)
     create(:registration, section: section, paid: false)
     create(:registration, paid: true)
     ActionMailer::Base.deliveries.clear

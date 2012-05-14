@@ -1,6 +1,6 @@
 class Customer
   def self.user_from_customer_id(customer_id)
-    open("https://#{CHARGIFY_URL}/customers/#{customer_id}.xml", :http_basic_authentication => [CHARGIFY_API_KEY, "x"]) do |f|
+    open("https://#{CHARGIFY_URL}/customers/#{customer_id}.xml", http_basic_authentication: [CHARGIFY_API_KEY, "x"]) do |f|
       doc = Nokogiri::XML(f.read)
       user = the_user(doc)
       user.first_name = xml_content(doc, 'first_name')
@@ -13,7 +13,7 @@ class Customer
   end
 
   def self.valid_subscription?(subscription_id)
-    open("https://#{CHARGIFY_URL}/subscriptions/#{subscription_id}.xml", :http_basic_authentication => [CHARGIFY_API_KEY, "x"]) do |f|
+    open("https://#{CHARGIFY_URL}/subscriptions/#{subscription_id}.xml", http_basic_authentication: [CHARGIFY_API_KEY, "x"]) do |f|
       doc = Nokogiri::XML(f.read)
       xml_content(doc, 'state') == 'active'
     end
@@ -29,9 +29,9 @@ class Customer
 
   def self.the_user(doc)
     user = User.find_by_email(xml_content(doc, 'email')) ||
-      User.new(:customer_id => xml_content(doc, 'id'),
-               :email => xml_content(doc, 'email'),
-               :password => 'training01', # because the password is needed
-               :password_confirmation => 'training01')
+      User.new(customer_id: xml_content(doc, 'id'),
+               email: xml_content(doc, 'email'),
+               password: 'training01', # because the password is needed
+               password_confirmation: 'training01')
   end
 end

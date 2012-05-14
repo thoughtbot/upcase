@@ -6,9 +6,9 @@ module NavigationHelpers
     when /^the home page with the "([^"]+)" alternative for the "([^"]+)" experiment/
       "/?#{$2}=#{$1}"
     when 'the courses json page'
-      courses_path(:format => :json)
+      courses_path(format: :json)
     when /the courses json page with the callback "([^"]+)"/
-      courses_path(:format => :json, :callback => $1)
+      courses_path(format: :json, callback: $1)
     when /the course page of "([^"]+)"/
       course_path(Course.find_by_name!($1))
     when /the section page of "([^"]+)"/

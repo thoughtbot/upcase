@@ -3,9 +3,9 @@ widget :daily_purchases do
   type "number_and_secondary"
   data do
     {
-      :value => Purchase.from_period(1.day.ago, Time.now),
-      :previous => Purchase.from_period(2.days.ago, 1.day.ago),
-      :prefix => "$"
+      value: Purchase.from_period(1.day.ago, Time.now),
+      previous: Purchase.from_period(2.days.ago, 1.day.ago),
+      prefix: "$"
     }
   end
 end

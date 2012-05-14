@@ -5,7 +5,7 @@ gem "rack"
 
 gem "pg"
 gem "bourbon", "~> 1.2.0"
-gem "RedCloth", :require => "redcloth"
+gem "RedCloth", require: "redcloth"
 gem "will_paginate"
 gem "formtastic", "~> 1.0"
 gem "nokogiri"
@@ -22,14 +22,14 @@ gem "acts_as_list"
 gem "dynamic_form"
 gem "snogmetrics"
 gem "split", require: 'split/dashboard'
-gem 'SystemTimer', :platform => :ruby_18
+gem 'SystemTimer', platform: :ruby_18
 gem "rack-rewrite"
 gem "rack-ssl-enforcer", "~> 0.2.4"
 gem "kissmetrics"
 gem "octokit", "1.0.0"
-gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
-gem "fetchapp-api-ruby", "~> 1.2.1", :git => "git://github.com/cpytel/fetchapp-api-ruby.git"
-gem "paypal-express", "~> 0.4.6", :require => 'paypal'
+gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
+gem "fetchapp-api-ruby", "~> 1.2.1", git: "git://github.com/cpytel/fetchapp-api-ruby.git"
+gem "paypal-express", "~> 0.4.6", require: 'paypal'
 gem 'csv_rails'
 gem 'chameleon'
 
@@ -38,7 +38,7 @@ gem "escape_utils"
 
 group :development do
   gem "heroku", "~> 2.13"
-  gem 'ruby-debug19', :require => 'ruby-debug', :platform => :ruby_19
+  gem 'ruby-debug19', require: 'ruby-debug', platform: :ruby_19
 end
 
 group :development, :test do

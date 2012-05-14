@@ -24,7 +24,7 @@ Workshops::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 
   HOST = 'localhost'
-  config.action_mailer.default_url_options = { :host => HOST }
+  config.action_mailer.default_url_options = { host: HOST }
 
   Paypal.sandbox = true
 

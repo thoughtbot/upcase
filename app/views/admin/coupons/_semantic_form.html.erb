@@ -1,7 +1,7 @@
 <%= semantic_form.inputs do %>
   <%= semantic_form.input :active %>
   <%= semantic_form.input :code %>
-  <%= semantic_form.input :discount_type, :collection => Coupon::DISCOUNT_TYPES %>
+  <%= semantic_form.input :discount_type, collection: Coupon::DISCOUNT_TYPES %>
   <%= semantic_form.input :amount %>
 <% end %>
 <%= semantic_form.buttons %>
