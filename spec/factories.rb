@@ -6,7 +6,6 @@ FactoryGirl.define do
   sequence :email do |n|
     "user#{n}@example.com"
   end
-
   factory :user do
     first_name 'Dan'
     last_name  'Deacon'
@@ -43,6 +42,11 @@ FactoryGirl.define do
     after(:build) do |s|
       s.teachers << build(:teacher)
     end
+
+    factory :future_section do
+      starts_on { 2.days.from_now }
+      ends_on   { 4.days.from_now }
+    end
   end
 
   factory :registration, aliases: [:unpaid_registration] do
@@ -55,6 +59,15 @@ FactoryGirl.define do
 
     factory :paid_registration do
       paid true
+    end
+
+    factory :registration_with_all_attributes do
+      phone '617 123 1234'
+      address1 '123 Main St.'
+      address2 'Apartment 6'
+      city 'Boston'
+      state 'MA'
+      zip_code '02108'
     end
   end
 
