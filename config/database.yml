@@ -1,11 +1,10 @@
-development: &default
+development:
   adapter: postgresql
   database: workshops_development
-  min_messages: WARNING
   host: localhost
 
 test: &test
-  <<: *default
+  adapter: postgresql
   database: workshops_test
   host: localhost
 

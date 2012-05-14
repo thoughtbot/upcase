@@ -4,6 +4,7 @@
   $("#total a").hide();
   $(".coupon").hide();
   $("#coupon_id").val(<%= @coupon.id %>);
+  $("fieldset#billing-information").remove();
 <% else %>
   $(".coupon .error").show();
 <% end %>

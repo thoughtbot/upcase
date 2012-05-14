@@ -3,7 +3,7 @@ require 'digest/md5'
 class Purchase < ActiveRecord::Base
   include Rails.application.routes.url_helpers
 
-  PAYMENT_METHODS = %w(stripe paypal)
+  PAYMENT_METHODS = %w(stripe paypal free)
 
   belongs_to :product
   belongs_to :coupon
@@ -12,10 +12,12 @@ class Purchase < ActiveRecord::Base
   attr_accessor :stripe_token, :paypal_url
 
   validates_presence_of :variant, :product_id, :name, :email, :lookup, :payment_method
+  validate :payment_method_must_match_price
 
   before_validation :generate_lookup, :on => :create
   before_create :create_and_charge_customer, :if => :stripe?
-  before_create :setup_payal_payment, :if => :paypal?
+  before_create :setup_paypal_payment, :if => :paypal?
+  before_create :set_as_paid, :if => :free?
   after_save :fulfill, :if => :being_paid?
   after_save :send_receipt, :if => :being_paid?
 
@@ -31,6 +33,18 @@ class Purchase < ActiveRecord::Base
 
   def self.from_period(start_time, end_time)
     Purchase.where("created_at >= ? and created_at <= ?", start_time, end_time).all.sum(&:price)
+  end
+
+  def self.host
+    if defined?(@@host)
+      @@host
+    else
+      ActionMailer::Base.default_url_options[:host]
+    end
+  end
+
+  def self.host=(host)
+    @@host = host
   end
 
   def price
@@ -69,6 +83,18 @@ class Purchase < ActiveRecord::Base
     payment_method == "paypal"
   end
 
+  def free?
+    payment_method == "free"
+  end
+
+  def payment_method
+    if price.zero?
+      "free"
+    else
+      read_attribute :payment_method
+    end
+  end
+
   def complete_paypal_payment!(token, payer_id)
     response = paypal_request.checkout!(
       token,
@@ -76,9 +102,17 @@ class Purchase < ActiveRecord::Base
       paypal_payment_request
     )
 
-    self.payment_transaction_id = response.transaction_id
+    self.payment_transaction_id = response.payment_info.first.transaction_id
     self.paid = true
     save!
+  end
+
+  def success_url
+    if paypal?
+      paypal_url
+    else
+      product_purchase_path(product, self, host: self.class.host)
+    end
   end
 
   private
@@ -110,14 +144,18 @@ class Purchase < ActiveRecord::Base
     self.paid = true
   end
 
-  def setup_payal_payment
+  def setup_paypal_payment
     response = paypal_request.setup(
       paypal_payment_request,
-      paypal_product_purchase_url(self.product, self, :host => ActionMailer::Base.default_url_options[:host]),
-      courses_url(:host => ActionMailer::Base.default_url_options[:host])
+      paypal_product_purchase_url(self.product, self, host: self.class.host),
+      courses_url(:host => self.class.host)
     )
     self.paid = false
     self.paypal_url = response.redirect_uri
+  end
+
+  def set_as_paid
+    self.paid = true
   end
 
   def paypal_request
@@ -148,12 +186,6 @@ class Purchase < ActiveRecord::Base
 
   def fulfill_with_fetch
     FetchAPI::Base.basic_auth(FETCH_DOMAIN, FETCH_USERNAME, FETCH_PASSWORD)
-    p id
-    p product_name
-    p first_name
-    p last_name
-    p email
-    p product.sku
     FetchAPI::Order.create(:id => id, :title => product_name, :first_name => first_name, :last_name => last_name, :email => email, :order_items => [{:sku => product.sku}])
   end
 
@@ -171,5 +203,11 @@ class Purchase < ActiveRecord::Base
 
   def send_receipt
     Mailer.purchase_receipt(self).deliver
+  end
+
+  def payment_method_must_match_price
+    if free? && price > 0
+      errors.add(:payment_method, 'cannot be free')
+    end
   end
 end

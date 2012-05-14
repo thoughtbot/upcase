@@ -6,15 +6,6 @@ GIT
       httparty
 
 GIT
-  remote: git://github.com/jasonm/split.git
-  revision: 08f489b56aaffdf81d9247af5ea3b7cdb91fcb84
-  specs:
-    split (0.2.4)
-      redis (~> 2.1)
-      redis-namespace (~> 1.0.3)
-      sinatra (~> 1.2.6)
-
-GIT
   remote: git://github.com/xspond/will_paginate.git
   revision: 7dfc31d01982a801b1c96211ad4b0d83b1dd0804
   branch: rails3-1
@@ -209,7 +200,7 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     redis (2.2.2)
-    redis-namespace (1.0.3)
+    redis-namespace (1.1.0)
       redis (< 3.0.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -242,7 +233,7 @@ GEM
     ruby_core_source (0.1.5)
       archive-tar-minitar (>= 0.5.2)
     rubyzip (0.9.8)
-    sass (3.1.16)
+    sass (3.1.18)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -262,6 +253,10 @@ GEM
       rack (~> 1.1)
       tilt (>= 1.2.2, < 2.0)
     snogmetrics (0.1.9)
+    split (0.4.1)
+      redis (~> 2.1)
+      redis-namespace (~> 1.1.0)
+      sinatra (>= 1.2.6)
     sprockets (2.1.3)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -326,7 +321,7 @@ DEPENDENCIES
   shoulda
   sinatra
   snogmetrics
-  split!
+  split
   stripe!
   timecop
   treetop

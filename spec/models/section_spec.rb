@@ -29,3 +29,43 @@ describe Section do
   end
 end
 
+describe Section, 'upcoming sections' do
+  it 'knows which sections are a week away' do
+    expected = create(:section, starts_on: 1.week.from_now)
+    create(:section, starts_on: 1.week.from_now + 1.day)
+    create(:section, starts_on: 1.week.from_now - 1.day)
+
+    upcoming = Section.upcoming
+
+    upcoming.should == [expected]
+  end
+end
+
+describe Section, 'sending reminders' do
+  it 'only sends reminders for a week from today' do
+    sections = [
+      create(:section, starts_on: 1.week.from_now),
+      create(:section, starts_on: 1.week.from_now + 1.day),
+      create(:section, starts_on: 1.week.from_now - 1.day)
+    ]
+    sections.each { |section| create(:paid_registration, section: section) }
+    ActionMailer::Base.deliveries.clear
+
+    Section.send_reminders
+
+    ActionMailer::Base.deliveries.should have(1).email
+  end
+
+  it 'sends reminder emails to all paid registrants' do
+    section = create(:section)
+    create(:registration, section: section, paid: true)
+    create(:registration, section: section, paid: true)
+    create(:registration, section: section, paid: false)
+    create(:registration, paid: true)
+    ActionMailer::Base.deliveries.clear
+
+    section.send_reminders
+
+    ActionMailer::Base.deliveries.should have(2).email
+  end
+end
