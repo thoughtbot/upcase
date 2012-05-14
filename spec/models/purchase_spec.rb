@@ -47,7 +47,7 @@ describe Purchase, "with stripe" do
   end
 
   it "uses its coupon in its charged price" do
-    subject.coupon = Factory(:coupon, :amount => 25)
+    subject.coupon = create(:coupon, :amount => 25)
     subject.save!
     Stripe::Charge.should have_received(:create).with(:amount => 1125, :currency => "usd", :customer => "stripe", :description => product.name)
   end
@@ -140,12 +140,12 @@ end
 describe Purchase, "with paypal" do
   include Rails.application.routes.url_helpers
 
-  let(:product) { Factory(:product, :individual_price => 15, :company_price => 50) }
+  let(:product) { create(:product, :individual_price => 15, :company_price => 50) }
   let(:paypal_request) { stub(:setup => stub(:redirect_uri => "http://paypalurl"), 
                               :checkout! => stub(:payment_info => [stub(:transaction_id => "TRANSACTION-ID")])) }
   let(:paypal_payment_request) { stub }
 
-  subject { Factory.build(:purchase, :product => product, :payment_method => "paypal") }
+  subject { build(:purchase, :product => product, :payment_method => "paypal") }
 
   before do
     Paypal::Express::Request.stubs(:new => paypal_request)

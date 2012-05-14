@@ -18,7 +18,6 @@ gem "copycopter_client", "~> 1.1.0"
 gem "ruby-freshbooks"
 gem "high_voltage"
 gem "jquery-rails", "~> 1.0.11"
-gem "heroku", "~> 2.13"
 gem "acts_as_list"
 gem "dynamic_form"
 gem "snogmetrics"
@@ -38,6 +37,7 @@ gem 'chameleon'
 gem "escape_utils"
 
 group :development do
+  gem "heroku", "~> 2.13"
   gem 'ruby-debug19', :require => 'ruby-debug', :platform => :ruby_19
 end
 
@@ -47,16 +47,14 @@ end
 
 group :test do
   gem "headless"
-  gem "cucumber-rails", "~> 1.1.1"
+  gem "cucumber-rails", "~> 1.1.1", require: false
   gem 'capybara', "~> 1.1.2"
-  gem "factory_girl", "~> 2.0.4"
-  gem "factory_girl_rails", "~> 1.1.0"
+  gem "factory_girl_rails", "~> 3.3.0"
   gem "launchy"
   gem "database_cleaner"
-  gem "treetop"
   gem "sinatra"
   gem "timecop"
-  gem "shoulda"
+  gem "shoulda-matchers", "~> 1.1.0"
   gem "sham_rack", "1.3.1"
   gem "email_spec", "~> 1.2.1"
   gem "mocha"
