@@ -4,7 +4,6 @@ Feature: Selecting a course and registering for it
     When I go to the home page
     Then I see the empty section description
 
-
   @selenium @allow-rescue
   Scenario: User registers for a section
     Given today is June 10, 2010
