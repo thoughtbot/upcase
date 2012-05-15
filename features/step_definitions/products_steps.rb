@@ -1,4 +1,5 @@
 When /^I add a download with file name "([^"]*)" and description "([^"]*)"$/ do |file_name, description|
+
   click_link "Add a download"
 
   path = File.join("tmp/",file_name)
