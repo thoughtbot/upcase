@@ -66,8 +66,8 @@ Staging and production environments
 
 We're using Heroku as a hosting provider. Deploying to Heroku is done via git. So, set up your git remotes for each environment:
 
-    git remote add staging git@heroku.com:workshops-staging.git
-    git remote add production git@heroku.com:workshops-production.git
+    git remote add staging git@heroku.com:workshops-staging-cedar.git
+    git remote add production git@heroku.com:workshops-production-cedar.git
 
 Deploying
 ---------
