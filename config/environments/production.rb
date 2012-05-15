@@ -50,28 +50,28 @@ Workshops::Application.configure do
   config.active_support.deprecation = :notify
 
   HOST = 'workshops.thoughtbot.com'
-  config.action_mailer.default_url_options = {:host => HOST}
+  config.action_mailer.default_url_options = {host: HOST}
 
   config.middleware.use Rack::SslEnforcer,
-                        :hsts => false,
-                        :redirect_to => "https://#{HOST}"
+                        hsts: false,
+                        redirect_to: "https://#{HOST}"
 
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.perform_deliveries = true
-  ActionMailer::Base.default(:charset => "utf-8")
+  ActionMailer::Base.default(charset: "utf-8")
 
   ActionMailer::Base.raise_delivery_errors = true
 
   ActionMailer::Base.smtp_settings = {
-    :address         => 'smtp.gmail.com',
-    :domain => "thoughtbot.com",
+    address: 'smtp.gmail.com',
+    domain: "thoughtbot.com",
 
-    :enable_starttls_auto => true,
-    :port            => 587,
-    :tls             => true,
-    :authentication  => :plain,
-    :user_name => "donotreply@thoughtbot.com",
-    :password => "4e7LRALZ"
+    enable_starttls_auto: true,
+    port: 587,
+    tls: true,
+    authentication: :plain,
+    user_name: "donotreply@thoughtbot.com",
+    password: "4e7LRALZ"
   }
 
   PAYPAL_USERNAME = "purchasing_api1.thoughtbot.com"

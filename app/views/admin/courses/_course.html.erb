@@ -1,7 +1,7 @@
-<%= content_tag_for(:li, course, :class => 'course-list cool-list', :"data-course_id" => course.id) do %>
+<%= content_tag_for(:li, course, class: 'course-list cool-list', "data-course_id" => course.id) do %>
   <h3>
     <%= link_to course.name, edit_admin_course_path(course) %>
-    <%= link_to 'New Section', new_admin_course_section_path(course), :class => 'new-section', :id => "new-section-#{course.id}" %>
+    <%= link_to 'New Section', new_admin_course_section_path(course), class: 'new-section', id: "new-section-#{course.id}" %>
   </h3>
   <ul>
     <%= render course.sections %>

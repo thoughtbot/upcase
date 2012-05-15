@@ -52,7 +52,7 @@ class FakeFreshbooks
     invoice = self.class.invoice_by_id(invoice_id)
     invoice_doc = invoice.request_doc
     response = Nokogiri::XML::Builder.new do |xml|
-      xml.response :xmlns => 'http://www.freshbooks.com/api/', :status => 'ok' do
+      xml.response xmlns: 'http://www.freshbooks.com/api/', status: 'ok' do
         xml.invoice do
           xml.invoice_id invoice.invoice_id
           xml.client_id invoice_doc.at('client_id').text
@@ -70,7 +70,7 @@ class FakeFreshbooks
     payment_id = request.at('payment_id').text.to_i
     invoice_id = @@invoices.last.invoice_id
     response = Nokogiri::XML::Builder.new do |xml|
-      xml.response :xmlns => 'http://www.freshbooks.com/api/', :status => 'ok' do
+      xml.response xmlns: 'http://www.freshbooks.com/api/', status: 'ok' do
         xml.payment do
           xml.payment_id payment_id
           xml.invoice_id invoice_id

@@ -1,7 +1,7 @@
 class ShopifyController < ApplicationController
   def order_paid
     if backbone_book?
-      client = Octokit::Client.new(:login => "cpytel", :password => "cambridge")
+      client = Octokit::Client.new(login: "cpytel", password: "cambridge")
       readers.each do |username|
         begin
           client.add_team_member(github_team_id, username)

@@ -26,7 +26,7 @@ Workshops::Application.configure do
   config.assets.compress = false
 
   HOST = 'localhost'
-  config.action_mailer.default_url_options = { :host => HOST }
+  config.action_mailer.default_url_options = { host: HOST }
 
   Paypal.sandbox = true
 

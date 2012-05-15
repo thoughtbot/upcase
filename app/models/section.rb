@@ -5,12 +5,12 @@ class Section < ActiveRecord::Base
 
   belongs_to :course
   has_many :section_teachers
-  has_many :teachers, :through => :section_teachers
+  has_many :teachers, through: :section_teachers
   has_many :registrations
-  has_many :paid_registrations, :class_name => "Registration", :conditions => { :paid => true }
-  has_many :unpaid_registrations, :class_name => "Registration", :conditions => { :paid => false }
+  has_many :paid_registrations, class_name: "Registration", conditions: { paid: true }
+  has_many :unpaid_registrations, class_name: "Registration", conditions: { paid: false }
 
-  delegate :name, :description, :location, :location_name, :price, :to => :course, :prefix => :course
+  delegate :name, :description, :location, :location_name, :price, to: :course, prefix: :course
   after_create :send_follow_up_emails, :send_teacher_notifications
 
   accepts_nested_attributes_for :section_teachers
@@ -24,7 +24,7 @@ class Section < ActiveRecord::Base
   end
 
   def self.in_public_course
-    joins(:course).where(:courses => {:public => true})
+    joins(:course).where(courses: {public: true})
   end
 
   def self.upcoming

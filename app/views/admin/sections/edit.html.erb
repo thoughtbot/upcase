@@ -1,19 +1,19 @@
 <%= semantic_form_for [:admin, @course, @section] do |form| %>
-  <%= render :partial => 'inputs',
-             :locals  => { :form     => form,
-                           :course   => @course,
-                           :teachers => @teachers } %>
+  <%= render partial: 'inputs',
+             locals: { form: form,
+                           course: @course,
+                           teachers: @teachers } %>
 
   <%= form.actions do %>
-    <%= form.action :submit, :label => 'Save Section' %>
+    <%= form.action :submit, label: 'Save Section' %>
   <% end %>
 <% end %>
 
 <div id="admin-section-right">
   <div id="student-list" class="cool-list">
     <h3>
-      <%= pluralize @section.paid_registrations.size, "Student" %> [<%= mail_to 'workshops@thoughtbot.com', 'email', :subject => @section.course.name, :bcc => @section.paid_registrations.map(&:email).join(",") %>]
-      <%= link_to 'Add Student', new_admin_section_registration_path(@section), :id => 'add-student' %>
+      <%= pluralize @section.paid_registrations.size, "Student" %> [<%= mail_to 'workshops@thoughtbot.com', 'email', subject: @section.course.name, bcc: @section.paid_registrations.map(&:email).join(",") %>]
+      <%= link_to 'Add Student', new_admin_section_registration_path(@section), id: 'add-student' %>
     </h3>
     <ul id="paid">
       <%= render @section.paid_registrations %>

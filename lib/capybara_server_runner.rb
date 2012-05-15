@@ -19,7 +19,7 @@ class CapybaraServerRunner
     default_server_process = Capybara.server
     Capybara.server do |app, port|
       require 'rack/handler/webrick'
-      Rack::Handler::WEBrick.run(app, :Port => port, :AccessLog => [], :Logger => WEBrick::Log::new(nil, 0))
+      Rack::Handler::WEBrick.run(app, Port: port, AccessLog: [], Logger: WEBrick::Log::new(nil, 0))
     end
     yield
   ensure

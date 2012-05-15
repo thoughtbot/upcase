@@ -2,7 +2,7 @@ class RegistrationsController < ApplicationController
   def index
     section  = Section.find(params[:section_id])
     user     = Customer.user_from_customer_id(params[:customer_id]) # raise 404 as needed
-    user.registrations.build(:section => section)
+    user.registrations.build(section: section)
     user.save!
     sign_in(user)
     redirect_to section

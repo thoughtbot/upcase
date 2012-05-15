@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= render :partial => 'shared/meta' %>
+    <%= render partial: 'shared/meta' %>
     <%= csrf_meta_tag %>
   </head>
   <body class="<%= body_class %>">
@@ -22,7 +22,7 @@
         </div>
       </div>
     </div>
-    <%= render :partial => 'shared/admin_sign_out' %>
-    <%= render :partial => 'shared/javascript' %>
+    <%= render partial: 'shared/admin_sign_out' %>
+    <%= render partial: 'shared/javascript' %>
   </body>
 </html>

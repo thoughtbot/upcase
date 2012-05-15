@@ -11,7 +11,7 @@ set :branch, "staging"
 # Where to deploy to?
 role :web, "staging.example.com"
 role :app, "staging.example.com"
-role :db,  "staging.example.com", :primary => true
+role :db,  "staging.example.com", primary: true
 
 # Deploy details
 set :user, "#{application}"

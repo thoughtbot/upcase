@@ -1,7 +1,7 @@
 <%= form.inputs do %>
   <%= form.input :active %>
   <%= form.input :code %>
-  <%= form.input :discount_type, :collection => Coupon::DISCOUNT_TYPES %>
+  <%= form.input :discount_type, collection: Coupon::DISCOUNT_TYPES %>
   <%= form.input :amount %>
 <% end %>
 <%= form.actions %>

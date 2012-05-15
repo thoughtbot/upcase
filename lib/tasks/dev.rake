@@ -1,6 +1,6 @@
 namespace :dev do
   desc "Creates some sample data for testing locally"
-  task :prime => 'db:migrate' do
+  task prime: 'db:migrate' do
     require 'database_cleaner'
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean
@@ -17,7 +17,7 @@ namespace :dev do
     Factory(:section)
     Factory(:section)
 
-    admin = Factory(:admin, :email => 'admin@example.com')
+    admin = Factory(:admin, email: 'admin@example.com')
     puts "admin login: #{admin.email} / #{admin.password}"
 
     puts "done."

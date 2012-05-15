@@ -1,5 +1,5 @@
 class Admin::RegistrationsController < ApplicationController
-  before_filter :must_be_admin, :only => [:new, :create,:edit]
+  before_filter :must_be_admin, only: [:new, :create,:edit]
 
   def new
     @section = Section.find(params[:section_id])

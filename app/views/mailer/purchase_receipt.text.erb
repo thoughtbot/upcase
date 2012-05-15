@@ -23,9 +23,9 @@ Billing address
   <% end -%>
   <%= @purchase.city %>, <%= @purchase.state %> <%= @purchase.zip_code %>
 
-<%= @purchase.product.name %> - <%= @purchase.variant %> for <%= number_to_currency @purchase.price, :precision => 2 %>
+<%= @purchase.product.name %> - <%= @purchase.variant %> for <%= number_to_currency @purchase.price, precision: 2 %>
 
-Subtotal  : <%= number_to_currency @purchase.price, :precision => 2 %> USD
+Subtotal  : <%= number_to_currency @purchase.price, precision: 2 %> USD
 Tax       : $0.00 USD
 Shipping  : $0.00 USD
-Total     : <%= number_to_currency @purchase.price, :precision => 2 %> USD
+Total     : <%= number_to_currency @purchase.price, precision: 2 %> USD
