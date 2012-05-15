@@ -1,8 +1,8 @@
 source :rubygems
 
 gem "rails", "3.2.3"
-gem "jquery-rails"
 
+gem "jquery-rails"
 gem "pg"
 gem "bourbon", "~> 1.4.0"
 gem "RedCloth", require: "redcloth"
@@ -47,7 +47,7 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails', '~> 3.2.3'
   gem 'uglifier', '>= 1.0.3'
 end
 
