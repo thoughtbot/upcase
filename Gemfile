@@ -25,7 +25,7 @@ gem 'SystemTimer', platform: :ruby_18
 gem "rack-rewrite"
 gem "rack-ssl-enforcer", "~> 0.2.4"
 gem "kissmetrics"
-gem "octokit", "1.0.0"
+gem "octokit", "1.1.0"
 gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 gem "fetchapp-api-ruby", "~> 1.2.1", git: "git://github.com/cpytel/fetchapp-api-ruby.git"
 gem "paypal-express", "~> 0.4.6", require: 'paypal'
