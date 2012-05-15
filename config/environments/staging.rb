@@ -59,11 +59,9 @@ Workshops::Application.configure do
   ActionMailer::Base.smtp_settings = {
     address: 'smtp.gmail.com',
     domain: "thoughtbot.com",
-
-    enable_starttls_auto: true,
     port: 587,
-    tls: true,
     authentication: :plain,
+    enable_starttls_auto: true,
     user_name: "donotreply@thoughtbot.com",
     password: "4e7LRALZ"
   }
