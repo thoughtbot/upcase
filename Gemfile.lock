@@ -308,7 +308,7 @@ DEPENDENCIES
   fetchapp-api-ruby (~> 1.2.1)!
   formtastic (~> 2.2.0)
   headless
-  heroku (~> 2.13)
+  heroku (~> 2.25)
   high_voltage
   httparty (= 0.8.1)
   jquery-rails
