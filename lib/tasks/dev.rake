@@ -13,11 +13,11 @@ namespace :dev do
 
     puts "Creating development data..."
 
-    Factory(:section)
-    Factory(:section)
-    Factory(:section)
+    create(:section)
+    create(:section)
+    create(:section)
 
-    admin = Factory(:admin, email: 'admin@example.com')
+    admin = create(:admin, email: 'admin@example.com')
     puts "admin login: #{admin.email} / #{admin.password}"
 
     puts "done."

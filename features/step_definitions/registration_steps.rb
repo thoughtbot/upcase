@@ -16,7 +16,7 @@ end
 Given /^"([^"]*)" has (\d+) registrations$/ do |course_name, count|
   course = Course.find_by_name!(course_name)
   section = course.sections.first
-  count.to_i.times { Factory(:registration, section: section) }
+  count.to_i.times { create(:registration, section: section) }
 end
 
 Then /^I workshops is notified of my registration$/ do
