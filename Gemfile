@@ -59,7 +59,6 @@ group :test do
   gem "factory_girl_rails", "~> 3.3.0"
   gem "launchy"
   gem "database_cleaner"
-  gem "treetop"
   gem "sinatra"
   gem "timecop"
   gem "shoulda"
