@@ -14,14 +14,14 @@ class Purchase < ActiveRecord::Base
   validates_presence_of :variant, :product_id, :name, :email, :lookup, :payment_method
   validate :payment_method_must_match_price
 
-  before_validation :generate_lookup, :on => :create
-  before_create :create_and_charge_customer, :if => :stripe?
-  before_create :setup_paypal_payment, :if => :paypal?
-  before_create :set_as_paid, :if => :free?
-  after_save :fulfill, :if => :being_paid?
-  after_save :send_receipt, :if => :being_paid?
+  before_validation :generate_lookup, on: :create
+  before_create :create_and_charge_customer, if: :stripe?
+  before_create :setup_paypal_payment, if: :paypal?
+  before_create :set_as_paid, if: :free?
+  after_save :fulfill, if: :being_paid?
+  after_save :send_receipt, if: :being_paid?
 
-  delegate :name, :to => :product, :prefix => true
+  delegate :name, to: :product, prefix: true
 
   def self.from_month(date)
     where(["created_at >= ? AND created_at <= ?", date.beginning_of_month, date.end_of_month])
@@ -127,16 +127,16 @@ class Purchase < ActiveRecord::Base
 
   def create_and_charge_customer
     customer = Stripe::Customer.create(
-      :card => stripe_token,
-      :description => email,
-      :email => email
+      card: stripe_token,
+      description: email,
+      email: email
     )
 
     charge = Stripe::Charge.create(
-      :amount => price * 100, # in cents
-      :currency => "usd",
-      :customer => customer.id,
-      :description => product_name
+      amount: price * 100, # in cents
+      currency: "usd",
+      customer: customer.id,
+      description: product_name
     )
 
     self.payment_transaction_id = charge.id
@@ -148,7 +148,7 @@ class Purchase < ActiveRecord::Base
     response = paypal_request.setup(
       paypal_payment_request,
       paypal_product_purchase_url(self.product, self, host: self.class.host),
-      courses_url(:host => self.class.host)
+      courses_url(host: self.class.host)
     )
     self.paid = false
     self.paypal_url = response.redirect_uri
@@ -160,19 +160,19 @@ class Purchase < ActiveRecord::Base
 
   def paypal_request
     Paypal::Express::Request.new(
-      :username   => PAYPAL_USERNAME,
-      :password   => PAYPAL_PASSWORD,
-      :signature  => PAYPAL_SIGNATURE
+      username: PAYPAL_USERNAME,
+      password: PAYPAL_PASSWORD,
+      signature: PAYPAL_SIGNATURE
     )
   end
 
   def paypal_payment_request
     Paypal::Payment::Request.new(
-      :currency_code => :USD,
-      :amount        => price,
-      :description   => product_name,
-      :items => [{ :amount => price,
-                   :description => product_name }]
+      currency_code: :USD,
+      amount: price,
+      description: product_name,
+      items: [{ amount: price,
+                   description: product_name }]
     )
   end
 
@@ -186,11 +186,11 @@ class Purchase < ActiveRecord::Base
 
   def fulfill_with_fetch
     FetchAPI::Base.basic_auth(FETCH_DOMAIN, FETCH_USERNAME, FETCH_PASSWORD)
-    FetchAPI::Order.create(:id => id, :title => product_name, :first_name => first_name, :last_name => last_name, :email => email, :order_items => [{:sku => product.sku}])
+    FetchAPI::Order.create(id: id, title: product_name, first_name: first_name, last_name: last_name, email: email, order_items: [{sku: product.sku}])
   end
 
   def fulfill_with_github
-    client = Octokit::Client.new(:login => "cpytel", :password => "cambridge")
+    client = Octokit::Client.new(login: "cpytel", password: "cambridge")
     readers.map(&:strip).reject(&:blank?).compact.each do |username|
       begin
         client.add_team_member(product.github_team, username)

@@ -4,7 +4,7 @@ class Product < ActiveRecord::Base
   validates_presence_of :name, :sku, :individual_price, :company_price, :fulfillment_method
 
   def self.active
-    where(:active => true)
+    where(active: true)
   end
 
   def to_param

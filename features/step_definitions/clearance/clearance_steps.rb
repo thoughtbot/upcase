@@ -1,11 +1,11 @@
 # Existing users
 
 Given /^(?:I am|I have|I) signed up (?:as|with) "(.*)"$/ do |email|
-  FactoryGirl.create(:user, :email => email)
+  FactoryGirl.create(:user, email: email)
 end
 
 Given /^a user "([^"]*)" exists without a salt, remember token, or password$/ do |email|
-  user = FactoryGirl.create(:user, :email => email)
+  user = FactoryGirl.create(:user, email: email)
   sql  = "update users set salt = NULL, encrypted_password = NULL, remember_token = NULL where id = #{user.id}"
   ActiveRecord::Base.connection.update(sql)
 end
@@ -16,8 +16,8 @@ When /^I sign up (?:with|as) "(.*)" and "(.*)"$/ do |email, password|
   visit sign_up_path
   page.should have_css("input[type='email']")
 
-  fill_in "Email", :with => email
-  fill_in "Password", :with => password
+  fill_in "Email", with: email
+  fill_in "Password", with: password
   click_button "Sign up"
 end
 
@@ -39,8 +39,8 @@ When /^I sign in (?:with|as) "([^"]*)" and "([^"]*)"$/ do |email, password|
   visit sign_in_path
   page.should have_css("input[type='email']")
 
-  fill_in "Email", :with => email
-  fill_in "Password", :with => password
+  fill_in "Email", with: email
+  fill_in "Password", with: password
   click_button "Sign in"
 end
 
@@ -57,7 +57,7 @@ When /^I reset the password for "(.*)"$/ do |email|
   visit new_password_path
   page.should have_css("input[type='email']")
 
-  fill_in "Email address", :with => email
+  fill_in "Email address", with: email
   click_button "Reset password"
 end
 
@@ -77,17 +77,17 @@ end
 
 When /^I follow the password reset link sent to "(.*)"$/ do |email|
   user = User.find_by_email!(email)
-  visit edit_user_password_path(:user_id => user,
-                                :token   => user.confirmation_token)
+  visit edit_user_password_path(user_id: user,
+                                token: user.confirmation_token)
 end
 
 When /^I change the password of "(.*)" without token$/ do |email|
   user = User.find_by_email!(email)
-  visit edit_user_password_path(:user_id => user)
+  visit edit_user_password_path(user_id: user)
 end
 
 When /^I update my password with "(.*)"$/ do |password|
-  fill_in "Choose password", :with => password
+  fill_in "Choose password", with: password
   click_button "Save this password"
 end
 

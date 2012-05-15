@@ -4,11 +4,11 @@
     <li><%= link_to "Coupons", admin_coupons_path %></li>
     <li><%= link_to "Audiences", admin_audiences_path %></li>
   </ul>
-  <%= link_to 'New Audience', new_admin_audience_path, :id => 'new-action' %>
+  <%= link_to 'New Audience', new_admin_audience_path, id: 'new-action' %>
 <% end -%>
 
 <% @audiences.each do |audience| %>
-  <%= div_for(audience, :class => 'audience-list cool-list') do %>
+  <%= div_for(audience, class: 'audience-list cool-list') do %>
     <h3>
       <%= link_to edit_admin_audience_path(audience) do %>
         <%= audience.name %>

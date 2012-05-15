@@ -7,8 +7,8 @@
 <% end -%>
 
 <%= semantic_form_for [:admin, @course] do |form| %>
-  <%= render :partial => 'fields', :locals => { :form => form } %>
+  <%= render partial: 'fields', locals: { form: form } %>
   <%= form.actions do -%>
-    <%= form.action :submit, :label => 'Save Course' %>
+    <%= form.action :submit, label: 'Save Course' %>
   <% end -%>
 <% end %>

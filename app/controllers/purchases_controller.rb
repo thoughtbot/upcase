@@ -1,7 +1,7 @@
 class PurchasesController < ApplicationController
   def new
     @product = Product.find(params[:product_id])
-    @purchase = @product.purchases.build(:variant => params[:variant])
+    @purchase = @product.purchases.build(variant: params[:variant])
     track_chrome_screencast_ab_test_completion
   end
 

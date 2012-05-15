@@ -2,11 +2,11 @@
   <span class="name">
     <%= registration.name %>
     <% if registration.comments.present? %>
-      <%= link_to "Note", "javascript:void(0)", :title => registration.comments %>
+      <%= link_to "Note", "javascript:void(0)", title: registration.comments %>
     <% end %>
   </span>
   <%= link_to "View receipt", registration.freshbooks_invoice_url %>
-  <%= mail_to registration.email, 'email', :title => "Email" %>
+  <%= mail_to registration.email, 'email', title: "Email" %>
 
   <% unless registration.paid? %>
     <%= form_for [:admin, @section, registration] do |form| %>
@@ -15,5 +15,5 @@
     <% end %>
   <% end %>
 
-  <%= link_to "X", admin_section_registration_path(@section, registration), :method => :delete, :confirm => "Are you sure want to delete the registration for this student?", :class => "remove-teacher", :title => "Delete" %>
+  <%= link_to "X", admin_section_registration_path(@section, registration), method: :delete, confirm: "Are you sure want to delete the registration for this student?", class: "remove-teacher", title: "Delete" %>
 <% end %>

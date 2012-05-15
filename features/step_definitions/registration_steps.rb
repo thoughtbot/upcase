@@ -16,11 +16,11 @@ end
 Given /^"([^"]*)" has (\d+) registrations$/ do |course_name, count|
   course = Course.find_by_name!(course_name)
   section = course.sections.first
-  count.to_i.times { Factory(:registration, :section => section) }
+  count.to_i.times { Factory(:registration, section: section) }
 end
 
 Then /^I workshops is notified of my registration$/ do
-  open_email("workshops@thoughtbot.com", :with_text => /just registered for/)
+  open_email("workshops@thoughtbot.com", with_text: /just registered for/)
 end
 
 Then /^the registration for "([^"]*)" taking "([^"]*)" should be paid$/ do |email, course_name|

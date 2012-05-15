@@ -40,7 +40,7 @@
       <h2>More from thoughtbot</h2>
       <% Product.active.each_with_index do |product, index| %>
         <aside class="<%= 'first' if index.zero? %>">
-          <h2><%= link_to product.name, product_path(product, :utm_source => "oss") %></h2>
+          <h2><%= link_to product.name, product_path(product, utm_source: "oss") %></h2>
           <p><%= product.short_description %></p>
         </aside>
       <% end %>

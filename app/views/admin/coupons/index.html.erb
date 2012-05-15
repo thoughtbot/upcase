@@ -3,11 +3,11 @@
     <li><%= link_to "Courses", admin_courses_path %></li>
     <li><%= link_to "Coupons", admin_coupons_path %></li>
   </ul>
-  <%= link_to 'New Coupon', new_admin_coupon_path, :id => 'new-action' %>
+  <%= link_to 'New Coupon', new_admin_coupon_path, id: 'new-action' %>
 <% end -%>
 
 <% @coupons.each do |coupon| %>
-  <%= div_for(coupon, :class => 'coupon-list cool-list') do %>
+  <%= div_for(coupon, class: 'coupon-list cool-list') do %>
     <h3>
       <%= link_to edit_admin_coupon_path(coupon) do %>
         <%= coupon.code %> (<%= coupon_amount(coupon) %>)

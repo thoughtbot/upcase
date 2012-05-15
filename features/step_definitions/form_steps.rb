@@ -1,9 +1,9 @@
 When 'I fill in the $field_name with "$value"' do |field_name,value|
-  fill_in field_id_for(field_name), :with => value
+  fill_in field_id_for(field_name), with: value
 end
 
 When 'I blank the $field_name field' do |field_name|
-  fill_in field_id_for(field_name), :with => ''
+  fill_in field_id_for(field_name), with: ''
 end
 
 When 'I press the button to $button_action' do |button_action|
@@ -26,11 +26,11 @@ Then 'I see the "$error_message" error for the $field_name field' do |error_mess
 end
 
 When 'I select the start date of "$date_string"' do |date_string|
-  fill_in 'section_starts_on', :with => date_string
+  fill_in 'section_starts_on', with: date_string
 end
 
 When 'I select the end date of "$date_string"' do |date_string|
-  fill_in 'section_ends_on', :with => date_string
+  fill_in 'section_ends_on', with: date_string
 end
 
 When 'I select the teacher "$teacher_name"' do |teacher_name|
