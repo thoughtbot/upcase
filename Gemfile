@@ -56,8 +56,7 @@ group :test do
   gem "headless"
   gem "cucumber-rails", "~> 1.1", require: false
   gem 'capybara', "~> 1.1.2"
-  gem "factory_girl", "~> 2.0.4"
-  gem "factory_girl_rails", "~> 1.1.0"
+  gem "factory_girl_rails", "~> 3.3.0"
   gem "launchy"
   gem "database_cleaner"
   gem "treetop"

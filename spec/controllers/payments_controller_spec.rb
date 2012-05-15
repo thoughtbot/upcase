@@ -8,7 +8,7 @@ describe PaymentsController do
   end
 
   it "sends the 'Paid' event to KISSmetrics on payment.create" do
-    registration = Factory(:registration, freshbooks_invoice_id: "invoice123")
+    registration = create(:registration, freshbooks_invoice_id: "invoice123")
 
     client = stubbed_freshbooks_client
     payment = stubbed_payment_for(registration)
