@@ -1,3 +1,1 @@
-require 'fake_paypal'
-
-FakePaypalRunner.boot
+require Rails.root.join('spec/support/fake_paypal')
