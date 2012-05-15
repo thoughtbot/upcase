@@ -115,7 +115,11 @@ GEM
     factory_girl_rails (3.3.0)
       factory_girl (~> 3.3.0)
       railties (>= 3.0.0)
+    fakes3 (0.1.5)
+      builder
+      thor
     faraday (0.8.0)
+      addressable (~> 2.2)
       multipart-post (~> 1.1)
     faraday_middleware (0.8.7)
       faraday (>= 0.7.4, < 0.9)

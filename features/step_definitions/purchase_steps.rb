@@ -21,7 +21,7 @@ When /^I completed the purchase$/ do
 end
 
 Then /^I should see that product "([^"]*)" is successfully purchased$/ do |product_name|
-  page.body.should =~ /Thank you.*#{product_name}/
+  page.should have_content("Thank you for purchasing #{product_name}")
 end
 
 When 'I pay using Paypal' do
@@ -36,3 +36,15 @@ end
 When 'I submit the Paypal form' do
   click_button 'Pay using Paypal'
 end
+
+When /^I add a reader$/ do
+  fill_in "reader_1", with: "thoughtbot"
+end
+
+Then /^an email should be sent out with subject containing "([^"]*)"$/ do |name|
+  ActionMailer::Base.deliveries.should_not be_empty
+  result = ActionMailer::Base.deliveries.any? do |email|
+    email.subject =~ /#{name}/i
+  end
+end
+

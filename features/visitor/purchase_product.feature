@@ -28,6 +28,7 @@ Feature: Purchase a Product
     And I should see "test.txt"
     And I should see "test desc"
 
+  @selenium
   Scenario: A visitor purchases a product with readers
     When I go to the home page
     And I follow "Test GitHub"
@@ -49,6 +50,12 @@ Feature: Purchase a Product
     And I should see "8th Reader"
     And I should see "9th Reader"
     And I should see "10th Reader"
+    When I add a reader
+    When I pay using Paypal
+    When emails are cleared
+    And I submit the Paypal form
+    Then I should see that product "Test GitHub" is successfully purchased
+    And an email should be sent out with subject containing "receipt"
 
   @selenium
   Scenario: A visitor purchases with a valid coupon
