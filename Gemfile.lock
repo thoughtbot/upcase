@@ -293,7 +293,7 @@ DEPENDENCIES
   acts_as_list
   airbrake
   bourbon (~> 1.4.0)
-  bourne (~> 1.0)
+  bourne (~> 1.1.2)
   capybara (~> 1.1.2)
   chameleon
   clearance (~> 0.16.1)
