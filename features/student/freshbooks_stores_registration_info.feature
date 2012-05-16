@@ -1,4 +1,5 @@
 Feature: Freshbooks stores information about registrations
+
   @selenium @allow-rescue
   Scenario: Freshbooks stores information on paid section registration
     Given today is June 10, 2010

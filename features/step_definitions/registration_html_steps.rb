@@ -36,3 +36,9 @@ When 'I fill in the required course registration fields for "$email"' do |email|
     fill_in field, with: value
   end
 end
+
+Then /^I should see that the email is invalid$/ do 
+  within "#registration_email_input" do
+    page.should have_css(".inline-errors", text: "is invalid")
+  end
+end

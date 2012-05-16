@@ -8,6 +8,7 @@ class Registration < ActiveRecord::Base
   before_validation :populate_billing_email, on: :create
 
   validates_presence_of :organization, :first_name, :last_name, :email, :billing_email
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
   after_create :push_payment_for_zero_cost
 
@@ -51,7 +52,7 @@ class Registration < ActiveRecord::Base
     end
   end
 
-  def send_payment_confirmations 
+  def send_payment_confirmations
     Mailer.registration_notification(self).deliver
     Mailer.registration_confirmation(self).deliver
   end
