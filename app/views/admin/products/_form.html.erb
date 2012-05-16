@@ -1,13 +1,9 @@
-<%= semantic_nested_form_for [:admin, product], html: { multipart: true } do |form| %>
-  <%= form.inputs %>
+<%= semantic_form_for [:admin, product], html: { multipart: true } do |f| %>
+  <%= f.inputs %>
   <h3> Downloads </h3>
-  <%= form.fields_for :downloads do |download| %>
-    <%= download.input :download, label: "Upload File" %>
-    <% file = download.object %>
-    <%= link_to file.display_name, file.download.expiring_url(300) if file.download_file_name?%>
-    <%= download.input :description %>
-    <%= download.link_to_remove "Remove this download" %>
+  <%= f.fields_for :downloads do |builder| %>
+    <%=render 'download_fields', f: builder %>
   <% end %>
-  <p><%= form.link_to_add "Add a download", :downloads %></p>
-  <%= form.buttons %>
+  <div class='btn'><%=link_to_add_fields "Add a download", f, :downloads %></div>
+  <%= f.actions %>
 <% end %>

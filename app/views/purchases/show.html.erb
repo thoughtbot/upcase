@@ -6,7 +6,7 @@
   <ul class = "download_items">
     <% @product.downloads.each do |download|%>
       <li>
-        <%= link_to download.display_name, download.download.expiring_url(300), target: "_blank" %>
+        <%= link_to download.display_name, (download.download.respond_to?(:expiring_url) ? download.download.expiring_url(300) : download.download.url), target: "_blank" %>
         <p><%= download.description %></p>
       </li>
     <% end %>

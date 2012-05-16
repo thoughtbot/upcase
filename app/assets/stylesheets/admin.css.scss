@@ -1768,7 +1768,23 @@ form#new_user {
 input[type="submit"]:hover {
   cursor: pointer;
 }
-input[type="file"]{
-  display: inline-block;
+.download_field{
   clear: both;
+}
+.download.fields {
+  font-size: 1.2em;
+  a{
+    font-weight: bold;
+    margin-left: 10px;
+    text-decoration: none;
+  }
+  span{
+    font-weight: bold;
+  }
+}
+.btn{
+  margin: 10px;
+  a{
+    color: white;
+  }
 }

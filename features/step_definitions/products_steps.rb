@@ -2,19 +2,18 @@ When /^I add a download with file name "([^"]*)" and description "([^"]*)"$/ do 
 
   click_link "Add a download"
 
-  path = File.join("tmp/",file_name)
+  path = File.join(Rails.root,"tmp/",file_name)
   File.open(path, 'w+') do |f|
     f.puts "Ths is a test file"
   end
-  attach_file "Upload File", path
-
-  fill_in "description", with: description
+  attach_file "Download", path
+  sleep 10
+  fill_in "Download Description", with: description
+  sleep 10
 end
 
 When /^I remove a download with file name "([^"]*)"$/ do |file_name|
-  page.driver.browser.execute_script %Q{
-    $('input[value="#{file_name}"]').parent().parent().next('.remove_nested_fields').click();
-  }
+  click_link 'remove'
 end
 
 Then /^I should see "([^"]*)" in input field$/ do |text|

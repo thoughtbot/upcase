@@ -39,7 +39,7 @@ Feature: Adding a course
     When I add a download with file name "test.txt" and description "test file"
     When I press "Update Product"
     When I follow "Test Product"
-    Then I should see "Remove this download"
+    Then I should see "remove"
     And I should see "test.txt" in input field
     And I should see "test file" in input field
     When I remove a download with file name "test.txt"
