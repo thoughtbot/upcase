@@ -1,8 +1,8 @@
 source :rubygems
 
 gem "rails", "3.2.3"
-gem "jquery-rails"
 
+gem "jquery-rails"
 gem "pg"
 gem "bourbon", "~> 1.4.0"
 gem "RedCloth", require: "redcloth"
@@ -16,7 +16,7 @@ gem "copycopter_client", "~> 2.0.1"
 gem "httparty", "0.8.1"
 gem "ruby-freshbooks"
 gem "high_voltage"
-gem "heroku", "~> 2.13"
+gem "heroku", "~> 2.25"
 gem "acts_as_list"
 gem "dynamic_form"
 gem "snogmetrics"
@@ -31,10 +31,7 @@ gem "fetchapp-api-ruby", "~> 1.2.1", git: "git://github.com/cpytel/fetchapp-api-
 gem "paypal-express", "~> 0.4.6", require: 'paypal'
 gem 'csv_rails'
 gem 'chameleon'
-
-group :production do
-  gem "thin", "~> 1.3.1"
-end
+gem "thin", "~> 1.3.1"
 
 # Fix the warning: regexp match /.../n against to UTF-8 string issue
 gem "escape_utils"
@@ -47,7 +44,7 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails', '~> 3.2.3'
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -56,16 +53,14 @@ group :test do
   gem "headless"
   gem "cucumber-rails", "~> 1.1", require: false
   gem 'capybara', "~> 1.1.2"
-  gem "factory_girl", "~> 2.0.4"
-  gem "factory_girl_rails", "~> 1.1.0"
+  gem "factory_girl_rails", "~> 3.3.0"
   gem "launchy"
   gem "database_cleaner"
-  gem "treetop"
   gem "sinatra"
   gem "timecop"
   gem "shoulda"
   gem "sham_rack", "1.3.1"
   gem "email_spec", "~> 1.2.1"
   gem "mocha"
-  gem "bourne", "~> 1.0"
+  gem "bourne", "~> 1.1.2"
 end

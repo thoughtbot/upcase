@@ -1,7 +1,0 @@
---- 
-# cwd: /home/workshops/apps/workshops/current
-# port: "3030"
-environment: staging
-address: 127.0.0.1
-pid_file: log/mongrel.pid
-servers: 2
