@@ -61,6 +61,7 @@ Feature: Purchase a Product
     Then I should see "$13.50 (10% off)"
     And the coupon form should be hidden
     And the coupon form link should be hidden
+    And I should see payment options
 
   @selenium
   Scenario: A visitor purchase a product with 100%-off coupon

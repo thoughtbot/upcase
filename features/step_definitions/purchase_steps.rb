@@ -11,6 +11,10 @@ Then /^I should not see payment options$/ do
   page.should have_no_css('#billing-information')
 end
 
+Then /^I should see payment options$/ do
+  page.should have_css('#billing-information')
+end
+
 When /^I completed the purchase$/ do
   stub_fetch_api
   fill_in_name_and_email
