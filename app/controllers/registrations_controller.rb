@@ -16,11 +16,11 @@ class RegistrationsController < ApplicationController
 
   def create
     @section      = Section.find(params[:section_id])
-    registration  = @section.registrations.build(params[:registration])
-    registration.coupon = Coupon.find_by_id_and_active(params[:coupon_id], true)
-    if registration.save
-      km_http_client.record(registration.email, "Submitted Registration", { "Course Name" => @section.course.name })
-      redirect_to registration.freshbooks_invoice_url
+    @registration  = @section.registrations.build(params[:registration])
+    @registration.coupon = Coupon.find_by_id_and_active(params[:coupon_id], true)
+    if @registration.save
+      km_http_client.record(@registration.email, "Submitted Registration", { "Course Name" => @section.course.name })
+      redirect_to @registration.freshbooks_invoice_url
     else
       render :new
     end

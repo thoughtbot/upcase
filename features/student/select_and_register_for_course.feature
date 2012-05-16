@@ -22,6 +22,24 @@ Feature: Selecting a course and registering for it
     And I press "Proceed to checkout"
     Then carlos@santana.com is registered for the Test-Driven Haskell course
 
+  @selenium @allow-rescue
+  Scenario: User registers for a section with an invalid e-mail
+    Given an audience exists with a name of "Developers"
+    And the following course exists:
+      | name                | audience         | price    |
+      | Test-Driven Haskell | name: Developers | 10000000 |
+    And the following future section exists:
+      | course                    |
+      | name: Test-Driven Haskell |
+    When I go to the home page
+    And I follow "Test-Driven Haskell"
+    And I follow "Register"
+    Then I should see "Complete your registration for Test-Driven Haskell"
+    And I should see "$10,000,000"
+    When I fill in all of the course registration fields for "carlos@blah"
+    And I press "Proceed to checkout"
+    Then I should see that the email is invalid
+
   @selenium
   Scenario: User registers with a valid coupon
     Given an audience exists with a name of "Developers"
