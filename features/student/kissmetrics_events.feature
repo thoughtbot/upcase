@@ -2,15 +2,13 @@ Feature: KISSmetrics tracks registration events
 
   @selenium @allow-rescue
   Scenario: KISSmetrics events fire correctly on paid section
-    Given today is June 10, 2010
-    And time is unfrozen
-    And an audience exists with a name of "Developers"
+    Given an audience exists with a name of "Developers"
     And the following course exists:
       | name                |  audience         |
       | Test-Driven Haskell |  name: Developers |
-    And the following section exists:
-      | starts_on  | ends_on    | course                    |
-      | 2011-01-13 | 2011-01-15 | name: Test-Driven Haskell |
+    And the following future section exists:
+      | course                    |
+      | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
     And I follow "Register"
@@ -23,15 +21,13 @@ Feature: KISSmetrics tracks registration events
 
   @selenium
   Scenario: User registers for a free section
-    Given today is June 10, 2010
-    And time is unfrozen
-    And an audience exists with a name of "Developers"
+    Given an audience exists with a name of "Developers"
     And the following course exists:
       | name                | audience         | price |
       | Test-Driven Haskell | name: Developers | 0     |
-    And the following section exists:
-      | starts_on  | ends_on    | course                    |
-      | 2011-01-13 | 2011-01-15 | name: Test-Driven Haskell |
+    And the following future section exists:
+      | course                    |
+      | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
     And I follow "Register"
