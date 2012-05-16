@@ -1,12 +1,7 @@
 class Download < ActiveRecord::Base
   belongs_to :product
 
-  has_attached_file :download,
-    storage: :s3,
-    s3_credentials: "#{Rails.root}/config/s3.yml",
-    s3_permissions: :private,
-    path: "downloads/:id/:filename"
-
+  has_attached_file :download, {}.merge(PAPERCLIP_DOWNLOAD_STORAGE_OPTIONS)
   validates_presence_of :download_file_name
 
   def display_name

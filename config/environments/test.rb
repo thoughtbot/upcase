@@ -50,4 +50,5 @@ Workshops::Application.configure do
   PAYPAL_USERNAME = "username"
   PAYPAL_PASSWORD = "password"
   PAYPAL_SIGNATURE = "signature"
+  PAPERCLIP_DOWNLOAD_STORAGE_OPTIONS = {}
 end
