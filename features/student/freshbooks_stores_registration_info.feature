@@ -2,15 +2,13 @@ Feature: Freshbooks stores information about registrations
 
   @selenium @allow-rescue
   Scenario: Freshbooks stores information on paid section registration
-    Given today is June 10, 2010
-    And time is unfrozen
-    And an audience exists with a name of "Developers"
+    Given an audience exists with a name of "Developers"
     And the following course exists:
       | name                | audience         | price    |
       | Test-Driven Haskell | name: Developers | 10000000 |
-    And the following section exists:
-      | starts_on  | ends_on    | course                    |
-      | 2011-01-13 | 2011-01-15 | name: Test-Driven Haskell |
+    And the following future section exists:
+      | course                    |
+      | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
     And I follow "Register"
@@ -51,18 +49,16 @@ Feature: Freshbooks stores information about registrations
 
   @selenium
   Scenario: Freshbooks stores info about paid registration with valid coupon
-    Given today is June 10, 2010
-    And time is unfrozen
-    And an audience exists with a name of "Developers"
+    Given an audience exists with a name of "Developers"
     And the following coupon exists:
       | code       | discount_type | amount |
       | VALENTINES | percentage    | 10     |
     And the following course exists:
       | name                | audience         | price |
       | Test-Driven Haskell | name: Developers | 10000 |
-    And the following section exists:
-      | starts_on  | ends_on    | course                    |
-      | 2011-01-13 | 2011-01-15 | name: Test-Driven Haskell |
+    And the following future section exists:
+      | course                    |
+      | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
     And I follow "Register"
@@ -98,15 +94,13 @@ Feature: Freshbooks stores information about registrations
 
   @selenium
   Scenario: Freshbooks stores info about free section
-    Given today is June 10, 2010
-    And time is unfrozen
-    And an audience exists with a name of "Developers"
+    Given an audience exists with a name of "Developers"
     And the following course exists:
       | name                | audience         | price |
       | Test-Driven Haskell | name: Developers | 0     |
-    And the following section exists:
-      | starts_on  | ends_on    | course                    |
-      | 2011-01-13 | 2011-01-15 | name: Test-Driven Haskell |
+    And the following future section exists:
+      | course                    |
+      | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
     And I follow "Register"
@@ -142,18 +136,16 @@ Feature: Freshbooks stores information about registrations
 
   @selenium
   Scenario: Freshbooks stores info when registering with a valid coupon which brings the price to 0
-    Given today is June 10, 2010
-    And time is unfrozen
-    And an audience exists with a name of "Developers"
+    Given an audience exists with a name of "Developers"
     And the following coupon exists:
       | code       | amount | discount_type |
       | VALENTINES | 100    | percentage    |
     And the following course exists:
       | name                | audience         | price |
       | Test-Driven Haskell | name: Developers | 10000 |
-    And the following section exists:
-      | starts_on  | ends_on    | course                    |
-      | 2011-01-13 | 2011-01-15 | name: Test-Driven Haskell |
+    And the following future section exists:
+      | course                    |
+      | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
     And I follow "Register"
