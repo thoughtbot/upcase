@@ -2,7 +2,7 @@
 <h2>Thank you for purchasing <%= @purchase.product.name %>.</h2>
 
   <% if @purchase.product.wistia_id? %>
-    <h4><%=link_to "Watch or download the video", watch_product_purchase_path(@purchase.product, @purchase) %></h4>
+    <h4><%=link_to "Watch or download video", watch_product_purchase_path(@purchase.product, @purchase) %></h4>
   <% end %>
 <% if @purchase.product.fulfillment_method != "github" %>
   <p>
