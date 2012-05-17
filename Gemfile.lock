@@ -121,9 +121,6 @@ GEM
     factory_girl_rails (3.3.0)
       factory_girl (~> 3.3.0)
       railties (>= 3.0.0)
-    fakes3 (0.1.5)
-      builder
-      thor
     faraday (0.8.0)
       addressable (~> 2.2)
       multipart-post (~> 1.1)
@@ -321,7 +318,6 @@ DEPENDENCIES
   email_spec (~> 1.2.1)
   escape_utils
   factory_girl_rails (~> 3.3.0)
-  fakes3
   formtastic (~> 2.2.0)
   headless
   heroku (~> 2.25)
