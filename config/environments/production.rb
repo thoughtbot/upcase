@@ -75,8 +75,7 @@ Workshops::Application.configure do
   PAYPAL_USERNAME = "purchasing_api1.thoughtbot.com"
   PAYPAL_PASSWORD = "NJJDV9RS6Z3PL8LG"
   PAYPAL_SIGNATURE = "AGFLtEG6qkicR9BIyz2VureilJErAQ0TCpd6RiBrrCgcLa2pizcm-NtA"
-  PAPERCLIP_DOWNLOAD_STORAGE_OPTIONS =
-      {
+  PAPERCLIP_DOWNLOAD_STORAGE_OPTIONS = {
      storage: :s3,
      s3_credentials: "#{Rails.root}/config/s3.yml",
      s3_permissions: :private,
