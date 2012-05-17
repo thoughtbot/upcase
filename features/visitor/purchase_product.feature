@@ -5,9 +5,9 @@ Feature: Purchase a Product
 
   Background:
     Given the following products exist:
-      | name         | id | sku  | individual_price | company_price | product_type | fulfillment_method |
-      | Test Fetch   | 1  | TEST | 15               | 50            | screencast   | fetch              |
-      | Test GitHub  | 2  | TEST | 15               | 199           | book         | github             |
+      | name         | id | sku  | individual_price | company_price | product_type | fulfillment_method | wistia_id |
+      | Test Fetch   | 1  | TEST | 15               | 50            | screencast   | fetch              |  1194803  |
+      | Test GitHub  | 2  | TEST | 15               | 199           | book         | github             |           |
     Given the following downloads exist:
       | download_file_name  | product_id    | description |
       | test.txt            | 1             | test desc   |
@@ -27,6 +27,11 @@ Feature: Purchase a Product
     Then I should see that product "Test Fetch" is successfully purchased
     And I should see "test.txt"
     And I should see "test desc"
+    And I should see the link to the video page
+    When I follow "Watch or download video"
+    Then I should see a video
+    And I should see the download links for video with id "1194803"
+    And I should see a list of other products
 
   @selenium
   Scenario: A visitor purchases a product with readers
