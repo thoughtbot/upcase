@@ -1,5 +1,8 @@
 <%= semantic_form_for [:admin, product], html: { multipart: true } do |f| %>
-  <%= f.inputs %>
+  <%= f.inputs :name, :sku, :tagline, :call_to_action, :short_description, :description, 
+    :individual_price, :company_price, :product_type, :active, :fulfillment_method, 
+    :github_team, :github_url, :questions, :terms, :alternative_description %>
+  <%= f.input :wistia_id, label: "Wistia Video ID"%>
   <h3> Downloads </h3>
   <%= f.fields_for :downloads do |builder| %>
     <%=render 'download_fields', f: builder %>

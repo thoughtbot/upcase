@@ -48,3 +48,19 @@ Then /^an email should be sent out with subject containing "([^"]*)"$/ do |name|
   end
 end
 
+Then /^I should see the link to the video page$/ do
+  page.should have_css('a', href: /watch/)
+end
+
+Then /^I should see a video$/ do
+  page.should have_css('iframe')
+end
+
+Then /^I should see the download links for video with id "([^"]*)"$/ do |video_id|
+  page.should have_css('a', href: /#{video_id}\/download/)
+end
+
+Then /^I should see a list of other products$/ do
+  page.should have_css('section',id: "products")
+end
+
