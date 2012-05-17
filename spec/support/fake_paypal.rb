@@ -1,25 +1,27 @@
 require 'sinatra/base'
 require 'capybara_server_runner'
 
-module Paypal
-  module NVP
-    class Request < Base
-      def self.endpoint=(endpoint)
-        @@endpoint = endpoint
-      end
+if Rails.env == "test"
+  module Paypal
+    module NVP
+      class Request < Base
+        def self.endpoint=(endpoint)
+          @@endpoint = endpoint
+        end
 
-      def self.endpoint
-        @@endpoint
+        def self.endpoint
+          @@endpoint
+        end
       end
     end
-  end
 
-  def self.endpoint=(endpoint)
-    @@endpoint = endpoint
-  end
+    def self.endpoint=(endpoint)
+      @@endpoint = endpoint
+    end
 
-  def self.endpoint
-    @@endpoint
+    def self.endpoint
+      @@endpoint
+    end
   end
 end
 

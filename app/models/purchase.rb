@@ -64,13 +64,6 @@ class Purchase < ActiveRecord::Base
     name.split(" ").last
   end
 
-  def fetch_order
-    if product.fulfillment_method == "fetch"
-      FetchAPI::Base.basic_auth(FETCH_DOMAIN, FETCH_USERNAME, FETCH_PASSWORD)
-      FetchAPI::Order.find(id)
-    end
-  end
-
   def to_param
     lookup
   end
@@ -177,16 +170,9 @@ class Purchase < ActiveRecord::Base
   end
 
   def fulfill
-    if product.fulfillment_method == "fetch"
-      fulfill_with_fetch
-    elsif product.fulfillment_method == "github"
+    if product.fulfillment_method == "github"
       fulfill_with_github
     end
-  end
-
-  def fulfill_with_fetch
-    FetchAPI::Base.basic_auth(FETCH_DOMAIN, FETCH_USERNAME, FETCH_PASSWORD)
-    FetchAPI::Order.create(id: id, title: product_name, first_name: first_name, last_name: last_name, email: email, order_items: [{sku: product.sku}])
   end
 
   def fulfill_with_github

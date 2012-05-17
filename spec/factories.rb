@@ -105,6 +105,8 @@ FactoryGirl.define do
     fulfillment_method "fetch"
   end
 
+  factory :download do
+  end
   factory :purchase, aliases: [:individual_purchase] do
     product
     name "Test User"

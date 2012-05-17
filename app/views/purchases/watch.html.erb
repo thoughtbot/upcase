@@ -1,0 +1,50 @@
+<section id="head-wrapper">
+  <section id="homepage-top">
+    <h1><%= @product.name%></h1>
+    <section id="course-info">
+      <section id="course-description">
+      <p><iframe src="https://fast.wistia.com/embed/iframe/<%=@product.video_hash_id%>?videoWidth=653&videoHeight=367&controlsVisibleOnLoad=true&plugin%5BpostRoll%5D%5Bversion%5D=v1&plugin%5BpostRoll%5D%5Btext%5D=Get%20more%20learning%20%3Cbr%2F%3Efrom%20thoughtbot!&plugin%5BpostRoll%5D%5Blink%5D=http%3A%2F%2Fworkshops.thoughtbot.com%3Furm_source%3Doss&plugin%5BpostRoll%5D%5Bstyle%5D%5BbackgroundColor%5D=%23616161&plugin%5BpostRoll%5D%5Bstyle%5D%5Bcolor%5D=%23ffffff&plugin%5BpostRoll%5D%5Bstyle%5D%5BfontSize%5D=36px&plugin%5BpostRoll%5D%5Bstyle%5D%5BfontFamily%5D=Gill%20Sans%2C%20Helvetica%2C%20Arial%2C%20sans-serif" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="653" height="392"></iframe></iframe></p>
+        <div class="assets">
+          Download:
+          <a class="asset original" href="http://thoughtbot.wistia.com/medias/<%= @product.wistia_id %>/download?asset=original">
+            Original (720p)
+            <span class="size"><%= @product.video_sizes["OriginalFile"]%></span>
+          </a>
+          <a class="asset iphone" href="http://thoughtbot.wistia.com/medias/<%= @product.wistia_id %>/download?asset=iphone">
+            iPhone
+            <span class="size"><%= @product.video_sizes["IphoneVideoFile"]%></span>
+          </a>
+          <a class="asset hd_mp4" href="http://thoughtbot.wistia.com/medias/<%= @product.wistia_id %>/download?asset=hd_mp4">
+            HD MP4
+            <span class="size"><%= @product.video_sizes["HdMp4VideoFile"]%></span>
+          </a>
+          <a class="asset hd_flash" href="http://thoughtbot.wistia.com/medias/<%= @product.wistia_id %>/download?asset=hd_flash">
+            HD Flash
+            <span class="size"><%= @product.video_sizes["HdFlashVideoFile"]%></span>
+          </a>
+          <a class="asset flash" href="http://thoughtbot.wistia.com/medias/<%= @product.wistia_id %>/download?asset=flash">
+            Flash
+            <span class="size"><%= @product.video_sizes["FlashVideoFile"]%></span>
+          </a>
+        </div>
+
+        </section>
+        <%=link_to "Return to purchase receipt page", product_purchase_path(@product, @purchase), class: "no_underscore" %>
+    </section>
+
+    <section id="products">
+      <h2>More from thoughtbot</h2>
+      <% Product.active.each_with_index do |product, index| %>
+        <% if product != @product %>
+          <aside class="<%= "first" if index.zero? %>">
+            <h2><%= link_to product.name, product_path(product, utm_source: "oss") %></h2>
+            <p><%= product.short_description %></p>
+          </aside>
+        <% end %>
+      <% end %>
+    </section>
+  </section>
+</section>
+
+<div id="flash"></div>
+

@@ -1,7 +1,7 @@
 Thank you for placing your order with thoughtbot!
 
-<% if @purchase.product.fulfillment_method == "fetch" -%>
-You can download your purchase at <%= @purchase.fetch_order.link_full %>
+<% if @purchase.product.fulfillment_method != "github" -%>
+  You can download your purchase <%= link_to "at this link", product_purchase_url(@purchase.product, @purchase) %>.
 <% elsif @purchase.product.fulfillment_method == "github" -%>
 You have been added to the GitHub repo at <%= @purchase.product.github_url %>.
 You will also receive a notification from GitHub. Please contact us at 

@@ -1,9 +1,22 @@
 <section id="container">
 <h2>Thank you for purchasing <%= @purchase.product.name %>.</h2>
 
-<% if @purchase.product.fulfillment_method == "fetch" %>
-  <p>You can download your purchase at <%= link_to @purchase.fetch_order.link_full, @purchase.fetch_order.link_full %>.</p>
-  <p>You will also receive an email with a link to download your purchase.</p>
+  <% if @purchase.product.wistia_id? %>
+    <h4><%=link_to "Watch or download the video", watch_product_purchase_path(@purchase.product, @purchase) %></h4>
+  <% end %>
+<% if @purchase.product.fulfillment_method != "github" %>
+  <p>
+  <h4>Download files</h4>
+  If the download links expire, you can reload this web page to get valid links again.</p>
+  <ul class = "download_items">
+    <% @product.downloads.each do |download|%>
+      <li>
+        <%= link_to download.display_name, (download.download.respond_to?(:expiring_url) ? download.download.expiring_url(300) : download.download.url), target: "_blank" %>
+        <p><%= download.description %></p>
+      </li>
+    <% end %>
+  </ul>  
+  <p>You will also receive an email with a link to this page.</p>
 <% elsif @purchase.product.fulfillment_method == "github" -%>
   <p>You have been added to the GitHub repo at <%= link_to @purchase.product.github_url, @purchase.product.github_url %>.</p>
   <p>You should also receive a notification from GitHub. Please contact us at <%= mail_to "workshops@thoughtbot.com", "workshops@thoughtbot.com" %> if you do not get access to this repository.</p>

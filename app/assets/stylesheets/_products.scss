@@ -436,3 +436,15 @@ body.products-show {
 #additional-information #faq {
   border-bottom: none;
 }
+
+ul.download_items {
+  margin: 20px;
+  list-style: disc;
+}
+
+a.no_underscore{
+  text-decoration: none;
+  display: block;
+  margin-top: 40px;
+  text-align: right;
+}

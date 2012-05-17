@@ -15,6 +15,7 @@ Workshops::Application.routes.draw do
     resources :purchases, only: [:new, :create, :show] do
       member do
         get 'paypal'
+        get 'watch'
       end
     end
   end
