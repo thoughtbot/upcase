@@ -2,8 +2,8 @@ development:
   bucket: dev.workshops.thoughtbot
   access_key_id: AKIAII65CQKEKK72G5QA
   secret_access_key: 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
-test:
-  bucket: test.workshops.thoughtbot
+staging:
+  bucket: staging.workshops.thoughtbot
   access_key_id: AKIAII65CQKEKK72G5QA
   secret_access_key: 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
 production:
