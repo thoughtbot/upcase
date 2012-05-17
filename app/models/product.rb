@@ -18,7 +18,7 @@ class Product < ActiveRecord::Base
   end
 
   def video_hash_id
-    JSON.parse(wistia_hash)["hashed_id"]
+    JSON.parse(wistia_hash)["hashed_id"] rescue nil
   end
   private
 
