@@ -2,10 +2,10 @@
   <%= link_to course do %>
     <h3>
       <%= course.name %>
-      <% if course.active? %>
-        <span class="date"><%= course.active_date_range %></span>
-      <% end %>
     </h3>
+    <% if course.active? %>
+      <p class="date"><%= course.active_date_range %></p>
+    <% end %>
     <p class="teaser"><%= course.short_description %></p>
   <% end %>
 <% end %>
