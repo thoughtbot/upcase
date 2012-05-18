@@ -300,69 +300,31 @@ header.primary {
   #products #screencasts {
     overflow: visible; }
     #products #screencasts .screencast {
-      background: url("/images/screencasts_thumbs/vim-rails-dev.png") bottom no-repeat #cccccc;
       color: #000;
       float: left;
-      height: 122px;
       margin: 0 12.5px 12.5px 0;
       position: relative;
       text-decoration: none;
       width: 153px; }
+      #products #screencasts .screencast::before {
+        background: url("/images/screencasts_thumbs/vim-rails-dev.png") bottom no-repeat #cccccc;
+        content: url("/images/icons/Play32.png");
+        display: block;
+        height: 80px;
+        margin-bottom: .5em;
+        padding-top: 1.2em;
+        text-align: center;
+        width: 100%; }
       #products #screencasts .screencast h2 {
-        background: rgba(255, 255, 255, 0.65);
         font-size: 115%;
         font-weight: normal;
-        line-height: 1.2em;
-        padding: 1em;
-        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); }
+        line-height: 1.2em; }
       #products #screencasts .screencast p {
-        background: #fff;
-        border: 1px solid #999;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        -ms-box-sizing: border-box;
-        -o-box-sizing: border-box;
-        box-sizing: border-box;
-        display: none;
-        font-size: 115%;
-        height: 100%;
-        margin-right: 12.5px;
-        padding: .75em;
-        position: absolute;
-        right: 100%;
-        top: 0;
-        width: 318.75px;
-        z-index: 99; }
-        #products #screencasts .screencast p::before {
-          background: #fff;
-          border-right: 1px solid #999;
-          border-top: 1px solid #999;
-          content: '';
-          display: block;
-          height: 16px;
-          position: absolute;
-          right: -8px;
-          -webkit-transform: rotate(45deg);
-          -moz-transform: rotate(45deg);
-          -ms-transform: rotate(45deg);
-          -o-transform: rotate(45deg);
-          transform: rotate(45deg);
-          width: 16px; }
+        display: none; }
       #products #screencasts .screencast:nth-child(3n) {
         margin-right: 0; }
-      #products #screencasts .screencast:first-child p, #products #screencasts .screencast:nth-child(3n) + .screencast p {
-        left: 100%;
-        margin-right: 0;
-        margin-left: 12.5px; }
-        #products #screencasts .screencast:first-child p::before, #products #screencasts .screencast:nth-child(3n) + .screencast p::before {
-          border: 0;
-          border-bottom: 1px solid #999;
-          border-left: 1px solid #999;
-          left: -8px; }
       #products #screencasts .screencast:hover h2 {
-        background: rgba(255, 255, 255, 0.8); }
-      #products #screencasts .screencast:hover p {
-        display: block; }
+        background: rgba(255, 255, 255, 0.85); }
 
 #workshops_wrapper {
   background-color: white;
@@ -377,6 +339,7 @@ header.primary {
   position: relative; }
   #workshops_wrapper .workshops-background {
     min-width: 1600px;
+    opacity: .8;
     position: absolute;
     top: 0;
     width: 100%;
@@ -477,7 +440,7 @@ header.primary {
 .advantages_wrapper {
   width: 100%;
   background: rgba(255, 255, 255, 0.6);
-  padding: 40px 0; }
+  padding: 55px 0; }
 
 .advantages {
   margin: 0 auto;
@@ -496,6 +459,10 @@ header.primary {
       letter-spacing: .08em;
       margin-bottom: .5em;
       text-transform: lowercase; }
+      .advantages ul li h3::before {
+        content: '\2713';
+        margin-left: -1.1em;
+        margin-right: .3em; }
     .advantages ul li:nth-child(3n) {
       margin-right: 0; }
 
