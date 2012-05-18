@@ -89,79 +89,41 @@ header.primary {
     overflow: visible;
 
     .screencast {
-      background: url('/images/screencasts_thumbs/vim-rails-dev.png') bottom no-repeat #ccc;
       color: #000;
       float: left;
-      height: 122px;
       margin: 0 $gw-gutter/2 $gw-gutter/2 0;
       position: relative;
       text-decoration: none;
       width: grid-width(2) + $gw-gutter * .32;
 
+      &::before {
+        background: url('/images/screencasts_thumbs/vim-rails-dev.png') bottom no-repeat #ccc;
+        content: url('/images/icons/Play32.png');
+        display: block;
+        height: 80px;
+        margin-bottom: .5em;
+        padding-top: 1.2em;
+        text-align: center;
+        width: 100%;
+      }
+
       h2 {
-        background: rgba(255,255,255,.65);
         font-size: 115%;
         font-weight: normal;
         line-height: 1.2em;
-        padding: 1em;
-        text-shadow: 0 1px 0 rgba(255,255,255,.5);
       }
 
       p {
-        background: #fff;
-        border: 1px solid #999;
-        @include box-sizing(border-box);
         display: none;
-        font-size: 115%;
-        height: 100%;
-        margin-right: $gw-gutter / 2;
-        padding: .75em;
-        position: absolute;
-        right: 100%;
-        top: 0;
-        width: grid-width(4) + $gw-gutter * .15;
-        z-index: 99;
-
-        &::before {
-          background: #fff;
-          border-right: 1px solid #999;
-          border-top: 1px solid #999;
-          content: '';
-          display: block;
-          height: 16px;
-          position: absolute;
-          right: -8px;
-          @include transform(rotate(45deg));
-          width: 16px;
-        }
       }
 
       &:nth-child(3n) {
         margin-right: 0;
       }
 
-      &:first-child, &:nth-child(3n) + .screencast {
-        p {
-          left: 100%;
-          margin-right: 0;
-          margin-left: $gw-gutter / 2;
-
-          &::before {
-            border: 0;
-            border-bottom: 1px solid #999;
-            border-left: 1px solid #999;
-            left: -8px;
-          }
-        }
-      }
-
       &:hover {
         h2 {
-          background: rgba(255,255,255,.8);
-        }
-
-        p {
-          display: block;
+          background: rgba(255,255,255,.85);
         }
       }
     }
@@ -176,6 +138,7 @@ header.primary {
 
   .workshops-background {
     min-width: 1600px;
+    opacity: .8;
     position: absolute;
     top: 0;
     width: 100%;
@@ -292,7 +255,7 @@ header.primary {
 .advantages_wrapper {
   width: 100%;
   background: rgba(255,255,255,.6);
-  padding: 40px 0;
+  padding: 55px 0;
 }
 
 .advantages {
@@ -314,6 +277,12 @@ header.primary {
         letter-spacing: .08em;
         margin-bottom: .5em;
         text-transform: lowercase;
+
+        &::before {
+          content: '\2713';
+          margin-left: -1.1em;
+          margin-right: .3em;
+        }
       }
 
       &:nth-child(3n) {
