@@ -4,20 +4,23 @@
   <% if @purchase.product.wistia_id? %>
     <h4><%=link_to "Watch or download video", watch_product_purchase_path(@purchase.product, @purchase) %></h4>
   <% end %>
-<% if @purchase.product.fulfillment_method != "github" %>
-  <p>
-  <h4>Download files</h4>
-  If the download links expire, you can reload this web page to get valid links again.</p>
-  <ul class = "download_items">
-    <% @product.downloads.each do |download|%>
-      <li>
-        <%= link_to download.display_name, (download.download.respond_to?(:expiring_url) ? download.download.expiring_url(300) : download.download.url), target: "_blank" %>
-        <p><%= download.description %></p>
-      </li>
-    <% end %>
-  </ul>  
-  <p>You will also receive an email with a link to this page.</p>
-<% elsif @purchase.product.fulfillment_method == "github" -%>
+  
+  <% unless @purchase.product.downloads.empty? %>
+    <h4>Download files</h4>
+    If the download links expire, you can reload this web page to get valid links again.
+    <ul class = "download_items">
+      <% @product.downloads.each do |download|%>
+        <li>
+          <%= link_to download.display_name, (download.download.respond_to?(:expiring_url) ? download.download.expiring_url(300) : download.download.url), target: "_blank" %>
+          <p><%= download.description %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+<p>You will also receive an email with a link to this page.</p>
+
+<% if @purchase.product.fulfillment_method == "github" -%>
   <p>You have been added to the GitHub repo at <%= link_to @purchase.product.github_url, @purchase.product.github_url %>.</p>
   <p>You should also receive a notification from GitHub. Please contact us at <%= mail_to "workshops@thoughtbot.com", "workshops@thoughtbot.com" %> if you do not get access to this repository.</p>
 <% end -%>
