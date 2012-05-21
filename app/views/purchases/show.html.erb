@@ -1,6 +1,6 @@
 <section id="container">
 <h2>Thank you for purchasing <%= @purchase.product.name %>.</h2>
-
+<p>You should also receive an email with the link to this page.</p>
   <% if @purchase.product.wistia_id? %>
     <h4><%=link_to "Watch or download video", watch_product_purchase_path(@purchase.product, @purchase) %></h4>
   <% end %>
@@ -18,7 +18,6 @@
     </ul>
   <% end %>
 
-<p>You will also receive an email with a link to this page.</p>
 
 <% if @purchase.product.fulfillment_method == "github" -%>
   <p>You have been added to the GitHub repo at <%= link_to @purchase.product.github_url, @purchase.product.github_url %>.</p>
