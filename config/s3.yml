@@ -7,6 +7,6 @@ staging:
   access_key_id: AKIAII65CQKEKK72G5QA
   secret_access_key: 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
 production:
-  bucket: production.workshops.thoughtbot
+  bucket: thoughtbot-workshops
   access_key_id: AKIAII65CQKEKK72G5QA
   secret_access_key: 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
