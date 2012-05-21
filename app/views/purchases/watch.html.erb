@@ -6,26 +6,11 @@
       <p><%= render 'video_code', video_hash_id: @product.video_hash_id %><p>
         <div class="assets">
           Download:
-          <a class="asset original" href="http://thoughtbot-2.wistia.com/medias/<%= @product.wistia_id %>/download?asset=original">
-            Original (720p)
-            <span class="size"><%= @product.video_sizes["OriginalFile"]%></span>
-          </a>
-          <a class="asset iphone" href="http://thoughtbot-2.wistia.com/medias/<%= @product.wistia_id %>/download?asset=iphone">
-            iPhone
-            <span class="size"><%= @product.video_sizes["IphoneVideoFile"]%></span>
-          </a>
-          <a class="asset hd_mp4" href="http://thoughtbot-2.wistia.com/medias/<%= @product.wistia_id %>/download?asset=hd_mp4">
-            HD MP4
-            <span class="size"><%= @product.video_sizes["HdMp4VideoFile"]%></span>
-          </a>
-          <a class="asset hd_flash" href="http://thoughtbot-2.wistia.com/medias/<%= @product.wistia_id %>/download?asset=hd_flash">
-            HD Flash
-            <span class="size"><%= @product.video_sizes["HdFlashVideoFile"]%></span>
-          </a>
-          <a class="asset flash" href="http://thoughtbot-2.wistia.com/medias/<%= @product.wistia_id %>/download?asset=flash">
-            Flash
-            <span class="size"><%= @product.video_sizes["FlashVideoFile"]%></span>
-          </a>
+          <%=render 'purchases/download_link', download_type_key: "OriginalFile", download_type: "original", size_display: "Original (720p)", product: @product %>
+          <%=render 'purchases/download_link', download_type_key: "IphoneVideoFile", download_type: "iphone", size_display: "iPhone", product: @product %>
+          <%=render 'purchases/download_link', download_type_key: "HdMp4VideoFile", download_type: "hd_mp4", size_display: "HD MP4", product: @product %>
+          <%=render 'purchases/download_link', download_type_key: "HdFlashVideoFile", download_type: "hd_flash", size_display: "HD Flash", product: @product %>
+          <%=render 'purchases/download_link', download_type_key: "FlashVideoFile", download_type: "flash", size_display: "Flash", product: @product %>
         </div>
 
         </section>

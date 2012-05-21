@@ -1,0 +1,7 @@
+<% unless (size = @product.video_sizes[download_type_key]).nil? %>
+  <a class="asset <%= download_type %>" href="http://thoughtbot-2.wistia.com/medias/<%= product.wistia_id %>/download?asset=<%= download_type %>">
+    <%=size_display%>
+    <span class="size"><%= @product.video_sizes[download_type_key]%></span>
+  </a>
+<% end %>
+        
