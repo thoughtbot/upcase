@@ -5,9 +5,8 @@ class Wistia
 
   def self.get_media_hash_from_id id
     self.get("/medias/#{id}.json")
+  rescue *HTTP_ERRORS => e
+    Airbrake.notify e
+    {}
   end
 end
-
-x=Wistia.get_media_hash_from_id(1194803)
-
-
