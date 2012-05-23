@@ -4,6 +4,11 @@ class Product < ActiveRecord::Base
   validates_presence_of :name, :sku, :individual_price, :company_price, :fulfillment_method
   accepts_nested_attributes_for :downloads, :allow_destroy => true
   attr_accessor :wistia_hash, :video_sizes, :video_hash_id
+  has_attached_file :product_image, {
+    styles: { book: "230x300#", screencast: "153x100#" },
+    path: "product_images/:id/:style/:filename",
+    default_url: "product_images/:style/missing.jpg",
+  }.merge(PAPERCLIP_STORAGE_OPTIONS)
 
   def self.active
     where(active: true)
@@ -25,6 +30,16 @@ class Product < ActiveRecord::Base
 
   def wistia_hash
     @wistia_hash ||= Wistia.get_media_hash_from_id(wistia_id).to_json unless wistia_id.nil?
+  end
+
+  def product_type_symbol
+    self.product_type.split(" ")[0].downcase.to_sym
+  rescue
+    "book"
+  end
+
+  def image_url
+    self.product_image.url(product_type_symbol)
   end
 
   private

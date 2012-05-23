@@ -1,28 +1,26 @@
 <header class="primary">
   <hgroup>
-    <h1>Products tagline</h1>
-    <h2>This can be a longer sub tagline</h2>
+    <h1 id="product_tagline">Products tagline</h1>
+    <h2 id="product_sub_tagline">This can be a longer sub tagline</h2>
   </hgroup>
 </header>
 
 <section id="products">
   <section id="books">
-    <% Product.active.each_with_index do |product, index| %>
-      <% if product.product_type.include? 'book' %>
-        <%= link_to product_path(product), class: product.product_type do %>
-          <h2><%= product.name %></h2>
-          <p><%= product.short_description %></p>
-        <% end %>
+    <% @books.each do |product| %>
+      <%= link_to product_path(product), class: product.product_type do %>
+        <%= image_tag product.image_url %>
+        <h2><%= product.name %></h2>
+        <p><%= product.short_description %></p>
       <% end %>
     <% end %>
   </section>
   <section id="screencasts">
-    <% Product.active.each_with_index do |product, index| %>
-      <% if product.product_type.include? 'screencast' %>
-        <%= link_to product_path(product), class: product.product_type do %>
-          <h2><%= product.name %></h2>
-          <p><%= product.short_description %></p>
-        <% end %>
+    <% @screencasts.each do |product| %>
+      <%= link_to product_path(product), class: product.product_type do %>
+        <%= image_tag product.image_url %>
+        <h2><%= product.name %></h2>
+        <p><%= product.short_description %></p>
       <% end %>
     <% end %>
   </section>
