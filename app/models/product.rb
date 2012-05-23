@@ -42,6 +42,10 @@ class Product < ActiveRecord::Base
     self.product_image.url(product_type_symbol)
   end
 
+  def image_url_for_inline_style
+    product_image_file_name.nil? ? "assets/#{image_url}" : image_url
+  end
+
   private
 
   def human_file_size num

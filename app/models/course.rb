@@ -55,4 +55,8 @@ class Course < ActiveRecord::Base
   def image_url
     course_image.url(:course)
   end
+
+  def image_url_for_inline_style
+    course_image_file_name.nil? ? "assets/#{image_url}" : image_url
+  end
 end

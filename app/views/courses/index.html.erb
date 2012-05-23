@@ -8,8 +8,7 @@
 <section id="products">
   <section id="books">
     <% @books.each do |product| %>
-      <%= link_to product_path(product), class: product.product_type do %>
-        <%= image_tag product.image_url %>
+      <%= link_to product_path(product), class: product.product_type, style: "background:url(#{product.image_url_for_inline_style})" do %>
         <h2><%= product.name %></h2>
         <p><%= product.short_description %></p>
       <% end %>
@@ -18,7 +17,10 @@
   <section id="screencasts">
     <% @screencasts.each do |product| %>
       <%= link_to product_path(product), class: product.product_type do %>
-        <%= image_tag product.image_url %>
+        <div class="screencast_image">
+        <%= image_tag product.image_url, class: "thumbnail"%>
+        <img src="images/icons/Play32.png" class="play" />
+        </div>
         <h2><%= product.name %></h2>
         <p><%= product.short_description %></p>
       <% end %>

@@ -1,5 +1,4 @@
-<%= content_tag_for(:li, course, class: course.active? ? 'active' : 'inactive') do %>
-  <%= image_tag course.image_url %>
+<%= content_tag_for(:li, course, class: (course.active? ? 'active' : 'inactive'), style: "background:url(#{course.image_url_for_inline_style})") do %>
   <%= link_to course do %>
     <h3>
       <%= course.name %>

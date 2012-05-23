@@ -96,17 +96,18 @@ header.primary {
       text-decoration: none;
       width: grid-width(2) + $gw-gutter * .32;
 
-      &::before {
-        background: url('/images/screencasts_thumbs/vim-rails-dev.png') bottom no-repeat #ccc;
-        content: url('/images/icons/Play32.png');
-        display: block;
-        height: 80px;
-        margin-bottom: .5em;
-        padding-top: 1.2em;
-        text-align: center;
-        width: 100%;
+      .screencast_image{
+        height: 100px;
       }
 
+      img.play, img.thumbnail{
+        position: absolute;
+      }
+
+      img.play{
+        margin-left: 45px;
+        margin-top: 20px;
+      }
       h2 {
         font-size: 115%;
         font-weight: normal;
