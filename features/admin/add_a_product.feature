@@ -22,10 +22,14 @@ Feature: Adding a course
     When I go to the admin page
     And I follow "Products"
     And I follow "Test Product"
+    Then I should see an image with name "missing.jpg"
     When I fill in "Name" with "New Name"
-    When I press "Update Product"
+    And I attach an image name "test.jpg" to the product
+    And I press "Update Product"
     Then I should see "Product successfully updated"
     And I should see "New Name"
+    When I follow "New Name"
+    And I should see an image with name "test.jpg"
 
   @selenium
   Scenario: Edit downloads to product

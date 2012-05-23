@@ -1,4 +1,5 @@
-<%= content_tag_for(:li, course, class: course.active? ? 'active' : 'inactive' ) do %>
+<%= content_tag_for(:li, course, class: course.active? ? 'active' : 'inactive') do %>
+  <%= image_tag course.image_url %>
   <%= link_to course do %>
     <h3>
       <%= course.name %>
