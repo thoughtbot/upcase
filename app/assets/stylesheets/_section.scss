@@ -102,8 +102,8 @@ body.purchases{
 
       #course-info {
         float: left;
-        margin: 0 $gutter 0 0;
-        padding: 20px 0 32px 0px;
+        margin: 0 0 0 $gutter;
+        padding: 48px 0 32px 0px;
         width: grid-width(8);
 
         h2 {
@@ -113,9 +113,11 @@ body.purchases{
         }
 
         p {
-          color: #444;
-          font: 400 15px/24px $sans-serif;
-          margin: 0 0 8px 0;
+          color: #555;
+          font: 16px $serif;
+          font-weight: 400;
+          line-height: 24px;
+          margin-bottom: 24px;
         }
 
         ul {
@@ -168,18 +170,19 @@ body.purchases{
           dl {
             dt {
               p {
-                color: $red;
+                color: #000;
                 display: block;
+                font-family: $sans-serif;
                 font-size: 16px;
                 font-weight: 700;
-                margin-bottom: 0;
+                margin-bottom: 6px;
               }
             }
 
             dd {
               color: #333;
               font: 400 14px/20px $sans-serif;
-              margin: 0 0 14px 0;
+              margin: 0 0 16px 0;
 
               p {
                 margin: 0 0 8px 0;
@@ -192,61 +195,33 @@ body.purchases{
       #workshop-details {
         float: left;
         margin: 0 0 20px 0;
+        padding-top: 48px;
         width: grid-width(4);
 
-        #register {
-          padding: 21px 0 10px 0;
-
-          a {
-            @include button;
-          }
-
-          p.travel {
-            text-align: center;
-            width: 220px;
-
-            a {
-              background: transparent;
-              border: 0;
-              @include box-shadow(none);
-              color: #555;
-              display: block;
-              font-size: 12px;
-              line-height: 16px;
-              margin: 8px 0 0 0;
-              padding: 0 10px;
-              text-shadow: none;
-              width: 200px;
-
-              &:hover {
-                text-decoration: underline;
-              }
-            }
-          }
+        h3 {
+          color: #000;
+          font: bold 18px $sans-serif;
+          margin: 0 0 6px 0;
         }
 
-        h3 {
-          color: $red;
-          font: 600 13px $sans-serif;
-          margin: 20px 0 2px 0;
-          text-transform: uppercase;
+        h3:not(:first-child) {
+          margin-top: 24px;
         }
 
         p {
-          color: #373737;
-          font: 400 18px/24px $serif;
+          color: #555;
+          font: 400 16px/24px $serif;
 
           &.cost {
-            color: #333;
-            font-size: 32px;
-            font-weight: 400;
-            padding: 0 0 16px 0;
+            color: #2b2b2b;
+            font-family: $sans-serif;
+            font-size: 36px;
+            font-weight: 200;
+            line-height: 48px;
+            margin-bottom: 24px;
 
             &.highlight {
               color: $red;
-              font-size: 32px;
-              margin: 20px 0 5px 0;
-              padding: 0;
             }
           }
 
@@ -263,10 +238,28 @@ body.purchases{
           }
         }
 
-        a {
-          border-bottom: 1px solid $red;
+        > p a {
           color: #333;
           text-decoration: none;
+        }
+
+        #teachers {
+          padding-top: 6px;
+
+          img {
+            float: left;
+            margin-top: 6px;
+          }
+
+          h4 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 12px;
+          }
+
+          .bio {
+            margin-left: 104px; // picture width + picture marginw
+          }
         }
       }
 
@@ -287,26 +280,6 @@ body.purchases{
     }
   }
 
-  #register-below-the-fold {
-    padding: 21px 0 20px 0;
-
-    > a {
-      @include button;
-      width: 800px;
-      margin: 0 auto;
-      text-decoration: none;
-    }
-
-    p {
-      margin: 0 auto;
-      font-weight: bold;
-      width: 800px;
-      font-size: 1.2em;
-      text-align: center;
-      margin-top: 12px;
-    }
-  }
-  
   #additional-information {
     @extend .clearfix;
     background: rgba(228, 228, 228, 0.7) url("/images/shadowing.png") center 0 no-repeat;
@@ -319,9 +292,13 @@ body.purchases{
       width: 995px;
 
       h4 {
-        color: #222;
-        font: 600 20px $sans-serif;
-        margin: 0 0 12px 0;
+        color: #000;
+        font-family: $sans-serif;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 24px;
+        margin: 0 0 24px 0;
+        text-rendering: optimizeLegibility;
       }
 
       #main-content {
@@ -336,6 +313,10 @@ body.purchases{
         color: #333;
         margin-right: 0;
 
+        form {
+          margin: 0;
+        }
+
         input[type="text"] {
           width: 580px;
         }
@@ -347,6 +328,7 @@ body.purchases{
         h4.terms {
           color: #555;
           font: 600 16px $sans-serif;
+          margin-bottom: 12px;
         }
 
         ul {
@@ -354,8 +336,7 @@ body.purchases{
           list-style: outside;
         }
 
-        li,
-        p {
+        li, p {
           color: #666;
           font: 400 14px/18px $sans-serif;
           margin: 0 0 6px 0;
@@ -393,7 +374,6 @@ body.purchases{
         }
 
         h5 {
-          color: $red;
           font: 700 16px/20px $sans-serif;
           margin: 0 0 2px 0;
         }
