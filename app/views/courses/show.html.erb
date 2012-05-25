@@ -1,21 +1,11 @@
   <section id="head-wrapper">
     <section id="homepage-top">
-      <section id="course-info">
-        <h2><%= @course.name %></h2>
-
-        <section id="course-description"><%=raw textilize @course.description %></section>
-
-        <%= render partial: 'questions', locals: { course: @course } %>
-      </section>
-
+      <h1><%= @course.name %></h1>
       <section id="workshop-details">
+        <p class="cost">Cost: <%= number_to_currency @course.price, precision: 0 %></p>
         <section id="register">
           <a href="#new_follow_up" id="register-button">Get notified</a>
         </section>
-
-        <h3>Cost</h3>
-        <p class="cost"><%= number_to_currency @course.price, precision: 0 %></p>
-
         <h3>Where</h3>
         <p id="section-location">
           <%= google_map_link_to("#{@course.location} #{@course.location_name}", id: 'location') do %>
@@ -23,6 +13,12 @@
           <% end %>
         </p>
       </section>
+
+      <section id="course-info">
+        <section id="course-description"><%=raw textilize @course.description %></section>
+        <%= render partial: 'questions', locals: { course: @course } %>
+      </section>
+
     </section>
   </section>
 
