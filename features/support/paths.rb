@@ -33,6 +33,8 @@ module NavigationHelpers
       new_admin_section_registration_path(section)
     when /the admin page/
       admin_path
+    when /the new admin page/
+      "/new_admin"
     when /the freshbooks invoice page for "([^\"]+)" on "([^\"]+)"/
       course = Course.find_by_name!($2)
       registration = course.registrations.find_by_email($1)

@@ -8,7 +8,6 @@ gem "bourbon", "~> 1.4.0"
 gem "RedCloth", require: "redcloth"
 gem "will_paginate", git: "git://github.com/xspond/will_paginate.git", branch: "rails3-1"
 gem "formtastic", "~> 2.2.0"
-gem "nested_form", :git => "git://github.com/zben/nested_form.git"
 gem "nokogiri"
 gem "clearance", "~> 0.16.1"
 gem "paperclip"
@@ -34,6 +33,8 @@ gem "paypal-express", "~> 0.4.6", require: 'paypal'
 gem 'csv_rails'
 gem 'chameleon'
 gem "thin", "~> 1.3.1"
+gem "fastercsv"
+gem "rails_admin"
 
 # Fix the warning: regexp match /.../n against to UTF-8 string issue
 gem "escape_utils"
