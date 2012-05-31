@@ -5,12 +5,12 @@ RailsAdmin.config do |config|
   config.authenticate_with do
     unless current_user
       session[:return_to] = request.url
-      redirect_to "/sign_in", :alert => "You must first log in or sign up before accessing this page."
+      redirect_to main_app.sign_in_path, :alert => "You must first log in or sign up before accessing this page."
     end
   end
 
   config.authorize_with do
-    redirect_to "/", :alert => "You are not authorized to access that page" unless current_user.admin?
+    redirect_to main_app.root_path, :alert => "You are not authorized to access that page" unless current_user.admin?
   end
 
   config.current_user_method { current_user }
