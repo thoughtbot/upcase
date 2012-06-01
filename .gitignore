@@ -14,3 +14,4 @@ eyrc
 .bundle/*
 .sass-cache/*
 *.rdb
+.env

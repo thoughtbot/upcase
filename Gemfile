@@ -46,6 +46,7 @@ end
 group :development, :test do
   gem "rspec-rails", "~> 2.9.0"
   gem 'ruby-debug19', require: 'ruby-debug', platform: :ruby_19
+  gem 'foreman', '~> 0.46.0'
 end
 
 # Gems used only for assets and not required
