@@ -213,3 +213,7 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
+Then /^I should see element with id "([^"]*)"$/ do |id|
+  page.should have_selector("##{id}")
+end

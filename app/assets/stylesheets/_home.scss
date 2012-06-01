@@ -1,250 +1,295 @@
-#head-wrapper {
-  #homepage-top {
-    @extend .clearfix;
-    background: url("/images/shadowing.png") center top no-repeat;
-    margin: 0 auto;
-    padding: 1px 0 40px 0;
-    width: 995px;
+@mixin full-width {
+  @extend .clearfix;
+  margin: 0 auto;
+  width: 995px;
+}
 
-    header {
+.pages-home{
+  #head-wrapper {
+    #homepage-top {
       @extend .clearfix;
+      background: url("/images/shadowing.png") center top no-repeat;
+      margin: 0 auto;
+      padding: 1px 0 40px 0;
+      width: 995px;
 
-      h1 {
-        color: #2b2b2b;
-        font: 900 60px/60px $sans-serif;
-        margin: 40px 0 20px;
+      header {
+        @extend .clearfix;
+
+        h1 {
+          color: #2b2b2b;
+          font: 900 60px/60px $sans-serif;
+          margin: 40px 0 20px;
+        }
       }
     }
+  }
 
-    #workshop-list {
+  header.primary, header.secondary {
+    @include full-width;
+    padding: 40px 0;
+
+    h1 {
+      color: #2b2b2b;
+      font: 900 60px/60px $sans-serif;
+    }
+  }
+
+  header.primary {
+    background: url("/images/shadowing.png") center top no-repeat;
+  }
+
+  #products {
+    @include full-width;
+
+    #books, #screencasts {
       float: left;
-      margin: 20px 0 0 0;
-      min-height: 800px;
-      width: grid-width(8);
+      overflow: auto;
+      width: grid-width(6);
+    }
 
-      h2 {
-        color: #444;
-        font: 700 14px $sans-serif;
-        margin: 0 0 4px 0;
-        text-transform: uppercase;
-      }
+    #books {
+      margin-bottom: 40px;
+      margin-right: $gw-gutter;
 
-      ul {
-        margin: 0 0 20px 10px;
+      .book {
+        background: #ccc;
+        border-left: 5px solid #666;
+        @include box-sizing(border-box);
+        color: #000;
+        float: left;
+        height: 300px;
+        margin-right: $gw-gutter;
+        padding: 3.2em 3.2em 2em 1.6em;
+        text-decoration: none;
+        width: grid-width(3);
 
-        li {
-          margin: 0 0 10px 0;
-          padding: 0 0 10px 0;
-          position: relative;
+        h2 {
+          font-size: 115%;
+          line-height: 1.2em;
+          margin-bottom: 1em;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
 
-          a {
-            display: inline-block;
-            text-decoration: none;
+        p {
+          font-size: 115%;
+        }
 
-            h3 {
-              color: $red;
-              font: 700 24px/30px $sans-serif;
+        &:nth-child(2n) {
+          margin-right: 0;
+        }
 
-              span {
-                color: #333;
-                font-size: 16px;
-
-                &:before {
-                  content: "/";
-                  margin: 0 4px 0 0;
-                }
-              }
-            }
-
-            p.teaser {
-              color: #444;
-              font: 300 15px/20px $serif;
-              margin: 0;
-            }
-
-            &:hover {
-              h3 {
-                color: $red;
-              }
-            }
-          }
+        &:hover {
+          background: #999;
         }
       }
     }
 
-    aside {
+    #screencasts {
+      overflow: visible;
+
+      .screencast {
+        color: #000;
+        float: left;
+        margin: 0 $gw-gutter/2 $gw-gutter/2 0;
+        position: relative;
+        text-decoration: none;
+        width: grid-width(2) + $gw-gutter * .32;
+
+        .screencast_image{
+          height: 100px;
+        }
+
+        img.play, img.thumbnail{
+          position: absolute;
+        }
+
+        img.play{
+          margin-left: 45px;
+          margin-top: 20px;
+        }
+        h2 {
+          font-size: 115%;
+          font-weight: normal;
+          line-height: 1.2em;
+        }
+
+        p {
+          display: none;
+        }
+
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+
+        &:hover {
+          h2 {
+            background: rgba(255,255,255,.85);
+          }
+        }
+      }
+    }
+  }
+
+  #workshops_wrapper {
+    @include linear-gradient(white, rgba(255, 255, 255, 0) 20%);
+    background-color: transparent;
+    overflow: hidden;
+    position: relative;
+
+    .workshops-background {
+      min-width: 1600px;
+      opacity: .8;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: -1;
+    }
+  }
+
+  #workshops {
+    @include full-width;
+    margin-bottom: 35px;
+
+  h2 {
+    color: #444;
+    font: 700 14px $sans-serif;
+    margin: 0 0 4px 0;
+    text-transform: uppercase;
+  }
+
+  ul.courses {
+    li {
+      background: url(/images/workshops_thumbs/designfordev.png) no-repeat #ccc;
+      @include box-sizing(border-box);
+      display: table;
       float: left;
-      margin: 10px 0 0 25px;
-      padding: 10px 0 0 0;
+      margin: 0 $gw-gutter $gw-gutter 0;
+      position: relative;
       width: grid-width(4);
 
-      &.first, &.humans {
-        border-top: 5px solid $red;
+      &:nth-child(3n) {
+        margin-right: 0;
       }
-
-      &.humans {
-        margin-top: 40px;
-      }
-
-      h2 {
-        color: #333;
-        font: 700 24px $sans-serif;
-        margin: 0 0 10px 0;
 
         a {
+          @include box-shadow(0 5px 30px rgba(0,0,0,.15));
+          display: table-cell;
+          height: 220px;
+          overflow: hidden;
           text-decoration: none;
-        }
-      }
+          vertical-align: middle;
 
-      p {
-        color: #444;
-        font: 400 15px/21px $serif;
-      }
-    }
-  }
-}
+          h3 {
+            background: rgba(0,0,0,.55);
+            color: #fff;
+            font: 400 28px/31px "proxima-nova-sc-osf-1", "proxima-nova-sc-osf-2";
+            letter-spacing: .08em;
+            padding: 1.25rem 3rem;
+            text-shadow: 0 1px 0 rgba(0,0,0,.8);
+            text-transform: lowercase;
 
-#class-photos {
-  @extend .clearfix;
-  margin: 0px auto 0;
+            em {
+              font-family: $serif;
+              font-size: 31px;
+              font-style: italic;
+              font-weight: 300;
+              letter-spacing: 0;
+              line-height: 0;
+              text-transform: lowercase;
+              -webkit-font-smoothing: antialiased;
+            }
+          }
 
-  img {
-    background: #fff;
-    width: grid-width(4);
-  }
+          p.date {
+            background: rgba(0,0,0,.8);
+            bottom: 0;
+            color: #fff;
+            display: none;
+            font-family: "proxima-nova-sc-osf-1", "proxima-nova-sc-osf-2";
+            font-size: 28px;
+            font-weight: 400;
+            left: 0;
+            line-height: 1em;
+            padding: 3rem 3rem 0 3rem;
+            text-transform: lowercase;
 
-  ul {
-    li {
-      @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset);
-      float: left;
-      height: 205px;
-      list-style-type: none;
-      margin-bottom: 20px;
-      width: grid-width(4); 
-      position: relative;
+            &:before {
+              content: 'next workshop';
+              display: block;
+              font-family: $serif;
+              font-size: 18px;
+              font-style: italic;
+              font-weight: 300;
+              line-height: 1em;
+              -webkit-font-smoothing: antialiased;
+            }
+          }
 
-      &.first {
-        margin: 0 25px 0 0;
-      }
+          p.teaser {
+            background: rgba(0,0,0,.8);
+            color: #fff;
+            display: none;
+            font-size: 115%;
+            height: 100%;
+            line-height: 1.2em;
+            padding: 1.25rem 3rem;
+          }
 
-      &.last {
-        margin: 0 0 0 25px;
-      }
+          &:hover {
+            @include box-shadow(0 5px 30px rgba(0,0,0,.5));
+            vertical-align: top;
 
-      &:after {
-        @include box-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
-        position: absolute;
-        background: transparent;
-        width: 70%;
-        height: 55%;
-        content: '';
-        right: 11px;
-        bottom: 11px;
-        transform: skew(15deg) rotate(6deg);
-        -webkit-transform: skew(15deg) rotate(6deg);
-        -moz-transform: skew(15deg) rotate(6deg);
-        z-index: -1;
-      }
+            h3 {
+              display: none;
+            }
 
-      &:before {
-        @include box-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
-        z-index: -2;
-        position: absolute;
-        background: transparent;
-        width: 70%;
-        height: 55%;
-        content: '';
-        left: 11px;
-        bottom: 11px;
-        transform: skew(-15deg) rotate(-6deg);
-        -webkit-transform: skew(-15deg) rotate(-6deg);
-        -moz-transform: skew(-15deg) rotate(-6deg);
-      }
-    }
-  }
-}
-
-#more-information {
-  @extend .clearfix;
-  background: rgba(228, 228, 228, 0.7) url("/images/shadowing.png") center 0 no-repeat;
-  border-top: 1px solid #DCDCDC;
-  margin: 14px 0 0 0;
-  padding: 40px 0;
-
-  #more-information-wrapper {
-    margin: 0 auto;
-    width: 995px;
-
-    h4 {
-      color: #555;
-      font: 500 20px $sans-serif;
-      margin: 0 0 12px 0;
-    }
-
-    #why-love {
-      float: left;
-      margin: 22px $gutter 0 0;
-      width: grid-width(6);
-
-      ul {
-        li {
-          color: #555;
-          font: 400 14px/20px $serif;
-          margin: 0 0 20px 0;
-
-          strong {
-            color: #333;
-            display: block;
-            font: 600 16px $sans-serif;
+            p.date, p.teaser {
+              display: block;
+            }
           }
         }
       }
     }
+  }
 
-    #testimonials {
-      float: left;
-      margin: 20px 0 0 0;
-      width: grid-width(6);
+  .advantages_wrapper {
+    width: 100%;
+    background: rgba(255,255,255,.6);
+    padding: 55px 0;
+  }
 
-      q {
-        color: #555;
-        display: block;
-        font: 400 14px/20px $serif;
-        margin: 0 0 0 20px;
-        position: relative;
+  .advantages {
+    @include full-width;
 
-        &:before {
-         color: #666;
-         content: "\201C";
-         font: 400 40px $sans-serif;
-         left: -17px;
-         position: absolute;
-         top: -4px;
-        }
-      }
-
-      p.source {
-        color: $red;
-        font: 600 14px $sans-serif;
-        margin: 2px 0 18px 5px;
-
-        a {
-          color: $red;
-          margin: 0 0 0 1px;
-          text-decoration: none;
-
-        }
-      }
-
-      #column-1 {
+    ul {
+      li {
+        color: #2b2b2b;
         float: left;
-        margin: 0 25px 0 0;
-        width: grid-width(3);
-      }
+        font-size: 18px;
+        line-height: 1.35em;
+        margin-right: $gw-gutter;
+        text-shadow: 0 1px 0 rgba(255,255,255,.5);
+        width: grid-width(4);
 
-      #column-2 {
-        float: left;
-        width: grid-width(3);
+        h3 {
+          color: #2b2b2b;
+          font: 600 18px/20px "proxima-nova-sc-osf-1", "proxima-nova-sc-osf-2";
+          letter-spacing: .08em;
+          margin-bottom: .5em;
+          text-transform: lowercase;
+
+          &::before {
+            content: '\2713';
+            margin-left: -1.1em;
+            margin-right: .3em;
+          }
+        }
+
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
       }
     }
   }

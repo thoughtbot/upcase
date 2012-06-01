@@ -1,6 +1,8 @@
 body.high_voltage-pages,
-body.products-show,
-body.purchases-watch{
+body.purchases-watch,
+body.products-show, 
+body.sections-show,
+body.courses-show {
   .assets {
     margin-bottom: 10px;
     text-align: center;
@@ -17,10 +19,73 @@ body.purchases-watch{
   }
 
   section#homepage-top {
+    padding-top: 72px !important;
+
     h1 {
       color: #2b2b2b;
-      font: 900 60px/60px $sans-serif;
-      margin: 40px 0 20px;
+      font: 900 72px/72px $sans-serif;
+      padding: 0 0 24px;
+      text-align: center;
+    }
+
+    #register, #purchase-buttons {
+      a {
+        @include button;
+        display: inline-block;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+        margin: 0 0 12px;
+        padding: 24px;
+        text-decoration: none;
+        width: auto;
+      }
+
+      p.travel {
+        a {
+          background: transparent;
+          border: 0;
+          @include box-shadow(none);
+          color: #555;
+          display: block;
+          font-size: 12px;
+          line-height: 16px;
+          overflow: visible;
+          padding: 0;
+          text-align: left;
+          text-shadow: none;
+          width: 200px;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    #purchase-buttons {
+      margin-bottom: 66px;
+      text-align: center;
+
+      div {
+        display: inline-block;
+
+        p {
+          color: #555;
+          font: 700 12px $sans-serif;
+          height: 0;
+          line-height: 16px;
+          margin: 0 auto;
+          overflow: visible;
+          padding: 0 10px;
+          text-shadow: none;
+          -webkit-font-smoothing: antialiased;
+        }
+      }
+
+      div:nth-child(2) {
+        margin-left: 7.5%;
+      }
     }
   }
 

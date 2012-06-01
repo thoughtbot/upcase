@@ -7,9 +7,7 @@ When /^I add a download with file name "([^"]*)" and description "([^"]*)"$/ do 
     f.puts "Ths is a test file"
   end
   attach_file "Download", path
-  sleep 10
   fill_in "Download Description", with: description
-  sleep 10
 end
 
 When /^I remove a download with file name "([^"]*)"$/ do |file_name|
@@ -22,5 +20,16 @@ end
 
 Then /^I should not see "([^"]*)" in input field$/ do |text|
   page.should_not have_css('input', :value => "#{text}")
+end
+
+When /^I attach an image name "([^"]*)" to the product$/ do |image_name|
+  path = File.join(Rails.root, "tmp/", image_name)
+  test_image_path = File.join(Rails.root,"features/support/files/test.jpg")
+  FileUtils.cp(test_image_path, path)
+  attach_file "Product image", path
+end
+
+When /^I should see an image with name "([^"]*)"$/ do |image_name|
+  page.should have_selector("img", src: /#{image_name}/)
 end
 

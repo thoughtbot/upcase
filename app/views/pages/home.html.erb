@@ -1,0 +1,86 @@
+<header class="primary">
+  <hgroup>
+    <h1 id="product_tagline">Products tagline</h1>
+    <h2 id="product_sub_tagline">This can be a longer sub tagline</h2>
+  </hgroup>
+</header>
+
+<section id="products">
+  <section id="books">
+    <% @books.each do |product| %>
+      <%= link_to product_path(product), class: product.product_type, style: "background:url(#{product.image_url_for_inline_style})" do %>
+        <h2><%= product.name %></h2>
+        <p><%= product.short_description %></p>
+      <% end %>
+    <% end %>
+  </section>
+  <section id="screencasts">
+    <% @screencasts.each do |product| %>
+      <%= link_to product_path(product), class: product.product_type do %>
+        <div class="screencast_image">
+        <%= image_tag product.image_url, class: "thumbnail"%>
+        <%= image_tag "icons/Play32.png", class: "play" %>
+        </div>
+        <h2><%= product.name %></h2>
+        <p><%= product.short_description %></p>
+      <% end %>
+    <% end %>
+  </section>
+</section>
+
+<section id="workshops_wrapper">
+  <header class="secondary">
+    <h1>Get better, faster in our small, hands-on workshops</h1>
+  </header>
+
+  <section id="workshops">
+    <% if @audiences.empty? %>
+      <p id="no-courses">No courses are running at this time.</p>
+    <% else %>
+      <ul class="courses">
+        <% @audiences.each do |audience| %>
+          <% if audience.courses.only_public.any? %>
+            <%= render audience.courses.only_public %>
+          <% end %>
+        <% end %>
+      </ul>
+    <% end %>
+  </section>
+
+  <section class="advantages_wrapper">
+    <section class="advantages">
+      <ul>
+        <li>
+          <h3>Real life skills</h3>
+          <p>Our instructors build sites every day using the technology and skills we teach in our workshops. We focus on the things you need to know when doing real work.</p>
+        </li>
+        <li>
+          <h3>Human touch</h3>
+          <p>We keep our workshops small, so there’s always someone ready to answer your questions.</p>
+        </li>
+        <li>
+          <h3>Satisfaction guaranteed</h3>
+          <p>If you’re not happy with a workshop you took, just let us know and we’ll refund your money. It’s as simple as that.</p>
+        </li>
+      </ul>
+    </section>
+  </section>
+  <img class="workshops-background" src="/images/workshops_blurry.jpg" />
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+  function wrap_transition_word(word) {
+    $('ul.courses h3:contains('+word+')').each(function() {
+      $(this).html(function() {
+        return $(this).html().replace(word, '<em>'+word+'</em>');
+      });
+    });
+  }
+
+  wrap_transition_word('for');
+  wrap_transition_word('and');
+  wrap_transition_word('to');
+</script>
+

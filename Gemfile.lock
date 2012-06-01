@@ -332,7 +332,7 @@ DEPENDENCIES
   email_spec (~> 1.2.1)
   escape_utils
   factory_girl_rails (~> 3.3.0)
-  foreman
+  foreman (~> 0.46.0)
   formtastic (~> 2.2.0)
   headless
   heroku (~> 2.26.3)

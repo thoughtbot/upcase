@@ -1,4 +1,6 @@
 Workshops::Application.routes.draw do
+  get "pages/home"
+
   root to: 'courses#index'
 
   resource :session, controller: 'sessions'

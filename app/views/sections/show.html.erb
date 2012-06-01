@@ -1,9 +1,36 @@
   <section id="head-wrapper">
     <section id="homepage-top">
+      <h1><%= @section.course_name %></h1>
+      <section id="workshop-details">
+        <% unless @section.full? %>
+          <p class="cost">Cost: <%= number_to_currency @section.course_price, precision: 0 %></p>
+        <% else %>
+          <p class="cost sold-out">Sold Out: <%= number_to_currency @section.course_price, precision: 0 %></p>
+        <% end %>
 
+        <section id="register">
+          <% unless @section.full? %>
+            <%= link_to registration_url(@section), id: 'register-button' do %>
+              Register
+            <% end %>
+            <p class="travel"><%= link_to "Interested in having us book your travel and hotel?", 'mailto:workshops@thoughtbot.com?subject=Booking travel for workshop' %></p>
+          <% end %>
+        </section>
+
+        <h3>When</h3>
+        <p><%= @section.date_range %><br><%= @section.time_range %></p>
+
+        <h3>Where</h3>
+        <p id="section-location">
+          <%= google_map_link_to("#{@section.course_location} #{@section.course_location_name}", id: 'location') do %>
+            <%= @section.course_location %><br> <%= @section.course_location_name %>
+          <% end %>
+        </p>
+
+        <h3>Who&rsquo;s teaching the workshop</h3>
+        <%= render 'teachers', teachers: @section.teachers %>
+      </section>
       <section id="course-info">
-        <h2><%= @section.course_name %></h2>
-
         <% if @section.full? %>
           <section id="notify-me">
             <%= form_for [@section.course, @follow_up] do |form| %>
@@ -17,35 +44,6 @@
         <section id="course-description"><%=raw textilize @section.course_description %></section>
 
         <%= render partial: 'courses/questions', locals: { course: @section.course }  %>
-      </section>
-
-      <section id="workshop-details">
-        <section id="register">
-          <% unless @section.full? %>
-            <%= link_to registration_url(@section), id: 'register-button' do %>
-              Register
-            <% end %>
-            <p class="travel"><%= link_to "Interested in having us book your travel and hotel?", 'mailto:workshops@thoughtbot.com?subject=Booking travel for workshop' %></p>
-          <% end %>
-        </section>
-
-        <h3>Cost</h3>
-        <% unless @section.full? %>
-          <p class="cost"><%= number_to_currency @section.course_price, precision: 0 %></p>
-        <% else %>
-          <p class="cost sold-out"><%= number_to_currency @section.course_price, precision: 0 %></p>
-          <p class="notice">Sold Out</p>
-        <% end %>
-
-        <h3>When</h3>
-        <p><%= @section.date_range %><br><%= @section.time_range %></p>
-
-        <h3>Where</h3>
-        <p id="section-location">
-          <%= google_map_link_to("#{@section.course_location} #{@section.course_location_name}", id: 'location') do %>
-            <%= @section.course_location %><br> <%= @section.course_location_name %>
-          <% end %>
-        </p>
       </section>
     </section>
   </section>
@@ -71,8 +69,6 @@
     </section>
 
     <section id="sidebar">
-      <h4>Who&rsquo;s teaching the workshop</h3>
-      <%= render 'teachers', teachers: @section.teachers %>
     </section>
   </section>
 </section>

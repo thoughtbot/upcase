@@ -1,8 +1,8 @@
 <ul id="teachers">
   <% teachers.each do |teacher| %>
     <%= content_tag(:li, teacher) do %>
+      <h4><%= teacher.name %></h4>
       <%= teacher_gravatar(teacher, 92) %>
-      <h5><%= teacher.name %></h5>
       <section class="bio">
         <%= raw textilize teacher.bio %>
       </section>
