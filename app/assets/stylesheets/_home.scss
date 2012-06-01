@@ -4,152 +4,153 @@
   width: 995px;
 }
 
-#head-wrapper {
-  #homepage-top {
-    @extend .clearfix;
-    background: url("/images/shadowing.png") center top no-repeat;
-    margin: 0 auto;
-    padding: 1px 0 40px 0;
-    width: 995px;
-
-    header {
+.pages-home{
+  #head-wrapper {
+    #homepage-top {
       @extend .clearfix;
+      background: url("/images/shadowing.png") center top no-repeat;
+      margin: 0 auto;
+      padding: 1px 0 40px 0;
+      width: 995px;
 
-      h1 {
-        color: #2b2b2b;
-        font: 900 60px/60px $sans-serif;
-        margin: 40px 0 20px;
-      }
-    }
-  }
-}
+      header {
+        @extend .clearfix;
 
-header.primary, header.secondary {
-  @include full-width;
-  padding: 40px 0;
-
-  h1 {
-    color: #2b2b2b;
-    font: 900 60px/60px $sans-serif;
-  }
-}
-
-header.primary {
-  background: url("/images/shadowing.png") center top no-repeat;
-}
-
-#products {
-  @include full-width;
-
-  #books, #screencasts {
-    float: left;
-    overflow: auto;
-    width: grid-width(6);
-  }
-
-  #books {
-    margin-bottom: 40px;
-    margin-right: $gw-gutter;
-
-    .book {
-      background: #ccc;
-      border-left: 5px solid #666;
-      @include box-sizing(border-box);
-      color: #000;
-      float: left;
-      height: 300px;
-      margin-right: $gw-gutter;
-      padding: 3.2em 3.2em 2em 1.6em;
-      text-decoration: none;
-      width: grid-width(3);
-
-      h2 {
-        font-size: 115%;
-        line-height: 1.2em;
-        margin-bottom: 1em;
-        font-weight: bold;
-        text-transform: uppercase;
-      }
-
-      p {
-        font-size: 115%;
-      }
-
-      &:nth-child(2n) {
-        margin-right: 0;
-      }
-
-      &:hover {
-        background: #999;
-      }
-    }
-  }
-
-  #screencasts {
-    overflow: visible;
-
-    .screencast {
-      color: #000;
-      float: left;
-      margin: 0 $gw-gutter/2 $gw-gutter/2 0;
-      position: relative;
-      text-decoration: none;
-      width: grid-width(2) + $gw-gutter * .32;
-
-      .screencast_image{
-        height: 100px;
-      }
-
-      img.play, img.thumbnail{
-        position: absolute;
-      }
-
-      img.play{
-        margin-left: 45px;
-        margin-top: 20px;
-      }
-      h2 {
-        font-size: 115%;
-        font-weight: normal;
-        line-height: 1.2em;
-      }
-
-      p {
-        display: none;
-      }
-
-      &:nth-child(3n) {
-        margin-right: 0;
-      }
-
-      &:hover {
-        h2 {
-          background: rgba(255,255,255,.85);
+        h1 {
+          color: #2b2b2b;
+          font: 900 60px/60px $sans-serif;
+          margin: 40px 0 20px;
         }
       }
     }
   }
-}
 
-#workshops_wrapper {
-  @include linear-gradient(white, rgba(255, 255, 255, 0) 20%);
-  background-color: transparent;
-  overflow: hidden;
-  position: relative;
+  header.primary, header.secondary {
+    @include full-width;
+    padding: 40px 0;
 
-  .workshops-background {
-    min-width: 1600px;
-    opacity: .8;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: -1;
+    h1 {
+      color: #2b2b2b;
+      font: 900 60px/60px $sans-serif;
+    }
   }
-}
 
-#workshops {
-  @include full-width;
-  margin-bottom: 35px;
+  header.primary {
+    background: url("/images/shadowing.png") center top no-repeat;
+  }
+
+  #products {
+    @include full-width;
+
+    #books, #screencasts {
+      float: left;
+      overflow: auto;
+      width: grid-width(6);
+    }
+
+    #books {
+      margin-bottom: 40px;
+      margin-right: $gw-gutter;
+
+      .book {
+        background: #ccc;
+        border-left: 5px solid #666;
+        @include box-sizing(border-box);
+        color: #000;
+        float: left;
+        height: 300px;
+        margin-right: $gw-gutter;
+        padding: 3.2em 3.2em 2em 1.6em;
+        text-decoration: none;
+        width: grid-width(3);
+
+        h2 {
+          font-size: 115%;
+          line-height: 1.2em;
+          margin-bottom: 1em;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+
+        p {
+          font-size: 115%;
+        }
+
+        &:nth-child(2n) {
+          margin-right: 0;
+        }
+
+        &:hover {
+          background: #999;
+        }
+      }
+    }
+
+    #screencasts {
+      overflow: visible;
+
+      .screencast {
+        color: #000;
+        float: left;
+        margin: 0 $gw-gutter/2 $gw-gutter/2 0;
+        position: relative;
+        text-decoration: none;
+        width: grid-width(2) + $gw-gutter * .32;
+
+        .screencast_image{
+          height: 100px;
+        }
+
+        img.play, img.thumbnail{
+          position: absolute;
+        }
+
+        img.play{
+          margin-left: 45px;
+          margin-top: 20px;
+        }
+        h2 {
+          font-size: 115%;
+          font-weight: normal;
+          line-height: 1.2em;
+        }
+
+        p {
+          display: none;
+        }
+
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+
+        &:hover {
+          h2 {
+            background: rgba(255,255,255,.85);
+          }
+        }
+      }
+    }
+  }
+
+  #workshops_wrapper {
+    @include linear-gradient(white, rgba(255, 255, 255, 0) 20%);
+    background-color: transparent;
+    overflow: hidden;
+    position: relative;
+
+    .workshops-background {
+      min-width: 1600px;
+      opacity: .8;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: -1;
+    }
+  }
+
+  #workshops {
+    @include full-width;
+    margin-bottom: 35px;
 
   h2 {
     color: #444;
@@ -172,126 +173,123 @@ header.primary {
         margin-right: 0;
       }
 
-      a {
-        @include box-shadow(0 5px 30px rgba(0,0,0,.15));
-        display: table-cell;
-        height: 220px;
-        overflow: hidden;
-        text-decoration: none;
-        vertical-align: middle;
-
-        h3 {
-          background: rgba(0,0,0,.55);
-          color: #fff;
-          font: 400 28px/31px "proxima-nova-sc-osf-1", "proxima-nova-sc-osf-2";
-          letter-spacing: .08em;
-          padding: 1.25rem 3rem;
-          text-shadow: 0 1px 0 rgba(0,0,0,.8);
-          text-transform: lowercase;
-
-          em {
-            font-family: $serif;
-            font-size: 31px;
-            font-style: italic;
-            font-weight: 300;
-            letter-spacing: 0;
-            line-height: 0;
-            text-transform: lowercase;
-            -webkit-font-smoothing: antialiased;
-          }
-        }
-
-        p.date {
-          background: rgba(0,0,0,.8);
-          bottom: 0;
-          color: #fff;
-          display: none;
-          font-family: "proxima-nova-sc-osf-1", "proxima-nova-sc-osf-2";
-          font-size: 28px;
-          font-weight: 400;
-          left: 0;
-          line-height: 1em;
-          padding: 3rem 3rem 0 3rem;
-          text-transform: lowercase;
-
-          &::before {
-            content: 'next workshop';
-            display: block;
-            font-family: $serif;
-            font-size: 18px;
-            font-style: italic;
-            font-weight: 300;
-            line-height: 1em;
-            -webkit-font-smoothing: antialiased;
-          }
-
-          &.tbd::before {
-            content: 'next workshop tbd'
-          }
-        }
-
-        p.teaser {
-          background: rgba(0,0,0,.8);
-          color: #fff;
-          display: none;
-          font-size: 115%;
-          height: 100%;
-          line-height: 1.2em;
-          padding: 1.25rem 3rem;
-        }
-
-        &:hover {
-          @include box-shadow(0 5px 30px rgba(0,0,0,.5));
-          vertical-align: top;
+        a {
+          @include box-shadow(0 5px 30px rgba(0,0,0,.15));
+          display: table-cell;
+          height: 220px;
+          overflow: hidden;
+          text-decoration: none;
+          vertical-align: middle;
 
           h3 {
-            display: none;
+            background: rgba(0,0,0,.55);
+            color: #fff;
+            font: 400 28px/31px "proxima-nova-sc-osf-1", "proxima-nova-sc-osf-2";
+            letter-spacing: .08em;
+            padding: 1.25rem 3rem;
+            text-shadow: 0 1px 0 rgba(0,0,0,.8);
+            text-transform: lowercase;
+
+            em {
+              font-family: $serif;
+              font-size: 31px;
+              font-style: italic;
+              font-weight: 300;
+              letter-spacing: 0;
+              line-height: 0;
+              text-transform: lowercase;
+              -webkit-font-smoothing: antialiased;
+            }
           }
 
-          p.date, p.teaser {
-            display: block;
+          p.date {
+            background: rgba(0,0,0,.8);
+            bottom: 0;
+            color: #fff;
+            display: none;
+            font-family: "proxima-nova-sc-osf-1", "proxima-nova-sc-osf-2";
+            font-size: 28px;
+            font-weight: 400;
+            left: 0;
+            line-height: 1em;
+            padding: 3rem 3rem 0 3rem;
+            text-transform: lowercase;
+
+            &:before {
+              content: 'next workshop';
+              display: block;
+              font-family: $serif;
+              font-size: 18px;
+              font-style: italic;
+              font-weight: 300;
+              line-height: 1em;
+              -webkit-font-smoothing: antialiased;
+            }
+          }
+
+          p.teaser {
+            background: rgba(0,0,0,.8);
+            color: #fff;
+            display: none;
+            font-size: 115%;
+            height: 100%;
+            line-height: 1.2em;
+            padding: 1.25rem 3rem;
+          }
+
+          &:hover {
+            @include box-shadow(0 5px 30px rgba(0,0,0,.5));
+            vertical-align: top;
+
+            h3 {
+              display: none;
+            }
+
+            p.date, p.teaser {
+              display: block;
+            }
           }
         }
       }
     }
   }
-}
 
-.advantages_wrapper {
-  width: 100%;
-  background: rgba(255,255,255,.6);
-  padding: 55px 0;
-}
+  .advantages_wrapper {
+    width: 100%;
+    background: rgba(255,255,255,.6);
+    padding: 55px 0;
+  }
 
-.advantages {
-  @include full-width;
+  .advantages {
+    @include full-width;
 
-  ul {
-    li {
-      color: #2b2b2b;
-      float: left;
-      font-size: 18px;
-      line-height: 1.35em;
-      margin-right: $gw-gutter;
-      text-shadow: 0 1px 0 rgba(255,255,255,.5);
-      width: grid-width(4);
-
-      h3 {
+    ul {
+      li {
         color: #2b2b2b;
-        font: 600 18px/20px "proxima-nova-sc-osf-1", "proxima-nova-sc-osf-2";
-        letter-spacing: .08em;
-        margin-bottom: .5em;
-        text-transform: lowercase;
+        float: left;
+        font-size: 18px;
+        line-height: 1.35em;
+        margin-right: $gw-gutter;
+        text-shadow: 0 1px 0 rgba(255,255,255,.5);
+        width: grid-width(4);
 
-        &::before {
-          content: '\2713';
-          margin-left: -1.1em;
-          margin-right: .3em;
+        h3 {
+          color: #2b2b2b;
+          font: 600 18px/20px "proxima-nova-sc-osf-1", "proxima-nova-sc-osf-2";
+          letter-spacing: .08em;
+          margin-bottom: .5em;
+          text-transform: lowercase;
+
+          &::before {
+            content: '\2713';
+            margin-left: -1.1em;
+            margin-right: .3em;
+          }
         }
-      }
 
-      &:nth-child(3n) {
-        margin-right: 0;
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
       }
     }
   }

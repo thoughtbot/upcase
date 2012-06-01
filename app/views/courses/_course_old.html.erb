@@ -1,0 +1,12 @@
+<%= content_tag_for(:li, course, class: course.active? ? 'active' : 'inactive' ) do %>
+  <%= link_to course do %>
+    <h3>
+      <%= course.name %>
+      <% if course.active? %>
+        <span class="date"><%= course.active_date_range %></span>
+      <% end %>
+    </h3>
+    <p class="teaser"><%= course.short_description %></p>
+  <% end %>
+<% end %>
+

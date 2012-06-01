@@ -58,7 +58,7 @@ Feature: Viewing Courses on the home page
       | Screencast 1    | screencast             |
       | Screencast 2    | screencast             |
       | Screencast 3    | screencast             |
-    When I go to the home page
+    When I go to the new home page
     Then I should see element with id "product_tagline"
     And I should see element with id "product_sub_tagline"
     And I should see "Book 1"
