@@ -70,5 +70,5 @@ Workshops::Application.routes.draw do
 
   mount Split::Dashboard, at: 'split'
 
-  get '/about/:id' => 'topics#show', as: :topic
+  get ':id' => 'topics#show', as: :topic
 end
