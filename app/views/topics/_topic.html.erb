@@ -1,0 +1,4 @@
+<%= content_tag_for :li, topic do %>
+  <h2><%= link_to topic.name, topic_path(topic) %></h2>
+  <p><%= topic.summary %></p>
+<% end %>

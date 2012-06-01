@@ -1,0 +1,8 @@
+<section class='post'>
+  <h2 class="title"><%= link_to article.title, article.tumblr_url %></h2>
+  <h3 class="date"><%= article.published_on.to_time.to_s(:blog_date) %></h3>
+  <p><%== format_content article.body_html %></p>
+  <div class="topics">
+    <%== article.topics.map{|topic| link_to(topic.name, topic)}.to_sentence %>
+  </div>
+</section>

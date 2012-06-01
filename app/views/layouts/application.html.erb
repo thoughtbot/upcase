@@ -2,11 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>thoughtbot workshops</title>
+    <title><%= full_title(yield(:title)) %></title>
     <%= stylesheet_link_tag 'application' %>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <meta http-equiv="Description" name="Description" content="<%= t(".meta-description", default: "Workshops to help you get a job as a designer or developer at a web startup.") %>" />
-    <meta http-equiv="Keywords" name="Keywords" content="<%= t(".meta-keywords", default: "web designer job, web design job, web development job, startup designer, startup developer, web startup job, startup job") %>" />
+    <% if content_for? :description -%>
+      <meta name="description" content="<%= yield(:description) %>" />
+    <% else -%>
+      <meta http-equiv="Description" name="Description" content="<%= t(".meta-description", default: "Workshops to help you get a job as a designer or developer at a web startup.") %>" />
+    <% end -%>
+    <% if content_for? :keywords -%>
+      <meta name="keywords" content="<%= yield(:keywords) %>" />
+    <% else -%>
+      <meta http-equiv="Keywords" name="Keywords" content="<%= t(".meta-keywords", default: "web designer job, web design job, web development job, startup designer, startup developer, web startup job, startup job") %>" />
+    <% end -%>
     <script type="text/javascript" src="https://use.typekit.com/jes4mbj.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     <%= csrf_meta_tag %>

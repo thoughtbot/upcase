@@ -6,6 +6,27 @@ FactoryGirl.define do
   sequence :email do |n|
     "user#{n}@example.com"
   end
+
+  sequence :name do |n|
+    "name ##{n}"
+  end
+
+  sequence :title do |n|
+    "title ##{n}"
+  end
+
+  sequence :tumblr_url do |n|
+    "http://robots.thoughtbot.com/#{n}"
+  end
+
+  sequence :tumblr_user_name do |n|
+    "user#{n}"
+  end
+
+  sequence :slug do |n|
+    "slug-#{n}"
+  end
+
   factory :user do
     first_name 'Dan'
     last_name  'Deacon'
@@ -107,10 +128,32 @@ FactoryGirl.define do
 
   factory :download do
   end
+
   factory :purchase, aliases: [:individual_purchase] do
     product
     name "Test User"
     email "joe@example.com"
     variant "individual"
+  end
+
+  factory :article do
+    author
+    title
+    tumblr_url
+    published_on Date.today
+    body_html 'article body'
+  end
+
+  factory :author do
+    tumblr_user_name
+  end
+
+  factory :topic do
+    name
+    slug
+
+    body_html 'body text of document'
+    keywords 'clean, clear, precise'
+    summary 'short yet descriptive'
   end
 end

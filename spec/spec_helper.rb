@@ -5,6 +5,9 @@ require 'rspec/autorun'
 require 'rspec/rails'
 require 'paperclip/matchers'
 require "email_spec"
+require 'webmock/rspec'
+
+WebMock.disable_net_connect!(:allow_localhost => true)
 
 # Uncomment the next line to use webrat's matchers
 #require 'webrat/integrations/rspec-rails'

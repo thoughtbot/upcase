@@ -45,6 +45,8 @@ Workshops::Application.routes.draw do
     resources :purchases, only: :index
   end
 
+  resources :topics
+
   match '/watch' => 'high_voltage/pages#show', as: :watch, id: 'watch'
   match '/fairhaven' => 'high_voltage/pages#show', as: :fairhaven, id: 'fairhaven'
   match '/fairhaven/registered' => 'high_voltage/pages#show', as: :fairhaven_registered, id: 'fairhaven-registered'
@@ -65,4 +67,6 @@ Workshops::Application.routes.draw do
   match 'sign_in'  => 'sessions#new', as: 'sign_in'
 
   mount Split::Dashboard, at: 'split'
+
+  get '/about/:id' => 'topics#show', as: :topic
 end

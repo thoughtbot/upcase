@@ -5,20 +5,12 @@ end
 
 Then /^(.*) should be hidden$/ do |named_element|
   selector = selector_for(named_element)
-  if Capybara.current_driver == :akephalos
-    page.evaluate_script("$('#{selector}:visible').length").to_i.should == 0
-  else
-    find(selector).should_not be_visible
-  end
+  page.evaluate_script("$('#{selector}:visible').length").to_i.should == 0
 end
 
 Then /^(.*) should be visible/ do |named_element|
   selector = selector_for(named_element)
-  if Capybara.current_driver == :akephalos
-    page.evaluate_script("$('#{selector}:visible').length").to_i.should > 0
-  else
-    find(selector).should be_visible
-  end
+  page.evaluate_script("$('#{selector}:visible').length").to_i.should > 0
 end
 
 When %r{^I click ([^\"].*)$} do |named_element|

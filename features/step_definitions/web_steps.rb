@@ -128,6 +128,10 @@ Then /^(?:|I )should not see "([^"]*)"$/ do |text|
   end
 end
 
+Then /^"(.*?)" should not be visible$/ do |content|
+  page.should_not have_xpath("//*[text()=#{content}]", visible: true)
+end
+
 Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
   regexp = Regexp.new(regexp)
 
