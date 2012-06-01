@@ -41,6 +41,7 @@ gem "escape_utils"
 group :development do
   gem "heroku", "~> 2.26.3"
   gem 'hirb'
+  gem 'foreman'
 end
 
 group :development, :test do
