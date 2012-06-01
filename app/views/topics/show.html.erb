@@ -1,15 +1,19 @@
-<% provide :title, @topic.name %>
-<% provide :description, @topic.summary %>
-<% provide :keywords, @topic.keywords %>
+<section id="head-wrapper">
+  <section id="homepage-top">
+    <% provide :title, @topic.name %>
+    <% provide :description, @topic.summary %>
+    <% provide :keywords, @topic.keywords %>
 
-<section class='main text'>
-  <%=render 'topics/meta-info'%>
-  <section class='topic'>
-    <h1>Content on <%= @topic.name %></h1>
-    <p><%= raw @topic.body_html %></p>
-  </section>
+    <section class='main text'>
+      <%=render 'topics/meta-info'%>
+      <section class='topic'>
+        <h1>Content on <%= @topic.name %></h1>
+        <p><%= raw @topic.body_html %></p>
+      </section>
 
-  <section class='posts text'>
-    <%= render @topic.articles %>
+      <section class='posts text'>
+        <%= render @topic.articles %>
+      </section>
+    </section>
   </section>
 </section>
