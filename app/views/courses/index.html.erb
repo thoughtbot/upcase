@@ -12,7 +12,7 @@
           <% if audience.courses.only_public.any? %>
             <h2><%= audience.name %></h2>
             <ul>
-              <%= render audience.courses.only_public %>
+              <%= render partial: 'courses/course_old', collection: audience.courses.only_public, as: :course %>
             </ul>
           <% end %>
         <% end %>
