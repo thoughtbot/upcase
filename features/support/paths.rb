@@ -35,15 +35,26 @@ module NavigationHelpers
       new_admin_section_registration_path(section)
     when /the admin page/
       admin_path
+    when /the new admin page/
+      "/new_admin"
     when /the freshbooks invoice page for "([^\"]+)" on "([^\"]+)"/
       course = Course.find_by_name!($2)
       registration = course.registrations.find_by_email($1)
       registration.freshbooks_invoice_url
+    when 'the related topic page'
+      topic = Topic.last
+      topic_path(topic)
     when /the URL "([^\"]+)"/
       $1
     else
-      raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
-        "Now, go and add a mapping in #{__FILE__}"
+      begin
+        page_name =~ /^the (.*) page$/
+        path_components = $1.split(/\s+/)
+        self.send(path_components.push('path').join('_').to_sym)
+      rescue NoMethodError, ArgumentError
+        raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
+          "Now, go and add a mapping in #{__FILE__}"
+      end
     end
   end
 

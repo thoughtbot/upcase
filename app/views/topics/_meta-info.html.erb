@@ -1,0 +1,9 @@
+<section class='meta-info'>
+  <p class='related'>Popular Topics:</p>
+
+  <ul class='topics'>
+    <% Topic.limit(20).each do |topic| %>
+      <li><%= link_to topic.name_with_count, topic %></li>
+    <% end %>
+  </ul>
+</section>

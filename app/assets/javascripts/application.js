@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require_tree .
 
 $("#total a").click(function() {
   $(".coupon").show();
@@ -30,6 +31,8 @@ var slideUp = function(){
 };
 
 $(function(){
+  $('input#search').domsearch('ul#topics');
+
   // Slide down on page load
   slideDown();
 

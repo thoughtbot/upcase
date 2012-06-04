@@ -1,13 +1,14 @@
 class Product < ActiveRecord::Base
   has_many :purchases
   has_many :downloads
+  has_many :classifications, as: :classifiable
+  has_many :topics, through: :classifications
+
   validates_presence_of :name, :sku, :individual_price, :company_price, :fulfillment_method
   accepts_nested_attributes_for :downloads, :allow_destroy => true
   attr_accessor :wistia_hash, :video_sizes, :video_hash_id
   has_attached_file :product_image, {
     styles: { book: "230x300#", screencast: "153x100#" },
-    path: "product_images/:id/:style/:filename",
-    default_url: "product_images/:style/missing.jpg",
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
 
   def self.active
@@ -39,11 +40,8 @@ class Product < ActiveRecord::Base
   end
 
   def image_url
-    self.product_image.url(product_type_symbol)
-  end
-
-  def image_url_for_inline_style
-    product_image_file_name.nil? ? "/assets/#{image_url}" : image_url
+    raw_url = self.product_image.url(product_type_symbol)
+    product_image_file_name.nil? ? "/assets/#{raw_url}" : raw_url
   end
 
   private
