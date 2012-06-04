@@ -1,6 +1,6 @@
 Workshops::Application.routes.draw do
   get "pages/home"
-
+  mount RailsAdmin::Engine => '/new_admin', :as => 'rails_admin'
   root to: 'courses#index'
 
   resource :session, controller: 'sessions'

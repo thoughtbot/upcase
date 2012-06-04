@@ -1,9 +1,5 @@
-When /^I am on admin home page$/ do
-  visit "/admin"
-end
-
 Then /^I should see login form$/ do
-  page.should have_selector('form#new_user')
+  page.should have_selector('form', class: 'session')
 end
 
 Then /^I should see the admin interface$/ do
@@ -14,4 +10,3 @@ end
 Then /^I should see the home page$/ do
   current_path.should == "/"
 end
-
