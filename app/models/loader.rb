@@ -7,7 +7,13 @@ class Loader
         article.tumblr_url = post[:tumblr_url]
         article.save!
         post[:tags].each do |tag|
-          topic = Topic.find_or_create_by_name(tag.downcase)
+          puts tag.downcase
+          topic = Topic.find_by_slug(tag.downcase.parameterize)
+          if topic.nil?
+            topic = Topic.new
+            topic.name = tag.downcase
+            topic.save!
+          end
           article.topics << topic unless article.topics.include?(topic)
         end
       end

@@ -27,7 +27,11 @@ class Tumblr
   end
 
   def self.api_key_string
-    "api_key=#{ENV['TUMBLR_API_KEY']}"
+    if (key=ENV['TUMBLR_API_KEY']).nil?
+      raise "No Tumblr API Key is provided."
+    else
+      "api_key=#{key}"
+    end
   end
 
   def self.normalized_posts posts
