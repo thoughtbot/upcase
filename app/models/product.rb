@@ -1,6 +1,9 @@
 class Product < ActiveRecord::Base
   has_many :purchases
   has_many :downloads
+  has_many :classifications, as: :classifiable
+  has_many :topics, through: :classifications
+
   validates_presence_of :name, :sku, :individual_price, :company_price, :fulfillment_method
   accepts_nested_attributes_for :downloads, :allow_destroy => true
   attr_accessor :wistia_hash, :video_sizes, :video_hash_id

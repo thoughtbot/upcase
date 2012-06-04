@@ -2,7 +2,10 @@ require 'spec_helper'
 
 describe Topic do
   context 'associations' do
-    it { should have_and_belong_to_many(:articles) }
+    it { should have_many(:classifications) }
+    it { should have_many(:articles).through(:classifications) }
+    it { should have_many(:products).through(:classifications) }
+    it { should have_many(:courses).through(:classifications) }
   end
 
   context 'active_authorizer' do

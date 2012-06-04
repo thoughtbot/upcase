@@ -156,4 +156,9 @@ FactoryGirl.define do
     keywords 'clean, clear, precise'
     summary 'short yet descriptive'
   end
+
+  factory :classification do
+    topic
+    association :classifiable, factory: :article
+  end
 end

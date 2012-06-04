@@ -3,7 +3,8 @@ require 'spec_helper'
 describe Article do
   context 'associations' do
     it { should belong_to(:author) }
-    it { should have_and_belong_to_many(:topics) }
+    it { should have_many(:classifications) }
+    it { should have_many(:topics).through(:classifications) }
   end
 
   context 'active_authorizer' do

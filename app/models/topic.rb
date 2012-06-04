@@ -1,6 +1,9 @@
 class Topic < ActiveRecord::Base
   # Associations
-  has_and_belongs_to_many :articles, after_add: :increment_count, after_remove: :decrement_count
+  has_many :classifications
+  has_many :articles, through: :classifications, source: :classifiable, source_type: 'Article'
+  has_many :products, through: :classifications, source: :classifiable, source_type: 'Product'
+  has_many :courses, through: :classifications, source: :classifiable, source_type: 'Course'
   # Validations
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true
@@ -15,11 +18,6 @@ class Topic < ActiveRecord::Base
 
   def to_param
     slug
-  end
-
-  def increment_count article
-    self.count = self.articles.count
-    self.save
   end
 
   def name_with_count
