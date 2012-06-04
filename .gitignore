@@ -15,7 +15,4 @@ eyrc
 .sass-cache/*
 *.rdb
 .env
-<<<<<<< HEAD
 bin
-=======
->>>>>>> 1535bdc9ae733e46124bab0712160c679b210ee6
