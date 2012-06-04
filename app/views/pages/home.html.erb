@@ -8,7 +8,7 @@
 <section id="products">
   <section id="books">
     <% @books.each do |product| %>
-      <%= link_to product_path(product), class: product.product_type, style: "background:url(#{product.image_url_for_inline_style})" do %>
+      <%= link_to product_path(product), class: product.product_type, style: "background:url(#{product.image_url})" do %>
         <h2><%= product.name %></h2>
         <p><%= product.short_description %></p>
       <% end %>
