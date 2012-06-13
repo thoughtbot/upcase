@@ -3,19 +3,19 @@
     function checkReader() {
       var element = $(this);
       if(element.val() != "") {
-        var url = "https://github.com/api/v2/json/user/show/" + element.val();
+        var url = "https://api.github.com/users/" + element.val();
         var req = $.ajax({
           url : url,
           dataType : "jsonp",
-          timeout : 1000
-        });
-        req.success(function() {
-          element.parent("li").removeClass("error");
-        });
-        req.error(function() {
-          element.parent("li").addClass("error");
-          element.focus();
-          return false;
+          success : function(response) {
+            console.log(response.data.message);
+            if(response.data.message == "Not Found") {
+              element.parent("li").addClass("error");
+              element.focus();
+            } else {
+              element.parent("li").removeClass("error");
+            }
+          }
         });
       }
     }
