@@ -15,6 +15,10 @@ class Product < ActiveRecord::Base
     where(active: true)
   end
 
+  def self.ordered
+    order("name asc")
+  end
+
   def to_param
     "#{id}-#{name.parameterize}"
   end
