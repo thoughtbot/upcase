@@ -1,13 +1,10 @@
 footer#main-footer {
-  @extend .wrapper;
   @extend .clearfix;
   margin: 0 auto;
   opacity: .5;
-  padding-top: $lh*4;
-  padding-bottom: 40px;
-  width: 995px;
-
+  padding-top: $lh * 4;
   @include transition(opacity .5s);
+  width: $app-width;
 
   &:hover {
     opacity: 1;
@@ -15,13 +12,17 @@ footer#main-footer {
 
   h3 {
     color: #545454;
-    font-family: $sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1em;
+    margin-bottom: 1em;
+    text-rendering: optimizeLegibility;
   }
 
   a {
     color: #7a7a7a;
     text-decoration: none;
-    
+
     &:link {
       color: #7a7a7a;
     }
@@ -33,53 +34,51 @@ footer#main-footer {
 
   nav {
     @extend .clearfix;
+
     section {
       float: left;
-      font: normal 14px $serif;
-      margin-right: $gutter;
-      width: grid-width(2);
+      margin-right: flex-gutter();
+      width: flex-grid(2);
 
-      &#thoughtbot-footer {
-        width: grid-width(4);
-
-        ul {
-          li {
-            float: left;
-            margin-right: $gutter;
-            width: grid-width(2);
-
-            &:nth-child(2n) {
-              margin-right: 0;
-            }
-          }
-        }
-      }
-
-      &#products {
-        li {
-          a {
-            @extend .external;
-          }
-        }
+      &#current-workshops-footer {
+        width: flex-grid(4);
       }
 
       &#blog-footer {
-        width: grid-width(4);
-      }
-
-      &:last-child {
+        width: flex-grid(4);
         margin-right: 0;
       }
 
       ul {
         list-style: none;
+        margin-bottom: $lh;
+
+        li {
+          display: block;
+          margin-bottom: $lh * .5;
+
+          a {
+            font-family: $serif;
+            font-size: 16px;
+            line-height: 24px;
+          }
+        }
       }
     }
   }
 
   p#copyright {
     color: #7a7a7a;
-    font: normal 14px $serif;
-    margin-top: $lh*2; /*line-height to maintain baseline grid*/
+    display: block;
+    font-family: $serif;
+    font-size: 16px;
+    line-height: $lh;
+    margin-bottom: $lh;
+    margin-top: $lh * 2; /*line-height to maintain baseline grid*/
+    text-rendering: optimizeSpeed;
+
+    em {
+      font-style: italic;
+    }
   }
 }

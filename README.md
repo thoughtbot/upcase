@@ -5,32 +5,22 @@ Workshops is a Rails 3.0 app running on Ruby 1.9.2 and deployed to Heroku. It
 has an RSpec and Cucumber test suite which should be run before committing to
 the master branch.
 
-Laptop setup
-------------
+Development
+-----------
 
 Getting the code:
 
     git clone git@github.com:thoughtbot/workshops.git
 
-Setting up Postgres:
+Requirements:
 
-Follow [this tutorial](https://willj.net/2011/05/31/setting-up-postgresql-for-ruby-on-rails-development-on-os-x/)
+* Postgres
+* Redis
 
-The app depends on Redis (used with the Split gem for A/B testing):
-
-    brew install redis
-    redis-server /usr/local/etc/redis.conf
-
-Setting up Ruby:
-
-    rvm install 1.9.2-p180
-    rvm use 1.9.2-p180 --default
-    gem install bundler git_remote_branch heroku taps
-
-App:
+Getting up and running:
 
     cd workshops
-    bundle install
+    bundle install --binstubs
     rake db:create:all
     rake db:migrate
 
@@ -38,28 +28,20 @@ Development data:
 
     rake dev:prime
 
-Development process
--------------------
+Fetching tumblr posts:
 
-    grb create feature-branch
-    rake
+1. Create `.env` file with TUMBLR_API_KEY. 
+   This file should include all environment variables like TUMBLR_API_KEY, which is required to retrieve Tumblr blog posts. You can use [Heroku config](https://github.com/ddollar/heroku-config) to get `ENV` variables from Heroku:
 
-This creates a new branch for your feature. Name it something relevant. Run the tests to make sure everything's passing. Then, implement the feature.
+    heroku config:pull --app workshops-staging-cedar
 
-    rake
-    git add -A
-    git commit -m "my awesome feature"
-    git push origin feature-branch
+2. Use [foreman](http://ddollar.github.com/foreman/) to run the rake task locally:
 
-Open up the Github repo, change into your feature-branch branch. Press the "Pull request" button. It should automatically choose the commits that are different between master and your feature-branch. Create a pull request and share the link in Campfire with the team. When someone else gives you the thumbs-up, you can merge into master:
+    foreman run rake fetch:tumblr:all
 
-    git up
-    git mm
-    git push origin master
+You can also fetch only the latest articles with:
 
-(Note: these commands won't work without adding the appropriate aliases to your .gitconfig file as seen in the "Working Faster" section below)
-
-For more details and screenshots of the feature branch code review process, read [this blog post](http://robots.thoughtbot.com/post/2831837714/feature-branch-code-reviews).
+    foreman run rake fetch:tumblr:recent
 
 Staging and production environments
 -----------------------------------
@@ -128,19 +110,6 @@ Then at the terminal, do this:
     exit
 
 Now you can access http://workshops.thoughtbot.com/admin
-
-Working faster
---------------
-
-For rebasing and maintaining a clean history, edit your ~/.gitconfig to include these aliases:
-
-    [alias]
-      up = !git fetch origin && git rebase origin/master
-      mm = !test `git rev-parse master` = $(git merge-base HEAD master) && git checkout master && git merge HEAD@{1} || echo "Non-fastforward"
-
-For cheap and easy branches:
-
-    gem install git_remote_branch
 
 Acceptance and invoices
 -----------------------

@@ -11,6 +11,7 @@ if RUBY_VERSION =~ /1.8/
 end
 
 require 'email_spec/cucumber'
+require 'webmock/cucumber'
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd

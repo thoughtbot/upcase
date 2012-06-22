@@ -1,86 +1,79 @@
-<header class="primary">
-  <hgroup>
-    <h1 id="product_tagline">Products tagline</h1>
-    <h2 id="product_sub_tagline">This can be a longer sub tagline</h2>
-  </hgroup>
-</header>
+<form class="learn-search">
+  <div class="search-bar">
+    <input type="text" placeholder="What do you want to learn?" />
+    <a href="#" class="search"><img src="/assets/icons/search.png" /></a>
+    <a href="#" class="clear-search"><img src="/assets/icons/clear_search.png" /></a>
+  </div>
 
-<section id="products">
-  <section id="books">
-    <% @books.each do |product| %>
-      <%= link_to product_path(product), class: product.product_type, style: "background:url(#{product.image_url_for_inline_style})" do %>
-        <h2><%= product.name %></h2>
-        <p><%= product.short_description %></p>
-      <% end %>
-    <% end %>
+  <section class="popular">
+  <!-- <h3>Try these popular topics</h3> -->
+    <ul>
+      <li><a href="#">ruby</a></li>
+      <li><a href="#">rails</a></li>
+      <li><a href="#">design</a></li>
+      <li><a href="#">open source</a></li>
+      <li><a href="#">testing</a></li>
+      <li><a href="#">ruby on rails</a></li>
+      <li><a href="#">how to</a></li>
+      <li><a href="#">hoptoad</a></li>
+      <li><a href="#">shoulda</a></li>
+      <li><a href="#">paperclip</a></li>
+      <li><a href="#">vim</a></li>
+      <li><a href="#">this week in open source</a></li>
+      <li><a href="#">boston</a></li>
+      <li><a href="#">clearance</a></li>
+      <li><a href="#">development</a></li>
+      <li><a href="#">web design</a></li>
+      <li><a href="#">javascript</a></li>
+      <li><a href="#">tdd</a></li>
+      <li><a href="#">github</a></li>
+    </ul>
   </section>
-  <section id="screencasts">
-    <% @screencasts.each do |product| %>
-      <%= link_to product_path(product), class: product.product_type do %>
-        <div class="screencast_image">
-        <%= image_tag product.image_url, class: "thumbnail"%>
-        <%= image_tag "icons/Play32.png", class: "play" %>
-        </div>
-        <h2><%= product.name %></h2>
-        <p><%= product.short_description %></p>
-      <% end %>
-    <% end %>
-  </section>
-</section>
+</form>
 
-<section id="workshops_wrapper">
-  <header class="secondary">
-    <h1>Get better, faster in our small, hands-on workshops</h1>
-  </header>
-
-  <section id="workshops">
-    <% if @audiences.empty? %>
-      <p id="no-courses">No courses are running at this time.</p>
-    <% else %>
-      <ul class="courses">
-        <% @audiences.each do |audience| %>
-          <% if audience.courses.only_public.any? %>
-            <%= render audience.courses.only_public %>
+<section id="results-container">
+  <section id="results">
+    <ul>
+      <% @books.each_with_index do |product, index| %>
+        <%= content_tag_for :li, product, class: "books" do %>
+          <% if index == 0 %>
+            <h2>Books</h2>
+          <% end %>
+          <%= link_to product_path(product) do %>
+            <h3><%= product.name %></h3>
+            <p><%= product.short_description %></p>
           <% end %>
         <% end %>
-      </ul>
-    <% end %>
+      <% end %>
+      <% @screencasts.each_with_index do |product, index| %>
+        <%= content_tag_for :li, product, class: "webcasts" do %>
+          <% if index == 0 %>
+            <h2>Webcasts</h2>
+          <% end %>
+          <%= link_to product_path(product) do %>
+            <h3><%= product.name %></h3>
+            <p><%= product.short_description %></p>
+          <% end %>
+        <% end %>
+      <% end %>
+      <% @courses.each_with_index do |course, index| %>
+        <%= content_tag_for :li, course, class: "workshops" do %>
+          <% if index == 0 %>
+            <h2>Workshops</h2>
+          <% end %>
+          <%= link_to course_path(course) do %>
+            <h3><%= course.name %></h3>
+            <p><%= course.short_description %></p>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ul>
   </section>
-
-  <section class="advantages_wrapper">
-    <section class="advantages">
-      <ul>
-        <li>
-          <h3>Real life skills</h3>
-          <p>Our instructors build sites every day using the technology and skills we teach in our workshops. We focus on the things you need to know when doing real work.</p>
-        </li>
-        <li>
-          <h3>Human touch</h3>
-          <p>We keep our workshops small, so there’s always someone ready to answer your questions.</p>
-        </li>
-        <li>
-          <h3>Satisfaction guaranteed</h3>
-          <p>If you’re not happy with a workshop you took, just let us know and we’ll refund your money. It’s as simple as that.</p>
-        </li>
-      </ul>
-    </section>
-  </section>
-  <img class="workshops-background" src="/images/workshops_blurry.jpg" />
 </section>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-
-<script type="text/javascript">
-  function wrap_transition_word(word) {
-    $('ul.courses h3:contains('+word+')').each(function() {
-      $(this).html(function() {
-        return $(this).html().replace(word, '<em>'+word+'</em>');
-      });
-    });
-  }
-
-  wrap_transition_word('for');
-  wrap_transition_word('and');
-  wrap_transition_word('to');
-</script>
-
+<section class="additional-results">
+  <ul>
+    <%= render @articles %>
+  </ul>
+  <a href="#" class="more-button">Load more results</a>
+</section>

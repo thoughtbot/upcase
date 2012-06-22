@@ -1,35 +1,73 @@
 <footer id="main-footer">
   <nav>
-    <section id="workshops-footer">
-      <h3>Workshops</h3>
+    <section id="thoughtbot-footer">
+      <h3><a href="#">Our people</a></h3>
       <ul>
-        <li><a href="/pages/directions">Directions</a></li>
-        <li><a href="mailto:workshops@thoughtbot.com">Contact</a></li>
+        <li><a href="http://thoughtbot.com/about">Team</a></li>
+        <li><a href="http://thoughtbot.com/jobs">Jobs</a></li>
+        <li><a href="http://apprentice.io">apprentice.io</a></li>
       </ul>
     </section>
 
-    <section id="thoughtbot-footer">
-      <h3>thoughtbot</h3>
+    <section id="footer-products">
+      <h3><a href="#">Our way</a></h3>
       <ul>
-        <li><a href="http://thoughtbot.com/">Home</a></li>
-        <li><a href="http://thoughtbot.com/jobs">Jobs</a></li>
-        <li><a href="http://thoughtbot.com/community">Community</a></li>
-        <li><a href="http://thoughtbot.com/about">About</a></li>
         <li><a href="http://playbook.thoughtbot.com">Playbook</a></li>
         <li><a href="https://www.apptrajectory.com">Trajectory</a></li>
+        <li><a href="http://thoughtbot.com/community">Community</a></li>
       </ul>
-      </section>
+    </section>
+
+    <section id="current-workshops-footer">
+      <h3><a href="http://workshops.thoughtbot.com/">Our workshops</a></h3>
+      <ul></ul>
+    </section>
 
     <section id="blog-footer">
-      <h3>Blog</h3>
-      <ul>
-        <li><a href="http://robots.thoughtbot.com">Giant Robots Smashing Into<br/>Other Giant Robots</a></li>
-      </ul>
+      <h3><a href="http://robots.thoughtbot.com">Our blog</a></h3>
+      <ul></ul>
     </section>
   </nav>
 
-    <p id="copyright">&copy; 2012 thoughtbot, inc. The <em>design of a robot</em> and <em>thoughtbot</em> are trademarks of thoughtbot,&nbsp;inc.
-      <%= render partial: 'shared/admin_sign_out' %>
-    </p>
+  <p id="copyright">© 2012 thoughtbot, inc. The <em>design of a robot</em> and <em>thoughtbot</em> are registered trademarks of thoughtbot,&nbsp;inc.</p>
+  <%= render partial: 'shared/admin_sign_out' %>
 </footer>
 
+<% content_for :javascript do %>
+<script type="text/javascript">
+  function workshops(resp) {
+    var courses = resp;
+    $('#current-workshops .loading').replaceWith('<ul/>');
+    $('#current-workshops-footer .loading').replaceWith('<ul/>');
+    $ul = $('#current-workshops ul');
+    $footer_ul = $('#current-workshops-footer ul');
+    for (var i=0; i<courses.length; i++) {
+      var c = courses[i]['course'];
+      var name = c['name'] || null;
+
+      if (name) {
+        $ul.append('<li><a href="'+c['url']+'">'+name+'</a></li>');
+
+        if (i<3) {
+          $footer_ul.append('<li><a href="'+c['url']+'">'+name+'</a></li>');
+        }
+      }
+    }
+  }
+</script>
+<script src="http://workshops.thoughtbot.com/courses.json?callback=workshops" type="text/javascript"></script>
+<script type="text/javascript">
+  function tumblr(resp) {
+    var posts = resp.posts;
+    $('#blog-footer .loading').replaceWith('<ul/>');
+    $ul = $('#blog-footer ul');
+    for (var i=0; i<3; i++) {
+      var p = posts[i];
+      var title = p['regular-title'] || p['link-text'] || null;
+      if (title)
+        $ul.append('<li><a href="'+p['url']+'">'+title+'</a></li>');
+    }
+  }
+</script>
+<script src="http://robots.thoughtbot.com/api/read/json?callback=tumblr&amp;num=6" type="text/javascript"></script>
+<% end %>

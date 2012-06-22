@@ -2,7 +2,7 @@ header#main-header {
   @extend .wrapper;
   @extend .clearfix;
   margin: 0 auto;
-  width: 995px;
+  width: $app-width;
 
   border-bottom: 1px solid #DCDCDC;
   padding-bottom: 24px;

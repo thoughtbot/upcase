@@ -6,12 +6,13 @@ class Course < ActiveRecord::Base
   has_many :questions, order: "created_at asc"
   has_many :follow_ups
   has_many :registrations, through: :sections
+  has_many :classifications, as: :classifiable
+  has_many :topics, through: :classifications
+
   accepts_nested_attributes_for :questions, reject_if: :all_blank
   accepts_nested_attributes_for :follow_ups, reject_if: :all_blank
   has_attached_file :course_image, {
     styles: { course: "313x220#" },
-    path: "course_images/:id/:style/:filename",
-    default_url: "course_images/:style/missing.jpg",
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
 
   acts_as_list
@@ -53,10 +54,7 @@ class Course < ActiveRecord::Base
   end
 
   def image_url
-    course_image.url(:course)
-  end
-
-  def image_url_for_inline_style
-    course_image_file_name.nil? ? "/assets/#{image_url}" : image_url
+    raw_url = course_image.url(:course)
+    course_image_file_name.nil? ? "/assets/#{raw_url}" : raw_url
   end
 end

@@ -2,28 +2,33 @@
   <section id="homepage-top">
     <h1><%= @product.name %></h1>
 
-    <section id="purchase-buttons">
-      <div>
-        <%= link_to new_product_purchase_path(@product, variant: :individual), id: "#{@product.sku}-purchase-individual" do %>
-          Purchase for Yourself <%= number_to_currency @product.individual_price, precision: 0 %>
-        <% end %>
-        <p>Single viewer</p>
-      </div>
-      <div>
-        <%= link_to new_product_purchase_path(@product, variant: :company), id: "#{@product.sku}-purchase-company" do %>
-          Purchase for Your Company <%= number_to_currency @product.company_price, precision: 0 %>
-        <% end %>
-        <p>Unlimited sharing within your company</p>
-      </div>
-    </section>
-
     <section id="product-info">
       <h2><%= @product.tagline %></h2>
 
       <%== @product.description %>
     </section>
 
-    <section id="purchasing-details">
+    <section id="workshop-details">
+      <section id="license">
+        <div>
+          <h2>Single License <span><%= number_to_currency @product.individual_price, precision: 0 %></span></h2>
+          <div class="license">
+             <%= link_to new_product_purchase_path(@product, variant: :individual), class: 'license-button', id: "#{@product.sku}-purchase-individual" do %>
+               Purchase for Yourself
+             <% end %>
+          </div>
+
+        </div>
+        <div>
+          <h2>Group License <span><%= number_to_currency @product.company_price, precision: 0 %></span></h2>
+          <div class="license">
+             <%= link_to new_product_purchase_path(@product, variant: :company), class: 'license-button', id: "#{@product.sku}-purchase-company" do %>
+               Purchase for Your Company
+             <% end %>
+          </div>
+        </div>
+      </section>
+
       <section id="terms">
         <ul>
           <dt><p>What if I'm not happy?</p></dt>

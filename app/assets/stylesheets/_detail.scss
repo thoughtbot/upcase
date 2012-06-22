@@ -1,0 +1,426 @@
+body.high_voltage-pages,
+body.sections-show,
+body.courses-show,
+body.products-show,
+body.purchases{
+  #head-wrapper {
+    #homepage-top {
+      @extend .clearfix;
+      padding: 72px 0 0 0;
+
+      em {
+        font-style: italic;
+      }
+
+      > h1 {
+        font-family: $sans-serif;
+        font-size: 72px;
+        font-weight: 900;
+        line-height: 72px;
+        margin-bottom: 72px;
+      }
+
+      #product-info {
+        float: left;
+        margin: 0 flex-gutter() 0 0;
+        padding: 20px 0 32px 0px;
+        width: flex-grid(8);
+
+        h2 {
+          color: #333;
+          font: 300 36px/40px $sans-serif;
+          margin: 0 0 20px 0;
+        }
+
+        p {
+          color: #444;
+          font: 400 15px/24px $sans-serif;
+          margin: 0 0 8px 0;
+        }
+
+        ul {
+          margin: 12px 0 12px 0;
+
+          li {
+            color: #444;
+            font: 400 15px/24px $sans-serif;
+            list-style: disc;
+            margin: 0 0 4px 0;
+
+            ul {
+              margin: 6px 0 12px 15px;
+            }
+          }
+        }
+
+        hr {
+          margin: 20px 0 20px 0;
+        }
+      }
+
+      #course-info, #product-info, #workshop-details, #purchasing-details {
+        dt {
+          p {
+            color: #000;
+            display: block;
+            font-family: $sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+          }
+        }
+
+        dd {
+          color: #333;
+          font: 400 14px/20px $sans-serif;
+          margin: 0 0 16px 0;
+
+          p {
+            margin: 0 0 8px 0;
+          }
+
+          & + p {
+            margin: 0 0 16px;
+          }
+        }
+      }
+
+      #course-info, #product-info {
+        float: left;
+        margin: 0 flex-gutter() 0 0;
+        padding: 0 0 32px 0px;
+        width: flex-grid(8);
+
+        h2 {
+          color: #333;
+          font: 300 36px/40px $sans-serif;
+          margin: 0 0 24px 0;
+        }
+        h3 {
+          margin-bottom: 0.5em !important;
+        }
+
+        p {
+          color: #555;
+          font: 16px $serif;
+          font-weight: 400;
+          line-height: 24px;
+          margin-bottom: 24px;
+        }
+
+        ul {
+          margin: 12px 0 12px 0;
+
+          li {
+            color: #444;
+            font: 400 15px/24px $sans-serif;
+            list-style: disc;
+            margin: 0 0 4px 0;
+
+            ul {
+              margin: 6px 0 12px 15px;
+            }
+          }
+        }
+
+        q {
+          color: #444;
+          display: block;
+          font: 400 15px/24px $serif;
+          font-style: italic;
+          margin: 24px 48px 0 48px;
+          position: relative;
+
+          &:before {
+           color: #aaa;
+           content: "\201C";
+           font: 300 40px $sans-serif;
+           left: -16px;
+           position: absolute;
+           top: -4px;
+          }
+        }
+
+        p.source {
+          color: #555;
+          font: 700 13px $sans-serif;
+          margin: 2px 0 24px 48px;
+
+          a {
+            color: #333;
+            margin: 0 0 0 1px;
+            text-decoration: none;
+          }
+        }
+      }
+
+      #workshop-details, #purchasing-details {
+        float: left;
+        margin: -6px 0 20px 0;
+        width: flex-grid(4);
+
+        h3 {
+          color: #000;
+          font: bold 18px $sans-serif;
+          margin: 0 0 flex-gutter() 0;
+        }
+
+        p {
+          color: #555;
+          font: 400 16px/24px $serif;
+
+          &.notice {
+            color: #333;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+          }
+        }
+
+        #terms {
+          opacity: .5;
+          @include transition;
+          padding-top: 4px;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+
+        .section-location, #license {
+          h2 {
+            color: #2b2b2b;
+            font-family: $sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 48px;
+            margin-bottom: 12px;
+            margin-left: -2px;
+
+            span {
+              font-weight: 200;
+              color: #999;
+            }
+          }
+
+          .when, .address {
+            background: #efefef;
+            @include box-sizing(border-box);
+            float: left;
+            margin-bottom: flex-gutter();
+            min-height: 100px;
+            padding: 1em;
+            width: flex-grid(6);
+
+            &.when {
+              margin-right: flex-gutter();
+            }
+
+            a {
+              color: #555;
+              text-decoration: none;
+            }
+          }
+
+          .cost {
+            font-family: $sans-serif;
+            margin-bottom: .5em;
+          }
+
+          #register, .license {
+            margin-bottom: flex-gutter() * 2;
+
+            #register-button, .license-button {
+              @include box-sizing(border-box);
+              @include button;
+              clear: both;
+              font-size: 18px;
+              font-weight: 500;
+              margin: 0;
+              padding: 24px 0;
+              text-decoration: none;
+              width: 100%;
+            }
+          }
+
+          .license {
+            padding-bottom: 24px;
+          }
+        }
+
+        .section-location {
+          margin-bottom: 24px;
+        }
+
+        .travel {
+          margin-top: 48px;
+        }
+
+        .travel a {
+          display: block;
+          font-family: $sans-serif;
+          font-size: 18px;
+          font-weight: 600;
+          text-decoration: none;
+
+          &:hover {
+            color: #DB1926;
+          }
+        }
+
+        .teachers {
+          img {
+            float: left;
+            margin-top: 6px;
+          }
+
+          li {
+            margin-bottom: 1em;
+          }
+
+          h4 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-left: 104px;
+            margin-bottom: 6px;
+
+            span {
+              font-weight: 200;
+              color: #999;
+            }
+          }
+
+          .bio {
+            height: 45px;
+            margin-left: 104px; // picture width + picture margin
+            overflow: hidden;
+          }
+
+          .expand-bio, .minimize-bio {
+            margin-left: 104px;
+
+            a {
+              text-decoration: none;
+            }
+
+            a:hover {
+              color: #DB1926;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #additional-information {
+    @extend .clearfix;
+    background: rgba(228, 228, 228, 0.7) url("/images/shadowing.png") center 0 no-repeat;
+    border-bottom: 1px solid #DCDCDC;
+    border-top: 1px solid #DCDCDC;
+    margin: 14px 0 0 0;
+    padding: 47px 20px 47px;
+
+    #additional-information-wrapper {
+      margin: 0 auto;
+      width: $app-width;
+
+      h4 {
+        color: #000;
+        font-family: $sans-serif;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 24px;
+        margin: 0 0 24px 0;
+        text-rendering: optimizeLegibility;
+      }
+
+      h2 {
+        color: #2b2b2b;
+        font-size: 36px;
+        font-weight: 200;
+        line-height: 48px;
+        margin-bottom: 48px;
+        text-shadow: 0 1px 0 #fcfcfc;
+      }
+
+      #notify-me form {
+        background: #f9f9f9;
+        border-top: 5px solid #292929;
+        @include box-sizing(border-box);
+        margin-bottom: $lh;
+        margin-right: flex-gutter();
+        padding: 24px;
+
+        form {
+          margin: 0;
+        }
+
+        label {
+          display: block;
+          font: 400 16px $sans-serif;
+          margin: 0 0 12px 0;
+        }
+
+        input[type="text"] {
+          border: 1px solid #cacaca;
+          @include border-radius(4px);
+          @include box-sizing(border-box);
+          font-size: 14px;
+          margin: 0 0 12px 0;
+          padding: 10px 4px;
+          width: 50%;
+        }
+
+        input[type="submit"] {
+          @include button;
+          display: inline;
+          margin-right: 10px;
+          padding: 8px 0;
+          width: 80px;
+        }
+
+        p.group-training {
+          color: #666;
+          display: inline;
+          font-size: 14px;
+          margin: 0;
+        }
+      }
+
+      #terms {
+        margin-top: 48px;
+
+        h4.terms {
+          color: #555;
+          font: 600 16px $sans-serif;
+          margin-bottom: 12px;
+        }
+
+        ul {
+          margin: 12px 0 0 0;
+        }
+
+        li, p {
+          color: #666;
+          font: 400 14px/18px $sans-serif;
+          margin-bottom: 6px;
+        }
+
+        li ul {
+          margin-left: 24px;
+        }
+
+        dt p {
+          font-weight: bold;
+          line-height: 18px;
+          margin: 0;
+        }
+
+        dd {
+          margin: 0 0 12px 0;
+          line-height: 18px;
+        }
+      }
+    }
+  }
+}

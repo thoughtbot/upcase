@@ -1,296 +1,313 @@
 @mixin full-width {
   @extend .clearfix;
   margin: 0 auto;
-  width: 995px;
+  width: $app-width;
 }
 
-.pages-home{
-  #head-wrapper {
-    #homepage-top {
-      @extend .clearfix;
-      background: url("/images/shadowing.png") center top no-repeat;
-      margin: 0 auto;
-      padding: 1px 0 40px 0;
-      width: 995px;
-
-      header {
-        @extend .clearfix;
-
-        h1 {
-          color: #2b2b2b;
-          font: 900 60px/60px $sans-serif;
-          margin: 40px 0 20px;
-        }
-      }
-    }
-  }
-
-  header.primary, header.secondary {
-    @include full-width;
-    padding: 40px 0;
-
-    h1 {
-      color: #2b2b2b;
-      font: 900 60px/60px $sans-serif;
-    }
-  }
-
-  header.primary {
+body.pages-home {
+  .learn-search {
     background: url("/images/shadowing.png") center top no-repeat;
-  }
-
-  #products {
     @include full-width;
+    padding-bottom: 48px;
 
-    #books, #screencasts {
-      float: left;
-      overflow: auto;
-      width: grid-width(6);
-    }
+    .search-bar {
+      margin: auto;
+      padding-top: 53px;
+      position: relative;
+      width: flex-grid(12);
 
-    #books {
-      margin-bottom: 40px;
-      margin-right: $gw-gutter;
+      &::before {
+        content: '';
+        height: 109px;
+        left: 51px;
+        @include linear-gradient(left, #fff, rgba(255,255,255,0), $fallback: transparent);
+        position: absolute;
+        top: 54px;
+        width: 30px;
+      }
 
-      .book {
-        background: #ccc;
-        border-left: 5px solid #666;
+      &::after {
+        content: '';
+        height: 109px;
+        @include linear-gradient(right, #fff, rgba(255,255,255,0), $fallback: transparent);
+        position: absolute;
+        right: 101px;
+        top: 54px;
+        width: 30px;
+      }
+
+      input[type='text'] {
+        border: 1px solid #cacaca;
+        @include border-radius(4px);
         @include box-sizing(border-box);
-        color: #000;
-        float: left;
-        height: 300px;
-        margin-right: $gw-gutter;
-        padding: 3.2em 3.2em 2em 1.6em;
-        text-decoration: none;
-        width: grid-width(3);
+        font-family: $sans-serif;
+        font-size: 72px;
+        font-weight: 900;
+        margin: 0;
+        padding: 12px 100px 12px 50px;
+        text-align: center;
+        width: 100%;
 
-        h2 {
-          font-size: 115%;
-          line-height: 1.2em;
-          margin-bottom: 1em;
-          font-weight: bold;
-          text-transform: uppercase;
+        &:focus {
+          border: 1px solid $red;
+          outline: none;
         }
 
-        p {
-          font-size: 115%;
+        &:focus, &:hover {
+          & + .search {
+            opacity: .75;
+          }
+        }
+      }
+
+      a {
+        display: block;
+        position: absolute;
+        @include transition;
+
+        &.clear-search {
+          background: #ccc;
+          @include border-radius(100px);
+          display: none;
+          opacity: .5;
+          padding: .75em;
+          right: 24px;
+          top: 82px;
+
+          &:hover {
+            opacity: .75;
+          }
         }
 
-        &:nth-child(2n) {
-          margin-right: 0;
+        &.search {
+          cursor: default;
+          opacity: .5;
+          right: 28px;
+          top: 86px;
+
+          &:hover {
+            opacity: .75;
+          }
         }
 
-        &:hover {
-          background: #999;
+        img {
+          display: block;
         }
       }
     }
 
-    #screencasts {
-      overflow: visible;
+    .popular {
+      clear: both;
+      margin: 0 auto;
+      overflow: auto;
+      padding-top: 24px;
+      width: flex-grid(8);
 
-      .screencast {
-        color: #000;
-        float: left;
-        margin: 0 $gw-gutter/2 $gw-gutter/2 0;
-        position: relative;
-        text-decoration: none;
-        width: grid-width(2) + $gw-gutter * .32;
+      h3 {
+        color: #555;
+        font-family: $sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 12px;
+        margin-top: 20px;
+        text-align: center;
+      }
 
-        .screencast_image{
-          height: 100px;
-        }
+      ul {
+        list-style-type: none;
+        text-align: center;
 
-        img.play, img.thumbnail{
-          position: absolute;
-        }
+        li {
+          display: inline-block;
 
-        img.play{
-          margin-left: 45px;
-          margin-top: 20px;
-        }
-        h2 {
-          font-size: 115%;
-          font-weight: normal;
-          line-height: 1.2em;
-        }
+          a {
+            color: #a9a9a9;
+            display: inline-block;
+            font-family: $sans-serif;
+            font-size: 20px;
+            margin-bottom: 0.8em;
+            margin-right: 1.4em;
+            text-decoration: none;
 
-        p {
-          display: none;
-        }
-
-        &:nth-child(3n) {
-          margin-right: 0;
-        }
-
-        &:hover {
-          h2 {
-            background: rgba(255,255,255,.85);
+            &:hover {
+              color: #DB1926;
+            }
           }
         }
       }
     }
   }
+}
 
-  #workshops_wrapper {
-    @include linear-gradient(white, rgba(255, 255, 255, 0) 20%);
-    background-color: transparent;
-    overflow: hidden;
-    position: relative;
+#results-container {
+  background: rgba(228, 228, 228, 0.7);
+  border-bottom: 1px solid gainsboro;
+  border-top: 1px solid gainsboro;
+  padding: 48px 0 12px 0;
 
-    .workshops-background {
-      min-width: 1600px;
-      opacity: .8;
-      position: absolute;
-      top: 0;
-      width: 100%;
-      z-index: -1;
-    }
-  }
-
-  #workshops {
+  #results {
     @include full-width;
-    margin-bottom: 35px;
 
-  h2 {
-    color: #444;
-    font: 700 14px $sans-serif;
-    margin: 0 0 4px 0;
-    text-transform: uppercase;
-  }
-
-  ul.courses {
     li {
-      background: url(/images/workshops_thumbs/designfordev.png) no-repeat #ccc;
       @include box-sizing(border-box);
-      display: table;
+      display: block;
       float: left;
-      margin: 0 $gw-gutter $gw-gutter 0;
+      margin-bottom: 36px;
+      margin-right: flex-gutter();
       position: relative;
-      width: grid-width(4);
+      width: flex-grid(4);
 
       &:nth-child(3n) {
         margin-right: 0;
-      }
 
-        a {
-          @include box-shadow(0 5px 30px rgba(0,0,0,.15));
-          display: table-cell;
-          height: 220px;
-          overflow: hidden;
-          text-decoration: none;
-          vertical-align: middle;
-
-          h3 {
-            background: rgba(0,0,0,.55);
-            color: #fff;
-            font: 400 28px/31px "proxima-nova-sc-osf-1", "proxima-nova-sc-osf-2";
-            letter-spacing: .08em;
-            padding: 1.25rem 3rem;
-            text-shadow: 0 1px 0 rgba(0,0,0,.8);
-            text-transform: lowercase;
-
-            em {
-              font-family: $serif;
-              font-size: 31px;
-              font-style: italic;
-              font-weight: 300;
-              letter-spacing: 0;
-              line-height: 0;
-              text-transform: lowercase;
-              -webkit-font-smoothing: antialiased;
-            }
-          }
-
-          p.date {
-            background: rgba(0,0,0,.8);
-            bottom: 0;
-            color: #fff;
-            display: none;
-            font-family: "proxima-nova-sc-osf-1", "proxima-nova-sc-osf-2";
-            font-size: 28px;
-            font-weight: 400;
-            left: 0;
-            line-height: 1em;
-            padding: 3rem 3rem 0 3rem;
-            text-transform: lowercase;
-
-            &:before {
-              content: 'next workshop';
-              display: block;
-              font-family: $serif;
-              font-size: 18px;
-              font-style: italic;
-              font-weight: 300;
-              line-height: 1em;
-              -webkit-font-smoothing: antialiased;
-            }
-          }
-
-          p.teaser {
-            background: rgba(0,0,0,.8);
-            color: #fff;
-            display: none;
-            font-size: 115%;
-            height: 100%;
-            line-height: 1.2em;
-            padding: 1.25rem 3rem;
-          }
-
-          &:hover {
-            @include box-shadow(0 5px 30px rgba(0,0,0,.5));
-            vertical-align: top;
-
-            h3 {
-              display: none;
-            }
-
-            p.date, p.teaser {
-              display: block;
-            }
-          }
+        & + li {
+          clear: left;
         }
       }
-    }
-  }
 
-  .advantages_wrapper {
-    width: 100%;
-    background: rgba(255,255,255,.6);
-    padding: 55px 0;
-  }
+      > a {
+        background: no-repeat -63px center #f9f9f9;
+        color: #555;
+        display: block;
+        min-height: 92px;
+        padding: 24px 24px 24px 74px;
+        text-decoration: none;
+      }
 
-  .advantages {
-    @include full-width;
+      h3 {
+        font-weight: 600;
+        line-height: 1.2em;
+        margin-bottom: .3em;
+      }
 
-    ul {
-      li {
+      h2 {
         color: #2b2b2b;
-        float: left;
-        font-size: 18px;
-        line-height: 1.35em;
-        margin-right: $gw-gutter;
-        text-shadow: 0 1px 0 rgba(255,255,255,.5);
-        width: grid-width(4);
-
-        h3 {
-          color: #2b2b2b;
-          font: 600 18px/20px "proxima-nova-sc-osf-1", "proxima-nova-sc-osf-2";
-          letter-spacing: .08em;
-          margin-bottom: .5em;
-          text-transform: lowercase;
-
-          &::before {
-            content: '\2713';
-            margin-left: -1.1em;
-            margin-right: .3em;
-          }
-        }
-
-        &:nth-child(3n) {
-          margin-right: 0;
-        }
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 48px;
+        margin-bottom: 10px;
+        margin-bottom: 48px;
+        position: absolute;
+        text-shadow: 0 1px 0 #fcfcfc;
+        text-transform: uppercase;
+        top: -36px;
       }
     }
+
+    .books {
+      h2, h3 {
+        color: #286d15;
+      }
+
+      a {
+        background-image: url('icons/Book.png');
+        border-top: 5px solid #286d15;
+      }
+    }
+
+    .webcasts {
+      h2, h3 {
+        color: #006b83;
+      }
+
+      a {
+        background-image: url('icons/webcasts.png');
+        border-top: 5px solid #006b83;
+      }
+    }
+
+    .workshops {
+      h2, h3 {
+        color: #6c1764;
+      }
+
+      a {
+        background-image: url('icons/gear.png');
+        border-top: 5px solid #6c1764;
+      }
+    }
+  }
+}
+
+.additional-results {
+  @include full-width;
+  margin-top: 42px;
+
+  ul {
+    overflow: auto;
+    position: relative;
+  }
+
+  .result {
+    padding-bottom: 24px;
+    margin: 0 auto;
+    overflow: auto;
+    padding-bottom: 36px;
+    position: relative;
+    width: flex-grid(12);
+
+    > a {
+      display: block;
+      overflow: hidden;
+      text-decoration: none;
+    }
+
+    &.thoughtbot {
+      h3 {
+        color: #AD141E;
+      }
+    }
+
+    h3 {
+      color: #555;
+      float: left;
+      font-weight: 600;
+      line-height: 1.2em;
+      margin: 0 flex-gutter() 0 flex-grid(1);
+      width: flex-grid(3);
+      text-align: right;
+    }
+
+    p.excerpt {
+      color: #555;
+      float: left;
+      margin: 0 flex-gutter() 0 0;
+      width: flex-grid(4);
+    }
+
+    p.results-date {
+      color: #999;
+      float: left;
+      font-size: 14px;
+      position: relative;
+      width: flex-grid(4);
+    }
+  }
+
+  .sourcename {
+    background-color: #555;
+    @include box-sizing(border-box);
+    color: #fff;
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    width: flex-grid(4);
+  }
+
+  .more-button {
+    @include button;
+    background: #dcdcdc;
+    border: 1px solid #c5c5c5;
+    @include box-shadow(inset 0 1px 0 #fff);
+    @include box-sizing(border-box);
+    clear: both;
+    margin: 18px auto 0 auto;
+    text-decoration: none;
+    text-shadow: none;
+    width: flex-grid(8);
   }
 }

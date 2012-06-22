@@ -4,11 +4,14 @@ $serif: skolar-1, skolar-2, serif;
 $red: #ad141e;
 $gray: #eee;
 
-$lh: 20px; /*line-height of all the type on the site*/
+$lh: 24px; /*line-height of all the type on the site*/
 $unit: 60px; /*one grid column*/
 $gutter: 25px; /*size of one gutter*/
-$gw-gutter: $gutter; // For Bourbon
-$gw-column: $unit;   // For Bourbon
+$fg-column: $unit;
+$fg-gutter: $gutter;
+$fg-max-columns: 12;
+
+$app-width: 1122px;
 
 @mixin button {
   background: $red;
