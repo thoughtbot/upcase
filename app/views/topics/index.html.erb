@@ -1,0 +1,14 @@
+<section id="head-wrapper">
+  <% provide :description, '' %>
+  <% provide :keywords, 'thoughtbot, boston, web development' %>
+
+  <section class="main text" id="homepage-top">
+    <h1 class='title'><a href='http://topics.thoughtbot.com'>thoughtbot topics</a></h1>
+    <p>Beard PBR ethnic, skateboard DIY single-origin coffee banksy vinyl keytar brooklyn authentic. Messenger bag vegan kale chips forage semiotics. Odd future messenger bag twee, cliche beard hoodie fixie high life. Vice etsy truffaut viral food truck VHS, irony mixtape gastropub semiotics hella thundercats jean shorts.</p>
+    <label><h2>Search topic</h2></label>
+    <input id="search" type="text_field">
+    <ul id="topics" class="topics" >
+      <%= render @topics %>
+    </ul>
+  </section>
+</section>

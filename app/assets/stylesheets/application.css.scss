@@ -5,13 +5,13 @@
 @import "header";
 @import "home";
 @import "old_home";
+@import "detail";
 @import "section";
 @import "pages";
 @import "registrations";
 @import "footer";
 @import "backbone-checkout";
 @import "forms";
-@import "products";
 
 body {
   background: #fcfcfc;
@@ -52,12 +52,11 @@ h5, h6 {
 }
 
 #container {
-  margin: 0 auto 100px;
-  width: 995px;
+  margin: 0 auto;
+  width: $app-width;
 }
 
 footer {
-  border-top: 1px solid #ddd;
   padding: 8px 0 0 0;
 
   p {

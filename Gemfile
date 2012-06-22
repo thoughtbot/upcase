@@ -8,7 +8,6 @@ gem "bourbon", "~> 1.4.0"
 gem "RedCloth", require: "redcloth"
 gem "will_paginate", git: "git://github.com/xspond/will_paginate.git", branch: "rails3-1"
 gem "formtastic", "~> 2.2.0"
-gem "nested_form", :git => "git://github.com/zben/nested_form.git"
 gem "nokogiri"
 gem "clearance", "~> 0.16.1"
 gem "paperclip"
@@ -34,13 +33,21 @@ gem "paypal-express", "~> 0.4.6", require: 'paypal'
 gem 'csv_rails'
 gem 'chameleon'
 gem "thin", "~> 1.3.1"
+gem "fastercsv"
+gem "rails_admin"
 
 # Fix the warning: regexp match /.../n against to UTF-8 string issue
 gem "escape_utils"
 
+group :development do
+  gem "heroku", "~> 2.26.3"
+  gem 'hirb'
+end
+
 group :development, :test do
   gem "rspec-rails", "~> 2.9.0"
   gem 'ruby-debug19', require: 'ruby-debug', platform: :ruby_19
+  gem 'foreman', '~> 0.46.0'
 end
 
 # Gems used only for assets and not required

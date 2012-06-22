@@ -45,25 +45,3 @@ Feature: Viewing Courses on the home page
     Then I do not see the home page section from "June 13, 2010" to "June 16, 2010"
     And I should see "Test-Driven Haskell"
     And I should see "Short Description"
-
-  Scenario: User can see books, screencasts and courses information
-    Given today is June 17, 2010
-    And the following course exists:
-      | name                | short_description |
-      | Test-Driven Haskell | Short Description |
-    And the following products exists:
-      | name            |  product_type          |
-      | Book 1          | book                   |
-      | Book 2          | book and example app   |
-      | Screencast 1    | screencast             |
-      | Screencast 2    | screencast             |
-      | Screencast 3    | screencast             |
-    When I go to the new home page
-    Then I should see element with id "product_tagline"
-    And I should see element with id "product_sub_tagline"
-    And I should see "Book 1"
-    And I should see "Book 2"
-    And I should see "Screencast 1"
-    And I should see "Screencast 2"
-    And I should see "Screencast 3"
-    And I should see "Test-Driven Haskell"

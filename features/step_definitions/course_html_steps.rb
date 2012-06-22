@@ -4,7 +4,12 @@ end
 
 Then 'I see the course named "$course_name"' do |course_name|
   course = Course.find_by_name!(course_name)
-  page.should have_css("##{dom_id(course)}")
+  page.should have_css("##{dom_id(course)}.workshops")
+end
+
+Then 'I should not see the course named "$course_name"' do |course_name|
+  course = Course.find_by_name!(course_name)
+  page.should_not have_css("##{dom_id(course)}.workshops")
 end
 
 When 'I fill in the required course fields' do

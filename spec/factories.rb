@@ -113,4 +113,30 @@ FactoryGirl.define do
     email "joe@example.com"
     variant "individual"
   end
+
+  factory :article do
+    author
+    title
+    tumblr_url
+    published_on Date.today
+    body_html 'article body'
+  end
+
+  factory :author do
+    tumblr_user_name
+  end
+
+  factory :topic do
+    name
+    slug
+
+    body_html 'body text of document'
+    keywords 'clean, clear, precise'
+    summary 'short yet descriptive'
+  end
+
+  factory :classification do
+    topic
+    association :classifiable, factory: :article
+  end
 end

@@ -6,22 +6,24 @@ form {
 
   fieldset {
     legend {
-      font: 600 18px $sans-serif;
+      font: 600 24px $sans-serif;
       padding: 24px 0 12px 0;
     }
 
     ol {
       li {
-        margin: 0 0 8px 0;
-        width: 466px;
+        font-size: 16px;
+        margin: 0 0 0 0;
 
         p.inline-hints {
           color: #666;
+          font-size: 16px;
         }
 
         p.inline-errors {
           color: $red;
           display: none;
+          font-size: 16px;
         }
 
         &.error {
@@ -41,15 +43,25 @@ form {
 
         label {
           display: block;
-          font: 400 14px $sans-serif;
+          font: 400 16px $sans-serif;
         }
 
         input[type="text"],
         input[type="password"],
         input[type="tel"],
+        textarea,
         input[type="email"] {
-          padding: 6px 4px;
+          border: 1px solid #999;
+          @include box-shadow( inset 0 1px 2px #aaa);
+          @include box-sizing(border-box);
+          font: 14px $sans-serif;
+          margin: 3px 0 0 0;
+          padding: .5em;
           width: 100%;
+
+          &:focus {
+            outline-color: $red;
+          }
         }
 
         &.commit {

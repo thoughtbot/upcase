@@ -159,7 +159,7 @@ body.courses-show {
 
   #products {
     float: right;
-    width: grid-width(4);
+    width: flex-grid(4);
 
     h2 {
       margin: 10px 0 0 25px;
@@ -170,7 +170,7 @@ body.courses-show {
       float: left;
       margin: 10px 0 0 25px;
       padding: 10px 0 0 0;
-      width: grid-width(4);
+      width: flex-grid(4);
 
       &.first, &.humans {
         border-top: 5px solid $red;

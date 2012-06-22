@@ -11,7 +11,7 @@ body.purchases {
 
   #container {
     background: url("/images/shadowing.png") center top no-repeat;
-    padding: 40px 0 0 0;
+    padding: 72px 0 0 0;
   }
 
   #form-container {
@@ -20,28 +20,45 @@ body.purchases {
 
   #form-column {
     float: left;
-    margin: 0 25px 0 0;
-    width: grid-width(6);
+    margin: 0 flex-gutter() 0 0;
+    width: flex-grid(8);
   }
 
   h1.course-title {
-    font: 400 32px $sans-serif;
-    margin: 0 0 12px 0;
+    color: #666;
+    font-family: $sans-serif;
+    font-size: 36px;
+    font-weight: 200;
+    line-height: 36px;
+    margin-bottom: 12px;
+
+    span {
+      color: #000;
+      font-weight: 700;
+    }
   }
 
   #total {
+    overflow: hidden;
+    margin-bottom: 12px;
+
     p.price {
-      display: inline-block;
-      font: 400 24px $sans-serif;
+      display: block;
+      float: left;
+      font: 700 36px/36px $sans-serif;
     }
 
     p.coupon-note {
-      display: inline-block;
-      margin: 0 0 0 8px;
+      display: block;
+      float: left;
 
       a {
         color: $red;
-        font: 700 16px $sans-serif;
+        display: block;
+        font: 400 16px/16px $sans-serif;
+        line-height: 2.25em;
+        margin-left: .5em;
+        text-decoration: none;
       }
     }
   }
@@ -54,6 +71,8 @@ body.purchases {
     fieldset {
       ol {
         li {
+          margin-bottom: flex-gutter();
+
           &.payment-errors {
             color: $red;
           }
@@ -75,53 +94,75 @@ body.purchases {
           &#registration_first_name_input,
           &#registration_city_input {
             float: left;
-            margin-right: 20px;
-            width: 223px;
-          }
-
-          &#purchase_city_input {
-            float: left;
-            margin-right: 20px;
-            width: 216px;
+            margin-right: flex-gutter();
+            width: flex-grid(6);
           }
 
           &#registration_last_name_input {
             float: left;
-            width: 203px;
+            width: flex-grid(6);
+          }
+
+          #registration_comments {
+            height: 100px;
+          }
+
+          &#purchase_city_input {
+            float: left;
+            margin-right: flex-gutter();
+            width: flex-grid(6);
           }
 
           &#registration_state_input,
           &#purchase_state_input {
             float: left;
-            margin-right: 20px;
-            width: 100px;
-          }
-
-          &#purchase_cvc_input {
-            float: left;
-            margin-right: 20px;
-            width: 100px;
-          }
-
-          &#purchase_country_input {
-            clear: left;
+            margin-right: flex-gutter();
+            width: flex-grid(3);
           }
 
           &#registration_zip_code_input,
           &#purchase_zip_code_input {
             float: left;
-            width: 110px;
+            width: flex-grid(3);
           }
 
-          #registration_comments {
-            width: 472px;
-            height: 100px;
+        }
+      }
+    }
+
+    #billing-information {
+      ol {
+        border: 1px solid #999;
+        @include border-radius(8px);
+        @include box-shadow(1px 1px 3px rgba(0,0,0,.2));
+        @include box-sizing(border-box);
+        height: 210px;
+        margin-bottom: flex-gutter();
+        padding: 1.5em;
+        width: 386px;
+
+        li {
+          &#purchase_expiration_input {
+            float: left;
+            margin-right: flex-gutter();
+            width: flex-grid(8);
+
+            input {
+              width: flex-grid(6);
+            }
+
+            input:first-child {
+              margin-right: flex-gutter();
+            }
           }
 
-          .card-expiry-month,
-          .card-expiry-year,
-          .card-cvc {
-            width: 80px;
+          &#purchase_cvc_input {
+            float: left;
+            width: flex-grid(4);
+          }
+
+          &#purchase_country_input {
+            clear: left;
           }
         }
       }
@@ -130,13 +171,15 @@ body.purchases {
 
   #form-sidebar {
     float: left;
-    padding: 50px 0 0 0;
-    width: grid-width(6); 
+    padding: 114px 0 0 0;
+    width: flex-grid(4);
 
     h4 {
-      color: #666;
-      font-weight: 600;
-      margin: 0 0 8px 0;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1em;
+      margin: 0;
+      margin-bottom: 12px;
     }
 
     p {

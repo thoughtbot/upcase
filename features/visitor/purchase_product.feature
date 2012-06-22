@@ -35,6 +35,7 @@ Feature: Purchase a Product
 
   @selenium
   Scenario: A visitor purchases a product with readers
+    Given github is stubbed
     When I go to the home page
     And I follow "Test GitHub"
     And I follow "Purchase for Yourself"

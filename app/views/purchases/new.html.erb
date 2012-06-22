@@ -7,7 +7,6 @@
       <p class="price"><%= number_to_currency @purchase.price, precision: 0 %></p>
       <p class="coupon-note"><%= link_to "Have a coupon code?", "#" %></p>
     </div>
-
     <%= render partial: 'redemptions/form' %>
 
     <%= semantic_form_for @purchase, url: product_purchases_path(@product), html: { method: 'post' } do |form| %>
@@ -46,16 +45,15 @@
           <label>Card Number</label>
           <input type="text" size="20" autocomplete="off" class="card-number"/>
         </li>
+        <li id="purchase_expiration_input" class="stripe">
+          <label>Expiration (MM/YYYY)</label>
+          <input type="text" size="2" class="card-expiry-month"/>
+          <input type="text" size="4" class="card-expiry-year"/>
+        </li>
         <li id="purchase_cvc_input" class="stripe">
           <label>CVC</label>
           <input type="text" size="4" autocomplete="off" class="card-cvc"/>
         </li>
-        <li id="purchase_expiration_input" class="stripe">
-          <label>Expiration (MM/YYYY)</label>
-          <input type="text" size="2" class="card-expiry-month"/>
-          <span> / </span>
-          <input type="text" size="4" class="card-expiry-year"/>
-        </div>
       <% end %>
 
       <%= form.actions do %>
@@ -69,7 +67,7 @@
       <p>By purchasing this product you agree to the following terms and conditions:</p>
       <ul>
         <li>If you&rsquo;re not happy with the product, just let us know and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</li>
-        <%== @product.terms %>
+        <%= @product.terms %>
       </ul>
     </section>
   </section>

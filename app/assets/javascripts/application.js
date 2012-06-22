@@ -50,3 +50,36 @@ function add_fields(link, association, content) {
   $(link).parent().before(content.replace(regexp, new_id));
 }
 
+$(function() {
+  $('.expand-bio a').live('click', function() {
+    $(this).parent().parent().children('.bio').height('auto');
+    $(this).text('...less');
+    $(this).parent().addClass('minimize-bio').removeClass('expand-bio');
+    return false;
+  });
+
+  $('.minimize-bio a').live('click', function() {
+    $(this).parent().parent().children('.bio').removeAttr('style');
+    $(this).text('more...');
+    $(this).parent().addClass('expand-bio').removeClass('minimize-bio');
+    return false;
+  });
+
+  $('.search-bar input').keyup(function() {
+    if ($(this).val()) {
+      $(this).siblings('.search').hide();
+      $(this).siblings('.clear-search').show();
+    }
+    else {
+      $(this).siblings('.search').show();
+      $(this).siblings('.clear-search').hide();
+    }
+  });
+
+  $('.search-bar .clear-search').live('click', function() {
+    $(this).siblings('input').val('');
+    $(this).siblings('.search').show();
+    $(this).hide();
+    return false;
+  });
+});

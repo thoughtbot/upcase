@@ -4,7 +4,7 @@
     background: url("/images/shadowing.png") center top no-repeat;
     margin: 0 auto;
     padding: 1px 0 40px 0;
-    width: 995px;
+    width: $app-width;
 
     header {
       @extend .clearfix;
@@ -20,7 +20,7 @@
       float: left;
       margin: 20px 0 0 0;
       min-height: 800px;
-      width: grid-width(8);
+      width: flex-grid(8);
 
       h2 {
         color: #444;
@@ -76,7 +76,7 @@
       float: left;
       margin: 10px 0 0 25px;
       padding: 10px 0 0 0;
-      width: grid-width(4);
+      width: flex-grid(4);
 
       &.first, &.humans {
         border-top: 5px solid $red;
@@ -108,9 +108,13 @@
   @extend .clearfix;
   margin: 0px auto 0;
 
-  img {
-    background: #fff;
-    width: grid-width(4);
+  li {
+    overflow: hidden;
+
+    img {
+      background: #fff;
+      width: 100%;
+    }
   }
 
   ul {
@@ -120,7 +124,7 @@
       height: 205px;
       list-style-type: none;
       margin-bottom: 20px;
-      width: grid-width(4); 
+      width: flex-grid(4); 
       position: relative;
 
       &.first {
@@ -173,7 +177,7 @@
 
   #more-information-wrapper {
     margin: 0 auto;
-    width: 995px;
+    width: $app-width;
 
     h4 {
       color: #555;
@@ -184,7 +188,7 @@
     #why-love {
       float: left;
       margin: 22px $gutter 0 0;
-      width: grid-width(6);
+      width: flex-grid(6);
 
       ul {
         li {
@@ -204,7 +208,7 @@
     #testimonials {
       float: left;
       margin: 20px 0 0 0;
-      width: grid-width(6);
+      width: flex-grid(6);
 
       q {
         color: #555;
@@ -238,13 +242,13 @@
 
       #column-1 {
         float: left;
-        margin: 0 25px 0 0;
-        width: grid-width(3);
+        margin: 0 flex-gutter() 0 0;
+        width: flex-grid(6);
       }
 
       #column-2 {
         float: left;
-        width: grid-width(3);
+        width: flex-grid(6);
       }
     }
   }
