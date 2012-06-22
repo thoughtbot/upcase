@@ -117,6 +117,7 @@ GEM
     erubis (2.7.0)
     escape_utils (0.2.4)
     eventmachine (0.12.10)
+    excon (0.14.1)
     execjs (1.3.0)
       multi_json (~> 1.0)
     factory_girl (3.3.0)
@@ -140,13 +141,17 @@ GEM
     haml (3.1.6)
     hashie (1.2.0)
     headless (0.3.1)
-    heroku (2.25.0)
+    heroku (2.26.7)
+      heroku-api (~> 0.2.4)
       launchy (>= 0.3.2)
-      netrc (~> 0.7.1)
+      netrc (~> 0.7.4)
       rest-client (~> 1.6.1)
       rubyzip
+    heroku-api (0.2.6)
+      excon (~> 0.14.0)
     high_voltage (1.1.1)
     hike (1.2.1)
+    hirb (0.6.2)
     hpricot (0.8.6)
     httparty (0.8.1)
       multi_json
@@ -180,7 +185,7 @@ GEM
     multi_json (1.3.5)
     multi_xml (0.4.4)
     multipart-post (1.1.5)
-    netrc (0.7.1)
+    netrc (0.7.4)
     nokogiri (1.5.2)
     octokit (1.1.0)
       addressable (~> 2.2)
@@ -350,12 +355,13 @@ DEPENDENCIES
   email_spec (~> 1.2.1)
   escape_utils
   factory_girl_rails (~> 3.3.0)
-  foreman (~> 0.46.0)
   fastercsv
+  foreman (~> 0.46.0)
   formtastic (~> 2.2.0)
   headless
-  heroku (~> 2.25)
+  heroku (~> 2.26.3)
   high_voltage
+  hirb
   httparty (= 0.8.1)
   jquery-rails
   kissmetrics
