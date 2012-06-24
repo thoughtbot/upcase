@@ -2,7 +2,6 @@ class Download < ActiveRecord::Base
   belongs_to :product
 
   has_attached_file :download, {
-    path: "downloads/:id/:file_name",
     s3_permissions: :private
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
 
