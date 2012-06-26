@@ -19,9 +19,9 @@
       <section id="workshop-details">
         <section class="section-location">
           <% unless @section.full? %>
-            <h2>Boston <span><%= number_to_currency @section.course_price, precision: 0 %></span></h2>
+            <h2><%= @section.course.audience.name %> <span><%= number_to_currency @section.course_price, precision: 0 %></span></h2>
           <% else %>
-            <h2>Boston <span>Sold Out</span></h2>
+            <h2><%= @section.course.audience.name %> <span>Sold Out</span></h2>
           <% end %>
 
           <div class="when">
