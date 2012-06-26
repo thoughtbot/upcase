@@ -9,7 +9,7 @@
 
     <section id="workshop-details">
       <section class="section-location">
-        <h2>Boston <span><%= number_to_currency @course.price, precision: 0 %></span></h2>
+        <h2><%= @course.audience.name %> <span><%= number_to_currency @course.price, precision: 0 %></span></h2>
 
         <div class="when">
           <h3>When</h3>
