@@ -22,11 +22,6 @@
       <h3><a href="http://workshops.thoughtbot.com/">Our workshops</a></h3>
       <ul></ul>
     </section>
-
-    <section id="blog-footer">
-      <h3><a href="http://robots.thoughtbot.com">Our blog</a></h3>
-      <ul></ul>
-    </section>
   </nav>
 
   <p id="copyright">© 2012 thoughtbot, inc. The <em>design of a robot</em> and <em>thoughtbot</em> are registered trademarks of thoughtbot,&nbsp;inc.</p>
@@ -55,7 +50,7 @@
     }
   }
 </script>
-<script src="http://workshops.thoughtbot.com/courses.json?callback=workshops" type="text/javascript"></script>
+<script src="/courses.json?callback=workshops" type="text/javascript"></script>
 <script type="text/javascript">
   function tumblr(resp) {
     var posts = resp.posts;
@@ -69,5 +64,4 @@
     }
   }
 </script>
-<script src="http://robots.thoughtbot.com/api/read/json?callback=tumblr&amp;num=6" type="text/javascript"></script>
 <% end %>
