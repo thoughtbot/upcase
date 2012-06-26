@@ -90,9 +90,6 @@ GEM
       execjs
     coffee-script-source (1.3.3)
     columnize (0.3.6)
-    copycopter_client (2.0.1)
-      i18n (>= 0.5.0)
-      json
     csv_rails (0.6.0)
       rails (>= 3.0.0)
     cucumber (1.1.9)
@@ -347,7 +344,6 @@ DEPENDENCIES
   capybara (~> 1.1.2)
   chameleon
   clearance (~> 0.16.1)
-  copycopter_client (~> 2.0.1)
   csv_rails
   cucumber-rails (~> 1.1)
   database_cleaner
