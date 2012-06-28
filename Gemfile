@@ -70,4 +70,6 @@ group :test do
   gem "email_spec", "~> 1.2.1"
   gem "mocha"
   gem "bourne", "~> 1.1.2"
+  gem 'vcr', '~> 2.1.1'
+  gem 'webmock', '~> 1.8.7'
 end
