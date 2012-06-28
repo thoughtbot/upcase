@@ -96,7 +96,7 @@ Then 'I see the section price is "$price"' do |price|
 end
 
 Then 'I see that one of the teachers is "$teacher_name"' do |teacher_name|
-  within('#teachers') do
+  within('.teachers') do
     page.should have_content(teacher_name)
   end
 end
