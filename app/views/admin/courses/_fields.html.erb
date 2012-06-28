@@ -44,7 +44,7 @@
             &#x2716;
           <% end %>
           <% if follow_up.notified_at %>
-            <span class="notified"><%= t(".notified_on", default: "Notified on %{date}", date: follow_up.notified_at.to_s(:simple)) %></span>
+            <span class="notified">Notified on <%= follow_up.notified_at.to_s(:simple) %></span>
           <% end %>
           <%= follow_up_fields.text_field :email, placeholder: 'Email address' %>
         <% end %>
