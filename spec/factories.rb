@@ -6,6 +6,27 @@ FactoryGirl.define do
   sequence :email do |n|
     "user#{n}@example.com"
   end
+
+  sequence :name do |n|
+    "name ##{n}"
+  end
+
+  sequence :title do |n|
+    "title ##{n}"
+  end
+
+  sequence :tumblr_url do |n|
+    "http://robots.thoughtbot.com/#{n}"
+  end
+
+  sequence :tumblr_user_name do |n|
+    "user#{n}"
+  end
+
+  sequence :slug do |n|
+    "slug-#{n}"
+  end
+
   factory :user do
     first_name 'Dan'
     last_name  'Deacon'
