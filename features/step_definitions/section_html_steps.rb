@@ -66,7 +66,7 @@ Then 'I see the user "$user_name" in the list of users' do |user_name|
 end
 
 Then 'I see the section location is "$location"' do |location|
-  within("#section-location") do
+  within(".address") do
     page.should have_content(location)
   end
 end
