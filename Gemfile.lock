@@ -138,7 +138,6 @@ GEM
       json (>= 1.4.6)
     haml (3.1.6)
     hashie (1.2.0)
-    headless (0.3.1)
     heroku (2.26.7)
       heroku-api (~> 0.2.4)
       launchy (>= 0.3.2)
@@ -369,7 +368,6 @@ DEPENDENCIES
   fastercsv
   foreman (~> 0.46.0)
   formtastic (~> 2.2.0)
-  headless
   heroku (~> 2.26.3)
   high_voltage
   hirb
