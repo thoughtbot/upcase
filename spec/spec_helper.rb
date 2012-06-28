@@ -5,6 +5,7 @@ require 'rspec/autorun'
 require 'rspec/rails'
 require 'paperclip/matchers'
 require "email_spec"
+require 'webmock/rspec'
 
 # Uncomment the next line to use webrat's matchers
 #require 'webrat/integrations/rspec-rails'
