@@ -4,7 +4,7 @@ end
 
 Then 'I see the course named "$course_name"' do |course_name|
   course = Course.find_by_name!(course_name)
-  page.should have_css("##{dom_id(course)}.workshops")
+  page.should have_css("##{dom_id(course)}")
 end
 
 Then 'I should not see the course named "$course_name"' do |course_name|

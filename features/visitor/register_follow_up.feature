@@ -10,7 +10,7 @@ Feature: Registering for a followup
       | 1234 | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
     When I go to the home page
     When I follow "Test-Driven Haskell"
-    And I fill in "Want to be notified the next time we run this workshop?" with "foo@example.com"
+    And I fill in "follow_up_email" with "foo@example.com"
     And I press "Submit"
     Then I should see "We will contact you when we schedule Test-Driven Haskell."
     And KISSmetrics receives the "Requested Followup" event with:
@@ -31,7 +31,7 @@ Feature: Registering for a followup
       | 1235 | name: Test-Driven Haskell | July 17, 2010 | July 18, 2010 |
     When I go to the home page
     When I follow "Test-Driven Haskell"
-    And I fill in "Want to be notified the next time we run this workshop?" with "foo@example.com"
+    And I fill in "follow_up_email" with "foo@example.com"
     And I press "Submit"
     Then I should see "We will contact you when we schedule Test-Driven Haskell."
     And I should be on the home page
@@ -51,7 +51,7 @@ Feature: Registering for a followup
     And KISSmetrics does not receive the "Followed up" event
     When I go to the home page
     When I follow "Test-Driven Haskell"
-    And I fill in "Want to be notified the next time we run this workshop?" with "yes!!"
+    And I fill in "follow_up_email" with "yes!!"
     And I press "Submit"
     Then I should see "Could not save follow up. Please check your email address."
 
@@ -70,6 +70,6 @@ Feature: Registering for a followup
     And KISSmetrics does not receive the "Followed up" event
     When I go to the home page
     When I follow "Test-Driven Haskell"
-    And I fill in "Want to be notified the next time we run this workshop?" with "yes!!"
+    And I fill in "follow_up_email" with "yes!!"
     And I press "Submit"
     Then I should see "Could not save follow up. Please check your email address."
