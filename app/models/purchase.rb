@@ -119,22 +119,27 @@ class Purchase < ActiveRecord::Base
   end
 
   def create_and_charge_customer
-    customer = Stripe::Customer.create(
-      card: stripe_token,
-      description: email,
-      email: email
-    )
+    begin
+      customer = Stripe::Customer.create(
+        card: stripe_token,
+        description: email,
+        email: email
+      )
 
-    charge = Stripe::Charge.create(
-      amount: price * 100, # in cents
-      currency: "usd",
-      customer: customer.id,
-      description: product_name
-    )
+      charge = Stripe::Charge.create(
+        amount: price * 100, # in cents
+        currency: "usd",
+        customer: customer.id,
+        description: product_name
+      )
 
-    self.payment_transaction_id = charge.id
-    self.stripe_customer = customer.id
-    self.paid = true
+      self.payment_transaction_id = charge.id
+      self.stripe_customer = customer.id
+      self.paid = true
+    rescue Stripe::StripeError => e
+      errors[:base] << "There was a problem processing your credit card, #{e.message.downcase}"
+      false
+    end
   end
 
   def setup_paypal_payment

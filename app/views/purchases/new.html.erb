@@ -10,6 +10,7 @@
     <%= render partial: 'redemptions/form' %>
 
     <%= semantic_form_for @purchase, url: product_purchases_path(@product), html: { method: 'post' } do |form| %>
+      <%= form.semantic_errors %>
       <%= hidden_field_tag 'coupon_id' %>
       <%= form.inputs 'Your information' do %>
         <%= form.input :variant, as: :hidden %>
@@ -91,6 +92,7 @@
     });
   <% end %>
 
+  <% unless Rails.env.test? %>
   <script type="text/javascript">
     // this identifies your website in the createToken call below
   Stripe.setPublishableKey('<%= STRIPE_PUBLIC_KEY %>');
@@ -129,5 +131,6 @@
       return true;
     });
   });
-</script>
+  </script>
+  <% end %>
 <% end %>

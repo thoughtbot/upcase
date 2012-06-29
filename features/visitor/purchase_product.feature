@@ -13,7 +13,7 @@ Feature: Purchase a Product
       | test.txt            | 1             | test desc   |
 
   @selenium
-  Scenario: A visitor purchases a product
+  Scenario: A visitor purchases a product with paypal
     When I go to the home page
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"
@@ -32,6 +32,20 @@ Feature: Purchase a Product
     Then I should see a video
     And I should see the download links for video with id "1194803"
     And I should see a list of other products
+
+  @selenium
+  Scenario: A visitor purchases a product with stripe
+    Given stripe is stubbed with a failure
+    When I go to the home page
+    And I follow "Test Fetch"
+    And I follow "Purchase for Yourself"
+    Then I should see "$15"
+    When I go to the home page
+    And I follow "Test Fetch"
+    And I follow "Your Company"
+    Then I should see "$50"
+    When I pay using Stripe
+    Then I should see "There was a problem processing your credit card"
 
   @selenium
   Scenario: A visitor purchases a product with readers
