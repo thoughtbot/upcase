@@ -12,6 +12,23 @@ describe Purchase do
   end
 end
 
+describe Purchase, "with stripe and a bad card" do
+  let(:product) { create(:product, individual_price: 15, company_price: 50) }
+  let(:purchase) { build(:purchase, product: product, payment_method: "stripe") }
+  let(:host) { ActionMailer::Base.default_url_options[:host] }
+  subject { purchase }
+
+  before do
+    Stripe::Customer.stubs(:create).returns(stub(:id => "stripe"))
+    Stripe::Charge.stubs(:create).raises(Stripe::StripeError, "Your card was declined")
+  end
+
+  it "doesn't throw an exception and adds an error message on save" do
+    subject.save.should be_false
+    subject.errors[:base].should include "There was a problem processing your credit card, your card was declined"
+  end
+end
+
 describe Purchase, "with stripe" do
   include Rails.application.routes.url_helpers
   let(:product) { create(:product, individual_price: 15, company_price: 50) }

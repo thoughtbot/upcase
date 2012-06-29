@@ -4,6 +4,13 @@
 form {
   margin: 0 0 48px 0;
 
+  .errors {
+    color: $red;
+    font-size: 18px;
+    font-style: bold;
+    margin-top: 20px;
+  }
+
   fieldset {
     legend {
       font: 600 24px $sans-serif;
