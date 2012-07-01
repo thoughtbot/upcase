@@ -41,6 +41,8 @@ module NavigationHelpers
       course = Course.find_by_name!($2)
       registration = course.registrations.find_by_email($1)
       registration.freshbooks_invoice_url
+    when /the topic's page/
+      topic_path(Topic.first)
     when /the URL "([^\"]+)"/
       $1
     else
