@@ -8,25 +8,9 @@
   <section class="popular">
   <!-- <h3>Try these popular topics</h3> -->
     <ul>
-      <li><a href="#">ruby</a></li>
-      <li><a href="#">rails</a></li>
-      <li><a href="#">design</a></li>
-      <li><a href="#">open source</a></li>
-      <li><a href="#">testing</a></li>
-      <li><a href="#">ruby on rails</a></li>
-      <li><a href="#">how to</a></li>
-      <li><a href="#">hoptoad</a></li>
-      <li><a href="#">shoulda</a></li>
-      <li><a href="#">paperclip</a></li>
-      <li><a href="#">vim</a></li>
-      <li><a href="#">this week in open source</a></li>
-      <li><a href="#">boston</a></li>
-      <li><a href="#">clearance</a></li>
-      <li><a href="#">development</a></li>
-      <li><a href="#">web design</a></li>
-      <li><a href="#">javascript</a></li>
-      <li><a href="#">tdd</a></li>
-      <li><a href="#">github</a></li>
+      <% @topics.each do |topic| %>
+        <li><a href="#<%= topic.slug %>"><%= topic.name %></a></li>
+      <% end %>
     </ul>
   </section>
 </form>
