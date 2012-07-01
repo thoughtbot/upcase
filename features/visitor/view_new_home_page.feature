@@ -39,3 +39,13 @@ Feature: Viewing Courses on the home page
     Given there is an article
     When I go to the new home page
     Then I see the article
+
+  Scenario: Visitor can see topics
+    Given there is a topic
+    When I go to the new home page
+    Then I see the topic
+
+  Scenario: Visitor can view a topic
+    Given there is a topic
+    When I go to the topic's page
+    Then I see the page for the topic
