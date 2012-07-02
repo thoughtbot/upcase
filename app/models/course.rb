@@ -29,6 +29,10 @@ class Course < ActiveRecord::Base
     where(public: true)
   end
 
+  def self.for_topic(topic)
+    joins(:classifications).where('classifications.topic_id' => topic.id)
+  end
+
   def questions_with_blank
     questions + [questions.new]
   end

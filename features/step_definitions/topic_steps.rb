@@ -15,6 +15,8 @@ Then /^I see the page for the topic$/ do
   page.should_not have_css("h3", text: Article.all.second.title)
   page.should have_css("li.product a h3", text: Product.all.first.name)
   page.should_not have_css("li.product a h3", text: Product.all.second.name)
+  page.should have_css("li.course a h3", text: Course.all.first.name)
+  page.should_not have_css("li.course a h3", text: Course.all.second.name)
 end
 
 Given /^there is an article for the topic$/ do
@@ -35,4 +37,14 @@ end
 Given /^there is an product for another topic$/ do
   topic = FactoryGirl.create(:topic)
   topic.products << FactoryGirl.create(:product, product_type: 'screencast')
+end
+
+Given /^there is a workshop for the topic$/ do
+  topic = Topic.first
+  topic.courses << FactoryGirl.create(:course)
+end
+
+Given /^there is a workshop for another topic$/ do
+  topic = FactoryGirl.create(:topic)
+  topic.courses << FactoryGirl.create(:course)
 end

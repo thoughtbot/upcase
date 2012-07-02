@@ -44,7 +44,7 @@ FactoryGirl.define do
 
   factory :course do
     audience
-    name              "Test-Driven Prolog"
+    name              { generate(:name) }
     description       "Solve 8-Queens over and over again"
     short_description "Solve 8-Queens"
     price       "500"
