@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
   def index
-    @books = Product.active.where("product_type LIKE '%book%'")
-    @screencasts = Product.active.where("product_type LIKE '%screencast%'")
+    @books = Product.books.active
+    @screencasts = Product.screencasts.active
     @courses = Course.only_public.by_position
     @topics = Topic.all
     @articles = Article.all
@@ -9,8 +9,8 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find_by_slug!(topic_slug)
-    @books = Product.active.where("product_type LIKE '%book%'")
-    @screencasts = Product.active.where("product_type LIKE '%screencast%'")
+    @books = Product.books.for_topic(@topic).active
+    @screencasts = Product.screencasts.for_topic(@topic).active
     @courses = Course.only_public.by_position
     @topics = Topic.all
     @articles = @topic.articles

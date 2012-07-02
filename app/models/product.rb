@@ -19,6 +19,18 @@ class Product < ActiveRecord::Base
     order("name asc")
   end
 
+  def self.books
+    where("product_type LIKE '%book%'")
+  end
+
+  def self.screencasts
+    where("product_type LIKE '%screencast%'")
+  end
+
+  def self.for_topic(topic)
+    joins(:classifications).where('classifications.topic_id' => topic.id)
+  end
+
   def to_param
     "#{id}-#{name.parameterize}"
   end
