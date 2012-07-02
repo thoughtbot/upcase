@@ -49,5 +49,7 @@ Feature: Viewing Courses on the home page
     Given there is a topic
     And there is an article for the topic
     And there is an article for another topic
+    And there is an product for the topic
+    And there is an product for another topic
     When I go to the topic's page
     Then I see the page for the topic

@@ -119,7 +119,7 @@ FactoryGirl.define do
   end
 
   factory :product do
-    name "Test Product"
+    name { generate(:name) }
     sku "TEST"
     individual_price 15
     company_price 50
