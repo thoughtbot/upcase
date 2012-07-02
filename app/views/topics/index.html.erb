@@ -1,14 +1,63 @@
-<section id="head-wrapper">
-  <% provide :description, '' %>
-  <% provide :keywords, 'thoughtbot, boston, web development' %>
+<form class="learn-search">
+  <div class="search-bar">
+    <input type="text" id="search_input" placeholder="What do you want to learn?" value="<%= @topic.name if @topic %>" />
+    <a href="#" class="search"><img src="/assets/icons/search.png" /></a>
+    <a href="#" class="clear-search"><img src="/assets/icons/clear_search.png" /></a>
+  </div>
 
-  <section class="main text" id="homepage-top">
-    <h1 class='title'><a href='http://topics.thoughtbot.com'>thoughtbot topics</a></h1>
-    <p>Beard PBR ethnic, skateboard DIY single-origin coffee banksy vinyl keytar brooklyn authentic. Messenger bag vegan kale chips forage semiotics. Odd future messenger bag twee, cliche beard hoodie fixie high life. Vice etsy truffaut viral food truck VHS, irony mixtape gastropub semiotics hella thundercats jean shorts.</p>
-    <label><h2>Search topic</h2></label>
-    <input id="search" type="text_field">
-    <ul id="topics" class="topics" >
-      <%= render @topics %>
+  <section class="popular">
+  <!-- <h3>Try these popular topics</h3> -->
+    <ul>
+      <% @topics.each do |topic| %>
+        <li><a href="#<%= topic.slug %>"><%= topic.name %></a></li>
+      <% end %>
     </ul>
   </section>
+</form>
+
+<section id="results-container">
+  <section id="results">
+    <ul>
+      <% @books.each_with_index do |product, index| %>
+        <%= content_tag_for :li, product, class: "books" do %>
+          <% if index == 0 %>
+            <h2>Books</h2>
+          <% end %>
+          <%= link_to product_path(product) do %>
+            <h3><%= product.name %></h3>
+            <p><%= product.short_description %></p>
+          <% end %>
+        <% end %>
+      <% end %>
+      <% @screencasts.each_with_index do |product, index| %>
+        <%= content_tag_for :li, product, class: "webcasts" do %>
+          <% if index == 0 %>
+            <h2>Webcasts</h2>
+          <% end %>
+          <%= link_to product_path(product) do %>
+            <h3><%= product.name %></h3>
+            <p><%= product.short_description %></p>
+          <% end %>
+        <% end %>
+      <% end %>
+      <% @courses.each_with_index do |course, index| %>
+        <%= content_tag_for :li, course, class: "workshops" do %>
+          <% if index == 0 %>
+            <h2>Workshops</h2>
+          <% end %>
+          <%= link_to course_path(course) do %>
+            <h3><%= course.name %></h3>
+            <p><%= course.short_description %></p>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ul>
+  </section>
+</section>
+
+<section class="additional-results">
+  <ul>
+    <%= render @articles %>
+  </ul>
+  <a href="#" class="more-button">Load more results</a>
 </section>

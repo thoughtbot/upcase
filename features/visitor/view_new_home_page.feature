@@ -47,5 +47,7 @@ Feature: Viewing Courses on the home page
 
   Scenario: Visitor can view a topic
     Given there is a topic
+    And there is an article for the topic
+    And there is an article for another topic
     When I go to the topic's page
     Then I see the page for the topic
