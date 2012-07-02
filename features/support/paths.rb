@@ -43,6 +43,8 @@ module NavigationHelpers
       registration.freshbooks_invoice_url
     when /the topic's page/
       topic_path(Topic.first)
+    when /the topics index/
+      topics_path
     when /the URL "([^\"]+)"/
       $1
     else
