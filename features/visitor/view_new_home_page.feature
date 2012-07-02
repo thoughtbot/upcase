@@ -51,5 +51,7 @@ Feature: Viewing Courses on the home page
     And there is an article for another topic
     And there is an product for the topic
     And there is an product for another topic
+    And there is a workshop for the topic
+    And there is a workshop for another topic
     When I go to the topic's page
     Then I see the page for the topic

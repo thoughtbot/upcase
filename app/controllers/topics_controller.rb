@@ -11,7 +11,7 @@ class TopicsController < ApplicationController
     @topic = Topic.find_by_slug!(topic_slug)
     @books = Product.books.for_topic(@topic).active
     @screencasts = Product.screencasts.for_topic(@topic).active
-    @courses = Course.only_public.by_position
+    @courses = Course.for_topic(@topic).only_public.by_position
     @topics = Topic.all
     @articles = @topic.articles
     render :index
