@@ -28,10 +28,9 @@ gem "kissmetrics"
 gem "octokit", "1.1.0"
 gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 gem "paypal-express", "~> 0.4.6", require: 'paypal'
-gem 'csv_rails'
+gem "csv_rails", "~> 0.6.1"
 gem 'chameleon'
 gem "thin", "~> 1.3.1"
-gem "fastercsv"
 gem "rails_admin"
 gem 'typhoeus'
 
