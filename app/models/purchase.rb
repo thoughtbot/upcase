@@ -195,7 +195,7 @@ class Purchase < ActiveRecord::Base
   def send_receipt
     begin
       Mailer.purchase_receipt(self).deliver
-    rescue Net::SMTPAuthenticationError, Net::SMTPFatalError => e
+    rescue *SMTP_ERRORS => e
       Airbrake.notify(e)
     end
   end
