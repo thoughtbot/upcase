@@ -53,6 +53,20 @@ describe Purchase, "with stripe" do
     Mailer.should have_received(:purchase_receipt).with(subject)
   end
 
+  it "rescues Net::SMTPAuthenticationError on sending a receipt" do
+    Airbrake.stubs(:notify)
+    Mailer.stubs(:purchase_receipt).raises(Net::SMTPAuthenticationError)
+    subject.save!
+    Airbrake.should have_received(:notify)
+  end
+
+  it "rescues Net::SMTPFatalError on sending a receipt" do
+    Airbrake.stubs(:notify)
+    Mailer.stubs(:purchase_receipt).raises(Net::SMTPFatalError)
+    subject.save!
+    Airbrake.should have_received(:notify)
+  end
+
   it "computes its final price off its product variant" do
     subject.variant = "individual"
     subject.price.should == 15

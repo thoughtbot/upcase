@@ -193,7 +193,11 @@ class Purchase < ActiveRecord::Base
   end
 
   def send_receipt
-    Mailer.purchase_receipt(self).deliver
+    begin
+      Mailer.purchase_receipt(self).deliver
+    rescue Net::SMTPAuthenticationError, Net::SMTPFatalError => e
+      Airbrake.notify(e)
+    end
   end
 
   def payment_method_must_match_price
