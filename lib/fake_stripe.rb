@@ -1,5 +1,5 @@
 require 'sinatra/base'
-require 'capybara_server_runner'
+require 'capybara_discoball'
 
 class FakeStripe < Sinatra::Base
   cattr_reader :last_charge, :last_customer_email, :last_token
@@ -84,7 +84,7 @@ class FakeStripe < Sinatra::Base
   end
 end
 
-FakeStripeRunner = CapybaraServerRunner.new(FakeStripe) do |server|
+FakeStripeRunner = Capybara::Discoball::Runner.new(FakeStripe) do |server|
   url = server.url('')
   Stripe.api_base = url
 end
