@@ -1,4 +1,6 @@
 class Topic < ActiveRecord::Base
+  attr_accessible :body_html, :keywords, :name, :summary, :featured
+
   # Associations
   has_many :classifications
   has_many :articles, through: :classifications, source: :classifiable, source_type: 'Article'
