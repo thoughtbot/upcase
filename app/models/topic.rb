@@ -16,8 +16,6 @@ class Topic < ActiveRecord::Base
   # scoping
   default_scope order("count desc")
 
-  attr_accessible :name, :body_html, :keywords, :slug, :summary, :article_ids, as: :admin
-
   def self.featured
     where(featured: true)
   end
