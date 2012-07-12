@@ -1,3 +1,7 @@
+<% if @topic %>
+  <% content_for :title, @topic.name %>
+<% end %>
+
 <form class="learn-search">
   <div class="search-bar">
     <input type="text" id="search_input" placeholder="What do you want to learn?" value="<%= @topic.name if @topic %>" />
