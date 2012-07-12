@@ -40,8 +40,8 @@ Feature: Viewing Courses on the home page
     When I go to the topics index
     Then I see the article
 
-  Scenario: Visitor can see topics
-    Given there is a topic
+  Scenario: Visitor can see featured topics
+    Given there is a featured topic
     When I go to the topics index
     Then I see the topic
 
@@ -55,3 +55,28 @@ Feature: Viewing Courses on the home page
     And there is a workshop for another topic
     When I go to the topic's page
     Then I see the page for the topic
+
+  @javascript
+  Scenario: Searching for items by topic
+    Given the following topics exist:
+      | name    |
+      | Rails   |
+      | Ruby    |
+      | Testing |
+    And there is an article for "Rails"
+    And there is an article for "Ruby"
+    When I go to the topics index
+    And I search for "ghgh"
+    Then I should see "No items met your search"
+    And the page title should be "thoughtbot Learn"
+    And the page url should be "/topics"
+    When I search for "R"
+    Then I should see the results for "Rails"
+    And I should see the results for "Ruby"
+    And the page title should be "thoughtbot Learn"
+    And the page url should be "/topics"
+    When I search for "Ru"
+    Then I should see the results for "Ruby"
+    And I should not see the results for "Rails"
+    And the page title should be "Learn Ruby"
+    And the page url should be "/ruby"

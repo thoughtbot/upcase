@@ -53,4 +53,24 @@ describe Topic do
       Topic.top.all? {|topic| topic.count >= 5 }.should be
     end
   end
+
+  context 'search' do
+    let!(:rails) { create(:topic, name: "Rails") }
+    let!(:ruby) { create(:topic, name: "Ruby") }
+    let!(:testing) { create(:topic, name: "ruby on rails") }
+
+    it "returns only all matching topics" do
+      results = Topic.search("r")
+      results.should =~ [rails, ruby]
+    end
+
+    it "returns one matching topic if matched exactly" do
+      results = Topic.search("rails")
+      results.should == [rails]
+    end
+
+    it "returns nothing if no matches" do
+      Topic.search("gh").should be_empty
+    end
+  end
 end

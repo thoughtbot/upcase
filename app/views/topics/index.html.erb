@@ -1,67 +1,18 @@
-<% if @topic %>
-  <% content_for :title, @topic.name %>
-<% end %>
-
 <form class="learn-search">
   <div class="search-bar">
     <input type="text" id="search_input" placeholder="What do you want to learn?" value="<%= @topic.name if @topic %>" />
-    <a href="#" class="search"><img src="/assets/icons/search.png" /></a>
-    <a href="#" class="clear-search"><img src="/assets/icons/clear_search.png" /></a>
+    <%= link_to image_tag("icons/search.png"), "#", class: "search" %>
+    <%= link_to image_tag("icons/clear_search.png"), root_url, class: "clear-search" %>
   </div>
 
   <section class="popular">
   <!-- <h3>Try these popular topics</h3> -->
     <ul>
-      <% @topics.each do |topic| %>
+      <% @featured_topics.each do |topic| %>
         <li><%= link_to topic.name, topic_path(topic) %></li>
       <% end %>
     </ul>
   </section>
 </form>
 
-<section id="results-container">
-  <section id="results">
-    <ul>
-      <% @books.each_with_index do |product, index| %>
-        <%= content_tag_for :li, product, class: "books" do %>
-          <% if index == 0 %>
-            <h2>Books</h2>
-          <% end %>
-          <%= link_to product_path(product) do %>
-            <h3><%= product.name %></h3>
-            <p><%= product.short_description %></p>
-          <% end %>
-        <% end %>
-      <% end %>
-      <% @screencasts.each_with_index do |product, index| %>
-        <%= content_tag_for :li, product, class: "webcasts" do %>
-          <% if index == 0 %>
-            <h2>Webcasts</h2>
-          <% end %>
-          <%= link_to product_path(product) do %>
-            <h3><%= product.name %></h3>
-            <p><%= product.short_description %></p>
-          <% end %>
-        <% end %>
-      <% end %>
-      <% @courses.each_with_index do |course, index| %>
-        <%= content_tag_for :li, course, class: "workshops" do %>
-          <% if index == 0 %>
-            <h2>Workshops</h2>
-          <% end %>
-          <%= link_to course_path(course) do %>
-            <h3><%= course.name %></h3>
-            <p><%= course.short_description %></p>
-          <% end %>
-        <% end %>
-      <% end %>
-    </ul>
-  </section>
-</section>
-
-<section class="additional-results">
-  <ul>
-    <%= render @articles %>
-  </ul>
-  <a href="#" class="more-button">Load more results</a>
-</section>
+<%= render :partial => 'topics/results' %>

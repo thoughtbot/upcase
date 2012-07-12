@@ -15,3 +15,11 @@ end
 Then /^I should see a page not found error$/ do
   page.body.should match(/ActiveRecord::RecordNotFound|ActionController::RoutingError|AbstractController::ActionNotFound/)
 end
+
+Then /^the page title should be "([^"]*)"$/ do |title|
+  page.evaluate_script("document.title").should == title
+end
+
+Then /^the page url should be "([^"]*)"$/ do |path|
+  page.evaluate_script("location.pathname").should == path
+end

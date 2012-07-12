@@ -1,6 +1,32 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery.observe_field
+
+function searchTopics(text) {
+  if(/\S/.test(text)) {
+    $.get('/topics/' + text, {}, function(data) {
+      var results = $(data).filter(".results");
+      var title = $(results).attr('data-title');
+      var url = $(results).attr('data-url');
+      $('.results').replaceWith(results);
+      if(window.history.pushState) {
+        document.title = title;
+        if(url) {
+          window.history.pushState({}, title, url);
+        }
+      } else {
+        document.title = title;
+      }
+    });
+  }
+}
+
+$(function(){
+  $("input,select").observe_field(0.2, function() {
+    searchTopics(this.value);
+  });
+});
 
 $("#total a").click(function() {
   $(".coupon").show();
@@ -76,10 +102,14 @@ $(function() {
     }
   });
 
+  $('.search-bar .search').live('click', function() {
+    searchTopics($(this).siblings('input').val());
+    return false;
+  });
+
   $('.search-bar .clear-search').live('click', function() {
     $(this).siblings('input').val('');
     $(this).siblings('.search').show();
     $(this).hide();
-    return false;
   });
 });

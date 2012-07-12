@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title><% unless content_for? :title %>thoughtbot <% end %>Learn<% if content_for? :title %> <%= yield :title %><% end %></title>
+    <title><%= title(@topic.try(:name)) %></title>
     <%= stylesheet_link_tag 'application' %>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <meta http-equiv="Description" name="Description" content="Workshops to help you get a job as a designer or developer at a web startup." />

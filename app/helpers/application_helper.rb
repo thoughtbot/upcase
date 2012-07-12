@@ -37,4 +37,11 @@ module ApplicationHelper
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
   end
 
+  def title(title = nil)
+    if !title.blank?
+      "Learn #{title}"
+    else
+      "thoughtbot Learn"
+    end
+  end
 end

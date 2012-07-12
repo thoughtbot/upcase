@@ -2,6 +2,10 @@ Given /^there is a topic$/ do
   FactoryGirl.create(:topic)
 end
 
+Given /^there is a featured topic$/ do
+  FactoryGirl.create(:topic, featured: true)
+end
+
 Then /^I see the topic$/ do
   within ".popular" do
     page.should have_css("ul li a", text: Topic.first.name)
@@ -47,4 +51,24 @@ end
 Given /^there is a workshop for another topic$/ do
   topic = FactoryGirl.create(:topic)
   topic.courses << FactoryGirl.create(:course)
+end
+
+Given /^there is an article for "([^"]*)"$/ do |topic_name|
+  topic = Topic.find_by_name(topic_name)
+  article = FactoryGirl.create(:article)
+  topic.articles << article
+end
+
+When /^I search for "([^"]*)"$/ do |text|
+  fill_in "search_input", with: text
+end
+
+Then /^I should see the results for "([^"]*)"$/ do |topic_name|
+  topic = Topic.find_by_name(topic_name)
+  page.should have_css("li.#{topic.slug}")
+end
+
+Then /^I should not see the results for "([^"]*)"$/ do |topic_name|
+  topic = Topic.find_by_name(topic_name)
+  page.should_not have_css("li.#{topic.slug}")
 end

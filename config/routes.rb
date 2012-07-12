@@ -32,6 +32,7 @@ Workshops::Application.routes.draw do
   end
 
   resources :topics, only: :index
+  resources :topics, only: :show, as: :full_topic
 
   match '/admin' => 'admin/courses#index', as: :admin
   namespace :admin do
