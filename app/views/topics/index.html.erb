@@ -9,7 +9,7 @@
   <!-- <h3>Try these popular topics</h3> -->
     <ul>
       <% @topics.each do |topic| %>
-        <li><a href="#<%= topic.slug %>"><%= topic.name %></a></li>
+        <li><%= link_to topic.name, topic_path(topic) %></li>
       <% end %>
     </ul>
   </section>
