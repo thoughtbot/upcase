@@ -16,8 +16,23 @@ class Topic < ActiveRecord::Base
 
   attr_accessible :name, :body_html, :keywords, :slug, :summary, :article_ids, as: :admin
 
+  def self.featured
+    where(featured: true)
+  end
+
   def self.top
-    order("count desc").limit(20)
+    featured.order("count desc").limit(20)
+  end
+
+  def self.search(text)
+    text.downcase!
+    text.strip!
+    topic = where(slug: text).first
+    if topic
+      [topic]
+    else
+      where("slug like ?", "#{text}%")
+    end
   end
 
   def to_param

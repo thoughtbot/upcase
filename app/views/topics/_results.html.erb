@@ -1,0 +1,56 @@
+<div class="results" data-title="<%= title(@topic.try(:name)) %>" data-url="<%= topic_url(@topic) if @topic %>">
+<% if @books.empty? && @screencasts.empty? && @courses.empty? && @articles.empty? %>
+  <p>No items met your search.</p>
+<% else %>
+  <% unless @books.empty? && @screencasts.empty? && @courses.empty? %>
+    <section id="results-container">
+      <section id="results">
+      <ul>
+        <% @books.each_with_index do |product, index| %>
+          <%= content_tag_for :li, product, class: "books #{topic_classes(product.topics)}" do %>
+            <% if index == 0 %>
+              <h2>Books</h2>
+            <% end %>
+            <%= link_to product_path(product) do %>
+              <h3><%= product.name %></h3>
+              <p><%= product.short_description %></p>
+            <% end %>
+          <% end %>
+        <% end %>
+        <% @screencasts.each_with_index do |product, index| %>
+          <%= content_tag_for :li, product, class: "webcasts #{topic_classes(product.topics)}" do %>
+            <% if index == 0 %>
+              <h2>Webcasts</h2>
+            <% end %>
+            <%= link_to product_path(product) do %>
+              <h3><%= product.name %></h3>
+              <p><%= product.short_description %></p>
+            <% end %>
+          <% end %>
+        <% end %>
+        <% @courses.each_with_index do |course, index| %>
+          <%= content_tag_for :li, course, class: "workshops #{topic_classes(course.topics)}" do %>
+            <% if index == 0 %>
+              <h2>Workshops</h2>
+            <% end %>
+            <%= link_to course_path(course) do %>
+              <h3><%= course.name %></h3>
+              <p><%= course.short_description %></p>
+            <% end %>
+          <% end %>
+        <% end %>
+      </ul>
+      </section>
+    </section>
+  <% end %>
+
+  <% if @articles.any? %>
+    <section class="additional-results">
+      <ul>
+        <%= render @articles %>
+      </ul>
+      <a href="#" class="more-button">Load more results</a>
+    </section>
+  <% end %>
+<% end %>
+</div>

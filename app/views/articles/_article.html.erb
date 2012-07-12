@@ -1,4 +1,4 @@
-<%= content_tag_for :li, article, class: "result thoughtbot" do %>
+<%= content_tag_for :li, article, class: "result thoughtbot #{topic_classes(article.topics)}" do %>
   <%= link_to article.tumblr_url do %>
     <h3><%= article.title %></h3>
     <p class="excerpt"><%== format_content article.body_html %></p>
