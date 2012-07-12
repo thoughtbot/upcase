@@ -16,6 +16,10 @@ class Topic < ActiveRecord::Base
 
   attr_accessible :name, :body_html, :keywords, :slug, :summary, :article_ids, as: :admin
 
+  def self.top
+    order("count desc").limit(20)
+  end
+
   def to_param
     slug
   end

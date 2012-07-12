@@ -40,4 +40,17 @@ describe Topic do
       it { should validate_uniqueness_of(:slug) }
     end
   end
+
+  context 'top' do
+    before do
+      25.times do |i|
+        create(:topic, count: i)
+      end
+    end
+
+    it "returns the top 20 topics" do
+      Topic.top.count.should == 20
+      Topic.top.all? {|topic| topic.count >= 5 }.should be
+    end
+  end
 end
