@@ -24,9 +24,6 @@ class Topic < ActiveRecord::Base
     slug
   end
 
-  def name_with_count
-    "#{name} (#{count})"
-  end
   private
 
   def generate_slug
