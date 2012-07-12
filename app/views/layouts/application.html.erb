@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>thoughtbot workshops</title>
+    <title><% unless content_for? :title %>thoughtbot <% end %>Learn<% if content_for? :title %> <%= yield :title %><% end %></title>
     <%= stylesheet_link_tag 'application' %>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <meta http-equiv="Description" name="Description" content="Workshops to help you get a job as a designer or developer at a web startup." />
