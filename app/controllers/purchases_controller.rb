@@ -33,6 +33,7 @@ class PurchasesController < ApplicationController
     @product = Product.find(params[:product_id])
     @purchase = @product.purchases.find_by_lookup!(params[:id])
   end
+
   private
 
   def track_chrome_screencast_ab_test_completion
