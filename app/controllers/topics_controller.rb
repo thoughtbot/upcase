@@ -4,7 +4,7 @@ class TopicsController < ApplicationController
     @books = Product.books.active
     @screencasts = Product.screencasts.active
     @courses = Course.only_public.by_position
-    @articles = Article.all
+    @articles = Article.order("published_on desc").limit(30)
   end
 
   def show
