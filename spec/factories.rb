@@ -126,6 +126,11 @@ FactoryGirl.define do
     fulfillment_method "fetch"
   end
 
+  factory :video do
+    product
+    wistia_id "1194803"
+  end
+
   factory :download do
   end
   factory :purchase, aliases: [:individual_purchase] do
