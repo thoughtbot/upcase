@@ -8,16 +8,6 @@ describe Topic do
     it { should have_many(:courses).through(:classifications) }
   end
 
-  context 'active_authorizer' do
-    it { should_not allow_mass_assignment_of(:body_html) }
-    it { should_not allow_mass_assignment_of(:created_at) }
-    it { should_not allow_mass_assignment_of(:keywords) }
-    it { should_not allow_mass_assignment_of(:name) }
-    it { should_not allow_mass_assignment_of(:slug) }
-    it { should_not allow_mass_assignment_of(:summary) }
-    it { should_not allow_mass_assignment_of(:updated_at) }
-  end
-
   context 'create' do
     before do
       @topic = create(:topic, name: ' Test Driven Development ')
