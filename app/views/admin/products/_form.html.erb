@@ -5,7 +5,6 @@
   <%= f.label :product_image %>
   <br/><%= f.file_field :product_image %>
   <%= image_tag(f.object.image_url) if f.object.persisted? %>
-  <%= f.input :wistia_id, label: "Wistia Video ID"%>
   <h3> Downloads </h3>
   <%= f.fields_for :downloads do |builder| %>
     <%=render 'download_fields', f: builder %>

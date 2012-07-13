@@ -1,20 +1,11 @@
 <section id="head-wrapper">
   <section id="homepage-top">
-    <h1><%= @product.name %></h1>
-    <% if @product.videos.size == 1 %>
-      <%= render @product.videos.first %>
-    <% else %>
-      <h2><%= @product.videos.size %> videos in the series</h2>
-      <ol>
-        <% @product.videos.each do |video| %>
-          <li><%= link_to video.title, product_purchase_video_path(@product, @purchase, video) %></li>
-        <% end %>
-      </ol>
-    <% end %>
+    <h1><%= @video.product.name %></h1>
+    <%= render @video %>
     <section id="products">
       <h2>More from thoughtbot</h2>
       <% Product.active.each_with_index do |product, index| %>
-        <% if product != @product %>
+        <% if product != @video.product %>
           <aside class="<%= "first" if index.zero? %>">
             <h2><%= link_to product.name, product_path(product, utm_source: "oss") %></h2>
             <p><%= product.short_description %></p>
@@ -25,4 +16,3 @@
   </section>
 </section>
 <div id="flash"></div>
-

@@ -1,7 +1,7 @@
 <section id="container">
 <h2>Thank you for purchasing <%= @purchase.product.name %>.</h2>
 <p>You should also receive an email with the link to this page.</p>
-  <% if @purchase.product.wistia_id? %>
+  <% if @purchase.product.videos.any? %>
     <h4><%=link_to "Watch or download video", watch_product_purchase_path(@purchase.product, @purchase) %></h4>
   <% end %>
   
