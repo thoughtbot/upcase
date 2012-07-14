@@ -18,4 +18,14 @@ class Video < ActiveRecord::Base
   def wistia_hash
     @wistia_hash ||= Wistia.get_media_hash_from_id(wistia_id).to_json unless wistia_id.nil?
   end
+
+  private
+
+  def human_file_size num
+    helpers.number_to_human_size(num)
+  end
+
+  def helpers
+    ActionController::Base.helpers
+  end
 end
