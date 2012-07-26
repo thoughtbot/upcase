@@ -96,6 +96,7 @@ body.purchases{
           font: 300 36px/40px $sans-serif;
           margin: 0 0 24px 0;
         }
+
         h3 {
           margin-bottom: 0.5em !important;
         }
@@ -152,6 +153,36 @@ body.purchases{
             text-decoration: none;
           }
         }
+
+        section.what-you-learn {
+          background: #efefef;
+          padding: 10px 20px;
+
+          h3 {
+            font: 14px $serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            color: #999;
+          }
+
+          ul {
+            @include clearfix;
+
+            li {
+              float: left;
+              list-style: none;
+              font: 18px $sans-serif;
+              width: flex-grid(4, 8);
+              margin-right: flex-gutter();
+
+              &:nth-child(even) {
+                margin-right: 0;
+              }
+            }
+          }
+        }
+
       }
 
       #workshop-details, #purchasing-details {
