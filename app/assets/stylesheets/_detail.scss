@@ -157,6 +157,7 @@ body.purchases{
         section.what-you-learn {
           background: #efefef;
           padding: 10px 20px;
+          margin-bottom: 20px;
 
           h3 {
             font: 14px $serif;
@@ -168,13 +169,15 @@ body.purchases{
 
           ul {
             @include clearfix;
+            margin-top: 30px;
 
             li {
               float: left;
               list-style: none;
-              font: 18px $sans-serif;
+              font: bold 18px $sans-serif;
               width: flex-grid(4, 8);
               margin-right: flex-gutter();
+              margin-bottom: 10px;
 
               &:nth-child(even) {
                 margin-right: 0;
