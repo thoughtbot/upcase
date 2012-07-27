@@ -7,10 +7,3 @@
 <% end -%>
 
 <%=render partial: "form", locals: { product: @product } %>
-
-<% unless @product.video_hash_id.nil? %>
-  <label>Video Preview</label>
-  <p>
-    <%=render('purchases/video_code', video_hash_id: @product.video_hash_id) %>
-  </p>
-<% end %>

@@ -34,11 +34,11 @@ describe Topic do
   context 'top' do
     before do
       25.times do |i|
-        create(:topic, count: i)
+        create(:topic, featured: true, count: i)
       end
     end
 
-    it "returns the top 20 topics" do
+    it "returns the top 20 featured topics" do
       Topic.top.count.should == 20
       Topic.top.all? {|topic| topic.count >= 5 }.should be
     end
@@ -47,7 +47,7 @@ describe Topic do
   context 'search' do
     let!(:rails) { create(:topic, name: "Rails") }
     let!(:ruby) { create(:topic, name: "Ruby") }
-    let!(:testing) { create(:topic, name: "ruby on rails") }
+    let!(:testing) { create(:topic, name: "testing") }
 
     it "returns only all matching topics" do
       results = Topic.search("r")
