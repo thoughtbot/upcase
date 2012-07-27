@@ -1,5 +1,5 @@
 class Section < ActiveRecord::Base
-  validates_presence_of :starts_on, :ends_on, :start_at, :stop_at
+  validates_presence_of :starts_on, :ends_on, :start_at, :stop_at, :address
 
   validate :must_have_at_least_one_teacher
 
@@ -10,13 +10,13 @@ class Section < ActiveRecord::Base
   has_many :paid_registrations, class_name: "Registration", conditions: { paid: true }
   has_many :unpaid_registrations, class_name: "Registration", conditions: { paid: false }
 
-  delegate :name, :description, :location, :location_name, :price, to: :course, prefix: :course
+  delegate :name, :description, :price, to: :course, prefix: :course
   after_create :send_follow_up_emails, :send_teacher_notifications
 
   accepts_nested_attributes_for :section_teachers
 
   def self.active
-    where("sections.ends_on >= ?", Date.today)
+    where("sections.ends_on >= ?", Date.today).by_starts_on
   end
 
   def self.by_starts_on
@@ -71,6 +71,10 @@ class Section < ActiveRecord::Base
     paid_registrations.each do |registration|
       Mailer.section_reminder(registration, self).deliver
     end
+  end
+
+  def location
+    [address, city, state, zip].compact.join(", ")
   end
 
   protected

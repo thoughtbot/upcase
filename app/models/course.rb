@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  validates_presence_of :name, :description, :price, :start_at, :stop_at, :location, :maximum_students, :short_description, :audience_id
+  validates_presence_of :name, :description, :price, :start_at, :stop_at, :maximum_students, :short_description, :audience_id
 
   belongs_to :audience
   has_many :sections

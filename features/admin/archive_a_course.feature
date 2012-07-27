@@ -20,7 +20,7 @@ Feature: Archive a course
     Then I should not see "Test-Driven Sleeping"
 
   Scenario: Unarchive a course
-    Given a course "Test-Driven Sleeping" is maked as unpublic
+    Given a non-public course "Test-Driven Sleeping"
     When I go to the admin page
     And I follow "Test-Driven Sleeping"
     Then the "Public" checkbox should not be checked
