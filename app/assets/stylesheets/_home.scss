@@ -140,22 +140,27 @@ body.topics {
 }
 
 #results-container {
-  background: rgba(228, 228, 228, 0.7);
-  border-bottom: 1px solid gainsboro;
-  border-top: 1px solid gainsboro;
-  padding: 48px 0 12px 0;
+  padding: 36px 0 0 0;
 
   #results {
     @include full-width;
 
+    ul.books, ul.webcasts, ul.workshops {
+      float: left;
+      margin-bottom: 1.2em;
+      margin-right: flex-gutter();
+      width: flex-grid(4);
+    }
+
+    ul.workshops {
+      margin-right: 0;
+    }
+
     li {
       @include box-sizing(border-box);
       display: block;
-      float: left;
-      margin-bottom: 36px;
-      margin-right: flex-gutter();
+      margin-bottom: 1em;
       position: relative;
-      width: flex-grid(4);
 
       &:nth-child(3n) {
         margin-right: 0;
@@ -166,12 +171,24 @@ body.topics {
       }
 
       > a {
-        background: no-repeat -63px center #f9f9f9;
         color: #555;
         display: block;
-        min-height: 92px;
-        padding: 24px 24px 24px 74px;
+        padding: .5em 0 .5em 2.1em;
         text-decoration: none;
+
+        &::before {
+          content: '';
+          display: block;
+          height: 20px;
+          @include position(absolute, .6em 0 0 0px);
+          width: 20px;
+        }
+
+        &:hover {
+          background: #efefef;
+          @include box-shadow(0 0 0 10px #efefef);
+          @include transition;
+        }
       }
 
       h3 {
@@ -185,45 +202,42 @@ body.topics {
         font-size: 14px;
         font-weight: 600;
         line-height: 48px;
-        margin-bottom: 10px;
         margin-bottom: 48px;
+        padding-left: 2.1em;
         position: absolute;
         text-shadow: 0 1px 0 #fcfcfc;
         text-transform: uppercase;
-        top: -36px;
+        top: -48px;
       }
     }
 
-    .books {
-      h2, h3 {
+    li.books {
+      h2 {
         color: #286d15;
       }
 
-      a {
-        background-image: url('icons/Book.png');
-        border-top: 5px solid #286d15;
+      a::before {
+        content: url('icons/book-small.png');
       }
     }
 
-    .webcasts {
-      h2, h3 {
+    li.webcasts {
+      h2 {
         color: #006b83;
       }
 
-      a {
-        background-image: url('icons/webcasts.png');
-        border-top: 5px solid #006b83;
+      a::before {
+        content: url('icons/video-small.png');
       }
     }
 
-    .workshops {
-      h2, h3 {
+    li.workshops {
+      h2 {
         color: #6c1764;
       }
 
-      a {
-        background-image: url('icons/gear.png');
-        border-top: 5px solid #6c1764;
+      a::before {
+        content: url('icons/gear-small.png');
       }
     }
   }
@@ -233,15 +247,9 @@ body.topics {
   @include full-width;
   margin-top: 42px;
 
-  ul {
-    overflow: auto;
-    position: relative;
-  }
-
   .result {
     padding-bottom: 24px;
     margin: 0 auto;
-    overflow: auto;
     padding-bottom: 36px;
     position: relative;
     width: flex-grid(12);
@@ -250,6 +258,12 @@ body.topics {
       display: block;
       overflow: hidden;
       text-decoration: none;
+
+      &:hover {
+        background: #efefef;
+        @include box-shadow(0 0 0 10px #efefef);
+        @include transition;
+      }
     }
 
     &.thoughtbot {
@@ -261,26 +275,27 @@ body.topics {
     h3 {
       color: #555;
       float: left;
-      font-weight: 600;
+      font-weight: 500;
       line-height: 1.2em;
-      margin: 0 flex-gutter() 0 flex-grid(1);
-      width: flex-grid(3);
+      margin: 0 flex-gutter() 0 flex-grid(1) + flex-gutter();
       text-align: right;
+      width: flex-grid(3) + flex-gutter();
     }
 
     p.excerpt {
       color: #555;
       float: left;
       margin: 0 flex-gutter() 0 0;
-      width: flex-grid(4);
+      width: flex-grid(4) - flex-gutter();
     }
 
     p.results-date {
       color: #999;
       float: left;
       font-size: 14px;
+      margin-left: flex-gutter();
       position: relative;
-      width: flex-grid(4);
+      width: flex-grid(4) - flex-gutter();
     }
   }
 

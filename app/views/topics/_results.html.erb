@@ -5,7 +5,7 @@
   <% unless @books.empty? && @screencasts.empty? && @courses.empty? %>
     <section id="results-container">
       <section id="results">
-      <ul>
+        <ul class="books">
         <% @books.each_with_index do |product, index| %>
           <%= content_tag_for :li, product, class: "books #{topic_classes(product.topics)}" do %>
             <% if index == 0 %>
@@ -17,6 +17,8 @@
             <% end %>
           <% end %>
         <% end %>
+        </ul>
+        <ul class="webcasts">
         <% @screencasts.each_with_index do |product, index| %>
           <%= content_tag_for :li, product, class: "webcasts #{topic_classes(product.topics)}" do %>
             <% if index == 0 %>
@@ -28,6 +30,8 @@
             <% end %>
           <% end %>
         <% end %>
+        </ul>
+        <ul class="workshops">
         <% @courses.each_with_index do |course, index| %>
           <%= content_tag_for :li, course, class: "workshops #{topic_classes(course.topics)}" do %>
             <% if index == 0 %>
@@ -39,7 +43,7 @@
             <% end %>
           <% end %>
         <% end %>
-      </ul>
+        </ul>
       </section>
     </section>
   <% end %>
