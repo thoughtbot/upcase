@@ -20,7 +20,6 @@ When 'I fill in the required course fields' do
     And I fill in the course price with "1900"
     And I fill in the start time with "09:00"
     And I fill in the end time with "17:00"
-    And I fill in the location with "41 Winter St 02108"
   }
 end
 

@@ -16,8 +16,8 @@ When:
 <%= @registration.section.time_range %>
 
 Where:
-<%= @registration.section.course_location %>
-<%= @registration.section.course_location_name %>
+<%= @registration.section.address %>
+<%= @registration.section.city %>, <%= @registration.section.state %> <%= @registration.section.zip %>
 
 We will be in touch before <%= @registration.section.starts_on.to_time.to_s(:simple) %> with any further instructions. However, please don't hesitate to get in touch with us at workshops@thoughtbot.com should you have any questions or concerns.
 

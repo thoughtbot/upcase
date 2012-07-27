@@ -11,6 +11,7 @@ Feature: Editing a Section
     And I select the end date of "June 14, 2010"
     And I select the teacher "Albert Einstein"
     And I select the teacher "Nikola Tesla"
+    And I fill in the Boston address
     And I press "Save Section"
     And I follow the link to the section from "June 14, 2010" to "June 14, 2010"
     Then I see that "Albert Einstein" is teaching
@@ -46,6 +47,7 @@ Feature: Editing a Section
     And I select the start date of "June 14, 2010"
     And I select the end date of "June 14, 2010"
     And I select the teacher "Nikola Tesla"
+    And I fill in the Boston address
     And I press "Save Section"
     And the following registrations exist:
       | paid  | first_name | last_name | section                  |
