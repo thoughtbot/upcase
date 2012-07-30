@@ -3,8 +3,6 @@ module NavigationHelpers
     case page_name
     when /^the home\s?page$/
       '/'
-    when /^the new home\s?page$/
-      '/pages/home'
     when /^the home page with the "([^"]+)" alternative for the "([^"]+)" experiment/
       "/?#{$2}=#{$1}"
     when 'the courses json page'

@@ -8,9 +8,11 @@
 
 <%=render partial: "form", locals: { product: @product } %>
 
-<% unless @product.video_hash_id.nil? %>
+<% if @product.videos.any? %>
   <label>Video Preview</label>
-  <p>
-    <%=render('purchases/video_code', video_hash_id: @product.video_hash_id) %>
-  </p>
+  <% @product.videos.each do |video| %>
+    <p>
+      <%=render('purchases/video_code', video_hash_id: @video.video_hash_id) %>
+    </p>
+  <% end %>
 <% end %>

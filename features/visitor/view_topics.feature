@@ -8,7 +8,7 @@ Feature: Viewing Courses on the home page
       | Test-Driven Assembly | 2        | mov AL, 61h       | false  |
       | Test-Driven Go       | 3        | short description | true   |
       | Test-Driven Erlang   | 1        | short description | true   |
-    When I go to the new home page
+    When I go to the topics index
     Then I see the course named "Test-Driven Haskell"
     And I should see "short description"
     Then I should not see the course named "Test-Driven Assembly"
@@ -27,7 +27,7 @@ Feature: Viewing Courses on the home page
       | Screencast 1    | screencast             |
       | Screencast 2    | screencast             |
       | Screencast 3    | screencast             |
-    When I go to the new home page
+    When I go to the topics index
     Then I should see "Book 1"
     And I should see "Book 2"
     And I should see "Screencast 1"
@@ -37,12 +37,12 @@ Feature: Viewing Courses on the home page
 
   Scenario: Visitor can see articles
     Given there is an article
-    When I go to the new home page
+    When I go to the topics index
     Then I see the article
 
   Scenario: Visitor can see topics
-    Given there is a topic
-    When I go to the new home page
+    Given there is a featured topic
+    When I go to the topics index
     Then I see the topic
 
   Scenario: Visitor can view a topic
