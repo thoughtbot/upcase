@@ -47,8 +47,7 @@ end
 # Sign out
 
 When "I sign out" do
-  visit "/"
-  click_link "Sign out"
+  delete sign_out_path
 end
 
 # Reset password

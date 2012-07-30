@@ -34,7 +34,7 @@ describe Topic do
   context 'top' do
     before do
       25.times do |i|
-        create(:topic, count: i)
+        create(:topic, count: i, featured: true)
       end
     end
 
@@ -47,11 +47,11 @@ describe Topic do
   context 'search' do
     let!(:rails) { create(:topic, name: "Rails") }
     let!(:ruby) { create(:topic, name: "Ruby") }
-    let!(:testing) { create(:topic, name: "ruby on rails") }
+    let!(:ruby_on_rails) { create(:topic, name: "ruby on rails") }
 
     it "returns only all matching topics" do
-      results = Topic.search("r")
-      results.should =~ [rails, ruby]
+      results = Topic.search("ru")
+      results.should =~ [ruby, ruby_on_rails]
     end
 
     it "returns one matching topic if matched exactly" do

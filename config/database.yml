@@ -1,12 +1,10 @@
 development:
   adapter: postgresql
   database: workshops_development
-  host: localhost
 
 test: &test
   adapter: postgresql
   database: workshops_test
-  host: localhost
 
 cucumber:
   <<: *test
