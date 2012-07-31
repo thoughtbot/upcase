@@ -31,9 +31,3 @@
   </div>
   <%= render 'sections/teachers', teachers: section.teachers %>
 </section>
-
-<% unless section.full? %>
-  <p class="travel">
-    <%= link_to "Have us book your travel and hotel.", 'mailto:workshops@thoughtbot.com?subject=Booking travel for workshop' %>
-  </p>
-<% end %>
