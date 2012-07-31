@@ -181,7 +181,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def fulfill_with_github
-    client = Octokit::Client.new(login: "cpytel", password: "cambridge")
+    client = Octokit::Client.new(login: "cpytel", password: "eqZUjxaaaqk33ob")
     readers.map(&:strip).reject(&:blank?).compact.each do |username|
       begin
         client.add_team_member(product.github_team, username)
