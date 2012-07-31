@@ -10,6 +10,9 @@
     <section id="workshop-details">
       <% if @course.sections.active.any? %>
         <%= render @course.sections.active %>
+        <p class="travel">
+          <%= link_to "Have us book your travel and hotel.", 'mailto:workshops@thoughtbot.com?subject=Booking travel for workshop' %>
+        </p>
       <% else %>
         <%= render partial: 'sections/tbd' %>
       <% end %>
