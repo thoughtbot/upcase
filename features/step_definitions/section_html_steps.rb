@@ -16,6 +16,10 @@ Then /^I should not see the external registration link$/ do
   page.should have_no_css("#register-button")
 end
 
+Then /^I should a registration link to be notified$/ do
+  page.should have_css("#register-button[href='#new_follow_up']", text: "Get notified")
+end
+
 Then 'I see the section from "$start_date" to "$end_date"' do |start_date, end_date|
   section = section(start_date, end_date)
   course = section.course
@@ -66,9 +70,7 @@ Then 'I see the user "$user_name" in the list of users' do |user_name|
 end
 
 Then 'I see the section location is "$location"' do |location|
-  within(".address") do
-    page.should have_content(location)
-  end
+  page.should have_css(".address", text: location)
 end
 
 Then %{I see the section location's name is "$location_name"} do |location_name|
@@ -96,9 +98,7 @@ Then 'I see the section price is "$price"' do |price|
 end
 
 Then 'I see that one of the teachers is "$teacher_name"' do |teacher_name|
-  within('.teachers') do
-    page.should have_content(teacher_name)
-  end
+  page.should have_css(".teachers", text: teacher_name)
 end
 
 Then %{I see "$teacher_name"'s avatar} do |teacher_name|

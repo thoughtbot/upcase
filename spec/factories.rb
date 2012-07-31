@@ -50,7 +50,6 @@ FactoryGirl.define do
     price       "500"
     start_at    '9:00'
     stop_at     '17:00'
-    location    '41 Winter St Boston, MA'
     maximum_students 12
   end
 
@@ -60,6 +59,7 @@ FactoryGirl.define do
     ends_on   { 1.day.from_now }
     start_at    '9:00'
     stop_at     '17:00'
+    address     '41 Winter St'
     after(:build) do |s|
       s.teachers << build(:teacher)
     end

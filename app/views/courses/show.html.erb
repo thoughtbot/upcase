@@ -8,29 +8,7 @@
     </section>
 
     <section id="workshop-details">
-      <section class="section-location">
-        <h2><%= @course.audience.name %> <span><%= number_to_currency @course.price, precision: 0 %></span></h2>
-
-        <div class="when">
-          <h3>When</h3>
-          <p>
-            TBD
-          </p>
-        </div>
-
-        <div class="address">
-          <h3>Where</h3>
-          <p>
-            <%= google_map_link_to("#{@course.location} #{@course.location_name}", id: 'location') do %>
-              <%= @course.location %> <br> <%= @course.location_name %>
-            <% end %>
-          </p>
-        </div>
-        <div id="register">
-          <a href="#new_follow_up" id="register-button">Get notified</a>
-        </div>
-
-      </section>
+      <%= render(@course.sections.active) || render('sections/tbd') %>
     </section>
   </section>
 </section>
@@ -39,6 +17,19 @@
   <section id="additional-information-wrapper">
     <section id="main-content">
       <%= render partial: 'follow_up', locals: { course: @course } %>
+
+      <section id="terms">
+        <h4 class="terms">Terms and conditions</h4>
+        <p>By registering for this workshop you agree to the following terms and conditions:</p>
+        <ul>
+          <li>If you&rsquo;re not happy with a workshop you took, just let us know and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</li>
+          <li>The ticket will entitle the named holder entrance to this event.</li>
+          <li>Tickets may not be resold and are non-transferrable.</li>
+          <li>Tickets are refundable up until 1 week before the start of the workshop.</li>
+          <li>We may film, take photographs, and use your feedback for marketing purposes.</li>
+          <li>thoughtbot, inc. will not be liable for any direct or indirect damage of any nature arising out of the cancellation of the event.</li>
+        </ul>
+      </section>
     </section>
   </section>
 </section>
