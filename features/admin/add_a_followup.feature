@@ -14,6 +14,7 @@ Feature: Adding followups for a course
     And I select the start date of "June 14, 2010"
     And I select the end date of "June 14, 2010"
     And I select the teacher "Albert Einstein"
+    And I fill in the Boston address
     And I press "Save Section"
     Then "followup@example.com" receives a follow up email for "Test-Driven Sleeping"
     When emails are cleared
@@ -21,6 +22,7 @@ Feature: Adding followups for a course
     And I select the start date of "June 15, 2010"
     And I select the end date of "June 15, 2010"
     And I select the teacher "Albert Einstein"
+    And I fill in the Boston address
     And I press "Save Section"
     Then "followup@example.com" does not receive a follow up email for "Test-Driven Sleeping"
     When I follow "Test-Driven Sleeping"
@@ -44,6 +46,7 @@ Feature: Adding followups for a course
     And I select the start date of "June 14, 2010"
     And I select the end date of "June 14, 2010"
     And I select the teacher "Albert Einstein"
+    And I fill in the Boston address
     And I press "Save Section"
     Then "followup1@example.com" receives a follow up email for "Test-Driven Sleeping"
     Then "followup2@example.com" receives a follow up email for "Test-Driven Sleeping"
@@ -52,6 +55,7 @@ Feature: Adding followups for a course
     And I select the start date of "June 15, 2010"
     And I select the end date of "June 15, 2010"
     And I select the teacher "Albert Einstein"
+    And I fill in the Boston address
     And I press "Save Section"
     Then "followup1@example.com" does not receive a follow up email for "Test-Driven Sleeping"
     Then "followup2@example.com" does not receive a follow up email for "Test-Driven Sleeping"
