@@ -8,11 +8,7 @@
     </section>
 
     <section id="workshop-details">
-      <% if @course.sections.active.any? %>
-        <%= render @course.sections.active %>
-      <% else %>
-        <%= render partial: 'sections/tbd' %>
-      <% end %>
+      <%= render(@course.sections.active) || render('sections/tbd') %>
     </section>
   </section>
 </section>
