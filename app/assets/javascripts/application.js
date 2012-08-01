@@ -6,7 +6,7 @@
 
 function searchTopics(text) {
   if(/\S/.test(text)) {
-    $('.results ul').css('background-color', 'rgba(0,0,50,.15)').activity();
+    $('.results').css('background-color', 'rgba(0,0,50,.15)').activity();
     $.get('/topics/' + text, {}, function(data) {
       var results = $(data).filter(".results");
       var title = $(results).attr('data-title');
