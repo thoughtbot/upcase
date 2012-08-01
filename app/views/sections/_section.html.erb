@@ -1,0 +1,33 @@
+<section class="section-location">
+  <% if section.full? %>
+    <h2><%= section.city %> <span>Sold Out</span></h2>
+  <% else %>
+    <h2><%= section.city %> <span><%= number_to_currency section.course_price, precision: 0 %></span></h2>
+  <% end %>
+
+  <div class="when">
+    <h3>When</h3>
+    <p><%= section.date_range %><br><%= section.time_range %></p>
+  </div>
+
+  <div class="address">
+    <h3>Where</h3>
+    <p>
+      <%= google_map_link_to(section.location, id: 'location') do %>
+        <%= section.address %><br>
+        <%= section.city %>, <%= section.state %> <%= section.zip %>
+      <% end %>
+    </p>
+  </div>
+
+  <div id="register">
+    <% if section.full? %>
+      <a href="#new_follow_up" id="register-button">Get notified</a>
+    <% else %>
+      <%= link_to registration_url(section), id: 'register-button' do %>
+        Register for this workshop
+      <% end %>
+    <% end %>
+  </div>
+  <%= render 'sections/teachers', teachers: section.teachers %>
+</section>

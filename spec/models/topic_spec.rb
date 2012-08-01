@@ -38,7 +38,7 @@ describe Topic do
       end
     end
 
-    it "returns the top 20 topics" do
+    it "returns the top 20 featured topics" do
       Topic.top.count.should == 20
       Topic.top.all? {|topic| topic.count >= 5 }.should be
     end
