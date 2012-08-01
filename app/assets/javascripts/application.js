@@ -2,16 +2,18 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery.observe_field
-//= require jquery.activity-indicator-1.0.0.min
 
 function searchTopics(text) {
   if(/\S/.test(text)) {
-    $('.results').css('background-color', 'rgba(0,0,50,.15)').activity();
     $.get('/topics/' + text, {}, function(data) {
       var results = $(data).filter(".results");
       var title = $(results).attr('data-title');
       var url = $(results).attr('data-url');
       $('.results').replaceWith(results);
+
+      $('.spinner').hide();
+      $('.clear-search').show();
+
       if(window.history.pushState) {
         document.title = title;
         if(url) {
@@ -96,10 +98,12 @@ $(function() {
   $('.search-bar input').keyup(function() {
     if ($(this).val()) {
       $(this).siblings('.search').hide();
-      $(this).siblings('.clear-search').show();
+      $(this).siblings('.clear-search').hide();
+      $(this).siblings('.spinner').show();
     }
     else {
       $(this).siblings('.search').show();
+      $(this).siblings('.spinner').hide();
       $(this).siblings('.clear-search').hide();
     }
   });

@@ -65,7 +65,7 @@ body.topics {
         position: absolute;
         @include transition;
 
-        &.clear-search {
+        &.clear-search, &.spinner {
           background: #ccc;
           @include border-radius(100px);
           display: none;
