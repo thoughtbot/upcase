@@ -35,6 +35,10 @@ class Section < ActiveRecord::Base
     upcoming.each(&:send_reminders)
   end
 
+  def self.has_different_teachers?
+    joins(:section_teachers).pluck(:teacher_id).uniq.size == 1
+  end
+
   def time_range
     "#{self.start_at.to_s(:time).strip}-#{self.stop_at.to_s(:time).strip}"
   end
