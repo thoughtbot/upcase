@@ -49,20 +49,23 @@ FactoryGirl.define do
     maximum_students 12
   end
 
-  factory :section do
+  factory :section_without_teacher, class: Section do
     association :course
     starts_on { 1.day.ago }
     ends_on   { 1.day.from_now }
     start_at    '9:00'
     stop_at     '17:00'
     address     '41 Winter St'
-    after(:build) do |s|
-      s.teachers << build(:teacher)
-    end
 
-    factory :future_section do
-      starts_on { 2.days.from_now }
-      ends_on   { 4.days.from_now }
+    factory :section do
+      after(:build) do |s|
+        s.teachers << build(:teacher)
+      end
+
+      factory :future_section do
+        starts_on { 2.days.from_now }
+        ends_on   { 4.days.from_now }
+      end
     end
   end
 
