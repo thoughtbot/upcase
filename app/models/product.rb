@@ -15,6 +15,20 @@ class Product < ActiveRecord::Base
     where(active: true)
   end
 
+  def self.find_all_books_or_by_topics(topics)
+    reduction = lambda {|memo, topic| memo + books.for_topic(topic).active }
+    found_books = topics.reduce([], &reduction).uniq
+    found_books = books.active if found_books.blank?
+    found_books
+  end
+
+  def self.find_all_screencasts_or_by_topics(topics)
+    reduction = lambda {|memo, topic| memo + screencasts.for_topic(topic).active }
+    found_screencasts = topics.reduce([], &reduction).uniq
+    found_screencasts = screencasts.active if found_screencasts.blank?
+    found_screencasts
+  end
+
   def self.ordered
     order("name asc")
   end

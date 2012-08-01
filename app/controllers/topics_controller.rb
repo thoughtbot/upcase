@@ -5,22 +5,20 @@ class TopicsController < ApplicationController
     @screencasts = Product.screencasts.active
     @courses = Course.only_public.by_position
     @articles = Article.order("published_on desc").limit(30)
+
   end
 
   def show
-    @featured_topics = Topic.top
     topics = Topic.search(topic_slug)
-    @books = []
-    @screencasts = []
-    @courses = []
-    @articles = []
-    topics.each do |topic|
-      @books.push *Product.books.for_topic(topic).active
-      @screencasts.push *Product.screencasts.for_topic(topic).active
-      @courses.push *Course.for_topic(topic).only_public.by_position
-      @articles.push *topic.articles
-    end
     @topic = topics.first if topics.size == 1
+    @featured_topics = Topic.top
+
+    @books = Product.find_all_books_or_by_topics(topics)
+    @screencasts = Product.find_all_screencasts_or_by_topics(topics)
+    @courses = Course.find_all_courses_or_by_topics(topics)
+    @articles =
+      Article.joins(:topics).where('classifications.topic_id in (?)', topics).
+      presence || NullArticle.new
 
     if request.xhr?
       render partial: "topics/results"

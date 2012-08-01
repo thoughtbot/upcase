@@ -14,6 +14,29 @@ describe Course do
     end
   end
 
+  describe '#find_all_courses_or_by_topics' do
+    it 'includes courses for the given topics' do
+      topic_1 = FactoryGirl.create(:topic, name: 'ruby')
+      topic_2 = FactoryGirl.create(:topic, name: 'rubygems')
+      course = FactoryGirl.create(:course, public: true)
+      course_not_in_topics = FactoryGirl.create(:course)
+
+      found_topics = [topic_1, topic_2]
+      found_topics.each { |topic| topic.courses << course }
+
+      Course.find_all_courses_or_by_topics(found_topics).should include(course)
+      Course.find_all_courses_or_by_topics(found_topics).should_not include(course_not_in_topics)
+    end
+
+    it 'includes all courses if no topics are found' do
+      course_1 = FactoryGirl.create(:course, public: true)
+      course_2 = FactoryGirl.create(:course, public: true)
+      found_topics = [FactoryGirl.create(:topic)]
+      Course.find_all_courses_or_by_topics(found_topics).should include course_1
+      Course.find_all_courses_or_by_topics(found_topics).should include course_2
+    end
+  end
+
   describe "#for_topic" do
     it "includes only courses for the given topic" do
       topic = FactoryGirl.create(:topic)

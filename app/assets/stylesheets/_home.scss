@@ -211,32 +211,32 @@ body.topics {
       }
     }
 
-    li.books {
+    .books {
       h2 {
         color: #286d15;
       }
 
-      a::before {
+      li > a::before {
         content: url('icons/book-small.png');
       }
     }
 
-    li.webcasts {
+    .webcasts {
       h2 {
         color: #006b83;
       }
 
-      a::before {
+      li > a::before {
         content: url('icons/video-small.png');
       }
     }
 
-    li.workshops {
+    .workshops {
       h2 {
         color: #6c1764;
       }
 
-      a::before {
+      li > a::before {
         content: url('icons/gear-small.png');
       }
     }
