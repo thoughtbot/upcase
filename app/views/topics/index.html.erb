@@ -3,6 +3,7 @@
     <input type="text" autocomplete="off" id="search_input" placeholder="What do you want to learn?" value="<%= @topic.name if @topic %>" />
     <%= link_to image_tag("icons/search.png"), "#", class: "search" %>
     <%= link_to image_tag("icons/clear_search.png"), root_url, class: "clear-search" %>
+    <%= link_to image_tag("icons/spinner.gif"), '#', class: "spinner" %>
   </div>
 
   <section class="popular">
