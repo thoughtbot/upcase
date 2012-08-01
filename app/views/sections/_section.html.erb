@@ -29,5 +29,7 @@
       <% end %>
     <% end %>
   </div>
-  <%= render 'sections/teachers', teachers: section.teachers %>
+  <% if @show_individual_teachers %>
+    <%= render 'sections/teachers', teachers: section.teachers %>
+  <% end %>
 </section>
