@@ -70,21 +70,3 @@ describe Section, 'sending reminders' do
     ActionMailer::Base.deliveries.should have(2).email
   end
 end
-
-describe Section, 'teacher uniqueness' do
-  it 'has unique teachers when any teacher is different' do
-    create_list(:section, 2)
-    Section.should_not have_different_teachers
-  end
-
-  it 'has different teachers when all teachers are the same' do
-    teacher = create(:teacher)
-    sections = build_list(:section_without_teacher, 2)
-    sections.each do |section|
-      section.teachers << teacher
-      section.save
-    end
-
-    Section.should have_different_teachers
-  end
-end
