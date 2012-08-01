@@ -59,7 +59,7 @@ Feature: Viewing upcoming course details
     And I see the question "Pets allowed?"
     And I see the answer "No"
 
-  Scenario: Viewing details for a course with one multiple upcoming sections
+  Scenario: Viewing details for a course with multiple upcoming sections
     Given today is June 10, 2010
     And a teacher exists with a name of "Ralph Bot"
     And a teacher exists with a name of "Joe Teacher"
@@ -84,6 +84,22 @@ Feature: Viewing upcoming course details
     And I see "Ralph Bot"'s avatar
     And I should see "June 20-22, 2010"
     And I see that one of the teachers is "Joe Teacher"
+
+  Scenario: Viewing details for a course with one multiple upcoming sections taught by the same person
+    Given today is June 10, 2010
+    And a teacher exists with a name of "Joe Teacher"
+    And the following course exists:
+      | name                | price |
+      | Test-Driven Haskell | 1000  |
+    And the following section exists:
+      | course                    | starts on     | ends on       | start at | stop at  | address      | city          | state | zip   |
+      | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 | 09:00:00 | 12:00:00 | 41 Winter St.| Boston        | MA    | 02108 |
+      | name: Test-Driven Haskell | June 20, 2010 | June 22, 2010 | 09:00:00 | 12:00:00 | 156 2nd St.  | San Francisco | CA    | 94105 |
+    And "Joe Teacher" is teaching the section from "June 13, 2010" to "June 16, 2010"
+    And "Joe Teacher" is teaching the section from "June 20, 2010" to "June 22, 2010"
+    When I go to the home page
+    And I follow "Test-Driven Haskell"
+    Then I should see that "Joe Teacher" is teaching both sections
 
   Scenario: Viewing a course that is full
     Given today is June 10, 2010
