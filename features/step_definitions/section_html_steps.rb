@@ -101,10 +101,6 @@ Then 'I see that one of the teachers is "$teacher_name"' do |teacher_name|
   page.should have_css(".teachers", text: teacher_name)
 end
 
-Then 'I should see that "$teacher_name" is teaching both sections' do |teacher_name|
-  page.should have_selector('h4', text: "Joe Teacher", count: 1)
-end
-
 Then %{I see "$teacher_name"'s avatar} do |teacher_name|
   teacher = Teacher.find_by_name!(teacher_name)
   page.should have_css("img[src^='https://secure.gravatar.com/avatar/#{teacher.gravatar_hash}']")

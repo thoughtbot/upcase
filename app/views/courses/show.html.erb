@@ -8,11 +8,8 @@
     </section>
 
     <section id="workshop-details">
-      <% if @sections.any? %>
-        <%= render @sections %>
-        <% unless @show_individual_teachers %>
-          <%= render 'sections/teachers', teachers: @sections.first.teachers %>
-        <% end %>
+      <% if @course.sections.active.any? %>
+        <%= render @course.sections.active %>
         <p class="travel">
           <%= link_to "Have us book your travel and hotel.", 'mailto:workshops@thoughtbot.com?subject=Booking travel for workshop' %>
         </p>
