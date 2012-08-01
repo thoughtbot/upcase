@@ -36,6 +36,14 @@
           <%== @product.questions %>
         </ul>
       </section>
+
+      <section id="topics">
+        <ul>
+          <% @product.topics.each do |topic| %>
+            <li><%= link_to topic.name, topic_path(topic) %></li>
+          <% end %>
+        </ul>
+      </section>
     </section>
 
   </section>
