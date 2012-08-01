@@ -15,6 +15,7 @@ Feature: Scheduling a new course
     And I select the end date of "June 17, 2010"
     And I select the teacher "Albert Einstein"
     And I fill in the seats available with "8"
+    And I fill in the Boston address
     And I press "Save Section"
     Then I see the successful section creation notice
     And I see the section from "June 14, 2010" to "June 17, 2010"
@@ -33,6 +34,7 @@ Feature: Scheduling a new course
     And I select the start date of "June 14, 2010"
     And I select the end date of "June 17, 2010"
     And I select the teacher "Albert Einstein"
+    And I fill in the Boston address
     And I press "Save Section"
     Then "aeinstein@example.com" is notified that they are scheduled to teach "Test-Driven Sleeping"
 
@@ -60,6 +62,7 @@ Feature: Scheduling a new course
     And I select the start date of "June 14, 2010"
     And I select the end date of "June 17, 2010"
     And I select the teacher "Samuel Beckett"
+    And I fill in the Boston address
     And I press "Save Section"
     Then I see the successful section creation notice
     And I see the section from "June 14, 2010" to "June 17, 2010"
@@ -87,6 +90,7 @@ Feature: Scheduling a new course
     And I select the end date of "June 17, 2010"
     And I select the teacher "Samuel Beckett"
     And I select the teacher "Ralph Bot"
+    And I fill in the Boston address
     And I press "Save Section"
     Then I see the successful section creation notice
     And I see the section from "June 14, 2010" to "June 17, 2010"

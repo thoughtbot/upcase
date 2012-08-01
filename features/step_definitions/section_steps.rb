@@ -16,6 +16,7 @@ Given 'I create the following section for "$course_name":' do |course_name, sect
   step "I fill in the following:", section_data
   steps %{
     And I select the teacher "Albert Einstein"
+    And I fill in the Boston address
     And I press "Save Section"
     Then I see the successful section creation notice
   }

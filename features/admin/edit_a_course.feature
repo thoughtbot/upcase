@@ -15,7 +15,6 @@ Feature: Editing a course
     | course price       |
     | start time         |
     | end time           |
-    | location           |
 
   Scenario: Edit a course successfully
     Given I am signed in as an admin
