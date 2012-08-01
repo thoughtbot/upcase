@@ -8,6 +8,4 @@ class Article < ActiveRecord::Base
   validates :body_html, presence: true
   validates :title, presence: true
   validates :tumblr_url, presence: true
-
-  attr_accessible :title, :body_html, :tumblr_url, :author_id, :published_on, :topic_ids, as: :admin
 end
