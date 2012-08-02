@@ -30,4 +30,9 @@ namespace :heroku do
       exit 1
     end
   end
+
+  task :flush_cache do
+    dalli = Dalli::Client.new "memcached://#{ENV['MEMCACHE_SERVERS']}"
+    dalli.flush_all
+  end
 end
