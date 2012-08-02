@@ -1,0 +1,7 @@
+<section class="popular">
+  <ul>
+    <% @featured_topics.each do |topic| %>
+      <li><%= link_to topic.name, topic_path(topic) %></li>
+    <% end %>
+  </ul>
+</section>
