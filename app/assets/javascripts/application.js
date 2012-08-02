@@ -15,9 +15,9 @@ function searchTopics(text) {
       var url = $(results).attr('data-url');
       $('.results').replaceWith(results);
 
-      $('.search').show();
+      $('.search').hide();
       $('.spinner').hide();
-      $('.clear-search').hide();
+      $('.clear-search').show();
 
       if(window.history.pushState) {
         document.title = title;
