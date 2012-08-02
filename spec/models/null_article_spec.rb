@@ -5,3 +5,9 @@ describe NullArticle, '#to_partial_path' do
     NullArticle.new.to_partial_path == 'articles/null_article'
   end
 end
+
+describe NullArticle, '#blank?' do
+  it 'returns true' do
+    NullArticle.new.blank?.should == true
+  end
+end
