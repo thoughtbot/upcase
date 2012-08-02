@@ -73,3 +73,27 @@ Then /^I should not see the results for "([^"]*)"$/ do |topic_name|
   topic = Topic.find_by_name(topic_name)
   page.should_not have_css("li.#{topic.slug}")
 end
+
+Given /^there is an article for the "([^"]*)" topic$/ do |topic_name|
+  topic = Topic.find_or_create_by_name!(topic_name)
+  create(:classification, topic: topic, classifiable: create(:article))
+end
+
+When /^I am looking at a product with the following topics:$/ do |table|
+  product = create(:product, name: "ahhhh")
+  table.rows.flatten.each do |topic_name|
+    topic = Topic.find_or_create_by_name!(topic_name)
+    create(:classification, topic: topic, classifiable: product)
+  end
+  visit product_path(product)
+end
+
+When /^I follow the "([^"]*)" topic$/ do |topic_name|
+  click_link topic_name
+end
+
+Then /^I see the article for the "([^"]*)" topic$/ do |topic_name|
+  topic = Topic.find_by_name!(topic_name)
+  topic_slug = topic.slug
+  page.should have_selector("li.article.result.#{topic_slug}")
+end

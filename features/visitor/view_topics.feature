@@ -56,3 +56,12 @@ Feature: Viewing Courses on the home page
     And there is a workshop for another topic
     When I go to the topic's page
     Then I see the page for the topic
+
+  Scenario: Visitor follows a topic from a list on the product page
+    Given there is an article for the "Crying" topic
+    When I am looking at a product with the following topics:
+      | Haskell |
+      | Object-oriented Programming |
+      | Crying |
+    And I follow the "Crying" topic
+    Then I see the article for the "Crying" topic
