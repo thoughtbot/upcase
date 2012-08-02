@@ -25,7 +25,7 @@ Workshops::Application.configure do
   # config.logger = SyslogLogger.new
 
   # Use a different cache store in production
-  # config.cache_store = :mem_cache_store
+  config.cache_store = :dalli_store
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
@@ -53,8 +53,12 @@ Workshops::Application.configure do
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.perform_deliveries = true
   ActionMailer::Base.default(charset: "utf-8")
-
   ActionMailer::Base.raise_delivery_errors = true
+
+  config.middleware.use Rack::Cache,
+    :verbose => true,
+    :metastore => "memcached://#{ENV['MEMCACHE_SERVERS']}",
+    :entitystore => "memcached://#{ENV['MEMCACHE_SERVERS']}"
 
   ActionMailer::Base.smtp_settings = {
     address: 'smtp.gmail.com',

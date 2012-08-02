@@ -29,6 +29,7 @@ Workshops::Application.configure do
 
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
+  config.cache_store = :dalli_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -55,6 +56,11 @@ Workshops::Application.configure do
   config.middleware.use Rack::SslEnforcer,
                         hsts: false,
                         redirect_to: "https://#{HOST}"
+
+  config.middleware.use Rack::Cache,
+    :verbose => true,
+    :metastore => "memcached://#{ENV['MEMCACHE_SERVERS']}",
+    :entitystore => "memcached://#{ENV['MEMCACHE_SERVERS']}"
 
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.perform_deliveries = true

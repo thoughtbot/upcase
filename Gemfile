@@ -73,3 +73,8 @@ group :test do
   gem 'vcr', '~> 2.1.1'
   gem 'webmock', '~> 1.8.7'
 end
+
+group :staging, :production do
+  gem "rack-cache", "~> 1.2"
+  gem "dalli", "~> 2.1.0"
+end
