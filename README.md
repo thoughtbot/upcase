@@ -51,6 +51,10 @@ We're using Heroku as a hosting provider. Deploying to Heroku is done via git. S
     git remote add staging git@heroku.com:workshops-staging-cedar.git
     git remote add production git@heroku.com:workshops-production-cedar.git
 
+The content of the index and topics is cached for 12 hours. To manually invalidate the cache, use the following rake task:
+
+    heroku run rake heroku:flush_cache --app workshops-staging-cedar
+
 Deploying
 ---------
 
