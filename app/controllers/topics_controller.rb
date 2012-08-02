@@ -36,8 +36,4 @@ class TopicsController < ApplicationController
   def topic_slug
     params[:id]
   end
-
-  def cache_key
-    "#{topic_slug}:#{request.xhr?}"
-  end
 end
