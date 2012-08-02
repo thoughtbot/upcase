@@ -3,11 +3,6 @@
     <h3>
       <%= course.name %>
     </h3>
-    <% if course.active? %>
-      <p class="date"><%= course.active_date_range %></p>
-    <% else %>
-      <p class="date tbd">Get notified</p>
-    <% end %>
     <p class="teaser"><%= course.short_description %></p>
   <% end %>
 <% end %>
