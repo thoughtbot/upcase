@@ -54,6 +54,11 @@ describe Topic do
       results.should =~ [ruby, ruby_on_rails]
     end
 
+    it "matches url escaped searched" do
+      results = Topic.search("ruby+on+rails")
+      results.should == [ruby_on_rails]
+    end
+
     it "returns one matching topic if matched exactly" do
       results = Topic.search("rails")
       results.should == [rails]

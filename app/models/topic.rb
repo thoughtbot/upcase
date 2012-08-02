@@ -27,6 +27,7 @@ class Topic < ActiveRecord::Base
   def self.search(text)
     text.downcase!
     text.strip!
+    text = CGI::unescape(text).parameterize
     topic = where(slug: text).first
     if topic
       [topic]
