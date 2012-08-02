@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   def index
-      expires_in 2.hours, public: true
+      expires_in 12.hours, public: true
 
       @featured_topics = Topic.top
       @books = Product.books.active
@@ -10,7 +10,7 @@ class TopicsController < ApplicationController
   end
 
   def show
-      expires_in 2.hours, public: true
+      expires_in 12.hours, public: true
 
       topics = Topic.search(topic_slug)
       @topic = topics.first if topics.size == 1
