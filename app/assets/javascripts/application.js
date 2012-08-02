@@ -36,7 +36,7 @@ $(function(){
     searchTopics(this.value);
   });
 
-  $("li.more a").click(function() {
+  $(document).on("click", "li.more a", function() {
     $(this).parent().siblings("li.additional").show();
     $(this).parent().hide();
   })
