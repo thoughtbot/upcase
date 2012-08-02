@@ -65,7 +65,7 @@ body.topics {
         position: absolute;
         @include transition;
 
-        &.clear-search, &.spinner {
+        &.clear-search {
           background: #ccc;
           @include border-radius(100px);
           display: none;
@@ -93,6 +93,17 @@ body.topics {
         img {
           display: block;
         }
+      }
+
+      .spinner {
+        @extend .animation-loading;
+        background: #ccc;
+        @include border-radius(100px);
+        display: block;
+        display: none;
+        padding: .75em;
+        @include position(absolute, 98px 24px 0 0);
+        @include transition;
       }
     }
 
