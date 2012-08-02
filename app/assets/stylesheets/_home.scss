@@ -190,6 +190,10 @@ body.topics {
         }
       }
 
+      &.more a {
+        padding: .65em 0 .5em 2.1em;
+      }
+
       > a {
         color: #555;
         display: block;
@@ -227,7 +231,7 @@ body.topics {
         position: absolute;
         text-shadow: 0 1px 0 #fcfcfc;
         text-transform: uppercase;
-        top: -48px;
+        top: -38px;
       }
     }
 
