@@ -32,7 +32,7 @@ function searchTopics(text) {
 }
 
 $(function(){
-  $("input,select").observe_field(0.1, function() {
+  $(".search-bar input").observe_field(0.1, function() {
     searchTopics(this.value);
   });
 
@@ -40,6 +40,11 @@ $(function(){
     $(this).parent().siblings("li.additional").show();
     $(this).parent().hide();
   })
+
+  $("section.popular li a").click(function() {
+    $(".search-bar input").val($(this).text());
+    return false;
+  });
 });
 
 $("#total a").click(function() {
