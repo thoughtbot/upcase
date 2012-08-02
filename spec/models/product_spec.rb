@@ -22,7 +22,7 @@ describe Product do
     end
   end
 
-  describe '#find_all_books_or_by_topics' do
+  describe '#find_books_by_topics' do
     it 'includes books for the given topics' do
       topic_1 = FactoryGirl.create(:topic, name: 'ruby')
       topic_2 = FactoryGirl.create(:topic, name: 'rubygems')
@@ -32,16 +32,8 @@ describe Product do
       found_topics = [topic_1, topic_2]
       found_topics.each { |topic| topic.products << product }
 
-      Product.find_all_books_or_by_topics(found_topics).should include(product)
-      Product.find_all_books_or_by_topics(found_topics).should_not include(product_not_in_topics)
-    end
-
-    it 'includes all books if no topics are found' do
-      product_1 = FactoryGirl.create(:product, product_type: 'book', active: true)
-      product_2 = FactoryGirl.create(:product, product_type: 'book', active: true)
-      found_topics = [FactoryGirl.create(:topic)]
-      Product.find_all_books_or_by_topics(found_topics).should include product_1
-      Product.find_all_books_or_by_topics(found_topics).should include product_2
+      Product.find_books_by_topics(found_topics).should include(product)
+      Product.find_books_by_topics(found_topics).should_not include(product_not_in_topics)
     end
   end
 
@@ -57,7 +49,7 @@ describe Product do
     end
   end
 
-  describe '#find_all_screencasts_or_by_topics' do
+  describe '#find_screencasts_by_topics' do
     it 'includes screencasts for the given topics' do
       topic_1 = FactoryGirl.create(:topic, name: 'ruby')
       topic_2 = FactoryGirl.create(:topic, name: 'rubygems')
@@ -67,16 +59,8 @@ describe Product do
       found_topics = [topic_1, topic_2]
       found_topics.each { |topic| topic.products << product }
 
-      Product.find_all_screencasts_or_by_topics(found_topics).should include(product)
-      Product.find_all_screencasts_or_by_topics(found_topics).should_not include(product_not_in_topics)
-    end
-
-    it 'includes all products if no topics are found' do
-      product_1 = FactoryGirl.create(:product, product_type: 'screencast', active: true)
-      product_2 = FactoryGirl.create(:product, product_type: 'screencast', active: true)
-      found_topics = [FactoryGirl.create(:topic)]
-      Product.find_all_screencasts_or_by_topics(found_topics).should include product_1
-      Product.find_all_screencasts_or_by_topics(found_topics).should include product_2
+      Product.find_screencasts_by_topics(found_topics).should include(product)
+      Product.find_screencasts_by_topics(found_topics).should_not include(product_not_in_topics)
     end
   end
 

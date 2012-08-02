@@ -14,7 +14,7 @@ describe Course do
     end
   end
 
-  describe '#find_all_courses_or_by_topics' do
+  describe '#find_courses_by_topics' do
     it 'includes courses for the given topics' do
       topic_1 = create(:topic, name: 'ruby')
       topic_2 = create(:topic, name: 'rubygems')
@@ -24,16 +24,8 @@ describe Course do
       found_topics = [topic_1, topic_2]
       found_topics.each { |topic| topic.courses << course }
 
-      Course.find_all_courses_or_by_topics(found_topics).should include(course)
-      Course.find_all_courses_or_by_topics(found_topics).should_not include(course_not_in_topics)
-    end
-
-    it 'includes all courses if no topics are found' do
-      course_1 = create(:course, public: true)
-      course_2 = create(:course, public: true)
-      found_topics = [create(:topic)]
-      Course.find_all_courses_or_by_topics(found_topics).should include course_1
-      Course.find_all_courses_or_by_topics(found_topics).should include course_2
+      Course.find_courses_by_topics(found_topics).should include(course)
+      Course.find_courses_by_topics(found_topics).should_not include(course_not_in_topics)
     end
   end
 
