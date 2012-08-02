@@ -35,6 +35,11 @@ $(function(){
   $("input,select").observe_field(0.1, function() {
     searchTopics(this.value);
   });
+
+  $("li.more a").click(function() {
+    $(this).parent().siblings("li.additional").show();
+    $(this).parent().hide();
+  })
 });
 
 $("#total a").click(function() {
