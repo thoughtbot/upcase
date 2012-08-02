@@ -1,0 +1,70 @@
+<div class="results" data-title="<%= title(@topic.try(:name)) %>" data-url="<%= topic_url(@topic) if @topic %>">
+  <section id="results-container">
+    <section id="results">
+
+      <% if @no_results %>
+        <p>No items met your search</p>
+      <% end %>
+
+      <ul class="books">
+        <li>
+          <h2>books</h2>
+        </li>
+        <li class="found products">
+          <ul><%= render @books.visible %></ul>
+        </li>
+        <li class="additional products">
+          <ul><%= render @books.hidden %></ul>
+        </li>
+
+        <% if @books.hidden.any? %>
+          <li class="more">
+            <a href="#show_all">View all of our books</a>
+          </li>
+        <% end %>
+      </ul>
+
+      <ul class="webcasts">
+        <li>
+          <h2>Webcasts</h2>
+        </li>
+        <li class="found products">
+          <ul><%= render @screencasts.visible %></ul>
+        </li>
+        <li class="additional products">
+          <ul><%= render @screencasts.hidden %></ul>
+        </li>
+
+        <% if @screencasts.hidden.any? %>
+          <li class="more">
+            <a href="#show_all">View all of our screencasts</a>
+          </li>
+        <% end %>
+      </ul>
+
+      <ul class="workshops">
+        <li>
+          <h2>Workshops</h2>
+        </li>
+        <li class="found courses">
+          <ul> <%= render @courses.visible %> </ul>
+        </li>
+        <li class="additional courses">
+          <ul> <%= render @courses.hidden %> </ul>
+        </li>
+
+        <% if @courses.hidden.any? %>
+          <li class="more">
+            <a href="#show_all">View all of our courses</a>
+          </li>
+        <% end %>
+      </ul>
+    </section>
+  </section>
+
+  <section class="additional-results">
+    <ul>
+      <%= render @articles %>
+    </ul>
+  </section>
+</div>

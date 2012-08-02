@@ -1,5 +1,4 @@
 <div class="results" data-title="<%= title(@topic.try(:name)) %>" data-url="<%= topic_url(@topic) if @topic %>">
-
   <section id="results-container">
     <section id="results">
       <ul class="books">
@@ -17,9 +16,9 @@
     </section>
   </section>
 
-    <section class="additional-results">
-      <ul>
-        <%= render @articles %>
-      </ul>
-    </section>
+  <section class="additional-results">
+    <ul>
+      <%= render @articles %>
+    </ul>
+  </section>
 </div>
