@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Customer discovery</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <meta name="description" content="A playbook for web startups based on the experience of thoughtbot and our clients.">
+  <meta name="keywords" content="customer discovery">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="/stylesheets/application.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <!--[if !IE]>-->
+    <meta name="viewport" content="width=device-width">
+    <script type="text/javascript">
+      window.scrollTo(0, 1);
+    </script>
+  <!--<![endif]-->
+  <script type="text/javascript" src="http://use.typekit.com/mly8aay.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+  <script type="text/javascript">
+    if(window.location.href.match(/https?:\/\/(?:www\.)?thoughtbot.com\/playbook/)) {
+      window.location = window.location.href.replace(/(https?:\/\/)(?:www\.)?thoughtbot.com\/playbook/, "$1playbook.thoughtbot.com")
+    }
+  </script>
+</head>
+<body class="default plans">
+
+<nav class="global">
+  <header>
+    <h1><a href="/"><span>thoughtbot presents: </span>The Playbook</a></h1>
+  </header>
+  <ul><li id="hello" class="nav">
+        <h3><a href="/" class="no-expand">thoughtbot playbook</a></h3>
+      </li>      <li id="make-plans" class="nav">
+        <h3><a href="#" class="expand" data-toggle=".make-plans-nav">Make Plans</a></h3>
+        <div class="make-plans-nav" style="display: none">
+                <h2 id='getting-started'><a href='/getting-started/'>Getting started</a></h2>
+      <ul>
+              <li><a href='/getting-started/customer-discovery/'>Customer discovery</a></li>
+      <li><a href='/getting-started/vision/'>Vision</a></li>
+      <li><a href='/getting-started/user-stories/'>User stories</a></li>
+      <li><a href='/getting-started/sketches/'>Sketches</a></li>
+      <li><a href='/getting-started/strengths/'>Strengths</a></li>
+
+      </ul>
+      <h2 id='defining-actionable-metrics'><a href='/defining-actionable-metrics/'>Definining actionable metrics</a></h2>
+      <ul>
+              <li><a href='/defining-actionable-metrics/aarrr/'>AARRR</a></li>
+      <li><a href='/defining-actionable-metrics/viral-coefficient/'>Viral coefficient</a></li>
+
+      </ul>
+      <h2 id='building-a-team'><a href='/building-a-team/'>Building a team</a></h2>
+      <ul>
+              <li><a href='/building-a-team/roles/'>Roles</a></li>
+      <li><a href='/building-a-team/outsourcing/'>Outsourcing</a></li>
+      <li><a href='/building-a-team/do-it-yourself/'>Do it yourself</a></li>
+      <li><a href='/building-a-team/hiring/'>Hiring</a></li>
+      <li><a href='/building-a-team/face-time/'>Face time</a></li>
+
+      </ul>
+
+        </div>
+      </li>
+      <li id="set-up-infrastructure" class="nav">
+        <h3><a href="#" class="expand" data-toggle=".set-up-infrastructure-nav">Set up infrastructure</a></h3>
+        <div class="set-up-infrastructure-nav" style="display: none">
+                <h2 id='choosing-platforms'><a href='/choosing-platforms/'>Choosing platforms</a></h2>
+      <ul>
+              <li><a href='/choosing-platforms/web-apps/'>Web apps</a></li>
+      <li><a href='/choosing-platforms/mobile-apps/'>Mobile apps</a></li>
+      <li><a href='/choosing-platforms/programming-languages/'>Programming languages</a></li>
+      <li><a href='/choosing-platforms/frameworks/'>Frameworks</a></li>
+      <li><a href='/choosing-platforms/databases/'>Databases</a></li>
+      <li><a href='/choosing-platforms/software-licenses/'>Software licenses</a></li>
+
+      </ul>
+      <h2 id='tooling-development-process'><a href='/tooling-development-process/'>Tooling the development environment</a></h2>
+      <ul>
+              <li><a href='/tooling-development-process/laptop/'>Laptop</a></li>
+      <li><a href='/tooling-development-process/project-management/'>Project management</a></li>
+      <li><a href='/tooling-development-process/version-control/'>Version control</a></li>
+      <li><a href='/tooling-development-process/text-editor/'>Text editor</a></li>
+      <li><a href='/tooling-development-process/continuous-integration/'>Continuous Integration</a></li>
+
+      </ul>
+      <h2 id='preparing-production-environment'><a href='/preparing-production-environment/'>The production environment</a></h2>
+      <ul>
+              <li><a href='/preparing-production-environment/domain-names-ssl-certificates/'>Domain names and SSL certificates</a></li>
+      <li><a href='/preparing-production-environment/application-hosting/'>Application hosting</a></li>
+      <li><a href='/preparing-production-environment/asset-hosting/'>Asset hosting</a></li>
+      <li><a href='/preparing-production-environment/performance-monitoring/'>Performance monitoring</a></li>
+      <li><a href='/preparing-production-environment/error-tracking/'>Error tracking</a></li>
+
+      </ul>
+
+        </div>
+      </li>
+      <li id="make-a-good-product" class="nav">
+        <h3><a href="#" class="expand" data-toggle=".make-a-good-product-nav">Make a good product</a></h3>
+        <div class="make-a-good-product-nav" style="display: none">
+                <h2 id='working-in-feedback-loops'><a href='/working-in-feedback-loops/'>Working in feedback loops</a></h2>
+      <ul>
+              <li><a href='/working-in-feedback-loops/discussions/'>Discussions</a></li>
+      <li><a href='/working-in-feedback-loops/user-stories/'>User stories</a></li>
+      <li><a href='/working-in-feedback-loops/sketches/'>Sketches</a></li>
+      <li><a href='/working-in-feedback-loops/pair-programming/'>Pair Programming</a></li>
+      <li><a href='/working-in-feedback-loops/feature-branch-code-reviews/'>Feature branch code reviews</a></li>
+
+      </ul>
+      <h2 id='finding-a-rhythm'><a href='/finding-a-rhythm/'>Finding a rhythm</a></h2>
+      <ul>
+              <li><a href='/finding-a-rhythm/sustainable-pace/'>Sustainable Pace</a></li>
+      <li><a href='/finding-a-rhythm/test-driven-development/'>Test-driven development</a></li>
+      <li><a href='/finding-a-rhythm/daily-standups/'>Daily standups</a></li>
+      <li><a href='/finding-a-rhythm/weekly-iterations/'>Weekly iterations</a></li>
+
+      </ul>
+      <h2 id='understanding-design'><a href='/understanding-design/'>Understanding design</a></h2>
+      <ul>
+              <li><a href='/understanding-design/process/'>The design process</a></li>
+      <li><a href='/understanding-design/user-experience/'>User experience</a></li>
+      <li><a href='/understanding-design/visual-design/'>Visual design</a></li>
+      <li><a href='/understanding-design/usability-testing/'>Usability testing</a></li>
+
+      </ul>
+      <h2 id='implementing-common-features'><a href='/implementing-common-features/'>Implementing common features</a></h2>
+      <ul>
+              <li><a href='/implementing-common-features/api/'>API</a></li>
+      <li><a href='/implementing-common-features/transactional-email/'>Transactional email</a></li>
+      <li><a href='/implementing-common-features/social-sharing/'>Social sharing</a></li>
+      <li><a href='/implementing-common-features/game-mechanics/'>Game mechanics</a></li>
+      <li><a href='/implementing-common-features/location-awareness/'>Location awareness</a></li>
+      <li><a href='/implementing-common-features/payment-processing/'>Payment processing</a></li>
+      <li><a href='/implementing-common-features/customer-support/'>Customer support</a></li>
+
+      </ul>
+      <h2 id='validating-customers'><a href='/validating-customers/'>Validating customers</a></h2>
+      <ul>
+              <li><a href='/validating-customers/a-b-testing/'>A/B testing</a></li>
+      <li><a href='/validating-customers/cohorts/'>Cohorts</a></li>
+      <li><a href='/validating-customers/feature-flags/'>Feature flags</a></li>
+
+      </ul>
+
+        </div>
+      </li>
+      <li id="make-money" class="nav">
+        <h3><a href="#" class="expand" data-toggle=".make-money-nav">Make money</a></h3>
+        <div class="make-money-nav" style="display: none">
+                <h2 id='profitably-running-saas'><a href='/profitably-running-saas/'>Profitably running SaaS</a></h2>
+      <ul>
+              <li><a href='/profitably-running-saas/customer-acquisition-cost/'>Customer Acquistion Cost</a></li>
+      <li><a href='/profitably-running-saas/life-time-value/'>Life Time Value</a></li>
+
+      </ul>
+      <h2 id='budgeting'><a href='/budgeting/'>Budgeting</a></h2>
+      <ul>
+              <li><a href='/budgeting/cost/'>Cost</a></li>
+      <li><a href='/budgeting/fundraising/'>Fundraising</a></li>
+      <li><a href='/budgeting/operations/'>Operations</a></li>
+
+      </ul>
+      <h2 id='handling-your-business'><a href='/handling-your-business/'>Handling your business</a></h2>
+      <ul>
+              <li><a href='/handling-your-business/accounting-and-bookkeeping/'>Accounting and bookkeeping</a></li>
+      <li><a href='/handling-your-business/expenses/'>Expenses</a></li>
+      <li><a href='/handling-your-business/contracts/'>Contracts</a></li>
+      <li><a href='/handling-your-business/invoices/'>Invoices</a></li>
+      <li><a href='/handling-your-business/email/'>Business email</a></li>
+      <li><a href='/handling-your-business/documents/'>Business documents</a></li>
+
+      </ul>
+
+        </div>
+      </li>
+      <li id="grow" class="nav">
+        <h3><a href="#" class="expand" data-toggle=".grow-nav">Grow</a></h3>
+        <div class="grow-nav" style="display: none">
+                <h2 id='working-in-boston'><a href='/working-in-boston/'>Working in Boston</a></h2>
+      <ul>
+              <li><a href='/working-in-boston/places/'>Boston places</a></li>
+      <li><a href='/working-in-boston/people/'>Boston people</a></li>
+      <li><a href='/working-in-boston/events/'>Boston events</a></li>
+
+      </ul>
+
+        </div>
+      </li>
+</ul>
+      <section class="sell">
+        <p>The Playbook is available for purchase as an e-book (mobi and epub).</p>
+        <a href="http://workshops.thoughtbot.com/playbook" class="purchase">Buy It Now</a>
+      </section>
+</nav>
+
+<section id="content">
+  <div class='breadcrumbs'><span class='tier-one'>Make plans</span> > <a class='tier-two' href='../#plans'>Getting started</a> ></div>
+<h1 id='customer_discovery'>Customer discovery</h1>
+
+<p>The riskiest thing a company can do is make something no one wants. So &#8220;get outside the building.&#8221; It costs $0.</p>
+
+<ul>
+<li>Talk to customers to figure out their problems.</li>
+
+<li>Build a minimal product.</li>
+
+<li>Iterate until the product solves the problems really well.</li>
+</ul>
+
+<p>It&#8217;s harder than it sounds and it&#8217;s not formulaic. At all times, we have to use our judgment as humans because other humans are good at describing their problems but bad at describing what solution they need.</p>
+
+<p>In addition to getting out of the building and talking to people in person, consider running surveys. <a href='http://www.google.com/google-d-s/forms/'>Google Forms</a> (free) is a fast and easy way to create them, distribute them, and run simple reports on the results.</p>
+
+<h2 id='right_action_right_time'>Right action, right time</h2>
+
+<p>Don&#8217;t worry about viral landing pages or viral private betas at this point. Those are acquisition and referral techniques that should wait until we&#8217;ve figured out how to make users happy.</p>
+
+<p>A handful of &#8220;friendly first contacts&#8221; can be all you need to test your hypotheses early on. Collecting thousands of emails won&#8217;t help you learn faster.</p>
+
+<p>As you encircle the thing people want, round up a couple dozen more people to help find nasty bugs or confusing interfaces and flows that you can&#8217;t see anymore because you&#8217;re too close to the product. This is a good &#8220;private beta&#8221; or invite-only time period.</p>
+
+<p>When you launch publicly, <em>then</em> you put up a landing page where people can <em>actually sign up for the real thing with their email address</em>. You&#8217;ll get a very similar set of people signing up when you launch than you would during that interim period when you&#8217;re in private beta.</p>
+
+<h2 id='customer_validation'>Customer validation</h2>
+
+<p>Can this be a profitable business?</p>
+
+<ul>
+<li>Launch with a simple sign up landing page</li>
+
+<li>Make a few tweaks based on early feedback</li>
+
+<li>Get people talking about the product</li>
+</ul>
+
+<p>Most startups never exit the customer validation phase. It can be difficult to make <a href='/profitably-running-saas'>the economics</a> work.</p>
+
+<h2 id='variance'>Variance</h2>
+
+<p>Our projects vary widely in popularity but the quality of the software is usually the same. We think the variance is due to:</p>
+
+<ul>
+<li>Intensity of the problem</li>
+
+<li>Size of the market</li>
+
+<li>Ability to reach the market</li>
+</ul>
+
+<p>Most of our clients do not have a big marketing budget. They sometimes get good press, which is only a temporary boost in traffic. Rarely do we see companies who are great at customer acquisition.</p>
+
+<h2 id='getting_people_talking_about_the_product'>Getting people talking about the product</h2>
+
+<p>A low-cost, long-term strategy is <a href='http://www.amazon.com/Inbound-Marketing-Found-Google-Social/dp/0470499311'>Inbound Marketing</a>.</p>
+
+<p>The idea is to create content to attract people Googling for solutions to their problems and to get people talking about, or even advocating for, you on social media. It&#8217;s not intrusive like advertising and provides a slower, longer-term trickle of traffic.</p>
+
+<h2 id='case_study_dropbox'>Case study: Dropbox</h2>
+
+<p>While they&#8217;re not a client of ours, we regularly use <a href='http://dropbox.com/'>Dropbox</a> for our contracts, design assets, etc. They also shared their <a href='http://www.slideshare.net/adamsmith1/from-zero-to-a-million-users-dropbox-and-xobni-lessons-learned?from=ss_embed'>customer discovery story</a>:</p>
+
+<ul>
+<li>3-minute screencast, posted to Hacker News. Got 50 comments.</li>
+
+<li>Simple landing page. Posted link to Digg. Collected 75,000 email addresses. Good sign of interest.</li>
+
+<li>After-launch landing page was simple. Call to action obvious. Nothing much to read.</li>
+
+<li>Hooked the user on core functionality first. Educated over time via tip emails.</li>
+
+<li>Referral program increased signups 60%.</li>
+
+<li>Contact list (Gmail) importer drove 3 million invites over 30 days.</li>
+</ul>
+</section>
+
+<nav class="local">
+  <span class="previous"><a href="/getting-started">Getting started</a></span>
+  <span class="next"><a href="/getting-started/vision">Vision</a></span>
+</nav>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/javascript/expand.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1485842-19']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript">
+  (function() {
+    $(function() {
+      var keywords;
+      keywords = encodeURIComponent($("meta[name='keywords']").attr("content"));
+      if (keywords) {
+        return $.getJSON("http://ads.thoughtbot.com/ad?keywords=" + (keywords.split(',')), function(data) {
+          $('#addled a').attr("href", "http://ads.thoughtbot.com" + data.url + "?utm_source=playbook.thoughtbot.com");
+          $('.addled-name').html(data.name);
+        }).done(function() {
+          return $('#addled').fadeIn('slow');
+        });
+      }
+    });
+  }).call(this);
+</script>
+
+<script type="text/javascript">
+var _sf_async_config={uid:29168,domain:"playbook.thoughtbot.com"};
+(function(){
+  function loadChartbeat() {
+    window._sf_endpt=(new Date()).getTime();
+    var e = document.createElement('script');
+    e.setAttribute('language', 'javascript');
+    e.setAttribute('type', 'text/javascript');
+    e.setAttribute('src',
+       (("https:" == document.location.protocol) ? "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" : "http://static.chartbeat.com/") +
+       "js/chartbeat.js");
+    document.body.appendChild(e);
+  }
+  var oldonload = window.onload;
+  window.onload = (typeof window.onload != 'function') ?
+     loadChartbeat : function() { oldonload(); loadChartbeat(); };
+})();
+</script>
+</body>
+</html>

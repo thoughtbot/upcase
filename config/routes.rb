@@ -58,7 +58,6 @@ Workshops::Application.routes.draw do
   match '/humans-present/oss' => "high_voltage/pages#show", as: :humans_present_oss, id: "humans-present-oss"
 
   match '/backbone-js-on-rails' => redirect("/products/1-backbone-js-on-rails")
-  match '/playbook' => redirect("/products/3-playbook")
 
   match '/rubyist-booster-shot' => "high_voltage/pages#show", as: :rubyist_booster_shot, id: "rubyist-booster-shot"
   match 'sign_in'  => 'sessions#new', as: 'sign_in'
