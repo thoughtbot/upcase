@@ -296,7 +296,7 @@ body.topics {
       }
     }
 
-    &.trail-map, &.podcast {
+    &.trail-map, &.podcast, &.playbook {
       h3:before {
         line-height: 0;
         padding-right: .3em;
@@ -314,6 +314,13 @@ body.topics {
     &.podcast {
       h3:before {
         content: url('icons/podcast.png');
+      }
+    }
+
+    &.playbook {
+      h3:before {
+        content: url('icons/playbook.png');
+        top: -1px;
       }
     }
 
