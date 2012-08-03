@@ -39,11 +39,11 @@ Feature: Freshbooks stores information about registrations
       | Workshop | 10000000  | 1        | Test-Driven Haskell |
     Then I am redirected to the freshbooks invoice page for "carlos@santana.com" on "Test-Driven Haskell"
     And "billing@santana.com" receives an invoice email
-    And "workshops@thoughtbot.com" should receive no emails
+    And "learn@thoughtbot.com" should receive no emails
     And "carlos@santana.com" should receive no emails
     And the registration for "carlos@santana.com" taking "Test-Driven Haskell" should not be paid
     When I pay for "carlos@santana.com" taking "Test-Driven Haskell"
-    Then "workshops@thoughtbot.com" receives a registration notification email
+    Then "learn@thoughtbot.com" receives a registration notification email
     Then "carlos@santana.com" receives a registration confirmation email
     And the registration for "carlos@santana.com" taking "Test-Driven Haskell" should be paid
 
@@ -131,7 +131,7 @@ Feature: Freshbooks stores information about registrations
     And I am redirected to the freshbooks invoice page for "carlos@santana.com" on "Test-Driven Haskell"
     And "billing@santana.com" receives an invoice email
     And the registration for "carlos@santana.com" taking "Test-Driven Haskell" should be paid
-    And "workshops@thoughtbot.com" receives a registration notification email
+    And "learn@thoughtbot.com" receives a registration notification email
     And "carlos@santana.com" receives a registration confirmation email
 
   @selenium
