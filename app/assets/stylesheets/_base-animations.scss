@@ -1,18 +1,24 @@
 .animation-loading {
-  @include animation(loading 0.25s ease);
+  @include animation(loading 0.3s ease);
   @include animation-fill-mode(both);
   @include animation-iteration-count(infinite);
 }
 
 @mixin loading {
   0% {
-    right: 24px;
+    padding: .75em;
+    right: 40px;
+    top: 100px;
   }
   50% {
-    right: 64px;
+    padding: 1.25em;
+    right: 30px;
+    top: 96px;
   }
   100% {
-    right: 24px;
+    padding: .75em;
+    right: 40px;
+    top: 100px;
   }
 }
 @-webkit-keyframes loading { @include loading; }

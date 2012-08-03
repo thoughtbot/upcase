@@ -102,7 +102,7 @@ body.topics {
         display: block;
         display: none;
         padding: .75em;
-        @include position(absolute, 98px 24px 0 0);
+        @include position(absolute, 100px 24px 0 0);
         @include transition;
       }
     }
@@ -299,6 +299,7 @@ body.topics {
     &.trail-map, &.podcast, &.playbook {
       h3:before {
         line-height: 0;
+        opacity: .5;
         padding-right: .3em;
         @include position(relative, 0px 0 0 0);
       }
@@ -320,7 +321,8 @@ body.topics {
     &.playbook {
       h3:before {
         content: url('icons/playbook.png');
-        top: -1px;
+        top: 0px;
+        padding-right: .4em;
       }
     }
 
