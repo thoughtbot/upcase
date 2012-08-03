@@ -50,7 +50,7 @@ Workshops::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  HOST = 'workshops.thoughtbot.com'
+  HOST = 'learn.thoughtbot.com'
   config.action_mailer.default_url_options = {host: HOST}
 
   config.middleware.use Rack::SslEnforcer,
