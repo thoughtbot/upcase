@@ -4,6 +4,6 @@ module TopicsHelper
   end
 
   def topic_classes(topics)
-    topics.pluck(:slug).join(' ')
+    topics.pluck(:slug).map(&:parameterize).join(' ')
   end
 end
