@@ -44,4 +44,8 @@ module ApplicationHelper
       "thoughtbot Learn"
     end
   end
+
+  def keywords
+    Topic.top.pluck(:name).join(", ")
+  end
 end
