@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Getting started</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <meta name="description" content="A playbook for web startups based on the experience of thoughtbot and our clients.">
+    <meta name="keywords" content="customer development, product development, sketches, user interfaces, user stories, vision">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="/stylesheets/application.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+    <!--[if !IE]>-->
+    <meta name="viewport" content="width=device-width">
+    <script type="text/javascript">
+      window.scrollTo(0, 1);
+      </script>
+      <!--<![endif]-->
+      <script type="text/javascript" src="http://use.typekit.com/mly8aay.js"></script>
+      <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+      <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+      <script type="text/javascript">
+        if(window.location.href.match(/https?:\/\/(?:www\.)?thoughtbot.com\/playbook/)) {
+          window.location = window.location.href.replace(/(https?:\/\/)(?:www\.)?thoughtbot.com\/playbook/, "$1playbook.thoughtbot.com")
+        }
+</script>
+</head>
+<body class="default plans">
+
+  <nav class="global">
+  <header>
+  <h1><a href="/"><span>thoughtbot presents: </span>The Playbook</a></h1>
+  </header>
+  <ul><li id="hello" class="nav">
+      <h3><a href="/" class="no-expand">thoughtbot playbook</a></h3>
+      </li>      <li id="make-plans" class="nav">
+      <h3><a href="#" class="expand" data-toggle=".make-plans-nav">Make Plans</a></h3>
+      <div class="make-plans-nav" style="">
+        <h2 id='getting-started'><a href='./getting-started/index.html'>Getting started</a></h2>
+        <ul>
+          <li><a href='./getting-started/customer-discovery/index.html'>Customer discovery</a></li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+  <section class="sell">
+  <p>The Playbook is available for purchase as an e-book (mobi and epub).</p>
+  <a href="http://workshops.thoughtbot.com/playbook" class="purchase">Buy It Now</a>
+  </section>
+  </nav>
+
+  <section id="content">
+  <div class='breadcrumbs'><span class='tier-one'>Make plans</span> > </div>
+  <h1 id='getting_started'>Getting started</h1>
+
+  <p>Team, business model, product idea, wireframes&#8230; where to begin?</p>
+
+  <p>We like it when our clients start by <a href='/getting-started/customer-discovery'>discovering their customers</a>.</p>
+
+  <p>Some clients have a clearly defined product <a href='/getting-started/vision'>vision</a>. However, we expect the original feature set to change upon first contact with customers. So, we prefer working without extensive requirements.</p>
+
+  <p>Instead, we ask for <a href='/getting-started/user-stories'>user stories</a> and low-fidelity <a href='/getting-started/sketches'>sketches</a>.</p>
+
+  <p>Lastly, we urge our clients to consider user experience and unique data as their <a href='/getting-started/strengths'>greatest strengths</a>.</p>
+  </section>
+
+  <nav class="local">
+  <span class="previous"><a href="/">Hello</a></span>
+  <span class="next"><a href="/getting-started/customer-discovery">Customer discovery</a></span>
+  </nav>
+
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="/javascript/expand.js"></script>
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1485842-19']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+     })();
+   </script>
+
+   <script type="text/javascript">
+     (function() {
+      $(function() {
+        var keywords;
+        keywords = encodeURIComponent($("meta[name='keywords']").attr("content"));
+        if (keywords) {
+        return $.getJSON("http://ads.thoughtbot.com/ad?keywords=" + (keywords.split(',')), function(data) {
+          $('#addled a').attr("href", "http://ads.thoughtbot.com" + data.url + "?utm_source=playbook.thoughtbot.com");
+          $('.addled-name').html(data.name);
+          }).done(function() {
+            return $('#addled').fadeIn('slow');
+            });
+        }
+        });
+      }).call(this);
+    </script>
+
+    <script type="text/javascript">
+      var _sf_async_config={uid:29168,domain:"playbook.thoughtbot.com"};
+(function(){
+ function loadChartbeat() {
+ window._sf_endpt=(new Date()).getTime();
+ var e = document.createElement('script');
+ e.setAttribute('language', 'javascript');
+ e.setAttribute('type', 'text/javascript');
+ e.setAttribute('src',
+   (("https:" == document.location.protocol) ? "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" : "http://static.chartbeat.com/") +
+   "js/chartbeat.js");
+ document.body.appendChild(e);
+ }
+ var oldonload = window.onload;
+ window.onload = (typeof window.onload != 'function') ?
+ loadChartbeat : function() { oldonload(); loadChartbeat(); };
+ })();
+</script>
+</body>
+</html>
