@@ -20,7 +20,7 @@ Given /^"([^"]*)" has (\d+) registrations$/ do |course_name, count|
 end
 
 Then /^I workshops is notified of my registration$/ do
-  open_email("workshops@thoughtbot.com", with_text: /just registered for/)
+  open_email("learn@thoughtbot.com", with_text: /just registered for/)
 end
 
 Then /^the registration for "([^"]*)" taking "([^"]*)" should be paid$/ do |email, course_name|

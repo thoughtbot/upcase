@@ -1,9 +1,5 @@
 Feature: Selecting a course and registering for it
 
-  Scenario: No courses
-    When I go to the home page
-    Then I see the empty section description
-
   @selenium @allow-rescue
   Scenario: User registers for a section
     Given an audience exists with a name of "Developers"
