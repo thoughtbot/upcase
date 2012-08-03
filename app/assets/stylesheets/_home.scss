@@ -296,6 +296,27 @@ body.topics {
       }
     }
 
+    &.trail-map, &.podcast {
+      h3:before {
+        line-height: 0;
+        padding-right: .3em;
+        @include position(relative, 0px 0 0 0);
+      }
+    }
+
+    &.trail-map {
+      h3:before {
+        content: url('icons/map.png');
+        top: 1px;
+      }
+    }
+
+    &.podcast {
+      h3:before {
+        content: url('icons/podcast.png');
+      }
+    }
+
     h3 {
       color: #555;
       float: left;
