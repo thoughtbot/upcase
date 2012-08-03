@@ -13,8 +13,8 @@ describe Topic do
       @topic = create(:topic, name: ' Test Driven Development ')
     end
 
-    it 'generates slug based on name' do
-      @topic.slug.should == 'test-driven-development'
+    it 'generates a stripped, url encoded slug based on name' do
+      @topic.slug.should == 'test+driven+development'
     end
   end
 

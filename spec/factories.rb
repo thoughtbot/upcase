@@ -8,11 +8,11 @@ FactoryGirl.define do
   end
 
   sequence :name do |n|
-    "name ##{n}"
+    "name #{n}"
   end
 
   sequence :title do |n|
-    "title ##{n}"
+    "title #{n}"
   end
 
   sequence :tumblr_url do |n|
@@ -21,10 +21,6 @@ FactoryGirl.define do
 
   sequence :tumblr_user_name do |n|
     "user#{n}"
-  end
-
-  sequence :slug do |n|
-    "slug-#{n}"
   end
 
   factory :user do
@@ -154,7 +150,6 @@ FactoryGirl.define do
 
   factory :topic do
     name
-    slug
 
     body_html 'body text of document'
     keywords 'clean, clear, precise'

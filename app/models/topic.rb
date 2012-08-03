@@ -27,7 +27,7 @@ class Topic < ActiveRecord::Base
   def self.search(text)
     text.downcase!
     text.strip!
-    text = CGI::unescape(text).parameterize
+    text = escape_if_needed(text)
     topic = where(slug: text).first
     if topic
       [topic]
@@ -42,9 +42,17 @@ class Topic < ActiveRecord::Base
 
   private
 
+  def self.escape_if_needed(text)
+    escaping_needed?(text) ? CGI::escape(text) : text
+  end
+
+  def self.escaping_needed?(text)
+    text =~ /\s/
+  end
+
   def generate_slug
     if name
-      self.slug = name.parameterize
+      self.slug = CGI::escape(name.strip).downcase
     end
   end
 end
