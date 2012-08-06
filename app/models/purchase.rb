@@ -5,6 +5,7 @@ class Purchase < ActiveRecord::Base
 
   PAYMENT_METHODS = %w(stripe paypal free)
 
+  belongs_to :user
   belongs_to :product
   belongs_to :coupon
   serialize :readers

@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Purchase do
+  it { should belong_to(:user) }
+
   it 'can produce the host after setting it' do
     Purchase.host = 'hottiesandcreepers.com:123467'
     Purchase.host.should == 'hottiesandcreepers.com:123467'
