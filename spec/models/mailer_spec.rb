@@ -1,26 +1,46 @@
 require 'spec_helper'
 
-describe "Signup Email" do
-  let(:purchase) { build(:purchase, :email => "joe@example.com", :name => "Joe Smith", :lookup => "asdf", :created_at => Time.now) }
+describe "Receipt Email" do
+  include Rails.application.routes.url_helpers
 
-  before(:all) do
-    @email = Mailer.purchase_receipt(purchase)
+  context "for a purchase without a user" do
+    let(:purchase) { create(:purchase, :email => "joe@example.com", :name => "Joe Smith", :lookup => "asdf", :created_at => Time.now) }
+
+    before do
+      @email = Mailer.purchase_receipt(purchase)
+    end
+
+    it "is to the email passed in" do
+      @email.should deliver_to(purchase.email)
+    end
+
+    it "contains the name in the mail body" do
+      @email.should have_body_text(/#{purchase.name}/)
+    end
+
+    it "contains the price of the purchase" do
+      @email.should have_body_text(/\$#{purchase.price}\.00/)
+    end
+
+    it "should have the correct subject" do
+      @email.should have_subject(/Your receipt for #{purchase.product.name}/)
+    end
+
+    it "contains a link to create a new account in the body" do
+      @email.should have_body_text(/#{new_user_url(host: HOST)}/)
+    end
   end
 
-  it "is to the email passed in" do
-    @email.should deliver_to(purchase.email)
-  end
+  context "for a purchase with a user" do
+    let(:purchase) { create(:purchase, user: create(:user)) }
 
-  it "contains the name in the mail body" do
-    @email.should have_body_text(/#{purchase.name}/)
-  end
+    before do
+      @email = Mailer.purchase_receipt(purchase)
+    end
 
-  it "contains the price of the purchase" do
-    @email.should have_body_text(/\$#{purchase.price}\.00/)
-  end
-
-  it "should have the correct subject" do
-    @email.should have_subject(/Your receipt for #{purchase.product.name}/)
+    it "does not contain a link to create a new account in the body" do
+      @email.should_not have_body_text(/#{new_user_url(host: HOST)}/)
+    end
   end
 end
 
