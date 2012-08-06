@@ -216,3 +216,31 @@ describe Purchase, 'with no price' do
     it { should_not be_valid }
   end
 end
+
+describe "Purchases with various payment methods" do
+  before do
+    @stripe = create(:purchase, payment_method: "stripe")
+    @paypal = create(:purchase, payment_method: "paypal")
+  end
+
+  it "includes only stripe payments in the stripe finder" do
+    Purchase.stripe.should == [@stripe]
+  end
+end
+
+describe "Purchases for various emails" do
+  context "#by_email" do
+    let(:email) { "user@example.com" }
+
+    before do
+      @prev_purchases = [create(:purchase, email: email),
+                         create(:purchase, email: email)]
+      @other_purchase = create(:purchase)
+    end
+
+    it "#by_email" do
+      Purchase.by_email(email).should =~ @prev_purchases
+      Purchase.by_email(email).should_not include @other_purchase
+    end
+  end
+end

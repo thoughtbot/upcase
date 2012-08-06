@@ -129,6 +129,7 @@ FactoryGirl.define do
 
   factory :download do
   end
+
   factory :purchase, aliases: [:individual_purchase] do
     product
     name "Test User"
