@@ -13,7 +13,9 @@
       <%= form.semantic_errors %>
       <%= hidden_field_tag 'coupon_id' %>
       <%= form.inputs 'Your information' do %>
-        <li><%= link_to 'Log In', sign_in_path(return_to: request.fullpath) %></li>
+        <% if signed_out? %>
+          <li><%= link_to 'Sign in to your account', sign_in_path(return_to: request.fullpath) %></li>
+        <% end %>
         <%= form.input :variant, as: :hidden %>
         <%= form.input :name %>
         <%= form.input :email, hint: "The receipt will be sent to this address." %>
