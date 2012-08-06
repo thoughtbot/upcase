@@ -3,6 +3,8 @@ Workshops::Application.routes.draw do
 
   root to: 'topics#index'
 
+  match '/pages/tmux' => redirect("/products/4-humans-present-tmux")
+
   resource :session, controller: 'sessions'
   resources :sections, only: [:show] do
     resources :registrations, only: [:index, :new, :create]
