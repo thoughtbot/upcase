@@ -15,6 +15,37 @@ Feature: Purchase a Product
       | product_id | wistia_id |
       | 1          | 1194803   |
 
+  Scenario: A visitor signs up for an account through checkout
+    When I go to the home page
+    And I follow "Test Fetch"
+    And I follow "Purchase for Yourself"
+    And I follow "Sign in to your account"
+    And I follow "Sign up"
+    And I sign up with the following:
+      | first_name      | John         |
+      | last_name       | Doe          |
+      | email           | john@doe.com |
+      | password        | mypass       |
+      | github_username | john_doe     |
+    Then I should see the checkout form
+    And "Email" should be filled in with "john@doe.com"
+    And "Name" should be filled in with "John Doe"
+    And I should be signed in
+
+  Scenario: A visitor signs into their account through checkout
+    Given the following user exists:
+      | first_name | last_name | email        | password | github_username |
+      | John       | Doe       | john@doe.com | password | john_doe        |
+    When I go to the home page
+    And I follow "Test Fetch"
+    And I follow "Purchase for Yourself"
+    And I follow "Sign in to your account"
+    And I fill in and submit the sign in form with "john@doe.com" and "password"
+    Then I should see the checkout form
+    And "Email" should be filled in with "john@doe.com"
+    And "Name" should be filled in with "John Doe"
+    And I should be signed in
+
   @selenium
   Scenario: A visitor purchases a product with paypal
     When I go to the home page

@@ -62,7 +62,9 @@ Workshops::Application.routes.draw do
   match '/backbone-js-on-rails' => redirect("/products/1-backbone-js-on-rails")
 
   match '/rubyist-booster-shot' => "high_voltage/pages#show", as: :rubyist_booster_shot, id: "rubyist-booster-shot"
-  match 'sign_in'  => 'sessions#new', as: 'sign_in'
+
+  match '/sign_up' => 'users#new', as: 'sign_up'
+  match '/sign_in' => 'sessions#new', as: 'sign_in'
 
   mount Split::Dashboard, at: 'split'
 

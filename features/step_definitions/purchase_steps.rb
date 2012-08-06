@@ -7,6 +7,14 @@ When /^I apply coupon code "([^"]*)" to product named "([^"]*)"$/ do |coupon_cod
   click_button "Apply Coupon"
 end
 
+Then /^I should see the checkout form$/ do
+  page.should have_css('form#new_purchase')
+end
+
+Then /^"([^"]*)" should be filled in with "([^"]*)"$/ do |field, value|
+  field_labeled(field).value.should =~ /#{value}/
+end
+
 Then /^I should not see payment options$/ do
   page.should have_no_css('#billing-information')
 end
