@@ -1,6 +1,6 @@
 <h2>Sign up</h2>
 
-<%= semantic_form_for @user do |form| %>                                                 
+<%= semantic_form_for @user do |form| %>
   <%= hidden_field_tag :return_to, params[:return_to] if params[:return_to] %>
   <%= form.inputs do %>
     <%= form.input :first_name, :input_html => { :placeholder => "First name" } %>
@@ -11,6 +11,6 @@
   <% end %>
 
   <%= form.actions do %>
-    <%= form.submit 'Sign up' %>                                                  
+    <%= form.submit 'Sign up' %>
   <% end %>
 <% end %>

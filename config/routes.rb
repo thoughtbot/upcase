@@ -63,6 +63,8 @@ Workshops::Application.routes.draw do
 
   match '/rubyist-booster-shot' => "high_voltage/pages#show", as: :rubyist_booster_shot, id: "rubyist-booster-shot"
 
+  match '/my_account' => 'users#update', as: 'my_account', via: :put
+  match '/my_account' => 'users#edit', as: 'my_account'
   match '/sign_up' => 'users#new', as: 'sign_up'
   match '/sign_in' => 'sessions#new', as: 'sign_in'
 
