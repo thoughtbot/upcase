@@ -5,6 +5,7 @@ class Purchase < ActiveRecord::Base
 
   PAYMENT_METHODS = %w(stripe paypal free)
 
+  belongs_to :user
   belongs_to :product
   belongs_to :coupon
   serialize :readers
@@ -45,6 +46,14 @@ class Purchase < ActiveRecord::Base
 
   def self.host=(host)
     @@host = host
+  end
+
+  def self.stripe
+    where("stripe_customer is not null")
+  end
+
+  def self.by_email(email)
+    where(email: email)
   end
 
   def price
@@ -120,21 +129,23 @@ class Purchase < ActiveRecord::Base
 
   def create_and_charge_customer
     begin
-      customer = Stripe::Customer.create(
-        card: stripe_token,
-        description: email,
-        email: email
-      )
+      if stripe_customer.blank?
+        customer = Stripe::Customer.create(
+          card: stripe_token,
+          description: email,
+          email: email
+        )
+        self.stripe_customer = customer.id
+      end
 
       charge = Stripe::Charge.create(
         amount: price * 100, # in cents
         currency: "usd",
-        customer: customer.id,
+        customer: stripe_customer,
         description: product_name
       )
-
       self.payment_transaction_id = charge.id
-      self.stripe_customer = customer.id
+
       self.paid = true
     rescue Stripe::StripeError => e
       errors[:base] << "There was a problem processing your credit card, #{e.message.downcase}"
