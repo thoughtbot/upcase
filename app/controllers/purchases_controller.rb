@@ -16,6 +16,7 @@ class PurchasesController < ApplicationController
   def create
     @product = Product.find(params[:product_id])
     @purchase = @product.purchases.build(params[:purchase])
+    @purchase.user = current_user if signed_in?
     @purchase.coupon = Coupon.find_by_id_and_active(params[:coupon_id], true) unless params[:coupon_id].blank?
 
     if @purchase.save
