@@ -1,7 +1,15 @@
 class PurchasesController < ApplicationController
   def new
+    if signed_in?
+      name = current_user.name
+      email = current_user.email
+    else
+      name = ''
+      email = ''
+    end
     @product = Product.find(params[:product_id])
-    @purchase = @product.purchases.build(variant: params[:variant])
+    @purchase = @product.purchases.build(variant: params[:variant], name: name,
+      email: email)
     track_chrome_screencast_ab_test_completion
   end
 
