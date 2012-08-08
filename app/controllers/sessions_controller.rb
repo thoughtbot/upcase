@@ -1,5 +1,4 @@
 class SessionsController < Clearance::SessionsController
-  layout 'admin'
 
   private
 
