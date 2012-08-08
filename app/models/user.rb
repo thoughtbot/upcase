@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include Clearance::User
 
-  attr_accessible :last_name, :password, :email, :first_name
+  attr_accessible :email, :first_name, :github_username, :last_name, :password
 
   has_many :purchases
 

@@ -4,15 +4,16 @@
     <ul> 
       <li id="nav-home"><a href="http://thoughtbot.com">Home</a></li> 
       <li id="nav-community"><a href="http://thoughtbot.com/community">Community</a></li> 
-      <li><a href="http://thoughtbot.com/contact" id="contact-btn">Contact<!-- <span>(617)482&ndash;1300</span> --></a></li> 
+      <li><a href="http://thoughtbot.com/contact" id="contact-btn">Contact</a></li> 
       <li id="nav-blog"><a href="http://robots.thoughtbot.com">Blog</a></li> 
       <li id="log_in_out">
         <% if signed_in? %>
           <%= link_to 'Sign out', sign_out_path, method: :delete %>
+          <%= link_to 'My Account', my_account_path %>
         <% else %>
           <%= link_to 'Sign in', sign_in_path %>
         <% end %>
       </li>
-    </ul> 
-  </nav> 
+    </ul>
+  </nav>
 </header>
