@@ -3,6 +3,7 @@ require 'spec_helper'
 describe User do
   context "associations" do
     it { should have_many(:purchases) }
+    it { should have_many(:registrations) }
   end
 
   context "validations" do
@@ -43,6 +44,29 @@ describe User do
       user = create(:user)
       user.purchases.should be_empty
       user.stripe_customer.should be_blank
+    end
+  end
+
+  context "when there are previous registrations" do
+    let(:email) { "newuser@example.com" }
+
+    before do
+      @prev_registrations = [create(:registration, email: email),
+                             create(:registration, email: email)]
+      @other_registration = create(:registration)
+    end
+
+    it "associates only registrations for a new user with the same email" do
+      user = create(:user, email: email)
+      user.registrations.should =~ @prev_registrations
+      user.registrations.should_not include @other_registration
+    end
+  end
+
+  context "when there are no previous registrations" do
+    it "doesn't associate a created user with any purchases" do
+      user = create(:user)
+      user.registrations.should be_empty
     end
   end
 end
