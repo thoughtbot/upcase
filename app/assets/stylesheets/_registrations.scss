@@ -7,7 +7,7 @@
 }
 
 body.registrations,
-body.purchases {
+body.purchases, div.registrations {
 
   #container {
     background: url("/images/shadowing.png") center top no-repeat;
@@ -107,7 +107,8 @@ body.purchases {
             height: 100px;
           }
 
-          &#purchase_city_input {
+          &#purchase_city_input,
+           {
             float: left;
             margin-right: flex-gutter();
             width: flex-grid(6);
@@ -195,6 +196,43 @@ body.purchases {
       color: #666;
       list-style: outside;
       margin: 0 0 4px 15px;
+    }
+  }
+  
+  #account-sidebar {
+    float: left;
+    padding: 21px 0 0 0;
+    width: flex-grid(4);
+    
+    h2 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+    
+    h3 {
+      margin-top: 18px;
+      margin-left: 10px;
+    }
+    
+    .first-purchase {
+      margin-top: 3px;
+    }
+    
+    li {
+      padding: 10px;
+      width: 100%;
+      background-color: #efefef;
+      margin-bottom: 2px;
+      font-size: 16px;
+    }
+    
+    a {
+      text-decoration: none;
+    }
+    
+    span {
+      font-style: italic;
+      color: #aaa;
     }
   }
 
