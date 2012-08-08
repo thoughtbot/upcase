@@ -1,22 +1,38 @@
-<h2>My Account</h2>
+<section id="container">
+  <h1>Your Information and Purchases</h1>
+  <section id="form-container">
+    <section id="form-column">
 
-<%= semantic_form_for current_user, url: my_account_path do |form| %>
-  <%= form.inputs do %>
-    <%= form.input :first_name, input_html: { placeholder: "First name" } %>
-    <%= form.input :last_name, input_html: { placeholder: "Last name" } %>
-    <%= form.input :email, as: :email %>
-    <%= form.input :github_username %>
-    <%= form.input :password %>
-  <% end %>
+      <%= semantic_form_for current_user, url: my_account_path do |form| %>
+        <%= form.inputs 'Your Information' do %>
+          <%= form.input :first_name, label: 'Your Name', input_html: { placeholder: "First name" } %>
+          <%= form.input :last_name, label: false, input_html: { placeholder: "Last name" } %>
+          <%= form.input :email, as: :email %>
+          <%= form.input :github_username %>
+          <%= form.input :password %>
+        <% end %>
 
-  <%= form.actions do %>
-    <%= form.submit 'Update account' %>
-  <% end %>
-<% end %>
+        <%= form.actions do %>
+          <%= form.submit 'Update account' %>
+        <% end %>
+      <% end %>
 
-<% if current_user.purchases.present? %>
-  <h2>My Purchases</h2>
-  <ul class="purchases">
-    <%= render current_user.purchases %>
-  </ul>
-<% end %>
+    </section>
+    <section id="account-sidebar">
+
+      <% if current_user.purchases.present? %>
+        <h2>Your purchases</h2>
+        <h3 class="first-purchase">Products</h3>
+        <ol class="purchases">
+          <%= render current_user.purchases %>
+        </ol>
+      <% end %>
+
+        <h3>Workshops</h3>
+        <ol class="workshops">
+          <li><a href="">Intermediate Ruby on Rails</a></li>
+        </ol>
+
+    </section>
+  </section>
+</section>
