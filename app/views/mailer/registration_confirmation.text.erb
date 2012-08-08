@@ -16,4 +16,6 @@ Where
 
 We will be in touch before <%= @registration.section.starts_on.to_time.to_s(:simple) %> with any further instructions. However, please don't hesitate to get in touch with us at learn@thoughtbot.com should you have any questions or concerns.
 
+<%= render partial: 'create_account_if_needed', locals: { purchase: @registration } %>
+
 Thanks very much, we'll see you at <%= @registration.section.start_at.to_s(:time).strip %> on <%= @registration.section.starts_on.to_time.to_s(:simple) %>!

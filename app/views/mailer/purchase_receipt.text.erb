@@ -9,11 +9,7 @@ You will also receive a notification from GitHub. Please contact us at
 learn@thoughtbot.com if you do not get access to this repository.
 <% end -%>
 
-<% if !@purchase.user -%>
-You can also create a user account to store all of your purchases and
-make future ordering easier here:
-<%= new_user_url %>
-<% end -%>
+<%= render partial: 'create_account_if_needed', locals: { purchase: @purchase } %>
 
 RECEIPT
 

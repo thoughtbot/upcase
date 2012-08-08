@@ -13,6 +13,9 @@
     <%= semantic_form_for @registration, url: section_registrations_path(@section), html: { method: 'post' } do |form| %>
       <%= hidden_field_tag 'coupon_id' %>
       <%= form.inputs 'Your information' do %>
+        <% if signed_out? %>
+          <li><%= link_to 'Sign in to your account', sign_in_path(return_to: request.fullpath) %></li>
+        <% end %>
         <%= form.input :first_name %>
         <%= form.input :last_name %>
         <%= form.input :email %>
