@@ -41,6 +41,19 @@ div.users-edit {
     }
   }
 
+  .workshop-sign-in {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 30px;
+    padding: 6px;
+    background: rgba(228, 228, 228, 0.7) center 0 no-repeat;
+    border: 1px solid gainsboro;
+    
+    a {
+    text-decoration: none;    
+    }
+  }
+
   #total {
     overflow: hidden;
     margin-bottom: 12px;
