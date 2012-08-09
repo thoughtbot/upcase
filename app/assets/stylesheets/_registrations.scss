@@ -7,7 +7,9 @@
 }
 
 body.registrations,
-body.purchases {
+body.purchases,
+body.users-edit,
+div.users-edit {
 
   #container {
     background: url("/images/shadowing.png") center top no-repeat;
@@ -25,6 +27,7 @@ body.purchases {
   }
 
   h1.course-title {
+    text-rendering: optimizeLegibility;
     color: #666;
     font-family: $sans-serif;
     font-size: 36px;
@@ -35,6 +38,19 @@ body.purchases {
     span {
       color: #000;
       font-weight: 700;
+    }
+  }
+
+  .workshop-sign-in {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 30px;
+    padding: 6px;
+    background: rgba(228, 228, 228, 0.7) center 0 no-repeat;
+    border: 1px solid gainsboro;
+    
+    a {
+    text-decoration: none;    
     }
   }
 
@@ -90,6 +106,22 @@ body.purchases {
               }
             }
           }
+          
+          &#user_first_name_input {
+            float: left;
+            margin-right: flex-gutter();
+            width: flex-grid(6);
+          }
+          
+          &#user_last_name_input {
+            float: left;
+            width: flex-grid(6);
+            margin-top: 19px;
+          }
+          
+          &#user_email_input {
+            clear: both;
+          }
 
           &#registration_first_name_input,
           &#registration_city_input {
@@ -107,7 +139,8 @@ body.purchases {
             height: 100px;
           }
 
-          &#purchase_city_input {
+          &#purchase_city_input,
+           {
             float: left;
             margin-right: flex-gutter();
             width: flex-grid(6);
@@ -175,6 +208,7 @@ body.purchases {
     width: flex-grid(4);
 
     h4 {
+      text-rendering: optimizeLegibility;
       font-size: 16px;
       font-weight: 400;
       line-height: 1em;
@@ -195,6 +229,52 @@ body.purchases {
       color: #666;
       list-style: outside;
       margin: 0 0 4px 15px;
+    }
+  }
+  
+  #account-sidebar {
+    float: left;
+    padding: 21px 0 0 0;
+    width: flex-grid(4);
+    
+    h2 {
+      text-rendering: optimizeLegibility;
+      font-size: 24px;
+      font-weight: 600;
+    }
+    
+    h3 {
+      text-rendering: optimizeLegibility;
+      margin-top: 18px;
+      margin-left: 10px;
+    }
+    
+    .first-purchase {
+      margin-top: 3px;
+    }
+    
+    li {
+      padding: 10px;
+      width: 100%;
+      background-color: #efefef;
+      margin-bottom: 2px;
+      font-size: 16px;
+
+      span {
+        font-size: 16px;
+        float: right;
+        padding-right: 10px;
+        color: #999;
+        font-style: normal;
+      }
+    }
+    
+    a {
+      text-decoration: none;
+    }
+    
+    span {
+      color: #999;
     }
   }
 

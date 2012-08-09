@@ -1,0 +1,83 @@
+<% content_for(:extra_body_classes, 'registrations') %>
+
+<div  class="users-edit">
+<section id="container">
+  <h1 class="course-title">Your Information and Purchases</h1>
+    <section id="form-container">
+        <section id="form-column">
+          <%= semantic_form_for :session do |form| %>
+            <%= form.inputs do %>
+              <%= form.inputs 'Your Information' do %>
+                <%= form.input :name, label: "Name" %>
+                <%= form.input :email, label: "Email" %>
+              <% end%>
+              <%= form.inputs 'GitHub Usernames' do %>
+                <%= form.input :reader, label: "1st Reader", hint: "Be sure to enter a valid GitHub username." %>
+              <% end %>
+              <%= form.inputs 'Address' do %>
+                <%= form.input :organization, label: "Organization" %>
+                <%= form.input :address1, label: "Address 1" %>
+                <%= form.input :address2, label: "Address 2" %>
+                <li id="registration_city_input">
+                    <label>City</label>
+                    <input type="text" name="registration_city" />
+                </li>
+                <li id="registration_state_input">
+                    <label>State</label>
+                    <input type="text" name="registration_state" />
+                </li>
+                <li id="registration_zip_code_input">
+                    <label>Postal/Zip Code</label>
+                    <input type="text" name="registration_zip_code" />
+                </li>
+
+                <%= form.input :country, as: :string %>
+              <% end %>
+
+              <%= form.inputs 'Billing Information', id: 'billing-information' do %>
+              <li class="radio required" id="purchase_payment_method_input">
+                <%= radio_button_tag "purchase[payment_method]", "stripe", id: "purchase_payment_method_stripe" %>
+                <label for="purchase_payment_method_stripe">
+                  <%= image_tag "icons/visa.png" %><%= image_tag "icons/master.png" %><%= image_tag "icons/american_express.png" %>
+                </label>
+                <%= radio_button_tag "purchase[payment_method]", "paypal", id: "purchase_payment_method_paypal" %>
+                <label for="purchase_payment_method_paypal">
+                  <img src="https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif" alt="PayPal Express Logo">
+                </label>
+              </li>
+                <li id="purchase_cc_input" class="stripe">
+                  <label>Card Number</label>
+                  <input type="text" size="20" autocomplete="off" class="card-number"/>
+                </li>
+                <li id="purchase_expiration_input" class="stripe">
+                  <label>Expiration (MM/YYYY)</label>
+                  <input type="text" size="2" class="card-expiry-month"/>
+                  <input type="text" size="4" class="card-expiry-year"/>
+                </li>
+                <li id="purchase_cvc_input" class="stripe">
+                  <label>CVC</label>
+                  <input type="text" size="4" autocomplete="off" class="card-cvc"/>
+                </li>
+                <% end %>
+            <% end %>
+          <% end %>
+        </section>
+        <section id="account-sidebar">
+            <h2>Your purchases</h2>
+            <h3 class="first-purchase">Products</h3>
+              <ol>
+                <li><a href="">Backbone.js On Rails</a></li>
+              </ol>
+              <h3>Workshops: <span>Upcoming</span></h3>
+               <ol>
+                  <li><a href="">Intermediate Ruby on Rails</a><span>10/24/12</span></li>
+                </ol>
+              <h3>Workshops: <span>Past</span></h3>
+               <ol>
+                  <li>Intro to Ruby on Rails<span>10/24/12</span></li>
+                  <li>Intro to Test Drive Development<span>10/24/12</span></li>
+                </ol>
+        </section>
+    </section>
+  </section>
+</div>

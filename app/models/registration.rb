@@ -1,6 +1,7 @@
 class Registration < ActiveRecord::Base
   include Rails.application.routes.url_helpers
 
+  belongs_to :user
   belongs_to :section
   belongs_to :coupon
 
@@ -15,6 +16,10 @@ class Registration < ActiveRecord::Base
   after_create :store_freshbooks_client
   after_create :store_freshbooks_invoice
   after_create :send_invoice
+
+  def self.by_email(email)
+    where(email: email)
+  end
 
   def name
     [first_name, last_name].join(' ')

@@ -72,3 +72,31 @@ describe "Section reminders" do
     sent_email.body.should include("Benny Burns")
   end
 end
+
+describe "Confirmation Email" do
+  include Rails.application.routes.url_helpers
+
+  context "for a registration without a user" do
+    let(:registration) { create(:registration, :email => "joe@example.com") }
+
+    before do
+      @email = Mailer.registration_confirmation(registration)
+    end
+
+    it "contains a link to create a new account in the body" do
+      @email.should have_body_text(/#{new_user_url(host: HOST)}/)
+    end
+  end
+
+  context "for a registration with a user" do
+    let(:registration) { create(:registration, user: create(:user)) }
+
+    before do
+      @email = Mailer.registration_confirmation(registration)
+    end
+
+    it "does not contain a link to create a new account in the body" do
+      @email.should_not have_body_text(/#{new_user_url(host: HOST)}/)
+    end
+  end
+end

@@ -5,6 +5,8 @@ module NavigationHelpers
       '/'
     when /^the home page with the "([^"]+)" alternative for the "([^"]+)" experiment/
       "/?#{$2}=#{$1}"
+    when 'my account page'
+      my_account_path
     when 'the courses json page'
       courses_path(format: :json)
     when /the courses json page with the callback "([^"]+)"/

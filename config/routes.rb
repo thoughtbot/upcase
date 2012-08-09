@@ -54,6 +54,7 @@ Workshops::Application.routes.draw do
   end
 
   match '/watch' => 'high_voltage/pages#show', as: :watch, id: 'watch'
+  match '/my-accounts' => 'high_voltage/pages#show', as: :watch, id: 'my-accounts'
 
   match '/directions' => "high_voltage/pages#show", as: :directions, id: "directions"
   match '/group-training' => "high_voltage/pages#show", as: :group_training, id: "group-training"

@@ -9,15 +9,26 @@ class RegistrationsController < ApplicationController
   end
 
   def new
-    @section      = Section.find(params[:section_id])
-    @registration = @section.registrations.build
+    if signed_in?
+      first_name = current_user.first_name
+      last_name = current_user.last_name
+      email = current_user.email
+    else
+      first_name = ''
+      last_name = ''
+      email = ''
+    end
+
+    @section = Section.find(params[:section_id])
+    @registration = @section.registrations.build(first_name: first_name, last_name: last_name, email: email)
     km.record("Started Registration", { "Course Name" => @section.course.name })
   end
 
   def create
-    @section      = Section.find(params[:section_id])
-    @registration  = @section.registrations.build(params[:registration])
+    @section = Section.find(params[:section_id])
+    @registration = @section.registrations.build(params[:registration])
     @registration.coupon = Coupon.find_by_id_and_active(params[:coupon_id], true)
+    @registration.user = current_user
     if @registration.save
       km_http_client.record(@registration.email, "Submitted Registration", { "Course Name" => @section.course.name })
       redirect_to @registration.freshbooks_invoice_url

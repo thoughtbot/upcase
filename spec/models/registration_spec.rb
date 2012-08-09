@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Registration do
   it { should belong_to(:section) }
   it { should belong_to(:coupon) }
+  it { should belong_to(:user) }
 
   it { should validate_presence_of(:organization) }
   it { should validate_presence_of(:first_name) }
@@ -60,5 +61,22 @@ describe Registration do
     registration = build_stubbed(:registration, freshbooks_invoice_url: nil)
     registration.expects("fetch_invoice_url")
     registration.freshbooks_invoice_url
+  end
+end
+
+describe "Registrations for various emails" do
+  context "#by_email" do
+    let(:email) { "user@example.com" }
+
+    before do
+      @prev_registrations = [create(:registration, email: email),
+                             create(:registration, email: email)]
+      @other_registration = create(:registration)
+    end
+
+    it "#by_email" do
+      Registration.by_email(email).should =~ @prev_registrations
+      Registration.by_email(email).should_not include @other_registration
+    end
   end
 end
