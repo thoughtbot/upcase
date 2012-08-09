@@ -32,7 +32,7 @@ Feature: Selecting a course and registering for it
     When I go to the home page
     And I follow "Test-Driven Haskell"
     And I follow "Register"
-    And I follow "Sign in to your account"
+    And I follow "Sign in."
     And I follow "Sign up"
     And I sign up with the following:
       | first_name      | Carlos             |
@@ -64,13 +64,13 @@ Feature: Selecting a course and registering for it
     When I go to the home page
     And I follow "Test-Driven Haskell"
     And I follow "Register"
-    And I follow "Sign in to your account"
+    And I follow "Sign in."
     And I fill in and submit the sign in form with "john@doe.com" and "password"
     Then I should see "Complete your registration for Test-Driven Haskell"
     And "Email" should be filled in with "john@doe.com"
     And "First name" should be filled in with "John"
     And "Last name" should be filled in with "Doe"
-    And I should be signed in
+    And I should see "Sign out"
 
   @selenium @allow-rescue
   Scenario: Visitor registers for a section with an invalid e-mail

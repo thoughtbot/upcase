@@ -12,10 +12,10 @@
     <%= semantic_form_for @purchase, url: product_purchases_path(@product), html: { method: 'post' } do |form| %>
       <%= form.semantic_errors %>
       <%= hidden_field_tag 'coupon_id' %>
+      <% if signed_out? %>
+        <div class="workshop-sign-in">Already have an account? <%= link_to 'Sign in.', sign_in_path(return_to: request.fullpath) %></div>
+      <% end %>
       <%= form.inputs 'Your information' do %>
-        <% if signed_out? %>
-          <li><%= link_to 'Sign in to your account', sign_in_path(return_to: request.fullpath) %></li>
-        <% end %>
         <%= form.input :variant, as: :hidden %>
         <%= form.input :name %>
         <%= form.input :email, hint: "The receipt will be sent to this address." %>
