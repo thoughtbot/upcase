@@ -1,11 +1,7 @@
-Transform /^(-?\d+)$/ do |number|
-  number.to_i
-end
-
 Given /^I have (\d+) (workshops|purchases)$/ do |count, type|
   user = User.last
 
-  count.times do
+  count.to_i.times do
     if type == 'workshops'
       user.registrations << create(:registration)
     else
@@ -19,5 +15,5 @@ Then /^I should see the edit account form$/ do
 end
 
 Then /^I should see my (\d+) (workshops|purchases)$/ do |count, type|
-  page.should have_css("ol.#{type} li", count: count)
+  page.should have_css("ol.#{type} li", count: count.to_i)
 end
