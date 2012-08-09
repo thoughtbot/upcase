@@ -29,7 +29,7 @@ class ShopifyImporter
     coupon = Coupon.find_by_code(row['Discount Code'])
     attributes = {
       product_id: product.try(:id),
-      variant: 'individual',
+      variant: row['Variant'],
       name: row['Billing Name'],
       email: email,
       organization: row['Billing Company'],
