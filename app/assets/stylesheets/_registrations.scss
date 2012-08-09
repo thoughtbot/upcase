@@ -6,6 +6,37 @@
   }
 }
 
+#login-container {
+  background: url("/images/shadowing.png") center top no-repeat;
+  padding: 72px 0 0 0;
+  @extend .clearfix;
+  
+  #login-column {
+    float: left;
+    width: flex-grid(4);
+    margin-left: flex-grid(4);
+    
+    form {
+      margin-bottom: 18px;
+    }
+    
+    li {
+      margin-top: 18px;
+    }
+    
+    input[type="submit"] {
+      width: 355px;
+      margin-top: 28px;
+    }
+    
+    .signup-forgot > li {
+      display: inline;
+      margin-right: 20px;
+    }
+    
+  }
+}
+
 body.registrations,
 body.purchases,
 body.users-edit {
@@ -17,12 +48,6 @@ body.users-edit {
 
   #form-container {
     @extend .clearfix;
-  }
-
-  #form-column {
-    float: left;
-    margin: 0 flex-gutter() 0 0;
-    width: flex-grid(8);
   }
 
   h1.course-title {
