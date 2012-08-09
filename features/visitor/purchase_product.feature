@@ -19,7 +19,7 @@ Feature: Purchase a Product
     When I go to the home page
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"
-    And I follow "Sign in to your account"
+    And I follow "Sign in."
     And I follow "Sign up"
     And I sign up with the following:
       | first_name      | John         |
@@ -30,7 +30,7 @@ Feature: Purchase a Product
     Then I should see the checkout form
     And "Email" should be filled in with "john@doe.com"
     And "Name" should be filled in with "John Doe"
-    And I should be signed in
+    And I should see "Sign out"
 
   Scenario: A visitor signs into their account through checkout
     Given the following user exists:
@@ -39,12 +39,12 @@ Feature: Purchase a Product
     When I go to the home page
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"
-    And I follow "Sign in to your account"
+    And I follow "Sign in."
     And I fill in and submit the sign in form with "john@doe.com" and "password"
     Then I should see the checkout form
     And "Email" should be filled in with "john@doe.com"
     And "Name" should be filled in with "John Doe"
-    And I should be signed in
+    And I should see "Sign out"
 
   @selenium
   Scenario: A visitor purchases a product with paypal

@@ -8,8 +8,7 @@
 
 body.registrations,
 body.purchases,
-body.users-edit,
-div.users-edit {
+body.users-edit {
 
   #container {
     background: url("/images/shadowing.png") center top no-repeat;
@@ -139,8 +138,7 @@ div.users-edit {
             height: 100px;
           }
 
-          &#purchase_city_input,
-           {
+          &#purchase_city_input {
             float: left;
             margin-right: flex-gutter();
             width: flex-grid(6);

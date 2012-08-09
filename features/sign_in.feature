@@ -9,7 +9,7 @@ Feature: Signing in
     And I fill in the session email with "ralph@example.com"
     And I fill in the session password with "ralph_was_here"
     And I press the button to sign in
-    Then I should be on the home page
+    Then I should be on my account page
 
   Scenario: Admin Signing in
     Given the following admin exists:
