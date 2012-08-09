@@ -93,6 +93,22 @@ div.users-edit {
               }
             }
           }
+          
+          &#user_first_name_input {
+            float: left;
+            margin-right: flex-gutter();
+            width: flex-grid(6);
+          }
+          
+          &#user_last_name_input {
+            float: left;
+            width: flex-grid(6);
+            margin-top: 19px;
+          }
+          
+          &#user_email_input {
+            clear: both;
+          }
 
           &#registration_first_name_input,
           &#registration_city_input {
