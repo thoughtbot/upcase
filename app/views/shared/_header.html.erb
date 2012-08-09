@@ -1,16 +1,18 @@
 <header id="main-header"> 
   <nav id="main-nav"> 
     <h1 id="nav-ralph"><a href="/">thoughtbot</a></h1> 
-    <ul> 
+    <ul>
       <li><a href="http://thoughtbot.com/contact" id="contact-btn">Contact us</a></li> 
-      <li id="log_in_out">
-        <% if signed_in? %>
-          <%= link_to 'My account', my_account_path %>
-          <%= link_to 'Sign out', sign_out_path, method: :delete %>
-        <% else %>
-          <%= link_to 'Sign in', sign_in_path %>
-        <% end %>
-      </li>
+      <% if show_account_links? %>
+        <li id="log_in_out">
+          <% if signed_in? %>
+            <%= link_to 'My account', my_account_path %>
+            <%= link_to 'Sign out', sign_out_path, method: :delete %>
+          <% else %>
+            <%= link_to 'Sign in', sign_in_path %>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </nav>
 </header>

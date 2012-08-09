@@ -17,12 +17,8 @@ module ApplicationHelper
     end
   end
 
-  def registration_url(section)
-    if section.course.external_registration_url.blank?
-      new_section_registration_path(section)
-    else
-      section.course.external_registration_url
-    end
+  def keywords
+    Topic.top.pluck(:name).join(", ")
   end
 
   def link_to_remove_fields(name, f)
@@ -37,15 +33,23 @@ module ApplicationHelper
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
   end
 
+  def registration_url(section)
+    if section.course.external_registration_url.blank?
+      new_section_registration_path(section)
+    else
+      section.course.external_registration_url
+    end
+  end
+
+  def show_account_links?
+    controller.controller_name != 'topics'
+  end
+
   def title(title = nil)
     if !title.blank?
       "Learn #{title}"
     else
       "thoughtbot Learn"
     end
-  end
-
-  def keywords
-    Topic.top.pluck(:name).join(", ")
   end
 end
