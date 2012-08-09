@@ -27,6 +27,7 @@ div.users-edit {
   }
 
   h1.course-title {
+    text-rendering: optimizeLegibility;
     color: #666;
     font-family: $sans-serif;
     font-size: 36px;
@@ -178,6 +179,7 @@ div.users-edit {
     width: flex-grid(4);
 
     h4 {
+      text-rendering: optimizeLegibility;
       font-size: 16px;
       font-weight: 400;
       line-height: 1em;
@@ -207,11 +209,13 @@ div.users-edit {
     width: flex-grid(4);
     
     h2 {
+      text-rendering: optimizeLegibility;
       font-size: 24px;
       font-weight: 600;
     }
     
     h3 {
+      text-rendering: optimizeLegibility;
       margin-top: 18px;
       margin-left: 10px;
     }
@@ -226,6 +230,14 @@ div.users-edit {
       background-color: #efefef;
       margin-bottom: 2px;
       font-size: 16px;
+      
+      span {
+        font-size: 16px;
+        float: right;
+        padding-right: 10px;
+        color: #999;
+        font-style: normal;
+      }
     }
     
     a {
@@ -233,8 +245,7 @@ div.users-edit {
     }
     
     span {
-      font-style: italic;
-      color: #aaa;
+      color: #999;
     }
   }
 
