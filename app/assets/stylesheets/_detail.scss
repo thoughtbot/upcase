@@ -2,6 +2,7 @@ body.high_voltage-pages,
 body.sections-show,
 body.courses-show,
 body.products-show,
+body.videos-show,
 body.purchases{
   #head-wrapper {
     #homepage-top {
@@ -453,6 +454,59 @@ body.purchases{
         dd {
           margin: 0 0 12px 0;
           line-height: 18px;
+        }
+      }
+    }
+  }
+}
+
+.videos-show, .purchases-watch {
+  #products {
+    clear: both;
+  }
+
+  #homepage-top {
+    h2 {
+      font-size: 34px;
+      font-weight: lighter;
+
+      span {
+        font-size: 24px;
+        padding-left: 15px;
+        font-style: italic;
+        color: #999;
+      }
+    }
+
+    .videos {
+      margin: 40px 0 40px 25px;
+
+      li a {
+        height: 60px;
+        margin-bottom: 30px;
+        text-decoration: none;
+        display: block;
+
+        img {
+          display: inline-block;
+          vertical-align: bottom;
+        }
+
+        span {
+          font-size: 25px;
+          display: inline-block;
+          padding-bottom: 17px;
+          padding-left: 20px;
+          vertical-align: bottom;
+        }
+
+        time {
+          font-size: 18px;
+          color: #999;
+          padding-left: 10px;
+          display: inline-block;
+          padding-bottom: 15px;
+          vertical-align: bottom;
         }
       }
     }
