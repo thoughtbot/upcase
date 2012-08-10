@@ -1,16 +1,19 @@
-<h2>Sign up</h2>
+<section id="container">
+  <section id="form-container">
+    <h2>Sign up</h2>
 
-<%= semantic_form_for @user do |form| %>
-  <%= hidden_field_tag :return_to, params[:return_to] if params[:return_to] %>
-  <%= form.inputs do %>
-    <%= form.input :first_name, :input_html => { :placeholder => "First name" } %>
-    <%= form.input :last_name, :input_html => { :placeholder => "Last name" } %>
-    <%= form.input :email, as: :email %>
-    <%= form.input :github_username %>
-    <%= form.input :password %>
-  <% end %>
+    <%= semantic_form_for @user do |form| %>
+      <%= hidden_field_tag :return_to, params[:return_to] if params[:return_to] %>
+      <%= form.inputs do %>
+        <%= form.input :first_name %>
+        <%= form.input :last_name %>
+        <%= form.input :email, as: :email %>
+        <%= form.input :password %>
+      <% end %>
 
-  <%= form.actions do %>
-    <%= form.submit 'Sign up' %>
-  <% end %>
-<% end %>
+      <%= form.actions do %>
+        <%= form.action :submit, label: 'Sign up' %>
+      <% end %>
+    <% end %>
+  </section>
+</section>

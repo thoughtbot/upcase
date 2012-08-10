@@ -1,5 +1,6 @@
 footer#main-footer {
   @extend .clearfix;
+  clear: both;
   margin: 0 auto;
   opacity: .5;
   padding-top: $lh * 4;

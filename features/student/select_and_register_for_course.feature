@@ -39,7 +39,6 @@ Feature: Selecting a course and registering for it
       | last_name       | Santana            |
       | email           | carlos@santana.com |
       | password        | mypass             |
-      | github_username | john_doe           |
     Then I should see "Complete your registration for Test-Driven Haskell"
     And "Email" should be filled in with "carlos@santana.com"
     And "First name" should be filled in with "Carlos"
@@ -53,8 +52,8 @@ Feature: Selecting a course and registering for it
 
   Scenario: A visitor signs into their account during registration
     Given the following user exists:
-      | first_name | last_name | email        | password | github_username |
-      | John       | Doe       | john@doe.com | password | john_doe        |
+      | first_name | last_name | email        | password |
+      | John       | Doe       | john@doe.com | password |
     And the following course exists:
       | name                |
       | Test-Driven Haskell |

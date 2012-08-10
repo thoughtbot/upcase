@@ -26,7 +26,6 @@ Feature: Purchase a Product
       | last_name       | Doe          |
       | email           | john@doe.com |
       | password        | mypass       |
-      | github_username | john_doe     |
     Then I should see the checkout form
     And "Email" should be filled in with "john@doe.com"
     And "Name" should be filled in with "John Doe"
@@ -34,8 +33,8 @@ Feature: Purchase a Product
 
   Scenario: A visitor signs into their account through checkout
     Given the following user exists:
-      | first_name | last_name | email        | password | github_username |
-      | John       | Doe       | john@doe.com | password | john_doe        |
+      | first_name | last_name | email        | password |
+      | John       | Doe       | john@doe.com | password |
     When I go to the home page
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"

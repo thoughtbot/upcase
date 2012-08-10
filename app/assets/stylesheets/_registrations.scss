@@ -8,7 +8,8 @@
 
 body.registrations,
 body.purchases, 
-body.sessions {
+body.sessions,
+body.users-new {
   #container {
     background: url("/images/shadowing.png") center top no-repeat;
     padding: 72px 0 0 0;
@@ -18,30 +19,6 @@ body.sessions {
     @extend .clearfix;
   }
   
-  #login-column {
-    float: left;
-    width: flex-grid(4);
-    margin-left: flex-grid(4);
-    
-    form {
-      margin-bottom: 18px;
-    }
-    
-    li {
-      margin-top: 18px;
-    }
-    
-    input[type="submit"] {
-      width: 355px;
-      margin-top: 28px;
-    }
-    
-    .signup-forgot > li {
-      display: inline;
-      margin-right: 20px;
-    }
-  }
-
   h1.course-title {
     text-rendering: optimizeLegibility;
     color: #666;
@@ -322,5 +299,33 @@ body.purchases {
     float: left;
     margin: 0 flex-gutter() 0 0;
     width: flex-grid(8);
+  }
+}
+
+body.sessions-new,
+body.users-new {
+  #form-container {
+    @extend .clearfix;
+    float: left;
+    width: flex-grid(4);
+    margin-left: flex-grid(4);
+
+    form {
+      margin-bottom: 18px;
+    }
+
+    li {
+      margin-top: 18px;
+    }
+
+    input[type="submit"] {
+      width: 355px;
+      margin-top: 28px;
+    }
+
+    .signup-forgot > li {
+      display: inline;
+      margin-right: 20px;
+    }
   }
 }
