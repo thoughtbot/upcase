@@ -1,24 +1,22 @@
 <section id="container">
   <section id="form-container">
-    <section id="login-column">
-      <h2>Sign in</h2>
-      <%= semantic_form_for :session, url: session_path do |form| %>
-        <%= form.inputs do %>
-          <%= form.input :email, as: :email %>
-          <%= form.input :password %>
-        <% end %>
-        <%= form.actions do %>
-          <%= form.action :submit, label: "Sign in" %>
-        <% end %>
+    <h2>Sign in</h2>
+    <%= semantic_form_for :session, url: session_path do |form| %>
+      <%= form.inputs do %>
+        <%= form.input :email, as: :email %>
+        <%= form.input :password %>
       <% end %>
-      <ul class="signup-forgot">
-        <li>
-          <%= link_to "Sign up", sign_up_path %>
-        </li>
-        <li>
-          <%= link_to "Forgot password?", new_password_path %>
-        </li>
-      </ul>
-    </section>
+      <%= form.actions do %>
+        <%= form.action :submit, label: "Sign in" %>
+      <% end %>
+    <% end %>
+    <ul class="signup-forgot">
+      <li>
+        <%= link_to "Sign up", sign_up_path %>
+      </li>
+      <li>
+        <%= link_to "Forgot password?", new_password_path %>
+      </li>
+    </ul>
   </section>
 </section>
