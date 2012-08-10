@@ -2,6 +2,7 @@
   <section id="form-container">
     <h2>Sign in</h2>
     <%= semantic_form_for :session, url: session_path do |form| %>
+      <%= hidden_field_tag :return_to, params[:return_to] if params[:return_to] %>
       <%= form.inputs do %>
         <%= form.input :email, as: :email %>
         <%= form.input :password %>
@@ -12,7 +13,7 @@
     <% end %>
     <ul class="signup-forgot">
       <li>
-        <%= link_to "Sign up", sign_up_path %>
+        <%= link_to "Sign up", sign_up_path(return_to: params[:return_to]) %>
       </li>
       <li>
         <%= link_to "Forgot password?", new_password_path %>
