@@ -9,7 +9,7 @@
 body.registrations,
 body.purchases, 
 body.sessions,
-body.users-new {
+body.users {
   #container {
     background: url("/images/shadowing.png") center top no-repeat;
     padding: 72px 0 0 0;
@@ -294,7 +294,8 @@ body.users-new {
 }
 
 body.registrations,
-body.purchases {
+body.purchases,
+body.users-edit {
   #form-column {
     float: left;
     margin: 0 flex-gutter() 0 0;
