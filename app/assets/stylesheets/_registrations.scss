@@ -6,10 +6,9 @@
   }
 }
 
-
 body.registrations,
-body.purchases, body.sessions {
-
+body.purchases, 
+body.sessions {
   #container {
     background: url("/images/shadowing.png") center top no-repeat;
     padding: 72px 0 0 0;
@@ -220,7 +219,7 @@ body.purchases, body.sessions {
 
   #form-sidebar {
     float: left;
-    padding: 114px 0 0 0;
+    padding: 205px 0 0 0;
     width: flex-grid(4);
 
     h4 {
@@ -314,5 +313,14 @@ body.purchases, body.sessions {
         text-align: right;
       }
     }
+  }
+}
+
+body.registrations,
+body.purchases {
+  #form-column {
+    float: left;
+    margin: 0 flex-gutter() 0 0;
+    width: flex-grid(8);
   }
 }
