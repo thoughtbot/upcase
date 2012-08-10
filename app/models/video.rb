@@ -19,6 +19,15 @@ class Video < ActiveRecord::Base
     @wistia_hash ||= Wistia.get_media_hash_from_id(wistia_id).to_json unless wistia_id.nil?
   end
 
+  def wistia_thumbnail
+    @wistia_thumbnail ||= JSON.parse(wistia_hash)["thumbnail"]["url"] rescue nil
+  end
+
+  def wistia_running_time
+    @wistia_running_time ||= JSON.parse(wistia_hash)["duration"] rescue nil
+    Time.at(@wistia_running_time.to_i).gmtime.strftime('%M:%S')
+  end
+
   private
 
   def human_file_size num
