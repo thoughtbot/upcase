@@ -137,6 +137,22 @@ Feature: Purchase a Product
     Then I should see that product "Test GitHub" is successfully purchased
     And an email should be sent out with subject containing "receipt"
 
+  @selenium @allow-rescue
+  Scenario: A user purchases a product with a reader
+    Given github is stubbed
+    And I have signed up with "user@example.com"
+    And I sign in with "user@example.com"
+    When I go to the home page
+    And I follow "Test GitHub"
+    And I follow "Purchase for Yourself"
+    Then I should see "$15"
+    And I should see "1st Reader"
+    When I add a reader
+    When I pay using Paypal
+    And I submit the Paypal form
+    Then I should see that product "Test GitHub" is successfully purchased
+    And the site should know my github username
+
   @selenium
   Scenario: A visitor purchases with a valid coupon
     Given the following coupon exists:

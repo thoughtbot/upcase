@@ -246,3 +246,14 @@ describe "Purchases for various emails" do
     end
   end
 end
+
+describe Purchase, "for a user" do
+  context "with readers" do
+    it "saves the first reader to the user" do
+      user = create(:user)
+      user.github_username.should be_blank
+      purchase = create(:purchase, user: user, readers: ["tbot", "other"])
+      user.reload.github_username.should == "tbot"
+    end
+  end
+end
