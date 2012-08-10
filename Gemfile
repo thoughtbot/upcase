@@ -58,7 +58,7 @@ group :assets do
 end
 
 group :test do
-  gem "selenium-webdriver", "~> 2.20.0"
+  gem "selenium-webdriver", "~> 2.25.0"
   gem "cucumber-rails", "~> 1.1", require: false
   gem 'capybara', "~> 1.1.2"
   gem "factory_girl_rails", "~> 3.3.0"
