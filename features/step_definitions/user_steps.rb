@@ -17,3 +17,8 @@ end
 Then /^I should see my (\d+) (workshops|purchases)$/ do |count, type|
   page.should have_css("ol.#{type} li", count: count.to_i)
 end
+
+Then /^the site should know my github username$/ do
+  visit my_account_path
+  find_field("Github username").value.should == "thoughtbot"
+end

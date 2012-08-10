@@ -21,6 +21,7 @@ class Purchase < ActiveRecord::Base
   before_create :set_as_paid, if: :free?
   after_save :fulfill, if: :being_paid?
   after_save :send_receipt, if: :being_paid?
+  after_save :save_info_to_user, if: :user
 
   delegate :name, to: :product, prefix: true
 
@@ -214,6 +215,12 @@ class Purchase < ActiveRecord::Base
   def payment_method_must_match_price
     if free? && price > 0
       errors.add(:payment_method, 'cannot be free')
+    end
+  end
+
+  def save_info_to_user
+    if readers.present?
+      user.update_column(:github_username, readers.first)
     end
   end
 end

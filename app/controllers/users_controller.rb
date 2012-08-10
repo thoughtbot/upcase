@@ -1,4 +1,6 @@
 class UsersController < Clearance::UsersController
+  before_filter :authorize
+
   def edit
   end
 
