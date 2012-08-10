@@ -17,6 +17,22 @@ module ApplicationHelper
     end
   end
 
+  def keywords
+    Topic.top.pluck(:name).join(', ')
+  end
+
+  def link_to_remove_fields(name, f)
+    f.hidden_field(:_destroy) + link_to_function(name, 'remove_fields(this)')
+  end
+
+  def link_to_add_fields(name, f, association)
+    new_object = f.object.class.reflect_on_association(association).klass.new
+    fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
+      render(association.to_s.singularize + '_fields', :f => builder)
+    end
+    link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
+  end
+
   def registration_url(section)
     if section.course.external_registration_url.blank?
       new_section_registration_path(section)
@@ -25,27 +41,15 @@ module ApplicationHelper
     end
   end
 
-  def link_to_remove_fields(name, f)
-    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)")
-  end
-
-  def link_to_add_fields(name, f, association)
-    new_object = f.object.class.reflect_on_association(association).klass.new
-    fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
-      render(association.to_s.singularize + "_fields", :f => builder)
-    end
-    link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
+  def show_account_links?
+    controller.controller_name != 'topics'
   end
 
   def title(title = nil)
     if !title.blank?
       "Learn #{title}"
     else
-      "thoughtbot Learn"
+      'thoughtbot Learn'
     end
-  end
-
-  def keywords
-    Topic.top.pluck(:name).join(", ")
   end
 end
