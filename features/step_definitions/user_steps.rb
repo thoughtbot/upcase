@@ -30,3 +30,7 @@ Then /^the site should have my github information$/ do
   find_field("Email").value.should == "user@example.com"
   find_field("Github username").value.should == "thoughtbot"
 end
+
+Then /^I should have no password field$/ do
+  page.should_not have_css("#user_password")
+end

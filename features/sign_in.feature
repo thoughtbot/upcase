@@ -25,12 +25,14 @@ Feature: Signing in
     And I follow "with GitHub"
     Then I should be on my account page
     And the site should have my github information
+    And I should have no password field
 
   Scenario: Signing up for a new account with GitHub
     When I go to the sign up page
     And I follow "with GitHub"
     Then I should be on my account page
     And the site should have my github information
+    And I should have no password field
 
   Scenario: Signing into an existing account with GitHub
     Given the following user exists:
@@ -39,3 +41,4 @@ Feature: Signing in
     When I go to the sign in page
     And I follow "with GitHub"
     Then I should be on my account page
+    And I should have no password field
