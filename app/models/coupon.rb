@@ -5,6 +5,22 @@ class Coupon < ActiveRecord::Base
   validates_inclusion_of :discount_type, in: DISCOUNT_TYPES
 
   def apply(full_price)
+    if active
+      discounted_price(full_price)
+    else
+      full_price
+    end
+  end
+
+  def applied
+    if one_time_use_only
+      update_attributes(active: false)
+    end
+  end
+
+  private
+
+  def discounted_price(full_price)
     if discount_type == "percentage"
       full_price - (full_price * (amount * 0.01))
     else

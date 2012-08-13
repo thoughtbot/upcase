@@ -52,6 +52,13 @@ describe Registration do
     registration.price
   end
 
+  it "uses a one-time coupon" do
+    coupon = create(:one_time_coupon, amount: 25)
+    registration = build_stubbed(:registration, coupon: coupon)
+    coupon.expects("applied")
+    registration.receive_payment!
+  end
+
   it "uses the freshbooks_invoice_url is available" do
     registration = build_stubbed(:registration, freshbooks_invoice_url: "https://example.com")
     registration.freshbooks_invoice_url.should == "https://example.com"
