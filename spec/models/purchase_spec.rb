@@ -82,6 +82,15 @@ describe Purchase, "with stripe" do
     Stripe::Charge.should have_received(:create).with(amount: 1125, currency: "usd", customer: "stripe", description: product.name)
   end
 
+  it "uses a one-time coupon" do
+    coupon = create(:one_time_coupon, amount: 25)
+    subject.coupon = coupon
+    subject.save!
+    Stripe::Charge.should have_received(:create).with(amount: 1125, currency: "usd", customer: "stripe", description: product.name)
+    purchase = create(:stripe_purchase, product: product, coupon: coupon.reload)
+    Stripe::Charge.should have_received(:create).with(amount: 1500, currency: "usd", customer: "stripe", description: product.name)
+  end
+
   context 'saved' do
     before do
       subject.save!

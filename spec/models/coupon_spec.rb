@@ -14,4 +14,22 @@ describe Coupon do
       subject.apply(50).should == 40
     end
   end
+
+  context 'telling the coupon that it has been #applied' do
+    it 'produces the full price on the second try if it is one-time use' do
+      coupon = create(:one_time_coupon, amount: 10, discount_type: 'dollars')
+      coupon.apply(50).should == 40
+      coupon.applied
+      coupon.apply(50).should == 50
+      coupon.should_not be_active
+    end
+
+    it 'produces the discounted price each time' do
+      coupon = create(:coupon, amount: 10, discount_type: 'dollars')
+      coupon.apply(50).should == 40
+      coupon.applied
+      coupon.apply(50).should == 40
+      coupon.should be_active
+    end
+  end
 end
