@@ -1,18 +1,11 @@
 class PurchasesController < ApplicationController
   def new
-    if signed_in?
-      name = current_user.name
-      email = current_user.email
-    else
-      name = ''
-      email = ''
-    end
     @product = Product.find(params[:product_id])
     @purchase = @product.purchases.build(
-      variant: params[:variant], 
-      name: name,
-      email: email, 
-      readers: readers
+      variant: params[:variant],
+      name: current_user_name,
+      email: current_user_email,
+      readers: current_user_readers
     )
     track_chrome_screencast_ab_test_completion
   end
@@ -52,14 +45,6 @@ class PurchasesController < ApplicationController
   def track_chrome_screencast_ab_test_completion
     if @product.name == "Hidden Secrets of the Chrome Developer Tools"
       finished('new_chrome_cast_description')
-    end
-  end
-
-  def readers
-    if signed_in? && current_user.github_username.present?
-      [current_user.github_username]
-    else
-      []
     end
   end
 end
