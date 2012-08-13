@@ -1,5 +1,12 @@
-# RailsAdmin config file. Generated on May 30, 2012 16:34
-# See github.com/sferik/rails_admin for more informations
+module RailsAdmin
+  module Config
+    module Actions
+      class PurchaseRefund < RailsAdmin::Config::Actions::Base
+        RailsAdmin::Config::Actions.register(self)
+      end
+    end
+  end
+end
 
 RailsAdmin.config do |config|
   config.authenticate_with do
@@ -16,4 +23,9 @@ RailsAdmin.config do |config|
   config.current_user_method { current_user }
 
   config.main_app_name = ['Workshops', 'Admin']
+
+  config.actions do
+    init_actions!
+    purchase_refund
+  end
 end
