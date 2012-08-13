@@ -30,7 +30,7 @@ class Registration < ActiveRecord::Base
   end
 
   def receive_payment!
-    self.paid = true
+    set_as_paid
     save!
     send_payment_confirmations
   end
@@ -51,10 +51,15 @@ class Registration < ActiveRecord::Base
 
   def push_payment_for_zero_cost
     if price == 0
-      self.paid = true
+      set_as_paid
       save!
       send_payment_confirmations
     end
+  end
+
+  def set_as_paid
+    self.paid = true
+    coupon.try(:applied)
   end
 
   def send_payment_confirmations
