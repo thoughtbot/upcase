@@ -1,5 +1,6 @@
 <%= form.inputs do %>
   <%= form.input :active %>
+  <%= form.input :one_time_use_only %>
   <%= form.input :code %>
   <%= form.input :discount_type, collection: Coupon::DISCOUNT_TYPES %>
   <%= form.input :amount %>
