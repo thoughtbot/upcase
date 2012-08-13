@@ -127,6 +127,10 @@ class Purchase < ActiveRecord::Base
     product.fulfillment_method == "github"
   end
 
+  def refund
+    nil
+  end
+
   private
 
   def calculated_price
