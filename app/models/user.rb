@@ -35,10 +35,14 @@ class User < ActiveRecord::Base
     [first_name, last_name].join(' ')
   end
 
+  def external_auth?
+    auth_provider.present?
+  end
+
   private
 
   def password_optional?
-    auth_provider.present?
+    external_auth?
   end
 
   def associate_previous_purchases
