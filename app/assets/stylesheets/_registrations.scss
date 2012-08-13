@@ -34,10 +34,10 @@ body.users {
     }
   }
 
-  .workshop-sign-in {
+  .workshop-sign-in, .github-signin {
     text-align: center;
     font-size: 16px;
-    margin-top: 30px;
+    margin: 30px 0 0 0;
     padding: 6px;
     background: rgba(228, 228, 228, 0.7) center 0 no-repeat;
     border: 1px solid gainsboro;
@@ -47,6 +47,11 @@ body.users {
     }
   }
 
+  h5 {
+    text-align: center;
+    font-size: 16px;
+  }
+  
   #total {
     overflow: hidden;
     margin-bottom: 12px;
@@ -306,13 +311,43 @@ body.users-edit {
 body.sessions-new,
 body.users-new {
   #form-container {
-    @extend .clearfix;
-    float: left;
-    width: flex-grid(4);
-    margin-left: flex-grid(4);
+    width: flex-grid(12);
+    margin-left: 143px;
+    
+    .github-signin {
+      float: left;
+      margin: 21px flex-gutter() 0 0;
+      width: flex-grid(4);
+      background: rgba(228, 228, 228, 0.9) center 20px no-repeat url('blacktocat.png');
+      padding: 160px 0 15px 0;
+      
+      a {
+        color: #4183C4;
+      }
+    }
+    
+    .or-signin {
+      text-rendering: optimizeLegibility;
+      float: left;
+      width: flex-grid(1);
+      text-align: center;
+      margin-top: 105px;
+      font: 400 22px $serif;
+      color: #ccc;
+      font-style: italic;
+    }
+        
+    .thoughtbot-signin {
+      float: left;
+      display: inline-block;
+      width: flex-grid(4);
+      margin-left: flex-gutter();
+    }
+    
 
     form {
-      margin-bottom: 18px;
+      float: left;
+      margin-bottom: 12px;
     }
 
     li {
@@ -327,6 +362,10 @@ body.users-new {
     .signup-forgot > li {
       display: inline;
       margin-right: 20px;
+      
+      a {
+      text-decoration: none;
+      }
     }
   }
 }
