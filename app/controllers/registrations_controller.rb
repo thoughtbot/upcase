@@ -1,7 +1,7 @@
 class RegistrationsController < ApplicationController
   def index
-    section  = Section.find(params[:section_id])
-    user     = Customer.user_from_customer_id(params[:customer_id]) # raise 404 as needed
+    section = Section.find(params[:section_id])
+    user = Customer.user_from_customer_id(params[:customer_id]) # raise 404 as needed
     user.registrations.build(section: section)
     user.save!
     sign_in(user)
@@ -9,18 +9,12 @@ class RegistrationsController < ApplicationController
   end
 
   def new
-    if signed_in?
-      first_name = current_user.first_name
-      last_name = current_user.last_name
-      email = current_user.email
-    else
-      first_name = ''
-      last_name = ''
-      email = ''
-    end
-
     @section = Section.find(params[:section_id])
-    @registration = @section.registrations.build(first_name: first_name, last_name: last_name, email: email)
+    @registration = @section.registrations.build(
+      first_name: current_user_first_name,
+      last_name: current_user_last_name,
+      email: current_user_email
+    )
     km.record("Started Registration", { "Course Name" => @section.course.name })
   end
 
