@@ -1,5 +1,5 @@
 class UsersController < Clearance::UsersController
-  before_filter :authorize
+  before_filter :authorize, only: [:edit, :update]
 
   def edit
   end
