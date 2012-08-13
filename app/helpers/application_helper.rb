@@ -52,4 +52,8 @@ module ApplicationHelper
       'thoughtbot Learn'
     end
   end
+
+  def github_auth_path
+    '/auth/github'
+  end
 end

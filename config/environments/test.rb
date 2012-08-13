@@ -51,4 +51,7 @@ Workshops::Application.configure do
   PAYPAL_PASSWORD = "password"
   PAYPAL_SIGNATURE = "signature"
   PAPERCLIP_STORAGE_OPTIONS = {}
+
+  GITHUB_KEY = 'githubkey'
+  GITHUB_SECRET = 'githubsecret'
 end
