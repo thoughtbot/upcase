@@ -112,6 +112,10 @@ FactoryGirl.define do
     code
     discount_type "percentage"
     amount 10
+
+    factory :one_time_coupon do
+      one_time_use_only true
+    end
   end
 
   factory :product do
@@ -135,6 +139,10 @@ FactoryGirl.define do
     name "Test User"
     email "joe@example.com"
     variant "individual"
+
+    factory :stripe_purchase do
+      payment_method "stripe"
+    end
   end
 
   factory :article do

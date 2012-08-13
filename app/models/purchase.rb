@@ -106,7 +106,7 @@ class Purchase < ActiveRecord::Base
     )
 
     self.payment_transaction_id = response.payment_info.first.transaction_id
-    self.paid = true
+    set_as_paid
     save!
   end
 
@@ -147,7 +147,7 @@ class Purchase < ActiveRecord::Base
       )
       self.payment_transaction_id = charge.id
 
-      self.paid = true
+      set_as_paid
     rescue Stripe::StripeError => e
       errors[:base] << "There was a problem processing your credit card, #{e.message.downcase}"
       false
@@ -166,6 +166,7 @@ class Purchase < ActiveRecord::Base
 
   def set_as_paid
     self.paid = true
+    coupon.try(:applied)
   end
 
   def paypal_request
