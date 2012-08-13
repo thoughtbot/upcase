@@ -1,6 +1,7 @@
 <section id="container">
   <section id="form-container">
-    <h2>Sign in</h2>
+  <h2>Sign in</h2>
+    <%= link_to "Sign in with GitHub", github_auth_path %>
     <%= semantic_form_for :session, url: session_path do |form| %>
       <%= hidden_field_tag :return_to, params[:return_to] if params[:return_to] %>
       <%= form.inputs do %>
