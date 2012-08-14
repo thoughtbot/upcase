@@ -308,8 +308,9 @@ body.users-edit {
   }
 }
 
-body.sessions-new,
-body.users-new {
+body.sessions,
+body.users-new,
+body.clearance-users-create {
   #form-container {
     width: flex-grid(12);
     margin-left: 143px;
