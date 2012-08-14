@@ -47,6 +47,14 @@ class Registration < ActiveRecord::Base
     end
   end
 
+  def defaults_from_user(purchaser)
+    if purchaser
+      self.first_name = purchaser.first_name
+      self.last_name = purchaser.last_name
+      self.email = purchaser.email
+    end
+  end
+
   private
 
   def push_payment_for_zero_cost
