@@ -6,10 +6,15 @@
   }
 }
 
+body.clearance-passwords {
+  margin: 0 auto;
+}
+
 body.registrations,
 body.purchases, 
 body.sessions,
-body.users {
+body.users,
+body.clearance-passwords {
   #container {
     background: url("/images/shadowing.png") center top no-repeat;
     padding: 72px 0 0 0;
@@ -117,7 +122,7 @@ body.users {
             margin-top: 19px;
           }
           
-          &#user_email_input {
+          &#user_email_input, &input#password_email, &#password_submit_action {
             clear: both;
           }
 
@@ -144,10 +149,15 @@ body.users {
           }
 
           &#registration_state_input,
-          &#purchase_state_input {
+          &#purchase_state_input,
+          &#password_email_input {
             float: left;
             margin-right: flex-gutter();
             width: flex-grid(3);
+          }
+          
+          &#password_email_input {
+            margin-top: 12px;
           }
 
           &#registration_zip_code_input,
