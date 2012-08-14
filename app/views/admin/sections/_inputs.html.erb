@@ -9,6 +9,7 @@
   <%= form.input :state,     as: :string %>
   <%= form.input :zip,       as: :string %>
   <%= form.input :seats_available, input_html: { value: form.object.seats_available } %>
+  <%= form.input :reminder_email %>
 
   <%= link_to 'Create New Teacher', new_admin_teacher_path(to: request.path), id: 'new-teacher' %>
   <%= form.input :teachers, as: :check_boxes, collection: @teachers, member_label: teacher_label %>
