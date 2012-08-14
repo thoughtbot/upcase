@@ -79,4 +79,7 @@ Workshops::Application.configure do
     s3_permissions: :private,
     path: "downloads/:id/:filename"
   }
+
+  GITHUB_KEY = ENV['GITHUB_KEY']
+  GITHUB_SECRET = ENV['GITHUB_SECRET']
 end

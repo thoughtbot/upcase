@@ -86,4 +86,6 @@ Workshops::Application.configure do
      s3_credentials: "#{Rails.root}/config/s3.yml",
   }
 
+  GITHUB_KEY = ENV['GITHUB_KEY']
+  GITHUB_SECRET = ENV['GITHUB_SECRET']
 end

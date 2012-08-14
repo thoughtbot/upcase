@@ -69,4 +69,39 @@ describe User do
       user.registrations.should be_empty
     end
   end
+
+  context "#find_or_create_from_auth_hash" do
+    let(:auth_hash) do
+      {
+        'provider' => 'github',
+        'uid' => 1,
+        'info' => {
+          'email' => 'user@example.com',
+          'name' => 'Test User',
+          'nickname' => 'thoughtbot',
+        }
+      }
+    end
+
+    it "creates a new user when no matching user" do
+      user = User.find_or_create_from_auth_hash(auth_hash)
+      user.should be_persisted
+      user.first_name.should == 'Test'
+      user.last_name.should == 'User'
+      user.email.should == 'user@example.com'
+      user.github_username.should == 'thoughtbot'
+      user.auth_provider.should == 'github'
+      user.auth_uid.should == 1
+    end
+
+    context "with an existing user" do
+      before do
+        @existing_user = create(:user, auth_provider: 'github', auth_uid: 1)
+      end
+
+      it "finds the user" do
+        @existing_user.should == User.find_or_create_from_auth_hash(auth_hash)
+      end
+    end
+  end
 end
