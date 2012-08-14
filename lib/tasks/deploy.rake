@@ -6,6 +6,7 @@ namespace :deploy do
     `git push staging master`
     `bundle exec rake airbrake:deploy TO=staging`
     `bundle exec heroku rake db:migrate --remote staging`
+    `bundle exec heroku restart --remote staging`
   end
 
   desc "Deploy to Heroku production"
