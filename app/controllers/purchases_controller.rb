@@ -1,12 +1,8 @@
 class PurchasesController < ApplicationController
   def new
     @product = Product.find(params[:product_id])
-    @purchase = @product.purchases.build(
-      variant: params[:variant],
-      name: current_user_name,
-      email: current_user_email,
-      readers: current_user_readers
-    )
+    @purchase = @product.purchases.build(variant: params[:variant])
+    @purchase.defaults_from_user(current_user)
     track_chrome_screencast_ab_test_completion
   end
 

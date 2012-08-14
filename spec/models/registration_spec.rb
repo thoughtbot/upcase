@@ -87,3 +87,16 @@ describe "Registrations for various emails" do
     end
   end
 end
+
+describe Registration, "#defaults_from_user" do
+  let(:purchaser) { create(:user) }
+
+  it "populates default info when given a purchaser" do
+    registration = Registration.new
+    registration.defaults_from_user(purchaser)
+
+    registration.first_name.should == purchaser.first_name
+    registration.last_name.should == purchaser.last_name
+    registration.email.should == purchaser.email
+  end
+end
