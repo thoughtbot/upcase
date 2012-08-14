@@ -12,6 +12,11 @@ describe Purchase do
     Purchase.remove_class_variable('@@host')
     Purchase.host.should == ActionMailer::Base.default_url_options[:host]
   end
+
+  it 'produces the paid price when possible' do
+    purchase = create(:purchase, paid_price: 200)
+    purchase.price.should be(200)
+  end
 end
 
 describe Purchase, "with stripe and a bad card" do
@@ -74,12 +79,16 @@ describe Purchase, "with stripe" do
     subject.price.should == 15
     subject.variant = "company"
     subject.price.should == 50
+
+    subject.save!
+    subject.paid_price.should == 50
   end
 
   it "uses its coupon in its charged price" do
     subject.coupon = create(:coupon, amount: 25)
     subject.save!
     Stripe::Charge.should have_received(:create).with(amount: 1125, currency: "usd", customer: "stripe", description: product.name)
+    Stripe::Charge.should have_received(:create).with(has_entries(amount: instance_of(Fixnum)))
   end
 
   it "uses a one-time coupon" do
