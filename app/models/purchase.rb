@@ -98,6 +98,16 @@ class Purchase < ActiveRecord::Base
     end
   end
 
+  def defaults_from_user(purchaser)
+    if purchaser
+      self.name = purchaser.name
+      self.email = purchaser.email
+      if fulfilled_with_github? && purchaser.github_username.present?
+        self.readers = [purchaser.github_username]
+      end
+    end
+  end
+
   def complete_paypal_payment!(token, payer_id)
     response = paypal_request.checkout!(
       token,
@@ -116,6 +126,10 @@ class Purchase < ActiveRecord::Base
     else
       product_purchase_path(product, self, host: self.class.host)
     end
+  end
+
+  def fulfilled_with_github?
+    product.fulfillment_method == "github"
   end
 
   private
@@ -188,7 +202,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def fulfill
-    if product.fulfillment_method == "github"
+    if fulfilled_with_github?
       fulfill_with_github
     end
   end

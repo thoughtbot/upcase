@@ -69,6 +69,9 @@ Then /^I should see the download links for video with id "([^"]*)"$/ do |video_i
 end
 
 Then /^I should see a list of other products$/ do
-  page.should have_css('section',id: "products")
+  page.should have_css('section', id: "products")
 end
 
+Then /^the first reader should be my github username$/ do
+  find_field('reader_1').value.should == "thoughtbot"
+end

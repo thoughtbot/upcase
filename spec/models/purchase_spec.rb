@@ -272,3 +272,29 @@ describe Purchase, "for a user" do
     end
   end
 end
+
+describe Purchase, "given a purchaser" do
+  let(:purchaser) { create(:user, github_username: 'Hello') }
+
+  it "populates default info when given a purchaser" do
+    product = create(:product, fulfillment_method: 'other')
+    purchase = product.purchases.build
+    purchase.defaults_from_user(purchaser)
+
+    purchase.name.should == purchaser.name
+    purchase.email.should == purchaser.email
+    purchase.readers.try(:first).should be_blank
+  end
+
+  context "for a product fulfilled through github" do
+    it "populates default info including first reader" do
+      product = create(:product, fulfillment_method: 'github')
+      purchase = product.purchases.build
+      purchase.defaults_from_user(purchaser)
+
+      purchase.name.should == purchaser.name
+      purchase.email.should == purchaser.email
+      purchase.readers.first.should == purchaser.github_username
+    end
+  end
+end
