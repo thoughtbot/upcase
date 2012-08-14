@@ -220,7 +220,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def save_info_to_user
-    if readers.present?
+    if readers.present? && user.github_username.blank?
       user.update_column(:github_username, readers.first)
     end
   end

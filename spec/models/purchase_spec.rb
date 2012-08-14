@@ -264,5 +264,11 @@ describe Purchase, "for a user" do
       purchase = create(:purchase, user: user, readers: ["tbot", "other"])
       user.reload.github_username.should == "tbot"
     end
+
+    it "doesn't overwrite first reader to the user" do
+      user = create(:user, github_username: 'test')
+      purchase = create(:purchase, user: user, readers: ["tbot", "other"])
+      user.reload.github_username.should == "test"
+    end
   end
 end
