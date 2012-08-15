@@ -36,6 +36,12 @@ $(function(){
     searchTopics(this.value);
   });
 
+  $('.search-bar').find('input').keypress(function(e) {
+    if (e.which == 13) {
+      return false;
+    }
+  });
+
   $(document).on("click", "li.more a", function() {
     $(this).parent().siblings("li.additional").show();
     $(this).parent().hide();
