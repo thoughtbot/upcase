@@ -58,12 +58,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def price
-    full_price = product.send(:"#{variant}_price")
-    if coupon
-      coupon.apply(full_price)
-    else
-      full_price
-    end
+    paid_price || calculated_price
   end
 
   def first_name
@@ -134,6 +129,15 @@ class Purchase < ActiveRecord::Base
 
   private
 
+  def calculated_price
+    full_price = product.send(:"#{variant}_price")
+    if coupon
+      coupon.apply(full_price)
+    else
+      full_price
+    end
+  end
+
   def being_paid?
     paid? && paid_was == false
   end
@@ -154,7 +158,7 @@ class Purchase < ActiveRecord::Base
       end
 
       charge = Stripe::Charge.create(
-        amount: price * 100, # in cents
+        amount: (price * 100).to_i, # in cents
         currency: "usd",
         customer: stripe_customer,
         description: product_name
@@ -180,6 +184,7 @@ class Purchase < ActiveRecord::Base
 
   def set_as_paid
     self.paid = true
+    self.paid_price = price
     coupon.try(:applied)
   end
 
