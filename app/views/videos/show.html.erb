@@ -1,10 +1,8 @@
 <section id="head-wrapper">
   <section id="homepage-top">
     <h1>Watch or Download Video</h1>
-    <h2> <%= @video.product.name %> - <%= @video.title %> </h2>
-
+    <h2> <%= @video.product.name %> - <%= @video.title %></h2>
     <%= render @video %>
-
     <section id="products">
       <h2>More from thoughtbot</h2>
       <% Product.active.each_with_index do |product, index| %>
