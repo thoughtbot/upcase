@@ -99,7 +99,7 @@ module NavigationHelpers
     when 'max students'
       'course_maximum_students'
     when 'reminder email text'
-      'course_reminder_email'
+      'section_reminder_email'
     when 'course follow up email'
       'course_followup_email'
     when 'login email'
