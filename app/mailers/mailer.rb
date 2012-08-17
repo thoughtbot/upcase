@@ -17,6 +17,7 @@ class Mailer < ActionMailer::Base
 
   def registration_confirmation(registration)
     @registration = registration
+    @section = registration.section
 
     mail(to: registration.email,
          subject: "You're registered for #{registration.section.course_name}")
