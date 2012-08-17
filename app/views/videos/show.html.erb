@@ -3,20 +3,6 @@
     <h1>Watch or Download Video</h1>
     <h2> <%= @video.product.name %> - <%= @video.title %></h2>
     <%= render @video %>
-    <section id="products">
-      <h2>More from thoughtbot</h2>
-      <% Product.active.each_with_index do |product, index| %>
-        <% if product != @video.product %>
-          <aside class="<%= "first" if index.zero? %>">
-            <h2>
-              <%= link_to product.name, 
-                product_path(product, utm_source: "oss") %>
-            </h2>
-            <p><%= product.short_description %></p>
-          </aside>
-        <% end %>
-      <% end %>
-    </section>
   </section>
 </section>
 <div id="flash"></div>
