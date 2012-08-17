@@ -3,5 +3,6 @@ When 'the reminder email rake task runs' do
   rake = Rake::Application.new
   Rake.application = rake
   Rake.application.rake_require 'tasks/reminders'
+  Rake::Task.define_task(:environment)
   rake['reminders:section'].invoke
 end
