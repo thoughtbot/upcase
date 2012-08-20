@@ -118,6 +118,49 @@ describe Purchase, "with stripe" do
     end
 
     its(:success_url) { should == product_purchase_path(product, purchase, host: host) }
+
+    context 'and refunded' do
+      let(:charge) { stub(:id => "TRANSACTION-ID", :refunded => false) }
+      let(:refunded_charge) { stub(:id => "TRANSACTION-ID", :refunded => true) }
+      let(:client) { stub(remove_team_member: nil) }
+
+      before do
+        charge.stubs(:refund).returns(refunded_charge)
+        Stripe::Charge.stubs(:retrieve).returns(charge)
+
+        product.fulfillment_method = "github"
+        product.github_team = 73110
+        product.save!
+        Octokit::Client.stubs(new: client)
+      end
+
+      it 'refunds money to purchaser' do
+        subject.refund
+        Stripe::Charge.should have_received(:retrieve).with("TRANSACTION-ID")
+        charge.should have_received(:refund).with(amount: 1500)
+        subject.reload.paid.should be_false
+      end
+
+      it 'removes user from github team' do
+        subject.readers = ["jayroh", "cpytel"]
+        subject.save!
+        subject.refund
+
+        client.should have_received(:remove_team_member).with(73110, "cpytel")
+        client.should have_received(:remove_team_member).with(73110, "jayroh")
+      end
+
+      it 'notifies hoptoad/airbrake when user is not found' do
+        client.stubs(:remove_team_member).raises(Octokit::NotFound)
+        Octokit::Client.stubs(new: client)
+        Airbrake.stubs(:notify)
+        subject.readers = ["nonsense"]
+        subject.save!
+        subject.refund
+
+        Airbrake.should have_received(:notify).once
+      end
+    end
   end
 
   context "when the product is fulfilled by github" do

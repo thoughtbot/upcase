@@ -36,3 +36,25 @@ describe PurchasesController, "processing on paypal" do
     assigns(:purchase).should_not be_paid
   end
 end
+
+describe PurchasesController, "product is not paid" do
+  let(:product) { create(:product, individual_price: 15) }
+  let(:user) { create(:user) }
+  let(:purchase) { create(:purchase, product: product) }
+
+  it "redirects from show to the product page" do
+    purchase.paid = false
+    purchase.save
+    controller.stubs(:current_user).returns(user)
+    get :show, product_id: product.to_param, id: purchase.to_param
+    response.should redirect_to(product_path(product))
+  end
+
+  it "redirects from watch to the product page" do
+    purchase.paid = false
+    purchase.save
+    controller.stubs(:current_user).returns(user)
+    get :watch, product_id: product.to_param, id: purchase.to_param
+    response.should redirect_to(product_path(product))
+  end
+end

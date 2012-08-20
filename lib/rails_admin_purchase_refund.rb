@@ -8,8 +8,7 @@ module RailsAdmin
     module Actions
       class PurchaseRefund < RailsAdmin::Config::Actions::Base
         register_instance_option :visible? do
-          authorized? && bindings &&
-            bindings[:object].respond_to?(:refund)
+          authorized? && bindings && bindings[:object].respond_to?(:refund)
         end
 
         register_instance_option :member? do
@@ -22,7 +21,7 @@ module RailsAdmin
 
         register_instance_option :controller do
           Proc.new do
-            raise "HELL"
+            raise @object.inspect
           end
         end
       end
