@@ -3,7 +3,7 @@
     <li>
       <label for="reader_1">1st Reader<abbr title="required">*</abbr></label>
       <input type="text" name="purchase[readers][]" class="reader" id="reader_1" required="required" value="<%= purchase.readers.try(:first) %>"/>
-      <p class="inline-hints">Be sure to enter a valid GitHub username.</p>
+      <p class="inline-hints">Be sure to enter a valid GitHub username. Organizations are not allowed.</p>
     </li>
     <% if purchase.variant == "company" %>
       <li>Enter the <strong>GitHub usernames</strong> of up to 9 additional readers. You can add more names later by emailing <%= mail_to "learn@thoughtbot.com", "learn@thoughtbot.com" %>.</li>
