@@ -9,7 +9,7 @@
           dataType : "jsonp",
           success : function(response) {
             console.log(response.data.message);
-            if(response.data.message == "Not Found") {
+            if(response.data.message == "Not Found" || response.data.type == "Organization") {
               element.parent("li").addClass("error");
               element.focus();
             } else {
