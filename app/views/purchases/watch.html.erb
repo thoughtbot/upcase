@@ -24,13 +24,13 @@
         <% end %>
       </ol>
     <% end %>
+    <h2>More from thoughtbot</h2>
 
-    <section id="products">
-      <h2>More from thoughtbot</h2>
+    <section id="purchase-products">
       <% Product.active.each_with_index do |product, index| %>
         <% if product != @product %>
-          <aside class="<%= "first" if index.zero? %>">
-            <h2><%= link_to product.name, product_path(product, utm_source: "oss") %></h2>
+          <aside class="purchase-product">
+            <h3><%= link_to product.name, product_path(product, utm_source: "oss") %></h3>
             <p><%= product.short_description %></p>
           </aside>
         <% end %>
