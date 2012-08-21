@@ -1,5 +1,0 @@
-Mappings of property/value experiment pairs to their details.
-
-landing_page_headline
-  get_better_faster: "Get better, faster in our small, hands-on workshops"
-  learn_from_experts: "Learn from experts. Become one yourself."
