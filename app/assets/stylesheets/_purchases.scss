@@ -15,6 +15,10 @@
         margin-right: 0;
       }
 
+      &:nth-child(4n) {
+        clear: both;
+      }
+
       a {
         display: block;
         padding: .5em 0 .5em 0;
