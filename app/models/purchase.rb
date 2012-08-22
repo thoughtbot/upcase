@@ -128,9 +128,39 @@ class Purchase < ActiveRecord::Base
   end
 
   def refund
+    if paid?
+      if stripe?
+        stripe_refund
+      elsif paypal?
+        paypal_refund
+      end
+      set_as_unpaid!
+      remove_readers_from_github
+    end
+  end
+
+  def remove_readers_from_github
+    if readers && readers.any?
+      readers.each do |username|
+        begin
+          github_client.remove_team_member(product.github_team, username)
+        rescue Octokit::NotFound, Net::HTTPBadResponse => e
+          Airbrake.notify(e)
+        end
+        sleep 0.2
+      end
+    end
+  end
+
+  def stripe_refund
     charge = Stripe::Charge.retrieve(payment_transaction_id)
-    refund_and_set_unpaid(charge)
-    remove_readers_from_github
+    if charge && !charge.refunded
+      charge.refund(amount: price_in_pennies)
+    end
+  end
+
+  def paypal_refund
+    paypal_request.refund!(payment_transaction_id)
   end
 
   private
@@ -223,27 +253,6 @@ class Purchase < ActiveRecord::Base
     (price * 100).to_i
   end
 
-  def refund_and_set_unpaid(charge)
-    if charge && !charge.refunded
-      charge.refund(amount: price_in_pennies)
-      self.paid = false
-      save!
-    end
-  end
-
-  def remove_readers_from_github
-    if readers && readers.any?
-      readers.each do |username|
-        begin
-          github_client.remove_team_member(product.github_team, username)
-        rescue Octokit::NotFound, Net::HTTPBadResponse => e
-          Airbrake.notify(e)
-        end
-        sleep 0.2
-      end
-    end
-  end
-
   def save_info_to_user
     if readers.present? && user.github_username.blank?
       user.update_column(:github_username, readers.first)
@@ -254,6 +263,11 @@ class Purchase < ActiveRecord::Base
     self.paid = true
     self.paid_price = price
     coupon.try(:applied)
+  end
+
+  def set_as_unpaid!
+    self.paid = false
+    save!
   end
 
   def setup_paypal_payment
