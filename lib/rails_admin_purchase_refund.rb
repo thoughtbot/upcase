@@ -21,11 +21,8 @@ module RailsAdmin
 
         register_instance_option :controller do
           Proc.new do
-            if @object.refund
-              flash = { success: "#{@model_config.label} successfully refunded." }
-            else
-              flash = { success: 'There was an error processing this refund.' }
-            end
+            @object.refund
+            flash = { success: "#{@model_config.label} refunded." }
             redirect_to back_or_index, flash: flash
           end
         end
