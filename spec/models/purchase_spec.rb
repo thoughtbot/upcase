@@ -36,6 +36,28 @@ describe Purchase, "with stripe and a bad card" do
   end
 end
 
+describe Purchase, "refund" do
+  let(:product) { create(:product, individual_price: 15, company_price: 50) }
+  let(:purchase) { build(:purchase, product: product, payment_method: '$') }
+  subject { purchase }
+
+  it 'sets the purchase as unpaid' do
+    subject.refund
+    subject.paid.should be_false
+  end
+
+  it 'does not issue a refund if it is unpaid' do
+    subject.paid = false
+    subject.stubs(:stripe_refund).returns(nil)
+    subject.stubs(:paypal_refund).returns(nil)
+    subject.refund
+
+    subject.should have_received(:stripe_refund).never
+    subject.should have_received(:paypal_refund).never
+    subject.paid.should be_false
+  end
+end
+
 describe Purchase, "with stripe" do
   include Rails.application.routes.url_helpers
   let(:product) { create(:product, individual_price: 15, company_price: 50) }
@@ -127,38 +149,12 @@ describe Purchase, "with stripe" do
       before do
         charge.stubs(:refund).returns(refunded_charge)
         Stripe::Charge.stubs(:retrieve).returns(charge)
-
-        product.fulfillment_method = "github"
-        product.github_team = 73110
-        product.save!
-        Octokit::Client.stubs(new: client)
       end
 
       it 'refunds money to purchaser' do
-        subject.refund
+        subject.stripe_refund
         Stripe::Charge.should have_received(:retrieve).with("TRANSACTION-ID")
         charge.should have_received(:refund).with(amount: 1500)
-        subject.reload.paid.should be_false
-      end
-
-      it 'removes user from github team' do
-        subject.readers = ["jayroh", "cpytel"]
-        subject.save!
-        subject.refund
-
-        client.should have_received(:remove_team_member).with(73110, "cpytel")
-        client.should have_received(:remove_team_member).with(73110, "jayroh")
-      end
-
-      it 'notifies hoptoad/airbrake when user is not found' do
-        client.stubs(:remove_team_member).raises(Octokit::NotFound)
-        Octokit::Client.stubs(new: client)
-        Airbrake.stubs(:notify)
-        subject.readers = ["nonsense"]
-        subject.save!
-        subject.refund
-
-        Airbrake.should have_received(:notify).once
       end
     end
   end
@@ -211,6 +207,29 @@ describe Purchase, "with stripe" do
       purchase.save!
       Airbrake.should have_received(:notify).once
     end
+
+    context "and removing team members" do
+      it 'removes user from github team' do
+        client.stubs(:remove_team_member).returns(nil)
+        subject.readers = ["jayroh", "cpytel"]
+        subject.save!
+        subject.remove_readers_from_github
+
+        client.should have_received(:remove_team_member).with(73110, "cpytel")
+        client.should have_received(:remove_team_member).with(73110, "jayroh")
+      end
+
+      it 'notifies hoptoad/airbrake when user is not found' do
+        client.stubs(:remove_team_member).raises(Octokit::NotFound)
+        Octokit::Client.stubs(new: client)
+        Airbrake.stubs(:notify)
+        subject.readers = ["nonsense"]
+        subject.save!
+        subject.remove_readers_from_github
+
+        Airbrake.should have_received(:notify).once
+      end
+    end
   end
 end
 
@@ -218,8 +237,9 @@ describe Purchase, "with paypal" do
   include Rails.application.routes.url_helpers
 
   let(:product) { create(:product, individual_price: 15, company_price: 50) }
-  let(:paypal_request) { stub(setup: stub(redirect_uri: "http://paypalurl"),
-                              checkout!: stub(payment_info: [stub(transaction_id: "TRANSACTION-ID")])) }
+  let(:paypal_request) { stub( setup: stub(redirect_uri: "http://paypalurl"),
+    checkout!: stub( payment_info: [ stub(transaction_id: "TRANSACTION-ID" )]),
+    refund!: nil) }
   let(:paypal_payment_request) { stub }
 
   subject { build(:purchase, product: product, payment_method: "paypal") }
@@ -248,6 +268,17 @@ describe Purchase, "with paypal" do
 
     it "saves a transaction id" do
       subject.payment_transaction_id.should == "TRANSACTION-ID"
+    end
+  end
+
+  context 'and refunded' do
+    subject { build(:purchase, product: product, payment_method: 'paypal',
+      payment_transaction_id: 'TRANSACTION-ID') }
+
+    it 'refunds money to purchaser' do
+      subject.paypal_refund
+      paypal_request.should have_received(:refund!).with('TRANSACTION-ID')
+      subject.reload.paid.should be_false
     end
   end
 
