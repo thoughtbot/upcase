@@ -50,9 +50,9 @@
           <input type="text" size="20" autocomplete="off" class="card-number"/>
         </li>
         <li id="purchase_expiration_input" class="stripe">
-          <label>Expiration (MM/YYYY)</label>
-          <input type="text" size="2" class="card-expiry-month"/>
-          <input type="text" size="4" class="card-expiry-year"/>
+          <label>Expiration</label>
+          <%= select_month Date.today, { add_month_numbers: true }, class: 'card-expiry-month' %>
+          <%= select_year Date.today, { start_year: Date.today.year, end_year: 10.years.from_now.year }, class: 'card-expiry-year' %>
         </li>
         <li id="purchase_cvc_input" class="stripe">
           <label>CVC</label>
