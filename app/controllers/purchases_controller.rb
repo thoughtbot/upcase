@@ -22,6 +22,7 @@ class PurchasesController < ApplicationController
   def show
     @product = Product.find(params[:product_id])
     @purchase = @product.purchases.find_by_lookup!(params[:id])
+    redirect_if_unpaid
   end
 
   def paypal
@@ -34,9 +35,16 @@ class PurchasesController < ApplicationController
   def watch
     @product = Product.find(params[:product_id])
     @purchase = @product.purchases.find_by_lookup!(params[:id])
+    redirect_if_unpaid
   end
 
   private
+
+  def redirect_if_unpaid
+    if !@purchase.paid?
+      redirect_to product_path(@product)
+    end
+  end
 
   def track_chrome_screencast_ab_test_completion
     if @product.name == "Hidden Secrets of the Chrome Developer Tools"
