@@ -26,13 +26,13 @@ body.clearance-users {
   }
   
   h1.course-title {
-    text-rendering: optimizeLegibility;
     color: #666;
     font-family: $sans-serif;
     font-size: 36px;
     font-weight: 200;
     line-height: 36px;
     margin-bottom: 12px;
+    text-rendering: optimizeLegibility;
 
     span {
       color: #000;
@@ -41,15 +41,15 @@ body.clearance-users {
   }
 
   .workshop-sign-in, .github-signin {
-    text-align: center;
+    background: rgba(228, 228, 228, 0.7) center 0 no-repeat;
+    border: 1px solid gainsboro;
     font-size: 16px;
     margin: 30px 0 0 0;
     padding: 6px;
-    background: rgba(228, 228, 228, 0.7) center 0 no-repeat;
-    border: 1px solid gainsboro;
-    
+    text-align: center;
+
     a {
-    text-decoration: none;    
+      text-decoration: none;
     }
   }
 
@@ -59,8 +59,8 @@ body.clearance-users {
   }
   
   #total {
-    overflow: hidden;
     margin-bottom: 12px;
+    overflow: hidden;
 
     p.price {
       display: block;
@@ -110,19 +110,19 @@ body.clearance-users {
               }
             }
           }
-          
+
           &#user_first_name_input {
             float: left;
             margin-right: flex-gutter();
             width: flex-grid(6);
           }
-          
+
           &#user_last_name_input {
             float: left;
             width: flex-grid(6);
             margin-top: 19px;
           }
-          
+
           &#user_email_input, &input#password_email, &#password_submit_action {
             clear: both;
           }
@@ -156,7 +156,7 @@ body.clearance-users {
             margin-right: flex-gutter();
             width: flex-grid(3);
           }
-          
+
           &#password_email_input {
             margin-top: 12px;
           }
@@ -166,7 +166,6 @@ body.clearance-users {
             float: left;
             width: flex-grid(3);
           }
-
         }
       }
     }
@@ -188,12 +187,23 @@ body.clearance-users {
             margin-right: flex-gutter();
             width: flex-grid(8);
 
-            input {
+            select {
+              border: 1px solid #999;
+              @include box-shadow( 0 1px 2px #aaa);
+              @include box-sizing(border-box);
+              font: 14px $sans-serif;
+              margin: 3px 0 0 0;
+              padding: .5em;
+              -webkit-appearance: none;
               width: flex-grid(6);
-            }
 
-            input:first-child {
-              margin-right: flex-gutter();
+              &:first-child {
+                margin-right: flex-gutter();
+              }
+
+              &:focus {
+                outline-color: $red;
+              }
             }
           }
 
@@ -216,12 +226,12 @@ body.clearance-users {
     width: flex-grid(4);
 
     h4 {
-      text-rendering: optimizeLegibility;
       font-size: 16px;
       font-weight: 400;
       line-height: 1em;
       margin: 0;
       margin-bottom: 12px;
+      text-rendering: optimizeLegibility;
     }
 
     p {
@@ -239,48 +249,48 @@ body.clearance-users {
       margin: 0 0 4px 15px;
     }
   }
-  
+
   #account-sidebar {
     float: left;
     padding: 21px 0 0 0;
     width: flex-grid(4);
-    
+
     h2 {
-      text-rendering: optimizeLegibility;
       font-size: 24px;
       font-weight: 600;
-    }
-    
-    h3 {
       text-rendering: optimizeLegibility;
-      margin-top: 18px;
-      margin-left: 10px;
     }
-    
+
+    h3 {
+      margin-left: 10px;
+      margin-top: 18px;
+      text-rendering: optimizeLegibility;
+    }
+
     .first-purchase {
       margin-top: 3px;
     }
-    
+
     li {
+      background-color: #efefef;
+      font-size: 16px;
+      margin-bottom: 2px;
       padding: 10px;
       width: 100%;
-      background-color: #efefef;
-      margin-bottom: 2px;
-      font-size: 16px;
 
       span {
-        font-size: 16px;
-        float: right;
-        padding-right: 10px;
         color: #999;
+        float: right;
+        font-size: 16px;
         font-style: normal;
+        padding-right: 10px;
       }
     }
-    
+
     a {
       text-decoration: none;
     }
-    
+
     span {
       color: #999;
     }
@@ -288,19 +298,23 @@ body.clearance-users {
 
   section.receipt {
     margin-top: 25px;
+
     strong {
       font-weight: bold;
     }
+
     p {
-      margin-top: 10px;
       margin-bottom: 10px;
+      margin-top: 10px;
     }
+
     .item {
       margin-top: 20px;
     }
+
     table {
-      width: 200px;
       margin-top: 20px;
+      width: 200px;
 
       td {
         text-align: right;
@@ -325,37 +339,36 @@ body.clearance-users-create {
   #form-container {
     width: flex-grid(12);
     margin-left: 143px;
-    
+
     .github-signin {
+      background: rgba(228, 228, 228, 0.9) center 20px no-repeat url('blacktocat.png');
       float: left;
       margin: 21px flex-gutter() 0 0;
-      width: flex-grid(4);
-      background: rgba(228, 228, 228, 0.9) center 20px no-repeat url('blacktocat.png');
       padding: 160px 0 15px 0;
-      
+      width: flex-grid(4);
+
       a {
         color: #4183C4;
       }
     }
-    
+
     .or-signin {
-      text-rendering: optimizeLegibility;
-      float: left;
-      width: flex-grid(1);
-      text-align: center;
-      margin-top: 105px;
-      font: 400 22px $serif;
       color: #ccc;
-      font-style: italic;
-    }
-        
-    .thoughtbot-signin {
       float: left;
-      display: inline-block;
-      width: flex-grid(4);
-      margin-left: flex-gutter();
+      font: 400 22px $serif;
+      font-style: italic;
+      margin-top: 105px;
+      text-align: center;
+      text-rendering: optimizeLegibility;
+      width: flex-grid(1);
     }
-    
+
+    .thoughtbot-signin {
+      display: inline-block;
+      float: left;
+      margin-left: flex-gutter();
+      width: flex-grid(4);
+    }
 
     form {
       float: left;
@@ -367,16 +380,16 @@ body.clearance-users-create {
     }
 
     input[type="submit"] {
-      width: 355px;
       margin-top: 28px;
+      width: 355px;
     }
 
     .signup-forgot > li {
       display: inline;
       margin-right: 20px;
-      
+
       a {
-      text-decoration: none;
+        text-decoration: none;
       }
     }
   }
