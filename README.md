@@ -10,7 +10,7 @@ Development
 
 Getting the code:
 
-    git clone git@github.com:thoughtbot/workshops.git
+    git clone git@github.com:thoughtbot/learn.git
 
 Requirements:
 
@@ -19,7 +19,7 @@ Requirements:
 
 Getting up and running:
 
-    cd workshops
+    cd learn
     bundle install --binstubs
     rake db:create:all
     rake db:migrate
@@ -33,7 +33,7 @@ Fetching tumblr posts:
 1. Create `.env` file with TUMBLR_API_KEY. 
    This file should include all environment variables like TUMBLR_API_KEY, which is required to retrieve Tumblr blog posts. You can use [Heroku config](https://github.com/ddollar/heroku-config) to get `ENV` variables from Heroku:
 
-    heroku config:pull --app workshops-staging-cedar
+    heroku config:pull --app learn-staging
 
 2. Use [foreman](http://ddollar.github.com/foreman/) to run the rake task locally:
 
@@ -48,23 +48,12 @@ Staging and production environments
 
 We're using Heroku as a hosting provider. Deploying to Heroku is done via git. So, set up your git remotes for each environment:
 
-    git remote add staging git@heroku.com:workshops-staging-cedar.git
-    git remote add production git@heroku.com:workshops-production-cedar.git
+    git remote add staging git@heroku.com:learn-staging.git
+    git remote add production git@heroku.com:learn-production.git
 
 The content of the index and topics is cached for 12 hours. To manually invalidate the cache, use the following rake task:
 
-    heroku run rake heroku:flush_cache --app workshops-staging-cedar
-
-Testing payments/purchases in browser
--------------------------------------
-
-To test Stripe payments on staging use a fake credit card.
-
-* Testing Visa card number - `4242424242424242`.
-* Expiration date may be any date in the future.
-* CVC any 3 digits
-
-To test Paypal payments on staging, use your thoughtbot credit card as the paypal process is live and not sandboxed. After making your purchase you may perform a refund through [rails_admin](http://learn-staging.herokuapp.com/new_admin/purchase).
+    heroku run rake heroku:flush_cache --app learn-staging
 
 Deploying
 ---------
@@ -114,24 +103,35 @@ To check the status of running app servers, background jobs, cron jobs, etc:
 Getting admin access
 --------------------
 
-Sign up [here](http://workshops.thoughtbot.com/sign_up).
+Sign up [here](http://learn.thoughtbot.com/sign_up).
 
 Then at the terminal, do this:
 
-    heroku console --app workshops-production
+    heroku console --app learn-production
     user = User.find_by_email("YOUR_EMAIL_HERE")
     user.admin = true
     user.save!
     exit
 
-Now you can access http://workshops.thoughtbot.com/admin
+Now you can access http://learn.thoughtbot.com/new_admin
+
+Testing payments/purchases in browser
+-------------------------------------
+
+To test Stripe payments on staging use a fake credit card.
+
+* Testing Visa card number - `4242424242424242`.
+* Expiration date may be any date in the future.
+* CVC any 3 digits
+
+To test Paypal payments on staging, use your thoughtbot credit card as the paypal process is live and not sandboxed. After making your purchase you may perform a refund through [rails_admin](http://learn-staging.herokuapp.com/new_admin/purchase).
 
 Acceptance and invoices
 -----------------------
 
-When you test or do acceptance on staging and create invoices, be sure to void
-the invoices in Freshbooks afterwards.  The login information is in the
-Technical Information writeboard.
+When you test or do acceptance on staging for workshops and create invoices, be 
+sure to void the invoices in Freshbooks afterwards.  The login information is 
+in the Technical Information writeboard.
 
 Web hooks
 ---------
