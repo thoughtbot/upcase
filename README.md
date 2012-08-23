@@ -55,6 +55,17 @@ The content of the index and topics is cached for 12 hours. To manually invalida
 
     heroku run rake heroku:flush_cache --app workshops-staging-cedar
 
+Testing payments/purchases in browser
+-------------------------------------
+
+To test Stripe payments on staging use a fake credit card.
+
+* Testing Visa card number - `4242424242424242`.
+* Expiration date may be any date in the future.
+* CVC any 3 digits
+
+To test Paypal payments on staging, use your thoughtbot credit card as the paypal process is live and not sandboxed. After making your purchase you may perform a refund through [rails_admin](http://learn-staging.herokuapp.com/new_admin/purchase).
+
 Deploying
 ---------
 
