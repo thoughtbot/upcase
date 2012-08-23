@@ -47,7 +47,7 @@ Workshops::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  HOST = 'workshops.staging.thoughtbot.com'
+  HOST = 'learn-staging.herokuapp.com'
   config.action_mailer.default_url_options = {host: HOST}
 
   ActionMailer::Base.delivery_method = :smtp
