@@ -138,7 +138,7 @@ GEM
       json (>= 1.4.6)
     haml (3.1.6)
     hashie (1.2.0)
-    high_voltage (1.1.1)
+    high_voltage (1.2.0)
     highline (1.6.12)
     hike (1.2.1)
     hirb (0.6.2)
