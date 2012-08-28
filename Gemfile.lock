@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/xspond/will_paginate.git
-  revision: 7dfc31d01982a801b1c96211ad4b0d83b1dd0804
-  branch: rails3-1
-  specs:
-    will_paginate (3.0.pre3)
-
-GIT
   remote: https://github.com/stripe/stripe-ruby
   revision: 69a96ecc4b08549cf496c26a92ebbd8f405db49f
   specs:
@@ -419,4 +412,3 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   vcr (~> 2.1.1)
   webmock (~> 1.8.7)
-  will_paginate!
