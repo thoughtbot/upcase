@@ -71,15 +71,15 @@ Heroku
 
 To access data on Heroku:
 
-    heroku console --remote staging
-    heroku console --remote production
+    heroku run console --remote staging
+    heroku run console --remote production
 
 That will drop you into a Rails console for either environment. You can run ActiveRecord queries from there.
 
 To run a rake task on Heroku:
 
-    heroku rake db:migrate --remote staging
-    heroku rake db:migrate --remote production
+    heroku run rake db:migrate --remote staging
+    heroku run rake db:migrate --remote production
 
 Any rake task can be run with heroku rake ...
 
@@ -103,7 +103,7 @@ To check the status of running app servers, background jobs, cron jobs, etc:
 Getting admin access
 --------------------
 
-Sign up [here](http://learn.thoughtbot.com/sign_up).
+[Sign up](http://learn.thoughtbot.com/sign_up).
 
 Then at the terminal, do this:
 
@@ -113,7 +113,7 @@ Then at the terminal, do this:
     user.save!
     exit
 
-Now you can access http://learn.thoughtbot.com/new_admin
+Now you can access [the generic admin](http://learn.thoughtbot.com/new_admin) and [the course admin](http://learn.thoughtbot.com/admin).
 
 Testing payments/purchases in browser
 -------------------------------------
@@ -137,4 +137,4 @@ Web hooks
 ---------
 
 Freshbooks has [web hooks](http://developers.freshbooks.com/webhooks/). We have
-the `payment.create` hook in place. It POSTs to PaymentsController#create.
+the `payment.create` hook in place. It POSTs to `PaymentsController#create`.
