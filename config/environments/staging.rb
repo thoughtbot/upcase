@@ -70,9 +70,11 @@ Workshops::Application.configure do
     password: "4e7LRALZ"
   }
 
-  PAYPAL_USERNAME = "purchasing_api1.thoughtbot.com"
-  PAYPAL_PASSWORD = "NJJDV9RS6Z3PL8LG"
-  PAYPAL_SIGNATURE = "AGFLtEG6qkicR9BIyz2VureilJErAQ0TCpd6RiBrrCgcLa2pizcm-NtA"
+  Paypal.sandbox = true
+
+  PAYPAL_USERNAME = "dvtest_1274820363_biz_api1.thoughtbot.com"
+  PAYPAL_PASSWORD = "1274820375"
+  PAYPAL_SIGNATURE = "AVKfPIxQmv1Cx110eaST5hCDDRvIAHcHwza1R3BuWSImSagGLPnBY7v7"
   PAPERCLIP_STORAGE_OPTIONS = {
     storage: :s3,
     s3_credentials: "#{Rails.root}/config/s3.yml",
