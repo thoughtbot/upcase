@@ -11,6 +11,7 @@ Feature: Scheduling a new course
     Then the seats available field should contain "10"
     And the section start time field should contain "2000-01-01 09:00:00 UTC"
     And the section stop time field should contain "2000-01-01 17:00:00 UTC"
+    And I fill in the reminder email text with "This is really happening"
     When I select the start date of "June 14, 2010"
     And I select the end date of "June 17, 2010"
     And I select the teacher "Albert Einstein"

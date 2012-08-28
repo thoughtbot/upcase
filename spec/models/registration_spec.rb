@@ -26,11 +26,13 @@ describe Registration do
   end
 
   it "can receive a payment" do
-    registration = build_stubbed(:registration, paid: false)
-    registration.expects("send_payment_confirmations")
-    registration.receive_payment!
-    registration.should be_paid
-    registration.should_not be_changed
+    Mocha::Configuration.allow(:stubbing_non_public_method) do
+      registration = build_stubbed(:registration, paid: false)
+      registration.expects("send_payment_confirmations")
+      registration.receive_payment!
+      registration.should be_paid
+      registration.should_not be_changed
+    end
   end
 
   it "delegates to section for course price" do
@@ -64,10 +66,12 @@ describe Registration do
     registration.freshbooks_invoice_url.should == "https://example.com"
   end
 
-  it "uses the fetch_invoiceurl for freshbooks_invoice_url if one is not available" do
-    registration = build_stubbed(:registration, freshbooks_invoice_url: nil)
-    registration.expects("fetch_invoice_url")
-    registration.freshbooks_invoice_url
+  it "uses the fetch_invoice_url for freshbooks_invoice_url if one is not available" do
+    Mocha::Configuration.allow(:stubbing_non_public_method) do
+      registration = build_stubbed(:registration, freshbooks_invoice_url: nil)
+      registration.expects("fetch_invoice_url")
+      registration.freshbooks_invoice_url
+    end
   end
 end
 

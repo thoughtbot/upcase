@@ -20,7 +20,6 @@ class User < ActiveRecord::Base
   end
 
   def self.create_from_auth_hash(auth_hash)
-    p auth_hash
     name = auth_hash['info']['name'].split(' ')
     create(
       auth_provider: auth_hash['provider'],
