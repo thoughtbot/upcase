@@ -43,7 +43,7 @@ describe Purchase, "refund" do
 
   it 'sets the purchase as unpaid' do
     subject.refund
-    subject.paid.should be_false
+    subject.should_not be_paid
   end
 
   it 'does not issue a refund if it is unpaid' do
@@ -54,7 +54,7 @@ describe Purchase, "refund" do
 
     subject.should have_received(:stripe_refund).never
     subject.should have_received(:paypal_refund).never
-    subject.paid.should be_false
+    subject.should_not be_paid
   end
 end
 
@@ -272,8 +272,12 @@ describe Purchase, "with paypal" do
   end
 
   context 'and refunded' do
-    subject { build(:purchase, product: product, payment_method: 'paypal',
-      payment_transaction_id: 'TRANSACTION-ID') }
+    subject do
+      build(:purchase,
+            product: product,
+            payment_method: 'paypal',
+            payment_transaction_id: 'TRANSACTION-ID')
+    end
 
     it 'refunds money to purchaser' do
       subject.paypal_refund
