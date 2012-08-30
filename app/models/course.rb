@@ -51,6 +51,10 @@ class Course < ActiveRecord::Base
     active_section.present?
   end
 
+  def active_sections
+    sections.active
+  end
+
   def active_section
     sections.active[0]
   end
@@ -66,5 +70,10 @@ class Course < ActiveRecord::Base
   def image_url
     raw_url = course_image.url(:course)
     course_image_file_name.nil? ? "/assets/#{raw_url}" : raw_url
+  end
+
+  def as_json(options = {})
+    options ||= {}
+    super(options.merge(:methods => [:active_sections]))
   end
 end

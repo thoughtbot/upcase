@@ -30,22 +30,28 @@
 
 <% content_for :javascript do %>
 <script type="text/javascript">
+  function workshop_details(course) {
+    var details = [];
+    for (var s=0; s<course.active_sections.length; s++) {
+      details.push(course.active_sections[s].section.city);
+    }
+    if(details.length > 0) {
+      return " in " + details.join(" and ");
+    } else {
+      return "";
+    }
+  }
   function workshops(resp) {
     var courses = resp;
     $('#current-workshops .loading').replaceWith('<ul/>');
     $('#current-workshops-footer .loading').replaceWith('<ul/>');
-    $ul = $('#current-workshops ul');
-    $footer_ul = $('#current-workshops-footer ul');
+    $ul = $('#current-workshops-footer ul');
     for (var i=0; i<courses.length; i++) {
       var c = courses[i]['course'];
       var name = c['name'] || null;
 
       if (name) {
-        $ul.append('<li><a href="'+c['url']+'">'+name+'</a></li>');
-
-        if (i<3) {
-          $footer_ul.append('<li><a href="'+c['url']+'">'+name+'</a></li>');
-        }
+        $ul.append('<li><a href="'+c['url']+'">'+name+workshop_details(c)+'</a></li>');
       }
     }
   }
