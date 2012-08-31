@@ -181,10 +181,9 @@ class Purchase < ActiveRecord::Base
   end
 
   def fulfill_with_github
-    client = Octokit::Client.new(login: "cpytel", password: "eqZUjxaaaqk33ob")
     readers.map(&:strip).reject(&:blank?).compact.each do |username|
       begin
-        client.add_team_member(product.github_team, username)
+        github_client.add_team_member(product.github_team, username)
       rescue Octokit::NotFound, Net::HTTPBadResponse => e
         Airbrake.notify(e)
       end
@@ -234,10 +233,9 @@ class Purchase < ActiveRecord::Base
 
   def remove_readers_from_github
     if readers && readers.any?
-      client = Octokit::Client.new(login: "cpytel", password: "eqZUjxaaaqk33ob")
       readers.each do |username|
         begin
-          client.remove_team_member(product.github_team, username)
+          github_client.remove_team_member(product.github_team, username)
         rescue Octokit::NotFound, Net::HTTPBadResponse => e
           Airbrake.notify(e)
         end
@@ -274,5 +272,9 @@ class Purchase < ActiveRecord::Base
     rescue *SMTP_ERRORS => e
       Airbrake.notify(e)
     end
+  end
+
+  def github_client
+    Octokit::Client.new(login: GITHUB_USER, password: GITHUB_PASSWORD)
   end
 end

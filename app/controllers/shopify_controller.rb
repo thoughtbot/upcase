@@ -1,10 +1,9 @@
 class ShopifyController < ApplicationController
   def order_paid
     if backbone_book?
-      client = Octokit::Client.new(login: "cpytel", password: "cambridge")
       readers.each do |username|
         begin
-          client.add_team_member(github_team_id, username)
+          github_client.add_team_member(github_team_id, username)
         rescue Octokit::NotFound, Net::HTTPBadResponse => e
           Airbrake.notify(e)
         end
@@ -26,5 +25,9 @@ class ShopifyController < ApplicationController
 
   def readers
     params[:note_attributes].collect { |attribute| attribute[:value] if attribute[:name] =~ /reader/ && attribute[:value].strip.present? }.compact
+  end
+
+  def github_client
+    Octokit::Client.new(login: GITHUB_USER, password: GITHUB_PASSWORD)
   end
 end
