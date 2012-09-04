@@ -44,3 +44,15 @@ Feature: Purchase a Product
     Then I should see a video
     And I should see the download links for video with id "1194803"
     And I should see a list of other products
+
+  @selenium
+  Scenario: A user purchases a product with stripe with existing credit card
+    Given I have signed up with "user@example.com"
+    And I sign in with "user@example.com"
+    And I have an existing credit card
+    When I go to the home page
+    And I follow "Test Fetch"
+    And I follow "Purchase for Yourself"
+    Then I should see "$15"
+    When I pay with existing credit card
+    Then I should see "Thank you"
