@@ -4,7 +4,7 @@ class Mailer < ActionMailer::Base
   def registration_notification(registration)
     @registration = registration
 
-    mail(to: 'workshops@thoughtbot.com',
+    mail(to: 'learn@thoughtbot.com',
          subject: "New registration notification")
   end
 
@@ -17,6 +17,7 @@ class Mailer < ActionMailer::Base
 
   def registration_confirmation(registration)
     @registration = registration
+    @section = registration.section
 
     mail(to: registration.email,
          subject: "You're registered for #{registration.section.course_name}")
@@ -33,7 +34,7 @@ class Mailer < ActionMailer::Base
   def set_password(user)
     @user = user
     mail(to: @user.email,
-         subject: "Welcome to thoughtbot Workshops")
+         subject: "Welcome to thoughtbot Learn")
   end
 
   def follow_up(follow_up, section)

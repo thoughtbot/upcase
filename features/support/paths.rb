@@ -5,6 +5,8 @@ module NavigationHelpers
       '/'
     when /^the home page with the "([^"]+)" alternative for the "([^"]+)" experiment/
       "/?#{$2}=#{$1}"
+    when 'my account page'
+      my_account_path
     when 'the courses json page'
       courses_path(format: :json)
     when /the courses json page with the callback "([^"]+)"/
@@ -97,7 +99,7 @@ module NavigationHelpers
     when 'max students'
       'course_maximum_students'
     when 'reminder email text'
-      'course_reminder_email'
+      'section_reminder_email'
     when 'course follow up email'
       'course_followup_email'
     when 'login email'

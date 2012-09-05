@@ -13,8 +13,8 @@ describe Topic do
       @topic = create(:topic, name: ' Test Driven Development ')
     end
 
-    it 'generates slug based on name' do
-      @topic.slug.should == 'test-driven-development'
+    it 'generates a stripped, url encoded slug based on name' do
+      @topic.slug.should == 'test+driven+development'
     end
   end
 
@@ -52,6 +52,11 @@ describe Topic do
     it "returns only all matching topics" do
       results = Topic.search("ru")
       results.should =~ [ruby, ruby_on_rails]
+    end
+
+    it "matches url escaped searched" do
+      results = Topic.search("ruby+on+rails")
+      results.should == [ruby_on_rails]
     end
 
     it "returns one matching topic if matched exactly" do

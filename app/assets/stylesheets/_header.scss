@@ -19,6 +19,14 @@ header#main-header {
       width: 242px;
     }
   }
+  
+  #log_in_out {
+    display: inline;
+    
+    a {
+      display: inline;
+    }
+  }
 
   ul {
     display: block;
@@ -38,6 +46,8 @@ header#main-header {
         margin: 0 20px;
         text-decoration: none;
         //@include transition(color .2s);
+
+
 
         &:hover {
           color: $red;

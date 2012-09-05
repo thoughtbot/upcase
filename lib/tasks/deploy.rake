@@ -6,6 +6,7 @@ namespace :deploy do
     `git push staging master`
     `bundle exec rake airbrake:deploy TO=staging`
     `bundle exec heroku rake db:migrate --remote staging`
+    `bundle exec heroku restart --remote staging`
   end
 
   desc "Deploy to Heroku production"
@@ -29,5 +30,10 @@ namespace :heroku do
       puts "This doesn't appear to be a git repo.  Try: git init"
       exit 1
     end
+  end
+
+  task :flush_cache do
+    dalli = Dalli::Client.new "memcached://#{ENV['MEMCACHE_SERVERS']}"
+    dalli.flush_all
   end
 end

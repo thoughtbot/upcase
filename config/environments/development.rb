@@ -25,11 +25,10 @@ Workshops::Application.configure do
   # Do not compress assets
   config.assets.compress = false
 
-  HOST = 'localhost'
+  HOST = 'localhost:3000'
   config.action_mailer.default_url_options = { host: HOST }
 
   Paypal.sandbox = true
-
   PAYPAL_USERNAME = "dvtest_1274820363_biz_api1.thoughtbot.com"
   PAYPAL_PASSWORD = "1274820375"
   PAYPAL_SIGNATURE = "AVKfPIxQmv1Cx110eaST5hCDDRvIAHcHwza1R3BuWSImSagGLPnBY7v7"
@@ -37,4 +36,7 @@ Workshops::Application.configure do
      storage: :s3,
      s3_credentials: "#{Rails.root}/config/s3.yml",
   }
+
+  GITHUB_KEY = ENV['GITHUB_KEY']
+  GITHUB_SECRET = ENV['GITHUB_SECRET']
 end

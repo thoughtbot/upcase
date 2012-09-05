@@ -22,6 +22,21 @@ describe Product do
     end
   end
 
+  describe '#find_books_by_topics' do
+    it 'includes books for the given topics' do
+      topic_1 = FactoryGirl.create(:topic, name: 'ruby')
+      topic_2 = FactoryGirl.create(:topic, name: 'rubygems')
+      product = FactoryGirl.create(:product, product_type: 'book', active: true)
+      product_not_in_topics = FactoryGirl.create(:product, product_type: 'book', active: true)
+
+      found_topics = [topic_1, topic_2]
+      found_topics.each { |topic| topic.products << product }
+
+      Product.find_books_by_topics(found_topics).should include(product)
+      Product.find_books_by_topics(found_topics).should_not include(product_not_in_topics)
+    end
+  end
+
   describe "#screencasts" do
     it "includes only screencasts" do
       screencast = FactoryGirl.create(:product, product_type: 'screencast')
@@ -31,6 +46,21 @@ describe Product do
       Product.screencasts.should include screencast
       Product.screencasts.should include screencast2
       Product.screencasts.should_not include book
+    end
+  end
+
+  describe '#find_screencasts_by_topics' do
+    it 'includes screencasts for the given topics' do
+      topic_1 = FactoryGirl.create(:topic, name: 'ruby')
+      topic_2 = FactoryGirl.create(:topic, name: 'rubygems')
+      product = FactoryGirl.create(:product, product_type: 'screencast', active: true)
+      product_not_in_topics = FactoryGirl.create(:product, product_type: 'screencast', active: true)
+
+      found_topics = [topic_1, topic_2]
+      found_topics.each { |topic| topic.products << product }
+
+      Product.find_screencasts_by_topics(found_topics).should include(product)
+      Product.find_screencasts_by_topics(found_topics).should_not include(product_not_in_topics)
     end
   end
 

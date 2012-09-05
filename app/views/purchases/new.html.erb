@@ -12,6 +12,9 @@
     <%= semantic_form_for @purchase, url: product_purchases_path(@product), html: { method: 'post' } do |form| %>
       <%= form.semantic_errors %>
       <%= hidden_field_tag 'coupon_id' %>
+      <% if signed_out? %>
+        <div class="workshop-sign-in">Already have an account? <%= link_to 'Sign in.', sign_in_path(return_to: request.fullpath) %></div>
+      <% end %>
       <%= form.inputs 'Your information' do %>
         <%= form.input :variant, as: :hidden %>
         <%= form.input :name %>
@@ -47,9 +50,9 @@
           <input type="text" size="20" autocomplete="off" class="card-number"/>
         </li>
         <li id="purchase_expiration_input" class="stripe">
-          <label>Expiration (MM/YYYY)</label>
-          <input type="text" size="2" class="card-expiry-month"/>
-          <input type="text" size="4" class="card-expiry-year"/>
+          <label>Expiration</label>
+          <%= select_month Date.today, { add_month_numbers: true }, class: 'card-expiry-month' %>
+          <%= select_year Date.today, { start_year: Date.today.year, end_year: 10.years.from_now.year }, class: 'card-expiry-year' %>
         </li>
         <li id="purchase_cvc_input" class="stripe">
           <label>CVC</label>

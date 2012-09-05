@@ -5,12 +5,17 @@
 
 function searchTopics(text) {
   if(/\S/.test(text)) {
+    $('.search').hide();
+    $('.clear-search').hide();
+    $('.spinner').show();
+
     $.get('/topics/' + text, {}, function(data) {
       var results = $(data).filter(".results");
       var title = $(results).attr('data-title');
       var url = $(results).attr('data-url');
       $('.results').replaceWith(results);
 
+      $('.search').hide();
       $('.spinner').hide();
       $('.clear-search').show();
 
@@ -27,8 +32,24 @@ function searchTopics(text) {
 }
 
 $(function(){
-  $("input,select").observe_field(0.2, function() {
+  $(".search-bar input").observe_field(0.1, function() {
     searchTopics(this.value);
+  });
+
+  $('.search-bar').find('input').keypress(function(e) {
+    if (e.which == 13) {
+      return false;
+    }
+  });
+
+  $(document).on("click", "li.more a", function() {
+    $(this).parent().siblings("li.additional").show();
+    $(this).parent().hide();
+  })
+
+  $("section.popular li a").click(function() {
+    $(".search-bar input").val($(this).text());
+    return false;
   });
 });
 
@@ -93,19 +114,6 @@ $(function() {
     $(this).text('more...');
     $(this).parent().addClass('expand-bio').removeClass('minimize-bio');
     return false;
-  });
-
-  $('.search-bar input').keyup(function() {
-    if ($(this).val()) {
-      $(this).siblings('.search').hide();
-      $(this).siblings('.clear-search').hide();
-      $(this).siblings('.spinner').show();
-    }
-    else {
-      $(this).siblings('.search').show();
-      $(this).siblings('.spinner').hide();
-      $(this).siblings('.clear-search').hide();
-    }
   });
 
   $('.search-bar .search').live('click', function() {

@@ -1,6 +1,7 @@
 @import "reset";
 @import "bourbon";
 @import "mixins";
+@import "base-animations";
 @import "flashes";
 @import "header";
 @import "home";
@@ -11,6 +12,8 @@
 @import "footer";
 @import "backbone-checkout";
 @import "forms";
+@import 'purchases';
+@import 'video';
 
 body {
   background: #fcfcfc;

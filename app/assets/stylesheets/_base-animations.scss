@@ -1,0 +1,21 @@
+.animation-loading {
+  @include animation(loading 0.25s ease);
+  @include animation-fill-mode(both);
+  @include animation-iteration-count(infinite);
+}
+
+@mixin loading {
+  0% {
+    right: 24px;
+  }
+  50% {
+    right: 64px;
+  }
+  100% {
+    right: 24px;
+  }
+}
+@-webkit-keyframes loading { @include loading; }
+   @-moz-keyframes loading { @include loading; }
+        @keyframes loading { @include loading; }
+

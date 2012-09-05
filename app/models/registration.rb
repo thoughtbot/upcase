@@ -1,6 +1,7 @@
 class Registration < ActiveRecord::Base
   include Rails.application.routes.url_helpers
 
+  belongs_to :user
   belongs_to :section
   belongs_to :coupon
 
@@ -16,6 +17,10 @@ class Registration < ActiveRecord::Base
   after_create :store_freshbooks_invoice
   after_create :send_invoice
 
+  def self.by_email(email)
+    where(email: email)
+  end
+
   def name
     [first_name, last_name].join(' ')
   end
@@ -25,7 +30,7 @@ class Registration < ActiveRecord::Base
   end
 
   def receive_payment!
-    self.paid = true
+    set_as_paid
     save!
     send_payment_confirmations
   end
@@ -42,14 +47,27 @@ class Registration < ActiveRecord::Base
     end
   end
 
+  def defaults_from_user(purchaser)
+    if purchaser
+      self.first_name = purchaser.first_name
+      self.last_name = purchaser.last_name
+      self.email = purchaser.email
+    end
+  end
+
   private
 
   def push_payment_for_zero_cost
     if price == 0
-      self.paid = true
+      set_as_paid
       save!
       send_payment_confirmations
     end
+  end
+
+  def set_as_paid
+    self.paid = true
+    coupon.try(:applied)
   end
 
   def send_payment_confirmations

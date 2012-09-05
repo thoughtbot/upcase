@@ -1,22 +1,36 @@
 <section id="head-wrapper">
   <section id="homepage-top">
-    <h1><%= @product.name %></h1>
+    <h1>Watch or Download Video</h1>
+    <h2>
+      <%= @product.name %>
+      <% if @product.videos.size > 1 %>
+        <span> <%= @product.videos.size %> videos in the series </span>
+      <% end %>
+    </h2>
+
     <% if @product.videos.size == 1 %>
       <%= render @product.videos.first %>
     <% else %>
-      <h2><%= @product.videos.size %> videos in the series</h2>
-      <ol>
+      <ol class="videos">
         <% @product.videos.each do |video| %>
-          <li><%= link_to video.title, product_purchase_video_path(@product, @purchase, video) %></li>
+          <li>
+            <%= link_to product_purchase_video_path(@product, @purchase, video) do %>
+              <img src="<%= video.wistia_thumbnail %>" width="100" height="60"
+                alt="<%= video.title %>" />
+              <span><%= video.title %></span>
+              <time><%= video.wistia_running_time %><time>
+            <% end %>
+          </li>
         <% end %>
       </ol>
     <% end %>
-    <section id="products">
-      <h2>More from thoughtbot</h2>
+    <h2>More from thoughtbot</h2>
+
+    <section id="purchase-products">
       <% Product.active.each_with_index do |product, index| %>
         <% if product != @product %>
-          <aside class="<%= "first" if index.zero? %>">
-            <h2><%= link_to product.name, product_path(product, utm_source: "oss") %></h2>
+          <aside class="purchase-product">
+            <h3><%= link_to product.name, product_path(product, utm_source: "oss") %></h3>
             <p><%= product.short_description %></p>
           </aside>
         <% end %>

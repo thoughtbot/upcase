@@ -25,7 +25,7 @@ Workshops::Application.configure do
   # config.logger = SyslogLogger.new
 
   # Use a different cache store in production
-  # config.cache_store = :mem_cache_store
+  config.cache_store = :dalli_store
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
@@ -47,14 +47,18 @@ Workshops::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  HOST = 'workshops.staging.thoughtbot.com'
+  HOST = 'learn-staging.herokuapp.com'
   config.action_mailer.default_url_options = {host: HOST}
 
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.perform_deliveries = true
   ActionMailer::Base.default(charset: "utf-8")
-
   ActionMailer::Base.raise_delivery_errors = true
+
+  config.middleware.use Rack::Cache,
+    :verbose => true,
+    :metastore => "memcached://#{ENV['MEMCACHE_SERVERS']}",
+    :entitystore => "memcached://#{ENV['MEMCACHE_SERVERS']}"
 
   ActionMailer::Base.smtp_settings = {
     address: 'smtp.gmail.com',
@@ -66,13 +70,18 @@ Workshops::Application.configure do
     password: "4e7LRALZ"
   }
 
-  PAYPAL_USERNAME = "purchasing_api1.thoughtbot.com"
-  PAYPAL_PASSWORD = "NJJDV9RS6Z3PL8LG"
-  PAYPAL_SIGNATURE = "AGFLtEG6qkicR9BIyz2VureilJErAQ0TCpd6RiBrrCgcLa2pizcm-NtA"
+  Paypal.sandbox = true
+
+  PAYPAL_USERNAME = "dvtest_1274820363_biz_api1.thoughtbot.com"
+  PAYPAL_PASSWORD = "1274820375"
+  PAYPAL_SIGNATURE = "AVKfPIxQmv1Cx110eaST5hCDDRvIAHcHwza1R3BuWSImSagGLPnBY7v7"
   PAPERCLIP_STORAGE_OPTIONS = {
     storage: :s3,
     s3_credentials: "#{Rails.root}/config/s3.yml",
     s3_permissions: :private,
     path: "downloads/:id/:filename"
   }
+
+  GITHUB_KEY = ENV['GITHUB_KEY']
+  GITHUB_SECRET = ENV['GITHUB_SECRET']
 end

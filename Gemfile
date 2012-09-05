@@ -5,8 +5,8 @@ gem "rails", "3.2.3"
 gem "jquery-rails"
 gem "pg"
 gem "bourbon", "~> 1.4.0"
+gem "flutie"
 gem "RedCloth", require: "redcloth"
-gem "will_paginate", git: "git://github.com/xspond/will_paginate.git", branch: "rails3-1"
 gem "formtastic", "~> 2.2.0"
 gem "nokogiri"
 gem "clearance", "~> 0.16.1"
@@ -33,12 +33,13 @@ gem 'chameleon'
 gem "thin", "~> 1.3.1"
 gem "rails_admin"
 gem 'typhoeus'
+gem "omniauth", "~> 1.1.0"
+gem "omniauth-github", "~> 1.0.2"
 
 # Fix the warning: regexp match /.../n against to UTF-8 string issue
 gem "escape_utils"
 
 group :development do
-  gem "heroku", "~> 2.26.3"
   gem 'hirb'
   gem 'tddium'
 end
@@ -57,7 +58,7 @@ group :assets do
 end
 
 group :test do
-  gem "selenium-webdriver", "~> 2.20.0"
+  gem "selenium-webdriver", "~> 2.25.0"
   gem "cucumber-rails", "~> 1.1", require: false
   gem 'capybara', "~> 1.1.2"
   gem "factory_girl_rails", "~> 3.3.0"
@@ -72,4 +73,9 @@ group :test do
   gem "bourne", "~> 1.1.2"
   gem 'vcr', '~> 2.1.1'
   gem 'webmock', '~> 1.8.7'
+end
+
+group :staging, :production do
+  gem "rack-cache", "~> 1.2"
+  gem "dalli", "~> 2.1.0"
 end

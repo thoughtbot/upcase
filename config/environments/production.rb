@@ -29,6 +29,7 @@ Workshops::Application.configure do
 
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
+  config.cache_store = :dalli_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -49,12 +50,17 @@ Workshops::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  HOST = 'workshops.thoughtbot.com'
+  HOST = 'learn.thoughtbot.com'
   config.action_mailer.default_url_options = {host: HOST}
 
   config.middleware.use Rack::SslEnforcer,
                         hsts: false,
                         redirect_to: "https://#{HOST}"
+
+  config.middleware.use Rack::Cache,
+    :verbose => true,
+    :metastore => "memcached://#{ENV['MEMCACHE_SERVERS']}",
+    :entitystore => "memcached://#{ENV['MEMCACHE_SERVERS']}"
 
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.perform_deliveries = true
@@ -80,4 +86,6 @@ Workshops::Application.configure do
      s3_credentials: "#{Rails.root}/config/s3.yml",
   }
 
+  GITHUB_KEY = ENV['GITHUB_KEY']
+  GITHUB_SECRET = ENV['GITHUB_SECRET']
 end

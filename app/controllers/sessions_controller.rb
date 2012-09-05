@@ -1,5 +1,4 @@
 class SessionsController < Clearance::SessionsController
-  layout 'admin'
 
   private
 
@@ -7,7 +6,7 @@ class SessionsController < Clearance::SessionsController
     if current_user.admin?
       admin_path
     else
-      root_path
+      my_account_path
     end
   end
 end

@@ -17,10 +17,11 @@ Then /^I see the page for the topic$/ do
   find_field("search_input").value.should == topic.name
   page.should have_css("h3", text: Article.all.first.title)
   page.should_not have_css("h3", text: Article.all.second.title)
-  page.should have_css("li.product a h3", text: Product.all.first.name)
-  page.should_not have_css("li.product a h3", text: Product.all.second.name)
-  page.should have_css("li.course a h3", text: Course.all.first.name)
-  page.should_not have_css("li.course a h3", text: Course.all.second.name)
+  page.should have_css("li.found.products a h3", text: Product.all.first.name)
+  page.should_not have_css("li.found.products a h3", text: Product.all.second.name)
+  page.should have_css("li.found.courses a h3", text: Course.all.first.name)
+  page.should_not have_css("li.found.courses a h3", text: Course.all.second.name)
+  page.evaluate_script("$('.search-bar a.clear-search:visible').length").to_i.should > 0
 end
 
 Given /^there is an article for the topic$/ do

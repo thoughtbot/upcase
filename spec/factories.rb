@@ -8,11 +8,11 @@ FactoryGirl.define do
   end
 
   sequence :name do |n|
-    "name ##{n}"
+    "name #{n}"
   end
 
   sequence :title do |n|
-    "title ##{n}"
+    "title #{n}"
   end
 
   sequence :tumblr_url do |n|
@@ -21,10 +21,6 @@ FactoryGirl.define do
 
   sequence :tumblr_user_name do |n|
     "user#{n}"
-  end
-
-  sequence :slug do |n|
-    "slug-#{n}"
   end
 
   factory :user do
@@ -119,6 +115,10 @@ FactoryGirl.define do
     code
     discount_type "percentage"
     amount 10
+
+    factory :one_time_coupon do
+      one_time_use_only true
+    end
   end
 
   factory :product do
@@ -136,11 +136,16 @@ FactoryGirl.define do
 
   factory :download do
   end
+
   factory :purchase, aliases: [:individual_purchase] do
     product
     name "Test User"
     email "joe@example.com"
     variant "individual"
+
+    factory :stripe_purchase do
+      payment_method "stripe"
+    end
   end
 
   factory :article do
@@ -157,7 +162,6 @@ FactoryGirl.define do
 
   factory :topic do
     name
-    slug
 
     body_html 'body text of document'
     keywords 'clean, clear, precise'

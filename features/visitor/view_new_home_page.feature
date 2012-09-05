@@ -45,6 +45,7 @@ Feature: Viewing Courses on the home page
     When I go to the topics index
     Then I see the topic
 
+  @javascript
   Scenario: Visitor can view a topic
     Given there is a topic
     And there is an article for the topic
@@ -67,7 +68,7 @@ Feature: Viewing Courses on the home page
     And there is an article for "Ruby"
     When I go to the topics index
     And I search for "ghgh"
-    Then I should see "No items met your search"
+    Then I should see "No articles were found for your search"
     And the page title should be "thoughtbot Learn"
     And the page url should be "/topics"
     When I search for "R"

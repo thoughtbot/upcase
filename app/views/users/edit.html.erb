@@ -1,0 +1,42 @@
+<section id="container">
+  <h1>Your Information and Purchases</h1>
+  <section id="form-container">
+    <section id="form-column">
+      <%= semantic_form_for current_user, url: my_account_path do |form| %>
+        <%= form.inputs 'Your Information' do %>
+          <%= form.input :first_name, label: 'Your Name', input_html: { placeholder: "First name" } %>
+          <%= form.input :last_name, label: false, input_html: { placeholder: "Last name" } %>
+          <%= form.input :email, as: :email %>
+          <%= form.input :github_username %>
+          <% if !current_user.external_auth? %>
+            <%= form.input :password %>
+          <% end %>
+        <% end %>
+
+        <%= form.actions do %>
+          <li><%= form.submit 'Update account' %></li>
+        <% end %>
+      <% end %>
+    </section>
+
+    <% if current_user.purchases.present? || current_user.registrations.present? %>
+      <section id="account-sidebar">
+        <% if current_user.purchases.present? %>
+          <h2>Your purchases</h2>
+          <h3 class="first-purchase">Products</h3>
+          <ol class="purchases">
+            <%= render current_user.purchases %>
+          </ol>
+        <% end %>
+
+        <% if current_user.registrations.present? %>
+          <h3>Workshops</h3>
+          <ol class="workshops">
+            <%= render current_user.registrations %>
+          </ol>
+        <% end %>
+      </section>
+    <% end %>
+
+  </section>
+</section>

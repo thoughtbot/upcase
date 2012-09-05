@@ -65,7 +65,7 @@ body.topics {
         position: absolute;
         @include transition;
 
-        &.clear-search, &.spinner {
+        &.clear-search {
           background: #ccc;
           @include border-radius(100px);
           display: none;
@@ -93,6 +93,17 @@ body.topics {
         img {
           display: block;
         }
+      }
+
+      .spinner {
+        @extend .animation-loading;
+        background: #ccc;
+        @include border-radius(100px);
+        display: block;
+        display: none;
+        padding: .75em;
+        @include position(absolute, 100px 24px 0 0);
+        @include transition;
       }
     }
 
@@ -139,6 +150,11 @@ body.topics {
   }
 }
 
+.emptysearch {
+  text-align: center;
+  font-size: 200%;
+}
+
 #results-container {
   padding: 36px 0 0 0;
 
@@ -150,6 +166,10 @@ body.topics {
       margin-bottom: 1.2em;
       margin-right: flex-gutter();
       width: flex-grid(4);
+    }
+
+    .additional {
+      display: none;
     }
 
     ul.workshops {
@@ -168,6 +188,10 @@ body.topics {
         & + li {
           clear: left;
         }
+      }
+
+      &.more a {
+        padding: .65em 0 .5em 2.1em;
       }
 
       > a {
@@ -207,36 +231,36 @@ body.topics {
         position: absolute;
         text-shadow: 0 1px 0 #fcfcfc;
         text-transform: uppercase;
-        top: -48px;
+        top: -38px;
       }
     }
 
-    li.books {
+    .books {
       h2 {
         color: #286d15;
       }
 
-      a::before {
+      li > a::before {
         content: url('icons/book-small.png');
       }
     }
 
-    li.webcasts {
+    .webcasts {
       h2 {
         color: #006b83;
       }
 
-      a::before {
+      li > a::before {
         content: url('icons/video-small.png');
       }
     }
 
-    li.workshops {
+    .workshops {
       h2 {
         color: #6c1764;
       }
 
-      a::before {
+      li > a::before {
         content: url('icons/gear-small.png');
       }
     }
@@ -269,6 +293,36 @@ body.topics {
     &.thoughtbot {
       h3 {
         color: #AD141E;
+      }
+    }
+
+    &.trail-map, &.podcast, &.playbook {
+      h3:before {
+        line-height: 0;
+        opacity: .5;
+        padding-right: .3em;
+        @include position(relative, 0px 0 0 0);
+      }
+    }
+
+    &.trail-map {
+      h3:before {
+        content: url('icons/map.png');
+        top: 1px;
+      }
+    }
+
+    &.podcast {
+      h3:before {
+        content: url('icons/podcast.png');
+      }
+    }
+
+    &.playbook {
+      h3:before {
+        content: url('icons/playbook.png');
+        top: 0px;
+        padding-right: .4em;
       }
     }
 

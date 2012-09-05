@@ -6,9 +6,16 @@
   }
 }
 
-body.registrations,
-body.purchases {
+body.clearance-passwords {
+  margin: 0 auto;
+}
 
+body.registrations,
+body.purchases, 
+body.sessions,
+body.users,
+body.clearance-passwords,
+body.clearance-users {
   #container {
     background: url("/images/shadowing.png") center top no-repeat;
     padding: 72px 0 0 0;
@@ -17,13 +24,7 @@ body.purchases {
   #form-container {
     @extend .clearfix;
   }
-
-  #form-column {
-    float: left;
-    margin: 0 flex-gutter() 0 0;
-    width: flex-grid(8);
-  }
-
+  
   h1.course-title {
     color: #666;
     font-family: $sans-serif;
@@ -31,6 +32,7 @@ body.purchases {
     font-weight: 200;
     line-height: 36px;
     margin-bottom: 12px;
+    text-rendering: optimizeLegibility;
 
     span {
       color: #000;
@@ -38,9 +40,27 @@ body.purchases {
     }
   }
 
+  .workshop-sign-in, .github-signin {
+    background: rgba(228, 228, 228, 0.7) center 0 no-repeat;
+    border: 1px solid gainsboro;
+    font-size: 16px;
+    margin: 30px 0 0 0;
+    padding: 6px;
+    text-align: center;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  h5 {
+    text-align: center;
+    font-size: 16px;
+  }
+  
   #total {
-    overflow: hidden;
     margin-bottom: 12px;
+    overflow: hidden;
 
     p.price {
       display: block;
@@ -91,6 +111,22 @@ body.purchases {
             }
           }
 
+          &#user_first_name_input {
+            float: left;
+            margin-right: flex-gutter();
+            width: flex-grid(6);
+          }
+
+          &#user_last_name_input {
+            float: left;
+            width: flex-grid(6);
+            margin-top: 19px;
+          }
+
+          &#user_email_input, &input#password_email, &#password_submit_action {
+            clear: both;
+          }
+
           &#registration_first_name_input,
           &#registration_city_input {
             float: left;
@@ -114,10 +150,15 @@ body.purchases {
           }
 
           &#registration_state_input,
-          &#purchase_state_input {
+          &#purchase_state_input,
+          &#password_email_input {
             float: left;
             margin-right: flex-gutter();
             width: flex-grid(3);
+          }
+
+          &#password_email_input {
+            margin-top: 12px;
           }
 
           &#registration_zip_code_input,
@@ -125,7 +166,6 @@ body.purchases {
             float: left;
             width: flex-grid(3);
           }
-
         }
       }
     }
@@ -147,12 +187,23 @@ body.purchases {
             margin-right: flex-gutter();
             width: flex-grid(8);
 
-            input {
+            select {
+              border: 1px solid #999;
+              @include box-shadow( 0 1px 2px #aaa);
+              @include box-sizing(border-box);
+              font: 14px $sans-serif;
+              margin: 3px 0 0 0;
+              padding: .5em;
+              -webkit-appearance: none;
               width: flex-grid(6);
-            }
 
-            input:first-child {
-              margin-right: flex-gutter();
+              &:first-child {
+                margin-right: flex-gutter();
+              }
+
+              &:focus {
+                outline-color: $red;
+              }
             }
           }
 
@@ -171,7 +222,7 @@ body.purchases {
 
   #form-sidebar {
     float: left;
-    padding: 114px 0 0 0;
+    padding: 205px 0 0 0;
     width: flex-grid(4);
 
     h4 {
@@ -180,6 +231,7 @@ body.purchases {
       line-height: 1em;
       margin: 0;
       margin-bottom: 12px;
+      text-rendering: optimizeLegibility;
     }
 
     p {
@@ -198,24 +250,146 @@ body.purchases {
     }
   }
 
+  #account-sidebar {
+    float: left;
+    padding: 21px 0 0 0;
+    width: flex-grid(4);
+
+    h2 {
+      font-size: 24px;
+      font-weight: 600;
+      text-rendering: optimizeLegibility;
+    }
+
+    h3 {
+      margin-left: 10px;
+      margin-top: 18px;
+      text-rendering: optimizeLegibility;
+    }
+
+    .first-purchase {
+      margin-top: 3px;
+    }
+
+    li {
+      background-color: #efefef;
+      font-size: 16px;
+      margin-bottom: 2px;
+      padding: 10px;
+      width: 100%;
+
+      span {
+        color: #999;
+        float: right;
+        font-size: 16px;
+        font-style: normal;
+        padding-right: 10px;
+      }
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    span {
+      color: #999;
+    }
+  }
+
   section.receipt {
     margin-top: 25px;
+
     strong {
       font-weight: bold;
     }
+
     p {
-      margin-top: 10px;
       margin-bottom: 10px;
+      margin-top: 10px;
     }
+
     .item {
       margin-top: 20px;
     }
+
     table {
-      width: 200px;
       margin-top: 20px;
+      width: 200px;
 
       td {
         text-align: right;
+      }
+    }
+  }
+}
+
+body.registrations,
+body.purchases,
+body.users-edit {
+  #form-column {
+    float: left;
+    margin: 0 flex-gutter() 0 0;
+    width: flex-grid(8);
+  }
+}
+
+body.sessions,
+body.users-new,
+body.clearance-users-create {
+  #form-container {
+    width: flex-grid(12);
+    margin-left: 143px;
+
+    .github-signin {
+      background: rgba(228, 228, 228, 0.9) center 20px no-repeat url('blacktocat.png');
+      float: left;
+      margin: 21px flex-gutter() 0 0;
+      padding: 160px 0 15px 0;
+      width: flex-grid(4);
+
+      a {
+        color: #4183C4;
+      }
+    }
+
+    .or-signin {
+      color: #ccc;
+      float: left;
+      font: 400 22px $serif;
+      font-style: italic;
+      margin-top: 105px;
+      text-align: center;
+      text-rendering: optimizeLegibility;
+      width: flex-grid(1);
+    }
+
+    .thoughtbot-signin {
+      display: inline-block;
+      float: left;
+      margin-left: flex-gutter();
+      width: flex-grid(4);
+    }
+
+    form {
+      float: left;
+      margin-bottom: 12px;
+    }
+
+    li {
+      margin-top: 18px;
+    }
+
+    input[type="submit"] {
+      margin-top: 28px;
+      width: 355px;
+    }
+
+    .signup-forgot > li {
+      display: inline;
+      margin-right: 20px;
+
+      a {
+        text-decoration: none;
       }
     }
   }

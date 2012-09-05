@@ -1,31 +1,33 @@
 class TopicsController < ApplicationController
   def index
+    expires_in 12.hours, public: true
     @featured_topics = Topic.top
     @books = Product.books.active
     @screencasts = Product.screencasts.active
     @courses = Course.only_public.by_position
-    @articles = Article.order("published_on desc").limit(30)
+    @articles = Article.by_published.limit(30)
   end
 
   def show
-    @featured_topics = Topic.top
+    expires_in 12.hours, public: true
+
     topics = Topic.search(topic_slug)
-    @books = []
-    @screencasts = []
-    @courses = []
-    @articles = []
-    topics.each do |topic|
-      @books.push *Product.books.for_topic(topic).active
-      @screencasts.push *Product.screencasts.for_topic(topic).active
-      @courses.push *Course.for_topic(topic).only_public.by_position
-      @articles.push *topic.articles
-    end
     @topic = topics.first if topics.size == 1
+    @featured_topics = Topic.top
+
+    @books = ResultsDecorator.new(Product.books.active,
+      Product.find_books_by_topics(topics))
+    @screencasts = ResultsDecorator.new(Product.screencasts.active,
+      Product.find_screencasts_by_topics(topics))
+    @courses = ResultsDecorator.new(Course.only_public.by_position, 
+      Course.find_courses_by_topics(topics))
+    @articles = Article.for_topics(topics).by_published.presence || NullArticle.new
+
+    @no_results = @books.visible.blank? && @screencasts.visible.blank? &&
+      @courses.visible.blank? && @articles.blank?
 
     if request.xhr?
-      render partial: "topics/results"
-    else
-      render :index
+      render partial: "topics/filtered_results"
     end
   end
 

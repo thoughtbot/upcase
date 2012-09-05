@@ -7,6 +7,14 @@ When /^I apply coupon code "([^"]*)" to product named "([^"]*)"$/ do |coupon_cod
   click_button "Apply Coupon"
 end
 
+Then /^I should see the checkout form$/ do
+  page.should have_css('form#new_purchase')
+end
+
+Then /^"([^"]*)" should be filled in with "([^"]*)"$/ do |field, value|
+  field_labeled(field).value.should =~ /#{value}/
+end
+
 Then /^I should not see payment options$/ do
   page.should have_no_css('#billing-information')
 end
@@ -61,6 +69,9 @@ Then /^I should see the download links for video with id "([^"]*)"$/ do |video_i
 end
 
 Then /^I should see a list of other products$/ do
-  page.should have_css('section',id: "products")
+  page.should have_css('section', id: "products")
 end
 
+Then /^the first reader should be my github username$/ do
+  find_field('reader_1').value.should == "thoughtbot"
+end

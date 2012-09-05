@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Purchase do
+  it { should belong_to(:user) }
+
   it 'can produce the host after setting it' do
     Purchase.host = 'hottiesandcreepers.com:123467'
     Purchase.host.should == 'hottiesandcreepers.com:123467'
@@ -9,6 +11,11 @@ describe Purchase do
   it 'gives default host when host is not set' do
     Purchase.remove_class_variable('@@host')
     Purchase.host.should == ActionMailer::Base.default_url_options[:host]
+  end
+
+  it 'produces the paid price when possible' do
+    purchase = create(:purchase, paid_price: 200)
+    purchase.price.should be(200)
   end
 end
 
@@ -26,6 +33,28 @@ describe Purchase, "with stripe and a bad card" do
   it "doesn't throw an exception and adds an error message on save" do
     subject.save.should be_false
     subject.errors[:base].should include "There was a problem processing your credit card, your card was declined"
+  end
+end
+
+describe Purchase, "refund" do
+  let(:product) { create(:product, individual_price: 15, company_price: 50) }
+  let(:purchase) { build(:purchase, product: product, payment_method: '$') }
+  subject { purchase }
+
+  it 'sets the purchase as unpaid' do
+    subject.refund
+    subject.should_not be_paid
+  end
+
+  it 'does not issue a refund if it is unpaid' do
+    subject.paid = false
+    subject.stubs(:stripe_refund).returns(nil)
+    subject.stubs(:paypal_refund).returns(nil)
+    subject.refund
+
+    subject.should have_received(:stripe_refund).never
+    subject.should have_received(:paypal_refund).never
+    subject.should_not be_paid
   end
 end
 
@@ -72,12 +101,25 @@ describe Purchase, "with stripe" do
     subject.price.should == 15
     subject.variant = "company"
     subject.price.should == 50
+
+    subject.save!
+    subject.paid_price.should == 50
   end
 
   it "uses its coupon in its charged price" do
     subject.coupon = create(:coupon, amount: 25)
     subject.save!
     Stripe::Charge.should have_received(:create).with(amount: 1125, currency: "usd", customer: "stripe", description: product.name)
+    Stripe::Charge.should have_received(:create).with(has_entries(amount: instance_of(Fixnum)))
+  end
+
+  it "uses a one-time coupon" do
+    coupon = create(:one_time_coupon, amount: 25)
+    subject.coupon = coupon
+    subject.save!
+    Stripe::Charge.should have_received(:create).with(amount: 1125, currency: "usd", customer: "stripe", description: product.name)
+    purchase = create(:stripe_purchase, product: product, coupon: coupon.reload)
+    Stripe::Charge.should have_received(:create).with(amount: 1500, currency: "usd", customer: "stripe", description: product.name)
   end
 
   context 'saved' do
@@ -98,6 +140,23 @@ describe Purchase, "with stripe" do
     end
 
     its(:success_url) { should == product_purchase_path(product, purchase, host: host) }
+
+    context 'and refunded' do
+      let(:charge) { stub(:id => "TRANSACTION-ID", :refunded => false) }
+      let(:refunded_charge) { stub(:id => "TRANSACTION-ID", :refunded => true) }
+      let(:client) { stub(remove_team_member: nil) }
+
+      before do
+        charge.stubs(:refund).returns(refunded_charge)
+        Stripe::Charge.stubs(:retrieve).returns(charge)
+      end
+
+      it 'refunds money to purchaser' do
+        subject.stripe_refund
+        Stripe::Charge.should have_received(:retrieve).with("TRANSACTION-ID")
+        charge.should have_received(:refund).with(amount: 1500)
+      end
+    end
   end
 
   context "when the product is fulfilled by github" do
@@ -148,6 +207,29 @@ describe Purchase, "with stripe" do
       purchase.save!
       Airbrake.should have_received(:notify).once
     end
+
+    context "and removing team members" do
+      it 'removes user from github team' do
+        client.stubs(:remove_team_member).returns(nil)
+        subject.readers = ["jayroh", "cpytel"]
+        subject.save!
+        subject.remove_readers_from_github
+
+        client.should have_received(:remove_team_member).with(73110, "cpytel")
+        client.should have_received(:remove_team_member).with(73110, "jayroh")
+      end
+
+      it 'notifies hoptoad/airbrake when user is not found' do
+        client.stubs(:remove_team_member).raises(Octokit::NotFound)
+        Octokit::Client.stubs(new: client)
+        Airbrake.stubs(:notify)
+        subject.readers = ["nonsense"]
+        subject.save!
+        subject.remove_readers_from_github
+
+        Airbrake.should have_received(:notify).once
+      end
+    end
   end
 end
 
@@ -155,8 +237,9 @@ describe Purchase, "with paypal" do
   include Rails.application.routes.url_helpers
 
   let(:product) { create(:product, individual_price: 15, company_price: 50) }
-  let(:paypal_request) { stub(setup: stub(redirect_uri: "http://paypalurl"),
-                              checkout!: stub(payment_info: [stub(transaction_id: "TRANSACTION-ID")])) }
+  let(:paypal_request) { stub( setup: stub(redirect_uri: "http://paypalurl"),
+    checkout!: stub( payment_info: [ stub(transaction_id: "TRANSACTION-ID" )]),
+    refund!: nil) }
   let(:paypal_payment_request) { stub }
 
   subject { build(:purchase, product: product, payment_method: "paypal") }
@@ -188,6 +271,21 @@ describe Purchase, "with paypal" do
     end
   end
 
+  context 'and refunded' do
+    subject do
+      build(:purchase,
+            product: product,
+            payment_method: 'paypal',
+            payment_transaction_id: 'TRANSACTION-ID')
+    end
+
+    it 'refunds money to purchaser' do
+      subject.paypal_refund
+      paypal_request.should have_received(:refund!).with('TRANSACTION-ID')
+      subject.reload.paid.should be_false
+    end
+  end
+
   its(:success_url) { should == 'http://paypalurl' }
 end
 
@@ -214,5 +312,76 @@ describe Purchase, 'with no price' do
     let(:purchase) { build(:purchase, product: product, payment_method: "free") }
     subject { purchase }
     it { should_not be_valid }
+  end
+end
+
+describe "Purchases with various payment methods" do
+  before do
+    @stripe = create(:purchase, payment_method: "stripe")
+    @paypal = create(:purchase, payment_method: "paypal")
+  end
+
+  it "includes only stripe payments in the stripe finder" do
+    Purchase.stripe.should == [@stripe]
+  end
+end
+
+describe "Purchases for various emails" do
+  context "#by_email" do
+    let(:email) { "user@example.com" }
+
+    before do
+      @prev_purchases = [create(:purchase, email: email),
+                         create(:purchase, email: email)]
+      @other_purchase = create(:purchase)
+    end
+
+    it "#by_email" do
+      Purchase.by_email(email).should =~ @prev_purchases
+      Purchase.by_email(email).should_not include @other_purchase
+    end
+  end
+end
+
+describe Purchase, "for a user" do
+  context "with readers" do
+    it "saves the first reader to the user" do
+      user = create(:user)
+      user.github_username.should be_blank
+      purchase = create(:purchase, user: user, readers: ["tbot", "other"])
+      user.reload.github_username.should == "tbot"
+    end
+
+    it "doesn't overwrite first reader to the user" do
+      user = create(:user, github_username: 'test')
+      purchase = create(:purchase, user: user, readers: ["tbot", "other"])
+      user.reload.github_username.should == "test"
+    end
+  end
+end
+
+describe Purchase, "given a purchaser" do
+  let(:purchaser) { create(:user, github_username: 'Hello') }
+
+  it "populates default info when given a purchaser" do
+    product = create(:product, fulfillment_method: 'other')
+    purchase = product.purchases.build
+    purchase.defaults_from_user(purchaser)
+
+    purchase.name.should == purchaser.name
+    purchase.email.should == purchaser.email
+    purchase.readers.try(:first).should be_blank
+  end
+
+  context "for a product fulfilled through github" do
+    it "populates default info including first reader" do
+      product = create(:product, fulfillment_method: 'github')
+      purchase = product.purchases.build
+      purchase.defaults_from_user(purchaser)
+
+      purchase.name.should == purchaser.name
+      purchase.email.should == purchaser.email
+      purchase.readers.first.should == purchaser.github_username
+    end
   end
 end

@@ -39,7 +39,6 @@ Feature: Adding a course
     And I fill in the start time with "09:00"
     And I fill in the end time with "17:00"
     And I fill in the max students with "16"
-    And I fill in the reminder email text with "This is really happening"
     And I check "Public"
     Then I should see an image with name "missing.jpg"
     When I attach an image name "test.jpg" to the course

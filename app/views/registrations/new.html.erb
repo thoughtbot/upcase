@@ -12,6 +12,9 @@
 
     <%= semantic_form_for @registration, url: section_registrations_path(@section), html: { method: 'post' } do |form| %>
       <%= hidden_field_tag 'coupon_id' %>
+      <% if signed_out? %>
+        <div class="workshop-sign-in">Already have an account? <%= link_to 'Sign in.', sign_in_path(return_to: request.fullpath) %></div>
+      <% end %>
       <%= form.inputs 'Your information' do %>
         <%= form.input :first_name %>
         <%= form.input :last_name %>
@@ -43,7 +46,6 @@
         <li>If you&rsquo;re not happy with a workshop you took, just let us know and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</li>
         <li>The ticket will entitle the named holder entrance to this event.</li>
         <li>Tickets may not be resold and are non-transferrable.</li>
-        <li>Tickets are refundable up until 1 week before the start of the workshop.</li>
         <li>We may film, take photographs, and use your feedback for marketing purposes.</li>
         <li>thoughtbot, inc. will not be liable for any direct or indirect damage of any nature arising out of the cancellation of the event.</li>
       </ul>

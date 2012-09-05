@@ -5,6 +5,7 @@ class Purchase < ActiveRecord::Base
 
   PAYMENT_METHODS = %w(stripe paypal free)
 
+  belongs_to :user
   belongs_to :product
   belongs_to :coupon
   serialize :readers
@@ -20,6 +21,7 @@ class Purchase < ActiveRecord::Base
   before_create :set_as_paid, if: :free?
   after_save :fulfill, if: :being_paid?
   after_save :send_receipt, if: :being_paid?
+  after_save :save_info_to_user, if: :user
 
   delegate :name, to: :product, prefix: true
 
@@ -47,13 +49,16 @@ class Purchase < ActiveRecord::Base
     @@host = host
   end
 
+  def self.stripe
+    where("stripe_customer is not null")
+  end
+
+  def self.by_email(email)
+    where(email: email)
+  end
+
   def price
-    full_price = product.send(:"#{variant}_price")
-    if coupon
-      coupon.apply(full_price)
-    else
-      full_price
-    end
+    paid_price || calculated_price
   end
 
   def first_name
@@ -88,6 +93,16 @@ class Purchase < ActiveRecord::Base
     end
   end
 
+  def defaults_from_user(purchaser)
+    if purchaser
+      self.name = purchaser.name
+      self.email = purchaser.email
+      if fulfilled_with_github? && purchaser.github_username.present?
+        self.readers = [purchaser.github_username]
+      end
+    end
+  end
+
   def complete_paypal_payment!(token, payer_id)
     response = paypal_request.checkout!(
       token,
@@ -96,7 +111,7 @@ class Purchase < ActiveRecord::Base
     )
 
     self.payment_transaction_id = response.payment_info.first.transaction_id
-    self.paid = true
+    set_as_paid
     save!
   end
 
@@ -108,60 +123,112 @@ class Purchase < ActiveRecord::Base
     end
   end
 
+  def fulfilled_with_github?
+    product.fulfillment_method == "github"
+  end
+
+  def refund
+    if paid?
+      if stripe?
+        stripe_refund
+      elsif paypal?
+        paypal_refund
+      end
+      set_as_unpaid!
+      remove_readers_from_github
+    end
+  end
+
+  def remove_readers_from_github
+    if readers && readers.any?
+      readers.each do |username|
+        begin
+          github_client.remove_team_member(product.github_team, username)
+        rescue Octokit::NotFound, Net::HTTPBadResponse => e
+          Airbrake.notify(e)
+        end
+        sleep 0.2
+      end
+    end
+  end
+
+  def stripe_refund
+    charge = Stripe::Charge.retrieve(payment_transaction_id)
+    if charge && !charge.refunded
+      charge.refund(amount: price_in_pennies)
+    end
+  end
+
+  def paypal_refund
+    paypal_request.refund!(payment_transaction_id)
+  end
+
   private
 
   def being_paid?
     paid? && paid_was == false
   end
 
-  def generate_lookup
-    self.lookup = Digest::MD5.hexdigest("#{email}#{product.id}#{Time.now}\n").downcase
+  def calculated_price
+    full_price = product.send(:"#{variant}_price")
+    if coupon
+      coupon.apply(full_price)
+    else
+      full_price
+    end
   end
 
   def create_and_charge_customer
     begin
-      customer = Stripe::Customer.create(
-        card: stripe_token,
-        description: email,
-        email: email
-      )
+      if stripe_customer.blank?
+        customer = Stripe::Customer.create(
+          card: stripe_token,
+          description: email,
+          email: email
+        )
+        self.stripe_customer = customer.id
+      end
 
       charge = Stripe::Charge.create(
-        amount: price * 100, # in cents
+        amount: (price * 100).to_i, # in cents
         currency: "usd",
-        customer: customer.id,
+        customer: stripe_customer,
         description: product_name
       )
-
       self.payment_transaction_id = charge.id
-      self.stripe_customer = customer.id
-      self.paid = true
+
+      set_as_paid
     rescue Stripe::StripeError => e
       errors[:base] << "There was a problem processing your credit card, #{e.message.downcase}"
       false
     end
   end
 
-  def setup_paypal_payment
-    response = paypal_request.setup(
-      paypal_payment_request,
-      paypal_product_purchase_url(self.product, self, host: self.class.host),
-      courses_url(host: self.class.host)
-    )
-    self.paid = false
-    self.paypal_url = response.redirect_uri
+  def fulfill
+    if fulfilled_with_github?
+      fulfill_with_github
+    end
   end
 
-  def set_as_paid
-    self.paid = true
+  def fulfill_with_github
+    readers.map(&:strip).reject(&:blank?).compact.each do |username|
+      begin
+        github_client.add_team_member(product.github_team, username)
+      rescue Octokit::NotFound, Net::HTTPBadResponse => e
+        Airbrake.notify(e)
+      end
+      sleep 0.2
+    end
   end
 
-  def paypal_request
-    Paypal::Express::Request.new(
-      username: PAYPAL_USERNAME,
-      password: PAYPAL_PASSWORD,
-      signature: PAYPAL_SIGNATURE
-    )
+  def generate_lookup
+    self.lookup = Digest::MD5.hexdigest("#{email}#{product.id}#{Time.now}\n").downcase
+  end
+
+  def payment_method_must_match_price
+    if free? && price > 0
+      errors.add(:payment_method, 'cannot be free')
+    end
   end
 
   def paypal_payment_request
@@ -174,22 +241,43 @@ class Purchase < ActiveRecord::Base
     )
   end
 
-  def fulfill
-    if product.fulfillment_method == "github"
-      fulfill_with_github
+  def paypal_request
+    Paypal::Express::Request.new(
+      username: PAYPAL_USERNAME,
+      password: PAYPAL_PASSWORD,
+      signature: PAYPAL_SIGNATURE
+    )
+  end
+
+  def price_in_pennies
+    (price * 100).to_i
+  end
+
+  def save_info_to_user
+    if readers.present? && user.github_username.blank?
+      user.update_column(:github_username, readers.first)
     end
   end
 
-  def fulfill_with_github
-    client = Octokit::Client.new(login: "cpytel", password: "eqZUjxaaaqk33ob")
-    readers.map(&:strip).reject(&:blank?).compact.each do |username|
-      begin
-        client.add_team_member(product.github_team, username)
-      rescue Octokit::NotFound, Net::HTTPBadResponse => e
-        Airbrake.notify(e)
-      end
-      sleep 0.2
-    end
+  def set_as_paid
+    self.paid = true
+    self.paid_price = price
+    coupon.try(:applied)
+  end
+
+  def set_as_unpaid!
+    self.paid = false
+    save!
+  end
+
+  def setup_paypal_payment
+    response = paypal_request.setup(
+      paypal_payment_request,
+      paypal_product_purchase_url(self.product, self, host: self.class.host),
+      courses_url(host: self.class.host)
+    )
+    self.paid = false
+    self.paypal_url = response.redirect_uri
   end
 
   def send_receipt
@@ -200,9 +288,7 @@ class Purchase < ActiveRecord::Base
     end
   end
 
-  def payment_method_must_match_price
-    if free? && price > 0
-      errors.add(:payment_method, 'cannot be free')
-    end
+  def github_client
+    Octokit::Client.new(login: GITHUB_USER, password: GITHUB_PASSWORD)
   end
 end

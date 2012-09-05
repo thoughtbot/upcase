@@ -15,6 +15,18 @@ class Product < ActiveRecord::Base
     where(active: true)
   end
 
+  def self.find_books_by_topics(topics)
+    reduction = lambda {|memo, topic| memo + books.for_topic(topic).active }
+    found_books = topics.reduce([], &reduction).uniq
+    found_books
+  end
+
+  def self.find_screencasts_by_topics(topics)
+    reduction = lambda {|memo, topic| memo + screencasts.for_topic(topic).active }
+    found_screencasts = topics.reduce([], &reduction).uniq
+    found_screencasts
+  end
+
   def self.ordered
     order("name asc")
   end
@@ -24,7 +36,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.screencasts
-    where("product_type LIKE '%screencast%'")
+    where("product_type SIMILAR TO '%(screencast|video)%'")
   end
 
   def self.for_topic(topic)

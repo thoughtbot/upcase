@@ -45,6 +45,7 @@ Feature: Viewing Courses on the home page
     When I go to the topics index
     Then I see the topic
 
+  @javascript
   Scenario: Visitor can view a topic
     Given there is a topic
     And there is an article for the topic

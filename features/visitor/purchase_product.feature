@@ -15,6 +15,22 @@ Feature: Purchase a Product
       | product_id | wistia_id |
       | 1          | 1194803   |
 
+  Scenario: A visitor signs up for an account through checkout
+    When I go to the home page
+    And I follow "Test Fetch"
+    And I follow "Purchase for Yourself"
+    And I follow "Sign in."
+    And I follow "Sign up"
+    And I sign up with the following:
+      | first_name      | John         |
+      | last_name       | Doe          |
+      | email           | john@doe.com |
+      | password        | mypass       |
+    Then I should see the checkout form
+    And "Email" should be filled in with "john@doe.com"
+    And "Name" should be filled in with "John Doe"
+    And I should see "Sign out"
+
   @selenium
   Scenario: A visitor purchases a product with paypal
     When I go to the home page
@@ -31,6 +47,8 @@ Feature: Purchase a Product
     And I should see "test.txt"
     And I should see "test desc"
     And I should see the link to the video page
+    When "mr.the.plague@example.com" opens the email
+    Then they should see "You can also create a user account" in the email body
     When I follow "Watch or download video"
     Then I should see a video
     And I should see the download links for video with id "1194803"

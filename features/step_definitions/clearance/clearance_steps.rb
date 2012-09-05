@@ -21,6 +21,15 @@ When /^I sign up (?:with|as) "(.*)" and "(.*)"$/ do |email, password|
   click_button "Sign up"
 end
 
+When /^I sign up with the following:$/ do |table|
+  user_info = table.rows_hash
+  fill_in 'user_first_name', with: user_info['first_name']
+  fill_in 'user_last_name', with: user_info['last_name']
+  fill_in 'Email', with: user_info['email']
+  fill_in 'Password', with: user_info['password']
+  click_button 'Sign up'
+end
+
 # Sign in
 
 Given /^I sign in$/ do
@@ -35,13 +44,16 @@ When /^I sign in (?:with|as) "([^"]*)"$/ do |email|
   step %{I sign in with "#{email}" and "password"}
 end
 
-When /^I sign in (?:with|as) "([^"]*)" and "([^"]*)"$/ do |email, password|
-  visit sign_in_path
-  page.should have_css("input[type='email']")
-
+When /^I fill in and submit the sign in form with "([^"]*)" and "([^"]*)"$/ do |email, password|
   fill_in "Email", with: email
   fill_in "Password", with: password
   click_button "Sign in"
+end
+
+When /^I sign in (?:with|as) "([^"]*)" and "([^"]*)"$/ do |email, password|
+  visit sign_in_path
+  page.should have_css("input[type='email']")
+  step %{I fill in and submit the sign in form with "#{email}" and "#{password}"}
 end
 
 # Sign out

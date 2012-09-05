@@ -1,9 +1,9 @@
 Workshops::Application.routes.draw do
-  get "pages/home"
-
   mount RailsAdmin::Engine => '/new_admin', :as => 'rails_admin'
 
-  root to: 'courses#index'
+  root to: 'topics#index'
+
+  match '/pages/tmux' => redirect("/products/4-humans-present-tmux")
 
   resource :session, controller: 'sessions'
   resources :sections, only: [:show] do
@@ -53,19 +53,23 @@ Workshops::Application.routes.draw do
     resources :purchases, only: :index
   end
 
-  match '/watch' => 'high_voltage/pages#show', as: :watch, id: 'watch'
+  match '/auth/:provider/callback', to: 'auth_callbacks#create'
 
+  match '/watch' => 'high_voltage/pages#show', as: :watch, id: 'watch'
   match '/directions' => "high_voltage/pages#show", as: :directions, id: "directions"
   match '/group-training' => "high_voltage/pages#show", as: :group_training, id: "group-training"
   match '/humans-present/oss' => "high_voltage/pages#show", as: :humans_present_oss, id: "humans-present-oss"
 
   match '/backbone-js-on-rails' => redirect("/products/1-backbone-js-on-rails")
-  match '/playbook' => redirect("/products/3-playbook")
 
   match '/rubyist-booster-shot' => "high_voltage/pages#show", as: :rubyist_booster_shot, id: "rubyist-booster-shot"
-  match 'sign_in'  => 'sessions#new', as: 'sign_in'
+
+  match '/my_account' => 'users#update', as: 'my_account', via: :put
+  match '/my_account' => 'users#edit', as: 'my_account'
+  match '/sign_up' => 'users#new', as: 'sign_up'
+  match '/sign_in' => 'sessions#new', as: 'sign_in'
 
   mount Split::Dashboard, at: 'split'
 
-  get ':id' => 'topics#show', as: :topic
+  get ':id' => 'topics#show', as: :topic, :constraints => { format: 'html' }
 end
