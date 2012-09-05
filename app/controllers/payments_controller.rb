@@ -2,7 +2,6 @@ class PaymentsController < ApplicationController
   before_filter :verify_callback, if: :callback_request?
 
   def create
-    p params
     if params[:name] == "payment.create"
       payment = get_freshbooks_payment(params[:object_id])["payment"]
       if registration = Registration.find_by_freshbooks_invoice_id(payment["invoice_id"])
