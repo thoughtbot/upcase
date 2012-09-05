@@ -21,6 +21,7 @@ class Purchase < ActiveRecord::Base
   before_create :set_as_paid, if: :free?
   after_save :fulfill, if: :being_paid?
   after_save :send_receipt, if: :being_paid?
+  after_save :update_user_stripe_customer, if: "being_paid? && stripe?"
   after_save :save_info_to_user, if: :user
 
   delegate :name, to: :product, prefix: true
@@ -202,6 +203,10 @@ class Purchase < ActiveRecord::Base
       errors[:base] << "There was a problem processing your credit card, #{e.message.downcase}"
       false
     end
+  end
+
+  def update_user_stripe_customer
+    user.update_column(:stripe_customer, self.stripe_customer) if user
   end
 
   def fulfill

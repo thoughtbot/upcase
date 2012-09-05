@@ -68,6 +68,7 @@ Feature: Purchase a Product
     When I pay using Stripe
     Then I should see "There was a problem processing your credit card"
 
+
   @selenium
   Scenario: A visitor purchases a product with readers
     Given github is stubbed
