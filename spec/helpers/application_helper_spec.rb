@@ -11,3 +11,21 @@ describe ApplicationHelper, 'show_account_links?' do
     helper.show_account_links?.should == true
   end
 end
+
+describe ApplicationHelper, 'shorten_by_char' do
+  it "returns correct shortened version of sentences" do
+    helper.shorten_by_char("This is a test", 5).should == "This"
+    helper.shorten_by_char("This is a test", 6).should == "This"
+    helper.shorten_by_char("This is a test", 7).should == "This is"
+    helper.shorten_by_char("This is. a test", 8).should == "This is."
+  end
+end
+
+describe ApplicationHelper, 'shorten_by_word' do
+  it "returns correct shortened version of sentences" do
+    helper.shorten_by_word("This is a test", 1).should == "This"
+    helper.shorten_by_word("This is a test", 2).should == "This is"
+    helper.shorten_by_word("This is a test", 3).should == "This is a"
+    helper.shorten_by_word("This is. a test", 4).should == "This is. a test"
+  end
+end

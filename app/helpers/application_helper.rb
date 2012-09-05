@@ -56,4 +56,12 @@ module ApplicationHelper
   def github_auth_path
     '/auth/github'
   end
+
+  def shorten_by_char text, limit = 100
+    (text.split("")[0..limit].join + "x").split[0..-2].join(" ")
+  end
+
+  def shorten_by_word text, limit = 25
+    text.split[0..limit-1].join(" ")
+  end
 end
