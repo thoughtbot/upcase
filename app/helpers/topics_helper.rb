@@ -1,6 +1,8 @@
 module TopicsHelper
-  def format_content(content)
-    strip_tags(content).truncate(140, separator:' ', omission:'&#8230;')
+  def format_content(content, options = {} )
+    length = options[:length] || 140
+    omission = options[:omission] || '&#8230;'
+    strip_tags(content).truncate(length, separator:' ', omission: omission)
   end
 
   def topic_classes(topics)
