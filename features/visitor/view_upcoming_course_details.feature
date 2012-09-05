@@ -58,7 +58,7 @@ Feature: Viewing upcoming course details
     And I see the answer "Blue"
     And I see the question "Pets allowed?"
     And I see the answer "No"
-
+  @selenium
   Scenario: Viewing details for a course with multiple upcoming sections
     Given today is June 10, 2010
     And a teacher exists with a name of "Ralph Bot"

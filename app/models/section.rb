@@ -36,7 +36,7 @@ class Section < ActiveRecord::Base
   end
 
   def self.has_different_teachers?
-    joins(:section_teachers).pluck(:teacher_id).uniq.size == 1
+    self.all.map{|section| section.teachers.to_set}.uniq.size != 1
   end
 
   def time_range

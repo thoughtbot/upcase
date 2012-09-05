@@ -98,6 +98,7 @@ Then 'I see the section price is "$price"' do |price|
 end
 
 Then 'I see that one of the teachers is "$teacher_name"' do |teacher_name|
+  sleep 10
   page.should have_css(".teachers", text: teacher_name)
 end
 
