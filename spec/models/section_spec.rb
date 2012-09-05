@@ -72,19 +72,32 @@ describe Section, 'sending reminders' do
 end
 
 describe Section, 'teacher uniqueness' do
-  it 'has unique teachers when any teacher is different' do
-    create_list(:section, 2)
-    Section.should_not have_different_teachers
+  before do
+    @section1 = build(:section_without_teacher)
+    @section2 = build(:section_without_teacher)
+
+    @billy = create(:teacher, name: "Billy")
+    @michael = create(:teacher, name: "Michael")
+    @common = create(:teacher, name: "Common")
   end
 
-  it 'has different teachers when all teachers are the same' do
-    teacher = create(:teacher)
-    sections = build_list(:section_without_teacher, 2)
-    sections.each do |section|
-      section.teachers << teacher
-      section.save
-    end
+  it 'is considered to have different teachers if none of the teachers is shared' do
+    @section1.teachers << [@billy, @common]
+    @section2.teachers << [@michael, @common]
+
+    @section1.save!
+    @section2.save!
 
     Section.should have_different_teachers
+  end
+
+  it 'is considered to have same teachers if all teachers are the same' do
+    @section1.teachers << [@common, @michael]
+    @section2.teachers << [@michael, @common]
+
+    @section1.save!
+    @section2.save!
+
+    Section.should_not have_different_teachers
   end
 end
