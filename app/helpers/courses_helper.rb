@@ -16,6 +16,9 @@ module CoursesHelper
     end
   end
 
+  def show_individual_teachers?(sections)
+    sections.has_different_teachers?
+  end
   private
 
   def sections_cities_and_dates(sections)
