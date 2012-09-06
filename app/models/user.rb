@@ -20,15 +20,23 @@ class User < ActiveRecord::Base
   end
 
   def self.create_from_auth_hash(auth_hash)
-    name = auth_hash['info']['name'].split(' ')
-    create(
-      auth_provider: auth_hash['provider'],
-      auth_uid: auth_hash['uid'],
-      first_name: name.first, 
-      last_name: name.last, 
-      email: auth_hash['info']['email'], 
-      github_username: auth_hash['info']['nickname']
-    )
+    begin
+      name = auth_hash['info']['name'].split(' ')
+      create(
+        auth_provider: auth_hash['provider'],
+        auth_uid: auth_hash['uid'],
+        first_name: name.first, 
+        last_name: name.last, 
+        email: auth_hash['info']['email'], 
+        github_username: auth_hash['info']['nickname']
+      )
+    rescue NoMethodError => e
+      Airbrake.notify(
+        :error_class   => "Auth hash error",
+        :error_message => e.message,
+        :parameters    => auth_hash
+      )
+    end
   end
 
   def name
