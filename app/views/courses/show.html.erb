@@ -9,8 +9,8 @@
 
     <section id="workshop-details">
       <% if @sections.any? %>
-        <%= render @sections %>
-        <% unless @show_individual_teachers %>
+        <%= render partial: "sections/section", collection: @sections, locals: { sections: @sections } %>
+        <% unless show_individual_teachers?(@sections) %>
           <%= render 'sections/teachers', teachers: @sections.first.teachers %>
         <% end %>
         <p class="travel">
