@@ -3,8 +3,7 @@ Given '"$teacher_name" is teaching the section from "$section_start" to "$sectio
   end_date = Date.parse(section_end)
   section = Section.find_by_starts_on_and_ends_on!(start_date, end_date)
   teacher = Teacher.find_by_name!(teacher_name)
-  create(:section_teacher, section: section, teacher: teacher)
-  p section.teachers
+  section.teachers = [teacher]
 end
 
 Given 'I create the following section for "$course_name":' do |course_name, section_data|
