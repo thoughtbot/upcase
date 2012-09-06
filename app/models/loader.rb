@@ -1,7 +1,7 @@
 class Loader
   def self.import_articles_and_topics(posts)
     posts.each do |post|
-      next if post[:tags].include?("this week in open source")
+      next unless (post[:tags] & BLACKLIST_TOPICS).empty?
       article = Article.find_or_initialize_by_title_and_published_on(post[:title],post[:published_at])
       unless article.persisted?
         article.body_html = post[:body_html]
