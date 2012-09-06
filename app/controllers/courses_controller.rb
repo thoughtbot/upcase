@@ -8,6 +8,5 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @sections = @course.sections.active
-    @show_individual_teachers = @sections.has_different_teachers?
   end
 end
