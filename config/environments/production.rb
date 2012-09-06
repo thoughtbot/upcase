@@ -88,4 +88,6 @@ Workshops::Application.configure do
 
   GITHUB_KEY = ENV['GITHUB_KEY']
   GITHUB_SECRET = ENV['GITHUB_SECRET']
+
+  BLACKLIST_TOPICS = ["this week in open source"]
 end
