@@ -3,6 +3,9 @@ class PurchasesController < ApplicationController
     @product = Product.find(params[:product_id])
     @purchase = @product.purchases.build(variant: params[:variant])
     @purchase.defaults_from_user(current_user)
+    if current_user && current_user.stripe_customer
+      @active_card = Stripe::Customer.retrieve(current_user.stripe_customer)["active_card"]
+    end
     track_chrome_screencast_ab_test_completion
   end
 
@@ -11,10 +14,15 @@ class PurchasesController < ApplicationController
     @purchase = @product.purchases.build(params[:purchase])
     @purchase.user = current_user
     @purchase.coupon = Coupon.find_by_id_and_active(params[:coupon_id], true) unless params[:coupon_id].blank?
-
+    if params[:use_existing_card] == "on"
+      @purchase.stripe_customer = current_user.stripe_customer
+    end
     if @purchase.save
       redirect_to @purchase.success_url
     else
+      if current_user && current_user.stripe_customer
+        @active_card = Stripe::Customer.retrieve(current_user.stripe_customer)["active_card"]
+      end
       render :new
     end
   end
