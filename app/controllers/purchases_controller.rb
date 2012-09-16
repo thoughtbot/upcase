@@ -3,9 +3,7 @@ class PurchasesController < ApplicationController
     @product = Product.find(params[:product_id])
     @purchase = @product.purchases.build(variant: params[:variant])
     @purchase.defaults_from_user(current_user)
-    if current_user && current_user.stripe_customer
-      @active_card = Stripe::Customer.retrieve(current_user.stripe_customer)["active_card"]
-    end
+    @active_card = retrieve_active_card
     track_chrome_screencast_ab_test_completion
   end
 
@@ -20,9 +18,7 @@ class PurchasesController < ApplicationController
     if @purchase.save
       redirect_to @purchase.success_url
     else
-      if current_user && current_user.stripe_customer
-        @active_card = Stripe::Customer.retrieve(current_user.stripe_customer)["active_card"]
-      end
+      @active_card = retrieve_active_card
       render :new
     end
   end
@@ -47,6 +43,12 @@ class PurchasesController < ApplicationController
   end
 
   private
+
+  def retrieve_active_card
+    if current_user && current_user.stripe_customer
+      Stripe::Customer.retrieve(current_user.stripe_customer)["active_card"]
+    end
+  end
 
   def redirect_if_unpaid
     if !@purchase.paid?
