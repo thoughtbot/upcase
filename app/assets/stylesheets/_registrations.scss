@@ -176,12 +176,14 @@ body.clearance-users {
         @include border-radius(8px);
         @include box-shadow(1px 1px 3px rgba(0,0,0,.2));
         @include box-sizing(border-box);
-        height: 210px;
         margin-bottom: flex-gutter();
         padding: 1.5em;
         width: 386px;
 
         li {
+          &.overflow {
+            @extend .clearfix;
+          }
           &#purchase_expiration_input {
             float: left;
             margin-right: flex-gutter();
@@ -214,6 +216,12 @@ body.clearance-users {
 
           &#purchase_country_input {
             clear: left;
+          }
+
+          &#purchase_cc_existing {
+            input, label {
+              display: inline-block;
+            }
           }
         }
       }

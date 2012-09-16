@@ -45,13 +45,12 @@
           </label>
         </li>
         <li class="payment-errors"></li>
-        <% if @active_card %>
-          <li class="stripe">
-            <input type="checkbox" name="use_existing_card" class="use_existing_card" />
-            Use existing credit card
-            <%= "(xxxxxx#{@active_card["last4"]}/#{@active_card["type"]})"%>
+          <li id="purchase_cc_existing" class="stripe">
+            <input type="checkbox" id="use_existing_card" name="use_existing_card" class="use_existing_card" />
+            <label for="use_existing_card">
+              Use existing credit card (<%= @active_card["type"] %> ending in <%= @active_card["last4"]} %>)
+            </label>
           </li>
-        <% end %>
         <li id="purchase_cc_input" class="stripe">
           <label>Card Number</label>
           <input type="text" size="20" autocomplete="off" class="card-number"/>
@@ -65,6 +64,7 @@
           <label>CVC</label>
           <input type="text" size="4" autocomplete="off" class="card-cvc"/>
         </li>
+        <li class="overflow"></li>
       <% end %>
 
       <%= form.actions do %>
