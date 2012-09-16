@@ -48,7 +48,7 @@
           <li id="purchase_cc_existing" class="stripe">
             <input type="checkbox" id="use_existing_card" name="use_existing_card" class="use_existing_card" />
             <label for="use_existing_card">
-              Use existing credit card (<%= @active_card["type"] %> ending in <%= @active_card["last4"] %>)
+              Use existing card (<%= display_card_type(@active_card["type"]) %> ending in <%= @active_card["last4"] %>)
             </label>
           </li>
         <li id="purchase_cc_input" class="stripe">
