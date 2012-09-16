@@ -31,7 +31,7 @@ Feature: Purchase a Product
     And "Name" should be filled in with "John Doe"
     And I should see "Sign out"
 
-  @selenium
+  @selenium @allow-rescue
   Scenario: A visitor purchases a product with paypal
     When I go to the home page
     And I follow "Test Fetch"
