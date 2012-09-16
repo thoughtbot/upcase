@@ -58,8 +58,8 @@
         </li>
         <li id="purchase_expiration_input" class="stripe">
           <label>Expiration</label>
-          <%= select_month Date.today, { add_month_numbers: true }, class: 'card-expiry-month' %>
-          <%= select_year Date.today, { start_year: Date.today.year, end_year: 10.years.from_now.year }, class: 'card-expiry-year' %>
+          <%= select_month nil, { prompt: 'Month', add_month_numbers: true }, class: 'card-expiry-month' %>
+          <%= select_year nil, { prompt: 'Year', start_year: Date.today.year, end_year: 10.years.from_now.year }, class: 'card-expiry-year' %>
         </li>
         <li id="purchase_cvc_input" class="stripe">
           <label>CVC</label>
