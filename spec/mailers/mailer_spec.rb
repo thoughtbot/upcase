@@ -9,11 +9,9 @@ describe Mailer, 'registration_notification' do
 
   it 'includes starts_on and ends_on in the email body' do
     registration = build_registration
-    starts_on = registration.section.starts_on.to_s(:long)
-    ends_on = registration.section.ends_on.to_s(:long)
 
     email = Mailer.registration_notification(registration)
-    email.body.should include "#{starts_on} - #{ends_on}"
+    email.body.should include registration.section.date_range
   end
 
   it 'includes section city in the email body' do

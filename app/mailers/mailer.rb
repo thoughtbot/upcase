@@ -6,8 +6,7 @@ class Mailer < ActionMailer::Base
     @student_name = registration.name
     @course_name = registration.section.course_name
     @city = registration.section.city
-    @section_starts_on = registration.section.starts_on
-    @section_ends_on = registration.section.ends_on
+    @running_date_range = registration.section.date_range
 
     mail(to: 'learn@thoughtbot.com',
          subject: "New registration notification")
