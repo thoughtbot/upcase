@@ -1,6 +1,7 @@
-<%= @registration.name %> just registered for <%= @registration.section.course.name %>.
+<%= @student_name %> just registered for <%= @course_name %> in <%= @city %>,
+running <%= @section_starts_on.to_s(:long) %> - <%= @section_ends_on.to_s(:long) %>.
 
-<% if @registration.comments.present? -%>
+<% if @comments.present? -%>
 Comments:
-<%= @registration.comments %>
+<%= @comments %>
 <% end -%>
