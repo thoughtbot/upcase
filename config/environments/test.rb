@@ -59,6 +59,4 @@ Workshops::Application.configure do
 
   GITHUB_KEY = 'githubkey'
   GITHUB_SECRET = 'githubsecret'
-
-  BLACKLIST_TOPICS = ["this week in open source"]
 end
