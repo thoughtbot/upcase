@@ -51,4 +51,4 @@ module Workshops
   end
 end
 
-BLACKLIST_TOPICS = ["this week in open source", "thoughtbot"]
+BLACKLIST_TOPICS = ["this week in open source", "thoughtbot", "hoptoad"]
