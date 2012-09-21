@@ -50,3 +50,5 @@ module Workshops
     config.assets.initialize_on_precompile = false
   end
 end
+
+BLACKLIST_TOPICS = ["this week in open source", "thoughtbot"]
