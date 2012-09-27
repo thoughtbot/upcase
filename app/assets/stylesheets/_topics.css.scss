@@ -1,15 +1,773 @@
-section.meta-info{
-  width: 180px;
-  float: left;
-  padding-right: 10px;
-}
+$lightwarmgray: #F5F5F0;
+$warmgray: #D9D4CC;
+$darkwarmgray: #6C6A66;
+$learnred: #B22115;
+$learndarkred: #660000;
 
-section.topic{
-  width: 800px;
-  display: block;
-}
-section.posts{
-  float: left;
-  width: 800px;
-  display: block;
+.articles-index, .courses-show, .products-index, .topics-index, .topics-show {
+  -webkit-font-smoothing: antialiased;
+  background-color: $lightwarmgray;
+  border-top: none;
+  margin: 0 auto;
+
+  header {
+    display: none;
+  }
+
+   h1 {
+    color: white;
+    font-smoothing: antialiased;
+    font: 800 72px $sans-serif;
+
+    a {
+      color: white;
+    }
+  }
+
+  h3 {
+    color: $darkwarmgray;
+    font: 700 26px/25px $sans-serif;
+  }
+
+  h2 {
+    color: $learnred;
+    font: 800 36px/40px $sans-serif;
+  }
+
+  h4 {
+    color: #94918C;
+    font: 600 13px $sans-serif;
+    text-shadow: 0 2px 0 white;
+  }
+
+  h5 {
+    color: #94918C;
+    font: 600 13px $sans-serif;
+    text-shadow: 0 2px 0 white;
+    background-color: $lightwarmgray;
+    display: inline-block;
+    margin-top: -8px;
+    padding: 0 10px 0 10px;
+    position: absolute;
+    text-align: center;
+  }
+
+  p, aside li {
+    color: $darkwarmgray;
+    font: italic 17px $serif;
+    text-shadow: 0 1px 1px rgba(255,255,255,.3);
+    margin-bottom: 12px;
+  }
+
+  .learnred {
+    color: $learnred;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  hr {
+    border: 0;
+    height: 2px;
+    color: $warmgray;
+    border-bottom: 1px solid white;
+    border-top: 1px solid $warmgray;
+  }
+
+  .learn-text-box {
+    background-color: white;
+    border-bottom: 2px solid $warmgray;
+    border-radius: 4px;
+    margin-bottom: 1em;
+    padding: 20px;
+
+    a:hover h3 {
+      color: $learnred;
+    }
+
+    a:hover h2 {
+      color: #C42107;
+    }
+  }
+
+  .button, input[type="submit"] {
+    @include border-radius(3px);
+    background-color: $learnred;
+    border-bottom: 4px solid $learndarkred;
+    border-radius: 3px;
+    color: white;
+    display: inline-block;
+    font: 700 13px $sans-serif;
+    height: 44px;
+    margin: 0 auto;
+    padding-top: 13px;
+    text-align:center;
+    -webkit-font-smoothing: antialiased;
+
+    a {
+      color: white;
+      display: block;
+      height:100%;
+      padding-top: 15px;
+      width: 100%;
+    }
+
+  }
+
+  .button:active, input[type="submit"]:active {
+    border-bottom: none;
+    height: 40px;
+    position: relative;
+    top: 4px;
+    margin-bottom: 4px;
+  }
+
+  input[type="submit"] {
+    border-top-color: none;
+    border-top-style: none;
+    border-top-width: none;
+    border-right-color: none;
+    border-right-style: none;
+    border-right-width: none;
+    border-bottom-width: none;
+    border-left-color: none;
+    border-left-style: none;
+    border-left-width: none;
+    border-image: initial;
+    padding: 0 30px 0 30px;
+  }
+
+  .button:hover {
+    background-color: #C42107;
+  }
+
+  .gray {
+    background-color: $warmgray;
+  }
+
+  section#learn-header-wrapper {
+    background: $warmgray url("learn/learn-arrows.png") repeat-x left bottom;
+    margin: 0 auto;
+    width: 100%;
+
+    .learn-header-container {
+      @include outer-container;
+      max-width: 1100px;
+      padding: 2em;
+      text-align: center;
+
+      .learn-logo, .learn-intro {
+        -webkit-font-smoothing: antialiased;
+        color: $darkwarmgray;
+        font: italic 300 20px $serif;
+        padding: 1em;
+      }
+
+      .learn-intro {
+        margin: 0 auto;
+        width: 65%;
+      }
+
+      .learn-logo img {
+        vertical-align: -20px;
+      }
+
+      .learn-detail-logo {
+        float: left;
+        text-transform: capitalize;
+
+        img {
+          vertical-align: -15px;
+        }
+
+        h1 {
+          font-size: 55px;
+        }
+      }
+    }
+  }
+
+  section#learn-detail-nav {
+    @include outer-container;
+    max-width: 1100px;
+    padding: 18px 0 30px 2em;
+
+    li {
+      display: inline-block;
+      list-style-type: none;
+      margin-right: 4px;
+      margin-top: 8px;
+    }
+
+    li:last-child {
+      margin-right: 0;
+    }
+  }
+
+  section#promo-wrapper {
+    @include outer-container;
+    margin: 0 auto;
+    padding: 4em 1em 3em 1em;
+    text-align: center;
+
+    .promo-container {
+      @include span-columns(4);
+
+      .promo-detail {
+        background-color: white;
+        border: 13px solid $warmgray;
+        border-radius: 300px;
+        height:300px;
+        margin: 0 auto;
+        padding: 2.5em 1.8em 1em 1.8em;
+        position: relative;
+        width: 300px;
+
+        h3 {
+          height: 50px;
+          margin: auto;
+          vertical-align: middle;
+          width: 155px;
+        }
+
+        p {
+          border-top: 7px solid $learnred;
+          margin: 10px 0 10px 0;
+          padding-top:10px;
+        }
+
+        a {
+          @include clearfix;
+          bottom: 33px;
+          display: block;
+          margin-right: 25%;
+          position: absolute;
+          right: 0;
+          width: 140px;
+
+          .button {
+            display: block;
+          }
+        }
+      }
+    }
+
+    .products-container {
+      @include span-columns(4);
+      text-align: left;
+
+      h2:hover {
+        color: $learnred;
+      }
+
+      p {
+        font-style: normal;
+      }
+
+      ul {
+        margin-top: 30px;
+
+        li {
+          margin-bottom: 30px;
+        }
+
+        li p {
+          margin-top: 6px;
+        }
+      }
+    }
+  }
+
+  #all-products {
+    @include outer-container;
+
+    .button {
+      @include span-columns(4);
+      @include shift(4);
+      padding: auto 6px 0 6px;
+    }
+  }
+
+  section#learn-topics-list {
+    @include outer-container;
+    max-width: 760px;
+    padding: 2em;
+
+    hr {
+      margin-bottom: 2em;
+    }
+
+    h2 {
+      padding-bottom: 6px;
+      text-transform: capitalize;
+    }
+
+    ul {
+      margin-top: 12px;
+    }
+
+    li {
+      display: inline-block;
+      list-style-type: none;
+      margin-right: 4px;
+      margin-top: 8px;
+    }
+
+    li:last-child {
+      margin-right: 0;
+    }
+  }
+
+  section.learn-detail-content {
+    @include outer-container;
+    max-width: 1100px;
+    padding: 3em 2em;
+
+    .learn-topic-summary {
+      @include span-columns (9);
+      clear: both;
+      display: block;
+      float: left;
+      text-align: left;
+
+      p {
+        font-style: italic;
+        margin: -10px 0 24px 25px;
+
+      }
+    }
+
+    .learn-text-box-wrapper {
+      @include span-columns (9);
+    }
+
+    h2:first-child {
+      padding-top: 0;
+    }
+
+    h2 {
+      padding: 26px 0 10px 0;
+    }
+
+    ul {
+      padding: 4px 0 30px 0;
+    }
+
+    p, li {
+      -webkit-font-smoothing: antialiased;
+      color: $darkwarmgray;
+      font: normal 17px $serif;
+    }
+
+    li {
+      margin-top: 14px;
+    }
+
+    .learn-text-box li {
+      list-style-type: none;
+      margin: 10px 0 0 10px;
+    }
+
+    .results-date {
+      color: $warmgray;
+      display: inline-block;
+      font: 700 14px $sans-serif;
+      margin-bottom: 2px;
+    }
+
+    .view-all-articles {
+      font: italic 16px $serif;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .what-you-learn {
+      @include outer-container;
+      background-color: $lightwarmgray;
+      border-radius: 3px;
+      margin: 16px 0 16px 0;
+      padding: 2em;
+
+      h3 {
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 17px;
+      }
+
+      ul {
+        margin-top: 12px;
+      }
+
+      li {
+        @include span-columns (6);
+        margin-left: 0;
+        margin-top: 6px;
+        padding: 4px;
+        display: inline;
+
+        &:nth-child(2n) {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .course-box {
+
+      h2 {
+        margin-bottom: 16px;
+        color: $darkwarmgray;
+      }
+
+      q {
+        display: block;
+        width: 80%;
+        margin: 30px 18% 0 4%;
+        font-style: italic;
+      }
+
+      .source {
+        margin-left: 12%;
+      }
+    }
+
+    #faq {
+        margin-top: 30px;
+
+      dt {
+        margin-top: 16px;
+      }
+
+      dt p {
+        font-weight: 600;
+        margin-bottom: 4px;
+        }
+    }
+
+    aside {
+      @include span-columns (3);
+      float: right;
+      display: inline-block;
+
+      h3:first-child {
+        margin-top: 0;
+      }
+
+      h3 {
+        color: $warmgray;
+        text-shadow: 0 1px 0 #fff;
+        margin-top: 40px;
+      }
+
+      h5 {
+        background-color: none;
+        display: block;
+        text-align: left;
+        margin-top: 18px;
+        padding: 0;
+        position: relative;
+      }
+
+      li {
+        margin: 4px 0 8px 0;
+
+        a {
+        color: $darkwarmgray;
+        font-style: italic;
+        }
+      }
+
+      .button {
+        height: auto;
+        padding-bottom: 12px;
+        width: 100%;
+      }
+
+      .related-topics {
+        @include outer-container;
+
+        li {
+          display: inline-block;
+          @include span-columns (6);
+
+          &:nth-child(2n) {
+            margin-right: 0;
+          }
+        }
+      }
+
+      .section-location {
+
+        h2 span {
+              font: 300 36px $sans-serif;
+        }
+
+        div {
+          margin-top: 20px;
+        }
+
+        .address a {
+          color: $darkwarmgray;
+        }
+
+        hr {
+          margin-top: 30px;
+        }
+      }
+
+      .teachers {
+        margin-top: 30px;
+
+        img {
+          border-radius: 3px;
+          vertical-align: text-top;
+          margin: 0 auto;
+        }
+
+        h2 {
+          font-size: auto;
+          line-height: 28px;
+          margin: 12px 0 12px 0;
+          padding: 0;
+
+          span {
+            color: $warmgray;
+            display: block;
+            font-size: 18px;
+          }
+        }
+      }
+
+      .travel {
+        font-size: 16px;
+        font-style: italic;
+        margin-top: 20px;
+      }
+    }
+  }
+
+  #additional-information {
+    background: $warmgray url("learn/learn-arrows-top.png") repeat-x left top;
+    background-color: $warmgray;
+
+    #additional-information-wrapper {
+      @include outer-container;
+      padding: 3em 0 3em 0;
+
+      #main-content {
+        @include span-columns(12);
+        padding: 0 2em;
+      }
+
+      form {
+        padding-top: 2em;
+      }
+
+      input[type="text"] {
+          border: none;
+          @include border-radius(4px);
+          @include box-sizing(border-box);
+          font-size: 14px;
+          margin: 0 0 12px 0;
+          padding: 18px 30px;
+          width: 50%;
+          vertical-align: top;
+        }
+
+      input[type="submit"] {
+        margin-left: 14px;
+        padding: 18px 40px 31px 40px;
+        text-transform: uppercase;
+      }
+
+      h4 {
+        text-shadow: none;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-family: $sans-serif;
+        font-style: normal;
+        font-size: 14px;
+      }
+
+      ul li {
+        color: $darkwarmgray;
+      }
+    }
+  }
+
+  #main-footer {
+    max-width: 704px;
+    padding: 2em;
+    width: 93%;
+
+    section {
+      width: 30%;
+     }
+  }
+
+  @media screen and (max-width: 910px) {
+
+    section#learn-header-wrapper .learn-header-container .learn-intro {
+      width: 90%;
+    }
+
+    #learn-divider {
+      width: 95%;
+    }
+
+    section#promo-wrapper .promo-container .promo-detail {
+      height: 270px;
+      width: 270px;
+
+      h3 {
+        font: 700 20px/20px $sans-serif;
+      }
+
+      p {
+        font-size: 15px;
+        margin-top: 0;
+      }
+
+      a {
+        margin-right: 22%;
+
+        .button {
+          height:36px;
+          padding-top: 9px;
+          width: 140px;
+
+          &:active {
+            height: 32px;
+          }
+        }
+      }
+    }
+
+    #all-products .button {
+      @include span-columns(6);
+      @include shift(3);
+    }
+  }
+
+  @media screen and (max-device-width: 800px), screen and (max-width: 800px) {
+
+   .learn-logo img, .learn-detail-logo img {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .learn-detail-logo {
+      float: none !important;
+    }
+
+    .products-container h2 {
+      font: 800 25px/25px $sans-serif !important;
+    }
+
+    section#learn-header-wrapper .learn-header-container .learn-intro {
+      padding-top: 0;
+    }
+
+    section#promo-wrapper .promo-container {
+      margin: 0;
+      width: 50%;
+
+      &:last-child {
+        display: block;
+        margin-top:-20px;
+        width: 100%;
+      }
+    }
+
+    section#learn-topics-list {
+      width:93%;
+    }
+  }
+
+  @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+
+    h1 {
+      line-height: 45px;
+    }
+
+    section#learn-header-wrapper .learn-header-container .learn-intro {
+      font-size: 18px;
+    }
+
+    section#promo-wrapper .promo-container {
+      display: block;
+      margin-top: 16px !important;
+      width: 100%;
+    }
+
+    section#promo-wrapper .promo-container .promo-detail p {
+      line-height: 19px;
+    }
+
+    section#learn-topics-list li {
+      display: block;
+      width: 100%;
+    }
+
+    section.learn-detail-content .learn-text-box-wrapper {
+      width: 100%;
+    }
+
+    .learn-detail-logo {
+      float: auto;
+    }
+
+    aside {
+      display: block !important;
+      width: 100% !important;
+      margin-top: 2em;
+    }
+
+    .products-container {
+      width: 100% !important;
+    }
+
+    #all-products .button {
+      @include span-columns(10);
+      @include shift(1);
+    }
+
+    #main-footer section {
+      float: none;
+      width: 100%
+    }
+
+    footer#main-footer nav section#current-workshops-footer {
+      width: 100%
+    }
+
+    #additional-information {
+
+      input[type="text"] {
+        display: block;
+        width: 100% !important;
+      }
+
+      input[type="submit"] {
+        margin-left:  0 !important;
+        width: 100%;
+      }
+
+    }
+
+    .products-container {
+      width: 100% !important;
+    }
+  }
+
+  @media all and (-webkit-min-device-pixel-ratio: 1.5) {
+
+    section#learn-header-wrapper {
+      background: $warmgray url("learn/learn-arrows@2x.png") repeat-x left bottom;
+      background-size: 44px 8px;
+    }
+  }
+
 }

@@ -1,7 +1,8 @@
 <%= content_tag_for :li, article, class: "result thoughtbot #{topic_classes(article.topics)}" do %>
   <%= link_to article.tumblr_url do %>
-    <h3><%= article.title %></h3>
-    <p class="excerpt"><%== format_content article.body_html %></p>
     <p class="results-date"><%= article.published_on.to_time.to_s(:short_date) %></p>
+    <h3><%= article.title %></h3>
+    <p class="excerpt"><%== format_content article.body_html, options: { length: 220 } %></p>
+
   <% end %>
 <% end %>

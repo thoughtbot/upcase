@@ -1,0 +1,11 @@
+<div class='promo-container <%= promoted_course.promo_location %>'>
+  <div class='promo-detail'>
+    <h3><%= promoted_course.name %></h3>
+    <p><%= promoted_course.short_description %></p>
+    <%= link_to promoted_course do %>
+      <div class='button'>
+        <%= t ".action" %>
+      </div>
+    <% end %>
+  </div>
+</div>

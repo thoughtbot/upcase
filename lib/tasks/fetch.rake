@@ -11,5 +11,10 @@ namespace :fetch do
       Loader.import_articles_and_topics(posts)
     end
   end
+
+  desc "Fetch trail maps from github and update topics"
+  task :trails => :environment do
+    Topic.import_trail_maps
+  end
 end
 

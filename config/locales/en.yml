@@ -1,8 +1,67 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
   admin:
     actions:
       purchase_refund:
-        menu: 'Refund Purchase'
+        menu:
+          Refund Purchase
+
+  articles:
+    index:
+      heading:
+        All %{topic} articles
+
+  products:
+    index:
+      title:
+        Products
+
+  shared:
+    books:
+      BOOKS
+    learn:
+      Learn
+    videos:
+      VIDEOS
+    workshops:
+      IN-PERSON WORKSHOPS
+
+  topics:
+    course:
+      heading:
+        IN-PERSON WORKSHOP
+    index:
+      intro:
+        Guided learning on modern development technologies and practices. Dig in.
+      view_products:
+        VIEW ALL OF THE THOUGHTBOT PRODUCTS
+    promoted_product:
+      book:
+        action:
+          READ
+      video:
+        action:
+          WATCH
+    promoted_course:
+      action:
+        REGISTER
+    trail_map:
+      resources:
+        Resources
+      validations:
+        You should be able to
+    product:
+      headings:
+        book:
+          BOOK
+        video:
+          VIDEO
+    related:
+      products:
+        RELATED PRODUCTS
+      topics:
+        RELATED TOPICS
+    show:
+      related_reading:
+        Related Reading
+      view_articles:
+        View all %{name} articles

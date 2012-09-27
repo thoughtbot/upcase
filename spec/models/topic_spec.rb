@@ -1,14 +1,18 @@
 require 'spec_helper'
 
 describe Topic do
-  context 'associations' do
-    it { should have_many(:classifications) }
-    it { should have_many(:articles).through(:classifications) }
-    it { should have_many(:products).through(:classifications) }
-    it { should have_many(:courses).through(:classifications) }
-  end
+  # Associations
+  it { should have_many(:articles).through(:classifications) }
+  it { should have_many(:classifications) }
+  it { should have_many(:courses).through(:classifications) }
+  it { should have_many(:products).through(:classifications) }
+  it { should have_many(:related_topics).through(:classifications) }
 
-  context 'create' do
+  # Validations
+  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:slug) }
+
+  context '.create' do
     before do
       @topic = create(:topic, name: ' Test Driven Development ')
     end
@@ -18,10 +22,29 @@ describe Topic do
     end
   end
 
-  context 'validations' do
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:slug) }
+  context 'self.top' do
+    before do
+      25.times do |i|
+        create :topic, count: i, featured: true
+      end
+    end
 
+    it 'returns the top 20 featured topics' do
+      Topic.top.count.should == 20
+      Topic.top.all? {|topic| topic.count >= 5 }.should be
+    end
+  end
+
+  context 'self.featured' do
+    it 'returns the featured topics' do
+      normal = create(:topic, featured: false)
+      featured = create(:topic, featured: true)
+      Topic.featured.should include featured
+      Topic.featured.should_not include normal
+    end
+  end
+
+  context 'validations' do
     context 'uniqueness' do
       before do
         create :topic
@@ -31,41 +54,82 @@ describe Topic do
     end
   end
 
-  context 'top' do
-    before do
-      25.times do |i|
-        create(:topic, count: i, featured: true)
-      end
+  context '.import_trail_map' do
+    let(:fake_trail) do
+      fake_trail = {
+        'name' => 'Fake Trail',
+        'description' => 'Description of Fake Trail',
+        'steps' => [
+          {
+            'name' => 'Critical Learning',
+            'resources' => [
+              {
+                'title' => 'Google',
+                'uri' => 'http://lmgtfy.com/'
+              }
+            ]
+          }
+        ]
+      }
     end
 
-    it "returns the top 20 featured topics" do
-      Topic.top.count.should == 20
-      Topic.top.all? {|topic| topic.count >= 5 }.should be
+    before do
+      fake_body_str = fake_trail.to_json
+      Curl.stubs(get: stub(body_str: fake_body_str, response_code: 200))
+    end
+
+    it 'downloads a trail and stores it' do
+      topic = create(:topic, name: 'fake-trail')
+      topic.import_trail_map
+      topic.trail_map.should == fake_trail
+    end
+
+    it "populates the topic's summary with the trail's description" do
+      topic = create(:topic, summary: 'old summary')
+      topic.import_trail_map
+      topic.summary.should == 'Description of Fake Trail'
+    end
+
+    it "populates the topic's name with the trail's name" do
+      topic = create(:topic, name: 'old name')
+      topic.import_trail_map
+      topic.name.should == 'Fake Trail'
+    end
+
+    it 'leaves the existing trail map alone and notifies Airbrake when there is a json error' do
+      Airbrake.stubs(:notify)
+      exception = JSON::ParserError.new("JSON::ParserError")
+      JSON.stubs(:parse).raises(exception)
+
+      topic = create(:topic, summary: 'old summary', trail_map: {'old' => true})
+      topic.import_trail_map
+
+      Airbrake.should have_received(:notify).with(exception)
+      topic.trail_map["old"].should == true
+      topic.summary.should == 'old summary'
+    end
+
+    it 'does not update trail map if there is a non-200 http response' do
+      Curl.stubs(get: stub(response_code: 'not 200', body_str: fake_trail.to_json))
+      topic = create(:topic, summary: 'old summary', name: 'old name', slug: 'old+name')
+
+      topic.import_trail_map
+
+      topic.summary.should == 'old summary'
+      topic.name.should == 'old name'
     end
   end
 
-  context 'search' do
-    let!(:rails) { create(:topic, name: "Rails") }
-    let!(:ruby) { create(:topic, name: "Ruby") }
-    let!(:ruby_on_rails) { create(:topic, name: "ruby on rails") }
+  context 'self.import_trail_maps' do
+    it 'calls import_trail_map for each featured topic' do
+      featured_topic = stub(:import_trail_map)
+      featured = stub
+      featured.stubs(:find_each).yields(featured_topic)
+      Topic.stubs(:featured).returns(featured)
 
-    it "returns only all matching topics" do
-      results = Topic.search("ru")
-      results.should =~ [ruby, ruby_on_rails]
-    end
+      Topic.import_trail_maps
 
-    it "matches url escaped searched" do
-      results = Topic.search("ruby+on+rails")
-      results.should == [ruby_on_rails]
-    end
-
-    it "returns one matching topic if matched exactly" do
-      results = Topic.search("rails")
-      results.should == [rails]
-    end
-
-    it "returns nothing if no matches" do
-      Topic.search("gh").should be_empty
+      featured_topic.should have_received(:import_trail_map)
     end
   end
 end

@@ -41,15 +41,17 @@ module NavigationHelpers
       course = Course.find_by_name!($2)
       registration = course.registrations.find_by_email($1)
       registration.freshbooks_invoice_url
-    when /the topic's page/
-      topic_path(Topic.first)
-    when /the topics index/
-      topics_path
     when /the URL "([^\"]+)"/
       $1
     else
-      raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
-        "Now, go and add a mapping in #{__FILE__}"
+      begin
+        page_name =~ /^the (.*) page$/
+        path_components = $1.split(/\s+/)
+        self.send(path_components.push('path').join('_').to_sym)
+      rescue NoMethodError, ArgumentError
+        raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
+          "Now, go and add a mapping in #{__FILE__}"
+      end
     end
   end
 

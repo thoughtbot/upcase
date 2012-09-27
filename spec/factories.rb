@@ -47,6 +47,10 @@ FactoryGirl.define do
     start_at    '9:00'
     stop_at     '17:00'
     maximum_students 12
+
+    factory :private_course do
+      public false
+    end
   end
 
   factory :section_without_teacher, class: Section do
@@ -127,6 +131,14 @@ FactoryGirl.define do
     individual_price 15
     company_price 50
     fulfillment_method "fetch"
+
+    factory :book_product do
+      product_type 'book'
+    end
+
+    factory :video_product do
+      product_type 'video'
+    end
   end
 
   factory :video do
@@ -168,7 +180,6 @@ FactoryGirl.define do
   factory :topic do
     name
 
-    body_html 'body text of document'
     keywords 'clean, clear, precise'
     summary 'short yet descriptive'
   end

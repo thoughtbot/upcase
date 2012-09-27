@@ -19,4 +19,5 @@ end
 When 'I enter the debugger' do
   require 'ruby-debug'
   debugger
+  true
 end

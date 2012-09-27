@@ -9,6 +9,7 @@ Feature: Archive a course
 
   Scenario: Archive course
     When I go to the home page
+    And I view all products
     Then I should see "Test-Driven Sleeping"
     When I go to the admin page
     And I follow "Test-Driven Sleeping"
@@ -17,6 +18,7 @@ Feature: Archive a course
     And I press "Save Course"
     Then I see the successful course update notice
     When I go to the home page
+    And I view all products
     Then I should not see "Test-Driven Sleeping"
 
   Scenario: Unarchive a course
@@ -28,4 +30,5 @@ Feature: Archive a course
     And I press "Save Course"
     Then I see the successful course update notice
     When I go to the home page
+    And I view all products
     Then I should see "Test-Driven Sleeping"

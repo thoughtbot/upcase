@@ -35,6 +35,9 @@ gem "rails_admin"
 gem 'typhoeus'
 gem "omniauth", "~> 1.1.0"
 gem "omniauth-github", "~> 1.0.2"
+gem 'haml', '3.1.7'
+gem 'sass', '3.2.1'
+gem 'curb', '0.8.1'
 
 # Fix the warning: regexp match /.../n against to UTF-8 string issue
 gem "escape_utils"
@@ -45,7 +48,7 @@ group :development do
 end
 
 group :development, :test do
-  gem "rspec-rails", "~> 2.9.0"
+  gem 'rspec-rails', '2.11.0'
   gem 'ruby-debug19', require: 'ruby-debug', platform: :ruby_19
   gem 'foreman', '~> 0.46.0'
 end
