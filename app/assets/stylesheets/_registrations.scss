@@ -123,7 +123,11 @@ body.clearance-users {
             margin-top: 19px;
           }
 
-          &#user_email_input, &input#password_email, &#password_submit_action {
+          &#user_email_input, &#password_submit_action {
+            clear: both;
+          }
+          
+          &#password_email {
             clear: both;
           }
 
