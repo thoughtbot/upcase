@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0">
+    <title>thoughtbot Learn</title>
+    <link href="/assets/application.css" media="screen" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <meta http-equiv="Description" name="Description" content="Workshops, screencasts, videos, and books to help you learn web design and development." />
+    <meta http-equiv="Keywords" name="Keywords" content="" />
+    <script type="text/javascript" src="https://use.typekit.com/jes4mbj.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <meta content="authenticity_token" name="csrf-param" />
+<meta content="T3sm6hlJYpWLvgj9Q8Xa56x2XRogHYHXrbV+uo31swM=" name="csrf-token" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+  </head>
+
+  <body class="learn-body">
+    <section id="learn-header-wrapper">
+      <div class="learn-header-container">
+        <div class="learn-logo">
+          <h1><img src="<%= image_path('learn/learn-ralph.png') %>"> Learn</h1>
+        </div>
+        <div class="learn-intro">
+          Thanks for swinging by. If you’re new, the trail maps for any topic below are the best way to get an intro. Otherwise, just dig in.
+        </div>
+      </div>
+    </section>
+    <section id="promo-wrapper">
+      <div class="promo-container">
+        <div class="promo-detail">
+          <h2>IN-PERSON WORKSHOPS</h2>
+          <p>We can help you become
+          better at creating magic
+          by writing better code.</p>
+          <a href="#">
+            <div class="button">
+              FIND A COURSE
+            </div>
+          </a>
+        </div>
+      </div>  
+      <div class="promo-container">
+        <div class="promo-detail">
+          <h2>BOOKS: BACKBONE.JS</h2>
+          <p>Build snappier, more interactive 
+          apps with cleaner code and 
+          better tests in less time.</p>
+          <a href="#">
+            <div class="button">
+              READ ON
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="promo-container">
+        <div class="promo-detail">
+          <h2>VIDEOS</h2>
+          <p>Like Chat Roulette, but you
+          know what you’re getting.
+          Usually.</p>
+          <a href="#">
+            <div class="button">
+              WATCH US
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section id="learn-divider">
+      <h5>TOPICS</h5>
+    </section>
+    <section id="learn-topics-list">
+      <% 16.times do %>
+      <div class="learn-text-box">
+        <a href="#"><h3>Ruby</h3></a>
+        <p>Ah, Rails. Truly the core of modern app design. A great thing to learn if you are interested in the Future of The Internet, which I bet you are.</p>
+        <ul>
+          <li class="button">
+            <a href="#">
+              TRAIL MAP
+            </a>
+          </li>
+          </a>
+          <li class="button gray">
+            <a href="#">
+              WORKSHOPS
+            </a>
+          </li>
+          <li class="button gray">
+            <a href="#">
+              BOOKS
+            </a>
+          </li>
+          <li class="button gray">
+            <a href="#">
+              VIDEOS
+            </a>
+          </li>
+          <li class="button gray">
+            <a href="#">
+              BLOG POSTS
+            </a>
+          </li>
+        </ul>
+        
+      </div>
+      <% end %>
+    </section>
+    <%= javascript_include_tag "retina.js" %>
+  </body>
+</html>
