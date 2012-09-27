@@ -1,0 +1,137 @@
+$lightwarmgray: #F9F5F0;
+$warmgray: #D9D4CC;
+$darkwarmgray: #6C6A66;
+$learnred: #B22115;
+$learndarkred: #660000;
+
+.learn-body {
+  background-color: $lightwarmgray!important;
+  margin: 0 auto;
+  border-top: none !important;
+
+
+  h1 {
+    font: 800 72px $sans-serif;
+    color: white;
+  }
+  
+  h2 {
+    font: 700 26px/25px $sans-serif;
+    color: $darkwarmgray;
+  }
+
+  p {
+    font: italic 17px $serif;
+    color: $darkwarmgray;
+  }
+  
+  .button {
+    @include border-radius(3px);
+    width: 136px;
+    height:44px;
+    text-align:center;
+    background-color: $learnred;
+    padding-top: 12px;
+    font: 600 13px $sans-serif;
+    color: white;
+  }
+
+  section#learn-header-wrapper {
+    width: 100%;
+    margin: 0 auto;
+    background: $warmgray url("learn/learn-arrows.png") repeat-x left bottom;
+
+    .learn-header-container {
+      @include outer-container;
+      max-width: 1200px;
+      padding: 2em;
+      text-align: center;
+
+      .learn-logo, .learn-intro {
+        padding: 1em;
+        font: italic 300 20px $serif;
+        color: $darkwarmgray;
+        text-shadow: 0 1px 0 #eee;
+      } 
+      
+      .learn-intro {
+        width: 50%;
+        margin: 0 auto;
+      }
+      
+      .learn-logo img {
+        vertical-align: -20px;
+      }
+    }
+  }
+
+  section#promo-wrapper {
+    @include outer-container;
+    margin: 0 auto;
+    padding: 4em 1em 4em 1em;
+    text-align: center;
+    
+    .promo-container {
+      @include span-columns(4);
+
+      .promo-detail {
+        @include border-radius(300px);
+        background-color: white;
+        height:300px;
+        width: 300px;
+        border: 13px solid $warmgray;
+        padding: 2.5em 1.8em 1em 1.8em;
+        margin: 0 auto;
+        
+        h2 {
+          height: 50px;
+          vertical-align: middle;
+        }
+
+        p {
+          padding-top:10px;
+          margin: 10px 0 10px 0;
+          border-top: 7px solid $learnred;
+        }
+        
+        .button {
+          border-bottom: 4px solid $learndarkred;
+          margin: 0 auto;
+        }
+        
+        .button:active {
+          position: relative;
+          border-bottom: none;
+          height: 40px;
+          top: 4px;
+        }
+      }
+    }
+  }
+  
+  #learn-divider {
+    text-align:center;
+    margin: 0 auto;
+    width: 760px;
+    height: 0;
+    border-top: 1px solid $warmgray;
+    border-bottom: 1px solid white;    
+    aside {
+      margin-top: -10px;
+      padding: 0 3px 0 3px;
+    }
+  }
+
+  section#learn-topics-list {
+    @include outer-container;
+    text-align: center;
+    padding: 2em;
+  
+    .learn-topic {
+      background-color: white;
+      margin-bottom: 1em;
+      padding: 5em;
+    } 
+  }
+
+}

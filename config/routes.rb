@@ -53,6 +53,8 @@ Workshops::Application.routes.draw do
     resources :purchases, only: :index
   end
 
+  match 'pages/new-topics' => 'pages#show', id: 'new-topics'
+
   match '/auth/:provider/callback', to: 'auth_callbacks#create'
 
   match '/watch' => 'high_voltage/pages#show', as: :watch, id: 'watch'
