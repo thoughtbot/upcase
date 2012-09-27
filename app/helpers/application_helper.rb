@@ -56,4 +56,8 @@ module ApplicationHelper
   def github_auth_path
     '/auth/github'
   end
+
+  def promotion_partial(item)
+    "promoted_#{item.class.name.downcase}"
+  end
 end

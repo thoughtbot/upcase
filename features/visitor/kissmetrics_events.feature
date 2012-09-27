@@ -11,7 +11,7 @@ Feature: KISSmetrics tracks registration events
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "Register"
+    And I follow "REGISTER FOR THIS WORKSHOP"
     And KISSmetrics receives the "Started Registration" event with:
       | Course Name | Test-Driven Haskell |
     When I fill in the required course registration fields for "carlos@santana.com"
@@ -30,7 +30,7 @@ Feature: KISSmetrics tracks registration events
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "Register"
+    And I follow "REGISTER FOR THIS WORKSHOP"
     Then KISSmetrics receives the "Started Registration" event with:
       | Course Name | Test-Driven Haskell |
     When I fill in the required course registration fields for "carlos@santana.com"

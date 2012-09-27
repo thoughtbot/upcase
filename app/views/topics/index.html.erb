@@ -1,6 +1,29 @@
-<form class="learn-search">
-  <%= render :partial => 'search_bar' %>
-  <%= render :partial => 'featured' %>
-</form>
+<section id="learn-header-wrapper">
+  <div class="learn-header-container">
+    <div class="learn-logo">
+      <h1><%= image_tag 'learn/learn-ralph.png' %> <%= t 'shared.learn' %></h1>
+    </div>
+    <div class="learn-intro">
+      <%= t '.intro' %>
+    </div>
+  </div>
+</section>
 
-<%= render :partial => 'topics/results' %>
+<%= render 'promotions' %>
+
+<section id="all-products">
+  <%= link_to products_path do %>
+    <div class="button">
+      <%= t '.view_products' %>
+    </div>
+  <% end %>
+</section>
+
+<section id="learn-topics-list">
+  <hr>
+  <%= render @topics %>
+</section>
+
+<% content_for :javascript do %>
+  <%= javascript_include_tag 'retina' %>
+<% end %>

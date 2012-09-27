@@ -16,7 +16,7 @@ module Playbook
 
     def get_all_paths
       homepage = Nokogiri::HTML(open(@base_url + @base_path))
-      homepage.search("nav.global ul ul li a").map do |link| 
+      homepage.search("nav.global ul ul li a").map do |link|
         link.attribute("href").to_s
       end
     end

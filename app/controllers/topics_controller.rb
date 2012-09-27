@@ -1,39 +1,24 @@
 class TopicsController < ApplicationController
   def index
     expires_in 12.hours, public: true
-    @featured_topics = Topic.top
-    @books = Product.books.active
-    @screencasts = Product.screencasts.active
-    @courses = Course.only_public.by_position
-    @articles = Article.by_published.limit(30)
+    @topics = Topic.top
+    @promoted_left = promoted_item('left')
+    @promoted_middle = promoted_item('middle')
+    @promoted_right = promoted_item('right')
   end
 
   def show
     expires_in 12.hours, public: true
-
-    topics = Topic.search(topic_slug)
-    @topic = topics.first if topics.size == 1
-    @featured_topics = Topic.top
-
-    @books = ResultsDecorator.new(Product.books.active,
-      Product.find_books_by_topics(topics))
-    @screencasts = ResultsDecorator.new(Product.screencasts.active,
-      Product.find_screencasts_by_topics(topics))
-    @courses = ResultsDecorator.new(Course.only_public.by_position, 
-      Course.find_courses_by_topics(topics))
-    @articles = Article.for_topics(topics).by_published.presence || NullArticle.new
-
-    @no_results = @books.visible.blank? && @screencasts.visible.blank? &&
-      @courses.visible.blank? && @articles.blank?
-
-    if request.xhr?
-      render partial: "topics/filtered_results"
-    end
+    @topic = Topic.find_by_slug!(params[:id])
+    @articles = @topic.articles.top
+    @courses = @topic.courses.only_public.by_position
+    @products = @topic.products.ordered
+    @related_topics = @topic.related_topics
   end
 
   private
 
-  def topic_slug
-    params[:id]
+  def promoted_item(location)
+    Course.promoted(location) || Product.promoted(location)
   end
 end

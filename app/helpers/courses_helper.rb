@@ -9,19 +9,7 @@ module CoursesHelper
     json.html_safe
   end
 
-  def sections_as_sentence(sections)
-    cities_and_dates = sections_cities_and_dates(sections)
-    if cities_and_dates.any?
-      "In " + cities_and_dates.to_sentence
-    end
-  end
-
   def show_individual_teachers?(sections)
     sections.has_different_teachers?
-  end
-  private
-
-  def sections_cities_and_dates(sections)
-    sections.map { |section| "#{section.city} on #{section.date_range}" }
   end
 end
