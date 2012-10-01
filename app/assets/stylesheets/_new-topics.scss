@@ -14,6 +14,10 @@ $learndarkred: #660000;
     color: white;
     font-smoothing: antialiased;
     font: 800 72px $sans-serif;
+    
+    a { 
+      color: white;
+    }
   }
   
   h2 {
@@ -34,19 +38,51 @@ $learndarkred: #660000;
     font: 600 13px $sans-serif;
     text-shadow: 0 2px 0 white;
   }
+  
+  h5 {
+    -webkit-font-smoothing: antialiased;
+    color: #94918C;
+    font: 600 13px $sans-serif;
+    text-shadow: 0 2px 0 white;
+    background-color: $lightwarmgray;
+    display: inline-block;
+    margin-top: -8px;
+    padding: 0 10px 0 10px;
+    position: absolute;
+    text-align: center;
+  }
 
-  p {
+  p, aside li {
     -webkit-font-smoothing: antialiased;
     color: $darkwarmgray;
     font: italic 17px $serif;
     text-shadow: 0 1px 1px rgba(255,255,255,.3);
   }
 
+  .learnred {
+    color: $learnred;
+  }
+
   a {
-    color: white;
     text-decoration: none;
   }
   
+  hr {
+    border: 0;
+    height: 2px;
+    color: $warmgray;
+    border-bottom: 1px solid white;
+    border-top: 1px solid $warmgray;
+  }
+
+  .learn-text-box {
+    @include border-radius(4px);
+    background-color: white;
+    border-bottom: 2px solid $warmgray;
+    margin-bottom: 1em;
+    padding: 20px;
+  }
+
   .button {
     @include border-radius(3px);
     background-color: $learnred;
@@ -56,6 +92,10 @@ $learndarkred: #660000;
     padding-top: 13px;
     text-align:center;
     width: 126px;
+    
+    a {
+      color: white;
+    }
   }
   
   .button:hover {
@@ -73,7 +113,7 @@ $learndarkred: #660000;
 
     .learn-header-container {
       @include outer-container;
-      max-width: 1200px;
+      max-width: 1100px;
       padding: 2em;
       text-align: center;
 
@@ -84,7 +124,7 @@ $learndarkred: #660000;
         padding: 1em;
         text-shadow: 0 1px 0 #eee;
       } 
-      
+
       .learn-intro {
         margin: 0 auto;
         width: 55%;
@@ -93,6 +133,36 @@ $learndarkred: #660000;
       .learn-logo img {
         vertical-align: -20px;
       }
+      
+      .learn-detail-logo {
+        float: left;
+
+        img {
+          vertical-align: -13px;
+        }
+        
+        h1 {
+          font-size: 55px;
+        }
+      }
+    }
+  }
+  
+  section#learn-detail-nav {
+    @include outer-container;
+    max-width: 1100px;
+    padding: 18px 0 30px 2em;
+
+    li {
+      display: inline-block;
+      list-style-type: none;
+      margin-right: 4px;
+      margin-top: 8px;
+      padding-top: 15px;
+    }
+    
+    li:last-child {
+      margin-right: 0;
     }
   }
 
@@ -147,30 +217,13 @@ $learndarkred: #660000;
     margin: 0 auto;
     text-align:center;
     width: 760px;
-
-    h4 {
-      background-color: $lightwarmgray;
-      display: inline-block;
-      margin-top: -8px;
-      padding: 0 10px 0 10px;
-      position: absolute;
-      text-align: center;
-    }
   }
 
   section#learn-topics-list {
     @include outer-container;
     max-width: 760px;
     padding: 2em;
-  
-    .learn-topic {
-      @include border-radius(4px);
-      background-color: white;
-      border-bottom: 2px solid $warmgray;
-      margin-bottom: 1em;
-      padding: 20px;
-    } 
-    
+
     ul {
       margin-top: 12px;
     }
@@ -185,6 +238,68 @@ $learndarkred: #660000;
     
     li:last-child {
       margin-right: 0;
+    }
+  }
+  
+  section.learn-detail-content {
+    @include outer-container;
+    max-width: 1100px;
+    padding: 0 2em;
+    
+    .learn-text-box {
+      @include span-columns (10);
+    }
+    
+    h3:first-child {
+      padding-top: 0;
+    }
+    
+    h3 {
+      padding: 26px 0 2px 0;
+    }
+    
+    p, li {
+      -webkit-font-smoothing: antialiased;
+      color: $darkwarmgray;
+      font: normal 17px $serif;
+      text-shadow: 0 1px 1px rgba(255,255,255,.3);
+    }
+    
+    .learn-text-box li {
+      list-style-type: circle;
+      margin-left: 40px;
+    }
+
+    aside {
+      @include span-columns (2);
+      
+      h2:first-child {
+        margin-top: 0;
+      }
+      
+      h2 {
+        color: $warmgray;
+        text-shadow: 0 1px 0 #fff;
+        margin-top: 40px;
+      }
+      
+      h5 {
+        background-color: none;
+        display: block;
+        text-align: left;
+        margin-top: 18px;
+        padding: 0;
+        position: relative;
+      }
+      
+      li {
+        margin: 4px 0 8px 0;
+        
+        a {
+        color: $darkwarmgray;
+        font-style: italic;
+        }
+      }
     }
   }
   
@@ -221,7 +336,7 @@ $learndarkred: #660000;
   
   @media screen and (max-device-width: 800px), screen and (max-width: 800px) {
     
-    section#learn-header-wrapper .learn-header-container .learn-logo img {
+   .learn-logo img, .learn-detail-logo img {
       display: block;
       margin: 0 auto;
     }
@@ -265,6 +380,19 @@ $learndarkred: #660000;
     section#learn-topics-list li {
       display: block;
       width: 100%;
+    }
+    
+    section.learn-detail-content .learn-text-box {
+      width: 100%;
+    }
+    
+    .learn-detail-logo {
+      float: auto;
+    }
+    
+    aside {
+      display: block !important;
+      width: 100% !important;
     }
   }
 }
