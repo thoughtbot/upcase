@@ -34,3 +34,7 @@ end
 Then /^I should have no password field$/ do
   page.should_not have_css("#user_password")
 end
+
+When /^I visit my profile$/ do
+  visit my_account_path
+end

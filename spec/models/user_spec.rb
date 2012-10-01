@@ -18,6 +18,27 @@ describe User do
     end
   end
 
+  describe "#has_purchased?" do
+    it "returns true if the user has any registrations" do
+      user = build_stubbed(:user)
+      user.stubs(:registrations).returns([stub])
+
+      user.should have_purchased
+    end
+
+    it "returns true if the user has any purchases" do
+      user = build_stubbed(:user)
+      user.stubs(:purchases).returns([stub])
+
+      user.should have_purchased
+    end
+
+    it "returns false if the user has no registrations or purchases" do
+      user = build_stubbed(:user)
+      user.should_not have_purchased
+    end
+  end
+
   context "when there are previous purchases" do
     let(:email) { "newuser@example.com" }
 

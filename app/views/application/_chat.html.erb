@@ -1,0 +1,12 @@
+<% if current_user && current_user.has_purchased? %>
+  <%= link_to "Questions? We'd love to chat.", CHAT_LINK, class: 'chat', data: { role: 'chat-with-thoughtbot' } %>
+<% else %>
+  <% if Rails.env.staging? || Rails.env.production? %>
+    <%= render 'javascript_olark' %>
+    <%= javascript_tag do %>
+      olark('api.chat.onBeginConversation', function() {
+        _kmq.push(["set", {"Olark chat": "yes"}]);
+      });
+    <% end %>
+  <% end %>
+<% end %>
