@@ -6,57 +6,56 @@ $learndarkred: #660000;
 
 .learn-body {
   background-color: $lightwarmgray!important;
-  margin: 0 auto;
   border-top: none !important;
-
+  margin: 0 auto;
 
   h1 {
-    font: 800 72px $sans-serif;
-    color: white;
     -webkit-font-smoothing: antialiased;
+    color: white;
     font-smoothing: antialiased;
+    font: 800 72px $sans-serif;
   }
   
   h2 {
-    font: 700 26px/25px $sans-serif;
-    color: $darkwarmgray;
     -webkit-font-smoothing: antialiased;
+    color: $darkwarmgray;
+    font: 700 26px/25px $sans-serif;
   }
   
   h3 {
-    font: 800 36px $sans-serif;
-    color: $learnred;
     -webkit-font-smoothing: antialiased;
+    color: $learnred;
+    font: 800 36px $sans-serif;
   }
   
   h4 {
-    font: 600 13px $sans-serif;
-    color: #94918C;
-    text-shadow: 0 2px 0 white;
     -webkit-font-smoothing: antialiased;
+    color: #94918C;
+    font: 600 13px $sans-serif;
+    text-shadow: 0 2px 0 white;
   }
 
   p {
-    font: italic 17px $serif;
-    color: $darkwarmgray;
-    text-shadow: 0 1px 1px rgba(255,255,255,.3);
     -webkit-font-smoothing: antialiased;
+    color: $darkwarmgray;
+    font: italic 17px $serif;
+    text-shadow: 0 1px 1px rgba(255,255,255,.3);
   }
 
   a {
-    text-decoration: none;
     color: white;
+    text-decoration: none;
   }
   
   .button {
     @include border-radius(3px);
-    width: 126px;
-    height:44px;
-    text-align:center;
     background-color: $learnred;
-    padding-top: 13px;
-    font: 600 13px $sans-serif;
     color: white;
+    font: 600 13px $sans-serif;
+    height:44px;
+    padding-top: 13px;
+    text-align:center;
+    width: 126px;
   }
   
   .button:hover {
@@ -68,9 +67,9 @@ $learndarkred: #660000;
   }
 
   section#learn-header-wrapper {
-    width: 100%;
-    margin: 0 auto;
     background: $warmgray url("learn/learn-arrows.png") repeat-x left bottom;
+    margin: 0 auto;
+    width: 100%;
 
     .learn-header-container {
       @include outer-container;
@@ -79,16 +78,16 @@ $learndarkred: #660000;
       text-align: center;
 
       .learn-logo, .learn-intro {
-        padding: 1em;
-        font: italic 300 20px $serif;
-        color: $darkwarmgray;
-        text-shadow: 0 1px 0 #eee;
         -webkit-font-smoothing: antialiased;
+        color: $darkwarmgray;
+        font: italic 300 20px $serif;
+        padding: 1em;
+        text-shadow: 0 1px 0 #eee;
       } 
       
       .learn-intro {
-        width: 55%;
         margin: 0 auto;
+        width: 55%;
       }
       
       .learn-logo img {
@@ -102,18 +101,18 @@ $learndarkred: #660000;
     margin: 0 auto;
     padding: 4em 1em 4em 1em;
     text-align: center;
-    
+
     .promo-container {
       @include span-columns(4);
 
       .promo-detail {
         @include border-radius(300px);
         background-color: white;
-        height:300px;
-        width: 300px;
         border: 13px solid $warmgray;
-        padding: 2.5em 1.8em 1em 1.8em;
+        height:300px;
         margin: 0 auto;
+        padding: 2.5em 1.8em 1em 1.8em;
+        width: 300px;
         
         h2 {
           height: 50px;
@@ -121,9 +120,9 @@ $learndarkred: #660000;
         }
 
         p {
-          padding-top:10px;
-          margin: 10px 0 10px 0;
           border-top: 7px solid $learnred;
+          margin: 10px 0 10px 0;
+          padding-top:10px;
         }
         
         .button {
@@ -132,9 +131,9 @@ $learndarkred: #660000;
         }
         
         .button:active {
-          position: relative;
           border-bottom: none;
           height: 40px;
+          position: relative;
           top: 4px;
         }
       }
@@ -142,20 +141,20 @@ $learndarkred: #660000;
   }
   
   #learn-divider {
-    text-align:center;
-    margin: 0 auto;
-    width: 760px;
-    height: 0;
-    border-top: 1px solid $warmgray;
     border-bottom: 1px solid white;
+    border-top: 1px solid $warmgray;
+    height: 0;
+    margin: 0 auto;
+    text-align:center;
+    width: 760px;
 
     h4 {
-      text-align: center;
-      margin-top: -8px;
-      position: absolute;
-      display: inline-block;
-      padding: 0 10px 0 10px;
       background-color: $lightwarmgray;
+      display: inline-block;
+      margin-top: -8px;
+      padding: 0 10px 0 10px;
+      position: absolute;
+      text-align: center;
     }
   }
 
@@ -166,8 +165,8 @@ $learndarkred: #660000;
   
     .learn-topic {
       @include border-radius(4px);
-      border-bottom: 2px solid $warmgray;
       background-color: white;
+      border-bottom: 2px solid $warmgray;
       margin-bottom: 1em;
       padding: 20px;
     } 
@@ -177,11 +176,11 @@ $learndarkred: #660000;
     }
     
     li {
-      padding-top: 15px;
       display: inline-block;
-      margin-top: 8px;
-      margin-right: 4px;
       list-style-type: none;
+      margin-right: 4px;
+      margin-top: 8px;
+      padding-top: 15px;
     }
     
     li:last-child {
@@ -200,8 +199,8 @@ $learndarkred: #660000;
     }
 
     section#promo-wrapper .promo-container .promo-detail {
-      width: 270px;
       height: 270px;
+      width: 270px;
 
       h2 {
         font: 700 20px/20px $sans-serif;
@@ -213,9 +212,9 @@ $learndarkred: #660000;
       }
       
       .button {
-        width: 120px;
         height:36px;
         padding-top: 9px;
+        width: 120px;
       }
     }
   }
@@ -232,13 +231,13 @@ $learndarkred: #660000;
     }
 
     section#promo-wrapper .promo-container {
-      width: 50%;
       margin: 0;
-      
+      width: 50%;
+   
       &:last-child {
         display: block;
-        width: 100%;
         margin-top:-20px;
+        width: 100%;
       }
     }
     
@@ -255,8 +254,8 @@ $learndarkred: #660000;
 
     section#promo-wrapper .promo-container {
       display: block;
-      width: 100%;
       margin-top: 16px !important;
+      width: 100%;
     }
     
     section#promo-wrapper .promo-container .promo-detail p {
