@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0">
+    <title>thoughtbot Learn</title>
+    <link href="/assets/application.css" media="screen" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <meta http-equiv="Description" name="Description" content="Workshops, screencasts, videos, and books to help you learn web design and development." />
+    <meta http-equiv="Keywords" name="Keywords" content="" />
+    <script type="text/javascript" src="https://use.typekit.com/jes4mbj.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <meta content="authenticity_token" name="csrf-param" />
+<meta content="T3sm6hlJYpWLvgj9Q8Xa56x2XRogHYHXrbV+uo31swM=" name="csrf-token" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+  </head>
+
+  <body class="learn-body">
+    <section id="learn-header-wrapper">
+      <div class="learn-header-container">
+        <div class="learn-detail-logo">
+          <h1><a href="http://learn.thoughtbot.com"><img src="<%= image_path('learn/learn-ralph-small.png') %>"> Learn <span class="learnred">Rails</span></a></h1>
+        </div>
+      </div>
+    </section>
+    <section id="learn-detail-nav">
+        <ul>
+          <li class="button">
+            <a href="#">
+              TRAIL MAP
+            </a>
+          </li>
+          </a>
+          <li class="button gray">
+            <a href="#">
+              COURSES
+            </a>
+          </li>
+          <li class="button gray">
+            <a href="#">
+              BOOKS
+            </a>
+          </li>
+          <li class="button gray">
+            <a href="#">
+              VIDEOS
+            </a>
+          </li>
+          <li class="button gray">
+            <a href="#">
+              BLOG POSTS
+            </a>
+          </li>
+        </ul>
+      </section>
+      <section class="learn-detail-content">
+        <div class="learn-text-box">
+          <h3>Critical Learning</h3>
+          <ol>
+            <li>Complete Michael Hartl’s <a href="#">Rails Tutorial</a>. (Free/$)</li>
+            <li>Complete <a href="#">Rails Testing for Zombies</a>. ($)</li>
+            <li>Push your code to <a href="#">Github</a>. (Free/$)</li>
+            <li>Deploy to <a href="#">Heroku</a>. (Free/$)</li>
+            <li>Watch <a href="#">Railscasts</a> that interest you.</li>
+            <li>Read open source code: <a href="#">example</a>.</li>
+          </ol>
+          <h3>Validation</h3>
+          <p>You know everyday Rails when you can:</p>
+          <ol>
+            <li>Create a route, controller, and action.</li>
+            <li>Query the database.</li>
+            <li>Create a form that save records.</li>
+            <li>Associate ActiveRecord objects.</li>
+            <li>Validate ActiveRecord objects.</li>
+            <li>Whitelist ActiveRecord attributes.</li>
+            <li>Interpolate data in a view.</li>
+            <li>Write and run tests for your models.</li>
+            <li>Deploy your app to production.</li>
+        </div>
+        <aside>
+          <h2>RELATED TOPICS</h2>
+          <hr>
+          <ul>
+            <li><a href="#">Ruby</a></li>
+            <li><a href="#">Git</a></li>
+            <li><a href="#">Postgres</a></li>
+          </ul>
+          <h2>RELATED PRODUCTS</h2>
+          <hr>
+          <ul>
+            <li><h5>IN-PERSON COURSE</h5><a href="#">Intro to Ruby on Rails</a></li>
+            <li><h5>IN-PERSON COURSE</h5><a href="#">Intermediate Ruby on Rails</a></li>
+            <li><h5>IN-PERSON COURSE</h5><a href="#">Test Drive Rails</a></li>
+            <li><h5>VIDEO</h5><a href="#">Vim for Rails Developers Webcast</a></li>
+          </ul>
+        </aside>
+      </section>
+      <%= javascript_include_tag "retina.js" %>
+  </body>
+</html>
