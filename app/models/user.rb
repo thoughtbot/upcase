@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
     auth_provider.present?
   end
 
+  def has_purchased?
+    registrations.present? || purchases.present?
+  end
+
   private
 
   def password_optional?

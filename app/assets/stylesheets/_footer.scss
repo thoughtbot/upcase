@@ -83,3 +83,22 @@ footer#main-footer {
     }
   }
 }
+
+a.chat, a.chat:link, a.chat:visited {
+  @include border-radius (5px 5px 0 0);
+  background: #AD141E none repeat scroll 0 0;
+  color: white;
+  padding: 10px;
+  display: block;
+  z-index: 99999999;
+  margin: 0px 20px;
+  bottom: 0px;
+  right: 0px;
+  position: fixed;
+  opacity: 1;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

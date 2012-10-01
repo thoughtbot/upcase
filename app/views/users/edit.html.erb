@@ -19,7 +19,7 @@
       <% end %>
     </section>
 
-    <% if current_user.purchases.present? || current_user.registrations.present? %>
+    <% if current_user.has_purchased? %>
       <section id="account-sidebar">
         <% if current_user.purchases.present? %>
           <h2>Your purchases</h2>

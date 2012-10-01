@@ -18,11 +18,12 @@
     </ul>
   <% end %>
 
-
 <% if @purchase.product.fulfillment_method == "github" -%>
   <p>You have been added to the GitHub repo at <%= link_to @purchase.product.github_url, @purchase.product.github_url %>.</p>
   <p>You should also receive a notification from GitHub. Please contact us at <%= mail_to "learn@thoughtbot.com", "learn@thoughtbot.com" %> if you do not get access to this repository.</p>
 <% end -%>
+
+<p class="chat">Every product includes support for any questions you may have about the topic. Visit our <%= link_to "live chat", CHAT_LINK %>.</p>
 
 <section class="receipt">
 <h3>RECEIPT</h3>
