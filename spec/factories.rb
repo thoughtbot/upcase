@@ -146,6 +146,11 @@ FactoryGirl.define do
     factory :stripe_purchase do
       payment_method "stripe"
     end
+
+    factory :free_purchase do
+      payment_method "free"
+      paid_price 0
+     end
   end
 
   factory :article do
