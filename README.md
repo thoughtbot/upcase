@@ -18,13 +18,9 @@ Requirements:
 * Redis
 
 Getting up and running:
+    rake setup
 
-    cd learn
-    bundle install --binstubs
-    rake db:create:all
-    rake db:migrate
-
-Development data:
+Development data is already pre-seeded however if you wish to reset the data you can use the rake task:
 
     rake dev:prime
 
@@ -46,10 +42,7 @@ You can also fetch only the latest articles with:
 Staging and production environments
 -----------------------------------
 
-We're using Heroku as a hosting provider. Deploying to Heroku is done via git. So, set up your git remotes for each environment:
-
-    git remote add staging git@heroku.com:learn-staging.git
-    git remote add production git@heroku.com:learn-production.git
+We're using Heroku as a hosting provider. Deploying to Heroku is done via git.  Remotes are set up in the setup task.  Both production and staging environments are setup.
 
 The content of the index and topics is cached for 12 hours. To manually invalidate the cache, use the following rake task:
 
