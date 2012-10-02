@@ -1,6 +1,6 @@
-<%= @registration.name %> just registered for <%= @registration.section.course.name %>.
+<%= @student_name %> just registered for <%= @course_name %> in <%= @city %>, running <%= @running_date_range %>.
 
-<% if @registration.comments.present? -%>
+<% if @comments.present? -%>
 Comments:
-<%= @registration.comments %>
+<%= @comments %>
 <% end -%>

@@ -2,7 +2,11 @@ class Mailer < ActionMailer::Base
   default from: Clearance.configuration.mailer_sender
 
   def registration_notification(registration)
-    @registration = registration
+    @comments = registration.comments
+    @student_name = registration.name
+    @course_name = registration.section.course_name
+    @city = registration.section.city
+    @running_date_range = registration.section.date_range
 
     mail(to: 'learn@thoughtbot.com',
          subject: "New registration notification")
