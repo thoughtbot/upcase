@@ -19,6 +19,12 @@ Requirements:
 
 Getting up and running:
     rake setup
+    foreman start
+
+This will start a web server on port 5000 and a redis-server.
+
+Foreman will default to port 5000.  If you need to use another port you can specify it with:
+    foreman start -p 5002
 
 Development data is already pre-seeded however if you wish to reset the data you can use the rake task:
 
@@ -26,7 +32,7 @@ Development data is already pre-seeded however if you wish to reset the data you
 
 Fetching tumblr posts:
 
-1. Create `.env` file with TUMBLR_API_KEY. 
+1. Create `.env` file with TUMBLR_API_KEY.
    This file should include all environment variables like TUMBLR_API_KEY, which is required to retrieve Tumblr blog posts. You can use [Heroku config](https://github.com/ddollar/heroku-config) to get `ENV` variables from Heroku:
 
     heroku config:pull --app learn-staging
