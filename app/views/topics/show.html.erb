@@ -1,6 +1,24 @@
-<form class="learn-search">
-  <%= render :partial => 'search_bar' %>
-  <%= render :partial => 'featured' %>
-</form>
+<section id="learn-header-wrapper">
+  <div class="learn-header-container">
+    <div class="learn-detail-logo">
+      <h1>
+        <%= link_to image_tag('learn/learn-ralph-small.png'), root_path %>
+        <%= t '.title' %>
+        <span class="learnred"><%= @topic.name %></span>
+      </h1>
+    </div>
+  </div>
+</section>
 
-<%= render :partial => 'topics/filtered_results' %>
+<section id="learn-detail-nav">
+  <%= render partial: 'nav', locals: { topic: @topic } %>
+</section>
+
+<section class="learn-detail-content">
+  <div class="learn-text-box">
+  </div>
+</section>
+
+<% content_for :javascript do %>
+  <%= javascript_include_tag 'retina' %>
+<% end %>

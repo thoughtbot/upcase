@@ -33,7 +33,6 @@ Workshops::Application.routes.draw do
   end
 
   resources :topics, only: :index
-  resources :topics, only: :show, as: :full_topic
 
   match '/admin' => 'admin/courses#index', as: :admin
   namespace :admin do
@@ -52,9 +51,6 @@ Workshops::Application.routes.draw do
     resources :products, except: :destroy
     resources :purchases, only: :index
   end
-
-  match 'pages/new-topics' => 'pages#show', id: 'new-topics'
-  match 'pages/new-topics-detail' => 'pages#show', id: 'new-topics-detail'
 
   match '/auth/:provider/callback', to: 'auth_callbacks#create'
 
