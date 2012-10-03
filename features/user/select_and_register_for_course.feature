@@ -11,6 +11,7 @@ Feature: Selecting a course and registering for it
       | course                    |
       | name: Test-Driven Haskell |
     When I go to the home page
+    And I view all products
     And I follow "Test-Driven Haskell"
     And I follow "Register"
     And I follow "Sign in."

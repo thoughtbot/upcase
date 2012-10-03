@@ -1,6 +1,52 @@
-<form class="learn-search">
-  <%= render :partial => 'search_bar' %>
-  <%= render :partial => 'featured' %>
-</form>
+<section id="learn-header-wrapper">
+  <div class="learn-header-container">
+    <div class="learn-logo">
+      <h1><%= image_tag 'learn/learn-ralph.png' %> <%= t '.title' %></h1>
+    </div>
+    <div class="learn-intro">
+      <%= t '.intro' %>
+    </div>
+  </div>
+</section>
 
-<%= render :partial => 'topics/results' %>
+<section id="promo-wrapper">
+  <div class="promo-container">
+    <div class="promo-detail">
+      <h2><%= t '.promos.workshops.title' %></h2>
+      <p><%= t '.promos.workshops.description' %></p>
+      <%= link_to courses_path do %>
+        <div class="button"><%= t '.promos.workshops.action' %></div>
+      <% end %>
+    </div>
+  </div>
+  <div class="promo-container">
+    <div class="promo-detail">
+      <h2><%= t '.promos.books.title' %></h2>
+      <p><%= t '.promos.books.description' %></p>
+      <%= link_to courses_path do %>
+        <div class="button"><%= t '.promos.books.action' %></div>
+      <% end %>
+    </div>
+  </div>
+  <div class="promo-container">
+    <div class="promo-detail">
+      <h2><%= t '.promos.videos.title' %></h2>
+      <p><%= t '.promos.videos.description' %></p>
+      <%= link_to courses_path do %>
+        <div class="button"><%= t '.promos.videos.action' %></div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section id="learn-divider">
+  <h5><%= t '.topics' %></h5>
+</section>
+
+<section id="learn-topics-list">
+  <%= render @topics %>
+</section>
+
+<% content_for :javascript do %>
+  <%= javascript_include_tag 'retina' %>
+<% end %>

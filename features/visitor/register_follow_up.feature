@@ -9,6 +9,7 @@ Feature: Registering for a followup
       | id   | course                    | starts on     | ends on       |
       | 1234 | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
     When I go to the home page
+    And I view all products
     When I follow "Test-Driven Haskell"
     And I fill in "follow_up_email" with "foo@example.com"
     And I press "Submit"
@@ -30,6 +31,7 @@ Feature: Registering for a followup
       | id   | course                    | starts on     | ends on       |
       | 1235 | name: Test-Driven Haskell | July 17, 2010 | July 18, 2010 |
     When I go to the home page
+    And I view all products
     When I follow "Test-Driven Haskell"
     And I fill in "follow_up_email" with "foo@example.com"
     And I press "Submit"
@@ -45,11 +47,13 @@ Feature: Registering for a followup
       | id   | course                    | starts on     | ends on       |
       | 1234 | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
     When I go to the home page
+    And I view all products
     When I follow "Test-Driven Haskell"
     And I press "Submit"
     Then I should see "Could not save follow up. Please check your email address."
     And KISSmetrics does not receive the "Followed up" event
     When I go to the home page
+    And I view all products
     When I follow "Test-Driven Haskell"
     And I fill in "follow_up_email" with "yes!!"
     And I press "Submit"
@@ -64,11 +68,13 @@ Feature: Registering for a followup
       | id   | course                    | starts on     | ends on       |
       | 1235 | name: Test-Driven Haskell | July 17, 2010 | July 18, 2010 |
     When I go to the home page
+    And I view all products
     When I follow "Test-Driven Haskell"
     And I press "Submit"
     Then I should see "Could not save follow up. Please check your email address."
     And KISSmetrics does not receive the "Followed up" event
     When I go to the home page
+    And I view all products
     When I follow "Test-Driven Haskell"
     And I fill in "follow_up_email" with "yes!!"
     And I press "Submit"

@@ -129,7 +129,7 @@ GEM
       actionpack (>= 3.0)
     gherkin (2.9.3)
       json (>= 1.4.6)
-    haml (3.1.6)
+    haml (3.1.7)
     hashie (1.2.0)
     high_voltage (1.2.0)
     highline (1.6.12)
@@ -375,6 +375,7 @@ DEPENDENCIES
   flutie
   foreman (~> 0.46.0)
   formtastic (~> 2.2.0)
+  haml (= 3.1.7)
   high_voltage
   hirb
   httparty (= 0.8.1)
