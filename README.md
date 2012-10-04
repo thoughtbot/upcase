@@ -18,19 +18,21 @@ Requirements:
 * Redis
 
 Getting up and running:
+    rake setup
+    foreman start
 
-    cd learn
-    bundle install --binstubs
-    rake db:create:all
-    rake db:migrate
+This will start a web server on port 5000 and a redis-server.
 
-Development data:
+Foreman will default to port 5000.  If you need to use another port you can specify it with:
+    foreman start -p 5002
+
+Development data is already pre-seeded however if you wish to reset the data you can use the rake task:
 
     rake dev:prime
 
 Fetching tumblr posts:
 
-1. Create `.env` file with TUMBLR_API_KEY. 
+1. Create `.env` file with TUMBLR_API_KEY.
    This file should include all environment variables like TUMBLR_API_KEY, which is required to retrieve Tumblr blog posts. You can use [Heroku config](https://github.com/ddollar/heroku-config) to get `ENV` variables from Heroku:
 
     heroku config:pull --app learn-staging
@@ -46,10 +48,7 @@ You can also fetch only the latest articles with:
 Staging and production environments
 -----------------------------------
 
-We're using Heroku as a hosting provider. Deploying to Heroku is done via git. So, set up your git remotes for each environment:
-
-    git remote add staging git@heroku.com:learn-staging.git
-    git remote add production git@heroku.com:learn-production.git
+We're using Heroku as a hosting provider. Deploying to Heroku is done via git.  Remotes are set up in the setup task.  Both production and staging environments are setup.
 
 The content of the index and topics is cached for 12 hours. To manually invalidate the cache, use the following rake task:
 
