@@ -57,3 +57,4 @@ end
 #
 
 WebMock.disable_net_connect!(:allow_localhost => true)
+World(FactoryGirl::Syntax::Methods)

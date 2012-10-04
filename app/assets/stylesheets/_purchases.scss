@@ -39,3 +39,34 @@
     }
   }
 }
+
+body.purchases-show {
+  h4 {
+    @include border-radius(5px);
+    background-color: #AD141E;
+    padding: 20px;
+    width: 200px;
+    margin: 20px auto;
+    a {
+      color: white;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+body.purchases {
+  p.chat {
+    font-weight: bold;
+  }
+}
+
+body.purchases-watch {
+  p.chat {
+    margin-bottom: 50px;
+    margin-top: -50px;
+  }
+}

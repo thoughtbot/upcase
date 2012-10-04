@@ -20,6 +20,11 @@ Where
 
 We will be in touch before <%= @registration.section.starts_on.to_time.to_s(:simple) %> with a reminder and any further instructions. However, please don't hesitate to get in touch with us at learn@thoughtbot.com should you have any questions or concerns.
 
+Every product and workshop includes ongoing support for any questions you may
+have about the topic, both before and after the course.
+Visit our live chat here:
+<%= CHAT_LINK %>
+
 <%= render partial: 'create_account_if_needed', locals: { purchase: @registration } %>
 
 Thanks very much, we'll see you on <%= @registration.section.starts_on.to_time.to_s(:simple) %>!

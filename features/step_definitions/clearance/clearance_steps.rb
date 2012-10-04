@@ -1,13 +1,19 @@
 # Existing users
 
 Given /^(?:I am|I have|I) signed up (?:as|with) "(.*)"$/ do |email|
-  FactoryGirl.create(:user, email: email)
+  create(:user, email: email)
 end
 
 Given /^a user "([^"]*)" exists without a salt, remember token, or password$/ do |email|
-  user = FactoryGirl.create(:user, email: email)
+  user = create(:user, email: email)
   sql  = "update users set salt = NULL, encrypted_password = NULL, remember_token = NULL where id = #{user.id}"
   ActiveRecord::Base.connection.update(sql)
+end
+
+Given /^I am a user who has purchased a product$/ do
+  user = create(:user)
+  purchase = create(:purchase, user: user)
+  sign_in_as_user(user.email)
 end
 
 # Sign up
@@ -34,14 +40,12 @@ end
 
 Given /^I sign in$/ do
   email = generate(:email)
-  steps %{
-    I have signed up with "#{email}"
-    I sign in with "#{email}"
-  }
+  user = create(:user)
+  sign_in_as_user(user.email)
 end
 
 When /^I sign in (?:with|as) "([^"]*)"$/ do |email|
-  step %{I sign in with "#{email}" and "password"}
+  sign_in_as_user(email)
 end
 
 When /^I fill in and submit the sign in form with "([^"]*)" and "([^"]*)"$/ do |email, password|
@@ -51,9 +55,7 @@ When /^I fill in and submit the sign in form with "([^"]*)" and "([^"]*)"$/ do |
 end
 
 When /^I sign in (?:with|as) "([^"]*)" and "([^"]*)"$/ do |email, password|
-  visit sign_in_path
-  page.should have_css("input[type='email']")
-  step %{I fill in and submit the sign in form with "#{email}" and "#{password}"}
+  sign_in_as_user(email, password)
 end
 
 # Sign out
@@ -130,4 +132,11 @@ end
 Then /^I should be signed out$/ do
   visit "/"
   page.should have_content "Sign in"
+end
+
+def sign_in_as_user(email, password="password")
+  visit sign_in_path
+  fill_in "Email", with: email
+  fill_in "Password", with: password
+  click_button "Sign in"
 end
