@@ -34,7 +34,7 @@
                 Purchase<% if @product.external_purchase_name.present? %> from <%= @product.external_purchase_name %><% end %>
               <% end %>
               <% if @product.external_purchase_description.present? %>
-                <p><%= @product.external_purchase_description %></p>
+                <p><%== @product.external_purchase_description %></p>
               <% end %>
             </div>
           </div>
