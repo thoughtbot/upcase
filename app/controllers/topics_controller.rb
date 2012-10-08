@@ -7,5 +7,6 @@ class TopicsController < ApplicationController
   def show
     expires_in 12.hours, public: true
     @topic = Topic.find_by_slug!(params[:id])
+    @articles = @topic.articles.top
   end
 end
