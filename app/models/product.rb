@@ -57,4 +57,8 @@ class Product < ActiveRecord::Base
     raw_url = self.product_image.url(product_type_symbol)
     product_image_file_name.nil? ? "/assets/#{raw_url}" : raw_url
   end
+
+  def external?
+    fulfillment_method == 'external'
+  end
 end

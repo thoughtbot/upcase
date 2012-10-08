@@ -22,6 +22,18 @@ describe Product do
     end
   end
 
+  describe "external?" do
+    it "is true for products with fulfillment method external" do
+      product = create(:product, fulfillment_method: 'external')
+      product.should be_external
+    end
+
+    it "is false for products without fulfillment method external" do
+      product = create(:product, fulfillment_method: 'github')
+      product.should_not be_external
+    end
+  end
+
   describe '#find_books_by_topics' do
     it 'includes books for the given topics' do
       topic_1 = FactoryGirl.create(:topic, name: 'ruby')

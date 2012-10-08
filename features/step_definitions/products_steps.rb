@@ -45,3 +45,17 @@ end
 Given /^there is a github product named "([^"]*)"$/ do |product_name|
   create(:product, fulfillment_method: "github", name: product_name, product_type: "book")
 end
+
+Given /^there is an external product named "([^"]*)"$/ do |product_name|
+  create(:product, 
+    fulfillment_method: "external", 
+    name: product_name, 
+    product_type: "book", 
+    external_purchase_url: "http://external.com",
+    external_purchase_name: "Amazon",
+    external_purchase_description: "Available in Paperback and Kindle")
+end
+
+Then /^the purchase link should link to the external product$/ do
+  page.should have_css(".license a[href='http://external.com']")
+end

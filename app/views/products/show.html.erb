@@ -10,30 +10,44 @@
 
     <section id="workshop-details">
       <section id="license">
-        <div>
-          <h2>Single License <span><%= number_to_currency @product.individual_price, precision: 0 %></span></h2>
-          <div class="license">
-             <%= link_to new_product_purchase_path(@product, variant: :individual), class: 'license-button', id: "#{@product.sku}-purchase-individual" do %>
-               Purchase for Yourself
-             <% end %>
+        <% if !@product.external? %>
+          <div>
+            <h2>Single License <span><%= number_to_currency @product.individual_price, precision: 0 %></span></h2>
+            <div class="license">
+              <%= link_to new_product_purchase_path(@product, variant: :individual), class: 'license-button', id: "#{@product.sku}-purchase-individual" do %>
+                Purchase for Yourself
+              <% end %>
+            </div>
           </div>
-
-        </div>
-        <div>
-          <h2>Group License <span><%= number_to_currency @product.company_price, precision: 0 %></span></h2>
-          <div class="license">
-             <%= link_to new_product_purchase_path(@product, variant: :company), class: 'license-button', id: "#{@product.sku}-purchase-company" do %>
-               Purchase for Your Company
-             <% end %>
+          <div>
+            <h2>Group License <span><%= number_to_currency @product.company_price, precision: 0 %></span></h2>
+            <div class="license">
+              <%= link_to new_product_purchase_path(@product, variant: :company), class: 'license-button', id: "#{@product.sku}-purchase-company" do %>
+                Purchase for Your Company
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% else %>
+          <div>
+            <div class="license">
+              <%= link_to @product.external_purchase_url, class: 'license-button', id: "#{@product.sku}-purchase-individual" do %>
+                Purchase<% if @product.external_purchase_name.present? %> from <%= @product.external_purchase_name %><% end %>
+              <% end %>
+              <% if @product.external_purchase_description.present? %>
+                <p><%= @product.external_purchase_description %></p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </section>
 
       <section id="terms">
         <ul>
           <dd><p>Every product includes support for any questions you may have about the topic, direct from the thoughtbot team.</p></dd>
-          <dt><p>What if I'm not happy?</p></dt>
-          <dd><p>If you&rsquo;re not happy, just let us know and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</p></dd>
+          <% if !@product.external? %>
+            <dt><p>What if I'm not happy?</p></dt>
+            <dd><p>If you&rsquo;re not happy, just let us know and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</p></dd>
+          <% end %>
           <%== @product.questions %>
         </ul>
       </section>
