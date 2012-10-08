@@ -73,3 +73,4 @@ Feature: View topics
     When I go to the home page
     And I follow "Topic 1" within ".learn-text-box"
     Then the topic nav should include "BLOG POSTS"
+    And the related reading section should include the article.
