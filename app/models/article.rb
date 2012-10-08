@@ -8,4 +8,12 @@ class Article < ActiveRecord::Base
   validates :body_html, presence: true
   validates :title, presence: true
   validates :tumblr_url, presence: true
+
+  def self.by_published
+    order("published_on desc")
+  end
+
+  def self.top
+    by_published.limit(10)
+  end
 end

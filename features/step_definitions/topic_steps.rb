@@ -32,3 +32,8 @@ Then /^the topic nav should include "([^"]*)"$/ do |text|
     page.find('#learn-detail-nav').should_not have_content(content)
   end
 end
+
+Then /^the related reading section should include the article\.$/ do
+  article = Topic.last!.articles.first!
+  page.find("#article_#{article.id}").should have_content(article.title)
+end
