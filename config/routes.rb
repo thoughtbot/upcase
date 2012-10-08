@@ -55,6 +55,7 @@ Workshops::Application.routes.draw do
 
   match 'pages/new-topics' => 'pages#show', id: 'new-topics'
   match 'pages/new-topics-detail' => 'pages#show', id: 'new-topics-detail'
+  match 'pages/new-topics-products' => 'pages#show', id: 'new-topics-products'
 
   match '/auth/:provider/callback', to: 'auth_callbacks#create'
 
