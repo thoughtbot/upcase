@@ -251,6 +251,14 @@ $learndarkred: #660000;
     max-width: 760px;
     padding: 2em;
 
+    hr {
+      margin-bottom: 2em;
+    }
+
+    h3 {
+      padding-bottom: 6px;
+    }
+
     ul {
       margin-top: 12px;
     }
@@ -266,7 +274,6 @@ $learndarkred: #660000;
       margin-right: 0;
     }
   }
-
   section.learn-detail-content {
     @include outer-container;
     max-width: 1100px;
