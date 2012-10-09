@@ -3,16 +3,18 @@
     <div class="learn-detail-logo">
       <h1>
         <%= link_to image_tag('learn/learn-ralph-small.png'), root_path %>
-        <%= t '.title' %>
+        <%= t 'topics.index.title' %>
         <span class="learnred"><%= @topic.name %></span>
       </h1>
     </div>
   </div>
 </section>
 
-<section id="learn-articles">
-  <h2>Listing all <%= @topic.name %> articles</h2>
-  <ul class='articles results'>
-    <%= render @articles %>
-  </ul>
+<section class='learn-detail-content'>
+  <section class="learn-text-box">
+    <h3>All <%= @topic.name %> articles</h3>
+    <ul class='articles results'>
+      <%= render @articles %>
+    </ul>
+  </section>
 </section>

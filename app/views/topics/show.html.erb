@@ -14,17 +14,17 @@
   <div class="learn-text-box">
   </div>
 
-<% if @articles.present? %>
-  <section class='learn-text-box'>
-    <h3>Related Reading</h3>
-    <ul>
-      <%= render @articles %>
-    </ul>
-    <div class="view-all-articles">
-      <%= link_to "View all #{@topic.name} articles", topic_articles_path(@topic) %>
-    </div>
-  </section>
-<% end %>
+  <% if @articles.present? %>
+    <section class='learn-text-box'>
+      <h3>Related Reading</h3>
+      <ul>
+        <%= render @articles %>
+      </ul>
+      <div class="view-all-articles">
+        <%= link_to "View all #{@topic.name} articles", topic_articles_path(@topic) %>
+      </div>
+    </section>
+  <% end %>
 
 </section>
 
