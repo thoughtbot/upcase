@@ -22,10 +22,10 @@
 <% if @articles.present? %>
   <section class='learn-detail-related-reading'>
     <h2>Related Reading</h2>
-    <%= link_to "View all #{@topic.name} articles", topic_articles_path(@topic) %>
     <ul>
       <%= render @articles %>
     </ul>
+    <%= link_to "View all #{@topic.name} articles", topic_articles_path(@topic) %>
   </section>
 <% end %>
 
