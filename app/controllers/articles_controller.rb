@@ -1,0 +1,6 @@
+class ArticlesController < ApplicationController
+  def index
+    @topic = Topic.find_by_slug(params[:id])
+    @articles = @topic.articles.by_published
+  end
+end

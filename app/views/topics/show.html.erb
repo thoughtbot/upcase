@@ -10,23 +10,23 @@
   </div>
 </section>
 
-<section id="learn-detail-nav">
-  <%= render partial: 'nav', locals: { topic: @topic } %>
-</section>
-
 <section class="learn-detail-content">
   <div class="learn-text-box">
   </div>
-</section>
 
-<% if @articles.present? %>
-  <section class='learn-detail-related-reading'>
-    <h2>Related Reading</h2>
-    <ul>
-      <%= render @articles %>
-    </ul>
-  </section>
-<% end %>
+  <% if @articles.present? %>
+    <section class='learn-text-box'>
+      <h3>Related Reading</h3>
+      <ul>
+        <%= render @articles %>
+      </ul>
+      <div class="view-all-articles">
+        <%= link_to "View all #{@topic.name} articles", topic_articles_path(@topic) %>
+      </div>
+    </section>
+  <% end %>
+
+</section>
 
 <% content_for :javascript do %>
   <%= javascript_include_tag 'retina' %>
