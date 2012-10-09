@@ -39,38 +39,9 @@ Feature: View topics
     And I follow "Topic 1" within ".learn-text-box"
     Then I should see "Topic 1" within ".learn-detail-logo"
 
-  Scenario: View a topic with a workshop
-    Given a featured topic named "Topic 1"
-    And a course for topic "Topic 1"
-    When I go to the home page
-    And I follow "Topic 1" within ".learn-text-box"
-    Then the topic nav should include "WORKSHOPS"
-
-  Scenario: View a topic with a book product
-    Given a featured topic named "Topic 1"
-    And a "book" product for topic "Topic 1"
-    When I go to the home page
-    And I follow "Topic 1" within ".learn-text-box"
-    Then the topic nav should include "BOOKS"
-
-  Scenario: View a topic with a screencast product
-    Given a featured topic named "Topic 1"
-    And a "screencast" product for topic "Topic 1"
-    When I go to the home page
-    And I follow "Topic 1" within ".learn-text-box"
-    Then the topic nav should include "VIDEOS"
-
-  Scenario: View a topic with a video product
-    Given a featured topic named "Topic 1"
-    And a "video" product for topic "Topic 1"
-    When I go to the home page
-    And I follow "Topic 1" within ".learn-text-box"
-    Then the topic nav should include "VIDEOS"
-
   Scenario: View a topic with an article
     Given a featured topic named "Topic 1"
     And an article for topic "Topic 1"
     When I go to the home page
     And I follow "Topic 1" within ".learn-text-box"
-    Then the topic nav should include "BLOG POSTS"
-    And the related reading section should include the article.
+    Then the related reading section should include the article.
