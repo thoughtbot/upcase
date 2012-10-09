@@ -89,7 +89,9 @@ $learndarkred: #660000;
     font: 600 13px $sans-serif;
     text-align:center;
     height: 44px;
-    width: 126px;
+    border-bottom: 4px solid $learndarkred;
+    margin: 0 auto;
+    padding-top: 13px;
 
     a {
       color: white;
@@ -98,6 +100,14 @@ $learndarkred: #660000;
       padding-top: 15px;
       width: 100%;
     }
+
+  }
+
+  .button:active {
+    border-bottom: none;
+    height: 40px;
+    position: relative;
+    top: 4px;
   }
 
   .button:hover {
@@ -170,7 +180,7 @@ $learndarkred: #660000;
   section#promo-wrapper {
     @include outer-container;
     margin: 0 auto;
-    padding: 4em 1em 4em 1em;
+    padding: 4em 1em 3em 1em;
     text-align: center;
 
     .promo-container {
@@ -197,18 +207,43 @@ $learndarkred: #660000;
         }
 
         .button {
-          border-bottom: 4px solid $learndarkred;
-          margin: 0 auto;
-          padding-top: 13px;
-        }
-
-        .button:active {
-          border-bottom: none;
-          height: 40px;
-          position: relative;
-          top: 4px;
+          width: 126px;
         }
       }
+    }
+
+    .products-container {
+      @include span-columns(4);
+      text-align: left;
+
+      p {
+        font-style: normal;
+      }
+
+      ul {
+        margin-top: 30px;
+
+        li {
+          margin-bottom: 30px
+        }
+
+        li p {
+          margin-top: 6px;
+        }
+      }
+    }
+  }
+
+  #all-products {
+    @include outer-container;
+
+    .button {
+      @include span-columns(4);
+      @include shift(4);
+    }
+
+    .button:active {
+      margin-bottom: 4px;
     }
   }
 
