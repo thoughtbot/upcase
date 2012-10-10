@@ -28,16 +28,17 @@
       </div>
     <% end %>
   </div>
-  <aside>
-    <h2>RELATED PRODUCTS</h2>
-    <hr>
-    <ul>
-      <li><h5>IN-PERSON WORKSHOP</h5><a href="#">Intro to Ruby on Rails</a></li>
-      <li><h5>IN-PERSON WORKSHOP</h5><a href="#">Intermediate Ruby on Rails</a></li>
-      <li><h5>IN-PERSON WORKSHOP</h5><a href="#">Test Drive Rails</a></li>
-      <li><h5>VIDEO</h5><a href="#">Vim for Rails Developers Webcast</a></li>
-    </ul>
-  </aside>
+
+  <% if @courses.present? || @products.present? %>
+    <aside>
+      <h2><%= t '.related_products' %></h2>
+      <hr>
+      <ul>
+        <%= render :partial => 'related_course', :collection => @courses %>
+        <%= render :partial => 'related_product', :collection => @products %>
+      </ul>
+    </aside>
+  <% end %>
 </section>
 
 <% content_for :javascript do %>

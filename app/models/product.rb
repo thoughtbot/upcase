@@ -8,7 +8,7 @@ class Product < ActiveRecord::Base
   validates_presence_of :name, :sku, :individual_price, :company_price, :fulfillment_method
   accepts_nested_attributes_for :downloads, :allow_destroy => true
   has_attached_file :product_image, {
-    styles: { book: "230x300#", screencast: "153x100#" },
+    styles: { book: '230x300#', video: '153x100#' }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
 
   def self.active
