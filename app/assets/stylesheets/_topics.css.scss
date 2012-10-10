@@ -387,6 +387,11 @@ $learndarkred: #660000;
         width: 140px;
       }
     }
+
+    #all-products .button {
+      @include span-columns(6);
+      @include shift(3);
+    }
   }
 
   @media screen and (max-device-width: 800px), screen and (max-width: 800px) {
@@ -460,6 +465,11 @@ $learndarkred: #660000;
 
     .products-container {
       width: 100% !important;
+    }
+
+    #all-products .button {
+      @include span-columns(10);
+      @include shift(1);
     }
   }
 
