@@ -85,13 +85,15 @@ $learndarkred: #660000;
   .button {
     @include border-radius(3px);
     background-color: $learnred;
-    color: white;
-    font: 700 13px $sans-serif;
-    text-align:center;
-    height: 44px;
     border-bottom: 4px solid $learndarkred;
+    border-radius: 3px;
+    color: white;
+    display: inline-block;
+    font: 700 13px $sans-serif;
+    height: 44px;
     margin: 0 auto;
     padding-top: 13px;
+    text-align:center;
 
     a {
       color: white;
@@ -240,6 +242,7 @@ $learndarkred: #660000;
     .button {
       @include span-columns(4);
       @include shift(4);
+      padding: auto 6px 0 6px;
     }
 
     .button:active {
@@ -381,7 +384,7 @@ $learndarkred: #660000;
       .button {
         height:36px;
         padding-top: 9px;
-        width: 120px;
+        width: 140px;
       }
     }
   }
@@ -452,6 +455,10 @@ $learndarkred: #660000;
 
     aside {
       display: block !important;
+      width: 100% !important;
+    }
+
+    .products-container {
       width: 100% !important;
     }
   }
