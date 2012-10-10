@@ -366,6 +366,16 @@ $learndarkred: #660000;
     }
   }
 
+  #main-footer {
+    max-width: 704px;
+    padding: 2em;
+    width: 93%;
+
+    section {
+      width: 30%;
+     }
+  }
+
   @media screen and (max-width: 910px) {
 
     section#learn-header-wrapper .learn-header-container .learn-intro {
@@ -458,7 +468,7 @@ $learndarkred: #660000;
       width: 100%;
     }
 
-    section.learn-detail-content .learn-text-box {
+    section.learn-detail-content .learn-text-box-wrapper {
       width: 100%;
     }
 
@@ -469,6 +479,7 @@ $learndarkred: #660000;
     aside {
       display: block !important;
       width: 100% !important;
+      margin-top: 2em;
     }
 
     .products-container {
@@ -478,6 +489,15 @@ $learndarkred: #660000;
     #all-products .button {
       @include span-columns(10);
       @include shift(1);
+    }
+
+    #main-footer section {
+      float: none;
+      width: 100%
+    }
+
+    footer#main-footer nav section#current-workshops-footer {
+      width: 100%
     }
   }
 
