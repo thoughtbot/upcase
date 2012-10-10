@@ -80,6 +80,14 @@ $learndarkred: #660000;
     border-bottom: 2px solid $warmgray;
     margin-bottom: 1em;
     padding: 20px;
+
+    a:hover h2 {
+      color: $learnred;
+    }
+
+    a:hover h3 {
+      color: #C42107;
+    }
   }
 
   .button {
