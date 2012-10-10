@@ -5,6 +5,7 @@ en:
         menu:
           Refund Purchase
 
+  learn: Learn
   topics:
     index:
       intro:
@@ -34,22 +35,3 @@ en:
             code.
           title:
             IN-PERSON WORKSHOPS
-      title:
-        Learn
-      topics:
-        TOPICS
-    show:
-      title:
-        Learn
-
-    nav:
-      blog_posts:
-        BLOG POSTS
-      books:
-        BOOKS
-      trail_map:
-        TRAIL MAP
-      videos:
-        VIDEOS
-      workshops:
-        WORKSHOPS

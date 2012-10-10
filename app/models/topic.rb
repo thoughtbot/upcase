@@ -18,18 +18,6 @@ class Topic < ActiveRecord::Base
   # Callbacks
   before_validation :generate_slug
 
-  def blog_url
-    "http://robots.thoughtbot.com/tagged/#{name}"
-  end
-
-  def books
-    products.where product_type: 'book'
-  end
-
-  def screencasts_and_videos
-    products.where product_type: %w(screencast video)
-  end
-
   def self.top
     where(featured: true).order('count DESC').limit 20
   end
