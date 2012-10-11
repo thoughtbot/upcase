@@ -1,6 +1,6 @@
-<%= content_tag_for :li, product, class: "#{product.product_type} #{topic_classes(product.topics)}" do %>
-  <%= link_to product_path(product) do %>
-    <h3><%= product.name %></h3>
+<li class="product-list">
+  <%= link_to product do %>
+    <h2><%= product.name %></h2>
     <p><%= product.short_description %></p>
   <% end %>
-<% end %>
+</li>

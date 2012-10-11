@@ -1,0 +1,42 @@
+<section id="learn-header-wrapper">
+  <div class="learn-header-container">
+    <div class="learn-detail-logo">
+      <h1>
+        <%= link_to image_tag('learn/learn-ralph-small.png'), root_path %>
+        <%= t 'shared.learn' %>
+        <span class="learnred"><%= t '.title' %></span>
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section id="promo-wrapper">
+  <% if @courses.present? %>
+    <div class="products-container learn-text-box">
+      <h3><%= t 'shared.workshops' %></h3>
+      <ul>
+        <%= render @courses %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @books.present? %>
+    <div class="products-container learn-text-box">
+      <h3><%= t 'shared.books' %></h3>
+      <ul>
+        <%= render @books %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @videos.present? %>
+    <div class="products-container learn-text-box">
+      <h3><%= t 'shared.videos' %></h3>
+      <ul>
+        <%= render @videos %>
+      </ul>
+    </div>
+  <% end %>
+</section>
+
+<%= javascript_include_tag 'retina.js' %>

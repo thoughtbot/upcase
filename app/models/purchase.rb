@@ -279,7 +279,7 @@ class Purchase < ActiveRecord::Base
     response = paypal_request.setup(
       paypal_payment_request,
       paypal_product_purchase_url(self.product, self, host: self.class.host),
-      courses_url(host: self.class.host)
+      products_url(host: self.class.host)
     )
     self.paid = false
     self.paypal_url = response.redirect_uri

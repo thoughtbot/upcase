@@ -1,4 +1,10 @@
 class ProductsController < ApplicationController
+  def index
+    @courses = Course.only_public.by_position
+    @books = Product.books.ordered
+    @videos = Product.videos.ordered
+  end
+
   def show
     @product = Product.find(params[:id])
 
