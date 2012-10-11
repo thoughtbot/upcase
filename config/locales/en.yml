@@ -5,7 +5,9 @@ en:
         menu:
           Refund Purchase
 
-  learn: Learn
+  shared:
+    learn: Learn
+
   topics:
     index:
       intro:
@@ -35,3 +37,8 @@ en:
             code.
           title:
             IN-PERSON WORKSHOPS
+    show:
+      related_reading:
+        Related Reading
+      view_articles:
+        View all %{name} articles

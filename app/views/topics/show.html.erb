@@ -3,7 +3,7 @@
     <div class="learn-detail-logo">
       <h1>
         <%= link_to image_tag('learn/learn-ralph-small.png'), root_path %>
-        <%= t 'learn' %>
+        <%= t 'shared.learn' %>
         <span class="learnred"><%= @topic.name %></span>
       </h1>
     </div>
@@ -16,16 +16,16 @@
 
   <% if @articles.present? %>
     <section class='learn-text-box'>
-      <h3>Related Reading</h3>
+      <h3><%= t '.related_reading' %></h3>
       <ul>
         <%= render @articles %>
       </ul>
       <div class="view-all-articles">
-        <%= link_to "View all #{@topic.name} articles", topic_articles_path(@topic) %>
+        <%= link_to t('.view_articles', name: @topic.name),
+              topic_articles_path(@topic) %>
       </div>
     </section>
   <% end %>
-
 </section>
 
 <% content_for :javascript do %>
