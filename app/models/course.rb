@@ -21,22 +21,12 @@ class Course < ActiveRecord::Base
     order("courses.position asc")
   end
 
-  def self.find_courses_by_topics(topics)
-    reduction = lambda {|memo, topic| memo + for_topic(topic).only_public.by_position }
-    courses = topics.reduce([], &reduction).uniq
-    courses
-  end
-
   def self.unscheduled
     where("courses.id not in (select sections.course_id from sections where sections.ends_on >= ?)", Date.today)
   end
 
   def self.only_public
     where(public: true)
-  end
-
-  def self.for_topic(topic)
-    joins(:classifications).where('classifications.topic_id' => topic.id)
   end
 
   def questions_with_blank

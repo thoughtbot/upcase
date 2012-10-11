@@ -9,11 +9,11 @@ class Article < ActiveRecord::Base
   validates :title, presence: true
   validates :tumblr_url, presence: true
 
-  def self.for_topics(topics)
-    joins(:topics).where('classifications.topic_id in (?)', topics)
-  end
-
   def self.by_published
     order("published_on desc")
+  end
+
+  def self.top
+    by_published.limit(10)
   end
 end

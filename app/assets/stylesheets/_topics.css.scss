@@ -1,15 +1,467 @@
-section.meta-info{
-  width: 180px;
-  float: left;
-  padding-right: 10px;
-}
+$lightwarmgray: #F9F5F0;
+$warmgray: #D9D4CC;
+$darkwarmgray: #6C6A66;
+$learnred: #B22115;
+$learndarkred: #660000;
 
-section.topic{
-  width: 800px;
-  display: block;
-}
-section.posts{
-  float: left;
-  width: 800px;
-  display: block;
+.topics-index, .topics-show, .articles-index {
+  -webkit-font-smoothing: antialiased;
+  background-color: $lightwarmgray!important;
+  border-top: none !important;
+  margin: 0 auto;
+
+  header {
+    display: none;
+  }
+
+   h1 {
+    color: white;
+    font-smoothing: antialiased;
+    font: 800 72px $sans-serif;
+
+    a {
+      color: white;
+    }
+  }
+
+  h2 {
+    color: $darkwarmgray;
+    font: 700 26px/25px $sans-serif;
+  }
+
+  h3 {
+    color: $learnred;
+    font: 800 36px $sans-serif;
+  }
+
+  h4 {
+    color: #94918C;
+    font: 600 13px $sans-serif;
+    text-shadow: 0 2px 0 white;
+  }
+
+  h5 {
+    color: #94918C;
+    font: 600 13px $sans-serif;
+    text-shadow: 0 2px 0 white;
+    background-color: $lightwarmgray;
+    display: inline-block;
+    margin-top: -8px;
+    padding: 0 10px 0 10px;
+    position: absolute;
+    text-align: center;
+  }
+
+  p, aside li {
+    color: $darkwarmgray;
+    font: italic 17px $serif;
+    text-shadow: 0 1px 1px rgba(255,255,255,.3);
+  }
+
+  .learnred {
+    color: $learnred;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  hr {
+    border: 0;
+    height: 2px;
+    color: $warmgray;
+    border-bottom: 1px solid white;
+    border-top: 1px solid $warmgray;
+  }
+
+  .learn-text-box {
+    @include border-radius(4px);
+    background-color: white;
+    border-bottom: 2px solid $warmgray;
+    margin-bottom: 1em;
+    padding: 20px;
+  }
+
+  .button {
+    @include border-radius(3px);
+    background-color: $learnred;
+    color: white;
+    font: 700 13px $sans-serif;
+    text-align:center;
+    height: 44px;
+    border-bottom: 4px solid $learndarkred;
+    margin: 0 auto;
+    padding-top: 13px;
+
+    a {
+      color: white;
+      display: block;
+      height:100%;
+      padding-top: 15px;
+      width: 100%;
+    }
+
+  }
+
+  .button:active {
+    border-bottom: none;
+    height: 40px;
+    position: relative;
+    top: 4px;
+  }
+
+  .button:hover {
+    background-color: #C42107;
+  }
+
+  .gray {
+    background-color: $warmgray;
+  }
+
+  section#learn-header-wrapper {
+    background: $warmgray url("learn/learn-arrows.png") repeat-x left bottom;
+    margin: 0 auto;
+    width: 100%;
+
+    .learn-header-container {
+      @include outer-container;
+      max-width: 1100px;
+      padding: 2em;
+      text-align: center;
+
+      .learn-logo, .learn-intro {
+        -webkit-font-smoothing: antialiased;
+        color: $darkwarmgray;
+        font: italic 300 20px $serif;
+        padding: 1em;
+      }
+
+      .learn-intro {
+        margin: 0 auto;
+        width: 55%;
+      }
+
+      .learn-logo img {
+        vertical-align: -20px;
+      }
+
+      .learn-detail-logo {
+        float: left;
+        text-transform: capitalize;
+
+        img {
+          vertical-align: -15px;
+        }
+
+        h1 {
+          font-size: 55px;
+        }
+      }
+    }
+  }
+
+  section#learn-detail-nav {
+    @include outer-container;
+    max-width: 1100px;
+    padding: 18px 0 30px 2em;
+
+    li {
+      display: inline-block;
+      list-style-type: none;
+      margin-right: 4px;
+      margin-top: 8px;
+    }
+
+    li:last-child {
+      margin-right: 0;
+    }
+  }
+
+  section#promo-wrapper {
+    @include outer-container;
+    margin: 0 auto;
+    padding: 4em 1em 3em 1em;
+    text-align: center;
+
+    .promo-container {
+      @include span-columns(4);
+
+      .promo-detail {
+        @include border-radius(300px);
+        background-color: white;
+        border: 13px solid $warmgray;
+        height:300px;
+        margin: 0 auto;
+        padding: 2.5em 1.8em 1em 1.8em;
+        width: 300px;
+
+        h2 {
+          height: 50px;
+          vertical-align: middle;
+        }
+
+        p {
+          border-top: 7px solid $learnred;
+          margin: 10px 0 10px 0;
+          padding-top:10px;
+        }
+
+        .button {
+          width: 140px;
+        }
+      }
+    }
+
+    .products-container {
+      @include span-columns(4);
+      text-align: left;
+
+      p {
+        font-style: normal;
+      }
+
+      ul {
+        margin-top: 30px;
+
+        li {
+          margin-bottom: 30px
+        }
+
+        li p {
+          margin-top: 6px;
+        }
+      }
+    }
+  }
+
+  #all-products {
+    @include outer-container;
+
+    .button {
+      @include span-columns(4);
+      @include shift(4);
+    }
+
+    .button:active {
+      margin-bottom: 4px;
+    }
+  }
+
+  section#learn-topics-list {
+    @include outer-container;
+    max-width: 760px;
+    padding: 2em;
+
+    hr {
+      margin-bottom: 2em;
+    }
+
+    h3 {
+      padding-bottom: 6px;
+      text-transform: capitalize;
+    }
+
+    ul {
+      margin-top: 12px;
+    }
+
+    li {
+      display: inline-block;
+      list-style-type: none;
+      margin-right: 4px;
+      margin-top: 8px;
+    }
+
+    li:last-child {
+      margin-right: 0;
+    }
+  }
+  section.learn-detail-content {
+    @include outer-container;
+    max-width: 1100px;
+    padding: 4em 2em;
+
+    .learn-text-box {
+      @include span-columns (10);
+    }
+
+    h3:first-child {
+      padding-top: 0;
+    }
+
+    h3 {
+      padding: 26px 0 2px 0;
+    }
+
+    p, li {
+      -webkit-font-smoothing: antialiased;
+      color: $darkwarmgray;
+      font: normal 17px $serif;
+    }
+
+    li {
+      margin-top: 20px;
+    }
+
+    .learn-text-box li {
+      list-style-type: none;
+      margin: 30px 0 0 30px;
+    }
+
+    .results-date {
+      color: $warmgray;
+      display: inline-block;
+      float: right;
+      font: 700 14px $sans-serif;
+      margin-top: 8px;
+    }
+
+    .view-all-articles {
+      font: italic 16px $serif;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    aside {
+      @include span-columns (2);
+
+      h2:first-child {
+        margin-top: 0;
+      }
+
+      h2 {
+        color: $warmgray;
+        text-shadow: 0 1px 0 #fff;
+        margin-top: 40px;
+      }
+
+      h5 {
+        background-color: none;
+        display: block;
+        text-align: left;
+        margin-top: 18px;
+        padding: 0;
+        position: relative;
+      }
+
+      li {
+        margin: 4px 0 8px 0;
+
+        a {
+        color: $darkwarmgray;
+        font-style: italic;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 910px) {
+
+    section#learn-header-wrapper .learn-header-container .learn-intro {
+      width: 90%;
+    }
+
+    #learn-divider {
+      width: 95%;
+    }
+
+    section#promo-wrapper .promo-container .promo-detail {
+      height: 270px;
+      width: 270px;
+
+      h2 {
+        font: 700 20px/20px $sans-serif;
+      }
+
+      p {
+        font-size: 15px;
+        margin-top: 0;
+      }
+
+      .button {
+        height:36px;
+        padding-top: 9px;
+        width: 120px;
+      }
+    }
+  }
+
+  @media screen and (max-device-width: 800px), screen and (max-width: 800px) {
+
+   .learn-logo img, .learn-detail-logo img {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .learn-detail-logo {
+      float: none !important;
+    }
+
+    .products-container h3 {
+      font: 800 25px/25px $sans-serif !important;
+    }
+
+    section#learn-header-wrapper .learn-header-container .learn-intro {
+      padding-top: 0;
+    }
+
+    section#promo-wrapper .promo-container {
+      margin: 0;
+      width: 50%;
+
+      &:last-child {
+        display: block;
+        margin-top:-20px;
+        width: 100%;
+      }
+    }
+
+    section#learn-topics-list {
+      width:93%;
+    }
+  }
+
+  @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+
+    section#learn-header-wrapper .learn-header-container .learn-intro {
+      font-size: 18px;
+    }
+
+    section#promo-wrapper .promo-container {
+      display: block;
+      margin-top: 16px !important;
+      width: 100%;
+    }
+
+    section#promo-wrapper .promo-container .promo-detail p {
+      line-height: 19px;
+    }
+
+    section#learn-topics-list li {
+      display: block;
+      width: 100%;
+    }
+
+    section.learn-detail-content .learn-text-box {
+      width: 100%;
+    }
+
+    .learn-detail-logo {
+      float: auto;
+    }
+
+    aside {
+      display: block !important;
+      width: 100% !important;
+    }
+  }
+
+  @media all and (-webkit-min-device-pixel-ratio: 1.5) {
+
+    section#learn-header-wrapper {
+      background: $warmgray url("learn/learn-arrows@2x.png") repeat-x left bottom;
+      background-size: 44px 8px;
+    }
+  }
+
 }
