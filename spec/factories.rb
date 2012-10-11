@@ -168,7 +168,6 @@ FactoryGirl.define do
   factory :topic do
     name
 
-    body_html 'body text of document'
     keywords 'clean, clear, precise'
     summary 'short yet descriptive'
   end

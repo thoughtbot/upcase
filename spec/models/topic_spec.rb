@@ -43,4 +43,33 @@ describe Topic do
       it { should validate_uniqueness_of(:slug) }
     end
   end
+
+  context '.import_trail_map' do
+    let(:fake_trail) do
+      fake_trail = {
+        'name' => 'Fake Trail',
+        'steps' => [
+          {
+            'name' => 'Critical Learning',
+            'resources' => [
+              {
+                'name' => 'Google',
+                'url' => 'http://lmgtfy.com/'
+              }
+            ]
+          }
+        ]
+      }
+    end
+    before(:all) do
+      fake_body_str = fake_trail.to_json
+      Curl.stubs(get: stub(body_str: fake_body_str))
+    end
+
+    it 'downloads a trail and parrots it back' do
+      topic = create(:topic, name: 'fake-trail')
+      topic.import_trail_map
+      topic.trail_map.should == fake_trail
+    end
+  end
 end
