@@ -37,11 +37,11 @@ When /^I should see an image with name "([^"]*)"$/ do |image_name|
 end
 
 When /^a product named "([^"]*)"$/ do |product_name|
-  create(:product, fulfillment_method: "fetch", name: product_name, product_type: "screencast")
+  create(:product, fulfillment_method: "fetch", name: product_name, product_type: 'video')
 end
 
 When /^a video download product named "([^"]*)"$/ do |product_name|
-  product = create(:product, fulfillment_method: "fetch", name: product_name, product_type: "screencast")
+  product = create(:product, fulfillment_method: "fetch", name: product_name, product_type: 'video')
   create(:download, download_file_name: "test.txt", description: "test desc", product: product)
   create(:video, product: product)
 end
@@ -51,10 +51,10 @@ Given /^there is a github product named "([^"]*)"$/ do |product_name|
 end
 
 Given /^there is an external product named "([^"]*)"$/ do |product_name|
-  create(:product, 
-    fulfillment_method: "external", 
-    name: product_name, 
-    product_type: "book", 
+  create(:product,
+    fulfillment_method: "external",
+    name: product_name,
+    product_type: "book",
     external_purchase_url: "http://external.com",
     external_purchase_name: "Amazon",
     external_purchase_description: "Available in Paperback and Kindle")

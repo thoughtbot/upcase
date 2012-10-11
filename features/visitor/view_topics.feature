@@ -17,12 +17,12 @@ Feature: View topics
   Scenario: Navigate to videos
     Given the following products exist:
       | name         | product_type |
-      | Screencast 1 | screencast   |
       | Video 1      | video        |
+      | Video 2      | video        |
     When I go to the home page
     And I follow "WATCH US"
-    Then I should see "Screencast 1"
     Then I should see "Video 1"
+    Then I should see "Video 2"
 
   Scenario: View topics
     Given a featured topic named "Topic 1"
@@ -38,6 +38,17 @@ Feature: View topics
     When I go to the home page
     And I follow "Topic 1" within ".learn-text-box"
     Then I should see "Topic 1" within ".learn-detail-logo"
+
+  Scenario: View a topic's related products
+    Given a featured topic named "Topic 1"
+    And a course named "Course 1" for topic "Topic 1"
+    And a "book" product named "Book 1" for topic "Topic 1"
+    And a "video" product named "Video 1" for topic "Topic 1"
+    When I go to the home page
+    And I follow "Topic 1" within ".learn-text-box"
+    Then I should see "Course 1" within "aside"
+    Then I should see "Book 1" within "aside"
+    Then I should see "Video 1" within "aside"
 
   Scenario: View a topic with an article
     Given a featured topic named "Topic 1"

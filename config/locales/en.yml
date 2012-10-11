@@ -37,8 +37,19 @@ en:
             code.
           title:
             IN-PERSON WORKSHOPS
+    related_course:
+      heading:
+        IN-PERSON WORKSHOP
+    related_product:
+      headings:
+        book:
+          BOOK
+        video:
+          VIDEO
     show:
       related_reading:
         Related Reading
+      related_products:
+        RELATED PRODUCTS
       view_articles:
         View all %{name} articles

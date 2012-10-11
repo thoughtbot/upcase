@@ -8,15 +8,15 @@ Feature: Viewing the courses page
     And the following products exists:
       | name            | product_type           |
       | Book 1          | book                   |
-      | Book 2          | book and example app   |
-      | Screencast 1    | screencast             |
-      | Screencast 2    | screencast             |
-      | Screencast 3    | screencast             |
+      | Book 2          | book                   |
+      | Video 1         | video                  |
+      | Video 2         | video                  |
+      | Video 3         | video                  |
     When I go to the home page
     And I view all products
     Then I should see "Book 1"
     And I should see "Book 2"
-    And I should see "Screencast 1"
-    And I should see "Screencast 2"
-    And I should see "Screencast 3"
+    And I should see "Video 1"
+    And I should see "Video 2"
+    And I should see "Video 3"
     And I should see "Test-Driven Haskell"

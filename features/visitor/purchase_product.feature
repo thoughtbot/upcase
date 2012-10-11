@@ -6,7 +6,7 @@ Feature: Purchase a Product
   Background:
     Given the following products exist:
       | name         | id | sku  | individual_price | company_price | product_type | fulfillment_method |
-      | Test Fetch   | 1  | TEST | 15               | 50            | screencast   | fetch              |
+      | Test Fetch   | 1  | TEST | 15               | 50            | video        | fetch              |
       | Test GitHub  | 2  | TEST | 15               | 199           | book         | github             |
     Given the following downloads exist:
       | download_file_name  | product_id    | description |

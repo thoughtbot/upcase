@@ -292,7 +292,7 @@ $learndarkred: #660000;
     max-width: 1100px;
     padding: 4em 2em;
 
-    .learn-text-box {
+    .learn-text-box-wrapper {
       @include span-columns (10);
     }
 
@@ -335,6 +335,8 @@ $learndarkred: #660000;
 
     aside {
       @include span-columns (2);
+      float: right;
+      display: inline-block;
 
       h2:first-child {
         margin-top: 0;
