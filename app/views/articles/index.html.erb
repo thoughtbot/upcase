@@ -10,11 +10,18 @@
   </div>
 </section>
 
-<section class='learn-detail-content'>
-  <section class="learn-text-box">
-    <h3>All <%= @topic.name %> articles</h3>
-    <ul class='articles results'>
-      <%= render @articles %>
-    </ul>
-  </section>
+<section class="learn-detail-content">
+  <div class="learn-text-box-wrapper">
+    <div class="learn-text-box">
+      <h3><%= t '.heading', topic: @topic.name %></h3>
+
+      <% if @articles.present? %>
+        <ul class="articles results">
+          <%= render @articles %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+
+  <%= render 'topics/related' %>
 </section>

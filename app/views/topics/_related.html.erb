@@ -1,0 +1,10 @@
+<% if @courses.present? || @products.present? %>
+  <aside>
+    <h2><%= t '.heading' %></h2>
+    <hr>
+    <ul>
+      <%= render :partial => 'topics/course', :collection => @courses %>
+      <%= render :partial => 'topics/product', :collection => @products %>
+    </ul>
+  </aside>
+<% end %>
