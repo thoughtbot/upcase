@@ -33,7 +33,6 @@ Workshops::Application.routes.draw do
   end
 
   resources :topics, only: :index
-  resources :topics, only: :show, as: :full_topic
 
   match '/admin' => 'admin/courses#index', as: :admin
   namespace :admin do
@@ -71,5 +70,6 @@ Workshops::Application.routes.draw do
 
   mount Split::Dashboard, at: 'split'
 
-  get ':id' => 'topics#show', as: :topic, :constraints => { format: 'html' }
+  get ':id' => 'topics#show', as: :topic
+  match '/:id/articles' => 'articles#index', as: 'topic_articles'
 end

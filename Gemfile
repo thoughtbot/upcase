@@ -35,6 +35,8 @@ gem "rails_admin"
 gem 'typhoeus'
 gem "omniauth", "~> 1.1.0"
 gem "omniauth-github", "~> 1.0.2"
+gem 'haml', '3.1.7'
+gem 'sass', '3.2.1'
 
 # Fix the warning: regexp match /.../n against to UTF-8 string issue
 gem "escape_utils"

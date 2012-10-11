@@ -1,8 +1,55 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
   admin:
     actions:
       purchase_refund:
-        menu: 'Refund Purchase'
+        menu:
+          Refund Purchase
+
+  shared:
+    learn: Learn
+
+  topics:
+    index:
+      intro:
+        Thanks for swinging by. If you’re new, the trail maps for any topic
+        below are the best way to get an intro. Otherwise, just dig in.
+      promos:
+        books:
+          action:
+            READ ON
+          description:
+            Build snappier, more interactive apps with cleaner code and better
+            tests in less time.
+          title:
+            BOOKS
+        videos:
+          action:
+            WATCH US
+          description:
+            Like Chat Roulette, but you know what you’re getting. Usually.
+          title:
+            VIDEOS
+        workshops:
+          action:
+            FIND A WORKSHOP
+          description:
+            We can help you become better at creating magic by writing better
+            code.
+          title:
+            IN-PERSON WORKSHOPS
+    related_course:
+      heading:
+        IN-PERSON WORKSHOP
+    related_product:
+      headings:
+        book:
+          BOOK
+        video:
+          VIDEO
+    show:
+      related_reading:
+        Related Reading
+      related_products:
+        RELATED PRODUCTS
+      view_articles:
+        View all %{name} articles

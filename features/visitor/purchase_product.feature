@@ -6,7 +6,7 @@ Feature: Purchase a Product
   Background:
     Given the following products exist:
       | name         | id | sku  | individual_price | company_price | product_type | fulfillment_method |
-      | Test Fetch   | 1  | TEST | 15               | 50            | screencast   | fetch              |
+      | Test Fetch   | 1  | TEST | 15               | 50            | video        | fetch              |
       | Test GitHub  | 2  | TEST | 15               | 199           | book         | github             |
     Given the following downloads exist:
       | download_file_name  | product_id    | description |
@@ -17,6 +17,7 @@ Feature: Purchase a Product
 
   Scenario: A visitor signs up for an account through checkout
     When I go to the home page
+    And I view all products
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"
     And I follow "Sign in."
@@ -34,10 +35,12 @@ Feature: Purchase a Product
   @selenium @allow-rescue
   Scenario: A visitor purchases a product with paypal
     When I go to the home page
+    And I view all products
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"
     Then I should see "$15"
     When I go to the home page
+    And I view all products
     And I follow "Test Fetch"
     And I follow "Your Company"
     Then I should see "$50"
@@ -58,27 +61,30 @@ Feature: Purchase a Product
   Scenario: A visitor purchases a product with stripe
     Given stripe is stubbed with a failure
     When I go to the home page
+    And I view all products
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"
     Then I should see "$15"
     When I go to the home page
+    And I view all products
     And I follow "Test Fetch"
     And I follow "Your Company"
     Then I should see "$50"
     When I pay using Stripe
     Then I should see "There was a problem processing your credit card"
 
-
   @selenium
   Scenario: A visitor purchases a product with readers
     Given github is stubbed
     When I go to the home page
+    And I view all products
     And I follow "Test GitHub"
     And I follow "Purchase for Yourself"
     Then I should see "$15"
     And I should see "1st Reader"
     And I should not see "2nd Reader"
     When I go to the home page
+    And I view all products
     And I follow "Test GitHub"
     And I follow "Your Company"
     Then I should see "$199"
@@ -105,6 +111,7 @@ Feature: Purchase a Product
       | code       | discount_type | amount |
       | VALENTINES | percentage    | 10     |
     When I go to the home page
+    And I view all products
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"
     And I should see "$15"

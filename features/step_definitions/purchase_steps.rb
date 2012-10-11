@@ -1,5 +1,5 @@
 When /^I apply coupon code "([^"]*)" to product named "([^"]*)"$/ do |coupon_code, product_name|
-  visit root_path
+  visit courses_path
   click_link product_name
   click_link "Purchase for Yourself"
   click_link "Have a coupon code?"

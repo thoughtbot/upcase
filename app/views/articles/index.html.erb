@@ -1,0 +1,20 @@
+<section id="learn-header-wrapper">
+  <div class="learn-header-container">
+    <div class="learn-detail-logo">
+      <h1>
+        <%= link_to image_tag('learn/learn-ralph-small.png'), root_path %>
+        <%= t 'shared.learn' %>
+        <span class="learnred"><%= @topic.name %></span>
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class='learn-detail-content'>
+  <section class="learn-text-box">
+    <h3>All <%= @topic.name %> articles</h3>
+    <ul class='articles results'>
+      <%= render @articles %>
+    </ul>
+  </section>
+</section>

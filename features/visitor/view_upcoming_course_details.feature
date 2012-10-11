@@ -8,6 +8,7 @@ Feature: Viewing upcoming course details
       | course                    |
       | name: Test-Driven Haskell |
     When I go to the home page
+    And I view all products
     Then I should see "Test-Driven Haskell"
     When I follow "Test-Driven Haskell"
     Then I should see "$1,000"
@@ -19,6 +20,7 @@ Feature: Viewing upcoming course details
       | name: Test-Driven Erlang | What color?   | Blue   |
       | name: Test-Driven Erlang | Pets allowed? | No     |
     When I go to the home page
+    And I view all products
     And I follow "Test-Driven Erlang"
     Then I see the question "What color?"
     And I see the answer "Blue"
@@ -28,6 +30,7 @@ Feature: Viewing upcoming course details
   Scenario: Course does not have FAQ
     Given a course exists with a name of "Test-Driven Erlang"
     When I go to the home page
+    And I view all products
     And I follow "Test-Driven Erlang"
     Then I should not see "Frequently asked questions"
 
@@ -46,6 +49,7 @@ Feature: Viewing upcoming course details
       | name: Test-Driven Haskell | Pets allowed? | No     |
     And "Ralph Bot" is teaching the section from "June 13, 2010" to "June 16, 2010"
     When I go to the home page
+    And I view all products
     Then I should see "Test-Driven Haskell"
     When I follow "Test-Driven Haskell"
     Then I see the section location is "41 Winter St."
@@ -73,6 +77,7 @@ Feature: Viewing upcoming course details
     And "Ralph Bot" is teaching the section from "June 13, 2010" to "June 16, 2010"
     And "Joe Teacher" is teaching the section from "June 20, 2010" to "June 22, 2010"
     When I go to the home page
+    And I view all products
     Then I should see "Test-Driven Haskell"
     When I follow "Test-Driven Haskell"
     Then I see the section location is "41 Winter St."
@@ -98,6 +103,7 @@ Feature: Viewing upcoming course details
     And "Joe Teacher" is teaching the section from "June 13, 2010" to "June 16, 2010"
     And "Joe Teacher" is teaching the section from "June 20, 2010" to "June 22, 2010"
     When I go to the home page
+    And I view all products
     And I follow "Test-Driven Haskell"
     Then I should see that "Joe Teacher" is teaching both sections
 
@@ -111,6 +117,7 @@ Feature: Viewing upcoming course details
       | 1234 | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
     And "Test-Driven Haskell" has 5 registrations
     When I go to the home page
+    And I view all products
     And I follow "Test-Driven Haskell"
     Then I should a registration link to be notified
     And I should see "Sold Out"
@@ -126,6 +133,7 @@ Feature: Viewing upcoming course details
       | 1234 | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 | 5               |
     And "Test-Driven Haskell" has 5 registrations
     When I go to the home page
+    And I view all products
     And I follow "Test-Driven Haskell"
     Then I should a registration link to be notified
     And I should see "Sold Out"
