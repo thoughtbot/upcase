@@ -14,7 +14,7 @@ Workshops::Application.routes.draw do
     resources :follow_ups, only: [:create]
   end
 
-  resources :products, only: [:show] do
+  resources :products, only: [:index, :show] do
     resources :redemptions, only: [:new]
     resources :purchases, only: [:new, :create, :show] do
       resources :videos, only: [:show]

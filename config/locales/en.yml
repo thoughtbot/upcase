@@ -10,8 +10,20 @@ en:
       heading:
         All %{topic} articles
 
+  products:
+    index:
+      title:
+        Products
+
   shared:
-    learn: Learn
+    books:
+      BOOKS
+    learn:
+      Learn
+    videos:
+      VIDEOS
+    workshops:
+      IN-PERSON WORKSHOPS
 
   topics:
     course:
@@ -28,23 +40,19 @@ en:
           description:
             Build snappier, more interactive apps with cleaner code and better
             tests in less time.
-          title:
-            BOOKS
         videos:
           action:
             WATCH US
           description:
             Like Chat Roulette, but you know what you’re getting. Usually.
-          title:
-            VIDEOS
         workshops:
           action:
             FIND A WORKSHOP
           description:
             We can help you become better at creating magic by writing better
             code.
-          title:
-            IN-PERSON WORKSHOPS
+      view_products:
+        VIEW ALL OF THE THOUGHTBOT PRODUCTS
     product:
       headings:
         book:
