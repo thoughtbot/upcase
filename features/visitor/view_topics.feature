@@ -36,7 +36,7 @@ Feature: View topics
   Scenario: Navigate to a topic
     Given a featured topic named "Topic 1"
     When I go to the home page
-    And I follow "Topic 1" within ".learn-text-box"
+    And I follow "Topic 1"
     Then I should see "Topic 1" within ".learn-detail-logo"
 
   Scenario: View a topic's related products
@@ -44,8 +44,13 @@ Feature: View topics
     And a course named "Course 1" for topic "Topic 1"
     And a "book" product named "Book 1" for topic "Topic 1"
     And a "video" product named "Video 1" for topic "Topic 1"
+    And an article for topic "Topic 1"
     When I go to the home page
-    And I follow "Topic 1" within ".learn-text-box"
+    And I follow "Topic 1"
+    Then I should see "Course 1" within "aside"
+    Then I should see "Book 1" within "aside"
+    Then I should see "Video 1" within "aside"
+    And I follow "View all Topic 1 articles"
     Then I should see "Course 1" within "aside"
     Then I should see "Book 1" within "aside"
     Then I should see "Video 1" within "aside"
@@ -54,5 +59,5 @@ Feature: View topics
     Given a featured topic named "Topic 1"
     And an article for topic "Topic 1"
     When I go to the home page
-    And I follow "Topic 1" within ".learn-text-box"
+    And I follow "Topic 1"
     Then the related reading section should include the article.

@@ -5,10 +5,18 @@ en:
         menu:
           Refund Purchase
 
+  articles:
+    index:
+      heading:
+        All %{topic} articles
+
   shared:
     learn: Learn
 
   topics:
+    course:
+      heading:
+        IN-PERSON WORKSHOP
     index:
       intro:
         Thanks for swinging by. If you’re new, the trail maps for any topic
@@ -37,19 +45,17 @@ en:
             code.
           title:
             IN-PERSON WORKSHOPS
-    related_course:
-      heading:
-        IN-PERSON WORKSHOP
-    related_product:
+    product:
       headings:
         book:
           BOOK
         video:
           VIDEO
+    related:
+      heading:
+        RELATED PRODUCTS
     show:
       related_reading:
         Related Reading
-      related_products:
-        RELATED PRODUCTS
       view_articles:
         View all %{name} articles

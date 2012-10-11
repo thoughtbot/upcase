@@ -29,16 +29,7 @@
     <% end %>
   </div>
 
-  <% if @courses.present? || @products.present? %>
-    <aside>
-      <h2><%= t '.related_products' %></h2>
-      <hr>
-      <ul>
-        <%= render :partial => 'related_course', :collection => @courses %>
-        <%= render :partial => 'related_product', :collection => @products %>
-      </ul>
-    </aside>
-  <% end %>
+  <%= render 'related' %>
 </section>
 
 <% content_for :javascript do %>
