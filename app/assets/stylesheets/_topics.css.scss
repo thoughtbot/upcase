@@ -4,7 +4,7 @@ $darkwarmgray: #6C6A66;
 $learnred: #B22115;
 $learndarkred: #660000;
 
-.topics-index, .topics-show, .articles-index {
+.topics-index, .topics-show, .articles-index, .courses-show {
   -webkit-font-smoothing: antialiased;
   background-color: $lightwarmgray!important;
   border-top: none !important;
@@ -293,7 +293,7 @@ $learndarkred: #660000;
     padding: 4em 2em;
 
     .learn-text-box-wrapper {
-      @include span-columns (10);
+      @include span-columns (9);
     }
 
     h3:first-child {
@@ -334,7 +334,7 @@ $learndarkred: #660000;
     }
 
     aside {
-      @include span-columns (2);
+      @include span-columns (3);
       float: right;
       display: inline-block;
 
