@@ -33,6 +33,7 @@ class Topic < ActiveRecord::Base
     http = Curl.get(github_url)
     raw_trail_map = http.body_str
     self.trail_map = JSON.parse(raw_trail_map)
+    self.summary = trail_map['description']
     save!
   end
 

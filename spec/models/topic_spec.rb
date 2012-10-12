@@ -48,6 +48,7 @@ describe Topic do
     let(:fake_trail) do
       fake_trail = {
         'name' => 'Fake Trail',
+        'description' => 'Description of Fake Trail',
         'steps' => [
           {
             'name' => 'Critical Learning',
@@ -61,6 +62,7 @@ describe Topic do
         ]
       }
     end
+
     before(:all) do
       fake_body_str = fake_trail.to_json
       Curl.stubs(get: stub(body_str: fake_body_str))
@@ -70,6 +72,12 @@ describe Topic do
       topic = create(:topic, name: 'fake-trail')
       topic.import_trail_map
       topic.trail_map.should == fake_trail
+    end
+
+    it "populates the topic's summary with the trail's description" do
+      topic = create(:topic, summary: 'old summary')
+      topic.import_trail_map
+      topic.summary.should == 'Description of Fake Trail'
     end
   end
 end
