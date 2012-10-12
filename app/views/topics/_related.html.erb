@@ -1,6 +1,6 @@
 <% if @courses.present? || @products.present? %>
   <aside>
-    <h2><%= t '.heading' %></h2>
+    <h3><%= t '.heading' %></h3>
     <hr>
     <ul>
       <%= render :partial => 'topics/course', :collection => @courses %>

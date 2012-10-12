@@ -24,12 +24,12 @@ $learndarkred: #660000;
     }
   }
 
-  h2 {
+  h3 {
     color: $darkwarmgray;
     font: 700 26px/25px $sans-serif;
   }
 
-  h3 {
+  h2 {
     color: $learnred;
     font: 800 36px $sans-serif;
   }
@@ -81,11 +81,11 @@ $learndarkred: #660000;
     margin-bottom: 1em;
     padding: 20px;
 
-    a:hover h2 {
+    a:hover h3 {
       color: $learnred;
     }
 
-    a:hover h3 {
+    a:hover h2 {
       color: #C42107;
     }
   }
@@ -205,7 +205,7 @@ $learndarkred: #660000;
         padding: 2.5em 1.8em 1em 1.8em;
         width: 300px;
 
-        h2 {
+        h3 {
           height: 50px;
           vertical-align: middle;
         }
@@ -267,7 +267,7 @@ $learndarkred: #660000;
       margin-bottom: 2em;
     }
 
-    h3 {
+    h2 {
       padding-bottom: 6px;
       text-transform: capitalize;
     }
@@ -296,11 +296,11 @@ $learndarkred: #660000;
       @include span-columns (10);
     }
 
-    h3:first-child {
+    h2:first-child {
       padding-top: 0;
     }
 
-    h3 {
+    h2 {
       padding: 26px 0 2px 0;
     }
 
@@ -338,11 +338,11 @@ $learndarkred: #660000;
       float: right;
       display: inline-block;
 
-      h2:first-child {
+      h3:first-child {
         margin-top: 0;
       }
 
-      h2 {
+      h3 {
         color: $warmgray;
         text-shadow: 0 1px 0 #fff;
         margin-top: 40px;
@@ -392,7 +392,7 @@ $learndarkred: #660000;
       height: 270px;
       width: 270px;
 
-      h2 {
+      h3 {
         font: 700 20px/20px $sans-serif;
       }
 
@@ -425,7 +425,7 @@ $learndarkred: #660000;
       float: none !important;
     }
 
-    .products-container h3 {
+    .products-container h2 {
       font: 800 25px/25px $sans-serif !important;
     }
 
