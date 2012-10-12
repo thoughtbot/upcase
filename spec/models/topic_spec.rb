@@ -21,7 +21,7 @@ describe Topic do
     end
   end
 
-  context '.top' do
+  context 'self.top' do
     before do
       25.times do |i|
         create :topic, count: i, featured: true
@@ -31,6 +31,15 @@ describe Topic do
     it 'returns the top 20 featured topics' do
       Topic.top.count.should == 20
       Topic.top.all? {|topic| topic.count >= 5 }.should be
+    end
+  end
+
+  context 'self.featured' do
+    it 'returns the featured topics' do
+      normal = create(:topic, featured: false)
+      featured = create(:topic, featured: true)
+      Topic.featured.should include featured
+      Topic.featured.should_not include normal
     end
   end
 
@@ -94,13 +103,14 @@ describe Topic do
     end
   end
 
-  context 'self.import_top_trail_maps' do
-    it 'calls import_trail_map for each top topic' do
+  context 'self.import_trail_maps' do
+    it 'calls import_trail_map for each featured topic' do
       featured_topic = stub(:import_trail_map)
-      featured = [featured_topic]
-      Topic.stubs(:top).returns(featured)
+      featured = stub
+      featured.stubs(:find_each).yields(featured_topic)
+      Topic.stubs(:featured).returns(featured)
 
-      Topic.import_top_trail_maps
+      Topic.import_trail_maps
 
       featured_topic.should have_received(:import_trail_map)
     end

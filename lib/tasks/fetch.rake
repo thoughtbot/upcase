@@ -14,7 +14,7 @@ namespace :fetch do
 
   desc "Fetch trail maps from github and update topics"
   task :trails => :environment do
-    Topic.import_top_trail_maps
+    Topic.import_trail_maps
   end
 end
 

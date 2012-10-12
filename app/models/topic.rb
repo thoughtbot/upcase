@@ -22,11 +22,15 @@ class Topic < ActiveRecord::Base
   serialize :trail_map, Hash
 
   def self.top
-    where(featured: true).order('count DESC').limit 20
+    featured.order('count DESC').limit 20
   end
 
-  def self.import_top_trail_maps
-    top.each do |topic|
+  def self.featured
+    where(featured: true)
+  end
+
+  def self.import_trail_maps
+    featured.find_each do |topic|
       topic.import_trail_map
     end
   end
