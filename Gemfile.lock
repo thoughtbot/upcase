@@ -367,7 +367,7 @@ DEPENDENCIES
   clearance (~> 0.16.1)
   csv_rails (~> 0.6.1)
   cucumber-rails (~> 1.1)
-  curb
+  curb (= 0.8.1)
   dalli (~> 2.1.0)
   database_cleaner
   dynamic_form
