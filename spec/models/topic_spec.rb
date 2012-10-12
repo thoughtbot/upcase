@@ -63,7 +63,7 @@ describe Topic do
       }
     end
 
-    before(:all) do
+    before do
       fake_body_str = fake_trail.to_json
       Curl.stubs(get: stub(body_str: fake_body_str))
     end
@@ -78,6 +78,31 @@ describe Topic do
       topic = create(:topic, summary: 'old summary')
       topic.import_trail_map
       topic.summary.should == 'Description of Fake Trail'
+    end
+
+    it 'leaves the existing trail map alone and notifies Airbrake when there is a json error' do
+      Airbrake.stubs(:notify)
+      exception = JSON::ParserError.new("JSON::ParserError")
+      JSON.stubs(:parse).raises(exception)
+
+      topic = create(:topic, summary: 'old summary', trail_map: {'old' => true})
+      topic.import_trail_map
+
+      Airbrake.should have_received(:notify).with(exception)
+      topic.trail_map["old"].should == true
+      topic.summary.should == 'old summary'
+    end
+  end
+
+  context 'self.import_top_trail_maps' do
+    it 'calls import_trail_map for each top topic' do
+      featured_topic = stub(:import_trail_map)
+      featured = [featured_topic]
+      Topic.stubs(:top).returns(featured)
+
+      Topic.import_top_trail_maps
+
+      featured_topic.should have_received(:import_trail_map)
     end
   end
 end

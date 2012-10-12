@@ -25,16 +25,26 @@ class Topic < ActiveRecord::Base
     where(featured: true).order('count DESC').limit 20
   end
 
+  def self.import_top_trail_maps
+    top.each do |topic|
+      topic.import_trail_map
+    end
+  end
+
   def to_param
     slug
   end
 
   def import_trail_map
-    http = Curl.get(github_url)
-    raw_trail_map = http.body_str
-    self.trail_map = JSON.parse(raw_trail_map)
-    self.summary = trail_map['description']
-    save!
+    begin
+      http = Curl.get(github_url)
+      raw_trail_map = http.body_str
+      self.trail_map = JSON.parse(raw_trail_map)
+      self.summary = trail_map['description']
+      save!
+    rescue JSON::ParserError => e
+      Airbrake.notify(e)
+    end
   end
 
   private
