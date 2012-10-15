@@ -60,6 +60,6 @@ class Topic < ActiveRecord::Base
   end
 
   def github_url
-    "https://raw.github.com/thoughtbot/trail-map/json/trails/#{name.to_param}.json"
+    "https://raw.github.com/thoughtbot/trail-map/json/trails/#{slug.parameterize}.json"
   end
 end
