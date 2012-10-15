@@ -17,9 +17,11 @@
 
 <section class="learn-detail-content">
   <div class="learn-text-box-wrapper">
-    <div class="learn-text-box">
-      <%= render 'trail_map', trail_map: @topic.trail_map %>
-    </div>
+    <% if @topic.trail_map.present? %>
+      <div class="learn-text-box">
+        <%= render 'trail_map', trail_map: @topic.trail_map %>
+      </div>
+    <% end %>
 
     <% if @articles.present? %>
       <div class='learn-text-box related-reading'>
