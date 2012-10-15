@@ -21,7 +21,7 @@ describe Topic do
     end
   end
 
-  context '.top' do
+  context 'self.top' do
     before do
       25.times do |i|
         create :topic, count: i, featured: true
@@ -34,6 +34,15 @@ describe Topic do
     end
   end
 
+  context 'self.featured' do
+    it 'returns the featured topics' do
+      normal = create(:topic, featured: false)
+      featured = create(:topic, featured: true)
+      Topic.featured.should include featured
+      Topic.featured.should_not include normal
+    end
+  end
+
   context 'validations' do
     context 'uniqueness' do
       before do
@@ -41,6 +50,69 @@ describe Topic do
       end
 
       it { should validate_uniqueness_of(:slug) }
+    end
+  end
+
+  context '.import_trail_map' do
+    let(:fake_trail) do
+      fake_trail = {
+        'name' => 'Fake Trail',
+        'description' => 'Description of Fake Trail',
+        'steps' => [
+          {
+            'name' => 'Critical Learning',
+            'resources' => [
+              {
+                'name' => 'Google',
+                'url' => 'http://lmgtfy.com/'
+              }
+            ]
+          }
+        ]
+      }
+    end
+
+    before do
+      fake_body_str = fake_trail.to_json
+      Curl.stubs(get: stub(body_str: fake_body_str))
+    end
+
+    it 'downloads a trail and parrots it back' do
+      topic = create(:topic, name: 'fake-trail')
+      topic.import_trail_map
+      topic.trail_map.should == fake_trail
+    end
+
+    it "populates the topic's summary with the trail's description" do
+      topic = create(:topic, summary: 'old summary')
+      topic.import_trail_map
+      topic.summary.should == 'Description of Fake Trail'
+    end
+
+    it 'leaves the existing trail map alone and notifies Airbrake when there is a json error' do
+      Airbrake.stubs(:notify)
+      exception = JSON::ParserError.new("JSON::ParserError")
+      JSON.stubs(:parse).raises(exception)
+
+      topic = create(:topic, summary: 'old summary', trail_map: {'old' => true})
+      topic.import_trail_map
+
+      Airbrake.should have_received(:notify).with(exception)
+      topic.trail_map["old"].should == true
+      topic.summary.should == 'old summary'
+    end
+  end
+
+  context 'self.import_trail_maps' do
+    it 'calls import_trail_map for each featured topic' do
+      featured_topic = stub(:import_trail_map)
+      featured = stub
+      featured.stubs(:find_each).yields(featured_topic)
+      Topic.stubs(:featured).returns(featured)
+
+      Topic.import_trail_maps
+
+      featured_topic.should have_received(:import_trail_map)
     end
   end
 end

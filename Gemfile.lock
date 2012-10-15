@@ -96,6 +96,7 @@ GEM
       capybara (>= 1.1.2)
       cucumber (>= 1.1.8)
       nokogiri (>= 1.5.0)
+    curb (0.8.1)
     daemons (1.1.8)
     dalli (2.1.0)
     database_cleaner (0.7.2)
@@ -366,6 +367,7 @@ DEPENDENCIES
   clearance (~> 0.16.1)
   csv_rails (~> 0.6.1)
   cucumber-rails (~> 1.1)
+  curb (= 0.8.1)
   dalli (~> 2.1.0)
   database_cleaner
   dynamic_form
