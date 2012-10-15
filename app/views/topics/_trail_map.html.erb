@@ -1,8 +1,8 @@
 <div class='trail-map-steps'>
   <% trail_map['steps'].each do |step| %>
-    <h3><%= step['name'] %></h3>
+    <h2><%= step['name'] %></h2>
     <% if step['resources'].present? %>
-      <h4>Resources:</h4>
+      <h3>Resources:</h3>
       <ul>
         <% step['resources'].each do |resource| %>
           <li>
@@ -12,7 +12,7 @@
       </ul>
     <% end %>
     <% if step['validations'].present? %>
-      <h4>You should be able to:</h4>
+      <h3>You should be able to:</h3>
       <ul>
         <% step['validations'].each do |validation| %>
           <li>

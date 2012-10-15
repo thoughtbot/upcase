@@ -7,22 +7,22 @@
         <span class="learnred"><%= @topic.name %></span>
       </h1>
     </div>
+          <% if @topic.summary.present? %>
+      <div class="learn-topic-summary">
+        <p><%= @topic.summary %></p>
+      </div>
+    <% end %>
   </div>
 </section>
 
 <section class="learn-detail-content">
   <div class="learn-text-box-wrapper">
-    <% if @topic.summary.present? %>
-      <div class="learn-topic-summary">
-        <%= @topic.summary %>
-      </div>
-    <% end %>
     <div class="learn-text-box">
       <%= render 'trail_map', trail_map: @topic.trail_map %>
     </div>
 
     <% if @articles.present? %>
-      <div class='learn-text-box'>
+      <div class='learn-text-box related-reading'>
         <h2><%= t '.related_reading' %></h2>
         <ul>
           <%= render @articles %>

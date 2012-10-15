@@ -167,6 +167,12 @@ $learndarkred: #660000;
           font-size: 55px;
         }
       }
+      .learn-topic-summary {
+        @include clearfix;
+        display: block;
+        float: left;
+        margin: 20px 0 4px 0;
+      }
     }
   }
 
@@ -290,7 +296,7 @@ $learndarkred: #660000;
   section.learn-detail-content {
     @include outer-container;
     max-width: 1100px;
-    padding: 4em 2em;
+    padding: 3em 2em;
 
     .learn-text-box-wrapper {
       @include span-columns (10);
@@ -301,7 +307,11 @@ $learndarkred: #660000;
     }
 
     h2 {
-      padding: 26px 0 2px 0;
+      padding: 26px 0 10px 0;
+    }
+
+    ul {
+      padding: 4px 0 30px 0;
     }
 
     p, li {
@@ -316,15 +326,13 @@ $learndarkred: #660000;
 
     .learn-text-box li {
       list-style-type: none;
-      margin: 30px 0 0 30px;
+      margin: 10px 0 0 10px;
     }
 
     .results-date {
       color: $warmgray;
       display: inline-block;
-      float: right;
       font: 700 14px $sans-serif;
-      margin-top: 8px;
     }
 
     .view-all-articles {
