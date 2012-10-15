@@ -10,8 +10,11 @@ class Topic < ActiveRecord::Base
     source_type: 'Course'
   has_many :products, through: :classifications, source: :classifiable,
     source_type: 'Product'
-  has_many :related_topics, through: :classifications, source: :classifiable,
-    source_type: 'Topic'
+  has_many(:related_topics, through: :classifications, source: :classifiable, source_type: 'Topic') do
+    def <<(*topics)
+      super(topics - self)
+    end
+  end
 
   # Validations
   validates :name, presence: true
@@ -47,6 +50,11 @@ class Topic < ActiveRecord::Base
       raw_trail_map = http.body_str
       self.trail_map = JSON.parse(raw_trail_map)
       self.summary = trail_map['description']
+      if trail_map['prerequisites'].present?
+        trail_map['prerequisites'].each do |related|
+          self.related_topics << Topic.find_by_slug(related)
+        end
+      end
       save!
     rescue JSON::ParserError => e
       Airbrake.notify(e)
