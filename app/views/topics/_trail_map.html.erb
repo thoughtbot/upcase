@@ -6,7 +6,7 @@
       <ul>
         <% step['resources'].each do |resource| %>
           <li>
-            <%= link_to_if(resource['url'].present?, resource['title'], resource['url']) %>
+            <%= link_to_if(resource['url'].present?, resource['name'], resource['url']) %>
           </li>
         <% end %>
       </ul>
@@ -17,7 +17,7 @@
         <% step['validations'].each do |validation| %>
           <li>
             <% if validation.is_a? Hash %>
-              <%= link_to_if(resource['url'].present?, resource['title'], resource['url']) %>
+              <%= link_to_if(resource['url'].present?, resource['name'], resource['url']) %>
             <% else %>
               <%= validation %>
             <% end %>
