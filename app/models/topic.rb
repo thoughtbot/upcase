@@ -10,6 +10,8 @@ class Topic < ActiveRecord::Base
     source_type: 'Course'
   has_many :products, through: :classifications, source: :classifiable,
     source_type: 'Product'
+  has_many :related_topics, through: :classifications, source: :classifiable,
+    source_type: 'Topic'
 
   # Validations
   validates :name, presence: true

@@ -10,5 +10,6 @@ class TopicsController < ApplicationController
     @articles = @topic.articles.top
     @courses = @topic.courses.only_public.by_position
     @products = @topic.products.ordered
+    @related_topics = @topic.related_topics
   end
 end

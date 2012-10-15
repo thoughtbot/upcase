@@ -52,8 +52,10 @@ en:
         video:
           VIDEO
     related:
-      heading:
+      products:
         RELATED PRODUCTS
+      topics:
+        RELATED TOPICS
     show:
       related_reading:
         Related Reading
