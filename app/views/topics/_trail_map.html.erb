@@ -1,0 +1,29 @@
+<div class='trail-map-steps'>
+  <% trail_map['steps'].each do |step| %>
+    <h3><%= step['name'] %></h3>
+    <% if step['resources'].present? %>
+      <h4>Resources:</h4>
+      <ul>
+        <% step['resources'].each do |resource| %>
+          <li>
+            <%= link_to_if(resource['url'].present?, resource['title'], resource['url']) %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+    <% if step['validations'].present? %>
+      <h4>You should be able to:</h4>
+      <ul>
+        <% step['validations'].each do |validation| %>
+          <li>
+            <% if validation.is_a? Hash %>
+              <%= link_to_if(resource['url'].present?, resource['title'], resource['url']) %>
+            <% else %>
+              <%= validation %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</div>

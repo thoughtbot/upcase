@@ -12,7 +12,13 @@
 
 <section class="learn-detail-content">
   <div class="learn-text-box-wrapper">
+    <% if @topic.summary.present? %>
+      <div class="learn-topic-summary">
+        <%= @topic.summary %>
+      </div>
+    <% end %>
     <div class="learn-text-box">
+      <%= render 'trail_map', trail_map: @topic.trail_map %>
     </div>
 
     <% if @articles.present? %>
