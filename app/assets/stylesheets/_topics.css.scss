@@ -168,7 +168,7 @@ $learndarkred: #660000;
         }
       }
       .learn-topic-summary {
-        @include clearfix;
+        clear: both;
         display: block;
         float: left;
         margin: 20px 0 4px 0;
