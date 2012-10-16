@@ -47,6 +47,9 @@ class Topic < ActiveRecord::Base
   def import_trail_map
     begin
       http = Curl.get(github_url)
+      if http.response_code != 200
+        return
+      end
       raw_trail_map = http.body_str
       self.trail_map = JSON.parse(raw_trail_map)
       self.summary = trail_map['description']

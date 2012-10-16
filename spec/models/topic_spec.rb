@@ -74,7 +74,7 @@ describe Topic do
 
     before do
       fake_body_str = fake_trail.to_json
-      Curl.stubs(get: stub(body_str: fake_body_str))
+      Curl.stubs(get: stub(body_str: fake_body_str, response_code: 200))
     end
 
     it 'downloads a trail and parrots it back' do
