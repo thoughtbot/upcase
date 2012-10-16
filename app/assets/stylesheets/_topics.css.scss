@@ -167,13 +167,6 @@ $learndarkred: #660000;
           font-size: 55px;
         }
       }
-      .learn-topic-summary {
-        clear: both;
-        display: block;
-        float: left;
-        margin: 20px 0 4px 0;
-        text-align: left;
-      }
     }
   }
 
@@ -298,6 +291,20 @@ $learndarkred: #660000;
     @include outer-container;
     max-width: 1100px;
     padding: 3em 2em;
+
+    .learn-topic-summary {
+      @include span-columns (10);
+      clear: both;
+      display: block;
+      float: left;
+      text-align: left;
+
+      p {
+        font-style: italic;
+        margin: -10px 0 24px 25px;
+
+      }
+    }
 
     .learn-text-box-wrapper {
       @include span-columns (10);

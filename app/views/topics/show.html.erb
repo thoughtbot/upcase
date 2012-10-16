@@ -7,15 +7,15 @@
         <span class="learnred"><%= @topic.name %></span>
       </h1>
     </div>
-          <% if @topic.summary.present? %>
-      <div class="learn-topic-summary">
-        <p><%= @topic.summary %></p>
-      </div>
-    <% end %>
   </div>
 </section>
 
 <section class="learn-detail-content">
+      <% if @topic.summary.present? %>
+      <div class="learn-topic-summary">
+        <p><%= @topic.summary %></p>
+      </div>
+    <% end %>
   <div class="learn-text-box-wrapper">
     <% if @topic.trail_map.present? %>
       <div class="learn-text-box">
