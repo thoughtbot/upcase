@@ -293,7 +293,7 @@ $learndarkred: #660000;
     padding: 3em 2em;
 
     .learn-topic-summary {
-      @include span-columns (10);
+      @include span-columns (9);
       clear: both;
       display: block;
       float: left;
@@ -307,7 +307,7 @@ $learndarkred: #660000;
     }
 
     .learn-text-box-wrapper {
-      @include span-columns (10);
+      @include span-columns (9);
     }
 
     h2:first-child {
@@ -350,7 +350,7 @@ $learndarkred: #660000;
     }
 
     aside {
-      @include span-columns (2);
+      @include span-columns (3);
       float: right;
       display: inline-block;
 
