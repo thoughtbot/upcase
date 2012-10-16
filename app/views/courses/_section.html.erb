@@ -2,14 +2,14 @@
   <h2><%= @course.audience.name %> <span><%= number_to_currency @course.price, precision: 0 %></span></h2>
 
   <div class="when">
-    <h3>When</h3>
+    <h5>WHEN</h5>
     <p>
       TBD
     </p>
   </div>
 
   <div class="address">
-    <h3>Where</h3>
+    <h5>WHERE</h5>
     <p>
       <%= google_map_link_to("#{@course.location} #{@course.location_name}", id: 'location') do %>
         <%= @course.location %> <br> <%= @course.location_name %>

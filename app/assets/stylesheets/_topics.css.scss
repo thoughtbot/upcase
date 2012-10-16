@@ -31,7 +31,7 @@ $learndarkred: #660000;
 
   h2 {
     color: $learnred;
-    font: 800 36px $sans-serif;
+    font: 800 36px/40px $sans-serif;
   }
 
   h4 {
@@ -56,6 +56,7 @@ $learndarkred: #660000;
     color: $darkwarmgray;
     font: italic 17px $serif;
     text-shadow: 0 1px 1px rgba(255,255,255,.3);
+    margin-bottom: 12px;
   }
 
   .learnred {
@@ -118,6 +119,7 @@ $learndarkred: #660000;
     height: 40px;
     position: relative;
     top: 4px;
+    margin-bottom: 4px;
   }
 
   .button:hover {
@@ -252,10 +254,6 @@ $learndarkred: #660000;
       @include shift(4);
       padding: auto 6px 0 6px;
     }
-
-    .button:active {
-      margin-bottom: 4px;
-    }
   }
 
   section#learn-topics-list {
@@ -311,7 +309,7 @@ $learndarkred: #660000;
     }
 
     li {
-      margin-top: 20px;
+      margin-top: 14px;
     }
 
     .learn-text-box li {
@@ -331,6 +329,67 @@ $learndarkred: #660000;
       font: italic 16px $serif;
       margin-top: 20px;
       text-align: center;
+    }
+
+    .what-you-learn {
+      @include outer-container;
+      background-color: $lightwarmgray;
+      border-radius: 3px;
+      margin: 16px 0 16px 0;
+      padding: 2em;
+
+      h3 {
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 17px;
+      }
+
+      ul {
+        margin-top: 12px;
+      }
+
+      li {
+        @include span-columns (6);
+        margin-left: 0;
+        margin-top: 6px;
+        padding: 4px;
+        display: inline;
+
+        &:nth-child(2n) {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .course-box {
+
+      h2 {
+        margin-bottom: 16px;
+      }
+
+      q {
+        display: block;
+        width: 80%;
+        margin: 30px 18% 0 4%;
+        font-style: italic;
+      }
+
+      .source {
+        margin-left: 12%;
+      }
+    }
+
+    #faq {
+        margin-top: 30px;
+
+      dt {
+        margin-top: 16px;
+      }
+
+      dt p {
+        font-weight: 600;
+        margin-bottom: 4px;
+        }
     }
 
     aside {
@@ -365,7 +424,61 @@ $learndarkred: #660000;
         font-style: italic;
         }
       }
+
+      .button {
+        height: auto;
+        padding-bottom: 12px;
+        width: 100%;
+      }
+
+      .section-location {
+
+        h2 span {
+              font: 300 36px $sans-serif;
+        }
+
+        div {
+          margin-top: 20px;
+        }
+
+        hr {
+          margin-top: 30px;
+        }
+      }
+
+      .teachers {
+        margin-top: 30px;
+
+        img {
+          border-radius: 3px;
+          vertical-align: text-top;
+          margin: 0 auto;
+        }
+
+        h2 {
+          font-size: auto;
+          line-height: 28px;
+          margin: 12px 0 12px 0;
+          padding: 0;
+
+          span {
+            color: $warmgray;
+            display: block;
+            font-size: 18px;
+          }
+        }
+      }
+
+      .travel {
+        font-size: 16px;
+        font-style: italic;
+        margin-top: 20px;
+      }
     }
+  }
+
+  body.purchases #additional-information {
+    background-color: $warmgray;
   }
 
   #main-footer {

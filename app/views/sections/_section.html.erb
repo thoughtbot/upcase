@@ -22,13 +22,14 @@
 
   <div id="register">
     <% if section.full? %>
-      <a href="#new_follow_up" id="register-button">Get notified</a>
+      <a href="#new_follow_up" class="button">Get notified</a>
     <% else %>
-      <%= link_to registration_url(section), id: 'register-button' do %>
-        Register for this workshop
+      <%= link_to registration_url(section), class: 'button' do %>
+        REGISTER FOR THIS WORKSHOP
       <% end %>
     <% end %>
   </div>
+  <hr>
   <% if show_individual_teachers?(sections) %>
     <%= render 'sections/teachers', teachers: section.teachers %>
   <% end %>

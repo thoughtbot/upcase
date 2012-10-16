@@ -2,7 +2,7 @@
   <% teachers.each do |teacher| %>
     <%= content_tag(:li, teacher) do %>
       <%= teacher_gravatar(teacher, 92) %>
-      <h4><span>Taught by</span> <%= teacher.name %></h4>
+      <h2><span>Taught by</span> <%= teacher.name %></h2>
       <section class="bio">
         <%= raw textilize teacher.bio %>
       </section>
