@@ -37,20 +37,12 @@ class Course < ActiveRecord::Base
     follow_ups + [follow_ups.new]
   end
 
-  def active?
-    active_section.present?
-  end
-
   def active_sections
     sections.active
   end
 
   def active_section
     sections.active[0]
-  end
-
-  def active_date_range
-    active_section.try(:date_range)
   end
 
   def to_param

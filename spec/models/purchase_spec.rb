@@ -252,7 +252,7 @@ describe Purchase, "with paypal" do
 
   it "starts a paypal transaction" do
     Paypal::Payment::Request.should have_received(:new).with(currency_code: :USD, amount: subject.price, description: subject.product_name, items: [{ amount: subject.price, description: subject.product_name }])
-    paypal_request.should have_received(:setup).with(paypal_payment_request, paypal_product_purchase_url(subject.product, subject, host: ActionMailer::Base.default_url_options[:host]), courses_url(host: ActionMailer::Base.default_url_options[:host]))
+    paypal_request.should have_received(:setup).with(paypal_payment_request, paypal_product_purchase_url(subject.product, subject, host: ActionMailer::Base.default_url_options[:host]), products_url(host: ActionMailer::Base.default_url_options[:host]))
     subject.paypal_url.should == "http://paypalurl"
     subject.should_not be_paid
   end

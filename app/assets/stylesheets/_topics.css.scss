@@ -1,13 +1,13 @@
-$lightwarmgray: #F9F5F0;
+$lightwarmgray: #F5F5F0;
 $warmgray: #D9D4CC;
 $darkwarmgray: #6C6A66;
 $learnred: #B22115;
 $learndarkred: #660000;
 
-.topics-index, .topics-show, .articles-index {
+.articles-index, .products-index, .topics-index, .topics-show {
   -webkit-font-smoothing: antialiased;
-  background-color: $lightwarmgray!important;
-  border-top: none !important;
+  background-color: $lightwarmgray;
+  border-top: none;
   margin: 0 auto;
 
   header {
@@ -31,7 +31,7 @@ $learndarkred: #660000;
 
   h2 {
     color: $learnred;
-    font: 800 36px $sans-serif;
+    font: 800 36px/32px $sans-serif;
   }
 
   h4 {
@@ -55,7 +55,6 @@ $learndarkred: #660000;
   p, aside li {
     color: $darkwarmgray;
     font: italic 17px $serif;
-    text-shadow: 0 1px 1px rgba(255,255,255,.3);
   }
 
   .learnred {
@@ -75,9 +74,9 @@ $learndarkred: #660000;
   }
 
   .learn-text-box {
-    @include border-radius(4px);
     background-color: white;
     border-bottom: 2px solid $warmgray;
+    border-radius: 4px;
     margin-bottom: 1em;
     padding: 20px;
 
@@ -91,7 +90,6 @@ $learndarkred: #660000;
   }
 
   .button {
-    @include border-radius(3px);
     background-color: $learnred;
     border-bottom: 4px solid $learndarkred;
     border-radius: 3px;
@@ -197,9 +195,9 @@ $learndarkred: #660000;
       @include span-columns(4);
 
       .promo-detail {
-        @include border-radius(300px);
         background-color: white;
         border: 13px solid $warmgray;
+        border-radius: 300px;
         height:300px;
         margin: 0 auto;
         padding: 2.5em 1.8em 1em 1.8em;
@@ -226,6 +224,10 @@ $learndarkred: #660000;
       @include span-columns(4);
       text-align: left;
 
+      h2:hover {
+        color: $learnred;
+      }
+
       p {
         font-style: normal;
       }
@@ -234,7 +236,7 @@ $learndarkred: #660000;
         margin-top: 30px;
 
         li {
-          margin-bottom: 30px
+          margin-bottom: 30px;
         }
 
         li p {
@@ -287,6 +289,7 @@ $learndarkred: #660000;
       margin-right: 0;
     }
   }
+
   section.learn-detail-content {
     @include outer-container;
     max-width: 1100px;
@@ -467,6 +470,10 @@ $learndarkred: #660000;
 
   @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
 
+    h1 {
+      line-height: 45px;
+    }
+
     section#learn-header-wrapper .learn-header-container .learn-intro {
       font-size: 18px;
     }
@@ -516,6 +523,10 @@ $learndarkred: #660000;
 
     footer#main-footer nav section#current-workshops-footer {
       width: 100%
+    }
+
+    .products-container {
+      width: 100% !important;
     }
   }
 
