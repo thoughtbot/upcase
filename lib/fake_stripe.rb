@@ -79,7 +79,7 @@ class FakeStripe < Sinatra::Base
       id: "ch_JQhSfU9Rz21owt",
       disputed: false,
       invoice: nil,
-      livemode: false 
+      livemode: false
     }.to_json
   end
 end

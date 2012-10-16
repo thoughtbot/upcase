@@ -51,8 +51,15 @@ en:
           description:
             We can help you become better at creating magic by writing better
             code.
+          title:
+            IN-PERSON WORKSHOPS
       view_products:
         VIEW ALL OF THE THOUGHTBOT PRODUCTS
+    trail_map:
+      resources:
+        Resources
+      validations:
+        You should be able to
     product:
       headings:
         book:

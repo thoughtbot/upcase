@@ -2,22 +2,22 @@
   <% trail_map['steps'].each do |step| %>
     <h2><%= step['name'] %></h2>
     <% if step['resources'].present? %>
-      <h3>Resources:</h3>
+      <h3><%= t '.resources' %></h3>
       <ul>
         <% step['resources'].each do |resource| %>
           <li>
-            <%= link_to_if(resource['url'].present?, resource['name'], resource['url']) %>
+            <%= link_to_if(resource['uri'].present?, resource['title'], resource['uri']) %>
           </li>
         <% end %>
       </ul>
     <% end %>
     <% if step['validations'].present? %>
-      <h3>You should be able to:</h3>
+      <h3><%= t '.validations' %></h3>
       <ul>
         <% step['validations'].each do |validation| %>
           <li>
             <% if validation.is_a? Hash %>
-              <%= link_to_if(validation['url'].present?, validation['name'], validation['url']) %>
+              <%= link_to_if(validation['uri'].present?, validation['title'], validation['uri']) %>
             <% else %>
               <%= validation %>
             <% end %>

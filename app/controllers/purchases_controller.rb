@@ -33,7 +33,7 @@ class PurchasesController < ApplicationController
     @product = Product.find(params[:product_id])
     @purchase = @product.purchases.find_by_lookup!(params[:id])
     @purchase.complete_paypal_payment!(params[:token], params[:PayerID])
-    redirect_to product_purchase_path(@purchase.product, @purchase) 
+    redirect_to product_purchase_path(@purchase.product, @purchase)
   end
 
   def watch
