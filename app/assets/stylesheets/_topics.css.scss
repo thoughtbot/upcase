@@ -4,7 +4,7 @@ $darkwarmgray: #6C6A66;
 $learnred: #B22115;
 $learndarkred: #660000;
 
-.topics-index, .topics-show, .articles-index {
+.topics-index, .topics-show, .articles-index, .courses-show {
   -webkit-font-smoothing: antialiased;
   background-color: $lightwarmgray!important;
   border-top: none !important;
@@ -31,7 +31,7 @@ $learndarkred: #660000;
 
   h2 {
     color: $learnred;
-    font: 800 36px $sans-serif;
+    font: 800 36px/40px $sans-serif;
   }
 
   h4 {
@@ -56,6 +56,7 @@ $learndarkred: #660000;
     color: $darkwarmgray;
     font: italic 17px $serif;
     text-shadow: 0 1px 1px rgba(255,255,255,.3);
+    margin-bottom: 12px;
   }
 
   .learnred {
@@ -90,7 +91,7 @@ $learndarkred: #660000;
     }
   }
 
-  .button {
+  .button, input[type="submit"] {
     @include border-radius(3px);
     background-color: $learnred;
     border-bottom: 4px solid $learndarkred;
@@ -102,6 +103,7 @@ $learndarkred: #660000;
     margin: 0 auto;
     padding-top: 13px;
     text-align:center;
+    -webkit-font-smoothing: antialiased;
 
     a {
       color: white;
@@ -113,11 +115,27 @@ $learndarkred: #660000;
 
   }
 
-  .button:active {
+  .button:active, input[type="submit"]:active {
     border-bottom: none;
     height: 40px;
     position: relative;
     top: 4px;
+    margin-bottom: 4px;
+  }
+
+  input[type="submit"] {
+    border-top-color: none;
+    border-top-style: none;
+    border-top-width: none;
+    border-right-color: none;
+    border-right-style: none;
+    border-right-width: none;
+    border-bottom-width: none;
+    border-left-color: none;
+    border-left-style: none;
+    border-left-width: none;
+    border-image: initial;
+    padding: 0 30px 0 30px;
   }
 
   .button:hover {
@@ -252,10 +270,6 @@ $learndarkred: #660000;
       @include shift(4);
       padding: auto 6px 0 6px;
     }
-
-    .button:active {
-      margin-bottom: 4px;
-    }
   }
 
   section#learn-topics-list {
@@ -329,7 +343,7 @@ $learndarkred: #660000;
     }
 
     li {
-      margin-top: 20px;
+      margin-top: 14px;
     }
 
     .learn-text-box li {
@@ -347,6 +361,68 @@ $learndarkred: #660000;
       font: italic 16px $serif;
       margin-top: 20px;
       text-align: center;
+    }
+
+    .what-you-learn {
+      @include outer-container;
+      background-color: $lightwarmgray;
+      border-radius: 3px;
+      margin: 16px 0 16px 0;
+      padding: 2em;
+
+      h3 {
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 17px;
+      }
+
+      ul {
+        margin-top: 12px;
+      }
+
+      li {
+        @include span-columns (6);
+        margin-left: 0;
+        margin-top: 6px;
+        padding: 4px;
+        display: inline;
+
+        &:nth-child(2n) {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .course-box {
+
+      h2 {
+        margin-bottom: 16px;
+        color: $darkwarmgray;
+      }
+
+      q {
+        display: block;
+        width: 80%;
+        margin: 30px 18% 0 4%;
+        font-style: italic;
+      }
+
+      .source {
+        margin-left: 12%;
+      }
+    }
+
+    #faq {
+        margin-top: 30px;
+
+      dt {
+        margin-top: 16px;
+      }
+
+      dt p {
+        font-weight: 600;
+        margin-bottom: 4px;
+        }
     }
 
     aside {
@@ -380,6 +456,111 @@ $learndarkred: #660000;
         color: $darkwarmgray;
         font-style: italic;
         }
+      }
+
+      .button {
+        height: auto;
+        padding-bottom: 12px;
+        width: 100%;
+      }
+
+      .section-location {
+
+        h2 span {
+              font: 300 36px $sans-serif;
+        }
+
+        div {
+          margin-top: 20px;
+        }
+
+        .address a {
+          color: $darkwarmgray;
+        }
+
+        hr {
+          margin-top: 30px;
+        }
+      }
+
+      .teachers {
+        margin-top: 30px;
+
+        img {
+          border-radius: 3px;
+          vertical-align: text-top;
+          margin: 0 auto;
+        }
+
+        h2 {
+          font-size: auto;
+          line-height: 28px;
+          margin: 12px 0 12px 0;
+          padding: 0;
+
+          span {
+            color: $warmgray;
+            display: block;
+            font-size: 18px;
+          }
+        }
+      }
+
+      .travel {
+        font-size: 16px;
+        font-style: italic;
+        margin-top: 20px;
+      }
+    }
+  }
+
+  #additional-information {
+    background: $warmgray url("learn/learn-arrows-top.png") repeat-x left top;
+    background-color: $warmgray;
+
+    #additional-information-wrapper {
+      @include outer-container;
+      padding: 3em 0 3em 0;
+
+      #main-content {
+        @include span-columns(12);
+        padding: 0 2em;
+      }
+
+      form {
+        padding-top: 2em;
+      }
+
+      input[type="text"] {
+          border: none;
+          @include border-radius(4px);
+          @include box-sizing(border-box);
+          font-size: 14px;
+          margin: 0 0 12px 0;
+          padding: 18px 30px;
+          width: 50%;
+          vertical-align: top;
+        }
+
+      input[type="submit"] {
+        margin-left: 14px;
+        padding: 18px 40px 31px 40px;
+        text-transform: uppercase;
+      }
+
+      h4 {
+        text-shadow: none;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-family: $sans-serif;
+        font-style: normal;
+        font-size: 14px;
+      }
+
+      ul li {
+        color: $darkwarmgray;
       }
     }
   }
@@ -517,6 +698,21 @@ $learndarkred: #660000;
     footer#main-footer nav section#current-workshops-footer {
       width: 100%
     }
+
+    #additional-information {
+
+      input[type="text"] {
+        display: block;
+        width: 100% !important;
+      }
+
+      input[type="submit"] {
+        margin-left:  0 !important;
+        width: 100%;
+      }
+
+    }
+
   }
 
   @media all and (-webkit-min-device-pixel-ratio: 1.5) {

@@ -6,7 +6,7 @@
 @import "flashes";
 @import "header";
 @import "old_home";
-@import "detail";
+
 @import "pages";
 @import "registrations";
 @import "footer";
@@ -15,6 +15,7 @@
 @import 'purchases';
 @import 'video';
 @import 'topics';
+@import "detail";
 
 body {
   background: #fcfcfc;
