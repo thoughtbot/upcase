@@ -63,8 +63,8 @@ describe Topic do
             'name' => 'Critical Learning',
             'resources' => [
               {
-                'name' => 'Google',
-                'url' => 'http://lmgtfy.com/'
+                'title' => 'Google',
+                'uri' => 'http://lmgtfy.com/'
               }
             ]
           }
