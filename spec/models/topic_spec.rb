@@ -89,6 +89,12 @@ describe Topic do
       topic.summary.should == 'Description of Fake Trail'
     end
 
+    it "populates the topic's name with the trail's name" do
+      topic = create(:topic, name: 'old name')
+      topic.import_trail_map
+      topic.name.should == 'Fake Trail'
+    end
+
     it 'leaves the existing trail map alone and notifies Airbrake when there is a json error' do
       Airbrake.stubs(:notify)
       exception = JSON::ParserError.new("JSON::ParserError")

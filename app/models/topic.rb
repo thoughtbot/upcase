@@ -53,6 +53,7 @@ class Topic < ActiveRecord::Base
       raw_trail_map = http.body_str
       self.trail_map = JSON.parse(raw_trail_map)
       self.summary = trail_map['description']
+      self.name = trail_map['name']
       if trail_map['prerequisites'].present?
         trail_map['prerequisites'].each do |related|
           self.related_topics << Topic.find_by_slug(related)
