@@ -91,7 +91,7 @@ $learndarkred: #660000;
     }
   }
 
-  .button {
+  .button, input[type="submit"] {
     @include border-radius(3px);
     background-color: $learnred;
     border-bottom: 4px solid $learndarkred;
@@ -103,6 +103,7 @@ $learndarkred: #660000;
     margin: 0 auto;
     padding-top: 13px;
     text-align:center;
+    -webkit-font-smoothing: antialiased;
 
     a {
       color: white;
@@ -114,12 +115,27 @@ $learndarkred: #660000;
 
   }
 
-  .button:active {
+  .button:active, input[type="submit"]:active {
     border-bottom: none;
     height: 40px;
     position: relative;
     top: 4px;
     margin-bottom: 4px;
+  }
+
+  input[type="submit"] {
+    border-top-color: none;
+    border-top-style: none;
+    border-top-width: none;
+    border-right-color: none;
+    border-right-style: none;
+    border-right-width: none;
+    border-bottom-width: none;
+    border-left-color: none;
+    border-left-style: none;
+    border-left-width: none;
+    border-image: initial;
+    padding: 0 30px 0 30px;
   }
 
   .button:hover {
@@ -365,6 +381,7 @@ $learndarkred: #660000;
 
       h2 {
         margin-bottom: 16px;
+        color: $darkwarmgray;
       }
 
       q {
@@ -441,6 +458,10 @@ $learndarkred: #660000;
           margin-top: 20px;
         }
 
+        .address a {
+          color: $darkwarmgray;
+        }
+
         hr {
           margin-top: 30px;
         }
@@ -477,8 +498,55 @@ $learndarkred: #660000;
     }
   }
 
-  body.purchases #additional-information {
+  #additional-information {
+    background: $warmgray url("learn/learn-arrows-top.png") repeat-x left top;
     background-color: $warmgray;
+
+    #additional-information-wrapper {
+      @include outer-container;
+      padding: 3em 0 3em 0;
+
+      #main-content {
+        @include span-columns(12);
+        padding: 0 2em;
+      }
+
+      form {
+        padding-top: 2em;
+      }
+
+      input[type="text"] {
+          border: none;
+          @include border-radius(4px);
+          @include box-sizing(border-box);
+          font-size: 14px;
+          margin: 0 0 12px 0;
+          padding: 18px 30px;
+          width: 50%;
+          vertical-align: top;
+        }
+
+      input[type="submit"] {
+        margin-left: 14px;
+        padding: 18px 40px 31px 40px;
+        text-transform: uppercase;
+      }
+
+      h4 {
+        text-shadow: none;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-family: $sans-serif;
+        font-style: normal;
+        font-size: 14px;
+      }
+
+      ul li {
+        color: $darkwarmgray;
+      }
+    }
   }
 
   #main-footer {
@@ -614,6 +682,21 @@ $learndarkred: #660000;
     footer#main-footer nav section#current-workshops-footer {
       width: 100%
     }
+
+    #additional-information {
+
+      input[type="text"] {
+        display: block;
+        width: 100% !important;
+      }
+
+      input[type="submit"] {
+        margin-left:  0 !important;
+        width: 100%;
+      }
+
+    }
+
   }
 
   @media all and (-webkit-min-device-pixel-ratio: 1.5) {
