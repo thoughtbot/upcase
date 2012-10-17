@@ -11,7 +11,7 @@ Feature: Freshbooks stores information about registrations
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "Register"
+    And I follow "REGISTER FOR THIS WORKSHOP"
     When I fill in the required course registration fields for "carlos@santana.com"
     When I fill in the following:
       | First name            | Carlos             |
@@ -61,7 +61,7 @@ Feature: Freshbooks stores information about registrations
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "Register"
+    And I follow "REGISTER FOR THIS WORKSHOP"
     And I follow "Have a coupon code?"
     Then the coupon form should be visible
     When I fill in "Code" with "VALENTINES"
@@ -103,7 +103,7 @@ Feature: Freshbooks stores information about registrations
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "Register"
+    And I follow "REGISTER FOR THIS WORKSHOP"
     And I fill in the following:
       | First name            | Carlos             |
       | Last name             | Santana            |
@@ -148,7 +148,7 @@ Feature: Freshbooks stores information about registrations
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "Register"
+    And I follow "REGISTER FOR THIS WORKSHOP"
     And I follow "Have a coupon code?"
     And I fill in "Code" with "VALENTINES"
     And I press "Apply Coupon"
