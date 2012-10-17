@@ -13,7 +13,7 @@ Feature: Selecting a course and registering for it
     When I go to the home page
     And I view all products
     And I follow "Test-Driven Haskell"
-    And I follow "Register"
+    And I follow "REGISTER FOR THIS WORKSHOP"
     And I follow "Sign in."
     And I fill in and submit the sign in form with "john@doe.com" and "password"
     Then I should see "Complete your registration for Test-Driven Haskell"

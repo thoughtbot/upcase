@@ -11,7 +11,7 @@ Feature: Selecting a course and registering for it
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "Register"
+    And I follow "REGISTER FOR THIS WORKSHOP"
     Then I should see "Complete your registration for Test-Driven Haskell"
     And I should see "$10,000,000"
     When I fill in all of the course registration fields for "carlos@santana.com"
@@ -31,7 +31,7 @@ Feature: Selecting a course and registering for it
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "Register"
+    And I follow "REGISTER FOR THIS WORKSHOP"
     And I follow "Sign in."
     And I follow "Sign up"
     And I sign up with the following:
@@ -61,7 +61,7 @@ Feature: Selecting a course and registering for it
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "Register"
+    And I follow "REGISTER FOR THIS WORKSHOP"
     Then I should see "Complete your registration for Test-Driven Haskell"
     And I should see "$10,000,000"
     When I fill in all of the course registration fields for "carlos@blah"
@@ -82,7 +82,7 @@ Feature: Selecting a course and registering for it
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "Register"
+    And I follow "REGISTER FOR THIS WORKSHOP"
     Then I should see "$10,000"
     When I follow "Have a coupon code?"
     Then the coupon form should be visible
@@ -109,7 +109,7 @@ Feature: Selecting a course and registering for it
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "Register"
+    And I follow "REGISTER FOR THIS WORKSHOP"
     Then I should see "Complete your registration for Test-Driven Haskell"
     And I should see "$10,000"
     When I follow "Have a coupon code?"
@@ -137,7 +137,7 @@ Feature: Selecting a course and registering for it
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "Register"
+    And I follow "REGISTER FOR THIS WORKSHOP"
     Then I should see "Complete your registration for Test-Driven Haskell"
     And I should see "$100"
     When I follow "Have a coupon code?"
@@ -172,7 +172,7 @@ Feature: Selecting a course and registering for it
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "Register"
+    And I follow "REGISTER FOR THIS WORKSHOP"
     Then I should see "$0"
     When I fill in the required course registration fields for "carlos@santana.com"
     And I press "Proceed to checkout"

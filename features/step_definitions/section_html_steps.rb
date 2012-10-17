@@ -17,7 +17,7 @@ Then /^I should not see the external registration link$/ do
 end
 
 Then /^I should a registration link to be notified$/ do
-  page.should have_css("#register-button[href='#new_follow_up']", text: "Get notified")
+  page.should have_css(".button[href='#new_follow_up']", text: "Get notified")
 end
 
 Then 'I see the section from "$start_date" to "$end_date"' do |start_date, end_date|
@@ -102,7 +102,7 @@ Then 'I see that one of the teachers is "$teacher_name"' do |teacher_name|
 end
 
 Then 'I should see that "$teacher_name" is teaching both sections' do |teacher_name|
-  page.should have_selector('h4', text: "Joe Teacher", count: 1)
+  page.should have_selector('h2', text: 'Joe Teacher', count: 1)
 end
 
 Then %{I see "$teacher_name"'s avatar} do |teacher_name|
