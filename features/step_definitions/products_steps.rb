@@ -1,5 +1,5 @@
 When /^I view all products/ do
-  click_link 'FIND A WORKSHOP'
+  click_link 'VIEW ALL OF THE THOUGHTBOT PRODUCTS'
 end
 
 When /^I add a download with file name "([^"]*)" and description "([^"]*)"$/ do |file_name, description|
