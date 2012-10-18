@@ -13,7 +13,7 @@
 <section id="promo-wrapper">
   <% if @courses.present? %>
     <div class="products-container learn-text-box">
-      <h3><%= t 'shared.workshops' %></h3>
+      <h2><%= t 'shared.workshops' %></h2>
       <ul>
         <%= render @courses %>
       </ul>
@@ -22,7 +22,7 @@
 
   <% if @books.present? %>
     <div class="products-container learn-text-box">
-      <h3><%= t 'shared.books' %></h3>
+      <h2><%= t 'shared.books' %></h2>
       <ul>
         <%= render @books %>
       </ul>
@@ -31,7 +31,7 @@
 
   <% if @videos.present? %>
     <div class="products-container learn-text-box">
-      <h3><%= t 'shared.videos' %></h3>
+      <h2><%= t 'shared.videos' %></h2>
       <ul>
         <%= render @videos %>
       </ul>
