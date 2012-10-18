@@ -6,6 +6,7 @@ describe Topic do
   it { should have_many(:classifications) }
   it { should have_many(:courses).through(:classifications) }
   it { should have_many(:products).through(:classifications) }
+  it { should have_many(:related_topics).through(:classifications) }
 
   # Validations
   it { should validate_presence_of(:name) }
@@ -77,7 +78,7 @@ describe Topic do
       Curl.stubs(get: stub(body_str: fake_body_str, response_code: 200))
     end
 
-    it 'downloads a trail and parrots it back' do
+    it 'downloads a trail and stores it' do
       topic = create(:topic, name: 'fake-trail')
       topic.import_trail_map
       topic.trail_map.should == fake_trail
@@ -87,6 +88,12 @@ describe Topic do
       topic = create(:topic, summary: 'old summary')
       topic.import_trail_map
       topic.summary.should == 'Description of Fake Trail'
+    end
+
+    it "populates the topic's name with the trail's name" do
+      topic = create(:topic, name: 'old name')
+      topic.import_trail_map
+      topic.name.should == 'Fake Trail'
     end
 
     it 'leaves the existing trail map alone and notifies Airbrake when there is a json error' do
@@ -100,6 +107,16 @@ describe Topic do
       Airbrake.should have_received(:notify).with(exception)
       topic.trail_map["old"].should == true
       topic.summary.should == 'old summary'
+    end
+
+    it 'does not update trail map if there is a non-200 http response' do
+      Curl.stubs(get: stub(response_code: 'not 200', body_str: fake_trail.to_json))
+      topic = create(:topic, summary: 'old summary', name: 'old name', slug: 'old+name')
+
+      topic.import_trail_map
+
+      topic.summary.should == 'old summary'
+      topic.name.should == 'old name'
     end
   end
 
