@@ -470,6 +470,32 @@ $learndarkred: #660000;
         width: 100%;
       }
 
+      .related-topics {
+        @include outer-container;
+
+        li {
+          display: inline-block;
+          @include span-columns (6);
+
+          &:nth-child(2n) {
+            margin-right: 0;
+          }
+
+ /*         a {
+              background-color: $warmgray;
+              border-radius: 1em;
+              color: white;
+              font-size: 15px;
+              padding: 2px 16px;
+              text-shadow: none;
+
+              &:hover {
+                background-color: $darkwarmgray;
+              }
+            } */
+          }
+        }
+
       .section-location {
 
         h2 span {
