@@ -23,6 +23,10 @@ class Product < ActiveRecord::Base
     order("name asc")
   end
 
+  def self.promoted(location)
+    where(promo_location: location).first
+  end
+
   def to_param
     "#{id}-#{name.parameterize}"
   end

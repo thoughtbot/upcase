@@ -1,28 +1,29 @@
 Feature: View topics
 
   Scenario: Navigate to workshops
-    Given a course exists with a name of "Test-Driven Haskell"
+    Given the following course exists:
+      | name                | promo_location |
+      | Test-Driven Haskell | left           |
     When I go to the home page
-    And I follow "FIND A WORKSHOP"
+    And I follow "REGISTER"
     Then I should see "Test-Driven Haskell"
 
-  Scenario: Navigate to books
+  Scenario: Navigate to a book
     Given the following products exist:
-      | name   | product_type |
-      | Book 1 | book         |
+      | name   | product_type | promo_location |
+      | Book 1 | book         | middle         |
     When I go to the home page
-    And I follow "READ ON"
+    And I follow "READ"
     Then I should see "Book 1"
 
-  Scenario: Navigate to videos
+  Scenario: Navigate to a video
     Given the following products exist:
-      | name         | product_type |
-      | Video 1      | video        |
-      | Video 2      | video        |
+      | name         | product_type | promo_location |
+      | Video 1      | video        | right          |
+      | Video 2      | video        |                |
     When I go to the home page
-    And I follow "WATCH US"
+    And I follow "WATCH"
     Then I should see "Video 1"
-    Then I should see "Video 2"
 
   Scenario: View topics
     Given a featured topic named "Topic 1"

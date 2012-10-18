@@ -29,6 +29,10 @@ class Course < ActiveRecord::Base
     where(public: true)
   end
 
+  def self.promoted(location)
+    where(promo_location: location).first
+  end
+
   def questions_with_blank
     questions + [questions.new]
   end

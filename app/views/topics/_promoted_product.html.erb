@@ -1,0 +1,11 @@
+<div class='promo-container <%= promoted_product.promo_location %>'>
+  <div class='promo-detail'>
+    <h3><%= promoted_product.name %></h3>
+    <p><%= promoted_product.tagline %></p>
+    <%= link_to promoted_product do %>
+      <div class='button'>
+        <%= t "topics.promotions.#{promoted_product.product_type}.action" %>
+      </div>
+    <% end %>
+  </div>
+</div>

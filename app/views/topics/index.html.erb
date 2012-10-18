@@ -9,35 +9,7 @@
   </div>
 </section>
 
-<section id="promo-wrapper">
-  <div class="promo-container">
-    <div class="promo-detail">
-      <h3><%= t 'shared.workshops' %></h3>
-      <p><%= t '.promos.workshops.description' %></p>
-      <%= link_to products_path do %>
-        <div class="button"><%= t '.promos.workshops.action' %></div>
-      <% end %>
-    </div>
-  </div>
-  <div class="promo-container">
-    <div class="promo-detail">
-      <h3><%= t 'shared.books' %></h3>
-      <p><%= t '.promos.books.description' %></p>
-      <%= link_to products_path do %>
-        <div class="button"><%= t '.promos.books.action' %></div>
-      <% end %>
-    </div>
-  </div>
-  <div class="promo-container">
-    <div class="promo-detail">
-      <h3><%= t 'shared.videos' %></h3>
-      <p><%= t '.promos.videos.description' %></p>
-      <%= link_to products_path do %>
-        <div class="button"><%= t '.promos.videos.action' %></div>
-      <% end %>
-    </div>
-  </div>
-</section>
+<%= render 'promotions' %>
 
 <section id="all-products">
   <%= link_to products_path do %>

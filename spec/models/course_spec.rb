@@ -13,4 +13,11 @@ describe Course do
       subject.to_param.should == "#{subject.id}-#{subject.name.parameterize}"
     end
   end
+
+  describe "self.promoted" do
+    it 'returns the promoted course in the location' do
+      course = create(:course, promo_location: 'left')
+      Course.promoted('left').should == course
+    end
+  end
 end
