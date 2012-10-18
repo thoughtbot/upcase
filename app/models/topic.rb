@@ -1,6 +1,7 @@
 class Topic < ActiveRecord::Base
   # Attributes
-  attr_accessible :trail_map, :featured, :keywords, :name, :summary
+  attr_accessible :trail_map, :featured, :keywords, :name, :summary,
+    :related_topic_ids
 
   # Associations
   has_many :articles, through: :classifications, source: :classifiable,
@@ -10,7 +11,8 @@ class Topic < ActiveRecord::Base
     source_type: 'Course'
   has_many :products, through: :classifications, source: :classifiable,
     source_type: 'Product'
-  has_many :related_topics, through: :classifications, source: :classifiable, source_type: 'Topic'
+  has_many :related_topics, through: :classifications, source: :classifiable,
+    source_type: 'Topic'
 
   # Validations
   validates :name, presence: true
