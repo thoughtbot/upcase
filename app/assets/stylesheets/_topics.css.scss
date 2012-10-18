@@ -221,6 +221,7 @@ $learndarkred: #660000;
         height:300px;
         margin: 0 auto;
         padding: 2.5em 1.8em 1em 1.8em;
+        position: relative;
         width: 300px;
 
         h3 {
@@ -234,8 +235,18 @@ $learndarkred: #660000;
           padding-top:10px;
         }
 
-        .button {
+        a {
+          @include clearfix;
+          bottom: 33px;
+          display: block;
+          margin-right: 25%;
+          position: absolute;
+          right: 0;
           width: 140px;
+
+          .button {
+            display: block;
+          }
         }
       }
     }
@@ -617,10 +628,18 @@ $learndarkred: #660000;
         margin-top: 0;
       }
 
-      .button {
-        height:36px;
-        padding-top: 9px;
-        width: 140px;
+      a {
+        margin-right: 22%;
+
+        .button {
+          height:36px;
+          padding-top: 9px;
+          width: 140px;
+
+          &:active {
+            height: 32px;
+          }
+        }
       }
     }
 
