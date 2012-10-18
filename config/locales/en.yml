@@ -31,30 +31,19 @@ en:
         IN-PERSON WORKSHOP
     index:
       intro:
-        Thanks for swinging by. If you’re new, the trail maps for any topic
-        below are the best way to get an intro. Otherwise, just dig in.
-      promos:
-        books:
-          action:
-            READ ON
-          description:
-            Build snappier, more interactive apps with cleaner code and better
-            tests in less time.
-        videos:
-          action:
-            WATCH US
-          description:
-            Like Chat Roulette, but you know what you’re getting. Usually.
-        workshops:
-          action:
-            FIND A WORKSHOP
-          description:
-            We can help you become better at creating magic by writing better
-            code.
-          title:
-            IN-PERSON WORKSHOPS
+        Guided learning on modern development technologies and practices. Dig in.
       view_products:
         VIEW ALL OF THE THOUGHTBOT PRODUCTS
+    promotions:
+      book:
+        action:
+          READ
+      video:
+        action:
+          WATCH
+      workshop:
+        action:
+          REGISTER
     trail_map:
       resources:
         Resources

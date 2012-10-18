@@ -2,6 +2,9 @@ class TopicsController < ApplicationController
   def index
     expires_in 12.hours, public: true
     @topics = Topic.top
+    @promoted_left = promoted_item('left')
+    @promoted_middle = promoted_item('middle')
+    @promoted_right = promoted_item('right')
   end
 
   def show
@@ -11,5 +14,11 @@ class TopicsController < ApplicationController
     @courses = @topic.courses.only_public.by_position
     @products = @topic.products.ordered
     @related_topics = @topic.related_topics
+  end
+
+  private
+
+  def promoted_item(location)
+    Course.promoted(location) || Product.promoted(location)
   end
 end

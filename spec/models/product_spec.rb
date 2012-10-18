@@ -27,4 +27,11 @@ describe Product do
       Product.videos.should == [video]
     end
   end
+
+  describe "self.promoted" do
+    it 'returns the promoted product in the location' do
+      product = create(:product, promo_location: 'left')
+      Product.promoted('left').should == product
+    end
+  end
 end
