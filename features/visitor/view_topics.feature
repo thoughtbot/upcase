@@ -61,3 +61,10 @@ Feature: View topics
     When I go to the home page
     And I follow "Topic 1"
     Then the related reading section should include the article.
+
+  Scenario: Learn about a topic
+    Given a featured topic named "Ruby on Rails"
+    And a trail-map for "ruby+on+rails"
+    When I go to the home page
+    And I follow "Ruby on Rails"
+    And I should see a trail-map for "ruby+on+rails"
