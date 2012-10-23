@@ -1,6 +1,10 @@
 module OpenGraphHelper
   def open_graph_tags
-    tag('meta', property: 'og:image', content: image_url('learn/learn-ralph.png'))
+    raw [
+      tag('meta', property: 'og:image', content: image_url('ralph-gradient.png')),
+      tag('meta', property: 'og:url', content: url_for(only_path: false)),
+      tag('meta', property: 'og:title', content: title(@topic.try(:name))),
+    ].join("\n")
   end
 
   private
