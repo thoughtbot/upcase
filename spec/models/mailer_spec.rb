@@ -48,6 +48,15 @@ describe Mailer do
         @email.should_not have_body_text(/#{new_user_url(host: HOST)}/)
       end
     end
+
+    context 'for a product with an announcement' do
+      it 'contains announcement.message in the body' do
+        purchase = create(:purchase)
+        announcement = create(:announcement, announceable: purchase.product)
+        email = Mailer.purchase_receipt(purchase)
+        expect(email).to have_body_text(/#{announcement.message}/)
+      end
+    end
   end
 
   describe '.registration_confirmation' do
@@ -78,6 +87,16 @@ describe Mailer do
 
       it 'does not contain a link to create a new account in the body' do
         @email.should_not have_body_text(/#{new_user_url(host: HOST)}/)
+      end
+    end
+
+    context 'for a course with an announcement' do
+      it 'contains announcement.message in the body' do
+        registration = create(:registration)
+        course = registration.section.course
+        announcement = create(:announcement, announceable: course)
+        email = Mailer.registration_confirmation(registration)
+        expect(email).to have_body_text(/#{announcement.message}/)
       end
     end
   end

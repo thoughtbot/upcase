@@ -5,12 +5,16 @@ You can view and download your purchase by clicking the following link:
 <%= product_purchase_url(@purchase.product, @purchase) %>
 <% elsif @purchase.product.fulfillment_method == "github" -%>
 You have been added to the GitHub repo at <%= @purchase.product.github_url %>.
-You will also receive a notification from GitHub. Please contact us at 
+You will also receive a notification from GitHub. Please contact us at
 learn@thoughtbot.com if you do not get access to this repository.
 <% end -%>
 
 Every product includes ongoing support for any questions you may have about the
 topic. Visit our live chat here: <%= CHAT_LINK %>
+
+<% if @purchase.product.announcement.present? %>
+<%= @purchase.product.announcement.message %>
+<% end %>
 
 <%= render partial: 'create_account_if_needed', locals: { purchase: @purchase } %>
 

@@ -7,7 +7,7 @@ You provided us with the following comments:
 If you have any special dietary restrictions, and you have not done so already, please let us know by replying to this email.
 
 <% if @section && @section.reminder_email.present? -%>
-  <%= @section.reminder_email %>
+<%= @section.reminder_email %>
 <% end -%>
 
 When
@@ -21,9 +21,11 @@ Where
 We will be in touch before <%= @registration.section.starts_on.to_time.to_s(:simple) %> with a reminder and any further instructions. However, please don't hesitate to get in touch with us at learn@thoughtbot.com should you have any questions or concerns.
 
 Every product and workshop includes ongoing support for any questions you may
-have about the topic, both before and after the course.
-Visit our live chat here:
-<%= CHAT_LINK %>
+have about the topic, both before and after the course. Visit our live chat here: <%= CHAT_LINK %>
+
+<% if @registration.course.announcement.present? %>
+<%= @registration.course.announcement.message %>
+<% end %>
 
 <%= render partial: 'create_account_if_needed', locals: { purchase: @registration } %>
 

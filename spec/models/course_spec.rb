@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Course do
   # Associations
+  it { should have_many(:announcements).dependent(:destroy) }
   it { should belong_to(:audience) }
   it { should have_many(:classifications) }
   it { should have_many(:follow_ups) }
@@ -19,6 +20,15 @@ describe Course do
   it { should validate_presence_of(:short_description) }
   it { should validate_presence_of(:start_at) }
   it { should validate_presence_of(:stop_at) }
+
+  describe '#announcement' do
+    it 'calls Announcement.current' do
+      Announcement.stubs :current
+      course = create(:course)
+      course.announcement
+      Announcement.should have_received(:current)
+    end
+  end
 
   describe '.promoted' do
     it 'returns the promoted course in the location' do

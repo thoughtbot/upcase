@@ -1,5 +1,6 @@
 class Course < ActiveRecord::Base
   # Associations
+  has_many :announcements, as: :announceable, dependent: :destroy
   belongs_to :audience
   has_many :classifications, as: :classifiable
   has_many :follow_ups
@@ -37,6 +38,10 @@ class Course < ActiveRecord::Base
 
   def active_sections
     sections.active
+  end
+
+  def announcement
+    @announcement ||= announcements.current
   end
 
   def as_json(options = {})
