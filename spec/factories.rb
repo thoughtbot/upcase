@@ -23,114 +23,71 @@ FactoryGirl.define do
     "user#{n}"
   end
 
-  factory :user do
-    first_name 'Dan'
-    last_name  'Deacon'
-    email
-    password "password"
-
-    factory :admin do
-      admin true
-    end
+  factory :article do
+    author
+    body_html 'article body'
+    published_on Date.today
+    title
+    tumblr_url
   end
 
   factory :audience do
-    name "Web Designer"
+    name 'Web Designer'
   end
 
-  factory :course do
-    audience
-    name              { generate(:name) }
-    description       "Solve 8-Queens over and over again"
-    short_description "Solve 8-Queens"
-    price       "500"
-    start_at    '9:00'
-    stop_at     '17:00'
-    maximum_students 12
-
-    factory :private_course do
-      public false
-    end
+  factory :author do
+    tumblr_user_name
   end
 
-  factory :section_without_teacher, class: Section do
-    association :course
-    starts_on { 1.day.ago }
-    ends_on   { 1.day.from_now }
-    start_at    '9:00'
-    stop_at     '17:00'
-    address     '41 Winter St'
-
-    factory :section do
-      after(:build) do |s|
-        s.teachers << build(:teacher)
-      end
-
-      factory :future_section do
-        starts_on { 2.days.from_now }
-        ends_on   { 4.days.from_now }
-      end
-    end
-  end
-
-  factory :registration, aliases: [:unpaid_registration] do
-    first_name 'Dan'
-    last_name  'Deacon'
-    organization 'company'
-    email
-    billing_email 'billing@example.com'
-    section
-
-    factory :paid_registration do
-      paid true
-    end
-
-    factory :registration_with_all_attributes do
-      phone '617 123 1234'
-      address1 '123 Main St.'
-      address2 'Apartment 6'
-      city 'Boston'
-      state 'MA'
-      zip_code '02108'
-    end
-  end
-
-  factory :teacher do
-    name  "Billy Madison"
-    email "bmadison@example.com"
-  end
-
-  factory :section_teacher do
-    section
-    teacher
-  end
-
-  factory :question do
-    course
-    question "What's up, buddy?"
-    answer   "Not much, bro."
-  end
-
-  factory :follow_up do
-    course
+  factory :classification do
+    association :classifiable, factory: :article
+    topic
   end
 
   factory :coupon do
-    code
-    discount_type "percentage"
     amount 10
+    code
+    discount_type 'percentage'
 
     factory :one_time_coupon do
       one_time_use_only true
     end
   end
 
-  factory :product do
+  factory :course do
+    audience
+    description 'Solve 8-Queens over and over again'
+    maximum_students 12
     name { generate(:name) }
-    sku "TEST"
-    individual_price 15
+    price '500'
+    short_description 'Solve 8-Queens'
+    start_at '9:00'
+    stop_at '17:00'
+
+    factory :private_course do
+      public false
+    end
+  end
+
+  factory :download do
+  end
+
+  factory :follow_up do
+    course
+  end
+
+  factory :question do
+    answer 'Not much, bro.'
+    course
+    question "What's up, buddy?"
+  end
+
+  factory :product do
     company_price 50
-    fulfillment_method "fetch"
+    fulfillment_method 'fetch'
+    individual_price 15
+    name { generate(:name) }
+    sku 'TEST'
 
     factory :book_product do
       product_type 'book'
@@ -145,51 +102,93 @@ FactoryGirl.define do
     end
   end
 
-  factory :video do
-    product
-    wistia_id "1194803"
-  end
-
-  factory :download do
-  end
-
   factory :purchase, aliases: [:individual_purchase] do
+    email 'joe@example.com'
+    name 'Test User'
     product
-    name "Test User"
-    email "joe@example.com"
-    variant "individual"
+    variant 'individual'
 
     factory :stripe_purchase do
-      payment_method "stripe"
+      payment_method 'stripe'
     end
 
     factory :free_purchase do
-      payment_method "free"
       paid_price 0
+      payment_method 'free'
      end
   end
 
-  factory :article do
-    author
-    title
-    tumblr_url
-    published_on Date.today
-    body_html 'article body'
+  factory :registration, aliases: [:unpaid_registration] do
+    billing_email 'billing@example.com'
+    email
+    first_name 'Dan'
+    last_name 'Deacon'
+    organization 'company'
+    section
+
+    factory :paid_registration do
+      paid true
+    end
+
+    factory :registration_with_all_attributes do
+      address1 '123 Main St.'
+      address2 'Apartment 6'
+      city 'Boston'
+      phone '617 123 1234'
+      state 'MA'
+      zip_code '02108'
+    end
   end
 
-  factory :author do
-    tumblr_user_name
+  factory :section_teacher do
+    section
+    teacher
+  end
+
+  factory :section_without_teacher, class: Section do
+    address '41 Winter St'
+    association :course
+    ends_on { 1.day.from_now }
+    start_at '9:00'
+    starts_on { 1.day.ago }
+    stop_at '17:00'
+
+    factory :section do
+      after(:build) do |s|
+        s.teachers << build(:teacher)
+      end
+
+      factory :future_section do
+        ends_on { 4.days.from_now }
+        starts_on { 2.days.from_now }
+      end
+    end
+  end
+
+  factory :teacher do
+    email 'bmadison@example.com'
+    name 'Billy Madison'
   end
 
   factory :topic do
-    name
-
     keywords 'clean, clear, precise'
+    name
     summary 'short yet descriptive'
   end
 
-  factory :classification do
-    topic
-    association :classifiable, factory: :article
+  factory :user do
+    email
+    first_name 'Dan'
+    last_name 'Deacon'
+    password 'password'
+
+    factory :admin do
+      admin true
+    end
+  end
+
+  factory :video do
+    product
+    wistia_id '1194803'
   end
 end
