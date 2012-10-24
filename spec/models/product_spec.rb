@@ -3,7 +3,10 @@ require 'spec_helper'
 describe Product do
   # Associations
   it { should have_many(:classifications) }
+  it { should have_many(:downloads) }
+  it { should have_many(:purchases) }
   it { should have_many(:topics).through(:classifications) }
+  it { should have_many(:videos) }
 
   # Validations
   it { should validate_presence_of(:company_price) }
@@ -20,6 +23,13 @@ describe Product do
     end
   end
 
+  describe '.promoted' do
+    it 'returns the promoted product in the location' do
+      product = create(:product, promo_location: 'left')
+      Product.promoted('left').should == product
+    end
+  end
+
   describe '.videos' do
     it 'only includes videos' do
       video = create(:video_product)
@@ -33,13 +43,6 @@ describe Product do
       workshop = create(:workshop_product)
       create :book_product
       Product.workshops.should == [workshop]
-    end
-  end
-
-  describe "self.promoted" do
-    it 'returns the promoted product in the location' do
-      product = create(:product, promo_location: 'left')
-      Product.promoted('left').should == product
     end
   end
 end
