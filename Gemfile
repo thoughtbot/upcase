@@ -47,7 +47,6 @@ end
 
 group :development do
   gem 'hirb', '0.6.2'
-  gem 'tddium', '1.4.7'
 end
 
 group :development, :test do
