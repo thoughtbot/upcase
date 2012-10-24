@@ -1,34 +1,54 @@
 class Product < ActiveRecord::Base
-  has_many :purchases
-  has_many :downloads
+  # Associations
   has_many :classifications, as: :classifiable
+  has_many :downloads
+  has_many :purchases
   has_many :topics, through: :classifications
   has_many :videos
 
-  validates_presence_of :name, :sku, :individual_price, :company_price, :fulfillment_method
-  accepts_nested_attributes_for :downloads, :allow_destroy => true
+  # Nested Attributes
+  accepts_nested_attributes_for :downloads, allow_destroy: true
+
+  # Validations
+  validates :name, presence: true
+  validates :company_price, presence: true
+  validates :fulfillment_method, presence: true
+  validates :individual_price, presence: true
+  validates :sku, presence: true
+
+  # Plugins
   has_attached_file :product_image, {
-    styles: { book: '230x300#', video: '153x100#' }
+    styles: {
+      book: '230x300#',
+      video: '153x100#'
+    }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
 
   def self.active
-    where(active: true)
+    where active: true
   end
 
   def self.books
     where product_type: 'book'
   end
 
-  def self.workshops
-    where product_type: 'workshop'
+  def external?
+    fulfillment_method == 'external'
   end
 
-  def self.videos
-    where product_type: 'video'
+  def image_url
+    raw_url = self.product_image.url(product_type_symbol)
+    product_image_file_name? ? raw_url : "/assets/#{raw_url}"
   end
 
   def self.ordered
-    order("name asc")
+    order 'name ASC'
+  end
+
+  def product_type_symbol
+    self.product_type.split(' ')[0].downcase.to_sym
+  rescue
+    'book'
   end
 
   def self.promoted(location)
@@ -39,18 +59,11 @@ class Product < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
-  def product_type_symbol
-    self.product_type.split(" ")[0].downcase.to_sym
-  rescue
-    "book"
+  def self.videos
+    where product_type: 'video'
   end
 
-  def image_url
-    raw_url = self.product_image.url(product_type_symbol)
-    product_image_file_name.nil? ? "/assets/#{raw_url}" : raw_url
-  end
-
-  def external?
-    fulfillment_method == 'external'
+  def self.workshops
+    where product_type: 'workshop'
   end
 end

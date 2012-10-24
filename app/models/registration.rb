@@ -1,24 +1,29 @@
 class Registration < ActiveRecord::Base
   include Rails.application.routes.url_helpers
 
-  belongs_to :user
-  belongs_to :section
+  # Associations
   belongs_to :coupon
+  belongs_to :section
+  belongs_to :user
 
+  # Validations
+  validates :billing_email, presence: true
+  validates :email, presence: true,
+    format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :organization, presence: true
+
+  # Callbacks
   before_validation :populate_organization, on: :create
   before_validation :populate_billing_email, on: :create
-
-  validates_presence_of :organization, :first_name, :last_name, :email, :billing_email
-  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-
   after_create :push_payment_for_zero_cost
-
   after_create :store_freshbooks_client
   after_create :store_freshbooks_invoice
   after_create :send_invoice
 
   def self.by_email(email)
-    where(email: email)
+    where email: email
   end
 
   def name
@@ -26,7 +31,7 @@ class Registration < ActiveRecord::Base
   end
 
   def freshbooks_invoice_url
-    self.attributes['freshbooks_invoice_url'] || fetch_invoice_url
+    attributes['freshbooks_invoice_url'] || fetch_invoice_url
   end
 
   def receive_payment!
@@ -57,31 +62,62 @@ class Registration < ActiveRecord::Base
 
   private
 
-  def push_payment_for_zero_cost
-    if price == 0
-      set_as_paid
-      save!
-      send_payment_confirmations
-    end
+  def create_freshbooks_client
+    freshbooks_client.client.create(
+      client: {
+        email: billing_email,
+        first_name: first_name,
+        last_name: last_name,
+        organization: organization,
+        p_city: city,
+        p_code: zip_code,
+        p_country: 'USA',
+        p_state: state,
+        p_street1: address1,
+        p_street2: address2,
+        work_phone: phone
+      }
+    )
   end
 
-  def set_as_paid
-    self.paid = true
-    coupon.try(:applied)
+  def create_freshbooks_invoice
+    freshbooks_client.invoice.create(
+      invoice: {
+        client_id: freshbooks_client_id,
+        first_name: first_name,
+        last_name: last_name,
+        lines: [{
+          line: {
+            name: 'Workshop',
+            description: section.course_name,
+            unit_cost: price,
+            quantity: 1
+          }
+        }],
+        organization: organization,
+        p_city: city,
+        p_code: zip_code,
+        p_street1: address1,
+        return_uri: section_url(
+          section, host: ActionMailer::Base.default_url_options[:host]),
+        status: 'sent',
+        terms: 'UPON RECEIPT'
+      }
+    )
   end
 
-  def send_payment_confirmations
-    Mailer.registration_notification(self).deliver
-    Mailer.registration_confirmation(self).deliver
+  def freshbooks_client
+    @freshbooks_client ||= FreshBooks::Client.new(
+      FRESHBOOKS_PATH, FRESHBOOKS_TOKEN)
   end
 
-  def send_invoice
-    Mailer.invoice(self).deliver
-  end
+  def fetch_invoice_url
+    response = freshbooks_client.invoice.get(invoice_id: freshbooks_invoice_id)
 
-  def populate_organization
-    if organization.blank?
-      self.organization = "#{first_name} #{last_name}"
+    if response.success?
+      self.freshbooks_invoice_url = response['invoice']['links']['client_view']
+      save
+      freshbooks_invoice_url
     end
   end
 
@@ -91,11 +127,40 @@ class Registration < ActiveRecord::Base
     end
   end
 
+  def populate_organization
+    if organization.blank?
+      self.organization = "#{first_name} #{last_name}"
+    end
+  end
+
+  def push_payment_for_zero_cost
+    if price == 0
+      set_as_paid
+      save!
+      send_payment_confirmations
+    end
+  end
+
+  def send_invoice
+    Mailer.invoice(self).deliver
+  end
+
+  def send_payment_confirmations
+    Mailer.registration_notification(self).deliver
+    Mailer.registration_confirmation(self).deliver
+  end
+
+  def set_as_paid
+    self.paid = true
+    coupon.try :applied
+  end
+
   def store_freshbooks_client
-    response = self.create_freshbooks_client
+    response = create_freshbooks_client
+
     if response.success?
       self.freshbooks_client_id = response['client_id']
-      self.save
+      save
     else
       Rails.logger.error response.inspect
     end
@@ -103,63 +168,12 @@ class Registration < ActiveRecord::Base
 
   def store_freshbooks_invoice
     response = create_freshbooks_invoice
+
     if response.success?
       self.freshbooks_invoice_id = response['invoice_id']
-      self.save
+      save
     else
       Rails.logger.error response.inspect
-    end
-  end
-
-  protected
-
-  def create_freshbooks_client
-    freshbooks_client.client.create(client: {
-      first_name: first_name,
-      last_name: last_name,
-      organization: organization,
-      email: billing_email,
-      work_phone: phone,
-      p_street1: address1,
-      p_street2: address2,
-      p_city: city,
-      p_state: state,
-      p_country: 'USA',
-      p_code: zip_code
-    })
-  end
-
-  def freshbooks_client
-    @freshbooks_client ||= FreshBooks::Client.new(FRESHBOOKS_PATH, FRESHBOOKS_TOKEN)
-  end
-
-  def create_freshbooks_invoice
-    freshbooks_client.invoice.create(invoice: {
-                                    client_id: self.freshbooks_client_id,
-                                    return_uri: section_url(self.section, host: ActionMailer::Base.default_url_options[:host]),
-                                    first_name: self.first_name,
-                                    last_name: self.last_name,
-                                    organization: self.organization,
-                                    p_street1: self.address1,
-                                    p_city: self.city,
-                                    p_code: self.zip_code,
-                                    status: 'sent',
-                                    terms: 'UPON RECEIPT',
-                                    lines: [{ line: {
-                                        name: 'Workshop',
-                                        description: self.section.course_name,
-                                        unit_cost: price,
-                                        quantity: 1
-                                      }}]
-                                    })
-  end
-
-  def fetch_invoice_url
-    response = freshbooks_client.invoice.get(invoice_id: self.freshbooks_invoice_id)
-    if response.success?
-      self.freshbooks_invoice_url = response['invoice']['links']['client_view']
-      self.save
-      self.freshbooks_invoice_url
     end
   end
 end
