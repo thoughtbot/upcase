@@ -12,6 +12,14 @@ describe Topic do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:slug) }
 
+  # Associations
+  it { should allow_mass_assignment_of(:trail_map) }
+  it { should allow_mass_assignment_of(:featured) }
+  it { should allow_mass_assignment_of(:keywords) }
+  it { should allow_mass_assignment_of(:name) }
+  it { should allow_mass_assignment_of(:summary) }
+  it { should allow_mass_assignment_of(:related_topic_ids) }
+
   context '.create' do
     before do
       @topic = create(:topic, name: ' Test Driven Development ')
