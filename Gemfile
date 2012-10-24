@@ -1,5 +1,7 @@
 source :rubygems
 
+ruby '1.9.2'
+
 gem 'RedCloth', '4.2.9', require: 'redcloth'
 gem 'acts_as_list', '0.1.6'
 gem 'airbrake', '3.0.9'
