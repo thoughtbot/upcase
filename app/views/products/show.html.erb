@@ -12,7 +12,7 @@
       <section id="license">
         <% if !@product.external? %>
           <div>
-            <h2>Single License <span><%= number_to_currency @product.individual_price, precision: 0 %></span></h2>
+            <h2>Single <span><%= number_to_currency @product.individual_price, precision: 0 %></span></h2>
             <div class="license">
               <%= link_to new_product_purchase_path(@product, variant: :individual), class: 'license-button', id: "#{@product.sku}-purchase-individual" do %>
                 Purchase for Yourself
@@ -20,7 +20,7 @@
             </div>
           </div>
           <div>
-            <h2>Group License <span><%= number_to_currency @product.company_price, precision: 0 %></span></h2>
+            <h2>Group <span><%= number_to_currency @product.company_price, precision: 0 %></span></h2>
             <div class="license">
               <%= link_to new_product_purchase_path(@product, variant: :company), class: 'license-button', id: "#{@product.sku}-purchase-company" do %>
                 Purchase for Your Company
