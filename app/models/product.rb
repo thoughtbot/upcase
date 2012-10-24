@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
   # Associations
+  has_many :announcements, as: :announceable, dependent: :destroy
   has_many :classifications, as: :classifiable
   has_many :downloads
   has_many :purchases
@@ -26,6 +27,10 @@ class Product < ActiveRecord::Base
 
   def self.active
     where active: true
+  end
+
+  def announcement
+    @announcement ||= announcements.current
   end
 
   def self.books

@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Product do
   # Associations
+  it { should have_many(:announcements).dependent(:destroy) }
   it { should have_many(:classifications) }
   it { should have_many(:downloads) }
   it { should have_many(:purchases) }
@@ -14,6 +15,15 @@ describe Product do
   it { should validate_presence_of(:individual_price) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:sku) }
+
+  describe '#announcement' do
+    it 'calls Announcement.current' do
+      Announcement.stubs :current
+      product = create(:book_product)
+      product.announcement
+      Announcement.should have_received(:current)
+    end
+  end
 
   describe '.books' do
     it 'only includes books' do

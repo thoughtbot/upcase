@@ -73,7 +73,7 @@ group :test do
   gem 'mocha', '0.10.5'
   gem 'selenium-webdriver', '2.25.0'
   gem 'sham_rack', '1.3.1'
-  gem 'shoulda', '3.0.1'
+  gem 'shoulda-matchers', '1.4.1'
   gem 'sinatra', '1.2.8'
   gem 'timecop', '0.3.5'
   gem 'vcr', '2.1.1'

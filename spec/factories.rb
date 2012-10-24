@@ -23,6 +23,12 @@ FactoryGirl.define do
     "user#{n}"
   end
 
+  factory :announcement do
+    association :announceable, factory: :book_product
+    ends_at { Time.now.tomorrow }
+    message 'Foo: http://example.com'
+  end
+
   factory :article do
     author
     body_html 'article body'

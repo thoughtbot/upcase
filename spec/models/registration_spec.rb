@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Registration do
   # Associations
   it { should belong_to(:coupon) }
+  it { should have_one(:course).through(:section) }
   it { should belong_to(:section) }
   it { should belong_to(:user) }
 
@@ -97,7 +98,7 @@ describe Registration do
 
     it 'uses a one-time coupon' do
       coupon = create(:one_time_coupon, amount: 25)
-      registration = build_stubbed(:registration, coupon: coupon)
+      registration = create(:registration, coupon: coupon)
       coupon.expects :applied
       registration.receive_payment!
     end
