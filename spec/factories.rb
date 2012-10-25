@@ -139,6 +139,10 @@ FactoryGirl.define do
     factory :video_product do
       product_type 'video'
     end
+
+    factory :workshop_product do
+      product_type 'workshop'
+    end
   end
 
   factory :video do

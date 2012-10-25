@@ -19,6 +19,14 @@ class Product < ActiveRecord::Base
     where product_type: 'book'
   end
 
+  def self.workshops
+    where product_type: 'workshop'
+  end
+
+  def self.videos
+    where product_type: 'video'
+  end
+
   def self.ordered
     order("name asc")
   end
@@ -44,9 +52,5 @@ class Product < ActiveRecord::Base
 
   def external?
     fulfillment_method == 'external'
-  end
-
-  def self.videos
-    where product_type: 'video'
   end
 end
