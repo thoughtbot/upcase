@@ -41,6 +41,9 @@ en:
       video:
         action:
           WATCH
+      workshop:
+        action:
+          REGISTER
     promoted_course:
       action:
         REGISTER
