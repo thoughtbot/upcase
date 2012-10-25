@@ -12,7 +12,7 @@ describe Product do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:sku) }
 
-  context '.books' do
+  describe '.books' do
     it 'only includes books' do
       book = create(:book_product)
       create :video_product
@@ -20,11 +20,19 @@ describe Product do
     end
   end
 
-  context '.videos' do
+  describe '.videos' do
     it 'only includes videos' do
       video = create(:video_product)
       create :book_product
       Product.videos.should == [video]
+    end
+  end
+
+  describe '.workshops' do
+    it 'only includes workshops' do
+      workshop = create(:workshop_product)
+      create :book_product
+      Product.workshops.should == [workshop]
     end
   end
 

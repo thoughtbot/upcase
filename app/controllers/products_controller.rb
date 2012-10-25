@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
     @courses = Course.only_public.by_position
     @books = Product.books.ordered
     @videos = Product.videos.ordered
+    @workshops = Product.workshops.ordered
   end
 
   def show

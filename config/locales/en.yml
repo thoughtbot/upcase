@@ -18,12 +18,14 @@ en:
   shared:
     books:
       BOOKS
+    courses:
+      IN-PERSON WORKSHOPS
     learn:
       Learn
     videos:
       VIDEOS
     workshops:
-      IN-PERSON WORKSHOPS
+      ONLINE WORKSHOPS
 
   topics:
     course:
