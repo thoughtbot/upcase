@@ -155,11 +155,15 @@ body.purchases{
         }
 
         .schedule {
-          em {
+          margin-bottom: 24px;
+          font: 16px $serif;
+          font-weight: 400;
+          line-height: 24px;
+          margin-bottom: 24px;
+
+          .date {
             color: $red;
-            display: inline-block;
-            font-style: normal;
-            margin-right: 5px;
+            padding-right: 10px;
             text-align: right;
             width: 120px;
           }
