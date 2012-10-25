@@ -11,12 +11,20 @@
 </section>
 
 <section id="promo-wrapper">
-  <% if @courses.present? %>
+  <% if @courses.present? || @workshops.present? %>
     <div class="products-container learn-text-box">
-      <h2><%= t 'shared.workshops' %></h2>
-      <ul>
-        <%= render @courses %>
-      </ul>
+      <% if @workshops.present? %>
+        <h2><%= t 'shared.workshops' %></h2>
+        <ul>
+          <%= render @workshops %>
+        </ul>
+      <% end %>
+      <% if @courses.present? %>
+        <h2><%= t 'shared.courses' %></h2>
+        <ul>
+          <%= render @courses %>
+        </ul>
+      <% end %>
     </div>
   <% end %>
 

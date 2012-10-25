@@ -33,5 +33,15 @@ describe 'Products' do
       click_link video_one.name
       expect(current_path).to eq(product_path(video_one))
     end
+
+    it 'lists all workshops' do
+      workshop_one = create(:workshop_product)
+      workshop_two = create(:workshop_product)
+      visit products_path
+      expect(page).to have_content(workshop_one.name)
+      expect(page).to have_content(workshop_two.name)
+      click_link workshop_one.name
+      expect(current_path).to eq(product_path(workshop_one))
+    end
   end
 end
