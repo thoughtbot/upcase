@@ -4,7 +4,7 @@ $darkwarmgray: #6C6A66;
 $learnred: #B22115;
 $learndarkred: #660000;
 
-.articles-index, .courses-show, .products-index, .topics-index, .topics-show {
+.articles-index, .courses-show, .products-index, .topics-index, .topics-show, .products-show {
   -webkit-font-smoothing: antialiased;
   background-color: $lightwarmgray;
   border-top: none;
@@ -338,6 +338,10 @@ $learndarkred: #660000;
       }
     }
 
+    #table-of-contents {
+      margin-top: 40px;
+    }
+
     .learn-text-box-wrapper {
       @include span-columns (9);
     }
@@ -496,7 +500,7 @@ $learndarkred: #660000;
         }
       }
 
-      .section-location {
+      .section-location, #license {
 
         h2 span {
               font: 300 36px $sans-serif;
@@ -512,6 +516,10 @@ $learndarkred: #660000;
 
         hr {
           margin-top: 30px;
+        }
+
+        .license {
+          margin-top: 0;
         }
       }
 
@@ -535,6 +543,14 @@ $learndarkred: #660000;
             display: block;
             font-size: 18px;
           }
+        }
+      }
+
+      #terms {
+        margin-top: 40px;
+
+        dt p {
+          font-style: italic;
         }
       }
 
