@@ -23,8 +23,8 @@ We will be in touch before <%= @registration.section.starts_on.to_time.to_s(:sim
 Every product and workshop includes ongoing support for any questions you may
 have about the topic, both before and after the course. Visit our live chat here: <%= CHAT_LINK %>
 
-<% if @registration.section.course.announcement.present? %>
-<%= @registration.section.course.announcement.message %>
+<% if @registration.course.announcement.present? %>
+<%= @registration.course.announcement.message %>
 <% end %>
 
 <%= render partial: 'create_account_if_needed', locals: { purchase: @registration } %>

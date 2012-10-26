@@ -16,7 +16,7 @@ describe Product do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:sku) }
 
-  context '#announcement' do
+  describe '#announcement' do
     it 'calls Announcement.current' do
       Announcement.stubs :current
       product = create(:book_product)

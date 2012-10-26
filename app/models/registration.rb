@@ -3,6 +3,7 @@ class Registration < ActiveRecord::Base
 
   # Associations
   belongs_to :coupon
+  has_one :course, :through => :section
   belongs_to :section
   belongs_to :user
 

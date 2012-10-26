@@ -4,7 +4,7 @@ describe Announcement do
   # Database
   it { should have_db_column(:created_at).with_options(null: false) }
   it { should have_db_column(:updated_at).with_options(null: false) }
-  it { should have_db_index(:announceable_id) }
+  it { should have_db_index([:announceable_id, :announceable_type, :ends_at]) }
 
   # Mass Assignment
   it { should allow_mass_assignment_of(:announceable_id) }
@@ -21,10 +21,10 @@ describe Announcement do
   it { should validate_presence_of(:ends_at) }
   it { should validate_presence_of(:message) }
 
-  context '.current' do
+  describe '.current' do
     context 'without any announcements' do
       it 'returns nil' do
-        expect(Announcement.current).to be_nil
+        Announcement.current.should be_nil
       end
     end
 
@@ -33,7 +33,7 @@ describe Announcement do
         create :announcement, ends_at: Time.now.yesterday
         create :announcement, ends_at: Time.now.next_week
         current = create(:announcement, ends_at: Time.now.tomorrow)
-        expect(Announcement.current).to eq(current)
+        Announcement.current.should eq(current)
       end
     end
   end

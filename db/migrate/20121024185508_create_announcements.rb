@@ -7,6 +7,7 @@ class CreateAnnouncements < ActiveRecord::Migration
       t.datetime :ends_at, null: false
     end
 
-    add_index :announcements, :announceable_id
+    add_index :announcements, [:announceable_id, :announceable_type, :ends_at],
+      name: :index_announcements_on_announceable_and_ends_at
   end
 end

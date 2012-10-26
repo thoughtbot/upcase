@@ -21,7 +21,7 @@ describe Course do
   it { should validate_presence_of(:start_at) }
   it { should validate_presence_of(:stop_at) }
 
-  context '#announcement' do
+  describe '#announcement' do
     it 'calls Announcement.current' do
       Announcement.stubs :current
       course = create(:course)
@@ -37,7 +37,7 @@ describe Course do
     end
   end
 
-  context '#to_param' do
+  describe '#to_param' do
     it 'returns the id and parameterized name' do
       course = create(:course)
       course.to_param.should == "#{course.id}-#{course.name.parameterize}"
