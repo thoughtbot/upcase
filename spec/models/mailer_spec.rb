@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Mailer do
-  context '.purchase_receipt' do
+  describe '.purchase_receipt' do
     include Rails.application.routes.url_helpers
 
     context 'for a purchase without a user' do
@@ -59,7 +59,7 @@ describe Mailer do
     end
   end
 
-  context '.registration_confirmation' do
+  describe '.registration_confirmation' do
     include Rails.application.routes.url_helpers
 
     context 'for a registration without a user' do
@@ -101,7 +101,7 @@ describe Mailer do
     end
   end
 
-  context '.section_reminder' do
+  describe '.section_reminder' do
     let(:course_name) do
       'Hilarious Backbone.js'
     end
