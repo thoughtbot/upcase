@@ -42,8 +42,8 @@
         <% else %>
           <div>
             <div class="license">
-              <%= link_to @product.external_purchase_url, class: 'license-button', id: "#{@product.sku}-purchase-individual" do %>
-                Purchase<% if @product.external_purchase_name.present? %> from <%= @product.external_purchase_name %><% end %>
+              <%= link_to @product.external_purchase_url, class: 'license-button button', id: "#{@product.sku}-purchase-individual" do %>
+                PURCHASE<% if @product.external_purchase_name.present? %> from <%= @product.external_purchase_name %><% end %>
               <% end %>
               <% if @product.external_purchase_description.present? %>
                 <p><%== @product.external_purchase_description %></p>

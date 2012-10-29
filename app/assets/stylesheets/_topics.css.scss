@@ -338,6 +338,22 @@ $learndarkred: #660000;
       }
     }
 
+    .videowrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      padding-top: 0px;
+      height: 0;
+      overflow: hidden;
+
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
     #table-of-contents {
       margin-top: 40px;
     }
@@ -390,7 +406,7 @@ $learndarkred: #660000;
       @include outer-container;
       background-color: $lightwarmgray;
       border-radius: 3px;
-      margin: 16px 0 16px 0;
+      margin: 28px 0 28px 0;
       padding: 2em;
 
       h3 {
@@ -432,6 +448,10 @@ $learndarkred: #660000;
 
       .source {
         margin-left: 12%;
+      }
+
+      ol {
+        margin-bottom: 20px;
       }
     }
 
@@ -483,6 +503,7 @@ $learndarkred: #660000;
 
       .button {
         height: auto;
+        margin-bottom: 30px;
         padding-bottom: 12px;
         width: 100%;
       }
@@ -514,12 +535,12 @@ $learndarkred: #660000;
           color: $darkwarmgray;
         }
 
-        hr {
-          margin-top: 30px;
-        }
-
         .license {
           margin-top: 0;
+        }
+
+        .license-button {
+          text-transform: uppercase;
         }
       }
 
