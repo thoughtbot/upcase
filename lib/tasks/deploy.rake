@@ -5,15 +5,15 @@ namespace :deploy do
   task staging: ["heroku:dependencies"] do
     `git push staging master`
     `bundle exec rake airbrake:deploy TO=staging`
-    `bundle exec heroku rake db:migrate --remote staging`
-    `bundle exec heroku restart --remote staging`
+    `heroku rake db:migrate --remote staging`
+    `heroku restart --remote staging`
   end
 
   desc "Deploy to Heroku production"
   task production: ["heroku:dependencies"] do
     `git push production master`
     `bundle exec rake airbrake:deploy TO=production`
-    `bundle exec heroku rake db:migrate --remote production`
+    `heroku rake db:migrate --remote production`
   end
 end
 

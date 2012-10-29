@@ -4,7 +4,7 @@ $darkwarmgray: #6C6A66;
 $learnred: #B22115;
 $learndarkred: #660000;
 
-.articles-index, .courses-show, .products-index, .topics-index, .topics-show {
+.articles-index, .courses-show, .products-index, .topics-index, .topics-show, .products-show {
   -webkit-font-smoothing: antialiased;
   background-color: $lightwarmgray;
   border-top: none;
@@ -338,6 +338,26 @@ $learndarkred: #660000;
       }
     }
 
+    .videowrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      padding-top: 0px;
+      height: 0;
+      overflow: hidden;
+
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    #table-of-contents {
+      margin-top: 40px;
+    }
+
     .learn-text-box-wrapper {
       @include span-columns (9);
     }
@@ -386,7 +406,7 @@ $learndarkred: #660000;
       @include outer-container;
       background-color: $lightwarmgray;
       border-radius: 3px;
-      margin: 16px 0 16px 0;
+      margin: 28px 0 28px 0;
       padding: 2em;
 
       h3 {
@@ -419,6 +439,10 @@ $learndarkred: #660000;
         color: $darkwarmgray;
       }
 
+      h3 {
+        margin-bottom: 10px;
+      }
+
       q {
         display: block;
         width: 80%;
@@ -428,6 +452,10 @@ $learndarkred: #660000;
 
       .source {
         margin-left: 12%;
+      }
+
+      ol {
+        margin-bottom: 20px;
       }
     }
 
@@ -479,6 +507,7 @@ $learndarkred: #660000;
 
       .button {
         height: auto;
+        margin-bottom: 30px;
         padding-bottom: 12px;
         width: 100%;
       }
@@ -496,7 +525,7 @@ $learndarkred: #660000;
         }
       }
 
-      .section-location {
+      .section-location, #license {
 
         h2 span {
               font: 300 36px $sans-serif;
@@ -510,8 +539,12 @@ $learndarkred: #660000;
           color: $darkwarmgray;
         }
 
-        hr {
-          margin-top: 30px;
+        .license {
+          margin-top: 0;
+        }
+
+        .license-button {
+          text-transform: uppercase;
         }
       }
 
@@ -541,6 +574,13 @@ $learndarkred: #660000;
       .bio {
         height: 45px;
         overflow: hidden;
+
+      #terms {
+        margin-top: 40px;
+
+        dt p {
+          font-style: italic;
+        }
       }
 
       .travel {

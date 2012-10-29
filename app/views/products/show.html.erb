@@ -1,37 +1,49 @@
-<section id="head-wrapper">
-  <section id="homepage-top">
-    <h1><%= @product.name %></h1>
+<section id="learn-header-wrapper">
+  <div class="learn-header-container">
+    <div class="learn-detail-logo">
+      <h1>
+        <%= link_to image_tag('learn/learn-ralph-small.png'), root_path %>
+        <%= t 'shared.learn' %>
+        <span class="learnred"><%= @product.name %></span>
+      </h1>
+    </div>
+  </div>
+</section>
 
-    <section id="product-info">
+
+<section class="learn-detail-content">
+  <div class="learn-text-box-wrapper">
+    <div class="learn-text-box course-box">
       <h2><%= @product.tagline %></h2>
 
       <%== @product.description %>
-    </section>
-
-    <section id="workshop-details">
-      <section id="license">
+    </div>
+  </div>
+  <aside>
+    <section id="license">
         <% if !@product.external? %>
           <div>
             <h2>Single <span><%= number_to_currency @product.individual_price, precision: 0 %></span></h2>
             <div class="license">
-              <%= link_to new_product_purchase_path(@product, variant: :individual), class: 'license-button', id: "#{@product.sku}-purchase-individual" do %>
-                Purchase for Yourself
+              <%= link_to new_product_purchase_path(@product, variant: :individual), class: 'license-button button', id: "#{@product.sku}-purchase-individual" do %>
+                PURCHASE FOR YOURSELF
               <% end %>
             </div>
           </div>
+          <hr>
           <div>
             <h2>Group <span><%= number_to_currency @product.company_price, precision: 0 %></span></h2>
             <div class="license">
-              <%= link_to new_product_purchase_path(@product, variant: :company), class: 'license-button', id: "#{@product.sku}-purchase-company" do %>
-                Purchase for Your Company
+              <%= link_to new_product_purchase_path(@product, variant: :company), class: 'license-button button', id: "#{@product.sku}-purchase-company" do %>
+                PURCHASE FOR YOUR COMPANY
               <% end %>
             </div>
           </div>
         <% else %>
           <div>
             <div class="license">
-              <%= link_to @product.external_purchase_url, class: 'license-button', id: "#{@product.sku}-purchase-individual" do %>
-                Purchase<% if @product.external_purchase_name.present? %> from <%= @product.external_purchase_name %><% end %>
+              <%= link_to @product.external_purchase_url, class: 'license-button button', id: "#{@product.sku}-purchase-individual" do %>
+                PURCHASE<% if @product.external_purchase_name.present? %> from <%= @product.external_purchase_name %><% end %>
               <% end %>
               <% if @product.external_purchase_description.present? %>
                 <p><%== @product.external_purchase_description %></p>
@@ -51,9 +63,7 @@
           <%== @product.questions %>
         </ul>
       </section>
-    </section>
-
-  </section>
+  </aside>
 </section>
 
 <div id="flash"></div>
