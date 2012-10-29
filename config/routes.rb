@@ -60,6 +60,7 @@ Workshops::Application.routes.draw do
   match '/humans-present/oss' => "high_voltage/pages#show", as: :humans_present_oss, id: "humans-present-oss"
 
   match '/backbone-js-on-rails' => redirect("/products/1-backbone-js-on-rails")
+  match '/5by5' => redirect('/products/9-design-for-developers?utm_source=5by5')
 
   match '/rubyist-booster-shot' => "high_voltage/pages#show", as: :rubyist_booster_shot, id: "rubyist-booster-shot"
 
