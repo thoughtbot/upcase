@@ -1,0 +1,31 @@
+body.principles {
+
+  .content-container {
+    ul {
+      @include row();
+    }
+
+    li {
+      @include span-columns(2.5 10);
+      vertical-align: baseline;
+      display: block;
+      margin-bottom: lh(2);
+      @include nth-omega(4n);
+
+      section {
+
+        img {
+          border: 1px solid #eee;
+          max-width: 100%;
+        }
+
+        h2 {
+          margin: lh(.25) 0 0;
+          @include omega;
+          text-align: center;
+          color: #666;
+        }
+      }
+    }
+  }
+}
