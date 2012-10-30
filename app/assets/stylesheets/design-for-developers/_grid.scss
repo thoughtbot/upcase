@@ -1,0 +1,40 @@
+body.grid {
+  .content-container {
+
+    section.anatomy {
+      @include span-columns(12);
+      margin-bottom: $fg-gutter;
+
+      img {
+        @include span-columns(4 of 8);
+        border: 1px solid #eee;
+        max-width: 100%;
+      }
+
+      ul {
+        @include span-columns(4 of 8);
+      }
+
+      h3 {
+        margin-bottom: 0;
+      }
+
+      p {
+        margin-top: 6px;
+      }
+    }
+
+    ul.column-types {
+
+      li {
+        @include span-columns(4);
+
+        img {
+          max-width: 100%;
+          border: 1px solid #eee;
+        }
+      }
+    }
+  }
+}
+
