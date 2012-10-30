@@ -26,7 +26,7 @@
             <h2>Single <span><%= number_to_currency @product.individual_price, precision: 0 %></span></h2>
             <div class="license">
               <%= link_to new_product_purchase_path(@product, variant: :individual), class: 'license-button button', id: "#{@product.sku}-purchase-individual" do %>
-                PURCHASE FOR YOURSELF
+                Purchase for Yourself
               <% end %>
             </div>
           </div>
@@ -35,7 +35,7 @@
             <h2>Group <span><%= number_to_currency @product.company_price, precision: 0 %></span></h2>
             <div class="license">
               <%= link_to new_product_purchase_path(@product, variant: :company), class: 'license-button button', id: "#{@product.sku}-purchase-company" do %>
-                PURCHASE FOR YOUR COMPANY
+                Purchase for Your Company
               <% end %>
             </div>
           </div>
@@ -43,7 +43,7 @@
           <div>
             <div class="license">
               <%= link_to @product.external_purchase_url, class: 'license-button button', id: "#{@product.sku}-purchase-individual" do %>
-                PURCHASE<% if @product.external_purchase_name.present? %> from <%= @product.external_purchase_name %><% end %>
+                Purchase<% if @product.external_purchase_name.present? %> from <%= @product.external_purchase_name %><% end %>
               <% end %>
               <% if @product.external_purchase_description.present? %>
                 <p><%== @product.external_purchase_description %></p>
