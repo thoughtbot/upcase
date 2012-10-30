@@ -1,0 +1,16 @@
+$red: #ad141e;
+$lh: golden-ratio(1em, 1);
+
+// Neat
+$column: golden-ratio(1em, 4); // Column width
+$gutter: golden-ratio(1em, 3); // Gutter between each two columns
+
+@function lh($amount: 1) {
+  @return $lh * $amount;
+}
+
+$page-margin: lh(3);
+$break1: 960px;
+$break2: 838px;
+$break3: 640px;
+$break4: 540px;
