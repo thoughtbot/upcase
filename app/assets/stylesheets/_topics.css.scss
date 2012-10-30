@@ -541,6 +541,12 @@ $learndarkred: #660000;
 
         .license {
           margin-top: 0;
+
+          p {
+            font-size: 14px;
+            margin-top: -14px;
+            text-align: center;
+          }
         }
 
         .license-button {
