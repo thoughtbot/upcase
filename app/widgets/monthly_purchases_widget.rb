@@ -3,8 +3,8 @@ widget :monthly_purchases do
   type "number_and_secondary"
   data do
     {
-      value: Purchase.from_period(30.days.ago, Time.now),
-      previous: Purchase.from_period(60.days.ago, 30.days.ago),
+      value: Purchase.from_period(30.days.ago, Time.now) + Registration.from_period(30.days.ago, Time.now),
+      previous: Purchase.from_period(60.days.ago, 30.days.ago) + Registration.from_period(60.days.ago, 30.days.ago),
       prefix: "$"
     }
   end

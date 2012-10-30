@@ -31,11 +31,15 @@ class Purchase < ActiveRecord::Base
   end
 
   def self.last_30_days
-    (0..30).to_a.collect { |day| Purchase.where("created_at >= ? and created_at <= ?", day.days.ago.beginning_of_day, day.days.ago.end_of_day).all.sum(&:price) }.reverse
+    (0..30).to_a.collect { |day| Purchase.paid.where("created_at >= ? and created_at <= ?", day.days.ago.beginning_of_day, day.days.ago.end_of_day).all.sum(&:price) }.reverse
   end
 
   def self.from_period(start_time, end_time)
-    Purchase.where("created_at >= ? and created_at <= ?", start_time, end_time).all.sum(&:price)
+    Purchase.paid.where("created_at >= ? and created_at <= ?", start_time, end_time).all.sum(&:price)
+  end
+
+  def self.paid
+    where(paid: true)
   end
 
   def self.host
