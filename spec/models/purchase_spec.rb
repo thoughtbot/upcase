@@ -17,6 +17,15 @@ describe Purchase do
     purchase = create(:purchase, paid_price: 200)
     purchase.price.should be(200)
   end
+
+  describe "self.paid" do
+    it "returns paid purchases" do
+      paid = create(:purchase, paid: true)
+      unpaid = create(:purchase, paid: false)
+      unpaid.update_column(:paid, false)
+      Purchase.paid.should == [paid]
+    end
+  end
 end
 
 describe Purchase, "with stripe and a bad card" do

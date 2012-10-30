@@ -20,6 +20,14 @@ describe Registration do
   it { should validate_presence_of(:last_name) }
   it { should validate_presence_of(:organization) }
 
+  describe "self.paid" do
+    it "returns paid registrations" do
+      paid = create(:registration, paid: true)
+      unpaid = create(:registration, paid: false)
+      Registration.paid.should == [paid]
+    end
+  end
+
   describe '.by_email' do
     it 'returns matching registrations' do
       email = 'user@example.com'

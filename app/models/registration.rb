@@ -27,6 +27,18 @@ class Registration < ActiveRecord::Base
     where email: email
   end
 
+  def self.paid
+    where paid: true
+  end
+
+  def self.last_30_days
+    (0..30).to_a.collect { |day| Registration.paid.where("created_at >= ? and created_at <= ?", day.days.ago.beginning_of_day, day.days.ago.end_of_day).all.sum(&:price) }.reverse
+  end
+
+  def self.from_period(start_time, end_time)
+    Registration.paid.where("created_at >= ? and created_at <= ?", start_time, end_time).all.sum(&:price)
+  end
+
   def name
     [first_name, last_name].join(' ')
   end
