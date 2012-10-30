@@ -30,7 +30,7 @@ ul {
     &.star {
       a {
         &:before {
-          content: "★";
+          content: "\2605";
           display: block;
           @include position(absolute, 0 0 0 -2em);
           font-size: em(12, 18);
