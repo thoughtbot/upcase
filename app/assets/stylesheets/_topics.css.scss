@@ -154,7 +154,6 @@ $learndarkred: #660000;
       @include outer-container;
       max-width: 1100px;
       padding: 2em;
-      text-align: center;
 
       .learn-logo, .learn-intro {
         -webkit-font-smoothing: antialiased;
@@ -165,7 +164,12 @@ $learndarkred: #660000;
 
       .learn-intro {
         margin: 0 auto;
+        text-align: center;
         width: 65%;
+      }
+
+      .learn-logo {
+        text-align: center;
       }
 
       .learn-logo img {
@@ -184,9 +188,10 @@ $learndarkred: #660000;
         h1 {
           @include span-columns(10);
           font-size: 55px;
+          line-height: 40px;
+          padding-left: 240px;
           text-align: left;
           text-indent: -240px;
-          padding-left: 240px;
         }
 
         .myaccount {
@@ -371,6 +376,7 @@ $learndarkred: #660000;
       padding-bottom: 56.25%;
       padding-top: 0px;
       height: 0;
+      margin: 30px 0;
       overflow: hidden;
 
       iframe {
@@ -414,7 +420,7 @@ $learndarkred: #660000;
 
     .learn-text-box li {
       list-style-type: none;
-      margin: 10px 0 0 10px;
+      margin: 10px 0 0 20px;
     }
 
     .results-date {
@@ -500,6 +506,40 @@ $learndarkred: #660000;
         }
     }
 
+    .teachers {
+      margin-top: 30px;
+      padding-bottom: 0;
+      position: relative;
+
+      li {
+        margin-left: 0;
+      }
+
+      img {
+        border-radius: 3px;
+        float: left;
+        margin: 0 20px 20px 0;
+        vertical-align: text-top;
+      }
+
+      h2 {
+        font-size: auto;
+        line-height: 28px;
+        margin: 12px 0 12px 0;
+        padding: 0;
+
+        span {
+          color: $warmgray;
+          display: block;
+          font-size: 18px;
+        }
+      }
+
+      .bio {
+        margin-left: 114px;
+      }
+    }
+
     aside {
       @include span-columns (3);
       float: right;
@@ -535,12 +575,16 @@ $learndarkred: #660000;
 
       .button {
         height: auto;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         padding-bottom: 12px;
         width: 100%;
 
         &:active {
+<<<<<<< HEAD
           margin-bottom: 34px;
+=======
+          margin-bottom: 24px;
+>>>>>>> Design tweaks to Product and Workshop templates
         }
       }
 
@@ -584,30 +628,16 @@ $learndarkred: #660000;
         .license-button {
           text-transform: uppercase;
         }
+
+        .when {
+          margin-top: 0;
+        }
       }
 
-      .teachers {
+      .section-location:nth-child(2n) {
         margin-top: 30px;
-
-        img {
-          border-radius: 3px;
-          vertical-align: text-top;
-          margin: 0 auto;
-        }
-
-        h2 {
-          font-size: auto;
-          line-height: 28px;
-          margin: 12px 0 12px 0;
-          padding: 0;
-
-          span {
-            color: $warmgray;
-            display: block;
-            font-size: 18px;
-          }
-        }
       }
+
 
       .bio {
         height: 45px;
@@ -615,7 +645,7 @@ $learndarkred: #660000;
       }
 
       #terms {
-        margin-top: 40px;
+        margin-top: 10px;
 
         dt p {
           font-style: italic;
@@ -693,12 +723,12 @@ $learndarkred: #660000;
 
   @media screen and (max-width: 910px) {
 
-    section#learn-header-wrapper .learn-header-container .learn-intro {
-      width: 90%;
-    }
-
     #learn-divider {
       width: 95%;
+    }
+
+    .learn-logo {
+      text-align: center;
     }
 
     section#promo-wrapper .promo-container .promo-detail {
@@ -739,11 +769,12 @@ $learndarkred: #660000;
 
    .learn-logo img, .learn-detail-logo img {
       display: block;
-      margin: 0 auto;
+      margin: 0 auto 10px auto;
     }
 
     .learn-detail-logo {
       float: none !important;
+<<<<<<< HEAD
 
       h1 {
         width: 100% !important;
@@ -757,6 +788,12 @@ $learndarkred: #660000;
         margin-top: -33px !important;
         position: absolute;
         width: 100px !important;
+=======
+      text-align: center;
+
+      h1 {
+        line-height: 56px !important;
+>>>>>>> Design tweaks to Product and Workshop templates
       }
     }
 
@@ -766,6 +803,11 @@ $learndarkred: #660000;
 
     section#learn-header-wrapper .learn-header-container .learn-intro {
       padding-top: 0;
+    }
+
+    section#learn-header-wrapper .learn-header-container .learn-detail-logo h1 {
+      text-indent: 0;
+      padding-left: 0;
     }
 
     section#promo-wrapper .promo-container {
@@ -780,18 +822,22 @@ $learndarkred: #660000;
     }
 
     section#learn-topics-list {
-      width:93%;
+      width: 93%;
     }
   }
 
   @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
 
+<<<<<<< HEAD
     h1 {
       line-height: 56px;
     }
 
+=======
+>>>>>>> Design tweaks to Product and Workshop templates
     section#learn-header-wrapper .learn-header-container .learn-intro {
       font-size: 18px;
+      width: 95%;
     }
 
     section#promo-wrapper .promo-container {

@@ -51,10 +51,6 @@ class Section < ActiveRecord::Base
     registrations.count >= seats_available
   end
 
-  def self.has_different_teachers?
-    all.map {|section| section.teachers.to_set }.uniq.size != 1
-  end
-
   def self.in_public_course
     joins(:course).where courses: { public: true }
   end
@@ -83,6 +79,10 @@ class Section < ActiveRecord::Base
 
   def to_param
     "#{id}-#{course_name.parameterize}"
+  end
+
+  def self.unique_section_teachers_by_teacher
+    all.map(&:section_teachers).flatten.uniq &:teacher
   end
 
   def self.upcoming
