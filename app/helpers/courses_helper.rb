@@ -8,8 +8,4 @@ module CoursesHelper
     json = "#{callback}(#{json})" if callback
     json.html_safe
   end
-
-  def show_individual_teachers?(sections)
-    sections.has_different_teachers?
-  end
 end

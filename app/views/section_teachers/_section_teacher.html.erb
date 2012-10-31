@@ -1,0 +1,16 @@
+<ul class="teachers">
+  <li>
+    <%= teacher_gravatar section_teacher.teacher, 92 %>
+    <h2>
+      <span>
+        <%= t '.header',
+              city: section_teacher.section.city,
+              count: @section_teachers.size %>
+      </span>
+      <%= section_teacher.teacher.name %>
+    </h2>
+    <section class="bio">
+      <%= raw textilize(section_teacher.teacher.bio) %>
+    </section>
+  </li>
+</ul>
