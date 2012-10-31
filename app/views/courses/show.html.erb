@@ -15,14 +15,18 @@
     <div class="learn-text-box course-box">
       <%=raw textilize @course.description %>
       <%= render partial: 'questions', locals: { course: @course } %>
+      <% unless show_individual_teachers?(@sections) %>
+        <%= render 'sections/teachers', teachers: @sections.first.teachers %>
+      <% end %>
+      <% if show_individual_teachers?(@sections) %>
+        <%= render 'sections/teachers', teachers: @sections.first.teachers %>
+        <%= render 'sections/teachers', teachers: @sections.second.teachers %>
+      <% end %>
     </div>
   </div>
   <aside>
    <% if @sections.any? %>
       <%= render partial: "sections/section", collection: @sections, locals: { sections: @sections } %>
-      <% unless show_individual_teachers?(@sections) %>
-        <%= render 'sections/teachers', teachers: @sections.first.teachers %>
-      <% end %>
       <p class="travel">
         <%= link_to "Have us book your travel and hotel.", 'mailto:workshops@thoughtbot.com?subject=Booking travel for workshop' %>
       </p>
