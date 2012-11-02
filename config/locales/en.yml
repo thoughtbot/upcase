@@ -15,6 +15,11 @@ en:
       title:
         Products
 
+  section_teachers:
+    section_teacher:
+      header:
+        Taught in %{city} by
+
   shared:
     books:
       BOOKS
@@ -33,7 +38,8 @@ en:
         IN-PERSON WORKSHOP
     index:
       intro:
-        Guided learning on modern development technologies and practices. Dig in.
+        Guided learning on modern development technologies and practices. Dig
+        in.
       view_products:
         VIEW ALL THOUGHTBOT PRODUCTS
     promoted_product:

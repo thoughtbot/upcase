@@ -15,13 +15,7 @@
     <div class="learn-text-box course-box">
       <%=raw textilize @course.description %>
       <%= render partial: 'questions', locals: { course: @course } %>
-      <% unless show_individual_teachers?(@sections) %>
-        <%= render 'sections/teachers', teachers: @sections.first.teachers %>
-      <% end %>
-      <% if show_individual_teachers?(@sections) %>
-        <%= render 'sections/teachers', teachers: @sections.first.teachers %>
-        <%= render 'sections/teachers', teachers: @sections.second.teachers %>
-      <% end %>
+      <%= render @section_teachers %>
     </div>
   </div>
   <aside>

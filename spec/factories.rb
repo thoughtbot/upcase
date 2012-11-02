@@ -75,8 +75,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :download do
-  end
+  factory :download
 
   factory :follow_up do
     course
@@ -151,7 +150,7 @@ FactoryGirl.define do
     teacher
   end
 
-  factory :section_without_teacher, class: Section do
+  factory :section do
     address '41 Winter St'
     association :course
     ends_on { 1.day.from_now }
@@ -159,15 +158,13 @@ FactoryGirl.define do
     starts_on { 1.day.ago }
     stop_at '17:00'
 
-    factory :section do
-      after(:build) do |s|
-        s.teachers << build(:teacher)
-      end
+    after(:build) do |s|
+      s.teachers << build(:teacher)
+    end
 
-      factory :future_section do
-        ends_on { 4.days.from_now }
-        starts_on { 2.days.from_now }
-      end
+    factory :future_section do
+      ends_on { 4.days.from_now }
+      starts_on { 2.days.from_now }
     end
   end
 
