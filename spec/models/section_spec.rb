@@ -1,103 +1,86 @@
 require 'spec_helper'
 
 describe Section do
-  it { should validate_presence_of :start_at }
-  it { should validate_presence_of :stop_at }
+  # Associations
+  it { should belong_to(:course) }
+  it { should have_many(:paid_registrations) }
+  it { should have_many(:registrations) }
+  it { should have_many(:section_teachers) }
+  it { should have_many(:unpaid_registrations) }
+  it { should have_many(:teachers).through(:section_teachers) }
+
+  # Validations
   it { should validate_presence_of :address }
+  it { should validate_presence_of :ends_on }
+  it { should validate_presence_of :start_at }
+  it { should validate_presence_of :starts_on }
+  it { should validate_presence_of :stop_at }
 
-  context "#to_param" do
-    subject { create(:section) }
-    it "returns the id and parameterized course name" do
-      subject.to_param.should == "#{subject.id}-#{subject.course_name.parameterize}"
+  describe '#seats_available' do
+    let(:course) do
+      create :course, maximum_students: 8
     end
-  end
 
-  context "#seats_available" do
-    let(:course) { create(:course, maximum_students: 8) }
-    context "with no seats available set" do
-      subject { create(:section, course: course) }
-      it "returns course's maximum students" do
-        subject.seats_available.should == 8
+    context 'when seats_available is not set' do
+      it 'returns course.maximum_students' do
+        section = create(:section, course: course)
+        section.seats_available.should eq(8)
       end
     end
 
-    context "with seats available set" do
-      subject { create(:section, course: course, seats_available: 12) }
-      it "returns section's seats available" do
-        subject.seats_available.should == 12
+    context 'when seats_available is set' do
+      it 'returns seats_available' do
+        section = create(:section, course: course, seats_available: 12)
+        section.seats_available.should eq(12)
       end
     end
   end
-end
 
-describe Section, 'upcoming sections' do
-  it 'knows which sections are a week away' do
-    expected = create(:section, starts_on: 1.week.from_now)
-    create(:section, starts_on: 1.week.from_now + 1.day)
-    create(:section, starts_on: 1.week.from_now - 1.day)
-
-    upcoming = Section.upcoming
-
-    upcoming.should == [expected]
-  end
-end
-
-describe Section, 'sending reminders' do
-  it 'only sends reminders for a week from today' do
-    sections = [
-      create(:section, starts_on: 1.week.from_now),
-      create(:section, starts_on: 1.week.from_now + 1.day),
-      create(:section, starts_on: 1.week.from_now - 1.day)
-    ]
-    sections.each { |section| create(:paid_registration, section: section) }
-    ActionMailer::Base.deliveries.clear
-
-    Section.send_reminders
-
-    ActionMailer::Base.deliveries.should have(1).email
+  describe '#send_reminders' do
+    it 'sends reminder emails to all paid registrants' do
+      section = create(:section)
+      create :registration, section: section, paid: true
+      create :registration, section: section, paid: true
+      create :registration, section: section, paid: false
+      create :registration, paid: true
+      ActionMailer::Base.deliveries.clear
+      section.send_reminders
+      ActionMailer::Base.deliveries.should have(2).email
+    end
   end
 
-  it 'sends reminder emails to all paid registrants' do
-    section = create(:section)
-    create(:registration, section: section, paid: true)
-    create(:registration, section: section, paid: true)
-    create(:registration, section: section, paid: false)
-    create(:registration, paid: true)
-    ActionMailer::Base.deliveries.clear
+  describe '.send_reminders' do
+    it 'only sends reminders for a week from today' do
+      sections = [
+        create(:section, starts_on: 1.week.from_now),
+        create(:section, starts_on: 1.week.from_now + 1.day),
+        create(:section, starts_on: 1.week.from_now - 1.day)
+      ]
 
-    section.send_reminders
+      sections.each do |section|
+        create :paid_registration, section: section
+      end
 
-    ActionMailer::Base.deliveries.should have(2).email
-  end
-end
-
-describe Section, 'teacher uniqueness' do
-  before do
-    @section1 = build(:section_without_teacher)
-    @section2 = build(:section_without_teacher)
-
-    @billy = create(:teacher, name: "Billy")
-    @michael = create(:teacher, name: "Michael")
-    @common = create(:teacher, name: "Common")
+      ActionMailer::Base.deliveries.clear
+      Section.send_reminders
+      ActionMailer::Base.deliveries.should have(1).email
+    end
   end
 
-  it 'is considered to have different teachers if none of the teachers is shared' do
-    @section1.teachers << [@billy, @common]
-    @section2.teachers << [@michael, @common]
-
-    @section1.save!
-    @section2.save!
-
-    Section.should have_different_teachers
+  describe '#to_param' do
+    it 'returns the id and parameterized course name' do
+      section = create(:section)
+      expected = "#{section.id}-#{section.course_name.parameterize}"
+      section.to_param.should eq(expected)
+    end
   end
 
-  it 'is considered to have same teachers if all teachers are the same' do
-    @section1.teachers << [@common, @michael]
-    @section2.teachers << [@michael, @common]
-
-    @section1.save!
-    @section2.save!
-
-    Section.should_not have_different_teachers
+  describe '.upcoming' do
+    it 'knows which sections are a week away' do
+      section = create(:section, starts_on: 1.week.from_now)
+      create :section, starts_on: 1.week.from_now + 1.day
+      create :section, starts_on: 1.week.from_now - 1.day
+      Section.upcoming.should eq([section])
+    end
   end
 end
