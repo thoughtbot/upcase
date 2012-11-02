@@ -16,6 +16,37 @@ describe Section do
   it { should validate_presence_of :starts_on }
   it { should validate_presence_of :stop_at }
 
+  describe '#date_range' do
+    context 'when starts_on == ends_on' do
+      it do
+        date = '20121102'
+        section = create(:section, starts_on: date, ends_on: date)
+        section.date_range.should eq('November 02, 2012')
+      end
+    end
+
+    context 'when starts_on and ends_on are different years' do
+      it do
+        section = create(:section, starts_on: '20121102', ends_on: '20131102')
+        section.date_range.should eq('November 02, 2012-November 02, 2013')
+      end
+    end
+
+    context 'when starts_on and ends_on are different months' do
+      it do
+        section = create(:section, starts_on: '20121102', ends_on: '20121202')
+        section.date_range.should eq('November 02-December 02, 2012')
+      end
+    end
+
+    context 'when starts_on and ends_on are different days' do
+      it do
+        section = create(:section, starts_on: '20121102', ends_on: '20121103')
+        section.date_range.should eq('November 02-03, 2012')
+      end
+    end
+  end
+
   describe '#seats_available' do
     let(:course) do
       create :course, maximum_students: 8
