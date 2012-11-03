@@ -1,6 +1,6 @@
 class Reports::PurchasesChartsController < ApplicationController
   def show
-    render json: area_highchart('Purchases by Product', categories, series)
+    render text: area_highchart('Purchases by Product', categories, series).to_js
   end
 
   private
@@ -33,7 +33,7 @@ class Reports::PurchasesChartsController < ApplicationController
   end
 
   def area_highchart(title, categories, series)
-    { 
+    {
       chart: {
         renderTo: 'container',
         type: 'area'
