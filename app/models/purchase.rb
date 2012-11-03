@@ -35,7 +35,11 @@ class Purchase < ActiveRecord::Base
   end
 
   def self.from_period(start_time, end_time)
-    Purchase.paid.where("created_at >= ? and created_at <= ?", start_time, end_time).all.sum(&:price)
+    paid.where("created_at >= ? and created_at <= ?", start_time, end_time).all.sum(&:price)
+  end
+
+  def self.for_product(product)
+    where(product_id: product.id)
   end
 
   def self.paid
