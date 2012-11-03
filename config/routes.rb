@@ -52,6 +52,10 @@ Workshops::Application.routes.draw do
     resources :purchases, only: :index
   end
 
+  namespace :reports do
+    resource :purchases_charts, only: :show
+  end
+
   match '/auth/:provider/callback', to: 'auth_callbacks#create'
 
   match '/watch' => 'high_voltage/pages#show', as: :watch, id: 'watch'
