@@ -36,10 +36,13 @@ class Reports::PurchasesChartsController < ApplicationController
     {
       chart: {
         renderTo: 'container',
-        type: 'area'
+        type: 'area',
+        backgroundColor: 'rgba(255, 255, 255, 0.1)'
       },
+      colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572',
+        '#FF9655', '#FFF263', '#6AF9C4'],
       title: {
-        text: title
+        text: nil
       },
       xAxis: {
         categories: categories,
@@ -56,11 +59,9 @@ class Reports::PurchasesChartsController < ApplicationController
       plotOptions: {
         area: {
           stacking: 'normal',
-          lineColor: '#666666',
           lineWidth: 1,
           marker: {
-            lineWidth: 1,
-            lineColor: '#666666'
+            enabled: false
           }
         }
       },
