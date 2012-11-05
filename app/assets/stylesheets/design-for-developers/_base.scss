@@ -224,3 +224,24 @@ section.footer {
   @include outer-container;
 }
 
+body.schedule {
+  section.content-container {
+    ol {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      border: 1px solid #eee;
+      padding: 1em;
+      margin-bottom: 2em;
+      @include span-columns(3.3 of 10);
+      @include nth-omega(3n);
+
+      &:nth-child(4n){
+        clear: left;
+      }
+    }
+  }
+}
+
