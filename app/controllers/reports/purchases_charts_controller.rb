@@ -37,10 +37,16 @@ class Reports::PurchasesChartsController < ApplicationController
       chart: {
         renderTo: 'container',
         type: 'area',
-        backgroundColor: 'rgba(255, 255, 255, 0.1)'
+        backgroundColor: 'rgba(255, 255, 255, 0)'
       },
       colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572',
         '#FF9655', '#FFF263', '#6AF9C4'],
+      legend: {
+        borderWidth: 0
+        itemStyle: {
+          color: '#666'
+        }
+      }
       title: {
         text: nil
       },
@@ -52,6 +58,7 @@ class Reports::PurchasesChartsController < ApplicationController
         }
       },
       yAxis: {
+        endOnTick: false,
         title: {
           text: 'Dollars'
         }
