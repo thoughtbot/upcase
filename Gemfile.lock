@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/cpytel/to_js.git
+  revision: 66465bdab59dd001cd354fc0737814662eca3f0b
+  specs:
+    to_js (0.0.1)
+      visitor
+
+GIT
   remote: https://github.com/stripe/stripe-ruby
   revision: 69a96ecc4b08549cf496c26a92ebbd8f405db49f
   specs:
@@ -320,8 +327,6 @@ GEM
     thor (0.16.0)
     tilt (1.3.3)
     timecop (0.3.5)
-    to_js (0.0.1)
-      visitor
     treetop (1.4.11)
       polyglot
       polyglot (>= 0.3.1)
@@ -401,7 +406,7 @@ DEPENDENCIES
   stripe!
   thin (= 1.3.1)
   timecop (= 0.3.5)
-  to_js (~> 0.0.1)
+  to_js!
   typhoeus (= 0.3.3)
   uglifier (= 1.2.4)
   vcr (= 2.1.1)
