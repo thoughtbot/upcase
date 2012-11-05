@@ -46,7 +46,7 @@ class Reports::PurchasesChartsController < ApplicationController
         itemStyle: {
           color: '#666'
         }
-      }
+      },
       title: {
         text: nil
       },
