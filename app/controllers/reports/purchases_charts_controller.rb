@@ -51,20 +51,20 @@ class Reports::PurchasesChartsController < ApplicationController
       yAxis: {
         title: {
           text: 'Dollars'
-        },
-        plotOptions: {
-          area: {
-            stacking: 'normal',
-            lineColor: '#666666',
+        }
+      },
+      plotOptions: {
+        area: {
+          stacking: 'normal',
+          lineColor: '#666666',
+          lineWidth: 1,
+          marker: {
             lineWidth: 1,
-            marker: {
-              lineWidth: 1,
-              lineColor: '#666666'
-            }
+            lineColor: '#666666'
           }
-        },
-        series: series
-      }
+        }
+      },
+      series: series
     }
   end
 end
