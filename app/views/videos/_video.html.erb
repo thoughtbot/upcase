@@ -1,7 +1,8 @@
 <div class="purchase-return-link">
   <%=link_to "Return to purchase receipt page", product_purchase_path(video.product, @purchase), class: "no_underscore" %>
 </div>
-<section class="wistia-holder"><%= render 'videos/code', video_hash_id: video.video_hash_id %></section>
+<p class="videowrapper"><%= render 'videos/code', video_hash_id: video.video_hash_id %></p>
+
 <section class="assets-wrapper">
   <div class="assets">
     <%=render 'videos/download_link', download_type_key: "OriginalFile", download_type: "original", size_display: "Original (720p)", video: video %>

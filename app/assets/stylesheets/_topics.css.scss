@@ -4,8 +4,7 @@ $darkwarmgray: #6C6A66;
 $learnred: #B22115;
 $learndarkred: #660000;
 
-.articles-index, .courses-show, .products-index, .topics-index, .topics-show, .products-show, .episodes {
-  -webkit-font-smoothing: antialiased;
+.articles-index, .courses-show, .episodes, .products-index, .topics-index, .topics-show, .products-show, .purchases, .registrations {
   background-color: $lightwarmgray;
   border-top: none;
   margin: 0 auto;
@@ -16,8 +15,8 @@ $learndarkred: #660000;
 
    h1 {
     color: white;
-    font-smoothing: antialiased;
     font: 800 72px $sans-serif;
+    text-rendering: optimizeLegibility;
 
     a {
       color: white;
@@ -27,11 +26,13 @@ $learndarkred: #660000;
   h3 {
     color: $darkwarmgray;
     font: 700 26px/25px $sans-serif;
+    text-rendering: optimizeLegibility;
   }
 
   h2 {
     color: $learnred;
     font: 800 36px/40px $sans-serif;
+    text-rendering: optimizeLegibility;
   }
 
   h4 {
@@ -103,7 +104,6 @@ $learndarkred: #660000;
     margin: 0 auto;
     padding-top: 13px;
     text-align:center;
-    -webkit-font-smoothing: antialiased;
 
     a {
       color: white;
@@ -113,6 +113,31 @@ $learndarkred: #660000;
       width: 100%;
     }
   }
+
+  // FORMS
+
+    input[type="text"],
+    input[type="password"],
+    input[type="tel"],
+    textarea,
+    input[type="email"],
+    input[type="select"] {
+      background-color: $lightwarmgray;
+      border: 1px solid white;
+      @include border-radius(4px);
+      @include box-sizing(border-box);
+      @include box-shadow(none);
+      font-size: 14px;
+      margin: 5px 5px 5px 0;
+      padding: 1em;
+      width: 100%;
+
+      &:focus {
+        border: 1px solid $learnred;
+        outline-color: none;
+        outline: none;
+      }
+    }
 
   .button:active, input[type="submit"]:active {
     border-bottom: none;
@@ -134,12 +159,107 @@ $learndarkred: #660000;
     border-left-style: none;
     border-left-width: none;
     border-image: initial;
+    cursor: pointer;
     padding: 0 30px 0 30px;
   }
 
   .button:hover {
     background-color: #C42107;
   }
+
+  #form-column {
+    width: 100%;
+
+    form {
+      margin-bottom: 0;
+    }
+
+    li {
+      margin-left: 0;
+    }
+  }
+
+  fieldset {
+    legend {
+      color: $darkwarmgray;
+      font: 700 26px/25px $sans-serif;
+      padding: 24px 0 12px 0;
+    }
+
+    .label {
+      -webkit-font-smoothing: antialiased;
+      color: $darkwarmgray;
+      font: normal 17px $serif;
+    }
+
+    li#purchase_submit_action,
+    #registration_submit_action {
+      margin-left: 0;
+      margin-top: 40px;
+      width: 100%;
+
+      input {
+        width: 100%;
+      }
+    }
+  }
+
+  #billing-information {
+    ol {
+      width: 100%;
+
+      li {
+        &.overflow {
+          @extend .clearfix;
+        }
+
+        &#purchase_expiration_input {
+          float: left;
+          margin-right: flex-gutter();
+          width: flex-grid(8);
+
+          select {
+            border: 1px solid $darkwarmgray;
+            @include box-shadow(none);
+            @include box-sizing(border-box);
+            font: 14px $sans-serif;
+            margin: 3px 0 0 0;
+            padding: .5em;
+            -webkit-appearance: none;
+            width: flex-grid(6);
+
+            &:first-child {
+              margin-right: flex-gutter();
+            }
+
+            &:focus {
+              border: 1px solid $learnred;
+              outline-color: none;
+              outline: none;
+            }
+          }
+        }
+
+        &#purchase_cvc_input {
+          float: left;
+          width: flex-grid(4);
+        }
+
+        &#purchase_country_input {
+          clear: left;
+        }
+
+        &#purchase_cc_existing {
+          input, label {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+
+
+//  end forms
 
   .gray {
     background-color: $warmgray;
@@ -348,6 +468,60 @@ $learndarkred: #660000;
     }
   }
 
+  .video-headline {
+    margin-bottom: 10px;
+  }
+
+  .videos {
+    text-align: left;
+  }
+
+  .videoinfo {
+    display: inline-block;
+    margin-left: 20px;
+    vertical-align: middle;
+  }
+
+  .videowrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 0px;
+    height: 0;
+    margin: 30px 0;
+    overflow: hidden;
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .assets-wrapper {
+    margin: 20px 0;
+
+    .assets {
+      @include outer-container;
+
+      .button {
+        @include span-columns(4);
+        margin-bottom:20px;
+
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+        p.chat {
+        margin-top: 0;
+        text-align: center;
+        padding: 0 20px;
+      }
+
   section.learn-detail-content {
     @include outer-container;
     max-width: 1100px;
@@ -394,6 +568,21 @@ $learndarkred: #660000;
 
     .learn-text-box-wrapper {
       @include span-columns (9);
+
+      .video-button-wrapper {
+        text-align: center;
+      }
+
+      .get-video {
+        text-align: center;
+        text-transform: uppercase;
+        width: 60%;
+      }
+
+      .video-button-wrapper + h3,
+      .video-button-wrapper + p {
+          margin-top: 30px;
+        }
     }
 
     h2:first-child {
@@ -580,11 +769,7 @@ $learndarkred: #660000;
         width: 100%;
 
         &:active {
-<<<<<<< HEAD
-          margin-bottom: 34px;
-=======
           margin-bottom: 24px;
->>>>>>> Design tweaks to Product and Workshop templates
         }
       }
 
@@ -711,6 +896,43 @@ $learndarkred: #660000;
     }
   }
 
+  section.receipt {
+    margin-top: 50px;
+    @include outer-container;
+
+    strong {
+      font-weight: bold;
+    }
+
+    .billing-address {
+      @include span-columns(6);
+      margin-bottom: 10px;
+      margin-top: 20px;
+    }
+
+    .item {
+      margin-top: 20px;
+    }
+
+    .purchase-pricing {
+      @include span-columns(6);
+      margin-top: 20px;
+
+      tr {
+        width: 300px;
+      }
+
+      td {
+        color: $darkwarmgray;
+        font: normal 17px $serif;
+        margin-bottom: 12px;
+        text-align: left;
+        text-shadow: 0 1px 1px rgba(255,255,255,.3);
+        width: 50%;
+      }
+    }
+  }
+
   #main-footer {
     max-width: 704px;
     padding: 2em;
@@ -763,6 +985,24 @@ $learndarkred: #660000;
       @include span-columns(6);
       @include shift(3);
     }
+
+    #form-column fieldset ol li#purchase_city_input,
+    #form-column fieldset ol li#registration_city_input, {
+      float: left;
+      width: flex-grid(12);
+    }
+
+    #form-column fieldset ol li#purchase_zip_code_input,
+    #form-column fieldset ol li#purchase_state_input,
+    #form-column fieldset ol li#registration_zip_code_input,
+    #form-column fieldset ol li#registration_state_input {
+      float: left;
+      width: flex-grid(6);
+    }
+    #form-column fieldset ol li#purchase_country_input {
+      float: left;
+      width: flex-grid(12);
+    }
   }
 
   @media screen and (max-device-width: 800px), screen and (max-width: 800px) {
@@ -774,9 +1014,10 @@ $learndarkred: #660000;
 
     .learn-detail-logo {
       float: none !important;
-<<<<<<< HEAD
+      text-align: center;
 
       h1 {
+        line-height: 56px !important;
         width: 100% !important;
         text-align: center !important;
         text-indent: 0 !important;
@@ -788,12 +1029,6 @@ $learndarkred: #660000;
         margin-top: -33px !important;
         position: absolute;
         width: 100px !important;
-=======
-      text-align: center;
-
-      h1 {
-        line-height: 56px !important;
->>>>>>> Design tweaks to Product and Workshop templates
       }
     }
 
@@ -824,17 +1059,18 @@ $learndarkred: #660000;
     section#learn-topics-list {
       width: 93%;
     }
+
+   .video-headline {
+     text-align: left;
+    }
   }
 
   @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
 
-<<<<<<< HEAD
     h1 {
       line-height: 56px;
     }
 
-=======
->>>>>>> Design tweaks to Product and Workshop templates
     section#learn-header-wrapper .learn-header-container .learn-intro {
       font-size: 18px;
       width: 95%;
@@ -907,6 +1143,26 @@ $learndarkred: #660000;
 
     .products-container {
       width: 100% !important;
+    }
+
+    section.receipt .billing-address,
+    section.receipt .purchase-pricing {
+      @include span-columns(12);
+    }
+
+    .learn-text-box-wrapper .get-video {
+      width: 80% !important;
+    }
+
+    .purchase-return-link {
+      display: block;
+      float: left;
+      margin-top: 0;
+    }
+
+    .assets-wrapper .assets .button {
+      @include span-columns(12);
+      margin-top: 20px;
     }
   }
 
