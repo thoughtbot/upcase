@@ -229,18 +229,48 @@ body.schedule {
     ol {
       list-style: none;
       padding-left: 0;
+
+      li {
+        border: 1px solid #eee;
+        padding: 1em;
+        margin-bottom: 2em;
+        @include span-columns(3.3 of 10);
+        @include nth-omega(3n);
+
+        h2 {
+          font-size: em(20, 18);
+        }
+
+        em {
+          font-weight: normal;
+        }
+
+        &:nth-child(4n){
+          clear: left;
+        }
+      }
     }
 
-    li {
-      border: 1px solid #eee;
-      padding: 1em;
-      margin-bottom: 2em;
-      @include span-columns(3.3 of 10);
-      @include nth-omega(3n);
+    ul {
+      li {
+        @include span-columns(5 10);
+        @include nth-omega(2n);
 
-      &:nth-child(4n){
-        clear: left;
+        p {
+          font-size: 1em;
+          margin-bottom: .5em;
+        }
       }
+    }
+
+    h1 {
+      clear: both;
+    }
+
+    blockquote {
+      border-left: 4px solid #eee;
+      margin-left: 0;
+     padding-left: 1em;
     }
   }
 }
