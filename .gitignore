@@ -16,3 +16,4 @@ eyrc
 *.rdb
 bin
 .tddium*
+.env

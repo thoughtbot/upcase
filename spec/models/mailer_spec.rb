@@ -135,4 +135,41 @@ describe Mailer do
       sent_email.body.should include('Benny Burns')
     end
   end
+
+  describe '.fulfillment_error' do
+    it 'sets the correct recipients' do
+      purchase = stubbed_purchase
+      mailer = Mailer.fulfillment_error(purchase, github_username)
+
+      mailer.should deliver_to(purchase.email)
+      mailer.should cc_to('support@thoughtbot.com')
+    end
+
+    it 'sets the correct subject' do
+      purchase = stubbed_purchase
+      mailer = Mailer.fulfillment_error(purchase, github_username)
+
+      mailer.should have_subject("Fulfillment issues with #{purchase.product_name}")
+    end
+
+    it 'sets the username in the message body' do
+      mailer = Mailer.fulfillment_error(stubbed_purchase, github_username)
+
+      mailer.should have_body_text(/username/)
+    end
+  end
+
+  private
+
+  def github_username
+    'github_username'
+  end
+
+  def stubbed_purchase
+    stub(
+      product_name: 'Backbone.js on Rails',
+      name: 'Benny Burns',
+      email: 'benny@theburns.org'
+    )
+  end
 end
