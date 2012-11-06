@@ -18,12 +18,14 @@ Requirements:
 * Redis
 
 Getting up and running:
+
     rake setup
     foreman start
 
 This will start a web server on port 5000 and a redis-server.
 
 Foreman will default to port 5000.  If you need to use another port you can specify it with:
+
     foreman start -p 5002
 
 Development data is already pre-seeded however if you wish to reset the data you can use the rake task:
