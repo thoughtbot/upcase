@@ -4,6 +4,7 @@ class Purchase < ActiveRecord::Base
   include Rails.application.routes.url_helpers
 
   PAYMENT_METHODS = %w(stripe paypal free)
+  API_SLEEP_TIME = 0.2
 
   belongs_to :user
   belongs_to :product
@@ -16,9 +17,11 @@ class Purchase < ActiveRecord::Base
   validate :payment_method_must_match_price
 
   before_validation :generate_lookup, on: :create
+
   before_create :create_and_charge_customer, if: :stripe?
   before_create :setup_paypal_payment, if: :paypal?
   before_create :set_as_paid, if: :free?
+
   after_save :fulfill, if: :being_paid?
   after_save :send_receipt, if: :being_paid?
   after_save :update_user_stripe_customer, if: "being_paid? && stripe?"
@@ -156,7 +159,8 @@ class Purchase < ActiveRecord::Base
         rescue Octokit::NotFound, Net::HTTPBadResponse => e
           Airbrake.notify(e)
         end
-        sleep 0.2
+
+        sleep API_SLEEP_TIME
       end
     end
   end
@@ -224,14 +228,20 @@ class Purchase < ActiveRecord::Base
   end
 
   def fulfill_with_github
-    readers.map(&:strip).reject(&:blank?).compact.each do |username|
+    github_usernames.each do |username|
       begin
         github_client.add_team_member(product.github_team, username)
       rescue Octokit::NotFound, Net::HTTPBadResponse => e
+        Mailer.fulfillment_error(self, username).deliver
         Airbrake.notify(e)
       end
-      sleep 0.2
+
+      sleep API_SLEEP_TIME
     end
+  end
+
+  def github_usernames
+    readers.map(&:strip).reject(&:blank?).compact
   end
 
   def generate_lookup
