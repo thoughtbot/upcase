@@ -33,3 +33,12 @@ describe Coupon do
     end
   end
 end
+
+describe Coupon, '.active' do
+  it 'returns active coupons' do
+    active_coupon = create(:coupon, active: true)
+    inactive_coupon = create(:coupon, active: false)
+
+    Coupon.active.should eq [active_coupon]
+  end
+end

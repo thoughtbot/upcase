@@ -12,6 +12,10 @@ class Coupon < ActiveRecord::Base
     update_attributes(active: false) if one_time_use_only?
   end
 
+  def self.active
+    where(active: true)
+  end
+
   private
 
   def discount(full_price)
