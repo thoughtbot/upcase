@@ -3,7 +3,7 @@ Workshops::Application.routes.draw do
 
   root to: 'topics#index'
 
-  match '/podcast' => redirect("http://thoughtbot.com/podcast")
+  match 'podcast' => redirect("http://thoughtbot.com/podcast")
   match '/pages/tmux' => redirect("/products/4-humans-present-tmux")
 
   resource :session, controller: 'sessions'
