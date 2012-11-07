@@ -46,7 +46,7 @@ When 'I submit the Paypal form' do
 end
 
 When /^I add a reader$/ do
-  fill_in "reader_1", with: "thoughtbot"
+  fill_in "reader_1", with: "cpytel"
 end
 
 Then /^an email should be sent out with subject containing "([^"]*)"$/ do |name|

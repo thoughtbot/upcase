@@ -20,7 +20,7 @@ end
 
 Then /^the site should know my github username$/ do
   visit my_account_path
-  find_field("Github username").value.should == "thoughtbot"
+  find_field("Github username").value.should == "cpytel"
 end
 
 Then /^the site should have my github information$/ do

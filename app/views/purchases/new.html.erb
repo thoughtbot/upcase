@@ -104,7 +104,6 @@
     });
   <% end %>
 
-  <% unless Rails.env.test? %>
   <script type="text/javascript">
     // this identifies your website in the createToken call below
   Stripe.setPublishableKey('<%= STRIPE_PUBLIC_KEY %>');
@@ -127,21 +126,31 @@
   }
 
   $(document).ready(function() {
-      $("#new_purchase").submit(function(event) {
-        if($("input.use_existing_card").is(":checked")){
+    $("#new_purchase").submit(function(event) {
+      $("input.reader[required]").each(checkReader);
+
+      if($('li.error .reader').length == 0) {
+        if($("input.use_existing_card").is(":checked")) {
           return true;
         }
-      // disable the submit button to prevent repeated clicks
-      $('fieldset.actions input').prop("disabled", true);
-      if($("#purchase_payment_method_stripe").is(":checked")) {
-        // createToken returns immediately - the supplied callback submits the form if there are no errors
-        Stripe.createToken({
-          number: $('.card-number').val(),
-          cvc: $('.card-cvc').val(),
-          exp_month: $('.card-expiry-month').val(),
-          exp_year: $('.card-expiry-year').val()
-        }, stripeResponseHandler);
-        return false; // submit from callback
+
+        // disable the submit button to prevent repeated clicks
+        $('fieldset.actions input').prop("disabled", true);
+        if($("#purchase_payment_method_stripe").is(":checked")) {
+          <% unless Rails.env.test? %>
+          // createToken returns immediately
+          // the supplied callback submits the form if there are no errors
+          Stripe.createToken({
+            number: $('.card-number').val(),
+            cvc: $('.card-cvc').val(),
+            exp_month: $('.card-expiry-month').val(),
+            exp_year: $('.card-expiry-year').val()
+          }, stripeResponseHandler);
+          return false; // submit from callback
+          <% end %>
+        }
+      } else {
+        return false;
       }
       return true;
     });
@@ -153,5 +162,4 @@
     });
   });
   </script>
-  <% end %>
 <% end %>
