@@ -32,6 +32,8 @@ Workshops::Application.routes.draw do
     end
   end
 
+  resources :episodes, path: 'podcast', only: [:index, :show]
+
   resources :topics, only: :index
 
   match '/admin' => 'admin/courses#index', as: :admin
