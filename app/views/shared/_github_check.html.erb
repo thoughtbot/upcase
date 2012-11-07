@@ -17,6 +17,11 @@
             }
           }
         });
+      } else {
+        if(element.prop('required')) {
+          element.parent("li").addClass("error");
+          element.focus();
+        }
       }
     }
     $("input.reader").blur(checkReader);
