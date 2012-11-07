@@ -1,0 +1,61 @@
+body.episodes {
+  section.learn-detail-content .learn-topic-summary p {
+    margin: 0 0 12px 12px;
+  }
+
+  .learn-topic-summary {
+
+    .cover {
+      border-radius: 3px;
+      float: left;
+      margin-right: flex-gutter();
+    }
+
+    ul {
+      list-style: none;
+      margin-top: -21px;
+
+      li {
+        display: inline-block;
+        margin-right: flex-gutter();
+
+        img {
+          display: inline-block;
+          margin: -4px 5px 0 0;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+  audio {
+    display: block;
+    width: 50%;
+  }
+
+  .episode {
+    h3 {
+      margin-bottom: 0;
+    }
+
+    .info {
+      font-weight: bold;
+      margin-bottom: lh(.5);
+    }
+  }
+
+  .listen {
+    margin: 30px 0;
+
+    audio {
+      width: 100%;
+    }
+  }
+
+  section.notes {
+    float: left;
+    width: flex-grid(8);
+  }
+
+
+}

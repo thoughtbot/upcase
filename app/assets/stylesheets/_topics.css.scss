@@ -4,7 +4,7 @@ $darkwarmgray: #6C6A66;
 $learnred: #B22115;
 $learndarkred: #660000;
 
-.articles-index, .courses-show, .products-index, .topics-index, .topics-show, .products-show {
+.articles-index, .courses-show, .products-index, .topics-index, .topics-show, .products-show, .episodes {
   -webkit-font-smoothing: antialiased;
   background-color: $lightwarmgray;
   border-top: none;
@@ -348,7 +348,7 @@ $learndarkred: #660000;
     max-width: 1100px;
     padding: 3em 2em;
 
-    .learn-topic-summary {
+    .learn-topic-summary, .credits {
       @include span-columns (9);
       clear: both;
       display: block;
@@ -360,6 +360,10 @@ $learndarkred: #660000;
         margin: -10px 0 24px 25px;
 
       }
+    }
+
+    .credits {
+      margin-top: 30px;
     }
 
     .videowrapper {
@@ -807,6 +811,10 @@ $learndarkred: #660000;
 
     section.learn-detail-content .learn-text-box-wrapper {
       width: 100%;
+    }
+
+    section.learn-detail-content .learn-topic-summary, section.learn-detail-content .credits {
+      @include span-columns(12);
     }
 
     .learn-detail-logo {

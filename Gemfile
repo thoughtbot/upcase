@@ -40,6 +40,7 @@ gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 gem 'thin', '1.3.1'
 gem 'typhoeus', '0.3.3'
 gem 'to_js', git: 'git://github.com/cpytel/to_js.git'
+gem 'bluecloth'
 
 # Gems used only for assets and not required
 # in production environments by default.
