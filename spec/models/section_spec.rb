@@ -106,6 +106,16 @@ describe Section do
     end
   end
 
+  describe '.unique_section_teachers_by_teacher' do
+    it 'returns 1 section_teacher per teacher' do
+      section_teacher_one = create(:section).section_teachers.first
+      section_teacher_two = create(:section).section_teachers.first
+      create(:section).teachers = [section_teacher_two.teacher]
+      expected = [section_teacher_one, section_teacher_two]
+      Section.unique_section_teachers_by_teacher.should eq(expected)
+    end
+  end
+
   describe '.upcoming' do
     it 'knows which sections are a week away' do
       section = create(:section, starts_on: 1.week.from_now)

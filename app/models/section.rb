@@ -81,6 +81,10 @@ class Section < ActiveRecord::Base
     "#{id}-#{course_name.parameterize}"
   end
 
+  def self.unique_section_teachers_by_teacher
+    all.map(&:section_teachers).flatten.uniq &:teacher
+  end
+
   def self.upcoming
     where 'starts_on = ?', 1.week.from_now
   end

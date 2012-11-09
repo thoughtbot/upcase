@@ -18,7 +18,10 @@ en:
   section_teachers:
     section_teacher:
       header:
-        Taught in %{city} by
+        one:
+          Taught by
+        other:
+          Taught in %{city} by
 
   shared:
     books:

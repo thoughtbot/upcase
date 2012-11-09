@@ -102,7 +102,7 @@ Then 'I see that one of the teachers is "$teacher_name"' do |teacher_name|
 end
 
 Then 'I should see that "$teacher_name" is teaching both sections' do |teacher_name|
-  page.should have_selector('h2', text: 'Joe Teacher', count: 2)
+  page.should have_selector('h2', text: 'Joe Teacher', count: 1)
 end
 
 Then %{I see "$teacher_name"'s avatar} do |teacher_name|
