@@ -4,7 +4,11 @@ body {
   font-family: "proxima-nova-1","proxima-nova-2", "helvetica neue", sans-serif;
   line-height: $lh;
   font-size: em(18);
-  padding: 0 lh(3);
+  padding: 0 lh(3) em(60);
+}
+
+em {
+  font-weight: normal;
 }
 
 a {
@@ -157,12 +161,6 @@ section.container {
     color: #999;
   }
 
-  h3, strong {
-    font-family:"skolar-1","skolar-2",serif;
-    font-style: italic;
-    font-weight: 400;
-  }
-
   section.content-container {
     @include span-columns(10);
     padding-top: lh();
@@ -224,3 +222,59 @@ section.footer {
   @include outer-container;
 }
 
+body.schedule {
+  section.content-container {
+    ol {
+      list-style: none;
+      padding-left: 0;
+
+      li {
+        border: 1px solid #eee;
+        padding: 1em;
+        margin-bottom: 2em;
+        @include span-columns(3.3 of 10);
+        @include nth-omega(3n);
+
+        h2 {
+          font-size: em(20, 18);
+        }
+
+        &:nth-child(4n){
+          clear: left;
+        }
+      }
+    }
+
+    ul {
+      li {
+        @include span-columns(5 10);
+        @include nth-omega(2n);
+
+        p {
+          font-size: 1em;
+          margin-bottom: .5em;
+          line-height: lh();
+        }
+      }
+    }
+
+    h1 {
+      clear: both;
+    }
+
+    blockquote {
+      border-left: 4px solid #eee;
+      margin-left: 0;
+     padding-left: 1em;
+    }
+  }
+}
+
+
+body.week {
+  section.content-container {
+    p {
+      max-width: em(740);
+    }
+  }
+}
