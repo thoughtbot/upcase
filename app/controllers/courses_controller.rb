@@ -6,5 +6,6 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @sections = @course.sections.active
+    @section_teachers = @sections.unique_section_teachers_by_teacher
   end
 end

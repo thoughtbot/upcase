@@ -53,6 +53,6 @@ class Mailer < ActionMailer::Base
     @section = section
     @registration = registration
     mail(to: registration.email,
-         subject: "Reminder: #{section.course.name} is scheduled to start in a week on #{section.starts_on.to_time.to_s(:simple)}. Mark your calendar!")
+         subject: "Reminder: #{section.course.name} is scheduled to start in a week on #{section.starts_on.to_s(:simple)}. Mark your calendar!")
   end
 end
