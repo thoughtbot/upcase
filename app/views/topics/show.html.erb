@@ -6,6 +6,15 @@
         <%= t 'shared.learn' %>
         <span class="learnred"><%= @topic.name %></span>
       </h1>
+      <div class="myaccount">
+        <% if show_account_links? %>
+          <% if signed_in? %>
+            <%= link_to 'My account', my_account_path, class: 'button' %>
+          <% else %>
+            <%= link_to 'Sign in', sign_in_path, class: 'button' %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </section>
