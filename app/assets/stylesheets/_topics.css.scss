@@ -112,7 +112,6 @@ $learndarkred: #660000;
       padding-top: 15px;
       width: 100%;
     }
-
   }
 
   .button:active, input[type="submit"]:active {
@@ -174,15 +173,40 @@ $learndarkred: #660000;
       }
 
       .learn-detail-logo {
+        @include outer-container;
         float: left;
-        text-transform: capitalize;
+        width: 100%;
 
         img {
           vertical-align: -15px;
         }
 
         h1 {
+          @include span-columns(10);
           font-size: 55px;
+          text-align: left;
+          text-indent: -240px;
+          padding-left: 240px;
+        }
+
+        .myaccount {
+          @include span-columns(2);
+          float: right;
+          text-transform: uppercase;
+          margin-top: 9px;
+
+          .button {
+            background-color: $lightwarmgray;
+            border-bottom: none;
+            color: $warmgray;
+            padding-top: 15px;
+            width: 100%;
+
+            &:hover {
+              background-color: white;
+              color: $darkwarmgray;
+            }
+          }
         }
       }
     }
@@ -510,6 +534,10 @@ $learndarkred: #660000;
         margin-bottom: 30px;
         padding-bottom: 12px;
         width: 100%;
+
+        &:active {
+          margin-bottom: 34px;
+        }
       }
 
       .related-topics {
@@ -712,6 +740,20 @@ $learndarkred: #660000;
 
     .learn-detail-logo {
       float: none !important;
+
+      h1 {
+        width: 100% !important;
+        text-align: center !important;
+        text-indent: 0 !important;
+        padding-left: 0 !important;
+      }
+
+      .myaccount {
+        right: 2em !important;
+        margin-top: -33px !important;
+        position: absolute;
+        width: 100px !important;
+      }
     }
 
     .products-container h2 {
@@ -741,7 +783,7 @@ $learndarkred: #660000;
   @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
 
     h1 {
-      line-height: 45px;
+      line-height: 56px;
     }
 
     section#learn-header-wrapper .learn-header-container .learn-intro {
