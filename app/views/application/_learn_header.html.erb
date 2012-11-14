@@ -1,0 +1,20 @@
+<section id="learn-header-wrapper">
+  <div class="learn-header-container">
+    <div class="learn-detail-logo">
+      <h1>
+        <%= link_to image_tag('learn/learn-ralph-small.png'), root_path %>
+        <%= t 'shared.learn' %>
+        <span class="learnred"><%= subject %></span>
+      </h1>
+      <div class="myaccount">
+        <% if show_account_links? %>
+          <% if signed_in? %>
+            <%= link_to 'My account', my_account_path, class: 'button' %>
+          <% else %>
+            <%= link_to 'Sign in', sign_in_path, class: 'button' %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
