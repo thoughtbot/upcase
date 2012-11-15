@@ -31,7 +31,7 @@ describe 'episodes/index.xml.builder' do
       @xml.css('channel item').length.should == 2
     end
 
-    it 'includes the id of the episode' do
+    it 'includes the guid of the episode' do
       @xml.css('channel item guid').first.text.should == episode_url(@first)
     end
 
@@ -48,6 +48,19 @@ describe 'episodes/index.xml.builder' do
       content = item.at_xpath('content:encoded').text
       content.should include @first.description
       content.should include BlueCloth.new(@first.notes).to_html
+    end
+  end
+
+  context 'rendered with an episode with an old url' do
+    before(:each) do
+      @first = create(:episode, published_on: 1.day.ago, old_url: 'http://ebay.com')
+      assign(:episodes, [@first])
+      render
+      @xml = Nokogiri::XML.parse(rendered)
+    end
+
+    it 'includes the old url as the guid of the episode' do
+      @xml.css('channel item guid').first.text.should == @first.old_url
     end
   end
 end
