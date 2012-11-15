@@ -1,0 +1,7 @@
+<div class="learn-text-box episode course-box">
+  <h3><%= link_to episode.full_title, episode %></h3>
+  <div class="info">
+    <%= episode.published_on.to_time.to_s(:short_date) %> • <%= distance_of_time_in_words episode.duration %>
+  </div>
+  <p><%= episode.description %></p>
+</div>

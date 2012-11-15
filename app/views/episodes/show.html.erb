@@ -1,0 +1,37 @@
+<%= render 'header' %>
+
+<section class="learn-detail-content">
+  <%= render 'introduction' %>
+
+  <div class="learn-text-box-wrapper">
+    <div class="learn-text-box course-box">
+      <h2>Episode #<%= @episode.id %></h1>
+      <h3><%= @episode.title %></h2>
+      <p><%= @episode.description %></p>
+
+      <div class="listen">
+        <audio controls="controls">
+        <source src="<%= @episode.file %>" type="audio/mpeg" />
+        </audio>
+        <%= link_to "Direct Download", @episode.file %> (<%= number_to_human_size @episode.file_size, precision: 2 %>, <%= distance_of_time_in_words @episode.duration %>)
+      </div>
+
+      <% unless @episode.notes.blank? %>
+        <h3>Notes &amp; Links</h3>
+        <p class="notes">
+          <%= @episode.notes %>
+        </p>
+      <% end %>
+
+      <section id="podcast-questions">
+        <h3>To have your questions answered on the air</h3>
+        <p>Email your questions to <a href="mailto:info@thoughtbot.com">info@thoughtbot.com</a> or Tweet to us <a href="http://twitter.com/thoughtbot">@thoughtbot</a>.</p>
+      </section>
+    </div>
+  </div>
+        <%= render 'credits' %>
+</section>
+
+<% content_for :javascript do %>
+  <%= javascript_include_tag 'retina' %>
+<% end %>
