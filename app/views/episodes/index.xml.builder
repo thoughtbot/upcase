@@ -27,7 +27,7 @@ xml.rss :version => '2.0', 'xmlns:dc' => 'http://purl.org/dc/elements/1.1/', 'xm
       xml.item do
         xml.title episode.full_title
         xml.link episode_url(episode)
-        xml.guid episode_url(episode)
+        xml.guid episode.old_url || episode_url(episode)
         xml.pubDate episode.published_on.xmlschema
         xml.author 'thoughtbot'
         xml.description episode.description
