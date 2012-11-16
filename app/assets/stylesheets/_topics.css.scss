@@ -528,7 +528,7 @@ $learndarkred: #660000;
     max-width: 1100px;
     padding: 3em 2em;
 
-    .learn-topic-summary, .credits {
+    .learn-topic-summary, &.credits div {
       @include span-columns (9);
       clear: both;
       display: block;
@@ -542,8 +542,9 @@ $learndarkred: #660000;
       }
     }
 
-    .credits {
-      margin-top: 30px;
+    &.credits {
+      margin-top: 0;
+      padding-top: 0;
     }
 
     .videowrapper {
