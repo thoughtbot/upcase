@@ -5,6 +5,7 @@ describe Topic do
   it { should have_many(:articles).through(:classifications) }
   it { should have_many(:classifications) }
   it { should have_many(:courses).through(:classifications) }
+  it { should have_many(:episodes).through(:classifications) }
   it { should have_many(:products).through(:classifications) }
   it { should have_many(:related_topics).through(:classifications) }
 
