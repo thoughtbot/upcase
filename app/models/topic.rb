@@ -9,6 +9,8 @@ class Topic < ActiveRecord::Base
   has_many :classifications
   has_many :courses, through: :classifications, source: :classifiable,
     source_type: 'Course'
+  has_many :episodes, through: :classifications, source: :classifiable,
+    source_type: 'Episode'
   has_many :products, through: :classifications, source: :classifiable,
     source_type: 'Product'
   has_many :related_topics, through: :classifications, source: :classifiable,
