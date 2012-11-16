@@ -11,7 +11,7 @@ body.clearance-passwords {
 }
 
 body.registrations,
-body.purchases, 
+body.purchases,
 body.sessions,
 body.users,
 body.clearance-passwords,
@@ -23,21 +23,6 @@ body.clearance-users {
 
   #form-container {
     @extend .clearfix;
-  }
-  
-  h1.course-title {
-    color: #666;
-    font-family: $sans-serif;
-    font-size: 36px;
-    font-weight: 200;
-    line-height: 36px;
-    margin-bottom: 12px;
-    text-rendering: optimizeLegibility;
-
-    span {
-      color: #000;
-      font-weight: 700;
-    }
   }
 
   .workshop-sign-in, .github-signin {
@@ -57,9 +42,9 @@ body.clearance-users {
     text-align: center;
     font-size: 16px;
   }
-  
+
   #total {
-    margin-bottom: 12px;
+    margin-bottom: 0;
     overflow: hidden;
 
     p.price {
@@ -75,9 +60,7 @@ body.clearance-users {
       a {
         color: $red;
         display: block;
-        font: 400 16px/16px $sans-serif;
         line-height: 2.25em;
-        margin-left: .5em;
         text-decoration: none;
       }
     }
@@ -126,7 +109,7 @@ body.clearance-users {
           &#user_email_input, &#password_submit_action {
             clear: both;
           }
-          
+
           &#password_email {
             clear: both;
           }
@@ -173,69 +156,12 @@ body.clearance-users {
         }
       }
     }
-
-    #billing-information {
-      ol {
-        border: 1px solid #999;
-        @include border-radius(8px);
-        @include box-shadow(1px 1px 3px rgba(0,0,0,.2));
-        @include box-sizing(border-box);
-        margin-bottom: flex-gutter();
-        padding: 1.5em;
-        width: 386px;
-
-        li {
-          &.overflow {
-            @extend .clearfix;
-          }
-          &#purchase_expiration_input {
-            float: left;
-            margin-right: flex-gutter();
-            width: flex-grid(8);
-
-            select {
-              border: 1px solid #999;
-              @include box-shadow( 0 1px 2px #aaa);
-              @include box-sizing(border-box);
-              font: 14px $sans-serif;
-              margin: 3px 0 0 0;
-              padding: .5em;
-              -webkit-appearance: none;
-              width: flex-grid(6);
-
-              &:first-child {
-                margin-right: flex-gutter();
-              }
-
-              &:focus {
-                outline-color: $red;
-              }
-            }
-          }
-
-          &#purchase_cvc_input {
-            float: left;
-            width: flex-grid(4);
-          }
-
-          &#purchase_country_input {
-            clear: left;
-          }
-
-          &#purchase_cc_existing {
-            input, label {
-              display: inline-block;
-            }
-          }
-        }
-      }
-    }
   }
 
   #form-sidebar {
     float: left;
     padding: 205px 0 0 0;
-    width: flex-grid(4);
+    width: 100%;
 
     h4 {
       font-size: 16px;
@@ -311,32 +237,6 @@ body.clearance-users {
       margin-top: 20px;
     }
   }
-
-  section.receipt {
-    margin-top: 25px;
-
-    strong {
-      font-weight: bold;
-    }
-
-    p {
-      margin-bottom: 10px;
-      margin-top: 10px;
-    }
-
-    .item {
-      margin-top: 20px;
-    }
-
-    table {
-      margin-top: 20px;
-      width: 200px;
-
-      td {
-        text-align: right;
-      }
-    }
-  }
 }
 
 body.registrations,
@@ -344,8 +244,7 @@ body.purchases,
 body.users-edit {
   #form-column {
     float: left;
-    margin: 0 flex-gutter() 0 0;
-    width: flex-grid(8);
+    width: 100%;
   }
 }
 

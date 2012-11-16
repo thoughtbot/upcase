@@ -1,74 +1,70 @@
 class Section < ActiveRecord::Base
-  validates_presence_of :starts_on, :ends_on, :start_at, :stop_at, :address
-
-  validate :must_have_at_least_one_teacher
-
+  # Associations
   belongs_to :course
+  has_many :paid_registrations, class_name: 'Registration',
+    conditions: { paid: true }
+  has_many :registrations
   has_many :section_teachers
   has_many :teachers, through: :section_teachers
-  has_many :registrations
-  has_many :paid_registrations, class_name: "Registration", conditions: { paid: true }
-  has_many :unpaid_registrations, class_name: "Registration", conditions: { paid: false }
+  has_many :unpaid_registrations, class_name: 'Registration',
+    conditions: { paid: false }
 
+  # Delegates
   delegate :name, :description, :price, to: :course, prefix: :course
-  after_create :send_follow_up_emails, :send_teacher_notifications
 
+  # Nested Attributes
   accepts_nested_attributes_for :section_teachers
 
+  # Validations
+  validates :address, presence: true
+  validates :ends_on, presence: true
+  validates :start_at, presence: true
+  validates :starts_on, presence: true
+  validates :stop_at, presence: true
+  validate :must_have_at_least_one_teacher
+
+  # Callbacks
+  after_create :send_follow_up_emails
+  after_create :send_teacher_notifications
+
   def self.active
-    where("sections.ends_on >= ?", Date.today).by_starts_on
+    where('sections.ends_on >= ?', Date.today).by_starts_on
   end
 
   def self.by_starts_on
-    order("starts_on asc")
+    order 'starts_on ASC'
   end
 
-  def self.in_public_course
-    joins(:course).where(courses: {public: true})
-  end
-
-  def self.upcoming
-    where("starts_on = ?", 1.week.from_now)
-  end
-
-  def self.send_reminders
-    upcoming.each(&:send_reminders)
-  end
-
-  def self.has_different_teachers?
-    self.all.map{|section| section.teachers.to_set}.uniq.size != 1
-  end
-
-  def time_range
-    "#{self.start_at.to_s(:time).strip}-#{self.stop_at.to_s(:time).strip}"
+  def date_range
+    if starts_on == ends_on
+      starts_on.to_s :simple
+    elsif starts_on.year != ends_on.year
+      "#{starts_on.to_s(:simple)}-#{ends_on.to_s(:simple)}"
+    elsif starts_on.month != ends_on.month
+      "#{starts_on.strftime('%B %d')}-#{ends_on.to_s(:simple)}"
+    else
+      "#{starts_on.strftime('%B %d')}-#{ends_on.strftime('%d, %Y')}"
+    end
   end
 
   def full?
     registrations.count >= seats_available
   end
 
-  def date_range
-    if starts_on.year == ends_on.year
-      if starts_on.month == ends_on.month
-        if starts_on.day == ends_on.day
-          "#{Date::MONTHNAMES[starts_on.month]} #{starts_on.day}, #{ends_on.year}"
-        else
-          "#{Date::MONTHNAMES[starts_on.month]} #{starts_on.day}-#{ends_on.day}, #{ends_on.year}"
-        end
-      else
-        "#{Date::MONTHNAMES[starts_on.month]} #{starts_on.day}-#{Date::MONTHNAMES[ends_on.month]} #{ends_on.day}, #{ends_on.year}"
-      end
-    else
-      "#{starts_on.to_s(:simple)}-#{ends_on.to_s(:simple)}"
-    end
+  def self.in_public_course
+    joins(:course).where courses: { public: true }
   end
 
-  def to_param
-    "#{id}-#{course_name.parameterize}"
+  def location
+    [address, city, state, zip].compact.join ', '
   end
 
   def seats_available
     super || course.maximum_students
+  end
+
+  def self.send_reminders
+    upcoming.each &:send_reminders
   end
 
   def send_reminders
@@ -77,27 +73,43 @@ class Section < ActiveRecord::Base
     end
   end
 
-  def location
-    [address, city, state, zip].compact.join(", ")
+  def time_range
+    "#{start_at.to_s(:time).strip}-#{stop_at.to_s(:time).strip}"
   end
 
-  protected
-
-  def self.xml_content(document, tag_name)
-    document.search(tag_name).first.try(:content)
+  def to_param
+    "#{id}-#{course_name.parameterize}"
   end
+
+  def self.unique_section_teachers_by_teacher
+    all.map(&:section_teachers).flatten.uniq &:teacher
+  end
+
+  def self.upcoming
+    where 'starts_on = ?', 1.week.from_now
+  end
+
+  private
 
   def must_have_at_least_one_teacher
-    errors.add(:base, "must specify at least one teacher") unless self.teachers.any?
+    unless teachers.any?
+      errors.add :base, 'must specify at least one teacher'
+    end
   end
 
   def send_follow_up_emails
-    self.course.follow_ups.have_not_notified.each { |follow_up| follow_up.notify(self) }
+    course.follow_ups.have_not_notified.each do |follow_up|
+      follow_up.notify self
+    end
   end
 
   def send_teacher_notifications
-    self.teachers.each do |teacher|
+    teachers.each do |teacher|
       Mailer.teacher_notification(teacher, self).deliver
     end
+  end
+
+  def self.xml_content(document, tag_name)
+    document.search(tag_name).first.try :content
   end
 end
