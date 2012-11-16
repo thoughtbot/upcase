@@ -1,33 +1,46 @@
-<section id="head-wrapper">
-  <section id="homepage-top">
-    <h1>Watch or Download Video</h1>
-    <h2>
-      <%= @product.name %>
+<section id="learn-header-wrapper">
+  <div class="learn-header-container">
+    <div class="learn-detail-logo">
+      <h1>
+        <%= link_to image_tag('learn/learn-ralph-small.png'), root_path %>
+        <%= t 'shared.learn' %>
+        <span class="learnred"><%= @product.name %></span>
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section id="promo-wrapper">
+    <h3 class="video-headline">Watch or Download Video</h3>
+    <h2 class="video-headline">
       <% if @product.videos.size > 1 %>
-        <span> <%= @product.videos.size %> videos in the series </span>
+        <%= @product.videos.size %> videos in the series
       <% end %>
     </h2>
 
     <% if @product.videos.size == 1 %>
       <%= render @product.videos.first %>
+</section>
     <% else %>
-      <ol class="videos">
+    </section>
+<section id="learn-topics-list">
+
         <% @product.videos.each do |video| %>
-          <li>
+        <div class="learn-text-box">
             <%= link_to product_purchase_video_path(@product, @purchase, video) do %>
               <img src="<%= video.wistia_thumbnail %>" width="100" height="60"
                 alt="<%= video.title %>" />
-              <span><%= video.title %></span>
-              <time><%= video.wistia_running_time %><time>
+             <p class="videoinfo"> <%= video.title %>
+              <%= video.wistia_running_time %></p>
             <% end %>
-          </li>
+          </div>
         <% end %>
-      </ol>
     <% end %>
+</section>
 
     <p class="chat">Every product includes support for any questions you may have about the topic. Visit our <%= link_to "live chat", CHAT_LINK %>.</p>
 
-    <h2>More from thoughtbot</h2>
+  <!--   <h2>More from thoughtbot</h2>
 
     <section id="purchase-products">
       <% Product.active.each_with_index do |product, index| %>
@@ -38,8 +51,7 @@
           </aside>
         <% end %>
       <% end %>
-    </section>
-  </section>
+  </section> -->
 </section>
 <div id="flash"></div>
 

@@ -13,7 +13,6 @@ form {
 
   fieldset {
     legend {
-      font: 600 24px $sans-serif;
       padding: 24px 0 12px 0;
     }
 
@@ -77,10 +76,10 @@ form {
 
         /* red button */
         input[type="submit"] {
-          @include button;
+     //    @include button;
 
           &[disabled] {
-            @include disabled-button;
+     //       @include disabled-button;
           }
         }
       }

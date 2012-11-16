@@ -1,13 +1,24 @@
-<section id="container">
-<h1 class="course-title">Complete your registration for <span><%= @section.course_name %></span></h1>
+<section id="learn-header-wrapper">
+  <div class="learn-header-container">
+    <div class="learn-detail-logo">
+      <h1>
+        <%= link_to image_tag('learn/learn-ralph-small.png'), root_path %>
+        <%= t 'shared.learn' %>
+        <span class="learnred">Purchase Name</span>
+      </h1>
+    </div>
+  </div>
+</section>
 
-  <section id="form-container">
-  <section id="form-column">
+<section class="learn-detail-content">
+  <div class="learn-text-box-wrapper">
+    <div class="learn-text-box course-box">
+<h2>Complete your registration for <span class="learnred"><%= @section.course_name %></span> for <span class="learnred"><%= number_to_currency @registration.price, precision: 0 %></span></h2>
     <div id="total">
-      <p class="price"><%= number_to_currency @registration.price, precision: 0 %></p>
       <p class="coupon-note"><%= link_to "Have a coupon code?", "#" %></p>
     </div>
-
+  <section id="form-container">
+  <section id="form-column">
     <%= render partial: 'redemptions/form' %>
 
     <%= semantic_form_for @registration, url: section_registrations_path(@section), html: { method: 'post' } do |form| %>
@@ -34,12 +45,12 @@
       <% end %>
 
       <%= form.actions do %>
-        <%= form.action :submit, label: 'Proceed to checkout' %>
+        <%= form.action :submit, label: 'PROCEED TO CHECKOUT' %>
       <% end %>
     <% end %>
-  </section>
-
-  <section id="form-sidebar">
+    </div>
+  </div>
+  <aside>
       <h4 class="terms">Terms and conditions</h4>
       <p>By registering for this workshop you agree to the following terms and conditions:</p>
       <ul>
@@ -49,8 +60,7 @@
         <li>We may film, take photographs, and use your feedback for marketing purposes.</li>
         <li>thoughtbot, inc. will not be liable for any direct or indirect damage of any nature arising out of the cancellation of the event.</li>
       </ul>
-    </section>
-  </section>
+    </aside>
 </section>
 
 <% content_for :javascript do -%>
