@@ -56,6 +56,7 @@ Workshops::Application.configure do
   config.middleware.use Rack::SslEnforcer,
                         hsts: false,
                         except: %r{^/podcast},
+                        strict: true,
                         redirect_to: "https://#{HOST}"
 
   config.middleware.use Rack::Cache,
