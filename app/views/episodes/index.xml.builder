@@ -8,7 +8,7 @@ xml.rss :version => '2.0', 'xmlns:dc' => 'http://purl.org/dc/elements/1.1/', 'xm
     end
     xml.description "A weekly technical podcast discussing development, design, and the business of software development."
     xml.language 'en-us'
-    xml.tag! 'itunes:new-feed-url', 'http://thoughtbot.com/podcast.xml'
+    xml.tag! 'itunes:new-feed-url', 'http://learn.thoughtbot.com/podcast.xml'
     xml.tag! 'itunes:subtitle', 'Giant Robots Smashing into other Giant Robots'
     xml.tag! 'itunes:author', 'thoughtbot'
     xml.tag! 'itunes:summary', 'Giant Robots Smashing into other Giant Robots is a weekly technical podcast discussing development, design, and the business of software development.'
@@ -27,7 +27,7 @@ xml.rss :version => '2.0', 'xmlns:dc' => 'http://purl.org/dc/elements/1.1/', 'xm
       xml.item do
         xml.title episode.full_title
         xml.link episode_url(episode)
-        xml.guid episode.old_url || episode_url(episode)
+        xml.guid episode.old_url.blank? ? episode_url(episode) : episode.old_url
         xml.pubDate episode.published_on.xmlschema
         xml.author 'thoughtbot'
         xml.description episode.description
