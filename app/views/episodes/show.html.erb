@@ -11,7 +11,7 @@
 
       <div class="listen">
         <audio controls="controls">
-        <source src="<%= @episode.file %>" type="audio/mpeg" />
+          <source src="<%= @episode.file %>" type="audio/mpeg" />
         </audio>
         <%= link_to "Direct Download", @episode.file %> (<%= number_to_human_size @episode.file_size, precision: 2 %>, <%= distance_of_time_in_words @episode.duration %>)
       </div>
@@ -19,7 +19,7 @@
       <% unless @episode.notes.blank? %>
         <h3>Notes &amp; Links</h3>
         <p class="notes">
-          <%= @episode.notes %>
+          <%= format_podcast_notes @episode.notes %>
         </p>
       <% end %>
 

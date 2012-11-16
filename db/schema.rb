@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121024185508) do
+ActiveRecord::Schema.define(:version => 20121114193521) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -113,6 +113,19 @@ ActiveRecord::Schema.define(:version => 20121024185508) do
     t.string   "description"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+  end
+
+  create_table "episodes", :force => true do |t|
+    t.string   "title"
+    t.string   "old_url"
+    t.string   "file"
+    t.text     "description"
+    t.text     "notes"
+    t.date     "published_on"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "file_size"
+    t.integer  "duration"
   end
 
   create_table "follow_ups", :force => true do |t|
@@ -281,13 +294,13 @@ ActiveRecord::Schema.define(:version => 20121024185508) do
   create_table "topics", :force => true do |t|
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.text     "trail_map"
     t.string   "keywords"
     t.string   "name",                          :null => false
     t.string   "slug",                          :null => false
     t.text     "summary"
     t.integer  "count"
     t.boolean  "featured",   :default => false, :null => false
-    t.text     "trail_map"
   end
 
   add_index "topics", ["slug"], :name => "index_topics_on_slug", :unique => true
