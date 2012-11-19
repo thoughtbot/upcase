@@ -5,6 +5,7 @@ class EpisodesController < ApplicationController
 
   def show
     @episode = Episode.find(params[:id])
+    @related_topics = @episode.topics
     @products = @episode.products.ordered
   end
 end
