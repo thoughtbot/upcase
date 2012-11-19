@@ -38,4 +38,6 @@ Billing address
 Subtotal  : <%= number_to_currency @purchase.price, precision: 2 %> USD
 Tax       : $0.00 USD
 Shipping  : $0.00 USD
-Total     : <%= number_to_currency @purchase.price, precision: 2 %> USD
+Total     : <%= number_to_currency @purchase.price, precision: 2 %> USD*
+
+* EU customers: prices exclude VAT
