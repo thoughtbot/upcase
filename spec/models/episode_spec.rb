@@ -4,6 +4,7 @@ describe Episode do
   context 'associations' do
     it { should have_many(:classifications) }
     it { should have_many(:topics).through(:classifications) }
+    it { should have_many(:products).through(:topics) }
   end
 
   context 'validations' do

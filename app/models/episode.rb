@@ -4,6 +4,7 @@ class Episode < ActiveRecord::Base
 
   has_many :classifications, as: :classifiable
   has_many :topics, through: :classifications
+  has_many :products, through: :topics
 
   validates_presence_of :title, :duration, :file, :file_size, :description,
     :published_on

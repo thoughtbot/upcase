@@ -5,8 +5,6 @@ class EpisodesController < ApplicationController
 
   def show
     @episode = Episode.find(params[:id])
-    if topic = @episode.topics.first
-      @products = topic.products.ordered
-    end
+    @products = @episode.products.ordered
   end
 end
