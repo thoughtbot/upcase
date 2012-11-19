@@ -261,8 +261,7 @@ ActiveRecord::Schema.define(:version => 20121114193521) do
     t.datetime "updated_at"
   end
 
-  add_index "section_teachers", ["section_id"], :name => "index_section_teachers_on_section_id"
-  add_index "section_teachers", ["teacher_id"], :name => "index_section_teachers_on_teacher_id"
+  add_index "section_teachers", ["section_id", "teacher_id"], :name => "index_section_teachers_on_section_id_and_teacher_id", :unique => true
 
   create_table "sections", :force => true do |t|
     t.integer  "course_id"
@@ -294,13 +293,13 @@ ActiveRecord::Schema.define(:version => 20121114193521) do
   create_table "topics", :force => true do |t|
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
-    t.text     "trail_map"
     t.string   "keywords"
     t.string   "name",                          :null => false
     t.string   "slug",                          :null => false
     t.text     "summary"
     t.integer  "count"
     t.boolean  "featured",   :default => false, :null => false
+    t.text     "trail_map"
   end
 
   add_index "topics", ["slug"], :name => "index_topics_on_slug", :unique => true
