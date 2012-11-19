@@ -9,7 +9,7 @@ Given /^"([^"]*)" has registered for "([^"]*)"$/ do |email, course_name|
     When I go to the home page
     And I follow the link to the #{course_name} course
     And I follow the link to register for a section
-    And I press "Proceed to checkout"
+    And I press "PROCEED TO CHECKOUT"
   }
 end
 

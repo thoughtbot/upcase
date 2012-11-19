@@ -24,7 +24,7 @@ Feature: Freshbooks stores information about registrations
       | City                  | Boston             |
       | State                 | MA                 |
       | Zip code              | 02114              |
-    And I press "Proceed to checkout"
+    And I press "PROCEED TO CHECKOUT"
     Then the freshbooks client id for "carlos@santana.com" is set correctly
     And a freshbooks invoice for "carlos@santana.com" is created with:
       | first_name   | Carlos        |
@@ -77,7 +77,7 @@ Feature: Freshbooks stores information about registrations
       | City                  | Boston             |
       | State                 | MA                 |
       | Zip code              | 02114              |
-    And I press "Proceed to checkout"
+    And I press "PROCEED TO CHECKOUT"
     Then carlos@santana.com is registered for the Test-Driven Haskell course
     And the freshbooks client id for "carlos@santana.com" is set correctly
     And a freshbooks invoice for "carlos@santana.com" is created with:
@@ -115,7 +115,7 @@ Feature: Freshbooks stores information about registrations
       | City                  | Boston             |
       | State                 | MA                 |
       | Zip code              | 02114              |
-    And I press "Proceed to checkout"
+    And I press "PROCEED TO CHECKOUT"
     Then the freshbooks client id for "carlos@santana.com" is set correctly
     And a freshbooks invoice for "carlos@santana.com" is created with:
       | first_name   | Carlos        |
@@ -163,7 +163,7 @@ Feature: Freshbooks stores information about registrations
       | City                  | Boston             |
       | State                 | MA                 |
       | Zip code              | 02114              |
-    And I press "Proceed to checkout"
+    And I press "PROCEED TO CHECKOUT"
     And the freshbooks client id for "carlos@santana.com" is set correctly
     And a freshbooks invoice for "carlos@santana.com" is created with:
       | first_name   | Carlos        |

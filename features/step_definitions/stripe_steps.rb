@@ -13,11 +13,11 @@ When 'I pay using Stripe' do
     form$.append("<input type='hidden' name='purchase[stripe_token]' value='stripetoken' />");
   JS
   fill_in_name_and_email
-  click_button 'Submit Payment'
+  click_button 'SUBMIT PAYMENT'
 end
 
 When 'I pay with existing credit card' do
   find(:css, "input.use_existing_card").set(true)
   fill_in_name_and_email
-  click_button 'Submit Payment'
+  click_button 'SUBMIT PAYMENT'
 end
