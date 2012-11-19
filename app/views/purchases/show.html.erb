@@ -13,6 +13,7 @@
 <section class="learn-detail-content">
   <div class="learn-text-box-wrapper">
     <div class="learn-text-box course-box">
+      <section class="screen">
       <h2>Thank you for purchasing <%= @purchase.product.name %>.</h2>
       <div class="video-button-wrapper">
         <% if @purchase.product.videos.any? %>
@@ -39,6 +40,7 @@
       <% end -%>
 
       <p class="chat">Every product includes support for any questions you may have about the topic. Visit our <%= link_to "live chat", CHAT_LINK %>.</p>
+      </section>
 
       <section class="receipt"><hr>
       <h3>Receipt #<%= @purchase.id %> on <span class="learnred"><%= @purchase.created_at.to_s(:short_date) %></span></h3>
