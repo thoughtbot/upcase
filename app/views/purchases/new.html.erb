@@ -13,7 +13,7 @@
 <section class="learn-detail-content">
   <div class="learn-text-box-wrapper">
     <div class="learn-text-box course-box">
-      <h2>Complete your purchase of <span class="learnred"><%= @product.name %></span> for <span class="learnred"><%= number_to_currency @purchase.price, precision: 0 %></span></h2>
+      <h2>Complete your purchase of <span class="learnred"><%= @product.name %></span> for <span class="learnred totalprice"><%= number_to_currency @purchase.price, precision: 0 %></span></h2>
       <div id="total">
         <p class="coupon-note"><%= link_to "Have a coupon code?", "#" %></p>
       </div>
