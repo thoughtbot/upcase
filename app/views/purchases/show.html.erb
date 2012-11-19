@@ -41,9 +41,10 @@
       <p class="chat">Every product includes support for any questions you may have about the topic. Visit our <%= link_to "live chat", CHAT_LINK %>.</p>
 
       <section class="receipt"><hr>
-      <h3>Receipt for <span class="learnred"><%= @purchase.product.name %> - <%= @purchase.variant %> for <%= number_to_currency @purchase.price, precision: 2 %></span> on <span class="learnred"><%= @purchase.created_at.to_s(:short_date) %></span></h3>
+      <h3>Receipt #<%= @purchase.id %> on <span class="learnred"><%= @purchase.created_at.to_s(:short_date) %></span></h3>
 
-      <p class="billing-address"><strong>Billing Address</strong><br/>
+      <p class="billing-address">
+        <strong>Bill To</strong><br/>
         <%= @purchase.name %><br/>
         <% unless @purchase.organization.blank? -%>
           <%= @purchase.organization %><br/>
@@ -55,11 +56,18 @@
         <%= @purchase.city %>, <%= @purchase.state %> <%= @purchase.zip_code %>
       </p>
 
+      <p class="billing-address">
+        <strong>Sold by</strong><br/>
+        thoughtbot, inc.<br/>
+        228 Park Ave S #19298<br/>
+        New York NY  10003<br/>
+        United States <br/>
+        Phone: 617-482-1300<br/>
+      </p>
+
       <table class="purchase-pricing">
         <tr>
-          <td><strong>Pricing</strong></td>
-        </tr>
-          <td>Subtotal</td><td class="amount"><%= number_to_currency @purchase.price, precision: 2 %> USD</td>
+          <td><%= @purchase.product.name %> (<%= @purchase.variant %>)</td><td class="amount"><%= number_to_currency @purchase.price, precision: 2 %> USD</td>
         </tr>
         <tr>
           <td>Tax</td><td class="amount">$0.00 USD</td>
@@ -70,9 +78,16 @@
         <tr>
           <td><strong>Total</strong></td><td class="amount"><strong><%= number_to_currency @purchase.price, precision: 2 %></strong> USD*</td>
         </tr>
+        <tr>
+          <td><strong>Amount paid</strong></td><td class="amount"><strong><%= number_to_currency @purchase.paid_price, precision: 2 %></strong> USD</td>
+        </tr>
+        <tr>
+          <td><strong>Balance due</strong></td><td class="amount"><strong><%= number_to_currency 0, precision: 2 %></strong> USD</td>
+        </tr>
       </table>
-      </section>
+
       <p><small>* EU customers: prices exclude VAT</small></p>
+      </section>
     </div>
   </div>
 </section>

@@ -18,9 +18,16 @@ topic. Visit our live chat here: <%= CHAT_LINK %>
 
 <%= render partial: 'create_account_if_needed', locals: { purchase: @purchase } %>
 
-RECEIPT
+RECEIPT #<%= @purchase.id %>
 
 Date <%= @purchase.created_at.to_s(:short_date) %>
+
+Sold by
+  thoughtbot, inc.
+  228 Park Ave S #19298
+  New York NY  10003
+  United States
+  Phone: 617-482-1300
 
 Billing address
   <%= @purchase.name %>
@@ -35,9 +42,11 @@ Billing address
 
 <%= @purchase.product.name %> - <%= @purchase.variant %> for <%= number_to_currency @purchase.price, precision: 2 %>
 
-Subtotal  : <%= number_to_currency @purchase.price, precision: 2 %> USD
-Tax       : $0.00 USD
-Shipping  : $0.00 USD
-Total     : <%= number_to_currency @purchase.price, precision: 2 %> USD*
+Subtotal    : <%= number_to_currency @purchase.price, precision: 2 %> USD
+Tax         : $0.00 USD
+Shipping    : $0.00 USD
+Total       : <%= number_to_currency @purchase.price, precision: 2 %> USD*
+Amount paid : <%= number_to_currency @purchase.paid_price, precision: 2 %> USD
+Balance due : $0.00 USD
 
 * EU customers: prices exclude VAT
