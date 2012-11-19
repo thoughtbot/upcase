@@ -68,10 +68,11 @@
           <td>Shipping</td><td class="amount">$0.00 USD</td>
         </tr>
         <tr>
-          <td><strong>Total</strong></td><td class="amount"><strong><%= number_to_currency @purchase.price, precision: 2 %></strong> USD</td>
+          <td><strong>Total</strong></td><td class="amount"><strong><%= number_to_currency @purchase.price, precision: 2 %></strong> USD*</td>
         </tr>
       </table>
       </section>
+      <p><small>* EU customers: prices exclude VAT</small></p>
     </div>
   </div>
 </section>
