@@ -905,6 +905,7 @@ $learndarkred: #660000;
     }
 
     .billing-address {
+      @include nth-omega(2n);
       @include span-columns(6);
       margin-bottom: 10px;
       margin-top: 20px;
@@ -915,20 +916,29 @@ $learndarkred: #660000;
     }
 
     .purchase-pricing {
-      @include span-columns(6);
+      @include span-columns(12);
+      margin-bottom: 20px;
       margin-top: 20px;
 
+      tbody {
+        @include outer-container;
+      }
+
       tr {
-        width: 300px;
+        @include span-columns(10);
       }
 
       td {
         color: $darkwarmgray;
         font: normal 17px $serif;
-        margin-bottom: 12px;
+        margin-bottom: 6px;
         text-align: left;
-        text-shadow: 0 1px 1px rgba(255,255,255,.3);
-        width: 50%;
+        @include span-columns(6);
+
+        &.amount {
+          text-align: right;
+          @include span-columns(4);
+        }
       }
     }
   }
@@ -1148,6 +1158,18 @@ $learndarkred: #660000;
     section.receipt .billing-address,
     section.receipt .purchase-pricing {
       @include span-columns(12);
+
+      tr {
+        @include span-columns(12);
+      }
+
+      td {
+        @include span-columns(8);
+
+        &.amount {
+          @include span-columns(4);
+        }
+      }
     }
 
     .learn-text-box-wrapper .get-video {
