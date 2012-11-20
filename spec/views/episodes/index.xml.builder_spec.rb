@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe 'episodes/index.xml.builder' do
   context 'rendered with 2 episodes' do
+    before(:all) { Timecop.freeze(Time.now) }
+    after(:all)  { Timecop.return }
+
     before(:each) do
       @first = create(:episode, published_on: 1.day.ago, notes: '* A list')
       assign(:episodes, [@first, create(:episode, published_on: 2.days.ago)])
