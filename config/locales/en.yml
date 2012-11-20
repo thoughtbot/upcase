@@ -79,3 +79,9 @@ en:
         Related Reading
       view_articles:
         View all %{name} articles
+
+  purchase:
+    product:
+      heading_html: Complete your purchase of <span class="learnred">%{name}</span>
+    registration:
+      heading_html: Complete your registration for <span class="learnred">%{name}</span>
