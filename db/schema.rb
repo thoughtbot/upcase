@@ -261,8 +261,7 @@ ActiveRecord::Schema.define(:version => 20121114193521) do
     t.datetime "updated_at"
   end
 
-  add_index "section_teachers", ["section_id"], :name => "index_section_teachers_on_section_id"
-  add_index "section_teachers", ["teacher_id"], :name => "index_section_teachers_on_teacher_id"
+  add_index "section_teachers", ["section_id", "teacher_id"], :name => "index_section_teachers_on_section_id_and_teacher_id", :unique => true
 
   create_table "sections", :force => true do |t|
     t.integer  "course_id"

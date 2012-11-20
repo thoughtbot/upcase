@@ -1,9 +1,9 @@
 class ProductsController < ApplicationController
   def index
     @courses = Course.only_public.by_position
-    @books = Product.books.ordered
-    @videos = Product.videos.ordered
-    @workshops = Product.workshops.ordered
+    @books = Product.books.active.ordered
+    @videos = Product.videos.active.ordered
+    @workshops = Product.workshops.active.ordered
   end
 
   def show
