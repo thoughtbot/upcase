@@ -1,3 +1,11 @@
+Given /^an unpaid purchase for "([^"]*)" with lookup "([^"]*)"$/ do |product_name, lookup|
+  product = Product.find_by_name!(product_name)
+  purchase = create(:purchase, product: product, payment_method: 'paypal')
+  purchase.paid = false
+  purchase.lookup = lookup
+  purchase.save!
+end
+
 When /^I apply coupon code "([^"]*)" to product named "([^"]*)"$/ do |coupon_code, product_name|
   visit products_path
   click_link product_name
@@ -58,6 +66,10 @@ end
 
 Then /^I should see the link to the video page$/ do
   page.should have_css('a', href: /watch/)
+end
+
+Then /^I should see a list of (\d+) videos?$/ do |count|
+  page.should have_css('.videoinfo', count: count)
 end
 
 Then /^I should see a video$/ do

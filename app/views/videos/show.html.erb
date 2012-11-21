@@ -1,8 +1,8 @@
-<section id="head-wrapper">
-  <section id="homepage-top">
-    <h1>Watch or Download Video</h1>
-    <h2> <%= @video.product.name %> - <%= @video.title %></h2>
-    <%= render @video %>
-  </section>
+<%= render 'learn_header', subject: @product.name %>
+
+<section id="promo-wrapper">
+  <h3 class="video-headline">Watch or Download Video</h3>
+  <%= render @video %>
 </section>
-<div id="flash"></div>
+
+<%= render 'videos/footer' %>
