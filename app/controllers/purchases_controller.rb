@@ -37,7 +37,13 @@ class PurchasesController < ApplicationController
   def watch
     @product = current_product
     @purchase = current_purchase
-    ensure_purchase_paid
+    ensure_purchase_paid and return
+
+    if @product.videos.one?
+      redirect_to [@product, @purchase, @product.videos.first]
+    else
+      redirect_to [@product, @purchase, :videos]
+    end
   end
 
   def paypal

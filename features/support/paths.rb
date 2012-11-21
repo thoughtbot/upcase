@@ -41,6 +41,22 @@ module NavigationHelpers
       course = Course.find_by_name!($2)
       registration = course.registrations.find_by_email($1)
       registration.freshbooks_invoice_url
+    when /the product page for "([^\"]+)"/
+      product = Product.find_by_name!($1)
+      product_url(product)
+    when /the watch page for the purchase "([^"]+)"$/
+      purchase = Purchase.find_by_lookup!($1)
+      product = purchase.product
+      watch_product_purchase_path(product, purchase)
+    when /the video list for the purchase "([^"]+)"$/
+      purchase = Purchase.find_by_lookup!($1)
+      product = purchase.product
+      product_purchase_videos_path(product, purchase)
+    when /the video with id "([^"]+)" for the purchase "([^"]+)"$/
+      purchase = Purchase.find_by_lookup!($2)
+      product = purchase.product
+      video = product.videos.find_by_wistia_id!($1)
+      product_purchase_video_path(product, purchase, video)
     when /the URL "([^\"]+)"/
       $1
     else

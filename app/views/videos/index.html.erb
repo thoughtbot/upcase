@@ -1,0 +1,22 @@
+<%= render 'learn_header', subject: @product.name %>
+
+<section id="promo-wrapper">
+  <h3 class="video-headline">Watch or Download Video</h3>
+  <h2 class="video-headline">
+    <%= pluralize @product.videos.size, 'video' %> in the series
+  </h2>
+</section>
+<section id="learn-topics-list">
+  <% @product.videos.each do |video| %>
+    <div class="learn-text-box">
+      <%= link_to product_purchase_video_path(@product, @purchase, video) do %>
+        <img src="<%= video.wistia_thumbnail %>" width="100" height="60"
+             alt="<%= video.title %>" />
+        <p class="videoinfo"> <%= video.title %>
+          <%= video.wistia_running_time %></p>
+      <% end %>
+    </div>
+  <% end %>
+</section>
+
+<%= render 'videos/footer' %>
