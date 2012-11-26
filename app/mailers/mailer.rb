@@ -82,7 +82,9 @@ class Mailer < ActionMailer::Base
 
     mail(
       to: purchase.email,
-      cc: 'support@thoughtbot.com',
+      cc: 'learn@thoughtbot.com',
+      from: 'learn@thoughtbot.com',
+      reply_to: 'learn@thoughtbot.com',
       subject: "Fulfillment issues with #{purchase.product_name}"
     )
   end

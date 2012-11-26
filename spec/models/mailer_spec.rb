@@ -142,7 +142,8 @@ describe Mailer do
       mailer = Mailer.fulfillment_error(purchase, github_username)
 
       mailer.should deliver_to(purchase.email)
-      mailer.should cc_to('support@thoughtbot.com')
+      mailer.should cc_to('learn@thoughtbot.com')
+      mailer.should reply_to('learn@thoughtbot.com')
     end
 
     it 'sets the correct subject' do
@@ -155,7 +156,7 @@ describe Mailer do
     it 'sets the username in the message body' do
       mailer = Mailer.fulfillment_error(stubbed_purchase, github_username)
 
-      mailer.should have_body_text(/username/)
+      mailer.should have_body_text(/#{github_username}/)
     end
   end
 
