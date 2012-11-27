@@ -64,7 +64,7 @@ class Topic < ActiveRecord::Base
   end
 
   def github_url
-    "https://raw.github.com/thoughtbot/trail-map/json/trails/#{slug.parameterize}.json"
+    "https://raw.github.com/thoughtbot/trail-map/trails/#{slug.parameterize}.json"
   end
 
   def parse_and_assign_trail_map(raw_trail_map)
