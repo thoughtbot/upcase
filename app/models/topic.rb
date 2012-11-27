@@ -76,6 +76,7 @@ class Topic < ActiveRecord::Base
     self.name = trail_map['name']
     if trail_map['prerequisites'].present?
       trail_map['prerequisites'].each do |related|
+        p "looking for prerequisites: #{related}"
         prerequisite_topic = Topic.find_by_slug(related)
         unless self.related_topics.include?(prerequisite_topic)
           self.related_topics << prerequisite_topic
