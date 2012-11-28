@@ -15,7 +15,7 @@ Feature: Selecting a course and registering for it
     Then I should see "Complete your registration for Test-Driven Haskell"
     And I should see "$10,000,000"
     When I fill in all of the course registration fields for "carlos@santana.com"
-    And I press "Proceed to checkout"
+    And I press "PROCEED TO CHECKOUT"
     Then carlos@santana.com is registered for the Test-Driven Haskell course
     When I pay for "carlos@santana.com" taking "Test-Driven Haskell"
     Then "carlos@santana.com" opens the email with subject "You're registered for Test-Driven Haskell"
@@ -44,7 +44,7 @@ Feature: Selecting a course and registering for it
     And "First name" should be filled in with "Carlos"
     And "Last name" should be filled in with "Santana"
     When I fill in all of the course registration fields for "carlos@santana.com"
-    And I press "Proceed to checkout"
+    And I press "PROCEED TO CHECKOUT"
     Then carlos@santana.com is registered for the Test-Driven Haskell course
     When I pay for "carlos@santana.com" taking "Test-Driven Haskell"
     Then "carlos@santana.com" opens the email with subject "You're registered for Test-Driven Haskell"
@@ -65,7 +65,7 @@ Feature: Selecting a course and registering for it
     Then I should see "Complete your registration for Test-Driven Haskell"
     And I should see "$10,000,000"
     When I fill in all of the course registration fields for "carlos@blah"
-    And I press "Proceed to checkout"
+    And I press "PROCEED TO CHECKOUT"
     Then I should see that the email is invalid
 
   @selenium
@@ -92,7 +92,7 @@ Feature: Selecting a course and registering for it
     And the coupon form should be hidden
     And the coupon form link should be hidden
     When I fill in all of the course registration fields for "carlos@santana.com"
-    And I press "Proceed to checkout"
+    And I press "PROCEED TO CHECKOUT"
     Then carlos@santana.com is registered for the Test-Driven Haskell course
 
   @selenium
@@ -120,7 +120,7 @@ Feature: Selecting a course and registering for it
     And the coupon form should be hidden
     And the coupon form link should be hidden
     When I fill in the required course registration fields for "carlos@santana.com"
-    And I press "Proceed to checkout"
+    And I press "PROCEED TO CHECKOUT"
     Then carlos@santana.com is registered for the Test-Driven Haskell course
 
   @selenium
@@ -175,5 +175,5 @@ Feature: Selecting a course and registering for it
     And I follow "REGISTER FOR THIS WORKSHOP"
     Then I should see "$0"
     When I fill in the required course registration fields for "carlos@santana.com"
-    And I press "Proceed to checkout"
+    And I press "PROCEED TO CHECKOUT"
     Then carlos@santana.com is registered for the Test-Driven Haskell course

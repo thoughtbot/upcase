@@ -109,9 +109,9 @@
       $('#purchase_payment_method_input input').change(function() {
         $("li.stripe").toggle($("#purchase_payment_method_stripe").is(":checked"));
         if($("#purchase_payment_method_stripe").is(":checked")) {
-          $('#new_purchase fieldset.actions input').val("Submit Payment");
+          $('#new_purchase fieldset.actions input').val("SUBMIT PAYMENT");
         } else {
-          $('#new_purchase fieldset.actions input').val("Proceed to Checkout");
+          $('#new_purchase fieldset.actions input').val("PROCEED TO CHECKOUT");
         }
       });
     });

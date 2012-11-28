@@ -15,7 +15,7 @@ Feature: KISSmetrics tracks registration events
     And KISSmetrics receives the "Started Registration" event with:
       | Course Name | Test-Driven Haskell |
     When I fill in the required course registration fields for "carlos@santana.com"
-    And I press "Proceed to checkout"
+    And I press "PROCEED TO CHECKOUT"
     Then KISSmetrics receives the "Submitted Registration" event for "carlos@santana.com" over HTTP with:
       | Course Name | Test-Driven Haskell |
 
@@ -34,6 +34,6 @@ Feature: KISSmetrics tracks registration events
     Then KISSmetrics receives the "Started Registration" event with:
       | Course Name | Test-Driven Haskell |
     When I fill in the required course registration fields for "carlos@santana.com"
-    And I press "Proceed to checkout"
+    And I press "PROCEED TO CHECKOUT"
     Then KISSmetrics receives the "Submitted Registration" event for "carlos@santana.com" over HTTP with:
       | Course Name | Test-Driven Haskell |

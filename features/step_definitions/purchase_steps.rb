@@ -25,7 +25,7 @@ end
 
 When /^I completed the purchase$/ do
   fill_in_name_and_email
-  click_button 'Submit Payment'
+  click_button 'SUBMIT PAYMENT'
 end
 
 Then /^I should see that product "([^"]*)" is successfully purchased$/ do |product_name|
@@ -38,7 +38,7 @@ When 'I pay using Paypal' do
 
   choose 'purchase_payment_method_paypal'
   fill_in_name_and_email
-  click_button 'Proceed to Checkout'
+  click_button 'PROCEED TO CHECKOUT'
 end
 
 When 'I submit the Paypal form' do

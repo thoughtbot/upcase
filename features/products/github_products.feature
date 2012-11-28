@@ -31,7 +31,7 @@ Feature: Purchase a github based product
     And I view all products
     And I follow "Test GitHub"
     And I follow "Purchase for Yourself"
-    When I press "Submit Payment"
+    When I press "SUBMIT PAYMENT"
     Then I should see a github username error
 
   Scenario: A user with github username purchases a product with a reader
