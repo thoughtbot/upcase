@@ -37,4 +37,18 @@ describe Episode do
       episode.full_title.should == "Episode #{episode.id}: #{episode.title}"
     end
   end
+
+  describe ".products" do
+    it 'should not duplicate products' do
+      episode = create(:episode)
+      product = create(:product)
+      topic_one = create(:topic)
+      topic_one.products << product
+      topic_two = create(:topic)
+      topic_two.products << product
+      episode.topics << topic_one
+      episode.topics << topic_two
+      episode.products.should == [product]
+    end
+  end
 end

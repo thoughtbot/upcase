@@ -1,10 +1,10 @@
 class Episode < ActiveRecord::Base
   attr_accessible :title, :duration, :file, :description, :published_on, :notes,
-    :old_url, :file_size
+    :old_url, :file_size, :topic_ids
 
   has_many :classifications, as: :classifiable
   has_many :topics, through: :classifications
-  has_many :products, through: :topics
+  has_many :products, through: :topics, uniq: true
 
   validates_presence_of :title, :duration, :file, :file_size, :description,
     :published_on
