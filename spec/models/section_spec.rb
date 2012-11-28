@@ -125,3 +125,12 @@ describe Section do
     end
   end
 end
+
+describe Section, 'self.by_starts_on_desc' do
+  it 'returns sections newest to oldest by starts_on' do
+    old_section = create(:section, starts_on: 2.weeks.from_now)
+    new_section = create(:section, starts_on: 4.weeks.from_now)
+
+    Section.by_starts_on_desc.should == [new_section, old_section]
+  end
+end
