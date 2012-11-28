@@ -28,11 +28,19 @@ class Section < ActiveRecord::Base
   after_create :send_teacher_notifications
 
   def self.active
-    where('sections.ends_on >= ?', Date.today).by_starts_on
+    where("sections.ends_on >= ?", Date.today).by_starts_on
   end
 
   def self.by_starts_on
-    order 'starts_on ASC'
+    order("starts_on asc")
+  end
+
+  def self.by_starts_on_desc
+    order('starts_on desc')
+  end
+
+  def self.in_public_course
+    joins(:course).where(courses: {public: true})
   end
 
   def date_range
@@ -49,10 +57,6 @@ class Section < ActiveRecord::Base
 
   def full?
     registrations.count >= seats_available
-  end
-
-  def self.in_public_course
-    joins(:course).where courses: { public: true }
   end
 
   def location
