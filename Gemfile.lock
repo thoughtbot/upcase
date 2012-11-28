@@ -6,6 +6,13 @@ GIT
       visitor
 
 GIT
+  remote: git@github.com:thoughtbot/capybara_discoball.git
+  revision: e3791f5dd11eb024a524b43836bb010656594e49
+  specs:
+    capybara_discoball (0.0.1)
+      capybara
+
+GIT
   remote: https://github.com/stripe/stripe-ruby
   revision: 69a96ecc4b08549cf496c26a92ebbd8f405db49f
   specs:
@@ -360,6 +367,7 @@ DEPENDENCIES
   bourbon (= 1.4.0)
   bourne (= 1.1.2)
   capybara (= 1.1.2)
+  capybara_discoball!
   chameleon (= 0.2.2)
   clearance (= 0.16.1)
   csv_rails (= 0.6.1)

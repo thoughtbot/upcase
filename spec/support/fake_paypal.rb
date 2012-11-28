@@ -1,5 +1,5 @@
 require 'sinatra/base'
-require 'capybara_server_runner'
+require 'capybara_discoball'
 
 if Rails.env == "test"
   module Paypal
@@ -79,10 +79,8 @@ class FakePaypal < Sinatra::Base
   end
 end
 
-FakePaypalRunner = CapybaraServerRunner.new(FakePaypal) do |server|
+FakePaypalRunner = Capybara::Discoball.spin(FakePaypal) do |server|
   url = server.url('/')
   Paypal::NVP::Request.endpoint = url
   Paypal.endpoint = url
 end
-
-FakePaypalRunner.boot
