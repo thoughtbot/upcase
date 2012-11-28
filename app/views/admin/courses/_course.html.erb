@@ -4,6 +4,6 @@
     <%= link_to 'New Section', new_admin_course_section_path(course), class: 'new-section', id: "new-section-#{course.id}" %>
   </h3>
   <ul>
-    <%= render course.sections %>
+    <%= render course.sections.by_starts_on_desc %>
   </ul>
 <% end %>
