@@ -1,0 +1,63 @@
+<%= semantic_form_for @purchase, url: product_purchases_path(@product), html: { method: 'post' } do |form| %>
+  <%= form.semantic_errors %>
+  <%= hidden_field_tag 'coupon_id' %>
+  <% if signed_out? %>
+    <div class="workshop-sign-in">Already have an account? <%= link_to 'Sign in.', sign_in_path(return_to: request.fullpath) %></div>
+  <% end %>
+  <%= form.inputs 'Your information' do %>
+    <%= form.input :variant, as: :hidden %>
+    <%= form.input :name %>
+    <%= form.input :email, hint: "The receipt will be sent to this address." %>
+  <% end %>
+
+  <%= render partial: 'purchases/readers', locals: { purchase: @purchase, form: form } %>
+
+  <%= form.inputs 'For your receipt' do %>
+    <%= form.input :organization %>
+    <%= form.input :address1, label: 'Address 1' %>
+    <%= form.input :address2, label: 'Address 2' %>
+    <%= form.input :city %>
+    <%= form.input :state, label: "State / Province" %>
+    <%= form.input :zip_code, label: "Postal / Zip Code" %>
+    <%= form.input :country, as: :string %>
+  <% end %>
+
+  <%= form.inputs 'Billing Information', id: 'billing-information' do %>
+    <li class="radio required" id="purchase_payment_method_input">
+      <%= radio_button_tag "purchase[payment_method]", "stripe", @purchase.stripe?, id: "purchase_payment_method_stripe" %>
+      <label for="purchase_payment_method_stripe">
+        <%= image_tag "icons/visa.png" %><%= image_tag "icons/master.png" %><%= image_tag "icons/american_express.png" %>
+      </label>
+      <%= radio_button_tag "purchase[payment_method]", "paypal", @purchase.paypal?, id: "purchase_payment_method_paypal" %>
+      <label for="purchase_payment_method_paypal">
+        <img src="https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif" alt="PayPal Express Logo">
+      </label>
+    </li>
+    <li class="payment-errors"></li>
+    <% if @active_card %>
+      <li id="purchase_cc_existing" class="stripe">
+        <input type="checkbox" id="use_existing_card" name="use_existing_card" class="use_existing_card" />
+        <label for="use_existing_card">
+          Use existing card (<%= display_card_type(@active_card["type"]) %> ending in <%= @active_card["last4"] %>)
+        </label>
+      </li>
+    <% end %>
+    <li id="purchase_cc_input" class="stripe">
+      <label>Card Number</label>
+      <input type="text" size="20" autocomplete="off" class="card-number"/>
+    </li>
+    <li id="purchase_expiration_input" class="stripe">
+      <label>Expiration</label>
+      <%= select_month nil, { prompt: 'Month', add_month_numbers: true }, class: 'card-expiry-month' %>
+      <%= select_year nil, { prompt: 'Year', start_year: Date.today.year, end_year: 10.years.from_now.year }, class: 'card-expiry-year' %>
+    </li>
+    <li id="purchase_cvc_input" class="stripe">
+      <label>CVC</label>
+      <input type="text" size="4" autocomplete="off" class="card-cvc"/>
+    </li>
+    <li class="overflow"></li>
+  <% end %>
+  <%= form.actions do %>
+    <%= form.action :submit, label: 'Submit Payment' %>
+  <% end %>
+<% end %>

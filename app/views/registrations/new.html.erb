@@ -1,66 +1,22 @@
-<section id="learn-header-wrapper">
-  <div class="learn-header-container">
-    <div class="learn-detail-logo">
-      <h1>
-        <%= link_to image_tag('learn/learn-ralph-small.png'), root_path %>
-        <%= t 'shared.learn' %>
-        <span class="learnred">Purchase Name</span>
-      </h1>
-    </div>
-  </div>
-</section>
+<%= render 'learn_header', subject: @section.course_name %>
 
 <section class="learn-detail-content">
-  <div class="learn-text-box-wrapper">
-    <div class="learn-text-box course-box">
-<h2>Complete your registration for <span class="learnred"><%= @section.course_name %></span> for <span class="learnred totalprice"><%= number_to_currency @registration.price, precision: 0 %></span></h2>
-    <div id="total">
-      <p class="coupon-note"><%= link_to "Have a coupon code?", "#" %></p>
-    </div>
-  <section id="form-container">
-  <section id="form-column">
-    <%= render partial: 'redemptions/form' %>
+  <%= render 'checkout_form',
+             title: t('purchase.registration.heading_html', name: @section.course_name),
+             price: @registration.price,
+             form_partial: 'registrations/form' %>
 
-    <%= semantic_form_for @registration, url: section_registrations_path(@section), html: { method: 'post' } do |form| %>
-      <%= hidden_field_tag 'coupon_id' %>
-      <% if signed_out? %>
-        <div class="workshop-sign-in">Already have an account? <%= link_to 'Sign in.', sign_in_path(return_to: request.fullpath) %></div>
-      <% end %>
-      <%= form.inputs 'Your information' do %>
-        <%= form.input :first_name %>
-        <%= form.input :last_name %>
-        <%= form.input :email %>
-        <%= form.input :comments, :label => 'Do you have any dietary restrictions or special requests?' %>
-      <% end %>
-
-      <%= form.inputs 'For your receipt' do %>
-        <%= form.input :billing_email, required: false, hint: "The receipt will be sent to this address." %>
-        <%= form.input :organization, required: false %>
-        <%= form.input :phone %>
-        <%= form.input :address1, label: 'Address 1' %>
-        <%= form.input :address2, label: 'Address 2' %>
-        <%= form.input :city %>
-        <%= form.input :state %>
-        <%= form.input :zip_code %>
-      <% end %>
-
-      <%= form.actions do %>
-        <%= form.action :submit, label: 'Proceed to checkout' %>
-      <% end %>
-    <% end %>
-    </div>
-  </div>
   <aside>
-      <h4 class="terms">Terms and conditions</h4>
-      <p>By registering for this workshop you agree to the following terms and conditions:</p>
-      <ul>
-        <li>If you&rsquo;re not happy with a workshop you took, just let us know within 30 days and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</li>
-        <li>The ticket will entitle the named holder entrance to this event.</li>
-        <li>Tickets may not be resold and are non-transferrable.</li>
-        <li>We may film, take photographs, and use your feedback for marketing purposes.</li>
-        <li>thoughtbot, inc. will not be liable for any direct or indirect damage of any nature arising out of the cancellation of the event.</li>
-      </ul>
-    </aside>
+    <h4 class="terms">Terms and conditions</h4>
+    <p>By registering for this workshop you agree to the following terms and conditions:</p>
+    <ul>
+      <li>If you&rsquo;re not happy with a workshop you took, just let us know within 30 days and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</li>
+      <li>The ticket will entitle the named holder entrance to this event.</li>
+      <li>Tickets may not be resold and are non-transferrable.</li>
+      <li>We may film, take photographs, and use your feedback for marketing purposes.</li>
+      <li>thoughtbot, inc. will not be liable for any direct or indirect damage of any nature arising out of the cancellation of the event.</li>
+    </ul>
+  </aside>
 </section>
 
 <% content_for :javascript do -%>
