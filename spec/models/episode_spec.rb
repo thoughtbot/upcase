@@ -1,12 +1,20 @@
 require 'spec_helper'
 
 describe Episode do
-  it { should validate_presence_of :title }
-  it { should validate_presence_of :file_size }
-  it { should validate_presence_of :duration }
-  it { should validate_presence_of :file }
-  it { should validate_presence_of :description }
-  it { should validate_presence_of :published_on }
+  context 'associations' do
+    it { should have_many(:classifications) }
+    it { should have_many(:topics).through(:classifications) }
+    it { should have_many(:products).through(:topics) }
+  end
+
+  context 'validations' do
+    it { should validate_presence_of :title }
+    it { should validate_presence_of :file_size }
+    it { should validate_presence_of :duration }
+    it { should validate_presence_of :file }
+    it { should validate_presence_of :description }
+    it { should validate_presence_of :published_on }
+  end
 
   describe "self.published" do
     it "does not include episodes published in the future" do

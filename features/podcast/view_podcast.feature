@@ -24,3 +24,18 @@ Feature: View podcast episodes
     And I follow "Good episode"
     Then I should see information about the episode "Good episode"
     Then I should see an audio player for the episode "Good episode"
+
+  Scenario: View a podcast episode with related content
+    Given the following topics exist:
+      | name        |
+      | Ruby        |
+      | ASP.net     |
+    And a podcast episode named "Good episode" for topic "Ruby"
+    And a "book" product named "Awesome product" for topic "Ruby"
+    And a "video" product named "Terrible product" for topic "ASP.net"
+    When I go to the episodes page
+    And I follow "Good episode"
+    Then I should see "Awesome product"
+    And I should see "Ruby"
+    And I should not see "Terrible product"
+    And I should not see "ASP.net"
