@@ -8,12 +8,15 @@ Feature: Purchase a Product
       | name         | id | sku  | individual_price | company_price | product_type | fulfillment_method |
       | Test Fetch   | 1  | TEST | 15               | 50            | video        | fetch              |
       | Test GitHub  | 2  | TEST | 15               | 199           | book         | github             |
+      | Test Series  | 3  | TEST | 15               | 299           | video        | fetch              |
     Given the following downloads exist:
       | download_file_name  | product_id    | description |
       | test.txt            | 1             | test desc   |
     And the following videos exist:
       | product_id | wistia_id |
       | 1          | 1194803   |
+      | 3          | 1194804   |
+      | 3          | 1194805   |
 
   Scenario: A visitor signs up for an account through checkout
     When I go to the home page
@@ -56,6 +59,19 @@ Feature: Purchase a Product
     Then I should see a video
     And I should see the download links for video with id "1194803"
     And I should see a list of other products
+
+  @selenium
+  Scenario: A visitor purchases a product with multiple videos
+    When I go to the home page
+    And I view all products
+    And I follow "Test Series"
+    And I follow "Purchase for Yourself"
+    And I pay using Paypal
+    And I submit the Paypal form
+    Then I should see the link to the video page
+    When I follow "Watch or download video"
+    Then I should see "2 videos in the series"
+    And I should see a list of 2 videos
 
   @selenium
   Scenario: A visitor purchases a product with stripe
