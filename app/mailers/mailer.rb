@@ -43,15 +43,6 @@ class Mailer < ActionMailer::Base
     )
   end
 
-  def set_password(user)
-    @user = user
-
-    mail(
-      to: @user.email,
-      subject: "Welcome to thoughtbot Learn"
-    )
-  end
-
   def follow_up(follow_up, section)
     @section = section
 
