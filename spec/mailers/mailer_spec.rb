@@ -1,6 +1,25 @@
 require 'spec_helper'
 
 describe Mailer do
+  describe '.follow_up' do
+    subject do
+      Mailer.follow_up follow_up, create(:section, course: course)
+    end
+
+    let(:course) do
+      create :course
+    end
+
+    let(:follow_up) do
+      create :follow_up
+    end
+
+    its(:body) { should match(/#{course.name}/) }
+    its(:from) { should eq(%w(learn@thoughtbot.com)) }
+    its(:subject) { should match(/#{course.name}/) }
+    its(:to) { should eq([follow_up.email]) }
+  end
+
   describe '.fulfillment_error' do
     it 'sets the correct recipients' do
       purchase = stubbed_purchase
@@ -198,5 +217,24 @@ describe Mailer do
     it "has the registrant's name in the body" do
       sent_email.body.should include('Benny Burns')
     end
+  end
+
+  describe '.teacher_notification' do
+    subject do
+      Mailer.teacher_notification teacher, create(:section, course: course)
+    end
+
+    let(:course) do
+      create :course
+    end
+
+    let(:teacher) do
+      create :teacher
+    end
+
+    its(:body) { should match(/#{course.name}/) }
+    its(:from) { should eq(%w(learn@thoughtbot.com)) }
+    its(:subject) { should match(/#{course.name}/) }
+    its(:to) { should eq([teacher.email]) }
   end
 end
