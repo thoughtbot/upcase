@@ -62,6 +62,7 @@ end
 group :production, :staging do
   gem 'dalli', '2.1.0'
   gem 'rack-cache', '1.2'
+  gem 'newrelic_rpm'
 end
 
 group :test do

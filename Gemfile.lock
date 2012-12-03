@@ -188,6 +188,7 @@ GEM
     multi_xml (0.4.4)
     multipart-post (1.1.5)
     nested_form (0.2.3)
+    newrelic_rpm (3.4.1)
     nokogiri (1.5.2)
     oauth2 (0.8.0)
       faraday (~> 0.8)
@@ -390,6 +391,7 @@ DEPENDENCIES
   kissmetrics (= 2.0.0)
   launchy (= 2.1.0)
   mocha (= 0.10.5)
+  newrelic_rpm
   nokogiri (= 1.5.2)
   octokit (= 1.1.0)
   omniauth (= 1.1.0)
