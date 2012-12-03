@@ -180,6 +180,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    memcachier (0.0.1)
     metaclass (0.0.1)
     mime-types (1.19)
     mocha (0.10.5)
@@ -390,6 +391,7 @@ DEPENDENCIES
   jquery-rails (= 2.0.2)
   kissmetrics (= 2.0.0)
   launchy (= 2.1.0)
+  memcachier
   mocha (= 0.10.5)
   newrelic_rpm
   nokogiri (= 1.5.2)
@@ -399,7 +401,6 @@ DEPENDENCIES
   paperclip (= 3.0.2)
   paypal-express (= 0.4.6)
   pg (= 0.13.2)
-  rack-cache (= 1.2)
   rack-rewrite (= 1.2.1)
   rack-ssl-enforcer (= 0.2.4)
   rails (= 3.2.8)
