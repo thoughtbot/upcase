@@ -55,11 +55,6 @@ Workshops::Application.configure do
   ActionMailer::Base.default(charset: "utf-8")
   ActionMailer::Base.raise_delivery_errors = true
 
-  config.middleware.use Rack::Cache,
-    :verbose => true,
-    :metastore => "memcached://#{ENV['MEMCACHE_SERVERS']}",
-    :entitystore => "memcached://#{ENV['MEMCACHE_SERVERS']}"
-
   ActionMailer::Base.smtp_settings = {
     address: 'smtp.gmail.com',
     domain: "thoughtbot.com",

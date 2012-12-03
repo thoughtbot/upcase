@@ -59,11 +59,6 @@ Workshops::Application.configure do
                         strict: true,
                         redirect_to: "https://#{HOST}"
 
-  config.middleware.use Rack::Cache,
-    :verbose => true,
-    :metastore => "memcached://#{ENV['MEMCACHE_SERVERS']}",
-    :entitystore => "memcached://#{ENV['MEMCACHE_SERVERS']}"
-
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.perform_deliveries = true
   ActionMailer::Base.default(charset: "utf-8")

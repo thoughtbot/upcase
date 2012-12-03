@@ -60,8 +60,8 @@ group :development, :test do
 end
 
 group :production, :staging do
+  gem 'memcachier'
   gem 'dalli', '2.1.0'
-  gem 'rack-cache', '1.2'
   gem 'newrelic_rpm'
 end
 
