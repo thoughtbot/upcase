@@ -79,6 +79,7 @@ FactoryGirl.define do
 
   factory :follow_up do
     course
+    email
   end
 
   factory :question do
