@@ -3,6 +3,11 @@ Given /^a "([^"]*)" product named "([^"]*)" for topic "([^"]*)"$/ do |product_ty
   topic.products << create(:product, name: name, product_type: product_type)
 end
 
+Given /^a "([^"]*)" inactive product named "([^"]*)" for topic "([^"]*)"$/ do |product_type, name, topic_name|
+  topic = Topic.find_by_name(topic_name)
+  topic.products << create(:product, name: name, product_type: product_type, active: false)
+end
+
 Given /^a course named "([^"]*)" for topic "([^"]*)"$/ do |name, topic_name|
   topic = Topic.find_by_name(topic_name)
   topic.courses << create(:course, name: name)
