@@ -1,4 +1,3 @@
-puts "FakeKissmetrics"
 class FakeKissmetrics
   def self.events_for(email)
     instance.events_for(email)

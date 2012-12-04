@@ -12,9 +12,7 @@ Workshops::Application.configure do
   # and recreated between test runs.  Don't rely on the data there!
   config.cache_classes = true
 
-  p File.expand_path("#{config.root}/spec/support")
   config.autoload_paths += [File.expand_path("#{config.root}/spec/support")]
-  p config.autoload_paths
 
   # Configure static asset server for tests with Cache-Control for performance
   config.serve_static_assets = true
