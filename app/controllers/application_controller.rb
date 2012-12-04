@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include Clearance::Authentication
 
+  cattr_accessor :km_http_client
+
   helper :all
 
   protect_from_forgery
@@ -15,6 +17,6 @@ class ApplicationController < ActionController::Base
   end
 
   def km_http_client
-    KISSMETRICS_CLIENT_CLASS.new(KISSMETRICS_API_KEY)
+    @@km_http_client.new(KISSMETRICS_API_KEY)
   end
 end

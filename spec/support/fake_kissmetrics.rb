@@ -1,3 +1,4 @@
+puts "FakeKissmetrics"
 class FakeKissmetrics
   def self.events_for(email)
     instance.events_for(email)
@@ -69,3 +70,5 @@ class FakeKissmetrics
     end
   end
 end
+
+ApplicationController.km_http_client = FakeKissmetrics::HttpClient

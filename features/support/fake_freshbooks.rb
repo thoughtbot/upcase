@@ -1,4 +1,4 @@
-require 'fake_freshbooks'
+require Rails.root.join('spec/support/fake_freshbooks')
 
 Before do
   FakeFreshbooks.reset!
