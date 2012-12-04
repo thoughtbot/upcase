@@ -12,7 +12,7 @@ class TopicsController < ApplicationController
     @topic = Topic.find_by_slug!(params[:id])
     @articles = @topic.articles.top
     @courses = @topic.courses.only_public.by_position
-    @products = @topic.products.ordered
+    @products = @topic.products.ordered.active
     @related_topics = @topic.related_topics
   end
 

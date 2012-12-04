@@ -33,9 +33,11 @@ Feature: View podcast episodes
     And a podcast episode named "Good episode" for topic "Ruby"
     And a "book" product named "Awesome product" for topic "Ruby"
     And a "video" product named "Terrible product" for topic "ASP.net"
+    And a "video" inactive product named "Inactive product" for topic "Ruby"
     When I go to the episodes page
     And I follow "Good episode"
     Then I should see "Awesome product"
     And I should see "Ruby"
     And I should not see "Terrible product"
     And I should not see "ASP.net"
+    And I should not see "Inactive product"
