@@ -10,6 +10,7 @@
   </div>
   <aside>
     <section id="license">
+      <% if @product.active? %>
         <% if !@product.external? %>
           <div>
             <h2>Single <span><%= number_to_currency @product.individual_price, precision: 0 %></span></h2>
@@ -39,7 +40,10 @@
             </div>
           </div>
         <% end %>
-      </section>
+      <% else %>
+        <p>This <%= @product.product_type %> is not currently available. Contact <%= mail_to 'learn@thoughtbot.com', 'learn@thoughtbot.com' %> for more information.</p>
+      <% end %>
+    </section>
 
       <section id="terms">
         <ul>
