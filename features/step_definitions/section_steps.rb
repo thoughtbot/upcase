@@ -25,9 +25,14 @@ end
 Given /^I am signed up as student of "([^"]*)" on ([0-9-]+)$/ do |course_name, date|
   course = create(:course, name: course_name)
   section = create(:section, course: course, starts_on: date)
-  @registration = create(:paid_registration, section: section)
+  @registration = create(:free_purchase, purchaseable: section)
 end
 
 When /^it is a week before ([0-9-]+)$/ do |date|
   Timecop.freeze(DateTime.parse(date) - 1.week)
+end
+
+When /^"([^"]*)" has registered and paid for the section on "([^"]*)"$/ do |name, starts_on|
+  section = Section.find_by_starts_on!(Date.parse(starts_on))
+  create(:paid_purchase, purchaseable: section, name: name)
 end

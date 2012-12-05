@@ -1,6 +1,6 @@
 Given /^an unpaid purchase for "([^"]*)" with lookup "([^"]*)"$/ do |product_name, lookup|
   product = Product.find_by_name!(product_name)
-  purchase = create(:purchase, product: product, payment_method: 'paypal')
+  purchase = create(:purchase, purchaseable: product, payment_method: 'paypal')
   purchase.paid = false
   purchase.lookup = lookup
   purchase.save!
@@ -38,6 +38,12 @@ end
 
 Then /^I should see that product "([^"]*)" is successfully purchased$/ do |product_name|
   page.should have_content("Thank you for purchasing #{product_name}")
+end
+
+When 'I choose to pay with Paypal' do
+  uri = URI.parse(current_url)
+  Purchase.host = "#{uri.host}:#{uri.port}"
+  choose 'purchase_payment_method_paypal'
 end
 
 When 'I pay using Paypal' do

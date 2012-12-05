@@ -6,8 +6,9 @@ Workshops::Application.routes.draw do
   match '/pages/tmux' => redirect("/products/4-humans-present-tmux")
 
   resource :session, controller: 'sessions'
+
   resources :sections, only: [:show] do
-    resources :registrations, only: [:index, :new, :create]
+    resources :purchases, only: [:new, :create]
     resources :redemptions, only: [:new]
   end
   resources :courses, only: [:index, :show] do
@@ -16,19 +17,15 @@ Workshops::Application.routes.draw do
 
   resources :products, only: [:index, :show] do
     resources :redemptions, only: [:new]
-    resources :purchases, only: [:new, :create, :show] do
-      resources :videos, only: [:index, :show]
-      member do
-        get 'paypal'
-        get 'watch'
-      end
-    end
+    resources :purchases, only: [:new, :create]
   end
+  match '/products/:id/purchases/:lookup' => redirect("/purchases/%{lookup}")
 
-  resources :payments, only: [:create]
-  resource :shopify, controller: 'shopify' do
+  resources :purchases, only: [:show] do
+    resources :videos, only: [:index, :show]
     member do
-      post 'order_paid'
+      get 'paypal'
+      get 'watch'
     end
   end
 
@@ -46,9 +43,7 @@ Workshops::Application.routes.draw do
     end
     resources :coupons
     resources :audiences
-    resources :sections do
-      resources :registrations
-    end
+    resources :sections
     resources :teachers, except: :destroy
     resources :products, except: :destroy
     resources :purchases, only: :index

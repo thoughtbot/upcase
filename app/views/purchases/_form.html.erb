@@ -1,4 +1,4 @@
-<%= semantic_form_for @purchase, url: product_purchases_path(@product), html: { method: 'post' } do |form| %>
+<%= semantic_form_for @purchase, url: polymorphic_path([@purchaseable, :purchases]), html: { method: 'post' } do |form| %>
   <%= form.semantic_errors %>
   <%= hidden_field_tag 'coupon_id' %>
   <% if signed_out? %>
@@ -8,11 +8,15 @@
     <%= form.input :variant, as: :hidden %>
     <%= form.input :name %>
     <%= form.input :email, hint: "The receipt will be sent to this address." %>
+    <% if @purchaseable.fulfillment_method == 'in-person' %>
+      <%= form.input :comments, :label => 'Do you have any dietary restrictions or special requests?' %>
+    <% end %>
   <% end %>
 
   <%= render partial: 'purchases/readers', locals: { purchase: @purchase, form: form } %>
 
   <%= form.inputs 'For your receipt' do %>
+    <%= form.input :billing_email, required: false, hint: "The receipt will be sent to this address." %>
     <%= form.input :organization %>
     <%= form.input :address1, label: 'Address 1' %>
     <%= form.input :address2, label: 'Address 2' %>

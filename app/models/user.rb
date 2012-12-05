@@ -5,15 +5,11 @@ class User < ActiveRecord::Base
 
   has_many :paid_purchases, class_name: 'Purchase',
     conditions: { paid: true }
-  has_many :paid_registrations, class_name: 'Registration',
-    conditions: { paid: true }
   has_many :purchases
-  has_many :registrations
 
   validates_presence_of :first_name, :last_name
 
   after_create :associate_previous_purchases
-  after_create :associate_previous_registrations
 
   def self.find_or_create_from_auth_hash(auth_hash)
     find_by_auth_hash(auth_hash) || create_from_auth_hash(auth_hash)
@@ -52,7 +48,7 @@ class User < ActiveRecord::Base
   end
 
   def has_purchased?
-    paid_registrations.present? || paid_purchases.present?
+    paid_purchases.present?
   end
 
   private
@@ -65,10 +61,5 @@ class User < ActiveRecord::Base
     previous_purchases = Purchase.by_email(email)
     self.purchases << previous_purchases
     self.update_column(:stripe_customer, previous_purchases.stripe.last.try(:stripe_customer))
-  end
-
-  def associate_previous_registrations
-    previous_registrations = Registration.by_email(email)
-    self.registrations << previous_registrations
   end
 end

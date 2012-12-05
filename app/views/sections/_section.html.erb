@@ -2,7 +2,7 @@
   <% if section.full? %>
     <h2><%= section.city %> <span>Sold Out</span></h2>
   <% else %>
-    <h2><%= section.city %> <span><%= number_to_currency section.course_price, precision: 0 %></span></h2>
+    <h2><%= section.city %> <span><%= number_to_currency section.individual_price, precision: 0 %></span></h2>
   <% end %>
 
   <div class="when">
@@ -25,7 +25,7 @@
       <a href="#new_follow_up" class="button">Get notified</a>
     <% else %>
       <%= link_to registration_url(section), class: 'button' do %>
-        REGISTER FOR THIS WORKSHOP
+        Register for this Workshop
       <% end %>
     <% end %>
   </div>

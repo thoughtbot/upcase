@@ -3,9 +3,7 @@ require 'spec_helper'
 describe User do
   context "associations" do
     it { should have_many(:paid_purchases) }
-    it { should have_many(:paid_registrations) }
     it { should have_many(:purchases) }
-    it { should have_many(:registrations) }
   end
 
   context "validations" do
@@ -21,13 +19,6 @@ describe User do
   end
 
   describe "#has_purchased?" do
-    it "returns true if the user has any paid registrations" do
-      user = build_stubbed(:user)
-      user.stubs(:paid_registrations).returns([stub])
-
-      user.should have_purchased
-    end
-
     it "returns true if the user has any paid purchases" do
       user = build_stubbed(:user)
       user.stubs(:paid_purchases).returns([stub])
@@ -35,10 +26,9 @@ describe User do
       user.should have_purchased
     end
 
-    it "returns false if the user has no paid registrations or purchases" do
+    it "returns false if the user has no purchases" do
       user = build_stubbed(:user)
       user.stubs(:purchases).returns([stub])
-      user.stubs(:registrations).returns([stub])
       user.should_not have_purchased
     end
   end
@@ -69,29 +59,6 @@ describe User do
       user = create(:user)
       user.purchases.should be_empty
       user.stripe_customer.should be_blank
-    end
-  end
-
-  context "when there are previous registrations" do
-    let(:email) { "newuser@example.com" }
-
-    before do
-      @prev_registrations = [create(:registration, email: email),
-                             create(:registration, email: email)]
-      @other_registration = create(:registration)
-    end
-
-    it "associates only registrations for a new user with the same email" do
-      user = create(:user, email: email)
-      user.registrations.should =~ @prev_registrations
-      user.registrations.should_not include @other_registration
-    end
-  end
-
-  context "when there are no previous registrations" do
-    it "doesn't associate a created user with any purchases" do
-      user = create(:user)
-      user.registrations.should be_empty
     end
   end
 

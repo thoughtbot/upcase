@@ -65,7 +65,8 @@ FactoryGirl.define do
     description 'Solve 8-Queens over and over again'
     maximum_students 12
     name { generate(:name) }
-    price '500'
+    individual_price '500'
+    company_price '10000'
     short_description 'Solve 8-Queens'
     start_at '9:00'
     stop_at '17:00'
@@ -108,11 +109,15 @@ FactoryGirl.define do
     end
   end
 
-  factory :purchase, aliases: [:individual_purchase] do
+  factory :purchase, aliases: [:individual_purchase, :unpaid_purchase] do
     email 'joe@example.com'
     name 'Test User'
-    product
+    association :purchaseable, factory: :product
     variant 'individual'
+
+    factory :paid_purchase do
+      paid true
+    end
 
     factory :stripe_purchase do
       payment_method 'stripe'
@@ -121,28 +126,10 @@ FactoryGirl.define do
     factory :free_purchase do
       paid_price 0
       payment_method 'free'
-     end
-  end
-
-  factory :registration, aliases: [:unpaid_registration] do
-    billing_email 'billing@example.com'
-    email
-    first_name 'Dan'
-    last_name 'Deacon'
-    organization 'company'
-    section
-
-    factory :paid_registration do
-      paid true
     end
 
-    factory :registration_with_all_attributes do
-      address1 '123 Main St.'
-      address2 'Apartment 6'
-      city 'Boston'
-      phone '617 123 1234'
-      state 'MA'
-      zip_code '02108'
+    factory :section_purchase do
+      association :purchaseable, factory: :section
     end
   end
 
@@ -194,7 +181,7 @@ FactoryGirl.define do
   end
 
   factory :video do
-    product
+    association :purchaseable, factory: :product
     wistia_id '1194803'
   end
 

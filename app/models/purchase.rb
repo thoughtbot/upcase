@@ -7,16 +7,19 @@ class Purchase < ActiveRecord::Base
   API_SLEEP_TIME = 0.2
 
   belongs_to :user
-  belongs_to :product
+  belongs_to :purchaseable, polymorphic: true
   belongs_to :coupon
   serialize :readers
 
   attr_accessor :stripe_token, :paypal_url
 
-  validates_presence_of :variant, :product_id, :name, :email, :lookup, :payment_method
+  validates_presence_of :variant, :purchaseable_id, :purchaseable_type, :name, :lookup, :payment_method, :billing_email
   validate :payment_method_must_match_price
+  validates :email, presence: true,
+    format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
 
   before_validation :generate_lookup, on: :create
+  before_validation :populate_billing_email, on: :create
 
   before_create :create_and_charge_customer, if: :stripe?
   before_create :setup_paypal_payment, if: :paypal?
@@ -27,7 +30,7 @@ class Purchase < ActiveRecord::Base
   after_save :update_user_stripe_customer, if: "being_paid? && stripe?"
   after_save :save_info_to_user, if: :user
 
-  delegate :name, to: :product, prefix: true
+  delegate :name, to: :purchaseable, prefix: :purchaseable, allow_nil: true
 
   def self.from_month(date)
     where(["created_at >= ? AND created_at <= ?", date.beginning_of_month, date.end_of_month])
@@ -41,8 +44,8 @@ class Purchase < ActiveRecord::Base
     paid.where("created_at >= ? and created_at <= ?", start_time, end_time).all.sum(&:price)
   end
 
-  def self.for_product(product)
-    where(product_id: product.id)
+  def self.for_purchaseable(purchaseable)
+    where(purchaseable_id: purchaseable.id, purchaseable_type: purchaseable.class.name)
   end
 
   def self.paid
@@ -131,12 +134,12 @@ class Purchase < ActiveRecord::Base
     if paypal?
       paypal_url
     else
-      product_purchase_path(product, self, host: self.class.host)
+      purchase_path(self, host: self.class.host)
     end
   end
 
   def fulfilled_with_github?
-    product.fulfillment_method == "github"
+    purchaseable.fulfillment_method == "github"
   end
 
   def refund
@@ -155,7 +158,7 @@ class Purchase < ActiveRecord::Base
     if readers && readers.any?
       readers.each do |username|
         begin
-          github_client.remove_team_member(product.github_team, username)
+          github_client.remove_team_member(purchaseable.github_team, username)
         rescue Octokit::NotFound, Net::HTTPBadResponse => e
           Airbrake.notify(e)
         end
@@ -183,11 +186,15 @@ class Purchase < ActiveRecord::Base
   end
 
   def calculated_price
-    full_price = product.send(:"#{variant}_price")
-    if coupon
-      coupon.apply(full_price)
+    if variant.blank?
+      0
     else
-      full_price
+      full_price = purchaseable.send(:"#{variant}_price")
+      if coupon
+        coupon.apply(full_price)
+      else
+        full_price
+      end
     end
   end
 
@@ -206,7 +213,7 @@ class Purchase < ActiveRecord::Base
         amount: (price * 100).to_i, # in cents
         currency: "usd",
         customer: stripe_customer,
-        description: product_name
+        description: purchaseable_name
       )
       self.payment_transaction_id = charge.id
 
@@ -230,7 +237,7 @@ class Purchase < ActiveRecord::Base
   def fulfill_with_github
     github_usernames.each do |username|
       begin
-        github_client.add_team_member(product.github_team, username)
+        github_client.add_team_member(purchaseable.github_team, username)
       rescue Octokit::NotFound, Net::HTTPBadResponse => e
         Mailer.fulfillment_error(self, username).deliver
         Airbrake.notify(e)
@@ -245,7 +252,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def generate_lookup
-    self.lookup = Digest::MD5.hexdigest("#{email}#{product.id}#{Time.now}\n").downcase
+    self.lookup = Digest::MD5.hexdigest("#{email}#{purchaseable_name}#{Time.now}\n").downcase
   end
 
   def payment_method_must_match_price
@@ -258,9 +265,9 @@ class Purchase < ActiveRecord::Base
     Paypal::Payment::Request.new(
       currency_code: :USD,
       amount: price,
-      description: product_name,
+      description: purchaseable_name,
       items: [{ amount: price,
-                   description: product_name }]
+                   description: purchaseable_name }]
     )
   end
 
@@ -296,7 +303,7 @@ class Purchase < ActiveRecord::Base
   def setup_paypal_payment
     response = paypal_request.setup(
       paypal_payment_request,
-      paypal_product_purchase_url(self.product, self, host: self.class.host),
+      paypal_purchase_url(self, host: self.class.host),
       products_url(host: self.class.host)
     )
     self.paid = false
@@ -306,8 +313,15 @@ class Purchase < ActiveRecord::Base
   def send_receipt
     begin
       Mailer.purchase_receipt(self).deliver
+      purchaseable.send_registration_emails(self)
     rescue *SMTP_ERRORS => e
       Airbrake.notify(e)
+    end
+  end
+
+  def populate_billing_email
+    if billing_email.blank?
+      self.billing_email = email
     end
   end
 

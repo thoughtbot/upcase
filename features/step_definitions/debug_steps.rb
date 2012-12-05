@@ -16,6 +16,10 @@ Body:
   puts pretty_emails.join("\n")
 end
 
+Then 'I pause for 60 seconds' do
+  sleep 60
+end
+
 When 'I enter the debugger' do
   require 'ruby-debug'
   debugger

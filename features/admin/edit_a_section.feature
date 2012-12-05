@@ -49,11 +49,7 @@ Feature: Editing a Section
     And I select the teacher "Nikola Tesla"
     And I fill in the Boston address
     And I press "Save Section"
-    And the following registrations exist:
-      | paid  | first_name | last_name | section                  |
-      | true  | Paid       | Person    | starts_on: June 14, 2010 |
-      | false | Deliquent  | Person    | starts_on: June 14, 2010 |
+    And "Paid Person" has registered and paid for the section on "June 14, 2010"
     And I follow the link to the section from "June 14, 2010" to "June 14, 2010"
     Then I see that "Paid Person" has paid
-    And I see that "Deliquent Person" has not paid
     And I should see "1 Student"
