@@ -24,6 +24,7 @@ Feature: Adding a course
     And I fill in the short description with "Learn Haskell the thoughtbot way"
     And I select "Developers" from "Audience"
     And I fill in the course price with "1900"
+    And I fill in the course company price with "2000"
     And I fill in the start time with "09:00"
     And I fill in the end time with "17:00"
     And I press "Create Course"
@@ -31,11 +32,12 @@ Feature: Adding a course
     And I see the admin listing include a course named "Test-Driven Haskell"
 
   Scenario: Add a course with all the trimmings
-    And I fill in the course name with "Test-Driven Haskell"
+    When I fill in the course name with "Test-Driven Haskell"
     And I fill in the course description with "Learn Haskell the thoughtbot way"
     And I fill in the short description with "Learn Haskell the thoughtbot way"
     And I select "Developers" from "Audience"
     And I fill in the course price with "1900"
+    And I fill in the course company price with "2000"
     And I fill in the start time with "09:00"
     And I fill in the end time with "17:00"
     And I fill in the max students with "16"
@@ -49,7 +51,7 @@ Feature: Adding a course
     Then I should see an image with name "test.jpg"
 
   Scenario: Add a course with a FAQ
-    And I fill in the required course fields
+    When I fill in the required course fields
     And I fill in the course name with "Haskell"
     And I select "Developers" from "Audience"
     And I fill in the question 1 with "Do I need a helmet?"

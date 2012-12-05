@@ -33,7 +33,7 @@ describe Mailer do
       purchase = stubbed_purchase
       mailer = Mailer.fulfillment_error(purchase, github_username)
       mailer.should have_subject(
-        "Fulfillment issues with #{purchase.product_name}")
+        "Fulfillment issues with #{purchase.purchaseable_name}")
     end
 
     it 'sets the username in the message body' do
@@ -47,7 +47,7 @@ describe Mailer do
 
     def stubbed_purchase
       stub(
-        product_name: 'Backbone.js on Rails',
+        purchaseable_name: 'Backbone.js on Rails',
         name: 'Benny Burns',
         email: 'benny@theburns.org'
       )
@@ -80,7 +80,7 @@ describe Mailer do
       end
 
       it 'should have the correct subject' do
-        @email.should have_subject(/Your receipt for #{purchase.product.name}/)
+        @email.should have_subject(/Your receipt for #{purchase.purchaseable_name}/)
       end
 
       it 'contains a link to create a new account in the body' do
@@ -105,7 +105,7 @@ describe Mailer do
     context 'for a product with an announcement' do
       it 'contains announcement.message in the body' do
         purchase = create(:purchase)
-        announcement = create(:announcement, announceable: purchase.product)
+        announcement = create(:announcement, announceable: purchase.purchaseable)
         email = Mailer.purchase_receipt(purchase)
         expect(email).to have_body_text(/#{announcement.message}/)
       end
@@ -116,12 +116,12 @@ describe Mailer do
     include Rails.application.routes.url_helpers
 
     context 'for a registration without a user' do
-      let(:registration) do
-        create :registration, :email => 'joe@example.com'
+      let(:purchase) do
+        create :section_purchase, :email => 'joe@example.com'
       end
 
       before do
-        @email = Mailer.registration_confirmation(registration)
+        @email = Mailer.registration_confirmation(purchase)
       end
 
       it 'contains a link to create a new account in the body' do
@@ -130,12 +130,12 @@ describe Mailer do
     end
 
     context 'for a registration with a user' do
-      let(:registration) do
-        create :registration, user: create(:user)
+      let(:purchase) do
+        create :section_purchase, user: create(:user)
       end
 
       before do
-        @email = Mailer.registration_confirmation(registration)
+        @email = Mailer.registration_confirmation(purchase)
       end
 
       it 'does not contain a link to create a new account in the body' do
@@ -145,10 +145,10 @@ describe Mailer do
 
     context 'for a course with an announcement' do
       it 'contains announcement.message in the body' do
-        registration = create(:registration)
-        course = registration.section.course
+        purchase = create(:section_purchase)
+        course = purchase.purchaseable.course
         announcement = create(:announcement, announceable: course)
-        email = Mailer.registration_confirmation(registration)
+        email = Mailer.registration_confirmation(purchase)
         expect(email).to have_body_text(/#{announcement.message}/)
       end
     end
@@ -162,24 +162,24 @@ describe Mailer do
     end
 
     it 'includes starts_on and ends_on in the email body' do
-      registration = build_registration
-      email = Mailer.registration_notification(registration)
-      email.body.should include registration.section.date_range
+      purchase = build_purchase
+      email = Mailer.registration_notification(purchase)
+      email.body.should include purchase.purchaseable.date_range
     end
 
     it 'includes section city in the email body' do
-      registration = build_registration_in 'San Antonio'
-      email = Mailer.registration_notification(registration)
+      purchase = build_purchase_in 'San Antonio'
+      email = Mailer.registration_notification(purchase)
       email.body.should include 'San Antonio'
     end
 
-    def build_registration
-      build_stubbed(:registration)
+    def build_purchase
+      build_stubbed(:section_purchase)
     end
 
-    def build_registration_in(city)
-      build_registration.tap do |registration|
-        registration.section.city = city
+    def build_purchase_in(city)
+      build_purchase.tap do |purchase|
+        purchase.purchaseable.city = city
       end
     end
   end
@@ -197,13 +197,12 @@ describe Mailer do
       course = create(:course, name: course_name)
       section = create(:section, course: course)
 
-      registration = create(:registration,
-                            section: section,
-                            email: recipient,
-                            first_name: 'Benny',
-                            last_name: 'Burns')
+      purchase = create(:purchase,
+                        purchaseable: section,
+                        email: recipient,
+                        name: 'Benny Burns')
 
-      Mailer.section_reminder registration, section
+      Mailer.section_reminder purchase, section
     end
 
     it 'has the correct subject' do

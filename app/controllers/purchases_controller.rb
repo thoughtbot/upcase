@@ -1,15 +1,16 @@
 class PurchasesController < ApplicationController
   def new
-    @product = Product.find(params[:product_id])
-    @purchase = @product.purchases.build(variant: params[:variant])
+    @purchaseable = purchaseable
+    @purchase = @purchaseable.purchases.build(variant: params[:variant])
     @purchase.defaults_from_user(current_user)
     @active_card = retrieve_active_card
     track_chrome_screencast_ab_test_completion
+    km.record("Started Purchase", { "Product Name" => @purchaseable.name })
   end
 
   def create
-    @product = Product.find(params[:product_id])
-    @purchase = @product.purchases.build(params[:purchase])
+    @purchaseable = purchaseable
+    @purchase = @purchaseable.purchases.build(params[:purchase])
     @purchase.user = current_user
 
     if use_coupon?
@@ -21,6 +22,7 @@ class PurchasesController < ApplicationController
     end
 
     if @purchase.save
+      km_http_client.record(@purchase.email, "Submitted Purchase", { "Product Name" => @purchaseable.name })
       redirect_to @purchase.success_url
     else
       @active_card = retrieve_active_card
@@ -29,32 +31,43 @@ class PurchasesController < ApplicationController
   end
 
   def show
-    @purchase = current_purchase
-    @product = current_product
-    ensure_purchase_paid
+    @purchase = Purchase.find_by_lookup(params[:id])
+    @purchaseable = @purchase.purchaseable
+    unless @purchase.paid?
+      redirect_to @purchaseable
+    end
   end
 
   def watch
-    @product = current_product
-    @purchase = current_purchase
-    ensure_purchase_paid and return
+    @purchase = Purchase.find_by_lookup(params[:id])
+    unless @purchase.paid?
+      redirect_to root_path and return
+    end
+    @purchaseable = @purchase.purchaseable
 
-    if @product.videos.one?
-      redirect_to [@product, @purchase, @product.videos.first]
+    if @purchaseable.videos.one?
+      redirect_to [@purchase, @purchaseable.videos.first]
     else
-      redirect_to [@product, @purchase, :videos]
+      redirect_to [@purchase, :videos]
     end
   end
 
   def paypal
-    @product = Product.find(params[:product_id])
-    @purchase = @product.purchases.find_by_lookup!(params[:id])
+    @purchase = Purchase.find_by_lookup(params[:id])
     @purchase.complete_paypal_payment!(params[:token], params[:PayerID])
 
-    redirect_to product_purchase_path(@purchase.product, @purchase)
+    redirect_to @purchase
   end
 
   private
+
+  def purchaseable
+    if params[:product_id]
+      Product.find(params[:product_id])
+    elsif params[:section_id]
+      Section.find(params[:section_id])
+    end
+  end
 
   def use_existing_card?
     params[:use_existing_card] == 'on'
@@ -70,22 +83,20 @@ class PurchasesController < ApplicationController
     end
   end
 
-  def ensure_purchase_paid
-    unless current_purchase.paid?
-      redirect_to product_path(current_product)
-    end
+  def ensure_paid(purchase)
+
   end
 
   def current_purchase
-    @current_purchase ||= current_product.purchases.find_by_lookup(params[:id])
+    @current_purchase ||= Purchase.find_by_lookup(params[:id])
   end
 
-  def current_product
-    @current_product ||= Product.find(params[:product_id])
+  def current_purchaseable
+    @current_purchaseable ||= purchaseable
   end
 
   def track_chrome_screencast_ab_test_completion
-    if @product.name == 'Hidden Secrets of the Chrome Developer Tools'
+    if @purchaseable.name == 'Hidden Secrets of the Chrome Developer Tools'
       finished('new_chrome_cast_description')
     end
   end

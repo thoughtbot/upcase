@@ -1,12 +1,12 @@
 class Mailer < ActionMailer::Base
   default from: Clearance.configuration.mailer_sender
 
-  def registration_notification(registration)
-    @comments = registration.comments
-    @student_name = registration.name
-    @course_name = registration.section.course_name
-    @city = registration.section.city
-    @running_date_range = registration.section.date_range
+  def registration_notification(purchase)
+    @comments = purchase.comments
+    @student_name = purchase.name
+    @course_name = purchase.purchaseable_name
+    @city = purchase.purchaseable.city
+    @running_date_range = purchase.purchaseable.date_range
 
     mail(
       to: 'learn@thoughtbot.com',
@@ -14,22 +14,13 @@ class Mailer < ActionMailer::Base
     )
   end
 
-  def invoice(registration)
-    @registration = registration
+  def registration_confirmation(purchase)
+    @purchase = purchase
+    @section = purchase.purchaseable
 
     mail(
-      to: registration.billing_email,
-      subject: "Your invoice for #{registration.section.course_name}"
-    )
-  end
-
-  def registration_confirmation(registration)
-    @registration = registration
-    @section = registration.section
-
-    mail(
-      to: registration.email,
-      subject: "You're registered for #{registration.section.course_name}"
+      to: purchase.email,
+      subject: "You're registered for #{purchase.purchaseable_name}"
     )
   end
 
@@ -38,7 +29,7 @@ class Mailer < ActionMailer::Base
 
     mail(
       to: purchase.email,
-      subject: "Your receipt for #{purchase.product.name}",
+      subject: "Your receipt for #{purchase.purchaseable_name}",
       from: Clearance.configuration.mailer_sender
     )
   end
@@ -61,13 +52,13 @@ class Mailer < ActionMailer::Base
     )
   end
 
-  def section_reminder(registration, section)
+  def section_reminder(purchase, section)
     @section = section
-    @registration = registration
+    @purchase = purchase
 
     mail(
-      to: registration.email,
-      subject: "Reminder: #{section.course.name} is scheduled to start in a week on #{section.starts_on.to_s(:simple)}. Mark your calendar!"
+      to: purchase.email,
+      subject: "Reminder: #{purchase.purchaseable_name} is scheduled to start in a week on #{section.starts_on.to_s(:simple)}. Mark your calendar!"
     )
   end
 
@@ -80,7 +71,7 @@ class Mailer < ActionMailer::Base
       cc: 'learn@thoughtbot.com',
       from: 'learn@thoughtbot.com',
       reply_to: 'learn@thoughtbot.com',
-      subject: "Fulfillment issues with #{purchase.product_name}"
+      subject: "Fulfillment issues with #{purchase.purchaseable_name}"
     )
   end
 end

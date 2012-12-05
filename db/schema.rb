@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(:version => 20121214194659) do
     t.boolean  "public",                    :default => true, :null => false
     t.datetime "created_at",                                  :null => false
     t.datetime "updated_at",                                  :null => false
-    t.integer  "price"
+    t.integer  "individual_price"
     t.string   "short_description"
     t.string   "external_registration_url"
     t.integer  "position"
@@ -100,12 +100,14 @@ ActiveRecord::Schema.define(:version => 20121214194659) do
     t.string   "course_image_content_type"
     t.string   "course_image_updated_at"
     t.string   "promo_location"
+    t.integer  "company_price"
+    t.text     "terms"
   end
 
   add_index "courses", ["audience_id"], :name => "index_courses_on_audience_id"
 
   create_table "downloads", :force => true do |t|
-    t.integer  "product_id"
+    t.integer  "purchaseable_id"
     t.string   "download_file_name"
     t.string   "download_file_size"
     t.string   "download_content_type"
@@ -113,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20121214194659) do
     t.string   "description"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+    t.string   "purchaseable_type"
   end
 
   create_table "episodes", :force => true do |t|
@@ -171,7 +174,6 @@ ActiveRecord::Schema.define(:version => 20121214194659) do
   end
 
   create_table "purchases", :force => true do |t|
-    t.integer  "product_id"
     t.string   "stripe_customer"
     t.string   "variant"
     t.string   "name"
@@ -193,10 +195,13 @@ ActiveRecord::Schema.define(:version => 20121214194659) do
     t.string   "payment_transaction_id"
     t.integer  "user_id"
     t.integer  "paid_price"
+    t.integer  "purchaseable_id"
+    t.string   "purchaseable_type"
+    t.text     "comments"
+    t.string   "billing_email"
   end
 
   add_index "purchases", ["lookup"], :name => "index_purchases_on_lookup"
-  add_index "purchases", ["product_id"], :name => "index_purchases_on_product_id"
   add_index "purchases", ["stripe_customer"], :name => "index_purchases_on_stripe_customer"
 
   create_table "questions", :force => true do |t|
@@ -221,33 +226,6 @@ ActiveRecord::Schema.define(:version => 20121214194659) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
-
-  create_table "registrations", :force => true do |t|
-    t.integer  "section_id"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.integer  "freshbooks_invoice_id"
-    t.string   "freshbooks_invoice_url"
-    t.integer  "coupon_id"
-    t.string   "email"
-    t.string   "billing_email"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "organization"
-    t.string   "phone"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip_code"
-    t.string   "freshbooks_client_id"
-    t.text     "comments"
-    t.boolean  "paid",                   :default => false, :null => false
-    t.integer  "user_id"
-  end
-
-  add_index "registrations", ["paid"], :name => "index_registrations_on_paid"
-  add_index "registrations", ["section_id"], :name => "index_registrations_on_section_id"
 
   create_table "section_teachers", :force => true do |t|
     t.integer  "section_id"
@@ -325,11 +303,12 @@ ActiveRecord::Schema.define(:version => 20121214194659) do
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
   create_table "videos", :force => true do |t|
-    t.integer  "product_id"
+    t.integer  "purchaseable_id"
     t.string   "wistia_id"
     t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "purchaseable_type"
   end
 
 end

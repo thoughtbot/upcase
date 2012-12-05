@@ -1,7 +1,7 @@
 Then '$email is registered for the $course_name course' do |email,course_name|
-  registration = Registration.find_by_email!(email)
+  registration = Purchase.find_by_email!(email)
   course = Course.find_by_name!(course_name)
-  registration.section.course.should == course
+  registration.purchaseable.course.should == course
 end
 
 Given /^"([^"]*)" has registered for "([^"]*)"$/ do |email, course_name|
@@ -9,14 +9,14 @@ Given /^"([^"]*)" has registered for "([^"]*)"$/ do |email, course_name|
     When I go to the home page
     And I follow the link to the #{course_name} course
     And I follow the link to register for a section
-    And I press "Proceed to checkout"
+    And I press "Submit Payment"
   }
 end
 
 Given /^"([^"]*)" has (\d+) registrations$/ do |course_name, count|
   course = Course.find_by_name!(course_name)
   section = course.sections.first
-  count.to_i.times { create(:registration, section: section) }
+  count.to_i.times { create(:free_purchase, purchaseable: section) }
 end
 
 Then /^I workshops is notified of my registration$/ do

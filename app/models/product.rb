@@ -2,10 +2,10 @@ class Product < ActiveRecord::Base
   # Associations
   has_many :announcements, as: :announceable, dependent: :destroy
   has_many :classifications, as: :classifiable
-  has_many :downloads
-  has_many :purchases
+  has_many :downloads, as: :purchaseable
+  has_many :purchases, as: :purchaseable
   has_many :topics, through: :classifications
-  has_many :videos
+  has_many :videos, as: :purchaseable
 
   # Nested Attributes
   accepts_nested_attributes_for :downloads, allow_destroy: true
@@ -39,17 +39,32 @@ class Product < ActiveRecord::Base
     where product_type: 'book'
   end
 
+  def self.videos
+    where product_type: 'video'
+  end
+
+  def self.workshops
+    where product_type: 'workshop'
+  end
+
+  def self.ordered
+    order 'name ASC'
+  end
+
+  def announcement
+    @announcement ||= announcements.current
+  end
+
   def external?
     fulfillment_method == 'external'
+  end
+
+  def send_registration_emails(purchase)
   end
 
   def image_url
     raw_url = self.product_image.url(product_type_symbol)
     product_image_file_name? ? raw_url : "/assets/#{raw_url}"
-  end
-
-  def self.ordered
-    order 'name ASC'
   end
 
   def product_type_symbol
@@ -64,14 +79,6 @@ class Product < ActiveRecord::Base
 
   def to_param
     "#{id}-#{name.parameterize}"
-  end
-
-  def self.videos
-    where product_type: 'video'
-  end
-
-  def self.workshops
-    where product_type: 'workshop'
   end
 
   def individual_price

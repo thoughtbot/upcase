@@ -4,20 +4,21 @@ Feature: Selecting a course and registering for it
   Scenario: Visitor registers for a section
     Given an audience exists with a name of "Developers"
     And the following course exists:
-      | name                | audience         | price    |
-      | Test-Driven Haskell | name: Developers | 10000000 |
+      | name                | audience         | individual_price |
+      | Test-Driven Haskell | name: Developers | 10000000         |
     And the following future section exists:
       | course                    |
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "REGISTER FOR THIS WORKSHOP"
-    Then I should see "Complete your registration for Test-Driven Haskell"
+    And I follow "Register for this Workshop"
+    Then I should see "Complete your purchase of Test-Driven Haskell"
     And I should see "$10,000,000"
     When I fill in all of the course registration fields for "carlos@santana.com"
-    And I press "Proceed to checkout"
+    And I choose to pay with Paypal
+    And I press "Proceed to Checkout"
+    And I submit the Paypal form
     Then carlos@santana.com is registered for the Test-Driven Haskell course
-    When I pay for "carlos@santana.com" taking "Test-Driven Haskell"
     Then "carlos@santana.com" opens the email with subject "You're registered for Test-Driven Haskell"
     And they should see "You can also create a user account" in the email body
 
@@ -31,7 +32,7 @@ Feature: Selecting a course and registering for it
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "REGISTER FOR THIS WORKSHOP"
+    And I follow "Register for this Workshop"
     And I follow "Sign in."
     And I follow "Sign up"
     And I sign up with the following:
@@ -39,14 +40,14 @@ Feature: Selecting a course and registering for it
       | last_name       | Santana            |
       | email           | carlos@santana.com |
       | password        | mypass             |
-    Then I should see "Complete your registration for Test-Driven Haskell"
+    Then I should see "Complete your purchase of Test-Driven Haskell"
     And "Email" should be filled in with "carlos@santana.com"
-    And "First name" should be filled in with "Carlos"
-    And "Last name" should be filled in with "Santana"
+    And "Name" should be filled in with "Carlos Santana"
     When I fill in all of the course registration fields for "carlos@santana.com"
-    And I press "Proceed to checkout"
+    And I choose to pay with Paypal
+    And I press "Proceed to Checkout"
+    And I submit the Paypal form
     Then carlos@santana.com is registered for the Test-Driven Haskell course
-    When I pay for "carlos@santana.com" taking "Test-Driven Haskell"
     Then "carlos@santana.com" opens the email with subject "You're registered for Test-Driven Haskell"
     And they should not see "You can also create a user account" in the email body
 
@@ -54,18 +55,18 @@ Feature: Selecting a course and registering for it
   Scenario: Visitor registers for a section with an invalid e-mail
     Given an audience exists with a name of "Developers"
     And the following course exists:
-      | name                | audience         | price    |
-      | Test-Driven Haskell | name: Developers | 10000000 |
+      | name                | audience         | individual_price |
+      | Test-Driven Haskell | name: Developers | 10000000         |
     And the following future section exists:
       | course                    |
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "REGISTER FOR THIS WORKSHOP"
-    Then I should see "Complete your registration for Test-Driven Haskell"
+    And I follow "Register for this Workshop"
+    Then I should see "Complete your purchase of Test-Driven Haskell"
     And I should see "$10,000,000"
     When I fill in all of the course registration fields for "carlos@blah"
-    And I press "Proceed to checkout"
+    And I press "Submit Payment"
     Then I should see that the email is invalid
 
   @selenium
@@ -75,14 +76,14 @@ Feature: Selecting a course and registering for it
       | code       | discount_type | amount |
       | VALENTINES | percentage    | 10     |
     And the following course exists:
-      | name                | audience         | price |
-      | Test-Driven Haskell | name: Developers | 10000 |
+      | name                | audience         | individual_price |
+      | Test-Driven Haskell | name: Developers | 10000            |
     And the following future section exists:
       | course                    |
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "REGISTER FOR THIS WORKSHOP"
+    And I follow "Register for this Workshop"
     Then I should see "$10,000"
     When I follow "Have a coupon code?"
     Then the coupon form should be visible
@@ -92,7 +93,9 @@ Feature: Selecting a course and registering for it
     And the coupon form should be hidden
     And the coupon form link should be hidden
     When I fill in all of the course registration fields for "carlos@santana.com"
-    And I press "Proceed to checkout"
+    And I choose to pay with Paypal
+    And I press "Proceed to Checkout"
+    And I submit the Paypal form
     Then carlos@santana.com is registered for the Test-Driven Haskell course
 
   @selenium
@@ -102,15 +105,15 @@ Feature: Selecting a course and registering for it
       | code       | amount | discount_type |
       | VALENTINES | 100    | percentage    |
     And the following course exists:
-      | name                | audience         | price |
-      | Test-Driven Haskell | name: Developers | 10000 |
+      | name                | audience         | individual_price |
+      | Test-Driven Haskell | name: Developers | 10000            |
     And the following future section exists:
       | course                    |
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "REGISTER FOR THIS WORKSHOP"
-    Then I should see "Complete your registration for Test-Driven Haskell"
+    And I follow "Register for this Workshop"
+    Then I should see "Complete your purchase of Test-Driven Haskell"
     And I should see "$10,000"
     When I follow "Have a coupon code?"
     Then the coupon form should be visible
@@ -120,7 +123,7 @@ Feature: Selecting a course and registering for it
     And the coupon form should be hidden
     And the coupon form link should be hidden
     When I fill in the required course registration fields for "carlos@santana.com"
-    And I press "Proceed to checkout"
+    And I press "Submit Payment"
     Then carlos@santana.com is registered for the Test-Driven Haskell course
 
   @selenium
@@ -130,15 +133,15 @@ Feature: Selecting a course and registering for it
       | code       | discount_type | amount | active |
       | VALENTINES | percentage    | 10     | false  |
     And the following course exists:
-      | name                | audience         | price |
-      | Test-Driven Haskell | name: Developers | 100   |
+      | name                | audience         | individual_price |
+      | Test-Driven Haskell | name: Developers | 100              |
     And the following future section exists:
       | course                    |
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "REGISTER FOR THIS WORKSHOP"
-    Then I should see "Complete your registration for Test-Driven Haskell"
+    And I follow "Register for this Workshop"
+    Then I should see "Complete your purchase of Test-Driven Haskell"
     And I should see "$100"
     When I follow "Have a coupon code?"
     Then the coupon form should be visible
@@ -165,15 +168,15 @@ Feature: Selecting a course and registering for it
   Scenario: Visitor registers for a free section
     Given an audience exists with a name of "Developers"
     And the following course exists:
-      | name                | audience         | price |
-      | Test-Driven Haskell | name: Developers | 0     |
+      | name                | audience         | individual_price |
+      | Test-Driven Haskell | name: Developers | 0                |
     And the following future section exists:
       | course                    |
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
-    And I follow "REGISTER FOR THIS WORKSHOP"
+    And I follow "Register for this Workshop"
     Then I should see "$0"
     When I fill in the required course registration fields for "carlos@santana.com"
-    And I press "Proceed to checkout"
+    And I press "Submit Payment"
     Then carlos@santana.com is registered for the Test-Driven Haskell course

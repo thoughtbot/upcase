@@ -3,19 +3,16 @@ Feature: Viewing my own account information
   Scenario: View my account information
     Given I have signed up with "user@example.com"
     And I have 3 paid purchases
-    And I have 3 paid workshops
     When I sign in with "user@example.com"
     Then I should see the edit account form
     And I should see "Your purchases"
     And I should see my 3 purchases
-    And I should see my 3 workshops
 
   Scenario: View my account information with no purchases or workshops
     Given I have signed up with "user@example.com"
     When I sign in with "user@example.com"
     Then I should not see "Your purchases"
     And I should not see "Products"
-    And I should not see "Workshops"
 
   @selenium
   Scenario: View my account information with only unpaid purchases
