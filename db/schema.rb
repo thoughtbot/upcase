@@ -211,7 +211,7 @@ ActiveRecord::Schema.define(:version => 20121114193521) do
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month"
+    t.integer  "month",      :limit => 2
     t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
@@ -293,13 +293,13 @@ ActiveRecord::Schema.define(:version => 20121114193521) do
   create_table "topics", :force => true do |t|
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
-    t.text     "trail_map"
     t.string   "keywords"
     t.string   "name",                          :null => false
     t.string   "slug",                          :null => false
     t.text     "summary"
     t.integer  "count"
     t.boolean  "featured",   :default => false, :null => false
+    t.text     "trail_map"
   end
 
   add_index "topics", ["slug"], :name => "index_topics_on_slug", :unique => true
