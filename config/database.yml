@@ -1,10 +1,10 @@
-development:
+default: &default
   adapter: postgresql
+
+development:
+  <<: *default
   database: workshops_development
 
-test: &test
-  adapter: postgresql
+test:
+  <<: *default
   database: workshops_test
-
-cucumber:
-  <<: *test
