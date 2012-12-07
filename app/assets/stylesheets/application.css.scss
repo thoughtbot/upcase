@@ -46,6 +46,15 @@ h2 {
 
 h3 {
   font-size: 20px;
+
+  &.ebook-sample {
+    margin-bottom: 20px;
+
+    a {
+      font-size: 18px;
+      font-weight: 700;
+    }
+  }
 }
 
 h4 {

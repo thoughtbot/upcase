@@ -113,6 +113,15 @@ body.courses-show {
           color: $red;
         }
       }
+
+      &.ebook-sample {
+        margin-bottom: 20px;
+
+        a {
+          font-size: 18px;
+          font-weight: 700;
+        }
+      }
     }
 
     h4 {
