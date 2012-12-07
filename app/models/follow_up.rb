@@ -1,8 +1,15 @@
 class FollowUp < ActiveRecord::Base
-  belongs_to :course
-  validates_presence_of :email
-  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create
+  # Attributes
+  attr_accessible :email
 
+  # Associations
+  belongs_to :course
+
+  # Validations
+  validates_presence_of :email
+  validates_email_format_of :email
+
+  # Scopes
   scope :have_not_notified, where(notified_at: nil)
 
   def notify(section)
