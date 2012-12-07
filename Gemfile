@@ -7,6 +7,7 @@ gem 'acts_as_list', '0.1.6'
 gem 'airbrake', '3.0.9'
 gem 'aws-s3', '0.6.2', :require => 'aws/s3'
 gem 'aws-sdk', '1.3.6'
+gem 'bluecloth'
 gem 'bourbon', '3.0.1'
 gem 'chameleon', '0.2.2'
 gem 'clearance', '0.16.1'
@@ -41,7 +42,7 @@ gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 gem 'thin', '1.3.1'
 gem 'typhoeus', '0.3.3'
 gem 'to_js', git: 'git://github.com/cpytel/to_js.git'
-gem 'bluecloth'
+gem 'validates_email_format_of', '1.5.3'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -87,5 +88,6 @@ group :test do
   gem 'timecop', '0.3.5'
   gem 'vcr', '2.1.1'
   gem 'webmock', '1.8.7'
-  gem 'capybara_discoball', :git => 'git@github.com:thoughtbot/capybara_discoball.git'
+  gem 'capybara_discoball',
+    :git => 'git@github.com:thoughtbot/capybara_discoball.git'
 end
