@@ -55,4 +55,30 @@ describe Product do
       Product.workshops.should == [workshop]
     end
   end
+
+  describe 'with a discount' do
+    it 'returns a discounted individual price' do
+      product = create(:product, individual_price: 50)
+      product.individual_price.should == 50
+      product.discount_percentage = 20
+      product.individual_price.should == 40
+    end
+
+    it 'returns a discounted company price' do
+      product = create(:product, company_price: 50)
+      product.company_price.should == 50
+      product.discount_percentage = 20
+      product.company_price.should == 40
+    end
+
+    it 'reports that the product is discounted' do
+      product = create(:product, discount_percentage: 20)
+      product.should be_discounted
+    end
+  end
+
+  it 'reports that it is not discounted' do
+    product = create(:product, discount_percentage: 0)
+    product.should_not be_discounted
+  end
 end

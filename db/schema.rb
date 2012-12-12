@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121114193521) do
+ActiveRecord::Schema.define(:version => 20121212214215) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(:version => 20121114193521) do
 
   create_table "courses", :force => true do |t|
     t.string   "name",                                        :null => false
-    t.integer  "price"
+    t.integer  "individual_price"
     t.text     "description"
     t.time     "start_at"
     t.time     "stop_at"
@@ -100,12 +100,14 @@ ActiveRecord::Schema.define(:version => 20121114193521) do
     t.string   "course_image_content_type"
     t.string   "course_image_updated_at"
     t.string   "promo_location"
+    t.integer  "company_price"
+    t.text     "terms"
   end
 
   add_index "courses", ["audience_id"], :name => "index_courses_on_audience_id"
 
   create_table "downloads", :force => true do |t|
-    t.integer  "product_id"
+    t.integer  "purchaseable_id"
     t.string   "download_file_name"
     t.string   "download_file_size"
     t.string   "download_content_type"
@@ -113,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20121114193521) do
     t.string   "description"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+    t.string   "purchaseable_type"
   end
 
   create_table "episodes", :force => true do |t|
@@ -165,10 +168,11 @@ ActiveRecord::Schema.define(:version => 20121114193521) do
     t.string   "external_purchase_name"
     t.string   "external_purchase_description"
     t.string   "promo_location"
+    t.integer  "discount_percentage",           :default => 0,    :null => false
+    t.string   "discount_title",                :default => "",   :null => false
   end
 
   create_table "purchases", :force => true do |t|
-    t.integer  "product_id"
     t.string   "stripe_customer"
     t.string   "variant"
     t.string   "name"
@@ -190,10 +194,13 @@ ActiveRecord::Schema.define(:version => 20121114193521) do
     t.string   "payment_transaction_id"
     t.integer  "user_id"
     t.integer  "paid_price"
+    t.integer  "purchaseable_id"
+    t.string   "purchaseable_type"
+    t.text     "comments"
+    t.string   "billing_email"
   end
 
   add_index "purchases", ["lookup"], :name => "index_purchases_on_lookup"
-  add_index "purchases", ["product_id"], :name => "index_purchases_on_product_id"
   add_index "purchases", ["stripe_customer"], :name => "index_purchases_on_stripe_customer"
 
   create_table "questions", :force => true do |t|
@@ -211,7 +218,7 @@ ActiveRecord::Schema.define(:version => 20121114193521) do
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month",      :limit => 2
+    t.integer  "month"
     t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
@@ -293,13 +300,13 @@ ActiveRecord::Schema.define(:version => 20121114193521) do
   create_table "topics", :force => true do |t|
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.text     "trail_map"
     t.string   "keywords"
     t.string   "name",                          :null => false
     t.string   "slug",                          :null => false
     t.text     "summary"
     t.integer  "count"
     t.boolean  "featured",   :default => false, :null => false
-    t.text     "trail_map"
   end
 
   add_index "topics", ["slug"], :name => "index_topics_on_slug", :unique => true
@@ -330,11 +337,12 @@ ActiveRecord::Schema.define(:version => 20121114193521) do
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
   create_table "videos", :force => true do |t|
-    t.integer  "product_id"
+    t.integer  "purchaseable_id"
     t.string   "wistia_id"
     t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "purchaseable_type"
   end
 
 end
