@@ -1,7 +1,7 @@
 desc "Setup project locally for development"
-task setup: :environment do
+task :setup do
   puts "Bundling"
-  `bundle install --binstubs`
+  `bundle install`
 
   puts "Setting up git remotes for production and staging"
   `git remote add staging git@heroku.com:learn-staging.git`
