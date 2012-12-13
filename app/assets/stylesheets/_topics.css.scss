@@ -1,9 +1,3 @@
-$lightwarmgray: #F5F5F0;
-$warmgray: #D9D4CC;
-$darkwarmgray: #6C6A66;
-$learnred: #B22115;
-$learndarkred: #660000;
-
 .articles-index, .courses-show, .episodes, .products-index, .topics-index, .topics-show, .products-show, .purchases, .registrations, .error-page, .videos {
   background-color: $lightwarmgray;
   border-top: none;
@@ -563,6 +557,41 @@ $learndarkred: #660000;
       }
     }
 
+    #book-graphic {
+      box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.35);
+      float: right;
+      margin: 15px 0 20px 25px;
+      position: relative;
+      @include transition;
+      width: 185px;
+
+      &:hover {
+        bottom: 3px;
+      }
+
+      img {
+        display: block;
+      }
+
+      .title {
+        background: hsla(0, 0%, 22%, 0.75);
+        bottom: 50px;
+        color: white;
+        font-size: 18px;
+        left: 0;
+        padding: 10px 0;
+        position: absolute;
+        text-align: center;
+        text-shadow: 0 1px 0 hsla(0, 0%, 0%, 0.45);
+        width: 100%;
+      }
+
+      a:hover .title {
+        background: rgba($learnred, 0.75);
+        @include transition;
+      }
+    }
+
     #table-of-contents {
       margin-top: 40px;
     }
@@ -788,9 +817,34 @@ $learndarkred: #660000;
       }
 
       .section-location, #license {
+        h4.discount-title {
+          color: $darkwarmgray;
+          font-size: 18px;
+          text-align: center;
+          margin: 12px 0 24px;
+        }
 
         h2 span {
-              font: 300 36px $sans-serif;
+          font: 300 36px $sans-serif;
+
+          &.original-price {
+            color: lighten($darkwarmgray, 22%);
+            font-size: 24px;
+            margin-left: 10px;
+            margin-top: 7px;
+            position: absolute;
+            -webkit-font-smoothing: antialiased;
+
+            &::after {
+              background-image: image_url("icons/brush.png");
+              content: "";
+              height: 33px;
+              left: -3px;
+              position: absolute;
+              top: -3px;
+              width: 60px;
+            }
+          }
         }
 
         div {

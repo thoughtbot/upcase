@@ -87,3 +87,19 @@ end
 Then /^the first reader should be my github username$/ do
   find_field('reader_1').value.should == "thoughtbot"
 end
+
+Then /^I should see "([^"]*)" discounted (\d+)% with the text "([^"]*)"$/ do |product_name, discount_percentage, discount_title|
+  product = Product.find_by_name!(product_name)
+  page.should have_css '.discount-title', text: discount_title
+  page.should have_css '.individual-purchase span', text: product.individual_price.to_s
+  page.should have_css '.individual-purchase span.original-price', text: product.original_individual_price.to_s
+  page.should have_css '.company-purchase span', text: product.company_price.to_s
+  page.should have_css '.company-purchase span.original-price', text: product.original_company_price.to_s
+end
+
+Then /^I should see "([^"]*)" is not discounted$/ do |product_name|
+  product = Product.find_by_name!(product_name)
+  page.should_not have_css '.discount-title'
+  page.should_not have_css '.individual-purchase span.original-price'
+  page.should_not have_css '.company-purchase span.original-price'
+end

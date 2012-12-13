@@ -71,4 +71,30 @@ class Product < ActiveRecord::Base
   def self.workshops
     where product_type: 'workshop'
   end
+
+  def individual_price
+    apply_discount(original_individual_price).to_i
+  end
+
+  def company_price
+    apply_discount(original_company_price).to_i
+  end
+
+  def original_company_price
+    self[:company_price]
+  end
+
+  def original_individual_price
+    self[:individual_price]
+  end
+
+  def discounted?
+    discount_percentage > 0
+  end
+
+  private
+
+  def apply_discount(price)
+    price - (price * discount_percentage * 0.01)
+  end
 end
