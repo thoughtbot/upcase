@@ -134,14 +134,6 @@
       }
     }
 
-  .button:active, input[type="submit"]:active {
-    border-bottom: none;
-    height: 40px;
-    position: relative;
-    top: 4px;
-    margin-bottom: 4px;
-  }
-
   input[type="submit"] {
     border-top-color: none;
     border-top-style: none;
