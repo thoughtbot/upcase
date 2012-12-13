@@ -10,9 +10,7 @@ describe Product do
   it { should have_many(:videos) }
 
   # Validations
-  it { should validate_presence_of(:company_price) }
   it { should validate_presence_of(:fulfillment_method) }
-  it { should validate_presence_of(:individual_price) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:sku) }
 

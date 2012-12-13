@@ -12,9 +12,7 @@ class Product < ActiveRecord::Base
 
   # Validations
   validates :name, presence: true
-  validates :company_price, presence: true
   validates :fulfillment_method, presence: true
-  validates :individual_price, presence: true
   validates :sku, presence: true
 
   # Plugins
@@ -81,11 +79,11 @@ class Product < ActiveRecord::Base
   end
 
   def original_company_price
-    self[:company_price]
+    self[:company_price] || 0
   end
 
   def original_individual_price
-    self[:individual_price]
+    self[:individual_price] || 0
   end
 
   def discounted?
