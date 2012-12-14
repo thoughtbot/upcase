@@ -36,12 +36,13 @@ Feature: View topics
 
   Scenario: Navigate to a topic
     Given the following topics exist:
-      | name    | summary         | featured |
-      | Topic 1 | The first topic | true     |
+      | name    | summary         | featured | keywords    |
+      | Topic 1 | The first topic | true     | ruby, rails |
     When I go to the home page
     And I follow "Topic 1"
     Then I should see "Topic 1" within ".learn-detail-logo"
     Then the meta description should be "The first topic"
+    Then the meta keywords should be "ruby, rails"
     Then the page title should be "Learn Topic 1"
 
   Scenario: View a topic's related products

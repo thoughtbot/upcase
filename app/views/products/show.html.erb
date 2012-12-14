@@ -1,4 +1,5 @@
 <% content_for :meta_description, @product.short_description %>
+<% content_for :meta_keywords, @product.meta_keywords %>
 <% content_for :page_title, "#{@product.name}: a #{@product.product_type} by thoughtbot" %>
 <%= render 'learn_header', subject: @product.name %>
 

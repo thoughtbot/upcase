@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <meta http-equiv="Description" name="Description" content="<%= yield(:meta_description).presence || t('.meta_description') %>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Keywords" name="Keywords" content="<%= keywords %>" />
+    <meta http-equiv="Keywords" name="Keywords" content="<%= keywords(yield :meta_keywords) %>" />
     <%= open_graph_tags(yield :page_title) %>
     <script type="text/javascript" src="//use.typekit.net/jes4mbj.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>

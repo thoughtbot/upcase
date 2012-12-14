@@ -31,6 +31,10 @@ class Product < ActiveRecord::Base
     @announcement ||= announcements.current
   end
 
+  def meta_keywords
+    topics.map { |topic| topic.name }.join(', ')
+  end
+
   def self.books
     where product_type: 'book'
   end
