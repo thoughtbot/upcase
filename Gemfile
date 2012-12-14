@@ -1,6 +1,6 @@
 source :rubygems
 
-ruby '1.9.2'
+ruby '1.9.3'
 
 gem 'RedCloth', '4.2.9', require: 'redcloth'
 gem 'acts_as_list', '0.1.6'
@@ -58,7 +58,7 @@ end
 group :development, :test do
   gem 'foreman', '0.46.0'
   gem 'rspec-rails', '2.11.0'
-  gem 'ruby-debug19', '0.11.6', require: 'ruby-debug', platform: :ruby_19
+  gem 'debugger'
 end
 
 group :production, :staging do
