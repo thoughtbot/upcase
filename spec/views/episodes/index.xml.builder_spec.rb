@@ -52,6 +52,13 @@ describe 'episodes/index.xml.builder' do
       content.should include @first.description
       content.should include BlueCloth.new(@first.notes).to_html
     end
+
+    it 'includes an mp3 enclosure with file size and mime type' do
+      item = @xml.css('channel item enclosure').first
+      item['url'].should eq episode_url(@first, format: :mp3)
+      item['length'].should eq @first.file_size.to_s
+      item['type'].should eq 'audio/mpeg'
+    end
   end
 
   context 'rendered with an episode with an old url' do

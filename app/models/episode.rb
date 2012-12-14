@@ -16,4 +16,8 @@ class Episode < ActiveRecord::Base
   def full_title
     "Episode #{id}: #{title}"
   end
+
+  def increment_downloads
+    increment!(:downloads_count)
+  end
 end
