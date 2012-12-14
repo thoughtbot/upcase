@@ -11,6 +11,11 @@ Then /^the meta description should be "([^"]*)"$/ do |expected_description|
   meta_tag['content'].should == expected_description
 end
 
+Then /^the meta keywords should be "([^"]*)"$/ do |expected_keywords|
+  meta_tag = page.find('meta[name=Keywords]')
+  meta_tag['content'].should == expected_keywords
+end
+
 Then /^the page should use the default meta description$/ do
   meta_tag = page.find('meta[name=Description]')
   meta_tag['content'].should == I18n.t('layouts.application.meta_description')

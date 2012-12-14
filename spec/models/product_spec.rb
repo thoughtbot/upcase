@@ -23,6 +23,15 @@ describe Product do
     end
   end
 
+  describe "#meta_keywords" do
+    it 'returns a comma delimited string of topics' do
+      book = create(:book_product)
+      book.topics << create(:topic, name: 'Ruby')
+      book.topics << create(:topic, name: 'Rails')
+      book.meta_keywords.should == 'Ruby, Rails'
+    end
+  end
+
   describe '.books' do
     it 'only includes books' do
       book = create(:book_product)

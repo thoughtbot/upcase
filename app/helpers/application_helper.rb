@@ -17,8 +17,8 @@ module ApplicationHelper
     end
   end
 
-  def keywords
-    Topic.top.pluck(:name).join(', ')
+  def keywords(keywords = nil)
+    keywords.presence || Topic.top.pluck(:name).join(', ')
   end
 
   def link_to_remove_fields(name, f)
