@@ -45,12 +45,8 @@ module ApplicationHelper
     controller.controller_name != 'topics'
   end
 
-  def title(title = nil)
-    if !title.blank?
-      "Learn #{title}"
-    else
-      'thoughtbot Learn'
-    end
+  def page_title(title = nil)
+    title.presence || 'thoughtbot Learn'
   end
 
   def github_auth_path

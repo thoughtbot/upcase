@@ -35,10 +35,14 @@ Feature: View topics
     Then I should see "Topic 3" within "#learn-topics-list"
 
   Scenario: Navigate to a topic
-    Given a featured topic named "Topic 1"
+    Given the following topics exist:
+      | name    | summary         | featured |
+      | Topic 1 | The first topic | true     |
     When I go to the home page
     And I follow "Topic 1"
     Then I should see "Topic 1" within ".learn-detail-logo"
+    Then the meta description should be "The first topic"
+    Then the page title should be "Learn Topic 1"
 
   Scenario: View a topic's related products
     Given a featured topic named "Topic 1"
