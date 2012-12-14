@@ -5,6 +5,10 @@ en:
         menu:
           Refund Purchase
 
+  layouts:
+    application:
+      meta_description: 'Workshops, screencasts, videos, and books to help you learn web design and development.'
+
   articles:
     index:
       heading:
