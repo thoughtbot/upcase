@@ -51,4 +51,12 @@ describe Episode do
       episode.products.should == [product]
     end
   end
+
+  describe '.increment_downloads' do
+    it 'increments the download count by 1' do
+      episode = create(:episode, downloads_count: 4)
+      episode.increment_downloads
+      episode.downloads_count.should eq 5
+    end
+  end
 end
