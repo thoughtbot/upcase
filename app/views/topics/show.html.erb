@@ -1,3 +1,5 @@
+<% content_for :meta_description, @topic.summary %>
+<% content_for :page_title, "Learn #{@topic.name}" %>
 <%= render 'learn_header', subject: @topic.name %>
 
 <section class="learn-detail-content">

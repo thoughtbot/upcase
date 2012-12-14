@@ -1,3 +1,5 @@
+<% content_for :page_title, "#{@course.name}: a course from thoughtbot" %>
+<% content_for :meta_description, @course.short_description %>
 <%= render 'learn_header', subject: @course.name %>
 
 <section class="learn-detail-content">

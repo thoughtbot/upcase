@@ -1,6 +1,6 @@
 Feature: Viewing the courses page
 
-  Scenario: Visitor can see product information
+  Scenario: Visitor views products and courses
     Given today is June 17, 2010
     And the following course exists:
       | name                | short_description |
@@ -20,3 +20,13 @@ Feature: Viewing the courses page
     And I should see "Video 2"
     And I should see "Video 3"
     And I should see "Test-Driven Haskell"
+
+  Scenario: Visitor can see course information
+    Given the following course exists:
+      | name                | short_description |
+      | Test-Driven Haskell | Short Description |
+    When I go to the home page
+    And I view all products
+    And I follow "Test-Driven Haskell"
+    Then the meta description should be "Short Description"
+    And the page title should be "Test-Driven Haskell: a course from thoughtbot"
