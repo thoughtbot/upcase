@@ -31,7 +31,7 @@ xml.rss :version => '2.0', 'xmlns:dc' => 'http://purl.org/dc/elements/1.1/', 'xm
         xml.pubDate episode.published_on.xmlschema
         xml.author 'thoughtbot'
         xml.description episode.description
-        xml.enclosure url: episode.file, length: episode.file_size, type: 'audio/mpeg'
+        xml.enclosure url: episode_url(episode, format: :mp3), length: episode.file_size, type: 'audio/mpeg'
         xml.duration episode.duration
         xml.tag! 'content:encoded', "<p>#{episode.description}</p>" + BlueCloth.new(episode.notes).to_html
         xml.tag! 'itunes:author', 'thoughtbot'
