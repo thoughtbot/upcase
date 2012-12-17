@@ -28,4 +28,18 @@ RailsAdmin.config do |config|
     init_actions!
     purchase_refund
   end
+
+  config.model Purchase do
+    list do
+      field :purchaseable_id do
+        visible false
+        filterable true
+      end
+      field :purchaseable_type do
+        visible false
+        filterable true
+      end
+      include_all_fields
+    end
+  end
 end
