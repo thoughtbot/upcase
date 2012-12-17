@@ -12,6 +12,7 @@ class Purchase < ActiveRecord::Base
   serialize :readers
 
   attr_accessor :stripe_token, :paypal_url
+  attr_accessible :purchaseable_id, :purchaseable_type
 
   validates_presence_of :variant, :purchaseable_id, :purchaseable_type, :name, :lookup, :payment_method, :billing_email
   validate :payment_method_must_match_price
