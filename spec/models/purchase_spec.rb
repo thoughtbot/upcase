@@ -2,6 +2,14 @@ require 'spec_helper'
 
 describe Purchase do
   it { should belong_to(:user) }
+  it { should validate_presence_of(:email) }
+  it { should allow_value('chad-help@co.uk').for(:email) }
+  it { should allow_value('chad-help@thoughtbot.com').for(:email) }
+  it { should allow_value('chad.help@thoughtbot.com').for(:email) }
+  it { should allow_value('chad@thoughtbot.com').for(:email) }
+  it { should_not allow_value('chad').for(:email) }
+  it { should_not allow_value('chad@blah').for(:email) }
+  it { should validate_presence_of(:billing_email) }
 
   it 'can produce the host after setting it' do
     Purchase.host = 'hottiesandcreepers.com:123467'
@@ -30,7 +38,7 @@ end
 
 describe Purchase, 'with stripe and a bad card' do
   let(:product) { create(:product, individual_price: 15, company_price: 50) }
-  let(:purchase) { build(:purchase, product: product, payment_method: 'stripe') }
+  let(:purchase) { build(:purchase, purchaseable: product, payment_method: 'stripe') }
   let(:host) { ActionMailer::Base.default_url_options[:host] }
   subject { purchase }
 
@@ -47,7 +55,7 @@ end
 
 describe Purchase, 'refund' do
   let(:product) { create(:product, individual_price: 15, company_price: 50) }
-  let(:purchase) { build(:purchase, product: product, payment_method: '$') }
+  let(:purchase) { build(:purchase, purchaseable: product, payment_method: '$') }
   subject { purchase }
 
   it 'sets the purchase as unpaid' do
@@ -70,7 +78,7 @@ end
 describe Purchase, 'with stripe' do
   include Rails.application.routes.url_helpers
   let(:product) { create(:product, individual_price: 15, company_price: 50) }
-  let(:purchase) { build(:purchase, product: product, payment_method: 'stripe') }
+  let(:purchase) { build(:purchase, purchaseable: product, payment_method: 'stripe') }
   let(:host) { ActionMailer::Base.default_url_options[:host] }
   subject { purchase }
 
@@ -127,7 +135,7 @@ describe Purchase, 'with stripe' do
     subject.coupon = coupon
     subject.save!
     Stripe::Charge.should have_received(:create).with(amount: 1125, currency: 'usd', customer: 'stripe', description: product.name)
-    purchase = create(:stripe_purchase, product: product, coupon: coupon.reload)
+    purchase = create(:stripe_purchase, purchaseable: product, coupon: coupon.reload)
     Stripe::Charge.should have_received(:create).with(amount: 1500, currency: 'usd', customer: 'stripe', description: product.name)
   end
 
@@ -148,7 +156,7 @@ describe Purchase, 'with stripe' do
       subject.stripe_customer.should == 'stripe'
     end
 
-    its(:success_url) { should == product_purchase_path(product, purchase, host: host) }
+    its(:success_url) { should == purchase_path(purchase, host: host) }
 
     context 'and refunded' do
       let(:charge) { stub(:id => 'TRANSACTION-ID', :refunded => false) }
@@ -303,7 +311,7 @@ describe Purchase, 'with paypal' do
     refund!: nil) }
   let(:paypal_payment_request) { stub }
 
-  subject { build(:purchase, product: product, payment_method: 'paypal') }
+  subject { build(:purchase, purchaseable: product, payment_method: 'paypal') }
 
   before do
     Paypal::Express::Request.stubs(:new => paypal_request)
@@ -312,8 +320,8 @@ describe Purchase, 'with paypal' do
   end
 
   it 'starts a paypal transaction' do
-    Paypal::Payment::Request.should have_received(:new).with(currency_code: :USD, amount: subject.price, description: subject.product_name, items: [{ amount: subject.price, description: subject.product_name }])
-    paypal_request.should have_received(:setup).with(paypal_payment_request, paypal_product_purchase_url(subject.product, subject, host: ActionMailer::Base.default_url_options[:host]), products_url(host: ActionMailer::Base.default_url_options[:host]))
+    Paypal::Payment::Request.should have_received(:new).with(currency_code: :USD, amount: subject.price, description: subject.purchaseable_name, items: [{ amount: subject.price, description: subject.purchaseable_name }])
+    paypal_request.should have_received(:setup).with(paypal_payment_request, paypal_purchase_url(subject, host: ActionMailer::Base.default_url_options[:host]), products_url(host: ActionMailer::Base.default_url_options[:host]))
     subject.paypal_url.should == 'http://paypalurl'
     subject.should_not be_paid
   end
@@ -335,7 +343,7 @@ describe Purchase, 'with paypal' do
   context 'and refunded' do
     subject do
       build(:purchase,
-            product: product,
+            purchaseable: product,
             payment_method: 'paypal',
             payment_transaction_id: 'TRANSACTION-ID')
     end
@@ -357,7 +365,7 @@ describe Purchase, 'with no price' do
   context 'a valid purchase' do
     let(:product) { create(:product, individual_price: 0) }
     let(:purchase) do
-      create(:individual_purchase, product: product)
+      create(:individual_purchase, purchaseable: product)
     end
 
     subject { purchase }
@@ -365,12 +373,12 @@ describe Purchase, 'with no price' do
     it { should be_free }
     it { should be_paid }
     its(:payment_method) { should == 'free' }
-    its(:success_url) { should == product_purchase_path(product, purchase, host: host) }
+    its(:success_url) { should == purchase_path(purchase, host: host) }
   end
 
   context 'a purchase with an invalid payment method' do
     let(:product) { create(:product, individual_price: 1000) }
-    let(:purchase) { build(:purchase, product: product, payment_method: 'free') }
+    let(:purchase) { build(:purchase, purchaseable: product, payment_method: 'free') }
     subject { purchase }
     it { should_not be_valid }
   end

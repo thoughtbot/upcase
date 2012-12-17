@@ -3,10 +3,10 @@ require 'spec_helper'
 describe Section do
   # Associations
   it { should belong_to(:course) }
-  it { should have_many(:paid_registrations) }
-  it { should have_many(:registrations) }
+  it { should have_many(:paid_purchases) }
+  it { should have_many(:purchases) }
   it { should have_many(:section_teachers) }
-  it { should have_many(:unpaid_registrations) }
+  it { should have_many(:unpaid_purchases) }
   it { should have_many(:teachers).through(:section_teachers) }
 
   # Validations
@@ -70,10 +70,10 @@ describe Section do
   describe '#send_reminders' do
     it 'sends reminder emails to all paid registrants' do
       section = create(:section)
-      create :registration, section: section, paid: true
-      create :registration, section: section, paid: true
-      create :registration, section: section, paid: false
-      create :registration, paid: true
+      create :purchase, purchaseable: section, paid: true
+      create :purchase, purchaseable: section, paid: true
+      create :purchase, purchaseable: section, paid: false, payment_method: 'paypal'
+      create :purchase, paid: true
       ActionMailer::Base.deliveries.clear
       section.send_reminders
       ActionMailer::Base.deliveries.should have(2).email
@@ -89,7 +89,7 @@ describe Section do
       ]
 
       sections.each do |section|
-        create :paid_registration, section: section
+        create :paid_purchase, purchaseable: section
       end
 
       ActionMailer::Base.deliveries.clear
@@ -101,7 +101,7 @@ describe Section do
   describe '#to_param' do
     it 'returns the id and parameterized course name' do
       section = create(:section)
-      expected = "#{section.id}-#{section.course_name.parameterize}"
+      expected = "#{section.id}-#{section.name.parameterize}"
       section.to_param.should eq(expected)
     end
   end

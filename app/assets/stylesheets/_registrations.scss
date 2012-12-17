@@ -10,7 +10,6 @@ body.clearance-passwords {
   margin: 0 auto;
 }
 
-body.registrations,
 body.purchases,
 body.sessions,
 body.users,
@@ -114,19 +113,7 @@ body.clearance-users {
             clear: both;
           }
 
-          &#registration_first_name_input,
-          &#registration_city_input {
-            float: left;
-            margin-right: flex-gutter();
-            width: flex-grid(6);
-          }
-
-          &#registration_last_name_input {
-            float: left;
-            width: flex-grid(6);
-          }
-
-          #registration_comments {
+          #purchase_comments {
             height: 100px;
           }
 
@@ -136,7 +123,6 @@ body.clearance-users {
             width: flex-grid(6);
           }
 
-          &#registration_state_input,
           &#purchase_state_input,
           &#password_email_input {
             float: left;
@@ -148,7 +134,6 @@ body.clearance-users {
             margin-top: 12px;
           }
 
-          &#registration_zip_code_input,
           &#purchase_zip_code_input {
             float: left;
             width: flex-grid(3);
@@ -239,7 +224,6 @@ body.clearance-users {
   }
 }
 
-body.registrations,
 body.purchases,
 body.users-edit {
   #form-column {

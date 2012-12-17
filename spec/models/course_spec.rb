@@ -7,7 +7,7 @@ describe Course do
   it { should have_many(:classifications) }
   it { should have_many(:follow_ups) }
   it { should have_many(:questions) }
-  it { should have_many(:registrations).through(:sections) }
+  it { should have_many(:purchases).through(:sections) }
   it { should have_many(:sections) }
   it { should have_many(:topics).through(:classifications) }
 
@@ -16,7 +16,8 @@ describe Course do
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:maximum_students) }
   it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:price) }
+  it { should validate_presence_of(:individual_price) }
+  it { should validate_presence_of(:company_price) }
   it { should validate_presence_of(:short_description) }
   it { should validate_presence_of(:start_at) }
   it { should validate_presence_of(:stop_at) }

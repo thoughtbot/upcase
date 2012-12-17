@@ -1,5 +1,5 @@
 class Download < ActiveRecord::Base
-  belongs_to :product
+  belongs_to :purchaseable, polymorphic: true
 
   has_attached_file :download, {
     s3_permissions: :private

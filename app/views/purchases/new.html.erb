@@ -1,8 +1,8 @@
-<%= render 'learn_header', subject: @product.name %>
+<%= render 'learn_header', subject: @purchaseable.name %>
 
 <section class="learn-detail-content">
   <%= render 'checkout_form',
-             title: t('purchase.product.heading_html', name: @product.name),
+             title: t('purchase.product.heading_html', name: @purchaseable.name),
              price: @purchase.price,
              form_partial: 'purchases/form' %>
 
@@ -11,7 +11,7 @@
     <p>By purchasing this product you agree to the following terms and conditions:</p>
     <ul>
       <li>If you&rsquo;re not happy with the product, just let us know within 30 days and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</li>
-      <%= @product.terms %>
+      <%= @purchaseable.terms %>
     </ul>
   </aside>
 </section>

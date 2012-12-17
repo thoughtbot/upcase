@@ -1,5 +1,5 @@
 <div class="purchase-return-link">
-  <%=link_to "Return to purchase receipt page", product_purchase_path(video.product, @purchase), class: "no_underscore" %>
+  <%=link_to "Return to purchase receipt page", purchase_path(@purchase), class: "no_underscore" %>
 </div>
 <p class="videowrapper"><%= render 'videos/code', video_hash_id: video.video_hash_id %></p>
 

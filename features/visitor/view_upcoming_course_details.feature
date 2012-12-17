@@ -2,8 +2,8 @@ Feature: Viewing upcoming course details
 
   Scenario: Upcoming course price format
     Given the following course exists:
-      | name                | start at | stop at  | price |
-      | Test-Driven Haskell | 09:00:00 | 12:00:00 | 1000  |
+      | name                | start at | stop at  | individual_price |
+      | Test-Driven Haskell | 09:00:00 | 12:00:00 | 1000             |
     And the following section exists:
       | course                    |
       | name: Test-Driven Haskell |
@@ -38,8 +38,8 @@ Feature: Viewing upcoming course details
     Given today is June 10, 2010
     And a teacher exists with a name of "Ralph Bot"
     And the following course exists:
-      | name                | price |
-      | Test-Driven Haskell | 1000  |
+      | name                | individual_price |
+      | Test-Driven Haskell | 1000             |
     And the following section exists:
       | course                    | starts on     | ends on       | start at | stop at  | address      | city   | state | zip   |
       | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 | 09:00:00 | 12:00:00 | 41 Winter St.| Boston | MA    | 02108 |
@@ -68,8 +68,8 @@ Feature: Viewing upcoming course details
     And a teacher exists with a name of "Ralph Bot"
     And a teacher exists with a name of "Joe Teacher"
     And the following course exists:
-      | name                | price |
-      | Test-Driven Haskell | 1000  |
+      | name                | individual_price |
+      | Test-Driven Haskell | 1000             |
     And the following section exists:
       | course                    | starts on     | ends on       | start at | stop at  | address      | city          | state | zip   |
       | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 | 09:00:00 | 12:00:00 | 41 Winter St.| Boston        | MA    | 02108 |
@@ -94,8 +94,8 @@ Feature: Viewing upcoming course details
     Given today is June 10, 2010
     And a teacher exists with a name of "Joe Teacher"
     And the following course exists:
-      | name                | price |
-      | Test-Driven Haskell | 1000  |
+      | name                | individual_price |
+      | Test-Driven Haskell | 1000             |
     And the following section exists:
       | course                    | starts on     | ends on       | start at | stop at  | address      | city          | state | zip   |
       | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 | 09:00:00 | 12:00:00 | 41 Winter St.| Boston        | MA    | 02108 |
@@ -113,8 +113,8 @@ Feature: Viewing upcoming course details
       | name                | maximum students |
       | Test-Driven Haskell | 5                |
     And the following section exists:
-      | id   | course                    | starts on     | ends on       |
-      | 1234 | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
+      | course                    | starts on     | ends on       |
+      | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
     And "Test-Driven Haskell" has 5 registrations
     When I go to the home page
     And I view all products
@@ -129,8 +129,8 @@ Feature: Viewing upcoming course details
       | name                | maximum students |
       | Test-Driven Haskell | 20               |
     And the following section exists:
-      | id   | course                    | starts on     | ends on       | seats available |
-      | 1234 | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 | 5               |
+      | course                    | starts on     | ends on       | seats available |
+      | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 | 5               |
     And "Test-Driven Haskell" has 5 registrations
     When I go to the home page
     And I view all products

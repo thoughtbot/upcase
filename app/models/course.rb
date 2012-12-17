@@ -5,7 +5,7 @@ class Course < ActiveRecord::Base
   has_many :classifications, as: :classifiable
   has_many :follow_ups
   has_many :questions, order: 'created_at ASC'
-  has_many :registrations, through: :sections
+  has_many :purchases, through: :sections
   has_many :sections
   has_many :topics, through: :classifications
 
@@ -18,7 +18,8 @@ class Course < ActiveRecord::Base
   validates :description, presence: true
   validates :maximum_students, presence: true
   validates :name, presence: true
-  validates :price, presence: true
+  validates :individual_price, presence: true
+  validates :company_price, presence: true
   validates :short_description, presence: true
   validates :start_at, presence: true
   validates :stop_at, presence: true

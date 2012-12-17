@@ -21,7 +21,7 @@ Feature: Purchase a Product
     And "Name" should be filled in with "John Doe"
     And I should see "Sign out"
 
-  @selenium
+  @selenium @allow-rescue
   Scenario: A user purchases a product with paypal
     Given I have signed up with "user@example.com"
     And I sign in with "user@example.com"

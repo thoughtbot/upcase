@@ -1,10 +1,16 @@
 class RedemptionsController < ApplicationController
   def new
     @coupon = Coupon.find_by_code_and_active(params[:coupon][:code], true)
+    @buying = purchaseable.purchases.build(variant: params[:variant], coupon: @coupon)
+  end
+
+  private
+
+  def purchaseable
     if params[:section_id]
-      @buying = Section.find(params[:section_id]).registrations.build(coupon: @coupon)
+      Section.find(params[:section_id])
     elsif params[:product_id]
-      @buying = Product.find(params[:product_id]).purchases.build(variant: params[:variant], coupon: @coupon)
+      Product.find(params[:product_id])
     end
   end
 end

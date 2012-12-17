@@ -1,16 +1,20 @@
 class Section < ActiveRecord::Base
   # Associations
   belongs_to :course
-  has_many :paid_registrations, class_name: 'Registration',
+  has_many :paid_purchases, class_name: 'Purchase', as: :purchaseable,
     conditions: { paid: true }
-  has_many :registrations
+  has_many :purchases, as: :purchaseable
   has_many :section_teachers
   has_many :teachers, through: :section_teachers
-  has_many :unpaid_registrations, class_name: 'Registration',
+  has_many :unpaid_purchases, class_name: 'Purchase', as: :purchaseable,
     conditions: { paid: false }
+  has_many :announcements, as: :announceable, dependent: :destroy
+  has_many :downloads, as: :purchaseable
+  has_many :videos, as: :purchaseable
 
   # Delegates
-  delegate :name, :description, :price, to: :course, prefix: :course
+  delegate :name, :description, :individual_price, :company_price, :terms,
+    to: :course
 
   # Nested Attributes
   accepts_nested_attributes_for :section_teachers
@@ -43,6 +47,23 @@ class Section < ActiveRecord::Base
     joins(:course).where(courses: {public: true})
   end
 
+  def send_registration_emails(purchase)
+    Mailer.registration_notification(purchase).deliver
+    Mailer.registration_confirmation(purchase).deliver
+  end
+
+  def announcement
+    @announcement ||= announcements.current
+  end
+
+  def fulfillment_method
+    'in-person'
+  end
+
+  def product_type
+    'workshop'
+  end
+
   def date_range
     if starts_on == ends_on
       starts_on.to_s :simple
@@ -56,7 +77,7 @@ class Section < ActiveRecord::Base
   end
 
   def full?
-    registrations.count >= seats_available
+    purchases.count >= seats_available
   end
 
   def location
@@ -72,8 +93,8 @@ class Section < ActiveRecord::Base
   end
 
   def send_reminders
-    paid_registrations.each do |registration|
-      Mailer.section_reminder(registration, self).deliver
+    paid_purchases.each do |purchase|
+      Mailer.section_reminder(purchase, self).deliver
     end
   end
 
@@ -82,7 +103,7 @@ class Section < ActiveRecord::Base
   end
 
   def to_param
-    "#{id}-#{course_name.parameterize}"
+    "#{id}-#{name.parameterize}"
   end
 
   def self.unique_section_teachers_by_teacher

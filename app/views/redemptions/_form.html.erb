@@ -1,5 +1,5 @@
 <div class="coupon" style="display: none;">
-  <%= semantic_form_for :coupon, url: @section ? new_section_redemption_path(@section) : new_product_redemption_path(@product, variant: params[:variant]) do |form| %>
+  <%= semantic_form_for :coupon, url: polymorphic_path([@purchaseable, :redemption], action: :new, variant: params[:variant]) do |form| %>
     <%= form.inputs do %>
       <%= form.input :code %>
       <li class="error" style="display: none;">

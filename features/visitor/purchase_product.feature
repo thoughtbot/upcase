@@ -5,18 +5,14 @@ Feature: Purchase a Product
 
   Background:
     Given the following products exist:
-      | name         | id | sku  | individual_price | company_price | product_type | fulfillment_method |
-      | Test Fetch   | 1  | TEST | 15               | 50            | video        | fetch              |
-      | Test GitHub  | 2  | TEST | 15               | 199           | book         | github             |
-      | Test Series  | 3  | TEST | 15               | 299           | video        | fetch              |
-    Given the following downloads exist:
-      | download_file_name  | product_id    | description |
-      | test.txt            | 1             | test desc   |
-    And the following videos exist:
-      | product_id | wistia_id |
-      | 1          | 1194803   |
-      | 3          | 1194804   |
-      | 3          | 1194805   |
+      | name         | sku  | individual_price | company_price | product_type | fulfillment_method |
+      | Test Fetch   | TEST | 15               | 50            | video        | fetch              |
+      | Test GitHub  | TEST | 15               | 199           | book         | github             |
+      | Test Series  | TEST | 15               | 299           | video        | fetch              |
+    And the a download exists with file name "test.txt" and description "test desc" for "Test Fetch"
+    And the video with wistia id "1194803" exists for "Test Fetch"
+    And the video with wistia id "1194804" exists for "Test Series"
+    And the video with wistia id "1194805" exists for "Test Series"
 
   Scenario: A visitor signs up for an account through checkout
     When I go to the home page
@@ -140,7 +136,7 @@ Feature: Purchase a Product
     And the coupon form link should be hidden
     And I should see payment options
 
-  @selenium
+  @selenium @allow-rescue
   Scenario: A visitor purchase a product with 100%-off coupon
     Given the following coupon exists:
       | code | discount_type | amount |

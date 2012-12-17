@@ -46,17 +46,15 @@ module NavigationHelpers
       product_url(product)
     when /the watch page for the purchase "([^"]+)"$/
       purchase = Purchase.find_by_lookup!($1)
-      product = purchase.product
-      watch_product_purchase_path(product, purchase)
+      watch_purchase_path(purchase)
     when /the video list for the purchase "([^"]+)"$/
       purchase = Purchase.find_by_lookup!($1)
-      product = purchase.product
-      product_purchase_videos_path(product, purchase)
+      purchase_videos_path(purchase)
     when /the video with id "([^"]+)" for the purchase "([^"]+)"$/
       purchase = Purchase.find_by_lookup!($2)
-      product = purchase.product
+      product = purchase.purchaseable
       video = product.videos.find_by_wistia_id!($1)
-      product_purchase_video_path(product, purchase, video)
+      purchase_video_path(purchase, video)
     when /the URL "([^\"]+)"/
       $1
     else
@@ -101,7 +99,9 @@ module NavigationHelpers
     when 'short description'
       'course_short_description'
     when 'course price'
-      'course_price'
+      'course_individual_price'
+    when 'course company price'
+      'course_company_price'
     when 'start time'
       'course_start_at'
     when 'end time'

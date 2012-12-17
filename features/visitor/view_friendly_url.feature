@@ -7,8 +7,8 @@ Feature: Visitor view friendly URL
     Given today is June 10, 2010
     And a teacher exists with a name of "Ralph Bot"
     And the following course exists:
-      | id | name                | start at | stop at  | price |
-      | 42 | Test-Driven Haskell | 09:00:00 | 12:00:00 | 100   |
+      | id | name                | start at | stop at  | individual_price |
+      | 42 | Test-Driven Haskell | 09:00:00 | 12:00:00 | 100              |
     When I go to the home page
     And I view all products
     And I follow "Test-Driven Haskell"
@@ -18,8 +18,8 @@ Feature: Visitor view friendly URL
     Given today is June 10, 2010
     And a teacher exists with a name of "Ralph Bot"
     And the following course exists:
-      | name                | start at | stop at  | price |
-      | Test-Driven Haskell | 09:00:00 | 12:00:00 | 100   |
+      | name                | start at | stop at  | individual_price |
+      | Test-Driven Haskell | 09:00:00 | 12:00:00 | 100              |
     And the following section exists:
       | id | course                    | starts on     | ends on       |
       | 39 | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |

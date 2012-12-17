@@ -1,8 +1,8 @@
-<%= @registration.name %> is now registered for <%= @registration.section.course_name %>.
+<%= @purchase.name %> is now registered for <%= @purchase.purchaseable_name %>.
 
-<% if @registration.comments.present? -%>
+<% if @purchase.comments.present? -%>
 You provided us with the following comments:
-<%= @registration.comments %>
+<%= @purchase.comments %>
 <% end %>
 If you have any special dietary restrictions, and you have not done so already, please let us know by replying to this email.
 
@@ -11,22 +11,26 @@ If you have any special dietary restrictions, and you have not done so already, 
 <% end -%>
 
 When
-<%= @registration.section.date_range %>
-<%= @registration.section.time_range %>
+<%= @section.date_range %>
+<%= @section.time_range %>
 
 Where
-<%= @registration.section.address %>
-<%= @registration.section.city %>, <%= @registration.section.state %> <%= @registration.section.zip %>
+<%= @section.address %>
+<%= @section.city %>, <%= @section.state %> <%= @section.zip %>
 
-We will be in touch before <%= @registration.section.starts_on.to_s(:simple) %> with a reminder and any further instructions. However, please don't hesitate to get in touch with us at learn@thoughtbot.com should you have any questions or concerns.
+We will be in touch before <%= @section.starts_on.to_s(:simple) %> with a reminder and any further instructions. However, please don't hesitate to get in touch with us at learn@thoughtbot.com should you have any questions or concerns.
 
 Every product and workshop includes ongoing support for any questions you may
 have about the topic, both before and after the course. Visit our live chat here: <%= CHAT_LINK %>
 
-<% if @registration.course.announcement.present? %>
-<%= @registration.course.announcement.message %>
+<% if @section.course.announcement.present? %>
+<%= @section.course.announcement.message %>
 <% end %>
 
-<%= render partial: 'create_account_if_needed', locals: { purchase: @registration } %>
+<% if @section.announcement.present? %>
+<%= @section.announcement.message %>
+<% end %>
 
-Thanks very much, we'll see you on <%= @registration.section.starts_on.to_s(:simple) %>!
+<%= render partial: 'create_account_if_needed', locals: { purchase: @purchase } %>
+
+Thanks very much, we'll see you on <%= @section.starts_on.to_s(:simple) %>!

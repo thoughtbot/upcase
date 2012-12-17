@@ -42,8 +42,8 @@ end
 
 When /^a video download product named "([^"]*)"$/ do |product_name|
   product = create(:product, fulfillment_method: "fetch", name: product_name, product_type: 'video')
-  create(:download, download_file_name: "test.txt", description: "test desc", product: product)
-  create(:video, product: product)
+  create(:download, download_file_name: "test.txt", description: "test desc", purchaseable: product)
+  create(:video, purchaseable: product)
 end
 
 Given /^there is a github product named "([^"]*)"$/ do |product_name|

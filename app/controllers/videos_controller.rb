@@ -7,19 +7,18 @@ class VideosController < ApplicationController
   def show
     load_context
     redirect_if_unpaid and return
-    @video = @product.videos.find(params[:id])
+    @video = @purchase.purchaseable.videos.find(params[:id])
   end
 
   private
 
   def load_context
-    @product = Product.find(params[:product_id])
-    @purchase = @product.purchases.find_by_lookup!(params[:purchase_id])
+    @purchase = Purchase.find_by_lookup!(params[:purchase_id])
   end
 
   def redirect_if_unpaid
     if !@purchase.paid?
-      redirect_to product_path(@product)
+      redirect_to root_path
     end
   end
 end
