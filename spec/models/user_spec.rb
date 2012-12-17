@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe User do
   context "associations" do
+    it { should have_many(:paid_purchases) }
+    it { should have_many(:paid_registrations) }
     it { should have_many(:purchases) }
     it { should have_many(:registrations) }
   end
@@ -19,22 +21,24 @@ describe User do
   end
 
   describe "#has_purchased?" do
-    it "returns true if the user has any registrations" do
+    it "returns true if the user has any paid registrations" do
       user = build_stubbed(:user)
-      user.stubs(:registrations).returns([stub])
+      user.stubs(:paid_registrations).returns([stub])
 
       user.should have_purchased
     end
 
-    it "returns true if the user has any purchases" do
+    it "returns true if the user has any paid purchases" do
+      user = build_stubbed(:user)
+      user.stubs(:paid_purchases).returns([stub])
+
+      user.should have_purchased
+    end
+
+    it "returns false if the user has no paid registrations or purchases" do
       user = build_stubbed(:user)
       user.stubs(:purchases).returns([stub])
-
-      user.should have_purchased
-    end
-
-    it "returns false if the user has no registrations or purchases" do
-      user = build_stubbed(:user)
+      user.stubs(:registrations).returns([stub])
       user.should_not have_purchased
     end
   end

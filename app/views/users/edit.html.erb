@@ -21,18 +21,18 @@
 
     <% if current_user.has_purchased? %>
       <section id="account-sidebar">
-        <% if current_user.purchases.present? %>
+        <% if current_user.paid_purchases.present? %>
           <h2>Your purchases</h2>
           <h3 class="first-purchase">Products</h3>
           <ol class="purchases">
-            <%= render current_user.purchases %>
+            <%= render current_user.paid_purchases %>
           </ol>
         <% end %>
 
-        <% if current_user.registrations.present? %>
+        <% if current_user.paid_registrations.present? %>
           <h3>Workshops</h3>
           <ol class="workshops">
-            <%= render current_user.registrations %>
+            <%= render current_user.paid_registrations %>
           </ol>
         <% end %>
         <p class="chat">Every product includes support for any questions you may have about the topic. Visit our <%= link_to "live chat", CHAT_LINK %>.</p>
