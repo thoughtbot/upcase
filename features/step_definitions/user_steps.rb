@@ -1,11 +1,11 @@
-Given /^I have (\d+) (workshops|purchases)$/ do |count, type|
+Given /^I have (\d+) paid (workshops|purchases)$/ do |count, type|
   user = User.last
 
   count.to_i.times do
     if type == 'workshops'
-      user.registrations << create(:registration)
+      user.registrations << create(:registration, paid: true)
     else
-      user.purchases << create(:purchase)
+      user.purchases << create(:purchase, paid: true)
     end
   end
 end

@@ -3,6 +3,10 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :first_name, :github_username, :last_name, :password, :auth_provider, :auth_uid
 
+  has_many :paid_purchases, class_name: 'Purchase',
+    conditions: { paid: true }
+  has_many :paid_registrations, class_name: 'Registration',
+    conditions: { paid: true }
   has_many :purchases
   has_many :registrations
 
@@ -48,7 +52,7 @@ class User < ActiveRecord::Base
   end
 
   def has_purchased?
-    registrations.present? || purchases.present?
+    paid_registrations.present? || paid_purchases.present?
   end
 
   private
