@@ -65,5 +65,5 @@ Then /^the purchase link should link to the external product$/ do
 end
 
 When /^I view the product "([^"]*)"$/ do |name|
-  visit product_url(Product.find_by_name!(name))
+  visit product_path(Product.find_by_name!(name))
 end
