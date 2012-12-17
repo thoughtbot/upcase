@@ -48,7 +48,7 @@ Feature: Purchase a Product
     And I should see the download links for video with id "1194803"
     And I should see a list of other products
 
-  @selenium
+  @selenium @allow-rescue
   Scenario: A user purchases a product with stripe with existing credit card
     Given I have signed up with "user@example.com"
     And I sign in with "user@example.com"
