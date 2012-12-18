@@ -1,6 +1,17 @@
 require 'spec_helper'
 
 describe EpisodesController do
+  describe '#index' do
+    it 'renders the response with etag and last_modified' do
+      episode = create(:episode)
+      get :index
+      key = ActiveSupport::Cache.expand_cache_key(episode)
+      etag = %("#{Digest::MD5.hexdigest(key)}")
+      response.headers["ETag"].should eq etag
+      response.headers["Last-Modified"].should eq episode.updated_at.httpdate
+    end
+  end
+
   describe '#index as xml' do
     it 'renders the index template for published episodes' do
       Episode.stubs(:published).returns([build_stubbed(:episode)])
