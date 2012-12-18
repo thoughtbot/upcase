@@ -401,6 +401,7 @@ DEPENDENCIES
   paperclip (= 3.0.2)
   paypal-express (= 0.4.6)
   pg (= 0.13.2)
+  rack-cache (= 1.2)
   rack-rewrite (= 1.2.1)
   rack-ssl-enforcer (= 0.2.4)
   rails (= 3.2.8)
