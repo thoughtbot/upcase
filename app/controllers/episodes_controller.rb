@@ -1,7 +1,7 @@
 class EpisodesController < ApplicationController
   def index
     @episodes = Episode.published
-    fresh_when(@episodes.first)
+    fresh_when(@episodes.first, public: true)
   end
 
   def show
