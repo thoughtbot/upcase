@@ -1,5 +1,6 @@
 class EpisodesController < ApplicationController
   def index
+    expires_in 1.hour, :public => true
     @episodes = Episode.published
     fresh_when(@episodes.first, public: true)
   end
