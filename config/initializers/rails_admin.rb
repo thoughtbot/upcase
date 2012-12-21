@@ -1,3 +1,5 @@
+require 'rails_admin/config/actions/purchase_accounting'
+
 module RailsAdmin
   module Config
     module Actions
@@ -27,6 +29,7 @@ RailsAdmin.config do |config|
   config.actions do
     init_actions!
     purchase_refund
+    purchase_accounting
   end
 
   config.model Purchase do
@@ -38,6 +41,21 @@ RailsAdmin.config do |config|
       field :purchaseable_type do
         visible true
         filterable true
+      end
+      include_all_fields
+    end
+
+    export do
+      field :purchaseable_name do
+        visible true
+        filterable true
+      end
+      field :price do
+        visible true
+        filterable true
+      end
+      field :created_at do
+        export_value { value.to_s }
       end
       include_all_fields
     end
