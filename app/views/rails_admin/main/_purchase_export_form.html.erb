@@ -1,0 +1,9 @@
+<%= form_tag export_path(:purchase, all: true, f: month_filter(date)) do %>
+  <input type='hidden' name='csv' value='1'>
+  <input type='hidden' name='send_data' value='true'>
+  <% %w(id name email paid payment_method payment_transaction_id
+    purchaseable_name price created_at).each do |field| %>
+    <input type='hidden' name='schema[only][]' value='<%= field %>'>
+  <% end %>
+  <button type='submit'><%= date.to_s(:month) %></button>
+<% end %>

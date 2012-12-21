@@ -4,6 +4,12 @@ en:
       purchase_refund:
         menu:
           Refund Purchase
+      purchase_accounting:
+        menu: Accounting
+        title: Accounting
+        breadcrumb: Accounting
+    misc:
+      filter_date_format: '%D'
 
   layouts:
     application:

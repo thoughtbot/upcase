@@ -6,6 +6,13 @@ Given /^an unpaid purchase for "([^"]*)" with lookup "([^"]*)"$/ do |product_nam
   purchase.save!
 end
 
+Given /^the following purchases exist for the product "([^"]*)":$/ do |product_name, purchase_attributes|
+  product = Product.find_by_name!(product_name)
+  purchase_attributes.hashes.each do |row|
+    create(:purchase, row.merge(purchaseable: product))
+  end
+end
+
 When /^I apply coupon code "([^"]*)" to product named "([^"]*)"$/ do |coupon_code, product_name|
   visit products_path
   click_link product_name
