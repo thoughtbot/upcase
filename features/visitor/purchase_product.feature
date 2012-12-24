@@ -71,6 +71,16 @@ Feature: Purchase a Product
 
   @selenium
   Scenario: A visitor purchases a product with stripe
+    When I go to the home page
+    And I view all products
+    And I follow "Test Fetch"
+    And I follow "Purchase for Yourself"
+    Then I should see "$15"
+    When I pay using Stripe
+    Then I should see that product "Test Fetch" is successfully purchased
+
+  @selenium
+  Scenario: A visitor purchases a product with stripe with a failure
     Given stripe is stubbed with a failure
     When I go to the home page
     And I view all products

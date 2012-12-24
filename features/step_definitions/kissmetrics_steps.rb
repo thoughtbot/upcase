@@ -1,6 +1,14 @@
-Then /^KISSmetrics receives the "([^"]*)" event with:$/ do |event_name, table|
-  properties = table.rows_hash
+def massage_property_value_types(properties)
+  properties.each do |key, value|
+    if key == 'Order Total'
+      properties[key] = value.to_i
+    end
+  end
+  properties
+end
 
+Then /^KISSmetrics receives the "([^"]*)" event with:$/ do |event_name, table|
+  properties = massage_property_value_types(table.rows_hash)
   if using_javascript_driver?
     kmq = JSON.parse(page.evaluate_script("JSON.stringify(_kmq)"))
     matched_event = kmq.detect { |call| call == ["record", event_name, properties] }
@@ -33,7 +41,7 @@ Then /^KISSmetrics receives the following properties:$/ do |table|
 end
 
 Then /^KISSmetrics receives the "([^"]+)" event for "([^"]+)" over HTTP with:$/ do |event_name, email, table|
-  properties = table.rows_hash
+  properties = massage_property_value_types(table.rows_hash)
   FakeKissmetrics.events_for(email).should include(event_name)
   FakeKissmetrics.properties_for(email, event_name).should include properties
 end

@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
 
-    ab_test_chrome_screencast
+    km.record("Viewed Product", { "Product Name" => @product.name })
   end
 
   private
