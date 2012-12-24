@@ -13,9 +13,6 @@ Feature: Registering for a followup
     When I follow "Test-Driven Haskell"
     And I fill in "follow_up_email" with "foo@example.com"
     And I press "Submit"
-    Then I should see "We will contact you when we schedule Test-Driven Haskell."
-    And KISSmetrics receives the "Requested Followup" event with:
-      | Course Name | Test-Driven Haskell |
     And I should be on the home page
     When the following section exists:
       | id   | course                    | starts on     | ends on       |
@@ -51,7 +48,6 @@ Feature: Registering for a followup
     When I follow "Test-Driven Haskell"
     And I press "Submit"
     Then I should see "Could not save follow up. Please check your email address."
-    And KISSmetrics does not receive the "Followed up" event
     When I go to the home page
     And I view all products
     When I follow "Test-Driven Haskell"
@@ -72,7 +68,6 @@ Feature: Registering for a followup
     When I follow "Test-Driven Haskell"
     And I press "Submit"
     Then I should see "Could not save follow up. Please check your email address."
-    And KISSmetrics does not receive the "Followed up" event
     When I go to the home page
     And I view all products
     When I follow "Test-Driven Haskell"

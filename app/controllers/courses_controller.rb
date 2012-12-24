@@ -7,5 +7,6 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @sections = @course.sections.active
     @section_teachers = @sections.unique_section_teachers_by_teacher
+    km.record("Viewed Product", { "Product Name" => @course.name })
   end
 end

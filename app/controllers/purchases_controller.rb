@@ -5,7 +5,7 @@ class PurchasesController < ApplicationController
     @purchase.defaults_from_user(current_user)
     @active_card = retrieve_active_card
     track_chrome_screencast_ab_test_completion
-    km.record("Started Purchase", { "Product Name" => @purchaseable.name })
+    km.record("Checkout", { "Product Name" => @purchaseable.name, "Order Total" => @purchase.price })
   end
 
   def create
@@ -22,7 +22,8 @@ class PurchasesController < ApplicationController
     end
 
     if @purchase.save
-      km_http_client.record(@purchase.email, "Submitted Purchase", { "Product Name" => @purchaseable.name })
+      km_http_client.record(@purchase.email, "Submit Payment", { "Product Name" => @purchaseable.name, "Order Total" => @purchase.price })
+      track_purchase_if_paid(@purchase)
       redirect_to @purchase.success_url
     else
       @active_card = retrieve_active_card
@@ -36,6 +37,7 @@ class PurchasesController < ApplicationController
     unless @purchase.paid?
       redirect_to @purchaseable
     end
+    km.record("View Receipt", { "Product Name" => @purchaseable.name })
   end
 
   def watch
@@ -55,11 +57,17 @@ class PurchasesController < ApplicationController
   def paypal
     @purchase = Purchase.find_by_lookup(params[:id])
     @purchase.complete_paypal_payment!(params[:token], params[:PayerID])
-
+    track_purchase_if_paid(@purchase)
     redirect_to @purchase
   end
 
   private
+
+  def track_purchase_if_paid(purchase)
+    if purchase.paid?
+      km_http_client.record(purchase.email, "Purchased", { "Product Name" => purchase.purchaseable.name, "Order Total" => @purchase.price })
+    end
+  end
 
   def purchaseable
     if params[:product_id]
