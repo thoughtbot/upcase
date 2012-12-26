@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require retina
 
 $("#total a").click(function() {
   $(".coupon").show();

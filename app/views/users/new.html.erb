@@ -1,26 +1,24 @@
-<section id="container">
-  <section id="form-container">
-    <h2>Sign up</h2>
-    <div class="github-signin">
-      <%= link_to "Sign in with GitHub", github_auth_path %>
-    </div>
-    <div class="or-signin">
-    or
-    </div>
-    <div class="thoughtbot-signin">
-      <%= semantic_form_for @user do |form| %>
-        <%= hidden_field_tag :return_to, params[:return_to] if params[:return_to] %>
-        <%= form.inputs do %>
-          <%= form.input :first_name %>
-          <%= form.input :last_name %>
-          <%= form.input :email, as: :email %>
-          <%= form.input :password %>
-        <% end %>
-
-        <%= form.actions do %>
-          <%= form.action :submit, label: 'Sign up' %>
-        <% end %>
+<section id="form-container">
+  <h2>Sign up</h2>
+  <div class="github-signin">
+    <%= link_to "Sign in with GitHub", github_auth_path %>
+  </div>
+  <div class="or-signin">
+  or
+  </div>
+  <div class="thoughtbot-signin">
+    <%= semantic_form_for @user do |form| %>
+      <%= hidden_field_tag :return_to, params[:return_to] if params[:return_to] %>
+      <%= form.inputs do %>
+        <%= form.input :first_name %>
+        <%= form.input :last_name %>
+        <%= form.input :email, as: :email %>
+        <%= form.input :password, required: true %>
       <% end %>
-    </div>
-  </section>
+
+      <%= form.actions do %>
+        <%= form.action :submit, label: 'Sign up' %>
+      <% end %>
+    <% end %>
+  </div>
 </section>

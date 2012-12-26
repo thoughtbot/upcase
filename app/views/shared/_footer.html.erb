@@ -1,6 +1,6 @@
-<footer id="main-footer">
+<footer>
   <nav>
-    <section id="thoughtbot-footer">
+    <section id="thoughtbot">
       <h3><a href="http://thoughtbot.com/about">Our people</a></h3>
       <ul>
         <li><a href="http://thoughtbot.com/contact">Contact us</a></li>
@@ -11,7 +11,7 @@
       </ul>
     </section>
 
-    <section id="footer-products">
+    <section id="products">
       <h3><a href="http://playbook.thoughtbot.com">Our way</a></h3>
       <ul>
         <li><a href="http://playbook.thoughtbot.com">Playbook</a></li>
@@ -21,7 +21,7 @@
       </ul>
     </section>
 
-    <section id="current-workshops-footer">
+    <section id="current-workshops">
       <h3><a href="http://learn.thoughtbot.com/">Our workshops</a></h3>
       <ul></ul>
     </section>
@@ -48,8 +48,7 @@
   function workshops(resp) {
     var courses = resp;
     $('#current-workshops .loading').replaceWith('<ul/>');
-    $('#current-workshops-footer .loading').replaceWith('<ul/>');
-    $ul = $('#current-workshops-footer ul');
+    $ul = $('#current-workshops ul');
     for (var i=0; i<courses.length; i++) {
       var c = courses[i]['course'];
       var name = c['name'] || null;

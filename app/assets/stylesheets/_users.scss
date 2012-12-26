@@ -1,0 +1,63 @@
+body.users-edit {
+
+  form {
+    li {
+      &#user_first_name_input {
+        float: left;
+        margin-right: flex-gutter();
+        width: flex-grid(6);
+      }
+
+      &#user_last_name_input {
+        float: left;
+        margin-top: 24px;
+        width: flex-grid(6);
+      }
+    }
+  }
+
+  #account-sidebar {
+    padding: 21px 0 0 0;
+
+    h2 {
+      font-size: 24px;
+      font-weight: 600;
+      text-rendering: optimizeLegibility;
+    }
+
+    h3 {
+      margin-left: 10px;
+      margin-top: 18px;
+      text-rendering: optimizeLegibility;
+    }
+
+    ol {
+      margin-top: 10px;
+
+      li {
+        background-color: #efefef;
+        font-size: 16px;
+        margin-bottom: 2px;
+        padding: 10px;
+        width: 100%;
+
+        a {
+          font-size: 16px;
+          font-style: normal;
+        }
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    span {
+      color: #999;
+    }
+
+    p.chat {
+      margin-top: 20px;
+    }
+  }
+}

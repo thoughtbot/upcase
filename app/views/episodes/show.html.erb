@@ -1,38 +1,34 @@
-<%= render 'header' %>
+<% content_for :subject, t('shared.podcast') %>
 
-<section class="learn-detail-content">
-  <%= render 'introduction' %>
+<%= render 'introduction' %>
 
-  <div class="learn-text-box-wrapper">
-    <div class="learn-text-box course-box">
-      <h2>Episode #<%= @episode.id %></h1>
-      <h3><%= @episode.title %></h2>
-      <p><%= @episode.description %></p>
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <h2>Episode #<%= @episode.id %></h1>
+    <h3><%= @episode.title %></h2>
+    <p><%= @episode.description %></p>
 
-      <div class="listen">
-        <audio preload="none" controls="controls">
-          <source src="<%= episode_path(@episode, format: :mp3) %>" type="audio/mpeg" />
-        </audio>
-        <%= link_to "Direct Download", episode_path(@episode, format: :mp3) %> (<%= number_to_human_size @episode.file_size, precision: 2 %>, <%= distance_of_time_in_words @episode.duration %>)
-      </div>
-
-      <% unless @episode.notes.blank? %>
-        <h3>Notes &amp; Links</h3>
-        <p class="notes">
-          <%== format_podcast_notes @episode.notes %>
-        </p>
-      <% end %>
-
-      <section id="podcast-questions">
-        <h3>To have your questions answered on the air</h3>
-        <p>Email your questions to <a href="mailto:info@thoughtbot.com">info@thoughtbot.com</a> or Tweet to us <a href="http://twitter.com/thoughtbot">@thoughtbot</a>.</p>
-      </section>
+    <div class="listen">
+      <audio preload="none" controls="controls">
+      <source src="<%= episode_path(@episode, format: :mp3) %>" type="audio/mpeg" />
+      </audio>
+      <%= link_to "Direct Download", episode_path(@episode, format: :mp3) %> (<%= number_to_human_size @episode.file_size, precision: 2 %>, <%= distance_of_time_in_words @episode.duration %>)
     </div>
-  </div>
-  <%= render 'topics/related' %>
-</section>
-<%= render 'credits' %>
 
-<% content_for :javascript do %>
-  <%= javascript_include_tag 'retina' %>
-<% end %>
+    <% unless @episode.notes.blank? %>
+      <h3>Notes &amp; Links</h3>
+      <p class="notes">
+      <%== format_podcast_notes @episode.notes %>
+      </p>
+    <% end %>
+
+    <section id="podcast-questions">
+    <h3>To have your questions answered on the air</h3>
+    <p>Email your questions to <a href="mailto:info@thoughtbot.com">info@thoughtbot.com</a> or Tweet to us <a href="http://twitter.com/thoughtbot">@thoughtbot</a>.</p>
+    </section>
+  </div>
+
+  <%= render 'credits' %>
+</div>
+
+<%= render 'topics/related' %>

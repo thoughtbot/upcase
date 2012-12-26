@@ -1,0 +1,320 @@
+body.products-index {
+  section#promo-wrapper {
+    @include outer-container;
+    margin: 0 auto;
+    padding: 0 1em 3em 1em;
+    text-align: center;
+
+    .products-container {
+      @include span-columns(4);
+      text-align: left;
+
+      h2 {
+        color: $learnred;
+      }
+
+      p {
+        font-style: normal;
+      }
+
+      ul {
+        li {
+          margin-bottom: 30px;
+        }
+
+        li p {
+          margin-top: 6px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+    .products-container {
+      width: 100% !important;
+    }
+  }
+}
+
+body.products-show, body.courses-show {
+  section.content {
+    .text-box {
+      .what-you-learn {
+        @include outer-container;
+        background-color: $lightwarmgray;
+        border-radius: 3px;
+        margin: 28px 0 28px 0;
+        padding: 2em;
+
+        h3 {
+          text-transform: uppercase;
+          text-align: center;
+          font-size: 17px;
+        }
+
+        ul {
+          margin-top: 12px;
+        }
+
+        li {
+          @include span-columns (6);
+          margin-left: 0;
+          margin-top: 6px;
+          padding: 4px;
+          display: inline;
+
+          &:nth-child(2n) {
+            margin-right: 0;
+          }
+        }
+      }
+
+      #faq {
+        margin-top: 30px;
+
+        dt {
+          margin-top: 16px;
+        }
+
+        dt p {
+          font-weight: 600;
+          margin-bottom: 4px;
+        }
+      }
+
+      #book-graphic {
+        box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.35);
+        float: right;
+        margin: 15px 0 20px 25px;
+        position: relative;
+        @include transition;
+        width: 185px;
+
+        &:hover {
+          bottom: 3px;
+        }
+
+        img {
+          display: block;
+        }
+
+        .title {
+          background: hsla(0, 0%, 22%, 0.75);
+          bottom: 50px;
+          color: white;
+          font-size: 18px;
+          left: 0;
+          padding: 10px 0;
+          position: absolute;
+          text-align: center;
+          text-shadow: 0 1px 0 hsla(0, 0%, 0%, 0.45);
+          width: 100%;
+        }
+
+        a:hover .title {
+          background: rgba($learnred, 0.75);
+          @include transition;
+        }
+      }
+
+      #table-of-contents {
+        margin-top: 40px;
+      }
+
+      .teachers {
+        margin-top: 30px;
+        padding-bottom: 0;
+        position: relative;
+
+        li {
+          margin-left: 0;
+        }
+
+        img {
+          border-radius: 3px;
+          float: left;
+          margin: 0 20px 20px 0;
+          vertical-align: text-top;
+        }
+
+        h2 {
+          font-size: auto;
+          line-height: 28px;
+          margin: 12px 0 12px 0;
+          padding: 0;
+
+          span {
+            color: $warmgray;
+            display: block;
+            font-size: 18px;
+          }
+        }
+
+        .bio {
+          margin-left: 114px;
+        }
+      }
+    }
+
+    aside {
+      .when, .address {
+        h3 {
+          color: $warmgray;
+          text-shadow: 0 1px 0 #fff;
+        }
+      }
+
+      .button {
+        height: auto;
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        width: 100%;
+
+        &:active {
+          margin-bottom: 24px;
+        }
+      }
+
+      .section-location, #license {
+        h4.discount-title {
+          color: $darkwarmgray;
+          font-size: 18px;
+          text-align: center;
+          margin: 12px 0 24px;
+        }
+
+        h2 span {
+          font: 300 36px $sans-serif;
+
+          &.original-price {
+            color: lighten($darkwarmgray, 22%);
+            font-size: 24px;
+            margin-left: 10px;
+            margin-top: 7px;
+            position: absolute;
+            -webkit-font-smoothing: antialiased;
+
+            &::after {
+              background-image: image_url("icons/brush.png");
+              content: "";
+              height: 33px;
+              left: -3px;
+              position: absolute;
+              top: -3px;
+              width: 60px;
+            }
+          }
+        }
+
+        div {
+          margin-top: 20px;
+        }
+
+        .address a {
+          color: $darkwarmgray;
+        }
+
+        .license {
+          margin-top: 0;
+
+          p {
+            font-size: 14px;
+            margin-top: -14px;
+            text-align: center;
+          }
+        }
+
+        .license-button {
+          text-transform: uppercase;
+        }
+
+        .when {
+          margin-top: 0;
+        }
+      }
+
+      .section-location:nth-child(2n) {
+        margin-top: 30px;
+      }
+
+      #terms {
+        margin-top: 10px;
+
+        dt p {
+          font-style: italic;
+        }
+      }
+
+      .travel {
+        font-size: 16px;
+        font-style: italic;
+        margin-top: 20px;
+      }
+    }
+  }
+
+  #additional-information {
+    background: $warmgray url("learn/learn-arrows-top.png") repeat-x left top;
+    background-color: $warmgray;
+
+    #additional-information-wrapper {
+      @include outer-container;
+      padding: 3em 0 3em 0;
+
+      #main-content {
+        @include span-columns(12);
+        padding: 0 2em;
+      }
+
+      form {
+        padding-top: 2em;
+      }
+
+      input[type="text"] {
+          border: none;
+          @include border-radius(4px);
+          @include box-sizing(border-box);
+          font-size: 14px;
+          margin: 0 0 12px 0;
+          padding: 18px 30px;
+          width: 50%;
+          vertical-align: top;
+        }
+
+      input[type="submit"] {
+        margin-left: 14px;
+        padding: 18px 40px 31px 40px;
+        text-transform: uppercase;
+      }
+
+      h4 {
+        text-shadow: none;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-family: $sans-serif;
+        font-style: normal;
+        font-size: 14px;
+      }
+
+      ul li {
+        color: $darkwarmgray;
+      }
+    }
+  }
+
+  @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+    #additional-information {
+      input[type="text"] {
+        display: block;
+        width: 100% !important;
+      }
+
+      input[type="submit"] {
+        margin-left:  0 !important;
+        width: 100%;
+      }
+    }
+  }
+}

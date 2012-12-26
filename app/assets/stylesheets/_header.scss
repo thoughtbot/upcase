@@ -1,59 +1,135 @@
-header#main-header {
-  @extend .wrapper;
-  @extend .clearfix;
+section#header-wrapper {
+  background: $warmgray url("learn/learn-arrows.png") repeat-x left bottom;
   margin: 0 auto;
-  width: $app-width;
+  width: 100%;
 
-  border-bottom: 1px solid #DCDCDC;
-  padding-bottom: 24px;
+  .header-container {
+    @include outer-container;
+    max-width: 1100px;
+    padding: 2em;
 
-  h1 {
-    float: left;
-    margin: 42px 0 24px;
-
-    a {
-      background: url('/images/thoughtbot-logo.png') 0 0 no-repeat;
-      display: block;
-      height: 65px;
-      text-indent: -9999px;
-      width: 242px;
+    .subject {
+      color: $learnred;
     }
-  }
-  
-  #log_in_out {
-    display: inline;
-    
-    a {
-      display: inline;
+
+    .logo, .intro {
+      -webkit-font-smoothing: antialiased;
+      color: $darkwarmgray;
+      font: italic 300 20px $serif;
+      padding: 1em;
     }
-  }
 
-  ul {
-    display: block;
-    float: right;
-    margin-top: 72px;
+    .intro {
+      margin: 0 auto;
+      text-align: center;
+      width: 65%;
+    }
 
-    @extend .clearfix;
+    .logo {
+      text-align: center;
+    }
 
-    li {
+    .logo img {
+      vertical-align: -20px;
+    }
+
+    .detail-logo {
+      @include outer-container;
       float: left;
+      width: 100%;
 
-      a {
-        color: #2b2b2b;
-        display: block;
-        font: 500 16px $sans-serif;
-        line-height: 20px;
-        margin: 0 20px;
-        text-decoration: none;
-        //@include transition(color .2s);
+      img {
+        vertical-align: -15px;
+      }
 
+      h1 {
+        @include span-columns(10);
+        font-size: 55px;
+        line-height: 40px;
+        padding-left: 240px;
+        text-align: left;
+        text-indent: -240px;
+      }
 
+      .myaccount {
+        @include span-columns(2);
+        float: right;
+        text-transform: uppercase;
+        margin-top: 9px;
 
-        &:hover {
-          color: $red;
-          text-decoration: none;
+        .button {
+          background-color: $lightwarmgray;
+          border-bottom: none;
+          color: $warmgray;
+          padding-top: 15px;
+          width: 100%;
+
+          &:hover {
+            background-color: white;
+            color: $darkwarmgray;
+          }
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 910px) {
+  .logo {
+    text-align: center;
+  }
+}
+
+@media screen and (max-device-width: 800px), screen and (max-width: 800px) {
+  .logo img, .detail-logo img {
+    display: block;
+    margin: 0 auto 10px auto;
+  }
+
+  .detail-logo {
+    float: none !important;
+    text-align: center;
+
+    h1 {
+      line-height: 56px !important;
+      width: 100% !important;
+      text-align: center !important;
+      text-indent: 0 !important;
+      padding-left: 0 !important;
+    }
+
+    .myaccount {
+      right: 2em !important;
+      margin-top: -33px !important;
+      position: absolute;
+      width: 100px !important;
+    }
+  }
+
+  section#header-wrapper .header-container .intro {
+    padding-top: 0;
+  }
+
+  section#header-wrapper .header-container .detail-logo h1 {
+    text-indent: 0;
+    padding-left: 0;
+  }
+}
+
+@media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+  section#header-wrapper .header-container .intro {
+    font-size: 18px;
+    width: 95%;
+  }
+
+  .detail-logo {
+    float: auto;
+  }
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 1.5) {
+  section#header-wrapper {
+    background: $warmgray url("learn/learn-arrows@2x.png") repeat-x left bottom;
+    background-size: 44px 8px;
   }
 }

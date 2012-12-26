@@ -1,37 +1,34 @@
-<section id="container">
-  <h1>Your Information and Purchases</h1>
-  <section id="form-container">
-    <section id="form-column">
-      <%= semantic_form_for current_user, url: my_account_path do |form| %>
-        <%= form.inputs 'Your Information' do %>
-          <%= form.input :first_name, label: 'Your Name', input_html: { placeholder: "First name" } %>
-          <%= form.input :last_name, label: false, input_html: { placeholder: "Last name" } %>
-          <%= form.input :email, as: :email %>
-          <%= form.input :github_username %>
-          <% if !current_user.external_auth? %>
-            <%= form.input :password %>
-          <% end %>
-        <% end %>
+<%= content_for :subject, 'Account' %>
 
-        <%= form.actions do %>
-          <li><%= form.submit 'Update account' %></li>
-        <% end %>
+<div class="text-box-wrapper">
+  <%= semantic_form_for current_user, url: my_account_path do |form| %>
+    <%= form.inputs "Your Information [#{link_to('Sign out', sign_out_path, method: :delete)}]" do %>
+      <%= form.input :first_name, label: 'Your Name', input_html: { placeholder: "First name" } %>
+      <%= form.input :last_name, label: false, input_html: { placeholder: "Last name" } %>
+      <%= form.input :email, as: :email %>
+      <%= form.input :github_username %>
+      <% if !current_user.external_auth? %>
+        <%= form.input :password %>
       <% end %>
-    </section>
-
-    <% if current_user.has_purchased? %>
-      <section id="account-sidebar">
-        <% if current_user.paid_purchases.present? %>
-          <h2>Your purchases</h2>
-          <h3 class="first-purchase">Products</h3>
-          <ol class="purchases">
-            <%= render current_user.paid_purchases %>
-          </ol>
-        <% end %>
-
-        <p class="chat">Every product includes support for any questions you may have about the topic. Visit our <%= link_to "live chat", CHAT_LINK %>.</p>
-      </section>
     <% end %>
 
-  </section>
+    <%= form.actions do %>
+      <li><%= form.submit 'Update account' %></li>
+    <% end %>
+  <% end %>
+</div>
+
+<% if current_user.has_purchased? %>
+  <aside id="account-sidebar">
+    <% if current_user.paid_purchases.present? %>
+      <h3>Your purchases</h3>
+      <ol class="purchases">
+        <%= render current_user.paid_purchases %>
+      </ol>
+    <% end %>
+
+    <p class="chat">Every product includes support for any questions you may have about the topic. Visit our <%= link_to "live chat", CHAT_LINK %>.</p>
+  </aside>
+<% end %>
+
 </section>

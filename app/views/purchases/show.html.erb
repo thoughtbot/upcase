@@ -1,100 +1,88 @@
-<section id="learn-header-wrapper">
-  <div class="learn-header-container">
-    <div class="learn-detail-logo">
-      <h1>
-        <%= link_to image_tag('learn/learn-ralph-small.png'), root_path %>
-        <%= t 'shared.learn' %>
-        <span class="learnred"><%= @purchase.purchaseable_name %></span>
-      </h1>
+<% content_for :subject, @purchase.purchaseable_name %>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <section class="screen">
+    <h2>Thank you for purchasing <%= @purchase.purchaseable_name %>.</h2>
+    <div class="video-button-wrapper">
+      <% if @purchase.purchaseable.videos.any? %>
+        <%=link_to "Watch or download video", watch_purchase_path(@purchase), :class => "button get-video" %>
+      <% end %>
     </div>
-  </div>
-</section>
 
-<section class="learn-detail-content">
-  <div class="learn-text-box-wrapper">
-    <div class="learn-text-box course-box">
-      <section class="screen">
-      <h2>Thank you for purchasing <%= @purchase.purchaseable_name %>.</h2>
-      <div class="video-button-wrapper">
-        <% if @purchase.purchaseable.videos.any? %>
-          <%=link_to "Watch or download video", watch_purchase_path(@purchase), :class => "button get-video" %>
-        <% end %>
-      </div>
+      <% unless @purchase.purchaseable.downloads.empty? %>
+        <h3>DOWNLOAD FILES</h3>
+        <p>You should also receive an email with the link to this page. If the download links expire, you can reload this web page to get valid links again.</p>
+        <ul class = "download_items">
+          <% @purchase.purchaseable.downloads.each do |download|%>
+            <li>
+              <%= link_to download.display_name, (download.download.respond_to?(:expiring_url) ? download.download.expiring_url(300) : download.download.url), target: "_blank" %>
+              <p><%= download.description %></p>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
 
-        <% unless @purchase.purchaseable.downloads.empty? %>
-          <h3>DOWNLOAD FILES</h3>
-          <p>You should also receive an email with the link to this page. If the download links expire, you can reload this web page to get valid links again.</p>
-          <ul class = "download_items">
-            <% @purchase.purchaseable.downloads.each do |download|%>
-              <li>
-                <%= link_to download.display_name, (download.download.respond_to?(:expiring_url) ? download.download.expiring_url(300) : download.download.url), target: "_blank" %>
-                <p><%= download.description %></p>
-              </li>
-            <% end %>
-          </ul>
-        <% end %>
+    <% if @purchase.purchaseable.fulfillment_method == "github" -%>
+      <p>You have been added to the GitHub repo at <%= link_to @purchase.purchaseable.github_url, @purchase.purchaseable.github_url %>.</p>
+      <p>You should also receive a notification from GitHub. Please contact us at <%= mail_to "learn@thoughtbot.com", "learn@thoughtbot.com" %> if you do not get access to this repository.</p>
+    <% end -%>
 
-      <% if @purchase.purchaseable.fulfillment_method == "github" -%>
-        <p>You have been added to the GitHub repo at <%= link_to @purchase.purchaseable.github_url, @purchase.purchaseable.github_url %>.</p>
-        <p>You should also receive a notification from GitHub. Please contact us at <%= mail_to "learn@thoughtbot.com", "learn@thoughtbot.com" %> if you do not get access to this repository.</p>
+    <p class="chat">Every <%= @purchase.purchaseable.product_type %> includes support for any questions you may have about the topic. Visit our <%= link_to "live chat", CHAT_LINK %>.</p>
+    </section>
+
+    <section class="receipt"><hr>
+    <h3>Receipt #<%= @purchase.id %> on <em><%= @purchase.created_at.to_s(:short_date) %></em></h3>
+
+    <p class="billing-address">
+      <strong>Bill To</strong><br/>
+      <%= @purchase.name %><br/>
+      <% unless @purchase.organization.blank? -%>
+        <%= @purchase.organization %><br/>
       <% end -%>
+      <%= @purchase.address1 %><br/>
+      <% unless @purchase.address2.blank? -%>
+        <%= @purchase.address2 %><br/>
+      <% end -%>
+      <%= @purchase.city %>, <%= @purchase.state %> <%= @purchase.zip_code %>
+    </p>
 
-      <p class="chat">Every <%= @purchase.purchaseable.product_type %> includes support for any questions you may have about the topic. Visit our <%= link_to "live chat", CHAT_LINK %>.</p>
-      </section>
+    <p class="billing-address">
+      <strong>Sold by</strong><br/>
+      thoughtbot, inc.<br/>
+      228 Park Ave S #19298<br/>
+      New York NY  10003<br/>
+      United States <br/>
+      Phone:<br/>
+      1 (877) 976-2687 (US toll-free)<br/>
+      +46 81 211 11 52 (Europe)
+    </p>
 
-      <section class="receipt"><hr>
-      <h3>Receipt #<%= @purchase.id %> on <span class="learnred"><%= @purchase.created_at.to_s(:short_date) %></span></h3>
+    <table class="purchase-pricing">
+      <tr>
+        <td><%= @purchase.purchaseable_name %> (<%= @purchase.variant %>)</td><td class="amount"><%= number_to_currency @purchase.price, precision: 2 %> USD</td>
+      </tr>
+      <tr>
+        <td>Tax</td><td class="amount">$0.00 USD</td>
+      </tr>
+      <tr>
+        <td>Shipping</td><td class="amount">$0.00 USD</td>
+      </tr>
+      <tr>
+        <td><strong>Total</strong></td><td class="amount"><strong><%= number_to_currency @purchase.price, precision: 2 %></strong> USD*</td>
+      </tr>
+      <tr>
+        <td><strong>Amount paid</strong></td><td class="amount"><strong><%= number_to_currency @purchase.paid_price, precision: 2 %></strong> USD</td>
+      </tr>
+      <tr>
+        <td><strong>Balance due</strong></td><td class="amount"><strong><%= number_to_currency 0, precision: 2 %></strong> USD</td>
+      </tr>
+    </table>
 
-      <p class="billing-address">
-        <strong>Bill To</strong><br/>
-        <%= @purchase.name %><br/>
-        <% unless @purchase.organization.blank? -%>
-          <%= @purchase.organization %><br/>
-        <% end -%>
-        <%= @purchase.address1 %><br/>
-        <% unless @purchase.address2.blank? -%>
-          <%= @purchase.address2 %><br/>
-        <% end -%>
-        <%= @purchase.city %>, <%= @purchase.state %> <%= @purchase.zip_code %>
-      </p>
-
-      <p class="billing-address">
-        <strong>Sold by</strong><br/>
-        thoughtbot, inc.<br/>
-        228 Park Ave S #19298<br/>
-        New York NY  10003<br/>
-        United States <br/>
-        Phone:<br/>
-        1 (877) 976-2687 (US toll-free)<br/>
-        +46 81 211 11 52 (Europe)
-      </p>
-
-      <table class="purchase-pricing">
-        <tr>
-          <td><%= @purchase.purchaseable_name %> (<%= @purchase.variant %>)</td><td class="amount"><%= number_to_currency @purchase.price, precision: 2 %> USD</td>
-        </tr>
-        <tr>
-          <td>Tax</td><td class="amount">$0.00 USD</td>
-        </tr>
-        <tr>
-          <td>Shipping</td><td class="amount">$0.00 USD</td>
-        </tr>
-        <tr>
-          <td><strong>Total</strong></td><td class="amount"><strong><%= number_to_currency @purchase.price, precision: 2 %></strong> USD*</td>
-        </tr>
-        <tr>
-          <td><strong>Amount paid</strong></td><td class="amount"><strong><%= number_to_currency @purchase.paid_price, precision: 2 %></strong> USD</td>
-        </tr>
-        <tr>
-          <td><strong>Balance due</strong></td><td class="amount"><strong><%= number_to_currency 0, precision: 2 %></strong> USD</td>
-        </tr>
-      </table>
-
-      <p><small>* EU customers: prices exclude VAT</small></p>
-      </section>
-    </div>
+    <p><small>* EU customers: prices exclude VAT</small></p>
+    </section>
   </div>
-</section>
+</div>
 
 <% content_for :javascript do %>
   <%= javascript_tag do %>
