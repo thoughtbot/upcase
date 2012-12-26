@@ -1,14 +1,3 @@
-<section id="learn-header-wrapper">
-  <div class="learn-header-container">
-    <div class="learn-logo">
-      <h1><%= image_tag 'learn/learn-ralph.png' %> <%= t 'shared.learn' %></h1>
-    </div>
-    <div class="learn-intro">
-      <%= t '.intro' %>
-    </div>
-  </div>
-</section>
-
 <%= render 'promotions' %>
 
 <section id="all-products">
@@ -19,11 +8,7 @@
   <% end %>
 </section>
 
-<section id="learn-topics-list">
+<section id="topics-list">
   <hr>
   <%= render @topics %>
 </section>
-
-<% content_for :javascript do %>
-  <%= javascript_include_tag 'retina' %>
-<% end %>

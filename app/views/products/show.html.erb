@@ -1,67 +1,68 @@
 <% content_for :meta_description, @product.short_description %>
 <% content_for :meta_keywords, @product.meta_keywords %>
 <% content_for :page_title, "#{@product.name}: a #{@product.product_type} by thoughtbot" %>
-<%= render 'learn_header', subject: @product.name %>
+<% content_for :subject, @product.name %>
 
-<section class="learn-detail-content">
-  <div class="learn-text-box-wrapper">
-    <div class="learn-text-box course-box">
-      <h2><%= @product.tagline %></h2>
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <h2><%= @product.tagline %></h2>
 
-      <%== @product.description %>
-    </div>
+    <%== @product.description %>
   </div>
-  <aside>
-    <section id="license">
-      <% if @product.discounted? %>
-        <h4 class="discount-title"><%== @product.discount_title %></h4>
-      <% end %>
-      <% if @product.active? %>
-        <% if !@product.external? %>
-          <div class="individual-purchase">
-            <h2>Single <span><%= number_to_currency @product.individual_price, precision: 0 %></span><% if @product.discounted? %><span class="original-price"><%= number_to_currency @product.original_individual_price, precision: 0 %></span><% end %></h2>
-            <div class="license">
-              <%= link_to new_product_purchase_path(@product, variant: :individual), class: 'license-button button', id: "#{@product.sku}-purchase-individual" do %>
-                Purchase for Yourself
-              <% end %>
-            </div>
+</div>
+
+<aside>
+  <section id="license">
+    <% if @product.discounted? %>
+      <h4 class="discount-title"><%== @product.discount_title %></h4>
+    <% end %>
+    <% if @product.active? %>
+      <% if !@product.external? %>
+        <div class="individual-purchase">
+          <h2>Single <span><%= number_to_currency @product.individual_price, precision: 0 %></span><% if @product.discounted? %><span class="original-price"><%= number_to_currency @product.original_individual_price, precision: 0 %></span><% end %></h2>
+          <div class="license">
+            <%= link_to new_product_purchase_path(@product, variant: :individual), class: 'license-button button', id: "#{@product.sku}-purchase-individual" do %>
+              Purchase for Yourself
+            <% end %>
           </div>
-          <div class="company-purchase">
-            <h2>Group <span><%= number_to_currency @product.company_price, precision: 0 %></span><% if @product.discounted? %><span class="original-price"><%= number_to_currency @product.original_company_price, precision: 0 %></span><% end %></h2>
-            <div class="license">
-              <%= link_to new_product_purchase_path(@product, variant: :company), class: 'license-button button', id: "#{@product.sku}-purchase-company" do %>
-                Purchase for Your Company
-              <% end %>
-            </div>
+        </div>
+        <div class="company-purchase">
+          <h2>Group <span><%= number_to_currency @product.company_price, precision: 0 %></span><% if @product.discounted? %><span class="original-price"><%= number_to_currency @product.original_company_price, precision: 0 %></span><% end %></h2>
+          <div class="license">
+            <%= link_to new_product_purchase_path(@product, variant: :company), class: 'license-button button', id: "#{@product.sku}-purchase-company" do %>
+              Purchase for Your Company
+            <% end %>
           </div>
-        <% else %>
-          <div>
-            <div class="license">
-              <%= link_to @product.external_purchase_url, class: 'license-button button', id: "#{@product.sku}-purchase-individual" do %>
-                Purchase<% if @product.external_purchase_name.present? %> from <%= @product.external_purchase_name %><% end %>
-              <% end %>
-              <% if @product.external_purchase_description.present? %>
-                <p><%== @product.external_purchase_description %></p>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
+        </div>
       <% else %>
-        <p>This <%= @product.product_type %> is not currently available. Contact <%= mail_to 'learn@thoughtbot.com', 'learn@thoughtbot.com' %> for more information.</p>
+        <div>
+          <div class="license">
+            <%= link_to @product.external_purchase_url, class: 'license-button button', id: "#{@product.sku}-purchase-individual" do %>
+              Purchase<% if @product.external_purchase_name.present? %> from <%= @product.external_purchase_name %><% end %>
+            <% end %>
+            <% if @product.external_purchase_description.present? %>
+              <p><%== @product.external_purchase_description %></p>
+            <% end %>
+          </div>
+        </div>
       <% end %>
-    </section>
+    <% else %>
+      <p>This <%= @product.product_type %> is not currently available. Contact <%= mail_to 'learn@thoughtbot.com', 'learn@thoughtbot.com' %> for more information.</p>
+    <% end %>
+  </section>
 
-      <section id="terms">
-        <ul>
-          <dd><p>Every <%= @product.product_type %> includes support for any questions you may have about the topic, direct from the thoughtbot team.</p></dd>
-          <% if !@product.external? %>
-            <dt><p>What if I'm not happy?</p></dt>
-            <dd><p>If you&rsquo;re not happy, just let us know within 30 days and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</p></dd>
-          <% end %>
-          <%== @product.questions %>
-        </ul>
-      </section>
-  </aside>
-</section>
+  <section id="terms">
+    <ul>
+      <dd><p>Every <%= @product.product_type %> includes support for any questions you may have about the topic, direct from the thoughtbot team.</p></dd>
+      <% if !@product.external? %>
+        <dt><p>What if I'm not happy?</p></dt>
+        <dd><p>If you&rsquo;re not happy, just let us know within 30 days and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</p></dd>
+      <% end %>
+      <%== @product.questions %>
+    </ul>
+  </section>
+</aside>
 
-<div id="flash"></div>
+<% content_for :outside do %>
+  <div id="flash"></div>
+<% end %>

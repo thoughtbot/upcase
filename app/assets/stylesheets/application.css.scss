@@ -5,9 +5,8 @@
 @import "base-animations";
 @import "flashes";
 @import "header";
-@import "old_home";
 
-@import "pages";
+@import "clearance";
 @import "registrations";
 @import "footer";
 @import "backbone-checkout";
@@ -15,87 +14,220 @@
 @import 'purchases';
 @import 'video';
 @import 'topics';
-@import "detail";
 @import "episodes";
+@import "users";
+@import "products";
 
 body {
-  background: #fcfcfc;
-  border-top: 4px solid #AD141E;
+  background-color: $lightwarmgray;
+  border-top: none;
   font-family: $sans-serif;
-  font-size: 14px;
   line-height: 20px;
+  margin: 0 auto;
 }
 
 a {
   color: $red;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: #222;
-  font: 400 $sans-serif;
-  line-height: 150%;
+  text-decoration: none;
 }
 
 h1 {
-  font-size: 32px;
-}
+  color: white;
+  font: 800 72px $sans-serif;
+  text-rendering: optimizeLegibility;
 
-h2 {
-  font-size: 24px;
+  a {
+    color: white;
+  }
 }
 
 h3 {
-  font-size: 20px;
+  color: $darkwarmgray;
+  font: 700 26px/25px $sans-serif;
+  text-rendering: optimizeLegibility;
+}
 
-  &.ebook-sample {
-    margin-bottom: 20px;
-
-    a {
-      font-size: 18px;
-      font-weight: 700;
-    }
-  }
+h2 {
+  color: $learnred;
+  font: 800 36px/40px $sans-serif;
+  text-rendering: optimizeLegibility;
 }
 
 h4 {
-  font-size: 18px;
+  color: #94918C;
+  font: 600 13px $sans-serif;
+  text-shadow: 0 2px 0 white;
 }
 
-h5, h6 {
-  font-size: 14px;
+h5 {
+  color: #94918C;
+  font: 600 13px $sans-serif;
+  text-shadow: 0 2px 0 white;
+  background-color: $lightwarmgray;
+  display: inline-block;
+  margin-top: -8px;
+  padding: 0 10px 0 10px;
+  position: absolute;
+  text-align: center;
 }
 
-#container {
-  margin: 0 auto;
-  width: $app-width;
+h1, h2, h3, h4, h5 {
+  em {
+    color: $learnred;
+  }
 }
 
-footer {
-  padding: 8px 0 0 0;
+p, aside li {
+  color: $darkwarmgray;
+  font: italic 17px $serif;
+  text-shadow: 0 1px 1px rgba(255,255,255,.3);
+  margin-bottom: 12px;
+}
 
-  p {
-    color: #666;
-    display: inline;
-    font: 400 14px $sans-serif;
+hr {
+  border: 0;
+  height: 2px;
+  color: $warmgray;
+  border-bottom: 1px solid white;
+  border-top: 1px solid $warmgray;
+}
+
+section.content {
+  @include outer-container;
+  max-width: 1100px;
+  padding: 3em 2em;
+
+  .text-box {
+    h2 {
+      margin-bottom: 16px;
+      color: $darkwarmgray;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+    }
+
+    q {
+      display: block;
+      width: 80%;
+      margin: 30px 18% 0 4%;
+      font-style: italic;
+    }
+
+    .source {
+      margin-left: 12%;
+    }
+
+    ol {
+      margin-bottom: 20px;
+    }
+
+    li {
+      margin: 10px 0 0 20px;
+    }
+  }
+
+  h2 {
+    &:first-child {
+      padding-top: 0;
+    }
+
+    padding: 10px 0 10px 0;
+  }
+
+  ul {
+    padding: 4px 0 30px 0;
+  }
+
+  p, li {
+    -webkit-font-smoothing: antialiased;
+    color: $darkwarmgray;
+    font: normal 17px $serif;
+  }
+
+  li {
+    margin-top: 14px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .text-box-wrapper {
+    @include span-columns (9);
+  }
+
+  .text-box {
+    background-color: white;
+    border-bottom: 2px solid $warmgray;
+    border-radius: 4px;
+    margin-bottom: 1em;
+    padding: 20px;
+
+    a:hover h3 {
+      color: $learnred;
+    }
+
+    a:hover h2 {
+      color: #C42107;
+    }
+  }
+
+  .summary {
+    @include span-columns(9);
+    clear: both;
+    display: block;
     float: left;
+    text-align: left;
 
-    &.footer-links {
-      float: right;
+    p {
+      font-style: italic;
+      margin: -10px 0 24px 25px;
+    }
+  }
+
+  aside {
+    @include span-columns (3);
+    float: right;
+    display: inline-block;
+  }
+}
+
+@media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+  section.content {
+    .text-box-wrapper {
+      width: 100%;
     }
 
-    a {
-      text-decoration: none;
+    section.content .summary {
+      @include span-columns(12);
     }
 
-    &.admin {
-      clear: both;
-      margin: 12px 0 0 0;
+    aside {
+      display: block !important;
+      width: 100% !important;
+      margin-top: 2em;
+    }
+
+    form input[type="submit"] {
+      width: 100%;
     }
   }
 }
 
-body.high_voltage-pages footer {
-  p.footer-links {
-    float: left;
+.videowrapper, .mapwrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 0px;
+  height: 0;
+  margin: 30px 0;
+  overflow: hidden;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }

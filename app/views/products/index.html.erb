@@ -1,8 +1,8 @@
-<%= render 'learn_header', subject: t('.title') %>
+<% content_for :subject, t('.title') %>
 
 <section id="promo-wrapper">
   <% if @courses.present? || @workshops.present? %>
-    <div class="products-container learn-text-box">
+    <div class="products-container text-box">
       <% if @workshops.present? %>
         <h2><%= t 'shared.workshops' %></h2>
         <ul>
@@ -19,7 +19,7 @@
   <% end %>
 
   <% if @books.present? %>
-    <div class="products-container learn-text-box">
+    <div class="products-container text-box">
       <h2><%= t 'shared.books' %></h2>
       <ul>
         <%= render @books %>
@@ -28,7 +28,7 @@
   <% end %>
 
   <% if @videos.present? %>
-    <div class="products-container learn-text-box">
+    <div class="products-container text-box">
       <h2><%= t 'shared.videos' %></h2>
       <ul>
         <%= render @videos %>
@@ -36,5 +36,3 @@
     </div>
   <% end %>
 </section>
-
-<%= javascript_include_tag 'retina.js' %>

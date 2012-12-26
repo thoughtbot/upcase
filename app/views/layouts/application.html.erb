@@ -24,7 +24,11 @@
 
     <%= render 'shared/flashes' %>
 
-    <%= yield %>
+    <section class="content">
+      <%= yield %>
+    </section>
+
+    <%= yield(:outside) %>
 
     <%= render 'shared/footer' %>
 

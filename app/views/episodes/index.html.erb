@@ -1,9 +1,9 @@
-<%= render 'header' %>
+<% content_for :subject, t('shared.podcast') %>
 
-<section class="learn-detail-content">
-  <%= render 'introduction' %>
-    <div class="learn-text-box-wrapper">
-      <%= render @episodes %>
-    </div>
-</section>
-<%= render 'credits' %>
+<%= render 'introduction' %>
+
+<div class="text-box-wrapper">
+  <%= render @episodes %>
+
+  <%= render 'credits' %>
+</div>

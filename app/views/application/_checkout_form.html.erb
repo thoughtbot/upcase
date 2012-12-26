@@ -1,14 +1,10 @@
-<div class="learn-text-box-wrapper">
-  <div class="learn-text-box course-box">
-    <h2><%= title %> for <span class="learnred totalprice"><%= number_to_currency price, precision: 0 %></span></h2>
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <h2><%= title %> for <em class="totalprice"><%= number_to_currency price, precision: 0 %></em></h2>
     <div id="total">
       <p class="coupon-note"><%= link_to "Have a coupon code?", "#" %></p>
     </div>
-    <section id="form-container">
-      <section id="form-column">
-        <%= render 'redemptions/form' %>
-        <%= render form_partial %>
-      </section>
-    </section>
+    <%= render 'redemptions/form' %>
+    <%= render form_partial %>
   </div>
 </div>

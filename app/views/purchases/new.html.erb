@@ -1,20 +1,18 @@
-<%= render 'learn_header', subject: @purchaseable.name %>
+<% content_for :subject, @purchaseable.name %>
 
-<section class="learn-detail-content">
-  <%= render 'checkout_form',
-             title: t('purchase.product.heading_html', name: @purchaseable.name),
-             price: @purchase.price,
-             form_partial: 'purchases/form' %>
+<%= render 'checkout_form',
+           title: t('purchase.product.heading_html', name: @purchaseable.name),
+           price: @purchase.price,
+           form_partial: 'purchases/form' %>
 
-  <aside>
-    <h4 class="terms">Terms and conditions</h3>
-    <p>By purchasing this product you agree to the following terms and conditions:</p>
-    <ul>
-      <li>If you&rsquo;re not happy with the product, just let us know within 30 days and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</li>
-      <%= @purchaseable.terms %>
-    </ul>
-  </aside>
-</section>
+<aside>
+  <h4 class="terms">Terms and conditions</h3>
+  <p>By purchasing this product you agree to the following terms and conditions:</p>
+  <ul>
+    <li>If you&rsquo;re not happy with the product, just let us know within 30 days and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</li>
+    <%= @purchaseable.terms %>
+  </ul>
+</aside>
 
 <%= render partial: "shared/github_check" %>
 
