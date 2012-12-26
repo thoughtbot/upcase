@@ -107,6 +107,13 @@
       padding-top: 15px;
       width: 100%;
     }
+
+    &[disabled] {
+      color: $warmgray;
+      background-color: $lightwarmgray;
+      border-bottom: 4px solid $warmgray;
+      cursor: wait;
+    }
   }
 
   // FORMS
