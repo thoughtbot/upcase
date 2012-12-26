@@ -4,7 +4,6 @@ class PurchasesController < ApplicationController
     @purchase = @purchaseable.purchases.build(variant: params[:variant])
     @purchase.defaults_from_user(current_user)
     @active_card = retrieve_active_card
-    track_chrome_screencast_ab_test_completion
     km.record("Checkout", { "Product Name" => @purchaseable.name, "Order Total" => @purchase.price })
   end
 
@@ -101,11 +100,5 @@ class PurchasesController < ApplicationController
 
   def current_purchaseable
     @current_purchaseable ||= purchaseable
-  end
-
-  def track_chrome_screencast_ab_test_completion
-    if @purchaseable.name == 'Hidden Secrets of the Chrome Developer Tools'
-      finished('new_chrome_cast_description')
-    end
   end
 end
