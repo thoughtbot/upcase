@@ -1,4 +1,4 @@
-.articles-index, .courses-show, .episodes, .products-index, .topics-index, .topics-show, .products-show, .purchases, .registrations, .error-page, .videos {
+.articles-index, .courses-show, .episodes, .products-index, .topics-index, .topics-show, .products-show, .purchases, .error-page, .videos {
   background-color: $lightwarmgray;
   border-top: none;
   margin: 0 auto;
@@ -179,8 +179,7 @@
       font: normal 17px $serif;
     }
 
-    li#purchase_submit_action,
-    #registration_submit_action {
+    li#purchase_submit_action {
       margin-left: 0;
       margin-top: 40px;
       width: 100%;
@@ -1043,16 +1042,13 @@
       @include shift(3);
     }
 
-    #form-column fieldset ol li#purchase_city_input,
-    #form-column fieldset ol li#registration_city_input, {
+    #form-column fieldset ol li#purchase_city_input {
       float: left;
       width: flex-grid(12);
     }
 
     #form-column fieldset ol li#purchase_zip_code_input,
-    #form-column fieldset ol li#purchase_state_input,
-    #form-column fieldset ol li#registration_zip_code_input,
-    #form-column fieldset ol li#registration_state_input {
+    #form-column fieldset ol li#purchase_state_input {
       float: left;
       width: flex-grid(6);
     }
