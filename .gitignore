@@ -11,3 +11,4 @@ rerun.txt
 tags
 .tddium*
 .env
+.bundle
