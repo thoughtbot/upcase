@@ -12,7 +12,6 @@ Feature: Viewing my own account information
     Given I have signed up with "user@example.com"
     When I sign in with "user@example.com"
     Then I should not see "Your purchases"
-    And I should not see "Products"
 
   @selenium
   Scenario: View my account information with only unpaid purchases
@@ -24,8 +23,6 @@ Feature: Viewing my own account information
     And I pay using Paypal
     And I go to my account page
     Then I should not see "Your purchases"
-    And I should not see "Products"
-    And I should not see "Workshops"
 
   @selenium
   Scenario: View my account information with paid and unpaid purchases
@@ -42,7 +39,6 @@ Feature: Viewing my own account information
     And I submit the Paypal form
     And I go to my account page
     Then I should see "Your purchases"
-    And I should see "Products"
     And I should see "Vim for Emacs users"
     And I should not see "Ruby Science: video edition"
 
