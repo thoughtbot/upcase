@@ -28,6 +28,8 @@ en:
           Taught in %{city} by
 
   shared:
+    intro:
+      Guided learning on modern development technologies and practices. Dig in.
     books:
       BOOKS
     courses:
@@ -43,10 +45,6 @@ en:
     course:
       heading:
         IN-PERSON WORKSHOP
-    index:
-      intro:
-        Guided learning on modern development technologies and practices. Dig
-        in.
       view_products:
         VIEW ALL THOUGHTBOT PRODUCTS
     promoted_product:
@@ -86,6 +84,4 @@ en:
 
   purchase:
     product:
-      heading_html: Complete your purchase of <span class="learnred">%{name}</span>
-    registration:
-      heading_html: Complete your registration for <span class="learnred">%{name}</span>
+      heading_html: Complete your purchase of <em>%{name}</em>

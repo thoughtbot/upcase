@@ -1,11 +1,70 @@
 //************************************************************************//
 // Base Form Styles
 //************************************************************************//
+
+input[type="submit"] {
+  border-top-color: none;
+  border-top-style: none;
+  border-top-width: none;
+  border-right-color: none;
+  border-right-style: none;
+  border-right-width: none;
+  border-bottom-width: none;
+  border-left-color: none;
+  border-left-style: none;
+  border-left-width: none;
+  border-image: initial;
+  cursor: pointer;
+  padding: 13px 30px 0 30px;
+}
+
+.button {
+  padding-top: 13px;
+}
+
+input[type="submit"] {
+  padding-top: 6px;
+}
+
+
+.button, input[type="submit"] {
+  @include border-radius(3px);
+  background-color: $learnred;
+  border-bottom: 4px solid $learndarkred;
+  border-radius: 3px;
+  color: white;
+  display: inline-block;
+  font: 700 13px $sans-serif;
+  height: 44px;
+  margin: 0 auto;
+  text-align:center;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: #C42107;
+  }
+
+  a {
+    color: white;
+    display: block;
+    height:100%;
+    padding-top: 15px;
+    width: 100%;
+  }
+
+  &[disabled] {
+    color: $warmgray;
+    background-color: $lightwarmgray;
+    border-bottom: 4px solid $warmgray;
+    cursor: wait;
+  }
+}
+
 form {
   margin: 0 0 48px 0;
 
   .errors {
-    color: $red;
+    color: $learnred;
     font-size: 18px;
     font-style: bold;
     margin-top: 20px;
@@ -13,7 +72,25 @@ form {
 
   fieldset {
     legend {
+      color: $darkwarmgray;
+      font: 700 26px/25px $sans-serif;
       padding: 24px 0 12px 0;
+    }
+
+    label {
+      color: $darkwarmgray;
+      display: block;
+      font: normal 17px $serif;
+    }
+
+    li#purchase_submit_action {
+      margin-left: 0;
+      margin-top: 40px;
+      width: 100%;
+
+      input {
+        width: 100%;
+      }
     }
 
     ol {
@@ -47,40 +124,31 @@ form {
           }
         }
 
-        label {
-          display: block;
-          font: 400 16px $sans-serif;
-        }
-
         input[type="text"],
         input[type="password"],
         input[type="tel"],
         textarea,
-        input[type="email"] {
+        input[type="email"],
+        input[type="select"] {
+          background-color: #FFF;
           border: 1px solid #999;
-          @include box-shadow(inset 0 1px 2px #aaa);
+          @include border-radius(4px);
           @include box-sizing(border-box);
-          font: 14px $sans-serif;
-          margin: 3px 0 0 0;
-          padding: .5em;
+          @include box-shadow(none);
+          font-size: 14px;
+          margin: 5px 5px 5px 0;
+          padding: 1em;
           width: 100%;
 
           &:focus {
-            outline-color: $red;
+            border: 1px solid $learnred;
+            outline-color: none;
+            outline: none;
           }
         }
 
         &.commit {
           margin-top: 24px;
-        }
-
-        /* red button */
-        input[type="submit"] {
-     //    @include button;
-
-          &[disabled] {
-     //       @include disabled-button;
-          }
         }
       }
     }

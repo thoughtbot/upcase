@@ -1,11 +1,12 @@
-footer#main-footer {
+footer {
   @extend .clearfix;
   clear: both;
   margin: 0 auto;
+  max-width: 704px;
   opacity: .5;
-  padding-top: $lh * 4;
+  padding: 2em;
   @include transition(opacity .5s);
-  width: $app-width;
+  width: 93%;
 
   &:hover {
     opacity: 1;
@@ -39,14 +40,9 @@ footer#main-footer {
     section {
       float: left;
       margin-right: flex-gutter();
-      width: flex-grid(2);
+      width: flex-grid(4);
 
-      &#current-workshops-footer {
-        width: flex-grid(4);
-      }
-
-      &#blog-footer {
-        width: flex-grid(4);
+      &#current-workshops {
         margin-right: 0;
       }
 
@@ -100,5 +96,16 @@ a.chat, a.chat:link, a.chat:visited {
 
   &:hover {
     text-decoration: underline;
+  }
+}
+
+@media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+  footer {
+    width: 100%;
+
+    nav section {
+      float: none;
+      width: 100%
+    }
   }
 }

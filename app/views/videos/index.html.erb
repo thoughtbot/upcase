@@ -1,14 +1,13 @@
-<%= render 'learn_header', subject: @purchase.purchaseable_name %>
+<% content_for :subject, @purchase.purchaseable_name %>
 
-<section id="promo-wrapper">
-  <h3 class="video-headline">Watch or Download Video</h3>
-  <h2 class="video-headline">
-    <%= pluralize @purchase.purchaseable.videos.size, 'video' %> in the series
-  </h2>
-</section>
-<section id="learn-topics-list">
+<h3 class="video-headline">Watch or Download Video</h3>
+<h2 class="video-headline">
+  <%= pluralize @purchase.purchaseable.videos.size, 'video' %> in the series
+</h2>
+
+<section id="videos">
   <% @purchase.purchaseable.videos.each do |video| %>
-    <div class="learn-text-box">
+    <div class="text-box">
       <%= link_to purchase_video_path(@purchase, video) do %>
         <img src="<%= video.wistia_thumbnail %>" width="100" height="60"
              alt="<%= video.title %>" />

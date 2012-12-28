@@ -1,43 +1,43 @@
 <% content_for :page_title, "#{@course.name}: a course from thoughtbot" %>
 <% content_for :meta_description, @course.short_description %>
-<%= render 'learn_header', subject: @course.name %>
+<% content_for :subject, @course.name %>
 
-<section class="learn-detail-content">
-  <div class="learn-text-box-wrapper">
-    <div class="learn-text-box course-box">
-      <%=raw textilize @course.description %>
-      <%= render partial: 'questions', locals: { course: @course } %>
-      <%= render @section_teachers %>
-    </div>
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <%=raw textilize @course.description %>
+    <%= render partial: 'questions', locals: { course: @course } %>
+    <%= render @section_teachers %>
   </div>
-  <aside>
-   <% if @sections.any? %>
-      <%= render partial: "sections/section", collection: @sections, locals: { sections: @sections } %>
-      <p class="travel">
-        <%= link_to "Have us book your travel and hotel.", 'mailto:workshops@thoughtbot.com?subject=Booking travel for workshop' %>
-      </p>
-    <% else %>
-      <%= render partial: 'sections/tbd' %>
-    <% end %>
-  </aside>
-</section>
+</div>
+<aside>
+ <% if @sections.any? %>
+    <%= render partial: "sections/section", collection: @sections, locals: { sections: @sections } %>
+    <p class="travel">
+      <%= link_to "Have us book your travel and hotel.", 'mailto:workshops@thoughtbot.com?subject=Booking travel for workshop' %>
+    </p>
+  <% else %>
+    <%= render partial: 'sections/tbd' %>
+  <% end %>
+</aside>
 
-<section id="additional-information">
-  <section id="additional-information-wrapper">
-    <section id="main-content">
-      <%= render partial: 'follow_up', locals: { course: @course } %>
-
-      <section id="terms">
-        <h4 class="terms">Terms and conditions</h4>
-        <p>By registering for this workshop you agree to the following terms and conditions:</p>
-        <ul>
-          <li>If you&rsquo;re not happy with a workshop you took, just let us know within 30 days and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</li>
-          <li>The ticket will entitle the named holder entrance to this event.</li>
-          <li>Tickets may not be resold and are non-transferrable.</li>
-          <li>We may film, take photographs, and use your feedback for marketing purposes.</li>
-          <li>thoughtbot, inc. will not be liable for any direct or indirect damage of any nature arising out of the cancellation of the event.</li>
-        </ul>
+<% content_for :outside do %>
+  <section id="additional-information">
+    <section id="additional-information-wrapper">
+      <section id="main-content">
+        <%= render partial: 'follow_up', locals: { course: @course } %>
+  
+        <section id="terms">
+          <h4 class="terms">Terms and conditions</h4>
+          <p>By registering for this workshop you agree to the following terms and conditions:</p>
+          <ul>
+            <li>If you&rsquo;re not happy with a workshop you took, just let us know within 30 days and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</li>
+            <li>The ticket will entitle the named holder entrance to this event.</li>
+            <li>Tickets may not be resold and are non-transferrable.</li>
+            <li>We may film, take photographs, and use your feedback for marketing purposes.</li>
+            <li>thoughtbot, inc. will not be liable for any direct or indirect damage of any nature arising out of the cancellation of the event.</li>
+          </ul>
+        </section>
       </section>
     </section>
   </section>
-</section>
+<% end %>
