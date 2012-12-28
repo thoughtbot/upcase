@@ -57,7 +57,7 @@ end
 
 Then /^I should see a trail\-map for "([^""]*)"$/ do |topic_slug|
   topic = Topic.find_by_slug!(topic_slug)
-  within('.learn-text-box') do
+  within('.text-box') do
     page.should have_content("Learn to Learn")
     page.should have_content("Resources")
     page.should have_content("Wikipedia")
