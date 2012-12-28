@@ -95,19 +95,6 @@ paypal process is live and not sandboxed. After making your purchase you may
 perform a refund through the
 [staging admin panel](http://learn-staging.herokuapp.com/new_admin/purchase).
 
-### FreshBooks
-
-#### Acceptance and Invoices
-
-When you test or do acceptance on staging for workshops and create invoices, be
-sure to void the invoices in FreshBooks afterwards. The login information is
-in the Technical Information writeboard.
-
-#### Webhooks
-
-FreshBooks has [webhooks](http://developers.freshbooks.com/webhooks/). We have
-the `payment.create` hook in place. It POSTs to `PaymentsController#create`.
-
 ## Deployment
 
 1. Install the Heroku toolbelt.
