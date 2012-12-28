@@ -30,9 +30,9 @@ Feature: View topics
     And a topic named "Topic 2"
     And a featured topic named "Topic 3"
     When I go to the home page
-    Then I should see "Topic 1" within "#learn-topics-list"
-    Then I should not see "Topic 2" within "#learn-topics-list"
-    Then I should see "Topic 3" within "#learn-topics-list"
+    Then I should see "Topic 1" within "#topics-list"
+    Then I should not see "Topic 2" within "#topics-list"
+    Then I should see "Topic 3" within "#topics-list"
 
   Scenario: Navigate to a topic
     Given the following topics exist:
@@ -40,7 +40,7 @@ Feature: View topics
       | Topic 1 | The first topic | true     | ruby, rails |
     When I go to the home page
     And I follow "Topic 1"
-    Then I should see "Topic 1" within ".learn-detail-logo"
+    Then I should see "Topic 1" within ".detail-logo"
     Then the meta description should be "The first topic"
     Then the meta keywords should be "ruby, rails"
     Then the page title should be "Learn Topic 1"
