@@ -26,7 +26,6 @@ input[type="submit"] {
   padding-top: 6px;
 }
 
-
 .button, input[type="submit"] {
   @include border-radius(3px);
   background-color: $learnred;
