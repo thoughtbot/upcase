@@ -51,6 +51,9 @@ Learn is a Rails 3 app running on Ruby 1.9 and deployed to Heroku.
 
         $ heroku db:pull -r production
 
+* To test that adding/removing GitHub users works, use the GitHub user
+  "cpyteltest".
+
 ### Tumblr Imports
 
 1. Create `.env` file with `TUMBLR_API_KEY`.
