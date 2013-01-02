@@ -5,6 +5,10 @@ class DesignForDevelopersResourcesController < ApplicationController
   end
 
   def show
-    render params[:id]
+    if template_exists?(params[:id], params[:controller])
+      render params[:id]
+    else
+      raise ActiveRecord::RecordNotFound
+    end
   end
 end

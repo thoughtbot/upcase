@@ -15,5 +15,11 @@ describe DesignForDevelopersResourcesController do
       response.should render_template("color")
       response.should render_template("layouts/d4d_resources")
     end
+
+    it 'raises RecordNotFound when there is no matching template' do
+      expect do
+        get :show, id: 'invalidtemplate'
+      end.to raise_error ActiveRecord::RecordNotFound
+    end
   end
 end
