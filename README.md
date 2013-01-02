@@ -101,20 +101,25 @@ perform a refund through the
 
         $ brew install heroku-toolbelt
 
-2. Deploy to staging.
+2. Add Heroku remotes
+
+        git remote add production git@heroku.com:learn-production.git
+        git remote add staging git@heroku.com:learn-staging.git
+
+3. Deploy to staging.
 
         $ rake deploy:staging
 
-3. Deploy to production.
+4. Deploy to production.
 
         $ rake deploy:production
 
-4. Manually invalidate the 12 hour index and topics cache (optional).
+5. Manually invalidate the 12 hour index and topics cache (optional).
 
         $ heroku run rake heroku:flush_cache -r staging
         $ heroku run rake heroku:flush_cache -r production
 
-5. Check the status of running web and background processes.
+6. Check the status of running web and background processes.
 
         $ heroku ps -r staging
         $ heroku ps -r production
