@@ -1,5 +1,9 @@
 default: &default
   adapter: postgresql
+  encoding: utf8
+  min_messages: warning
+  pool: 5
+  timeout: 5000
 
 development:
   <<: *default
