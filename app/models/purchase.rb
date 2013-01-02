@@ -210,7 +210,7 @@ class Purchase < ActiveRecord::Base
       end
 
       charge = Stripe::Charge.create(
-        amount: (price * 100).to_i, # in cents
+        amount: price_in_pennies,
         currency: "usd",
         customer: stripe_customer,
         description: purchaseable_name
