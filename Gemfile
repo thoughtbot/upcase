@@ -12,6 +12,7 @@ gem 'chameleon', '0.2.2'
 gem 'clearance', '0.16.1'
 gem 'csv_rails', '0.6.1'
 gem 'curb', '0.8.1'
+gem 'delayed_job_active_record', '0.3.3'
 gem 'dynamic_form', '1.1.4'
 gem 'escape_utils', '0.2.4' # Fix UTF-8 regexp match warning
 gem 'flutie', '1.3.3'

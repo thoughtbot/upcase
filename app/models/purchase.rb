@@ -157,12 +157,7 @@ class Purchase < ActiveRecord::Base
   def remove_readers_from_github
     if readers && readers.any?
       readers.each do |username|
-        begin
-          github_client.remove_team_member(purchaseable.github_team, username)
-        rescue Octokit::NotFound, Net::HTTPBadResponse => e
-          Airbrake.notify(e)
-        end
-
+        RemoveGithubTeamMemberJob.enqueue(purchaseable.github_team, username)
         sleep API_SLEEP_TIME
       end
     end
@@ -236,13 +231,7 @@ class Purchase < ActiveRecord::Base
 
   def fulfill_with_github
     github_usernames.each do |username|
-      begin
-        github_client.add_team_member(purchaseable.github_team, username)
-      rescue Octokit::NotFound, Net::HTTPBadResponse => e
-        Mailer.fulfillment_error(self, username).deliver
-        Airbrake.notify(e)
-      end
-
+      AddGithubTeamMemberJob.enqueue(purchaseable.github_team, username, id)
       sleep API_SLEEP_TIME
     end
   end
@@ -323,9 +312,5 @@ class Purchase < ActiveRecord::Base
     if billing_email.blank?
       self.billing_email = email
     end
-  end
-
-  def github_client
-    Octokit::Client.new(login: GITHUB_USER, password: GITHUB_PASSWORD)
   end
 end
