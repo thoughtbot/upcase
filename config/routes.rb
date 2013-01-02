@@ -30,6 +30,7 @@ Workshops::Application.routes.draw do
   end
 
   resources :episodes, path: 'podcast', only: [:index, :show]
+  resources :design_for_developers_resources, path: 'design-for-developers-resources', only: [:index, :show]
 
   resources :topics, only: :index
 
