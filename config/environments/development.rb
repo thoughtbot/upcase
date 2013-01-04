@@ -27,6 +27,7 @@ Workshops::Application.configure do
 
   HOST = 'localhost:3000'
   config.action_mailer.default_url_options = { host: HOST }
+  config.action_mailer.delivery_method = :test
 
   Paypal.sandbox = true
   PAYPAL_USERNAME = "dvtest_1274820363_biz_api1.thoughtbot.com"

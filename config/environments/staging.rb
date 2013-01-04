@@ -55,16 +55,6 @@ Workshops::Application.configure do
   ActionMailer::Base.default(charset: "utf-8")
   ActionMailer::Base.raise_delivery_errors = true
 
-  ActionMailer::Base.smtp_settings = {
-    address: 'smtp.gmail.com',
-    domain: "thoughtbot.com",
-    port: 587,
-    authentication: :plain,
-    enable_starttls_auto: true,
-    user_name: "donotreply@thoughtbot.com",
-    password: "4e7LRALZ"
-  }
-
   Paypal.sandbox = true
 
   PAYPAL_USERNAME = "dvtest_1274820363_biz_api1.thoughtbot.com"
