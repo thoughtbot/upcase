@@ -115,6 +115,12 @@ describe Mailer do
   describe '.registration_confirmation' do
     include Rails.application.routes.url_helpers
 
+    it 'does not contain text about downloading' do
+      purchase = create(:section_purchase)
+      email = Mailer.registration_confirmation(purchase)
+      expect(email).not_to have_body_text(/download/)
+    end
+
     context 'for a registration without a user' do
       let(:purchase) do
         create :section_purchase, :email => 'joe@example.com'
