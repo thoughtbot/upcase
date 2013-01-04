@@ -6,7 +6,11 @@
       <ul>
         <% step['resources'].each do |resource| %>
           <li>
-            <%= link_to_if(resource['uri'].present?, resource['title'], resource['uri']) %>
+            <% if resource['uri'].present? %>
+              <%= link_to(resource['title'], resource['uri']) %>
+            <% else %>
+              <%= resource['title'] %>
+            <% end %>
           </li>
         <% end %>
       </ul>
