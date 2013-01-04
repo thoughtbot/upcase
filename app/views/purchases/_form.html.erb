@@ -7,7 +7,7 @@
   <%= form.inputs 'Your information' do %>
     <%= form.input :variant, as: :hidden %>
     <%= form.input :name %>
-    <%= form.input :email, hint: "The receipt will be sent to this address." %>
+    <%= form.input :email, hint: "The receipt will be sent to this address if billing email is blank." %>
     <% if @purchaseable.fulfillment_method == 'in-person' %>
       <%= form.input :comments, :label => 'Do you have any dietary restrictions or special requests?' %>
     <% end %>
@@ -16,7 +16,7 @@
   <%= render partial: 'purchases/readers', locals: { purchase: @purchase, form: form } %>
 
   <%= form.inputs 'For your receipt' do %>
-    <%= form.input :billing_email, required: false, hint: "The receipt will be sent to this address." %>
+    <%= form.input :billing_email, required: false, hint: "The receipt will be sent to this address by default." %>
     <%= form.input :organization %>
     <%= form.input :address1, label: 'Address 1' %>
     <%= form.input :address2, label: 'Address 2' %>
