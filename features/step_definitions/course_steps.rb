@@ -31,6 +31,7 @@ end
 When /^I attach an image name "([^"]*)" to the course$/ do |image_name|
   path = File.join(Rails.root, "tmp/", image_name)
   test_image_path = File.join(Rails.root,"features/support/files/test.jpg")
+  FileUtils.mkdir_p(Rails.root.join("tmp"))
   FileUtils.cp(test_image_path, path)
   attach_file "Course image", path
 
