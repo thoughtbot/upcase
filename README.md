@@ -132,11 +132,11 @@ Instead of changing the variable, ask to be put on the mailing list.
 
 To set it:
 
-    heroku config:set EMAIL_RECIPIENTS=gabe@thoughtbot.com,melissa@apprentice.io
+    heroku config:set EMAIL_RECIPIENTS=gabe@thoughtbot.com,melissa@apprentice.io -r staging
 
 To see what the current recipient is:
 
-    heroku config:get EMAIL_RECIPIENTS
+    heroku config:get EMAIL_RECIPIENTS -r staging
 
 ## Admin Access
 
