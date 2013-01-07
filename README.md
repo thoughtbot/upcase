@@ -122,6 +122,11 @@ perform a refund through the
         $ heroku ps -r staging
         $ heroku ps -r production
 
+## Sending email on staging
+
+We override the recipient on staging to be `ENV['EMAIL_RECIPIENTS']` so that no
+one else can receive email from the staging server.
+
 ## Admin Access
 
 1. Register on the [Learn](http://learn.thoughtbot.com/sign_up) site.
