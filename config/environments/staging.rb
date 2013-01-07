@@ -50,13 +50,11 @@ Workshops::Application.configure do
   config.active_support.deprecation = :notify
 
   HOST = 'learn-staging.herokuapp.com'
+
   config.action_mailer.default_url_options = {host: HOST}
-
-  ActionMailer::Base.delivery_method = :smtp
-  ActionMailer::Base.perform_deliveries = true
-  ActionMailer::Base.default(charset: "utf-8")
-  ActionMailer::Base.raise_delivery_errors = true
-
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default(charset: "utf-8")
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :override_recipient_smtp
 
   Paypal.sandbox = true
