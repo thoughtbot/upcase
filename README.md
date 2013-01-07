@@ -127,6 +127,9 @@ perform a refund through the
 We override the recipient on staging to be `ENV['EMAIL_RECIPIENTS']` so that no
 one else can receive email from the staging server.
 
+We have it set to `learn+staging@thoughtbot.com`, which is a mailing list.
+Instead of changing the variable, ask to be put on the mailing list.
+
 To set it:
 
     heroku config:set EMAIL_RECIPIENTS=gabe@thoughtbot.com,melissa@apprentice.io
@@ -134,9 +137,6 @@ To set it:
 To see what the current recipient is:
 
     heroku config:get EMAIL_RECIPIENTS
-
-We have it set to `learn+staging@thoughtbot.com`, which is a mailing list.
-Instead of changing the variable, ask to be put on the mailing list.
 
 ## Admin Access
 
