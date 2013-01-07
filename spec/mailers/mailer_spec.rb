@@ -57,6 +57,22 @@ describe Mailer do
   describe '.purchase_receipt' do
     include Rails.application.routes.url_helpers
 
+    context 'for a workshop purchase' do
+      it 'does not contain text about downloading' do
+        purchase = create(:section_purchase)
+        email = Mailer.purchase_receipt(purchase)
+        expect(email).not_to have_body_text(/download/)
+      end
+    end
+
+    context 'for a non-workshop purchase' do
+      it 'does contain text about downloading' do
+        purchase = create(:book_purchase)
+        email = Mailer.purchase_receipt(purchase)
+        expect(email).to have_body_text(/download/)
+      end
+    end
+
     context 'for a purchase without a user' do
       let(:purchase) do
         create :purchase, :created_at => Time.now, :email => 'joe@example.com',
@@ -114,12 +130,6 @@ describe Mailer do
 
   describe '.registration_confirmation' do
     include Rails.application.routes.url_helpers
-
-    it 'does not contain text about downloading' do
-      purchase = create(:section_purchase)
-      email = Mailer.registration_confirmation(purchase)
-      expect(email).not_to have_body_text(/download/)
-    end
 
     context 'for a registration without a user' do
       let(:purchase) do

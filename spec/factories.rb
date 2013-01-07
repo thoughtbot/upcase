@@ -131,6 +131,10 @@ FactoryGirl.define do
     factory :section_purchase do
       association :purchaseable, factory: :section
     end
+
+    factory :book_purchase do
+      association :purchaseable, factory: :book_product
+    end
   end
 
   factory :section_teacher do
