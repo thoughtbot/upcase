@@ -1,11 +1,11 @@
 Thank you for placing your order with thoughtbot!
 
 <% if @purchase.purchaseable.fulfillment_method != "github" -%>
-You can view
 <% if @purchase.purchaseable.product_type != "workshop" %>
-  and download
+<%= render "non_workshop" %>
+<% else %>
+<%= render "workshop" %>
 <% end %>
-your purchase by clicking the following link:
 <%= purchase_url(@purchase) %>
 <% elsif @purchase.purchaseable.fulfillment_method == "github" -%>
 You have been added to the GitHub repo at <%= @purchase.purchaseable.github_url %>.
