@@ -2,22 +2,40 @@ require 'spec_helper'
 
 describe Mailer do
   describe '.follow_up' do
-    subject do
-      Mailer.follow_up follow_up, create(:section, course: course)
+    include Rails.application.routes.url_helpers
+
+    it "mentions the course name" do
+      course = create(:course, name: "Foo bar")
+      follow_up_for(course: course).body.should include "Foo bar"
     end
 
-    let(:course) do
-      create :course
+    it "is from learn@thoughtbot.com" do
+      follow_up_for.from.should eq(%w(learn@thoughtbot.com))
     end
 
-    let(:follow_up) do
-      create :follow_up
+    it "mentions the course name in the subject" do
+      course = create(:course, name: "Foo bar")
+      follow_up_for(course: course).subject.should include "Foo bar"
     end
 
-    its(:body) { should match(/#{course.name}/) }
-    its(:from) { should eq(%w(learn@thoughtbot.com)) }
-    its(:subject) { should match(/#{course.name}/) }
-    its(:to) { should eq([follow_up.email]) }
+    it "is sent to the follow up email" do
+      follow_up = create(:follow_up)
+
+      follow_up_for(follow_up: follow_up).to.should eq([follow_up.email])
+    end
+
+    it "links to the course" do
+      course = create(:course)
+
+      follow_up_for(course: course).body.should include course_url(course)
+    end
+
+    def follow_up_for(options = {})
+      options[:follow_up] ||= create(:follow_up)
+      options[:course] ||= create(:course)
+      section = create(:section, course: options[:course])
+      Mailer.follow_up options[:follow_up], section
+    end
   end
 
   describe '.fulfillment_error' do
