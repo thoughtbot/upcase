@@ -67,6 +67,10 @@ group :production, :staging do
   gem 'rack-cache', '1.2'
 end
 
+group :staging do
+  gem 'safety_mailer', '0.0.3'
+end
+
 group :test do
   gem 'bourne', '1.1.2'
   gem 'capybara', '1.1.2'

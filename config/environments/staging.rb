@@ -55,6 +55,11 @@ Workshops::Application.configure do
   ActionMailer::Base.default(charset: "utf-8")
   ActionMailer::Base.raise_delivery_errors = true
 
+  config.action_mailer.delivery_method = :safety_mailer
+  config.action_mailer.safety_mailer_settings = {
+    allowed_matchers: [/thoughtbot.com/]
+  }
+
   Paypal.sandbox = true
 
   PAYPAL_USERNAME = "dvtest_1274820363_biz_api1.thoughtbot.com"
