@@ -58,7 +58,7 @@ Workshops::Application.configure do
   config.action_mailer.delivery_method = :safety_mailer
   config.action_mailer.safety_mailer_settings = {
     allowed_matchers: [/thoughtbot\.com$/, /apprentice\.io$/]
-  }
+  }.merge(MAIL_SETTINGS)
 
   Paypal.sandbox = true
 
