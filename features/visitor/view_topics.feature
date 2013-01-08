@@ -70,6 +70,15 @@ Feature: View topics
     And I follow "Topic 1"
     Then I should see "View all products" within "aside"
 
+  Scenario: View the type for a topic's related products
+    Given a featured topic named "Rails"
+    And an in-person workshop named "In-Person Rails" for topic "Rails"
+    And an online workshop named "Online Rails" for topic "Rails"
+    When I go to the home page
+    And I follow "Rails"
+    Then I should see that the related workshop "In-Person Rails" is in-person
+    And I should see that the related workshop "Online Rails" is online
+
   Scenario: View a topic with an article
     Given a featured topic named "Topic 1"
     And an article for topic "Topic 1"
