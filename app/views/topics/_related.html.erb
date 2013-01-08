@@ -1,19 +1,18 @@
-<% if @related_topics.present? || @courses.present? || @products.present? %>
-  <aside>
-    <% if @related_topics.present? %>
-      <h3><%= t '.topics' %></h3>
-      <hr>
-      <ul class='related-topics'>
-        <%= render partial: 'topics/related_topic', collection: @related_topics %>
-      </ul>
-    <% end %>
-    <% if @courses.present? || @products.present? %>
-      <h3><%= t '.products' %></h3>
-      <hr>
-      <ul class='related-products related-courses'>
-        <%= render partial: 'topics/course', collection: @courses %>
-        <%= render partial: 'topics/product', collection: @products %>
-      </ul>
-    <% end %>
-  </aside>
-<% end %>
+<aside>
+  <% if @related_topics.present? %>
+    <h3><%= t '.topics' %></h3>
+    <hr>
+    <ul class='related-topics'>
+      <%= render partial: 'topics/related_topic', collection: @related_topics %>
+    </ul>
+  <% end %>
+  <h3><%= t '.products' %></h3>
+  <hr>
+  <ul class='related-products related-courses'>
+    <%= render partial: 'topics/course', collection: @courses %>
+    <%= render partial: 'topics/product', collection: @products %>
+    <li>
+      <%= link_to 'View all products', products_path %>
+    </li>
+  </ul>
+</aside>
