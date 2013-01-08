@@ -129,7 +129,7 @@ class Section < ActiveRecord::Base
 
   def send_teacher_notifications
     teachers.each do |teacher|
-      Mailer.teacher_notification(teacher, self).deliver
+      SendTeacherNotificationEmailJob.enqueue(teacher.id, id)
     end
   end
 
