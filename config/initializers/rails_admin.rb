@@ -39,7 +39,7 @@ RailsAdmin.config do |config|
       field :name
       field :sections do
         pretty_value do
-          bindings[:view].render 'rails_admin/main/sections',
+          bindings[:view].render 'rails_admin/sections/list',
             sections: value, workshop: bindings[:object]
         end
       end
