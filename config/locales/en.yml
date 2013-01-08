@@ -42,6 +42,9 @@ en:
       ONLINE WORKSHOPS
 
   topics:
+    course:
+      heading:
+        COURSE
     index:
       heading:
         IN-PERSON WORKSHOP
@@ -69,6 +72,8 @@ en:
       headings:
         book:
           BOOK
+        workshop:
+          WORKSHOP
         video:
           VIDEO
     related:
