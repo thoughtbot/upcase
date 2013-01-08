@@ -93,7 +93,7 @@ class Section < ActiveRecord::Base
 
   def send_reminders
     paid_purchases.each do |purchase|
-      Mailer.section_reminder(purchase, self).deliver
+      SendSectionReminderEmailJob.enqueue(purchase.id, id)
     end
   end
 
