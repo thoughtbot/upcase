@@ -67,3 +67,27 @@ end
 When /^I view the product "([^"]*)"$/ do |name|
   visit product_path(Product.find_by_name!(name))
 end
+
+Then /^I should see a product alert for the in-person workshop$/ do
+  find('.workshop-alert').text.should =~ /In-Person Workshop/
+end
+
+Then /^I should see a product alert for the online workshop$/ do
+  find('.workshop-alert').text.should =~ /Online Workshop/
+end
+
+Then /^I should not see a product alert$/ do
+  page.should_not have_css('.workshop-alert')
+end
+
+Then /^I should see a link to the in-person workshop$/ do
+  workshop_name = find('.subject').text
+  in_person_workshop = Workshop.in_person.find_by_name!(workshop_name)
+  find('.workshop-alert a')[:href].should == workshop_path(in_person_workshop)
+end
+
+Then /^I should see a link to the online workshop$/ do
+  workshop_name = find('.subject').text
+  online_workshop = Workshop.online.find_by_name!(workshop_name)
+  find('.workshop-alert a')[:href].should == workshop_path(online_workshop)
+end
