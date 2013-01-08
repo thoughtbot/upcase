@@ -61,11 +61,11 @@ Workshops::Application.configure do
                         strict: true,
                         redirect_to: "https://#{HOST}"
 
-  ActionMailer::Base.delivery_method = :smtp
-  ActionMailer::Base.perform_deliveries = true
-  ActionMailer::Base.default(charset: "utf-8")
-  ActionMailer::Base.raise_delivery_errors = true
-  ActionMailer::Base.smtp_settings = MAIL_SETTINGS
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = MAIL_SETTINGS
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default(charset: "utf-8")
+  config.action_mailer.raise_delivery_errors = true
 
   PAYPAL_USERNAME = "purchasing_api1.thoughtbot.com"
   PAYPAL_PASSWORD = "NJJDV9RS6Z3PL8LG"
