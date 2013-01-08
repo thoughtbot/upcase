@@ -8,7 +8,10 @@
     <div class="product-alert">
       <a href="#">In Boston or San Francisco? <b>Take the In-Person Workshop.</b></a>
     </div>
-    <h2><%= @product.tagline %></h2>
+    <hgroup class="product-title">
+      <h2><%= @product.tagline %></h2>
+      <h3 class="workshop-type">Online Workshop</h3>
+    </hgroup>
 
     <%== @product.description %>
   </div>
