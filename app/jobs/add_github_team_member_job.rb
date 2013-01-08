@@ -1,4 +1,6 @@
 class AddGithubTeamMemberJob < Struct.new(:github_team, :username, :purchase_id)
+  include ErrorReporting
+
   PRIORITY = 1
 
   def self.enqueue(github_team, username, purchase_id)

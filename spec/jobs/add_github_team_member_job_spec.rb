@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe AddGithubTeamMemberJob do
+  it_behaves_like 'a Delayed Job that notifies Airbrake about errors'
+
   it 'adds a username to a github team' do
     client = stub_octokit
     client.stubs(:add_team_member => nil)

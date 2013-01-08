@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe SendPurchaseReceiptEmailJob do
+  it_behaves_like 'a Delayed Job that notifies Airbrake about errors'
+
   describe '.enqueue' do
     it 'enqueues a job' do
       purchase = create(:section_purchase)
