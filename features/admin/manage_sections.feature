@@ -22,3 +22,13 @@ Feature: Manage workshop sections
     When I follow "January 21-25, 2013"
     Then I should see "Edit Section"
     And I should see "January 21-25, 2013"
+
+  Scenario: See paid registrations
+    Given "Paid Person" has registered and paid for the section on "January 21, 2013"
+    And I sign in with "admin@example.com" and "password"
+    When I am on the new admin page
+    And I follow "Workshops"
+    And I follow "January 21-25, 2013"
+    And I follow "Students"
+    Then I see that "Paid Person" has paid
+    And I should see "1 Student"

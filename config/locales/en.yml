@@ -8,6 +8,10 @@ en:
         menu: Accounting
         title: Accounting
         breadcrumb: Accounting
+      section_students:
+        menu: Students
+        title: Students
+        breadcrumb: Students
     misc:
       filter_date_format: '%D'
 

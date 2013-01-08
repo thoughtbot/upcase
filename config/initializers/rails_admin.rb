@@ -1,4 +1,5 @@
 require 'rails_admin/config/actions/purchase_accounting'
+require 'rails_admin/config/actions/section_students'
 
 module RailsAdmin
   module Config
@@ -30,6 +31,7 @@ RailsAdmin.config do |config|
     init_actions!
     purchase_refund
     purchase_accounting
+    section_students
   end
 
   config.model Workshop do
