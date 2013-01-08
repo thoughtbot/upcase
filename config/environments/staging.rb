@@ -1,4 +1,4 @@
-require Rails.root.join('lib/override_recipient_smtp')
+require Rails.root.join('config/initializers/mail')
 
 Workshops::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
@@ -55,7 +55,8 @@ Workshops::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default(charset: "utf-8")
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :override_recipient_smtp
+  config.action_mailer.smtp_settings = MAIL_SETTINGS
+  config.action_mailer.delivery_method = :smtp
 
   Paypal.sandbox = true
 
