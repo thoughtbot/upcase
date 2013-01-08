@@ -36,3 +36,35 @@ Feature: Products include support
     Then I should see "Book" discounted 20% with the text "Special discount"
     When I view the product "Video"
     Then I should see "Video" is not discounted
+
+  Scenario: View online workshop and see callout to take in-person workshop
+    Given the following workshops exist:
+      | name                        | online |
+      | Workshop with the same name | false  |
+      | Workshop with the same name | true  |
+    When I view the online workshop "Workshop with the same name"
+    Then I should see a product alert for the in-person workshop
+    And I should see a link to the in-person workshop
+
+  Scenario: View online workshop without an in-person version
+    Given the following workshop exists:
+      | name            | online |
+      | Online Workshop | true   |
+    When I view the online workshop "Online Workshop"
+    Then I should not see a product alert
+
+  Scenario: View in-person workshop and see callout to take online workshop
+    Given the following workshops exist:
+      | name                        | online |
+      | Workshop with the same name | true   |
+      | Workshop with the same name | false  |
+    When I view the in-person workshop "Workshop with the same name"
+    Then I should see a product alert for the online workshop
+    And I should see a link to the online workshop
+
+  Scenario: View in-person workshop with no online workshop
+    Given the following workshop exists:
+      | name               | online |
+      | In-person Workshop | false  |
+    When I view the in-person workshop "In-person Workshop"
+    Then I should not see a product alert
