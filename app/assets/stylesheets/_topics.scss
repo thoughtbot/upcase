@@ -221,6 +221,14 @@ body.topics-index {
           }
         }
       }
+
+      .related-products {
+        .view-all a {
+          display: inline-block;
+          margin-top: 20px;
+          color: $learndarkred;
+        }
+      }
     }
   }
 
