@@ -48,8 +48,7 @@ class Section < ActiveRecord::Base
   end
 
   def send_registration_emails(purchase)
-    Mailer.registration_notification(purchase).deliver
-    Mailer.registration_confirmation(purchase).deliver
+    SendRegistrationEmailsJob.enqueue(purchase.id)
   end
 
   def announcement
