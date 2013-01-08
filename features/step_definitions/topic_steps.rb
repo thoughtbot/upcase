@@ -8,9 +8,15 @@ Given /^a "([^"]*)" inactive product named "([^"]*)" for topic "([^"]*)"$/ do |p
   topic.products << create(:product, name: name, product_type: product_type, active: false)
 end
 
-Given /^a workshop named "([^"]*)" for topic "([^"]*)"$/ do |name, topic_name|
+Given /^a(?:n (online|in-person))? workshop named "([^"]*)" for topic "([^"]*)"$/ do |type, name, topic_name|
+  if type == 'online'
+    workshop = create(:workshop, name: name, online: true)
+  else
+    workshop = create(:workshop, name: name, online: false)
+  end
+
   topic = Topic.find_by_name(topic_name)
-  topic.workshops << create(:workshop, name: name)
+  topic.workshops << workshop
 end
 
 Given /^a featured topic named "([^"]*)"$/ do |name|

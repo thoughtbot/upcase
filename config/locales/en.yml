@@ -54,7 +54,10 @@ en:
   topics:
     workshop:
       heading:
-        WORKSHOP
+        online:
+          ONLINE WORKSHOP
+        in_person:
+          IN-PERSON WORKSHOP
     index:
       heading:
         IN-PERSON WORKSHOP
@@ -82,8 +85,6 @@ en:
       headings:
         book:
           BOOK
-        workshop:
-          WORKSHOP
         video:
           VIDEO
     related:
