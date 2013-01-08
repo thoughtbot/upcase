@@ -32,6 +32,43 @@ RailsAdmin.config do |config|
     purchase_accounting
   end
 
+  config.model Workshop do
+    list do
+      field :name
+      field :sections do
+        pretty_value do
+          bindings[:view].render 'rails_admin/main/sections', sections: value
+        end
+      end
+    end
+
+    edit do
+      group :default do
+        field :name
+        field :short_description
+        field :description
+        field :audience
+        field :individual_price
+        field :company_price
+        field :maximum_students
+        field :external_registration_url
+        field :public
+        field :start_at
+        field :stop_at
+        field :course_image, :paperclip
+      end
+
+      group :faq do
+        label 'FAQ'
+        field :questions
+      end
+
+      group :follow_ups do
+        field :follow_ups
+      end
+    end
+  end
+
   config.model Purchase do
     list do
       field :purchaseable_id do
@@ -60,4 +97,37 @@ RailsAdmin.config do |config|
       include_all_fields
     end
   end
+
+  config.model Section do
+    object_label_method { :date_range }
+
+    list do
+      field :workshop
+      field :starts_on
+      field :ends_on
+    end
+
+    edit do
+      group :dates do
+        field :starts_on
+        field :ends_on
+        field :start_at
+        field :stop_at
+      end
+
+      group :address do
+        field :address
+        field :city
+        field :state
+        field :zip
+      end
+
+      group :details do
+        field :seats_available
+        field :reminder_email
+        field :teachers
+      end
+    end
+  end
+
 end

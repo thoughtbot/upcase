@@ -1,0 +1,7 @@
+<ol>
+  <% sections.each do |section| %>
+    <%= content_tag_for(:li, section) do %>
+      <%= link_to section.date_range, edit_path(:section, section) %>
+    <% end %>
+  <% end %>
+</ol>
