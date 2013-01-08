@@ -46,7 +46,7 @@ body.products-show, body.workshops-show {
         }
 
         .workshop-type {
-          color: $red;
+          color: $learnred;
           font-size: 17px;
         }
       }
@@ -329,9 +329,13 @@ body.products-show, body.workshops-show {
 
 .product-alert {
   background: $lightwarmgray;
-  margin-bottom: 35px;
-  padding: 10px;
+  margin-bottom: 40px;
+  padding: 12px;
   text-align: center;
+
+  a {
+    color: $learnred;
+  }
 
   b {
     font-weight: bold;
