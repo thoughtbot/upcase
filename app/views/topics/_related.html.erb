@@ -11,7 +11,7 @@
   <ul class='related-products related-courses'>
     <%= render partial: 'topics/course', collection: @courses %>
     <%= render partial: 'topics/product', collection: @products %>
-    <li>
+    <li class="view-all">
       <%= link_to 'View all products', products_path %>
     </li>
   </ul>
