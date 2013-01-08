@@ -62,6 +62,13 @@ Feature: View topics
     Then I should see "Course 1" within "aside"
     Then I should see "Book 1" within "aside"
     Then I should see "Video 1" within "aside"
+    And I should see "View all products" within "aside"
+
+  Scenario: View a link to all products if there are no related products
+    Given a featured topic named "Topic 1"
+    When I go to the home page
+    And I follow "Topic 1"
+    Then I should see "View all products" within "aside"
 
   Scenario: View a topic with an article
     Given a featured topic named "Topic 1"
