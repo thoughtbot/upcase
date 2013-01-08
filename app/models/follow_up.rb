@@ -7,8 +7,6 @@ class FollowUp < ActiveRecord::Base
   scope :have_not_notified, where(notified_at: nil)
 
   def notify(section)
-    Mailer.follow_up(self, section).deliver
-    self.notified_at = Time.now
-    self.save
+    SendFollowUpEmailJob.enqueue(id, section.id)
   end
 end
