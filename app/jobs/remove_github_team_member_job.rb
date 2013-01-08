@@ -1,4 +1,6 @@
 class RemoveGithubTeamMemberJob < Struct.new(:github_team, :username)
+  include ErrorReporting
+
   PRIORITY = 1
 
   def self.enqueue(github_team, username)

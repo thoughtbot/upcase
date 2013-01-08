@@ -10,6 +10,10 @@ module DelayedJobsHelpers
       Mailer.stubs(method_name => mail)
     end
   end
+
+  def stub_mail_method_to_raise(method_name, error)
+    Mailer.stubs(method_name).raises(error)
+  end
 end
 
 RSpec.configure do |c|
