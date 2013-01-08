@@ -1,4 +1,9 @@
-<li>
-  <h5><%= t '.heading' %></h5>
-  <%= link_to course.name, course %>
+<li class="workshop">
+  <%= link_to course do %>
+    <span class="icon"></span>
+    <hgroup>
+      <h5><%= t '.heading' %></h5>
+      <h4><%= course.name %></h4>
+    </hgroup>
+  <% end %>
 </li>

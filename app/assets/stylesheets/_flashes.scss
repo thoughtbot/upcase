@@ -23,7 +23,7 @@ div#flash {
     background: -moz-linear-gradient(top, #595959, #3c3c3c);
     border: 1px solid #353535;
     border-top: 0;
-    @include border-radius (0 0 8px 8px);
+    border-radius: 0 0 8px 8px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -47,7 +47,7 @@ div#flash {
   div#flash_close {
     background: #434343;
     border: 1px solid #353535;
-    @include border-radius (20px);
+    border-radius: 20px;
     cursor: pointer;
     float: right;
     height: 20px;
@@ -79,8 +79,6 @@ div#flash {
   div#flash_icon {
     background: #303030;
     bottom: 4px;
-    -moz-border-radius: 30px;
-    -webkit-border-radius: 30px;
     border-radius: 30px;
     @include box-shadow (inset #000 0px 1px 0px 0px, #727272 0px 1px 0px 0px);
     height: 30px;
@@ -91,7 +89,7 @@ div#flash {
     div#icon_status {
       height: 20px;
       margin: 5px auto 0;
-      @include border-radius (20px);
+      border-radius: 20px;
       width: 20px;
 
       div#gloss {
@@ -103,7 +101,7 @@ div#flash {
         height: 16px;
         margin: 0 auto;
         position: relative;
-        @include border-radius (16px);
+        border-radius: 16px;
         top: 1px;
         width: 16px;
       }
