@@ -39,7 +39,8 @@ RailsAdmin.config do |config|
       field :name
       field :sections do
         pretty_value do
-          bindings[:view].render 'rails_admin/main/sections', sections: value
+          bindings[:view].render 'rails_admin/main/sections',
+            sections: value, workshop: bindings[:object]
         end
       end
     end
@@ -125,11 +126,11 @@ RailsAdmin.config do |config|
       end
 
       group :details do
+        field :workshop
         field :seats_available
         field :reminder_email
         field :teachers
       end
     end
   end
-
 end

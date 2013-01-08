@@ -12,6 +12,14 @@ Feature: Manage workshop sections
       | 2013-01-21 | 2013-01-25 |
       | 2013-01-31 | 2013-02-04 |
 
+  Scenario: Adding a new section
+    When I sign in with "admin@example.com" and "password"
+    And I am on the new admin page
+    And I follow "Workshops"
+    And I follow "Add new section"
+    Then I should see "New Section"
+    And "Rails for Django users" should be selected for "Workshop"
+
   Scenario: Getting an overview of sections
     When I sign in with "admin@example.com" and "password"
     And I am on the new admin page
