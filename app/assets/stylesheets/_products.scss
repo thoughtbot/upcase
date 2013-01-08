@@ -269,7 +269,7 @@ body.products-show, body.courses-show {
 
       input[type="text"] {
           border: none;
-          @include border-radius(4px);
+          border-radius: 4px;
           @include box-sizing(border-box);
           font-size: 14px;
           margin: 0 0 12px 0;

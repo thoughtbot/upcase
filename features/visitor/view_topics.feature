@@ -54,14 +54,14 @@ Feature: View topics
     And an article for topic "Topic 1"
     When I go to the home page
     And I follow "Topic 1"
-    Then I should see "Course 1" within "aside"
-    Then I should see "Book 1" within "aside"
-    Then I should see "Video 1" within "aside"
+    Then I should see "Course 1" within "aside .workshop"
+    Then I should see "Book 1" within "aside .book"
+    Then I should see "Video 1" within "aside .video"
     Then I should not see "Video Inactive" within "aside"
     And I follow "View all Topic 1 articles"
-    Then I should see "Course 1" within "aside"
-    Then I should see "Book 1" within "aside"
-    Then I should see "Video 1" within "aside"
+    Then I should see "Course 1" within "aside .workshop"
+    Then I should see "Book 1" within "aside .book"
+    Then I should see "Video 1" within "aside .video"
     And I should see "View all products" within "aside"
 
   Scenario: View a link to all products if there are no related products

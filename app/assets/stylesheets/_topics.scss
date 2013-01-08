@@ -191,13 +191,23 @@ body.topics-index {
         margin-top: 40px;
       }
 
-      h5 {
-        background-color: none;
-        display: block;
-        text-align: left;
-        margin-top: 18px;
-        padding: 0;
-        position: relative;
+      hgroup {
+        margin-left: 48px;
+
+        h5 {
+          background-color: none;
+          display: block;
+          margin-top: 18px;
+          padding: 0;
+          position: relative;
+          text-align: left;
+          text-transform: uppercase;
+        }
+
+        h4 {
+          color: $darkwarmgray;
+          font: italic 17px $serif italic;
+        }
       }
 
       li {
@@ -227,6 +237,45 @@ body.topics-index {
           display: inline-block;
           margin-top: 20px;
           color: $learndarkred;
+        }
+
+        li {
+          .icon {
+            @include transition;
+            background: $learnred;
+            border-radius: 34px;
+            box-shadow: inset 0 -1px 0 $learndarkred, 0 1px 0 $learndarkred;
+            color: white;
+            display: block;
+            float: left;
+            font-family: "entypo";
+            font-size: 38px;
+            font-style: normal;
+            height: 34px;
+            line-height: 0.9em;
+            text-align: center;
+            width: 34px;
+          }
+
+          &.workshop .icon::after {
+            content: "\2692";
+            font-size: 38px;
+            position: relative;
+            top: 1px;
+          }
+
+          &.video .icon::after {
+            content: "\25B6";
+            font-size: 43px;
+            left: 11px;
+            position: absolute;
+            top: 1px;
+          }
+
+          &.book .icon::after {
+            content: "\1F4D5";
+            font-size: 36px;
+          }
         }
       }
     }
