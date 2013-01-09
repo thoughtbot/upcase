@@ -1,7 +1,7 @@
 Feature: View topics
 
   Scenario: Navigate to workshops
-    Given the following course exists:
+    Given the following workshop exists:
       | name                | promo_location |
       | Test-Driven Haskell | left           |
     When I go to the home page
@@ -47,19 +47,19 @@ Feature: View topics
 
   Scenario: View a topic's related products
     Given a featured topic named "Topic 1"
-    And a course named "Course 1" for topic "Topic 1"
+    And a workshop named "workshop 1" for topic "Topic 1"
     And a "book" product named "Book 1" for topic "Topic 1"
     And a "video" product named "Video 1" for topic "Topic 1"
     And a "video" inactive product named "Video Inactive" for topic "Topic 1"
     And an article for topic "Topic 1"
     When I go to the home page
     And I follow "Topic 1"
-    Then I should see "Course 1" within "aside .workshop"
+    Then I should see "workshop 1" within "aside .workshop"
     Then I should see "Book 1" within "aside .book"
     Then I should see "Video 1" within "aside .video"
     Then I should not see "Video Inactive" within "aside"
     And I follow "View all Topic 1 articles"
-    Then I should see "Course 1" within "aside .workshop"
+    Then I should see "workshop 1" within "aside .workshop"
     Then I should see "Book 1" within "aside .book"
     Then I should see "Video 1" within "aside .video"
     And I should see "View all products" within "aside"

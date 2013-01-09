@@ -210,7 +210,7 @@ ActiveRecord::Schema.define(:version => 20130109204805) do
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month"
+    t.integer  "month",      :limit => 2
     t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
@@ -311,15 +311,15 @@ ActiveRecord::Schema.define(:version => 20130109204805) do
   end
 
   create_table "workshops", :force => true do |t|
-    t.string   "name",                      :default => "",    :null => false
+    t.string   "name",                                         :null => false
+    t.integer  "individual_price"
     t.text     "description"
     t.time     "start_at"
     t.time     "stop_at"
     t.integer  "maximum_students",          :default => 12,    :null => false
     t.boolean  "public",                    :default => true,  :null => false
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
-    t.integer  "individual_price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "short_description"
     t.string   "external_registration_url"
     t.integer  "position"

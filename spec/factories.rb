@@ -60,7 +60,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :course do
+  factory :workshop do
     audience
     description 'Solve 8-Queens over and over again'
     maximum_students 12
@@ -71,7 +71,7 @@ FactoryGirl.define do
     start_at '9:00'
     stop_at '17:00'
 
-    factory :private_course do
+    factory :private_workshop do
       public false
     end
   end
@@ -79,14 +79,14 @@ FactoryGirl.define do
   factory :download
 
   factory :follow_up do
-    course
     email
+    workshop
   end
 
   factory :question do
     answer 'Not much, bro.'
-    course
     question "What's up, buddy?"
+    workshop
   end
 
   factory :product do
@@ -143,7 +143,7 @@ FactoryGirl.define do
   end
 
   factory :section_without_teacher, class: Section do
-    association :course
+    association :workshop
     starts_on { 1.day.ago.to_date }
     ends_on   { 1.day.from_now.to_date }
     start_at    '9:00'
