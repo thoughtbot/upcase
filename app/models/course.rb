@@ -63,6 +63,14 @@ class Course < ActiveRecord::Base
     course_image_file_name? ? raw_url : "/assets/#{raw_url}"
   end
 
+  def self.in_person
+    where online: false
+  end
+
+  def self.online
+    where online: true
+  end
+
   def self.only_public
     where public: true
   end
