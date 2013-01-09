@@ -34,7 +34,14 @@ When /^I attach an image name "([^"]*)" to the course$/ do |image_name|
   FileUtils.mkdir_p(Rails.root.join("tmp"))
   FileUtils.cp(test_image_path, path)
   attach_file "Course image", path
+end
 
+Then /^I should see that "([^"]*)" is an online workshop$/ do |workshop_name|
+  find('[data-role=online-workshops]').should have_content workshop_name
+end
+
+Then /^I should see that "([^"]*)" is an in-person workshop$/ do |workshop_name|
+  find('[data-role=in-person-workshops]').should have_content workshop_name
 end
 
 World(CoursesHelper)
