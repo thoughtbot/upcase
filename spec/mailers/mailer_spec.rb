@@ -139,7 +139,7 @@ describe Mailer do
     end
 
     def email_for(purchase)
-        Mailer.purchase_receipt(purchase)
+      Mailer.purchase_receipt(purchase)
     end
 
     def purchase
