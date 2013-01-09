@@ -8,7 +8,7 @@ describe ApplicationHelper do
     end
 
     it 'returns true when the controller is not topics' do
-      helper.stubs(:controller).returns(CoursesController.new)
+      helper.stubs(:controller).returns(WorkshopsController.new)
       helper.show_account_links?.should == true
     end
   end
@@ -19,9 +19,9 @@ describe ApplicationHelper do
       helper.promotion_partial(product).should == 'promoted_product'
     end
 
-    it 'returns the correct partial for a course' do
-      course = create(:course)
-      helper.promotion_partial(course).should == 'promoted_course'
+    it 'returns the correct partial for a workshop' do
+      workshop = create(:workshop)
+      helper.promotion_partial(workshop).should == 'promoted_workshop'
     end
   end
 end

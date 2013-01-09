@@ -1,12 +1,12 @@
 class ProductsController < ApplicationController
   def index
-    @in_person_workshops = Course.only_public.by_position.in_person
-    online_courses = Course.only_public.by_position.online
+    @in_person_workshops = Workshop.only_public.by_position.in_person
+    online_workshops = Workshop.only_public.by_position.online
     # This `workshops = `line can be removed on 2013-01-16, when
     # Product.workshops will be empty and all online workshops will be in
-    # Course.
-    workshops = Product.workshops.active.ordered
-    @online_workshops = online_courses + workshops
+    # Workshop.
+    workshop_products = Product.workshops.active.ordered
+    @online_workshops = online_workshops + workshop_products
     @books = Product.books.active.ordered
     @videos = Product.videos.active.ordered
   end

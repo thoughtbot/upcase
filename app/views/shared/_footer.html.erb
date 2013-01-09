@@ -37,10 +37,10 @@
 
 <% content_for :javascript do %>
 <script type="text/javascript">
-  function workshop_details(course) {
+  function workshop_details(workshop) {
     var details = [];
-    for (var s=0; s<course.active_sections.length; s++) {
-      details.push(course.active_sections[s].section.city);
+    for (var s=0; s<workshop.active_sections.length; s++) {
+      details.push(workshop.active_sections[s].section.city);
     }
     if(details.length > 0) {
       return " in " + details.join(" and ");
@@ -49,20 +49,20 @@
     }
   }
   function workshops(resp) {
-    var courses = resp;
+    var all_workshops = resp;
     $('#current-workshops .loading').replaceWith('<ul/>');
     $ul = $('#current-workshops ul');
-    for (var i=0; i<courses.length; i++) {
-      var c = courses[i]['course'];
-      var name = c['name'] || null;
+    for (var i=0; i<all_workshops.length; i++) {
+      var workshop = all_workshops[i]['workshop'];
+      var name = workshop['name'] || null;
 
       if (name) {
-        $ul.append('<li><a href="'+c['url']+'">'+name+workshop_details(c)+'</a></li>');
+        $ul.append('<li><a href="'+workshop['url']+'">'+name+workshop_details(workshop)+'</a></li>');
       }
     }
   }
 </script>
-<script src="/courses.json?callback=workshops" type="text/javascript"></script>
+<script src="/workshops.json?callback=workshops" type="text/javascript"></script>
 <script type="text/javascript">
   function tumblr(resp) {
     var posts = resp.posts;

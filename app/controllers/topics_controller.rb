@@ -11,7 +11,7 @@ class TopicsController < ApplicationController
     expires_in 12.hours, public: true
     @topic = Topic.find_by_slug!(params[:id])
     @articles = @topic.articles.top
-    @courses = @topic.courses.only_public.by_position
+    @workshops = @topic.workshops.only_public.by_position
     @products = @topic.products.ordered.active
     @related_topics = @topic.related_topics
   end
@@ -19,6 +19,6 @@ class TopicsController < ApplicationController
   private
 
   def promoted_item(location)
-    Course.promoted(location) || Product.promoted(location)
+    Workshop.promoted(location) || Product.promoted(location)
   end
 end

@@ -4,13 +4,13 @@
   <% if @in_person_workshops.present? || @online_workshops.present? %>
     <div class="products-container text-box">
       <% if @online_workshops.present? %>
-        <h2><%= t 'shared.workshops' %></h2>
+        <h2><%= t 'shared.online_workshops' %></h2>
         <ul data-role="online-workshops">
-          <%= render partial: 'courses/course', collection: @online_workshops %>
+          <%= render partial: 'workshops/workshop', collection: @online_workshops %>
         </ul>
       <% end %>
       <% if @in_person_workshops.present? %>
-        <h2><%= t 'shared.courses' %></h2>
+        <h2><%= t 'shared.in_person_workshops' %></h2>
         <ul data-role="in-person-workshops">
           <%= render @in_person_workshops %>
         </ul>
