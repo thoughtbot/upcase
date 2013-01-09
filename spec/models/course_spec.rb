@@ -31,6 +31,34 @@ describe Course do
     end
   end
 
+  describe '.in_person' do
+    it 'returns in-person courses' do
+      course = create(:course, online: false)
+
+      Course.in_person.should == [course]
+    end
+
+    it 'does not return online courses' do
+      create(:course, online: true)
+
+      Course.in_person.should be_empty
+    end
+  end
+
+  describe '.online' do
+    it 'returns online courses' do
+      course = create(:course, online: true)
+
+      Course.online.should == [course]
+    end
+
+    it 'does not return in-person courses' do
+      create(:course, online: false)
+
+      Course.online.should be_empty
+    end
+  end
+
   describe '.promoted' do
     it 'returns the promoted course in the location' do
       course = create(:course, promo_location: 'left')
