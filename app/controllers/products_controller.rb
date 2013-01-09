@@ -1,9 +1,13 @@
 class ProductsController < ApplicationController
   def index
-    @courses = Course.only_public.by_position
+    @courses = Course.only_public.by_position.in_person
+    @online_courses = Course.only_public.by_position.online
+    # This @workshops line can be removed on 2013-01-16, when Product.workshops
+    # will be empty and all online workshops will be in Course. Remember to edit
+    # index.html.erb and remove @workshops there, too.
+    @workshops = Product.workshops.active.ordered
     @books = Product.books.active.ordered
     @videos = Product.videos.active.ordered
-    @workshops = Product.workshops.active.ordered
   end
 
   def show

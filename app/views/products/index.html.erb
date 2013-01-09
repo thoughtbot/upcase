@@ -6,7 +6,7 @@
       <% if @workshops.present? %>
         <h2><%= t 'shared.workshops' %></h2>
         <ul>
-          <%= render @workshops %>
+          <%= render partial: 'courses/course', collection: @online_courses + @workshops %>
         </ul>
       <% end %>
       <% if @courses.present? %>
