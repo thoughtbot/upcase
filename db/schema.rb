@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130102163245) do
+ActiveRecord::Schema.define(:version => 20130109163143) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -82,13 +82,13 @@ ActiveRecord::Schema.define(:version => 20130102163245) do
   add_index "coupons", ["code"], :name => "index_coupons_on_code"
 
   create_table "courses", :force => true do |t|
-    t.string   "name",                                        :null => false
+    t.string   "name",                                         :null => false
     t.integer  "individual_price"
     t.text     "description"
     t.time     "start_at"
     t.time     "stop_at"
-    t.integer  "maximum_students",          :default => 12,   :null => false
-    t.boolean  "public",                    :default => true, :null => false
+    t.integer  "maximum_students",          :default => 12,    :null => false
+    t.boolean  "public",                    :default => true,  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "short_description"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20130102163245) do
     t.string   "promo_location"
     t.integer  "company_price"
     t.text     "terms"
+    t.boolean  "online",                    :default => false, :null => false
   end
 
   add_index "courses", ["audience_id"], :name => "index_courses_on_audience_id"
