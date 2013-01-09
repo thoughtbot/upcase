@@ -6,8 +6,12 @@ class Episode < ActiveRecord::Base
   has_many :topics, through: :classifications
   has_many :products, through: :topics, uniq: true
 
-  validates_presence_of :title, :duration, :file, :file_size, :description,
-    :published_on
+  validates :title, presence: true
+  validates :duration, presence: true
+  validates :file, presence: true
+  validates :file_size, presence: true
+  validates :description, presence: true
+  validates :published_on, presence: true
 
   def self.published
     where("published_on <= ?", Date.today).order('published_on desc')

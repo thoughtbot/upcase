@@ -5,7 +5,7 @@ class Download < ActiveRecord::Base
     s3_permissions: :private
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
 
-  validates_presence_of :download_file_name
+  validates :download_file_name, presence: true
 
   def display_name
     "#{download_file_name} (#{helpers.number_to_human_size(download_file_size)})"

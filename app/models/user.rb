@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
     conditions: { paid: true }
   has_many :purchases
 
-  validates_presence_of :first_name, :last_name
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 
   after_create :associate_previous_purchases
 

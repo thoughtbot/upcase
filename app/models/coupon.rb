@@ -1,8 +1,9 @@
 class Coupon < ActiveRecord::Base
   DISCOUNT_TYPES = ["percentage", "dollars"]
 
-  validates_presence_of :code, :amount, :discount_type
-  validates_inclusion_of :discount_type, in: DISCOUNT_TYPES
+  validates :code, presence: true
+  validates :amount, presence: true
+  validates :discount_type, inclusion: { in: DISCOUNT_TYPES }, presence: true
 
   def apply(full_price)
     full_price - discount(full_price)

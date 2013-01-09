@@ -1,6 +1,7 @@
 class Teacher < ActiveRecord::Base
   before_save :set_gravatar_hash
-  validates_presence_of :name, :email
+  validates :name, presence: true
+  validates :email, presence: true
 
   scope :by_name, order(:name)
 
