@@ -13,7 +13,13 @@ class Purchase < ActiveRecord::Base
 
   attr_accessor :stripe_token, :paypal_url
 
-  validates_presence_of :variant, :purchaseable_id, :purchaseable_type, :name, :lookup, :payment_method, :billing_email
+  validates :variant, presence: true
+  validates :purchaseable_id, presence: true
+  validates :purchaseable_type, presence: true
+  validates :name, presence: true
+  validates :lookup, presence: true
+  validates :payment_method, presence: true
+  validates :billing_email, presence: true
   validate :payment_method_must_match_price
   validates :email, presence: true,
     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }

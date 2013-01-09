@@ -1,7 +1,7 @@
 class Audience < ActiveRecord::Base
   has_many :courses, order: "courses.position asc"
 
-  validates_presence_of :name
+  validates :name, presence: true
 
   def self.by_position
     order("audiences.position asc")

@@ -1,4 +1,5 @@
 class Question < ActiveRecord::Base
   belongs_to :course
-  validates_presence_of :question, :answer
+  validates :question, presence: true
+  validates :answer, presence: true
 end
