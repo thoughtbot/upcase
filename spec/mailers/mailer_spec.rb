@@ -6,28 +6,26 @@ describe Mailer do
 
     it "mentions the course name" do
       course = create(:course, name: "Foo bar")
-      follow_up_for(course: course).body.should include "Foo bar"
+      expect(follow_up_for(course: course).body).to include "Foo bar"
     end
 
     it "is from learn@thoughtbot.com" do
-      follow_up_for.from.should eq(%w(learn@thoughtbot.com))
+      expect(follow_up_for.from).to eq(%w(learn@thoughtbot.com))
     end
 
     it "mentions the course name in the subject" do
       course = create(:course, name: "Foo bar")
-      follow_up_for(course: course).subject.should include "Foo bar"
+      expect(follow_up_for(course: course).subject).to include "Foo bar"
     end
 
     it "is sent to the follow up email" do
       follow_up = create(:follow_up)
-
-      follow_up_for(follow_up: follow_up).to.should eq([follow_up.email])
+      expect(follow_up_for(follow_up: follow_up).to).to eq([follow_up.email])
     end
 
     it "links to the course" do
       course = create(:course)
-
-      follow_up_for(course: course).body.should include course_url(course)
+      expect(follow_up_for(course: course).body).to include course_url(course)
     end
 
     def follow_up_for(options = {})
@@ -42,21 +40,21 @@ describe Mailer do
     it 'sets the correct recipients' do
       purchase = stubbed_purchase
       mailer = Mailer.fulfillment_error(purchase, github_username)
-      mailer.should deliver_to(purchase.email)
-      mailer.should cc_to('learn@thoughtbot.com')
-      mailer.should reply_to('learn@thoughtbot.com')
+      expect(mailer).to deliver_to(purchase.email)
+      expect(mailer).to cc_to('learn@thoughtbot.com')
+      expect(mailer).to reply_to('learn@thoughtbot.com')
     end
 
     it 'sets the correct subject' do
       purchase = stubbed_purchase
       mailer = Mailer.fulfillment_error(purchase, github_username)
-      mailer.should have_subject(
+      expect(mailer).to have_subject(
         "Fulfillment issues with #{purchase.purchaseable_name}")
     end
 
     it 'sets the username in the message body' do
       mailer = Mailer.fulfillment_error(stubbed_purchase, github_username)
-      mailer.should have_body_text(/#{github_username}/)
+      expect(mailer).to have_body_text(/#{github_username}/)
     end
 
     def github_username
@@ -78,7 +76,7 @@ describe Mailer do
     context 'for a workshop purchase' do
       it 'does not contain text about downloading' do
         purchase = create(:section_purchase)
-        email = Mailer.purchase_receipt(purchase)
+        email = email_for(purchase)
         expect(email).not_to have_body_text(/download/)
       end
     end
@@ -86,53 +84,37 @@ describe Mailer do
     context 'for a non-workshop purchase' do
       it 'does contain text about downloading' do
         purchase = create(:book_purchase)
-        email = Mailer.purchase_receipt(purchase)
+        email = email_for(purchase)
         expect(email).to have_body_text(/download/)
       end
     end
 
     context 'for a purchase without a user' do
-      let(:purchase) do
-        create :purchase, :created_at => Time.now, :email => 'joe@example.com',
-          :lookup => 'asdf', :name => 'Joe Smith'
-      end
-
-      before do
-        @email = Mailer.purchase_receipt(purchase)
-      end
-
       it 'is to the email passed in' do
-        @email.should deliver_to(purchase.email)
+        expect(email_for(purchase)).to deliver_to(purchase.email)
       end
 
       it 'contains the name in the mail body' do
-        @email.should have_body_text(/#{purchase.name}/)
+        expect(email_for(purchase)).to have_body_text(/#{purchase.name}/)
       end
 
       it 'contains the price of the purchase' do
-        @email.should have_body_text(/\$#{purchase.price}\.00/)
+        expect(email_for(purchase)).to have_body_text(/\$#{purchase.price}\.00/)
       end
 
       it 'should have the correct subject' do
-        @email.should have_subject(/Your receipt for #{purchase.purchaseable_name}/)
+        expect(email_for(purchase)).to have_subject(/Your receipt for #{purchase.purchaseable_name}/)
       end
 
       it 'contains a link to create a new account in the body' do
-        @email.should have_body_text(/#{new_user_url(host: HOST)}/)
+        expect(email_for(purchase)).to have_body_text(/#{new_user_url(host: HOST)}/)
       end
     end
 
     context 'for a purchase with a user' do
-      let(:purchase) do
-        create :purchase, user: create(:user)
-      end
-
-      before do
-        @email = Mailer.purchase_receipt(purchase)
-      end
-
       it 'does not contain a link to create a new account in the body' do
-        @email.should_not have_body_text(/#{new_user_url(host: HOST)}/)
+        purchase = create(:purchase, user: create(:user))
+        expect(email_for(purchase)).not_to have_body_text(/#{new_user_url(host: HOST)}/)
       end
     end
 
@@ -140,9 +122,17 @@ describe Mailer do
       it 'contains announcement.message in the body' do
         purchase = create(:purchase)
         announcement = create(:announcement, announceable: purchase.purchaseable)
-        email = Mailer.purchase_receipt(purchase)
-        expect(email).to have_body_text(/#{announcement.message}/)
+        expect(email_for(purchase)).to have_body_text(/#{announcement.message}/)
       end
+    end
+
+    def email_for(purchase)
+        Mailer.purchase_receipt(purchase)
+    end
+
+    def purchase
+      @purchase ||= create(:purchase, :created_at => Time.now, :email => 'joe@example.com',
+        :lookup => 'asdf', :name => 'Joe Smith')
     end
   end
 
@@ -150,30 +140,18 @@ describe Mailer do
     include Rails.application.routes.url_helpers
 
     context 'for a registration without a user' do
-      let(:purchase) do
-        create :section_purchase, :email => 'joe@example.com'
-      end
-
-      before do
-        @email = Mailer.registration_confirmation(purchase)
-      end
-
       it 'contains a link to create a new account in the body' do
-        @email.should have_body_text(/#{new_user_url(host: HOST)}/)
+        purchase = create(:section_purchase, :email => 'joe@example.com')
+        email = Mailer.registration_confirmation(purchase)
+        expect(email).to have_body_text(/#{new_user_url(host: HOST)}/)
       end
     end
 
     context 'for a registration with a user' do
-      let(:purchase) do
-        create :section_purchase, user: create(:user)
-      end
-
-      before do
-        @email = Mailer.registration_confirmation(purchase)
-      end
-
       it 'does not contain a link to create a new account in the body' do
-        @email.should_not have_body_text(/#{new_user_url(host: HOST)}/)
+        purchase = create :section_purchase, user: create(:user)
+        email = Mailer.registration_confirmation(purchase)
+        expect(email).not_to have_body_text(/#{new_user_url(host: HOST)}/)
       end
     end
 
@@ -189,85 +167,92 @@ describe Mailer do
   end
 
   describe '.registration_notification' do
-    around do |example|
+    it 'includes starts_on and ends_on in the email body' do
       Timecop.freeze Date.parse('2012-09-12') do
-        example.run
+        purchase = build_stubbed(:section_purchase)
+        email = Mailer.registration_notification(purchase)
+        expect(email.body).to include purchase.purchaseable.date_range
       end
     end
 
-    it 'includes starts_on and ends_on in the email body' do
-      purchase = build_purchase
-      email = Mailer.registration_notification(purchase)
-      email.body.should include purchase.purchaseable.date_range
-    end
-
     it 'includes section city in the email body' do
-      purchase = build_purchase_in 'San Antonio'
-      email = Mailer.registration_notification(purchase)
-      email.body.should include 'San Antonio'
-    end
-
-    def build_purchase
-      build_stubbed(:section_purchase)
+      Timecop.freeze Date.parse('2012-09-12') do
+        purchase = build_purchase_in 'San Antonio'
+        email = Mailer.registration_notification(purchase)
+        expect(email.body).to include 'San Antonio'
+      end
     end
 
     def build_purchase_in(city)
-      build_purchase.tap do |purchase|
+      build_stubbed(:section_purchase).tap do |purchase|
         purchase.purchaseable.city = city
       end
     end
   end
 
   describe '.section_reminder' do
-    let(:course_name) do
+    it 'has the correct subject' do
+      expect(sent_email.subject).to match(/#{course_name}/)
+    end
+
+    it 'has the correct recipient' do
+      expect(sent_email.to).to include(recipient)
+    end
+
+    it "has the registrant's name in the body" do
+      expect(sent_email.body).to include('Benny Burns')
+    end
+
+    def course_name
       'Hilarious Backbone.js'
     end
 
-    let(:recipient) do
+    def recipient
       'frankie-z@example.com'
     end
 
-    let(:sent_email) do
+    def sent_email
       course = create(:course, name: course_name)
       section = create(:section, course: course)
-
       purchase = create(:purchase,
                         purchaseable: section,
                         email: recipient,
                         name: 'Benny Burns')
 
-      Mailer.section_reminder purchase, section
-    end
-
-    it 'has the correct subject' do
-      sent_email.subject.should =~ /#{course_name}/
-    end
-
-    it 'has the correct recipient' do
-      sent_email.to.should include(recipient)
-    end
-
-    it "has the registrant's name in the body" do
-      sent_email.body.should include('Benny Burns')
+      Mailer.section_reminder(purchase, section)
     end
   end
 
   describe '.teacher_notification' do
-    subject do
-      Mailer.teacher_notification teacher, create(:section, course: course)
+    it "mentions the course name in the body" do
+        course = create(:course, name: "Foo bar")
+        expect(teacher_notification(course: course).body).to include "Foo bar"
     end
 
-    let(:course) do
-      create :course
+    it "is from learn@thoughtbot.com" do
+      expect(teacher_notification.from).to eq(%w(learn@thoughtbot.com))
     end
 
-    let(:teacher) do
-      create :teacher
+    it "mentions the course name in the subject" do
+      course = create(:course, name: "Foo bar")
+      expect(teacher_notification(course: course).subject).to include "Foo bar"
     end
 
-    its(:body) { should match(/#{course.name}/) }
-    its(:from) { should eq(%w(learn@thoughtbot.com)) }
-    its(:subject) { should match(/#{course.name}/) }
-    its(:to) { should eq([teacher.email]) }
+    it "is sent to the teacher" do
+      expect(teacher_notification.to).to eq([teacher.email])
+    end
+
+    def course
+      create(:course)
+    end
+
+    def teacher
+      create(:teacher)
+    end
+
+    def teacher_notification(options = {})
+      options[:course] ||= create(:course)
+      Mailer.teacher_notification teacher, create(:section, course: options[:course])
+    end
   end
 end
