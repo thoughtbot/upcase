@@ -20,21 +20,30 @@ $fg-max-columns: 12;
 
 $app-width: 1122px;
 
+@include font-face(entypo, 'entypo/entypo', $asset-pipeline: true);
+.icon {
+  font-family: "entypo";
+  font-size: 25px;
+  font-weight: normal;
+  position: relative;
+  top: 3px;
+}
+
 @mixin button {
   background: $red;
   border: 1px solid darken($red, 20%);
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 lighten($red, 20%);
   color: #fff;
   display: block;
+  font:700 18px $sans-serif;
   line-height: $lh;
   padding: 10px;
-  font:700 18px $sans-serif;
-  -webkit-font-smoothing: antialiased;
   text-align: center;
   text-shadow: 0 -1px 0 darken($red, 10%);
-  width: 200px;
-  @include box-shadow(inset 0 1px 0 lighten($red, 20%));
-  @include border-radius(3px);
   @include transition(all, 0.3s, linear);
+  -webkit-font-smoothing: antialiased;
+  width: 200px;
 
   &:hover {
     background: lighten($red, 5%);

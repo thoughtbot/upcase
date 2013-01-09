@@ -81,7 +81,7 @@ footer {
 }
 
 a.chat, a.chat:link, a.chat:visited {
-  @include border-radius (5px 5px 0 0);
+  border-radius: 5px 5px 0 0;
   background: #AD141E none repeat scroll 0 0;
   color: white;
   padding: 10px;
