@@ -144,7 +144,7 @@ describe Mailer do
 
     def purchase
       @purchase ||= create(:purchase, created_at: Time.now, email: 'joe@example.com',
-                           lookup: 'asdf', name: 'Joe Smith')
+        lookup: 'asdf', name: 'Joe Smith')
     end
   end
 
@@ -258,21 +258,15 @@ describe Mailer do
     end
 
     it "is sent to the teacher" do
-      expect(teacher_notification.to).to eq([teacher.email])
-    end
-
-    def course
-      create(:course)
-    end
-
-    def teacher
-      create(:teacher)
+      teacher = create(:teacher)
+      expect(teacher_notification(teacher: teacher).to).to eq([teacher.email])
     end
 
     def teacher_notification(options = {})
+      options[:teacher] ||= create(:teacher)
       options[:course] ||= create(:course)
 
-      Mailer.teacher_notification teacher, create(:section, course: options[:course])
+      Mailer.teacher_notification(options[:teacher], create(:section, course: options[:course]))
     end
   end
 end
