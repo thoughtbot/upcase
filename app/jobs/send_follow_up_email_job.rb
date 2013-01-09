@@ -9,7 +9,6 @@ class SendFollowUpEmailJob < Struct.new(:follow_up_id, :section_id)
     follow_up = FollowUp.find(follow_up_id)
     section = Section.find(section_id)
     Mailer.follow_up(follow_up, section).deliver
-    follow_up.notified_at = Time.now
-    follow_up.save
+    follow_up.update_attribute(:notified_at, Time.now)
   end
 end

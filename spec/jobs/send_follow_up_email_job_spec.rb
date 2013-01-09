@@ -15,10 +15,8 @@ describe SendFollowUpEmailJob do
 
   describe '#perform' do
     it 'sends a follow up email' do
-      follow_up = build_stubbed(:follow_up)
-      FollowUp.stubs(:find).with(follow_up.id).returns(follow_up)
-      section = build_stubbed(:section)
-      Section.stubs(:find).with(section.id).returns(section)
+      follow_up = create(:follow_up)
+      section = create(:section)
       mail_stub = stub_mail_method(:follow_up)
 
       SendFollowUpEmailJob.new(follow_up.id, section.id).perform

@@ -93,7 +93,7 @@ class Section < ActiveRecord::Base
 
   def send_reminders
     paid_purchases.each do |purchase|
-      SendSectionReminderEmailJob.enqueue(purchase.id, id)
+      Mailer.delay.section_reminder(purchase.id, id)
     end
   end
 
@@ -129,7 +129,7 @@ class Section < ActiveRecord::Base
 
   def send_teacher_notifications
     teachers.each do |teacher|
-      SendTeacherNotificationEmailJob.enqueue(teacher.id, id)
+      Mailer.delay.teacher_notification(teacher.id, id)
     end
   end
 
