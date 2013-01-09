@@ -3,7 +3,9 @@ class Video < ActiveRecord::Base
 
   belongs_to :purchaseable, polymorphic: true
 
-  validates_presence_of :purchaseable_id, :purchaseable_type, :wistia_id
+  validates :purchaseable_id, presence: true
+  validates :purchaseable_type, presence: true
+  validates :wistia_id, presence: true
 
   def video_sizes
     @video_sizes ||= wistia_hash["assets"].inject({}){|result, asset| result.merge(asset["type"]=>human_file_size(asset['fileSize']))}
