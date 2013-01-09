@@ -30,3 +30,13 @@ Feature: Viewing the courses page
     And I follow "Test-Driven Haskell"
     Then the meta description should be "Short Description"
     And the page title should be "Test-Driven Haskell: a course from thoughtbot"
+
+  Scenario: Visitor sees online and in-person courses
+    Given the following courses exist:
+      | name              | online |
+      | In-Person Haskell | false  |
+      | Online Haskell    | true   |
+    When I go to the home page
+    And I view all products
+    Then I should see that "In-Person Haskell" is an in-person workshop
+    And I should see that "Online Haskell" is an online workshop
