@@ -6,11 +6,11 @@ Given '"$teacher_name" is teaching the section from "$section_start" to "$sectio
   section.teachers = [teacher]
 end
 
-Given 'I create the following section for "$course_name":' do |course_name, section_data|
+Given 'I create the following section for "$workshop_name":' do |workshop_name, section_data|
   steps %{
     Given a teacher exists with a name of "Albert Einstein"
     When I go to the admin page
-    And I follow "New Section" within the course "#{course_name}"
+    And I follow "New Section" within the workshop "#{workshop_name}"
     When I select the start date of "June 14, 2010"
   }
   step "I fill in the following:", section_data
@@ -22,9 +22,9 @@ Given 'I create the following section for "$course_name":' do |course_name, sect
   }
 end
 
-Given /^I am signed up as student of "([^"]*)" on ([0-9-]+)$/ do |course_name, date|
-  course = create(:course, name: course_name)
-  section = create(:section, course: course, starts_on: date)
+Given /^I am signed up as student of "([^"]*)" on ([0-9-]+)$/ do |workshop_name, date|
+  workshop = create(:workshop, name: workshop_name)
+  section = create(:section, workshop: workshop, starts_on: date)
   @registration = create(:free_purchase, purchaseable: section)
 end
 

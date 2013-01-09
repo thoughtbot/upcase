@@ -7,8 +7,8 @@ class Topic < ActiveRecord::Base
   has_many :articles, through: :classifications, source: :classifiable,
     source_type: 'Article'
   has_many :classifications
-  has_many :courses, through: :classifications, source: :classifiable,
-    source_type: 'Course'
+  has_many :workshops, through: :classifications, source: :classifiable,
+    source_type: 'Workshop'
   has_many :episodes, through: :classifications, source: :classifiable,
     source_type: 'Episode'
   has_many :products, through: :classifications, source: :classifiable,

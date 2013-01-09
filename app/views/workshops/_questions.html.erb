@@ -1,0 +1,10 @@
+<% if workshop.questions.any? -%>
+  <section id="faq">
+    <dl>
+      <% workshop.questions.each do |question| %>
+        <dt><%=raw textilize question.question %></dt>
+        <dd><%=raw textilize question.answer %></dd>
+      <% end %>
+    </dl>
+  </section>
+<% end -%>

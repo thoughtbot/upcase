@@ -1,0 +1,8 @@
+<section id="notify-me">
+  <h2>Want to be notified the next time we run this workshop?</h2>
+  <%= form_for [workshop, FollowUp.new] do |form| %>
+    <%= form.text_field :email, placeholder: "Enter your email address" %>
+    <input type="submit" value="Submit" />
+    <p class="group-training">Interested in group training at your site? <a href="mailto:learn@thoughtbot.com">Contact us</a>.</p>
+  <% end %>
+</section>

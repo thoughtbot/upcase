@@ -29,6 +29,6 @@ Then /^the invoice for "([^"]*)" has the following line items?:$/ do |user_email
   end
 end
 
-When /^I pay for "([^"]*)" taking "([^"]*)"$/ do |email, course_name|
+When /^I pay for "([^"]*)" taking "([^"]*)"$/ do |email, workshop_name|
   post "/payments", "name" => "payment.create", "object_id" => "30"
 end

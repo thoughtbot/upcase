@@ -1,13 +1,13 @@
 @selenium
 Feature: KISSmetrics tracks important events
 
-  Scenario: Course registration
+  Scenario: Workshop registration
     Given an audience exists with a name of "Developers"
-    And the following course exists:
+    And the following workshop exists:
       | name                |  audience         | individual_price |
       | Test-Driven Haskell |  name: Developers | 200              |
     And the following future section exists:
-      | course                    |
+      | workshop                  |
       | name: Test-Driven Haskell |
     When I go to the home page
     And I follow "Test-Driven Haskell"
@@ -17,7 +17,7 @@ Feature: KISSmetrics tracks important events
     Then KISSmetrics receives the "Checkout" event with:
       | Product Name | Test-Driven Haskell |
       | Order Total  | 200                 |
-    When I fill in the required course registration fields for "carlos@santana.com"
+    When I fill in the required workshop registration fields for "carlos@santana.com"
     And I press "Submit Payment"
     Then KISSmetrics receives the "Submit Payment" event for "carlos@santana.com" over HTTP with:
       | Product Name | Test-Driven Haskell |
@@ -72,11 +72,11 @@ Feature: KISSmetrics tracks important events
 
   Scenario: Visitor requests a follow up
     Given today is June 17, 2010
-    And the following course exists:
+    And the following workshop exists:
       | name                |
       | Test-Driven Haskell |
     And the following section exists:
-      | id   | course                    | starts on     | ends on       |
+      | id   | workshop                  | starts on     | ends on       |
       | 1235 | name: Test-Driven Haskell | July 17, 2010 | July 18, 2010 |
     When I go to the home page
     And I view all products

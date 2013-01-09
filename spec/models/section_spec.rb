@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Section do
   # Associations
-  it { should belong_to(:course) }
+  it { should belong_to(:workshop) }
   it { should have_many(:paid_purchases) }
   it { should have_many(:purchases) }
   it { should have_many(:section_teachers) }
@@ -48,20 +48,20 @@ describe Section do
   end
 
   describe '#seats_available' do
-    let(:course) do
-      create :course, maximum_students: 8
+    let(:workshop) do
+      create :workshop, maximum_students: 8
     end
 
     context 'when seats_available is not set' do
-      it 'returns course.maximum_students' do
-        section = create(:section, course: course)
+      it 'returns workshop.maximum_students' do
+        section = create(:section, workshop: workshop)
         section.seats_available.should eq(8)
       end
     end
 
     context 'when seats_available is set' do
       it 'returns seats_available' do
-        section = create(:section, course: course, seats_available: 12)
+        section = create(:section, workshop: workshop, seats_available: 12)
         section.seats_available.should eq(12)
       end
     end
@@ -99,7 +99,7 @@ describe Section do
   end
 
   describe '#to_param' do
-    it 'returns the id and parameterized course name' do
+    it 'returns the id and parameterized workshop name' do
       section = create(:section)
       expected = "#{section.id}-#{section.name.parameterize}"
       section.to_param.should eq(expected)
