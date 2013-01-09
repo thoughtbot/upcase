@@ -94,23 +94,11 @@ describe Purchase, 'with stripe' do
   end
 
   it 'sends a receipt on save' do
-    Mailer.stubs(purchase_receipt: stub(deliver: true))
-    subject.save!
-    Mailer.should have_received(:purchase_receipt).with(subject)
-  end
+    SendPurchaseReceiptEmailJob.stubs(:enqueue)
 
-  it 'rescues Net::SMTPAuthenticationError on sending a receipt' do
-    Airbrake.stubs(:notify)
-    Mailer.stubs(:purchase_receipt).raises(Net::SMTPAuthenticationError)
     subject.save!
-    Airbrake.should have_received(:notify)
-  end
 
-  it 'rescues Net::SMTPFatalError on sending a receipt' do
-    Airbrake.stubs(:notify)
-    Mailer.stubs(:purchase_receipt).raises(Net::SMTPFatalError)
-    subject.save!
-    Airbrake.should have_received(:notify)
+    SendPurchaseReceiptEmailJob.should have_received(:enqueue).with(subject.id)
   end
 
   it 'computes its final price off its product variant' do
