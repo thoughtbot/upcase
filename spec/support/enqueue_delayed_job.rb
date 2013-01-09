@@ -63,7 +63,11 @@ module DelayedJob
       end
 
       def job
-        Delayed::Job.last
+        if Delayed::Job.count.zero?
+          raise "No jobs in queue"
+        else
+          Delayed::Job.last
+        end
       end
 
       def payload_object

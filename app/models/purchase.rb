@@ -306,7 +306,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def send_receipt
-    SendPurchaseReceiptEmailJob.enqueue(self)
+    SendPurchaseReceiptEmailJob.enqueue(id)
     purchaseable.send_registration_emails(self)
   end
 
