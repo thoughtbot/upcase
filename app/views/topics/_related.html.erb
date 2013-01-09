@@ -8,8 +8,8 @@
   <% end %>
   <h3><%= t '.products' %></h3>
   <hr>
-  <ul class='related-products related-courses'>
-    <%= render partial: 'topics/course', collection: @courses %>
+  <ul class='related-products related-workshops'>
+    <%= render partial: 'topics/workshop', collection: @workshops %>
     <%= render partial: 'topics/product', collection: @products %>
     <li class="view-all">
       <%= link_to 'View all products', products_path %>

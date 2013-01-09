@@ -4,20 +4,20 @@ describe Mailer do
   describe '.follow_up' do
     include Rails.application.routes.url_helpers
 
-    it "mentions the course name" do
-      course = create(:course, name: "Foo bar")
+    it "mentions the workshop name" do
+      workshop = create(:workshop, name: "Foo bar")
 
-      expect(follow_up_for(course: course).body).to include "Foo bar"
+      expect(follow_up_for(workshop: workshop).body).to include "Foo bar"
     end
 
     it "is from learn@thoughtbot.com" do
       expect(follow_up_for.from).to eq(%w(learn@thoughtbot.com))
     end
 
-    it "mentions the course name in the subject" do
-      course = create(:course, name: "Foo bar")
+    it "mentions the workshop name in the subject" do
+      workshop = create(:workshop, name: "Foo bar")
 
-      expect(follow_up_for(course: course).subject).to include "Foo bar"
+      expect(follow_up_for(workshop: workshop).subject).to include "Foo bar"
     end
 
     it "is sent to the follow up email" do
@@ -26,16 +26,16 @@ describe Mailer do
       expect(follow_up_for(follow_up: follow_up).to).to eq([follow_up.email])
     end
 
-    it "links to the course" do
-      course = create(:course)
+    it "links to the workshop" do
+      workshop = create(:workshop)
 
-      expect(follow_up_for(course: course).body).to include course_url(course)
+      expect(follow_up_for(workshop: workshop).body).to include workshop_url(workshop)
     end
 
     def follow_up_for(options = {})
       options[:follow_up] ||= create(:follow_up)
-      options[:course] ||= create(:course)
-      section = create(:section, course: options[:course])
+      options[:workshop] ||= create(:workshop)
+      section = create(:section, workshop: options[:workshop])
 
       Mailer.follow_up options[:follow_up], section
     end
@@ -169,11 +169,11 @@ describe Mailer do
       end
     end
 
-    context 'for a course with an announcement' do
+    context 'for a workshop with an announcement' do
       it 'contains announcement.message in the body' do
         purchase = create(:section_purchase)
-        course = purchase.purchaseable.course
-        announcement = create(:announcement, announceable: course)
+        workshop = purchase.purchaseable.workshop
+        announcement = create(:announcement, announceable: workshop)
         email = Mailer.registration_confirmation(purchase)
 
         expect(email).to have_body_text(/#{announcement.message}/)
@@ -209,7 +209,7 @@ describe Mailer do
 
   describe '.section_reminder' do
     it 'has the correct subject' do
-      expect(sent_email.subject).to match(/#{course_name}/)
+      expect(sent_email.subject).to match(/#{workshop_name}/)
     end
 
     it 'has the correct recipient' do
@@ -220,7 +220,7 @@ describe Mailer do
       expect(sent_email.body).to include('Benny Burns')
     end
 
-    def course_name
+    def workshop_name
       'Hilarious Backbone.js'
     end
 
@@ -229,8 +229,9 @@ describe Mailer do
     end
 
     def sent_email
-      course = create(:course, name: course_name)
-      section = create(:section, course: course)
+      workshop = create(:workshop, name: workshop_name)
+      section = create(:section, workshop: workshop)
+
       purchase = create(:purchase,
                         purchaseable: section,
                         email: recipient,
@@ -241,20 +242,20 @@ describe Mailer do
   end
 
   describe '.teacher_notification' do
-    it "mentions the course name in the body" do
-        course = create(:course, name: "Foo bar")
+    it "mentions the workshop name in the body" do
+      workshop = create(:workshop, name: "Foo bar")
 
-        expect(teacher_notification(course: course).body).to include "Foo bar"
+      expect(teacher_notification(workshop: workshop).body).to include "Foo bar"
     end
 
     it "is from learn@thoughtbot.com" do
       expect(teacher_notification.from).to eq(%w(learn@thoughtbot.com))
     end
 
-    it "mentions the course name in the subject" do
-      course = create(:course, name: "Foo bar")
+    it "mentions the workshop name in the subject" do
+      workshop = create(:workshop, name: "Foo bar")
 
-      expect(teacher_notification(course: course).subject).to include "Foo bar"
+      expect(teacher_notification(workshop: workshop).subject).to include "Foo bar"
     end
 
     it "is sent to the teacher" do
@@ -264,9 +265,9 @@ describe Mailer do
 
     def teacher_notification(options = {})
       options[:teacher] ||= create(:teacher)
-      options[:course] ||= create(:course)
+      options[:workshop] ||= create(:workshop)
 
-      Mailer.teacher_notification(options[:teacher], create(:section, course: options[:course]))
+      Mailer.teacher_notification(options[:teacher], create(:section, workshop: options[:workshop]))
     end
   end
 end

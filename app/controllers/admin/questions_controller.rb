@@ -1,9 +1,9 @@
 class Admin::QuestionsController < AdminController
   def destroy
-    course = Course.find(params[:course_id])
-    question = course.questions.find(params[:id])
+    workshop = Workshop.find(params[:workshop_id])
+    question = workshop.questions.find(params[:id])
     question.destroy
     flash[:notice] = "Question removed"
-    redirect_to edit_admin_course_path(course)
+    redirect_to edit_admin_workshop_path(workshop)
   end
 end

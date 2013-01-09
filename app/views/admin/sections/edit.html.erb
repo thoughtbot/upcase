@@ -1,7 +1,7 @@
-<%= semantic_form_for [:admin, @course, @section] do |form| %>
+<%= semantic_form_for [:admin, @workshop, @section] do |form| %>
   <%= render partial: 'inputs',
              locals: { form: form,
-                           course: @course,
+                           workshop: @workshop,
                            teachers: @teachers } %>
 
   <%= form.actions do %>
@@ -12,7 +12,7 @@
 <div id="admin-section-right">
   <div id="student-list" class="cool-list">
     <h3>
-      <%= pluralize @section.paid_purchases.size, "Student" %> [<%= mail_to 'learn@thoughtbot.com', 'email', subject: @section.course.name, bcc: @section.paid_purchases.map(&:email).join(",") %>]
+      <%= pluralize @section.paid_purchases.size, "Student" %> [<%= mail_to 'learn@thoughtbot.com', 'email', subject: @section.workshop.name, bcc: @section.paid_purchases.map(&:email).join(",") %>]
     </h3>
     <ul id="paid">
       <%= render @section.paid_purchases %>

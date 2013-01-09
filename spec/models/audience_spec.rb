@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Audience, "associations" do
-  it { should have_many(:courses) }
+  it { should have_many(:workshops) }
 end
 
 describe Audience, "validations" do

@@ -151,4 +151,4 @@ To see what the current recipient is:
         $ exit
 
 3. Access the [general admin panel](http://learn.thoughtbot.com/new_admin) or
-   the [course admin panel](http://learn.thoughtbot.com/admin).
+   the [workshop admin panel](http://learn.thoughtbot.com/admin).

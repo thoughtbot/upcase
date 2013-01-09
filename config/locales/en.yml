@@ -32,17 +32,17 @@ en:
       Guided learning on modern development technologies and practices. Dig in.
     books:
       BOOKS
-    courses:
+    in_person_workshops:
       IN-PERSON WORKSHOPS
     learn:
       Learn
+    online_workshops:
+      ONLINE WORKSHOPS
     videos:
       VIDEOS
-    workshops:
-      ONLINE WORKSHOPS
 
   topics:
-    course:
+    workshop:
       heading:
         WORKSHOP
     index:
@@ -60,7 +60,7 @@ en:
       workshop:
         action:
           REGISTER
-    promoted_course:
+    promoted_workshop:
       action:
         REGISTER
     trail_map:
