@@ -1,4 +1,4 @@
-When 'I fill in all of the course registration fields for "$email"' do |email|
+When 'I fill in all of the workshop registration fields for "$email"' do |email|
   attributes = attributes_for(:purchase, email: email)
   fields = { "Name" => attributes[:name],
              "Email" => email,
@@ -14,7 +14,7 @@ When 'I fill in all of the course registration fields for "$email"' do |email|
   end
 end
 
-When 'I fill in the required course registration fields for "$email"' do |email|
+When 'I fill in the required workshop registration fields for "$email"' do |email|
   attributes = attributes_for(:purchase)
   fields = { "Name" => attributes[:name],
              "Email" => email }

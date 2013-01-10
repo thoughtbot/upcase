@@ -1,10 +1,10 @@
-Feature: View promoted products and courses on home page
-  Scenario: View featured products and courses
+Feature: View promoted products and workshops on home page
+  Scenario: View featured products and workshops
     Given the following products exist:
       | name   | product_type | promo_location |
       | Book 1 | book         | middle         |
       | Book 2 | book         | right          |
-    And the following courses exist:
+    And the following workshops exist:
       | name                       | promo_location |
       | Test-Driven Machine Code   | left           |
     When I go to the home page

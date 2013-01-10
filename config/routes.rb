@@ -11,7 +11,7 @@ Workshops::Application.routes.draw do
     resources :purchases, only: [:new, :create]
     resources :redemptions, only: [:new]
   end
-  resources :courses, only: [:index, :show] do
+  resources :workshops, only: [:index, :show] do
     resources :follow_ups, only: [:create]
   end
 
@@ -34,9 +34,9 @@ Workshops::Application.routes.draw do
 
   resources :topics, only: :index
 
-  match '/admin' => 'admin/courses#index', as: :admin
+  match '/admin' => 'admin/workshops#index', as: :admin
   namespace :admin do
-    resources :courses do
+    resources :workshops do
       resource :position
       resources :sections
       resources :follow_ups

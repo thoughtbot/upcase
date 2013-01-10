@@ -1,5 +1,5 @@
 Then 'I see the empty section description' do
-  page.should have_content('No courses are running at this time')
+  page.should have_content('No workshops are running at this time')
 end
 
 When 'I follow the external registration link' do
@@ -22,17 +22,17 @@ end
 
 Then 'I see the section from "$start_date" to "$end_date"' do |start_date, end_date|
   section = section(start_date, end_date)
-  course = section.course
-  date_string = course_date_string(start_date, end_date)
-  within("#course_#{course.id}") do
+  workshop = section.workshop
+  date_string = workshop_date_string(start_date, end_date)
+  within("#workshop_#{workshop.id}") do
     page.should have_content(date_string)
   end
 end
 
 Then 'I see the home page section from "$start_date" to "$end_date"' do |start_date, end_date|
   section = section(start_date, end_date)
-  course = section.course
-  date_string = course_date_string(start_date, end_date)
+  workshop = section.workshop
+  date_string = workshop_date_string(start_date, end_date)
   within("#section_#{section.id}") do
     page.should have_content(date_string)
   end
@@ -40,8 +40,8 @@ end
 
 Then 'I do not see the home page section from "$start_date" to "$end_date"' do |start_date, end_date|
   section = section(start_date, end_date)
-  course = section.course
-  date_string = course_date_string(start_date, end_date)
+  workshop = section.workshop
+  date_string = workshop_date_string(start_date, end_date)
   page.should_not have_css("#section_#{section.id}:contains('#{date_string}')")
 end
 
@@ -122,7 +122,7 @@ When /^I follow the delete link to the section from "([^"]*)" to "([^"]*)"$/ do 
 end
 
 Then /^I should not see the section from "([^"]*)" to "([^"]*)"$/ do |start_date, end_date|
-  date_string = course_date_string(start_date, end_date)
+  date_string = workshop_date_string(start_date, end_date)
   page.should have_no_css(".section", text: date_string)
 end
 

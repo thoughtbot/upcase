@@ -2,16 +2,16 @@ require 'spec_helper'
 
 describe 'Products' do
   context 'GET /products' do
-    it 'lists all public courses' do
-      course_one = create(:course)
-      course_two = create(:course)
-      private_course = create(:private_course)
+    it 'lists all public workshops' do
+      workshop_one = create(:workshop)
+      workshop_two = create(:workshop)
+      private_workshop = create(:private_workshop)
       visit products_path
-      expect(page).to have_content(course_one.name)
-      expect(page).to have_content(course_two.name)
-      expect(page).not_to have_content(private_course.name)
-      click_link course_one.name
-      expect(current_path).to eq(course_path(course_one))
+      expect(page).to have_content(workshop_one.name)
+      expect(page).to have_content(workshop_two.name)
+      expect(page).not_to have_content(private_workshop.name)
+      click_link workshop_one.name
+      expect(current_path).to eq(workshop_path(workshop_one))
     end
 
     it 'lists all books' do

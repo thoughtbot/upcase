@@ -308,7 +308,7 @@ address     { margin-top: 1.5em; font-style: italic; }
 del         { color:#666; }
 
 a, a:link   {color: #a71914; text-decoration: underline;}
-#course-overview h2 a { text-decoration: none; }
+#workshop-overview h2 a { text-decoration: none; }
 a:visited   {color: #a71914;}
 a:hover     {color: #c41e18;}
 a:active, a:focus    {color: #c41e18;}
@@ -687,7 +687,7 @@ body {
         @include rounded(3px);
         margin: 20px 20px 0 20px;
       }
-      #register-info, #course-overview {
+      #register-info, #workshop-overview {
         background: rgba(255,255,255,.05);
         border: 1px solid #000;
         border-top: 1px solid rgba(255,255,255,.12);
@@ -710,7 +710,7 @@ body {
         font-size: 18px;
       }
 
-      #register-right, #course-overview-right {
+      #register-right, #workshop-overview-right {
         text-align: right;
         display: block;
         font-size: 16px;
@@ -738,7 +738,7 @@ body {
            color: #fff;
          }
         }
-        #course-date-time {
+        #workshop-date-time {
           padding: 15px 0;
            @include gradient(#740300, #c81a15);
            -webkit-border-top-left-radius: 3px;
@@ -860,7 +860,7 @@ body {
           }
          }
       }
-      #register-description, #course-overview-left {
+      #register-description, #workshop-overview-left {
         color: #fff;
         float: left;
         width: 425px;
@@ -1281,7 +1281,7 @@ body.clearance-sessions, body.clearance-passwords {
   }
 }
 
-.course-list {
+.workshop-list {
   ul {
     li {
       background: url(/images/calendar-icon.png) 14px 8px no-repeat;
@@ -1423,7 +1423,7 @@ body.clearance-sessions, body.clearance-passwords {
   }
 }
 
-#no-courses {
+#no-workshops {
   display: block;
   width: 820px;
   margin: 0 auto;
@@ -1589,7 +1589,7 @@ a.remove-followup:hover {
           color: #003672;
         }
       }
-      #courses {
+      #workshops {
         margin: 40px 0;
         padding-top: 40px;
         border-top: 1px solid #ddd;
@@ -1656,8 +1656,8 @@ a.remove-followup:hover {
   }
 }
 
-/* course registration form */
-h1.course-title {
+/* workshop registration form */
+h1.workshop-title {
   color: #eee;
   font-size: 32px;
   font-weight: 300;

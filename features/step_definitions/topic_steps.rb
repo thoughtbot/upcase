@@ -8,9 +8,9 @@ Given /^a "([^"]*)" inactive product named "([^"]*)" for topic "([^"]*)"$/ do |p
   topic.products << create(:product, name: name, product_type: product_type, active: false)
 end
 
-Given /^a course named "([^"]*)" for topic "([^"]*)"$/ do |name, topic_name|
+Given /^a workshop named "([^"]*)" for topic "([^"]*)"$/ do |name, topic_name|
   topic = Topic.find_by_name(topic_name)
-  topic.courses << create(:course, name: name)
+  topic.workshops << create(:workshop, name: name)
 end
 
 Given /^a featured topic named "([^"]*)"$/ do |name|

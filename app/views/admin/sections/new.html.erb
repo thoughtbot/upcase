@@ -1,8 +1,8 @@
-<%= semantic_form_for [:admin, @course, @section] do |form| %>
+<%= semantic_form_for [:admin, @workshop, @section] do |form| %>
   <%= @section.errors.full_messages.join(', ') %>
   <%= render partial: 'inputs',
              locals: { form: form,
-                           course: @course,
+                           workshop: @workshop,
                            teachers: @teachers } %>
 
   <%= form.actions do %>

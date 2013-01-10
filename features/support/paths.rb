@@ -7,29 +7,29 @@ module NavigationHelpers
       "/?#{$2}=#{$1}"
     when 'my account page'
       my_account_path
-    when 'the courses json page'
-      courses_path(format: :json)
-    when /the courses json page with the callback "([^"]+)"/
-      courses_path(format: :json, callback: $1)
-    when /the course page of "([^"]+)"/
-      course_path(Course.find_by_name!($1))
+    when 'the workshops json page'
+      workshops_path(format: :json)
+    when /the workshops json page with the callback "([^"]+)"/
+      workshops_path(format: :json, callback: $1)
+    when /the workshop page of "([^"]+)"/
+      workshop_path(Workshop.find_by_name!($1))
     when /the section page of "([^"]+)"/
-      section_path(Course.find_by_name!($1).active_section)
+      section_path(Workshop.find_by_name!($1).active_section)
     when 'the sign up page'
       sign_up_path
     when 'the sign in page'
       sign_in_path
     when 'the password reset request page'
       new_password_path
-    when 'the list of courses'
-      admin_courses_path
+    when 'the list of workshops'
+      admin_workshops_path
     when 'the new teacher page'
       new_admin_teacher_path
     when 'the list of teachers page'
       admin_teachers_path
     when /^the new section page for "([^"]+)"$/
-      course = Course.find_by_name!($1)
-      new_admin_course_section_path(course)
+      workshop = Workshop.find_by_name!($1)
+      new_admin_workshop_section_path(workshop)
     when /the page to add a new student to the section from "([^"]+)" to "([^"]+)"/
       section = Section.find_by_starts_on_and_ends_on!(Date.parse($1), Date.parse($2))
       new_admin_section_registration_path(section)
@@ -38,8 +38,8 @@ module NavigationHelpers
     when /the new admin page/
       "/new_admin"
     when /the freshbooks invoice page for "([^\"]+)" on "([^\"]+)"/
-      course = Course.find_by_name!($2)
-      registration = course.registrations.find_by_email($1)
+      workshop = Workshop.find_by_name!($2)
+      registration = workshop.registrations.find_by_email($1)
       registration.freshbooks_invoice_url
     when /the product page for "([^\"]+)"/
       product = Product.find_by_name!($1)
@@ -71,12 +71,12 @@ module NavigationHelpers
 
   def link_to(link_description)
     case link_description
-    when /the (.*) course/
+    when /the (.*) workshop/
       $1
     when 'register for a section'
       'register-button'
-    when 'create a new course'
-      'New Course'
+    when 'create a new workshop'
+      'New Workshop'
     when /sign in/
       'Sign in'
     when /admin interface/
@@ -92,34 +92,34 @@ module NavigationHelpers
     case field_description
     when 'audience name'
       'audience_name'
-    when 'course name'
-      'course_name'
-    when 'course description'
-      'course_description'
+    when 'workshop name'
+      'workshop_name'
+    when 'workshop description'
+      'workshop_description'
     when 'short description'
-      'course_short_description'
-    when 'course price'
-      'course_individual_price'
-    when 'course company price'
-      'course_company_price'
+      'workshop_short_description'
+    when 'workshop price'
+      'workshop_individual_price'
+    when 'workshop company price'
+      'workshop_company_price'
     when 'start time'
-      'course_start_at'
+      'workshop_start_at'
     when 'end time'
-      'course_stop_at'
+      'workshop_stop_at'
     when 'section start time'
       'section_start_at'
     when 'section stop time'
       'section_stop_at'
     when 'location'
-      'course_location'
+      'workshop_location'
     when 'location name'
-      'course_location_name'
+      'workshop_location_name'
     when 'max students'
-      'course_maximum_students'
+      'workshop_maximum_students'
     when 'reminder email text'
       'section_reminder_email'
-    when 'course follow up email'
-      'course_followup_email'
+    when 'workshop follow up email'
+      'workshop_followup_email'
     when 'login email'
       'session_email'
     when 'login password'
@@ -159,19 +159,19 @@ module NavigationHelpers
     when 'last name'
       'registration_last_name'
     when 'external registration url'
-      'course_external_registration_url'
+      'workshop_external_registration_url'
     when /question (\d+)/
       question_number = $1.to_i
       question_index = question_number - 1
-      "course_questions_attributes_#{question_index}_question"
+      "workshop_questions_attributes_#{question_index}_question"
     when /answer (\d+)/
       answer_number = $1.to_i
       answer_index = answer_number - 1
-      "course_questions_attributes_#{answer_index}_answer"
+      "workshop_questions_attributes_#{answer_index}_answer"
     when /follow up (\d+)/
       follow_up_number = $1.to_i
       follow_up_index = follow_up_number - 1
-      "course_follow_ups_attributes_#{follow_up_index}_email"
+      "workshop_follow_ups_attributes_#{follow_up_index}_email"
     else
       raise %{Can't find a mapping from #{field_description.inspect} to an id: #{__FILE__}}
     end
@@ -179,7 +179,7 @@ module NavigationHelpers
 
   def button_text_for(button_text)
     case button_text
-    when 're-run a course', 'update a section'
+    when 're-run a workshop', 'update a section'
       'Save Section'
     when 'add a teacher'
       'Save Teacher'
@@ -196,10 +196,10 @@ module NavigationHelpers
 
   def flash_text_for(flash_text)
     case flash_text
-    when 'course creation'
-      'Course was successfully created'
-    when 'course update'
-      'Course was successfully updated'
+    when 'workshop creation'
+      'Workshop was successfully created'
+    when 'workshop update'
+      'Workshop was successfully updated'
     when 'permission denied'
       'You do not have permission to view that page'
     when 'section creation'
