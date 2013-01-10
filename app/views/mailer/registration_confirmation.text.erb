@@ -21,10 +21,10 @@ Where
 We will be in touch before <%= @section.starts_on.to_s(:simple) %> with a reminder and any further instructions. However, please don't hesitate to get in touch with us at learn@thoughtbot.com should you have any questions or concerns.
 
 Every product and workshop includes ongoing support for any questions you may
-have about the topic, both before and after the course. Visit our live chat here: <%= CHAT_LINK %>
+have about the topic, both before and after the workshop. Visit our live chat here: <%= CHAT_LINK %>
 
-<% if @section.course.announcement.present? %>
-<%= @section.course.announcement.message %>
+<% if @section.workshop.announcement.present? %>
+<%= @section.workshop.announcement.message %>
 <% end %>
 
 <% if @section.announcement.present? %>

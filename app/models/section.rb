@@ -1,6 +1,6 @@
 class Section < ActiveRecord::Base
   # Associations
-  belongs_to :course
+  belongs_to :workshop
   has_many :paid_purchases, class_name: 'Purchase', as: :purchaseable,
     conditions: { paid: true }
   has_many :purchases, as: :purchaseable
@@ -14,7 +14,7 @@ class Section < ActiveRecord::Base
 
   # Delegates
   delegate :name, :description, :individual_price, :company_price, :terms,
-    to: :course
+    to: :workshop
 
   # Nested Attributes
   accepts_nested_attributes_for :section_teachers
@@ -43,8 +43,8 @@ class Section < ActiveRecord::Base
     order('starts_on desc')
   end
 
-  def self.in_public_course
-    joins(:course).where(courses: {public: true})
+  def self.in_public_workshop
+    joins(:workshop).where(workshops: {public: true})
   end
 
   def send_registration_emails(purchase)
@@ -85,7 +85,7 @@ class Section < ActiveRecord::Base
   end
 
   def seats_available
-    super || course.maximum_students
+    super || workshop.maximum_students
   end
 
   def self.send_reminders
@@ -123,7 +123,7 @@ class Section < ActiveRecord::Base
   end
 
   def send_follow_up_emails
-    course.follow_ups.have_not_notified.each do |follow_up|
+    workshop.follow_ups.have_not_notified.each do |follow_up|
       follow_up.notify self
     end
   end

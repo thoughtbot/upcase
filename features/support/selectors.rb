@@ -9,7 +9,7 @@ module HtmlSelectorsHelpers
     case locator
 
     when /the page/
-      "html > body"    
+      "html > body"
     when /the question remove link/
       '.remove-question'
     when /the "(.+)" question/
@@ -19,9 +19,9 @@ module HtmlSelectorsHelpers
       '.coupon form'
     when /the coupon form link/
       '#total a'
-    when /the course "([^"]+)"/
-      course = Course.find_by_name!($1)
-      "##{dom_id(course)}"
+    when /the workshop "([^"]+)"/
+      workshop = Workshop.find_by_name!($1)
+      "##{dom_id(workshop)}"
     when "the teachers list"
       "#teachers"
 

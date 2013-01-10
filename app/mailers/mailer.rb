@@ -4,7 +4,7 @@ class Mailer < ActionMailer::Base
   def registration_notification(purchase)
     @comments = purchase.comments
     @student_name = purchase.name
-    @course_name = purchase.purchaseable_name
+    @workshop_name = purchase.purchaseable_name
     @city = purchase.purchaseable.city
     @running_date_range = purchase.purchaseable.date_range
 
@@ -39,7 +39,7 @@ class Mailer < ActionMailer::Base
 
     mail(
       to: follow_up.email,
-      subject: "The #{@section.course.name} workshop has been scheduled"
+      subject: "The #{@section.workshop.name} workshop has been scheduled"
     )
   end
 
@@ -48,7 +48,7 @@ class Mailer < ActionMailer::Base
 
     mail(
       to: teacher.email,
-      subject: "You have been scheduled to teach #{@section.course.name}"
+      subject: "You have been scheduled to teach #{@section.workshop.name}"
     )
   end
 

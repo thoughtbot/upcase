@@ -1,6 +1,6 @@
-Then /^I should have a reminder email for "([^"]*)"$/ do |course_name|
+Then /^I should have a reminder email for "([^"]*)"$/ do |workshop_name|
   result = ActionMailer::Base.deliveries.detect do |email|
-    email.subject =~ /#{course_name}/ && email.to.include?(@registration.email)
+    email.subject =~ /#{workshop_name}/ && email.to.include?(@registration.email)
   end
 
   result.should_not be_nil
@@ -40,11 +40,11 @@ Then '"$email" does not receive a confirmation message' do |email|
   result.should_not be
 end
 
-Then '"$email_address" receives a follow up email for "$course_title"' do |email_address, course_title|
+Then '"$email_address" receives a follow up email for "$workshop_title"' do |email_address, workshop_title|
   ActionMailer::Base.deliveries.should_not be_empty
   result = ActionMailer::Base.deliveries.any? do |email|
     email.to == [email_address] &&
-    email.subject =~ /#{course_title} workshop has been scheduled/i
+    email.subject =~ /#{workshop_title} workshop has been scheduled/i
   end
   result.should be
 end
@@ -53,19 +53,19 @@ When 'emails are cleared' do
   ActionMailer::Base.deliveries.clear
 end
 
-Then '"$email_address" does not receive a follow up email for "$course_title"' do |email_address, course_title|
+Then '"$email_address" does not receive a follow up email for "$workshop_title"' do |email_address, workshop_title|
   result = ActionMailer::Base.deliveries.any? do |email|
     email.to == [email_address] &&
-    email.subject =~ /#{course_title} workshop has been scheduled/i
+    email.subject =~ /#{workshop_title} workshop has been scheduled/i
   end
   result.should_not be
 end
 
-Then '"$email_address" is notified that they are scheduled to teach "$course_title"' do |email_address, course_title|
+Then '"$email_address" is notified that they are scheduled to teach "$workshop_title"' do |email_address, workshop_title|
   ActionMailer::Base.deliveries.should_not be_empty
   result = ActionMailer::Base.deliveries.any? do |email|
     email.to == [email_address] &&
-    email.subject =~ /You have been scheduled to teach #{course_title}/i
+    email.subject =~ /You have been scheduled to teach #{workshop_title}/i
   end
   result.should be
 end

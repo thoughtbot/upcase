@@ -1,0 +1,22 @@
+<section class="section-location">
+  <h2><%= @workshop.audience.name %> <span><%= number_to_currency @workshop.price, precision: 0 %></span></h2>
+
+  <div class="when">
+    <h5>WHEN</h5>
+    <p>
+      TBD
+    </p>
+  </div>
+
+  <div class="address">
+    <h5>WHERE</h5>
+    <p>
+      <%= google_map_link_to("#{@workshop.location} #{@workshop.location_name}", id: 'location') do %>
+        <%= @workshop.location %> <br> <%= @workshop.location_name %>
+      <% end %>
+    </p>
+  </div>
+  <div id="register">
+    <a href="#new_follow_up" id="register-button">Get notified</a>
+  </div>
+</section>

@@ -18,9 +18,9 @@ Feature: Add a teacher
 
   Scenario: Add a teacher from new section page
     Given I am signed in as an admin
-    And a course exists with a name of "Test-Driven Sleeping"
+    And a workshop exists with a name of "Test-Driven Sleeping"
     When I go to the admin page
-    And I follow "New Section" within the course "Test-Driven Sleeping"
+    And I follow "New Section" within the workshop "Test-Driven Sleeping"
     And I follow "Create New Teacher"
     When I fill in the teacher's name with ""
     And I fill in the teacher's email with ""

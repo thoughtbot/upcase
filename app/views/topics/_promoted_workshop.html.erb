@@ -1,0 +1,11 @@
+<div class='promo-container <%= promoted_workshop.promo_location %>'>
+  <div class='promo-detail'>
+    <h3><%= promoted_workshop.name %></h3>
+    <p><%= promoted_workshop.short_description %></p>
+    <%= link_to promoted_workshop do %>
+      <div class='button'>
+        <%= t ".action" %>
+      </div>
+    <% end %>
+  </div>
+</div>

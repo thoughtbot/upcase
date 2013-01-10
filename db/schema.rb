@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130102163245) do
+ActiveRecord::Schema.define(:version => 20130109204805) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -81,31 +81,6 @@ ActiveRecord::Schema.define(:version => 20130102163245) do
 
   add_index "coupons", ["code"], :name => "index_coupons_on_code"
 
-  create_table "courses", :force => true do |t|
-    t.string   "name",                                        :null => false
-    t.integer  "individual_price"
-    t.text     "description"
-    t.time     "start_at"
-    t.time     "stop_at"
-    t.integer  "maximum_students",          :default => 12,   :null => false
-    t.boolean  "public",                    :default => true, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "short_description"
-    t.string   "external_registration_url"
-    t.integer  "position"
-    t.integer  "audience_id"
-    t.string   "course_image_file_name"
-    t.string   "course_image_file_size"
-    t.string   "course_image_content_type"
-    t.string   "course_image_updated_at"
-    t.string   "promo_location"
-    t.integer  "company_price"
-    t.text     "terms"
-  end
-
-  add_index "courses", ["audience_id"], :name => "index_courses_on_audience_id"
-
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
     t.integer  "attempts",   :default => 0
@@ -150,13 +125,13 @@ ActiveRecord::Schema.define(:version => 20130102163245) do
 
   create_table "follow_ups", :force => true do |t|
     t.string   "email"
-    t.integer  "course_id"
+    t.integer  "workshop_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "notified_at"
   end
 
-  add_index "follow_ups", ["course_id"], :name => "index_follow_ups_on_course_id"
+  add_index "follow_ups", ["workshop_id"], :name => "index_follow_ups_on_workshop_id"
 
   create_table "products", :force => true do |t|
     t.string   "name"
@@ -221,14 +196,14 @@ ActiveRecord::Schema.define(:version => 20130102163245) do
   add_index "purchases", ["stripe_customer"], :name => "index_purchases_on_stripe_customer"
 
   create_table "questions", :force => true do |t|
-    t.integer  "course_id"
+    t.integer  "workshop_id"
     t.string   "question"
     t.text     "answer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "questions", ["course_id"], :name => "index_questions_on_course_id"
+  add_index "questions", ["workshop_id"], :name => "index_questions_on_workshop_id"
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
@@ -261,7 +236,7 @@ ActiveRecord::Schema.define(:version => 20130102163245) do
   add_index "section_teachers", ["section_id", "teacher_id"], :name => "index_section_teachers_on_section_id_and_teacher_id", :unique => true
 
   create_table "sections", :force => true do |t|
-    t.integer  "course_id"
+    t.integer  "workshop_id"
     t.date     "starts_on"
     t.date     "ends_on"
     t.datetime "created_at"
@@ -276,7 +251,7 @@ ActiveRecord::Schema.define(:version => 20130102163245) do
     t.text     "reminder_email"
   end
 
-  add_index "sections", ["course_id"], :name => "index_sections_on_course_id"
+  add_index "sections", ["workshop_id"], :name => "index_sections_on_workshop_id"
 
   create_table "teachers", :force => true do |t|
     t.string   "name"
@@ -334,5 +309,31 @@ ActiveRecord::Schema.define(:version => 20130102163245) do
     t.datetime "updated_at",        :null => false
     t.string   "purchaseable_type"
   end
+
+  create_table "workshops", :force => true do |t|
+    t.string   "name",                      :default => "",    :null => false
+    t.text     "description"
+    t.time     "start_at"
+    t.time     "stop_at"
+    t.integer  "maximum_students",          :default => 12,    :null => false
+    t.boolean  "public",                    :default => true,  :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.integer  "individual_price"
+    t.string   "short_description"
+    t.string   "external_registration_url"
+    t.integer  "position"
+    t.integer  "audience_id"
+    t.string   "course_image_file_name"
+    t.string   "course_image_file_size"
+    t.string   "course_image_content_type"
+    t.string   "course_image_updated_at"
+    t.string   "promo_location"
+    t.integer  "company_price"
+    t.text     "terms"
+    t.boolean  "online",                    :default => false, :null => false
+  end
+
+  add_index "workshops", ["audience_id"], :name => "index_workshops_on_audience_id"
 
 end

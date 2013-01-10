@@ -1,34 +1,34 @@
-class Admin::CoursesController < AdminController
+class Admin::WorkshopsController < AdminController
   def index
-    @courses = Course.by_position.includes(:sections)
+    @workshops = Workshop.by_position.includes(:sections)
     render
   end
 
   def new
-    @course = Course.new
+    @workshop = Workshop.new
     render
   end
 
   def create
-    @course = Course.new(params[:course])
-    if @course.save
-      flash[:success] = 'Course was successfully created.'
-      redirect_to admin_courses_path
+    @workshop = Workshop.new(params[:workshop])
+    if @workshop.save
+      flash[:success] = 'Workshop was successfully created.'
+      redirect_to admin_workshops_path
     else
       render :new
     end
   end
 
   def edit
-    @course = Course.find(params[:id])
+    @workshop = Workshop.find(params[:id])
     render
   end
 
   def update
-    @course = Course.find(params[:id])
-    if @course.update_attributes(params[:course])
-      flash[:success] = 'Course was successfully updated.'
-      redirect_to admin_courses_path
+    @workshop = Workshop.find(params[:id])
+    if @workshop.update_attributes(params[:workshop])
+      flash[:success] = 'Workshop was successfully updated.'
+      redirect_to admin_workshops_path
     else
       render 'edit'
     end

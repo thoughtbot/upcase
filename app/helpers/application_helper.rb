@@ -34,10 +34,10 @@ module ApplicationHelper
   end
 
   def registration_url(section)
-    if section.course.external_registration_url.blank?
+    if section.workshop.external_registration_url.blank?
       new_section_purchase_path(section, variant: :individual)
     else
-      section.course.external_registration_url
+      section.workshop.external_registration_url
     end
   end
 
