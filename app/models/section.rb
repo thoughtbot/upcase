@@ -48,8 +48,7 @@ class Section < ActiveRecord::Base
   end
 
   def send_registration_emails(purchase)
-    Mailer.registration_notification(purchase).deliver
-    Mailer.registration_confirmation(purchase).deliver
+    SendRegistrationEmailsJob.enqueue(purchase.id)
   end
 
   def announcement
@@ -94,7 +93,7 @@ class Section < ActiveRecord::Base
 
   def send_reminders
     paid_purchases.each do |purchase|
-      Mailer.section_reminder(purchase, self).deliver
+      Mailer.delay.section_reminder(purchase.id, id)
     end
   end
 
@@ -130,7 +129,7 @@ class Section < ActiveRecord::Base
 
   def send_teacher_notifications
     teachers.each do |teacher|
-      Mailer.teacher_notification(teacher, self).deliver
+      Mailer.delay.teacher_notification(teacher.id, id)
     end
   end
 

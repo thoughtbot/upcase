@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe RemoveGithubTeamMemberJob do
+  it_behaves_like 'a Delayed Job that notifies Airbrake about errors'
+
   it 'removes a username from a github team' do
     client = stub_octokit
     client.stubs(:remove_team_member => nil)

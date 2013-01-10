@@ -306,12 +306,8 @@ class Purchase < ActiveRecord::Base
   end
 
   def send_receipt
-    begin
-      Mailer.purchase_receipt(self).deliver
-      purchaseable.send_registration_emails(self)
-    rescue *SMTP_ERRORS => e
-      Airbrake.notify(e)
-    end
+    SendPurchaseReceiptEmailJob.enqueue(id)
+    purchaseable.send_registration_emails(self)
   end
 
   def populate_billing_email

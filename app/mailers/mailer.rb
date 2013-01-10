@@ -16,20 +16,20 @@ class Mailer < ActionMailer::Base
 
   def registration_confirmation(purchase)
     @purchase = purchase
-    @section = purchase.purchaseable
+    @section = @purchase.purchaseable
 
     mail(
-      to: purchase.email,
-      subject: "You're registered for #{purchase.purchaseable_name}"
+      to: @purchase.email,
+      subject: "You're registered for #{@purchase.purchaseable_name}"
     )
   end
 
-  def purchase_receipt(purchase)
-    @purchase = purchase
+  def purchase_receipt(purchase_id)
+    @purchase = Purchase.find(purchase_id)
 
     mail(
-      to: purchase.email,
-      subject: "Your receipt for #{purchase.purchaseable_name}",
+      to: @purchase.email,
+      subject: "Your receipt for #{@purchase.purchaseable_name}",
       from: Clearance.configuration.mailer_sender
     )
   end
@@ -43,8 +43,9 @@ class Mailer < ActionMailer::Base
     )
   end
 
-  def teacher_notification(teacher, section)
-    @section = section
+  def teacher_notification(teacher_id, section_id)
+    teacher = Teacher.find(teacher_id)
+    @section = Section.find(section_id)
 
     mail(
       to: teacher.email,
@@ -52,13 +53,13 @@ class Mailer < ActionMailer::Base
     )
   end
 
-  def section_reminder(purchase, section)
-    @section = section
-    @purchase = purchase
+  def section_reminder(purchase_id, section_id)
+    @purchase = Purchase.find(purchase_id)
+    @section = Section.find(section_id)
 
     mail(
-      to: purchase.email,
-      subject: "Reminder: #{purchase.purchaseable_name} is scheduled to start in a week on #{section.starts_on.to_s(:simple)}. Mark your calendar!"
+      to: @purchase.email,
+      subject: "Reminder: #{@purchase.purchaseable_name} is scheduled to start in a week on #{@section.starts_on.to_s(:simple)}. Mark your calendar!"
     )
   end
 
