@@ -11,6 +11,9 @@ Workshops::Application.routes.draw do
     resources :purchases, only: [:new, :create]
     resources :redemptions, only: [:new]
   end
+
+  get '/courses.json' => redirect('/workshops.json')
+  get '/courses/:id' => redirect('/workshops/%{id}')
   resources :workshops, only: [:index, :show] do
     resources :follow_ups, only: [:create]
   end
