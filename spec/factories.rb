@@ -115,6 +115,11 @@ FactoryGirl.define do
     association :purchaseable, factory: :product
     variant 'individual'
 
+    trait :free do
+      paid_price 0
+      payment_method 'free'
+    end
+
     factory :paid_purchase do
       paid true
     end
@@ -123,10 +128,7 @@ FactoryGirl.define do
       payment_method 'stripe'
     end
 
-    factory :free_purchase do
-      paid_price 0
-      payment_method 'free'
-    end
+    factory :free_purchase, traits: [:free]
 
     factory :section_purchase do
       association :purchaseable, factory: :section
