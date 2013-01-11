@@ -24,8 +24,8 @@ class Mailer < ActionMailer::Base
     )
   end
 
-  def purchase_receipt(purchase_id)
-    @purchase = Purchase.find(purchase_id)
+  def purchase_receipt(purchase)
+    @purchase = purchase
 
     mail(
       to: @purchase.email,
