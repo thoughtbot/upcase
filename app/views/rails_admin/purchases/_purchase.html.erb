@@ -1,0 +1,8 @@
+<%= content_tag_for :li, purchase do %>
+  <b><%= purchase.name %></b>
+  <% if purchase.comments.present? %>
+    <%= content_tag :abbr, 'Note', title: purchase.comments %> /
+  <% end %>
+  <%= link_to 'Edit', edit_path(:purchase, purchase) %> /
+  <%= mail_to purchase.email, 'Email', title: 'Email' %>
+<% end %>

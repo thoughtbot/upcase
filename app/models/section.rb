@@ -14,7 +14,7 @@ class Section < ActiveRecord::Base
 
   # Delegates
   delegate :name, :description, :individual_price, :company_price, :terms,
-    to: :workshop
+    to: :workshop, allow_nil: true
 
   # Nested Attributes
   accepts_nested_attributes_for :section_teachers
@@ -64,7 +64,9 @@ class Section < ActiveRecord::Base
   end
 
   def date_range
-    if starts_on == ends_on
+    if starts_on.nil? || ends_on.nil?
+      nil
+    elsif starts_on == ends_on
       starts_on.to_s :simple
     elsif starts_on.year != ends_on.year
       "#{starts_on.to_s(:simple)}-#{ends_on.to_s(:simple)}"

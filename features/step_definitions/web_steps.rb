@@ -184,6 +184,10 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label
   end
 end
 
+Then /^"([^"]*)" should be selected for "([^"]*)"$/ do |value, label|
+  find_field(label).find("option:text('#{value}')").should be_selected
+end
+
 Then /^(?:|I )should be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should

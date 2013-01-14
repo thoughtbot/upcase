@@ -6,6 +6,13 @@ Given '"$teacher_name" is teaching the section from "$section_start" to "$sectio
   section.teachers = [teacher]
 end
 
+Given /^the following sections? exists? for the workshop "([^"]*)":$/ do |workshop_name, section_data|
+  workshop = Workshop.find_by_name!(workshop_name)
+  section_data.hashes.each do |row|
+    create(:section, row.merge(workshop: workshop))
+  end
+end
+
 Given 'I create the following section for "$workshop_name":' do |workshop_name, section_data|
   steps %{
     Given a teacher exists with a name of "Albert Einstein"
