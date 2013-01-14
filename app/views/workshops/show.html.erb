@@ -13,7 +13,7 @@
   <% if @sections.any? %>
     <%= render 'sections/section', sections: @sections, workshop: @workshop %>
   <% else %>
-    <%= render 'sections/tbd', sections: @sections, workshop: @workshop %>
+    <%= render 'sections/tbd' %>
   <% end %>
 </aside>
 
