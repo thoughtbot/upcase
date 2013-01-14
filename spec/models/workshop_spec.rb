@@ -72,4 +72,12 @@ describe Workshop do
       workshop.to_param.should == "#{workshop.id}-#{workshop.name.parameterize}"
     end
   end
+
+  describe '#in_person' do
+    it 'returns true if the workshop is an in-person workshop' do
+      workshop = create(:workshop, online: false)
+
+      workshop.should be_in_person
+    end
+  end
 end

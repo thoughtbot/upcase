@@ -1,0 +1,30 @@
+<section id="license">
+  <% if online_section.active? %>
+      <div class="individual-purchase">
+        <h2>Single <span><%= number_to_currency online_section.individual_price, precision: 0 %></span></h2>
+        <div class="license">
+          <%= link_to new_section_purchase_path(online_section, variant: :individual), class: 'license-button button' do %>
+            Purchase for Yourself
+          <% end %>
+        </div>
+      </div>
+      <div class="company-purchase">
+        <h2>Group <span><%= number_to_currency online_section.company_price, precision: 0 %></span></h2>
+        <div class="license">
+          <%= link_to new_section_purchase_path(online_section, variant: :company), class: 'license-button button' do %>
+            Purchase for Your Company
+          <% end %>
+        </div>
+      </div>
+  <% else %>
+    <p>This online workshop is not currently available. Contact <%= mail_to 'learn@thoughtbot.com', 'learn@thoughtbot.com' %> for more information.</p>
+  <% end %>
+</section>
+
+<section id="terms">
+  <ul>
+    <dd><p>Every online workshop includes support for any questions you may have about the topic, direct from the thoughtbot team.</p></dd>
+    <dt><p>What if I'm not happy?</p></dt>
+    <dd><p>If you&rsquo;re not happy, just let us know within 30 days and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</p></dd>
+  </ul>
+</section>
