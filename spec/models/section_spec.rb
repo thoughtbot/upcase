@@ -131,6 +131,21 @@ describe Section do
       Section.upcoming.should eq([section])
     end
   end
+
+  describe '#active?' do
+    it 'returns true if the section is active' do
+      active_section = create(:section, ends_on: 1.week.from_now)
+
+      active_section.should be_active
+    end
+
+    it 'returns false if the section is inactive but there is another active section' do
+      active_section = create(:section, ends_on: 1.week.from_now)
+      inactive_section = create(:section, ends_on: 1.day.ago)
+
+      inactive_section.should_not be_active
+    end
+  end
 end
 
 describe Section, 'self.by_starts_on_desc' do
