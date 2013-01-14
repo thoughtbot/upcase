@@ -67,6 +67,10 @@ class Workshop < ActiveRecord::Base
     where online: false
   end
 
+  def in_person?
+    self.class.in_person.find_by_id(id)
+  end
+
   def self.online
     where online: true
   end
