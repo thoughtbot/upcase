@@ -40,3 +40,29 @@ Feature: Viewing the workshops page
     And I view all products
     Then I should see that "In-Person Haskell" is an in-person workshop
     And I should see that "Online Haskell" is an online workshop
+
+  Scenario: Visitor sees a link to group purchase for online workshops
+    Given today is January 11, 2013
+    And the following workshop exists:
+      | name            | online |
+      | Online Workshop | true   |
+    And the following section exists:
+      | workshop              | starts_on    |
+      | name: Online Workshop | 2013-01-12   |
+    When I go to the home page
+    And I view all products
+    And I follow "Online Workshop"
+    Then I should see "Purchase for Your Company"
+
+  Scenario: Visitor does not see a link to group purchase for in-person workshops
+    Given today is January 11, 2013
+    And the following workshop exists:
+      | name               | online |
+      | In-Person Workshop | false  |
+    And the following section exists:
+      | workshop                 | starts_on    |
+      | name: In-Person Workshop | 2013-01-12   |
+    When I go to the home page
+    And I view all products
+    And I follow "In-Person Workshop"
+    Then I should not see "Purchase for Your Company"
