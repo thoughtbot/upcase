@@ -139,7 +139,7 @@ describe Section do
       active_section.should be_active
     end
 
-    it 'returns true if the section is inactive but there is another active section' do
+    it 'returns false if the section is inactive but there is another active section' do
       active_section = create(:section, ends_on: 1.week.from_now)
       inactive_section = create(:section, ends_on: 1.day.ago)
 
