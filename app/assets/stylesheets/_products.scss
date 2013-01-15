@@ -40,6 +40,17 @@ body.products-index {
 body.products-show, body.workshops-show {
   section.content {
     .text-box {
+      .product-title {
+        h2 {
+          margin-bottom: 0;
+        }
+
+        .workshop-type {
+          color: $learnred;
+          font-size: 17px;
+        }
+      }
+
       .what-you-learn {
         @include outer-container;
         background-color: $lightwarmgray;
@@ -313,5 +324,20 @@ body.products-show, body.workshops-show {
         width: 100%;
       }
     }
+  }
+}
+
+.workshop-alert {
+  background: $lightwarmgray;
+  margin-bottom: 40px;
+  padding: 12px;
+  text-align: center;
+
+  a {
+    color: $learnred;
+  }
+
+  b {
+    font-weight: bold;
   }
 }

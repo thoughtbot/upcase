@@ -86,4 +86,92 @@ describe Workshop do
       workshop.should_not be_in_person
     end
   end
+
+  describe '#has_online_workshop?' do
+    it 'returns true if there is an online workshop with the same name' do
+      offline_workshop = create(:workshop, online: false)
+      online_workshop = create(:workshop, online: true,
+        name: offline_workshop.name)
+
+      offline_workshop.should have_online_workshop
+    end
+
+    it 'returns false if it does not have an online workshop' do
+      workshop = create(:workshop, online: false)
+
+      workshop.should_not have_online_workshop
+    end
+
+    it 'returns falsy when there the workshop is online' do
+      online_workshop = create(:workshop, online: true)
+
+      online_workshop.should_not have_online_workshop
+    end
+  end
+
+  describe '#online_workshop' do
+    it 'returns the online workshop with the same name' do
+      offline_workshop = create(:workshop, online: false)
+      online_workshop = create(:workshop, online: true,
+        name: offline_workshop.name)
+
+      offline_workshop.online_workshop.should == online_workshop
+    end
+
+    it 'returns nil if it does not have an online workshop' do
+      offline_workshop = create(:workshop, online: false)
+
+      offline_workshop.online_workshop.should_not be
+    end
+
+    it 'returns falsy when the workshop is online' do
+      online_workshop = create(:workshop, online: true)
+
+      online_workshop.online_workshop.should_not be
+    end
+  end
+
+  describe '#in_person_workshop' do
+    it 'returns the in-person workshop when it exists' do
+      online_workshop = create(:workshop, online: true)
+      in_person_workshop = create(:workshop, online: false,
+        name: online_workshop.name)
+
+      online_workshop.in_person_workshop.should == in_person_workshop
+    end
+
+    it 'returns falsy when there is no in-person workshop' do
+      online_workshop = create(:workshop, online: true)
+
+      online_workshop.in_person_workshop.should_not be
+    end
+
+    it 'returns falsy when the workshop is in-person' do
+      in_person_workshop = create(:workshop, online: false)
+
+      in_person_workshop.in_person_workshop.should_not be
+    end
+  end
+
+  describe '#has_in_person_workshop?' do
+    it 'returns true when there is an in-person workshop' do
+      online_workshop = create(:workshop, online: true)
+      in_person_workshop = create(:workshop, online: false,
+        name: online_workshop.name)
+
+      online_workshop.should have_in_person_workshop
+    end
+
+    it 'returns false when there is not an in-person workshop' do
+      online_workshop = create(:workshop, online: true)
+
+      online_workshop.should_not have_in_person_workshop
+    end
+
+    it 'returns falsy when the workshop is in-person' do
+      in_person_workshop = create(:workshop, online: false)
+
+      in_person_workshop.should_not have_in_person_workshop
+    end
+  end
 end

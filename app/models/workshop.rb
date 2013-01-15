@@ -58,6 +58,14 @@ class Workshop < ActiveRecord::Base
     follow_ups + [follow_ups.new]
   end
 
+  def has_in_person_workshop?
+    in_person_workshop.present?
+  end
+
+  def has_online_workshop?
+    online_workshop.present?
+  end
+
   def image_url
     raw_url = course_image.url(:course)
     course_image_file_name? ? raw_url : "/assets/#{raw_url}"
@@ -68,11 +76,23 @@ class Workshop < ActiveRecord::Base
   end
 
   def in_person?
-    self.class.in_person.find_by_id(id)
+    ! online?
+  end
+
+  def in_person_workshop
+    if online?
+      self.class.in_person.find_by_name(name)
+    end
   end
 
   def self.online
     where online: true
+  end
+
+  def online_workshop
+    if in_person?
+      self.class.online.find_by_name(name)
+    end
   end
 
   def self.only_public
