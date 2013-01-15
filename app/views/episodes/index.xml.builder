@@ -4,7 +4,7 @@ xml.rss :version => '2.0', 'xmlns:dc' => 'http://purl.org/dc/elements/1.1/', 'xm
     xml.title 'Giant Robots Smashing into other Giant Robots'
     xml.link href: 'http://thoughtbot.com/podcast'
     if @episodes.any?
-      xml.pubDate @episodes.first.published_on.xmlschema
+      xml.pubDate @episodes.first.published_on.to_s(:rfc822)
     end
     xml.description "A weekly technical podcast discussing development, design, and the business of software development."
     xml.language 'en-us'
@@ -28,7 +28,7 @@ xml.rss :version => '2.0', 'xmlns:dc' => 'http://purl.org/dc/elements/1.1/', 'xm
         xml.title episode.full_title
         xml.link episode_url(episode)
         xml.guid episode.old_url.blank? ? episode_url(episode) : episode.old_url
-        xml.pubDate episode.published_on.xmlschema
+        xml.pubDate episode.published_on.to_s(:rfc822)
         xml.author 'thoughtbot'
         xml.description episode.description
         xml.enclosure url: episode_url(episode, format: :mp3), length: episode.file_size, type: 'audio/mpeg'
