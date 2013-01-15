@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130109204805) do
+ActiveRecord::Schema.define(:version => 20130115210038) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -210,7 +210,7 @@ ActiveRecord::Schema.define(:version => 20130109204805) do
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month",      :limit => 2
+    t.integer  "month"
     t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
@@ -324,10 +324,6 @@ ActiveRecord::Schema.define(:version => 20130109204805) do
     t.string   "external_registration_url"
     t.integer  "position"
     t.integer  "audience_id"
-    t.string   "course_image_file_name"
-    t.string   "course_image_file_size"
-    t.string   "course_image_content_type"
-    t.string   "course_image_updated_at"
     t.string   "promo_location"
     t.integer  "company_price"
     t.text     "terms"
