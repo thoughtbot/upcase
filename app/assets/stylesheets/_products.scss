@@ -268,6 +268,7 @@ body.products-show, body.workshops-show {
     #additional-information-wrapper {
       @include outer-container;
       padding: 3em 0 3em 0;
+      max-width: $max-width;
 
       #main-content {
         @include span-columns(12);
@@ -308,6 +309,7 @@ body.products-show, body.workshops-show {
 
       ul li {
         color: $darkwarmgray;
+        @include span-columns(6);
       }
     }
   }
@@ -322,6 +324,12 @@ body.products-show, body.workshops-show {
       input[type="submit"] {
         margin-left:  0 !important;
         width: 100%;
+      }
+      #additional-information-wrapper {
+        ul li {
+          @include span-columns(12);
+          width: 100%;
+        }
       }
     }
   }
