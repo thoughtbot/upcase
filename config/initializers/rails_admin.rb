@@ -48,6 +48,7 @@ RailsAdmin.config do |config|
     edit do
       group :default do
         field :name
+        field :online
         field :short_description
         field :description
         field :audience
