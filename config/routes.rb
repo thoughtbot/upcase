@@ -3,7 +3,9 @@ Workshops::Application.routes.draw do
 
   root to: 'topics#index'
 
-  match '/pages/tmux' => redirect("/products/4-humans-present-tmux")
+  match '/pages/tmux' => redirect('/products/4-humans-present-tmux')
+  match '/products/:id' => redirect('/workshops/18-test-driven-rails'), constraints: { id: /(10|12).*/ }
+  match '/products/:id' => redirect('/workshops/19-design-for-developers'), constraints: { id: /(9|11).*/ }
 
   resource :session, controller: 'sessions'
 
@@ -65,7 +67,7 @@ Workshops::Application.routes.draw do
   match '/humans-present/oss' => "high_voltage/pages#show", as: :humans_present_oss, id: "humans-present-oss"
 
   match '/backbone-js-on-rails' => redirect("/products/1-backbone-js-on-rails")
-  match '/5by5' => redirect('/products/9-design-for-developers?utm_source=5by5')
+  match '/5by5' => redirect('/workshops/19-design-for-developers?utm_source=5by5')
 
   match '/rubyist-booster-shot' => "high_voltage/pages#show", as: :rubyist_booster_shot, id: "rubyist-booster-shot"
 
