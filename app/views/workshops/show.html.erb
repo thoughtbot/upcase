@@ -13,6 +13,15 @@
         <%= link_to 'In Boston or San Francisco? <b>Take the In-Person Workshop.</b>'.html_safe, @workshop.in_person_workshop %>
       </div>
     <% end %>
+    <hgroup class="product-title">
+      <h3 class="workshop-type">
+        <% if @workshop.online? %>
+          Online
+        <% else %>
+          In-Person
+        <% end %>
+      Workshop</h3>
+    </hgroup>
     <%=raw textilize @workshop.description %>
     <%= render 'questions', workshop: @workshop %>
     <%= render @section_teachers %>
