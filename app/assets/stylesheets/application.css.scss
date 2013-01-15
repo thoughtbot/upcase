@@ -84,6 +84,10 @@ p, aside li {
   margin-bottom: 12px;
 }
 
+strong {
+  font-weight: bold;
+}
+
 hr {
   border: 0;
   height: 2px;
@@ -94,7 +98,7 @@ hr {
 
 section.content {
   @include outer-container;
-  max-width: 1100px;
+  max-width: $max-width;
   padding: 3em 2em;
 
   .text-box {
