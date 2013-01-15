@@ -25,17 +25,6 @@ Then /^I should not see "([^"]*)" in input field$/ do |text|
   page.should_not have_css('input', :value => "#{text}")
 end
 
-When /^I attach an image name "([^"]*)" to the product$/ do |image_name|
-  path = File.join(Rails.root, "tmp/", image_name)
-  test_image_path = File.join(Rails.root,"features/support/files/test.jpg")
-  FileUtils.cp(test_image_path, path)
-  attach_file "Product image", path
-end
-
-When /^I should see an image with name "([^"]*)"$/ do |image_name|
-  page.should have_selector("img", src: /#{image_name}/)
-end
-
 When /^a product named "([^"]*)"$/ do |product_name|
   create(:product, fulfillment_method: "fetch", name: product_name, product_type: 'video')
 end
