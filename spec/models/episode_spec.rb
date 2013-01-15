@@ -38,6 +38,13 @@ describe Episode do
     end
   end
 
+  describe ".rss_pub_date" do
+    it 'conforms to the rss specification for publication date' do
+      episode = create(:episode, published_on: 1.days.ago)
+      episode.rss_pub_date.should == 1.days.ago.strftime('%a, %d %b %Y %H:%M:%S %z')
+    end
+  end
+
   describe ".products" do
     it 'should not duplicate products' do
       episode = create(:episode)
