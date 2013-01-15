@@ -27,7 +27,7 @@ describe 'episodes/index.xml.builder' do
     end
 
     it 'has an updated date of the most recently published episode' do
-      @xml.css('channel pubDate').first.text.should == 1.day.ago.xmlschema.to_s
+      @xml.css('channel pubDate').first.text.should == 1.day.ago.to_s(:rfc822)
     end
 
     it 'includes both episodes' do
@@ -43,7 +43,7 @@ describe 'episodes/index.xml.builder' do
     end
 
     it 'includes the date for the episode' do
-      @xml.css('channel item pubDate').first.text.should == @first.published_on.xmlschema.to_s
+      @xml.css('channel item pubDate').first.text.should == @first.published_on.to_s(:rfc822)
     end
 
     it 'has the encoded content' do
