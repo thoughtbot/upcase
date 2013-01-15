@@ -94,7 +94,7 @@ hr {
 
 section.content {
   @include outer-container;
-  max-width: 1100px;
+  max-width: $max-width;
   padding: 3em 2em;
 
   .text-box {
