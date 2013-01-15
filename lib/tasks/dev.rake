@@ -41,6 +41,6 @@ namespace :dev do
   end
 
   def puts_user(user, description)
-    puts "#{user.email}:#{user.password} (#{description})"
+    puts "#{user.email} / #{user.password} (#{description})"
   end
 end
