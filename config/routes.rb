@@ -4,8 +4,13 @@ Workshops::Application.routes.draw do
   root to: 'topics#index'
 
   match '/pages/tmux' => redirect('/products/4-humans-present-tmux')
-  match '/products/:id' => redirect('/workshops/18-test-driven-rails'), constraints: { id: /(10|12).*/ }
-  match '/products/:id' => redirect('/workshops/19-design-for-developers'), constraints: { id: /(9|11).*/ }
+
+  if Rails.env.staging? || Rails.env.production?
+    match '/products/:id' => redirect('/workshops/18-test-driven-rails'),
+      constraints: { id: /(10|12).*/ }
+    match '/products/:id' => redirect('/workshops/19-design-for-developers'),
+      constraints: { id: /(9|11).*/ }
+  end
 
   resource :session, controller: 'sessions'
 
