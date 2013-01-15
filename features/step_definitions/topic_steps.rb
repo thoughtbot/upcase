@@ -13,6 +13,11 @@ Given /^a workshop named "([^"]*)" for topic "([^"]*)"$/ do |name, topic_name|
   topic.workshops << create(:workshop, name: name)
 end
 
+Given /^a non-public workshop named "([^"]*)" for topic "([^"]*)"$/ do |name, topic_name|
+  topic = Topic.find_by_name(topic_name)
+  topic.workshops << create(:workshop, public: false, name: name)
+end
+
 Given /^a featured topic named "([^"]*)"$/ do |name|
   create :topic, featured: true, name: name
 end

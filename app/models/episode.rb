@@ -5,6 +5,7 @@ class Episode < ActiveRecord::Base
   has_many :classifications, as: :classifiable
   has_many :topics, through: :classifications
   has_many :products, through: :topics, uniq: true
+  has_many :workshops, through: :topics, uniq: true
 
   validates :title, presence: true
   validates :duration, presence: true
