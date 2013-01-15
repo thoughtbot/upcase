@@ -59,6 +59,7 @@ RailsAdmin.config do |config|
         field :public
         field :start_at
         field :stop_at
+        field :promo_location
         field :topics
       end
 
