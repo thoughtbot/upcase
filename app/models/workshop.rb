@@ -27,12 +27,6 @@ class Workshop < ActiveRecord::Base
   # Plugins
   acts_as_list
 
-  has_attached_file :course_image, {
-    styles: {
-      course: '313x220#'
-    },
-  }.merge(PAPERCLIP_STORAGE_OPTIONS)
-
   def active_section
     sections.active[0]
   end
@@ -64,11 +58,6 @@ class Workshop < ActiveRecord::Base
 
   def has_online_workshop?
     online_workshop.present?
-  end
-
-  def image_url
-    raw_url = course_image.url(:course)
-    course_image_file_name? ? raw_url : "/assets/#{raw_url}"
   end
 
   def self.in_person

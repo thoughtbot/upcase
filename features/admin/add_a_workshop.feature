@@ -42,13 +42,9 @@ Feature: Adding a workshop
     And I fill in the end time with "17:00"
     And I fill in the max students with "16"
     And I check "Public"
-    Then I should see an image with name "missing.jpg"
-    When I attach an image name "test.jpg" to the workshop
     And I press "Create Workshop"
     Then I see the successful workshop creation notice
     And I see the admin listing include a workshop named "Test-Driven Haskell"
-    When I follow "Test-Driven Haskell"
-    Then I should see an image with name "test.jpg"
 
   Scenario: Add a workshop with a FAQ
     When I fill in the required workshop fields
