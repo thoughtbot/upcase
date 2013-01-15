@@ -163,8 +163,10 @@ body.topics-index {
   }
 
   section.content {
-    .text-box h2 {
-      color: $learnred;
+    .text-box {
+      h2 {
+        color: $learnred;
+      }
     }
 
     .results-date {
@@ -278,6 +280,13 @@ body.topics-index {
           }
         }
       }
+    }
+  }
+
+  .contribute {
+    overflow: auto;
+    img {
+      float: right;
     }
   }
 

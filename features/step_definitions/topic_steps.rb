@@ -75,4 +75,8 @@ Then /^I should see a trail\-map for "([^""]*)"$/ do |topic_slug|
     page.should have_content("You should be able to")
     page.should have_content("Rule the universe")
   end
+
+  within '.contribute' do
+    page.should have_css 'a', href: 'https://github.com/thoughtbot/trail-map'
+  end
 end
