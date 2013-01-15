@@ -21,6 +21,10 @@ class Episode < ActiveRecord::Base
     "Episode #{id}: #{title}"
   end
 
+  def rss_pub_date
+    published_on.to_s(:rfc822)
+  end
+
   def increment_downloads
     increment!(:downloads_count)
   end
