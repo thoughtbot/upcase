@@ -64,4 +64,8 @@ Then /^I should not see the date range$/ do
   page.should have_no_selector('[data-role=date-range]')
 end
 
+Then /^I should see a product title of "([^"]*)"$/ do |title|
+  find('.product-title h2').should have_content title
+end
+
 World(WorkshopsHelper)
