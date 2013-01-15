@@ -5,7 +5,7 @@ section#header-wrapper {
 
   .header-container {
     @include outer-container;
-    max-width: 1100px;
+    max-width: $max-width;
     padding: 2em;
 
     .subject {
