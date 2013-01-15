@@ -59,7 +59,7 @@ RailsAdmin.config do |config|
         field :public
         field :start_at
         field :stop_at
-        field :course_image, :paperclip
+        field :topics
       end
 
       group :faq do
