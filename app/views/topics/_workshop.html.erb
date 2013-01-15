@@ -2,11 +2,13 @@
   <%= link_to workshop do %>
     <span class="icon"></span>
     <hgroup>
-      <% if workshop.online? %>
-        <h5><%= t '.heading.online' %></h5>
-      <% else %>
-        <h5><%= t '.heading.in_person' %></h5>
-      <% end %>
+      <h5>
+        <% if workshop.online? %>
+          <%= t '.heading.online' %>
+        <% else %>
+          <%= t '.heading.in_person' %>
+        <% end %>
+      </h5>
       <h4><%= workshop.name %></h4>
     </hgroup>
   <% end %>
