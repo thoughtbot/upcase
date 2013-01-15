@@ -30,6 +30,7 @@ Feature: Viewing the workshops page
     And I follow "Test-Driven Haskell"
     Then the meta description should be "Short Description"
     And the page title should be "Test-Driven Haskell: a workshop from thoughtbot"
+    And I should see a product title of "Short Description"
 
   Scenario: Visitor sees online and in-person workshops
     Given the following workshops exist:
