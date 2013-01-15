@@ -62,6 +62,7 @@ Feature: Viewing upcoming workshop details
     And I see the answer "Blue"
     And I see the question "Pets allowed?"
     And I see the answer "No"
+
   @selenium
   Scenario: Viewing details for a workshop with multiple upcoming sections
     Given today is June 10, 2010
@@ -138,3 +139,26 @@ Feature: Viewing upcoming workshop details
     Then I should a registration link to be notified
     And I should see "Sold Out"
     And I should see "Want to be notified the next time we run this workshop?"
+
+  Scenario: Viewing an online workshop
+    Given today is June 10, 2010
+    And the following workshop exists:
+      | name                | online |
+      | Test-Driven Haskell | true   |
+    And the following section exists:
+      | workshop                  | starts on     | ends on       |
+      | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
+    When I go to the home page
+    And I view all products
+    And I follow "Test-Driven Haskell"
+    Then I should see the date range
+
+  Scenario: Viewing an online workshop with no sections
+    Given today is June 10, 2010
+    And the following workshop exists:
+      | name                | online |
+      | Test-Driven Haskell | true   |
+    When I go to the home page
+    And I view all products
+    And I follow "Test-Driven Haskell"
+    Then I should not see the date range

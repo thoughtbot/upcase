@@ -44,4 +44,12 @@ Then /^I should see that "([^"]*)" is an in-person workshop$/ do |workshop_name|
   find('[data-role=in-person-workshops]').should have_content workshop_name
 end
 
+Then /^I should see the date range$/ do
+  page.should have_selector('[data-role=date-range]')
+end
+
+Then /^I should not see the date range$/ do
+  page.should have_no_selector('[data-role=date-range]')
+end
+
 World(WorkshopsHelper)
