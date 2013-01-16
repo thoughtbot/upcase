@@ -53,7 +53,6 @@ Workshops::Application.routes.draw do
       resources :questions, only: [:destroy]
     end
     resources :coupons
-    resources :audiences
     resources :sections
     resources :teachers, except: :destroy
     resources :products, except: :destroy

@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Workshop do
   # Associations
   it { should have_many(:announcements).dependent(:destroy) }
-  it { should belong_to(:audience) }
   it { should have_many(:classifications) }
   it { should have_many(:follow_ups) }
   it { should have_many(:questions) }
@@ -12,7 +11,6 @@ describe Workshop do
   it { should have_many(:topics).through(:classifications) }
 
   # Validations
-  it { should validate_presence_of(:audience_id) }
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:maximum_students) }
   it { should validate_presence_of(:name) }

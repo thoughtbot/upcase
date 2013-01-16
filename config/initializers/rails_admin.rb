@@ -51,7 +51,6 @@ RailsAdmin.config do |config|
         field :online
         field :short_description
         field :description
-        field :audience
         field :individual_price
         field :company_price
         field :maximum_students

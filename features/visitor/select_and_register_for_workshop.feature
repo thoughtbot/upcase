@@ -2,10 +2,9 @@ Feature: Selecting a workshop and registering for it
 
   @selenium @allow-rescue
   Scenario: Visitor registers for a section
-    Given an audience exists with a name of "Developers"
-    And the following workshop exists:
-      | name                | audience         | individual_price |
-      | Test-Driven Haskell | name: Developers | 10000000         |
+    Given the following workshop exists:
+      | name                | individual_price |
+      | Test-Driven Haskell | 10000000         |
     And the following future section exists:
       | workshop                  |
       | name: Test-Driven Haskell |
@@ -53,10 +52,9 @@ Feature: Selecting a workshop and registering for it
 
   @selenium @allow-rescue
   Scenario: Visitor registers for a section with an invalid e-mail
-    Given an audience exists with a name of "Developers"
-    And the following workshop exists:
-      | name                | audience         | individual_price |
-      | Test-Driven Haskell | name: Developers | 10000000         |
+    Given the following workshop exists:
+      | name                | individual_price |
+      | Test-Driven Haskell | 10000000         |
     And the following future section exists:
       | workshop                  |
       | name: Test-Driven Haskell |
@@ -71,13 +69,12 @@ Feature: Selecting a workshop and registering for it
 
   @selenium
   Scenario: Visitor registers with a valid coupon
-    Given an audience exists with a name of "Developers"
-    And the following coupon exists:
+    Given the following coupon exists:
       | code       | discount_type | amount |
       | VALENTINES | percentage    | 10     |
     And the following workshop exists:
-      | name                | audience         | individual_price |
-      | Test-Driven Haskell | name: Developers | 10000            |
+      | name                | individual_price |
+      | Test-Driven Haskell | 10000            |
     And the following future section exists:
       | workshop                  |
       | name: Test-Driven Haskell |
@@ -100,13 +97,12 @@ Feature: Selecting a workshop and registering for it
 
   @selenium
   Scenario: Visitor registers with a valid coupon which brings the price to 0
-    Given an audience exists with a name of "Developers"
-    And the following coupon exists:
+    Given the following coupon exists:
       | code       | amount | discount_type |
       | VALENTINES | 100    | percentage    |
     And the following workshop exists:
-      | name                | audience         | individual_price |
-      | Test-Driven Haskell | name: Developers | 10000            |
+      | name                | individual_price |
+      | Test-Driven Haskell | 10000            |
     And the following future section exists:
       | workshop                  |
       | name: Test-Driven Haskell |
@@ -128,13 +124,12 @@ Feature: Selecting a workshop and registering for it
 
   @selenium
   Scenario: Visitor registers with an invalid coupon
-    Given an audience exists with a name of "Developers"
-    And the following coupon exists:
+    Given the following coupon exists:
       | code       | discount_type | amount | active |
       | VALENTINES | percentage    | 10     | false  |
     And the following workshop exists:
-      | name                | audience         | individual_price |
-      | Test-Driven Haskell | name: Developers | 100              |
+      | name                | individual_price |
+      | Test-Driven Haskell | 100              |
     And the following future section exists:
       | workshop                  |
       | name: Test-Driven Haskell |
@@ -152,10 +147,9 @@ Feature: Selecting a workshop and registering for it
     And the coupon form should be visible
 
   Scenario: Visitor views a workshop with an external registration url
-    Given an audience exists with a name of "Developers"
-    And the following workshop exists:
-      | name                | audience         | external_registration_url |
-      | Test-Driven Haskell | name: Developers | http://engineyard.com     |
+    Given the following workshop exists:
+      | name                | external_registration_url |
+      | Test-Driven Haskell | http://engineyard.com     |
     And the following future section exists:
       | workshop                    |
       | name: Test-Driven Haskell |
@@ -166,10 +160,9 @@ Feature: Selecting a workshop and registering for it
 
   @selenium
   Scenario: Visitor registers for a free section
-    Given an audience exists with a name of "Developers"
-    And the following workshop exists:
-      | name                | audience         | individual_price |
-      | Test-Driven Haskell | name: Developers | 0                |
+    Given the following workshop exists:
+      | name                | individual_price |
+      | Test-Driven Haskell | 0                |
     And the following future section exists:
       | workshop                  |
       | name: Test-Driven Haskell |

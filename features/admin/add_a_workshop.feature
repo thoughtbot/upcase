@@ -2,9 +2,6 @@ Feature: Adding a workshop
 
   Background:
     Given I am signed in as an admin
-    And the following audience exists:
-      | name       |
-      | Developers |
     When I go to the admin page
     And I follow "New Workshop"
 
@@ -22,7 +19,6 @@ Feature: Adding a workshop
     When I fill in the workshop name with "Test-Driven Haskell"
     And I fill in the workshop description with "Learn Haskell the thoughtbot way"
     And I fill in the short description with "Learn Haskell the thoughtbot way"
-    And I select "Developers" from "Audience"
     And I fill in the workshop price with "1900"
     And I fill in the workshop company price with "2000"
     And I fill in the start time with "09:00"
@@ -35,7 +31,6 @@ Feature: Adding a workshop
     When I fill in the workshop name with "Test-Driven Haskell"
     And I fill in the workshop description with "Learn Haskell the thoughtbot way"
     And I fill in the short description with "Learn Haskell the thoughtbot way"
-    And I select "Developers" from "Audience"
     And I fill in the workshop price with "1900"
     And I fill in the workshop company price with "2000"
     And I fill in the start time with "09:00"
@@ -49,7 +44,6 @@ Feature: Adding a workshop
   Scenario: Add a workshop with a FAQ
     When I fill in the required workshop fields
     And I fill in the workshop name with "Haskell"
-    And I select "Developers" from "Audience"
     And I fill in the question 1 with "Do I need a helmet?"
     And I fill in the answer 1 with "Of course."
     And I press "Create Workshop"
@@ -60,9 +54,8 @@ Feature: Adding a workshop
 
   @selenium
   Scenario: Add a workshop with more than one FAQ
-    And I fill in the required workshop fields
+    When I fill in the required workshop fields
     And I fill in the workshop name with "Haskell"
-    And I select "Developers" from "Audience"
     And I follow "Add Question"
     And I fill in the following questions:
       | question            | answer          |
