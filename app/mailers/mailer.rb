@@ -7,6 +7,7 @@ class Mailer < ActionMailer::Base
     @workshop_name = purchase.purchaseable_name
     @city = purchase.purchaseable.city
     @running_date_range = purchase.purchaseable.date_range
+    @fulfillment_method = purchase.purchaseable.fulfillment_method
 
     mail(
       to: 'learn@thoughtbot.com',
