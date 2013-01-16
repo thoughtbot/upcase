@@ -173,3 +173,31 @@ Feature: Selecting a workshop and registering for it
     When I fill in the required workshop registration fields for "carlos@santana.com"
     And I press "Submit Payment"
     Then carlos@santana.com is registered for the Test-Driven Haskell workshop
+
+  Scenario: Visitor registers for an online workshop for an individual
+    Given today is January 11, 2013
+    And the following workshop exists:
+      | name            | online |
+      | Online Workshop | true   |
+    And the following section exists:
+      | workshop              | starts_on    |
+      | name: Online Workshop | 2013-01-12   |
+    When I go to the home page
+    And I view all products
+    And I follow "Online Workshop"
+    And I follow "Purchase for Yourself"
+    Then I should not see "Do you have any dietary restrictions or special requests?"
+
+  Scenario: Visitor registers for an online workshop for a company
+    Given today is January 11, 2013
+    And the following workshop exists:
+      | name            | online |
+      | Online Workshop | true   |
+    And the following section exists:
+      | workshop              | starts_on    |
+      | name: Online Workshop | 2013-01-12   |
+    When I go to the home page
+    And I view all products
+    And I follow "Online Workshop"
+    And I follow "Purchase for Your Company"
+    Then I should not see "Do you have any dietary restrictions or special requests?"
