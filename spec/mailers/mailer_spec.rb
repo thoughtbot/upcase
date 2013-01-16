@@ -182,7 +182,8 @@ describe Mailer do
 
     context 'for an online workshop' do
       it 'does not contain a section about comments or dietary restrictions' do
-        email = Mailer.registration_confirmation(online_workshop_purchase)
+        purchase = create(:online_section_purchase)
+        email = Mailer.registration_confirmation(purchase)
 
         expect(email).not_to have_body_text(/following comments|dietary restrictions/)
       end
@@ -190,23 +191,10 @@ describe Mailer do
 
     context 'for an in-person workshop' do
       it 'does not contain a section about comments or dietary restrictions' do
-        email = Mailer.registration_confirmation(in_person_workshop_purchase)
+        purchase = create(:in_person_section_purchase)
+        email = Mailer.registration_confirmation(purchase)
 
         expect(email).to have_body_text(/following comments|dietary restrictions/)
-      end
-    end
-
-    def online_workshop_purchase
-      create(:section_purchase).tap do |purchase|
-        purchase.comments = 'some comments'
-        purchase.purchaseable.workshop.update_attribute(:online, true)
-      end
-    end
-
-    def in_person_workshop_purchase
-      create(:section_purchase).tap do |purchase|
-        purchase.comments = 'some comments'
-        purchase.purchaseable.workshop.update_attribute(:online, false)
       end
     end
   end
@@ -232,7 +220,8 @@ describe Mailer do
 
     context 'for an online workshop' do
       it 'does not contain a section about comments or dietary restrictions' do
-        email = Mailer.registration_notification(online_workshop_purchase)
+        purchase = create(:online_section_purchase)
+        email = Mailer.registration_notification(purchase)
 
         expect(email).not_to have_body_text(/Comments:/)
       end
@@ -240,23 +229,10 @@ describe Mailer do
 
     context 'for an in-person workshop' do
       it 'does not contain a section about comments or dietary restrictions' do
-        email = Mailer.registration_notification(in_person_workshop_purchase)
+        purchase = create(:in_person_section_purchase)
+        email = Mailer.registration_notification(purchase)
 
         expect(email).to have_body_text(/Comments:/)
-      end
-    end
-
-    def online_workshop_purchase
-      create(:section_purchase).tap do |purchase|
-        purchase.comments = 'some comments'
-        purchase.purchaseable.workshop.update_attribute(:online, true)
-      end
-    end
-
-    def in_person_workshop_purchase
-      create(:section_purchase).tap do |purchase|
-        purchase.comments = 'some comments'
-        purchase.purchaseable.workshop.update_attribute(:online, false)
       end
     end
 
@@ -282,8 +258,9 @@ describe Mailer do
 
     context 'for an online workshop' do
       it 'does not contain a section about comments or dietary restrictions' do
-        section = online_workshop_purchase.purchaseable
-        email = Mailer.section_reminder(online_workshop_purchase.id, section.id)
+        purchase = create(:online_section_purchase)
+        section = purchase.purchaseable
+        email = Mailer.section_reminder(purchase.id, section.id)
 
         expect(email).not_to have_body_text(/following comments|dietary restrictions/)
       end
@@ -291,24 +268,11 @@ describe Mailer do
 
     context 'for an in-person workshop' do
       it 'does not contain a section about comments or dietary restrictions' do
-        section = in_person_workshop_purchase.purchaseable
-        email = Mailer.section_reminder(in_person_workshop_purchase.id, section.id)
+        purchase = create(:in_person_section_purchase)
+        section = purchase.purchaseable
+        email = Mailer.section_reminder(purchase.id, section.id)
 
         expect(email).to have_body_text(/following comments|dietary restrictions/)
-      end
-    end
-
-    def online_workshop_purchase
-      create(:section_purchase).tap do |purchase|
-        purchase.comments = 'some comments'
-        purchase.purchaseable.workshop.update_attribute(:online, true)
-      end
-    end
-
-    def in_person_workshop_purchase
-      create(:section_purchase).tap do |purchase|
-        purchase.comments = 'some comments'
-        purchase.purchaseable.workshop.update_attribute(:online, false)
       end
     end
 

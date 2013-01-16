@@ -74,6 +74,14 @@ FactoryGirl.define do
     factory :private_workshop do
       public false
     end
+
+    factory :in_person_workshop do
+      online false
+    end
+
+    factory :online_workshop do
+      online true
+    end
   end
 
   factory :download
@@ -132,6 +140,16 @@ FactoryGirl.define do
 
     factory :section_purchase do
       association :purchaseable, factory: :section
+
+      factory :in_person_section_purchase do
+        comments 'some comments and requests'
+        association :purchaseable, factory: :in_person_section
+      end
+
+      factory :online_section_purchase do
+        comments 'some comments and requests'
+        association :purchaseable, factory: :online_section
+      end
     end
 
     factory :book_purchase do
@@ -160,6 +178,14 @@ FactoryGirl.define do
       factory :future_section do
         starts_on { 2.days.from_now.to_date }
         ends_on   { 4.days.from_now.to_date }
+      end
+
+      factory :in_person_section do
+        association :workshop, factory: :in_person_workshop
+      end
+
+      factory :online_section do
+        association :workshop, factory: :online_workshop
       end
     end
   end
