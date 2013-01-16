@@ -5,6 +5,7 @@ describe Episode do
     it { should have_many(:classifications) }
     it { should have_many(:topics).through(:classifications) }
     it { should have_many(:products).through(:topics) }
+    it { should have_many(:workshops).through(:topics) }
   end
 
   context 'validations' do
