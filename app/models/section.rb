@@ -60,7 +60,11 @@ class Section < ActiveRecord::Base
   end
 
   def fulfillment_method
-    'in-person'
+    if workshop.in_person?
+      'in-person'
+    else
+      'online'
+    end
   end
 
   def product_type

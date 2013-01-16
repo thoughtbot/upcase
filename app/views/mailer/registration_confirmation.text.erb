@@ -1,10 +1,12 @@
 <%= @purchase.name %> is now registered for <%= @purchase.purchaseable_name %>.
 
+<% if @section.fulfillment_method == 'in-person' -%>
 <% if @purchase.comments.present? -%>
 You provided us with the following comments:
 <%= @purchase.comments %>
 <% end %>
 If you have any special dietary restrictions, and you have not done so already, please let us know by replying to this email.
+<% end %>
 
 <% if @section && @section.reminder_email.present? -%>
 <%= @section.reminder_email %>
