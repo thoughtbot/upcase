@@ -1,7 +1,6 @@
 class Workshop < ActiveRecord::Base
   # Associations
   has_many :announcements, as: :announceable, dependent: :destroy
-  belongs_to :audience
   has_many :classifications, as: :classifiable
   has_many :follow_ups
   has_many :questions, order: 'created_at ASC'
@@ -14,7 +13,6 @@ class Workshop < ActiveRecord::Base
   accepts_nested_attributes_for :questions, reject_if: :all_blank
 
   # Validations
-  validates :audience_id, presence: true
   validates :description, presence: true
   validates :maximum_students, presence: true
   validates :name, presence: true

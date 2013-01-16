@@ -2,10 +2,9 @@
 Feature: KISSmetrics tracks important events
 
   Scenario: Workshop registration
-    Given an audience exists with a name of "Developers"
-    And the following workshop exists:
-      | name                |  audience         | individual_price |
-      | Test-Driven Haskell |  name: Developers | 200              |
+    Given the following workshop exists:
+      | name                | individual_price |
+      | Test-Driven Haskell | 200              |
     And the following future section exists:
       | workshop                  |
       | name: Test-Driven Haskell |

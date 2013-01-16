@@ -90,8 +90,6 @@ module NavigationHelpers
 
   def field_id_for(field_description)
     case field_description
-    when 'audience name'
-      'audience_name'
     when 'workshop name'
       'workshop_name'
     when 'workshop description'
