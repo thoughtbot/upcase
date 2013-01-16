@@ -6,14 +6,11 @@ Feature: Sorting workshops
 
   Scenario: Sorting
     Given I am signed in as an admin
-    And the following audience exists:
-      | name       |
-      | Developers |
     And the following workshops exist:
-      | name                       | position | audience         |
-      | Test-Driven Machine Code   | 1        | name: Developers |
-      | Test-Driven Coloring Books | 2        | name: Developers |
-      | Test-Driven Testing        | 3        | name: Developers |
+      | name                       | position |
+      | Test-Driven Machine Code   | 1        |
+      | Test-Driven Coloring Books | 2        |
+      | Test-Driven Testing        | 3        |
     When I go to the admin page
     And I drag the workshop "Test-Driven Testing" before "Test-Driven Coloring Books"
     And I go to the admin page

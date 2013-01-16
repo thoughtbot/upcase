@@ -37,10 +37,6 @@ FactoryGirl.define do
     tumblr_url
   end
 
-  factory :audience do
-    name 'Web Designer'
-  end
-
   factory :author do
     tumblr_user_name
   end
@@ -61,7 +57,6 @@ FactoryGirl.define do
   end
 
   factory :workshop do
-    audience
     description 'Solve 8-Queens over and over again'
     maximum_students 12
     name { generate(:name) }

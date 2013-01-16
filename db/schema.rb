@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130115210038) do
+ActiveRecord::Schema.define(:version => 20130116181759) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -42,13 +42,6 @@ ActiveRecord::Schema.define(:version => 20130115210038) do
   end
 
   add_index "articles_topics", ["article_id", "topic_id"], :name => "index_articles_topics_on_article_id_and_topic_id", :unique => true
-
-  create_table "audiences", :force => true do |t|
-    t.string   "name"
-    t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "authors", :force => true do |t|
     t.datetime "created_at",       :null => false
@@ -323,13 +316,10 @@ ActiveRecord::Schema.define(:version => 20130115210038) do
     t.string   "short_description"
     t.string   "external_registration_url"
     t.integer  "position"
-    t.integer  "audience_id"
     t.string   "promo_location"
     t.integer  "company_price"
     t.text     "terms"
     t.boolean  "online",                    :default => false, :null => false
   end
-
-  add_index "workshops", ["audience_id"], :name => "index_workshops_on_audience_id"
 
 end
