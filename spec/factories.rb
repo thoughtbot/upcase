@@ -142,12 +142,10 @@ FactoryGirl.define do
       association :purchaseable, factory: :section
 
       factory :in_person_section_purchase do
-        comments 'some comments and requests'
         association :purchaseable, factory: :in_person_section
       end
 
       factory :online_section_purchase do
-        comments 'some comments and requests'
         association :purchaseable, factory: :online_section
       end
     end

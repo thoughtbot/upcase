@@ -182,7 +182,7 @@ describe Mailer do
 
     context 'for an online workshop' do
       it 'does not contain a section about comments or dietary restrictions' do
-        purchase = create(:online_section_purchase)
+        purchase = create(:online_section_purchase, comments: 'comments and requests')
         email = Mailer.registration_confirmation(purchase)
 
         expect(email).not_to have_body_text(/following comments|dietary restrictions/)
@@ -191,7 +191,7 @@ describe Mailer do
 
     context 'for an in-person workshop' do
       it 'does not contain a section about comments or dietary restrictions' do
-        purchase = create(:in_person_section_purchase)
+        purchase = create(:in_person_section_purchase, comments: 'comments and requests')
         email = Mailer.registration_confirmation(purchase)
 
         expect(email).to have_body_text(/following comments|dietary restrictions/)
@@ -220,7 +220,7 @@ describe Mailer do
 
     context 'for an online workshop' do
       it 'does not contain a section about comments or dietary restrictions' do
-        purchase = create(:online_section_purchase)
+        purchase = create(:online_section_purchase, comments: 'comments and requests')
         email = Mailer.registration_notification(purchase)
 
         expect(email).not_to have_body_text(/Comments:/)
@@ -229,7 +229,7 @@ describe Mailer do
 
     context 'for an in-person workshop' do
       it 'does not contain a section about comments or dietary restrictions' do
-        purchase = create(:in_person_section_purchase)
+        purchase = create(:in_person_section_purchase, comments: 'comments and requests')
         email = Mailer.registration_notification(purchase)
 
         expect(email).to have_body_text(/Comments:/)
@@ -258,7 +258,7 @@ describe Mailer do
 
     context 'for an online workshop' do
       it 'does not contain a section about comments or dietary restrictions' do
-        purchase = create(:online_section_purchase)
+        purchase = create(:online_section_purchase, comments: 'comments and requests')
         section = purchase.purchaseable
         email = Mailer.section_reminder(purchase.id, section.id)
 
@@ -268,7 +268,7 @@ describe Mailer do
 
     context 'for an in-person workshop' do
       it 'does not contain a section about comments or dietary restrictions' do
-        purchase = create(:in_person_section_purchase)
+        purchase = create(:in_person_section_purchase, comments: 'comments and requests')
         section = purchase.purchaseable
         email = Mailer.section_reminder(purchase.id, section.id)
 

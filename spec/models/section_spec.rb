@@ -152,14 +152,14 @@ describe Section do
       in_person_workshop = create(:workshop, online: false)
       section = create(:section, workshop: in_person_workshop)
 
-      section.fulfillment_method.should eq('in-person')
+      expect(section.fulfillment_method).to eq('in-person')
     end
 
     it 'returns online if the workshop is an online one' do
       online_workshop = create(:workshop, online: true)
       section = create(:section, workshop: online_workshop)
 
-      section.fulfillment_method.should eq('online')
+      expect(section.fulfillment_method).to eq('online')
     end
   end
 end
