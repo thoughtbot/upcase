@@ -38,12 +38,16 @@
 <% content_for :javascript do %>
 <script type="text/javascript">
   function workshop_details(workshop) {
+    if(workshop.online) {
+      return " Online";
+    }
+
     var details = [];
     for (var s=0; s<workshop.active_sections.length; s++) {
       details.push(workshop.active_sections[s].section.city);
     }
     if(details.length > 0) {
-      return " in " + details.join(" and ");
+      return " in-person in " + details.join(" and ");
     } else {
       return "";
     }
