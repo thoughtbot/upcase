@@ -68,4 +68,36 @@ Then /^I should see a product title of "([^"]*)"$/ do |title|
   find('.product-title h2').should have_content title
 end
 
+Then /^I should see a link to the in-person workshop$/ do
+  workshop_name = find('.subject').text
+  in_person_workshop = Workshop.in_person.find_by_name!(workshop_name)
+  find('.workshop-alert a')[:href].should == workshop_path(in_person_workshop)
+end
+
+Then /^I should see a link to the online workshop$/ do
+  workshop_name = find('.subject').text
+  online_workshop = Workshop.online.find_by_name!(workshop_name)
+  find('.workshop-alert a')[:href].should == workshop_path(online_workshop)
+end
+
+Then /^I should see that the related workshop "([^"]+)" is in-person$/ do |workshop_name|
+  type_of_related_workshop_named(workshop_name).should == 'IN-PERSON WORKSHOP'
+end
+
+Then /^I should see that the related workshop "([^"]+)" is online$/ do |workshop_name|
+  type_of_related_workshop_named(workshop_name).should == 'ONLINE WORKSHOP'
+end
+
+Then /^I should see a workshop alert for the in-person workshop$/ do
+  find('.workshop-alert').text.should =~ /In-Person Workshop/
+end
+
+Then /^I should see a workshop alert for the online workshop$/ do
+  find('.workshop-alert').text.should =~ /Online Workshop/
+end
+
+Then /^I should not see a workshop alert$/ do
+  page.should_not have_css('.workshop-alert')
+end
+
 World(WorkshopsHelper)

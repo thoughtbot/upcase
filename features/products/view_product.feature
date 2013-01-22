@@ -43,7 +43,7 @@ Feature: Products include support
       | Workshop with the same name | false  |
       | Workshop with the same name | true  |
     When I view the online workshop "Workshop with the same name"
-    Then I should see a product alert for the in-person workshop
+    Then I should see a workshop alert for the in-person workshop
     And I should see a link to the in-person workshop
 
   Scenario: View online workshop without an in-person version
@@ -51,7 +51,7 @@ Feature: Products include support
       | name            | online |
       | Online Workshop | true   |
     When I view the online workshop "Online Workshop"
-    Then I should not see a product alert
+    Then I should not see a workshop alert
 
   Scenario: View in-person workshop and see callout to take online workshop
     Given the following workshops exist:
@@ -59,7 +59,7 @@ Feature: Products include support
       | Workshop with the same name | true   |
       | Workshop with the same name | false  |
     When I view the in-person workshop "Workshop with the same name"
-    Then I should see a product alert for the online workshop
+    Then I should see a workshop alert for the online workshop
     And I should see a link to the online workshop
 
   Scenario: View in-person workshop with no online workshop
@@ -67,4 +67,4 @@ Feature: Products include support
       | name               | online |
       | In-person Workshop | false  |
     When I view the in-person workshop "In-person Workshop"
-    Then I should not see a product alert
+    Then I should not see a workshop alert
