@@ -1,0 +1,27 @@
+<h2>
+  Single
+  <% if pricing_scheme == "primary" %>
+    <%= render 'price', product: product,
+      price: product.individual_price,
+      original_price: product.original_individual_price %>
+  <% else %>
+    <%= render 'price', product: product,
+      price: product.alternate_individual_price,
+      original_price: product.original_alternate_individual_price %>
+  <% end %>
+</h2>
+<div class="license">
+  <% if pricing_scheme == "primary" %>
+    <%= link_to new_product_purchase_path(product, variant: :individual),
+      class: 'license-button button',
+      id: "#{product.sku}-purchase-individual" do %>
+      Purchase for Yourself
+    <% end %>
+  <% else %>
+    <%= link_to new_product_purchase_path(product, variant: :alternate_individual),
+      class: 'license-button button',
+      id: "#{product.sku}-purchase-individual" do %>
+      Purchase for Yourself
+    <% end %>
+  <% end %>
+</div>

@@ -13,7 +13,8 @@ class Section < ActiveRecord::Base
   has_many :videos, as: :purchaseable
 
   # Delegates
-  delegate :name, :description, :individual_price, :company_price, :terms,
+  delegate :name, :description, :individual_price, :company_price,
+    :alternate_individual_price, :alternate_company_price, :terms,
     to: :workshop, allow_nil: true
 
   # Nested Attributes

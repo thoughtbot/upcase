@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130116181759) do
+ActiveRecord::Schema.define(:version => 20130122220646) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -155,6 +155,8 @@ ActiveRecord::Schema.define(:version => 20130116181759) do
     t.string   "promo_location"
     t.integer  "discount_percentage",           :default => 0,    :null => false
     t.string   "discount_title",                :default => "",   :null => false
+    t.integer  "alternate_individual_price"
+    t.integer  "alternate_company_price"
   end
 
   create_table "purchases", :force => true do |t|
@@ -320,6 +322,8 @@ ActiveRecord::Schema.define(:version => 20130116181759) do
     t.integer  "company_price"
     t.text     "terms"
     t.boolean  "online",                    :default => false, :null => false
+    t.integer  "alternate_individual_price"
+    t.integer  "alternate_company_price"
   end
 
 end

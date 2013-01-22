@@ -2,7 +2,7 @@
 <html lang="en">
   <head prefix="og: http://ogp.me/ns#">
     <meta charset="utf-8" />
-    <title><%= page_title(yield :page_title) %></title>
+    <title><%= page_title(yield(:page_title)) %></title>
     <%= stylesheet_link_tag 'application' %>
     <%= stylesheet_link_tag 'print', media: :print %>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -32,6 +32,6 @@
 
     <%= render 'shared/footer' %>
 
-    <%= render partial: 'shared/javascript' %>
+    <%= render 'shared/javascript' %>
   </body>
 </html>
