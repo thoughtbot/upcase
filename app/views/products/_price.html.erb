@@ -1,0 +1,8 @@
+<span>
+  <%= number_to_currency price, precision: 0 %>
+</span>
+<% if product.discounted? %>
+  <span class="original-price">
+    <%= number_to_currency original_price, precision: 0 %>
+  </span>
+<% end %>

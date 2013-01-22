@@ -89,6 +89,22 @@ class Product < ActiveRecord::Base
     apply_discount(original_company_price).to_i
   end
 
+  def alternate_individual_price
+    apply_discount(original_alternate_individual_price).to_i
+  end
+
+  def alternate_company_price
+    apply_discount(original_alternate_company_price).to_i
+  end
+
+  def original_alternate_company_price
+    self[:alternate_company_price] || original_company_price
+  end
+
+  def original_alternate_individual_price
+    self[:alternate_individual_price] || original_individual_price
+  end
+
   def original_company_price
     self[:company_price] || 0
   end

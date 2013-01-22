@@ -23,6 +23,34 @@ describe Product do
     end
   end
 
+  describe '#original_alternate_individual_price' do
+    it 'returns the original alternate individual price' do
+      product = Product.new(alternate_individual_price: 1)
+
+      product.original_alternate_individual_price.should == 1
+    end
+
+    it 'returns the non-alternate price if there is no alternate' do
+      product = Product.new(individual_price: 3, alternate_individual_price: nil)
+
+      product.original_alternate_individual_price.should == 3
+    end
+  end
+
+  describe '#original_alternate_company_price' do
+    it 'returns the original alternate company price' do
+      product = Product.new(alternate_company_price: 1)
+
+      product.original_alternate_company_price.should == 1
+    end
+
+    it 'returns the non-alternate price if there is no alternate' do
+      product = Product.new(company_price: 3, alternate_company_price: nil)
+
+      product.original_alternate_company_price.should == 3
+    end
+  end
+
   describe "#meta_keywords" do
     it 'returns a comma delimited string of topics' do
       book = create(:book_product)
@@ -76,6 +104,20 @@ describe Product do
       product.company_price.should == 50
       product.discount_percentage = 20
       product.company_price.should == 40
+    end
+
+    it 'returns a discounted alternate individual price' do
+      product = create(:product, alternate_individual_price: 5)
+      product.alternate_individual_price.should == 5
+      product.discount_percentage = 2
+      product.alternate_individual_price.should == 4
+    end
+
+    it 'returns a discounted alternate company price' do
+      product = create(:product, alternate_company_price: 5)
+      product.alternate_company_price.should == 5
+      product.discount_percentage = 2
+      product.alternate_company_price.should == 4
     end
 
     it 'reports that the product is discounted' do

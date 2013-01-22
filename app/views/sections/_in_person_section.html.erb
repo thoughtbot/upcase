@@ -2,7 +2,16 @@
   <% if in_person_section.full? %>
     <h2><%= in_person_section.city %> <span>Sold Out</span></h2>
   <% else %>
-    <h2><%= in_person_section.city %> <span><%= number_to_currency in_person_section.individual_price, precision: 0 %></span></h2>
+    <h2>
+      <%= in_person_section.city %>
+      <span>
+        <% if pricing_scheme == "primary" %>
+          <%= number_to_currency in_person_section.individual_price, precision: 0 %>
+        <% else %>
+          <%= number_to_currency in_person_section.alternate_individual_price, precision: 0 %>
+        <% end %>
+      </span>
+    </h2>
   <% end %>
 
   <div class="when">

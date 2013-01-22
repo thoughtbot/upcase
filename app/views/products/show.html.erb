@@ -19,20 +19,14 @@
     <% if @product.active? %>
       <% if !@product.external? %>
         <div class="individual-purchase">
-          <h2>Single <span><%= number_to_currency @product.individual_price, precision: 0 %></span><% if @product.discounted? %><span class="original-price"><%= number_to_currency @product.original_individual_price, precision: 0 %></span><% end %></h2>
-          <div class="license">
-            <%= link_to new_product_purchase_path(@product, variant: :individual), class: 'license-button button', id: "#{@product.sku}-purchase-individual" do %>
-              Purchase for Yourself
-            <% end %>
-          </div>
+          <%= render 'individual_purchase',
+            product: @product,
+            pricing_scheme: @pricing_scheme %>
         </div>
         <div class="company-purchase">
-          <h2>Group <span><%= number_to_currency @product.company_price, precision: 0 %></span><% if @product.discounted? %><span class="original-price"><%= number_to_currency @product.original_company_price, precision: 0 %></span><% end %></h2>
-          <div class="license">
-            <%= link_to new_product_purchase_path(@product, variant: :company), class: 'license-button button', id: "#{@product.sku}-purchase-company" do %>
-              Purchase for Your Company
-            <% end %>
-          </div>
+          <%= render 'company_purchase',
+            product: @product,
+            pricing_scheme: @pricing_scheme %>
         </div>
       <% else %>
         <div>

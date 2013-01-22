@@ -1,0 +1,7 @@
+<%= javascript_tag do %>
+  <% Split::Experiment.all.each do |experiment| %>
+    <% km.set(experiment.name, ab_test(experiment.name, *experiment.alternative_names)) %>
+  <% end %>
+<% end %>
+
+<%=raw km.js! %>

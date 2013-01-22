@@ -7,18 +7,48 @@
 
 <section id="license">
   <div class="individual-purchase">
-    <h2>Single <span><%= number_to_currency online_section.individual_price, precision: 0 %></span></h2>
+    <h2>
+      Single
+      <span>
+        <% if pricing_scheme == "primary" %>
+          <%= number_to_currency online_section.individual_price, precision: 0 %>
+        <% else %>
+          <%= number_to_currency online_section.alternate_individual_price, precision: 0 %>
+        <% end %>
+      </span>
+    </h2>
     <div class="license">
-      <%= link_to new_section_purchase_path(online_section, variant: :individual), class: 'license-button button' do %>
-        Purchase for Yourself
+      <% if pricing_scheme == "primary" %>
+        <%= link_to new_section_purchase_path(online_section, variant: :individual), class: 'license-button button' do %>
+          Purchase for Yourself
+        <% end %>
+      <% else %>
+        <%= link_to new_section_purchase_path(online_section, variant: :alternate_individual), class: 'license-button button' do %>
+          Purchase for Yourself
+        <% end %>
       <% end %>
     </div>
   </div>
   <div class="company-purchase">
-    <h2>Group <span><%= number_to_currency online_section.company_price, precision: 0 %></span></h2>
+    <h2>
+      Group
+      <span>
+        <% if pricing_scheme == "primary" %>
+          <%= number_to_currency online_section.company_price, precision: 0 %>
+        <% else %>
+          <%= number_to_currency online_section.alternate_company_price, precision: 0 %>
+        <% end %>
+      </span>
+    </h2>
     <div class="license">
-      <%= link_to new_section_purchase_path(online_section, variant: :company), class: 'license-button button' do %>
-        Purchase for Your Company
+      <% if pricing_scheme == "primary" %>
+        <%= link_to new_section_purchase_path(online_section, variant: :company), class: 'license-button button' do %>
+          Purchase for Your Company
+        <% end %>
+      <% else %>
+        <%= link_to new_section_purchase_path(online_section, variant: :alternate_company), class: 'license-button button' do %>
+          Purchase for Your Company
+        <% end %>
       <% end %>
     </div>
   </div>

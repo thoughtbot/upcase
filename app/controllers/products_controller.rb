@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @pricing_scheme = ab_test("product_workshop_pricing", "primary", "alternate")
 
     km.record("Viewed Product", { "Product Name" => @product.name })
   end
