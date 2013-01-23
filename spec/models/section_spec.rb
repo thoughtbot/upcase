@@ -132,21 +132,6 @@ describe Section do
     end
   end
 
-  describe '#active?' do
-    it 'returns true if the section is active' do
-      active_section = create(:section, ends_on: 1.week.from_now)
-
-      active_section.should be_active
-    end
-
-    it 'returns false if the section is inactive but there is another active section' do
-      active_section = create(:section, ends_on: 1.week.from_now)
-      inactive_section = create(:section, ends_on: 1.day.ago)
-
-      inactive_section.should_not be_active
-    end
-  end
-
   describe '#fulfillment_method' do
     it 'returns in-person if the workshop is an in-person one' do
       in_person_workshop = create(:workshop, online: false)
