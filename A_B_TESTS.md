@@ -1,7 +1,10 @@
 2013-01-23
 ----------
 
-A/B testing product/workshop pricing.
+A/B testing workshop pricing.
 
-Variable name: `product_workshop_pricing`
+Variable name: `workshop_pricing`
+Values: "primary" or "alternate"
+
+Variable name: `product_pricing`
 Values: "primary" or "alternate"

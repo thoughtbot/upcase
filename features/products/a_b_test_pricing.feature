@@ -43,9 +43,9 @@ Feature: A/B test pricing
     Given a product exists with a name of "Book"
     When I view the "Book" product with primary pricing
     Then KISSmetrics receives the following properties:
-      | property                 | value   |
-      | product_workshop_pricing | primary |
+      | property        | value   |
+      | product_pricing | primary |
     When I view the "Book" product with alternate pricing
     Then KISSmetrics receives the following properties:
-      | property                 | value     |
-      | product_workshop_pricing | alternate |
+      | property        | value     |
+      | product_pricing | alternate |

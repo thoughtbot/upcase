@@ -55,5 +55,5 @@ end
 
 When /^I view the product "([^"]*)"$/ do |name|
   product = Product.find_by_name!(name)
-  visit product_path(product, product_workshop_pricing: "primary")
+  visit product_path(product, product_pricing: "primary")
 end
