@@ -13,7 +13,9 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @pricing_scheme = ab_test("product_pricing", "primary", "alternate")
+    # 2013-01-23: We're not A/B testing product pricing yet
+    # @pricing_scheme = ab_test("product_pricing", "primary", "alternate")
+    @pricing_scheme = "primary"
 
     km.record("Viewed Product", { "Product Name" => @product.name })
   end
