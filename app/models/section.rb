@@ -51,10 +51,6 @@ class Section < ActiveRecord::Base
     SendRegistrationEmailsJob.enqueue(purchase.id)
   end
 
-  def active?
-    self.class.active.find_by_id(id)
-  end
-
   def announcement
     @announcement ||= announcements.current
   end
