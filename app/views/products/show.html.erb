@@ -7,7 +7,11 @@
   <div class="text-box">
     <h2><%= @product.tagline %></h2>
 
-    <%== @product.description %>
+    <% ab_test('book_sample', 'show_sample', 'hide_sample') do |variant| %>
+      <%= content_tag :div, class: variant do %>
+        <%== @product.description %>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
