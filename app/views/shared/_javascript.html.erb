@@ -4,8 +4,10 @@
 
 <%= yield :javascript %>
 
-<%= render 'shared/google_analytics' %>
-<script src="//d1nu2rn22elx8m.cloudfront.net/performable/pax/3tbRq2.js" type="text/javascript"></script>
+<% if Rails.env.production? %>
+  <%= render 'shared/google_analytics' %>
+  <script src="//d1nu2rn22elx8m.cloudfront.net/performable/pax/3tbRq2.js" type="text/javascript"></script>
+<% end %>
 
 <% if Rails.env.test? || Rails.env.cucumber? %>
   <%= javascript_tag do %>
@@ -33,4 +35,3 @@
     _kmq.push(['set', { '<%= experiment.name %>': '<%= ab_test(experiment.name, *experiment.alternative_names) %>' }]);
   <% end %>
 </script>
-
