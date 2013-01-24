@@ -57,3 +57,11 @@ When /^I view the product "([^"]*)"$/ do |name|
   product = Product.find_by_name!(name)
   visit product_path(product, product_pricing: "primary")
 end
+
+Then 'I should see the book sample graphic' do
+  find('.show_sample #book-graphic')
+end
+
+Then 'I should not see the book sample graphic' do
+  find('.hide_sample #book-graphic')
+end
