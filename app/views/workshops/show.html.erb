@@ -39,29 +39,27 @@
   <% end %>
 </aside>
 
-<% if @workshop.in_person? %>
-  <% content_for :outside do %>
-    <section id="additional-information">
-      <section id="additional-information-wrapper">
-        <section id="main-content">
-          <%= render 'follow_up', workshop: @workshop %>
+<% content_for :outside do %>
+  <section id="additional-information">
+    <section id="additional-information-wrapper">
+      <section id="main-content">
+        <%= render 'follow_up', workshop: @workshop %>
 
-          <section id="terms">
-            <h4>By registering for this workshop you agree to the following terms and conditions:</h4>
-            <ul>
-              <li>
-                If you&rsquo;re not happy with a workshop you took, just let us know within 30 days and we&rsquo;ll refund your money. It&rsquo;s as simple as that.
-                The ticket will entitle the named holder entrance to this event.
-                Tickets may not be resold and are non-transferrable.
-              </li>
-              <li>
-                We may film, take photographs, and use your feedback for marketing purposes.
-                thoughtbot, inc. will not be liable for any direct or indirect damage of any nature arising out of the cancellation of the event.
-              </li>
-            </ul>
-          </section>
+        <section id="terms">
+          <h4>By registering for this workshop you agree to the following terms and conditions:</h4>
+          <ul>
+            <li>
+              If you&rsquo;re not happy with a workshop you took, just let us know within 30 days and we&rsquo;ll refund your money. It&rsquo;s as simple as that.
+              The ticket will entitle the named holder entrance to this event.
+              Tickets may not be resold and are non-transferrable.
+            </li>
+            <li>
+              We may film, take photographs, and use your feedback for marketing purposes.
+              thoughtbot, inc. will not be liable for any direct or indirect damage of any nature arising out of the cancellation of the event.
+            </li>
+          </ul>
         </section>
       </section>
     </section>
-  <% end %>
+  </section>
 <% end %>
