@@ -1,11 +1,15 @@
 class Video < ActiveRecord::Base
   attr_accessor :wistia_hash, :video_sizes, :video_hash_id
 
-  belongs_to :purchaseable, polymorphic: true
+  belongs_to :watchable, polymorphic: true
 
-  validates :purchaseable_id, presence: true
-  validates :purchaseable_type, presence: true
+  validates :watchable_id, presence: true
+  validates :watchable_type, presence: true
   validates :wistia_id, presence: true
+
+  def self.ordered
+    order('active_on_day asc')
+  end
 
   def video_sizes
     @video_sizes ||= wistia_hash["assets"].inject({}){|result, asset| result.merge(asset["type"]=>human_file_size(asset['fileSize']))}

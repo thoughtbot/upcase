@@ -235,6 +235,10 @@ body {
       @include outer-container;
       max-width: 760px;
       padding: 2em;
+
+      .unavailable {
+        opacity: 0.5;
+      }
     }
 
     .videos {
