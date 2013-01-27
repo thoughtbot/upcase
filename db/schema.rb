@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122220646) do
-
+ActiveRecord::Schema.define(:version => 20130123024544) do
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
@@ -125,6 +124,14 @@ ActiveRecord::Schema.define(:version => 20130122220646) do
   end
 
   add_index "follow_ups", ["workshop_id"], :name => "index_follow_ups_on_workshop_id"
+
+  create_table "lessons", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "course_id"
+  end
+
+  add_index "lessons", ["course_id"], :name => "index_lessons_on_course_id"
 
   create_table "products", :force => true do |t|
     t.string   "name"
@@ -297,13 +304,16 @@ ActiveRecord::Schema.define(:version => 20130122220646) do
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
   create_table "videos", :force => true do |t|
-    t.integer  "purchaseable_id"
+    t.integer  "watchable_id"
     t.string   "wistia_id"
     t.string   "title"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.string   "purchaseable_type"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.string   "watchable_type"
+    t.integer  "active_on_day",  :default => 0, :null => false
   end
+
+  add_index "videos", ["watchable_type", "watchable_id"], :name => "index_videos_on_watchable_type_and_watchable_id"
 
   create_table "workshops", :force => true do |t|
     t.string   "name",                                         :null => false

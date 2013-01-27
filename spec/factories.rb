@@ -206,7 +206,7 @@ FactoryGirl.define do
   end
 
   factory :video do
-    association :purchaseable, factory: :product
+    association :watchable, factory: :product
     wistia_id '1194803'
   end
 

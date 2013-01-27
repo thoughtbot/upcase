@@ -149,11 +149,40 @@ describe Section do
   end
 end
 
-describe Section, 'self.by_starts_on_desc' do
-  it 'returns sections newest to oldest by starts_on' do
-    old_section = create(:section, starts_on: 2.weeks.from_now)
-    new_section = create(:section, starts_on: 4.weeks.from_now)
+describe Section do
+  context 'self.by_starts_on_desc' do
+    it 'returns sections newest to oldest by starts_on' do
+      old_section = create(:section, starts_on: 2.weeks.from_now)
+      new_section = create(:section, starts_on: 4.weeks.from_now)
 
-    Section.by_starts_on_desc.should == [new_section, old_section]
+      Section.by_starts_on_desc.should == [new_section, old_section]
+    end
+  end
+
+  describe '#video_available?' do
+    it 'returns true when the video is available to the section' do
+      workshop = create(:workshop)
+      section = create(:section, starts_on: Date.today, ends_on: 1.month.from_now, workshop: workshop)
+      video = create(:video, watchable: workshop, active_on_day: 0, title: 'Video One')
+      expect(section.video_available?(video)).to be
+    end
+
+    it 'returns false when the video is not available to the section' do
+      workshop = create(:workshop)
+      section = create(:section, starts_on: Date.today, ends_on: 1.month.from_now, workshop: workshop)
+      video = create(:video, watchable: workshop, active_on_day: 2, title: 'Video Two')
+      expect(section.video_available?(video)).to_not be
+    end
+  end
+
+  describe '#video_available_on' do
+    it 'gives the date the video will be available to the given section' do
+      workshop = create(:workshop)
+      section = create(:section, starts_on: Date.today, ends_on: 1.month.from_now, workshop: workshop)
+      video_one = create(:video, watchable: workshop, active_on_day: 0, title: 'Video One')
+      video_two = create(:video, watchable: workshop, active_on_day: 2, title: 'Video One')
+      expect(section.video_available_on(video_one)).to eq Date.today
+      expect(section.video_available_on(video_two)).to eq 2.days.from_now.to_date
+    end
   end
 end

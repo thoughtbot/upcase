@@ -10,12 +10,11 @@ class Section < ActiveRecord::Base
     conditions: { paid: false }
   has_many :announcements, as: :announceable, dependent: :destroy
   has_many :downloads, as: :purchaseable
-  has_many :videos, as: :purchaseable
 
   # Delegates
   delegate :name, :description, :individual_price, :company_price,
     :alternate_individual_price, :alternate_company_price, :terms,
-    to: :workshop, allow_nil: true
+    :videos, to: :workshop, allow_nil: true
 
   # Nested Attributes
   accepts_nested_attributes_for :section_teachers
@@ -46,6 +45,18 @@ class Section < ActiveRecord::Base
 
   def self.in_public_workshop
     joins(:workshop).where(workshops: {public: true})
+  end
+
+  def self.unique_section_teachers_by_teacher
+    all.map(&:section_teachers).flatten.uniq &:teacher
+  end
+
+  def self.upcoming
+    where 'starts_on = ?', 1.week.from_now
+  end
+
+  def self.send_reminders
+    upcoming.each &:send_reminders
   end
 
   def send_registration_emails(purchase)
@@ -94,10 +105,6 @@ class Section < ActiveRecord::Base
     super || workshop.maximum_students
   end
 
-  def self.send_reminders
-    upcoming.each &:send_reminders
-  end
-
   def send_reminders
     paid_purchases.each do |purchase|
       Mailer.delay.section_reminder(purchase.id, id)
@@ -112,12 +119,12 @@ class Section < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
-  def self.unique_section_teachers_by_teacher
-    all.map(&:section_teachers).flatten.uniq &:teacher
+  def video_available?(video)
+    video_available_on(video) <= Date.today
   end
 
-  def self.upcoming
-    where 'starts_on = ?', 1.week.from_now
+  def video_available_on(video)
+    starts_on + video.active_on_day.days
   end
 
   private

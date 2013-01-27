@@ -57,19 +57,6 @@ Feature: Purchase a Product
     And I should see a list of other products
 
   @selenium
-  Scenario: A visitor purchases a product with multiple videos
-    When I go to the home page
-    And I view all products
-    And I follow "Test Series"
-    And I follow "Purchase for Yourself"
-    And I pay using Paypal
-    And I submit the Paypal form
-    Then I should see the link to the video page
-    When I follow "Watch or download video"
-    Then I should see "2 videos in the series"
-    And I should see a list of 2 videos
-
-  @selenium
   Scenario: A visitor purchases a product with stripe
     When I go to the home page
     And I view all products
