@@ -1,0 +1,14 @@
+<div class="purchase-return-link">
+  <%=link_to "Return to purchase receipt page", purchase_path(purchase), class: "no_underscore" %>
+</div>
+<p class="videowrapper"><%= render 'videos/code', video_hash_id: video.video_hash_id %></p>
+
+<section class="assets-wrapper">
+  <div class="assets">
+    <%=render 'videos/download_link', download_type_key: "OriginalFile", download_type: "original", size_display: "Original (720p)", video: video %>
+    <%=render 'videos/download_link', download_type_key: "IphoneVideoFile", download_type: "iphone", size_display: "iPhone", video: video %>
+    <%=render 'videos/download_link', download_type_key: "HdMp4VideoFile", download_type: "hd_mp4", size_display: "HD MP4", video: video %>
+    <%=render 'videos/download_link', download_type_key: "HdFlashVideoFile", download_type: "hd_flash", size_display: "HD Flash", video: video %>
+    <%=render 'videos/download_link', download_type_key: "FlashVideoFile", download_type: "flash", size_display: "Flash", video: video %>
+  </div>
+</section>

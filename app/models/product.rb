@@ -5,7 +5,7 @@ class Product < ActiveRecord::Base
   has_many :downloads, as: :purchaseable
   has_many :purchases, as: :purchaseable
   has_many :topics, through: :classifications
-  has_many :videos, as: :purchaseable
+  has_many :videos, as: :watchable
 
   # Nested Attributes
   accepts_nested_attributes_for :downloads, allow_destroy: true
@@ -27,14 +27,6 @@ class Product < ActiveRecord::Base
     where active: true
   end
 
-  def announcement
-    @announcement ||= announcements.current
-  end
-
-  def meta_keywords
-    topics.map { |topic| topic.name }.join(', ')
-  end
-
   def self.books
     where product_type: 'book'
   end
@@ -49,6 +41,14 @@ class Product < ActiveRecord::Base
 
   def self.ordered
     order 'name ASC'
+  end
+
+  def self.promoted(location)
+    where(promo_location: location).first
+  end
+
+  def meta_keywords
+    topics.map { |topic| topic.name }.join(', ')
   end
 
   def announcement
@@ -71,10 +71,6 @@ class Product < ActiveRecord::Base
     self.product_type.split(' ')[0].downcase.to_sym
   rescue
     'book'
-  end
-
-  def self.promoted(location)
-    where(promo_location: location).first
   end
 
   def to_param
@@ -115,6 +111,14 @@ class Product < ActiveRecord::Base
 
   def discounted?
     discount_percentage > 0
+  end
+
+  def video_available?(video)
+    true
+  end
+
+  def video_available_on(video)
+    Date.today
   end
 
   private

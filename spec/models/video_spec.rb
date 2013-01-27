@@ -1,6 +1,19 @@
 require 'spec_helper'
 
 describe Video do
+  it { should belong_to(:watchable) }
+  it { should validate_presence_of(:watchable_id) }
+  it { should validate_presence_of(:watchable_type) }
+  it { should validate_presence_of(:wistia_id) }
+
+  context 'self.ordered' do
+    it 'returns videos in order by active_on_day' do
+      video1 = create(:video, active_on_day: 37)
+      video2 = create(:video, active_on_day: 1)
+      Video.ordered.should == [video2, video1]
+    end
+  end
+
   context '#wistia_thumbnail' do
     it 'returns the thumbnail cached from wistia' do
       video = build_stubbed(:video,

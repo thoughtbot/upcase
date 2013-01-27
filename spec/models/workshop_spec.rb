@@ -9,6 +9,7 @@ describe Workshop do
   it { should have_many(:purchases).through(:sections) }
   it { should have_many(:sections) }
   it { should have_many(:topics).through(:classifications) }
+  it { should have_many(:videos) }
 
   # Validations
   it { should validate_presence_of(:description) }
