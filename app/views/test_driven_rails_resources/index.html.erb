@@ -1,0 +1,168 @@
+<% content_for :body_class, 'home' %>
+
+<ol class="content-container">
+  <li>
+    <h2><a name="high-level-design">High-Level Design</a></h2>
+    <ul>
+      <li class="learn">
+        <a class="book" href="http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/?tag=giantrobotssm-20">
+          <strong>Clean Code: A Handbook of Agile Software Craftsmanship</strong>
+          <p>The quintessential book on good software practices.</p>
+        </a>
+      </li>
+      <li class="learn">
+        <a class="book" href="http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612/?tag=giantrobotssm-20">
+          <strong>Design Patterns: Elements of Reusable Object-Oriented Software</strong>
+          <p>The quintessential book on design patterns and how to apply them.</p>
+        </a>
+      </li>
+      <li class="star">
+        <a class="book" href="http://www.amazon.com/RSpec-Book-Behaviour-Development-Cucumber/dp/1934356379/?tag=giantrobotssm-20">The RSpec Book</a>
+        <p>Written by David Chelimsky, lead developer of RSpec.</p>
+      </li>
+      <li>
+        <a class="book" href="http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052/?tag=giantrobotssm-20">Working Effectively with Legacy Code</a>
+        <p>The perfect book to read when adding tests to existing applications.</p>
+      </li>
+      <li>
+        <a href="http://www.elabs.se/blog/15-you-re-cuking-it-wrong">You're Cuking It Wrong</a>
+        <p>How <em>not</em> to write acceptance tests.</p>
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <h2><a name="testing-concepts">Testing Concepts</a></h2>
+    <ul>
+      <li class="learn">
+        <a class="site" href="http://xunitpatterns.com/Four%20Phase%20Test.html">
+          <strong>Four-Phase Test</strong>
+          <p>Setup, Exercise, Verify, Teardown.</p>
+        </a>
+      </li>
+      <li class="learn">
+        <a class="site" href="http://www.jamesshore.com/Blog/Red-Green-Refactor.html">
+          <strong>Red, Green, Refactor</strong>
+          <p>Outlines steps to work towards working software in a quick manner.</p>
+        </a>
+      </li>
+      <li class="star">
+        <a class="site" href="http://dannorth.net/whats-in-a-story/">What's in a Story?</a>
+        <p>Discusses outside-in development through BDD.</p>
+      </li>
+      <li class="star">
+        <a class="site" href="http://xunitpatterns.com/Mocks,%20Fakes,%20Stubs%20and%20Dummies.html">Mocks, Fakes, Stubs, and Dummies</a>
+        <p>Breakdown of different types of test doubles and their purposes.</p>
+      </li>
+      <li class="star">
+        <a class="video" href="http://cleancoder.posterous.com/100-test-coverage">100% Test Coverage</a>
+        <p>"Uncle Bob" Martin discussing test coverage.</p>
+      </li>
+      <li class="star">
+        <a class="site" href="http://martinfowler.com/bliki/SelfInitializingFake.html">Self-Initializing Fake</a>
+        <p>A method of testing third-party services by recording real requests and replaying responses.</p>
+      </li>
+      <li>
+        <a class="site" href="http://martinfowler.com/articles/mocksArentStubs.html">Mocks Aren't Stubs</a>
+        <p>Mocks, stubs, and how they differ.</p>
+      </li>
+      <li>
+        <a class="site" href="http://tech.groups.yahoo.com/group/extremeprogramming/message/111829">Unit Test Rulz [sic]</a>
+        <p>Michael Feathers' list on what makes (or doesn't) a unit test.</p>
+      </li>
+      <li>
+        <a class="site" href="http://xunitpatterns.com/Obscure%20Test.html">xUnit Patterns: Obscure Test</a>
+        <p>List of various types of obscure tests (mystery guest, general fixture, eager test).</p>
+      </li>
+      <li>
+        <a class="site" href="http://martinfowler.com/articles/nonDeterminism.html#RemoteServices">Eradicating Non-Determinism in Tests: Remote Services</a>
+        <p>Outlines various ways in which a developer can test against a third-party service.</p>
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <h2><a name="continuous-integration">Continuous Integration</a></h2>
+    <ul>
+      <li class="learn">
+        <a class="site" href="http://martinfowler.com/articles/continuousIntegration.html">
+          <strong>Continuous Integration</strong>
+          <p>Basic outline of continuous integration.</p>
+        </a>
+      </li>
+      <li class="star">
+        <a class="app" href="https://travis-ci.org/">Travis CI</a>
+        <p>Continuous integration for open-source software.</p>
+      </li>
+      <li>
+        <a class="app" href="https://www.tddium.com/">tddium by Solano Labs</a>
+        <p>Continuous integration in the cloud.</p>
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <h2><a name="testing-tools">Testing Tools</a></h2>
+    <ul>
+      <li class="learn">
+        <a class="site" href="https://www.relishapp.com/rspec">
+          <strong>RSpec</strong>
+          <p>BDD for Ruby.</p>
+        </a>
+      </li>
+      <li class="learn">
+        <a class="site" href="https://github.com/jnicklas/capybara">
+          <strong>Capybara</strong>
+          <p>Acceptance testing framework for web applications.</p>
+        </a>
+      </li>
+      <li class="learn">
+        <a class="site" href="http://pivotal.github.com/jasmine/">
+          <strong>Jasmine</strong>
+          <p>BDD for JavaScript.</p>
+        </a>
+      </li>
+      <li>
+        <a class="site" href="https://github.com/bmabey/email-spec">Email Spec</a>
+        <p>Test email delivery more easily.</p>
+      </li>
+      <li>
+        <a class="site" href="http://rubydoc.info/gems/simplecov/frames">Simplecov</a>
+        <p>C0 code coverage for Ruby 1.9.</p>
+      </li>
+      <li>
+        <a class="site" href="https://github.com/thoughtbot/capybara-webkit">capybara-webkit</a>
+        <p>Capybara driver that uses QtWebKit for faster tests.</p>
+      </li>
+      <li>
+        <a class="site" href="https://github.com/travisjeffery/timecop">Timecop</a>
+        <p>A gem providing "time travel" and "time freezing" capabilities.</p>
+      </li>
+      <li>
+        <a class="site" href="https://github.com/thoughtbot/factory_girl">FactoryGirl</a>
+        <p>Build objects for your tests.</p>
+      </li>
+      <li>
+        <a class="site" href="https://github.com/thoughtbot/bourne">Bourne</a>
+        <p>Test spies with <a href="https://github.com/freerange/mocha">mocha</a>.</p>
+      </li>
+      <li>
+        <a class="app" href="https://codeclimate.com/">Code Climate</a>
+        <p>Hosted static analysis for Ruby source code.</p>
+      </li>
+      <li>
+        <a class="site" href="https://github.com/cucumber/aruba">Aruba</a>
+        <p>Support for testing CLIs.</p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<aside>
+  <ul>
+    <li><a href="#high-level-design">High-Level Design</a></li>
+    <li><a href="#testing-concepts">Testing Concepts</a></li>
+    <li><a href="#continuous-integration">Continuous Integration</a></li>
+    <li><a href="#testing-tools">Testing Tools</a></li>
+  </ul>
+</aside>

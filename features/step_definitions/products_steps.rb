@@ -65,3 +65,11 @@ end
 Then 'I should not see the book sample graphic' do
   find('.hide_sample #book-graphic')
 end
+
+When 'I view Test-Driven Rails resources' do
+  visit '/test-driven-rails-resources'
+end
+
+Then 'I should see links to good Test-Driven Rails resources' do
+  page.should have_css('a[href*="0132350882"]')
+end

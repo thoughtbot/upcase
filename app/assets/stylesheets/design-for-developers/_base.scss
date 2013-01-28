@@ -30,6 +30,7 @@ ul {
     font-weight: normal;
     margin: 0 0 1em 0;
     position: relative;
+    line-height: lh(.85);
 
     &.star {
       a {
@@ -68,7 +69,7 @@ ul {
       font-size: em(14, 18);
       line-height: lh(.75);
       color: #999;
-      margin: 0;
+      margin: lh(.25) 0 0;
     }
   }
 }
@@ -201,6 +202,7 @@ section.container {
 
 
   aside {
+    line-height: 1.2em;
     margin-top: 3em;
     @include omega;
     opacity: .6;
