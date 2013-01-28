@@ -41,6 +41,7 @@ Workshops::Application.routes.draw do
 
   resources :episodes, path: 'podcast', only: [:index, :show]
   resources :design_for_developers_resources, path: 'design-for-developers-resources', only: [:index, :show]
+  resources :test_driven_rails_resources, path: 'test-driven-rails-resources', only: [:index]
 
   resources :topics, only: :index
 
