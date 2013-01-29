@@ -39,6 +39,10 @@ class Product < ActiveRecord::Base
     where product_type: 'workshop'
   end
 
+  def self.subscriptions
+    where product_type: 'subscription'
+  end
+
   def self.ordered
     order 'name ASC'
   end
@@ -57,6 +61,10 @@ class Product < ActiveRecord::Base
 
   def external?
     fulfillment_method == 'external'
+  end
+
+  def subscription?
+    product_type == 'subscription'
   end
 
   def send_registration_emails(purchase)

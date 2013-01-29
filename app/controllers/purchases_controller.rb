@@ -21,9 +21,12 @@ class PurchasesController < ApplicationController
     end
 
     if @purchase.save
+      create_subscription if @purchaseable.subscription?
+
       km_http_client.record(@purchase.email, "Submit Payment", { "Product Name" => @purchaseable.name, "Order Total" => @purchase.price })
       track_purchase_if_paid(@purchase)
-      redirect_to @purchase.success_url
+
+      redirect_to success_url
     else
       @active_card = retrieve_active_card
       render :new
@@ -61,6 +64,10 @@ class PurchasesController < ApplicationController
   end
 
   private
+
+  def create_subscription
+    current_user.create_subscription
+  end
 
   def track_purchase_if_paid(purchase)
     if purchase.paid?
@@ -100,5 +107,15 @@ class PurchasesController < ApplicationController
 
   def current_purchaseable
     @current_purchaseable ||= purchaseable
+  end
+
+  def success_url
+    if @purchase.paypal?
+      @purchase.paypal_url
+    elsif @purchase.subscription?
+      subscription_products_path
+    else
+      purchase_path @purchase
+    end
   end
 end

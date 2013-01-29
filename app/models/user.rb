@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :paid_purchases, class_name: 'Purchase',
     conditions: { paid: true }
   has_many :purchases
+  has_one :subscription
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -50,6 +51,10 @@ class User < ActiveRecord::Base
 
   def has_purchased?
     paid_purchases.present?
+  end
+
+  def has_active_subscription?
+    subscription.present?
   end
 
   private

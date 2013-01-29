@@ -1,6 +1,6 @@
 <% unless (size = video.video_sizes[download_type_key]).nil? %>
   <a class="button-mini <%= download_type %>" href="http://thoughtbot-2.wistia.com/medias/<%= video.wistia_id %>/download?asset=<%= download_type %>">
     <%=size_display%>
-    <span class="size"><%= video.video_sizes[download_type_key]%></span>
+    <span class="size"><%= size %></span>
   </a>
 <% end %>
