@@ -141,4 +141,12 @@ describe Topic do
       featured_topic.should have_received(:import_trail_map)
     end
   end
+
+  context '#contribute_url' do
+    it 'returns the correct url based on slug' do
+      topic = Topic.new
+      topic.slug = 'ruby+on+rails'
+      topic.contribute_url.should eq 'https://github.com/thoughtbot/trail-map/blob/master/trails/ruby-on-rails.json'
+    end
+  end
 end
