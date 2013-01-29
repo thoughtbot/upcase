@@ -3,9 +3,9 @@ require 'spec_helper'
 describe Workshop do
   # Associations
   it { should have_many(:announcements).dependent(:destroy) }
-  it { should have_many(:classifications) }
-  it { should have_many(:follow_ups) }
-  it { should have_many(:questions) }
+  it { should have_many(:classifications).dependent(:destroy) }
+  it { should have_many(:follow_ups).dependent(:destroy) }
+  it { should have_many(:questions).dependent(:destroy) }
   it { should have_many(:purchases).through(:sections) }
   it { should have_many(:sections) }
   it { should have_many(:topics).through(:classifications) }
