@@ -32,11 +32,6 @@ Given /^a topic named "([^"]*)"$/ do |name|
   create :topic, name: name
 end
 
-Given /^an article for topic "([^"]*)"$/ do |topic_name|
-  topic = Topic.find_by_name(topic_name)
-  topic.articles << create(:article)
-end
-
 Given /^a podcast episode named "([^"]*)" for topic "([^"]*)"$/ do |title, topic_name|
   topic = Topic.find_by_name(topic_name)
   topic.episodes << create(:episode, title: title)

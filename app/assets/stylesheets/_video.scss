@@ -60,3 +60,15 @@
 
   }
 }
+
+.thumbnail {
+  float: left;
+  margin-right: 12px;
+}
+.thumbnail-text {
+  margin-left: 112px;
+  h2 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
