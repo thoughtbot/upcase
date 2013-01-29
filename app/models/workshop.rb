@@ -1,9 +1,9 @@
 class Workshop < ActiveRecord::Base
   # Associations
   has_many :announcements, as: :announceable, dependent: :destroy
-  has_many :classifications, as: :classifiable
-  has_many :follow_ups
-  has_many :questions, order: 'created_at ASC'
+  has_many :classifications, as: :classifiable, dependent: :destroy
+  has_many :follow_ups, dependent: :destroy
+  has_many :questions, order: 'created_at ASC', dependent: :destroy
   has_many :purchases, through: :sections
   has_many :sections
   has_many :topics, through: :classifications
