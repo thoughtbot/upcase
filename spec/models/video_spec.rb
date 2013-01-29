@@ -7,10 +7,11 @@ describe Video do
   it { should validate_presence_of(:wistia_id) }
 
   context 'self.ordered' do
-    it 'returns videos in order by active_on_day' do
+    it 'returns videos in order by active_on_day and order' do
       video1 = create(:video, active_on_day: 37)
-      video2 = create(:video, active_on_day: 1)
-      Video.ordered.should == [video2, video1]
+      video2 = create(:video, active_on_day: 1, order: 1)
+      video3 = create(:video, active_on_day: 1, order: 2)
+      Video.ordered.should == [video2, video3, video1]
     end
   end
 
