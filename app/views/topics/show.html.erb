@@ -12,7 +12,7 @@
 <div class="text-box-wrapper">
   <% if @topic.trail_map.present? %>
     <div class="text-box">
-      <%= render 'trail_map', trail_map: @topic.trail_map %>
+      <%= render 'trail_map', trail_map: @topic.trail_map, contribute_url: @topic.contribute_url %>
     </div>
   <% end %>
 

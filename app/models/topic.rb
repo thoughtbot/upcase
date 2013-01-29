@@ -40,6 +40,10 @@ class Topic < ActiveRecord::Base
     end
   end
 
+  def contribute_url
+    "https://github.com/thoughtbot/trail-map/blob/master/trails/#{slug.parameterize}.json"
+  end
+
   def to_param
     slug
   end
