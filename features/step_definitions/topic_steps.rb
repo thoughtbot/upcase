@@ -77,6 +77,6 @@ Then /^I should see a trail\-map for "([^""]*)"$/ do |topic_slug|
   end
 
   within '.contribute' do
-    page.should have_css 'a', href: 'https://github.com/thoughtbot/trail-map'
+    page.should have_css "a[href='https://github.com/thoughtbot/trail-map/blob/master/trails/#{topic_slug.parameterize}.json']"
   end
 end
