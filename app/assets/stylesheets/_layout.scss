@@ -116,8 +116,7 @@ body {
   }
 }
 
-//rename .what-you-learn to make it more generic. can it be merged with .workshop-alert below?
-.what-you-learn {
+.gray-box {
   @include outer-container;
   background-color: $lightwarmgray;
   border-radius: 3px;
@@ -145,6 +144,10 @@ body {
       margin-right: 0;
     }
   }
+}
+
+.what-you-learn {
+  @extend .gray-box;
 }
 
 .workshop-alert {

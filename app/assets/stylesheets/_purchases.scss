@@ -194,8 +194,6 @@ body {
 
     #videos {
       @include outer-container;
-      max-width: 760px;
-
       .unavailable {
         opacity: 0.5;
       }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130130194019) do
+ActiveRecord::Schema.define(:version => 20130205194322) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -29,12 +29,10 @@ ActiveRecord::Schema.define(:version => 20130130194019) do
     t.datetime "updated_at",   :null => false
     t.string   "title",        :null => false
     t.text     "body_html",    :null => false
-    t.string   "tumblr_url",   :null => false
-    t.integer  "author_id"
+    t.string   "tumblr_url"
     t.date     "published_on", :null => false
+    t.text     "body"
   end
-
-  add_index "articles", ["author_id"], :name => "index_articles_on_author_id"
 
   create_table "articles_topics", :id => false, :force => true do |t|
     t.integer "article_id", :null => false
@@ -43,16 +41,12 @@ ActiveRecord::Schema.define(:version => 20130130194019) do
 
   add_index "articles_topics", ["article_id", "topic_id"], :name => "index_articles_topics_on_article_id_and_topic_id", :unique => true
 
-  create_table "authors", :force => true do |t|
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-    t.string   "tumblr_user_name", :null => false
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
+  create_table "audiences", :force => true do |t|
+    t.string   "name"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
-
-  add_index "authors", ["tumblr_user_name"], :name => "index_authors_on_tumblr_user_name", :unique => true
 
   create_table "classifications", :force => true do |t|
     t.integer  "topic_id"
@@ -117,9 +111,9 @@ ActiveRecord::Schema.define(:version => 20130130194019) do
   end
 
   create_table "events", :force => true do |t|
-    t.integer  "workshop_id"
-    t.string   "title"
-    t.string   "time"
+    t.integer  "workshop_id",                  :null => false
+    t.string   "title",                        :null => false
+    t.string   "time",                         :null => false
     t.integer  "occurs_on_day", :default => 0, :null => false
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
@@ -134,6 +128,14 @@ ActiveRecord::Schema.define(:version => 20130130194019) do
   end
 
   add_index "follow_ups", ["workshop_id"], :name => "index_follow_ups_on_workshop_id"
+
+  create_table "lessons", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "course_id"
+  end
+
+  add_index "lessons", ["course_id"], :name => "index_lessons_on_course_id"
 
   create_table "products", :force => true do |t|
     t.string   "name"
@@ -335,7 +337,7 @@ ActiveRecord::Schema.define(:version => 20130130194019) do
     t.boolean  "online",                     :default => false, :null => false
     t.integer  "alternate_individual_price"
     t.integer  "alternate_company_price"
-    t.text     "resources"
+    t.text     "resources",                  :default => "",    :null => false
     t.string   "video_chat_url"
   end
 
