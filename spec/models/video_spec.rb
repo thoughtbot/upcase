@@ -9,8 +9,8 @@ describe Video do
   context 'self.ordered' do
     it 'returns videos in order by active_on_day and order' do
       video1 = create(:video, active_on_day: 37)
-      video2 = create(:video, active_on_day: 1, order: 1)
-      video3 = create(:video, active_on_day: 1, order: 2)
+      video3 = create(:video, active_on_day: 1, position: 2)
+      video2 = create(:video, active_on_day: 1, position: 1)
       Video.ordered.should == [video2, video3, video1]
     end
   end

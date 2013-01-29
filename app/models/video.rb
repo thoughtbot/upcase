@@ -8,7 +8,7 @@ class Video < ActiveRecord::Base
   validates :wistia_id, presence: true
 
   def self.ordered
-    order('active_on_day asc')
+    order('active_on_day asc, position asc')
   end
 
   def video_sizes
