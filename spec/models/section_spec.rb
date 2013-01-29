@@ -16,6 +16,15 @@ describe Section do
   it { should validate_presence_of :starts_on }
   it { should validate_presence_of :stop_at }
 
+  describe 'self.active' do
+    it "only includes sections thats haven't started" do
+      active = create(:section, starts_on: Date.tomorrow, ends_on: 7.days.from_now)
+      create(:section, starts_on: 1.week.ago, ends_on: 7.days.from_now)
+      create(:section, starts_on: Date.today, ends_on: 7.days.from_now)
+      expect(Section.active).to eq [active]
+    end
+  end
+
   describe '#date_range' do
     context 'when starts_on and ends_on are nil' do
       it 'returns nil' do
@@ -178,11 +187,11 @@ describe Section do
   describe '#video_available_on' do
     it 'gives the date the video will be available to the given section' do
       workshop = create(:workshop)
-      section = create(:section, starts_on: Date.today, ends_on: 1.month.from_now, workshop: workshop)
+      section = create(:section, starts_on: 7.days.from_now.to_date, ends_on: 1.month.from_now.to_date, workshop: workshop)
       video_one = create(:video, watchable: workshop, active_on_day: 0, title: 'Video One')
       video_two = create(:video, watchable: workshop, active_on_day: 2, title: 'Video One')
-      expect(section.video_available_on(video_one)).to eq Date.today
-      expect(section.video_available_on(video_two)).to eq 2.days.from_now.to_date
+      expect(section.video_available_on(video_one)).to eq 7.days.from_now.to_date
+      expect(section.video_available_on(video_two)).to eq 9.days.from_now.to_date
     end
   end
 end
