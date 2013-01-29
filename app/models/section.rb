@@ -132,6 +132,10 @@ class Section < ActiveRecord::Base
     starts_on + event.occurs_on_day.days
   end
 
+  def subscription?
+    false
+  end
+
   private
 
   def must_have_at_least_one_teacher
