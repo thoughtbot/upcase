@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123024544) do
+ActiveRecord::Schema.define(:version => 20130129030408) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -65,8 +65,8 @@ ActiveRecord::Schema.define(:version => 20130123024544) do
   create_table "coupons", :force => true do |t|
     t.string   "code"
     t.integer  "amount"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "active",            :default => true,         :null => false
     t.string   "discount_type",     :default => "percentage", :null => false
     t.boolean  "one_time_use_only", :default => false,        :null => false
@@ -119,12 +119,20 @@ ActiveRecord::Schema.define(:version => 20130123024544) do
   create_table "follow_ups", :force => true do |t|
     t.string   "email"
     t.integer  "workshop_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.datetime "notified_at"
   end
 
   add_index "follow_ups", ["workshop_id"], :name => "index_follow_ups_on_workshop_id"
+
+  create_table "lessons", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "course_id"
+  end
+
+  add_index "lessons", ["course_id"], :name => "index_lessons_on_course_id"
 
   create_table "products", :force => true do |t|
     t.string   "name"
@@ -137,8 +145,8 @@ ActiveRecord::Schema.define(:version => 20130123024544) do
     t.integer  "company_price",                 :default => 0,    :null => false
     t.string   "product_type"
     t.boolean  "active",                        :default => true, :null => false
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "fulfillment_method"
     t.integer  "github_team"
     t.string   "github_url"
@@ -170,8 +178,8 @@ ActiveRecord::Schema.define(:version => 20130123024544) do
     t.string   "city"
     t.string   "state"
     t.string   "zip_code"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "lookup"
     t.integer  "coupon_id"
     t.text     "readers"
@@ -213,11 +221,19 @@ ActiveRecord::Schema.define(:version => 20130123024544) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
+  create_table "resources", :force => true do |t|
+    t.integer "course_id"
+    t.string  "name"
+    t.string  "url"
+  end
+
+  add_index "resources", ["course_id"], :name => "index_resources_on_course_id"
+
   create_table "section_teachers", :force => true do |t|
     t.integer  "section_id"
     t.integer  "teacher_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "section_teachers", ["section_id", "teacher_id"], :name => "index_section_teachers_on_section_id_and_teacher_id", :unique => true
@@ -226,8 +242,8 @@ ActiveRecord::Schema.define(:version => 20130123024544) do
     t.integer  "workshop_id"
     t.date     "starts_on"
     t.date     "ends_on"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "seats_available"
     t.time     "start_at"
     t.time     "stop_at"
@@ -244,9 +260,9 @@ ActiveRecord::Schema.define(:version => 20130123024544) do
     t.string   "name"
     t.string   "gravatar_hash"
     t.text     "bio"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.string   "email",         :default => ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
   end
 
   create_table "topics", :force => true do |t|
@@ -270,12 +286,12 @@ ActiveRecord::Schema.define(:version => 20130123024544) do
     t.string   "confirmation_token", :limit => 128
     t.string   "remember_token",     :limit => 128
     t.boolean  "email_confirmed",                   :default => true,  :null => false
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
-    t.string   "customer_id",                       :default => ""
-    t.string   "first_name",                        :default => ""
-    t.string   "last_name",                         :default => ""
-    t.string   "reference",                         :default => ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "customer_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "reference"
     t.boolean  "admin",                             :default => false, :null => false
     t.string   "stripe_customer"
     t.string   "github_username"
@@ -296,20 +312,21 @@ ActiveRecord::Schema.define(:version => 20130123024544) do
     t.datetime "updated_at",                    :null => false
     t.string   "watchable_type"
     t.integer  "active_on_day",  :default => 0, :null => false
+    t.integer  "order",          :default => 0, :null => false
   end
 
   add_index "videos", ["watchable_type", "watchable_id"], :name => "index_videos_on_watchable_type_and_watchable_id"
 
   create_table "workshops", :force => true do |t|
-    t.string   "name",                       :default => "",    :null => false
+    t.string   "name",                                          :null => false
+    t.integer  "individual_price"
     t.text     "description"
     t.time     "start_at"
     t.time     "stop_at"
     t.integer  "maximum_students",           :default => 12,    :null => false
     t.boolean  "public",                     :default => true,  :null => false
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
-    t.integer  "individual_price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "short_description"
     t.string   "external_registration_url"
     t.integer  "position"
