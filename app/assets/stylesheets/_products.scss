@@ -44,11 +44,6 @@ body.products-show, body.workshops-show {
         h2 {
           margin-bottom: 0;
         }
-
-        .workshop-type {
-          color: $learnred;
-          font-size: 17px;
-        }
       }
 
       .what-you-learn {
@@ -173,13 +168,6 @@ body.products-show, body.workshops-show {
     }
 
     aside {
-      .when, .address {
-        h3 {
-          color: $warmgray;
-          text-shadow: 0 1px 0 #fff;
-        }
-      }
-
       .section-location, #license {
         h4.discount-title {
           color: $darkwarmgray;

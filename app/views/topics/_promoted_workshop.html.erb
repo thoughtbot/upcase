@@ -1,7 +1,7 @@
 <div class='promo-container <%= promoted_workshop.promo_location %>'>
   <div class='promo-detail'>
     <h3><%= promoted_workshop.name %></h3>
-    <p><%= promoted_workshop.short_description %></p>
+    <p><em><%= promoted_workshop.short_description %></em></p>
     <%= link_to promoted_workshop do %>
       <div class='button'>
         <%= t ".action" %>
