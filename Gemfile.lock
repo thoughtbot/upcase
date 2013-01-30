@@ -235,7 +235,7 @@ GEM
       restclient_with_cert
     pg (0.13.2)
     polyglot (0.3.3)
-    rack (1.4.3)
+    rack (1.4.4)
     rack-cache (1.2)
       rack (>= 0.4)
     rack-pjax (0.6.0)
