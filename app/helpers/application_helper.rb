@@ -60,4 +60,12 @@ module ApplicationHelper
   def format_podcast_notes(notes)
     BlueCloth.new(notes).to_html
   end
+
+  def format_resources(resources)
+    BlueCloth.new(resources).to_html
+  end
+
+  def sidebar_partial_name(purchaseable)
+    "#{purchaseable.class.table_name}/aside"
+  end
 end

@@ -8,6 +8,7 @@ class Workshop < ActiveRecord::Base
   has_many :sections
   has_many :topics, through: :classifications
   has_many :videos, as: :watchable
+  has_many :events, dependent: :destroy
 
   # Nested Attributes
   accepts_nested_attributes_for :follow_ups, reject_if: :all_blank

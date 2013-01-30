@@ -1,12 +1,13 @@
 <% content_for :subject, @purchase.purchaseable_name %>
 
-<h3 class="video-headline">Watch or Download Video</h3>
-<h2 class="video-headline">
-  <%= pluralize @purchase.purchaseable.videos.size, 'video' %> in the series
-</h2>
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <h2>Watch or Download Video</h2>
+    <p class="workshop-type"><%= pluralize @purchaseable.videos.size, 'video' %> in the series</p>
+    <section id="videos">
+      <%= render @purchaseable.videos.ordered, purchase: @purchase %>
+    </section>
+  </div>
+</div>
 
-<section id="videos">
-  <%= render @purchase.purchaseable.videos.ordered, purchase: @purchase %>
-</section>
-
-<%= render 'videos/footer' %>
+<%= render sidebar_partial_name(@purchaseable), purchaseable: @purchaseable %>

@@ -1,12 +1,15 @@
 <% content_for :subject, @purchase.purchaseable_name %>
 
-<h3 class="video-headline">Watch or Download Video</h3>
+<div class="text-box-wrapper">
+  <div class="text-box">
 
-<% if @purchase.purchaseable.video_available?(@video) %>
-  <%= render 'watch_video', video: @video, purchase: @purchase %>
-<% else %>
-  <p>This video is not yet available. It will be released on <%= @purchase.purchaseable.video_available_on(@video).to_s(:simple) %></p>
-<% end %>
+    <% if @purchaseable.video_available?(@video) %>
+      <%= render 'watch_video', video: @video, purchase: @purchase %>
+    <% else %>
+      <p>This video is not yet available. It will be released on <%= @purchaseable.video_available_on(@video).to_s(:simple) %></p>
+    <% end %>
 
+  </div>
+</div>
 
-<%= render 'videos/footer' %>
+<%= render sidebar_partial_name(@purchaseable), purchaseable: @purchaseable %>

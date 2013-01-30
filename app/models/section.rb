@@ -14,7 +14,8 @@ class Section < ActiveRecord::Base
   # Delegates
   delegate :name, :description, :individual_price, :company_price,
     :alternate_individual_price, :alternate_company_price, :terms,
-    :videos, to: :workshop, allow_nil: true
+    :videos, :resources, :video_chat_url, :events,
+    to: :workshop, allow_nil: true
 
   # Nested Attributes
   accepts_nested_attributes_for :section_teachers
@@ -125,6 +126,10 @@ class Section < ActiveRecord::Base
 
   def video_available_on(video)
     starts_on + video.active_on_day.days
+  end
+
+  def event_on(event)
+    starts_on + event.occurs_on_day.days
   end
 
   private
