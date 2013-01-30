@@ -1,0 +1,135 @@
+body {
+  background-color: $lightwarmgray;
+  border-top: none;
+  font-family: $sans-serif;
+  line-height: 20px;
+  margin: 0 auto;
+}
+
+// MAIN SECTION AND SIDEBAR
+//************************************************************************//
+.content {
+  @include outer-container;
+  max-width: $max-width;
+  padding: 3em 2em;
+
+  h2 {
+    &:first-child {
+      padding-top: 0;
+    }
+
+    padding: 10px 0 10px 0;
+  }
+
+  ul {
+    padding: 4px 0 30px 0;
+  }
+
+  li {
+    margin-top: 14px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .text-box-wrapper {
+    @include span-columns (9);
+  }
+
+  .text-box-in-text-box {
+    @extend .text-box;
+    background-color: $lightwarmgray;
+    .thumbnail {
+      float: left;
+      margin-right: 12px;
+    }
+    .thumbnail-text {
+      margin-left: 112px;
+      h2 {
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .summary {
+    @include span-columns(9);
+    clear: both;
+    display: block;
+    float: left;
+    text-align: left;
+
+    p {
+      font-style: italic;
+      margin: -10px 0 24px 25px;
+    }
+  }
+}
+
+// MAIN SECTION
+//************************************************************************//
+.text-box {
+  background-color: white;
+  border-bottom: 2px solid $warmgray;
+  border-radius: 4px;
+  margin-bottom: 1em;
+  padding: 20px;
+
+  h2 {
+    margin-bottom: 16px;
+  }
+
+  a:hover h2 {
+    color: #C42107;
+  }
+
+  h3 {
+    margin-bottom: 10px;
+  }
+
+  a:hover h3 {
+    color: $learnred;
+  }
+
+  q {
+    display: block;
+    width: 80%;
+    margin: 30px 18% 0 4%;
+    font-style: italic;
+  }
+
+  .source {
+    margin-left: 12%;
+  }
+
+  ol {
+    margin-bottom: 20px;
+  }
+
+  li {
+    margin: 10px 0 0 20px;
+  }
+
+  form {
+    li {
+      margin-left: 0;
+    }
+  }
+}
+
+// SIDEBAR
+//************************************************************************//
+aside {
+  @include span-columns (3);
+  float: right;
+  display: inline-block;
+
+  .button {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    width: 100%;
+  }
+}

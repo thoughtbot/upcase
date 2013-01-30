@@ -1,0 +1,197 @@
+a {
+  color: $red;
+  text-decoration: none;
+}
+
+// H1
+//************************************************************************//
+h1 {
+  color: white;
+  font: 800 72px $sans-serif;
+  text-rendering: optimizeLegibility;
+
+  a {
+    color: white;
+  }
+}
+
+// H2
+//************************************************************************//
+h2 {
+  color: $learnred;
+  font: 800 36px/40px $sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+.text-box {
+  h2 {
+    color: $darkwarmgray;
+  }
+}
+
+// H3
+//************************************************************************//
+h3 { // should be 26px always. In some places it's not (design for developers)
+  color: $darkwarmgray;
+  font: 700 26px/25px $sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+// H4
+//************************************************************************//
+h4 { //same as p but italic. REMOVE?
+  color: #94918C;
+  font: 600 13px $sans-serif;
+  text-shadow: 0 2px 0 white;
+}
+
+// H5
+//************************************************************************//
+h5 { //small uppercase gray headings in sidebar
+  color: #94918C;
+  font: 600 13px $sans-serif;
+  text-shadow: 0 2px 0 white;
+  background-color: $lightwarmgray;
+  display: inline-block;
+  margin-top: -8px;
+  padding: 0 10px 0 0px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+h1, h2, h3, h4, h5 {
+  em {
+    color: $learnred;
+  }
+}
+
+// p
+//************************************************************************//
+p {
+  -webkit-font-smoothing: antialiased;
+  color: $darkwarmgray;
+  // font: italic 17px $serif;
+  font: normal 17px $serif;
+  text-shadow: 0 1px 1px rgba(255,255,255,.3);
+  margin-bottom: 12px;
+}
+
+li {
+  -webkit-font-smoothing: antialiased;
+  color: $darkwarmgray;
+  font: normal 17px $serif;
+}
+
+strong {
+  font-weight: bold;
+}
+
+hr {
+  border: 0;
+  height: 2px;
+  color: $warmgray;
+  border-bottom: 1px solid white;
+  border-top: 1px solid $warmgray;
+}
+
+// SIDEPANEL
+//************************************************************************//
+aside {
+  a {
+    display: block;
+    font: italic 17px $serif;
+    margin-top: 0;
+  }
+
+  h2 span {
+    font: 300 36px $sans-serif;
+
+    &.original-price {
+      color: lighten($darkwarmgray, 22%);
+      font-size: 24px;
+      margin-left: 10px;
+      margin-top: 7px;
+      position: absolute;
+      -webkit-font-smoothing: antialiased;
+
+      &::after {
+        background-image: image_url("icons/brush.png");
+        content: "";
+        height: 33px;
+        left: -3px;
+        position: absolute;
+        top: -3px;
+        width: 60px;
+      }
+    }
+  }
+
+  h3 {
+    color: $warmgray;
+    text-transform: uppercase;
+  }
+
+  li {
+    -webkit-font-smoothing: antialiased;
+    color: $darkwarmgray;
+    font: normal 17px $serif;
+    text-shadow: 0 1px 1px rgba(255,255,255,.3);
+    margin-bottom: 12px;
+  }
+}
+
+// TERMS
+//************************************************************************//
+#additional-information {
+  li {
+    font-family: $sans-serif;
+  }
+}
+
+@media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+  section.content {
+    .text-box-wrapper {
+      width: 100%;
+    }
+
+    section.content .summary {
+      @include span-columns(12);
+    }
+
+    aside {
+      display: block !important;
+      width: 100% !important;
+      margin-top: 2em;
+    }
+
+    form input[type="submit"] {
+      width: 100%;
+    }
+    .text-box-in-text-box {
+      .thumbnail {
+        float: none;
+        margin-right: 0;
+      }
+      .thumbnail-text {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+.videowrapper, .mapwrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 0px;
+  height: 0;
+  margin: 30px 0;
+  overflow: hidden;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

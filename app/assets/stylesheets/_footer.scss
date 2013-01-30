@@ -67,8 +67,7 @@ footer {
   p#copyright {
     color: #7a7a7a;
     display: block;
-    font-family: $serif;
-    font-size: 16px;
+    font: italic 16px $serif;
     line-height: $lh;
     margin-bottom: $lh;
     margin-top: $lh * 2; /*line-height to maintain baseline grid*/
