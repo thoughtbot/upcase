@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130129030943) do
+ActiveRecord::Schema.define(:version => 20130129210956) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -114,6 +114,15 @@ ActiveRecord::Schema.define(:version => 20130129030943) do
     t.integer  "file_size"
     t.integer  "duration"
     t.integer  "downloads_count", :default => 0, :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.integer  "workshop_id"
+    t.string   "title"
+    t.string   "time"
+    t.integer  "occurs_on_day", :default => 0, :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "follow_ups", :force => true do |t|
@@ -336,6 +345,8 @@ ActiveRecord::Schema.define(:version => 20130129030943) do
     t.boolean  "online",                     :default => false, :null => false
     t.integer  "alternate_individual_price"
     t.integer  "alternate_company_price"
+    t.text     "resources"
+    t.string   "video_chat_url"
   end
 
 end

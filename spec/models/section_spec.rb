@@ -190,8 +190,21 @@ describe Section do
       section = create(:section, starts_on: 7.days.from_now.to_date, ends_on: 1.month.from_now.to_date, workshop: workshop)
       video_one = create(:video, watchable: workshop, active_on_day: 0, title: 'Video One')
       video_two = create(:video, watchable: workshop, active_on_day: 2, title: 'Video One')
+
       expect(section.video_available_on(video_one)).to eq 7.days.from_now.to_date
       expect(section.video_available_on(video_two)).to eq 9.days.from_now.to_date
+    end
+  end
+
+  describe '#event_on' do
+    it 'gives the date the event will occur for the given section' do
+      workshop = create(:workshop)
+      section = create(:section, starts_on: 7.days.from_now.to_date, ends_on: 1.month.from_now.to_date, workshop: workshop)
+      event_one = create(:event, workshop: workshop, occurs_on_day: 0)
+      event_two = create(:event, workshop: workshop, occurs_on_day: 2)
+
+      expect(section.event_on(event_one)).to eq 7.days.from_now.to_date
+      expect(section.event_on(event_two)).to eq 9.days.from_now.to_date
     end
   end
 end

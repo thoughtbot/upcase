@@ -58,6 +58,15 @@ input[type="submit"] {
   }
 }
 
+.button-mini {
+  @extend .button;
+  height: 26px;
+  padding-top: 6px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid $learndarkred;
+}
+
 form {
   margin: 0 0 48px 0;
 

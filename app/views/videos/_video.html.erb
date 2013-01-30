@@ -1,6 +1,6 @@
 <%= content_tag_for :div,
   video,
-  class: "text-box #{video_availability_class(video, purchase.purchaseable)}" do %>
+  class: "text-box-in-text-box #{video_availability_class(video, purchase.purchaseable)}" do %>
 
   <% if purchase.purchaseable.video_available?(video) %>
     <%= link_to purchase_video_path(purchase, video) do %>

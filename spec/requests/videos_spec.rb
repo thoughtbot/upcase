@@ -14,9 +14,10 @@ describe 'Videos' do
       expect(page).to have_content(video_one.title)
       expect(page).to have_content(video_two.title)
       expect(page.body.index(video_one.title) < page.body.index(video_two.title)).to be
-      expect(page).to have_css('div.available > a > p', text: video_one.title)
-      expect(page).to have_css('div.unavailable > p', text: video_two.title)
-      expect(page).to have_css('div.unavailable > p', text: "Available on #{1.days.from_now.to_s(:simple)}")
+      expect(page).to have_css('.available > a', text: video_one.title)
+      expect(page).to have_css('.unavailable > div', text: video_two.title)
+      expect(page).to have_css('.unavailable > div', text: "Available on #{Date.tomorrow.to_s(:simple)}")
+
       visit purchase_video_path(purchase, video_two)
       expect(page).to_not have_css('iframe')
     end

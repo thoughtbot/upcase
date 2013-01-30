@@ -234,7 +234,6 @@ body {
     #videos {
       @include outer-container;
       max-width: 760px;
-      padding: 2em;
 
       .unavailable {
         opacity: 0.5;
@@ -249,19 +248,22 @@ body {
       color: $darkwarmgray;
       display: inline-block;
       font: italic 17px $serif;
-      margin-left: 20px;
       vertical-align: middle;
     }
 
+    p.chat {
+      color: $darkwarmgray;
+      font: italic 17px $serif;
+      margin-top: 0;
+    }
     .assets-wrapper {
       margin: 20px 0;
 
       .assets {
         @include outer-container;
 
-        .button {
+        .button-mini {
           @include span-columns(4);
-          margin-bottom:20px;
 
           &:nth-child(3n) {
             margin-right: 0;
@@ -270,10 +272,14 @@ body {
       }
     }
 
-    p.chat {
-      color: $darkwarmgray;
-      font: italic 17px $serif;
-      margin-top: 0;
+    @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+      .assets-wrapper {
+        .assets {
+          .button-mini {
+            @include span-columns(12);
+          }
+        }
+      }
     }
   }
 
@@ -311,7 +317,7 @@ body {
       margin-top: 0;
     }
 
-    .assets-wrapper .assets .button {
+    .assets-wrapper .assets .button-mini {
       @include span-columns(12);
       margin-top: 20px;
     }

@@ -7,13 +7,14 @@ class VideosController < ApplicationController
   def show
     load_context
     redirect_if_unpaid and return
-    @video = @purchase.purchaseable.videos.find(params[:id])
+    @video = @purchaseable.videos.find(params[:id])
   end
 
   private
 
   def load_context
     @purchase = Purchase.find_by_lookup!(params[:purchase_id])
+    @purchaseable = @purchase.purchaseable
   end
 
   def redirect_if_unpaid
