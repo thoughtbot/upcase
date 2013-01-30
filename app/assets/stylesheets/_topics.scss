@@ -27,8 +27,6 @@ body.topics-index {
 
         p {
           border-top: 7px solid $learnred;
-          color: $darkwarmgray;
-          font: italic 17px $serif;
           margin: 10px 0 10px 0;
           padding-top:10px;
         }
@@ -154,11 +152,6 @@ body.topics-index {
 
     li:last-child {
       margin-right: 0;
-    }
-
-    p {
-      color: $darkwarmgray;
-      font: italic 17px $serif;
     }
   }
 
