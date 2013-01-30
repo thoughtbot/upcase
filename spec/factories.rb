@@ -210,6 +210,12 @@ FactoryGirl.define do
     wistia_id '1194803'
   end
 
+  factory :event do
+    association :workshop
+    title 'Office Hours'
+    time '1pm Eastern'
+  end
+
   factory :episode do
     title 'Episode Title'
     file_size 1000

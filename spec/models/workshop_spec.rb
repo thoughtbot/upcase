@@ -10,6 +10,7 @@ describe Workshop do
   it { should have_many(:sections) }
   it { should have_many(:topics).through(:classifications) }
   it { should have_many(:videos) }
+  it { should have_many(:events).dependent(:destroy) }
 
   # Validations
   it { should validate_presence_of(:description) }

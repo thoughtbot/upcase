@@ -62,6 +62,11 @@ RailsAdmin.config do |config|
         field :stop_at
         field :promo_location
         field :topics
+        field :resources
+      end
+
+      group :events do
+        field :events
       end
 
       group :faq do
