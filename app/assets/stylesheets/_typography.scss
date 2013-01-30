@@ -36,10 +36,14 @@ h3 { // should be 26px always. In some places it's not (design for developers)
   font: 700 26px/25px $sans-serif;
   text-rendering: optimizeLegibility;
 }
+.workshop-type {
+  color: $learnred;
+  font-size: 17px;
+}
 
 // H4
 //************************************************************************//
-h4 { //same as p but italic. REMOVE?
+h4 {
   color: #94918C;
   font: 600 13px $sans-serif;
   text-shadow: 0 2px 0 white;
@@ -47,17 +51,7 @@ h4 { //same as p but italic. REMOVE?
 
 // H5
 //************************************************************************//
-h5 { //small uppercase gray headings in sidebar
-  color: #94918C;
-  font: 600 13px $sans-serif;
-  text-shadow: 0 2px 0 white;
-  background-color: $lightwarmgray;
-  display: inline-block;
-  margin-top: -8px;
-  padding: 0 10px 0 0px;
-  text-align: center;
-  text-transform: uppercase;
-}
+
 
 h1, h2, h3, h4, h5 {
   em {
@@ -73,6 +67,16 @@ p {
   font: normal 17px $serif;
   text-shadow: 0 1px 1px rgba(255,255,255,.3);
   margin-bottom: 12px;
+  em {
+    font-style: italic;
+  }
+}
+
+q {
+  display: block;
+  width: 80%;
+  margin: 30px 18% 0 4%;
+  font-style: italic;
 }
 
 li {
@@ -128,6 +132,19 @@ aside {
   h3 {
     color: $warmgray;
     text-transform: uppercase;
+    text-shadow: 0 1px 0 #fff;
+  }
+
+  h5 {
+    color: #94918C;
+    font: 600 13px $sans-serif;
+    text-shadow: 0 2px 0 white;
+    background-color: $lightwarmgray;
+    display: inline-block;
+    margin-top: -8px;
+    padding: 0 10px 0 0px;
+    text-align: center;
+    text-transform: uppercase;
   }
 
   li {
@@ -136,6 +153,9 @@ aside {
     font: normal 17px $serif;
     text-shadow: 0 1px 1px rgba(255,255,255,.3);
     margin-bottom: 12px;
+    em {
+      font: italic 17px $serif;
+    }
   }
 }
 
