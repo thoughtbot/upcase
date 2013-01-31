@@ -18,28 +18,47 @@ h2 {
   h2 {
     color: $darkwarmgray;
   }
+
+  &.related-reading a h3 {
+    color: $learnred;
+  }
 }
 
-body.products-index {
-  section#promo-wrapper {
-    .products-container {
+section#promo-wrapper {
+  .products-container h2 {
+    color: $learnred;
+  }
+
+  .promo-container .promo-detail h3 {
+    color: $darkwarmgray;
+  }
+}
+
+section.content {
+  p {
+    color: $darkwarmgray;
+    font: italic 17px $serif;
+  }
+
+  .text-box {
+    h2 {
+      color: $darkwarmgray;
+    }
+
+    a {
       h2 {
         color: $learnred;
       }
     }
   }
-}
 
-section.content {
-  .text-box {
-    h2 {
-      color: $learnred;
-    }
+  .results-date {
+    color: $warmgray;
   }
 }
 
 h3 {
-  color: $darkwarmgray;
+  color: lighten($darkwarmgray, 15%);
   font: 700 26px/1.0em $sans-serif;
   text-rendering: optimizeLegibility;
 }
@@ -171,9 +190,14 @@ aside {
   }
 
   h3 {
-    color: $warmgray;
+    color: lighten($darkwarmgray, 15%);
     text-shadow: 0 1px 0 #fff;
     text-transform: uppercase;
+  }
+
+  hgroup h4 {
+    color: $darkwarmgray;
+    font: italic 17px $serif italic;
   }
 
   h5 {
