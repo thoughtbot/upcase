@@ -3,6 +3,10 @@ a {
   text-decoration: none;
 }
 
+.address a {
+  color: $darkwarmgray;
+}
+
 // H1
 //************************************************************************//
 
@@ -46,11 +50,12 @@ body.products-index {
 // H3
 //************************************************************************//
 
-h3 { // should be 26px always. In some places it's not (design for developers)
+h3 {
   color: $darkwarmgray;
-  font: 700 26px/25px $sans-serif;
+  font: 700 26px/1.0em $sans-serif;
   text-rendering: optimizeLegibility;
 }
+
 .workshop-type {
   color: $learnred;
   font-size: 17px;
@@ -63,7 +68,28 @@ h4 {
   color: #94918C;
   font: 600 13px $sans-serif;
   text-shadow: 0 2px 0 white;
+  &.discount-title {
+    color: $darkwarmgray;
+    font-size: 18px;
+    text-align: center;
+    margin: 12px 0 24px;
+  }
 }
+
+// H5
+//************************************************************************//
+
+h5 { //used for small header in "teachers" class
+  font-weight: 800;
+  font-family: $sans-serif;
+  text-rendering: optimizeLegibility;
+  color: $warmgray;
+  display: block;
+  font-size: 18px;
+  margin: 0;
+}
+
+//************************************************************************//
 
 h1, h2, h3, h4, h5 {
   em {
@@ -203,6 +229,14 @@ aside {
 #additional-information {
   li {
     font-family: $sans-serif;
+  }
+  h4 {
+    text-shadow: none;
+  }
+  p {
+    font-family: $sans-serif;
+    font-style: normal;
+    font-size: 14px;
   }
 }
 

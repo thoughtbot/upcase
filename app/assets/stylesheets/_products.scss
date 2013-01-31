@@ -111,16 +111,8 @@ body.products-show, body.workshops-show {
         }
 
         h2 {
-          font-size: auto;
-          line-height: 28px;
-          margin: 12px 0 12px 0;
+          margin: 0 0 12px 0;
           padding: 0;
-
-          span {
-            color: $warmgray;
-            display: block;
-            font-size: 18px;
-          }
         }
 
         .bio {
@@ -131,19 +123,8 @@ body.products-show, body.workshops-show {
 
     aside {
       .section-location, #license {
-        h4.discount-title {
-          color: $darkwarmgray;
-          font-size: 18px;
-          text-align: center;
-          margin: 12px 0 24px;
-        }
-
         div {
           margin-top: 20px;
-        }
-
-        .address a {
-          color: $darkwarmgray;
         }
 
         .license {
@@ -176,12 +157,6 @@ body.products-show, body.workshops-show {
           font-style: italic;
         }
       }
-
-      .travel {
-        font-size: 16px;
-        font-style: italic;
-        margin-top: 20px;
-      }
     }
   }
 
@@ -199,40 +174,11 @@ body.products-show, body.workshops-show {
         padding: 0 2em;
       }
 
-      form {
-        padding-top: 2em;
-      }
-
-      input[type="text"] {
-          border: none;
-          border-radius: 4px;
-          @include box-sizing(border-box);
-          font-size: 14px;
-          margin: 0 0 12px 0;
-          padding: 18px 30px;
-          width: 50%;
-          vertical-align: top;
-        }
-
-      input[type="submit"] {
-        margin-left: 14px;
-        padding: 18px 40px 31px 40px;
-        text-transform: uppercase;
-      }
-
       h4 {
-        text-shadow: none;
         margin-bottom: 10px;
       }
 
-      p {
-        font-family: $sans-serif;
-        font-style: normal;
-        font-size: 14px;
-      }
-
       ul li {
-        color: $darkwarmgray;
         @include span-columns(6);
       }
     }
@@ -259,17 +205,4 @@ body.products-show, body.workshops-show {
   }
 }
 
-.workshop-alert {
-  background: $lightwarmgray;
-  margin-bottom: 40px;
-  padding: 12px;
-  text-align: center;
 
-  a {
-    color: $learnred;
-  }
-
-  b {
-    font-weight: bold;
-  }
-}

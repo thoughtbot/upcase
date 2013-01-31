@@ -1,13 +1,12 @@
 <ul class="teachers">
   <li>
     <%= teacher_gravatar section_teacher.teacher, 92 %>
+    <h5>
+      <%= t '.header',
+            city: section_teacher.section.city,
+            count: @section_teachers.size %>
+    </h5>
     <h2>
-    <!-- change to h4 or h5 for these headings -->
-      <span>
-        <%= t '.header',
-              city: section_teacher.section.city,
-              count: @section_teachers.size %>
-      </span>
       <%= section_teacher.teacher.name %>
     </h2>
     <section class="bio">
