@@ -8,17 +8,6 @@ section#header-wrapper {
     max-width: $max-width;
     padding: 2em;
 
-    .subject {
-      color: $learnred;
-    }
-
-    .logo, .intro {
-      -webkit-font-smoothing: antialiased;
-      color: $darkwarmgray;
-      font: italic 300 20px $serif;
-      padding: 1em;
-    }
-
     .intro {
       margin: 0 auto;
       text-align: center;
@@ -91,7 +80,6 @@ section#header-wrapper {
     text-align: center;
 
     h1 {
-      line-height: 56px !important;
       width: 100% !important;
       text-align: center !important;
       text-indent: 0 !important;
