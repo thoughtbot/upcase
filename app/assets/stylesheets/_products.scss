@@ -9,14 +9,6 @@ body.products-index {
       @include span-columns(4);
       text-align: left;
 
-      h2 {
-        color: $learnred;
-      }
-
-      p {
-        font-style: normal;
-      }
-
       ul {
         li {
           margin-bottom: 30px;
@@ -43,36 +35,6 @@ body.products-show, body.workshops-show {
       .product-title {
         h2 {
           margin-bottom: 0;
-        }
-      }
-
-      .what-you-learn {
-        @include outer-container;
-        background-color: $lightwarmgray;
-        border-radius: 3px;
-        margin: 28px 0 28px 0;
-        padding: 2em;
-
-        h3 {
-          text-transform: uppercase;
-          text-align: center;
-          font-size: 17px;
-        }
-
-        ul {
-          margin-top: 12px;
-        }
-
-        li {
-          @include span-columns (6);
-          margin-left: 0;
-          margin-top: 6px;
-          padding: 4px;
-          display: inline;
-
-          &:nth-child(2n) {
-            margin-right: 0;
-          }
         }
       }
 

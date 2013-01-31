@@ -5,6 +5,7 @@ a {
 
 // H1
 //************************************************************************//
+
 h1 {
   color: white;
   font: 800 72px $sans-serif;
@@ -17,6 +18,9 @@ h1 {
 
 // H2
 //************************************************************************//
+
+// clean this mess up!
+
 h2 {
   color: $learnred;
   font: 800 36px/40px $sans-serif;
@@ -29,8 +33,19 @@ h2 {
   }
 }
 
+body.products-index {
+  section#promo-wrapper {
+    .products-container {
+      h2 {
+        color: $learnred;
+      }
+    }
+  }
+}
+
 // H3
 //************************************************************************//
+
 h3 { // should be 26px always. In some places it's not (design for developers)
   color: $darkwarmgray;
   font: 700 26px/25px $sans-serif;
@@ -43,15 +58,12 @@ h3 { // should be 26px always. In some places it's not (design for developers)
 
 // H4
 //************************************************************************//
+
 h4 {
   color: #94918C;
   font: 600 13px $sans-serif;
   text-shadow: 0 2px 0 white;
 }
-
-// H5
-//************************************************************************//
-
 
 h1, h2, h3, h4, h5 {
   em {
@@ -61,6 +73,7 @@ h1, h2, h3, h4, h5 {
 
 // p
 //************************************************************************//
+
 p {
   -webkit-font-smoothing: antialiased;
   color: $darkwarmgray;
@@ -99,6 +112,7 @@ hr {
 
 // SIDEPANEL
 //************************************************************************//
+
 aside {
   a {
     display: block;
@@ -159,13 +173,83 @@ aside {
   }
 }
 
+// HEADER
+//************************************************************************//
+
+.header-container {
+  .subject {
+    color: $learnred;
+  }
+
+  .logo, .intro {
+    -webkit-font-smoothing: antialiased;
+    color: $darkwarmgray;
+    font: italic 300 20px $serif;
+    padding: 1em;
+  }
+}
+
+@media screen and (max-device-width: 800px), screen and (max-width: 800px) {
+  .detail-logo {
+    h1 {
+      line-height: 56px !important;
+    }
+  }
+}
+
 // TERMS
 //************************************************************************//
+
 #additional-information {
   li {
     font-family: $sans-serif;
   }
 }
+
+// FOOTER
+//************************************************************************//
+
+footer {
+  h3 {
+    color: #545454;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1em;
+    margin-bottom: 1em;
+    text-rendering: optimizeLegibility;
+  }
+
+  a {
+    color: #7a7a7a;
+    text-decoration: none;
+
+    &:link {
+      color: #7a7a7a;
+    }
+
+    &:hover {
+      color: $red;
+    }
+  }
+  ul {
+    a {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+  p#copyright {
+    color: #7a7a7a;
+    font: italic 16px $serif;
+    line-height: $lh;
+    text-rendering: optimizeSpeed;
+
+    em {
+      font-style: italic;
+    }
+  }
+}
+
+
 
 @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
   section.content {
