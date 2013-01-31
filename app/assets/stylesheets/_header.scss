@@ -7,6 +7,7 @@ section#header-wrapper {
     max-width: $max-width;
     @include outer-container;
     padding: 2em;
+    position: relative;
 
     .intro {
       margin: 0 auto;
@@ -25,8 +26,8 @@ section#header-wrapper {
     }
 
     .detail-logo {
-      @include outer-container;
       float: left;
+      @include outer-container;
       width: 100%;
 
       a {
@@ -49,6 +50,47 @@ section#header-wrapper {
         padding-left: 240px;
         text-align: left;
         text-indent: -240px;
+      }
+
+      nav {
+        background: #fff;
+        border-bottom: 2px solid $darkwarmgray;
+        border-radius: 4px;
+        @include box-shadow(0 4px 16px rgba(0, 0, 0, .15));
+        margin-left: 2em;
+        min-width: 350px;
+        padding: .5em 0;
+        @include position(absolute, 105px 0 0 240px);
+
+        &:before {
+          background: #fff;
+          content: '';
+          display: block;
+          height: 20px;
+          @include position(absolute, -5px 0 0 4em);
+          @include transform(rotate(45deg));
+          width: 20px;
+        }
+
+        ul {
+          @include column-gap(0px);
+          @include columns(2);
+          display: block;
+
+          li {
+            a {
+              display: block;
+              font-family: $sans-serif;
+              padding: .6em 1.2em;
+              position: relative;
+              z-index: 99;
+
+              &:hover {
+                background: $lightwarmgray;
+              }
+            }
+          }
+        }
       }
 
       .myaccount {
