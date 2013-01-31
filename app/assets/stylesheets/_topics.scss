@@ -156,6 +156,15 @@ body.topics-index {
   }
 
   section.content {
+    .text-box a {
+      display: block;
+    }
+
+    .results-date {
+      display: inline-block;
+      font: 700 14px $sans-serif;
+      margin-bottom: 2px;
+    }
 
     .view-all-articles {
       font: italic 16px $serif;
@@ -169,9 +178,7 @@ body.topics-index {
       }
 
       h3 {
-        color: $warmgray;
         margin-top: 40px;
-        text-shadow: 0 1px 0 #fff;
       }
 
       hgroup {
@@ -184,11 +191,6 @@ body.topics-index {
           padding: 0;
           position: relative;
           text-align: left;
-        }
-
-        h4 {
-          color: $darkwarmgray;
-          font: italic 17px $serif italic;
         }
       }
 
