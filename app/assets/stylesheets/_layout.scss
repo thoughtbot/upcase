@@ -8,17 +8,17 @@ body {
 
 // MAIN SECTION AND SIDEBAR
 //************************************************************************//
+
 .content {
   @include outer-container;
   max-width: $max-width;
   padding: 3em 2em;
 
   h2 {
+    padding: 10px 0 10px 0;
     &:first-child {
       padding-top: 0;
     }
-
-    padding: 10px 0 10px 0;
   }
 
   ul {
@@ -27,7 +27,6 @@ body {
 
   li {
     margin-top: 14px;
-
     &:first-child {
       margin-top: 0;
     }
@@ -69,6 +68,7 @@ body {
 
 // MAIN SECTION
 //************************************************************************//
+
 .text-box {
   background-color: white;
   border-bottom: 2px solid $warmgray;
@@ -111,8 +111,39 @@ body {
   }
 }
 
+.what-you-learn {
+  @include outer-container;
+  background-color: $lightwarmgray;
+  border-radius: 3px;
+  margin: 28px 0 28px 0;
+  padding: 2em;
+
+  h3 {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 17px;
+  }
+
+  ul {
+    margin-top: 12px;
+  }
+
+  li {
+    @include span-columns (6);
+    margin-left: 0;
+    margin-top: 6px;
+    padding: 4px;
+    display: inline;
+
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+  }
+}
+
 // SIDEBAR
 //************************************************************************//
+
 aside {
   @include span-columns (3);
   float: right;

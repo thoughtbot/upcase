@@ -12,28 +12,6 @@ footer {
     opacity: 1;
   }
 
-  h3 {
-    color: #545454;
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 1em;
-    margin-bottom: 1em;
-    text-rendering: optimizeLegibility;
-  }
-
-  a {
-    color: #7a7a7a;
-    text-decoration: none;
-
-    &:link {
-      color: #7a7a7a;
-    }
-
-    &:hover {
-      color: $red;
-    }
-  }
-
   nav {
     @extend .clearfix;
 
@@ -53,29 +31,15 @@ footer {
         li {
           display: block;
           margin-bottom: $lh * .5;
-
-          a {
-            font-family: $serif;
-            font-size: 16px;
-            line-height: 24px;
-          }
         }
       }
     }
   }
 
   p#copyright {
-    color: #7a7a7a;
     display: block;
-    font: italic 16px $serif;
-    line-height: $lh;
     margin-bottom: $lh;
     margin-top: $lh * 2; /*line-height to maintain baseline grid*/
-    text-rendering: optimizeSpeed;
-
-    em {
-      font-style: italic;
-    }
   }
 }
 
