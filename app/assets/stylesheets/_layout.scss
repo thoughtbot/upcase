@@ -111,6 +111,7 @@ body {
   }
 }
 
+//rename .what-you-learn to make it more generic. can it be merged with .workshop-alert below?
 .what-you-learn {
   @include outer-container;
   background-color: $lightwarmgray;
@@ -138,6 +139,21 @@ body {
     &:nth-child(2n) {
       margin-right: 0;
     }
+  }
+}
+
+.workshop-alert {
+  background: $lightwarmgray;
+  margin-bottom: 40px;
+  padding: 12px;
+  text-align: center;
+
+  a {
+    color: $learnred;
+  }
+
+  b {
+    font-weight: bold;
   }
 }
 
