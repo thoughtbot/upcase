@@ -9,7 +9,7 @@ section#header-wrapper {
     padding: 2em;
     position: relative;
 
-    .intro {
+    .intro, .logo {
       margin: 0 auto;
       padding: 1em;
       text-align: center;
@@ -61,6 +61,12 @@ section#header-wrapper {
         min-width: 350px;
         padding: .5em 0;
         @include position(absolute, 105px 0 0 240px);
+        display: none;
+
+        &.active {
+          display: block;
+          @extend .animation-drop-down-come-in;
+        }
 
         &:before {
           background: #fff;

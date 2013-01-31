@@ -47,4 +47,8 @@ $(function() {
     $(this).parent().addClass('expand-bio').removeClass('minimize-bio');
     return false;
   });
+
+  $('.detail-logo .subject').click(function() {
+    $('.detail-logo nav').toggleClass('active');
+  });
 });
