@@ -76,6 +76,12 @@ body {
   margin-bottom: 1em;
   padding: 20px;
 
+  &.related-reading {
+    a {
+      display: block;
+    }
+  }
+
   h2 {
     margin-bottom: 16px;
   }
@@ -101,7 +107,7 @@ body {
   }
 
   li {
-    margin: 10px 0 0 20px;
+    margin: 10px 20px 0 20px;
   }
 
   form {
