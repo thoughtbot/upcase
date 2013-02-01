@@ -13,8 +13,10 @@
     <h3>Video Chat Schedule</h3>
     <hr>
     <p>During the following times you can join the teacher and other students in this Google Hangout video chat.</p>
-    <ol class="events">
-      <%= render purchaseable.events, section: purchaseable %>
+    <ol>
+      <li>
+        <%= render purchaseable.events, section: purchaseable %>
+      </li>
     </ol>
     <%= link_to "Join Video Chat", purchaseable.video_chat_url, class: 'button' %>
   </div>
