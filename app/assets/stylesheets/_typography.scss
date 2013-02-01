@@ -104,6 +104,15 @@ h1, h2, h3, h4, h5 {
   }
 }
 
+a {
+  color: $red;
+  text-decoration: none;
+}
+
+.address a {
+  color: $darkwarmgray;
+}
+
 p {
   color: $darkwarmgray;
   font: normal 17px $serif;
@@ -146,24 +155,20 @@ td {
   font: normal 17px $serif;
 }
 
-a {
-  color: $red;
-  font-family: $serif;
-  text-decoration: none;
-}
-
-.address a {
-  color: $darkwarmgray;
-}
-
 // SIDEPANEL
 //************************************************************************//
+
 
 aside {
   a {
     display: block;
     font: italic 17px $serif;
     margin-top: 0;
+  }
+
+  li a {
+    font-size: 16px;
+    font-style: normal;
   }
 
   h2 span {
