@@ -1,10 +1,3 @@
-a {
-  color: $red;
-  text-decoration: none;
-}
-
-// H1
-//************************************************************************//
 h1 {
   color: white;
   font: 800 72px $sans-serif;
@@ -15,8 +8,6 @@ h1 {
   }
 }
 
-// H2
-//************************************************************************//
 h2 {
   color: $learnred;
   font: 800 36px/40px $sans-serif;
@@ -29,34 +20,63 @@ h2 {
   }
 }
 
-// H3
-//************************************************************************//
-h3 { // should be 26px always. In some places it's not (design for developers)
+body.products-index {
+  section#promo-wrapper {
+    .products-container {
+      h2 {
+        color: $learnred;
+      }
+    }
+  }
+}
+
+section.content {
+  .text-box {
+    h2 {
+      color: $learnred;
+    }
+  }
+}
+
+h3 {
   color: $darkwarmgray;
-  font: 700 26px/25px $sans-serif;
+  font: 700 26px/1.0em $sans-serif;
   text-rendering: optimizeLegibility;
 }
 
-// H4
-//************************************************************************//
-h4 { //same as p but italic. REMOVE?
-  color: #94918C;
-  font: 600 13px $sans-serif;
-  text-shadow: 0 2px 0 white;
+.workshop-type {
+  color: $learnred;
+  font-size: 17px;
 }
 
-// H5
-//************************************************************************//
-h5 { //small uppercase gray headings in sidebar
+h4 {
   color: #94918C;
   font: 600 13px $sans-serif;
   text-shadow: 0 2px 0 white;
-  background-color: $lightwarmgray;
+
+  &.discount-title {
+    color: $darkwarmgray;
+    font-size: 18px;
+    margin: 12px 0 24px;
+    text-align: center;
+  }
+}
+
+h5 { //used for small header in "teachers" class
+  color: $warmgray;
+  display: block;
+  font-family: $sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+}
+
+h6 { //used for small header in topics, related reading
+  color: $warmgray;
   display: inline-block;
-  margin-top: -8px;
-  padding: 0 10px 0 0px;
-  text-align: center;
-  text-transform: uppercase;
+  font: 700 14px $sans-serif;
+  margin-bottom: 2px;
 }
 
 h1, h2, h3, h4, h5 {
@@ -65,14 +85,23 @@ h1, h2, h3, h4, h5 {
   }
 }
 
-// p
-//************************************************************************//
 p {
-  -webkit-font-smoothing: antialiased;
   color: $darkwarmgray;
   font: normal 17px $serif;
-  text-shadow: 0 1px 1px rgba(255,255,255,.3);
   margin-bottom: 12px;
+  text-shadow: 0 1px 1px rgba(255,255,255,.3);
+  -webkit-font-smoothing: antialiased;
+
+  em {
+    font-style: italic;
+  }
+}
+
+q {
+  display: block;
+  font-style: italic;
+  margin: 30px 18% 0 4%;
+  width: 80%;
 }
 
 li {
@@ -87,14 +116,30 @@ strong {
 
 hr {
   border: 0;
-  height: 2px;
-  color: $warmgray;
   border-bottom: 1px solid white;
   border-top: 1px solid $warmgray;
+  color: $warmgray;
+  height: 2px;
+}
+
+td {
+  color: $darkwarmgray;
+  font: normal 17px $serif;
+}
+
+a {
+  color: $red;
+  font-family: $serif;
+  text-decoration: none;
+}
+
+.address a {
+  color: $darkwarmgray;
 }
 
 // SIDEPANEL
 //************************************************************************//
+
 aside {
   a {
     display: block;
@@ -127,25 +172,122 @@ aside {
 
   h3 {
     color: $warmgray;
+    text-shadow: 0 1px 0 #fff;
+    text-transform: uppercase;
+  }
+
+  h5 {
+    background-color: $lightwarmgray;
+    color: #94918C;
+    display: inline-block;
+    font: 600 13px $sans-serif;
+    margin-top: -8px;
+    padding: 0 10px 0 0px;
+    text-align: center;
+    text-shadow: 0 2px 0 white;
     text-transform: uppercase;
   }
 
   li {
-    -webkit-font-smoothing: antialiased;
     color: $darkwarmgray;
     font: normal 17px $serif;
-    text-shadow: 0 1px 1px rgba(255,255,255,.3);
     margin-bottom: 12px;
+    text-shadow: 0 1px 1px rgba(255,255,255,.3);
+    -webkit-font-smoothing: antialiased;
+
+    em {
+      font: italic 17px $serif;
+    }
+  }
+  dt p { //this is used for 'what if i am not happy'. should be made into li instead of dt
+    font-style: italic;
+  }
+}
+
+// HEADER
+//************************************************************************//
+
+.header-container {
+  .subject {
+    color: $learnred;
+  }
+
+  .logo, .intro {
+    -webkit-font-smoothing: antialiased;
+    color: $darkwarmgray;
+    font: italic 300 20px $serif;
+  }
+}
+
+@media screen and (max-device-width: 800px), screen and (max-width: 800px) {
+  .detail-logo {
+    h1 {
+      line-height: 56px !important;
+    }
   }
 }
 
 // TERMS
 //************************************************************************//
+
 #additional-information {
   li {
     font-family: $sans-serif;
   }
+  h4 {
+    text-shadow: none;
+  }
+  p {
+    font-family: $sans-serif;
+    font-size: 14px;
+    font-style: normal;
+  }
 }
+
+// FOOTER
+//************************************************************************//
+
+footer {
+  h3 {
+    color: #545454;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1em;
+    margin-bottom: 1em;
+    text-rendering: optimizeLegibility;
+  }
+
+  a {
+    color: #7a7a7a;
+    text-decoration: none;
+
+    &:link {
+      color: #7a7a7a;
+    }
+
+    &:hover {
+      color: $red;
+    }
+  }
+  ul {
+    a {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+  p#copyright {
+    color: #7a7a7a;
+    font: italic 16px $serif;
+    line-height: $lh;
+    text-rendering: optimizeSpeed;
+
+    em {
+      font-style: italic;
+    }
+  }
+}
+
+
 
 @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
   section.content {
@@ -159,8 +301,8 @@ aside {
 
     aside {
       display: block !important;
-      width: 100% !important;
       margin-top: 2em;
+      width: 100% !important;
     }
 
     form input[type="submit"] {
@@ -179,18 +321,18 @@ aside {
 }
 
 .videowrapper, .mapwrapper {
-  position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 0px;
   height: 0;
   margin: 30px 0;
   overflow: hidden;
+  padding-bottom: 56.25%;
+  padding-top: 0px;
+  position: relative;
 
   iframe {
+    height: 100%;
+    left: 0;
     position: absolute;
     top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
   }
 }

@@ -9,14 +9,6 @@ body.products-index {
       @include span-columns(4);
       text-align: left;
 
-      h2 {
-        color: $learnred;
-      }
-
-      p {
-        font-style: normal;
-      }
-
       ul {
         li {
           margin-bottom: 30px;
@@ -43,41 +35,6 @@ body.products-show, body.workshops-show {
       .product-title {
         h2 {
           margin-bottom: 0;
-        }
-
-        .workshop-type {
-          color: $learnred;
-          font-size: 17px;
-        }
-      }
-
-      .what-you-learn {
-        @include outer-container;
-        background-color: $lightwarmgray;
-        border-radius: 3px;
-        margin: 28px 0 28px 0;
-        padding: 2em;
-
-        h3 {
-          text-transform: uppercase;
-          text-align: center;
-          font-size: 17px;
-        }
-
-        ul {
-          margin-top: 12px;
-        }
-
-        li {
-          @include span-columns (6);
-          margin-left: 0;
-          margin-top: 6px;
-          padding: 4px;
-          display: inline;
-
-          &:nth-child(2n) {
-            margin-right: 0;
-          }
         }
       }
 
@@ -154,16 +111,8 @@ body.products-show, body.workshops-show {
         }
 
         h2 {
-          font-size: auto;
-          line-height: 28px;
-          margin: 12px 0 12px 0;
+          margin: 0 0 12px 0;
           padding: 0;
-
-          span {
-            color: $warmgray;
-            display: block;
-            font-size: 18px;
-          }
         }
 
         .bio {
@@ -173,27 +122,9 @@ body.products-show, body.workshops-show {
     }
 
     aside {
-      .when, .address {
-        h3 {
-          color: $warmgray;
-          text-shadow: 0 1px 0 #fff;
-        }
-      }
-
       .section-location, #license {
-        h4.discount-title {
-          color: $darkwarmgray;
-          font-size: 18px;
-          text-align: center;
-          margin: 12px 0 24px;
-        }
-
         div {
           margin-top: 20px;
-        }
-
-        .address a {
-          color: $darkwarmgray;
         }
 
         .license {
@@ -221,16 +152,6 @@ body.products-show, body.workshops-show {
 
       #terms {
         margin-top: 10px;
-
-        dt p {
-          font-style: italic;
-        }
-      }
-
-      .travel {
-        font-size: 16px;
-        font-style: italic;
-        margin-top: 20px;
       }
     }
   }
@@ -241,48 +162,19 @@ body.products-show, body.workshops-show {
 
     #additional-information-wrapper {
       @include outer-container;
-      padding: 3em 0 3em 0;
       max-width: $max-width;
+      padding: 3em 0 3em 0;
 
       #main-content {
         @include span-columns(12);
         padding: 0 2em;
       }
 
-      form {
-        padding-top: 2em;
-      }
-
-      input[type="text"] {
-          border: none;
-          border-radius: 4px;
-          @include box-sizing(border-box);
-          font-size: 14px;
-          margin: 0 0 12px 0;
-          padding: 18px 30px;
-          width: 50%;
-          vertical-align: top;
-        }
-
-      input[type="submit"] {
-        margin-left: 14px;
-        padding: 18px 40px 31px 40px;
-        text-transform: uppercase;
-      }
-
       h4 {
-        text-shadow: none;
         margin-bottom: 10px;
       }
 
-      p {
-        font-family: $sans-serif;
-        font-style: normal;
-        font-size: 14px;
-      }
-
       ul li {
-        color: $darkwarmgray;
         @include span-columns(6);
       }
     }
@@ -299,6 +191,7 @@ body.products-show, body.workshops-show {
         margin-left:  0 !important;
         width: 100%;
       }
+
       #additional-information-wrapper {
         ul li {
           @include span-columns(12);
@@ -309,17 +202,4 @@ body.products-show, body.workshops-show {
   }
 }
 
-.workshop-alert {
-  background: $lightwarmgray;
-  margin-bottom: 40px;
-  padding: 12px;
-  text-align: center;
 
-  a {
-    color: $learnred;
-  }
-
-  b {
-    font-weight: bold;
-  }
-}

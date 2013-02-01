@@ -3,17 +3,17 @@
 //************************************************************************//
 
 input[type="submit"] {
-  border-top-color: none;
-  border-top-style: none;
-  border-top-width: none;
-  border-right-color: none;
-  border-right-style: none;
-  border-right-width: none;
   border-bottom-width: none;
+  border-image: initial;
   border-left-color: none;
   border-left-style: none;
   border-left-width: none;
-  border-image: initial;
+  border-right-color: none;
+  border-right-style: none;
+  border-right-width: none;
+  border-top-color: none;
+  border-top-style: none;
+  border-top-width: none;
   cursor: pointer;
   padding: 13px 30px 0 30px;
 }
@@ -51,20 +51,20 @@ input[type="submit"] {
   }
 
   &[disabled] {
-    color: $warmgray;
     background-color: $lightwarmgray;
     border-bottom: 4px solid $warmgray;
+    color: $warmgray;
     cursor: wait;
   }
 }
 
 .button-mini {
   @extend .button;
-  height: 26px;
-  padding-top: 6px;
-  margin-top: 10px;
-  margin-bottom: 10px;
   border-bottom: 2px solid $learndarkred;
+  height: 26px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding-top: 6px;
 }
 
 form {
@@ -75,6 +75,13 @@ form {
     font-size: 18px;
     font-style: bold;
     margin-top: 20px;
+  }
+
+  li {
+    &.payment-errors {
+      color: $learnred;
+      font-style: bold;
+    }
   }
 
   fieldset {
@@ -138,7 +145,7 @@ form {
         input[type="email"],
         input[type="select"] {
           background-color: #FFF;
-          border: 1px solid #999;
+          border: 1px solid $warmgray;
           border-radius: 4px;
           box-shadow: none;
           @include box-sizing(border-box);
@@ -149,8 +156,8 @@ form {
 
           &:focus {
             border: 1px solid $learnred;
-            outline-color: none;
             outline: none;
+            outline-color: none;
           }
         }
 
@@ -161,3 +168,27 @@ form {
     }
   }
 }
+
+#additional-information {
+  form {
+    padding-top: 2em;
+  }
+
+  input[type="text"] {
+    border: none;
+    border-radius: 4px;
+    @include box-sizing(border-box);
+    font-size: 14px;
+    margin: 0 0 12px 0;
+    padding: 18px 30px;
+    vertical-align: top;
+    width: 50%;
+  }
+
+  input[type="submit"] {
+    margin-left: 14px;
+    padding: 18px 40px 31px 40px;
+    text-transform: uppercase;
+  }
+}
+

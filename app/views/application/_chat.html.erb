@@ -1,5 +1,6 @@
 <% if current_user && current_user.has_purchased? %>
   <%= link_to "Questions? We'd love to chat.", CHAT_LINK, class: 'chat', data: { role: 'chat-with-thoughtbot' } %>
+  <!-- where is this on the site? I want to remove the chat class and replace it with em -->
 <% else %>
   <% if Rails.env.staging? || Rails.env.production? %>
     <%= render 'javascript_olark' %>

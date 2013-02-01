@@ -2,10 +2,12 @@
 <div class="thumbnail-text">
   <h3><%= video.title %></h3>
   <p class="videoinfo">
-    <% if purchase.purchaseable.video_available?(video) %>
-      <%= video.wistia_running_time %>
-    <% else %>
-      Available on <%= purchase.purchaseable.video_available_on(video).to_s(:simple) %>
-    <% end %>
+    <em>
+      <% if purchase.purchaseable.video_available?(video) %>
+        <%= video.wistia_running_time %>
+      <% else %>
+        Available on <%= purchase.purchaseable.video_available_on(video).to_s(:simple) %>
+      <% end %>
+    </em>
   </p>
 </div>
