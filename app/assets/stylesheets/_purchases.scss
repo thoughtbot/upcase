@@ -1,13 +1,11 @@
 body.purchases {
 
   fieldset {
-
     #purchase_comments {
       height: 100px;
     }
 
     li {
-
       &#purchase_submit_action {
         margin-left: 0;
         margin-top: 40px;
@@ -39,6 +37,7 @@ body.purchases {
         * {
           vertical-align: middle;
         }
+
         label, input {
           display: inline-block;
 
@@ -81,8 +80,8 @@ body.purchases {
 
             &:focus {
               border: 1px solid $learnred;
-              outline-color: none;
               outline: none;
+              outline-color: none;
             }
           }
         }
@@ -117,6 +116,7 @@ body.purchases {
         float: left;
         width: flex-grid(6);
       }
+
       li#purchase_country_input {
         float: left;
         width: flex-grid(12);
@@ -130,8 +130,8 @@ body {
   &.videos {
     section.content {
       section.receipt {
-        margin-top: 50px;
         @include outer-container;
+        margin-top: 50px;
 
         .billing-address {
           @include nth-omega(2n);
@@ -187,9 +187,9 @@ body {
     }
 
     .video-headline {
-      text-align: center;
       margin-bottom: 10px;
       padding-top: 0px;
+      text-align: center;
     }
 
     #videos {

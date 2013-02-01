@@ -170,8 +170,8 @@ body.topics-index {
 
       h3 {
         color: $warmgray;
-        text-shadow: 0 1px 0 #fff;
         margin-top: 40px;
+        text-shadow: 0 1px 0 #fff;
       }
 
       hgroup {
@@ -216,14 +216,13 @@ body.topics-index {
 
       .related-products {
         .view-all a {
+          color: $learndarkred;
           display: inline-block;
           margin-top: 20px;
-          color: $learndarkred;
         }
 
         li {
           .icon {
-            @include transition;
             background: $learnred;
             border-radius: 34px;
             box-shadow: inset 0 -1px 0 $learndarkred, 0 1px 0 $learndarkred;
@@ -236,6 +235,7 @@ body.topics-index {
             height: 34px;
             line-height: 0.9em;
             text-align: center;
+            @include transition;
             width: 34px;
           }
 
@@ -265,6 +265,7 @@ body.topics-index {
 
   .contribute {
     overflow: auto;
+
     img {
       float: right;
     }

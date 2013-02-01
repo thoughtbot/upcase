@@ -1,8 +1,3 @@
-
-
-// H1
-//************************************************************************//
-
 h1 {
   color: white;
   font: 800 72px $sans-serif;
@@ -12,11 +7,6 @@ h1 {
     color: white;
   }
 }
-
-// H2
-//************************************************************************//
-
-// clean this mess up!
 
 h2 {
   color: $learnred;
@@ -46,10 +36,7 @@ section.content {
       color: $learnred;
     }
   }
-  }
-
-// H3
-//************************************************************************//
+}
 
 h3 {
   color: $darkwarmgray;
@@ -62,36 +49,28 @@ h3 {
   font-size: 17px;
 }
 
-// H4
-//************************************************************************//
-
 h4 {
   color: #94918C;
   font: 600 13px $sans-serif;
   text-shadow: 0 2px 0 white;
+
   &.discount-title {
     color: $darkwarmgray;
     font-size: 18px;
-    text-align: center;
     margin: 12px 0 24px;
+    text-align: center;
   }
 }
 
-// H5
-//************************************************************************//
-
 h5 { //used for small header in "teachers" class
-  font-weight: 800;
-  font-family: $sans-serif;
-  text-rendering: optimizeLegibility;
   color: $warmgray;
   display: block;
+  font-family: $sans-serif;
   font-size: 18px;
+  font-weight: 800;
   margin: 0;
+  text-rendering: optimizeLegibility;
 }
-
-// H6
-//************************************************************************//
 
 h6 { //used for small header in topics, related reading
   color: $warmgray;
@@ -100,9 +79,6 @@ h6 { //used for small header in topics, related reading
   margin-bottom: 2px;
 }
 
-// misc
-//************************************************************************//
-
 h1, h2, h3, h4, h5 {
   em {
     color: $learnred;
@@ -110,11 +86,12 @@ h1, h2, h3, h4, h5 {
 }
 
 p {
-  -webkit-font-smoothing: antialiased;
   color: $darkwarmgray;
   font: normal 17px $serif;
-  text-shadow: 0 1px 1px rgba(255,255,255,.3);
   margin-bottom: 12px;
+  text-shadow: 0 1px 1px rgba(255,255,255,.3);
+  -webkit-font-smoothing: antialiased;
+
   em {
     font-style: italic;
   }
@@ -122,9 +99,9 @@ p {
 
 q {
   display: block;
-  width: 80%;
-  margin: 30px 18% 0 4%;
   font-style: italic;
+  margin: 30px 18% 0 4%;
+  width: 80%;
 }
 
 li {
@@ -139,10 +116,10 @@ strong {
 
 hr {
   border: 0;
-  height: 2px;
-  color: $warmgray;
   border-bottom: 1px solid white;
   border-top: 1px solid $warmgray;
+  color: $warmgray;
+  height: 2px;
 }
 
 td {
@@ -195,28 +172,29 @@ aside {
 
   h3 {
     color: $warmgray;
-    text-transform: uppercase;
     text-shadow: 0 1px 0 #fff;
+    text-transform: uppercase;
   }
 
   h5 {
-    color: #94918C;
-    font: 600 13px $sans-serif;
-    text-shadow: 0 2px 0 white;
     background-color: $lightwarmgray;
+    color: #94918C;
     display: inline-block;
+    font: 600 13px $sans-serif;
     margin-top: -8px;
     padding: 0 10px 0 0px;
     text-align: center;
+    text-shadow: 0 2px 0 white;
     text-transform: uppercase;
   }
 
   li {
-    -webkit-font-smoothing: antialiased;
     color: $darkwarmgray;
     font: normal 17px $serif;
-    text-shadow: 0 1px 1px rgba(255,255,255,.3);
     margin-bottom: 12px;
+    text-shadow: 0 1px 1px rgba(255,255,255,.3);
+    -webkit-font-smoothing: antialiased;
+
     em {
       font: italic 17px $serif;
     }
@@ -261,8 +239,8 @@ aside {
   }
   p {
     font-family: $sans-serif;
-    font-style: normal;
     font-size: 14px;
+    font-style: normal;
   }
 }
 
@@ -323,8 +301,8 @@ footer {
 
     aside {
       display: block !important;
-      width: 100% !important;
       margin-top: 2em;
+      width: 100% !important;
     }
 
     form input[type="submit"] {
@@ -343,18 +321,18 @@ footer {
 }
 
 .videowrapper, .mapwrapper {
-  position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 0px;
   height: 0;
   margin: 30px 0;
   overflow: hidden;
+  padding-bottom: 56.25%;
+  padding-top: 0px;
+  position: relative;
 
   iframe {
+    height: 100%;
+    left: 0;
     position: absolute;
     top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
   }
 }
