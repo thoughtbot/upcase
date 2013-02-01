@@ -27,8 +27,6 @@ body.topics-index {
 
         p {
           border-top: 7px solid $learnred;
-          color: $darkwarmgray;
-          font: italic 17px $serif;
           margin: 10px 0 10px 0;
           padding-top:10px;
         }
@@ -155,26 +153,9 @@ body.topics-index {
     li:last-child {
       margin-right: 0;
     }
-
-    p {
-      color: $darkwarmgray;
-      font: italic 17px $serif;
-    }
   }
 
   section.content {
-    .text-box {
-      h2 {
-        color: $learnred;
-      }
-    }
-
-    .results-date {
-      color: $warmgray;
-      display: inline-block;
-      font: 700 14px $sans-serif;
-      margin-bottom: 2px;
-    }
 
     .view-all-articles {
       font: italic 16px $serif;
@@ -189,8 +170,8 @@ body.topics-index {
 
       h3 {
         color: $warmgray;
-        text-shadow: 0 1px 0 #fff;
         margin-top: 40px;
+        text-shadow: 0 1px 0 #fff;
       }
 
       hgroup {
@@ -235,14 +216,13 @@ body.topics-index {
 
       .related-products {
         .view-all a {
+          color: $learndarkred;
           display: inline-block;
           margin-top: 20px;
-          color: $learndarkred;
         }
 
         li {
           .icon {
-            @include transition;
             background: $learnred;
             border-radius: 34px;
             box-shadow: inset 0 -1px 0 $learndarkred, 0 1px 0 $learndarkred;
@@ -255,6 +235,7 @@ body.topics-index {
             height: 34px;
             line-height: 0.9em;
             text-align: center;
+            @include transition;
             width: 34px;
           }
 
@@ -284,6 +265,7 @@ body.topics-index {
 
   .contribute {
     overflow: auto;
+
     img {
       float: right;
     }
