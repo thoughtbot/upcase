@@ -130,7 +130,6 @@ body.products-show, body.workshops-show {
         .license {
           margin-top: 0;
 
-// is the following p ever used or can we take it away?
           p {
             font-size: 14px;
             margin-top: -14px;
@@ -163,8 +162,8 @@ body.products-show, body.workshops-show {
 
     #additional-information-wrapper {
       @include outer-container;
-      padding: 3em 0 3em 0;
       max-width: $max-width;
+      padding: 3em 0 3em 0;
 
       #main-content {
         @include span-columns(12);
@@ -192,6 +191,7 @@ body.products-show, body.workshops-show {
         margin-left:  0 !important;
         width: 100%;
       }
+
       #additional-information-wrapper {
         ul li {
           @include span-columns(12);

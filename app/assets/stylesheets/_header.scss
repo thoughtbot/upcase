@@ -4,20 +4,20 @@ section#header-wrapper {
   width: 100%;
 
   .header-container {
-    @include outer-container;
     max-width: $max-width;
+    @include outer-container;
     padding: 2em;
 
     .intro {
       margin: 0 auto;
+      padding: 1em;
       text-align: center;
       width: 65%;
-      padding: 1em;
     }
 
     .logo {
-      text-align: center;
       padding: 1em;
+      text-align: center;
     }
 
     .logo img {
@@ -45,8 +45,8 @@ section#header-wrapper {
       .myaccount {
         @include span-columns(2);
         float: right;
-        text-transform: uppercase;
         margin-top: 9px;
+        text-transform: uppercase;
 
         .button {
           background-color: $lightwarmgray;
@@ -82,16 +82,16 @@ section#header-wrapper {
     text-align: center;
 
     h1 {
-      width: 100% !important;
+      padding-left: 0 !important;
       text-align: center !important;
       text-indent: 0 !important;
-      padding-left: 0 !important;
+      width: 100% !important;
     }
 
     .myaccount {
-      right: 2em !important;
       margin-top: -33px !important;
       position: absolute;
+      right: 2em !important;
       width: 100px !important;
     }
   }
@@ -101,8 +101,8 @@ section#header-wrapper {
   }
 
   section#header-wrapper .header-container .detail-logo h1 {
-    text-indent: 0;
     padding-left: 0;
+    text-indent: 0;
   }
 }
 
