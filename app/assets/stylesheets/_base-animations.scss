@@ -27,11 +27,9 @@
 @mixin drop-down-come-in {
   0% {
     opacity: 0;
-    top: 90px;
   }
   100% {
     opacity: 1;
-    top: 105px;
   }
 }
 @-webkit-keyframes drop-down-come-in { @include drop-down-come-in; }
