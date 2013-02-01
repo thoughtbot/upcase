@@ -76,6 +76,12 @@ form {
     font-style: bold;
     margin-top: 20px;
   }
+  li {
+    &.payment-errors {
+      color: $learnred;
+      font-style: bold;
+    }
+  }
 
   fieldset {
     legend {
@@ -138,7 +144,8 @@ form {
         input[type="email"],
         input[type="select"] {
           background-color: #FFF;
-          border: 1px solid #999;
+          // border: 1px solid #999;
+          border: 1px solid $warmgray;
           border-radius: 4px;
           box-shadow: none;
           @include box-sizing(border-box);
@@ -184,3 +191,4 @@ form {
     text-transform: uppercase;
   }
 }
+
