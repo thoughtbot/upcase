@@ -2,7 +2,7 @@
   <%= form.semantic_errors %>
   <%= hidden_field_tag 'coupon_id' %>
   <% if signed_out? %>
-    <div class="workshop-sign-in">Already have an account? <%= link_to 'Sign in.', sign_in_path(return_to: request.fullpath) %></div>
+    <div class="workshop-alert">Already have an account? <%= link_to 'Sign in.', sign_in_path(return_to: request.fullpath) %></div>
   <% end %>
   <%= form.inputs 'Your information' do %>
     <%= form.input :variant, as: :hidden %>
