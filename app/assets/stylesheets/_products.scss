@@ -130,6 +130,7 @@ body.products-show, body.workshops-show {
         .license {
           margin-top: 0;
 
+// is the following p ever used or can we take it away?
           p {
             font-size: 14px;
             margin-top: -14px;
@@ -152,10 +153,6 @@ body.products-show, body.workshops-show {
 
       #terms {
         margin-top: 10px;
-
-        dt p {
-          font-style: italic;
-        }
       }
     }
   }

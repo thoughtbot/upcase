@@ -1,43 +1,12 @@
 body.purchases {
-  .workshop-sign-in, .github-signin {
-    background: rgba(228, 228, 228, 0.7) center 0 no-repeat;
-    border: 1px solid gainsboro;
-    font-size: 16px;
-    margin: 30px 0 0 0;
-    padding: 6px;
-    text-align: center;
-
-    a {
-      text-decoration: none;
-    }
-  }
-
-  input[type="text"],
-  input[type="password"],
-  input[type="tel"],
-  textarea,
-  input[type="email"],
-  input[type="select"] {
-    background-color: $lightwarmgray;
-    border: 1px solid white;
-  }
 
   fieldset {
-    legend {
-      color: $darkwarmgray;
-      font: 700 26px/25px $sans-serif;
-      padding: 24px 0 12px 0;
-    }
 
     #purchase_comments {
       height: 100px;
     }
 
     li {
-      &.payment-errors {
-        color: $learnred;
-        font-style: bold;
-      }
 
       &#purchase_submit_action {
         margin-left: 0;
@@ -164,10 +133,6 @@ body {
         margin-top: 50px;
         @include outer-container;
 
-        strong {
-          font-weight: bold;
-        }
-
         .billing-address {
           @include nth-omega(2n);
           @include span-columns(6);
@@ -193,8 +158,6 @@ body {
           }
 
           td {
-            color: $darkwarmgray;
-            font: normal 17px $serif;
             margin-bottom: 6px;
             text-align: left;
             @include span-columns(6);
@@ -213,8 +176,6 @@ body {
         }
 
         .get-video {
-          text-align: center;
-          text-transform: uppercase;
           width: 60%;
         }
 
@@ -245,15 +206,8 @@ body {
     }
 
     .videoinfo {
-      color: $darkwarmgray;
       display: inline-block;
-      font: italic 17px $serif;
       vertical-align: middle;
-    }
-
-    p.chat {
-      font: italic 17px $serif;
-      margin-top: 0;
     }
 
     .assets-wrapper {

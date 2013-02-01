@@ -1,11 +1,4 @@
-a {
-  color: $red;
-  text-decoration: none;
-}
 
-.address a {
-  color: $darkwarmgray;
-}
 
 // H1
 //************************************************************************//
@@ -46,6 +39,14 @@ body.products-index {
     }
   }
 }
+
+section.content {
+  .text-box {
+    h2 {
+      color: $learnred;
+    }
+  }
+  }
 
 // H3
 //************************************************************************//
@@ -89,6 +90,17 @@ h5 { //used for small header in "teachers" class
   margin: 0;
 }
 
+// H6
+//************************************************************************//
+
+h6 { //used for small header in topics, related reading
+  color: $warmgray;
+  display: inline-block;
+  font: 700 14px $sans-serif;
+  margin-bottom: 2px;
+}
+
+// misc
 //************************************************************************//
 
 h1, h2, h3, h4, h5 {
@@ -96,9 +108,6 @@ h1, h2, h3, h4, h5 {
     color: $learnred;
   }
 }
-
-// p
-//************************************************************************//
 
 p {
   -webkit-font-smoothing: antialiased;
@@ -134,6 +143,21 @@ hr {
   color: $warmgray;
   border-bottom: 1px solid white;
   border-top: 1px solid $warmgray;
+}
+
+td {
+  color: $darkwarmgray;
+  font: normal 17px $serif;
+}
+
+a {
+  color: $red;
+  font-family: $serif;
+  text-decoration: none;
+}
+
+.address a {
+  color: $darkwarmgray;
 }
 
 // SIDEPANEL
@@ -197,6 +221,9 @@ aside {
       font: italic 17px $serif;
     }
   }
+  dt p { //this is used for 'what if i am not happy'. should be made into li instead of dt
+    font-style: italic;
+  }
 }
 
 // HEADER
@@ -211,7 +238,6 @@ aside {
     -webkit-font-smoothing: antialiased;
     color: $darkwarmgray;
     font: italic 300 20px $serif;
-    padding: 1em;
   }
 }
 
