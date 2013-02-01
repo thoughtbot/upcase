@@ -58,11 +58,11 @@ section#header-wrapper {
         border-bottom: 2px solid $darkwarmgray;
         border-radius: 4px;
         @include box-shadow(0 4px 16px rgba(0, 0, 0, .15));
+        display: none;
         margin-left: 2em;
         min-width: 350px;
-        padding: .5em 0;
+        padding-bottom: .5em;
         @include position(absolute, 105px 0 0 240px);
-        display: none;
 
         &.active {
           display: block;
@@ -79,17 +79,28 @@ section#header-wrapper {
           width: 20px;
         }
 
+        h4 {
+          color: $darkwarmgray;
+          margin: 1em 0;
+          text-align: center;
+          text-transform: uppercase;
+        }
+
         ul {
           @include column-gap(0px);
           @include columns(2);
           display: block;
 
           li {
+            display: block;
+
             a {
-              display: block;
+              @include box-sizing(border-box);
+              display: inline-block;
               font-family: $sans-serif;
-              padding: .6em 1.2em;
+              padding: .5em 1em;
               position: relative;
+              width: 100%;
               z-index: 99;
 
               &:hover {
