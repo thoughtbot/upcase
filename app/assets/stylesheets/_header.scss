@@ -60,9 +60,10 @@ section#header-wrapper {
         @include box-shadow(0 4px 16px rgba(0, 0, 0, .15));
         display: none;
         margin-left: 2em;
-        min-width: 350px;
         padding-bottom: .5em;
         @include position(absolute, 105px 0 0 240px);
+        width: 350px;
+        z-index: 99;
 
         &.active {
           display: block;
@@ -82,8 +83,10 @@ section#header-wrapper {
         h4 {
           color: $darkwarmgray;
           margin: 1em 0;
+          position: relative;
           text-align: center;
           text-transform: uppercase;
+          z-index: 99;
         }
 
         ul {
@@ -146,8 +149,8 @@ section#header-wrapper {
     margin: 0 auto 10px auto;
   }
 
-  .detail-logo {
-    float: none !important;
+  section#header-wrapper .header-container .detail-logo {
+    float: none;
     text-align: center;
 
     h1 {
