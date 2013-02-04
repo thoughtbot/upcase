@@ -22,12 +22,4 @@ describe Video do
       video.wistia_thumbnail.should == 'http://images.com/hi.jpg'
     end
   end
-
-  context '#wistia_running_time' do
-    it "converts wistia's duration in seconds to running time in MM:SS" do
-      video = build_stubbed(:video,
-        wistia_hash: { 'duration' => '2052.97' })
-      video.wistia_running_time.should == '34:12'
-    end
-  end
 end
