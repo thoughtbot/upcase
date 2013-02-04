@@ -26,8 +26,7 @@ class Video < ActiveRecord::Base
   end
 
   def wistia_running_time
-    @wistia_running_time ||= wistia_hash["duration"] rescue nil
-    Time.at(@wistia_running_time.to_i).gmtime.strftime('%M:%S')
+    @wistia_running_time ||= wistia_hash["duration"] rescue 0
   end
 
   def wistia_thumbnail
