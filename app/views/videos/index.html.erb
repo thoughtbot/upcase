@@ -1,13 +1,11 @@
 <% content_for :subject, @purchase.purchaseable_name %>
-
-<div class="text-box-wrapper">
-  <div class="text-box">
     <h2>Watch or Download Video</h2>
-    <p class="workshop-type"><%= pluralize @purchaseable.videos.size, 'video' %> in the series</p>
+    <h3 class="workshop-type"><%= pluralize @purchaseable.videos.size, 'video' %> in the series</h3>
+<div class="text-box-wrapper">
+
     <section id="videos">
       <%= render @purchaseable.videos.ordered, purchase: @purchase %>
     </section>
-  </div>
 </div>
 
 <%= render sidebar_partial_name(@purchaseable), purchaseable: @purchaseable %>

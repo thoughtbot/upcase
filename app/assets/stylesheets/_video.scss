@@ -1,5 +1,4 @@
 .purchase-return-link {
-  // margin: -29px 0 0 0;
 
   a {
     text-decoration: none;
@@ -51,7 +50,13 @@
 }
 
 .video-chat {
+  li:first-child {
+    margin-bottom: 8px;
+    margin-top: 22px;
+  }
   li {
-    margin-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 20px;
+
   }
 }
