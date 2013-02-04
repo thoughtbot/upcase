@@ -20,8 +20,8 @@ describe Section do
     it "only includes sections thats haven't started" do
       active = create(:section, starts_on: Date.tomorrow, ends_on: 7.days.from_now)
       create(:section, starts_on: 1.week.ago, ends_on: 7.days.from_now)
-      create(:section, starts_on: Date.today, ends_on: 7.days.from_now)
-      expect(Section.active).to eq [active]
+      active2 = create(:section, starts_on: Date.today, ends_on: 7.days.from_now)
+      expect(Section.active).to eq [active2, active]
     end
   end
 
