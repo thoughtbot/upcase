@@ -61,6 +61,7 @@ h3 {
   color: lighten($darkwarmgray, 15%);
   font: 700 26px/1.0em $sans-serif;
   text-rendering: optimizeLegibility;
+  margin-bottom: 10px;
 }
 
 .workshop-type {
@@ -152,6 +153,12 @@ a {
   text-decoration: none;
 }
 
+.workshop-alert, .purchase-return-link {
+  a {
+  font-family: $sans-serif;
+  }
+}
+
 .address a {
   color: $darkwarmgray;
 }
@@ -206,9 +213,8 @@ aside {
     display: inline-block;
     font: 600 13px $sans-serif;
     margin-top: -8px;
-    padding: 0 10px 0 0px;
-    text-align: center;
-    text-shadow: 0 2px 0 white;
+    padding: 0  0px 0 0px;
+    text-align: left;
     text-transform: uppercase;
   }
 
