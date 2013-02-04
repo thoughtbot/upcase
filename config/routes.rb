@@ -40,6 +40,9 @@ Workshops::Application.routes.draw do
   end
 
   resources :episodes, path: 'podcast', only: [:index, :show]
+  match '/podcasts' => redirect("/podcast")
+  match '/podcasts/:id' => redirect("/podcast/%{id}")
+
   resources :design_for_developers_resources, path: 'design-for-developers-resources', only: [:index, :show]
   resources :test_driven_rails_resources, path: 'test-driven-rails-resources', only: [:index]
 
