@@ -19,4 +19,10 @@ class ApplicationController < ActionController::Base
   def km_http_client
     @@km_http_client.new(KISSMETRICS_API_KEY)
   end
+
+  def current_user_has_active_subscription?
+    current_user && current_user.has_active_subscription?
+  end
+  helper_method :current_user_has_active_subscription?
+
 end

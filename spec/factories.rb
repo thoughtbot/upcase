@@ -213,6 +213,16 @@ FactoryGirl.define do
     factory :admin do
       admin true
     end
+
+    trait :with_subscription do
+      after :create do |instance|
+        create(:subscription, user: instance)
+      end
+    end
+  end
+
+  factory :subscription do
+    user
   end
 
   factory :video do
