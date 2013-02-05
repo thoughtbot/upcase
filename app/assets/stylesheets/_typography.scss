@@ -35,11 +35,6 @@ section#promo-wrapper {
 }
 
 section.content {
-  p {
-    color: $darkwarmgray;
-    font: italic 17px $serif;
-  }
-
   .text-box {
     h2 {
       color: $darkwarmgray;
@@ -120,6 +115,10 @@ p {
   em {
     font-style: italic;
   }
+}
+
+.summary p {
+  font: italic 17px $serif;
 }
 
 q {
