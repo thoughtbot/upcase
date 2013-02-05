@@ -5,7 +5,7 @@
 
     <% if @purchaseable.video_available?(@video) %>
       <div class="purchase-return-link">
-        <%=link_to "Back", purchase_path(@purchase)%>
+        <%= link_to "Back", @purchase %>
       </div>
 
       <h3 class="video-headline">Watch or Download Video</h3>
