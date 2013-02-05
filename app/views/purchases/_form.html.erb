@@ -47,8 +47,8 @@
       </li>
     <% end %>
     <li id="purchase_cc_input" class="stripe">
-      <label>Card Number</label>
-      <input type="text" size="20" autocomplete="off" class="card-number"/>
+      <label for='card-number'>Card Number</label>
+      <input type='text' size='20' autocomplete='off' id='card-number' class='card-number'/>
     </li>
     <li id="purchase_expiration_input" class="stripe">
       <label>Expiration</label>
@@ -56,8 +56,8 @@
       <%= select_year nil, { prompt: 'Year', start_year: Date.today.year, end_year: 10.years.from_now.year }, class: 'card-expiry-year' %>
     </li>
     <li id="purchase_cvc_input" class="stripe">
-      <label>CVC</label>
-      <input type="text" size="4" autocomplete="off" class="card-cvc"/>
+      <label for='card-cvc'>CVC</label>
+      <input type='text' size='4' autocomplete='off' id='card-cvc' class='card-cvc'/>
     </li>
     <li class="overflow"></li>
   <% end %>

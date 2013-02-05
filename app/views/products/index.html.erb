@@ -1,5 +1,9 @@
 <% content_for :subject, t('.title') %>
 
+<section id='subscription-banner'>
+  <%= link_to 'Subscribe', @subscription_product %>
+</section>
+
 <section id="promo-wrapper">
   <% if @in_person_workshops.present? || @online_workshops.present? %>
     <div class="products-container text-box">

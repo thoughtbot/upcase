@@ -5,6 +5,7 @@ class Purchase < ActiveRecord::Base
 
   PAYMENT_METHODS = %w(stripe paypal free)
   API_SLEEP_TIME = 0.2
+  PLAN_NAME = 'prime'.freeze
 
   belongs_to :user
   belongs_to :purchaseable, polymorphic: true
@@ -37,6 +38,7 @@ class Purchase < ActiveRecord::Base
   after_save :save_info_to_user, if: :user
 
   delegate :name, to: :purchaseable, prefix: :purchaseable, allow_nil: true
+  delegate :subscription?, to: :purchaseable
 
   def self.from_month(date)
     where(["created_at >= ? AND created_at <= ?", date.beginning_of_month, date.end_of_month])
@@ -136,13 +138,6 @@ class Purchase < ActiveRecord::Base
     save!
   end
 
-  def success_url
-    if paypal?
-      paypal_url
-    else
-      purchase_path(self, host: self.class.host)
-    end
-  end
 
   def fulfilled_with_github?
     purchaseable.fulfillment_method == "github"
@@ -201,28 +196,45 @@ class Purchase < ActiveRecord::Base
 
   def create_and_charge_customer
     begin
-      if stripe_customer.blank?
-        customer = Stripe::Customer.create(
-          card: stripe_token,
-          description: email,
-          email: email
-        )
-        self.stripe_customer = customer.id
-      end
+      ensure_stripe_customer_exists
 
-      charge = Stripe::Charge.create(
-        amount: price_in_pennies,
-        currency: "usd",
-        customer: stripe_customer,
-        description: purchaseable_name
-      )
-      self.payment_transaction_id = charge.id
+      if subscription?
+        create_stripe_subscription
+      else
+        charge_stripe_customer
+      end
 
       set_as_paid
     rescue Stripe::StripeError => e
       errors[:base] << "There was a problem processing your credit card, #{e.message.downcase}"
       false
     end
+  end
+
+  def ensure_stripe_customer_exists
+    if stripe_customer.blank?
+      customer = Stripe::Customer.create(
+        card: stripe_token,
+        description: email,
+        email: email
+      )
+      self.stripe_customer = customer.id
+    end
+  end
+
+  def charge_stripe_customer
+    charge = Stripe::Charge.create(
+      amount: price_in_pennies,
+      currency: "usd",
+      customer: stripe_customer,
+      description: purchaseable_name
+    )
+    self.payment_transaction_id = charge.id
+  end
+
+  def create_stripe_subscription
+    customer = Stripe::Customer.retrieve(stripe_customer)
+    customer.update_subscription plan: PLAN_NAME
   end
 
   def update_user_stripe_customer

@@ -207,4 +207,10 @@ describe Section do
       expect(section.event_on(event_two)).to eq 9.days.from_now.to_date
     end
   end
+
+  describe '#subscription?' do
+    it 'returns false' do
+      expect(Section.new).not_to be_subscription
+    end
+  end
 end

@@ -92,7 +92,15 @@ FactoryGirl.define do
     workshop
   end
 
-  factory :product do
+  factory :product, traits: [:active] do
+    trait :active do
+      active true
+    end
+
+    trait :inactive do
+      active false
+    end
+
     company_price 50
     fulfillment_method 'fetch'
     individual_price 15
@@ -109,6 +117,10 @@ FactoryGirl.define do
 
     factory :workshop_product do
       product_type 'workshop'
+    end
+
+    factory :subscribeable_product do
+      product_type 'subscription'
     end
   end
 

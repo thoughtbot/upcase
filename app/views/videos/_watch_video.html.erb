@@ -1,14 +1,9 @@
-<div class="purchase-return-link">
-  <%=link_to "Back", purchase_path(purchase)%>
-</div>
-
-<h3 class="video-headline">Watch or Download Video</h3>
 <p class="videowrapper"><%= render 'videos/code', video_hash_id: video.video_hash_id %></p>
 
 <section class="assets-wrapper">
   <div class="assets">
-    <%=render 'videos/download_link', download_type_key: "OriginalFile", download_type: "original", size_display: "Original (720p)", video: video %>
-    <%=render 'videos/download_link', download_type_key: "IphoneVideoFile", download_type: "iphone", size_display: "iPhone", video: video %>
-    <%=render 'videos/download_link', download_type_key: "HdMp4VideoFile", download_type: "hd_mp4", size_display: "HD MP4", video: video %>
+    <%= render 'videos/download_link', download_type_key: "OriginalFile", download_type: "original", size_display: "Original (720p)", video: video %>
+    <%= render 'videos/download_link', download_type_key: "IphoneVideoFile", download_type: "iphone", size_display: "iPhone", video: video %>
+    <%= render 'videos/download_link', download_type_key: "HdMp4VideoFile", download_type: "hd_mp4", size_display: "HD MP4", video: video %>
   </div>
 </section>

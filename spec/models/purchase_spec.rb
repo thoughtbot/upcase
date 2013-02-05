@@ -11,6 +11,8 @@ describe Purchase do
   it { should_not allow_value('chad@blah').for(:email) }
   it { should validate_presence_of(:billing_email) }
 
+  it { should delegate(:subscription?).to(:purchaseable) }
+
   it 'can produce the host after setting it' do
     Purchase.host = 'hottiesandcreepers.com:123467'
     Purchase.host.should == 'hottiesandcreepers.com:123467'
@@ -72,6 +74,24 @@ describe Purchase, 'refund' do
     subject.should have_received(:stripe_refund).never
     subject.should have_received(:paypal_refund).never
     subject.should_not be_paid
+  end
+end
+
+describe Purchase, 'of a subscription' do
+  it 'does not set payment_transaction_id' do
+    build_subscription_purchase.save!
+    expect(subject.payment_transaction_id).to be_nil
+  end
+
+  it 'updates the subscription on the Stripe customer with the correct plan' do
+    customer = stub('<Stripe::Customer>', update_subscription: true)
+    Stripe::Customer.stubs(:retrieve).returns(customer)
+    build_subscription_purchase.save!
+    expect(customer).to have_received(:update_subscription).with(plan: Purchase::PLAN_NAME)
+  end
+
+  def build_subscription_purchase
+    build(:purchase, purchaseable: create(:subscribeable_product), payment_method: 'stripe')
   end
 end
 
@@ -143,8 +163,6 @@ describe Purchase, 'with stripe' do
     it 'sets the stripe customer on save' do
       subject.stripe_customer.should == 'stripe'
     end
-
-    its(:success_url) { should == purchase_path(purchase, host: host) }
 
     context 'and refunded' do
       let(:charge) { stub(:id => 'TRANSACTION-ID', :refunded => false) }
@@ -342,8 +360,6 @@ describe Purchase, 'with paypal' do
       subject.reload.paid.should be_false
     end
   end
-
-  its(:success_url) { should == 'http://paypalurl' }
 end
 
 describe Purchase, 'with no price' do
@@ -361,7 +377,6 @@ describe Purchase, 'with no price' do
     it { should be_free }
     it { should be_paid }
     its(:payment_method) { should == 'free' }
-    its(:success_url) { should == purchase_path(purchase, host: host) }
   end
 
   context 'a purchase with an invalid payment method' do

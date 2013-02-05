@@ -4,7 +4,13 @@
   <div class="text-box">
 
     <% if @purchaseable.video_available?(@video) %>
-      <%= render 'watch_video', video: @video, purchase: @purchase %>
+      <div class="purchase-return-link">
+        <%=link_to "Back", purchase_path(@purchase)%>
+      </div>
+
+      <h3 class="video-headline">Watch or Download Video</h3>
+
+      <%= render 'watch_video', video: @video %>
     <% else %>
       <p>This video is not yet available. It will be released on <%= @purchaseable.video_available_on(@video).to_s(:simple) %></p>
     <% end %>

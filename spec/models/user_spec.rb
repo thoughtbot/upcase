@@ -33,6 +33,19 @@ describe User do
     end
   end
 
+  context '#has_active_subscription?' do
+    it 'returns true if user has a subscription' do
+      user = User.new
+      user.subscription = Subscription.new
+      expect(user).to have_active_subscription
+    end
+
+    it 'returns false if user does not have a subscription' do
+      user = User.new
+      expect(user).not_to have_active_subscription
+    end
+  end
+
   context "when there are previous purchases" do
     let(:email) { "newuser@example.com" }
 

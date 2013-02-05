@@ -91,6 +91,16 @@ describe Product do
     end
   end
 
+  describe '.subscriptions' do
+    it 'returns all subscribeable products' do
+      workshop_product = create(:workshop_product)
+      book_product = create(:book_product)
+      subscribeable_product = create(:subscribeable_product)
+
+      expect(Product.subscriptions).to eq [subscribeable_product]
+    end
+  end
+
   describe 'with a discount' do
     it 'returns a discounted individual price' do
       product = create(:product, individual_price: 50)
@@ -146,6 +156,18 @@ describe Product do
       video_two = create(:video, watchable: product, active_on_day: 2, title: 'Video One')
       expect(product.video_available_on(video_one)).to eq Date.today
       expect(product.video_available_on(video_two)).to eq Date.today
+    end
+  end
+
+  describe '#subscription?' do
+    it 'returns true if the product is a subscription type' do
+      product = build_stubbed(:subscribeable_product)
+      expect(product).to be_subscription
+    end
+
+    it 'returns false if the product is not a subscription type' do
+      product = build_stubbed(:book_product)
+      expect(product).not_to be_subscription
     end
   end
 end
