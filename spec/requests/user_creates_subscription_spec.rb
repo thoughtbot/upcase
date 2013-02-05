@@ -11,8 +11,7 @@ feature 'User creates a subscription' do
     sign_in
     subscribe_with_valid_credit_card
     expect(current_user).to have_active_subscription
-    expect(current_path).to eq subscription_products_path
-    expect(page).to have_content 'Videos'
+    expect(current_path).to eq products_path
   end
 
   scenario 'does not create a Stripe subscription with an invalid credit card' do

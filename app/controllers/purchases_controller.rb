@@ -1,10 +1,14 @@
 class PurchasesController < ApplicationController
   def new
-    @purchaseable = purchaseable
-    @purchase = @purchaseable.purchases.build(variant: params[:variant])
-    @purchase.defaults_from_user(current_user)
-    @active_card = retrieve_active_card
-    km.record("Checkout", { "Product Name" => @purchaseable.name, "Order Total" => @purchase.price })
+    if current_user_has_active_subscription?
+      render 'for_subscribers'
+    else
+      @purchaseable = purchaseable
+      @purchase = @purchaseable.purchases.build(variant: params[:variant])
+      @purchase.defaults_from_user(current_user)
+      @active_card = retrieve_active_card
+      km.record("Checkout", { "Product Name" => @purchaseable.name, "Order Total" => @purchase.price })
+    end
   end
 
   def create
@@ -97,10 +101,6 @@ class PurchasesController < ApplicationController
     end
   end
 
-  def ensure_paid(purchase)
-
-  end
-
   def current_purchase
     @current_purchase ||= Purchase.find_by_lookup(params[:id])
   end
@@ -113,7 +113,7 @@ class PurchasesController < ApplicationController
     if @purchase.paypal?
       @purchase.paypal_url
     elsif @purchase.subscription?
-      subscription_products_path
+      products_path
     else
       purchase_path @purchase
     end

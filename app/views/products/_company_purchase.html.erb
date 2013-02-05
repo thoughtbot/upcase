@@ -1,25 +1,27 @@
-<h2>
-  Group
-  <% if pricing_scheme == "primary" %>
-    <%= render 'price',
-      product: product,
-      price: product.company_price,
-      original_price: product.original_company_price %>
-  <% else %>
-    <%= render 'price',
-      product: product,
-      price: product.alternate_company_price,
-      original_price: product.original_alternate_company_price %>
-  <% end %>
-</h2>
-<div class="license">
-  <% if pricing_scheme == "primary" %>
-    <%= link_to new_product_purchase_path(product, variant: :company), class: 'license-button button', id: "#{product.sku}-purchase-company" do %>
-      Purchase for Your Company
+<% unless current_user_has_active_subscription? %>
+  <h2>
+    Group
+    <% if pricing_scheme == "primary" %>
+      <%= render 'price',
+        product: product,
+        price: product.company_price,
+        original_price: product.original_company_price %>
+    <% else %>
+      <%= render 'price',
+        product: product,
+        price: product.alternate_company_price,
+        original_price: product.original_alternate_company_price %>
     <% end %>
-  <% else %>
-    <%= link_to new_product_purchase_path(product, variant: :alternate_company), class: 'license-button button', id: "#{product.sku}-purchase-company" do %>
-      Purchase for Your Company
+  </h2>
+  <div class="license">
+    <% if pricing_scheme == "primary" %>
+      <%= link_to new_product_purchase_path(product, variant: :company), class: 'license-button button', id: "#{product.sku}-purchase-company" do %>
+        <% t('products.show.purchase_for_company') %>
+      <% end %>
+    <% else %>
+      <%= link_to new_product_purchase_path(product, variant: :alternate_company), class: 'license-button button', id: "#{product.sku}-purchase-company" do %>
+        <% t('products.show.purchase_for_company') %>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>

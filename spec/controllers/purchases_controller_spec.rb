@@ -1,33 +1,41 @@
 require 'spec_helper'
 
-describe PurchasesController, "processing on stripe" do
-  let(:stripe_token) { "stripetoken" }
-  let(:product) { create(:product, individual_price: 15) }
-  let(:user) { create(:user) }
+include StubCurrentUserHelper
 
+describe PurchasesController, '#new when purchasing a product as a user with an active subscription' do
+  it 'renders a subscriber-specific layout' do
+    user = create(:user, :with_subscription)
+    stub_current_user_with(user)
+
+    get :new, product_id: create(:video_product)
+    expect(response).to render_template('purchases/for_subscribers')
+  end
+end
+
+describe PurchasesController, "processing on stripe" do
   it "creates and saves a stripe customer and charges it for the product" do
-    controller.stubs(:current_user).returns(user)
+    stub_current_user_with(create(:user))
     product = create(:product)
-    customer_params = {
+    stripe_token = 'token'
+    post :create, purchase: customer_params(stripe_token), product_id: product.to_param
+
+    FakeStripe.should have_charged(1500).to('test@example.com').with_token(stripe_token)
+  end
+
+  def customer_params(token)
+    {
       name: 'User',
       email: 'test@example.com',
       variant: "individual",
-      stripe_token: stripe_token,
+      stripe_token: token,
       payment_method: "stripe"
     }
-
-    post :create, purchase: customer_params, product_id: product.to_param
-
-    FakeStripe.should have_charged(1500).to('test@example.com').with_token(stripe_token)
   end
 end
 
 describe PurchasesController, "processing on paypal" do
-  let(:product) { create(:product, individual_price: 15) }
-  let(:user) { create(:user) }
-
   it "starts a paypal transaction and saves a purchase for the product" do
-    controller.stubs(:current_user).returns(user)
+    stub_current_user_with(create(:user))
     product = create(:product)
     post :create, purchase: { variant: "individual", name: "User", email: "test@example.com", payment_method: "paypal" }, product_id: product.to_param
 
@@ -39,13 +47,12 @@ end
 
 describe PurchasesController, "product is not paid" do
   let(:product) { create(:product, individual_price: 15) }
-  let(:user) { create(:user) }
   let(:purchase) { create(:purchase, purchaseable: product) }
 
   it "redirects from show to the product page" do
     purchase.paid = false
     purchase.save
-    controller.stubs(:current_user).returns(user)
+    stub_current_user_with(create(:user))
     get :show, id: purchase.to_param
     response.should redirect_to(product_path(product))
   end
@@ -53,7 +60,7 @@ describe PurchasesController, "product is not paid" do
   it "redirects from watch to the product page" do
     purchase.paid = false
     purchase.save
-    controller.stubs(:current_user).returns(user)
+    stub_current_user_with(create(:user))
     get :watch, id: purchase.to_param
     response.should redirect_to(root_path)
   end
