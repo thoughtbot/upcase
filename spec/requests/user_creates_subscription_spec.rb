@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 feature 'User creates a subscription' do
+  VALID_SANDBOX_CREDIT_CARD_NUMBER = '4111111111111111'
+
   background do
     create_subscribeable_product
   end
@@ -42,7 +44,7 @@ feature 'User creates a subscription' do
       find('.license-button').click
     end
 
-    fill_out_credit_card_form_with '4111111111111111'
+    fill_out_credit_card_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
   end
 
   def subscribe_with_invalid_credit_card
