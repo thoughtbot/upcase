@@ -1,9 +1,10 @@
 class PurchasesController < ApplicationController
   def new
+    @purchaseable = purchaseable
+
     if current_user_has_active_subscription?
       render 'for_subscribers'
     else
-      @purchaseable = purchaseable
       @purchase = @purchaseable.purchases.build(variant: params[:variant])
       @purchase.defaults_from_user(current_user)
       @active_card = retrieve_active_card

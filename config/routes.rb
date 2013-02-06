@@ -39,8 +39,8 @@ Workshops::Application.routes.draw do
     end
   end
 
-  resource :subscription, only: [] do
-    resources :products, only: :index, controller: :subscription_products
+  namespace :subscriber do
+    resources :purchases, only: :create
   end
 
   resources :episodes, path: 'podcast', only: [:index, :show]

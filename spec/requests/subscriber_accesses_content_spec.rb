@@ -22,10 +22,34 @@ feature 'Subscriber accesses content' do
     expect(page).to_not have_content I18n.t('products.show.purchase_for_company')
   end
 
+  scenario 'gets access to a book product' do
+    book_product = create(:github_book_product)
+
+    sign_in_as_user_with_subscription
+    stub_add_github_team_member_job
+    click_link book_product.name
+    click_link I18n.t('products.show.purchase_for_yourself')
+    click_button 'Get Access'
+
+    expect(page).to have_content I18n.t('subscriber.purchases.show.added_to_github_repo')
+    expect(AddGithubTeamMemberJob).to have_received(:enqueue).with(book_product.github_team,
+                                                                   @current_user.github_username,
+                                                                   Purchase.last.id)
+  end
+
+  def sign_in_as_user_with_subscription
+    @current_user = create(:user, :with_subscription)
+    visit products_path(as: @current_user)
+  end
+
   def create_all_product_types
     create(:video_product)
     create(:book_product)
     create(:workshop_product)
     create(:subscribeable_product)
+  end
+
+  def stub_add_github_team_member_job
+    AddGithubTeamMemberJob.stubs(:enqueue)
   end
 end

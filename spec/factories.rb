@@ -109,6 +109,12 @@ FactoryGirl.define do
       product_type 'book'
     end
 
+    factory :github_book_product do
+      product_type 'book'
+      github_team 9999
+      fulfillment_method 'github'
+    end
+
     factory :video_product do
       product_type 'video'
     end
@@ -215,6 +221,8 @@ FactoryGirl.define do
     end
 
     trait :with_subscription do
+      github_username 'github_user_1'
+
       after :create do |instance|
         create(:subscription, user: instance)
       end
