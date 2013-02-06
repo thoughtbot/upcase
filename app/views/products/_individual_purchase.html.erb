@@ -1,5 +1,7 @@
 <h2>
-  Single
+  <% unless current_user_has_active_subscription? %>
+    Single
+  <% end %>
   <% if pricing_scheme == "primary" %>
     <%= render 'price', product: product,
       price: product.individual_price,
@@ -10,18 +12,19 @@
       original_price: product.original_alternate_individual_price %>
   <% end %>
 </h2>
+
 <div class="license">
   <% if pricing_scheme == "primary" %>
     <%= link_to new_product_purchase_path(product, variant: :individual),
       class: 'license-button button',
       id: "#{product.sku}-purchase-individual" do %>
-      Purchase for Yourself
+      <%= t('products.show.purchase_for_yourself') %>
     <% end %>
   <% else %>
     <%= link_to new_product_purchase_path(product, variant: :alternate_individual),
       class: 'license-button button',
       id: "#{product.sku}-purchase-individual" do %>
-      Purchase for Yourself
+      <%= t('products.show.purchase_for_yourself') %>
     <% end %>
   <% end %>
 </div>

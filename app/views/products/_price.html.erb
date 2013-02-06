@@ -1,8 +1,11 @@
-<span>
-  <%= number_to_currency price, precision: 0 %>
-</span>
-<% if product.discounted? %>
-  <span class="original-price">
-    <%= number_to_currency original_price, precision: 0 %>
-  </span>
+<% if current_user_has_active_subscription? %>
+  <span><%= t 'products.show.free_to_subscribers' %></span>
+<% else %>
+  <span><%= number_to_currency price, precision: 0 %></span>
+
+  <% if product.discounted? %>
+    <span class="original-price">
+      <%= number_to_currency original_price, precision: 0 %>
+    </span>
+  <% end %>
 <% end %>

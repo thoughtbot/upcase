@@ -1,9 +1,13 @@
 <div class="text-box-wrapper">
   <div class="text-box">
-    <h2><%= title %> for <em class="totalprice"><%= number_to_currency price, precision: 0 %></em></h2>
-    <div id="total">
-      <p class="coupon-note"><%= link_to "Have a coupon code?", "#" %></p>
-    </div>
+    <% if current_user_has_active_subscription? %>
+      <h2><%= title %> for <em class="totalprice"> $0.00</em></h2>
+    <% else %>
+      <h2><%= title %> for <em class="totalprice"><%= number_to_currency price, precision: 0 %></em></h2>
+      <div id="total">
+        <p class="coupon-note"><%= link_to "Have a coupon code?", "#" %></p>
+      </div>
+    <% end %>
     <%= render 'redemptions/form' %>
     <%= render form_partial %>
   </div>
