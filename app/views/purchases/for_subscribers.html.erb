@@ -1,1 +1,14 @@
-Hi
+<% content_for :subject, @purchaseable.name %>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <h2>You're about to get access to <%= @purchaseable.name %> for <em class="totalprice"> $0.00</em></h2>
+
+    <p>This product is delivered as access to a GitHub repository. Your GitHub user be added as a collaborator when you press the button below.</p>
+
+    <%= form_tag subscriber_purchases_path, html: { method: 'post' } do %>
+      <%= hidden_field_tag 'purchaseable_id', @purchaseable.id %>
+      <%= submit_tag 'Get Access' %>
+    <% end %>
+  </div>
+</div>
