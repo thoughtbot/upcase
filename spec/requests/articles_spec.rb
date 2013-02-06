@@ -16,17 +16,17 @@ describe 'Articles' do
       expect(page).not_to have_content(other_article.title)
     end
 
-    it 'links articles with tumblr_urls to tumblr' do
+    it 'links articles with external_urls to the external url' do
       topic = create(:topic)
       article = create(:article)
-      tumblr_article = create(:article, tumblr_url: 'http://example.com')
+      tumblr_article = create(:article, external_url: 'http://example.com')
       topic.articles << article
       topic.articles << tumblr_article
 
       visit topic_articles_url(topic)
 
       expect(page).not_to have_css("a[href='#{article_path(tumblr_article)}']")
-      expect(page).to have_css("a[href='#{tumblr_article.tumblr_url}']")
+      expect(page).to have_css("a[href='#{tumblr_article.external_url}']")
       expect(page).to have_css("a[href='#{article_path(article)}']")
     end
   end
@@ -34,6 +34,7 @@ describe 'Articles' do
   context 'show' do
     it 'displays the given article' do
       article = create(:article)
+      sign_in_as_user_with_subscription
 
       visit article_url(article)
 
@@ -60,6 +61,7 @@ describe 'Articles' do
       unrelated_topic.products << unrelated_product
       unrelated_workshop = create(:workshop)
       unrelated_topic.workshops << unrelated_workshop
+      sign_in_as_user_with_subscription
 
       visit article_url(ruby_article)
 

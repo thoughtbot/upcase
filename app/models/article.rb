@@ -32,4 +32,8 @@ class Article < ActiveRecord::Base
   def keywords
     topics.map(&:name).join(',')
   end
+
+  def local?
+    external_url.blank?
+  end
 end

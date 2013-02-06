@@ -8,11 +8,16 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    if @article.tumblr_url.present?
-      redirect_to @article.tumblr_url, status: :moved_permanently
+    if @article.local?
+      if current_user_has_active_subscription?
+        @related_topics = @article.topics
+        @products = @article.products.ordered.active
+        @workshops = @article.workshops.only_public.by_position
+      else
+        redirect_to subscription_product, notice: t('shared.protected_subscription_content')
+      end
+    else
+      redirect_to @article.external_url, status: :moved_permanently
     end
-    @related_topics = @article.topics
-    @products = @article.products.ordered.active
-    @workshops = @article.workshops.only_public.by_position
   end
 end

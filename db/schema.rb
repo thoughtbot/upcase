@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130205194322) do
+ActiveRecord::Schema.define(:version => 20130207161342) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20130205194322) do
     t.datetime "updated_at",   :null => false
     t.string   "title",        :null => false
     t.text     "body_html",    :null => false
-    t.string   "tumblr_url"
+    t.string   "external_url"
     t.date     "published_on", :null => false
     t.text     "body"
   end
@@ -40,13 +40,6 @@ ActiveRecord::Schema.define(:version => 20130205194322) do
   end
 
   add_index "articles_topics", ["article_id", "topic_id"], :name => "index_articles_topics_on_article_id_and_topic_id", :unique => true
-
-  create_table "audiences", :force => true do |t|
-    t.string   "name"
-    t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "classifications", :force => true do |t|
     t.integer  "topic_id"
@@ -59,8 +52,8 @@ ActiveRecord::Schema.define(:version => 20130205194322) do
   create_table "coupons", :force => true do |t|
     t.string   "code"
     t.integer  "amount"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "active",            :default => true,         :null => false
     t.string   "discount_type",     :default => "percentage", :null => false
     t.boolean  "one_time_use_only", :default => false,        :null => false
@@ -111,9 +104,9 @@ ActiveRecord::Schema.define(:version => 20130205194322) do
   end
 
   create_table "events", :force => true do |t|
-    t.integer  "workshop_id",                  :null => false
-    t.string   "title",                        :null => false
-    t.string   "time",                         :null => false
+    t.integer  "workshop_id"
+    t.string   "title"
+    t.string   "time"
     t.integer  "occurs_on_day", :default => 0, :null => false
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
@@ -122,8 +115,8 @@ ActiveRecord::Schema.define(:version => 20130205194322) do
   create_table "follow_ups", :force => true do |t|
     t.string   "email"
     t.integer  "workshop_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.datetime "notified_at"
   end
 
@@ -148,8 +141,8 @@ ActiveRecord::Schema.define(:version => 20130205194322) do
     t.integer  "company_price",                 :default => 0,    :null => false
     t.string   "product_type"
     t.boolean  "active",                        :default => true, :null => false
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "fulfillment_method"
     t.integer  "github_team"
     t.string   "github_url"
@@ -181,8 +174,8 @@ ActiveRecord::Schema.define(:version => 20130205194322) do
     t.string   "city"
     t.string   "state"
     t.string   "zip_code"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "lookup"
     t.integer  "coupon_id"
     t.text     "readers"
@@ -224,11 +217,19 @@ ActiveRecord::Schema.define(:version => 20130205194322) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
+  create_table "resources", :force => true do |t|
+    t.integer "course_id"
+    t.string  "name"
+    t.string  "url"
+  end
+
+  add_index "resources", ["course_id"], :name => "index_resources_on_course_id"
+
   create_table "section_teachers", :force => true do |t|
     t.integer  "section_id"
     t.integer  "teacher_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "section_teachers", ["section_id", "teacher_id"], :name => "index_section_teachers_on_section_id_and_teacher_id", :unique => true
@@ -237,8 +238,8 @@ ActiveRecord::Schema.define(:version => 20130205194322) do
     t.integer  "workshop_id"
     t.date     "starts_on"
     t.date     "ends_on"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "seats_available"
     t.time     "start_at"
     t.time     "stop_at"
@@ -261,9 +262,9 @@ ActiveRecord::Schema.define(:version => 20130205194322) do
     t.string   "name"
     t.string   "gravatar_hash"
     t.text     "bio"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.string   "email",         :default => ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
   end
 
   create_table "topics", :force => true do |t|
@@ -287,12 +288,12 @@ ActiveRecord::Schema.define(:version => 20130205194322) do
     t.string   "confirmation_token", :limit => 128
     t.string   "remember_token",     :limit => 128
     t.boolean  "email_confirmed",                   :default => true,  :null => false
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
-    t.string   "customer_id",                       :default => ""
-    t.string   "first_name",                        :default => ""
-    t.string   "last_name",                         :default => ""
-    t.string   "reference",                         :default => ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "customer_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "reference"
     t.boolean  "admin",                             :default => false, :null => false
     t.string   "stripe_customer"
     t.string   "github_username"
@@ -319,15 +320,15 @@ ActiveRecord::Schema.define(:version => 20130205194322) do
   add_index "videos", ["watchable_type", "watchable_id"], :name => "index_videos_on_watchable_type_and_watchable_id"
 
   create_table "workshops", :force => true do |t|
-    t.string   "name",                       :default => "",    :null => false
+    t.string   "name",                                          :null => false
+    t.integer  "individual_price"
     t.text     "description"
     t.time     "start_at"
     t.time     "stop_at"
     t.integer  "maximum_students",           :default => 12,    :null => false
     t.boolean  "public",                     :default => true,  :null => false
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
-    t.integer  "individual_price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "short_description"
     t.string   "external_registration_url"
     t.integer  "position"
@@ -337,7 +338,7 @@ ActiveRecord::Schema.define(:version => 20130205194322) do
     t.boolean  "online",                     :default => false, :null => false
     t.integer  "alternate_individual_price"
     t.integer  "alternate_company_price"
-    t.text     "resources",                  :default => "",    :null => false
+    t.text     "resources"
     t.string   "video_chat_url"
   end
 

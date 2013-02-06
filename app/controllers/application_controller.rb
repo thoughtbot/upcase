@@ -25,4 +25,8 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user_has_active_subscription?
 
+  def subscription_product
+    Product.subscriptions.first
+  end
+  helper_method :subscription_product
 end

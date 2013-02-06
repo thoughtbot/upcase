@@ -5,7 +5,7 @@ class Loader
       article = Article.find_or_initialize_by_title_and_published_on(post[:title],post[:published_at])
       unless article.persisted?
         article.body_html = post[:body_html]
-        article.tumblr_url = post[:tumblr_url]
+        article.external_url = post[:tumblr_url]
         article.save!
         post[:tags].each do |tag|
           topic = Topic.find_by_slug(tag.downcase.parameterize)
