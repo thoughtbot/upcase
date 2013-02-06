@@ -82,4 +82,18 @@ describe Article do
       expect(article.keywords).to eq "#{topic.name},#{topic_two.name}"
     end
   end
+
+  context 'local?' do
+    it 'returns true for articles that do not have an external_url' do
+      article = build(:article, external_url: nil)
+
+      expect(article.local?).to be
+    end
+
+    it 'returns false for articles that do have an external_url' do
+      article = build(:article, external_url: 'http://thoughtbot.com')
+
+      expect(article.local?).not_to be
+    end
+  end
 end

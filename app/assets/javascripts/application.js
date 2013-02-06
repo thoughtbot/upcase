@@ -22,24 +22,6 @@ $(".coupon form").submit(function(e) {
   return false;
 });
 
-var slideDown = function(pos){
-  $('.flash_message').animate({ marginTop: 0 }).delay(3000).animate({ marginTop: -50 });
-};
-
-var slideUp = function(){
-  $('.flash_message').stop().slideUp();
-};
-
-$(function(){
-  // Slide down on page load
-  slideDown();
-
-  // Slide up when close button is clicked
-  $('#flash_close span').click(function(){
-    slideUp();
-  });
-});
-
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
   $(link).closest(".fields").hide();

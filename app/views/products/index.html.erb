@@ -2,7 +2,7 @@
 
 <% unless current_user_has_active_subscription? %>
   <section id='subscription-banner'>
-    <%= link_to t('shared.subscription_call_to_action'), @subscription_product %>
+    <%= link_to 'Subscribe', subscription_product %>
   </section>
 <% end %>
 

@@ -1,14 +1,9 @@
-<div id="flash">
-  <% flash.each do |key, value| -%>
-    <div id="flash_<%= key %>" class="flash_message">
-      <div id="flash_icon">
-        <div id="icon_status" class="icon_<%= key %>">
-          <div id="gloss"></div>
-        </div>
+<% if flash.any? %>
+  <div class="flashes">
+    <% flash.each do |key, value| -%>
+      <div class="flash <%= key %>">
+        <%= value %>
       </div>
-      <div id="flash-vrule"></div>
-      <p><%= value %></p>
-      <div id="flash_close"><span class="close">&#215;</span></div>
-    </div>
-  <% end -%>
-</div>
+    <% end -%>
+  </div>
+<% end %>
