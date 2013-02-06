@@ -1,0 +1,18 @@
+<% content_for :meta_description, @article.title %>
+<% content_for :meta_keywords, @article.keywords %>
+<% content_for :page_title, 'Learn Bytes' %>
+<% content_for :subject, 'Bytes' %>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+  <div class="product-title">
+    <h2><%= @article.title %></h2>
+    <h3 class="workshop-type"><%= @article.published_on.to_s(:simple) %></h3>
+    </div>
+    <div class="body">
+      <%== @article.body_html %>
+    </div>
+  </div>
+</div>
+
+<%= render 'topics/related' %>

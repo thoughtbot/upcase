@@ -30,15 +30,13 @@ FactoryGirl.define do
   end
 
   factory :article do
-    author
     body_html 'article body'
     published_on Date.today
     title
-    tumblr_url
-  end
 
-  factory :author do
-    tumblr_user_name
+    factory :tumblr_article do
+      tumblr_url
+    end
   end
 
   factory :classification do

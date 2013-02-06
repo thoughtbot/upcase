@@ -34,6 +34,28 @@ RailsAdmin.config do |config|
     section_students
   end
 
+  config.model Article do
+    list do
+      field :title
+      field :published_on
+    end
+
+    edit do
+      group :default do
+        field :title
+        field :body
+        field :published_on
+        field :topics
+      end
+
+      group :extras do
+        active false
+        field :tumblr_url
+        field :body_html
+      end
+    end
+  end
+
   config.model Workshop do
     list do
       field :name

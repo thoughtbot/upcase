@@ -1,13 +1,15 @@
 class Article < ActiveRecord::Base
+  attr_protected :body_html
+
   # Associations
-  belongs_to :author
   has_many :classifications, as: :classifiable
   has_many :topics, through: :classifications
+  has_many :products, through: :topics, uniq: true
+  has_many :workshops, through: :topics, uniq: true
   # Validations
   validates :published_on, presence: true
   validates :body_html, presence: true
   validates :title, presence: true
-  validates :tumblr_url, presence: true
 
   def self.by_published
     order("published_on desc")
@@ -15,5 +17,19 @@ class Article < ActiveRecord::Base
 
   def self.top
     by_published.limit(10)
+  end
+
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
+
+  def body=(markdown)
+    if markdown.present?
+      self.body_html = BlueCloth.new(markdown).to_html
+    end
+  end
+
+  def keywords
+    topics.map(&:name).join(',')
   end
 end

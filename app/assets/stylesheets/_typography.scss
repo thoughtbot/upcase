@@ -14,6 +14,12 @@ h2 {
   text-rendering: optimizeLegibility;
 }
 
+.product-title {
+  h2 {
+    margin-bottom: 0;
+  }
+}
+
 .text-box {
   h2 {
     color: $darkwarmgray;
@@ -22,6 +28,14 @@ h2 {
   &.related-reading a h3 {
     color: $learnred;
   }
+}
+
+code {
+  @extend .gray-box;
+  display: block;
+  font-size: 15px;
+  font-family: monaco;
+  color: $darkwarmgray;
 }
 
 section#promo-wrapper {
@@ -67,6 +81,7 @@ h3 {
 .workshop-type {
   color: $learnred;
   font-size: 17px;
+  margin-bottom: 30px !important;
 }
 
 h4 {
@@ -119,6 +134,13 @@ p {
 
 .summary p {
   font: italic 17px $serif;
+}
+
+blockquote {
+  @extend p;
+  padding-left: 20px;
+  font-style: italic;
+  border-left: 4px solid $warmgray;
 }
 
 q {

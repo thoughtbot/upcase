@@ -52,6 +52,8 @@ Workshops::Application.routes.draw do
 
   resources :topics, only: :index
 
+  resources :articles, only: :show
+
   match '/admin' => 'admin/workshops#index', as: :admin
   namespace :admin do
     resources :workshops do
