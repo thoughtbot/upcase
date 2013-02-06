@@ -45,10 +45,6 @@ module ApplicationHelper
     controller.controller_name != 'topics'
   end
 
-  def page_title(title = nil)
-    title.presence || 'thoughtbot Learn'
-  end
-
   def github_auth_path
     '/auth/github'
   end
