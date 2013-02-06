@@ -30,6 +30,11 @@ body.products-index {
 }
 
 body.products-show, body.workshops-show {
+  .flashes .flash.notice {
+    color: $learnred;
+    font: 400 28px/32px $sans-serif;
+  }
+
   section.content {
     .text-box {
 

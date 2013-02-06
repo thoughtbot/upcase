@@ -22,11 +22,6 @@ feature 'Subscriber accesses content' do
     expect(page).to_not have_content I18n.t('products.show.purchase_for_company')
   end
 
-  def sign_in_as_user_with_subscription
-    @current_user = create(:user, :with_subscription)
-    visit products_path(as: @current_user)
-  end
-
   def create_all_product_types
     create(:video_product)
     create(:book_product)

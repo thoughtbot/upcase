@@ -39,7 +39,7 @@ module Playbook
     end
 
     def save_as_article
-      article = Article.find_or_initialize_by_tumblr_url(@url)
+      article = Article.find_or_initialize_by_external_url(@url)
       article.body_html    = content
       article.published_on = last_modified
       article.title        = title
