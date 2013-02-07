@@ -113,6 +113,7 @@ FactoryGirl.define do
       product_type 'book'
       github_team 9999
       fulfillment_method 'github'
+      github_url 'http://github.com/thoughtbot/book-repo'
     end
 
     factory :video_product do
