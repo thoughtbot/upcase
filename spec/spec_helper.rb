@@ -6,6 +6,7 @@ require 'rspec/rails'
 require 'paperclip/matchers'
 require "email_spec"
 require 'webmock/rspec'
+require 'clearance/testing'
 
 WebMock.disable_net_connect!(:allow_localhost => true)
 
@@ -26,6 +27,7 @@ RSpec.configure do |config|
   config.include EmailSpec::Helpers
   config.include EmailSpec::Matchers
   config.include FactoryGirl::Syntax::Methods
+  config.include Subscriptions
 
   config.mock_with :mocha
 end

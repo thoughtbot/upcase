@@ -15,7 +15,7 @@ FactoryGirl.define do
     "title #{n}"
   end
 
-  sequence :tumblr_url do |n|
+  sequence :external_url do |n|
     "http://robots.thoughtbot.com/#{n}"
   end
 
@@ -35,7 +35,7 @@ FactoryGirl.define do
     title
 
     factory :tumblr_article do
-      tumblr_url
+      external_url
     end
   end
 
