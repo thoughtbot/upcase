@@ -31,7 +31,6 @@ feature 'Subscriber accesses content' do
     click_link I18n.t('products.show.purchase_for_yourself')
     click_button 'Get Access'
 
-    expect(page).to have_content I18n.t('subscriber.purchases.show.added_to_github_repo')
     expect(AddGithubTeamMemberJob).to have_received(:enqueue).with(book_product.github_team,
                                                                    @current_user.github_username,
                                                                    Purchase.last.id)
