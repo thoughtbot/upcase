@@ -50,7 +50,7 @@ RailsAdmin.config do |config|
 
       group :extras do
         active false
-        field :tumblr_url
+        field :external_url
         field :body_html
       end
     end
