@@ -19,11 +19,6 @@ en:
     application:
       meta_description: 'Workshops, screencasts, videos, and books to help you learn web design and development.'
 
-  subscriber:
-    purchases:
-      show:
-        added_to_github_repo: You are now being added to the GitHub repository.
-
   articles:
     index:
       heading:
