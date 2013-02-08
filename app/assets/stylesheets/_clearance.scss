@@ -18,6 +18,11 @@ body.clearance-passwords {
 body.sessions,
 body.users-new,
 body.clearance-users {
+
+  .flashes + .content {
+    padding-top: 2em;
+  }
+
   #form-container {
     width: flex-grid(12);
     margin-left: 143px;

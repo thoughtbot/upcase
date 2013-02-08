@@ -1,7 +1,7 @@
 <section id="form-container">
   <h2>Sign up</h2>
   <div class="github-signin">
-    <%= link_to "Sign in with GitHub", github_auth_path %>
+    <%= link_to "Sign up with GitHub", github_auth_path %>
   </div>
   <div class="or-signin">
   or
@@ -20,5 +20,10 @@
         <%= form.action :submit, label: 'Sign up' %>
       <% end %>
     <% end %>
+    <ul class="signup-forgot">
+      <li>
+        <%= link_to "Already have an account? Sign in.", sign_in_path(return_to: params[:return_to]) %>
+      </li>
+    </ul>
   </div>
 </section>
