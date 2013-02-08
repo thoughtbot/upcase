@@ -79,6 +79,7 @@ group :test do
   gem 'database_cleaner', '0.7.2'
   gem 'email_spec', '1.2.1'
   gem 'factory_girl_rails', '3.3.0'
+  gem 'launchy'
   gem 'mocha', '0.10.5'
   gem 'selenium-webdriver', '2.29.0'
   gem 'sham_rack', '1.3.1'

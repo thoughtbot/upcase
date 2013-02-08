@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
         @products = @article.products.ordered.active
         @workshops = @article.workshops.only_public.by_position
       else
-        redirect_to subscription_product, notice: t('shared.protected_subscription_content')
+        redirect_to subscription_product, notice: t('shared.subscriptions.protected_content')
       end
     else
       redirect_to @article.external_url, status: :moved_permanently

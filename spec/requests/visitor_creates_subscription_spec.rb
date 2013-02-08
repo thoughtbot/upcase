@@ -1,0 +1,59 @@
+require 'spec_helper'
+
+feature 'Visitor is asked to create a user before subscription' do
+  background do
+    create_subscribeable_product
+  end
+
+  scenario 'visitor attempts to subscribe' do
+    sign_out
+    attempt_to_subscribe
+
+    expect(current_url).to eq sign_up_url
+    expect(page).to have_content(I18n.t('shared.subscriptions.user_required'))
+
+    sign_up
+
+    expect(current_url).to eq new_product_purchase_url(subscription_product, variant: 'individual')
+  end
+
+  def create_subscribeable_product
+    @subscription_product = create(:subscribeable_product)
+  end
+
+  def create_product_with_video
+    video_product = create :video_product
+    create :video, watchable: video_product
+    video_product
+  end
+
+  def sign_out
+    visit root_path(as: nil)
+  end
+
+  def attempt_to_subscribe
+    click_link 'VIEW ALL'
+    click_link 'Subscribe'
+
+    within '.individual-purchase' do
+      find('.license-button').click
+    end
+  end
+
+  def current_user
+    @current_user
+  end
+
+  def subscription_product
+    @subscription_product
+  end
+
+  def sign_up
+    user = build(:user)
+    fill_in 'First name', with: user.first_name
+    fill_in 'Last name', with: user.last_name
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Sign up'
+  end
+end
