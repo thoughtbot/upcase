@@ -5,19 +5,28 @@ feature 'User creates a subscription' do
 
   background do
     create_subscribeable_product
+    sign_in
   end
 
   scenario 'creates a Stripe subscription with a valid credit card' do
-    sign_in
     subscribe_with_valid_credit_card
     expect(current_user).to have_active_subscription
     expect(current_path).to eq products_path
   end
 
   scenario 'does not create a Stripe subscription with an invalid credit card' do
-    sign_in
     subscribe_with_invalid_credit_card
     expect(current_user).not_to have_active_subscription
+  end
+
+  scenario 'does not see a group option' do
+    visit_subscription_product_page
+    expect(page).to_not have_content(I18n.t('products.show.purchase_for_company'))
+  end
+
+  def visit_subscription_product_page
+    click_link 'VIEW ALL'
+    click_link 'Subscribe'
   end
 
   def create_subscribeable_product
@@ -36,22 +45,19 @@ feature 'User creates a subscription' do
   end
 
   def subscribe_with_valid_credit_card
-    click_link 'VIEW ALL'
-    click_link 'Subscribe'
-
-    click_purchase_link
-
+    start_purchasing_subscription
     fill_out_credit_card_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
   end
 
   def subscribe_with_invalid_credit_card
-    click_link 'VIEW ALL'
-    click_link 'Subscribe'
-
-    click_purchase_link
-
+    start_purchasing_subscription
     FakeStripe.failure = true
     fill_out_credit_card_form_with 'bad cc number'
+  end
+
+  def start_purchasing_subscription
+    visit_subscription_product_page
+    click_purchase_link
   end
 
   def click_purchase_link
