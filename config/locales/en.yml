@@ -32,6 +32,7 @@ en:
       free_to_subscribers: "You're a subscriber, so you receive this product for free!"
       purchase_for_company: Purchase for Your Company
       purchase_for_yourself: Purchase for Yourself
+      purchase_subscription: Purchase a Monthly Subscription
 
   section_teachers:
     section_teacher:
