@@ -9,6 +9,10 @@ class PurchasesController < ApplicationController
       @purchase.defaults_from_user(current_user)
       @active_card = retrieve_active_card
       km.record("Checkout", { "Product Name" => @purchaseable.name, "Order Total" => @purchase.price })
+
+      if @purchase.subscription? && signed_out?
+        deny_access(t('shared.subscriptions.user_required'))
+      end
     end
   end
 
@@ -118,5 +122,9 @@ class PurchasesController < ApplicationController
     else
       purchase_path @purchase
     end
+  end
+
+  def url_after_denied_access_when_signed_out
+    sign_up_url
   end
 end

@@ -28,8 +28,8 @@ describe 'Articles' do
       expect(page).not_to have_css("a[href='#{article_path(tumblr_article)}']")
       expect(page).to have_css("a[href='#{tumblr_article.external_url}']")
       expect(page).to have_css("a[href='#{article_path(article)}']")
-      expect(page).not_to have_css("#article_#{tumblr_article.id}", text: I18n.t('shared.subscribers_only_icon'))
-      expect(page).to have_css("#article_#{article.id}", text: I18n.t('shared.subscribers_only_icon'))
+      expect(tumblr_article).not_to have_subscription_icon
+      expect(article).to have_subscription_icon
     end
   end
 

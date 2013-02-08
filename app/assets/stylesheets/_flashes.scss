@@ -11,6 +11,11 @@
     &.failure {
       background: #f8bcba;
     }
+
+    &.notice {
+      color: $learnred;
+      font: 400 28px/32px $sans-serif;
+    }
   }
 }
 

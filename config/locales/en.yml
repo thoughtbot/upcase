@@ -57,8 +57,10 @@ en:
       Subscribe
     videos:
       VIDEOS
-    subscribers_only_icon: ✶
-    protected_subscription_content: Sorry, that article is only available to Prime subscribers.
+    subscriptions:
+      icon: ✶
+      protected_content: Sorry, that article is only available to Prime subscribers.
+      user_required: Sign in or sign up to subscribe to Prime.
 
   topics:
     workshop:

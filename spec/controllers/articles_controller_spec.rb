@@ -31,7 +31,7 @@ describe ArticlesController do
         get :show, id: article.to_param
 
         expect(response).to redirect_to product_path(subscription_product)
-        expect(flash[:notice]).to include I18n.t('shared.protected_subscription_content')
+        expect(flash[:notice]).to include I18n.t('shared.subscriptions.protected_content')
       end
     end
   end
