@@ -18,13 +18,13 @@
     <%= link_to new_product_purchase_path(product, variant: :individual),
       class: 'license-button button',
       id: "#{product.sku}-purchase-individual" do %>
-      <%= t('products.show.purchase_for_yourself') %>
+      <%= purchase_button_text(product) %>
     <% end %>
   <% else %>
     <%= link_to new_product_purchase_path(product, variant: :alternate_individual),
       class: 'license-button button',
       id: "#{product.sku}-purchase-individual" do %>
-      <%= t('products.show.purchase_for_yourself') %>
+      <%= purchase_button_text(product) %>
     <% end %>
   <% end %>
 </div>

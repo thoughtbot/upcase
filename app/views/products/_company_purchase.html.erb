@@ -1,4 +1,4 @@
-<% unless current_user_has_active_subscription? %>
+<% unless current_user_has_active_subscription? || product.subscription? %>
   <h2>
     Group
     <% if pricing_scheme == "primary" %>
