@@ -39,9 +39,7 @@ feature 'User creates a subscription' do
     click_link 'VIEW ALL'
     click_link 'Subscribe'
 
-    within '.individual-purchase' do
-      find('.license-button').click
-    end
+    click_purchase_link
 
     fill_out_credit_card_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
   end
@@ -50,12 +48,16 @@ feature 'User creates a subscription' do
     click_link 'VIEW ALL'
     click_link 'Subscribe'
 
-    within '.individual-purchase' do
-      find('.license-button').click
-    end
+    click_purchase_link
 
     FakeStripe.failure = true
     fill_out_credit_card_form_with 'bad cc number'
+  end
+
+  def click_purchase_link
+    within '.individual-purchase' do
+      click_link I18n.t('products.show.purchase_subscription')
+    end
   end
 
   def current_user
