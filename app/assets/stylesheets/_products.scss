@@ -22,6 +22,26 @@ body.products-index {
     }
   }
 
+  section#subscription-banner {
+    @extend #promo-wrapper;
+    padding: 0 1em 0 1em;
+
+    a {
+      @extend .text-box;
+      display: block;
+      width: 100%;
+
+      h3 {
+        margin: 0;
+        padding: 0;
+
+        span {
+          color: $learnred;
+        }
+      }
+    }
+  }
+
   @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
     .products-container {
       width: 100% !important;
