@@ -1,9 +1,13 @@
 <% content_for :subject, t('.title') %>
 
 <% unless current_user_has_active_subscription? %>
-  <section id='subscription-banner'>
-    <%= link_to 'Subscribe', subscription_product %>
-  </section>
+  <% if subscription_product %>
+    <section id='subscription-banner'>
+      <%= link_to subscription_product do %>
+        <h3><span><%= t('shared.subscribers_only_icon') %> Subscribe to <%= subscription_product.name %></span> &mdash; <%= subscription_product.tagline %></h3>
+      <% end %>
+    </section>
+  <% end %>
 <% end %>
 
 <section id="promo-wrapper">
