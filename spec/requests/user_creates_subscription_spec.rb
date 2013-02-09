@@ -24,6 +24,12 @@ feature 'User creates a subscription' do
     expect(page).to_not have_content(I18n.t('products.show.purchase_for_company'))
   end
 
+  scenario 'sees that the subscription is per month' do
+    visit_subscription_product_page
+    click_link I18n.t('products.show.purchase_subscription')
+    expect(page).to have_content('per month')
+  end
+
   def visit_subscription_product_page
     click_link 'VIEW ALL'
     click_link 'Subscribe'

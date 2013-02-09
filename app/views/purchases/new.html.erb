@@ -1,9 +1,10 @@
 <% content_for :subject, @purchaseable.name %>
 
 <%= render 'checkout_form',
-           title: t('purchase.product.heading_html', name: @purchaseable.name),
-           price: @purchase.price,
-           form_partial: 'purchases/form' %>
+  title: t('purchase.product.heading_html', name: @purchaseable.name),
+  subscription: @purchaseable.subscription?,
+  price: @purchase.price,
+  form_partial: 'purchases/form' %>
 
 <aside>
   <h4 class="terms">Terms and conditions</h3>
