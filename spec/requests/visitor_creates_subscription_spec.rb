@@ -3,10 +3,10 @@ require 'spec_helper'
 feature 'Visitor is asked to create a user before subscription' do
   background do
     create_subscribeable_product
+    sign_out
   end
 
   scenario 'visitor attempts to subscribe' do
-    sign_out
     attempt_to_subscribe
 
     expect(current_url).to eq sign_up_url
