@@ -120,7 +120,7 @@ class Purchase < ActiveRecord::Base
     if purchaser
       self.name = purchaser.name
       self.email = purchaser.email
-      if fulfilled_with_github? && purchaser.github_username.present?
+      if github_username_needed? && purchaser.github_username.present?
         self.readers = [purchaser.github_username]
       end
     end
@@ -137,7 +137,6 @@ class Purchase < ActiveRecord::Base
     set_as_paid
     save!
   end
-
 
   def fulfilled_with_github?
     purchaseable.fulfillment_method == "github"
@@ -176,6 +175,10 @@ class Purchase < ActiveRecord::Base
   end
 
   private
+
+  def github_username_needed?
+    fulfilled_with_github? || subscription?
+  end
 
   def being_paid?
     paid? && paid_was == false

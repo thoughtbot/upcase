@@ -27,8 +27,31 @@ feature 'User creates a subscription' do
 
   scenario 'sees that the subscription is per month' do
     visit_subscription_product_page
-    click_link I18n.t('products.show.purchase_subscription')
+    click_purchase_link
+
     expect(page).to have_content('per month')
+  end
+
+  scenario "user without github username sees github username input" do
+    current_user.github_username = nil
+    current_user.save!
+
+    visit_subscription_product_page
+    click_purchase_link
+
+    expect(page).to have_content('GitHub username')
+    expect(page).to have_css('input#reader_1')
+  end
+
+  scenario "user with github username doesn't see github username input" do
+    current_user.github_username = 'cpyteltest'
+    current_user.save!
+
+    visit_subscription_product_page
+    click_purchase_link
+
+    expect(page).not_to have_content('GitHub username')
+    expect(page).not_to have_css('input#reader_1')
   end
 
   def visit_subscription_product_page
