@@ -9,11 +9,19 @@ feature 'Visitor is asked to create a user before subscription' do
   scenario 'visitor attempts to subscribe' do
     attempt_to_subscribe
 
-    expect(current_url).to eq sign_up_url
-    expect(page).to have_content(I18n.t('shared.subscriptions.user_required'))
+    expect_to_be_on_subscription_landing_page
 
     sign_up
 
+    expect_to_be_on_subscription_purchase_page
+  end
+
+  def expect_to_be_on_subscription_landing_page
+    expect(current_url).to eq sign_up_url
+    expect(page).to have_content(I18n.t('shared.subscriptions.user_required'))
+  end
+
+  def expect_to_be_on_subscription_purchase_page
     expect(current_url).to eq new_product_purchase_url(subscription_product, variant: 'individual')
   end
 
