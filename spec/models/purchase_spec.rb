@@ -456,4 +456,16 @@ describe Purchase, 'given a purchaser' do
       purchase.readers.first.should == purchaser.github_username
     end
   end
+
+  context 'for a subscription product' do
+    it 'populates default info including first reader' do
+      product = create(:product, fulfillment_method: 'other', product_type: 'subscription')
+      purchase = product.purchases.build
+      purchase.defaults_from_user(purchaser)
+
+      purchase.name.should == purchaser.name
+      purchase.email.should == purchaser.email
+      purchase.readers.first.should == purchaser.github_username
+    end
+  end
 end

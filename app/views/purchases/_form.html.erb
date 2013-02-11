@@ -8,6 +8,9 @@
     <%= form.input :variant, as: :hidden %>
     <%= form.input :name %>
     <%= form.input :email, hint: "The receipt will be sent to this address if billing email is blank." %>
+    <% if @purchaseable.subscription? && current_user.github_username.blank? %>
+      <%= render 'first_reader', label: 'GitHub username', purchase: @purchase %>
+    <% end %>
     <% if @purchaseable.fulfillment_method == 'in-person' %>
       <%= form.input :comments, :label => 'Do you have any dietary restrictions or special requests?' %>
     <% end %>
