@@ -22,6 +22,7 @@ topic. Visit our live chat here: <%= CHAT_LINK %>
 
 <%= render partial: 'create_account_if_needed', locals: { purchase: @purchase } %>
 
+<% if include_receipt?(@purchase) -%>
 RECEIPT #<%= @purchase.id %>
 
 Date <%= @purchase.created_at.to_s(:short_date) %>
@@ -55,3 +56,4 @@ Amount paid : <%= number_to_currency @purchase.paid_price, precision: 2 %> USD
 Balance due : $0.00 USD
 
 * EU customers: prices exclude VAT
+<% end -%>
