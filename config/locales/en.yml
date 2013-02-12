@@ -46,21 +46,22 @@ en:
     intro:
       Guided learning on modern development technologies and practices. Dig in.
     books:
-      BOOKS
+      Books
     in_person_workshops:
-      IN-PERSON WORKSHOPS
+      In-person Workshops
     learn:
       Learn
     online_workshops:
-      ONLINE WORKSHOPS
+      Online Workshops
     subscription_call_to_action:
       Subscribe
     videos:
-      VIDEOS
+      Videos
     subscriptions:
       icon: ✶
       protected_content: ✶ Sorry, that article is only available to Prime subscribers.
       user_required: ✶ Sign in or sign up to subscribe to Prime.
+    local_articles: Bytes
 
   topics:
     workshop:

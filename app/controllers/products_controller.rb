@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
     @online_workshops = online_workshops + workshop_products
     @books = Product.books.active.ordered
     @videos = Product.videos.active.ordered
+    @articles = Article.local.top
   end
 
   def show
