@@ -110,5 +110,7 @@ en:
         View all %{name} articles
 
   purchase:
+    flashes:
+      success: Thank you for purchasing %{name}. We will email you your receipt shortly.
     product:
       heading_html: Complete your purchase of <em>%{name}</em>

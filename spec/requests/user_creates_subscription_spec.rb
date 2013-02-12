@@ -12,6 +12,7 @@ feature 'User creates a subscription' do
     subscribe_with_valid_credit_card
     expect(current_user).to have_active_subscription
     expect(current_path).to eq products_path
+    expect(page).to have_content(I18n.t('purchase.flashes.success', name: subscription_product.name))
   end
 
   scenario 'does not create a Stripe subscription with an invalid credit card' do
@@ -36,7 +37,7 @@ feature 'User creates a subscription' do
   end
 
   def create_subscribeable_product
-    create(:subscribeable_product)
+    @subscription_product = create(:subscribeable_product)
   end
 
   def create_product_with_video
@@ -74,6 +75,10 @@ feature 'User creates a subscription' do
 
   def current_user
     @current_user
+  end
+
+  def subscription_product
+    @subscription_product
   end
 
   def fill_out_credit_card_form_with(credit_card_number)

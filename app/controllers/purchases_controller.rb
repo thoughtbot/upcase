@@ -35,7 +35,7 @@ class PurchasesController < ApplicationController
       km_http_client.record(@purchase.email, "Submit Payment", { "Product Name" => @purchaseable.name, "Order Total" => @purchase.price })
       track_purchase_if_paid(@purchase)
 
-      redirect_to success_url
+      redirect_to success_url, notice: t('.purchase.flashes.success', name: @purchaseable.name)
     else
       @active_card = retrieve_active_card
       render :new
