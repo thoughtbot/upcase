@@ -38,6 +38,16 @@ describe Article do
     end
   end
 
+  context '.local' do
+    it 'only includes local articles' do
+      article = create(:article)
+      tumblr_article = create(:tumblr_article)
+
+      expect(Article.local).to include article
+      expect(Article.local).not_to include tumblr_article
+    end
+  end
+
   context 'to_param' do
     it 'is the id and the parameterized title' do
       article = create(:article, title: 'Test Title')

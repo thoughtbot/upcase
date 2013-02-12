@@ -19,6 +19,10 @@ class Article < ActiveRecord::Base
     by_published.limit(10)
   end
 
+  def self.local
+    where("external_url IS NULL OR external_url = ''")
+  end
+
   def to_param
     "#{id}-#{title.parameterize}"
   end
