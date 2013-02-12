@@ -28,14 +28,25 @@
     </div>
   <% end %>
 
+  <div class="products-container">
   <% if @books.present? %>
-    <div class="products-container text-box">
+    <div class="text-box">
       <h2><%= t 'shared.books' %></h2>
       <ul>
         <%= render @books %>
       </ul>
     </div>
   <% end %>
+
+  <% if @articles.present? %>
+    <div class="text-box">
+      <h2><%= t 'shared.subscriptions.icon' %> <%= t 'shared.local_articles' %></h2>
+      <ul>
+        <%= render @articles %>
+      </ul>
+    </div>
+  <% end %>
+  </div>
 
   <% if @videos.present? %>
     <div class="products-container text-box">
