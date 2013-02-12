@@ -12,7 +12,7 @@
       <%= render 'first_reader', label: 'GitHub username', purchase: @purchase %>
     <% end %>
     <% if @purchaseable.fulfillment_method == 'in-person' %>
-      <%= form.input :comments, :label => 'Do you have any dietary restrictions or special requests?' %>
+      <%= form.input :comments, label: t('purchase.comments') %>
     <% end %>
   <% end %>
 

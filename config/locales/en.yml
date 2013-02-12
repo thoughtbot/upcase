@@ -34,6 +34,11 @@ en:
       purchase_for_yourself: Purchase for Yourself
       purchase_subscription: Purchase a Monthly Subscription
 
+  workshops:
+    show:
+      register: Register for this Workshop
+      free_to_subscribers: "You're a subscriber, so you can take this workshop for free!"
+
   section_teachers:
     section_teacher:
       header:
@@ -115,3 +120,8 @@ en:
       success: Thank you for purchasing %{name}. We will email you your receipt shortly.
     product:
       heading_html: Complete your purchase of <em>%{name}</em>
+    comments: Do you have any dietary restrictions or special requests?
+
+  subscriber_purchase:
+    flashes:
+      success: Thank you, we will email you a confirmation shortly.

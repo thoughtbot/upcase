@@ -29,4 +29,12 @@ class ApplicationController < ActionController::Base
     Product.subscriptions.first
   end
   helper_method :subscription_product
+
+  def find_purchaseable
+    if params[:product_id]
+      Product.find(params[:product_id])
+    else
+      Section.find(params[:section_id])
+    end
+  end
 end

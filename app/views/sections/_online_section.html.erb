@@ -8,50 +8,62 @@
 <section id="license">
   <div class="individual-purchase">
     <h2>
-      Single
+      <% unless current_user_has_active_subscription? %>
+        Single
+      <% end %>
       <span>
-        <% if pricing_scheme == "primary" %>
-          <%= number_to_currency online_section.individual_price, precision: 0 %>
+        <% if current_user_has_active_subscription? %>
+          Free
         <% else %>
-          <%= number_to_currency online_section.alternate_individual_price, precision: 0 %>
+          <% if pricing_scheme == "primary" %>
+            <%= number_to_currency online_section.individual_price, precision: 0 %>
+          <% else %>
+            <%= number_to_currency online_section.alternate_individual_price, precision: 0 %>
+          <% end %>
         <% end %>
       </span>
     </h2>
     <div class="license">
+      <% if current_user_has_active_subscription? %>
+        <p><%= t 'workshops.show.free_to_subscribers' %></p>
+      <% end %>
       <% if pricing_scheme == "primary" %>
         <%= link_to new_section_purchase_path(online_section, variant: :individual), class: 'license-button button' do %>
-          Purchase for Yourself
+          <%= t('workshops.show.register') %>
         <% end %>
       <% else %>
         <%= link_to new_section_purchase_path(online_section, variant: :alternate_individual), class: 'license-button button' do %>
-          Purchase for Yourself
+          <%= t('workshops.show.register') %>
         <% end %>
       <% end %>
     </div>
   </div>
-  <div class="company-purchase">
-    <h2>
-      Group
-      <span>
+
+  <% unless current_user_has_active_subscription? %>
+    <div class="company-purchase">
+      <h2>
+        Group
+        <span>
+          <% if pricing_scheme == "primary" %>
+            <%= number_to_currency online_section.company_price, precision: 0 %>
+          <% else %>
+            <%= number_to_currency online_section.alternate_company_price, precision: 0 %>
+          <% end %>
+        </span>
+      </h2>
+      <div class="license">
         <% if pricing_scheme == "primary" %>
-          <%= number_to_currency online_section.company_price, precision: 0 %>
+          <%= link_to new_section_purchase_path(online_section, variant: :company), class: 'license-button button' do %>
+            Purchase for Your Company
+          <% end %>
         <% else %>
-          <%= number_to_currency online_section.alternate_company_price, precision: 0 %>
+          <%= link_to new_section_purchase_path(online_section, variant: :alternate_company), class: 'license-button button' do %>
+            Purchase for Your Company
+          <% end %>
         <% end %>
-      </span>
-    </h2>
-    <div class="license">
-      <% if pricing_scheme == "primary" %>
-        <%= link_to new_section_purchase_path(online_section, variant: :company), class: 'license-button button' do %>
-          Purchase for Your Company
-        <% end %>
-      <% else %>
-        <%= link_to new_section_purchase_path(online_section, variant: :alternate_company), class: 'license-button button' do %>
-          Purchase for Your Company
-        <% end %>
-      <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </section>
 
 <section id="terms">
