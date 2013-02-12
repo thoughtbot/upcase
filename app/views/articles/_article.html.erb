@@ -3,7 +3,7 @@
     <h6><%= article.published_on.to_s(:short_date) %></h6>
     <h3>
       <% if article.local? %>
-        <%= t('shared.subscriptions.icon') %>
+        <span class='subscription_icon'><%= t('shared.subscriptions.icon') %></span>
       <% end %>
       <%= article.title %>
     </h3>

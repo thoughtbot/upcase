@@ -42,6 +42,12 @@ body.products-index {
     }
   }
 
+  .article {
+    .subscription_icon, .excerpt {
+      display: none;
+    }
+  }
+
   @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
     .products-container {
       width: 100% !important;
