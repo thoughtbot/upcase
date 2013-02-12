@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
   def new
-    @purchaseable = purchaseable
+    @purchaseable = find_purchaseable
 
     if current_user_has_active_subscription?
       render 'for_subscribers'
@@ -17,7 +17,7 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    @purchaseable = purchaseable
+    @purchaseable = find_purchaseable
     @purchase = @purchaseable.purchases.build(params[:purchase])
     @purchase.user = current_user
 
@@ -48,7 +48,6 @@ class PurchasesController < ApplicationController
     unless @purchase.paid?
       redirect_to @purchaseable
     end
-    km.record("View Receipt", { "Product Name" => @purchaseable.name })
   end
 
   def watch
@@ -81,14 +80,6 @@ class PurchasesController < ApplicationController
   def track_purchase_if_paid(purchase)
     if purchase.paid?
       km_http_client.record(purchase.email, "Purchased", { "Product Name" => purchase.purchaseable.name, "Order Total" => @purchase.price })
-    end
-  end
-
-  def purchaseable
-    if params[:product_id]
-      Product.find(params[:product_id])
-    elsif params[:section_id]
-      Section.find(params[:section_id])
     end
   end
 

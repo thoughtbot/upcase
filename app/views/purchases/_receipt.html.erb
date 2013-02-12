@@ -1,0 +1,60 @@
+<% if include_receipt?(purchase) %>
+  <section class="receipt"><hr>
+    <h3>Receipt #<%= purchase.id %> on <em><%= purchase.created_at.to_s(:short_date) %></em></h3>
+
+    <p class="billing-address">
+      <strong>Bill To</strong><br/>
+      <%= purchase.name %><br/>
+      <% unless purchase.organization.blank? -%>
+        <%= purchase.organization %><br/>
+      <% end -%>
+      <%= purchase.address1 %><br/>
+      <% unless purchase.address2.blank? -%>
+        <%= purchase.address2 %><br/>
+      <% end -%>
+      <%= purchase.city %>, <%= purchase.state %> <%= purchase.zip_code %>
+    </p>
+
+    <p class="billing-address">
+      <strong>Sold by</strong><br/>
+      thoughtbot, inc.<br/>
+      228 Park Ave S #19298<br/>
+      New York NY  10003<br/>
+      United States <br/>
+      Phone:<br/>
+      1 (877) 976-2687 (US toll-free)<br/>
+      +46 81 211 11 52 (Europe)
+    </p>
+
+    <table class="purchase-pricing">
+      <tr>
+        <td><%= purchase.purchaseable_name %> (<%= purchase.variant %>)</td><td class="amount"><%= number_to_currency purchase.price, precision: 2 %> USD</td>
+      </tr>
+      <tr>
+        <td>Tax</td><td class="amount">$0.00 USD</td>
+      </tr>
+      <tr>
+        <td>Shipping</td><td class="amount">$0.00 USD</td>
+      </tr>
+      <tr>
+        <td><strong>Total</strong></td><td class="amount"><strong><%= number_to_currency purchase.price, precision: 2 %></strong> USD*</td>
+      </tr>
+      <tr>
+        <td><strong>Amount paid</strong></td><td class="amount"><strong><%= number_to_currency purchase.paid_price, precision: 2 %></strong> USD</td>
+      </tr>
+      <tr>
+        <td><strong>Balance due</strong></td><td class="amount"><strong><%= number_to_currency 0, precision: 2 %></strong> USD</td>
+      </tr>
+    </table>
+
+    <p><small>* EU customers: prices exclude VAT</small></p>
+  </section>
+
+  <% content_for :javascript do %>
+    <%= javascript_tag do %>
+      $(document).ready(function(){
+        _kmq.push(['record', 'Viewed Receipt', {'Product':'<%= purchase.purchaseable_name %>'}]);
+      });
+    <% end %>
+  <% end %>
+<% end %>

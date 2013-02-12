@@ -199,7 +199,7 @@ Feature: Selecting a workshop and registering for it
     When I go to the home page
     And I view all products
     And I follow "Online Workshop"
-    And I follow "Purchase for Yourself"
+    And I follow "Register for this Workshop"
     Then I should not see "Do you have any dietary restrictions or special requests?"
 
   Scenario: Visitor registers for an online workshop for a company

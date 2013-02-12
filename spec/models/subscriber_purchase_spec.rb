@@ -7,6 +7,15 @@ describe '#create' do
     user.purchases.last.payment_method.should == 'free'
   end
 
+  it 'sets the comments on the purchase if provided' do
+    user = create(:user, :with_subscription)
+    product = create(:workshop_product)
+    subscriber_purchase = SubscriberPurchase.new(product, user, 'test')
+    purchase = subscriber_purchase.create
+
+    purchase.comments.should == 'test'
+  end
+
   context 'when the purchaseable is a github fulfilled product' do
     it 'enqueues a job to add the subscriber to the repo' do
       AddGithubTeamMemberJob.stubs(:enqueue)

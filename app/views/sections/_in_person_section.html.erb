@@ -5,10 +5,12 @@
     <h2>
       <%= in_person_section.city %>
       <span>
-        <% if pricing_scheme == "primary" %>
-          <%= number_to_currency in_person_section.individual_price, precision: 0 %>
-        <% else %>
-          <%= number_to_currency in_person_section.alternate_individual_price, precision: 0 %>
+        <% unless current_user_has_active_subscription? %>
+          <% if pricing_scheme == "primary" %>
+            <%= number_to_currency in_person_section.individual_price, precision: 0 %>
+          <% else %>
+            <%= number_to_currency in_person_section.alternate_individual_price, precision: 0 %>
+          <% end %>
         <% end %>
       </span>
     </h2>
@@ -30,11 +32,14 @@
   </div>
 
   <div id="register">
+    <% if current_user_has_active_subscription? %>
+      <p><%= t 'workshops.show.free_to_subscribers' %></p>
+    <% end %>
     <% if in_person_section.full? %>
       <a href="#new_follow_up" class="button">Get notified</a>
     <% else %>
       <%= link_to registration_url(in_person_section), class: 'button' do %>
-        Register for this Workshop
+        <%= t('workshops.show.register') %>
       <% end %>
     <% end %>
   </div>

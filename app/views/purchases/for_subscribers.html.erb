@@ -4,11 +4,8 @@
   <div class="text-box">
     <h2>You're about to get access to <%= @purchaseable.name %> for <em class="totalprice"> $0.00</em></h2>
 
-    <p>This product is delivered as access to a GitHub repository. Your GitHub user will be added as a collaborator when you press the button below.</p>
+    <%= render 'subscriber_delivery_info', purchaseable: @purchaseable %>
 
-    <%= form_tag subscriber_purchases_path, html: { method: 'post' } do %>
-      <%= hidden_field_tag 'purchaseable_id', @purchaseable.id %>
-      <%= submit_tag 'Get Access' %>
-    <% end %>
+    <%= render 'subscriber_purchase_form' %>
   </div>
 </div>
