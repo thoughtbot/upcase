@@ -138,6 +138,51 @@ describe Mailer do
       end
     end
 
+    context 'for user who has a subscription' do
+      context 'for a non-subscription product' do
+        it 'does not contain the receipt' do
+          user = create(:user, :with_subscription)
+          purchase = create(:book_purchase, user: user)
+
+          expect_not_to_contain_receipt(purchase)
+        end
+      end
+
+      context 'for a subscription product' do
+        it 'does contain the receipt' do
+          user = create(:user, :with_subscription)
+          purchase = create(:subscription_purchase, user: user)
+
+          expect_to_contain_receipt(purchase)
+        end
+      end
+    end
+
+    context 'for user who does not have a subscription' do
+      it 'does contain the receipt' do
+        user = create(:user)
+        purchase = create(:book_purchase, user: user)
+
+        expect_to_contain_receipt(purchase)
+      end
+    end
+
+    context 'for a purchase with no user' do
+      it 'does contain the receipt' do
+        purchase = create(:book_purchase, user: nil)
+
+        expect_to_contain_receipt(purchase)
+      end
+    end
+
+    def expect_to_contain_receipt(purchase)
+      expect(email_for(purchase)).to have_body_text(/RECEIPT/)
+    end
+
+    def expect_not_to_contain_receipt(purchase)
+      expect(email_for(purchase)).not_to have_body_text(/RECEIPT/)
+    end
+
     def email_for(purchase)
       Mailer.purchase_receipt(purchase)
     end

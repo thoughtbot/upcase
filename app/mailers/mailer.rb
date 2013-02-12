@@ -1,5 +1,6 @@
 class Mailer < ActionMailer::Base
   default from: Clearance.configuration.mailer_sender
+  add_template_helper PurchasesHelper
 
   def registration_notification(purchase)
     @comments = purchase.comments
