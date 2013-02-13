@@ -5,10 +5,14 @@
     <% else %>
       <h2><%= title %> for <em class="totalprice"><%= number_to_currency price, precision: 0 %></em><% if subscription %> per month<% end %></h2>
       <div id="total">
-        <p class="coupon-note"><%= link_to "Have a coupon code?", "#" %></p>
+        <% unless subscription %>
+          <p class="coupon-note"><%= link_to "Have a coupon code?", "#" %></p>
+        <% end %>
       </div>
     <% end %>
-    <%= render 'redemptions/form' %>
+    <% unless subscription %>
+      <%= render 'redemptions/form' %>
+    <% end %>
     <%= render form_partial %>
   </div>
 </div>
