@@ -35,10 +35,12 @@
       <label for="purchase_payment_method_stripe">
         <%= image_tag "icons/visa.png" %><%= image_tag "icons/master.png" %><%= image_tag "icons/american_express.png" %>
       </label>
-      <%= radio_button_tag "purchase[payment_method]", "paypal", @purchase.paypal?, id: "purchase_payment_method_paypal" %>
-      <label for="purchase_payment_method_paypal">
-        <img src="https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif" alt="PayPal Express Logo">
-      </label>
+      <% unless @purchase.subscription? %>
+        <%= radio_button_tag "purchase[payment_method]", "paypal", @purchase.paypal?, id: "purchase_payment_method_paypal" %>
+        <label for="purchase_payment_method_paypal">
+          <img src="https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif" alt="PayPal Express Logo">
+        </label>
+      <% end %>
     </li>
     <li class="payment-errors"></li>
     <% if @active_card %>
