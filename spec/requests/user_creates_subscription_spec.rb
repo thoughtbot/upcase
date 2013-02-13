@@ -32,6 +32,13 @@ feature 'User creates a subscription' do
     expect(page).to have_content('per month')
   end
 
+  scenario 'does not see the option to pay with paypal' do
+    visit_subscription_product_page
+    click_purchase_link
+
+    expect(page).not_to have_css('#purchase_payment_method_paypal')
+  end
+
   scenario "user without github username sees github username input" do
     current_user.github_username = nil
     current_user.save!
