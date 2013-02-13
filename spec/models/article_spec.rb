@@ -79,6 +79,13 @@ describe Article do
       article.save
       expect(article.body_html).to eq 'hello'
     end
+
+    it 'also saves the original Markdown in body' do
+      article = Article.new
+      article.assign_attributes(title: 'Test', body: '*hello*', published_on: Date.today)
+      article.save!
+      expect(article.reload.body).to eq '*hello*'
+    end
   end
 
   context 'keywords' do
