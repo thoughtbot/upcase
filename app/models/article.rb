@@ -28,6 +28,7 @@ class Article < ActiveRecord::Base
   end
 
   def body=(markdown)
+    self[:body] = markdown
     if markdown.present?
       self.body_html = BlueCloth.new(markdown).to_html
     end
