@@ -39,6 +39,13 @@ feature 'User creates a subscription' do
     expect(page).not_to have_css('#purchase_payment_method_paypal')
   end
 
+  scenario 'does not see the coupon functionality' do
+    visit_subscription_product_page
+    click_purchase_link
+
+    expect(page).not_to have_content('Have a coupon code?')
+  end
+
   scenario "user without github username sees github username input" do
     current_user.github_username = nil
     current_user.save!
