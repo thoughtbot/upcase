@@ -9,6 +9,9 @@
           <p class="coupon-note"><%= link_to "Have a coupon code?", "#" %></p>
         <% end %>
       </div>
+      <% if signed_out? %>
+        <p class="workshop-alert sign-in-prompt">Already have an account? <%= link_to 'Sign in.', sign_in_path(return_to: request.fullpath) %></p>
+      <% end %>
     <% end %>
     <% unless subscription %>
       <%= render 'redemptions/form' %>
