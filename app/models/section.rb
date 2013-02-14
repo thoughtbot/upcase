@@ -136,6 +136,10 @@ class Section < ActiveRecord::Base
     false
   end
 
+  def purchase_for(user)
+    workshop.purchases.paid.where(user_id: user).first
+  end
+
   private
 
   def must_have_at_least_one_teacher

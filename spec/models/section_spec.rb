@@ -213,4 +213,22 @@ describe Section do
       expect(Section.new).not_to be_subscription
     end
   end
+
+  describe 'purchase_for' do
+    it 'returns the purchase when a user has purchased a section' do
+      user = create(:user)
+      purchase = create(:online_section_purchase, user: user)
+      section = purchase.purchaseable
+
+      expect(section.purchase_for(user)).to eq purchase
+    end
+
+    it 'returns nil when a user has not purchased a product' do
+      user = create(:user)
+      purchase = create(:online_section_purchase)
+      section = purchase.purchaseable
+
+      expect(section.purchase_for(user)).to be_nil
+    end
+  end
 end
