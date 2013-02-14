@@ -29,14 +29,22 @@ section#header-wrapper {
       float: left;
       width: 100%;
 
-      img {
-        vertical-align: -15px;
+      a {
+        display: inline-block;
+        position: relative;
+        top: 14px;
+        width: 68px;
+
+        img {
+          display: block;
+        }
       }
 
       h1 {
         @include span-columns(10);
         font-size: 55px;
-        line-height: 40px;
+        line-height: .9em;
+        margin-top: -15px;
         padding-left: 240px;
         text-align: left;
         text-indent: -240px;
