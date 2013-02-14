@@ -1,9 +1,17 @@
 <%= semantic_form_for @purchase, url: polymorphic_path([@purchaseable, :purchases]), html: { method: 'post' } do |form| %>
   <%= form.semantic_errors %>
   <%= hidden_field_tag 'coupon_id' %>
-  <% if signed_out? %>
-    <div class="workshop-alert">Already have an account? <%= link_to 'Sign in.', sign_in_path(return_to: request.fullpath) %></div>
+
+  <% unless current_user_has_active_subscription? %>
+    <% if subscription_product %>
+      <section id='subscription-banner'>
+        <%= link_to subscription_product do %>
+          <h3><span><%= t('shared.subscriptions.icon') %></span> Get <span><%= @purchaseable.name %></span> and all of our other products by subscribing to <span><%= subscription_product.name %></span></h3>
+        <% end %>
+      </section>
+    <% end %>
   <% end %>
+
   <%= form.inputs 'Your information' do %>
     <%= form.input :variant, as: :hidden %>
     <%= form.input :name %>

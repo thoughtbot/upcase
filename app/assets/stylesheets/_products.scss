@@ -1,4 +1,4 @@
-body.products-index {
+body.products-index, body.purchases {
   section#promo-wrapper {
     @include outer-container;
     margin: 0 auto;
@@ -31,6 +31,12 @@ body.products-index {
       display: block;
       width: 100%;
 
+      &:hover {
+        h3 {
+          color: lighten($darkwarmgray, 15%);
+        }
+      }
+
       h3 {
         margin: 0;
         padding: 0;
@@ -51,6 +57,19 @@ body.products-index {
   @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
     .products-container {
       width: 100% !important;
+    }
+  }
+}
+
+body.purchases {
+  section#subscription-banner {
+    margin: 1em 0 0 0;
+    padding: 0;
+
+    a {
+      border: 2px solid $lightwarmgray;
+      border-bottom: 2px solid $warmgray;
+      margin: 0;
     }
   }
 }

@@ -50,6 +50,22 @@ body.purchases {
     }
   }
 
+  #total {
+    display: inline-block;
+  }
+
+  .sign-in-prompt {
+    background: none;
+    display: inline-block;
+    margin: 0 0 0 .6em;
+    padding: 0;
+    text-align: left;
+
+    a {
+      font-family: $serif;
+    }
+  }
+
   #billing-information {
     ol {
       width: 100%;
