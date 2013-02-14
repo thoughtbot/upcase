@@ -37,6 +37,7 @@ RailsAdmin.config do |config|
   config.model Article do
     list do
       field :title
+      field :draft
       field :published_on
     end
 
@@ -44,6 +45,7 @@ RailsAdmin.config do |config|
       group :default do
         field :title
         field :body
+        field :draft
         field :published_on
         field :topics
       end
