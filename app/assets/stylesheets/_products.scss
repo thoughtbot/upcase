@@ -33,7 +33,7 @@ body.products-index, body.purchases {
 
       &:hover {
         h3 {
-          color: lighten($darkwarmgray, 15%);
+          color: $red;
         }
       }
 
@@ -77,9 +77,20 @@ body.purchases {
     padding: 0;
 
     a {
-      border: 2px solid $lightwarmgray;
-      border-bottom: 2px solid $warmgray;
+      background: lighten($lightwarmgray, 3%);
+      border: 2px solid darken($lightwarmgray, 8%);
+      border-bottom: 2px solid darken($warmgray, 12%);
       margin: 0;
+      @include position(relative, 0 0 0 -4%);
+      width: 108%;
+
+      &:hover {
+        background: #fff;
+      }
+
+      h3 {
+        color: $red;
+      }
     }
   }
 }
