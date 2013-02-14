@@ -219,10 +219,19 @@ body.topics-index {
         }
 
         li {
+
+          &.prime h4 {
+            color: $darkwarmgray;
+            font-family: $sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-shadow: 0 1px 0 #fff;
+          }
+
           .icon {
             background: $learnred;
             border-radius: 34px;
-            box-shadow: inset 0 -1px 0 $learndarkred, 0 1px 0 $learndarkred;
+            @include box-shadow(inset 0 -1px 0 $learndarkred, 0 1px 0 $learndarkred);
             color: white;
             display: block;
             float: left;
@@ -234,6 +243,14 @@ body.topics-index {
             text-align: center;
             @include transition;
             width: 34px;
+          }
+
+          &.prime .icon {
+            background: #fff;
+            @include box-shadow(inset 0 -1px 0 #ccc, 0 1px 0 #ccc);
+            color: $learnred;
+            font-size: 28px;
+            line-height: 38px;
           }
 
           &.workshop .icon::after {
