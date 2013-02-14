@@ -6,7 +6,7 @@
     <% if subscription_product %>
       <section id='subscription-banner'>
         <%= link_to subscription_product do %>
-          <h3><span><%= t('shared.subscriptions.icon') %></span> Get this <%= @purchaseable.product_type %> and all of our other products and workshops by subscribing to <%= subscription_product.name %></h3>
+          <h3><span><%= t('shared.subscriptions.icon') %></span> Get this <%= @purchaseable.product_type %> and all of our other products and workshops by subscribing to <%= subscription_product.name %> <span class="fakebutton">purchase</span></h3>
         <% end %>
       </section>
     <% end %>

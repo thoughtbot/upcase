@@ -38,6 +38,7 @@ body.products-index, body.purchases {
       }
 
       h3 {
+        line-height: 1.3em;
         margin: 0;
         padding: 0;
 
@@ -83,6 +84,21 @@ body.purchases {
       margin: 0;
       @include position(relative, 0 0 0 -4%);
       width: 108%;
+
+      .fakebutton {
+        background: $learnred;
+        border-bottom: 3px solid #660000;
+        border-radius: 3px;
+        box-sizing: border-box;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 0;
+        padding: .8em 1.5em .5em 1.5em;
+        position: relative;
+        text-transform: uppercase;
+        top: -1px;
+      }
 
       &:hover {
         background: #fff;
