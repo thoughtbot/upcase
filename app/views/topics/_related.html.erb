@@ -9,6 +9,14 @@
   <h3><%= t '.products' %></h3>
   <hr>
   <ul class='related-products related-workshops'>
+    <li class="prime">
+      <%= link_to subscription_product do %>
+        <span class="icon"><%= t('shared.subscriptions.icon') %></span>
+        <hgroup>
+          <h4>Access all of these by subscribing to <%= subscription_product.name %></h4>
+        </hgroup>
+      <% end %>
+    </li>
     <%= render partial: 'topics/workshop', collection: @workshops %>
     <%= render partial: 'topics/product', collection: @products %>
     <li class="view-all">
