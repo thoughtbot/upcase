@@ -18,6 +18,10 @@ class ProductsController < ApplicationController
     # @pricing_scheme = ab_test("product_pricing", "primary", "alternate")
     @pricing_scheme = "primary"
 
-    km.record("Viewed Product", { "Product Name" => @product.name })
+    if signed_in? && @product.purchase_for(current_user)
+      redirect_to @product.purchase_for(current_user)
+    else
+      km.record("Viewed Product", { "Product Name" => @product.name })
+    end
   end
 end

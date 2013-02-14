@@ -170,4 +170,22 @@ describe Product do
       expect(product).not_to be_subscription
     end
   end
+
+  context 'purchase_for' do
+    it 'returns the purchase when a user has purchased a product' do
+      user = create(:user)
+      purchase = create(:purchase, user: user)
+      product = purchase.purchaseable
+
+      expect(product.purchase_for(user)).to eq purchase
+    end
+
+    it 'returns nil when a user has not purchased a product' do
+      user = create(:user)
+      purchase = create(:purchase)
+      product = purchase.purchaseable
+
+      expect(product.purchase_for(user)).to be_nil
+    end
+  end
 end

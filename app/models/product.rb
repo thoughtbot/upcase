@@ -129,6 +129,10 @@ class Product < ActiveRecord::Base
     Date.today
   end
 
+  def purchase_for(user)
+    purchases.paid.where(user_id: user).first
+  end
+
   private
 
   def apply_discount(price)
