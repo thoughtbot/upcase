@@ -14,14 +14,14 @@ describe Article do
     it { should validate_presence_of(:title) }
   end
 
-  context ".by_published" do
+  context ".ordered" do
     before do
       create(:article, published_on: 30.days.ago)
       create(:article, published_on: 50.days.ago)
     end
 
     it "sorts by published_on desc" do
-      Article.by_published.should == Article.all.sort_by { |a| a.published_on }.reverse
+      Article.ordered.should == Article.all.sort_by { |a| a.published_on }.reverse
     end
   end
 
@@ -45,6 +45,18 @@ describe Article do
 
       expect(Article.local).to include article
       expect(Article.local).not_to include tumblr_article
+    end
+  end
+
+  context '.published' do
+    it 'only includes articles published_on greater or equal to today' do
+      today = create(:article, published_on: Date.today)
+      tomorrow = create(:article, published_on: Date.tomorrow)
+      yesterday = create(:article, published_on: Date.yesterday)
+
+      expect(Article.published).to include today
+      expect(Article.published).to include yesterday
+      expect(Article.published).not_to include tomorrow
     end
   end
 

@@ -11,16 +11,20 @@ class Article < ActiveRecord::Base
   validates :body_html, presence: true
   validates :title, presence: true
 
-  def self.by_published
+  def self.ordered
     order("published_on desc")
   end
 
   def self.top
-    by_published.limit(10)
+    ordered.limit(10)
   end
 
   def self.local
     where("external_url IS NULL OR external_url = ''")
+  end
+
+  def self.published
+    where('published_on <= ?', Date.today)
   end
 
   def to_param
