@@ -24,7 +24,11 @@ class Article < ActiveRecord::Base
   end
 
   def self.published
-    where('published_on <= ?', Date.today)
+    where('published_on <= ?', Date.today).where(draft: false)
+  end
+
+  def published?
+    published_on <= Date.today && !draft?
   end
 
   def to_param

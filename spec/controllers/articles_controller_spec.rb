@@ -24,6 +24,36 @@ describe ArticlesController do
         expect_get_show_to_redirect_to_subscription_product
       end
 
+      context 'for a non-admin user' do
+        before do
+          user = create(:user, subscription: Subscription.new)
+          sign_in_as user
+        end
+
+        it 'redirects to the sign_in page for an article that is not published' do
+          article = create(:article, draft: true)
+
+          get :show, id: article.to_param
+
+          expect(response).to redirect_to sign_in_path
+        end
+      end
+
+      context 'for an admin user' do
+        before do
+          admin = create(:user, admin: true)
+          sign_in_as admin
+        end
+
+        it 'renders the article' do
+          article = create(:article, draft: true)
+
+          get :show, id: article.to_param
+
+          expect(response).to render_template("show")
+        end
+      end
+
       def expect_get_show_to_redirect_to_subscription_product
         article = create(:article)
         subscription_product = create(:subscribeable_product)

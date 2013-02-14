@@ -25,6 +25,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user_has_active_subscription?
 
+  def current_user_is_admin?
+    current_user && current_user.admin?
+  end
+  helper_method :current_user_is_admin?
+
   def subscription_product
     Product.subscriptions.first
   end

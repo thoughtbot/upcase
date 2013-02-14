@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130207161342) do
+ActiveRecord::Schema.define(:version => 20130214152955) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -25,13 +25,14 @@ ActiveRecord::Schema.define(:version => 20130207161342) do
   add_index "announcements", ["announceable_id", "announceable_type", "ends_at"], :name => "index_announcements_on_announceable_and_ends_at"
 
   create_table "articles", :force => true do |t|
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "title",        :null => false
-    t.text     "body_html",    :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.string   "title",                           :null => false
+    t.text     "body_html",                       :null => false
     t.string   "external_url"
-    t.date     "published_on", :null => false
+    t.date     "published_on",                    :null => false
     t.text     "body"
+    t.boolean  "draft",        :default => false, :null => false
   end
 
   create_table "articles_topics", :id => false, :force => true do |t|
