@@ -58,6 +58,32 @@ describe Article do
       expect(Article.published).to include yesterday
       expect(Article.published).not_to include tomorrow
     end
+
+    it 'does not include draft articles' do
+      draft = create(:article, draft: true)
+      published = create(:article, draft: false)
+
+      expect(Article.published).to include published
+      expect(Article.published).not_to include draft
+    end
+  end
+
+  context 'published?' do
+    it 'returns false for draft articles' do
+      draft = create(:article, draft: true)
+      published = create(:article, draft: false)
+
+      expect(draft).not_to be_published
+      expect(published).to be_published
+    end
+
+    it 'returns false for articles in the future' do
+      future = create(:article, published_on: 7.days.from_now)
+      published = create(:article, published_on: Date.today)
+
+      expect(future).not_to be_published
+      expect(published).to be_published
+    end
   end
 
   context 'to_param' do
