@@ -1,6 +1,4 @@
 class DesignForDevelopersResourcesController < ApplicationController
-  layout "d4d_resources"
-
   def index
   end
 
