@@ -2,6 +2,7 @@ h1 {
   color: white;
   font: 800 72px $sans-serif;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 
   a {
     color: white;
@@ -12,6 +13,7 @@ h2 {
   color: $learnred;
   font: 800 36px/40px $sans-serif;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 .product-title {
@@ -204,7 +206,7 @@ aside {
   }
 
   h2 span {
-    font: 300 36px $sans-serif;
+    font: 300 em(36) $sans-serif;
 
     &.original-price {
       color: lighten($darkwarmgray, 22%);
@@ -234,7 +236,7 @@ aside {
 
   hgroup h4 {
     color: $darkwarmgray;
-    font: italic 17px $serif italic;
+    font: italic em(17) $serif italic;
   }
 
   h5 {
@@ -259,6 +261,7 @@ aside {
       font: italic 17px $serif;
     }
   }
+
   dt p { //this is used for 'what if i am not happy'. should be made into li instead of dt
     font-style: italic;
   }

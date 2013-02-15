@@ -1,37 +1,49 @@
-<section class="content-container">
-  <h1>Grid System Cheat Sheet</h1>
-  <section class="anatomy">
-    <img src="images/grid/anatomy.png" alt="" />
+<% content_for :subject, "Design for Developers" %>
 
-    <ul>
-      <li>
-        <h2>Unit</h2>
-        <p>Units are building blocks of the grid. They are uniform in size.</p>
-      </li>
-      <li>
-        <h2>Gutter</h2>
-        <p>Equal spacing between units.</p>
-      </li>
-      <li>
-        <h2>Column</h2>
-        <p>A combination of a number of units and gutters.</p>
-      </li>
-      <li>
-        <h2>Axial Alignment</h2>
-        <p>Several items aligned along a common axis.</p>
-      </li>
-    </ul>
-  </section>
+<div class="text-box-wrapper">
+  <div class="text-box">
 
-  <ul class="column-types">
-    <li>
-      <img src="images/grid/4col.png" alt="" />
-    </li>
-    <li>
-      <img src="images/grid/3col.png" alt="" />
-    </li>
-    <li>
-      <img src="images/grid/combo.png" alt="" />
-    </li>
-  </ul>
-</section>
+    <h2>Grid System Cheat Sheet</h2>
+
+    <section class="grid">
+      <img src="images/grid/anatomy.png" alt="" />
+
+      <ul>
+        <li>
+          <h3>Unit</h3>
+          <p>Units are building blocks of the grid. They are uniform in size.</p>
+        </li>
+        <li>
+          <h3>Gutter</h3>
+          <p>Equal spacing between units.</p>
+        </li>
+        <li>
+          <h3>Column</h3>
+          <p>A combination of a number of units and gutters.</p>
+        </li>
+        <li>
+          <h3>Axial Alignment</h3>
+          <p>Several items aligned along a common axis.</p>
+        </li>
+      </ul>
+
+      <ul class="column-types">
+        <li>
+          <img src="images/grid/4col.png" alt="" />
+          <p>4 columns &mdash; symmetrical grid, easiest to implement but can lead to bland, safe design</p>
+        </li>
+        <li>
+          <img src="images/grid/3col.png" alt="" />
+          <p>3 columns &mdash; asymmetrical, a little harder to balance but more visually appealing when done well</p>
+        </li>
+        <li>
+          <img src="images/grid/combo.png" alt="" />
+          <p>Multi-column &mdash; most challenging and hardest to implement but has the ability to create the most engaging grid</p>
+        </li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+<%= render 'sidebar' %>
+

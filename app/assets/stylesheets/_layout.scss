@@ -9,6 +9,10 @@ body {
 // MAIN SECTION AND SIDEBAR
 //************************************************************************//
 
+img {
+  max-width: 100%;
+}
+
 .content {
   @include outer-container;
   max-width: $max-width;
@@ -39,12 +43,15 @@ body {
   .text-box-in-text-box {
     @extend .text-box;
     background-color: $lightwarmgray;
+
     .thumbnail {
       float: left;
       margin-right: 12px;
     }
+
     .thumbnail-text {
       margin-left: 112px;
+
       h2 {
         margin-bottom: 0;
         padding-bottom: 0;
@@ -80,6 +87,10 @@ body {
     a {
       display: block;
     }
+  }
+
+  h1 {
+    color: $darkwarmgray;
   }
 
   h2 {
