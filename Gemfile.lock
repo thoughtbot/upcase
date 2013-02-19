@@ -220,6 +220,10 @@ GEM
     omniauth-oauth2 (1.1.0)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
+    opinio (0.6)
+      jquery-rails
+      kaminari
+      rails (~> 3)
     paperclip (3.0.2)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
@@ -393,6 +397,7 @@ DEPENDENCIES
   hirb (= 0.6.2)
   httparty (= 0.8.1)
   jquery-rails (= 2.0.2)
+  kaminari
   kissmetrics (= 2.0.0)
   launchy
   memcachier
@@ -402,6 +407,7 @@ DEPENDENCIES
   octokit (= 1.1.0)
   omniauth (= 1.1.0)
   omniauth-github (= 1.0.2)
+  opinio
   paperclip (= 3.0.2)
   paypal-express (= 0.4.6)
   pg (= 0.13.2)
