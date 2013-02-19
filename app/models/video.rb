@@ -2,6 +2,7 @@ class Video < ActiveRecord::Base
   attr_accessor :wistia_hash, :video_sizes, :video_hash_id
 
   belongs_to :watchable, polymorphic: true
+  opinio_subjectum
 
   validates :watchable_id, presence: true
   validates :watchable_type, presence: true

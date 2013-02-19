@@ -1,4 +1,6 @@
 Workshops::Application.routes.draw do
+  opinio_model
+
   mount RailsAdmin::Engine => '/new_admin', :as => 'rails_admin'
 
   root to: 'topics#index'
@@ -32,7 +34,9 @@ Workshops::Application.routes.draw do
   match '/products/:id/purchases/:lookup' => redirect("/purchases/%{lookup}")
 
   resources :purchases, only: [:show] do
-    resources :videos, only: [:index, :show]
+    resources :videos, only: [:index, :show] do
+      opinio
+    end
     member do
       get 'paypal'
       get 'watch'

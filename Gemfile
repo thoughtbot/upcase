@@ -43,6 +43,7 @@ gem 'thin', '1.3.1'
 gem 'typhoeus', '0.3.3'
 gem 'to_js', git: 'git://github.com/cpytel/to_js.git'
 gem 'validates_email_format_of', '1.5.3'
+gem 'opinio'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -91,3 +92,5 @@ group :test do
   gem 'capybara_discoball',
     :git => 'git@github.com:thoughtbot/capybara_discoball.git'
 end
+
+gem "kaminari"
