@@ -8,8 +8,6 @@ task :setup do
   `git remote add production git@heroku.com:learn-production.git`
 
   puts "Preparing database"
-  Rake::Task["db:create:all"].invoke
-  Rake::Task["db:schema:load"].invoke
-  Rake::Task["db:test:prepare"].invoke
+  Rake::Task["db:setup"].invoke
   Rake::Task["dev:prime"].invoke
 end
