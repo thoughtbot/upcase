@@ -11,8 +11,6 @@
       <h3 class="video-headline">Watch or Download Video</h3>
 
       <%= render 'watch_video', video: @video %>
-
-      <%= comments_for @video %>
     <% else %>
       <p>This video is not yet available. It will be released on <%= @purchaseable.video_available_on(@video).to_s(:simple) %></p>
     <% end %>
