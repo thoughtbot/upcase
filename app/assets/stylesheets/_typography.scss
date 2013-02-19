@@ -31,14 +31,14 @@ h2 {
 }
 
 code {
+  font-family: monaco;
+  color: $darkwarmgray;
 }
 
 pre code {
   @extend .gray-box;
   display: block;
   font-size: 15px;
-  font-family: monaco;
-  color: $darkwarmgray;
 }
 
 section#promo-wrapper {
