@@ -56,8 +56,16 @@ class Section < ActiveRecord::Base
     where 'starts_on = ?', 1.week.from_now
   end
 
+  def self.current
+    where 'starts_on = ?', Date.today
+  end
+
   def self.send_reminders
     upcoming.each &:send_reminders
+  end
+
+  def self.send_notifications
+    current.each &:send_notifications
   end
 
   def send_registration_emails(purchase)
@@ -112,6 +120,12 @@ class Section < ActiveRecord::Base
     end
   end
 
+  def send_notifications
+    notifier = Notifier.new(self, paid_purchases.pluck(:email))
+    notifier.send_notifications_for(videos)
+    notifier.send_notifications_for(events)
+  end
+
   def time_range
     "#{start_at.to_s(:time).strip}-#{stop_at.to_s(:time).strip}"
   end
@@ -141,6 +155,10 @@ class Section < ActiveRecord::Base
   end
 
   private
+
+  def video_available_today?(video)
+    video_available_on(video) == Date.today
+  end
 
   def must_have_at_least_one_teacher
     unless teachers.any?
