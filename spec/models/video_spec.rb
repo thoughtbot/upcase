@@ -22,4 +22,13 @@ describe Video do
       video.wistia_thumbnail.should == 'http://images.com/hi.jpg'
     end
   end
+
+  context 'watchable_name' do
+    it 'returns the name of the watchable' do
+      workshop = create(:workshop, name: 'Workshop')
+      video = create(:video, watchable: workshop)
+
+      expect(video.watchable_name).to eq workshop.name
+    end
+  end
 end

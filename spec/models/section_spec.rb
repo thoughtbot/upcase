@@ -231,4 +231,41 @@ describe Section do
       expect(section.purchase_for(user)).to be_nil
     end
   end
+
+  describe '.current' do
+    it "does not include sections that haven't started or have finished" do
+      past = create(:past_section)
+      future = create(:future_section)
+      current = create(:section, starts_on: Date.today, ends_on: Date.tomorrow)
+
+      expect(Section.current).to include current
+      expect(Section.current).not_to include future
+      expect(Section.current).not_to include past
+    end
+  end
+
+  describe '.send_notifications' do
+    it 'sends notifications for each current section' do
+      notifier = stub(send_notifications_for: nil)
+      Notifier.stubs(new: notifier)
+
+      future = create(:future_section)
+      workshop = future.workshop
+      current = create(:section, workshop: workshop, starts_on: Date.today, ends_on: Date.tomorrow)
+
+      future_purchase = create(:paid_purchase, purchaseable: future)
+      current_purchase = create(:paid_purchase, purchaseable: current)
+
+      video = create(:video, watchable: workshop)
+      event = create(:event, workshop: workshop)
+
+      Section.send_notifications
+
+      expect(Notifier).to have_received(:new).with(current, [current_purchase.email])
+      expect(notifier).to have_received(:send_notifications_for).with([video])
+      expect(notifier).to have_received(:send_notifications_for).with([event])
+
+      expect(Notifier).to have_received(:new).with(future, [future_purchase.email]).never
+    end
+  end
 end

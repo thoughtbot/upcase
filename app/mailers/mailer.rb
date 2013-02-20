@@ -1,6 +1,7 @@
 class Mailer < ActionMailer::Base
   default from: Clearance.configuration.mailer_sender
   add_template_helper PurchasesHelper
+  add_template_helper ApplicationHelper
 
   def registration_notification(purchase)
     @comments = purchase.comments
@@ -76,5 +77,26 @@ class Mailer < ActionMailer::Base
       reply_to: 'learn@thoughtbot.com',
       subject: "Fulfillment issues with #{purchase.purchaseable_name}"
     )
+  end
+
+  def notification(email, item)
+    @item = item
+
+    mail(
+      to: email,
+      from: 'learn@thoughtbot.com',
+      reply_to: 'learn@thoughtbot.com',
+      subject: "[Learn] #{notification_item_name(item)}: #{item.title}"
+    )
+  end
+
+  private
+
+  def notification_item_name(item)
+    if item.respond_to?(:watchable)
+      item.watchable.name
+    else
+      item.workshop.name
+    end
   end
 end

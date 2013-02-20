@@ -194,6 +194,11 @@ FactoryGirl.define do
         ends_on   { 4.days.from_now.to_date }
       end
 
+      factory :past_section do
+        starts_on { 6.days.ago.to_date }
+        ends_on   { 4.days.ago.to_date }
+      end
+
       factory :in_person_section do
         association :workshop, factory: :in_person_workshop
       end
