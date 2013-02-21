@@ -371,4 +371,28 @@ describe Mailer do
       Mailer.teacher_notification(options[:teacher], create(:section, workshop: options[:workshop]))
     end
   end
+
+  describe '.notification' do
+    it 'sends a video notification to the email for the video' do
+      workshop = create(:workshop, name: 'Workshop name')
+      video = create(:video, title: 'Title', position: 2, watchable: workshop)
+
+      email = Mailer.notification(email, video)
+
+      expect(email.from).to eq(%w(learn@thoughtbot.com))
+      expect(email).to have_subject('[Learn] Workshop name: Title')
+      expect(email).to have_body_text(/Workshop name video lesson 2, Title, is now available/)
+    end
+
+    it 'sends an event notification to the email for the event' do
+      workshop = create(:workshop, name: 'Workshop name')
+      video = create(:event, title: 'Title', time: '1pm', workshop: workshop)
+
+      email = Mailer.notification(email, video)
+
+      expect(email.from).to eq(%w(learn@thoughtbot.com))
+      expect(email).to have_subject('[Learn] Workshop name: Title')
+      expect(email).to have_body_text(/This is a reminder that Workshop name Title is today at 1pm/)
+    end
+  end
 end
