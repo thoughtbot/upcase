@@ -35,6 +35,18 @@ class Video < ActiveRecord::Base
     @wistia_thumbnail ||= wistia_hash["thumbnail"]["url"] rescue nil
   end
 
+  def available?(start_date)
+    available_on(start_date) <= Date.today
+  end
+
+  def available_on(start_date)
+    start_date + active_on_day.days
+  end
+
+  def starts_today?(start_date)
+    available_on(start_date) == Date.today
+  end
+
   private
 
   def human_file_size num

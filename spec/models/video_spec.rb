@@ -31,4 +31,39 @@ describe Video do
       expect(video.watchable_name).to eq workshop.name
     end
   end
+
+  describe 'available?' do
+    it 'returns true when the video is available based on the given start date' do
+      video = create(:video, active_on_day: 0)
+      expect(video.available?(Date.today)).to be_true
+    end
+
+    it 'returns false when the video is not available based on the given start date' do
+      video = create(:video, active_on_day: 2)
+      expect(video.available?(Date.today)).not_to be_true
+    end
+  end
+
+  describe 'starts_today?' do
+    it 'returns true when the video is available starting today based on the given start date' do
+      video = create(:video, active_on_day: 0)
+      expect(video.starts_today?(Date.today)).to be_true
+    end
+
+    it 'returns false when the video is not available starting today based on the given start date' do
+      video = create(:video, active_on_day: 2)
+      expect(video.starts_today?(Date.today)).not_to be_true
+    end
+  end
+
+  describe 'available_on' do
+    it 'gives the date the video will be available based on the given start date' do
+      start_date = 7.days.from_now.to_date
+      video_one = create(:video, active_on_day: 0)
+      video_two = create(:video, active_on_day: 2)
+
+      expect(video_one.available_on(start_date)).to eq 7.days.from_now.to_date
+      expect(video_two.available_on(start_date)).to eq 9.days.from_now.to_date
+    end
+  end
 end
