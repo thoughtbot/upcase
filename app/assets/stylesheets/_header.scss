@@ -10,27 +10,32 @@ section#header-wrapper {
     position: relative;
     @include user-select(none);
 
-    .logo, .intro {
-      color: $darkwarmgray;
-      font: italic 300 20px $serif;
-      padding: 1em;
+    .logo {
       text-align: center;
-      -webkit-font-smoothing: antialiased;
+
+      img {
+        @include position(relative, 18px 0 0 0);
+      }
     }
 
     .intro {
+      color: $darkwarmgray;
+      font: italic 300 20px $serif;
       margin: 0 auto;
+      padding: 1em;
+      text-align: center;
+      -webkit-font-smoothing: antialiased;
       width: 65%;
     }
 
-    .logo img {
-      vertical-align: -20px;
-    }
-
-    .detail-logo {
-      float: left;
-      @include outer-container;
-      width: 100%;
+    .small-logo {
+      font-size: 55px;
+      line-height: .9em;
+      margin-bottom: .2em;
+      margin-top: -15px;
+      padding-left: 240px;
+      text-align: left;
+      text-indent: -240px;
 
       a {
         display: inline-block;
@@ -42,35 +47,24 @@ section#header-wrapper {
           display: block;
         }
       }
+    }
 
-      h1 {
-        @include span-columns(10);
-        font-size: 55px;
-        line-height: .9em;
-        margin-bottom: .2em;
-        margin-top: -15px;
-        padding-left: 240px;
-        text-align: left;
-        text-indent: -240px;
-      }
+    .myaccount {
+      @include span-columns(2);
+      float: right;
+      margin-top: 9px;
+      text-transform: uppercase;
 
-      .myaccount {
-        @include span-columns(2);
-        float: right;
-        margin-top: 9px;
-        text-transform: uppercase;
+      .button {
+        background-color: $lightwarmgray;
+        border-bottom: none;
+        color: $warmgray;
+        padding-top: 15px;
+        width: 100%;
 
-        .button {
-          background-color: $lightwarmgray;
-          border-bottom: none;
-          color: $warmgray;
-          padding-top: 15px;
-          width: 100%;
-
-          &:hover {
-            background-color: white;
-            color: $darkwarmgray;
-          }
+        &:hover {
+          background-color: white;
+          color: $darkwarmgray;
         }
       }
     }
