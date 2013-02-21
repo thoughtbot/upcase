@@ -26,6 +26,7 @@ img {
 
   h2 {
     padding: 10px 0 10px 0;
+
     &:first-child {
       padding-top: 0;
     }
@@ -37,6 +38,7 @@ img {
 
   li {
     margin-top: 14px;
+
     &:first-child {
       margin-top: 0;
     }
@@ -198,5 +200,11 @@ aside {
     margin-bottom: 20px;
     padding-bottom: 12px;
     width: 100%;
+  }
+}
+
+@media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+  .content {
+    padding: 1.5em 1em 2em 1em;
   }
 }
