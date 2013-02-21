@@ -202,6 +202,13 @@ body.products-show, body.workshops-show {
       .section-location, #license {
         div {
           margin-top: 20px;
+
+          h2.active-subscription, h2.active-subscription span {
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.4rem;
+            margin-bottom: .5rem;
+          }
         }
 
         .license {

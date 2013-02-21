@@ -25,7 +25,7 @@
     </h2>
     <div class="license">
       <% if current_user_has_active_subscription? %>
-        <p><%= t 'workshops.show.free_to_subscribers' %></p>
+        <h2 class="active-subscription"><%= t 'workshops.show.free_to_subscribers' %></h2>
       <% end %>
       <% if pricing_scheme == "primary" %>
         <%= link_to new_section_purchase_path(online_section, variant: :individual), class: 'license-button button' do %>

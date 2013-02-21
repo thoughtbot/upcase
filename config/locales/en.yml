@@ -33,6 +33,7 @@ en:
       purchase_for_company: Purchase for Your Company
       purchase_for_yourself: Purchase for Yourself
       purchase_subscription: Purchase a Monthly Subscription
+      purchase_for_subscribed_user: Get this %{product_type}
 
   workshops:
     show:
