@@ -121,11 +121,7 @@ class Product < ActiveRecord::Base
     discount_percentage > 0
   end
 
-  def video_available?(video)
-    true
-  end
-
-  def video_available_on(video)
+  def starts_on
     Date.today
   end
 

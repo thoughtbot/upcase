@@ -134,18 +134,6 @@ class Section < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
-  def video_available?(video)
-    video_available_on(video) <= Date.today
-  end
-
-  def video_available_on(video)
-    starts_on + video.active_on_day.days
-  end
-
-  def event_on(event)
-    starts_on + event.occurs_on_day.days
-  end
-
   def subscription?
     false
   end
@@ -155,10 +143,6 @@ class Section < ActiveRecord::Base
   end
 
   private
-
-  def video_available_today?(video)
-    video_available_on(video) == Date.today
-  end
 
   def must_have_at_least_one_teacher
     unless teachers.any?

@@ -3,7 +3,7 @@
 <div class="text-box-wrapper">
   <div class="text-box">
 
-    <% if @purchaseable.video_available?(@video) %>
+    <% if @video.available?(@purchaseable.starts_on) %>
       <div class="purchase-return-link">
         <%= link_to "Back", @purchase %>
       </div>
@@ -12,7 +12,7 @@
 
       <%= render 'watch_video', video: @video %>
     <% else %>
-      <p>This video is not yet available. It will be released on <%= @purchaseable.video_available_on(@video).to_s(:simple) %></p>
+      <p>This video is not yet available. It will be released on <%= @video.available_on(@purchaseable.starts_on).to_s(:simple) %></p>
     <% end %>
 
   </div>

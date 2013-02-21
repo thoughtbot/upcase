@@ -2,7 +2,7 @@
   video,
   class: "text-box #{video_availability_class(video, purchase.purchaseable)}" do %>
 
-  <% if purchase.purchaseable.video_available?(video) %>
+  <% if video.available?(purchase.purchaseable.starts_on) %>
     <%= link_to purchase_video_path(purchase, video) do %>
       <%= render 'thumbnail', video: video, purchase: purchase %>
     <% end %>
