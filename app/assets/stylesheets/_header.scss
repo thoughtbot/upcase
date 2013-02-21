@@ -29,6 +29,7 @@ section#header-wrapper {
     }
 
     .small-logo {
+      float: left;
       font-size: 55px;
       line-height: .9em;
       margin-bottom: .2em;
@@ -36,6 +37,7 @@ section#header-wrapper {
       padding-left: 240px;
       text-align: left;
       text-indent: -240px;
+      width: flex-grid(4);
 
       a {
         display: inline-block;
@@ -45,6 +47,113 @@ section#header-wrapper {
 
         img {
           display: block;
+        }
+      }
+    }
+
+    nav {
+      float: right;
+      line-height: 0;
+      @include position(relative, 12px 0 0 0);
+      text-align: right;
+      width: flex-grid(8);
+
+      > ul {
+        display: inline-block;
+        text-align: left;
+
+        // top level and sub menu links
+        li a {
+          font-family: $sans-serif;
+          font-size: 100%;
+        }
+
+        // top level
+        > li {
+          float: left;
+          margin-left: .2em;
+
+          &.prime a {
+            font-weight: 700;
+
+            &:hover, &:active {
+              background: $learnred;
+            }
+          }
+
+          &.account a {
+            background: lighten($darkwarmgray, 20%);
+            color: #fff;
+
+            &:hover {
+              background: lighten($darkwarmgray, 10%);
+            }
+
+            &:active {
+              background: $darkwarmgray;
+            }
+          }
+
+          &.open {
+
+            > a, > a:hover {
+              background: darken($warmgray, 9%);
+              color: #fff;
+              outline: none;
+            }
+
+            ul {
+              display: block;
+            }
+          }
+
+          a {
+            border-radius: 3px;
+            display: block;
+            font-weight: 600;
+            padding: .9em;
+
+            &:hover {
+              background: darken($warmgray, 7%);
+              color: #fff;
+            }
+
+            &:active {
+              background: darken($warmgray, 9%);
+              color: #fff;
+            }
+          }
+
+          ul {
+            background: darken($warmgray, 9%);
+            border-radius: 3px;
+            color: #fff;
+            @include columns(4);
+            display: none;
+            padding: 1em 2em;
+            @include position(absolute, 90% 0 0 0px);
+            width: 100%;
+            z-index: 1;
+
+            li {
+              display: block;
+
+              &:nth-child(4n) {
+                margin-right: 0;
+              }
+
+              a {
+                color: darken($darkwarmgray, 10%);
+                display: inline-block;
+                font-weight: 400;
+                padding: .3em 0;
+
+                &:hover {
+                  color: #fff;
+                }
+              }
+            }
+          }
         }
       }
     }
