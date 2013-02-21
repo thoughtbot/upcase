@@ -8,31 +8,33 @@
       </h1>
       <nav>
         <ul>
-          <li class="prime"><a href="#">Prime</a></li>
+          <li class="prime"><a href="#"><span><%= t('shared.subscriptions.icon') %></span> Prime Membership</a></li>
           <li><a href="#">Workshops</a></li>
           <li><a href="#">Videos</a></li>
           <li><a href="#">Books</a></li>
-          <li><a href="#">Learning Trails</a></li>
-          <ul>
-            <li><a href="#">Ruby</a></li>
-            <li><a href="#">Ruby on Rails</a></li>
-            <li><a href="#">Design</a></li>
-            <li><a href="#">Vim</a></li>
-            <li><a href="#">Testing</a></li>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Javascript</a></li>
-            <li><a href="#">HTML &amp; CSS</a></li>
-            <li><a href="#">Sass</a></li>
-            <li><a href="#">Git</a></li>
-            <li><a href="#">Refactoring</a></li>
-            <li><a href="#">Typography</a></li>
-            <li><a href="#">UNIX</a></li>
-            <li><a href="#">CSS Grids</a></li>
-            <li><a href="#">iOS</a></li>
-            <li><a href="#">Visual Principles</a></li>
-            <li><a href="#">RubyMotion</a></li>
-            <li><a href="#">SQL</a></li>
-          </ul>
+          <li>
+            <a href="#" data-toggle="dropdown">Trail Maps</a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Ruby</a></li>
+              <li><a href="#">Ruby on Rails</a></li>
+              <li><a href="#">Design</a></li>
+              <li><a href="#">Vim</a></li>
+              <li><a href="#">Testing</a></li>
+              <li><a href="#">Web Design</a></li>
+              <li><a href="#">Javascript</a></li>
+              <li><a href="#">HTML &amp; CSS</a></li>
+              <li><a href="#">Sass</a></li>
+              <li><a href="#">Git</a></li>
+              <li><a href="#">Refactoring</a></li>
+              <li><a href="#">Typography</a></li>
+              <li><a href="#">UNIX</a></li>
+              <li><a href="#">CSS Grids</a></li>
+              <li><a href="#">iOS</a></li>
+              <li><a href="#">Visual Principles</a></li>
+              <li><a href="#">RubyMotion</a></li>
+              <li><a href="#">SQL</a></li>
+            </ul>
+          </li>
           <% if show_account_links? %>
             <% if signed_in? %>
               <li class="account"><%= link_to 'Account', my_account_path %></li>
