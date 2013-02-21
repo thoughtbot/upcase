@@ -6,31 +6,24 @@ body.purchases {
     }
 
     li {
+      margin-right: 0;
+
+      &#purchase_city_input,
+      &#purchase_state_input,
+      &#purchase_zip_code_input,
+      &#purchase_country_input {
+        float: left;
+        margin-right: flex-gutter();
+        width: flex-grid(3);
+      }
+
+      &#purchase_country_input {
+        margin-right: 0;
+      }
+
       &#purchase_submit_action {
-        margin-left: 0;
         margin-top: 40px;
         width: 100%;
-
-        input {
-          width: 100%;
-        }
-      }
-
-      &#purchase_city_input {
-        float: left;
-        margin-right: flex-gutter();
-        width: flex-grid(6);
-      }
-
-      &#purchase_state_input {
-        float: left;
-        margin-right: flex-gutter();
-        width: flex-grid(3);
-      }
-
-      &#purchase_zip_code_input {
-        float: left;
-        width: flex-grid(3);
       }
 
       &#purchase_payment_method_input {
@@ -84,13 +77,15 @@ body.purchases {
             border: 1px solid $darkwarmgray;
             @include box-shadow(none);
             @include box-sizing(border-box);
+            float: left;
             font: 14px $sans-serif;
-            margin: 3px 0 0 0;
+            height: 47px;
+            margin: 5px 0 0 0;
             padding: .5em;
             -webkit-appearance: none;
             width: flex-grid(6);
 
-            &:first-child {
+            &.card-expiry-month {
               margin-right: flex-gutter();
             }
 
