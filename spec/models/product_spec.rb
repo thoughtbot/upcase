@@ -141,21 +141,10 @@ describe Product do
     product.should_not be_discounted
   end
 
-  describe '#video_available?' do
-    it 'returns true regardless of active_on_day' do
+  describe 'starts_on' do
+    it 'returns today' do
       product = create(:product)
-      video = create(:video, watchable: product, active_on_day: 20)
-      expect(product.video_available?(video)).to be
-    end
-  end
-
-  describe '#video_available_on' do
-    it 'returns today regardless of active_on_day' do
-      product = create(:product)
-      video_one = create(:video, watchable: product, active_on_day: 0, title: 'Video One')
-      video_two = create(:video, watchable: product, active_on_day: 2, title: 'Video One')
-      expect(product.video_available_on(video_one)).to eq Date.today
-      expect(product.video_available_on(video_two)).to eq Date.today
+      expect(product.starts_on).to eq Date.today
     end
   end
 
