@@ -9,21 +9,21 @@
       <nav>
         <ul>
           <li class="prime"><a href="#"><span><%= t('shared.subscriptions.icon') %></span> Prime Membership</a></li>
-          <li>
+          <li class="dropdown">
             <a href="#" data-toggle="dropdown">Workshops</a>
             <ul>
-              <h4>Online Workshops</h4>
+              <li><h4>Online Workshops</h4></li>
               <li><a href="#">Test-Driven Rails</a></li>
               <li><a href="#">Design for Developers</a></li>
               <li><a href="#">Intro to Ruby on Rails</a></li>
-              <h4>In-person Workshops</h4>
+              <li><h4>In-person Workshops</h4></li>
               <li><a href="#">Intro to Ruby on Rails</a></li>
               <li><a href="#">Intermediate Ruby on Rails</a></li>
               <li><a href="#">Test-Driven Rails</a></li>
               <li><a href="#">Design for Developers</a></li>
             </ul>
           </li>
-          <li>
+          <li class="dropdown">
             <a href="#" data-toggle="dropdown">Videos</a>
             <ul>
               <li><a href="#">Hidden Secrets of the Chrome Developer Tools</a></li>
@@ -33,7 +33,7 @@
               <li><a href="#">Vim for Rails Developers</a></li>
             </ul>
           </li>
-          <li>
+          <li class="dropdown">
             <a href="#" data-toggle="dropdown">Books</a>
             <ul>
               <li><a href="#">Backbone.js on Rails</a></li>
@@ -41,27 +41,30 @@
               <li><a href="#">The Playbook</a></li>
             </ul>
           </li>
-          <li>
+          <li class="dropdown">
             <a href="#" data-toggle="dropdown">Trail Maps</a>
             <ul>
+              <li><h4>Programming</h4></li>
+              <li><a href="#">Git</a></li>
+              <li><a href="#">iOS</a></li>
+              <li><a href="#">Refactoring</a></li>
               <li><a href="#">Ruby</a></li>
               <li><a href="#">Ruby on Rails</a></li>
-              <li><a href="#">Design</a></li>
-              <li><a href="#">Vim</a></li>
-              <li><a href="#">Testing</a></li>
-              <li><a href="#">Web Design</a></li>
-              <li><a href="#">Javascript</a></li>
-              <li><a href="#">HTML &amp; CSS</a></li>
-              <li><a href="#">Sass</a></li>
-              <li><a href="#">Git</a></li>
-              <li><a href="#">Refactoring</a></li>
-              <li><a href="#">Typography</a></li>
-              <li><a href="#">UNIX</a></li>
-              <li><a href="#">CSS Grids</a></li>
-              <li><a href="#">iOS</a></li>
-              <li><a href="#">Visual Principles</a></li>
               <li><a href="#">RubyMotion</a></li>
               <li><a href="#">SQL</a></li>
+              <li><a href="#">Testing</a></li>
+              <li><a href="#">UNIX</a></li>
+              <li><a href="#">Vim</a></li>
+              <li><h4>Design</h4></li>
+              <li><a href="#">Design</a></li>
+              <li><a href="#">Grid Systems</a></li>
+              <li><a href="#">Typography</a></li>
+              <li><a href="#">Visual Principles</a></li>
+              <li><a href="#">Web Design</a></li>
+              <li><h4>Front-end</h4></li>
+              <li><a href="#">HTML &amp; CSS</a></li>
+              <li><a href="#">Javascript</a></li>
+              <li><a href="#">Sass</a></li>
             </ul>
           </li>
           <% if show_account_links? %>
