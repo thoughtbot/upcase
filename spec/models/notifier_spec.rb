@@ -9,7 +9,7 @@ describe Notifier do
     item_not_needing_notification = stub(:starts_today? => false)
     items = [item_needing_notification, item_not_needing_notification]
     emails = ["test@example.com", "test2@example.com"]
-    section = stub(start_date: Date.today)
+    section = stub(starts_on: Date.today)
 
     notifier = Notifier.new(section, emails)
     notifier.send_notifications_for(items)
@@ -18,5 +18,6 @@ describe Notifier do
       expect(Mailer).to have_received(:notification).with(email, item_needing_notification)
       expect(Mailer).to have_received(:notification).with(email, item_not_needing_notification).never
     end
+    expect(mailer).to have_received(:deliver).times(2)
   end
 end
