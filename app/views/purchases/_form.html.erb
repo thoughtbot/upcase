@@ -2,7 +2,7 @@
   <%= form.semantic_errors %>
   <%= hidden_field_tag 'coupon_id' %>
 
-  <% unless current_user_has_active_subscription? %>
+  <% if !@purchaseable.subscription? && !current_user_has_active_subscription? %>
     <% if subscription_product %>
       <section id='subscription-banner'>
         <%= link_to subscription_product do %>

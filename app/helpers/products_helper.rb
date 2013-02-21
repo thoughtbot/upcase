@@ -4,10 +4,14 @@ module ProductsHelper
   end
 
   def purchase_button_text(product)
-    if product.subscription?
-      I18n.t('products.show.purchase_subscription')
+    if current_user_has_active_subscription?
+      I18n.t('products.show.purchase_for_subscribed_user', product_type: product.product_type)
     else
-      I18n.t('products.show.purchase_for_yourself')
+      if product.subscription?
+        I18n.t('products.show.purchase_subscription')
+      else
+        I18n.t('products.show.purchase_for_yourself')
+      end
     end
   end
 end

@@ -28,7 +28,7 @@ feature 'Subscriber accesses content' do
     stub_add_github_team_member_job
 
     click_link book_product.name
-    click_link I18n.t('products.show.purchase_for_yourself')
+    click_link I18n.t('products.show.purchase_for_subscribed_user', product_type: book_product.product_type)
     click_button 'Get Access'
 
     expect(AddGithubTeamMemberJob).to have_received(:enqueue).with(book_product.github_team,
