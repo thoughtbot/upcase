@@ -99,7 +99,10 @@ section#header-wrapper {
             > a, > a:hover {
               background: darken($warmgray, 9%);
               color: #fff;
-              outline: none;
+
+              &::after {
+                display: none;
+              }
             }
 
             ul {
@@ -107,20 +110,39 @@ section#header-wrapper {
             }
           }
 
+          &.dropdown {
+            > a::after {
+              border: 2px solid $darkwarmgray;
+              border-width: 0 2px 2px 0;
+              bottom: 0;
+              content: '';
+              height: 8px;
+              margin-left: -4px;
+              @include position(absolute, 0 0 0px 50%);
+              @include transform(rotate(45deg));
+              width: 8px;
+            }
+          }
+
           > a {
             border-radius: 3px;
             display: block;
             font-weight: 600;
+            outline: none;
             padding: .9em;
+            position: relative;
 
             &:hover {
-              background: darken($warmgray, 7%);
               color: #fff;
             }
 
             &:active {
               background: darken($warmgray, 9%);
               color: #fff;
+
+              &::after {
+                display: none;
+              }
             }
           }
 
@@ -128,7 +150,7 @@ section#header-wrapper {
             background: darken($warmgray, 9%);
             border-radius: 3px;
             color: #fff;
-            @include columns(4);
+            @include columns(3);
             display: none;
             padding: 1em 2em;
             @include position(absolute, 90% 0 0 0px);
@@ -136,7 +158,18 @@ section#header-wrapper {
             z-index: 1;
 
             li {
+              column-break-inside: avoid;
               display: block;
+              -moz-column-break-inside: avoid;
+              -webkit-column-break-inside: avoid;
+
+              h4 {
+                color: #fff;
+                font-weight: 700;
+                margin: .5em 0;
+                text-shadow: none;
+                text-transform: uppercase;
+              }
 
               &:nth-child(4n) {
                 margin-right: 0;

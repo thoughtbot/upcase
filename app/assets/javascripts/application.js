@@ -49,5 +49,5 @@ $(function() {
     return false;
   });
 
-  $('.header-container nav > ul > li:not(.prime):not(.account) a').dropdown();
+  $('.header-container nav li.dropdown > a').dropdown();
 });
