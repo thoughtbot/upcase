@@ -35,7 +35,7 @@ section#header-wrapper {
       margin-bottom: .2em;
       margin-top: -18px;
       text-align: left;
-      width: flex-grid(4);
+      width: flex-grid(3);
 
       a {
         display: inline-block;
@@ -52,9 +52,9 @@ section#header-wrapper {
     nav {
       float: right;
       line-height: 0;
-      @include position(relative, 12px 0 0 0);
+      @include position(relative, 18px 0 0 0);
       text-align: right;
-      width: flex-grid(8);
+      width: flex-grid(9);
 
       > ul {
         display: inline-block;
@@ -92,33 +92,32 @@ section#header-wrapper {
             }
           }
 
-          &.open {
+          &.dropdown {
+            > a {
+              padding-right: 1.8em;
 
+              &::after {
+                border: 2px solid $darkwarmgray;
+                border-width: 0 2px 2px 0;
+                bottom: 0;
+                content: '';
+                height: 6px;
+                margin: -6px 0 0 0;
+                @include position(absolute, 50% .7em 0 0);
+                @include transform(rotate(45deg));
+                width: 6px;
+              }
+            }
+          }
+
+          &.open {
             > a, > a:hover {
               background: darken($warmgray, 9%);
               color: #fff;
-
-              &::after {
-                display: none;
-              }
             }
 
             ul {
               display: block;
-            }
-          }
-
-          &.dropdown {
-            > a::after {
-              border: 2px solid $darkwarmgray;
-              border-width: 0 2px 2px 0;
-              bottom: 0;
-              content: '';
-              height: 8px;
-              margin-left: -4px;
-              @include position(absolute, 0 0 0px 50%);
-              @include transform(rotate(45deg));
-              width: 8px;
             }
           }
 
@@ -127,7 +126,7 @@ section#header-wrapper {
             display: block;
             font-weight: 600;
             outline: none;
-            padding: .9em;
+            padding: .6em .8em;
             position: relative;
 
             &:hover {
@@ -156,10 +155,7 @@ section#header-wrapper {
             z-index: 1;
 
             li {
-              column-break-inside: avoid;
               display: block;
-              -moz-column-break-inside: avoid;
-              -webkit-column-break-inside: avoid;
 
               h4 {
                 color: #fff;
@@ -191,14 +187,10 @@ section#header-wrapper {
   }
 }
 
-@media screen and (max-width: 910px) {
-  .logo {
-    text-align: center;
-  }
-}
-
-@media screen and (max-device-width: 800px), screen and (max-width: 800px) {
+@media screen and (max-device-width: 1044px), screen and (max-width: 1044px) {
   section#header-wrapper .header-container {
+    padding-top: 1.5em;
+
     .logo img, .small-logo img {
       display: block;
       margin: 0 auto 10px auto;
@@ -209,23 +201,70 @@ section#header-wrapper {
       text-align: center;
       text-indent: 0;
       width: 100%;
+
+      a {
+        top: 25px;
+      }
     }
 
     .intro {
       padding-top: 0;
     }
+
+    nav {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 1.5em;
+    }
   }
 }
 
-@media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+@media screen and (max-device-width: 790px), screen and (max-width: 790px) {
   section#header-wrapper .header-container {
+    nav > ul > li.prime {
+      display: block;
+      float: none;
+      margin: 0;
+      text-align: center;
+
+      a {
+        display: inline-block;
+        margin-bottom: .5em;
+      }
+    }
+
     .intro {
       font-size: 18px;
+      margin-top: 1em;
       width: 95%;
     }
 
     .detail-logo {
       float: auto;
+    }
+  }
+}
+
+@media screen and (max-device-width: 600px), screen and (max-width: 600px) {
+  section#header-wrapper .header-container {
+    nav {
+      > ul {
+        display: block;
+
+        > li {
+          margin: 0;
+          width: 100%;
+
+          ul {
+            position: static;
+            @include columns(1);
+
+            li a {
+              display: block;
+            }
+          }
+        }
+      }
     }
   }
 }

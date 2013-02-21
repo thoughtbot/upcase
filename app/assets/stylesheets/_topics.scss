@@ -118,8 +118,8 @@ body.topics-index {
     }
 
     #all-products .button {
-      @include span-columns(10);
-      @include shift(1);
+      width: 100%;
+      margin: 0;
     }
   }
 }
@@ -300,9 +300,15 @@ body.topics-index {
       line-height: 56px;
     }
 
-    section#topics-list li {
-      display: block;
+    section#topics-list {
+      margin: 0;
+      padding: 0;
       width: 100%;
+
+      li {
+        display: block;
+        width: 100%;
+      }
     }
   }
 }
