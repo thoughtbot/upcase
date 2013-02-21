@@ -57,7 +57,7 @@ class Section < ActiveRecord::Base
   end
 
   def self.current
-    where 'starts_on = ?', Date.today
+    where 'starts_on <= ? AND ? <= ends_on', Date.today, Date.today
   end
 
   def self.send_reminders

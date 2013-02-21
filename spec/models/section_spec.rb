@@ -201,6 +201,12 @@ describe Section do
       expect(Section.current).to include current
       expect(Section.current).not_to include future
       expect(Section.current).not_to include past
+      Timecop.freeze(Date.tomorrow) do
+        expect(Section.current).to include current
+      end
+      Timecop.freeze(Date.today + 2) do
+        expect(Section.current).not_to include current
+      end
     end
   end
 
