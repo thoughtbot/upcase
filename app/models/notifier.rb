@@ -6,7 +6,7 @@ class Notifier
 
   def send_notifications_for(items)
     items.each do |item|
-      if item.starts_today?(@section.start_date)
+      if item.starts_today?(@section.starts_on)
         @emails.each do |email|
           send_notification(email, item)
         end
@@ -17,6 +17,6 @@ class Notifier
   private
 
   def send_notification(email, item)
-    Mailer.notification(email, item)
+    Mailer.notification(email, item).deliver
   end
 end
