@@ -30,19 +30,17 @@ section#header-wrapper {
 
     .small-logo {
       float: left;
-      font-size: 55px;
+      font-size: 50px;
       line-height: .9em;
       margin-bottom: .2em;
-      margin-top: -15px;
-      padding-left: 240px;
+      margin-top: -18px;
       text-align: left;
-      text-indent: -240px;
       width: flex-grid(4);
 
       a {
         display: inline-block;
         position: relative;
-        top: 14px;
+        top: 16px;
         width: 68px;
 
         img {
