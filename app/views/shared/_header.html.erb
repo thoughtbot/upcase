@@ -33,18 +33,15 @@
             <li><a href="#">RubyMotion</a></li>
             <li><a href="#">SQL</a></li>
           </ul>
-          <li class="account"><a href="#">Account</a></li>
+          <% if show_account_links? %>
+            <% if signed_in? %>
+              <li class="account"><%= link_to 'Account', my_account_path %></li>
+            <% else %>
+              <li class="account"><%= link_to 'Sign in', sign_in_path %></li>
+            <% end %>
+          <% end %>
         </ul>
       </nav>
-      <div class="myaccount">
-        <% if show_account_links? %>
-          <% if signed_in? %>
-            <%= link_to 'My account', my_account_path, class: 'button' %>
-          <% else %>
-            <%= link_to 'Sign in', sign_in_path, class: 'button' %>
-          <% end %>
-        <% end %>
-      </div>
     <% else %>
       <div class="logo">
         <h1><%= link_to image_tag('learn/learn-ralph.png'), root_path %>

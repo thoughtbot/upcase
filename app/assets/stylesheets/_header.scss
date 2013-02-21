@@ -48,26 +48,6 @@ section#header-wrapper {
         }
       }
     }
-
-    .myaccount {
-      @include span-columns(2);
-      float: right;
-      margin-top: 9px;
-      text-transform: uppercase;
-
-      .button {
-        background-color: $lightwarmgray;
-        border-bottom: none;
-        color: $warmgray;
-        padding-top: 15px;
-        width: 100%;
-
-        &:hover {
-          background-color: white;
-          color: $darkwarmgray;
-        }
-      }
-    }
   }
 }
 
@@ -78,48 +58,35 @@ section#header-wrapper {
 }
 
 @media screen and (max-device-width: 800px), screen and (max-width: 800px) {
-  .logo img, .detail-logo img {
-    display: block;
-    margin: 0 auto 10px auto;
-  }
-
-  .detail-logo {
-    float: none !important;
-    text-align: center;
-
-    h1 {
-      padding-left: 0 !important;
-      text-align: center !important;
-      text-indent: 0 !important;
-      width: 100% !important;
+  section#header-wrapper .header-container {
+    .logo img, .small-logo img {
+      display: block;
+      margin: 0 auto 10px auto;
     }
 
-    .myaccount {
-      margin-top: -33px !important;
-      position: absolute;
-      right: 2em !important;
-      width: 100px !important;
+    h1.small-logo {
+      padding-left: 0;
+      text-align: center;
+      text-indent: 0;
+      width: 100%;
     }
-  }
 
-  section#header-wrapper .header-container .intro {
-    padding-top: 0;
-  }
-
-  section#header-wrapper .header-container .detail-logo h1 {
-    padding-left: 0;
-    text-indent: 0;
+    .intro {
+      padding-top: 0;
+    }
   }
 }
 
 @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
-  section#header-wrapper .header-container .intro {
-    font-size: 18px;
-    width: 95%;
-  }
+  section#header-wrapper .header-container {
+    .intro {
+      font-size: 18px;
+      width: 95%;
+    }
 
-  .detail-logo {
-    float: auto;
+    .detail-logo {
+      float: auto;
+    }
   }
 }
 
