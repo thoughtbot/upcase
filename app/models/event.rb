@@ -8,4 +8,12 @@ class Event < ActiveRecord::Base
   def self.ordered
     order('occurs_on_day asc')
   end
+
+  def starts_today?(start_date)
+    occurs_on(start_date) == Date.today
+  end
+
+  def occurs_on(start_date)
+    start_date + occurs_on_day.days
+  end
 end
