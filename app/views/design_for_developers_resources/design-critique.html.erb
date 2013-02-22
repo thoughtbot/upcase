@@ -1,4 +1,8 @@
+<% content_for :subject, "Design for Developers" %>
+
 <% content_for :body_class, "week" %>
+<div class="text-box-wrapper">
+  <div class="text-box">
 
 <section class="content-container">
   <h1>Design Critique</h1>
@@ -29,24 +33,7 @@
   </ol>
 </section>
 
-<aside>
-  <ul>
-    <li>
-      <h2>Workshop Cheatsheets</h2>
-      <ul>
-        <li><a href="/design-for-developers-resources/principles.html">Principles</a></li>
-        <li><a href="/design-for-developers-resources/grid.html"</a>Grid</li>
-        <li><a href="/design-for-developers-resources/typography.html"</a>Typography</li>
-        <li><a href="/design-for-developers-resources/color.html">Color</a></li>
-      </ul>
-    </li>
+  </div>
+</div>
 
-    <li>
-      <h2>Design for Developers Links</h2>
-      <ul class="self-promo">
-        <li><a href="http://learn.thoughtbot.com">Learn at thoughtbot</a></li>
-        <li><a href="https://learn.thoughtbot.com/workshops/2-design-for-developers">Take the Design for Developers Workshop</a></li>
-      </ul>
-    </li>
-  </ul>
-</aside>
+<%= render 'sidebar' %>
