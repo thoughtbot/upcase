@@ -136,10 +136,6 @@ section#header-wrapper {
             &:active {
               background: darken($warmgray, 9%);
               color: #fff;
-
-              &::after {
-                display: none;
-              }
             }
           }
 
