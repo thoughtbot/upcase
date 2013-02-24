@@ -49,6 +49,7 @@ Workshops::Application.routes.draw do
 
   resources :design_for_developers_resources, path: 'design-for-developers-resources', only: [:index, :show]
   resources :test_driven_rails_resources, path: 'test-driven-rails-resources', only: [:index]
+  match '/d4d-resources' => redirect('/design-for-developers-resources')
 
   resources :topics, only: :index
 
