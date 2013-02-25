@@ -68,12 +68,3 @@ Feature: Products include support
       | In-person Workshop | false  |
     When I view the in-person workshop "In-person Workshop"
     Then I should not see a workshop alert
-
-  Scenario: Experimenting with hiding the book sample
-    Given the following products exist:
-      | name | product_type | description                               |
-      | Book | book         | <div id="book-graphic">Free sample!</div> |
-    When I go to the product page for "Book" with the "show_sample" alternative for the "book_sample" experiment
-    Then I should see the book sample graphic
-    When I go to the product page for "Book" with the "hide_sample" alternative for the "book_sample" experiment
-    Then I should not see the book sample graphic
