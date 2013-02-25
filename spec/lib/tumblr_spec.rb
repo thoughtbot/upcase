@@ -4,9 +4,10 @@ require 'typhoeus'
 require 'tumblr'
 
 describe Tumblr, '::recent' do
-  before(:all) { stub_typhoeus }
 
   it 'returns the posts from tumblr' do
+    stub_typhoeus
+
     posts = Tumblr.recent
 
     expect(posts.first[:title]).to eq(tumblr_post[:title])
@@ -23,9 +24,9 @@ describe Tumblr, '::recent' do
   def fake_tumblr
     {
       response: {
-      blog: { posts: 1 },
-      posts: [tumblr_post],
-    }
+        blog: { posts: 1 },
+        posts: [tumblr_post],
+      }
     }
   end
 
