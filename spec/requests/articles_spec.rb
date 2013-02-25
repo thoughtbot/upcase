@@ -67,15 +67,17 @@ describe 'Articles' do
 
       visit article_url(ruby_article)
 
-      expect(page).to have_content(topic.name)
-      expect(page).to have_content(ruby_product.name)
-      expect(page).to have_content(ruby_workshop.name)
       expect(page).to have_css('meta[name="Keywords"][content="Ruby"]')
+      within '.content' do
+        expect(page).to have_content(topic.name)
+        expect(page).to have_content(ruby_product.name)
+        expect(page).to have_content(ruby_workshop.name)
 
-      expect(page).not_to have_content(unrelated_topic.name)
-      expect(page).not_to have_content(unrelated_product.name)
-      expect(page).not_to have_content(unrelated_workshop.name)
-      expect(page).not_to have_content(private_workshop.name)
+        expect(page).not_to have_content(unrelated_topic.name)
+        expect(page).not_to have_content(unrelated_product.name)
+        expect(page).not_to have_content(unrelated_workshop.name)
+        expect(page).not_to have_content(private_workshop.name)
+      end
     end
   end
 end

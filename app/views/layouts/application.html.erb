@@ -25,7 +25,9 @@
     <%= render 'shared/flashes' %>
 
     <section class="content">
-      <h1><%= yield(:subject) %></h1>
+      <% if content_for?(:subject) %>
+        <h1 class="subject"><%= yield(:subject) %></h1>
+      <% end %>
       <%= yield %>
     </section>
 
