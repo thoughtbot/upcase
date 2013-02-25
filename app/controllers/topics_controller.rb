@@ -1,7 +1,6 @@
 class TopicsController < ApplicationController
   def index
     expires_in 12.hours, public: true
-    @topics = Topic.top
     @promoted_left = promoted_item('left')
     @promoted_middle = promoted_item('middle')
     @promoted_right = promoted_item('right')
