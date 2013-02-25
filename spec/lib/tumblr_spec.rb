@@ -1,7 +1,4 @@
 require 'spec_helper'
-require 'json'
-require 'typhoeus'
-require 'tumblr'
 
 describe Tumblr, '::recent' do
 
