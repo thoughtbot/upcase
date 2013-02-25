@@ -8,63 +8,49 @@
       </h1>
       <nav>
         <ul>
-          <li class="prime"><a href="#"><span><%= t('shared.subscriptions.icon') %></span> Prime Membership</a></li>
+          <li class="prime">
+            <% if subscription_product %>
+              <%= link_to subscription_product do %>
+                <span><%= t('shared.subscriptions.icon') %></span><%= subscription_product.name %> Membership
+              <% end %>
+            <% end %>
+          </li>
           <li class="dropdown">
             <a href="#" data-toggle="dropdown">Workshops</a>
             <ul>
-              <li><h4>Online Workshops</h4></li>
-              <li><a href="#">Test-Driven Rails</a></li>
-              <li><a href="#">Design for Developers</a></li>
-              <li><a href="#">Intro to Ruby on Rails</a></li>
-              <li><h4>In-person Workshops</h4></li>
-              <li><a href="#">Intro to Ruby on Rails</a></li>
-              <li><a href="#">Intermediate Ruby on Rails</a></li>
-              <li><a href="#">Test-Driven Rails</a></li>
-              <li><a href="#">Design for Developers</a></li>
+              <li><h4><%= t 'shared.online_workshops' %></h4></li>
+              <% online_workshops.each do |workshop| %>
+                <li><%= link_to workshop.name, workshop %></li>
+              <% end %>
+              <li><h4><%= t 'shared.in_person_workshops' %></h4></li>
+              <% in_person_workshops.each do |workshop| %>
+                <li><%= link_to workshop.name, workshop %></li>
+              <% end %>
             </ul>
           </li>
           <li class="dropdown">
-            <a href="#" data-toggle="dropdown">Videos</a>
+            <a href="#" data-toggle="dropdown"><%= t 'shared.videos' %></a>
             <ul>
-              <li><a href="#">Hidden Secrets of the Chrome Developer Tools</a></li>
-              <li><a href="#">Humans Present: Refactoring</a></li>
-              <li><a href="#">Humans Present: tmux</a></li>
-              <li><a href="#">The Playbook: Video Edition</a></li>
-              <li><a href="#">Vim for Rails Developers</a></li>
+              <% videos.each do |video| %>
+                <li><%= link_to video.name, video %></li>
+              <% end %>
             </ul>
           </li>
           <li class="dropdown">
-            <a href="#" data-toggle="dropdown">Books</a>
+            <a href="#" data-toggle="dropdown"><%= t 'shared.books' %></a>
             <ul>
-              <li><a href="#">Backbone.js on Rails</a></li>
-              <li><a href="#">Ruby Science</a></li>
-              <li><a href="#">The Playbook</a></li>
+              <% books.each do |book| %>
+                <li><%= link_to book.name, book %></li>
+              <% end %>
             </ul>
           </li>
           <li class="dropdown">
-            <a href="#" data-toggle="dropdown">Trail Maps</a>
+            <a href="#" data-toggle="dropdown"><%= t 'shared.trails' %></a>
             <ul>
-              <li><h4>Programming</h4></li>
-              <li><a href="#">Git</a></li>
-              <li><a href="#">iOS</a></li>
-              <li><a href="#">Refactoring</a></li>
-              <li><a href="#">Ruby</a></li>
-              <li><a href="#">Ruby on Rails</a></li>
-              <li><a href="#">RubyMotion</a></li>
-              <li><a href="#">SQL</a></li>
-              <li><a href="#">Testing</a></li>
-              <li><a href="#">UNIX</a></li>
-              <li><a href="#">Vim</a></li>
-              <li><h4>Design</h4></li>
-              <li><a href="#">Design</a></li>
-              <li><a href="#">Grid Systems</a></li>
-              <li><a href="#">Typography</a></li>
-              <li><a href="#">Visual Principles</a></li>
-              <li><a href="#">Web Design</a></li>
-              <li><h4>Front-end</h4></li>
-              <li><a href="#">HTML &amp; CSS</a></li>
-              <li><a href="#">Javascript</a></li>
-              <li><a href="#">Sass</a></li>
+              <!-- <li><h4>Programming</h4></li> -->
+              <% topics.each do |topic| %>
+                <li><%= link_to topic.name, topic %></li>
+              <% end %>
             </ul>
           </li>
           <% if show_account_links? %>
