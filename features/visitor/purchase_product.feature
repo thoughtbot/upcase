@@ -97,7 +97,6 @@ Feature: Purchase a Product
     And I follow "Test GitHub"
     And I follow "Your Company"
     Then I should see "$199"
-    Then show me the page
     And I should see "1st Reader"
     And I should see "2nd Reader"
     And I should see "3rd Reader"
