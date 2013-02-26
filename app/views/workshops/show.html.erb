@@ -32,8 +32,7 @@
   <% if @sections.any? %>
     <%= render 'sections/section',
       sections: @sections,
-      workshop: @workshop,
-      pricing_scheme: @pricing_scheme %>
+      workshop: @workshop %>
   <% else %>
     <%= render 'sections/tbd' %>
   <% end %>
