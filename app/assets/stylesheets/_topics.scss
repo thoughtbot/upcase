@@ -130,6 +130,10 @@ body.topics-index {
     max-width: 760px;
     padding: 2em;
 
+    .text-box {
+      border-top: 0;
+    }
+
     hr {
       margin-bottom: 2em;
     }
@@ -137,6 +141,7 @@ body.topics-index {
     h2 {
       margin-bottom: 0;
       padding-bottom: 6px;
+      color: $learnred;
     }
 
     ul {
