@@ -19,14 +19,10 @@
     <% if @product.active? %>
       <% if !@product.external? %>
         <div class="individual-purchase">
-          <%= render 'individual_purchase',
-            product: @product,
-            pricing_scheme: @pricing_scheme %>
+          <%= render 'individual_purchase', product: @product%>
         </div>
         <div class="company-purchase">
-          <%= render 'company_purchase',
-            product: @product,
-            pricing_scheme: @pricing_scheme %>
+          <%= render 'company_purchase', product: @product %>
         </div>
       <% else %>
         <div>
