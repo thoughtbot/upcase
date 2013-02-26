@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Tumblr, '::recent' do
+describe Tumblr, '.recent' do
 
   it 'returns the posts from tumblr' do
     stub_typhoeus
