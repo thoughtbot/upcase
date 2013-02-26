@@ -56,6 +56,46 @@ section#header-wrapper {
       text-align: right;
       width: flex-grid(9);
 
+      // position sub menus
+      li.workshops ul {
+        right: 321px;
+      }
+
+      li.videos ul {
+        left: 20%;
+        right: 221px;
+      }
+
+      li.books ul {
+        @include columns(1);
+        left: 45%;
+        right: 126px;
+      }
+
+      li.trails ul {
+        @include columns(3);
+        right: 0;
+      }
+
+      &.show-account-links {
+        li.workshops ul {
+          right: 404px;
+        }
+
+        li.videos ul {
+          right: 304px;
+        }
+
+        li.books ul {
+          left: 45%;
+          right: 208px;
+        }
+
+        li.trails ul {
+          right: 83px;
+        }
+      }
+
       > ul {
         display: inline-block;
         text-align: left;
@@ -80,8 +120,7 @@ section#header-wrapper {
           }
 
           &.account a {
-            background: lighten($darkwarmgray, 20%);
-            color: #fff;
+            color: $darkwarmgray;
 
             &:hover {
               background: lighten($darkwarmgray, 10%);
@@ -97,7 +136,7 @@ section#header-wrapper {
               padding-right: 1.8em;
 
               &::after {
-                border: 2px solid $darkwarmgray;
+                border: 2px solid $learnred;
                 border-width: 0 2px 2px 0;
                 bottom: 0;
                 content: '';
@@ -107,6 +146,10 @@ section#header-wrapper {
                 @include transform(rotate(45deg));
                 width: 6px;
               }
+
+              &:hover::after {
+                border-color: #fff;
+              }
             }
           }
 
@@ -114,9 +157,13 @@ section#header-wrapper {
             > a, > a:hover {
               background: darken($warmgray, 9%);
               color: #fff;
+
+              &::after {
+                border-color: #fff;
+              }
             }
 
-            ul {
+            > ul {
               display: block;
             }
           }
@@ -139,15 +186,15 @@ section#header-wrapper {
             }
           }
 
-          ul {
+          > ul {
             background: darken($warmgray, 9%);
             border-radius: 3px;
             color: #fff;
-            @include columns(3);
+            @include columns(2);
             display: none;
             padding: 1em 2em;
             @include position(absolute, 90% 0 0 0px);
-            width: 100%;
+            width: auto;
             z-index: 1;
 
             li {
@@ -156,7 +203,7 @@ section#header-wrapper {
               h4 {
                 color: #fff;
                 font-weight: 700;
-                margin: .5em 0;
+                margin: 1em 0 .5em 0;
                 text-shadow: none;
                 text-transform: uppercase;
               }
@@ -175,6 +222,11 @@ section#header-wrapper {
                   color: #fff;
                 }
               }
+            }
+
+            ul {
+              display: inline-block;
+              width: 100%;
             }
           }
         }
@@ -212,6 +264,19 @@ section#header-wrapper {
       text-align: center;
       margin-bottom: 1.5em;
     }
+
+    nav > ul > li {
+      &.books {
+        > ul {
+          @include columns(3);
+        }
+      }
+
+      > ul {
+        left: 0 !important;
+        right: 0 !important;
+      }
+    }
   }
 }
 
@@ -247,13 +312,22 @@ section#header-wrapper {
       > ul {
         display: block;
 
-        > li {
+        > li, > li.trails, > li.books {
           margin: 0;
           width: 100%;
 
           ul {
-            position: static;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
             @include columns(1);
+            padding: 0 .8em .8em;
+            position: relative;
+            top: -3px;
+
+            ul {
+              padding: 0;
+              position: static;
+            }
 
             li a {
               display: block;
