@@ -77,8 +77,6 @@ RailsAdmin.config do |config|
         field :description
         field :individual_price
         field :company_price
-        field :alternate_individual_price
-        field :alternate_company_price
         field :maximum_students
         field :external_registration_url
         field :public
