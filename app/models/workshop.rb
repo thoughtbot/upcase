@@ -35,14 +35,6 @@ class Workshop < ActiveRecord::Base
     sections.active
   end
 
-  def alternate_company_price
-    self[:alternate_company_price] || company_price
-  end
-
-  def alternate_individual_price
-    self[:alternate_individual_price] || individual_price
-  end
-
   def announcement
     @announcement ||= announcements.current
   end

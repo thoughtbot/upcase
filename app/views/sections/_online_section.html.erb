@@ -15,11 +15,7 @@
         <% if current_user_has_active_subscription? %>
           Free
         <% else %>
-          <% if pricing_scheme == "primary" %>
-            <%= number_to_currency online_section.individual_price, precision: 0 %>
-          <% else %>
-            <%= number_to_currency online_section.alternate_individual_price, precision: 0 %>
-          <% end %>
+          <%= number_to_currency online_section.individual_price, precision: 0 %>
         <% end %>
       </span>
     </h2>
@@ -27,39 +23,24 @@
       <% if current_user_has_active_subscription? %>
         <h2 class="active-subscription"><%= t 'workshops.show.free_to_subscribers' %></h2>
       <% end %>
-      <% if pricing_scheme == "primary" %>
-        <%= link_to new_section_purchase_path(online_section, variant: :individual), class: 'license-button button' do %>
-          <%= t('workshops.show.register') %>
-        <% end %>
-      <% else %>
-        <%= link_to new_section_purchase_path(online_section, variant: :alternate_individual), class: 'license-button button' do %>
-          <%= t('workshops.show.register') %>
-        <% end %>
+
+      <%= link_to new_section_purchase_path(online_section, variant: :individual), class: 'license-button button' do %>
+        <%= t('workshops.show.register') %>
       <% end %>
     </div>
   </div>
 
   <% unless current_user_has_active_subscription? %>
     <div class="company-purchase">
+
       <h2>
         Group
-        <span>
-          <% if pricing_scheme == "primary" %>
-            <%= number_to_currency online_section.company_price, precision: 0 %>
-          <% else %>
-            <%= number_to_currency online_section.alternate_company_price, precision: 0 %>
-          <% end %>
-        </span>
+        <span><%= number_to_currency online_section.company_price, precision: 0 %></span>
       </h2>
+
       <div class="license">
-        <% if pricing_scheme == "primary" %>
-          <%= link_to new_section_purchase_path(online_section, variant: :company), class: 'license-button button' do %>
-            Purchase for Your Company
-          <% end %>
-        <% else %>
-          <%= link_to new_section_purchase_path(online_section, variant: :alternate_company), class: 'license-button button' do %>
-            Purchase for Your Company
-          <% end %>
+        <%= link_to new_section_purchase_path(online_section, variant: :company), class: 'license-button button' do %>
+          Purchase for Your Company
         <% end %>
       </div>
     </div>
