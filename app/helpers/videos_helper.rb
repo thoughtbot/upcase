@@ -6,4 +6,8 @@ module VideosHelper
       'unavailable'
     end
   end
+
+  def single_video?(purchaseable)
+    purchaseable.videos.size == 1
+  end
 end

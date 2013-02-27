@@ -140,6 +140,10 @@ body {
   &.purchases-show,
   &.videos {
     section.content {
+      h2 {
+        color: $darkwarmgray;
+      }
+
       section.receipt {
         @include outer-container;
         margin-top: 50px;
@@ -182,6 +186,10 @@ body {
       }
 
       .text-box-wrapper {
+        .text-box {
+          overflow: auto;
+        }
+
         .video-button-wrapper {
           text-align: center;
         }
@@ -194,6 +202,10 @@ body {
         .video-button-wrapper + p {
           margin-top: 30px;
         }
+      }
+
+      .download_items {
+        padding-bottom: 0;
       }
     }
 
@@ -217,6 +229,108 @@ body {
     .videoinfo {
       display: inline-block;
       vertical-align: middle;
+    }
+
+    .videowrapper, .mapwrapper {
+      height: 0;
+      margin: 0 0 1em 0;
+      overflow: hidden;
+      padding-bottom: 56.25%;
+      padding-top: 0px;
+      position: relative;
+
+      iframe {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+    }
+
+    figure.book-cover {
+      margin: 2.5em 0;
+      text-align: center;
+
+      img {
+        display: inline-block;
+        margin-right: 2.5em;
+        width: 300px;
+
+        @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+          margin: 0;
+        }
+      }
+
+      figcaption {
+        display: inline-block;
+        margin: 0;
+        max-width: 300px;
+        text-align: left;
+        vertical-align: top;
+
+        @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+          margin-top: 2em;
+        }
+
+        h3 {
+          color: #000;
+          font-weight: 800;
+          margin: 0 0 1em 0;
+        }
+
+        p {
+          margin: 0 0 1em 0;
+
+          a {
+            color: inherit;
+            display: block;
+            font-family: $sans-serif;
+            font-weight: 600;
+            overflow: auto;
+          }
+
+          .title, .date {
+            font-weight: 100;
+          }
+        }
+
+        p:nth-child(3) {
+          opacity: .7;
+        }
+
+        p:nth-child(4) {
+          opacity: .4;
+        }
+
+        .allupdates {
+          margin-top: 1em;
+          color: $learnred;
+        }
+      }
+    }
+
+    .start-reading {
+      margin-bottom: 1em;
+
+      .button {
+        margin-bottom: 1em;
+      }
+
+      .readmill {
+        background: #58852c;
+        border-color: darken(#58852c, 20%);
+
+        &:hover {
+          background: lighten(#58852c, 5%);
+          border-color: darken(#58852c, 15%);
+        }
+
+        &:active {
+          background: darken(#58852c, 5%);
+          border-color: darken(#58852c, 25%);
+        }
+      }
     }
 
     .assets-wrapper {

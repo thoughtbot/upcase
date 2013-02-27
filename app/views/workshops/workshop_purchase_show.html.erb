@@ -1,0 +1,24 @@
+<% content_for :subject, @purchaseable.name %>
+
+<% if @purchaseable.in_person? && @purchaseable.upcoming? %>
+  <p>Thank you for registering for <%= @purchaseable.name %>. We'll see you on <%= @purchaseable.date_range %> from <%= @purchaseable.time_range %> at <%= @purchaseable.address %>, <%= @purchaseable.city %>, <%= @purchaseable.state %> <%= @purchaseable.zip %>.</p>
+  <p>Please don't hesitate to get in touch with us at <%= mail_to 'learn@thoughtbot.com' %> should you have any questions or concerns.</p>
+<% end %>
+
+<% if @purchaseable.in_person? && @purchaseable.videos.any? %>
+  <p>In addition to the in-person workshop, you receive video versions of the lessons.</p>
+<% end %>
+
+<% if @purchaseable.videos.any? %>
+  <h2>Watch or Download Video Lessons</h2>
+
+  <h3 class="workshop-type"><%= pluralize @purchaseable.videos.size, 'lesson' %> in this workshop</h3>
+
+  <div class="text-box-wrapper">
+    <section id="videos">
+      <%= render @purchaseable.videos.ordered, purchase: @purchase %>
+    </section>
+  </div>
+<% end %>
+
+<%= render 'workshops/aside', purchaseable: @purchaseable, purchase: @purchase %>

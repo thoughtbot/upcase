@@ -13,6 +13,7 @@ describe Product do
   it { should validate_presence_of(:fulfillment_method) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:sku) }
+  it { should validate_presence_of(:product_type) }
 
   describe '#announcement' do
     it 'calls Announcement.current' do
@@ -133,6 +134,13 @@ describe Product do
       product = purchase.purchaseable
 
       expect(product.purchase_for(user)).to be_nil
+    end
+  end
+
+  context 'book_filename' do
+    it 'returns the parameterized product name' do
+      book = Product.new(name: 'Backbone.js on Rails')
+      expect(book.book_filename).to eq 'backbone-js-on-rails'
     end
   end
 end

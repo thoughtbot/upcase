@@ -13,7 +13,7 @@ class Section < ActiveRecord::Base
 
   # Delegates
   delegate :name, :description, :individual_price, :company_price, :terms,
-    :videos, :resources, :video_chat_url, :events,
+    :videos, :resources, :video_chat_url, :events, :in_person?, :online?,
     to: :workshop, allow_nil: true
 
   # Nested Attributes
@@ -76,7 +76,7 @@ class Section < ActiveRecord::Base
   end
 
   def fulfillment_method
-    if workshop.in_person?
+    if in_person?
       'in-person'
     else
       'online'
@@ -139,6 +139,10 @@ class Section < ActiveRecord::Base
 
   def purchase_for(user)
     workshop.purchases.paid.where(user_id: user).first
+  end
+
+  def upcoming?
+    starts_on >= Date.today
   end
 
   private

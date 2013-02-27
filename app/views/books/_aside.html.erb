@@ -1,0 +1,18 @@
+<aside>
+  <% if purchaseable.github_url? %>
+    <section class="start-reading">
+      <h3>Start reading</h3>
+      <hr />
+      <%= link_to epub_url(purchaseable), class: 'button' do %>
+        Download as EPUB<br/>
+        (iPhone, iPad &amp; Nook)
+      <% end %>
+      <%= link_to 'Download for Kindle', kindle_url(purchaseable), class: 'button' %>
+      <%= link_to 'Download as PDF', pdf_url(purchaseable), class: 'button' %>
+      <!-- <a class="button readmill" href="">Send to Readmill</a> -->
+      <p><%= link_to 'See all formats on GitHub', book_releases_url(purchaseable) %></p>
+    </section>
+  <% end %>
+
+  <%= render 'shared/sidebar_chat', purchaseable: purchaseable %>
+</aside>

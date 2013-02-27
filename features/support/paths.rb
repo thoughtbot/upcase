@@ -46,13 +46,10 @@ module NavigationHelpers
       product_url(product, $3 => $2)
     when /the product page for "([^\"]+)"/
       product = Product.find_by_name!($1)
-      product_url(product)
-    when /the watch page for the purchase "([^"]+)"$/
-      purchase = Purchase.find_by_lookup!($1)
-      watch_purchase_path(purchase)
+      product_path(product)
     when /the video list for the purchase "([^"]+)"$/
       purchase = Purchase.find_by_lookup!($1)
-      purchase_videos_path(purchase)
+      purchase_path(purchase)
     when /the video with id "([^"]+)" for the purchase "([^"]+)"$/
       purchase = Purchase.find_by_lookup!($2)
       product = purchase.purchaseable

@@ -14,6 +14,7 @@ class Product < ActiveRecord::Base
   validates :name, presence: true
   validates :fulfillment_method, presence: true
   validates :sku, presence: true
+  validates :product_type, presence: true
 
   # Plugins
   has_attached_file :product_image, {
@@ -111,6 +112,10 @@ class Product < ActiveRecord::Base
 
   def purchase_for(user)
     purchases.paid.where(user_id: user).first
+  end
+
+  def book_filename
+    name.parameterize
   end
 
   private

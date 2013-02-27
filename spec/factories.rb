@@ -104,6 +104,7 @@ FactoryGirl.define do
     individual_price 15
     name { generate(:name) }
     sku 'TEST'
+    product_type 'test'
 
     factory :book_product do
       product_type 'book'
@@ -164,6 +165,10 @@ FactoryGirl.define do
 
     factory :book_purchase do
       association :purchaseable, factory: :book_product
+    end
+
+    factory :video_purchase do
+      association :purchaseable, factory: :video_product
     end
 
     factory :subscription_purchase do

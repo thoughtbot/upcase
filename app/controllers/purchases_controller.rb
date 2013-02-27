@@ -43,26 +43,15 @@ class PurchasesController < ApplicationController
   def show
     @purchase = Purchase.find_by_lookup(params[:id])
     @purchaseable = @purchase.purchaseable
-    unless @purchase.paid?
+    if @purchase.paid?
+      render polymorphic_purchaseable_template
+    else
       redirect_to @purchaseable
     end
   end
 
-  def watch
-    @purchase = Purchase.find_by_lookup(params[:id])
-    unless @purchase.paid?
-      redirect_to root_path and return
-    end
-    @purchaseable = @purchase.purchaseable
-
-    if @purchaseable.videos.one?
-      redirect_to [@purchase, @purchaseable.videos.first]
-    else
-      redirect_to [@purchase, :videos]
-    end
-  end
-
   def paypal
+    flash.keep
     @purchase = Purchase.find_by_lookup(params[:id])
     @purchase.complete_paypal_payment!(params[:token], params[:PayerID])
     notify_kissmetrics_of(@purchase)
@@ -114,5 +103,9 @@ class PurchasesController < ApplicationController
 
   def url_after_denied_access_when_signed_out
     sign_up_url
+  end
+
+  def polymorphic_purchaseable_template
+    "#{@purchaseable.product_type.pluralize}/#{@purchaseable.product_type}_purchase_show"
   end
 end
