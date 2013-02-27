@@ -1,5 +1,6 @@
 require 'rails_admin/config/actions/purchase_accounting'
 require 'rails_admin/config/actions/section_students'
+require 'rails_admin/config/actions/bytes'
 
 module RailsAdmin
   module Config
@@ -32,6 +33,7 @@ RailsAdmin.config do |config|
     purchase_refund
     purchase_accounting
     section_students
+    bytes
   end
 
   config.model Article do
@@ -39,6 +41,12 @@ RailsAdmin.config do |config|
       field :title
       field :draft
       field :published_on
+      field :external_url do
+        visible false
+        filterable true
+      end
+      filters [:title, :draft, :published_on, :external_url]
+      sort_by :published_on
     end
 
     edit do
