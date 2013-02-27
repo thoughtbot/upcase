@@ -1,0 +1,19 @@
+<% content_for :subject, @purchaseable.name %>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <%= render 'purchases/downloads_info', purchaseable: @purchaseable %>
+    <%= render 'purchases/github_repo_info', purchaseable: @purchaseable %>
+
+    <figure class="book-cover">
+      <%= image_tag(cover_image(@purchaseable)) %>
+      <!-- <figcaption>
+        <h3>Recent commits</h3>
+          <p><a href="#">Add instructions for MacTex * Installer doesn't update PATH for some users <span class="date">&ndash;Febuary 29th<span></a></p>
+          <p class="allupdates"><a href="http://github.com/thoughtbot/ruby-science/commits/master">View all commits</a></p>
+          </figcaption> -->
+    </figure>
+  </div>
+</div>
+
+<%= render 'books/aside', purchaseable: @purchaseable, purchase: @purchase %>

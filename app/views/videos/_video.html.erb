@@ -4,9 +4,9 @@
 
   <% if video.available?(purchase.purchaseable.starts_on) %>
     <%= link_to purchase_video_path(purchase, video) do %>
-      <%= render 'thumbnail', video: video, purchase: purchase %>
+      <%= render 'videos/thumbnail', video: video, purchase: purchase %>
     <% end %>
   <% else %>
-    <%= render 'thumbnail', video: video, purchase: purchase %>
+    <%= render 'videos/thumbnail', video: video, purchase: purchase %>
   <% end %>
 <% end %>

@@ -141,6 +141,17 @@ describe Section do
     end
   end
 
+  describe '.upcoming?' do
+    it 'knows if it has happened yet' do
+      next_week = Section.new(starts_on: 1.week.from_now)
+      last_week = Section.new(starts_on: 1.week.ago)
+      today = Section.new(starts_on: Date.today)
+      expect(today).to be_upcoming
+      expect(next_week).to be_upcoming
+      expect(last_week).not_to be_upcoming
+    end
+  end
+
   describe '#fulfillment_method' do
     it 'returns in-person if the workshop is an in-person one' do
       in_person_workshop = create(:workshop, online: false)

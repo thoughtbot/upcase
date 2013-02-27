@@ -43,7 +43,6 @@ Feature: Purchase a Product
     And I should see the link to the video page
     When "mr.the.plague@example.com" opens the email
     Then they should not see "You can also create a user account" in the email body
-    When I follow "Watch or download video"
     Then I should see a video
     And I should see the download links for video with id "1194803"
     And I should see a list of other products

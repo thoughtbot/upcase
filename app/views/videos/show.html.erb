@@ -1,21 +1,11 @@
-<% content_for :subject, @purchase.purchaseable_name %>
+<% content_for :subject, @purchaseable.name %>
 
 <div class="text-box-wrapper">
   <div class="text-box">
+    <h3 class="video-headline">Watch or Download Video</h3>
 
-    <% if @video.available?(@purchaseable.starts_on) %>
-      <div class="purchase-return-link">
-        <%= link_to "Back", @purchase %>
-      </div>
-
-      <h3 class="video-headline">Watch or Download Video</h3>
-
-      <%= render 'watch_video', video: @video %>
-    <% else %>
-      <p>This video is not yet available. It will be released on <%= @video.available_on(@purchaseable.starts_on).to_s(:simple) %></p>
-    <% end %>
-
+    <%= render 'watch_video', video: @video, purchaseable: @purchaseable %>
   </div>
 </div>
 
-<%= render sidebar_partial_name(@purchaseable), purchaseable: @purchaseable %>
+<%= render "#{@purchaseable.product_type.pluralize}/aside", purchaseable: @purchaseable, purchase: @purchase %>

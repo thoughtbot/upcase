@@ -32,10 +32,9 @@ Workshops::Application.routes.draw do
   match '/products/:id/purchases/:lookup' => redirect("/purchases/%{lookup}")
 
   resources :purchases, only: [:show] do
-    resources :videos, only: [:index, :show]
+    resources :videos, only: [:show]
     member do
       get 'paypal'
-      get 'watch'
     end
   end
 

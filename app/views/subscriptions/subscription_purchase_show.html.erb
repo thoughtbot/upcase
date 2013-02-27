@@ -1,0 +1,9 @@
+<% content_for :subject, @purchaseable.name %>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <p>Thank you for purchasing <%= @purchaseable.name %>.</p>
+  </div>
+</div>
+
+<%= render 'subscriptions/aside', purchaseable: @purchaseable, purchase: @purchase %>
