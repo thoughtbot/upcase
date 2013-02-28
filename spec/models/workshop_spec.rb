@@ -22,34 +22,6 @@ describe Workshop do
   it { should validate_presence_of(:start_at) }
   it { should validate_presence_of(:stop_at) }
 
-  describe '#alternate_company_price' do
-    it 'returns the alternate company price' do
-      workshop = Workshop.new(alternate_company_price: 3)
-
-      workshop.alternate_company_price.should == 3
-    end
-
-    it 'returns the non-alternate company price if the alternate is nil' do
-      workshop = Workshop.new(company_price: 3)
-
-      workshop.alternate_company_price.should == 3
-    end
-  end
-
-  describe '#alternate_individual_price' do
-    it 'returns the alternate individual price' do
-      workshop = Workshop.new(alternate_individual_price: 3)
-
-      workshop.alternate_individual_price.should == 3
-    end
-
-    it 'returns the non-alternate individual price if the alternate is nil' do
-      workshop = Workshop.new(individual_price: 3)
-
-      workshop.alternate_individual_price.should == 3
-    end
-  end
-
   describe '#announcement' do
     it 'calls Announcement.current' do
       Announcement.stubs :current

@@ -14,9 +14,6 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    # 2013-01-23: We're not A/B testing product pricing yet
-    # @pricing_scheme = ab_test("product_pricing", "primary", "alternate")
-    @pricing_scheme = "primary"
 
     if signed_in? && @product.purchase_for(current_user)
       redirect_to @product.purchase_for(current_user)
