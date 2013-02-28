@@ -129,6 +129,15 @@ class FakeStripe < Sinatra::Base
       livemode: false
     }.to_json
   end
+
+  delete '/customers/:id/subscription' do
+    content_type :json
+    {
+      id: params[:id],
+      deleted: true
+    }.to_json
+  end
+
 end
 
 FakeStripeRunner = Capybara::Discoball::Runner.new(FakeStripe) do |server|

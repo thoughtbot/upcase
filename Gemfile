@@ -59,6 +59,7 @@ group :development, :test do
   gem 'foreman', '0.46.0'
   gem 'rspec-rails', '2.11.0'
   gem 'debugger'
+  gem 'pry-rails'
 end
 
 group :production, :staging do

@@ -66,6 +66,11 @@ class User < ActiveRecord::Base
   def associate_previous_purchases
     previous_purchases = Purchase.by_email(email)
     self.purchases << previous_purchases
-    self.update_column(:stripe_customer, previous_purchases.stripe.last.try(:stripe_customer))
+
+    existing_stripe_customer_id = previous_purchases.stripe.last.try(:stripe_customer)
+
+    if existing_stripe_customer_id
+      self.update_column(:stripe_customer, existing_stripe_customer_id)
+    end
   end
 end
