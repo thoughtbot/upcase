@@ -31,4 +31,14 @@
   </aside>
 <% end %>
 
+<% if current_user.has_active_subscription? %>
+  <aside id="account-sidebar">
+    <h3>Your Subscription</h3>
+    <ol class="purchases">
+      <%= render current_user.subscription %>
+    </ol>
+  </aside>
+<% end %>
+
+
 </section>

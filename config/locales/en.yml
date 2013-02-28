@@ -132,3 +132,6 @@ en:
   subscriber_purchase:
     flashes:
       success: Thank you, we will email you a confirmation shortly.
+
+  subscriptions:
+    cancel: Cancel Prime Subscription

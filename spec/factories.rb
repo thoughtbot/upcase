@@ -232,6 +232,7 @@ FactoryGirl.define do
 
     trait :with_subscription do
       github_username 'github_user_1'
+      stripe_customer 'cus12345'
 
       after :create do |instance|
         create(:subscription, user: instance)
