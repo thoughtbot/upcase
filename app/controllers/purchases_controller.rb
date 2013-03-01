@@ -31,7 +31,7 @@ class PurchasesController < ApplicationController
     if @purchase.save
       create_subscription if @purchaseable.subscription?
 
-      track_purchase(@purchase)
+      notify_kissmetrics_of(@purchase)
 
       redirect_to success_url, notice: t('.purchase.flashes.success', name: @purchaseable.name)
     else
@@ -65,7 +65,7 @@ class PurchasesController < ApplicationController
   def paypal
     @purchase = Purchase.find_by_lookup(params[:id])
     @purchase.complete_paypal_payment!(params[:token], params[:PayerID])
-    track_purchase(@purchase)
+    notify_kissmetrics_of(@purchase)
     redirect_to @purchase
   end
 
@@ -75,12 +75,26 @@ class PurchasesController < ApplicationController
     current_user.create_subscription
   end
 
-  def track_purchase(purchase)
+  def notify_kissmetrics_of(purchase)
     if purchase.paid?
-      km_http_client.record(purchase.email,
-                            'Billed',
-                            { 'Product Name' => purchase.purchaseable.name, 'Amount Billed' => @purchase.price })
+      record_billing_event(purchase)
+
+      if purchase.subscription?
+        record_subscription_sign_up(purchase)
+      end
     end
+  end
+
+  def record_billing_event(purchase)
+    km_http_client.record(purchase.email,
+                          'Billed',
+                          { 'Product Name' => purchase.purchaseable.name, 'Amount Billed' => @purchase.price })
+  end
+
+  def record_subscription_sign_up(purchase)
+    km_http_client.record(purchase.email,
+                          'Signed Up',
+                          { 'Plan Name' => Purchase::PLAN_NAME })
   end
 
   def use_existing_card?

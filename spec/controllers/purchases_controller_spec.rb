@@ -27,16 +27,20 @@ describe PurchasesController do
   end
 
   describe 'creating a subscription' do
-    it 'notifies KissMetrics of signup' do
+    it 'notifies KissMetrics of Billed event' do
       FakeKissmetrics.reset
       stub_current_user_with(create(:user))
       product = create(:subscribeable_product)
 
       post :create, purchase: customer_params, product_id: product
 
-      purchase = assigns(:purchase)
-      FakeKissmetrics.events_for(purchase.email).should == ['Billed']
+      FakeKissmetrics.events_for(purchase.email).should == ['Billed', 'Signed Up']
       FakeKissmetrics.properties_for(purchase.email, 'Billed').should == [{ 'Product Name' => product.name, 'Amount Billed' => purchase.price }]
+      FakeKissmetrics.properties_for(purchase.email, 'Signed Up').should == [{ 'Plan Name' => Purchase::PLAN_NAME }]
+    end
+
+    def purchase
+      assigns(:purchase)
     end
   end
 
