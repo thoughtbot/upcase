@@ -76,6 +76,8 @@ class PurchasesController < ApplicationController
   end
 
   def notify_kissmetrics_of(purchase)
+    event_notifier = KissmetricsEventNotifier.new
+
     if purchase.paid?
       record_billing_event(purchase)
 
