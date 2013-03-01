@@ -76,28 +76,10 @@ class PurchasesController < ApplicationController
   end
 
   def notify_kissmetrics_of(purchase)
-    event_notifier = KissmetricsEventNotifier.new
-
-    if purchase.paid?
-      record_billing_event(purchase)
-
-      if purchase.subscription?
-        record_subscription_sign_up(purchase)
-      end
-    end
+    event_notifier = KissmetricsEventNotifier.new(km_http_client)
+    event_notifier.notify_of(purchase)
   end
 
-  def record_billing_event(purchase)
-    km_http_client.record(purchase.email,
-                          'Billed',
-                          { 'Product Name' => purchase.purchaseable.name, 'Amount Billed' => @purchase.price })
-  end
-
-  def record_subscription_sign_up(purchase)
-    km_http_client.record(purchase.email,
-                          'Signed Up',
-                          { 'Plan Name' => Purchase::PLAN_NAME })
-  end
 
   def use_existing_card?
     params[:use_existing_card] == 'on'
