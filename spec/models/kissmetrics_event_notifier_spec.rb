@@ -3,10 +3,9 @@ require 'spec_helper'
 describe KissmetricsEventNotifier do
   context 'when the purchase is paid' do
     it 'notifies Kissmetrics of a Billed event' do
-      purchase = paid_purchase
-      purchase.stubs(subscription?: false)
-
+      purchase = paid_non_subscription_purchase
       notifier.notify_of(purchase)
+
       client.should have_received(:record).with(purchase.email,
         'Billed',
         { 'Product Name' => purchase.name, 'Amount Billed' => purchase.price })
@@ -14,8 +13,7 @@ describe KissmetricsEventNotifier do
 
     context 'when the purchase is a subscription' do
       it 'notifies Kissmetrics of a Signed Up event' do
-        purchase = paid_purchase
-        purchase.stubs(subscription?: true)
+        purchase = paid_subscription_purchase
 
         notifier.notify_of(purchase)
         client.should have_received(:record).with(purchase.email,
@@ -26,8 +24,7 @@ describe KissmetricsEventNotifier do
 
     context 'when the purchase is not a subscription' do
       it 'does not notify Kissmetrics of a Signed Up event' do
-        purchase = paid_purchase
-        purchase.stubs(subscription?: false)
+        purchase = paid_non_subscription_purchase
 
         notifier.notify_of(purchase)
         client.should have_received(:record).with(purchase.email,
@@ -50,6 +47,18 @@ describe KissmetricsEventNotifier do
 
   def notifier
     @notifier ||= KissmetricsEventNotifier.new(client)
+  end
+
+  def paid_non_subscription_purchase
+    paid_purchase.tap do |stub|
+      stub.stubs(subscription?: false)
+    end
+  end
+
+  def paid_subscription_purchase
+    paid_purchase.tap do |stub|
+      stub.stubs(subscription?: true)
+    end
   end
 
   def paid_purchase
