@@ -9,6 +9,7 @@ describe PurchasesController do
       stub_current_user_with(user)
 
       get :new, product_id: create(:video_product)
+
       expect(response).to render_template('purchases/for_subscribers')
     end
   end
@@ -18,6 +19,7 @@ describe PurchasesController do
       stub_current_user_with(create(:user))
       product = create(:product)
       stripe_token = 'token'
+
       post :create, purchase: customer_params(stripe_token), product_id: product.to_param
 
       FakeStripe.should have_charged(1500).to('test@example.com').with_token(stripe_token)
@@ -29,19 +31,20 @@ describe PurchasesController do
       FakeKissmetrics.reset
       stub_current_user_with(create(:user))
       product = create(:subscribeable_product)
-      stripe_token = 'token'
-      post :create, purchase: customer_params(stripe_token), product_id: product
+
+      post :create, purchase: customer_params, product_id: product
+
       purchase = assigns(:purchase)
       FakeKissmetrics.events_for(purchase.email).should == ['Billed']
       FakeKissmetrics.properties_for(purchase.email, 'Billed').should == [{ 'Product Name' => product.name, 'Amount Billed' => purchase.price }]
     end
-
   end
 
   describe "processing on paypal" do
     it "starts a paypal transaction and saves a purchase for the product" do
       stub_current_user_with(create(:user))
       product = create(:product)
+
       post :create, purchase: { variant: "individual", name: "User", email: "test@example.com", payment_method: "paypal" }, product_id: product.to_param
 
       response.status.should == 302
@@ -58,7 +61,9 @@ describe PurchasesController do
       purchase.paid = false
       purchase.save
       stub_current_user_with(create(:user))
+
       get :show, id: purchase.to_param
+
       response.should redirect_to(product_path(product))
     end
 
@@ -66,12 +71,14 @@ describe PurchasesController do
       purchase.paid = false
       purchase.save
       stub_current_user_with(create(:user))
+
       get :watch, id: purchase.to_param
+
       response.should redirect_to(root_path)
     end
   end
 
-  def customer_params(token)
+  def customer_params(token='stripe token')
     {
       name: 'User',
       email: 'test@example.com',
