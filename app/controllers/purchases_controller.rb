@@ -80,7 +80,6 @@ class PurchasesController < ApplicationController
     event_notifier.notify_of(purchase)
   end
 
-
   def use_existing_card?
     params[:use_existing_card] == 'on'
   end
