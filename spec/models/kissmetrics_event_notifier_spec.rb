@@ -8,8 +8,8 @@ describe KissmetricsEventNotifier do
 
       notifier.notify_of(purchase)
       client.should have_received(:record).with(purchase.email,
-                                                'Billed',
-                                                { 'Product Name' => purchase.name, 'Amount Billed' => purchase.price })
+        'Billed',
+        { 'Product Name' => purchase.name, 'Amount Billed' => purchase.price })
     end
 
     context 'when the purchase is a subscription' do
@@ -19,8 +19,8 @@ describe KissmetricsEventNotifier do
 
         notifier.notify_of(purchase)
         client.should have_received(:record).with(purchase.email,
-                                                  'Signed Up',
-                                                  { 'Plan Name' => Purchase::PLAN_NAME })
+          'Signed Up',
+          { 'Plan Name' => Purchase::PLAN_NAME })
       end
     end
 
@@ -31,8 +31,8 @@ describe KissmetricsEventNotifier do
 
         notifier.notify_of(purchase)
         client.should have_received(:record).with(purchase.email,
-                                                  'Signed Up',
-                                                  { 'Plan Name' => Purchase::PLAN_NAME }).never
+          'Signed Up',
+          { 'Plan Name' => Purchase::PLAN_NAME }).never
       end
     end
   end

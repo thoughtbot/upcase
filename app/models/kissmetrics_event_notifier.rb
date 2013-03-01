@@ -17,13 +17,13 @@ class KissmetricsEventNotifier
 
   def notify_of_billing_event(purchase)
     @client.record(purchase.email,
-                   'Billed',
-                   { 'Product Name' => purchase.name, 'Amount Billed' => purchase.price })
+      'Billed',
+      { 'Product Name' => purchase.name, 'Amount Billed' => purchase.price })
   end
 
   def notify_of_subscription_sign_up(purchase)
     @client.record(purchase.email,
-                   'Signed Up',
-                   { 'Plan Name' => Purchase::PLAN_NAME })
+      'Signed Up',
+      { 'Plan Name' => Purchase::PLAN_NAME })
   end
 end
