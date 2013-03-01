@@ -4,8 +4,26 @@ class KissmetricsEventNotifier
   end
 
   def notify_of(purchase)
+    if purchase.paid?
+      notify_of_billing_event(purchase)
+
+      if purchase.subscription?
+        notify_of_subscription_sign_up(purchase)
+      end
+    end
+  end
+
+  private
+
+  def notify_of_billing_event(purchase)
     @client.record(purchase.email,
                    'Billed',
-                    { 'Product Name' => purchase.name, 'Amount Billed' => purchase.price })
+                   { 'Product Name' => purchase.name, 'Amount Billed' => purchase.price })
+  end
+
+  def notify_of_subscription_sign_up(purchase)
+    @client.record(purchase.email,
+                   'Signed Up',
+                   { 'Plan Name' => Purchase::PLAN_NAME })
   end
 end
