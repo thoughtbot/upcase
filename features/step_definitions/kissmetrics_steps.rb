@@ -1,6 +1,6 @@
 def massage_property_value_types(properties)
   properties.each do |key, value|
-    if key == 'Order Total'
+    if key == 'Amount Billed'
       properties[key] = value.to_i
     end
   end
