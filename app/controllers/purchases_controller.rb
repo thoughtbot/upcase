@@ -8,7 +8,6 @@ class PurchasesController < ApplicationController
       @purchase = @purchaseable.purchases.build(variant: params[:variant])
       @purchase.defaults_from_user(current_user)
       @active_card = retrieve_active_card
-      km.record("Checkout", { "Product Name" => @purchaseable.name, "Order Total" => @purchase.price })
 
       if @purchase.subscription? && signed_out?
         deny_access(t('shared.subscriptions.user_required'))
@@ -32,8 +31,7 @@ class PurchasesController < ApplicationController
     if @purchase.save
       create_subscription if @purchaseable.subscription?
 
-      km_http_client.record(@purchase.email, "Submit Payment", { "Product Name" => @purchaseable.name, "Order Total" => @purchase.price })
-      track_purchase_if_paid(@purchase)
+      track_purchase(@purchase)
 
       redirect_to success_url, notice: t('.purchase.flashes.success', name: @purchaseable.name)
     else
@@ -67,7 +65,7 @@ class PurchasesController < ApplicationController
   def paypal
     @purchase = Purchase.find_by_lookup(params[:id])
     @purchase.complete_paypal_payment!(params[:token], params[:PayerID])
-    track_purchase_if_paid(@purchase)
+    track_purchase(@purchase)
     redirect_to @purchase
   end
 
@@ -77,9 +75,11 @@ class PurchasesController < ApplicationController
     current_user.create_subscription
   end
 
-  def track_purchase_if_paid(purchase)
+  def track_purchase(purchase)
     if purchase.paid?
-      km_http_client.record(purchase.email, "Purchased", { "Product Name" => purchase.purchaseable.name, "Order Total" => @purchase.price })
+      # Change event to Billed
+      # Change Order Total to Amount Billed
+      km_http_client.record(purchase.email, 'Billed', { "Product Name" => purchase.purchaseable.name, "Order Total" => @purchase.price })
     end
   end
 

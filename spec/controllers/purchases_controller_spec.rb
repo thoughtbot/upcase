@@ -21,16 +21,19 @@ describe PurchasesController, "processing on stripe" do
 
     FakeStripe.should have_charged(1500).to('test@example.com').with_token(stripe_token)
   end
+end
 
-  def customer_params(token)
-    {
-      name: 'User',
-      email: 'test@example.com',
-      variant: "individual",
-      stripe_token: token,
-      payment_method: "stripe"
-    }
+describe PurchasesController, 'creating a subscription' do
+  it 'notifies KissMetrics of signup' do
+    stub_current_user_with(create(:user))
+    product = create(:subscribeable_product)
+    stripe_token = 'token'
+    post :create, purchase: customer_params(stripe_token), product_id: product
+    purchase = assigns(:purchase)
+    FakeKissmetrics.events_for(purchase.email).should == ['Billed']
+    FakeKissmetrics.properties_for(purchase.email, 'Billed').should == [{ 'Product Name' => product.name, 'Billed Amount' => purchase.price }]
   end
+
 end
 
 describe PurchasesController, "processing on paypal" do
@@ -64,4 +67,14 @@ describe PurchasesController, "product is not paid" do
     get :watch, id: purchase.to_param
     response.should redirect_to(root_path)
   end
+end
+
+def customer_params(token)
+  {
+    name: 'User',
+    email: 'test@example.com',
+    variant: "individual",
+    stripe_token: token,
+    payment_method: "stripe"
+  }
 end
