@@ -1,6 +1,6 @@
 class KissmetricsEventNotifier
-  def initialize(client)
-    @client = client
+  def initialize(kissmetrics_client)
+    @client = kissmetrics_client
   end
 
   def notify_of(purchase)
