@@ -77,9 +77,9 @@ class PurchasesController < ApplicationController
 
   def track_purchase(purchase)
     if purchase.paid?
-      # Change event to Billed
-      # Change Order Total to Amount Billed
-      km_http_client.record(purchase.email, 'Billed', { "Product Name" => purchase.purchaseable.name, "Order Total" => @purchase.price })
+      km_http_client.record(purchase.email,
+                            'Billed',
+                            { 'Product Name' => purchase.purchaseable.name, 'Amount Billed' => @purchase.price })
     end
   end
 
