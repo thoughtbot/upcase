@@ -3,7 +3,8 @@ require 'spec_helper'
 describe KissmetricsEventNotifier do
   context 'when the purchase is paid' do
     it 'notifies Kissmetrics of a Billed event' do
-      purchase.stubs(paid?: true, subscription?: false)
+      purchase = paid_purchase
+      purchase.stubs(subscription?: false)
 
       notifier.notify_of(purchase)
       client.should have_received(:record).with(purchase.email,
@@ -13,7 +14,8 @@ describe KissmetricsEventNotifier do
 
     context 'when the purchase is a subscription' do
       it 'notifies Kissmetrics of a Signed Up event' do
-        purchase.stubs(subscription?: true, paid?: true)
+        purchase = paid_purchase
+        purchase.stubs(subscription?: true)
 
         notifier.notify_of(purchase)
         client.should have_received(:record).with(purchase.email,
@@ -24,7 +26,8 @@ describe KissmetricsEventNotifier do
 
     context 'when the purchase is not a subscription' do
       it 'does not notify Kissmetrics of a Signed Up event' do
-        purchase.stubs(subscription?: false, paid?: true)
+        purchase = paid_purchase
+        purchase.stubs(subscription?: false)
 
         notifier.notify_of(purchase)
         client.should have_received(:record).with(purchase.email,
@@ -36,9 +39,7 @@ describe KissmetricsEventNotifier do
 
   context 'when the purchase is not paid' do
     it 'does not notify Kissmetrics of a Billed event' do
-      purchase.stubs(paid?: false)
-
-      notifier.notify_of(purchase)
+      notifier.notify_of(unpaid_purchase)
       client.should have_received(:record).never
     end
   end
@@ -51,7 +52,19 @@ describe KissmetricsEventNotifier do
     @notifier ||= KissmetricsEventNotifier.new(client)
   end
 
+  def paid_purchase
+    purchase.tap do |stub|
+      stub.stubs(paid?: true)
+    end
+  end
+
+  def unpaid_purchase
+    purchase.tap do |stub|
+      stub.stubs(paid?: false)
+    end
+  end
+
   def purchase
-    @purchase ||= stub('purchase', email: 'foo@bar.com', name: 'Product Name', price: 99)
+    stub('purchase', email: 'foo@bar.com', name: 'Product Name', price: 99)
   end
 end
