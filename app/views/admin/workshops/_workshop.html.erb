@@ -1,9 +1,0 @@
-<%= content_tag_for(:li, workshop, class: 'workshop-list cool-list', "data-workshop_id" => workshop.id) do %>
-  <h3>
-    <%= link_to workshop.name, edit_admin_workshop_path(workshop) %>
-    <%= link_to 'New Section', new_admin_workshop_section_path(workshop), class: 'new-section', id: "new-section-#{workshop.id}" %>
-  </h3>
-  <ul>
-    <%= render workshop.sections.by_starts_on_desc %>
-  </ul>
-<% end %>
