@@ -5,9 +5,10 @@ feature 'Subscriber accesses content' do
     create_all_product_types
     sign_in_as_user_with_subscription
 
-    expect(page).to have_content I18n.t('shared.online_workshops')
-    expect(page).to have_content I18n.t('shared.books')
-    expect(page).to have_content I18n.t('shared.videos')
+    expect(page).to have_content 'Our workshops'
+    expect(page).to have_content I18n.t('products.index.subscriber.books')
+    expect(page).to have_content I18n.t('products.index.videos')
+    expect(page).to have_content I18n.t('products.index.subscriber.bytes')
 
     expect(page).to_not have_content I18n.t('shared.subscription_call_to_action')
   end

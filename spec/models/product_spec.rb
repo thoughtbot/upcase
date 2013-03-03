@@ -41,13 +41,6 @@ describe Product do
     end
   end
 
-  describe '.promoted' do
-    it 'returns the promoted product in the location' do
-      product = create(:product, promo_location: 'left')
-      Product.promoted('left').should == product
-    end
-  end
-
   describe '.videos' do
     it 'only includes videos' do
       video = create(:video_product)

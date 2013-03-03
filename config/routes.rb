@@ -1,7 +1,7 @@
 Workshops::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'admin'
 
-  root to: 'topics#index'
+  root to: 'products#index'
 
   match '/pages/tmux' => redirect('/products/4-humans-present-tmux')
 
@@ -11,6 +11,8 @@ Workshops::Application.routes.draw do
     match '/products/:id' => redirect('/workshops/19-design-for-developers'),
       constraints: { id: /(9|11).*/ }
   end
+  match '/products/14', to: 'products#index'
+  match '/products/14-prime', to: 'products#index'
 
   resource :session, controller: 'sessions'
 
@@ -52,7 +54,7 @@ Workshops::Application.routes.draw do
   resources :test_driven_rails_resources, path: 'test-driven-rails-resources', only: [:index]
   match '/d4d-resources' => redirect('/design-for-developers-resources')
 
-  resources :topics, only: :index
+  resources :topics, only: :index, path: 'trails'
 
   resources :articles, only: :show
 

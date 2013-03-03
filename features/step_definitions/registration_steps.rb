@@ -6,7 +6,7 @@ end
 
 Given /^"([^"]*)" has registered for "([^"]*)"$/ do |email, workshop_name|
   steps %{
-    When I go to the home page
+    When I go to the products page
     And I follow the link to the #{workshop_name} workshop
     And I follow the link to register for a section
     And I press "Submit Payment"

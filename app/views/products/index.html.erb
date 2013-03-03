@@ -1,59 +1,44 @@
-<% content_for :subject, t('.title') %>
+<% content_for :intro, t('shared.prime_intro') %>
 
-<% unless current_user_has_active_subscription? %>
-  <% if subscription_product %>
-    <section id='subscription-banner'>
-      <%= link_to subscription_product do %>
-        <h3><span><%= t('shared.subscriptions.icon') %> Subscribe to <%= subscription_product.name %></span> &mdash; <%= subscription_product.tagline %></h3>
-      <% end %>
-    </section>
-  <% end %>
-<% end %>
-
-<section id="promo-wrapper">
-  <% if in_person_workshops.present? || online_workshops.present? %>
-    <div class="products-container text-box">
-      <% if online_workshops.present? %>
-        <h2><%= t 'shared.online_workshops' %></h2>
-        <ul data-role="online-workshops">
-          <%= render online_workshops %>
-        </ul>
-      <% end %>
-      <% if in_person_workshops.present? %>
-        <h2><%= t 'shared.in_person_workshops' %></h2>
-        <ul data-role="in-person-workshops">
-          <%= render in_person_workshops %>
-        </ul>
-      <% end %>
-    </div>
+<section class="prime-pitch">
+  <% if current_user_has_active_subscription? %>
+    <h2 class="subscriber"><%= t('.subscriber.header') %></h2>
+  <% else %>
+    <%= render 'prime_main_cta', position: 'top' %>
   <% end %>
 
-  <div class="products-container">
-  <% if books.present? %>
-    <div class="text-box">
-      <h2><%= t 'shared.books' %></h2>
-      <ul>
-        <%= render books %>
-      </ul>
-    </div>
-  <% end %>
+  <section class="products books">
+    <% if current_user_has_active_subscription? %>
+      <h2><%= t('.subscriber.books') %></h2>
+    <% else %>
+      <h2><%= t('.books') %></h2>
+    <% end %>
+    <%= render partial: 'products/book', collection: books %>
+  </section>
 
-  <% if bytes.present? %>
-    <div class="text-box">
-      <h2><%= t 'shared.subscriptions.icon' %> <%= t 'shared.local_articles' %></h2>
-      <ul>
-        <%= render bytes %>
-      </ul>
-    </div>
-  <% end %>
-  </div>
+  <section class="products workshops">
+    <h2><%== t('.workshops') %></h2>
+    <%= render partial: 'products/workshop', collection: online_workshops %>
+    <%= render partial: 'products/workshop', collection: in_person_workshops %>
+  </section>
 
-  <% if videos.present? %>
-    <div class="products-container text-box">
-      <h2><%= t 'shared.videos' %></h2>
-      <ul>
-        <%= render videos %>
-      </ul>
-    </div>
+  <section class="products screencasts">
+    <h2><%= t('.videos') %></h2>
+    <%= render partial: 'products/video', collection: videos %>
+  </section>
+
+  <section class="products bytes">
+    <% if current_user_has_active_subscription? %>
+      <h2><%= t('.subscriber.bytes') %></h2>
+    <% else %>
+      <h2><%= t('.bytes') %></h2>
+    <% end %>
+    <%= render partial: 'articles/byte', collection: bytes.first(3) %>
+  </section>
+
+  <% unless current_user_has_active_subscription? %>
+    <%= render 'prime_main_cta', position: 'bottom' %>
   <% end %>
 </section>
+
+<%= link_to 'Looking for trails?', topics_path, class: 'trails-cta' %>

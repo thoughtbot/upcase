@@ -59,13 +59,6 @@ describe Workshop do
     end
   end
 
-  describe '.promoted' do
-    it 'returns the promoted workshop in the location' do
-      workshop = create(:workshop, promo_location: 'left')
-      Workshop.promoted('left').should == workshop
-    end
-  end
-
   describe '#to_param' do
     it 'returns the id and parameterized name' do
       workshop = create(:workshop)

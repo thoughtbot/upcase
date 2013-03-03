@@ -19,15 +19,15 @@ describe 'Products' do
     end
 
     it 'lists all books' do
-      book_one = create(:book_product)
-      book_two = create(:book_product)
-      inactive_book = create(:book_product, active: false)
+      book_one = create(:book_product, :active)
+      book_two = create(:book_product, :active)
+      inactive_book = create(:book_product, :inactive)
 
       visit products_path
 
-      expect(page).to have_content(book_one.name)
-      expect(page).to have_content(book_two.name)
-      expect(page).not_to have_content(inactive_book.name)
+      expect(page).to have_css("img[alt='#{book_one.name} cover']")
+      expect(page).to have_css("img[alt='#{book_two.name} cover']")
+      expect(page).not_to have_css("img[alt='#{inactive_book.name} cover']")
 
       click_link book_one.name
 

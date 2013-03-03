@@ -1,14 +1,5 @@
-<%= render 'promotions' %>
-
-<section id="all-products">
-  <%= link_to products_path do %>
-    <div class="button">
-      <%= t '.view_products' %>
-    </div>
-  <% end %>
-</section>
+<% content_for :intro, t('shared.intro') %>
 
 <section id="topics-list">
-  <hr>
   <%= render topics %>
 </section>
