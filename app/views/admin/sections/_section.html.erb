@@ -1,4 +1,0 @@
-<%= content_tag_for(:li, section) do %>
-  <%= link_to section.date_range, edit_admin_section_path(section) %>
-  <%= link_to "Delete", admin_section_path(section), method: :delete, confirm: "Are you sure?" %>
-<% end %>
