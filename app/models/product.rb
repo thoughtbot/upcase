@@ -48,10 +48,6 @@ class Product < ActiveRecord::Base
     order 'name ASC'
   end
 
-  def self.promoted(location)
-    where(promo_location: location).first
-  end
-
   def meta_keywords
     topics.map { |topic| topic.name }.join(', ')
   end

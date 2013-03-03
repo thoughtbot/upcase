@@ -11,7 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214152955) do
+ActiveRecord::Schema.define(:version => 20130303193633) do
+
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
@@ -167,7 +168,6 @@ ActiveRecord::Schema.define(:version => 20130214152955) do
     t.string   "external_purchase_description"
     t.integer  "discount_percentage",           :default => 0,    :null => false
     t.string   "discount_title",                :default => "",   :null => false
-    t.string   "promo_location"
   end
 
   create_table "purchases", :force => true do |t|
@@ -327,13 +327,13 @@ ActiveRecord::Schema.define(:version => 20130214152955) do
   add_index "videos", ["watchable_type", "watchable_id"], :name => "index_videos_on_watchable_type_and_watchable_id"
 
   create_table "workshops", :force => true do |t|
-    t.string   "name",                                          :null => false
+    t.string   "name",                                         :null => false
     t.integer  "individual_price"
     t.text     "description"
     t.time     "start_at"
     t.time     "stop_at"
-    t.integer  "maximum_students",           :default => 12,    :null => false
-    t.boolean  "public",                     :default => true,  :null => false
+    t.integer  "maximum_students",          :default => 12,    :null => false
+    t.boolean  "public",                    :default => true,  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "short_description"
@@ -344,7 +344,6 @@ ActiveRecord::Schema.define(:version => 20130214152955) do
     t.boolean  "online",                    :default => false, :null => false
     t.text     "resources",                 :default => "",    :null => false
     t.string   "video_chat_url"
-    t.string   "promo_location"
   end
 
 end

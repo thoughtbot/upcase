@@ -40,12 +40,8 @@ feature 'Visitor is asked to create a user before subscription' do
   end
 
   def attempt_to_subscribe
-    click_link 'VIEW ALL'
-    click_link 'Subscribe'
-
-    within '.individual-purchase' do
-      find('.license-button').click
-    end
+    visit products_path
+    click_link I18n.t('shared.subscription_call_to_action')
   end
 
   def current_user

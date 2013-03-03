@@ -37,23 +37,21 @@ When /^I attach an image name "([^"]*)" to the workshop$/ do |image_name|
 end
 
 When /^I view the in-person workshop "([^"]+)"$/ do |workshop_name|
-  visit root_path
-  click_link I18n.t('topics.index.view_products')
-  find('ul[data-role=in-person-workshops]').click_link workshop_name
+  visit products_path
+  find('[data-role=in-person-workshop]', text: workshop_name).click
 end
 
 When /^I view the online workshop "([^"]+)"$/ do |workshop_name|
-  visit root_path
-  click_link I18n.t('topics.index.view_products')
-  find('ul[data-role=online-workshops]').click_link workshop_name
+  visit products_path
+  find('[data-role=online-workshop]', text: workshop_name).click
 end
 
 Then /^I should see that "([^"]*)" is an online workshop$/ do |workshop_name|
-  find('[data-role=online-workshops]').should have_content workshop_name
+  find('[data-role=online-workshop]').should have_content workshop_name
 end
 
 Then /^I should see that "([^"]*)" is an in-person workshop$/ do |workshop_name|
-  find('[data-role=in-person-workshops]').should have_content workshop_name
+  find('[data-role=in-person-workshop]').should have_content workshop_name
 end
 
 Then /^I should see the date range$/ do

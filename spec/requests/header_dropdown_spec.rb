@@ -7,7 +7,7 @@ describe 'Header Dropdown' do
       workshop_two = create(:workshop)
       private_workshop = create(:private_workshop)
 
-      visit products_path
+      visit workshop_path(workshop_one)
 
       within header_container do
         expect(page).to have_content(workshop_one.name)
@@ -25,7 +25,7 @@ describe 'Header Dropdown' do
       book_two = create(:book_product)
       inactive_book = create(:book_product, active: false)
 
-      visit products_path
+      visit product_path(book_one)
 
       within header_container do
         expect(page).to have_content(book_one.name)
@@ -43,7 +43,7 @@ describe 'Header Dropdown' do
       video_two = create(:video_product)
       inactive_video = create(:video_product, active: false)
 
-      visit products_path
+      visit product_path(video_one)
 
       within header_container do
         expect(page).to have_content(video_one.name)
@@ -61,7 +61,7 @@ describe 'Header Dropdown' do
       topic_two = create(:topic, featured: true)
       not_featured_topic = create(:topic, featured: false)
 
-      visit products_path
+      visit topic_path(topic_one)
 
       within header_container do
         expect(page).to have_content(topic_one.name)

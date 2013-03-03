@@ -49,10 +49,6 @@ module ApplicationHelper
     '/auth/github'
   end
 
-  def promotion_partial(item)
-    "promoted_#{item.class.name.downcase}"
-  end
-
   def format_podcast_notes(notes)
     BlueCloth.new(notes).to_html
   end

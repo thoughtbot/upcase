@@ -9,8 +9,7 @@ Feature: Purchase a github based product
     And there is a github product named "Test GitHub"
     And I have signed up with "user@example.com"
     And I sign in with "user@example.com"
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Test GitHub"
     And I follow "Purchase for Yourself"
     Then I should see "$15"
@@ -27,8 +26,7 @@ Feature: Purchase a github based product
     And there is a github product named "Test GitHub"
     And I have signed up with "user@example.com"
     And I sign in with "user@example.com"
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Test GitHub"
     And I follow "Purchase for Yourself"
     When I press "Submit Payment"
@@ -39,8 +37,7 @@ Feature: Purchase a github based product
       | first_name | last_name | email        | password | github_username |
       | John       | Doe       | john@doe.com | password | thoughtbot      |
     And there is a github product named "Test GitHub"
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Test GitHub"
     And I follow "Purchase for Yourself"
     And I follow "Sign in."

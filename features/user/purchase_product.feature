@@ -10,8 +10,7 @@ Feature: Purchase a Product
     Given the following user exists:
       | first_name | last_name | email        | password |
       | John       | Doe       | john@doe.com | password |
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"
     And I follow "Sign in."
@@ -25,13 +24,11 @@ Feature: Purchase a Product
   Scenario: A user purchases a product with paypal
     Given I have signed up with "user@example.com"
     And I sign in with "user@example.com"
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"
     Then I should see "$15"
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Test Fetch"
     And I follow "Your Company"
     Then I should see "$50"
@@ -52,8 +49,7 @@ Feature: Purchase a Product
     Given I have signed up with "user@example.com"
     And I sign in with "user@example.com"
     And I have an existing credit card
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"
     Then I should see "$15"

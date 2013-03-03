@@ -8,8 +8,7 @@ describe 'Articles' do
       featured_topic.articles << article
       other_article = create(:article)
 
-      visit root_url
-      click_link 'Topic 1'
+      visit topic_path(featured_topic)
       click_link 'View all Topic 1 articles'
 
       expect(page).to have_content(article.title)

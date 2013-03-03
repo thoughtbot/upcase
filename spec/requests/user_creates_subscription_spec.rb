@@ -69,8 +69,7 @@ feature 'User creates a subscription' do
   end
 
   def visit_subscription_product_page
-    click_link 'VIEW ALL'
-    click_link 'Subscribe'
+    visit products_path
   end
 
   def create_subscribeable_product
@@ -105,9 +104,7 @@ feature 'User creates a subscription' do
   end
 
   def click_purchase_link
-    within '.individual-purchase' do
-      click_link I18n.t('products.show.purchase_subscription')
-    end
+    click_link I18n.t('shared.subscription_call_to_action')
   end
 
   def current_user

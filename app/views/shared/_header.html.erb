@@ -67,11 +67,17 @@
       </nav>
     <% else %>
       <div class="logo">
-        <h1><%= link_to image_tag('learn/learn-ralph.png'), root_path %>
-          <%= t 'shared.learn' %></h1>
+        <h1>
+          <%= link_to image_tag('learn/learn-ralph.png'), root_path %>
+          <%= t 'shared.learn' %>
+        </h1>
       </div>
       <div class="intro">
-        <%= t 'shared.intro' %>
+        <% if content_for?(:intro) %>
+          <%= yield(:intro) %>
+        <% else %>
+          <%= t('shared.intro') %>
+        <% end %>
       </div>
     <% end %>
   </div>

@@ -19,7 +19,7 @@
     <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
   </head>
 
-  <body class="<%= body_class %>">
+  <body class="<%= body_class %> <%= yield(:additional_body_classes) %>">
     <%= render 'shared/header' %>
 
     <%= render 'shared/flashes' %>
