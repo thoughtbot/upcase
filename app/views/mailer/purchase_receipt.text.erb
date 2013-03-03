@@ -37,14 +37,14 @@ Sold by
 
 Billing address
   <%= @purchase.name %>
-  <% unless @purchase.organization.blank? -%>
+  <% if @purchase.organization.present? -%>
   <%= @purchase.organization %>
   <% end -%>
   <%= @purchase.address1 %>
-  <% unless @purchase.address2.blank? -%>
+  <% if @purchase.address2.present? -%>
   <%= @purchase.address2 %>
   <% end -%>
-  <%= @purchase.city %>, <%= @purchase.state %> <%= @purchase.zip_code %>
+  <% if @purchase.city.present? %><%= @purchase.city %>, <% end %><%= @purchase.state %> <%= @purchase.zip_code %>
 
 <%= @purchase.purchaseable_name %> - <%= @purchase.variant %> for <%= number_to_currency @purchase.price, precision: 2 %>
 

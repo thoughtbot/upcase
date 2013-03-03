@@ -18,7 +18,7 @@ When
 
 Where
 <%= @section.address %>
-<%= @section.city %>, <%= @section.state %> <%= @section.zip %>
+<% if @section.city.present? %><%= @section.city %>, <% end %><%= @section.state %> <%= @section.zip %>
 
 We will be in touch before <%= @section.starts_on.to_s(:simple) %> with a reminder and any further instructions. However, please don't hesitate to get in touch with us at learn@thoughtbot.com should you have any questions or concerns.
 
