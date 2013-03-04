@@ -1,5 +1,5 @@
 Workshops::Application.routes.draw do
-  mount RailsAdmin::Engine => '/new_admin', :as => 'rails_admin'
+  mount RailsAdmin::Engine => '/admin', :as => 'admin'
 
   root to: 'topics#index'
 
@@ -54,21 +54,6 @@ Workshops::Application.routes.draw do
   resources :topics, only: :index
 
   resources :articles, only: :show
-
-  match '/admin' => 'admin/workshops#index', as: :admin
-  namespace :admin do
-    resources :workshops do
-      resource :position
-      resources :sections
-      resources :follow_ups
-      resources :questions, only: [:destroy]
-    end
-    resources :coupons
-    resources :sections
-    resources :teachers, except: :destroy
-    resources :products, except: :destroy
-    resources :purchases, only: :index
-  end
 
   namespace :reports do
     resource :purchases_charts, only: :show
