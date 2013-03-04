@@ -1,0 +1,14 @@
+<h2 <% if current_user_has_active_subscription? %>class="active-subscription"<% end %>>
+  <% unless current_user_has_active_subscription? %>
+    Access this and all our other products by subscribing to <%= subscription_product.name %>
+  <% end %>
+</h2>
+
+<div class="license">
+  <%= link_to new_product_purchase_path(product, variant: :individual),
+    class: 'license-button button',
+    id: "#{product.sku}-purchase-individual" do %>
+      Get unlimited access
+  <% end %>
+</div>
+

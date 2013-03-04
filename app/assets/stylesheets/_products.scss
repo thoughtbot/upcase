@@ -366,7 +366,27 @@ body.products-show, body.workshops-show {
     aside {
       .section-location, #license {
         div {
-          margin-top: 20px;
+          margin-top: 26px;
+
+          &.prime-purchase {
+            margin-bottom: 3em;
+
+            h2 {
+              color: $learnred;
+            }
+          }
+
+          &.individual-purchase, &.company-purchase {
+            .button {
+              padding: 8px 0 6px;
+              background: darken($warmgray, 20%);
+              border-color: $darkwarmgray;
+            }
+          }
+
+          h2 {
+            color: $darkwarmgray;
+          }
 
           h2.active-subscription, h2.active-subscription span {
             font-size: 1rem;
@@ -383,6 +403,10 @@ body.products-show, body.workshops-show {
             font-size: 14px;
             margin-top: -14px;
             text-align: center;
+          }
+
+          .button {
+            margin-bottom: 0;
           }
         }
 
