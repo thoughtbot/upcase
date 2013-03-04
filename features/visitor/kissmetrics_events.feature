@@ -13,17 +13,11 @@ Feature: KISSmetrics tracks important events
     Then KISSmetrics receives the "Viewed Product" event with:
       | Product Name | Test-Driven Haskell |
     When I follow "Register for this Workshop"
-    Then KISSmetrics receives the "Checkout" event with:
-      | Product Name | Test-Driven Haskell |
-      | Order Total  | 200                 |
     When I fill in the required workshop registration fields for "carlos@santana.com"
     And I press "Submit Payment"
-    Then KISSmetrics receives the "Submit Payment" event for "carlos@santana.com" over HTTP with:
-      | Product Name | Test-Driven Haskell |
-      | Order Total  | 200                 |
-    And KISSmetrics receives the "Purchased" event for "carlos@santana.com" over HTTP with:
-      | Product Name | Test-Driven Haskell |
-      | Order Total  | 200                 |
+    Then KISSmetrics receives the "Billed" event for "carlos@santana.com" over HTTP with:
+      | Product Name  | Test-Driven Haskell |
+      | Amount Billed | 200                 |
 
   Scenario: Purchasing a product with paypal
     Given the following book product exists:
@@ -35,17 +29,11 @@ Feature: KISSmetrics tracks important events
     Then KISSmetrics receives the "Viewed Product" event with:
       | Product Name | Test Kiss |
     When I follow "Purchase for Yourself"
-    Then KISSmetrics receives the "Checkout" event with:
-      | Product Name | Test Kiss |
-      | Order Total  | 15        |
-    When I pay using Paypal
-    Then KISSmetrics receives the "Submit Payment" event for "mr.the.plague@example.com" over HTTP with:
-      | Product Name | Test Kiss |
-      | Order Total  | 15        |
-    When I submit the Paypal form
-    Then KISSmetrics receives the "Purchased" event for "mr.the.plague@example.com" over HTTP with:
-      | Product Name | Test Kiss |
-      | Order Total  | 15        |
+    And I pay using Paypal
+    And I submit the Paypal form
+    Then KISSmetrics receives the "Billed" event for "mr.the.plague@example.com" over HTTP with:
+      | Product Name  | Test Kiss |
+      | Amount Billed | 15        |
 
   Scenario: Purchasing a product with stripe
     Given the following book product exists:
@@ -57,16 +45,10 @@ Feature: KISSmetrics tracks important events
     Then KISSmetrics receives the "Viewed Product" event with:
       | Product Name | Test Kiss |
     When I follow "Purchase for Yourself"
-    Then KISSmetrics receives the "Checkout" event with:
-      | Product Name | Test Kiss |
-      | Order Total  | 15        |
-    When I pay using Stripe
-    Then KISSmetrics receives the "Submit Payment" event for "mr.the.plague@example.com" over HTTP with:
-      | Product Name | Test Kiss |
-      | Order Total  | 15        |
-    And KISSmetrics receives the "Purchased" event for "mr.the.plague@example.com" over HTTP with:
-      | Product Name | Test Kiss |
-      | Order Total  | 15        |
+    And I pay using Stripe
+    And KISSmetrics receives the "Billed" event for "mr.the.plague@example.com" over HTTP with:
+      | Product Name  | Test Kiss |
+      | Amount Billed | 15        |
     And I should see that product "Test Kiss" is successfully purchased
 
   Scenario: Visitor requests a follow up

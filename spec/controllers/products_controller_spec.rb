@@ -1,18 +1,6 @@
 require 'spec_helper'
 
 describe ProductsController do
-  it 'includes the local top articles' do
-    published = stub(published: [])
-    top = stub(top: published)
-    Article.stubs(local: top)
-
-    get :index
-
-    expect(Article).to have_received(:local)
-    expect(top).to have_received(:top)
-    expect(published).to have_received(:published)
-  end
-
   context "show" do
     it "redirects to a user's purchase if the user has one" do
       user = create(:user)

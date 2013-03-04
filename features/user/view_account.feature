@@ -40,7 +40,7 @@ Feature: Viewing my own account information
     And I go to my account page
     Then I should see "Your purchases"
     And I should see "Vim for Emacs users"
-    And I should not see "Ruby Science: video edition"
+    And I should not see "Ruby Science: video edition" within "aside"
 
   Scenario: Edit my account information
     Given I have signed up with "user@example.com"

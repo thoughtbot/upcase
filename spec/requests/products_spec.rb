@@ -50,22 +50,6 @@ describe 'Products' do
       expect(current_path).to eq(product_path(video_one))
     end
 
-    it 'lists all workshops' do
-      workshop_one = create(:workshop_product)
-      workshop_two = create(:workshop_product)
-      inactive_workshop = create(:workshop_product, active: false)
-
-      visit products_path
-
-      expect(page).to have_content(workshop_one.name)
-      expect(page).to have_content(workshop_two.name)
-      expect(page).not_to have_content(inactive_workshop.name)
-
-      click_link workshop_one.name
-
-      expect(current_path).to eq(product_path(workshop_one))
-    end
-
     it 'lists the local articles' do
       article_one = create(:article)
       article_two = create(:article)
