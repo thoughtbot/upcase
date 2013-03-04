@@ -42,4 +42,34 @@ class ApplicationController < ActionController::Base
       Section.find(params[:section_id])
     end
   end
+
+  def in_person_workshops
+    Workshop.only_public.by_position.in_person
+  end
+  helper_method :in_person_workshops
+
+  def online_workshops
+    Workshop.only_public.by_position.online
+  end
+  helper_method :online_workshops
+
+  def books
+    Product.books.active.ordered
+  end
+  helper_method :books
+
+  def videos
+    Product.videos.active.ordered
+  end
+  helper_method :videos
+
+  def bytes
+    Article.local.top.published
+  end
+  helper_method :bytes
+
+  def topics
+    Topic.top
+  end
+  helper_method :topics
 end

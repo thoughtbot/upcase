@@ -1,10 +1,8 @@
-<div class="text-box">
-  <%= link_to topic_path(topic) do %>
+<%= link_to topic_path(topic) do %>
+  <div class="text-box">
     <h2><%= topic.name %></h2>
-  <% end %>
-
-  <% if topic.summary? %>
-    <p><em><%= topic.summary %></em></p>
-  <% end %>
-
-</div>
+    <% if topic.summary? %>
+      <p><em><%= topic.summary %></em></p>
+    <% end %>
+  </div>
+<% end %>

@@ -7,66 +7,227 @@ section#header-wrapper {
     max-width: $max-width;
     @include outer-container;
     padding: 2em;
+    position: relative;
+    @include user-select(none);
+
+    .logo {
+      text-align: center;
+
+      img {
+        @include position(relative, 18px 0 0 0);
+      }
+    }
 
     .intro {
+      color: $darkwarmgray;
+      font: italic 300 20px $serif;
       margin: 0 auto;
       padding: 1em;
       text-align: center;
+      -webkit-font-smoothing: antialiased;
       width: 65%;
     }
 
-    .logo {
-      padding: 1em;
-      text-align: center;
-    }
-
-    .logo img {
-      vertical-align: -20px;
-    }
-
-    .detail-logo {
-      @include outer-container;
+    .small-logo {
       float: left;
-      width: 100%;
+      font-size: 50px;
+      line-height: .9em;
+      margin-bottom: .2em;
+      margin-top: -18px;
+      text-align: left;
+      width: flex-grid(3);
 
       a {
         display: inline-block;
         position: relative;
-        top: 14px;
+        top: 16px;
         width: 68px;
 
         img {
           display: block;
         }
       }
+    }
 
-      h1 {
-        @include span-columns(10);
-        font-size: 55px;
-        line-height: .9em;
-        margin-bottom: .2em;
-        margin-top: -15px;
-        padding-left: 240px;
-        text-align: left;
-        text-indent: -240px;
+    nav {
+      float: right;
+      line-height: 0;
+      @include position(relative, 18px 0 0 0);
+      text-align: right;
+      width: flex-grid(9);
+
+      // position sub menus
+      li.workshops ul {
+        right: 321px;
       }
 
-      .myaccount {
-        @include span-columns(2);
-        float: right;
-        margin-top: 9px;
-        text-transform: uppercase;
+      li.videos ul {
+        left: 20%;
+        right: 221px;
+      }
 
-        .button {
-          background-color: $lightwarmgray;
-          border-bottom: none;
-          color: $warmgray;
-          padding-top: 15px;
-          width: 100%;
+      li.books ul {
+        @include columns(1);
+        left: 45%;
+        right: 126px;
+      }
 
-          &:hover {
-            background-color: white;
+      li.trails ul {
+        @include columns(3);
+        right: 0;
+      }
+
+      &.show-account-links {
+        li.workshops ul {
+          right: 404px;
+        }
+
+        li.videos ul {
+          right: 304px;
+        }
+
+        li.books ul {
+          left: 45%;
+          right: 208px;
+        }
+
+        li.trails ul {
+          right: 83px;
+        }
+      }
+
+      > ul {
+        display: inline-block;
+        text-align: left;
+
+        // top level and sub menu links
+        li a {
+          font-family: $sans-serif;
+          font-size: 100%;
+        }
+
+        // top level
+        > li {
+          float: left;
+          margin-left: .2em;
+
+          &.prime a {
+            font-weight: 700;
+
+            &:hover, &:active {
+              background: $learnred;
+            }
+          }
+
+          &.account a {
             color: $darkwarmgray;
+
+            &:hover {
+              background: lighten($darkwarmgray, 10%);
+            }
+
+            &:active {
+              background: $darkwarmgray;
+            }
+          }
+
+          &.dropdown {
+            > a {
+              padding-right: 1.8em;
+
+              &::after {
+                border: 2px solid $learnred;
+                border-width: 0 2px 2px 0;
+                bottom: 0;
+                content: '';
+                height: 6px;
+                margin: -6px 0 0 0;
+                @include position(absolute, 50% .7em 0 0);
+                @include transform(rotate(45deg));
+                width: 6px;
+              }
+
+              &:hover::after {
+                border-color: #fff;
+              }
+            }
+          }
+
+          &.open {
+            > a, > a:hover {
+              background: darken($warmgray, 9%);
+              color: #fff;
+
+              &::after {
+                border-color: #fff;
+              }
+            }
+
+            > ul {
+              display: block;
+            }
+          }
+
+          > a {
+            border-radius: 3px;
+            display: block;
+            font-weight: 600;
+            outline: none;
+            padding: .6em .8em;
+            position: relative;
+
+            &:hover {
+              color: #fff;
+            }
+
+            &:active {
+              background: darken($warmgray, 9%);
+              color: #fff;
+            }
+          }
+
+          > ul {
+            background: darken($warmgray, 9%);
+            border-radius: 3px;
+            color: #fff;
+            @include columns(2);
+            display: none;
+            padding: 1em 2em;
+            @include position(absolute, 90% 0 0 0px);
+            width: auto;
+            z-index: 1;
+
+            li {
+              display: block;
+
+              h4 {
+                color: #fff;
+                font-weight: 700;
+                margin: 1em 0 .5em 0;
+                text-shadow: none;
+                text-transform: uppercase;
+              }
+
+              &:nth-child(4n) {
+                margin-right: 0;
+              }
+
+              a {
+                color: darken($darkwarmgray, 10%);
+                display: inline-block;
+                font-weight: 400;
+                padding: .3em 0;
+
+                &:hover {
+                  color: #fff;
+                }
+              }
+            }
+
+            ul {
+              display: inline-block;
+              width: 100%;
+            }
           }
         }
       }
@@ -74,55 +235,107 @@ section#header-wrapper {
   }
 }
 
-@media screen and (max-width: 910px) {
-  .logo {
-    text-align: center;
+@media screen and (max-device-width: 1044px), screen and (max-width: 1044px) {
+  section#header-wrapper .header-container {
+    padding-top: 1.5em;
+
+    .logo img, .small-logo img {
+      display: block;
+      margin: 0 auto 10px auto;
+    }
+
+    h1.small-logo {
+      padding-left: 0;
+      text-align: center;
+      text-indent: 0;
+      width: 100%;
+
+      a {
+        top: 25px;
+      }
+    }
+
+    .intro {
+      padding-top: 0;
+    }
+
+    nav {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 1.5em;
+    }
+
+    nav > ul > li {
+      &.books {
+        > ul {
+          @include columns(3);
+        }
+      }
+
+      > ul {
+        left: 0 !important;
+        right: 0 !important;
+      }
+    }
   }
 }
 
-@media screen and (max-device-width: 800px), screen and (max-width: 800px) {
-  .logo img, .detail-logo img {
-    display: block;
-    margin: 0 auto 10px auto;
-  }
+@media screen and (max-device-width: 790px), screen and (max-width: 790px) {
+  section#header-wrapper .header-container {
+    nav > ul > li.prime {
+      display: block;
+      float: none;
+      margin: 0;
+      text-align: center;
 
-  .detail-logo {
-    float: none !important;
-    text-align: center;
-
-    h1 {
-      padding-left: 0 !important;
-      text-align: center !important;
-      text-indent: 0 !important;
-      width: 100% !important;
+      a {
+        display: inline-block;
+        margin-bottom: .5em;
+      }
     }
 
-    .myaccount {
-      margin-top: -33px !important;
-      position: absolute;
-      right: 2em !important;
-      width: 100px !important;
+    .intro {
+      font-size: 18px;
+      margin-top: 1em;
+      width: 95%;
     }
-  }
 
-  section#header-wrapper .header-container .intro {
-    padding-top: 0;
-  }
-
-  section#header-wrapper .header-container .detail-logo h1 {
-    padding-left: 0;
-    text-indent: 0;
+    .detail-logo {
+      float: auto;
+    }
   }
 }
 
-@media screen and (max-device-width: 620px), screen and (max-width: 620px) {
-  section#header-wrapper .header-container .intro {
-    font-size: 18px;
-    width: 95%;
-  }
+@media screen and (max-device-width: 600px), screen and (max-width: 600px) {
+  section#header-wrapper .header-container {
+    nav {
+      > ul {
+        display: block;
 
-  .detail-logo {
-    float: auto;
+        > li, > li.trails, > li.books {
+          margin: 0;
+          width: 100%;
+
+          ul {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            @include columns(1);
+            padding: 0 .8em .8em;
+            position: relative;
+            top: -3px;
+
+            ul {
+              padding: 0;
+              position: static;
+            }
+
+            li a {
+              display: block;
+            }
+          }
+        }
+      }
+    }
   }
 }
 

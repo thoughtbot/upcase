@@ -1,22 +1,70 @@
 <section id="header-wrapper">
   <div class="header-container">
     <% if content_for?(:subject) %>
-      <div class="detail-logo">
-        <h1>
-          <%= link_to image_tag('learn/learn-ralph-small.png'), root_path %>
-          <%= t 'shared.learn' %>
-          <span class="subject"><%= yield(:subject) %></span>
-        </h1>
-        <div class="myaccount">
+      <h1 class="small-logo">
+        <%= link_to image_tag('learn/learn-ralph-small.png'), root_path %>
+        <%= t 'shared.learn' %>
+      </h1>
+      <nav class="<%= 'show-account-links' if show_account_links? %>">
+        <ul>
+          <li class="prime">
+            <% if subscription_product %>
+              <%= link_to subscription_product do %>
+                <span><%= t('shared.subscriptions.icon') %></span> <%= subscription_product.name %> Membership
+              <% end %>
+            <% end %>
+          </li>
+          <li class="dropdown workshops">
+            <a href="#" data-toggle="dropdown">Workshops</a>
+            <ul>
+              <ul>
+                <li><h4><%= t 'shared.online_workshops' %></h4></li>
+                <% online_workshops.each do |workshop| %>
+                  <li><%= link_to workshop.name, workshop %></li>
+                <% end %>
+              </ul>
+              <ul>
+                <li><h4><%= t 'shared.in_person_workshops' %></h4></li>
+                <% in_person_workshops.each do |workshop| %>
+                  <li><%= link_to workshop.name, workshop %></li>
+                <% end %>
+              </ul>
+            </ul>
+          </li>
+          <li class="dropdown videos">
+            <a href="#" data-toggle="dropdown"><%= t 'shared.videos' %></a>
+            <ul>
+              <% videos.each do |video| %>
+                <li><%= link_to video.name, video %></li>
+              <% end %>
+            </ul>
+          </li>
+          <li class="dropdown books">
+            <a href="#" data-toggle="dropdown"><%= t 'shared.books' %></a>
+            <ul>
+              <% books.each do |book| %>
+                <li><%= link_to book.name, book %></li>
+              <% end %>
+            </ul>
+          </li>
+          <li class="dropdown trails">
+            <a href="#" data-toggle="dropdown"><%= t 'shared.trails' %></a>
+            <ul>
+              <!-- <li><h4>Programming</h4></li> -->
+              <% topics.each do |topic| %>
+                <li><%= link_to topic.name, topic %></li>
+              <% end %>
+            </ul>
+          </li>
           <% if show_account_links? %>
             <% if signed_in? %>
-              <%= link_to 'My account', my_account_path, class: 'button' %>
+              <li class="account"><%= link_to 'Account', my_account_path %></li>
             <% else %>
-              <%= link_to 'Sign in', sign_in_path, class: 'button' %>
+              <li class="account"><%= link_to 'Sign in', sign_in_path %></li>
             <% end %>
           <% end %>
-        </div>
-      </div>
+        </ul>
+      </nav>
     <% else %>
       <div class="logo">
         <h1><%= link_to image_tag('learn/learn-ralph.png'), root_path %>

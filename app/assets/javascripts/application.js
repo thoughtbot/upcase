@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require retina
+//= require dropdown
 
 $("#total a").click(function() {
   $(".coupon").show();
@@ -47,4 +48,6 @@ $(function() {
     $(this).parent().addClass('expand-bio').removeClass('minimize-bio');
     return false;
   });
+
+  $('.header-container nav li.dropdown > a').dropdown();
 });

@@ -118,8 +118,8 @@ body.topics-index {
     }
 
     #all-products .button {
-      @include span-columns(10);
-      @include shift(1);
+      width: 100%;
+      margin: 0;
     }
   }
 }
@@ -130,6 +130,10 @@ body.topics-index {
     max-width: 760px;
     padding: 2em;
 
+    .text-box {
+      border-top: 0;
+    }
+
     hr {
       margin-bottom: 2em;
     }
@@ -137,6 +141,7 @@ body.topics-index {
     h2 {
       margin-bottom: 0;
       padding-bottom: 6px;
+      color: $learnred;
     }
 
     ul {
@@ -300,9 +305,15 @@ body.topics-index {
       line-height: 56px;
     }
 
-    section#topics-list li {
-      display: block;
+    section#topics-list {
+      margin: 0;
+      padding: 0;
       width: 100%;
+
+      li {
+        display: block;
+        width: 100%;
+      }
     }
   }
 }
