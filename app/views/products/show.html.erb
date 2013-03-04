@@ -18,6 +18,9 @@
     <% end %>
     <% if @product.active? %>
       <% if !@product.external? %>
+        <div class="prime-purchase">
+          <%= render 'prime_purchase', product: @product%>
+        </div>
         <div class="individual-purchase">
           <%= render 'individual_purchase', product: @product%>
         </div>
