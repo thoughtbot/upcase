@@ -152,3 +152,5 @@ To see what the current recipient is:
 
 3. Access the [general admin panel](http://learn.thoughtbot.com/new_admin) or
    the [workshop admin panel](http://learn.thoughtbot.com/admin).
+
+# DO NOT MERGE
