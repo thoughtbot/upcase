@@ -65,16 +65,6 @@ describe PurchasesController do
 
       response.should redirect_to(product_path(product))
     end
-
-    it "redirects from watch to the product page" do
-      purchase.paid = false
-      purchase.save
-      stub_current_user_with(create(:user))
-
-      get :watch, id: purchase.to_param
-
-      response.should redirect_to(root_path)
-    end
   end
 
   def customer_params(token='stripe token')
