@@ -2,6 +2,10 @@ require 'sinatra/base'
 require 'capybara_discoball'
 
 class FakeStripe < Sinatra::Base
+  EVENT_ID_FOR_SUCCESSFUL_INVOICE_PAYMENT = 'evt_1X6Z2OXmhBVcm9'
+  CUSTOMER_ID = 'cus_1CXxPJDpw1VLvJ'
+  CUSTOMER_EMAIL = 'foo@bar.com'
+
   cattr_reader :last_charge, :last_customer_email, :last_token, :coupons
   cattr_accessor :failure
 
@@ -11,10 +15,10 @@ class FakeStripe < Sinatra::Base
     {
       object: "customer",
       created: 1359583041,
-      id: "cus_1CXxPJDpw1VLvJ",
+      id: CUSTOMER_ID,
       livemode: false,
       description: nil,
-      email: nil,
+      email: CUSTOMER_EMAIL,
       delinquent: false,
       subscription: nil,
       discount: nil,
@@ -40,7 +44,7 @@ class FakeStripe < Sinatra::Base
       object: 'subscription',
       start: 1358555835,
       status: 'active',
-      customer: 'cus_1CXxPJDpw1VLvJ',
+      customer: CUSTOMER_ID,
       cancel_at_period_end: false,
       current_period_start: 1358555835,
       current_period_end: 1361234235,
@@ -78,14 +82,14 @@ class FakeStripe < Sinatra::Base
         end: 1339350110,
         start: 1336671710,
         object: "discount",
-        customer: "cus_1CXxPJDpw1VLvJ",
+        customer: CUSTOMER_ID,
         id: "di_N8U1hA4YzyRH9w" },
       account_balance: 0,
       email: nil,
       object: "customer",
       active_card: nil,
       subscription: nil,
-      id: "cus_1CXxPJDpw1VLvJ",
+      id: CUSTOMER_ID,
       livemode: false }.to_json
     end
   end
@@ -155,6 +159,33 @@ class FakeStripe < Sinatra::Base
     else
       status 404
     end
+  end
+
+  get "/events/#{EVENT_ID_FOR_SUCCESSFUL_INVOICE_PAYMENT}" do
+    content_type :json
+    {
+      id: "evt_1X6Z2OXmhBVcm9",
+      type: "invoice.payment_succeeded",
+      data: {
+        object: {
+          customer: CUSTOMER_ID,
+          lines: {
+            subscriptions: [
+              {
+                plan: {
+                  interval: "month",
+                  name: "Prime",
+                  amount: 9900,
+                  currency: "usd",
+                  id: "prime",
+                  object: "plan",
+                }
+              }
+            ]
+          }
+        }
+      }
+    }.to_json
   end
 
   def create_coupon_hash(params)

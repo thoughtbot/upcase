@@ -70,7 +70,7 @@ class PurchasesController < ApplicationController
 
   def notify_kissmetrics_of(purchase)
     event_notifier = KissmetricsEventNotifier.new
-    event_notifier.notify_of(purchase)
+    event_notifier.notify_of_purchase(purchase)
   end
 
   def use_existing_card?

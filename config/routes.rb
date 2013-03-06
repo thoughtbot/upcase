@@ -80,6 +80,8 @@ Workshops::Application.routes.draw do
 
   mount Split::Dashboard, at: 'split'
 
+  mount StripeEvent::Engine, at: 'stripe-webhook'
+
   get ':id' => 'topics#show', as: :topic
   match '/:id/articles' => 'articles#index', as: 'topic_articles'
 end
