@@ -341,15 +341,8 @@ ActiveRecord::Schema.define(:version => 20130214152955) do
     t.integer  "position"
     t.integer  "company_price"
     t.text     "terms"
-<<<<<<< HEAD
-    t.boolean  "online",                     :default => false, :null => false
-    t.integer  "alternate_individual_price"
-    t.integer  "alternate_company_price"
-    t.text     "resources"
-=======
     t.boolean  "online",                    :default => false, :null => false
     t.text     "resources",                 :default => "",    :null => false
->>>>>>> 6786d64... restore corect schema for this branch
     t.string   "video_chat_url"
     t.string   "promo_location"
   end
