@@ -1,9 +1,13 @@
-<p class="videowrapper"><%= render 'videos/code', video_hash_id: video.video_hash_id %></p>
+<% if video.available?(purchaseable.starts_on) %>
+  <p class="videowrapper"><%= render 'videos/code', video_hash_id: video.video_hash_id %></p>
 
-<section class="assets-wrapper">
-  <div class="assets">
-    <%= render 'videos/download_link', download_type_key: "OriginalFile", download_type: "original", size_display: "Original (720p)", video: video %>
-    <%= render 'videos/download_link', download_type_key: "IphoneVideoFile", download_type: "iphone", size_display: "iPhone", video: video %>
-    <%= render 'videos/download_link', download_type_key: "HdMp4VideoFile", download_type: "hd_mp4", size_display: "HD MP4", video: video %>
-  </div>
-</section>
+  <section class="assets-wrapper">
+    <div class="assets">
+      <%= render 'videos/download_link', download_type_key: "OriginalFile", download_type: "original", size_display: "Original (720p)", video: video %>
+      <%= render 'videos/download_link', download_type_key: "IphoneVideoFile", download_type: "iphone", size_display: "iPhone", video: video %>
+      <%= render 'videos/download_link', download_type_key: "HdMp4VideoFile", download_type: "hd_mp4", size_display: "HD MP4", video: video %>
+    </div>
+  </section>
+<% else %>
+  <p>This video is not yet available. It will be released on <%= video.available_on(purchaseable.starts_on).to_s(:simple) %></p>
+<% end %>

@@ -1,12 +1,12 @@
-<% if purchase.purchaseable.downloads.present? %>
-  <h3>DOWNLOAD FILES</h3>
-  <p>You should also receive an email with the link to this page. If the download links expire, you can reload this web page to get valid links again.</p>
-  <ul class = "download_items">
-    <% purchase.purchaseable.downloads.each do |download|%>
+<% if purchaseable.downloads.present? %>
+  <h3>Download Files</h3>
+  <ul class="download_items">
+    <% purchaseable.downloads.each do |download|%>
       <li>
       <%= link_to download.display_name, (download.download.respond_to?(:expiring_url) ? download.download.expiring_url(300) : download.download.url), target: "_blank" %>
       <p><%= download.description %></p>
       </li>
     <% end %>
   </ul>
+  <p>If the download links expire, you can reload this web page to get valid links again.</p>
 <% end %>

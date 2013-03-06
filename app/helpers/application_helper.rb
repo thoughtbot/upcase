@@ -61,10 +61,6 @@ module ApplicationHelper
     BlueCloth.new(resources).to_html
   end
 
-  def sidebar_partial_name(purchaseable)
-    "#{purchaseable.class.table_name}/aside"
-  end
-
   def partial_name(model)
     model.class.name.downcase
   end

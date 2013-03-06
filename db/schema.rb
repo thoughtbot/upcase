@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20130214152955) do
+=======
+ActiveRecord::Schema.define(:version => 20130303193633) do
+>>>>>>> 6786d64... restore corect schema for this branch
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -48,6 +52,15 @@ ActiveRecord::Schema.define(:version => 20130214152955) do
     t.integer  "classifiable_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "owner_id",         :null => false
+    t.integer  "commentable_id",   :null => false
+    t.string   "commentable_type", :null => false
+    t.text     "body",             :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "coupons", :force => true do |t|
@@ -105,9 +118,9 @@ ActiveRecord::Schema.define(:version => 20130214152955) do
   end
 
   create_table "events", :force => true do |t|
-    t.integer  "workshop_id"
-    t.string   "title"
-    t.string   "time"
+    t.integer  "workshop_id",                  :null => false
+    t.string   "title",                        :null => false
+    t.string   "time",                         :null => false
     t.integer  "occurs_on_day", :default => 0, :null => false
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
@@ -157,11 +170,9 @@ ActiveRecord::Schema.define(:version => 20130214152955) do
     t.text     "external_purchase_url"
     t.string   "external_purchase_name"
     t.string   "external_purchase_description"
-    t.string   "promo_location"
     t.integer  "discount_percentage",           :default => 0,    :null => false
     t.string   "discount_title",                :default => "",   :null => false
-    t.integer  "alternate_individual_price"
-    t.integer  "alternate_company_price"
+    t.string   "promo_location"
   end
 
   create_table "purchases", :force => true do |t|
@@ -333,14 +344,19 @@ ActiveRecord::Schema.define(:version => 20130214152955) do
     t.string   "short_description"
     t.string   "external_registration_url"
     t.integer  "position"
-    t.string   "promo_location"
     t.integer  "company_price"
     t.text     "terms"
+<<<<<<< HEAD
     t.boolean  "online",                     :default => false, :null => false
     t.integer  "alternate_individual_price"
     t.integer  "alternate_company_price"
     t.text     "resources"
+=======
+    t.boolean  "online",                    :default => false, :null => false
+    t.text     "resources",                 :default => "",    :null => false
+>>>>>>> 6786d64... restore corect schema for this branch
     t.string   "video_chat_url"
+    t.string   "promo_location"
   end
 
 end
