@@ -8,6 +8,10 @@
 <section id="license">
   <div class="individual-purchase">
     <h2>
+      <div class="prime-purchase">
+        <%= render 'products/prime_purchase', product: @product %>
+      </div>
+
       <% unless current_user_has_active_subscription? %>
         Single
       <% end %>

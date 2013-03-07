@@ -5,10 +5,8 @@
 </h2>
 
 <div class="license">
-  <%= link_to new_product_purchase_path(product, variant: :individual),
-    class: 'license-button button',
-    id: "#{product.sku}-purchase-individual" do %>
+  <%= link_to product_path(subscription_product),
+    class: 'license-button button' do %>
       Get unlimited access
   <% end %>
 </div>
-
