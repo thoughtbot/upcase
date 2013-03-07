@@ -9,7 +9,7 @@
         <ul>
           <li class="prime">
             <% if subscription_product %>
-              <%= link_to subscription_product do %>
+              <%= link_to products_path do %>
                 <span><%= t('shared.subscriptions.icon') %></span> <%= subscription_product.name %> Membership
               <% end %>
             <% end %>

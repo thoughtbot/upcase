@@ -1,5 +1,5 @@
 <% if subscription_product %>
-  <%= link_to new_product_purchase_path(subscription_product, variant: 'individual'), class: "prime-main-cta #{position}" do %>
+  <%= link_to product_path(subscription_product), class: "prime-main-cta #{position}" do %>
     <h2><%= t('shared.subscription_call_to_action') %></h2>
     <h3>with Learn <%= subscription_product.name %></h3>
   <% end %>
