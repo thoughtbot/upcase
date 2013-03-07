@@ -11,8 +11,6 @@ Workshops::Application.routes.draw do
     match '/products/:id' => redirect('/workshops/19-design-for-developers'),
       constraints: { id: /(9|11).*/ }
   end
-  match '/products/14', to: 'products#index'
-  match '/products/14-prime', to: 'products#index'
 
   resource :session, controller: 'sessions'
 
