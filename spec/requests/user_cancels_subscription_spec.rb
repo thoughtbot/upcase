@@ -14,7 +14,7 @@ feature 'User cancels a subscription' do
   end
 
   def cancel_subscription
-    click_link 'Account'
+    visit my_account_path
     click_link I18n.t('subscriptions.cancel')
   end
 end

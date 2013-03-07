@@ -12,16 +12,4 @@ describe ApplicationHelper do
       helper.show_account_links?.should == true
     end
   end
-
-  describe '.promotion_partial' do
-    it 'returns the correct partial for a product' do
-      product = create(:product)
-      helper.promotion_partial(product).should == 'promoted_product'
-    end
-
-    it 'returns the correct partial for a workshop' do
-      workshop = create(:workshop)
-      helper.promotion_partial(workshop).should == 'promoted_workshop'
-    end
-  end
 end

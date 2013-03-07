@@ -15,8 +15,7 @@ Feature: Purchase a Product
     And the video with wistia id "1194805" exists for "Test Series"
 
   Scenario: A visitor signs up for an account through checkout
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"
     And I follow "Sign in."
@@ -33,13 +32,11 @@ Feature: Purchase a Product
 
   @selenium @allow-rescue
   Scenario: A visitor purchases a product with paypal
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"
     Then I should see "$15"
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Test Fetch"
     And I follow "Your Company"
     Then I should see "$50"
@@ -57,8 +54,7 @@ Feature: Purchase a Product
 
   @selenium
   Scenario: A visitor purchases a product with stripe
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"
     Then I should see "$15"
@@ -68,13 +64,11 @@ Feature: Purchase a Product
   @selenium
   Scenario: A visitor purchases a product with stripe with a failure
     Given stripe is stubbed with a failure
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"
     Then I should see "$15"
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Test Fetch"
     And I follow "Your Company"
     Then I should see "$50"
@@ -84,15 +78,13 @@ Feature: Purchase a Product
   @selenium
   Scenario: A visitor purchases a product with readers
     Given github is stubbed
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Test GitHub"
     And I follow "Purchase for Yourself"
     Then I should see "$15"
     And I should see "1st Reader"
     And I should not see "2nd Reader"
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Test GitHub"
     And I follow "Your Company"
     Then I should see "$199"
@@ -118,8 +110,7 @@ Feature: Purchase a Product
     Given the following coupon exists:
       | code       | discount_type | amount |
       | VALENTINES | percentage    | 10     |
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"
     And I should see "$15"

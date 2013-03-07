@@ -1,30 +1,199 @@
-body.products-index, body.purchases {
-  section#promo-wrapper {
-    @include outer-container;
-    margin: 0 auto;
-    padding: 0 1em 3em 1em;
+body.products-index {
+  .prime-pitch {
+    margin: -5em 0 5em 0;
+    position: relative;
     text-align: center;
 
-    .products-container {
-      @include span-columns(4);
-      text-align: left;
+    &::after {
+      background: $warmgray;
+      content: '';
+      margin-right: -2px;
+      @include position(absolute, 0px 50% 0px 0);
+      width: 5px;
+      z-index: -1;
+    }
 
-      ul {
-        li {
-          margin-bottom: 30px;
-          margin-left: 0px;
+    h2.subscriber {
+      background: $lightwarmgray;
+      margin-bottom: 2em;
+      margin-top: 3em;
+    }
+
+    .prime-main-cta {
+      background: $learnred;
+      border: 0;
+      border-radius: 3px;
+      display: inline-block;
+      margin: 0 auto;
+      padding: 1.2em 2.5em;
+      text-align: center;
+
+      &.top {
+        margin-bottom: 5em;
+      }
+
+      &.bottom {
+        margin-top: 4em;
+      }
+
+      &:hover {
+        background: lighten($learnred, 5%);
+      }
+
+      &:active {
+        background: darken($learnred, 5%);
+      }
+
+      h2, h3 {
+        color: #fff;
+        font: 700 1.75em/1em $sans-serif;
+        margin: 0;
+      }
+
+      h3 {
+        font-size: 1.2em;
+        font-weight: 100;
+        margin-top: -.2em;
+      }
+    }
+
+    .products {
+      margin: auto;
+      margin-bottom: 4em;
+      max-width: 741px;
+      overflow: hidden;
+
+      h2 {
+        background: $lightwarmgray;
+        color: $darkwarmgray;
+        font: 700 1.75em/1.2em $sans-serif;
+        margin: 0 0 1.25em;
+        padding: .1em 0;
+        text-align: center;
+
+        span {
+          display: block;
+          font-weight: 100;
+        }
+      }
+
+      &.books {
+        text-align: center;
+
+        figure {
+          display: inline-block;
+          margin: 0 1em 1em;
+
+          a {
+            background: #000;
+            border: 0;
+            display: block;
+            line-height: 0;
+            position: relative;
+            @include transition(.15s);
+
+            &:hover {
+              top: -3px;
+            }
+
+            &:active {
+              img {
+                opacity: .8;
+              }
+            }
+          }
+
+          img {
+            border-radius: 1px;
+            @include box-shadow(0 1px 1px rgba(0, 0, 0, .3));
+            margin: 0;
+            width: 212px;
+          }
+        }
+      }
+
+      &.workshops, &.screencasts, &.bytes {
+        text-align: left;
+
+        a {
+          background: $lightwarmgray;
+          @include box-sizing(content-box);
+          display: inline-block;
+          margin: 0;
+          padding: .5em 1em 1em;
+          text-align: left;
+          @include transition(.2s);
+          vertical-align: top;
+          width: 215px;
+
+          &:hover {
+            background: lighten($warmgray, 10%);
+          }
+
+          &:active {
+            background: $warmgray;
+            @include transition(0s);
+          }
         }
 
-        li p {
-          margin-top: 6px;
+        hgroup {
+          h4 {
+            color: lighten($darkwarmgray, 20%);
+            font: 100 12px/1.3em $sans-serif;
+            margin-bottom: .3em;
+            text-shadow: none;
+            text-transform: uppercase;
+
+            span {
+              background: yellow;
+              box-shadow: 0 0 0 .3em yellow;
+              color: rgb(197, 145, 79);
+              font-weight: 700;
+              margin: 0 .5em 0 0;
+              padding: 0 0.3em;
+            }
+          }
+
+          h3 {
+            color: $darkwarmgray;
+            font: 600 18px/1.3em $sans-serif;
+            margin: 0;
+          }
+        }
+
+        p {
+          font: 400 18px/1.3em $sans-serif;
         }
       }
     }
   }
 
+  .trails-cta {
+    border: 3px solid #ccc;
+    color: #888;
+    display: block;
+    font-family: $sans-serif;
+    margin: 8em auto 4em;
+    padding: .5em;
+    text-align: center;
+    width: 170px;
+
+    &:hover {
+      border-color: #999;
+      color: #333;
+    }
+
+    &:active {
+      border-color: #666;
+      color: #000;
+    }
+  }
+}
+
+body.products-index, body.purchases {
   section#subscription-banner {
-    @extend #promo-wrapper;
     padding: 0 1em 0 1em;
+    text-align: center;
 
     a {
       @extend .text-box;
@@ -97,7 +266,7 @@ body.purchases {
         padding: .8em 1.5em .5em 1.5em;
         position: relative;
         text-transform: uppercase;
-        top: -1px;
+        top: -3px;
       }
 
       &:hover {

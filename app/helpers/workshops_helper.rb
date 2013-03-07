@@ -8,4 +8,12 @@ module WorkshopsHelper
     json = "#{callback}(#{json})" if callback
     json.html_safe
   end
+
+  def workshop_data_role(workshop)
+    if workshop.online?
+      'online-workshop'
+    else
+      'in-person-workshop'
+    end
+  end
 end

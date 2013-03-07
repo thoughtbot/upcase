@@ -10,8 +10,7 @@ Feature: Selecting a workshop and registering for it
     And the following future section exists:
       | workshop                  |
       | name: Test-Driven Haskell |
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Test-Driven Haskell"
     And I follow "Register for this Workshop"
     And I follow "Sign in."

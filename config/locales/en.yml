@@ -30,8 +30,16 @@ en:
 
   products:
     index:
-      title:
-        Products
+      subscriber:
+        header: "You're a subscriber. You get access to:"
+        books: All our books
+        bytes: And our private blog
+      books: Includes all our books
+      workshops: Our workshops <span>in-person and online</span>
+      videos: Our screencasts
+      bytes: And access to our private blog
+
+      title: Products
     show:
       free_to_subscribers: "You're a subscriber, so you receive this product for free!"
       purchase_for_company: Purchase for Your Company
@@ -54,19 +62,22 @@ en:
 
   shared:
     intro:
-      Guided learning on modern development technologies and practices. Dig in.
+      Guided learning on modern design & development best practices, by topic. Dig in.
+    prime_intro:
+      Professional grade workshops, screencasts & ebooks
     books:
       Books
     in_person_workshops:
       In-person Workshops
     learn:
       Learn
-    online_workshops:
-      Online Workshops
+    workshops:
+      online: online
+      in_person: in-person
     subscription_call_to_action:
-      Subscribe
+      Get unlimited access
     videos:
-      Videos
+      Screencasts
     trails:
       Trail Maps
     subscriptions:
@@ -74,6 +85,7 @@ en:
       protected_content: ✶ Sorry, that article is only available to Prime subscribers.
       user_required: ✶ Sign in or sign up to subscribe to Prime.
     local_articles: Bytes
+
 
   topics:
     workshop:

@@ -1,5 +1,5 @@
 When /^I view all products/ do
-  click_link 'VIEW ALL'
+  visit products_path
 end
 
 When /^I add a download with file name "([^"]*)" and description "([^"]*)"$/ do |file_name, description|
@@ -64,4 +64,8 @@ end
 
 Then 'I should see links to good Test-Driven Rails resources' do
   page.should have_css('a[href*="0132350882"]')
+end
+
+Then /^I should see the cover for "([^"]*)"$/ do |book_name|
+  page.should have_css("img[alt='#{book_name} cover']")
 end

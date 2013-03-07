@@ -10,7 +10,7 @@ Feature: Selecting a workshop and registering for it
       | workshop                  | city            |
       | name: Test-Driven Haskell | Boston          |
       | name: Test-Driven Haskell | San Fransisco   |
-    When I go to the home page
+    When I go to the products page
     Then I should see "Test-Driven Haskell in-person in San Fransisco and Boston"
     And I should see "Test-Driven Ruby Online"
 
@@ -22,7 +22,7 @@ Feature: Selecting a workshop and registering for it
     And the following future section exists:
       | workshop                  |
       | name: Test-Driven Haskell |
-    When I go to the home page
+    When I go to the products page
     And I follow "Test-Driven Haskell"
     And I follow "Register for this Workshop"
     Then I should see "Complete your purchase of Test-Driven Haskell"
@@ -43,7 +43,7 @@ Feature: Selecting a workshop and registering for it
     And the following future section exists:
       | workshop                  |
       | name: Test-Driven Haskell |
-    When I go to the home page
+    When I go to the products page
     And I follow "Test-Driven Haskell"
     And I follow "Register for this Workshop"
     And I follow "Sign in."
@@ -72,7 +72,7 @@ Feature: Selecting a workshop and registering for it
     And the following future section exists:
       | workshop                  |
       | name: Test-Driven Haskell |
-    When I go to the home page
+    When I go to the products page
     And I follow "Test-Driven Haskell"
     And I follow "Register for this Workshop"
     Then I should see "Complete your purchase of Test-Driven Haskell"
@@ -92,7 +92,7 @@ Feature: Selecting a workshop and registering for it
     And the following future section exists:
       | workshop                  |
       | name: Test-Driven Haskell |
-    When I go to the home page
+    When I go to the products page
     And I follow "Test-Driven Haskell"
     And I follow "Register for this Workshop"
     Then I should see "$10,000"
@@ -120,7 +120,7 @@ Feature: Selecting a workshop and registering for it
     And the following future section exists:
       | workshop                  |
       | name: Test-Driven Haskell |
-    When I go to the home page
+    When I go to the products page
     And I follow "Test-Driven Haskell"
     And I follow "Register for this Workshop"
     Then I should see "Complete your purchase of Test-Driven Haskell"
@@ -147,7 +147,7 @@ Feature: Selecting a workshop and registering for it
     And the following future section exists:
       | workshop                  |
       | name: Test-Driven Haskell |
-    When I go to the home page
+    When I go to the products page
     And I follow "Test-Driven Haskell"
     And I follow "Register for this Workshop"
     Then I should see "Complete your purchase of Test-Driven Haskell"
@@ -167,8 +167,7 @@ Feature: Selecting a workshop and registering for it
     And the following future section exists:
       | workshop                    |
       | name: Test-Driven Haskell |
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Test-Driven Haskell"
     Then the registration button should link to "http://engineyard.com"
 
@@ -180,7 +179,7 @@ Feature: Selecting a workshop and registering for it
     And the following future section exists:
       | workshop                  |
       | name: Test-Driven Haskell |
-    When I go to the home page
+    When I go to the products page
     And I follow "Test-Driven Haskell"
     And I follow "Register for this Workshop"
     Then I should see "$0"
@@ -196,8 +195,7 @@ Feature: Selecting a workshop and registering for it
     And the following section exists:
       | workshop              | starts_on    |
       | name: Online Workshop | 2013-01-12   |
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Online Workshop"
     And I follow "Register for this Workshop"
     Then I should not see "Do you have any dietary restrictions or special requests?"
@@ -210,8 +208,7 @@ Feature: Selecting a workshop and registering for it
     And the following section exists:
       | workshop              | starts_on    |
       | name: Online Workshop | 2013-01-12   |
-    When I go to the home page
-    And I view all products
+    When I go to the products page
     And I follow "Online Workshop"
     And I follow "Purchase for Your Company"
     Then I should not see "Do you have any dietary restrictions or special requests?"
