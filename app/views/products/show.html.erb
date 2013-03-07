@@ -19,7 +19,7 @@
     <% if @product.active? %>
       <% if !@product.external? %>
         <div class="prime-purchase">
-          <%= render 'prime_purchase', product: @product%>
+          <%= render 'prime_purchase', product: @product, viewable_subscription: ViewableSubscription.new(subscription_product) %>
         </div>
         <div class="individual-purchase">
           <%= render 'individual_purchase', product: @product%>

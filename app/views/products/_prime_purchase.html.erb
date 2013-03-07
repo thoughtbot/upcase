@@ -1,12 +1,12 @@
-<h2 <% if current_user_has_active_subscription? %>class="active-subscription"<% end %>>
-  <% unless current_user_has_active_subscription? %>
-    Access this and all our other products by subscribing to <%= subscription_product.name %>
-  <% end %>
-</h2>
+<% if subscription_product %>
+  <% if viewable_subscription.should_display_subscription_cta?(current_user, request.fullpath) %>
+    <h2>Access this and all our other products by subscribing to <%= subscription_product.name %></h2>
 
-<div class="license">
-  <%= link_to product_path(subscription_product),
-    class: 'license-button button' do %>
-      Get unlimited access
+    <div class="license">
+      <%= link_to product_path(subscription_product),
+        class: 'license-button button' do %>
+          Get unlimited access
+      <% end %>
+    </div>
   <% end %>
-</div>
+<% end %>
