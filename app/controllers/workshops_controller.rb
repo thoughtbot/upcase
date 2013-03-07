@@ -7,6 +7,8 @@ class WorkshopsController < ApplicationController
     @workshop = Workshop.find(params[:id])
     @sections = @workshop.active_sections
     @section_teachers = @sections.unique_section_teachers_by_teacher
+    @viewable_subscription =
+      ViewableSubscription.new(current_user, subscription_product)
 
     if signed_in? && @workshop.purchase_for(current_user)
       redirect_to @workshop.purchase_for(current_user)

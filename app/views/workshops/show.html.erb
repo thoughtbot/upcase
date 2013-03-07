@@ -30,9 +30,12 @@
 </div>
 <aside>
   <% if @sections.any? %>
-    <%= render 'sections/section',
+    <%= render(
+      'sections/section',
       sections: @sections,
-      workshop: @workshop %>
+      workshop: @workshop,
+      viewable_subscription: @viewable_subscription
+    ) %>
   <% else %>
     <%= render 'sections/tbd' %>
   <% end %>
