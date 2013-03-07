@@ -1,5 +1,5 @@
 <% if subscription_product %>
-  <% if viewable_subscription.should_display_subscription_cta?(current_user, request.fullpath) %>
+  <% if viewable_subscription.should_display_subscription_cta?(request.fullpath) %>
     <h2>Access this and all our other products by subscribing to <%= subscription_product.name %></h2>
 
     <div class="license">

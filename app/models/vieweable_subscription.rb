@@ -9,6 +9,8 @@ class ViewableSubscription
   def should_display_subscription_cta?(current_path)
     if @user
       user_has_not_subscribed_already? && not_currently_viewing_subscription?(current_path)
+    else
+      not_currently_viewing_subscription?(current_path)
     end
   end
 
