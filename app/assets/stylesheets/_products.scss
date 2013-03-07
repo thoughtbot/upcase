@@ -376,8 +376,8 @@ body.products-show, body.workshops-show {
             }
           }
 
-          &.individual-purchase, &.company-purchase {
-            .button {
+          &.individual-purchase, &.company-purchase, &#register {
+            .button.non-free {
               padding: 8px 0 6px;
               background: darken($warmgray, 20%);
               border-color: $darkwarmgray;
@@ -393,6 +393,29 @@ body.products-show, body.workshops-show {
             font-weight: 700;
             line-height: 1.4rem;
             margin-bottom: .5rem;
+          }
+        }
+
+        .location-name {
+          color: $learnred;
+          font-weight: 700;
+        }
+
+        &.subscription {
+          .prime-purchase {
+            display: none;
+          }
+
+          h2 {
+            color: $learnred;
+          }
+
+          .individual-purchase, .company-purchase {
+            .button {
+              padding: 12px 0 8px;
+              background: $learnred;
+              border-color: darken($learnred, 20%);
+            }
           }
         }
 

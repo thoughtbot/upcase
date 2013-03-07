@@ -12,14 +12,14 @@
 </div>
 
 <aside>
-  <section id="license">
+  <section id="license" class="<% if @product.subscription? %>subscription<% end %>">
     <% if @product.discounted? %>
       <h4 class="discount-title"><%== @product.discount_title %></h4>
     <% end %>
     <% if @product.active? %>
       <% if !@product.external? %>
         <div class="prime-purchase">
-          <%= render 'prime_purchase', product: @product%>
+          <%= render 'prime_purchase', product: @product, viewable_subscription: @viewable_subscription %>
         </div>
         <div class="individual-purchase">
           <%= render 'individual_purchase', product: @product%>

@@ -6,6 +6,14 @@
 </section>
 
 <section id="license">
+  <div class="prime-purchase">
+    <%= render(
+      'products/prime_purchase',
+      product: @product,
+      viewable_subscription: viewable_subscription
+    ) %>
+  </div>
+
   <div class="individual-purchase">
     <h2>
       <% unless current_user_has_active_subscription? %>
@@ -24,7 +32,7 @@
         <h2 class="active-subscription"><%= t 'workshops.show.free_to_subscribers' %></h2>
       <% end %>
 
-      <%= link_to new_section_purchase_path(online_section, variant: :individual), class: 'license-button button' do %>
+      <%= link_to new_section_purchase_path(online_section, variant: :individual), class: "license-button button#{' non-free' unless current_user_has_active_subscription?}" do %>
         <%= t('workshops.show.register') %>
       <% end %>
     </div>
@@ -39,7 +47,7 @@
       </h2>
 
       <div class="license">
-        <%= link_to new_section_purchase_path(online_section, variant: :company), class: 'license-button button' do %>
+        <%= link_to new_section_purchase_path(online_section, variant: :company), class: 'license-button button non-free' do %>
           Purchase for Your Company
         <% end %>
       </div>

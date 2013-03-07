@@ -1,17 +1,4 @@
 <section class="section-location">
-  <% if in_person_section.full? %>
-    <h2><%= in_person_section.city %> <span>Sold Out</span></h2>
-  <% else %>
-    <h2>
-      <%= in_person_section.city %>
-      <span>
-        <% unless current_user_has_active_subscription? %>
-          <%= number_to_currency in_person_section.individual_price, precision: 0 %>
-        <% end %>
-      </span>
-    </h2>
-  <% end %>
-
   <div class="when">
     <h3>When</h3>
     <p><%= in_person_section.date_range %><br><%= in_person_section.time_range %></p>
@@ -30,11 +17,36 @@
   <div id="register">
     <% if current_user_has_active_subscription? %>
       <h2 class="active-subscription"><%= t 'workshops.show.free_to_subscribers' %></h2>
+    <% else -%>
+      <div class="prime-purchase">
+        <%= render(
+          'products/prime_purchase',
+          product: @product,
+          viewable_subscription: viewable_subscription
+        ) %>
+      </div>
     <% end %>
+
+      <% if in_person_section.full? %>
+        <h2>
+          <span class="location-name"><%= in_person_section.city %></span>
+          <span>Sold Out</span>
+        </h2>
+      <% else %>
+        <h2>
+          <span class="location-name"><%= in_person_section.city %></span>
+          <span>
+            <% unless current_user_has_active_subscription? %>
+              <%= number_to_currency in_person_section.individual_price, precision: 0 %>
+            <% end %>
+          </span>
+        </h2>
+      <% end %>
+
     <% if in_person_section.full? %>
       <a href="#new_follow_up" class="button">Get notified</a>
     <% else %>
-      <%= link_to registration_url(in_person_section), class: 'button' do %>
+      <%= link_to registration_url(in_person_section), class: "button#{' non-free' unless current_user_has_active_subscription?}" do %>
         <%= t('workshops.show.register') %>
       <% end %>
     <% end %>
