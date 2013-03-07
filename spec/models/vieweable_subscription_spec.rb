@@ -31,6 +31,16 @@ describe '#should_display_subscription_cta' do
       ViewableSubscription.new(user, subscription_product).should_display_subscription_cta?(current_path).should be_false
     end
   end
+
+  context 'when user has not subscribed and is not viewing the subscription' do
+    it 'returns true' do
+      user = stub('user', has_active_subscription?: false)
+      current_path = stub('path')
+      subscription_product = stub('subscription_product')
+
+      ViewableSubscription.new(user, subscription_product).should_display_subscription_cta?(current_path).should be_true
+    end
+  end
 end
 
 describe 'to_param' do
