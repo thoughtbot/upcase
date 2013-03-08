@@ -91,7 +91,6 @@ RailsAdmin.config do |config|
         field :start_at
         field :stop_at
         field :video_chat_url
-        field :promo_location
         field :topics
         field :resources
       end
