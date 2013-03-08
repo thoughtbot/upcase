@@ -26,8 +26,7 @@ feature 'User creates a subscription' do
   end
 
   scenario 'sees that the subscription is per month' do
-    visit_subscription_product_page
-    click_purchase_link
+    start_purchasing_subscription
 
     expect(page).to have_content('per month')
   end
@@ -50,8 +49,7 @@ feature 'User creates a subscription' do
     current_user.github_username = nil
     current_user.save!
 
-    visit_subscription_product_page
-    click_purchase_link
+    start_purchasing_subscription
 
     expect(page).to have_content('GitHub username')
     expect(page).to have_css('input#reader_1')
@@ -101,6 +99,7 @@ feature 'User creates a subscription' do
   def start_purchasing_subscription
     visit_subscription_product_page
     click_purchase_link
+    click_link I18n.t('products.show.purchase_subscription')
   end
 
   def click_purchase_link

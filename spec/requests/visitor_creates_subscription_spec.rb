@@ -42,6 +42,7 @@ feature 'Visitor is asked to create a user before subscription' do
   def attempt_to_subscribe
     visit products_path
     click_link I18n.t('shared.subscription_call_to_action')
+    click_link I18n.t('products.show.purchase_subscription')
   end
 
   def current_user
