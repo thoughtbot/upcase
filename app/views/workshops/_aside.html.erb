@@ -18,7 +18,7 @@
       <p>During the following times you can join the teacher and other students in this Google Hangout video chat.</p>
       <hr>
       <ol>
-        <%= render purchaseable.events, section: purchaseable %>
+        <%= render purchaseable.events.ordered, section: purchaseable %>
       </ol>
       <%= link_to "Join Video Chat", purchaseable.video_chat_url, class: 'button' %>
     </div>
