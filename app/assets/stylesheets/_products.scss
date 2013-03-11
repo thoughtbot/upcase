@@ -396,6 +396,24 @@ body.products-show, body.workshops-show {
           }
         }
 
+        &.subscription {
+          .prime-purchase {
+            display: none;
+          }
+
+          h2 {
+            color: $learnred;
+          }
+
+          .individual-purchase, .company-purchase {
+            .button {
+              padding: 12px 0 8px;
+              background: $learnred;
+              border-color: darken($learnred, 20%);
+            }
+          }
+        }
+
         .license {
           margin-top: 0;
 
