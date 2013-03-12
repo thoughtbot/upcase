@@ -263,6 +263,15 @@ describe Mailer do
       end
     end
 
+    it "includes the student's email address in the email body" do
+      Timecop.freeze Date.parse('2012-09-12') do
+        purchase = build_purchase_in 'San Antonio'
+        email = Mailer.registration_notification(purchase)
+
+        expect(email.body).to include purchase.email
+      end
+    end
+
     context 'for an online workshop' do
       it 'does not contain a section about comments or dietary restrictions' do
         purchase = create(:online_section_purchase, comments: 'comments and requests')
