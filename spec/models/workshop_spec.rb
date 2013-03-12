@@ -167,4 +167,22 @@ describe Workshop do
       in_person_workshop.should_not have_in_person_workshop
     end
   end
+
+  context 'purchase_for' do
+    it 'returns the purchase when a user has purchased a section of the workshop' do
+      user = create(:user)
+      purchase = create(:section_purchase, user: user)
+      workshop = purchase.purchaseable.workshop
+
+      expect(workshop.purchase_for(user)).to eq purchase
+    end
+
+    it 'returns nil when a user has not purchased a section fo the workshop' do
+      user = create(:user)
+      purchase = create(:section_purchase)
+      workshop = purchase.purchaseable.workshop
+
+      expect(workshop.purchase_for(user)).to be_nil
+    end
+  end
 end
