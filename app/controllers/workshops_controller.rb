@@ -8,6 +8,10 @@ class WorkshopsController < ApplicationController
     @sections = @workshop.active_sections
     @section_teachers = @sections.unique_section_teachers_by_teacher
 
-    km.record("Viewed Product", { "Product Name" => @workshop.name })
+    if signed_in? && @workshop.purchase_for(current_user)
+      redirect_to @workshop.purchase_for(current_user)
+    else
+      km.record("Viewed Product", { "Product Name" => @workshop.name })
+    end
   end
 end
