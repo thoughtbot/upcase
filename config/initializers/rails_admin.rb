@@ -111,6 +111,8 @@ RailsAdmin.config do |config|
   end
 
   config.model Purchase do
+    object_label_method { :purchase_label_method }
+
     list do
       field :purchaseable_id do
         visible true
@@ -140,7 +142,7 @@ RailsAdmin.config do |config|
   end
 
   config.model Section do
-    object_label_method { :date_range }
+    object_label_method { :section_label_method }
 
     list do
       field :workshop
@@ -170,5 +172,13 @@ RailsAdmin.config do |config|
         field :teachers
       end
     end
+  end
+
+  def purchase_label_method
+    "Purchase #{self.id} (#{self.purchaseable_name})"
+  end
+
+  def section_label_method
+    "#{self.workshop.name} (#{self.date_range})"
   end
 end
