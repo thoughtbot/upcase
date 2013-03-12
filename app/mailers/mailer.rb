@@ -10,6 +10,7 @@ class Mailer < ActionMailer::Base
     @city = purchase.purchaseable.city
     @running_date_range = purchase.purchaseable.date_range
     @fulfillment_method = purchase.purchaseable.fulfillment_method
+    @student_email = purchase.email
 
     mail(
       to: 'learn@thoughtbot.com',
