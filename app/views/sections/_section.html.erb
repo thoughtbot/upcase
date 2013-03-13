@@ -1,9 +1,15 @@
 <% if workshop.online? %>
-  <%= render partial: 'sections/online_section',
-    collection: sections %>
+  <%= render(
+    partial: 'sections/online_section',
+    collection: sections,
+    locals: { viewable_subscription: viewable_subscription }
+  ) %>
 <% else %>
-  <%= render partial: 'sections/in_person_section',
-    collection: sections %>
+  <%= render(
+    partial: 'sections/in_person_section',
+    collection: sections,
+    locals: { viewable_subscription: viewable_subscription }
+  ) %>
   <p class="travel">
     <%= link_to "Have us book your travel and hotel.", 'mailto:workshops@thoughtbot.com?subject=Booking travel for workshop' %>
   </p>

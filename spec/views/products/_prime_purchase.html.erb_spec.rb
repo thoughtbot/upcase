@@ -2,36 +2,28 @@ require 'spec_helper'
 
 describe 'products/_prime_purchase.html.erb' do
   it "tries to sell the user on Prime" do
-    Mocha::Configuration.allow :stubbing_non_existent_method do
-      view.stubs(currently_viewing_subscription_product?: false)
-      view.stubs(current_user_has_active_subscription?: false)
-      view.stubs(subscription_product: stub('subscription_product', name: 'foo'))
+    render_template should_display_subscription_cta?: true
 
-      render template: 'products/_prime_purchase'
-
-      rendered.should include(I18n.t('shared.subscription_call_to_action'))
-    end
+    rendered.should include(I18n.t('shared.subscription_call_to_action'))
   end
 
-  it "does not sell the user on Prime if they're subscribed already" do
-    Mocha::Configuration.allow :stubbing_non_existent_method do
-      view.stubs(currently_viewing_subscription_product?: false)
-      view.stubs(current_user_has_active_subscription?: true)
-      view.stubs(subscription_product: stub('subscription_product'))
+  it "does not sell the user on Prime if the CTA shouldn't be displayed" do
+    render_template should_display_subscription_cta?: false
 
-      render template: 'products/_prime_purchase'
-
-      rendered.should_not include(I18n.t('shared.subscription_call_to_action'))
-    end
+    rendered.should_not include(I18n.t('shared.subscription_call_to_action'))
   end
 
-  it "does not sell the user on Prime if they're currently viewing Prime's product show page" do
+  def render_template(viewable_subscription_properties)
+    viewable_subscription =
+      stub('viewable_subscription', viewable_subscription_properties)
+
     Mocha::Configuration.allow :stubbing_non_existent_method do
-      view.stubs(currently_viewing_subscription_product?: true)
-
-      render template: 'products/_prime_purchase'
-
-      rendered.should_not include(I18n.t('shared.subscription_call_to_action'))
+      view.stubs(subscription_product: build_stubbed(:subscribeable_product))
     end
+
+    render(
+      template: 'products/_prime_purchase',
+      locals: { viewable_subscription: viewable_subscription }
+    )
   end
 end

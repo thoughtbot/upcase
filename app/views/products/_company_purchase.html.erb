@@ -4,7 +4,7 @@
     <%= render 'price', product: product, price: product.company_price, original_price: product.original_company_price %>
   </h2>
   <div class="license">
-    <%= link_to new_product_purchase_path(product, variant: :company), class: 'license-button button', id: "#{product.sku}-purchase-company" do %>
+    <%= link_to new_product_purchase_path(product, variant: :company), class: 'license-button button non-free', id: "#{product.sku}-purchase-company" do %>
       <% t('products.show.purchase_for_company') %>
     <% end %>
   </div>

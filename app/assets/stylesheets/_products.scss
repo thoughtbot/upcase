@@ -376,8 +376,8 @@ body.products-show, body.workshops-show {
             }
           }
 
-          &.individual-purchase, &.company-purchase {
-            .button {
+          &.individual-purchase, &.company-purchase, &#register {
+            .button.non-free {
               padding: 8px 0 6px;
               background: darken($warmgray, 20%);
               border-color: $darkwarmgray;
@@ -394,6 +394,11 @@ body.products-show, body.workshops-show {
             line-height: 1.4rem;
             margin-bottom: .5rem;
           }
+        }
+
+        .location-name {
+          color: $learnred;
+          font-weight: 700;
         }
 
         &.subscription {

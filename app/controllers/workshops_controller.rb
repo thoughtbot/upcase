@@ -7,6 +7,8 @@ class WorkshopsController < ApplicationController
     @workshop = Workshop.find(params[:id])
     @sections = @workshop.active_sections
     @section_teachers = @sections.unique_section_teachers_by_teacher
+    @viewable_subscription =
+      ViewableSubscription.new(current_user, subscription_product)
 
     km.record("Viewed Product", { "Product Name" => @workshop.name })
   end
