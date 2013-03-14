@@ -364,16 +364,27 @@ body.products-show, body.workshops-show {
     }
 
     aside {
+      .prime-purchase {
+        margin: 26px 0 1.5em 0;
+
+        h2 {
+          color: $learnred;
+          font: 800 26px/28px $sans-serif;
+        }
+
+        .or {
+          font-style: italic;
+          padding-top: .8em;
+          text-align: center;
+        }
+      }
+
       .section-location, #license {
         div {
-          margin-top: 26px;
+          margin-bottom: 26px;
 
           &.prime-purchase {
-            margin-bottom: 3em;
-
-            h2 {
-              color: $learnred;
-            }
+            @extend .prime-purchase;
           }
 
           &.individual-purchase, &.company-purchase, &#register {
