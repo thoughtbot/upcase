@@ -15,33 +15,21 @@
   </div>
 
   <div id="register">
-    <% if current_user_has_active_subscription? %>
-      <h2 class="active-subscription"><%= t 'workshops.show.free_to_subscribers' %></h2>
-    <% else -%>
-      <div class="prime-purchase">
-        <%= render(
-          'products/prime_purchase',
-          product: @product,
-          viewable_subscription: viewable_subscription
-        ) %>
-      </div>
+    <% if in_person_section.full? %>
+      <h2>
+        <span class="location-name"><%= in_person_section.city %></span>
+        <span>Sold Out</span>
+      </h2>
+    <% else %>
+      <h2>
+        <span class="location-name"><%= in_person_section.city %></span>
+        <span>
+          <% unless current_user_has_active_subscription? %>
+            <%= number_to_currency in_person_section.individual_price, precision: 0 %>
+          <% end %>
+        </span>
+      </h2>
     <% end %>
-
-      <% if in_person_section.full? %>
-        <h2>
-          <span class="location-name"><%= in_person_section.city %></span>
-          <span>Sold Out</span>
-        </h2>
-      <% else %>
-        <h2>
-          <span class="location-name"><%= in_person_section.city %></span>
-          <span>
-            <% unless current_user_has_active_subscription? %>
-              <%= number_to_currency in_person_section.individual_price, precision: 0 %>
-            <% end %>
-          </span>
-        </h2>
-      <% end %>
 
     <% if in_person_section.full? %>
       <a href="#new_follow_up" class="button">Get notified</a>
