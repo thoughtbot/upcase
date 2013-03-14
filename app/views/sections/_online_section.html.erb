@@ -6,14 +6,6 @@
 </section>
 
 <section id="license">
-  <div class="prime-purchase">
-    <%= render(
-      'products/prime_purchase',
-      product: @product,
-      viewable_subscription: viewable_subscription
-    ) %>
-  </div>
-
   <div class="individual-purchase">
     <h2>
       <% unless current_user_has_active_subscription? %>

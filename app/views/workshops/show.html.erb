@@ -29,6 +29,17 @@
   </div>
 </div>
 <aside>
+  <% if current_user_has_active_subscription? %>
+    <h2 class="active-subscription"><%= t 'workshops.show.free_to_subscribers' %></h2>
+  <% else -%>
+    <div class="prime-purchase">
+      <%= render(
+        'products/prime_purchase',
+        product: @workshop,
+        viewable_subscription: @viewable_subscription
+      ) %>
+    </div>
+  <% end %>
   <% if @sections.any? %>
     <%= render(
       'sections/section',
