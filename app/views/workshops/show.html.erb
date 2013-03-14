@@ -41,12 +41,7 @@
     </div>
   <% end %>
   <% if @sections.any? %>
-    <%= render(
-      'sections/section',
-      sections: @sections,
-      workshop: @workshop,
-      viewable_subscription: @viewable_subscription
-    ) %>
+    <%= render 'sections/section', sections: @sections, workshop: @workshop %>
   <% else %>
     <%= render 'sections/tbd' %>
   <% end %>
