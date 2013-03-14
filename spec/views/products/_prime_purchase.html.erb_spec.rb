@@ -4,13 +4,13 @@ describe 'products/_prime_purchase.html.erb' do
   it "tries to sell the user on Prime" do
     render_template should_display_subscription_cta?: true
 
-    rendered.should include(I18n.t('shared.subscription_call_to_action'))
+    rendered.should include('Subscribe to')
   end
 
   it "does not sell the user on Prime if the CTA shouldn't be displayed" do
     render_template should_display_subscription_cta?: false
 
-    rendered.should_not include(I18n.t('shared.subscription_call_to_action'))
+    rendered.should_not include('Subscribe to')
   end
 
   def render_template(viewable_subscription_properties)
