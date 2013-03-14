@@ -384,8 +384,9 @@ body.products-show, body.workshops-show {
             }
           }
 
-          h2 {
+          h2, .location-name {
             color: $darkwarmgray;
+            font: 800 36px/40px $sans-serif;
           }
 
           h2.active-subscription, h2.active-subscription span {
