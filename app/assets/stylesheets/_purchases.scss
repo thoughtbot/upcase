@@ -231,23 +231,6 @@ body {
       vertical-align: middle;
     }
 
-    .videowrapper, .mapwrapper {
-      height: 0;
-      margin: 0 0 1em 0;
-      overflow: hidden;
-      padding-bottom: 56.25%;
-      padding-top: 0px;
-      position: relative;
-
-      iframe {
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-      }
-    }
-
     figure.book-cover {
       margin: 2.5em 0;
       text-align: center;
