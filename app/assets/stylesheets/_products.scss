@@ -411,7 +411,7 @@ body.products-show, body.workshops-show {
           }
 
           .individual-purchase, .company-purchase {
-            .button {
+            .button.non-free {
               padding: 12px 0 8px;
               background: $learnred;
               border-color: darken($learnred, 20%);
