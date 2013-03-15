@@ -28,6 +28,7 @@
     <%= render @section_teachers %>
   </div>
 </div>
+
 <aside>
   <% if current_user_has_active_subscription? %>
     <h2 class="active-subscription"><%= t 'workshops.show.free_to_subscribers' %></h2>
@@ -45,6 +46,7 @@
   <% else %>
     <%= render 'sections/tbd' %>
   <% end %>
+  <%= render 'terms', workshop: @workshop %>
 </aside>
 
 <% content_for :outside do %>

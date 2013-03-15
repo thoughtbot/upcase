@@ -16,4 +16,12 @@ module WorkshopsHelper
       'in-person-workshop'
     end
   end
+
+  def workshop_delivery_method(workshop)
+    if workshop.online?
+      'online'
+    else
+      'in-person'
+    end
+  end
 end
