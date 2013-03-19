@@ -24,4 +24,16 @@ module WorkshopsHelper
       'in-person'
     end
   end
+
+  def workshop_frequency_note(workshop)
+    if workshop.online?
+      "This online workshop is held every month.
+      #{link_to 'Get notified', '#new_follow_up'} when
+      you can register for next month's workshop.".html_safe
+    else
+      "This in-person workshop is held about every six weeks.
+      #{link_to 'Get notified', '#new_follow_up'} when
+      the next one is scheduled.".html_safe
+    end
+  end
 end

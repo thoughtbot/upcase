@@ -93,6 +93,7 @@ RailsAdmin.config do |config|
         field :video_chat_url
         field :topics
         field :resources
+        field :terms
       end
 
       group :events do
