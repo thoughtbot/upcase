@@ -34,6 +34,9 @@
     <% if in_person_section.full? %>
       <a href="#new_follow_up" class="button">Get notified</a>
     <% else %>
+      <% if current_user_has_active_subscription? %>
+        <h2 class="active-subscription"><%= t 'workshops.show.free_to_subscribers' %></h2>
+      <% end %>
       <%= link_to registration_url(in_person_section), class: "button#{' non-free' unless current_user_has_active_subscription?}" do %>
         <%= t('workshops.show.register') %>
       <% end %>

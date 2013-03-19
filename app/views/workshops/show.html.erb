@@ -30,9 +30,7 @@
 </div>
 
 <aside>
-  <% if current_user_has_active_subscription? %>
-    <h2 class="active-subscription"><%= t 'workshops.show.free_to_subscribers' %></h2>
-  <% else -%>
+  <% if !current_user_has_active_subscription? %>
     <div class="prime-purchase">
       <%= render(
         'products/prime_purchase',
