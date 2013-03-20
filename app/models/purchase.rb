@@ -190,6 +190,9 @@ class Purchase < ActiveRecord::Base
       full_price = purchaseable.send(:"#{variant}_price")
       if coupon
         coupon.apply(full_price)
+      elsif stripe_coupon_id.present?
+        subscription_coupon = SubscriptionCoupon.new(stripe_coupon_id)
+        subscription_coupon.apply(full_price)
       else
         full_price
       end
@@ -236,7 +239,10 @@ class Purchase < ActiveRecord::Base
 
   def create_stripe_subscription
     customer = Stripe::Customer.retrieve(stripe_customer)
-    customer.update_subscription plan: purchaseable_sku
+    customer.update_subscription(
+      plan: purchaseable_sku,
+      coupon: stripe_coupon_id
+    )
   end
 
   def update_user_stripe_customer

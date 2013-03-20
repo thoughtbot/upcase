@@ -215,7 +215,7 @@ describe Section do
       Timecop.freeze(Date.tomorrow) do
         expect(Section.current).to include current
       end
-      Timecop.freeze(Date.today + 2) do
+      Timecop.freeze(Date.today + 3) do
         expect(Section.current).not_to include current
       end
     end

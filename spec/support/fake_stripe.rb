@@ -2,7 +2,7 @@ require 'sinatra/base'
 require 'capybara_discoball'
 
 class FakeStripe < Sinatra::Base
-  cattr_reader :last_charge, :last_customer_email, :last_token
+  cattr_reader :last_charge, :last_customer_email, :last_token, :coupons
   cattr_accessor :failure
 
   get '/customers/*' do
@@ -138,6 +138,40 @@ class FakeStripe < Sinatra::Base
     }.to_json
   end
 
+  post '/coupons' do
+    @@coupons ||= {}
+    @@coupons[params[:id]] = create_coupon_hash(params)
+    content_type :json
+
+    @@coupons[params[:id]].to_json
+  end
+
+  get '/coupons/:id' do
+    @@coupons ||= {}
+    content_type :json
+
+    if @@coupons[params[:id]]
+      @@coupons[params[:id]].to_json
+    else
+      status 404
+    end
+  end
+
+  def create_coupon_hash(params)
+    {
+      id: params[:id],
+      percent_off: params[:percent_off],
+      amount_off: params[:amount_off],
+      currency: params[:currency],
+      object: "coupon",
+      livemode: false,
+      duration: params[:duration],
+      redeem_by: params[:redeem_by],
+      max_redemptions: params[:max_redemptions],
+      times_redeemed: 0,
+      duration_in_months: params[:duration_in_months]
+    }
+  end
 end
 
 FakeStripeRunner = Capybara::Discoball::Runner.new(FakeStripe) do |server|

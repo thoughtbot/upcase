@@ -27,6 +27,7 @@ Workshops::Application.routes.draw do
 
   resources :products, only: [:index, :show] do
     resources :redemptions, only: [:new]
+    resources :stripe_redemptions, only: [:new]
     resources :purchases, only: [:new, :create]
   end
   match '/products/:id/purchases/:lookup' => redirect("/purchases/%{lookup}")

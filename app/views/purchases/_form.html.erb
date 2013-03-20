@@ -13,6 +13,7 @@
   <% end %>
 
   <%= form.inputs 'Your information' do %>
+    <%= form.input :stripe_coupon_id, as: :hidden %>
     <%= form.input :variant, as: :hidden %>
     <%= form.input :name %>
     <%= form.input :email, hint: "The receipt will be sent to this address if billing email is blank." %>
