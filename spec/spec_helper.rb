@@ -19,7 +19,7 @@ FakeStripeRunner.boot
 Delayed::Worker.delay_jobs = false
 
 RSpec.configure do |config|
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
   config.use_instantiated_fixtures  = false
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
