@@ -3,5 +3,5 @@
     <h2><%= t('shared.subscription_call_to_action') %></h2>
     <h3>with Learn <%= subscription_product.name %></h3>
   <% end %>
-  <%= link_to t('shared.company_subscription_call_to_action'), company_prime_url, class: "prime-company-cta #{position}" %>
+  <%= link_to t('shared.company_subscription_call_to_action'), company_prime_path, class: "prime-company-cta #{position}" %>
 <% end %>
