@@ -18,7 +18,7 @@ describe KissmetricsEventNotifier do
         notifier.notify_of(purchase)
         client.should have_received(:record).with(purchase.email,
           'Signed Up',
-          { 'Plan Name' => Purchase::PLAN_NAME })
+          { 'Plan Name' => purchase.purchaseable_sku })
       end
     end
 
@@ -29,7 +29,7 @@ describe KissmetricsEventNotifier do
         notifier.notify_of(purchase)
         client.should have_received(:record).with(purchase.email,
           'Signed Up',
-          { 'Plan Name' => Purchase::PLAN_NAME }).never
+          { 'Plan Name' => purchase.purchaseable_sku }).never
       end
     end
   end
@@ -51,13 +51,13 @@ describe KissmetricsEventNotifier do
 
   def paid_non_subscription_purchase
     paid_purchase.tap do |stub|
-      stub.stubs(subscription?: false)
+      stub.stubs(subscription?: false, purchaseable_sku: 'book')
     end
   end
 
   def paid_subscription_purchase
     paid_purchase.tap do |stub|
-      stub.stubs(subscription?: true)
+      stub.stubs(subscription?: true, purchaseable_sku: 'prime')
     end
   end
 

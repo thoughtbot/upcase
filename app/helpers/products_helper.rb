@@ -11,6 +11,10 @@ module ProductsHelper
     'https://learn.thoughtbot.com/workshops/21-intermediate-ruby-on-rails'
   end
 
+  def company_prime_url
+    'https://learn.thoughtbot.com/products/15-prime-company'
+  end
+
   def purchase_button_text(product)
     if current_user_has_active_subscription?
       I18n.t('products.show.purchase_for_subscribed_user', product_type: product.product_type)
