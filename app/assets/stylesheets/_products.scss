@@ -19,6 +19,17 @@ body.products-index {
       margin-top: 3em;
     }
 
+    .prime-company-cta {
+      display: block;
+      background: $lightwarmgray;
+      margin-top: .5em;
+      padding: .5em;
+
+      &.top {
+        margin-bottom: 5em;
+      }
+    }
+
     .prime-main-cta {
       background: $learnred;
       border: 0;
@@ -27,10 +38,6 @@ body.products-index {
       margin: 0 auto;
       padding: 1.2em 2.5em;
       text-align: center;
-
-      &.top {
-        margin-bottom: 5em;
-      }
 
       &.bottom {
         margin-top: 4em;

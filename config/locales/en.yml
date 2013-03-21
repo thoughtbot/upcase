@@ -76,6 +76,8 @@ en:
       in_person: in-person
     subscription_call_to_action:
       Get unlimited access
+    company_subscription_call_to_action:
+      Get access for your entire team
     videos:
       Screencasts
     trails:
