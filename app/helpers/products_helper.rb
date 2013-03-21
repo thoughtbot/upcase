@@ -12,7 +12,7 @@ module ProductsHelper
   end
 
   def company_prime_url
-    'https://learn.thoughtbot.com/products/15-prime-company'
+    'https://learn.thoughtbot.com/products/15-prime-for-teams'
   end
 
   def purchase_button_text(product)
