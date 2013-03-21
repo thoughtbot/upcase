@@ -86,8 +86,9 @@ describe Purchase, 'of a subscription' do
   it 'updates the subscription on the Stripe customer with the correct plan' do
     customer = stub('<Stripe::Customer>', update_subscription: true)
     Stripe::Customer.stubs(:retrieve).returns(customer)
-    build_subscription_purchase.save!
-    expect(customer).to have_received(:update_subscription).with(plan: Purchase::PLAN_NAME)
+    purchase = build_subscription_purchase
+    purchase.save!
+    expect(customer).to have_received(:update_subscription).with(plan: purchase.purchaseable.sku)
   end
 
   def build_subscription_purchase

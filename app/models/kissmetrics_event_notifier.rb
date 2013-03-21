@@ -24,6 +24,6 @@ class KissmetricsEventNotifier
   def notify_of_subscription_sign_up(purchase)
     @client.record(purchase.email,
       'Signed Up',
-      { 'Plan Name' => Purchase::PLAN_NAME })
+      { 'Plan Name' => purchase.purchaseable_sku })
   end
 end

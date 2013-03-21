@@ -5,7 +5,6 @@ class Purchase < ActiveRecord::Base
 
   PAYMENT_METHODS = %w(stripe paypal free)
   API_SLEEP_TIME = 0.2
-  PLAN_NAME = 'prime'.freeze
 
   belongs_to :user
   belongs_to :purchaseable, polymorphic: true
@@ -37,7 +36,7 @@ class Purchase < ActiveRecord::Base
   after_save :update_user_stripe_customer, if: "being_paid? && stripe?"
   after_save :save_info_to_user, if: :user
 
-  delegate :name, to: :purchaseable, prefix: :purchaseable, allow_nil: true
+  delegate :name, :sku, to: :purchaseable, prefix: :purchaseable, allow_nil: true
   delegate :subscription?, to: :purchaseable
 
   def self.from_month(date)
@@ -237,7 +236,7 @@ class Purchase < ActiveRecord::Base
 
   def create_stripe_subscription
     customer = Stripe::Customer.retrieve(stripe_customer)
-    customer.update_subscription plan: PLAN_NAME
+    customer.update_subscription plan: purchaseable_sku
   end
 
   def update_user_stripe_customer
