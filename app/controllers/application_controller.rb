@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_is_admin?
 
   def subscription_product
-    Product.subscriptions.last
+    Product.subscriptions.first
   end
   helper_method :subscription_product
 

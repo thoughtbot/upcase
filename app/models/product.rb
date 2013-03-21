@@ -41,7 +41,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.subscriptions
-    where product_type: 'subscription'
+    where(product_type: 'subscription').order('id asc')
   end
 
   def self.ordered
