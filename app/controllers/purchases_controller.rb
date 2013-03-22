@@ -68,9 +68,7 @@ class PurchasesController < ApplicationController
     sections = Section.joins(:purchases).where("purchases.user_id = ?", current_user.id)
 
     sections.each do |section|
-      starting = section.starts_on
-      ending = section.ends_on
-      range = starting..ending
+      range = section.starts_on..section.ends_on
 
       if range.cover?(desired_section.starts_on) || range.cover?(desired_section.ends_on)
         return true
