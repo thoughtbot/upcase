@@ -90,7 +90,7 @@ describe Purchase, 'of a subscription' do
 
     purchase.save!
 
-    expect(customer).to have_received(:update_subscription).with(plan: purchase.purchaseable.sku, coupon: nil)
+    expect(customer).to have_received(:update_subscription).with(plan: purchase.purchaseable.sku)
   end
 
   it 'updates the subscription with the given coupon' do
