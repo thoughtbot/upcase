@@ -239,10 +239,16 @@ class Purchase < ActiveRecord::Base
 
   def create_stripe_subscription
     customer = Stripe::Customer.retrieve(stripe_customer)
-    customer.update_subscription(
-      plan: purchaseable_sku,
-      coupon: stripe_coupon_id
-    )
+    if stripe_coupon_id.present?
+      customer.update_subscription(
+        plan: purchaseable_sku,
+        coupon: stripe_coupon_id
+      )
+    else
+      customer.update_subscription(
+        plan: purchaseable_sku
+      )
+    end
   end
 
   def update_user_stripe_customer
