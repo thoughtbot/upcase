@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
     conditions: { paid: true }
   has_many :purchases
   has_one :subscription
+  has_many :sections, through: :purchases, source: :purchaseable, as: :purchaseable
 
   validates :first_name, presence: true
   validates :last_name, presence: true
