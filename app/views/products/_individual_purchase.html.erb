@@ -1,8 +1,11 @@
 <h2 <% if current_user_has_active_subscription? %>class="active-subscription"<% end %>>
-  <% unless current_user_has_active_subscription? %>
-    Single
-  <% end %>
-  <%= render 'price', product: product, price: product.individual_price, original_price: product.original_individual_price %>
+  <%= render(
+    'price',
+    product: product,
+    price: product.individual_price,
+    original_price: product.original_individual_price,
+    variant: :individual
+  ) %>
 </h2>
 
 <div class="license">
