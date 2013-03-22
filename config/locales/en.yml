@@ -44,8 +44,13 @@ en:
       free_to_subscribers: "You're a subscriber, so you receive this product for free!"
       purchase_for_company: Purchase for Your Company
       purchase_for_yourself: Purchase for Yourself
-      purchase_subscription: Purchase a Monthly Subscription
+      purchase_subscription: Subscribe Now
       purchase_for_subscribed_user: Get this %{product_type}
+      price:
+        individual_html: "Single <span>%{price}</span>"
+        company_html: "Group <span>%{price}</span>"
+        subscription:
+          individual_html: "%{price}/month"
 
   workshops:
     show:
