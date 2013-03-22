@@ -87,8 +87,23 @@ describe Purchase, 'of a subscription' do
     customer = stub('<Stripe::Customer>', update_subscription: true)
     Stripe::Customer.stubs(:retrieve).returns(customer)
     purchase = build_subscription_purchase
+
     purchase.save!
-    expect(customer).to have_received(:update_subscription).with(plan: purchase.purchaseable.sku)
+
+    expect(customer).to have_received(:update_subscription).with(plan: purchase.purchaseable.sku, coupon: nil)
+  end
+
+  it 'updates the subscription with the given coupon' do
+    customer = stub('<Stripe::Customer>', update_subscription: true)
+    coupon = stub('<Stripe::Coupon>', amount_off: 25)
+    Stripe::Customer.stubs(:retrieve).returns(customer)
+    Stripe::Coupon.stubs(:retrieve).returns(coupon)
+    purchase = build_subscription_purchase
+    purchase.stripe_coupon_id = '25OFF'
+
+    purchase.save!
+
+    expect(customer).to have_received(:update_subscription).with(plan: purchase.purchaseable_sku, coupon: '25OFF')
   end
 
   def build_subscription_purchase
@@ -146,6 +161,15 @@ describe Purchase, 'with stripe' do
     Stripe::Charge.should have_received(:create).with(amount: 1125, currency: 'usd', customer: 'stripe', description: product.name)
     purchase = create(:stripe_purchase, purchaseable: product, coupon: coupon.reload)
     Stripe::Charge.should have_received(:create).with(amount: 1500, currency: 'usd', customer: 'stripe', description: product.name)
+  end
+
+  it 'calculates its price and paid price using the subscription coupon when there is a stripe coupon' do
+    subscription_coupon = stub(apply: 20)
+    SubscriptionCoupon.stubs(:new).returns(subscription_coupon)
+    purchase = create(:subscription_purchase, stripe_coupon_id: '25OFF')
+
+    expect(purchase.price).to eq 20
+    expect(purchase.paid_price).to eq 20
   end
 
   context 'saved' do
