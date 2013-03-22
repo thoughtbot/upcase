@@ -70,7 +70,7 @@ feature 'Subscriber accesses content' do
     click_link overlapping_section.workshop.name
     click_link I18n.t('workshops.show.register')
 
-    expect(page).to have_content 'You cannot register for two overlapping workshops'
+    expect(page).to have_content 'Only one workshop at a time'
     expect(page).to have_css 'section #notify-me'
   end
 
