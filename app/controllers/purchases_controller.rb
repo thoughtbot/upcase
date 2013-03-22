@@ -66,13 +66,12 @@ class PurchasesController < ApplicationController
 
   def overlapping_sections?(desired_section)
     section_purchases  = current_user.purchases.where(purchaseable_type: "Section")
-    ranges = section_purchases.map do |purchase|
+
+    section_purchases.each do |purchase|
       starting = purchase.purchaseable.starts_on
       ending = purchase.purchaseable.ends_on
-      starting..ending
-    end
+      range = starting..ending
 
-    ranges.each do |range|
       if range.cover?(desired_section.starts_on) || range.cover?(desired_section.ends_on)
         return true
       end
