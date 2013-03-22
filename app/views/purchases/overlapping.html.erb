@@ -1,0 +1,9 @@
+<% content_for :subject, @purchaseable.name %>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <h2>Only one workshop at a time</h2>
+    <p>We want each workshop you take with thoughtbot to be incredibly valuable. As such, we only want you to take one workshop at a time so you can focus on learning the topic of the workshop and nothing else.</p>
+    <%= render 'workshops/follow_up', workshop: @purchaseable.workshop %>
+  </div>
+</div>
