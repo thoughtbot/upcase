@@ -56,7 +56,7 @@ feature 'Subscriber accesses content' do
     user_should_have_purchased(online_section)
   end
 
-  scenario "can't register for overlaping workshops", js: true do
+  scenario "can't register for overlapping workshops" do
     online_section = create(:online_section)
     overlapping_section = create(:online_section, starts_on: online_section.starts_on, ends_on: online_section.ends_on)
     sign_in_as_user_with_subscription

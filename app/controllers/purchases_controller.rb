@@ -3,7 +3,7 @@ class PurchasesController < ApplicationController
     @purchaseable = find_purchaseable
 
     if current_user_has_active_subscription?
-      if overlapping_sections?(@purchaseable)
+      if current_user.has_conflict?(@purchaseable)
         render 'overlapping'
       else
         render 'for_subscribers'
@@ -63,19 +63,6 @@ class PurchasesController < ApplicationController
   end
 
   private
-
-  def overlapping_sections?(desired_section)
-    sections = Section.joins(:purchases).where("purchases.user_id = ?", current_user.id)
-
-    sections.each do |section|
-      range = section.starts_on..section.ends_on
-
-      if range.cover?(desired_section.starts_on) || range.cover?(desired_section.ends_on)
-        return true
-      end
-    end
-    false
-  end
 
   def create_subscription
     current_user.create_subscription
