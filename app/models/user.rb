@@ -57,14 +57,18 @@ class User < ActiveRecord::Base
     subscription.present?
   end
 
-  def has_conflict?(desired_section)
-    purchases = paid_purchases.where(purchaseable_type: 'Section')
+  def has_conflict?(desired_purchaseable)
+    if desired_purchaseable.is_a?(Section)
+      purchases = paid_purchases.where(purchaseable_type: 'Section')
 
-    purchases.any? do |purchase|
-      section = purchase.purchaseable
-      range = section.starts_on..section.ends_on
+      purchases.any? do |purchase|
+        section = purchase.purchaseable
+        range = section.starts_on..section.ends_on
 
-      range.cover?(desired_section.starts_on) || range.cover?(desired_section.ends_on)
+        range.cover?(desired_purchaseable.starts_on) || range.cover?(desired_purchaseable.ends_on)
+      end
+    else
+      false
     end
   end
 
