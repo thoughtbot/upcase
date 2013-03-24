@@ -56,6 +56,24 @@ feature 'Subscriber accesses content' do
     user_should_have_purchased(online_section)
   end
 
+  scenario "can't register for overlapping workshops" do
+    online_section = create(:online_section)
+    overlapping_section = create(:online_section, starts_on: online_section.starts_on, ends_on: online_section.ends_on)
+    sign_in_as_user_with_subscription
+
+    click_link online_section.workshop.name
+    click_link I18n.t('workshops.show.register')
+    click_button 'Get Access'
+
+    visit products_path
+
+    click_link overlapping_section.workshop.name
+    click_link I18n.t('workshops.show.register')
+
+    expect(page).to have_content 'Only one workshop at a time'
+    expect(page).to have_css 'section #notify-me'
+  end
+
   scenario 'gets access to an in-person workshop' do
     in_person_section = create(:in_person_section)
 
