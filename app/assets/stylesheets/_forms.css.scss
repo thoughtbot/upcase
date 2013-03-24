@@ -169,7 +169,7 @@ form {
   }
 }
 
-#additional-information {
+#notify-me {
   form {
     padding-top: 2em;
   }
@@ -192,3 +192,19 @@ form {
   }
 }
 
+body.purchases-new {
+  #notify-me {
+    h2 {
+      font-size: 1.5em;
+    }
+
+    form {
+      margin-top: 0;
+      padding-top: 0;
+
+      input[type="text"] {
+        border: 1px solid $warmgray;
+      }
+    }
+  }
+}

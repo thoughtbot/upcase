@@ -109,4 +109,14 @@ describe User do
       end
     end
   end
+
+  context "has_conflict?" do
+    it "returns false of the passed in purchaseable is not a section" do
+      user = create(:user)
+      create(:paid_purchase, user: user)
+      create(:online_section_purchase, user: user)
+
+      expect(user.has_conflict?(create(:product))).to be_false
+    end
+  end
 end
