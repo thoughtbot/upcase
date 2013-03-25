@@ -198,10 +198,11 @@ aside {
 
     &.original-price {
       color: lighten($darkwarmgray, 22%);
+      display: block;
       font-size: 24px;
       margin-left: 10px;
       margin-top: 7px;
-      position: absolute;
+      position: relative;
       -webkit-font-smoothing: antialiased;
 
       &::after {
