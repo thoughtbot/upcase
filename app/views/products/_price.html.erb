@@ -1,15 +1,14 @@
 <% if current_user_has_active_subscription? %>
   <span><%= t 'products.show.free_to_subscribers' %></span>
 <% else %>
-  <%= t(
-    "products.show.price.#{product.product_type}.#{variant}_html",
-    default: [:"products.show.price.#{variant}_html"],
-    price: number_to_currency(price, precision: 0)
-  ) %>
-
   <% if product.discounted? %>
     <span class="original-price">
       <%= number_to_currency original_price, precision: 0 %>
     </span>
   <% end %>
+  <%= t(
+    "products.show.price.#{product.product_type}.#{variant}_html",
+    default: [:"products.show.price.#{variant}_html"],
+    price: number_to_currency(price, precision: 0)
+  ) %>
 <% end %>
