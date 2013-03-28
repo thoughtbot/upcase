@@ -117,7 +117,7 @@ RailsAdmin.config do |config|
         field :company_price
         field :maximum_students
         field :external_registration_url
-        field :public
+        field :active
         field :start_at
         field :stop_at
         field :video_chat_url

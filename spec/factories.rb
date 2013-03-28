@@ -65,7 +65,7 @@ FactoryGirl.define do
     stop_at '17:00'
 
     factory :private_workshop do
-      public false
+      active false
     end
 
     factory :in_person_workshop do

@@ -84,7 +84,7 @@ describe Workshop do
     it 'has an online workshop there is an online workshop with the same name' do
       offline_workshop = create(:workshop, online: false)
       online_workshop = create(:workshop, online: true,
-        name: offline_workshop.name, public: true)
+        name: offline_workshop.name, active: true)
 
       offline_workshop.should have_online_workshop
     end
@@ -103,10 +103,10 @@ describe Workshop do
   end
 
   describe '#online_workshop' do
-    it 'returns the public online workshop with the same name' do
+    it 'returns the active online workshop with the same name' do
       offline_workshop = create(:workshop, online: false)
       online_workshop = create(:workshop, online: true,
-        name: offline_workshop.name, public: true)
+        name: offline_workshop.name, active: true)
 
       offline_workshop.online_workshop.should == online_workshop
     end
@@ -117,10 +117,10 @@ describe Workshop do
       offline_workshop.online_workshop.should be_nil
     end
 
-    it 'returns nil if it does not have an public online workshop' do
+    it 'returns nil if it does not have an active online workshop' do
       offline_workshop = create(:workshop, online: false)
       online_workshop = create(:workshop, online: true,
-        name: offline_workshop.name, public: false)
+        name: offline_workshop.name, active: false)
 
       offline_workshop.online_workshop.should be_nil
     end
@@ -136,7 +136,7 @@ describe Workshop do
     it 'returns the in-person workshop when it exists' do
       online_workshop = create(:workshop, online: true)
       in_person_workshop = create(:workshop, online: false,
-        name: online_workshop.name, public: true)
+        name: online_workshop.name, active: true)
 
       online_workshop.in_person_workshop.should == in_person_workshop
     end
@@ -147,10 +147,10 @@ describe Workshop do
       online_workshop.in_person_workshop.should be_nil
     end
 
-    it 'returns nil when there is no public in-person workshop' do
+    it 'returns nil when there is no active in-person workshop' do
       online_workshop = create(:workshop, online: true)
       in_person_workshop = create(:workshop, online: false,
-        name: online_workshop.name, public: false)
+        name: online_workshop.name, active: false)
 
       online_workshop.in_person_workshop.should be_nil
     end
