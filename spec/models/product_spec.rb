@@ -25,12 +25,7 @@ describe Product do
   end
 
   describe "#meta_keywords" do
-    it 'returns a comma delimited string of topics' do
-      book = create(:book_product)
-      book.topics << create(:topic, name: 'Ruby')
-      book.topics << create(:topic, name: 'Rails')
-      book.meta_keywords.should == 'Ruby, Rails'
-    end
+    it { should delegate(:meta_keywords).to(:topics) }
   end
 
   describe '.books' do
@@ -134,6 +129,26 @@ describe Product do
     it 'returns the parameterized product name' do
       book = Product.new(name: 'Backbone.js on Rails')
       expect(book.book_filename).to eq 'backbone-js-on-rails'
+    end
+  end
+
+  context 'title' do
+    it 'describes the product name and type' do
+      product = build_stubbed(:book_product, name: 'Juice')
+
+      result = product.title
+
+      expect(result).to eq 'Juice: a book by thoughtbot'
+    end
+  end
+
+  context 'offering_type' do
+    it 'returns the product type' do
+      product = build_stubbed(:subscribeable_product)
+
+      result = product.offering_type
+
+      expect(result).to eq 'subscription'
     end
   end
 end

@@ -1,18 +1,8 @@
-<% content_for :page_title, "#{@workshop.name}: a workshop from thoughtbot" %>
-<% content_for :meta_description, @workshop.short_description %>
-<% content_for :subject, @workshop.name %>
+<%= render 'offerings/meta', offering: @workshop %>
 
 <div class="text-box-wrapper">
   <div class="text-box">
-    <% if @workshop.has_online_workshop? %>
-      <div class="workshop-alert">
-        <%= link_to 'Not in Boston or San Francisco? <b>Take the Online Workshop.</b>'.html_safe, @workshop.online_workshop %>
-      </div>
-    <% elsif @workshop.has_in_person_workshop? %>
-      <div class="workshop-alert">
-        <%= link_to 'In Boston or San Francisco? <b>Take the In-Person Workshop.</b>'.html_safe, @workshop.in_person_workshop %>
-      </div>
-    <% end %>
+    <%= render 'alternate_attendance_option', workshop: @workshop %>
     <hgroup class="product-title">
       <h2><%= @workshop.short_description %></h2>
       <h3 class="workshop-type">
@@ -21,7 +11,8 @@
         <% else %>
           In-Person
         <% end %>
-      Workshop</h3>
+        Workshop
+      </h3>
     </hgroup>
     <%=raw textilize @workshop.description %>
     <%= render 'questions', workshop: @workshop %>
@@ -30,20 +21,13 @@
 </div>
 
 <aside>
-  <% if !current_user_has_active_subscription? %>
-    <div class="prime-purchase">
-      <%= render(
-        'products/prime_purchase',
-        product: @workshop,
-        viewable_subscription: @viewable_subscription
-      ) %>
-    </div>
-  <% end %>
-  <% if @sections.any? %>
-    <%= render 'sections/section', sections: @sections, workshop: @workshop %>
-  <% else %>
-    <%= render 'sections/tbd' %>
-  <% end %>
+  <%= render(
+    'license',
+    workshop: @workshop,
+    viewable_subscription: @viewable_subscription,
+    sections: @sections
+  ) %>
+
   <%= render 'terms', workshop: @workshop %>
 </aside>
 
