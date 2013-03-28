@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Products' do
   context 'GET /products' do
-    it 'lists all public workshops' do
+    it 'lists all active workshops' do
       workshop_one = create(:workshop)
       workshop_two = create(:workshop)
       private_workshop = create(:private_workshop)

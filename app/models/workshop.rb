@@ -70,7 +70,7 @@ class Workshop < ActiveRecord::Base
 
   def in_person_workshop
     if online?
-      self.class.in_person.only_public.find_by_name(name)
+      self.class.in_person.only_active.find_by_name(name)
     end
   end
 
@@ -80,12 +80,12 @@ class Workshop < ActiveRecord::Base
 
   def online_workshop
     if in_person?
-      self.class.online.only_public.find_by_name(name)
+      self.class.online.only_active.find_by_name(name)
     end
   end
 
-  def self.only_public
-    where public: true
+  def self.only_active
+    where active: true
   end
 
   def questions_with_blank

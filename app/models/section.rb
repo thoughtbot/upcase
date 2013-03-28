@@ -43,8 +43,8 @@ class Section < ActiveRecord::Base
     order('starts_on desc')
   end
 
-  def self.in_public_workshop
-    joins(:workshop).where(workshops: {public: true})
+  def self.in_active_workshop
+    joins(:workshop).where(workshops: {active: true})
   end
 
   def self.unique_section_teachers_by_teacher

@@ -35,7 +35,7 @@ Feature: View podcast episodes
     And a "video" product named "Terrible product" for topic "ASP.net"
     And a "video" inactive product named "Inactive product" for topic "Ruby"
     And a workshop named "Awesome workshop" for topic "Ruby"
-    And a non-public workshop named "Private workshop" for topic "Ruby"
+    And a non-active workshop named "Private workshop" for topic "Ruby"
     When I go to the episodes page
     And I follow "Good episode"
     Then I should see "Awesome product"

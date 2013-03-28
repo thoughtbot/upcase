@@ -11,7 +11,7 @@ class EpisodesController < ApplicationController
       format.html do
         @related_topics = @episode.topics
         @products = @episode.products.ordered.active
-        @workshops = @episode.workshops.only_public.by_position
+        @workshops = @episode.workshops.only_active.by_position
       end
       format.mp3 do
         @episode.increment_downloads

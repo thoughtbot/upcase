@@ -38,12 +38,12 @@ class ApplicationController < ActionController::Base
   end
 
   def in_person_workshops
-    Workshop.only_public.by_position.in_person
+    Workshop.only_active.by_position.in_person
   end
   helper_method :in_person_workshops
 
   def online_workshops
-    Workshop.only_public.by_position.online
+    Workshop.only_active.by_position.online
   end
   helper_method :online_workshops
 

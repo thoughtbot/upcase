@@ -19,9 +19,9 @@ Given /^a(?:n (online|in-person))? workshop named "([^"]*)" for topic "([^"]*)"$
   topic.workshops << workshop
 end
 
-Given /^a non-public workshop named "([^"]*)" for topic "([^"]*)"$/ do |name, topic_name|
+Given /^a non-active workshop named "([^"]*)" for topic "([^"]*)"$/ do |name, topic_name|
   topic = Topic.find_by_name(topic_name)
-  topic.workshops << create(:workshop, public: false, name: name)
+  topic.workshops << create(:workshop, active: false, name: name)
 end
 
 Given /^a featured topic named "([^"]*)"$/ do |name|

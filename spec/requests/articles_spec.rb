@@ -55,7 +55,7 @@ describe 'Articles' do
       topic.products << ruby_product
       ruby_workshop = create(:workshop)
       topic.workshops << ruby_workshop
-      private_workshop = create(:workshop, public: false)
+      private_workshop = create(:workshop, active: false)
       topic.workshops << private_workshop
 
       unrelated_product = create(:product)

@@ -1,6 +1,6 @@
 class WorkshopsController < ApplicationController
   def index
-    @workshops = Workshop.only_public.by_position
+    @workshops = Workshop.only_active.by_position
   end
 
   def show
