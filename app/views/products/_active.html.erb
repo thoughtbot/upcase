@@ -1,0 +1,17 @@
+<% if product.external? %>
+  <div class="license">
+    <%= link_to product.external_purchase_url, class: 'license-button button', id: "#{product.sku}-purchase-individual" do %>
+      Purchase<% if product.external_purchase_name.present? %> from <%= product.external_purchase_name %><% end %>
+    <% end %>
+    <% if product.external_purchase_description.present? %>
+      <p><%== product.external_purchase_description %></p>
+    <% end %>
+  </div>
+<% else %>
+  <div class="individual-purchase">
+    <%= render 'individual_purchase', product: product%>
+  </div>
+  <div class="company-purchase">
+    <%= render 'company_purchase', product: product %>
+  </div>
+<% end %>

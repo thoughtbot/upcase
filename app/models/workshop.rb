@@ -111,4 +111,16 @@ class Workshop < ActiveRecord::Base
   def purchase_for(user)
     purchases.paid.where(user_id: user).first
   end
+
+  def title
+    "#{name}: a workshop from thoughtbot"
+  end
+
+  def meta_keywords
+    topics.meta_keywords
+  end
+
+  def offering_type
+    'workshop'
+  end
 end

@@ -1,14 +1,16 @@
 <% if subscription_product %>
   <% if viewable_subscription.should_display_subscription_cta?(request.fullpath) %>
-    <h2>Access this and all our other products</h2>
+    <div class="prime-purchase">
+      <h2>Access this and all our other products</h2>
 
-    <div class="license">
-      <%= link_to product_path(subscription_product),
-        class: 'license-button button' do %>
-          Subscribe to <%= subscription_product.name %>
-      <% end %>
+      <div class="license">
+        <%= link_to product_path(subscription_product),
+          class: 'license-button button' do %>
+            Subscribe to <%= subscription_product.name %>
+        <% end %>
+      </div>
+
+      <p class="or">Or buy individually</p>
     </div>
-
-    <p class="or">Or buy individually</p>
   <% end %>
 <% end %>
