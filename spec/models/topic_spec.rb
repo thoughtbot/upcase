@@ -149,4 +149,15 @@ describe Topic do
       topic.contribute_url.should eq 'https://github.com/thoughtbot/trail-map/blob/master/trails/ruby-on-rails.json'
     end
   end
+
+  describe '#meta_keywords' do
+    it 'returns a comma delimited string of topics' do
+      create(:topic, name: 'Ruby')
+      create(:topic, name: 'Rails')
+
+      result = Topic.meta_keywords
+
+      expect(result).to eq 'Ruby, Rails'
+    end
+  end
 end

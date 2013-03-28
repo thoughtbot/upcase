@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'products/_prime_purchase.html.erb' do
+describe 'offerings/_prime_purchase.html.erb' do
   it "tries to sell the user on Prime" do
     render_template should_display_subscription_cta?: true
 
@@ -22,7 +22,7 @@ describe 'products/_prime_purchase.html.erb' do
     end
 
     render(
-      template: 'products/_prime_purchase',
+      template: 'offerings/_prime_purchase',
       locals: { viewable_subscription: viewable_subscription }
     )
   end

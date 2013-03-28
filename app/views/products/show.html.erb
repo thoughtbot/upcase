@@ -1,7 +1,4 @@
-<% content_for :meta_description, @product.short_description %>
-<% content_for :meta_keywords, @product.meta_keywords %>
-<% content_for :page_title, "#{@product.name}: a #{@product.product_type} by thoughtbot" %>
-<% content_for :subject, @product.name %>
+<%= render 'offerings/meta', offering: @product %>
 
 <div class="text-box-wrapper">
   <div class="text-box">
@@ -12,48 +9,13 @@
 </div>
 
 <aside>
-  <section id="license" class="<% if @product.subscription? %>subscription<% end %>">
-    <% if @product.discounted? %>
-      <h4 class="discount-title"><%== @product.discount_title %></h4>
-    <% end %>
-    <% if @product.active? %>
-      <% if !@product.external? %>
-        <div class="prime-purchase">
-          <%= render 'prime_purchase', product: @product, viewable_subscription: @viewable_subscription %>
-        </div>
-        <div class="individual-purchase">
-          <%= render 'individual_purchase', product: @product%>
-        </div>
-        <div class="company-purchase">
-          <%= render 'company_purchase', product: @product %>
-        </div>
-      <% else %>
-        <div>
-          <div class="license">
-            <%= link_to @product.external_purchase_url, class: 'license-button button', id: "#{@product.sku}-purchase-individual" do %>
-              Purchase<% if @product.external_purchase_name.present? %> from <%= @product.external_purchase_name %><% end %>
-            <% end %>
-            <% if @product.external_purchase_description.present? %>
-              <p><%== @product.external_purchase_description %></p>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    <% else %>
-      <p>This <%= @product.product_type %> is not currently available. Contact <%= mail_to 'learn@thoughtbot.com', 'learn@thoughtbot.com' %> for more information.</p>
-    <% end %>
-  </section>
+  <%= render(
+    'license',
+    product: @product,
+    viewable_subscription: @viewable_subscription
+  ) %>
 
-  <section id="terms">
-    <ul>
-      <dd><p>Every <%= @product.product_type %> includes support for any questions you may have about the topic, direct from the thoughtbot team.</p></dd>
-      <% if !@product.external? %>
-        <dt><p>What if I'm not happy?</p></dt>
-        <dd><p>If you&rsquo;re not happy, just let us know within 30 days and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</p></dd>
-      <% end %>
-      <%== @product.questions %>
-    </ul>
-  </section>
+  <%= render 'terms', product: @product %>
 </aside>
 
 <% content_for :outside do %>

@@ -201,4 +201,28 @@ describe Workshop do
       expect(workshop.purchase_for(user)).to be_nil
     end
   end
+
+  describe 'title' do
+    it 'describes the workshop name' do
+      workshop = build_stubbed(:workshop, name: 'Billy')
+
+      result = workshop.title
+
+      expect(result).to eq 'Billy: a workshop from thoughtbot'
+    end
+  end
+
+  describe "#meta_keywords" do
+    it { should delegate(:meta_keywords).to(:topics) }
+  end
+
+  describe 'offering_type' do
+    it 'returns workshop' do
+      workshop = Workshop.new
+
+      result = workshop.offering_type
+
+      expect(result).to eq 'workshop'
+    end
+  end
 end

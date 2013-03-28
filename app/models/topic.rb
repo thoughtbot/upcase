@@ -61,6 +61,10 @@ class Topic < ActiveRecord::Base
     end
   end
 
+  def self.meta_keywords
+    pluck(:name).join(', ')
+  end
+
   private
 
   def generate_slug

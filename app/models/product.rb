@@ -49,7 +49,7 @@ class Product < ActiveRecord::Base
   end
 
   def meta_keywords
-    topics.map { |topic| topic.name }.join(', ')
+    topics.meta_keywords
   end
 
   def announcement
@@ -112,6 +112,14 @@ class Product < ActiveRecord::Base
 
   def book_filename
     name.parameterize
+  end
+
+  def title
+    "#{name}: a #{product_type} by thoughtbot"
+  end
+
+  def offering_type
+    product_type
   end
 
   private
