@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   def index
     @topic = Topic.find_by_slug!(params[:id])
     @articles = @topic.articles.ordered.published
-    @workshops = @topic.workshops.only_public.by_position
+    @workshops = @topic.workshops.only_active.by_position
     @products = @topic.products.ordered
   end
 
@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
       if current_user_has_active_subscription? || current_user_is_admin?
         @related_topics = @article.topics
         @products = @article.products.ordered.active
-        @workshops = @article.workshops.only_public.by_position
+        @workshops = @article.workshops.only_active.by_position
         if !@article.published? && !current_user_is_admin?
           deny_access
         end
