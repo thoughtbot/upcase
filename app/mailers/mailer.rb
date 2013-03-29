@@ -31,10 +31,7 @@ class Mailer < ActionMailer::Base
   def welcome_to_prime(user)
     @user = user
 
-    mail(
-      to: @user.email,
-      subject: "Welcome to Prime"
-    )
+    mail to: @user.email, subject: 'Welcome to Prime'
   end
 
   def purchase_receipt(purchase)

@@ -19,7 +19,7 @@ describe Subscription do
       mailer = stub(deliver: true)
       Mailer.stubs(welcome_to_prime: mailer)
 
-      Subscription.send_welcome_emails
+      Subscription.deliver_welcome_emails
 
       expect(Mailer).to have_received(:welcome_to_prime).with(new_subscription.user)
       expect(Mailer).to have_received(:welcome_to_prime).with(old_subscription.user).never
