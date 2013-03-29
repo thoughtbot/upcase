@@ -298,12 +298,6 @@ describe Mailer do
   end
 
   describe '.welcome_to_prime' do
-    it 'has the correct subject' do
-      user = create :user
-      email = Mailer.welcome_to_prime(user)
-      expect(email.subject).to match(/Welcome to Prime/)
-    end
-
     it 'is sent to the user' do
       user = create :user
       email = Mailer.welcome_to_prime(user)
