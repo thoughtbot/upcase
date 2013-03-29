@@ -297,6 +297,15 @@ describe Mailer do
     end
   end
 
+  describe '.welcome_to_prime' do
+    it 'is sent to the user' do
+      user = create :user
+      email = Mailer.welcome_to_prime(user)
+      expect(email.to).to include(user.email)
+      expect(email).to have_body_text(/Hi #{user.first_name}/)
+    end
+  end
+
   describe '.section_reminder' do
     it 'has the correct subject' do
       expect(sent_email.subject).to match(/#{workshop_name}/)
