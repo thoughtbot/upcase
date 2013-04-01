@@ -10,6 +10,7 @@ class Subscription < ActiveRecord::Base
   end
 
   private
+
   def self.recent
     where('created_at > ?', 24.hours.ago)
   end
