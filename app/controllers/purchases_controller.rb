@@ -69,7 +69,7 @@ class PurchasesController < ApplicationController
   end
 
   def notify_kissmetrics_of(purchase)
-    event_notifier = KissmetricsEventNotifier.new(km_http_client)
+    event_notifier = KissmetricsEventNotifier.new
     event_notifier.notify_of(purchase)
   end
 
