@@ -1,5 +1,5 @@
 class KissmetricsEventNotifier
-  def initialize(kissmetrics_client)
+  def initialize(kissmetrics_client=KissmetricsClientFactory.client)
     @client = kissmetrics_client
   end
 

@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   include Clearance::Authentication
 
-  cattr_accessor :km_http_client
-
   helper :all
 
   protect_from_forgery
@@ -14,10 +12,6 @@ class ApplicationController < ActionController::Base
       flash[:error] = 'You do not have permission to view that page.'
       redirect_to root_url
     end
-  end
-
-  def km_http_client
-    @@km_http_client.new(KISSMETRICS_API_KEY)
   end
 
   def current_user_has_active_subscription?
