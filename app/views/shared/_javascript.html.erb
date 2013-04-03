@@ -15,20 +15,6 @@
     $.ajaxSetup({ async: false });
   <% end %>
 <% end %>
-<%= javascript_tag do %>
-  function tumblr(resp) {
-    var posts = resp.posts;
-    $('#blog-footer .loading').replaceWith('<ul/>');
-    var $ul = $('#blog-footer ul');
-    for (var i=0; i<posts.length; i++) {
-      var p = posts[i];
-      var title = p['regular-title'] || p['link-text'] || null;
-      if (title) {
-        $ul.append('<li><a href="'+p['url']+'">'+title+'</a></li>');
-      }
-    }
-  }
-<% end %>
 
 <script type="text/javascript">
   <% Split::Experiment.all.each do |experiment| %>
