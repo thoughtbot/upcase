@@ -69,5 +69,3 @@ class FakeKissmetrics
     end
   end
 end
-
-ApplicationController.km_http_client = FakeKissmetrics::HttpClient
