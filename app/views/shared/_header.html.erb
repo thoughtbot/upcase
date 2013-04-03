@@ -5,7 +5,7 @@
         <%= link_to image_tag('learn/learn-ralph-small.png'), root_path %>
         <%= t 'shared.learn' %>
       </h1>
-      <nav class="<%= 'show-account-links' if show_account_links? %>">
+      <nav>
         <ul>
           <% if subscription_product && !current_user_has_active_subscription? %>
             <li class="prime">
@@ -56,12 +56,10 @@
               <% end %>
             </ul>
           </li>
-          <% if show_account_links? %>
-            <% if signed_in? %>
-              <li class="account"><%= link_to 'Account', my_account_path %></li>
-            <% else %>
-              <li class="account"><%= link_to 'Sign in', sign_in_path %></li>
-            <% end %>
+          <% if signed_in? %>
+            <li class="account"><%= link_to 'Account', my_account_path %></li>
+          <% else %>
+            <li class="account"><%= link_to 'Sign in', sign_in_path %></li>
           <% end %>
         </ul>
       </nav>

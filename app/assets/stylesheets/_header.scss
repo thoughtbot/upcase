@@ -95,25 +95,6 @@ section#header-wrapper {
         right: 0;
       }
 
-      &.show-account-links {
-        li.workshops ul {
-          right: 404px;
-        }
-
-        li.videos ul {
-          right: 304px;
-        }
-
-        li.books ul {
-          left: 45%;
-          right: 208px;
-        }
-
-        li.trails ul {
-          right: 83px;
-        }
-      }
-
       > ul {
         display: inline-block;
         text-align: left;

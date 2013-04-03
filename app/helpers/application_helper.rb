@@ -41,10 +41,6 @@ module ApplicationHelper
     end
   end
 
-  def show_account_links?
-    controller.controller_name != 'topics'
-  end
-
   def github_auth_path
     '/auth/github'
   end
