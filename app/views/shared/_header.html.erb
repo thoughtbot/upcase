@@ -1,19 +1,19 @@
-<section id="header-wrapper">
+<section id="header-wrapper" class="<%= 'subscriber' if current_user_has_active_subscription? %>">
   <div class="header-container">
-    <% if content_for?(:subject) %>
+    <% if content_for?(:subject) || signed_in? %>
       <h1 class="small-logo">
         <%= link_to image_tag('learn/learn-ralph-small.png'), root_path %>
         <%= t 'shared.learn' %>
       </h1>
       <nav class="<%= 'show-account-links' if show_account_links? %>">
         <ul>
-          <li class="prime">
-            <% if subscription_product %>
+          <% if subscription_product && !current_user_has_active_subscription? %>
+            <li class="prime">
               <%= link_to products_path do %>
                 <span><%= t('shared.subscriptions.icon') %></span> <%= subscription_product.name %> Membership
               <% end %>
-            <% end %>
-          </li>
+            </li>
+          <% end %>
           <li class="dropdown workshops">
             <a href="#" data-toggle="dropdown">Workshops</a>
             <ul>
