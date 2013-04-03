@@ -1,6 +1,6 @@
 body.products-index {
   .prime-pitch {
-    margin: -5em 0 5em 0;
+    margin: -5em 0 1em 0;
     position: relative;
     text-align: center;
 
@@ -172,27 +172,6 @@ body.products-index {
           font: 400 18px/1.3em $sans-serif;
         }
       }
-    }
-  }
-
-  .trails-cta {
-    border: 3px solid #ccc;
-    color: #888;
-    display: block;
-    font-family: $sans-serif;
-    margin: 8em auto 4em;
-    padding: .5em;
-    text-align: center;
-    width: 170px;
-
-    &:hover {
-      border-color: #999;
-      color: #333;
-    }
-
-    &:active {
-      border-color: #666;
-      color: #000;
     }
   }
 }
