@@ -29,7 +29,7 @@
 
   <p id="copyright">© 2012 thoughtbot, inc. The <em>design of a robot</em> and <em>thoughtbot</em> are registered trademarks of thoughtbot,&nbsp;inc.</p>
   <%= render partial: 'shared/admin_sign_out' %>
-  <% if show_account_links? && signed_in? %>
+  <% if signed_in? %>
     <%= link_to('Sign out', sign_out_path, method: :delete) %>
   <% end %>
 </footer>
