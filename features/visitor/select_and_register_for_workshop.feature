@@ -1,19 +1,5 @@
 Feature: Selecting a workshop and registering for it
 
-  @selenium
-  Scenario: Visitor browses workshops
-    Given the following workshops exists:
-      | name                | online |
-      | Test-Driven Haskell | false  |
-      | Test-Driven Ruby    | true   |
-    And the following future sections exists:
-      | workshop                  | city            |
-      | name: Test-Driven Haskell | Boston          |
-      | name: Test-Driven Haskell | San Fransisco   |
-    When I go to the products page
-    Then I should see "Test-Driven Haskell in-person in San Fransisco and Boston"
-    And I should see "Test-Driven Ruby Online"
-
   @selenium @allow-rescue
   Scenario: Visitor registers for a section
     Given the following workshop exists:

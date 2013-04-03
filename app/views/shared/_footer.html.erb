@@ -1,83 +1,32 @@
 <footer>
   <nav>
     <section id="thoughtbot">
-      <h3><a href="http://thoughtbot.com/about">Our people</a></h3>
       <ul>
-        <li><a href="http://thoughtbot.com/contact">Contact us</a></li>
-        <li><a href="http://thoughtbot.com/about">Team</a></li>
-        <li><a href="http://thoughtbot.com/jobs">Jobs</a></li>
-        <li><a href="http://thoughtbot.com/events">Events</a></li>
-        <li><a href="http://apprentice.io">apprentice.io</a></li>
+        <% if signed_in? %>
+          <li><%= link_to('Sign out', sign_out_path, method: :delete) %></li>
+        <% else %>
+          <li><%= link_to 'Sign in', sign_in_path %></li>
+        <% end %>
       </ul>
-    </section>
-
-    <section id="products">
-      <h3><a href="http://playbook.thoughtbot.com">Our way</a></h3>
       <ul>
-        <li><a href="http://playbook.thoughtbot.com">Playbook</a></li>
-        <li><a href="https://www.apptrajectory.com">Trajectory</a></li>
-        <li><a href="http://thoughtbot.com/community">Community</a></li>
+        <li><a href="http://thoughtbot.com">About thoughtbot</a></li>
+        <li><a href="http://apprentice.io">Apprentice.io</a></li>
         <li><a href="http://thoughtbot.com/podcast">Podcast</a></li>
       </ul>
     </section>
 
-    <section id="current-workshops">
-      <h3><a href="http://learn.thoughtbot.com/">Our workshops</a></h3>
-      <ul></ul>
+    <section id="trails">
+      <h3><%= link_to 'Trail Maps', topics_path %></h3>
+      <ul>
+        <% topics.each do |topic| %>
+          <li><%= link_to topic.name, topic %></li>
+        <% end %>
+      </ul>
     </section>
   </nav>
 
   <p id="copyright">© 2012 thoughtbot, inc. The <em>design of a robot</em> and <em>thoughtbot</em> are registered trademarks of thoughtbot,&nbsp;inc.</p>
   <%= render partial: 'shared/admin_sign_out' %>
-  <% if signed_in? %>
-    <%= link_to('Sign out', sign_out_path, method: :delete) %>
-  <% end %>
 </footer>
+
 <%= render "chat" %>
-
-<% content_for :javascript do %>
-<script type="text/javascript">
-  function workshop_details(workshop) {
-    if(workshop.online) {
-      return " Online";
-    }
-
-    var details = [];
-    for (var s=0; s<workshop.active_sections.length; s++) {
-      details.push(workshop.active_sections[s].section.city);
-    }
-    if(details.length > 0) {
-      return " in-person in " + details.join(" and ");
-    } else {
-      return "";
-    }
-  }
-  function workshops(resp) {
-    var all_workshops = resp;
-    $('#current-workshops .loading').replaceWith('<ul/>');
-    $ul = $('#current-workshops ul');
-    for (var i=0; i<all_workshops.length; i++) {
-      var workshop = all_workshops[i]['workshop'];
-      var name = workshop['name'] || null;
-
-      if (name) {
-        $ul.append('<li><a href="'+workshop['url']+'">'+name+workshop_details(workshop)+'</a></li>');
-      }
-    }
-  }
-</script>
-<script src="/workshops.json?callback=workshops" type="text/javascript"></script>
-<script type="text/javascript">
-  function tumblr(resp) {
-    var posts = resp.posts;
-    $('#blog-footer .loading').replaceWith('<ul/>');
-    $ul = $('#blog-footer ul');
-    for (var i=0; i<3; i++) {
-      var p = posts[i];
-      var title = p['regular-title'] || p['link-text'] || null;
-      if (title)
-        $ul.append('<li><a href="'+p['url']+'">'+title+'</a></li>');
-    }
-  }
-</script>
-<% end %>

@@ -2,7 +2,7 @@ footer {
   @extend .clearfix;
   clear: both;
   margin: 0 auto;
-  max-width: 704px;
+  max-width: 741px;
   opacity: .5;
   padding: 2em;
   @include transition(opacity .5s);
@@ -20,8 +20,18 @@ footer {
       margin-right: flex-gutter();
       width: flex-grid(4);
 
-      &#current-workshops {
-        margin-right: 0;
+      &#thoughtbot {
+        padding-right: 1em;
+        width: flex-grid(3);
+      }
+
+        &#trails {
+          width: flex-grid(9);
+          margin-right: 0;
+          ul li {
+            width: 33%;
+            float: left;
+          }
       }
 
       ul {
