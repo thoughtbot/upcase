@@ -1,6 +1,6 @@
 module ArticlesHelper
-  def local_or_external_url(article)
-    if article.local?
+  def byte_or_external_url(article)
+    if article.byte?
       article_path(article)
     else
       article.external_url

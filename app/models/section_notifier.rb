@@ -1,4 +1,4 @@
-class Notifier
+class SectionNotifier
   def initialize(section, emails)
     @section = section
     @emails = emails
@@ -17,6 +17,6 @@ class Notifier
   private
 
   def send_notification(email, item)
-    Mailer.notification(email, item).deliver
+    Mailer.section_notification(email, item).deliver
   end
 end

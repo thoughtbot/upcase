@@ -38,33 +38,47 @@ describe Article do
     end
   end
 
-  context '.local' do
-    it 'only includes local articles' do
+  context '.bytes' do
+    it 'only includes bytes' do
       article = create(:article)
       tumblr_article = create(:tumblr_article)
 
-      expect(Article.local).to include article
-      expect(Article.local).not_to include tumblr_article
+      expect(Article.bytes).to include article
+      expect(Article.bytes).not_to include tumblr_article
     end
   end
 
   context '.published' do
     it 'only includes articles published_on greater or equal to today' do
-      today = create(:article, published_on: Date.today)
-      tomorrow = create(:article, published_on: Date.tomorrow)
-      yesterday = create(:article, published_on: Date.yesterday)
+      create(:article, published_on: Date.today, title: 'today')
+      create(:article, published_on: Date.tomorrow, title: 'tomorrow')
+      create(:article, published_on: Date.yesterday, title: 'yesterday')
 
-      expect(Article.published).to include today
-      expect(Article.published).to include yesterday
-      expect(Article.published).not_to include tomorrow
+      expect(Article.published.map(&:title)).to eq %w(today yesterday)
     end
 
     it 'does not include draft articles' do
-      draft = create(:article, draft: true)
-      published = create(:article, draft: false)
+      create(:article, draft: true, title: 'draft')
+      create(:article, draft: false, title: 'published')
 
-      expect(Article.published).to include published
-      expect(Article.published).not_to include draft
+      expect(Article.published.map(&:title)).to eq %w(published)
+    end
+  end
+
+  context '.bytes_published_today' do
+    it 'only includes bytes published_on today' do
+      create(:article, published_on: Date.today, title: 'today')
+      create(:article, published_on: Date.tomorrow, title: 'tomorrow')
+      create(:article, published_on: 1.week.ago, title: 'last week')
+
+      expect(Article.bytes_published_today.map(&:title)).to eq(%w(today))
+    end
+
+    it 'does not include draft articles' do
+      create(:article, draft: true, published_on: Date.today, title: 'draft')
+      create(:article, draft: false, published_on: Date.today, title: 'published')
+
+      expect(Article.bytes_published_today.map(&:title)).to eq(%w(published))
     end
   end
 
@@ -138,17 +152,17 @@ describe Article do
     end
   end
 
-  context 'local?' do
+  context 'byte?' do
     it 'returns true for articles that do not have an external_url' do
       article = build(:article, external_url: nil)
 
-      expect(article.local?).to be
+      expect(article.byte?).to be
     end
 
     it 'returns false for articles that do have an external_url' do
       article = build(:article, external_url: 'http://thoughtbot.com')
 
-      expect(article.local?).not_to be
+      expect(article.byte?).not_to be
     end
   end
 end
