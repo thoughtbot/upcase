@@ -12,7 +12,7 @@ xml.rss :version => '2.0', 'xmlns:dc' => 'http://purl.org/dc/elements/1.1/', 'xm
     xml.tag! 'itunes:subtitle', 'Giant Robots Smashing into other Giant Robots'
     xml.tag! 'itunes:author', 'thoughtbot'
     xml.tag! 'itunes:summary', 'Giant Robots Smashing into other Giant Robots is a weekly technical podcast discussing development, design, and the business of software development.'
-    xml.tag! 'itunes:image', href: 'http://gr-podcast.s3.amazonaws.com/podcastlogo.png'
+    xml.tag! 'itunes:image', href: 'http://gr-podcast.s3.amazonaws.com/logo1400.jpg'
     xml.tag! 'itunes:keywords', 'design, development, software'
     xml.tag! 'itunes:explicit', 'no'
     xml.tag! 'itunes:owner' do
@@ -38,7 +38,7 @@ xml.rss :version => '2.0', 'xmlns:dc' => 'http://purl.org/dc/elements/1.1/', 'xm
         xml.tag! 'itunes:subtitle', episode.description
         xml.tag! 'itunes:summary', episode.description
         xml.tag! 'itunes:keywords', 'design, development, software'
-        xml.tag! 'itunes:image', href: 'http://gr-podcast.s3.amazonaws.com/podcastlogo.png'
+        xml.tag! 'itunes:image', href: 'http://gr-podcast.s3.amazonaws.com/logo1400.jpg'
       end
     end
   end
