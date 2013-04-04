@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    if @article.local?
+    if @article.byte?
       if current_user_has_active_subscription? || current_user_is_admin?
         @related_topics = @article.topics
         @products = @article.products.ordered.active

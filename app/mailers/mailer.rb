@@ -86,20 +86,31 @@ class Mailer < ActionMailer::Base
     )
   end
 
-  def notification(email, item)
+  def section_notification(email, item)
     @item = item
 
     mail(
       to: email,
       from: 'learn@thoughtbot.com',
       reply_to: 'learn@thoughtbot.com',
-      subject: "[Learn] #{notification_item_name(item)}: #{item.title}"
+      subject: "[Learn] #{section_item_name(item)}: #{item.title}"
+    )
+  end
+
+  def byte_notification(email, article)
+    @article = article
+
+    mail(
+      to: email,
+      from: 'learn@thoughtbot.com',
+      reply_to: 'learn@thoughtbot.com',
+      subject: "[Learn] New Byte: #{article.title}"
     )
   end
 
   private
 
-  def notification_item_name(item)
+  def section_item_name(item)
     if item.respond_to?(:watchable)
       item.watchable.name
     else

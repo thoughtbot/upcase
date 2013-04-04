@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Notifier do
+describe SectionNotifier do
   it 'sends a notification for items occurring today' do
     mailer.stubs(deliver: true)
-    Mailer.stubs(notification: mailer)
+    Mailer.stubs(section_notification: mailer)
 
     item_needing_notification = stub(:starts_today? => true)
     item_not_needing_notification = stub(:starts_today? => false)
@@ -11,12 +11,12 @@ describe Notifier do
     emails = ["test@example.com", "test2@example.com"]
     section = stub(starts_on: Date.today)
 
-    notifier = Notifier.new(section, emails)
+    notifier = SectionNotifier.new(section, emails)
     notifier.send_notifications_for(items)
 
     emails.each do |email|
-      expect(Mailer).to have_received(:notification).with(email, item_needing_notification)
-      expect(Mailer).to have_received(:notification).with(email, item_not_needing_notification).never
+      expect(Mailer).to have_received(:section_notification).with(email, item_needing_notification)
+      expect(Mailer).to have_received(:section_notification).with(email, item_not_needing_notification).never
     end
     expect(mailer).to have_received(:deliver).times(2)
   end

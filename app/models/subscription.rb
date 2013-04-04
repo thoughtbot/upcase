@@ -9,7 +9,16 @@ class Subscription < ActiveRecord::Base
     end
   end
 
+  def self.deliver_byte_notifications
+    notifier = ByteNotifier.new(subscriber_emails)
+    notifier.send_notifications
+  end
+
   private
+
+  def self.subscriber_emails
+    joins(:user).pluck(:email)
+  end
 
   def self.recent
     where('created_at > ?', 24.hours.ago)
