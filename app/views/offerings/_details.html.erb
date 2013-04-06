@@ -1,0 +1,18 @@
+<%= render 'offerings/meta', offering: offering %>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <%= render offering.alternates %>
+
+    <hgroup class="product-title">
+      <h2><%= offering.tagline %></h2>
+      <h3 class="workshop-type">
+        <%= t "offerings.subtitle.#{offering.offering_type}" %>
+      </h3>
+    </hgroup>
+
+    <%== textilize offering.description %>
+
+    <%= render "#{offering.to_partial_path}_details", offering: offering %>
+  </div>
+</div>

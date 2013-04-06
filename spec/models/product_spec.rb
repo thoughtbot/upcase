@@ -151,4 +151,14 @@ describe Product do
       expect(result).to eq 'subscription'
     end
   end
+
+  context '#alternates' do
+    it 'is empty' do
+      product = Product.new
+
+      result = product.alternates
+
+      expect(result).to eq []
+    end
+  end
 end

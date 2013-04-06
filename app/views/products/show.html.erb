@@ -1,21 +1,13 @@
-<%= render 'offerings/meta', offering: @product %>
-
-<div class="text-box-wrapper">
-  <div class="text-box">
-    <h2><%= @product.tagline %></h2>
-
-    <%== @product.description %>
-  </div>
-</div>
+<%= render 'offerings/details', offering: @offering %>
 
 <aside>
   <%= render(
     'license',
-    product: @product,
+    product: @offering,
     viewable_subscription: @viewable_subscription
   ) %>
 
-  <%= render 'terms', product: @product %>
+  <%= render 'terms', product: @offering %>
 </aside>
 
 <% content_for :outside do %>

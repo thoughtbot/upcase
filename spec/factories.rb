@@ -23,6 +23,15 @@ FactoryGirl.define do
     "user#{n}"
   end
 
+  factory :alternate do
+    ignore do
+      key 'online_workshop'
+      offering { build(:workshop) }
+    end
+
+    initialize_with { new(key, offering) }
+  end
+
   factory :announcement do
     association :announceable, factory: :book_product
     ends_at { Time.now.tomorrow }
