@@ -52,14 +52,6 @@ class Workshop < ActiveRecord::Base
     follow_ups + [follow_ups.new]
   end
 
-  def has_in_person_workshop?
-    in_person_workshop.present?
-  end
-
-  def has_online_workshop?
-    online_workshop.present?
-  end
-
   def self.in_person
     where online: false
   end
@@ -68,20 +60,8 @@ class Workshop < ActiveRecord::Base
     ! online?
   end
 
-  def in_person_workshop
-    if online?
-      self.class.in_person.only_active.find_by_name(name)
-    end
-  end
-
   def self.online
     where online: true
-  end
-
-  def online_workshop
-    if in_person?
-      self.class.online.only_active.find_by_name(name)
-    end
   end
 
   def self.only_active
@@ -121,6 +101,36 @@ class Workshop < ActiveRecord::Base
   end
 
   def offering_type
-    'workshop'
+    if online?
+      'online_workshop'
+    else
+      'in_person_workshop'
+    end
+  end
+
+  def tagline
+    short_description
+  end
+
+  def alternates
+    if alternate_workshop
+      [Alternate.new(alternate_key, alternate_workshop)]
+    else
+      []
+    end
+  end
+
+  private
+
+  def alternate_workshop
+    self.class.only_active.where(online: !online).first
+  end
+
+  def alternate_key
+    if online?
+      'in_person_workshop'
+    else
+      'online_workshop'
+    end
   end
 end

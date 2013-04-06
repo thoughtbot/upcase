@@ -80,107 +80,67 @@ describe Workshop do
     end
   end
 
-  describe '#has_online_workshop?' do
-    it 'has an online workshop there is an online workshop with the same name' do
-      offline_workshop = create(:workshop, online: false)
-      online_workshop = create(:workshop, online: true,
-        name: offline_workshop.name, active: true)
-
-      offline_workshop.should have_online_workshop
-    end
-
-    it 'does not have an online workshop if it does not have an online workshop' do
-      workshop = create(:workshop, online: false)
-
-      workshop.should_not have_online_workshop
-    end
-
-    it 'does not have an online workshop when there the workshop is online' do
-      online_workshop = create(:workshop, online: true)
-
-      online_workshop.should_not have_online_workshop
-    end
-  end
-
-  describe '#online_workshop' do
+  describe '#alternates' do
     it 'returns the active online workshop with the same name' do
       offline_workshop = create(:workshop, online: false)
-      online_workshop = create(:workshop, online: true,
-        name: offline_workshop.name, active: true)
+      online_workshop = create(
+        :workshop,
+        online: true,
+        name: offline_workshop.name,
+        active: true
+      )
 
-      offline_workshop.online_workshop.should == online_workshop
+      result = offline_workshop.alternates
+
+      expect(result).to eq [
+        build(:alternate, key: 'online_workshop', offering: online_workshop)
+      ]
     end
 
-    it 'returns nil if it does not have an online workshop' do
-      offline_workshop = create(:workshop, online: false)
-
-      offline_workshop.online_workshop.should be_nil
-    end
-
-    it 'returns nil if it does not have an active online workshop' do
-      offline_workshop = create(:workshop, online: false)
-      online_workshop = create(:workshop, online: true,
-        name: offline_workshop.name, active: false)
-
-      offline_workshop.online_workshop.should be_nil
-    end
-
-    it 'returns nil when the workshop is online' do
+    it 'returns the in_person workshop when it exists' do
       online_workshop = create(:workshop, online: true)
+      in_person_workshop = create(
+        :workshop,
+        online: false,
+        name: online_workshop.name,
+        active: true
+      )
 
-      online_workshop.online_workshop.should be_nil
-    end
-  end
+      result = online_workshop.alternates
 
-  describe '#in_person_workshop' do
-    it 'returns the in-person workshop when it exists' do
-      online_workshop = create(:workshop, online: true)
-      in_person_workshop = create(:workshop, online: false,
-        name: online_workshop.name, active: true)
-
-      online_workshop.in_person_workshop.should == in_person_workshop
-    end
-
-    it 'returns nil when there is no in-person workshop' do
-      online_workshop = create(:workshop, online: true)
-
-      online_workshop.in_person_workshop.should be_nil
+      expect(result).to eq [
+        build(:alternate, key: 'in_person_workshop', offering: in_person_workshop)
+      ]
     end
 
-    it 'returns nil when there is no active in-person workshop' do
-      online_workshop = create(:workshop, online: true)
-      in_person_workshop = create(:workshop, online: false,
-        name: online_workshop.name, active: false)
-
-      online_workshop.in_person_workshop.should be_nil
-    end
-
-    it 'returns nil when the workshop is in-person' do
+    it 'returns nothing for an in_person workshop without an online workshop' do
       in_person_workshop = create(:workshop, online: false)
 
-      in_person_workshop.in_person_workshop.should be_nil
-    end
-  end
+      result = in_person_workshop.alternates
 
-  describe '#has_in_person_workshop?' do
-    it 'has an in-person version when there is an in-person workshop' do
-      online_workshop = create(:workshop, online: true)
-      in_person_workshop = create(:workshop, online: false,
-        name: online_workshop.name)
-
-      online_workshop.should have_in_person_workshop
+      expect(result).to eq []
     end
 
-    it 'does not have an in-person version when there is not an in-person workshop' do
+    it 'returns nothing for an online workshop without an offline workshop' do
       online_workshop = create(:workshop, online: true)
 
-      online_workshop.should_not have_in_person_workshop
+      result = online_workshop.alternates
+
+      expect(result).to eq []
     end
 
-    it 'does not have an in-person version when the workshop is in-person' do
-      in_person_workshop = create(:workshop, online: false)
+    it 'returns nothing when the alternate is inactive' do
+      online_workshop = create(:workshop, online: true)
+      in_person_workshop = create(
+        :workshop,
+        online: false,
+        name: online_workshop.name,
+        active: false
+      )
 
-      in_person_workshop.should_not have_in_person_workshop
+      result = online_workshop.alternates
+
+      expect(result).to eq []
     end
   end
 
@@ -217,12 +177,30 @@ describe Workshop do
   end
 
   describe 'offering_type' do
-    it 'returns workshop' do
-      workshop = Workshop.new
+    it 'returns in_person_workshop for an in-person workshop' do
+      workshop = Workshop.new(online: false)
 
       result = workshop.offering_type
 
-      expect(result).to eq 'workshop'
+      expect(result).to eq 'in_person_workshop'
+    end
+
+    it 'returns online_workshop for an online workshop' do
+      workshop = Workshop.new(online: true)
+
+      result = workshop.offering_type
+
+      expect(result).to eq 'online_workshop'
+    end
+  end
+
+  describe '#tagline' do
+    it 'returns the short description' do
+      workshop = build_stubbed(:workshop)
+
+      result = workshop.tagline
+
+      expect(result).to eq(workshop.short_description)
     end
   end
 end

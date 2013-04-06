@@ -28,6 +28,17 @@ en:
       heading:
         All %{topic} articles
 
+  offerings:
+    alternate:
+      in_person_workshop_html: 'In Boston or San Francisco? <b>Take the In-Person Workshop.</b>'
+      online_workshop_html: 'Not in Boston or San Francisco? <b>Take the Online Workshop.</b>'
+    subtitle:
+      book: ''
+      in_person_workshop: 'In-Person Workshop'
+      online_workshop: 'Online Workshop'
+      subscription: ''
+      video: ''
+
   products:
     index:
       subscriber:
