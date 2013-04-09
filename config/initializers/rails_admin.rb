@@ -36,6 +36,36 @@ RailsAdmin.config do |config|
     bytes
   end
 
+  config.model User do
+    list do
+      field :id
+      field :first_name
+      field :last_name
+      field :email
+      field :github_username
+      field :subscription
+    end
+  end
+
+  config.model Episode do
+    list do
+      field :id
+      field :title
+      field :published_on
+    end
+  end
+
+  config.model Product do
+    list do
+      field :id
+      field :name
+      field :sku
+      field :product_type
+      field :individual_price
+      field :company_price
+    end
+  end
+
   config.model Article do
     list do
       field :title
