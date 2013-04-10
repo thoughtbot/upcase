@@ -430,5 +430,13 @@ describe Mailer do
       expect(email).to have_body_text(/Great Article/)
       expect(email).to have_body_text(/this is the body/)
     end
+
+    it 'does not escape the body' do
+      article = create(:article, title: 'Great Article', body: '> body')
+
+      email = Mailer.byte_notification(email, article)
+
+      expect(email).not_to have_body_text(/&gt;/)
+    end
   end
 end
