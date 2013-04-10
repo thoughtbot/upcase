@@ -224,7 +224,7 @@ describe Section do
   describe '.send_notifications' do
     it 'sends notifications for each current section' do
       notifier = stub(send_notifications_for: nil)
-      Notifier.stubs(new: notifier)
+      SectionNotifier.stubs(new: notifier)
 
       future = create(:future_section)
       workshop = future.workshop
@@ -238,11 +238,11 @@ describe Section do
 
       Section.send_notifications
 
-      expect(Notifier).to have_received(:new).with(current, [current_purchase.email])
+      expect(SectionNotifier).to have_received(:new).with(current, [current_purchase.email])
       expect(notifier).to have_received(:send_notifications_for).with([video])
       expect(notifier).to have_received(:send_notifications_for).with([event])
 
-      expect(Notifier).to have_received(:new).with(future, [future_purchase.email]).never
+      expect(SectionNotifier).to have_received(:new).with(future, [future_purchase.email]).never
     end
   end
 end

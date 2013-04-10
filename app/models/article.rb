@@ -19,12 +19,16 @@ class Article < ActiveRecord::Base
     ordered.limit(10)
   end
 
-  def self.local
+  def self.bytes
     where("external_url IS NULL OR external_url = ''")
   end
 
   def self.published
     where('published_on <= ?', Date.today).where(draft: false)
+  end
+
+  def self.bytes_published_today
+    bytes.published.where(published_on: Date.today)
   end
 
   def published?
@@ -46,7 +50,7 @@ class Article < ActiveRecord::Base
     topics.map(&:name).join(',')
   end
 
-  def local?
+  def byte?
     external_url.blank?
   end
 end
