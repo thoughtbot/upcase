@@ -19,7 +19,7 @@ feature 'Subscriber accesses content' do
     click_link video_product.name
 
     expect(page).to have_content I18n.t('products.show.free_to_subscribers')
-    expect(page).to_not have_content video_product.individual_price
+    expect(page).to_not have_content "$#{video_product.individual_price}"
     expect(page).to_not have_content I18n.t('products.show.purchase_for_company')
   end
 
