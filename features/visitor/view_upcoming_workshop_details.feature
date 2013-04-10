@@ -73,6 +73,7 @@ Feature: Viewing upcoming workshop details
       | name: Test-Driven Haskell | June 20, 2010 | June 22, 2010 | 09:00:00 | 12:00:00 | 156 2nd St.   | San Francisco | CA    | 94105 |
     And "Ralph Bot" is teaching the section from "June 13, 2010" to "June 16, 2010"
     And "Joe Teacher" is teaching the section from "June 20, 2010" to "June 22, 2010"
+    And time is unfrozen
     When I view all products
     Then I should see "Test-Driven Haskell"
     When I follow "Test-Driven Haskell"
