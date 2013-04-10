@@ -18,7 +18,7 @@ module RailsAdmin
 
         register_instance_option :controller do
           Proc.new do
-            @objects ||= list_entries.local
+            @objects ||= list_entries.bytes
 
             respond_to do |format|
               format.html do
