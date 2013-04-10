@@ -30,12 +30,12 @@ describe PurchasesController do
     it 'sends a message to the notifier' do
       stub_current_user_with(create(:user))
       product = create(:subscribeable_product)
-      notifier = stub('notifier', :notify_of)
+      notifier = stub('notifier', :notify_of_purchase)
       KissmetricsEventNotifier.stubs(:new).returns(notifier)
 
       post :create, purchase: customer_params, product_id: product
 
-      notifier.should have_received(:notify_of).with(assigns(:purchase))
+      notifier.should have_received(:notify_of_purchase).with(assigns(:purchase))
     end
   end
 
