@@ -1,7 +1,11 @@
 Workshops::Application.routes.draw do
+  use_doorkeeper
+
   mount RailsAdmin::Engine => '/admin', :as => 'admin'
 
   root to: 'products#index'
+
+  match '/api/v1/me.json' => 'api/v1/users#show', as: :resource_owner
 
   match '/pages/tmux' => redirect('/products/4-humans-present-tmux')
 
