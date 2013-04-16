@@ -122,6 +122,10 @@ class Product < ActiveRecord::Base
     product_type
   end
 
+  def alternates
+    []
+  end
+
   private
 
   def apply_discount(price)

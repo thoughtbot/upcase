@@ -1,41 +1,21 @@
-<%= render 'offerings/meta', offering: @workshop %>
-
-<div class="text-box-wrapper">
-  <div class="text-box">
-    <%= render 'alternate_attendance_option', workshop: @workshop %>
-    <hgroup class="product-title">
-      <h2><%= @workshop.short_description %></h2>
-      <h3 class="workshop-type">
-        <% if @workshop.online? %>
-          Online
-        <% else %>
-          In-Person
-        <% end %>
-        Workshop
-      </h3>
-    </hgroup>
-    <%=raw textilize @workshop.description %>
-    <%= render 'questions', workshop: @workshop %>
-    <%= render @section_teachers %>
-  </div>
-</div>
+<%= render 'offerings/details', offering: @offering %>
 
 <aside>
   <%= render(
     'license',
-    workshop: @workshop,
+    workshop: @offering,
     viewable_subscription: @viewable_subscription,
     sections: @sections
   ) %>
 
-  <%= render 'terms', workshop: @workshop %>
+  <%= render 'terms', workshop: @offering %>
 </aside>
 
 <% content_for :outside do %>
   <section id="additional-information">
     <section id="additional-information-wrapper">
       <section id="main-content">
-        <%= render 'follow_up', workshop: @workshop %>
+        <%= render 'follow_up', workshop: @offering %>
       </section>
     </section>
   </section>

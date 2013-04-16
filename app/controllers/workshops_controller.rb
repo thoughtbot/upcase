@@ -5,6 +5,7 @@ class WorkshopsController < ApplicationController
 
   def show
     @workshop = Workshop.find(params[:id])
+    @offering = @workshop
     @sections = @workshop.active_sections
     @section_teachers = @sections.unique_section_teachers_by_teacher
     @viewable_subscription =
