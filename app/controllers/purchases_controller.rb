@@ -1,4 +1,6 @@
 class PurchasesController < ApplicationController
+  require 'base64'
+
   def new
     @purchaseable = find_purchaseable
 
@@ -60,6 +62,15 @@ class PurchasesController < ApplicationController
     @purchase.complete_paypal_payment!(params[:token], params[:PayerID])
     notify_kissmetrics_of(@purchase)
     redirect_to @purchase
+  end
+
+  def download
+    @purchase = Purchase.find_by_lookup(params[:id])
+    @purchaseable = @purchase.purchaseable
+
+    client = Octokit::Client.new(login: GITHUB_USER, password: GITHUB_PASSWORD)
+    contents = client.contents "thoughtbot/#{@purchaseable.book_filename}", :path => "release/#{@purchaseable.book_filename}.#{params[:format]}", :accept => 'application/vnd.github.raw'
+    send_data contents, filename: "#{@purchaseable.book_filename}.#{params[:format]}"
   end
 
   private
