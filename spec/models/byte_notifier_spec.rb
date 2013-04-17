@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ByteNotifier do
   it 'sends a notification for bytes being published today' do
-    mailer.stubs(deliver: true)
+    mailer = stub(deliver: true)
     Mailer.stubs(byte_notification: mailer)
 
     byte_needing_notification = stub

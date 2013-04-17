@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe SectionNotifier do
   it 'sends a notification for items occurring today' do
-    mailer.stubs(deliver: true)
+    mailer = stub(deliver: true)
     Mailer.stubs(section_notification: mailer)
 
     item_needing_notification = stub(:starts_today? => true)
