@@ -25,13 +25,13 @@ footer {
         width: flex-grid(3);
       }
 
-        &#trails {
-          width: flex-grid(9);
-          margin-right: 0;
-          ul li {
-            width: 33%;
-            float: left;
-          }
+      &#trails {
+        width: flex-grid(9);
+        margin-right: 0;
+        ul li {
+          width: 33%;
+          float: left;
+        }
       }
 
       ul {
@@ -78,7 +78,17 @@ a.chat, a.chat:link, a.chat:visited {
 
     nav section {
       float: none;
-      width: 100%
+      width: 100%;
+
+      &#trails {
+        width: 100%;
+        margin-right: 0;
+
+        ul li {
+          width: 50%;
+          float: left;
+        }
+      }
     }
   }
 }
