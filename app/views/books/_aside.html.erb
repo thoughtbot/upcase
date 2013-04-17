@@ -3,12 +3,12 @@
     <section class="start-reading">
       <h3>Start reading</h3>
       <hr />
-      <%= link_to epub_url(purchaseable), class: 'button' do %>
+      <%= link_to download_purchase_path(purchase, format: 'epub'), class: 'button' do %>
         Download as EPUB<br/>
         (iPhone, iPad &amp; Nook)
       <% end %>
-      <%= link_to 'Download for Kindle', kindle_url(purchaseable), class: 'button' %>
-      <%= link_to 'Download as PDF', pdf_url(purchaseable), class: 'button' %>
+      <%= link_to 'Download for Kindle', download_purchase_path(purchase, format: 'mobi'), class: 'button' %>
+      <%= link_to 'Download as PDF', download_purchase_path(purchase, format: 'pdf'), class: 'button' %>
       <!-- <a class="button readmill" href="">Send to Readmill</a> -->
       <p><%= link_to 'See all formats on GitHub', book_releases_url(purchaseable) %></p>
     </section>

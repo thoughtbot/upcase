@@ -40,6 +40,7 @@ Workshops::Application.routes.draw do
     resources :videos, only: [:show]
     member do
       get 'paypal'
+      get 'download'
     end
   end
 
