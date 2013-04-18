@@ -5,7 +5,7 @@ class FakeOauthClientApp < Sinatra::Base
   include Rails.application.routes.url_helpers
 
   disable :dump_errors
-  enable :logging
+  disable :logging
 
   REDIRECT_PATH = '/fake_oauth_client_app/authorize'
 
@@ -38,8 +38,6 @@ class FakeOauthClientApp < Sinatra::Base
   end
 end
 
-FakeOauthClientRunner = Capybara::Discoball::Runner.new(FakeOauthClientApp) do |client|
+Capybara::Discoball.spin(FakeOauthClientApp) do |client|
   FakeOauthClientApp.client_url = client.url('')
 end
-
-FakeOauthClientRunner.boot
