@@ -113,7 +113,7 @@ class Mailer < ActionMailer::Base
 
     mail(
       to: user.email,
-      subject: 'Unsubscribed from Prime'
+      subject: 'Suggestions for improving Prime'
     )
   end
 
