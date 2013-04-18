@@ -108,6 +108,15 @@ class Mailer < ActionMailer::Base
     )
   end
 
+  def unsubscription_survey(user)
+    @user = user
+
+    mail(
+      to: user.email,
+      subject: 'Unsubscribed from Prime'
+    )
+  end
+
   private
 
   def section_item_name(item)
