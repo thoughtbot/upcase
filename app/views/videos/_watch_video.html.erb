@@ -12,7 +12,7 @@
   <% if video.has_notes? %>
     <section class='video-notes'>
       <h3>Notes</h3>
-      <p><%=h video.notes %></p>
+      <%= raw(video.notes_html) %>
     </section>
   <% end %>
 <% else %>
