@@ -125,10 +125,39 @@ describe Product do
     end
   end
 
-  context 'book_filename' do
+  context 'filename' do
     it 'returns the parameterized product name' do
       book = Product.new(name: 'Backbone.js on Rails')
-      expect(book.book_filename).to eq 'backbone-js-on-rails'
+      expect(book.filename).to eq 'backbone-js-on-rails'
+    end
+
+    it 'returns the parameterized file name with format if given' do
+      book = Product.new(name: 'Backbone.js on Rails')
+      expect(book.filename(:pdf)).to eq 'backbone-js-on-rails.pdf'
+    end
+  end
+
+  context 'file' do
+    it 'returns the file contents from github of the given format' do
+      client = stub(contents: 'filecontents')
+      Octokit::Client.stubs(new: client)
+      book = Product.new(name: 'Book Title', github_url: 'github')
+
+      contents = book.file(:pdf)
+
+      expect(contents).to eq 'filecontents'
+      expect(client).to have_received(:contents).
+        with(
+          'thoughtbot/book-title',
+          path: 'release/book-title.pdf',
+          accept: 'application/vnd.github.raw'
+        )
+    end
+
+    it 'returns nil for products not hosted on github' do
+      product = Product.new(name: 'Name', github_url: nil)
+
+      expect(product.file(:pdf)).not_to be_present
     end
   end
 
