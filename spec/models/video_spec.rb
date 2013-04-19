@@ -66,4 +66,20 @@ describe Video do
       expect(video_two.available_on(start_date)).to eq 9.days.from_now.to_date
     end
   end
+
+  describe 'has_notes?' do
+    it 'returns true when the video has notes' do
+      video = build_stubbed(:video, notes: "Some notes")
+
+      expect(video.has_notes?).to be_true
+    end
+
+    it 'returns false for videos with empty or no notes' do
+      video_one = build_stubbed(:video)
+      video_two = build_stubbed(:video, notes: '')
+
+      expect(video_one.has_notes?).to be_false
+      expect(video_two.has_notes?).to be_false
+    end
+  end
 end

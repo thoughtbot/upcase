@@ -47,6 +47,10 @@ class Video < ActiveRecord::Base
     available_on(start_date) == Date.today
   end
 
+  def has_notes?
+    notes.present?
+  end
+
   private
 
   def human_file_size num
