@@ -6,7 +6,7 @@ class DownloadsController < ApplicationController
     contents = @purchaseable.file(params[:format])
 
     if contents.present?
-      send_data contents, filename: "#{@purchaseable.filename(params[:format])}"
+      send_data contents, filename: @purchaseable.filename(params[:format])
     else
       render nothing: true, status: :not_found
     end
