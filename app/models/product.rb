@@ -117,9 +117,11 @@ class Product < ActiveRecord::Base
   def file(format)
     if github_url.present?
       client = Octokit::Client.new(login: GITHUB_USER, password: GITHUB_PASSWORD)
-      client.contents "thoughtbot/#{filename}",
+      client.contents(
+        "thoughtbot/#{filename}",
         path: "release/#{filename(format)}",
         accept: 'application/vnd.github.raw'
+      )
     end
   end
 
