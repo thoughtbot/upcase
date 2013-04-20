@@ -153,6 +153,12 @@ describe Product do
           accept: 'application/vnd.github.raw'
         )
     end
+
+    it 'returns nil for products not hosted on github' do
+      product = Product.new(name: 'Name', github_url: nil)
+
+      expect(product.file(:pdf)).not_to be_present
+    end
   end
 
   context 'title' do
