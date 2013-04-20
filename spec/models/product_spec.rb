@@ -141,7 +141,7 @@ describe Product do
     it 'returns the file contents from github of the given format' do
       client = stub(contents: 'filecontents')
       Octokit::Client.stubs(new: client)
-      book = Product.new(name: 'Book Title')
+      book = Product.new(name: 'Book Title', github_url: 'github')
 
       contents = book.file(:pdf)
 
