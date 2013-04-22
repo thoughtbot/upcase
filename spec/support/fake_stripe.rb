@@ -188,6 +188,12 @@ class FakeStripe < Sinatra::Base
     }.to_json
   end
 
+  post '/customers/:id' do
+    content_type :json
+
+    '{}'
+  end
+
   post '/coupons' do
     @@coupons ||= {}
     @@coupons[params[:id]] = create_coupon_hash(params)
