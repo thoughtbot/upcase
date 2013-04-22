@@ -69,6 +69,7 @@ Workshops::Application.routes.draw do
   match '/auth/:provider/callback', to: 'auth_callbacks#create'
 
   match '/watch' => 'high_voltage/pages#show', as: :watch, id: 'watch'
+  match '/privacy' => 'high_voltage/pages#show', as: :privacy, id: 'privacy'
   match '/directions' => "high_voltage/pages#show", as: :directions, id: "directions"
   match '/group-training' => "high_voltage/pages#show", as: :group_training, id: "group-training"
   match '/humans-present/oss' => "high_voltage/pages#show", as: :humans_present_oss, id: "humans-present-oss"
