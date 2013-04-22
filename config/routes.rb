@@ -47,7 +47,7 @@ Workshops::Application.routes.draw do
     resources :purchases, only: :create
   end
 
-  resources :subscriptions, only: :destroy
+  resources :subscriptions, only: [:destroy, :update]
 
   resources :episodes, path: 'podcast', only: [:index, :show]
   match '/podcasts' => redirect("/podcast")
