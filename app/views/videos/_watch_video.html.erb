@@ -8,6 +8,13 @@
       <%= render 'videos/download_link', download_type_key: "HdMp4VideoFile", download_type: "hd_mp4", size_display: "HD MP4", video: video %>
     </div>
   </section>
+
+  <% if video.has_notes? %>
+    <section class='video-notes'>
+      <h3>Notes</h3>
+      <%= raw(video.notes_html) %>
+    </section>
+  <% end %>
 <% else %>
   <p>This video is not yet available. It will be released on <%= video.available_on(purchaseable.starts_on).to_s(:simple) %></p>
 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411143358) do
+ActiveRecord::Schema.define(:version => 20130419192248) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -362,6 +362,7 @@ ActiveRecord::Schema.define(:version => 20130411143358) do
     t.string   "watchable_type"
     t.integer  "active_on_day",  :default => 0, :null => false
     t.integer  "position",       :default => 0, :null => false
+    t.text     "notes"
   end
 
   add_index "videos", ["watchable_type", "watchable_id"], :name => "index_videos_on_watchable_type_and_watchable_id"
