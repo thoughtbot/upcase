@@ -169,3 +169,6 @@ en:
       forever: $%{final_price}
       once: $%{final_price} the first month, then $%{full_price}
       repeating: $%{final_price} for %{duration_in_months} months, then $%{full_price}
+    flashes:
+      update:
+        success: You have successfully updated your subscription credit card information.
