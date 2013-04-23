@@ -37,6 +37,15 @@ describe PurchasesController do
 
       notifier.should have_received(:notify_of_purchase).with(assigns(:purchase))
     end
+
+    it 'sets flash[:purchase_paid_price]' do
+      stub_current_user_with(create(:user))
+      product = create(:product)
+
+      post :create, purchase: customer_params, product_id: product
+
+      flash[:purchase_paid_price].should eq product.individual_price
+    end
   end
 
   describe "processing on paypal" do
