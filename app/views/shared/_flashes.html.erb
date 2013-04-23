@@ -1,6 +1,6 @@
 <% if flash.any? %>
   <div class="flashes">
-    <% flash.keys & [:success, :info, :notice, :error].each do |key| -%>
+    <% (flash.keys & [:success, :info, :notice, :error]).each do |key| -%>
       <div class="flash <%= key %>">
         <%= flash[key] %>
       </div>
