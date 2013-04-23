@@ -37,6 +37,8 @@ class PurchasesController < ApplicationController
 
       notify_kissmetrics_of(@purchase)
 
+      flash[:purchase_paid_price] = @purchase.paid_price
+
       redirect_to success_url, notice: t('.purchase.flashes.success', name: @purchaseable.name)
     else
       @active_card = retrieve_active_card
