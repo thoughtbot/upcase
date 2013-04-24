@@ -6,6 +6,7 @@ feature 'An OAuth client authenticates', js: true do
     visit_client_app
     authorize_via_oauth
     verify_signed_in
+    verify_prime_flag_included_in_user_details
   end
 
   def create_client_app
@@ -41,5 +42,10 @@ feature 'An OAuth client authenticates', js: true do
   def verify_signed_in
     user = User.last
     page.body.should include user.email
+  end
+
+  def verify_prime_flag_included_in_user_details
+
+    puts page.body
   end
 end
