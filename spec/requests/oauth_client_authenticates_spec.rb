@@ -5,8 +5,7 @@ feature 'An OAuth client authenticates', js: true do
     create_client_app
     visit_client_app
     authorize_via_oauth
-    verify_signed_in
-    verify_prime_flag_included_in_user_details
+    verify_signed_in_user_details
   end
 
   def create_client_app
@@ -31,7 +30,7 @@ feature 'An OAuth client authenticates', js: true do
   end
 
   def authorize_via_oauth
-    user = create(:user)
+    user = create(:user, :with_subscription)
     click_on 'Sign Into Learn'
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
@@ -39,18 +38,10 @@ feature 'An OAuth client authenticates', js: true do
     click_on 'Authorize'
   end
 
-  def verify_signed_in
-    user = User.last
-    json = JSON.parse(page.find('#json').value)
-    json.email.should == user.email
-  end
+  def verify_signed_in_user_details
+    json = JSON.parse(page.find('#data').text)['user']
 
-  def verify_prime_flag_sent_in_user_details
-    # puts page.body
-  end
-
-  def verify_prime_flag_included_in_user_details
-
-    puts page.body
+    json['email'].should eq User.last.email
+    json['has_active_subscription?'].should be_true
   end
 end
