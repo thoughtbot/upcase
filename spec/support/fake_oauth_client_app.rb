@@ -1,7 +1,6 @@
 require 'sinatra/base'
 require 'oauth2'
 
-
 class FakeOauthClientApp < Sinatra::Base
   include Rails.application.routes.url_helpers
 
@@ -26,7 +25,7 @@ class FakeOauthClientApp < Sinatra::Base
   get '/fake_oauth_client_app/authorize' do
     token_response = client.auth_code.get_token(params[:code], redirect_uri: self.class.redirect_uri)
 
-    %{<div id='data' type='application/json'>#{token_response.get(resource_owner_path).body}</div>}
+    %{<div id='data'>#{token_response.get(resource_owner_path).body}</div>}
   end
 
   def client
