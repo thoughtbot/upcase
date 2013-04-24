@@ -41,7 +41,12 @@ feature 'An OAuth client authenticates', js: true do
 
   def verify_signed_in
     user = User.last
-    page.body.should include user.email
+    json = JSON.parse(page.find('#json').value)
+    json.email.should == user.email
+  end
+
+  def verify_prime_flag_sent_in_user_details
+    # puts page.body
   end
 
   def verify_prime_flag_included_in_user_details
