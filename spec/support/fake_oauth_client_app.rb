@@ -11,7 +11,6 @@ class FakeOauthClientApp < Sinatra::Base
 
   cattr_accessor :client_id
   cattr_accessor :client_secret
-  cattr_accessor :client_url
   cattr_accessor :server_url
 
   def self.redirect_uri
@@ -26,7 +25,7 @@ class FakeOauthClientApp < Sinatra::Base
   get '/fake_oauth_client_app/authorize' do
     token_response = client.auth_code.get_token(params[:code], redirect_uri: self.class.redirect_uri)
 
-    token_response.get(resource_owner_path).body
+    %{<div id='data'>#{token_response.get(resource_owner_path).body}</div>}
   end
 
   def client
@@ -36,8 +35,14 @@ class FakeOauthClientApp < Sinatra::Base
       site: server_url
     )
   end
-end
 
-Capybara::Discoball.spin(FakeOauthClientApp) do |client|
-  FakeOauthClientApp.client_url = client.url('')
+  def self.client_url
+    @client_url ||= boot
+  end
+
+  def self.boot
+    Capybara::Discoball.spin(FakeOauthClientApp) do |client|
+      client.url('')
+    end
+  end
 end
