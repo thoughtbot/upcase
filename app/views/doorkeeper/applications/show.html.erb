@@ -1,0 +1,24 @@
+<section class="doorkeeper-auth">
+  <header class="page-header"><h1>Application: <%= @application.name %></h1></header>
+
+  <div>
+    <h4>Callback url:</h4>
+    <p><code id="callback_url"><%= @application.redirect_uri %></code></p>
+
+    <h4>Application Id:</h4>
+    <p><code id="application_id"><%= @application.uid %></code></p>
+
+    <h4>Secret:</h4>
+    <p><code id="secret"><%= @application.secret %></code></p>
+
+    <h4>Link to authorization code:</h4>
+    <p><%= link_to 'Authorize', oauth_authorization_path(:client_id => @application.uid, :redirect_uri => @application.redirect_uri, :response_type => 'code' ) %></p>
+  </div>
+
+  <div>
+    <h3>Actions</h3>
+    <p><%= link_to 'List all', oauth_applications_path %></p>
+    <p><%= link_to 'Edit', edit_oauth_application_path(@application) %></p>
+    <p><%= link_to 'Remove', [:oauth, @application], :method => :delete, :data => { :confirm => "Are you sure?" } %></p>
+  </div>
+</section>

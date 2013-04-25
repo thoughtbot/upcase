@@ -1,0 +1,29 @@
+.doorkeeper-auth {
+  padding: 1.75em 1.55em 3em;
+
+  .inline_block {
+    float: left;
+    margin-right: .5em;
+  }
+
+  table {
+    margin-top: 2em;
+    width: 100%;
+
+    th {
+      font-weight: bold;
+    }
+
+    td, th {
+      padding: .75em;
+      border-bottom: 1px solid  #ccc;
+    }
+  }
+
+  form {
+    input[type=submit], input[type=submit] + div {
+      display: inline-block;
+      margin-top: .5em;
+    }
+  }
+}

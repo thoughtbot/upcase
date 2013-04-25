@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Authorize <%= page_title(app_name: 'thoughtbot Learn') %></title>
+    <%= stylesheet_link_tag 'application' %>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%= render 'shared/typekit' %>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+  </head>
+  <body class="<%= body_class %> <%= yield(:additional_body_classes) %>">
+
+    <section id="header-wrapper">
+      <div class="header-container">
+        <h1 class="small-logo">
+          <%= link_to image_tag('learn/learn-ralph-small.png'), root_path %>
+          <%= t 'shared.learn' %>
+        </h1>
+      </div>
+    </section>
+
+    <%= render 'shared/flashes' %>
+
+    <section class="content">
+      <%= yield %>
+    </section>
+
+    <%= render 'shared/javascript' %>
+  </body>
+</html>
