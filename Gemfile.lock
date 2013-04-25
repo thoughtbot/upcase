@@ -36,6 +36,8 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
+    active_model_serializers (0.7.0)
+      activemodel (>= 3.0)
     activemodel (3.2.12)
       activesupport (= 3.2.12)
       builder (~> 3.0.0)
@@ -377,6 +379,7 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth (= 4.2.9)
+  active_model_serializers (~> 0.7.0)
   acts_as_list (= 0.1.6)
   airbrake (= 3.0.9)
   aws-s3 (= 0.6.2)
