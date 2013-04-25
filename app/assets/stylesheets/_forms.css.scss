@@ -108,6 +108,10 @@ form {
     }
 
     ol {
+      &.actions {
+        margin-top: 2em;
+      }
+
       li {
         font-size: 16px;
         margin: 0 0 0 0;
