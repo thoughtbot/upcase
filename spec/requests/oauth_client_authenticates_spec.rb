@@ -42,6 +42,6 @@ feature 'An OAuth client authenticates', js: true do
     json = JSON.parse(page.find('#data').text)['user']
 
     json['email'].should eq User.last.email
-    json['has_active_subscription?'].should be_true
+    json['has_forum_access'].should be_true
   end
 end
