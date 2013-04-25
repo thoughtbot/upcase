@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 
 gem 'RedCloth', '4.2.9', require: 'redcloth'
+gem 'active_model_serializers', '~> 0.7.0'
 gem 'acts_as_list', '0.1.6'
 gem 'airbrake', '3.0.9'
 gem 'aws-s3', '0.6.2', :require => 'aws/s3'
