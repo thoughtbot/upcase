@@ -203,6 +203,25 @@ RailsAdmin.config do |config|
         field :teachers
       end
     end
+
+    config.model PrimeForTeamsPurchase do
+      object_label_method { :purchase_label_method }
+
+      export do
+        field :purchaseable_name do
+          visible true
+          filterable true
+        end
+        field :price do
+          visible true
+          filterable true
+        end
+        field :created_at do
+          export_value { value.to_s }
+        end
+        include_all_fields
+      end
+    end
   end
 
   def purchase_label_method
