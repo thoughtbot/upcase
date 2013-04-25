@@ -70,6 +70,7 @@ Workshops::Application.routes.draw do
 
   match '/watch' => 'high_voltage/pages#show', as: :watch, id: 'watch'
   match '/privacy' => 'high_voltage/pages#show', as: :privacy, id: 'privacy'
+  match '/terms' => 'high_voltage/pages#show', as: :terms, id: 'terms'
   match '/directions' => "high_voltage/pages#show", as: :directions, id: "directions"
   match '/group-training' => "high_voltage/pages#show", as: :group_training, id: "group-training"
   match '/humans-present/oss' => "high_voltage/pages#show", as: :humans_present_oss, id: "humans-present-oss"
