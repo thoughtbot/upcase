@@ -50,15 +50,6 @@ ActiveRecord::Schema.define(:version => 20130419192248) do
     t.datetime "updated_at",        :null => false
   end
 
-  create_table "comments", :force => true do |t|
-    t.integer  "owner_id",         :null => false
-    t.integer  "commentable_id",   :null => false
-    t.string   "commentable_type", :null => false
-    t.text     "body",             :null => false
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
-
   create_table "coupons", :force => true do |t|
     t.string   "code"
     t.integer  "amount"
@@ -131,14 +122,6 @@ ActiveRecord::Schema.define(:version => 20130419192248) do
   end
 
   add_index "follow_ups", ["workshop_id"], :name => "index_follow_ups_on_workshop_id"
-
-  create_table "lessons", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "course_id"
-  end
-
-  add_index "lessons", ["course_id"], :name => "index_lessons_on_course_id"
 
   create_table "oauth_access_grants", :force => true do |t|
     t.integer  "resource_owner_id", :null => false
@@ -256,7 +239,7 @@ ActiveRecord::Schema.define(:version => 20130419192248) do
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month",      :limit => 2
+    t.integer  "month"
     t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
