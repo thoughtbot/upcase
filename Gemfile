@@ -55,6 +55,7 @@ end
 
 group :development do
   gem 'hirb', '0.6.2'
+  gem 'heroku'
 end
 
 group :development, :test do
