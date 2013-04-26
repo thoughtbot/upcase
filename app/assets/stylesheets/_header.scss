@@ -344,3 +344,11 @@ section#header-wrapper {
     background-size: 44px 8px;
   }
 }
+
+body.purchases-new {
+  section#header-wrapper .header-container {
+    nav ul li:not(.account) {
+      display: none;
+    }
+  }
+}

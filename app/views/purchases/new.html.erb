@@ -1,5 +1,7 @@
 <% content_for :subject, @purchaseable.name %>
 
+<% content_for :additional_body_classes, @purchaseable.name %>
+
 <%= render 'checkout_form',
   title: t('purchase.product.heading_html', name: @purchaseable.name),
   subscription: @purchaseable.subscription?,
