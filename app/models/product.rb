@@ -110,19 +110,8 @@ class Product < ActiveRecord::Base
     purchases.paid.where(user_id: user).first
   end
 
-  def filename(format = nil)
-    "#{name.parameterize}#{".#{format}" if format.present?}"
-  end
-
-  def file(format)
-    if github_url.present?
-      client = Octokit::Client.new(login: GITHUB_USER, password: GITHUB_PASSWORD)
-      client.contents(
-        "thoughtbot/#{filename}",
-        path: "release/#{filename(format)}",
-        accept: 'application/vnd.github.raw'
-      )
-    end
+  def book_filename
+    name.parameterize
   end
 
   def title

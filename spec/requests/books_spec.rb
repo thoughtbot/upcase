@@ -1,11 +1,8 @@
 require 'spec_helper'
 
 describe 'A Purchased book' do
-  context 'GET /purchases/show for a book hosted on github', js: false do
+  context 'GET /purchases/show for a book hosted on github' do
     it 'references the github repository and links to the different formats' do
-      client = stub(contents: 'filecontents')
-      Octokit::Client.stubs(new: client)
-
       book = create(:github_book_product, name: 'Book title')
       purchase = create(:paid_purchase, purchaseable: book, readers: [])
 
@@ -13,15 +10,9 @@ describe 'A Purchased book' do
 
       expect(page).to have_content book.github_url
       expect(page).to have_content 'Start reading'
-      expect(page).to have_css("a[href='#{purchase_download_path(purchase, format: 'pdf')}']")
-      expect(page).to have_css("a[href='#{purchase_download_path(purchase, format: 'mobi')}']")
-      expect(page).to have_css("a[href='#{purchase_download_path(purchase, format: 'epub')}']")
-
-      click_link 'Download as EPUB'
-
-      expect(page.response_headers['Content-Type']).to eq 'application/octet-stream'
-      expect(page.response_headers['Content-Disposition']).to eq 'attachment; filename="book-title.epub"'
-      expect(page.source).to eq 'filecontents'
+      expect(page).to have_css("a[href='http://github.com/thoughtbot/book-repo/blob/master/release/book-title.pdf?raw=true']")
+      expect(page).to have_css("a[href='http://github.com/thoughtbot/book-repo/blob/master/release/book-title.pdf?raw=true']")
+      expect(page).to have_css("a[href='http://github.com/thoughtbot/book-repo/blob/master/release/book-title.pdf?raw=true']")
     end
   end
 
@@ -33,9 +24,9 @@ describe 'A Purchased book' do
       visit purchase_path(purchase)
 
       expect(page).not_to have_content 'Start reading'
-      expect(page).not_to have_css("a[href='#{purchase_download_path(purchase, format: 'pdf')}']")
-      expect(page).not_to have_css("a[href='#{purchase_download_path(purchase, format: 'mobi')}']")
-      expect(page).not_to have_css("a[href='#{purchase_download_path(purchase, format: 'epub')}']")
+      expect(page).not_to have_css("a[href='http://github.com/thoughtbot/book-repo/blob/master/release/book-title.pdf?raw=true']")
+      expect(page).not_to have_css("a[href='http://github.com/thoughtbot/book-repo/blob/master/release/book-title.pdf?raw=true']")
+      expect(page).not_to have_css("a[href='http://github.com/thoughtbot/book-repo/blob/master/release/book-title.pdf?raw=true']")
     end
   end
 end
