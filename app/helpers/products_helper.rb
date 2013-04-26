@@ -31,6 +31,18 @@ module ProductsHelper
     "product_images/book/#{book.sku.downcase}-cover-large.png"
   end
 
+  def epub_url(book)
+    "#{book.github_url}/blob/master/release/#{book.book_filename}.epub?raw=true"
+  end
+
+  def pdf_url(book)
+    "#{book.github_url}/blob/master/release/#{book.book_filename}.pdf?raw=true"
+  end
+
+  def kindle_url(book)
+    "#{book.github_url}/blob/master/release/#{book.book_filename}.mobi?raw=true"
+  end
+
   def book_releases_url(book)
     "#{book.github_url}/tree/master/release"
   end
