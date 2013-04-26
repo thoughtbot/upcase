@@ -1,0 +1,35 @@
+<section class="doorkeeper-auth">
+  <%= form_for([:oauth, application]) do |f| %>
+    <fieldset>
+      <% if application.errors.any? %>
+        <div class="alert-message error" data-alert><a class="close" href="#">×</a><p>Whoops! Check your form for possible errors</p></div>
+      <% end %>
+
+      <ol>
+        <li>
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+          <%= errors_for application, :name %>
+        </li>
+      </ol>
+
+      <ol>
+        <li>
+          <%= f.label :redirect_uri %>
+          <%= f.text_field :redirect_uri %>
+          <%= errors_for application, :redirect_uri %>
+          <% if Doorkeeper.configuration.test_redirect_uri %>
+            <span class="help-inline">Use <%= Doorkeeper.configuration.test_redirect_uri %> for local tests</span>
+          <% end %>
+        </li>
+      </ol>
+
+      <ol class="actions">
+        <li>
+          <%= f.submit :Submit %>
+          <%= button_to 'Cancel', oauth_applications_path, :class => 'button cancel', :method => :get %>
+        </li>
+      </ol>
+    </fieldset>
+  <% end %>
+</section>
