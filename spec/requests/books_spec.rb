@@ -4,7 +4,7 @@ describe 'A Purchased book' do
   context 'GET /purchases/show for a book hosted on github' do
     it 'references the github repository and links to the different formats' do
       book = create(:github_book_product, name: 'Book title')
-      purchase = create(:paid_purchase, purchaseable: book, readers: [])
+      purchase = create(:paid_purchase, purchaseable: book, github_usernames: [])
 
       visit purchase_path(purchase)
 

@@ -4,12 +4,11 @@ class Purchase < ActiveRecord::Base
   include Rails.application.routes.url_helpers
 
   PAYMENT_METHODS = %w(stripe paypal free)
-  API_SLEEP_TIME = 0.2
 
   belongs_to :user
   belongs_to :purchaseable, polymorphic: true
   belongs_to :coupon
-  serialize :readers
+  serialize :github_usernames
 
   attr_accessor :stripe_token, :paypal_url
 
@@ -37,7 +36,7 @@ class Purchase < ActiveRecord::Base
   after_save :save_info_to_user, if: :user
 
   delegate :name, :sku, to: :purchaseable, prefix: :purchaseable, allow_nil: true
-  delegate :subscription?, to: :purchaseable
+  delegate :fulfilled_with_github?, :subscription?, to: :purchaseable
 
   def self.from_month(date)
     where(["created_at >= ? AND created_at <= ?", date.beginning_of_month, date.end_of_month])
@@ -120,7 +119,7 @@ class Purchase < ActiveRecord::Base
       self.name = purchaser.name
       self.email = purchaser.email
       if github_username_needed? && purchaser.github_username.present?
-        self.readers = [purchaser.github_username]
+        self.github_usernames = [purchaser.github_username]
       end
     end
   end
@@ -137,10 +136,6 @@ class Purchase < ActiveRecord::Base
     save!
   end
 
-  def fulfilled_with_github?
-    purchaseable.fulfillment_method == "github"
-  end
-
   def refund
     if paid?
       if stripe?
@@ -149,15 +144,9 @@ class Purchase < ActiveRecord::Base
         paypal_refund
       end
       set_as_unpaid!
-      remove_readers_from_github
-    end
-  end
 
-  def remove_readers_from_github
-    if readers && readers.any?
-      readers.each do |username|
-        RemoveGithubTeamMemberJob.enqueue(purchaseable.github_team, username)
-        sleep API_SLEEP_TIME
+      if fulfilled_with_github?
+        GithubFulfillment.new(self).remove
       end
     end
   end
@@ -255,19 +244,8 @@ class Purchase < ActiveRecord::Base
 
   def fulfill
     if fulfilled_with_github?
-      fulfill_with_github
+      GithubFulfillment.new(self).fulfill
     end
-  end
-
-  def fulfill_with_github
-    github_usernames.each do |username|
-      AddGithubTeamMemberJob.enqueue(purchaseable.github_team, username, id)
-      sleep API_SLEEP_TIME
-    end
-  end
-
-  def github_usernames
-    readers.map(&:strip).reject(&:blank?).compact
   end
 
   def generate_lookup
@@ -303,8 +281,8 @@ class Purchase < ActiveRecord::Base
   end
 
   def save_info_to_user
-    if readers.present? && user.github_username.blank?
-      user.update_column(:github_username, readers.first)
+    if github_usernames.present? && user.github_username.blank?
+      user.update_column(:github_username, github_usernames.first)
     end
   end
 

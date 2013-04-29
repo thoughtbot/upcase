@@ -120,6 +120,10 @@ class Workshop < ActiveRecord::Base
     end
   end
 
+  def fulfilled_with_github?
+    github_team.present?
+  end
+
   private
 
   def alternate_workshop

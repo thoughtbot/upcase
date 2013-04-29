@@ -1,0 +1,5 @@
+<li>
+  <label for="github_username_1"><%= label %><abbr title="required">*</abbr></label>
+  <input type="text" name="purchase[github_usernames][]" class="github_username" id="github_username_1" required="required" value="<%= purchase.github_usernames.try(:first) %>"/>
+  <p class="inline-hints">Be sure to enter a valid GitHub username. Organizations are not allowed.</p>
+</li>
