@@ -36,7 +36,7 @@ When /^a video download product named "([^"]*)"$/ do |product_name|
 end
 
 Given /^there is a github product named "([^"]*)"$/ do |product_name|
-  create(:product, fulfillment_method: "github", name: product_name, product_type: "book")
+  create(:github_book_product, name: product_name)
 end
 
 Given /^there is an external product named "([^"]*)"$/ do |product_name|

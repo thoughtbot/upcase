@@ -14,7 +14,7 @@ class Section < ActiveRecord::Base
   # Delegates
   delegate :name, :description, :individual_price, :company_price, :terms,
     :videos, :resources, :video_chat_url, :events, :in_person?, :online?,
-    to: :workshop, allow_nil: true
+    :github_team, :fulfilled_with_github?, to: :workshop, allow_nil: true
 
   # Nested Attributes
   accepts_nested_attributes_for :section_teachers

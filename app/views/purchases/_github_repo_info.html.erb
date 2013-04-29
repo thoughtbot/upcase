@@ -1,4 +1,4 @@
-<% if purchaseable.fulfillment_method == "github" -%>
+<% if purchaseable.fulfilled_with_github? %>
   <p>You have been added to the GitHub repo at <%= link_to purchaseable.github_url, purchaseable.github_url %>.</p>
   <p>You should also receive a notification from GitHub. Please contact us at <%= mail_to "learn@thoughtbot.com", "learn@thoughtbot.com" %> if you do not get access to this repository.</p>
-<% end -%>
+<% end %>

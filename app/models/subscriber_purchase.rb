@@ -20,7 +20,7 @@ class SubscriberPurchase
     purchase.purchaseable = @purchaseable
     purchase.name = @subscriber.name
     purchase.email = @subscriber.email
-    purchase.readers = [@subscriber.github_username]
+    purchase.github_usernames = [@subscriber.github_username]
     purchase.user = @subscriber
     purchase.comments = @comments
     purchase.save!

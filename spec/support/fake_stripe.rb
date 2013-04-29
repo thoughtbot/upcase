@@ -142,6 +142,52 @@ class FakeStripe < Sinatra::Base
     }.to_json
   end
 
+  get '/charges/:id' do
+    content_type :json
+    { failure_message: nil,
+      description: nil,
+      created: 1336671705,
+      paid: true,
+      currency: "usd",
+      amount: 1500,
+      fee: 0,
+      object: "charge",
+      refunded: false,
+      card: {
+        exp_year: 2015,
+        type: "Visa",
+        address_zip: "94301",
+        fingerprint: "qhjxpr7DiCdFYTlH",
+        address_line1: "522 Ramona St",
+        last4: "4242",
+        address_line2: "Palo Alto",
+        cvc_check: "pass",
+        object: "card",
+        address_country: "USA",
+        country: "US",
+        address_zip_check: "pass",
+        name: "Java Bindings Cardholder",
+        address_state: "CA",
+        exp_month: 12,
+        id: "cc_7qBiSeyivjSSjR",
+        address_line1_check: "pass" },
+      customer: nil,
+      amount_refunded: 0,
+      id: params[:id],
+      disputed: false,
+      invoice: nil,
+      livemode: false
+    }.to_json
+  end
+
+  post '/charges/:id/refund' do
+    content_type :json
+    {
+      id: params[:id],
+      deleted: true
+    }.to_json
+  end
+
   post '/coupons' do
     @@coupons ||= {}
     @@coupons[params[:id]] = create_coupon_hash(params)

@@ -52,7 +52,7 @@ feature 'User creates a subscription' do
     start_purchasing_subscription
 
     expect(page).to have_content('GitHub username')
-    expect(page).to have_css('input#reader_1')
+    expect(page).to have_css('input#github_username_1')
   end
 
   scenario "user with github username doesn't see github username input" do
@@ -63,7 +63,7 @@ feature 'User creates a subscription' do
     click_purchase_link
 
     expect(page).not_to have_content('GitHub username')
-    expect(page).not_to have_css('input#reader_1')
+    expect(page).not_to have_css('input#github_username_1')
   end
 
   scenario 'creates a Stripe subscription with a valid coupon', :js => true do

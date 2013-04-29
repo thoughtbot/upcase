@@ -126,6 +126,10 @@ class Product < ActiveRecord::Base
     []
   end
 
+  def fulfilled_with_github?
+    github_team.present?
+  end
+
   private
 
   def apply_discount(price)

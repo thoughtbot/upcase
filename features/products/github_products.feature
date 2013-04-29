@@ -13,7 +13,7 @@ Feature: Purchase a github based product
     And I follow "Test GitHub"
     And I follow "Purchase for Yourself"
     Then I should see "$15"
-    And I should see "1st Reader"
+    And I should see "1st User"
     When I add a reader
     When I pay using Paypal
     And I submit the Paypal form

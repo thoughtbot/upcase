@@ -1,0 +1,20 @@
+<% if purchase.fulfilled_with_github? %>
+  <%= form.inputs 'GitHub Usernames' do %>
+    <%= render 'first_github_username', label: "1st User", purchase: purchase %>
+    <% if purchase.variant == "company" %>
+      <li>
+        Enter the <strong>GitHub usernames</strong> of up to 9 additional people. 
+        You can add more names later by emailing 
+        <%= mail_to "learn@thoughtbot.com", "learn@thoughtbot.com" %>.
+      </li>
+      <% (2...11).each do |github_username| %>
+        <li>
+          <label for="github_username_<%= github_username %>">
+            <%= github_username.ordinalize %> User
+          </label>
+          <input type="text" name="purchase[github_usernames][]" class="github_username"/>
+        </li>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

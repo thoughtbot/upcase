@@ -204,4 +204,20 @@ describe Workshop do
       expect(result).to eq(workshop.short_description)
     end
   end
+
+  describe '#fulfilled_with_github' do
+    it 'is true when product has a github team' do
+      product = build(:github_book_product)
+      purchase = build(:purchase, purchaseable: product)
+
+      purchase.should be_fulfilled_with_github
+    end
+
+    it 'is false when product has no github team' do
+      product = build(:book_product, github_team: nil)
+      purchase = build(:purchase, purchaseable: product)
+
+      purchase.should_not be_fulfilled_with_github
+    end
+  end
 end
