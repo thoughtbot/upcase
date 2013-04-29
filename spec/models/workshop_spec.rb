@@ -83,6 +83,7 @@ describe Workshop do
   describe '#alternates' do
     it 'returns the active online workshop with the same name' do
       offline_workshop = create(:workshop, online: false)
+      wrong_online_workshop = create(:workshop, online: true)
       online_workshop = create(
         :workshop,
         online: true,

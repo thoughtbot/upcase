@@ -123,7 +123,7 @@ class Workshop < ActiveRecord::Base
   private
 
   def alternate_workshop
-    self.class.only_active.where(online: !online).first
+    self.class.only_active.where(name: name, online: !online).first
   end
 
   def alternate_key
