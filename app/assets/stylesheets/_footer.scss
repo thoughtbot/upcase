@@ -2,7 +2,7 @@ footer {
   @extend .clearfix;
   clear: both;
   margin: 0 auto;
-  max-width: 741px;
+  max-width: $footer-width;
   opacity: .5;
   padding: 2em;
   @include transition(opacity .5s);
@@ -28,6 +28,13 @@ footer {
       &#trails {
         width: flex-grid(9);
         margin-right: 0;
+
+        ul:first-child li {
+          margin-bottom: $lh;
+          width: 100%;
+          line-height: 0;
+        }
+
         ul li {
           width: 33%;
           float: left;
@@ -40,7 +47,7 @@ footer {
 
         li {
           display: block;
-          margin-bottom: $lh * .5;
+          margin-bottom: $lh * .2;
         }
       }
     }

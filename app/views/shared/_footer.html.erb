@@ -18,7 +18,9 @@
     </section>
 
     <section id="trails">
-      <h3><%= link_to 'Trail Maps', topics_path %></h3>
+      <ul>
+        <li><%= link_to 'Trail Maps', topics_path %></li>
+      </ul>
       <ul>
         <% topics.each do |topic| %>
           <li><%= link_to topic.name, topic %></li>
