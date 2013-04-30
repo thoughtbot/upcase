@@ -4,7 +4,7 @@
   padding: 3em 2em 0 2em;
 
   .flash {
-    @extend .text-box;
+    @include text-box;
     border-width: 0;
     margin-bottom: 0;
 
