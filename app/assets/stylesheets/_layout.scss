@@ -24,14 +24,6 @@ img {
     margin: 0 0 .4em 23px;
   }
 
-  h2 {
-    padding: 10px 0 10px 0;
-
-    &:first-child {
-      padding-top: 0;
-    }
-  }
-
   ul {
     padding: 4px 0 30px 0;
   }
@@ -49,7 +41,7 @@ img {
   }
 
   .text-box-in-text-box {
-    @extend .text-box;
+    @include text-box;
     background-color: $lightwarmgray;
 
     .thumbnail {
@@ -84,6 +76,7 @@ img {
 //************************************************************************//
 
 .text-box {
+<<<<<<< HEAD
   background-color: white;
   border-bottom: 2px solid $warmgray;
   box-shadow: inset 0 1px 1px white, 0 0px 3px $warmgray;
@@ -122,42 +115,8 @@ img {
     margin-left: 2%;
   }
 
-// in the html, lists are sometimes declared as ol and sometimes as ul
-// this results in these rules to add bullets to lists.
-
   ol {
     margin-bottom: 20px;
-
-    li {
-      list-style: $list-style;
-    }
-  }
-
-  fieldset ol li {
-    list-style: none;
-  }
-
-  ul li {
-    list-style: $list-style;
-  }
-
-  li {
-    margin: 10px 20px 0 20px;
-
-    ul li {
-      list-style: $list-style;
-    }
-  }
-
-  .trail-map-steps {
-
-    li {
-      list-style: none;
-    }
-  }
-
-  li.article {
-    list-style: none;
   }
 
   form {

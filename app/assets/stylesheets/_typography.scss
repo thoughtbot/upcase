@@ -1,3 +1,9 @@
+h1, h2, h3, h4, h5 {
+  em {
+    color: $learnred;
+  }
+}
+
 h1 {
   color: white;
   font: 800 72px $sans-serif;
@@ -16,69 +22,11 @@ h2 {
   -webkit-font-smoothing: antialiased;
 }
 
-.product-title {
-  h2 {
-    margin-bottom: 0;
-  }
-}
-
-.text-box {
-  h2 {
-    color: $darkwarmgray;
-  }
-
-  &.related-reading a h3 {
-    color: $learnred;
-  }
-}
-
-code {
-  font-family: monaco;
-  color: $darkwarmgray;
-}
-
-pre code {
-  @extend .gray-box;
-  display: block;
-  font-size: 15px;
-  padding-bottom: 0;
-  padding-top: 0;
-}
-
-section.content {
-  .text-box {
-    h2 {
-      color: $darkwarmgray;
-    }
-
-    p {
-      color: $darkwarmgray;
-      font: normal 17px $serif;
-    }
-
-    a {
-      h2 {
-        color: $learnred;
-      }
-    }
-  }
-
-  .results-date {
-    color: $warmgray;
-  }
-}
-
 h3 {
   color: lighten($darkwarmgray, 15%);
   font: 700 26px/1.0em $sans-serif;
   text-rendering: optimizeLegibility;
   margin-bottom: 10px;
-}
-
-.workshop-type {
-  color: $learnred;
-  font-size: 17px;
-  margin-bottom: 30px !important;
 }
 
 h4 {
@@ -111,10 +59,17 @@ h6 { //used for small header in topics, related reading
   margin-bottom: 2px;
 }
 
-h1, h2, h3, h4, h5 {
-  em {
-    color: $learnred;
-  }
+code {
+  font-family: monaco;
+  color: $darkwarmgray;
+}
+
+pre code {
+  @extend .gray-box;
+  display: block;
+  font-size: 15px;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 
 p {
@@ -176,6 +131,17 @@ a {
   text-decoration: none;
 }
 
+section.content {
+  .results-date {
+    color: $warmgray;
+  }
+}
+
+.workshop-type {
+  font-size: 1.2em;
+  margin-top: 0;
+}
+
 .workshop-alert, .purchase-return-link {
   a {
   font-family: $sans-serif;
@@ -184,6 +150,25 @@ a {
 
 .address a {
   color: $darkwarmgray;
+}
+
+// HEADER
+//************************************************************************//
+
+.header-container {
+  .logo, .intro {
+    -webkit-font-smoothing: antialiased;
+    color: $darkwarmgray;
+    font: italic 300 20px $serif;
+  }
+}
+
+@media screen and (max-device-width: 800px), screen and (max-width: 800px) {
+  .detail-logo {
+    h1 {
+      line-height: 56px !important;
+    }
+  }
 }
 
 // SIDEPANEL
@@ -258,25 +243,6 @@ aside {
   }
 }
 
-// HEADER
-//************************************************************************//
-
-.header-container {
-  .logo, .intro {
-    -webkit-font-smoothing: antialiased;
-    color: $darkwarmgray;
-    font: italic 300 20px $serif;
-  }
-}
-
-@media screen and (max-device-width: 800px), screen and (max-width: 800px) {
-  .detail-logo {
-    h1 {
-      line-height: 56px !important;
-    }
-  }
-}
-
 // TERMS
 //************************************************************************//
 
@@ -319,12 +285,15 @@ footer {
       color: $red;
     }
   }
+
   ul {
+    list-style-type: disc;
     a {
       font-size: 16px;
       line-height: 24px;
     }
   }
+
   p#copyright {
     color: #7a7a7a;
     font: italic 16px $serif;

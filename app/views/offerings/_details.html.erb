@@ -6,9 +6,11 @@
 
     <hgroup class="product-title">
       <h2><%= offering.tagline %></h2>
-      <h3 class="workshop-type">
-        <%= t "offerings.subtitle.#{offering.offering_type}" %>
-      </h3>
+      <% if t("offerings.subtitle.#{offering.offering_type}").present? %>
+        <h3 class="workshop-type">
+          <%= t "offerings.subtitle.#{offering.offering_type}" %>
+        </h3>
+      <% end %>
     </hgroup>
 
     <%== textilize offering.description %>
