@@ -320,6 +320,15 @@ body.products-show, body.workshops-show {
 
       #table-of-contents {
         margin-top: 40px;
+
+        li {
+          list-style: none;
+        }
+
+        li ul li {
+          list-style: $list-style;
+        }
+
       }
 
       .teachers {
@@ -329,6 +338,7 @@ body.products-show, body.workshops-show {
 
         li {
           margin-left: 0;
+          list-style: none;
         }
 
         img {
