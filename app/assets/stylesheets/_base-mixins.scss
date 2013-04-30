@@ -1,0 +1,9 @@
+@include font-face(entypo, 'entypo/entypo', $asset-pipeline: true);
+
+.icon {
+  font-family: "entypo";
+  font-size: 25px;
+  font-weight: normal;
+  position: relative;
+  top: 3px;
+}

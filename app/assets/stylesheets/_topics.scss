@@ -164,6 +164,22 @@
     }
   }
 
+  .related-reading {
+    ul, ol {
+      list-style-type: none;
+      margin: 0;
+    }
+
+    a {
+      display: block;
+
+      h3 {
+        color: $learnred;
+        margin-top: .2em;
+      }
+    }
+  }
+
   @media screen and (max-device-width: 800px), screen and (max-width: 800px) {
     .products-container h2 {
       font: 800 25px/25px $sans-serif !important;

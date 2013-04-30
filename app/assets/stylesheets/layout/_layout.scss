@@ -1,0 +1,204 @@
+body {
+  background-color: $lightwarmgray;
+  border-top: none;
+  font-family: $sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+.content {
+  @include outer-container;
+  max-width: $max-width;
+  padding: 1.75em 2em 3em 2em;
+
+  > h1 {
+    color: desaturate(darken($warmgray, 22%), 8%);
+    font-size: 50px;
+    margin: 0 0 .4em 23px;
+  }
+
+  .summary {
+    @include span-columns(9);
+    clear: both;
+    display: block;
+    float: left;
+    text-align: left;
+
+    p {
+      margin: -10px 0 24px 25px;
+    }
+  }
+
+  li {
+    margin-top: 1.2em;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .text-box-wrapper {
+    @include span-columns (9);
+  }
+}
+
+.text-box {
+  @extend %main-content-box;
+
+  h1, h2, h3, h4, h5, h6{
+    color: $darkwarmgray;
+    margin: 2rem 0 1rem 0;
+  }
+
+  h2 {
+    margin-top: 3rem;
+  }
+
+  p, li {
+    color: $darkwarmgray;
+  }
+
+  hgroup.product-title {
+    h2 {
+      margin-top: 0;
+    }
+
+    h3 {
+      margin-top: 0;
+      font-size: 1.2em;
+    }
+  }
+
+  a {
+    h2 {
+      color: $learnred;
+    }
+
+    &:hover {
+      h2 {
+        color: #C42107;
+      }
+
+      h3 {
+        color: $learnred;
+      }
+    }
+  }
+}
+
+aside {
+  @include span-columns (3);
+  float: right;
+  display: inline-block;
+
+  h2 span {
+    font: 300 1em $sans-serif;
+
+    &.original-price {
+      color: lighten($darkwarmgray, 22%);
+      display: block;
+      font-size: 24px;
+      margin-left: 10px;
+      margin-top: 7px;
+      position: relative;
+
+      &::after {
+        background-image: image_url("icons/brush.png");
+        content: "";
+        height: 33px;
+        left: -3px;
+        position: absolute;
+        top: -3px;
+        width: 60px;
+      }
+    }
+  }
+
+  h5 {
+    background-color: $lightwarmgray;
+    color: #94918C;
+    display: inline-block;
+    font: 600 13px $sans-serif;
+    margin-top: -8px;
+    padding: 0  0px 0 0px;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  ul, ol {
+    margin: 0;
+    list-style-type: none;
+  }
+
+  li {
+    font: normal 1em $serif;
+    color: $darkwarmgray;
+  }
+
+  dt p {
+    font-style: italic;
+    margin: 2rem 0 1rem 0;
+  }
+
+  // for aside subsection i.e. resources, text chat, etc.
+  > div {
+    margin-bottom: 2em;
+  }
+
+  .button {
+    width: 100%;
+    height: auto;
+    margin: .75em 0 1em 0;
+    padding: 12px;
+  }
+
+  .address a {
+    color: $darkwarmgray;
+  }
+}
+
+#additional-information {
+  li {
+    font-family: $sans-serif;
+  }
+
+  h4 {
+    text-shadow: none;
+  }
+
+  p {
+    font-family: $sans-serif;
+    font-size: 14px;
+    font-style: normal;
+  }
+}
+
+@media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+  .content {
+    padding: 1.5em 1em 2em 1em;
+  }
+}
+
+@media screen and (max-device-width: 850px), screen and (max-width: 850px) {
+  .content {
+    .text-box-wrapper {
+      width: 100%;
+    }
+
+    section.content .summary {
+      @include span-columns(12);
+    }
+
+    aside {
+      display: block !important;
+      margin-top: 2em;
+      width: 100% !important;
+    }
+
+    form input[type="submit"] {
+      width: 100%;
+    }
+  }
+}

@@ -74,6 +74,15 @@ section#header-wrapper {
       text-align: right;
       width: flex-grid(9);
 
+      ul {
+        margin: 0;
+        list-style-type: none;
+      }
+
+      li {
+        margin: 0;
+      }
+
       // position sub menus
       li.workshops ul {
         right: 321px;

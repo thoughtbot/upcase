@@ -72,6 +72,11 @@ pre code {
   padding-top: 0;
 }
 
+br {
+  float: left;
+  display: none;
+}
+
 p {
   color: $darkwarmgray;
   font: normal 17px $serif;
@@ -100,6 +105,16 @@ q {
   font-style: italic;
   margin: 30px 18% 0 4%;
   width: 80%;
+}
+
+ol, ul {
+  list-style-type: disc;
+  margin: 0 0 0 2em;
+  padding: 0;
+
+  li {
+    margin: 0 0 1em 0;
+  }
 }
 
 li {
@@ -171,78 +186,6 @@ section.content {
   }
 }
 
-// SIDEPANEL
-//************************************************************************//
-
-aside {
-  a {
-    font: italic 17px $serif;
-    margin-top: 0;
-  }
-
-  h2 span {
-    font: 300 1em $sans-serif;
-
-    &.original-price {
-      color: lighten($darkwarmgray, 22%);
-      display: block;
-      font-size: 24px;
-      margin-left: 10px;
-      margin-top: 7px;
-      position: relative;
-      -webkit-font-smoothing: antialiased;
-
-      &::after {
-        background-image: image_url("icons/brush.png");
-        content: "";
-        height: 33px;
-        left: -3px;
-        position: absolute;
-        top: -3px;
-        width: 60px;
-      }
-    }
-  }
-
-  h3 {
-    color: lighten($darkwarmgray, 15%);
-    text-shadow: 0 1px 0 #fff;
-    text-transform: uppercase;
-  }
-
-  hgroup h4 {
-    color: $darkwarmgray;
-    font: italic em(17) $serif italic;
-  }
-
-  h5 {
-    background-color: $lightwarmgray;
-    color: #94918C;
-    display: inline-block;
-    font: 600 13px $sans-serif;
-    margin-top: -8px;
-    padding: 0  0px 0 0px;
-    text-align: left;
-    text-transform: uppercase;
-  }
-
-  li {
-    color: $darkwarmgray;
-    font: normal 17px $serif;
-    margin-bottom: 12px;
-    text-shadow: 0 1px 1px rgba(255,255,255,.3);
-    -webkit-font-smoothing: antialiased;
-
-    em {
-      font: italic 17px $serif;
-    }
-  }
-
-  dt p { //this is used for 'what if i am not happy'. should be made into li instead of dt
-    font-style: italic;
-  }
-}
-
 // TERMS
 //************************************************************************//
 
@@ -287,7 +230,8 @@ footer {
   }
 
   ul {
-    list-style-type: disc;
+    list-style-type: $list-style;
+    
     a {
       font-size: 16px;
       line-height: 24px;
