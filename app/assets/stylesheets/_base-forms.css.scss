@@ -70,6 +70,11 @@ input[type="submit"] {
 form {
   margin: 0 0 48px 0;
 
+  ul, ol {
+    margin: 0;
+    padding: 0;
+  }
+
   .errors, .errors li {
     color: $learnred;
     font-size: 18px;
@@ -78,6 +83,8 @@ form {
   }
 
   li {
+    list-style-type: none;
+
     &.payment-errors {
       color: $learnred;
       font-style: bold;
