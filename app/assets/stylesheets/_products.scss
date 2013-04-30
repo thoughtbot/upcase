@@ -9,13 +9,13 @@ body.products-index {
       content: '';
       margin-right: -2px;
       @include position(absolute, 0px 50% 0px 0);
-      width: 5px;
+      width: 2px;
       z-index: -1;
     }
 
     h2.subscriber {
       background: $lightwarmgray;
-      margin-bottom: 2em;
+      margin-bottom: 1.5em;
       margin-top: 3em;
     }
 
@@ -33,6 +33,8 @@ body.products-index {
     .prime-main-cta {
       background: $learnred;
       border: 0;
+      width: 100%;
+      max-width: $footer-width;
       border-radius: 3px;
       display: inline-block;
       margin: 0 auto;
@@ -65,13 +67,15 @@ body.products-index {
     }
 
     .products {
+      @extend .text-box;
       margin: auto;
       margin-bottom: 4em;
-      max-width: 741px;
+      max-width: $footer-width;
       overflow: hidden;
+      background-color: $off-white;
 
       h2 {
-        background: $lightwarmgray;
+        background: $off-white;
         color: $darkwarmgray;
         font: 700 1.75em/1.2em $sans-serif;
         margin: 0 0 1.25em;
@@ -99,6 +103,10 @@ body.products-index {
             position: relative;
             @include transition(.15s);
 
+            img {
+              width: 196px;
+            }
+
             &:hover {
               top: -3px;
             }
@@ -123,7 +131,7 @@ body.products-index {
         text-align: left;
 
         a {
-          background: $lightwarmgray;
+          background: $off-white;
           @include box-sizing(content-box);
           display: inline-block;
           margin: 0;
@@ -131,7 +139,7 @@ body.products-index {
           text-align: left;
           @include transition(.2s);
           vertical-align: top;
-          width: 215px;
+          width: 197px;
 
           &:hover {
             background: lighten($warmgray, 10%);
