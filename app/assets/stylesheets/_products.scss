@@ -190,7 +190,7 @@ body.products-index, body.purchases {
     text-align: center;
 
     a {
-      @extend .text-box;
+      @include text-box;
       display: block;
       width: 100%;
 
@@ -277,17 +277,16 @@ body.purchases {
 body.products-show, body.workshops-show {
   section.content {
     .text-box {
-
       #faq {
-        margin-top: 30px;
+        border-top: 1px dashed #ccc;
+        margin-top: 2em;
 
         dt {
-          margin-top: 16px;
+          margin-top: 2em;
         }
 
         dt p {
           font-weight: 600;
-          margin-bottom: 4px;
         }
       }
 
@@ -327,26 +326,16 @@ body.products-show, body.workshops-show {
       }
 
       #table-of-contents {
-        margin-top: 40px;
-
-        li {
-          list-style: none;
-        }
-
-        li ul li {
-          list-style: $list-style;
-        }
-
+        margin-top: 2em;
       }
 
       .teachers {
-        margin-top: 30px;
+        margin: 4em 0 0 0;
         padding-bottom: 0;
         position: relative;
 
         li {
           margin-left: 0;
-          list-style: none;
         }
 
         img {
@@ -446,6 +435,7 @@ body.products-show, body.workshops-show {
 
           .button {
             margin-bottom: 0;
+            margin-top: .75em;
           }
         }
 
