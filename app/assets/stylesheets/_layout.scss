@@ -122,12 +122,42 @@ img {
     margin-left: 2%;
   }
 
+// in the html, lists are sometimes declared as ol and sometimes as ul
+// this results in these rules to add bullets to lists.
+
   ol {
     margin-bottom: 20px;
+
+    li {
+      list-style: $list-style;
+    }
+  }
+
+  fieldset ol li {
+    list-style: none;
+  }
+
+  ul li {
+    list-style: $list-style;
   }
 
   li {
     margin: 10px 20px 0 20px;
+
+    ul li {
+      list-style: $list-style;
+    }
+  }
+
+  .trail-map-steps {
+
+    li {
+      list-style: none;
+    }
+  }
+
+  li.article {
+    list-style: none;
   }
 
   form {
