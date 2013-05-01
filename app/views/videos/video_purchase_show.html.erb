@@ -3,10 +3,12 @@
 
 <div class="text-box-wrapper">
   <div class="text-box">
-    <h2>Watch or Download Video</h2>
-    <% unless single_video?(@purchaseable) %>
-      <h3 class="workshop-type"><%= pluralize @purchaseable.videos.size, 'video' %> in the series</h3>
-    <% end %>
+    <hgroup class="product-title">
+      <h2>Watch or Download Video</h2>
+      <% unless single_video?(@purchaseable) %>
+        <h3 class="workshop-type"><%= pluralize @purchaseable.videos.size, 'video' %> in the series</h3>
+      <% end %>
+    </hgroup>
 
     <% if single_video?(@purchaseable) %>
       <%= render 'videos/watch_video', video: @purchaseable.videos.first, purchaseable: @purchaseable %>

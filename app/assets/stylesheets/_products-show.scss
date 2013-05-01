@@ -1,6 +1,9 @@
 body.products-show, body.workshops-show {
-  .workshop-type {
-    margin-top: 0;
+  .discount-title {
+    color: $darkwarmgray;
+    font-size: 18px;
+    margin: 12px 0 24px;
+    text-align: center;
   }
 
   #faq {
@@ -77,8 +80,58 @@ body.products-show, body.workshops-show {
       padding: 0;
     }
 
+    h5 {
+      font-weight: 800;
+      margin: 0;
+    }
+
     .bio {
       margin-left: 114px;
+    }
+  }
+
+  .what-you-learn {
+    @include outer-container;
+    background-color: $lightwarmgray;
+    border-radius: 3px;
+    margin: 28px 0 28px 0;
+    padding: 4%;
+
+    h3 {
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 17px;
+    }
+
+    ul {
+      margin-top: 12px;
+    }
+
+    li {
+      @include span-columns (6);
+      margin-left: 0;
+      margin-top: 6px;
+      padding: 4px;
+      display: inline;
+
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .workshop-alert {
+    background: $lightwarmgray;
+    margin-bottom: 2em;
+    padding: 1em;
+    text-align: center;
+
+    a {
+      color: $learnred;
+    }
+
+    b {
+      font-weight: bold;
     }
   }
 
@@ -92,44 +145,74 @@ body.products-show, body.workshops-show {
       }
 
       .or {
-        font-style: italic;
-        padding-top: .8em;
         text-align: center;
+        text-transform: uppercase;
+        font: 700 .8em $sans-serif;
+        padding: 0;
+        margin: 2.5em 0 2em;
+        position: relative;
+
+        &:after, &:before {
+          @include position(absolute, .6em 0 0 0px);
+          content: '';
+          display: block;
+          width: 15%;
+          border-top: 1px solid $darkwarmgray;
+        }
+
+        &:before {
+          right: 0;
+          left: auto;
+        }
       }
     }
 
     .section-location, #license {
-      div {
+      > div {
         margin-bottom: 26px;
 
-        &.prime-purchase {
-          @extend .prime-purchase;
-        }
+        h2 {
+          span {
+            color: $darkwarmgray;
+          }
 
-        &.individual-purchase, &.company-purchase, &#register {
-          .button.non-free {
-            padding: 8px 0 6px;
-            background: darken($warmgray, 20%);
-            border-color: $darkwarmgray;
+          &.active-subscription, &.active-subscription span {
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.4rem;
+            margin-bottom: .5rem;
           }
         }
 
-        h2, .location-name {
+        .license {
+          margin-top: 0;
+
+          p {
+            font-size: 14px;
+            margin-top: -14px;
+            text-align: center;
+          }
+        }
+
+        .license-button {
+          margin-bottom: 0;
+          text-transform: uppercase;
+        }
+
+        .button.non-free {
+          padding: 8px 0 6px;
+          background: darken($warmgray, 20%);
+          border-color: $darkwarmgray;
+        }
+
+        .location-name {
           color: $darkwarmgray;
           font: 800 36px/40px $sans-serif;
         }
 
-        h2.active-subscription, h2.active-subscription span {
-          font-size: 1rem;
-          font-weight: 700;
-          line-height: 1.4rem;
-          margin-bottom: .5rem;
+        .when {
+          margin-top: 0;
         }
-      }
-
-      .location-name {
-        color: $learnred;
-        font-weight: 700;
       }
 
       &.subscription {
@@ -149,41 +232,10 @@ body.products-show, body.workshops-show {
           }
         }
       }
-
-      .license {
-        margin-top: 0;
-
-        p {
-          font-size: 14px;
-          margin-top: -14px;
-          text-align: center;
-        }
-
-        .button {
-          margin-bottom: 0;
-          margin-top: .75em;
-        }
-      }
-
-      .license-button {
-        text-transform: uppercase;
-      }
-
-      .when {
-        margin-top: 0;
-      }
     }
 
     .section-location:nth-child(2n) {
       margin-top: 30px;
-    }
-
-    #terms {
-      margin-top: 10px;
-
-      ul {
-        margin: 0;
-      }
     }
   }
 

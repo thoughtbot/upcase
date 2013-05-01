@@ -13,8 +13,10 @@
 <% if @purchaseable.videos.any? %>
   <div class="text-box-wrapper">
     <section class="text-box" id="videos">
-      <h2>Watch or Download Video Lessons</h2>
-      <h3 class="workshop-type"><%= pluralize @purchaseable.videos.size, 'lesson' %> in this workshop</h3>
+      <hgroup class="product-title">
+        <h2>Watch or Download Video Lessons</h2>
+        <h3 class="workshop-type"><%= pluralize @purchaseable.videos.size, 'lesson' %> in this workshop</h3>
+      </hgroup>
       <%= render @purchaseable.videos.ordered, purchase: @purchase %>
     </section>
   </div>
