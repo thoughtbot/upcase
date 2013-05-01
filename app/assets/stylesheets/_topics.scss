@@ -40,16 +40,17 @@
     }
 
     ul, ol, li {
+      padding: 0;
       list-style-type: none;
     }
   }
 
   section.content {
     .results-date {
+      color: $warmgray;
       display: inline-block;
       font: 700 14px $sans-serif;
       margin-bottom: 2px;
-      color: $warmgray;
     }
 
     .view-all-articles {
@@ -70,6 +71,10 @@
       hgroup {
         margin-left: 48px;
 
+        h5, h4 {
+          font-style: normal;
+        }
+
         h5 {
           background-color: none;
           display: block;
@@ -80,6 +85,7 @@
       }
 
       li {
+        list-style-type: none;
         margin: 4px 0 8px 0;
 
         a {
@@ -109,7 +115,6 @@
         }
 
         li {
-
           &.prime h4 {
             color: $darkwarmgray;
             font-family: $sans-serif;
@@ -182,8 +187,8 @@
     }
 
     h2:first-of-type {
-      margin-top: 0;
       margin-bottom: 2rem;
+      margin-top: 0;
     }
 
     a {
