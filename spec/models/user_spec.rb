@@ -113,7 +113,16 @@ describe User do
       }
     end
 
+    def stub_organizations(names)
+      organizations = names.map do |name|
+        { 'login' => name }
+      end
+
+      Octokit.stubs(:organizations).with('thoughtbot').returns(organizations)
+    end
+
     it "creates a new user when no matching user" do
+      stub_organizations %w('alpha beta')
       user = User.find_or_create_from_auth_hash(auth_hash)
       user.should be_persisted
       user.first_name.should == 'Test'
@@ -122,6 +131,13 @@ describe User do
       user.github_username.should == 'thoughtbot'
       user.auth_provider.should == 'github'
       user.auth_uid.should == 1
+      user.should_not be_admin
+    end
+
+    it "creates a new admin when no matching user from our organization" do
+      stub_organizations %w(alpha beta thoughtbot)
+      user = User.find_or_create_from_auth_hash(auth_hash)
+      user.should be_admin
     end
 
     context "with an existing user" do
