@@ -14,6 +14,11 @@ section#header-wrapper {
     position: relative;
     @include user-select(none);
 
+    .logo, .intro {
+      color: $darkwarmgray;
+      font: italic 300 20px $serif;
+    }
+
     .logo {
       text-align: center;
 
@@ -23,12 +28,9 @@ section#header-wrapper {
     }
 
     .intro {
-      color: $darkwarmgray;
-      font: italic 300 20px $serif;
       margin: 0 auto;
       padding: 1em;
       text-align: center;
-      -webkit-font-smoothing: antialiased;
       width: 630px;
 
       @media screen and (max-device-width: 600px), screen and (max-width: 600px) {
@@ -81,6 +83,7 @@ section#header-wrapper {
 
       li {
         margin: 0;
+        line-height: 1.2em;
       }
 
       // position sub menus
@@ -310,6 +313,10 @@ section#header-wrapper {
 
     .detail-logo {
       float: auto;
+
+      h1 {
+        line-height: 56px !important;
+      }
     }
   }
 }

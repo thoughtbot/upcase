@@ -1,100 +1,73 @@
-h1, h2, h3, h4, h5 {
-  em {
-    color: $learnred;
-  }
-}
-
-h1 {
-  color: white;
-  font: 800 72px $sans-serif;
+h1, h2, h3, h4, h5, h6 {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  font-family: $sans-serif;
+  font-weight: 700;
+  line-height: 1.2em;
+  display: block;
+  color: $darkwarmgray;
+}
 
-  a {
-    color: white;
-  }
+h1, h1 a {
+  color: white;
+  font-weight: 800;
+  font-size: 72;
 }
 
 h2 {
-  color: $learnred;
   font: 800 36px/40px $sans-serif;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
 }
 
 h3 {
   color: lighten($darkwarmgray, 15%);
-  font: 700 26px/1.0em $sans-serif;
-  text-rendering: optimizeLegibility;
-  margin-bottom: 10px;
+  font-size: 26px;
+  font-weight: 800;
 }
 
 h4 {
   color: #94918C;
-  font: 600 13px $sans-serif;
+  font-weight: 600;
+  font-size: 1em;
   text-shadow: 0 2px 0 white;
-
-  &.discount-title {
-    color: $darkwarmgray;
-    font-size: 18px;
-    margin: 12px 0 24px;
-    text-align: center;
-  }
-}
-
-h5 { //used for small header in "teachers" class
-  color: $warmgray;
-  display: block;
-  font-family: $sans-serif;
-  font-size: 18px;
-  font-weight: 800;
-  margin: 0;
-  text-rendering: optimizeLegibility;
-}
-
-h6 { //used for small header in topics, related reading
-  color: $warmgray;
-  display: inline-block;
-  font: 700 14px $sans-serif;
-  margin-bottom: 2px;
-}
-
-code {
-  font-family: monaco;
-  color: $darkwarmgray;
-}
-
-pre code {
-  @extend .gray-box;
-  display: block;
-  font-size: 15px;
-  padding-bottom: 0;
-  padding-top: 0;
-}
-
-br {
-  float: left;
-  display: none;
 }
 
 p {
   color: $darkwarmgray;
   font: normal 17px $serif;
+  -webkit-font-smoothing: antialiased;
   margin-bottom: 12px;
   text-shadow: 0 1px 1px rgba(255,255,255,.3);
-  -webkit-font-smoothing: antialiased;
 
   em {
     font-style: italic;
   }
 }
 
-.summary p {
-  font: italic 17px $serif;
+a {
+  color: $red;
+  font-family: $serif;
+  text-decoration: none;
+}
+
+pre code {
+  display: block;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+code {
+  font-family: monaco;
+  font-size: 1em;
+  color: $darkwarmgray;
+}
+
+// negate brs inserted into posts
+br {
+  float: left;
+  display: none;
 }
 
 blockquote {
-  @extend p;
   padding-left: 20px;
   font-style: italic;
   border-left: 4px solid $warmgray;
@@ -103,8 +76,13 @@ blockquote {
 q {
   display: block;
   font-style: italic;
-  margin: 30px 18% 0 4%;
+  margin: 2.5em 0 0 1em;
   width: 80%;
+}
+
+p.source {
+  margin-bottom: 0 !important; // override inline styles
+  margin-top: 0 !important; // override inline styles
 }
 
 ol, ul {
@@ -117,16 +95,6 @@ ol, ul {
   }
 }
 
-li {
-  -webkit-font-smoothing: antialiased;
-  color: $darkwarmgray;
-  font: normal 17px $serif;
-}
-
-strong {
-  font-weight: bold;
-}
-
 hr {
   border: 0;
   border-bottom: 1px solid white;
@@ -135,150 +103,3 @@ hr {
   height: 2px;
 }
 
-td {
-  color: $darkwarmgray;
-  font: normal 17px $serif;
-}
-
-a {
-  color: $red;
-  font-family: $serif;
-  text-decoration: none;
-}
-
-section.content {
-  .results-date {
-    color: $warmgray;
-  }
-}
-
-.workshop-type {
-  font-size: 1.2em;
-  margin-top: 0;
-}
-
-.workshop-alert, .purchase-return-link {
-  a {
-  font-family: $sans-serif;
-  }
-}
-
-.address a {
-  color: $darkwarmgray;
-}
-
-// HEADER
-//************************************************************************//
-
-.header-container {
-  .logo, .intro {
-    -webkit-font-smoothing: antialiased;
-    color: $darkwarmgray;
-    font: italic 300 20px $serif;
-  }
-}
-
-@media screen and (max-device-width: 800px), screen and (max-width: 800px) {
-  .detail-logo {
-    h1 {
-      line-height: 56px !important;
-    }
-  }
-}
-
-// TERMS
-//************************************************************************//
-
-#additional-information {
-  li {
-    font-family: $sans-serif;
-  }
-  h4 {
-    text-shadow: none;
-  }
-  p {
-    font-family: $sans-serif;
-    font-size: 14px;
-    font-style: normal;
-  }
-}
-
-// FOOTER
-//************************************************************************//
-
-footer {
-  h3 {
-    color: #545454;
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 1em;
-    margin-bottom: 1em;
-    text-rendering: optimizeLegibility;
-  }
-
-  a {
-    color: #7a7a7a;
-    text-decoration: none;
-
-    &:link {
-      color: #7a7a7a;
-    }
-
-    &:hover {
-      color: $red;
-    }
-  }
-
-  ul {
-    list-style-type: $list-style;
-    
-    a {
-      font-size: 16px;
-      line-height: 24px;
-    }
-  }
-
-  p#copyright {
-    color: #7a7a7a;
-    font: italic 16px $serif;
-    line-height: $lh;
-    text-rendering: optimizeSpeed;
-
-    em {
-      font-style: italic;
-    }
-  }
-}
-
-
-
-@media screen and (max-device-width: 850px), screen and (max-width: 850px) {
-  section.content {
-    .text-box-wrapper {
-      width: 100%;
-    }
-
-    section.content .summary {
-      @include span-columns(12);
-    }
-
-    aside {
-      display: block !important;
-      margin-top: 2em;
-      width: 100% !important;
-    }
-
-    form input[type="submit"] {
-      width: 100%;
-    }
-    .text-box-in-text-box {
-      .thumbnail {
-        float: none;
-        margin-right: 0;
-      }
-      .thumbnail-text {
-        margin-left: 0;
-      }
-    }
-  }
-}

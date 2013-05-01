@@ -34,11 +34,22 @@
     }
   }
 
+  .trail-map-steps {
+    h2:first-of-type {
+      margin-top: 0;
+    }
+
+    ul, ol, li {
+      list-style-type: none;
+    }
+  }
+
   section.content {
     .results-date {
       display: inline-block;
       font: 700 14px $sans-serif;
       margin-bottom: 2px;
+      color: $warmgray;
     }
 
     .view-all-articles {
@@ -170,13 +181,30 @@
       margin: 0;
     }
 
+    h2:first-of-type {
+      margin-top: 0;
+      margin-bottom: 2rem;
+    }
+
     a {
       display: block;
+      margin-bottom: 2rem;
+
+      h6 {
+        margin-top: 0;
+      }
 
       h3 {
         color: $learnred;
-        margin-top: .2em;
+        font-weight: 700;
+        margin: .2em 0 .5em 0;
       }
+    }
+
+    h6 {
+      display: inline-block;
+      font-size: 14px;
+      margin-bottom: 2px;
     }
   }
 
