@@ -48,14 +48,9 @@ footer {
       }
 
       &#trails {
-        width: flex-grid(9);
+        float: right;
         margin-right: 0;
-
-        ul:first-child li {
-          margin-bottom: $lh;
-          width: 100%;
-          line-height: 0;
-        }
+        width: flex-grid(8);
 
         ul li {
           width: 33%;
@@ -65,11 +60,12 @@ footer {
 
       ul {
         list-style: none;
-        margin-bottom: $lh;
+        margin: 0 0 1em 0;
+        overflow: auto;
 
         li {
           display: block;
-          margin-bottom: $lh * .2;
+          margin-bottom: .5em;
         }
       }
     }
@@ -115,7 +111,8 @@ a.chat, a.chat:link, a.chat:visited {
 
     nav section {
       float: none;
-      width: 100%;
+      margin-bottom: 2em;
+      width: 100% !important;
 
       &#trails {
         width: 100%;

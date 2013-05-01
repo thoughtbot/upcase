@@ -1,9 +1,12 @@
 <% content_for :subject, t('shared.podcast') %>
-
 <%= render 'introduction' %>
 
 <div class="text-box-wrapper">
-  <%= render @episodes %>
-
-  <%= render 'credits' %>
+  <div class="text-box">
+    <%= render @episodes %>
+  </div>
 </div>
+
+<aside>
+  <%= render 'credits' %>
+</aside>

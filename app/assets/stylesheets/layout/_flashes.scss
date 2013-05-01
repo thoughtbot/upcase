@@ -2,7 +2,7 @@
   @include outer-container;
   max-width: $max-width;
   padding: 3em 2em 0 2em;
-  margin: 2em 0;
+  margin: .5em auto 2em;
 
   .flash {
     @extend %main-content-box;
