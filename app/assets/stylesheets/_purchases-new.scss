@@ -4,16 +4,18 @@ body.purchases-new, body.purchases-create {
   }
 
   section#subscription-banner {
-    margin: 1em 0 0 0;
+    margin: 2em 0 0 0;
     padding: 0;
 
     a {
-      background: lighten($lightwarmgray, 3%);
-      border: 2px solid darken($lightwarmgray, 8%);
-      border-bottom: 2px solid darken($warmgray, 12%);
+      background: lighten($warmgray, 6%);
+      border-radius: 3px;
+      display: block;
       margin: 0;
-      @include position(relative, 0 0 0 -4%);
-      width: 108%;
+      padding: 1em 0;
+      text-align: center;
+      @include transition(.1s);
+      width: 100%;
 
       .fakebutton {
         background: $learnred;
@@ -31,11 +33,19 @@ body.purchases-new, body.purchases-create {
       }
 
       &:hover {
-        background: #fff;
+        background: lighten($warmgray, 10%);;
+        padding: .9em 0 1.1em 0;
+      }
+
+      &:active {
+        background: $warmgray;
+        @include transition(0s);
       }
 
       h3 {
         color: $learnred;
+        line-height: 1.4em;
+        margin: 0;
       }
     }
   }
@@ -83,16 +93,13 @@ body.purchases-new, body.purchases-create {
     }
   }
 
+  #total {
+    display: inline-block;
+  }
+
   .sign-in-prompt {
-    background: none;
     display: inline-block;
     margin: 0 0 0 .6em;
-    padding: 0;
-    text-align: left;
-
-    a {
-      font-family: $serif;
-    }
   }
 
   #billing-information {

@@ -1,9 +1,13 @@
 <div class="text-box-wrapper">
   <div class="text-box">
     <% if current_user_has_active_subscription? %>
-      <h2><%= title %> for <em class="totalprice"> $0.00</em></h2>
+      <hgroup class="product-title">
+        <h2><%= title %> for <em class="totalprice"> $0.00</em></h2>
+      </hgroup>
     <% else %>
-      <h2><%= title %> for <em class="totalprice"><%= number_to_currency price, precision: 0 %></em><% if subscription %> per month<% end %></h2>
+      <hgroup class="product-title">
+        <h2><%= title %> for <em class="totalprice"><%= number_to_currency price, precision: 0 %></em><% if subscription %> per month<% end %></h2>
+      </hgroup>
       <div id="total">
         <p class="coupon-note"><%= link_to "Have a coupon code?", "#" %></p>
       </div>

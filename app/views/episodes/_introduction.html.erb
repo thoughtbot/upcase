@@ -4,21 +4,15 @@
   <p>The Giant Robots Smashing into Other Giant Robots podcast is a weekly technical podcast discussing development, design, and the business of software development.</p>
   <p>Hosted by Ben Orenstein, who is joined each week by developers and designers from thoughtbot and beyond.</p>
 
-  <ul>
-    <li>
-      <%= link_to "http://itunes.apple.com/us/podcast/giant-robots-smashing-into/id535121941" do %>
-        <%= image_tag("podcast/itunes.png", class: 'itunes', width: 12, height: 12) %> Subscribe in iTunes
-      <% end %>
-    </li>
-    <li>
-      <%= link_to episodes_path(format: :xml) do %>
-        <%= image_tag("podcast/rss.png", class: 'rss', width: 12, height: 12) %> Subscribe via RSS
-      <% end %>
-    </li>
-    <li>
-      <%= link_to "http://stitcher.com/s?fid=31937refid=stpr" do %>
-        <%= image_tag("podcast/stitcher.png", class: 'rss', width: 12, height: 12) %> Listen via Stitcher
-      <% end %>
-    </li>
-  </ul>
+  <p class="links">
+    <%= link_to "http://itunes.apple.com/us/podcast/giant-robots-smashing-into/id535121941" do %>
+      <%= image_tag("podcast/itunes.png", class: 'itunes', width: 12, height: 12) %> Subscribe in iTunes
+    <% end %>
+    <%= link_to episodes_path(format: :xml) do %>
+      <%= image_tag("podcast/rss.png", class: 'rss', width: 12, height: 12) %> Subscribe via RSS
+    <% end %>
+    <%= link_to "http://stitcher.com/s?fid=31937refid=stpr" do %>
+      <%= image_tag("podcast/stitcher.png", class: 'rss', width: 12, height: 12) %> Listen via Stitcher
+    <% end %>
+  </p>
 </div>

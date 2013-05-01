@@ -2,7 +2,12 @@ body {
   background-color: $lightwarmgray;
   border-top: none;
   font-family: $sans-serif;
+  line-height: 20px;
+  margin: 0 auto;
 }
+
+// MAIN SECTION AND SIDEBAR
+//************************************************************************//
 
 img {
   max-width: 100%;
@@ -10,7 +15,7 @@ img {
 
 .content {
   @include outer-container;
-  max-width: $max-width;
+  max-width: 1100px;
   padding: 1.75em 2em 3em 2em;
 
   > h1 {
@@ -19,20 +24,12 @@ img {
     margin: 0 0 .4em 23px;
   }
 
-  .summary {
-    @include span-columns(9);
-    clear: both;
-    display: block;
-    float: left;
-    text-align: left;
-
-    p {
-      margin: -10px 0 24px 25px;
-    }
+  ul, ol {
+    padding: 0;
   }
 
   li {
-    margin-top: 1.2em;
+    margin-top: 14px;
 
     &:first-child {
       margin-top: 0;
@@ -40,9 +37,43 @@ img {
   }
 
   .text-box-wrapper {
-    @include span-columns (9);
+    @include span-columns(9);
+  }
+
+  .text-box-in-text-box {
+    background-color: $lightwarmgray;
+    @extend %main-content-box;
+
+    .thumbnail {
+      float: left;
+      margin-right: 12px;
+    }
+
+    .thumbnail-text {
+      margin-left: 112px;
+
+      h2 {
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .summary {
+    clear: both;
+    display: block;
+    float: left;
+    @include span-columns(9);
+    text-align: left;
+
+    p {
+      margin: -10px 0 24px 25px;
+    }
   }
 }
+
+// MAIN SECTION
+//************************************************************************//
 
 .text-box {
   @extend %main-content-box;
@@ -89,116 +120,38 @@ img {
 }
 
 aside {
-  @include span-columns (3);
+  @include span-columns(3);
   float: right;
   display: inline-block;
 
-  h2 span {
-    font: 300 1em $sans-serif;
-
-    &.original-price {
-      color: lighten($darkwarmgray, 22%);
-      display: block;
-      font-size: 24px;
-      margin-left: 10px;
-      margin-top: 7px;
-      position: relative;
-
-      &::after {
-        background-image: image_url("icons/brush.png");
-        content: "";
-        height: 33px;
-        left: -3px;
-        position: absolute;
-        top: -3px;
-        width: 60px;
-      }
-    }
-  }
-
-  h5 {
-    background-color: $lightwarmgray;
-    color: #94918C;
-    display: inline-block;
-    font: 600 13px $sans-serif;
-    margin-top: -8px;
-    padding: 0  0px 0 0px;
-    text-align: left;
-    text-transform: uppercase;
+  .button {
+    height: auto;
+    margin: .75em 0 1.5em;
+    padding: 0 1em 12px;
+    width: 100%;
   }
 
   ul, ol {
+    padding: 0;
     margin: 0;
-    list-style-type: none;
-  }
-
-  li {
-    font: normal 1em $serif;
-    color: $darkwarmgray;
-  }
-
-  dt p {
-    font-style: italic;
-    margin: 2rem 0 1rem 0;
-  }
-
-  // for aside subsection i.e. resources, text chat, etc.
-  > div {
-    margin-bottom: 2em;
-  }
-
-  .button {
-    width: 100%;
-    height: auto;
-    margin: .75em 0 1em 0;
-    padding: 12px;
-  }
-
-  .address a {
-    color: $darkwarmgray;
-  }
-}
-
-#additional-information {
-  li {
-    font-family: $sans-serif;
-  }
-
-  h4 {
-    text-shadow: none;
-  }
-
-  p {
-    font-family: $sans-serif;
-    font-size: 14px;
-    font-style: normal;
   }
 }
 
 @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
   .content {
-    padding: 1.5em 1em 2em 1em;
-  }
-}
+    padding: 1.5em .5em 2em;
 
-@media screen and (max-device-width: 850px), screen and (max-width: 850px) {
-  .content {
     .text-box-wrapper {
-      width: 100%;
-    }
-
-    section.content .summary {
+      display: block;
+      float: none;
       @include span-columns(12);
     }
+  }
 
-    aside {
-      display: block !important;
-      margin-top: 2em;
-      width: 100% !important;
-    }
-
-    form input[type="submit"] {
-      width: 100%;
-    }
+  aside {
+    display: block;
+    float: none;
+    padding: 1em 24px;
+    @include span-columns(12);
   }
 }

@@ -100,11 +100,8 @@ body.products-show, body.workshops-show {
     h3 {
       text-transform: uppercase;
       text-align: center;
-      font-size: 17px;
-    }
-
-    ul {
-      margin-top: 12px;
+      margin-top: 0;
+      font-size: 1em;
     }
 
     li {
@@ -145,24 +142,24 @@ body.products-show, body.workshops-show {
       }
 
       .or {
+        font: 700 .8em $sans-serif;
+        margin: 2.5em 0 2em;
+        padding: 0;
+        position: relative;
         text-align: center;
         text-transform: uppercase;
-        font: 700 .8em $sans-serif;
-        padding: 0;
-        margin: 2.5em 0 2em;
-        position: relative;
 
         &:after, &:before {
-          @include position(absolute, .6em 0 0 0px);
+          border-top: 1px solid $darkwarmgray;
           content: '';
           display: block;
+          @include position(absolute, .6em 0 0 0px);
           width: 15%;
-          border-top: 1px solid $darkwarmgray;
         }
 
         &:before {
-          right: 0;
           left: auto;
+          right: 0;
         }
       }
     }
@@ -174,6 +171,7 @@ body.products-show, body.workshops-show {
         h2 {
           span {
             color: $darkwarmgray;
+            font-weight: 100;
           }
 
           &.active-subscription, &.active-subscription span {
@@ -226,9 +224,9 @@ body.products-show, body.workshops-show {
 
         .individual-purchase, .company-purchase {
           .button.non-free {
-            padding: 12px 0 8px;
             background: $learnred;
             border-color: darken($learnred, 20%);
+            padding: 12px 0 8px;
           }
         }
       }

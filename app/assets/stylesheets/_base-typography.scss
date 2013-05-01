@@ -1,17 +1,17 @@
 h1, h2, h3, h4, h5, h6 {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+  color: $darkwarmgray;
+  display: block;
   font-family: $sans-serif;
   font-weight: 700;
   line-height: 1.2em;
-  display: block;
-  color: $darkwarmgray;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h1 a {
   color: white;
+  font-size: 72px;
   font-weight: 800;
-  font-size: 72;
 }
 
 h2 {
@@ -26,17 +26,18 @@ h3 {
 
 h4 {
   color: #94918C;
-  font-weight: 600;
   font-size: 1em;
+  font-weight: 600;
+  margin-bottom: 1rem;
   text-shadow: 0 2px 0 white;
 }
 
-p {
+p, li {
   color: $darkwarmgray;
-  font: normal 17px $serif;
-  -webkit-font-smoothing: antialiased;
-  margin-bottom: 12px;
+  font: normal 1em/1.5em $serif;
+  margin-bottom: .8em;
   text-shadow: 0 1px 1px rgba(255,255,255,.3);
+  -webkit-font-smoothing: antialiased;
 
   em {
     font-style: italic;
@@ -56,21 +57,21 @@ pre code {
 }
 
 code {
+  color: $darkwarmgray;
   font-family: monaco;
   font-size: 1em;
-  color: $darkwarmgray;
 }
 
 // negate brs inserted into posts
 br {
-  float: left;
   display: none;
+  float: left;
 }
 
 blockquote {
-  padding-left: 20px;
-  font-style: italic;
   border-left: 4px solid $warmgray;
+  font-style: italic;
+  padding-left: 20px;
 }
 
 q {
@@ -91,7 +92,8 @@ ol, ul {
   padding: 0;
 
   li {
-    margin: 0 0 1em 0;
+    color: $darkwarmgray;
+    margin: 0 0 .8em 0;
   }
 }
 
@@ -103,3 +105,16 @@ hr {
   height: 2px;
 }
 
+@media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+  ol, ul {
+    margin: 0 0 0 .75em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.25em;
+  }
+
+  p, li {
+    line-height: 1.6em;
+  }
+}

@@ -1,6 +1,6 @@
 body.products-index {
   .prime-pitch {
-    margin: -5em 0 1em 0;
+    margin: -3.5em 0 1em 0;
     position: relative;
     text-align: center;
 
@@ -16,17 +16,6 @@ body.products-index {
     h2.subscriber {
       margin-bottom: 1.5em;
       margin-top: 3em;
-    }
-
-    .prime-company-cta {
-      display: block;
-      background: $lightwarmgray;
-      margin-top: .5em;
-      padding: .5em;
-
-      &.top {
-        margin-bottom: 5em;
-      }
     }
 
     .prime-main-cta {
@@ -60,8 +49,19 @@ body.products-index {
 
       h3 {
         font-size: 1.2em;
-        font-weight: 100;
-        margin-top: -.2em;
+        font-weight: 400;
+        margin-top: .2em;
+      }
+    }
+
+    .prime-company-cta {
+      background: $lightwarmgray;
+      display: block;
+      font-style: italic;
+      padding: .75em;
+
+      &.top {
+        margin-bottom: 5em;
       }
     }
 
@@ -128,17 +128,22 @@ body.products-index {
         text-align: left;
 
         a {
+          border-radius: 3px;
           @include box-sizing(content-box);
           display: inline-block;
           margin: 0;
-          padding: .5em 1em 1em;
+          padding: 1em;
           text-align: left;
           @include transition(.2s);
           vertical-align: top;
           width: 197px;
 
+          p {
+            margin-bottom: 0;
+          }
+
           &:hover {
-            background: lighten($warmgray, 10%);
+            background: lighten($warmgray, 12%);
           }
 
           &:active {
