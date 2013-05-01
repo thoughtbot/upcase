@@ -9,13 +9,12 @@ body.products-index {
       content: '';
       margin-right: -2px;
       @include position(absolute, 0px 50% 0px 0);
-      width: 5px;
+      width: 2px;
       z-index: -1;
     }
 
     h2.subscriber {
-      background: $lightwarmgray;
-      margin-bottom: 2em;
+      margin-bottom: 1.5em;
       margin-top: 3em;
     }
 
@@ -36,8 +35,10 @@ body.products-index {
       border-radius: 3px;
       display: inline-block;
       margin: 0 auto;
+      max-width: $footer-width;
       padding: 1.2em 2.5em;
       text-align: center;
+      width: 100%;
 
       &.bottom {
         margin-top: 4em;
@@ -65,13 +66,13 @@ body.products-index {
     }
 
     .products {
+      @extend %main-content-box;
       margin: auto;
       margin-bottom: 4em;
-      max-width: 741px;
+      max-width: $footer-width;
       overflow: hidden;
 
       h2 {
-        background: $lightwarmgray;
         color: $darkwarmgray;
         font: 700 1.75em/1.2em $sans-serif;
         margin: 0 0 1.25em;
@@ -99,6 +100,10 @@ body.products-index {
             position: relative;
             @include transition(.15s);
 
+            img {
+              width: 196px;
+            }
+
             &:hover {
               top: -3px;
             }
@@ -123,7 +128,6 @@ body.products-index {
         text-align: left;
 
         a {
-          background: $lightwarmgray;
           @include box-sizing(content-box);
           display: inline-block;
           margin: 0;
@@ -131,7 +135,7 @@ body.products-index {
           text-align: left;
           @include transition(.2s);
           vertical-align: top;
-          width: 215px;
+          width: 197px;
 
           &:hover {
             background: lighten($warmgray, 10%);
