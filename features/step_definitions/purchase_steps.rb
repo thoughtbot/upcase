@@ -67,7 +67,7 @@ When 'I submit the Paypal form' do
 end
 
 When /^I add a reader$/ do
-  fill_in "reader_1", with: "cpytel"
+  fill_in "github_username_1", with: "cpytel"
 end
 
 Then /^an email should be sent out with subject containing "([^"]*)"$/ do |name|
@@ -98,7 +98,7 @@ Then /^I should see a list of other products$/ do
 end
 
 Then /^the first reader should be my github username$/ do
-  find_field('reader_1').value.should == "thoughtbot"
+  find_field('github_username_1').value.should == "thoughtbot"
 end
 
 Then /^I should see "([^"]*)" discounted (\d+)% with the text "([^"]*)"$/ do |product_name, discount_percentage, discount_title|

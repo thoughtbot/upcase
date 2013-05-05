@@ -1,15 +1,16 @@
 require 'spec_helper'
 
-describe RemoveGithubTeamMemberJob do
+describe GithubRemovalJob do
   it_behaves_like 'a Delayed Job that notifies Airbrake about errors'
 
   it 'removes a username from a github team' do
     client = stub_octokit
     client.stubs(:remove_team_member => nil)
 
-    RemoveGithubTeamMemberJob.new(3, 'gabebw').perform
+    GithubRemovalJob.new(3, ['gabebw', 'cpytel']).perform
 
     client.should have_received(:remove_team_member).with(3, 'gabebw')
+    client.should have_received(:remove_team_member).with(3, 'cpytel')
   end
 
   [Octokit::NotFound, Net::HTTPBadResponse].each do |error_class|
@@ -18,7 +19,7 @@ describe RemoveGithubTeamMemberJob do
       client.stubs(:remove_team_member).raises(error_class)
       Airbrake.stubs(:notify)
 
-      RemoveGithubTeamMemberJob.new(3, 'gabebw').perform
+      GithubRemovalJob.new(3, ['gabebw']).perform
 
       Airbrake.should have_received(:notify).with(instance_of(error_class))
     end

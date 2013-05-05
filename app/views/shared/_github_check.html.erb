@@ -1,6 +1,6 @@
 <%= content_for :javascript do %>
   <%= javascript_tag do %>
-    function checkReader() {
+    function checkUsername() {
       var element = $(this);
       if(element.val() != "") {
         var url = "https://api.github.com/users/" + element.val();
@@ -24,6 +24,6 @@
         }
       }
     }
-    $("input.reader").blur(checkReader);
+    $("input.github_username").blur(checkUsername);
   <% end %>
 <% end %>

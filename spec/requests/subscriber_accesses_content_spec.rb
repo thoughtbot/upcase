@@ -26,15 +26,18 @@ feature 'Subscriber accesses content' do
   scenario 'gets access to a book product' do
     book_product = create(:github_book_product)
     sign_in_as_user_with_subscription
-    stub_add_github_team_member_job
+    stub_github_fulfillment_job
 
     click_link book_product.name
     click_link I18n.t('products.show.purchase_for_subscribed_user', product_type: book_product.product_type)
     click_button 'Get Access'
 
-    expect(AddGithubTeamMemberJob).to have_received(:enqueue).with(book_product.github_team,
-                                                                   @current_user.github_username,
-                                                                   Purchase.last.id)
+    expect(GithubFulfillmentJob).to have_received(:enqueue).
+      with(
+        book_product.github_team,
+        [@current_user.github_username],
+        Purchase.last.id
+      )
   end
 
   scenario 'gets access to an online workshop' do
@@ -101,8 +104,8 @@ feature 'Subscriber accesses content' do
     create(:subscribeable_product)
   end
 
-  def stub_add_github_team_member_job
-    AddGithubTeamMemberJob.stubs(:enqueue)
+  def stub_github_fulfillment_job
+    GithubFulfillmentJob.stubs(:enqueue)
   end
 
   def user_should_have_purchased(purchaseable)

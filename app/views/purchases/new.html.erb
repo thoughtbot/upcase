@@ -60,9 +60,9 @@
 
   $(document).ready(function() {
     $("#new_purchase").submit(function(event) {
-      $("input.reader[required]").each(checkReader);
+      $("input.github_username[required]").each(checkUsername);
 
-      if($('li.error .reader').length == 0) {
+      if($('li.error .github_username').length == 0) {
         if($("input.use_existing_card").is(":checked")) {
           return true;
         }

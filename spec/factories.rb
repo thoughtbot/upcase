@@ -139,7 +139,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :purchase, aliases: [:individual_purchase, :unpaid_purchase] do
+  factory :purchase, aliases: [:individual_purchase] do
     email 'joe@example.com'
     name 'Test User'
     association :purchaseable, factory: :product
@@ -152,6 +152,15 @@ FactoryGirl.define do
 
     factory :paid_purchase do
       paid true
+    end
+
+    factory :unpaid_purchase do
+      paid false
+
+      after(:create) do |purchase|
+        purchase.paid = false
+        purchase.save!
+      end
     end
 
     factory :stripe_purchase do

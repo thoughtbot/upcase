@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130419192248) do
+ActiveRecord::Schema.define(:version => 20130503054351) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -207,7 +207,7 @@ ActiveRecord::Schema.define(:version => 20130419192248) do
     t.datetime "updated_at"
     t.string   "lookup"
     t.integer  "coupon_id"
-    t.text     "readers"
+    t.text     "github_usernames"
     t.boolean  "paid",                   :default => false,    :null => false
     t.string   "payment_method",         :default => "stripe", :null => false
     t.string   "country"
@@ -239,7 +239,7 @@ ActiveRecord::Schema.define(:version => 20130419192248) do
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month"
+    t.integer  "month",      :limit => 2
     t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
@@ -368,6 +368,7 @@ ActiveRecord::Schema.define(:version => 20130419192248) do
     t.boolean  "online",                    :default => false, :null => false
     t.text     "resources",                 :default => "",    :null => false
     t.string   "video_chat_url"
+    t.integer  "github_team"
   end
 
 end

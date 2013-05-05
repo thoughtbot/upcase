@@ -5,10 +5,10 @@ Feature: Purchase a Product
 
   Background:
     Given the following products exist:
-      | name         | sku  | individual_price | company_price | product_type | fulfillment_method |
-      | Test Fetch   | TEST | 15               | 50            | video        | fetch              |
-      | Test GitHub  | TEST | 15               | 199           | book         | github             |
-      | Test Series  | TEST | 15               | 299           | video        | fetch              |
+      | name         | sku  | individual_price | company_price | product_type | fulfillment_method | github_team |
+      | Test Fetch   | TEST | 15               | 50            | video        | fetch              |             |
+      | Test GitHub  | TEST | 15               | 199           | book         | github             | 9999        |
+      | Test Series  | TEST | 15               | 299           | video        | fetch              |             |
     And the a download exists with file name "test.txt" and description "test desc" for "Test Fetch"
     And the video with wistia id "1194803" exists for "Test Fetch"
     And the video with wistia id "1194804" exists for "Test Series"
@@ -82,22 +82,22 @@ Feature: Purchase a Product
     And I follow "Test GitHub"
     And I follow "Purchase for Yourself"
     Then I should see "$15"
-    And I should see "1st Reader"
-    And I should not see "2nd Reader"
+    And I should see "1st User"
+    And I should not see "2nd User"
     When I go to the products page
     And I follow "Test GitHub"
     And I follow "Your Company"
     Then I should see "$199"
-    And I should see "1st Reader"
-    And I should see "2nd Reader"
-    And I should see "3rd Reader"
-    And I should see "4th Reader"
-    And I should see "5th Reader"
-    And I should see "6th Reader"
-    And I should see "7th Reader"
-    And I should see "8th Reader"
-    And I should see "9th Reader"
-    And I should see "10th Reader"
+    And I should see "1st User"
+    And I should see "2nd User"
+    And I should see "3rd User"
+    And I should see "4th User"
+    And I should see "5th User"
+    And I should see "6th User"
+    And I should see "7th User"
+    And I should see "8th User"
+    And I should see "9th User"
+    And I should see "10th User"
     When I add a reader
     When I pay using Paypal
     When emails are cleared

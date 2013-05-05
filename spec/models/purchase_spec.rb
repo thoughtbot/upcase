@@ -56,24 +56,49 @@ describe Purchase, 'with stripe and a bad card' do
 end
 
 describe Purchase, 'refund' do
-  let(:product) { create(:product, individual_price: 15, company_price: 50) }
-  let(:purchase) { build(:purchase, purchaseable: product, payment_method: '$') }
-  subject { purchase }
-
   it 'sets the purchase as unpaid' do
-    subject.refund
-    subject.should_not be_paid
+    purchase = create(:paid_purchase)
+
+    purchase.refund
+
+    purchase.should_not be_paid
   end
 
   it 'does not issue a refund if it is unpaid' do
-    subject.paid = false
-    subject.stubs(:stripe_refund).returns(nil)
-    subject.stubs(:paypal_refund).returns(nil)
-    subject.refund
+    purchase = create(:unpaid_purchase)
+    purchase.stubs(:stripe_refund).returns(nil)
+    purchase.stubs(:paypal_refund).returns(nil)
 
-    subject.should have_received(:stripe_refund).never
-    subject.should have_received(:paypal_refund).never
-    subject.should_not be_paid
+    purchase.refund
+
+    purchase.should have_received(:stripe_refund).never
+    purchase.should have_received(:paypal_refund).never
+    purchase.should_not be_paid
+  end
+
+  context 'when not fulfilled_with_github' do
+    it 'does not remove from github' do
+      purchase = create(:paid_purchase)
+      fulfillment = stub(:remove)
+      GithubFulfillment.stubs(:new).returns(fulfillment)
+
+      purchase.refund
+
+      fulfillment.should have_received(:remove).never
+    end
+  end
+
+  context 'when fulfilled_with_github' do
+    it 'removes from github' do
+      product = create(:github_book_product)
+      purchase = create(:paid_purchase, purchaseable: product)
+      fulfillment = stub(:remove)
+      GithubFulfillment.stubs(:new).returns(fulfillment)
+
+      purchase.refund
+
+      fulfillment.should have_received(:remove)
+    end
   end
 end
 
@@ -172,6 +197,31 @@ describe Purchase, 'with stripe' do
     expect(purchase.paid_price).to eq 20
   end
 
+  context 'when not fulfilled_with_github' do
+    it 'does not fulfill with github' do
+      purchase = build(:paid_purchase)
+      fulfillment = stub(:fulfill)
+      GithubFulfillment.stubs(:new).returns(fulfillment)
+
+      purchase.save!
+
+      fulfillment.should have_received(:fulfill).never
+    end
+  end
+
+  context 'when fulfilled_with_github' do
+    it 'fulfills with github' do
+      product = create(:github_book_product)
+      purchase = build(:purchase, purchaseable: product)
+      fulfillment = stub(:fulfill)
+      GithubFulfillment.stubs(:new).returns(fulfillment)
+
+      purchase.save!
+
+      fulfillment.should have_received(:fulfill)
+    end
+  end
+
   context 'saved' do
     before do
       subject.save!
@@ -192,7 +242,6 @@ describe Purchase, 'with stripe' do
     context 'and refunded' do
       let(:charge) { stub(:id => 'TRANSACTION-ID', :refunded => false) }
       let(:refunded_charge) { stub(:id => 'TRANSACTION-ID', :refunded => true) }
-      let(:client) { stub(remove_team_member: nil) }
 
       before do
         charge.stubs(:refund).returns(refunded_charge)
@@ -203,131 +252,6 @@ describe Purchase, 'with stripe' do
         subject.stripe_refund
         Stripe::Charge.should have_received(:retrieve).with('TRANSACTION-ID')
         charge.should have_received(:refund).with(amount: 1500)
-      end
-    end
-  end
-
-  context 'when the product is fulfilled by github' do
-    let(:client) { stub(add_team_member: nil) }
-
-    before do
-      product.fulfillment_method = 'github'
-      product.github_team = 73110
-      product.save!
-      Octokit::Client.stubs(new: client)
-    end
-
-    it "doesn't add any users to github when there are blank usernames" do
-      purchase = product.purchases.build(
-        variant: 'individual',
-        name: 'test',
-        email: 'joe@example.com',
-        readers: ['', ''],
-        payment_method: 'stripe'
-      )
-      purchase.save!
-
-      client.should have_received(:add_team_member).never
-    end
-
-    it 'adds any users to github when it is a backbone book sale' do
-      purchase = product.purchases.build(
-        variant: 'individual',
-        name: 'test',
-        email: 'joe@example.com',
-        readers: ['cpytel'],
-        payment_method: 'stripe'
-      )
-      purchase.save!
-
-      client.should have_received(:add_team_member).with(73110, 'cpytel')
-    end
-
-    it 'adds multiple users to github when it is a backbone book sale' do
-      purchase = product.purchases.build(
-        variant: 'individual',
-        name: 'test',
-        email: 'joe@example.com',
-        readers: ['cpytel', 'reader2'],
-        payment_method: 'stripe'
-      )
-      purchase.save!
-
-      client.should have_received(:add_team_member).with(73110, 'cpytel')
-      client.should have_received(:add_team_member).with(73110, 'reader2')
-    end
-
-    it 'notifies Airbrake when username not found' do
-      Airbrake.stubs(:notify)
-      client = stub()
-      client.stubs(:add_team_member).raises(Octokit::NotFound)
-      Octokit::Client.stubs(new: client)
-      purchase = product.purchases.build(
-        variant: 'individual',
-        name: 'test',
-        email: 'joe@example.com',
-        readers: ['cpytel'],
-        payment_method: 'stripe'
-      )
-      purchase.save!
-
-      Airbrake.should have_received(:notify).once
-    end
-
-    it 'notifies Airbrake when Net::HTTPBadResponse' do
-      Airbrake.stubs(:notify)
-      client = stub()
-      client.stubs(:add_team_member).raises(Net::HTTPBadResponse)
-      Octokit::Client.stubs(new: client)
-      purchase = product.purchases.build(
-        variant: 'individual',
-        name: 'test',
-        email: 'joe@example.com',
-        readers: ['cpytel'],
-        payment_method: 'stripe'
-      )
-      purchase.save!
-
-      Airbrake.should have_received(:notify).once
-    end
-
-    it 'notifies the user when adding to repository fails' do
-      Mailer.stubs(fulfillment_error: stub(deliver: true))
-      client = stub
-      client.stubs(:add_team_member).raises(Octokit::NotFound)
-      Octokit::Client.stubs(new: client)
-      purchase = product.purchases.build(
-        variant: 'individual',
-        name: 'test',
-        email: 'joe@example.com',
-        readers: ['cpytel'],
-        payment_method: 'stripe'
-      )
-      purchase.save!
-
-      Mailer.should have_received(:fulfillment_error).with(purchase, 'cpytel')
-    end
-
-    context 'and removing team members' do
-      it 'removes user from github team' do
-        client.stubs(:remove_team_member).returns(nil)
-        subject.readers = ['jayroh', 'cpytel']
-        subject.save!
-        subject.remove_readers_from_github
-
-        client.should have_received(:remove_team_member).with(73110, 'cpytel')
-        client.should have_received(:remove_team_member).with(73110, 'jayroh')
-      end
-
-      it 'notifies hoptoad/airbrake when user is not found' do
-        client.stubs(:remove_team_member).raises(Octokit::NotFound)
-        Octokit::Client.stubs(new: client)
-        Airbrake.stubs(:notify)
-        subject.readers = ['nonsense']
-        subject.save!
-        subject.remove_readers_from_github
-
-        Airbrake.should have_received(:notify).once
       end
     end
   end
@@ -441,17 +365,17 @@ describe 'Purchases for various emails' do
 end
 
 describe Purchase, 'for a user' do
-  context 'with readers' do
-    it 'saves the first reader to the user' do
+  context 'with github_usernames' do
+    it 'saves the first github_username to the user' do
       user = create(:user)
       user.github_username.should be_blank
-      purchase = create(:purchase, user: user, readers: ['tbot', 'other'])
+      purchase = create(:purchase, user: user, github_usernames: ['tbot', 'other'])
       user.reload.github_username.should == 'tbot'
     end
 
-    it "doesn't overwrite first reader to the user" do
+    it "doesn't overwrite first github_username to the user" do
       user = create(:user, github_username: 'test')
-      purchase = create(:purchase, user: user, readers: ['tbot', 'other'])
+      purchase = create(:purchase, user: user, github_usernames: ['tbot', 'other'])
       user.reload.github_username.should == 'test'
     end
   end
@@ -467,30 +391,30 @@ describe Purchase, 'given a purchaser' do
 
     purchase.name.should == purchaser.name
     purchase.email.should == purchaser.email
-    purchase.readers.try(:first).should be_blank
+    purchase.github_usernames.try(:first).should be_blank
   end
 
   context 'for a product fulfilled through github' do
-    it 'populates default info including first reader' do
-      product = create(:product, fulfillment_method: 'github')
+    it 'populates default info including first github_username' do
+      product = create(:github_book_product)
       purchase = product.purchases.build
       purchase.defaults_from_user(purchaser)
 
       purchase.name.should == purchaser.name
       purchase.email.should == purchaser.email
-      purchase.readers.first.should == purchaser.github_username
+      purchase.github_usernames.first.should == purchaser.github_username
     end
   end
 
   context 'for a subscription product' do
-    it 'populates default info including first reader' do
+    it 'populates default info including first github_username' do
       product = create(:product, fulfillment_method: 'other', product_type: 'subscription')
       purchase = product.purchases.build
       purchase.defaults_from_user(purchaser)
 
       purchase.name.should == purchaser.name
       purchase.email.should == purchaser.email
-      purchase.readers.first.should == purchaser.github_username
+      purchase.github_usernames.first.should == purchaser.github_username
     end
   end
 end

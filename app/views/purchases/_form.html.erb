@@ -18,14 +18,14 @@
     <%= form.input :name %>
     <%= form.input :email, hint: "The receipt will be sent to this address if billing email is blank." %>
     <% if @purchaseable.subscription? && current_user.github_username.blank? %>
-      <%= render 'first_reader', label: 'GitHub username', purchase: @purchase %>
+      <%= render 'first_github_username', label: 'GitHub username', purchase: @purchase %>
     <% end %>
     <% if @purchaseable.fulfillment_method == 'in-person' %>
       <%= form.input :comments, label: t('purchase.comments') %>
     <% end %>
   <% end %>
 
-  <%= render partial: 'purchases/readers', locals: { purchase: @purchase, form: form } %>
+  <%= render partial: 'purchases/github_usernames', locals: { purchase: @purchase, form: form } %>
 
   <%= form.inputs 'For your receipt' do %>
     <%= form.input :billing_email, required: false, hint: "The receipt will be sent to this address by default." %>
