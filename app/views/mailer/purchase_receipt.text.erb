@@ -8,7 +8,7 @@ Thank you for placing your order with thoughtbot!
 <%= purchase_url(@purchase) %>
 
 <% if @purchase.fulfilled_with_github? -%>
-You have been added to the GitHub repo at <%= @purchase.purchaseable.github_url %>.
+You have been added to the GitHub repo for the <%= @purchase.purchaseable.product_type %>.
 You will also receive a notification from GitHub. Please contact us at
 learn@thoughtbot.com if you do not get access to this repository.
 <% end -%>
