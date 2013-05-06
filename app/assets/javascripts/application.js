@@ -35,14 +35,14 @@ function add_fields(link, association, content) {
 }
 
 $(function() {
-  $('.expand-bio a').live('click', function() {
+  $('.expand-bio a').on('click', function() {
     $(this).parent().parent().children('.bio').height('auto');
     $(this).text('...less');
     $(this).parent().addClass('minimize-bio').removeClass('expand-bio');
     return false;
   });
 
-  $('.minimize-bio a').live('click', function() {
+  $('.minimize-bio a').on('click', function() {
     $(this).parent().parent().children('.bio').removeAttr('style');
     $(this).text('more...');
     $(this).parent().addClass('expand-bio').removeClass('minimize-bio');
