@@ -32,6 +32,16 @@ describe UserSerializer do
     end
   end
 
+  context 'when the user does not have an active subscription but is an admin' do
+    it 'includes a key granting forum access' do
+      user = create(:admin)
+
+      user_json = parse_serialized_json(user)
+
+      user_json['has_forum_access'].should be_true
+    end
+  end
+
   def parse_serialized_json(user)
     JSON.parse(UserSerializer.new(user).to_json)['user']
   end
