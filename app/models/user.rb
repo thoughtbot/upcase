@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  THOUGHTBOT_ORGANIZATION = 'thoughtbot'
-
   include Clearance::User
 
   attr_accessible :email, :first_name, :github_username, :last_name, :password, :auth_provider, :auth_uid
@@ -33,26 +31,13 @@ class User < ActiveRecord::Base
         last_name: name.last,
         email: auth_hash['info']['email'],
         github_username: auth_hash['info']['nickname']
-      ).tap { |user| user.promote_admins_from_github_organization }
+      )
     rescue NoMethodError => e
       Airbrake.notify(
         :error_class   => "Auth hash error",
         :error_message => e.message,
         :parameters    => auth_hash
       )
-    end
-  end
-
-  def promote_admins_from_github_organization
-    organizations = Octokit.organizations(github_username)
-
-    organization_names = organizations.map do |organization|
-      organization['login']
-    end
-
-    if organization_names.include?(THOUGHTBOT_ORGANIZATION)
-      self.admin = true
-      save!
     end
   end
 
