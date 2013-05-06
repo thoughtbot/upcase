@@ -20,10 +20,9 @@ gem 'dynamic_form', '1.1.4'
 gem 'escape_utils', '0.2.4' # Fix UTF-8 regexp match warning
 gem 'flutie', '1.3.3'
 gem 'formtastic', '2.2.0'
-gem 'haml', '3.1.7'
 gem 'high_voltage', '1.2.0'
 gem 'httparty', '0.8.1'
-gem 'jquery-rails', '2.0.2'
+gem 'jquery-rails'
 gem 'kissmetrics', '2.0.0'
 gem 'nokogiri', '1.5.2'
 gem 'octokit', '1.1.0'
@@ -34,8 +33,8 @@ gem 'paypal-express', '0.4.6', require: 'paypal'
 gem 'pg', '0.13.2'
 gem 'rack-rewrite', '1.2.1'
 gem 'rack-ssl-enforcer', '0.2.4'
-gem 'rails', '3.2.12'
-gem 'rails_admin', '~> 0.1.2'
+gem 'rails', '3.2.13'
+gem 'rails_admin'
 gem 'ruby-freshbooks', '0.4.0'
 gem 'sass', '3.2.1'
 gem 'snogmetrics', '0.1.9'
@@ -60,7 +59,7 @@ end
 
 group :development, :test do
   gem 'foreman', '0.46.0'
-  gem 'rspec-rails', '2.11.0'
+  gem 'rspec-rails'
   gem 'debugger'
   gem 'pry-rails'
 end
@@ -77,17 +76,16 @@ group :staging do
 end
 
 group :test do
-  gem 'bourne', '1.1.2'
+  gem 'bourne'
   gem 'capybara', '1.1.2'
   gem 'cucumber-rails', '1.3.0', require: false
   gem 'database_cleaner', '0.7.2'
   gem 'email_spec', '1.2.1'
   gem 'factory_girl_rails', '3.3.0'
   gem 'launchy'
-  gem 'mocha', '0.10.5'
   gem 'selenium-webdriver', '2.32.1'
   gem 'sham_rack', '1.3.1'
-  gem 'shoulda-matchers', '1.4.1'
+  gem 'shoulda-matchers'
   gem 'sinatra', '1.2.8'
   gem 'timecop', '0.3.5'
   gem 'vcr', '2.1.1'
