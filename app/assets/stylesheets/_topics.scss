@@ -24,7 +24,7 @@
 
     li {
       display: inline-block;
-      list-style-type: disc;
+      list-style-type: none;
       margin-right: 4px;
       margin-top: 8px;
     }
@@ -34,8 +34,20 @@
     }
   }
 
+  .trail-map-steps {
+    h2:first-of-type {
+      margin-top: 0;
+    }
+
+    ul, ol, li {
+      padding: 0;
+      list-style-type: none;
+    }
+  }
+
   section.content {
     .results-date {
+      color: $warmgray;
       display: inline-block;
       font: 700 14px $sans-serif;
       margin-bottom: 2px;
@@ -59,6 +71,10 @@
       hgroup {
         margin-left: 48px;
 
+        h5, h4 {
+          font-style: normal;
+        }
+
         h5 {
           background-color: none;
           display: block;
@@ -69,6 +85,7 @@
       }
 
       li {
+        list-style-type: none;
         margin: 4px 0 8px 0;
 
         a {
@@ -98,7 +115,6 @@
         }
 
         li {
-
           &.prime h4 {
             color: $darkwarmgray;
             font-family: $sans-serif;
@@ -161,6 +177,39 @@
 
     img {
       float: right;
+    }
+  }
+
+  .related-reading {
+    ul, ol {
+      list-style-type: none;
+      margin: 0;
+    }
+
+    h2:first-of-type {
+      margin-bottom: 2rem;
+      margin-top: 0;
+    }
+
+    a {
+      display: block;
+      margin-bottom: 2rem;
+
+      h6 {
+        margin-top: 0;
+      }
+
+      h3 {
+        color: $learnred;
+        font-weight: 700;
+        margin: .2em 0 .5em 0;
+      }
+    }
+
+    h6 {
+      display: inline-block;
+      font-size: 14px;
+      margin-bottom: 2px;
     }
   }
 

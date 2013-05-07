@@ -1,7 +1,3 @@
-//************************************************************************//
-// Base Form Styles
-//************************************************************************//
-
 input[type="submit"] {
   border-bottom-width: none;
   border-image: initial;
@@ -68,7 +64,12 @@ input[type="submit"] {
 }
 
 form {
-  margin: 0 0 48px 0;
+  margin: 0 0 2em 0;
+
+  ul, ol {
+    margin: 0;
+    padding: 0;
+  }
 
   .errors, .errors li {
     color: $learnred;
@@ -78,6 +79,8 @@ form {
   }
 
   li {
+    list-style-type: none;
+
     &.payment-errors {
       color: $learnred;
       font-style: bold;
@@ -113,12 +116,10 @@ form {
       }
 
       li {
-        font-size: 16px;
         margin: 0 0 0 0;
 
         p.inline-hints {
-          color: #666;
-          font-size: 16px;
+          font-style: italic;
         }
 
         p.inline-errors {
@@ -154,7 +155,7 @@ form {
           box-shadow: none;
           @include box-sizing(border-box);
           font-size: 14px;
-          margin: 5px 5px 5px 0;
+          margin: .25em 0;
           padding: 1em;
           width: 100%;
 

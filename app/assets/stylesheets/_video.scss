@@ -15,11 +15,8 @@
   }
 }
 
-.purchase-return-link {
-
-  a {
-    text-decoration: none;
-  }
+.purchase-return-link a {
+  text-decoration: none;
 }
 
 .wistia-holder {
@@ -40,52 +37,58 @@
 }
 
 .assets-wrapper {
-
-  margin: 480px 0 40px 0;
-
   .assets {
     .asset-download {
       float: left;
       margin: 0 20px 0 0;
     }
+
     .asset {
-      width: 20%;
+      background-color: #efefef;
       float: left;
       margin: 4px 4px 0 0;
-      background-color: #efefef;
       padding: 10px;
+      width: 20%;
     }
 
     a {
+      padding-left: 10px;
+      padding-right: 10px;
       text-decoration: none;
     }
   }
 }
 
-.text-chat {
-  margin-bottom: 20px;
-}
-
 .video-chat {
   li:first-child {
     margin-bottom: 8px;
-    margin-top: 22px;
   }
+
   li {
+    list-style-type: none;
     margin-top: 0;
     margin-bottom: 20px;
-
   }
 }
 
-.thumbnail {
-  float: left;
-  margin-right: 12px;
-}
-.thumbnail-text {
-  margin-left: 112px;
-  h2 {
-    margin-bottom: 0;
-    padding-bottom: 0;
+#videos .video {
+  border-top: 1px dashed #ccc;
+  margin: 2.2em 0;
+  overflow: visible;
+  padding-top: 1.5em;
+
+  .thumbnail {
+    float: left;
+    margin-right: 12px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .4);
+  }
+
+  .thumbnail-text {
+    margin-left: 120px;
+
+    h2, h3 {
+      margin: 0;
+      padding: 0;
+    }
   }
 }

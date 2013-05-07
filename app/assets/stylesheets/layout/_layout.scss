@@ -1,0 +1,157 @@
+body {
+  background-color: $lightwarmgray;
+  border-top: none;
+  font-family: $sans-serif;
+  line-height: 20px;
+  margin: 0 auto;
+}
+
+// MAIN SECTION AND SIDEBAR
+//************************************************************************//
+
+img {
+  max-width: 100%;
+}
+
+.content {
+  @include outer-container;
+  max-width: 1100px;
+  padding: 1.75em 2em 3em 2em;
+
+  > h1 {
+    color: desaturate(darken($warmgray, 22%), 8%);
+    font-size: 50px;
+    margin: 0 0 .4em 23px;
+  }
+
+  ul, ol {
+    padding: 0;
+  }
+
+  li {
+    margin-top: 14px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .text-box-wrapper {
+    @include span-columns(9);
+  }
+
+  .text-box-in-text-box {
+    background-color: $lightwarmgray;
+    @extend %main-content-box;
+
+    .thumbnail {
+      float: left;
+      margin-right: 12px;
+    }
+
+    .thumbnail-text {
+      margin-left: 112px;
+
+      h2 {
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .summary {
+    clear: both;
+    display: block;
+    float: left;
+    @include span-columns(9);
+    text-align: left;
+
+    p {
+      margin: -10px 0 24px 25px;
+    }
+  }
+}
+
+// MAIN SECTION
+//************************************************************************//
+
+.text-box {
+  @extend %main-content-box;
+
+  h1, h2, h3, h4, h5, h6{
+    color: $darkwarmgray;
+    margin: 2rem 0 1rem 0;
+  }
+
+  h2 {
+    margin-top: 3rem;
+  }
+
+  p, li {
+    color: $darkwarmgray;
+  }
+
+  hgroup.product-title {
+    h2 {
+      margin-top: 0;
+    }
+
+    h3 {
+      margin-top: 0;
+      font-size: 1.2em;
+    }
+  }
+
+  a {
+    h2 {
+      color: $learnred;
+    }
+
+    &:hover {
+      h2 {
+        color: #C42107;
+      }
+
+      h3 {
+        color: $learnred;
+      }
+    }
+  }
+}
+
+aside {
+  @include span-columns(3);
+  float: right;
+  display: inline-block;
+
+  .button {
+    height: auto;
+    margin: .75em 0 1.5em;
+    padding: 0 1em 12px;
+    width: 100%;
+  }
+
+  ul, ol {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+  .content {
+    padding: 1.5em .5em 2em;
+
+    .text-box-wrapper {
+      display: block;
+      float: none;
+      @include span-columns(12);
+    }
+  }
+
+  aside {
+    display: block;
+    float: none;
+    padding: 1em 24px;
+    @include span-columns(12);
+  }
+}

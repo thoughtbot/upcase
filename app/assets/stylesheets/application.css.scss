@@ -1,25 +1,30 @@
 @import "reset";
 @import "bourbon";
 @import "neat/neat";
-@import "variables";
-@import "mixins";
-@import "layout";
-@import "typography";
-@import "base-animations";
-@import "flashes";
-@import "header";
 
-@import "clearance";
-@import "registrations";
-@import "footer";
-@import "backbone-checkout";
-@import "forms";
-@import 'purchases';
+@import "base-variables";
+@import "base-mixins";
+@import "base-extends";
+@import "base-animations";
+@import "base-typography";
+@import "base-forms";
+
+@import "layout/layout";
+@import "layout/flashes";
+@import "layout/header";
+@import "layout/footer";
+
+@import "authenticating/clearance";
+@import "authenticating/doorkeeper";
+
+@import "users-edit";
+@import "products-index";
+@import "products-workshops-show";
+@import 'purchases-new';
+@import 'purchases-show';
 @import 'video';
 @import 'topics';
 @import "episodes";
-@import "users";
-@import "products";
+@import "backbone-checkout";
+@import "registrations";
 @import "design-for-developers";
-
-@import "doorkeeper";

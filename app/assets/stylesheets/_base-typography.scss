@@ -1,0 +1,120 @@
+h1, h2, h3, h4, h5, h6 {
+  color: $darkwarmgray;
+  display: block;
+  font-family: $sans-serif;
+  font-weight: 700;
+  line-height: 1.2em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h1 a {
+  color: white;
+  font-size: 72px;
+  font-weight: 800;
+}
+
+h2 {
+  font: 800 36px/40px $sans-serif;
+}
+
+h3 {
+  color: lighten($darkwarmgray, 15%);
+  font-size: 26px;
+  font-weight: 800;
+}
+
+h4 {
+  color: #94918C;
+  font-size: 1em;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 0 white;
+}
+
+p, li {
+  color: $darkwarmgray;
+  font: normal 1em/1.5em $serif;
+  margin-bottom: .8em;
+  text-shadow: 0 1px 1px rgba(255,255,255,.3);
+  -webkit-font-smoothing: antialiased;
+
+  em {
+    font-style: italic;
+  }
+}
+
+a {
+  color: $red;
+  font-family: $serif;
+  text-decoration: none;
+}
+
+pre code {
+  display: block;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+code {
+  color: $darkwarmgray;
+  font-family: monaco;
+  font-size: 1em;
+}
+
+// negate brs inserted into posts
+br {
+  display: none;
+  float: left;
+}
+
+blockquote {
+  border-left: 4px solid $warmgray;
+  font-style: italic;
+  padding-left: 20px;
+}
+
+q {
+  display: block;
+  font-style: italic;
+  margin: 2.5em 0 0 1em;
+  width: 80%;
+}
+
+p.source {
+  margin-bottom: 0 !important; // override inline styles
+  margin-top: 0 !important; // override inline styles
+}
+
+ol, ul {
+  list-style-type: disc;
+  margin: 0 0 0 2em;
+  padding: 0;
+
+  li {
+    color: $darkwarmgray;
+    margin: 0 0 .8em 0;
+  }
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px solid white;
+  border-top: 1px solid $warmgray;
+  color: $warmgray;
+  height: 2px;
+}
+
+@media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+  ol, ul {
+    margin: 0 0 0 .75em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.25em;
+  }
+
+  p, li {
+    line-height: 1.6em;
+  }
+}
