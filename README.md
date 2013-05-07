@@ -96,7 +96,7 @@ To test Stripe payments on staging use a fake credit card.
 To test PayPal payments on staging, use your thoughtbot credit card as the
 paypal process is live and not sandboxed. After making your purchase you may
 perform a refund through the
-[staging admin panel](http://learn-staging.herokuapp.com/new_admin/purchase).
+[staging admin panel](http://learn-staging.herokuapp.com/admin/purchase).
 
 ## Deployment
 
@@ -150,5 +150,5 @@ To see what the current recipient is:
         $ user.save!
         $ exit
 
-3. Access the [general admin panel](http://learn.thoughtbot.com/new_admin) or
+3. Access the [general admin panel](http://learn.thoughtbot.com/admin) or
    the [workshop admin panel](http://learn.thoughtbot.com/admin).
