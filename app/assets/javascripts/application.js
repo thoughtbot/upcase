@@ -3,6 +3,7 @@
 //= require jquery-ui
 //= require retina
 //= require dropdown
+//= require no-click-delay
 
 $("#total a").click(function() {
   $(".coupon").show();
@@ -50,4 +51,6 @@ $(function() {
   });
 
   $('.header-container nav li.dropdown > a').dropdown();
+
+  new NoClickDelay($('.header-container nav > ul > li > a[data-toggle=dropdown]'));
 });

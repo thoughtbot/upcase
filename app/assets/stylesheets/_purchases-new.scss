@@ -1,0 +1,180 @@
+body.purchases-new, body.purchases-create {
+  h2 em.totalprice {
+    color: $red;
+  }
+
+  section#subscription-banner {
+    margin: 2em 0 0 0;
+    padding: 0;
+
+    a {
+      background: lighten($warmgray, 6%);
+      border-radius: 3px;
+      display: block;
+      margin: 0;
+      padding: 1em 0;
+      text-align: center;
+      @include transition(.1s);
+      width: 100%;
+
+      .fakebutton {
+        background: $learnred;
+        border-bottom: 3px solid #660000;
+        border-radius: 3px;
+        box-sizing: border-box;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 0;
+        padding: .8em 1.5em .5em 1.5em;
+        position: relative;
+        text-transform: uppercase;
+        top: -3px;
+      }
+
+      &:hover {
+        background: lighten($warmgray, 10%);;
+        padding: .9em 0 1.1em 0;
+      }
+
+      &:active {
+        background: $warmgray;
+        @include transition(0s);
+      }
+
+      h3 {
+        color: $learnred;
+        line-height: 1.4em;
+        margin: 0;
+      }
+    }
+  }
+
+  fieldset {
+    #purchase_comments {
+      height: 100px;
+    }
+
+    li {
+      margin-right: 0;
+
+      &#purchase_city_input,
+      &#purchase_state_input,
+      &#purchase_zip_code_input,
+      &#purchase_country_input {
+        float: left;
+        margin-right: flex-gutter();
+        width: flex-grid(3);
+      }
+
+      &#purchase_country_input {
+        margin-right: 0;
+      }
+
+      &#purchase_submit_action {
+        margin-top: 40px;
+        width: 100%;
+      }
+
+      &#purchase_payment_method_input {
+        * {
+          vertical-align: middle;
+        }
+
+        label, input {
+          display: inline-block;
+
+          img {
+            display: inline-block;
+            margin-right: 3px;
+          }
+        }
+      }
+    }
+  }
+
+  #total {
+    display: inline-block;
+  }
+
+  .sign-in-prompt {
+    display: inline-block;
+    margin: 0 0 0 .6em;
+  }
+
+  #billing-information {
+    ol {
+      width: 100%;
+
+      li {
+        &.overflow {
+          @extend .clearfix;
+        }
+
+        &#purchase_expiration_input {
+          float: left;
+          margin-right: flex-gutter();
+          width: flex-grid(8);
+
+          select {
+            border: 1px solid $darkwarmgray;
+            @include box-shadow(none);
+            @include box-sizing(border-box);
+            float: left;
+            font: 14px $sans-serif;
+            height: 47px;
+            margin: 5px 0 0 0;
+            padding: .5em;
+            -webkit-appearance: none;
+            width: flex-grid(6);
+
+            &.card-expiry-month {
+              margin-right: flex-gutter();
+            }
+
+            &:focus {
+              border: 1px solid $learnred;
+              outline: none;
+              outline-color: none;
+            }
+          }
+        }
+
+        &#purchase_cvc_input {
+          float: left;
+          width: flex-grid(4);
+        }
+
+        &#purchase_country_input {
+          clear: left;
+        }
+
+        &#purchase_cc_existing {
+          input, label {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 910px) {
+    fieldset ol {
+      li#purchase_city_input {
+        float: left;
+        width: flex-grid(12);
+      }
+
+      li#purchase_zip_code_input,
+      li#purchase_state_input {
+        float: left;
+        width: flex-grid(6);
+      }
+
+      li#purchase_country_input {
+        float: left;
+        width: flex-grid(12);
+      }
+    }
+  }
+}

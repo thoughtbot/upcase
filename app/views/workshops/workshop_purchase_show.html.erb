@@ -11,12 +11,12 @@
 <% end %>
 
 <% if @purchaseable.videos.any? %>
-  <h2>Watch or Download Video Lessons</h2>
-
-  <h3 class="workshop-type"><%= pluralize @purchaseable.videos.size, 'lesson' %> in this workshop</h3>
-
   <div class="text-box-wrapper">
-    <section id="videos">
+    <section class="text-box" id="videos">
+      <hgroup class="product-title">
+        <h2>Watch or Download Video Lessons</h2>
+        <h3 class="workshop-type"><%= pluralize @purchaseable.videos.size, 'lesson' %> in this workshop</h3>
+      </hgroup>
       <%= render @purchaseable.videos.ordered, purchase: @purchase %>
     </section>
   </div>

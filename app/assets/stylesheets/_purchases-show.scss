@@ -1,0 +1,201 @@
+body.purchases-show {
+  section.receipt {
+    @include outer-container;
+    margin-top: 50px;
+
+    .billing-address {
+      @include nth-omega(2n);
+      @include span-columns(6);
+      margin-bottom: 10px;
+      margin-top: 20px;
+    }
+
+    .item {
+      margin-top: 20px;
+    }
+
+    .purchase-pricing {
+      @include span-columns(12);
+      margin-bottom: 20px;
+      margin-top: 20px;
+
+      tbody {
+        @include outer-container;
+      }
+
+      tr {
+        @include span-columns(10);
+      }
+
+      td {
+        margin-bottom: 6px;
+        text-align: left;
+        @include span-columns(6);
+
+        &.amount {
+          text-align: right;
+          @include span-columns(4);
+        }
+      }
+    }
+  }
+
+  .text-box-wrapper {
+    .text-box {
+      overflow: auto;
+    }
+
+    .video-button-wrapper {
+      text-align: center;
+    }
+
+    .get-video {
+      width: 60%;
+    }
+
+    .video-button-wrapper + h3,
+    .video-button-wrapper + p {
+      margin-top: 30px;
+    }
+  }
+
+  .download_items, .resources ul {
+    padding-bottom: 0;
+    list-style-type: none;
+  }
+
+  figure.book-cover {
+    margin: 2.5em 0;
+    text-align: center;
+
+    img {
+      display: inline-block;
+      margin-right: 2.5em;
+      width: 300px;
+
+      @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+        margin: 0;
+      }
+    }
+
+    figcaption {
+      display: inline-block;
+      margin: 0;
+      max-width: 300px;
+      text-align: left;
+      vertical-align: top;
+
+      @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+        margin-top: 2em;
+      }
+
+      h3 {
+        color: #000;
+        font-weight: 800;
+        margin: 0 0 1em 0;
+      }
+
+      p {
+        margin: 0 0 1em 0;
+
+        a {
+          color: inherit;
+          display: block;
+          font-family: $sans-serif;
+          font-weight: 600;
+          overflow: auto;
+        }
+
+        .title, .date {
+          font-weight: 100;
+        }
+      }
+
+      p:nth-child(3) {
+        opacity: .7;
+      }
+
+      p:nth-child(4) {
+        opacity: .4;
+      }
+
+      .allupdates {
+        margin-top: 1em;
+        color: $learnred;
+      }
+    }
+  }
+
+  .start-reading {
+    margin-bottom: 1em;
+
+    .button {
+      margin-bottom: 1em;
+    }
+
+    .readmill {
+      background: #58852c;
+      border-color: darken(#58852c, 20%);
+
+      &:hover {
+        background: lighten(#58852c, 5%);
+        border-color: darken(#58852c, 15%);
+      }
+
+      &:active {
+        background: darken(#58852c, 5%);
+        border-color: darken(#58852c, 25%);
+      }
+    }
+  }
+
+  @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+    .assets-wrapper {
+      .assets {
+        .button-mini {
+          @include span-columns(12);
+        }
+      }
+    }
+  }
+
+  @media screen and (max-device-width: 800px), screen and (max-width: 800px) {
+   .video-headline {
+     text-align: left;
+    }
+  }
+
+  @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+    section.receipt .billing-address,
+    section.receipt .purchase-pricing {
+      @include span-columns(12);
+
+      tr {
+        @include span-columns(12);
+      }
+
+      td {
+        @include span-columns(8);
+
+        &.amount {
+          @include span-columns(4);
+        }
+      }
+    }
+
+    .text-box-wrapper .get-video {
+      width: 80% !important;
+    }
+
+    .purchase-return-link {
+      display: block;
+      float: left;
+      margin-top: 0;
+    }
+
+    .assets-wrapper .assets .button-mini {
+      @include span-columns(12);
+      margin-top: 20px;
+    }
+  }
+}

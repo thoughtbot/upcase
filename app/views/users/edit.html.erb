@@ -1,21 +1,23 @@
 <%= content_for :subject, 'Account' %>
 
 <div class="text-box-wrapper">
-  <%= semantic_form_for current_user, url: my_account_path do |form| %>
-    <%= form.inputs "Your Information [#{link_to('Sign out', sign_out_path, method: :delete)}]" do %>
-      <%= form.input :first_name, label: 'Your Name', input_html: { placeholder: "First name" } %>
-      <%= form.input :last_name, label: false, input_html: { placeholder: "Last name" } %>
-      <%= form.input :email, as: :email %>
-      <%= form.input :github_username %>
-      <% if !current_user.external_auth? %>
-        <%= form.input :password %>
+  <div class="text-box">
+    <%= semantic_form_for current_user, url: my_account_path do |form| %>
+      <%= form.inputs "Your Information [#{link_to('Sign out', sign_out_path, method: :delete)}]" do %>
+        <%= form.input :first_name, label: 'Your Name', input_html: { placeholder: "First name" } %>
+        <%= form.input :last_name, label: false, input_html: { placeholder: "Last name" } %>
+        <%= form.input :email, as: :email %>
+        <%= form.input :github_username %>
+        <% if !current_user.external_auth? %>
+          <%= form.input :password %>
+        <% end %>
+      <% end %>
+
+      <%= form.actions do %>
+        <li><%= form.submit 'Update account' %></li>
       <% end %>
     <% end %>
-
-    <%= form.actions do %>
-      <li><%= form.submit 'Update account' %></li>
-    <% end %>
-  <% end %>
+  </div>
 </div>
 
 <aside id="account-sidebar">

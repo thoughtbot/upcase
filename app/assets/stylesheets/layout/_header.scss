@@ -4,7 +4,7 @@ section#header-wrapper {
   width: 100%;
 
   .products-index &:not(.subscriber) .header-container {
-    padding-bottom: 4em;
+    padding-bottom: 3em;
   }
 
   .header-container {
@@ -13,6 +13,11 @@ section#header-wrapper {
     padding: 2em;
     position: relative;
     @include user-select(none);
+
+    .logo, .intro {
+      color: $darkwarmgray;
+      font: normal 300 20px $serif;
+    }
 
     .logo {
       text-align: center;
@@ -23,26 +28,14 @@ section#header-wrapper {
     }
 
     .intro {
-      color: $darkwarmgray;
-      font: italic 300 20px $serif;
+      font: 600 1.75em/1.3em $sans-serif;
       margin: 0 auto;
-      padding: 1em;
+      padding: 1.25em 0 1.75em 0;
       text-align: center;
-      -webkit-font-smoothing: antialiased;
-      width: 630px;
+      width: 500px;
 
       @media screen and (max-device-width: 600px), screen and (max-width: 600px) {
         width: 100%;
-      }
-
-      .products-index & {
-        font: 700 1.75em/1.2em $sans-serif;
-        padding: 1.5em 0 3em 0;
-        width: 500px;
-
-        @media screen and (max-device-width: 600px), screen and (max-width: 600px) {
-          width: 100%;
-        }
       }
     }
 
@@ -73,6 +66,16 @@ section#header-wrapper {
       @include position(relative, 18px 0 0 0);
       text-align: right;
       width: flex-grid(9);
+
+      ul {
+        margin: 0;
+        list-style-type: none;
+      }
+
+      li {
+        margin: 0;
+        line-height: 1.2em;
+      }
 
       // position sub menus
       li.workshops ul {
@@ -254,10 +257,6 @@ section#header-wrapper {
       }
     }
 
-    .intro {
-      padding-top: 0;
-    }
-
     nav {
       width: 100%;
       text-align: center;
@@ -271,6 +270,12 @@ section#header-wrapper {
         }
       }
 
+      > a {
+        border: 1px solid  darken($warmgray, 9%);
+        border-bottom-color: darken($warmgray, 16%);
+        margin-top: .6em;
+      }
+
       > ul {
         left: 0 !important;
         right: 0 !important;
@@ -281,6 +286,8 @@ section#header-wrapper {
 
 @media screen and (max-device-width: 790px), screen and (max-width: 790px) {
   section#header-wrapper .header-container {
+    padding: 24px;
+
     nav > ul > li.prime {
       display: block;
       float: none;
@@ -293,14 +300,12 @@ section#header-wrapper {
       }
     }
 
-    .intro {
-      font-size: 18px;
-      margin-top: 1em;
-      width: 95%;
-    }
-
     .detail-logo {
       float: auto;
+
+      h1 {
+        line-height: 56px !important;
+      }
     }
   }
 }
