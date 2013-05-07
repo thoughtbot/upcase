@@ -28,6 +28,8 @@ RailsAdmin.config do |config|
 
   config.main_app_name = ['Workshops', 'Admin']
 
+  config.yell_for_non_accessible_fields = false
+
   config.actions do
     init_actions!
     purchase_refund
@@ -44,6 +46,18 @@ RailsAdmin.config do |config|
       field :email
       field :github_username
       field :subscription
+    end
+
+    edit do
+      field :email
+      field :first_name
+      field :last_name
+      field :admin
+      field :github_username
+      field :paid_purchases
+      field :purchases
+      field :subscription
+      field :stripe_customer
     end
   end
 
