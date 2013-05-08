@@ -109,27 +109,27 @@ en:
     workshop:
       heading:
         online:
-          ONLINE WORKSHOP
+          Online workshop
         in_person:
-          IN-PERSON WORKSHOP
+          In-person workshop
     index:
       heading:
-        IN-PERSON WORKSHOP
+        In-person workshop
       view_products:
-        VIEW ALL THOUGHTBOT PRODUCTS
+        View all thoughtbot products
     promoted_product:
       book:
         action:
-          READ
+          Read
       video:
         action:
-          WATCH
+          Watch
       workshop:
         action:
-          REGISTER
+          Register
     promoted_workshop:
       action:
-        REGISTER
+        Register
     trail_map:
       resources:
         Resources
@@ -138,14 +138,14 @@ en:
     product:
       headings:
         book:
-          BOOK
+          Book
         video:
-          VIDEO
+          Video
     related:
       products:
-        RELATED PRODUCTS
+        Related products
       topics:
-        RELATED TOPICS
+        Related topics
     show:
       related_reading:
         Related Reading
