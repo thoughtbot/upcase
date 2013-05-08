@@ -56,4 +56,8 @@ module ApplicationHelper
   def partial_name(model)
     model.class.name.downcase
   end
+
+  def forum_url
+    'http://forum.thoughtbot.com'
+  end
 end
