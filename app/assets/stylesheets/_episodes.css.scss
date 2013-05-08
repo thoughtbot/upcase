@@ -36,20 +36,6 @@ body.episodes {
     width: 50%;
   }
 
-  .episode {
-    &:first-child {
-      h3 {
-        margin-top: 0;
-      }
-    }
-
-    .info {
-      color: $darkwarmgray;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-  }
-
   .listen {
     margin: 30px 0;
 
