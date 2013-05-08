@@ -164,7 +164,7 @@ body.products-show, body.workshops-show {
       }
     }
 
-    .section-location, #license {
+    .section-location, #license, #date-range {
       > div {
         margin-bottom: 26px;
 
@@ -198,7 +198,7 @@ body.products-show, body.workshops-show {
         }
 
         .button.non-free {
-          padding: 8px 0 6px;
+          padding: .5em 1em;
           background: darken($warmgray, 20%);
           border-color: $darkwarmgray;
         }

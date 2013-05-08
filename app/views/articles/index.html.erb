@@ -3,12 +3,14 @@
 
 <div class="text-box-wrapper">
   <div class="text-box">
-    <h2><%= t '.heading', topic: @topic.name %></h2>
+    <hgroup class="product-title">
+      <h2><%= t '.heading', topic: @topic.name %></h2>
+    </hgroup>
 
     <% if @articles.present? %>
-      <ul class="articles results">
+      <section class="articles results">
         <%= render @articles %>
-      </ul>
+      </section>
     <% end %>
   </div>
 </div>

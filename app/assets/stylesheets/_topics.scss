@@ -13,8 +13,7 @@
     }
 
     h2 {
-      margin-bottom: 0;
-      padding-bottom: 6px;
+      margin-top: 0;
       color: $learnred;
     }
 
@@ -31,6 +30,10 @@
 
     li:last-child {
       margin-right: 0;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
     }
   }
 
@@ -187,29 +190,11 @@
     }
 
     h2:first-of-type {
-      margin-bottom: 2rem;
-      margin-top: 0;
+      margin-top: .5rem;
     }
 
-    a {
-      display: block;
-      margin-bottom: 2rem;
-
-      h6 {
-        margin-top: 0;
-      }
-
-      h3 {
-        color: $learnred;
-        font-weight: 700;
-        margin: .2em 0 .5em 0;
-      }
-    }
-
-    h6 {
-      display: inline-block;
-      font-size: 14px;
-      margin-bottom: 2px;
+    h3 {
+      color: $learnred;
     }
   }
 
