@@ -13,8 +13,7 @@
     }
 
     h2 {
-      margin-bottom: 0;
-      padding-bottom: 6px;
+      margin-top: 0;
       color: $learnred;
     }
 
@@ -31,6 +30,10 @@
 
     li:last-child {
       margin-right: 0;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
     }
   }
 
