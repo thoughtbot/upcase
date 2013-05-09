@@ -1,33 +1,12 @@
 body.design_for_developers_resources, body.test_driven_rails_resources {
-  h1 {
-    font-size: em(18);
-  }
-
-  h3 a {
-    @extend h3;
-  }
-
   .text-box img {
     border: 1px solid $lightwarmgray;
-    max-width: 100%;
   }
 
-  .text-box li {
-    margin-left: 0;
-
+  .principles, .grid  {
     ul {
-      padding-left: 1em;
-
-      li {
-        margin-left: 0;
-        list-style: disc outside;
-      }
-    }
-  }
-
-  div.principles {
-    ul {
-      @include row();
+      margin: 1rem 0 0 0;
+      overflow: auto;
 
       li {
         @include span-columns(4.5 9);
@@ -37,30 +16,14 @@ body.design_for_developers_resources, body.test_driven_rails_resources {
         margin-bottom: 1.5em;
 
         h3 {
-          margin-top: .5em;
+          margin-top: .5rem;
         }
       }
     }
   }
 
-  section.grid {
-    ul {
-      @include row();
-      margin-top: 1em;
-
-      li {
-        @include span-columns(4.5 9);
-        @include nth-omega(2n);
-        margin-left: 0;
-        margin-top: 0;
-        margin-bottom: 1em;
-      }
-    }
-  }
-
-  div.typography {
-    section.define-type, section.terms {
-      margin-bottom: 2em;
+  .typography {
+    .define-type, .terms, .type-classification {
       @include row();
 
       article {
@@ -69,39 +32,30 @@ body.design_for_developers_resources, body.test_driven_rails_resources {
       }
     }
 
-    section.anatomy.wide {
+    .anatomy.wide {
       margin-bottom: 2em;
-    }
-
-    section.type-classification {
-      margin-bottom: 2em;
-      @include row();
-
-      img {
-        @include span-columns(4.5 9);
-        @include nth-omega(2n);
-      }
     }
   }
 
-  div.color {
-    section {
-      margin-bottom: 2em;
+  .color {
+    > section {
       border-bottom: 1px solid $warmgray;
-      padding-bottom: 1em;
+      padding: 2.25rem 0 1.75rem;
 
       &:last-child {
         border-bottom: none;
       }
 
       h3 {
-        margin-top: .5em;
-        @include inline-block;
+        display: inline-block;
+        font-size: 1.2rem;
+        margin: 1rem 0 0 0;
       }
 
       p {
-        @include inline-block;
-        margin-left: 1em;
+        display: inline-block;
+        font-size: 1.2rem;
+        margin: 0 0 0 .2rem;
       }
 
       img {
