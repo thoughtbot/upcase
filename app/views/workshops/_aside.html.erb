@@ -9,6 +9,7 @@
     </div>
   <% end %>
 
+  <%= render 'shared/sidebar_forum', purchaseable: purchaseable %>
   <%= render 'shared/sidebar_chat', purchaseable: purchaseable %>
 
   <% if purchaseable.events.any? %>
