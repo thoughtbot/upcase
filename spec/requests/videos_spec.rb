@@ -42,6 +42,22 @@ describe 'Videos' do
       expect(page).not_to have_content("in this workshop")
     end
 
+    it "doesn't say it includes support with no subscription" do
+      purchase = create(:video_purchase)
+
+      visit purchase_path(purchase)
+      expect(page).not_to have_content("includes support")
+    end
+
+    it 'includes support with a subscription' do
+      sign_in_as_user_with_subscription
+
+      purchase = create(:video_purchase)
+
+      visit purchase_path(purchase)
+      expect(page).to have_content("includes support")
+    end
+
     def create_available_video(watchable, active_on_day, title)
       create(:video, watchable: watchable, active_on_day: active_on_day, title: title)
     end

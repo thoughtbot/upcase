@@ -79,11 +79,11 @@ Then /^I should see a link to the online workshop$/ do
 end
 
 Then /^I should see that the related workshop "([^"]+)" is in-person$/ do |workshop_name|
-  type_of_related_workshop_named(workshop_name).should == 'IN-PERSON WORKSHOP'
+  type_of_related_workshop_named(workshop_name).should == 'In-person workshop'
 end
 
 Then /^I should see that the related workshop "([^"]+)" is online$/ do |workshop_name|
-  type_of_related_workshop_named(workshop_name).should == 'ONLINE WORKSHOP'
+  type_of_related_workshop_named(workshop_name).should == 'Online workshop'
 end
 
 Then /^I should see a workshop alert for the in-person workshop$/ do

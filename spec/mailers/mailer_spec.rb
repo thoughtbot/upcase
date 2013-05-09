@@ -146,6 +146,13 @@ describe Mailer do
 
           expect_not_to_contain_receipt(purchase)
         end
+
+        it 'does not include support' do
+          user = create(:user, :with_subscription)
+          purchase = create(:book_purchase, user: user)
+
+          expect(email_for(purchase)).not_to have_body_text(/support/)
+        end
       end
 
       context 'for a subscription product' do
@@ -154,6 +161,13 @@ describe Mailer do
           purchase = create(:subscription_purchase, user: user)
 
           expect_to_contain_receipt(purchase)
+        end
+
+        it 'includes support' do
+          user = create(:user, :with_subscription)
+          purchase = create(:subscription_purchase, user: user)
+
+          expect(email_for(purchase)).to have_body_text(/support/)
         end
       end
     end

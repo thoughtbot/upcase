@@ -13,8 +13,10 @@ You will also receive a notification from GitHub. Please contact us at
 learn@thoughtbot.com if you do not get access to this repository.
 <% end -%>
 
-Every <%= @purchase.purchaseable.product_type %> includes ongoing support for any questions you may have about the
-topic. Visit our live chat here: <%= CHAT_LINK %>
+<% if @purchase.subscription? -%>
+<%= @purchase.purchaseable_name %> includes support for any questions you may have
+Visit our forums here: <%= forum_url %>
+<% end -%>
 
 <% if @purchase.purchaseable.announcement.present? %>
 <%= @purchase.purchaseable.announcement.message %>
