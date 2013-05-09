@@ -3,7 +3,7 @@
 //= require jquery-ui
 //= require retina
 //= require dropdown
-//= require no-click-delay
+//= require prettify/prettify
 
 $("#total a").click(function() {
   $(".coupon").show();
@@ -36,21 +36,7 @@ function add_fields(link, association, content) {
 }
 
 $(function() {
-  $('.expand-bio a').on('click', function() {
-    $(this).parent().parent().children('.bio').height('auto');
-    $(this).text('...less');
-    $(this).parent().addClass('minimize-bio').removeClass('expand-bio');
-    return false;
-  });
-
-  $('.minimize-bio a').on('click', function() {
-    $(this).parent().parent().children('.bio').removeAttr('style');
-    $(this).text('more...');
-    $(this).parent().addClass('expand-bio').removeClass('minimize-bio');
-    return false;
-  });
-
   $('.header-container nav li.dropdown > a').dropdown();
-
-  new NoClickDelay($('.header-container nav > ul > li > a[data-toggle=dropdown]'));
+  $('pre').addClass('prettyprint');
+  prettyPrint();
 });

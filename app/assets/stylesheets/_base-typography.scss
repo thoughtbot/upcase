@@ -51,15 +51,18 @@ a {
 }
 
 pre code {
+  background-color: $lightwarmgray;
+  border-radius: 3px;
   display: block;
-  padding-bottom: 0;
-  padding-top: 0;
+  font-size: 1rem;
+  margin: 2rem 0;
+  padding: 1rem;
 }
 
 code {
   color: $darkwarmgray;
   font-family: monaco;
-  font-size: 1em;
+  font-size: .9rem;
 }
 
 // negate brs inserted into posts
