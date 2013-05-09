@@ -143,6 +143,12 @@ aside {
     width: 100%;
   }
 
+  > div {
+    ol, ul {
+      list-style-type: none;
+    }
+  }
+
   ul, ol {
     padding: 0;
     margin: 0;
