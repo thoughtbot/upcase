@@ -9,7 +9,15 @@ class FakeStripe < Sinatra::Base
   cattr_reader :last_charge, :last_customer_email, :last_token, :coupons
   cattr_accessor :failure
 
+  post '/customers/:id' do
+    @@active_card_last_four = '1111'
+    content_type :json
+
+    '{}'
+  end
+
   get '/customers/*' do
+    @@active_card_last_four ||= '0000'
     content_type :json
 
     {
@@ -22,7 +30,10 @@ class FakeStripe < Sinatra::Base
       delinquent: false,
       subscription: nil,
       discount: nil,
-      account_balance: 0
+      account_balance: 0,
+      active_card: {
+        last4: @@active_card_last_four
+      }
     }.to_json
   end
 
@@ -186,12 +197,6 @@ class FakeStripe < Sinatra::Base
       id: params[:id],
       deleted: true
     }.to_json
-  end
-
-  post '/customers/:id' do
-    content_type :json
-
-    '{}'
   end
 
   post '/coupons' do

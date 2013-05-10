@@ -106,17 +106,24 @@ feature 'User creates a subscription' do
 
   scenario 'updates Stripe subscription', :js => true do
     sign_in_as_subscriber
+    old_card_last_four = subscriber_card_last_four
     visit my_account_path
     submit_new_credit_card_info
 
     expect(current_path).to eq my_account_path
     expect(page).to have_content(I18n.t('subscriptions.flashes.update.success'))
+    expect(subscriber_card_last_four).to_not eq old_card_last_four
   end
 
   scenario 'does not see option to update billing if not subscribing' do
     visit my_account_path
 
     expect(page).not_to have_content('Your Subscription Billing Info')
+  end
+
+  def subscriber_card_last_four
+    customer = Stripe::Customer.retrieve(@current_user.stripe_customer)
+    customer.active_card.last4
   end
 
   def submit_new_credit_card_info
@@ -153,8 +160,8 @@ feature 'User creates a subscription' do
   end
 
   def sign_in_as_subscriber
-    subscriber = create(:user, :with_subscription)
-    visit root_path(as: subscriber)
+    @current_user = create(:user, :with_subscription)
+    visit root_path(as: @current_user)
   end
 
   def subscribe_with_valid_credit_card
