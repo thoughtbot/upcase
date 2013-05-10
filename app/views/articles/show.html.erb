@@ -5,10 +5,10 @@
 
 <div class="text-box-wrapper">
   <div class="text-box">
-  <div class="product-title">
-    <h2><%= @article.title %></h2>
-    <h3 class="workshop-type"><%= @article.published_on.to_s(:simple) %></h3>
-    </div>
+    <hgroup class="product-title">
+      <h2><%= @article.title %></h2>
+      <h3 class="workshop-type"><%= @article.published_on.to_s(:simple) %></h3>
+    </hgroup>
     <div class="body">
       <%== @article.body_html %>
     </div>
