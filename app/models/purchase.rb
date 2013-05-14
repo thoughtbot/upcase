@@ -39,15 +39,31 @@ class Purchase < ActiveRecord::Base
   delegate :fulfilled_with_github?, :subscription?, to: :purchaseable
 
   def self.from_month(date)
-    where(["created_at >= ? AND created_at <= ?", date.beginning_of_month, date.end_of_month])
+    where(
+      ["created_at >= ? AND created_at <= ?",
+        date.beginning_of_month,
+        date.end_of_month
+      ]
+    )
   end
 
   def self.last_30_days
-    (0..30).to_a.collect { |day| Purchase.paid.where("created_at >= ? and created_at <= ?", day.days.ago.beginning_of_day, day.days.ago.end_of_day).all.sum(&:price) }.reverse
+    last_thirty = (0..30).to_a.collect do |day|
+      Purchase.paid.where(
+        "created_at >= ? and created_at <= ?", 
+        day.days.ago.beginning_of_day, 
+        day.days.ago.end_of_day
+      ).all.sum(&:price) 
+    end
+    last_thirty.reverse
   end
 
-  def self.from_period(start_time, end_time)
-    paid.where("created_at >= ? and created_at <= ?", start_time, end_time).all.sum(&:price)
+  def self.within_range(start_time, end_time)
+    paid.where("created_at >= ? and created_at <= ?", start_time, end_time)
+  end
+
+  def self.total_sales_within_range(start_time, end_time)
+    within_range(start_time, end_time).all.sum(&:price)
   end
 
   def self.for_purchaseable(purchaseable)
