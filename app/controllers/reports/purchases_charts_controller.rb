@@ -28,7 +28,7 @@ class Reports::PurchasesChartsController < ApplicationController
     last_twelve_months.collect do |index|
       startdate = index.months.ago.beginning_of_month
       enddate = index.months.ago.end_of_month
-      Purchase.for_purchaseable(product).from_period(startdate, enddate).to_i
+      Purchase.for_purchaseable(product).within_range(startdate, enddate).to_i
     end
   end
 
