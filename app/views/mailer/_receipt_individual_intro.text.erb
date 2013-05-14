@@ -1,0 +1,8 @@
+Thank you for placing your order with thoughtbot!
+
+<% if purchase.purchaseable.product_type == 'workshop' %>
+<%= render 'workshop' %>
+<% else %>
+<%= render 'non_workshop' %>
+<% end %>
+<%= purchase_url(purchase) %>
