@@ -4,6 +4,8 @@
 //= require retina
 //= require dropdown
 //= require prettify/prettify
+//= require jquery.jsPlumb-1.4.0-all-min
+//= require prime.js
 
 $("#total a").click(function() {
   $(".coupon").show();
