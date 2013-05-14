@@ -30,10 +30,35 @@ describe Purchase do
 
   describe 'self.paid' do
     it 'returns paid purchases' do
-      paid = create(:purchase, paid: true)
-      unpaid = create(:purchase, paid: false)
-      unpaid.update_column(:paid, false)
+      paid = create(:purchase)
+      unpaid = create(:unpaid_purchase)
       Purchase.paid.should == [paid]
+    end
+  end
+
+  describe 'self.within_range' do
+    it 'returns paid purchases from the given period' do
+      outside = create(:purchase, created_at: 40.days.ago)
+      unpaid = create(:unpaid_purchase, created_at: 7.days.ago)
+      inside = create(:purchase, created_at: 7.days.ago)
+
+      purchases = Purchase.within_range(30.days.ago, Date.yesterday)
+      expect(purchases).to include inside
+      expect(purchases).not_to include outside
+      expect(purchases).not_to include unpaid
+    end
+  end
+
+  describe 'self.total_sales_within_range' do
+    it 'returns the sum of the paid purchases from the given period' do
+      product = create(:product, individual_price: 10)
+      outside = create(:purchase, created_at: 40.days.ago, purchaseable: product)
+      unpaid = create(:unpaid_purchase, created_at: 7.days.ago, purchaseable: product)
+      create(:purchase, created_at: 7.days.ago, purchaseable: product)
+      create(:purchase, created_at: 7.days.ago, purchaseable: product)
+
+      total = Purchase.total_sales_within_range(30.days.ago, Date.yesterday)
+      expect(total).to eq 20
     end
   end
 end
