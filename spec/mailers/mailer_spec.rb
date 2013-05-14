@@ -169,6 +169,13 @@ describe Mailer do
 
           expect(email_for(purchase)).to have_body_text(/support/)
         end
+
+        it 'has a thank you for subscribing' do
+          user = create(:user, :with_subscription)
+          purchase = create(:subscription_purchase, user: user)
+
+          expect(email_for(purchase)).to have_body_text(/Thank you for subscribing/)
+        end
       end
     end
 

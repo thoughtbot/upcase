@@ -1,26 +1,18 @@
-Thank you for placing your order with thoughtbot!
+<% if @purchase.subscription? -%>
+<%= render 'receipt_subscription_intro', purchase: @purchase %>
+<% else -%>
+<%= render 'receipt_individual_intro', purchase: @purchase %>
+<% end -%>
 
-<% if @purchase.purchaseable.product_type == "workshop" %>
-<%= render "workshop" %>
-<% else %>
-<%= render "non_workshop" %>
-<% end %>
-<%= purchase_url(@purchase) %>
+<% if @purchase.purchaseable.announcement.present? -%>
+<%= @purchase.purchaseable.announcement.message %>
+<% end -%>
 
 <% if @purchase.fulfilled_with_github? -%>
 You have been added to the GitHub repo for the <%= @purchase.purchaseable.product_type %>.
 You will also receive a notification from GitHub. Please contact us at
 learn@thoughtbot.com if you do not get access to this repository.
 <% end -%>
-
-<% if @purchase.subscription? -%>
-<%= @purchase.purchaseable_name %> includes support for any questions you may have
-Visit our forums here: <%= forum_url %>
-<% end -%>
-
-<% if @purchase.purchaseable.announcement.present? %>
-<%= @purchase.purchaseable.announcement.message %>
-<% end %>
 
 <%= render partial: 'create_account_if_needed', locals: { purchase: @purchase } %>
 
