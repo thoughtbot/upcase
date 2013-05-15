@@ -1,22 +1,22 @@
 <% if @purchase.subscription? -%>
 <%= render 'receipt_subscription_intro', purchase: @purchase %>
-<% else -%>
+<%- else -%>
 <%= render 'receipt_individual_intro', purchase: @purchase %>
-<% end -%>
+<%- end -%>
 
-<% if @purchase.purchaseable.announcement.present? -%>
+<%- if @purchase.purchaseable.announcement.present? -%>
 <%= @purchase.purchaseable.announcement.message %>
-<% end -%>
+<%- end -%>
 
-<% if @purchase.fulfilled_with_github? -%>
+<%- if @purchase.fulfilled_with_github? -%>
 You have been added to the GitHub repo for the <%= @purchase.purchaseable.product_type %>.
 You will also receive a notification from GitHub. Please contact us at
 learn@thoughtbot.com if you do not get access to this repository.
-<% end -%>
+<%- end -%>
 
-<%= render partial: 'create_account_if_needed', locals: { purchase: @purchase } %>
+<%= render partial: 'create_account_if_needed', locals: { purchase: @purchase } -%>
 
-<% if include_receipt?(@purchase) -%>
+<%- if include_receipt?(@purchase) -%>
 RECEIPT #<%= @purchase.id %>
 
 Date <%= @purchase.created_at.to_s(:short_date) %>
