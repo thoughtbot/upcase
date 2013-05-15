@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
   end
 
   def has_active_subscription?
-    subscription.present?
+    subscription.present? && subscription.active?
   end
 
   def has_conflict?(desired_purchaseable)

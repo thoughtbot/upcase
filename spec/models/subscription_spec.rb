@@ -43,4 +43,16 @@ describe Subscription do
       expect(result).to eq true
     end
   end
+
+  describe '#active?' do
+    it "returns true if deactivated_on is nil" do
+      subscription = Subscription.new(deactivated_on: nil)
+      subscription.should be_active
+    end
+
+    it "returns false if deactivated_on is not nil" do
+      subscription = Subscription.new(deactivated_on: Date.today)
+      subscription.should_not be_active
+    end
+  end
 end

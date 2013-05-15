@@ -263,8 +263,11 @@ FactoryGirl.define do
     end
   end
 
-  factory :subscription do
+  factory :subscription, aliases: [:active_subscription] do
     user
+    factory :inactive_subscription do
+      deactivated_on Date.today
+    end
   end
 
   factory :video do

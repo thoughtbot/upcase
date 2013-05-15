@@ -36,11 +36,17 @@ describe User do
   context '#has_active_subscription?' do
     it 'returns true if user has a subscription' do
       user = User.new
-      user.subscription = Subscription.new
+      user.subscription = build_stubbed(:active_subscription)
       expect(user).to have_active_subscription
     end
 
-    it 'returns false if user does not have a subscription' do
+    it 'returns false if user has an inactive subscription' do
+      user = User.new
+      user.subscription = build_stubbed(:inactive_subscription)
+      expect(user).not_to have_active_subscription
+    end
+
+    it "returns false if user doesn't even have a subscription" do
       user = User.new
       expect(user).not_to have_active_subscription
     end
