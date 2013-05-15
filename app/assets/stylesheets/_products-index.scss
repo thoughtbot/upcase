@@ -219,7 +219,7 @@ body.products-index {
     }
   }
 
-  @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+  @include body-mobile {
     .products-container {
       width: 100% !important;
     }

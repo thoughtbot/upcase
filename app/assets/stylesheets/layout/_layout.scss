@@ -168,7 +168,7 @@ aside {
   }
 }
 
-@media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+@include body-mobile {
   .content {
     padding: 1.5em .5em 2em;
 

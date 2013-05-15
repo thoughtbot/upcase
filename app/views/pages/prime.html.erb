@@ -1,42 +1,118 @@
 <section class="journey">
-  <section class="pitch center">
-    <figure class="screenshot">
-      <%= image_tag('http://placehold.it/580x375') %>
-    </figure>
-    <figure id="bullet-1" class="journey-bullet"></figure>
-    <article>
-      <h2>Section headline for Learn Prime</h2>
-      <p>The community is dedicated to helping you grow through knowledge sharing. Our discussion platform is staffed with thoughtbot developers to allow you to communicate directly with the experts.</p>
-    </article>
-  </section>
-  <section class="pitch left">
-    <figure id="bullet-2" class="journey-bullet"></figure>
-    <article>
-      <h2>Section headline for Learn Prime</h2>
-      <p>The community is dedicated to helping you grow through knowledge sharing. Our discussion platform is staffed with thoughtbot developers to allow you to communicate directly with the experts.</p>
-    </article>
-    <figure class="screenshot">
-      <%= image_tag('http://placehold.it/580x375') %>
-    </figure>
+  <section class="headline">
+    <div class="logo">
+      <h1>
+        <%= image_tag('learn/learn-ralph.png') %>
+        <%= t 'shared.learn' %>
+      </h1>
+    </div>
+    <h1>Start your journey to becoming a great ruby developer</h1>
+    <a href="#" id="first-cta" class="cta">
+      <p>subhead</p>
+      <h2>Join Learn Prime</h2>
+    </a>
   </section>
   <section class="pitch center">
-    <figure id="bullet-3" class="journey-bullet"></figure>
     <article>
-      <h2>Section headline for Learn Prime</h2>
-      <p>The community is dedicated to helping you grow through knowledge sharing. Our discussion platform is staffed with thoughtbot developers to allow you to communicate directly with the experts.</p>
+      <figure id="bullet-1" class="journey-bullet"></figure>
+      <h2>Join a community dedicated to your learning</h2>
+      <p>Our growing community is a group of professionals dedicated to improving themselves, their code, and their personal projects.</p>
     </article>
-    <figure class="screenshot">
-      <%= image_tag('http://placehold.it/580x375') %>
+    <figure class="supporting-visual profile">
+      <figure class="mini-profile">
+        <div class="images">
+          <%= image_tag('http://www.gravatar.com/avatar/1eb7539f1f0a62f74ea3f7a0fa0f486f?s=500') %>
+        </div>
+        <figcaption>
+          <h2>This is you</h2>
+        </figcaption>
+      </figure>
+      <%= image_tag('http://placehold.it/500x330') %>
     </figure>
   </section>
   <section class="pitch left">
-    <figure id="bullet-4" class="journey-bullet"></figure>
     <article>
-      <h2>Section headline for Learn Prime</h2>
-      <p>The community is dedicated to helping you grow through knowledge sharing. Our discussion platform is staffed with thoughtbot developers to allow you to communicate directly with the experts.</p>
+      <figure id="bullet-2" class="journey-bullet"></figure>
+      <h2>Enroll in hands-on premium workshops</h2>
+      <p>Our workshops are more than just video tutorials. You'll build real apps and communicate <strong>directly</strong> with a thoughtbot developer.</p>
     </article>
-    <figure class="screenshot">
-      <%= image_tag('http://placehold.it/580x375') %>
+    <figure class="supporting-visual two-stacked">
+      <div>
+        <h3>Online workshops</h3>
+        <% 3.times do %>
+          <figure class="workshop-online">
+            <h4>Intermediate Ruby on Rails</h4>
+            <%= image_tag('http://placehold.it/225x120') %>
+            <h5>Online Workshops</h5>
+            <p>Dig deeper into Ruby on Rails</p>
+            <p class="date">May 30&ndash;31, 2013</p>
+          </figure>
+        <% end %>
+      </div>
+      <div>
+        <h3>In-Person Workshops</h3>
+        <% 3.times do %>
+          <figure class="workshop-inperson">
+            <h4>Intro to Ruby on Rails</h4>
+            <%= image_tag('http://placehold.it/225x120') %>
+            <h5>In-Person Workshop</h5>
+            <p>Learn the core of Ruby followed by how to develop applications using Rails</p>
+            <p class="date">June 14&ndash;15, 2013</p>
+          </figure>
+        <% end %>
+      </div>
     </figure>
   </section>
+  <section class="pitch center">
+    <article>
+      <figure id="bullet-3" class="journey-bullet"></figure>
+      <h2>Collaborate with community members</h2>
+      <p>The community is dedicated to helping you grow through knowledge sharing. Our discussion platform is staffed with thoughtbot developers to allow you to communicate directly with the experts.</p>
+    </article>
+    <figure class="supporting-visual two-screenshot">
+      <%= image_tag('http://placehold.it/500x330') %>
+      <%= image_tag('http://placehold.it/500x330') %>
+    </figure>
+  </section>
+  <section class="pitch left">
+    <article>
+      <figure id="bullet-4" class="journey-bullet"></figure>
+      <h2>Exclusive content weekly</h2>
+      <p>Prime Bytes, our private blog, are published to your dashboard every week. Learn tips, tricks, and best practices. Read our books, published to you iteratively, and updated weekly. Learn vim, development tools, and more with our screencasts.</p>
+    </article>
+    <figure class="supporting-visual two-stacked">
+      <div>
+        <h3>Screencasts</h3>
+        <% 3.times do %>
+          <figure class="screencast">
+            <h4>Hidden Secrets of the Chrome Developer Tools</h4>
+            <%= image_tag('http://placehold.it/225x120') %>
+            <h5>Screencast</h5>
+            <p>Dig deeper into Ruby on Rails</p>
+          </figure>
+        <% end %>
+      </div>
+      <div>
+        <h3>Books</h3>
+        <figure class="book"><%= image_tag('product_images/book/backbone-cover-large.png') %></figure>
+        <figure class="book"><%= image_tag('product_images/book/playbook-cover-large.png') %></figure>
+        <figure class="book"><%= image_tag('product_images/book/rubyscience-cover-large.png') %></figure>
+      </div>
+    </figure>
+  </section>
+  <section class="pitch center final">
+    <figure class="supporting-visual">
+      <%= image_tag('http://placehold.it/440x430') %>
+    </figure>
+    <article>
+      <figure id="bullet-5" class="journey-bullet"></figure>
+      <h2>The journey doesn't end there...</h2>
+      <p>We're focused on delivering continuous learning through community involvement, cutting-edge content, and teaching the latest in development practices.</p>
+      <a href="#" class="cta">
+        <p>subhead</p>
+        <h2>Join Learn Prime</h2>
+      </a>
+    </article>
+  </section>
+  <div class="curtain"></div>
 </section>
