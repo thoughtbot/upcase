@@ -67,6 +67,8 @@ Workshops::Application.routes.draw do
 
   match '/auth/:provider/callback', to: 'auth_callbacks#create'
 
+  get "/pages/*id" => 'pages#show', :as => :page, :format => false
+
   match '/watch' => 'high_voltage/pages#show', as: :watch, id: 'watch'
   match '/privacy' => 'high_voltage/pages#show', as: :privacy, id: 'privacy'
   match '/terms' => 'high_voltage/pages#show', as: :terms, id: 'terms'

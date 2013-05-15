@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head prefix="og: http://ogp.me/ns#">
+    <meta charset="utf-8" />
+    <title><%= page_title(app_name: 'thoughtbot Learn') %></title>
+    <%= stylesheet_link_tag 'application' %>
+    <%= stylesheet_link_tag 'print', media: :print %>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <meta http-equiv="Description" name="Description" content="Workshops, screencasts, videos, and books to help you learn web design and development." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Keywords" name="Keywords" content="<%= keywords(yield :meta_keywords) %>" />
+    <%= open_graph_tags %>
+    <%= render 'shared/typekit' %>
+    <%= csrf_meta_tag %>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+  </head>
+
+  <body class="<%= body_class %> <%= yield(:additional_body_classes) %>">
+    <%= yield %>
+    <%= render 'shared/javascript' %>
+  </body>
+</html>
+
