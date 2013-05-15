@@ -1,3 +1,5 @@
+if ($('.journey').length) {
+
 var jsPlumbSettings = jsPlumb.getInstance();
 
 jsPlumbSettings.Defaults.Container = $('.journey');
@@ -54,3 +56,5 @@ jsPlumb.ready(function() {
 });
 
 $(window).resize(setPlumbSettings);
+
+}
