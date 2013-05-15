@@ -18,6 +18,30 @@
       <% end %>
     <% end %>
   </div>
+
+  <% if current_user.subscription && current_user.stripe_customer %>
+    <%= semantic_form_for current_user.subscription, url: subscription_path(current_user.subscription) do |form| %>
+      <%= form.inputs "Your Subscription Billing Info", id: 'billing-information' do %>
+        <li class="subscription-errors"></li>
+        <li id="purchase_cc_input" class="stripe">
+          <label for='card-number'>Card Number</label>
+          <input type='text' size='20' autocomplete='off' id='card-number' class='card-number'/>
+        </li>
+        <li id="purchase_expiration_input" class="stripe">
+          <label>Expiration</label>
+          <%= select_month nil, { prompt: 'Month', add_month_numbers: true }, class: 'card-expiry-month' %>
+          <%= select_year nil, { prompt: 'Year', start_year: Date.today.year, end_year: 10.years.from_now.year }, class: 'card-expiry-year' %>
+        </li>
+        <li id="purchase_cvc_input" class="stripe">
+          <label for='card-cvc'>CVC</label>
+          <input type='text' size='4' autocomplete='off' id='card-cvc' class='card-cvc'/>
+        </li>
+      <% end %>
+      <%= form.actions do %>
+        <%= form.action :submit, label: 'Update Your Card' %>
+      <% end %>
+    <% end %>
+  <% end %>
 </div>
 
 <aside id="account-sidebar">
@@ -37,3 +61,36 @@
     </ol>
   <% end %>
 </aside>
+
+<% content_for :javascript do -%>
+  <script type="text/javascript" charset="utf-8">
+    Stripe.setPublishableKey('<%= STRIPE_PUBLIC_KEY %>');
+
+    stripeResponseHandler = function(status, response){
+      if (response.error) {
+        $('fieldset.actions input').removeAttr('disabled');
+        $('.subscription-errors').html(response.error.message);
+      } else {
+        $form = $('form.subscription');
+        token = response['id'];
+        $form.append("<input type='hidden' name='stripe_token' value='" + token + "' />");
+        $form.get(0).submit();
+      }
+    }
+
+    $(document).ready(function() {
+      $('form.subscription').submit(function(event){
+        $form = $(this);
+        $form.find('fieldset.actions input').prop('disabled', true);
+        Stripe.createToken({
+          number:    $('.card-number').val(),
+          cvc:       $('.card-cvc').val(),
+          exp_month: $('.card-expiry-month').val(),
+          exp_year:  $('.card-expiry-year').val()
+        }, stripeResponseHandler);
+
+        return false;
+      });
+    });
+  </script>
+<% end %>

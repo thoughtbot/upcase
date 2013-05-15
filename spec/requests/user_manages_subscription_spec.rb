@@ -85,7 +85,7 @@ feature 'User creates a subscription' do
     expect(page).to have_content(I18n.t('purchase.flashes.success', name: subscription_product.name))
   end
 
-  scenario 'creates a Stripe subscription with an ivalid coupon', :js => true do
+  scenario 'creates a Stripe subscription with an invalid coupon', :js => true do
     start_purchasing_subscription
 
     expect(page).to have_content("$15 per month")
@@ -95,6 +95,49 @@ feature 'User creates a subscription' do
     click_button "Apply Coupon"
 
     expect(page).to have_content("The coupon code you supplied is not valid.")
+  end
+
+  scenario 'sees option to update billing for subscribers' do
+    sign_in_as_subscriber
+    visit my_account_path
+
+    expect(page).to have_content('Your Subscription Billing Info')
+  end
+
+  scenario 'updates Stripe subscription', :js => true do
+    sign_in_as_subscriber
+    old_card_last_four = subscriber_card_last_four
+    visit my_account_path
+    submit_new_credit_card_info
+
+    expect(current_path).to eq my_account_path
+    expect(page).to have_content(I18n.t('subscriptions.flashes.update.success'))
+    expect(subscriber_card_last_four).to_not eq old_card_last_four
+  end
+
+  scenario 'does not see option to update billing if not subscribing' do
+    visit my_account_path
+
+    expect(page).not_to have_content('Your Subscription Billing Info')
+  end
+
+  def subscriber_card_last_four
+    customer = Stripe::Customer.retrieve(@current_user.stripe_customer)
+    customer.active_card.last4
+  end
+
+  def submit_new_credit_card_info
+    credit_card_expires_on = Time.now.advance(years: 1)
+    month_selection = credit_card_expires_on.strftime('%-m - %B')
+
+    year_selection = credit_card_expires_on.strftime('%Y')
+    valid_cc_num = '4242424242424242'
+
+    fill_in 'Card Number', with: valid_cc_num
+    select month_selection, from: 'date[month]'
+    select year_selection, from: 'date[year]'
+    fill_in 'CVC', with: '333'
+    click_button 'Update Your Card'
   end
 
   def visit_subscription_product_page
@@ -113,6 +156,11 @@ feature 'User creates a subscription' do
 
   def sign_in
     @current_user = create(:user)
+    visit root_path(as: @current_user)
+  end
+
+  def sign_in_as_subscriber
+    @current_user = create(:user, :with_subscription)
     visit root_path(as: @current_user)
   end
 
