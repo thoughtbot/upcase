@@ -208,7 +208,7 @@
     }
   }
 
-  @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+  @include body-mobile {
     h1 {
       line-height: 56px;
     }

@@ -2,61 +2,486 @@ $journey-line-color: lighten($warmgray, 6%);
 $bullet-size: 70px;
 
 .journey {
-  padding: 6rem 6vw 0;
+  margin: auto;
+  max-width: 111rem;
+  overflow: hidden;
+  padding: 0 0 6rem;
+  position: relative;
+
+  .curtain {
+    @extend %animation-draw-curtain;
+    background: $lightwarmgray;
+    @include position(absolute, 0px 0px 0px 0px);
+    z-index: 1;
+  }
+
+  .headline {
+    background: $warmgray;
+    margin-bottom: 10rem;
+    padding: 2rem 12vw 0;
+
+    @include prime-marketing-mobile {
+      padding: 2rem 6vw 0;
+    }
+
+    .logo {
+      line-height: 0;
+      margin-bottom: 2rem;
+      text-align: center;
+
+      h1 {
+        display: inline-block;
+        line-height: 88px;
+      }
+
+      img {
+        display: inline-block;
+        float: left;
+        margin-right: 1rem;
+      }
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      text-align: center;
+    }
+
+    .cta {
+      bottom: -4rem;
+      margin-top: 0;
+      position: relative;
+
+      &:active {
+        margin-top: .25rem;
+      }
+    }
+  }
+
+  .cta {
+    background: $learnred;
+    border-bottom: .3rem solid darken($learnred, 10%);
+    border-radius: .3rem;
+    display: block;
+    margin-top: 2rem;
+    padding: 1.75rem;
+    position: relative;
+    text-align: center;
+    z-index: 5;
+
+    &:hover {
+      background: lighten($learnred, 3%);
+    }
+
+    &:active {
+      border-bottom: 0;
+      margin-top: 2.3rem;
+    }
+
+    h2, p {
+      color: #fff;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+    }
+  }
 
   .pitch {
     @include clearfix;
     margin-bottom: 10rem;
+    padding: 0 6vw;
     position: relative;
     z-index: 2;
 
-    &.center {
-      .journey-bullet {
-        left: 51%;
-      }
+    @include prime-marketing-mobile {
+      margin-bottom: 4rem;
     }
 
     &.left {
-      .journey-bullet {
-        left: 0;
-      }
-
-      .screenshot {
+      .supporting-visual {
         float: right;
       }
 
       article {
         float: left;
-        margin-left: 7rem;
+        margin-left: 5rem;
+
+        @include prime-marketing-tablet {
+          margin-left: 0;
+          padding-left: 5rem;
+        }
+
+        @include prime-marketing-mobile {
+          padding-left: 0;
+        }
+      }
+
+      .journey-bullet {
+        @include prime-marketing-tablet {
+          left: -1rem;
+        }
       }
     }
 
-    .screenshot {
+    &.center {
+      article {
+        @include prime-marketing-tablet {
+          padding-right: 5rem;
+        }
+
+        @include prime-marketing-mobile {
+          padding-right: 0;
+        }
+      }
+
+      .journey-bullet {
+        @include prime-marketing-tablet {
+          left: auto;
+          right: -1rem;
+        }
+      }
+    }
+
+    &.final {
+      .supporting-visual {
+        width: 30%;
+
+        @include prime-marketing-tablet {
+          float: left;
+          margin: 0 2rem 2rem 0;
+          width: auto;
+
+          img {
+            width: 250px;
+          }
+        }
+
+        @include prime-marketing-mobile {
+          display: none;
+        }
+      }
+
+      article {
+        width: 57%;
+
+        @include prime-marketing-tablet {
+          width: 100%;
+
+          .cta {
+            clear: both;
+          }
+        }
+      }
+    }
+
+    .supporting-visual {
       float: left;
-      min-width: 540px;
+      position: relative;
       width: 40%;
 
-      img {
-        height: 380px;
+      @media screen and (max-width: 1560px) {
+        width: 55%;
       }
-    }
 
-    .journey-bullet {
-      background: $journey-line-color;
-      border-radius: 100%;
-      height: $bullet-size;
-      opacity: 0;
-      position: absolute;
-      top: 1.25rem;
-      top: 100%;
-      width: $bullet-size;
-      z-index: -1;
+      @include prime-marketing-tablet {
+        float: none;
+        width: 100%;
+      }
+
+      figure.workshop-online {
+        h4 {
+          background: $workshop-online-color;
+        }
+      }
+
+      figure.workshop-inperson {
+        h4 {
+          background: $workshop-inperson-color;
+        }
+      }
+
+      figure.screencast {
+        h4 {
+          background: $screencasts-color;
+        }
+      }
+
+      &.profile {
+        height: 400px;
+
+        @include prime-marketing-mobile {
+          height: auto;
+        }
+
+        .mini-profile {
+          background: #fff;
+          border: 1px solid rgb(150, 150, 150);
+          border-radius: .5rem;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, .1);
+          box-sizing: content-box;
+          display: table;
+          padding: 1.5rem;
+          @include position(absolute, 0px 0px 0 0);
+          width: 420px;
+          z-index: 1;
+
+          @include prime-marketing-mobile {
+            padding: .5rem 0;
+            width: 80%;
+            margin-top: -1rem;
+            margin-right: 5%;
+          }
+
+          .images {
+            float: left;
+            height: 150px;
+            width: 150px;
+
+            img {
+              border: 1px solid rgb(150, 150, 150);
+              border-radius: 100%;
+              height: 150px;
+              opacity: 0;
+              position: absolute;
+              @include transition;
+              width: 150px;
+
+              &:first-child {
+                opacity: 1;
+              }
+            }
+
+            @include prime-marketing-mobile {
+              height: 70px;
+              margin-left: 1rem;
+              width: 70px;
+
+              img {
+                height: 70px;
+                width: 70px;
+              }
+            }
+          }
+
+          figcaption {
+            display: table-cell;
+            vertical-align: middle;
+
+            @include prime-marketing-mobile {
+              h2 {
+                font-size: 1.5rem;
+              }
+            }
+          }
+
+          h2 {
+            border-bottom: 2px solid rgba(70, 125, 200, .5);
+            color: rgb(70, 125, 200);
+            display: inline-block;
+            font-weight: 400;
+          }
+        }
+
+        > img {
+          @include position(absolute, 0 0 0px 0px);
+
+          @include prime-marketing-mobile {
+            position: static;
+          }
+        }
+      }
+
+      &.two-stacked {
+        height: 415px;
+
+        @include prime-marketing-tablet {
+          margin-top: 1rem;
+          padding-left: 5rem;
+        }
+
+        @media screen and (max-width: 775px) {
+          padding-left: 0;
+        }
+
+        @include prime-marketing-mobile {
+          height: auto;
+          padding: 0;
+          margin: 0;
+        }
+
+        > div {
+          float: left;
+          height: 410px;
+          position: relative;
+          width: 50%;
+
+          &.visible {
+            figure {
+              opacity: 1;
+
+              @for $i from 0 through 2 {
+                &:nth-of-type(#{$i + 1}n) {
+                  @extend %animation-two-stacked-fly-in;
+                  @include animation-delay(#{($i + 1) * .2}s);
+                }
+              }
+            }
+          }
+
+          &:hover {
+            z-index: 5;
+
+            figure {
+              &:nth-of-type(1) {
+                @include transform(translate(-4rem, -4rem) rotate(-3deg));
+              }
+
+              &:nth-of-type(2) {
+                @include transform(translate(0, -2rem));
+              }
+
+              &:nth-of-type(3) {
+                @include transform(translate(4rem, 0) rotate(3deg));
+              }
+            }
+          }
+
+          @include prime-marketing-tablet {
+            width: 270px;
+
+            &:first-of-type {
+              margin-right: 8vw;
+            }
+          }
+
+          @include prime-marketing-mobile {
+            float: none;
+            height: 440px;
+            width: 100%;
+          }
+        }
+
+        h3 {
+          font-size: 1rem;
+          font-weight: 600;
+          padding: 0 0 1rem 1.5rem;
+        }
+
+        figure {
+          background: #fff;
+          border: 1px solid rgb(175, 175, 175);
+          border-radius: .3rem;
+          box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+          display: inline-block;
+          height: 330px;
+          opacity: 0;
+          padding: .3rem;
+          position: absolute;
+          @include transform(translate(0, 0) rotate(0deg));
+          @include transition(.25s);
+          @include transition-timing-function(ease);
+          width: 230px;
+
+          @for $i from 0 through 2 {
+            &:nth-of-type(#{$i + 1}n) {
+              margin-left: 1.3rem * $i;
+              margin-top: 1.3rem * $i;
+            }
+          }
+
+          &.book {
+            height: 318px;
+            padding: 0;
+            width: 246px;
+          }
+
+          h4 {
+            border-radius: 2px;
+            color: #fff;
+            margin-bottom: .3rem;
+            padding: .75rem;
+          }
+
+          h5, p {
+            margin: .75rem;
+          }
+
+          h5 {
+            font-size: .8rem;
+            margin-top: .3rem;
+            text-transform: uppercase;
+          }
+
+          .date {
+            bottom: 0;
+            font: normal .8rem/1em $sans-serif;
+            position: absolute;
+          }
+        }
+      }
+
+      > img {
+        border: 1px solid rgb(175, 175, 175);
+        border-radius: 2px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+      }
+
+      &.two-screenshot {
+        height: 400px;
+
+        @include prime-marketing-mobile {
+          height: auto;
+        }
+
+        img {
+          @include position(absolute, 0 0 0px 0px);
+
+          @include prime-marketing-mobile {
+            position: static;
+          }
+
+          &:last-child {
+            bottom: auto;
+            left: auto;
+            right: 0px;
+            top: 0px;
+          }
+        }
+      }
     }
 
     article {
       float: right;
-      min-width: 450px;
-      width: 38%;
+      margin-top: 5rem;
+      position: relative;
+      width: 37%;
+
+      @media screen and (max-width: 1560px) {
+        width: 30%;
+      }
+
+      @include prime-marketing-tablet {
+        float: none;
+        margin-top: 0;
+        width: 100%;
+      }
+
+      @include prime-marketing-mobile {
+        margin-top: 0;
+      }
+
+      .journey-bullet {
+        background: $journey-line-color;
+        border-radius: 100%;
+        height: $bullet-size;
+        left: -8rem;
+        position: absolute;
+        top: 1rem;
+        width: $bullet-size;
+        z-index: -1;
+      }
 
       h2 {
         font-size: 2.75rem;
@@ -70,17 +495,18 @@ $bullet-size: 70px;
       }
     }
   }
-
-  svg path {
-    border-radius: 100%;
-    stroke: $journey-line-color;
-    stroke-dasharray: 15px, 21px;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 5px;
-  }
-
-  .connector-dot {
-    display: none;
-  }
 }
+
+svg._jsPlumb_connector path, svg._jsPlumb_endpoint path {
+  border-radius: 100%;
+  stroke: $journey-line-color;
+  stroke-dasharray: 15px, 21px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 5px;
+}
+
+.connector-dot {
+  display: none;
+}
+

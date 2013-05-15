@@ -105,7 +105,7 @@ a.chat, a.chat:link, a.chat:visited {
   }
 }
 
-@media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+@include body-mobile {
   footer {
     width: 100%;
 
