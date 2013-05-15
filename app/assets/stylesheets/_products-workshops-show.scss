@@ -281,7 +281,7 @@ body.products-show, body.workshops-show {
     }
   }
 
-  @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+  @include body-mobile {
     #additional-information {
       input[type="text"] {
         display: block;

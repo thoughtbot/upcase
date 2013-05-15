@@ -1,9 +1,17 @@
-@include font-face(entypo, 'entypo/entypo', $asset-pipeline: true);
+@mixin prime-marketing-mobile {
+  @media screen and (max-device-width: 580px), screen and (max-width: 580px) {
+    @content;
+  }
+}
 
-.icon {
-  font-family: "entypo";
-  font-size: 25px;
-  font-weight: normal;
-  position: relative;
-  top: 3px;
+@mixin prime-marketing-tablet {
+  @media screen and (max-device-width: 1088px), screen and (max-width: 1088px) {
+    @content;
+  }
+}
+
+@mixin body-mobile {
+  @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+    @content;
+  }
 }

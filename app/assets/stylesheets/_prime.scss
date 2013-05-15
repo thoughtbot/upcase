@@ -12,6 +12,10 @@ $bullet-size: 70px;
     position: relative;
     z-index: 2;
 
+    @include prime-marketing-mobile {
+      margin-bottom: 4rem;
+    }
+
     &.left {
       .supporting-visual {
         float: right;
@@ -21,14 +25,18 @@ $bullet-size: 70px;
         float: left;
         margin-left: 5rem;
 
-        @media screen and (max-width: 68rem) {
+        @include prime-marketing-tablet {
           margin-left: 0;
           padding-left: 5rem;
+        }
+
+        @include prime-marketing-mobile {
+          padding-left: 0;
         }
       }
 
       .journey-bullet {
-        @media screen and (max-width: 68rem) {
+        @include prime-marketing-tablet {
           left: -1rem;
         }
       }
@@ -36,13 +44,17 @@ $bullet-size: 70px;
 
     &.center {
       article {
-        @media screen and (max-width: 68rem) {
+        @include prime-marketing-tablet {
           padding-right: 5rem;
+        }
+
+        @include prime-marketing-mobile {
+          padding-right: 0;
         }
       }
 
       .journey-bullet {
-        @media screen and (max-width: 68rem) {
+        @include prime-marketing-tablet {
           left: auto;
           right: -1rem;
         }
@@ -53,7 +65,7 @@ $bullet-size: 70px;
       .supporting-visual {
         width: 30%;
 
-        @media screen and (max-width: 68rem) {
+        @include prime-marketing-tablet {
           text-align: center;
 
           img {
@@ -66,7 +78,7 @@ $bullet-size: 70px;
         width: 57%;
       }
 
-      @media screen and (max-width: 68rem) {
+      @include prime-marketing-tablet {
         .supporting-visual, article {
           width: 100%;
         }
@@ -75,7 +87,6 @@ $bullet-size: 70px;
 
     .supporting-visual {
       float: left;
-      min-width: 300px;
       position: relative;
       width: 40%;
 
@@ -83,13 +94,17 @@ $bullet-size: 70px;
         width: 55%;
       }
 
-      @media screen and (max-width: 68rem) {
+      @include prime-marketing-tablet {
         float: none;
         width: 100%;
       }
 
       &.profile {
         height: 400px;
+
+        @include prime-marketing-mobile {
+          height: 200px;
+        }
 
         .mini-profile {
           background: #fff;
@@ -103,15 +118,32 @@ $bullet-size: 70px;
           width: 420px;
           z-index: 1;
 
+          @include prime-marketing-mobile {
+            padding: .5rem 0;
+            width: 100%;
+          }
+
           img {
             border: 1px solid rgb(150, 150, 150);
             border-radius: 100%;
             float: left;
+
+            @include prime-marketing-mobile {
+              height: 50px;
+              margin-left: 1rem;
+              width: 50px;
+            }
           }
 
           figcaption {
             display: table-cell;
             vertical-align: middle;
+
+            @include prime-marketing-mobile {
+              h2 {
+                font-size: 1rem;
+              }
+            }
           }
 
           h2 {
@@ -130,9 +162,15 @@ $bullet-size: 70px;
       &.two-stacked {
         height: 415px;
 
-        @media screen and (max-width: 68rem) {
+        @include prime-marketing-tablet {
           margin-top: 1rem;
           padding-left: 5rem;
+        }
+
+        @include prime-marketing-mobile {
+          height: auto;
+          padding: 0;
+          margin: 0;
         }
 
         > div {
@@ -140,12 +178,18 @@ $bullet-size: 70px;
           position: relative;
           width: 50%;
 
-          @media screen and (max-width: 68rem) {
+          @include prime-marketing-tablet {
             width: 270px;
 
             &:first-of-type {
               margin-right: 8vw;
             }
+          }
+
+          @include prime-marketing-mobile {
+            float: none;
+            height: 440px;
+            width: 100%;
           }
         }
 
@@ -227,7 +271,6 @@ $bullet-size: 70px;
     article {
       float: right;
       margin-top: 5rem;
-      min-width: 300px;
       position: relative;
       width: 37%;
 
@@ -235,9 +278,14 @@ $bullet-size: 70px;
         width: 30%;
       }
 
-      @media screen and (max-width: 68rem) {
+      @include prime-marketing-tablet {
         float: none;
+        margin-top: 0;
         width: 100%;
+      }
+
+      @include prime-marketing-mobile {
+        margin-top: 0;
       }
 
       .journey-bullet {

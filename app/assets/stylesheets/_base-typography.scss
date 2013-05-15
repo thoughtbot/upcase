@@ -111,7 +111,16 @@ hr {
   height: 2px;
 }
 
-@media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+@include font-face(entypo, 'entypo/entypo', $asset-pipeline: true);
+.icon {
+  font-family: "entypo";
+  font-size: 25px;
+  font-weight: normal;
+  position: relative;
+  top: 3px;
+}
+
+@include body-mobile {
   ol, ul {
     margin: 0 0 0 .75em;
   }
