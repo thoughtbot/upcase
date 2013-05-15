@@ -1,11 +1,11 @@
 if ($('.journey').length) {
 
-var jsPlumbSettings = jsPlumb.getInstance();
+  var jsPlumbSettings = jsPlumb.getInstance();
 
-jsPlumbSettings.Defaults.Container = $('.journey');
-jsPlumbSettings.draggable('body');
+  jsPlumbSettings.Defaults.Container = $('.journey');
+  jsPlumbSettings.draggable('body');
 
-var setPlumbSettings = function() {
+  var setPlumbSettings = function() {
   jsPlumbSettings.detachEveryConnection();
   jsPlumbSettings.removeAllEndpoints();
   jsPlumbSettings.connect({
@@ -13,48 +13,55 @@ var setPlumbSettings = function() {
     source: 'bullet-1',
     target: 'bullet-2',
     anchors:['Bottom', 'Top'],
-    endpoint: ['Dot', { cssClass: 'connector-dot' }]
-  });
-  jsPlumbSettings.connect({
-    connector:['Bezier', { curviness: 440 }],
-    source: 'bullet-2',
-    target: 'bullet-3',
-    anchors:['Bottom', 'Top'],
-    endpoint: ['Dot', { cssClass: 'connector-dot' }]
-  });
-  jsPlumbSettings.connect({
-    connector:['Bezier', { curviness: 300 }],
-    source: 'bullet-3',
-    target: 'bullet-4',
-    anchors:['Bottom', 'Top'],
-    endpoint: ['Dot', { cssClass: 'connector-dot' }]
-  });
-};
+      endpoint: ['Dot', { cssClass: 'connector-dot' }]
+    });
+    jsPlumbSettings.connect({
+      connector:['Bezier', { curviness: 420 }],
+      source: 'bullet-2',
+      target: 'bullet-3',
+      anchors:['Bottom', 'Top'],
+      endpoint: ['Dot', { cssClass: 'connector-dot' }]
+    });
+    jsPlumbSettings.connect({
+      connector:['Bezier', { curviness: 300 }],
+      source: 'bullet-3',
+      target: 'bullet-4',
+      anchors:['Bottom', 'Top'],
+      endpoint: ['Dot', { cssClass: 'connector-dot' }]
+    });
+    jsPlumbSettings.connect({
+      connector:['Bezier', { curviness: 420 }],
+      source: 'bullet-4',
+      target: 'bullet-5',
+      anchors:['Bottom', 'Top'],
+      endpoint: ['Dot', { cssClass: 'connector-dot' }]
+    });
+  };
 
-var animate_journey = function(e) {
-  if ($(e).length) {
-    jsPlumbSettings.animate(
-      e,
-      {
-        top: '0',
-        opacity: '1'
-      },
-      {
-        duration: 800,
-        easing: 'easeOutBack',
-        complete: function() {
-          animate_journey($(e).parent().next().children('.journey-bullet'));
+  var animate_journey = function(e) {
+    if ($(e).length) {
+      jsPlumbSettings.animate(
+        e,
+        {
+          top: '1rem',
+          opacity: '1'
+        },
+        {
+          duration: 300,
+          easing: 'easeOutQuart',
+          complete: function() {
+            animate_journey($(e).parents('.pitch').next().find('.journey-bullet'));
+          }
         }
-      }
-    );
-  }
-};
+      );
+    }
+  };
 
-jsPlumb.ready(function() {
-  setPlumbSettings();
-  animate_journey($('.journey-bullet:first'));
-});
+  jsPlumb.ready(function() {
+    setPlumbSettings();
+    animate_journey($('.journey-bullet:first'));
+  });
 
-$(window).resize(setPlumbSettings);
+  $(window).resize(setPlumbSettings);
 
 }

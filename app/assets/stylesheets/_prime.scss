@@ -2,6 +2,8 @@ $journey-line-color: lighten($warmgray, 6%);
 $bullet-size: 70px;
 
 .journey {
+  margin: auto;
+  max-width: 111rem;
   padding: 6rem 6vw 0;
 
   .pitch {
@@ -10,53 +12,246 @@ $bullet-size: 70px;
     position: relative;
     z-index: 2;
 
-    &.center {
-      .journey-bullet {
-        left: 51%;
-      }
-    }
-
     &.left {
-      .journey-bullet {
-        left: 0;
-      }
-
-      .screenshot {
+      .supporting-visual {
         float: right;
       }
 
       article {
         float: left;
-        margin-left: 7rem;
+        margin-left: 5rem;
+
+        @media screen and (max-width: 68rem) {
+          margin-left: 0;
+          padding-left: 5rem;
+        }
+      }
+
+      .journey-bullet {
+        @media screen and (max-width: 68rem) {
+          left: -1rem;
+        }
       }
     }
 
-    .screenshot {
+    &.center {
+      article {
+        @media screen and (max-width: 68rem) {
+          padding-right: 5rem;
+        }
+      }
+
+      .journey-bullet {
+        @media screen and (max-width: 68rem) {
+          left: auto;
+          right: -1rem;
+        }
+      }
+    }
+
+    &.final {
+      .supporting-visual {
+        width: 30%;
+
+        @media screen and (max-width: 68rem) {
+          text-align: center;
+
+          img {
+            width: 300px;
+          }
+        }
+      }
+
+      article {
+        width: 57%;
+      }
+
+      @media screen and (max-width: 68rem) {
+        .supporting-visual, article {
+          width: 100%;
+        }
+      }
+    }
+
+    .supporting-visual {
       float: left;
-      min-width: 540px;
+      min-width: 300px;
+      position: relative;
       width: 40%;
 
-      img {
-        height: 380px;
+      @media screen and (max-width: 98rem) {
+        width: 55%;
       }
-    }
 
-    .journey-bullet {
-      background: $journey-line-color;
-      border-radius: 100%;
-      height: $bullet-size;
-      opacity: 0;
-      position: absolute;
-      top: 1.25rem;
-      top: 100%;
-      width: $bullet-size;
-      z-index: -1;
+      @media screen and (max-width: 68rem) {
+        float: none;
+        width: 100%;
+      }
+
+      &.profile {
+        height: 400px;
+
+        .mini-profile {
+          background: #fff;
+          border: 1px solid rgb(150, 150, 150);
+          border-radius: .5rem;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, .1);
+          box-sizing: content-box;
+          display: table;
+          padding: 1.5rem;
+          @include position(absolute, 0px 0px 0 0);
+          width: 420px;
+          z-index: 1;
+
+          img {
+            border: 1px solid rgb(150, 150, 150);
+            border-radius: 100%;
+            float: left;
+          }
+
+          figcaption {
+            display: table-cell;
+            vertical-align: middle;
+          }
+
+          h2 {
+            border-bottom: 2px solid rgba(70, 125, 200, .5);
+            color: rgb(70, 125, 200);
+            display: inline-block;
+            font-weight: 400;
+          }
+        }
+
+        > img {
+          @include position(absolute, 0 0 0px 0px);
+        }
+      }
+
+      &.two-stacked {
+        height: 415px;
+
+        @media screen and (max-width: 68rem) {
+          margin-top: 1rem;
+          padding-left: 5rem;
+        }
+
+        > div {
+          float: left;
+          position: relative;
+          width: 50%;
+
+          @media screen and (max-width: 68rem) {
+            width: 270px;
+
+            &:first-of-type {
+              margin-right: 8vw;
+            }
+          }
+        }
+
+        h3 {
+          font-size: 1rem;
+          font-weight: 600;
+          margin: 0 0 1rem 1.5rem;
+        }
+
+        figure {
+          background: #fff;
+          border: 1px solid rgb(175, 175, 175);
+          border-radius: .3rem;
+          box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+          display: inline-block;
+          height: 330px;
+          padding: .3rem;
+          position: absolute;
+          width: 230px;
+
+          @for $i from 0 through 2 {
+            &:nth-of-type(#{$i + 1}n) {
+              margin-left: 1.3rem * $i;
+              margin-top: 1.3rem * $i;
+            }
+          }
+
+          &.book {
+            height: 300px;
+            padding: 0;
+            width: 246px;
+          }
+
+          h4 {
+            background: #999;
+            border-radius: 2px;
+            color: #fff;
+            margin-bottom: .3rem;;
+            padding: .75rem;
+          }
+
+          h5, p {
+            margin: .75rem;
+          }
+
+          h5 {
+            font-size: .8rem;
+            margin-top: .3rem;
+            text-transform: uppercase;
+          }
+
+          .date {
+            bottom: 0;
+            font: normal .8rem/1em $sans-serif;
+            position: absolute;
+          }
+        }
+      }
+
+      > img {
+        border: 1px solid rgb(175, 175, 175);
+        border-radius: 2px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+      }
+
+      &.two-screenshot {
+        height: 400px;
+
+        img {
+          @include position(absolute, 0 0 0px 0px);
+
+          &:last-child {
+            @include position(absolute, 0px 0px auto auto);
+          }
+        }
+      }
     }
 
     article {
       float: right;
-      min-width: 450px;
-      width: 38%;
+      margin-top: 5rem;
+      min-width: 300px;
+      position: relative;
+      width: 37%;
+
+      @media screen and (max-width: 98rem) {
+        width: 30%;
+      }
+
+      @media screen and (max-width: 68rem) {
+        float: none;
+        width: 100%;
+      }
+
+      .journey-bullet {
+        // final top and opacity set by JS in prime.js
+        background: $journey-line-color;
+        border-radius: 100%;
+        height: $bullet-size;
+        left: -8rem;
+        opacity: 0;
+        position: absolute;
+        top: 1000%;
+        width: $bullet-size;
+        z-index: -1;
+      }
 
       h2 {
         font-size: 2.75rem;
@@ -67,6 +262,20 @@ $bullet-size: 70px;
       p {
         font-family: $sans-serif;
         font-size: 1.5rem;
+      }
+
+      .cta {
+        background: $learnred;
+        border-radius: .3rem;
+        display: block;
+        margin-top: 2rem;
+        padding: 2rem;
+        text-align: center;
+
+        h2, p {
+          color: #fff;
+          margin: 0;
+        }
       }
     }
   }
