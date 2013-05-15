@@ -78,7 +78,7 @@ img {
 .text-box {
   @extend %main-content-box;
 
-  h1, h2, h3, h4, h5, h6{
+  h1, h2, h3, h4, h5, h6 {
     color: $darkwarmgray;
     margin: 2rem 0 1rem 0;
   }
@@ -87,7 +87,7 @@ img {
     margin-top: 3rem;
   }
 
-  p, li {
+  p, li, th, td {
     color: $darkwarmgray;
   }
 
@@ -97,8 +97,9 @@ img {
     }
 
     h3 {
-      margin-top: 0;
       font-size: 1.2em;
+      margin-bottom: 1.5rem;
+      margin-top: -.5rem;
     }
   }
 
@@ -127,6 +128,18 @@ img {
       h3 {
         color: $learnred;
       }
+    }
+  }
+
+  table {
+    color: $darkwarmgray;
+    font: normal 1em/1.5em $serif;
+    margin: 2rem 0;
+    -webkit-font-smoothing: antialiased;
+
+    th {
+      font-weight: bold;
+      padding-bottom: 1rem;
     }
   }
 }
