@@ -36,7 +36,6 @@ p, li {
   color: $darkwarmgray;
   font: normal 1em/1.5em $serif;
   margin-bottom: .8em;
-  text-shadow: 0 1px 1px rgba(255,255,255,.3);
   -webkit-font-smoothing: antialiased;
 
   em {
@@ -58,7 +57,7 @@ pre code {
   background-color: $lightwarmgray;
   border-radius: 3px;
   display: block;
-  font-size: 1rem;
+  line-height: 1.4rem;
   margin: 2rem 0;
   padding: 1rem;
 }
@@ -78,7 +77,8 @@ br {
 blockquote {
   border-left: 4px solid $warmgray;
   font-style: italic;
-  padding-left: 20px;
+  margin-left: 1rem;
+  padding-left: 1rem;
 }
 
 q {
