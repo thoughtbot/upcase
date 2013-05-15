@@ -1,0 +1,55 @@
+#billing-information {
+  ol {
+    width: 100%;
+
+    li {
+      &.overflow {
+        @extend .clearfix;
+      }
+
+      &#purchase_expiration_input {
+        float: left;
+        margin-right: flex-gutter();
+        width: flex-grid(8);
+
+        select {
+          border: 1px solid $darkwarmgray;
+          @include box-shadow(none);
+          @include box-sizing(border-box);
+          float: left;
+          font: 14px $sans-serif;
+          height: 47px;
+          margin: 5px 0 0 0;
+          padding: .5em;
+          -webkit-appearance: none;
+          width: flex-grid(6);
+
+          &.card-expiry-month {
+            margin-right: flex-gutter();
+          }
+
+          &:focus {
+            border: 1px solid $learnred;
+            outline: none;
+            outline-color: none;
+          }
+        }
+      }
+
+      &#purchase_cvc_input {
+        float: left;
+        width: flex-grid(4);
+      }
+
+      &#purchase_country_input {
+        clear: left;
+      }
+
+      &#purchase_cc_existing {
+        input, label {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
