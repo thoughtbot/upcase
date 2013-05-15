@@ -81,7 +81,7 @@ form {
   li {
     list-style-type: none;
 
-    &.payment-errors {
+    &.payment-errors, &.subscription-errors {
       color: $learnred;
       font-style: bold;
     }
