@@ -68,18 +68,16 @@ Workshops::Application.routes.draw do
   match '/auth/:provider/callback', to: 'auth_callbacks#create'
 
   get "/pages/*id" => 'pages#show', :as => :page, :format => false
-
-  match '/watch' => 'high_voltage/pages#show', as: :watch, id: 'watch'
-  match '/privacy' => 'high_voltage/pages#show', as: :privacy, id: 'privacy'
-  match '/terms' => 'high_voltage/pages#show', as: :terms, id: 'terms'
-  match '/directions' => "high_voltage/pages#show", as: :directions, id: "directions"
-  match '/group-training' => "high_voltage/pages#show", as: :group_training, id: "group-training"
-  match '/humans-present/oss' => "high_voltage/pages#show", as: :humans_present_oss, id: "humans-present-oss"
-
+  match '/prime' => 'pages#show', as: :prime, id: 'prime'
+  match '/watch' => 'pages#show', as: :watch, id: 'watch'
+  match '/privacy' => 'pages#show', as: :privacy, id: 'privacy'
+  match '/terms' => 'pages#show', as: :terms, id: 'terms'
+  match '/directions' => "pages#show", as: :directions, id: "directions"
+  match '/group-training' => "pages#show", as: :group_training, id: "group-training"
+  match '/humans-present/oss' => "pages#show", as: :humans_present_oss, id: "humans-present-oss"
   match '/backbone-js-on-rails' => redirect("/products/1-backbone-js-on-rails")
   match '/5by5' => redirect('/workshops/19-design-for-developers?utm_source=5by5')
-
-  match '/rubyist-booster-shot' => "high_voltage/pages#show", as: :rubyist_booster_shot, id: "rubyist-booster-shot"
+  match '/rubyist-booster-shot' => "pages#show", as: :rubyist_booster_shot, id: "rubyist-booster-shot"
 
   match '/my_account' => 'users#update', as: 'my_account', via: :put
   match '/my_account' => 'users#edit', as: 'my_account'
