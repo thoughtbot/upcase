@@ -4,6 +4,12 @@
 <div class="text-box-wrapper">
   <div class="text-box">
     <p>Thank you for purchasing <%= @purchaseable.name %>.</p>
+
+    <% if current_user.inactive_subscription %>
+      <p>You stopped subscribing to <%= @purchaseable.name %> on
+      <%= current_user.inactive_subscription.deactivated_on.to_s(:long) %>. If you would like
+      to resubscribe, please <%= mail_to 'learn@thoughtbot.com', 'contact us' %>.</p>
+    <% end %>
   </div>
 </div>
 
