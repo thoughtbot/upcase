@@ -1,14 +1,14 @@
 require 'spec_helper'
 
 describe Unsubscriber do
-  it 'destroys the subscription' do
+  it 'makes the subscription inactive and records the current date' do
     subscription = create(:subscription)
     unsubscriber = Unsubscriber.new(subscription)
 
     subscription.stubs(:stripe_customer).returns('cus_1CXxPJDpw1VLvJ')
     unsubscriber.process
 
-    subscription.should_not be_persisted
+    subscription.deactivated_on.should == Date.today
   end
 
   it 'unsubscribes from Stripe' do
@@ -34,7 +34,7 @@ describe Unsubscriber do
     Stripe::Customer.should have_received(:retrieve).with('cus_1CXxPJDpw1VLvJ')
   end
 
-  it 'does not destroy subscription if stripe unsubscribe fails' do
+  it 'does not make the subscription inactive if stripe unsubscribe fails' do
     subscription = create(:subscription)
     unsubscriber = Unsubscriber.new(subscription)
 
@@ -43,10 +43,10 @@ describe Unsubscriber do
     Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 
     expect { unsubscriber.process }.to raise_error
-    Subscription.find(subscription.id).should be_present
+    Subscription.find(subscription.id).should be_active
   end
 
-  it 'does not unsubscribe from stripe if destroying the subscription failed' do
+  it 'does not unsubscribe from stripe if deactivating the subscription failed' do
     subscription = create(:subscription)
     unsubscriber = Unsubscriber.new(subscription)
 

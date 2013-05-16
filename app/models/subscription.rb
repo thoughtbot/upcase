@@ -14,6 +14,18 @@ class Subscription < ActiveRecord::Base
     notifier.send_notifications
   end
 
+  def active?
+    deactivated_on.nil?
+  end
+
+  def deactivate
+    update_column(:deactivated_on, Date.today)
+  end
+
+  def activate
+    update_column(:deactivated_on, nil)
+  end
+
   private
 
   def self.subscriber_emails
