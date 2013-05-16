@@ -7,7 +7,7 @@
 
     <% if current_user.inactive_subscription %>
       <p>You stopped subscribing to <%= @purchaseable.name %> on
-      <%= l current_user.inactive_subscription.deactivated_on, format: :long %>. If you would like
+      <%= current_user.inactive_subscription.deactivated_on.to_s(:long) %>. If you would like
       to resubscribe, please <%= mail_to 'learn@thoughtbot.com', 'contact us' %>.</p>
     <% end %>
   </div>
