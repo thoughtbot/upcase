@@ -426,6 +426,7 @@ DEPENDENCIES
   hirb (= 0.6.2)
   httparty (= 0.8.1)
   jquery-rails
+  json (~> 1.7.7)
   kissmetrics (= 2.0.0)
   launchy
   memcachier
