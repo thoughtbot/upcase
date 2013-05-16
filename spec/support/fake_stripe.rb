@@ -190,8 +190,19 @@ class FakeStripe < Sinatra::Base
 
   post '/customers/:id' do
     content_type :json
-
-    '{}'
+    if failure
+      status 402
+      {
+        error: {
+        message: "Your credit card was declined",
+        type: "card_error",
+        param: "number",
+        code: "incorrect_number"
+      }
+      }.to_json
+    else
+      '{}'
+    end
   end
 
   post '/coupons' do
