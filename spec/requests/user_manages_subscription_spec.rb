@@ -104,7 +104,7 @@ feature 'User creates a subscription' do
     expect(page).to have_content('Your Subscription Billing Info')
   end
 
-  scenario 'updates Stripe subscription', :js => true do
+  scenario 'updates Stripe subscription', js: true do
     sign_in_as_subscriber
     visit my_account_path
     submit_new_credit_card_info
@@ -113,7 +113,7 @@ feature 'User creates a subscription' do
     expect(page).to have_content(I18n.t('subscriptions.flashes.update.success'))
   end
 
-  scenario 'updates Stripe subscription with declining credit card', :js => true do
+  scenario 'updates Stripe subscription with declining credit card', js: true do
     FakeStripe.failure = true
     sign_in_as_subscriber
     visit my_account_path
