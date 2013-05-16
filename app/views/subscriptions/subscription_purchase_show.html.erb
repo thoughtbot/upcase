@@ -5,9 +5,9 @@
   <div class="text-box">
     <p>Thank you for purchasing <%= @purchaseable.name %>.</p>
 
-    <% if subscription = current_user.subscription and !subscription.active? %>
-      <p>It appears you stopped subscribing to <%= @purchaseable.name %> on
-      <%= l subscription.deactivated_on, format: :long %>. If you would like
+    <% if current_user.inactive_subscription %>
+      <p>You stopped subscribing to <%= @purchaseable.name %> on
+      <%= l current_user.inactive_subscription.deactivated_on, format: :long %>. If you would like
       to resubscribe, please <%= mail_to 'learn@thoughtbot.com', 'contact us' %>.</p>
     <% end %>
   </div>

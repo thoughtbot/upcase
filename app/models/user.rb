@@ -53,6 +53,12 @@ class User < ActiveRecord::Base
     paid_purchases.present?
   end
 
+  def inactive_subscription
+    if subscription.present? && !subscription.active?
+      subscription
+    end
+  end
+
   def has_active_subscription?
     subscription.present? && subscription.active?
   end

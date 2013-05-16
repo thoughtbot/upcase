@@ -32,6 +32,6 @@ feature 'User cancels a subscription', js: true do
     expect(page).not_to have_content I18n.t('workshops.show.free_to_subscribers')
     click_link 'Subscribe to Prime'
     expect(page).to have_content('Thank you for purchasing Prime')
-    expect(page).to have_content('you stopped subscribing to Prime')
+    expect(page).to have_content('You stopped subscribing to Prime')
   end
 end
