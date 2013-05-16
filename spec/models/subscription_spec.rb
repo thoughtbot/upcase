@@ -55,4 +55,22 @@ describe Subscription do
       subscription.should_not be_active
     end
   end
+
+  describe '#deactivate' do
+    it "updates the subscription record by setting deactivated_on to today" do
+      subscription = create(:active_subscription)
+      subscription.deactivate
+      subscription.reload
+      expect(subscription.deactivated_on).to eq Date.today
+    end
+  end
+
+  describe '#activate' do
+    it "updates the subscription record by clearing deactivated_on" do
+      subscription = create(:inactive_subscription)
+      subscription.activate
+      subscription.reload
+      expect(subscription.deactivated_on).to eq nil
+    end
+  end
 end

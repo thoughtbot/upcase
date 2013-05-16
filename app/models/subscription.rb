@@ -18,6 +18,14 @@ class Subscription < ActiveRecord::Base
     deactivated_on.nil?
   end
 
+  def deactivate
+    update_column(:deactivated_on, Date.today)
+  end
+
+  def activate
+    update_column(:deactivated_on, nil)
+  end
+
   private
 
   def self.subscriber_emails

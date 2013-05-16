@@ -5,7 +5,7 @@ class Unsubscriber
 
   def process
     Subscription.transaction do
-      @subscription.update_attributes!(deactivated_on: Date.today)
+      @subscription.deactivate
       stripe_user = Stripe::Customer.retrieve(@subscription.stripe_customer)
       stripe_user.cancel_subscription
       deliver_unsubscription_survey

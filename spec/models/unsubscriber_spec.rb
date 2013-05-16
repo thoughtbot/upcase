@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Unsubscriber do
-  it 'makes the subscription inactive' do
+  it 'makes the subscription inactive and records the current date' do
     subscription = create(:subscription)
     unsubscriber = Unsubscriber.new(subscription)
 
