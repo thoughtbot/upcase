@@ -101,7 +101,7 @@ describe Mailer do
 
     context 'for a purchase without a user' do
       it 'is to the email passed in' do
-        expect(email_for(purchase)).to deliver_to(purchase.email)
+        expect(email_for(purchase)).to deliver_to(purchase.billing_email)
       end
 
       it 'contains the name in the mail body' do

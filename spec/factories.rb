@@ -144,6 +144,7 @@ FactoryGirl.define do
     name 'Test User'
     association :purchaseable, factory: :product
     variant 'individual'
+    billing_email 'billing@example.com'
 
     trait :free do
       paid_price 0
