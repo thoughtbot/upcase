@@ -1,8 +1,8 @@
 <li>
-  Active since <%= subscription.created_at.strftime("%D") %>
-  <%= link_to t('subscriptions.cancel'), subscription,
+  Active since <%= subscription.created_at.to_date.to_s(:long) %><br>
+  (<%= link_to t('subscriptions.cancel'), subscription,
       method: :delete,
       confirm: 'Are you sure you want to cancel your Prime subscription?',
       class: 'cancel'
-  %>
+  %>)
 </li>
