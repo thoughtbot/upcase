@@ -138,10 +138,7 @@ RailsAdmin.config do |config|
         field :topics
         field :resources
         field :terms
-      end
-
-      group :events do
-        field :events
+        field :office_hours
       end
 
       group :faq do

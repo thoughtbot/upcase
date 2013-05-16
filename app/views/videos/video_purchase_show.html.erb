@@ -11,7 +11,7 @@
     </hgroup>
 
     <% if single_video?(@purchaseable) %>
-      <%= render 'videos/watch_video', video: @purchaseable.videos.first, purchaseable: @purchaseable %>
+      <%= render 'videos/watch_video', video: @purchaseable.videos.first, purchase: @purchase %>
     <% else %>
       <section id="videos">
         <%= render @purchaseable.videos.ordered, purchase: @purchase %>

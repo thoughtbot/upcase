@@ -455,3 +455,45 @@ describe Purchase, 'given a purchaser' do
     end
   end
 end
+
+describe Purchase, 'starts_on' do
+  it "gets the starts_on from it's purchaseable and it's own created_at" do
+    created_at = 1.day.ago
+    product = build(:product)
+    product.stubs(:starts_on)
+    purchase = build(:purchase, purchaseable: product, created_at: created_at)
+
+    purchase.starts_on
+
+    expect(product).to have_received(:starts_on).with(created_at.to_date)
+  end
+end
+
+describe Purchase, 'ends_on' do
+  it "gets the starts_on from it's purchaseable and it's own created_at" do
+    created_at = 1.day.ago
+    product = build(:product)
+    product.stubs(:ends_on)
+    purchase = build(:purchase, purchaseable: product, created_at: created_at)
+
+    purchase.ends_on
+
+    expect(product).to have_received(:ends_on).with(created_at.to_date)
+  end
+end
+
+describe Purchase, 'active?' do
+  it "is true when today is between start and end" do
+    product = build(:product)
+    product.stubs(starts_on: Date.yesterday, ends_on: 4.days.from_now.to_date)
+    purchase = build(:purchase, purchaseable: product, created_at: Date.today)
+
+    Timecop.freeze(Date.today) do
+      expect(purchase).to be_active
+    end
+
+    Timecop.freeze(5.days.from_now) do
+      expect(purchase).not_to be_active
+    end
+  end
+end

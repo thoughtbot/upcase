@@ -11,7 +11,6 @@ describe Section do
 
   # Validations
   it { should validate_presence_of :address }
-  it { should validate_presence_of :ends_on }
   it { should validate_presence_of :start_at }
   it { should validate_presence_of :starts_on }
   it { should validate_presence_of :stop_at }
@@ -219,6 +218,22 @@ describe Section do
         expect(Section.current).not_to include current
       end
     end
+
+    it 'includes sections with no end date that have started' do
+      past = create(:past_section)
+      future = create(:future_section, ends_on: nil)
+      current = create(:section, starts_on: Date.today, ends_on: nil)
+
+      expect(Section.current).to include current
+      expect(Section.current).not_to include future
+      expect(Section.current).not_to include past
+      Timecop.freeze(Date.tomorrow) do
+        expect(Section.current).to include current
+      end
+      Timecop.freeze(Date.today + 3) do
+        expect(Section.current).to include current
+      end
+    end
   end
 
   describe '.send_notifications' do
@@ -234,15 +249,82 @@ describe Section do
       current_purchase = create(:paid_purchase, purchaseable: current)
 
       video = create(:video, watchable: workshop)
-      event = create(:event, workshop: workshop)
 
       Section.send_notifications
 
       expect(SectionNotifier).to have_received(:new).with(current, [current_purchase.email])
       expect(notifier).to have_received(:send_notifications_for).with([video])
-      expect(notifier).to have_received(:send_notifications_for).with([event])
 
       expect(SectionNotifier).to have_received(:new).with(future, [future_purchase.email]).never
+    end
+  end
+
+  describe '.send_office_hours_reminders' do
+    it 'sends an office hour reminder for each current section' do
+      workshop = create(:workshop, office_hours: '1pm')
+      future = create(:future_section, workshop: workshop)
+      current = create(
+        :section,
+        workshop: workshop,
+        starts_on: Date.today,
+        ends_on: Date.tomorrow
+      )
+      current_no_hours = create(
+        :section,
+        workshop: create(:workshop, office_hours: ''),
+        starts_on: Date.today,
+        ends_on: Date.tomorrow
+      )
+      email = stub(deliver: nil)
+      Mailer.stubs(office_hours_reminder: email)
+      future_purchase = create(:paid_purchase, purchaseable: future)
+      current_purchase = create(:paid_purchase, purchaseable: current)
+      current_no_hours_purchase = create(
+        :paid_purchase,
+        purchaseable: current_no_hours
+      )
+
+      Section.send_office_hours_reminders
+
+      expect(Mailer).to have_received(:office_hours_reminder).
+        with(current, current_purchase.email)
+      expect(email).to have_received(:deliver)
+      expect(Mailer).to have_received(:office_hours_reminder).
+        with(future, future_purchase.email).never
+      expect(Mailer).to have_received(:office_hours_reminder).
+        with(current_no_hours, current_no_hours_purchase.email).never
+    end
+  end
+
+  describe 'starts_on' do
+    it 'returns the given date for a section with no end date' do
+      section = build(:online_section, starts_on: 1.year.ago, ends_on: nil)
+
+      expect(section.starts_on(Date.today)).to eq Date.today
+    end
+
+    it 'returns starts_on for a section with an end date' do
+      starts_on = 7.days.from_now
+      section = build(:in_person_section, starts_on: starts_on, ends_on: 4.weeks.from_now)
+
+      expect(section.starts_on(Date.today)).to eq starts_on
+    end
+  end
+
+  describe 'ends_on' do
+    it 'returns the date equal to the registration date plus the length of the workshop for a section with no end date' do
+      section = create(:online_section, starts_on: 1.year.ago, ends_on: nil)
+      section.workshop.length_in_days = 28
+      section.workshop.save!
+
+      expect(section.ends_on(Date.today)).to eq (Date.today + 28.days)
+    end
+
+    it 'returns the end_date for a section with an end date' do
+      ends_on = 14.days.from_now
+      section = build(:in_person_section, starts_on: 7.days.from_now, ends_on: ends_on)
+
+      expect(section.ends_on(Date.today)).to eq ends_on
     end
   end
 end

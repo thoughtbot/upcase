@@ -13,15 +13,15 @@ class Section < ActiveRecord::Base
 
   # Delegates
   delegate :name, :description, :individual_price, :company_price, :terms,
-    :videos, :resources, :video_chat_url, :events, :in_person?, :online?,
-    :github_team, :fulfilled_with_github?, to: :workshop, allow_nil: true
+    :videos, :resources, :video_chat_url, :office_hours, :in_person?, :online?,
+    :github_team, :fulfilled_with_github?, :length_in_days,
+    to: :workshop, allow_nil: true
 
   # Nested Attributes
   accepts_nested_attributes_for :section_teachers
 
   # Validations
   validates :address, presence: true
-  validates :ends_on, presence: true
   validates :start_at, presence: true
   validates :starts_on, presence: true
   validates :stop_at, presence: true
@@ -56,7 +56,7 @@ class Section < ActiveRecord::Base
   end
 
   def self.current
-    where 'starts_on <= ? AND ? <= ends_on', Date.today, Date.today
+    where 'starts_on <= ? AND (? <= ends_on OR ends_on IS NULL)', Date.today, Date.today
   end
 
   def self.send_reminders
@@ -65,6 +65,10 @@ class Section < ActiveRecord::Base
 
   def self.send_notifications
     current.each &:send_notifications
+  end
+
+  def self.send_office_hours_reminders
+    current.each &:send_office_hours_reminders
   end
 
   def send_registration_emails(purchase)
@@ -122,7 +126,14 @@ class Section < ActiveRecord::Base
   def send_notifications
     notifier = SectionNotifier.new(self, paid_purchases.pluck(:email))
     notifier.send_notifications_for(videos)
-    notifier.send_notifications_for(events)
+  end
+
+  def send_office_hours_reminders
+    current_student_emails.each do |email|
+      if office_hours.present?
+        Mailer.office_hours_reminder(self, email).deliver
+      end
+    end
   end
 
   def time_range
@@ -145,7 +156,27 @@ class Section < ActiveRecord::Base
     starts_on >= Date.today
   end
 
+  def starts_on(purchase_date = nil)
+    if purchase_date && self[:ends_on].blank?
+      purchase_date
+    else
+      self[:starts_on]
+    end
+  end
+
+  def ends_on(purchase_date = nil)
+    if purchase_date && self[:ends_on].blank?
+      purchase_date + length_in_days.days
+    else
+      self[:ends_on]
+    end
+  end
+
   private
+
+  def self.xml_content(document, tag_name)
+    document.search(tag_name).first.try :content
+  end
 
   def must_have_at_least_one_teacher
     unless teachers.any?
@@ -165,7 +196,11 @@ class Section < ActiveRecord::Base
     end
   end
 
-  def self.xml_content(document, tag_name)
-    document.search(tag_name).first.try :content
+  def current_student_emails
+    current_paid_purchases.collect { |purchase| purchase.email }
+  end
+
+  def current_paid_purchases
+    paid_purchases.select { |purchase| purchase.active? }
   end
 end

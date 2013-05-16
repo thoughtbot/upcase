@@ -68,8 +68,7 @@ class User < ActiveRecord::Base
       purchases = paid_purchases.where(purchaseable_type: 'Section')
 
       purchases.any? do |purchase|
-        section = purchase.purchaseable
-        range = section.starts_on..section.ends_on
+        range = purchase.starts_on..purchase.ends_on
 
         range.cover?(desired_purchaseable.starts_on) || range.cover?(desired_purchaseable.ends_on)
       end

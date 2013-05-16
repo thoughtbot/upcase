@@ -12,15 +12,13 @@
   <%= render 'shared/sidebar_forum', purchaseable: purchaseable %>
   <%= render 'shared/sidebar_chat', purchaseable: purchaseable %>
 
-  <% if purchaseable.events.any? %>
+  <% if purchaseable.office_hours.present? %>
     <div class="video-chat">
       <h3>Video Chat Schedule</h3>
       <hr>
-      <p>During the following times you can join the teacher and other students in this Google Hangout video chat.</p>
+      <p>Each Friday from <%= purchaseable.office_hours %> you can join the
+      teacher and other students in this Google Hangout video chat.</p>
       <hr>
-      <ol>
-        <%= render purchaseable.events.ordered, section: purchaseable %>
-      </ol>
       <%= link_to "Join Video Chat", purchaseable.video_chat_url, class: 'button' %>
     </div>
   <% end %>

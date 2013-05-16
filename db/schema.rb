@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130520150934) do
+ActiveRecord::Schema.define(:version => 20130521152542) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -102,15 +102,6 @@ ActiveRecord::Schema.define(:version => 20130520150934) do
     t.integer  "file_size"
     t.integer  "duration"
     t.integer  "downloads_count", :default => 0, :null => false
-  end
-
-  create_table "events", :force => true do |t|
-    t.integer  "workshop_id",                  :null => false
-    t.string   "title",                        :null => false
-    t.string   "time",                         :null => false
-    t.integer  "occurs_on_day", :default => 0, :null => false
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
   end
 
   create_table "follow_ups", :force => true do |t|
@@ -370,6 +361,8 @@ ActiveRecord::Schema.define(:version => 20130520150934) do
     t.text     "resources",                 :default => "",    :null => false
     t.string   "video_chat_url"
     t.integer  "github_team"
+    t.integer  "length_in_days"
+    t.string   "office_hours",              :default => "",    :null => false
   end
 
 end

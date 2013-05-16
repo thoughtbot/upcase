@@ -54,7 +54,7 @@ module ApplicationHelper
   end
 
   def partial_name(model)
-    model.class.name.downcase
+    File.basename(model.to_partial_path)
   end
 
   def forum_url

@@ -143,7 +143,7 @@ Feature: Viewing upcoming workshop details
       | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
     When I view all products
     And I follow "Test-Driven Haskell"
-    Then I should see the date range
+    Then I should not see the date range
 
   Scenario: Viewing an online workshop with no sections
     Given today is June 10, 2010
