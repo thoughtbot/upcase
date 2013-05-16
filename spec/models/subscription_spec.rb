@@ -64,13 +64,4 @@ describe Subscription do
       expect(subscription.deactivated_on).to eq Date.today
     end
   end
-
-  describe '#activate' do
-    it "updates the subscription record by clearing deactivated_on" do
-      subscription = create(:inactive_subscription)
-      subscription.activate
-      subscription.reload
-      expect(subscription.deactivated_on).to eq nil
-    end
-  end
 end
