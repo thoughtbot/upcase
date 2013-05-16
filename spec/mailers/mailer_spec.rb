@@ -83,7 +83,7 @@ describe Mailer do
 
     context 'for a workshop purchase' do
       it 'does not contain text about downloading' do
-        purchase = create(:section_purchase)
+        purchase = create(:section_purchase, billing_email: 'billing@example.com')
         email = email_for(purchase)
 
         expect(email).not_to have_body_text(/download/)
