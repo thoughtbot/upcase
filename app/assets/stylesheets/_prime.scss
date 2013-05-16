@@ -4,7 +4,16 @@ $bullet-size: 70px;
 .journey {
   margin: auto;
   max-width: 111rem;
+  overflow: hidden;
   padding: 6rem 6vw 0;
+  position: relative;
+
+  .curtain {
+    @extend %animation-draw-curtain;
+    background: $lightwarmgray;
+    @include position(absolute, 0px 0px 0px 0px);
+    z-index: 1;
+  }
 
   .pitch {
     @include clearfix;
@@ -66,21 +75,29 @@ $bullet-size: 70px;
         width: 30%;
 
         @include prime-marketing-tablet {
-          text-align: center;
+          float: left;
+          margin: 0 2rem 2rem 0;
+          width: auto;
 
           img {
-            width: 300px;
+            width: 250px;
           }
+        }
+
+        @include prime-marketing-mobile {
+          display: none;
         }
       }
 
       article {
         width: 57%;
-      }
 
-      @include prime-marketing-tablet {
-        .supporting-visual, article {
+        @include prime-marketing-tablet {
           width: 100%;
+
+          .cta {
+            clear: both;
+          }
         }
       }
     }
@@ -90,7 +107,7 @@ $bullet-size: 70px;
       position: relative;
       width: 40%;
 
-      @media screen and (max-width: 98rem) {
+      @media screen and (max-width: 1560px) {
         width: 55%;
       }
 
@@ -103,7 +120,7 @@ $bullet-size: 70px;
         height: 400px;
 
         @include prime-marketing-mobile {
-          height: 200px;
+          height: 220px;
         }
 
         .mini-profile {
@@ -120,18 +137,38 @@ $bullet-size: 70px;
 
           @include prime-marketing-mobile {
             padding: .5rem 0;
-            width: 100%;
+            width: 80%;
+            margin-right: 5%;
           }
 
-          img {
-            border: 1px solid rgb(150, 150, 150);
-            border-radius: 100%;
+          .images {
             float: left;
+            height: 150px;
+            width: 150px;
+
+            img {
+              border: 1px solid rgb(150, 150, 150);
+              border-radius: 100%;
+              height: 150px;
+              opacity: 0;
+              position: absolute;
+              @include transition;
+              width: 150px;
+
+              &:first-child {
+                opacity: 1;
+              }
+            }
 
             @include prime-marketing-mobile {
-              height: 50px;
+              height: 70px;
               margin-left: 1rem;
-              width: 50px;
+              width: 70px;
+
+              img {
+                height: 70px;
+                width: 70px;
+              }
             }
           }
 
@@ -141,7 +178,7 @@ $bullet-size: 70px;
 
             @include prime-marketing-mobile {
               h2 {
-                font-size: 1rem;
+                font-size: 1.4rem;
               }
             }
           }
@@ -167,6 +204,10 @@ $bullet-size: 70px;
           padding-left: 5rem;
         }
 
+        @media screen and (max-width: 775px) {
+          padding-left: 0;
+        }
+
         @include prime-marketing-mobile {
           height: auto;
           padding: 0;
@@ -175,8 +216,40 @@ $bullet-size: 70px;
 
         > div {
           float: left;
+          height: 410px;
           position: relative;
           width: 50%;
+
+          &.visible {
+            figure {
+              opacity: 1;
+
+              @for $i from 0 through 2 {
+                &:nth-of-type(#{$i + 1}n) {
+                  @extend %animation-two-stacked-fly-in;
+                  @include animation-delay(#{($i + 1) * .2}s);
+                }
+              }
+            }
+          }
+
+          &:hover {
+            z-index: 5;
+
+            figure {
+              &:nth-of-type(1) {
+                @include transform(translate(-4rem, -4rem) rotate(-3deg));
+              }
+
+              &:nth-of-type(2) {
+                @include transform(translate(0, -2rem));
+              }
+
+              &:nth-of-type(3) {
+                @include transform(translate(4rem, 0) rotate(3deg));
+              }
+            }
+          }
 
           @include prime-marketing-tablet {
             width: 270px;
@@ -196,7 +269,7 @@ $bullet-size: 70px;
         h3 {
           font-size: 1rem;
           font-weight: 600;
-          margin: 0 0 1rem 1.5rem;
+          padding: 0 0 1rem 1.5rem;
         }
 
         figure {
@@ -206,8 +279,12 @@ $bullet-size: 70px;
           box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
           display: inline-block;
           height: 330px;
+          opacity: 0;
           padding: .3rem;
           position: absolute;
+          @include transform(translate(0, 0) rotate(0deg));
+          @include transition(.25s);
+          @include transition-timing-function(ease);
           width: 230px;
 
           @for $i from 0 through 2 {
@@ -274,7 +351,7 @@ $bullet-size: 70px;
       position: relative;
       width: 37%;
 
-      @media screen and (max-width: 98rem) {
+      @media screen and (max-width: 1560px) {
         width: 30%;
       }
 
@@ -289,14 +366,12 @@ $bullet-size: 70px;
       }
 
       .journey-bullet {
-        // final top and opacity set by JS in prime.js
         background: $journey-line-color;
         border-radius: 100%;
         height: $bullet-size;
         left: -8rem;
-        opacity: 0;
         position: absolute;
-        top: 1000%;
+        top: 1rem;
         width: $bullet-size;
         z-index: -1;
       }
@@ -327,17 +402,18 @@ $bullet-size: 70px;
       }
     }
   }
-
-  svg path {
-    border-radius: 100%;
-    stroke: $journey-line-color;
-    stroke-dasharray: 15px, 21px;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 5px;
-  }
-
-  .connector-dot {
-    display: none;
-  }
 }
+
+svg._jsPlumb_connector path, svg._jsPlumb_endpoint path {
+  border-radius: 100%;
+  stroke: $journey-line-color;
+  stroke-dasharray: 15px, 21px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 5px;
+}
+
+.connector-dot {
+  display: none;
+}
+

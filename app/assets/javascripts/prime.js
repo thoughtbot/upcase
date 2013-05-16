@@ -2,7 +2,7 @@ if ($('.journey').length) {
 
   var jsPlumbSettings = jsPlumb.getInstance();
 
-  jsPlumbSettings.Defaults.Container = $('.journey');
+  jsPlumbSettings.Defaults.Container = $('body');
   jsPlumbSettings.draggable('body');
 
   var setPlumbSettings = function() {
@@ -38,30 +38,16 @@ if ($('.journey').length) {
     });
   };
 
-  var animate_journey = function(e) {
-    if ($(e).length) {
-      jsPlumbSettings.animate(
-        e,
-        {
-          top: '1rem',
-          opacity: '1'
-        },
-        {
-          duration: 300,
-          easing: 'easeOutQuart',
-          complete: function() {
-            animate_journey($(e).parents('.pitch').next().find('.journey-bullet'));
-          }
-        }
-      );
-    }
-  };
-
   jsPlumb.ready(function() {
     setPlumbSettings();
-    animate_journey($('.journey-bullet:first'));
   });
 
   $(window).resize(setPlumbSettings);
 
+  $(function() {
+    $('.pitch > .two-stacked').waypoint(function(direction) {
+      console.dir($(this));
+      $(this).children('div').addClass('visible');
+    }, { offset: '75%' });
+  })
 }

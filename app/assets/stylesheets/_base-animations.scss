@@ -3,8 +3,7 @@
   @include animation-fill-mode(both);
   @include animation-iteration-count(infinite);
 }
-
-@mixin loading {
+@include keyframes(loading) {
   0% {
     right: 24px;
   }
@@ -15,17 +14,13 @@
     right: 24px;
   }
 }
-@-webkit-keyframes loading { @include loading; }
-   @-moz-keyframes loading { @include loading; }
-        @keyframes loading { @include loading; }
 
 
 .animation-drop-down-come-in {
   @include animation(drop-down-come-in 0.15s ease);
   @include animation-fill-mode(both);
 }
-
-@mixin drop-down-come-in {
+@include keyframes(drop-down-come-in) {
   0% {
     opacity: 0;
   }
@@ -33,6 +28,34 @@
     opacity: 1;
   }
 }
-@-webkit-keyframes drop-down-come-in { @include drop-down-come-in; }
-   @-moz-keyframes drop-down-come-in { @include drop-down-come-in; }
-        @keyframes drop-down-come-in { @include drop-down-come-in; }
+
+
+%animation-draw-curtain {
+  @include animation(draw-curtain 10s linear);
+  @include animation-fill-mode(both);
+}
+@include keyframes(draw-curtain) {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+
+%animation-two-stacked-fly-in {
+  @include animation(two-stacked-fly-in .9s $ease-out-circ);
+  @include animation-fill-mode(backwards);
+}
+@include keyframes(two-stacked-fly-in) {
+  0% {
+    opacity: 0;
+    @include transform(translate(50rem, 15rem) rotate(15deg));
+  }
+  100% {
+    opacity: 1;
+    @include transform(translate(0, 0) rotate(0deg));
+  }
+}
+
