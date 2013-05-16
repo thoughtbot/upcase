@@ -102,8 +102,12 @@ class Product < ActiveRecord::Base
     discount_percentage > 0
   end
 
-  def starts_on
-    Date.today
+  def starts_on(purchase_date)
+    purchase_date
+  end
+
+  def ends_on(purchase_date)
+    purchase_date
   end
 
   def purchase_for(user)

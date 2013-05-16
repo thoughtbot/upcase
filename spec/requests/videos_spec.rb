@@ -28,6 +28,7 @@ describe 'Videos' do
       video_two = create_available_video(purchase.purchaseable, 0, 'Video Two')
 
       visit purchase_path(purchase)
+
       expect(page).to have_content("2 videos in the series")
       expect(page).to have_content(video_one.title)
       expect(page).to have_content(video_two.title)

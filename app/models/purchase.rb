@@ -178,6 +178,18 @@ class Purchase < ActiveRecord::Base
     paypal_request.refund!(payment_transaction_id)
   end
 
+  def starts_on
+    purchaseable.starts_on(created_at.to_date)
+  end
+
+  def ends_on
+    purchaseable.ends_on(created_at.to_date)
+  end
+
+  def active?
+    (starts_on..ends_on).cover?(Date.today)
+  end
+
   private
 
   def github_username_needed?

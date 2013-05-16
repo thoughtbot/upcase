@@ -97,6 +97,17 @@ class Mailer < ActionMailer::Base
     )
   end
 
+  def office_hours_reminder(section, email)
+    @section = section
+
+    mail(
+      to: email,
+      from: 'learn@thoughtbot.com',
+      reply_to: 'learn@thoughtbot.com',
+      subject: "[Learn] #{section.name}: Office Hours"
+    )
+  end
+
   def byte_notification(email, article)
     @article = article
 
