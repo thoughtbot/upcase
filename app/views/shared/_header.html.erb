@@ -2,8 +2,10 @@
   <div class="header-container">
     <% if content_for?(:subject) || signed_in? %>
       <h1 class="small-logo">
-        <%= link_to image_tag('learn/learn-ralph-small.png'), root_path %>
-        <%= t 'shared.learn' %>
+        <%= link_to root_path do %>
+          <%= image_tag('learn/learn-ralph-small.png') %>
+          <span><%= t 'shared.learn' %></span>
+        <% end %>
       </h1>
       <nav>
         <ul>
