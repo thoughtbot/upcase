@@ -1,5 +1,5 @@
 @mixin prime-marketing-mobile {
-  @media screen and (max-device-width: 580px), screen and (max-width: 580px) {
+  @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
     @content;
   }
 }
