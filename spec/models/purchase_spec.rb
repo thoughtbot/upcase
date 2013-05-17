@@ -25,7 +25,7 @@ describe Purchase do
 
   it 'produces the paid price when possible' do
     purchase = create(:purchase, paid_price: 200)
-    purchase.price.should be(200)
+    purchase.price.should eq 200
   end
 
   describe 'self.paid' do
@@ -211,6 +211,18 @@ describe Purchase, 'with stripe' do
     Stripe::Charge.should have_received(:create).with(amount: 1125, currency: 'usd', customer: 'stripe', description: product.name)
     purchase = create(:stripe_purchase, purchaseable: product, coupon: coupon.reload)
     Stripe::Charge.should have_received(:create).with(amount: 1500, currency: 'usd', customer: 'stripe', description: product.name)
+  end
+
+  it 'refunds a purchase with coupon' do
+    charge = stub(:id => 'TRANSACTION-ID', :refunded => false)
+    charge.stubs(:refund)
+    Stripe::Charge.stubs(:retrieve).returns(charge)
+    subject.coupon = create(:coupon, amount: 25)
+    subject.save!
+
+    subject.stripe_refund
+    Stripe::Charge.should have_received(:retrieve).with('TRANSACTION-ID')
+    charge.should have_received(:refund).with(amount: 1125)
   end
 
   it 'calculates its price and paid price using the subscription coupon when there is a stripe coupon' do

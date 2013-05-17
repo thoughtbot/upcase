@@ -77,7 +77,7 @@ feature 'User creates a subscription' do
     fill_in "Code", with: '5OFF'
     click_button "Apply Coupon"
 
-    expect(page).to have_content("$10 the first month, then $15 per month")
+    expect(page).to have_content("$10.00 the first month, then $15.00 per month")
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
