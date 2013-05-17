@@ -41,22 +41,27 @@ section#header-wrapper {
 
     .small-logo {
       float: left;
-      font-size: 50px;
       line-height: .9em;
       margin-bottom: .2em;
       margin-top: -18px;
       text-align: left;
       width: flex-grid(3);
 
-      a {
-        display: inline-block;
+      img, span {
         position: relative;
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      img {
         top: 16px;
         width: 68px;
+      }
 
-        img {
-          display: block;
-        }
+      span {
+        font-size: 50px;
+        font-family: $sans-serif;
+        top: 21px;
       }
     }
 
