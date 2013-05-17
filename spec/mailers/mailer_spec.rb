@@ -459,6 +459,12 @@ describe Mailer do
 
       expect(email).not_to have_body_text(/&gt;/)
     end
+
+    it 'links to all bytes' do
+      article = create(:article, title: 'Great Article', body: 'body')
+      email = Mailer.byte_notification(email, article)
+      expect(email).to have_body_text(bytes_url)
+    end
   end
 
   describe '.unsubscription_survey' do
