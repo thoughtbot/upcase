@@ -88,6 +88,8 @@ Workshops::Application.routes.draw do
 
   mount StripeEvent::Engine, at: 'stripe-webhook'
 
+  resources 'bytes', only: :index
+
   get ':id' => 'topics#show', as: :topic
   match '/:id/articles' => 'articles#index', as: 'topic_articles'
 end
