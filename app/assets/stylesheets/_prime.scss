@@ -1,96 +1,182 @@
 $journey-line-color: lighten($warmgray, 6%);
 $bullet-size: 70px;
 
-.journey {
-  margin: auto;
-  max-width: 111rem;
-  overflow: hidden;
-  padding: 0 0 6rem;
-  position: relative;
+body.prime-marketing {
+  background: $journey-line-color;
+}
 
-  .curtain {
-    @extend %animation-draw-curtain;
-    background: $lightwarmgray;
-    @include position(absolute, 0px 0px 0px 0px);
-    z-index: 1;
+.journey-headline {
+  padding: 2rem 6vw 0;
+  text-align: center;
+
+  &:after {
+    background: $warmgray;
+    content: '';
+    @include position(absolute, 0px 0px 0 0px);
   }
 
-  .headline {
-    background: $warmgray;
-    margin-bottom: 10rem;
-    padding: 2rem 12vw 0;
-
-    @include prime-marketing-mobile {
-      padding: 2rem 6vw 0;
-    }
-
-    .logo {
-      line-height: 0;
-      margin-bottom: 2rem;
-      text-align: center;
-
-      h1 {
-        display: inline-block;
-        line-height: 88px;
-      }
-
-      img {
-        display: inline-block;
-        float: left;
-        margin-right: 1rem;
-      }
-    }
+  .logo {
+    display: inline-block;
+    line-height: 0;
+    margin-bottom: 2rem;
 
     h1 {
-      font-size: 3.2rem;
-      text-align: center;
+      display: inline-block;
+      line-height: 88px;
     }
 
-    .cta {
-      bottom: -4rem;
-      margin-top: 0;
-      position: relative;
-
-      &:active {
-        margin-top: .25rem;
-      }
+    img {
+      display: inline-block;
+      float: left;
     }
   }
 
-  .cta {
-    background: $learnred;
-    border-bottom: .3rem solid darken($learnred, 10%);
-    border-radius: .3rem;
-    display: block;
-    margin-top: 2rem;
-    padding: 1.75rem;
-    position: relative;
-    text-align: center;
-    z-index: 5;
+  h1, .prime-journey-cta {
+    margin: auto;
+    max-width: 800px;
+  }
 
-    &:hover {
-      background: lighten($learnred, 3%);
+  h1 {
+    font-size: 3.2rem;
+    text-shadow: 0 1px 1px rgba($darkwarmgray, .3);
+
+    @include prime-marketing-mobile {
+      font-size: 2rem;
     }
+  }
+
+  .prime-journey-cta {
+    bottom: -4rem;
+    margin-top: 0;
+    position: relative;
 
     &:active {
-      border-bottom: 0;
-      margin-top: 2.3rem;
+      margin-top: .25rem;
     }
+  }
+}
 
-    h2, p {
-      color: #fff;
-      letter-spacing: 1px;
-      margin: 0;
-    }
+.prime-journey-cta {
+  background: $learnred;
+  border-bottom: .3rem solid darken($learnred, 10%);
+  border-radius: .3rem;
+  display: block;
+  margin-top: 2rem;
+  padding: 1.75rem;
+  position: relative;
+  text-align: center;
+  z-index: 5;
 
-    h2 {
-      font-size: 2.4rem;
+  @include prime-marketing-mobile {
+    padding: 1rem;
+  }
+
+  &:hover {
+    background: lighten($learnred, 3%);
+  }
+
+  &:active {
+    border-bottom: 0;
+    margin-top: 2.25rem;
+  }
+
+  h2, p {
+    color: #fff;
+    letter-spacing: 1px;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 2.4rem;
+
+    @include prime-marketing-mobile {
+      font-size: 2rem;
     }
+  }
+
+  p {
+    font-family: $sans-serif;
+    font-size: 1.5rem;
+
+    @include prime-marketing-mobile {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+// used as a book, workshop, or screenshot card aka one of the stacked figures
+.product-card {
+  background: #fff;
+  border: 1px solid rgb(175, 175, 175);
+  border-radius: .3rem;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+  display: inline-block;
+  height: 330px;
+  padding: .3rem;
+  position: absolute;
+  width: 230px;
+
+  &.book {
+    height: 318px;
+    padding: 0;
+    width: 246px;
+  }
+
+  h4 {
+    border-radius: 2px;
+    color: #fff;
+    margin-bottom: .3rem;
+    padding: .75rem;
+  }
+
+  &.workshop-online h4 {
+    background: $workshop-online-color;
+  }
+
+  &.workshop-inperson h4 {
+    background: $workshop-inperson-color;
+  }
+
+  &.screencast h4 {
+    background: $screencasts-color;
+  }
+
+  h5, p {
+    margin: .75rem;
+  }
+
+  h5 {
+    font-size: .8rem;
+    margin-top: .3rem;
+    text-transform: uppercase;
+  }
+
+  .date {
+    bottom: 0;
+    font: normal .8rem/1em $sans-serif;
+    position: absolute;
+  }
+}
+
+.journey {
+  background: $lightwarmgray;
+  overflow: hidden;
+  padding-top: 10rem;
+  position: relative;
+
+  // animate the curtain going from 100% height->0% to reveal the dotted trail
+  .curtain {
+    //@extend %animation-draw-curtain;
+    background: $lightwarmgray;
+    //@include position(absolute, 0px 0px 0px 0px);
+    z-index: 1;
+    display: none;
   }
 
   .pitch {
     @include clearfix;
-    margin-bottom: 10rem;
+    margin: 0 auto 10rem;
+    max-width: 111rem;
     padding: 0 6vw;
     position: relative;
     z-index: 2;
@@ -190,22 +276,10 @@ $bullet-size: 70px;
         width: 100%;
       }
 
-      figure.workshop-online {
-        h4 {
-          background: $workshop-online-color;
-        }
-      }
-
-      figure.workshop-inperson {
-        h4 {
-          background: $workshop-inperson-color;
-        }
-      }
-
-      figure.screencast {
-        h4 {
-          background: $screencasts-color;
-        }
+      > img {
+        border: 1px solid rgb(175, 175, 175);
+        border-radius: 2px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
       }
 
       &.profile {
@@ -213,6 +287,7 @@ $bullet-size: 70px;
 
         @include prime-marketing-mobile {
           height: auto;
+          margin-top: 2rem;
         }
 
         .mini-profile {
@@ -294,8 +369,6 @@ $bullet-size: 70px;
       }
 
       &.two-stacked {
-        height: 415px;
-
         @include prime-marketing-tablet {
           margin-top: 1rem;
           padding-left: 5rem;
@@ -306,23 +379,23 @@ $bullet-size: 70px;
         }
 
         @include prime-marketing-mobile {
-          height: auto;
           padding: 0;
           margin: 0;
         }
 
         > div {
           float: left;
-          height: 410px;
+          @include perspective(1000);
           position: relative;
           width: 50%;
 
+          // animate the fly-in when waypoints adds the visible class
           &.visible {
             figure {
               opacity: 1;
 
               @for $i from 0 through 2 {
-                &:nth-of-type(#{$i + 1}n) {
+                &:nth-of-type(#{$i + 1}) {
                   @extend %animation-two-stacked-fly-in;
                   @include animation-delay(#{($i + 1) * .2}s);
                 }
@@ -330,20 +403,42 @@ $bullet-size: 70px;
             }
           }
 
-          &:hover {
-            z-index: 5;
+          .figuregroup {
+            height: 380px;
+            width: 250px;
 
-            figure {
-              &:nth-of-type(1) {
-                @include transform(translate(-4rem, -4rem) rotate(-3deg));
-              }
+            // animate the fan-out on hover
+            &:hover {
+              z-index: 5;
 
-              &:nth-of-type(2) {
-                @include transform(translate(0, -2rem));
-              }
+              figure {
+                &:nth-of-type(1) {
+                  @include transform(translate(-4rem, -4rem) rotate(-3deg));
 
-              &:nth-of-type(3) {
-                @include transform(translate(4rem, 0) rotate(3deg));
+                  &:hover {
+                    @include transform(translate(-4rem, -4rem) translateZ(3rem) rotate(-3deg));
+                  }
+                }
+
+                &:nth-of-type(2) {
+                  @include transform(translate(0, -2rem));
+
+                  &:hover {
+                    @include transform(translate(0, -2rem) translateZ(3rem));
+                  }
+                }
+
+                &:nth-of-type(3) {
+                  @include transform(translate(4rem, 0) rotate(3deg));
+
+                  &:hover {
+                    @include transform(translate(4rem, 0) translateZ(3rem) rotate(3deg));
+                  }
+                }
+
+                &:hover {
+                  z-index: 6;
+                }
               }
             }
           }
@@ -370,62 +465,18 @@ $bullet-size: 70px;
         }
 
         figure {
-          background: #fff;
-          border: 1px solid rgb(175, 175, 175);
-          border-radius: .3rem;
-          box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
-          display: inline-block;
-          height: 330px;
           opacity: 0;
-          padding: .3rem;
-          position: absolute;
           @include transform(translate(0, 0) rotate(0deg));
-          @include transition(.25s);
-          @include transition-timing-function(ease);
-          width: 230px;
+          @include transition(.25s ease);
 
+          // stack the cards
           @for $i from 0 through 2 {
-            &:nth-of-type(#{$i + 1}n) {
+            &:nth-of-type(#{$i + 1}) {
               margin-left: 1.3rem * $i;
               margin-top: 1.3rem * $i;
             }
           }
-
-          &.book {
-            height: 318px;
-            padding: 0;
-            width: 246px;
-          }
-
-          h4 {
-            border-radius: 2px;
-            color: #fff;
-            margin-bottom: .3rem;
-            padding: .75rem;
-          }
-
-          h5, p {
-            margin: .75rem;
-          }
-
-          h5 {
-            font-size: .8rem;
-            margin-top: .3rem;
-            text-transform: uppercase;
-          }
-
-          .date {
-            bottom: 0;
-            font: normal .8rem/1em $sans-serif;
-            position: absolute;
-          }
         }
-      }
-
-      > img {
-        border: 1px solid rgb(175, 175, 175);
-        border-radius: 2px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
       }
 
       &.two-screenshot {
@@ -440,6 +491,10 @@ $bullet-size: 70px;
 
           @include prime-marketing-mobile {
             position: static;
+
+            &:first-child {
+              margin-bottom: 1rem;
+            }
           }
 
           &:last-child {
@@ -483,15 +538,199 @@ $bullet-size: 70px;
         z-index: -1;
       }
 
-      h2 {
+      > h2 {
         font-size: 2.75rem;
         line-height: 1.2em;
         margin-bottom: 1rem;
+
+        @include prime-marketing-mobile {
+          font-size: 2rem;
+        }
       }
 
-      p {
+      > p {
         font-family: $sans-serif;
         font-size: 1.5rem;
+
+        @include prime-marketing-mobile {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}
+
+.details {
+  margin: auto;
+  max-width: 111rem;
+  padding: 5rem 6vw;
+  position: relative;
+  z-index: 2;
+
+  h2 {
+    font-size: 2.75rem;
+    line-height: 1.2em;
+
+    @include prime-marketing-mobile {
+      font-size: 2rem;
+    }
+  }
+
+  &> h2 {
+    margin-bottom: 2.5rem;
+  }
+
+  &> figure {
+    @include clearfix;
+    margin-bottom: 5rem;
+
+    @include prime-marketing-tablet {
+      text-align: center;
+    }
+
+    img {
+      border: .25rem solid $warmgray;
+      border-radius: 2px;
+      float: left;
+      margin-right: 2.5rem;
+      width: 40%;
+
+      @include prime-marketing-tablet {
+        float: none;
+        margin: 0 0 2.5rem 0;
+        width: 50%;
+      }
+
+      @include prime-marketing-mobile {
+        width: 100%;
+      }
+    }
+
+    figcaption {
+      float: left;
+      text-align: left;
+      width: 50%;
+
+      @include prime-marketing-tablet {
+        float: none;
+        width: 100%;
+      }
+
+      hgroup {
+        margin-bottom: 1.4rem;
+
+        h2 {
+          margin-bottom: 1rem;
+        }
+
+        h3 {
+          color: $darkwarmgray;
+          font-size: 1.75rem;
+          font-weight: 300;
+
+          @include prime-marketing-mobile {
+            font-size: 1.2rem;
+          }
+        }
+      }
+
+      li {
+        font: 300 1.75rem/1.4em $sans-serif;
+        margin: 0;
+
+        @include prime-marketing-mobile {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  .buffet {
+    clear: both;
+    @include clearfix;
+
+    // animate the cards in one-by-one when waypoints gives the visible class
+    &.visible {
+      .item figure {
+        opacity: 1;
+
+        @for $i from 0 through 3 {
+          &:nth-of-type(#{$i + 1}) {
+            @extend %animation-backwards-stacked-fly-in;
+            @include animation-delay(#{.5 - ($i * .12)}s);
+          }
+        }
+      }
+    }
+
+    .item {
+      float: left;
+      @include perspective(1000);
+      position: relative;
+      width: 25%;
+      z-index: 2;
+
+      @include prime-marketing-tablet {
+        width: 50%;
+        margin-bottom: 2.5rem;
+      }
+
+      @include prime-marketing-mobile {
+        float: none;
+        width: 100%;
+      }
+
+      .figuregroup {
+        height: 350px;
+        width: 250px;
+
+        // fan out the the detail decks
+        &:hover {
+          figure {
+            @for $i from 1 through 4 {
+              &:nth-of-type(#{$i}) {
+                @include transform(translate(#{$i * .25}rem, -#{$i * 3}rem) rotate(#{$i}deg) scale(#{1 - $i * .02}));
+                z-index: #{0 - $i};
+
+                &:hover {
+                  @include transform(translate(#{$i * .25}rem, -#{$i * 3}rem) translateZ(3rem) rotate(#{$i}deg) scale(#{1 - $i * .02}));
+                }
+              }
+            }
+
+            &:hover {
+              z-index: 5;
+            }
+          }
+        }
+      }
+
+      hgroup {
+        padding-left: .3rem;
+        position: relative;
+        z-index: -2;
+
+        h3 {
+          font-weight: 700;
+        }
+
+        h3, h4 {
+          color: $darkwarmgray;
+        }
+      }
+
+      figure {
+        margin-top: 1rem;
+        opacity: 0;
+        @include transition(.25s ease);
+
+        // stack the detail decks
+        @for $i from 0 through 3 {
+          &:nth-of-type(#{$i + 1}) {
+            @include transform(translate(0, -#{$i * .8}rem) scale(#{1 - $i * .04}));
+            z-index: #{4 - $i};
+          }
+        }
       }
     }
   }
@@ -509,4 +748,3 @@ svg._jsPlumb_connector path, svg._jsPlumb_endpoint path {
 .connector-dot {
   display: none;
 }
-
