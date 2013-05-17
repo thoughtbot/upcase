@@ -10,7 +10,7 @@ if ($('.journey').length) {
     jsPlumbSettings.removeAllEndpoints();
 
     jsPlumbSettings.connect({
-      connector:['Bezier', { curviness: 100 }],
+      connector:['Bezier', { curviness: 120 }],
       source: 'first-cta',
       target: 'bullet-1',
       anchors:['Bottom', 'Top'],
@@ -44,6 +44,13 @@ if ($('.journey').length) {
       anchors:['Bottom', 'Top'],
       endpoint: ['Dot', { cssClass: 'connector-dot' }]
     });
+    jsPlumbSettings.connect({
+      connector:['Bezier', { curviness: 300 }],
+      source: 'bullet-5',
+      target: 'detail-figure',
+      anchors:['Bottom', 'TopLeft'],
+      endpoint: ['Dot', { cssClass: 'connector-dot' }]
+    });
   };
 
   jsPlumb.ready(function() {
@@ -54,8 +61,11 @@ if ($('.journey').length) {
 
   $(function() {
     $('.pitch > .two-stacked').waypoint(function(direction) {
-      console.dir($(this));
       $(this).children('div').addClass('visible');
-    }, { offset: '80%' });
+    }, { offset: '93%' });
+
+    $('.buffet').waypoint(function(direction) {
+      $(this).addClass('visible');
+    }, { offset: '93%' });
   })
 }

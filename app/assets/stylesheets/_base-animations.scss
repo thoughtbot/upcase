@@ -31,7 +31,7 @@
 
 
 %animation-draw-curtain {
-  @include animation(draw-curtain 10s linear);
+  @include animation(draw-curtain 6s linear);
   @include animation-fill-mode(both);
 }
 @include keyframes(draw-curtain) {
@@ -56,6 +56,20 @@
   100% {
     opacity: 1;
     @include transform(translate(0, 0) rotate(0deg));
+  }
+}
+
+
+%animation-backwards-stacked-fly-in {
+  @include animation(backwards-stacked-fly-in .3s linear);
+  @include animation-fill-mode(backwards);
+}
+@include keyframes(backwards-stacked-fly-in) {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
