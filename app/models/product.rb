@@ -83,11 +83,11 @@ class Product < ActiveRecord::Base
   end
 
   def individual_price
-    apply_discount(original_individual_price).to_i
+    apply_discount(original_individual_price)
   end
 
   def company_price
-    apply_discount(original_company_price).to_i
+    apply_discount(original_company_price)
   end
 
   def original_company_price
