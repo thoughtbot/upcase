@@ -1,4 +1,17 @@
 <section class="journey">
+  <section class="headline">
+    <div class="logo">
+      <h1>
+        <%= image_tag('learn/learn-ralph.png') %>
+        <%= t 'shared.learn' %>
+      </h1>
+    </div>
+    <h1>Start your journey to becoming a great ruby developer</h1>
+    <a href="#" id="first-cta" class="cta">
+      <p>subhead</p>
+      <h2>Join Learn Prime</h2>
+    </a>
+  </section>
   <section class="pitch center">
     <article>
       <figure id="bullet-1" class="journey-bullet"></figure>
@@ -27,7 +40,7 @@
       <div>
         <h3>Online workshops</h3>
         <% 3.times do %>
-          <figure>
+          <figure class="workshop-online">
             <h4>Intermediate Ruby on Rails</h4>
             <%= image_tag('http://placehold.it/225x120') %>
             <h5>Online Workshops</h5>
@@ -39,7 +52,7 @@
       <div>
         <h3>In-Person Workshops</h3>
         <% 3.times do %>
-          <figure>
+          <figure class="workshop-inperson">
             <h4>Intro to Ruby on Rails</h4>
             <%= image_tag('http://placehold.it/225x120') %>
             <h5>In-Person Workshop</h5>
@@ -71,7 +84,7 @@
       <div>
         <h3>Screencasts</h3>
         <% 3.times do %>
-          <figure>
+          <figure class="screencast">
             <h4>Hidden Secrets of the Chrome Developer Tools</h4>
             <%= image_tag('http://placehold.it/225x120') %>
             <h5>Screencast</h5>
@@ -81,11 +94,9 @@
       </div>
       <div>
         <h3>Books</h3>
-        <% 3.times do %>
-          <figure class="book">
-            <%= image_tag('http://placehold.it/245x300') %>
-          </figure>
-        <% end %>
+        <figure class="book"><%= image_tag('product_images/book/backbone-cover-large.png') %></figure>
+        <figure class="book"><%= image_tag('product_images/book/playbook-cover-large.png') %></figure>
+        <figure class="book"><%= image_tag('product_images/book/rubyscience-cover-large.png') %></figure>
       </div>
     </figure>
   </section>

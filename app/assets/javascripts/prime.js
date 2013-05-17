@@ -6,13 +6,21 @@ if ($('.journey').length) {
   jsPlumbSettings.draggable('body');
 
   var setPlumbSettings = function() {
-  jsPlumbSettings.detachEveryConnection();
-  jsPlumbSettings.removeAllEndpoints();
-  jsPlumbSettings.connect({
-    connector:['Bezier', { curviness: 300 }],
-    source: 'bullet-1',
-    target: 'bullet-2',
-    anchors:['Bottom', 'Top'],
+    jsPlumbSettings.detachEveryConnection();
+    jsPlumbSettings.removeAllEndpoints();
+
+    jsPlumbSettings.connect({
+      connector:['Bezier', { curviness: 100 }],
+      source: 'first-cta',
+      target: 'bullet-1',
+      anchors:['Bottom', 'Top'],
+      endpoint: ['Dot', { cssClass: 'connector-dot' }]
+    });
+    jsPlumbSettings.connect({
+      connector:['Bezier', { curviness: 300 }],
+      source: 'bullet-1',
+      target: 'bullet-2',
+      anchors:['Bottom', 'Top'],
       endpoint: ['Dot', { cssClass: 'connector-dot' }]
     });
     jsPlumbSettings.connect({
@@ -48,6 +56,6 @@ if ($('.journey').length) {
     $('.pitch > .two-stacked').waypoint(function(direction) {
       console.dir($(this));
       $(this).children('div').addClass('visible');
-    }, { offset: '75%' });
+    }, { offset: '80%' });
   })
 }

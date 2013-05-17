@@ -5,7 +5,7 @@ $bullet-size: 70px;
   margin: auto;
   max-width: 111rem;
   overflow: hidden;
-  padding: 6rem 6vw 0;
+  padding: 0 0 6rem;
   position: relative;
 
   .curtain {
@@ -15,9 +15,83 @@ $bullet-size: 70px;
     z-index: 1;
   }
 
+  .headline {
+    background: $warmgray;
+    margin-bottom: 10rem;
+    padding: 2rem 12vw 0;
+
+    @include prime-marketing-mobile {
+      padding: 2rem 6vw 0;
+    }
+
+    .logo {
+      line-height: 0;
+      margin-bottom: 2rem;
+      text-align: center;
+
+      h1 {
+        display: inline-block;
+        line-height: 88px;
+      }
+
+      img {
+        display: inline-block;
+        float: left;
+        margin-right: 1rem;
+      }
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      text-align: center;
+    }
+
+    .cta {
+      bottom: -4rem;
+      margin-top: 0;
+      position: relative;
+
+      &:active {
+        margin-top: .25rem;
+      }
+    }
+  }
+
+  .cta {
+    background: $learnred;
+    border-bottom: .3rem solid darken($learnred, 10%);
+    border-radius: .3rem;
+    display: block;
+    margin-top: 2rem;
+    padding: 1.75rem;
+    position: relative;
+    text-align: center;
+    z-index: 5;
+
+    &:hover {
+      background: lighten($learnred, 3%);
+    }
+
+    &:active {
+      border-bottom: 0;
+      margin-top: 2.3rem;
+    }
+
+    h2, p {
+      color: #fff;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+    }
+  }
+
   .pitch {
     @include clearfix;
     margin-bottom: 10rem;
+    padding: 0 6vw;
     position: relative;
     z-index: 2;
 
@@ -116,11 +190,29 @@ $bullet-size: 70px;
         width: 100%;
       }
 
+      figure.workshop-online {
+        h4 {
+          background: $workshop-online-color;
+        }
+      }
+
+      figure.workshop-inperson {
+        h4 {
+          background: $workshop-inperson-color;
+        }
+      }
+
+      figure.screencast {
+        h4 {
+          background: $screencasts-color;
+        }
+      }
+
       &.profile {
         height: 400px;
 
         @include prime-marketing-mobile {
-          height: 220px;
+          height: auto;
         }
 
         .mini-profile {
@@ -138,6 +230,7 @@ $bullet-size: 70px;
           @include prime-marketing-mobile {
             padding: .5rem 0;
             width: 80%;
+            margin-top: -1rem;
             margin-right: 5%;
           }
 
@@ -178,7 +271,7 @@ $bullet-size: 70px;
 
             @include prime-marketing-mobile {
               h2 {
-                font-size: 1.4rem;
+                font-size: 1.5rem;
               }
             }
           }
@@ -193,6 +286,10 @@ $bullet-size: 70px;
 
         > img {
           @include position(absolute, 0 0 0px 0px);
+
+          @include prime-marketing-mobile {
+            position: static;
+          }
         }
       }
 
@@ -295,16 +392,15 @@ $bullet-size: 70px;
           }
 
           &.book {
-            height: 300px;
+            height: 318px;
             padding: 0;
             width: 246px;
           }
 
           h4 {
-            background: #999;
             border-radius: 2px;
             color: #fff;
-            margin-bottom: .3rem;;
+            margin-bottom: .3rem;
             padding: .75rem;
           }
 
@@ -335,11 +431,22 @@ $bullet-size: 70px;
       &.two-screenshot {
         height: 400px;
 
+        @include prime-marketing-mobile {
+          height: auto;
+        }
+
         img {
           @include position(absolute, 0 0 0px 0px);
 
+          @include prime-marketing-mobile {
+            position: static;
+          }
+
           &:last-child {
-            @include position(absolute, 0px 0px auto auto);
+            bottom: auto;
+            left: auto;
+            right: 0px;
+            top: 0px;
           }
         }
       }
@@ -385,20 +492,6 @@ $bullet-size: 70px;
       p {
         font-family: $sans-serif;
         font-size: 1.5rem;
-      }
-
-      .cta {
-        background: $learnred;
-        border-radius: .3rem;
-        display: block;
-        margin-top: 2rem;
-        padding: 2rem;
-        text-align: center;
-
-        h2, p {
-          color: #fff;
-          margin: 0;
-        }
       }
     }
   }
