@@ -3,12 +3,8 @@ widget :prime do
   type "number_and_secondary"
   data do
     {
-      value: Purchase.
-        for_purchaseable(Product.subscriptions.first).
-        within_range(30.days.ago, Time.now).count,
-      previous: Purchase.
-        for_purchaseable(Product.subscriptions.first).
-        within_range(60.days.ago, 30.days.ago).count
+      value: SubscriptionMetrics.total_subscribers_as_of(Time.now),
+      previous: SubscriptionMetrics.total_subscribers_as_of(30.days.ago)
     }
   end
 end
