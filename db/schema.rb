@@ -104,8 +104,7 @@ ActiveRecord::Schema.define(:version => 20130514175034) do
     t.integer  "downloads_count", :default => 0, :null => false
   end
 
-  create_table "events", :id => false, :force => true do |t|
-    t.integer  "id",                           :null => false
+  create_table "events", :force => true do |t|
     t.integer  "workshop_id",                  :null => false
     t.string   "title",                        :null => false
     t.string   "time",                         :null => false
@@ -162,16 +161,6 @@ ActiveRecord::Schema.define(:version => 20130514175034) do
   end
 
   add_index "oauth_applications", ["uid"], :name => "index_oauth_applications_on_uid", :unique => true
-
-  create_table "office_hours", :force => true do |t|
-    t.integer  "workshop_id",                       :null => false
-    t.string   "title",                             :null => false
-    t.string   "time",                              :null => false
-    t.integer  "occurs_on_week_day", :default => 0, :null => false
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.integer  "occurs_in_week"
-  end
 
   create_table "products", :force => true do |t|
     t.string   "name"
