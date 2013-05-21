@@ -4,6 +4,8 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
+ENV['AWS_BUCKET'] = "test.books.thoughtbot"
+
 require 'cucumber/rails'
 if RUBY_VERSION =~ /1.8/
   require 'test/unit/testresult'

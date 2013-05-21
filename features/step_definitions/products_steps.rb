@@ -69,3 +69,20 @@ end
 Then /^I should see the cover for "([^"]*)"$/ do |book_name|
   page.should have_css("img[alt='#{book_name} cover']")
 end
+
+When /^I visit the product page for "([^"]*)"$/ do |product_name|
+  product = Product.where(name: product_name).first
+  visit product_path(product)
+end
+
+Then /^I should see an S3 download link for "([^"]*)"$/ do |file_name|
+  page.should have_css("a[href^='https://s3.amazonaws.com/test.books.thoughtbot/#{file_name}']")
+end
+
+Then /^the S3 link to "([^"]*)" should expire in the next hour$/ do |file_name|
+  link = page.find("a[href^='https://s3.amazonaws.com/test.books.thoughtbot/#{file_name}']")['href']
+  link =~ /Expires=([0-9]+)/
+  expiration_time = Time.at($1.to_i)
+  expect(expiration_time).to be > Time.now
+  expect(expiration_time).to be < 1.hour.from_now
+end

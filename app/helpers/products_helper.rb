@@ -32,18 +32,18 @@ module ProductsHelper
   end
 
   def epub_url(book)
-    "#{book.github_url}/blob/master/release/#{book.book_filename}.epub?raw=true"
+    HostedBookUrl.new(book).epub
   end
 
   def pdf_url(book)
-    "#{book.github_url}/blob/master/release/#{book.book_filename}.pdf?raw=true"
+    HostedBookUrl.new(book).pdf
   end
 
   def kindle_url(book)
-    "#{book.github_url}/blob/master/release/#{book.book_filename}.mobi?raw=true"
+    HostedBookUrl.new(book).kindle
   end
 
   def book_releases_url(book)
-    "#{book.github_url}/tree/master/release"
+    HostedBookUrl.new(book).releases
   end
 end

@@ -10,10 +10,20 @@ Given /^a user "([^"]*)" exists without a salt, remember token, or password$/ do
   ActiveRecord::Base.connection.update(sql)
 end
 
-Given /^I am a user who has purchased a product$/ do
+def purchase_and_sign_in(product)
   user = create(:user)
-  purchase = create(:purchase, user: user)
+  purchase = create(:purchase, user: user, purchaseable: product)
   sign_in_as_user(user.email)
+end
+
+Given /^I am a user who has purchased a product$/ do
+  product = create(:product)
+  purchase_and_sign_in(product)
+end
+
+Given /^I am a user who has purchased "([^"]*)"$/ do |product_name|
+  product = Product.where(name: product_name).first
+  purchase_and_sign_in(product)
 end
 
 # Sign up
