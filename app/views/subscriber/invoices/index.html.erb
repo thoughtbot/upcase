@@ -1,0 +1,16 @@
+<% content_for :page_title, "Invoices" %>
+<% content_for :subject, "Invoices" %>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <table>
+      <tr>
+        <th>Number</th>
+        <th>Date</th>
+        <th>Total</th>
+        <th>Balance</th>
+      </tr>
+      <%= render @invoices %>
+    </table>
+  </div>
+</div>

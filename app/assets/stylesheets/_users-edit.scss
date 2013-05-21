@@ -51,6 +51,20 @@ body.users-edit {
           font-size: 16px;
           font-style: normal;
         }
+
+        &.subscription {
+          a.invoices, a.cancel {
+            display: block;
+          }
+
+          a.invoices {
+            margin-top: 16px;
+          }
+
+          a.cancel {
+            text-align: right;
+          }
+        }
       }
 
       a {

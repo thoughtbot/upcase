@@ -101,7 +101,7 @@ feature 'User creates a subscription' do
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
     expect(current_path).to eq products_path
-    expect(Purchase.last.stripe_customer).to be_present
+    expect(Purchase.last.stripe_customer_id).to be_present
   end
 
   scenario 'creates a Stripe subscription with an invalid coupon', :js => true do
@@ -120,7 +120,7 @@ feature 'User creates a subscription' do
     sign_in_as_subscriber
     visit my_account_path
 
-    expect(page).to have_content('Your Subscription Billing Info')
+    expect(page).to have_content('Your Billing Info')
   end
 
   scenario 'updates Stripe subscription', js: true do
@@ -146,7 +146,7 @@ feature 'User creates a subscription' do
   scenario 'does not see option to update billing if not subscribing' do
     visit my_account_path
 
-    expect(page).not_to have_content('Your Subscription Billing Info')
+    expect(page).not_to have_content('Your Billing Info')
   end
 
   def submit_new_credit_card_info

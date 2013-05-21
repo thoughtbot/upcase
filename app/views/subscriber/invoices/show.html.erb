@@ -1,0 +1,93 @@
+<% content_for :page_title, "Invoice" %>
+<% content_for :subject, "Invoice #{@invoice.number}" %>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <p>Date <%= @invoice.date.to_s(:short_date) %></p>
+
+    <p class="address">
+      <strong>Sold by</strong><br>
+      thoughtbot, inc.<br>
+      228 Park Ave S #19298<br>
+      New York NY  10003<br>
+      United States<br>
+      Phone: 1 (877) 976-2687 (US toll-free)<br>
+      +46 81 211 11 52 (Europe)
+    </p>
+
+    <p class="address">
+      <strong>Billed to</strong><br>
+      <% if @invoice.user_name.present? %><%= @invoice.user_name %><br><% end %>
+      <% if @invoice.user_organization.present? %><%= @invoice.user_organization %><br><% end %>
+      <% if @invoice.user_address1.present? %><%= @invoice.user_address1 %><br><% end %>
+      <% if @invoice.user_address2.present? %><%= @invoice.user_address2 %><br><% end %>
+      <%= @invoice.user_city %><% if @invoice.user_state.present? %>, <%= @invoice.user_state %><% end %> <%= @invoice.user_zip_code %>
+      <%= @invoice.user_country %>
+    </p>
+
+    <table>
+      <tr class="subscription">
+        <td>
+          <%= @invoice.subscription_item_name %>
+        </td>
+        <td>
+          <%= number_to_currency @invoice.subscription_item_amount, precision: 2 %> USD
+        </td>
+      </tr>
+      <tr class="subtotal">
+        <td>
+          Subtotal
+        </td>
+        <td>
+          <%= number_to_currency @invoice.subtotal, precision: 2 %> USD
+        </td>
+      </tr>
+      <% if @invoice.discounted? %>
+        <tr class="discount">
+          <td>
+            Discount: <%= @invoice.discount_name %>
+          </td>
+          <td>
+            - <%= number_to_currency @invoice.discount_amount, precision: 2 %> USD
+          </td>
+        </tr>
+      <% end %>
+      <tr class="tax">
+        <td>
+          Tax
+        </td>
+        <td>
+          $0.00 USD
+        </td>
+      </tr>
+      <tr class="total">
+        <td>
+          Total
+        </td>
+        <td>
+          <%= number_to_currency @invoice.total, precision: 2 %> USD
+        </td>
+      </tr>
+      <tr class="paid">
+        <td>
+          Amount paid
+        </td>
+        <td>
+          <%= number_to_currency @invoice.amount_paid, precision: 2 %> USD
+        </td>
+      </tr>
+      <tr class="balance">
+        <td>
+          Balance due
+        </td>
+        <td>
+          <%= number_to_currency @invoice.balance, precision: 2 %> USD
+        </td>
+      </tr>
+    </table>
+
+    <p class="note">EU customers, please note: prices exclude VAT</p>
+
+    <p>Invoice lookup: <%= @invoice.stripe_invoice_id %></p>
+  </div>
+</div>
