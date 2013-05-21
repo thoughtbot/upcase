@@ -32,7 +32,7 @@ Learn is a Rails 3 app running on Ruby 1.9 and deployed to Heroku.
 6. Setup your environment.
 
         $ rake setup
-        $ echo "RACK_ENV=development" >> .env
+        $ cp .env.sample .env
 
 7. Start Foreman.
 
@@ -102,6 +102,15 @@ To test PayPal payments on staging, use your thoughtbot credit card as the
 paypal process is live and not sandboxed. After making your purchase you may
 perform a refund through the
 [staging admin panel](http://learn-staging.herokuapp.com/admin/purchase).
+
+
+## Amazon AWS S3
+
+To test integration with AWS S3, set the following environment variables:
+
+    AWS_BUCKET
+    AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY
 
 ## Deployment
 
