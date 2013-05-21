@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514175034) do
+ActiveRecord::Schema.define(:version => 20130520150934) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -213,7 +213,7 @@ ActiveRecord::Schema.define(:version => 20130514175034) do
     t.string   "country"
     t.string   "payment_transaction_id"
     t.integer  "user_id"
-    t.integer  "paid_price"
+    t.decimal  "paid_price"
     t.integer  "purchaseable_id"
     t.string   "purchaseable_type"
     t.text     "comments"

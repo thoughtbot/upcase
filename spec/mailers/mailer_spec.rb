@@ -109,7 +109,7 @@ describe Mailer do
       end
 
       it 'contains the price of the purchase' do
-        expect(email_for(purchase)).to have_body_text(/\$#{purchase.price}\.00/)
+        expect(email_for(purchase)).to have_body_text(/\$#{purchase.price.to_i}\.00/)
       end
 
       it 'should have the correct subject' do
