@@ -73,7 +73,7 @@ body.purchases-show {
       margin-right: 2.5em;
       width: 300px;
 
-      @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+      @include body-mobile {
         margin: 0;
       }
     }
@@ -85,7 +85,7 @@ body.purchases-show {
       text-align: left;
       vertical-align: top;
 
-      @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+      @include body-mobile {
         margin-top: 2em;
       }
 
@@ -149,7 +149,7 @@ body.purchases-show {
     }
   }
 
-  @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+  @include body-mobile {
     .assets-wrapper {
       .assets {
         .button-mini {
@@ -165,7 +165,7 @@ body.purchases-show {
     }
   }
 
-  @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
+  @include body-mobile {
     section.receipt .billing-address,
     section.receipt .purchase-pricing {
       @include span-columns(12);
