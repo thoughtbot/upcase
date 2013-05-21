@@ -224,6 +224,23 @@ class FakeStripe < Sinatra::Base
     end
   end
 
+  get '/invoices' do
+    content_type :json
+    {
+      object: "list",
+      count: 1,
+      url: "/v1/invoices",
+      data: [
+        customer_invoice
+      ]
+    }.to_json
+  end
+
+  get '/invoices/:id' do
+    content_type :json
+    customer_invoice.to_json
+  end
+
   get "/events/#{EVENT_ID_FOR_SUCCESSFUL_INVOICE_PAYMENT}" do
     content_type :json
     {
@@ -264,6 +281,68 @@ class FakeStripe < Sinatra::Base
       max_redemptions: params[:max_redemptions],
       times_redeemed: 0,
       duration_in_months: params[:duration_in_months]
+    }
+  end
+
+  def customer_invoice
+    {
+      date: 1369159688,
+      id: "in_1s4JSgbcUaElzU",
+      period_start: 1366567645,
+      period_end: 1369159645,
+      lines: {
+        invoiceitems: [],
+        prorations: [],
+        subscriptions: [
+          {
+            id: "su_1ri03Utwow0Sue",
+            object: "line_item",
+            type: "subscription",
+            livemode: true,
+            amount: 9900,
+            currency: "usd",
+            proration: false,
+            period: {
+              start: 1371755084,
+              end: 1374347084
+            },
+            quantity: 1,
+            plan: {
+              interval: "month",
+              name: "Prime",
+              amount: 9900,
+              currency: "usd",
+              id: "prime",
+              object: "plan",
+              livemode: false,
+              interval_count: 1,
+              trial_period_days: nil
+            },
+            description: nil
+          }
+        ]
+      },
+      discount: {
+        id: "di_1m6sZ5I9P0fk8d",
+        coupon: {
+          id: "railsconf",
+          percent_off: nil,
+          amount_off: 2000,
+          currency: "usd",
+          object: "coupon",
+          livemode: true,
+          duration: "once",
+          redeem_by: 1367971199,
+          max_redemptions: nil,
+          times_redeemed: 1,
+          duration_in_months:nil
+        }
+      },
+      paid: true,
+      total: 7900,
+      subtotal: 9900,
+      amount_due: 7900,
+      customer: "cus_1KjDojUy0RiwFH"
     }
   end
 end

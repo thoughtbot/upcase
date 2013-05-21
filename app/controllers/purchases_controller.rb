@@ -29,7 +29,7 @@ class PurchasesController < ApplicationController
     end
 
     if use_existing_card?
-      @purchase.stripe_customer = current_user.stripe_customer
+      @purchase.stripe_customer_id = current_user.stripe_customer_id
     end
 
     if @purchase.save
@@ -84,8 +84,8 @@ class PurchasesController < ApplicationController
   end
 
   def retrieve_active_card
-    if current_user && current_user.stripe_customer
-      Stripe::Customer.retrieve(current_user.stripe_customer)['active_card']
+    if current_user && current_user.stripe_customer_id
+      Stripe::Customer.retrieve(current_user.stripe_customer_id)['active_card']
     end
   end
 

@@ -1,0 +1,29 @@
+body.subscriber-invoices-index {
+  table {
+    width: 100%;
+  }
+}
+
+body.subscriber-invoices-show {
+  .address br {
+    display: block;
+  }
+
+  table {
+    width: 75%;
+
+    td {
+      text-align: right;
+    }
+
+    tr.subscription, tr.discount {
+      td:first-child {
+        text-align: left;
+      }
+    }
+  }
+
+  .note {
+    font-style: italic;
+  }
+}

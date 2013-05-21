@@ -47,6 +47,7 @@ Workshops::Application.routes.draw do
 
   namespace :subscriber do
     resources :purchases, only: :create
+    resources :invoices, only: [:index, :show]
   end
 
   resources :subscriptions, only: [:destroy, :update]

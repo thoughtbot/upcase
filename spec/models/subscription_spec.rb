@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Subscription do
-  it { should delegate(:stripe_customer).to(:user) }
+  it { should delegate(:stripe_customer_id).to(:user) }
 
   describe '.deliver_welcome_emails' do
     it 'sends emails for each new subscriber in the last 24 hours' do

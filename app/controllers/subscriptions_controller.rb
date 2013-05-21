@@ -6,7 +6,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def update
-    customer = Stripe::Customer.retrieve(current_user.stripe_customer)
+    customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
     customer.card = params['stripe_token']
     begin
       customer.save

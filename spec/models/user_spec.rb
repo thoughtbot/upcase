@@ -75,8 +75,8 @@ describe User do
     let(:email) { "newuser@example.com" }
 
     before do
-      @prev_purchases = [create(:purchase, email: email, stripe_customer: "stripecustomer"),
-                         create(:purchase, email: email, stripe_customer: nil, payment_method: "paypal")]
+      @prev_purchases = [create(:purchase, email: email, stripe_customer_id: "stripecustomer"),
+                         create(:purchase, email: email, stripe_customer_id: nil, payment_method: "paypal")]
       @other_purchase = create(:purchase)
     end
 
@@ -88,7 +88,7 @@ describe User do
 
     it "retrieves the stripe customer id from previous purchases" do
       user = create(:user, email: email)
-      user.reload.stripe_customer.should == "stripecustomer"
+      user.reload.stripe_customer_id.should == "stripecustomer"
     end
   end
 
@@ -96,7 +96,7 @@ describe User do
     it "doesn't associate a created user with any purchases" do
       user = create(:user)
       user.purchases.should be_empty
-      user.stripe_customer.should be_blank
+      user.stripe_customer_id.should be_blank
     end
   end
 

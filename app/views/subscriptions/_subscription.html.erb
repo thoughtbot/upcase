@@ -1,8 +1,16 @@
-<li>
-  Active since <%= subscription.created_at.to_s(:simple) %><br>
-  (<%= link_to t('subscriptions.cancel'), subscription,
+<li class="subscription">
+  <% if subscription.active? %>
+    Active since <%= subscription.created_at.to_s(:simple) %><br>
+  <% else %>
+    Canceled on <%= subscription.deactivated_on.to_s(:simple) %>
+  <% end %>
+
+  <%= link_to 'View all invoices', subscriber_invoices_path, class: 'invoices' %>
+  <% if subscription.active? %>
+    <%= link_to t('subscriptions.cancel'), subscription,
       method: :delete,
       confirm: 'Are you sure you want to cancel your Prime subscription?',
       class: 'cancel'
-  %>)
+    %>
+  <% end %>
 </li>

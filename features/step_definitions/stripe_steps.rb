@@ -3,7 +3,7 @@ Given 'stripe is stubbed with a failure' do
 end
 
 Given 'I have an existing credit card' do
-  User.all.each { |user| user.update_column(:stripe_customer, "test") }
+  User.all.each { |user| user.update_column(:stripe_customer_id, "test") }
   Stripe::Customer.stubs(:retrieve).returns({"active_card" => {"last4" => "1234", "type" => "Visa"}})
 end
 
