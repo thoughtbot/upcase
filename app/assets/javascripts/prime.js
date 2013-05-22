@@ -53,12 +53,6 @@ if ($('.journey').length) {
     });
   };
 
-  jsPlumb.ready(function() {
-    setPlumbSettings();
-  });
-
-  $(window).resize(setPlumbSettings);
-
   $(function() {
     $('.pitch > .two-stacked').waypoint(function(direction) {
       $(this).children('div').addClass('visible');
@@ -67,5 +61,16 @@ if ($('.journey').length) {
     $('.buffet').waypoint(function(direction) {
       $(this).addClass('visible');
     }, { offset: '93%' });
-  })
+
+    $('.mini-profile .images').click(function() {
+      $(this).toggleClass('animated');
+    });
+  });
+
+  $(window).load(function() {
+    setPlumbSettings();
+    $('.curtain').addClass('animate');
+  });
+
+  $(window).resize(setPlumbSettings);
 }
