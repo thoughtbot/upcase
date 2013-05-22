@@ -127,6 +127,10 @@ body.prime-marketing {
     color: #fff;
     margin-bottom: .3rem;
     padding: .75rem;
+
+    &.byte-title {
+      color: $darkwarmgray;
+    }
   }
 
   &.workshop-online h4 {
@@ -166,11 +170,13 @@ body.prime-marketing {
 
   // animate the curtain going from 100% height->0% to reveal the dotted trail
   .curtain {
-    //@extend %animation-draw-curtain;
     background: $lightwarmgray;
-    //@include position(absolute, 0px 0px 0px 0px);
+    @include position(absolute, 0px 0px 0px 0px);
     z-index: 1;
-    display: none;
+
+    &.animate {
+      @extend %animation-draw-curtain;
+    }
   }
 
   .pitch {
@@ -310,33 +316,35 @@ body.prime-marketing {
           }
 
           .images {
+            background: rgb(245, 245, 245);
+            border: 1px solid rgb(150, 150, 150);
+            border-radius: 100%;
+            cursor: pointer;
             float: left;
             height: 150px;
+            position: relative;
+            @include transition;
             width: 150px;
-
-            img {
-              border: 1px solid rgb(150, 150, 150);
-              border-radius: 100%;
-              height: 150px;
-              opacity: 0;
-              position: absolute;
-              @include transition;
-              width: 150px;
-
-              &:first-child {
-                opacity: 1;
-              }
-            }
 
             @include prime-marketing-mobile {
               height: 70px;
               margin-left: 1rem;
               width: 70px;
+            }
 
-              img {
-                height: 70px;
-                width: 70px;
-              }
+            &.animated {
+              background: url('/assets/learn/faces.gif');
+              background-size: contain;
+            }
+
+            &:after {
+              border: 5px dashed rgba(255, 255, 255, .75);
+              border-radius: 100%;
+              content: '';
+              display: block;
+              height: 112px;
+              @include position(absolute, 10% 0 0 16%);
+              width: 82px;
             }
           }
 
@@ -346,7 +354,7 @@ body.prime-marketing {
 
             @include prime-marketing-mobile {
               h2 {
-                font-size: 1.5rem;
+                font-size: 1.2rem;
               }
             }
           }
@@ -360,6 +368,7 @@ body.prime-marketing {
         }
 
         > img {
+          width: 500px;
           @include position(absolute, 0 0 0px 0px);
 
           @include prime-marketing-mobile {
@@ -389,6 +398,10 @@ body.prime-marketing {
           position: relative;
           width: 50%;
 
+          &:hover {
+            z-index: 5;
+          }
+
           // animate the fly-in when waypoints adds the visible class
           &.visible {
             figure {
@@ -409,8 +422,6 @@ body.prime-marketing {
 
             // animate the fan-out on hover
             &:hover {
-              z-index: 5;
-
               figure {
                 &:nth-of-type(1) {
                   @include transform(translate(-4rem, -4rem) rotate(-3deg));
@@ -488,6 +499,7 @@ body.prime-marketing {
 
         img {
           @include position(absolute, 0 0 0px 0px);
+          width: 500px;
 
           @include prime-marketing-mobile {
             position: static;
@@ -597,7 +609,7 @@ body.prime-marketing {
 
       @include prime-marketing-tablet {
         float: none;
-        margin: 0 0 2.5rem 0;
+        margin: 0 0 2rem 0;
         width: 50%;
       }
 
@@ -654,7 +666,7 @@ body.prime-marketing {
       .item figure {
         opacity: 1;
 
-        @for $i from 0 through 3 {
+        @for $i from 0 through 4 {
           &:nth-of-type(#{$i + 1}) {
             @extend %animation-backwards-stacked-fly-in;
             @include animation-delay(#{.5 - ($i * .12)}s);
@@ -687,7 +699,7 @@ body.prime-marketing {
         // fan out the the detail decks
         &:hover {
           figure {
-            @for $i from 1 through 4 {
+            @for $i from 1 through 5 {
               &:nth-of-type(#{$i}) {
                 @include transform(translate(#{$i * .25}rem, -#{$i * 3}rem) rotate(#{$i}deg) scale(#{1 - $i * .02}));
                 z-index: #{0 - $i};
@@ -720,12 +732,12 @@ body.prime-marketing {
       }
 
       figure {
-        margin-top: 1rem;
+        margin-top: 1.5rem;
         opacity: 0;
         @include transition(.25s ease);
 
         // stack the detail decks
-        @for $i from 0 through 3 {
+        @for $i from 0 through 4 {
           &:nth-of-type(#{$i + 1}) {
             @include transform(translate(0, -#{$i * .8}rem) scale(#{1 - $i * .04}));
             z-index: #{4 - $i};
