@@ -8,7 +8,6 @@
   </div>
   <h1>Start your journey to becoming a great ruby developer</h1>
   <a href="#" id="first-cta" class="prime-journey-cta">
-    <p>subhead</p>
     <h2>Join Learn Prime</h2>
   </a>
 </section>
@@ -22,14 +21,12 @@
     </article>
     <figure class="supporting-visual profile">
       <figure class="mini-profile">
-        <div class="images">
-          <%= image_tag('http://www.gravatar.com/avatar/1eb7539f1f0a62f74ea3f7a0fa0f486f?s=500') %>
-        </div>
+        <div class="images animated"></div>
         <figcaption>
           <h2>This is you</h2>
         </figcaption>
       </figure>
-      <%= image_tag('http://placehold.it/500x330') %>
+      <%= image_tag('learn/user-list.png') %>
     </figure>
   </section>
   <section class="pitch left">
@@ -42,29 +39,50 @@
       <div>
         <h3>Online workshops</h3>
         <div class="figuregroup">
-          <% 3.times do %>
-            <figure class="workshop-online product-card">
-              <h4>Intermediate Ruby on Rails</h4>
-              <%= image_tag('http://placehold.it/225x120') %>
-              <h5>Online Workshops</h5>
-              <p>Dig deeper into Ruby on Rails</p>
-              <p class="date">May 30&ndash;31, 2013</p>
-            </figure>
-          <% end %>
+          <figure class="workshop-online product-card">
+            <h4>The Playbook</h4>
+            <%= image_tag('workshop_thumbs/playbook.png') %>
+            <h5>Online Workshop</h5>
+            <p>How to design, build, and launch a successful application</p>
+            <p class="date">Begin when you sign-up</p>
+          </figure>
+          <figure class="workshop-online product-card">
+            <h4>Design for Developers</h4>
+            <%= image_tag('workshop_thumbs/design.png') %>
+            <h5>Online Workshop</h5>
+            <p>Get better at visual design and create something great</p>
+            <p class="date">Begin when you sign-up</p>
+          </figure>
+          <figure class="workshop-online product-card">
+            <h4>Intro to Ruby on Rails</h4>
+            <%= image_tag('workshop_thumbs/intro.png') %>
+            <h5>Online Workshop</h5>
+            <p>Learn how to develop web applications using Ruby on Rails</p>
+            <p class="date">Begin when you sign-up</p>
+          </figure>
         </div>
       </div>
       <div>
         <h3>In-Person Workshops</h3>
         <div class="figuregroup">
-          <% 3.times do %>
-            <figure class="workshop-inperson product-card">
-              <h4>Intro to Ruby on Rails</h4>
-              <%= image_tag('http://placehold.it/225x120') %>
-              <h5>In-Person Workshop</h5>
-              <p>Learn the core of Ruby followed by how to develop applications using Rails</p>
-              <p class="date">June 14&ndash;15, 2013</p>
-            </figure>
-          <% end %>
+          <figure class="workshop-inperson product-card">
+            <h4>Design for Developers</h4>
+            <%= image_tag('workshop_thumbs/design.png') %>
+            <h5>In-Person Workshop</h5>
+            <p>Learn the core of Rubpplications using Rails</p>
+          </figure>
+          <figure class="workshop-inperson product-card">
+            <h4>Intermediate Ruby on Rails</h4>
+            <%= image_tag('workshop_thumbs/intermediate.png') %>
+            <h5>In-Person Workshop</h5>
+            <p>Dig deeper into Ruby on Rails</p>
+          </figure>
+          <figure class="workshop-inperson product-card">
+            <h4>Test-Driven Rails</h4>
+            <%= image_tag('workshop_thumbs/test.png') %>
+            <h5>In-Person Workshop</h5>
+            <p>Learn Test-Driven Development using RSpec and Capybara</p>
+          </figure>
         </div>
       </div>
     </figure>
@@ -76,8 +94,8 @@
       <p>The community is dedicated to helping you grow through knowledge sharing. Our discussion platform is staffed with thoughtbot developers to allow you to communicate directly with the experts.</p>
     </article>
     <figure class="supporting-visual two-screenshot">
-      <%= image_tag('http://placehold.it/500x330') %>
-      <%= image_tag('http://placehold.it/500x330') %>
+      <%= image_tag('learn/forum-2.png') %>
+      <%= image_tag('learn/forum-1.png') %>
     </figure>
   </section>
   <section class="pitch left">
@@ -90,14 +108,24 @@
       <div>
         <h3>Screencasts</h3>
         <div class="figuregroup">
-          <% 3.times do %>
-            <figure class="screencast product-card">
-              <h4>Hidden Secrets of the Chrome Developer Tools</h4>
-              <%= image_tag('http://placehold.it/225x120') %>
-              <h5>Screencast</h5>
-              <p>Dig deeper into Ruby on Rails</p>
-            </figure>
-          <% end %>
+          <figure class="screencast product-card">
+            <h4>Hidden Secrets of the Chrome Developer Tools</h4>
+            <%= image_tag('screencast_thumbs/secrets.png') %>
+            <h5>Screencast</h5>
+            <p>Speed up your day-to-day web development work</p>
+          </figure>
+          <figure class="screencast product-card">
+            <h4>Humans Present: Refactoring</h4>
+            <%= image_tag('screencast_thumbs/refactoring.png') %>
+            <h5>Screencast</h5>
+            <p>Make Your Code Better</p>
+          </figure>
+          <figure class="screencast product-card">
+            <h4>Vim for Rails Developers</h4>
+            <%= image_tag('screencast_thumbs/vim-for-rails.png') %>
+            <h5>Screencast</h5>
+            <p>Create and edit your Ruby on Rails code more efficiently</p>
+          </figure>
         </div>
       </div>
       <div>
@@ -112,14 +140,13 @@
   </section>
   <section class="pitch center final">
     <figure class="supporting-visual">
-      <%= image_tag('http://placehold.it/440x430') %>
+      <%= image_tag('learn/dashboard.png') %>
     </figure>
     <article>
       <figure id="bullet-5" class="journey-bullet"></figure>
       <h2>The journey doesn't end there...</h2>
       <p>We're focused on delivering continuous learning through community involvement, cutting-edge content, and teaching the latest in development practices.</p>
       <a href="#" class="prime-journey-cta">
-        <p>subhead</p>
         <h2>Join Learn Prime</h2>
       </a>
     </article>
@@ -130,7 +157,7 @@
 <section class="details">
   <h2>Here&rsquo;s what you get:</h2>
   <figure id="detail-figure">
-    <%= image_tag('http://placehold.it/580x270') %>
+    <%= image_tag('learn/community.png') %>
     <figcaption>
       <hgroup>
         <h2>An entire online community</h2>
@@ -150,20 +177,41 @@
         <h4>Online &amp; In-person</h4>
       </hgroup>
       <div class="figuregroup">
-        <% 4.times do %>
-          <figure class="workshop-online product-card">
-            <h4>Intermediate Ruby on Rails</h4>
-            <%= image_tag('http://placehold.it/225x120') %>
-            <h5>Online Workshops</h5>
-            <p>Dig deeper into Ruby on Rails</p>
-            <p class="date">May 30&ndash;31, 2013</p>
-          </figure>
-        <% end %>
+        <figure class="workshop-online product-card">
+          <h4>Intro to Ruby on Rails</h4>
+          <%= image_tag('workshop_thumbs/intro.png') %>
+          <h5>Online and In-Person Workshop</h5>
+          <p>Learn how to develop web applications using Ruby on Rails</p>
+        </figure>
+        <figure class="workshop-online product-card">
+          <h4>Intermediate Ruby on Rails</h4>
+          <%= image_tag('workshop_thumbs/intermediate.png') %>
+          <h5>Online and In-Person Workshop</h5>
+          <p>Dig deeper into Ruby on Rails</p>
+        </figure>
+        <figure class="workshop-online product-card">
+          <h4>Design for Developers</h4>
+          <%= image_tag('workshop_thumbs/design.png') %>
+          <h5>Online and In-Person Workshop</h5>
+          <p>Get better at visual design and create something great</p>
+        </figure>
+        <figure class="workshop-online product-card">
+          <h4>Test-Driven Rails</h4>
+          <%= image_tag('workshop_thumbs/test.png') %>
+          <h5>Online and In-Person Workshop</h5>
+          <p>Learn Test-Driven Development using RSpec and Capybara</p>
+        </figure>
+        <figure class="workshop-online product-card">
+          <h4>The Playbook</h4>
+          <%= image_tag('workshop_thumbs/playbook.png') %>
+          <h5>Online-only Workshop</h5>
+          <p>How to design, build, and launch a successful application</p>
+        </figure>
       </div>
     </div>
     <div class="item">
       <hgroup>
-        <h3>Our Books</h3>
+        <h3>All our Books</h3>
         <h4>Read, contribute, discuss</h4>
       </hgroup>
       <div class="figuregroup">
@@ -178,14 +226,30 @@
         <h4>Watch and discuss</h4>
       </hgroup>
       <div class="figuregroup">
-        <% 4.times do %>
-          <figure class="screencast product-card">
-            <h4>Hidden Secrets of the Chrome Developer Tools</h4>
-            <%= image_tag('http://placehold.it/225x120') %>
-            <h5>Screencast</h5>
-            <p>Dig deeper into Ruby on Rails</p>
-          </figure>
-        <% end %>
+        <figure class="screencast product-card">
+          <h4>Vim for Rails Developers</h4>
+          <%= image_tag('screencast_thumbs/vim-for-rails.png') %>
+          <h5>Screencast</h5>
+          <p>Create and edit your Ruby on Rails code more efficiently</p>
+        </figure>
+        <figure class="screencast product-card">
+          <h4>Hidden Secrets of the Chrome Developer Tools</h4>
+          <%= image_tag('screencast_thumbs/secrets.png') %>
+          <h5>Screencast</h5>
+          <p>Speed up your day-to-day web development work</p>
+        </figure>
+        <figure class="screencast product-card">
+          <h4>Humans Present: Refactoring</h4>
+          <%= image_tag('screencast_thumbs/refactoring.png') %>
+          <h5>Screencast</h5>
+          <p>Make Your Code Better</p>
+        </figure>
+        <figure class="screencast product-card">
+          <h4>Humans Present: tmux</h4>
+          <%= image_tag('screencast_thumbs/tmux.png') %>
+          <h5>Screencast</h5>
+          <p>Improve your workflow and become a better, happier developer</p>
+        </figure>
       </div>
     </div>
     <div class="item">
@@ -194,11 +258,32 @@
         <h4>Read and deliberate</h4>
       </hgroup>
       <div class="figuregroup">
-        <% 4.times do %>
-          <figure class="byte product-card">
-            <%= image_tag('http://placehold.it/275x300') %>
-          </figure>
-        <% end %>
+        <figure class="byte product-card">
+          <h4 class="byte-title">Don't rescue Exception, rescue StandardError.</h4>
+          <p>The Exception hierarchy with Ruby starts with Exception. If you can raise it, it's an Exception. If you try to raise it and it's not an Exception, Ruby will complain...</p>
+          <p class="date">May 15, 2013</p>
+        </figure>
+        <figure class="byte product-card">
+          <h4 class="byte-title">SASS !default</h4>
+          <p>Recently, a client asked us to create a white label app: they wanted their customers to be able to customize things like colors, logo, background, etc., but not all customers will want to use custom branding. How do...</p>
+          <p class="date">May 03, 2013</p>
+        </figure>
+        <figure class="byte product-card">
+          <h4 class="byte-title">A git-bisect Duet</h4>
+          <p>git bisect uses binary search to find which change introduced a bug, given an old "good" commit and a later "bad" commit.</p>
+          <p>DJCP asks: Who's used git bisect? I would like to use it to figure out when something was broken.</p>
+          <p class="date">April 24, 2013</p>
+        </figure>
+        <figure class="byte product-card">
+          <h4 class="byte-title">Do new classes increase or lower the complexity of the overall codebase?</h4>
+          <p>Draper asks: By introducing a new class/object, are you increasing or lowering the complexity of the overall codebase? In the case that I'm talking about I think its simplifying the interactions...</p>
+          <p class="date">April 17, 2013</p>
+        </figure>
+        <figure class="byte product-card">
+          <h4 class="byte-title">How do I compare a zip file of code with the same directory from Git?</h4>
+          <p>Dan asks: I have a downloaded directory of code that i received via zip file. I have a cloned version of the same app from git. I want to compare if the two are the same. Is the best way to copy...</p>
+          <p class="date">April 10, 2013</p>
+        </figure>
       </div>
     </div>
   </div>
