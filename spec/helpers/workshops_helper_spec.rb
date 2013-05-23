@@ -7,7 +7,7 @@ describe WorkshopsHelper, '#workshop_frequency_note' do
 
       note = workshop_frequency_note(workshop)
 
-      expect(note).to include 'every month'
+      expect(note).to include 'as soon as you register'
     end
   end
 

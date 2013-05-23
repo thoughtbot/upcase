@@ -1,6 +1,6 @@
 module VideosHelper
-  def video_availability_class(video, purchaseable)
-    if video.available?(purchaseable.starts_on)
+  def video_availability_class(video, purchase)
+    if video.available?(purchase.starts_on)
       'available'
     else
       'unavailable'

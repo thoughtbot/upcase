@@ -83,6 +83,7 @@ FactoryGirl.define do
 
     factory :online_workshop do
       online true
+      length_in_days 28
     end
   end
 
@@ -227,6 +228,7 @@ FactoryGirl.define do
       end
 
       factory :online_section do
+        ends_on nil
         association :workshop, factory: :online_workshop
       end
     end
@@ -273,12 +275,6 @@ FactoryGirl.define do
   factory :video do
     association :watchable, factory: :product
     wistia_id '1194803'
-  end
-
-  factory :event do
-    association :workshop
-    title 'Office Hours'
-    time '1pm Eastern'
   end
 
   factory :episode do

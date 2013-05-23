@@ -3,10 +3,9 @@
   <h3><%= video.title %></h3>
   <p class="videoinfo">
     <em>
-      <% if video.available?(purchase.purchaseable.starts_on) %>
-        <%= distance_of_time_in_words video.wistia_running_time %>
-      <% else %>
-        Available on <%= video.available_on(purchase.purchaseable.starts_on).to_s(:simple) %>
+      <%= distance_of_time_in_words video.wistia_running_time %>
+      <% unless video.available?(purchase.starts_on) %>
+        &mdash; Available on <%= video.available_on(purchase.starts_on).to_s(:simple) %>
       <% end %>
     </em>
   </p>

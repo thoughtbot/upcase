@@ -89,9 +89,16 @@ describe Product do
   end
 
   describe 'starts_on' do
-    it 'returns today' do
+    it 'returns the given date' do
       product = create(:product)
-      expect(product.starts_on).to eq Date.today
+      expect(product.starts_on(Date.today)).to eq Date.today
+    end
+  end
+
+  describe 'ends_on' do
+    it 'returns the given date' do
+      product = create(:product)
+      expect(product.ends_on(Date.today)).to eq Date.today
     end
   end
 
