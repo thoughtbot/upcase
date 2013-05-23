@@ -162,12 +162,6 @@ body.prime-marketing footer {
   padding: 5rem 6vw;
   width: 100%;
 
-  @include prime-marketing-mobile {
-    border: 0;
-    margin: 0 auto;
-    padding: 0 6vw 4rem;
-  }
-
   a {
     margin: 0 .25rem;
   }
