@@ -137,6 +137,16 @@
     }
   }
 
+  .pitch.exclusive-content {
+    article {
+      margin-top: 12rem;
+
+      @include prime-marketing-tablet {
+        margin-top: 0;
+      }
+    }
+  }
+
   .pitch.final {
     .supporting-visual {
       width: 30%;
@@ -157,12 +167,11 @@
     }
 
     article {
-      margin-top: 3.75rem;
+      margin-top: 0;
       width: 57%;
 
       @include prime-marketing-tablet {
         width: 100%;
-        margin-top: 0;
 
         .cta {
           clear: both;
