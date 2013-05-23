@@ -10,6 +10,12 @@
   }
 }
 
+@mixin prime-marketing-fullsize {
+  @media only screen and (min-width: 800px) {
+    @content;
+  }
+}
+
 @mixin body-mobile {
   @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
     @content;
