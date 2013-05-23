@@ -129,8 +129,8 @@ class Section < ActiveRecord::Base
   end
 
   def send_office_hours_reminders
-    current_student_emails.each do |email|
-      if office_hours.present?
+    if office_hours.present?
+      current_student_emails.each do |email|
         Mailer.office_hours_reminder(self, email).deliver
       end
     end
