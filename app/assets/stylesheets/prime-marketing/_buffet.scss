@@ -1,0 +1,94 @@
+.buffet {
+  clear: both;
+  @include clearfix;
+
+  // animate the cards in one-by-one when waypoints gives the visible class
+  // only animate on desktop due to iOS crashes
+  &.visible {
+    .item figure {
+      opacity: 1;
+
+      @include prime-marketing-fullsize {
+        @for $i from 0 through 4 {
+          &:nth-of-type(#{$i + 1}) {
+            @include animation(backwards-stacked-fly-in .3s linear);
+            @include animation-delay(#{.5 - ($i * .12)}s);
+            @include animation-fill-mode(backwards);
+          }
+        }
+      }
+    }
+  }
+
+  .item {
+    float: left;
+    @include perspective(1000);
+    position: relative;
+    width: 25%;
+    z-index: 2;
+
+    @include prime-marketing-tablet {
+      width: 50%;
+      margin-bottom: 2.5rem;
+    }
+
+    @include prime-marketing-mobile {
+      float: none;
+      width: 100%;
+    }
+
+    .figuregroup {
+      height: 350px;
+      width: 250px;
+
+      // fan out the the detail decks
+      &:hover {
+        figure {
+          @for $i from 1 through 5 {
+            &:nth-of-type(#{$i}) {
+              @include transform(translate(#{$i * .25}rem, -#{$i * 3}rem) rotate(#{$i}deg) scale(#{1 - $i * .02}));
+              z-index: #{0 - $i};
+
+              &:hover {
+                @include transform(translate(#{$i * .25}rem, -#{$i * 3}rem) translateZ(3rem) rotate(#{$i}deg) scale(#{1 - $i * .02}));
+              }
+            }
+          }
+
+          &:hover {
+            z-index: 5;
+          }
+        }
+      }
+    }
+
+    hgroup {
+      padding-left: .3rem;
+      position: relative;
+      z-index: -2;
+
+      h3 {
+        font-weight: 700;
+      }
+
+      h3, h4 {
+        color: $darkwarmgray;
+      }
+    }
+
+    figure {
+      margin-top: 1.5rem;
+      opacity: 0;
+      @include transition(.25s ease);
+
+      // stack the detail decks
+      @for $i from 0 through 4 {
+        &:nth-of-type(#{$i + 1}) {
+          @include transform(translate(0, -#{$i * .8}rem) scale(#{1 - $i * .04}));
+          z-index: #{4 - $i};
+        }
+      }
+    }
+  }
+}
+
