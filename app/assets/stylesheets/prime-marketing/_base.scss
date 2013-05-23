@@ -1,0 +1,188 @@
+$journey-line-color: lighten($warmgray, 6%);
+$bullet-size: 70px;
+
+body.prime-marketing {
+  background: $journey-line-color;
+}
+
+.journey-headline {
+  padding: 2rem 6vw 0;
+  text-align: center;
+
+  .logo {
+    display: inline-block;
+    line-height: 0;
+    margin-bottom: 2rem;
+
+    h1 {
+      display: inline-block;
+      line-height: 88px;
+    }
+
+    img {
+      display: inline-block;
+      float: left;
+    }
+  }
+
+  h1, .prime-journey-cta {
+    margin: auto;
+    max-width: 800px;
+  }
+
+  h1 {
+    font-size: 3.2rem;
+    text-shadow: 0 1px 1px rgba($darkwarmgray, .3);
+
+    @include prime-marketing-mobile {
+      font-size: 2rem;
+    }
+  }
+
+  .prime-journey-cta {
+    bottom: -4rem;
+    margin-top: 0;
+    position: relative;
+
+    &:active {
+      margin-top: .25rem;
+    }
+  }
+}
+
+.prime-journey-cta {
+  background: $learnred;
+  border-bottom: .3rem solid darken($learnred, 10%);
+  border-radius: .3rem;
+  display: block;
+  margin-top: 2rem;
+  padding: 1.75rem;
+  position: relative;
+  text-align: center;
+  z-index: 5;
+
+  @include prime-marketing-mobile {
+    padding: 1rem;
+  }
+
+  &:hover {
+    background: lighten($learnred, 3%);
+  }
+
+  &:active {
+    border-bottom: 0;
+    margin-top: 2.25rem;
+  }
+
+  h2, p {
+    color: #fff;
+    letter-spacing: 1px;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 2.4rem;
+
+    @include prime-marketing-mobile {
+      font-size: 2rem;
+    }
+  }
+
+  p {
+    font-family: $sans-serif;
+    font-size: 1.5rem;
+
+    @include prime-marketing-mobile {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+// used as a book, workshop, or screenshot card aka one of the stacked figures
+.product-card {
+  background: #fff;
+  border: 1px solid rgb(175, 175, 175);
+  border-radius: .3rem;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+  display: inline-block;
+  height: 330px;
+  padding: .3rem;
+  position: absolute;
+  width: 230px;
+
+  &.book {
+    height: 318px;
+    padding: 0;
+    width: 246px;
+  }
+
+  h4 {
+    border-radius: 2px;
+    color: #fff;
+    margin-bottom: .3rem;
+    padding: .75rem;
+
+    &.byte-title {
+      color: $darkwarmgray;
+    }
+  }
+
+  &.workshop-online h4 {
+    background: $workshop-online-color;
+  }
+
+  &.workshop-inperson h4 {
+    background: $workshop-inperson-color;
+  }
+
+  &.screencast h4 {
+    background: $screencasts-color;
+  }
+
+  h5, p {
+    margin: .75rem;
+  }
+
+  h5 {
+    font-size: .8rem;
+    margin-top: .3rem;
+    text-transform: uppercase;
+  }
+
+  .note {
+    bottom: 0;
+    font: normal .8rem/1em $sans-serif;
+    position: absolute;
+  }
+}
+
+body.prime-marketing footer {
+  margin: 0 auto;
+  max-width: 111rem;
+  padding: 5rem 6vw;
+  width: 100%;
+
+  @include prime-marketing-mobile {
+    border: 0;
+    margin: 0 auto;
+    padding: 0 6vw 4rem;
+  }
+
+  a {
+    margin: 0 .25rem;
+  }
+}
+
+svg._jsPlumb_connector path, svg._jsPlumb_endpoint path {
+  border-radius: 100%;
+  stroke: $journey-line-color;
+  stroke-dasharray: 15px, 21px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 5px;
+}
+
+.connector-dot {
+  display: none;
+}
+
