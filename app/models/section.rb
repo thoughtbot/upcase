@@ -32,7 +32,7 @@ class Section < ActiveRecord::Base
   after_create :send_teacher_notifications
 
   def self.active
-    where("sections.starts_on >= ?", Date.today).by_starts_on
+    where("sections.starts_on >= ? OR sections.ends_on IS NULL", Date.today).by_starts_on
   end
 
   def self.by_starts_on
