@@ -6,7 +6,7 @@
       <%= image_tag('learn/learn-ralph.png') %>
     </h1>
   </div>
-  <h1>Start your journey to becoming a great ruby developer</h1>
+  <h1>Start your journey to becoming a great Ruby and Rails developer</h1>
   <a href="#" id="first-cta" class="prime-journey-cta">
     <h2>Join Learn Prime</h2>
   </a>
@@ -17,11 +17,18 @@
     <article>
       <figure id="bullet-1" class="journey-bullet"></figure>
       <h2>Join a community dedicated to your learning</h2>
-      <p>Our growing community is a group of professionals dedicated to improving themselves, their code, and their personal projects.</p>
+      <p>Our community is a growing group of professionals dedicated to improving themselves, their code, and their personal projects.</p>
     </article>
     <figure class="supporting-visual profile">
       <figure class="mini-profile">
-        <div class="images animated"></div>
+        <div class="images animated">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="150px" height="155px" viewBox="0 0 150 150" enable-background="new 0 0 150 150" xml:space="preserve">
+          <path d="M73.698,0.016c0.848,0,1.694,0,2.54,0c46.246-1.017,39.172,55.844,24.143,81.955c-2.817,4.898-6.278,9.613-5.718,13.98
+            c2.185,17.055,42.147,12.871,50.826,22.871c6.192,7.137,2.514,17.189,4.446,31.133C100.168,149.529,48.708,150.799,0,149.32
+            c1.977-13.68-1.653-23.469,4.447-30.498c9.546-10.998,49.334-5.371,50.826-23.51c0.338-4.088-2.849-8.357-5.718-13.344
+            C33.616,54.28,28.398-1.072,73.698,0.016z"/>
+          </svg>
+        </div>
         <figcaption>
           <h2>This is you</h2>
         </figcaption>
@@ -32,8 +39,8 @@
   <section class="pitch left">
     <article>
       <figure id="bullet-2" class="journey-bullet"></figure>
-      <h2>Enroll in hands-on premium workshops</h2>
-      <p>Our workshops are more than just video tutorials. You'll build real apps and communicate <strong>directly</strong> with a thoughtbot developer.</p>
+      <h2>Enroll in premium, hands-on workshops</h2>
+      <p>Our workshops are more than just video tutorials. You'll build real apps and communicate directly with a thoughtbot developer or designer. Begin an online workshop as soon as you sign up.</p>
     </article>
     <figure class="supporting-visual two-stacked">
       <div>
@@ -44,21 +51,20 @@
             <%= image_tag('workshop_thumbs/playbook.png') %>
             <h5>Online Workshop</h5>
             <p>How to design, build, and launch a successful application</p>
-            <p class="date">Begin when you sign-up</p>
           </figure>
           <figure class="workshop-online product-card">
             <h4>Design for Developers</h4>
             <%= image_tag('workshop_thumbs/design.png') %>
             <h5>Online Workshop</h5>
             <p>Get better at visual design and create something great</p>
-            <p class="date">Begin when you sign-up</p>
+            <p class="note">Also offered in-person</p>
           </figure>
           <figure class="workshop-online product-card">
             <h4>Intro to Ruby on Rails</h4>
             <%= image_tag('workshop_thumbs/intro.png') %>
             <h5>Online Workshop</h5>
             <p>Learn how to develop web applications using Ruby on Rails</p>
-            <p class="date">Begin when you sign-up</p>
+            <p class="note">Also offered in-person</p>
           </figure>
         </div>
       </div>
@@ -69,19 +75,22 @@
             <h4>Design for Developers</h4>
             <%= image_tag('workshop_thumbs/design.png') %>
             <h5>In-Person Workshop</h5>
-            <p>Learn the core of Rubpplications using Rails</p>
+            <p>Get better at visual design and create something great</p>
+            <p class="note">Also offered online</p>
           </figure>
           <figure class="workshop-inperson product-card">
             <h4>Intermediate Ruby on Rails</h4>
             <%= image_tag('workshop_thumbs/intermediate.png') %>
             <h5>In-Person Workshop</h5>
             <p>Dig deeper into Ruby on Rails</p>
+            <p class="note">Also offered online</p>
           </figure>
           <figure class="workshop-inperson product-card">
             <h4>Test-Driven Rails</h4>
             <%= image_tag('workshop_thumbs/test.png') %>
             <h5>In-Person Workshop</h5>
             <p>Learn Test-Driven Development using RSpec and Capybara</p>
+            <p class="note">Also offered online</p>
           </figure>
         </div>
       </div>
@@ -90,8 +99,8 @@
   <section class="pitch center">
     <article>
       <figure id="bullet-3" class="journey-bullet"></figure>
-      <h2>Collaborate with community members</h2>
-      <p>The community is dedicated to helping you grow through knowledge sharing. Our discussion platform is staffed with thoughtbot developers to allow you to communicate directly with the experts.</p>
+      <h2>Collaborate with thoughtbot and other members</h2>
+      <p>Don't develop alone, communicate with the experts; our discussion platform is staffed with thoughtbot developers. Ask questions about workshops, books, or personal projects. Or engage with other Prime subscribers.</p>
     </article>
     <figure class="supporting-visual two-screenshot">
       <%= image_tag('learn/forum-2.png') %>
@@ -101,8 +110,9 @@
   <section class="pitch left">
     <article>
       <figure id="bullet-4" class="journey-bullet"></figure>
-      <h2>Exclusive content weekly</h2>
-      <p>Prime Bytes, our private blog, are published to your dashboard every week. Learn tips, tricks, and best practices. Read our books, published to you iteratively, and updated weekly. Learn vim, development tools, and more with our screencasts.</p>
+      <h2>Exclusive content, weekly</h2>
+      <p>The Ruby community sets an amazing pace of innovation. It often feels like "best practices" have a shelf-life of a few months before being replaced by better ideas. Between Rails' constant changes and a neverending stream of new gems and philosophies, it’s a real challenge to keep up with the state of the art.</p>
+      <p>Learn thoughtbot's tips and tricks from our private Prime Bytes blog, our books, and screencasts on vim, development tools, and more.</p>
     </article>
     <figure class="supporting-visual two-stacked">
       <div>
@@ -136,6 +146,50 @@
           <figure class="book product-card"><%= image_tag('product_images/book/rubyscience-cover-large.png') %></figure>
         </div>
       </div>
+      <div>
+        <h3>Prime Bytes</h3>
+        <div class="figuregroup">
+          <figure class="byte product-card">
+            <h4 class="byte-title">A git-bisect Duet</h4>
+            <p>git bisect uses binary search to find which change introduced a bug, given an old "good" commit and a later "bad" commit.</p>
+            <p>DJCP asks: Who's used git bisect? I would like to use it to figure out...</p>
+            <p class="date">April 24, 2013</p>
+          </figure>
+          <figure class="byte product-card">
+            <h4 class="byte-title">SASS !default</h4>
+            <p>Recently, a client asked us to create a white label app: they wanted their customers to be able to customize things like colors, logo, background, etc., but not all customers will want to use custom branding. How do...</p>
+            <p class="date">May 03, 2013</p>
+          </figure>
+          <figure class="byte product-card">
+            <h4 class="byte-title">Don't rescue Exception, rescue StandardError.</h4>
+            <p>The Exception hierarchy with Ruby starts with Exception. If you can raise it, it's an Exception. If you try to raise it and it's not an Exception, Ruby will complain...</p>
+            <p class="date">May 15, 2013</p>
+          </figure>
+        </div>
+      </div>
+      <div>
+        <h3>&nbsp;</h3>
+        <div class="figuregroup">
+          <figure class="byte product-card">
+            <h4 class="byte-title">High-Value Aliasing</h4>
+            <p>Q. How can I make myself more efficient at the command line?</p>
+            <p>A. Type less!</p>
+            <p>Q. How?</p>
+            <p>A. Make some aliases (or even functions...</p>
+            <p class="date">April 03, 2013</p>
+          </figure>
+          <figure class="byte product-card">
+            <h4 class="byte-title">How do I compare a zip file of code with the same directory from Git?</h4>
+            <p>Dan asks: I have a downloaded directory of code that i received via zip file. I have a cloned version of the same app from git. I want to compare if the two are the same...</p>
+            <p class="date">April 10, 2013</p>
+          </figure>
+          <figure class="byte product-card">
+            <h4 class="byte-title">Do new classes increase or lower the complexity of the overall codebase?</h4>
+            <p>Draper asks: By introducing a new class/object, are you increasing or lowering the complexity of the overall codebase? In the case that I'm talking about I think its simplifying the...</p>
+            <p class="date">April 17, 2013</p>
+          </figure>
+        </div>
+      </div>
     </figure>
   </section>
   <section class="pitch center final">
@@ -144,148 +198,20 @@
     </figure>
     <article>
       <figure id="bullet-5" class="journey-bullet"></figure>
-      <h2>The journey doesn't end there...</h2>
-      <p>We're focused on delivering continuous learning through community involvement, cutting-edge content, and teaching the latest in development practices.</p>
+      <h2>The journey doesn't end there&hellip;</h2>
+      <p>We're dedicated to helping you grow.</p>
+      <p>We’ve trained hundreds of developers and apprentices over the years, and have a great handle on what it takes to become and remain an expert-level Rubyist.</p>
+      <p>With Learn Prime, we’ve finally created a service that’s nearly as good as joining thoughtbot full time. If you’re a passionate developer serious about improving and maintaining your skills, we know you’ll get a ton of value out of the service.</p>
       <a href="#" class="prime-journey-cta">
         <h2>Join Learn Prime</h2>
       </a>
+      <p class="terms">No minimum subscription length &bull; Get your money back within 30 days if you're not satisfied</p>
     </article>
   </section>
   <div class="curtain"></div>
 </section>
 
-<section class="details">
-  <h2>Here&rsquo;s what you get:</h2>
-  <figure id="detail-figure">
-    <%= image_tag('learn/community.png') %>
-    <figcaption>
-      <hgroup>
-        <h2>An entire online community</h2>
-        <h3>Built on top of thoughbot's world-class learning products</h3>
-      </hgroup>
-      <ul>
-        <li>Get help directly from thoughtbot developers</li>
-        <li>Learn from workshop discussions</li>
-        <li>Help others by responding to open topics</li>
-      </ul>
-    </figcaption>
-  </figure>
-  <div class="buffet">
-    <div class="item">
-      <hgroup>
-        <h3>All our Workshops</h3>
-        <h4>Online &amp; In-person</h4>
-      </hgroup>
-      <div class="figuregroup">
-        <figure class="workshop-online product-card">
-          <h4>Intro to Ruby on Rails</h4>
-          <%= image_tag('workshop_thumbs/intro.png') %>
-          <h5>Online and In-Person Workshop</h5>
-          <p>Learn how to develop web applications using Ruby on Rails</p>
-        </figure>
-        <figure class="workshop-online product-card">
-          <h4>Intermediate Ruby on Rails</h4>
-          <%= image_tag('workshop_thumbs/intermediate.png') %>
-          <h5>Online and In-Person Workshop</h5>
-          <p>Dig deeper into Ruby on Rails</p>
-        </figure>
-        <figure class="workshop-online product-card">
-          <h4>Design for Developers</h4>
-          <%= image_tag('workshop_thumbs/design.png') %>
-          <h5>Online and In-Person Workshop</h5>
-          <p>Get better at visual design and create something great</p>
-        </figure>
-        <figure class="workshop-online product-card">
-          <h4>Test-Driven Rails</h4>
-          <%= image_tag('workshop_thumbs/test.png') %>
-          <h5>Online and In-Person Workshop</h5>
-          <p>Learn Test-Driven Development using RSpec and Capybara</p>
-        </figure>
-        <figure class="workshop-online product-card">
-          <h4>The Playbook</h4>
-          <%= image_tag('workshop_thumbs/playbook.png') %>
-          <h5>Online-only Workshop</h5>
-          <p>How to design, build, and launch a successful application</p>
-        </figure>
-      </div>
-    </div>
-    <div class="item">
-      <hgroup>
-        <h3>All our Books</h3>
-        <h4>Read, contribute, discuss</h4>
-      </hgroup>
-      <div class="figuregroup">
-        <figure class="book product-card"><%= image_tag('product_images/book/backbone-cover-large.png') %></figure>
-        <figure class="book product-card"><%= image_tag('product_images/book/playbook-cover-large.png') %></figure>
-        <figure class="book product-card"><%= image_tag('product_images/book/rubyscience-cover-large.png') %></figure>
-      </div>
-    </div>
-    <div class="item">
-      <hgroup>
-        <h3>Exclusive Screencasts</h3>
-        <h4>Watch and discuss</h4>
-      </hgroup>
-      <div class="figuregroup">
-        <figure class="screencast product-card">
-          <h4>Vim for Rails Developers</h4>
-          <%= image_tag('screencast_thumbs/vim-for-rails.png') %>
-          <h5>Screencast</h5>
-          <p>Create and edit your Ruby on Rails code more efficiently</p>
-        </figure>
-        <figure class="screencast product-card">
-          <h4>Hidden Secrets of the Chrome Developer Tools</h4>
-          <%= image_tag('screencast_thumbs/secrets.png') %>
-          <h5>Screencast</h5>
-          <p>Speed up your day-to-day web development work</p>
-        </figure>
-        <figure class="screencast product-card">
-          <h4>Humans Present: Refactoring</h4>
-          <%= image_tag('screencast_thumbs/refactoring.png') %>
-          <h5>Screencast</h5>
-          <p>Make Your Code Better</p>
-        </figure>
-        <figure class="screencast product-card">
-          <h4>Humans Present: tmux</h4>
-          <%= image_tag('screencast_thumbs/tmux.png') %>
-          <h5>Screencast</h5>
-          <p>Improve your workflow and become a better, happier developer</p>
-        </figure>
-      </div>
-    </div>
-    <div class="item">
-      <hgroup>
-        <h3>Prime Bytes</h3>
-        <h4>Read and deliberate</h4>
-      </hgroup>
-      <div class="figuregroup">
-        <figure class="byte product-card">
-          <h4 class="byte-title">Don't rescue Exception, rescue StandardError.</h4>
-          <p>The Exception hierarchy with Ruby starts with Exception. If you can raise it, it's an Exception. If you try to raise it and it's not an Exception, Ruby will complain...</p>
-          <p class="date">May 15, 2013</p>
-        </figure>
-        <figure class="byte product-card">
-          <h4 class="byte-title">SASS !default</h4>
-          <p>Recently, a client asked us to create a white label app: they wanted their customers to be able to customize things like colors, logo, background, etc., but not all customers will want to use custom branding. How do...</p>
-          <p class="date">May 03, 2013</p>
-        </figure>
-        <figure class="byte product-card">
-          <h4 class="byte-title">A git-bisect Duet</h4>
-          <p>git bisect uses binary search to find which change introduced a bug, given an old "good" commit and a later "bad" commit.</p>
-          <p>DJCP asks: Who's used git bisect? I would like to use it to figure out when something was broken.</p>
-          <p class="date">April 24, 2013</p>
-        </figure>
-        <figure class="byte product-card">
-          <h4 class="byte-title">Do new classes increase or lower the complexity of the overall codebase?</h4>
-          <p>Draper asks: By introducing a new class/object, are you increasing or lowering the complexity of the overall codebase? In the case that I'm talking about I think its simplifying the interactions...</p>
-          <p class="date">April 17, 2013</p>
-        </figure>
-        <figure class="byte product-card">
-          <h4 class="byte-title">How do I compare a zip file of code with the same directory from Git?</h4>
-          <p>Dan asks: I have a downloaded directory of code that i received via zip file. I have a cloned version of the same app from git. I want to compare if the two are the same. Is the best way to copy...</p>
-          <p class="date">April 10, 2013</p>
-        </figure>
-      </div>
-    </div>
-  </div>
-</section>
-
+<footer>
+  <p>Learn more about thoughtbot &bull; <%= link_to 'About', 'http://thoughtbot.com/about' %> <%= link_to 'Blog', 'http://robots.thoughtbot.com' %> <%= link_to 'Podcast', 'http://learn.thoughtbot.com/podcast' %> <%= link_to 'Privacy Policy', '#' %></p>
+  <p>&copy; 2012&ndash;2013 thoughtbot, inc. The design of a robot and thoughtbot are registered trademarks of thoughtbot, inc.</p>
+</footer>

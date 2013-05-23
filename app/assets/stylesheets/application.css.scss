@@ -3,7 +3,7 @@
 @import "neat/neat";
 
 @import "base-variables";
-@import "base-mixins";
+@import "base-breakpoints";
 @import "base-extends";
 @import "base-animations";
 @import "base-typography";
@@ -33,4 +33,5 @@
 
 @import "prettify";
 
-@import "prime";
+@import "prime-marketing/base";
+@import "prime-marketing/journey";
