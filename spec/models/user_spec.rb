@@ -113,16 +113,20 @@ describe User do
       }
     end
 
-    def stub_organizations(names)
-      organizations = names.map do |name|
-        { 'login' => name }
-      end
-
-      Octokit.stubs(:organizations).with('thoughtbot').returns(organizations)
+    def stub_team_member(value)
+      client = stub('github_client')
+      client.
+        stubs(:team_member?).
+        with(User::THOUGHTBOT_TEAM_ID, 'thoughtbot').
+        returns(value)
+      Octokit::Client.
+        stubs(:new).
+        with(login: GITHUB_USER, password: GITHUB_PASSWORD).
+        returns(client)
     end
 
     it "creates a new user when no matching user" do
-      stub_organizations %w('alpha beta')
+      stub_team_member false
       user = User.find_or_create_from_auth_hash(auth_hash)
       user.should be_persisted
       user.first_name.should == 'Test'
@@ -135,7 +139,7 @@ describe User do
     end
 
     it "creates a new admin when no matching user from our organization" do
-      stub_organizations %w(alpha beta thoughtbot)
+      stub_team_member true
       user = User.find_or_create_from_auth_hash(auth_hash)
       user.should be_admin
     end
