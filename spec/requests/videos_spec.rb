@@ -16,7 +16,7 @@ describe 'Videos' do
       expect(page.body.index(video_one.title) < page.body.index(video_two.title)).to be
       expect(page).to have_css('.available > a', text: video_one.title)
       expect(page).to have_css('.unavailable > div', text: video_two.title)
-      expect(page).to have_css('.unavailable > div', text: "Available on #{Date.tomorrow.to_s(:simple)}")
+      expect(page).to have_css('.unavailable > div', text: "Starts on #{Date.tomorrow.to_s(:simple)}")
 
       visit purchase_video_path(purchase, video_two)
       expect(page).to_not have_css('iframe')
