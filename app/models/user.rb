@@ -80,7 +80,7 @@ class User < ActiveRecord::Base
   private
 
   def password_optional?
-    external_auth?
+    super || external_auth?
   end
 
   def associate_previous_purchases

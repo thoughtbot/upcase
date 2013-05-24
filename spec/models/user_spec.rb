@@ -144,4 +144,20 @@ describe User do
       expect(user.has_conflict?(create(:product))).to be_false
     end
   end
+
+  context 'password validations' do
+    it 'allows non-oauth users to update attributes without the password' do
+      user = create_user_without_cached_password(admin: false)
+
+      user.admin = true
+      user.save
+
+      user.reload.should be_admin
+    end
+
+    def create_user_without_cached_password(attributes)
+      user = create(:user, attributes)
+      User.find(user.id)
+    end
+  end
 end
