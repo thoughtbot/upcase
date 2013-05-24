@@ -113,7 +113,20 @@ describe User do
       }
     end
 
+    def stub_team_member(value)
+      client = stub('github_client')
+      client.
+        stubs(:team_member?).
+        with(User::THOUGHTBOT_TEAM_ID, 'thoughtbot').
+        returns(value)
+      Octokit::Client.
+        stubs(:new).
+        with(login: GITHUB_USER, password: GITHUB_PASSWORD).
+        returns(client)
+    end
+
     it "creates a new user when no matching user" do
+      stub_team_member false
       user = User.find_or_create_from_auth_hash(auth_hash)
       user.should be_persisted
       user.first_name.should == 'Test'
@@ -122,6 +135,13 @@ describe User do
       user.github_username.should == 'thoughtbot'
       user.auth_provider.should == 'github'
       user.auth_uid.should == 1
+      user.should_not be_admin
+    end
+
+    it "creates a new admin when no matching user from our organization" do
+      stub_team_member true
+      user = User.find_or_create_from_auth_hash(auth_hash)
+      user.should be_admin
     end
 
     context "with an existing user" do

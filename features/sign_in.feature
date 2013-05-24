@@ -21,6 +21,7 @@ Feature: Signing in
     Then I should be on the admin page
 
   Scenario: Signing into a new account with GitHub
+    Given github is stubbed
     When I go to the sign in page
     And I follow "with GitHub"
     Then I should be on my account page
@@ -28,6 +29,7 @@ Feature: Signing in
     And I should have no password field
 
   Scenario: Signing up for a new account with GitHub
+    Given github is stubbed
     When I go to the sign up page
     And I follow "with GitHub"
     Then I should be on my account page
