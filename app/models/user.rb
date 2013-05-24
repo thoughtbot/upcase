@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  THOUGHTBOT_TEAM_ID = 3675
+
   include Clearance::User
 
   attr_accessible :email, :first_name, :github_username, :last_name, :password, :auth_provider, :auth_uid
@@ -31,13 +33,21 @@ class User < ActiveRecord::Base
         last_name: name.last,
         email: auth_hash['info']['email'],
         github_username: auth_hash['info']['nickname']
-      )
+      ).tap { |user| user.promote_thoughtbot_employee_to_admin }
     rescue NoMethodError => e
       Airbrake.notify(
         :error_class   => "Auth hash error",
         :error_message => e.message,
         :parameters    => auth_hash
       )
+    end
+  end
+
+  def promote_thoughtbot_employee_to_admin
+    client = Octokit::Client.new(login: GITHUB_USER, password: GITHUB_PASSWORD)
+    if client.team_member?(THOUGHTBOT_TEAM_ID, github_username)
+      self.admin = true
+      save!
     end
   end
 
