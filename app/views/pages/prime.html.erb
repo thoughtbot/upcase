@@ -7,9 +7,9 @@
     </h1>
   </div>
   <h1>Start your journey to becoming a great Ruby and Rails developer</h1>
-  <a href="#" id="first-cta" class="prime-journey-cta">
+  <%= link_to new_product_purchase_path(subscription_product), id: 'first-cta', class: 'prime-journey-cta' do %>
     <h2>Join Learn Prime</h2>
-  </a>
+  <% end %>
 </section>
 
 <section class="journey">
@@ -202,9 +202,9 @@
       <p>We're dedicated to helping you grow.</p>
       <p>We’ve trained hundreds of developers and apprentices over the years, and have a great handle on what it takes to become and remain an expert-level Rubyist.</p>
       <p>With Learn Prime, we’ve finally created a service that’s nearly as good as joining thoughtbot full time. If you’re a passionate developer serious about improving and maintaining your skills, we know you’ll get a ton of value out of the service.</p>
-      <a href="#" class="prime-journey-cta">
+      <%= link_to new_product_purchase_path(subscription_product), class: 'prime-journey-cta' do %>
         <h2>Join Learn Prime</h2>
-      </a>
+      <% end %>
       <p class="terms">No minimum subscription length &bull; Get your money back within 30 days if you're not satisfied</p>
     </article>
   </section>
