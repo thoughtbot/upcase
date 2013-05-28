@@ -119,15 +119,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def free?
-    payment_method == "free"
-  end
-
-  def payment_method
-    if price.zero?
-      "free"
-    else
-      read_attribute :payment_method
-    end
+    payment_method == "free" || price.zero?
   end
 
   def defaults_from_user(purchaser)

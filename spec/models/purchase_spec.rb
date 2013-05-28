@@ -234,6 +234,14 @@ describe Purchase, 'with stripe' do
     expect(purchase.paid_price).to eq 20
   end
 
+  it 'is still a stripe purchase if its coupon discounts 100%' do
+    subscription_coupon = stub(apply: 0)
+    SubscriptionCoupon.stubs(:new).returns(subscription_coupon)
+    purchase = create(:subscription_purchase, stripe_coupon_id: 'FREEMONTH')
+
+    expect(purchase).to be_stripe
+  end
+
   context 'when not fulfilled_with_github' do
     it 'does not fulfill with github' do
       purchase = build(:paid_purchase)
