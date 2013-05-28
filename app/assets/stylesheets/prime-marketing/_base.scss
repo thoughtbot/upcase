@@ -48,6 +48,16 @@ body.prime-marketing {
       margin-top: .25rem;
     }
   }
+
+  .prime-company-cta {
+    font-style: italic;
+    bottom: -4rem;
+    margin-top: 0;
+    position: relative;
+    z-index: 2;
+    display: block;
+    padding-top: .5rem;
+  }
 }
 
 .prime-journey-cta {
