@@ -10,6 +10,7 @@
   <%= link_to new_product_purchase_path(subscription_product), id: 'first-cta', class: 'prime-journey-cta' do %>
     <h2>Join Learn Prime</h2>
   <% end %>
+  <%= link_to t('shared.company_subscription_call_to_action'), company_prime_path, class: "prime-company-cta" %>
 </section>
 
 <section class="journey">
@@ -205,7 +206,7 @@
       <%= link_to new_product_purchase_path(subscription_product), class: 'prime-journey-cta' do %>
         <h2>Join Learn Prime</h2>
       <% end %>
-      <p class="terms">No minimum subscription length &bull; Get your money back within 30 days if you're not satisfied</p>
+      <p class="terms">No minimum subscription length &bull; Get your money back within 30 days if you're not satisfied &bull; <%= link_to "#{t('shared.company_subscription_call_to_action')} with Prime for Teams", company_prime_path, class: "prime-company-cta" %></p>
     </article>
   </section>
   <div class="curtain"></div>
