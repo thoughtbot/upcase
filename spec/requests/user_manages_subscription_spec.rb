@@ -85,6 +85,25 @@ feature 'User creates a subscription' do
     expect(page).to have_content(I18n.t('purchase.flashes.success', name: subscription_product.name))
   end
 
+  scenario 'creates a Stripe subscription with a free month coupon', :js => true do
+    create_recurring_stripe_coupon('THREEFREE', 3, 1500)
+
+    start_purchasing_subscription
+
+    expect(page).to have_content("$15 per month")
+
+    click_link "Have a coupon code?"
+    fill_in "Code", with: 'THREEFREE'
+    click_button "Apply Coupon"
+
+    expect(page).to have_content("$0.00 for 3 months, then $15.00 per month")
+
+    fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
+
+    expect(current_path).to eq products_path
+    expect(Purchase.last.stripe_customer).to be_present
+  end
+
   scenario 'creates a Stripe subscription with an invalid coupon', :js => true do
     start_purchasing_subscription
 
@@ -228,6 +247,15 @@ feature 'User creates a subscription' do
     Stripe::Coupon.create(
       :id => id,
       :duration => duration,
+      :amount_off => amount_off
+    )
+  end
+
+  def create_recurring_stripe_coupon(id, duration, amount_off)
+    Stripe::Coupon.create(
+      :id => id,
+      :duration => 'repeating',
+      :duration_in_months => duration,
       :amount_off => amount_off
     )
   end
