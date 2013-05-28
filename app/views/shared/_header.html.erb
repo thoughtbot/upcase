@@ -11,7 +11,7 @@
         <ul>
           <% if subscription_product && !current_user_has_active_subscription? %>
             <li class="prime">
-              <%= link_to products_path do %>
+              <%= link_to prime_path do %>
                 <span><%= t('shared.subscriptions.icon') %></span> <%= subscription_product.name %> Membership
               <% end %>
             </li>
