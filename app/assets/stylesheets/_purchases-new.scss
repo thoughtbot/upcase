@@ -102,6 +102,12 @@ body.purchases-new, body.purchases-create {
     margin: 0 0 0 .6em;
   }
 
+  aside.terms {
+    ul {
+      list-style-type: none;
+    }
+  }
+
   @media screen and (max-width: 910px) {
     fieldset ol {
       li#purchase_city_input {
