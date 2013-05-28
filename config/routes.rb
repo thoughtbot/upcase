@@ -3,7 +3,7 @@ Workshops::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'admin'
 
-  root to: 'products#index'
+  root to: 'pages#show', id: 'prime'
 
   match '/api/v1/me.json' => 'api/v1/users#show', as: :resource_owner
 
@@ -15,6 +15,7 @@ Workshops::Application.routes.draw do
     match '/products/:id' => redirect('/workshops/19-design-for-developers'),
       constraints: { id: /(9|11).*/ }
   end
+  match '/products/:id' => redirect('/prime'), constraints: { id: /(14).*/ }
 
   resource :session, controller: 'sessions'
 
