@@ -1,17 +1,20 @@
 require 'spec_helper'
 
 describe Purchase do
-  it { should belong_to(:user) }
-  it { should validate_presence_of(:email) }
-  it { should allow_value('chad-help@co.uk').for(:email) }
-  it { should allow_value('chad-help@thoughtbot.com').for(:email) }
-  it { should allow_value('chad.help@thoughtbot.com').for(:email) }
-  it { should allow_value('chad@thoughtbot.com').for(:email) }
-  it { should_not allow_value('chad').for(:email) }
-  it { should_not allow_value('chad@blah').for(:email) }
-  it { should validate_presence_of(:billing_email) }
+  context 'validations' do
+    subject { described_class.new(purchaseable: create(:product)) }
+    it { should belong_to(:user) }
+    it { should validate_presence_of(:email) }
+    it { should allow_value('chad-help@co.uk').for(:email) }
+    it { should allow_value('chad-help@thoughtbot.com').for(:email) }
+    it { should allow_value('chad.help@thoughtbot.com').for(:email) }
+    it { should allow_value('chad@thoughtbot.com').for(:email) }
+    it { should_not allow_value('chad').for(:email) }
+    it { should_not allow_value('chad@blah').for(:email) }
+    it { should validate_presence_of(:billing_email) }
 
-  it { should delegate(:subscription?).to(:purchaseable) }
+    it { should delegate(:subscription?).to(:purchaseable) }
+  end
 
   it 'can produce the host after setting it' do
     Purchase.host = 'hottiesandcreepers.com:123467'
@@ -232,6 +235,14 @@ describe Purchase, 'with stripe' do
 
     expect(purchase.price).to eq 20
     expect(purchase.paid_price).to eq 20
+  end
+
+  it 'is still a stripe purchase if its coupon discounts 100%' do
+    subscription_coupon = stub(apply: 0)
+    SubscriptionCoupon.stubs(:new).returns(subscription_coupon)
+    purchase = create(:subscription_purchase, stripe_coupon_id: 'FREEMONTH')
+
+    expect(purchase).to be_stripe
   end
 
   context 'when not fulfilled_with_github' do
