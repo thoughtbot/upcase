@@ -123,7 +123,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def payment_method
-    if price.zero?
+    if price.zero? && !subscription?
       "free"
     else
       read_attribute :payment_method
