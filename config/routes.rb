@@ -3,7 +3,7 @@ Workshops::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'admin'
 
-  root to: 'pages#show', id: 'prime'
+  root to: 'homes#show'
 
   match '/api/v1/me.json' => 'api/v1/users#show', as: :resource_owner
 
