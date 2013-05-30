@@ -6,7 +6,7 @@
     <%= stylesheet_link_tag 'application' %>
     <%= stylesheet_link_tag 'print', media: :print %>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <meta http-equiv="Description" name="Description" content="<%= yield(:meta_description).presence || t('.meta_description') %>" />
+    <meta http-equiv="Description" name="Description" content="Workshops, screencasts, videos, and books to help you learn web design and development." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Keywords" name="Keywords" content="<%= keywords(yield :meta_keywords) %>" />
     <%= open_graph_tags %>
@@ -22,17 +22,11 @@
 
     <%= render 'shared/flashes' %>
 
-    <section class="content">
-      <% if content_for?(:subject) %>
-        <h1 class="subject"><%= yield(:subject) %></h1>
-      <% end %>
-      <%= yield %>
-    </section>
-
-    <%= yield(:outside) %>
+    <%= yield %>
 
     <%= render 'shared/footer' %>
 
     <%= render 'shared/javascript' %>
   </body>
 </html>
+

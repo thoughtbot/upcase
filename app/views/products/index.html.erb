@@ -1,44 +1,23 @@
-<% content_for :intro, t('shared.prime_intro') %>
-<%= adwords_conversion_tracker %>
-
-<section class="prime-pitch">
-  <% if current_user_has_active_subscription? %>
-    <h2 class="subscriber"><%= t('.subscriber.header') %></h2>
-  <% else %>
-    <%= render 'prime_main_cta', position: 'top' %>
-  <% end %>
-
-  <section class="products books">
-
-    <% if current_user_has_active_subscription? %>
-      <h2><%= t('.subscriber.books') %></h2>
-    <% else %>
-      <h2><%= t('.books') %></h2>
-    <% end %>
-    <%= render partial: 'products/book', collection: books %>
-  </section>
-
-  <section class="products workshops">
-    <h2><%== t('.workshops') %></h2>
+<section class="workshops-slider">
+  <section class="online">
     <%= render partial: 'products/workshop', collection: online_workshops %>
+  </section>
+  <section class="inperson">
     <%= render partial: 'products/workshop', collection: in_person_workshops %>
   </section>
+</section>
 
-  <section class="products screencasts">
-    <h2><%= t('.videos') %></h2>
-    <%= render partial: 'products/video', collection: videos %>
-  </section>
+<% if current_user_has_active_subscription? %>
+<% end %>
 
-  <section class="products bytes">
-    <% if current_user_has_active_subscription? %>
-      <h2><%= t('.subscriber.bytes') %></h2>
-    <% else %>
-      <h2><%= t('.bytes') %></h2>
-    <% end %>
-    <%= render partial: 'articles/byte', collection: bytes.first(3) %>
-  </section>
+<section class="products books">
+  <%= render partial: 'products/book', collection: books %>
+</section>
 
-  <% unless current_user_has_active_subscription? %>
-    <%= render 'prime_main_cta', position: 'bottom' %>
-  <% end %>
+<section class="products screencasts">
+  <%= render partial: 'products/video', collection: videos %>
+</section>
+
+<section class="products bytes">
+  <%= render partial: 'articles/byte', collection: bytes.first(3) %>
 </section>

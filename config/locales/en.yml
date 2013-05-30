@@ -40,17 +40,6 @@ en:
       video: ''
 
   products:
-    index:
-      subscriber:
-        header: "You're a subscriber. You get access to:"
-        books: All our books
-        bytes: And our private blog
-      books: Includes all our books
-      workshops: Our workshops <span>in-person and online</span>
-      videos: Our screencasts
-      bytes: And access to our private blog
-
-      title: Products
     show:
       free_to_subscribers: "You're a subscriber, so you receive this product for free!"
       purchase_for_company: Purchase for Your Company
