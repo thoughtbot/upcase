@@ -9,8 +9,7 @@
   <h1>Start your journey to becoming a great Ruby on Rails developer</h1>
   <% if subscription_product %>
     <%= link_to new_product_purchase_path(subscription_product, variant: 'individual'), id: 'first-cta', class: 'prime-journey-cta' do %>
-      <h2>Join Learn Prime</h2>
-      <h3 class="price"><%= number_to_currency subscription_product.individual_price, precision: 0 %>/month</h3>
+      <h2>Join Learn Prime <span><%= number_to_currency subscription_product.individual_price, precision: 0 %>/month</span></h2>
     <% end %>
   <% end %>
   <%= link_to t('shared.company_subscription_call_to_action'), company_prime_path, class: "prime-company-cta" %>
@@ -32,6 +31,14 @@
             c1.977-13.68-1.653-23.469,4.447-30.498c9.546-10.998,49.334-5.371,50.826-23.51c0.338-4.088-2.849-8.357-5.718-13.344
             C33.616,54.28,28.398-1.072,73.698,0.016z"/>
           </svg>
+          <%= image_tag('learn/face-ben.png') %>
+          <%= image_tag('learn/face-edwin.png') %>
+          <%= image_tag('learn/face-phil2.png') %>
+          <%= image_tag('learn/face-jessie.png') %>
+          <%= image_tag('learn/face-edwin2.png') %>
+          <%= image_tag('learn/face-britt.png') %>
+          <%= image_tag('learn/face-phil.png') %>
+          <%= image_tag('learn/face-prem.png') %>
         </div>
         <figcaption>
           <h2>This is you</h2>
@@ -208,8 +215,7 @@
       <p>With Learn Prime, we’ve finally created a service that’s nearly as good as joining thoughtbot full time. If you’re a passionate developer serious about improving and maintaining your skills, we know you’ll get a ton of value out of the service.</p>
       <% if subscription_product %>
         <%= link_to new_product_purchase_path(subscription_product, variant: 'individual'), class: 'prime-journey-cta' do %>
-          <h2>Join Learn Prime</h2>
-          <h3 class="price"><%= number_to_currency subscription_product.individual_price, precision: 0 %>/month</h3>
+          <h2>Join Learn Prime <span><%= number_to_currency subscription_product.individual_price, precision: 0 %>/month</span></h2>
         <% end %>
       <% end %>
       <p class="terms">No minimum subscription length &bull; Get your money back within 30 days if you're not satisfied &bull; <%= link_to "#{t('shared.company_subscription_call_to_action')} with Prime for Teams", company_prime_path, class: "prime-company-cta" %></p>
