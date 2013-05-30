@@ -1,6 +1,10 @@
-<%= link_to video do %>
-  <hgroup>
-    <h3><%= video.name %></h3>
-  </hgroup>
-  <p><%= video.tagline %></p>
-<% end %>
+<figure class="screencast product-card">
+  <%= link_to product_path(video), class: 'main' do %>
+    <figure>
+      <%= image_tag(video.product_image.url) %>
+      <span><%= video.tagline %></span>
+    </figure>
+    <h5>Screencast</h5>
+    <h4><%= video.name %></h4>
+  <% end %>
+</figure>

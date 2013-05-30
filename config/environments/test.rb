@@ -62,6 +62,9 @@ Workshops::Application.configure do
   GITHUB_KEY = 'githubkey'
   GITHUB_SECRET = 'githubsecret'
 
+  ENV['AWS_ACCESS_KEY_ID'] = 'xxxxxxxxxxxxxxxxxxxx'
+  ENV['AWS_SECRET_ACCESS_KEY'] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
   class ClearanceBackDoor
     def initialize(app)
       @app = app

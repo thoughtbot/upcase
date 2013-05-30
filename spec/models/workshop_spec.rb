@@ -248,4 +248,12 @@ describe Workshop do
       expect(workshop.starts_immediately?).to be_false
     end
   end
+
+  describe '#thumbnail_path' do
+    it 'returns the path to a thumbnail image representing the workshop' do
+      workshop = build_stubbed(:workshop, name: 'Intro to Ruby On Rails')
+
+      expect(workshop.thumbnail_path).to eq "workshop_thumbs/#{workshop.name.parameterize}.png"
+    end
+  end
 end

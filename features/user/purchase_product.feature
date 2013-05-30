@@ -6,20 +6,6 @@ Feature: Purchase a Product
   Background:
     Given a video download product named "Test Fetch"
 
-  Scenario: A visitor signs into their account through checkout
-    Given the following user exists:
-      | first_name | last_name | email        | password |
-      | John       | Doe       | john@doe.com | password |
-    When I go to the products page
-    And I follow "Test Fetch"
-    And I follow "Purchase for Yourself"
-    And I follow "Sign in."
-    And I fill in and submit the sign in form with "john@doe.com" and "password"
-    Then I should see the checkout form
-    And "Email" should be filled in with "john@doe.com"
-    And "Name" should be filled in with "John Doe"
-    And I should see "Sign out"
-
   @selenium @allow-rescue
   Scenario: A user purchases a product with paypal
     Given I have signed up with "user@example.com"

@@ -12,7 +12,7 @@ feature 'User cancels a subscription', js: true do
     @current_user.should have_active_subscription
     visit products_path
     expect(find('.header-container')).not_to have_content('Prime Membership')
-    click_link 'A Cool Workshop'
+    click_workshop_detail_link
     expect(page).to have_content I18n.t('workshops.show.free_to_subscribers')
     expect(page).not_to have_link('Subscribe to Prime')
 
@@ -25,5 +25,9 @@ feature 'User cancels a subscription', js: true do
     expect(page).to have_no_link I18n.t('subscriptions.cancel')
 
     expect(page).to have_content "Scheduled for cancelation on February 19, 2013"
+  end
+
+  def click_workshop_detail_link
+    click_link 'Learn More'
   end
 end
