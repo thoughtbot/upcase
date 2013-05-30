@@ -1,23 +1,23 @@
-<section class="workshops-slider">
-  <section class="online">
-    <%= render partial: 'products/workshop', collection: online_workshops %>
-  </section>
-  <section class="inperson">
-    <%= render partial: 'products/workshop', collection: in_person_workshops %>
-  </section>
+<section class="workshops card-slider">
+  <a class="nav prev"></a>
+  <%= render partial: 'products/workshop', collection: online_workshops %>
+  <%= render partial: 'products/workshop', collection: in_person_workshops %>
+  <a class="nav next"></a>
 </section>
 
-<% if current_user_has_active_subscription? %>
-<% end %>
-
-<section class="products books">
-  <%= render partial: 'products/book', collection: books %>
+<section class="reading">
+  <div class="reading-wrapper">
+    <section class="bytes">
+      <%= render partial: 'articles/byte', collection: bytes.first(10) %>
+    </section>
+    <section class="books">
+      <%= render partial: 'products/book', collection: books %>
+    </section>
+  </div>
 </section>
 
-<section class="products screencasts">
+<section class="screencasts card-slider">
+  <a class="nav prev"></a>
   <%= render partial: 'products/video', collection: videos %>
-</section>
-
-<section class="products bytes">
-  <%= render partial: 'articles/byte', collection: bytes.first(3) %>
+  <a class="nav next"></a>
 </section>

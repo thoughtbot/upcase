@@ -1,18 +1,27 @@
+$dashboard-max-width: 82rem;
+
+// used on the marketing page as well
 .product-card {
   background: #fff;
-  border: 1px solid rgb(175, 175, 175);
+  border-bottom: 2px solid rgb(200, 200, 200);
   border-radius: .3rem;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
   display: inline-block;
   height: 330px;
   padding: .3rem;
-  position: absolute;
-  width: 230px;
+  position: relative;
+  width: 14rem;
 
   &.book {
+    border: 1px solid rgb(200, 200, 200);
     height: 318px;
     padding: 0;
     width: 246px;
+  }
+
+  > a {
+    display: block;
+    height: 100%;
   }
 
   h4 {
@@ -20,6 +29,7 @@
     color: #fff;
     margin-bottom: .3rem;
     padding: .75rem;
+    font-weight: 700;
 
     &.byte-title {
       color: $darkwarmgray;
@@ -43,8 +53,8 @@
   }
 
   h5 {
+    color: rgb(200, 200, 200);
     font-size: .8rem;
-    margin-top: .3rem;
     text-transform: uppercase;
   }
 
@@ -55,7 +65,187 @@
   }
 }
 
+.card-slider {
+  $slide-button-width: 8rem;
+  margin: auto;
+  max-width: ((17rem * 7) - 3rem) + ($slide-button-width * 2);
+  overflow: hidden;
+  padding: 5rem $slide-button-width;
+  position: relative;
+  white-space: nowrap;
+
+  > figure {
+    margin-right: 3rem;
+    margin-right: calc(3rem - 4px); // remove inline-block 4px space issue
+    @include transition(.25s);
+    vertical-align: top;
+    white-space: normal;
+
+    &:hover {
+      @include transform(translateY(-.25rem));
+    }
+
+    &:hover .actions, &.active .actions {
+      opacity: 1;
+    }
+  }
+
+  > figure .actions {
+    background: rgba(0, 0, 0, .6);
+    border-radius: 3px;
+    opacity: 0;
+    padding: 3rem 1.5rem;
+    @include position(absolute, 0px 0px 0px 0px);
+    @include transition(.3s);
+
+    a {
+      background: #7ebe69;
+      border-bottom: 2px solid darken(#7ebe69, 10%);
+      border-radius: 3px;
+      color: #fff;
+      display: block;
+      font-family: $sans-serif;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+      padding: .75rem 1rem;
+      text-align: center;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, .25);
+
+      &:hover {
+        background: lighten(#7ebe69, 8%);
+        border-bottom-color: #7ebe69;
+      }
+
+      &:active {
+        border-bottom-color: transparent;
+        @include transform(translateY(2px));
+      }
+    }
+
+    a.main {
+      background: #f88356;
+      border-bottom: 2px solid darken(#f88356, 10%);
+
+      &:hover {
+        border-bottom-color: #f88356;
+        background: lighten(#f88356, 8%);
+      }
+
+      &:active {
+        border-bottom-color: transparent;
+      }
+    }
+  }
+
+  > figure .notification {
+    background: rgb(255, 252, 187);
+    border: 1px solid rgb(240, 218, 132);
+    border-bottom-width: 2px;
+    border-radius: 3px;
+    color: $darkwarmgray;
+    font: 600 .8rem/1.2em $sans-serif;
+    padding: .5rem 1rem;
+    @include position(absolute, -3rem 0 0 17.5%);
+    text-align: center;
+    text-transform: uppercase;
+    width: 65%;
+
+    // nub
+    &:after {
+      background: rgb(255, 252, 187);
+      border: 1px solid rgb(240, 218, 132);
+      border-width: 0 2px 2px 0;
+      content: '';
+      display: block;
+      height: 10px;
+      margin-left: -7px;
+      @include position(absolute, 0 0 -7px 50%);
+      @include transform(rotate(45deg));
+      width: 10px;
+    }
+  }
+
+  .nav {
+    background: url('learn/slider-arrow.svg') no-repeat center $lightwarmgray;
+    background-size: 35px;
+    cursor: pointer;
+    @include position(absolute, 0px 0 0px 0);
+    @include transition(.05s);
+    @include user-select(none);
+    vertical-align: middle;
+    width: $slide-button-width;
+    z-index: 2;
+
+    &:hover {
+      background-position: 55% center;
+    }
+
+    &:active {
+      background-position: 55% center;
+      background-size: 33px;
+    }
+
+    &.prev {
+      left: 0;
+      @include transform(rotate(180deg));
+    }
+
+    &.next {
+      right: 0;
+    }
+  }
+}
 
 body.products-index {
-  
+  .reading {
+    background: $warmgray;
+    overflow: auto;
+    padding: 2rem 0;
+
+    .reading-wrapper {
+      max-width: $dashboard-max-width;
+      margin: auto;
+    }
+
+    .bytes, .books {
+      background: white;
+      float: left;
+      padding: 2rem;
+    }
+
+    .bytes {
+      width: 60%;
+    }
+
+    .books {
+      float: right;
+      width: 35%;
+
+      > a {
+        display: block;
+        height: 220px;
+        margin-bottom: 2rem;
+        overflow: hidden;
+        padding-top: .5rem;
+        position: relative;
+      }
+
+      figure {
+        margin-left: 2.5rem;
+      }
+
+      .book-title {
+        background: $lightwarmgray;
+        border-bottom: 2px solid $warmgray;
+        border-radius: 3px;
+        color: rgb(100, 100, 100);
+        display: block;
+        font-weight: 400;
+        padding: 1.5rem 2.5rem;
+        @include position(absolute, 0 0 0px 0);
+        width: 100%;
+      }
+    }
+  }
 }

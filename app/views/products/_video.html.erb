@@ -1,6 +1,12 @@
-<%= link_to video do %>
-  <hgroup>
-    <h3><%= video.name %></h3>
-  </hgroup>
+<figure class="screencast product-card">
+  <h4><%= video.name %></h4>
+  <%= image_tag('workshop_thumbs/playbook.png') %>
+  <h5>Screencast</h5>
   <p><%= video.tagline %></p>
-<% end %>
+  <section class="actions">
+    <a href="#" class="main">Watch now</a>
+    <a href="#">View Forum</a>
+    <%= link_to 'Info', video %>
+  </section>
+  <span class="notification">New workshop</span>
+</figure>
