@@ -43,10 +43,6 @@ body.prime-marketing {
     bottom: -5rem;
     margin-top: -2rem;
     position: relative;
-
-    &:active {
-      margin-top: .25rem;
-    }
   }
 
   .prime-company-cta {
@@ -80,8 +76,8 @@ body.prime-marketing {
   }
 
   &:active {
-    border-bottom: 0;
-    margin-top: 2.25rem;
+    border-bottom-color: transparent;
+    @include transform(translateY(.3rem));
   }
 
   h2, p, h3 {
