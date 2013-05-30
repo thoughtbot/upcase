@@ -48,10 +48,6 @@ if ($('.journey').length) {
     $('.buffet').waypoint(function(direction) {
       $(this).addClass('visible');
     }, { offset: '93%' });
-
-    $('.mini-profile .images').click(function() {
-      $(this).toggleClass('animated');
-    });
   });
 
   $(window).load(function() {

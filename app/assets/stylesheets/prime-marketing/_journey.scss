@@ -228,7 +228,7 @@
         }
 
         .images {
-          background: rgb(245, 245, 245);
+          background: rgb(150, 150, 150);
           border: 1px solid rgb(150, 150, 150);
           border-radius: 100%;
           cursor: pointer;
@@ -245,14 +245,11 @@
             width: 70px;
           }
 
-          &.animated {
-            background: url('/assets/learn/faces.gif');
-            background-size: contain;
-          }
-
           svg {
+            z-index: 2;
             fill: transparent;
             margin-top: 1rem;
+            position: absolute;
             stroke: #fff;
             stroke-dasharray: 7px, 12px;
             stroke-linecap: round;
@@ -261,6 +258,20 @@
             @include prime-marketing-mobile {
               height: 75px;
               width: 70px;
+            }
+          }
+
+          img {
+            @include animation(cycle-avatars 5s);
+            @include animation-fill-mode(both);
+            border-radius: 100%;
+            position: absolute;
+            z-index: 1;
+
+            @for $i from 0 through 7 {
+              &:nth-of-type(#{$i + 1}) {
+                @include animation-delay(#{($i * 5) - ($i * 2)}s);
+              }
             }
           }
         }
