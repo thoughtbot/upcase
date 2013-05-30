@@ -1,84 +1,50 @@
 <section id="header-wrapper" class="<%= 'subscriber' if current_user_has_active_subscription? %>">
   <div class="header-container">
-    <% if content_for?(:subject) || signed_in? %>
-      <h1 class="small-logo">
-        <%= link_to root_path do %>
-          <%= image_tag('learn/learn-ralph-small.png') %>
-          <span><%= t 'shared.learn' %></span>
-        <% end %>
-      </h1>
-      <nav>
+    <h1 class="small-logo">
+      <%= link_to root_path do %>
+        <%= image_tag('learn/learn-ralph-small.png') %>
+        <span><%= t 'shared.learn' %></span>
+      <% end %>
+    </h1>
+    <% if signed_in? %>
+      <nav class="back">
         <ul>
-          <% if subscription_product && !current_user_has_active_subscription? %>
-            <li class="prime">
-              <%= link_to prime_path do %>
-                <span><%= t('shared.subscriptions.icon') %></span> <%= subscription_product.name %> Membership
-              <% end %>
-            </li>
-          <% end %>
-          <li class="dropdown workshops">
-            <a href="#" data-toggle="dropdown">Workshops</a>
-            <ul>
-              <ul>
-                <li><h4><%= t 'shared.online_workshops' %></h4></li>
-                <% online_workshops.each do |workshop| %>
-                  <li><%= link_to workshop.name, workshop %></li>
-                <% end %>
-              </ul>
-              <ul>
-                <li><h4><%= t 'shared.in_person_workshops' %></h4></li>
-                <% in_person_workshops.each do |workshop| %>
-                  <li><%= link_to workshop.name, workshop %></li>
-                <% end %>
-              </ul>
-            </ul>
-          </li>
-          <li class="dropdown videos">
-            <a href="#" data-toggle="dropdown"><%= t 'shared.videos' %></a>
-            <ul>
-              <% videos.each do |video| %>
-                <li><%= link_to video.name, video %></li>
-              <% end %>
-            </ul>
-          </li>
-          <li class="dropdown books">
-            <a href="#" data-toggle="dropdown"><%= t 'shared.books' %></a>
-            <ul>
-              <% books.each do |book| %>
-                <li><%= link_to book.name, book %></li>
-              <% end %>
-            </ul>
-          </li>
-          <li class="dropdown trails">
-            <a href="#" data-toggle="dropdown"><%= t 'shared.trails' %></a>
-            <ul>
-              <!-- <li><h4>Programming</h4></li> -->
-              <% topics.each do |topic| %>
-                <li><%= link_to topic.name, topic %></li>
-              <% end %>
-            </ul>
-          </li>
-          <% if signed_in? %>
-            <li class="account"><%= link_to 'Account', my_account_path %></li>
-          <% else %>
-            <li class="account"><%= link_to 'Sign in', sign_in_path %></li>
-          <% end %>
+          <li><%= link_to '&larr; Dashboard'.html_safe, root_url %></li>
         </ul>
       </nav>
     <% else %>
-      <div class="logo">
-        <h1>
-          <%= link_to image_tag('learn/learn-ralph.png'), root_path %>
-          <%= t 'shared.learn' %>
-        </h1>
-      </div>
-      <div class="intro">
-        <% if content_for?(:intro) %>
-          <%= yield(:intro) %>
-        <% else %>
-          <%= t('shared.intro') %>
-        <% end %>
-      </div>
+      <nav class="all-products">
+        <ul>
+          <li><%= link_to 'View all our products', '#', class: 'toggle-slider' %></li>
+        </ul>
+      </nav>
     <% end %>
+    <nav>
+      <ul>
+        <% if subscription_product && !current_user_has_active_subscription? %>
+          <li class="prime">
+            <%= link_to prime_path do %>
+              <span><%= t('shared.subscriptions.icon') %></span> <%= subscription_product.name %> Membership
+            <% end %>
+          </li>
+        <% end %>
+        <% if signed_in? %>
+          <li class="account"><%= link_to 'Settings', my_account_path %></li>
+        <% else %>
+          <li class="account"><%= link_to 'Sign in', sign_in_path %></li>
+        <% end %>
+      </ul>
+    </nav>
   </div>
 </section>
+
+<% if subscription_product && !current_user_has_active_subscription? && !signed_in? %>
+  <section class="products card-slider header">
+    <a class="nav prev disabled"></a>
+    <%= render partial: 'products/workshop', collection: online_workshops %>
+    <%= render partial: 'products/workshop', collection: in_person_workshops %>
+    <%= render partial: 'products/video', collection: videos %>
+    <%= render partial: 'products/book', collection: books %>
+    <a class="nav next"></a>
+  </section>
+<% end %>

@@ -6,7 +6,9 @@
   simple: '%B %d, %Y',
   rfc822: '%a, %d %b %Y %H:%M:%S %z',
   month: '%B',
-  invoice: '%y%m%d'
+  invoice: '%y%m%d',
+  abbreviated_month: '%b',
+  day_of_month: '%d'
 }.each do |k, v|
   Date::DATE_FORMATS[k] = v
   Time::DATE_FORMATS[k] = v

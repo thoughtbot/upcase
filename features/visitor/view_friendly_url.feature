@@ -9,8 +9,7 @@ Feature: Visitor view friendly URL
     And the following workshop exists:
       | id | name                | start at | stop at  | individual_price |
       | 42 | Test-Driven Haskell | 09:00:00 | 12:00:00 | 100              |
-    When I go to the products page
-    And I follow "Test-Driven Haskell"
+    When I go to the workshop page of "Test-Driven Haskell"
     Then I should be on the URL "/workshops/42-test-driven-haskell"
 
   Scenario: Visiting friendly section URL
@@ -23,6 +22,5 @@ Feature: Visitor view friendly URL
       | id | workshop                  | starts on     | ends on       |
       | 39 | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
     And "Ralph Bot" is teaching the section from "June 13, 2010" to "June 16, 2010"
-    When I go to the products page
-    And I follow "Test-Driven Haskell"
+    When I go to the workshop page of "Test-Driven Haskell"
     Then I should be on the URL "/workshops/1-test-driven-haskell"

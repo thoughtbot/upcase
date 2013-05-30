@@ -1,0 +1,3 @@
+<% if current_user && current_user.has_active_subscription? %>
+  <%= link_to 'View Forum', forum_url('categories') %>
+<% end %>

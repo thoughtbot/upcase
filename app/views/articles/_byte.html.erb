@@ -3,4 +3,5 @@
     <h4><%= byte.published_on.to_s(:month) %> <%= byte.published_on.day.ordinalize %></h4>
     <h3><%= byte.title %></h3>
   </hgroup>
+  <p><%= truncate byte.body, length: 200, separator: ' ' %></p>
 <% end %>

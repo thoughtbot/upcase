@@ -7,9 +7,7 @@ Feature: Viewing upcoming workshop details
     And the following section exists:
       | workshop                    |
       | name: Test-Driven Haskell |
-    When I view all products
-    Then I should see "Test-Driven Haskell"
-    When I follow "Test-Driven Haskell"
+    When I go to the workshop page of "Test-Driven Haskell"
     Then I should see "$1,000"
 
   Scenario: workshop has FAQ
@@ -18,8 +16,7 @@ Feature: Viewing upcoming workshop details
       | workshop                 | question      | answer |
       | name: Test-Driven Erlang | What color?   | Blue   |
       | name: Test-Driven Erlang | Pets allowed? | No     |
-    When I view all products
-    And I follow "Test-Driven Erlang"
+    When I go to the workshop page of "Test-Driven Erlang"
     Then I see the question "What color?"
     And I see the answer "Blue"
     And I see the question "Pets allowed?"
@@ -27,8 +24,7 @@ Feature: Viewing upcoming workshop details
 
   Scenario: workshop does not have FAQ
     Given a workshop exists with a name of "Test-Driven Erlang"
-    When I view all products
-    And I follow "Test-Driven Erlang"
+    When I go to the workshop page of "Test-Driven Erlang"
     Then I should not see "Frequently asked questions"
 
   Scenario: Viewing details for a workshop with one upcoming section
@@ -45,9 +41,7 @@ Feature: Viewing upcoming workshop details
       | name: Test-Driven Haskell | What color?   | Blue   |
       | name: Test-Driven Haskell | Pets allowed? | No     |
     And "Ralph Bot" is teaching the section from "June 13, 2010" to "June 16, 2010"
-    When I view all products
-    Then I should see "Test-Driven Haskell"
-    When I follow "Test-Driven Haskell"
+    When I go to the workshop page of "Test-Driven Haskell"
     Then I see the section location is "41 Winter St."
     And I should see "June 13-16, 2010"
     And I should see "9:00AM-12:00PM"
@@ -74,9 +68,7 @@ Feature: Viewing upcoming workshop details
     And "Ralph Bot" is teaching the section from "June 13, 2010" to "June 16, 2010"
     And "Joe Teacher" is teaching the section from "June 20, 2010" to "June 22, 2010"
     And time is unfrozen
-    When I view all products
-    Then I should see "Test-Driven Haskell"
-    When I follow "Test-Driven Haskell"
+    When I go to the workshop page of "Test-Driven Haskell"
     Then I see the section location is "41 Winter St."
     And I see the section location is "156 2nd St."
     And I should see "June 13-16, 2010"
@@ -99,8 +91,7 @@ Feature: Viewing upcoming workshop details
       | name: Test-Driven Haskell | June 20, 2010 | June 22, 2010 | 09:00:00 | 12:00:00 | 156 2nd St.   | San Francisco | CA    | 94105 |
     And "Joe Teacher" is teaching the section from "June 13, 2010" to "June 16, 2010"
     And "Joe Teacher" is teaching the section from "June 20, 2010" to "June 22, 2010"
-    When I view all products
-    And I follow "Test-Driven Haskell"
+    When I go to the workshop page of "Test-Driven Haskell"
     Then I should see that "Joe Teacher" is teaching both sections
 
   Scenario: Viewing an online workshop
@@ -111,8 +102,7 @@ Feature: Viewing upcoming workshop details
     And the following section exists:
       | workshop                  | starts on     | ends on       |
       | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
-    When I view all products
-    And I follow "Test-Driven Haskell"
+    When I go to the workshop page of "Test-Driven Haskell"
     Then I should not see the date range
 
   Scenario: Viewing an online workshop with no sections
@@ -120,6 +110,5 @@ Feature: Viewing upcoming workshop details
     And the following workshop exists:
       | name                | online |
       | Test-Driven Haskell | true   |
-    When I view all products
-    And I follow "Test-Driven Haskell"
+    When I go to the workshop page of "Test-Driven Haskell"
     Then I should not see the date range
