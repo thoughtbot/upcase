@@ -31,8 +31,8 @@ body.prime-marketing {
   }
 
   h1 {
+    color: darken(desaturate($warmgray, 10%), 35%);
     font-size: 3.2rem;
-    text-shadow: 0 1px 1px rgba($darkwarmgray, .3);
 
     @include prime-marketing-mobile {
       font-size: 2rem;
@@ -40,8 +40,8 @@ body.prime-marketing {
   }
 
   .prime-journey-cta {
-    bottom: -4rem;
-    margin-top: 0;
+    bottom: -5rem;
+    margin-top: -2rem;
     position: relative;
 
     &:active {
@@ -50,13 +50,13 @@ body.prime-marketing {
   }
 
   .prime-company-cta {
+    bottom: -5rem;
+    display: block;
     font-style: italic;
-    bottom: -4rem;
     margin-top: 0;
+    padding-top: .5rem;
     position: relative;
     z-index: 2;
-    display: block;
-    padding-top: .5rem;
   }
 }
 
@@ -92,6 +92,10 @@ body.prime-marketing {
 
   h2 {
     font-size: 2.4rem;
+
+    span {
+      font-weight: 100;
+    }
 
     @include prime-marketing-mobile {
       font-size: 2rem;
