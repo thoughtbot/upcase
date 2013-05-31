@@ -137,8 +137,7 @@ describe Purchase, 'of a subscription' do
   end
 
   it 'updates the subscription on the Stripe customer with the correct plan' do
-    customer = stub('<Stripe::Customer>', update_subscription: true)
-    Stripe::Customer.stubs(:retrieve).returns(customer)
+    customer = stub_stripe_customer
     purchase = build_subscription_purchase
 
     purchase.save!
@@ -147,7 +146,7 @@ describe Purchase, 'of a subscription' do
   end
 
   it 'updates the subscription with the given coupon' do
-    customer = stub('<Stripe::Customer>', update_subscription: true)
+    customer = stub_stripe_customer
     coupon = stub('<Stripe::Coupon>', amount_off: 25)
     Stripe::Customer.stubs(:retrieve).returns(customer)
     Stripe::Coupon.stubs(:retrieve).returns(coupon)
@@ -157,6 +156,12 @@ describe Purchase, 'of a subscription' do
     purchase.save!
 
     expect(customer).to have_received(:update_subscription).with(plan: purchase.purchaseable_sku, coupon: '25OFF')
+  end
+
+  def stub_stripe_customer
+    customer = stub('<Stripe::Customer>', update_subscription: true)
+    Stripe::Customer.stubs(:retrieve).returns(customer)
+    customer
   end
 
   def build_subscription_purchase
@@ -284,7 +289,7 @@ describe Purchase, 'with stripe' do
     end
 
     it 'sets the stripe customer on save' do
-      subject.stripe_customer.should == 'stripe'
+      subject.stripe_customer_id.should == 'stripe'
     end
 
     context 'and refunded' do
@@ -427,10 +432,110 @@ describe Purchase, 'for a user' do
       user.reload.github_username.should == 'test'
     end
   end
+
+  context 'with address information' do
+    it 'saves the address to the user' do
+      user = create(:user)
+      user.address1.should be_blank
+
+      purchase = create(
+        :purchase, 
+        user: user,
+        organization: 'thoughtbot',
+        address1: '41 Winter St.',
+        address2: 'Floor 7',
+        city: 'Boston',
+        state: 'MA',
+        zip_code: '02108',
+        country: 'USA'
+      )
+      user.reload
+
+      user.organization.should eq 'thoughtbot'
+      user.address1.should eq '41 Winter St.'
+      user.address2.should eq 'Floor 7'
+      user.city.should eq 'Boston'
+      user.state.should eq 'MA'
+      user.zip_code.should eq '02108'
+      user.country.should eq 'USA'
+    end
+
+    it "doesn't overwite the organization with blank" do
+      user = create(:user, organization: 'thoughtbot')
+
+      purchase = create(
+        :purchase,
+        user: user,
+        organization: ''
+      )
+      user.reload
+
+      user.organization.should eq 'thoughtbot'
+    end
+
+    it 'overwrites the address if provided' do
+      user = create(:user, address1: 'testing')
+
+      purchase = create(
+        :purchase,
+        user: user,
+        organization: 'thoughtbot',
+        address1: '41 Winter St.',
+        address2: 'Floor 7',
+        city: 'Boston',
+        state: 'MA',
+        zip_code: '02108',
+        country: 'USA'
+      )
+      user.reload
+
+      user.address1.should eq '41 Winter St.'
+      user.address2.should eq 'Floor 7'
+      user.city.should eq 'Boston'
+      user.state.should eq 'MA'
+      user.zip_code.should eq '02108'
+      user.country.should eq 'USA'
+    end
+
+    it "doesn't overwrite the address if not provided" do
+      user = create(:user, address1: 'testing')
+
+      purchase = create(
+        :purchase,
+        user: user,
+        address1: '',
+        address2: 'Floor 7',
+        city: 'Boston',
+        state: 'MA',
+        zip_code: '02108',
+        country: 'USA'
+      )
+      user.reload
+
+      user.address1.should eq 'testing'
+      user.address2.should be_blank
+      user.city.should be_blank
+      user.state.should be_blank
+      user.zip_code.should be_blank
+      user.country.should be_blank
+    end
+  end
 end
 
 describe Purchase, 'given a purchaser' do
-  let(:purchaser) { create(:user, github_username: 'Hello') }
+  let(:purchaser) do
+    create(
+      :user,
+      github_username: 'Hello',
+      organization: 'thoughtbot',
+      address1: '41 Winter St.',
+      address2: 'Floor 7',
+      city: 'Boston',
+      state: 'MA',
+      zip_code: '02108',
+      country: 'USA'
+    )
+  end
 
   it 'populates default info when given a purchaser' do
     product = create(:product, fulfillment_method: 'other')
@@ -440,6 +545,13 @@ describe Purchase, 'given a purchaser' do
     purchase.name.should == purchaser.name
     purchase.email.should == purchaser.email
     purchase.github_usernames.try(:first).should be_blank
+    purchase.organization.should eq 'thoughtbot'
+    purchase.address1.should eq '41 Winter St.'
+    purchase.address2.should eq 'Floor 7'
+    purchase.city.should eq 'Boston'
+    purchase.state.should eq 'MA'
+    purchase.zip_code.should eq '02108'
+    purchase.country.should eq 'USA'
   end
 
   context 'for a product fulfilled through github' do

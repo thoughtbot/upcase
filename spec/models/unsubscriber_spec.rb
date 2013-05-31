@@ -5,7 +5,7 @@ describe Unsubscriber do
     subscription = create(:subscription)
     unsubscriber = Unsubscriber.new(subscription)
 
-    subscription.stubs(:stripe_customer).returns('cus_1CXxPJDpw1VLvJ')
+    subscription.stubs(:stripe_customer_id).returns('cus_1CXxPJDpw1VLvJ')
     unsubscriber.process
 
     subscription.deactivated_on.should == Date.today
@@ -26,7 +26,7 @@ describe Unsubscriber do
     subscription = create(:subscription)
     unsubscriber = Unsubscriber.new(subscription)
 
-    subscription.stubs(:stripe_customer).returns('cus_1CXxPJDpw1VLvJ')
+    subscription.stubs(:stripe_customer_id).returns('cus_1CXxPJDpw1VLvJ')
     stripe_customer = stub('Stripe::Customer', cancel_subscription: nil)
     Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
     unsubscriber.process

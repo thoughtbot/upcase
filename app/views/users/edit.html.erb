@@ -19,12 +19,19 @@
     <% end %>
   </div>
 
-  <% if current_user.subscription && current_user.stripe_customer %>
+  <% if current_user.subscription && current_user.stripe_customer_id %>
     <%= render 'credit_card_form' %>
   <% end %>
 </div>
 
 <aside id="account-sidebar">
+  <% if current_user.subscription %>
+    <h3>Your Subscription</h3>
+    <ol class="purchases">
+      <%= render current_user.subscription %>
+    </ol>
+  <% end %>
+
   <% if current_user.has_purchased? %>
     <h3>Your purchases</h3>
     <ol class="purchases">
@@ -32,13 +39,6 @@
     </ol>
 
     <p class="chat">Every product includes support for any questions you may have about the topic. Visit our <%= link_to "live chat", CHAT_LINK %>.</p>
-  <% end %>
-
-  <% if current_user.has_active_subscription? %>
-    <h3>Your Subscription</h3>
-    <ol class="purchases">
-      <%= render current_user.subscription %>
-    </ol>
   <% end %>
 </aside>
 

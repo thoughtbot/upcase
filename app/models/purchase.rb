@@ -32,7 +32,7 @@ class Purchase < ActiveRecord::Base
 
   after_save :fulfill, if: :being_paid?
   after_save :send_receipt, if: :being_paid?
-  after_save :update_user_stripe_customer, if: "being_paid? && stripe?"
+  after_save :update_user_stripe_customer_id, if: "being_paid? && stripe?"
   after_save :save_info_to_user, if: :user
 
   delegate :name, :sku, to: :purchaseable, prefix: :purchaseable, allow_nil: true
@@ -87,7 +87,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def self.stripe
-    where("stripe_customer is not null")
+    where("stripe_customer_id is not null")
   end
 
   def self.by_email(email)
@@ -132,8 +132,10 @@ class Purchase < ActiveRecord::Base
 
   def defaults_from_user(purchaser)
     if purchaser
-      self.name = purchaser.name
-      self.email = purchaser.email
+      attributes_from_user.each do |attr|
+        self.send(:"#{attr}=", purchaser.send(:"#{attr}"))
+      end
+
       if github_username_needed? && purchaser.github_username.present?
         self.github_usernames = [purchaser.github_username]
       end
@@ -192,6 +194,14 @@ class Purchase < ActiveRecord::Base
 
   private
 
+  def stripe_customer
+    @stripe_customer ||= Stripe::Customer.retrieve(stripe_customer_id)
+  end
+
+  def attributes_from_user
+    %w(name email organization address1 address2 city state zip_code country)
+  end
+
   def github_username_needed?
     fulfilled_with_github? || subscription?
   end
@@ -234,13 +244,13 @@ class Purchase < ActiveRecord::Base
   end
 
   def ensure_stripe_customer_exists
-    if stripe_customer.blank?
-      customer = Stripe::Customer.create(
+    if stripe_customer_id.blank?
+      new_stripe_customer = Stripe::Customer.create(
         card: stripe_token,
         description: email,
         email: email
       )
-      self.stripe_customer = customer.id
+      self.stripe_customer_id = new_stripe_customer.id
     end
   end
 
@@ -248,26 +258,25 @@ class Purchase < ActiveRecord::Base
     charge = Stripe::Charge.create(
       amount: price_in_pennies,
       currency: "usd",
-      customer: stripe_customer,
+      customer: stripe_customer_id,
       description: purchaseable_name
     )
     self.payment_transaction_id = charge.id
   end
 
   def create_stripe_subscription
-    customer = Stripe::Customer.retrieve(stripe_customer)
     if stripe_coupon_id.present?
-      customer.update_subscription(
+      stripe_customer.update_subscription(
         plan: purchaseable_sku,
         coupon: stripe_coupon_id
       )
     else
-      customer.update_subscription(plan: purchaseable_sku)
+      stripe_customer.update_subscription(plan: purchaseable_sku)
     end
   end
 
-  def update_user_stripe_customer
-    user.update_column(:stripe_customer, self.stripe_customer) if user
+  def update_user_stripe_customer_id
+    user.update_column(:stripe_customer_id, self.stripe_customer_id) if user
   end
 
   def fulfill
@@ -309,8 +318,31 @@ class Purchase < ActiveRecord::Base
   end
 
   def save_info_to_user
+    save_github_username_to_user
+    save_organization_to_user
+    save_address_to_user
+  end
+
+  def save_github_username_to_user
     if github_usernames.present? && user.github_username.blank?
       user.update_column(:github_username, github_usernames.first)
+    end
+  end
+
+  def save_organization_to_user
+    if organization.present?
+      user.update_column(:organization, organization)
+    end
+  end
+
+  def save_address_to_user
+    if address1.present?
+      user.update_column(:address1, address1)
+      user.update_column(:address2, address2)
+      user.update_column(:city, city)
+      user.update_column(:state, state)
+      user.update_column(:zip_code, zip_code)
+      user.update_column(:country, country)
     end
   end
 

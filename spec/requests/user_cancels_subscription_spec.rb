@@ -33,5 +33,9 @@ feature 'User cancels a subscription', js: true do
     click_link 'Subscribe to Prime'
     expect(page).to have_content('Thank you for purchasing Prime')
     expect(page).to have_content('You stopped subscribing to Prime')
+
+    visit my_account_path
+
+    expect(page).to have_content "Canceled on #{Date.today.to_s(:simple)}"
   end
 end

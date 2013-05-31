@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130521152542) do
+ActiveRecord::Schema.define(:version => 20130530203918) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -184,7 +184,7 @@ ActiveRecord::Schema.define(:version => 20130521152542) do
   end
 
   create_table "purchases", :force => true do |t|
-    t.string   "stripe_customer"
+    t.string   "stripe_customer_id"
     t.string   "variant"
     t.string   "name"
     t.string   "email"
@@ -213,7 +213,7 @@ ActiveRecord::Schema.define(:version => 20130521152542) do
   end
 
   add_index "purchases", ["lookup"], :name => "index_purchases_on_lookup"
-  add_index "purchases", ["stripe_customer"], :name => "index_purchases_on_stripe_customer"
+  add_index "purchases", ["stripe_customer_id"], :name => "index_purchases_on_stripe_customer"
 
   create_table "questions", :force => true do |t|
     t.integer  "workshop_id"
@@ -317,10 +317,17 @@ ActiveRecord::Schema.define(:version => 20130521152542) do
     t.string   "last_name"
     t.string   "reference"
     t.boolean  "admin",                             :default => false, :null => false
-    t.string   "stripe_customer"
+    t.string   "stripe_customer_id"
     t.string   "github_username"
     t.string   "auth_provider"
     t.integer  "auth_uid"
+    t.string   "organization"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.string   "country"
   end
 
   add_index "users", ["admin"], :name => "index_users_on_admin"

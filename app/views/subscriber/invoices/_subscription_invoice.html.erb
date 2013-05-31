@@ -1,0 +1,14 @@
+<tr>
+  <td class="number">
+    <%= link_to subscription_invoice.number, subscriber_invoice_path(subscription_invoice.stripe_invoice_id) %>
+  </td>
+  <td class="date">
+    <%= subscription_invoice.date.to_s(:short_date) %>
+  </td>
+  <td class="total">
+    <%= number_to_currency subscription_invoice.total %>
+  </td>
+  <td class="balance">
+    <%= number_to_currency subscription_invoice.balance %>
+  </td>
+</tr>
