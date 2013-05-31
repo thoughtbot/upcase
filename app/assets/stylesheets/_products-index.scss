@@ -1,4 +1,29 @@
-$dashboard-max-width: 82rem;
+$product-card-width: 14rem;
+$product-card-margin: 3rem;
+
+@mixin product-card-widths($number_of_product_cards, $attribute: max-width, $additional_width: 0) {
+  #{$attribute}: (($product-card-width + $product-card-margin)
+                 * $number_of_product_cards)
+                - $product-card-margin
+                + $additional_width;
+}
+
+#header-wrapper.dashboard {
+  background: none;
+
+  .header-container {
+    text-align: center;
+
+    .small-logo {
+      display: inline-block;
+      float: none;
+
+      a {
+        color: $learnred;
+      }
+    }
+  }
+}
 
 // used on the marketing page as well
 .product-card {
@@ -10,11 +35,18 @@ $dashboard-max-width: 82rem;
   height: 330px;
   padding: .3rem;
   position: relative;
-  width: 14rem;
+  width: $product-card-width;
+
+  &:hover, &.active {
+    .actions {
+      opacity: 1;
+    }
+  }
 
   &.book {
     border: 1px solid rgb(200, 200, 200);
-    height: 318px;
+    height: auto;
+    line-height: 0;
     padding: 0;
     width: 246px;
   }
@@ -53,7 +85,7 @@ $dashboard-max-width: 82rem;
   }
 
   h5 {
-    color: rgb(200, 200, 200);
+    color: rgb(175, 175, 175);
     font-size: .8rem;
     text-transform: uppercase;
   }
@@ -63,38 +95,12 @@ $dashboard-max-width: 82rem;
     font: normal .8rem/1em $sans-serif;
     position: absolute;
   }
-}
 
-.card-slider {
-  $slide-button-width: 8rem;
-  margin: auto;
-  max-width: ((17rem * 7) - 3rem) + ($slide-button-width * 2);
-  overflow: hidden;
-  padding: 5rem $slide-button-width;
-  position: relative;
-  white-space: nowrap;
-
-  > figure {
-    margin-right: 3rem;
-    margin-right: calc(3rem - 4px); // remove inline-block 4px space issue
-    @include transition(.25s);
-    vertical-align: top;
-    white-space: normal;
-
-    &:hover {
-      @include transform(translateY(-.25rem));
-    }
-
-    &:hover .actions, &.active .actions {
-      opacity: 1;
-    }
-  }
-
-  > figure .actions {
+  .actions {
     background: rgba(0, 0, 0, .6);
     border-radius: 3px;
     opacity: 0;
-    padding: 3rem 1.5rem;
+    padding: 3.3rem 1.5rem;
     @include position(absolute, 0px 0px 0px 0px);
     @include transition(.3s);
 
@@ -104,8 +110,7 @@ $dashboard-max-width: 82rem;
       border-radius: 3px;
       color: #fff;
       display: block;
-      font-family: $sans-serif;
-      font-weight: 600;
+      font: 600 1rem/1.2rem $sans-serif;
       letter-spacing: 1px;
       margin-bottom: 1rem;
       padding: .75rem 1rem;
@@ -138,7 +143,7 @@ $dashboard-max-width: 82rem;
     }
   }
 
-  > figure .notification {
+  .notification {
     background: rgb(255, 252, 187);
     border: 1px solid rgb(240, 218, 132);
     border-bottom-width: 2px;
@@ -165,6 +170,36 @@ $dashboard-max-width: 82rem;
       width: 10px;
     }
   }
+}
+
+.card-slider {
+  $slide-button-width: 7.5rem;
+  margin: auto;
+  overflow: hidden;
+  padding: 5rem $slide-button-width;
+  position: relative;
+  @include product-card-widths(7, max-width, ($slide-button-width * 2));
+  white-space: nowrap;
+
+  > figure {
+    margin-right: $product-card-margin;
+    margin-right: calc(#{$product-card-margin} - 4px); // remove inline-block 4px space issue
+    @include transition(.25s);
+    vertical-align: top;
+    white-space: normal;
+
+    &:hover {
+      @include transform(translateY(-.25rem));
+
+      .notification {
+        @include transform(translateY(.35rem));
+      }
+    }
+
+    .notification {
+      @include transition(.25s);
+    }
+  }
 
   .nav {
     background: url('learn/slider-arrow.svg') no-repeat center $lightwarmgray;
@@ -177,13 +212,18 @@ $dashboard-max-width: 82rem;
     width: $slide-button-width;
     z-index: 2;
 
-    &:hover {
+    &:not(.disabled):hover {
       background-position: 55% center;
     }
 
-    &:active {
+    &:not(.disabled):active {
       background-position: 55% center;
       background-size: 33px;
+    }
+
+    &.disabled {
+      background-image: none;
+      cursor: default;
     }
 
     &.prev {
@@ -197,54 +237,135 @@ $dashboard-max-width: 82rem;
   }
 }
 
-body.products-index {
-  .reading {
-    background: $warmgray;
+body.products-index .reading {
+  %light-button {
+    background: $lightwarmgray;
+    border-bottom: 2px solid darken($lightwarmgray, 10%);
+    border-radius: 0 0 3px 3px;
+    color: $darkwarmgray;
+    font: 600 1.2rem/1.2em $sans-serif;
+    padding: 1.5rem 2rem;
+  }
+
+  background: $warmgray;
+
+  .reading-wrapper {
+    @include box-sizing(content-box);
+    margin: auto;
+    padding: $product-card-margin;
+    @include product-card-widths(5);
     overflow: auto;
-    padding: 2rem 0;
+  }
 
-    .reading-wrapper {
-      max-width: $dashboard-max-width;
-      margin: auto;
+  .list {
+    background: white;
+    border-radius: 3px;
+    float: left;
+    overflow: auto;
+    padding: .25rem .25rem 1rem;
+  }
+
+  header {
+    border-radius: 3px 3px 0 0;
+    margin-bottom: 1rem;
+    padding: .75rem;
+
+    h2 {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.2em;
+    }
+  }
+
+  .bytes {
+    @include product-card-widths(3, width);
+    margin-right: 3rem;
+
+    @media screen and (max-width: 1560px) {
+      margin-right: 0;
+      width: 55%;
     }
 
-    .bytes, .books {
-      background: white;
-      float: left;
-      padding: 2rem;
+    header {
+      background: #8f8ee8;
     }
 
-    .bytes {
-      width: 60%;
+    > a {
+      display: block;
+      margin: 2rem 1rem 0;
+
+      hgroup {
+        h4 {
+          margin: 0 0 .5rem;
+        }
+
+        h3 {
+          color: $darkwarmgray;
+          font-size: 1.6rem;
+          font-weight: 700;
+          margin: 0 0 1rem;
+        }
+      }
     }
 
-    .books {
-      float: right;
-      width: 35%;
+    .bytes-index {
+      @extend %light-button;
+      text-align: center;
+    }
+  }
 
-      > a {
-        display: block;
-        height: 220px;
-        margin-bottom: 2rem;
-        overflow: hidden;
-        padding-top: .5rem;
-        position: relative;
+  .books {
+    @include product-card-widths(2, width);
+    float: right;
+
+    @media screen and (max-width: 1560px) {
+      width: 40%;
+    }
+
+    header {
+      background: #83d4b7;
+    }
+
+    .figure-container {
+      height: 195px;
+      margin: 2rem 1rem 0;
+      overflow: hidden;
+      padding-top: .25rem;
+      position: relative;
+
+      &:hover {
+        figure {
+          @include transform(translateY(-.25rem));
+
+          .notification {
+            @include transform(translateY(.25rem) translateX(-.25rem));
+          }
+        }
       }
 
-      figure {
-        margin-left: 2.5rem;
-      }
-
-      .book-title {
-        background: $lightwarmgray;
-        border-bottom: 2px solid $warmgray;
-        border-radius: 3px;
-        color: rgb(100, 100, 100);
-        display: block;
-        font-weight: 400;
-        padding: 1.5rem 2.5rem;
-        @include position(absolute, 0 0 0px 0);
+      a {
+        @extend %light-button;
+        bottom: 0;
+        position: absolute;
         width: 100%;
+      }
+    }
+
+    figure {
+      display: block;
+      margin-left: 2rem;
+      @include transition(.25s);
+      width: $product-card-width * .9;
+
+      .notification {
+        left: 115%;
+        top: 20%;
+        @include transition(.25s);
+
+        &:after {
+          content: none;
+        }
       }
     }
   }

@@ -7,10 +7,17 @@
 
 <section class="reading">
   <div class="reading-wrapper">
-    <section class="bytes">
-      <%= render partial: 'articles/byte', collection: bytes.first(10) %>
+    <section class="list bytes">
+      <header>
+        <h2>Recommended Reading &mdash; Prime Bytes</h2>
+      </header>
+      <%= render partial: 'articles/byte', collection: bytes.first(3) %>
+      <%= link_to 'View all Prime Bytes', '#', class: 'bytes-index' %>
     </section>
-    <section class="books">
+    <section class="list books">
+      <header>
+        <h2>Library</h2>
+      </header>
       <%= render partial: 'products/book', collection: books %>
     </section>
   </div>
