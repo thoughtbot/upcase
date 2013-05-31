@@ -18,7 +18,16 @@
     <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
   </head>
   <body class="<%= body_class %> <%= yield(:additional_body_classes) %>">
-    <%= render 'shared/header' %>
+    <section id="header-wrapper" class="dashboard">
+      <div class="header-container">
+        <h1 class="small-logo">
+          <%= link_to root_path do %>
+            <%= image_tag('learn/learn-ralph-small.png') %>
+            <span><%= t 'shared.learn' %></span>
+          <% end %>
+        </h1>
+      </div>
+    </section>
 
     <%= render 'shared/flashes' %>
 
