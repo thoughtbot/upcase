@@ -66,6 +66,29 @@ RailsAdmin.config do |config|
       field :id
       field :title
       field :published_on
+      field :downloads_count
+    end
+
+    edit do
+      group :default do
+        field :file do
+          help 'An S3 file url'
+        end
+        field :topics
+        field :downloads_count do
+          read_only true
+        end
+      end
+
+      group :information do
+        help 'Leave blank to have this information populated from the id3 tags.'
+        field :title
+        field :description
+        field :notes
+        field :published_on
+        field :file_size
+        field :duration
+      end
     end
   end
 
