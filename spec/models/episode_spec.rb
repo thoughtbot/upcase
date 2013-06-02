@@ -69,4 +69,29 @@ describe Episode do
       episode.downloads_count.should eq 5
     end
   end
+
+  describe 'loading info from the mp3' do
+    it 'loads information from the mp3 when not provided' do
+      episode = Episode.new
+      episode.file = 'http://example.com/file.mp3'
+
+      episode.stubs(open: stub(size: 1234))
+      tag_stub = stub(
+        TIT2: 'Episode 1: The Show',
+        TDES: "Description\nNotes\nNotes2",
+        TDRL: '2013-06-03'
+      )
+      mp3_stub = stub(length: 10.12, tag2: tag_stub)
+      Mp3Info.stubs(:open).yields(mp3_stub)
+
+      episode.save!
+
+      episode.title.should eq 'The Show'
+      episode.description.should eq 'Description'
+      episode.notes.should eq "Notes\nNotes2"
+      episode.duration.should eq 10
+      episode.file_size.should eq 1234
+      episode.published_on.should eq Date.parse('2013-06-03')
+    end
+  end
 end
