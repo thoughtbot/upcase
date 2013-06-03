@@ -124,7 +124,7 @@ class Section < ActiveRecord::Base
   end
 
   def send_notifications
-    notifier = SectionNotifier.new(self, paid_purchases.pluck(:email))
+    notifier = SectionNotifier.new(self, paid_purchases)
     notifier.send_notifications_for(videos)
   end
 

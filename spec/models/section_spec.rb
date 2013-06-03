@@ -258,10 +258,23 @@ describe Section do
 
       Section.send_notifications
 
-      expect(SectionNotifier).to have_received(:new).with(current, [current_purchase.email])
+      expect(SectionNotifier).to have_received(:new).with(current, [current_purchase])
       expect(notifier).to have_received(:send_notifications_for).with([video])
 
-      expect(SectionNotifier).to have_received(:new).with(future, [future_purchase.email]).never
+      expect(SectionNotifier).to have_received(:new).with(future, [future_purchase]).never
+    end
+
+    it 'sends notifications for each current purchase to an rolling section' do
+      notifier = stub(send_notifications_for: nil)
+      SectionNotifier.stubs(new: notifier)
+      current = create(:online_section, starts_on: 30.days.ago, ends_on: nil)
+      current_purchase = create(:paid_purchase, purchaseable: current, created_at: 3.days.ago)
+      video = create(:video, watchable: current.workshop, active_on_day: 3)
+
+      Section.send_notifications
+
+      expect(SectionNotifier).to have_received(:new).with(current, [current_purchase])
+      expect(notifier).to have_received(:send_notifications_for).with([video])
     end
   end
 

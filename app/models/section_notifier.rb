@@ -1,14 +1,14 @@
 class SectionNotifier
-  def initialize(section, emails)
+  def initialize(section, purchases)
     @section = section
-    @emails = emails
+    @purchases = purchases
   end
 
   def send_notifications_for(items)
     items.each do |item|
-      if item.starts_today?(@section.starts_on)
-        @emails.each do |email|
-          send_notification(email, item)
+      @purchases.each do |purchase|
+        if item.starts_today?(purchase.starts_on)
+          send_notification(purchase.email, item)
         end
       end
     end
