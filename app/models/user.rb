@@ -80,7 +80,8 @@ class User < ActiveRecord::Base
       purchases.any? do |purchase|
         range = purchase.starts_on..purchase.ends_on
 
-        range.cover?(desired_purchaseable.starts_on) || range.cover?(desired_purchaseable.ends_on)
+        range.cover?(desired_purchaseable.starts_on(Date.today)) ||
+          range.cover?(desired_purchaseable.ends_on(Date.today))
       end
     else
       false
