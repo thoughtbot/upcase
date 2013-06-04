@@ -615,7 +615,7 @@ describe Purchase, 'active?' do
       expect(purchase).to be_active
     end
 
-    Timecop.freeze(5.days.from_now) do
+    Timecop.freeze(6.days.from_now) do
       expect(purchase).not_to be_active
     end
   end

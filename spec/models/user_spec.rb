@@ -189,4 +189,26 @@ describe User do
       User.find(user.id)
     end
   end
+
+  describe '#subscription_purchases' do
+    it 'includes only subscription purchases' do
+      subscription = create(:active_subscription)
+      user = subscription.user
+      create_subscription_purchase(user)
+      create_paid_purchase(user)
+
+      user.paid_purchases.count.should eq 2
+      user.subscription_purchases.count.should eq 1
+    end
+
+    def create_subscription_purchase(user)
+      video_product = create(:video_product)
+      subscription_purchase = SubscriberPurchase.new(video_product, user)
+      subscription_purchase.create
+    end
+
+    def create_paid_purchase(user)
+      create(:book_purchase, user: user)
+    end
+  end
 end

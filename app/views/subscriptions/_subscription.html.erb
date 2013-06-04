@@ -1,15 +1,18 @@
 <li class="subscription">
   <% if subscription.active? %>
-    Active since <%= subscription.created_at.to_s(:simple) %><br>
+    Active since <%= subscription.created_at.to_s(:simple) %>.
+    <% if subscription.scheduled_for_cancelation_on %>
+      Scheduled for cancelation on <%= subscription.scheduled_for_cancelation_on.to_s(:simple) %>.
+    <% end %>
   <% else %>
     Canceled on <%= subscription.deactivated_on.to_s(:simple) %>
   <% end %>
 
   <%= link_to 'View all invoices', subscriber_invoices_path, class: 'invoices' %>
-  <% if subscription.active? %>
+  <% if subscription.active? && subscription.scheduled_for_cancelation_on.blank? %>
     <%= link_to t('subscriptions.cancel'), subscription,
       method: :delete,
-      confirm: 'Are you sure you want to cancel your Prime subscription?',
+      confirm: "Are you sure you want to cancel your Prime subscription? You will lose access to the products you acquired through Prime, as well as the forum and Learn Bytes at the end of your billing cycle.",
       class: 'cancel'
     %>
   <% end %>

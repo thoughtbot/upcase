@@ -3,13 +3,14 @@ require 'capybara_discoball'
 
 class FakeStripe < Sinatra::Base
   EVENT_ID_FOR_SUCCESSFUL_INVOICE_PAYMENT = 'evt_1X6Z2OXmhBVcm9'
+  EVENT_ID_FOR_SUBSCRIPTION_DELETION = 'evt_2X6Z2OXmhBVcm9'
   CUSTOMER_ID = 'cus_1CXxPJDpw1VLvJ'
   CUSTOMER_EMAIL = 'foo@bar.com'
 
   cattr_reader :last_charge, :last_customer_email, :last_token, :coupons
   cattr_accessor :failure
 
-  get '/customers/*' do
+  get '/customers/:id' do
     content_type :json
 
     {
@@ -20,40 +21,16 @@ class FakeStripe < Sinatra::Base
       description: nil,
       email: CUSTOMER_EMAIL,
       delinquent: false,
-      subscription: nil,
       discount: nil,
-      account_balance: 0
+      account_balance: 0,
+      subscription: customer_subscription
     }.to_json
   end
 
-  post '/customers/*/subscription' do
+  post '/customers/:id/subscription' do
     content_type :json
 
-    {
-      plan: {
-        interval: 'month',
-        name: 'Java Bindings Plan',
-        amount: 100,
-        currency: 'usd',
-        id: 'JAVA-PLAN-1b3a5c51-5c1a-421b-8822-69138c2d937b',
-        object: 'plan',
-        livemode: false,
-        interval_count: 1,
-        trial_period_days: nil
-      },
-      object: 'subscription',
-      start: 1358555835,
-      status: 'active',
-      customer: CUSTOMER_ID,
-      cancel_at_period_end: false,
-      current_period_start: 1358555835,
-      current_period_end: 1361234235,
-      ended_at: nil,
-      trial_start: nil,
-      trial_end: nil,
-      canceled_at: nil,
-      quantity: 1
-    }.to_json
+    customer_subscription.to_json
   end
 
   post '/customers' do
@@ -136,10 +113,10 @@ class FakeStripe < Sinatra::Base
 
   delete '/customers/:id/subscription' do
     content_type :json
-    {
+    customer_subscription.merge({
       id: params[:id],
       deleted: true
-    }.to_json
+    }).to_json
   end
 
   get '/charges/:id' do
@@ -244,10 +221,21 @@ class FakeStripe < Sinatra::Base
   get "/events/#{EVENT_ID_FOR_SUCCESSFUL_INVOICE_PAYMENT}" do
     content_type :json
     {
-      id: "evt_1X6Z2OXmhBVcm9",
+      id: EVENT_ID_FOR_SUCCESSFUL_INVOICE_PAYMENT,
       type: "invoice.payment_succeeded",
       data: {
         object: customer_invoice
+      }
+    }.to_json
+  end
+
+  get "/events/#{EVENT_ID_FOR_SUBSCRIPTION_DELETION}" do
+    content_type :json
+    {
+      id: EVENT_ID_FOR_SUBSCRIPTION_DELETION,
+      type: "customer.subscription.deleted",
+      data: {
+        object: customer_subscription
       }
     }.to_json
   end
@@ -327,6 +315,34 @@ class FakeStripe < Sinatra::Base
       subtotal: 9900,
       amount_due: 7900,
       customer: CUSTOMER_ID
+    }
+  end
+
+  def customer_subscription
+    {
+      plan: {
+        interval: 'month',
+        name: 'Java Bindings Plan',
+        amount: 100,
+        currency: 'usd',
+        id: 'JAVA-PLAN-1b3a5c51-5c1a-421b-8822-69138c2d937b',
+        object: 'plan',
+        livemode: false,
+        interval_count: 1,
+        trial_period_days: nil
+      },
+      object: 'subscription',
+      start: 1358555835,
+      status: 'active',
+      customer: CUSTOMER_ID,
+      cancel_at_period_end: false,
+      current_period_start: 1358555835,
+      current_period_end: 1361234235,
+      ended_at: nil,
+      trial_start: nil,
+      trial_end: nil,
+      canceled_at: nil,
+      quantity: 1
     }
   end
 end
