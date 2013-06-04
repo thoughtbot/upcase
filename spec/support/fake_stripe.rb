@@ -247,23 +247,7 @@ class FakeStripe < Sinatra::Base
       id: "evt_1X6Z2OXmhBVcm9",
       type: "invoice.payment_succeeded",
       data: {
-        object: {
-          customer: CUSTOMER_ID,
-          lines: {
-            subscriptions: [
-              {
-                plan: {
-                  interval: "month",
-                  name: "Prime",
-                  amount: 9900,
-                  currency: "usd",
-                  id: "prime",
-                  object: "plan",
-                }
-              }
-            ]
-          }
-        }
+        object: customer_invoice
       }
     }.to_json
   end
@@ -342,7 +326,7 @@ class FakeStripe < Sinatra::Base
       total: 7900,
       subtotal: 9900,
       amount_due: 7900,
-      customer: "cus_1KjDojUy0RiwFH"
+      customer: CUSTOMER_ID
     }
   end
 end

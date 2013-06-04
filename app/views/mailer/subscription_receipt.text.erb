@@ -1,0 +1,26 @@
+Hi!
+
+You were just charged <%= number_to_currency @amount %> for Learn <%= @plan_name %>.
+
+You can view an invoice for this month, as well as all past ones at
+<%= subscriber_invoice_url(@stripe_invoice_id) %>
+
+If you'd like to chat with a thoughtbot person about your current skill level,
+and next steps you might take to be a better developer, just hit 'Reply' and
+send us an email. We'll schedule a phone or Skype call with you, or if you'd
+rather just talk via email, thats fine too.
+
+Also!
+
+* Have a technical question about something you're working on in your personal
+  project, a workshop, or any of our books?  Post it to the forum at 
+  http://forum.thoughtbot.com
+
+* Each week we deliver a new Byte to your email. You can access the archive of
+  all previous Bytes at https://learn.thoughtbot.com/bytes
+
+* As a <%= @plan_name %> subscriber, you get access to all our books, workshops,
+  and screencasts. View everything at <%= products_url %>
+
+Thanks for subscribing to thoughtbot's Learn <%= @plan_name %>!
+thoughtbot

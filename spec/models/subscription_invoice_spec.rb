@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SubscriptionInvoice do
   it 'retrieves all invoices for a customer' do
     invoices = SubscriptionInvoice.
-      find_all_by_stripe_customer_id('cus_1KjDojUy0RiwFH')
+      find_all_by_stripe_customer_id(FakeStripe::CUSTOMER_ID)
 
     invoices.length.should eq 1
     invoices.first.stripe_invoice_id.should eq 'in_1s4JSgbcUaElzU'
@@ -64,7 +64,7 @@ describe SubscriptionInvoice do
     end
 
     it 'returns the user who matches the stripe customer' do
-      user = create(:user, stripe_customer_id: "cus_1KjDojUy0RiwFH")
+      user = create(:user, stripe_customer_id: FakeStripe::CUSTOMER_ID)
 
       invoice.user.should eq user
     end
@@ -102,7 +102,7 @@ describe SubscriptionInvoice do
     it 'returns the user info for the user' do
       user = create(
         :user,
-        stripe_customer_id: "cus_1KjDojUy0RiwFH",
+        stripe_customer_id: FakeStripe::CUSTOMER_ID,
         organization: 'thoughtbot',
         address1: '41 Winter St.',
         address2: 'Floor 7',
