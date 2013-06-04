@@ -83,7 +83,7 @@ group :test do
   gem 'cucumber-rails', '1.3.0', require: false
   gem 'database_cleaner', '0.7.2'
   gem 'email_spec', '1.2.1'
-  gem 'factory_girl_rails', '3.3.0'
+  gem 'factory_girl_rails'
   gem 'launchy'
   gem 'selenium-webdriver', '2.32.1'
   gem 'sham_rack', '1.3.1'

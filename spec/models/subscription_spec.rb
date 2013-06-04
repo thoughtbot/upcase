@@ -59,9 +59,42 @@ describe Subscription do
   describe '#deactivate' do
     it "updates the subscription record by setting deactivated_on to today" do
       subscription = create(:active_subscription)
+
       subscription.deactivate
       subscription.reload
+
       expect(subscription.deactivated_on).to eq Date.today
+    end
+
+    it 'removes all subscription purchases' do
+      subscription = create(:active_subscription)
+      user = subscription.user
+      create_subscription_purchase(user)
+      book_purchase = create_paid_purchase(user)
+      github_fulfillment = stub_github_fulfillment
+
+      subscription.deactivate
+
+      user.paid_purchases.count.should eq 1
+      user.paid_purchases.should eq [book_purchase]
+      user.subscription_purchases.count.should eq 0
+      github_fulfillment.should have_received(:remove)
+    end
+
+    def create_subscription_purchase(user)
+      github_book_product = create(:github_book_product)
+      subscription_purchase = SubscriberPurchase.new(github_book_product, user)
+      subscription_purchase.create
+    end
+
+    def create_paid_purchase(user)
+      create(:book_purchase, user: user)
+    end
+
+    def stub_github_fulfillment
+      github_fulfillment = stub(remove: nil)
+      GithubFulfillment.stubs(:new).returns(github_fulfillment)
+      github_fulfillment
     end
   end
 end

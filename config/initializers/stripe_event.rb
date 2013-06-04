@@ -19,4 +19,13 @@ StripeEvent.setup do
       )
     end
   end
+
+  subscribe 'customer.subscription.deleted' do |event|
+    stripe_customer_id = event.data.object.customer
+
+    if user = User.find_by_stripe_customer_id(stripe_customer_id)
+      unsubscriber = Unsubscriber.new(user.subscription)
+      unsubscriber.process
+    end
+  end
 end
