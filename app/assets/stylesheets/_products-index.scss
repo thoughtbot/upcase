@@ -43,14 +43,6 @@ $product-card-margin: 3rem;
     }
   }
 
-  &.book {
-    border: 1px solid rgb(200, 200, 200);
-    height: auto;
-    line-height: 0;
-    padding: 0;
-    width: 246px;
-  }
-
   > a {
     display: block;
     height: 100%;
@@ -88,6 +80,32 @@ $product-card-margin: 3rem;
     color: rgb(175, 175, 175);
     font-size: .8rem;
     text-transform: uppercase;
+  }
+
+  &.book {
+    border: 1px solid rgb(200, 200, 200);
+    height: auto;
+    line-height: 0;
+    padding: 0;
+    width: 246px;
+  }
+
+  .inperson-date {
+    height: 120px;
+    padding: 1rem;
+    background: rgb(220, 220, 220);
+    text-align: center;
+
+    span {
+      color: #606060;
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 4rem;
+    }
+
+    .month {
+      font-weight: 400;
+    }
   }
 
   .note {
@@ -184,15 +202,13 @@ $product-card-margin: 3rem;
   > figure {
     margin-right: $product-card-margin;
     margin-right: calc(#{$product-card-margin} - 4px); // remove inline-block 4px space issue
-    @include transition(.25s);
+    @include transition(margin .15s);
     vertical-align: top;
     white-space: normal;
 
     &:hover {
-      @include transform(translateY(-.25rem));
-
       .notification {
-        @include transform(translateY(.35rem));
+        @include transform(translateY(-.15rem));
       }
     }
 
@@ -293,7 +309,7 @@ body.products-index .reading {
 
     > a {
       display: block;
-      margin: 2rem 1rem 0;
+      margin: 2rem 3rem 0;
 
       hgroup {
         h4 {
@@ -339,7 +355,7 @@ body.products-index .reading {
           @include transform(translateY(-.25rem));
 
           .notification {
-            @include transform(translateY(.25rem) translateX(-.25rem));
+            @include transform(translateY(.15rem));
           }
         }
       }

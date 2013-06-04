@@ -4,10 +4,14 @@
   <figure class="workshop-inperson product-card">
 <% end %>
   <h4><%= workshop.name %></h4>
-  <%= image_tag('workshop_thumbs/playbook.png') %>
   <% if workshop.online? %>
+    <%= image_tag('workshop_thumbs/playbook.png') %>
     <h5>Online Workshop</h5>
   <% else %>
+    <div class="inperson-date">
+      <span class="month">Jan</span>
+      <span class="day">3rd</span>
+    </div>
     <h5>In-Person Workshop</h5>
   <% end %>
   <p><%= workshop.short_description %></p>
