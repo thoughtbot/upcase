@@ -14,6 +14,10 @@ $product-card-margin: 3rem;
   .header-container {
     text-align: center;
 
+    @include dashboard-small {
+      padding-bottom: 0 !important;
+    }
+
     .small-logo {
       display: inline-block;
       float: none;
@@ -192,12 +196,18 @@ $product-card-margin: 3rem;
 
 .card-slider {
   $slide-button-width: 7.5rem;
-  margin: auto;
+  margin: $product-card-margin auto;
   overflow: hidden;
-  padding: 5rem $slide-button-width;
+  padding: 0 $slide-button-width;
   position: relative;
   @include product-card-widths(7, max-width, ($slide-button-width * 2));
   white-space: nowrap;
+
+  @include dashboard-small {
+    overflow-x: scroll;
+    padding: 0 3rem 1rem;
+    -webkit-overflow-scrolling: touch;
+  }
 
   > figure {
     margin-right: $product-card-margin;
@@ -227,6 +237,10 @@ $product-card-margin: 3rem;
     vertical-align: middle;
     width: $slide-button-width;
     z-index: 2;
+
+    @include dashboard-small {
+      display: none;
+    }
 
     &:not(.disabled):hover {
       background-position: 55% center;
@@ -261,13 +275,25 @@ body.products-index .forum {
   position: relative;
   @include product-card-widths(3);
 
-  @media screen and (max-width: 1560px) {
-    width: 55%;
+  @include dashboard-large {
+    width: 50%;
+  }
+
+  @include dashboard-small {
+    box-sizing: border-box;
+    margin: 0 auto $product-card-margin;
+    padding: 0;
+    width: 100%;
+    @include product-card-widths(1, width);
   }
 
   p, a {
     color: $darkwarmgray;
     font: 700 1.6rem/1.2em $sans-serif;
+
+    @include dashboard-small {
+      font-size: 1.2rem;
+    }
   }
 
   a {
@@ -275,14 +301,6 @@ body.products-index .forum {
     display: inline-block;
     font-weight: 100;
     padding-bottom: 2px;
-
-    span {
-      @include transition(.25s);
-    }
-
-    &:hover span {
-      margin-left: .25rem;
-    }
   }
 }
 
@@ -292,6 +310,10 @@ body.products-index .reading {
   overflow: auto;
   padding: $product-card-margin;
   @include product-card-widths(5);
+
+  @include dashboard-small {
+    padding: 5px;
+  }
 
   %light-button {
     background: $lightwarmgray;
@@ -314,13 +336,6 @@ body.products-index .reading {
     }
   }
 
-  .list {
-    background: white;
-    border-radius: 3px;
-    overflow: auto;
-    padding: .25rem .25rem 1rem;
-  }
-
   header {
     border-radius: 3px 3px 0 0;
     margin-bottom: 1rem;
@@ -339,9 +354,8 @@ body.products-index .reading {
     margin-right: 3rem;
     @include product-card-widths(3, width);
 
-    @media screen and (max-width: 1560px) {
-      margin-right: 0;
-      width: 55%;
+    @include dashboard-medium {
+      margin-bottom: $product-card-margin;
     }
 
     header {
@@ -350,11 +364,11 @@ body.products-index .reading {
 
     > a {
       display: block;
-      margin: 2rem 3rem 0;
+      margin: 2rem $product-card-margin 0;
 
       hgroup {
         h4 {
-          margin: 0 0 .5rem;
+          margin: 0;
         }
 
         h3 {
@@ -375,10 +389,6 @@ body.products-index .reading {
   .books {
     float: right;
     @include product-card-widths(2, width);
-
-    @media screen and (max-width: 1560px) {
-      width: 40%;
-    }
 
     header {
       background: #83d4b7;
@@ -406,6 +416,17 @@ body.products-index .reading {
         bottom: 0;
         position: absolute;
         width: 100%;
+
+        @include dashboard-medium {
+          left: 1.5rem;
+          right: 1.5rem;
+          width: auto;
+        }
+
+        @include dashboard-small {
+          left: 0;
+          right: 0;
+        }
       }
     }
 
@@ -420,9 +441,51 @@ body.products-index .reading {
         top: 20%;
         @include transition(.25s);
 
+        @include dashboard-medium {
+          left: -2rem;
+          top: 2%;
+        }
+
         &:after {
           content: none;
         }
+      }
+    }
+  }
+
+  .list {
+    background: white;
+    border-radius: 3px;
+    overflow: auto;
+    padding: .25rem .25rem 1rem;
+
+    @include dashboard-large {
+      margin-right: 0;
+      width: 47%;
+    }
+
+    @include dashboard-medium {
+      float: none;
+      width: 100%;
+    }
+
+    > a, .figure-container {
+      @include dashboard-medium {
+        float: left;
+        margin: 2rem 0 0 0;
+        width: 33.33%;
+        padding: 0 $product-card-margin / 2;
+
+        &.bytes-index {
+          clear: both;
+          margin-left: 0;
+          width: 100%;
+        }
+      }
+
+      @include dashboard-small {
+        float: none;
+        width: 100%;
       }
     }
   }
