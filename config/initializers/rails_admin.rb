@@ -57,7 +57,7 @@ RailsAdmin.config do |config|
       field :paid_purchases
       field :purchases
       field :subscription
-      field :stripe_customer
+      field :stripe_customer_id
     end
   end
 
