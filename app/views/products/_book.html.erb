@@ -1,6 +1,7 @@
-<%= link_to book do %>
+<div class="figure-container">
   <figure class="book product-card">
     <%= image_tag cover_image(book), alt: "#{book.name} cover" %>
+    <span class="notification">New commits</span>
   </figure>
-  <h3 class="book-title">Read <%= book.name %></h3>
-<% end %>
+  <%= link_to 'Read now', book %>
+</div>

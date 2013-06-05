@@ -2,5 +2,6 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="60px" height="150px" viewBox="0 0 60 150" enable-background="new 0 0 60 150" xml:space="preserve">
-<polygon fill="#BBBBBB" points="0,0 60,75 0,150 "/>
+<polygon fill="none" stroke="#AAAAAA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" points="3.774,4.355 57,75 
+	3.814,145.108 57,75 "/>
 </svg>
