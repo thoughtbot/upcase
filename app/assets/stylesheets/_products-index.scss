@@ -1,227 +1,388 @@
-body.products-index {
-  .prime-pitch {
-    margin: -3.5em 0 1em 0;
-    position: relative;
+$product-card-width: 14rem;
+$product-card-margin: 3rem;
+
+@mixin product-card-widths($number_of_product_cards, $attribute: max-width, $additional_width: 0) {
+  #{$attribute}: (($product-card-width + $product-card-margin)
+                 * $number_of_product_cards)
+                - $product-card-margin
+                + $additional_width;
+}
+
+#header-wrapper.dashboard {
+  background: none;
+
+  .header-container {
     text-align: center;
 
-    &::after {
-      background: $warmgray;
-      content: '';
-      margin-right: -2px;
-      @include position(absolute, 0px 50% 0px 0);
-      width: 2px;
-      z-index: -1;
-    }
-
-    h2.subscriber {
-      background: $lightwarmgray;
-      margin-bottom: 1.1em;
-      margin-top: 2.75em;
-      padding-bottom: .4em;
-    }
-
-    .prime-main-cta {
-      background: $learnred;
-      border: 0;
-      border-radius: 3px;
+    .small-logo {
       display: inline-block;
-      margin: 0 auto;
-      max-width: $footer-width;
-      padding: 1.2em 2.5em;
-      text-align: center;
-      width: 100%;
+      float: none;
 
-      &.bottom {
-        margin-top: 4em;
+      a {
+        color: $learnred;
       }
+    }
+  }
+}
+
+// used on the marketing page as well
+.product-card {
+  background: #fff;
+  border-bottom: 2px solid rgb(200, 200, 200);
+  border-radius: .3rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
+  display: inline-block;
+  height: 330px;
+  padding: .3rem;
+  position: relative;
+  width: $product-card-width;
+
+  &:hover, &.active {
+    .actions {
+      opacity: 1;
+    }
+  }
+
+  > a {
+    display: block;
+    height: 100%;
+  }
+
+  h4 {
+    border-radius: 2px;
+    color: #fff;
+    margin-bottom: .3rem;
+    padding: .75rem;
+    font-weight: 700;
+
+    &.byte-title {
+      color: $darkwarmgray;
+    }
+  }
+
+  &.workshop-online h4 {
+    background: $workshop-online-color;
+  }
+
+  &.workshop-inperson h4 {
+    background: $workshop-inperson-color;
+  }
+
+  &.screencast h4 {
+    background: $screencasts-color;
+  }
+
+  h5, p {
+    margin: .75rem;
+  }
+
+  h5 {
+    color: rgb(175, 175, 175);
+    font-size: .8rem;
+    text-transform: uppercase;
+  }
+
+  &.book {
+    border: 1px solid rgb(200, 200, 200);
+    height: auto;
+    line-height: 0;
+    padding: 0;
+    width: 246px;
+  }
+
+  .inperson-date {
+    height: 120px;
+    padding: 1rem;
+    background: rgb(220, 220, 220);
+    text-align: center;
+
+    span {
+      color: #606060;
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 4rem;
+    }
+
+    .month {
+      font-weight: 400;
+    }
+  }
+
+  .note {
+    bottom: 0;
+    font: normal .8rem/1em $sans-serif;
+    position: absolute;
+  }
+
+  .actions {
+    background: rgba(0, 0, 0, .6);
+    border-radius: 3px;
+    opacity: 0;
+    padding: 3.3rem 1.5rem;
+    @include position(absolute, 0px 0px 0px 0px);
+    @include transition(.3s);
+
+    a {
+      background: #7ebe69;
+      border-bottom: 2px solid darken(#7ebe69, 10%);
+      border-radius: 3px;
+      color: #fff;
+      display: block;
+      font: 600 1rem/1.2rem $sans-serif;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+      padding: .75rem 1rem;
+      text-align: center;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, .25);
 
       &:hover {
-        background: lighten($learnred, 5%);
+        background: lighten(#7ebe69, 8%);
+        border-bottom-color: #7ebe69;
       }
 
       &:active {
-        background: darken($learnred, 5%);
-      }
-
-      h2, h3 {
-        color: #fff;
-        font: 700 1.75em/1em $sans-serif;
-        margin: 0;
-      }
-
-      h3 {
-        font-size: 1.2em;
-        font-weight: 400;
-        margin-top: .2em;
+        border-bottom-color: transparent;
+        @include transform(translateY(2px));
       }
     }
 
-    .prime-company-cta {
-      background: $lightwarmgray;
-      display: block;
-      font-style: italic;
-      padding: .75em;
-
-      &.top {
-        margin-bottom: 5em;
-      }
-    }
-
-    .products {
-      @extend %main-content-box;
-      margin: auto;
-      margin-bottom: 4em;
-      max-width: $footer-width;
-      overflow: hidden;
-
-      h2 {
-        color: $darkwarmgray;
-        font: 700 1.75em/1.2em $sans-serif;
-        margin: 0 0 1.25em;
-        padding: .1em 0;
-        text-align: center;
-
-        span {
-          display: block;
-          font-weight: 100;
-        }
-      }
-
-      &.books {
-        text-align: center;
-
-        figure {
-          display: inline-block;
-          margin: 0 1em 1em;
-
-          a {
-            background: #000;
-            border: 0;
-            display: block;
-            line-height: 0;
-            position: relative;
-            @include transition(.15s);
-
-            img {
-              width: 196px;
-            }
-
-            &:hover {
-              top: -3px;
-            }
-
-            &:active {
-              img {
-                opacity: .8;
-              }
-            }
-          }
-
-          img {
-            border-radius: 1px;
-            @include box-shadow(0 1px 1px rgba(0, 0, 0, .3));
-            margin: 0;
-            width: 212px;
-          }
-        }
-      }
-
-      &.workshops, &.screencasts, &.bytes {
-        text-align: left;
-
-        a {
-          border-radius: 3px;
-          @include box-sizing(content-box);
-          display: inline-block;
-          margin: 0;
-          padding: 1em;
-          text-align: left;
-          @include transition(.2s);
-          vertical-align: top;
-          width: 197px;
-
-          p {
-            margin-bottom: 0;
-          }
-
-          &:hover {
-            background: lighten($warmgray, 12%);
-          }
-
-          &:active {
-            background: $warmgray;
-            @include transition(0s);
-          }
-        }
-
-        hgroup {
-          h4 {
-            color: lighten($darkwarmgray, 20%);
-            font: 100 12px/1.3em $sans-serif;
-            margin-bottom: .3em;
-            text-shadow: none;
-            text-transform: uppercase;
-
-            span {
-              background: yellow;
-              box-shadow: 0 0 0 .3em yellow;
-              color: rgb(197, 145, 79);
-              font-weight: 700;
-              margin: 0 .5em 0 0;
-              padding: 0 0.3em;
-            }
-          }
-
-          h3 {
-            color: $darkwarmgray;
-            font: 600 18px/1.3em $sans-serif;
-            margin: 0;
-          }
-        }
-
-        p {
-          font: 400 18px/1.3em $sans-serif;
-        }
-      }
-    }
-  }
-
-  section#subscription-banner {
-    padding: 0 1em 0 1em;
-    text-align: center;
-
-    a {
-      @extend %main-content-box;
-      display: block;
-      width: 100%;
+    a.main {
+      background: #f88356;
+      border-bottom: 2px solid darken(#f88356, 10%);
 
       &:hover {
+        border-bottom-color: #f88356;
+        background: lighten(#f88356, 8%);
+      }
+
+      &:active {
+        border-bottom-color: transparent;
+      }
+    }
+  }
+
+  .notification {
+    background: rgb(255, 252, 187);
+    border: 1px solid rgb(240, 218, 132);
+    border-bottom-width: 2px;
+    border-radius: 3px;
+    color: $darkwarmgray;
+    font: 600 .8rem/1.2em $sans-serif;
+    padding: .5rem 1rem;
+    @include position(absolute, -3rem 0 0 17.5%);
+    text-align: center;
+    text-transform: uppercase;
+    width: 65%;
+
+    // nub
+    &:after {
+      background: rgb(255, 252, 187);
+      border: 1px solid rgb(240, 218, 132);
+      border-width: 0 2px 2px 0;
+      content: '';
+      display: block;
+      height: 10px;
+      margin-left: -7px;
+      @include position(absolute, 0 0 -7px 50%);
+      @include transform(rotate(45deg));
+      width: 10px;
+    }
+  }
+}
+
+.card-slider {
+  $slide-button-width: 7.5rem;
+  margin: auto;
+  overflow: hidden;
+  padding: 5rem $slide-button-width;
+  position: relative;
+  @include product-card-widths(7, max-width, ($slide-button-width * 2));
+  white-space: nowrap;
+
+  > figure {
+    margin-right: $product-card-margin;
+    margin-right: calc(#{$product-card-margin} - 4px); // remove inline-block 4px space issue
+    @include transition(margin .15s);
+    vertical-align: top;
+    white-space: normal;
+
+    &:hover {
+      .notification {
+        @include transform(translateY(-.15rem));
+      }
+    }
+
+    .notification {
+      @include transition(.25s);
+    }
+  }
+
+  .nav {
+    background: url('learn/slider-arrow.svg') no-repeat center $lightwarmgray;
+    background-size: 35px;
+    cursor: pointer;
+    @include position(absolute, 0px 0 0px 0);
+    @include transition(.05s);
+    @include user-select(none);
+    vertical-align: middle;
+    width: $slide-button-width;
+    z-index: 2;
+
+    &:not(.disabled):hover {
+      background-position: 55% center;
+    }
+
+    &:not(.disabled):active {
+      background-position: 55% center;
+      background-size: 33px;
+    }
+
+    &.disabled {
+      background-image: none;
+      cursor: default;
+    }
+
+    &.prev {
+      left: 0;
+      @include transform(rotate(180deg));
+    }
+
+    &.next {
+      right: 0;
+    }
+  }
+}
+
+body.products-index .reading {
+  %light-button {
+    background: $lightwarmgray;
+    border-bottom: 2px solid darken($lightwarmgray, 10%);
+    border-radius: 0 0 3px 3px;
+    color: $darkwarmgray;
+    font: 600 1.2rem/1.2em $sans-serif;
+    padding: 1.5rem 2rem;
+  }
+
+  background: $warmgray;
+
+  .reading-wrapper {
+    @include box-sizing(content-box);
+    margin: auto;
+    padding: $product-card-margin;
+    @include product-card-widths(5);
+    overflow: auto;
+  }
+
+  .list {
+    background: white;
+    border-radius: 3px;
+    float: left;
+    overflow: auto;
+    padding: .25rem .25rem 1rem;
+  }
+
+  header {
+    border-radius: 3px 3px 0 0;
+    margin-bottom: 1rem;
+    padding: .75rem;
+
+    h2 {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.2em;
+    }
+  }
+
+  .bytes {
+    @include product-card-widths(3, width);
+    margin-right: 3rem;
+
+    @media screen and (max-width: 1560px) {
+      margin-right: 0;
+      width: 55%;
+    }
+
+    header {
+      background: #8f8ee8;
+    }
+
+    > a {
+      display: block;
+      margin: 2rem 3rem 0;
+
+      hgroup {
+        h4 {
+          margin: 0 0 .5rem;
+        }
+
         h3 {
-          color: $red;
-        }
-      }
-
-      h3 {
-        line-height: 1.3em;
-        margin: 0;
-        padding: 0;
-
-        span {
-          color: $learnred;
+          color: $darkwarmgray;
+          font-size: 1.6rem;
+          font-weight: 700;
+          margin: 0 0 1rem;
         }
       }
     }
-  }
 
-  .article {
-    .subscription_icon, .excerpt {
-      display: none;
+    .bytes-index {
+      @extend %light-button;
+      text-align: center;
     }
   }
 
-  @include body-mobile {
-    .products-container {
-      width: 100% !important;
+  .books {
+    @include product-card-widths(2, width);
+    float: right;
+
+    @media screen and (max-width: 1560px) {
+      width: 40%;
+    }
+
+    header {
+      background: #83d4b7;
+    }
+
+    .figure-container {
+      height: 195px;
+      margin: 2rem 1rem 0;
+      overflow: hidden;
+      padding-top: .25rem;
+      position: relative;
+
+      &:hover {
+        figure {
+          @include transform(translateY(-.25rem));
+
+          .notification {
+            @include transform(translateY(.15rem));
+          }
+        }
+      }
+
+      a {
+        @extend %light-button;
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+      }
+    }
+
+    figure {
+      display: block;
+      margin-left: 2rem;
+      @include transition(.25s);
+      width: $product-card-width * .9;
+
+      .notification {
+        left: 115%;
+        top: 20%;
+        @include transition(.25s);
+
+        &:after {
+          content: none;
+        }
+      }
     }
   }
 }

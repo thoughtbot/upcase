@@ -1,13 +1,26 @@
-<%= link_to workshop, 'data-role' => workshop_data_role(workshop) do %>
-  <hgroup>
-    <h4>
-      <% if workshop.online? %>
-        <%= t('shared.workshops.online') %>
-      <% else %>
-        <%= t('shared.workshops.in_person') %>
-      <% end %>
-    </h4>
-    <h3><%= workshop.name %></h3>
-  </hgroup>
-  <p><%= workshop.short_description %></p>
+<% if workshop.online? %>
+  <figure class="workshop-online product-card">
+<% else %>
+  <figure class="workshop-inperson product-card">
 <% end %>
+  <h4><%= workshop.name %></h4>
+  <% if workshop.online? %>
+    <%= image_tag('workshop_thumbs/playbook.png') %>
+    <h5>Online Workshop</h5>
+  <% else %>
+    <div class="inperson-date">
+      <span class="month">Jan</span>
+      <span class="day">3rd</span>
+    </div>
+    <h5>In-Person Workshop</h5>
+  <% end %>
+  <p><%= workshop.short_description %></p>
+  <section class="actions">
+    <a href="#" class="main">Begin now</a>
+    <a href="#" class="main">Book now</a>
+    <a href="#" class="main">View Lessons</a>
+    <a href="#">View Forum</a>
+    <%= link_to 'Info', workshop, 'data-role' => workshop_data_role(workshop) %>
+  </section>
+  <span class="notification">New workshop</span>
+</figure>
