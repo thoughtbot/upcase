@@ -212,7 +212,7 @@ $product-card-margin: 3rem;
   > figure {
     margin-right: $product-card-margin;
     margin-right: calc(#{$product-card-margin} - 4px); // remove inline-block 4px space issue
-    @include transition(margin .15s);
+    @include transition(.15s);
     vertical-align: top;
     white-space: normal;
 
