@@ -43,3 +43,21 @@ describe 'successful charges reported by Stripe webhook' do
     email.to.should eq [user.email]
   end
 end
+
+describe 'subscription cancelations reported by Stripe webhook' do
+  it 'deactivates the subscription' do
+    user = create(
+      :user,
+      :with_subscription,
+      stripe_customer_id: FakeStripe::CUSTOMER_ID
+    )
+
+    simulate_stripe_webhook_firing
+
+    user.should_not have_active_subscription
+  end
+
+  def simulate_stripe_webhook_firing
+    post '/stripe-webhook', 'id' => FakeStripe::EVENT_ID_FOR_SUBSCRIPTION_DELETION
+  end
+end

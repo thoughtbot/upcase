@@ -255,8 +255,12 @@ FactoryGirl.define do
       admin true
     end
 
-    trait :with_subscription do
+    trait :with_github do
       github_username 'github_user_1'
+    end
+
+    trait :with_subscription do
+      with_github
       stripe_customer_id 'cus12345'
 
       after :create do |instance|
@@ -266,7 +270,7 @@ FactoryGirl.define do
   end
 
   factory :subscription, aliases: [:active_subscription] do
-    user
+    association :user, :with_github
     factory :inactive_subscription do
       deactivated_on Date.today
     end

@@ -19,10 +19,17 @@ class Subscription < ActiveRecord::Base
   end
 
   def deactivate
+    deactivate_subscription_purchases
     update_column(:deactivated_on, Date.today)
   end
 
   private
+
+  def deactivate_subscription_purchases
+    user.subscription_purchases.each do |purchase|
+      purchase.refund
+    end
+  end
 
   def self.subscriber_emails
     joins(:user).pluck(:email)

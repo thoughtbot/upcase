@@ -16,6 +16,7 @@ class SubscriberPurchase
   def create_purchase_record
     purchase = Purchase.new
     purchase.variant = 'individual'
+    purchase.payment_method = 'subscription'
     purchase.paid_price = 0
     purchase.purchaseable = @purchaseable
     purchase.name = @subscriber.name

@@ -62,7 +62,7 @@ feature 'Subscriber accesses content' do
   scenario "can't register for overlapping workshops" do
     online_section = create(:online_section)
     overlapping_section = create(
-      :section,
+      :online_section,
       starts_on: online_section.starts_on,
       ends_on: online_section.ends_on
     )
