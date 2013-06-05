@@ -12,6 +12,8 @@ class Unsubscriber
     end
   end
 
+  private
+
   def deliver_unsubscription_survey
     Mailer.unsubscription_survey(@subscription.user).deliver
   end
