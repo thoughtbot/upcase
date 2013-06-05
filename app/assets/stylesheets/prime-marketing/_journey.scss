@@ -414,6 +414,7 @@
 
       figure {
         opacity: 0;
+        position: absolute;
         @include transform(translate(0, 0) rotate(0deg));
         @include transition(.25s ease);
 

@@ -108,64 +108,6 @@ body.prime-marketing {
   }
 }
 
-// used as a book, workshop, or screenshot card aka one of the stacked figures
-.product-card {
-  background: #fff;
-  border: 1px solid rgb(175, 175, 175);
-  border-radius: .3rem;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
-  display: inline-block;
-  height: 330px;
-  padding: .3rem;
-  position: absolute;
-  width: 230px;
-
-  &.book {
-    height: 318px;
-    padding: 0;
-    width: 246px;
-  }
-
-  h4 {
-    border-radius: 2px;
-    color: #fff;
-    margin-bottom: .3rem;
-    padding: .75rem;
-
-    &.byte-title {
-      color: $darkwarmgray;
-    }
-  }
-
-  &.workshop-online h4 {
-    background: $workshop-online-color;
-  }
-
-  &.workshop-inperson h4 {
-    background: $workshop-inperson-color;
-  }
-
-  &.screencast h4 {
-    background: $screencasts-color;
-  }
-
-  h5, p {
-    margin: .75rem;
-  }
-
-  h5 {
-    font-size: .8rem;
-    margin-top: .3rem;
-    text-transform: uppercase;
-  }
-
-  .note {
-    bottom: 0;
-    font: normal .8rem/1em $sans-serif;
-    position: absolute;
-  }
-}
-
 body.prime-marketing footer {
   margin: 0 auto;
   max-width: 111rem;

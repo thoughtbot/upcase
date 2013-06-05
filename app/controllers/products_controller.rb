@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   def index
+    render layout: 'dashboard'
   end
 
   def show
