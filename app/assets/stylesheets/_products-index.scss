@@ -253,30 +253,70 @@ $product-card-margin: 3rem;
   }
 }
 
+body.products-index .forum {
+  @include box-sizing(content-box);
+  margin: auto;
+  overflow: hidden;
+  padding: 0 $product-card-margin;
+  position: relative;
+  @include product-card-widths(3);
+
+  @media screen and (max-width: 1560px) {
+    width: 55%;
+  }
+
+  p, a {
+    color: $darkwarmgray;
+    font: 700 1.6rem/1.2em $sans-serif;
+  }
+
+  a {
+    border-bottom: 1px solid $darkwarmgray;
+    display: inline-block;
+    font-weight: 100;
+    padding-bottom: 2px;
+
+    span {
+      @include transition(.25s);
+    }
+
+    &:hover span {
+      margin-left: .25rem;
+    }
+  }
+}
+
 body.products-index .reading {
+  @include box-sizing(content-box);
+  margin: auto;
+  overflow: auto;
+  padding: $product-card-margin;
+  @include product-card-widths(5);
+
   %light-button {
     background: $lightwarmgray;
     border-bottom: 2px solid darken($lightwarmgray, 10%);
     border-radius: 0 0 3px 3px;
     color: $darkwarmgray;
     font: 600 1.2rem/1.2em $sans-serif;
-    padding: 1.5rem 2rem;
-  }
+    padding: 1.25rem 1.75rem;
+    @include transition;
 
-  background: $warmgray;
+    &:hover {
+      background: lighten($lightwarmgray, 2%);
+    }
 
-  .reading-wrapper {
-    @include box-sizing(content-box);
-    margin: auto;
-    padding: $product-card-margin;
-    @include product-card-widths(5);
-    overflow: auto;
+    &:active {
+      @include transition(none);
+      background: darken($lightwarmgray, 6%);
+      border-bottom-color: transparent;
+      @include transform(translateY(2px));
+    }
   }
 
   .list {
     background: white;
     border-radius: 3px;
-    float: left;
     overflow: auto;
     padding: .25rem .25rem 1rem;
   }
@@ -295,8 +335,9 @@ body.products-index .reading {
   }
 
   .bytes {
-    @include product-card-widths(3, width);
+    float: left;
     margin-right: 3rem;
+    @include product-card-widths(3, width);
 
     @media screen and (max-width: 1560px) {
       margin-right: 0;
@@ -332,8 +373,8 @@ body.products-index .reading {
   }
 
   .books {
-    @include product-card-widths(2, width);
     float: right;
+    @include product-card-widths(2, width);
 
     @media screen and (max-width: 1560px) {
       width: 40%;
