@@ -4,7 +4,7 @@ $(function() {
     var card_width = $('.product-card:first').outerWidth(true) + 4;
 
     function slider_at_beginning(slider) {
-      return parseInt(slider.find('.product-card:first').css('margin-left'), 10) >= 0;
+      return parseInt(slider.find('.product-card:first').position().left - slider.find('.nav.prev').width(), 10) == 0;
     }
 
     function slider_at_end(slider) {
@@ -24,8 +24,12 @@ $(function() {
 
     function slide_one_card(slider) {
       if (!slider_at_end(slider) || !slider_at_beginning(slider)) {
-        slider.children('.product-card:first').css({
-          'margin-left': parseInt(- card_width * slider.data('index'), 10)+'px'
+        var value = 'translateX('+parseInt(- card_width * slider.data('index'), 10)+'px)';
+        slider.children('.product-card').css({
+          'transform'         : value,
+          '-webkit-transform' : value,
+          '-moz-transform'    : value,
+          '-ms-transform'     : value
         });
       }
     }
