@@ -12,7 +12,7 @@ feature 'User cancels a subscription', js: true do
     @current_user.should have_active_subscription
     visit products_path
     expect(find('.header-container')).not_to have_content('Prime Membership')
-    click_link 'A Cool Workshop'
+    click_workshop_detail_link
     expect(page).to have_content I18n.t('workshops.show.free_to_subscribers')
     expect(page).not_to have_link('Subscribe to Prime')
 
@@ -27,11 +27,14 @@ feature 'User cancels a subscription', js: true do
     @current_user.reload
     @current_user.should_not have_active_subscription
     visit products_path
-    expect(find('.header-container')).to have_content('Prime Membership')
-    click_link 'A Cool Workshop'
+    click_workshop_detail_link
     expect(page).not_to have_content I18n.t('workshops.show.free_to_subscribers')
     click_link 'Subscribe to Prime'
     expect(page).to have_content('Thank you for purchasing Prime')
     expect(page).to have_content('You stopped subscribing to Prime')
+  end
+
+  def click_workshop_detail_link
+    click_link 'Learn More'
   end
 end
