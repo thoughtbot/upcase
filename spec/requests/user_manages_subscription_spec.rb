@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 feature 'User creates a subscription' do
+
   VALID_SANDBOX_CREDIT_CARD_NUMBER = '4111111111111111'
 
   background do
@@ -33,14 +34,14 @@ feature 'User creates a subscription' do
 
   scenario 'does not see the option to pay with paypal' do
     visit_subscription_product_page
-    click_purchase_link
+    click_prime_call_to_action_in_header
 
     expect(page).not_to have_css('#purchase_payment_method_paypal')
   end
 
   scenario 'does not see the coupon functionality' do
     visit_subscription_product_page
-    click_purchase_link
+    click_prime_call_to_action_in_header
 
     expect(page).not_to have_content('Have a coupon code?')
   end
@@ -60,7 +61,7 @@ feature 'User creates a subscription' do
     current_user.save!
 
     visit_subscription_product_page
-    click_purchase_link
+    click_prime_call_to_action_in_header
 
     expect(page).not_to have_content('GitHub username')
     expect(page).not_to have_css('input#github_username_1')
@@ -214,13 +215,9 @@ feature 'User creates a subscription' do
 
   def start_purchasing_subscription
     visit_subscription_product_page
-    click_purchase_link
+    click_prime_call_to_action_in_header
 
-    click_link 'first-cta'
-  end
-
-  def click_purchase_link
-    click_link 'Prime Membership'
+    click_landing_page_call_to_action
   end
 
   def current_user

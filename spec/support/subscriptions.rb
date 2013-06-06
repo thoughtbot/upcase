@@ -3,4 +3,12 @@ module Subscriptions
     @current_user = create(:user, :with_subscription)
     visit products_path(as: @current_user)
   end
+
+  def click_landing_page_call_to_action
+    click_link 'first-cta'
+  end
+
+  def click_prime_call_to_action_in_header
+    click_link 'Prime Membership'
+  end
 end
