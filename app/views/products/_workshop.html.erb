@@ -18,7 +18,7 @@
   <section class="actions">
     <%= link_to 'Learn More', workshop, 'data-role' => workshop_data_role(workshop), class: 'main' %>
     <% if current_user && current_user.has_active_subscription? %>
-      <a href="#">View Forum</a>
+      <%= link_to 'View Forum', 'http://forum.thoughtbot.com' %>
     <% end %>
   </section>
   <span class="notification">New workshop</span>
