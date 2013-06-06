@@ -2,9 +2,6 @@
   <div class="github-signin">
     <%= link_to "Sign in with GitHub", github_auth_path %>
   </div>
-  <div class="or-signin">
-  or
-  </div>
   <div class="thoughtbot-signin">
     <%= semantic_form_for :session, url: session_path do |form| %>
       <%= hidden_field_tag :return_to, params[:return_to] if params[:return_to] %>

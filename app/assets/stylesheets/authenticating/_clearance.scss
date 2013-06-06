@@ -19,39 +19,22 @@ body.sessions,
 body.users-new,
 body.clearance-users {
   #form-container {
-    margin-top: 3em;
-    width: flex-grid(12);
+    margin: auto;
+    width: 300px;
 
-    .github-signin {
-      background: rgba(228, 228, 228, 0.9) center 20px no-repeat url('blacktocat.png');
-      float: left;
-      margin-right: flex-gutter();
-      padding: 160px 0 15px 0;
-      text-align: center;
-      width: flex-grid(5);
-
-      a {
-        color: #4183C4;
-      }
-    }
-
-    .or-signin {
-      color: #ccc;
-      float: left;
-      font: 400 22px $serif;
-      font-style: italic;
-      margin-top: 2em;
-      text-align: center;
-      text-rendering: optimizeLegibility;
-      width: flex-grid(2);
+    .github-signin a {
+      background: #333;
+      border-radius: 3px;
+      color: #4183C4;
+      color: #fff;
+      display: block;
+      font-family: $sans-serif;
+      margin-bottom: 1rem;
+      padding: 1rem;
     }
 
     .thoughtbot-signin {
-      display: inline-block;
-      float: left;
-      margin-left: flex-gutter();
-      width: flex-grid(5);
-      margin-top: -1.75em;
+      display: block;
     }
 
     li {
@@ -89,19 +72,6 @@ body.clearance-users {
         a {
           text-decoration: none;
         }
-      }
-    }
-
-    @media screen and (max-device-width: 600px), screen and (max-width: 600px) {
-      margin-top: 1em;
-
-      .github-signin, .or-signin, .thoughtbot-signin {
-        background: none;
-        display: block;
-        float: none;
-        margin: 0;
-        padding: 1em 24px;
-        width: 100%;
       }
     }
   }
