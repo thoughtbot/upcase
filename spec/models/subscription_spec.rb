@@ -34,6 +34,7 @@ describe Subscription do
 
   describe '.deliver_byte_notifications' do
     it 'initializes the ArticleNotifier with subscriber emails' do
+      inactive_subscription = create(:inactive_subscription)
       subscription = create(:subscription)
       notifier = stub(send_notifications: nil)
       ByteNotifier.stubs(new: notifier)
