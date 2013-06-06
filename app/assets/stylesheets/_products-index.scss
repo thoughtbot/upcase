@@ -1,13 +1,3 @@
-$product-card-width: 14rem;
-$product-card-margin: 3rem;
-
-@mixin product-card-widths($number_of_product_cards, $attribute: max-width, $additional_width: 0) {
-  #{$attribute}: (($product-card-width + $product-card-margin)
-                 * $number_of_product_cards)
-                - $product-card-margin
-                + $additional_width;
-}
-
 #header-wrapper.dashboard {
   background: none;
 
@@ -24,6 +14,7 @@ $product-card-margin: 3rem;
     .small-logo {
       display: inline-block;
       float: none;
+      width: auto;
 
       a {
         color: $learnred;
@@ -52,167 +43,7 @@ $product-card-margin: 3rem;
 
 // used on the marketing page as well
 .product-card {
-  background: #fff;
-  border-bottom: 2px solid rgb(200, 200, 200);
-  border-radius: .3rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
-  display: inline-block;
-  height: 330px;
-  padding: .3rem;
-  position: relative;
-  width: $product-card-width;
-
-  &:hover, &.active {
-    .actions {
-      opacity: 1;
-    }
-  }
-
-  > a {
-    display: block;
-    height: 100%;
-  }
-
-  h4 {
-    border-radius: 2px;
-    color: #fff;
-    margin-bottom: .3rem;
-    padding: .75rem;
-    font-weight: 700;
-
-    &.byte-title {
-      color: $darkwarmgray;
-    }
-  }
-
-  &.workshop-online h4 {
-    background: $workshop-online-color;
-  }
-
-  &.workshop-inperson h4 {
-    background: $workshop-inperson-color;
-  }
-
-  &.screencast h4 {
-    background: $screencasts-color;
-  }
-
-  h5, p {
-    margin: .75rem;
-  }
-
-  h5 {
-    color: rgb(175, 175, 175);
-    font-size: .8rem;
-    text-transform: uppercase;
-  }
-
-  &.book {
-    border: 1px solid rgb(200, 200, 200);
-    height: auto;
-    line-height: 0;
-    padding: 0;
-    width: 246px;
-  }
-
-  .inperson-date {
-    height: 120px;
-    padding: 1rem;
-    background: rgb(220, 220, 220);
-    text-align: center;
-
-    span {
-      color: #606060;
-      font-size: 2rem;
-      font-weight: 800;
-      line-height: 4rem;
-    }
-
-    .month {
-      font-weight: 400;
-    }
-  }
-
-  .note {
-    bottom: 0;
-    font: normal .8rem/1em $sans-serif;
-    position: absolute;
-  }
-
-  .actions {
-    background: rgba(0, 0, 0, .6);
-    border-radius: 3px;
-    opacity: 0;
-    padding: 3.3rem 1.5rem;
-    @include position(absolute, 0px 0px 0px 0px);
-    @include transition(.3s);
-
-    a {
-      background: #7ebe69;
-      border-bottom: 2px solid darken(#7ebe69, 10%);
-      border-radius: 3px;
-      color: #fff;
-      display: block;
-      font: 600 1rem/1.2rem $sans-serif;
-      letter-spacing: 1px;
-      margin-bottom: 1rem;
-      padding: .75rem 1rem;
-      text-align: center;
-      text-shadow: 0 1px 0 rgba(0, 0, 0, .25);
-
-      &:hover {
-        background: lighten(#7ebe69, 8%);
-        border-bottom-color: #7ebe69;
-      }
-
-      &:active {
-        border-bottom-color: transparent;
-        @include transform(translateY(2px));
-      }
-    }
-
-    a.main {
-      background: #f88356;
-      border-bottom: 2px solid darken(#f88356, 10%);
-
-      &:hover {
-        border-bottom-color: #f88356;
-        background: lighten(#f88356, 8%);
-      }
-
-      &:active {
-        border-bottom-color: transparent;
-      }
-    }
-  }
-
-  .notification {
-    background: rgb(255, 252, 187);
-    border: 1px solid rgb(240, 218, 132);
-    border-bottom-width: 2px;
-    border-radius: 3px;
-    color: $darkwarmgray;
-    font: 600 .8rem/1.2em $sans-serif;
-    padding: .5rem 1rem;
-    @include position(absolute, -3rem 0 0 17.5%);
-    text-align: center;
-    text-transform: uppercase;
-    width: 65%;
-
-    // nub
-    &:after {
-      background: rgb(255, 252, 187);
-      border: 1px solid rgb(240, 218, 132);
-      border-width: 0 2px 2px 0;
-      content: '';
-      display: block;
-      height: 10px;
-      margin-left: -7px;
-      @include position(absolute, 0 0 -7px 50%);
-      @include transform(rotate(45deg));
-      width: 10px;
-    }
-  }
+  @extend %product-card;
 }
 
 .card-slider {
@@ -239,7 +70,7 @@ $product-card-margin: 3rem;
 
     &:hover {
       .notification {
-        @include transform(translateY(-.15rem));
+        @include transform(translateY(.15rem));
       }
     }
 

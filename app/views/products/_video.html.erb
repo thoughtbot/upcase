@@ -1,10 +1,11 @@
 <figure class="screencast product-card">
-  <h4><%= video.name %></h4>
-  <%= image_tag('workshop_thumbs/playbook.png') %>
-  <h5>Screencast</h5>
-  <p><%= video.tagline %></p>
-  <section class="actions">
-    <%= link_to 'Learn More', product_path(video), class: 'main' %>
-    <%= render partial: 'forum_link', locals: { current_user: current_user } %>
-  </section>
+  <%= link_to product_path(video), class: 'main' do %>
+    <figure>
+      <%= image_tag('workshop_thumbs/playbook.png') %>
+      <span><%= video.tagline %></span>
+    </figure>
+    <h5>Screencast</h5>
+    <h4><%= video.name %></h4>
+    <span class="notification">New workshop</span>
+  <% end %>
 </figure>

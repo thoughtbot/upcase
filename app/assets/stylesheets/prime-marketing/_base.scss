@@ -57,27 +57,10 @@ body.prime-marketing {
 }
 
 .prime-journey-cta {
-  background: $learnred;
-  border-bottom: .3rem solid darken($learnred, 10%);
-  border-radius: .3rem;
-  display: block;
-  margin-top: 2rem;
-  padding: 1.75rem;
-  position: relative;
-  text-align: center;
-  z-index: 5;
+  @include prime-button;
 
   @include prime-marketing-mobile {
     padding: 1rem;
-  }
-
-  &:hover {
-    background: lighten($learnred, 3%);
-  }
-
-  &:active {
-    border-bottom-color: transparent;
-    @include transform(translateY(.3rem));
   }
 
   h2, p, h3 {
