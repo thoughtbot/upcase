@@ -63,8 +63,12 @@ class Section < ActiveRecord::Base
     upcoming.each &:send_reminders
   end
 
-  def self.send_notifications
-    current.each &:send_notifications
+  def self.send_video_notifications
+    current.each &:send_video_notifications
+  end
+
+  def self.send_surveys
+    current.each &:send_surveys
   end
 
   def self.send_office_hours_reminders
@@ -123,9 +127,15 @@ class Section < ActiveRecord::Base
     end
   end
 
-  def send_notifications
+  def send_video_notifications
     video_notifier = VideoNotifier.new(self, paid_purchases)
     video_notifier.send_notifications_for(videos)
+  end
+
+  def send_surveys
+    ending_student_emails.each do |email|
+      Mailer.workshop_survey(self, email).deliver
+    end
   end
 
   def send_office_hours_reminders
@@ -196,11 +206,21 @@ class Section < ActiveRecord::Base
     end
   end
 
+  def ending_student_emails
+    ending_paid_purchases.collect { |purchase| purchase.email }
+  end
+
   def current_student_emails
     current_paid_purchases.collect { |purchase| purchase.email }
   end
 
   def current_paid_purchases
     paid_purchases.select { |purchase| purchase.active? }
+  end
+
+  def ending_paid_purchases
+    paid_purchases.select do |purchase|
+      purchase.ends_on == Date.today
+    end
   end
 end

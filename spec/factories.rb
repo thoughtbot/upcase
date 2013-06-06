@@ -141,7 +141,7 @@ FactoryGirl.define do
   end
 
   factory :purchase, aliases: [:individual_purchase] do
-    email 'joe@example.com'
+    email
     name 'Test User'
     association :purchaseable, factory: :product
     variant 'individual'
