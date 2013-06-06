@@ -196,16 +196,15 @@ $product-card-margin: 3rem;
 
 .card-slider {
   $slide-button-width: 7.5rem;
-  margin: $product-card-margin auto;
-  overflow: hidden;
-  padding: 0 $slide-button-width;
+  margin: auto;
+  padding: $product-card-margin $slide-button-width;
   position: relative;
   @include product-card-widths(7, max-width, ($slide-button-width * 2));
   white-space: nowrap;
 
   @include dashboard-small {
     overflow-x: scroll;
-    padding: 0 3rem 1rem;
+    padding: $product-card-margin 1rem;
     -webkit-overflow-scrolling: touch;
   }
 
