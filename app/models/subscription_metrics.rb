@@ -39,10 +39,10 @@ class SubscriptionMetrics
   end
 
   def self.canceled_within_period(start_time, end_time)
-    Subscription.where("deactivated_on >= ? and deactivated_on <= ?", start_time, end_time).count.to_f
+    Subscription.paid.where("deactivated_on >= ? and deactivated_on <= ?", start_time, end_time).count.to_f
   end
 
   def self.active_as_of(time)
-    Subscription.where("deactivated_on is null OR deactivated_on > ?", time)
+    Subscription.paid.where("deactivated_on is null OR deactivated_on > ?", time)
   end
 end

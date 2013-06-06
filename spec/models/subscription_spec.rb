@@ -3,6 +3,20 @@ require 'spec_helper'
 describe Subscription do
   it { should delegate(:stripe_customer_id).to(:user) }
 
+  it 'defaults paid to true' do
+    Subscription.new.should be_paid
+  end
+
+  describe 'self.paid' do
+    it 'only includes paid subscriptions' do
+      paid = create(:subscription, paid: true)
+      free = create(:subscription, paid: false)
+
+      Subscription.paid.should_not include(free)
+      Subscription.paid.should include(paid)
+    end
+  end
+
   describe '.deliver_welcome_emails' do
     it 'sends emails for each new subscriber in the last 24 hours' do
       old_subscription = create :subscription, created_at: 25.hours.ago

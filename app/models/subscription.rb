@@ -14,6 +14,10 @@ class Subscription < ActiveRecord::Base
     notifier.send_notifications
   end
 
+  def self.paid
+    where(paid: true)
+  end
+
   def active?
     deactivated_on.nil?
   end
