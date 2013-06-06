@@ -12,10 +12,6 @@ describe 'Products' do
       expect(page).to have_content(workshop_one.name)
       expect(page).to have_content(workshop_two.name)
       expect(page).not_to have_content(private_workshop.name)
-
-      click_link workshop_one.name
-
-      expect(current_path).to eq(workshop_path(workshop_one))
     end
 
     it 'lists all books' do
@@ -28,10 +24,6 @@ describe 'Products' do
       expect(page).to have_css("img[alt='#{book_one.name} cover']")
       expect(page).to have_css("img[alt='#{book_two.name} cover']")
       expect(page).not_to have_css("img[alt='#{inactive_book.name} cover']")
-
-      click_link book_one.name
-
-      expect(current_path).to eq(product_path(book_one))
     end
 
     it 'lists all videos' do
@@ -44,10 +36,6 @@ describe 'Products' do
       expect(page).to have_content(video_one.name)
       expect(page).to have_content(video_two.name)
       expect(page).not_to have_content(inactive_video.name)
-
-      click_link video_one.name
-
-      expect(current_path).to eq(product_path(video_one))
     end
 
     it 'lists the local articles' do
