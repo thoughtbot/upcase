@@ -416,7 +416,7 @@ describe Mailer do
       workshop = create(:workshop, name: 'Workshop name')
       video = create(:video, title: 'Title', position: 2, watchable: workshop)
 
-      email = Mailer.section_notification(email, video)
+      email = Mailer.video_notification(email, video)
 
       expect(email.from).to eq(%w(learn@thoughtbot.com))
       expect(email).to have_subject('[Learn] Workshop name: Title')

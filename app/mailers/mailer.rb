@@ -86,14 +86,14 @@ class Mailer < ActionMailer::Base
     )
   end
 
-  def section_notification(email, item)
-    @item = item
+  def video_notification(email, video)
+    @video = video
 
     mail(
       to: email,
       from: 'learn@thoughtbot.com',
       reply_to: 'learn@thoughtbot.com',
-      subject: "[Learn] #{section_item_name(item)}: #{item.title}"
+      subject: "[Learn] #{video.watchable_name}: #{video.title}"
     )
   end
 
@@ -138,15 +138,5 @@ class Mailer < ActionMailer::Base
       subject: "[Learn] Your #{plan_name} receipt and some tips",
       from: Clearance.configuration.mailer_sender
     )
-  end
-
-  private
-
-  def section_item_name(item)
-    if item.respond_to?(:watchable)
-      item.watchable.name
-    else
-      item.workshop.name
-    end
   end
 end
