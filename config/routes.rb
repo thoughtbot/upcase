@@ -85,6 +85,8 @@ Workshops::Application.routes.draw do
   match '/my_account' => 'users#edit', as: 'my_account'
   match '/sign_up' => 'users#new', as: 'sign_up'
   match '/sign_in' => 'sessions#new', as: 'sign_in'
+  resource :users, controller: 'users'
+  resource :passwords, controller: 'passwords'
 
   mount Split::Dashboard, at: 'split'
 

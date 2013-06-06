@@ -1,3 +1,3 @@
-class PasswordsController < Clearance::UsersController
+class PasswordsController < Clearance::PasswordsController
   layout 'dashboard'
 end
