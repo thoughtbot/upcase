@@ -7,8 +7,8 @@
 
 <section class="forum">
   <p class="forum-desc">Ask questions about any piece of content, get answers from us, collaborate with other members.</p>
-  <%= link_to 'http://forum.thoughtbot.com' do %>
-    View the Prime forum
+  <%= link_to forum_url do %>
+    View the Prime forum <span>&#x27f6;</span>
   <% end %>
 </section>
 
@@ -18,7 +18,7 @@
       <h2>Recommended Reading &mdash; Prime Bytes</h2>
     </header>
     <%= render partial: 'articles/byte', collection: bytes.first(3) %>
-    <%= link_to 'View all Prime Bytes', bytes_path, class: 'bytes-index' %>
+   <%= link_to 'View all Prime Bytes', bytes_path, class: 'bytes-index' %>
   </section>
   <section class="list books">
     <header>

@@ -4,7 +4,7 @@
   <h5>Screencast</h5>
   <p><%= video.tagline %></p>
   <section class="actions">
-    <%= link_to 'Learn More', product_path(video) %>
+    <%= link_to 'Learn More', product_path(video), class: 'main' %>
     <%= render partial: 'forum_link', locals: { current_user: current_user } %>
   </section>
 </figure>
