@@ -12,6 +12,9 @@ $product-card-margin: 3rem;
   background: none;
 
   .header-container {
+    padding-left: 0;
+    padding-right: 0;
+    @include product-card-widths(5);
     text-align: center;
 
     @include dashboard-small {
@@ -24,6 +27,24 @@ $product-card-margin: 3rem;
 
       a {
         color: $learnred;
+      }
+    }
+
+    nav {
+      position: absolute;
+      right: 0;
+      top: 46px;
+      width: auto;
+
+      @include dashboard-large {
+        right: 3rem;
+      }
+
+      @include dashboard-medium {
+        margin: 1rem 0;
+        padding: 0 1rem;
+        position: static;
+        width: 100%;
       }
     }
   }
@@ -197,6 +218,7 @@ $product-card-margin: 3rem;
 .card-slider {
   $slide-button-width: 7.5rem;
   margin: auto;
+  overflow: hidden;
   padding: $product-card-margin $slide-button-width;
   position: relative;
   @include product-card-widths(7, max-width, ($slide-button-width * 2));
