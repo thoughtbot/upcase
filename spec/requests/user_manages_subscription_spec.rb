@@ -215,11 +215,12 @@ feature 'User creates a subscription' do
   def start_purchasing_subscription
     visit_subscription_product_page
     click_purchase_link
-    click_link I18n.t('products.show.purchase_subscription')
+
+    click_link 'first-cta'
   end
 
   def click_purchase_link
-    click_link I18n.t('shared.subscription_call_to_action')
+    click_link 'Prime Membership'
   end
 
   def current_user
