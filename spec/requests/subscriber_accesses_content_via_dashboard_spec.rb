@@ -1,21 +1,11 @@
 require 'spec_helper'
 
 feature 'Subscriber accesses content' do
-  scenario 'accesses a workshop detail page' do
-    workshop = create(:online_workshop)
-    sign_in_as_user_with_subscription
-    click_online_workshop_detail_link
-
-    expect(current_path).to eq workshop_path(workshop)
-  end
-
   scenario 'begins an online workshop' do
     online_section = create(:online_section)
 
     sign_in_as_user_with_subscription
-    within('.workshop-online') do
-      click_link 'Learn More'
-    end
+    click_online_workshop_detail_link
 
     expect(page).to have_content I18n.t('workshops.show.free_to_subscribers')
 
@@ -44,6 +34,16 @@ feature 'Subscriber accesses content' do
         [@current_user.github_username],
         Purchase.last.id
       )
+  end
+
+  scenario 'gets access to a screencast' do
+    video = create(:video_product)
+    sign_in_as_user_with_subscription
+    click_screencast_detail_link
+    click_link 'Get this video'
+    click_button 'Get Access'
+
+    expect(page).to have_content('Watch or Download Video')
   end
 
   scenario "can't register for overlapping workshops" do
@@ -99,6 +99,12 @@ feature 'Subscriber accesses content' do
 
   def click_in_person_workshop_detail_link
     within('.workshop-inperson') do
+      click_link 'Learn More'
+    end
+  end
+
+  def click_screencast_detail_link
+    within('.screencast') do
       click_link 'Learn More'
     end
   end
