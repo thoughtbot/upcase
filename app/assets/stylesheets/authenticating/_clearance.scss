@@ -1,78 +1,75 @@
-body.clearance-passwords {
-  margin: 0 auto;
+#auth-form-container {
+  .github-signin, .thoughtbot-signin form, .signup-forgot {
+    margin: auto;
+    max-width: 400px;
+    padding: 0 1rem;
+  }
 
-  form fieldset ol {
-    li {
-      margin-bottom: flex-gutter();
+  .github-signin a {
+    @include prime-button(#444);
+    display: block;
+    font: 400 1rem/1.2em $sans-serif;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    text-transform: uppercase;
 
-      &#password_email_input {
-        float: left;
-        margin-right: flex-gutter();
-        margin-top: 12px;
-        width: flex-grid(3);
-      }
+    &:after {
+      content: url('/assets/GitHub-Mark-32px.png');
+      height: 32px;
+      left: 14px;
+      margin-top: -15px;
+      position: absolute;
+      top: 50%;
+      width: 32px;
     }
   }
-}
 
-body.sessions,
-body.users-new,
-body.clearance-users {
-  #form-container {
-    margin: auto;
-    width: 300px;
+  .thoughtbot-signin {
+    background: lighten($warmgray, 5%);
+    padding: 2rem 0;
 
-    .github-signin a {
-      background: #333;
-      border-radius: 3px;
-      color: #4183C4;
-      color: #fff;
-      display: block;
-      font-family: $sans-serif;
+    form {
       margin-bottom: 1rem;
-      padding: 1rem;
+    }
+  }
+
+  li {
+    margin: 0 0 .5em;
+
+    &#user_first_name_input {
+      float: left;
+      margin-right: flex-gutter();
+      width: flex-grid(6);
     }
 
-    .thoughtbot-signin {
-      display: block;
+    &#user_last_name_input {
+      float: left;
+      width: flex-grid(6);
     }
+  }
 
-    li {
-      margin: 0 0 .5em;
+  input {
+    margin: .25em 0;
+  }
 
-      &#user_first_name_input {
-        float: left;
-        margin-right: flex-gutter();
-        width: flex-grid(6);
-      }
+  input[type="submit"] {
+    @include prime-button;
+    font: 400 1rem/1.2em $sans-serif;
+    height: auto;
+    letter-spacing: 1px;
+    margin-top: 1rem;
+    padding: 1rem;
+    text-transform: uppercase;
+    width: 100%;
+  }
 
-      &#user_last_name_input {
-        float: left;
-        width: flex-grid(6);
-      }
-    }
+  .signup-forgot > li {
+    display: inline;
+    margin-right: .5rem;
 
-    input {
-      margin: .25em 0;
-    }
-
-    input[type="submit"] {
-      margin-top: 1em;
-      width: 100%;
-    }
-
-    .signup-forgot {
-      clear: both;
-      margin: 0;
-
-      > li {
-        display: inline;
-        margin-right: 20px;
-
-        a {
-          text-decoration: none;
-        }
-      }
+    a {
+      text-decoration: none;
     }
   }
 }

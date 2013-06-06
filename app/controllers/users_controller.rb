@@ -1,6 +1,6 @@
 class UsersController < Clearance::UsersController
   before_filter :authorize, only: [:edit, :update]
-  layout 'dashboard', only: [:new, :create]
+  layout 'dashboard'
 
   def edit
   end

@@ -1,0 +1,28 @@
+@mixin prime-button($color: $learnred) {
+  background: $color;
+  border-bottom: .2rem solid darken($color, 10%);
+  border-radius: .25rem;
+  color: #fff;
+  display: block;
+  margin-top: 2rem;
+  padding: 1.75rem;
+  position: relative;
+  text-align: center;
+  z-index: 5;
+
+  &:hover {
+    background: lighten($color, 3%);
+  }
+
+  &:active {
+    border-bottom-color: transparent;
+    @include transform(translateY(.1rem));
+  }
+}
+
+@mixin product-card-widths($number_of_product_cards, $attribute: max-width, $additional_width: 0) {
+  #{$attribute}: (($product-card-width + $product-card-margin)
+                 * $number_of_product_cards)
+                - $product-card-margin
+                + $additional_width;
+}

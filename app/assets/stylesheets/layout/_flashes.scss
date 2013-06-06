@@ -1,13 +1,16 @@
 .flashes {
-  @include outer-container;
-  max-width: $max-width;
-  padding: 3em 2em 0 2em;
   margin: .5em auto 2em;
+  max-width: $max-width;
+  @include outer-container;
+  padding: 3em 2em 0 2em;
+  text-align: center;
 
   .flash {
     @extend %main-content-box;
     border-width: 0;
+    display: inline-block;
     margin-bottom: 0;
+    padding: 1rem 2rem;
 
     &.failure {
       background: #f8bcba;
@@ -15,7 +18,7 @@
 
     &.notice {
       color: $learnred;
-      font: 400 28px/32px $sans-serif;
+      font: 400 1.2rem/1.2em $sans-serif;
     }
   }
 }
