@@ -4,8 +4,8 @@ feature 'Subscriber accesses content' do
   scenario 'views listing of all products' do
     create_all_product_types
     sign_in_as_user_with_subscription
+    save_and_open_page
 
-    expect(page).to have_content 'Our workshops'
     expect(page).to have_content I18n.t('products.index.subscriber.books')
     expect(page).to have_content I18n.t('products.index.videos')
     expect(page).to have_content I18n.t('products.index.subscriber.bytes')
