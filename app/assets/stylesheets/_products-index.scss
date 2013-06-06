@@ -70,7 +70,7 @@
 
     &:hover {
       .notification {
-        @include transform(translateY(-.15rem));
+        @include transform(translateY(.15rem));
       }
     }
 

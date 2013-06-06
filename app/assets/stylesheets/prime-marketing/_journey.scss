@@ -359,7 +359,7 @@
 
           // animate the fan-out on hover
           &:hover {
-            figure {
+            > figure {
               &:nth-of-type(1) {
                 @include transform(translate(-4rem, -4rem) rotate(-3deg));
 
@@ -412,7 +412,8 @@
         padding: 0 0 1rem 1.5rem;
       }
 
-      figure {
+      .figuregroup > figure {
+        border: 1px solid $warmgray;
         opacity: 0;
         position: absolute;
         @include transform(translate(0, 0) rotate(0deg));
