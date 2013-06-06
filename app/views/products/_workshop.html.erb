@@ -16,11 +16,8 @@
   <% end %>
   <p><%= workshop.short_description %></p>
   <section class="actions">
-    <a href="#" class="main">Begin now</a>
-    <a href="#" class="main">Book now</a>
-    <a href="#" class="main">View Lessons</a>
+    <%= link_to 'Learn More', workshop, 'data-role' => workshop_data_role(workshop), class: 'main' %>
     <a href="#">View Forum</a>
-    <%= link_to 'Info', workshop, 'data-role' => workshop_data_role(workshop) %>
   </section>
   <span class="notification">New workshop</span>
 </figure>
