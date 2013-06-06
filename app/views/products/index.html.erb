@@ -18,7 +18,7 @@
       <h2>Recommended Reading &mdash; Prime Bytes</h2>
     </header>
     <%= render partial: 'articles/byte', collection: bytes.first(3) %>
-    <%= link_to 'View all Prime Bytes', '#', class: 'bytes-index' %>
+    <%= link_to 'View all Prime Bytes', bytes_path, class: 'bytes-index' %>
   </section>
   <section class="list books">
     <header>

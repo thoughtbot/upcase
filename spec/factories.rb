@@ -38,7 +38,7 @@ FactoryGirl.define do
     message 'Foo: http://example.com'
   end
 
-  factory :article do
+  factory :article, aliases: [:byte] do
     body_html 'article body'
     published_on Date.today
     title

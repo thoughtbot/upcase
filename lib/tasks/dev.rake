@@ -8,8 +8,16 @@ namespace :dev do
     require 'factory_girl_rails'
 
     create_products
+    create_bytes
     create_sections_with_workshops
     create_users
+  end
+
+  def create_bytes
+    header 'Bytes'
+
+    FactoryGirl.create(:byte, title: 'How to slow down your test suite')
+    FactoryGirl.create(:byte, title: 'Tips for switching to ed')
   end
 
   def create_products
