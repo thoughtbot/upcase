@@ -1,17 +1,19 @@
 require 'spec_helper'
 
 describe 'products/_workshop.html.erb' do
-  context 'when the user has a Prime subscription' do
-    it 'includes a link to the forum' do
-      render partial: 'products/workshop.html.erb', locals: { workshop: workshop_stub, current_user: user_with_prime }
-      expect(rendered).to include('View Forum')
+  describe 'the forum link' do
+    context 'when the user has a Prime subscription' do
+      it 'includes a link to the forum' do
+        render partial: 'products/workshop.html.erb', locals: { workshop: workshop_stub, current_user: user_with_prime }
+        expect(rendered).to include('View Forum')
+      end
     end
-  end
 
-  context 'when the user does not have a Prime subscription' do
-    it 'does not include a link to the forum' do
-      render partial: 'products/workshop.html.erb', locals: { workshop: workshop_stub, current_user: user_without_prime }
-      expect(rendered).to_not include('View Forum')
+    context 'when the user does not have a Prime subscription' do
+      it 'does not include a link to the forum' do
+        render partial: 'products/workshop.html.erb', locals: { workshop: workshop_stub, current_user: user_without_prime }
+        expect(rendered).to_not include('View Forum')
+      end
     end
   end
 
