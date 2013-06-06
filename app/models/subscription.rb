@@ -29,17 +29,21 @@ class Subscription < ActiveRecord::Base
 
   private
 
-  def deactivate_subscription_purchases
-    user.subscription_purchases.each do |purchase|
-      purchase.refund
-    end
+  def self.subscriber_emails
+    active.joins(:user).pluck(:email)
   end
 
-  def self.subscriber_emails
-    joins(:user).pluck(:email)
+  def self.active
+    where(deactivated_on: nil)
   end
 
   def self.recent
     where('created_at > ?', 24.hours.ago)
+  end
+
+  def deactivate_subscription_purchases
+    user.subscription_purchases.each do |purchase|
+      purchase.refund
+    end
   end
 end
