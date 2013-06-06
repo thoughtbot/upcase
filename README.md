@@ -24,16 +24,21 @@ Learn is a Rails 3 app running on Ruby 1.9 and deployed to Heroku.
 
         $ git clone git@github.com:thoughtbot/learn.git
 
-5. Setup your environment.
+5. Configure the heroku remotes
+
+        $ git remote add staging git@heroku.com:learn-staging.git
+        $ git remote add production git@heroku.com:learn-production.git
+
+6. Setup your environment.
 
         $ rake setup
         $ echo "RACK_ENV=development" >> .env
 
-6. Start Foreman.
+7. Start Foreman.
 
         $ foreman start
 
-7. Verify that the app is up and running.
+8. Verify that the app is up and running.
 
         $ open http://localhost:5000
 
