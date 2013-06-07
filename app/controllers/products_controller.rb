@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_filter :authorize, only: [:index]
+
   def index
     render layout: 'dashboard'
   end

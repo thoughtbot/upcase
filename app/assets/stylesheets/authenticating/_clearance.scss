@@ -1,3 +1,9 @@
+body.users, body.sessions, body.passwords {
+  .header-container nav {
+    display: none;
+  }
+}
+
 #auth-form-container {
   .github-signin, .thoughtbot-signin form, .signup-forgot {
     margin: auto;
@@ -10,7 +16,7 @@
     display: block;
     font: 400 1rem/1.2em $sans-serif;
     letter-spacing: 1px;
-    margin-bottom: 2rem;
+    margin: 2rem 0;
     padding: 1rem;
     text-transform: uppercase;
 
@@ -26,7 +32,6 @@
   }
 
   .thoughtbot-signin {
-    background: lighten($warmgray, 5%);
     padding: 2rem 0;
 
     form {

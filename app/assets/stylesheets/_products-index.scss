@@ -1,126 +1,9 @@
-#header-wrapper.dashboard {
-  background: none;
+body.products-index #header-wrapper .header-container {
+  @include product-card-widths(5);
+  margin-bottom: 2rem;
 
-  .header-container {
-    padding-left: 0;
-    padding-right: 0;
-    @include product-card-widths(5);
-    text-align: center;
-
-    @include dashboard-small {
-      padding-bottom: 0 !important;
-    }
-
-    .small-logo {
-      display: inline-block;
-      float: none;
-      width: auto;
-
-      a {
-        color: $learnred;
-      }
-    }
-
-    nav {
-      position: absolute;
-      right: 0;
-      top: 46px;
-      width: auto;
-
-      @include dashboard-large {
-        right: 3rem;
-      }
-
-      @include dashboard-medium {
-        margin: 1rem 0;
-        padding: 0 1rem;
-        position: static;
-        width: 100%;
-      }
-    }
-  }
-}
-
-// used on the marketing page as well
-.product-card {
-  @extend %product-card;
-}
-
-.card-slider {
-  $slide-button-width: 7.5rem;
-  margin: 0 auto $product-card-margin;
-  overflow: hidden;
-  padding: $product-card-margin $slide-button-width 0;
-  position: relative;
-  @include product-card-widths(7, max-width, ($slide-button-width * 2));
-  white-space: nowrap;
-
-  @include dashboard-small {
-    overflow-x: scroll;
-    padding: $product-card-margin 1rem;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  &.screencasts {
-    margin-top: $product-card-margin;
-    padding-top: 0;
-  }
-
-  > figure {
-    margin-right: $product-card-margin;
-    margin-right: calc(#{$product-card-margin} - 4px); // remove inline-block 4px space issue
-    @include transition(.15s);
-    vertical-align: top;
-    white-space: normal;
-
-    &:hover {
-      .notification {
-        @include transform(translateY(.15rem));
-      }
-    }
-
-    .notification {
-      @include transition(.25s);
-    }
-  }
-
-  .nav {
-    background: url('learn/slider-arrow.svg') no-repeat center $lightwarmgray;
-    background-size: 35px;
-    cursor: pointer;
-    @include position(absolute, 0px 0 0px 0);
-    @include transition(.05s);
-    @include user-select(none);
-    vertical-align: middle;
-    width: $slide-button-width;
-    z-index: 2;
-
-    @include dashboard-small {
-      display: none;
-    }
-
-    &:not(.disabled):hover {
-      background-position: 55% center;
-    }
-
-    &:not(.disabled):active {
-      background-position: 55% center;
-      background-size: 33px;
-    }
-
-    &.disabled {
-      background-image: none;
-      cursor: default;
-    }
-
-    &.prev {
-      left: 0;
-      @include transform(rotate(180deg));
-    }
-
-    &.next {
-      right: 0;
-    }
+  .back {
+    display: none;
   }
 }
 
@@ -172,27 +55,6 @@ body.products-index .reading {
     padding: 5px;
   }
 
-  %light-button {
-    background: $lightwarmgray;
-    border-bottom: 2px solid darken($lightwarmgray, 10%);
-    border-radius: 0 0 3px 3px;
-    color: $darkwarmgray;
-    font: 600 1.2rem/1.2em $sans-serif;
-    padding: 1.25rem 1.75rem;
-    @include transition;
-
-    &:hover {
-      background: lighten($lightwarmgray, 2%);
-    }
-
-    &:active {
-      @include transition(none);
-      background: darken($lightwarmgray, 6%);
-      border-bottom-color: transparent;
-      @include transform(translateY(2px));
-    }
-  }
-
   header {
     border-radius: 3px 3px 0 0;
     margin-bottom: 1rem;
@@ -238,7 +100,7 @@ body.products-index .reading {
     }
 
     .bytes-index {
-      @extend %light-button;
+      @include light-button;
       text-align: center;
     }
   }
@@ -269,7 +131,11 @@ body.products-index .reading {
       }
 
       a {
-        @extend %light-button;
+        @include light-button;
+        background-image: url('learn/slider-arrow.svg');
+        background-position: 95% center;
+        background-repeat: no-repeat;
+        background-size: 15px;
         bottom: 0;
         position: absolute;
         width: 100%;
@@ -283,6 +149,10 @@ body.products-index .reading {
         @include dashboard-small {
           left: 0;
           right: 0;
+        }
+
+        &:hover {
+          background-position: 96% center;
         }
       }
     }
