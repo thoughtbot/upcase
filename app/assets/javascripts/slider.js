@@ -1,14 +1,17 @@
 $(function() {
   if ($('.card-slider').length) {
+    // assign every slider item a slider class
+    $('.card-slider').children(':not(.nav)').addClass('slider-item');
+
     // +4 to account for inline-block 4px space character
-    var card_width = $('.product-card:first').outerWidth(true) + 4;
+    var card_width = $('.slider-item:first').outerWidth(true) + 4;
 
     function slider_at_beginning(slider) {
-      return parseInt(slider.find('.product-card:first').position().left - slider.find('.nav.prev').width(), 10) == 0;
+      return parseInt(slider.find('.slider-item:first').position().left - slider.find('.nav.prev').width(), 10) == 0;
     }
 
     function slider_at_end(slider) {
-      return (slider.find('.product-card:last').position().left / slider.width()) <= 1;
+      return (slider.find('.slider-item:last').position().left / slider.width()) <= 1;
     }
 
     function toggle_nav_items(slider) {
@@ -24,8 +27,8 @@ $(function() {
 
     function slide_one_card(slider) {
       if (!slider_at_end(slider) || !slider_at_beginning(slider)) {
-        var value = 'translateX('+parseInt(- card_width * slider.data('index'), 10)+'px)';
-        slider.children('.product-card').css({
+        var value = 'translateX('+parseInt(- (card_width * 2) * slider.data('index'), 10)+'px)';
+        slider.children('.slider-item').css({
           'transform'         : value,
           '-webkit-transform' : value,
           '-moz-transform'    : value,
@@ -52,9 +55,10 @@ $(function() {
       slide_one_card(slider);
 
       // trigger navigation check after transition end
-      slider.children('.product-card:first').one('webkitTransitionEnd msTransitionEnd transitionend', function() {
+      slider.children('.slider-item:first').one('webkitTransitionEnd msTransitionEnd transitionend', function() {
         toggle_nav_items(slider);
       });
     });
   }
 });
+

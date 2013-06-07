@@ -2,12 +2,11 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require retina
-//= require dropdown
 //= require prettify/prettify
 //= require jquery.jsPlumb-1.4.0-all-min
 //= require waypoints.min
 //= require prime.js
-//= require dashboard.js
+//= require slider.js
 
 $("#total a").click(function() {
   $(".coupon").show();
@@ -40,7 +39,15 @@ function add_fields(link, association, content) {
 }
 
 $(function() {
-  $('.header-container nav li.dropdown > a').dropdown();
   $('pre').addClass('prettyprint');
+
+  if ($('.card-slider.products').length) {
+    $('.all-products .toggle-slider').click(function() {
+      $(this).toggleClass('down');
+      $('.card-slider.products').toggleClass('active');
+      return false;
+    });
+  }
+
   prettyPrint();
 });

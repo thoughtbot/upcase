@@ -12,6 +12,12 @@
           <li><%= link_to '&larr; Dashboard'.html_safe, root_url %></li>
         </ul>
       </nav>
+    <% else %>
+      <nav class="all-products">
+        <ul>
+          <li><%= link_to 'View all our products', '#', class: 'toggle-slider' %></li>
+        </ul>
+      </nav>
     <% end %>
     <nav>
       <ul>
@@ -31,3 +37,14 @@
     </nav>
   </div>
 </section>
+
+<% if subscription_product && !current_user_has_active_subscription? && !signed_in? %>
+  <section class="products card-slider header">
+    <a class="nav prev disabled"></a>
+    <%= render partial: 'products/workshop', collection: online_workshops %>
+    <%= render partial: 'products/workshop', collection: in_person_workshops %>
+    <%= render partial: 'products/video', collection: videos %>
+    <%= render partial: 'products/book', collection: books %>
+    <a class="nav next"></a>
+  </section>
+<% end %>

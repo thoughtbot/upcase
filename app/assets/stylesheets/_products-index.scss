@@ -9,7 +9,7 @@ body.products-index #header-wrapper .header-container {
 
 body.products-index .forum {
   @include box-sizing(content-box);
-  margin: auto;
+  margin: $product-card-margin auto 0;
   overflow: hidden;
   padding: 0 $product-card-margin;
   position: relative;
@@ -188,7 +188,7 @@ body.products-index .reading {
 
     @include dashboard-large {
       margin-right: 0;
-      width: 47%;
+      width: 48%;
     }
 
     @include dashboard-medium {
