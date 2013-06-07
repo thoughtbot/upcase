@@ -5,6 +5,12 @@
   <a class="nav next"></a>
 </section>
 
+<section class="screencasts card-slider">
+  <a class="nav prev"></a>
+  <%= render partial: 'products/video', collection: videos %>
+  <a class="nav next"></a>
+</section>
+
 <section class="forum">
   <p class="forum-desc">Ask questions about any piece of content, get answers from us, collaborate with other members.</p>
   <%= link_to forum_url do %>
@@ -26,10 +32,4 @@
     </header>
     <%= render partial: 'products/book', collection: books %>
   </section>
-</section>
-
-<section class="screencasts card-slider">
-  <a class="nav prev"></a>
-  <%= render partial: 'products/video', collection: videos %>
-  <a class="nav next"></a>
 </section>

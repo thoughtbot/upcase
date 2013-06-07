@@ -28,14 +28,14 @@
         </h1>
         <nav>
           <ul>
-            <% if subscription_product && !current_user_has_active_subscription? %>
-              <li class="prime">
-                <%= link_to prime_path do %>
-                  <span><%= t('shared.subscriptions.icon') %></span> Prime Membership
-                <% end %>
-              </li>
-            <% end %>
             <% if signed_in? %>
+              <% if subscription_product && !current_user_has_active_subscription? %>
+                <li class="prime">
+                  <%= link_to prime_path do %>
+                    <span><%= t('shared.subscriptions.icon') %></span> <%= subscription_product.name %> Membership
+                  <% end %>
+                </li>
+              <% end %>
               <li class="account"><%= link_to 'Settings', my_account_path %></li>
             <% end %>
           </ul>

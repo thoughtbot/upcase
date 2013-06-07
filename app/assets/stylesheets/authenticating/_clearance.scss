@@ -1,108 +1,75 @@
-body.clearance-passwords {
-  margin: 0 auto;
+#auth-form-container {
+  .github-signin, .thoughtbot-signin form, .signup-forgot {
+    margin: auto;
+    max-width: 400px;
+    padding: 0 1rem;
+  }
 
-  form fieldset ol {
-    li {
-      margin-bottom: flex-gutter();
+  .github-signin a {
+    @include prime-button(#444);
+    display: block;
+    font: 400 1rem/1.2em $sans-serif;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    text-transform: uppercase;
 
-      &#password_email_input {
-        float: left;
-        margin-right: flex-gutter();
-        margin-top: 12px;
-        width: flex-grid(3);
-      }
+    &:after {
+      content: url('/assets/GitHub-Mark-32px.png');
+      height: 32px;
+      left: 14px;
+      margin-top: -15px;
+      position: absolute;
+      top: 50%;
+      width: 32px;
     }
   }
-}
 
-body.sessions,
-body.users-new,
-body.clearance-users {
-  #form-container {
-    margin-top: 3em;
-    width: flex-grid(12);
+  .thoughtbot-signin {
+    background: lighten($warmgray, 5%);
+    padding: 2rem 0;
 
-    .github-signin {
-      background: rgba(228, 228, 228, 0.9) center 20px no-repeat url('blacktocat.png');
+    form {
+      margin-bottom: 1rem;
+    }
+  }
+
+  li {
+    margin: 0 0 .5em;
+
+    &#user_first_name_input {
       float: left;
       margin-right: flex-gutter();
-      padding: 160px 0 15px 0;
-      text-align: center;
-      width: flex-grid(5);
-
-      a {
-        color: #4183C4;
-      }
+      width: flex-grid(6);
     }
 
-    .or-signin {
-      color: #ccc;
+    &#user_last_name_input {
       float: left;
-      font: 400 22px $serif;
-      font-style: italic;
-      margin-top: 2em;
-      text-align: center;
-      text-rendering: optimizeLegibility;
-      width: flex-grid(2);
+      width: flex-grid(6);
     }
+  }
 
-    .thoughtbot-signin {
-      display: inline-block;
-      float: left;
-      margin-left: flex-gutter();
-      width: flex-grid(5);
-      margin-top: -1.75em;
-    }
+  input {
+    margin: .25em 0;
+  }
 
-    li {
-      margin: 0 0 .5em;
+  input[type="submit"] {
+    @include prime-button;
+    font: 400 1rem/1.2em $sans-serif;
+    height: auto;
+    letter-spacing: 1px;
+    margin-top: 1rem;
+    padding: 1rem;
+    text-transform: uppercase;
+    width: 100%;
+  }
 
-      &#user_first_name_input {
-        float: left;
-        margin-right: flex-gutter();
-        width: flex-grid(6);
-      }
+  .signup-forgot > li {
+    display: inline;
+    margin-right: .5rem;
 
-      &#user_last_name_input {
-        float: left;
-        width: flex-grid(6);
-      }
-    }
-
-    input {
-      margin: .25em 0;
-    }
-
-    input[type="submit"] {
-      margin-top: 1em;
-      width: 100%;
-    }
-
-    .signup-forgot {
-      clear: both;
-      margin: 0;
-
-      > li {
-        display: inline;
-        margin-right: 20px;
-
-        a {
-          text-decoration: none;
-        }
-      }
-    }
-
-    @media screen and (max-device-width: 600px), screen and (max-width: 600px) {
-      margin-top: 1em;
-
-      .github-signin, .or-signin, .thoughtbot-signin {
-        background: none;
-        display: block;
-        float: none;
-        margin: 0;
-        padding: 1em 24px;
-        width: 100%;
-      }
+    a {
+      text-decoration: none;
     }
   }
 }
