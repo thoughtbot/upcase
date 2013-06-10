@@ -16,10 +16,6 @@ Then /^I should not see the external registration link$/ do
   page.should have_no_css("#register-button")
 end
 
-Then /^I should a registration link to be notified$/ do
-  page.should have_css(".button[href='#new_follow_up']", text: "Get notified")
-end
-
 Then 'I see the section from "$start_date" to "$end_date"' do |start_date, end_date|
   section = section(start_date, end_date)
   workshop = section.workshop

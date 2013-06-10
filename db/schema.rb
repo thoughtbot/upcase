@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130606011005) do
+ActiveRecord::Schema.define(:version => 20130610210831) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -357,7 +357,7 @@ ActiveRecord::Schema.define(:version => 20130606011005) do
     t.text     "description"
     t.time     "start_at"
     t.time     "stop_at"
-    t.integer  "maximum_students",          :default => 12,    :null => false
+    t.integer  "maximum_students"
     t.boolean  "active",                    :default => true,  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"

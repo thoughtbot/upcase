@@ -110,7 +110,11 @@ class Section < ActiveRecord::Base
   end
 
   def full?
-    purchases.count >= seats_available
+    if seats_available.present?
+      purchases.count >= seats_available
+    else
+      false
+    end
   end
 
   def location

@@ -15,7 +15,6 @@ class Workshop < ActiveRecord::Base
 
   # Validations
   validates :description, presence: true
-  validates :maximum_students, presence: true
   validates :name, presence: true
   validates :individual_price, presence: true
   validates :company_price, presence: true
