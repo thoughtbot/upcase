@@ -242,8 +242,8 @@ describe Section do
     end
   end
 
-  describe '.send_notifications' do
-    it 'sends notifications for each current section' do
+  describe '.send_video_notifications' do
+    it 'sends video notifications for each current section' do
       notifier = stub(send_notifications_for: nil)
       VideoNotifier.stubs(new: notifier)
 
@@ -256,7 +256,7 @@ describe Section do
 
       video = create(:video, watchable: workshop)
 
-      Section.send_notifications
+      Section.send_video_notifications
 
       expect(VideoNotifier).to have_received(:new).with(current, [current_purchase])
       expect(notifier).to have_received(:send_notifications_for).with([video])
@@ -264,14 +264,14 @@ describe Section do
       expect(VideoNotifier).to have_received(:new).with(future, [future_purchase]).never
     end
 
-    it 'sends notifications for each current purchase to an rolling section' do
+    it 'sends video notifications for each current purchase to an rolling section' do
       notifier = stub(send_notifications_for: nil)
       VideoNotifier.stubs(new: notifier)
       current = create(:online_section, starts_on: 30.days.ago, ends_on: nil)
       current_purchase = create(:paid_purchase, purchaseable: current, created_at: 3.days.ago)
       video = create(:video, watchable: current.workshop, active_on_day: 3)
 
-      Section.send_notifications
+      Section.send_video_notifications
 
       expect(VideoNotifier).to have_received(:new).with(current, [current_purchase])
       expect(notifier).to have_received(:send_notifications_for).with([video])
@@ -312,6 +312,71 @@ describe Section do
         with(future, future_purchase.email).never
       expect(Mailer).to have_received(:office_hours_reminder).
         with(current_no_hours, current_no_hours_purchase.email).never
+    end
+  end
+
+  describe '.send_surveys' do
+    it 'sends a survey to students who finish a workshop today' do
+      workshop = create(:workshop, length_in_days: 2)
+      future = create(:future_section, workshop: workshop)
+      ongoing = create(
+        :section,
+        workshop: workshop,
+        starts_on: Date.today,
+        ends_on: nil
+      )
+      future_purchase = create(:paid_purchase, purchaseable: future)
+      current_purchase = create(:paid_purchase, purchaseable: ongoing)
+      next_purchase = create(:paid_purchase, purchaseable: ongoing, created_at: Date.tomorrow)
+
+      should_not_send_a_survey_to([
+        current_purchase,
+        future_purchase,
+        next_purchase
+      ])
+
+      Timecop.freeze(2.days.from_now) do
+        should_send_a_survey_to([current_purchase])
+        should_not_send_a_survey_to([
+          future_purchase,
+          next_purchase
+        ])
+      end
+
+      Timecop.freeze(3.days.from_now) do
+        should_send_a_survey_to([next_purchase])
+        should_not_send_a_survey_to([
+          future_purchase,
+          current_purchase
+        ])
+      end
+    end
+
+    def should_send_a_survey_to(purchases)
+      clear_deliveries_and_send_surveys
+
+      purchases.each do |purchase|
+        check_for_survey_email(purchase).should eq true
+      end
+    end
+
+    def should_not_send_a_survey_to(purchases)
+      clear_deliveries_and_send_surveys
+
+      purchases.each do |purchase|
+        check_for_survey_email(purchase).should eq false
+      end
+    end
+
+    def clear_deliveries_and_send_surveys
+      ActionMailer::Base.deliveries.clear
+      Section.send_surveys
+    end
+
+    def check_for_survey_email(purchase)
+      ActionMailer::Base.deliveries.any? do |email|
+        email.to == [purchase.email] && email.subject =~ /how we did/i
+      end
     end
   end
 
