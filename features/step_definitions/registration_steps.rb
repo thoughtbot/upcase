@@ -13,12 +13,6 @@ Given /^"([^"]*)" has registered for "([^"]*)"$/ do |email, workshop_name|
   }
 end
 
-Given /^"([^"]*)" has (\d+) registrations$/ do |workshop_name, count|
-  workshop = Workshop.find_by_name!(workshop_name)
-  section = workshop.sections.first
-  count.to_i.times { create(:free_purchase, purchaseable: section) }
-end
-
 Then /^I workshops is notified of my registration$/ do
   open_email("learn@thoughtbot.com", with_text: /just registered for/)
 end

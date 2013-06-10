@@ -88,6 +88,43 @@ describe Section do
     end
   end
 
+  describe '#full?' do
+    context 'when seats_available and maximum_students is not set' do
+      it 'returns false no matter how many registrations there are' do
+        workshop = create(:workshop, maximum_students: nil)
+        section = create(:section, workshop: workshop, seats_available: nil)
+
+        section.stubs(purchases: stub(count: 0))
+
+        section.should_not be_full
+
+        section.stubs(purchases: stub(count: 300))
+
+        section.should_not be_full
+      end
+    end
+
+    context 'when there are a limited number of seats' do
+      it 'returns true if all the seats are taken' do
+        workshop = create(:workshop, maximum_students: 8)
+        section = create(:section, workshop: workshop)
+
+        section.stubs(purchases: stub(count: 8))
+
+        section.should be_full
+      end
+
+      it 'returns false if all the seats are not taken' do
+        workshop = create(:workshop, maximum_students: 8)
+        section = create(:section, workshop: workshop)
+
+        section.stubs(purchases: stub(count: 2))
+
+        section.should_not be_full
+      end
+    end
+  end
+
   describe '#send_reminders' do
     it 'sends reminder emails to all paid registrants' do
       section = create(:section)

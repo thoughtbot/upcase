@@ -103,36 +103,6 @@ Feature: Viewing upcoming workshop details
     And I follow "Test-Driven Haskell"
     Then I should see that "Joe Teacher" is teaching both sections
 
-  Scenario: Viewing a workshop that is full
-    Given today is June 10, 2010
-    And the following workshop exists:
-      | name                | maximum students |
-      | Test-Driven Haskell | 5                |
-    And the following section exists:
-      | workshop                  | starts on     | ends on       |
-      | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
-    And "Test-Driven Haskell" has 5 registrations
-    When I view all products
-    And I follow "Test-Driven Haskell"
-    Then I should a registration link to be notified
-    And I should see "Sold Out"
-    And I should see "Want to be notified the next time we run this workshop?"
-
-  Scenario: Viewing a smaller section that is full
-    Given today is June 10, 2010
-    And the following workshop exists:
-      | name                | maximum students |
-      | Test-Driven Haskell | 20               |
-    And the following section exists:
-      | workshop                  | starts on     | ends on       | seats available |
-      | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 | 5               |
-    And "Test-Driven Haskell" has 5 registrations
-    When I view all products
-    And I follow "Test-Driven Haskell"
-    Then I should a registration link to be notified
-    And I should see "Sold Out"
-    And I should see "Want to be notified the next time we run this workshop?"
-
   Scenario: Viewing an online workshop
     Given today is June 10, 2010
     And the following workshop exists:

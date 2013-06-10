@@ -13,7 +13,6 @@ describe Workshop do
 
   # Validations
   it { should validate_presence_of(:description) }
-  it { should validate_presence_of(:maximum_students) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:individual_price) }
   it { should validate_presence_of(:company_price) }
