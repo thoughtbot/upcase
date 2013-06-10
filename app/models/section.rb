@@ -124,8 +124,8 @@ class Section < ActiveRecord::Base
   end
 
   def send_notifications
-    notifier = SectionNotifier.new(self, paid_purchases)
-    notifier.send_notifications_for(videos)
+    video_notifier = VideoNotifier.new(self, paid_purchases)
+    video_notifier.send_notifications_for(videos)
   end
 
   def send_office_hours_reminders
