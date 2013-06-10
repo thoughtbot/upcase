@@ -9,6 +9,16 @@
   <script src="//d1nu2rn22elx8m.cloudfront.net/performable/pax/3tbRq2.js" type="text/javascript"></script>
 <% end %>
 
+<% unless Rails.env.test? %>
+  <script type="text/javascript">
+    (function() {
+     var st = document.createElement('script'); st.type = 'text/javascript'; st.async = true;
+     st.src = 'https://platform.readmill.com/send.js';
+     var p = document.getElementsByTagName('script')[0]; p.parentNode.insertBefore(st, p);
+     })();
+   </script>
+<% end %>
+
 <% if Rails.env.test? || Rails.env.cucumber? %>
   <%= javascript_tag do %>
     jQuery.fx.off = true;
