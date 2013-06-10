@@ -9,8 +9,17 @@
       <% end %>
       <%= link_to 'Download for Kindle', kindle_url(purchaseable), class: 'button' %>
       <%= link_to 'Download as PDF', pdf_url(purchaseable), class: 'button' %>
-      <!-- <a class="button readmill" href="">Send to Readmill</a> -->
-      <p><%= link_to 'See all formats on GitHub', book_releases_url(purchaseable) %></p>
+      <div class="readmill">
+        <a
+          class="send-to-readmill"
+          href="https://readmill.com"
+          data-download-url="<%=u epub_url(purchaseable) %>"
+          data-buy-url="<%=u product_url(purchaseable) %>"
+          data-display="small">
+        </a>
+        <span>to Readmill</span>
+      </div>
+      <%= link_to 'See all formats on GitHub &rarr;'.html_safe, book_releases_url(purchaseable), class: 'view-github' %>
     </section>
   <% end %>
 

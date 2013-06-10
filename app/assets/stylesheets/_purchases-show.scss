@@ -134,18 +134,27 @@ body.purchases-show {
     }
 
     .readmill {
-      background: #58852c;
-      border-color: darken(#58852c, 20%);
+      border-radius: 3px;
+      @include box-sizing(content-box);
+      height: 26px;
+      line-height: 26px;
+      padding: .75rem;
+      text-align: center;
 
-      &:hover {
-        background: lighten(#58852c, 5%);
-        border-color: darken(#58852c, 15%);
+      span {
+        color: $darkwarmgray;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 26px;
+        margin-left: .5rem;
+        @include position(relative, -.5rem 0 0 0);
+        text-transform: uppercase;
       }
+    }
 
-      &:active {
-        background: darken(#58852c, 5%);
-        border-color: darken(#58852c, 25%);
-      }
+    .view-github {
+      display: block;
+      margin-top: 1rem;
     }
   }
 
