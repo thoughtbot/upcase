@@ -122,6 +122,10 @@ class Workshop < ActiveRecord::Base
     github_team.present?
   end
 
+  def starts_immediately?
+    active_section.try(:starts_immediately?)
+  end
+
   private
 
   def alternate_workshop
