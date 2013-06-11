@@ -1,0 +1,14 @@
+<%= content_tag :section,
+  :class => 'steps-complete',
+  'data-trail-name' => trail.name,
+  'data-complete' => '',
+  'data-total' => trail.total do %>
+    <h2 class="text-complete"></h2>
+    <div class="dots">
+      <% trail.steps.each do |step| %>
+        <% (step['resources'].to_a + step['validations'].to_a).each do |item| %>
+          <figure data-id="<%= item['id'] %>" class="trail-bullet"></figure>
+        <% end %>
+      <% end %>
+    </div>
+<% end %>

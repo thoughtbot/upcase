@@ -43,7 +43,7 @@ When /^I sign up with the following:$/ do |table|
   fill_in 'user_last_name', with: user_info['last_name']
   fill_in 'Email', with: user_info['email']
   fill_in 'Password', with: user_info['password']
-  click_button 'Sign up'
+  click_button 'Create an account'
 end
 
 # Sign in

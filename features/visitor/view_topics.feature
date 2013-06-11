@@ -33,17 +33,10 @@ Feature: View topics
     Then I should see "Book 1" within "aside .book"
     Then I should see "Video 1" within "aside .video"
     Then I should not see "Video Inactive" within "aside"
-    And I follow "View all Topic 1 articles"
+    And I follow "View related Giant Robots articles"
     Then I should see "workshop 1" within "aside .workshop"
     Then I should see "Book 1" within "aside .book"
     Then I should see "Video 1" within "aside .video"
-    And I should see "View all products" within "aside"
-
-  Scenario: View a link to all products if there are no related products
-    Given a featured topic named "Topic 1"
-    When I go to the topics page
-    And I follow "Topic 1"
-    Then I should see "View all products" within "aside"
 
   Scenario: View the type for a topic's related products
     Given a featured topic named "Rails"
@@ -53,17 +46,3 @@ Feature: View topics
     And I follow "Rails"
     Then I should see that the related workshop "In-Person Rails" is in-person
     And I should see that the related workshop "Online Rails" is online
-
-  Scenario: View a topic with an article
-    Given a featured topic named "Topic 1"
-    And an article for topic "Topic 1"
-    When I go to the topics page
-    And I follow "Topic 1"
-    Then the related reading section should include the article.
-
-  Scenario: Learn about a topic
-    Given a featured topic named "Ruby on Rails"
-    And a trail-map for "ruby+on+rails"
-    When I go to the topics page
-    And I follow "Ruby on Rails"
-    And I should see a trail-map for "ruby+on+rails"

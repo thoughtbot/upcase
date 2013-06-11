@@ -9,13 +9,14 @@ describe 'Articles' do
       other_article = create(:article)
 
       visit topic_path(featured_topic)
-      click_link 'View all Topic 1 articles'
+      click_link 'View related Giant Robots articles'
 
       expect(page).to have_content(article.title)
       expect(page).not_to have_content(other_article.title)
+      expect(page).not_to have_content('Back to Trail')
     end
 
-    it 'links external articles and indicates subscription articles' do
+    it 'links external articles' do
       topic = create(:topic)
       article = create(:article)
       topic.articles << article
@@ -23,6 +24,19 @@ describe 'Articles' do
       visit topic_articles_url(topic)
 
       expect(page).to have_css("a[href='#{article.external_url}']")
+    end
+  end
+
+  context 'show' do
+    it 'displays a link back to the trail for topics with trails' do
+      trail = create(:trail)
+      topic = trail.topic
+      article = create(:article)
+      topic.articles << article
+
+      visit topic_articles_path(topic)
+
+      expect(page).to have_content('Back to Trail')
     end
   end
 end

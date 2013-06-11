@@ -8,3 +8,20 @@
   padding: 24px;
   position: relative;
 }
+
+%trail-bullet {
+  background: transparent;
+  border: 2px solid darken($journey-line-color, 12%);
+  border-radius: 100%;
+  @include box-sizing(border-box);
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+%trail-bullet-complete {
+  background: url(/assets/check.svg) darken($journey-line-color, 12%) center center no-repeat;
+  background-size: .9rem;
+  border-color: transparent;
+  color: #fff;
+  text-align: center;
+}

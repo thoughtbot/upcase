@@ -58,6 +58,6 @@ feature 'Visitor is asked to create a user before subscription' do
     fill_in 'Last name', with: user.last_name
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
-    click_button 'Sign up'
+    click_button 'Create an account'
   end
 end

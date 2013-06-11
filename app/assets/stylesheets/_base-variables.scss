@@ -15,6 +15,9 @@ $workshop-online-color: #d75222;
 $workshop-inperson-color: #ce3b21;
 $screencasts-color: #5c84cb;
 
+$journey-line-color: lighten($warmgray, 6%);
+$bullet-size: 70px;
+
 $lh: 24px; /*line-height of all the type on the site*/
 $unit: 60px; /*one grid column*/
 $gutter: 25px; /*size of one gutter*/
@@ -29,4 +32,3 @@ $list-style: circle;
 $product-card-width: 14rem;
 $product-card-margin: 3rem;
 $slide-button-width: 7.5rem;
-

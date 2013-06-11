@@ -1,14 +1,3 @@
-body.users-new,
-body.users-create,
-body.sessions-new,
-body.sessions-create,
-body.passwords-new,
-body.passwords-create {
-  .header-container nav {
-    display: none;
-  }
-}
-
 #auth-form-container {
   .github-signin, .thoughtbot-signin form, .signup-forgot {
     margin: auto;

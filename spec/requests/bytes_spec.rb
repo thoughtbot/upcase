@@ -11,6 +11,20 @@ describe 'Bytes' do
       expect(page).not_to have_css("a[href='#{byte_path(draft)}']")
       expect(page).to have_css("a[href='#{byte_path(byte)}']")
     end
+
+    it 'displays just the bytes for a topic' do
+      byte = create(:byte)
+      draft = create(:byte, draft: true)
+      topic = create(:topic)
+      topic.bytes << byte
+      topic.bytes << draft
+
+      visit topic_bytes_path(topic)
+
+      expect(page).to have_content "#{topic.name} Bytes"
+      expect(page).not_to have_css("a[href='#{byte_path(draft)}']")
+      expect(page).to have_css("a[href='#{byte_path(byte)}']")
+    end
   end
 
   context 'show' do
@@ -24,6 +38,18 @@ describe 'Bytes' do
       expect(page.find('.body').native.inner_html).to include byte.body_html
       expect(page).to have_content(byte.published_on.to_s(:simple))
       expect(page).to have_css("meta[name='Description'][content='#{byte.title}']")
+      expect(page).not_to have_content('Back to Trail')
+    end
+
+    it 'displays a link back to the trail for topics with trails' do
+      trail = create(:trail)
+      topic = trail.topic
+      byte = create(:byte)
+      topic.bytes << byte
+
+      visit topic_bytes_path(topic)
+
+      expect(page).to have_content('Back to Trail')
     end
 
     it 'displays the related topics, products and workshops' do

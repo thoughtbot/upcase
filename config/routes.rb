@@ -6,6 +6,11 @@ Workshops::Application.routes.draw do
   root to: 'homes#show'
 
   match '/api/v1/me.json' => 'api/v1/users#show', as: :resource_owner
+  namespace :api do
+    namespace :v1 do
+      resources :completions, only: [:index, :show, :create, :destroy]
+    end
+  end
 
   match '/pages/tmux' => redirect('/products/4-humans-present-tmux')
 
@@ -99,4 +104,5 @@ Workshops::Application.routes.draw do
 
   get ':id' => 'topics#show', as: :topic
   match '/:id/articles' => 'articles#index', as: 'topic_articles'
+  match '/:topic_id/bytes' => 'topics/bytes#index', as: 'topic_bytes'
 end
