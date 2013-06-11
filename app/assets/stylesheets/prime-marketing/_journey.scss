@@ -417,6 +417,11 @@
         @include transform(translate(0, 0) rotate(0deg));
         @include transition(.25s ease);
 
+        > a {
+          display: block;
+          height: 100%;
+        }
+
         // stack the cards
         @for $i from 0 through 2 {
           &:nth-of-type(#{$i + 1}) {
