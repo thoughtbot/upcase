@@ -14,10 +14,6 @@ input[type="submit"] {
   padding: 13px 30px 0 30px;
 }
 
-.button {
-  padding-top: 13px;
-}
-
 input[type="submit"] {
   padding-top: 6px;
 }
@@ -28,14 +24,23 @@ input[type="submit"] {
   border-radius: 3px;
   color: white;
   display: inline-block;
-  font: 700 13px $sans-serif;
+  font: 600 14px/1.4em $sans-serif;
   height: 44px;
   margin: 0 auto;
+  padding: .75em 1em;
   text-align:center;
   text-transform: uppercase;
 
   &:hover {
     background-color: #C42107;
+  }
+
+
+  &[disabled] {
+    background-color: $lightwarmgray;
+    border-bottom: 4px solid $warmgray;
+    color: $warmgray;
+    cursor: wait;
   }
 
   a {
@@ -46,11 +51,8 @@ input[type="submit"] {
     width: 100%;
   }
 
-  &[disabled] {
-    background-color: $lightwarmgray;
-    border-bottom: 4px solid $warmgray;
-    color: $warmgray;
-    cursor: wait;
+  span {
+    font-weight: 100;
   }
 }
 
@@ -192,7 +194,7 @@ form {
 
   input[type="submit"] {
     margin-left: 14px;
-    padding: 18px 40px 31px 40px;
+    padding: 17px 40px 32px 40px;
     text-transform: uppercase;
   }
 }
