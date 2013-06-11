@@ -18,30 +18,7 @@
     <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
   </head>
   <body class="<%= body_class %> <%= yield(:additional_body_classes) %>">
-    <section id="header-wrapper" class="dashboard">
-      <div class="header-container">
-        <h1 class="small-logo">
-          <%= link_to root_path do %>
-            <%= image_tag('learn/learn-ralph-small.png') %>
-            <span><%= t 'shared.learn' %></span>
-          <% end %>
-        </h1>
-        <nav>
-          <ul>
-            <% if signed_in? %>
-              <% if subscription_product && !current_user_has_active_subscription? %>
-                <li class="prime">
-                  <%= link_to prime_path do %>
-                    <span><%= t('shared.subscriptions.icon') %></span> <%= subscription_product.name %> Membership
-                  <% end %>
-                </li>
-              <% end %>
-              <li class="account"><%= link_to 'Settings', my_account_path %></li>
-            <% end %>
-          </ul>
-        </nav>
-      </div>
-    </section>
+    <%= render 'shared/header' %>
 
     <%= render 'shared/flashes' %>
 

@@ -17,6 +17,8 @@
   <p><%= workshop.short_description %></p>
   <section class="actions">
     <%= link_to 'Learn More', workshop, 'data-role' => workshop_data_role(workshop), class: 'main' %>
-    <%= render partial: 'forum_link', locals: { current_user: current_user } %>
+    <% if signed_in? %>
+      <%= render partial: 'forum_link', locals: { current_user: current_user } %>
+    <% end %>
   </section>
 </figure>

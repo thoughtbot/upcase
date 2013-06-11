@@ -21,6 +21,51 @@
   }
 }
 
+@mixin light-button {
+  background: $lightwarmgray;
+  border-bottom: 2px solid darken($lightwarmgray, 10%);
+  border-radius: 0 0 3px 3px;
+  color: $darkwarmgray;
+  font: 600 1.2rem/1.2em $sans-serif;
+  padding: 1.25rem 1.75rem;
+  @include transition;
+
+  &:hover {
+    background-color: lighten($lightwarmgray, 2%);
+  }
+
+  &:active {
+    @include transition(none);
+    background-color: darken($lightwarmgray, 6%);
+    border-bottom-color: transparent;
+    @include transform(translateY(2px));
+  }
+}
+
+@mixin product-card-button($color) {
+  background: $color;
+  border-bottom: 2px solid darken($color, 10%);
+  border-radius: 3px;
+  color: #fff;
+  display: block;
+  font: 600 1rem/1.2rem $sans-serif;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  padding: .75rem 1rem;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .25);
+
+  &:hover {
+    background: lighten($color, 8%);
+    border-bottom-color: $color;
+  }
+
+  &:active {
+    border-bottom-color: transparent;
+    @include transform(translateY(2px));
+  }
+}
+
 @mixin product-card-widths($number_of_product_cards, $attribute: max-width, $additional_width: 0) {
   #{$attribute}: (($product-card-width + $product-card-margin)
                  * $number_of_product_cards)
