@@ -1,8 +1,16 @@
-<%= link_to topic_path(topic) do %>
-  <div class="text-box">
-    <h2><%= topic.name %></h2>
-    <% if topic.summary? %>
-      <p><em><%= topic.summary %></em></p>
-    <% end %>
-  </div>
-<% end %>
+<div class="trail-category">
+  <%= link_to topic_path(topic) do %>
+    <section class="trail-info">
+      <h2>Learn <%= topic.name %></h2>
+      <% if topic.summary? %>
+        <p><em><%= topic.summary %></em></p>
+      <% end %>
+    </section>
+    <section class="steps-complete" data-complete="10" data-total="25">
+      <h2 class="text-complete">5/25 complete</h2>
+      <div class="dots">
+        <figure class="journey-bullet"></figure>
+      </div>
+    </section>
+  <% end %>
+</div>

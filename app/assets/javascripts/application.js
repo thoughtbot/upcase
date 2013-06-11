@@ -7,6 +7,7 @@
 //= require jquery.jsPlumb-1.4.0-all-min
 //= require waypoints.min
 //= require prime.js
+//= require topics.js
 
 $("#total a").click(function() {
   $(".coupon").show();
