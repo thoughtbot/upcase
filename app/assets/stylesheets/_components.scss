@@ -282,3 +282,14 @@
     }
   }
 }
+
+.journey-bullet {
+  background: $journey-line-color;
+  border-radius: 100%;
+  height: $bullet-size;
+  left: -8rem;
+  position: absolute;
+  top: 1rem;
+  width: $bullet-size;
+  z-index: -1;
+}

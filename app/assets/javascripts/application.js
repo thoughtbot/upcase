@@ -7,6 +7,7 @@
 //= require waypoints.min
 //= require prime.js
 //= require slider.js
+//= require topics.js
 
 $("#total a").click(function() {
   $(".coupon").show();

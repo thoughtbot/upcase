@@ -1,6 +1,3 @@
-$journey-line-color: lighten($warmgray, 6%);
-$bullet-size: 70px;
-
 body.prime-marketing {
   background: $journey-line-color;
 }
@@ -109,7 +106,7 @@ body.prime-marketing footer {
   }
 }
 
-svg._jsPlumb_connector path, svg._jsPlumb_endpoint path {
+body.prime-marketing svg._jsPlumb_connector path, svg._jsPlumb_endpoint path {
   border-radius: 100%;
   stroke: $journey-line-color;
   stroke-dasharray: 15px, 21px;
