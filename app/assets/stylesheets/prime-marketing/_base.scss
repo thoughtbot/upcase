@@ -5,6 +5,13 @@ body.prime-marketing {
   background: $journey-line-color;
 }
 
+.prime-signin {
+  color: $darkwarmgray;
+  font-family: $sans-serif;
+  padding: .75rem 1.25rem;
+  @include position(absolute, 0px 0px 0 0);
+}
+
 .journey-headline {
   padding: 2rem 6vw 0;
   text-align: center;
