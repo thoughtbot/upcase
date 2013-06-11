@@ -5,6 +5,7 @@
 //= require prettify/prettify
 //= require jquery.jsPlumb-1.4.0-all-min
 //= require waypoints.min
+//= require masonry.min.js
 //= require prime.js
 //= require slider.js
 //= require topics
@@ -43,10 +44,18 @@ $(function() {
   $('pre').addClass('prettyprint');
 
   if ($('.card-slider.products').length) {
-    $('.all-products .toggle-slider').click(function() {
+    $('.toggle-slider').click(function() {
       $(this).toggleClass('down');
       $('.card-slider.products').toggleClass('active');
       return false;
+    });
+  }
+
+  if ($('.all-trail-map-steps').length) {
+    var container = document.querySelector('.all-trail-map-steps');
+    var msnry = new Masonry(container, {
+      itemSelector: '.trail-map-steps',
+      gutter: '.gutter-sizer'
     });
   }
 

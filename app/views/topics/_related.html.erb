@@ -1,11 +1,4 @@
 <aside>
-  <% if @related_topics.present? %>
-    <h3><%= t '.topics' %></h3>
-    <hr>
-    <ul class='related-topics'>
-      <%= render partial: 'topics/related_topic', collection: @related_topics %>
-    </ul>
-  <% end %>
   <h3><%= t '.products' %></h3>
   <hr>
   <ul class='related-products related-workshops'>
@@ -21,8 +14,5 @@
     <% end %>
     <%= render partial: 'topics/workshop', collection: @workshops %>
     <%= render partial: 'topics/product', collection: @products %>
-    <li class="view-all">
-      <%= link_to 'View all products', products_path %>
-    </li>
   </ul>
 </aside>

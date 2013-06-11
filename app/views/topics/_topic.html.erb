@@ -17,12 +17,12 @@
           <% topic.trail.steps.each do |step| %>
             <% if step['resources'] %>
               <% step['resources'].each do |resource| %>
-                <figure data-id="<%= resource['id'] %>" class="journey-bullet"></figure>
+                <figure data-id="<%= resource['id'] %>" class="trail-bullet"></figure>
               <% end %>
             <% end %>
             <% if step['validations'] %>
               <% step['validations'].each do |validation| %>
-                <figure data-id="<%= validation['id'] %>" class="journey-bullet"></figure>
+                <figure data-id="<%= validation['id'] %>" class="trail-bullet"></figure>
               <% end %>
             <% end %>
           <% end %>

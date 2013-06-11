@@ -7,28 +7,24 @@
 <% if @topic.summary.present? %>
   <div class="summary">
     <p><%= @topic.summary %></p>
+      <% if @related_topics.present? %>
+      <p>
+        Related topics:
+        <%= render partial: 'topics/related_topic', collection: @related_topics %>
+      </p>
+    <% end %>
   </div>
 <% end %>
 
-<div class="text-box-wrapper">
-  <% if @trail %>
-    <div class="text-box">
-      <%= render 'trail', trail: @trail %>
-    </div>
-  <% end %>
+<% if @trail %>
+  <%= render 'trail', trail: @trail %>
+<% end %>
 
-  <% if @articles.present? %>
-    <div class='text-box related-reading'>
-      <h2><%= t '.related_reading' %></h2>
-      <ul>
-        <%= render @articles %>
-      </ul>
-      <div class="view-all-articles">
-        <%= link_to t('.view_articles', name: @topic.name),
-          topic_articles_path(@topic) %>
-      </div>
-    </div>
-  <% end %>
-</div>
+<% if @articles.present? %>
+  <div class="related-reading">
+    <p><%= link_to 'View related Giant Robots articles &rarr;'.html_safe, topic_articles_path(@topic) %></p>
+    <p><%= link_to 'View related Prime Bytes &rarr;'.html_safe %></p>
+  </div>
+<% end %>
 
 <%= render 'related' %>

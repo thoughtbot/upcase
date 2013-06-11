@@ -1,38 +1,73 @@
-<div class='trail-map-steps' data-name="<%= trail.name %>">
-  <% trail.trail_map['steps'].each do |step| %>
-    <h2><%= step['name'] %></h2>
-    <% if step['resources'].present? %>
-      <h3><%= t '.resources' %></h3>
-      <ul>
-        <% step['resources'].each do |resource| %>
-          <li>
-            <%= check_box_tag resource['id'] %>
-            <% if resource['uri'].present? %>
-              <%= link_to(resource['title'], resource['uri']) %>
-            <% else %>
-              <%= resource['title'] %>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
-    <% if step['validations'].present? %>
-      <h3><%= t '.validations' %></h3>
-      <ul>
-        <% step['validations'].each do |validation| %>
-          <li>
-            <% if validation.is_a? Hash %>
-              <%= check_box_tag validation['id'] %>
-              <%= link_to_if(validation['uri'].present?, validation['title'], validation['uri']) %>
-            <% else %>
-              <%= validation %>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
-  <% end %>
-  <div class="contribute">
-    <%= link_to image_tag('contribute.png'), trail.contribute_url %>
-  </div>
+<div class="contribute">
+  <%= link_to image_tag('contribute.png'), trail.contribute_url %>
 </div>
+
+<%= content_tag :section,
+  :class => 'steps-complete',
+  'data-trail-name' => trail.name,
+  'data-complete' => '',
+  'data-total' => trail.total do %>
+  <div class="dots">
+    <% trail.steps.each do |step| %>
+      <% if step['resources'] %>
+        <% step['resources'].each do |resource| %>
+          <figure data-id="<%= resource['id'] %>" class="trail-bullet"></figure>
+        <% end %>
+      <% end %>
+      <% if step['validations'] %>
+        <% step['validations'].each do |validation| %>
+          <figure data-id="<%= validation['id'] %>" class="trail-bullet"></figure>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
+<section class="all-trail-map-steps">
+  <div class="gutter-sizer"></div>
+  <% trail.trail_map['steps'].each do |step| %>
+    <section class='trail-map-steps' data-name="<%= trail.name %>">
+      <% if step['name'] == 'Ongoing Reference' %>
+        <h2 class="ongoing"><%= step['name'] %></h2>
+      <% else %>
+        <h2><%= step['name'] %></h2>
+      <% end %>
+      <% if step['resources'].present? %>
+        <h3><%= t '.resources' %></h3>
+        <ul>
+          <% step['resources'].each do |resource| %>
+            <li class="resource">
+              <%= check_box_tag resource['id'] %>
+              <div class="trail-bullet-hit-area">
+                <div class="trail-bullet"></div>
+              </div>
+              <% if resource['uri'].present? %>
+                <span><%= link_to(resource['title'], resource['uri']) %></span>
+              <% else %>
+                <span><%= resource['title'] %></span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+      <% if step['validations'].present? %>
+        <h3><%= t '.validations' %></h3>
+        <ul>
+          <% step['validations'].each do |validation| %>
+            <li class="validation">
+              <% if validation.is_a? Hash %>
+                <%= check_box_tag validation['id'] %>
+                <div class="trail-bullet-hit-area">
+                  <div class="trail-bullet"></div>
+                </div>
+                <span><%= link_to_if(validation['uri'].present?, validation['title'], validation['uri']) %></span>
+              <% else %>
+                <%= validation %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </section>
+  <% end %>
+</section>
