@@ -6,7 +6,7 @@
       <div class="license">
         <%= link_to product_path(subscription_product),
           class: 'license-button button' do %>
-            Subscribe to <%= subscription_product.name %>
+            Subscribe to <%= subscription_product.name %> <span><%= number_to_currency subscription_product.individual_price, precision: 0 %>/month</span>
         <% end %>
       </div>
 
