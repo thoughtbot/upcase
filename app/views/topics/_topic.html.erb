@@ -6,11 +6,28 @@
         <p><em><%= topic.summary %></em></p>
       <% end %>
     </section>
-    <section class="steps-complete" data-complete="7" data-total="25">
-      <h2 class="text-complete">7/25 complete</h2>
-      <div class="dots">
-        <figure class="journey-bullet"></figure>
-      </div>
-    </section>
+    <% if topic.trail %>
+      <%= content_tag :section,
+        :class => 'steps-complete',
+        'data-trail-name' => topic.trail.name,
+        'data-complete' => '',
+        'data-total' => topic.trail.total do %>
+        <h2 class="text-complete"></h2>
+        <div class="dots">
+          <% topic.trail.steps.each do |step| %>
+            <% if step['resources'] %>
+              <% step['resources'].each do |resource| %>
+                <figure data-id="<%= resource['id'] %>" class="journey-bullet"></figure>
+              <% end %>
+            <% end %>
+            <% if step['validations'] %>
+              <% step['validations'].each do |validation| %>
+                <figure data-id="<%= validation['id'] %>" class="journey-bullet"></figure>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
 </div>

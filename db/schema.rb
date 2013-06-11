@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130610210831) do
+ActiveRecord::Schema.define(:version => 20130613191147) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -48,6 +48,14 @@ ActiveRecord::Schema.define(:version => 20130610210831) do
     t.integer  "classifiable_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "completions", :force => true do |t|
+    t.string   "trail_object_id"
+    t.string   "trail_name"
+    t.integer  "user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "coupons", :force => true do |t|
@@ -300,10 +308,19 @@ ActiveRecord::Schema.define(:version => 20130610210831) do
     t.text     "summary"
     t.integer  "count"
     t.boolean  "featured",   :default => false, :null => false
-    t.text     "trail_map"
   end
 
   add_index "topics", ["slug"], :name => "index_topics_on_slug", :unique => true
+
+  create_table "trails", :force => true do |t|
+    t.integer  "topic_id"
+    t.string   "slug"
+    t.text     "trail_map"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "trails", ["topic_id"], :name => "index_trails_on_topic_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"

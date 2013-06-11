@@ -246,6 +246,17 @@ FactoryGirl.define do
     summary 'short yet descriptive'
   end
 
+  factory :trail do
+    slug 'trail'
+    topic
+  end
+
+  factory :completion do
+    trail_object_id '2f720eaa8bcd602a7dc731feb224ff99bb85a03c'
+    trail_name 'Git'
+    user
+  end
+
   factory :user do
     email
     first_name 'Dan'

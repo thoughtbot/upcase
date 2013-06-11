@@ -1,11 +1,12 @@
-<div class='trail-map-steps'>
-  <% trail_map['steps'].each do |step| %>
+<div class='trail-map-steps' data-name="<%= trail.name %>">
+  <% trail.trail_map['steps'].each do |step| %>
     <h2><%= step['name'] %></h2>
     <% if step['resources'].present? %>
       <h3><%= t '.resources' %></h3>
       <ul>
         <% step['resources'].each do |resource| %>
           <li>
+            <%= check_box_tag resource['id'] %>
             <% if resource['uri'].present? %>
               <%= link_to(resource['title'], resource['uri']) %>
             <% else %>
@@ -21,6 +22,7 @@
         <% step['validations'].each do |validation| %>
           <li>
             <% if validation.is_a? Hash %>
+              <%= check_box_tag validation['id'] %>
               <%= link_to_if(validation['uri'].present?, validation['title'], validation['uri']) %>
             <% else %>
               <%= validation %>
@@ -31,6 +33,6 @@
     <% end %>
   <% end %>
   <div class="contribute">
-    <%= link_to image_tag('contribute.png'), contribute_url %>
+    <%= link_to image_tag('contribute.png'), trail.contribute_url %>
   </div>
 </div>

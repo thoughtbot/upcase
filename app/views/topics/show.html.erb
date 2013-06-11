@@ -10,9 +10,9 @@
 <% end %>
 
 <div class="text-box-wrapper">
-  <% if @topic.trail_map.present? %>
+  <% if @trail %>
     <div class="text-box">
-      <%= render 'trail_map', trail_map: @topic.trail_map, contribute_url: @topic.contribute_url %>
+      <%= render 'trail', trail: @trail %>
     </div>
   <% end %>
 

@@ -5,6 +5,7 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find_by_slug!(params[:id])
+    @trail = @topic.trail
     @articles = @topic.articles.top.published
     @workshops = @topic.workshops.only_active.by_position
     @products = @topic.products.ordered.active

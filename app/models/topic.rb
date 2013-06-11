@@ -1,6 +1,6 @@
 class Topic < ActiveRecord::Base
   # Attributes
-  attr_accessible :trail_map, :featured, :keywords, :name, :summary,
+  attr_accessible :featured, :keywords, :name, :summary,
     :related_topic_ids
 
   # Associations
@@ -15,6 +15,7 @@ class Topic < ActiveRecord::Base
     source_type: 'Product'
   has_many :related_topics, through: :classifications, source: :classifiable,
     source_type: 'Topic'
+  has_one :trail
 
   # Validations
   validates :name, presence: true
@@ -22,9 +23,6 @@ class Topic < ActiveRecord::Base
 
   # Callbacks
   before_validation :generate_slug, on: :create
-
-  # Serialization
-  serialize :trail_map, Hash
 
   def self.top
     featured.order('count DESC').limit 20
@@ -34,35 +32,12 @@ class Topic < ActiveRecord::Base
     where(featured: true)
   end
 
-  def self.import_trail_maps
-    featured.find_each do |topic|
-      topic.import_trail_map
-    end
-  end
-
-  def contribute_url
-    "https://github.com/thoughtbot/trail-map/blob/master/trails/#{slug.parameterize}.json"
+  def self.meta_keywords
+    pluck(:name).join(', ')
   end
 
   def to_param
     slug
-  end
-
-  def import_trail_map
-    http = Curl.get(github_url)
-    if http.response_code == 200
-      begin
-        parse_and_assign_trail_map(http.body_str)
-        assign_attributes_from_trail_map
-        save!
-      rescue JSON::ParserError => e
-        Airbrake.notify(e)
-      end
-    end
-  end
-
-  def self.meta_keywords
-    pluck(:name).join(', ')
   end
 
   private
@@ -70,28 +45,6 @@ class Topic < ActiveRecord::Base
   def generate_slug
     if name
       self.slug = CGI::escape(name.strip).downcase
-    end
-  end
-
-  def github_url
-    "https://raw.github.com/thoughtbot/trail-map/master/trails/#{slug.parameterize}.json"
-  end
-
-  def parse_and_assign_trail_map(raw_trail_map)
-    self.trail_map = JSON.parse(raw_trail_map)
-  end
-
-  def assign_attributes_from_trail_map
-    self.summary = trail_map['description']
-    self.name = trail_map['name']
-    if trail_map['prerequisites'].present?
-      trail_map['prerequisites'].each do |related|
-        p "#{trail_map['name']}: looking for prerequisites: #{related}"
-        prerequisite_topic = Topic.find_by_slug(related)
-        unless self.related_topics.include?(prerequisite_topic)
-          self.related_topics << prerequisite_topic
-        end
-      end
     end
   end
 end
