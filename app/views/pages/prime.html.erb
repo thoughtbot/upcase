@@ -60,24 +60,30 @@
         <h3>Online workshops</h3>
         <div class="figuregroup">
           <figure class="workshop-online product-card">
-            <h4>The Playbook</h4>
-            <%= image_tag('workshop_thumbs/playbook.png') %>
-            <h5>Online Workshop</h5>
-            <p>How to design, build, and launch a successful application</p>
+            <%= link_to '/workshops/9-the-playbook-workshop', title: 'The Playbook online workshop details' do %>
+              <h4>The Playbook</h4>
+              <%= image_tag('workshop_thumbs/playbook.png') %>
+              <h5>Online Workshop</h5>
+              <p>How to design, build, and launch a successful application</p>
+            <% end %>
           </figure>
           <figure class="workshop-online product-card">
-            <h4>Design for Developers</h4>
-            <%= image_tag('workshop_thumbs/design.png') %>
-            <h5>Online Workshop</h5>
-            <p>Get better at visual design and create something great</p>
-            <p class="note">Also offered in-person</p>
+            <%= link_to '/workshops/19-design-for-developers', title: 'The Design for Developers online workshop details' do %>
+              <h4>Design for Developers</h4>
+              <%= image_tag('workshop_thumbs/design.png') %>
+              <h5>Online Workshop</h5>
+              <p>Get better at visual design and create something great</p>
+              <p class="note">Also offered in-person</p>
+            <% end %>
           </figure>
           <figure class="workshop-online product-card">
-            <h4>Intro to Ruby on Rails</h4>
-            <%= image_tag('workshop_thumbs/intro.png') %>
-            <h5>Online Workshop</h5>
-            <p>Learn how to develop web applications using Ruby on Rails</p>
-            <p class="note">Also offered in-person</p>
+            <%= link_to '/workshops/3-intro-to-ruby-on-rails', title: 'The Intro to Ruby on Rails online workshop details' do %>
+              <h4>Intro to Ruby on Rails</h4>
+              <%= image_tag('workshop_thumbs/intro.png') %>
+              <h5>Online Workshop</h5>
+              <p>Learn how to develop web applications using Ruby on Rails</p>
+              <p class="note">Also offered in-person</p>
+            <% end %>
           </figure>
         </div>
       </div>
@@ -85,25 +91,31 @@
         <h3>In-Person Workshops</h3>
         <div class="figuregroup">
           <figure class="workshop-inperson product-card">
-            <h4>Design for Developers</h4>
-            <%= image_tag('workshop_thumbs/design.png') %>
-            <h5>In-Person Workshop</h5>
-            <p>Get better at visual design and create something great</p>
-            <p class="note">Also offered online</p>
+            <%= link_to '/workshops/2-design-for-developers', title: 'The Design for Developers in-person workshop details' do %>
+              <h4>Design for Developers</h4>
+              <%= image_tag('workshop_thumbs/design.png') %>
+              <h5>In-Person Workshop</h5>
+              <p>Get better at visual design and create something great</p>
+              <p class="note">Also offered online</p>
+            <% end %>
           </figure>
           <figure class="workshop-inperson product-card">
-            <h4>Intermediate Ruby on Rails</h4>
-            <%= image_tag('workshop_thumbs/intermediate.png') %>
-            <h5>In-Person Workshop</h5>
-            <p>Dig deeper into Ruby on Rails</p>
-            <p class="note">Also offered online</p>
+            <%= link_to '/workshops/12-intermediate-ruby-on-rails', title: 'The Intermediate Ruby on Rails in-person workshop details' do %>
+              <h4>Intermediate Ruby on Rails</h4>
+              <%= image_tag('workshop_thumbs/intermediate.png') %>
+              <h5>In-Person Workshop</h5>
+              <p>Dig deeper into Ruby on Rails</p>
+              <p class="note">Also offered online</p>
+            <% end %>
           </figure>
           <figure class="workshop-inperson product-card">
-            <h4>Test-Driven Rails</h4>
-            <%= image_tag('workshop_thumbs/test.png') %>
-            <h5>In-Person Workshop</h5>
-            <p>Learn Test-Driven Development using RSpec and Capybara</p>
-            <p class="note">Also offered online</p>
+            <%= link_to '/workshops/1-test-driven-rails', title: 'The Test Driven Rails in-person workshop details' do %>
+              <h4>Test-Driven Rails</h4>
+              <%= image_tag('workshop_thumbs/test.png') %>
+              <h5>In-Person Workshop</h5>
+              <p>Learn Test-Driven Development using RSpec and Capybara</p>
+              <p class="note">Also offered online</p>
+            <% end %>
           </figure>
         </div>
       </div>
@@ -132,31 +144,37 @@
         <h3>Screencasts</h3>
         <div class="figuregroup">
           <figure class="screencast product-card">
-            <h4>Hidden Secrets of the Chrome Developer Tools</h4>
-            <%= image_tag('screencast_thumbs/secrets.png') %>
-            <h5>Screencast</h5>
-            <p>Speed up your day-to-day web development work</p>
+            <%= link_to '/products/5-hidden-secrets-of-the-chrome-developer-tools', title: 'The Hidden Secrets of the Chrome Developer Tools screencast details' do %>
+              <h4>Hidden Secrets of the Chrome Developer Tools</h4>
+              <%= image_tag('screencast_thumbs/secrets.png') %>
+              <h5>Screencast</h5>
+              <p>Speed up your day-to-day web development work</p>
+            <% end %>
           </figure>
           <figure class="screencast product-card">
-            <h4>Humans Present: Refactoring</h4>
-            <%= image_tag('screencast_thumbs/refactoring.png') %>
-            <h5>Screencast</h5>
-            <p>Make Your Code Better</p>
+            <%= link_to '/products/6-humans-present-refactoring', title: 'The Humans Present: Refactoring screencast details' do %>
+              <h4>Humans Present: Refactoring</h4>
+              <%= image_tag('screencast_thumbs/refactoring.png') %>
+              <h5>Screencast</h5>
+              <p>Make Your Code Better</p>
+            <% end %>
           </figure>
           <figure class="screencast product-card">
-            <h4>Vim for Rails Developers</h4>
-            <%= image_tag('screencast_thumbs/vim-for-rails.png') %>
-            <h5>Screencast</h5>
-            <p>Create and edit your Ruby on Rails code more efficiently</p>
+            <%= link_to '/products/2-vim-for-rails-developers', title: 'The Vim for Rails Developers screencast details' do %>
+              <h4>Vim for Rails Developers</h4>
+              <%= image_tag('screencast_thumbs/vim-for-rails.png') %>
+              <h5>Screencast</h5>
+              <p>Create and edit your Ruby on Rails code more efficiently</p>
+            <% end %>
           </figure>
         </div>
       </div>
       <div>
         <h3>Books</h3>
         <div class="figuregroup">
-          <figure class="book product-card"><%= image_tag('product_images/book/backbone-cover-large.png') %></figure>
-          <figure class="book product-card"><%= image_tag('product_images/book/playbook-cover-large.png') %></figure>
-          <figure class="book product-card"><%= image_tag('product_images/book/rubyscience-cover-large.png') %></figure>
+          <figure class="book product-card"><%= link_to image_tag('product_images/book/backbone-cover-large.png'), '/products/1-backbone-js-on-rails' %></figure>
+          <figure class="book product-card"><%= link_to image_tag('product_images/book/playbook-cover-large.png'), '/products/3-the-playbook' %></figure>
+          <figure class="book product-card"><%= link_to image_tag('product_images/book/rubyscience-cover-large.png'), '/products/13-ruby-science' %></figure>
         </div>
       </div>
       <div>
