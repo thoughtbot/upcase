@@ -25,6 +25,34 @@ class Workshop < ActiveRecord::Base
   # Plugins
   acts_as_list
 
+  def self.by_position
+    order 'workshops.position ASC'
+  end
+
+  def self.in_person
+    where online: false
+  end
+
+  def self.online
+    where online: true
+  end
+
+  def self.only_active
+    where active: true
+  end
+
+  def self.unscheduled
+    sql = <<-SQL
+      workshops.id NOT IN (
+        SELECT sections.workshop_id
+        FROM sections
+        WHERE sections.ends_on >= ?
+      )
+    SQL
+
+    where sql, Date.today
+  end
+
   def active_section
     sections.active[0]
   end
@@ -42,28 +70,12 @@ class Workshop < ActiveRecord::Base
     super(options.merge(:methods => [:active_sections]))
   end
 
-  def self.by_position
-    order 'workshops.position ASC'
-  end
-
   def follow_ups_with_blank
     follow_ups + [follow_ups.new]
   end
 
-  def self.in_person
-    where online: false
-  end
-
   def in_person?
     ! online?
-  end
-
-  def self.online
-    where online: true
-  end
-
-  def self.only_active
-    where active: true
   end
 
   def questions_with_blank
@@ -72,18 +84,6 @@ class Workshop < ActiveRecord::Base
 
   def to_param
     "#{id}-#{name.parameterize}"
-  end
-
-  def self.unscheduled
-    sql = <<-SQL
-      workshops.id NOT IN (
-        SELECT sections.workshop_id
-        FROM sections
-        WHERE sections.ends_on >= ?
-      )
-    SQL
-
-    where sql, Date.today
   end
 
   def purchase_for(user)
