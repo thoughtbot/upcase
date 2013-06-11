@@ -83,12 +83,12 @@ blockquote {
 q {
   display: block;
   font-style: italic;
-  margin: 2.5em 0 0 1em;
+  margin: 2rem 0 0 1em;
   width: 80%;
 }
 
 p.source {
-  margin-bottom: 0 !important; // override inline styles
+  margin-bottom: 1rem !important; // override inline styles
   margin-top: 0 !important; // override inline styles
 }
 

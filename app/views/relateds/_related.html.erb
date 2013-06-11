@@ -1,10 +1,10 @@
 <aside>
   <% if related.topics.present? %>
-    <h3><%= t '.topics' %></h3>
-    <hr>
-    <ul class='related-topics'>
-      <%= render partial: 'relateds/topic', collection: related.topics %>
-    </ul>
+    <section class="related">
+      <h3><%= t '.topics' %></h3>
+      <hr>
+      <p class="related-topics"><%= render partial: 'relateds/topic', collection: related.topics %></p>
+    </section>
   <% end %>
   <h3><%= t '.products' %></h3>
   <hr>
@@ -14,15 +14,12 @@
         <%= link_to prime_path do %>
           <span class="icon"><%= t('shared.subscriptions.icon') %></span>
           <hgroup>
-          <h4>Access all of our products by subscribing to <%= subscription_product.name %></h4>
+            <h4>Access all of our products by subscribing to <%= subscription_product.name %></h4>
           </hgroup>
         <% end %>
       </li>
     <% end %>
     <%= render partial: 'relateds/workshop', collection: related.workshops %>
     <%= render partial: 'relateds/product', collection: related.products %>
-    <li class="view-all">
-      <%= link_to 'View all products', products_path %>
-    </li>
   </ul>
 </aside>

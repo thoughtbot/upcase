@@ -15,7 +15,7 @@ feature 'Purchasing a product' do
     fill_in 'user_last_name', with: 'Orenstein'
     fill_in 'Email', with: 'ben@thoughtbot.com'
     fill_in 'Password', with: 'password'
-    click_button 'Sign up'
+    click_button 'Create an account'
 
     expect(page).to have_css('form#new_purchase')
     expect(field_labeled('Email').value).to eq 'ben@thoughtbot.com'

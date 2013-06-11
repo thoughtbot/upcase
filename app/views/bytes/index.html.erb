@@ -3,12 +3,6 @@
 
 <div class="text-box-wrapper">
   <div class="text-box">
-    <% if @topic.present? %>
-      <hgroup class="product-title">
-        <h2><%= t '.heading', topic: @topic.name %></h2>
-      </hgroup>
-    <% end %>
-
     <% if @bytes.present? %>
       <section class="bytes results">
         <%= render @bytes %>

@@ -1,0 +1,14 @@
+<div class="contribute">
+  <%= link_to image_tag('contribute.png'), trail.contribute_url %>
+</div>
+
+<% if !signed_in? %>
+  <p class="trails-save-progress"><%= link_to 'Create an account', sign_up_path(return_to: url_for) %> or <%= link_to 'sign in', sign_in_path(return_to: url_for) %> to save your progess</p>
+<% end %>
+
+<%= render 'trails/progress', trail: trail %>
+
+<section class="all-trail-map-steps">
+  <div class="gutter-sizer"></div>
+  <%= render partial: 'trails/step', collection: trail.trail_map['steps'], locals: { trail: trail } %>
+</section>

@@ -9,6 +9,7 @@
     <meta http-equiv="Description" name="Description" content="<%= yield(:meta_description).presence || t('.meta_description') %>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Keywords" name="Keywords" content="<%= keywords(yield :meta_keywords) %>" />
+    <%= yield :meta %>
     <%= open_graph_tags %>
     <%= render 'shared/typekit' %>
     <%= csrf_meta_tag %>

@@ -1,8 +1,13 @@
-<%= link_to topic_path(topic) do %>
-  <div class="text-box">
-    <h2><%= topic.name %></h2>
-    <% if topic.summary? %>
-      <p><em><%= topic.summary %></em></p>
+<div class="trail-category">
+  <%= link_to topic_path(topic) do %>
+    <section class="trail-info">
+      <h2>Learn <%= topic.name %></h2>
+      <% if topic.summary? %>
+        <p><em><%= topic.summary %></em></p>
+      <% end %>
+    </section>
+    <% if topic.trail %>
+      <%= render 'trails/progress', trail: topic.trail %>
     <% end %>
-  </div>
-<% end %>
+  <% end %>
+</div>

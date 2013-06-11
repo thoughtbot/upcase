@@ -1,0 +1,11 @@
+<%= content_tag :li, :class => 'validation', 'data-id' => validation['id'] do %>
+  <% if validation.is_a? Hash %>
+    <%= check_box_tag validation['id'] %>
+    <div class="trail-bullet-hit-area">
+      <div class="trail-bullet"></div>
+    </div>
+    <span><%= link_to_if(validation['uri'].present?, validation['title'], validation['uri']) %></span>
+  <% else %>
+    <%= validation %>
+  <% end %>
+<% end %>
