@@ -26,12 +26,13 @@ module WorkshopsHelper
   end
 
   def workshop_frequency_note(workshop)
-    if workshop.online?
-      'This online workshop starts as soon as you register.'
+    if workshop.starts_immediately?
+      "This #{workshop_delivery_method(workshop)} workshop
+       starts as soon as you register."
     else
-      "This in-person workshop is held about every six weeks.
-      #{link_to 'Get notified', '#new_follow_up'} when
-      the next one is scheduled.".html_safe
+      "This #{workshop_delivery_method(workshop)} workshop is held about every
+      six weeks. #{link_to 'Get notified', '#new_follow_up'} when the next one
+      is scheduled.".html_safe
     end
   end
 end

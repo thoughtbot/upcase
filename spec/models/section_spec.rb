@@ -448,4 +448,26 @@ describe Section do
       expect(section.ends_on(Date.today)).to eq ends_on
     end
   end
+
+  describe '#starts_immediately?' do
+    it 'does not start immediately when the section has an end date' do
+      section = create(
+        :section,
+        starts_on: Date.today,
+        ends_on: Date.tomorrow
+      )
+
+      expect(section.starts_immediately?).to be false
+    end
+
+    it 'starts immediately when the section does not have an end date' do
+      section = create(
+        :section,
+        starts_on: Date.today,
+        ends_on: nil
+      )
+
+      expect(section.starts_immediately?).to be true
+    end
+  end
 end
