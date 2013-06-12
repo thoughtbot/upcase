@@ -65,8 +65,4 @@ class SubscriptionMetrics
   def self.average_selling_price
     99
   end
-
-  def self.subscription_purchases
-    Purchase.where(purchaseable_id: Product.subscriptions, purchaseable_type: 'Product')
-  end
 end
