@@ -1,10 +1,10 @@
 class SubscriptionMetrics
   def self.current_churn
-    as_percentage(canceled_in_last_30_days / count_30_days_ago)
+    as_percentage(churn_for_last_30_days)
   end
 
   def self.previous_churn
-    as_percentage(canceled_between_60_and_30_days_ago / count_60_days_ago)
+    as_percentage(churn_between_60_and_30_days_ago)
   end
 
   def self.new_in_period(start_time, end_time)
@@ -16,7 +16,23 @@ class SubscriptionMetrics
     active_as_of(time).where("created_at <= ?", time).count.to_f
   end
 
+  def self.current_ltv
+    average_selling_price * (1 / churn_for_last_30_days)
+  end
+
+  def self.previous_ltv
+    average_selling_price * (1 / churn_between_60_and_30_days_ago)
+  end
+
   private
+
+  def self.churn_for_last_30_days
+    canceled_in_last_30_days / count_30_days_ago
+  end
+
+  def self.churn_between_60_and_30_days_ago
+    canceled_between_60_and_30_days_ago / count_60_days_ago
+  end
 
   def self.canceled_in_last_30_days
     canceled_within_period(30.days.ago, Time.now)
@@ -44,5 +60,13 @@ class SubscriptionMetrics
 
   def self.active_as_of(time)
     Subscription.paid.where("deactivated_on is null OR deactivated_on > ?", time)
+  end
+
+  def self.average_selling_price
+    subscription_purchases.average(:paid_price)
+  end
+
+  def self.subscription_purchases
+    Purchase.where(purchaseable_id: Product.subscriptions, purchaseable_type: 'Product')
   end
 end
