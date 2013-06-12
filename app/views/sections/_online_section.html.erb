@@ -1,3 +1,12 @@
+<% unless online_section.starts_immediately? %>
+  <section class="section-location">
+    <div class="when">
+      <h3>When</h3>
+     <p><%= online_section.date_range %><br><%= online_section.time_range %></p>
+    </div>
+  </section>
+<% end %>
+
 <section id="license">
   <% if online_section.full? %>
     <h2>

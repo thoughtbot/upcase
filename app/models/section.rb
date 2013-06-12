@@ -171,7 +171,7 @@ class Section < ActiveRecord::Base
   end
 
   def starts_on(purchase_date = nil)
-    if purchase_date && self[:ends_on].blank?
+    if purchase_date && starts_immediately?
       purchase_date
     else
       self[:starts_on]
@@ -179,11 +179,15 @@ class Section < ActiveRecord::Base
   end
 
   def ends_on(purchase_date = nil)
-    if purchase_date && self[:ends_on].blank?
+    if purchase_date && starts_immediately?
       purchase_date + length_in_days.days
     else
       self[:ends_on]
     end
+  end
+
+  def starts_immediately?
+    self[:ends_on].blank?
   end
 
   private

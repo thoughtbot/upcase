@@ -218,4 +218,34 @@ describe Workshop do
       purchase.should_not be_fulfilled_with_github
     end
   end
+
+  describe '#starts_immediately?' do
+    it 'does not start immediately when the active section has an end date' do
+      section = create(
+        :section,
+        starts_on: Date.today,
+        ends_on: Date.tomorrow
+      )
+      workshop = section.workshop
+
+      expect(workshop.starts_immediately?).to be false
+    end
+
+    it 'starts immediately when the active section does not have an end date' do
+      section = create(
+        :section,
+        starts_on: Date.today,
+        ends_on: nil
+      )
+      workshop = section.workshop
+
+      expect(workshop.starts_immediately?).to be_true
+    end
+
+    it 'does not start immediately when there is no active section' do
+      workshop = create(:workshop)
+
+      expect(workshop.starts_immediately?).to be_false
+    end
+  end
 end
