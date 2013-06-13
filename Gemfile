@@ -85,6 +85,7 @@ group :test do
   gem 'email_spec', '1.2.1'
   gem 'factory_girl_rails'
   gem 'launchy'
+  gem 'poltergeist'
   gem 'selenium-webdriver', '2.32.1'
   gem 'sham_rack', '1.3.1'
   gem 'shoulda-matchers'

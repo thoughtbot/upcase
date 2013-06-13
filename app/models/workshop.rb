@@ -126,6 +126,10 @@ class Workshop < ActiveRecord::Base
     active_section.try(:starts_immediately?)
   end
 
+  def thumbnail_path
+    "workshop_thumbs/#{name.parameterize}.png"
+  end
+
   private
 
   def alternate_workshop

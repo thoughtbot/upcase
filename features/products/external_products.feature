@@ -5,6 +5,5 @@ Feature: View an external product listing
 
   Scenario: View an external product
     Given there is an external product named "Test External"
-    When I go to the products page
-    And I follow "Test External"
+    When I visit the product page for "Test External"
     Then the purchase link should link to the external product

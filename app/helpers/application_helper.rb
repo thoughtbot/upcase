@@ -57,7 +57,7 @@ module ApplicationHelper
     File.basename(model.to_partial_path)
   end
 
-  def forum_url
-    'http://forum.thoughtbot.com'
+  def forum_url(suffix=nil)
+    "http://forum.thoughtbot.com/#{suffix}"
   end
 end

@@ -8,8 +8,16 @@ namespace :dev do
     require 'factory_girl_rails'
 
     create_products
+    create_bytes
     create_sections_with_workshops
     create_users
+  end
+
+  def create_bytes
+    header 'Bytes'
+
+    FactoryGirl.create(:byte, title: 'How to slow down your test suite')
+    FactoryGirl.create(:byte, title: 'Tips for switching to ed')
   end
 
   def create_products
@@ -19,6 +27,9 @@ namespace :dev do
     puts_product @prime
     @book = FactoryGirl.create(:book_product, sku: 'VIM', name: 'Vim for Rails Developers')
     puts_product @book
+
+    puts_product FactoryGirl.create(:video_product)
+    puts_product FactoryGirl.create(:video_product)
   end
 
   def create_sections_with_workshops

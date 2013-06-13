@@ -5,9 +5,12 @@
 @import "base-variables";
 @import "base-breakpoints";
 @import "base-extends";
+@import "base-mixins";
 @import "base-animations";
 @import "base-typography";
 @import "base-forms";
+
+@import "components";
 
 @import "layout/layout";
 @import "layout/flashes";
@@ -32,7 +35,7 @@
 @import "articles-bytes";
 @import "invoices";
 
-@import "prettify";
-
 @import "prime-marketing/base";
 @import "prime-marketing/journey";
+
+@import "prettify";

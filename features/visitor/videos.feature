@@ -19,8 +19,7 @@ Feature: Watch video
 
   @selenium
   Scenario: A visitor purchases a product with multiple videos
-    When I go to the products page
-    And I follow "Test Series"
+    When I go to the product page for "Test Series"
     And I follow "Purchase for Yourself"
     And I pay using Paypal
     And I submit the Paypal form

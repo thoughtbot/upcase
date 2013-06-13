@@ -1,0 +1,284 @@
+.product-card {
+  background: #fff;
+  border-bottom: 2px solid rgb(200, 200, 200);
+  border-radius: .3rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
+  display: inline-block;
+  height: 330px;
+  padding: .3rem;
+  position: relative;
+  width: $product-card-width;
+
+  &:hover, &.active {
+    .actions {
+      opacity: 1;
+    }
+  }
+
+  &.screencast {
+    background: none;
+    border: 0;
+    box-shadow: none;
+    height: auto;
+    padding: 0;
+
+    &:hover figure {
+      span {
+        opacity: 1;
+        @include transform(scale(1));
+      }
+
+      &:after {
+        box-shadow: inset 0 0 300px rgba(0, 0, 0, 1);
+      }
+    }
+
+    h5 {
+      margin-bottom: .25rem;
+    }
+
+    h4 {
+      color: $darkwarmgray;
+      margin: 0;
+      padding-top: 0;
+    }
+
+    figure {
+      border: .3rem solid white;
+      border-radius: 3px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
+      line-height: 0;
+      position: relative;
+
+      &:after {
+        box-shadow: inset 0 0 25px rgba(0, 0, 0, 0);
+        content: '';
+        display: block;
+        @include position(absolute, 0px 0px 0px 0px);
+        @include transition;
+      }
+
+      span {
+        color: #fff;
+        font: 400 1rem/1.4em $serif;
+        opacity: 0;
+        padding: 1rem;
+        position: absolute;
+        top: 0;
+        @include transform(scale(1.1));
+        @include transition;
+        @include user-select(none);
+        width: 100%;
+        z-index: 1;
+      }
+    }
+  }
+
+  > a {
+    display: block;
+    height: 100%;
+  }
+
+  h4 {
+    border-radius: 2px;
+    color: #fff;
+    margin-bottom: .3rem;
+    padding: .75rem .6rem;
+    font-weight: 700;
+
+    &.byte-title {
+      color: $darkwarmgray;
+    }
+  }
+
+  &.workshop-online h4 {
+    background: $workshop-online-color;
+  }
+
+  &.workshop-inperson h4 {
+    background: $workshop-inperson-color;
+  }
+
+  h5, p {
+    margin: .6rem;
+  }
+
+  h5 {
+    color: rgb(175, 175, 175);
+    font-size: .8rem;
+    text-transform: uppercase;
+  }
+
+  &.book {
+    border: 1px solid rgb(200, 200, 200);
+    height: auto;
+    line-height: 0;
+    padding: 0;
+    width: 246px;
+  }
+
+  .inperson-date {
+    height: 120px;
+    padding: 1.4rem .5rem;
+    background: rgb(220, 220, 220);
+    text-align: center;
+
+    section {
+      margin: .25rem;
+    }
+
+    .upcoming {
+      border-bottom: 1px solid #606060;
+      display: inline-block;
+      margin-bottom: .4rem;
+    }
+
+    span {
+      color: #606060;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.2em;
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    .month {
+      font-weight: 400;
+    }
+  }
+
+  .note {
+    bottom: 0;
+    font: normal .8rem/1em $sans-serif;
+    position: absolute;
+  }
+
+  .actions {
+    background: rgba(0, 0, 0, .6);
+    border-radius: 3px;
+    opacity: 0;
+    padding: 3.3rem 1.5rem;
+    @include position(absolute, 0px 0px 0px 0px);
+    @include transition(.3s);
+
+    a {
+      @include product-card-button(#7ebe69);
+    }
+
+    a.main {
+      @include product-card-button(#f88356);
+    }
+  }
+
+  .notification {
+    background: rgb(255, 252, 187);
+    border: 1px solid rgb(240, 218, 132);
+    border-bottom-width: 2px;
+    border-radius: 3px;
+    color: $darkwarmgray;
+    font: 600 .8rem/1.2em $sans-serif;
+    padding: .5rem 1rem;
+    @include position(absolute, -3rem 0 0 12.5%);
+    text-align: center;
+    text-transform: uppercase;
+    width: 75%;
+
+    // nub
+    &:after {
+      background: rgb(255, 252, 187);
+      border: 1px solid rgb(240, 218, 132);
+      border-width: 0 2px 2px 0;
+      content: '';
+      display: block;
+      height: 10px;
+      margin-left: -7px;
+      @include position(absolute, 0 0 -7px 50%);
+      @include transform(rotate(45deg));
+      width: 10px;
+    }
+  }
+}
+
+.card-slider {
+  margin: 0 auto $product-card-margin;
+  overflow: hidden;
+  padding: $product-card-margin $slide-button-width 0;
+  position: relative;
+  @include product-card-widths(7, max-width, ($slide-button-width * 2));
+  white-space: nowrap;
+
+  @include dashboard-small {
+    overflow-x: scroll;
+    padding: $product-card-margin $product-card-margin .75rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &.screencasts {
+    background-color: #fff;
+    margin-bottom: $product-card-margin;
+    margin-top: 0;
+    padding-bottom: $product-card-margin;
+    padding-top: $product-card-margin + .5rem;
+
+    .nav {
+      background-color: #fff;
+    }
+  }
+
+  > figure, > .figure-container {
+    margin-right: $product-card-margin;
+    margin-right: calc(#{$product-card-margin} - 4px); // remove inline-block 4px space issue
+    @include transition(.15s);
+    vertical-align: top;
+    white-space: normal;
+
+    &:hover {
+      .notification {
+        @include transform(translateY(.15rem));
+      }
+    }
+
+    .notification {
+      @include transition(.25s);
+    }
+  }
+
+  .nav {
+    background: url('learn/slider-arrow.svg') no-repeat center $lightwarmgray;
+    background-size: 35px;
+    cursor: pointer;
+    @include position(absolute, 0px 0 0px 0);
+    @include transition(.05s);
+    @include user-select(none);
+    vertical-align: middle;
+    width: $slide-button-width;
+    z-index: 2;
+
+    @include dashboard-small {
+      display: none;
+    }
+
+    &:not(.disabled):hover {
+      background-position: 55% center;
+    }
+
+    &:not(.disabled):active {
+      background-position: 55% center;
+      background-size: 33px;
+    }
+
+    &.disabled {
+      background-image: none;
+      cursor: default;
+    }
+
+    &.prev {
+      left: 0;
+      @include transform(rotate(180deg));
+    }
+
+    &.next {
+      right: 0;
+    }
+  }
+}

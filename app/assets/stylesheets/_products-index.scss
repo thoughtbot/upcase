@@ -1,227 +1,219 @@
-body.products-index {
-  .prime-pitch {
-    margin: -3.5em 0 1em 0;
-    position: relative;
-    text-align: center;
+body.products-index #header-wrapper .header-container {
+  @include product-card-widths(5);
+  margin-bottom: 2rem;
 
-    &::after {
-      background: $warmgray;
-      content: '';
-      margin-right: -2px;
-      @include position(absolute, 0px 50% 0px 0);
-      width: 2px;
-      z-index: -1;
+  .back {
+    display: none;
+  }
+}
+
+body.products-index .forum {
+  @include box-sizing(content-box);
+  margin: $product-card-margin auto 0;
+  overflow: hidden;
+  padding: 0 $product-card-margin;
+  position: relative;
+  @include product-card-widths(3);
+
+  @include dashboard-large {
+    width: 50%;
+  }
+
+  @include dashboard-small {
+    box-sizing: border-box;
+    margin: 0 auto $product-card-margin;
+    padding: 0;
+    width: 100%;
+    @include product-card-widths(1, width);
+  }
+
+  p, a {
+    color: $darkwarmgray;
+    font: 700 1.6rem/1.2em $sans-serif;
+
+    @include dashboard-small {
+      font-size: 1.2rem;
+    }
+  }
+
+  a {
+    border-bottom: 1px solid $darkwarmgray;
+    display: inline-block;
+    font-weight: 100;
+    padding-bottom: 2px;
+  }
+}
+
+body.products-index .reading {
+  @include box-sizing(content-box);
+  margin: auto;
+  overflow: auto;
+  padding: $product-card-margin;
+  @include product-card-widths(5);
+
+  @include dashboard-small {
+    padding: 5px;
+  }
+
+  header {
+    border-radius: 3px 3px 0 0;
+    margin-bottom: 1rem;
+    padding: .75rem;
+
+    h2 {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.2em;
+    }
+  }
+
+  .bytes {
+    float: left;
+    margin-right: 3rem;
+    @include product-card-widths(3, width);
+
+    @include dashboard-medium {
+      margin-bottom: $product-card-margin;
     }
 
-    h2.subscriber {
-      background: $lightwarmgray;
-      margin-bottom: 1.1em;
-      margin-top: 2.75em;
-      padding-bottom: .4em;
+    header {
+      background: #8f8ee8;
     }
 
-    .prime-main-cta {
-      background: $learnred;
-      border: 0;
-      border-radius: 3px;
-      display: inline-block;
-      margin: 0 auto;
-      max-width: $footer-width;
-      padding: 1.2em 2.5em;
-      text-align: center;
-      width: 100%;
-
-      &.bottom {
-        margin-top: 4em;
-      }
-
-      &:hover {
-        background: lighten($learnred, 5%);
-      }
-
-      &:active {
-        background: darken($learnred, 5%);
-      }
-
-      h2, h3 {
-        color: #fff;
-        font: 700 1.75em/1em $sans-serif;
-        margin: 0;
-      }
-
-      h3 {
-        font-size: 1.2em;
-        font-weight: 400;
-        margin-top: .2em;
-      }
-    }
-
-    .prime-company-cta {
-      background: $lightwarmgray;
+    > a {
       display: block;
-      font-style: italic;
-      padding: .75em;
+      margin: 2rem $product-card-margin 0;
 
-      &.top {
-        margin-bottom: 5em;
-      }
-    }
-
-    .products {
-      @extend %main-content-box;
-      margin: auto;
-      margin-bottom: 4em;
-      max-width: $footer-width;
-      overflow: hidden;
-
-      h2 {
-        color: $darkwarmgray;
-        font: 700 1.75em/1.2em $sans-serif;
-        margin: 0 0 1.25em;
-        padding: .1em 0;
-        text-align: center;
-
-        span {
-          display: block;
-          font-weight: 100;
-        }
-      }
-
-      &.books {
-        text-align: center;
-
-        figure {
-          display: inline-block;
-          margin: 0 1em 1em;
-
-          a {
-            background: #000;
-            border: 0;
-            display: block;
-            line-height: 0;
-            position: relative;
-            @include transition(.15s);
-
-            img {
-              width: 196px;
-            }
-
-            &:hover {
-              top: -3px;
-            }
-
-            &:active {
-              img {
-                opacity: .8;
-              }
-            }
-          }
-
-          img {
-            border-radius: 1px;
-            @include box-shadow(0 1px 1px rgba(0, 0, 0, .3));
-            margin: 0;
-            width: 212px;
-          }
-        }
-      }
-
-      &.workshops, &.screencasts, &.bytes {
-        text-align: left;
-
-        a {
-          border-radius: 3px;
-          @include box-sizing(content-box);
-          display: inline-block;
+      hgroup {
+        h4 {
           margin: 0;
-          padding: 1em;
-          text-align: left;
-          @include transition(.2s);
-          vertical-align: top;
-          width: 197px;
-
-          p {
-            margin-bottom: 0;
-          }
-
-          &:hover {
-            background: lighten($warmgray, 12%);
-          }
-
-          &:active {
-            background: $warmgray;
-            @include transition(0s);
-          }
         }
 
-        hgroup {
-          h4 {
-            color: lighten($darkwarmgray, 20%);
-            font: 100 12px/1.3em $sans-serif;
-            margin-bottom: .3em;
-            text-shadow: none;
-            text-transform: uppercase;
-
-            span {
-              background: yellow;
-              box-shadow: 0 0 0 .3em yellow;
-              color: rgb(197, 145, 79);
-              font-weight: 700;
-              margin: 0 .5em 0 0;
-              padding: 0 0.3em;
-            }
-          }
-
-          h3 {
-            color: $darkwarmgray;
-            font: 600 18px/1.3em $sans-serif;
-            margin: 0;
-          }
-        }
-
-        p {
-          font: 400 18px/1.3em $sans-serif;
+        h3 {
+          color: $darkwarmgray;
+          font-size: 1.6rem;
+          font-weight: 700;
+          margin: 0 0 1rem;
         }
       }
     }
+
+    .bytes-index {
+      @include light-button;
+      text-align: center;
+    }
   }
 
-  section#subscription-banner {
-    padding: 0 1em 0 1em;
-    text-align: center;
+  .books {
+    float: right;
+    @include product-card-widths(2, width);
 
-    a {
-      @extend %main-content-box;
-      display: block;
-      width: 100%;
+    header {
+      background: #83d4b7;
+    }
+
+    .figure-container {
+      height: 195px;
+      margin: 2rem 1rem 0;
+      overflow: hidden;
+      padding-top: .25rem;
+      position: relative;
 
       &:hover {
-        h3 {
-          color: $red;
+        figure {
+          @include transform(translateY(-.25rem));
+
+          .notification {
+            @include transform(translateY(.15rem));
+          }
         }
       }
 
-      h3 {
-        line-height: 1.3em;
-        margin: 0;
-        padding: 0;
+      a {
+        @include light-button;
+        background-image: url('learn/slider-arrow.svg');
+        background-position: 95% center;
+        background-repeat: no-repeat;
+        background-size: 15px;
+        bottom: 0;
+        position: absolute;
+        width: 100%;
 
-        span {
-          color: $learnred;
+        @include dashboard-medium {
+          left: 1.5rem;
+          right: 1.5rem;
+          width: auto;
+        }
+
+        @include dashboard-small {
+          left: 0;
+          right: 0;
+        }
+
+        &:hover {
+          background-position: 96% center;
+        }
+      }
+    }
+
+    figure {
+      display: block;
+      margin-left: 2rem;
+      @include transition(.25s);
+      width: $product-card-width * .9;
+
+      .notification {
+        left: 115%;
+        top: 20%;
+        @include transition(.25s);
+
+        @include dashboard-medium {
+          left: -2rem;
+          top: 2%;
+        }
+
+        &:after {
+          content: none;
         }
       }
     }
   }
 
-  .article {
-    .subscription_icon, .excerpt {
-      display: none;
-    }
-  }
+  .list {
+    background: white;
+    border-radius: 3px;
+    overflow: auto;
+    padding: .25rem .25rem 1rem;
 
-  @include body-mobile {
-    .products-container {
-      width: 100% !important;
+    @include dashboard-large {
+      margin-right: 0;
+      width: 48%;
+    }
+
+    @include dashboard-medium {
+      float: none;
+      width: 100%;
+    }
+
+    > a, .figure-container {
+      @include dashboard-medium {
+        float: left;
+        margin: 2rem 0 0 0;
+        width: 33.33%;
+        padding: 0 $product-card-margin / 2;
+
+        &.bytes-index {
+          clear: both;
+          margin-left: 0;
+          width: 100%;
+        }
+      }
+
+      @include dashboard-small {
+        float: none;
+        width: 100%;
+      }
     }
   }
 }

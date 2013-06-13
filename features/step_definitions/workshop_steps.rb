@@ -37,13 +37,13 @@ When /^I attach an image name "([^"]*)" to the workshop$/ do |image_name|
 end
 
 When /^I view the in-person workshop "([^"]+)"$/ do |workshop_name|
-  visit products_path
-  find('[data-role=in-person-workshop]', text: workshop_name).click
+  workshop = Workshop.where(name: workshop_name, online: false).first
+  visit workshop_path(workshop)
 end
 
 When /^I view the online workshop "([^"]+)"$/ do |workshop_name|
-  visit products_path
-  find('[data-role=online-workshop]', text: workshop_name).click
+  workshop = Workshop.where(name: workshop_name, online: true).first
+  visit workshop_path(workshop)
 end
 
 Then /^I should see that "([^"]*)" is an online workshop$/ do |workshop_name|

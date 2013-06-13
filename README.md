@@ -42,6 +42,12 @@ Learn is a Rails 3 app running on Ruby 1.9 and deployed to Heroku.
 
         $ open http://localhost:5000
 
+### Testing
+
+You'll need to install phantom.js to run some of the specs.
+
+        brew install phantomjs
+
 ### Ongoing
 
 * Run test suite before committing to the master branch.

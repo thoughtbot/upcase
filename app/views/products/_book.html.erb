@@ -1,5 +1,6 @@
-<figure>
-  <%= link_to book do %>
+<div class="figure-container">
+  <figure class="book product-card">
     <%= image_tag cover_image(book), alt: "#{book.name} cover" %>
-  <% end %>
-</figure>
+  </figure>
+  <%= link_to 'Learn More', book, class: 'learn-more' %>
+</div>

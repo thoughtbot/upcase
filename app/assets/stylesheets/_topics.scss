@@ -127,10 +127,10 @@
           }
 
           .icon {
-            background: $learnred;
+            background: white;
             border-radius: 34px;
-            @include box-shadow(inset 0 -1px 0 $learndarkred, 0 1px 0 $learndarkred);
-            color: white;
+            @include box-shadow(inset 0 -1px 0 #ccc, 0 1px 0 #ccc);
+            color: $learnred;;
             display: block;
             float: left;
             font-family: "entypo";
@@ -144,9 +144,9 @@
           }
 
           &.prime .icon {
-            background: #fff;
-            @include box-shadow(inset 0 -1px 0 #ccc, 0 1px 0 #ccc);
-            color: $learnred;
+            background: $learnred;
+            @include box-shadow(inset 0 -1px 0 $learndarkred, 0 1px 0 $learndarkred);
+            color: #fff;
             font-size: 28px;
             line-height: 38px;
           }

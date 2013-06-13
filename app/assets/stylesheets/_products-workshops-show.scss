@@ -257,13 +257,12 @@ body.products-show, body.workshops-show {
   }
 
   #additional-information {
-    background: $warmgray url("learn/learn-arrows-top.png") repeat-x left top;
-    background-color: $warmgray;
+    background: lighten($warmgray, 5%);
 
     #additional-information-wrapper {
       @include outer-container;
       max-width: $max-width;
-      padding: 3em 0 3em 0;
+      padding: 3em 0 1.5em 0;
 
       #main-content {
         @include span-columns(12);

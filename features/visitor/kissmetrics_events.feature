@@ -8,8 +8,7 @@ Feature: KISSmetrics tracks important events
     And the following future section exists:
       | workshop                  |
       | name: Test-Driven Haskell |
-    When I go to the products page
-    And I follow "Test-Driven Haskell"
+    When I go to the workshop page of "Test-Driven Haskell"
     Then KISSmetrics receives the "Viewed Product" event with:
       | Product Name | Test-Driven Haskell |
     When I follow "Register for this Workshop"
@@ -23,8 +22,7 @@ Feature: KISSmetrics tracks important events
     Given the following book product exists:
       | name        | individual_price |
       | Test Kiss   | 15               |
-    When I go to the products page
-    And I follow "Test Kiss"
+    When I go to the product page for "Test Kiss"
     Then KISSmetrics receives the "Viewed Product" event with:
       | Product Name | Test Kiss |
     When I follow "Purchase for Yourself"
@@ -38,8 +36,7 @@ Feature: KISSmetrics tracks important events
     Given the following book product exists:
       | name        | individual_price |
       | Test Kiss   | 15               |
-    When I go to the products page
-    And I follow "Test Kiss"
+    When I go to the product page for "Test Kiss"
     Then KISSmetrics receives the "Viewed Product" event with:
       | Product Name | Test Kiss |
     When I follow "Purchase for Yourself"
@@ -57,8 +54,7 @@ Feature: KISSmetrics tracks important events
     And the following section exists:
       | id   | workshop                  | starts on     | ends on       |
       | 1235 | name: Test-Driven Haskell | July 17, 2010 | July 18, 2010 |
-    When I go to the products page
-    When I follow "Test-Driven Haskell"
+    When I go to the workshop page of "Test-Driven Haskell"
     And I press "Submit"
     Then KISSmetrics does not receive the "Followed up" event
     When I fill in "follow_up_email" with "foo@example.com"
