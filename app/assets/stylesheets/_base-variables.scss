@@ -15,6 +15,9 @@ $workshop-online-color: #d75222;
 $workshop-inperson-color: #ce3b21;
 $screencasts-color: #5c84cb;
 
+$journey-line-color: lighten($warmgray, 6%);
+$bullet-size: 70px;
+
 $lh: 24px; /*line-height of all the type on the site*/
 $unit: 60px; /*one grid column*/
 $gutter: 25px; /*size of one gutter*/
@@ -25,4 +28,3 @@ $max-width: 1100px; // ensuring alignment between footer and content
 $footer-width: 741px;
 
 $list-style: circle;
-
