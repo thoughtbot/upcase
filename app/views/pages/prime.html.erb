@@ -1,6 +1,10 @@
 <%= content_for :additional_body_classes, 'prime-marketing' %>
 
-<%= link_to 'sign in', sign_in_path, class: 'prime-signin' %>
+<% if signed_in? %>
+  <%= link_to 'account', my_account_path, class: 'prime-signin' %>
+<% else %>
+  <%= link_to 'sign in', sign_in_path, class: 'prime-signin' %>
+<% end %>
 
 <section class="journey-headline">
   <div class="logo">
