@@ -6,6 +6,12 @@
     display: block;
     height: 100%;
     overflow: auto;
+    @include transition(.07s);
+
+    &:hover {
+      background: lighten($warmgray, 10%);
+      box-shadow: 0 0 0 1.5rem lighten($warmgray, 10%);
+    }
 
     &:hover .steps-complete {
       top: 0% !important;
@@ -47,8 +53,10 @@
     @include transition(.4s $ease-in-quart);
 
     .text-complete {
-      font-weight: 200;
+      color: darken($darkwarmgray, 5%);
+      font-weight: 600;
       position: absolute;
+      z-index: 2;
     }
 
     .dots {
@@ -67,6 +75,7 @@
       top: 0;
       @include transition(.4s $ease-in-quart);
       width: $bullet-size / 3;
+      z-index: 1;
     }
 
     .journey-bullet.complete {
