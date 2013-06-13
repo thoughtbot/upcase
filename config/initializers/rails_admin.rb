@@ -173,6 +173,10 @@ RailsAdmin.config do |config|
       group :follow_ups do
         field :follow_ups
       end
+
+      group :videos do
+        field :videos
+      end
     end
   end
 
