@@ -1,4 +1,9 @@
-body.users, body.sessions, body.passwords {
+body.users-new,
+body.users-create,
+body.sessions-new,
+body.sessions-create,
+body.passwords-new,
+body.passwords-create {
   .header-container nav {
     display: none;
   }
