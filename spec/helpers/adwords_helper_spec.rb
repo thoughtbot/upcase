@@ -5,7 +5,7 @@ describe AdwordsHelper, '#adwords_conversion_tracker' do
     helper.adwords_conversion_tracker(10).should include 'conversion.js'
   end
 
-  it 'returns nil if flash[:purchase_paid_price] is not set' do
+  it 'returns nil if the value is not present' do
     helper.adwords_conversion_tracker(nil).should eq nil
   end
 end
