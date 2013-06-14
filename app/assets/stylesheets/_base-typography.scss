@@ -46,6 +46,7 @@ a {
   color: $red;
   font-family: $serif;
   text-decoration: none;
+  -webkit-font-smoothing: antialiased;
 }
 
 strong {
