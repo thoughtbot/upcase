@@ -1,6 +1,6 @@
 module AdwordsHelper
-  def adwords_conversion_tracker
-    if flash[:purchase_paid_price]
+  def adwords_conversion_tracker(value)
+    if value.present?
       <<-JS.strip_heredoc.html_safe
         <script type="text/javascript">
         /* <![CDATA[ */
@@ -9,7 +9,7 @@ module AdwordsHelper
         var google_conversion_format = "3";
         var google_conversion_color = "f5f5f0";
         var google_conversion_label = "h6fpCI3R6QkQw8KM1QM";
-        var google_conversion_value = #{flash[:purchase_paid_price]};
+        var google_conversion_value = #{value};
         /* ]]> */
         </script>
         <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">

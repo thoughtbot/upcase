@@ -1,5 +1,5 @@
 <% content_for :subject, @purchaseable.name %>
-<%= adwords_conversion_tracker %>
+<%= adwords_conversion_tracker(flash[:purchase_paid_price]) %>
 
 <div class="text-box-wrapper">
   <div class="text-box">
