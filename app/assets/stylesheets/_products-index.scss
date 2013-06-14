@@ -29,7 +29,7 @@ body.products-index .forum {
 
   p, a {
     color: $darkwarmgray;
-    font: 700 1.6rem/1.2em $sans-serif;
+    font: 400 1.5rem/1.5em $sans-serif;
 
     @include dashboard-small {
       font-size: 1.2rem;
@@ -39,8 +39,7 @@ body.products-index .forum {
   a {
     border-bottom: 1px solid $darkwarmgray;
     display: inline-block;
-    font-weight: 100;
-    padding-bottom: 2px;
+    padding-bottom: 1px;
   }
 }
 
