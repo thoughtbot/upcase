@@ -1,5 +1,8 @@
 <% content_for :subject, @purchaseable.name %>
-<%= adwords_conversion_tracker %>
+
+<% if flash[:purchase_paid_price].present? %>
+  <%= adwords_conversion_tracker(flash[:purchase_paid_price]) %>
+<% end %>
 
 <% if @purchaseable.in_person? && @purchaseable.upcoming? %>
   <p>Thank you for registering for <%= @purchaseable.name %>. We'll see you on <%= @purchaseable.date_range %> from <%= @purchaseable.time_range %> at <%= @purchaseable.address %>, <%= @purchaseable.city %>, <%= @purchaseable.state %> <%= @purchaseable.zip %>.</p>
