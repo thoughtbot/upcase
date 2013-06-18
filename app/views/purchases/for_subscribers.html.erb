@@ -1,8 +1,8 @@
-<% content_for :subject, @purchaseable.name %>
-
 <div class="text-box-wrapper">
   <div class="text-box">
-    <h2>You're about to get access to <%= @purchaseable.name %> for <em class="totalprice"> $0.00</em></h2>
+    <hgroup class="product-title">
+      <h2>You're about to get access to <%= @purchaseable.name %> for <em class="totalprice"> $0.00</em></h2>
+    </hgroup>
 
     <%= render 'subscriber_delivery_info', purchaseable: @purchaseable %>
 
