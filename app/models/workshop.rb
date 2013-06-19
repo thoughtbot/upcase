@@ -21,6 +21,7 @@ class Workshop < ActiveRecord::Base
   validates :short_description, presence: true
   validates :start_at, presence: true
   validates :stop_at, presence: true
+  validates :sku, presence: true
 
   # Plugins
   acts_as_list

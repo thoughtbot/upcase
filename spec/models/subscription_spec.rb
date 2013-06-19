@@ -7,6 +7,15 @@ describe Subscription do
     Subscription.new.should be_paid
   end
 
+  it 'adds the user to the subscriber mailing list' do
+    MailchimpFulfillmentJob.stubs(:enqueue)
+
+    subscription = create(:subscription)
+
+    MailchimpFulfillmentJob.should have_received(:enqueue).
+      with(Subscription::MAILING_LIST, subscription.user.email)
+  end
+
   describe 'self.paid' do
     it 'only includes paid subscriptions' do
       paid = create(:subscription, paid: true)
@@ -95,6 +104,17 @@ describe Subscription do
       user.subscription_purchases.count.should eq 0
       github_fulfillment.should have_received(:remove)
     end
+
+    it 'removes the user from the subscriber mailing list' do
+      MailchimpRemovalJob.stubs(:enqueue)
+
+      subscription = create(:subscription)
+      subscription.deactivate
+
+      MailchimpRemovalJob.should have_received(:enqueue).
+        with(Subscription::MAILING_LIST, subscription.user.email)
+    end
+
 
     def create_subscription_purchase(user)
       github_book_product = create(:github_book_product)

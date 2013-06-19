@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(:version => 20130620185831) do
     t.datetime "updated_at",        :null => false
   end
 
+  create_table "completions", :force => true do |t|
+    t.string   "trail_object_id"
+    t.string   "trail_name"
+    t.integer  "user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
   create_table "coupons", :force => true do |t|
     t.string   "code"
     t.integer  "amount"
@@ -304,10 +312,19 @@ ActiveRecord::Schema.define(:version => 20130620185831) do
     t.text     "summary"
     t.integer  "count"
     t.boolean  "featured",   :default => false, :null => false
-    t.text     "trail_map"
   end
 
   add_index "topics", ["slug"], :name => "index_topics_on_slug", :unique => true
+
+  create_table "trails", :force => true do |t|
+    t.integer  "topic_id"
+    t.string   "slug"
+    t.text     "trail_map"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "trails", ["topic_id"], :name => "index_trails_on_topic_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"
@@ -376,6 +393,7 @@ ActiveRecord::Schema.define(:version => 20130620185831) do
     t.integer  "github_team"
     t.integer  "length_in_days"
     t.string   "office_hours",              :default => "",    :null => false
+    t.string   "sku"
   end
 
 end
