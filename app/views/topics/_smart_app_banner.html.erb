@@ -1,0 +1,7 @@
+<% content_for :meta do %>
+  <%= tag(
+    :meta,
+    name: 'apple-itunes-app',
+    content:"app-id=605401428, app-argument=#{url_for(only_path: false)}"
+  ) %>
+<% end %>

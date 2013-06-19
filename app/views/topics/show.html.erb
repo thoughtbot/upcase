@@ -2,6 +2,7 @@
 <% content_for :meta_keywords, @topic.keywords %>
 <% content_for :page_title, "Learn #{@topic.name}" %>
 <% content_for :subject, @topic.name %>
+<%= render 'smart_app_banner' %>
 
 <% if @topic.summary.present? %>
   <div class="summary">
