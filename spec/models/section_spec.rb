@@ -155,22 +155,6 @@ describe Section do
       expect(last_week).not_to be_upcoming
     end
   end
-
-  describe '#fulfillment_method' do
-    it 'returns in-person if the workshop is an in-person one' do
-      in_person_workshop = create(:workshop, online: false)
-      section = create(:section, workshop: in_person_workshop)
-
-      expect(section.fulfillment_method).to eq('in-person')
-    end
-
-    it 'returns online if the workshop is an online one' do
-      online_workshop = create(:workshop, online: true)
-      section = create(:section, workshop: online_workshop)
-
-      expect(section.fulfillment_method).to eq('online')
-    end
-  end
 end
 
 describe Section do

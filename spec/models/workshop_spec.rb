@@ -255,4 +255,18 @@ describe Workshop do
       expect(workshop.thumbnail_path).to eq "workshop_thumbs/#{workshop.name.parameterize}.png"
     end
   end
+
+  describe '#fulfillment_method' do
+    it 'returns in-person if the workshop is an in-person one' do
+      workshop = create(:in_person_workshop, online: false)
+
+      expect(workshop.fulfillment_method).to eq('in-person')
+    end
+
+    it 'returns online if the workshop is an online one' do
+      workshop = create(:online_workshop, online: true)
+
+      expect(workshop.fulfillment_method).to eq('online')
+    end
+  end
 end

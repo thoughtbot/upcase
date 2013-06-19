@@ -1,8 +1,4 @@
-<% if workshop.online? %>
-  <figure class="workshop-online product-card">
-<% else %>
-  <figure class="workshop-inperson product-card">
-<% end %>
+<%= content_tag :figure, class: workshop_card_classes(workshop) do %>
   <h4><%= workshop.name %></h4>
   <% if workshop.online? %>
     <%= image_tag(workshop.thumbnail_path) %>
@@ -27,9 +23,9 @@
   <% end %>
   <p><%= workshop.short_description %></p>
   <section class="actions">
-    <%= link_to 'Learn More', workshop, 'data-role' => workshop_data_role(workshop), class: 'main' %>
+    <%= link_to workshop_dashboard_text(workshop), workshop, 'data-role' => workshop_data_role(workshop), class: 'main' %>
     <% if signed_in? %>
       <%= render partial: 'products/forum_link', locals: { current_user: current_user } %>
     <% end %>
   </section>
-</figure>
+<% end %>
