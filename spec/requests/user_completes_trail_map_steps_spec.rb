@@ -28,7 +28,7 @@ feature 'User can see their trail map progress' do
     visit topics_path
 
     expect(page).to have_content "1/1 complete"
-    expect(page).to have_css(".journey-bullet.complete[data-id='#{resource_id}']")
+    expect(page).to have_css(".trail-bullet.complete[data-id='#{resource_id}']")
   end
 
   scenario 'A user with items completed has the item checked', js: true do
