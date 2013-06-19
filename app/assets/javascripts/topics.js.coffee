@@ -6,6 +6,7 @@ if $(".trail-category").length
 if $(".topics-show").length
   $ ->
     completionView = new CompletionView
+    completionView.fetchCompletions(completionView.renderBullets)
     completionView.fetchCompletions(completionView.initializeCompletionEditor)
 
 class CompletionView
@@ -23,14 +24,14 @@ class CompletionView
     for step in $(".steps-complete")
       step = $(step)
       complete = @calculateAndMarkComplete(step)
-      @centerCompletionText(step, complete)
+      @writeCompletionText(step, complete)
 
     @scatterIncompleteBullets()
 
   calculateAndMarkComplete: (step) ->
     complete = 0
     total = step.data("total")
-    for bullet in step.find(".journey-bullet")
+    for bullet in step.find(".trail-bullet")
       bullet = $(bullet)
       percentage = bullet.index() / total * 100
       bullet.css "left", percentage + "%"
@@ -40,18 +41,12 @@ class CompletionView
     step.data "complete", complete
     complete
 
-  centerCompletionText: (step, complete) ->
+  writeCompletionText: (step, complete) ->
     total = step.data("total")
     step.find(".text-complete").text complete + "/" + total + " complete"
-    if complete / total > .75
-      step.find(".text-complete").css
-        left: "auto"
-        right: 0
-    else
-      step.find(".text-complete").css "left", ((complete - 1) / total * 100) + "%"
 
   scatterIncompleteBullets: ->
-    $(".journey-bullet:not(.complete)").each (index, bullet) ->
+    $(".trail-bullet:not(.complete)").each (index, bullet) ->
       bullet = $(bullet)
       complete = bullet.parents(".steps-complete").data("complete")
       total = bullet.parents(".steps-complete").data("total")
@@ -65,6 +60,8 @@ class CompletionView
   initializeCompletionEditor: ->
     for completion in window.completions
       $("#" + completion).prop "checked", true
+    $(".trail-map-steps .trail-bullet-hit-area").on "click", ->
+      $(@).siblings('input[type=checkbox]').trigger('click')
     $("input[type=checkbox]").on "change", ->
       checkbox = $(@)
       if checkbox.prop("checked")

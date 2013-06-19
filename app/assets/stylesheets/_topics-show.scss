@@ -1,0 +1,213 @@
+@media screen and (min-width: 1300px) {
+  body.topics-index .content {
+    max-width: 1800px;
+  }
+}
+
+body.topics-show {
+  .content {
+    position: relative;
+  }
+
+  .subject {
+    margin-left: 0;
+  }
+
+  .summary p {
+    margin-left: 0;
+  }
+
+  .steps-complete {
+    clear: both;
+    display: block;
+    height: 120px;
+    left: 0;
+    margin-bottom: 2rem;
+    position: relative;
+    top: -1rem;
+
+    @include body-mobile {
+      display: none;
+    }
+  }
+}
+
+.related-topics {
+  @include outer-container;
+
+  li {
+    display: inline-block;
+    margin-top: 0;
+    @include span-columns (6);
+
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+  }
+}
+
+.contribute {
+  @include position(absolute, 2.45em 2em 0 0);
+
+  @include body-mobile {
+    margin-bottom: 1rem;
+    position: static;
+    text-align: center;
+  }
+
+  a {
+    display: block;
+  }
+}
+
+.all-trail-map-steps {
+  border-bottom: 1px solid darken($lightwarmgray, 10%);
+  clear: both;
+  @include clearfix;
+  margin-bottom: 4%;
+
+  @include body-mobile {
+    border-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .gutter-sizer {
+    width: 4%;
+  }
+}
+
+.trail-map-steps {
+  @extend %main-content-box;
+  background: white;
+  float: left;
+  margin-bottom: 4%;
+  padding: 0;
+  width: 48%;
+
+  @include body-mobile {
+    width: 100%;
+    float: none;
+  }
+
+  h2, h3 {
+    font: 700 1.25rem/1.4em $sans-serif;
+    padding: .75rem 1rem;
+    text-align: center;
+  }
+
+  h2 {
+    background: $learnred;
+    color: #fff;
+
+    &.ongoing {
+      background: lighten($darkwarmgray, 15%);
+    }
+  }
+
+  h3 {
+    background: rgb(242, 242, 242);
+    color: darken($darkwarmgray, 10%);
+    font-size: 1rem;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+  }
+
+  li {
+    border-bottom: 1px solid #f0f0f0;
+    display: block;
+    margin: 0;
+    padding: .75rem 1rem .75rem 3rem;
+    position: relative;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  .trail-bullet-hit-area {
+    cursor: pointer;
+    @include position(absolute, 0px 0 0px 0px);
+    width: 3rem;
+
+    &:hover .trail-bullet {
+      background: darken($journey-line-color, 10%);
+    }
+
+    &:active .trail-bullet {
+      @include transition(0s);
+    }
+
+  }
+
+  .trail-bullet {
+    @extend %trail-bullet;
+    @include position(absolute, .75rem 0 0 .75rem);
+    @include transition(.1s ease);
+    @include user-select(none);
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"]:checked + .trail-bullet-hit-area .trail-bullet {
+    @extend %trail-bullet-complete;
+    background-color: lighten($darkwarmgray, 15%);
+    border-color: lighten($darkwarmgray, 15%);
+  }
+
+  input[type="checkbox"]:checked + .trail-bullet-hit-area + span {
+    text-decoration: line-through;
+
+    a {
+      text-decoration: line-through;
+    }
+  }
+}
+
+.related-reading {
+  padding-top: 3.25rem;
+  float: left;
+  width: 48%;
+
+  @include body-mobile {
+    float: none;
+    padding-top: 1.75rem;
+    width: 100%;
+  }
+}
+
+body.topics-show aside {
+  float: right;
+  width: 48%;
+
+  @include body-mobile {
+    float: none;
+    margin: 2rem 0 0 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  h3 {
+    color: darken($darkwarmgray, 10%);
+    font: 700 1.25rem/1.4em $sans-serif;
+    padding: 0 0 1.5rem 0;
+  }
+
+  hr {
+    display: none;
+  }
+
+  .related-products li {
+    float: left;
+    width: 48%;
+
+    &:nth-child(odd) {
+      margin-right: 4%;
+    }
+  }
+}
+

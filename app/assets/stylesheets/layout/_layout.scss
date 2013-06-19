@@ -6,9 +6,6 @@ body {
   margin: 0 auto;
 }
 
-// MAIN SECTION AND SIDEBAR
-//************************************************************************//
-
 img {
   max-width: 100%;
 }
@@ -21,7 +18,8 @@ img {
   > h1 {
     color: desaturate(darken($warmgray, 22%), 8%);
     font-size: 50px;
-    margin: 0 0 .4em 23px;
+    line-height: 1.15em;
+    margin: 0 0 .4rem 24px;
   }
 
   ul, ol {
@@ -67,13 +65,22 @@ img {
     text-align: left;
 
     p {
-      margin: -10px 0 24px 25px;
+      margin: 0 0 .2rem 26px;
+    }
+
+    p:last-child {
+      margin-bottom: 2rem;
+    }
+
+    p span:after {
+      content: ','
+    }
+
+    p span:last-child:after {
+      content: '';
     }
   }
 }
-
-// MAIN SECTION
-//************************************************************************//
 
 .text-box {
   @extend %main-content-box;
@@ -149,6 +156,30 @@ aside {
   float: right;
   display: inline-block;
 
+  hgroup {
+    margin-left: 48px;
+
+    h5, h4 {
+      font-style: normal;
+    }
+
+    h5 {
+      background-color: none;
+      display: block;
+      margin-top: 18px;
+      padding: 0;
+      position: relative;
+    }
+  }
+
+  h3 {
+    margin-top: 40px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
   .button {
     height: auto;
     margin: .75em 0 0;
@@ -164,6 +195,16 @@ aside {
   ul, ol {
     padding: 0;
     margin: 0;
+  }
+
+  li {
+    list-style-type: none;
+    margin: 4px 0 8px 0;
+
+    a {
+      color: $darkwarmgray;
+      font-style: italic;
+    }
   }
 }
 
