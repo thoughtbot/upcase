@@ -209,6 +209,12 @@ RailsAdmin.config do |config|
       end
       include_all_fields
     end
+
+    edit do
+      configure :created_at do
+        visible
+      end
+    end
   end
 
   config.model Section do
