@@ -64,6 +64,7 @@ Workshops::Application.configure do
 
   ENV['AWS_ACCESS_KEY_ID'] = 'xxxxxxxxxxxxxxxxxxxx'
   ENV['AWS_SECRET_ACCESS_KEY'] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+  ENV['MAILCHIMP_API_KEY'] = 'mailchimpkey'
 
   class ClearanceBackDoor
     def initialize(app)

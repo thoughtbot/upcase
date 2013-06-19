@@ -1,6 +1,7 @@
 module PurchaseHelpers
   def expect_to_have_purchased(product)
     expect(page).to have_content "Thank you for purchasing #{product.name}"
+    expect(FakeMailchimp.lists[product.sku]).to include 'ben@thoughtbot.com'
   end
 
   def click_purchase_link

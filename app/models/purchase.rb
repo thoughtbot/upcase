@@ -167,6 +167,7 @@ class Purchase < ActiveRecord::Base
       if fulfilled_with_github?
         GithubFulfillment.new(self).remove
       end
+      MailchimpFulfillment.new(self).remove
     end
   end
 
@@ -285,6 +286,7 @@ class Purchase < ActiveRecord::Base
       GithubFulfillment.new(self).fulfill
     end
     SubscriptionFulfillment.new(self).fulfill
+    MailchimpFulfillment.new(self).fulfill
   end
 
   def generate_lookup
