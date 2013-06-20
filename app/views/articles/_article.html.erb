@@ -1,12 +1,7 @@
 <%= content_tag_for :article, article, class: "result thoughtbot #{topic_classes(article.topics)}" do %>
-  <%= link_to byte_or_external_url(article) do %>
+  <%= link_to article.external_url do %>
     <hgroup class="post-link-header">
-      <h3>
-        <% if article.byte? %>
-          <span class='subscription_icon'><%= t('shared.subscriptions.icon') %></span>
-        <% end %>
-        <%= article.title %>
-      </h3>
+      <h3><%= article.title %></h3>
       <h6><%= article.published_on.to_s(:short_date) %></h6>
     </hgroup>
     <p class="excerpt"><%== format_content article.body_html, options: { length: 220 } %></p>

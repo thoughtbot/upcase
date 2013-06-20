@@ -189,7 +189,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def active?
-    (starts_on..ends_on).cover?(Date.today)
+    (starts_on..ends_on).cover?(Time.zone.today)
   end
 
   private
@@ -286,7 +286,8 @@ class Purchase < ActiveRecord::Base
   end
 
   def generate_lookup
-    self.lookup = Digest::MD5.hexdigest("#{email}#{purchaseable_name}#{Time.now}\n").downcase
+    key = "#{email}#{purchaseable_name}#{Time.zone.now}\n"
+    self.lookup = Digest::MD5.hexdigest(key).downcase
   end
 
   def payment_method_must_match_price

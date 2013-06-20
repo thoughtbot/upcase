@@ -1,4 +1,18 @@
 <% content_for :page_title, "Learn #{@topic.name}" %>
 <% content_for :subject, @topic.name %>
-<%= render 'index' %>
-<%= render 'topics/related' %>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <hgroup class="product-title">
+      <h2><%= t '.heading', topic: @topic.name %></h2>
+    </hgroup>
+
+    <% if @topic.articles.present? %>
+      <section class="articles results">
+        <%= render @topic.articles.ordered %>
+      </section>
+    <% end %>
+  </div>
+</div>
+
+<%= render @topic.related %>

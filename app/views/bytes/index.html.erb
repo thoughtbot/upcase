@@ -1,5 +1,18 @@
 <% content_for :page_title, "Learn Bytes" %>
 <% content_for :subject, "Bytes" %>
-<% content_for :additional_body_classes, "articles" %>
-<%= render 'articles/index' %>
-<%= render 'topics/related' %>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <% if @topic.present? %>
+      <hgroup class="product-title">
+        <h2><%= t '.heading', topic: @topic.name %></h2>
+      </hgroup>
+    <% end %>
+
+    <% if @bytes.present? %>
+      <section class="bytes results">
+        <%= render @bytes %>
+      </section>
+    <% end %>
+  </div>
+</div>

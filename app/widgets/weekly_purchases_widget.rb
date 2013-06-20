@@ -3,7 +3,7 @@ widget :weekly_purchases do
   type "number_and_secondary"
   data do
     {
-      value: Purchase.total_sales_within_range(7.days.ago, Time.now),
+      value: Purchase.total_sales_within_range(7.days.ago, Time.zone.now),
       previous: Purchase.total_sales_within_range(14.days.ago, 7.days.ago),
       prefix: "$"
     }

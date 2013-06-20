@@ -83,6 +83,6 @@ Then /^the S3 link to "([^"]*)" should expire in the next hour$/ do |file_name|
   link = page.find("a[href^='https://s3.amazonaws.com/test.books.thoughtbot/#{file_name}']")['href']
   link =~ /Expires=([0-9]+)/
   expiration_time = Time.at($1.to_i)
-  expect(expiration_time).to be > Time.now
+  expect(expiration_time).to be > Time.zone.now
   expect(expiration_time).to be < 1.hour.from_now
 end

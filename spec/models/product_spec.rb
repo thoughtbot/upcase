@@ -91,14 +91,14 @@ describe Product do
   describe 'starts_on' do
     it 'returns the given date' do
       product = create(:product)
-      expect(product.starts_on(Date.today)).to eq Date.today
+      expect(product.starts_on(Time.zone.today)).to eq Time.zone.today
     end
   end
 
   describe 'ends_on' do
     it 'returns the given date' do
       product = create(:product)
-      expect(product.ends_on(Date.today)).to eq Date.today
+      expect(product.ends_on(Time.zone.today)).to eq Time.zone.today
     end
   end
 

@@ -32,11 +32,14 @@ class Section < ActiveRecord::Base
   after_create :send_teacher_notifications
 
   def self.active
-    where("sections.starts_on >= ? OR sections.ends_on IS NULL", Date.today).by_starts_on
+    where(
+      'sections.starts_on >= ? OR sections.ends_on IS NULL',
+      Time.zone.today
+    ).by_starts_on
   end
 
   def self.by_starts_on
-    order("starts_on asc")
+    order('starts_on asc')
   end
 
   def self.by_starts_on_desc
@@ -56,7 +59,11 @@ class Section < ActiveRecord::Base
   end
 
   def self.current
-    where 'starts_on <= ? AND (? <= ends_on OR ends_on IS NULL)', Date.today, Date.today
+    where(
+      'starts_on <= ? AND (? <= ends_on OR ends_on IS NULL)',
+      Time.zone.today,
+      Time.zone.today
+    )
   end
 
   def self.send_reminders
@@ -167,7 +174,7 @@ class Section < ActiveRecord::Base
   end
 
   def upcoming?
-    starts_on >= Date.today
+    starts_on >= Time.zone.today
   end
 
   def starts_on(purchase_date = nil)
@@ -228,7 +235,7 @@ class Section < ActiveRecord::Base
 
   def ending_paid_purchases
     paid_purchases.select do |purchase|
-      purchase.ends_on == Date.today
+      purchase.ends_on == Time.zone.today
     end
   end
 end

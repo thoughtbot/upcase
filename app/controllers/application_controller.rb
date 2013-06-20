@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
   helper_method :videos
 
   def bytes
-    Article.bytes.top.published
+    Byte.ordered.published
   end
   helper_method :bytes
 

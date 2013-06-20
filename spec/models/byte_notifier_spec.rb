@@ -7,7 +7,7 @@ describe ByteNotifier do
 
     byte_needing_notification = stub
     byte_not_needing_notification = stub
-    Article.stubs(:bytes_published_today).returns([byte_needing_notification])
+    Byte.stubs(:published_today).returns([byte_needing_notification])
     emails = ["test@example.com", "test2@example.com"]
 
     notifier = ByteNotifier.new(emails)
@@ -24,7 +24,7 @@ describe ByteNotifier do
 
   it 'notifies airbrake when there is an error' do
     Mailer.stubs(:byte_notification).raises(Net::SMTPFatalError)
-    Article.stubs(:bytes_published_today).returns([stub])
+    Byte.stubs(:published_today).returns([stub])
     Airbrake.stubs(:notify)
     notifier = ByteNotifier.new(['test@example.com'])
 

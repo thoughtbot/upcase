@@ -35,24 +35,24 @@ describe Video do
   describe 'available?' do
     it 'returns true when the video is available based on the given start date' do
       video = create(:video, active_on_day: 0)
-      expect(video.available?(Date.today)).to be_true
+      expect(video.available?(Time.zone.today)).to be_true
     end
 
     it 'returns false when the video is not available based on the given start date' do
       video = create(:video, active_on_day: 2)
-      expect(video.available?(Date.today)).not_to be_true
+      expect(video.available?(Time.zone.today)).not_to be_true
     end
   end
 
   describe 'starts_today?' do
     it 'returns true when the video is available starting today based on the given start date' do
       video = create(:video, active_on_day: 0)
-      expect(video.starts_today?(Date.today)).to be_true
+      expect(video.starts_today?(Time.zone.today)).to be_true
     end
 
     it 'returns false when the video is not available starting today based on the given start date' do
       video = create(:video, active_on_day: 2)
-      expect(video.starts_today?(Date.today)).not_to be_true
+      expect(video.starts_today?(Time.zone.today)).not_to be_true
     end
   end
 

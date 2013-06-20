@@ -223,8 +223,8 @@ describe Workshop do
     it 'does not start immediately when the active section has an end date' do
       section = create(
         :section,
-        starts_on: Date.today,
-        ends_on: Date.tomorrow
+        starts_on: Time.zone.today,
+        ends_on: 1.day.from_now
       )
       workshop = section.workshop
 
@@ -234,7 +234,7 @@ describe Workshop do
     it 'starts immediately when the active section does not have an end date' do
       section = create(
         :section,
-        starts_on: Date.today,
+        starts_on: Time.zone.today,
         ends_on: nil
       )
       workshop = section.workshop

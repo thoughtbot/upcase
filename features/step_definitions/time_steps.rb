@@ -5,7 +5,7 @@ Given 'today is $date' do |date_string|
 end
 
 Given 'time is unfrozen' do
-  time = Time.now
+  time = Time.zone.now
   Timecop.return
   Timecop.travel(time)
 end

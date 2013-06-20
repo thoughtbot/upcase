@@ -1,0 +1,18 @@
+<% content_for :meta_description, @byte.title %>
+<% content_for :meta_keywords, @byte.keywords %>
+<% content_for :page_title, 'Learn Bytes' %>
+<% content_for :subject, 'Bytes' %>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <hgroup class="product-title">
+      <h2><%= @byte.title %></h2>
+      <h3 class="workshop-type"><%= @byte.published_on.to_s(:simple) %></h3>
+    </hgroup>
+    <div class="body">
+      <%== @byte.body_html %>
+    </div>
+  </div>
+</div>
+
+<%= render @byte.related %>

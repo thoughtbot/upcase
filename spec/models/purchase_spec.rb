@@ -609,9 +609,9 @@ describe Purchase, 'active?' do
   it "is true when today is between start and end" do
     product = build(:product)
     product.stubs(starts_on: Date.yesterday, ends_on: 4.days.from_now.to_date)
-    purchase = build(:purchase, purchaseable: product, created_at: Date.today)
+    purchase = build(:purchase, purchaseable: product, created_at: Time.zone.today)
 
-    Timecop.freeze(Date.today) do
+    Timecop.freeze(Time.zone.today) do
       expect(purchase).to be_active
     end
 

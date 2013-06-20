@@ -27,20 +27,17 @@ Feature: View topics
     And a "video" product named "Video 1" for topic "Topic 1"
     And a "video" inactive product named "Video Inactive" for topic "Topic 1"
     And an article for topic "Topic 1"
-    And a future article "Hello" for topic "Topic 1"
     When I go to the topics page
     And I follow "Topic 1"
     Then I should see "workshop 1" within "aside .workshop"
     Then I should see "Book 1" within "aside .book"
     Then I should see "Video 1" within "aside .video"
     Then I should not see "Video Inactive" within "aside"
-    Then I should not see "Hello"
     And I follow "View all Topic 1 articles"
     Then I should see "workshop 1" within "aside .workshop"
     Then I should see "Book 1" within "aside .book"
     Then I should see "Video 1" within "aside .video"
     And I should see "View all products" within "aside"
-    And I should not see "Hello"
 
   Scenario: View a link to all products if there are no related products
     Given a featured topic named "Topic 1"

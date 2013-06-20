@@ -18,65 +18,11 @@ describe 'Articles' do
     it 'links external articles and indicates subscription articles' do
       topic = create(:topic)
       article = create(:article)
-      tumblr_article = create(:article, external_url: 'http://example.com')
       topic.articles << article
-      topic.articles << tumblr_article
 
       visit topic_articles_url(topic)
 
-      expect(page).not_to have_css("a[href='#{article_path(tumblr_article)}']")
-      expect(page).to have_css("a[href='#{tumblr_article.external_url}']")
-      expect(page).to have_css("a[href='#{article_path(article)}']")
-      expect(tumblr_article).not_to have_subscription_icon
-      expect(article).to have_subscription_icon
-    end
-  end
-
-  context 'show' do
-    it 'displays the given article' do
-      article = create(:article)
-      sign_in_as_user_with_subscription
-
-      visit article_url(article)
-
-      expect(page).to have_content(article.title)
-      expect(page.find('.body').native.inner_html).to include article.body_html
-      expect(page).to have_content(article.published_on.to_s(:simple))
-      expect(page).to have_css("meta[name='Description'][content='#{article.title}']")
-    end
-
-    it 'displays the related topics, products and workshops' do
-      topic = create(:topic, name: 'Ruby')
-      unrelated_topic = create(:topic, name: 'ASP.net')
-
-      ruby_article = create(:article)
-      topic.articles << ruby_article
-      ruby_product = create(:product)
-      topic.products << ruby_product
-      ruby_workshop = create(:workshop)
-      topic.workshops << ruby_workshop
-      private_workshop = create(:workshop, active: false)
-      topic.workshops << private_workshop
-
-      unrelated_product = create(:product)
-      unrelated_topic.products << unrelated_product
-      unrelated_workshop = create(:workshop)
-      unrelated_topic.workshops << unrelated_workshop
-      sign_in_as_user_with_subscription
-
-      visit article_url(ruby_article)
-
-      expect(page).to have_css('meta[name="Keywords"][content="Ruby"]')
-      within '.content' do
-        expect(page).to have_content(topic.name)
-        expect(page).to have_content(ruby_product.name)
-        expect(page).to have_content(ruby_workshop.name)
-
-        expect(page).not_to have_content(unrelated_topic.name)
-        expect(page).not_to have_content(unrelated_product.name)
-        expect(page).not_to have_content(unrelated_workshop.name)
-        expect(page).not_to have_content(private_workshop.name)
-      end
+      expect(page).to have_css("a[href='#{article.external_url}']")
     end
   end
 end
