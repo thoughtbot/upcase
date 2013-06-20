@@ -67,7 +67,11 @@ img {
     text-align: left;
 
     p {
-      margin: -10px 0 24px 25px;
+      margin: 0 0 .4rem 26px;
+    }
+
+    p:last-child {
+      margin-bottom: 2rem;
     }
   }
 }
