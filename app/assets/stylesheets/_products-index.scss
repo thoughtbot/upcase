@@ -187,12 +187,20 @@ body.products-index .reading {
 
     @include dashboard-large {
       margin-right: 0;
-      width: 48%;
+      width: 58%;
+
+      &.books {
+        width: 38%;
+      }
     }
 
     @include dashboard-medium {
       float: none;
       width: 100%;
+
+      &.books {
+        width: 100%;
+      }
     }
 
     > a, .figure-container {
