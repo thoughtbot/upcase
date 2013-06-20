@@ -20,7 +20,7 @@ input[type="submit"] {
 
 .button, input[type="submit"] {
   background-color: $learnred;
-  border-bottom: 4px solid $learndarkred;
+  border-bottom: 3px solid $learndarkred;
   border-radius: 3px;
   color: white;
   display: inline-block;
@@ -59,9 +59,10 @@ input[type="submit"] {
 .button-mini {
   @extend .button;
   border-bottom: 2px solid $learndarkred;
-  height: 26px;
+  height: auto;
   margin-bottom: 10px;
   margin-top: 10px;
+  padding-bottom: 4px;
   padding-top: 6px;
 }
 
