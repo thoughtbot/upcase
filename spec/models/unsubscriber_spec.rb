@@ -8,7 +8,7 @@ describe Unsubscriber do
     subscription.stubs(:stripe_customer_id).returns('cus_1CXxPJDpw1VLvJ')
     unsubscriber.process
 
-    subscription.deactivated_on.should == Date.today
+    subscription.deactivated_on.should == Time.zone.today
   end
 
   describe 'schedule' do

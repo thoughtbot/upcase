@@ -3,7 +3,7 @@ widget :new_prime do
   type "number_and_secondary"
   data do
     {
-      value: SubscriptionMetrics.new_in_period(30.days.ago, Time.now),
+      value: SubscriptionMetrics.new_in_period(30.days.ago, Time.zone.now),
       previous: SubscriptionMetrics.new_in_period(60.days.ago, 30.days.ago)
     }
   end

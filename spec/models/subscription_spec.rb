@@ -48,7 +48,7 @@ describe Subscription do
 
     it 'delivers a byte notification to each subscriber' do
       subscription = create(:subscription)
-      article = create(:article, published_on: Date.today, body: 'test')
+      byte = create(:byte, published_on: Time.zone.today, body: 'test')
 
       Subscription.deliver_byte_notifications
 
@@ -66,7 +66,7 @@ describe Subscription do
     end
 
     it "returns false if deactivated_on is not nil" do
-      subscription = Subscription.new(deactivated_on: Date.today)
+      subscription = Subscription.new(deactivated_on: Time.zone.today)
       subscription.should_not be_active
     end
   end
@@ -78,7 +78,7 @@ describe Subscription do
       subscription.deactivate
       subscription.reload
 
-      expect(subscription.deactivated_on).to eq Date.today
+      expect(subscription.deactivated_on).to eq Time.zone.today
     end
 
     it 'removes all subscription purchases' do

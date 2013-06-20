@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130610210831) do
+ActiveRecord::Schema.define(:version => 20130620185831) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -25,22 +25,26 @@ ActiveRecord::Schema.define(:version => 20130610210831) do
   add_index "announcements", ["announceable_id", "announceable_type", "ends_at"], :name => "index_announcements_on_announceable_and_ends_at"
 
   create_table "articles", :force => true do |t|
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "title",        :null => false
+    t.text     "body_html",    :null => false
+    t.string   "external_url", :null => false
+    t.date     "published_on", :null => false
+  end
+
+  create_table "bytes", :force => true do |t|
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
     t.string   "title",                           :null => false
     t.text     "body_html",                       :null => false
-    t.string   "external_url"
     t.date     "published_on",                    :null => false
-    t.text     "body"
+    t.text     "body",                            :null => false
     t.boolean  "draft",        :default => false, :null => false
   end
 
-  create_table "articles_topics", :id => false, :force => true do |t|
-    t.integer "article_id", :null => false
-    t.integer "topic_id",   :null => false
-  end
-
-  add_index "articles_topics", ["article_id", "topic_id"], :name => "index_articles_topics_on_article_id_and_topic_id", :unique => true
+  add_index "bytes", ["draft"], :name => "index_bytes_on_draft"
+  add_index "bytes", ["published_on"], :name => "index_bytes_on_published_on"
 
   create_table "classifications", :force => true do |t|
     t.integer  "topic_id"

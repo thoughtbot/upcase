@@ -6,6 +6,8 @@ class Topic < ActiveRecord::Base
   # Associations
   has_many :articles, through: :classifications, source: :classifiable,
     source_type: 'Article'
+  has_many :bytes, through: :classifications, source: :classifiable,
+    source_type: 'Byte'
   has_many :classifications
   has_many :workshops, through: :classifications, source: :classifiable,
     source_type: 'Workshop'
@@ -13,7 +15,7 @@ class Topic < ActiveRecord::Base
     source_type: 'Episode'
   has_many :products, through: :classifications, source: :classifiable,
     source_type: 'Product'
-  has_many :related_topics, through: :classifications, source: :classifiable,
+  has_many :topics, through: :classifications, source: :classifiable,
     source_type: 'Topic'
 
   # Validations
@@ -40,6 +42,10 @@ class Topic < ActiveRecord::Base
     end
   end
 
+  def self.meta_keywords
+    pluck(:name).join(', ')
+  end
+
   def contribute_url
     "https://github.com/thoughtbot/trail-map/blob/master/trails/#{slug.parameterize}.json"
   end
@@ -61,8 +67,8 @@ class Topic < ActiveRecord::Base
     end
   end
 
-  def self.meta_keywords
-    pluck(:name).join(', ')
+  def related
+    @related ||= Related.new(self)
   end
 
   private
@@ -88,8 +94,8 @@ class Topic < ActiveRecord::Base
       trail_map['prerequisites'].each do |related|
         p "#{trail_map['name']}: looking for prerequisites: #{related}"
         prerequisite_topic = Topic.find_by_slug(related)
-        unless self.related_topics.include?(prerequisite_topic)
-          self.related_topics << prerequisite_topic
+        unless self.topics.include?(prerequisite_topic)
+          self.topics << prerequisite_topic
         end
       end
     end

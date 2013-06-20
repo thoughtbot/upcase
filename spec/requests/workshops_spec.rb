@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Workshops' do
   it 'displays their formatted resources' do
     workshop = create(:workshop, resources: "* Item 1\n*Item 2")
-    section = create(:section, starts_on: Date.today, ends_on: 1.month.from_now, workshop: workshop)
+    section = create(:section, starts_on: Time.zone.today, ends_on: 1.month.from_now, workshop: workshop)
     video = create(:video, watchable: workshop, active_on_day: 0, title: 'Video One')
     purchase = create(:paid_purchase, purchaseable: section)
 

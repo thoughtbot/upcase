@@ -5,7 +5,7 @@ describe Loader do
   context 'import_articles_and_topics' do
 
     before do
-      base_post = {title: "", published_at: Time.now - 5.days,
+      base_post = {title: "", published_at: Time.zone.now - 5.days,
         body_html: "test", tumblr_url: "test", tags: []}
 
       posts = [

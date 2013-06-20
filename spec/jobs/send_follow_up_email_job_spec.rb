@@ -25,15 +25,15 @@ describe SendFollowUpEmailJob do
       mail_stub.should have_received(:deliver)
     end
 
-    it 'sets notified_at to Time.now' do
+    it 'sets notified_at to Time.zone.now' do
       follow_up = create(:follow_up)
       section = create(:section)
 
       follow_up.notified_at.should be_nil
 
-      Timecop.freeze(Time.now) do
+      Timecop.freeze(Time.zone.now) do
         SendFollowUpEmailJob.new(follow_up.id, section.id).perform
-        follow_up.reload.notified_at.to_i.should == Time.now.to_i
+        follow_up.reload.notified_at.to_i.should == Time.zone.now.to_i
       end
     end
   end

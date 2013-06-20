@@ -1,0 +1,9 @@
+<%= content_tag_for :article, byte, class: "result thoughtbot #{topic_classes(byte.topics)}" do %>
+  <%= link_to byte_path(byte) do %>
+    <hgroup class="post-link-header">
+      <h3><%= byte.title %></h3>
+      <h6><%= byte.published_on.to_s(:short_date) %></h6>
+    </hgroup>
+    <p class="excerpt"><%== format_content byte.body_html, options: { length: 220 } %></p>
+  <% end %>
+<% end %>

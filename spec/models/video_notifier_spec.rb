@@ -9,8 +9,8 @@ describe VideoNotifier do
     video_not_needing_notification = stub(:starts_today? => false)
     videos = [video_needing_notification, video_not_needing_notification]
     purchases = [
-      stub(starts_on: Date.today, email: "test@example.com"),
-      stub(starts_on: Date.today, email: "test2@example.com")
+      stub(starts_on: Time.zone.today, email: "test@example.com"),
+      stub(starts_on: Time.zone.today, email: "test2@example.com")
     ]
     section = stub
 

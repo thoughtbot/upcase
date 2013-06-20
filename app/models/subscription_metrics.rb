@@ -35,7 +35,7 @@ class SubscriptionMetrics
   end
 
   def self.canceled_in_last_30_days
-    canceled_within_period(30.days.ago, Time.now)
+    canceled_within_period(30.days.ago, Time.zone.now)
   end
 
   def self.count_30_days_ago

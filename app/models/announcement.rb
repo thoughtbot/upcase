@@ -12,6 +12,6 @@ class Announcement < ActiveRecord::Base
   validates :message, presence: true
 
   def self.current
-    where('ends_at > ?', Time.now).order('ends_at ASC').first
+    where('ends_at > ?', Time.zone.now).order('ends_at ASC').first
   end
 end
