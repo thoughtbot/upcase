@@ -7,6 +7,8 @@ class PagesController < HighVoltage::PagesController
     case params[:id]
     when 'prime'
       'prime'
+    when 'learnsale'
+      'prime'
     else
       'application'
     end

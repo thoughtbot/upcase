@@ -1,0 +1,100 @@
+.journey-headline.learnsale {
+  padding-bottom: 12rem;
+
+  h1 span {
+    color: darken($darkwarmgray, 10%);
+  }
+}
+
+.journey.learnsale {
+  overflow: visible;
+  padding-top: 0;
+
+  .figuregroup {
+    @include clearfix;
+    display: block;
+    margin-bottom: 3rem;
+    position: relative;
+    text-align: center;
+    top: -6.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .product-card {
+      margin-bottom: 2rem;
+      margin-right: 2rem;
+      text-align: left;
+      @include transition(.2s);
+      vertical-align: top;
+
+      &.book {
+        width: $product-card-width;
+      }
+
+      &:hover {
+        @include transform(translateY(-.15rem) scale(1.02));
+      }
+
+      .inperson-date {
+        font-family: $sans-serif;
+      }
+
+      .notification {
+        font-size: 1rem;
+
+        span {
+          margin-right: .25rem;
+          opacity: .6;
+          text-decoration: line-through;
+        }
+      }
+    }
+
+    .desc {
+      background: none;
+      border: 0;
+      @include box-shadow(none);
+      height: auto;
+      padding-top: 43px;
+
+      &:hover {
+        @include transform(none);
+      }
+
+      h3 {
+        color: darken($darkwarmgray, 10%);
+        font: 700 2rem/1.3em $sans-serif;
+        margin-bottom: .3em;
+      }
+
+      p {
+        color: darken($darkwarmgray, 10%);
+        font: 700 2rem/1.3em $sans-serif;
+        margin: 0;
+      }
+
+      .slashed {
+        font-weight: 500;
+        opacity: .6;
+        text-decoration: line-through;
+      }
+    }
+  }
+
+  .pitch {
+    margin-bottom: 0;
+    max-width: 60em;
+    padding-bottom: 10rem;
+    text-align: center;
+
+    article {
+      width: 100%;
+
+      &> h2 {
+        color: darken($darkwarmgray, 10%);
+      }
+    }
+  }
+}

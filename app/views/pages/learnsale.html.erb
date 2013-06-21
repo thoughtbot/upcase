@@ -1,0 +1,197 @@
+<%= content_for :additional_body_classes, 'prime-marketing' %>
+
+<% if signed_in? %>
+  <%= link_to 'account', my_account_path, class: 'prime-signin' %>
+<% else %>
+  <%= link_to 'sign in', sign_in_path, class: 'prime-signin' %>
+<% end %>
+
+<section class="journey-headline learnsale">
+  <div class="logo">
+    <h1>
+      <%= image_tag('learn/learn-ralph.png') %>
+    </h1>
+  </div>
+  <h1>All of our products 40% off &mdash; from now until 6/28. Use the coupon code <span>SOLSTICE</span></h1>
+</section>
+
+<section class="journey learnsale">
+  <div class="figuregroup">
+    <figure class="product-card desc">
+      <h3>Online Workshops</h3>
+      <p><span class="slashed">$1099</span> $660</p>
+    </figure>
+    <figure class="workshop-online product-card">
+      <%= link_to '/workshops/20-intro-to-ruby-on-rails', title: 'The Intro to Ruby on Rails online workshop details' do %>
+        <h4>Intro to Ruby on Rails</h4>
+        <%= image_tag('workshop_thumbs/intro-to-ruby-on-rails.png') %>
+        <h5>Online Workshop</h5>
+        <p>Learn how to develop web applications using Ruby on Rails</p>
+      <% end %>
+    </figure>
+    <figure class="workshop-online product-card">
+      <%= link_to '/workshops/19-design-for-developers', title: 'The Design for Developers online workshop details' do %>
+        <h4>Design for Developers</h4>
+        <%= image_tag('workshop_thumbs/design-for-developers.png') %>
+        <h5>Online Workshop</h5>
+        <p>Get better at visual design and create something great</p>
+      <% end %>
+    </figure>
+    <figure class="workshop-online product-card">
+      <%= link_to '/workshops/18-test-driven-rails', title: 'Test-Driven Rails online workshop details' do %>
+        <h4>Test-Driven Rails</h4>
+        <%= image_tag('workshop_thumbs/test-driven-rails.png') %>
+        <h5>Online Workshop</h5>
+        <p>Learn Test-Driven Development using RSpec and Capybara.</p>
+      <% end %>
+    </figure>
+    <figure class="workshop-online product-card">
+      <%= link_to '/workshops/21-intermediate-ruby-on-rails', title: 'Intermediate Ruby on Rails' do %>
+        <h4>Intermediate Ruby on Rails</h4>
+        <%= image_tag('workshop_thumbs/intermediate-ruby-on-rails.png') %>
+        <h5>Online Workshop</h5>
+        <p>Dig deeper into Ruby on Rails.</p>
+      <% end %>
+    </figure>
+    <figure class="workshop-online product-card">
+      <div class="notification"><span>$299</span> $179</div>
+      <%= link_to '/workshops/9-the-playbook-workshop', title: 'The Playbook online workshop details' do %>
+        <h4>The Playbook</h4>
+        <%= image_tag('workshop_thumbs/the-playbook-workshop.png') %>
+        <h5>Online Workshop</h5>
+        <p>How to design, build, and launch a successful application</p>
+      <% end %>
+    </figure>
+  </div>
+  <div class="figuregroup">
+    <figure class="product-card desc">
+      <h3>In-person Workshops</h3>
+      <p><span class="slashed">$1099</span> $660</p>
+    </figure>
+    <figure class="workshop-inperson product-card">
+      <%= link_to '/workshops/12-intermediate-ruby-on-rails', title: 'The Intermediate Ruby on Rails in-person workshop details' do %>
+        <h4>Intermediate Ruby on Rails</h4>
+        <div class="inperson-date">
+          <span class="upcoming">Upcoming</span>
+          <section>
+            <span class="city">Boston: </span>
+            <span class="month">Jun</span>
+            <span class="day">24</span>
+          </section>
+        </div>
+        <h5>In-Person Workshop</h5>
+        <p>Dig deeper into Ruby on Rails</p>
+      <% end %>
+    </figure>
+    <figure class="workshop-inperson product-card">
+      <%= link_to '/workshops/1-test-driven-rails', title: 'The Test Driven Rails in-person workshop details' do %>
+        <h4>Test-Driven Rails</h4>
+        <div class="inperson-date">
+          <span class="upcoming">Upcoming</span>
+          <section>
+            <span class="city">Boston: </span>
+            <span class="month">Jul</span>
+            <span class="day">1</span>
+          </section>
+        </div>
+        <h5>In-Person Workshop</h5>
+        <p>Learn Test-Driven Development using RSpec and Capybara</p>
+      <% end %>
+    </figure>
+    <figure class="workshop-inperson product-card">
+      <%= link_to '/workshops/3-intro-to-ruby-on-rails', title: 'Intro to Ruby on Rails in-person workshop details' do %>
+        <h4>Intro to Ruby on Rails</h4>
+        <div class="inperson-date">
+          <span class="upcoming">Upcoming</span>
+          <section>
+            <span class="city">Boston: </span>
+            <span class="month">Jul</span>
+            <span class="day">15</span>
+          </section>
+        </div>
+        <h5>In-Person Workshop</h5>
+        <p>Learn the core of Ruby followed by how to develop applications using Rails.</p>
+      <% end %>
+    </figure>
+    <figure class="workshop-inperson product-card">
+      <%= link_to '/workshops/2-design-for-developers', title: 'The Design for Developers in-person workshop details' do %>
+        <h4>Design for Developers</h4>
+        <div class="inperson-date">
+          <span class="upcoming">Upcoming</span>
+          <section>
+            <span class="city">Boston: </span>
+            <span class="month">Aug</span>
+            <span class="day">5</span>
+          </section>
+        </div>
+        <h5>In-Person Workshop</h5>
+        <p>Get better at visual design and create something great</p>
+      <% end %>
+    </figure>
+  </div>
+  <div class="figuregroup">
+    <figure class="product-card desc">
+      <h3>Screencasts</h3>
+      <p><span class="slashed">$15</span> $9</p>
+    </figure>
+    <figure class="screencast product-card">
+      <%= link_to '/products/16-improving-performance', title: 'Improving Performance screencast details' do %>
+        <h4>Improving Performance</h4>
+        <%= image_tag('screencast_thumbs/improving-performance.png') %>
+        <h5>Screencast</h5>
+        <p>Slow Rails applications annoy users and lose revenue. Use blistering speed to your advantage.</p>
+      <% end %>
+    </figure>
+    <figure class="screencast product-card">
+      <%= link_to '/products/2-vim-for-rails-developers', title: 'The Vim for Rails Developers screencast details' do %>
+        <h4>Vim for Rails Developers</h4>
+        <%= image_tag('screencast_thumbs/vim-for-rails.png') %>
+        <h5>Screencast</h5>
+        <p>Create and edit your Ruby on Rails code more efficiently</p>
+      <% end %>
+    </figure>
+    <figure class="screencast product-card">
+      <%= link_to '/products/4-humans-present-tmux', title: 'The Humans Present: tmux screencast details' do %>
+        <h4>Humans Present: tmux</h4>
+        <%= image_tag('screencast_thumbs/tmux.png') %>
+        <h5>Screencast</h5>
+        <p>Improve your workflow and become a better, happier developer.</p>
+      <% end %>
+    </figure>
+    <figure class="screencast product-card">
+      <%= link_to '/products/5-hidden-secrets-of-the-chrome-developer-tools', title: 'The Hidden Secrets of the Chrome Developer Tools screencast details' do %>
+        <h4>Hidden Secrets of the Chrome Developer Tools</h4>
+        <%= image_tag('screencast_thumbs/secrets.png') %>
+        <h5>Screencast</h5>
+        <p>Speed up your day-to-day web development work</p>
+      <% end %>
+    </figure>
+    <figure class="screencast product-card">
+      <%= link_to '/products/6-humans-present-refactoring', title: 'The Humans Present: Refactoring screencast details' do %>
+        <h4>Humans Present: Refactoring</h4>
+        <%= image_tag('screencast_thumbs/refactoring.png') %>
+        <h5>Screencast</h5>
+        <p>Make Your Code Better</p>
+      <% end %>
+    </figure>
+  </div>
+  <div class="figuregroup">
+    <figure class="product-card desc">
+      <h3>Books</h3>
+      <p><span class="slashed">$49</span> $29</p>
+    </figure>
+    <figure class="book product-card"><%= link_to image_tag('product_images/book/backbone-cover-large.png'), '/products/1-backbone-js-on-rails' %></figure>
+    <figure class="book product-card"><%= link_to image_tag('product_images/book/rubyscience-cover-large.png'), '/products/13-ruby-science' %></figure>
+    <figure class="book product-card"><div class="notification"><span>$15</span> $9</div><%= link_to image_tag('product_images/book/playbook-cover-large.png'), '/products/3-the-playbook' %></figure>
+  </div>
+  <section class="pitch center final">
+    <article>
+      <h2>Want all of this?</h2>
+      <% if subscription_product %>
+        <%= link_to new_product_purchase_path(subscription_product, variant: 'individual'), class: 'prime-journey-cta' do %>
+          <h2>Join Learn Prime <span><%= number_to_currency subscription_product.individual_price, precision: 0 %>/month</span></h2>
+        <% end %>
+      <% end %>
+    </article>
+  </section>
+</section>

@@ -73,6 +73,7 @@ Workshops::Application.routes.draw do
 
   get "/pages/*id" => 'pages#show', :as => :page, :format => false
   match '/prime' => 'pages#show', as: :prime, id: 'prime'
+  match '/learnsale' => 'pages#show', as: :learnsale, id: 'learnsale'
   match '/watch' => 'pages#show', as: :watch, id: 'watch'
   match '/privacy' => 'pages#show', as: :privacy, id: 'privacy'
   match '/terms' => 'pages#show', as: :terms, id: 'terms'
