@@ -12,11 +12,12 @@
       <%= image_tag('learn/learn-ralph.png') %>
     </h1>
   </div>
-  <h1>All of our products 40% off &mdash; from now until 6/28. Use the coupon code <span>SOLSTICE</span></h1>
+  <h1>All our products 40% off &mdash; from now until Wednesday morning. Use the coupon code <span>SOLSTICE</span></h1>
 </section>
 
 <section class="journey learnsale">
-  <div class="figuregroup">
+  <section class="card-slider">
+    <a class="nav prev"></a>
     <figure class="product-card desc">
       <h3>Online Workshops</h3>
       <p><span class="slashed">$1099</span> $660</p>
@@ -62,8 +63,10 @@
         <p>How to design, build, and launch a successful application</p>
       <% end %>
     </figure>
-  </div>
-  <div class="figuregroup">
+    <a class="nav next"></a>
+  </section>
+  <section class="card-slider">
+    <a class="nav prev"></a>
     <figure class="product-card desc">
       <h3>In-person Workshops</h3>
       <p><span class="slashed">$1099</span> $660</p>
@@ -128,8 +131,10 @@
         <p>Get better at visual design and create something great</p>
       <% end %>
     </figure>
-  </div>
-  <div class="figuregroup">
+    <a class="nav next"></a>
+  </section>
+  <section class="card-slider">
+    <a class="nav prev"></a>
     <figure class="product-card desc">
       <h3>Screencasts</h3>
       <p><span class="slashed">$15</span> $9</p>
@@ -174,8 +179,10 @@
         <p>Make Your Code Better</p>
       <% end %>
     </figure>
-  </div>
-  <div class="figuregroup">
+    <a class="nav next"></a>
+  </section>
+  <section class="card-slider">
+    <a class="nav prev"></a>
     <figure class="product-card desc">
       <h3>Books</h3>
       <p><span class="slashed">$49</span> $29</p>
@@ -183,7 +190,8 @@
     <figure class="book product-card"><%= link_to image_tag('product_images/book/backbone-cover-large.png'), '/products/1-backbone-js-on-rails' %></figure>
     <figure class="book product-card"><%= link_to image_tag('product_images/book/rubyscience-cover-large.png'), '/products/13-ruby-science' %></figure>
     <figure class="book product-card"><div class="notification"><span>$15</span> $9</div><%= link_to image_tag('product_images/book/playbook-cover-large.png'), '/products/3-the-playbook' %></figure>
-  </div>
+    <a class="nav next"></a>
+  </section>
   <section class="pitch center final">
     <article>
       <h2>Want all of this?</h2>

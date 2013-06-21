@@ -1,5 +1,5 @@
 .journey-headline.learnsale {
-  padding-bottom: 12rem;
+  padding-bottom: 4rem;
 
   h1 span {
     color: darken($darkwarmgray, 10%);
@@ -8,26 +8,13 @@
 
 .journey.learnsale {
   overflow: visible;
-  padding-top: 0;
+  padding-top: 1rem;
 
-  .figuregroup {
-    @include clearfix;
-    display: block;
-    margin-bottom: 3rem;
-    position: relative;
-    text-align: center;
-    top: -6.5rem;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
+  .card-slider {
+    margin-bottom: 2rem;
 
     .product-card {
-      margin-bottom: 2rem;
-      margin-right: 2rem;
-      text-align: left;
       @include transition(.2s);
-      vertical-align: top;
 
       &.book {
         width: $product-card-width;
@@ -86,7 +73,7 @@
   .pitch {
     margin-bottom: 0;
     max-width: 60em;
-    padding-bottom: 10rem;
+    padding: 8rem 0;
     text-align: center;
 
     article {
