@@ -195,6 +195,7 @@
   <section class="pitch center final">
     <article>
       <h2>Want all of this?</h2>
+      <p>Get access to everything you see above, plus exclusive products and blog posts, by subscribing to our Learn Prime service. <%= link_to 'Learn more &rarr;'.html_safe, '/prime' %></p>
       <% if subscription_product %>
         <%= link_to new_product_purchase_path(subscription_product, variant: 'individual'), class: 'prime-journey-cta' do %>
           <h2>Join Learn Prime <span><%= number_to_currency subscription_product.individual_price, precision: 0 %>/month</span></h2>

@@ -79,6 +79,10 @@
     article {
       width: 100%;
 
+      a {
+        font-family: $sans-serif;
+      }
+
       &> h2 {
         color: darken($darkwarmgray, 10%);
       }
