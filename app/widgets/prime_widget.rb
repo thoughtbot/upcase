@@ -3,7 +3,7 @@ widget :prime do
   type "number_and_secondary"
   data do
     {
-      value: SubscriptionMetrics.total_subscribers_as_of(Time.now),
+      value: SubscriptionMetrics.total_subscribers_as_of(Time.zone.now),
       previous: SubscriptionMetrics.total_subscribers_as_of(30.days.ago)
     }
   end

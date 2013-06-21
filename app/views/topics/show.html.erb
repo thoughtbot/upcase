@@ -16,11 +16,11 @@
     </div>
   <% end %>
 
-  <% if @articles.present? %>
+  <% if @topic.articles.present? %>
     <div class='text-box related-reading'>
       <h2><%= t '.related_reading' %></h2>
       <ul>
-        <%= render @articles %>
+        <%= render @topic.articles.ordered.first(3) %>
       </ul>
       <div class="view-all-articles">
         <%= link_to t('.view_articles', name: @topic.name),
@@ -30,4 +30,4 @@
   <% end %>
 </div>
 
-<%= render 'related' %>
+<%= render @topic.related %>

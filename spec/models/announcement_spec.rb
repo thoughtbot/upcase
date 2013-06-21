@@ -32,7 +32,7 @@ describe Announcement do
       it 'returns the announcement with the earliest active ends_at' do
         create :announcement, ends_at: Time.now.yesterday
         create :announcement, ends_at: 7.days.from_now
-        current = create(:announcement, ends_at: Time.now.tomorrow)
+        current = create(:announcement, ends_at: 1.day.from_now)
         Announcement.current.should eq(current)
       end
     end

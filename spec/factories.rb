@@ -34,18 +34,22 @@ FactoryGirl.define do
 
   factory :announcement do
     association :announceable, factory: :book_product
-    ends_at { Time.now.tomorrow }
+    ends_at { 1.day.from_now }
     message 'Foo: http://example.com'
   end
 
-  factory :article, aliases: [:byte] do
+  factory :article do
     body_html 'article body'
-    published_on Date.today
+    published_on Time.zone.today
     title
+    external_url
+  end
 
-    factory :tumblr_article do
-      external_url
-    end
+  factory :byte do
+    body 'article body'
+    body_html 'article body'
+    published_on Time.zone.today
+    title
   end
 
   factory :classification do
@@ -273,7 +277,7 @@ FactoryGirl.define do
   factory :subscription, aliases: [:active_subscription] do
     association :user, :with_github
     factory :inactive_subscription do
-      deactivated_on Date.today
+      deactivated_on Time.zone.today
     end
   end
 

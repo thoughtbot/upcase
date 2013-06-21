@@ -17,9 +17,9 @@ describe Section do
 
   describe 'self.active' do
     it "includes sections thats haven't started" do
-      active = create(:section, starts_on: Date.tomorrow, ends_on: 7.days.from_now)
+      active = create(:section, starts_on: 1.day.from_now, ends_on: 7.days.from_now)
       create(:section, starts_on: 1.week.ago, ends_on: 7.days.from_now)
-      active2 = create(:section, starts_on: Date.today, ends_on: 7.days.from_now)
+      active2 = create(:section, starts_on: Time.zone.today, ends_on: 7.days.from_now)
       expect(Section.active).to eq [active2, active]
     end
 
@@ -187,7 +187,7 @@ describe Section do
     it 'knows if it has happened yet' do
       next_week = Section.new(starts_on: 1.week.from_now)
       last_week = Section.new(starts_on: 1.week.ago)
-      today = Section.new(starts_on: Date.today)
+      today = Section.new(starts_on: Time.zone.today)
       expect(today).to be_upcoming
       expect(next_week).to be_upcoming
       expect(last_week).not_to be_upcoming
@@ -249,15 +249,15 @@ describe Section do
     it "does not include sections that haven't started or have finished" do
       past = create(:past_section)
       future = create(:future_section)
-      current = create(:section, starts_on: Date.today, ends_on: Date.tomorrow)
+      current = create(:section, starts_on: Time.zone.today, ends_on: 1.day.from_now)
 
       expect(Section.current).to include current
       expect(Section.current).not_to include future
       expect(Section.current).not_to include past
-      Timecop.freeze(Date.tomorrow) do
+      Timecop.freeze(1.day.from_now) do
         expect(Section.current).to include current
       end
-      Timecop.freeze(Date.today + 3) do
+      Timecop.freeze(Time.zone.today + 3) do
         expect(Section.current).not_to include current
       end
     end
@@ -265,15 +265,15 @@ describe Section do
     it 'includes sections with no end date that have started' do
       past = create(:past_section)
       future = create(:future_section, ends_on: nil)
-      current = create(:section, starts_on: Date.today, ends_on: nil)
+      current = create(:section, starts_on: Time.zone.today, ends_on: nil)
 
       expect(Section.current).to include current
       expect(Section.current).not_to include future
       expect(Section.current).not_to include past
-      Timecop.freeze(Date.tomorrow) do
+      Timecop.freeze(1.day.from_now) do
         expect(Section.current).to include current
       end
-      Timecop.freeze(Date.today + 3) do
+      Timecop.freeze(Time.zone.today + 3) do
         expect(Section.current).to include current
       end
     end
@@ -286,7 +286,7 @@ describe Section do
 
       future = create(:future_section)
       workshop = future.workshop
-      current = create(:section, workshop: workshop, starts_on: Date.today, ends_on: Date.tomorrow)
+      current = create(:section, workshop: workshop, starts_on: Time.zone.today, ends_on: 1.day.from_now)
 
       future_purchase = create(:paid_purchase, purchaseable: future)
       current_purchase = create(:paid_purchase, purchaseable: current)
@@ -322,14 +322,14 @@ describe Section do
       current = create(
         :section,
         workshop: workshop,
-        starts_on: Date.today,
-        ends_on: Date.tomorrow
+        starts_on: Time.zone.today,
+        ends_on: 1.day.from_now
       )
       current_no_hours = create(
         :section,
         workshop: create(:workshop, office_hours: ''),
-        starts_on: Date.today,
-        ends_on: Date.tomorrow
+        starts_on: Time.zone.today,
+        ends_on: 1.day.from_now
       )
       email = stub(deliver: nil)
       Mailer.stubs(office_hours_reminder: email)
@@ -359,12 +359,12 @@ describe Section do
       ongoing = create(
         :section,
         workshop: workshop,
-        starts_on: Date.today,
+        starts_on: Time.zone.today,
         ends_on: nil
       )
       future_purchase = create(:paid_purchase, purchaseable: future)
       current_purchase = create(:paid_purchase, purchaseable: ongoing)
-      next_purchase = create(:paid_purchase, purchaseable: ongoing, created_at: Date.tomorrow)
+      next_purchase = create(:paid_purchase, purchaseable: ongoing, created_at: 1.day.from_now)
 
       should_not_send_a_survey_to([
         current_purchase,
@@ -421,14 +421,14 @@ describe Section do
     it 'returns the given date for a section with no end date' do
       section = build(:online_section, starts_on: 1.year.ago, ends_on: nil)
 
-      expect(section.starts_on(Date.today)).to eq Date.today
+      expect(section.starts_on(Time.zone.today)).to eq Time.zone.today
     end
 
     it 'returns starts_on for a section with an end date' do
       starts_on = 7.days.from_now
       section = build(:in_person_section, starts_on: starts_on, ends_on: 4.weeks.from_now)
 
-      expect(section.starts_on(Date.today)).to eq starts_on
+      expect(section.starts_on(Time.zone.today)).to eq starts_on
     end
   end
 
@@ -438,14 +438,14 @@ describe Section do
       section.workshop.length_in_days = 28
       section.workshop.save!
 
-      expect(section.ends_on(Date.today)).to eq (Date.today + 28.days)
+      expect(section.ends_on(Time.zone.today)).to eq (Time.zone.today + 28.days)
     end
 
     it 'returns the end_date for a section with an end date' do
       ends_on = 14.days.from_now
       section = build(:in_person_section, starts_on: 7.days.from_now, ends_on: ends_on)
 
-      expect(section.ends_on(Date.today)).to eq ends_on
+      expect(section.ends_on(Time.zone.today)).to eq ends_on
     end
   end
 
@@ -453,8 +453,8 @@ describe Section do
     it 'does not start immediately when the section has an end date' do
       section = create(
         :section,
-        starts_on: Date.today,
-        ends_on: Date.tomorrow
+        starts_on: Time.zone.today,
+        ends_on: 1.day.from_now
       )
 
       expect(section.starts_immediately?).to be false
@@ -463,7 +463,7 @@ describe Section do
     it 'starts immediately when the section does not have an end date' do
       section = create(
         :section,
-        starts_on: Date.today,
+        starts_on: Time.zone.today,
         ends_on: nil
       )
 

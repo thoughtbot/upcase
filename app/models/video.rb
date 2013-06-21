@@ -36,7 +36,7 @@ class Video < ActiveRecord::Base
   end
 
   def available?(start_date)
-    available_on(start_date) <= Date.today
+    available_on(start_date) <= Time.zone.today
   end
 
   def available_on(start_date)
@@ -44,7 +44,7 @@ class Video < ActiveRecord::Base
   end
 
   def starts_today?(start_date)
-    available_on(start_date) == Date.today
+    available_on(start_date) == Time.zone.today
   end
 
   def has_notes?

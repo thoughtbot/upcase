@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'episodes/index.xml.builder' do
   context 'rendered with 2 episodes' do
-    before(:all) { Timecop.freeze(Time.now) }
+    before(:all) { Timecop.freeze(Time.zone.now) }
     after(:all)  { Timecop.return }
 
     before(:each) do

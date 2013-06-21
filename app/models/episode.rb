@@ -20,7 +20,7 @@ class Episode < ActiveRecord::Base
   before_validation :extract_info_from_mp3, on: :create
 
   def self.published
-    where("published_on <= ?", Date.today).order('published_on desc')
+    where('published_on <= ?', Time.zone.today).order('published_on desc')
   end
 
   def full_title
@@ -33,6 +33,10 @@ class Episode < ActiveRecord::Base
 
   def increment_downloads
     increment!(:downloads_count)
+  end
+
+  def related
+    @related ||= Related.new(self)
   end
 
   private

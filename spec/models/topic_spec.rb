@@ -3,11 +3,12 @@ require 'spec_helper'
 describe Topic do
   # Associations
   it { should have_many(:articles).through(:classifications) }
+  it { should have_many(:bytes).through(:classifications) }
   it { should have_many(:classifications) }
   it { should have_many(:workshops).through(:classifications) }
   it { should have_many(:episodes).through(:classifications) }
   it { should have_many(:products).through(:classifications) }
-  it { should have_many(:related_topics).through(:classifications) }
+  it { should have_many(:topics).through(:classifications) }
 
   # Validations
   it { should validate_presence_of(:name) }
@@ -20,6 +21,8 @@ describe Topic do
   it { should allow_mass_assignment_of(:name) }
   it { should allow_mass_assignment_of(:summary) }
   it { should allow_mass_assignment_of(:related_topic_ids) }
+
+  it_behaves_like 'it has related items'
 
   context '.create' do
     before do

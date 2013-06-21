@@ -24,7 +24,7 @@ class Subscription < ActiveRecord::Base
 
   def deactivate
     deactivate_subscription_purchases
-    update_column(:deactivated_on, Date.today)
+    update_column(:deactivated_on, Time.zone.today)
   end
 
   private

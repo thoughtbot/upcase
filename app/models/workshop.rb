@@ -50,7 +50,7 @@ class Workshop < ActiveRecord::Base
       )
     SQL
 
-    where sql, Date.today
+    where sql, Time.zone.today
   end
 
   def active_section

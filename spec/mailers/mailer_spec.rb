@@ -209,7 +209,7 @@ describe Mailer do
     end
 
     def purchase
-      @purchase ||= create(:purchase, created_at: Time.now, email: 'joe@example.com',
+      @purchase ||= create(:purchase, created_at: Time.zone.now, email: 'joe@example.com',
         lookup: 'asdf', name: 'Joe Smith')
     end
   end
@@ -439,13 +439,13 @@ describe Mailer do
 
   describe '.byte_notification' do
     it 'sends a byte notification to the email for the byte' do
-      article = create(
-        :article,
+      byte = create(
+        :byte,
         title: 'Great Article',
         body: 'this is the body'
       )
 
-      email = Mailer.byte_notification(email, article)
+      email = Mailer.byte_notification(email, byte)
 
       expect(email.from).to eq(%w(learn@thoughtbot.com))
       expect(email).to have_subject('[Learn] New Byte: Great Article')
@@ -455,16 +455,16 @@ describe Mailer do
     end
 
     it 'does not escape the body' do
-      article = create(:article, title: 'Great Article', body: '> body')
+      byte = create(:byte, title: 'Great Article', body: '> body')
 
-      email = Mailer.byte_notification(email, article)
+      email = Mailer.byte_notification(email, byte)
 
       expect(email).not_to have_body_text(/&gt;/)
     end
 
     it 'links to all bytes' do
-      article = create(:article, title: 'Great Article', body: 'body')
-      email = Mailer.byte_notification(email, article)
+      byte = create(:byte, title: 'Great Article', body: 'body')
+      email = Mailer.byte_notification(email, byte)
       expect(email).to have_body_text(bytes_url)
     end
   end

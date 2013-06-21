@@ -8,11 +8,7 @@ class EpisodesController < ApplicationController
   def show
     @episode = Episode.find(params[:id])
     respond_to do |format|
-      format.html do
-        @related_topics = @episode.topics
-        @products = @episode.products.ordered.active
-        @workshops = @episode.workshops.only_active.by_position
-      end
+      format.html
       format.mp3 do
         @episode.increment_downloads
         redirect_to @episode.file
