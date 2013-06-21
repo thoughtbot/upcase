@@ -11,7 +11,8 @@ $(function() {
     }
 
     function slider_at_end(slider) {
-      return (slider.find('.slider-item:last').position().left / slider.width()) <= 1;
+      console.log((slider.find('.slider-item:last').position().left / slider.width()));
+      return (slider.find('.slider-item:last').position().left / slider.width()) <= .9;
     }
 
     function toggle_nav_items(slider) {
