@@ -32,6 +32,17 @@ class HostedBookUrl
   end
 
   def s3_files
-    AWS::S3.new.buckets[s3_bucket_name].objects
+    aws_s3.buckets[s3_bucket_name].objects
+  end
+
+  def aws_s3
+    @aws_s3 ||= AWS::S3.new(aws_credentials)
+  end
+
+  def aws_credentials
+    {
+      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+    }
   end
 end
