@@ -33,8 +33,6 @@ class PurchasesController < ApplicationController
     end
 
     if @purchase.save
-      create_subscription if @purchaseable.subscription?
-
       notify_kissmetrics_of(@purchase)
 
       flash[:purchase_paid_price] = @purchase.paid_price
@@ -65,10 +63,6 @@ class PurchasesController < ApplicationController
   end
 
   private
-
-  def create_subscription
-    current_user.create_subscription
-  end
 
   def notify_kissmetrics_of(purchase)
     event_notifier = KissmetricsEventNotifier.new

@@ -22,6 +22,7 @@ class Purchase < ActiveRecord::Base
   validate :payment_method_must_match_price
   validates :email, presence: true,
     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
+  validates :user_id, presence: true, if: :subscription?
 
   before_validation :generate_lookup, on: :create
   before_validation :populate_billing_email, on: :create
@@ -283,6 +284,7 @@ class Purchase < ActiveRecord::Base
     if fulfilled_with_github?
       GithubFulfillment.new(self).fulfill
     end
+    SubscriptionFulfillment.new(self).fulfill
   end
 
   def generate_lookup
