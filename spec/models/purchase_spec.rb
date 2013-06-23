@@ -12,6 +12,7 @@ describe Purchase do
     it { should_not allow_value('chad').for(:email) }
     it { should_not allow_value('chad@blah').for(:email) }
     it { should validate_presence_of(:billing_email) }
+    it { should_not validate_presence_of(:user_id) }
 
     it { should delegate(:subscription?).to(:purchaseable) }
   end
@@ -131,6 +132,10 @@ describe Purchase, 'refund' do
 end
 
 describe Purchase, 'of a subscription' do
+  it 'validates the presence of a user' do
+    expect(build_subscription_purchase).to validate_presence_of(:user_id)
+  end
+
   it 'does not set payment_transaction_id' do
     build_subscription_purchase.save!
     expect(subject.payment_transaction_id).to be_nil
@@ -165,7 +170,7 @@ describe Purchase, 'of a subscription' do
   end
 
   def build_subscription_purchase
-    build(:purchase, purchaseable: create(:subscribeable_product), payment_method: 'stripe')
+    build(:subscription_purchase, purchaseable: create(:subscribeable_product), payment_method: 'stripe')
   end
 end
 
