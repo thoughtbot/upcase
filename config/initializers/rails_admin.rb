@@ -146,6 +146,7 @@ RailsAdmin.config do |config|
       group :default do
         field :name
         field :online
+        field :sku
         field :short_description
         field :description
         field :individual_price
