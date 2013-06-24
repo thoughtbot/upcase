@@ -33,7 +33,7 @@ class FakeMailchimp < Sinatra::Base
   def listSubscribe(params)
     initialize_lists params['id']
 
-    if params['double_optin']
+    if params['double_optin'] == false
       @@lists[params['id']] << params['email_address']
     end
     ''
