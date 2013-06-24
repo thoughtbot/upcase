@@ -1,7 +1,11 @@
 # This class represents a user's subscription to Learn content
 class Subscription < ActiveRecord::Base
+  MAILING_LIST = 'Active Subscribers'
+
   belongs_to :user
   delegate :stripe_customer_id, to: :user
+
+  after_create :add_user_to_mailing_list
 
   def self.deliver_welcome_emails
     recent.each do |subscription|
@@ -24,6 +28,7 @@ class Subscription < ActiveRecord::Base
 
   def deactivate
     deactivate_subscription_purchases
+    remove_user_from_mailing_list
     update_column(:deactivated_on, Time.zone.today)
   end
 
@@ -45,5 +50,13 @@ class Subscription < ActiveRecord::Base
     user.subscription_purchases.each do |purchase|
       purchase.refund
     end
+  end
+
+  def add_user_to_mailing_list
+    MailchimpFulfillmentJob.enqueue(MAILING_LIST, user.email)
+  end
+
+  def remove_user_from_mailing_list
+    MailchimpRemovalJob.enqueue(MAILING_LIST, user.email)
   end
 end

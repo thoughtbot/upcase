@@ -129,6 +129,17 @@ describe Purchase, 'refund' do
       fulfillment.should have_received(:remove)
     end
   end
+
+  it "removes the purchaser's email from lists" do
+    product = create(:book_product)
+    purchase = create(:paid_purchase, purchaseable: product)
+    fulfillment = stub(:remove)
+    MailchimpFulfillment.stubs(:new).returns(fulfillment)
+
+    purchase.refund
+
+    fulfillment.should have_received(:remove)
+  end
 end
 
 describe Purchase, 'of a subscription' do
@@ -278,6 +289,17 @@ describe Purchase, 'with stripe' do
 
       fulfillment.should have_received(:fulfill)
     end
+  end
+
+  it 'fulfills with github' do
+    product = create(:book_product)
+    purchase = build(:purchase, purchaseable: product)
+    fulfillment = stub(:fulfill)
+    MailchimpFulfillment.stubs(:new).returns(fulfillment)
+
+    purchase.save!
+
+    fulfillment.should have_received(:fulfill)
   end
 
   context 'saved' do

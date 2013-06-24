@@ -16,6 +16,7 @@ Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].e
 FakeFreshbooks.reset!
 ShamRack.mount(FakeFreshbooks.new, FRESHBOOKS_PATH, 443)
 FakeStripeRunner.boot
+FakeMailchimpRunner.boot
 
 Delayed::Worker.delay_jobs = false
 

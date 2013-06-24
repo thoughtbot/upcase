@@ -14,7 +14,7 @@ class Section < ActiveRecord::Base
   # Delegates
   delegate :name, :description, :individual_price, :company_price, :terms,
     :videos, :resources, :video_chat_url, :office_hours, :in_person?, :online?,
-    :github_team, :fulfilled_with_github?, :length_in_days,
+    :github_team, :fulfilled_with_github?, :length_in_days, :sku,
     to: :workshop, allow_nil: true
 
   # Nested Attributes
