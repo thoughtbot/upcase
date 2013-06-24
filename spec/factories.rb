@@ -197,6 +197,7 @@ FactoryGirl.define do
 
     factory :subscription_purchase do
       association :purchaseable, factory: :subscribeable_product
+      user
     end
   end
 
