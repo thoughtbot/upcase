@@ -10,6 +10,6 @@ class MailchimpFulfillmentJob < MailchimpJob
   private
 
   def subscribe(list_id, email)
-    client.list_subscribe(id: list_id, email_address: email, double_optin: true)
+    client.list_subscribe(id: list_id, email_address: email, double_optin: false)
   end
 end
