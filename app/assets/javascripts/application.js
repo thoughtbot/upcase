@@ -11,6 +11,7 @@
 //= require topics
 
 $("#total a").click(function() {
+  $(this).hide();
   $(".coupon").show();
   return false;
 });

@@ -11,14 +11,14 @@
       <div id="total">
         <p class="coupon-note"><%= link_to "Have a coupon code?", "#" %></p>
       </div>
-      <% if signed_out? %>
-        <p class="workshop-alert sign-in-prompt">Already have an account? <%= link_to 'Sign in.', sign_in_path(return_to: request.fullpath) %></p>
-      <% end %>
     <% end %>
     <% if subscription %>
       <%= render 'stripe_redemptions/form' %>
     <% else %>
       <%= render 'redemptions/form' %>
+    <% end %>
+    <% if signed_out? %>
+      <p class="workshop-alert sign-in-prompt">Already have an account? <%= link_to 'Sign in.', sign_in_path(return_to: request.fullpath) %></p>
     <% end %>
     <%= render form_partial %>
   </div>

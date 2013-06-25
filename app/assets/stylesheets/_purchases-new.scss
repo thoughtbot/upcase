@@ -3,6 +3,30 @@ body.purchases-new, body.purchases-create {
     color: $red;
   }
 
+  .coupon-note a {
+    background: #f0f0f0;
+    border-radius: 3px;
+    display: block;
+    padding: .5rem 1rem;
+  }
+
+  .coupon {
+    form {
+      margin-bottom: 1em;
+      position: relative;
+    }
+
+    label {
+      display: none;
+    }
+
+    input[type='submit'] {
+      border-bottom: 0;
+      height: 41px;
+      @include position(absolute, 6px 3px 0px 0);
+    }
+  }
+
   section#subscription-banner {
     margin: 2em 0 0 0;
     padding: 0;
@@ -17,24 +41,8 @@ body.purchases-new, body.purchases-create {
       @include transition(.1s);
       width: 100%;
 
-      .fakebutton {
-        background: $learnred;
-        border-bottom: 3px solid #660000;
-        border-radius: 3px;
-        box-sizing: border-box;
-        color: #fff;
-        font-size: 13px;
-        font-weight: 700;
-        line-height: 0;
-        padding: .8em 1.5em .5em 1.5em;
-        position: relative;
-        text-transform: uppercase;
-        top: -3px;
-      }
-
       &:hover {
         background: lighten($warmgray, 10%);;
-        padding: .9em 0 1.1em 0;
       }
 
       &:active {
@@ -101,15 +109,6 @@ body.purchases-new, body.purchases-create {
         }
       }
     }
-  }
-
-  #total {
-    display: inline-block;
-  }
-
-  .sign-in-prompt {
-    display: inline-block;
-    margin: 0 0 0 .6em;
   }
 
   aside.terms {
