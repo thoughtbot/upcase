@@ -23,7 +23,7 @@ body.purchases-new, body.purchases-create {
     input[type='submit'] {
       border-bottom: 0;
       height: 41px;
-      @include position(absolute, 6px 3px 0px 0);
+      @include position(absolute, 7px 3px 0px 0);
     }
   }
 
