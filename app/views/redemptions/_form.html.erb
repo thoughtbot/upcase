@@ -1,7 +1,7 @@
 <div class="coupon" style="display: none;">
   <%= semantic_form_for :coupon, url: polymorphic_path([@purchaseable, :redemption], action: :new, variant: params[:variant]) do |form| %>
     <%= form.inputs do %>
-      <%= form.input :code %>
+      <%= form.input :code, :placeholder => 'Coupon code' %>
       <li class="error" style="display: none;">
         <p class="inline-errors">The coupon code you supplied is not valid.</p>
       </li>
