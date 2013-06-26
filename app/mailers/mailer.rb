@@ -3,31 +3,6 @@ class Mailer < ActionMailer::Base
   add_template_helper PurchasesHelper
   add_template_helper ApplicationHelper
 
-  def registration_notification(purchase)
-    @comments = purchase.comments
-    @student_name = purchase.name
-    @workshop_name = purchase.purchaseable_name
-    @city = purchase.purchaseable.city
-    @running_date_range = purchase.purchaseable.date_range
-    @fulfillment_method = purchase.purchaseable.fulfillment_method
-    @student_email = purchase.email
-
-    mail(
-      to: 'learn@thoughtbot.com',
-      subject: "New registration notification"
-    )
-  end
-
-  def registration_confirmation(purchase)
-    @purchase = purchase
-    @section = @purchase.purchaseable
-
-    mail(
-      to: @purchase.email,
-      subject: "You're registered for #{@purchase.purchaseable_name}"
-    )
-  end
-
   def welcome_to_prime(user)
     @user = user
 
