@@ -4,13 +4,11 @@ Hey - just a friendly reminder that <%= @purchase.name %> is registered for <%= 
 <% if @purchase.comments.present? -%>
 You provided us with the following comments:
 <%= @purchase.comments %>
-<% end %>
-If you have any special dietary restrictions, and you have not done so already, please let us know by replying to this email.
-<% end %>
-
-<% if @section.reminder_email.present? -%>
-  <%= @section.reminder_email %>
 <% end -%>
+If you have any special dietary restrictions, and you have not done so already, please let us know by replying to this email.
+<% end -%>
+
+<%= @section.reminder_email %>
 
 When:
 <%= @section.date_range %>

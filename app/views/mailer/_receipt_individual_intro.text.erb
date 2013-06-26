@@ -1,8 +1,7 @@
 Thank you for placing your order with thoughtbot!
 
 <% if purchase.purchaseable.product_type == 'workshop' %>
-<%= render 'workshop' %>
+<%= render 'workshop', purchase: purchase, purchaseable: purchase.purchaseable %>
 <% else %>
-<%= render 'non_workshop' %>
+<%= render 'non_workshop', purchase: purchase %>
 <% end %>
-<%= purchase_url(purchase) %>

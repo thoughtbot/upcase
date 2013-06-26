@@ -88,6 +88,31 @@ describe Mailer do
 
         expect(email).not_to have_body_text(/download/)
       end
+
+      context 'with an announcement' do
+        it 'contains announcement.message in the body' do
+          purchase = create(:section_purchase)
+          workshop = purchase.purchaseable.workshop
+          announcement = create(:announcement, announceable: workshop)
+          email = email_for(purchase)
+
+          expect(email).to have_body_text(/#{announcement.message}/)
+        end
+      end
+
+      it 'does not contain a section about comments or dietary restrictions when the workshop is online' do
+        purchase = create(:online_section_purchase, comments: 'comments and requests')
+        email = email_for(purchase)
+
+        expect(email).not_to have_body_text(/following comments|dietary restrictions/)
+      end
+
+      it 'does contain a section about comments or dietary restrictions when the workshop is in-person' do
+        purchase = create(:in_person_section_purchase, comments: 'comments and requests')
+        email = email_for(purchase)
+
+        expect(email).to have_body_text(/following comments|dietary restrictions/)
+      end
     end
 
     context 'for a non-workshop purchase' do
@@ -211,110 +236,6 @@ describe Mailer do
     def purchase
       @purchase ||= create(:purchase, created_at: Time.zone.now, email: 'joe@example.com',
         lookup: 'asdf', name: 'Joe Smith')
-    end
-  end
-
-  describe '.registration_confirmation' do
-    include Rails.application.routes.url_helpers
-
-    context 'for a registration without a user' do
-      it 'contains a link to create a new account in the body' do
-        purchase = create(:section_purchase, email: 'joe@example.com')
-        email = Mailer.registration_confirmation(purchase)
-
-        expect(email).to have_body_text(/#{new_user_url(host: HOST)}/)
-      end
-    end
-
-    context 'for a registration with a user' do
-      it 'does not contain a link to create a new account in the body' do
-        purchase = create :section_purchase, user: create(:user)
-        email = Mailer.registration_confirmation(purchase)
-
-        expect(email).not_to have_body_text(/#{new_user_url(host: HOST)}/)
-      end
-    end
-
-    context 'for a workshop with an announcement' do
-      it 'contains announcement.message in the body' do
-        purchase = create(:section_purchase)
-        workshop = purchase.purchaseable.workshop
-        announcement = create(:announcement, announceable: workshop)
-        email = Mailer.registration_confirmation(purchase)
-
-        expect(email).to have_body_text(/#{announcement.message}/)
-      end
-    end
-
-    context 'for an online workshop' do
-      it 'does not contain a section about comments or dietary restrictions' do
-        purchase = create(:online_section_purchase, comments: 'comments and requests')
-        email = Mailer.registration_confirmation(purchase)
-
-        expect(email).not_to have_body_text(/following comments|dietary restrictions/)
-      end
-    end
-
-    context 'for an in-person workshop' do
-      it 'does not contain a section about comments or dietary restrictions' do
-        purchase = create(:in_person_section_purchase, comments: 'comments and requests')
-        email = Mailer.registration_confirmation(purchase)
-
-        expect(email).to have_body_text(/following comments|dietary restrictions/)
-      end
-    end
-  end
-
-  describe '.registration_notification' do
-    it 'includes starts_on and ends_on in the email body' do
-      Timecop.freeze Date.parse('2012-09-12') do
-        purchase = build_stubbed(:section_purchase)
-        email = Mailer.registration_notification(purchase)
-
-        expect(email.body).to include purchase.purchaseable.date_range
-      end
-    end
-
-    it 'includes section city in the email body' do
-      Timecop.freeze Date.parse('2012-09-12') do
-        purchase = build_purchase_in 'San Antonio'
-        email = Mailer.registration_notification(purchase)
-
-        expect(email.body).to include 'San Antonio'
-      end
-    end
-
-    it "includes the student's email address in the email body" do
-      Timecop.freeze Date.parse('2012-09-12') do
-        purchase = build_purchase_in 'San Antonio'
-        email = Mailer.registration_notification(purchase)
-
-        expect(email.body).to include purchase.email
-      end
-    end
-
-    context 'for an online workshop' do
-      it 'does not contain a section about comments or dietary restrictions' do
-        purchase = create(:online_section_purchase, comments: 'comments and requests')
-        email = Mailer.registration_notification(purchase)
-
-        expect(email).not_to have_body_text(/Comments:/)
-      end
-    end
-
-    context 'for an in-person workshop' do
-      it 'does not contain a section about comments or dietary restrictions' do
-        purchase = create(:in_person_section_purchase, comments: 'comments and requests')
-        email = Mailer.registration_notification(purchase)
-
-        expect(email).to have_body_text(/Comments:/)
-      end
-    end
-
-    def build_purchase_in(city)
-      build_stubbed(:section_purchase).tap do |purchase|
-        purchase.purchaseable.city = city
-      end
     end
   end
 

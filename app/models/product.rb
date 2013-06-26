@@ -64,9 +64,6 @@ class Product < ActiveRecord::Base
     product_type == 'subscription'
   end
 
-  def send_registration_emails(purchase)
-  end
-
   def image_url
     raw_url = self.product_image.url(product_type_symbol)
     product_image_file_name? ? raw_url : "/assets/#{raw_url}"
