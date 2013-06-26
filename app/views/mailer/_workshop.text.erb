@@ -1,1 +1,40 @@
-You can view your purchase by clicking the following link:
+Thank you! <%= purchase.name %> is now registered for <%= purchase.purchaseable_name %>.
+You can view the workshop lessons and other workshop resources here:
+<%= purchase_url(purchase) %>
+
+<% if purchase.purchaseable.in_person? -%>
+<% if purchase.comments.present? -%>
+You provided us with the following comments:
+<%= purchase.comments %>
+<% else %>
+If you have any special dietary restrictions, and you have not done so already, please let us know by replying to this email.
+<% end -%>
+<% end -%>
+
+<% unless purchase.purchaseable.starts_immediately? -%>
+When
+<%= purchase.purchaseable.date_range %>
+<%= purchase.purchaseable.time_range %>
+<% end -%>
+
+<% if purchase.purchaseable.in_person? -%>
+Where
+<%= purchase.purchaseable.address %>
+<% if purchase.purchaseable.city.present? %><%= purchase.purchaseable.city %>, <% end %><%= purchase.purchaseable.state %> <%= purchase.purchaseable.zip %>
+<% end -%>
+
+<% unless purchase.purchaseable.starts_immediately? -%>
+We will be in touch before <%= purchase.purchaseable.starts_on.to_s(:simple) %> with a reminder and any further instructions. However, please don't hesitate to get in touch with us at learn@thoughtbot.com should you have any questions or concerns.
+<% end -%>
+
+<% if purchase.purchaseable.reminder_email.present? -%>
+<%= purchase.purchaseable.reminder_email %>
+<% end -%>
+
+<% if purchase.purchaseable.workshop.announcement.present? -%>
+<%= purchase.purchaseable.workshop.announcement.message %>
+<% end -%>
+
+<% unless purchase.purchaseable.starts_immediately? -%>
+Thanks very much, we'll see you on <%= purchase.purchaseable.starts_on.to_s(:simple) %>!
+<% end -%>

@@ -82,10 +82,6 @@ class Section < ActiveRecord::Base
     current.each &:send_office_hours_reminders
   end
 
-  def send_registration_emails(purchase)
-    SendRegistrationEmailsJob.enqueue(purchase.id)
-  end
-
   def announcement
     @announcement ||= announcements.current
   end
