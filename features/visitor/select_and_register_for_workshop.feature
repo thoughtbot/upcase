@@ -17,7 +17,7 @@ Feature: Selecting a workshop and registering for it
     And I press "Proceed to Checkout"
     And I submit the Paypal form
     Then carlos@santana.com is registered for the Test-Driven Haskell workshop
-    Then "carlos@santana.com" opens the email with subject "You're registered for Test-Driven Haskell"
+    Then "carlos@santana.com" opens the email with subject "Your receipt for Test-Driven Haskell"
     And they should see "You can also create a user account" in the email body
 
   @selenium @allow-rescue
@@ -45,7 +45,7 @@ Feature: Selecting a workshop and registering for it
     And I press "Proceed to Checkout"
     And I submit the Paypal form
     Then carlos@santana.com is registered for the Test-Driven Haskell workshop
-    Then "carlos@santana.com" opens the email with subject "You're registered for Test-Driven Haskell"
+    Then "carlos@santana.com" opens the email with subject "Your receipt for Test-Driven Haskell"
     And they should not see "You can also create a user account" in the email body
 
   @selenium @allow-rescue
