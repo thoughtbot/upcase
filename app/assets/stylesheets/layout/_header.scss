@@ -193,10 +193,3 @@ body.passwords-create {
     margin-top: 49px;
   }
 }
-
-@media all and (-webkit-min-device-pixel-ratio: 1.5) {
-  section#header-wrapper {
-    background: $warmgray url("learn/learn-arrows@2x.png") repeat-x left bottom;
-    background-size: 44px 8px;
-  }
-}
