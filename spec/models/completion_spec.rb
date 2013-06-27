@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Completion do
   it { should belong_to(:user) }
 
-  it { should validate_uniqueness_of(:trail_object_id) }
+  it { should validate_uniqueness_of(:trail_object_id).scoped_to(:user_id) }
   it { should validate_presence_of(:trail_name) }
 
   context 'only_trail_object_ids' do
