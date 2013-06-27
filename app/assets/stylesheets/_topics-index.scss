@@ -1,0 +1,104 @@
+.trail-category {
+  margin: 4rem 0;
+  position: relative;
+
+  @include body-mobile {
+    margin: 0 0 2rem 0;
+  }
+
+  > a {
+    display: block;
+    height: 100%;
+    overflow: auto;
+    @include transition(.07s);
+
+    &:hover {
+      background-color: lighten($warmgray, 10%);
+      box-shadow: 0 0 0 1.5rem lighten($warmgray, 10%);
+    }
+
+    &:hover .steps-complete {
+      top: 0% !important;
+
+      .dots {
+        height: 0;
+        top: 50%;
+      }
+
+      .trail-bullet {
+        background-color: darken($journey-line-color, 10%);
+        margin-top: - 1.5rem / 2 !important;
+      }
+
+      .trail-bullet.complete {
+        background-color: lighten($darkwarmgray, 15%);
+      }
+    }
+  }
+
+  .trail-info {
+    float: left;
+    width: 300px;
+
+    h2 {
+      color: $learnred;
+      display: inline-block;
+      margin-bottom: .5rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.steps-complete {
+  height: 100%;
+  @include position(absolute, 0 0px 0 310px);
+  @include transition(.4s $ease-in-quart);
+
+  @include body-mobile {
+    clear: both;
+    display: block;
+    position: static;
+  }
+
+  .text-complete {
+    color: darken($darkwarmgray, 5%);
+    font-weight: 600;
+    position: absolute;
+    right: 0;
+    z-index: 2;
+
+    @include body-mobile {
+      font-size: 1.5rem;
+      padding-top: .5rem;
+      position: static;
+    }
+  }
+
+  .dots {
+    height: 100%;
+    left: 0%;
+    margin-top: 0;
+    position: relative;
+    @include transition(.4s $ease-in-quart);
+
+    @include body-mobile {
+      display: none;
+    }
+  }
+
+  .trail-bullet {
+    @extend %trail-bullet;
+    @include position(absolute, 0px 0 0 0px);
+    @include transition(.4s $ease-in-quart);
+    z-index: 1;
+  }
+
+  .trail-bullet.complete {
+    @extend %trail-bullet-complete;
+    margin-top: - 1.5rem / 2;
+    top: 50% !important;
+  }
+}

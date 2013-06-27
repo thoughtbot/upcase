@@ -1,0 +1,20 @@
+<% content_for :page_title, "Learn Bytes" %>
+<% content_for :subject, "#{@topic.name} Bytes" %>
+
+<% content_for :additional_header_links do %>
+  <% if @topic.trail.present? %>
+    <li class="all-trails"><%= link_to 'Back to Trail', topic_path(@topic) %></li>
+  <% end %>
+<% end %>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <% if @topic.bytes.present? %>
+      <section class="bytes results">
+        <%= render partial: 'bytes/byte', collection: @topic.bytes.ordered.published %>
+      </section>
+    <% end %>
+  </div>
+</div>
+
+<%= render 'relateds/related', related: @topic.related %>

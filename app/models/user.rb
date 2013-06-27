@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :paid_purchases, class_name: 'Purchase',
     conditions: { paid: true }
   has_many :purchases
+  has_many :completions
   has_one :subscription
 
   validates :first_name, presence: true

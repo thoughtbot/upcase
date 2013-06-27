@@ -15,6 +15,24 @@
     }
   }
 
+  &.trails {
+    background: url(/assets/learn/trails-graphic.svg) no-repeat center center;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+
+    &:hover h3 {
+      @include transform(translateY(-.2rem));
+    }
+
+    h3 {
+      color: $darkwarmgray;
+      font: 400 1.5rem/1.5em $sans-serif;
+      padding: 3rem 0 0 2rem;
+      @include transition;
+    }
+  }
+
   &.screencast {
     background: none;
     border: 0;
@@ -281,4 +299,15 @@
       right: 0;
     }
   }
+}
+
+.journey-bullet {
+  background: $journey-line-color;
+  border-radius: 100%;
+  height: $bullet-size;
+  left: -8rem;
+  position: absolute;
+  top: 1rem;
+  width: $bullet-size;
+  z-index: -1;
 }

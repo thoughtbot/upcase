@@ -1,0 +1,11 @@
+<%= content_tag :li, :class => 'resource', 'data-id' => resource['id'] do %>
+  <%= check_box_tag resource['id'] %>
+  <div class="trail-bullet-hit-area">
+    <div class="trail-bullet"></div>
+  </div>
+  <% if resource['uri'].present? %>
+    <span><%= link_to(resource['title'], resource['uri']) %></span>
+  <% else %>
+    <span><%= resource['title'] %></span>
+  <% end %>
+<% end %>

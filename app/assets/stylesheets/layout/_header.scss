@@ -1,133 +1,142 @@
+body.users-new,
+body.users-create,
+body.sessions-new,
+body.sessions-create,
+body.passwords-new,
+body.passwords-create {
+  .header-container nav {
+    display: none;
+  }
+}
+
 #header-wrapper {
   background: lighten($warmgray, 5%);
   margin: 0 auto;
   width: 100%;
+}
 
-  .header-container {
-    max-width: $max-width;
-    @include outer-container;
-    position: relative;
-    text-align: center;
-    @include user-select(none);
+.header-container {
+  max-width: $max-width;
+  @include outer-container;
+  position: relative;
+  text-align: center;
+  @include user-select(none);
 
-    .small-logo {
+  .small-logo {
+    display: inline-block;
+    line-height: .9em;
+    margin-bottom: .2em;
+    margin-top: -18px;
+    padding: 2rem 0;
+    text-align: left;
+    width: auto;
+
+    @media screen and (max-width: 755px) {
+      display: block;
+      text-align: center;
+    }
+
+    img, span {
+      position: relative;
       display: inline-block;
-      line-height: .9em;
-      margin-bottom: .2em;
-      margin-top: -18px;
-      padding: 2rem 0;
-      text-align: left;
-      width: auto;
+      vertical-align: top;
+    }
 
-      img, span {
-        position: relative;
-        display: inline-block;
-        vertical-align: top;
+    img {
+      top: 16px;
+      width: 68px;
+    }
+
+    span {
+      font-size: 50px;
+      font-family: $sans-serif;
+      top: 21px;
+    }
+
+    a {
+      color: $learnred;
+    }
+  }
+
+  nav {
+    line-height: 0;
+    @include position(absolute, 46px 1rem 0 0);
+    text-align: right;
+    width: auto;
+
+    @media screen and (max-width: 755px) {
+      display: block;
+      float: none;
+      position: static;
+    }
+
+    &.left {
+      right: auto;
+      left: 1rem;
+
+      .back a:hover {
+        @include transform(translateX(-.2rem));
       }
 
-      img {
-        top: 16px;
-        width: 68px;
+      .toggle-slider a:before {
+        content: '\2193';
+        margin-right: .25rem;
       }
 
-      span {
-        font-size: 50px;
-        font-family: $sans-serif;
-        top: 21px;
-      }
-
-      a {
-        color: $learnred;
+      .toggle-slider .down:before {
+        content: '\2191';
       }
     }
 
-    nav {
-      line-height: 0;
-      @include position(absolute, 46px 1rem 0 0);
-      text-align: right;
-      width: auto;
+    ul {
+      display: inline-block;
+      list-style-type: none;
+      margin: 0;
+      text-align: left;
 
       @media screen and (max-width: 755px) {
         display: block;
-        position: static;
-        text-align: center;
-
-        &:last-child {
-          margin-bottom: 2rem;
-        }
       }
+    }
 
-      &.back {
-        right: auto;
-        left: 1rem;
+    li {
+      float: left;
+      line-height: 1.2em;
+      margin: 0;
+      margin-left: .2em;
 
-        li a:hover {
-          @include transform(translateX(-.2rem));
-        }
-      }
-
-      &.all-products {
-        right: auto;
-        left: 1rem;
-
-        a:before {
-          content: '\2193';
-          margin-right: .25rem;
-        }
-
-        .down:before {
-          content: '\2191';
-        }
-      }
-
-      ul {
-        display: inline-block;
-        list-style-type: none;
+      @media screen and (max-width: 755px) {
+        border-bottom: 1px solid $lightwarmgray;
+        display: block;
+        float: none;
         margin: 0;
-        text-align: left;
-
-        li {
-          float: left;
-          line-height: 1.2em;
-          margin: 0;
-          margin-left: .2em;
-        }
-
-        li a {
-          border-radius: 3px;
-          display: block;
-          font-family: $sans-serif;
-          font-size: 100%;
-          font-weight: 600;
-          outline: none;
-          padding: .6em .8em;
-          position: relative;
-          @include transition;
-        }
-
-        li.prime a {
-          font-weight: 700;
-
-          &:hover, &:active {
-            background: $learnred;
-            color: #fff;
-          }
-        }
-
-        li.account a {
-          color: $darkwarmgray;
-
-          &:hover {
-            background: lighten($darkwarmgray, 10%);
-            color: #fff;
-          }
-
-          &:active {
-            background: $darkwarmgray;
-            color: #fff;
-          }
-        }
+        text-align: center;
       }
+    }
+
+    li a {
+      border-radius: 3px;
+      display: block;
+      font-family: $sans-serif;
+      font-size: 100%;
+      font-weight: 600;
+      outline: none;
+      padding: .6em .8em;
+      position: relative;
+      @include transition;
+    }
+
+    .prime a {
+      font-weight: 700;
+
+      &:hover, &:active {
+        background: $learnred;
+        color: #fff;
+      }
+    }
+
+    .account a {
+      color: $darkwarmgray;
     }
   }
 }

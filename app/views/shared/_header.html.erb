@@ -6,19 +6,16 @@
         <span><%= t 'shared.learn' %></span>
       <% end %>
     </h1>
-    <% if signed_in? %>
-      <nav class="back">
-        <ul>
-          <li><%= link_to '&larr; Dashboard'.html_safe, root_url %></li>
-        </ul>
-      </nav>
-    <% else %>
-      <nav class="all-products">
-        <ul>
-          <li><%= link_to 'View all our products', '#', class: 'toggle-slider' %></li>
-        </ul>
-      </nav>
-    <% end %>
+    <nav class="left">
+      <ul>
+        <% if signed_in? %>
+          <li class="back"><%= link_to '&larr; Dashboard'.html_safe, root_url %></li>
+        <% else %>
+          <li class="toggle-slider"><%= link_to 'View all our products', '#', class: 'toggle-slider' %></li>
+        <% end %>
+        <%= yield(:additional_header_links) %>
+      </ul>
+    </nav>
     <nav>
       <ul>
         <% if subscription_product && !current_user_has_active_subscription? %>

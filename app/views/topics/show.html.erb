@@ -2,31 +2,34 @@
 <% content_for :meta_keywords, @topic.keywords %>
 <% content_for :page_title, "Learn #{@topic.name}" %>
 <% content_for :subject, @topic.name %>
+<%= render 'smart_app_banner' %>
+
+<% content_for :additional_header_links do %>
+  <li class="all-trails"><%= link_to 'All Trails', topics_path %></li>
+<% end %>
 
 <% if @topic.summary.present? %>
   <div class="summary">
     <p><%= @topic.summary %></p>
+    <% if @topic.related.topics.present? %>
+      <p class="related-topics">
+        Related topics:
+        <%= render partial: 'relateds/topic', collection: @topic.related.topics %>
+      </p>
+    <% end %>
   </div>
 <% end %>
 
-<div class="text-box-wrapper">
-  <% if @topic.trail_map.present? %>
-    <div class="text-box">
-      <%= render 'trail_map', trail_map: @topic.trail_map, contribute_url: @topic.contribute_url %>
-    </div>
-  <% end %>
+<% if @topic.trail %>
+  <%= render @topic.trail %>
+<% end %>
 
+<div class="related-reading">
   <% if @topic.articles.present? %>
-    <div class='text-box related-reading'>
-      <h2><%= t '.related_reading' %></h2>
-      <ul>
-        <%= render @topic.articles.ordered.first(3) %>
-      </ul>
-      <div class="view-all-articles">
-        <%= link_to t('.view_articles', name: @topic.name),
-          topic_articles_path(@topic) %>
-      </div>
-    </div>
+    <p><%= link_to 'View related Giant Robots articles &rarr;'.html_safe, topic_articles_path(@topic) %></p>
+  <% end %>
+  <% if @topic.bytes.present? %>
+    <p><%= link_to 'View related Prime Bytes &rarr;'.html_safe, topic_bytes_path(@topic) %></p>
   <% end %>
 </div>
 

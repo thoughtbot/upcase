@@ -1,12 +1,14 @@
 <% content_for :page_title, "Learn #{@topic.name}" %>
-<% content_for :subject, @topic.name %>
+<% content_for :subject, "#{@topic.name} Articles" %>
+
+<% content_for :additional_header_links do %>
+  <% if @topic.trail.present? %>
+    <li class="all-trails"><%= link_to 'Back to Trail', topic_path(@topic) %></li>
+  <% end %>
+<% end %>
 
 <div class="text-box-wrapper">
   <div class="text-box">
-    <hgroup class="product-title">
-      <h2><%= t '.heading', topic: @topic.name %></h2>
-    </hgroup>
-
     <% if @topic.articles.present? %>
       <section class="articles results">
         <%= render @topic.articles.ordered %>

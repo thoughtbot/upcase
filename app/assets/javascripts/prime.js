@@ -1,5 +1,4 @@
 if ($('.journey').length) {
-
   var jsPlumbSettings = jsPlumb.getInstance();
 
   jsPlumbSettings.Defaults.Container = $('body');
@@ -8,7 +7,6 @@ if ($('.journey').length) {
   var setPlumbSettings = function() {
     jsPlumbSettings.detachEveryConnection();
     jsPlumbSettings.removeAllEndpoints();
-
 
     jsPlumbSettings.connect({
       connector:['Bezier', { curviness: 340 }],

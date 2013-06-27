@@ -4,6 +4,7 @@ describe User do
   context "associations" do
     it { should have_many(:paid_purchases) }
     it { should have_many(:purchases) }
+    it { should have_many(:completions) }
   end
 
   context "validations" do
