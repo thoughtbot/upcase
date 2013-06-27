@@ -74,8 +74,6 @@ FactoryGirl.define do
     individual_price '500'
     company_price '10000'
     short_description 'Solve 8-Queens'
-    start_at '9:00'
-    stop_at '17:00'
     sku 'EIGHTQUEENS'
 
     factory :private_workshop do

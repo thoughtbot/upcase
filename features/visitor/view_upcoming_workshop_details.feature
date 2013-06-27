@@ -2,8 +2,8 @@ Feature: Viewing upcoming workshop details
 
   Scenario: Upcoming workshop price format
     Given the following workshop exists:
-      | name                | start at | stop at  | individual_price |
-      | Test-Driven Haskell | 09:00:00 | 12:00:00 | 1000             |
+      | name                | individual_price |
+      | Test-Driven Haskell | 1000             |
     And the following section exists:
       | workshop                    |
       | name: Test-Driven Haskell |
