@@ -1,8 +1,0 @@
-<%= @student_name %> (<%= @student_email %>) just registered for <%= @workshop_name %> in <%= @city %>, running <%= @running_date_range %>.
-
-<% if @fulfillment_method == 'in-person' -%>
-<% if @comments.present? -%>
-Comments:
-<%= @comments %>
-<% end -%>
-<% end -%>
