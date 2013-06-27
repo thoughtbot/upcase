@@ -19,8 +19,6 @@ class Workshop < ActiveRecord::Base
   validates :individual_price, presence: true
   validates :company_price, presence: true
   validates :short_description, presence: true
-  validates :start_at, presence: true
-  validates :stop_at, presence: true
   validates :sku, presence: true
 
   # Plugins

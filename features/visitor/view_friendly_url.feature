@@ -7,8 +7,8 @@ Feature: Visitor view friendly URL
     Given today is June 10, 2010
     And a teacher exists with a name of "Ralph Bot"
     And the following workshop exists:
-      | id | name                | start at | stop at  | individual_price |
-      | 42 | Test-Driven Haskell | 09:00:00 | 12:00:00 | 100              |
+      | id | name                | individual_price |
+      | 42 | Test-Driven Haskell | 100              |
     When I go to the workshop page of "Test-Driven Haskell"
     Then I should be on the URL "/workshops/42-test-driven-haskell"
 
@@ -16,8 +16,8 @@ Feature: Visitor view friendly URL
     Given today is June 10, 2010
     And a teacher exists with a name of "Ralph Bot"
     And the following workshop exists:
-      | name                | start at | stop at  | individual_price |
-      | Test-Driven Haskell | 09:00:00 | 12:00:00 | 100              |
+      | name                | individual_price |
+      | Test-Driven Haskell | 100              |
     And the following section exists:
       | id | workshop                  | starts on     | ends on       |
       | 39 | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 |
