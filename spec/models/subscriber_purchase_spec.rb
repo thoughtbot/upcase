@@ -10,8 +10,8 @@ describe '#create' do
 
   it 'sets the comments on the purchase if provided' do
     user = create(:user, :with_subscription)
-    product = create(:workshop_product)
-    subscriber_purchase = SubscriberPurchase.new(product, user, 'test')
+    section = create(:section)
+    subscriber_purchase = SubscriberPurchase.new(section, user, 'test')
     purchase = subscriber_purchase.create
 
     purchase.comments.should == 'test'

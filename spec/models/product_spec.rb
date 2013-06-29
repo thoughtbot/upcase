@@ -44,17 +44,8 @@ describe Product do
     end
   end
 
-  describe '.workshops' do
-    it 'only includes workshops' do
-      workshop = create(:workshop_product)
-      create :book_product
-      Product.workshops.should == [workshop]
-    end
-  end
-
   describe '.subscriptions' do
     it 'returns all subscribeable products' do
-      workshop_product = create(:workshop_product)
       book_product = create(:book_product)
       subscribeable_product = create(:subscribeable_product)
 

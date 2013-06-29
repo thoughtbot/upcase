@@ -134,10 +134,6 @@ FactoryGirl.define do
       product_type 'video'
     end
 
-    factory :workshop_product do
-      product_type 'workshop'
-    end
-
     factory :subscribeable_product do
       product_type 'subscription'
       name 'Prime'
