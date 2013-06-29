@@ -52,6 +52,12 @@ class Topic < ActiveRecord::Base
     @related ||= Related.new(self)
   end
 
+  def import_trail_map
+    if trail
+      trail.import
+    end
+  end
+
   private
 
   def generate_slug

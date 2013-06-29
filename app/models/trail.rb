@@ -76,7 +76,7 @@ class Trail < ActiveRecord::Base
   end
 
   def find_and_associate_related_topic(related_slug)
-    related_topic = Topic.find_by_slug(related)
+    related_topic = Topic.find_by_slug(related_slug)
     unless self.topic.topics.include?(related_topic)
       self.topic.topics << related_topic
     end
