@@ -36,10 +36,6 @@ class Product < ActiveRecord::Base
     where product_type: 'video'
   end
 
-  def self.workshops
-    where product_type: 'workshop'
-  end
-
   def self.subscriptions
     where(product_type: 'subscription').order('id asc')
   end
