@@ -154,8 +154,6 @@ RailsAdmin.config do |config|
         field :maximum_students
         field :external_registration_url
         field :active
-        field :start_at
-        field :stop_at
         field :video_chat_url
         field :topics
         field :resources
