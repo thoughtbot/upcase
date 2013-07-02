@@ -16,9 +16,8 @@
   }
 
   &.trails {
-    background: url(/assets/learn/trails-graphic.svg) no-repeat center center;
-    border: 0;
-    box-shadow: none;
+    background: url(/assets/learn/trails-graphic.svg) #fff no-repeat center center;
+    background-size: 90%;
     padding: 0;
 
     &:hover h3 {
@@ -28,7 +27,7 @@
     h3 {
       color: $darkwarmgray;
       font: 400 1.5rem/1.5em $sans-serif;
-      padding: 3rem 0 0 2rem;
+      padding: 3rem 1.5rem 1.5rem;
       @include transition;
     }
   }
