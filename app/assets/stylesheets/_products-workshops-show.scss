@@ -254,6 +254,10 @@ body.products-show, body.workshops-show {
     .section-location:nth-child(2n) {
       margin-top: 30px;
     }
+
+    #terms dt p {
+      font-weight: bold;
+    }
   }
 
   #additional-information {
