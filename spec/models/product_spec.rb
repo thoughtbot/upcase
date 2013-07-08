@@ -105,6 +105,22 @@ describe Product do
     end
   end
 
+  describe 'subscription_interval' do
+    it 'returns the interval from the stripe plan if the product is a subscription' do
+      product = build_stubbed(:subscribeable_product)
+      plan = stub(interval: 'year')
+      Stripe::Plan.stubs(:retrieve).returns(plan)
+
+      expect(product.subscription_interval).to eq 'year'
+      expect(Stripe::Plan).to have_received(:retrieve).with(product.sku)
+    end
+
+    it 'returns false if the product is not a subscription type' do
+      product = build_stubbed(:book_product)
+      expect(product.subscription_interval).to be_nil
+    end
+  end
+
   context 'purchase_for' do
     it 'returns the purchase when a user has purchased a product' do
       user = create(:user)

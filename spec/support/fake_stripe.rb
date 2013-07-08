@@ -10,6 +10,22 @@ class FakeStripe < Sinatra::Base
   cattr_reader :last_charge, :last_customer_email, :last_token, :coupons
   cattr_accessor :failure
 
+  get '/plans/:id' do
+    content_type :json
+
+    {
+      interval: "month",
+      name: "Prime",
+      amount: 9900,
+      currency: "usd",
+      id: params[:id],
+      object: "plan",
+      livemode: false,
+      interval_count: 1,
+      trial_period_days: nil
+    }.to_json
+  end
+
   get '/customers/:id' do
     content_type :json
 

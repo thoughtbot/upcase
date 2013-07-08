@@ -10,5 +10,5 @@
     "products.show.price.#{product.product_type}.#{variant}_html",
     default: [:"products.show.price.#{variant}_html"],
     price: number_to_currency(price, precision: 0)
-  ) %>
+  ) %><% if product.subscription? %>/<%= product.subscription_interval %><% end %>
 <% end %>

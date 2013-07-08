@@ -6,7 +6,7 @@
       </hgroup>
     <% else %>
       <hgroup class="product-title">
-        <h2><%= title %> for <em class="totalprice"><%= number_to_currency price, precision: 0 %></em><% if subscription %> per month<% end %></h2>
+        <h2><%= title %> for <em class="totalprice"><%= number_to_currency price, precision: 0 %></em><% if subscription %> per <%= purchaseable.subscription_interval %><% end %></h2>
       </hgroup>
       <div id="total">
         <p class="coupon-note"><%= link_to "Have a coupon code?", "#" %></p>
