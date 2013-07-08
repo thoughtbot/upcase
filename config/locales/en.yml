@@ -50,7 +50,7 @@ en:
         individual_html: "Single <span>%{price}</span>"
         company_html: "Group <span>%{price}</span>"
         subscription:
-          individual_html: "%{price}/month"
+          individual_html: "%{price}"
 
   workshops:
     show:

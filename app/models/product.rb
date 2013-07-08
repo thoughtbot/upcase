@@ -60,6 +60,12 @@ class Product < ActiveRecord::Base
     product_type == 'subscription'
   end
 
+  def subscription_interval
+    if subscription?
+      stripe_plan.interval
+    end
+  end
+
   def image_url
     raw_url = self.product_image.url(product_type_symbol)
     product_image_file_name? ? raw_url : "/assets/#{raw_url}"
@@ -131,5 +137,9 @@ class Product < ActiveRecord::Base
 
   def apply_discount(price)
     price - (price * discount_percentage * 0.01)
+  end
+
+  def stripe_plan
+    @stripe_plan ||= Stripe::Plan.retrieve(sku)
   end
 end
