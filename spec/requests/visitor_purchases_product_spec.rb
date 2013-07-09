@@ -11,8 +11,7 @@ feature 'Purchasing a product' do
     click_link 'Sign in.'
     click_link 'Sign up'
 
-    fill_in 'user_first_name', with: 'Ben'
-    fill_in 'user_last_name', with: 'Orenstein'
+    fill_in 'user_name', with: 'Ben Orenstein'
     fill_in 'Email', with: 'ben@thoughtbot.com'
     fill_in 'Password', with: 'password'
     click_button 'Create an account'

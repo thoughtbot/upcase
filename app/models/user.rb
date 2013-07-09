@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   include Clearance::User
 
-  attr_accessible :email, :first_name, :github_username, :last_name, :password, :auth_provider, :auth_uid
+  attr_accessible :email, :name, :github_username, :password, :auth_provider, :auth_uid
 
   has_many :paid_purchases, class_name: 'Purchase',
     conditions: { paid: true }
@@ -11,8 +11,7 @@ class User < ActiveRecord::Base
   has_many :completions
   has_one :subscription
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  validates :name, presence: true
 
   after_create :associate_previous_purchases
 
@@ -26,12 +25,11 @@ class User < ActiveRecord::Base
 
   def self.create_from_auth_hash(auth_hash)
     begin
-      name = auth_hash['info']['name'] ? auth_hash['info']['name'].split(' ') : ['GitHub', 'User']
+      name = auth_hash['info']['name'] ? auth_hash['info']['name'] : ['GitHub', 'User']
       create(
         auth_provider: auth_hash['provider'],
         auth_uid: auth_hash['uid'],
-        first_name: name.first,
-        last_name: name.last,
+        name: name,
         email: auth_hash['info']['email'],
         github_username: auth_hash['info']['nickname']
       ).tap { |user| user.promote_thoughtbot_employee_to_admin }
@@ -56,8 +54,12 @@ class User < ActiveRecord::Base
     end
   end
 
-  def name
-    [first_name, last_name].join(' ')
+  def first_name
+    name.split(" ").first
+  end
+
+  def last_name
+    name.split(" ").last
   end
 
   def external_auth?

@@ -54,8 +54,7 @@ feature 'Visitor is asked to create a user before subscription' do
 
   def sign_up
     user = build(:user)
-    fill_in 'First name', with: user.first_name
-    fill_in 'Last name', with: user.last_name
+    fill_in 'Name', with: user.name
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Create an account'

@@ -5,8 +5,8 @@ Feature: Purchase a github based product
 
   Scenario: A user with github username purchases a product with a reader
     Given the following user exists:
-      | first_name | last_name | email        | password | github_username |
-      | John       | Doe       | john@doe.com | password | thoughtbot      |
+      | name     | email        | password | github_username |
+      | John Doe | john@doe.com | password | thoughtbot      |
     And there is a github product named "Test GitHub"
     When I visit the product page for "Test GitHub"
     And I follow "Purchase for Yourself"

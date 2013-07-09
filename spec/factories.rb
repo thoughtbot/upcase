@@ -259,8 +259,7 @@ FactoryGirl.define do
 
   factory :user do
     email
-    first_name 'Dan'
-    last_name 'Deacon'
+    name 'Dan Deacon'
     password 'password'
 
     factory :admin do

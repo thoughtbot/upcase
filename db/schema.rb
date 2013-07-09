@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130627172432) do
+ActiveRecord::Schema.define(:version => 20130709150002) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -336,8 +336,6 @@ ActiveRecord::Schema.define(:version => 20130627172432) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "customer_id"
-    t.string   "first_name"
-    t.string   "last_name"
     t.string   "reference"
     t.boolean  "admin",                             :default => false, :null => false
     t.string   "stripe_customer_id"
@@ -351,6 +349,7 @@ ActiveRecord::Schema.define(:version => 20130627172432) do
     t.string   "state"
     t.string   "zip_code"
     t.string   "country"
+    t.string   "name"
   end
 
   add_index "users", ["admin"], :name => "index_users_on_admin"

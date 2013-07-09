@@ -21,8 +21,7 @@ end
 
 Then /^the site should have my github information$/ do
   visit my_account_path
-  find_field("user_first_name").value.should == "Test"
-  find_field("user_last_name").value.should == "User"
+  find_field("user_name").value.should == "Test User"
   find_field("Email").value.should == "user@example.com"
   find_field("Github username").value.should == "thoughtbot"
 end
