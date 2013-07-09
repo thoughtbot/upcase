@@ -11,7 +11,6 @@ $(function() {
     }
 
     function slider_at_end(slider) {
-      console.log((slider.find('.slider-item:last').position().left / slider.width()));
       return (slider.find('.slider-item:last').position().left / slider.width()) <= .9;
     }
 
