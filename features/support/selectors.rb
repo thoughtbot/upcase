@@ -16,9 +16,9 @@ module HtmlSelectorsHelpers
       question = Question.find_by_question($1)
       "##{dom_id(question)}"
     when /the coupon form/
-      '.coupon form'
+      '.coupon'
     when /the coupon form link/
-      '#total a'
+      'a.coupon-note'
     when /the workshop "([^"]+)"/
       workshop = Workshop.find_by_name!($1)
       "##{dom_id(workshop)}"

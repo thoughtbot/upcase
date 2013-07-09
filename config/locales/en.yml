@@ -146,7 +146,7 @@ en:
       success: Thank you for purchasing %{name}. We will email you your receipt shortly.
     product:
       heading_html: Complete your purchase of <em>%{name}</em>
-    comments: Do you have any dietary restrictions or special requests?
+    comments: Dietary restrictions or special requests?
 
   subscriber_purchase:
     flashes:

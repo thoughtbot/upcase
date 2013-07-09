@@ -13,11 +13,11 @@ Feature: Purchase a Product
     When I go to the products page
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"
-    Then I should see "$15"
+    Then I should see a purchase price of "$15"
     When I go to the products page
     And I follow "Test Fetch"
     And I follow "Your Company"
-    Then I should see "$50"
+    Then I should see a purchase price of "$50"
     When I pay using Paypal
     And I submit the Paypal form
     Then I should see that product "Test Fetch" is successfully purchased
@@ -38,6 +38,6 @@ Feature: Purchase a Product
     When I go to the products page
     And I follow "Test Fetch"
     And I follow "Purchase for Yourself"
-    Then I should see "$15"
+    Then I should see a purchase price of "$15"
     When I pay with existing credit card
     Then I should see "Thank you"

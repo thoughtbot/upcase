@@ -39,7 +39,11 @@ class FakeStripe < Sinatra::Base
       delinquent: false,
       discount: nil,
       account_balance: 0,
-      subscription: customer_subscription
+      subscription: customer_subscription,
+      active_card: {
+        last4: '1234',
+        type: 'Visa'
+      }
     }.to_json
   end
 

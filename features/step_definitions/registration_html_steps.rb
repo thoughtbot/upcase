@@ -2,7 +2,6 @@ When 'I fill in all of the workshop registration fields for "$email"' do |email|
   attributes = attributes_for(:purchase, email: email)
   fields = { "Name" => attributes[:name],
              "Email" => email,
-             "Billing email" => attributes[:billing_email],
              "Organization" => attributes[:organization],
              "Address 1" => attributes[:address1],
              "Address 2" => attributes[:address2],

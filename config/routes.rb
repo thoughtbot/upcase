@@ -51,7 +51,12 @@ Workshops::Application.routes.draw do
   end
 
   namespace :subscriber do
-    resources :purchases, only: :create
+    resources :products, only: [] do
+      resources :purchases, only: [:new, :create]
+    end
+    resources :sections, only: [] do
+      resources :purchases, only: [:new, :create]
+    end
     resources :invoices, only: [:index, :show]
   end
 

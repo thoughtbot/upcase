@@ -26,6 +26,10 @@ Then /^I should see the checkout form$/ do
   page.should have_css('form#new_purchase')
 end
 
+Then /^I should see a purchase price of "([^"]*)"$/ do |value|
+  expect(page).to have_css('#purchase_submit_action input', value: /#{value}/i)
+end
+
 Then /^"([^"]*)" should be filled in with "([^"]*)"$/ do |field, value|
   field_labeled(field).value.should =~ /#{value}/
 end

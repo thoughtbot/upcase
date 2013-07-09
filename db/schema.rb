@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130709150002) do
+ActiveRecord::Schema.define(:version => 20130709194915) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -220,7 +220,6 @@ ActiveRecord::Schema.define(:version => 20130709150002) do
     t.integer  "purchaseable_id"
     t.string   "purchaseable_type"
     t.text     "comments"
-    t.string   "billing_email"
     t.string   "stripe_coupon_id"
   end
 

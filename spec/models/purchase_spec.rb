@@ -11,7 +11,6 @@ describe Purchase do
     it { should allow_value('chad@thoughtbot.com').for(:email) }
     it { should_not allow_value('chad').for(:email) }
     it { should_not allow_value('chad@blah').for(:email) }
-    it { should validate_presence_of(:billing_email) }
     it { should_not validate_presence_of(:user_id) }
 
     it { should delegate(:subscription?).to(:purchaseable) }
@@ -602,6 +601,26 @@ describe Purchase, 'given a purchaser' do
       purchase.name.should == purchaser.name
       purchase.email.should == purchaser.email
       purchase.github_usernames.first.should == purchaser.github_username
+    end
+
+    it 'requires a password if there is no user' do
+      product = create(:subscribeable_product)
+      purchase = build(:purchase, purchaseable: product, user: nil)
+      purchase.password = ''
+
+      purchase.save
+
+      expect(purchase.errors[:password]).to include "can't be blank"
+    end
+
+    it 'creates a user when saved with a password' do
+      product = create(:subscribeable_product)
+      purchase = build(:purchase, purchaseable: product, user: nil)
+      purchase.password = 'test'
+
+      purchase.save!
+
+      expect(purchase.user).to be_persisted
     end
   end
 end

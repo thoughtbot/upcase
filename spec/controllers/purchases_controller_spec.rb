@@ -6,11 +6,14 @@ describe PurchasesController do
   describe '#new when purchasing a product as a user with an active subscription' do
     it 'renders a subscriber-specific layout' do
       user = create(:user, :with_subscription)
+      product = create(:video_product)
       stub_current_user_with(user)
 
-      get :new, product_id: create(:video_product)
+      get :new, product_id: product
 
-      expect(response).to render_template('purchases/for_subscribers')
+      expect(response).to(
+        redirect_to(new_subscriber_product_purchase_path(product))
+      )
     end
   end
 

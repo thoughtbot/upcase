@@ -11,12 +11,12 @@ feature 'Using coupons' do
     visit product_path(product)
     click_purchase_link
     click_link 'Have a coupon code?'
-    expect(find('.coupon form')).to be_visible
+    expect(find('.coupon')).to be_visible
     fill_in 'Code', with: 'CODE'
     click_button 'Apply Coupon'
 
-    expect(page).to have_content '10% off'
-    expect(find('.coupon form')).to_not be_visible
+    expect_submit_button_to_contain('10% off')
+    expect(find('.coupon')).to_not be_visible
 
     pay_using_stripe
 

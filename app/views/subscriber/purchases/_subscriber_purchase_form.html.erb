@@ -1,4 +1,4 @@
-<%= semantic_form_for :subscriber_purchase, url: subscriber_purchases_path do |form| %>
+<%= semantic_form_for :subscriber_purchase, url: [:subscriber, @purchaseable, :purchases] do |form| %>
   <% if @purchaseable.is_a?(Product) %>
     <%= hidden_field_tag 'product_id', @purchaseable.id %>
   <% else %>
