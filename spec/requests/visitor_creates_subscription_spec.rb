@@ -29,12 +29,6 @@ feature 'Visitor is asked to create a user before subscription' do
     @subscription_product = create(:subscribeable_product)
   end
 
-  def create_product_with_video
-    video_product = create :video_product
-    create :video, watchable: video_product
-    video_product
-  end
-
   def sign_out
     visit root_path(as: nil)
   end
