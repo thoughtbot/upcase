@@ -12,9 +12,9 @@ Feature: Selecting a workshop and registering for it
       | name: Test-Driven Haskell |
     When I go to the workshop page of "Test-Driven Haskell"
     And I follow "Register for this Workshop"
-    And I follow "Sign in."
+    And I follow "Already have an account? Sign in"
     And I fill in and submit the sign in form with "john@doe.com" and "password"
-    Then I should see "Complete your purchase of Test-Driven Haskell"
+    Then I should see "Test-Driven Haskell"
     And "Email" should be filled in with "john@doe.com"
     And "Name" should be filled in with "John Doe"
     And I should see "Sign out"

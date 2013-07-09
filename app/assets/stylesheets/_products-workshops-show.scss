@@ -133,37 +133,6 @@ body.products-show, body.workshops-show {
   }
 
   aside {
-    .prime-purchase {
-      margin: 26px 0 1.5em 0;
-
-      h2 {
-        color: $learnred;
-        font: 800 26px/28px $sans-serif;
-      }
-
-      .or {
-        font: 700 .8em $sans-serif;
-        margin: 2.5em 0 2em;
-        padding: 0;
-        position: relative;
-        text-align: center;
-        text-transform: uppercase;
-
-        &:after, &:before {
-          border-top: 1px solid $darkwarmgray;
-          content: '';
-          display: block;
-          @include position(absolute, .6em 0 0 0px);
-          width: 15%;
-        }
-
-        &:before {
-          left: auto;
-          right: 0;
-        }
-      }
-    }
-
     .original-price {
       color: lighten($darkwarmgray, 22%);
       display: block;
@@ -253,10 +222,6 @@ body.products-show, body.workshops-show {
 
     .section-location:nth-child(2n) {
       margin-top: 30px;
-    }
-
-    #terms dt p {
-      font-weight: bold;
     }
   }
 

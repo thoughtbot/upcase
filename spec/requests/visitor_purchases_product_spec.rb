@@ -8,7 +8,7 @@ feature 'Purchasing a product' do
     product = create(:video_product)
     visit product_path(product)
     click_purchase_link
-    click_link 'Sign in.'
+    click_link 'Already have an account? Sign in'
     click_link 'Sign up'
 
     fill_in 'user_name', with: 'Ben Orenstein'

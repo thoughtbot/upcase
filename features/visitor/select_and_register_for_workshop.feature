@@ -10,9 +10,9 @@ Feature: Selecting a workshop and registering for it
       | name: Test-Driven Haskell |
     When I go to the workshop page of "Test-Driven Haskell"
     And I follow "Register for this Workshop"
-    Then I should see "Complete your purchase of Test-Driven Haskell"
-    And I should see "$10,000,000"
-    When I fill in all of the workshop registration fields for "carlos@santana.com"
+    Then I should see "Test-Driven Haskell"
+    Then I should see a purchase price of "$10,000,000"
+    When I fill in the required workshop registration fields for "carlos@santana.com"
     And I choose to pay with Paypal
     And I press "Proceed to Checkout"
     And I submit the Paypal form
@@ -30,16 +30,16 @@ Feature: Selecting a workshop and registering for it
       | name: Test-Driven Haskell |
     When I go to the workshop page of "Test-Driven Haskell"
     And I follow "Register for this Workshop"
-    And I follow "Sign in."
+    And I follow "Already have an account? Sign in"
     And I follow "Sign up"
     And I sign up with the following:
       | name     | Carlos Santana     |
       | email    | carlos@santana.com |
       | password | mypass             |
-    Then I should see "Complete your purchase of Test-Driven Haskell"
+    Then I should see "Test-Driven Haskell"
     And "Email" should be filled in with "carlos@santana.com"
     And "Name" should be filled in with "Carlos Santana"
-    When I fill in all of the workshop registration fields for "carlos@santana.com"
+    When I fill in the required workshop registration fields for "carlos@santana.com"
     And I choose to pay with Paypal
     And I press "Proceed to Checkout"
     And I submit the Paypal form
@@ -57,9 +57,9 @@ Feature: Selecting a workshop and registering for it
       | name: Test-Driven Haskell |
     When I go to the workshop page of "Test-Driven Haskell"
     And I follow "Register for this Workshop"
-    Then I should see "Complete your purchase of Test-Driven Haskell"
-    And I should see "$10,000,000"
-    When I fill in all of the workshop registration fields for "carlos@blah"
+    Then I should see "Test-Driven Haskell"
+    And I should see a purchase price of "$10,000,000"
+    When I fill in the required workshop registration fields for "carlos@blah"
     And I press "Submit Payment"
     Then I should see that the email is invalid
 
@@ -76,15 +76,15 @@ Feature: Selecting a workshop and registering for it
       | name: Test-Driven Haskell |
     When I go to the workshop page of "Test-Driven Haskell"
     And I follow "Register for this Workshop"
-    Then I should see "$10,000"
+    Then I should see a purchase price of "$10,000"
     When I follow "Have a coupon code?"
     Then the coupon form should be visible
     And I fill in "Code" with "VALENTINES"
     And I press "Apply Coupon"
-    Then I should see "$9,000.00 (10% off)"
+    Then I should see a purchase price of "$9,000.00 (10% off)"
     And the coupon form should be hidden
     And the coupon form link should be hidden
-    When I fill in all of the workshop registration fields for "carlos@santana.com"
+    When I fill in the required workshop registration fields for "carlos@santana.com"
     And I choose to pay with Paypal
     And I press "Proceed to Checkout"
     And I submit the Paypal form
@@ -103,13 +103,13 @@ Feature: Selecting a workshop and registering for it
       | name: Test-Driven Haskell |
     When I go to the workshop page of "Test-Driven Haskell"
     And I follow "Register for this Workshop"
-    Then I should see "Complete your purchase of Test-Driven Haskell"
-    And I should see "$10,000"
+    Then I should see "Test-Driven Haskell"
+    And I should see a purchase price of "$10,000"
     When I follow "Have a coupon code?"
     Then the coupon form should be visible
     When I fill in "Code" with "VALENTINES"
     And I press "Apply Coupon"
-    Then I should see "$0"
+    Then I should see a purchase price of "$0"
     And the coupon form should be hidden
     And the coupon form link should be hidden
     When I fill in the required workshop registration fields for "carlos@santana.com"
@@ -129,13 +129,13 @@ Feature: Selecting a workshop and registering for it
       | name: Test-Driven Haskell |
     When I go to the workshop page of "Test-Driven Haskell"
     And I follow "Register for this Workshop"
-    Then I should see "Complete your purchase of Test-Driven Haskell"
-    And I should see "$100"
+    Then I should see "Test-Driven Haskell"
+    And I should see a purchase price of "$100"
     When I follow "Have a coupon code?"
     Then the coupon form should be visible
     And I fill in "Code" with "VALENTINES"
     And I press "Apply Coupon"
-    Then I should see "$100"
+    Then I should see a purchase price of "$100"
     And I should see "The coupon code you supplied is not valid"
     And the coupon form should be visible
 
@@ -159,7 +159,7 @@ Feature: Selecting a workshop and registering for it
       | name: Test-Driven Haskell |
     When I go to the workshop page of "Test-Driven Haskell"
     And I follow "Register for this Workshop"
-    Then I should see "$0"
+    Then I should see a purchase price of "$0"
     When I fill in the required workshop registration fields for "carlos@santana.com"
     And I press "Submit Payment"
     Then carlos@santana.com is registered for the Test-Driven Haskell workshop

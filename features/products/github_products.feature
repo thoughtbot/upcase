@@ -10,6 +10,6 @@ Feature: Purchase a github based product
     And there is a github product named "Test GitHub"
     When I visit the product page for "Test GitHub"
     And I follow "Purchase for Yourself"
-    And I follow "Sign in."
+    And I follow "Already have an account? Sign in"
     And I fill in and submit the sign in form with "john@doe.com" and "password"
     Then the first reader should be my github username

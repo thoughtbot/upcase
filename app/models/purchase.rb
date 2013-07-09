@@ -10,7 +10,7 @@ class Purchase < ActiveRecord::Base
   belongs_to :coupon
   serialize :github_usernames
 
-  attr_accessor :stripe_token, :paypal_url
+  attr_accessor :stripe_token, :paypal_url, :password
 
   validates :variant, presence: true
   validates :purchaseable_id, presence: true
@@ -18,14 +18,14 @@ class Purchase < ActiveRecord::Base
   validates :name, presence: true
   validates :lookup, presence: true
   validates :payment_method, presence: true
-  validates :billing_email, presence: true
   validate :payment_method_must_match_price
   validates :email, presence: true,
     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
+  validates :password, presence: true, if: :password_required?
   validates :user_id, presence: true, if: :subscription?
 
+  before_validation :create_user, if: :password_required?
   before_validation :generate_lookup, on: :create
-  before_validation :populate_billing_email, on: :create
 
   before_create :create_and_charge_customer, if: :stripe?
   before_create :setup_paypal_payment, if: :paypal?
@@ -36,8 +36,16 @@ class Purchase < ActiveRecord::Base
   after_save :update_user_stripe_customer_id, if: "being_paid? && stripe?"
   after_save :save_info_to_user, if: :user
 
-  delegate :name, :sku, to: :purchaseable, prefix: :purchaseable, allow_nil: true
-  delegate :fulfilled_with_github?, :subscription?, to: :purchaseable
+  delegate :name,
+    :sku,
+    to: :purchaseable,
+    prefix: :purchaseable,
+    allow_nil: true
+  delegate :fulfilled_with_github?,
+    :subscription?,
+    :terms,
+    :fulfillment_method,
+    to: :purchaseable
 
   def self.from_month(date)
     where(
@@ -195,6 +203,16 @@ class Purchase < ActiveRecord::Base
   end
 
   private
+
+  def password_required?
+    subscription? && user.blank?
+  end
+
+  def create_user
+    if name.present? && email.present? && password.present?
+      self.user = User.create(name: name, email: email, password: password)
+    end
+  end
 
   def stripe_customer
     @stripe_customer ||= Stripe::Customer.retrieve(stripe_customer_id)
@@ -374,11 +392,5 @@ class Purchase < ActiveRecord::Base
 
   def send_receipt
     SendPurchaseReceiptEmailJob.enqueue(id)
-  end
-
-  def populate_billing_email
-    if billing_email.blank?
-      self.billing_email = email
-    end
   end
 end

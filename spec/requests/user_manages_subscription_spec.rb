@@ -29,7 +29,7 @@ feature 'User creates a subscription' do
   scenario 'sees that the subscription is per month' do
     start_purchasing_subscription
 
-    expect(page).to have_content('per month')
+    expect_submit_button_to_contain('per month')
   end
 
   scenario 'does not see the option to pay with paypal' do
@@ -72,13 +72,13 @@ feature 'User creates a subscription' do
 
     start_purchasing_subscription
 
-    expect(page).to have_content("$15 per month")
+    expect_submit_button_to_contain("$15 per month")
 
     click_link "Have a coupon code?"
     fill_in "Code", with: '5OFF'
     click_button "Apply Coupon"
 
-    expect(page).to have_content("$10.00 the first month, then $15.00 per month")
+    expect_submit_button_to_contain("$10.00 the first month, then $15.00 per month")
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
@@ -91,13 +91,13 @@ feature 'User creates a subscription' do
 
     start_purchasing_subscription
 
-    expect(page).to have_content("$15 per month")
+    expect_submit_button_to_contain("$15 per month")
 
     click_link "Have a coupon code?"
     fill_in "Code", with: 'THREEFREE'
     click_button "Apply Coupon"
 
-    expect(page).to have_content("$0.00 for 3 months, then $15.00 per month")
+    expect_submit_button_to_contain("$0.00 for 3 months, then $15.00 per month")
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
@@ -108,13 +108,13 @@ feature 'User creates a subscription' do
   scenario 'creates a Stripe subscription with an invalid coupon', :js => true do
     start_purchasing_subscription
 
-    expect(page).to have_content("$15 per month")
+    expect_submit_button_to_contain('$15 per month')
 
-    click_link "Have a coupon code?"
-    fill_in "Code", with: '5OFF'
-    click_button "Apply Coupon"
+    click_link 'Have a coupon code?'
+    fill_in 'Code', with: '5OFF'
+    click_button 'Apply Coupon'
 
-    expect(page).to have_content("The coupon code you supplied is not valid.")
+    expect(page).to have_content('The coupon code you supplied is not valid.')
   end
 
   scenario 'sees option to update billing for subscribers' do
@@ -221,19 +221,6 @@ feature 'User creates a subscription' do
 
   def subscription_product
     @subscription_product
-  end
-
-  def fill_out_subscription_form_with(credit_card_number)
-    credit_card_expires_on = Time.now.advance(years: 1)
-    month_selection = credit_card_expires_on.strftime('%-m - %B')
-    year_selection = credit_card_expires_on.strftime('%Y')
-
-    fill_in 'GitHub username', with: 'cpytel'
-    fill_in 'Card Number', with: credit_card_number
-    select month_selection, from: 'date[month]'
-    select year_selection, from: 'date[year]'
-    fill_in 'CVC', with: '333'
-    click_button 'Submit Payment'
   end
 
   def create_amount_stripe_coupon(id, duration, amount_off)

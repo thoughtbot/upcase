@@ -1,13 +1,21 @@
-<div class="coupon" style="display: none;">
-  <%= semantic_form_for :coupon, url: polymorphic_path([@purchaseable, :redemption], action: :new, variant: params[:variant]) do |form| %>
-    <%= form.inputs do %>
-      <%= form.input :code, :placeholder => 'Coupon code' %>
+<%= link_to "Have a coupon code?", "#", class: 'coupon-note' %>
+<div class="coupon" style="display: none;" data-url="<%= coupon_redemption_url(purchase.purchaseable) %>">
+  <fieldset class="inputs">
+    <ol>
+      <li class="string input optional stringish" id="coupon_code_input">
+        <label class="label" for="coupon_code">Code</label>
+        <input id="coupon_code" name="coupon[code]" type="text" placeholder="Coupon code">
+      </li>
       <li class="error" style="display: none;">
         <p class="inline-errors">The coupon code you supplied is not valid.</p>
       </li>
-    <% end %>
-    <%= form.actions do %>
-      <%= form.action :submit, label: "Apply Coupon" %>
-    <% end %>
-  <% end %>
+    </ol>
+  </fieldset>
+  <fieldset class="actions">
+    <ol>
+      <li class="action input_action" id="coupon_submit_action">
+        <input name="commit" type="submit" value="Apply Coupon">
+      </li>
+    </ol>
+  </fieldset>
 </div>
