@@ -58,7 +58,9 @@ pre code {
   display: block;
   line-height: 1.4rem;
   margin: 2rem 0;
+  overflow-x: scroll;
   padding: 1rem;
+  -webkit-overflow-scrolling: touch;
 }
 
 code {
