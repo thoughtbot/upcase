@@ -1,7 +1,7 @@
 <div class="coupon" style="display: none;">
   <%= semantic_form_for(
     :coupon,
-    :placeholder: 'Coupon code',
+    :placeholder => 'Coupon code',
     url: polymorphic_path(
       [@purchaseable, :stripe_redemption], 
       action: :new, 
