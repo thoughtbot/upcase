@@ -186,12 +186,6 @@ feature 'User creates a subscription' do
     @subscription_product = create(:subscribeable_product)
   end
 
-  def create_product_with_video
-    video_product = create :video_product
-    create :video, watchable: video_product
-    video_product
-  end
-
   def sign_in
     @current_user = create(:user)
     visit root_path(as: @current_user)
