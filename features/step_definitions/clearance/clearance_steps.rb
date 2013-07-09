@@ -39,8 +39,7 @@ end
 
 When /^I sign up with the following:$/ do |table|
   user_info = table.rows_hash
-  fill_in 'user_first_name', with: user_info['first_name']
-  fill_in 'user_last_name', with: user_info['last_name']
+  fill_in 'user_name', with: user_info['name']
   fill_in 'Email', with: user_info['email']
   fill_in 'Password', with: user_info['password']
   click_button 'Create an account'

@@ -2,8 +2,8 @@ Feature: Selecting a workshop and registering for it
 
   Scenario: A visitor signs into their account during registration
     Given the following user exists:
-      | first_name | last_name | email        | password |
-      | John       | Doe       | john@doe.com | password |
+      | name     | email        | password |
+      | John Doe | john@doe.com | password |
     And the following workshop exists:
       | name                |
       | Test-Driven Haskell |

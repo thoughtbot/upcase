@@ -8,14 +8,20 @@ describe User do
   end
 
   context "validations" do
-    it { should validate_presence_of(:last_name) }
-    it { should validate_presence_of(:first_name) }
+    it { should validate_presence_of(:name) }
   end
 
-  context "#name" do
-    it "has a name that is the first and last name" do
-      user = User.new(first_name: "first", last_name: "last")
-      user.name.should == "first last"
+  context "#first_name" do
+    it "has a first_name that is the first part of name" do
+      user = User.new(name: "first last")
+      expect(user.first_name).to eq "first"
+    end
+  end
+
+  context "#last_name" do
+    it "has a last_name that is the last part of name" do
+      user = User.new(name: "first last")
+      expect(user.last_name).to eq "last"
     end
   end
 
@@ -130,8 +136,7 @@ describe User do
       stub_team_member false
       user = User.find_or_create_from_auth_hash(auth_hash)
       user.should be_persisted
-      user.first_name.should == 'Test'
-      user.last_name.should == 'User'
+      user.name.should == 'Test User'
       user.email.should == 'user@example.com'
       user.github_username.should == 'thoughtbot'
       user.auth_provider.should == 'github'

@@ -7,20 +7,6 @@ body.users-edit {
       margin-bottom: 1em;
       font-size: 1em;
     }
-
-    li {
-      &#user_first_name_input {
-        float: left;
-        margin-right: flex-gutter();
-        width: flex-grid(6);
-      }
-
-      &#user_last_name_input {
-        float: left;
-        margin-top: 24px;
-        width: flex-grid(6);
-      }
-    }
   }
 
   #account-sidebar {

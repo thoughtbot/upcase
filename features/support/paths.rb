@@ -136,22 +136,10 @@ module NavigationHelpers
       'teacher_bio'
     when "teacher's email"
       'teacher_email'
-    when "student's first name"
-      'registration_first_name'
-    when "student's last name"
-      'registration_last_name'
-    when "student's email"
-      'registration_email'
     when "code"
       'coupon_code'
     when "amount"
       'coupon_amount'
-    when 'organization'
-      'registration_organization'
-    when 'first name'
-      'registration_first_name'
-    when 'last name'
-      'registration_last_name'
     when 'external registration url'
       'workshop_external_registration_url'
     when /question (\d+)/

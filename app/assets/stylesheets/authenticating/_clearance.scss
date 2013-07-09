@@ -35,17 +35,6 @@
 
   li {
     margin: 0 0 .5em;
-
-    &#user_first_name_input {
-      float: left;
-      margin-right: flex-gutter();
-      width: flex-grid(6);
-    }
-
-    &#user_last_name_input {
-      float: left;
-      width: flex-grid(6);
-    }
   }
 
   input {

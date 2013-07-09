@@ -65,18 +65,6 @@ Then 'I see the answer "$answer"'do |answer|
   end
 end
 
-When /^I drag the workshop "([^"]*)" before "([^"]*)"$/ do |first_name, second_name|
-  first_workshop = Workshop.find_by_name!(first_name)
-  second_workshop = Workshop.find_by_name!(second_name)
-  first_workshop_dom = "#workshop_#{first_workshop.id}"
-  second_workshop_dom = "#workshop_#{second_workshop.id}"
-  page.execute_script <<-JS
-    $("#{first_workshop_dom}").insertBefore($("#{second_workshop_dom}"))
-    $("#workshop_list").trigger('sortupdate', [{item: $('#{first_workshop_dom}')}]);
-  JS
-
-end
-
 Then /^I see "([^"]*)" is scheduled from "([^"]*)" to "([^"]*)"$/ do |workshop_name, start_date, end_date|
   workshop = Workshop.find_by_name!(workshop_name)
   date_string = workshop_date_string(start_date, end_date)

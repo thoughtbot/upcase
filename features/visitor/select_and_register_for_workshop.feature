@@ -33,10 +33,9 @@ Feature: Selecting a workshop and registering for it
     And I follow "Sign in."
     And I follow "Sign up"
     And I sign up with the following:
-      | first_name      | Carlos             |
-      | last_name       | Santana            |
-      | email           | carlos@santana.com |
-      | password        | mypass             |
+      | name     | Carlos Santana     |
+      | email    | carlos@santana.com |
+      | password | mypass             |
     Then I should see "Complete your purchase of Test-Driven Haskell"
     And "Email" should be filled in with "carlos@santana.com"
     And "Name" should be filled in with "Carlos Santana"
