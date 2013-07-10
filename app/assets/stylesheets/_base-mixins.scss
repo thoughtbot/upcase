@@ -16,8 +16,7 @@
   }
 
   &:active {
-    border-bottom-color: transparent;
-    @include transform(translateY(.1rem));
+    background: darken($color, 3%);
   }
 }
 
@@ -61,8 +60,8 @@
   }
 
   &:active {
-    border-bottom-color: transparent;
-    @include transform(translateY(2px));
+    background: darken($color, 8%);
+    border-bottom-color: darken($color, 8%);
   }
 }
 

@@ -1,5 +1,5 @@
 class SessionsController < Clearance::SessionsController
-  layout 'dashboard'
+  layout 'header-only'
 
   private
 
