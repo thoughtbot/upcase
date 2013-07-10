@@ -3,7 +3,7 @@ class UsersController < Clearance::UsersController
 
   def new
     @user = user_from_params
-    render template: 'users/new', layout: 'dashboard'
+    render template: 'users/new', layout: 'header-only'
   end
 
   def create
@@ -13,7 +13,7 @@ class UsersController < Clearance::UsersController
       sign_in @user
       redirect_back_or url_after_create
     else
-      render template: 'users/new', layout: 'dashboard'
+      render template: 'users/new', layout: 'header-only'
     end
   end
 

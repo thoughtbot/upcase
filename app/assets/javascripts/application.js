@@ -7,6 +7,7 @@
 //= require prettyprint
 //= require jquery.jsPlumb-1.4.0-all-min
 //= require waypoints.min
+//= require ticker
 //= require masonry.min.js
 //= require prime
 //= require slider

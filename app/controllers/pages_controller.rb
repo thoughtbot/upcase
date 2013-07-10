@@ -6,9 +6,11 @@ class PagesController < HighVoltage::PagesController
   def layout_for_page
     case params[:id]
     when 'prime'
-      'prime'
+      'empty-body'
     when 'learnsale'
-      'prime'
+      'empty-body'
+    when 'new-product'
+      'header-only'
     else
       'application'
     end

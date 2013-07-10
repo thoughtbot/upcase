@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_filter :authorize, only: [:index]
 
   def index
-    render layout: 'dashboard'
+    render layout: 'header-only'
   end
 
   def show

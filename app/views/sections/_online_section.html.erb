@@ -23,20 +23,22 @@
           Single
         <% end %>
         <span>
-          <% if current_user_has_active_subscription? %>
-            Free
-          <% else %>
+          <% unless current_user_has_active_subscription? %>
             <%= number_to_currency online_section.individual_price, precision: 0 %>
           <% end %>
         </span>
       </h2>
+
       <div class="license">
         <% if current_user_has_active_subscription? %>
           <h2 class="active-subscription"><%= t 'workshops.show.free_to_subscribers' %></h2>
-        <% end %>
-
-        <%= link_to new_section_purchase_path(online_section, variant: :individual), class: "license-button button#{' non-free' unless current_user_has_active_subscription?}" do %>
-          <%= t('workshops.show.register') %>
+          <%= link_to new_section_purchase_path(online_section, variant: :individual), class: "free-with-prime license-button button" do %>
+            <%= t('shared.subscriptions.icon') %> <%= t('workshops.show.register_free') %>
+          <% end %>
+        <% else %>
+          <%= link_to new_section_purchase_path(online_section, variant: :individual), class: "license-button button" do %>
+            <%= t('workshops.show.register') %>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -49,7 +51,7 @@
         </h2>
 
         <div class="license">
-          <%= link_to new_section_purchase_path(online_section, variant: :company), class: 'license-button button non-free' do %>
+          <%= link_to new_section_purchase_path(online_section, variant: :company), class: 'license-button button' do %>
             Purchase for Your Company
           <% end %>
         </div>

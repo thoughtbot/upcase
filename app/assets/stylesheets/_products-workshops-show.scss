@@ -1,3 +1,22 @@
+.subject-block {
+  margin: auto;
+  text-align: center;
+  width: 75%;
+
+  .subject {
+    color: #6c6a66;
+    font-size: 50px;
+    line-height: 1em;
+    margin: 2rem 0 0;
+  }
+
+  .tagline {
+    font-size: 30px;
+    font-weight: 400;
+    margin: .5rem auto 2rem auto;
+  }
+}
+
 body.products-show, body.workshops-show {
   .discount-title {
     color: $darkwarmgray;
@@ -6,16 +25,45 @@ body.products-show, body.workshops-show {
     text-align: center;
   }
 
+  .workshop-alert {
+    background: $lightwarmgray;
+    margin-bottom: 2em;
+    padding: 1em;
+    text-align: center;
+
+    a {
+      color: $learnred;
+    }
+
+    b {
+      font-weight: bold;
+    }
+  }
+
   #faq {
     border-top: 1px dashed #ccc;
     margin-top: 2em;
 
-    dt {
-      margin-top: 2em;
+    dd, dt {
+      padding-left: 1rem;
     }
 
-    dt p {
-      font-weight: 600;
+    dt {
+      margin-top: 1.6rem;
+      position: relative;
+
+      p {
+        font-weight: bold;
+        margin-bottom: .8em;
+      }
+
+      &:before {
+        color: $darkwarmgray;
+        content: '\201c';
+        font-size: 2rem;
+        font-weight: 100;
+        @include position(absolute, .25rem 0 0 0px);
+      }
     }
   }
 
@@ -54,14 +102,8 @@ body.products-show, body.workshops-show {
     }
   }
 
-  #table-of-contents {
-    margin-top: 2em;
-  }
-
   .teachers {
-    margin: 4em 0 0 0;
-    padding-bottom: 0;
-    position: relative;
+    margin: 2.5em 0 0 0;
 
     li {
       list-style-type: none;
@@ -71,12 +113,11 @@ body.products-show, body.workshops-show {
     img {
       border-radius: 3px;
       float: left;
-      margin: 0 20px 20px 0;
-      vertical-align: text-top;
+      margin: 0 1rem 1rem 0;
     }
 
     h2 {
-      margin: 0 0 12px 0;
+      margin: 0 0 .5rem 0;
       padding: 0;
     }
 
@@ -86,7 +127,8 @@ body.products-show, body.workshops-show {
     }
 
     .bio {
-      margin-left: 114px;
+      margin-left: 92px;
+      padding-left: 1rem;
     }
   }
 
@@ -117,21 +159,6 @@ body.products-show, body.workshops-show {
     }
   }
 
-  .workshop-alert {
-    background: $lightwarmgray;
-    margin-bottom: 2em;
-    padding: 1em;
-    text-align: center;
-
-    a {
-      color: $learnred;
-    }
-
-    b {
-      font-weight: bold;
-    }
-  }
-
   aside {
     .original-price {
       color: lighten($darkwarmgray, 22%);
@@ -153,70 +180,102 @@ body.products-show, body.workshops-show {
       }
     }
 
-    .section-location, #license, #date-range {
-      > div {
-        margin-bottom: 26px;
+    div {
+      margin-bottom: 1.75rem;
 
-        h2 {
-          span {
-            color: $darkwarmgray;
-            font-weight: 100;
-          }
-
-          &.active-subscription, &.active-subscription span {
-            font-size: 1rem;
-            font-weight: 700;
-            line-height: 1.4rem;
-            margin-bottom: .5rem;
-          }
-        }
-
-        .license {
-          margin-top: 0;
-
-          p {
-            font-size: 14px;
-            margin-top: -14px;
-            text-align: center;
-          }
-        }
-
-        .license-button {
-          margin-bottom: 0;
-          text-transform: uppercase;
-        }
-
-        .button.non-free {
-          background: darken($warmgray, 20%);
-          border-color: $darkwarmgray;
-        }
-
-        .location-name {
-          color: $darkwarmgray;
-          font: 800 36px/40px $sans-serif;
-        }
-
-        .when {
-          margin-top: 0;
-        }
-      }
-
-      &.subscription {
-        .prime-purchase {
-          display: none;
-        }
+      &.prime-purchase {
+        margin: 1.5rem 0 1.5em 0;
 
         h2 {
           color: $learnred;
+          font: 800 26px/28px $sans-serif;
         }
 
-        .individual-purchase, .company-purchase {
-          .button.non-free {
-            background: $learnred;
-            border-color: darken($learnred, 20%);
-            padding: 12px 0 8px;
+        .or {
+          font: 700 .8em $sans-serif;
+          margin: 2.5em 0 2em;
+          padding: 0;
+          position: relative;
+          text-align: center;
+          text-transform: uppercase;
+
+          &:after, &:before {
+            border-top: 1px solid $darkwarmgray;
+            content: '';
+            display: block;
+            @include position(absolute, .6em 0 0 0px);
+            width: 15%;
+          }
+
+          &:before {
+            left: auto;
+            right: 0;
           }
         }
+      }
+
+      h2 {
+        a {
+          color: $darkwarmgray;
+          font-family: $sans-serif;
+          font-weight: 800;
+        }
+
+        span {
+          font-weight: 100;
+        }
+
+        &.active-subscription, &.active-subscription span {
+          font: italic 400 1rem/1.4em $serif;
+          margin: .5rem 0;
+        }
+      }
+
+      .when {
+        font-family: $sans-serif;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .license {
+        margin-top: 0;
+      }
+
+      .button:not(.prime-button, .free-with-prime) {
+        background: darken($warmgray, 20%);
+        border-color: $darkwarmgray;
+
+        &:hover {
+          background: darken($warmgray, 15%);
+          border-color: lighten($darkwarmgray, 5%);
+        }
+
+        &:active {
+          background: darken($warmgray, 25%);
+          border-color: darken($darkwarmgray, 5%);
+        }
+      }
+
+      .free-with-prime {
+        background: #fff;
+        border: 3px solid #ddd;
+        border-width: 1px 1px 3px 1px;
+        color: $learnred;
+
+        &:active {
+          background: #eee;
+          border-color: #ccc;
+        }
+      }
+
+      .license-button {
+        margin-bottom: 0;
+        text-transform: uppercase;
+      }
+
+      .location-name {
+        color: $darkwarmgray;
+        font: 800 36px/40px $sans-serif;
       }
     }
 
