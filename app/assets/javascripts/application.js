@@ -1,4 +1,5 @@
 //= require jquery
+//= require jquery-tablesorter
 //= require jquery_ujs
 //= require jquery-ui
 //= require retina
