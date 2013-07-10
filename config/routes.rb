@@ -67,8 +67,8 @@ Workshops::Application.routes.draw do
 
   resources :topics, only: :index, path: 'trails'
 
-  resources :articles, only: :show
   resources :bytes, only: [:index, :show]
+  match '/articles/:id' => redirect("/bytes/%{id}")
 
   namespace :reports do
     resource :purchases_charts, only: :show
