@@ -179,7 +179,9 @@ aside {
 
   .button {
     height: auto;
+    letter-spacing: 1px;
     margin: .75em 0 0;
+    text-rendering: optimizeLegibility;
     width: 100%;
   }
 
