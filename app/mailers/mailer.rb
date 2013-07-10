@@ -94,14 +94,14 @@ class Mailer < ActionMailer::Base
     )
   end
 
-  def byte_notification(email, article)
-    @article = article
+  def byte_notification(email, byte)
+    @byte = byte
 
     mail(
       to: email,
       from: 'learn@thoughtbot.com',
       reply_to: 'learn@thoughtbot.com',
-      subject: "[Learn] New Byte: #{article.title}"
+      subject: "[Learn] New Byte: #{byte.title}"
     )
   end
 
