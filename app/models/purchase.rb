@@ -47,6 +47,10 @@ class Purchase < ActiveRecord::Base
     :fulfillment_method,
     to: :purchaseable
 
+  def self.of_sections
+    where(purchaseable_type: 'Section')
+  end
+
   def self.from_month(date)
     where(
       ["created_at >= ? AND created_at <= ?",
@@ -56,13 +60,24 @@ class Purchase < ActiveRecord::Base
     )
   end
 
-  def self.last_30_days
-    last_thirty = (0..30).to_a.collect do |day|
+  def self.within_30_days
+    where('created_at >= ?', 30.days.ago)
+  end
+
+  def self.date_of_last_workshop_purchase
+    purchase = of_sections.order('created_at DESC').first
+    if purchase
+      purchase.created_at.to_date
+    end
+  end
+
+  def self.last_30_days_of_sales
+    last_thirty = (0..29).to_a.collect do |day|
       Purchase.paid.where(
-        "created_at >= ? and created_at <= ?", 
-        day.days.ago.beginning_of_day, 
+        "created_at >= ? and created_at <= ?",
+        day.days.ago.beginning_of_day,
         day.days.ago.end_of_day
-      ).all.sum(&:price) 
+      ).all.sum(&:price)
     end
     last_thirty.reverse
   end

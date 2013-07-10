@@ -304,4 +304,9 @@ FactoryGirl.define do
       published_on { 1.day.from_now }
     end
   end
+
+  factory :oauth_access_token do
+    application_id 1
+    token 'abc123'
+  end
 end

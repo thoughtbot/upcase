@@ -465,7 +465,7 @@ describe Purchase, 'for a user' do
       user.address1.should be_blank
 
       purchase = create(
-        :purchase, 
+        :purchase,
         user: user,
         organization: 'thoughtbot',
         address1: '41 Winter St.',
@@ -663,6 +663,51 @@ describe Purchase, 'active?' do
 
     Timecop.freeze(6.days.from_now) do
       expect(purchase).not_to be_active
+    end
+  end
+end
+
+describe Purchase, '.of_sections' do
+  it 'returns no Purchases when none are Sections' do
+    create(:book_purchase)
+    expect(Purchase.of_sections).to be_empty
+  end
+
+  it 'returns Purchases for Sections' do
+    purchase = create(:section_purchase)
+    expect(Purchase.of_sections).to eq [purchase]
+  end
+end
+
+describe Purchase, 'last_30_days_of_sales' do
+  it 'returns an array where entries are the sum of the prices for paid purchases for each of the last 30 days' do
+    expect(Purchase.last_30_days_of_sales).to eq [0] * 30
+
+    purchase = create(:purchase)
+    expect(Purchase.last_30_days_of_sales).to eq (([0] * 29) + [purchase.price])
+
+    purchase = create(:purchase)
+    expect(Purchase.last_30_days_of_sales).to eq (([0] * 29) + [purchase.price * 2])
+  end
+end
+
+describe Purchase, 'date_of_last_workshop_purchase' do
+  it 'returns the date of the most-recent workshop purchase' do
+    expect(Purchase.date_of_last_workshop_purchase).to be_nil
+
+    purchase = create(:section_purchase, created_at: Date.today)
+    old_purchase = create(:section_purchase, created_at: Date.yesterday)
+    expect(Purchase.date_of_last_workshop_purchase).to eq Date.today
+  end
+end
+
+describe Purchase, 'within_30_days' do
+  it 'returns Purchases made within the last 30 days' do
+    Timecop.freeze Time.now do
+      create(:purchase, created_at: 30.days.ago, name: 'within range')
+      create(:purchase, created_at: (30.days + 1.second).ago, name: 'outside range')
+
+      expect(Purchase.within_30_days.map(&:name)).to eq ['within range']
     end
   end
 end
