@@ -1,6 +1,8 @@
 class Coupon < ActiveRecord::Base
   DISCOUNT_TYPES = ["percentage", "dollars"]
 
+  has_many :purchases
+
   validates :code, presence: true
   validates :amount, presence: true
   validates :discount_type, inclusion: { in: DISCOUNT_TYPES }, presence: true

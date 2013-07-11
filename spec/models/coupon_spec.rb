@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Coupon do
+  it { should have_many(:purchases) }
+
   context "with a discount type of percentage" do
     subject { create(:coupon, amount: 10, discount_type: "percentage") }
     it "applies the coupon as a percentage" do
