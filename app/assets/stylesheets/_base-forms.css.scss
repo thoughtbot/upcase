@@ -228,23 +228,25 @@ form {
 
 #notify-me {
   form {
-    padding-top: 2em;
+    margin-top: 1rem;
   }
 
   input[type="text"] {
-    border: none;
+    border: 1px solid $warmgray;;
     border-radius: 4px;
     @include box-sizing(border-box);
     font-size: 14px;
-    margin: 0 0 12px 0;
-    padding: 18px 30px;
+    margin: 0 0 1rem;
+    padding: .8rem 1rem;
     vertical-align: top;
     width: 50%;
   }
 
   input[type="submit"] {
-    margin-left: 14px;
-    padding: 17px 40px 32px 40px;
+    border: 0;
+    height: auto;
+    margin-left: .5rem;
+    padding: .8rem 2rem;
     text-transform: uppercase;
   }
 }
