@@ -23,7 +23,7 @@ When 'I fill in the required workshop registration fields for "$email"' do |emai
 end
 
 Then /^I should see that the email is invalid$/ do 
-  within "#purchase_email_input" do
-    page.should have_css(".inline-errors", text: "is invalid")
+  within '#purchase_email_input' do
+    page.should have_content('is invalid')
   end
 end
