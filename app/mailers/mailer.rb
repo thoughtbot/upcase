@@ -13,7 +13,7 @@ class Mailer < ActionMailer::Base
     @purchase = purchase
 
     mail(
-      to: @purchase.billing_email,
+      to: @purchase.email,
       subject: "Your receipt for #{@purchase.purchaseable_name}",
       from: Clearance.configuration.mailer_sender
     )

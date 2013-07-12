@@ -87,6 +87,10 @@ form {
     &.payment-errors, &.subscription-errors {
       color: $learnred;
       font-style: bold;
+
+      &:empty {
+        display: none;
+      }
     }
   }
 
@@ -101,16 +105,6 @@ form {
       color: $darkwarmgray;
       display: block;
       font: normal 17px $serif;
-    }
-
-    li#purchase_submit_action {
-      margin-left: 0;
-      margin-top: 40px;
-      width: 100%;
-
-      input {
-        width: 100%;
-      }
     }
 
     ol {
@@ -134,14 +128,13 @@ form {
         &.error {
           p.inline-errors {
             color: $red;
-            display: block;
           }
 
           p.inline-hints {
             color: $red;
           }
 
-          input {
+          input[type=text] {
             background: #f8bcba;
           }
         }
@@ -153,13 +146,14 @@ form {
         input[type="email"],
         input[type="select"] {
           background-color: #FFF;
-          border: 1px solid $warmgray;
+          border: 1px solid darken($warmgray, 5%);
           border-radius: 4px;
           box-shadow: none;
+          font-family: $sans-serif;
           @include box-sizing(border-box);
-          font-size: 14px;
+          font-size: 1rem;
           margin: .25em 0;
-          padding: 1em;
+          padding: .75rem 1em;
           width: 100%;
 
           &:focus {
@@ -171,6 +165,61 @@ form {
 
         &.commit {
           margin-top: 24px;
+        }
+      }
+    }
+  }
+}
+
+#billing-information {
+  ol {
+    width: 100%;
+
+    li {
+      &.overflow {
+        @extend .clearfix;
+      }
+
+      &#purchase_expiration_input {
+        float: left;
+        margin-right: flex-gutter();
+        width: flex-grid(8);
+
+        select {
+          border: 1px solid darken($warmgray, 5%);
+          @include box-shadow(none);
+          @include box-sizing(border-box);
+          float: left;
+          font: 1rem $sans-serif;
+          height: 45px;
+          padding: 0 1rem;
+          -webkit-appearance: none;
+          width: flex-grid(6);
+
+          &.card-expiry-month {
+            margin-right: flex-gutter();
+          }
+
+          &:focus {
+            border: 1px solid $learnred;
+            outline: none;
+            outline-color: none;
+          }
+        }
+      }
+
+      &#purchase_cvc_input {
+        float: left;
+        width: flex-grid(4);
+      }
+
+      &#purchase_country_input {
+        clear: left;
+      }
+
+      &#purchase_cc_existing {
+        input, label {
+          display: inline-block;
         }
       }
     }

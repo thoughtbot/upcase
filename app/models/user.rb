@@ -95,7 +95,19 @@ class User < ActiveRecord::Base
     end
   end
 
+  def credit_card
+    if stripe_customer
+      stripe_customer['active_card']
+    end
+  end
+
   private
+
+  def stripe_customer
+    if stripe_customer_id.present?
+      Stripe::Customer.retrieve(stripe_customer_id)
+    end
+  end
 
   def password_optional?
     super || external_auth?

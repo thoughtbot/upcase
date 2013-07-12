@@ -1,43 +1,37 @@
-<% content_for :subject, @purchaseable.name %>
+<% content_for :subject, @purchase.purchaseable_name %>
 
-<% content_for :additional_body_classes, @purchaseable.name %>
+<% content_for :additional_body_classes, @purchase.purchaseable_name %>
 
 <%= render 'checkout_form',
-  title: t('purchase.product.heading_html', name: @purchaseable.name),
-  subscription: @purchaseable.subscription?,
+  title: t('purchase.product.heading_html', name: @purchase.purchaseable_name),
+  subscription: @purchase.subscription?,
   price: @purchase.price,
-  purchaseable: @purchaseable,
   form_partial: 'purchases/form' %>
 
 <aside class="terms">
-  <h4>Terms and conditions</h3>
-  <p>By purchasing this product you agree to the following terms and conditions:</p>
-  <ul>
-    <li>If you&rsquo;re not happy with the product, just let us know within 30 days and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</li>
-    <%== @purchaseable.terms %>
-  </ul>
+  <% if !@purchase.subscription? && !current_user_has_active_subscription? %>
+    <% if subscription_product %>
+      <section id="license">
+        <div class="prime-purchase">
+          <h2>Access this and all our other products</h2>
+          <div class="license">
+            <a href="/products/14-prime" class="license-button button">Subscribe to Prime <span>$99/month</span></a>
+          </div>
+        </div>
+      </section>
+    <% end %>
+  <% end %>
+  <section id="terms">
+    <dl>
+      <dt><p>Terms and conditions</p></dt>
+      <dd><p>By purchasing this product you agree to the following terms and conditions:</p></dd>
+      <dd><p>If you&rsquo;re not happy with the product, just let us know within 30 days and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</p></dd>
+      <%== @purchase.terms %>
+    </dl>
+  </section>
 </aside>
 
-<%= render partial: "shared/github_check" %>
-
 <% content_for :javascript do -%>
-  <%= javascript_tag do %>
-    $(document).ready(function(){
-      $('#new_purchase').submit(function(){
-        var email = $('#purchase_email').val();
-        _kmq.push(['identify', email]);
-      });
-      $('#purchase_payment_method_input input').change(function() {
-        $("li.stripe").toggle($("#purchase_payment_method_stripe").is(":checked"));
-        if($("#purchase_payment_method_stripe").is(":checked")) {
-          $('#new_purchase fieldset.actions input').val("Submit Payment");
-        } else {
-          $('#new_purchase fieldset.actions input').val("Proceed to Checkout");
-        }
-      });
-    });
-  <% end %>
-
   <script type="text/javascript">
     // this identifies your website in the createToken call below
   Stripe.setPublishableKey('<%= STRIPE_PUBLIC_KEY %>');
@@ -87,12 +81,6 @@
         return false;
       }
       return true;
-    });
-
-    $(".use_existing_card").click(function(event){
-      $("#purchase_cc_input").toggle();
-      $("#purchase_expiration_input").toggle();
-      $("#purchase_cvc_input").toggle();
     });
   });
   </script>

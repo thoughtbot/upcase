@@ -1,7 +1,6 @@
 <% if @coupon %>
-  $(".totalprice").html('<%= number_to_currency @buying.price, precision: 2 %> (<%= coupon_amount(@coupon) %> off)');
+  updatePurchaseSubmitAmount('<%= number_to_currency @buying.price, precision: 2 %> (<%= coupon_amount(@coupon) %> off)');
   $(".coupon .error").hide();
-  $("#total a").hide();
   $(".coupon").hide();
   $("#coupon_id").val(<%= @coupon.id %>);
   <% if @buying.price == 0 %>

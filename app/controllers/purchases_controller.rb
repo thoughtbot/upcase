@@ -1,45 +1,26 @@
 class PurchasesController < ApplicationController
   def new
-    @purchaseable = find_purchaseable
-
     if current_user_has_active_subscription?
-      if current_user.has_conflict?(@purchaseable)
-        render 'overlapping'
-      else
-        render 'for_subscribers'
-      end
+      redirect_to subscriber_purchase_url
     else
-      @purchase = @purchaseable.purchases.build(variant: params[:variant])
-      @purchase.defaults_from_user(current_user)
-      @active_card = retrieve_active_card
-
-      if @purchase.subscription? && signed_out?
-        deny_access(t('shared.subscriptions.user_required'))
-      end
+      @purchase = build_purchase_with_defaults
     end
   end
 
   def create
-    @purchaseable = find_purchaseable
-    @purchase = @purchaseable.purchases.build(params[:purchase])
+    @purchase = find_purchaseable.purchases.build(params[:purchase])
     @purchase.user = current_user
-
-    if use_coupon?
-      @purchase.coupon = Coupon.active.find_by_id(params[:coupon_id])
-    end
-
-    if use_existing_card?
-      @purchase.stripe_customer_id = current_user.stripe_customer_id
-    end
+    @purchase.coupon = current_coupon
+    @purchase.stripe_customer_id = existing_stripe_customer_id
 
     if @purchase.save
       notify_kissmetrics_of(@purchase)
+      sign_in_purchasing_user(@purchase)
 
-      flash[:purchase_paid_price] = @purchase.paid_price
-
-      redirect_to success_url, notice: t('.purchase.flashes.success', name: @purchaseable.name)
+      redirect_to success_url,
+        notice: t('.purchase.flashes.success', name: @purchase.purchaseable_name),
+        flash: { purchase_paid_price: @purchase.paid_price }
     else
-      @active_card = retrieve_active_card
       render :new
     end
   end
@@ -64,31 +45,41 @@ class PurchasesController < ApplicationController
 
   private
 
+  def subscriber_purchase_url
+    polymorphic_url([:new, :subscriber, find_purchaseable, :purchase])
+  end
+
+  def build_purchase_with_defaults
+    purchase = find_purchaseable.purchases.build(variant: params[:variant])
+    purchase.defaults_from_user(current_user)
+    purchase
+  end
+
+  def sign_in_purchasing_user(purchase)
+    if signed_out? && purchase.user
+      sign_in purchase.user
+    end
+  end
+
   def notify_kissmetrics_of(purchase)
     event_notifier = KissmetricsEventNotifier.new
     event_notifier.notify_of_purchase(purchase)
   end
 
-  def use_existing_card?
-    params[:use_existing_card] == 'on'
-  end
-
-  def use_coupon?
-    params[:coupon_id].present?
-  end
-
-  def retrieve_active_card
-    if current_user && current_user.stripe_customer_id
-      Stripe::Customer.retrieve(current_user.stripe_customer_id)['active_card']
+  def existing_stripe_customer_id
+    if signed_in? && using_existing_card?
+      current_user.stripe_customer_id
     end
   end
 
-  def current_purchase
-    @current_purchase ||= Purchase.find_by_lookup(params[:id])
+  def using_existing_card?
+    params[:use_existing_card] == 'on'
   end
 
-  def current_purchaseable
-    @current_purchaseable ||= purchaseable
+  def current_coupon
+    if params[:coupon_id].present?
+      Coupon.active.find_by_id(params[:coupon_id])
+    end
   end
 
   def success_url

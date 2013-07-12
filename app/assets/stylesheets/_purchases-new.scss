@@ -1,61 +1,6 @@
-body.purchases-new, body.purchases-create {
-  h2 em.totalprice {
-    color: $red;
-  }
-
-  .coupon-note a {
-    background: #f0f0f0;
-    border-radius: 3px;
-    display: block;
-    padding: .5rem 1rem;
-  }
-
-  .coupon {
-    form {
-      margin-bottom: 1em;
-      position: relative;
-    }
-
-    label {
-      display: none;
-    }
-
-    input[type='submit'] {
-      border-bottom: 0;
-      height: 41px;
-      @include position(absolute, 7px 3px 0px 0);
-    }
-  }
-
-  section#subscription-banner {
-    margin: 2em 0 0 0;
-    padding: 0;
-
-    a {
-      background: lighten($warmgray, 6%);
-      border-radius: 3px;
-      display: block;
-      margin: 0;
-      padding: 1em 0;
-      text-align: center;
-      @include transition(.1s);
-      width: 100%;
-
-      &:hover {
-        background: lighten($warmgray, 10%);;
-      }
-
-      &:active {
-        background: $warmgray;
-        @include transition(0s);
-      }
-
-      h3 {
-        color: $learnred;
-        line-height: 1.4em;
-        margin: 0;
-      }
-    }
+body.purchases-new, body.purchases-create, body.subscriber-purchases {
+  form {
+    margin-bottom: 0;
   }
 
   .subscriber_purchase {
@@ -68,39 +13,119 @@ body.purchases-new, body.purchases-create {
     }
   }
 
+  .checkout-sigin-signup-toggle {
+    display: table;
+    margin-bottom: 2em;
+    width: 100%;
+
+    li {
+      display: table-cell;
+      vertical-align: middle;
+      width: 50%;
+    }
+
+    a {
+      background: #f0f0f0;
+      border-radius: 3px;
+      display: block;
+      margin: 2px;
+      padding: 1em;
+      text-align: center;
+
+      &:active {
+        background: #ccc;
+      }
+    }
+  }
+
   fieldset {
     #purchase_comments {
       height: 100px;
     }
 
+    ol {
+      list-style-type: none;
+      margin: 0;
+      padding: 0px;
+    }
+
     li {
+      display: table;
       margin-right: 0;
+      margin-top: 1rem;
+      width: 100%;
+
+      &.hidden {
+        display: none;
+      }
+
+      label {
+        vertical-align: middle;
+        display: table-cell;
+        width: 115px;
+
+        &[for=card-cvc] {
+          width: auto;
+        }
+      }
+
+      input[type=text], input[type=email], input[type=password], select {
+        display: table-cell;
+        margin: 0;
+      }
+
+      .inline-hints {
+        margin: 0;
+      }
 
       &#purchase_city_input,
       &#purchase_state_input,
       &#purchase_zip_code_input,
       &#purchase_country_input {
         float: left;
-        margin-right: flex-gutter();
-        width: flex-grid(3);
+        width: flex-grid(6);
       }
 
-      &#purchase_country_input {
-        margin-right: 0;
+      &#purchase_city_input, &#purchase_zip_code_input {
+        margin-right: flex-gutter();
       }
 
       &#purchase_submit_action {
-        margin-top: 40px;
+        margin-left: 0;
+        margin-top: .25rem;
         width: 100%;
+
+        input {
+          font-size: 1rem;
+          height: auto;
+          letter-spacing: 1px;
+          text-rendering: optimizeLegibility;
+          white-space: normal;
+          width: 100%;
+        }
+      }
+
+      &#purchase_cc_existing {
+        margin-left: 115px;
+        width: auto;
+
+        label {
+          width: auto;
+        }
       }
 
       &#purchase_payment_method_input {
-        * {
-          vertical-align: middle;
+        margin-left: 115px;
+        width: auto;
+
+        input {
+          margin-right: .5rem;
         }
 
         label, input {
           display: inline-block;
+          line-height: 0;
+          vertical-align: middle;
 
           img {
             display: inline-block;
@@ -111,29 +136,63 @@ body.purchases-new, body.purchases-create {
     }
   }
 
-  aside.terms {
-    ul {
-      list-style-type: none;
+  .address-info {
+    margin: 3rem 0;
+  }
+
+  .coupon {
+    position: relative;
+
+    form {
+      margin-bottom: 1em;
+      position: relative;
+    }
+
+    label {
+      display: none;
+    }
+
+    input[type='text'] {
+      margin: 1.5rem 0 1.25rem;
+    }
+
+    input[type='submit'] {
+      border-bottom: 0;
+      height: 39px;
+      @include position(absolute, 27px 3px 0px 0);
     }
   }
 
+  .coupon-note, .reveal-address {
+    border-radius: 3px;
+    display: inline-block;
+    margin: 1.5rem 0 1.5rem 115px;
+    padding: .5rem 0;
+  }
+
   @media screen and (max-width: 910px) {
-    fieldset ol {
-      li#purchase_city_input {
-        float: left;
-        width: flex-grid(12);
-      }
-
+    fieldset ol, #billing-information ol {
       li#purchase_zip_code_input,
-      li#purchase_state_input {
-        float: left;
-        width: flex-grid(6);
-      }
-
-      li#purchase_country_input {
-        float: left;
+      li#purchase_state_input,
+      li#purchase_city_input,
+      li#purchase_country_input,
+      li#purchase_expiration_input,
+      li#purchase_cvc_input {
+        float: none;
         width: flex-grid(12);
       }
+
+      li#purchase_payment_method_input {
+        margin-left: 90px;
+      }
+
+      label {
+        width: 90px;
+      }
+    }
+
+    .coupon-note, .reveal-address,  {
+      margin-left: 90px;
     }
   }
 }

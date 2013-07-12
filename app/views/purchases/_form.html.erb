@@ -1,34 +1,35 @@
-<%= semantic_form_for @purchase, url: polymorphic_path([@purchaseable, :purchases]), html: { method: 'post' } do |form| %>
+<%= semantic_form_for @purchase, url: polymorphic_path([@purchase.purchaseable, :purchases]), html: { method: 'post' } do |form| %>
   <%= form.semantic_errors %>
-  <%= hidden_field_tag 'coupon_id' %>
 
-  <% if !@purchaseable.subscription? && !current_user_has_active_subscription? %>
-    <% if subscription_product %>
-      <section id='subscription-banner'>
-        <%= link_to subscription_product do %>
-          <h3><span><%= t('shared.subscriptions.icon') %></span> Get this <%= @purchaseable.product_type %> and all of our other products and workshops by subscribing to <%= subscription_product.name %></h3>
-        <% end %>
-      </section>
+  <%= form.inputs do %>
+    <% if signed_out? %>
+      <ul class="checkout-sigin-signup-toggle">
+        <li class="workshop-alert sign-in-prompt"><%= link_to 'Already have an account? Sign in', sign_in_path(return_to: request.fullpath) %></li>
+        <li><%= link_to "Sign up with GitHub", github_auth_path %></li>
+      </ul>
     <% end %>
-  <% end %>
 
-  <%= form.inputs 'Your information' do %>
+    <%= hidden_field_tag 'coupon_id' %>
     <%= form.input :stripe_coupon_id, as: :hidden %>
     <%= form.input :variant, as: :hidden %>
     <%= form.input :name %>
-    <%= form.input :email, hint: "The receipt will be sent to this address if billing email is blank." %>
-    <% if @purchaseable.subscription? && current_user.github_username.blank? %>
-      <%= render 'first_github_username', label: 'GitHub username', purchase: @purchase %>
+    <%= form.input :email %>
+    <% if @purchase.subscription? %>
+      <% if signed_out? %>
+        <%= form.input :password, required: true %>
+      <% end %>
+      <% if signed_out? || (signed_in? && current_user.github_username.blank?) %>
+        <%= render 'first_github_username', label: 'GitHub username', purchase: @purchase %>
+      <% end %>
     <% end %>
-    <% if @purchaseable.fulfillment_method == 'in-person' %>
+    <% if @purchase.fulfillment_method == 'in-person' %>
       <%= form.input :comments, label: t('purchase.comments') %>
     <% end %>
+    <%= render partial: 'purchases/github_usernames', locals: { purchase: @purchase, form: form } %>
   <% end %>
 
-  <%= render partial: 'purchases/github_usernames', locals: { purchase: @purchase, form: form } %>
-
-  <%= form.inputs 'For your receipt' do %>
-    <%= form.input :billing_email, required: false, hint: "The receipt will be sent to this address by default." %>
+  <%= link_to 'Need an address on your receipt?', '#', class: 'reveal-address' %>
+  <%= form.inputs class: 'address-info' do %>
     <%= form.input :organization %>
     <%= form.input :address1, label: 'Address 1' %>
     <%= form.input :address2, label: 'Address 2' %>
@@ -38,7 +39,7 @@
     <%= form.input :country, as: :string %>
   <% end %>
 
-  <%= form.inputs 'Billing Information', id: 'billing-information' do %>
+  <%= form.inputs id: 'billing-information' do %>
     <li class="radio required" id="purchase_payment_method_input">
       <%= radio_button_tag "purchase[payment_method]", "stripe", @purchase.stripe?, id: "purchase_payment_method_stripe" %>
       <label for="purchase_payment_method_stripe">
@@ -52,11 +53,11 @@
       <% end %>
     </li>
     <li class="payment-errors"></li>
-    <% if @active_card %>
+    <% if signed_in? && current_user.credit_card %>
       <li id="purchase_cc_existing" class="stripe">
         <input type="checkbox" id="use_existing_card" name="use_existing_card" class="use_existing_card" />
         <label for="use_existing_card">
-          Use existing card (<%= display_card_type(@active_card["type"]) %> ending in <%= @active_card["last4"] %>)
+          Use existing card (<%= display_card_type(current_user.credit_card["type"]) %> ending in <%= current_user.credit_card["last4"] %>)
         </label>
       </li>
     <% end %>
@@ -73,9 +74,11 @@
       <label for='card-cvc'>CVC</label>
       <input type='text' size='4' autocomplete='off' id='card-cvc' class='card-cvc'/>
     </li>
-    <li class="overflow"></li>
   <% end %>
+
+  <%= render 'redemptions/form', purchase: @purchase %>
+
   <%= form.actions do %>
-    <%= form.action :submit, label: 'Submit Payment' %>
+    <%= form.action :submit, label: "Submit Payment &mdash; #{submit_amount(@purchase)}".html_safe %>
   <% end %>
 <% end %>

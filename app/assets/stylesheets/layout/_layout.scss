@@ -19,7 +19,7 @@ img {
     color: desaturate(darken($warmgray, 22%), 8%);
     font-size: 50px;
     line-height: 1.15em;
-    margin: 0 0 .4rem 24px;
+    margin: 0 0 .4rem 22px;
   }
 
   ul, ol {
@@ -203,6 +203,41 @@ aside {
     a {
       color: $darkwarmgray;
       font-style: italic;
+    }
+  }
+
+  dt p {
+    font-weight: bold;
+  }
+
+  .prime-purchase {
+    margin: 26px 0 1.5em 0;
+
+    h2 {
+      color: $learnred;
+      font: 800 26px/28px $sans-serif;
+    }
+
+    .or {
+      font: 700 .8em $sans-serif;
+      margin: 2.5em 0 2em;
+      padding: 0;
+      position: relative;
+      text-align: center;
+      text-transform: uppercase;
+
+      &:after, &:before {
+        border-top: 1px solid $darkwarmgray;
+        content: '';
+        display: block;
+        @include position(absolute, .6em 0 0 0px);
+        width: 15%;
+      }
+
+      &:before {
+        left: auto;
+        right: 0;
+      }
     }
   }
 }

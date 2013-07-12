@@ -217,4 +217,19 @@ describe User do
       create(:book_purchase, user: user)
     end
   end
+
+  describe '#credit_card' do
+    it 'returns nil if there is no stripe_customer_id' do
+      user = create(:user, stripe_customer_id: nil)
+
+      expect(user.credit_card).to be_nil
+    end
+
+    it 'returns the active card for the stripe customer' do
+      user = create(:user, stripe_customer_id: FakeStripe::CUSTOMER_ID)
+
+      expect(user.credit_card).not_to be_nil
+      expect(user.credit_card['last4']).to eq '1234'
+    end
+  end
 end
