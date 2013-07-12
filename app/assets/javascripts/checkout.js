@@ -26,21 +26,22 @@ function checkUsername() {
       container.addClass("error");
     }
   } else {
-    container.toggleClass("error", !isValidGithubUsername(element.val()));
+    checkValidGithubUsername(element.val(), element);
   }
 }
 $("input.github_username").blur(checkUsername);
 
-function isValidGithubUsername(username) {
+function checkValidGithubUsername(username, element) {
+  var container = element.parent("li");
   var url = "https://api.github.com/users/" + username;
   var req = $.ajax({
     url : url,
       dataType : "jsonp",
       success : function(response) {
         if(response.data.message == "Not Found" || response.data.type == "Organization") {
-          return false;
+          container.addClass("error");
         } else {
-          return true;
+          container.removeClass("error");
         }
       }
   });
