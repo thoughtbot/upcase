@@ -1,11 +1,17 @@
 require 'spec_helper'
 
 feature 'An OAuth client authenticates', js: true do
-  scenario 'successfully' do
+  scenario 'via redirect' do
     create_client_app
     visit_client_app
-    authorize_via_oauth
-    verify_signed_in_user_details
+    authorize_via_redirect
+    verify_signed_in_user_details_from_page
+  end
+
+  scenario 'via password' do
+    create_client_app
+    json = authorize_via_password
+    verify_signed_in_user_details json
   end
 
   def create_client_app
@@ -29,7 +35,7 @@ feature 'An OAuth client authenticates', js: true do
     visit FakeOauthClientApp.client_url + '/fake_oauth_client_app'
   end
 
-  def authorize_via_oauth
+  def authorize_via_redirect
     user = create(:user, :with_subscription)
     click_on 'Sign Into Learn'
     fill_in 'Email', with: user.email
@@ -38,10 +44,25 @@ feature 'An OAuth client authenticates', js: true do
     click_on 'Authorize'
   end
 
-  def verify_signed_in_user_details
-    json = JSON.parse(page.find('#data').text)['user']
+  def authorize_via_password
+    user = create(:user, :with_subscription)
+    client = OAuth2::Client.new(
+      FakeOauthClientApp.client_id,
+      FakeOauthClientApp.client_secret,
+      :site => FakeOauthClientApp.server_url
+    )
+    access_token = client.password.get_token(user.email, user.password)
+    JSON.parse access_token.get(resource_owner_path).body
+  end
 
-    json['email'].should eq User.last.email
-    json['has_forum_access'].should be_true
+  def verify_signed_in_user_details_from_page
+    json = JSON.parse(page.find('#data').text)
+    verify_signed_in_user_details json
+  end
+
+  def verify_signed_in_user_details(json)
+    user = json['user']
+    user['email'].should eq User.last.email
+    user['has_forum_access'].should be_true
   end
 end
