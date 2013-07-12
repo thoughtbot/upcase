@@ -12,15 +12,16 @@
       <%= image_tag('learn/learn-ralph.png') %>
     </h1>
   </div>
-  <h1>All our products 40% off &mdash; from now until Wednesday morning. Use the coupon code <span>SOLSTICE</span></h1>
+  <h1>The SOLSTICE sale is over</h1>
 </section>
 
 <section class="journey learnsale">
+  <!--
   <section class="card-slider">
     <a class="nav prev"></a>
     <figure class="product-card desc">
       <h3>Online Workshops</h3>
-      <p><span class="slashed">$1099</span> $660</p>
+      <p>$1099</p>
     </figure>
     <figure class="workshop-online product-card">
       <%= link_to '/workshops/20-intro-to-ruby-on-rails', title: 'The Intro to Ruby on Rails online workshop details' do %>
@@ -55,7 +56,7 @@
       <% end %>
     </figure>
     <figure class="workshop-online product-card">
-      <div class="notification"><span>$299</span> $179</div>
+      <div class="notification">$299</div>
       <%= link_to '/workshops/9-the-playbook-workshop', title: 'The Playbook online workshop details' do %>
         <h4>The Playbook</h4>
         <%= image_tag('workshop_thumbs/the-playbook-workshop.png') %>
@@ -69,7 +70,7 @@
     <a class="nav prev"></a>
     <figure class="product-card desc">
       <h3>In-person Workshops</h3>
-      <p><span class="slashed">$1099</span> $660</p>
+      <p>$1099</p>
     </figure>
     <figure class="workshop-inperson product-card">
       <%= link_to '/workshops/12-intermediate-ruby-on-rails', title: 'The Intermediate Ruby on Rails in-person workshop details' do %>
@@ -137,7 +138,7 @@
     <a class="nav prev"></a>
     <figure class="product-card desc">
       <h3>Screencasts</h3>
-      <p><span class="slashed">$15</span> $9</p>
+      <p>$15</p>
     </figure>
     <figure class="screencast product-card">
       <%= link_to '/products/16-improving-performance', title: 'Improving Performance screencast details' do %>
@@ -185,17 +186,18 @@
     <a class="nav prev"></a>
     <figure class="product-card desc">
       <h3>Books</h3>
-      <p><span class="slashed">$49</span> $29</p>
+      <p>$49</p>
     </figure>
     <figure class="book product-card"><%= link_to image_tag('product_images/book/backbone-cover-large.png'), '/products/1-backbone-js-on-rails' %></figure>
     <figure class="book product-card"><%= link_to image_tag('product_images/book/rubyscience-cover-large.png'), '/products/13-ruby-science' %></figure>
-    <figure class="book product-card"><div class="notification"><span>$15</span> $9</div><%= link_to image_tag('product_images/book/playbook-cover-large.png'), '/products/3-the-playbook' %></figure>
+    <figure class="book product-card"><div class="notification">$15</div><%= link_to image_tag('product_images/book/playbook-cover-large.png'), '/products/3-the-playbook' %></figure>
     <a class="nav next"></a>
   </section>
+  -->
   <section class="pitch center final">
     <article>
-      <h2>Want all of this?</h2>
-      <p>Get access to everything you see above, plus private forum access and exclusive blog posts, by subscribing to our Learn Prime service. <%= link_to 'Learn more &rarr;'.html_safe, '/prime' %></p>
+      <h2>Still want a discount? You can get access to all of our products with Learn Prime</h2>
+      <p>Plus private forum access and exclusive blog posts. <%= link_to 'Learn more &rarr;'.html_safe, '/prime' %></p>
       <% if subscription_product %>
         <%= link_to new_product_purchase_path(subscription_product, variant: 'individual'), class: 'prime-journey-cta' do %>
           <h2>Join Learn Prime <span><%= number_to_currency subscription_product.individual_price, precision: 0 %>/month</span></h2>
