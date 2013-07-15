@@ -1,0 +1,6 @@
+<% if purchaseable.starts_immediately? %>
+  <p>Your <%= purchaseable.fulfillment_method %> workshop runs from <%= purchase_date_range(purchase) %>.</p>
+<% elsif purchaseable.upcoming? %>
+  <p>Thank you for registering for <%= purchaseable.name %>. We'll see you on <%= purchase_date_range(purchase) %> from <%= purchaseable.time_range %> at <%= purchaseable.address %>, <%= purchaseable.city %>, <%= purchaseable.state %> <%= purchaseable.zip %>.</p>
+  <p>Please don't hesitate to get in touch with us at <%= mail_to 'learn@thoughtbot.com' %> should you have any questions or concerns.</p>
+<% end %>
