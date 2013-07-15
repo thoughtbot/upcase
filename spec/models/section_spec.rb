@@ -30,44 +30,6 @@ describe Section do
     end
   end
 
-  describe '#date_range' do
-    context 'when starts_on and ends_on are nil' do
-      it 'returns nil' do
-        section = Section.new
-        section.date_range.should be_nil
-      end
-    end
-
-    context 'when starts_on == ends_on' do
-      it 'returns a string representation of a single date' do
-        date = '20121102'
-        section = create(:section, starts_on: date, ends_on: date)
-        section.date_range.should eq('November 02, 2012')
-      end
-    end
-
-    context 'when starts_on and ends_on are different years' do
-      it 'includes month and year in both dates' do
-        section = create(:section, starts_on: '20121102', ends_on: '20131102')
-        section.date_range.should eq('November 02, 2012-November 02, 2013')
-      end
-    end
-
-    context 'when starts_on and ends_on are different months' do
-      it 'does not repeat the year' do
-        section = create(:section, starts_on: '20121102', ends_on: '20121202')
-        section.date_range.should eq('November 02-December 02, 2012')
-      end
-    end
-
-    context 'when starts_on and ends_on are different days' do
-      it 'does not repeat the month or year' do
-        section = create(:section, starts_on: '20121102', ends_on: '20121103')
-        section.date_range.should eq('November 02-03, 2012')
-      end
-    end
-  end
-
   describe '#seats_available' do
     let(:workshop) do
       create :workshop, maximum_students: 8

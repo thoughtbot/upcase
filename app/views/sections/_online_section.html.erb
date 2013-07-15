@@ -2,7 +2,10 @@
   <section class="section-location">
     <div class="when">
       <h3>When</h3>
-     <p><%= online_section.date_range %><br><%= online_section.time_range %></p>
+      <p>
+        <%= formatted_date_range(online_section.starts_on, online_section.ends_on) %><br>
+        <%= online_section.time_range %>
+      </p>
     </div>
   </section>
 <% end %>

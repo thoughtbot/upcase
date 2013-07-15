@@ -1,0 +1,11 @@
+<% if purchaseable.in_person? && purchaseable.videos.any? %>
+  <p>In addition to the in-person workshop, you receive video versions of the lessons.</p>
+<% end %>
+
+<% if purchaseable.videos.any? %>
+  <hgroup class="product-title">
+    <h2>Watch or Download Video Lessons</h2>
+    <h3 class="workshop-type"><%= pluralize purchaseable.videos.size, 'lesson' %> in this workshop</h3>
+  </hgroup>
+  <%= render purchaseable.videos.ordered, purchase: purchase %>
+<% end %>

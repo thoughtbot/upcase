@@ -13,7 +13,7 @@ If you have any special dietary restrictions, and you have not done so already, 
 
 <% unless purchaseable.starts_immediately? -%>
 When
-<%= purchaseable.date_range %>
+<%= purchase_date_range(purchaseable) %>
 <%= purchaseable.time_range %>
 <% end -%>
 
@@ -24,7 +24,7 @@ Where
 <% end -%>
 
 <% unless purchaseable.starts_immediately? -%>
-We will be in touch before <%= purchaseable.starts_on.to_s(:simple) %> with a reminder and any further instructions. However, please don't hesitate to get in touch with us at learn@thoughtbot.com should you have any questions or concerns.
+We will be in touch before <%= purchase.starts_on.to_s(:simple) %> with a reminder and any further instructions. However, please don't hesitate to get in touch with us at learn@thoughtbot.com should you have any questions or concerns.
 <% end -%>
 
 <%= purchaseable.reminder_email %>
@@ -34,5 +34,5 @@ We will be in touch before <%= purchaseable.starts_on.to_s(:simple) %> with a re
 <% end -%>
 
 <% unless purchaseable.starts_immediately? -%>
-Thanks very much, we'll see you on <%= purchaseable.starts_on.to_s(:simple) %>!
+Thanks very much, we'll see you on <%= purchase.starts_on.to_s(:simple) %>!
 <% end -%>

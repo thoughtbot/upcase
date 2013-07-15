@@ -1,7 +1,10 @@
 <section class="section-location">
   <div class="when">
     <h3>When</h3>
-    <p><%= in_person_section.date_range %><br><%= in_person_section.time_range %></p>
+    <p>
+      <%= formatted_date_range(in_person_section.starts_on, in_person_section.ends_on) %><br>
+      <%= in_person_section.time_range %>
+    </p>
   </div>
 
   <div class="address">
