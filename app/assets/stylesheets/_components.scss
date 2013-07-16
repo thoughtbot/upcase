@@ -116,6 +116,10 @@
     background: $workshop-inperson-color;
   }
 
+  &.mentor h4 {
+    background: $mentor-color;
+  }
+
   h5, p {
     margin: .6rem;
   }

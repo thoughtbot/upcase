@@ -232,4 +232,18 @@ describe User do
       expect(user.credit_card['last4']).to eq '1234'
     end
   end
+
+  describe '#mentor' do
+    it "returns the subscription's mentor" do
+      user = create(:user, :with_subscription)
+
+      expect(user.mentor).to eq user.subscription.mentor
+    end
+
+    it 'is nil if the user does not have a subscription' do
+      user = create(:user)
+
+      expect(user.mentor).to be_nil
+    end
+  end
 end

@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :completions
   has_one :subscription
 
+  delegate :mentor, to: :subscription, allow_nil: true
+
   validates :name, presence: true
 
   after_create :associate_previous_purchases
