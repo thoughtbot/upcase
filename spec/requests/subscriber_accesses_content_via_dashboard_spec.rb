@@ -17,6 +17,8 @@ feature 'Subscriber accesses content' do
 
     expect(page).to have_content I18n.t('subscriber_purchase.flashes.success')
     expect(page).not_to have_content('Receipt')
+
+    expect_dashboard_to_show_workshop_active(online_section.workshop)
   end
 
   scenario 'gets access to a book product' do
@@ -71,7 +73,7 @@ feature 'Subscriber accesses content' do
 
     visit products_path
 
-    click_online_workshop_detail_link
+    click_active_online_workshop_detail_link
     expect(page).to_not have_content I18n.t('workshops.show.register')
   end
 
@@ -92,6 +94,8 @@ feature 'Subscriber accesses content' do
 
     expect(page).to have_content I18n.t('subscriber_purchase.flashes.success')
     expect(page).not_to have_content 'Receipt'
+
+    expect_dashboard_to_show_workshop_active(in_person_section.workshop)
   end
 
   def stub_github_fulfillment_job
@@ -104,8 +108,14 @@ feature 'Subscriber accesses content' do
     end
   end
 
+  def click_active_online_workshop_detail_link
+    within('.workshop-online') do
+      click_link 'View Workshop Materials'
+    end
+  end
+
   def click_in_person_workshop_detail_link
-    within('.workshop-inperson') do
+    within('.workshop-in-person') do
       click_link 'Learn More'
     end
   end
@@ -120,5 +130,10 @@ feature 'Subscriber accesses content' do
     within('section.books') do
       click_link 'Learn More'
     end
+  end
+
+  def expect_dashboard_to_show_workshop_active(workshop)
+    visit products_url
+    expect(page).to have_css(".product-card.active h4", text: workshop.name)
   end
 end

@@ -17,22 +17,30 @@ module WorkshopsHelper
     end
   end
 
-  def workshop_delivery_method(workshop)
-    if workshop.online?
-      'online'
+  def workshop_frequency_note(workshop)
+    if workshop.starts_immediately?
+      "This #{workshop.fulfillment_method} workshop
+       starts as soon as you register."
     else
-      'in-person'
+      "This #{workshop.fulfillment_method} workshop is held about every
+      six weeks. #{link_to 'Get notified', '#new_follow_up'} when the next one
+      is scheduled.".html_safe
     end
   end
 
-  def workshop_frequency_note(workshop)
-    if workshop.starts_immediately?
-      "This #{workshop_delivery_method(workshop)} workshop
-       starts as soon as you register."
+  def workshop_card_classes(workshop)
+    classes = ["workshop-#{workshop.fulfillment_method}", 'product-card']
+    if workshop.purchase_for(current_user)
+      classes << 'active'
+    end
+    classes.join(' ')
+  end
+
+  def workshop_dashboard_text(workshop)
+    if workshop.purchase_for(current_user)
+      'View Workshop Materials'
     else
-      "This #{workshop_delivery_method(workshop)} workshop is held about every
-      six weeks. #{link_to 'Get notified', '#new_follow_up'} when the next one
-      is scheduled.".html_safe
+      'Learn More'
     end
   end
 end

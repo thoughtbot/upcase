@@ -117,6 +117,14 @@ class Workshop < ActiveRecord::Base
     end
   end
 
+  def fulfillment_method
+    if in_person?
+      'in-person'
+    else
+      'online'
+    end
+  end
+
   def fulfilled_with_github?
     github_team.present?
   end
