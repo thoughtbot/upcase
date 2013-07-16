@@ -74,6 +74,10 @@
         }
       }
 
+      a {
+        font-family: $sans-serif;
+      }
+
       .terms {
         font-size: 1rem;
         margin-top: 2rem;
@@ -217,10 +221,10 @@
         }
 
         .images {
-          background: rgb(150, 150, 150);
+          background: rgb(150, 150, 150) url('/assets/learn/face-chad2.png');
+          background-size: contain;
           border: 1px solid rgb(150, 150, 150);
           border-radius: 100%;
-          cursor: pointer;
           float: left;
           height: 150px;
           overflow: hidden;
@@ -280,7 +284,9 @@
           border-bottom: 2px solid rgba(70, 125, 200, .5);
           color: rgb(70, 125, 200);
           display: inline-block;
+          font-size: 1.5rem;
           font-weight: 400;
+          line-height: 1.4em;
         }
       }
 
