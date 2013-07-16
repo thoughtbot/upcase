@@ -5,8 +5,13 @@ class Mailer < ActionMailer::Base
 
   def welcome_to_prime(user)
     @user = user
+    @mentor = user.mentor
 
-    mail to: @user.email, subject: 'Welcome to Prime', from: 'Chad Pytel <chad@thoughtbot.com>'
+    mail(
+      to: @user.email,
+      subject: "Welcome to Prime! I'm your new mentor",
+      from: "#{@mentor.name} <#{@mentor.email}>"
+    )
   end
 
   def purchase_receipt(purchase)

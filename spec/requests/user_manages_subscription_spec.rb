@@ -10,6 +10,7 @@ feature 'User creates a subscription' do
   end
 
   scenario 'creates a Stripe subscription with a valid credit card' do
+    create_mentors
     subscribe_with_valid_credit_card
     expect(current_user).to have_active_subscription
     expect(current_path).to eq products_path

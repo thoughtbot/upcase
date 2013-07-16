@@ -11,4 +11,10 @@ module Subscriptions
   def click_prime_call_to_action_in_header
     click_link 'Prime Membership'
   end
+
+  def create_mentors
+    Subscription::MENTOR_EMAILS.each do |email|
+      create(:user, email: email)
+    end
+  end
 end

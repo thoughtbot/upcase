@@ -8,7 +8,6 @@ feature 'User cancels a subscription', js: true do
     )
 
     sign_in_as_user_with_subscription
-    create(:purchase, :free, user: @current_user, purchaseable: prime)
     @current_user.should have_active_subscription
     visit products_path
     expect(find('.header-container')).not_to have_content('Prime Membership')

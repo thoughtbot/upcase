@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Subscription do
   it { should delegate(:stripe_customer_id).to(:user) }
+  it { should belong_to(:mentor) }
 
   it 'defaults paid to true' do
     Subscription.new.should be_paid
@@ -14,6 +15,14 @@ describe Subscription do
 
     MailchimpFulfillmentJob.should have_received(:enqueue).
       with(Subscription::MAILING_LIST, subscription.user.email)
+  end
+
+  it 'assigns a mentor on creation' do
+    create_mentors
+    subscription = Subscription.new(user: create(:user))
+    subscription.save
+
+    expect(subscription.mentor).not_to be_nil
   end
 
   describe 'self.paid' do
