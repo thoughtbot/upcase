@@ -275,7 +275,8 @@
 
           @include prime-marketing-mobile {
             h2 {
-              font-size: 1.2rem;
+              border-bottom-width: 1px;
+              font-size: .8rem;
             }
           }
         }
