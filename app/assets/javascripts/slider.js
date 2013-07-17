@@ -3,8 +3,7 @@ $(function() {
     // assign every slider item a slider class
     $('.card-slider').children(':not(.nav)').addClass('slider-item');
 
-    // +4 to account for inline-block 4px space character
-    var card_width = $('.slider-item:first').outerWidth(true) + 4;
+    var card_width = $('.slider-item:first').outerWidth(true);
 
     function slider_at_beginning(slider) {
       return parseInt(slider.find('.slider-item:first').position().left - slider.find('.nav.prev').width(), 10) >= 0;
