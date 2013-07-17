@@ -307,9 +307,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def update_user_stripe_customer_id
-    if user
-      write_user_columns %w(stripe_customer_id)
-    end
+    write_user_columns %w(stripe_customer_id)
   end
 
   def fulfill
@@ -378,7 +376,9 @@ class Purchase < ActiveRecord::Base
   end
 
   def write_user_columns(names)
-    names.each { |name| user.update_column name, send(name) }
+    if user
+      names.each { |name| user.update_column name, send(name) }
+    end
   end
 
   def set_as_paid
