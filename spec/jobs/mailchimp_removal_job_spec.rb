@@ -18,8 +18,6 @@ describe MailchimpRemovalJob do
     expect do
       MailchimpRemovalJob.new('product', 'user@example.com').perform 
     end.not_to raise_error(Gibbon::MailChimpError)
-
-    FakeMailchimp.email_error_response = nil
   end
 
   it 'does raise other mailchimp errors' do
@@ -31,7 +29,5 @@ describe MailchimpRemovalJob do
     expect do
       MailchimpRemovalJob.new('product', 'user@example.com').perform 
     end.to raise_error(Gibbon::MailChimpError)
-
-    FakeMailchimp.email_error_response = nil
   end
 end

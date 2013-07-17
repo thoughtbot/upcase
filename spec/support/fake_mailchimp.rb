@@ -2,6 +2,12 @@ require 'sinatra/base'
 require 'capybara_discoball'
 require 'gibbon'
 
+RSpec.configure do |config|
+  config.after(:each) do
+    FakeMailchimp.clear_errors!
+  end
+end
+
 class FakeMailchimp < Sinatra::Base
   set :show_exceptions, false
 
@@ -11,6 +17,10 @@ class FakeMailchimp < Sinatra::Base
 
   post '/1.3/' do
     send(params[:method].to_sym, JSON.parse(params.keys.second))
+  end
+
+  def self.clear_errors!
+    @@email_error_response = nil
   end
 
   def lists(params)
