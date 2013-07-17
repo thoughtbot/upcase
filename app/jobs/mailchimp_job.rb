@@ -13,4 +13,10 @@ class MailchimpJob < Struct.new(:list_name, :email)
   def client
     @client ||= Gibbon.new
   end
+
+  def rescue_email_errors
+    yield
+  rescue Gibbon::MailChimpError => e
+    raise e unless MAILCHIMP_EMAIL_ERROR_CODES.include?(e.code)
+  end
 end
