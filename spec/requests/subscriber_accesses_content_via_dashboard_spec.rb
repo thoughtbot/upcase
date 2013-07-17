@@ -9,7 +9,7 @@ feature 'Subscriber accesses content' do
 
     expect(page).to have_content I18n.t('workshops.show.free_to_subscribers')
 
-    click_link I18n.t('workshops.show.register')
+    click_link I18n.t('workshops.show.register_free')
 
     expect(page).not_to have_content 'GitHub'
     expect(page).not_to have_content I18n.t('purchase.comments')
@@ -68,7 +68,7 @@ feature 'Subscriber accesses content' do
 
     sign_in_as_user_with_subscription
     click_online_workshop_detail_link
-    click_link I18n.t('workshops.show.register')
+    click_link I18n.t('workshops.show.register_free')
     click_button 'Get Access'
 
     visit products_path
@@ -83,9 +83,7 @@ feature 'Subscriber accesses content' do
     sign_in_as_user_with_subscription
     click_in_person_workshop_detail_link
 
-    expect(page).to have_content I18n.t('workshops.show.free_to_subscribers')
-
-    click_link I18n.t('workshops.show.register')
+    click_link I18n.t('workshops.show.register_free_inperson')
 
     expect(page).not_to have_content 'GitHub'
     expect(page).to have_content I18n.t('purchase.comments')

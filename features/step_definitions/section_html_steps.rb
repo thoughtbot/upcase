@@ -66,7 +66,7 @@ Then 'I see the user "$user_name" in the list of users' do |user_name|
 end
 
 Then 'I see the section location is "$location"' do |location|
-  page.should have_css(".address", text: location)
+  page.should have_css(".location-name", text: location)
 end
 
 Then %{I see the section location's name is "$location_name"} do |location_name|
