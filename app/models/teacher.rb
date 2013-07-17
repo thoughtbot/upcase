@@ -3,7 +3,9 @@ class Teacher < ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true
 
-  scope :by_name, order(:name)
+  def self.by_name
+    order(:name)
+  end
 
   def image_name
     (name[0,1]+name.split(" ")[1]).downcase
