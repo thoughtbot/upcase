@@ -53,13 +53,13 @@ end
 
 When 'I choose to pay with Paypal' do
   uri = URI.parse(current_url)
-  Purchase.host = "#{uri.host}:#{uri.port}"
+  Payments::PaypalPayment.host = "#{uri.host}:#{uri.port}"
   choose 'purchase_payment_method_paypal'
 end
 
 When 'I pay using Paypal' do
   uri = URI.parse(current_url)
-  Purchase.host = "#{uri.host}:#{uri.port}"
+  Payments::PaypalPayment.host = "#{uri.host}:#{uri.port}"
 
   choose 'purchase_payment_method_paypal'
   fill_in_name_and_email
