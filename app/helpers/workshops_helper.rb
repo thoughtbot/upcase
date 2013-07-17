@@ -30,14 +30,14 @@ module WorkshopsHelper
 
   def workshop_card_classes(workshop)
     classes = ["workshop-#{workshop.fulfillment_method}", 'product-card']
-    if workshop.purchase_for(current_user)
+    if workshop.purchase_for(current_user) && signed_in?
       classes << 'active'
     end
     classes.join(' ')
   end
 
   def workshop_dashboard_text(workshop)
-    if workshop.purchase_for(current_user)
+    if workshop.purchase_for(current_user) && signed_in?
       'View Workshop Materials'
     else
       'Learn More'
