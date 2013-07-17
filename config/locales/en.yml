@@ -20,9 +20,8 @@ en:
       filter_date_format: '%D'
 
   layouts:
-    application:
-      meta_description: 'Workshops, screencasts, videos, and books to help you learn web design and development.'
-      app_name: 'thoughtbot Learn'
+    meta_description: 'Workshops, screencasts, videos, and books to help you learn web design and development.'
+    app_name: 'thoughtbot Learn'
 
   articles:
     index:
