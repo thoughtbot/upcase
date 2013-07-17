@@ -38,7 +38,7 @@ class PurchasesController < ApplicationController
   def paypal
     flash.keep
     @purchase = Purchase.find_by_lookup(params[:id])
-    @purchase.complete_paypal_payment!(params[:token], params[:PayerID])
+    @purchase.complete_payment(params)
     notify_kissmetrics_of(@purchase)
     redirect_to @purchase
   end
