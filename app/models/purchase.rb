@@ -1,8 +1,6 @@
 require 'digest/md5'
 
 class Purchase < ActiveRecord::Base
-  include Rails.application.routes.url_helpers
-
   PAYMENT_METHODS = %w(stripe paypal free)
 
   belongs_to :user
@@ -27,13 +25,12 @@ class Purchase < ActiveRecord::Base
   before_validation :create_user, if: :password_required?
   before_validation :generate_lookup, on: :create
 
-  before_create :create_and_charge_customer, if: :stripe?
-  before_create :setup_paypal_payment, if: :paypal?
+  before_create :place_payment
   before_create :set_as_paid, if: :free?
 
   after_save :fulfill, if: :being_paid?
   after_save :send_receipt, if: :being_paid?
-  after_save :update_user_stripe_customer_id, if: "being_paid? && stripe?"
+  after_save :update_user_payment_info, if: :being_paid?
   after_save :save_info_to_user, if: :user
 
   delegate :name,
@@ -94,18 +91,6 @@ class Purchase < ActiveRecord::Base
     where(paid: true)
   end
 
-  def self.host
-    if defined?(@@host)
-      @@host
-    else
-      ActionMailer::Base.default_url_options[:host]
-    end
-  end
-
-  def self.host=(host)
-    @@host = host
-  end
-
   def self.stripe
     where("stripe_customer_id is not null")
   end
@@ -162,25 +147,14 @@ class Purchase < ActiveRecord::Base
     end
   end
 
-  def complete_paypal_payment!(token, payer_id)
-    response = paypal_request.checkout!(
-      token,
-      payer_id,
-      paypal_payment_request
-    )
-
-    self.payment_transaction_id = response.payment_info.first.transaction_id
-    set_as_paid
+  def complete_payment(params)
+    payment.complete(params)
     save!
   end
 
   def refund
     if paid?
-      if stripe?
-        stripe_refund
-      elsif paypal?
-        paypal_refund
-      end
+      payment.refund
       set_as_unpaid!
 
       if fulfilled_with_github?
@@ -188,17 +162,6 @@ class Purchase < ActiveRecord::Base
       end
       MailchimpFulfillment.new(self).remove
     end
-  end
-
-  def stripe_refund
-    charge = Stripe::Charge.retrieve(payment_transaction_id)
-    if charge && !charge.refunded
-      charge.refund(amount: price_in_pennies)
-    end
-  end
-
-  def paypal_refund
-    paypal_request.refund!(payment_transaction_id)
   end
 
   def starts_on
@@ -211,6 +174,16 @@ class Purchase < ActiveRecord::Base
 
   def active?
     (starts_on..ends_on).cover?(Time.zone.today)
+  end
+
+  def set_as_paid
+    self.paid = true
+    self.paid_price = price
+    coupon.try(:applied)
+  end
+
+  def set_as_unpaid
+    self.paid = false
   end
 
   private
@@ -257,57 +230,18 @@ class Purchase < ActiveRecord::Base
     end
   end
 
-  def create_and_charge_customer
-    begin
-      ensure_stripe_customer_exists
+  def place_payment
+    payment.place
+  end
 
-      if subscription?
-        create_stripe_subscription
-      else
-        charge_stripe_customer
-      end
-
-      set_as_paid
-    rescue Stripe::StripeError => e
-      errors[:base] << "There was a problem processing your credit card, #{e.message.downcase}"
-      false
+  def update_user_payment_info
+    if user
+      payment.update_user(user)
     end
   end
 
-  def ensure_stripe_customer_exists
-    if stripe_customer_id.blank?
-      new_stripe_customer = Stripe::Customer.create(
-        card: stripe_token,
-        description: email,
-        email: email
-      )
-      self.stripe_customer_id = new_stripe_customer.id
-    end
-  end
-
-  def charge_stripe_customer
-    charge = Stripe::Charge.create(
-      amount: price_in_pennies,
-      currency: "usd",
-      customer: stripe_customer_id,
-      description: purchaseable_name
-    )
-    self.payment_transaction_id = charge.id
-  end
-
-  def create_stripe_subscription
-    if stripe_coupon_id.present?
-      stripe_customer.update_subscription(
-        plan: purchaseable_sku,
-        coupon: stripe_coupon_id
-      )
-    else
-      stripe_customer.update_subscription(plan: purchaseable_sku)
-    end
-  end
-
-  def update_user_stripe_customer_id
-    write_user_columns %w(stripe_customer_id)
+  def payment
+    @payment ||= Payments::Factory.new(payment_method).new(self)
   end
 
   def fulfill
@@ -327,28 +261,6 @@ class Purchase < ActiveRecord::Base
     if free? && price > 0
       errors.add(:payment_method, 'cannot be free')
     end
-  end
-
-  def paypal_payment_request
-    Paypal::Payment::Request.new(
-      currency_code: :USD,
-      amount: price,
-      description: purchaseable_name,
-      items: [{ amount: price,
-                   description: purchaseable_name }]
-    )
-  end
-
-  def paypal_request
-    Paypal::Express::Request.new(
-      username: PAYPAL_USERNAME,
-      password: PAYPAL_PASSWORD,
-      signature: PAYPAL_SIGNATURE
-    )
-  end
-
-  def price_in_pennies
-    (price * 100).to_i
   end
 
   def save_info_to_user
@@ -381,25 +293,9 @@ class Purchase < ActiveRecord::Base
     end
   end
 
-  def set_as_paid
-    self.paid = true
-    self.paid_price = price
-    coupon.try(:applied)
-  end
-
   def set_as_unpaid!
-    self.paid = false
+    set_as_unpaid
     save!
-  end
-
-  def setup_paypal_payment
-    response = paypal_request.setup(
-      paypal_payment_request,
-      paypal_purchase_url(self, host: self.class.host),
-      products_url(host: self.class.host)
-    )
-    self.paid = false
-    self.paypal_url = response.redirect_uri
   end
 
   def send_receipt
