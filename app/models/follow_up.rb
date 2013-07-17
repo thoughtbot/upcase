@@ -8,8 +8,9 @@ class FollowUp < ActiveRecord::Base
   # Validations
   validates_email_format_of :email, on: :create
 
-  # Scopes
-  scope :have_not_notified, where(notified_at: nil)
+  def self.have_not_notified
+    where(notified_at: nil)
+  end
 
   def notify(section)
     SendFollowUpEmailJob.enqueue id, section.id
