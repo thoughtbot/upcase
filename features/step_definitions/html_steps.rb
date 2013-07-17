@@ -18,9 +18,13 @@ end
 
 Then /^the page should use the default meta description$/ do
   meta_tag = page.find('meta[name=Description]')
-  meta_tag['content'].should == I18n.t('layouts.application.meta_description')
+  meta_tag['content'].should == I18n.t('layouts.meta_description')
 end
 
 Then /^the page title should be "([^"]*)"$/ do |page_title|
   page.should have_css('title', text: page_title)
+end
+
+Then /^the page should have the default title$/ do
+  page.should have_css('title', I18n.t('layouts.app_name'))
 end

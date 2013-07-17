@@ -9,6 +9,7 @@ Feature: View podcast episodes
       | title          |
       | Future episode |
     When I go to the episodes page
+    Then the page should have the default title
     Then I should see "Good episode"
     And I should see "this was good"
     And I should see "20 minutes"
