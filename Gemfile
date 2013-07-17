@@ -42,7 +42,6 @@ gem 'snogmetrics', '0.1.9'
 gem 'split', '0.4.1', require: 'split/dashboard'
 gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 gem 'stripe_event'
-gem 'thin', '1.3.1'
 gem 'typhoeus', '0.3.3'
 gem 'to_js', git: 'git://github.com/cpytel/to_js.git'
 gem 'validates_email_format_of', '1.5.3'
@@ -58,6 +57,7 @@ group :assets do
 end
 
 group :development do
+  gem 'thin', '1.3.1'
   gem 'hirb', '0.6.2'
 end
 
@@ -73,6 +73,7 @@ group :production, :staging do
   gem 'dalli', '2.1.0'
   gem 'newrelic_rpm'
   gem 'rack-cache', '1.2'
+  gem 'unicorn'
 end
 
 group :staging do
