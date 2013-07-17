@@ -4,7 +4,8 @@ feature 'Subscriber engagement' do
   scenario 'An admin views a user with 0 engagement' do
     user_with_zero_engagement = create(:subscription).user
 
-    visit subscriber_engagements_path
+    admin = create(:admin)
+    visit subscriber_engagements_path(as: admin)
 
     expect(page).to have_content('Subscriber Engagement Index')
 
@@ -19,7 +20,8 @@ feature 'Subscriber engagement' do
       create(:section_purchase, user: user)
     end
 
-    visit subscriber_engagements_path
+    admin = create(:admin)
+    visit subscriber_engagements_path(as: admin)
 
     within('.workshops-taken') do
       expect(page).to have_content("3")
