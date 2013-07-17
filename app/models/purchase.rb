@@ -307,7 +307,9 @@ class Purchase < ActiveRecord::Base
   end
 
   def update_user_stripe_customer_id
-    user.update_column(:stripe_customer_id, self.stripe_customer_id) if user
+    if user
+      write_user_columns %w(stripe_customer_id)
+    end
   end
 
   def fulfill
@@ -365,19 +367,18 @@ class Purchase < ActiveRecord::Base
 
   def save_organization_to_user
     if organization.present?
-      user.update_column(:organization, organization)
+      write_user_columns %w(organization)
     end
   end
 
   def save_address_to_user
     if address1.present?
-      user.update_column(:address1, address1)
-      user.update_column(:address2, address2)
-      user.update_column(:city, city)
-      user.update_column(:state, state)
-      user.update_column(:zip_code, zip_code)
-      user.update_column(:country, country)
+      write_user_columns(%w(address1 address2 city state zip_code country))
     end
+  end
+
+  def write_user_columns(names)
+    names.each { |name| user.update_column name, send(name) }
   end
 
   def set_as_paid
