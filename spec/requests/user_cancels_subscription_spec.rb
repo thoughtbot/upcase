@@ -12,7 +12,6 @@ feature 'User cancels a subscription', js: true do
     visit products_path
     expect(find('.header-container')).not_to have_content('Prime Membership')
     click_workshop_detail_link
-    expect(page).to have_content I18n.t('workshops.show.free_to_subscribers')
     expect(page).not_to have_link('Subscribe to Prime')
 
     ActionMailer::Base.deliveries.clear
