@@ -11,5 +11,7 @@ class MailchimpFulfillmentJob < MailchimpJob
 
   def subscribe(list_id, email)
     client.list_subscribe(id: list_id, email_address: email, double_optin: false)
+  rescue Gibbon::MailChimpError => e
+    raise e unless MAILCHIMP_EMAIL_ERROR_CODES.include?(e.code)
   end
 end
