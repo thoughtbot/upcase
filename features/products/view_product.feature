@@ -17,6 +17,7 @@ Feature: Products do not include support
     Then the page title should be "Video: a video by thoughtbot"
     When I view the product "Workshop"
     Then I should not see "includes support"
+    Then the page should have the default title
     Then the page should use the default meta description
     Then the page title should be "Workshop: a workshop by thoughtbot"
     When I view the product "Prime"

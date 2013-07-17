@@ -2,11 +2,11 @@
 <html lang="en">
   <head prefix="og: http://ogp.me/ns#">
     <meta charset="utf-8" />
-    <title><%= page_title(app_name: t('.app_name')) %></title>
+    <title><%= page_title(app_name: t('layouts.app_name')) %></title>
     <%= stylesheet_link_tag 'application' %>
     <%= stylesheet_link_tag 'print', media: :print %>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <meta http-equiv="Description" name="Description" content="Workshops, screencasts, videos, and books to help you learn web design and development." />
+    <meta http-equiv="Description" name="Description" content="<%= t('layouts.meta_description') %>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Keywords" name="Keywords" content="<%= keywords(yield :meta_keywords) %>" />
     <%= open_graph_tags %>
