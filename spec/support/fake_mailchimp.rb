@@ -7,6 +7,7 @@ class FakeMailchimp < Sinatra::Base
 
   cattr_reader :lists
   cattr_accessor :master_list
+  cattr_accessor :email_error_response
 
   post '/1.3/' do
     send(params[:method].to_sym, JSON.parse(params.keys.second))
@@ -24,25 +25,37 @@ class FakeMailchimp < Sinatra::Base
   end
 
   def listUnsubscribe(params)
-    initialize_lists params['id']
+    respond_with_error_or do
+      initialize_lists params['id']
 
-    @@lists[params['id']].delete params['email_address']
-    ''
+      @@lists[params['id']].delete params['email_address']
+      ''
+    end
   end
 
   def listSubscribe(params)
-    initialize_lists params['id']
+    respond_with_error_or do
+      initialize_lists params['id']
 
-    if params['double_optin'] == false
-      @@lists[params['id']] << params['email_address']
+      if params['double_optin'] == false
+        @@lists[params['id']] << params['email_address']
+      end
+      ''
     end
-    ''
   end
 
   def initialize_lists(list)
     @@lists ||= {}
     @@lists[master_list] ||= []
     @@lists[list] ||= []
+  end
+
+  def respond_with_error_or
+    if email_error_response.blank?
+      yield
+    else
+      email_error_response.to_json
+    end
   end
 end
 
