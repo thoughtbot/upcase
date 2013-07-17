@@ -16,8 +16,8 @@ namespace :dev do
   def create_bytes
     header 'Bytes'
 
-    FactoryGirl.create(:byte, title: 'How to slow down your test suite')
-    FactoryGirl.create(:byte, title: 'Tips for switching to ed')
+    puts_bytes FactoryGirl.create(:byte, title: 'How to slow down your test suite')
+    puts_bytes FactoryGirl.create(:byte, title: 'Tips for switching to ed')
   end
 
   def create_products
@@ -105,6 +105,10 @@ namespace :dev do
 
   def puts_section(section)
     puts "#{section.workshop.name} [#{section.online? ? 'Online' : 'In person'}] (#{section.starts_on} - #{section.ends_on})"
+  end
+
+  def puts_bytes(byte)
+    puts byte.title
   end
 
   def puts_user(user, description)
