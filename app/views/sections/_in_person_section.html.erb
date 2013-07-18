@@ -33,7 +33,7 @@
     <% else %>
       <% if current_user_has_active_subscription? %>
         <%= link_to registration_url(in_person_section), class: "free-with-prime button" do %>
-          <%= t('shared.subscriptions.icon') %> <%= t('workshops.show.register_free_inperson') %>
+          <%= t('workshops.show.register_free_inperson') %>
         <% end %>
       <% else %>
         <%= link_to registration_url(in_person_section), class: "button" do %>

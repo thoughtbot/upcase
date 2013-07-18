@@ -33,7 +33,7 @@
         <% if current_user_has_active_subscription? %>
           <h2 class="active-subscription"><%= t 'workshops.show.free_to_subscribers' %></h2>
           <%= link_to new_section_purchase_path(online_section, variant: :individual), class: "free-with-prime license-button button" do %>
-            <%= t('shared.subscriptions.icon') %> <%= t('workshops.show.register_free') %>
+            <%= t('workshops.show.register_free') %>
           <% end %>
         <% else %>
           <%= link_to new_section_purchase_path(online_section, variant: :individual), class: "license-button button" do %>
