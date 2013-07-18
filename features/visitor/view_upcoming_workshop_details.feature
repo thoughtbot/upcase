@@ -70,7 +70,7 @@ Feature: Viewing upcoming workshop details
     And time is unfrozen
     When I go to the workshop page of "Test-Driven Haskell"
     Then I see the section location is "Boston"
-    And I see the section location is "156 2nd St."
+    And I see the section location is "San Francisco"
     And I should see "June 13-16, 2010"
     And I should see "9:00AM-12:00PM"
     And I should see "$1,000"
