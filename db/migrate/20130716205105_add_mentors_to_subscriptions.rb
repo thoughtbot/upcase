@@ -1,12 +1,14 @@
 class AddMentorsToSubscriptions < ActiveRecord::Migration
   def change
-    add_column :subscriptions, :mentor_id, :integer, null: false
+    add_column :subscriptions, :mentor_id, :integer
     add_index :subscriptions, :mentor_id
 
     subscriptions = select_all('select id from subscriptions')
     subscriptions.each do |subscription|
       update "update subscriptions set mentor_id = #{mentor_id(subscription['id'])} where id=#{subscription['id']}"
     end
+
+    change_column_null :subscriptions, :mentor_id, false
   end
 
   def mentor_id(subscription_id)
