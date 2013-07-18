@@ -35,6 +35,9 @@ input[type="submit"] {
     background-color: #C42107;
   }
 
+  &:active {
+    background-color: $learndarkred;
+  }
 
   &[disabled] {
     background-color: $lightwarmgray;
@@ -227,15 +230,21 @@ form {
 }
 
 #notify-me {
+  h3 {
+    color: $darkwarmgray;
+  }
+
   form {
     margin-top: 1rem;
   }
 
   input[type="text"] {
-    border: 1px solid $warmgray;;
-    border-radius: 4px;
+    border: 3px solid lighten($darkwarmgray, 30%);
+    border-radius: 3px;
+    border-width: 1px 1px 2px 1px;
     @include box-sizing(border-box);
     font-size: 14px;
+    height: 44px;
     margin: 0 0 1rem;
     padding: .8rem 1rem;
     vertical-align: top;
@@ -243,8 +252,7 @@ form {
   }
 
   input[type="submit"] {
-    border: 0;
-    height: auto;
+    border-width: 0 0 2px 0;
     margin-left: .5rem;
     padding: .8rem 2rem;
     text-transform: uppercase;

@@ -63,7 +63,7 @@ Then /^I should not see the date range$/ do
 end
 
 Then /^I should see a product title of "([^"]*)"$/ do |title|
-  find('.product-title h2').should have_content title
+  find('.subject-block .tagline').should have_content title
 end
 
 Then /^I should see a link to the in-person workshop$/ do

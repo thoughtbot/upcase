@@ -34,8 +34,8 @@ en:
       online_workshop_html: 'Not in Boston or San Francisco? <b>Take the Online Workshop.</b>'
     subtitle:
       book: ''
-      in_person_workshop: 'In-Person Workshop'
-      online_workshop: 'Online Workshop'
+      in_person_workshop: 'in-person'
+      online_workshop: 'online'
       subscription: ''
       video: ''
 
@@ -55,6 +55,8 @@ en:
   workshops:
     show:
       register: Register for this Workshop
+      register_free_inperson: Register for this Workshop, free
+      register_free: Begin this Workshop
       free_to_subscribers: "You're a subscriber, so you can take this workshop for free!"
 
   section_teachers:
