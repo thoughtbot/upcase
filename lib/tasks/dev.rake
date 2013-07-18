@@ -10,6 +10,7 @@ namespace :dev do
     create_products
     create_bytes
     create_sections_with_workshops
+    create_mentors
     create_users
   end
 
@@ -87,6 +88,15 @@ namespace :dev do
     FactoryGirl.create :purchase, :free, user: user, purchaseable: @book
     FactoryGirl.create :purchase, :free, user: user, purchaseable: @in_person_section
     puts_user user, 'product and workshop purchase'
+
+    puts "\n"
+  end
+
+  def create_mentors
+    header "Mentors"
+
+    mentor = FactoryGirl.create(:user, email: 'mentor@example.com', mentor: true)
+    puts_user mentor, 'mentor'
 
     puts "\n"
   end
