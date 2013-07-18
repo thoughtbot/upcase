@@ -282,6 +282,7 @@ FactoryGirl.define do
 
   factory :subscription, aliases: [:active_subscription] do
     association :user, :with_github
+    association :mentor, factory: :user
     factory :inactive_subscription do
       deactivated_on Time.zone.today
     end

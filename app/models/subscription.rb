@@ -1,10 +1,19 @@
 # This class represents a user's subscription to Learn content
 class Subscription < ActiveRecord::Base
   MAILING_LIST = 'Active Subscribers'
+  MENTOR_EMAILS = %w(
+    chad@thoughtbot.com
+    ben@thoughtbot.com
+  )
 
   belongs_to :user
+  belongs_to :mentor, class_name: User
+
   delegate :stripe_customer_id, to: :user
 
+  validates :mentor_id, presence: true
+
+  before_validation :assign_mentor, on: :create
   after_create :add_user_to_mailing_list
 
   def self.deliver_welcome_emails
@@ -58,5 +67,13 @@ class Subscription < ActiveRecord::Base
 
   def remove_user_from_mailing_list
     MailchimpRemovalJob.enqueue(MAILING_LIST, user.email)
+  end
+
+  def assign_mentor
+    self.mentor ||= User.find_by_email(random_mentor_email)
+  end
+
+  def random_mentor_email
+    MENTOR_EMAILS.sample
   end
 end

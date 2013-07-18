@@ -10,6 +10,7 @@ feature 'Visitor is asked to create a user before subscription' do
   end
 
   scenario 'visitor attempts to subscribe and creates email/password user' do
+    create_mentors
     attempt_to_subscribe
 
     expect_to_be_on_subscription_purchase_page
@@ -28,6 +29,7 @@ feature 'Visitor is asked to create a user before subscription' do
 
     expect(current_path).to eq products_path
     expect(page).to have_content(I18n.t('purchase.flashes.success', name: subscription_product.name))
+    expect_to_see_mentor
   end
 
   scenario 'visitor attempts to subscribe and creates github user' do
@@ -60,6 +62,10 @@ feature 'Visitor is asked to create a user before subscription' do
       '#purchase_password_input.error p.inline-errors',
       text: "can't be blank"
     )
+  end
+
+  def expect_to_see_mentor
+    expect(page).to have_css('figure.mentor h4', text: 'Your Mentor')
   end
 
   def create_subscribeable_product
