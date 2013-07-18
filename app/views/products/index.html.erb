@@ -1,10 +1,11 @@
-<section class="workshops card-slider">
-  <a class="nav prev"></a>
-  <%= render 'products/mentor' %>
-  <%= render 'products/trails' %>
+<section class="workshops vertical-slider">
+  <figure class="meta product-card">
+    <%= render 'products/mentor' %>
+    <%= render 'products/trails' %>
+  </figure>
   <%= render partial: 'products/workshop', collection: online_workshops %>
   <%= render partial: 'products/workshop', collection: in_person_workshops %>
-  <a class="nav next"></a>
+  <a class="nav show-all"></a>
 </section>
 
 <section class="screencasts card-slider">

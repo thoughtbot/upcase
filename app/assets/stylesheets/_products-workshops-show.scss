@@ -1,9 +1,9 @@
-.subject-block {
-  margin: auto;
+div.subject {
+  margin: 0 auto 2rem;
   text-align: center;
   width: 75%;
 
-  .subject {
+  h1 {
     color: #6c6a66;
     font-size: 50px;
     line-height: 1em;
@@ -13,7 +13,7 @@
   .tagline {
     font-size: 30px;
     font-weight: 400;
-    margin: .5rem auto 2rem auto;
+    margin: .5rem auto 0 auto;
   }
 }
 

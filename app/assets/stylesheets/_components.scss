@@ -15,20 +15,82 @@
     }
   }
 
-  &.trails {
-    background: url(/assets/learn/trails-graphic.svg) #fff no-repeat center center;
-    background-size: 90%;
+  &.meta {
+    background: none;
+    border: none;
+    box-shadow: none;
     padding: 0;
 
-    &:hover h3 {
-      @include transform(translateY(-.2rem));
+    .mentor {
+      overflow: auto;
+      margin-bottom: 3rem;
+
+      img {
+        border-radius: 100%;
+        float: left;
+        position: relative;
+        width: 95px;
+        z-index: 3;
+      }
+
+      hgroup {
+        background: $lightwarmgray;
+        display: inline-block;
+        padding-left: .8rem;
+        position: relative;
+        width: 129px;
+        z-index: 2;
+
+        h2, h3 {
+          color: $darkwarmgray;
+          font-size: 1rem;
+          font-weight: 600;
+          line-height: 1.5rem;
+        }
+
+        h2 {
+          font-size: 1.3rem;
+        }
+
+        p {
+          margin: .4rem 0 0;
+          padding: 0;
+
+          &:last-child {
+            margin: 0;
+          }
+
+          a {
+            color: $darkwarmgray;
+            display: inline-block;
+            font-family: $sans-serif;
+            font-weight: 600;
+          }
+
+          .mentor-help {
+            color: lighten($darkwarmgray, 15%);
+            font-family: $serif;
+            font-style: italic;
+            font-weight: 100;
+          }
+        }
+      }
     }
 
-    h3 {
-      color: $darkwarmgray;
-      font: 400 1.5rem/1.5em $sans-serif;
-      padding: 3rem 1.5rem 1.5rem;
-      @include transition;
+    .trails {
+      background: url(/assets/learn/trails-graphic.svg) no-repeat 40px -4px;
+      background-size: contain;
+      padding: 0;
+
+      a {
+        display: block;
+      }
+
+      h3 {
+        color: $darkwarmgray;
+        font: 400 1.5rem/1.5em $sans-serif;
+        padding-top: 2rem;
+      }
     }
   }
 
@@ -64,6 +126,7 @@
       border: .3rem solid white;
       border-radius: 3px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
+      height: 128px;
       line-height: 0;
       position: relative;
 
@@ -79,9 +142,9 @@
         color: #fff;
         font: 400 1rem/1.4em $serif;
         opacity: 0;
-        padding: 1rem;
+        padding: .8rem 1rem;
+        @include position(absolute, 0px 0 0 0px);
         position: absolute;
-        top: 0;
         @include transform(scale(1.1));
         @include transition;
         @include user-select(none);
@@ -89,6 +152,14 @@
         z-index: 1;
       }
     }
+  }
+
+  &.book {
+    border: 1px solid rgb(200, 200, 200);
+    height: auto;
+    line-height: 0;
+    padding: 0;
+    width: 246px;
   }
 
   > a {
@@ -128,14 +199,6 @@
     color: rgb(175, 175, 175);
     font-size: .8rem;
     text-transform: uppercase;
-  }
-
-  &.book {
-    border: 1px solid rgb(200, 200, 200);
-    height: auto;
-    line-height: 0;
-    padding: 0;
-    width: 246px;
   }
 
   .inperson-date {
@@ -301,6 +364,64 @@
 
     &.next {
       right: 0;
+    }
+  }
+}
+
+.vertical-slider {
+  height: 425px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: $product-card-margin/2 $slide-button-width - $product-card-margin/2 0;
+  position: relative;
+  @include product-card-widths(7, max-width, ($slide-button-width * 2));
+
+  @include dashboard-small {
+    padding: 0 $product-card-margin/2;
+  }
+
+  &.revealed {
+    height: auto;
+    padding-bottom: 1.5rem;
+
+    .nav.show-all:after {
+      content: 'Hide workhops';
+    }
+  }
+
+  > figure, > .figure-container {
+    float: left;
+    margin: 0 $product-card-margin/2 $product-card-margin;
+    @include transition(.15s);
+    vertical-align: top;
+    white-space: normal;
+
+    &:hover {
+      .notification {
+        @include transform(translateY(.15rem));
+      }
+    }
+
+    .notification {
+      @include transition(.25s);
+    }
+  }
+
+  .nav.show-all {
+    background: $lightwarmgray;
+    cursor: pointer;
+    height: 4rem;
+    @include position(absolute, 0 0px 0px 0);
+    text-align: center;
+    @include user-select(none);
+    width: 100%;
+
+    &:after {
+      color: $darkwarmgray;
+      content: 'Show all workshops';
+      font-style: italic;
+      margin: 0;
+      @include position(absolute, 1.5rem 0px 0 0px);
     }
   }
 }

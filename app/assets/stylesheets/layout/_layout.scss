@@ -15,7 +15,7 @@ img {
   max-width: 1100px;
   padding: 1.75em 2em 3em 2em;
 
-  > h1 {
+  h1.subject {
     color: desaturate(darken($warmgray, 22%), 8%);
     font-size: 50px;
     line-height: 1.15em;
