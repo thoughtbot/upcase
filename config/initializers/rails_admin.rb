@@ -252,6 +252,6 @@ RailsAdmin.config do |config|
   end
 
   def section_label_method
-    "#{self.workshop.name} (#{self.date_range})"
+    "#{self.workshop.name} [#{self.online? ? 'Online' : 'In person'}] (#{self.starts_on} - #{self.ends_on})"
   end
 end
