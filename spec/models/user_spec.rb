@@ -246,4 +246,14 @@ describe User do
       expect(user.mentor).to be_nil
     end
   end
+
+  describe 'self.mentors' do
+    it 'includes only mentors' do
+      user = create(:user)
+      mentor = create(:user, mentor: true)
+
+      expect(User.mentors).to include mentor
+      expect(User.mentors).not_to include user
+    end
+  end
 end

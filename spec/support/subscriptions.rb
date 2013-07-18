@@ -13,8 +13,6 @@ module Subscriptions
   end
 
   def create_mentors
-    Subscription::MENTOR_EMAILS.each do |email|
-      create(:user, email: email)
-    end
+    create(:user, mentor: true)
   end
 end
