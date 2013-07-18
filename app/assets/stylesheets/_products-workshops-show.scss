@@ -241,17 +241,17 @@ body.products-show, body.workshops-show {
         margin-top: 0;
       }
 
-      .button:not(.prime-button, .free-with-prime) {
-        background: darken($warmgray, 20%);
+      .button:not(.prime-button):not(.free-with-prime) {
+        background: darken($warmgray, 28%);
         border-color: $darkwarmgray;
 
         &:hover {
-          background: darken($warmgray, 15%);
+          background: darken($warmgray, 20%);
           border-color: lighten($darkwarmgray, 5%);
         }
 
         &:active {
-          background: darken($warmgray, 25%);
+          background: darken($warmgray, 35%);
           border-color: darken($darkwarmgray, 5%);
         }
       }
