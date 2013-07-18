@@ -291,7 +291,7 @@ ActiveRecord::Schema.define(:version => 20130716205105) do
     t.date     "deactivated_on"
     t.date     "scheduled_for_cancelation_on"
     t.boolean  "paid",                         :default => true, :null => false
-    t.integer  "mentor_id"
+    t.integer  "mentor_id",                                      :null => false
   end
 
   add_index "subscriptions", ["mentor_id"], :name => "index_subscriptions_on_mentor_id"
