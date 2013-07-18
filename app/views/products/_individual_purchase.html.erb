@@ -12,6 +12,6 @@
   <%= link_to new_product_purchase_path(product, variant: :individual),
     class: "license-button button #{'free-with-prime' if current_user_has_active_subscription?}",
     id: "#{product.sku}-purchase-individual" do %>
-      <%= t('shared.subscriptions.icon') if current_user_has_active_subscription? %> <%= purchase_button_text(product) %>
+      <%= purchase_button_text(product) %>
   <% end %>
 </div>
