@@ -1,10 +1,6 @@
 # This class represents a user's subscription to Learn content
 class Subscription < ActiveRecord::Base
   MAILING_LIST = 'Active Subscribers'
-  MENTOR_EMAILS = %w(
-    chad@thoughtbot.com
-    ben@thoughtbot.com
-  )
 
   belongs_to :user
   belongs_to :mentor, class_name: User
@@ -70,10 +66,6 @@ class Subscription < ActiveRecord::Base
   end
 
   def assign_mentor
-    self.mentor ||= User.find_by_email(random_mentor_email)
-  end
-
-  def random_mentor_email
-    MENTOR_EMAILS.sample
+    self.mentor ||= User.mentors.sample
   end
 end

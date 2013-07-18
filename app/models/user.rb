@@ -44,6 +44,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.mentors
+    where(mentor: true)
+  end
+
   def subscription_purchases
     paid_purchases.where(payment_method: 'subscription')
   end
