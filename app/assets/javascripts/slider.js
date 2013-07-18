@@ -1,4 +1,10 @@
 $(function() {
+  if ($('.vertical-slider').length) {
+    $('.nav.show-all').click(function() {
+      $(this).parents('.vertical-slider').toggleClass('revealed');
+    });
+  }
+
   if ($('.card-slider').length) {
     // assign every slider item a slider class
     $('.card-slider').children(':not(.nav)').addClass('slider-item');

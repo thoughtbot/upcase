@@ -29,7 +29,7 @@
     <% end %>
 
     <% if in_person_section.full? %>
-      <a href="#new_follow_up" class="button">Get notified</a>
+      <a href="#new_follow_up" class="button <%= 'free-with-prime' if current_user_has_active_subscription? %>">Get notified</a>
     <% else %>
       <% if current_user_has_active_subscription? %>
         <%= link_to registration_url(in_person_section), class: "free-with-prime button" do %>
