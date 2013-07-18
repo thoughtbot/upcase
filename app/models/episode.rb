@@ -4,9 +4,9 @@ require 'open-uri'
 class Episode < ActiveRecord::Base
   belongs_to :show
   has_many :classifications, as: :classifiable
-  has_many :products, through: :topics, uniq: true
   has_many :topics, through: :classifications
-  has_many :workshops, through: :topics, uniq: true
+  has_many :products, -> { uniq }, through: :topics
+  has_many :workshops, -> { uniq }, through: :topics
 
   validates :description, presence: true
   validates :number, presence: true

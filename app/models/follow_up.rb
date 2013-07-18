@@ -1,7 +1,4 @@
 class FollowUp < ActiveRecord::Base
-  # Attributes
-  attr_accessible :email
-
   # Associations
   belongs_to :workshop
 

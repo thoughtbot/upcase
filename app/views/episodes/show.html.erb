@@ -36,7 +36,7 @@
         Direct Download
       <% end %>
       (<%= number_to_human_size @episode.file_size, precision: 2 %>,
-      <%= distance_of_time_in_words @episode.duration %>)
+      <%= distance_of_time_in_words @episode.duration.to_f %>)
     </div>
 
     <% unless @episode.notes.blank? %>

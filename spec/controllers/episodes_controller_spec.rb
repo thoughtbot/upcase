@@ -4,7 +4,15 @@ describe EpisodesController do
   describe '#index' do
     it 'renders the response with etag and last_modified' do
       episode = create(:episode)
+
+      # ActiveRecord have cache_key method
+      # which use :nsec to find out the last
+      # updated_at column, this test was failing
+      # because randomly cache_key was different in controller
+      episode.reload
+
       get :index, show_id: episode.show.to_param
+
       key = ActiveSupport::Cache.expand_cache_key(episode)
       etag = %("#{Digest::MD5.hexdigest(key)}")
       response.headers["ETag"].should eq etag

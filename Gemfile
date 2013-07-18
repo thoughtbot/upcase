@@ -4,27 +4,31 @@ ruby '1.9.3'
 
 gem 'RedCloth', '4.2.9', require: 'redcloth'
 gem 'active_model_serializers', '~> 0.7.0'
-gem 'acts_as_list', '0.1.6'
+gem 'acts_as_list', '0.2.0'
 gem 'airbrake', '3.0.9'
 gem 'aws-sdk', '= 1.6.2' # Bug https://github.com/thoughtbot/paperclip/issues/751
 gem 'bluecloth'
 gem 'bourbon', '3.1.6'
-gem 'chameleon', '0.2.2'
-gem 'clearance', '0.16.1'
+gem 'chameleon', github: 'thoughtbot/chameleon'
+gem 'clearance', '1.0.1'
 gem 'csv_rails', '0.6.1'
 gem 'curb', '0.8.1'
-gem 'delayed_job_active_record', '0.3.3'
-gem 'doorkeeper', github: 'applicake/doorkeeper' # fixes bug with strong parameters
+
+gem 'delayed_job_active_record', '4.0.0'
+gem 'delayed_job', '~> 4.0.0'
+
+gem 'doorkeeper', '~> 0.7.1'
 gem 'dynamic_form', '1.1.4'
 gem 'escape_utils', '0.2.4' # Fix UTF-8 regexp match warning
-gem 'flutie', '1.3.3'
+gem 'flutie', '2.0.0'
 gem 'formtastic', '2.2.0'
 gem 'gravatarify', '~> 3.1.0'
 gem 'heroku'
-gem 'high_voltage', '1.2.0'
+gem 'high_voltage', github: 'thoughtbot/high_voltage'
 gem 'httparty', '0.8.1'
 gem 'intercom-rails', '~> 0.2.21'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'jquery-tablesorter'
 gem 'json', '~> 1.7.7'
 gem 'kissmetrics', '2.0.0'
@@ -32,35 +36,32 @@ gem 'nokogiri', '1.5.2'
 gem 'octokit', '~> 1.24.0'
 gem 'omniauth', '~> 1.1.0'
 gem 'omniauth-github', '1.0.2'
-gem 'paperclip'
 gem 'delayed_paperclip'
+gem 'paperclip', '3.4.2'
 gem 'paypal-express', '0.4.6', require: 'paypal'
 gem 'pg', '0.13.2'
 gem 'rack-rewrite', '1.2.1'
 gem 'rack-ssl-enforcer', '0.2.4'
-gem 'rails', '3.2.13'
-gem 'rails_admin'
+gem 'rails', '4.0.0'
+gem 'rails_admin', '~> 0.5.0'
 gem 'ruby-freshbooks', '0.4.0'
-gem 'sass', '3.2.1'
 gem 'snogmetrics', '0.1.9'
 gem 'split', '0.4.1', require: 'split/dashboard'
-gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
-gem 'stripe_event'
-gem 'strong_parameters'
+gem 'stripe', github: 'stripe/stripe-ruby'
+gem 'stripe_event', '0.6.0'
 gem 'typhoeus', '0.3.3'
 gem 'to_js', git: 'git://github.com/cpytel/to_js.git'
 gem 'validates_email_format_of', '1.5.3'
 gem 'ruby-mp3info', "~> 0.8"
-gem 'gibbon'
+gem 'gibbon', '0.4.6'
 gem 'tumblr-rb', git: 'https://github.com/thoughtbot/tumblr'
+gem 'sprockets-redirect', github: 'arunagw/sprockets-redirect', branch: 'aa-rails4'
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
-  gem 'sass-rails', '3.2.5'
-  gem 'coffee-rails'
-  gem 'uglifier', '1.2.4'
-end
+gem 'sass-rails', '4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'uglifier', '1.3.0'
 
 group :development do
   gem 'thin', '1.3.1'
@@ -80,6 +81,7 @@ group :production, :staging do
   gem 'newrelic_rpm'
   gem 'rack-cache', '1.2'
   gem 'unicorn'
+  gem 'rails_12factor'
 end
 
 group :staging do
@@ -89,18 +91,19 @@ end
 group :test do
   gem 'bourne'
   gem 'capybara', '1.1.2'
-  gem 'cucumber-rails', '1.3.0', require: false
-  gem 'database_cleaner', '0.7.2'
+  gem 'cucumber-rails', require: false, git: 'https://github.com/cucumber/cucumber-rails.git'
+  gem 'database_cleaner', '1.0.1'
   gem 'email_spec', '1.2.1'
   gem 'factory_girl_rails'
   gem 'launchy'
   gem 'poltergeist'
   gem 'selenium-webdriver', '2.32.1'
+  gem 'rubyzip', '0.9.9'
   gem 'sham_rack', '1.3.1'
   gem 'shoulda-matchers'
   gem 'sinatra'
   gem 'timecop', '0.3.5'
   gem 'webmock', '1.8.7'
   gem 'capybara_discoball',
-    :git => 'git@github.com:thoughtbot/capybara_discoball.git'
+    github: 'thoughtbot/capybara_discoball'
 end

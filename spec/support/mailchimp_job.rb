@@ -6,8 +6,8 @@ shared_examples 'a MailchimpJob' do
     }
 
     expect do
-      described_class.new('product', 'user@example.com').perform 
-    end.not_to raise_error(Gibbon::MailChimpError)
+      described_class.new('product', 'user@example.com').perform
+    end.not_to raise_error
   end
 
   it 'does raise other mailchimp errors' do
@@ -17,7 +17,7 @@ shared_examples 'a MailchimpJob' do
     }
 
     expect do
-      described_class.new('product', 'user@example.com').perform 
+      described_class.new('product', 'user@example.com').perform
     end.to raise_error(Gibbon::MailChimpError)
   end
 end

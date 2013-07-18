@@ -6,9 +6,6 @@ describe FollowUp do
   it { should have_db_column(:updated_at) }
   it { should have_db_index(:workshop_id) }
 
-  # Mass Assignment
-  it { should allow_mass_assignment_of(:email) }
-
   # Associations
   it { should belong_to(:workshop) }
 

@@ -3,7 +3,7 @@
     <hgroup class="post-link-header">
       <h3><%= episode.full_title %></h3>
       <h6 class="info">
-        <%= episode.published_on.to_time.to_s(:short_date) %> • <%= distance_of_time_in_words episode.duration %>
+        <%= episode.published_on.to_time.to_s(:short_date) %> • <%= distance_of_time_in_words episode.duration.to_f %>
       </h6>
     </hgroup>
     <p><%= episode.description %></p>

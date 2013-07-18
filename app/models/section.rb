@@ -1,12 +1,10 @@
 class Section < ActiveRecord::Base
   belongs_to :workshop
-  has_many :paid_purchases, class_name: 'Purchase', as: :purchaseable,
-    conditions: { paid: true }
+  has_many :paid_purchases, -> { where paid: true }, class_name: 'Purchase', as: :purchaseable
   has_many :purchases, as: :purchaseable
   has_many :section_teachers
   has_many :teachers, through: :section_teachers
-  has_many :unpaid_purchases, class_name: 'Purchase', as: :purchaseable,
-    conditions: { paid: false }
+  has_many :unpaid_purchases, -> { where paid: false }, class_name: 'Purchase', as: :purchaseable
   has_many :announcements, as: :announceable, dependent: :destroy
   has_many :downloads, as: :purchaseable
 

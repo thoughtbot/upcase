@@ -3,14 +3,10 @@ class User < ActiveRecord::Base
 
   include Clearance::User
 
-  attr_accessible :email, :name, :github_username, :password, :auth_provider,
-    :auth_uid, :bio, :mentor_id
-
-  has_many :paid_purchases, class_name: 'Purchase',
-    conditions: { paid: true }
+  has_many :paid_purchases, -> { where paid: true }, class_name: 'Purchase'
   has_many :purchases
   has_many :completions
-  has_many :notes, order: 'created_at DESC'
+  has_many :notes, -> { order 'created_at DESC' }
   has_one :subscription
   belongs_to :mentor, class_name: 'User'
   has_many :mentees, class_name: 'User', foreign_key: 'mentor_id'

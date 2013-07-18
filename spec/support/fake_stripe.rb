@@ -11,7 +11,7 @@ class FakeStripe < Sinatra::Base
     :customer_plan_id
   cattr_accessor :failure
 
-  get '/plans/:id' do
+  get '/v1/plans/:id' do
     content_type :json
 
     {
@@ -27,7 +27,7 @@ class FakeStripe < Sinatra::Base
     }.to_json
   end
 
-  get '/customers/:id' do
+  get '/v1/customers/:id' do
     content_type :json
 
     {
@@ -48,15 +48,14 @@ class FakeStripe < Sinatra::Base
     }.to_json
   end
 
-  post '/customers/:id/subscription' do
+  post '/v1/customers/:id/subscription' do
     @@customer_plan_id = params[:plan]
-
     content_type :json
 
     customer_subscription.to_json
   end
 
-  post '/customers' do
+  post '/v1/customers' do
     @@last_customer_email = params[:email]
     @@last_token = params[:card]
     content_type :json
@@ -94,7 +93,7 @@ class FakeStripe < Sinatra::Base
     end
   end
 
-  post '/charges' do
+  post '/v1/charges' do
     @@last_charge = params[:amount]
     content_type :json
 
@@ -134,7 +133,7 @@ class FakeStripe < Sinatra::Base
     }.to_json
   end
 
-  delete '/customers/:id/subscription' do
+  delete '/v1/customers/:id/subscription' do
     content_type :json
     customer_subscription.merge({
       id: params[:id],
@@ -142,7 +141,7 @@ class FakeStripe < Sinatra::Base
     }).to_json
   end
 
-  get '/charges/:id' do
+  get '/v1/charges/:id' do
     content_type :json
     { failure_message: nil,
       description: nil,
@@ -180,7 +179,7 @@ class FakeStripe < Sinatra::Base
     }.to_json
   end
 
-  post '/charges/:id/refund' do
+  post '/v1/charges/:id/refund' do
     content_type :json
     {
       id: params[:id],
@@ -188,7 +187,7 @@ class FakeStripe < Sinatra::Base
     }.to_json
   end
 
-  post '/customers/:id' do
+  post '/v1/customers/:id' do
     content_type :json
     if failure
       status 402
@@ -205,7 +204,7 @@ class FakeStripe < Sinatra::Base
     end
   end
 
-  post '/coupons' do
+  post '/v1/coupons' do
     @@coupons ||= {}
     @@coupons[params[:id]] = create_coupon_hash(params)
     content_type :json
@@ -213,7 +212,7 @@ class FakeStripe < Sinatra::Base
     @@coupons[params[:id]].to_json
   end
 
-  get '/coupons/:id' do
+  get '/v1/coupons/:id' do
     @@coupons ||= {}
     content_type :json
 
@@ -224,7 +223,7 @@ class FakeStripe < Sinatra::Base
     end
   end
 
-  get '/invoices' do
+  get '/v1/invoices' do
     content_type :json
     {
       object: "list",
@@ -236,12 +235,12 @@ class FakeStripe < Sinatra::Base
     }.to_json
   end
 
-  get '/invoices/:id' do
+  get '/v1/invoices/:id' do
     content_type :json
     customer_invoice.to_json
   end
 
-  get "/events/#{EVENT_ID_FOR_SUCCESSFUL_INVOICE_PAYMENT}" do
+  get "/v1/events/#{EVENT_ID_FOR_SUCCESSFUL_INVOICE_PAYMENT}" do
     content_type :json
     {
       id: EVENT_ID_FOR_SUCCESSFUL_INVOICE_PAYMENT,
@@ -252,7 +251,7 @@ class FakeStripe < Sinatra::Base
     }.to_json
   end
 
-  get "/events/#{EVENT_ID_FOR_SUBSCRIPTION_DELETION}" do
+  get "/v1/events/#{EVENT_ID_FOR_SUBSCRIPTION_DELETION}" do
     content_type :json
     {
       id: EVENT_ID_FOR_SUBSCRIPTION_DELETION,

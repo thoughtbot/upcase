@@ -377,7 +377,7 @@ describe Section do
     end
 
     it 'returns starts_on for a section with an end date' do
-      starts_on = 7.days.from_now
+      starts_on = 7.days.from_now.to_date
       section = build(:in_person_section, starts_on: starts_on, ends_on: 4.weeks.from_now)
 
       expect(section.starts_on(Time.zone.today)).to eq starts_on
@@ -394,7 +394,7 @@ describe Section do
     end
 
     it 'returns the end_date for a section with an end date' do
-      ends_on = 14.days.from_now
+      ends_on = 14.days.from_now.to_date
       section = build(:in_person_section, starts_on: 7.days.from_now, ends_on: ends_on)
 
       expect(section.ends_on(Time.zone.today)).to eq ends_on

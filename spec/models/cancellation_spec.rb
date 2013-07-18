@@ -27,7 +27,7 @@ describe Cancellation do
       stripe_customer.should have_received(:cancel_subscription).
         with(at_period_end: true)
 
-      subscription.scheduled_for_cancellation_on.should eq Time.at(1361234235)
+      subscription.scheduled_for_cancellation_on.should eq Time.at(1361234235).to_date
     end
 
     it 'retrieves the customer correctly' do

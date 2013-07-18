@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include Clearance::Authentication
+  include Clearance::Controller
 
   helper :all
 
