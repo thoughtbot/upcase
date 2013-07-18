@@ -29,9 +29,9 @@ describe 'A Purchased book' do
 
       visit purchase_path(purchase)
 
-      expect(page).to have_css(
-        "a.send-to-readmill[data-download-url='#{epub_url(book)}'][data-buy-url='#{product_url(book)}']"
-      )
+      readmill = find('a.send-to-readmill')
+      expect(readmill['data-download-url']).to eq epub_url(book)
+      expect(readmill['data-buy-url']).to eq product_url(book)
     end
   end
 end
