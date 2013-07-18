@@ -30,7 +30,7 @@ module Playbook
 
     def topics
       keywords.append('playbook').uniq.map do |keyword|
-        Topic.find_or_create_by_name(keyword)
+        Topic.find_or_create_by(name: keyword)
       end
     end
 

@@ -1,10 +1,8 @@
 class Article < ActiveRecord::Base
-  attr_protected :body_html
-
   has_many :classifications, as: :classifiable
-  has_many :products, through: :topics, uniq: true
+  has_many :products, -> { uniq }, through: :topics
   has_many :topics, through: :classifications
-  has_many :workshops, through: :topics, uniq: true
+  has_many :workshops, -> { uniq }, through: :topics
 
   validates :body_html, presence: true
   validates :external_url, presence: true

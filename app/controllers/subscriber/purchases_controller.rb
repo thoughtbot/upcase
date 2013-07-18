@@ -11,7 +11,7 @@ module Subscriber
         comments)
       @purchase = subscriber_purchase.create
 
-      redirect_to @purchase, notice: t('.subscriber_purchase.flashes.success')
+      redirect_to @purchase, notice: t('subscriber_purchase.flashes.success')
     end
 
     private

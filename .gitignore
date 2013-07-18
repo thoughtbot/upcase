@@ -2,7 +2,6 @@
 *.DS_Store
 *.swp
 .env
-/bin/
 /coverage/
 /log/
 /public/system/

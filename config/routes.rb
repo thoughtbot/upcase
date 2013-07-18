@@ -104,7 +104,7 @@ Workshops::Application.routes.draw do
   resource :timeline, only: :show
   resource :note, only: :create
 
-  get "/pages/*id" => 'pages#show', :as => :page, :format => false
+  get "/pages/*id" => 'pages#show', format: false
   get '/prime' => 'pages#show', as: :prime, id: 'prime'
   get '/watch' => 'pages#show', as: :watch, id: 'watch'
   get '/privacy' => 'pages#show', as: :privacy, id: 'privacy'
@@ -115,13 +115,14 @@ Workshops::Application.routes.draw do
   get '/backbone-js-on-rails' => redirect("/products/1-backbone-js-on-rails")
   get '/5by5' => redirect('/workshops/19-design-for-developers?utm_source=5by5')
   get '/rubyist-booster-shot' => "pages#show", as: :rubyist_booster_shot, id: "rubyist-booster-shot"
-  put '/my_account' => 'users#update', as: 'my_account'
+
+  patch '/my_account' => 'users#update', as: 'edit_my_account'
   get '/my_account' => 'users#edit', as: 'my_account'
-  get '/sign_up' => 'users#new', as: 'sign_up'
-  get '/sign_in' => 'sessions#new', as: 'sign_in'
   resources :users, controller: 'users' do
     resource :timeline, only: :show
   end
+  get '/sign_up' => 'users#new', as: 'sign_up_app'
+  get '/sign_in' => 'sessions#new', as: 'sign_in_app'
   resources :passwords, controller: 'passwords'
 
   mount Split::Dashboard, at: 'split'

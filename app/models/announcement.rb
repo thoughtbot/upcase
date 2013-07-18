@@ -1,7 +1,4 @@
 class Announcement < ActiveRecord::Base
-  # Attributes
-  attr_accessible :announceable_id, :announceable_type, :ends_at, :message
-
   # Associations
   belongs_to :announceable, polymorphic: true
 

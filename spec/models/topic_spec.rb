@@ -15,13 +15,6 @@ describe Topic do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:slug) }
 
-  # Associations
-  it { should allow_mass_assignment_of(:featured) }
-  it { should allow_mass_assignment_of(:keywords) }
-  it { should allow_mass_assignment_of(:name) }
-  it { should allow_mass_assignment_of(:summary) }
-  it { should allow_mass_assignment_of(:related_topic_ids) }
-
   it_behaves_like 'it has related items'
 
   context '.create' do
