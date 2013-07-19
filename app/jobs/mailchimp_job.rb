@@ -3,7 +3,7 @@ class MailchimpJob < Struct.new(:list_name, :email)
 
   PRIORITY = 1
   # http://apidocs.mailchimp.com/api/1.3/exceptions.field.php
-  MAILCHIMP_EMAIL_ERROR_CODES = [230, 231, 232, 233, 214]
+  MAILCHIMP_EMAIL_ERROR_CODES = [230, 231, 232, 233, 214, 215]
 
   def self.enqueue(list_name, email)
     Delayed::Job.enqueue(new(list_name, email))
