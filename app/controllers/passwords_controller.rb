@@ -1,3 +1,3 @@
 class PasswordsController < Clearance::PasswordsController
-  layout 'dashboard'
+  layout 'header-only'
 end
