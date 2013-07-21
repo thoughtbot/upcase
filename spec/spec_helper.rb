@@ -17,6 +17,7 @@ FakeFreshbooks.reset!
 ShamRack.mount(FakeFreshbooks.new, FRESHBOOKS_PATH, 443)
 FakeStripeRunner.boot
 FakeMailchimpRunner.boot
+Paperclip.processor(:id3)
 
 Delayed::Worker.delay_jobs = false
 

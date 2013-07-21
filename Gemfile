@@ -30,7 +30,7 @@ gem 'nokogiri', '1.5.2'
 gem 'octokit', '~> 1.24.0'
 gem 'omniauth', '~> 1.1.0'
 gem 'omniauth-github', '1.0.2'
-gem 'paperclip', '3.0.2'
+gem 'paperclip'
 gem 'paypal-express', '0.4.6', require: 'paypal'
 gem 'pg', '0.13.2'
 gem 'rack-rewrite', '1.2.1'
@@ -46,7 +46,7 @@ gem 'stripe_event'
 gem 'typhoeus', '0.3.3'
 gem 'to_js', git: 'git://github.com/cpytel/to_js.git'
 gem 'validates_email_format_of', '1.5.3'
-gem 'mp3info'
+gem 'ruby-mp3info', "~> 0.8"
 gem 'gibbon'
 
 # Gems used only for assets and not required

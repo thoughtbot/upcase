@@ -23,23 +23,27 @@ describe EpisodesController do
 
   describe '#show as html' do
     it 'renders the show template for the episode' do
-      episode = build_stubbed(:episode)
-      Episode.stubs(:find).returns(episode)
+      episode = build_stubbed(:episode, number: 1)
+      Episode.stubs(:find_by_number!).returns(episode)
+
       get :show, id: episode.to_param, format: :html
-      Episode.should have_received(:find).with(episode.to_param)
-      response.should render_template("show")
+
+      expect(Episode).to have_received(:find_by_number!).with(episode.to_param)
+      expect(response).to render_template("show")
     end
   end
 
   describe '#show as mp3' do
-    it 'increments the download counter and 302 redirects to the file' do
-      episode = build_stubbed(:episode, file: 'http://amazon.com')
-      episode.stubs(:increment_downloads)
-      Episode.stubs(find: episode)
+    it 'increments the download counter and 302 redirects to the mp3' do
+      episode = create(:episode, mp3: episode_mp3_fixture)
+
+      expect(episode.downloads_count).to eq 0
       get :show, id: episode.to_param, format: :mp3
-      episode.should have_received(:increment_downloads)
-      response.should redirect_to('http://amazon.com')
-      response.code.should eq '302'
+      episode.reload
+
+      expect(episode.downloads_count).to eq 1
+      expect(response).to redirect_to(episode.mp3.url(:id3))
+      expect(response.code).to eq '302'
     end
   end
 end
