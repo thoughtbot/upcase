@@ -69,6 +69,7 @@ RailsAdmin.config do |config|
 
     edit do
       group :default do
+        field :mp3
         field :file do
           help 'An S3 file url'
         end

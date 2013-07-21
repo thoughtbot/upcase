@@ -10,14 +10,35 @@ describe Episode do
 
   context 'validations' do
     it { should validate_presence_of :title }
-    it { should validate_presence_of :file_size }
-    it { should validate_presence_of :duration }
-    it { should validate_presence_of :file }
     it { should validate_presence_of :description }
     it { should validate_presence_of :published_on }
   end
 
   it_behaves_like 'it has related items'
+
+  it 'assigns the next number when created' do
+    episode = build(:episode, number: nil)
+
+    episode.save!
+
+    expect(episode.number).to eq 1
+  end
+
+  it 'does not assign new number when created' do
+    episode = build(:episode, number: 99)
+
+    episode.save!
+
+    expect(episode.number).to eq 99
+  end
+
+  describe '#to_param' do
+    it 'returns the episode number' do
+      episode = create(:episode, number: 99)
+
+      expect(episode.to_param).to eq 99
+    end
+  end
 
   describe "self.published" do
     it "does not include episodes published in the future" do
@@ -35,9 +56,9 @@ describe Episode do
   end
 
   describe ".full_title" do
-    it 'includes the eposide number and title' do
+    it 'includes the episode number and title' do
       episode = create(:episode, title: 'Hello')
-      episode.full_title.should == "Episode #{episode.id}: #{episode.title}"
+      episode.full_title.should == "Episode #{episode.number}: #{episode.title}"
     end
   end
 
@@ -69,31 +90,6 @@ describe Episode do
       episode = create(:episode, downloads_count: 4)
       episode.increment_downloads
       episode.downloads_count.should eq 5
-    end
-  end
-
-  describe 'loading info from the mp3' do
-    it 'loads information from the mp3 when not provided' do
-      episode = Episode.new
-      episode.file = 'http://example.com/file.mp3'
-
-      episode.stubs(open: stub(size: 1234))
-      tag_stub = stub(
-        TIT2: 'Episode 1: The Show',
-        TDES: "Description\nNotes\nNotes2",
-        TDRL: '2013-06-03'
-      )
-      mp3_stub = stub(length: 10.12, tag2: tag_stub)
-      Mp3Info.stubs(:open).yields(mp3_stub)
-
-      episode.save!
-
-      episode.title.should eq 'The Show'
-      episode.description.should eq 'Description'
-      episode.notes.should eq "Notes\nNotes2"
-      episode.duration.should eq 10
-      episode.file_size.should eq 1234
-      episode.published_on.should eq Date.parse('2013-06-03')
     end
   end
 end

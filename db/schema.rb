@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130716205105) do
+ActiveRecord::Schema.define(:version => 20130721190245) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -105,16 +105,22 @@ ActiveRecord::Schema.define(:version => 20130716205105) do
   create_table "episodes", :force => true do |t|
     t.string   "title"
     t.string   "old_url"
-    t.string   "file"
     t.text     "description"
     t.text     "notes"
     t.date     "published_on"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.integer  "file_size"
     t.integer  "duration"
-    t.integer  "downloads_count", :default => 0, :null => false
+    t.integer  "downloads_count",  :default => 0, :null => false
+    t.string   "mp3_file_name"
+    t.string   "mp3_content_type"
+    t.integer  "mp3_file_size"
+    t.datetime "mp3_updated_at"
+    t.integer  "number"
   end
+
+  add_index "episodes", ["number"], :name => "index_episodes_on_number"
 
   create_table "follow_ups", :force => true do |t|
     t.string   "email"

@@ -295,9 +295,6 @@ FactoryGirl.define do
 
   factory :episode do
     title 'Episode Title'
-    file_size 1000
-    duration 2000
-    file 'http://gr-podcast.s3.amazonaws.com/thoughtbot-020.mp3'
     description 'A really great episode'
     published_on { 1.day.ago }
 

@@ -6,12 +6,12 @@ class EpisodesController < ApplicationController
   end
 
   def show
-    @episode = Episode.find(params[:id])
+    @episode = Episode.find_by_number!(params[:id].to_i)
     respond_to do |format|
       format.html
       format.mp3 do
         @episode.increment_downloads
-        redirect_to @episode.file
+        redirect_to @episode.mp3.url(:id3)
       end
     end
   end

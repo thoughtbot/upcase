@@ -89,7 +89,10 @@ GEM
     clearance (0.16.1)
       diesel (~> 0.1.5)
       rails (>= 3.0)
-    cocaine (0.2.1)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.1)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -206,8 +209,7 @@ GEM
     mime-types (1.23)
     mocha (0.13.3)
       metaclass (~> 0.0.1)
-    mp3info (0.6.18)
-    multi_json (1.7.6)
+    multi_json (1.7.7)
     multi_xml (0.4.4)
     multipart-post (1.2.0)
     nested_form (0.3.2)
@@ -236,11 +238,11 @@ GEM
     omniauth-oauth2 (1.1.0)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
-    paperclip (3.0.2)
+    paperclip (3.4.2)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
-      cocaine (>= 0.0.2)
+      cocaine (~> 0.5.0)
       mime-types
     paypal-express (0.4.6)
       activesupport (>= 2.3)
@@ -333,6 +335,7 @@ GEM
     ruby-freshbooks (0.4.0)
       builder (>= 2.1.2)
       httparty (>= 0.5.0)
+    ruby-mp3info (0.8)
     rubyzip (0.9.9)
     safe_yaml (0.9.1)
     safety_mailer (0.0.3)
@@ -442,13 +445,12 @@ DEPENDENCIES
   kissmetrics (= 2.0.0)
   launchy
   memcachier
-  mp3info
   newrelic_rpm
   nokogiri (= 1.5.2)
   octokit (~> 1.24.0)
   omniauth (~> 1.1.0)
   omniauth-github (= 1.0.2)
-  paperclip (= 3.0.2)
+  paperclip
   paypal-express (= 0.4.6)
   pg (= 0.13.2)
   poltergeist
@@ -460,6 +462,7 @@ DEPENDENCIES
   rails_admin
   rspec-rails
   ruby-freshbooks (= 0.4.0)
+  ruby-mp3info (~> 0.8)
   safety_mailer (= 0.0.3)
   sass (= 3.2.1)
   sass-rails (= 3.2.5)
