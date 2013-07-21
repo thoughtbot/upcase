@@ -67,7 +67,6 @@ Workshops::Application.configure do
     storage: :s3,
     s3_credentials: "#{Rails.root}/config/s3.yml",
     s3_permissions: :private,
-    path: "downloads/:id/:filename"
   }
 
   GITHUB_KEY = ENV['GITHUB_KEY']
