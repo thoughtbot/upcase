@@ -30,7 +30,7 @@ feature 'Subscriber engagement' do
       expect(page).to have_content("80")
     end
     within('.last-workshop-taken-date') do
-      expect(page).to have_content(Date.today.to_s)
+      expect(page).to have_content(Time.zone.today.to_s)
     end
   end
 end
