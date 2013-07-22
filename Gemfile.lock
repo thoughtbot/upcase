@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/applicake/doorkeeper.git
+  revision: be38a35c23d4fecfe3c2b0da2c7b96d36ff9f78d
+  specs:
+    doorkeeper (0.6.7)
+      railties (>= 3.1)
+
+GIT
   remote: git://github.com/cpytel/to_js.git
   revision: 66465bdab59dd001cd354fc0737814662eca3f0b
   specs:
@@ -130,8 +137,6 @@ GEM
     diesel (0.1.5)
       railties
     diff-lcs (1.2.4)
-    doorkeeper (0.6.7)
-      railties (~> 3.1)
     dynamic_form (1.1.4)
     email_spec (1.2.1)
       mail (~> 2.2)
@@ -426,7 +431,7 @@ DEPENDENCIES
   database_cleaner (= 0.7.2)
   debugger
   delayed_job_active_record (= 0.3.3)
-  doorkeeper (~> 0.6.7)
+  doorkeeper!
   dynamic_form (= 1.1.4)
   email_spec (= 1.2.1)
   escape_utils (= 0.2.4)
