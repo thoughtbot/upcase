@@ -7,7 +7,7 @@ class UsersController < Clearance::UsersController
   end
 
   def create
-    @user = user_from_params
+    @user = User.new(create_user_from_params)
 
     if @user.save
       sign_in @user
@@ -26,5 +26,9 @@ class UsersController < Clearance::UsersController
     else
       render action: :edit
     end
+  end
+
+  def create_user_from_params
+    params.require(:user).permit(:email, :password, :name)
   end
 end
