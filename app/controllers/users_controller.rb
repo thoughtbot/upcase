@@ -21,7 +21,7 @@ class UsersController < Clearance::UsersController
   end
 
   def update
-    if current_user.update_attributes(params[:user])
+    if current_user.update_attributes(create_user_from_params)
       redirect_to my_account_path
     else
       render action: :edit
@@ -29,6 +29,6 @@ class UsersController < Clearance::UsersController
   end
 
   def create_user_from_params
-    params.require(:user).permit(:email, :password, :name)
+    params.require(:user).permit(:email, :password, :name, :github_username)
   end
 end
