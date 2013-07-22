@@ -1,5 +1,5 @@
 class Section < ActiveRecord::Base
-  # Attrobutes
+  # Attributes
   attr_accessible :starts_on
 
   # Associations

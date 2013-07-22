@@ -1,5 +1,5 @@
 class Workshop < ActiveRecord::Base
-  # Attrobutes
+  # Attributes
   attr_accessible :online
 
   # Associations

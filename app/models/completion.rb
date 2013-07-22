@@ -1,5 +1,5 @@
 class Completion < ActiveRecord::Base
-  # Attrobutes
+  # Attributes
   attr_accessible :trail_name, :trail_object_id
 
   belongs_to :user
