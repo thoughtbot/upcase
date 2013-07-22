@@ -1,4 +1,7 @@
 class Section < ActiveRecord::Base
+  # Attributes
+  attr_accessible :starts_on
+
   # Associations
   belongs_to :workshop
   has_many :paid_purchases, class_name: 'Purchase', as: :purchaseable,

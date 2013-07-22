@@ -1,4 +1,7 @@
 class Completion < ActiveRecord::Base
+  # Attributes
+  attr_accessible :trail_name, :trail_object_id
+
   belongs_to :user
 
   validates :trail_object_id, uniqueness: { scope: :user_id }

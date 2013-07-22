@@ -1,4 +1,7 @@
 class Workshop < ActiveRecord::Base
+  # Attributes
+  attr_accessible :online
+
   # Associations
   has_many :announcements, as: :announceable, dependent: :destroy
   has_many :classifications, as: :classifiable, dependent: :destroy

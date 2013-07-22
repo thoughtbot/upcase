@@ -141,7 +141,9 @@ describe Product do
 
   context 'book_filename' do
     it 'returns the parameterized product name' do
-      book = Product.new(name: 'Backbone.js on Rails')
+      book = Product.new
+      book.name = 'Backbone.js on Rails'
+
       expect(book.book_filename).to eq 'backbone-js-on-rails'
     end
   end

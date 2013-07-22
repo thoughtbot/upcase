@@ -11,6 +11,9 @@ class Purchase < ActiveRecord::Base
   serialize :github_usernames
 
   attr_accessor :stripe_token, :paypal_url, :password
+  attr_accessible :stripe_coupon_id, :variant, :name, :email, :github_usernames,
+    :organization, :address1, :address2, :city, :state, :zip_code, :country,
+    :payment_method, :stripe_token, :password
 
   validates :variant, presence: true
   validates :purchaseable_id, presence: true

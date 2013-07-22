@@ -25,6 +25,9 @@ Workshops::Application.configure do
   # Do not compress assets
   config.assets.compress = false
 
+  # Raise exception on mass assignment protection for Active Record models
+  config.active_record.mass_assignment_sanitizer = :strict
+
   HOST = 'localhost:3000'
   config.action_mailer.default_url_options = { host: HOST }
   config.action_mailer.delivery_method = :test
