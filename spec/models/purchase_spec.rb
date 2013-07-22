@@ -2,7 +2,12 @@ require 'spec_helper'
 
 describe Purchase do
   context 'validations' do
-    subject { described_class.new(purchaseable: create(:product)) }
+    subject do
+      purchase = described_class.new
+      purchase.purchaseable = create(:product)
+      purchase
+    end
+
     it { should belong_to(:user) }
     it { should validate_presence_of(:email) }
     it { should allow_value('chad-help@co.uk').for(:email) }

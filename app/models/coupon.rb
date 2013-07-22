@@ -12,7 +12,10 @@ class Coupon < ActiveRecord::Base
   end
 
   def applied
-    update_attributes(active: false) if one_time_use_only?
+    if one_time_use_only?
+      self.active = false
+      save
+    end
   end
 
   def self.active
