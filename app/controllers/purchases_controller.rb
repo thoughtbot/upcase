@@ -8,7 +8,7 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    @purchase = find_purchaseable.purchases.build(params[:purchase])
+    @purchase = find_purchaseable.purchases.build(purchase_params)
     @purchase.user = current_user
     @purchase.coupon = current_coupon
     @purchase.stripe_customer_id = existing_stripe_customer_id
@@ -98,5 +98,10 @@ class PurchasesController < ApplicationController
 
   def polymorphic_purchaseable_template
     "#{@purchaseable.product_type.pluralize}/#{@purchaseable.product_type}_purchase_show"
+  end
+
+  def purchase_params
+    params.require(:purchase).permit(:name, :email, :variant,
+                                     :stripe_token, :payment_method)
   end
 end

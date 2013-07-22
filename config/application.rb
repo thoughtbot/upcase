@@ -56,6 +56,8 @@ module Workshops
     # Don't connect to database when precompiling assets.
     # https://devcenter.heroku.com/articles/rails3x-asset-pipeline-cedar#troubleshooting
     config.assets.initialize_on_precompile = false
+
+    config.active_record.whitelist_attributes = false
   end
 end
 
