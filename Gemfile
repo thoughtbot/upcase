@@ -6,7 +6,7 @@ gem 'RedCloth', '4.2.9', require: 'redcloth'
 gem 'active_model_serializers', '~> 0.7.0'
 gem 'acts_as_list', '0.1.6'
 gem 'airbrake', '3.0.9'
-gem 'aws-sdk'
+gem 'aws-sdk', '= 1.6.2' # Bug https://github.com/thoughtbot/paperclip/issues/751
 gem 'bluecloth'
 gem 'bourbon', '3.1.6'
 gem 'chameleon', '0.2.2'

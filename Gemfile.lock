@@ -59,9 +59,10 @@ GEM
       builder
     arel (3.0.2)
     attr_required (0.0.5)
-    aws-sdk (1.13.0)
+    aws-sdk (1.6.2)
+      httparty (~> 0.7)
       json (~> 1.4)
-      nokogiri (< 1.6.0)
+      nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bluecloth (2.2.0)
     bootstrap-sass (2.3.1.0)
@@ -405,7 +406,7 @@ DEPENDENCIES
   active_model_serializers (~> 0.7.0)
   acts_as_list (= 0.1.6)
   airbrake (= 3.0.9)
-  aws-sdk
+  aws-sdk (= 1.6.2)
   bluecloth
   bourbon (= 3.1.6)
   bourne
