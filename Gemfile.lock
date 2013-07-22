@@ -59,13 +59,9 @@ GEM
       builder
     arel (3.0.2)
     attr_required (0.0.5)
-    aws-s3 (0.6.2)
-      builder
-      mime-types
-      xml-simple
-    aws-sdk (1.10.0)
+    aws-sdk (1.13.0)
       json (~> 1.4)
-      nokogiri (>= 1.4.4)
+      nokogiri (< 1.6.0)
       uuidtools (~> 2.1)
     bluecloth (2.2.0)
     bootstrap-sass (2.3.1.0)
@@ -398,7 +394,6 @@ GEM
       addressable (>= 2.2.7)
       crack (>= 0.1.7)
     websocket (1.0.7)
-    xml-simple (1.1.1)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 
@@ -410,8 +405,7 @@ DEPENDENCIES
   active_model_serializers (~> 0.7.0)
   acts_as_list (= 0.1.6)
   airbrake (= 3.0.9)
-  aws-s3 (= 0.6.2)
-  aws-sdk (~> 1.10.0)
+  aws-sdk
   bluecloth
   bourbon (= 3.1.6)
   bourne
