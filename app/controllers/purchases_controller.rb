@@ -50,8 +50,7 @@ class PurchasesController < ApplicationController
   end
 
   def build_purchase_with_defaults
-    purchase = find_purchaseable.purchases.build
-    purchase.variant = params[:variant]
+    purchase = find_purchaseable.purchases.build(variant: params[:variant])
     purchase.defaults_from_user(current_user)
     purchase
   end

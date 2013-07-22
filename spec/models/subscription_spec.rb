@@ -19,7 +19,8 @@ describe Subscription do
 
   it 'assigns a mentor on creation' do
     create_mentors
-    subscription = Subscription.new(user: create(:user))
+    subscription = Subscription.new
+    subscription.user = create(:user)
     subscription.save
 
     expect(subscription.mentor).not_to be_nil
@@ -79,12 +80,16 @@ describe Subscription do
 
   describe '#active?' do
     it "returns true if deactivated_on is nil" do
-      subscription = Subscription.new(deactivated_on: nil)
+      subscription = Subscription.new
+      subscription.deactivated_on = nil
+
       subscription.should be_active
     end
 
     it "returns false if deactivated_on is not nil" do
-      subscription = Subscription.new(deactivated_on: Time.zone.today)
+      subscription = Subscription.new
+      subscription.deactivated_on = Time.zone.today
+
       subscription.should_not be_active
     end
   end
