@@ -7,7 +7,7 @@ class UsersController < Clearance::UsersController
   end
 
   def create
-    @user = user_from_params
+    @user = User.new(create_user_from_params)
 
     if @user.save
       sign_in @user
@@ -21,10 +21,14 @@ class UsersController < Clearance::UsersController
   end
 
   def update
-    if current_user.update_attributes(params[:user])
+    if current_user.update_attributes(create_user_from_params)
       redirect_to my_account_path
     else
       render action: :edit
     end
+  end
+
+  def create_user_from_params
+    params.require(:user).permit(:email, :password, :name, :github_username)
   end
 end
