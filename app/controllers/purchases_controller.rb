@@ -102,7 +102,7 @@ class PurchasesController < ApplicationController
 
   def purchase_params
     params.require(:purchase).permit(:stripe_coupon_id, :variant,
-      :name, :email, :github_usernames, :organization,
+      :name, :email, {:github_usernames => []}, :organization,
       :address1, :address2, :city,
       :state, :zip_code, :country,
       :payment_method, :stripe_token)
