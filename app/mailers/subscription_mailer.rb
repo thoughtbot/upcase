@@ -11,7 +11,7 @@ class SubscriptionMailer < BaseMailer
     )
   end
 
-  def unsubscription_survey(user)
+  def cancellation_survey(user)
     @user = user
 
     mail(

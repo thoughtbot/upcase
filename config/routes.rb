@@ -58,6 +58,8 @@ Workshops::Application.routes.draw do
       resources :purchases, only: [:new, :create]
     end
     resources :invoices, only: [:index, :show]
+    resource :cancellation, only: [:new, :create]
+    resource :downgrade, only: :create
   end
 
   resources :subscriptions, only: [:destroy, :update]
@@ -95,7 +97,6 @@ Workshops::Application.routes.draw do
   get '/backbone-js-on-rails' => redirect("/products/1-backbone-js-on-rails")
   get '/5by5' => redirect('/workshops/19-design-for-developers?utm_source=5by5')
   get '/rubyist-booster-shot' => "pages#show", as: :rubyist_booster_shot, id: "rubyist-booster-shot"
-
   put '/my_account' => 'users#update', as: 'my_account'
   get '/my_account' => 'users#edit', as: 'my_account'
   get '/sign_up' => 'users#new', as: 'sign_up'

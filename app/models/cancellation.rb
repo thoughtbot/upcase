@@ -1,4 +1,4 @@
-class Unsubscriber
+class Cancellation
   def initialize(subscription)
     @subscription = subscription
   end
@@ -19,12 +19,12 @@ class Unsubscriber
   private
 
   def deliver_unsubscription_survey
-    SubscriptionMailer.unsubscription_survey(@subscription.user).deliver
+    SubscriptionMailer.cancellation_survey(@subscription.user).deliver
   end
 
   def record_scheduled_cancellation_date(stripe_customer)
     @subscription.update_column(
-      :scheduled_for_cancelation_on,
+      :scheduled_for_cancellation_on,
       Time.at(stripe_customer.subscription.current_period_end)
     )
   end

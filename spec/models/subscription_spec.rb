@@ -141,4 +141,55 @@ describe Subscription do
       github_fulfillment
     end
   end
+
+  describe "#downgrade" do
+    it "updates the subscription record by setting deactivated_on to today" do
+      subscription = create(:active_subscription)
+      stripe_customer = stub(
+        'Stripe::Customer',
+        update_subscription: nil
+      )
+      Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
+
+      subscription.downgrade
+      subscription.reload
+
+      stripe_customer.should have_received(:update_subscription).
+        with(plan: Subscription::DOWNGRADED_PLAN)
+      expect(subscription.stripe_plan_id).to eq Subscription::DOWNGRADED_PLAN
+    end
+  end
+
+  describe "#downgraded?" do
+    it 'is downgraded if it is downgraded' do
+      subscription = create(:active_subscription)
+      expect(subscription).not_to be_downgraded
+
+      subscription.downgrade
+
+      expect(subscription).to be_downgraded
+    end
+  end
+
+  describe "#includes_workshops?" do
+    it 'does not include workshops if it is downgraded' do
+      subscription = create(:active_subscription)
+      expect(subscription.includes_workshops?).to be_true
+
+      subscription.downgrade
+
+      expect(subscription.includes_workshops?).to be_false
+    end
+  end
+
+  describe "#includes_mentor?" do
+    it 'does not include mentor if it is downgraded' do
+      subscription = create(:active_subscription)
+      expect(subscription.includes_mentor?).to be_true
+
+      subscription.downgrade
+
+      expect(subscription.includes_mentor?).to be_false
+    end
+  end
 end

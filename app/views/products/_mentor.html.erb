@@ -1,4 +1,4 @@
-<% if current_user_has_active_subscription? %>
+<% if current_user_has_active_subscription? && subscription_includes_mentor? %>
   <section class="mentor">
     <%= image_tag("learn/face-#{current_user.mentor.first_name.downcase}.png") %>
     <hgroup>

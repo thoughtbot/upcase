@@ -19,18 +19,18 @@
   <% else %>
     <div class="individual-purchase">
       <h2>
-        <% unless current_user_has_active_subscription? %>
+        <% unless current_user_has_active_subscription? && subscription_includes_workshops? %>
           Single
         <% end %>
         <span>
-          <% unless current_user_has_active_subscription? %>
+          <% unless current_user_has_active_subscription? && subscription_includes_workshops? %>
             <%= number_to_currency online_section.individual_price, precision: 0 %>
           <% end %>
         </span>
       </h2>
 
       <div class="license">
-        <% if current_user_has_active_subscription? %>
+        <% if current_user_has_active_subscription? && subscription_includes_workshops? %>
           <h2 class="active-subscription"><%= t 'workshops.show.free_to_subscribers' %></h2>
           <%= link_to new_section_purchase_path(online_section, variant: :individual), class: "free-with-prime license-button button" do %>
             <%= t('workshops.show.register_free') %>
@@ -43,7 +43,7 @@
       </div>
     </div>
 
-    <% unless current_user_has_active_subscription? %>
+    <% unless current_user_has_active_subscription? && subscription_includes_workshops? %>
       <div class="company-purchase">
         <h2>
           Group

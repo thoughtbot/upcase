@@ -110,6 +110,30 @@ form {
       font: normal 17px $serif;
     }
 
+    input[type="text"],
+    input[type="password"],
+    input[type="tel"],
+    textarea,
+    input[type="email"],
+    input[type="select"] {
+      background-color: #FFF;
+      border: 1px solid darken($warmgray, 5%);
+      border-radius: 4px;
+      box-shadow: none;
+      font-family: $sans-serif;
+      @include box-sizing(border-box);
+      font-size: 1rem;
+      margin: .25em 0;
+      padding: .75rem 1em;
+      width: 100%;
+
+      &:focus {
+        border: 1px solid $learnred;
+        outline: none;
+        outline-color: none;
+      }
+    }
+
     ol {
       &.actions {
         margin-top: 2em;
@@ -139,30 +163,6 @@ form {
 
           input[type=text] {
             background: #f8bcba;
-          }
-        }
-
-        input[type="text"],
-        input[type="password"],
-        input[type="tel"],
-        textarea,
-        input[type="email"],
-        input[type="select"] {
-          background-color: #FFF;
-          border: 1px solid darken($warmgray, 5%);
-          border-radius: 4px;
-          box-shadow: none;
-          font-family: $sans-serif;
-          @include box-sizing(border-box);
-          font-size: 1rem;
-          margin: .25em 0;
-          padding: .75rem 1em;
-          width: 100%;
-
-          &:focus {
-            border: 1px solid $learnred;
-            outline: none;
-            outline-color: none;
           }
         }
 

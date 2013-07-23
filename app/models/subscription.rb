@@ -1,6 +1,7 @@
 # This class represents a user's subscription to Learn content
 class Subscription < ActiveRecord::Base
   MAILING_LIST = 'Active Subscribers'
+  DOWNGRADED_PLAN = 'prime-maintain'
 
   belongs_to :user
   belongs_to :mentor, class_name: User
@@ -37,7 +38,28 @@ class Subscription < ActiveRecord::Base
     update_column(:deactivated_on, Time.zone.today)
   end
 
+  def downgrade
+    stripe_customer.update_subscription(plan: Subscription::DOWNGRADED_PLAN)
+    update_column(:stripe_plan_id, Subscription::DOWNGRADED_PLAN)
+  end
+
+  def downgraded?
+    stripe_plan_id == DOWNGRADED_PLAN
+  end
+
+  def includes_workshops?
+    !downgraded?
+  end
+
+  def includes_mentor?
+    !downgraded?
+  end
+
   private
+
+  def stripe_customer
+    Stripe::Customer.retrieve(stripe_customer_id)
+  end
 
   def self.subscriber_emails
     active.joins(:user).pluck(:email)
