@@ -1,15 +1,16 @@
-<% content_for :subject, @purchaseable.name %>
+<% content_for :subject_block do %>
+  <h1><%= @purchaseable.name %></h1>
+  <h2 class="tagline">
+    Watch or Download Video,
+    <% unless single_video?(@purchaseable) %>
+      <%= pluralize @purchaseable.videos.size, 'video' %> in the series
+    <% end %>
+  </h2>
+<% end %>
 <%= adwords_conversion_tracker(flash[:purchase_paid_price]) %>
 
 <div class="text-box-wrapper">
   <div class="text-box">
-    <hgroup class="product-title">
-      <h2>Watch or Download Video</h2>
-      <% unless single_video?(@purchaseable) %>
-        <h3 class="workshop-type"><%= pluralize @purchaseable.videos.size, 'video' %> in the series</h3>
-      <% end %>
-    </hgroup>
-
     <% if single_video?(@purchaseable) %>
       <%= render 'videos/watch_video', video: @purchaseable.videos.first, purchase: @purchase %>
     <% else %>

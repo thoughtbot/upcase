@@ -63,17 +63,17 @@ Then /^I should not see the date range$/ do
 end
 
 Then /^I should see a product title of "([^"]*)"$/ do |title|
-  find('.subject-block .tagline').should have_content title
+  find('.subject .tagline').should have_content title
 end
 
 Then /^I should see a link to the in-person workshop$/ do
-  workshop_name = find('.subject').text
+  workshop_name = find('.subject h1').text
   in_person_workshop = Workshop.in_person.find_by_name!(workshop_name)
   find('.workshop-alert a')[:href].should == workshop_path(in_person_workshop)
 end
 
 Then /^I should see a link to the online workshop$/ do
-  workshop_name = find('.subject').text
+  workshop_name = find('.subject h1').text
   online_workshop = Workshop.online.find_by_name!(workshop_name)
   find('.workshop-alert a')[:href].should == workshop_path(online_workshop)
 end
