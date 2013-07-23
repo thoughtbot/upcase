@@ -322,7 +322,6 @@ describe Purchase, 'with paypal' do
 
     payment.
       should have_received(:complete).with(params)
-    subject.reload.should be_paid
   end
 
   context 'and refunded' do

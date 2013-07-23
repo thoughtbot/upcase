@@ -149,7 +149,6 @@ class Purchase < ActiveRecord::Base
 
   def complete_payment(params)
     payment.complete(params)
-    set_as_paid
     save!
   end
 
