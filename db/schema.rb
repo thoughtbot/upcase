@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(:version => 20130721190245) do
     t.date     "published_on", :null => false
   end
 
+  create_table "authors", :force => true do |t|
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "tumblr_user_name", :null => false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+  end
+
+  add_index "authors", ["tumblr_user_name"], :name => "index_authors_on_tumblr_user_name", :unique => true
+
   create_table "bytes", :force => true do |t|
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
@@ -61,6 +72,9 @@ ActiveRecord::Schema.define(:version => 20130721190245) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
+
+  add_index "completions", ["trail_object_id"], :name => "index_completions_on_trail_object_id"
+  add_index "completions", ["user_id"], :name => "index_completions_on_user_id"
 
   create_table "coupons", :force => true do |t|
     t.string   "code"
@@ -131,6 +145,14 @@ ActiveRecord::Schema.define(:version => 20130721190245) do
   end
 
   add_index "follow_ups", ["workshop_id"], :name => "index_follow_ups_on_workshop_id"
+
+  create_table "lessons", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "course_id"
+  end
+
+  add_index "lessons", ["course_id"], :name => "index_lessons_on_course_id"
 
   create_table "oauth_access_grants", :force => true do |t|
     t.integer  "resource_owner_id", :null => false
@@ -247,7 +269,7 @@ ActiveRecord::Schema.define(:version => 20130721190245) do
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month",      :limit => 2
+    t.integer  "month"
     t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
@@ -358,7 +380,6 @@ ActiveRecord::Schema.define(:version => 20130721190245) do
     t.string   "zip_code"
     t.string   "country"
     t.string   "name"
-    t.boolean  "mentor",                            :default => false
   end
 
   add_index "users", ["admin"], :name => "index_users_on_admin"
