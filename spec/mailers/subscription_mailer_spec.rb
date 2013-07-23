@@ -20,13 +20,13 @@ describe SubscriptionMailer do
     end
   end
 
-  describe '.unsubscription_survey' do
+  describe '.cancellation_survey' do
     it 'sends a survey to the user who just unsubscribed' do
       user = create(:user)
-      email = SubscriptionMailer.unsubscription_survey(user)
+      email = SubscriptionMailer.cancellation_survey(user)
       expect(email.to).to include(user.email)
       expect(email).to have_body_text(/Hi #{user.first_name}/)
-      expect(email).to have_body_text(/just unsubscribed/)
+      expect(email).to have_body_text(/just canceled/)
     end
   end
 
