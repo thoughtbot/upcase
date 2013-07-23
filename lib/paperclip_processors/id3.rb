@@ -3,6 +3,7 @@ require 'mp3info'
 module Paperclip
   class Id3 < Processor
     include Rails.application.routes.url_helpers
+    COVER = File.join(Rails.root, 'app', 'assets', 'images', 'podcast', 'podcastlogo-1400.jpg')
 
     class InstanceNotGiven < ArgumentError; end
 
@@ -35,6 +36,7 @@ module Paperclip
       Mp3Info.open(mp3_file.path) do |mp3|
         set_v1_tags(mp3)
         set_v2_tags(mp3)
+        add_cover_image(mp3)
       end
       set_comments_tag(mp3_file)
     end
@@ -78,6 +80,14 @@ module Paperclip
       Mp3Info.open(mp3_file.path) do |mp3|
         @instance.duration = mp3.length.to_i
       end
+    end
+
+    def add_cover_image(mp3)
+      mp3.tag2.add_picture(cover_image)
+    end
+
+    def cover_image
+      File.new(COVER, 'rb').read
     end
   end
 end

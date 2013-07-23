@@ -13,6 +13,7 @@ describe Paperclip::Id3 do
     Mp3Info.open(mp3) do |mp3|
       expect_v1_tags(episode, mp3)
       expect_v2_tags(episode, mp3)
+      expect_cover_art(mp3)
     end
   end
 
@@ -55,5 +56,10 @@ describe Paperclip::Id3 do
       expect(mp3.tag2[field]).to eq 'thoughtbot'
     end
     expect(mp3.tag2.TCOP).to eq '2013 thoughtbot, inc.'
+  end
+
+  def expect_cover_art(mp3)
+    expect(mp3.tag2.pictures[0].second).
+      to eq File.new(Paperclip::Id3::COVER, 'rb').read
   end
 end
