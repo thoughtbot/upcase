@@ -294,7 +294,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def set_as_unpaid!
-    set_as_paid
+    set_as_unpaid
     save!
   end
 
