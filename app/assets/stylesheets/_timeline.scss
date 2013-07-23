@@ -1,0 +1,66 @@
+.timeline {
+  position: relative;
+  overflow: auto;
+
+  .user-image {
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+    float: left;
+  }
+
+  .user-info {
+    float: left;
+    margin: 3px 20px;
+    @include span-columns(6);
+
+    h3 {
+      float: left;
+      margin-bottom: 0px;
+    }
+
+    h4 {
+      clear: left;
+      margin: 0 0 10px;
+    }
+
+    p {
+      clear: left;
+      margin: 5px 0;
+      font-style: italic;
+    }
+  }
+
+  .goals {
+    @include span-columns(5);
+    clear: left;
+    margin-top: 20px;
+
+    h4 {
+      padding-bottom: 4px;
+      margin: 0 0 6px 12px;
+    }
+
+    li {
+      margin: 0;
+    }
+  }
+
+  .profile {
+    @include outer-container;
+    background: $lightwarmgray;
+    overflow: auto;
+  }
+
+  .profile:after {
+    content: '';
+    background: $journey-line-color;
+    display: block;
+    width: 10px;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    z-index: -1;
+  }
+}
