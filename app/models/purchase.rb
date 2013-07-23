@@ -183,6 +183,10 @@ class Purchase < ActiveRecord::Base
     coupon.try(:applied)
   end
 
+  def set_as_unpaid
+    self.paid = false
+  end
+
   private
 
   def password_required?
@@ -291,7 +295,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def set_as_unpaid!
-    self.paid = false
+    set_as_paid
     save!
   end
 

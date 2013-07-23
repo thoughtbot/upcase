@@ -76,6 +76,16 @@ describe Purchase do
     end
   end
 
+  context "#set_as_unpaid" do
+    it 'becomes unpaid' do
+      purchase = build_stubbed(:paid_purchase)
+
+      purchase.set_as_unpaid
+
+      purchase.should_not be_paid
+    end
+  end
+
   context 'when not fulfilled_with_github' do
     it 'does not fulfill with github' do
       purchase = build(:paid_purchase)

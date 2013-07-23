@@ -16,7 +16,7 @@ module Payments
         paypal_purchase_url(@purchase, host: self.class.host),
         products_url(host: self.class.host)
       )
-      @purchase.paid = false
+      @purchase.set_as_unpaid
       @purchase.paypal_url = response.redirect_uri
     end
 

@@ -31,7 +31,8 @@ describe Payments::PaypalPayment do
             products_url(host: host)
           )
       purchase.paypal_url.should == 'http://paypalurl'
-      purchase.should_not be_paid
+      purchase.should have_received(:set_as_unpaid)
+      purchase.should have_received(:set_as_paid).never
     end
   end
 
@@ -45,7 +46,8 @@ describe Payments::PaypalPayment do
       payment.complete token: 'TOKEN', PayerID: 'PAYERID'
 
       purchase.payment_transaction_id.should == 'TRANSACTION-ID'
-      purchase.should be_paid
+      purchase.should have_received(:set_as_paid)
+      purchase.should have_received(:set_as_unpaid).never
     end
   end
 
@@ -112,13 +114,14 @@ describe Payments::PaypalPayment do
 
   def stub_purchase(overrides = {})
     product = create(:product, individual_price: 15, company_price: 50)
-    build_stubbed(
-      :purchase,
-      {
-        purchaseable: product,
-        payment_method: 'paypal',
-        lookup: 'findme'
-      }.merge(overrides)
-    )
+    attributes = {
+      purchaseable: product,
+      payment_method: 'paypal',
+      lookup: 'findme'
+    }.merge(overrides)
+
+    build_stubbed(:purchase, attributes).tap do |purchase|
+      purchase.stubs(set_as_paid: true, set_as_unpaid: true)
+    end
   end
 end
