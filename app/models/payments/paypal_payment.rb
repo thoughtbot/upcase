@@ -11,25 +11,13 @@ module Payments
     end
 
     def place
-      response = express_request.setup(
-        payment_request,
-        paypal_purchase_url(@purchase, host: self.class.host),
-        products_url(host: self.class.host)
-      )
-      @purchase.set_as_unpaid
-      @purchase.paypal_url = response.redirect_uri
+      redirect_uri = setup_payment_request
+      set_unpaid_request redirect_uri
     end
 
     def complete(params)
-      response = express_request.checkout!(
-        params[:token],
-        params[:PayerID],
-        payment_request
-      )
-
-      @purchase.payment_transaction_id =
-        response.payment_info.first.transaction_id
-      @purchase.set_as_paid
+      payment_transaction_id = complete_payment_request(params)
+      set_paid_request payment_transaction_id
     end
 
     def refund
@@ -52,6 +40,34 @@ module Payments
     end
 
     private
+
+    def setup_payment_request
+      response = express_request.setup(
+        payment_request,
+        paypal_purchase_url(@purchase, host: self.class.host),
+        products_url(host: self.class.host)
+      )
+      response.redirect_uri
+    end
+
+    def set_unpaid_request(redirect_uri)
+      @purchase.set_as_unpaid
+      @purchase.paypal_url = redirect_uri
+    end
+
+    def set_paid_request(payment_transaction_id)
+      @purchase.payment_transaction_id = payment_transaction_id
+      @purchase.set_as_paid
+    end
+
+    def complete_payment_request(params)
+      response = express_request.checkout!(
+        params[:token],
+        params[:PayerID],
+        payment_request
+      )
+      response.payment_info.first.transaction_id
+    end
 
     def payment_request
       Paypal::Payment::Request.new(
