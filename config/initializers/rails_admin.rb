@@ -70,9 +70,10 @@ RailsAdmin.config do |config|
     edit do
       group :default do
         field :mp3
-        field :file do
-          help 'An S3 file url'
-        end
+        field :title
+        field :description
+        field :notes
+        field :published_on
         field :topics
         field :downloads_count do
           read_only true
@@ -80,11 +81,7 @@ RailsAdmin.config do |config|
       end
 
       group :information do
-        help 'Leave blank to have this information populated from the id3 tags.'
-        field :title
-        field :description
-        field :notes
-        field :published_on
+        help 'Leave blank to have this information populated from the mp3'
         field :file_size
         field :duration
       end
