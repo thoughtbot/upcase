@@ -50,17 +50,17 @@
     @include outer-container;
     background: $lightwarmgray;
     overflow: auto;
-  }
 
-  .profile:after {
-    content: '';
-    background: $journey-line-color;
-    display: block;
-    width: 10px;
-    height: 100%;
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    z-index: -1;
+    &:after {
+      content: '';
+      background: $journey-line-color;
+      display: block;
+      width: 10px;
+      height: 100%;
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      z-index: -1;
+    }
   }
 }
