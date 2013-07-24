@@ -166,7 +166,7 @@ describe WorkshopMailer do
 
     def workshop_survey_email
       section = create(:section)
-      SurveyMailer.workshop_survey(section, 'email@example.com')
+      WorkshopMailer.workshop_survey(section, 'email@example.com')
     end
   end
 end
