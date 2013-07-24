@@ -15,7 +15,7 @@ describe SendPurchaseReceiptEmailJob do
   describe '#perform' do
     it 'sends a purchase receipt' do
       purchase = stubbed_purchase
-      mail_stub = stub_mail_method(:purchase_receipt)
+      mail_stub = stub_mail_method(Mailer, :purchase_receipt)
 
       SendPurchaseReceiptEmailJob.new(purchase.id).perform
 

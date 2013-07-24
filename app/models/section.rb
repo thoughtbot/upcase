@@ -119,7 +119,7 @@ class Section < ActiveRecord::Base
 
   def send_surveys
     ending_student_emails.each do |email|
-      Mailer.workshop_survey(self, email).deliver
+      SurveyMailer.workshop_survey(self, email).deliver
     end
   end
 
