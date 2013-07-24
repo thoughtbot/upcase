@@ -380,12 +380,20 @@
     padding: 0 $product-card-margin/2;
   }
 
+  &.screencasts {
+    height: 224px;
+
+    > figure, > .figure-container {
+      height: 210px;
+    }
+  }
+
   &.revealed {
     height: auto;
     padding-bottom: 1.5rem;
 
-    .nav.show-all:after {
-      content: 'Hide workhops';
+    .nav.show-all:before {
+      content: 'hide ';
     }
   }
 
@@ -409,19 +417,19 @@
 
   .nav.show-all {
     background: $lightwarmgray;
+    color: $darkwarmgray;
     cursor: pointer;
+    font-style: italic;
     height: 4rem;
+    line-height: 4rem;
+    margin: 0;
     @include position(absolute, 0 0px 0px 0);
     text-align: center;
     @include user-select(none);
     width: 100%;
 
-    &:after {
-      color: $darkwarmgray;
-      content: 'Show all workshops';
-      font-style: italic;
-      margin: 0;
-      @include position(absolute, 1.5rem 0px 0 0px);
+    &:before {
+      content: 'show ';
     }
   }
 }
