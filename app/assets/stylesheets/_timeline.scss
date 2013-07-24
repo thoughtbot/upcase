@@ -31,7 +31,7 @@
     }
   }
 
-  .goals {
+  .long-term-goals {
     @include span-columns(5);
     clear: left;
     margin-top: 20px;
@@ -62,5 +62,40 @@
       bottom: 0;
       z-index: -1;
     }
+  }
+
+  .progress-tracker {
+    float: right;
+    height: 100%;
+    width: 46%;
+    position: relative;
+
+    ol {
+      list-style-type: none;
+      margin: 0;
+    }
+
+    h4 {
+      margin: 20px 0;
+    }
+
+    .week {
+      border-bottom: 1px solid $journey-line-color;
+    }
+
+    input {
+      margin-bottom: 20px;
+    }
+
+    .week-past {
+      h4, li {
+        color: lighten($darkwarmgray, 25);
+      }
+    }
+  }
+
+  .notes {
+    margin-top: 40px;
+    height: 150px;
   }
 }
