@@ -18,4 +18,16 @@ class SubscriptionMailer < BaseMailer
       subject: 'Suggestions for improving Prime'
     )
   end
+
+  def subscription_receipt(email, plan_name, amount, stripe_invoice_id)
+    @plan_name = plan_name
+    @amount = amount
+    @stripe_invoice_id = stripe_invoice_id
+
+    mail(
+      to: email,
+      subject: "[Learn] Your #{plan_name} receipt and some tips",
+      from: Clearance.configuration.mailer_sender
+    )
+  end
 end

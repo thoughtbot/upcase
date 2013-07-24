@@ -5,7 +5,7 @@ StripeEvent.setup do
     if Product.find_by_sku(subscription_plan.id).subscription?
       invoice = SubscriptionInvoice.new(event.data.object)
 
-      Mailer.delay.subscription_receipt(
+      SubscriptionMailer.delay.subscription_receipt(
         invoice.user.email,
         invoice.subscription_item_name,
         invoice.amount_paid,

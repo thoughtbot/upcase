@@ -17,11 +17,11 @@ describe SendFollowUpEmailJob do
     it 'sends a follow up email' do
       follow_up = create(:follow_up)
       section = create(:section)
-      mail_stub = stub_mail_method(PurchaseMailer, :follow_up)
+      mail_stub = stub_mail_method(WorkshopMailer, :follow_up)
 
       SendFollowUpEmailJob.new(follow_up.id, section.id).perform
 
-      PurchaseMailer.should have_received(:follow_up).with(follow_up, section)
+      WorkshopMailer.should have_received(:follow_up).with(follow_up, section)
       mail_stub.should have_received(:deliver)
     end
 

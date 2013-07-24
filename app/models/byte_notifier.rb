@@ -15,7 +15,7 @@ class ByteNotifier
   private
 
   def send_notification(email, byte)
-    Mailer.byte_notification(email, byte).deliver
+    NotificationMailer.byte_notification(email, byte).deliver
   rescue *SMTP_ERRORS => error
     Airbrake.notify(error)
   end

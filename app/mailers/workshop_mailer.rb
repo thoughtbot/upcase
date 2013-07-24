@@ -1,11 +1,10 @@
-class Mailer < BaseMailer
-  def purchase_receipt(purchase)
-    @purchase = purchase
+class WorkshopMailer < BaseMailer
+  def follow_up(follow_up, section)
+    @section = section
 
     mail(
-      to: @purchase.email,
-      subject: "Your receipt for #{@purchase.purchaseable_name}",
-      from: Clearance.configuration.mailer_sender
+      to: follow_up.email,
+      subject: "The #{@section.workshop.name} workshop has been scheduled"
     )
   end
 
@@ -51,26 +50,14 @@ class Mailer < BaseMailer
     )
   end
 
-  def byte_notification(email, byte)
-    @byte = byte
+  def workshop_survey(section, email)
+    @section = section
 
     mail(
       to: email,
       from: 'learn@thoughtbot.com',
       reply_to: 'learn@thoughtbot.com',
-      subject: "[Learn] New Byte: #{byte.title}"
-    )
-  end
-
-  def subscription_receipt(email, plan_name, amount, stripe_invoice_id)
-    @plan_name = plan_name
-    @amount = amount
-    @stripe_invoice_id = stripe_invoice_id
-
-    mail(
-      to: email,
-      subject: "[Learn] Your #{plan_name} receipt and some tips",
-      from: Clearance.configuration.mailer_sender
+      subject: "[Learn] #{section.name}: Please tell us how we did"
     )
   end
 end
