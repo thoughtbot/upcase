@@ -1,8 +1,4 @@
-class Mailer < ActionMailer::Base
-  default from: Clearance.configuration.mailer_sender
-  add_template_helper PurchasesHelper
-  add_template_helper ApplicationHelper
-
+class Mailer < BaseMailer
   def welcome_to_prime(user)
     @user = user
     @mentor = user.mentor
@@ -88,17 +84,6 @@ class Mailer < ActionMailer::Base
     )
   end
 
-  def workshop_survey(section, email)
-    @section = section
-
-    mail(
-      to: email,
-      from: 'learn@thoughtbot.com',
-      reply_to: 'learn@thoughtbot.com',
-      subject: "[Learn] #{section.name}: Please tell us how we did"
-    )
-  end
-
   def byte_notification(email, byte)
     @byte = byte
 
@@ -107,15 +92,6 @@ class Mailer < ActionMailer::Base
       from: 'learn@thoughtbot.com',
       reply_to: 'learn@thoughtbot.com',
       subject: "[Learn] New Byte: #{byte.title}"
-    )
-  end
-
-  def unsubscription_survey(user)
-    @user = user
-
-    mail(
-      to: user.email,
-      subject: 'Suggestions for improving Prime'
     )
   end
 
