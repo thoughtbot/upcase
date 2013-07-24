@@ -65,4 +65,12 @@ $(function() {
       });
     });
   }
+
+  if ($('.card-slider.products').length) {
+    $('.toggle-slider').click(function() {
+      $(this).toggleClass('down');
+      $('.card-slider.products').toggleClass('active');
+      return false;
+    });
+  }
 });
