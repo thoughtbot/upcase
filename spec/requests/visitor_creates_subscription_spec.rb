@@ -65,7 +65,7 @@ feature 'Visitor is asked to create a user before subscription' do
   end
 
   def expect_to_see_mentor
-    expect(page).to have_css('figure.mentor h4', text: 'Your Mentor')
+    expect(page).to have_css('section.mentor h3', text: 'Your Mentor')
   end
 
   def create_subscribeable_product
