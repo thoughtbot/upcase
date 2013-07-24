@@ -369,7 +369,7 @@
 }
 
 .vertical-slider {
-  height: 425px;
+  height: 420px;
   margin: 0 auto;
   overflow: hidden;
   padding: $product-card-margin/2 $slide-button-width - $product-card-margin/2 0;
@@ -381,10 +381,10 @@
   }
 
   &.screencasts {
-    height: 224px;
+    height: 290px;
 
     > figure, > .figure-container {
-      height: 210px;
+      height: 200px;
     }
   }
 
