@@ -5,13 +5,12 @@
   </figure>
   <%= render partial: 'products/workshop', collection: online_workshops %>
   <%= render partial: 'products/workshop', collection: in_person_workshops %>
-  <a class="nav show-all"></a>
+  <a class="nav show-all">all workshops</a>
 </section>
 
-<section class="screencasts card-slider">
-  <a class="nav prev"></a>
+<section class="screencasts vertical-slider">
   <%= render partial: 'products/video', collection: videos %>
-  <a class="nav next"></a>
+  <a class="nav show-all">all screencasts</a>
 </section>
 
 <section class="forum">
