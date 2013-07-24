@@ -112,6 +112,29 @@
       }
     }
 
+    &.group:after, &.group:before {
+      background: #fff;
+      border-radius: 3px;
+      box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.17);
+      content: '';
+      display: block;
+      height: 50px;
+      @include position(absolute, -.4em 0 0 5%);
+      width: 90%;
+      z-index: -1;
+    }
+
+    &.group:before {
+      left: 10%;
+      top: -.75em;
+      width: 80%;
+      box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+    }
+
+    &.group figure {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, .1), 0 -12px 0 -11px rgba(0, 0, 0, .17);
+    }
+
     h5 {
       margin-bottom: .25rem;
     }
@@ -125,7 +148,7 @@
     figure {
       border: .3rem solid white;
       border-radius: 3px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
       height: 128px;
       line-height: 0;
       position: relative;
