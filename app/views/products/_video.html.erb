@@ -4,7 +4,7 @@
       <%= image_tag(video.product_image.url) %>
       <span><%= video.tagline %></span>
     </figure>
-    <h5>Screencast</h5>
+    <h5>Screencast <%= "(#{video.videos.count} videos)" if video.videos.count > 1 %></h5>
     <h4><%= video.name %></h4>
   <% end %>
 </figure>
