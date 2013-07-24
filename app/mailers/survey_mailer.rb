@@ -9,13 +9,4 @@ class SurveyMailer < BaseMailer
       subject: "[Learn] #{section.name}: Please tell us how we did"
     )
   end
-
-  def unsubscription_survey(user)
-    @user = user
-
-    mail(
-      to: user.email,
-      subject: 'Suggestions for improving Prime'
-    )
-  end
 end

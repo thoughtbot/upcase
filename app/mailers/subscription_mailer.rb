@@ -9,4 +9,13 @@ class SubscriptionMailer < BaseMailer
       from: "#{@mentor.name} <#{@mentor.email}>"
     )
   end
+
+  def unsubscription_survey(user)
+    @user = user
+
+    mail(
+      to: user.email,
+      subject: 'Suggestions for improving Prime'
+    )
+  end
 end
