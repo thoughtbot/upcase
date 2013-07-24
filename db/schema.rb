@@ -380,6 +380,7 @@ ActiveRecord::Schema.define(:version => 20130721190245) do
     t.string   "zip_code"
     t.string   "country"
     t.string   "name"
+    t.boolean  "mentor",                             :default => false, :null => false
   end
 
   add_index "users", ["admin"], :name => "index_users_on_admin"
