@@ -14,7 +14,7 @@ class Subscription < ActiveRecord::Base
 
   def self.deliver_welcome_emails
     recent.each do |subscription|
-      Mailer.welcome_to_prime(subscription.user).deliver
+      SubscriptionMailer.welcome_to_prime(subscription.user).deliver
     end
   end
 

@@ -108,7 +108,7 @@ class Section < ActiveRecord::Base
 
   def send_reminders
     paid_purchases.each do |purchase|
-      Mailer.delay.section_reminder(purchase.id, id)
+      WorkshopMailer.delay.section_reminder(purchase.id, id)
     end
   end
 
@@ -119,14 +119,14 @@ class Section < ActiveRecord::Base
 
   def send_surveys
     ending_student_emails.each do |email|
-      Mailer.workshop_survey(self, email).deliver
+      WorkshopMailer.workshop_survey(self, email).deliver
     end
   end
 
   def send_office_hours_reminders
     if office_hours.present?
       current_student_emails.each do |email|
-        Mailer.office_hours_reminder(self, email).deliver
+        WorkshopMailer.office_hours_reminder(self, email).deliver
       end
     end
   end
@@ -191,7 +191,7 @@ class Section < ActiveRecord::Base
 
   def send_teacher_notifications
     teachers.each do |teacher|
-      Mailer.delay.teacher_notification(teacher.id, id)
+      WorkshopMailer.delay.teacher_notification(teacher.id, id)
     end
   end
 

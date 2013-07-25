@@ -40,12 +40,12 @@ describe Subscription do
       old_subscription = create :subscription, created_at: 25.hours.ago
       new_subscription = create :subscription, created_at: 10.hours.ago
       mailer = stub(deliver: true)
-      Mailer.stubs(welcome_to_prime: mailer)
+      SubscriptionMailer.stubs(welcome_to_prime: mailer)
 
       Subscription.deliver_welcome_emails
 
-      expect(Mailer).to have_received(:welcome_to_prime).with(new_subscription.user)
-      expect(Mailer).to have_received(:welcome_to_prime).with(old_subscription.user).never
+      expect(SubscriptionMailer).to have_received(:welcome_to_prime).with(new_subscription.user)
+      expect(SubscriptionMailer).to have_received(:welcome_to_prime).with(old_subscription.user).never
       expect(mailer).to have_received(:deliver).once
     end
   end

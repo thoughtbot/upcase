@@ -19,7 +19,7 @@ class Unsubscriber
   private
 
   def deliver_unsubscription_survey
-    Mailer.unsubscription_survey(@subscription.user).deliver
+    SubscriptionMailer.unsubscription_survey(@subscription.user).deliver
   end
 
   def record_scheduled_cancellation_date(stripe_customer)

@@ -17,6 +17,6 @@ class VideoNotifier
   private
 
   def send_notification(email, item)
-    Mailer.video_notification(email, item).deliver
+    WorkshopMailer.video_notification(email, item).deliver
   end
 end

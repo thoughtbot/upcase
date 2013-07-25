@@ -8,7 +8,7 @@ class SendFollowUpEmailJob < Struct.new(:follow_up_id, :section_id)
   def perform
     follow_up = FollowUp.find(follow_up_id)
     section = Section.find(section_id)
-    Mailer.follow_up(follow_up, section).deliver
+    WorkshopMailer.follow_up(follow_up, section).deliver
     follow_up.update_attribute(:notified_at, Time.zone.now)
   end
 end
