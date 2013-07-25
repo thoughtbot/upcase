@@ -9,7 +9,7 @@ class Completion < ActiveRecord::Base
   end
 
   def title
-    step = Trail.all_resources_and_validations.detect { |step| step['id'].to_s == trail_object_id }
+    step = Trail.all_resources_and_validations.detect { |step| step['id'] == trail_object_id }
     step['title']
   end
 end
