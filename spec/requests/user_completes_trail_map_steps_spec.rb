@@ -7,7 +7,7 @@ feature 'User can see their trail map progress' do
 
   scenario 'A user with nothing completed sees they have no progress', js: true do
     topic = create(:topic, name: 'Git', featured: true)
-    trail = create(:trail, trail_map: fake_trail_map, topic: topic)
+    trail = create(:trail, trail_map: FakeTrailMap.new.trail, topic: topic)
 
     visit topics_path
 
@@ -19,7 +19,7 @@ feature 'User can see their trail map progress' do
   scenario 'A user with items completed sees they have progress', js: true do
     resource_id = '2f720eaa8bcd602a7dc731feb224ff99bb85a03c'
     topic = create(:topic, name: 'Git', featured: true)
-    trail = create(:trail, trail_map: fake_trail_map, topic: topic)
+    trail = create(:trail, trail_map: FakeTrailMap.new.trail, topic: topic)
     completion = @current_user.completions.create(
       trail_name: 'Git',
       trail_object_id: resource_id
@@ -34,7 +34,7 @@ feature 'User can see their trail map progress' do
   scenario 'A user with items completed has the item checked', js: true do
     resource_id = '2f720eaa8bcd602a7dc731feb224ff99bb85a03c'
     topic = create(:topic, name: 'Git', featured: true)
-    trail = create(:trail, trail_map: fake_trail_map, topic: topic)
+    trail = create(:trail, trail_map: FakeTrailMap.new.trail, topic: topic)
     completion = @current_user.completions.create(
       trail_name: 'Git',
       trail_object_id: resource_id
@@ -48,7 +48,7 @@ feature 'User can see their trail map progress' do
   scenario 'A user completes an item', js: true do
     resource_id = '2f720eaa8bcd602a7dc731feb224ff99bb85a03c'
     topic = create(:topic, name: 'Git', featured: true)
-    trail = create(:trail, trail_map: fake_trail_map, topic: topic)
+    trail = create(:trail, trail_map: FakeTrailMap.new.trail, topic: topic)
 
     expect(@current_user.completions.where(trail_object_id: resource_id)).
       to be_empty
