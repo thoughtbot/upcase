@@ -5,6 +5,7 @@
     <%= semantic_form_for current_user, url: my_account_path do |form| %>
       <%= form.inputs "Your Information [#{link_to('Sign out', sign_out_path, method: :delete)}]" do %>
         <%= form.input :name, label: 'Your Name', input_html: { placeholder: "Name" } %>
+        <%= form.input :bio, label: 'About You', as: :text, input_html: { rows: 4 } %>
         <%= form.input :email, as: :email %>
         <%= form.input :github_username %>
         <% if !current_user.external_auth? %>

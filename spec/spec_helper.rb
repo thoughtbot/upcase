@@ -31,7 +31,6 @@ RSpec.configure do |config|
   config.include EmailSpec::Matchers
   config.include FactoryGirl::Syntax::Methods
   config.include Subscriptions
-  config.include FakeTrailMap
   config.include PurchaseHelpers
 
   config.mock_with :mocha

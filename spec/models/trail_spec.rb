@@ -7,14 +7,16 @@ describe Trail do
   it { should validate_presence_of(:slug) }
 
   it "gets its name from the trail map" do
-    trail = build(:trail, trail_map: fake_trail_map)
+    trail_map = FakeTrailMap.new.trail
+    trail = build(:trail, trail_map: trail_map)
 
     expect(trail.name).to eq 'Git'
   end
 
   context '#total' do
     it 'is the number of resources and validations' do
-      trail = build(:trail, trail_map: fake_trail_map)
+      trail_map = FakeTrailMap.new.trail
+      trail = build(:trail, trail_map: trail_map)
 
       expect(trail.total).to eq 2
     end
@@ -22,14 +24,14 @@ describe Trail do
 
   context '#import' do
     before do
-      fake_body_str = fake_trail_map.to_json
+      fake_body_str = FakeTrailMap.new.trail.to_json
       Curl.stubs(get: stub(body_str: fake_body_str, response_code: 200))
     end
 
     it 'downloads a trail and stores it' do
       trail = create(:trail, slug: 'fake-trail')
       trail.import
-      trail.trail_map.should == fake_trail_map
+      trail.trail_map.should == FakeTrailMap.new.trail
     end
 
     it "populates the topic's summary with the trail's description" do
@@ -67,7 +69,7 @@ describe Trail do
     end
 
     it 'does not update trail map if there is a non-200 http response' do
-      Curl.stubs(get: stub(response_code: 'not 200', body_str: fake_trail_map.to_json))
+      Curl.stubs(get: stub(response_code: 'not 200', body_str: FakeTrailMap.new.trail.to_json))
       topic = create(:topic, summary: 'old summary', name: 'old name', slug: 'old+name')
       trail = create(:trail, topic: topic, trail_map: {'name' => 'old name', 'description' => 'old summary'})
 
@@ -87,16 +89,34 @@ describe Trail do
     end
   end
 
+  context '#resources_and_validations' do
+    it 'returns resources and validations for all steps' do
+      trail = create(:trail, trail_map: FakeTrailMap.new.trail)
+
+      expect(trail.resources_and_validations.size).to eq 2
+    end
+
+    it 'returns an array when a step has no resources or validations' do
+      trail_without_resources = FakeTrailMap.new.trail
+      trail_without_resources['steps'].first.delete('resources')
+      trail_without_resources['steps'].first.delete('validations')
+
+      trail = create(:trail, trail_map: trail_without_resources)
+
+      expect(trail.resources_and_validations).to eq []
+    end
+  end
+
   context '.import' do
     it 'imports each trail' do
       trail = create(:trail, trail_map: { hello: 'world' })
-      Curl.stubs(get: stub(body_str: fake_trail_map.to_json, response_code: 200))
+      Curl.stubs(get: stub(body_str: FakeTrailMap.new.trail.to_json, response_code: 200))
 
-      expect(trail.trail_map).not_to eq fake_trail_map
+      expect(trail.trail_map).not_to eq FakeTrailMap.new.trail
 
       Trail.import
 
-      expect(trail.reload.trail_map).to eq fake_trail_map
+      expect(trail.reload.trail_map).to eq FakeTrailMap.new.trail
     end
   end
 end
