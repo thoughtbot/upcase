@@ -26,8 +26,7 @@ class SubscriptionMailer < BaseMailer
 
     mail(
       to: email,
-      subject: "[Learn] Your #{plan_name} receipt and some tips",
-      from: Clearance.configuration.mailer_sender
+      subject: "[Learn] Your #{plan_name} receipt and some tips"
     )
   end
 end
