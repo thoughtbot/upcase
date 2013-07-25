@@ -15,7 +15,7 @@ class Section < ActiveRecord::Base
   delegate :name, :description, :individual_price, :company_price, :terms,
     :videos, :resources, :video_chat_url, :office_hours, :in_person?, :online?,
     :github_team, :fulfilled_with_github?, :length_in_days, :sku,
-    :fulfillment_method, to: :workshop, allow_nil: true
+    :fulfillment_method, :subscription?, to: :workshop, allow_nil: true
 
   # Nested Attributes
   accepts_nested_attributes_for :section_teachers
@@ -137,10 +137,6 @@ class Section < ActiveRecord::Base
 
   def to_param
     "#{id}-#{name.parameterize}"
-  end
-
-  def subscription?
-    false
   end
 
   def purchase_for(user)

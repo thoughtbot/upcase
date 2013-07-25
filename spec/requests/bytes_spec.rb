@@ -21,7 +21,7 @@ describe 'Bytes' do
 
       visit topic_bytes_path(topic)
 
-      expect(page).to have_content "#{topic.name} Bytes"
+      expect(page).to have_content "#{topic.name} #{I18n.t('shared.bytes')}"
       expect(page).not_to have_css("a[href='#{byte_path(draft)}']")
       expect(page).to have_css("a[href='#{byte_path(byte)}']")
     end

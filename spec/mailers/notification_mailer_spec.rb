@@ -12,8 +12,8 @@ describe NotificationMailer do
       email = NotificationMailer.byte_notification(email, byte)
 
       expect(email.from).to eq(%w(learn@thoughtbot.com))
-      expect(email).to have_subject('[Learn] New Byte: Great Article')
-      expect(email).to have_body_text(/just published the latest Learn Byte/)
+      expect(email).to have_subject("[Learn] New #{I18n.t('shared.byte')}: Great Article")
+      expect(email).to have_body_text(/just published the latest #{I18n.t('shared.byte')}/)
       expect(email).to have_body_text(/Great Article/)
       expect(email).to have_body_text(/this is the body/)
     end

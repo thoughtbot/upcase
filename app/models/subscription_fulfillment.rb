@@ -6,8 +6,19 @@ class SubscriptionFulfillment
   def fulfill
     if @purchase.subscription?
       @purchase.user.create_subscription(
-        stripe_plan_id: @purchase.purchaseable_sku
+        plan: @purchase.purchaseable,
+        mentor: mentor
       )
+    end
+  end
+
+  private
+
+  def mentor
+    if @purchase.mentor_id.present?
+      User.find(@purchase.mentor_id)
+    else
+      User.mentors.sample
     end
   end
 end

@@ -5,14 +5,38 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
   display: inline-block;
   height: 330px;
-  padding: .3rem;
+  padding: 5px;
   position: relative;
   width: $product-card-width;
 
-  &:hover, &.active {
-    .actions {
-      opacity: 1;
+  &.workshop-online:hover, &.workshop-in-person:hover {
+    .hover-text {
+      @include transform(translate3D(0, 0, 0));
     }
+
+    img, .inperson-date {
+      @include transform(translate3D(110%, 0, 0));
+    }
+  }
+
+  &.in-progress, &.registered, &.complete, {
+    h5 {
+      display: none;
+    }
+  }
+
+  &.in-progress .status, &.registered .status {
+    background: rgba(255, 255, 0, .4);
+    color: $darkwarmgray;
+    display: block;
+  }
+
+  &.complete .status {
+    background: url(/assets/check.svg) no-repeat 5px 5px #83EBA8;
+    background-size: 18px;
+    color: darken(#83EBA8, 45%);
+    display: block;
+    text-indent: 18px;
   }
 
   &.meta {
@@ -78,7 +102,7 @@
     }
 
     .trails {
-      background: url(/assets/learn/trails-graphic.svg) no-repeat 40px -4px;
+      background: url(/assets/learn/trails-graphic.svg) no-repeat 40px -2px;
       background-size: contain;
       padding: 0;
 
@@ -101,19 +125,13 @@
     height: auto;
     padding: 0;
 
-    &:hover figure {
-      span {
-        opacity: 1;
-        @include transform(scale(1));
-      }
-
-      &:after {
-        box-shadow: inset 0 0 300px rgba(0, 0, 0, 1);
-      }
+    &:hover figure span {
+      opacity: 1;
+      @include transform(scale(1));
     }
 
     &.group:after, &.group:before {
-      background: #fff;
+      background: #eee;
       border-radius: 3px;
       box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.17);
       content: '';
@@ -121,14 +139,13 @@
       height: 50px;
       @include position(absolute, -.4em 0 0 5%);
       width: 90%;
-      z-index: -1;
+      z-index: 1;
     }
 
     &.group:before {
       left: 10%;
       top: -.75em;
       width: 80%;
-      box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
     }
 
     &.group figure {
@@ -146,32 +163,25 @@
     }
 
     figure {
-      border: .3rem solid white;
       border-radius: 3px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
       height: 128px;
       line-height: 0;
+      overflow: hidden;
       position: relative;
-
-      &:after {
-        box-shadow: inset 0 0 25px rgba(0, 0, 0, 0);
-        content: '';
-        display: block;
-        @include position(absolute, 0px 0px 0px 0px);
-        @include transition;
-      }
+      z-index: 2;
 
       span {
+        border-radius: 3px;
+        box-shadow: inset 0 0 300px rgba(0, 0, 0, 1);
         color: #fff;
         font: 400 1rem/1.4em $serif;
         opacity: 0;
         padding: .8rem 1rem;
-        @include position(absolute, 0px 0 0 0px);
-        position: absolute;
-        @include transform(scale(1.1));
-        @include transition;
+        @include position(absolute, 0px 0px 0px 0px);
+        @include transform(scale(.95));
+        @include transition(.1s);
         @include user-select(none);
-        width: 100%;
         z-index: 1;
       }
     }
@@ -179,15 +189,20 @@
 
   &.book {
     border: 1px solid rgb(200, 200, 200);
+    display: inline-block;
     height: auto;
     line-height: 0;
     padding: 0;
-    width: 246px;
+    position: relative;
+    width: $product-card-width;
   }
 
   > a {
     display: block;
     height: 100%;
+    line-height: 0;
+    overflow: hidden;
+    position: relative;
   }
 
   h4 {
@@ -214,6 +229,24 @@
     background: $mentor-color;
   }
 
+  .hover-text {
+    background: rgb(240, 240, 240);
+    color: #606060;
+    display: block;
+    font: 400 1rem/120px $serif;
+    height: 120px;
+    @include position(absolute, 0 0px 0 0px);
+    text-align: center;
+    text-align: center;
+    text-transform: uppercase;
+    @include transform(translate3D(-110%, 0, 0));
+    @include transition(.3s $ease-out-quart);
+  }
+
+  img {
+    @include transition(.3s $ease-out-quart);
+  }
+
   h5, p {
     margin: .6rem;
   }
@@ -224,18 +257,26 @@
     text-transform: uppercase;
   }
 
+  .status {
+    display: none;
+    line-height: 1.2em;
+    margin: .3rem 0;
+    padding: .3rem .6rem;
+  }
+
   .inperson-date {
+    background: rgb(220, 220, 220);
     height: 120px;
     padding: 1.4rem .5rem;
-    background: rgb(220, 220, 220);
     text-align: center;
+    @include transition(.3s $ease-out-quart);
 
     section {
       margin: .25rem;
     }
 
     .upcoming {
-      border-bottom: 1px solid #606060;
+      border-bottom: 2px solid #999;
       display: inline-block;
       margin-bottom: .4rem;
     }
@@ -243,14 +284,10 @@
     span {
       color: #606060;
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: 400;
       line-height: 1.2em;
       text-align: left;
       text-transform: uppercase;
-    }
-
-    .month {
-      font-weight: 400;
     }
   }
 
@@ -392,7 +429,7 @@
 }
 
 .vertical-slider {
-  height: 420px;
+  height: 405px;
   margin: 0 auto;
   overflow: hidden;
   padding: $product-card-margin/2 $slide-button-width - $product-card-margin/2 0;
@@ -404,16 +441,24 @@
   }
 
   &.screencasts {
-    height: 290px;
+    background-color: #fff;
+    height: 300px;
+    margin-bottom: $product-card-margin;
+    margin-top: 0;
+    padding-top: $product-card-margin;
 
     > figure, > .figure-container {
       height: 200px;
+    }
+
+    .nav.show-all {
+      background: #fff;
     }
   }
 
   &.revealed {
     height: auto;
-    padding-bottom: 1.5rem;
+    padding-bottom: 5px;
 
     .nav.show-all:before {
       content: 'hide ';
@@ -443,13 +488,14 @@
     color: $darkwarmgray;
     cursor: pointer;
     font-style: italic;
-    height: 4rem;
-    line-height: 4rem;
+    height: $product-card-margin;
+    line-height: $product-card-margin;
     margin: 0;
     @include position(absolute, 0 0px 0px 0);
     text-align: center;
     @include user-select(none);
     width: 100%;
+    z-index: 4;
 
     &:before {
       content: 'show ';

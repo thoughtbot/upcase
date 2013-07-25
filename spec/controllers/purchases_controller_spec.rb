@@ -17,6 +17,30 @@ describe PurchasesController do
     end
   end
 
+  describe '#new with no variant specified' do
+    it 'defaults purchase to individual' do
+      user = create(:user)
+      product = create(:video_product)
+      stub_current_user_with(user)
+
+      get :new, product_id: product
+
+      expect(assigns(:purchase).variant).to eq 'individual'
+    end
+  end
+
+  describe '#new with company variant specified' do
+    it 'defaults purchase to company' do
+      user = create(:user)
+      product = create(:video_product)
+      stub_current_user_with(user)
+
+      get :new, product_id: product, variant: 'company'
+
+      expect(assigns(:purchase).variant).to eq 'company'
+    end
+  end
+
   describe 'processing on stripe' do
     it 'creates and saves a stripe customer and charges it for the product' do
       stub_current_user_with(create(:user))
@@ -31,12 +55,13 @@ describe PurchasesController do
 
   describe 'creating a subscription' do
     it 'sends a message to the notifier' do
+      create_mentors
       stub_current_user_with(create(:user))
-      product = create(:subscribeable_product)
+      plan = create(:plan)
       notifier = stub('notifier', :notify_of_purchase)
       KissmetricsEventNotifier.stubs(:new).returns(notifier)
 
-      post :create, purchase: customer_params, product_id: product
+      post :create, purchase: customer_params, plan_id: plan
 
       notifier.should have_received(:notify_of_purchase).with(assigns(:purchase))
     end

@@ -9,12 +9,12 @@
   <h3><%= t '.products' %></h3>
   <hr>
   <ul class='related-products related-workshops'>
-    <% if subscription_product && current_user && !current_user.has_active_subscription? %>
+    <% if current_user && !current_user.has_active_subscription? %>
       <li class="prime">
         <%= link_to prime_path do %>
           <span class="icon"><%= t('shared.subscriptions.icon') %></span>
           <hgroup>
-            <h4>Access all of our products by subscribing to <%= subscription_product.name %></h4>
+            <h4>Access all of our products by subscribing to <%= t('shared.subscription.name') %></h4>
           </hgroup>
         <% end %>
       </li>

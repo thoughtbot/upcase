@@ -12,7 +12,7 @@ module ProductsHelper
   end
 
   def company_prime_path
-    '/products/15-prime-for-teams'
+    '/plans/primeteam/purchases/new'
   end
 
   def purchase_button_text(product)

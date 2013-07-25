@@ -56,4 +56,8 @@ module ApplicationHelper
   def forum_url(suffix=nil)
     "http://forum.thoughtbot.com/#{suffix}"
   end
+
+  def mentor_image(mentor)
+    image_tag("learn/face-#{mentor.first_name.downcase}.png")
+  end
 end

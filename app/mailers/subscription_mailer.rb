@@ -1,13 +1,23 @@
 class SubscriptionMailer < BaseMailer
   def welcome_to_prime(user)
     @user = user
+
+    mail(
+      to: @user.email,
+      subject: 'Welcome to Prime!',
+      from: 'Chad Pytel <chad@thoughtbot.com>'
+    )
+  end
+
+  def welcome_to_prime_from_mentor(user)
+    @user = user
     @mentor = user.mentor
 
     mail(
       to: @user.email,
       subject: "Welcome to Prime! I'm your new mentor",
-      from: "#{@mentor.name} <#{@mentor.email}>",
-      reply_to: "#{@mentor.name} <#{@mentor.email}>"
+      from: mentor_email(@mentor),
+      reply_to: mentor_email(@mentor)
     )
   end
 
@@ -29,5 +39,11 @@ class SubscriptionMailer < BaseMailer
       to: email,
       subject: "[Learn] Your #{plan_name} receipt and some tips"
     )
+  end
+
+  private
+
+  def mentor_email(mentor)
+    "#{mentor.name} <#{mentor.email}>"
   end
 end

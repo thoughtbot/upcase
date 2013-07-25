@@ -147,6 +147,10 @@ class Workshop < ActiveRecord::Base
     end
   end
 
+  def subscription?
+    false
+  end
+
   private
 
   def alternate_workshop

@@ -133,10 +133,20 @@ FactoryGirl.define do
     factory :video_product do
       product_type 'video'
     end
+  end
 
-    factory :subscribeable_product do
-      product_type 'subscription'
-      name 'Prime'
+  factory :plan do
+    name 'Prime'
+    company_price 0
+    individual_price 99
+    sku 'prime'
+    short_description 'A great Subscription'
+    description 'A long description'
+
+    factory :downgrade_plan do
+      sku Subscription::DOWNGRADED_PLAN
+      includes_mentor false
+      includes_workshops false
     end
   end
 
@@ -190,8 +200,8 @@ FactoryGirl.define do
       association :purchaseable, factory: :video_product
     end
 
-    factory :subscription_purchase do
-      association :purchaseable, factory: :subscribeable_product
+    factory :plan_purchase do
+      association :purchaseable, factory: :plan
       user
     end
   end
@@ -285,8 +295,9 @@ FactoryGirl.define do
   end
 
   factory :subscription, aliases: [:active_subscription] do
-    association :user, :with_github, :with_stripe
     association :mentor, factory: :user
+    association :plan
+    association :user, :with_github, :with_stripe
     factory :inactive_subscription do
       deactivated_on Time.zone.today
     end

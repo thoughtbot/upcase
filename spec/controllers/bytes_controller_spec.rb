@@ -5,7 +5,7 @@ describe BytesController do
     it 'redirects to the subscribe page if a visitor is not logged in' do
       sign_out
 
-      expect_get_show_to_redirect_to_subscription_product
+      expect_get_show_to_redirect_to_prime
     end
 
     it 'redirects to the subscribe page if the user is not a subscriber' do
@@ -13,7 +13,7 @@ describe BytesController do
       user.stubs(:has_active_subscription? => false)
       sign_in_as user
 
-      expect_get_show_to_redirect_to_subscription_product
+      expect_get_show_to_redirect_to_prime
     end
 
     context 'for a non-admin user' do
@@ -46,13 +46,12 @@ describe BytesController do
       end
     end
 
-    def expect_get_show_to_redirect_to_subscription_product
+    def expect_get_show_to_redirect_to_prime
       byte = create(:byte)
-      subscription_product = create(:subscribeable_product)
 
       get :show, id: byte.to_param
 
-      expect(response).to redirect_to product_path(subscription_product)
+      expect(response).to redirect_to prime_path
       expect(flash[:notice]).to include I18n.t('shared.subscriptions.protected_content')
     end
   end

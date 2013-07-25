@@ -1,9 +1,5 @@
 <section id="license" class="<%= workshop.offering_type %>">
-  <%= render(
-    'offerings/prime_purchase',
-    product: workshop,
-    viewable_subscription: viewable_subscription
-  ) %>
+  <%= render 'offerings/prime_purchase', product: workshop %>
 
   <% if sections.any? %>
     <%= render 'sections/section', sections: sections, workshop: workshop %>

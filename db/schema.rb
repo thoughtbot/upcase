@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130729020308) do
+ActiveRecord::Schema.define(:version => 20130812194332) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -61,6 +61,9 @@ ActiveRecord::Schema.define(:version => 20130729020308) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
+
+  add_index "completions", ["trail_object_id"], :name => "index_completions_on_trail_object_id"
+  add_index "completions", ["user_id"], :name => "index_completions_on_user_id"
 
   create_table "coupons", :force => true do |t|
     t.string   "code"
@@ -172,6 +175,22 @@ ActiveRecord::Schema.define(:version => 20130729020308) do
   end
 
   add_index "oauth_applications", ["uid"], :name => "index_oauth_applications_on_uid", :unique => true
+
+  create_table "plans", :force => true do |t|
+    t.string   "name",                                 :null => false
+    t.string   "sku",                                  :null => false
+    t.string   "short_description",                    :null => false
+    t.text     "description",                          :null => false
+    t.boolean  "active",             :default => true, :null => false
+    t.integer  "individual_price",                     :null => false
+    t.integer  "company_price",                        :null => false
+    t.text     "terms"
+    t.boolean  "includes_mentor",    :default => true
+    t.boolean  "includes_workshops", :default => true
+    t.boolean  "featured",           :default => true, :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+  end
 
   create_table "products", :force => true do |t|
     t.string   "name"
@@ -293,28 +312,28 @@ ActiveRecord::Schema.define(:version => 20130729020308) do
   add_index "sections", ["workshop_id"], :name => "index_sections_on_workshop_id"
 
   create_table "shows", :force => true do |t|
-    t.string   "slug"
-    t.string   "title"
-    t.string   "short_description"
-    t.text     "description"
-    t.text     "credits"
-    t.string   "keywords"
-    t.string   "itunes_url"
+    t.string   "slug",              :null => false
+    t.string   "title",             :null => false
+    t.string   "short_description", :null => false
+    t.text     "description",       :null => false
+    t.text     "credits",           :null => false
+    t.string   "keywords",          :null => false
+    t.string   "itunes_url",        :null => false
     t.string   "stitcher_url"
-    t.string   "email"
+    t.string   "email",             :null => false
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
 
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "created_at",                                         :null => false
-    t.datetime "updated_at",                                         :null => false
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
     t.date     "deactivated_on"
     t.date     "scheduled_for_cancellation_on"
-    t.boolean  "paid",                          :default => true,    :null => false
-    t.integer  "mentor_id",                                          :null => false
-    t.string   "stripe_plan_id",                :default => "prime"
+    t.boolean  "paid",                          :default => true, :null => false
+    t.integer  "mentor_id",                                       :null => false
+    t.integer  "plan_id",                                         :null => false
   end
 
   add_index "subscriptions", ["mentor_id"], :name => "index_subscriptions_on_mentor_id"
@@ -375,7 +394,8 @@ ActiveRecord::Schema.define(:version => 20130729020308) do
     t.string   "zip_code"
     t.string   "country"
     t.string   "name"
-    t.boolean  "mentor",                            :default => false, :null => false
+    t.boolean  "mentor",                            :default => false
+    t.text     "bio"
   end
 
   add_index "users", ["admin"], :name => "index_users_on_admin"

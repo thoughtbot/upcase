@@ -17,6 +17,7 @@
     <% if @purchase.subscription? %>
       <% if signed_out? %>
         <%= form.input :password, required: true %>
+        <%= form.input :mentor_id, as: :hidden %>
       <% end %>
       <% if signed_out? || (signed_in? && current_user.github_username.blank?) %>
         <%= render 'first_github_username', label: 'GitHub username', purchase: @purchase %>
