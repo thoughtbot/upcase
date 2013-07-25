@@ -38,6 +38,13 @@ class Trail < ActiveRecord::Base
     trail_map['steps']
   end
 
+  def resources_and_validations
+    items = steps.map do |step|
+      (step['validations'] || []) << (step['resources'] || [])
+    end
+    items.flatten
+  end
+
   private
 
   def github_url
