@@ -5,6 +5,7 @@ describe User do
     it { should have_many(:paid_purchases) }
     it { should have_many(:purchases) }
     it { should have_many(:completions) }
+    it { should have_many(:notes) }
   end
 
   context "validations" do
@@ -204,6 +205,42 @@ describe User do
     def create_user_without_cached_password(attributes)
       user = create(:user, attributes)
       User.find(user.id)
+    end
+  end
+
+  context '#grouped_timeline_items' do
+    it 'returns completions and notes grouped by week' do
+      user = create(:user)
+
+      note = create(:note, user: user)
+      completion = create(:completion, user: user, slug: 'whatever')
+
+      beginning_of_week = completion.created_at.beginning_of_week
+      expect(user.grouped_timeline_items).to eq({ beginning_of_week =>  [completion, note] })
+    end
+
+    it 'returns only the users completions and no others' do
+      user = create(:user)
+      another_user = create(:user)
+      create(:completion, user: another_user, slug: 'whatever')
+      create(:note, user: another_user)
+
+      note = create(:note, user: user)
+      completion = create(:completion, user: user, slug: 'whatever')
+
+      beginning_of_week = completion.created_at.beginning_of_week
+      expect(user.grouped_timeline_items).to eq({ beginning_of_week =>  [completion, note] })
+    end
+
+    it 'returns items sorted DESC by creation_date' do
+      user = create(:user)
+
+      oldest_item = create(:completion, user: user, slug: 'whatever')
+      middle_item = create(:note, user: user)
+      newest_item = create(:note, user: user)
+
+      beginning_of_week = oldest_item.created_at.beginning_of_week
+      expect(user.grouped_timeline_items).to eq({ beginning_of_week =>  [newest_item, middle_item, oldest_item] })
     end
   end
 

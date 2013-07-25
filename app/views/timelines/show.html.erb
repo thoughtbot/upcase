@@ -1,0 +1,44 @@
+<section class='timeline'>
+  <section class='profile'>
+    <%= image_tag gravatar_url(current_user), class: 'user-image' %>
+    <div class='user-info'>
+      <h3><%= current_user.name %></h3>
+      <p data-role='user-bio'>
+        <%= current_user.bio || 'Tell us about yourself' %>
+        - <%= link_to 'edit bio', my_account_path, 'data-role' => 'edit-bio' %>
+      </p>
+    </div>
+  </section>
+  <section class='progress-tracker'>
+    <ol class='week'>
+      <p class='title'>Add to your timeline</p>
+      <li class='goal add'>
+        <div class='goal-bullet-container'>
+          <div class='goal-bullet'></div>
+        </div>
+        <span><%= link_to 'Check off items on trail maps &raquo;'.html_safe, topics_path %></span>
+      </li>
+      <%= form_for :note, url: note_path do |form| %>
+        <fieldset class="inputs">
+          <li class='goal add'>
+            <div class='goal-bullet-container'>
+              <div class='goal-bullet'></div>
+            </div>
+            <%= form.text_area :body, placeholder: 'Add a note (mentor meetings, to-dos, etc.)' %>
+            <%= form.submit 'Save' %>
+          </li>
+        </fieldset>
+      <% end %>
+    </ol>
+    <% @items_by_week.each do |week, items| %>
+      <ol class='week'>
+        <li>
+        <p class='title'><%= week_title(week) %></p>
+          <ol>
+            <%= render items %>
+          </ol>
+        </li>
+      </ol>
+    <% end %>
+  </section>
+</section>

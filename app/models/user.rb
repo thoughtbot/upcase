@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
     conditions: { paid: true }
   has_many :purchases
   has_many :completions
+  has_many :notes
   has_one :subscription
 
   delegate :mentor, to: :subscription, allow_nil: true
@@ -48,6 +49,13 @@ class User < ActiveRecord::Base
 
   def self.mentors
     where(mentor: true)
+  end
+
+  def grouped_timeline_items
+    timeline_items_grouped_by_week.each do |week, items|
+      items.sort_by! { |item| item.created_at }
+      items.reverse!
+    end
   end
 
   def subscription_purchases
@@ -130,5 +138,9 @@ class User < ActiveRecord::Base
     if existing_stripe_customer_id
       self.update_column(:stripe_customer_id, existing_stripe_customer_id)
     end
+  end
+
+  def timeline_items_grouped_by_week
+    (completions + notes).group_by { |item| item.created_at.beginning_of_week }
   end
 end

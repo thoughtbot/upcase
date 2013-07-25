@@ -97,6 +97,15 @@ FactoryGirl.define do
     workshop
   end
 
+  factory :note do
+    body 'Default note body'
+    user
+
+    trait :beginning_of_august do
+      created_at Time.local(2013, 'aug', 5)
+    end
+  end
+
   factory :question do
     answer 'Not much, bro.'
     question "What's up, buddy?"
@@ -265,6 +274,14 @@ FactoryGirl.define do
     trail_object_id '2f720eaa8bcd602a7dc731feb224ff99bb85a03c'
     trail_name 'Git'
     user
+
+    trait :end_of_july do
+      created_at Time.local(2013, 'jul', 29)
+    end
+
+    trait :beginning_of_august do
+      created_at Time.local(2013, 'aug', 5)
+    end
   end
 
   factory :user do
