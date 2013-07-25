@@ -7,7 +7,7 @@
       <p>Former marketing manager turned developer</p>
     </div>
     <div class="long-term-goals">
-      <h4>Long-term Goals</h4>
+      <p class="title">Long-term Goals</p>
       <ul>
         <li>Learn to use Vim</li>
         <li>Improve my workflow - get faster in Git</li>
@@ -18,17 +18,45 @@
   <section class="progress-tracker">
     <ol class="week">
       <li>
-        <h4>Week of July 21&ndash;26</h4>
+        <p class="title">Week of July 21&ndash;26</p>
         <form>
           <fieldset class="inputs">
-            <ol>
-              <li><label>Enter a Goal</label><input type="text" name="weekly-goal" placeholder="I want to..."></input></li>
-            </ol>
             <ul>
-              <li><input type="checkbox"></input>Complete thoughtbot's Intermediate Ruby on Rails Workshop</li>
-              <li><input type="checkbox">Complete the RailsApps tutorials</li>
-              <li><input type="checkbox">Watch Railscasts</li>
-              <li><input type="checkbox">Read a book</li>
+              <li class="goal add">
+                <div class="goal-bullet-container">
+                  <div class="goal-bullet"></div>
+                  <input type="checkbox" />
+                </div>
+                <input type="text" name="weekly-goal" placeholder="Add a goal (press Enter to save)"></input>
+              </li>
+              <li class="goal">
+                <div class="goal-bullet-container">
+                  <div class="goal-bullet"></div>
+                  <input type="checkbox" />
+                </div>
+                <span>Complete thoughtbot's Intermediate Ruby on Rails Workshop</span>
+              </li>
+              <li class="goal complete">
+                <div class="goal-bullet-container">
+                  <div class="goal-bullet"></div>
+                  <input type="checkbox" />
+                </div>
+                <span>Complete the RailsApps tutorials</span>
+              </li>
+              <li class="goal">
+                <div class="goal-bullet-container">
+                  <div class="goal-bullet"></div>
+                  <input type="checkbox" />
+                </div>
+                <span>Watch Railscasts</span>
+              </li>
+              <li class="goal">
+                <div class="goal-bullet-container">
+                  <div class="goal-bullet"></div>
+                  <input type="checkbox" />
+                </div>
+                <span>Read a book</span>
+              </li>
             </ul>
           </fieldset>
         </form>
@@ -36,7 +64,7 @@
     </ol>
     <ol class="week-past">
       <li>
-        <h4>Week of July 14&ndash;20</h4>
+        <p class="title">Week of July 14&ndash;20</p>
         <form>
           <fieldset class="inputs">
             <ul>
@@ -49,10 +77,5 @@
         </form>
       </li>
     </ol>
-  </section>
-  <section class="notes">
-    <fieldset>
-      <textarea name="textarea" rows="10" cols="50">Take some notes</textarea>
-    </fieldset>
   </section>
 </section>
