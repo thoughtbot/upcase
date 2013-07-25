@@ -6,7 +6,8 @@ class SubscriptionMailer < BaseMailer
     mail(
       to: @user.email,
       subject: "Welcome to Prime! I'm your new mentor",
-      from: "#{@mentor.name} <#{@mentor.email}>"
+      from: "#{@mentor.name} <#{@mentor.email}>",
+      reply_to: "#{@mentor.name} <#{@mentor.email}>"
     )
   end
 
