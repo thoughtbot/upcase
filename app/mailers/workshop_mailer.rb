@@ -33,8 +33,6 @@ class WorkshopMailer < BaseMailer
 
     mail(
       to: email,
-      from: 'learn@thoughtbot.com',
-      reply_to: 'learn@thoughtbot.com',
       subject: "[Learn] #{video.watchable_name}: #{video.title}"
     )
   end
@@ -44,8 +42,6 @@ class WorkshopMailer < BaseMailer
 
     mail(
       to: email,
-      from: 'learn@thoughtbot.com',
-      reply_to: 'learn@thoughtbot.com',
       subject: "[Learn] #{section.name}: Office Hours"
     )
   end
@@ -55,8 +51,6 @@ class WorkshopMailer < BaseMailer
 
     mail(
       to: email,
-      from: 'learn@thoughtbot.com',
-      reply_to: 'learn@thoughtbot.com',
       subject: "[Learn] #{section.name}: Please tell us how we did"
     )
   end

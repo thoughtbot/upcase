@@ -4,8 +4,6 @@ class NotificationMailer < BaseMailer
 
     mail(
       to: email,
-      from: 'learn@thoughtbot.com',
-      reply_to: 'learn@thoughtbot.com',
       subject: "[Learn] New Byte: #{byte.title}"
     )
   end
