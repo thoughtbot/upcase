@@ -5,17 +5,19 @@ class Subscription < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :mentor, class_name: User
+  belongs_to :plan
 
+  delegate :includes_mentor?, to: :plan
+  delegate :includes_workshops?, to: :plan
   delegate :stripe_customer_id, to: :user
 
   validates :mentor_id, presence: true
 
-  before_validation :assign_mentor, on: :create
   after_create :add_user_to_mailing_list
 
   def self.deliver_welcome_emails
     recent.each do |subscription|
-      SubscriptionMailer.welcome_to_prime(subscription.user).deliver
+      subscription.deliver_welcome_email
     end
   end
 
@@ -39,23 +41,28 @@ class Subscription < ActiveRecord::Base
   end
 
   def downgrade
-    stripe_customer.update_subscription(plan: Subscription::DOWNGRADED_PLAN)
-    update_column(:stripe_plan_id, Subscription::DOWNGRADED_PLAN)
+    stripe_customer.update_subscription(plan: downgraded_plan.sku)
+    self.plan = downgraded_plan
+    save!
   end
 
   def downgraded?
-    stripe_plan_id == DOWNGRADED_PLAN
+    plan == downgraded_plan
   end
 
-  def includes_workshops?
-    !downgraded?
-  end
-
-  def includes_mentor?
-    !downgraded?
+  def deliver_welcome_email
+    if includes_mentor?
+      SubscriptionMailer.welcome_to_prime_from_mentor(user).deliver
+    else
+      SubscriptionMailer.welcome_to_prime(user).deliver
+    end
   end
 
   private
+
+  def downgraded_plan
+    Plan.where(sku: Subscription::DOWNGRADED_PLAN).first
+  end
 
   def stripe_customer
     Stripe::Customer.retrieve(stripe_customer_id)
@@ -85,9 +92,5 @@ class Subscription < ActiveRecord::Base
 
   def remove_user_from_mailing_list
     MailchimpRemovalJob.enqueue(MAILING_LIST, user.email)
-  end
-
-  def assign_mentor
-    self.mentor ||= User.mentors.sample
   end
 end

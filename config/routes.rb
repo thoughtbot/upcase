@@ -38,7 +38,6 @@ Workshops::Application.routes.draw do
 
   resources :products, only: [:index, :show] do
     resources :redemptions, only: [:new]
-    resources :stripe_redemptions, only: [:new]
     resources :purchases, only: [:new, :create]
   end
   get '/products/:id/purchases/:lookup' => redirect("/purchases/%{lookup}")
@@ -62,7 +61,12 @@ Workshops::Application.routes.draw do
     resource :downgrade, only: :create
   end
 
-  resources :subscriptions, only: [:destroy, :update]
+  resources :subscriptions, only: [:new, :update]
+
+  resources :plans, only: [] do
+    resources :purchases, only: [:new, :create]
+    resources :stripe_redemptions, only: [:new]
+  end
 
   get '/podcast.xml' => redirect('/giantrobots.xml')
   get '/podcast' => redirect('/giantrobots')

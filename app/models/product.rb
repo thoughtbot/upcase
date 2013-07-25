@@ -36,10 +36,6 @@ class Product < ActiveRecord::Base
     where product_type: 'video'
   end
 
-  def self.subscriptions
-    where(product_type: 'subscription').order('id asc')
-  end
-
   def self.ordered
     order 'name ASC'
   end
@@ -57,13 +53,7 @@ class Product < ActiveRecord::Base
   end
 
   def subscription?
-    product_type == 'subscription'
-  end
-
-  def subscription_interval
-    if subscription?
-      stripe_plan.interval
-    end
+    false
   end
 
   def image_url
@@ -137,9 +127,5 @@ class Product < ActiveRecord::Base
 
   def apply_discount(price)
     price - (price * discount_percentage * 0.01)
-  end
-
-  def stripe_plan
-    @stripe_plan ||= Stripe::Plan.retrieve(sku)
   end
 end

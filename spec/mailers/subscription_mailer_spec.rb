@@ -1,6 +1,34 @@
 require 'spec_helper'
 
 describe SubscriptionMailer do
+  describe '.welcome_to_prime_from_mentor' do
+    it 'is sent to the user' do
+      user = create(:subscription).user
+      email = SubscriptionMailer.welcome_to_prime_from_mentor(user)
+      expect(email.to).to include(user.email)
+      expect(email).to have_body_text(/Hi #{user.first_name}/)
+    end
+
+    it 'comes from the mentor' do
+      user = create(:subscription).user
+      email = SubscriptionMailer.welcome_to_prime_from_mentor(user)
+
+      expect(email.subject).to eq "Welcome to Prime! I'm your new mentor"
+      expect(email.from).to include(user.mentor.email)
+      expect(email.reply_to).to include(user.mentor.email)
+      expect(email.body).to include(user.mentor.first_name)
+      expect(email.body).to include(url_encode(user.mentor.email))
+    end
+
+    it 'mentions mentoring and scheduling a call' do
+      user = create(:subscription).user
+      email = SubscriptionMailer.welcome_to_prime_from_mentor(user)
+
+      expect(email.body).to include('mentor')
+      expect(email.body).to include('calendar')
+    end
+  end
+
   describe '.welcome_to_prime' do
     it 'is sent to the user' do
       user = create(:subscription).user
@@ -9,14 +37,29 @@ describe SubscriptionMailer do
       expect(email).to have_body_text(/Hi #{user.first_name}/)
     end
 
-    it 'comes from the mentor' do
+    it 'comes from Chad' do
+      user = create(:subscription, plan: create(:downgrade_plan)).user
+      email = SubscriptionMailer.welcome_to_prime(user)
+
+      expect(email.from).to include('chad@thoughtbot.com')
+      expect(email.reply_to).to include('learn@thoughtbot.com')
+    end
+
+    it 'does not mention mentoring, scheduling a call' do
       user = create(:subscription).user
       email = SubscriptionMailer.welcome_to_prime(user)
 
-      expect(email.from).to include(user.mentor.email)
-      expect(email.reply_to).to include(user.mentor.email)
-      expect(email.body).to include(user.mentor.first_name)
-      expect(email.body).to include(url_encode(user.mentor.email))
+      expect(email.subject).to eq 'Welcome to Prime!'
+      expect(email.body).not_to include('mentor')
+      expect(email.body).not_to include('calendar')
+      expect(email.body).to include('workshops')
+    end
+
+    it 'does not mention workshops if not included in subscription' do
+      user = create(:subscription, plan: create(:downgrade_plan)).user
+      email = SubscriptionMailer.welcome_to_prime(user)
+
+      expect(email.body).not_to include('workshops')
     end
   end
 

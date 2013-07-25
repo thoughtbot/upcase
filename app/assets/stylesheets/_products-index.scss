@@ -1,6 +1,6 @@
 body.products-index #header-wrapper .header-container {
   @include product-card-widths(5);
-  margin-bottom: 2rem;
+  margin-bottom: $product-card-margin / 2;
 
   .back {
     display: none;
@@ -107,75 +107,15 @@ body.products-index .reading {
   .books {
     float: right;
     @include product-card-widths(2, width);
+    text-align: center;
 
     header {
       background: #83d4b7;
     }
 
-    .figure-container {
-      height: 195px;
-      margin: 2rem 1rem 0;
-      overflow: hidden;
-      padding-top: .25rem;
-      position: relative;
-
-      &:hover {
-        figure {
-          @include transform(translateY(-.25rem));
-
-          .notification {
-            @include transform(translateY(.15rem));
-          }
-        }
-      }
-
-      a {
-        @include light-button;
-        background-image: url('learn/slider-arrow.svg');
-        background-position: 95% center;
-        background-repeat: no-repeat;
-        background-size: 15px;
-        bottom: 0;
-        position: absolute;
-        width: 100%;
-
-        @include dashboard-medium {
-          left: 1.5rem;
-          right: 1.5rem;
-          width: auto;
-        }
-
-        @include dashboard-small {
-          left: 0;
-          right: 0;
-        }
-
-        &:hover {
-          background-position: 96% center;
-        }
-      }
-    }
-
     figure {
-      display: block;
-      margin-left: 2rem;
-      @include transition(.25s);
-      width: $product-card-width * .9;
-
-      .notification {
-        left: 115%;
-        top: 20%;
-        @include transition(.25s);
-
-        @include dashboard-medium {
-          left: -2rem;
-          top: 2%;
-        }
-
-        &:after {
-          content: none;
-        }
-      }
+      margin: .5rem;
+      width: 190px;
     }
   }
 

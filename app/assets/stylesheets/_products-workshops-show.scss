@@ -139,172 +139,168 @@ body.products-show, body.workshops-show {
       }
     }
   }
+}
 
-  aside {
-    .original-price {
-      color: lighten($darkwarmgray, 22%);
-      display: block;
-      font-size: 24px;
-      margin-left: 10px;
-      margin-top: 7px;
-      position: relative;
-      -webkit-font-smoothing: antialiased;
+body.products-show aside,
+body.workshops-show aside,
+body.purchases-new aside {
+  .original-price {
+    color: lighten($darkwarmgray, 22%);
+    display: block;
+    font-size: 24px;
+    margin-left: 10px;
+    margin-top: 7px;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
 
-      &::after {
-        background-image: image_url("icons/brush.png");
-        content: "";
-        height: 33px;
-        left: -3px;
-        position: absolute;
-        top: -3px;
-        width: 60px;
-      }
-    }
-
-    div {
-      margin-bottom: 1.75rem;
-
-      &.prime-purchase {
-        margin: 1.5rem 0 1.5em 0;
-
-        h2 {
-          color: $learnred;
-          font: 800 26px/28px $sans-serif;
-        }
-
-        .or {
-          font: 700 .8em $sans-serif;
-          margin: 2.5em 0 2em;
-          padding: 0;
-          position: relative;
-          text-align: center;
-          text-transform: uppercase;
-
-          &:after, &:before {
-            border-top: 1px solid $darkwarmgray;
-            content: '';
-            display: block;
-            @include position(absolute, .6em 0 0 0px);
-            width: 15%;
-          }
-
-          &:before {
-            left: auto;
-            right: 0;
-          }
-        }
-      }
-
-      h2 {
-        a {
-          color: $darkwarmgray;
-          font-family: $sans-serif;
-          font-weight: 800;
-        }
-
-        span {
-          font-weight: 100;
-        }
-
-        &.active-subscription, &.active-subscription span {
-          font: italic 400 1rem/1.4em $serif;
-          margin: .5rem 0;
-        }
-      }
-
-      .when {
-        font-family: $sans-serif;
-        font-weight: 600;
-        margin: 0;
-      }
-
-      .license {
-        margin-top: 0;
-      }
-
-      .button:not(.prime-button):not(.free-with-prime) {
-        background: darken($warmgray, 28%);
-        border-color: $darkwarmgray;
-
-        &:hover {
-          background: darken($warmgray, 20%);
-          border-color: lighten($darkwarmgray, 5%);
-        }
-
-        &:active {
-          background: darken($warmgray, 35%);
-          border-color: darken($darkwarmgray, 5%);
-        }
-      }
-
-      .free-with-prime {
-        background: #fff;
-        border: 3px solid #ddd;
-        border-width: 1px 1px 3px 1px;
-        color: $learnred;
-
-        &:active {
-          background: #eee;
-          border-color: #ccc;
-        }
-      }
-
-      .license-button {
-        margin-bottom: 0;
-        text-transform: uppercase;
-      }
-
-      .location-name {
-        color: $darkwarmgray;
-        font: 800 36px/40px $sans-serif;
-      }
-    }
-
-    .section-location:nth-child(2n) {
-      margin-top: 30px;
+    &::after {
+      background-image: image_url("icons/brush.png");
+      content: "";
+      height: 33px;
+      left: -3px;
+      position: absolute;
+      top: -3px;
+      width: 60px;
     }
   }
 
+  div {
+    margin-bottom: 1.75rem;
+
+    h2 a {
+      color: $darkwarmgray;
+      font-family: $sans-serif;
+      font-weight: 800;
+    }
+
+    h2 span {
+      font-weight: 100;
+    }
+
+    .active-subscription, .active-subscription span {
+      font: italic 400 1rem/1.4em $serif;
+      margin: .5rem 0;
+    }
+
+    .when {
+      font-family: $sans-serif;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .license {
+      margin-top: 0;
+    }
+
+    .button:not(.prime-button):not(.free-with-prime) {
+      background: darken($warmgray, 28%);
+      border-color: $darkwarmgray;
+
+      &:hover {
+        background: darken($warmgray, 20%);
+        border-color: lighten($darkwarmgray, 5%);
+      }
+
+      &:active {
+        background: darken($warmgray, 35%);
+        border-color: darken($darkwarmgray, 5%);
+      }
+    }
+
+    .free-with-prime {
+      background: #fff;
+      border: 3px solid #ddd;
+      border-width: 1px 1px 3px 1px;
+      color: $learnred;
+
+      &:active {
+        background: #eee;
+        border-color: #ccc;
+      }
+    }
+
+    .license-button {
+      margin-bottom: 0;
+      text-transform: uppercase;
+    }
+
+    .location-name {
+      color: $darkwarmgray;
+      font: 800 36px/40px $sans-serif;
+    }
+  }
+
+  .prime-purchase {
+    margin: 1.5rem 0 1.5em 0;
+
+    h2 {
+      color: $learnred;
+      font: 800 26px/28px $sans-serif;
+    }
+
+    .or {
+      font: 700 .8em $sans-serif;
+      margin: 2.5em 0 2em;
+      padding: 0;
+      position: relative;
+      text-align: center;
+      text-transform: uppercase;
+
+      &:after, &:before {
+        border-top: 1px solid $darkwarmgray;
+        content: '';
+        display: block;
+        @include position(absolute, .6em 0 0 0px);
+        width: 15%;
+      }
+
+      &:before {
+        left: auto;
+        right: 0;
+      }
+    }
+  }
+}
+
+#additional-information {
+  background: lighten($warmgray, 5%);
+
+  #additional-information-wrapper {
+    @include outer-container;
+    max-width: $max-width;
+    padding: 3em 0 1.5em 0;
+
+    #main-content {
+      @include span-columns(12);
+      padding: 0 2em;
+    }
+
+    h4 {
+      margin-bottom: 10px;
+    }
+
+    ul li {
+      @include span-columns(6);
+    }
+  }
+}
+
+@include body-mobile {
   #additional-information {
-    background: lighten($warmgray, 5%);
+    input[type="text"] {
+      display: block;
+      width: 100% !important;
+    }
+
+    input[type="submit"] {
+      margin-left:  0 !important;
+      width: 100%;
+    }
 
     #additional-information-wrapper {
-      @include outer-container;
-      max-width: $max-width;
-      padding: 3em 0 1.5em 0;
-
-      #main-content {
-        @include span-columns(12);
-        padding: 0 2em;
-      }
-
-      h4 {
-        margin-bottom: 10px;
-      }
-
       ul li {
-        @include span-columns(6);
-      }
-    }
-  }
-
-  @include body-mobile {
-    #additional-information {
-      input[type="text"] {
-        display: block;
-        width: 100% !important;
-      }
-
-      input[type="submit"] {
-        margin-left:  0 !important;
+        @include span-columns(12);
         width: 100%;
-      }
-
-      #additional-information-wrapper {
-        ul li {
-          @include span-columns(12);
-          width: 100%;
-        }
       }
     }
   }

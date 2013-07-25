@@ -34,14 +34,16 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user_is_admin?
 
-  def subscription_product
-    Product.subscriptions.first
+  def default_plan
+    Plan.default
   end
-  helper_method :subscription_product
+  helper_method :default_plan
 
   def find_purchaseable
     if params[:product_id]
       Product.find(params[:product_id])
+    elsif params[:plan_id]
+      Plan.where(sku: params[:plan_id]).first
     else
       Section.find(params[:section_id])
     end

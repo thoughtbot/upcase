@@ -1,12 +1,7 @@
 <%= render 'offerings/details', offering: @offering %>
 
 <aside>
-  <%= render(
-    'license',
-    product: @offering,
-    viewable_subscription: @viewable_subscription
-  ) %>
-
+  <%= render 'license', product: @offering %>
   <%= render 'terms', product: @offering %>
 </aside>
 

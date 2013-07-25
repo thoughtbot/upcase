@@ -1,10 +1,6 @@
 <section id="license" class="<%= product.offering_type %>">
   <%= render 'discount', product: product %>
-  <%= render(
-    'offerings/prime_purchase',
-    product: product,
-    viewable_subscription: viewable_subscription
-  ) %>
+  <%= render 'offerings/prime_purchase', product: product %>
 
   <% if product.active? %>
     <%= render 'active', product: product %>

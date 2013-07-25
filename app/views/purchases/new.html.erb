@@ -1,4 +1,6 @@
-<% content_for :subject, @purchase.purchaseable_name %>
+<% content_for :subject_block do %>
+  <h1><%= @purchase.purchaseable_name %></h1>
+<% end %>
 
 <% content_for :additional_body_classes, @purchase.purchaseable_name %>
 
@@ -10,21 +12,20 @@
 
 <aside class="terms">
   <% if !@purchase.subscription? && !current_user_has_active_subscription? %>
-    <% if subscription_product %>
-      <section id="license">
-        <div class="prime-purchase">
-          <h2>Access this and all our other products</h2>
-          <div class="license">
-            <a href="/products/14-prime" class="license-button button">Subscribe to Prime <span><%= number_to_currency subscription_product.individual_price, precision: 0 %>/month</span></a>
-          </div>
+    <section id="license">
+      <div class="prime-purchase">
+        <h2>Access this and all our other products</h2>
+        <div class="license">
+          <%= link_to prime_path, class: 'license-button button prime-button' do %>
+            Subscribe to <%= t('shared.subscription.name') %>
+          <% end %>
         </div>
-      </section>
-    <% end %>
+      </div>
+    </section>
   <% end %>
   <section id="terms">
     <dl>
       <dt><p>Terms and conditions</p></dt>
-      <dd><p>By purchasing this product you agree to the following terms and conditions:</p></dd>
       <dd><p>If you&rsquo;re not happy with the product, just let us know within 30 days and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</p></dd>
       <%== @purchase.terms %>
     </dl>

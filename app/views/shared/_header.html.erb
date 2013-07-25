@@ -22,10 +22,10 @@
     </nav>
     <nav>
       <ul>
-        <% if subscription_product && !current_user_has_active_subscription? %>
+        <% if !current_user_has_active_subscription? %>
           <li class="prime">
             <%= link_to prime_path do %>
-              <span><%= t('shared.subscriptions.icon') %></span> <%= subscription_product.name %> Membership
+              <span><%= t('shared.subscriptions.icon') %></span> <%= t('shared.subscription.name') %> Membership
             <% end %>
           </li>
         <% end %>
@@ -39,7 +39,7 @@
   </div>
 </section>
 
-<% if subscription_product && !current_user_has_active_subscription? && !signed_in? %>
+<% if !current_user_has_active_subscription? && !signed_in? %>
   <section class="products card-slider header">
     <a class="nav prev disabled"></a>
     <%= render partial: 'products/workshop', collection: online_workshops %>

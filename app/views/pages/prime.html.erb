@@ -12,13 +12,10 @@
       <%= image_tag('learn/learn-ralph.png') %>
     </h1>
   </div>
-  <h1>Start your journey to becoming a great Ruby on Rails developer</h1>
-  <% if subscription_product %>
-    <%= link_to new_product_purchase_path(subscription_product, variant: 'individual'), id: 'first-cta', class: 'prime-journey-cta' do %>
-      <h2>Join Learn Prime <span><%= number_to_currency subscription_product.individual_price, precision: 0 %>/month</span></h2>
-    <% end %>
+  <h1>Become an expert level Ruby on Rails developer</h1>
+  <%= link_to new_subscription_path, id: 'first-cta', class: 'prime-journey-cta' do %>
+    <h2>Join Learn <%= t('shared.subscription.name') %></h2>
   <% end %>
-  <%= link_to t('shared.company_subscription_call_to_action'), company_prime_path, class: "prime-company-cta" %>
 </section>
 
 <section class="journey">
@@ -51,7 +48,7 @@
     <article>
       <figure id="bullet-2" class="journey-bullet"></figure>
       <h2>Enroll in premium, hands-on workshops</h2>
-      <p>Our workshops are more than just video tutorials. You'll build real apps and communicate directly with a thoughtbot developer or designer. Begin an online workshop as soon as you sign up.</p>
+      <p>Our workshops are more than just video tutorials. You&rsquo;ll build real apps and communicate directly with a thoughtbot developer or designer. Begin an online workshop as soon as you sign up.</p>
     </article>
     <figure class="supporting-visual two-stacked">
       <div>
@@ -118,7 +115,7 @@
     <article>
       <figure id="bullet-3" class="journey-bullet"></figure>
       <h2>Collaborate with thoughtbot and other members</h2>
-      <p>Don't develop alone, communicate with thoughtbotters and other motivated professionals. Ask questions about workshops, books, or personal projects. Join interesting conversations.</p>
+      <p>Don&rsquo;t develop alone, communicate with thoughtbotters and other motivated professionals. Ask questions about workshops, books, or personal projects. Join interesting conversations.</p>
     </article>
     <figure class="supporting-visual two-screenshot">
       <%= image_tag('learn/forum-2.png') %>
@@ -129,8 +126,8 @@
     <article>
       <figure id="bullet-4" class="journey-bullet"></figure>
       <h2>Exclusive content, weekly</h2>
-      <p>The Ruby community sets an amazing pace of innovation. It often feels like "best practices" have a shelf-life of a few months before being replaced by better ideas. Between Rails' constant changes and a neverending stream of new gems and philosophies, it’s a real challenge to keep up with the state of the art.</p>
-      <p>Learn thoughtbot's tips and tricks from our private Prime Bytes blog, our books, and screencasts on vim, development tools, and more.</p>
+      <p>The Ruby community sets an amazing pace of innovation. It often feels like "best practices" have a shelf-life of a few months before being replaced by better ideas. Between Rails&rsquo; constant changes and a neverending stream of new gems and philosophies, it’s a real challenge to keep up with the state of the art.</p>
+      <p>Stay on top of it all with our private <%= t('shared.bytes') %> blog, our books, and screencasts on vim, development tools, and more.</p>
     </article>
     <figure class="supporting-visual two-stacked">
       <div>
@@ -177,12 +174,12 @@
         </div>
       </div>
       <div>
-        <h3>Prime Bytes</h3>
+        <h3><%= t('shared.bytes') %></h3>
         <div class="figuregroup">
           <figure class="byte product-card">
             <h4 class="byte-title">A git-bisect Duet</h4>
             <p>git bisect uses binary search to find which change introduced a bug, given an old "good" commit and a later "bad" commit.</p>
-            <p>DJCP asks: Who's used git bisect? I would like to use it to figure out...</p>
+            <p>DJCP asks: Who&rsquo;s used git bisect? I would like to use it to figure out...</p>
           </figure>
           <figure class="byte product-card">
             <h4 class="byte-title">SASS !default</h4>
@@ -210,7 +207,7 @@
           </figure>
           <figure class="byte product-card">
             <h4 class="byte-title">Where did these changes in my schema.rb come from?</h4>
-            <p>Ben asks: If I run rake db:drop:all db:create:all db:migrate db:test:prepare and there are changes in schema.rb, that means its out of sync with what's actually correct...</p>
+            <p>Ben asks: If I run rake db:drop:all db:create:all db:migrate db:test:prepare and there are changes in schema.rb, that means its out of sync with what&rsquo;s actually correct...</p>
           </figure>
         </div>
       </div>
@@ -222,15 +219,13 @@
     </figure>
     <article>
       <figure id="bullet-5" class="journey-bullet"></figure>
-      <h2>Become an expert Rails developer</h2>
+      <h2>The closest thing to working at thoughtbot full time</h2>
       <p>We’ve trained hundreds of developers and apprentices over the years, and have a great handle on what it takes to become and remain an expert-level Rubyist.</p>
-      <p>With Learn Prime, we’ve finally created a service that’s nearly as good as joining thoughtbot full time. If you’re a passionate developer serious about improving and maintaining your skills, we know you’ll get a ton of value out of the service.</p>
-      <% if subscription_product %>
-        <%= link_to new_product_purchase_path(subscription_product, variant: 'individual'), class: 'prime-journey-cta' do %>
-          <h2>Join Learn Prime <span><%= number_to_currency subscription_product.individual_price, precision: 0 %>/month</span></h2>
-        <% end %>
+      <p>With Learn <%= t('shared.subscription.name') %>, we’ve finally created a service that’s nearly as good as joining thoughtbot full time. If you’re a passionate developer serious about improving and maintaining your skills, we know you’ll get a ton of value out of the service.</p>
+      <%= link_to new_subscription_path, class: 'prime-journey-cta' do %>
+        <h2>Join Learn <%= t('shared.subscription.name') %></h2>
       <% end %>
-      <p class="terms">No minimum subscription length &bull; Get your money back within 30 days if you're not satisfied &bull; <%= link_to "#{t('shared.company_subscription_call_to_action')} with Prime for Teams", company_prime_path, class: "prime-company-cta" %></p>
+      <p class="terms">No minimum subscription length &bull; Get your money back within 30 days if you're not satisfied</p>
     </article>
   </section>
   <div class="curtain"></div>

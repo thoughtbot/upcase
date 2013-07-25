@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
   def new
-    if current_user_has_active_subscription?
+    if current_user_purchase_is_free?
       redirect_to subscriber_purchase_url
     else
       @purchase = build_purchase_with_defaults
@@ -45,13 +45,26 @@ class PurchasesController < ApplicationController
 
   private
 
+  def current_user_purchase_is_free?
+    current_user_has_active_subscription? && included_in_subscription?
+  end
+
+  def included_in_subscription?
+    !workshop_purchase? || (workshop_purchase? && subscription_includes_workshops?)
+  end
+
+  def workshop_purchase?
+    params[:section_id].present?
+  end
+
   def subscriber_purchase_url
     polymorphic_url([:new, :subscriber, find_purchaseable, :purchase])
   end
 
   def build_purchase_with_defaults
-    purchase = find_purchaseable.purchases.build(variant: params[:variant])
+    purchase = find_purchaseable.purchases.build(variant: variant)
     purchase.defaults_from_user(current_user)
+    purchase.mentor_id = cookies[:mentor_id]
     purchase
   end
 
@@ -103,8 +116,15 @@ class PurchasesController < ApplicationController
   def purchase_params
     params.require(:purchase).permit(:stripe_coupon_id, :variant,
       :name, :email, :password, {:github_usernames => []}, :organization,
-      :address1, :address2, :city,
-      :state, :zip_code, :country,
-      :payment_method, :stripe_token, :comments)
+      :address1, :address2, :city, :state, :zip_code, :country,
+      :payment_method, :stripe_token, :comments, :mentor_id)
+  end
+
+  def variant
+    if params[:variant].present?
+      params[:variant]
+    else
+      'individual'
+    end
   end
 end

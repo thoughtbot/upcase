@@ -2,7 +2,7 @@ StripeEvent.setup do
   subscribe 'invoice.payment_succeeded' do |event|
     subscription_plan = event.data.object.lines.subscriptions.first.plan
 
-    if Product.find_by_sku(subscription_plan.id).subscription?
+    if Plan.where(sku: subscription_plan.id).first
       invoice = SubscriptionInvoice.new(event.data.object)
 
       SubscriptionMailer.delay.subscription_receipt(

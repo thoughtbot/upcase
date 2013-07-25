@@ -1,0 +1,17 @@
+<%= content_tag :div, class: plan.sku do %>
+  <h3><%= plan.name %> &mdash; <%= number_to_currency plan.individual_price, precision: 0 %>/month</h3>
+  <section>
+    <%== plan.description %>
+    <%= link_to new_plan_purchase_path(plan), class: 'button' do %>
+      Choose this plan &rarr;
+    <% end %>
+  </section>
+  <% if plan.includes_mentor? %>
+    <figure class="mentor">
+      <%= mentor_image(@mentor) %>
+      <figcaption>
+        <p><strong>This is <%= @mentor.first_name %></strong>. If you choose this plan, <%= @mentor.first_name %> will be your mentor. <%= @mentor.bio %></p>
+      </figcaption>
+    </figure>
+  <% end %>
+<% end %>

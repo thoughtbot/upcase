@@ -1,27 +1,18 @@
-Hi <%= @user.first_name %>, 
+Hi <%= @user.first_name %>,
 
-First off, thanks for subscribing to Prime! We're glad to have you.
+I wanted to personally reach out to you and thank you for subscribing to Learn
+Prime.
 
-Secondly, I wanted to introduce myself. My name is <%= @mentor.name %> and I'll
-be your mentor!
+If you haven't already, I recommend you visit our Trail Maps to check off the
+skills you already have and discover <% if @user.subscription.includes_workshops? %>which workshops are right for you<% else %>new things to learn<% end %>:
+<%= topics_url %>
 
-I'd like to set up a 30-minute Skype session right now so we can discuss your
-goals and answer any initial questions you have.
+I'd also love to learn more about who you are, what your experience level is,
+and what your goals are for Prime. Just hit 'Reply' and lay it on me.
 
-You can access a read-only view of my calendar here:
-https://www.google.com/calendar/embed?src=<%=u @mentor.email %>&mode=week.
-
-To schedule a session, please send me an invite from your favorite calendar
-tool. As long as that slot is open, I'll accept your request. I'm generally
-available from 10:30am to 5pm US Eastern.
-
-Please also include your Skype handle in your scheduling request.
-
-Before our first call, I recommend you visit our Trail Maps to perform a
-self-assessment of your skills: <%= topics_url %>
-
-If you have anything you'd like to share before our call, just hit 'Reply' and
-lay it on me.
+Also, be sure to get help from all all the designers and developers of
+thoughtbot, as well as other subscribers, in our forums at
+<%= forum_url %>
 
 Thanks again,
--<%= @mentor.first_name %>
+Chad

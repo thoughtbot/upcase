@@ -92,12 +92,15 @@ en:
       Screencasts
     trails:
       Trail Maps
+    subscription:
+      name: Prime
     subscriptions:
       icon: ✶
       protected_content: ✶ Sorry, that article is only available to Prime subscribers.
       user_required: ✶ Sign in or sign up to subscribe to Prime.
-    local_articles: Bytes
-
+    byte: Prime Byte
+    bytes: Prime Bytes
+    all_bytes: All Prime Bytes
 
   topics:
     workshop:

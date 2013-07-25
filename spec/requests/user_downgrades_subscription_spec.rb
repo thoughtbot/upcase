@@ -2,7 +2,13 @@ require 'spec_helper'
 
 feature 'User downgrades subscription', js: true do
   scenario 'successfully downgrades and then cancels' do
-    prime = create(:subscribeable_product, sku: 'prime', name: 'Prime')
+    prime = create(:plan, sku: 'prime', name: 'Prime')
+    downgrade_plan = create(
+      :plan,
+      sku: Subscription::DOWNGRADED_PLAN,
+      includes_workshops: false,
+      includes_mentor: false
+    )
     section = create(:online_section)
 
     sign_in_as_user_with_subscription
@@ -20,11 +26,13 @@ feature 'User downgrades subscription', js: true do
     expect(page).to have_link I18n.t('subscriptions.cancel')
     expect(page).to have_no_content "Scheduled for cancellation"
     @current_user.reload
-    expect(@current_user.subscription.stripe_plan_id).
-      to eq Subscription::DOWNGRADED_PLAN
+    expect(@current_user.subscription.plan).to eq downgrade_plan
 
     visit workshop_path(section.workshop)
     expect(page).not_to have_css('.free-with-prime')
+    click_link 'Register for this Workshop'
+    expect(page).not_to have_content "$0"
+
     visit products_path
     expect(page).not_to have_css('section.mentor h3', text: 'Your Mentor')
 

@@ -49,10 +49,4 @@ describe SubscriptionCoupon do
   def create_stripe_coupon(attributes)
     Stripe::Coupon.create(attributes)
   end
-
-  def build_subscription_purchase_with_price(individual_price)
-    subscribeable_product = create(:subscribeable_product,
-      individual_price: individual_price)
-    build(:subscription_purchase, purchaseable: subscribeable_product)
-  end
 end

@@ -10,7 +10,7 @@ class BytesController < ApplicationController
         deny_access
       end
     else
-      redirect_to subscription_product, notice: t('shared.subscriptions.protected_content')
+      redirect_to prime_path, notice: t('shared.subscriptions.protected_content')
     end
   end
 

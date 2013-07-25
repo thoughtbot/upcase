@@ -16,7 +16,7 @@ describe Payments::StripePayment do
 
     it "updates the customer's plan for a subscription" do
       customer = stub_existing_customer
-      purchase = build_subscription_purchase
+      purchase = build_plan_purchase
       payment = Payments::StripePayment.new(purchase)
 
       payment.place
@@ -30,7 +30,7 @@ describe Payments::StripePayment do
       customer = stub_existing_customer
       coupon = stub('coupon', amount_off: 25)
       Stripe::Coupon.stubs(:retrieve).returns(coupon)
-      purchase = build_subscription_purchase(stripe_coupon_id: '25OFF')
+      purchase = build_plan_purchase(stripe_coupon_id: '25OFF')
       payment = Payments::StripePayment.new(purchase)
 
       payment.place
@@ -157,11 +157,11 @@ describe Payments::StripePayment do
     Stripe::Charge.stubs(:create).returns(stub(id: arguments[:transaction_id]))
   end
 
-  def build_subscription_purchase(overrides = {})
+  def build_plan_purchase(overrides = {})
     build(
-      :subscription_purchase,
+      :plan_purchase,
       {
-        purchaseable: create(:subscribeable_product),
+        purchaseable: create(:plan),
         payment_method: 'stripe'
       }.merge(overrides)
     )
