@@ -38,6 +38,16 @@ class Trail < ActiveRecord::Base
     trail_map['steps']
   end
 
+  def resources_and_validations
+    items = steps.map { |step| step['validations'] + step['resources'] }
+    items.flatten
+  end
+
+  def self.all_resources_and_validations
+    items = all.inject([]) { |steps, trail| steps << trail.resources_and_validations }
+    items.flatten
+  end
+
   private
 
   def github_url
@@ -81,4 +91,5 @@ class Trail < ActiveRecord::Base
       self.topic.topics << related_topic
     end
   end
+
 end
