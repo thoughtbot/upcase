@@ -278,7 +278,7 @@ describe Section do
         ends_on: 1.day.from_now
       )
       email = stub(deliver: nil)
-      Mailer.stubs(office_hours_reminder: email)
+      WorkshopMailer.stubs(office_hours_reminder: email)
       future_purchase = create(:paid_purchase, purchaseable: future)
       current_purchase = create(:paid_purchase, purchaseable: current)
       current_no_hours_purchase = create(
@@ -288,12 +288,12 @@ describe Section do
 
       Section.send_office_hours_reminders
 
-      expect(Mailer).to have_received(:office_hours_reminder).
+      expect(WorkshopMailer).to have_received(:office_hours_reminder).
         with(current, current_purchase.email)
       expect(email).to have_received(:deliver)
-      expect(Mailer).to have_received(:office_hours_reminder).
+      expect(WorkshopMailer).to have_received(:office_hours_reminder).
         with(future, future_purchase.email).never
-      expect(Mailer).to have_received(:office_hours_reminder).
+      expect(WorkshopMailer).to have_received(:office_hours_reminder).
         with(current_no_hours, current_no_hours_purchase.email).never
     end
   end

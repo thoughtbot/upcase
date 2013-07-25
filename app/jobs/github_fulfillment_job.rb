@@ -23,7 +23,7 @@ class GithubFulfillmentJob < Struct.new(:github_team, :usernames, :purchase_id)
 
   def report_error(e, username)
     purchase = Purchase.find(purchase_id)
-    Mailer.fulfillment_error(purchase, username).deliver
+    PurchaseMailer.fulfillment_error(purchase, username).deliver
     Airbrake.notify(e)
   end
 

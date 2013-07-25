@@ -5,14 +5,14 @@ module DelayedJobsHelpers
     end
   end
 
-  def stub_mail_method(method_name)
+  def stub_mail_method(klass, method_name)
     stub('mail', deliver: true).tap do |mail|
-      Mailer.stubs(method_name => mail)
+      klass.stubs(method_name => mail)
     end
   end
 
-  def stub_mail_method_to_raise(method_name, error)
-    Mailer.stubs(method_name).raises(error)
+  def stub_mail_method_to_raise(klass, method_name, error)
+    klass.stubs(method_name).raises(error)
   end
 end
 

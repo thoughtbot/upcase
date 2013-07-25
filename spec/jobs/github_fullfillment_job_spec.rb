@@ -18,11 +18,11 @@ describe GithubFulfillmentJob do
       purchase_id = create(:purchase).id
       client = stub_octokit
       client.stubs(:add_team_member).raises(error_class)
-      Mailer.stubs(:fulfillment_error => stub("deliver", :deliver => true))
+      PurchaseMailer.stubs(:fulfillment_error => stub("deliver", :deliver => true))
 
       GithubFulfillmentJob.new(3, ['gabebw'], purchase_id).perform
 
-      Mailer.should have_received(:fulfillment_error).
+      PurchaseMailer.should have_received(:fulfillment_error).
         with(instance_of(Purchase), 'gabebw')
     end
 
