@@ -98,6 +98,16 @@
     .goal {
       cursor: pointer;
 
+      .goal-bullet-container {
+        width: 3em;
+        position: absolute;
+      }
+
+      .goal-bullet {
+        position: absolute;
+        @extend %trail-bullet;
+      }
+
       &:hover .goal-bullet {
         background-color: darken($journey-line-color, 10%);
       }
@@ -110,9 +120,17 @@
         @extend %trail-bullet-complete;
       }
 
+      &:hover .goal-bullet-add {
+        background-color: darken($learnred, 10%);
+      }
+
       &.add .goal-bullet {
         @extend %goal-bullet-add;
         margin-top: 5px;
+      }
+
+      &:hover &.add .goal-bullet {
+        background-color: darken($learnred, 10%);
       }
 
       span {
@@ -140,16 +158,6 @@
           border: none;
         }
       }
-    }
-
-    .goal-bullet-container {
-      width: 3em;
-      position: absolute;
-    }
-
-    .goal-bullet {
-      position: absolute;
-      @extend %trail-bullet;
     }
 
     input[type="checkbox"] {
