@@ -14,6 +14,7 @@ describe SubscriptionMailer do
       email = SubscriptionMailer.welcome_to_prime(user)
 
       expect(email.from).to include(user.mentor.email)
+      expect(email.reply_to).to include(user.mentor.email)
       expect(email.body).to include(user.mentor.first_name)
       expect(email.body).to include(url_encode(user.mentor.email))
     end
