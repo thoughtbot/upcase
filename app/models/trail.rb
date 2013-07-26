@@ -91,5 +91,4 @@ class Trail < ActiveRecord::Base
       self.topic.topics << related_topic
     end
   end
-
 end
