@@ -95,6 +95,16 @@ describe Trail do
 
       expect(trail.resources_and_validations.size).to eq 2
     end
+
+    it 'returns an array when a step has no resources or validations' do
+      trail_without_resources = FakeTrailMap.new.trail
+      trail_without_resources['steps'].first.delete('resources')
+      trail_without_resources['steps'].first.delete('validations')
+
+      trail = create(:trail, trail_map: trail_without_resources)
+
+      expect(trail.resources_and_validations).to eq []
+    end
   end
 
   context '.import' do
