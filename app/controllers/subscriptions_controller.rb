@@ -1,10 +1,4 @@
 class SubscriptionsController < ApplicationController
-  def destroy
-    unsubscriber = Unsubscriber.new(current_user.subscription)
-    unsubscriber.schedule
-    redirect_to my_account_path
-  end
-
   def update
     customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
     customer.card = params['stripe_token']

@@ -156,6 +156,8 @@ en:
 
   subscriptions:
     cancel: Cancel
+    confirm_cancel_reject_deal: No thanks, just cancel my subscription
+    confirm_cancel: Yes, cancel my subscription
     discount:
       forever: $%{final_price}
       once: $%{final_price} the first month, then $%{full_price}
@@ -163,3 +165,7 @@ en:
     flashes:
       update:
         success: You have successfully updated your subscription credit card information.
+      downgrade:
+        success: Your subscription has been downgraded.
+      cancel:
+        success: We're sorry to see you go. You will have access to all the benefits of Prime until the end of your current billing cycle.

@@ -1,0 +1,18 @@
+<div class="text-box-wrapper solo cancellation-discount">
+  <article>
+    <% if !current_user.subscription.downgraded? %>
+      <p>If you're cancelling due to price, we'd like to offer you a deal: everything in <%= subscription_product.name %> except for <%= current_user.mentor.first_name %> (your mentor) and workshops. You still get books, screencasts, Bytes, the forum, and you'll also continue to have access to the workshops you've already taken, for $29/month instead of <%= number_to_currency subscription_product.individual_price, precision: 0 %>/month.</p>
+      <p>This is a one-time offer and once you cancel it'll be gone.</p>
+      <p><%= link_to 'Change to $29/month &rarr;'.html_safe, [:subscriber, :downgrade], method: :create %></p>
+    <% else %>
+      <p>Are you sure you want to cancel your Prime subscription? You will lose access to the products you acquired through Prime, as well as the forum and Learn Bytes at the end of your billing cycle.</p>
+    <% end %>
+  </article>
+  <%= form_for :cancellation, url: [:subscriber, :cancellation], html: { class: 'cancellation-feedback' } do |form| %>
+    <% if current_user.subscription.downgraded? %>
+      <%= form.submit t('subscriptions.confirm_cancel') %>
+    <% else %>
+      <%= form.submit t('subscriptions.confirm_cancel_reject_deal') %>
+    <% end %>
+  <% end %>
+</div>

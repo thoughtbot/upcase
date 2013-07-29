@@ -23,21 +23,22 @@
 @import "users-edit";
 @import "products-index";
 @import "products-workshops-show";
-@import 'purchases-new';
-@import 'purchases-show';
-@import 'video';
+@import "purchases-new";
+@import "purchases-show";
+@import "video";
 @import "articles";
-@import 'topics-index';
-@import 'topics-show';
+@import "topics-index";
+@import "topics-show";
 @import "episodes";
 @import "backbone-checkout";
 @import "registrations";
 @import "design-for-developers";
 @import "invoices";
+@import "cancellation";
 
 @import "prime-marketing/base";
 @import "prime-marketing/journey";
 
-@import 'learnsale';
+@import "learnsale";
 
 @import "prettify";

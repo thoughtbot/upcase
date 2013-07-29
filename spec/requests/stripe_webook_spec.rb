@@ -44,7 +44,7 @@ describe 'successful charges reported by Stripe webhook' do
   end
 end
 
-describe 'subscription cancelations reported by Stripe webhook' do
+describe 'subscription cancellations reported by Stripe webhook' do
   it 'deactivates the subscription' do
     user = create(
       :user,

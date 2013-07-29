@@ -19,6 +19,16 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user_has_active_subscription?
 
+  def subscription_includes_workshops?
+    current_user.subscription.includes_workshops?
+  end
+  helper_method :subscription_includes_workshops?
+
+  def subscription_includes_mentor?
+    current_user.subscription.includes_mentor?
+  end
+  helper_method :subscription_includes_mentor?
+
   def current_user_is_admin?
     current_user && current_user.admin?
   end

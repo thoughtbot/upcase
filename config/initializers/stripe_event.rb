@@ -24,8 +24,8 @@ StripeEvent.setup do
     stripe_customer_id = event.data.object.customer
 
     if user = User.find_by_stripe_customer_id(stripe_customer_id)
-      unsubscriber = Unsubscriber.new(user.subscription)
-      unsubscriber.process
+      cancellation = Cancellation.new(user.subscription)
+      cancellation.process
     end
   end
 end

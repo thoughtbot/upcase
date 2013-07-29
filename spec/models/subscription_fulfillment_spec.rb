@@ -14,6 +14,7 @@ describe SubscriptionFulfillment do
       SubscriptionFulfillment.new(purchase).fulfill
 
       expect(user.subscription).not_to be_nil
+      expect(user.subscription.stripe_plan_id).to eq purchase.purchaseable_sku
     end
 
     it 'does not add subscription for a regular purchase' do
