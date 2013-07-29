@@ -1,15 +1,15 @@
 <% content_for :subject, t('shared.podcast') %>
-<%= render 'introduction' %>
+<%= render 'introduction', show: @show %>
 
 <div class="text-box-wrapper">
   <div class="text-box">
     <hgroup class="product-title">
       <h2>All episodes</h2>
     </hgroup>
-    <%= render @episodes %>
+    <%= render @show.episodes.published %>
   </div>
 </div>
 
 <aside>
-  <%= render 'credits' %>
+  <%= render 'credits', show: @show %>
 </aside>

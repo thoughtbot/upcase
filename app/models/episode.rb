@@ -2,18 +2,17 @@ require 'mp3info'
 require 'open-uri'
 
 class Episode < ActiveRecord::Base
-  attr_accessible :title, :duration, :description, :published_on, :notes,
-    :old_url, :file_size, :topic_ids, :mp3, :new_mp3_url, :number
-
+  belongs_to :show
   has_many :classifications, as: :classifiable
-  has_many :topics, through: :classifications
   has_many :products, through: :topics, uniq: true
+  has_many :topics, through: :classifications
   has_many :workshops, through: :topics, uniq: true
 
-  validates :title, presence: true
   validates :description, presence: true
-  validates :published_on, presence: true
   validates :number, presence: true
+  validates :published_on, presence: true
+  validates :show, presence: true
+  validates :title, presence: true
 
   before_validation :assign_next_number, on: :create
   after_save :enqueue_remote_fetch

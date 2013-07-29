@@ -1,12 +1,12 @@
 class EpisodesController < ApplicationController
   def index
     expires_in 1.hour, public: true
-    @episodes = Episode.published
-    fresh_when(@episodes.first, public: true)
+    @show = current_show
+    fresh_when(@show.episodes.published.first, public: true)
   end
 
   def show
-    @episode = Episode.find_by_number!(params[:id].to_i)
+    @episode = current_show.episodes.published.find_by_number!(params[:id].to_i)
     respond_to do |format|
       format.html
       format.mp3 do
@@ -14,5 +14,11 @@ class EpisodesController < ApplicationController
         redirect_to @episode.mp3.url(:id3)
       end
     end
+  end
+
+  private
+
+  def current_show
+    Show.find_by_slug!(params[:show_id])
   end
 end

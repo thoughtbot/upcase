@@ -61,7 +61,8 @@ RailsAdmin.config do |config|
 
   config.model Episode do
     list do
-      field :id
+      field :show
+      field :number
       field :title
       field :published_on
       field :downloads_count
@@ -69,6 +70,7 @@ RailsAdmin.config do |config|
 
     edit do
       group :default do
+        field :show
         field :new_mp3_url
         field :mp3
         field :title
@@ -90,6 +92,7 @@ RailsAdmin.config do |config|
         field :number
         field :file_size
         field :duration
+        field :old_url
       end
     end
   end
