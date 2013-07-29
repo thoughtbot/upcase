@@ -97,17 +97,6 @@ describe Trail do
     end
   end
 
-  context '.all_resources_and_validations' do
-    it 'returns resources and validations across all trails' do
-      fake_trail_map = FakeTrailMap.new
-      trail1 = create(:trail, trail_map: fake_trail_map.trail)
-      trail2 = create(:trail, trail_map: fake_trail_map.trail)
-      total_trail_items = trail1.total + trail2.total
-
-      expect(Trail.all_resources_and_validations.size).to eq total_trail_items
-    end
-  end
-
   context '.import' do
     it 'imports each trail' do
       trail = create(:trail, trail_map: { hello: 'world' })

@@ -43,11 +43,6 @@ class Trail < ActiveRecord::Base
     items.flatten
   end
 
-  def self.all_resources_and_validations
-    items = all.inject([]) { |steps, trail| steps << trail.resources_and_validations }
-    items.flatten
-  end
-
   private
 
   def github_url

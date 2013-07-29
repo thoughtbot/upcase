@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130721190245) do
+ActiveRecord::Schema.define(:version => 20130726173752) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -60,7 +60,11 @@ ActiveRecord::Schema.define(:version => 20130721190245) do
     t.integer  "user_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "slug"
   end
+
+  add_index "completions", ["trail_object_id"], :name => "index_completions_on_trail_object_id"
+  add_index "completions", ["user_id"], :name => "index_completions_on_user_id"
 
   create_table "coupons", :force => true do |t|
     t.string   "code"
@@ -351,6 +355,7 @@ ActiveRecord::Schema.define(:version => 20130721190245) do
     t.string   "country"
     t.string   "name"
     t.boolean  "mentor",                            :default => false
+    t.string   "bio"
   end
 
   add_index "users", ["admin"], :name => "index_users_on_admin"
