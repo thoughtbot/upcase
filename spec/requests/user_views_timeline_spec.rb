@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'User views their timeline', js: true do
+feature 'User views their timeline' do
   scenario 'they see a list of their completed resources' do
     trail = create(:trail, trail_map: FakeTrailMap.new.trail)
     completion = create(:completion, trail_object_id: fake_trail_map.resource_id)
@@ -28,6 +28,22 @@ feature 'User views their timeline', js: true do
     visit timeline_path(as: completion.user)
 
     expect(page).to have_link 'trail map', href: topics_path
+  end
+
+  scenario 'they see their bio' do
+    user = create(:user, bio: 'All about me')
+
+    visit timeline_path(as: user)
+
+    expect(page).to have_role 'user-bio', text: 'All about me'
+  end
+
+  scenario 'they see a placeholder bio when none is present' do
+    user = create(:user, bio: nil)
+
+    visit timeline_path(as: user)
+
+    expect(page).to have_role 'user-bio', text: 'Tell us about yourself'
   end
 
   private
