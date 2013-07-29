@@ -69,10 +69,15 @@ RailsAdmin.config do |config|
 
     edit do
       group :default do
+        field :new_mp3_url
         field :mp3
         field :title
-        field :description
-        field :notes
+        field :description do
+          help 'All one line, no formatting or links'
+        end
+        field :notes do
+          help 'Format with Markdown'
+        end
         field :published_on
         field :topics
         field :downloads_count do
@@ -81,7 +86,8 @@ RailsAdmin.config do |config|
       end
 
       group :information do
-        help 'Leave blank to have this information populated from the mp3'
+        help 'Leave blank to have this information automatically populated'
+        field :number
         field :file_size
         field :duration
       end

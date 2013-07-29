@@ -92,4 +92,15 @@ describe Episode do
       episode.downloads_count.should eq 5
     end
   end
+
+  it 'queues up a fetch from url if one is supplied' do
+    mp3_url = 'http://example.com/test.mp3'
+    episode = build(:episode, new_mp3_url: mp3_url)
+    EpisodeMp3FetchJob.stubs(:enqueue)
+
+    episode.save!
+
+    EpisodeMp3FetchJob.should have_received(:enqueue).
+      with(episode.id, mp3_url)
+  end
 end
