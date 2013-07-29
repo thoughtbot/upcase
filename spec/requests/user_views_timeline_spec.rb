@@ -37,6 +37,15 @@ feature 'User views their timeline', js: true do
     expect(page).to have_role 'user-bio', text: 'Tell us about yourself'
   end
 
+  scenario 'they see a  link directing them to complete trail maps' do
+    trail = create(:trail, trail_map: FakeTrailMap.new.trail)
+    completion = create(:completion, trail_object_id: fake_trail_map.validation_id)
+
+    visit timeline_path(as: completion.user)
+
+    expect(page).to have_link 'trail map', href: topics_path
+  end
+
   private
 
   def fake_trail_map
