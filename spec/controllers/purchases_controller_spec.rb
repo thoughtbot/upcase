@@ -41,6 +41,15 @@ describe PurchasesController do
       notifier.should have_received(:notify_of_purchase).with(assigns(:purchase))
     end
 
+    it 'saves a comment for section purchase' do
+      stub_current_user_with(create(:user))
+      product = create(:product)
+
+      post :create, purchase: customer_params.merge(comments: 'test-comment'), product_id: product
+
+      assigns(:purchase).comments.should == 'test-comment'
+    end
+
     it 'sets flash[:purchase_paid_price]' do
       stub_current_user_with(create(:user))
       product = create(:product)

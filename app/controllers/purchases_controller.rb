@@ -105,6 +105,6 @@ class PurchasesController < ApplicationController
       :name, :email, :password, {:github_usernames => []}, :organization,
       :address1, :address2, :city,
       :state, :zip_code, :country,
-      :payment_method, :stripe_token)
+      :payment_method, :stripe_token, :comments)
   end
 end
