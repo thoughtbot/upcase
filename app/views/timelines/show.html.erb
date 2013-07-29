@@ -1,5 +1,3 @@
 <ul class='timeline'>
-  <% @completions.each do |completion| %>
-    <li><%= completion.trail_name %> - <%= completion.title %></li>
-  <% end %>
+  <%= render @completions %>
 </ul>
