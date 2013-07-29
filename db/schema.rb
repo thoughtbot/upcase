@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130726134140) do
+ActiveRecord::Schema.define(:version => 20130729020308) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -118,9 +118,11 @@ ActiveRecord::Schema.define(:version => 20130726134140) do
     t.integer  "mp3_file_size"
     t.datetime "mp3_updated_at"
     t.integer  "number"
+    t.integer  "show_id"
   end
 
   add_index "episodes", ["number"], :name => "index_episodes_on_number"
+  add_index "episodes", ["show_id"], :name => "index_episodes_on_show_id"
 
   create_table "follow_ups", :force => true do |t|
     t.string   "email"
@@ -290,6 +292,20 @@ ActiveRecord::Schema.define(:version => 20130726134140) do
 
   add_index "sections", ["workshop_id"], :name => "index_sections_on_workshop_id"
 
+  create_table "shows", :force => true do |t|
+    t.string   "slug"
+    t.string   "title"
+    t.string   "short_description"
+    t.text     "description"
+    t.text     "credits"
+    t.string   "keywords"
+    t.string   "itunes_url"
+    t.string   "stitcher_url"
+    t.string   "email"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id"
     t.datetime "created_at",                                         :null => false
@@ -359,7 +375,7 @@ ActiveRecord::Schema.define(:version => 20130726134140) do
     t.string   "zip_code"
     t.string   "country"
     t.string   "name"
-    t.boolean  "mentor",                             :default => false, :null => false
+    t.boolean  "mentor",                            :default => false, :null => false
   end
 
   add_index "users", ["admin"], :name => "index_users_on_admin"

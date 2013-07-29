@@ -1,6 +1,6 @@
 <% content_for :subject, t('shared.podcast') %>
 
-<%= render 'introduction' %>
+<%= render 'introduction', show: @episode.show %>
 
 <div class="text-box-wrapper">
   <div class="text-box">
@@ -13,9 +13,15 @@
 
     <div class="listen">
       <audio preload="none" controls="controls">
-      <source src="<%= episode_path(@episode, format: :mp3) %>" type="audio/mpeg" />
+        <%= tag :source,
+          src: show_episode_path(@episode.show, @episode, format: :mp3),
+          type: 'audio/mpeg' %>
       </audio>
-      <%= link_to "Direct Download", episode_path(@episode, format: :mp3) %> (<%= number_to_human_size @episode.file_size, precision: 2 %>, <%= distance_of_time_in_words @episode.duration %>)
+      <%= link_to show_episode_path(@episode.show, @episode, format: :mp3) do %>
+        Direct Download
+      <% end %>
+      (<%= number_to_human_size @episode.file_size, precision: 2 %>,
+      <%= distance_of_time_in_words @episode.duration %>)
     </div>
 
     <% unless @episode.notes.blank? %>
@@ -26,12 +32,15 @@
     <% end %>
 
     <section id="podcast-questions">
-    <h3>To have your questions answered on the air</h3>
-    <p>Email your questions to <a href="mailto:info@thoughtbot.com">info@thoughtbot.com</a> or Tweet to us <a href="http://twitter.com/thoughtbot">@thoughtbot</a>.</p>
+      <h3>To have your questions answered on the air</h3>
+      <p>
+        Email your questions to <%= mail_to @episode.show.email %> or Tweet to
+        us <a href="http://twitter.com/thoughtbot">@thoughtbot</a>.
+      </p>
     </section>
   </div>
 
-  <%= render 'credits' %>
+  <%= render 'credits', show: @episode.show %>
 </div>
 
 <%= render @episode.related %>
