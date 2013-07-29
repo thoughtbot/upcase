@@ -3,7 +3,7 @@ require 'open-uri'
 
 class Episode < ActiveRecord::Base
   attr_accessible :title, :duration, :description, :published_on, :notes,
-    :old_url, :file_size, :topic_ids, :mp3
+    :old_url, :file_size, :topic_ids, :mp3, :new_mp3_url, :number
 
   has_many :classifications, as: :classifiable
   has_many :topics, through: :classifications
@@ -16,6 +16,7 @@ class Episode < ActiveRecord::Base
   validates :number, presence: true
 
   before_validation :assign_next_number, on: :create
+  after_save :enqueue_remote_fetch
 
   has_attached_file :mp3, {
     s3_permissions: :public_read,
@@ -24,6 +25,8 @@ class Episode < ActiveRecord::Base
     },
     processors: [:id3]
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
+  process_in_background :mp3
+  attr_accessor :new_mp3_url
 
   def self.published
     where('published_on <= ?', Time.zone.today).order('published_on desc')
@@ -57,5 +60,11 @@ class Episode < ActiveRecord::Base
 
   def maximum_number
     Episode.maximum(:number) || 0
+  end
+
+  def enqueue_remote_fetch
+    if new_mp3_url.present?
+      EpisodeMp3FetchJob.enqueue(self.id, new_mp3_url)
+    end
   end
 end
