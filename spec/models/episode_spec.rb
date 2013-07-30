@@ -18,12 +18,15 @@ describe Episode do
 
   it_behaves_like 'it has related items'
 
-  it 'assigns the next number when created' do
+  it 'assigns the next number for the show when created' do
     episode = build(:episode, number: nil)
 
     episode.save!
 
     expect(episode.number).to eq 1
+    expect(create(:episode, number: nil, show: episode.show).number).to eq 2
+
+    expect(create(:episode, number: nil).number).to eq 1
   end
 
   it 'does not assign new number when created' do
