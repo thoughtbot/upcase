@@ -77,7 +77,7 @@ feature 'Viewing a podcast' do
   end
 
   def expect_to_see_episode_information(episode)
-    expect(page).to have_css('h2', text: "Episode ##{episode.id}")
+    expect(page).to have_css('h2', text: "Episode ##{episode.number}")
     expect(page).to have_css('h3', text: episode.title)
     expect(page).to have_css('.listen', text: /13 MB,/)
     expect(page).to have_css('.listen', text: /20 minutes/)
