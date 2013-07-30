@@ -196,6 +196,28 @@ describe User do
     end
   end
 
+  context '#completions_grouped_by_week' do
+    it 'returns completions grouped by week' do
+      completion = create(:completion, :beginning_of_august, slug: 'whatever')
+
+      user = completion.user
+      beginning_of_week = completion.updated_at.beginning_of_week
+
+      expect(user.completions_grouped_by_week).to eq({ beginning_of_week =>  [completion] })
+    end
+
+    it 'returns only the users completions and no others' do
+      user = create(:user)
+      completion = create(:completion, :beginning_of_august, user: user, slug: 'whatever')
+      another_user = create(:user)
+      create(:completion, user: another_user, slug: 'whatever')
+
+      beginning_of_week = completion.updated_at.beginning_of_week
+
+      expect(user.completions_grouped_by_week).to eq({ beginning_of_week =>  [completion] })
+    end
+  end
+
   describe '#subscription_purchases' do
     it 'includes only subscription purchases' do
       subscription = create(:active_subscription)
