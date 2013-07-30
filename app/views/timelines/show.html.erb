@@ -1,11 +1,28 @@
-<section>
-  <p data-role='user-bio'>
-    <%= current_user.bio || 'Tell us about yourself' %>
-    - <%= link_to 'edit bio', my_account_path, 'data-role' => 'edit-bio' %>
-  </p>
+<section class='timeline'>
+  <section class='profile'>
+    <%= image_tag gravatar_url(current_user), class: 'user-image' %>
+    <div class='user-info'>
+      <h3><%= current_user.name %></h3>
+      <p data-role='user-bio'>
+        <%= current_user.bio || 'Tell us about yourself' %>
+        - <%= link_to 'edit bio', my_account_path, 'data-role' => 'edit-bio' %>
+      </p>
+    </div>
+  </section>
+  <section class='progress-tracker'>
+    <ol class='week'>
+      <li>
+        <p class='title'>Completed Items</p>
+        <ol>
+          <li class='goal add'>
+            <div class='goal-bullet-container'>
+              <div class='goal-bullet'></div>
+            </div>
+            <span><%= link_to 'Check off items on trail maps &raquo;'.html_safe, topics_path %></span>
+          </li>
+          <%= render @completions %>
+        </ol>
+      </li>
+    </ol>
+  </section>
 </section>
-
-<ul class='timeline'>
-  <li><%= link_to 'Check off items on trail maps &raquo;'.html_safe, topics_path %></li>
-  <%= render @completions %>
-</ul>

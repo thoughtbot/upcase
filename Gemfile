@@ -19,6 +19,7 @@ gem 'dynamic_form', '1.1.4'
 gem 'escape_utils', '0.2.4' # Fix UTF-8 regexp match warning
 gem 'flutie', '1.3.3'
 gem 'formtastic', '2.2.0'
+gem 'gravatarify', '~> 3.1.0'
 gem 'high_voltage', '1.2.0'
 gem 'httparty', '0.8.1'
 gem 'jquery-rails'
