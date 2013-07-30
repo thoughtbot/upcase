@@ -64,9 +64,15 @@ Workshops::Application.routes.draw do
 
   resources :subscriptions, only: [:destroy, :update]
 
-  resources :episodes, path: 'podcast', only: [:index, :show]
-  get '/podcasts' => redirect("/podcast")
-  get '/podcasts/:id' => redirect("/podcast/%{id}")
+  get '/podcast' => redirect('/giantrobots')
+  get '/podcast/:id' => redirect("/giantrobots/%{id}")
+  get '/podcasts' => redirect('/giantrobots')
+  get '/podcasts/:id' => redirect("/giantrobots/%{id}")
+
+  constraints show_id: /giantrobots|buildphase/ do
+    get '/:show_id' => 'episodes#index', as: :show_episodes
+    get '/:show_id/:id' => 'episodes#show', as: :show_episode
+  end
 
   resources :design_for_developers_resources, path: 'design-for-developers-resources', only: [:index, :show]
   resources :test_driven_rails_resources, path: 'test-driven-rails-resources', only: [:index]

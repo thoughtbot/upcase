@@ -3,7 +3,6 @@ require 'mp3info'
 module Paperclip
   class Id3 < Processor
     include Rails.application.routes.url_helpers
-    COVER = File.join(Rails.root, 'app', 'assets', 'images', 'podcast', 'podcastlogo-1400.jpg')
 
     class InstanceNotGiven < ArgumentError; end
 
@@ -44,20 +43,20 @@ module Paperclip
     def set_v1_tags(mp3)
       mp3.tag1.title = @instance.full_title
       mp3.tag1.artist = 'thoughtbot'
-      mp3.tag1.album = 'Giant Robots Smashing into other Giant Robots'
+      mp3.tag1.album = @instance.show.title
       mp3.tag1.year = @instance.published_on.year if @instance.published_on
     end
 
     def set_v2_tags(mp3)
       mp3.tag2.TIT2 = @instance.full_title
       set_authorship_tags(mp3)
-      mp3.tag2.TALB = 'Giant Robots Smashing into other Giant Robots'
+      mp3.tag2.TALB = @instance.show.title
       mp3.tag2.TCON = 'Podcast'
       mp3.tag2.TYER = @instance.published_on.year
       mp3.tag2.PCST = "\x00\x00\x00\x00"
-      mp3.tag2.TGID = episode_url(@instance, host: HOST)
-      mp3.tag2.WXXX = "\x00\x00\x00#{episode_url(@instance, host: HOST)}\00"
-      mp3.tag2.WFED = "\x00#{episodes_url(format: :xml, host: HOST)}\x00"
+      mp3.tag2.TGID = show_episode_url(@instance.show, @instance, host: HOST)
+      mp3.tag2.WXXX = "\x00\x00\x00#{show_episode_url(@instance.show, @instance, host: HOST)}\00"
+      mp3.tag2.WFED = "\x00#{show_episodes_url(@instance.show, format: :xml, host: HOST)}\x00"
       mp3.tag2.TDES = "#{@instance.description}\n\n#{@instance.notes}"
       mp3.tag2.TDRL = @instance.published_on.to_s
     end
@@ -87,7 +86,11 @@ module Paperclip
     end
 
     def cover_image
-      File.new(COVER, 'rb').read
+      File.new(cover_image_path, 'rb').read
+    end
+
+    def cover_image_path
+      File.join(Rails.root, 'app', 'assets', 'images', 'podcast', "#{@instance.show.slug}-1400.jpg")
     end
   end
 end
