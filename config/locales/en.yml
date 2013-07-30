@@ -30,8 +30,10 @@ en:
 
   offerings:
     alternate:
-      in_person_workshop_html: 'In Boston or San Francisco? <b>Take the In-Person Workshop.</b>'
-      online_workshop_html: 'Not in Boston or San Francisco? <b>Take the Online Workshop.</b>'
+      in_person_workshop_cities_html: "In %{cities}?"
+      online_workshop_cities_html: "Not in %{cities}?"
+      in_person_workshop_html: "<b>Take the In-Person Workshop.</b>"
+      online_workshop_html: "<b>Take the Online Workshop.</b>"
     subtitle:
       book: ''
       in_person_workshop: 'in-person'

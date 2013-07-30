@@ -1,4 +1,10 @@
 <div class="workshop-alert">
+  <% if alternate.offering.in_person_cities.present? %>
+    <%= link_to(
+      t("#{alternate.key}_cities_html", scope: ['offerings', 'alternate'], cities: alternate.offering.in_person_cities),
+      alternate.offering
+    ) %>
+  <% end %>
   <%= link_to(
     t("#{alternate.key}_html", scope: ['offerings', 'alternate']),
     alternate.offering

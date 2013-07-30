@@ -142,6 +142,27 @@ describe Workshop do
     end
   end
 
+  describe '#in_person_cities' do
+    it 'returns the cities of active in person sessions' do
+      section = create(
+        :in_person_section,
+        starts_on: Time.zone.today,
+        ends_on: 1.day.from_now,
+        city: 'Boston'
+      )
+      workshop = section.workshop
+      section = create(
+        :in_person_section,
+        starts_on: Time.zone.today,
+        ends_on: 1.day.from_now,
+        city: 'Denver',
+        workshop: workshop
+      )
+
+      expect(workshop.in_person_cities).to eq 'Boston or Denver'
+    end
+  end
+
   context 'purchase_for' do
     it 'returns the purchase when a user has purchased a section of the workshop' do
       user = create(:user)
