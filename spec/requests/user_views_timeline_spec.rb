@@ -1,14 +1,16 @@
 require 'spec_helper'
 
 feature 'User views their timeline' do
+  include Gravatarify::Helper
+
   scenario 'they see a list of their completed resources' do
     trail = create(:trail, trail_map: FakeTrailMap.new.trail)
     completion = create(:completion, trail_object_id: fake_trail_map.resource_id)
 
     visit timeline_path(as: completion.user)
 
-    expect(page).to have_css '.timeline li', text: trail.name
-    expect(page).to have_css '.timeline li', text: fake_trail_map.resource_title
+    expect(page).to have_css '.progress-tracker li', text: trail.name
+    expect(page).to have_css '.progress-tracker li', text: fake_trail_map.resource_title
   end
 
   scenario 'they see a list of their completed validations' do
@@ -17,8 +19,8 @@ feature 'User views their timeline' do
 
     visit timeline_path(as: completion.user)
 
-    expect(page).to have_css '.timeline li', text: trail.name
-    expect(page).to have_css '.timeline li', text: fake_trail_map.validation_title
+    expect(page).to have_css '.progress-tracker li', text: trail.name
+    expect(page).to have_css '.progress-tracker li', text: fake_trail_map.validation_title
   end
 
   scenario 'they see a  link directing them to complete trail maps' do
@@ -35,6 +37,8 @@ feature 'User views their timeline' do
 
     visit timeline_path(as: user)
 
+    expect(page).to have_css %{.profile img[src="#{gravatar_url(user)}"]}
+    expect(page).to have_css '.user-info', text: user.name
     expect(page).to have_role 'user-bio', text: 'All about me'
   end
 
