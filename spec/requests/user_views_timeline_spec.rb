@@ -30,6 +30,22 @@ feature 'User views their timeline', js: true do
     expect(page).to have_link 'trail map', href: topics_path
   end
 
+  scenario 'they see their bio' do
+    user = create(:user, bio: 'All about me')
+
+    visit timeline_path(as: user)
+
+    expect(page).to have_role 'user-bio', text: 'All about me'
+  end
+
+  scenario 'they see a placeholder bio when none is present' do
+    user = create(:user, bio: nil)
+
+    visit timeline_path(as: user)
+
+    expect(page).to have_role 'user-bio', text: 'Tell us about yourself'
+  end
+
   private
 
   def fake_trail_map
