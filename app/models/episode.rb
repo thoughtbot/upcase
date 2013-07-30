@@ -58,7 +58,11 @@ class Episode < ActiveRecord::Base
   end
 
   def maximum_number
-    show.episodes.maximum(:number) || 0
+    if show
+      show.episodes.maximum(:number) || 0
+    else
+      0
+    end
   end
 
   def enqueue_remote_fetch
