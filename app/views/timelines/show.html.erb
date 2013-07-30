@@ -1,0 +1,11 @@
+<section>
+  <p data-role='user-bio'>
+    <%= current_user.bio || 'Tell us about yourself' %>
+    - <%= link_to 'edit bio', my_account_path, 'data-role' => 'edit-bio' %>
+  </p>
+</section>
+
+<ul class='timeline'>
+  <li><%= link_to 'Check off items on trail maps &raquo;'.html_safe, topics_path %></li>
+  <%= render @completions %>
+</ul>
