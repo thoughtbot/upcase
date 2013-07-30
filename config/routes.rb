@@ -64,6 +64,7 @@ Workshops::Application.routes.draw do
 
   resources :subscriptions, only: [:destroy, :update]
 
+  get '/podcast.xml' => redirect('/giantrobots.xml')
   get '/podcast' => redirect('/giantrobots')
   get '/podcast/:id' => redirect("/giantrobots/%{id}")
   get '/podcasts' => redirect('/giantrobots')
