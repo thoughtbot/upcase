@@ -137,10 +137,24 @@ class Workshop < ActiveRecord::Base
     "workshop_thumbs/#{name.parameterize}.png"
   end
 
+  def in_person_cities
+    if in_person_workshop && in_person_workshop.active_sections.present?
+      in_person_workshop.active_sections.collect(&:city).sort.
+        to_sentence(
+          two_words_connector: ' or ',
+          last_word_connector: ' or '
+        )
+    end
+  end
+
   private
 
   def alternate_workshop
     self.class.only_active.where(name: name, online: !online).first
+  end
+
+  def in_person_workshop
+    self.class.only_active.where(name: name, online: false).first
   end
 
   def alternate_key
