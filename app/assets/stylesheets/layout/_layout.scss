@@ -36,14 +36,18 @@ img {
       }
     }
 
-    .tagline {
-      font-size: 30px;
-      font-weight: 400;
+    .tagline, .tagline a {
+      font: 400 30px/40px $sans-serif;
       margin: .5rem auto 0 auto;
 
       @include body-mobile {
         font-size: 20px;
       }
+    }
+
+    .tagline a {
+      border-bottom: 2px solid $learnred;
+      margin: 0 3px;
     }
   }
 
