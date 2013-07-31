@@ -7,9 +7,11 @@
 <% content_for :subject_block do %>
   <h1><%= @purchaseable.name %></h1>
   <h2 class="tagline">
-    Watch or download video,
-    <% unless single_video?(@purchaseable) %>
-      <%= pluralize @purchaseable.videos.size, 'video' %> in the series
+    <% if single_video?(@purchaseable) %>
+      Watch or download video
+    <% else %>
+      Watch or download videos,
+      <%= pluralize @purchaseable.videos.size, 'video' %> in the series.
     <% end %>
   </h2>
 <% end %>
