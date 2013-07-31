@@ -137,8 +137,10 @@ ActiveRecord::Schema.define(:version => 20130731155600) do
   add_index "follow_ups", ["workshop_id"], :name => "index_follow_ups_on_workshop_id"
 
   create_table "notes", :force => true do |t|
-    t.integer "user_id"
-    t.text    "body"
+    t.integer  "user_id"
+    t.text     "body"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "oauth_access_grants", :force => true do |t|

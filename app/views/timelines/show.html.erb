@@ -30,18 +30,15 @@
         </fieldset>
       <% end %>
     </ol>
-    <% @completion_weeks.each do |week, completions| %>
+    <% @items_by_week.each do |week, items| %>
       <ol class='week'>
         <li>
         <p class='title'><%= week_title(week) %></p>
           <ol>
-            <%= render completions %>
+            <%= render items %>
           </ol>
         </li>
       </ol>
     <% end %>
-    <ol class='week'>
-      <%= render @notes %>
-    </ol>
   </section>
 </section>
