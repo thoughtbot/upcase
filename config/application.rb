@@ -9,10 +9,6 @@ Bundler.require *Rails.groups(:assets) if defined?(Bundler)
 
 module Workshops
   class Application < Rails::Application
-    config.generators do |generate|
-      generate.test_framework :rspec
-    end
-
     config.to_prepare do
       Doorkeeper::ApplicationController.layout 'doorkeeper'
     end
