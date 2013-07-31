@@ -2,6 +2,6 @@ class TimelinesController < ApplicationController
   before_filter :authorize
 
   def show
-    @completions = current_user.completions
+    @completion_weeks = current_user.completions_grouped_by_week
   end
 end

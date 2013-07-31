@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130726173752) do
+ActiveRecord::Schema.define(:version => 20130731030346) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -355,7 +355,7 @@ ActiveRecord::Schema.define(:version => 20130726173752) do
     t.string   "country"
     t.string   "name"
     t.boolean  "mentor",                            :default => false
-    t.string   "bio"
+    t.text     "bio"
   end
 
   add_index "users", ["admin"], :name => "index_users_on_admin"

@@ -48,6 +48,10 @@ class User < ActiveRecord::Base
     where(mentor: true)
   end
 
+  def completions_grouped_by_week
+    completions.group_by { |completion| completion.updated_at.beginning_of_week }
+  end
+
   def subscription_purchases
     paid_purchases.where(payment_method: 'subscription')
   end

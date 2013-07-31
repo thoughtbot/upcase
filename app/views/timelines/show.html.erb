@@ -11,18 +11,23 @@
   </section>
   <section class='progress-tracker'>
     <ol class='week'>
-      <li>
-        <p class='title'>Completed Items</p>
-        <ol>
-          <li class='goal add'>
-            <div class='goal-bullet-container'>
-              <div class='goal-bullet'></div>
-            </div>
-            <span><%= link_to 'Check off items on trail maps &raquo;'.html_safe, topics_path %></span>
-          </li>
-          <%= render @completions %>
-        </ol>
+      <p class='title'>Add to your timeline</p>
+      <li class='goal add'>
+        <div class='goal-bullet-container'>
+          <div class='goal-bullet'></div>
+        </div>
+        <span><%= link_to 'Check off items on trail maps &raquo;'.html_safe, topics_path %></span>
       </li>
     </ol>
+    <% @completion_weeks.each do |week, completions| %>
+      <ol class='week'>
+        <li>
+        <p class='title'><%= week_title(week) %></p>
+          <ol>
+            <%= render completions %>
+          </ol>
+        </li>
+      </ol>
+    <% end %>
   </section>
 </section>
