@@ -1,7 +1,9 @@
 <% content_for :page_title, "Learn Bytes" %>
-<% content_for :subject, "Bytes" %>
+<% content_for :subject_block do %>
+  <h1>Learn Bytes</h1>
+<% end %>
 
-<div class="text-box-wrapper">
+<div class="text-box-wrapper solo">
   <div class="text-box">
     <% if @bytes.present? %>
       <section class="bytes results">
