@@ -5,6 +5,7 @@ describe User do
     it { should have_many(:paid_purchases) }
     it { should have_many(:purchases) }
     it { should have_many(:completions) }
+    it { should have_many(:notes) }
   end
 
   context "validations" do

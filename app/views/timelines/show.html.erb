@@ -18,6 +18,17 @@
         </div>
         <span><%= link_to 'Check off items on trail maps &raquo;'.html_safe, topics_path %></span>
       </li>
+      <%= form_for :note, url: note_path do |form| %>
+        <fieldset class="inputs">
+          <li class='goal add'>
+            <div class='goal-bullet-container'>
+              <div class='goal-bullet'></div>
+            </div>
+            <%= form.text_area :body, placeholder: 'Add a note (mentor meetings, to-dos, etc.)' %>
+            <%= form.submit 'Save' %>
+          </li>
+        </fieldset>
+      <% end %>
     </ol>
     <% @completion_weeks.each do |week, completions| %>
       <ol class='week'>
@@ -29,5 +40,8 @@
         </li>
       </ol>
     <% end %>
+    <ol class='week'>
+      <%= render @notes %>
+    </ol>
   </section>
 </section>

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
     conditions: { paid: true }
   has_many :purchases
   has_many :completions
+  has_many :notes
   has_one :subscription
 
   delegate :mentor, to: :subscription, allow_nil: true

@@ -83,6 +83,7 @@ Workshops::Application.routes.draw do
 
   resources :subscriber_engagements, only: :index
   resource :timeline, only: :show
+  resource :note, only: :create
 
   get "/pages/*id" => 'pages#show', :as => :page, :format => false
   get '/prime' => 'pages#show', as: :prime, id: 'prime'
