@@ -9,7 +9,7 @@
   <h3><%= t '.products' %></h3>
   <hr>
   <ul class='related-products related-workshops'>
-    <% if subscription_product %>
+    <% if subscription_product && !current_user.has_active_subscription? %>
       <li class="prime">
         <%= link_to prime_path do %>
           <span class="icon"><%= t('shared.subscriptions.icon') %></span>
