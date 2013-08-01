@@ -13,6 +13,7 @@
 //= require slider
 //= require topics
 //= require checkout
+//= require notes
 
 $(function() {
   if ($('.all-trail-map-steps').length) {
