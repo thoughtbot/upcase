@@ -197,7 +197,7 @@ describe User do
     end
   end
 
-  context '#timeline_items' do
+  context '#grouped_timeline_items' do
     it 'returns completions and notes grouped by week' do
       user = create(:user)
 
