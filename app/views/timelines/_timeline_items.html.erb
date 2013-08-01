@@ -1,0 +1,14 @@
+<% @timeline_items_by_week.each_with_index do |(week, items), index| %>
+  <ol class='week'>
+    <figure class="journey-bullet"></figure>
+    <li>
+      <p class='title'><%= week_title(week) %></p>
+      <ol>
+        <% if index == 0 %>
+          <%= render 'check_off_trails_link' %>
+        <% end %>
+        <li><%= render items %></li>
+      </ol>
+    </li>
+  </ol>
+<% end %>
