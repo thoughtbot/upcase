@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     conditions: { paid: true }
   has_many :purchases
   has_many :completions
-  has_many :notes
+  has_many :notes, order: 'created_at DESC'
   has_one :subscription
 
   delegate :mentor, to: :subscription, allow_nil: true
@@ -139,6 +139,6 @@ class User < ActiveRecord::Base
   end
 
   def timeline_items_grouped_by_week
-    (completions + notes).group_by { |item| item.created_at.beginning_of_week }
+    completions.group_by { |item| item.created_at.beginning_of_week }
   end
 end
