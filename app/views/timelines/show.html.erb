@@ -11,22 +11,12 @@
   </section>
   <section class='progress-tracker'>
     <div class="right-column">
-      <% @items_by_week.each do |week, items| %>
+      <% if @timeline_items_by_week.values.empty? %>
         <ol class='week'>
-          <figure class="journey-bullet"></figure>
-          <li>
-            <p class='title'><%= week_title(week) %></p>
-            <ol>
-              <li class='goal add'>
-                <div class='goal-bullet-container'>
-                  <div class='goal-bullet'></div>
-                </div>
-                <span><%= link_to 'Check off items on trail maps &raquo;'.html_safe, topics_path %></span>
-              </li>
-              <li><%= render items %></li>
-            </ol>
-          </li>
+          <%= render 'check_off_trails_link' %>
         </ol>
+      <% else %>
+        <%= render 'timeline_items' %>
       <% end %>
     </div>
     <div class="left-column">

@@ -36,13 +36,27 @@ feature 'User views their timeline' do
     expect(page).to have_css '.week', text: 'Jul 29 - Aug 4'
   end
 
-  scenario 'they see a  link directing them to complete trail maps' do
-    trail = create(:trail, trail_map: fake_trail_map.trail)
-    completion = create(:completion, trail_object_id: fake_trail_map.validation_id)
+  context 'check off trail maps link' do
+    scenario 'is shown when there are no weeks being displayed' do
+      user = create(:user)
 
-    visit timeline_path(as: completion.user)
+      visit timeline_path(as: user)
 
-    expect(page).to have_link 'trail map', href: topics_path
+      expect(page).to have_link 'trail map', href: topics_path
+    end
+
+    scenario 'is only shown on the first week' do
+      trail = create(:trail, trail_map: fake_trail_map.trail)
+      validation_id = fake_trail_map.validation_id
+      resource_id = fake_trail_map.resource_id
+      completion = create(:completion, :beginning_of_august, trail_object_id: validation_id)
+      create(:completion, :end_of_july, user: completion.user, trail_object_id: resource_id)
+
+      visit timeline_path(as: completion.user)
+
+      expect(week_sections.count).to eq 2
+      expect(trail_map_links.count).to eq 1
+    end
   end
 
   scenario 'they see their bio' do
@@ -67,5 +81,13 @@ feature 'User views their timeline' do
 
   def fake_trail_map
     @fake_trail_map ||= FakeTrailMap.new
+  end
+
+  def trail_map_links
+    page.all 'a', text: 'trail map', href: topics_path
+  end
+
+  def week_sections
+    page.all('.week')
   end
 end
