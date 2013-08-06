@@ -98,6 +98,32 @@ describe Episode do
     end
   end
 
+  describe '.published_today' do
+    it 'only includes episodes published_on today' do
+      create(:episode, published_on: Time.zone.today, title: 'today')
+      create(:episode, published_on: 1.day.from_now, title: 'tomorrow')
+      create(:episode, published_on: 1.week.ago, title: 'last week')
+
+      expect(Episode.published_today.map(&:title)).to eq(%w(today))
+    end
+  end
+
+  describe '.promote_published_today' do
+    it 'only includes episodes published_on today' do
+      today = create(:episode, published_on: Time.zone.today)
+      tomorrow = create(:episode, published_on: 1.day.from_now)
+      last_week = create(:episode, published_on: 1.week.ago)
+      client = stub(post_episode: nil)
+      TumblrClient.stubs(:new).returns(client)
+
+      Episode.promote_published_today
+
+      expect(client).to have_received(:post_episode).with(today)
+      expect(client).to have_received(:post_episode).with(tomorrow).never
+      expect(client).to have_received(:post_episode).with(last_week).never
+    end
+  end
+
   it 'queues up a fetch from url if one is supplied' do
     mp3_url = 'http://example.com/test.mp3'
     episode = build(:episode, new_mp3_url: mp3_url)
