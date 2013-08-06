@@ -1,6 +1,16 @@
 require 'spec_helper'
 
-feature 'User adds a note to timeline' do
+feature 'User adds a note to timeline', :js do
+  scenario 'they see the note form hidden until they click "Add a note"' do
+    user = create(:user)
+    visit timeline_path(as: user)
+
+    expect(page).to have_css '.add-note-form', visible: false
+    find('span', text: 'Add a note').click
+
+    expect(page).to have_css '.add-note-form', visible: true
+  end
+
   scenario 'they see the note on the timeline page' do
     user = create(:user)
     visit timeline_path(as: user)
@@ -22,6 +32,7 @@ feature 'User adds a note to timeline' do
   private
 
   def create_note(body)
+    find('span', text: 'Add a note').click
     fill_in 'note_body', with: body
     click_on 'Save'
   end

@@ -20,18 +20,20 @@
       <% end %>
     </div>
     <div class="left-column">
-      <%= form_for :note, url: note_path do |form| %>
-        <fieldset class="inputs">
-          <li class='goal add'>
-            <div class='goal-bullet-container'>
-              <div class='goal-bullet'></div>
-            </div>
-            <span>Add a note</span>
-          </li>
-          <%= form.text_area :body, placeholder: 'Add a note (mentor meetings, to-dos, etc.)' %>
-          <%= form.submit 'Save' %>
-        </fieldset>
-      <% end %>
+      <ol>
+        <li class='goal add js-add-note'>
+          <div class='goal-bullet-container'>
+            <div class='goal-bullet'></div>
+          </div>
+          <span>Add a note</span>
+        </li>
+        <%= form_for :note, url: note_path, html: { class: 'add-note-form' } do |form| %>
+          <fieldset class="inputs">
+            <%= form.text_area :body, placeholder: 'Add a note (mentor meetings, to-dos, etc.)' %>
+            <%= form.submit 'Save' %>
+          </fieldset>
+        <% end %>
+      </ol>
       <ul class="notes">
         <%= render current_user.notes %>
       </ul>
