@@ -10,7 +10,7 @@
     </div>
   </section>
   <section class='progress-tracker'>
-    <div class="right-column">
+    <div class='right-column'>
       <% if @timeline_items_by_week.values.empty? %>
         <ol class='week'>
           <%= render 'check_off_trails_link' %>
@@ -19,7 +19,7 @@
         <%= render 'timeline_items' %>
       <% end %>
     </div>
-    <div class="left-column">
+    <div class='left-column'>
       <ol>
         <li class='goal add js-add-note'>
           <div class='goal-bullet-container'>
@@ -28,13 +28,13 @@
           <span>Add a note</span>
         </li>
         <%= form_for :note, url: note_path, html: { class: 'add-note-form' } do |form| %>
-          <fieldset class="inputs">
+          <fieldset class='inputs'>
             <%= form.text_area :body, placeholder: 'Add a note (mentor meetings, to-dos, etc.)' %>
             <%= form.submit 'Save' %>
           </fieldset>
         <% end %>
       </ol>
-      <ul class="notes">
+      <ul class='notes'>
         <%= render current_user.notes %>
       </ul>
     </div>

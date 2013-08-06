@@ -32,8 +32,10 @@ feature 'User adds a note to timeline', :js do
   private
 
   def create_note(body)
-    find('span', text: 'Add a note').click
-    fill_in 'note_body', with: body
-    click_on 'Save'
+    within '.left-column' do
+      find('span', text: 'Add a note').click
+      fill_in 'note_body', with: body
+      click_on 'Save'
+    end
   end
 end
