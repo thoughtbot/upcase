@@ -36,15 +36,6 @@ feature 'User views their timeline' do
     expect(page).to have_css '.week', text: 'Jul 29 - Aug 4'
   end
 
-  scenario 'they see a  link directing them to complete trail maps' do
-    trail = create(:trail, trail_map: fake_trail_map.trail)
-    completion = create(:completion, trail_object_id: fake_trail_map.validation_id)
-
-    visit timeline_path(as: completion.user)
-
-    expect(page).to have_link 'trail map', href: topics_path
-  end
-
   scenario 'they see their bio' do
     user = create(:user, bio: 'All about me')
 
