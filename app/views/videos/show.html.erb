@@ -1,10 +1,23 @@
-<% content_for :subject, @purchaseable.name %>
+<% unless single_video?(@purchaseable) %>
+  <% content_for :additional_header_links do %>
+    <li class="all-videos"><%= link_to 'All Videos', @purchase %></li>
+  <% end %>
+<% end %>
+
+<% content_for :subject_block do %>
+  <h1><%= @purchaseable.name %></h1>
+  <h2 class="tagline">
+    <% if single_video?(@purchaseable) %>
+      Watch or download video
+    <% else %>
+      Watch or download videos,
+      <%= pluralize @purchaseable.videos.size, 'video' %> in the series.
+    <% end %>
+  </h2>
+<% end %>
 
 <div class="text-box-wrapper">
   <div class="text-box">
-  	<hgroup class="product-title">
-      <h2 class="video-headline">Watch or Download Video</h2>
-    </hgroup>
     <%= render 'watch_video', video: @video, purchase: @purchase %>
   </div>
 </div>

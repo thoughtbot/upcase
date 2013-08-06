@@ -2,7 +2,11 @@
   <div class="header-container">
     <h1 class="small-logo">
       <%= link_to root_path do %>
-        <%= image_tag('learn/learn-ralph-small.png') %>
+        <% if content_for?(:page_logo) %>
+          <%= yield(:page_logo) %>
+        <% else %>
+          <%= image_tag('learn/learn-ralph-small.png') %>
+        <% end %>
         <span><%= t 'shared.learn' %></span>
       <% end %>
     </h1>

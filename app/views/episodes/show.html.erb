@@ -1,12 +1,27 @@
-<% content_for :subject, t('shared.podcast') %>
+<% content_for :page_logo do %>
+  <%= image_tag("podcast/#{@episode.show.slug}-small.png") %>
+<% end %>
 
-<%= render 'introduction', show: @episode.show %>
+<% content_for :additional_header_links do %>
+  <li class="all-episodes"><%= link_to 'All Episodes', show_episodes_path(@episode.show) %></li>
+<% end %>
+
+<% content_for :subject_block do %>
+  <h1><%= @episode.show.title %></h1>
+  <h2 class="tagline">
+    <%= link_to 'iTunes', @episode.show.itunes_url %>
+    <%= link_to 'RSS', show_episodes_path(@episode.show, format: :xml) %>
+    <% if @episode.show.stitcher_url.present? %>
+      <%= link_to 'Stiticher', @episode.show.stitcher_url %>
+    <% end %>
+  </h2>
+<% end %>
 
 <div class="text-box-wrapper">
   <div class="text-box">
     <hgroup class="product-title">
-      <h2>Episode #<%= @episode.number %></h1>
-      <h3><%= @episode.title %></h2>
+      <h2><%= @episode.title %></h2>
+      <h3>Episode #<%= @episode.number %></h3>
     </hgroup>
 
     <p><%= @episode.description %></p>

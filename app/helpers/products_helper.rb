@@ -17,7 +17,11 @@ module ProductsHelper
 
   def purchase_button_text(product)
     if current_user_has_active_subscription?
-      I18n.t('products.show.purchase_for_subscribed_user', product_type: product.product_type)
+      if product.product_type == 'video' && product.videos.count > 1
+        I18n.t('products.show.purchase_collection_for_subscribed_user', product_type: product.product_type)
+      else
+        I18n.t('products.show.purchase_for_subscribed_user', product_type: product.product_type)
+      end
     else
       if product.subscription?
         I18n.t('products.show.purchase_subscription')

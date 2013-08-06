@@ -48,6 +48,7 @@ en:
       purchase_for_yourself: Purchase for Yourself
       purchase_subscription: Subscribe Now
       purchase_for_subscribed_user: Get this %{product_type}
+      purchase_collection_for_subscribed_user: Get this %{product_type} collection
       price:
         individual_html: "Single <span>%{price}</span>"
         company_html: "Group <span>%{price}</span>"
