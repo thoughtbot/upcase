@@ -45,7 +45,7 @@ feature 'Subscriber accesses content' do
     click_link 'Get this video'
     click_button 'Get Access'
 
-    expect(page).to have_content('Watch or Download Video')
+    expect(page).to have_content('Watch or download video')
   end
 
   scenario 'accesses Prime Bytes' do

@@ -20,7 +20,6 @@ feature 'Viewing a podcast' do
 
     visit show_episodes_path(episode1.show)
 
-    expect_to_see_show_information(episode1.show)
     expect(page).to have_content 'Good episode'
     expect(page).to have_content 'this was good'
     expect(page).to have_content '20 minutes'
@@ -77,8 +76,8 @@ feature 'Viewing a podcast' do
   end
 
   def expect_to_see_episode_information(episode)
-    expect(page).to have_css('h2', text: "Episode ##{episode.number}")
-    expect(page).to have_css('h3', text: episode.title)
+    expect(page).to have_css('h2', text: episode.title)
+    expect(page).to have_css('h3', text: "Episode ##{episode.number}")
     expect(page).to have_css('.listen', text: /13 MB,/)
     expect(page).to have_css('.listen', text: /20 minutes/)
   end
@@ -87,18 +86,5 @@ feature 'Viewing a podcast' do
     expect(page).
       to have_css("audio source[src='#{show_episode_path(episode.show, episode, format: :mp3)}']")
   end
-
-  def expect_to_see_show_information(show)
-    within('.summary') do
-      expect(page).to have_css("a img[src$='podcast/#{show.slug}-small.png']")
-      expect(page).to have_content show.description
-      within('.links') do
-        expect(page).to have_css("a[href='#{show.itunes_url}']")
-        expect(page).to have_css("a[href='#{show_episodes_path(show, format: :xml)}']")
-        if show.stitcher_url.present?
-          expect(page).to have_css("a[href='#{show.stitcher_url}']")
-        end
-      end
-    end
-  end
 end
+
