@@ -35,7 +35,7 @@ describe 'Bytes' do
       visit byte_url(byte)
 
       expect(page).to have_content(byte.title)
-      expect(page.find('.body').native.inner_html).to include byte.body_html
+      expect(page.find('.text-box').native.inner_html).to include byte.body_html
       expect(page).to have_content(byte.published_on.to_s(:simple))
       expect(page).to have_css("meta[name='Description'][content='#{byte.title}']")
       expect(page).not_to have_content('Back to Trail')
