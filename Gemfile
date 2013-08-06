@@ -49,6 +49,7 @@ gem 'to_js', git: 'git://github.com/cpytel/to_js.git'
 gem 'validates_email_format_of', '1.5.3'
 gem 'ruby-mp3info', "~> 0.8"
 gem 'gibbon'
+gem 'tumblr-rb', git: 'https://github.com/thoughtbot/tumblr'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -94,7 +95,7 @@ group :test do
   gem 'selenium-webdriver', '2.32.1'
   gem 'sham_rack', '1.3.1'
   gem 'shoulda-matchers'
-  gem 'sinatra', '1.2.8'
+  gem 'sinatra'
   gem 'timecop', '0.3.5'
   gem 'vcr', '2.1.1'
   gem 'webmock', '1.8.7'
