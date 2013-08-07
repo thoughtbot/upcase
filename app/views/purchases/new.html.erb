@@ -15,7 +15,7 @@
         <div class="prime-purchase">
           <h2>Access this and all our other products</h2>
           <div class="license">
-            <a href="/products/14-prime" class="license-button button">Subscribe to Prime <span>$99/month</span></a>
+            <a href="/products/14-prime" class="license-button button">Subscribe to Prime <span><%= number_to_currency subscription_product.price, precision: 0 %>/month</span></a>
           </div>
         </div>
       </section>
