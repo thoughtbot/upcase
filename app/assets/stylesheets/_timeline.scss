@@ -68,28 +68,40 @@
 
   .progress-tracker {
     float: right;
-    width: 100%;
+    width: 50%;
     margin-top: 45px;
+    border-left: 6px dashed $journey-line-color;
 
     .title {
       margin: 5px 0 20px 0;
     }
 
-    .right-column {
-      float: right;
-      border-left: 6px dashed $journey-line-color;
-    }
-
     .week {
       position: relative;
       margin: 0 0 0 20px;
-      padding: 15px 50px 30px;
+      padding: 15px 30px 30px;
       border-bottom: 6px solid $journey-line-color;
+
+      .tracking {
+        margin-left: 10%;
+      }
     }
 
     ol {
       list-style-type: none;
       margin: 0;
+    }
+
+    .week-past {
+      padding: 20px 30px;
+
+      h4, li {
+        color: lighten($darkwarmgray, 25);
+      }
+
+      .tracking {
+        margin-left: 15%;
+      }
     }
 
     .goal {
@@ -161,27 +173,35 @@
     }
   }
 
-  .left-column {
+  .notes {
+    float: right;
+    width: 50%;
+    margin-top: 45px;
+    padding-right: 50px;
 
-    span {
+    .plus {
+      font-weight: bold;
+      font-size: 2em;
       color: $learnred;
+      position: absolute;
     }
 
-    textarea {
-      width: 100%;
-      clear: both;
-      width: 85%;
-      height: 80px;
+    .add-note {
+      margin-left: 1.6em;
     }
 
-    input[type="submit"] {
-      float: right;
-      margin-right: 15%;
-      width: 100px;
+    ol {
+      list-style-type: none;
+      margin: 25px 0 0;
+      padding: 0;
+    }
+
+    li:after {
+      content:"";
+      width: 30px;
+      height: 10px;
+      background: $journey-line-color;
     }
   }
 }
 
-.add-note-form {
-  display: none;
-}

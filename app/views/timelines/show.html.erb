@@ -1,42 +1,39 @@
-<section class='timeline'>
-  <section class='profile'>
+<section class="timeline">
+  <section class="profile">
     <%= image_tag gravatar_url(current_user), class: 'user-image' %>
-    <div class='user-info'>
+    <div class="user-info">
       <h3><%= current_user.name %></h3>
-      <p data-role='user-bio'>
+      <p data-role="user-bio">
         <%= current_user.bio || 'Tell us about yourself' %>
-        - <%= link_to 'edit bio', my_account_path, 'data-role' => 'edit-bio' %>
+        &mdash;
+        <%= link_to 'edit bio', my_account_path, 'data-role' => 'edit-bio' %>
       </p>
     </div>
   </section>
-  <section class='progress-tracker'>
-    <div class='right-column'>
-      <% if @timeline_items_by_week.values.empty? %>
-        <ol class='week'>
-          <%= render 'check_off_trails_link' %>
-        </ol>
-      <% else %>
-        <%= render 'timeline_items' %>
-      <% end %>
-    </div>
-    <div class='left-column'>
-      <ol>
-        <li class='goal add js-add-note'>
-          <div class='goal-bullet-container'>
-            <div class='goal-bullet'></div>
-          </div>
-          <span>Add a note</span>
-        </li>
-        <%= form_for :note, url: note_path, html: { class: 'add-note-form' } do |form| %>
-          <fieldset class='inputs'>
-            <%= form.text_area :body, placeholder: 'Add a note (mentor meetings, to-dos, etc.)' %>
-            <%= form.submit 'Save' %>
-          </fieldset>
-        <% end %>
+  <section class="progress-tracker">
+    <% if @timeline_items_by_week.values.empty? %>
+      <ol class="week">
+        <%= render 'check_off_trails_link' %>
       </ol>
-      <ul class='notes'>
-        <%= render current_user.notes %>
-      </ul>
-    </div>
+    <% else %>
+      <%= render 'timeline_items' %>
+    <% end %>
+  </section>
+  <section class="notes">
+    <ol>
+      <li class="add">
+        <span class="plus">&#43;</span><a href="" class="add-note">Add a note</a>
+      </li>
+      <%= form_for :note, url: note_path, html: { class: 'add-note-form' } do |form| %>
+        <fieldset class='inputs'>
+          <%= form.text_area :body, placeholder: 'Add a note (mentor meetings, to-dos, etc.)' %>
+          <%= form.submit 'Save' %>
+        </fieldset>
+      <% end %>
+    </ol>
+    <ul class="notes">
+      <%= render current_user.notes %>
+    </ul>
   </section>
 </section>
+
