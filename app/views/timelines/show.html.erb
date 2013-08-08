@@ -11,25 +11,12 @@
     </div>
   </section>
   <section class="progress-tracker">
-    <% 3.times do %>
+    <% if @timeline_items_by_week.values.empty? %>
       <ol class="week">
-        <figure class="journey-bullet"></figure>
-        <div class="tracking">
-          <p class="title">Add to your timeline</p>
-          <li class="goal add">
-            <div class="goal-bullet-container">
-              <div class="goal-bullet"></div>
-            </div>
-            <span><%= link_to 'Check off items on trail maps &raquo;'.html_safe, topics_path %></span>
-          </li>
-          <% @completion_weeks.each do |week, completions| %>
-            <li>
-              <p class="title"><%= week_title(week) %></p>
-              <ol><%= render completions %></ol>
-            </li>
-          <% end %>
-        </div>
+        <%= render 'check_off_trails_link' %>
       </ol>
+    <% else %>
+      <%= render 'timeline_items' %>
     <% end %>
   </section>
   <section class="notes">
@@ -37,16 +24,16 @@
       <li class="add">
         <span class="plus">&#43;</span><a href="" class="add-note">Add a note</a>
       </li>
-      <li class="note">
-        <p>Met with Chad, he recommended a book to me</p>
-      </li>
-      <li class="note">
-        <p>Refactored my code for side project</p>
-      </li>
-      <li class="note">
-        <p>Stay on task</p>
-      </li>
+      <%= form_for :note, url: note_path, html: { class: 'add-note-form' } do |form| %>
+        <fieldset class='inputs'>
+          <%= form.text_area :body, placeholder: 'Add a note (mentor meetings, to-dos, etc.)' %>
+          <%= form.submit 'Save' %>
+        </fieldset>
+      <% end %>
     </ol>
+    <ul class="notes">
+      <%= render current_user.notes %>
+    </ul>
   </section>
 </section>
 
