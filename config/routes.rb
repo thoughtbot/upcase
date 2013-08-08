@@ -62,7 +62,7 @@ Workshops::Application.routes.draw do
     resource :downgrade, only: :create
   end
 
-  resources :subscriptions, only: [:destroy, :update]
+  resources :subscriptions, only: [:new, :update]
 
   get '/podcast.xml' => redirect('/giantrobots.xml')
   get '/podcast' => redirect('/giantrobots')
