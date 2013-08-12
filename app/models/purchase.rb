@@ -69,9 +69,9 @@ class Purchase < ActiveRecord::Base
   end
 
   def self.last_30_days_of_sales
-    (0..29).to_a.reverse.map do |days_ago|
-      day = days_ago.days.ago
-      Purchase.total_sales_within_range(day.beginning_of_day, day.end_of_day)
+    (0..29).to_a.reverse.map do |number|
+      day = number.days.ago
+      total_sales_within_range(day.beginning_of_day, day.end_of_day)
     end
   end
 
