@@ -20,6 +20,14 @@ describe UserSerializer do
 
       user_json['has_forum_access'].should be_true
     end
+
+    it 'includes a key indicating a subscription' do
+      user = create(:user, :with_subscription)
+
+      user_json = parse_serialized_json(user)
+
+      user_json['has_active_subscription'].should be_true
+    end
   end
 
   context 'when the user does not have an active subscription' do
@@ -30,6 +38,14 @@ describe UserSerializer do
 
       user_json['has_forum_access'].should be_false
     end
+
+    it 'includes a key indicating no subscription' do
+      user = build_stubbed(:user)
+
+      user_json = parse_serialized_json(user)
+
+      user_json['has_active_subscription'].should be_false
+    end
   end
 
   context 'when the user does not have an active subscription but is an admin' do
@@ -39,6 +55,14 @@ describe UserSerializer do
       user_json = parse_serialized_json(user)
 
       user_json['has_forum_access'].should be_true
+    end
+
+    it 'includes a key indicating they are an admin' do
+      user = create(:admin)
+
+      user_json = parse_serialized_json(user)
+
+      user_json['admin'].should be_true
     end
   end
 
