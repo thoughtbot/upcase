@@ -18,7 +18,7 @@ feature 'Visitor is asked to create a user before subscription' do
     click_landing_page_call_to_action
 
     mentor_name = /This is (.*)/.match(find('.mentor figcaption strong').text)[1]
-    click_link 'Choose this plan'
+    click_link 'Choose'
 
     expect_to_be_on_subscription_purchase_page
 
@@ -103,7 +103,7 @@ feature 'Visitor is asked to create a user before subscription' do
   def attempt_to_subscribe
     visit prime_path
     click_landing_page_call_to_action
-    click_link 'Choose this plan'
+    click_link 'Choose'
   end
 
   def current_user
