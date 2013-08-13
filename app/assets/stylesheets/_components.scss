@@ -14,7 +14,7 @@
       @include transform(translate3D(0, 0, 0));
     }
 
-    img, .inperson-date {
+    .hover-text + img, .hover-text + .inperson-date {
       @include transform(translate3D(110%, 0, 0));
     }
   }
@@ -165,7 +165,6 @@
     figure {
       border-radius: 3px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
-      height: 128px;
       line-height: 0;
       overflow: hidden;
       position: relative;
