@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 feature 'Subscriber accesses content' do
-
   scenario 'access mentor details' do
     sign_in_as_user_with_subscription
     mentor = @current_user.mentor
