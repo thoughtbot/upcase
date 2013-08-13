@@ -37,7 +37,7 @@
     @include transition(none);
     background-color: darken($lightwarmgray, 6%);
     border-bottom-color: transparent;
-    @include transform(translateY(2px));
+    @include transform(translate3D(0, 2px, 0));
   }
 }
 

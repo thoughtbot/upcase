@@ -32,7 +32,7 @@ $(function() {
 
     function slide_one_card(slider) {
       if (!slider_at_end(slider) || !slider_at_beginning(slider)) {
-        var value = 'translateX('+parseInt(- (card_width * 2) * slider.data('index'), 10)+'px)';
+        var value = 'translate3D('+parseInt(- (card_width * 2) * slider.data('index'), 10)+'px, 0, 0)';
         slider.children('.slider-item').css({
           'transform'         : value,
           '-webkit-transform' : value,
