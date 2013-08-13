@@ -26,7 +26,8 @@ module Workshops
     config.autoload_paths += [
       "#{config.root}/lib",
       "#{config.root}/app/serializers",
-      "#{config.root}/app/jobs"
+      "#{config.root}/app/jobs",
+      "#{config.root}/app/facades"
     ]
 
     # Only load the plugins named here, in the order given (default is alphabetical).

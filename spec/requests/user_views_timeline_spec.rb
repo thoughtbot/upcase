@@ -9,8 +9,8 @@ feature 'User views their timeline' do
 
     visit timeline_path(as: completion.user)
 
-    expect(page).to have_css '.progress-tracker li', text: trail.name
-    expect(page).to have_css '.progress-tracker li', text: fake_trail_map.resource_title
+    expect(page).to have_css '.progress li', text: trail.name
+    expect(page).to have_css '.progress li', text: fake_trail_map.resource_title
   end
 
   scenario 'they see a list of their completed validations' do
@@ -19,8 +19,8 @@ feature 'User views their timeline' do
 
     visit timeline_path(as: completion.user)
 
-    expect(page).to have_css '.progress-tracker li', text: trail.name
-    expect(page).to have_css '.progress-tracker li', text: fake_trail_map.validation_title
+    expect(page).to have_css '.progress li', text: trail.name
+    expect(page).to have_css '.progress li', text: fake_trail_map.validation_title
   end
 
   scenario 'they see completed items grouped by week' do

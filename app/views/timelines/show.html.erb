@@ -11,29 +11,40 @@
     </div>
   </section>
 
-  <section class="week">
-    <div class="progress">
-      <form>
-        <input type="text" placeholder="Enter a goal" />
-      </form>
-      <ol class="goals">
-        <% if @timeline_items_by_week.values.empty? %>
-          <li class="trails-link"><%= link_to 'Check off items on trail maps &rarr;'.html_safe, topics_path %></li>
-        <% else %>
-          <%= render 'timeline_items' %>
-        <% end %>
-      <ol>
-    </div>
-    <div class="notes">
-      <%= link_to 'Add a note', '#', class: 'add-note' %>
-      <%= form_for :note, url: note_path, html: { class: 'add-note-form' } do |form| %>
-        <%= form.text_area :body, placeholder: 'Add a note (mentor meetings, to-dos, etc.)' %>
-        <%= form.submit 'Save' %>
-      <% end %>
-      <ol>
-        <%= render current_user.notes %>
-      </ol>
-    </div>
-  </section>
+  <% if @timeline.has_items? %>
+    <% @timeline.grouped_items.each_with_index do |(week, items), index| %>
+      <section class="week">
+        <div class="progress">
+          <ol class="goals">
+            <li class="title"><%= week_title(week) %></li>
+            <% if index == 0 %>
+              <%= render 'check_off_trails_link' %>
+            <% end %>
+            <% if items[:completions] %>
+              <%= render items[:completions] %>
+            <% end %>
+          <ol>
+        </div>
+        <div class="notes">
+          <%= render 'note_form' %>
+          <ol>
+            <% if items[:notes] %>
+              <%= render items[:notes] %>
+            <% end %>
+          </ol>
+        </div>
+      </section>
+    <% end %>
+  <% else %>
+    <section class="week">
+      <div class="progress">
+        <ol class="goals">
+          <%= render 'check_off_trails_link' %>
+        </ol>
+      </div>
+      <div class="notes">
+        <%= render 'note_form' %>
+      </div>
+    </section>
+  <% end %>
 </section>
-

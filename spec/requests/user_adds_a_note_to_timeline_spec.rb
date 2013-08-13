@@ -6,7 +6,7 @@ feature 'User adds a note to timeline', :js do
     visit timeline_path(as: user)
 
     expect(page).to have_css '.add-note-form', visible: false
-    find('span', text: 'Add a note').click
+    click_on 'Add a note'
 
     expect(page).to have_css '.add-note-form', visible: true
   end
@@ -26,14 +26,14 @@ feature 'User adds a note to timeline', :js do
 
     create_note('# I love to learn')
 
-    expect(page).to have_css '[data-role="note"] span h1', text: 'I love to learn'
+    expect(page).to have_css '[data-role="note"] h1', text: 'I love to learn'
   end
 
   private
 
   def create_note(body)
-    within '.left-column' do
-      find('span', text: 'Add a note').click
+    within '.notes' do
+      click_on 'Add a note'
       fill_in 'note_body', with: body
       click_on 'Save'
     end
