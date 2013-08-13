@@ -17,6 +17,17 @@ describe PurchasesController do
     end
   end
 
+  describe '#new when purchasing a plan as a user with and active subscription' do
+    it 'renders a subscriber-specific layout' do
+      user = create(:user, :with_subscription)
+      stub_current_user_with(user)
+
+      get :new, plan_id: user.subscription.plan
+
+      expect(response).to render_template 'new'
+    end
+  end
+
   describe '#new with no variant specified' do
     it 'defaults purchase to individual' do
       user = create(:user)
