@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Plan do
   it { should have_many(:announcements) }
   it { should have_many(:purchases) }
+  it { should have_many(:subscriptions) }
 
   it { should validate_presence_of(:company_price) }
   it { should validate_presence_of(:description) }
@@ -51,6 +52,97 @@ describe Plan do
       expect(featured).to have_received(:ordered)
       expect(active).to have_received(:featured)
       expect(Plan).to have_received(:active)
+    end
+  end
+
+  describe '.prime_basic' do
+    it 'returns the instance of Plan corresponding to Prime Basic' do
+      create_prime_basic_plan
+
+      expect(Plan.prime_basic).to eq Plan.find_by_sku(Plan::PRIME_BASIC_SKU)
+    end
+  end
+
+  describe '.prime_workshops' do
+    it 'returns the Plan instance corresponding to Prime Workshops' do
+      create_prime_workshops_plan
+
+      expect(Plan.prime_workshops).to eq Plan.find_by_sku(Plan::PRIME_WORKSHOPS_SKU)
+    end
+  end
+
+  describe '.prime_with_mentoring' do
+    it 'returns the Plan instance corresponding to Prime with Mentoring' do
+      create_prime_with_mentoring_plan
+
+      expect(Plan.prime_with_mentoring).to eq Plan.find_by_sku(Plan::PRIME_WITH_MENTORING_SKU)
+    end
+  end
+
+  describe '.prime_basic_subscription_count' do
+    it 'returns 0 when there are no active subscriptions to the Prime Basic plan' do
+      plan = create_prime_basic_plan
+      create_inactive_subscription_for(plan)
+
+      expect(Plan.prime_basic_subscription_count).to eq 0
+    end
+
+    it 'returns 1 when there is 1 active subscription to the Prime Basic plan' do
+      plan = create_prime_basic_plan
+      create_active_subscription_for(plan)
+
+      expect(Plan.prime_basic_subscription_count).to eq 1
+    end
+  end
+
+  describe '.prime_workshops_subscription_count' do
+    it 'returns 0 when there are no active subscriptions to the Prime Workshops plan' do
+      plan = create_prime_workshops_plan
+      create_inactive_subscription_for(plan)
+
+      expect(Plan.prime_workshops_subscription_count).to eq 0
+    end
+
+    it 'returns 1 when there is 1 active subscription to the Prime Workshops plan' do
+      plan = create_prime_workshops_plan
+      create_active_subscription_for(plan)
+
+      expect(Plan.prime_workshops_subscription_count).to eq 1
+    end
+  end
+
+  describe '.prime_with_mentoring_subscription_count' do
+    it 'returns 0 when there are no active subscriptions to the Prime with Mentoring plan' do
+      plan = create_prime_with_mentoring_plan
+      create_inactive_subscription_for(plan)
+
+      expect(Plan.prime_with_mentoring_subscription_count).to eq 0
+    end
+
+    it 'returns 1 when there is 1 active subscription to the Prime with Mentoring plan' do
+      plan = create_prime_with_mentoring_plan
+      create_active_subscription_for(plan)
+
+      expect(Plan.prime_with_mentoring_subscription_count).to eq 1
+    end
+  end
+
+  describe '#subscription_count' do
+    it 'returns 0 when the plan has no subscriptions' do
+      plan = create(:plan)
+      expect(plan.subscription_count).to eq 0
+    end
+
+    it 'returns 1 when the plan has a single active subscription' do
+      plan = create(:plan)
+      create(:active_subscription, plan: plan)
+      expect(plan.subscription_count).to eq 1
+    end
+
+    it 'returns 0 when the plan has only an inactive subscription' do
+      plan = create(:plan)
+      create_inactive_subscription_for(plan)
+      expect(plan.subscription_count).to eq 0
     end
   end
 
@@ -144,4 +236,25 @@ describe Plan do
       expect(Announcement).to have_received(:current)
     end
   end
+
+  def create_prime_basic_plan
+    create(:plan, sku: Plan::PRIME_BASIC_SKU)
+  end
+
+  def create_prime_workshops_plan
+    create(:plan, sku: Plan::PRIME_WORKSHOPS_SKU)
+  end
+
+  def create_prime_with_mentoring_plan
+    create(:plan, sku: Plan::PRIME_WITH_MENTORING_SKU)
+  end
+
+  def create_inactive_subscription_for(plan)
+    create(:inactive_subscription, plan: plan)
+  end
+
+  def create_active_subscription_for(plan)
+    create(:subscription, plan: plan)
+  end
+
 end
