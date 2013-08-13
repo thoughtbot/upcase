@@ -50,7 +50,12 @@ class PurchasesController < ApplicationController
   end
 
   def included_in_subscription?
-    !workshop_purchase? || (workshop_purchase? && subscription_includes_workshops?)
+    !plan_purchase? &&
+      (!workshop_purchase? || (workshop_purchase? && subscription_includes_workshops?))
+  end
+
+  def plan_purchase?
+    params[:plan_id].present?
   end
 
   def workshop_purchase?
