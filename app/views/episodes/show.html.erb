@@ -12,7 +12,7 @@
     <%= link_to 'iTunes', @episode.show.itunes_url %>
     <%= link_to 'RSS', show_episodes_path(@episode.show, format: :xml) %>
     <% if @episode.show.stitcher_url.present? %>
-      <%= link_to 'Stiticher', @episode.show.stitcher_url %>
+      <%= link_to 'Stitcher', @episode.show.stitcher_url %>
     <% end %>
   </h2>
 <% end %>
