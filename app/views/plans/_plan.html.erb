@@ -2,16 +2,27 @@
   <h3><%= plan.name %> &mdash; <%= number_to_currency plan.individual_price, precision: 0 %>/month</h3>
   <section>
     <%== plan.description %>
+    <% if plan.includes_mentor? %>
+      <figure class="mentor">
+        <%= mentor_image(@mentor) %>
+        <figcaption>
+          <p><strong>This is <%= @mentor.first_name %></strong>. If you choose this plan, <%= @mentor.first_name %> will be your mentor. <%= @mentor.bio %></p>
+        </figcaption>
+      </figure>
+    <% end %>
     <%= link_to new_plan_purchase_path(plan), class: 'button' do %>
-      Choose this plan &rarr;
+      Choose <%= plan.name %> &rarr;
     <% end %>
   </section>
-  <% if plan.includes_mentor? %>
-    <figure class="mentor">
-      <%= mentor_image(@mentor) %>
-      <figcaption>
-        <p><strong>This is <%= @mentor.first_name %></strong>. If you choose this plan, <%= @mentor.first_name %> will be your mentor. <%= @mentor.bio %></p>
-      </figcaption>
-    </figure>
-  <% end %>
+  <section class="features">
+    <h4>Includes</h4>
+    <ul>
+      <li class="mentor">A Mentor</li>
+      <li class="workshops">Workshops</li>
+      <li>Learn Forum</li>
+      <li>Screencasts</li>
+      <li>Books</li>
+      <li>Prime Bytes</li>
+    </ul>
+  </section>
 <% end %>
