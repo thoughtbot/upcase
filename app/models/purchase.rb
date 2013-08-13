@@ -68,13 +68,6 @@ class Purchase < ActiveRecord::Base
     end
   end
 
-  def self.last_30_days_of_sales
-    (0..29).to_a.reverse.map do |days_ago|
-      day = days_ago.days.ago
-      Purchase.total_sales_within_range(day.beginning_of_day, day.end_of_day)
-    end
-  end
-
   def self.within_range(start_time, end_time)
     paid.where("created_at >= ? and created_at <= ?", start_time, end_time)
   end

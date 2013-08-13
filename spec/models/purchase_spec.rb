@@ -648,18 +648,6 @@ describe Purchase, '.of_sections' do
   end
 end
 
-describe Purchase, 'last_30_days_of_sales' do
-  it 'returns an array where entries are the sum of the prices for paid purchases for each of the last 30 days' do
-    expect(Purchase.last_30_days_of_sales).to eq [0] * 30
-
-    purchase = create(:purchase)
-    expect(Purchase.last_30_days_of_sales).to eq (([0] * 29) + [purchase.price])
-
-    purchase = create(:purchase)
-    expect(Purchase.last_30_days_of_sales).to eq (([0] * 29) + [purchase.price * 2])
-  end
-end
-
 describe Purchase, 'date_of_last_workshop_purchase' do
   it 'returns the date of the most-recent workshop purchase' do
     expect(Purchase.date_of_last_workshop_purchase).to be_nil
