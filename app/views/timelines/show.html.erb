@@ -11,39 +11,28 @@
     </div>
   </section>
 
-  <% if @timeline.has_items? %>
-    <% @timeline.grouped_items.each_with_index do |(week, items), index| %>
-      <section class="week">
-        <div class="progress">
-          <ol class="goals">
-            <li class="title"><%= week_title(week) %></li>
-            <% if index == 0 %>
-              <%= render 'check_off_trails_link' %>
-            <% end %>
-            <% if items[:completions] %>
-              <%= render items[:completions] %>
-            <% end %>
-          <ol>
-        </div>
-        <div class="notes">
-          <%= render 'note_form' %>
-          <ol>
-            <% if items[:notes] %>
-              <%= render items[:notes] %>
-            <% end %>
-          </ol>
-        </div>
-      </section>
-    <% end %>
-  <% else %>
+  <% @timeline.grouped_items.each do |week, items| %>
     <section class="week">
       <div class="progress">
         <ol class="goals">
-          <%= render 'check_off_trails_link' %>
-        </ol>
+          <li class="title"><%= week_title(week) %></li>
+          <% if @timeline.most_recent_week?(week) %>
+            <li class="trails-link"><%= link_to 'Check off items on trail maps &rarr;'.html_safe, topics_path %></li>
+          <% end %>
+          <% if items[:completions] %>
+            <%= render items[:completions] %>
+          <% end %>
+        <ol>
       </div>
       <div class="notes">
-        <%= render 'note_form' %>
+        <% if @timeline.most_recent_week?(week) %>
+          <%= render 'note_form' %>
+        <% end %>
+        <ol>
+          <% if items[:notes] %>
+            <%= render items[:notes] %>
+          <% end %>
+        </ol>
       </div>
     </section>
   <% end %>

@@ -11,6 +11,18 @@ feature 'User adds a note to timeline', :js do
     expect(page).to have_css '.add-note-form', visible: true
   end
 
+  scenario 'they see only one add note form when there are multiple weeks' do
+    user = create(:user)
+    trail = create(:trail, trail_map: FakeTrailMap.new.trail)
+    create(:completion, :end_of_july, user: user, trail_object_id: FakeTrailMap.new.resource_id)
+    create(:note, :beginning_of_august, user: user)
+
+    visit timeline_path(as: user)
+
+    expect(week_sections.count).to eq 2
+    expect(page.all('.add-note-form').count).to eq 1
+  end
+
   scenario 'they see the note on the timeline page' do
     user = create(:user)
     visit timeline_path(as: user)
@@ -31,11 +43,19 @@ feature 'User adds a note to timeline', :js do
 
   private
 
+  def fake_trail_map
+    @fake_trail_map ||= FakeTrailMap.new
+  end
+
   def create_note(body)
     within '.notes' do
       click_on 'Add a note'
       fill_in 'note_body', with: body
       click_on 'Save'
     end
+  end
+
+  def week_sections
+    page.all('.week')
   end
 end

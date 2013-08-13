@@ -1,9 +1,0 @@
-<% @timeline.grouped_items.each_with_index do |(week, items), index| %>
-  <% if index == 0 %>
-    <li class="trails-link"><%= link_to 'Check off items on trail maps &rarr;'.html_safe, topics_path if index == 0 %></li>
-  <% end %>
-  <% if items[:completions].present? %>
-    <%= render items[:completions] %>
-  <% end %>
-<% end %>
-

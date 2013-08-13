@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Timeline, '#grouped_timeline_items' do
+describe Timeline, '#grouped_items' do
   it 'returns notes and completions in hashes grouped by week' do
     user = create(:user)
     timeline = Timeline.new(user)
@@ -32,14 +32,46 @@ describe Timeline, '#grouped_timeline_items' do
     user = create(:user)
     timeline = Timeline.new(user)
 
-    oldest_item = create(:completion, user: user, slug: 'whatever', trail_object_id: '1')
-    middle_item = create(:completion, user: user, slug: 'whatever', trail_object_id: '2')
-    newest_item = create(:completion, user: user, slug: 'whatever', trail_object_id: '3')
+    oldest_item = create(:completion, created_at: 2.minute.ago, user: user, slug: 'foo', trail_object_id: '1')
+    newest_item = create(:completion, created_at: Time.now, user: user, slug: 'foo', trail_object_id: '3')
+    middle_item = create(:completion, created_at: 1.minutes.ago, user: user, slug: 'foo', trail_object_id: '2')
 
     beginning_of_week = oldest_item.created_at.beginning_of_week
     expect(timeline.grouped_items).to eq(
       { beginning_of_week =>  { completions: [newest_item, middle_item, oldest_item] } }
     )
+  end
+
+  it 'returns the current week with no items when there are no notes or completions' do
+    user = create(:user)
+
+    timeline = Timeline.new(user)
+
+    expect(timeline.grouped_items).to eq({ Time.now.beginning_of_week => {} })
+  end
+end
+
+describe Timeline, '#most_recent_week?' do
+  it 'returns true when the passed in week is the most recent' do
+    user = create(:user)
+    timeline = Timeline.new(user)
+
+    most_recent_item = create(:note, :beginning_of_august, user: user)
+    completion_from_previous_week = create(:completion, :end_of_july, user: user, slug: 'whatever2')
+
+    most_recent_week  = most_recent_item.created_at.beginning_of_week
+    expect(timeline.most_recent_week?(most_recent_week)).to be_true
+  end
+
+  it 'returns false when the passed in week is the most recent' do
+    user = create(:user)
+    timeline = Timeline.new(user)
+
+    most_recent_week = create(:note, :beginning_of_august, user: user)
+    completion_from_previous_week = create(:completion, :end_of_july, user: user, slug: 'whatever2')
+
+    previous_week  = completion_from_previous_week.created_at.beginning_of_week
+    expect(timeline.most_recent_week?(previous_week)).to be_false
   end
 end
 
