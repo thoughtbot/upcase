@@ -1,7 +1,7 @@
 # This class represents a user's subscription to Learn content
 class Subscription < ActiveRecord::Base
   MAILING_LIST = 'Active Subscribers'
-  DOWNGRADED_PLAN = 'prime-maintain'
+  DOWNGRADED_PLAN = 'prime-basic'
 
   belongs_to :user
   belongs_to :mentor, class_name: User
