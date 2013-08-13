@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
 
   include Clearance::User
 
-  attr_accessible :email, :name, :github_username, :password, :auth_provider, :auth_uid
+  attr_accessible :email, :name, :github_username, :password, :auth_provider,
+    :auth_uid, :bio
 
   has_many :paid_purchases, class_name: 'Purchase',
     conditions: { paid: true }
