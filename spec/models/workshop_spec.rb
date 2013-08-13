@@ -290,4 +290,10 @@ describe Workshop do
       expect(workshop.fulfillment_method).to eq('online')
     end
   end
+
+  describe '#subscription?' do
+    it 'returns false' do
+      expect(Workshop.new).not_to be_subscription
+    end
+  end
 end

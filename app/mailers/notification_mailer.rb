@@ -4,7 +4,7 @@ class NotificationMailer < BaseMailer
 
     mail(
       to: email,
-      subject: "[Learn] New Byte: #{byte.title}"
+      subject: "[Learn] New #{t('shared.byte')}: #{byte.title}"
     )
   end
 end

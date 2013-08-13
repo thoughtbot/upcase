@@ -1,7 +1,7 @@
 @mixin prime-button($color: $learnred) {
   background: $color;
   border-bottom: .2rem solid darken($color, 10%);
-  border-radius: .25rem;
+  border-radius: 3px;
   color: #fff;
   display: block;
   margin-top: 2rem;

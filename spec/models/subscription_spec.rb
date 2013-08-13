@@ -17,14 +17,6 @@ describe Subscription do
       with(Subscription::MAILING_LIST, subscription.user.email)
   end
 
-  it 'assigns a mentor on creation' do
-    create_mentors
-    subscription = Subscription.new(user: create(:user))
-    subscription.save
-
-    expect(subscription.mentor).not_to be_nil
-  end
-
   describe 'self.paid' do
     it 'only includes paid subscriptions' do
       paid = create(:subscription, paid: true)
@@ -36,17 +28,30 @@ describe Subscription do
   end
 
   describe '.deliver_welcome_emails' do
-    it 'sends emails for each new subscriber in the last 24 hours' do
-      old_subscription = create :subscription, created_at: 25.hours.ago
-      new_subscription = create :subscription, created_at: 10.hours.ago
+    it 'sends emails for each new mentored subscriber in the last 24 hours' do
+      old_subscription = create(:subscription, created_at: 25.hours.ago)
+      new_subscription = create(:subscription, created_at: 10.hours.ago)
+      new_basic_subscription = create(
+        :subscription,
+        created_at: 10.hours.ago,
+        plan: create(:downgrade_plan)
+      )
       mailer = stub(deliver: true)
       SubscriptionMailer.stubs(welcome_to_prime: mailer)
+      SubscriptionMailer.stubs(welcome_to_prime_from_mentor: mailer)
 
       Subscription.deliver_welcome_emails
 
-      expect(SubscriptionMailer).to have_received(:welcome_to_prime).with(new_subscription.user)
-      expect(SubscriptionMailer).to have_received(:welcome_to_prime).with(old_subscription.user).never
-      expect(mailer).to have_received(:deliver).once
+      expect(SubscriptionMailer).
+        to have_received(:welcome_to_prime_from_mentor).
+        with(new_subscription.user)
+      expect(SubscriptionMailer).
+        to have_received(:welcome_to_prime).
+        with(new_basic_subscription.user)
+      expect(SubscriptionMailer).
+        to have_received(:welcome_to_prime).
+        with(old_subscription.user).never
+      expect(mailer).to have_received(:deliver).twice
     end
   end
 
@@ -144,6 +149,7 @@ describe Subscription do
 
   describe "#downgrade" do
     it "updates the subscription record by setting deactivated_on to today" do
+      downgraded_plan = create(:plan, sku: Subscription::DOWNGRADED_PLAN)
       subscription = create(:active_subscription)
       stripe_customer = stub(
         'Stripe::Customer',
@@ -156,40 +162,19 @@ describe Subscription do
 
       stripe_customer.should have_received(:update_subscription).
         with(plan: Subscription::DOWNGRADED_PLAN)
-      expect(subscription.stripe_plan_id).to eq Subscription::DOWNGRADED_PLAN
+      expect(subscription.plan).to eq downgraded_plan
     end
   end
 
   describe "#downgraded?" do
     it 'is downgraded if it is downgraded' do
+      create(:plan, sku: Subscription::DOWNGRADED_PLAN)
       subscription = create(:active_subscription)
       expect(subscription).not_to be_downgraded
 
       subscription.downgrade
 
       expect(subscription).to be_downgraded
-    end
-  end
-
-  describe "#includes_workshops?" do
-    it 'does not include workshops if it is downgraded' do
-      subscription = create(:active_subscription)
-      expect(subscription.includes_workshops?).to be_true
-
-      subscription.downgrade
-
-      expect(subscription.includes_workshops?).to be_false
-    end
-  end
-
-  describe "#includes_mentor?" do
-    it 'does not include mentor if it is downgraded' do
-      subscription = create(:active_subscription)
-      expect(subscription.includes_mentor?).to be_true
-
-      subscription.downgrade
-
-      expect(subscription.includes_mentor?).to be_false
     end
   end
 end

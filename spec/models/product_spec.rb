@@ -44,15 +44,6 @@ describe Product do
     end
   end
 
-  describe '.subscriptions' do
-    it 'returns all subscribeable products' do
-      book_product = create(:book_product)
-      subscribeable_product = create(:subscribeable_product)
-
-      expect(Product.subscriptions).to eq [subscribeable_product]
-    end
-  end
-
   describe 'with a discount' do
     it 'returns a discounted individual price' do
       product = create(:product, individual_price: 50)
@@ -94,30 +85,9 @@ describe Product do
   end
 
   describe '#subscription?' do
-    it 'returns true if the product is a subscription type' do
-      product = build_stubbed(:subscribeable_product)
-      expect(product).to be_subscription
-    end
-
-    it 'returns false if the product is not a subscription type' do
+    it 'returns false' do
       product = build_stubbed(:book_product)
       expect(product).not_to be_subscription
-    end
-  end
-
-  describe 'subscription_interval' do
-    it 'returns the interval from the stripe plan if the product is a subscription' do
-      product = build_stubbed(:subscribeable_product)
-      plan = stub(interval: 'year')
-      Stripe::Plan.stubs(:retrieve).returns(plan)
-
-      expect(product.subscription_interval).to eq 'year'
-      expect(Stripe::Plan).to have_received(:retrieve).with(product.sku)
-    end
-
-    it 'returns false if the product is not a subscription type' do
-      product = build_stubbed(:book_product)
-      expect(product.subscription_interval).to be_nil
     end
   end
 
@@ -158,11 +128,11 @@ describe Product do
 
   context 'offering_type' do
     it 'returns the product type' do
-      product = build_stubbed(:subscribeable_product)
+      product = build_stubbed(:book_product)
 
       result = product.offering_type
 
-      expect(result).to eq 'subscription'
+      expect(result).to eq 'book'
     end
   end
 

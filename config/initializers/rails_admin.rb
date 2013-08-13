@@ -51,6 +51,7 @@ RailsAdmin.config do |config|
       field :first_name
       field :last_name
       field :admin
+      field :bio
       field :github_username
       field :paid_purchases
       field :purchases

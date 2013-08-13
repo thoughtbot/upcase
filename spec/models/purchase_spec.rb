@@ -229,13 +229,13 @@ end
 
 describe Purchase, 'of a subscription' do
   it 'validates the presence of a user' do
-    expect(build_subscription_purchase).to validate_presence_of(:user_id)
+    expect(build_plan_purchase).to validate_presence_of(:user_id)
   end
 
-  def build_subscription_purchase
+  def build_plan_purchase
     build(
-      :subscription_purchase,
-      purchaseable: create(:subscribeable_product),
+      :plan_purchase,
+      purchaseable: create(:plan),
       payment_method: 'stripe'
     )
   end
@@ -276,7 +276,7 @@ describe Purchase, 'with stripe' do
   it 'calculates its price and paid price using the subscription coupon when there is a stripe coupon' do
     subscription_coupon = stub(apply: 20)
     SubscriptionCoupon.stubs(:new).returns(subscription_coupon)
-    purchase = create(:subscription_purchase, stripe_coupon_id: '25OFF')
+    purchase = create(:plan_purchase, stripe_coupon_id: '25OFF')
 
     expect(purchase.price).to eq 20
   end
@@ -284,7 +284,7 @@ describe Purchase, 'with stripe' do
   it 'is still a stripe purchase if its coupon discounts 100%' do
     subscription_coupon = stub(apply: 0)
     SubscriptionCoupon.stubs(:new).returns(subscription_coupon)
-    purchase = create(:subscription_purchase, stripe_coupon_id: 'FREEMONTH')
+    purchase = create(:plan_purchase, stripe_coupon_id: 'FREEMONTH')
 
     expect(purchase).to be_stripe
   end
@@ -537,10 +537,10 @@ describe Purchase, 'given a purchaser' do
     end
   end
 
-  context 'for a subscription product' do
+  context 'for a subscription plan' do
     it 'populates default info including first github_username' do
-      product = create(:product, fulfillment_method: 'other', product_type: 'subscription')
-      purchase = product.purchases.build
+      plan = create(:plan)
+      purchase = plan.purchases.build
       purchase.defaults_from_user(purchaser)
 
       purchase.name.should == purchaser.name
@@ -549,8 +549,8 @@ describe Purchase, 'given a purchaser' do
     end
 
     it 'requires a password if there is no user' do
-      product = create(:subscribeable_product)
-      purchase = build(:purchase, purchaseable: product, user: nil)
+      plan = create(:plan)
+      purchase = build(:purchase, purchaseable: plan, user: nil)
       purchase.password = ''
 
       purchase.save
@@ -559,8 +559,9 @@ describe Purchase, 'given a purchaser' do
     end
 
     it 'creates a user when saved with a password' do
-      product = create(:subscribeable_product)
-      purchase = build(:purchase, purchaseable: product, user: nil)
+      create_mentors
+      plan = create(:plan)
+      purchase = build(:purchase, purchaseable: plan, user: nil)
       purchase.password = 'test'
 
       purchase.save!

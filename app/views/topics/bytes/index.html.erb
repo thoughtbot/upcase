@@ -1,5 +1,5 @@
-<% content_for :page_title, "Learn Bytes" %>
-<% content_for :subject, "#{@topic.name} Bytes" %>
+<% content_for :page_title, t('shared.bytes') %>
+<% content_for :subject, "#{@topic.name} #{t('shared.bytes')}" %>
 
 <% content_for :additional_header_links do %>
   <% if @topic.trail.present? %>

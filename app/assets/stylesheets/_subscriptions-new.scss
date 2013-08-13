@@ -1,0 +1,90 @@
+body.subscriptions-new nav {
+  display: none;
+}
+
+.plans {
+  @include clearfix;
+  margin: 8vh 0 3rem 0;
+
+  .prime-mentor {
+    clear: both;
+    margin-bottom: 3rem;
+    width: 100%;
+
+    h3 {
+      background-color: $learnred;
+      border-bottom-color: $learndarkred;
+      color: #fff;
+    }
+
+    section {
+      @include span-columns(6);
+    }
+  }
+
+  div {
+    @extend %main-content-box;
+    margin-bottom: 0;
+    padding: 0;
+    @include span-columns(6);
+
+    h3 {
+      border-bottom: 1px solid #ddd;
+      color: darken($darkwarmgray, 15%);
+      font: 700 1.25rem/1.4em $sans-serif;
+      margin-bottom: 25px;
+      padding: .75rem 25px .75rem;
+    }
+
+    p {
+      padding: 0 25px;
+    }
+
+    .mentor {
+      background: rgba(255, 255, 0, .15);
+      border-radius: 3px 0 0 3px;
+      color: darken($darkwarmgray, 15%);
+      margin: 0;
+      padding: 25px;
+      @include span-columns(6);
+
+      img {
+        border-radius: 100%;
+        float: left;
+        height: 100px;
+        margin: 0;
+        width: 100px;
+      }
+
+      p {
+        margin-bottom: 0;
+        margin-left: 1rem;
+        padding-left: 100px;
+      }
+    }
+
+    .button {
+      border-bottom: 0;
+      font: 700 1.25rem/1.4em $sans-serif;
+      height: auto;
+      margin: .4rem 0 25px 25px;
+      padding: .5rem 1rem;
+      text-transform: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    section {
+      @include span-columns(12);
+    }
+  }
+}
+
+.prime-company-cta {
+  display: block;
+  font-style: italic;
+  margin: 0 auto 10vh;
+  padding: 1em;
+  text-align: center;
+  width: 250px;
+}
+

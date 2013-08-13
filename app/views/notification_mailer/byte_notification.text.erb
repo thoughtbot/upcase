@@ -1,11 +1,11 @@
-We just published the latest Learn Byte.
+We just published the latest <%= t('shared.byte') %>.
 
 # <%= @byte.title %>
 
 <%== @byte.body.truncate(140) %>
 
-Read the full Byte on Learn...
+Read the full <%= t('shared.byte') %> on <%= t('shared.learn') %>...
 <%= byte_url(@byte) %>
 
-Or check out all of our Bytes...
+Or check out all of our <%= t('shared.bytes') %>...
 <%= bytes_url %>

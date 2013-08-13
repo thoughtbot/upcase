@@ -39,7 +39,7 @@ feature 'Using coupons' do
     fill_in 'Email', with: 'mr.the.plague@example.com'
     click_button 'Submit Payment'
 
-    expect_to_have_purchased(product)
+    expect_to_have_purchased(product, 'mr.the.plague@example.com')
   end
 
   def expect_payment_options_to_be_hidden

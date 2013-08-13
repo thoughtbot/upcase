@@ -155,40 +155,6 @@ body.passwords-create {
     padding-top: $product-card-margin;
   }
 
-  .figure-container {
-    display: inline-block;
-    position: relative;
-    width: $product-card-width;
-
-
-    &:hover {
-    .product-card.book:after, .learn-more {
-        opacity: 1;
-      }
-    }
-
-    .learn-more {
-      opacity: 0;
-      @include position(absolute, 3.3rem 1.5rem 0 1.5rem);
-      @include product-card-button(#f88356);
-      @include transition(.3s);
-    }
-  }
-
-  .product-card.book {
-    width: 100%;
-
-    &:after {
-      background: rgba(0, 0, 0, .6);
-      border-radius: 3px;
-      content: '';
-      opacity: 0;
-      padding: 3.3rem 1.5rem;
-      @include position(absolute, 0px 0px 0px 0px);
-      @include transition(.3s);
-    }
-  }
-
   .product-card.screencast {
     margin-top: 49px;
   }

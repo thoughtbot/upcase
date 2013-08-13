@@ -198,10 +198,8 @@
     <article>
       <h2>Still want a discount? You can get access to all of our products with Learn Prime</h2>
       <p>Plus private forum access and exclusive blog posts. <%= link_to 'Learn more &rarr;'.html_safe, '/prime' %></p>
-      <% if subscription_product %>
-        <%= link_to new_product_purchase_path(subscription_product, variant: 'individual'), class: 'prime-journey-cta' do %>
-          <h2>Join Learn Prime <span><%= number_to_currency subscription_product.individual_price, precision: 0 %>/month</span></h2>
-        <% end %>
+      <%= link_to new_subscription_path, class: 'prime-journey-cta' do %>
+        <h2>Join Learn <%= t('shared.subscription.name') %> <span><%= number_to_currency default_plan.individual_price, precision: 0 %>/month</span></h2>
       <% end %>
     </article>
   </section>

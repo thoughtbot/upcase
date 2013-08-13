@@ -26,7 +26,7 @@ feature 'Subscriber accesses content' do
     sign_in_as_user_with_subscription
     stub_github_fulfillment_job
 
-    click_ebook_detail_link
+    click_ebook_detail_link(book_product)
     click_link I18n.t('products.show.purchase_for_subscribed_user', product_type: book_product.product_type)
     click_button 'Get Access'
 
@@ -102,19 +102,19 @@ feature 'Subscriber accesses content' do
 
   def click_online_workshop_detail_link
     within('.workshop-online') do
-      click_link 'Learn More'
+      click_link 'View Details'
     end
   end
 
   def click_active_online_workshop_detail_link
     within('.workshop-online') do
-      click_link 'View Workshop Materials'
+      click_link 'View Details'
     end
   end
 
   def click_in_person_workshop_detail_link
     within('.workshop-in-person') do
-      click_link 'Learn More'
+      click_link 'View Details'
     end
   end
 
@@ -124,14 +124,18 @@ feature 'Subscriber accesses content' do
     end
   end
 
-  def click_ebook_detail_link
+  def click_ebook_detail_link(book)
     within('section.books') do
-      click_link 'Learn More'
+      click_link book.name
     end
   end
 
   def expect_dashboard_to_show_workshop_active(workshop)
     visit products_url
-    expect(page).to have_css(".product-card.active h4", text: workshop.name)
+    status = 'registered'
+    if workshop.online?
+      status = 'in-progress'
+    end
+    expect(page).to have_css(".product-card a[title='#{workshop.name}'] .status", text: status)
   end
 end

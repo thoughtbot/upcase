@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'User cancels a subscription', js: true do
   scenario 'successfully unsubscribes' do
-    prime = create(:subscribeable_product, sku: 'prime', name: 'Prime')
+    prime = create(:plan, sku: 'prime', name: 'Prime')
     create(:online_section,
       workshop: create(:workshop, name: 'A Cool Workshop')
     )
@@ -29,7 +29,7 @@ feature 'User cancels a subscription', js: true do
   end
 
   def click_workshop_detail_link
-    click_link 'Learn More'
+    click_link 'View Details'
   end
 
   def expect_to_see_alternate_offer

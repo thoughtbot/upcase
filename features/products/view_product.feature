@@ -6,7 +6,6 @@ Feature: Products do not include support
       | Book     | book         | An awesome book   |
       | Video    | video        | An amazing video  |
       | Workshop | workshop     |                   |
-      | Prime    | subscription |                   |
     When I view the product "Book"
     Then I should not see "includes support"
     Then the meta description should be "An awesome book"
@@ -20,8 +19,6 @@ Feature: Products do not include support
     Then the page should have the default title
     Then the page should use the default meta description
     Then the page title should be "Workshop: a workshop by thoughtbot"
-    When I view the product "Prime"
-    Then I should see "includes support"
 
   Scenario: Viewing an inactive product
     Given the following product exists:

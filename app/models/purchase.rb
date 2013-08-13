@@ -8,7 +8,7 @@ class Purchase < ActiveRecord::Base
   belongs_to :coupon
   serialize :github_usernames
 
-  attr_accessor :stripe_token, :paypal_url, :password
+  attr_accessor :stripe_token, :paypal_url, :password, :mentor_id
 
   validates :variant, presence: true
   validates :purchaseable_id, presence: true
@@ -174,6 +174,16 @@ class Purchase < ActiveRecord::Base
 
   def active?
     (starts_on..ends_on).cover?(Time.zone.today)
+  end
+
+  def status
+    if self.purchaseable.online? && self.ends_on.future?
+      'in-progress'
+    elsif self.ends_on.future?
+      'registered'
+    elsif self.ends_on.past?
+      'complete'
+    end
   end
 
   def set_as_paid

@@ -1,5 +1,5 @@
 <figure class="screencast product-card <%= 'group' if video.videos.count > 1 %>">
-  <%= link_to product_path(video), class: 'main' do %>
+  <%= link_to product_path(video), title: video.name do %>
     <figure>
       <%= image_tag(video.product_image.url) %>
       <span><%= video.tagline %></span>
