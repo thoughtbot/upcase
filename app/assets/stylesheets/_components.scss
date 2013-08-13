@@ -378,7 +378,7 @@
 
     &:hover {
       .notification {
-        @include transform(translateY(.15rem));
+        @include transform(translate3D(0, .15rem, 0));
       }
     }
 

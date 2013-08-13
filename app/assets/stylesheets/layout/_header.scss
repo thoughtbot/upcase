@@ -75,7 +75,7 @@ body.passwords-create {
       left: 1rem;
 
       .back a:hover {
-        @include transform(translateX(-.2rem));
+        @include transform(translate3D(-.2rem, 0, 0));
       }
 
       .toggle-slider a:before {

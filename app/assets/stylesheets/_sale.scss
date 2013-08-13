@@ -21,7 +21,7 @@
       }
 
       &:hover {
-        @include transform(translateY(-.15rem) scale(1.02));
+        @include transform(translate3D(0, -.15rem, 0) scale(1.02));
       }
 
       .inperson-date {
