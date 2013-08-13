@@ -59,5 +59,7 @@ module ApplicationHelper
 
   def mentor_image(mentor)
     image_tag("learn/face-#{mentor.first_name.downcase}.png")
+  rescue
+    image_tag("learn/face-no-face.png")
   end
 end
