@@ -24,7 +24,7 @@ namespace :dev do
   def create_products
     header "Products"
 
-    @prime = FactoryGirl.create(:subscribeable_product, sku: 'prime', name: 'Prime')
+    @prime = FactoryGirl.create(:plan)
     puts_product @prime
     @book = FactoryGirl.create(:book_product, sku: 'VIM', name: 'Vim for Rails Developers')
     puts_product @book
