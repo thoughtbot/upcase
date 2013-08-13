@@ -8,7 +8,7 @@ class SubscriptionMetrics
   end
 
   def self.new_in_period(start_time, end_time)
-    Purchase.for_purchaseable(Plan.default).
+    Purchase.where(purchaseable_type: 'Plan').
       within_range(start_time, end_time).count
   end
 
