@@ -230,39 +230,6 @@ describe User do
     end
   end
 
-  context '#grouped_timeline_items' do
-    it 'returns completions grouped by week' do
-      user = create(:user)
-
-      completion = create(:completion, user: user, slug: 'whatever')
-
-      beginning_of_week = completion.created_at.beginning_of_week
-      expect(user.grouped_timeline_items).to eq({ beginning_of_week =>  [completion] })
-    end
-
-    it 'returns only the users completions and no others' do
-      user = create(:user)
-      another_user = create(:user)
-      create(:completion, user: another_user, slug: 'whatever')
-
-      completion = create(:completion, user: user, slug: 'whatever')
-
-      beginning_of_week = completion.created_at.beginning_of_week
-      expect(user.grouped_timeline_items).to eq({ beginning_of_week =>  [completion] })
-    end
-
-    it 'returns items sorted DESC by creation_date' do
-      user = create(:user)
-
-      oldest_item = create(:completion, user: user, slug: 'whatever', trail_object_id: '1')
-      middle_item = create(:completion, user: user, slug: 'whatever', trail_object_id: '2')
-      newest_item = create(:completion, user: user, slug: 'whatever', trail_object_id: '3')
-
-      beginning_of_week = oldest_item.created_at.beginning_of_week
-      expect(user.grouped_timeline_items).to eq({ beginning_of_week =>  [newest_item, middle_item, oldest_item] })
-    end
-  end
-
   describe '#subscription_purchases' do
     it 'includes only subscription purchases' do
       subscription = create(:active_subscription)

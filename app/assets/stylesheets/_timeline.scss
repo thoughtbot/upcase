@@ -1,3 +1,7 @@
+.week {
+  @include clearfix;
+}
+
 .timeline {
   overflow: auto;
   position: relative;
@@ -90,6 +94,10 @@
 
     .add-note {
       margin-left: 1.6em;
+    }
+
+    .add-note-form {
+      display: none
     }
 
     ol {

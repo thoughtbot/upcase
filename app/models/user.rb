@@ -51,13 +51,6 @@ class User < ActiveRecord::Base
     where(mentor: true)
   end
 
-  def grouped_timeline_items
-    timeline_items_grouped_by_week.each do |week, items|
-      items.sort_by! { |item| item.created_at }
-      items.reverse!
-    end
-  end
-
   def subscription_purchases
     paid_purchases.where(payment_method: 'subscription')
   end
@@ -138,9 +131,5 @@ class User < ActiveRecord::Base
     if existing_stripe_customer_id
       self.update_column(:stripe_customer_id, existing_stripe_customer_id)
     end
-  end
-
-  def timeline_items_grouped_by_week
-    completions.group_by { |item| item.created_at.beginning_of_week }
   end
 end
