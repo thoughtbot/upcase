@@ -18,7 +18,7 @@
       </form>
       <ol class="goals">
         <% if @timeline_items_by_week.values.empty? %>
-          <li><%= link_to 'Check off items on trail maps &rarr;'.html_safe, topics_path %></li>
+          <li class="trails-link"><%= link_to 'Check off items on trail maps &rarr;'.html_safe, topics_path %></li>
         <% else %>
           <%= render 'timeline_items' %>
         <% end %>

@@ -1,6 +1,6 @@
 <% @timeline_items_by_week.each_with_index do |(week, items), index| %>
   <li class="title"><%= week_title(week) %></li>
-  <li><%= link_to 'Check off items on trail maps &rarr;'.html_safe, topics_path if index == 0 %></li>
+  <li class="trails-link"><%= link_to 'Check off items on trail maps &rarr;'.html_safe, topics_path if index == 0 %></li>
   <%= render items %>
 <% end %>
 
