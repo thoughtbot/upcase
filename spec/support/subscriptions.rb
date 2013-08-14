@@ -5,7 +5,7 @@ module Subscriptions
   end
 
   def click_landing_page_call_to_action
-    click_link 'first-cta'
+    click_link I18n.t('subscriptions.join_cta')
   end
 
   def click_prime_call_to_action_in_header
