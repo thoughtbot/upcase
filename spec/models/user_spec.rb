@@ -108,28 +108,15 @@ describe User do
   end
 
   context "#find_or_create_from_auth_hash" do
-    let(:auth_hash) do
-      {
-        'provider' => 'github',
-        'uid' => 1,
-        'info' => {
-          'email' => 'user@example.com',
-          'name' => 'Test User',
-          'nickname' => 'thoughtbot',
-        }
-      }
-    end
+    it 'creates a user using nickname as a name when name is blank in auth_hash' do
+      hash = auth_hash('info' => {'name' => nil,
+                                  'email' => 'user@example.com',
+                                  'nickname' => 'thoughtbot'})
+      user = User.find_or_create_from_auth_hash(hash)
 
-    def stub_team_member(value)
-      client = stub('github_client')
-      client.
-        stubs(:team_member?).
-        with(User::THOUGHTBOT_TEAM_ID, 'thoughtbot').
-        returns(value)
-      Octokit::Client.
-        stubs(:new).
-        with(login: GITHUB_USER, password: GITHUB_PASSWORD).
-        returns(client)
+      user.should be_persisted
+      user.name.should == 'thoughtbot'
+      user.github_username.should == 'thoughtbot'
     end
 
     it "creates a new user when no matching user" do
@@ -158,6 +145,30 @@ describe User do
       it "finds the user" do
         @existing_user.should == User.find_or_create_from_auth_hash(auth_hash)
       end
+    end
+
+    def stub_team_member(value)
+      client = stub('github_client')
+      client.
+        stubs(:team_member?).
+        with(User::THOUGHTBOT_TEAM_ID, 'thoughtbot').
+        returns(value)
+      Octokit::Client.
+        stubs(:new).
+        with(login: GITHUB_USER, password: GITHUB_PASSWORD).
+        returns(client)
+    end
+
+    def auth_hash(options = {})
+      {
+        'provider' => 'github',
+        'uid' => 1,
+        'info' => {
+          'email' => 'user@example.com',
+          'name' => 'Test User',
+          'nickname' => 'thoughtbot',
+        }
+      }.merge(options)
     end
   end
 
