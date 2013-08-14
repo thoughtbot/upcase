@@ -73,7 +73,7 @@ feature 'Subscriber accesses content' do
 
     visit products_path
 
-    click_active_online_workshop_detail_link
+    click_online_workshop_detail_link
     expect(page).to_not have_content I18n.t('workshops.show.register')
   end
 
@@ -96,17 +96,49 @@ feature 'Subscriber accesses content' do
     expect_dashboard_to_show_workshop_active(in_person_section.workshop)
   end
 
+  scenario 'show in-progress status for future online workshop' do
+    online_section = create(:online_section, :ends_on => 2.days.from_now)
+
+    sign_in_as_user_with_subscription
+    click_online_workshop_detail_link
+    click_link I18n.t('workshops.show.register_free')
+    click_button 'Get Access'
+
+    visit products_url
+    expect(page).to have_css(".product-card.in-progress", text: online_section.name)
+  end
+
+  scenario 'show complete status for future online past workshop' do
+    online_section = create(:in_person_section, :ends_on => 2.days.ago)
+
+    get_access_to_in_person_workshop
+
+    visit products_url
+    expect(page).to have_css(".product-card.complete", text: online_section.name)
+  end
+
+  scenario 'show registered status for future in-person workshop' do
+    online_section = create(:in_person_section, :ends_on => 2.days.from_now)
+
+    get_access_to_in_person_workshop
+
+    visit products_url
+    expect(page).to have_css(".product-card.registered", text: online_section.name)
+  end
+
+  def get_access_to_in_person_workshop
+    sign_in_as_user_with_subscription
+    click_in_person_workshop_detail_link
+    click_link I18n.t('workshops.show.register_free_inperson')
+    fill_in 'subscriber_purchase_comments', with: 'Vegetarian'
+    click_button 'Get Access'
+  end
+
   def stub_github_fulfillment_job
     GithubFulfillmentJob.stubs(:enqueue)
   end
 
   def click_online_workshop_detail_link
-    within('.workshop-online') do
-      click_link 'View Details'
-    end
-  end
-
-  def click_active_online_workshop_detail_link
     within('.workshop-online') do
       click_link 'View Details'
     end
