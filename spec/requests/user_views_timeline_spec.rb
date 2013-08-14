@@ -27,8 +27,8 @@ feature 'User views their timeline' do
     trail = create(:trail, trail_map: fake_trail_map.trail)
     resource_id = fake_trail_map.resource_id
     validation_id = fake_trail_map.validation_id
-    completion = create(:completion, :beginning_of_august, trail_object_id: resource_id)
-    create(:completion, :end_of_july, user: completion.user, trail_object_id: validation_id)
+    completion = create(:completion, :current_week, trail_object_id: resource_id)
+    create(:completion, :previous_week, user: completion.user, trail_object_id: validation_id)
 
     visit timeline_path(as: completion.user)
 

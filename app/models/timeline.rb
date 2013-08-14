@@ -12,10 +12,10 @@ class Timeline
   end
 
   def grouped_items
-    if items_grouped_by_week.keys.empty?
-      null_week
-    else
+    if has_items?
       items_grouped_by_week_and_type
+    else
+      null_week
     end
   end
 
@@ -30,13 +30,17 @@ class Timeline
   def items_grouped_by_week_and_type
     items_grouped_by_type = {}
     items_grouped_by_week.each do |week, items|
-      items.sort! { |item1, item2| item2.created_at <=> item1.created_at }
       items_grouped_by_type[week] = items.group_by { |item| item.class.name.tableize.to_sym }
     end
     items_grouped_by_type
   end
 
   def items_grouped_by_week
-    (user.notes + user.completions).group_by { |item| item.created_at.beginning_of_week }
+    timeline_items.group_by { |item| item.created_at.beginning_of_week }
+  end
+
+  def timeline_items
+    items = (user.notes + user.completions)
+    items.sort! { |item1, item2| item2.created_at <=> item1.created_at }
   end
 end

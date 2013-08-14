@@ -101,7 +101,7 @@ FactoryGirl.define do
     body 'Default note body'
     user
 
-    trait :beginning_of_august do
+    trait :current_week do
       created_at Time.local(2013, 'aug', 5)
     end
   end
@@ -265,11 +265,11 @@ FactoryGirl.define do
     trail_name 'Git'
     user
 
-    trait :end_of_july do
+    trait :previous_week do
       created_at Time.local(2013, 'jul', 29)
     end
 
-    trait :beginning_of_august do
+    trait :current_week do
       created_at Time.local(2013, 'aug', 5)
     end
   end

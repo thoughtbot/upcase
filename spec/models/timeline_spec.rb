@@ -14,6 +14,17 @@ describe Timeline, '#grouped_items' do
     )
   end
 
+  it 'returns items grouped with the most recent week first' do
+    user = create(:user)
+    timeline = Timeline.new(user)
+
+    create(:completion, :previous_week, user: user, trail_object_id: 1, slug: 'foo')
+    newest = create(:completion, :current_week, user: user, trail_object_id: 2, slug: 'foo')
+
+    newest_week = newest.created_at.beginning_of_week
+    expect(timeline.grouped_items.keys.first).to eq newest_week
+  end
+
   it 'returns only the users completions and notes' do
     user = create(:user)
     another_user = create(:user)
@@ -58,8 +69,8 @@ describe Timeline, '#most_recent_week?' do
     user = create(:user)
     timeline = Timeline.new(user)
 
-    most_recent_item = create(:note, :beginning_of_august, user: user)
-    completion_from_previous_week = create(:completion, :end_of_july, user: user, slug: 'whatever2')
+    most_recent_item = create(:note, :current_week, user: user)
+    completion_from_previous_week = create(:completion, :previous_week, user: user, slug: 'whatever2')
 
     most_recent_week  = most_recent_item.created_at.beginning_of_week
     expect(timeline.most_recent_week?(most_recent_week)).to be_true
@@ -69,8 +80,8 @@ describe Timeline, '#most_recent_week?' do
     user = create(:user)
     timeline = Timeline.new(user)
 
-    most_recent_week = create(:note, :beginning_of_august, user: user)
-    completion_from_previous_week = create(:completion, :end_of_july, user: user, slug: 'whatever2')
+    most_recent_week = create(:note, :current_week, user: user)
+    completion_from_previous_week = create(:completion, :previous_week, user: user, slug: 'whatever2')
 
     previous_week  = completion_from_previous_week.created_at.beginning_of_week
     expect(timeline.most_recent_week?(previous_week)).to be_false

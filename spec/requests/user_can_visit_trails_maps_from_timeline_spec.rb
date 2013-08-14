@@ -12,13 +12,13 @@ feature 'User can visit trail maps from timeline' do
   scenario 'link is only shown on the first week' do
     trail = create(:trail, trail_map: fake_trail_map.trail)
     user = create(:user)
-    completion_for_previous_week = create(:completion, :end_of_july, user: user, trail_object_id: resource_id)
-    completion_for_latest_week = create(:completion, :beginning_of_august, user: user, trail_object_id: validation_id)
+    completion_for_previous_week = create(:completion, :previous_week, user: user, trail_object_id: resource_id)
+    completion_for_latest_week = create(:completion, :current_week, user: user, trail_object_id: validation_id)
 
     visit timeline_path(as: user)
 
-    expect(week_sections.count).to eq 2
     most_recent_week = week(completion_for_latest_week.created_at)
+    expect(week_sections.count).to eq 2
     within_week most_recent_week do
       expect(trail_map_links.count).to eq 1
     end

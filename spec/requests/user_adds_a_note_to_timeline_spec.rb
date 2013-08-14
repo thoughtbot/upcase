@@ -14,8 +14,8 @@ feature 'User adds a note to timeline', :js do
   scenario 'they see only one add note form when there are multiple weeks' do
     user = create(:user)
     trail = create(:trail, trail_map: FakeTrailMap.new.trail)
-    create(:completion, :end_of_july, user: user, trail_object_id: FakeTrailMap.new.resource_id)
-    create(:note, :beginning_of_august, user: user)
+    create(:completion, :previous_week, user: user, trail_object_id: FakeTrailMap.new.resource_id)
+    create(:note, :current_week, user: user)
 
     visit timeline_path(as: user)
 
