@@ -108,24 +108,4 @@ describe Episode do
     EpisodeMp3FetchJob.should have_received(:enqueue).
       with(episode.id, mp3_url)
   end
-
-  it 'reprocesses the mp3 file if certain attributes change' do
-    attachment = stub(reprocess!: nil)
-    episode = create(:episode)
-    episode.stubs(mp3: attachment)
-
-    episode.show = create(:show)
-    episode.save!
-    episode.published_on = Date.tomorrow
-    episode.save!
-    episode.number = 22
-    episode.save!
-
-    attributes = %w(description title notes)
-    attributes.each do |attribute|
-      episode[attribute] = 'test'
-      episode.save!
-    end
-    expect(attachment).to have_received(:reprocess!).times(6)
-  end
 end
