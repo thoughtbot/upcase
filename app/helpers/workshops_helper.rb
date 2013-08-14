@@ -41,12 +41,4 @@ module WorkshopsHelper
       workshop.purchase_for(current_user).status
     end
   end
-
-  def workshop_dashboard_text(workshop)
-    if workshop.purchase_for(current_user) && signed_in?
-      'View Workshop Materials'
-    else
-      'Learn More'
-    end
-  end
 end
