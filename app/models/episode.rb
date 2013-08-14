@@ -80,7 +80,7 @@ class Episode < ActiveRecord::Base
 
   def id3_info_changed?
     id3_attributes.any? do |attribute|
-      previous_changes.keys.include?(attribute)
+      changed.include?(attribute)
     end
   end
 
