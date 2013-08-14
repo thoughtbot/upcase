@@ -205,7 +205,15 @@ class Purchase < ActiveRecord::Base
   def create_user
     if name.present? && email.present? && password.present?
       self.user = User.create(name: name, email: email, password: password)
+      add_errors_from_user unless user.valid?
     end
+  end
+
+  def add_errors_from_user
+    errors[:email] = user.errors[:email]
+    errors[:name] = user.errors[:name]
+    errors[:password] = user.errors[:password]
+    errors
   end
 
   def stripe_customer
