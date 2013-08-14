@@ -16,6 +16,7 @@ class Episode < ActiveRecord::Base
 
   before_validation :assign_next_number, on: :create
   after_save :enqueue_remote_fetch
+  after_update :reprocess_mp3
 
   has_attached_file :mp3, {
     s3_permissions: :public_read,
@@ -69,5 +70,21 @@ class Episode < ActiveRecord::Base
     if new_mp3_url.present?
       EpisodeMp3FetchJob.enqueue(self.id, new_mp3_url)
     end
+  end
+
+  def reprocess_mp3
+    if id3_info_changed?
+      mp3.reprocess!
+    end
+  end
+
+  def id3_info_changed?
+    id3_attributes.any? do |attribute|
+      previous_changes.keys.include?(attribute)
+    end
+  end
+
+  def id3_attributes
+    %w(show_id description number published_on title notes)
   end
 end
