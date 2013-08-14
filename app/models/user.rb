@@ -28,7 +28,8 @@ class User < ActiveRecord::Base
 
   def self.create_from_auth_hash(auth_hash)
     begin
-      name = auth_hash['info']['name'] ? auth_hash['info']['name'] : ['GitHub', 'User']
+      name = auth_hash['info']['name'] ?
+        auth_hash['info']['name'] : auth_hash['info']['nickname']
       create(
         auth_provider: auth_hash['provider'],
         auth_uid: auth_hash['uid'],
