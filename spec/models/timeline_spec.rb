@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Timeline, '#grouped_items' do
-  it 'returns notes and completions in hashes grouped by week' do
+  it 'returns notes and completions in a hash grouped by week' do
     user = create(:user)
     timeline = Timeline.new(user)
 
@@ -14,17 +14,19 @@ describe Timeline, '#grouped_items' do
     )
   end
 
-  it 'returns only the users completions and no others' do
+  it 'returns only the users completions and notes' do
     user = create(:user)
     another_user = create(:user)
-    create(:completion, user: another_user, slug: 'whatever')
+    completion = create(:completion, user: user, slug: 'whatever')
+    note = create(:note, user: user)
     timeline = Timeline.new(user)
 
-    completion = create(:completion, user: user, slug: 'whatever')
+    create(:completion, user: another_user, slug: 'whatever')
+    create(:note, user: another_user)
 
     beginning_of_week = completion.created_at.beginning_of_week
     expect(timeline.grouped_items).to eq(
-      { beginning_of_week => { completions: [completion] } }
+      { beginning_of_week => { completions: [completion], notes: [note] } }
     )
   end
 
@@ -42,7 +44,7 @@ describe Timeline, '#grouped_items' do
     )
   end
 
-  it 'returns the current week with no items when there are no notes or completions' do
+  it 'returns a null week with no items when there are no notes or completions' do
     user = create(:user)
 
     timeline = Timeline.new(user)
@@ -63,7 +65,7 @@ describe Timeline, '#most_recent_week?' do
     expect(timeline.most_recent_week?(most_recent_week)).to be_true
   end
 
-  it 'returns false when the passed in week is the most recent' do
+  it 'returns false when the passed in week is a past week' do
     user = create(:user)
     timeline = Timeline.new(user)
 
