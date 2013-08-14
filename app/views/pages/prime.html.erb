@@ -14,7 +14,7 @@
   </div>
   <h1>Become an expert level Ruby on Rails developer</h1>
   <%= link_to new_subscription_path, id: 'first-cta', class: 'prime-journey-cta' do %>
-    <h2>Join Learn <%= t('shared.subscription.name') %></h2>
+    <h2><%= t('subscriptions.join_cta') %></h2>
   <% end %>
 </section>
 
@@ -223,7 +223,7 @@
       <p>We’ve trained hundreds of developers and apprentices over the years, and have a great handle on what it takes to become and remain an expert-level Rubyist.</p>
       <p>With Learn <%= t('shared.subscription.name') %>, we’ve finally created a service that’s nearly as good as joining thoughtbot full time. If you’re a passionate developer serious about improving and maintaining your skills, we know you’ll get a ton of value out of the service.</p>
       <%= link_to new_subscription_path, class: 'prime-journey-cta' do %>
-        <h2>Join Learn <%= t('shared.subscription.name') %></h2>
+        <h2><%= t('subscriptions.join_cta') %></h2>
       <% end %>
       <p class="terms">No minimum subscription length &bull; Get your money back within 30 days if you're not satisfied</p>
     </article>
