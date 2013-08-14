@@ -69,7 +69,8 @@ feature 'Visitor is asked to create a user before subscription' do
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
     expect(page).not_to have_content(I18n.t('purchase.flashes.success', name: plan.name))
-    expect_to_see_email_error
+
+    expect_to_see_email_error("has already been taken")
   end
 
   scenario 'visitor attempts to subscribe and creates github user' do
@@ -100,10 +101,10 @@ feature 'Visitor is asked to create a user before subscription' do
     expect(page).to have_css('#purchase_password_input abbr[title=required]')
   end
 
-  def expect_to_see_email_error
+  def expect_to_see_email_error(text = "can't be blank")
     expect(page).to have_css(
       '#purchase_email_input.error p.inline-errors',
-      text: "can't be blank"
+      text: text
     )
   end
 
