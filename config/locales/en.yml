@@ -161,7 +161,7 @@ en:
       success: Thank you, we will email you a confirmation shortly.
 
   subscriptions:
-    join_cta: See Plans and Pricing
+    join_cta: See Plans & Pricing for Prime
     cancel: Cancel
     confirm_cancel_reject_deal: No thanks, just cancel my subscription
     confirm_cancel: Yes, cancel my subscription
