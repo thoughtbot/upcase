@@ -110,7 +110,7 @@ describe Episode do
   end
 
   it 'reprocesses the mp3 file if certain attributes change' do
-    attachment = stub(reprocess!: nil)
+    attachment = stub(save: nil)
     episode = create(:episode)
     episode.stubs(mp3: attachment)
 
@@ -126,6 +126,6 @@ describe Episode do
       episode[attribute] = 'test'
       episode.save!
     end
-    expect(attachment).to have_received(:reprocess!).times(6)
+    expect(attachment).to have_received(:save).times(6)
   end
 end
