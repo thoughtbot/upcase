@@ -2,7 +2,7 @@
   <article>
     <% if !current_user.subscription.downgraded? %>
       <p>If you're cancelling due to price, we'd like to offer you a deal: everything in <%= t('shared.subscription.name') %> except for <%= current_user.mentor.first_name %> (your mentor) and workshops. You still get books, screencasts, <%= t('shared.bytes') %>, the forum, and you'll also continue to have access to the workshops you've already taken, for $29/month instead of <%= number_to_currency current_user.subscription.plan.individual_price, precision: 0 %>/month.</p>
-      <p>This is a one-time offer and once you cancel it'll be gone.</p>
+      <p>Any remaining balance you have on your account will be applied to your new, less-expensive, plan.</p>
       <p><%= link_to 'Change to $29/month &rarr;'.html_safe, [:subscriber, :downgrade], method: :create %></p>
     <% else %>
       <p>Are you sure you want to cancel your <%= t('shared.subscription.name') %> subscription? You will lose access to the products you acquired through <%= t('shared.subscription.name') %>, as well as the forum and <%= t('shared.bytes') %> at the end of your billing cycle.</p>
