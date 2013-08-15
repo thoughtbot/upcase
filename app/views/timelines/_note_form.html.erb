@@ -1,5 +1,9 @@
-<%= link_to 'Add a note', '#', class: 'add-note' %>
 <%= form_for :note, url: note_path, html: { class: 'add-note-form' } do |form| %>
-  <%= form.text_area :body, placeholder: 'Add a note (mentor meetings, to-dos, etc.)' %>
-  <%= form.submit 'Save' %>
+  <section class="instructions">
+    <p><strong>What is this:</strong> This is your notes section. It's visible only to you and your mentor. Use notes to stay on top of mentor meetings, weekly to-dos, workshops, or anything else you need to remember. Your mentor can take notes too, they'll write in what they think you should work on and whatever else you discuss.</p>
+  </section>
+  <fieldset>
+    <%= form.text_area :body, placeholder: 'Type a note here... (markdown supported)' %>
+    <%= form.submit 'save this note' %>
+  </fieldset>
 <% end %>

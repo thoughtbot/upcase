@@ -1,9 +1,9 @@
 <section class="timeline">
   <section class="profile">
-    <%= image_tag gravatar_url(current_user), class: 'user-image' %>
+    <%= image_tag gravatar_url(current_user, :size => '200'), class: 'user-image' %>
     <div class="user-info">
-      <h3><%= current_user.name %></h3>
       <p data-role="user-bio">
+        <strong><%= current_user.name %>:</strong>
         <%= current_user.bio || 'Tell us about yourself' %>
         &mdash;
         <%= link_to 'edit bio', my_account_path, 'data-role' => 'edit-bio' %>
@@ -13,14 +13,19 @@
 
   <% @timeline.grouped_items.each do |week, items| %>
     <section class="week">
+      <h2 class="week-of"><%= week_title(week) %></h2>
       <div class="progress">
         <ol class="goals">
-          <li class="title"><%= week_title(week) %></li>
           <% if @timeline.most_recent_week?(week) %>
-            <li class="trails-link"><%= link_to 'Check off items on trail maps &rarr;'.html_safe, topics_path %></li>
+            <section class="instructions">
+              <p><strong>What is this:</strong> This is your goals section. It's visible only to you and your mentor. We list out the trail map items you've completed in any trail, which can include readings, workshops, etc. Your mentor may provide notes on which trails to go through, and this timeline will serve as a record of what you've been able to finish.</p>
+            </section>
           <% end %>
           <% if items[:completions] %>
             <%= render items[:completions] %>
+          <% end %>
+          <% if @timeline.most_recent_week?(week) %>
+            <li class="trails-link"><%= link_to 'Check off items on trail maps &rarr;'.html_safe, topics_path %></li>
           <% end %>
         <ol>
       </div>
