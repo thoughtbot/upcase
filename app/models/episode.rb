@@ -76,7 +76,7 @@ class Episode < ActiveRecord::Base
 
   def reprocess_mp3
     if id3_info_changed?
-      self.mp3 = mp3
+      mp3.assign(mp3)
       mp3.save
     end
   end
