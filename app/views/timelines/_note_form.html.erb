@@ -1,0 +1,5 @@
+<%= link_to 'Add a note', '#', class: 'add-note' %>
+<%= form_for :note, url: note_path, html: { class: 'add-note-form' } do |form| %>
+  <%= form.text_area :body, placeholder: 'Add a note (mentor meetings, to-dos, etc.)' %>
+  <%= form.submit 'Save' %>
+<% end %>

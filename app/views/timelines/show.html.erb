@@ -10,30 +10,30 @@
       </p>
     </div>
   </section>
-  <section class="progress-tracker">
-    <% if @timeline_items_by_week.values.empty? %>
-      <ol class="week">
-        <%= render 'check_off_trails_link' %>
-      </ol>
-    <% else %>
-      <%= render 'timeline_items' %>
-    <% end %>
-  </section>
-  <section class="notes">
-    <ol>
-      <li class="add">
-        <span class="plus">&#43;</span><a href="" class="add-note">Add a note</a>
-      </li>
-      <%= form_for :note, url: note_path, html: { class: 'add-note-form' } do |form| %>
-        <fieldset class='inputs'>
-          <%= form.text_area :body, placeholder: 'Add a note (mentor meetings, to-dos, etc.)' %>
-          <%= form.submit 'Save' %>
-        </fieldset>
-      <% end %>
-    </ol>
-    <ul class="notes">
-      <%= render current_user.notes %>
-    </ul>
-  </section>
-</section>
 
+  <% @timeline.grouped_items.each do |week, items| %>
+    <section class="week">
+      <div class="progress">
+        <ol class="goals">
+          <li class="title"><%= week_title(week) %></li>
+          <% if @timeline.most_recent_week?(week) %>
+            <li class="trails-link"><%= link_to 'Check off items on trail maps &rarr;'.html_safe, topics_path %></li>
+          <% end %>
+          <% if items[:completions] %>
+            <%= render items[:completions] %>
+          <% end %>
+        <ol>
+      </div>
+      <div class="notes">
+        <% if @timeline.most_recent_week?(week) %>
+          <%= render 'note_form' %>
+        <% end %>
+        <ol>
+          <% if items[:notes] %>
+            <%= render items[:notes] %>
+          <% end %>
+        </ol>
+      </div>
+    </section>
+  <% end %>
+</section>
