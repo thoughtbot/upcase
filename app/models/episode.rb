@@ -16,6 +16,7 @@ class Episode < ActiveRecord::Base
 
   before_validation :assign_next_number, on: :create
   after_save :enqueue_remote_fetch
+  after_update :reprocess_mp3
 
   has_attached_file :mp3, {
     s3_permissions: :public_read,
@@ -24,7 +25,9 @@ class Episode < ActiveRecord::Base
     },
     processors: [:id3]
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
+
   process_in_background :mp3
+
   attr_accessor :new_mp3_url
 
   def self.published
@@ -69,5 +72,22 @@ class Episode < ActiveRecord::Base
     if new_mp3_url.present?
       EpisodeMp3FetchJob.enqueue(self.id, new_mp3_url)
     end
+  end
+
+  def reprocess_mp3
+    if id3_info_changed?
+      mp3.assign(mp3)
+      mp3.save
+    end
+  end
+
+  def id3_info_changed?
+    id3_attributes.any? do |attribute|
+      changed.include?(attribute)
+    end
+  end
+
+  def id3_attributes
+    %w(show_id description number published_on title notes)
   end
 end
