@@ -4,7 +4,7 @@ class Timeline
   end
 
   def has_items?
-    items_grouped_by_week.values.present?
+    timeline_items.values.present?
   end
 
   def most_recent_week?(week)
@@ -13,7 +13,7 @@ class Timeline
 
   def grouped_items
     if has_items?
-      items_grouped_by_week_and_type
+      timeline_items
     else
       null_week
     end
@@ -27,20 +27,20 @@ class Timeline
     { Time.now.beginning_of_week => {} }
   end
 
+  def timeline_items
+    @timeline_items ||= items_grouped_by_week_and_type
+  end
+
   def items_grouped_by_week_and_type
-    items_grouped_by_type = {}
+    items_grouped_by_week_and_type = {}
     items_grouped_by_week.each do |week, items|
-      items_grouped_by_type[week] = items.group_by { |item| item.class.name.tableize.to_sym }
+      items_grouped_by_week_and_type[week] = items.group_by { |item| item.class.name.tableize.to_sym }
     end
-    items_grouped_by_type
+    items_grouped_by_week_and_type
   end
 
   def items_grouped_by_week
-    timeline_items.group_by { |item| item.created_at.beginning_of_week }
-  end
-
-  def timeline_items
-    items = (user.notes + user.completions)
-    items.sort! { |item1, item2| item2.created_at <=> item1.created_at }
+    items = (user.notes + user.completions).sort! { |item1, item2| item2.created_at <=> item1.created_at }
+    items.group_by { |item| item.created_at.beginning_of_week }
   end
 end
