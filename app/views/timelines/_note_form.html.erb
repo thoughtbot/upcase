@@ -1,0 +1,9 @@
+<%= form_for :note, url: note_path, html: { class: 'add-note-form' } do |form| %>
+  <section class="instructions">
+    <p><strong>What is this:</strong> This is your notes section. Use notes to stay on top of mentor meetings, weekly to-dos, workshops, or anything else you need to remember.</p>
+  </section>
+  <fieldset>
+    <%= form.text_area :body, placeholder: 'Type a note here... (markdown supported)' %>
+    <%= form.submit 'save this note' %>
+  </fieldset>
+<% end %>
