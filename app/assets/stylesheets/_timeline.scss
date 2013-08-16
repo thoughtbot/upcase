@@ -194,8 +194,8 @@ body.timelines {
       color: $learnred;
       font: normal 1rem/1.4 $sans-serif;
       line-height: 1;
-      padding: .3rem 0 .3rem .5rem;
-      @include position(absolute, 0 1.5rem 1px 1rem);
+      padding: .3rem 0 .3rem;
+      @include position(absolute, 0 1rem 5px 1rem);
       text-transform: none;
       @include user-select(none);
 
