@@ -1,16 +1,6 @@
 require 'spec_helper'
 
 feature 'User adds a note to timeline', :js do
-  scenario 'they see the note form hidden until they click "Add a note"' do
-    user = create(:user)
-    visit timeline_path(as: user)
-
-    expect(page).to have_css '.add-note-form', visible: false
-    click_on 'Add a note'
-
-    expect(page).to have_css '.add-note-form', visible: true
-  end
-
   scenario 'they see only one add note form when there are multiple weeks' do
     user = create(:user)
     trail = create(:trail, trail_map: FakeTrailMap.new.trail)
@@ -49,9 +39,8 @@ feature 'User adds a note to timeline', :js do
 
   def create_note(body)
     within '.notes' do
-      click_on 'Add a note'
       fill_in 'note_body', with: body
-      click_on 'Save'
+      click_on 'save this note'
     end
   end
 

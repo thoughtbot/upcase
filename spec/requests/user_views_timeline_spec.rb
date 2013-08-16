@@ -41,7 +41,7 @@ feature 'User views their timeline' do
 
     visit timeline_path(as: user)
 
-    expect(page).to have_css %{.profile img[src="#{gravatar_url(user)}"]}
+    expect(page).to have_css %{.profile img[src="#{gravatar_url(user, size: '200')}"]}
     expect(page).to have_css '.user-info', text: user.name
     expect(page).to have_role 'user-bio', text: 'All about me'
   end
