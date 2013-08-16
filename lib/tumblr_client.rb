@@ -24,7 +24,7 @@ class TumblrClient
     client = Tumblr::Client.new(ENV['TUMBLR_HOSTNAME'], oauth_hash)
     request = post.post(client)
 
-    p request.perform
+    request.perform
   end
 
   private
