@@ -1,3 +1,5 @@
+require Rails.root.join('app/models/episode.rb')
+
 namespace :podcast do
   namespace :publish do
     desc 'Publish any podcast episodes to tumblr'
