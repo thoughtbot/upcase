@@ -33,7 +33,7 @@ describe TumblrClient, '.recent' do
         state: 'published',
         tags: 'podcast,rails,ruby',
         format: 'markdown',
-        title: "#{episode.show.title} Podcast #{episode.full_title}",
+        title: "#{episode.show.short_title} Podcast #{episode.full_title}",
         url: show_episode_url(episode.show, episode, host: HOST),
         description: <<-DESCRIPTION
 #{episode.description}

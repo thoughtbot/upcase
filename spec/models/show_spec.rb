@@ -17,4 +17,10 @@ describe Show do
 
     expect(show.to_param).to eq 'slug'
   end
+
+  it 'has a short title' do
+    show = build(:show, title: 'Giant Robots Smashing into other Giant Robots')
+
+    expect(show.short_title).to eq 'Giant Robots'
+  end
 end
