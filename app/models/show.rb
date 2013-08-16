@@ -13,4 +13,8 @@ class Show < ActiveRecord::Base
   def to_param
     slug
   end
+
+  def short_title
+    title.split.first(2).join(' ')
+  end
 end
