@@ -74,7 +74,7 @@ Workshops::Application.routes.draw do
   get '/podcasts' => redirect('/giantrobots')
   get '/podcasts/:id' => redirect("/giantrobots/%{id}")
 
-  constraints show_id: /giantrobots|buildphase/ do
+  constraints show_id: /giantrobots|buildphase|tinyrobots/ do
     get '/:show_id' => 'episodes#index', as: :show_episodes
     get '/:show_id/:id' => 'episodes#show', as: :show_episode
   end
