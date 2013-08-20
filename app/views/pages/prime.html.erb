@@ -12,7 +12,7 @@
       <%= image_tag('learn/learn-ralph.png') %>
     </h1>
   </div>
-  <h1>Become an expert level Ruby on Rails developer with Learn Prime</h1>
+  <h1>Become an expert level Ruby on Rails developer with Learn <%= t('shared.subscription.name') %></h1>
   <%= link_to new_subscription_path, id: 'first-cta', class: 'prime-journey-cta' do %>
     <h2><%= t('subscriptions.join_cta') %></h2>
   <% end %>
@@ -21,32 +21,24 @@
 <section class="journey">
   <section class="pitch center">
     <article>
-      <figure id="bullet-1" class="journey-bullet"></figure>
-      <h2>Work with a mentor</h2>
-      <p>thoughtbot mentors like <%= link_to 'Chad', 'http://thoughtbot.com/about#cpytel', target: '_blank' %> and <%= link_to 'Ben', 'http://thoughtbot.com/about#borenstein', target: '_blank' %> will hold calls with you once a month to discuss whatever you like: code review, landing your first Rails job, salary negotiation, etc.</p>
+      <figure id="bullet-1" class="journey-bullet">1.</figure>
+      <h2><span>Join <%= t('shared.subscription.name') %> to</span> Work with a mentor</h2>
+      <p>thoughtbot mentors like Chad and Ben will hold calls with you once a month to discuss whatever you like: code review, landing your first Rails job, salary negotiation, etc.</p>
     </article>
-    <figure class="supporting-visual profile">
-      <figure class="mini-profile">
-        <div class="images animated">
-          <%= image_tag('learn/face-ben.png') %>
-          <%= image_tag('learn/face-chad2.png') %>
-          <%= image_tag('learn/face-phil2.png') %>
-          <%= image_tag('learn/face-kyle.png') %>
-          <%= image_tag('learn/face-mattm.png') %>
-          <%= image_tag('learn/face-jessie.png') %>
-          <%= image_tag('learn/face-josh.png') %>
-          <%= image_tag('learn/face-prem.png') %>
-        </div>
-        <figcaption>
-          <h2>Meet your mentor</h2>
-        </figcaption>
-      </figure>
-      <%= image_tag('learn/user-list.png') %>
+    <figure class="supporting-visual mentors">
+      <div>
+        <%= mentor_image(@mentor_1) %>
+        <p><strong>This is <%= @mentor_1.first_name %></strong>. <%= @mentor_1.bio %></p>
+      </div>
+      <div>
+        <%= mentor_image(@mentor_2) %>
+        <p><strong>This is <%= @mentor_2.first_name %></strong>. <%= @mentor_2.bio %></p>
+      </div>
     </figure>
   </section>
-  <section class="pitch left">
+  <section class="pitch left enroll">
     <article>
-      <figure id="bullet-2" class="journey-bullet"></figure>
+      <figure id="bullet-2" class="journey-bullet">2.</figure>
       <h2>Enroll in premium, hands-on workshops</h2>
       <p>Our workshops are more than just video tutorials. You&rsquo;ll build real apps and communicate directly with a thoughtbot developer or designer. Begin an online workshop as soon as you sign up.</p>
     </article>
@@ -105,8 +97,8 @@
   </section>
   <section class="pitch center">
     <article>
-      <figure id="bullet-3" class="journey-bullet"></figure>
-      <h2>Collaborate with thoughtbot and other members</h2>
+      <figure id="bullet-3" class="journey-bullet">3.</figure>
+      <h2>Collaborate with thoughtbotters and other members</h2>
       <p>Don&rsquo;t develop alone, communicate with thoughtbotters and other motivated professionals. Ask questions about workshops, books, or personal projects. Join interesting conversations.</p>
     </article>
     <figure class="supporting-visual two-screenshot">
@@ -116,9 +108,9 @@
   </section>
   <section class="pitch left exclusive-content">
     <article>
-      <figure id="bullet-4" class="journey-bullet"></figure>
-      <h2>Exclusive content, weekly</h2>
-      <p>The Ruby community sets an amazing pace of innovation. It often feels like "best practices" have a shelf-life of a few months before being replaced by better ideas. Between Rails&rsquo; constant changes and a neverending stream of new gems and philosophies, it’s a real challenge to keep up with the state of the art.</p>
+      <figure id="bullet-4" class="journey-bullet">4.</figure>
+      <h2>Receive exclusive content, weekly</h2>
+      <p>The Ruby community sets an amazing pace of innovation. It often feels like "best practices" have a shelf-life of a few months before being replaced by better ideas. Between Rails&rsquo; constant changes and a never-ending stream of new gems and philosophies, it’s a real challenge to keep up with the state of the art.</p>
       <p>Stay on top of it all with our private <%= t('shared.bytes') %> blog, our books, and screencasts on vim, development tools, and more.</p>
     </article>
     <figure class="supporting-visual two-stacked">
@@ -210,8 +202,8 @@
       <%= image_tag('learn/dashboard.png') %>
     </figure>
     <article>
-      <figure id="bullet-5" class="journey-bullet"></figure>
-      <h2>The closest thing to working at thoughtbot full time</h2>
+      <figure id="bullet-5" class="journey-bullet">5.</figure>
+      <h2>This is the closest thing to working at thoughtbot full-time</h2>
       <p>We’ve trained hundreds of developers and apprentices over the years, and have a great handle on what it takes to become and remain an expert-level Rubyist.</p>
       <p>With Learn <%= t('shared.subscription.name') %>, we’ve finally created a service that’s nearly as good as joining thoughtbot full time. If you’re a passionate developer serious about improving and maintaining your skills, we know you’ll get a ton of value out of the service.</p>
       <%= link_to new_subscription_path, class: 'prime-journey-cta' do %>
