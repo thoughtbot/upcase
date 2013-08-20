@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'User adds a note to timeline', :js do
+feature 'User adds a note to timeline' do
   include Gravatarify::Helper
 
   scenario 'they see only one add note form when there are multiple weeks' do
@@ -15,22 +15,35 @@ feature 'User adds a note to timeline', :js do
     expect(page.all('.add-note-form').count).to eq 1
   end
 
-  scenario 'they see the note on the timeline page' do
-    user = create(:user)
-    visit timeline_path(as: user)
+  context 'with note body filled in' do
+    scenario 'they see the note on the timeline page' do
+      user = create(:user)
+      visit timeline_path(as: user)
 
-    create_note('I love to learn')
+      create_note('I love to learn')
 
-    expect(page).to have_role 'note', text: 'I love to learn'
+      expect(page).to have_role 'note', text: 'I love to learn'
+    end
+
+    scenario 'they see the note rendered as markdown' do
+      user = create(:user)
+      visit timeline_path(as: user)
+
+      create_note('# I love to learn')
+
+      expect(page).to have_role 'note', text: 'I love to learn'
+    end
   end
 
-  scenario 'they see the note rendered as markdown' do
-    user = create(:user)
-    visit timeline_path(as: user)
+  context 'with a blank note body' do
+    scenario 'they are redirected back to the user timeline' do
+      user = create(:user)
+      visit timeline_path(as: user)
 
-    create_note('# I love to learn')
+      create_note('')
 
-    expect(page).to have_css '[data-role="note"] h1', text: 'I love to learn'
+      expect(current_path).to eq timeline_path
+    end
   end
 
   scenario 'a mentor can add a note to the timeline' do
