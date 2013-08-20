@@ -1,19 +1,23 @@
-Hi <%= @user.first_name %>, 
+Hi <%= @user.first_name %>,
 
-First off, thanks for subscribing to <%= t('shared.subscription.name') %>! We're glad to have you.
+First off, thanks for subscribing to <%= t('shared.subscription.name') %>!
+We're glad to have you.
 
 Secondly, I wanted to introduce myself. My name is <%= @mentor.name %> and I'll
-be your mentor!
+be your mentor.
 
 I'd like to set up a 30-minute Skype session right now so we can discuss your
 goals.
 
-You can view my calendar here:
-https://www.google.com/calendar/embed?src=<%=u @mentor.email %>&mode=week.
-Please feel free to suggest a 30 minute time which works for both of us and
-we'll set it as a once a month recurring event. I'm generally available
-from 9:30am to 5pm US Eastern. Please include your Skype handle in your
-scheduling request.
+You can view my calendar here: https://www.google.com/calendar/embed?src=<%=u
+@mentor.email %>&mode=week.
+
+Once you've found a time that works for both of us, please send me a calendar
+invite using your favorite scheduling program. As long as you've picked a time
+where I'm free, I'll accept.
+
+I'm generally available from 9:30am to 5pm US Eastern. Please include your
+Skype handle in your scheduling request.
 
 Before our first call, I recommend you visit our Trail Maps to perform a
 self-assessment of your skills: <%= topics_url %>
