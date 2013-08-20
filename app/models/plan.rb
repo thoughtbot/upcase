@@ -43,7 +43,7 @@ class Plan < ActiveRecord::Base
   end
 
   def subscription_count
-    subscriptions.active.count
+    subscriptions.active.paid.count
   end
 
   def to_param

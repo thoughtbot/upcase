@@ -85,10 +85,16 @@ describe Plan do
       expect(plan.subscription_count).to eq 0
     end
 
-    it 'returns 1 when the plan has a single active subscription' do
+    it 'returns 1 when the plan has a single active subscription that is paid' do
       plan = create(:plan)
-      create(:active_subscription, plan: plan)
+      create(:active_subscription, plan: plan, paid: true)
       expect(plan.subscription_count).to eq 1
+    end
+
+    it 'returns 0 when the plan has an active subscription that is unpaid' do
+      plan = create(:plan)
+      create(:active_subscription, plan: plan, paid: false)
+      expect(plan.subscription_count).to eq 0
     end
 
     it 'returns 0 when the plan has only an inactive subscription' do
