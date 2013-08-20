@@ -505,9 +505,14 @@
 .journey-bullet {
   background: $journey-line-color;
   border-radius: 100%;
+  color: lighten($darkwarmgray, 10%);
+  font-size: 2rem;
+  font-weight: 700;
   height: $bullet-size;
   left: -8rem;
+  line-height: $bullet-size;
   position: absolute;
+  text-align: center;
   top: 1rem;
   width: $bullet-size;
   z-index: -1;

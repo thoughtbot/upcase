@@ -35,8 +35,9 @@ body.prime-marketing {
   }
 
   h1 {
-    color: darken(desaturate($warmgray, 10%), 35%);
+    color: $darkwarmgray;
     font-size: 3.2rem;
+    line-height: 1.15em;
 
     @include prime-marketing-mobile {
       font-size: 2rem;
@@ -44,8 +45,7 @@ body.prime-marketing {
   }
 
   .prime-journey-cta {
-    bottom: -5rem;
-    margin-top: -2rem;
+    bottom: -3rem;
     position: relative;
   }
 
