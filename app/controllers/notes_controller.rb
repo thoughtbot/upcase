@@ -2,7 +2,7 @@ class NotesController < ApplicationController
   before_filter :authorize
 
   def create
-    if current_user_allowed_to_post?
+    if current_user_allowed_to_post? && note_body_is_present?
       create_note_and_reload_timeline
     else
       redirect_to_current_user_timeline
@@ -13,6 +13,10 @@ class NotesController < ApplicationController
 
   def current_user_allowed_to_post?
     current_user_is_timeline_user? || current_user_is_admin?
+  end
+
+  def note_body_is_present?
+    params[:note][:body].present?
   end
 
   def current_user_is_timeline_user?
