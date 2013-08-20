@@ -56,7 +56,9 @@ describe WorkshopMailer do
 
     context 'for an online workshop' do
       it 'does not contain a section about comments or dietary restrictions' do
-        purchase = create(:online_section_purchase, comments: 'comments and requests')
+        purchase = create_subscriber_purchase(:online_section)
+        purchase.comments = 'comments and requests'
+        purchase.save!
         section = purchase.purchaseable
         email = WorkshopMailer.section_reminder(purchase.id, section.id)
 
@@ -66,7 +68,9 @@ describe WorkshopMailer do
 
     context 'for an in-person workshop' do
       it 'does not contain a section about comments or dietary restrictions' do
-        purchase = create(:in_person_section_purchase, comments: 'comments and requests')
+        purchase = create_subscriber_purchase(:in_person_section)
+        purchase.comments = 'comments and requests'
+        purchase.save!
         section = purchase.purchaseable
         email = WorkshopMailer.section_reminder(purchase.id, section.id)
 
@@ -85,11 +89,10 @@ describe WorkshopMailer do
     def sent_email
       workshop = create(:workshop, name: workshop_name)
       section = create(:section, workshop: workshop)
-
-      purchase = create(:purchase,
-                        purchaseable: section,
-                        email: recipient,
-                        name: 'Benny Burns')
+      purchase = create_subscriber_purchase_from_purchaseable(section)
+      purchase.email = recipient
+      purchase.name = 'Benny Burns'
+      purchase.save!
 
       WorkshopMailer.section_reminder(purchase, section)
     end

@@ -1,13 +1,15 @@
-<% if !current_user_has_active_subscription? %>
+<% unless current_user_has_active_subscription? %>
   <div class="prime-purchase">
-    <h2>Access this and all our other products</h2>
+    <h2>
+      <%= I18n.t('products.show.subscribe_cta',
+                 product_type: offering.offering_type.humanize.downcase,
+                 subscription_name: t('shared.subscription.name')) %>
+    </h2>
 
     <div class="license">
       <%= link_to new_subscription_path, class: 'license-button button prime-button' do %>
         Subscribe to <%= t('shared.subscription.name') %>
       <% end %>
     </div>
-
-    <p class="or">Or buy individually</p>
   </div>
 <% end %>

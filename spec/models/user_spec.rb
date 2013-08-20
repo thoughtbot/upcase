@@ -177,7 +177,7 @@ describe User do
     it "returns false of the passed in purchaseable is not a section" do
       user = create(:user)
       create(:paid_purchase, user: user)
-      create(:online_section_purchase, user: user)
+      create_subscriber_purchase(:online_section, user)
 
       expect(user.has_conflict?(create(:product))).to be_false
     end
@@ -185,7 +185,9 @@ describe User do
     it 'returns false if trying to register for an ongoing section with no conflict' do
       user = create(:user)
       online_section = create(:online_section, starts_on: 30.days.ago, ends_on: 20.days.ago)
-      create(:online_section_purchase, user: user, purchaseable: online_section, created_at: 26.days.ago)
+      Timecop.travel(26.days.ago) do
+        create_subscriber_purchase_from_purchaseable(online_section, user)
+      end
       new_online_section = create(:online_section, starts_on: 22.days.ago.to_date, ends_on: nil)
 
       expect(user.has_conflict?(new_online_section)).to be_false

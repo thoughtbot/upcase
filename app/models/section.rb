@@ -1,5 +1,4 @@
 class Section < ActiveRecord::Base
-  # Associations
   belongs_to :workshop
   has_many :paid_purchases, class_name: 'Purchase', as: :purchaseable,
     conditions: { paid: true }
@@ -11,23 +10,19 @@ class Section < ActiveRecord::Base
   has_many :announcements, as: :announceable, dependent: :destroy
   has_many :downloads, as: :purchaseable
 
-  # Delegates
-  delegate :name, :description, :individual_price, :company_price, :terms,
-    :videos, :resources, :video_chat_url, :office_hours, :in_person?, :online?,
-    :github_team, :fulfilled_with_github?, :length_in_days, :sku,
-    :fulfillment_method, :subscription?, to: :workshop, allow_nil: true
+  delegate :name, :description, :terms, :videos, :resources, :video_chat_url,
+    :office_hours, :in_person?, :online?, :github_team,
+    :fulfilled_with_github?, :length_in_days, :sku, :fulfillment_method,
+    :subscription?, to: :workshop, allow_nil: true
 
-  # Nested Attributes
   accepts_nested_attributes_for :section_teachers
 
-  # Validations
   validates :address, presence: true
   validates :start_at, presence: true
   validates :starts_on, presence: true
   validates :stop_at, presence: true
   validate :must_have_at_least_one_teacher
 
-  # Callbacks
   after_create :send_follow_up_emails
   after_create :send_teacher_notifications
 

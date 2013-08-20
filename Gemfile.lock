@@ -417,7 +417,6 @@ GEM
       raindrops (~> 0.7)
     uuidtools (2.1.4)
     validates_email_format_of (1.5.3)
-    vcr (2.1.1)
     visitor (0.0.1)
     weary (1.1.2)
       addressable (~> 2.3.2)
@@ -514,5 +513,4 @@ DEPENDENCIES
   uglifier (= 1.2.4)
   unicorn
   validates_email_format_of (= 1.5.3)
-  vcr (= 2.1.1)
   webmock (= 1.8.7)

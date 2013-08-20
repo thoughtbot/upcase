@@ -1,17 +1,20 @@
-<h2 <% if current_user_has_active_subscription? %>class="active-subscription"<% end %>>
-  <%= render(
-    'price',
-    product: product,
-    price: product.individual_price,
-    original_price: product.original_individual_price,
-    variant: :individual
-  ) %>
-</h2>
-
 <div class="license">
+  <% if current_user_has_active_subscription? %>
+    <h2 class="active-subscription"><span><%= t 'products.show.free_to_subscribers' %></span></h2>
+  <% end %>
   <%= link_to new_product_purchase_path(product, variant: :individual),
     class: "license-button button #{'free-with-prime' if current_user_has_active_subscription?}",
     id: "#{product.sku}-purchase-individual" do %>
-      <%= purchase_button_text(product) %>
+      <% if current_user_has_active_subscription? %>
+        <%= purchase_button_text(product) %>
+      <% else %>
+        <%= render(
+          'price',
+          product: product,
+          price: product.individual_price,
+          original_price: product.original_individual_price,
+          variant: :individual
+        ) %>
+      <% end %>
   <% end %>
 </div>

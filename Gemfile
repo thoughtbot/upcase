@@ -98,7 +98,6 @@ group :test do
   gem 'shoulda-matchers'
   gem 'sinatra'
   gem 'timecop', '0.3.5'
-  gem 'vcr', '2.1.1'
   gem 'webmock', '1.8.7'
   gem 'capybara_discoball',
     :git => 'git@github.com:thoughtbot/capybara_discoball.git'

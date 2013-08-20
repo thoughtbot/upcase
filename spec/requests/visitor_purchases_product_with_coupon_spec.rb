@@ -9,9 +9,11 @@ feature 'Using coupons' do
     create(:coupon, code: 'CODE', discount_type: 'percentage', amount: 10)
 
     visit product_path(product)
-    click_purchase_link
+    click_purchase_link_for(product)
     click_link 'Have a coupon code?'
+
     expect(find('.coupon')).to be_visible
+
     fill_in 'Code', with: 'CODE'
     click_button 'Apply Coupon'
 
@@ -28,7 +30,7 @@ feature 'Using coupons' do
     create(:coupon, code: 'CODE', discount_type: 'percentage', amount: 100)
 
     visit product_path(product)
-    click_purchase_link
+    click_purchase_link_for(product)
     click_link 'Have a coupon code?'
     fill_in 'Code', with: 'CODE'
     click_button 'Apply Coupon'

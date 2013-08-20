@@ -16,7 +16,7 @@ describe 'offerings/_prime_purchase.html.erb' do
   end
 
   def render_template(current_user_has_subscription)
-    product = stub('product')
+    product = stub('product', offering_type: 'book')
 
     Mocha::Configuration.allow :stubbing_non_existent_method do
       view.stubs(
@@ -26,7 +26,7 @@ describe 'offerings/_prime_purchase.html.erb' do
 
     render(
       template: 'offerings/_prime_purchase',
-      locals: { product: product }
+      locals: { offering: product }
     )
   end
 end

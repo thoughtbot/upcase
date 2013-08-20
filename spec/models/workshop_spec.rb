@@ -14,8 +14,6 @@ describe Workshop do
   # Validations
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:individual_price) }
-  it { should validate_presence_of(:company_price) }
   it { should validate_presence_of(:short_description) }
   it { should validate_presence_of(:sku) }
 
@@ -166,7 +164,7 @@ describe Workshop do
   context 'purchase_for' do
     it 'returns the purchase when a user has purchased a section of the workshop' do
       user = create(:user)
-      purchase = create(:section_purchase, user: user)
+      purchase = create_subscriber_purchase(:section, user)
       workshop = purchase.purchaseable.workshop
 
       expect(workshop.purchase_for(user)).to eq purchase
@@ -174,7 +172,7 @@ describe Workshop do
 
     it 'returns nil when a user has not purchased a section fo the workshop' do
       user = create(:user)
-      purchase = create(:section_purchase)
+      purchase = create_subscriber_purchase(:section)
       workshop = purchase.purchaseable.workshop
 
       expect(workshop.purchase_for(user)).to be_nil

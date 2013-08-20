@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130814143800) do
+ActiveRecord::Schema.define(:version => 20130822152026) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -424,11 +424,9 @@ ActiveRecord::Schema.define(:version => 20130814143800) do
     t.boolean  "active",                    :default => true,  :null => false
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
-    t.integer  "individual_price"
     t.string   "short_description"
     t.string   "external_registration_url"
     t.integer  "position"
-    t.integer  "company_price"
     t.text     "terms"
     t.boolean  "online",                    :default => false, :null => false
     t.text     "resources",                 :default => "",    :null => false

@@ -29,19 +29,21 @@ feature 'User downgrades subscription', js: true do
     expect(@current_user.subscription.plan).to eq downgrade_plan
 
     visit workshop_path(section.workshop)
+
     expect(page).not_to have_css('.free-with-prime')
-    click_link 'Register for this Workshop'
-    expect(page).not_to have_content "$0"
 
     visit products_path
+
     expect(page).not_to have_css('section.mentor h3', text: 'Your Mentor')
 
     visit my_account_path
     click_link I18n.t('subscriptions.cancel')
+
     expect(page).not_to have_content 'deal'
     expect(page).not_to have_content 'Change to'
 
     click_button I18n.t('subscriptions.confirm_cancel')
+
     expect(page).to have_content "Scheduled for cancellation on February 19, 2013"
     expect(page).to have_content I18n.t('subscriptions.flashes.cancel.success')
   end
