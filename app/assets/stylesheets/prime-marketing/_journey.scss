@@ -36,7 +36,6 @@
 
     article {
       float: right;
-      margin-top: 4.75rem;
       position: relative;
       width: 37%;
 
@@ -56,7 +55,7 @@
 
       > h2 {
         font-size: 2.75rem;
-        line-height: 1.2em;
+        line-height: 1.15em;
         margin-bottom: 1rem;
 
         @include prime-marketing-mobile {
@@ -94,9 +93,14 @@
       float: left;
       margin-left: 5rem;
 
+      @media screen and (max-width: 1560px) {
+        width: 32%;
+      }
+
       @include prime-marketing-tablet {
         margin-left: 0;
         padding-left: 5rem;
+        width: 100%;
       }
 
       @include prime-marketing-mobile {
@@ -130,13 +134,15 @@
     }
   }
 
-  .pitch.exclusive-content {
-    article {
-      margin-top: 12rem;
+  .pitch.enroll article {
+    margin-top: 2rem;
+  }
 
-      @include prime-marketing-tablet {
-        margin-top: 0;
-      }
+  .pitch.exclusive-content article {
+    margin-top: 6rem;
+
+    @include prime-marketing-tablet {
+      margin-top: 0;
     }
   }
 
@@ -160,8 +166,7 @@
     }
 
     article {
-      margin-top: 0;
-      width: 57%;
+      width: 54%;
 
       @include prime-marketing-tablet {
         width: 100%;
@@ -193,110 +198,52 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
     }
 
-    &.profile {
-      height: 400px;
-
-      @include prime-marketing-mobile {
-        height: auto;
+    &.mentors {
+      @include prime-marketing-tablet {
         margin-top: 2rem;
       }
 
-      .mini-profile {
-        background: #fff;
-        border: 1px solid rgb(150, 150, 150);
-        border-radius: .5rem;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, .1);
-        box-sizing: content-box;
-        display: table;
-        padding: 1.5rem;
-        @include position(absolute, 0px 0px 0 0);
-        width: 420px;
-        z-index: 1;
+      div {
+        float: left;
+        margin: 0 0 1rem 0;
+        overflow: auto;
+        width: 72%;
+
+        @include prime-marketing-tablet {
+          margin: 0 0 0 0;
+        }
 
         @include prime-marketing-mobile {
-          padding: .5rem 0;
-          width: 80%;
-          margin-top: -1rem;
-          margin-right: 5%;
-        }
-
-        .images {
-          background: rgb(150, 150, 150) url('/assets/learn/face-chad2.png');
-          background-size: contain;
-          border: 1px solid rgb(150, 150, 150);
-          border-radius: 100%;
-          float: left;
-          height: 150px;
-          overflow: hidden;
-          position: relative;
-          @include transition;
-          width: 150px;
-
-          @include prime-marketing-mobile {
-            height: 70px;
-            margin-left: 1rem;
-            width: 70px;
-          }
-
-          svg {
-            z-index: 2;
-            fill: transparent;
-            margin-top: 1rem;
-            position: absolute;
-            stroke: #fff;
-            stroke-dasharray: 7px, 12px;
-            stroke-linecap: round;
-            stroke-width: 4px;
-
-            @include prime-marketing-mobile {
-              height: 75px;
-              width: 70px;
-            }
-          }
-
-          img {
-            @include animation(cycle-avatars 5s);
-            @include animation-fill-mode(both);
-            border-radius: 100%;
-            position: absolute;
-            z-index: 1;
-
-            @for $i from 0 through 7 {
-              &:nth-of-type(#{$i + 1}) {
-                @include animation-delay(#{($i * 5) - ($i * 2)}s);
-              }
-            }
-          }
-        }
-
-        figcaption {
-          display: table-cell;
-          vertical-align: middle;
-
-          @include prime-marketing-mobile {
-            h2 {
-              border-bottom-width: 1px;
-              font-size: .8rem;
-            }
-          }
-        }
-
-        h2 {
-          border-bottom: 2px solid rgba(70, 125, 200, .5);
-          color: rgb(70, 125, 200);
-          display: inline-block;
-          font-size: 1.5rem;
-          font-weight: 400;
-          line-height: 1.4em;
+          width: 100%;
         }
       }
 
-      > img {
-        width: 500px;
-        @include position(absolute, 0 0 0px 0px);
+      div:last-child {
+        float: right;
+
+        img {
+          float: right;
+          margin: 0 0 1rem 1rem;
+        }
+      }
+
+      img {
+        border-radius: 100%;
+        float: left;
+        margin: 0 1rem 1rem 0;
+        width: 35%;
 
         @include prime-marketing-mobile {
-          position: static;
+          width: 25%;
+        }
+      }
+
+      p {
+        font-style: italic;
+        margin-top: 1rem;
+
+        strong {
+          font-style: normal;
         }
       }
     }
@@ -346,7 +293,6 @@
 
         .figuregroup {
           height: 380px;
-          margin-bottom: 1.5rem;
           width: 270px;
 
           &:nth-of-type(odd) {
