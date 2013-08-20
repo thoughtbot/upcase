@@ -13,6 +13,7 @@
 //= require slider
 //= require topics
 //= require checkout
+//= require autoresize
 
 $(function() {
   if ($('.all-trail-map-steps').length) {
@@ -22,4 +23,6 @@ $(function() {
       gutter: '.gutter-sizer'
     });
   }
+
+  $('textarea').autosize();
 });

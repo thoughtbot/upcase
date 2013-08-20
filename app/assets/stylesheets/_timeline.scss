@@ -176,9 +176,8 @@ body.timelines {
       color: $darkwarmgray;
       font: normal 1rem/1.4 $sans-serif;
       height: 9rem;
-      padding: 1rem 1rem 2rem;
+      padding: 1rem 1rem 44px;
       resize: vertical;
-      @include transition;
       width: 100%;
 
       &:focus {
