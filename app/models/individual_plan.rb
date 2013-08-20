@@ -13,6 +13,8 @@ class IndividualPlan < ActiveRecord::Base
   validates :short_description, presence: true
   validates :sku, presence: true
 
+  include PlanWithCountableSubscriptions
+
   def self.prime_basic
     where(sku: PRIME_BASIC_SKU).first
   end
@@ -47,6 +49,10 @@ class IndividualPlan < ActiveRecord::Base
 
   def subscription_count
     subscriptions.active.paid.count
+  end
+
+  def projected_monthly_revenue
+    subscription_count * individual_price
   end
 
   def to_param

@@ -162,6 +162,10 @@ FactoryGirl.define do
     name 'Prime for Teams'
   end
 
+  factory :team do
+    name 'Google'
+  end
+
   factory :purchase, aliases: [:individual_purchase] do
     email
     name 'Test User'
