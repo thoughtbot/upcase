@@ -30,6 +30,7 @@ feature 'User creates a subscription' do
 
   scenario 'does not see the option to pay with paypal' do
     visit_plan_purchase_page
+    create_mentors
     click_prime_call_to_action_in_header
 
     expect(page).not_to have_css('#purchase_payment_method_paypal')
