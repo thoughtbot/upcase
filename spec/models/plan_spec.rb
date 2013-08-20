@@ -79,54 +79,6 @@ describe Plan do
     end
   end
 
-  describe '.prime_basic_subscription_count' do
-    it 'returns 0 when there are no active subscriptions to the Prime Basic plan' do
-      plan = create_prime_basic_plan
-      create_inactive_subscription_for(plan)
-
-      expect(Plan.prime_basic_subscription_count).to eq 0
-    end
-
-    it 'returns 1 when there is 1 active subscription to the Prime Basic plan' do
-      plan = create_prime_basic_plan
-      create_active_subscription_for(plan)
-
-      expect(Plan.prime_basic_subscription_count).to eq 1
-    end
-  end
-
-  describe '.prime_workshops_subscription_count' do
-    it 'returns 0 when there are no active subscriptions to the Prime Workshops plan' do
-      plan = create_prime_workshops_plan
-      create_inactive_subscription_for(plan)
-
-      expect(Plan.prime_workshops_subscription_count).to eq 0
-    end
-
-    it 'returns 1 when there is 1 active subscription to the Prime Workshops plan' do
-      plan = create_prime_workshops_plan
-      create_active_subscription_for(plan)
-
-      expect(Plan.prime_workshops_subscription_count).to eq 1
-    end
-  end
-
-  describe '.prime_with_mentoring_subscription_count' do
-    it 'returns 0 when there are no active subscriptions to the Prime with Mentoring plan' do
-      plan = create_prime_with_mentoring_plan
-      create_inactive_subscription_for(plan)
-
-      expect(Plan.prime_with_mentoring_subscription_count).to eq 0
-    end
-
-    it 'returns 1 when there is 1 active subscription to the Prime with Mentoring plan' do
-      plan = create_prime_with_mentoring_plan
-      create_active_subscription_for(plan)
-
-      expect(Plan.prime_with_mentoring_subscription_count).to eq 1
-    end
-  end
-
   describe '#subscription_count' do
     it 'returns 0 when the plan has no subscriptions' do
       plan = create(:plan)

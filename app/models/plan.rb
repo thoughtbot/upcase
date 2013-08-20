@@ -26,18 +26,6 @@ class Plan < ActiveRecord::Base
     where(sku: PRIME_WITH_MENTORING_SKU).first
   end
 
-  def self.prime_basic_subscription_count
-    prime_basic.subscription_count
-  end
-
-  def self.prime_workshops_subscription_count
-    prime_workshops.subscription_count
-  end
-
-  def self.prime_with_mentoring_subscription_count
-    prime_with_mentoring.subscription_count
-  end
-
   def self.active
     where active: true
   end

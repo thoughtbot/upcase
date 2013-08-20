@@ -3,7 +3,7 @@ widget :total_subscribers do
   type "number_and_secondary"
   data do
     {
-      value: Plan.prime_basic_subscription_count + Plan.prime_workshops_subscription_count + Plan.prime_with_mentoring_subscription_count
+      value: Plan.prime_basic.subscription_count + Plan.prime_workshops.subscription_count + Plan.prime_with_mentoring.subscription_count
     }
   end
 end
