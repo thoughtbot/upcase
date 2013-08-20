@@ -1,15 +1,5 @@
 Feature: Viewing upcoming workshop details
 
-  Scenario: Upcoming workshop price format
-    Given the following workshop exists:
-      | name                | individual_price |
-      | Test-Driven Haskell | 1000             |
-    And the following section exists:
-      | workshop                    |
-      | name: Test-Driven Haskell |
-    When I go to the workshop page of "Test-Driven Haskell"
-    Then I should see "$1,000"
-
   Scenario: workshop has FAQ
     Given a workshop exists with a name of "Test-Driven Erlang"
     And the following questions exist:
@@ -31,8 +21,8 @@ Feature: Viewing upcoming workshop details
     Given today is June 10, 2010
     And a teacher exists with a name of "Ralph Bot"
     And the following workshop exists:
-      | name                | individual_price |
-      | Test-Driven Haskell | 1000             |
+      | name                |
+      | Test-Driven Haskell |
     And the following section exists:
       | workshop                  | starts on     | ends on       | start at | stop at  | address       | city   | state | zip   |
       | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 | 09:00:00 | 12:00:00 | 41 Winter St. | Boston | MA    | 02108 |
@@ -45,7 +35,6 @@ Feature: Viewing upcoming workshop details
     Then I see the section location is "Boston"
     And I should see "June 13-16, 2010"
     And I should see "9:00AM-12:00PM"
-    And I should see "$1,000"
     And I see that one of the teachers is "Ralph Bot"
     And I see "Ralph Bot"'s avatar
     And I see the question "What color?"
@@ -59,8 +48,8 @@ Feature: Viewing upcoming workshop details
     And a teacher exists with a name of "Ralph Bot"
     And a teacher exists with a name of "Joe Teacher"
     And the following workshop exists:
-      | name                | individual_price |
-      | Test-Driven Haskell | 1000             |
+      | name                |
+      | Test-Driven Haskell |
     And the following section exists:
       | workshop                  | starts on     | ends on       | start at | stop at  | address       | city          | state | zip   |
       | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 | 09:00:00 | 12:00:00 | 41 Winter St. | Boston        | MA    | 02108 |
@@ -73,7 +62,6 @@ Feature: Viewing upcoming workshop details
     And I see the section location is "San Francisco"
     And I should see "June 13-16, 2010"
     And I should see "9:00AM-12:00PM"
-    And I should see "$1,000"
     And I see that one of the teachers is "Ralph Bot"
     And I see "Ralph Bot"'s avatar
     And I should see "June 20-22, 2010"
@@ -83,8 +71,8 @@ Feature: Viewing upcoming workshop details
     Given today is June 10, 2010
     And a teacher exists with a name of "Joe Teacher"
     And the following workshop exists:
-      | name                | individual_price |
-      | Test-Driven Haskell | 1000             |
+      | name                |
+      | Test-Driven Haskell |
     And the following section exists:
       | workshop                  | starts on     | ends on       | start at | stop at  | address       | city          | state | zip   |
       | name: Test-Driven Haskell | June 13, 2010 | June 16, 2010 | 09:00:00 | 12:00:00 | 41 Winter St. | Boston        | MA    | 02108 |

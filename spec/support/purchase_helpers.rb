@@ -4,8 +4,12 @@ module PurchaseHelpers
     expect(FakeMailchimp.lists[product.sku]).to include email
   end
 
-  def click_purchase_link
-    click_link 'Purchase for Yourself'
+  def click_purchase_link_for(product, variant = 'individual')
+    click_link I18n.t(
+      "products.show.price.#{product.product_type}.#{variant}_html",
+      default: [:"products.show.price.#{variant}_html"],
+      price: ''
+    )
   end
 
   def fill_in_name_and_email

@@ -8,6 +8,9 @@
     <% end %>
   </div>
 <% else %>
+  <% unless current_user_has_active_subscription? %>
+    <p class="or">Or buy individually</p>
+  <% end %>
   <div class="individual-purchase">
     <%= render 'individual_purchase', product: product%>
   </div>

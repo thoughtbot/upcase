@@ -1,16 +1,12 @@
 <% unless current_user_has_active_subscription? || product.subscription? %>
-  <h2>
-    <%= render(
-      'price',
-      product: product,
-      price: product.company_price,
-      original_price: product.original_company_price,
-      variant: :company
-    ) %>
-  </h2>
   <div class="license">
     <%= link_to new_product_purchase_path(product, variant: :company), class: 'license-button button', id: "#{product.sku}-purchase-company" do %>
-      <% t('products.show.purchase_for_company') %>
+      <%= render('price',
+        product: product,
+        price: product.company_price,
+        original_price: product.original_company_price,
+        variant: :company
+      ) %>
     <% end %>
   </div>
 <% end %>

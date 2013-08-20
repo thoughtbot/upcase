@@ -18,6 +18,7 @@ ShamRack.mount(FakeFreshbooks.new, FRESHBOOKS_PATH, 443)
 FakeStripeRunner.boot
 FakeMailchimpRunner.boot
 Paperclip.processor(:id3)
+FakeGithubRunner.boot
 
 Delayed::Worker.delay_jobs = false
 

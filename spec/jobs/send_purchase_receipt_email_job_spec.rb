@@ -5,7 +5,7 @@ describe SendPurchaseReceiptEmailJob do
 
   describe '.enqueue' do
     it 'enqueues a job' do
-      purchase = create(:section_purchase)
+      purchase = create(:purchase)
 
       SendPurchaseReceiptEmailJob.enqueue(purchase.id).should
         enqueue_delayed_job(SendPurchaseReceiptEmailJob)
