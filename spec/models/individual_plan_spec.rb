@@ -14,6 +14,8 @@ describe IndividualPlan do
   it { should_not be_fulfilled_with_github }
   it { should be_subscription }
 
+  it_behaves_like 'a Plan with countable subscriptions'
+
   describe '.active' do
     it 'only includes active plans' do
       active = create(:plan, active: true)
@@ -200,6 +202,23 @@ describe IndividualPlan do
       plan = create(:plan)
       plan.announcement
       expect(Announcement).to have_received(:current)
+    end
+  end
+
+  describe '#projected_monthly_revenue' do
+    it 'returns 0 when there are no subscribers' do
+      plan = create_prime_basic_plan
+
+      expect(plan.projected_monthly_revenue).to eq 0
+    end
+
+    it 'returns the subscriber count times the individual price for a Plan' do
+      plan = create_prime_basic_plan
+      create(:subscription, plan: plan)
+      create(:subscription, plan: plan)
+
+      expected_revenue = plan.individual_price * 2
+      expect(plan.projected_monthly_revenue).to eq expected_revenue
     end
   end
 

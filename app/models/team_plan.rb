@@ -9,14 +9,18 @@ class TeamPlan < ActiveRecord::Base
   validates :sku, presence: true
   validates :name, presence: true
 
+  include PlanWithCountableSubscriptions
+
   def self.instance
     if last
       last
     else
-      plan = new(sku: 'primeteam', name: 'Prime for Teams')
-      plan.save!
-      plan
+      create!(sku: 'primeteam', name: 'Prime for Teams')
     end
+  end
+
+  def projected_monthly_revenue
+    teams.count * individual_price
   end
 
   def subscription?
