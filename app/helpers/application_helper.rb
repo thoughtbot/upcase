@@ -62,4 +62,8 @@ module ApplicationHelper
   rescue ActionView::Template::Error
     image_tag("learn/face-no-face.png")
   end
+
+  def featured_mentors
+    User.mentors.first(2)
+  end
 end
