@@ -134,7 +134,7 @@ describe WorkshopMailer do
 
       expect(email.from).to eq(%w(learn@thoughtbot.com))
       expect(email).to have_subject('[Learn] Workshop name: Title')
-      expect(email).to have_body_text(/Workshop name video lesson 2, Title, is now available/)
+      expect(email).to have_body_text(/Workshop name video lesson 2, Title/)
     end
   end
 
