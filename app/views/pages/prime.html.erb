@@ -26,14 +26,12 @@
       <p>thoughtbot mentors like Chad and Ben will hold calls with you once a month to discuss whatever you like: code review, landing your first Rails job, salary negotiation, etc.</p>
     </article>
     <figure class="supporting-visual mentors">
-      <div>
-        <%= mentor_image(@mentor_1) %>
-        <p><strong>This is <%= @mentor_1.first_name %></strong>. <%= @mentor_1.bio %></p>
-      </div>
-      <div>
-        <%= mentor_image(@mentor_2) %>
-        <p><strong>This is <%= @mentor_2.first_name %></strong>. <%= @mentor_2.bio %></p>
-      </div>
+      <% featured_mentors.each do |mentor| %>
+        <div>
+          <%= mentor_image(mentor) %>
+          <p><strong>This is <%= mentor.first_name %></strong>. <%= mentor.bio %></p>
+        </div>
+      <% end %>
     </figure>
   </section>
   <section class="pitch left enroll">

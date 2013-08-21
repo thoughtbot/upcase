@@ -2,8 +2,6 @@ class PagesController < HighVoltage::PagesController
   layout :layout_for_page
 
   def show
-    @mentor_1 = User.mentors.first
-    @mentor_2 = User.mentors.second
     render :template => current_page
   end
 
