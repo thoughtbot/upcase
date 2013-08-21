@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Videos' do
   context 'GET /' do
-    it 'indicates available videos for a workshop' do
+    it 'lists the videos for a workshop' do
       workshop = create(:workshop)
       section = create(:section, starts_on: Date.yesterday, ends_on: 1.month.from_now, workshop: workshop)
       video_one = create_available_video(workshop, 0, 'Video One')
@@ -14,15 +14,12 @@ describe 'Videos' do
       expect(page).to have_content(video_one.title)
       expect(page).to have_content(video_two.title)
       expect(page.body.index(video_one.title) < page.body.index(video_two.title)).to be
-      expect(page).to have_css('.available > a', text: video_one.title)
-      expect(page).to have_css('.unavailable > div', text: video_two.title)
-      expect(page).to have_css('.unavailable > div', text: "Starts on #{1.day.from_now.to_s(:simple)}")
 
       visit purchase_video_path(purchase, video_two)
-      expect(page).to_not have_css('iframe')
+      expect(page).to have_css('iframe')
     end
 
-    it 'indicates available videos for a product' do
+    it 'lists the videos for a product' do
       purchase = create(:video_purchase)
       video_one = create_available_video(purchase.purchaseable, 0, 'Video One')
       video_two = create_available_video(purchase.purchaseable, 0, 'Video Two')

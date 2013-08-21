@@ -1,12 +1,5 @@
-<%= content_tag_for :div,
-  video,
-  class: video_availability_class(video, purchase) do %>
-
-  <% if video.available?(purchase.starts_on) %>
-    <%= link_to purchase_video_path(purchase, video) do %>
-      <%= render 'videos/thumbnail', video: video, purchase: purchase %>
-    <% end %>
-  <% else %>
+<%= content_tag_for :div, video do %>
+  <%= link_to purchase_video_path(purchase, video) do %>
     <%= render 'videos/thumbnail', video: video, purchase: purchase %>
   <% end %>
 <% end %>
