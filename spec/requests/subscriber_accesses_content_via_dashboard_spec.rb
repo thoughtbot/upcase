@@ -67,7 +67,7 @@ feature 'Subscriber accesses content' do
     expect(current_path).to eq bytes_path
   end
 
-  scenario "can't register for overlapping workshops" do
+  scenario "registering for overlapping workshops" do
     online_section = create(:online_section)
     overlapping_section = create(
       :online_section,
@@ -76,14 +76,16 @@ feature 'Subscriber accesses content' do
     )
 
     sign_in_as_user_with_subscription
-    click_online_workshop_detail_link
+    click_link online_section.name
     click_link I18n.t('workshops.show.register_free')
     click_button 'Get Access'
 
     visit products_path
 
-    click_online_workshop_detail_link
-    expect(page).to_not have_content I18n.t('workshops.show.register')
+    click_link overlapping_section.name
+    click_link I18n.t('workshops.show.register_free')
+    expect(page).to have_content(I18n.t('workshops.overlapping'))
+    click_button 'Get Access'
   end
 
   scenario 'gets access to an in-person workshop' do

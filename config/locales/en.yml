@@ -56,6 +56,7 @@ en:
           individual_html: "%{price}"
 
   workshops:
+    overlapping: You're already taking another workshop
     show:
       register: Register for this Workshop
       register_free_inperson: Register for this Workshop, free
