@@ -2,9 +2,6 @@ module Subscriber
   class PurchasesController < ApplicationController
     def new
       @purchaseable = find_purchaseable
-      if current_user.has_conflict?(@purchaseable)
-        render 'overlapping' and return
-      end
     end
 
     def create

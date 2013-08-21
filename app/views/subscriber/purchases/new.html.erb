@@ -4,8 +4,8 @@
       <h2>You're about to get access to <%= @purchaseable.name %> for <em class="totalprice"> $0.00</em></h2>
     </hgroup>
 
+    <%= render 'overlapping', purchaseable: @purchaseable %>
     <%= render 'subscriber_delivery_info', purchaseable: @purchaseable %>
-
     <%= render 'subscriber_purchase_form' %>
   </div>
 </div>
