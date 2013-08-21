@@ -4,9 +4,6 @@
   <p class="videoinfo">
     <em>
       <%= distance_of_time_in_words video.wistia_running_time %>
-      <% unless video.available?(purchase.starts_on) %>
-        &mdash; Starts on <%= video.available_on(purchase.starts_on).to_s(:simple) %>
-      <% end %>
     </em>
   </p>
 </div>
