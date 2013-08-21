@@ -78,14 +78,6 @@ Then /^I should see a link to the online workshop$/ do
   find('.workshop-alert a')[:href].should == workshop_path(online_workshop)
 end
 
-Then /^I should see that the related workshop "([^"]+)" is in-person$/ do |workshop_name|
-  type_of_related_workshop_named(workshop_name).should == 'In Person'
-end
-
-Then /^I should see that the related workshop "([^"]+)" is online$/ do |workshop_name|
-  type_of_related_workshop_named(workshop_name).should == 'Online'
-end
-
 Then /^I should see a workshop alert for the in-person workshop$/ do
   find('.workshop-alert').text.should =~ /In-Person Workshop/
 end

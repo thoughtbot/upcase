@@ -135,6 +135,14 @@ body.topics-show {
     padding: .75rem 1rem .75rem 3rem;
     position: relative;
 
+    &.learn-resource:not(.complete) {
+      background: rgba(255, 255, 0, .2);
+
+      .trail-bullet {
+        background-color: #fff;
+      }
+    }
+
     &:last-child {
       border-bottom: 0;
     }
