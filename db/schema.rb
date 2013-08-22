@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130822152026) do
+ActiveRecord::Schema.define(:version => 20130826172010) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -332,11 +332,8 @@ ActiveRecord::Schema.define(:version => 20130822152026) do
     t.date     "deactivated_on"
     t.date     "scheduled_for_cancellation_on"
     t.boolean  "paid",                          :default => true, :null => false
-    t.integer  "mentor_id",                                       :null => false
     t.integer  "plan_id",                                         :null => false
   end
-
-  add_index "subscriptions", ["mentor_id"], :name => "index_subscriptions_on_mentor_id"
 
   create_table "teachers", :force => true do |t|
     t.string   "name"
@@ -372,16 +369,16 @@ ActiveRecord::Schema.define(:version => 20130822152026) do
 
   create_table "users", :force => true do |t|
     t.string   "email"
-    t.string   "encrypted_password", :limit => 128
-    t.string   "salt",               :limit => 128
-    t.string   "confirmation_token", :limit => 128
-    t.string   "remember_token",     :limit => 128
-    t.boolean  "email_confirmed",                   :default => true,  :null => false
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
-    t.string   "customer_id",                       :default => ""
-    t.string   "reference",                         :default => ""
-    t.boolean  "admin",                             :default => false, :null => false
+    t.string   "encrypted_password",  :limit => 128
+    t.string   "salt",                :limit => 128
+    t.string   "confirmation_token",  :limit => 128
+    t.string   "remember_token",      :limit => 128
+    t.boolean  "email_confirmed",                    :default => true,  :null => false
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
+    t.string   "customer_id",                        :default => ""
+    t.string   "reference",                          :default => ""
+    t.boolean  "admin",                              :default => false, :null => false
     t.string   "stripe_customer_id"
     t.string   "github_username"
     t.string   "auth_provider"
@@ -394,13 +391,15 @@ ActiveRecord::Schema.define(:version => 20130822152026) do
     t.string   "zip_code"
     t.string   "country"
     t.string   "name"
-    t.boolean  "mentor",                            :default => false
+    t.boolean  "available_to_mentor",                :default => false
     t.text     "bio"
+    t.integer  "mentor_id"
   end
 
   add_index "users", ["admin"], :name => "index_users_on_admin"
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["id", "confirmation_token"], :name => "index_users_on_id_and_confirmation_token"
+  add_index "users", ["mentor_id"], :name => "index_users_on_mentor_id"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
   create_table "videos", :force => true do |t|

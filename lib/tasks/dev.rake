@@ -95,7 +95,7 @@ namespace :dev do
   def create_mentors
     header "Mentors"
 
-    mentor = FactoryGirl.create(:user, email: 'mentor@example.com', mentor: true)
+    mentor = FactoryGirl.create(:user, email: 'mentor@example.com', available_to_mentor: true)
     puts_user mentor, 'mentor'
 
     puts "\n"

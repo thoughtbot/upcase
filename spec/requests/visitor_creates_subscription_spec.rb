@@ -11,8 +11,8 @@ feature 'Visitor is asked to create a user before subscription' do
   end
 
   scenario 'visitor subscribes and is assigned a mentor' do
-    create(:user, name: 'Chad Pytel', mentor: true)
-    create(:user, name: 'Ben Orenstein', mentor: true)
+    create(:user, name: 'Chad Pytel', available_to_mentor: true)
+    create(:user, name: 'Ben Orenstein', available_to_mentor: true)
 
     visit prime_path
     click_landing_page_call_to_action
