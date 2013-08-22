@@ -304,6 +304,7 @@ FactoryGirl.define do
     end
 
     trait :with_subscription do
+      with_mentor
       with_github
       stripe_customer_id 'cus12345'
 
@@ -311,12 +312,15 @@ FactoryGirl.define do
         create(:subscription, user: instance)
       end
     end
+
+    trait :with_mentor do
+      association :mentor, factory: :user
+    end
   end
 
   factory :subscription, aliases: [:active_subscription] do
-    association :mentor, factory: :user
     association :plan
-    association :user, :with_github, :with_stripe
+    association :user, :with_github, :with_stripe, :with_mentor
     factory :inactive_subscription do
       deactivated_on Time.zone.today
     end

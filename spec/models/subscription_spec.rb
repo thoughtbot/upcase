@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Subscription do
   it { should delegate(:stripe_customer_id).to(:user) }
-  it { should belong_to(:mentor) }
 
   it 'defaults paid to true' do
     Subscription.new.should be_paid

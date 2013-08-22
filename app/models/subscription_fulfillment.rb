@@ -5,9 +5,9 @@ class SubscriptionFulfillment
 
   def fulfill
     if @purchase.subscription?
+      @purchase.user.assign_mentor(mentor)
       @purchase.user.create_subscription(
         plan: @purchase.purchaseable,
-        mentor: mentor
       )
     end
   end
@@ -15,10 +15,6 @@ class SubscriptionFulfillment
   private
 
   def mentor
-    if @purchase.mentor_id.present?
-      User.find(@purchase.mentor_id)
-    else
-      User.mentors.sample
-    end
+    User.find_or_sample_mentor(@purchase.mentor_id)
   end
 end

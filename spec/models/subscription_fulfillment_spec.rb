@@ -3,6 +3,7 @@ require 'spec_helper'
 describe SubscriptionFulfillment do
   describe 'fulfill' do
     it 'adds a subscription to the user for a subscription purchase' do
+      create_mentors
       user = create(:user)
       purchase = build(:plan_purchase, user: user)
 
@@ -27,14 +28,15 @@ describe SubscriptionFulfillment do
 
     it 'assigns a mentor on creation' do
       create_mentors
+      mentor = User.mentors.first
       user = create(:user)
-      purchase = build(:plan_purchase, user: user)
+      purchase = build(:plan_purchase, user: user, mentor_id: mentor.id)
 
       expect(user.subscription).to be_nil
 
       SubscriptionFulfillment.new(purchase).fulfill
 
-      expect(user.subscription.mentor).not_to be_nil
+      expect(user.mentor).not_to be_nil
     end
   end
 end

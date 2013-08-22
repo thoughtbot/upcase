@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
   has_many :completions
   has_many :notes, order: 'created_at DESC'
   has_one :subscription
-
-  delegate :mentor, to: :subscription, allow_nil: true
+  belongs_to :mentor, class_name: 'User'
+  has_many :mentees, class_name: 'User', foreign_key: 'mentor_id'
 
   validates :name, presence: true
 
@@ -48,7 +48,11 @@ class User < ActiveRecord::Base
   end
 
   def self.mentors
-    where(mentor: true)
+    where(available_to_mentor: true)
+  end
+
+  def self.find_or_sample_mentor(user_id)
+    where(id: user_id).first || mentors.sample
   end
 
   def subscription_purchases
@@ -108,6 +112,10 @@ class User < ActiveRecord::Base
     if stripe_customer
       stripe_customer['active_card']
     end
+  end
+
+  def assign_mentor(user)
+    update_attribute(:mentor_id, user.id)
   end
 
   private
