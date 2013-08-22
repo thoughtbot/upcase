@@ -1,4 +1,4 @@
-<%= content_tag :li, :class => 'resource', 'data-id' => resource['id'] do %>
+<%= content_tag :li, :class => resource_classes(resource), 'data-id' => resource['id'] do %>
   <%= check_box_tag resource['id'] %>
   <div class="trail-bullet-hit-area">
     <div class="trail-bullet"></div>

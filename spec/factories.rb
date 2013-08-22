@@ -263,6 +263,10 @@ FactoryGirl.define do
     keywords 'clean, clear, precise'
     name
     summary 'short yet descriptive'
+
+    trait :featured do
+      featured true
+    end
   end
 
   factory :trail do
