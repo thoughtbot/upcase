@@ -1,6 +1,6 @@
 body.timelines {
   #header-wrapper {
-    @include linear-gradient($warmgray, transparent, $fallback: transparent);
+    background: none;
   }
 
   nav .timeline {
