@@ -20,6 +20,8 @@ module TopicsHelper
   private
 
   def learn_resource?(uri)
-    Addressable::URI.parse(uri).host == 'learn.thoughtbot.com'
+    if uri.present?
+      Addressable::URI.parse(uri).host == 'learn.thoughtbot.com'
+    end
   end
 end
