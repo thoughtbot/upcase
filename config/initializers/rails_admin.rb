@@ -39,8 +39,7 @@ RailsAdmin.config do |config|
   config.model User do
     list do
       field :id
-      field :first_name
-      field :last_name
+      field :name
       field :email
       field :github_username
       field :subscription
@@ -48,8 +47,7 @@ RailsAdmin.config do |config|
 
     edit do
       field :email
-      field :first_name
-      field :last_name
+      field :name
       field :admin
       field :bio
       field :github_username
