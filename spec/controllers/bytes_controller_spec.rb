@@ -18,7 +18,7 @@ describe BytesController do
 
     context 'for a non-admin user' do
       before do
-        user = create(:user, subscription: Subscription.new)
+        user = create(:user, :with_subscription)
         sign_in_as user
       end
 

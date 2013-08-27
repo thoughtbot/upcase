@@ -6,6 +6,8 @@ describe User do
     it { should have_many(:purchases) }
     it { should have_many(:completions) }
     it { should have_many(:notes).order('created_at DESC') }
+    it { should belong_to(:mentor).class_name('User') }
+    it { should have_many(:mentees).class_name('User') }
   end
 
   context "validations" do
@@ -269,27 +271,38 @@ describe User do
     end
   end
 
-  describe '#mentor' do
-    it "returns the subscription's mentor" do
-      user = create(:user, :with_subscription)
-
-      expect(user.mentor).to eq user.subscription.mentor
-    end
-
-    it 'is nil if the user does not have a subscription' do
-      user = create(:user)
-
-      expect(user.mentor).to be_nil
-    end
-  end
-
-  describe 'self.mentors' do
+  describe '.mentors' do
     it 'includes only mentors' do
       user = create(:user)
-      mentor = create(:user, mentor: true)
+      mentor = create(:user, available_to_mentor: true)
 
       expect(User.mentors).to include mentor
       expect(User.mentors).not_to include user
+    end
+  end
+
+  describe '#assign_mentor' do
+    it 'sets the given user as the mentor' do
+      mentee = create(:user)
+      mentor = create(:user, available_to_mentor: true)
+
+      mentee.assign_mentor(mentor)
+
+      expect(mentee.mentor).not_to be_nil
+    end
+  end
+
+  describe '.find_or_sample_mentor' do
+    it 'returns a mentor for the given id' do
+      mentor = create(:user)
+
+      expect(User.find_or_sample_mentor(mentor.id)).to eq mentor
+    end
+
+    it 'returns a random mentor if one cannot be found with the given id' do
+      mentor = create(:user, available_to_mentor: true)
+
+      expect(User.find_or_sample_mentor(nil)).to eq mentor
     end
   end
 end

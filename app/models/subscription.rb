@@ -4,14 +4,11 @@ class Subscription < ActiveRecord::Base
   DOWNGRADED_PLAN = 'prime-basic'
 
   belongs_to :user
-  belongs_to :mentor, class_name: User
   belongs_to :plan
 
   delegate :includes_mentor?, to: :plan
   delegate :includes_workshops?, to: :plan
   delegate :stripe_customer_id, to: :user
-
-  validates :mentor_id, presence: true
 
   after_create :add_user_to_mailing_list
 

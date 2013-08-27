@@ -114,7 +114,9 @@ Workshops::Application.routes.draw do
   get '/my_account' => 'users#edit', as: 'my_account'
   get '/sign_up' => 'users#new', as: 'sign_up'
   get '/sign_in' => 'sessions#new', as: 'sign_in'
-  resources :users, controller: 'users'
+  resources :users, controller: 'users' do
+    resource :timeline, only: :show
+  end
   resources :passwords, controller: 'passwords'
 
   mount Split::Dashboard, at: 'split'

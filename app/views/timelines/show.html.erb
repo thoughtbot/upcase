@@ -1,10 +1,10 @@
 <section class="timeline">
   <section class="profile">
-    <%= image_tag gravatar_url(current_user, size: '200'), class: 'user-image' %>
+    <%= image_tag gravatar_url(@timeline.user, size: '200'), class: 'user-image' %>
     <div class="user-info">
       <p data-role="user-bio">
-        <strong><%= current_user.name %>:</strong>
-        <%= current_user.bio || 'Tell us about yourself' %>
+        <strong><%= @timeline.user_name %>:</strong>
+        <%= @timeline.user_bio || 'Tell us about yourself' %>
         &mdash;
         <%= link_to 'edit bio', my_account_path, 'data-role' => 'edit-bio' %>
       </p>

@@ -13,6 +13,6 @@ module Subscriptions
   end
 
   def create_mentors
-    create(:user, mentor: true)
+    create(:user, available_to_mentor: true)
   end
 end

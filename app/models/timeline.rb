@@ -1,7 +1,11 @@
 class Timeline
+  attr_reader :user
+
   def initialize(user)
     @user = user
   end
+
+  delegate :name, :bio, to: :user, prefix: true
 
   def has_items?
     timeline_items.values.present?
@@ -20,8 +24,6 @@ class Timeline
   end
 
   private
-
-  attr_reader :user
 
   def null_week
     { Time.now.beginning_of_week => {} }
