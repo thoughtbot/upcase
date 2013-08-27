@@ -11,16 +11,9 @@
   form_partial: 'purchases/form' %>
 
 <aside class="terms">
-  <% if !@purchase.subscription? && !current_user_has_active_subscription? %>
+  <% unless @purchase.subscription? %>
     <section id="license">
-      <div class="prime-purchase">
-        <h2>Access this and all our other products</h2>
-        <div class="license">
-          <%= link_to prime_path, class: 'license-button button prime-button' do %>
-            Subscribe to <%= t('shared.subscription.name') %>
-          <% end %>
-        </div>
-      </div>
+      <%= render 'offerings/prime_purchase', offering: @purchase.purchaseable %>
     </section>
   <% end %>
   <section id="terms">

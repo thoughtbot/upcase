@@ -16,11 +16,6 @@
             <%= in_person_section.city %>
           <% end %>
         </span>
-        <span>
-          <% unless current_user_has_active_subscription? %>
-            <%= number_to_currency in_person_section.individual_price, precision: 0 %>
-          <% end %>
-        </span>
       </h2>
       <p class="when">
         <%= formatted_date_range(in_person_section.starts_on, in_person_section.ends_on) %><br>
@@ -34,10 +29,6 @@
       <% if current_user_has_active_subscription? && subscription_includes_workshops? %>
         <%= link_to registration_url(in_person_section), class: "free-with-prime button" do %>
           <%= t('workshops.show.register_free_inperson') %>
-        <% end %>
-      <% else %>
-        <%= link_to registration_url(in_person_section), class: "button" do %>
-          <%= t('workshops.show.register') %>
         <% end %>
       <% end %>
     <% end %>

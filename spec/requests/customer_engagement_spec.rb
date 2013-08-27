@@ -17,7 +17,7 @@ feature 'Subscriber engagement' do
   scenario 'An admin views a user who has taken 3 workshops' do
     user = create(:subscription).user
     3.times do
-      create(:section_purchase, user: user)
+      create_subscriber_purchase(:section, user)
     end
 
     admin = create(:admin)

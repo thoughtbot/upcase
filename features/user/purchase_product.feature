@@ -12,11 +12,11 @@ Feature: Purchase a Product
     And I sign in with "user@example.com"
     When I go to the products page
     And I follow "Test Fetch"
-    And I follow "Purchase for Yourself"
+    And I follow "For yourself"
     Then I should see a purchase price of "$15"
     When I go to the products page
     And I follow "Test Fetch"
-    And I follow "Your Company"
+    And I follow "For your company"
     Then I should see a purchase price of "$50"
     When I pay using Paypal
     And I submit the Paypal form
@@ -37,7 +37,7 @@ Feature: Purchase a Product
     And I have an existing credit card
     When I go to the products page
     And I follow "Test Fetch"
-    And I follow "Purchase for Yourself"
+    And I follow "For yourself"
     Then I should see a purchase price of "$15"
     When I pay with existing credit card
     Then I should see "Thank you"

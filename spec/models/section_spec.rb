@@ -90,12 +90,17 @@ describe Section do
   describe '#send_reminders' do
     it 'sends reminder emails to all paid registrants' do
       section = create(:section)
-      create :purchase, purchaseable: section, paid: true
-      create :purchase, purchaseable: section, paid: true
-      create :purchase, purchaseable: section, paid: false, payment_method: 'paypal'
-      create :purchase, paid: true
+      create_subscriber_purchase_from_purchaseable(section)
+      create_subscriber_purchase_from_purchaseable(section)
+      unpaid = create_subscriber_purchase_from_purchaseable(section)
+      unpaid.paid = false
+      unpaid.payment_method = 'paypal'
+      unpaid.save!
+      create_subscriber_purchase :section
       ActionMailer::Base.deliveries.clear
+
       section.send_reminders
+
       ActionMailer::Base.deliveries.should have(2).email
     end
   end
@@ -107,13 +112,13 @@ describe Section do
         create(:section, starts_on: 1.week.from_now + 1.day),
         create(:section, starts_on: 1.week.from_now - 1.day)
       ]
-
       sections.each do |section|
-        create :paid_purchase, purchaseable: section
+        create_subscriber_purchase_from_purchaseable(section)
       end
-
       ActionMailer::Base.deliveries.clear
+
       Section.send_reminders
+
       ActionMailer::Base.deliveries.should have(1).email
     end
   end
@@ -176,7 +181,7 @@ describe Section do
   describe 'purchase_for' do
     it 'returns the purchase when a user has purchased a section' do
       user = create(:user)
-      purchase = create(:online_section_purchase, user: user)
+      purchase = create_subscriber_purchase(:online_section, user)
       section = purchase.purchaseable
 
       expect(section.purchase_for(user)).to eq purchase
@@ -184,7 +189,7 @@ describe Section do
 
     it 'returns nil when a user has not purchased a product' do
       user = create(:user)
-      purchase = create(:online_section_purchase)
+      purchase = create_subscriber_purchase(:online_section)
       section = purchase.purchaseable
 
       expect(section.purchase_for(user)).to be_nil
@@ -229,21 +234,17 @@ describe Section do
     it 'sends video notifications for each current section' do
       notifier = stub(send_notifications_for: nil)
       VideoNotifier.stubs(new: notifier)
-
       future = create(:future_section)
       workshop = future.workshop
       current = create(:section, workshop: workshop, starts_on: Time.zone.today, ends_on: 1.day.from_now)
-
-      future_purchase = create(:paid_purchase, purchaseable: future)
-      current_purchase = create(:paid_purchase, purchaseable: current)
-
+      future_purchase = create_subscriber_purchase_from_purchaseable(future)
+      current_purchase = create_subscriber_purchase_from_purchaseable(current)
       video = create(:video, watchable: workshop)
 
       Section.send_video_notifications
 
       expect(VideoNotifier).to have_received(:new).with(current, [current_purchase])
       expect(notifier).to have_received(:send_notifications_for).with([video])
-
       expect(VideoNotifier).to have_received(:new).with(future, [future_purchase]).never
     end
 
@@ -251,12 +252,16 @@ describe Section do
       notifier = stub(send_notifications_for: nil)
       VideoNotifier.stubs(new: notifier)
       current = create(:online_section, starts_on: 30.days.ago, ends_on: nil)
-      current_purchase = create(:paid_purchase, purchaseable: current, created_at: 3.days.ago)
+      Timecop.travel(3.days.ago) do
+        @current_purchase = create_subscriber_purchase_from_purchaseable(
+          current
+        )
+      end
       video = create(:video, watchable: current.workshop, active_on_day: 3)
 
       Section.send_video_notifications
 
-      expect(VideoNotifier).to have_received(:new).with(current, [current_purchase])
+      expect(VideoNotifier).to have_received(:new).with(current, [@current_purchase])
       expect(notifier).to have_received(:send_notifications_for).with([video])
     end
   end
@@ -279,11 +284,10 @@ describe Section do
       )
       email = stub(deliver: nil)
       WorkshopMailer.stubs(office_hours_reminder: email)
-      future_purchase = create(:paid_purchase, purchaseable: future)
-      current_purchase = create(:paid_purchase, purchaseable: current)
-      current_no_hours_purchase = create(
-        :paid_purchase,
-        purchaseable: current_no_hours
+      future_purchase = create_subscriber_purchase_from_purchaseable(future)
+      current_purchase = create_subscriber_purchase_from_purchaseable(current)
+      current_no_hours_purchase = create_subscriber_purchase_from_purchaseable(
+        current_no_hours
       )
 
       Section.send_office_hours_reminders
@@ -308,26 +312,28 @@ describe Section do
         starts_on: Time.zone.today,
         ends_on: nil
       )
-      future_purchase = create(:paid_purchase, purchaseable: future)
-      current_purchase = create(:paid_purchase, purchaseable: ongoing)
-      next_purchase = create(:paid_purchase, purchaseable: ongoing, created_at: 1.day.from_now)
+      future_purchase = create_subscriber_purchase_from_purchaseable(future)
+      current_purchase = create_subscriber_purchase_from_purchaseable(ongoing)
+      Timecop.travel(1.day.from_now) do
+        @next_purchase = create_subscriber_purchase_from_purchaseable(ongoing)
+      end
 
       should_not_send_a_survey_to([
         current_purchase,
         future_purchase,
-        next_purchase
+        @next_purchase
       ])
 
       Timecop.freeze(2.days.from_now) do
         should_send_a_survey_to([current_purchase])
         should_not_send_a_survey_to([
           future_purchase,
-          next_purchase
+          @next_purchase
         ])
       end
 
       Timecop.freeze(3.days.from_now) do
-        should_send_a_survey_to([next_purchase])
+        should_send_a_survey_to([@next_purchase])
         should_not_send_a_survey_to([
           future_purchase,
           current_purchase

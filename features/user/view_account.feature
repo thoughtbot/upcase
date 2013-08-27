@@ -19,7 +19,7 @@ Feature: Viewing my own account information
     And I have signed up with "user@example.com"
     When I sign in with "user@example.com"
     And I view the product "Ruby Science: video edition"
-    And I follow "Purchase for Yourself"
+    And I follow "For yourself"
     And I pay using Paypal
     And I go to my account page
     Then I should not see "Your purchases"
@@ -31,10 +31,10 @@ Feature: Viewing my own account information
     And I have signed up with "user@example.com"
     When I sign in with "user@example.com"
     And I view the product "Ruby Science: video edition"
-    And I follow "Purchase for Yourself"
+    And I follow "For yourself"
     And I pay using Paypal
     And I view the product "Vim for Emacs users"
-    And I follow "Purchase for Yourself"
+    And I follow "For yourself"
     And I pay using Paypal
     And I submit the Paypal form
     And I go to my account page

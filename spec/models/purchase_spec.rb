@@ -58,21 +58,21 @@ describe Purchase do
   context '#status' do
     it 'returns in-progress when it can purchaseable online and ends in future' do
       section = create(:online_section, ends_on: 2.days.from_now)
-      purchase = create(:purchase, purchaseable: section)
+      purchase = create_subscriber_purchase_from_purchaseable(section)
 
       expect(purchase.status).to eq 'in-progress'
     end
 
     it 'returns registered when it ends in future' do
       section = create(:section, ends_on: 5.days.since)
-      purchase = create(:purchase, purchaseable: section)
+      purchase = create_subscriber_purchase_from_purchaseable(section)
 
       expect(purchase.status).to eq 'registered'
     end
 
     it 'returns complete when already end' do
        section = create(:section, ends_on: 5.days.ago)
-      purchase = create(:purchase, purchaseable: section)
+      purchase = create_subscriber_purchase_from_purchaseable(section)
 
       expect(purchase.status).to eq 'complete'
     end
@@ -643,7 +643,7 @@ describe Purchase, '.of_sections' do
   end
 
   it 'returns Purchases for Sections' do
-    purchase = create(:section_purchase)
+    purchase = create_subscriber_purchase(:section)
     expect(Purchase.of_sections).to eq [purchase]
   end
 end
@@ -652,8 +652,10 @@ describe Purchase, 'date_of_last_workshop_purchase' do
   it 'returns the date of the most-recent workshop purchase' do
     expect(Purchase.date_of_last_workshop_purchase).to be_nil
 
-    purchase = create(:section_purchase, created_at: Date.today)
-    old_purchase = create(:section_purchase, created_at: Date.yesterday)
+    purchase = create_subscriber_purchase(:section)
+    Timecop.travel(Date.yesterday) do
+      create_subscriber_purchase(:section)
+    end
     expect(Purchase.date_of_last_workshop_purchase).to eq Date.today
   end
 end

@@ -7,7 +7,7 @@ feature 'Purchasing a product' do
   scenario 'Visitor signs up while purchasing a product' do
     product = create(:video_product)
     visit product_path(product)
-    click_purchase_link
+    click_purchase_link_for(product)
     click_link 'Already have an account? Sign in'
     click_link 'Sign up'
 
@@ -22,10 +22,27 @@ feature 'Purchasing a product' do
     expect(page).to have_content 'Sign out'
   end
 
+  scenario 'Visitor signs in while purchasing a product' do
+    user = create(:user, password: 'password')
+    product = create(:video_product)
+    visit product_path(product)
+    click_purchase_link_for(product)
+    click_link 'Already have an account? Sign in'
+
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: 'password'
+    click_button 'Sign in'
+
+    expect(page).to have_css('form#new_purchase')
+    expect(field_labeled('Email').value).to eq user.email
+    expect(field_labeled('Name').value).to eq user.name
+    expect(page).to have_content 'Sign out'
+  end
+
   scenario 'Visitor purchases product with paypal', js: true, driver: :poltergeist do
     product = create(:video_product)
     visit product_path(product)
-    click_purchase_link
+    click_purchase_link_for(product)
     pay_using_paypal
 
     expect_to_have_purchased(product)
@@ -34,7 +51,7 @@ feature 'Purchasing a product' do
   scenario 'Visitor purchases a product with stripe', js: true, driver: :poltergeist do
     product = create(:video_product)
     visit product_path(product)
-    click_purchase_link
+    click_purchase_link_for(product)
     pay_using_stripe
 
     expect_to_have_purchased(product)
@@ -44,7 +61,7 @@ feature 'Purchasing a product' do
     product = create(:video_product)
     stub_stripe_to_fail
     visit product_path(product)
-    click_purchase_link
+    click_purchase_link_for(product)
     pay_using_stripe
 
     expect(page).to have_content 'There was a problem processing your credit card'
@@ -54,7 +71,7 @@ feature 'Purchasing a product' do
     product = create(:github_book_product)
     user = create(:user)
     visit product_path(product, as: user)
-    click_purchase_link
+    click_purchase_link_for(product)
     fill_in "github_username_1", with: "cpytel"
     pay_using_stripe
 
@@ -64,11 +81,21 @@ feature 'Purchasing a product' do
     expect(find_field("Github username").value).to eq 'cpytel'
   end
 
-  scenario 'User attempts to purchase a github book withou specifying a reader', js: true, driver: :poltergeist do
+  scenario 'User with a github username has it already supplied on purchasing' do
+    product = create(:github_book_product)
+    user = create(:user, github_username: 'thoughtbot')
+
+    visit product_path(product, as: user)
+    click_purchase_link_for(product)
+
+    expect(find_field("Github username").value).to eq 'thoughtbot'
+  end
+
+  scenario 'User attempts to purchase a github book without specifying a reader', js: true, driver: :poltergeist do
     product = create(:github_book_product)
     user = create(:user)
     visit product_path(product, as: user)
-    click_purchase_link
+    click_purchase_link_for(product)
     click_button 'Submit Payment'
     expect(page).to have_css("li.error input#github_username_1")
   end

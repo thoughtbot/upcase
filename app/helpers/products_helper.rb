@@ -24,7 +24,7 @@ module ProductsHelper
       end
     else
       if product.subscription?
-        I18n.t('products.show.purchase_subscription')
+        I18n.t('products.show.subscribe_cta')
       else
         I18n.t('products.show.purchase_for_yourself')
       end

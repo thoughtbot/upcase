@@ -164,17 +164,17 @@ body.purchases-new aside {
     }
   }
 
+  #license > div:last-child {
+    margin-bottom: 2rem;
+  }
+
   div {
-    margin-bottom: 1.75rem;
+    margin-bottom: 1rem;
 
     h2 a {
       color: $darkwarmgray;
       font-family: $sans-serif;
       font-weight: 800;
-    }
-
-    h2 span {
-      font-weight: 100;
     }
 
     .active-subscription, .active-subscription span {
@@ -185,10 +185,14 @@ body.purchases-new aside {
     .when {
       font-family: $sans-serif;
       font-weight: 600;
-      margin: 0;
+      margin: 0 0 .75rem;
     }
 
     .license {
+      margin-top: 0;
+    }
+
+    .button {
       margin-top: 0;
     }
 
@@ -230,34 +234,35 @@ body.purchases-new aside {
     }
   }
 
+  .or {
+    font: 700 .8em $sans-serif;
+    margin: 2rem 0;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+
+    &:after, &:before {
+      border-top: 1px solid $darkwarmgray;
+      content: '';
+      display: block;
+      @include position(absolute, .6em 0 0 0px);
+      width: 15%;
+    }
+
+    &:before {
+      left: auto;
+      right: 0;
+    }
+  }
+
   .prime-purchase {
     margin: 1.5rem 0 1.5em 0;
 
     h2 {
       color: $learnred;
-      font: 800 26px/28px $sans-serif;
-    }
-
-    .or {
-      font: 700 .8em $sans-serif;
-      margin: 2.5em 0 2em;
-      padding: 0;
-      position: relative;
-      text-align: center;
-      text-transform: uppercase;
-
-      &:after, &:before {
-        border-top: 1px solid $darkwarmgray;
-        content: '';
-        display: block;
-        @include position(absolute, .6em 0 0 0px);
-        width: 15%;
-      }
-
-      &:before {
-        left: auto;
-        right: 0;
-      }
+      font: 800 1.4rem/1.2 $sans-serif;
+      margin: 0 0 .75rem 0;
     }
   }
 }

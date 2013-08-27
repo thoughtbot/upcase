@@ -25,7 +25,7 @@ describe SubscriberEngagement do
 
     it 'is 60 if a user has enrolled in a workshop in the last 30 days (40 for workshop, plus 20 for the claim)' do
       engagement = build_engagement do |user|
-        create(:section_purchase, user: user)
+        create_subscriber_purchase(:section, user)
       end
 
       expect(engagement.engagement_score).to eq 60
@@ -33,8 +33,10 @@ describe SubscriberEngagement do
 
     it 'is 20 if a user has taken more than 2 workshops' do
       engagement = build_engagement do |user|
-        3.times do
-          create(:section_purchase, user: user, created_at: 60.days.ago)
+        Timecop.travel(60.days.ago) do
+          3.times do
+            create_subscriber_purchase(:section, user)
+          end
         end
       end
 
@@ -53,7 +55,7 @@ describe SubscriberEngagement do
 
     it 'is one with a section claim' do
       engagement = build_engagement do |user|
-        create(:section_purchase, user: user)
+        create_subscriber_purchase(:section, user)
       end
 
       expect(engagement.count_of_workshops_taken).to eq 1
@@ -63,8 +65,10 @@ describe SubscriberEngagement do
   describe '#date_of_last_workshop_claim' do
     it "returns the date that a user most-recently claimed a workshop" do
       engagement = build_engagement do |user|
-        create(:section_purchase, user: user, created_at: Date.today)
-        create(:section_purchase, user: user, created_at: Date.yesterday)
+        create_subscriber_purchase(:section, user)
+        Timecop.travel(Date.yesterday) do
+          create_subscriber_purchase(:section, user)
+        end
       end
 
       expect(engagement.date_of_last_workshop_claim).to eq Date.today

@@ -71,8 +71,6 @@ FactoryGirl.define do
     description 'Solve 8-Queens over and over again'
     maximum_students 12
     name { generate(:name) }
-    individual_price '500'
-    company_price '10000'
     short_description 'Solve 8-Queens'
     sku 'EIGHTQUEENS'
 

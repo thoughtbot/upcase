@@ -43,7 +43,7 @@ describe PurchaseMailer do
 
     context 'for a workshop purchase' do
       it 'does not contain text about downloading' do
-        purchase = create(:section_purchase, email: 'billing@example.com')
+        purchase = create_subscriber_purchase(:section)
         email = email_for(purchase)
 
         expect(email).not_to have_body_text(/download/)
@@ -51,7 +51,7 @@ describe PurchaseMailer do
 
       context 'with an announcement' do
         it 'contains announcement.message in the body' do
-          purchase = create(:section_purchase)
+          purchase = create_subscriber_purchase(:section)
           workshop = purchase.purchaseable.workshop
           announcement = create(:announcement, announceable: workshop)
           email = email_for(purchase)
@@ -61,14 +61,18 @@ describe PurchaseMailer do
       end
 
       it 'does not contain a section about comments or dietary restrictions when the workshop is online' do
-        purchase = create(:online_section_purchase, comments: 'comments and requests')
+        purchase = create_subscriber_purchase(:online_section)
+        purchase.comments = 'comments and requests'
+        purchase.save!
         email = email_for(purchase)
 
         expect(email).not_to have_body_text(/following comments|dietary restrictions/)
       end
 
       it 'does contain a section about comments or dietary restrictions when the workshop is in-person' do
-        purchase = create(:in_person_section_purchase, comments: 'comments and requests')
+        purchase = create_subscriber_purchase(:in_person_section)
+        purchase.comments = 'comments and requests'
+        purchase.save!
         email = email_for(purchase)
 
         expect(email).to have_body_text(/following comments|dietary restrictions/)
