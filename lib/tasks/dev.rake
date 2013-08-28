@@ -12,6 +12,7 @@ namespace :dev do
     create_sections_with_workshops
     create_mentors
     create_users
+    create_team_plan
   end
 
   def create_bytes
@@ -99,6 +100,10 @@ namespace :dev do
     puts_user mentor, 'mentor'
 
     puts "\n"
+  end
+
+  def create_team_plan
+    FactoryGirl.create(:team_plan)
   end
 
   def header(msg)

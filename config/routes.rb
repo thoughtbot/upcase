@@ -63,7 +63,12 @@ Workshops::Application.routes.draw do
 
   resources :subscriptions, only: [:new, :update]
 
-  resources :plans, only: [] do
+  resources :individual_plans, only: [] do
+    resources :purchases, only: [:new, :create]
+    resources :stripe_redemptions, only: [:new]
+  end
+
+  resources :team_plans, only: [] do
     resources :purchases, only: [:new, :create]
     resources :stripe_redemptions, only: [:new]
   end
@@ -100,7 +105,6 @@ Workshops::Application.routes.draw do
 
   get "/pages/*id" => 'pages#show', :as => :page, :format => false
   get '/prime' => 'pages#show', as: :prime, id: 'prime'
-  get '/sale' => 'pages#show', as: :learnsale, id: 'learnsale'
   get '/watch' => 'pages#show', as: :watch, id: 'watch'
   get '/privacy' => 'pages#show', as: :privacy, id: 'privacy'
   get '/terms' => 'pages#show', as: :terms, id: 'terms'

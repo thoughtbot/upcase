@@ -1,13 +1,12 @@
-class Plan < ActiveRecord::Base
+class IndividualPlan < ActiveRecord::Base
   PRIME_BASIC_SKU = 'prime-basic'
   PRIME_WORKSHOPS_SKU = 'prime'
   PRIME_WITH_MENTORING_SKU = 'prime-mentor'
 
   has_many :announcements, as: :announceable, dependent: :destroy
   has_many :purchases, as: :purchaseable
-  has_many :subscriptions
+  has_many :subscriptions, as: :plan
 
-  validates :company_price, presence: true
   validates :description, presence: true
   validates :individual_price, presence: true
   validates :name, presence: true

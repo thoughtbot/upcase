@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130829154129) do
+ActiveRecord::Schema.define(:version => 20130904175521) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -138,6 +138,21 @@ ActiveRecord::Schema.define(:version => 20130829154129) do
 
   add_index "follow_ups", ["workshop_id"], :name => "index_follow_ups_on_workshop_id"
 
+  create_table "individual_plans", :force => true do |t|
+    t.string   "name",                                 :null => false
+    t.string   "sku",                                  :null => false
+    t.string   "short_description",                    :null => false
+    t.text     "description",                          :null => false
+    t.boolean  "active",             :default => true, :null => false
+    t.integer  "individual_price",                     :null => false
+    t.text     "terms"
+    t.boolean  "includes_mentor",    :default => true
+    t.boolean  "includes_workshops", :default => true
+    t.boolean  "featured",           :default => true, :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+  end
+
   create_table "notes", :force => true do |t|
     t.integer  "user_id"
     t.text     "body"
@@ -184,22 +199,6 @@ ActiveRecord::Schema.define(:version => 20130829154129) do
   end
 
   add_index "oauth_applications", ["uid"], :name => "index_oauth_applications_on_uid", :unique => true
-
-  create_table "plans", :force => true do |t|
-    t.string   "name",                                 :null => false
-    t.string   "sku",                                  :null => false
-    t.string   "short_description",                    :null => false
-    t.text     "description",                          :null => false
-    t.boolean  "active",             :default => true, :null => false
-    t.integer  "individual_price",                     :null => false
-    t.integer  "company_price",                        :null => false
-    t.text     "terms"
-    t.boolean  "includes_mentor",    :default => true
-    t.boolean  "includes_workshops", :default => true
-    t.boolean  "featured",           :default => true, :null => false
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-  end
 
   create_table "products", :force => true do |t|
     t.string   "name"
@@ -334,6 +333,8 @@ ActiveRecord::Schema.define(:version => 20130829154129) do
     t.date     "scheduled_for_cancellation_on"
     t.boolean  "paid",                          :default => true, :null => false
     t.integer  "plan_id",                                         :null => false
+    t.integer  "team_id"
+    t.string   "plan_type",                                       :null => false
   end
 
   create_table "teachers", :force => true do |t|
@@ -343,6 +344,20 @@ ActiveRecord::Schema.define(:version => 20130829154129) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.string   "email",         :default => ""
+  end
+
+  create_table "team_plans", :force => true do |t|
+    t.string   "sku",        :null => false
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "teams", :force => true do |t|
+    t.string   "name",         :null => false
+    t.integer  "team_plan_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "topics", :force => true do |t|
