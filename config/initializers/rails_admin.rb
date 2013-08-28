@@ -1,5 +1,6 @@
 require 'rails_admin/config/actions/purchase_accounting'
 require 'rails_admin/config/actions/section_students'
+require 'rails_admin/config/actions/timeline'
 
 module RailsAdmin
   module Config
@@ -34,6 +35,7 @@ RailsAdmin.config do |config|
     purchase_refund
     purchase_accounting
     section_students
+    timeline
   end
 
   config.model User do
