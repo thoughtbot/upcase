@@ -16,6 +16,10 @@ en:
         menu: Bytes
         title: Bytes
         breadcrumb: Bytes
+      timeline:
+        menu: Timeline
+        title: Timeline
+        breadcrumb: Timeline
     misc:
       filter_date_format: '%D'
 
