@@ -143,9 +143,8 @@ FactoryGirl.define do
     end
   end
 
-  factory :plan do
+  factory :individual_plan, aliases: [:plan] do
     name 'Prime'
-    company_price 0
     individual_price 99
     sku 'prime'
     short_description 'A great Subscription'
@@ -156,6 +155,11 @@ FactoryGirl.define do
       includes_mentor false
       includes_workshops false
     end
+  end
+
+  factory :team_plan do
+    sku 'team_plan'
+    name 'Prime for Teams'
   end
 
   factory :purchase, aliases: [:individual_purchase] do

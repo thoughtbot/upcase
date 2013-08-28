@@ -4,11 +4,15 @@ class Subscription < ActiveRecord::Base
   DOWNGRADED_PLAN = 'prime-basic'
 
   belongs_to :user
-  belongs_to :plan
+  belongs_to :plan, polymorphic: true
+  belongs_to :team
 
   delegate :includes_mentor?, to: :plan
   delegate :includes_workshops?, to: :plan
   delegate :stripe_customer_id, to: :user
+
+  validates :plan_id, presence: true
+  validates :plan_type, presence: true
 
   after_create :add_user_to_mailing_list
 
@@ -58,7 +62,7 @@ class Subscription < ActiveRecord::Base
   private
 
   def downgraded_plan
-    Plan.where(sku: Subscription::DOWNGRADED_PLAN).first
+    IndividualPlan.where(sku: Subscription::DOWNGRADED_PLAN).first
   end
 
   def stripe_customer

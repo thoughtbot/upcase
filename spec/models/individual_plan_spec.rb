@@ -1,11 +1,10 @@
 require 'spec_helper'
 
-describe Plan do
+describe IndividualPlan do
   it { should have_many(:announcements) }
   it { should have_many(:purchases) }
   it { should have_many(:subscriptions) }
 
-  it { should validate_presence_of(:company_price) }
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:individual_price) }
   it { should validate_presence_of(:name) }
@@ -19,7 +18,7 @@ describe Plan do
     it 'only includes active plans' do
       active = create(:plan, active: true)
       inactive = create(:plan, active: false)
-      expect(Plan.active).to eq [active]
+      expect(IndividualPlan.active).to eq [active]
     end
   end
 
@@ -27,7 +26,7 @@ describe Plan do
     it 'only featured plans' do
       featured = create(:plan, featured: true)
       notfeatured = create(:plan, featured: false)
-      expect(Plan.featured).to eq [featured]
+      expect(IndividualPlan.featured).to eq [featured]
     end
   end
 
@@ -35,7 +34,7 @@ describe Plan do
     it 'sorts by individual price' do
       second = create(:plan, individual_price: 29)
       first = create(:plan, individual_price: 99)
-      expect(Plan.ordered).to eq [first, second]
+      expect(IndividualPlan.ordered).to eq [first, second]
     end
   end
 
@@ -44,38 +43,38 @@ describe Plan do
       ordered = stub(first: stub())
       featured = stub(ordered: ordered)
       active = stub(featured: featured)
-      Plan.stubs(active: active)
+      IndividualPlan.stubs(active: active)
 
-      Plan.default
+      IndividualPlan.default
 
       expect(ordered).to have_received(:first)
       expect(featured).to have_received(:ordered)
       expect(active).to have_received(:featured)
-      expect(Plan).to have_received(:active)
+      expect(IndividualPlan).to have_received(:active)
     end
   end
 
   describe '.prime_basic' do
-    it 'returns the instance of Plan corresponding to Prime Basic' do
+    it 'returns the instance of IndividualPlan corresponding to Prime Basic' do
       create_prime_basic_plan
 
-      expect(Plan.prime_basic).to eq Plan.find_by_sku(Plan::PRIME_BASIC_SKU)
+      expect(IndividualPlan.prime_basic).to eq IndividualPlan.find_by_sku(IndividualPlan::PRIME_BASIC_SKU)
     end
   end
 
   describe '.prime_workshops' do
-    it 'returns the Plan instance corresponding to Prime Workshops' do
+    it 'returns the IndividualPlan instance corresponding to Prime Workshops' do
       create_prime_workshops_plan
 
-      expect(Plan.prime_workshops).to eq Plan.find_by_sku(Plan::PRIME_WORKSHOPS_SKU)
+      expect(IndividualPlan.prime_workshops).to eq IndividualPlan.find_by_sku(IndividualPlan::PRIME_WORKSHOPS_SKU)
     end
   end
 
   describe '.prime_with_mentoring' do
-    it 'returns the Plan instance corresponding to Prime with Mentoring' do
+    it 'returns the IndividualPlan instance corresponding to Prime with Mentoring' do
       create_prime_with_mentoring_plan
 
-      expect(Plan.prime_with_mentoring).to eq Plan.find_by_sku(Plan::PRIME_WITH_MENTORING_SKU)
+      expect(IndividualPlan.prime_with_mentoring).to eq IndividualPlan.find_by_sku(IndividualPlan::PRIME_WITH_MENTORING_SKU)
     end
   end
 
@@ -178,7 +177,7 @@ describe Plan do
 
   describe '#alternates' do
     it 'is empty' do
-      plan = Plan.new
+      plan = IndividualPlan.new
 
       result = plan.alternates
 
@@ -196,15 +195,15 @@ describe Plan do
   end
 
   def create_prime_basic_plan
-    create(:plan, sku: Plan::PRIME_BASIC_SKU)
+    create(:plan, sku: IndividualPlan::PRIME_BASIC_SKU)
   end
 
   def create_prime_workshops_plan
-    create(:plan, sku: Plan::PRIME_WORKSHOPS_SKU)
+    create(:plan, sku: IndividualPlan::PRIME_WORKSHOPS_SKU)
   end
 
   def create_prime_with_mentoring_plan
-    create(:plan, sku: Plan::PRIME_WITH_MENTORING_SKU)
+    create(:plan, sku: IndividualPlan::PRIME_WITH_MENTORING_SKU)
   end
 
   def create_inactive_subscription_for(plan)

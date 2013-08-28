@@ -17,14 +17,27 @@ describe PurchasesController do
     end
   end
 
-  describe '#new when purchasing a plan as a user with an active subscription' do
-    it 'renders a subscriber-specific layout' do
-      user = create(:user, :with_subscription)
-      stub_current_user_with(user)
+  describe '#new when purchasing a plan as a user with and active subscription' do
+    context 'when purchasing an individual plan' do
+      it 'renders a subscriber-specific layout' do
+        user = create(:user, :with_subscription)
+        stub_current_user_with(user)
 
-      get :new, plan_id: user.subscription.plan
+        get :new, individual_plan_id: user.subscription.plan
 
-      expect(response).to redirect_to products_path
+        expect(response).to redirect_to products_path
+      end
+    end
+
+    context 'when purchase a team plan' do
+      it 'renders a subscriber-specific layout' do
+        user = create(:user, :with_subscription)
+        stub_current_user_with(user)
+
+        get :new, team_plan_id: user.subscription.plan
+
+        expect(response).to redirect_to products_path
+      end
     end
   end
 
@@ -72,7 +85,7 @@ describe PurchasesController do
       notifier = stub('notifier', :notify_of_purchase)
       KissmetricsEventNotifier.stubs(:new).returns(notifier)
 
-      post :create, purchase: customer_params, plan_id: plan
+      post :create, purchase: customer_params, individual_plan_id: plan
 
       notifier.should have_received(:notify_of_purchase).with(assigns(:purchase))
     end

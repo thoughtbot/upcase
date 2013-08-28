@@ -1,6 +1,6 @@
 class SubscriptionsController < ApplicationController
   def new
-    @plans = Plan.featured.active.ordered
+    @plans = IndividualPlan.featured.active.ordered
     assign_mentor
   end
 
