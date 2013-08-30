@@ -57,6 +57,7 @@ RailsAdmin.config do |config|
       field :purchases
       field :subscription
       field :stripe_customer_id
+      field :mentor
     end
   end
 
