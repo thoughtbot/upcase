@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 feature 'User adds a note to timeline', :js do
+  include Gravatarify::Helper
+
   scenario 'they see only one add note form when there are multiple weeks' do
     user = create(:user)
     trail = create(:trail, trail_map: FakeTrailMap.new.trail)
@@ -29,6 +31,16 @@ feature 'User adds a note to timeline', :js do
     create_note('# I love to learn')
 
     expect(page).to have_css '[data-role="note"] h1', text: 'I love to learn'
+  end
+
+  scenario 'a mentor can add a note to the timeline' do
+    mentor = create(:mentor)
+    mentee = create(:user, mentor: mentor)
+
+    visit user_timeline_path(mentee, as: mentor)
+    create_note('This is a note from your mentor!')
+
+    expect(page).to have_role 'note', text: 'This is a note from your mentor!'
   end
 
   private
