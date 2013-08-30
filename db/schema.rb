@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130826172010) do
+ActiveRecord::Schema.define(:version => 20130829154129) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -141,8 +141,9 @@ ActiveRecord::Schema.define(:version => 20130826172010) do
   create_table "notes", :force => true do |t|
     t.integer  "user_id"
     t.text     "body"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "contributor_id", :null => false
   end
 
   create_table "oauth_access_grants", :force => true do |t|

@@ -3,6 +3,7 @@
     <p><strong>What is this:</strong> This is your notes section. Use notes to stay on top of mentor meetings, weekly to-dos, workshops, or anything else you need to remember.</p>
   </section>
   <fieldset>
+    <%= form.hidden_field :timeline_user_id, value: timeline_user.id %>
     <%= form.text_area :body, placeholder: 'Type a note here... (markdown supported)' %>
     <%= form.submit 'save this note' %>
   </fieldset>

@@ -98,6 +98,7 @@ FactoryGirl.define do
   factory :note do
     body 'Default note body'
     user
+    contributor { user }
 
     trait :current_week do
       created_at Time.local(2013, 'aug', 5)
@@ -293,6 +294,11 @@ FactoryGirl.define do
 
     factory :admin do
       admin true
+    end
+
+    factory :mentor do
+      admin true
+      available_to_mentor true
     end
 
     trait :with_github do

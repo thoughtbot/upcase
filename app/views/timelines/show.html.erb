@@ -31,7 +31,7 @@
       </div>
       <div class="notes">
         <% if @timeline.most_recent_week?(week) %>
-          <%= render 'note_form' %>
+          <%= render 'note_form', timeline_user: @timeline_user %>
         <% end %>
         <ol>
           <% if items[:notes] %>
