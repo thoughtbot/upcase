@@ -53,11 +53,11 @@ RailsAdmin.config do |config|
       field :admin
       field :bio
       field :github_username
+      field :mentor
       field :paid_purchases
       field :purchases
       field :subscription
       field :stripe_customer_id
-      field :mentor
     end
   end
 
