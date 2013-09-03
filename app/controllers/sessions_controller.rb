@@ -7,7 +7,7 @@ class SessionsController < Clearance::SessionsController
     if current_user.admin?
       admin_path
     else
-      my_account_path
+      products_path
     end
   end
 end

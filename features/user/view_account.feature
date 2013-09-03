@@ -4,6 +4,7 @@ Feature: Viewing my own account information
     Given I have signed up with "user@example.com"
     And I have 3 paid purchases
     When I sign in with "user@example.com"
+    And I visit my profile
     Then I should see the edit account form
     And I should see "Your purchases"
     And I should see my 3 purchases
@@ -45,6 +46,7 @@ Feature: Viewing my own account information
   Scenario: Edit my account information
     Given I have signed up with "user@example.com"
     And I sign in with "user@example.com"
+    And I visit my profile
     When I fill in "Github username" with "dhh"
     And I press "Update account"
     Then "Github username" should be filled in with "dhh"
