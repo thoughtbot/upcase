@@ -61,18 +61,11 @@
   }
 }
 
-@include keyframes(cycle-avatars) {
+@include keyframes(box-shadow-expand) {
   0% {
-    opacity: 0;
-  }
-  40% {
-    opacity: 1;
-  }
-  60% {
-    opacity: 1;
+    box-shadow: 0 0 0 0px $journey-line-color;
   }
   100% {
-    opacity: 0;
+    box-shadow: 0 0 0 300px $journey-line-color;
   }
 }
-
