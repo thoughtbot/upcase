@@ -58,18 +58,22 @@ body.timelines {
       }
     }
   }
+}
 
-  .instructions {
-    margin: 0 0 1.5rem 0;
+.instructions {
+  @include clearfix;
+  margin: 4rem 0;
+  padding: 0 3% 0 24%;
+  width:  60%;
 
-    p {
-      font-style: italic;
-    }
+  p {
+    font-style: italic;
+    padding: 0 3rem 0 1rem;
+  }
 
-    strong {
-      background: rgba(255, 255, 0, .2);
-      font-style: normal;
-    }
+  strong {
+    background: rgba(255, 255, 0, .2);
+    font-style: normal;
   }
 }
 
