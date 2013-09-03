@@ -44,6 +44,14 @@ describe Product do
     end
   end
 
+  describe '.newest_first' do
+    it 'returns products in reverse chronological order' do
+      older_video = create(:video_product, created_at: Date.yesterday)
+      newer_video = create(:video_product, created_at: Date.today)
+      expect(Product.newest_first).to eq [newer_video, older_video]
+    end
+  end
+
   describe 'with a discount' do
     it 'returns a discounted individual price' do
       product = create(:product, individual_price: 50)

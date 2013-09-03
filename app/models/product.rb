@@ -40,6 +40,10 @@ class Product < ActiveRecord::Base
     order 'name ASC'
   end
 
+  def self.newest_first
+    order 'created_at DESC'
+  end
+
   def meta_keywords
     topics.meta_keywords
   end
