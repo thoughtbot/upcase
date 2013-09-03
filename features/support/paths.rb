@@ -7,6 +7,8 @@ module NavigationHelpers
       "/?#{$2}=#{$1}"
     when 'my account page'
       my_account_path
+    when 'my dashboard'
+      products_path
     when 'the workshops json page'
       workshops_path(format: :json)
     when /the workshops json page with the callback "([^"]+)"/

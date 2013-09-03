@@ -17,14 +17,14 @@ describe PurchasesController do
     end
   end
 
-  describe '#new when purchasing a plan as a user with and active subscription' do
+  describe '#new when purchasing a plan as a user with an active subscription' do
     it 'renders a subscriber-specific layout' do
       user = create(:user, :with_subscription)
       stub_current_user_with(user)
 
       get :new, plan_id: user.subscription.plan
 
-      expect(response).to render_template 'new'
+      expect(response).to redirect_to products_path
     end
   end
 

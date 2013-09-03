@@ -1,7 +1,7 @@
 class PurchasesController < ApplicationController
   def new
     if current_user_purchase_is_free?
-      redirect_to subscriber_purchase_url
+      redirect_to products_or_subscriber_purchase_url
     else
       @purchase = build_purchase_with_defaults
     end
@@ -45,13 +45,21 @@ class PurchasesController < ApplicationController
 
   private
 
+  def products_or_subscriber_purchase_url
+    if plan_purchase?
+      products_path
+    else
+      subscriber_purchase_url
+    end
+  end
+
   def current_user_purchase_is_free?
-    current_user_has_active_subscription? && included_in_subscription?
+    current_user_has_active_subscription? &&
+      (plan_purchase? || included_in_subscription?)
   end
 
   def included_in_subscription?
-    !plan_purchase? &&
-      (!workshop_purchase? || (workshop_purchase? && subscription_includes_workshops?))
+    !workshop_purchase? || (workshop_purchase? && subscription_includes_workshops?)
   end
 
   def plan_purchase?
