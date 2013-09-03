@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
   helper_method :books
 
   def videos
-    Product.videos.active.ordered
+    Product.videos.active.newest_first
   end
   helper_method :videos
 
