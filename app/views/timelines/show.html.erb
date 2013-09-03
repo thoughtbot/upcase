@@ -11,16 +11,15 @@
     </div>
   </section>
 
+  <section class="instructions">
+    <p><strong>This is your timeline:</strong> It's visible only to you and your mentor. Your mentor may provide notes on which trail to begin next, or something based on a mentor meeting. You can use notes to keep track of workshops or weekly goals or anything else. Showing trail completions for each week helps both you and your mentor to see your progress and your pace, and informs each mentor meeting.</p>
+  </section>
+
   <% @timeline.grouped_items.each do |week, items| %>
     <section class="week">
       <h2 class="week-of"><%= week_title(week) %></h2>
       <div class="progress">
         <ol class="goals">
-          <% if @timeline.most_recent_week?(week) %>
-            <section class="instructions">
-              <p><strong>What is this:</strong> This is your completions section. We list out the trail map items you've completed in any trail, which can include readings, workshops, etc. This timeline will serve as a record of what you've been able to finish.</p>
-            </section>
-          <% end %>
           <% if items[:completions] %>
             <%= render items[:completions] %>
           <% end %>
