@@ -24,7 +24,7 @@ Feature: Signing in
     Given github is stubbed
     When I go to the sign in page
     And I follow "with GitHub"
-    Then I should be on my account page
+    Then I should be on my dashboard
     And the site should have my github information
     And I should have no password field
 
@@ -32,7 +32,7 @@ Feature: Signing in
     Given github is stubbed
     When I go to the sign up page
     And I follow "with GitHub"
-    Then I should be on my account page
+    Then I should be on my dashboard
     And the site should have my github information
     And I should have no password field
 
@@ -42,5 +42,5 @@ Feature: Signing in
       | ralph@example.com | ralph_was_here | github        | 1        |
     When I go to the sign in page
     And I follow "with GitHub"
-    Then I should be on my account page
+    Then I should be on my dashboard
     And I should have no password field
