@@ -656,7 +656,7 @@ describe Purchase, 'date_of_last_workshop_purchase' do
     Timecop.travel(Date.yesterday) do
       create_subscriber_purchase(:section)
     end
-    expect(Purchase.date_of_last_workshop_purchase).to eq Date.today
+    expect(Purchase.date_of_last_workshop_purchase).to eq Time.zone.today
   end
 end
 
