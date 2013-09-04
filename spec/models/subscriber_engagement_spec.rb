@@ -71,7 +71,7 @@ describe SubscriberEngagement do
         end
       end
 
-      expect(engagement.date_of_last_workshop_claim).to eq Date.today
+      expect(engagement.date_of_last_workshop_claim).to eq Time.zone.today
     end
   end
 
