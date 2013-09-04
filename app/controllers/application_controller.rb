@@ -34,18 +34,17 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user_is_admin?
 
-  def default_plan
-    Plan.default
-  end
-  helper_method :default_plan
-
   def find_purchaseable
     if params[:product_id]
       Product.find(params[:product_id])
-    elsif params[:plan_id]
-      Plan.where(sku: params[:plan_id]).first
-    else
+    elsif params[:individual_plan_id]
+      IndividualPlan.where(sku: params[:individual_plan_id]).first
+    elsif params[:team_plan_id]
+      TeamPlan.instance
+    elsif params[:section_id]
       Section.find(params[:section_id])
+    else
+      raise "Could not find a purchaseable object from given params: #{params}"
     end
   end
 

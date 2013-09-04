@@ -1,7 +1,14 @@
 require 'spec_helper'
 
 describe Subscription do
+  it { should belong_to(:team) }
+  it { should belong_to(:plan) }
+  it { should belong_to(:user) }
+
   it { should delegate(:stripe_customer_id).to(:user) }
+
+  it { should validate_presence_of(:plan_id) }
+  it { should validate_presence_of(:plan_type) }
 
   it 'defaults paid to true' do
     Subscription.new.should be_paid

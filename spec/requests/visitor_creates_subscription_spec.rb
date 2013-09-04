@@ -1,8 +1,6 @@
 require 'spec_helper'
 
-feature 'Visitor is asked to create a user before subscription' do
-
-  VALID_SANDBOX_CREDIT_CARD_NUMBER = '4111111111111111'
+feature 'Visitor signs up for a subscription' do
 
   background do
     create_plan
@@ -11,9 +9,6 @@ feature 'Visitor is asked to create a user before subscription' do
   end
 
   scenario 'visitor subscribes and is assigned a mentor' do
-    create(:user, name: 'Chad Pytel', available_to_mentor: true)
-    create(:user, name: 'Ben Orenstein', available_to_mentor: true)
-
     visit prime_path
     click_landing_page_call_to_action
 
@@ -22,12 +17,8 @@ feature 'Visitor is asked to create a user before subscription' do
 
     expect_to_be_on_subscription_purchase_page
 
-    user = build(:user)
-    fill_in 'Name', with: user.name
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    fill_in 'GitHub username', with: 'cpytel'
-    fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
+    fill_out_account_creation_form
+    fill_out_subscription_form_with_valid_credit_card
 
     expect(current_path).to eq products_path
     expect_to_see_mentor(mentor_name)
@@ -40,20 +31,16 @@ feature 'Visitor is asked to create a user before subscription' do
     expect_to_see_password_required
     expect_to_see_email_required
 
-    fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
+    fill_out_subscription_form_with_valid_credit_card
 
     expect_to_see_password_error
     expect_to_see_email_error
 
-    user = build(:user)
-    fill_in 'Name', with: user.name
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    fill_in 'GitHub username', with: 'cpytel'
-    fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
+    fill_out_account_creation_form
+    fill_out_subscription_form_with_valid_credit_card
 
     expect(current_path).to eq products_path
-    expect(page).to have_content(I18n.t('purchase.flashes.success', name: plan.name))
+    expect_to_see_purchase_success_flash_for(plan.name)
   end
 
   scenario 'visitor attempts to purchase with same email address that user exists in system' do
@@ -62,11 +49,8 @@ feature 'Visitor is asked to create a user before subscription' do
     attempt_to_subscribe
     expect_to_be_on_subscription_purchase_page
 
-    fill_in 'Name', with: existing_user.name
-    fill_in 'Email', with: existing_user.email
-    fill_in 'Password', with: 'password'
-    fill_in 'GitHub username', with: 'cpytel'
-    fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
+    fill_out_account_creation_form(name: existing_user.name, email: existing_user.email)
+    fill_out_subscription_form_with_valid_credit_card
 
     expect(page).not_to have_content(I18n.t('purchase.flashes.success', name: plan.name))
 
@@ -83,14 +67,14 @@ feature 'Visitor is asked to create a user before subscription' do
 
     expect(page).not_to have_content 'Password'
 
-    fill_out_credit_card_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
+    fill_out_credit_card_form_with_valid_credit_card
 
     expect(current_path).to eq products_path
-    expect(page).to have_content(I18n.t('purchase.flashes.success', name: plan.name))
+    expect_to_see_purchase_success_flash_for(plan.name)
   end
 
   def expect_to_be_on_subscription_purchase_page
-    expect(current_url).to eq new_plan_purchase_url(plan)
+    expect(current_url).to eq new_individual_plan_purchase_url(plan)
   end
 
   def expect_to_see_email_required

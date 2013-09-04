@@ -11,10 +11,6 @@ module ProductsHelper
     'https://learn.thoughtbot.com/workshops/21-intermediate-ruby-on-rails'
   end
 
-  def company_prime_path
-    '/plans/primeteam/purchases/new'
-  end
-
   def purchase_button_text(product)
     if current_user_has_active_subscription?
       if product.product_type == 'video' && product.videos.count > 1
