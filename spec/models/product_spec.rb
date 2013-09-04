@@ -46,8 +46,8 @@ describe Product do
 
   describe '.newest_first' do
     it 'returns products in reverse chronological order' do
-      older_video = create(:video_product, created_at: Date.yesterday)
-      newer_video = create(:video_product, created_at: Date.today)
+      older_video = create(:video_product, created_at: 1.day.ago)
+      newer_video = create(:video_product, created_at: Time.zone.today)
       expect(Product.newest_first).to eq [newer_video, older_video]
     end
   end
