@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 feature 'Visitor can purchase a subscription for their team' do
   scenario 'successful purchase' do
     create(:mentor)
