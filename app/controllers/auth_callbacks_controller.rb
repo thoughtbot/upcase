@@ -5,18 +5,22 @@ class AuthCallbacksController < ApplicationController
     redirect_to url_after_auth
   end
 
-  protected
+  private
 
   def url_after_auth
     if originated_from_sign_in_or_sign_up?
-      products_path
+      custom_return_path_or_default(products_path)
     else
       auth_origin
     end
   end
 
   def originated_from_sign_in_or_sign_up?
-    auth_origin == sign_in_url || auth_origin == sign_up_url
+    auth_origin =~ /^#{sign_in_url}/ || auth_origin =~ /^#{sign_up_url}/
+  end
+
+  def custom_return_path_or_default(default_path)
+    ReturnPathFinder.new(auth_origin).return_path || default_path
   end
 
   def auth_hash

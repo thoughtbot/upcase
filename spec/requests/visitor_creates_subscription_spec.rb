@@ -73,6 +73,17 @@ feature 'Visitor signs up for a subscription' do
     expect_to_see_purchase_success_flash_for(plan.name)
   end
 
+  scenario 'visitor attempts to subscribe, signs in with github, but already has plan' do
+    user = create(:user, :with_subscription)
+    attempt_to_subscribe
+
+    click_link 'Already have an account? Sign in'
+    click_on 'Sign in with GitHub'
+
+    expect(current_path).to eq products_path
+    expect(page).to have_css '.error', text: I18n.t('subscriber_purchase.flashes.error')
+  end
+
   def expect_to_be_on_subscription_purchase_page
     expect(current_url).to eq new_individual_plan_purchase_url(plan)
   end

@@ -17,7 +17,7 @@ describe PurchasesController do
     end
   end
 
-  describe '#new when purchasing a plan as a user with and active subscription' do
+  describe '#new when purchasing a plan as a user with an active subscription' do
     context 'when purchasing an individual plan' do
       it 'renders a subscriber-specific layout' do
         user = create(:user, :with_subscription)
