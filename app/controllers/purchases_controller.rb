@@ -1,7 +1,7 @@
 class PurchasesController < ApplicationController
   def new
     if current_user_purchase_is_free?
-      redirect_to products_or_subscriber_purchase_url
+      redirect_to_subscriber_purchase_or_default(products_path)
     else
       @purchase = build_purchase_with_defaults
     end
@@ -45,11 +45,12 @@ class PurchasesController < ApplicationController
 
   private
 
-  def products_or_subscriber_purchase_url
+  def redirect_to_subscriber_purchase_or_default(default_path)
     if plan_purchase?
-      products_path
+      flash[:error] = I18n.t('subscriber_purchase.flashes.error')
+      redirect_to default_path
     else
-      subscriber_purchase_url
+      redirect_to subscriber_purchase_url
     end
   end
 
