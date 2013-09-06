@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130904175521) do
+ActiveRecord::Schema.define(:version => 20130906183616) do
 
   create_table "announcements", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -327,14 +327,14 @@ ActiveRecord::Schema.define(:version => 20130904175521) do
 
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
     t.date     "deactivated_on"
     t.date     "scheduled_for_cancellation_on"
-    t.boolean  "paid",                          :default => true, :null => false
-    t.integer  "plan_id",                                         :null => false
+    t.boolean  "paid",                          :default => true,             :null => false
+    t.integer  "plan_id",                                                     :null => false
     t.integer  "team_id"
-    t.string   "plan_type",                                       :null => false
+    t.string   "plan_type",                     :default => "IndividualPlan", :null => false
   end
 
   create_table "teachers", :force => true do |t|
