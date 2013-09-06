@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  def new
+  def index
     @plans = IndividualPlan.featured.active.ordered
     assign_mentor
   end
