@@ -5,7 +5,7 @@ feature 'Visitor can purchase a subscription for their team' do
     create(:mentor)
     team_plan = create(:team_plan)
 
-    visit new_subscription_path
+    visit subscriptions_path
     click_link I18n.t('shared.company_subscription_call_to_action')
 
     fill_out_account_creation_form

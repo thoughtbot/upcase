@@ -12,7 +12,7 @@
       <%= image_tag('learn/learn-ralph.png') %>
     </h1>
   </div>
-  <h1>Become an expert level Rails developer with <%= t('shared.subscription.name') %>. Learn from one of the most prolific and well respected Rails consultancies in the world.<br /><%= link_to t('subscriptions.join_cta'), new_subscription_path %></h1>
+  <h1>Become an expert level Rails developer with <%= t('shared.subscription.name') %>. Learn from one of the most prolific and well respected Rails consultancies in the world.<br /><%= link_to t('subscriptions.join_cta'), subscriptions_path %></h1>
 </section>
 
 <section class="journey">
@@ -201,7 +201,7 @@
       <h2>This is the closest thing to working at thoughtbot full-time</h2>
       <p>We’ve trained hundreds of developers and apprentices over the years, and have a great handle on what it takes to become and remain an expert-level Rubyist.</p>
       <p>With Learn <%= t('shared.subscription.name') %>, we’ve finally created a service that’s nearly as good as joining thoughtbot full time. If you’re a passionate developer serious about improving and maintaining your skills, we know you’ll get a ton of value out of the service.</p>
-      <%= link_to new_subscription_path, class: 'prime-journey-cta' do %>
+      <%= link_to subscriptions_path, class: 'prime-journey-cta' do %>
         <h2><%= t('subscriptions.join_cta') %></h2>
       <% end %>
       <p class="terms">No minimum subscription length &bull; Get your money back within 30 days if you're not satisfied</p>

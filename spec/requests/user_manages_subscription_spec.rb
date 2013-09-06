@@ -167,7 +167,7 @@ feature 'User creates a subscription' do
   end
 
   def visit_plan_purchase_page
-    visit new_subscription_path
+    visit subscriptions_path
     click_link('Choose')
   end
 
