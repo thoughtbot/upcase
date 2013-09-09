@@ -12,14 +12,14 @@
   </section>
 
   <section class="instructions">
-      <p>
-        <strong>This is your timeline:</strong>
-        <% if subscription_includes_mentor? %>
-          It's visible only to you and your mentor, <%= current_user.mentor.name %>. <%= current_user.mentor.first_name %> may provide notes on which trail to begin next, or something based on a mentor meeting. You can use notes to keep track of workshops or weekly goals or anything else. Showing trail completions for each week helps both of you see your progress and pace, and informs each mentor meeting.
-        <% else %>
-          It's visible only to you. If you upgrade and receive a mentor, they'll also be able to see it, and they may provide notes on which trail to begin next, something based on a mentor meeting, or something based on your trail completions. You can use notes to keep track of workshops or weekly goals or anything else. Showing trail completions for each week should help you see your progress and pace.
-        <% end %>
-      </p>
+    <p>
+      <strong>This is your timeline:</strong>
+      <% if subscription_includes_mentor? %>
+        It's visible only to you and your mentor, <%= current_user.mentor.name %>. <%= current_user.mentor.first_name %> may provide notes on which trail to begin next, or something based on a mentor meeting. You can use notes to keep track of workshops or weekly goals or anything else. Showing trail completions for each week helps both of you see your progress and pace, and informs each mentor meeting.
+      <% else %>
+        It's visible only to you. If you upgrade and receive a mentor, they'll also be able to see it, and they may provide notes on which trail to begin next, something based on a mentor meeting, or something based on your trail completions. You can use notes to keep track of workshops or weekly goals or anything else. Showing trail completions for each week should help you see your progress and pace.
+      <% end %>
+    </p>
   </section>
 
   <% @timeline.grouped_items.each do |week, items| %>
