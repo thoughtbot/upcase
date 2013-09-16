@@ -78,6 +78,15 @@ describe IndividualPlan do
     end
   end
 
+  describe '.downgraded' do
+    it 'returns the downgraded plan' do
+      downgraded_plan = create(:downgraded_plan)
+      create(:plan)
+
+      expect(IndividualPlan.downgraded).to eq downgraded_plan
+    end
+  end
+
   describe '#subscription_count' do
     it 'returns 0 when the plan has no subscriptions' do
       plan = create(:plan)

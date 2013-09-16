@@ -182,7 +182,7 @@ describe PurchaseMailer do
           purchase = create(
             :plan_purchase,
             user: user,
-            purchaseable: create(:downgrade_plan)
+            purchaseable: create(:downgraded_plan)
           )
 
           expect(email_for(purchase)).not_to have_body_text(/mentor/)

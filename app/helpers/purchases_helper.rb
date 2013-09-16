@@ -74,4 +74,39 @@ module PurchasesHelper
       "#{starts_on.strftime('%B %d')}-#{ends_on.strftime('%d, %Y')}"
     end
   end
+
+  def choose_plan_link(plan)
+    if current_user_has_active_subscription?
+      change_plan_link(plan)
+    else
+      new_plan_link(plan)
+    end
+  end
+
+  private
+
+  def change_plan_link(plan)
+    if current_user.subscription.plan == plan
+      I18n.t('subscriptions.current_plan_html').html_safe
+    else
+      update_plan_link(plan)
+    end
+  end
+
+  def update_plan_link(plan)
+    link_to(
+      I18n.t('subscriptions.choose_plan_html', plan_name: plan.name).html_safe,
+      subscription_path(plan_id: plan.to_param),
+      method: :put,
+      class: 'button'
+    )
+  end
+
+  def new_plan_link(plan)
+    link_to(
+       I18n.t('subscriptions.choose_plan_html', plan_name: plan.name).html_safe,
+       new_individual_plan_purchase_path(plan),
+       class: 'button'
+    )
+  end
 end

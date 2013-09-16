@@ -38,7 +38,7 @@ describe SubscriptionMailer do
     end
 
     it 'comes from Chad' do
-      user = create(:subscription, plan: create(:downgrade_plan)).user
+      user = create(:subscription, plan: create(:downgraded_plan)).user
       email = SubscriptionMailer.welcome_to_prime(user)
 
       expect(email.from).to include('chad@thoughtbot.com')
@@ -56,7 +56,7 @@ describe SubscriptionMailer do
     end
 
     it 'does not mention workshops if not included in subscription' do
-      user = create(:subscription, plan: create(:downgrade_plan)).user
+      user = create(:subscription, plan: create(:downgraded_plan)).user
       email = SubscriptionMailer.welcome_to_prime(user)
 
       expect(email.body).not_to include('workshops')
