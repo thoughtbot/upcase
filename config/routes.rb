@@ -61,7 +61,8 @@ Workshops::Application.routes.draw do
     resource :downgrade, only: :create
   end
 
-  resources :subscriptions, only: [:new, :update]
+  resource :subscription, only: [:new, :edit, :update]
+  resource :credit_card, only: [:update]
 
   resources :individual_plans, only: [] do
     resources :purchases, only: [:new, :create]

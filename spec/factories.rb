@@ -150,8 +150,8 @@ FactoryGirl.define do
     short_description 'A great Subscription'
     description 'A long description'
 
-    factory :downgrade_plan do
-      sku Subscription::DOWNGRADED_PLAN
+    factory :downgraded_plan do
+      sku IndividualPlan::PRIME_BASIC_SKU
       includes_mentor false
       includes_workshops false
     end

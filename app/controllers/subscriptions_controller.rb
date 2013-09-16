@@ -1,18 +1,18 @@
 class SubscriptionsController < ApplicationController
+  before_filter :assign_mentor, only: [:new, :edit]
+
   def new
     @plans = IndividualPlan.featured.active.ordered
-    assign_mentor
+  end
+
+  def edit
+    @plans = IndividualPlan.featured.active.ordered
   end
 
   def update
-    customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-    customer.card = params['stripe_token']
-    begin
-      customer.save
-      redirect_to my_account_path, notice: I18n.t('subscriptions.flashes.update.success')
-    rescue Stripe::CardError => error
-      redirect_to my_account_path, notice: error.message
-    end
+    plan = IndividualPlan.find_by_sku!(params[:plan_id])
+    current_user.subscription.change_plan(plan)
+    redirect_to my_account_path, notice: I18n.t('subscriptions.flashes.change.success')
   end
 
   private

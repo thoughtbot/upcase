@@ -40,7 +40,7 @@ describe Subscription do
       new_basic_subscription = create(
         :subscription,
         created_at: 10.hours.ago,
-        plan: create(:downgrade_plan)
+        plan: create(:downgraded_plan)
       )
       mailer = stub(deliver: true)
       SubscriptionMailer.stubs(welcome_to_prime: mailer)
@@ -153,32 +153,36 @@ describe Subscription do
     end
   end
 
-  describe "#downgrade" do
-    it "updates the subscription record by setting deactivated_on to today" do
-      downgraded_plan = create(:plan, sku: Subscription::DOWNGRADED_PLAN)
+  describe '#change_plan' do
+    it 'updates the plan in Stripe' do
+      different_plan = create(:plan, sku: 'different')
       subscription = create(:active_subscription)
-      stripe_customer = stub(
-        'Stripe::Customer',
-        update_subscription: nil
-      )
+      stripe_customer = stub(update_subscription: nil)
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 
-      subscription.downgrade
-      subscription.reload
+      subscription.change_plan(different_plan)
 
-      stripe_customer.should have_received(:update_subscription).
-        with(plan: Subscription::DOWNGRADED_PLAN)
-      expect(subscription.plan).to eq downgraded_plan
+      expect(stripe_customer).
+        to have_received(:update_subscription).
+        with(plan: different_plan.sku)
+    end
+
+    it 'changes the subscription plan to the given plan' do
+      different_plan = create(:plan, sku: 'different')
+      subscription = create(:active_subscription)
+
+      subscription.change_plan(different_plan)
+
+      expect(subscription.plan).to eq different_plan
     end
   end
 
   describe "#downgraded?" do
-    it 'is downgraded if it is downgraded' do
-      create(:plan, sku: Subscription::DOWNGRADED_PLAN)
+    it 'is downgraded if it has the downgraded plan' do
+      downgraded_plan = create(:downgraded_plan)
       subscription = create(:active_subscription)
-      expect(subscription).not_to be_downgraded
 
-      subscription.downgrade
+      subscription.change_plan(downgraded_plan)
 
       expect(subscription).to be_downgraded
     end

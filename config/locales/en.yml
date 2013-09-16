@@ -172,6 +172,9 @@ en:
     cancel: Cancel
     confirm_cancel_reject_deal: No thanks, just cancel my subscription
     confirm_cancel: Yes, cancel my subscription
+    change_plan: Change plan
+    choose_plan_html: Choose %{plan_name} &rarr;
+    current_plan_html: <p><em>This is your current plan!</em></p>
     discount:
       forever: $%{final_price}
       once: $%{final_price} the first month, then $%{full_price}
@@ -179,6 +182,8 @@ en:
     flashes:
       update:
         success: You have successfully updated your subscription credit card information.
+      change:
+        success: You have successfully changed your subscription plan, any remaining balance has been applied to future invoices.
       downgrade:
         success: Your subscription has been downgraded.
       cancel:
