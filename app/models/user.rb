@@ -122,6 +122,10 @@ class User < ActiveRecord::Base
     update_attribute(:mentor_id, user.id)
   end
 
+  def plan_name
+    subscription.try(:plan).try(:name)
+  end
+
   private
 
   def stripe_customer

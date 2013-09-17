@@ -196,6 +196,8 @@ GEM
       multi_xml
     httpauth (0.1)
     i18n (0.6.1)
+    intercom-rails (0.2.24)
+      activesupport (> 3.0)
     journey (1.0.4)
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
@@ -469,6 +471,7 @@ DEPENDENCIES
   high_voltage (= 1.2.0)
   hirb (= 0.6.2)
   httparty (= 0.8.1)
+  intercom-rails (~> 0.2.21)
   jquery-rails
   jquery-tablesorter
   json (~> 1.7.7)
