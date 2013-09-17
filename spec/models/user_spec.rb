@@ -329,4 +329,16 @@ describe User do
       expect(user.has_subscription_with_mentor?).to be_false
     end
   end
+
+  describe '#plan_name' do
+    it 'delegates to Subscription for the Plan name' do
+      user = create(:user, :with_subscription)
+      expect(user.plan_name).to eq user.subscription.plan.name
+    end
+
+    it 'returns nil when there is no Subscription' do
+      user = create(:user)
+      expect(user.plan_name).to be_nil
+    end
+  end
 end
