@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   helper_method :subscription_includes_workshops?
 
   def subscription_includes_mentor?
-    current_user.subscription.includes_mentor?
+    current_user.has_subscription_with_mentor?
   end
   helper_method :subscription_includes_mentor?
 
