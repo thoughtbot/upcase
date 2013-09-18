@@ -1,70 +1,38 @@
 body.users-edit {
   form {
     margin: 0;
-
-    legend {
-      padding: 0;
-      margin-bottom: 1em;
-      font-size: 1em;
-    }
   }
 
-  #account-sidebar {
-    h2 {
-      font-size: 24px;
-      font-weight: 600;
-      text-rendering: optimizeLegibility;
-    }
+  legend {
+    padding: 0;
+    margin-bottom: 1em;
+    font-size: 1em;
+  }
 
-    h3 {
-      margin-left: 10px;
-      margin-top: 18px;
-      text-rendering: optimizeLegibility;
-    }
+  #account-sidebar ol {
+    list-style-type: none;
+    margin: 1em 0 0 0;
 
-    ol {
-      list-style-type: none;
-      margin: 1em 0 0 0;
-
-      li {
-        background-color: #efefef;
-        font-size: 16px;
-        margin-bottom: 2px;
-        overflow-x: scroll;
-        padding: 10px;
-        width: 100%;
-
-        a {
-          font-size: 16px;
-          font-style: normal;
-        }
-
-        &.subscription {
-          a.invoices, a.cancel {
-            display: block;
-          }
-
-          a.invoices {
-            margin-top: 16px;
-          }
-
-          a.cancel {
-            text-align: right;
-          }
-        }
-      }
+    li {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       a {
-        text-decoration: none;
+        font-size: 16px;
+        font-style: normal;
       }
     }
 
-    span {
-      color: #999;
-    }
+    .subscription a {
+      background: #eee;
+      display: block;
+      margin-top: .5rem;
+      padding: .5rem;
 
-    p.chat {
-      margin-top: 20px;
+      &:first-of-type {
+        margin-top: 1.5rem;
+      }
     }
   }
 }

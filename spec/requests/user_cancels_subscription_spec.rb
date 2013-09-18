@@ -3,6 +3,7 @@ require 'spec_helper'
 feature 'User cancels a subscription', js: true do
   scenario 'successfully unsubscribes' do
     prime = create(:plan, sku: 'prime', name: 'Prime')
+    downgraded_plan = create(:downgraded_plan)
     create(:online_section,
       workshop: create(:workshop, name: 'A Cool Workshop')
     )
@@ -33,6 +34,6 @@ feature 'User cancels a subscription', js: true do
   end
 
   def expect_to_see_alternate_offer
-    expect(page).to have_content "we'd like to offer you a deal"
+    expect(page).to have_content 'make sure you know about the option to switch'
   end
 end

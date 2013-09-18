@@ -1,7 +1,6 @@
 # This class represents a user's subscription to Learn content
 class Subscription < ActiveRecord::Base
   MAILING_LIST = 'Active Subscribers'
-  DOWNGRADED_PLAN = 'prime-basic'
 
   belongs_to :user
   belongs_to :plan, polymorphic: true
@@ -41,14 +40,14 @@ class Subscription < ActiveRecord::Base
     update_column(:deactivated_on, Time.zone.today)
   end
 
-  def downgrade
-    stripe_customer.update_subscription(plan: downgraded_plan.sku)
-    self.plan = downgraded_plan
+  def change_plan(new_plan)
+    stripe_customer.update_subscription(plan: new_plan.sku)
+    self.plan = new_plan
     save!
   end
 
   def downgraded?
-    plan == downgraded_plan
+    plan == IndividualPlan.downgraded
   end
 
   def deliver_welcome_email
@@ -60,10 +59,6 @@ class Subscription < ActiveRecord::Base
   end
 
   private
-
-  def downgraded_plan
-    IndividualPlan.where(sku: Subscription::DOWNGRADED_PLAN).first
-  end
 
   def stripe_customer
     Stripe::Customer.retrieve(stripe_customer_id)

@@ -1,14 +1,42 @@
 <div class="text-box-wrapper solo cancellation-discount">
   <article>
     <% if !current_user.subscription.downgraded? %>
-      <p>If you're cancelling due to price, we'd like to offer you a deal: everything in <%= t('shared.subscription.name') %> except for <%= current_user.mentor.first_name %> (your mentor) and workshops. You still get books, screencasts, <%= t('shared.bytes') %>, the forum, and you'll also continue to have access to the workshops you've already taken, for $29/month instead of <%= number_to_currency current_user.subscription.plan.individual_price, precision: 0 %>/month.</p>
-      <p>Any remaining balance you have on your account will be applied to your new, less-expensive, plan.</p>
-      <p><%= link_to 'Change to $29/month &rarr;'.html_safe, [:subscriber, :downgrade], method: :create %></p>
+      <p>
+        We're sorry to hear you want to cancel. Before we remove the
+        subscription from your account, we want to make sure you know about the
+        option to switch to a lower priced plan: Prime Basic is everything in
+        <%= t('shared.subscription.name') %> except for a mentor and workshops.
+        You still get books, screencasts, <%= t('shared.bytes') %>, the forum,
+        and you'll also continue to have access to the workshops you've already
+        taken, for <%= price_per_month(IndividualPlan.downgraded) %> instead of
+        <%= price_per_month(current_user.subscription.plan) %>.
+      </p>
+      <p>
+        Any remaining balance you have on your account will be applied to your
+        new, less-expensive plan.
+      </p>
+      <p>
+        <%= link_to(
+          "Change to #{price_per_month(IndividualPlan.downgraded)} &rarr;".html_safe,
+          [:subscriber, :downgrade],
+          method: :create
+        ) %>
+      </p>
     <% else %>
-      <p>Are you sure you want to cancel your <%= t('shared.subscription.name') %> subscription? You will lose access to the products you acquired through <%= t('shared.subscription.name') %>, as well as the forum and <%= t('shared.bytes') %> at the end of your billing cycle.</p>
+      <p>
+        Are you sure you want to cancel your 
+        <%= t('shared.subscription.name') %> subscription? You will lose access
+        to the products you acquired through
+        <%= t('shared.subscription.name') %>, as well as the forum and
+        <%= t('shared.bytes') %> at the end of your billing cycle.
+      </p>
     <% end %>
   </article>
-  <%= form_for :cancellation, url: [:subscriber, :cancellation], html: { class: 'cancellation-feedback' } do |form| %>
+  <%= form_for(
+    :cancellation, 
+    url: [:subscriber, :cancellation], 
+    html: { class: 'cancellation-feedback' }
+  ) do |form| %>
     <% if current_user.subscription.downgraded? %>
       <%= form.submit t('subscriptions.confirm_cancel') %>
     <% else %>

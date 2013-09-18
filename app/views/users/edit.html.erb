@@ -19,14 +19,14 @@
     <% end %>
   </div>
 
-  <% if current_user.subscription && current_user.stripe_customer_id %>
+  <% if current_user.stripe_customer_id %>
     <%= render 'credit_card_form' %>
   <% end %>
 </div>
 
 <aside id="account-sidebar">
   <% if current_user.subscription %>
-    <h3>Your Subscription</h3>
+    <h3>Your subscription</h3>
     <ol class="purchases">
       <%= render current_user.subscription %>
     </ol>

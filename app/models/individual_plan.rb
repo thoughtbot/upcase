@@ -41,6 +41,10 @@ class IndividualPlan < ActiveRecord::Base
     active.featured.ordered.first
   end
 
+  def self.downgraded
+    prime_basic
+  end
+
   def subscription_count
     subscriptions.active.paid.count
   end

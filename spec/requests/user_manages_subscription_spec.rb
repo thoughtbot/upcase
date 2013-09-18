@@ -112,13 +112,29 @@ feature 'User creates a subscription' do
     expect(page).to have_content('Your Billing Info')
   end
 
-  scenario 'updates Stripe subscription', js: true do
+  scenario 'updates credit card information', js: true do
     sign_in_as_subscriber
     visit my_account_path
     submit_new_credit_card_info
 
     expect(current_path).to eq my_account_path
     expect(page).to have_content(I18n.t('subscriptions.flashes.update.success'))
+  end
+
+  scenario 'changes subscription plan' do
+    new_plan = create(:plan, name: 'New Plan', sku: 'new-plan')
+    sign_in_as_subscriber
+    visit my_account_path
+
+    expect_to_see_the_current_plan(current_user.subscription.plan)
+
+    click_link I18n.t('subscriptions.change_plan')
+    click_link new_plan.name
+
+    expect(current_path).to eq my_account_path
+    expect_to_see_the_current_plan(new_plan)
+    expect(page).to have_content(I18n.t('subscriptions.flashes.change.success'))
+    expect(FakeStripe.customer_plan_id).to eq 'new-plan'
   end
 
   scenario 'updates Stripe subscription with declining credit card', js: true do
@@ -181,8 +197,8 @@ feature 'User creates a subscription' do
   end
 
   def sign_in_as_subscriber
-    subscriber = create(:user, :with_subscription)
-    visit root_path(as: subscriber)
+    @current_user = create(:user, :with_subscription)
+    visit root_path(as: @current_user)
   end
 
   def subscribe_with_valid_credit_card
@@ -218,6 +234,13 @@ feature 'User creates a subscription' do
       :duration => 'repeating',
       :duration_in_months => duration,
       :amount_off => amount_off
+    )
+  end
+
+  def expect_to_see_the_current_plan(plan)
+    expect(page).to have_css(
+      '.subscription p strong', 
+      text: plan.name
     )
   end
 end
