@@ -42,11 +42,15 @@ All new code should follow these rules. If you make changes in a pre-existing fi
         $ rake setup
         $ cp .env.sample .env
 
-7. Start Foreman.
+7. Start your Redis server.
+
+        $ redis-server
+
+8. Start Foreman.
 
         $ foreman start
 
-8. Verify that the app is up and running.
+9. Verify that the app is up and running.
 
         $ open http://localhost:5000
 
