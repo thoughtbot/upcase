@@ -158,8 +158,6 @@ RailsAdmin.config do |config|
         field :sku
         field :short_description
         field :description
-        field :individual_price
-        field :company_price
         field :maximum_students
         field :external_registration_url
         field :active
