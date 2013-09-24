@@ -157,6 +157,7 @@ GEM
     erubis (2.7.0)
     escape_utils (0.2.4)
     eventmachine (0.12.10)
+    excon (0.21.0)
     execjs (1.4.0)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
@@ -187,6 +188,14 @@ GEM
     haml (4.0.2)
       tilt
     hashie (2.0.5)
+    heroku (2.39.3)
+      heroku-api (~> 0.3.7)
+      launchy (>= 0.3.2)
+      netrc (~> 0.7.7)
+      rest-client (~> 1.6.1)
+      rubyzip
+    heroku-api (0.3.10)
+      excon (~> 0.21.0)
     high_voltage (1.2.0)
     hike (1.2.3)
     hirb (0.6.2)
@@ -468,6 +477,7 @@ DEPENDENCIES
   formtastic (= 2.2.0)
   gibbon
   gravatarify (~> 3.1.0)
+  heroku
   high_voltage (= 1.2.0)
   hirb (= 0.6.2)
   httparty (= 0.8.1)
