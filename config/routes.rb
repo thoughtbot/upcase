@@ -100,7 +100,6 @@ Workshops::Application.routes.draw do
 
   get '/auth/:provider/callback', to: 'auth_callbacks#create'
 
-  resources :subscriber_engagements, only: :index
   resource :timeline, only: :show
   resource :note, only: :create
 
