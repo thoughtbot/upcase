@@ -8,7 +8,7 @@ class FakeStripe < Sinatra::Base
   CUSTOMER_EMAIL = 'foo@bar.com'
 
   cattr_reader :last_charge, :last_customer_email, :last_token, :coupons,
-    :customer_plan_id
+    :customer_plan_id, :last_coupon_used
   cattr_accessor :failure
 
   get '/v1/plans/:id' do
@@ -50,6 +50,7 @@ class FakeStripe < Sinatra::Base
 
   post '/v1/customers/:id/subscription' do
     @@customer_plan_id = params[:plan]
+    @@last_coupon_used = params[:coupon]
     content_type :json
 
     customer_subscription.to_json
@@ -273,7 +274,7 @@ class FakeStripe < Sinatra::Base
       duration: params[:duration],
       redeem_by: params[:redeem_by],
       max_redemptions: params[:max_redemptions],
-      times_redeemed: 0,
+      times_redeemed: params[:times_redeemed],
       duration_in_months: params[:duration_in_months]
     }
   end
