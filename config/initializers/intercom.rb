@@ -40,8 +40,9 @@ IntercomRails.config do |config|
     user_hash: Proc.new { |current_user| OpenSSL::HMAC.hexdigest("sha256",
                                                                  ENV['INTERCOM_API_SECRET'],
                                                                  current_user.email) },
-
-    :plan => Proc.new { |current_user| current_user.plan_name },
+    plan: :plan_name,
+    has_logged_in_to_forum: :has_logged_in_to_forum?
+    has_active_subscription: :has_active_subscription?
   }
 
   # == User -> Company association
