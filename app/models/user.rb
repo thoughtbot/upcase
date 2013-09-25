@@ -93,6 +93,10 @@ class User < ActiveRecord::Base
     subscription.try(:includes_mentor?)
   end
 
+  def has_logged_in_to_forum?
+    OauthAccessToken.for_user(self)
+  end
+
   def has_active_subscription?
     subscription.present? && subscription.active?
   end
