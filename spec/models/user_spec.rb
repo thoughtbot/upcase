@@ -341,4 +341,21 @@ describe User do
       expect(user.plan_name).to be_nil
     end
   end
+
+  describe '#has_logged_in_to_forum?' do
+    it 'returns true when the user has logged in to the forum' do
+      user = User.new
+      OauthAccessToken.stubs(:for_user).with(user).returns(true)
+
+      expect(user.has_logged_in_to_forum?).to be_true
+    end
+
+    it 'returns false when the user has never logged in to the forum' do
+      user = User.new
+      OauthAccessToken.stubs(:for_user).with(user).returns(nil)
+
+      expect(user.has_logged_in_to_forum?).to be_false
+    end
+
+  end
 end
