@@ -48,7 +48,7 @@ en:
   products:
     show:
       free_to_subscribers: "You're a subscriber, so you receive this product for free!"
-      subscribe_cta: "This %{product_type} is part of a subscription to %{subscription_name}"
+      subscribe_cta: "This %{product_type} is free with a subscription to %{subscription_name}"
       purchase_for_subscribed_user: Get this %{product_type}
       purchase_collection_for_subscribed_user: Get this %{product_type} collection
       price:
