@@ -28,7 +28,7 @@ class TeamPlan < ActiveRecord::Base
   end
 
   def individual_price
-    1099
+    1299
   end
 
   def fulfillment_method
