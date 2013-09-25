@@ -48,7 +48,7 @@ module PurchaseHelpers
   end
 
   def expect_submit_button_to_contain(text)
-    expect(page).to have_css('#purchase_submit_action input', value: /#{text}/i)
+    expect(page.find('#purchase_submit_action input').value).to include text
   end
 
   def expect_to_see_purchase_success_flash_for(product_name)

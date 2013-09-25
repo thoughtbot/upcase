@@ -60,13 +60,13 @@ feature 'User creates a subscription' do
 
     visit_plan_purchase_page
 
-    expect_submit_button_to_contain("$15 per month")
+    expect_submit_button_to_contain("$99 per month")
 
     click_link "Have a coupon code?"
     fill_in "Code", with: '5OFF'
     click_button "Apply Coupon"
 
-    expect_submit_button_to_contain("$10.00 the first month, then $15.00 per month")
+    expect_submit_button_to_contain("$94.00 the first month, then $99.00")
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
@@ -75,17 +75,17 @@ feature 'User creates a subscription' do
   end
 
   scenario 'creates a Stripe subscription with a free month coupon', :js => true do
-    create_recurring_stripe_coupon('THREEFREE', 3, 1500)
+    create_recurring_stripe_coupon('THREEFREE', 3, 9900)
 
     visit_plan_purchase_page
 
-    expect_submit_button_to_contain("$15 per month")
+    expect_submit_button_to_contain("$99 per month")
 
     click_link "Have a coupon code?"
     fill_in "Code", with: 'THREEFREE'
     click_button "Apply Coupon"
 
-    expect_submit_button_to_contain("$0.00 for 3 months, then $15.00 per month")
+    expect_submit_button_to_contain("$0.00 for 3 months, then $99.00")
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
@@ -96,7 +96,7 @@ feature 'User creates a subscription' do
   scenario 'creates a Stripe subscription with an invalid coupon', :js => true do
     visit_plan_purchase_page
 
-    expect_submit_button_to_contain('$15 per month')
+    expect_submit_button_to_contain('$99 per month')
 
     click_link 'Have a coupon code?'
     fill_in 'Code', with: '5OFF'
