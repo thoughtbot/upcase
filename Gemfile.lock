@@ -232,8 +232,6 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-tablesorter (1.5.0)
-      railties (>= 3.1, < 5)
     jquery-ui-rails (4.0.5)
       railties (>= 3.1.0)
     json (1.7.7)
@@ -505,7 +503,6 @@ DEPENDENCIES
   httparty (= 0.8.1)
   intercom-rails (~> 0.2.21)
   jquery-rails
-  jquery-tablesorter
   jquery-ui-rails
   json (~> 1.7.7)
   kissmetrics (= 2.0.0)
