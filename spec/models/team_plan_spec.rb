@@ -34,7 +34,7 @@ describe TeamPlan do
 
   describe '#individual_price' do
     it 'returns the price' do
-      expect(team_plan.individual_price).to eq 1099
+      expect(team_plan.individual_price).to eq 1299
     end
   end
 
