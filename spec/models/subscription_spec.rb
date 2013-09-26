@@ -187,4 +187,60 @@ describe Subscription do
       expect(subscription).to be_downgraded
     end
   end
+
+  describe '.canceled_in_last_30_days' do
+    it 'returns nothing when none have been canceled within 30 days' do
+      create(:subscription, deactivated_on: 60.days.ago)
+
+      expect(Subscription.canceled_in_last_30_days).to be_empty
+    end
+
+    it 'returns the subscriptions canceled within 30 days' do
+      subscription = create(:subscription, deactivated_on: 7.days.ago)
+
+      expect(Subscription.canceled_in_last_30_days).to eq [subscription]
+    end
+  end
+
+  describe '.active_as_of' do
+    it 'returns nothing when no subscriptions canceled' do
+      expect(Subscription.active_as_of(Time.zone.now)).to be_empty
+    end
+
+    it 'returns nothing when subscription canceled before the given date' do
+      create(:subscription, deactivated_on: 9.days.ago)
+
+      expect(Subscription.active_as_of(8.days.ago)).to be_empty
+    end
+
+    it 'returns the subscriptions canceled after the given date' do
+      subscription = create(:subscription, deactivated_on: 7.days.ago)
+
+      expect(Subscription.active_as_of(8.days.ago)).to eq [subscription]
+    end
+
+    it 'returns the subscriptions not canceled' do
+      subscription = create(:subscription)
+
+      expect(Subscription.active_as_of(8.days.ago)).to eq [subscription]
+    end
+  end
+
+  describe '.created_before' do
+    it 'returns nothing when the are no subscriptions' do
+      expect(Subscription.created_before(Time.zone.now)).to be_empty
+    end
+
+    it 'returns nothing when nothing has been created before the given date' do
+      create(:subscription, created_at: 1.day.ago)
+
+      expect(Subscription.created_before(2.days.ago)).to be_empty
+    end
+
+    it 'returns the subscriptions created before the given date' do
+      subscription = create(:subscription, created_at: 2.days.ago)
+
+      expect(Subscription.created_before(1.day.ago)).to eq [subscription]
+    end
+  end
 end
