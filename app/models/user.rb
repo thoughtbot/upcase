@@ -90,7 +90,7 @@ class User < ActiveRecord::Base
   end
 
   def has_logged_in_to_forum?
-    OauthAccessToken.for_user(self)
+    OauthAccessToken.for_user(self).present?
   end
 
   def has_active_subscription?

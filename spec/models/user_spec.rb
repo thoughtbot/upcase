@@ -347,15 +347,14 @@ describe User do
       user = User.new
       OauthAccessToken.stubs(:for_user).with(user).returns(true)
 
-      expect(user.has_logged_in_to_forum?).to be_true
+      expect(user.has_logged_in_to_forum?).to eq true
     end
 
     it 'returns false when the user has never logged in to the forum' do
       user = User.new
       OauthAccessToken.stubs(:for_user).with(user).returns(nil)
 
-      expect(user.has_logged_in_to_forum?).to be_false
+      expect(user.has_logged_in_to_forum?).to eq false
     end
-
   end
 end
