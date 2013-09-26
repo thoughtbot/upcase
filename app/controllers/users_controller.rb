@@ -31,4 +31,8 @@ class UsersController < Clearance::UsersController
   def create_user_from_params
     params.require(:user).permit(:email, :password, :name, :github_username, :bio)
   end
+
+  def return_to
+    session[:return_to] || params[:return_to]
+  end
 end

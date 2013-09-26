@@ -2,7 +2,7 @@ class Loader
   def self.import_articles_and_topics(posts)
     posts.each do |post|
       next if contains_blacklist_topic(post[:tags])
-      article = Article.find_or_initialize_by_title_and_published_on(post[:title],post[:published_at])
+      article = Article.find_or_initialize_by(title: post[:title], published_on: post[:published_at])
       unless article.persisted?
         article.body_html = post[:body_html]
         article.external_url = post[:tumblr_url]

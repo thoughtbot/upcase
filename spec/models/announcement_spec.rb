@@ -6,12 +6,6 @@ describe Announcement do
   it { should have_db_column(:updated_at).with_options(null: false) }
   it { should have_db_index([:announceable_id, :announceable_type, :ends_at]) }
 
-  # Mass Assignment
-  it { should allow_mass_assignment_of(:announceable_id) }
-  it { should allow_mass_assignment_of(:announceable_type) }
-  it { should allow_mass_assignment_of(:ends_at) }
-  it { should allow_mass_assignment_of(:message) }
-
   # Associations
   it { should belong_to(:announceable) }
 

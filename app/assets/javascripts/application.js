@@ -1,7 +1,7 @@
 //= require jquery
 //= require jquery-tablesorter
 //= require jquery_ujs
-//= require jquery-ui
+//= require jquery.ui.all
 //= require retina
 //= require prettify/prettify
 //= require prettyprint

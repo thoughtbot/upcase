@@ -73,7 +73,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def self.total_sales_within_range(start_time, end_time)
-    within_range(start_time, end_time).all.sum(&:price)
+    within_range(start_time, end_time).to_a.sum(&:price)
   end
 
   def self.for_purchaseable(purchaseable)

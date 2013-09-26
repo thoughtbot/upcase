@@ -69,9 +69,10 @@ describe Episode do
 
   describe ".rss_pub_date" do
     it 'conforms to the rss specification for publication date' do
-      Timecop.freeze(Time.zone.now) do
-        episode = create(:episode, published_on: 1.days.ago)
-        episode.rss_pub_date.should == 1.days.ago.strftime('%a, %d %b %Y %H:%M:%S %z')
+      Timecop.freeze(Time.zone.today) do
+        expected_date = 1.days.ago.to_date
+        episode = create(:episode, published_on: expected_date)
+        episode.rss_pub_date.should == expected_date.strftime('%a, %d %b %Y %H:%M:%S %z')
       end
     end
   end

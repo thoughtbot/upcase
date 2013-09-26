@@ -1,5 +1,4 @@
 class Classification < ActiveRecord::Base
-  attr_accessible :classifiable_id, :classifiable_type, :classifiable, :topic_id
   belongs_to :classifiable, polymorphic: true
   belongs_to :topic
   after_create :update_topic_count
