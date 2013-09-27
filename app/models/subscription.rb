@@ -30,6 +30,18 @@ class Subscription < ActiveRecord::Base
     where(paid: true)
   end
 
+  def self.canceled_in_last_30_days
+    canceled_within_period(30.days.ago, Time.zone.now)
+  end
+
+  def self.active_as_of(time)
+    where('deactivated_on is null OR deactivated_on > ?', time)
+  end
+
+  def self.created_before(time)
+    where('created_at <= ?', time)
+  end
+
   def active?
     deactivated_on.nil?
   end
@@ -60,8 +72,8 @@ class Subscription < ActiveRecord::Base
 
   private
 
-  def stripe_customer
-    Stripe::Customer.retrieve(stripe_customer_id)
+  def self.canceled_within_period(start_time, end_time)
+    where(deactivated_on: start_time...end_time)
   end
 
   def self.subscriber_emails
@@ -74,6 +86,10 @@ class Subscription < ActiveRecord::Base
 
   def self.recent
     where('created_at > ?', 24.hours.ago)
+  end
+
+  def stripe_customer
+    Stripe::Customer.retrieve(stripe_customer_id)
   end
 
   def deactivate_subscription_purchases
