@@ -5,7 +5,7 @@ module Subscriptions
       :with_subscription,
       stripe_customer_id: FakeStripe::CUSTOMER_ID
     )
-    visit products_path(as: @current_user)
+    visit dashboard_path(as: @current_user)
   end
 
   def sign_in_as_user_with_downgraded_subscription

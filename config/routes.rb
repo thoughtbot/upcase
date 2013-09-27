@@ -123,6 +123,7 @@ Workshops::Application.routes.draw do
   get '/sign_up' => 'users#new', as: 'sign_up_app'
   get '/sign_in' => 'sessions#new', as: 'sign_in_app'
   resources :passwords, controller: 'passwords'
+  resource :dashboard, only: :show
 
   mount Split::Dashboard, at: 'split'
 

@@ -13,7 +13,7 @@ feature 'User creates a subscription' do
   scenario 'creates a Stripe subscription with a valid credit card' do
     subscribe_with_valid_credit_card
     expect(current_user).to have_active_subscription
-    expect(current_path).to eq products_path
+    expect(current_path).to eq dashboard_path
     expect(page).to have_content(I18n.t('purchase.flashes.success', name: plan.name))
   end
 
@@ -68,6 +68,7 @@ feature 'User creates a subscription' do
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
+    expect(current_path).to eq dashboard_path
     expect(page).to have_content(I18n.t('purchase.flashes.success', name: plan.name))
     expect(FakeStripe.last_coupon_used).to eq '5OFF'
   end
@@ -104,6 +105,8 @@ feature 'User creates a subscription' do
 
     expect(page).to have_content(I18n.t('purchase.flashes.success', name: plan.name))
     expect(FakeStripe.last_coupon_used).to eq '50OFF'
+    expect(current_path).to eq dashboard_path
+    expect(Purchase.last.stripe_customer_id).to be_present
   end
 
   scenario 'creates a Stripe subscription with an invalid coupon', :js => true do

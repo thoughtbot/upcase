@@ -25,7 +25,7 @@ describe PurchasesController do
 
         get :new, individual_plan_id: user.subscription.plan
 
-        expect(response).to redirect_to products_path
+        expect(response).to redirect_to dashboard_path
       end
     end
 
@@ -36,7 +36,7 @@ describe PurchasesController do
 
         get :new, team_plan_id: user.subscription.plan
 
-        expect(response).to redirect_to products_path
+        expect(response).to redirect_to dashboard_path
       end
     end
   end
