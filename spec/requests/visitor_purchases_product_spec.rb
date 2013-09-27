@@ -22,13 +22,28 @@ feature 'Purchasing a product' do
     expect(page).to have_content 'Sign out'
   end
 
-  scenario 'Visitor signs in while purchasing a product' do
-    user = create(:user, password: 'password')
+  scenario 'Visitor signs in with GitHub while purchasing a product' do
+    create(:user, :with_github)
     product = create(:video_product)
+
     visit product_path(product)
     click_purchase_link_for(product)
     click_link 'Already have an account? Sign in'
+    click_on 'Sign in with GitHub'
 
+    expect(page).to have_css('form#new_purchase')
+    expect(field_labeled('Email').value).not_to be_blank
+    expect(field_labeled('Name').value).not_to be_blank
+    expect(page).to have_content 'Sign out'
+  end
+
+  scenario 'Visitor signs in with email and password while purchasing a product' do
+    user = create(:user, password: 'password')
+    product = create(:video_product)
+
+    visit product_path(product)
+    click_purchase_link_for(product)
+    click_link 'Already have an account? Sign in'
     fill_in 'Email', with: user.email
     fill_in 'Password', with: 'password'
     click_button 'Sign in'

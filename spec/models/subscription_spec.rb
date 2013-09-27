@@ -111,7 +111,7 @@ describe Subscription do
     end
 
     it 'removes all subscription purchases' do
-      subscription = create(:active_subscription)
+      subscription = create(:active_subscription, :with_github)
       user = subscription.user
       create_subscription_purchase(user)
       book_purchase = create_paid_purchase(user)
