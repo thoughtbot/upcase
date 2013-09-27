@@ -1,4 +1,4 @@
-class Api::V1::CompletionsController < ApplicationController
+class Api::V1::CompletionsController < ApiController
   doorkeeper_for :all, if: lambda { !signed_in? }
 
   respond_to :json
