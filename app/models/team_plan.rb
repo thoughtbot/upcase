@@ -40,7 +40,7 @@ class TeamPlan < ActiveRecord::Base
   end
 
   def subscription_interval
-    'monthly'
+    'month'
   end
 
   def terms
