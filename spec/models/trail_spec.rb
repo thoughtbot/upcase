@@ -81,6 +81,24 @@ describe Trail do
     end
   end
 
+  context '#import with prerequisites' do
+    before do
+      fake_trail_map = FakeTrailMap.new
+      fake_trail_map.prerequisites = ['exists', 'doesnotexist']
+      fake_body_str = fake_trail_map.trail.to_json
+      Curl.stubs(get: stub(body_str: fake_body_str, response_code: 200))
+    end
+
+    it 'associates the topic that exists' do
+      related_topic = create(:topic, name: 'Exists', slug: 'exists')
+      trail = create(:trail, slug: 'fake-trail')
+
+      trail.import
+
+      expect(trail.topic.topics).to eq [related_topic]
+    end
+  end
+
   context '#contribute_url' do
     it 'returns the correct url based on slug' do
       trail = Trail.new

@@ -4,7 +4,8 @@ class FakeTrailMap
     :resource_uri,
     :validation_id,
     :validation_title,
-    :name
+    :name,
+    :prerequisites
 
   def initialize
     @resource_id = '2f720eaa8bcd602a7dc731feb224ff99bb85a03c'
@@ -13,12 +14,14 @@ class FakeTrailMap
     @validation_id = 'cab73a959ee344204b0a6d9778d589c4298dd9d3'
     @validation_title = 'Create a commit'
     @name = 'Git'
+    @prerequisites = []
   end
 
   def trail
     {
-       'name' => @name,
+       'name' => name,
        'description' => 'Description of Git',
+       'prerequisites' => prerequisites,
        'steps' => [
          {
            'name' => 'Beginning Git',
