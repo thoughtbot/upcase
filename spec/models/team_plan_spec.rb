@@ -51,8 +51,8 @@ describe TeamPlan do
   end
 
   describe '#subscription_interval' do
-    it 'returns monthly' do
-      expect(team_plan.subscription_interval).to eq 'monthly'
+    it 'returns month' do
+      expect(team_plan.subscription_interval).to eq 'month'
     end
   end
 
