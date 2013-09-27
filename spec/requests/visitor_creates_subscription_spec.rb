@@ -20,7 +20,7 @@ feature 'Visitor signs up for a subscription' do
     fill_out_account_creation_form
     fill_out_subscription_form_with_valid_credit_card
 
-    expect(current_path).to eq products_path
+    expect(current_path).to eq dashboard_path
     expect_to_see_mentor(mentor_name)
   end
 
@@ -39,7 +39,7 @@ feature 'Visitor signs up for a subscription' do
     fill_out_account_creation_form
     fill_out_subscription_form_with_valid_credit_card
 
-    expect(current_path).to eq products_path
+    expect(current_path).to eq dashboard_path
     expect_to_see_purchase_success_flash_for(plan.name)
   end
 
@@ -69,7 +69,7 @@ feature 'Visitor signs up for a subscription' do
 
     fill_out_credit_card_form_with_valid_credit_card
 
-    expect(current_path).to eq products_path
+    expect(current_path).to eq dashboard_path
     expect_to_see_purchase_success_flash_for(plan.name)
   end
 
@@ -80,7 +80,7 @@ feature 'Visitor signs up for a subscription' do
     click_link 'Already have an account? Sign in'
     click_on 'Sign in with GitHub'
 
-    expect(current_path).to eq products_path
+    expect(current_path).to eq dashboard_path
     expect(page).to have_css '.error', text: I18n.t('subscriber_purchase.flashes.error')
   end
 

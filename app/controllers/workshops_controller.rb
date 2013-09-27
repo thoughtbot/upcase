@@ -1,7 +1,7 @@
 class WorkshopsController < ApplicationController
   def index
     respond_to do |format|
-      format.html { redirect_to products_path}
+      format.html { redirect_to products_path }
       format.json do
         @workshops = Workshop.only_active.by_position
       end

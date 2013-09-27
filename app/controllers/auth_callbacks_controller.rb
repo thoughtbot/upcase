@@ -9,7 +9,7 @@ class AuthCallbacksController < ApplicationController
 
   def url_after_auth
     if originated_from_sign_in_or_sign_up?
-      custom_return_path_or_default(products_path)
+      custom_return_path_or_default(dashboard_path)
     else
       auth_origin
     end
