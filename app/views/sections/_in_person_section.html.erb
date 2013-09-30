@@ -26,11 +26,11 @@
     <% if in_person_section.full? %>
       <a href="#new_follow_up" class="button <%= 'free-with-prime' if current_user_has_active_subscription? && subscription_includes_workshops? %>">Get notified</a>
     <% else %>
-      <% if current_user_has_active_subscription? && subscription_includes_workshops? %>
-        <%= link_to registration_url(in_person_section), class: "free-with-prime button" do %>
-          <%= t('workshops.show.register_free_inperson') %>
-        <% end %>
-      <% end %>
+      <%= render(
+        'sections/subscriber_purchase_link',
+        section: in_person_section,
+        register_text: t('workshops.show.register_free_inperson')
+      ) %>
     <% end %>
   </div>
 </section>
