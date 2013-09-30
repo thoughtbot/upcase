@@ -12,6 +12,6 @@ describe HomesController do
 
     get :show
 
-    response.should redirect_to products_path
+    response.should redirect_to dashboard_path
   end
 end

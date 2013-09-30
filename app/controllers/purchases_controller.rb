@@ -1,7 +1,7 @@
 class PurchasesController < ApplicationController
   def new
     if current_user_purchase_is_free?
-      redirect_to_subscriber_purchase_or_default(products_path)
+      redirect_to_subscriber_purchase_or_default(dashboard_path)
     else
       @purchase = build_purchase_with_defaults
     end
@@ -113,7 +113,7 @@ class PurchasesController < ApplicationController
     if @purchase.paypal?
       @purchase.paypal_url
     elsif @purchase.subscription?
-      products_path
+      dashboard_path
     else
       purchase_path @purchase
     end
