@@ -60,6 +60,15 @@ You'll need to install phantom.js to run some of the specs.
 
         brew install phantomjs
 
+### Continuous Integration
+
+CI is hosted with TDDium. Commits pushed to branches are not run automatically,
+only on master. If branches need to be run against TDDium you may do so with the
+CLI by installing the gem and running the suite:
+
+        gem install tddium
+        tddium run
+
 ### Ongoing
 
 * Run test suite before committing to the master branch.
