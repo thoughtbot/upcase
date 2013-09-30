@@ -160,7 +160,11 @@ form {
             color: $red;
           }
 
-          input[type=text] {
+          input[type=text],
+          input[type=email],
+          input[type=password],
+          input[type=tel],
+          textarea {
             background: #f8bcba;
           }
         }
