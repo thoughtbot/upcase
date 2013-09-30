@@ -30,6 +30,37 @@ feature 'Subscriber accesses content' do
     expect_dashboard_to_show_workshop_active(online_section.workshop)
   end
 
+  scenario 'subscriber without access to workshops attempts to begin an online workshop' do
+    online_section = create(:online_section)
+    create_mentors
+
+    sign_in_as_user_with_downgraded_subscription
+    click_online_workshop_detail_link
+
+    expect(page).not_to have_content I18n.t('workshops.show.free_to_subscribers')
+    expect(page).to have_content I18n.t('workshops.show.upgrade')
+
+    click_link I18n.t('workshops.show.upgrade')
+
+    expect(current_path).to eq edit_subscription_path
+  end
+
+  scenario 'subscriber without access to workshops attempts to begin an in-person workshop' do
+    in_person_section = create(:in_person_section)
+    create_mentors
+
+    sign_in_as_user_with_downgraded_subscription
+    click_in_person_workshop_detail_link
+
+    expect(page).not_to have_content I18n.t('workshops.show.free_to_subscribers')
+    expect(page).to have_content I18n.t('workshops.show.upgrade')
+
+    click_link I18n.t('workshops.show.upgrade')
+
+    expect(current_path).to eq edit_subscription_path
+  end
+ 
+
   scenario 'gets access to a book product' do
     book_product = create(:github_book_product)
     sign_in_as_user_with_subscription

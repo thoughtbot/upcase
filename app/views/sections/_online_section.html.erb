@@ -16,13 +16,14 @@
       <span>Sold Out</span>
     </h2>
     <a href="#new_follow_up" class="button">Get notified</a>
-  <% elsif current_user_has_active_subscription? && subscription_includes_workshops? %>
+  <% else %>
     <div class="individual-purchase">
       <div class="license">
-        <h2 class="active-subscription"><%= t 'workshops.show.free_to_subscribers' %></h2>
-        <%= link_to new_section_purchase_path(online_section, variant: :individual), class: "free-with-prime license-button button" do %>
-          <%= t('workshops.show.register_free') %>
-        <% end %>
+        <%= render(
+          'sections/subscriber_purchase_link',
+          section: online_section,
+          register_text: t('workshops.show.register_free')
+        ) %>
       </div>
     </div>
   <% end %>
