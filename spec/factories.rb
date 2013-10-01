@@ -219,6 +219,12 @@ FactoryGirl.define do
     factory :plan_purchase do
       association :purchaseable, factory: :plan
       association :user, :with_stripe, :with_mentor, :with_github
+
+      before(:create) do |purchase|
+        if purchase.user.mentor
+          purchase.mentor_id = purchase.user.mentor.id
+        end
+      end
     end
   end
 

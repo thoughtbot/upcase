@@ -7,6 +7,10 @@ Given 'I have an existing credit card' do
   Stripe::Customer.stubs(:retrieve).returns({"active_card" => {"last4" => "1234", "type" => "Visa"}})
 end
 
+When 'I remove my credit card' do
+  Stripe::Customer.unstub(:retrieve)
+end
+
 When 'I pay using Stripe' do
   page.execute_script <<-JS
     var form$ = $("#new_purchase");

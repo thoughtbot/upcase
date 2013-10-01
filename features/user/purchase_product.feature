@@ -41,3 +41,4 @@ Feature: Purchase a Product
     Then I should see a purchase price of "$15"
     When I pay with existing credit card
     Then I should see "Thank you"
+    And I remove my credit card

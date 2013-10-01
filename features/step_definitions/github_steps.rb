@@ -1,5 +1,5 @@
 Given /^github is stubbed$/ do
-  stub_request(:put, 'https://api.github.com/teams/9999/members/cpytel').
+  stub_request(:put, 'https://api.github.com/teams/516450/members/thoughtbot').
     to_return(:status => 200, :body => '', :headers => {})
   stub_request(:get, 'https://api.github.com/teams/3675/members/thoughtbot').
     to_return(:status => 404, :body => '', :headers => {})

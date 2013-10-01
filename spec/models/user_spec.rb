@@ -256,6 +256,16 @@ describe User do
     end
   end
 
+  describe '#paid_products' do
+    it 'includes purchased products with no subscription plans' do
+      user = create(:user, :with_mentor, :with_github)
+      book_purchase = create(:book_purchase, user: user)
+      prime_plan = create(:plan_purchase, user: user)
+
+      expect(user.paid_products).to eq [book_purchase]
+    end
+  end
+
   describe '#credit_card' do
     it 'returns nil if there is no stripe_customer_id' do
       user = create(:user, stripe_customer_id: nil)

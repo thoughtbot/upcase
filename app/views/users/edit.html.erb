@@ -27,7 +27,7 @@
 <aside id="account-sidebar">
   <% if current_user.subscription %>
     <h3>Your subscription</h3>
-    <ol class="purchases">
+    <ol class="subscription">
       <%= render current_user.subscription %>
     </ol>
   <% end %>
@@ -35,7 +35,7 @@
   <% if current_user.has_purchased? %>
     <h3>Your purchases</h3>
     <ol class="purchases">
-      <%= render current_user.paid_purchases %>
+      <%= render current_user.paid_products %>
     </ol>
   <% end %>
 </aside>
