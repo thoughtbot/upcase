@@ -4,7 +4,7 @@ describe SubscriptionFulfillment do
   describe 'fulfill' do
     it 'adds a subscription to the user for a subscription purchase' do
       create_mentors
-      user = create(:user)
+      user = create(:user, :with_github)
       purchase = build(:plan_purchase, user: user)
 
       expect(user.subscription).to be_nil
@@ -16,7 +16,7 @@ describe SubscriptionFulfillment do
     end
 
     it 'does not add subscription for a regular purchase' do
-      user = create(:user)
+      user = create(:user, :with_github)
       purchase = build(:book_purchase)
 
       expect(user.subscription).to be_nil
@@ -29,7 +29,7 @@ describe SubscriptionFulfillment do
     it 'assigns a mentor on creation' do
       create_mentors
       mentor = User.mentors.first
-      user = create(:user)
+      user = create(:user, :with_github)
       purchase = build(:plan_purchase, user: user, mentor_id: mentor.id)
 
       expect(user.subscription).to be_nil

@@ -584,7 +584,12 @@ describe Purchase, 'given a purchaser' do
     it 'creates a user when saved with a password' do
       create_mentors
       plan = create(:plan)
-      purchase = build(:purchase, purchaseable: plan, user: nil)
+      purchase = build(
+        :purchase,
+        purchaseable: plan,
+        user: nil,
+        github_usernames: ['cpytel']
+      )
       purchase.password = 'test'
 
       purchase.save!

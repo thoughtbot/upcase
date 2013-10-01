@@ -7,7 +7,7 @@ describe GithubFulfillmentJob do
     client = stub_octokit
     client.stubs(:add_team_member => nil)
 
-    GithubFulfillmentJob.new(3, ['gabebw', 'cpytel'], 1).perform
+    GithubFulfillmentJob.new(3, ['gabebw', 'cpytel']).perform
 
     client.should have_received(:add_team_member).with(3, 'gabebw')
     client.should have_received(:add_team_member).with(3, 'cpytel')
@@ -24,6 +24,20 @@ describe GithubFulfillmentJob do
 
       PurchaseMailer.should have_received(:fulfillment_error).
         with(instance_of(Purchase), 'gabebw')
+    end
+
+    it "sends no email when #{error_class} is raised with no purchase" do
+      client = stub_octokit
+      client.stubs(:add_team_member).raises(error_class)
+      PurchaseMailer.stubs(fulfillment_error: stub("deliver", deliver: true))
+
+      GithubFulfillmentJob.new(3, ['gabebw']).perform
+
+      expect(PurchaseMailer).to(
+        have_received(:fulfillment_error).
+          with(instance_of(Purchase), 'gabebw').
+          never
+      )
     end
 
     it "notifies Airbrake when #{error_class} is raised" do

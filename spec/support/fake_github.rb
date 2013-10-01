@@ -8,6 +8,12 @@ class FakeGithub < Sinatra::Base
     {}.to_json
   end
 
+  delete '/teams/:team_id/members/:id' do
+    content_type :json
+
+    {}.to_json
+  end
+
   get '/teams/:team_id/members/:id' do
     content_type :json
 
