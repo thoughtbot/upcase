@@ -39,10 +39,6 @@ module NavigationHelpers
       admin_path
     when /the new admin page/
       "/new_admin"
-    when /the freshbooks invoice page for "([^\"]+)" on "([^\"]+)"/
-      workshop = Workshop.find_by_name!($2)
-      registration = workshop.registrations.find_by_email($1)
-      registration.freshbooks_invoice_url
     when /the product page for "([^\"]+)" with the "([^\"]+)" alternative for the "([^\"]+)" experiment/
       product = Product.find_by_name!($1)
       product_url(product, $3 => $2)

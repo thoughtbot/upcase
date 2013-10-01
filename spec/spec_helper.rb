@@ -13,8 +13,6 @@ WebMock.disable_net_connect!(:allow_localhost => true)
 
 Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
 
-FakeFreshbooks.reset!
-ShamRack.mount(FakeFreshbooks.new, FRESHBOOKS_PATH, 443)
 FakeStripeRunner.boot
 FakeMailchimpRunner.boot
 Paperclip.processor(:id3)
