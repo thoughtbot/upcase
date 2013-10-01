@@ -11,9 +11,8 @@ module TopicsHelper
 
   def resource_classes(resource)
     classes = ['resource']
-    if learn_resource?(resource['uri'])
-      classes << 'learn-resource'
-    end
+    classes << 'learn-resource' if learn_resource?(resource['uri'])
+    classes << resource_type(resource['uri'])
     classes.join(' ')
   end
 
@@ -23,5 +22,9 @@ module TopicsHelper
     if uri.present?
       Addressable::URI.parse(uri).host == 'learn.thoughtbot.com'
     end
+  end
+
+  def resource_type(uri)
+    'workshop'
   end
 end

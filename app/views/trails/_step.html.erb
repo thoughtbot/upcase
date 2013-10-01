@@ -5,13 +5,13 @@
     <h2><%= step['name'] %></h2>
   <% end %>
   <% if step['resources'].present? %>
-    <h3><%= t '.resources' %></h3>
+    <h3>Use these resources to supplement thoughtbot's workshops</h3>
     <ul>
       <%= render partial: 'trails/resource', collection: step['resources'] %>
     </ul>
   <% end %>
   <% if step['validations'].present? %>
-    <h3><%= t '.validations' %></h3>
+    <h3><%= step['name'] %> developers should be able to</h3>
     <ul>
       <%= render partial: 'trails/validation', collection: step['validations'] %>
     </ul>

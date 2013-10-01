@@ -12,71 +12,85 @@
   }
 }
 
-.related-products {
-  li {
-    width: 100%;
-    float: none;
-    margin: 0 0 1.5rem;
+.related-products li, .trail-map-steps .learn-resource {
+  width: 100%;
+  float: none;
+  margin: 0 0 1.5rem;
 
-    &.prime h4 {
-      color: $darkwarmgray;
-      font-family: $sans-serif;
-      font-style: normal;
-      font-weight: bold;
-      text-shadow: 0 1px 0 #fff;
-    }
+  &.prime h4 {
+    color: $darkwarmgray;
+    font-family: $sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #fff;
+  }
 
-    &.prime .icon {
-      background: #fff;
-      box-shadow: inset 0 -1px 0 #ccc, 0 1px 0 #ccc;
-      color: $learnred;
-      font-size: 28px;
-      line-height: 38px;
-    }
+  &.prime .icon {
+    background: #fff;
+    box-shadow: inset 0 -1px 0 #ccc, 0 1px 0 #ccc;
+    color: $learnred;
+    font-size: 28px;
+    line-height: 38px;
+  }
 
-    &.workshop .icon::after {
-      content: "\2692";
-      font-size: 38px;
-      position: relative;
-      top: 1px;
-    }
+  &.workshop .icon::after {
+    content: "\2692";
+    font-size: 38px;
+    position: relative;
+    top: 1px;
+  }
 
-    &.video .icon::after {
-      content: "\25B6";
-      font-size: 43px;
-      left: 11px;
-      position: absolute;
-      top: 1px;
-    }
+  &.video .icon::after {
+    content: "\25B6";
+    font-size: 43px;
+    left: 11px;
+    position: absolute;
+    top: 1px;
+  }
 
-    &.book .icon::after {
-      content: "\1F4D5";
-      font-size: 36px;
-    }
+  &.book .icon::after {
+    content: "\1F4D5";
+    font-size: 36px;
+  }
 
-    a {
-      display: block;
-    }
+  a {
+    display: block;
+  }
 
-    hgroup h5, hgroup h4 {
-      margin: 0;
-    }
+  hgroup h5, hgroup h4 {
+    margin: 0;
+  }
 
-    .icon {
-      background: $learnred;
-      border-radius: 34px;
-      box-shadow: inset 0 -1px 0 $learndarkred, 0 1px 0 $learndarkred;
-      color: white;
-      display: block;
-      float: left;
-      font-family: "entypo";
-      font-size: 38px;
-      font-style: normal;
-      height: 34px;
-      line-height: 0.9em;
-      text-align: center;
-      @include transition;
-      width: 34px;
-    }
+  .icon {
+    background: $learnred;
+    border-radius: 34px;
+    box-shadow: inset 0 -1px 0 $learndarkred, 0 1px 0 $learndarkred;
+    color: white;
+    display: block;
+    float: left;
+    font-family: "entypo";
+    font-size: 38px;
+    font-style: normal;
+    height: 34px;
+    line-height: 0.9em;
+    text-align: center;
+    @include transition;
+    width: 34px;
+  }
+}
+
+.trail-map-steps .learn-resource {
+  &.video .icon::after {
+    left: 4px;
+  }
+
+  .icon {
+    background: none;
+    box-shadow: none;
+    color: $learnred;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    @include position(absolute, .75rem 0 0 .75rem);
+    width: 1.5rem;
   }
 }
