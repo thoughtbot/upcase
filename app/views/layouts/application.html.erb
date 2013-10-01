@@ -16,7 +16,7 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+    <%= render 'shared/stripe' %>
   </head>
   <body class="<%= body_class %> <%= yield(:additional_body_classes) %>">
     <%= render 'shared/header' %>

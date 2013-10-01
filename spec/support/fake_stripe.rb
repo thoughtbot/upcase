@@ -11,6 +11,12 @@ class FakeStripe < Sinatra::Base
     :customer_plan_id, :last_coupon_used
   cattr_accessor :failure
 
+  get '/v1/tokens' do
+    content_type 'application/javascript'
+
+    "#{params[:callback]}(#{token.to_json}, 201)"
+  end
+
   get '/v1/plans/:id' do
     content_type :json
 
@@ -200,6 +206,12 @@ class FakeStripe < Sinatra::Base
         code: "incorrect_number"
       }
       }.to_json
+    elsif params[:stripe_token].blank? && params[:card].blank?
+      status 400
+      {
+        type: "invalid_request_error",
+        message: "Empty string given for card."
+      }
     else
       '{}'
     end
@@ -366,6 +378,35 @@ class FakeStripe < Sinatra::Base
       trial_end: nil,
       canceled_at: nil,
       quantity: 1
+    }
+  end
+
+  def token
+    {
+      id: "tok_2Z5RT715my6jQ7",
+      livemode: false,
+      created: 1379081368,
+      used: false,
+      object: "token",
+      type: "card",
+      card: {
+        id: "card_2NCtCAVwvnMUUs",
+        object: "card",
+        last4: "4242",
+        type: "Visa",
+        exp_month: 3,
+        exp_year: 2014,
+        fingerprint: "61N1s4XuvJOoLAnb",
+        customer: CUSTOMER_ID,
+        country: "US",
+        name: nil,
+        address_line1: nil,
+        address_line2: nil,
+        address_city: nil,
+        address_state: nil,
+        address_zip: nil,
+        address_country: nil
+      }
     }
   end
 end

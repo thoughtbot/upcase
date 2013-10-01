@@ -39,36 +39,3 @@
     </ol>
   <% end %>
 </aside>
-
-<% content_for :javascript do -%>
-  <script type="text/javascript" charset="utf-8">
-    Stripe.setPublishableKey('<%= STRIPE_PUBLIC_KEY %>');
-
-    stripeResponseHandler = function(status, response){
-      if (response.error) {
-        $('fieldset.actions input').removeAttr('disabled');
-        $('.subscription-errors').html(response.error.message);
-      } else {
-        $form = $('form.subscription');
-        token = response['id'];
-        $form.append("<input type='hidden' name='stripe_token' value='" + token + "' />");
-        $form.get(0).submit();
-      }
-    }
-
-    $(document).ready(function() {
-      $('form.subscription').submit(function(event){
-        $form = $(this);
-        $form.find('fieldset.actions input').prop('disabled', true);
-        Stripe.createToken({
-          number:    $('.card-number').val(),
-          cvc:       $('.card-cvc').val(),
-          exp_month: $('.card-expiry-month').val(),
-          exp_year:  $('.card-expiry-year').val()
-        }, stripeResponseHandler);
-
-        return false;
-      });
-    });
-  </script>
-<% end %>
