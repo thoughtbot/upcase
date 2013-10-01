@@ -135,19 +135,11 @@ body.topics-show {
     padding: .75rem 1rem .75rem 3rem;
     position: relative;
 
-    &.learn-resource:not(.complete) {
-      background: rgba(255, 255, 0, .2);
-
-      .trail-bullet {
-        background-color: #fff;
-      }
-    }
-
     &:last-child {
       border-bottom: 0;
     }
 
-    &.complete {
+    &.validation.complete {
       background: lighten($journey-line-color, 8%);
       color: darken($journey-line-color, 30%);
 
@@ -230,3 +222,101 @@ body.topics-show aside {
   }
 }
 
+.bytes .subscription_icon {
+  display: none;
+}
+
+.related-topics {
+  span:after {
+    content: ', ';
+  }
+
+  span:last-of-type:after {
+    content: '';
+  }
+
+  li {
+    width: 100%;
+    float: none;
+    margin: 0 0 1.5rem;
+
+    a {
+      display: block;
+    }
+
+    hgroup h5, hgroup h4 {
+      margin: 0;
+    }
+  }
+}
+
+.related-products li, .trail-map-steps .learn li {
+  &.prime h4 {
+    color: $darkwarmgray;
+    font-family: $sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #fff;
+  }
+
+  &.prime .icon {
+    background: #fff;
+    box-shadow: inset 0 -1px 0 #ccc, 0 1px 0 #ccc;
+    color: $learnred;
+    font-size: 28px;
+    line-height: 38px;
+  }
+
+  &.workshop .icon::after {
+    content: "\2692";
+    font-size: 38px;
+    position: relative;
+    top: 1px;
+  }
+
+  &.video .icon::after, &.screencast .icon::after {
+    content: "\25B6";
+    font-size: 43px;
+    left: 11px;
+    position: absolute;
+    top: 1px;
+  }
+
+  &.book .icon::after {
+    content: "\1F4D5";
+    font-size: 36px;
+  }
+
+  .icon {
+    background: $learnred;
+    border-radius: 34px;
+    box-shadow: inset 0 -1px 0 $learndarkred, 0 1px 0 $learndarkred;
+    color: white;
+    display: block;
+    float: left;
+    font-family: "entypo";
+    font-size: 38px;
+    font-style: normal;
+    height: 34px;
+    line-height: 0.9em;
+    text-align: center;
+    @include transition;
+    width: 34px;
+  }
+}
+
+.trail-map-steps .learn li {
+  &.screencast .icon::after {
+    left: 4px;
+  }
+
+  .icon {
+    background: none;
+    box-shadow: none;
+    color: $learnred;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    @include position(absolute, .75rem 0 0 .75rem);
+    width: 1.5rem;
+  }
+}

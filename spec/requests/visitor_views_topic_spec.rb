@@ -47,19 +47,31 @@ feature 'Topic pages' do
     expect_page_to_have_title("Learn #{topic.name}")
   end
 
-  scenario 'a topic has thoughtbot trail items highlighted' do
-    fake_trail_map = FakeTrailMap.new
-    fake_trail_map.resource_uri = 'http://learn.thoughtbot.com/workshops/1'
+  scenario 'a topic has thoughtbot trail items listed separately' do
+    fake_trail_map = FakeTrailMap.new(thoughtbot_resource: true)
     learn_trail = create(:trail, trail_map: fake_trail_map.trail)
-    other_trail = create(:trail, trail_map: FakeTrailMap.new.trail)
 
     visit topic_path(learn_trail.topic)
 
-    expect_to_have_learn_resource_highlight(fake_trail_map.resource_id)
+    expect_to_have_learn_resource(fake_trail_map.resource_id)
+  end
 
-    visit topic_path(other_trail.topic)
+  scenario 'a topic has non-thoughtbot trail items listed under other resources' do
+    fake_trail_map = FakeTrailMap.new
+    learn_trail = create(:trail, trail_map: fake_trail_map.trail)
 
-    expect_not_to_have_learn_resource_highlight(fake_trail_map.resource_id)
+    visit topic_path(learn_trail.topic)
+
+    expect_to_have_non_learn_resource(fake_trail_map.resource_id)
+  end
+
+  scenario "a topic lists the trail map's reference" do
+    fake_trail_map = FakeTrailMap.new
+    learn_trail = create(:trail, trail_map: fake_trail_map.trail)
+
+    visit topic_path(learn_trail.topic)
+
+    expect_to_have_reference(fake_trail_map.reference_id)
   end
 
   scenario "view a topic's related products" do
@@ -143,15 +155,22 @@ feature 'Topic pages' do
     end
   end
 
-  def expect_to_have_learn_resource_highlight(resource_id)
+  def expect_to_have_learn_resource(resource_id)
     expect(page).
-      to have_css(".resource.learn-resource[data-id='#{resource_id}']")
+      to have_css("ul.learn .resource[data-id='#{resource_id}']")
+    expect(page).
+      not_to have_css("ul.other .resource[data-id='#{resource_id}']")
   end
 
-  def expect_not_to_have_learn_resource_highlight(resource_id)
+  def expect_to_have_non_learn_resource(resource_id)
     expect(page).
-      not_to have_css(".resource.learn-resource[data-id='#{resource_id}']")
+      not_to have_css("ul.learn .resource[data-id='#{resource_id}']")
     expect(page).
-      to have_css(".resource[data-id='#{resource_id}']")
+      to have_css("ul.other .resource[data-id='#{resource_id}']")
+  end
+
+  def expect_to_have_reference(reference_id)
+    expect(page).
+      to have_css("ul.reference li[data-id='#{reference_id}']")
   end
 end
