@@ -28,10 +28,10 @@ class Purchase < ActiveRecord::Base
   before_create :place_payment
   before_create :set_as_paid, if: :free?
 
+  after_save :save_info_to_user, if: :user
   after_save :fulfill, if: :being_paid?
   after_save :send_receipt, if: :being_paid?
   after_save :update_user_payment_info, if: :being_paid?
-  after_save :save_info_to_user, if: :user
 
   delegate :name,
     :sku,

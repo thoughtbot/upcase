@@ -80,7 +80,7 @@ describe PurchasesController do
   describe 'creating a subscription' do
     it 'sends a message to the notifier' do
       create_mentors
-      stub_current_user_with(create(:user))
+      stub_current_user_with(create(:user, :with_github))
       plan = create(:plan)
       notifier = stub('notifier', :notify_of_purchase)
       KissmetricsEventNotifier.stubs(:new).returns(notifier)
@@ -89,24 +89,24 @@ describe PurchasesController do
 
       notifier.should have_received(:notify_of_purchase).with(assigns(:purchase))
     end
+  end
 
-    it 'saves a comment for section purchase' do
-      stub_current_user_with(create(:user))
-      product = create(:product)
+  it 'saves a comment for section purchase' do
+    stub_current_user_with(create(:user))
+    product = create(:product)
 
-      post :create, purchase: customer_params.merge(comments: 'test-comment'), product_id: product
+    post :create, purchase: customer_params.merge(comments: 'test-comment'), product_id: product
 
-      assigns(:purchase).comments.should == 'test-comment'
-    end
+    assigns(:purchase).comments.should == 'test-comment'
+  end
 
-    it 'sets flash[:purchase_paid_price]' do
-      stub_current_user_with(create(:user))
-      product = create(:product)
+  it 'sets flash[:purchase_paid_price]' do
+    stub_current_user_with(create(:user))
+    product = create(:product)
 
-      post :create, purchase: customer_params, product_id: product
+    post :create, purchase: customer_params, product_id: product
 
-      flash[:purchase_paid_price].should eq product.individual_price
-    end
+    flash[:purchase_paid_price].should eq product.individual_price
   end
 
   describe "processing on paypal" do

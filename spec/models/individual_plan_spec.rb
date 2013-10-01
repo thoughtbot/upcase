@@ -124,7 +124,7 @@ describe IndividualPlan do
   describe 'purchase_for' do
     it 'returns the purchase when a user has purchased the plan' do
       create_mentors
-      user = create(:user)
+      user = create(:user, :with_github)
       purchase = create(:plan_purchase, user: user)
       plan = purchase.purchaseable
 
@@ -133,7 +133,7 @@ describe IndividualPlan do
 
     it 'returns nil when a user has not purchased the plan' do
       create_mentors
-      user = create(:user)
+      user = create(:user, :with_github)
       purchase = create(:plan_purchase)
       plan = purchase.purchaseable
 

@@ -218,7 +218,7 @@ FactoryGirl.define do
 
     factory :plan_purchase do
       association :purchaseable, factory: :plan
-      user
+      association :user, :with_stripe, :with_mentor, :with_github
     end
   end
 
@@ -310,7 +310,6 @@ FactoryGirl.define do
     end
 
     trait :with_github do
-      email 'user@example.com'
       github_username 'thoughtbot'
       auth_provider 'github'
       auth_uid 1
@@ -337,14 +336,10 @@ FactoryGirl.define do
 
   factory :subscription, aliases: [:active_subscription] do
     association :plan
-    association :user, :with_stripe, :with_mentor
+    association :user, :with_stripe, :with_mentor, :with_github
 
     factory :inactive_subscription do
       deactivated_on Time.zone.today
-    end
-
-    trait :with_github do
-      association :user, :with_github, :with_stripe, :with_mentor
     end
   end
 

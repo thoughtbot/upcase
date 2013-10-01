@@ -4,7 +4,7 @@ class GithubFulfillmentJob < Struct.new(:github_team, :usernames, :purchase_id)
   PRIORITY = 1
   API_SLEEP_TIME = 0.2
 
-  def self.enqueue(github_team, usernames, purchase_id)
+  def self.enqueue(github_team, usernames, purchase_id=nil)
     Delayed::Job.enqueue(new(github_team, usernames, purchase_id))
   end
 
@@ -22,9 +22,15 @@ class GithubFulfillmentJob < Struct.new(:github_team, :usernames, :purchase_id)
   private
 
   def report_error(e, username)
-    purchase = Purchase.find(purchase_id)
-    PurchaseMailer.fulfillment_error(purchase, username).deliver
+    email_purchaser(username)
     Airbrake.notify(e)
+  end
+
+  def email_purchaser(username)
+    if purchase_id
+      purchase = Purchase.find(purchase_id)
+      PurchaseMailer.fulfillment_error(purchase, username).deliver
+    end
   end
 
   def github_client
