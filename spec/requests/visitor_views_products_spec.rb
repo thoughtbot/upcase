@@ -8,9 +8,9 @@ feature 'The products index' do
 
     visit products_path
 
-    expect(page).to have_content('Workshops')
-    expect(page).to have_content('Screencasts')
-    expect(page).to have_content('Books')
+    expect(page).to have_content('workshops')
+    expect(page).to have_content('screencasts')
+    expect(page).to have_content('books')
     within('.workshops') do
       expect(page).to have_content(workshop.name)
     end
