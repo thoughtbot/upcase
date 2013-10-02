@@ -111,7 +111,9 @@ Workshops::Application.routes.draw do
   get '/directions' => "pages#show", as: :directions, id: "directions"
   get '/group-training' => "pages#show", as: :group_training, id: "group-training"
   get '/humans-present/oss' => "pages#show", as: :humans_present_oss, id: "humans-present-oss"
-  get '/backbone-js-on-rails' => redirect("/products/1-backbone-js-on-rails")
+  get '/backbone-js-on-rails' => redirect('/products/1-backbone-js-on-rails')
+  get '/geocoding-on-rails' => redirect('/products/22-geocoding-on-rails')
+  get '/geocodingonrails' => redirect('/products/22-geocoding-on-rails')
   get '/5by5' => redirect('/workshops/19-design-for-developers?utm_source=5by5')
   get '/rubyist-booster-shot' => "pages#show", as: :rubyist_booster_shot, id: "rubyist-booster-shot"
 
