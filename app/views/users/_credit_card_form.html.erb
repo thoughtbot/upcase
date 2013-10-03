@@ -1,5 +1,5 @@
 <div class='text-box'>
-  <%= semantic_form_for current_user, url: credit_card_path do |form| %>
+  <%= semantic_form_for current_user, url: credit_card_path, html: { class: 'credit_card' } do |form| %>
     <%= form.inputs "Your Billing Info", id: 'billing-information' do %>
       <li class="subscription-errors"></li>
       <li id="purchase_cc_input" class="stripe">
@@ -22,3 +22,36 @@
     <% end %>
   <% end %>
 </div>
+
+<% content_for :javascript do -%>
+  <script type="text/javascript" charset="utf-8">
+    Stripe.setPublishableKey('<%= STRIPE_PUBLIC_KEY %>');
+
+    stripeResponseHandler = function(status, response){
+      if (response.error) {
+        $('fieldset.actions input').removeAttr('disabled');
+        $('.subscription-errors').html(response.error.message);
+      } else {
+        $form = $('form.credit_card');
+        token = response['id'];
+        $form.append("<input type='hidden' name='stripe_token' value='" + token + "' />");
+        $form.get(0).submit();
+      }
+    }
+
+    $(document).ready(function() {
+      $('form.credit_card').submit(function(event){
+        $form = $(this);
+        $form.find('fieldset.actions input').prop('disabled', true);
+        Stripe.createToken({
+          number:    $('.card-number').val(),
+          cvc:       $('.card-cvc').val(),
+          exp_month: $('.card-expiry-month').val(),
+          exp_year:  $('.card-expiry-year').val()
+        }, stripeResponseHandler);
+
+        return false;
+      });
+    });
+  </script>
+<% end %>
