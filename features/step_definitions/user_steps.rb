@@ -6,11 +6,21 @@ Given /^I have (\d+) paid purchases$/ do |count|
   end
 end
 
+Given /^I have a prime subscription$/ do
+  step 'github is stubbed'
+
+  user = User.last
+  user.update_attributes(github_username: 'thoughtbot')
+  mentor = create(:user)
+
+  create(:plan_purchase, user: user, mentor_id: mentor.id)
+end
+
 Then /^I should see the edit account form$/ do
   page.should have_selector('form.formtastic.user')
 end
 
-Then /^I should see my (\d+) (workshops|purchases)$/ do |count, type|
+Then /^I should see my (\d+) (workshops|purchases|subscription)$/ do |count, type|
   page.should have_css("ol.#{type} li", count: count.to_i)
 end
 

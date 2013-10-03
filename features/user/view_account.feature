@@ -3,11 +3,14 @@ Feature: Viewing my own account information
   Scenario: View my account information
     Given I have signed up with "user@example.com"
     And I have 3 paid purchases
+    And I have a prime subscription
     When I sign in with "user@example.com"
     And I visit my profile
     Then I should see the edit account form
     And I should see "Your purchases"
     And I should see my 3 purchases
+    And I should see "Your subscription"
+    And I should see my 1 subscription
 
   Scenario: View my account information with no purchases or workshops
     Given I have signed up with "user@example.com"

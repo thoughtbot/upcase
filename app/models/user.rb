@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
     paid_purchases.where(payment_method: 'subscription')
   end
 
+  def paid_products
+    paid_purchases.where("purchaseable_type != 'IndividualPlan'")
+  end
+
   def promote_thoughtbot_employee_to_admin
     client = Octokit::Client.new(login: GITHUB_USER, password: GITHUB_PASSWORD)
     if client.team_member?(THOUGHTBOT_TEAM_ID, github_username)
