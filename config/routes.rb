@@ -111,6 +111,7 @@ Workshops::Application.routes.draw do
   get '/directions' => "pages#show", as: :directions, id: "directions"
   get '/group-training' => "pages#show", as: :group_training, id: "group-training"
   get '/humans-present/oss' => "pages#show", as: :humans_present_oss, id: "humans-present-oss"
+  get '/backbone.js' => redirect('/backbone')
   get '/backbone-js-on-rails' => redirect('/products/1-backbone-js-on-rails')
   get '/geocoding-on-rails' => redirect('/products/22-geocoding-on-rails')
   get '/geocodingonrails' => redirect('/products/22-geocoding-on-rails')
