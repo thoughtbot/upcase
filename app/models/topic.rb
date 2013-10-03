@@ -30,12 +30,6 @@ class Topic < ActiveRecord::Base
     where(featured: true)
   end
 
-  def self.import_trail_maps
-    featured.find_each do |topic|
-      topic.import_trail_map
-    end
-  end
-
   def self.meta_keywords
     pluck(:name).join(', ')
   end
@@ -46,12 +40,6 @@ class Topic < ActiveRecord::Base
 
   def related
     @related ||= Related.new(self)
-  end
-
-  def import_trail_map
-    if trail
-      trail.import
-    end
   end
 
   private
