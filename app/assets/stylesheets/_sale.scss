@@ -42,7 +42,7 @@
     .desc {
       background: none;
       border: 0;
-      @include box-shadow(none);
+      box-shadow: none;
       height: auto;
       padding-top: 43px;
 

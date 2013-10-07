@@ -193,7 +193,7 @@ form {
 
         select {
           border: 1px solid darken($warmgray, 5%);
-          @include box-shadow(none);
+          box-shadow: none;
           @include box-sizing(border-box);
           float: left;
           font: 1rem $sans-serif;
