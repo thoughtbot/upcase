@@ -14,7 +14,9 @@ class Video < ActiveRecord::Base
   end
 
   def video_sizes
-    @video_sizes ||= wistia_hash["assets"].inject({}){|result, asset| result.merge(asset["type"]=>human_file_size(asset['fileSize']))}
+    @video_sizes ||= wistia_hash['assets'].inject({}) do |result, asset|
+      result.merge(asset['type'] => human_file_size(asset['fileSize']))
+    end
   rescue
     {}
   end
