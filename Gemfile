@@ -54,6 +54,7 @@ gem 'ruby-mp3info', "~> 0.8"
 gem 'gibbon', '0.4.6'
 gem 'tumblr-rb', git: 'https://github.com/thoughtbot/tumblr'
 gem 'sprockets-redirect', github: 'arunagw/sprockets-redirect', branch: 'aa-rails4'
+gem 'unicorn'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -62,7 +63,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '1.3.0'
 
 group :development do
-  gem 'thin', '1.3.1'
   gem 'hirb', '0.6.2'
 end
 
@@ -78,7 +78,6 @@ group :production, :staging do
   gem 'dalli', '2.1.0'
   gem 'newrelic_rpm'
   gem 'rack-cache', '1.2'
-  gem 'unicorn'
   gem 'rails_12factor'
 end
 
