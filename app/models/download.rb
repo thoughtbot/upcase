@@ -11,8 +11,9 @@ class Download < ActiveRecord::Base
     "#{download_file_name} (#{helpers.number_to_human_size(download_file_size)})"
   end
 
+  private
+
   def helpers
     ActionController::Base.helpers
   end
-
 end
