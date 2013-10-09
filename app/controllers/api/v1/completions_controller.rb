@@ -1,8 +1,6 @@
 class Api::V1::CompletionsController < ApiController
   doorkeeper_for :all, if: lambda { !signed_in? }
 
-  respond_to :json
-
   def index
     respond_with current_resource_owner.completions.only_trail_object_ids
   end
@@ -33,6 +31,6 @@ class Api::V1::CompletionsController < ApiController
   end
 
   def current_resource_owner
-    current_user || User.find(doorkeeper_token.resource_owner_id)
+    current_user || resource_owner
   end
 end

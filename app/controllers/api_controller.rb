@@ -1,3 +1,11 @@
 class ApiController < ApplicationController
-  skip_before_filter :verify_authenticity_token
+  protect_from_forgery with: :null_session
+
+  respond_to :json
+
+  private
+
+  def resource_owner
+    User.find(doorkeeper_token.resource_owner_id)
+  end
 end
