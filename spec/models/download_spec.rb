@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Download do
 
-  it 
   describe '.display_name' do
     it 'display name with file name and size' do
       download = build_stubbed(:download,
