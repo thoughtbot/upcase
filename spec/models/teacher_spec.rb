@@ -10,4 +10,12 @@ describe Teacher do
       subject.should == [albert, bob]
     end
   end
+
+  describe "#image_name" do
+    it 'returns image name in proper format' do
+      teacher = build_stubbed(:teacher, name: 'Arun Agrawal')
+
+      expect(teacher.image_name).to eq('aagrawal')
+    end
+  end
 end
