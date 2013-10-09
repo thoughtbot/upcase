@@ -101,6 +101,10 @@ class User < ActiveRecord::Base
     subscription.present? && subscription.active?
   end
 
+  def subscribed_at
+    subscription.try(:created_at)
+  end
+
   def has_conflict?(desired_purchaseable)
     if desired_purchaseable.is_a?(Section)
       purchases = paid_purchases.where(purchaseable_type: 'Section')
