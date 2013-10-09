@@ -21,7 +21,7 @@ describe Purchase do
     purchase.price.should eq 200
   end
 
-  describe 'self.paid' do
+  describe '.paid' do
     it 'returns paid purchases' do
       paid = create(:purchase)
       unpaid = create(:unpaid_purchase)
@@ -29,7 +29,7 @@ describe Purchase do
     end
   end
 
-  describe 'self.within_range' do
+  describe '.within_range' do
     it 'returns paid purchases from the given period' do
       outside = create(:purchase, created_at: 40.days.ago)
       unpaid = create(:unpaid_purchase, created_at: 7.days.ago)
@@ -42,7 +42,7 @@ describe Purchase do
     end
   end
 
-  describe 'self.total_sales_within_range' do
+  describe '.total_sales_within_range' do
     it 'returns the sum of the paid purchases from the given period' do
       product = create(:product, individual_price: 10)
       outside = create(:purchase, created_at: 40.days.ago, purchaseable: product)
@@ -193,7 +193,7 @@ describe Purchase, 'with stripe and a bad card' do
   end
 end
 
-describe Purchase, 'refund' do
+describe Purchase, '#refund' do
   it 'sets the purchase as unpaid' do
     purchase = create(:paid_purchase)
 
@@ -599,7 +599,7 @@ describe Purchase, 'given a purchaser' do
   end
 end
 
-describe Purchase, 'starts_on' do
+describe Purchase, '#starts_on' do
   it "gets the starts_on from it's purchaseable and it's own created_at" do
     created_at = 1.day.ago
     product = build(:product)
@@ -612,7 +612,7 @@ describe Purchase, 'starts_on' do
   end
 end
 
-describe Purchase, 'ends_on' do
+describe Purchase, '#ends_on' do
   it "gets the starts_on from it's purchaseable and it's own created_at" do
     created_at = 1.day.ago
     product = build(:product)
@@ -625,7 +625,7 @@ describe Purchase, 'ends_on' do
   end
 end
 
-describe Purchase, 'active?' do
+describe Purchase, '#active?' do
   it "is true when today is between start and end" do
     product = build(:product)
     product.stubs(starts_on: Date.yesterday, ends_on: 4.days.from_now.to_date)
@@ -653,7 +653,7 @@ describe Purchase, '.of_sections' do
   end
 end
 
-describe Purchase, 'date_of_last_workshop_purchase' do
+describe Purchase, '.date_of_last_workshop_purchase' do
   it 'returns the date of the most-recent workshop purchase' do
     expect(Purchase.date_of_last_workshop_purchase).to be_nil
 
@@ -665,7 +665,7 @@ describe Purchase, 'date_of_last_workshop_purchase' do
   end
 end
 
-describe Purchase, 'within_30_days' do
+describe Purchase, '.within_30_days' do
   it 'returns Purchases made within the last 30 days' do
     Timecop.freeze Time.now do
       create(:purchase, created_at: 30.days.ago, name: 'within range')
