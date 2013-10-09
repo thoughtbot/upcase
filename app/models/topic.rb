@@ -1,18 +1,14 @@
 class Topic < ActiveRecord::Base
   # Associations
-  has_many :articles, through: :classifications, source: :classifiable,
-    source_type: 'Article'
-  has_many :bytes, through: :classifications, source: :classifiable,
-    source_type: 'Byte'
   has_many :classifications
-  has_many :workshops, through: :classifications, source: :classifiable,
-    source_type: 'Workshop'
-  has_many :episodes, through: :classifications, source: :classifiable,
-    source_type: 'Episode'
-  has_many :products, through: :classifications, source: :classifiable,
-    source_type: 'Product'
-  has_many :topics, through: :classifications, source: :classifiable,
-    source_type: 'Topic'
+  with_options(through: :classifications, source: :classifiable) do |options|
+    options.has_many :articles, source_type: 'Article'
+    options.has_many :bytes, source_type: 'Byte'
+    options.has_many :episodes, source_type: 'Episode'
+    options.has_many :products, source_type: 'Product'
+    options.has_many :topics, source_type: 'Topic'
+    options.has_many :workshops, source_type: 'Workshop'
+  end
   has_one :trail
 
   # Validations
