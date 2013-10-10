@@ -81,6 +81,20 @@ describe User do
     end
   end
 
+  describe '#subscribed_at' do
+    it 'returns the date the user subscribed if the user has a subscription' do
+      user = create(:user, :with_subscription)
+
+      expect(user.subscribed_at).to eq user.subscription.created_at
+    end
+
+    it 'returns nil when the user does not have a subscription' do
+      user = create(:user)
+
+      expect(user.subscribed_at).to be_nil
+    end
+  end
+
   context "when there are previous purchases" do
     let(:email) { "newuser@example.com" }
 
