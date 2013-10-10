@@ -1,7 +1,7 @@
 class PurchasesController < ApplicationController
   def new
-    if current_user_purchase_is_free?
-      redirect_to_subscriber_purchase_or_default(dashboard_path)
+    if current_user_purchase_is_free? || user_wants_to_take_a_workshop?
+      redirect_to_purchase_or_subscription_path
     else
       @purchase = build_purchase_with_defaults
     end
@@ -45,6 +45,23 @@ class PurchasesController < ApplicationController
 
   private
 
+  def current_user_purchase_is_free?
+    current_user_has_active_subscription? &&
+      (plan_purchase? || included_in_subscription?)
+  end
+
+  def user_wants_to_take_a_workshop?
+    params[:section_id].present?
+  end
+
+  def redirect_to_purchase_or_subscription_path
+    if current_user_purchase_is_free?
+      redirect_to_subscriber_purchase_or_default(dashboard_path)
+    else
+      redirect_to new_subscription_path
+    end
+  end
+
   def redirect_to_subscriber_purchase_or_default(default_path)
     if plan_purchase?
       flash[:error] = I18n.t('subscriber_purchase.flashes.error')
@@ -52,11 +69,6 @@ class PurchasesController < ApplicationController
     else
       redirect_to subscriber_purchase_url
     end
-  end
-
-  def current_user_purchase_is_free?
-    current_user_has_active_subscription? &&
-      (plan_purchase? || included_in_subscription?)
   end
 
   def included_in_subscription?
