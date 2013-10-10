@@ -65,6 +65,18 @@ describe PurchasesController do
     end
   end
 
+  describe '#new when attempting to purchase a workshop' do
+    it 'redirects to the subscription page' do
+      user = create(:user)
+      section = create(:section)
+      stub_current_user_with(user)
+
+      get :new, section_id: section.id
+
+      expect(response).to redirect_to new_subscription_path
+    end
+  end
+
   describe 'processing on stripe' do
     it 'creates and saves a stripe customer and charges it for the product' do
       stub_current_user_with(create(:user))
