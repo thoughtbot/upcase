@@ -51,6 +51,10 @@ class User < ActiveRecord::Base
     where(id: user_id).first || mentors.sample
   end
 
+  def mentor_name
+    mentor.try(:name)
+  end
+
   def subscription_purchases
     paid_purchases.where(payment_method: 'subscription')
   end

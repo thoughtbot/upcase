@@ -43,7 +43,8 @@ IntercomRails.config do |config|
     plan: :plan_name,
     has_logged_in_to_forum: :has_logged_in_to_forum?,
     has_active_subscription: :has_active_subscription?,
-    subscribed_at: :subscribed_at
+    subscribed_at: :subscribed_at,
+    mentors_name: :mentor_name
   }
 
   # == User -> Company association

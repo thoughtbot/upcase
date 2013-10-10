@@ -316,6 +316,21 @@ describe User do
     end
   end
 
+  describe '#mentor_name' do
+    it 'returns mentor name if mentor exists' do
+      mentee = build_stubbed(:user, :with_mentor)
+      mentor = mentee.mentor
+
+      expect(mentee.mentor_name).to eq mentor.name
+    end
+
+    it "returns nil if mentor doesn't exitst" do
+      user_without_a_mentor = build(:user)
+
+      expect(user_without_a_mentor.mentor_name).to eq nil
+    end
+  end
+
   describe '.find_or_sample_mentor' do
     it 'returns a mentor for the given id' do
       mentor = create(:user)
