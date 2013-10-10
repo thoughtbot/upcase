@@ -324,7 +324,7 @@ describe User do
       expect(mentee.mentor_name).to eq mentor.name
     end
 
-    it "returns nil if mentor doesn't exitst" do
+    it "returns nil if mentor doesn't exist" do
       user_without_a_mentor = build(:user)
 
       expect(user_without_a_mentor.mentor_name).to eq nil
