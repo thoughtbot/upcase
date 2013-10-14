@@ -1,7 +1,7 @@
 class Step
   include Comparable
 
-  attr_reader :name, :resources, :validations
+  attr_reader :name, :validations
 
   def initialize(step_hash)
     @name = step_hash['name']
@@ -11,5 +11,25 @@ class Step
 
   def <=>(another_step)
     self.name <=> another_step.name
+  end
+
+  def resources
+    @resources.reject do |resource|
+      thoughtbot_resource?(resource)
+    end
+  end
+
+  def thoughtbot_resources
+    @resources.select do |resource|
+      thoughtbot_resource?(resource)
+    end
+  end
+
+  private
+
+  def thoughtbot_resource?(resource)
+    if resource['uri']
+      Addressable::URI.parse(resource['uri']).host == 'learn.thoughtbot.com'
+    end
   end
 end

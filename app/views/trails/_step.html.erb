@@ -1,19 +1,24 @@
 <section class='trail-map-steps' data-name="<%= trail.name %>">
-  <% if step['name'] == 'Ongoing Reference' %>
-    <h2 class="ongoing"><%= step['name'] %></h2>
+  <% if step.name == 'Ongoing Reference' %>
+    <h2 class="ongoing"><%= step.name %></h2>
   <% else %>
-    <h2><%= step['name'] %></h2>
+    <h2><%= step.name %></h2>
   <% end %>
-  <% if step['resources'].present? %>
-    <h3>Use these resources to supplement thoughtbot's workshops</h3>
-    <ul>
-      <%= render partial: 'trails/resource', collection: step['resources'] %>
+  <% if step.thoughtbot_resources.present? %>
+    <ul class="learn">
+      <%= render partial: 'trails/resource', collection: step.thoughtbot_resources %>
     </ul>
   <% end %>
-  <% if step['validations'].present? %>
-    <h3><%= step['name'] %> developers should be able to</h3>
+  <% if step.resources.present? %>
+    <h3>Use these resources to supplement thoughtbot's workshops</h3>
+    <ul class="other">
+      <%= render partial: 'trails/resource', collection: step.resources %>
+    </ul>
+  <% end %>
+  <% if step.validations.present? %>
+    <h3><%= step.name %> developers should be able to</h3>
     <ul>
-      <%= render partial: 'trails/validation', collection: step['validations'] %>
+      <%= render partial: 'trails/validation', collection: step.validations %>
     </ul>
   <% end %>
 </section>

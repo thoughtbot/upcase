@@ -16,11 +16,20 @@ describe Step do
   end
 
   describe '#resources' do
-    it 'returns the step resources array' do
+    it 'returns the step non-thoughtbot resources' do
       step_hash = FakeTrailMap.new.trail['steps'].first
       step = Step.new(step_hash)
 
       expect(step.resources).to eq step_hash['resources']
+    end
+
+    it 'is empty if the step is only thoughtbot resources' do
+      fake_trail_map = FakeTrailMap.new
+      fake_trail_map.resource_uri = 'http://learn.thoughtbot.com/workshops/1'
+      step_hash = fake_trail_map.trail['steps'].first
+      step = Step.new(step_hash)
+
+      expect(step.resources).to be_empty
     end
   end
 
@@ -33,4 +42,22 @@ describe Step do
     end
   end
 
+  describe '#thoughbot_resources' do
+    it 'returns an array of the resources provided by thoughtbot' do
+      fake_trail_map = FakeTrailMap.new
+      fake_trail_map.resource_uri = 'http://learn.thoughtbot.com/workshops/1'
+      step_hash = fake_trail_map.trail['steps'].first
+      step = Step.new(step_hash)
+
+      expect(step.thoughtbot_resources).to eq step_hash['resources']
+    end
+
+    it 'is empty if there are no thoughtbot resources' do
+      fake_trail_map = FakeTrailMap.new
+      step_hash = fake_trail_map.trail['steps'].first
+      step = Step.new(step_hash)
+
+      expect(step.thoughtbot_resources).to be_empty
+    end
+  end
 end
