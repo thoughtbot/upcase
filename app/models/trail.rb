@@ -35,7 +35,9 @@ class Trail < ActiveRecord::Base
   end
 
   def steps
-    trail_map['steps']
+    trail_map['steps'].map do |step_hash|
+      Step.new(step_hash)
+    end
   end
 
   def resources_and_validations

@@ -107,6 +107,16 @@ describe Trail do
     end
   end
 
+  context '#steps' do
+    it 'returns an array of steps' do
+      trail_map = FakeTrailMap.new.trail
+      trail = build(:trail, trail_map: trail_map)
+
+      expect(trail.steps.size).to eq 1
+      expect(trail.steps.first).to eq Step.new(trail_map['steps'].first)
+    end
+  end
+
   context '#resources_and_validations' do
     it 'returns resources and validations for all steps' do
       trail = create(:trail, trail_map: FakeTrailMap.new.trail)
