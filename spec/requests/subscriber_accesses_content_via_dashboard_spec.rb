@@ -1,10 +1,13 @@
 require 'spec_helper'
 
 feature 'Subscriber accesses content' do
+  include Gravatarify::Helper
+
   scenario 'access mentor details' do
     sign_in_as_user_with_subscription
     mentor = @current_user.mentor
-    mentor_image = "#{mentor.first_name.downcase}.png"
+    mentor_image = gravatar_url(mentor.email)
+
     expect(page).to have_content('Your Mentor')
     expect(page).to have_xpath("//img[contains(@src, \"#{mentor_image}\")]")
     expect(page).to have_xpath("//a[contains(@href, \"mailto:#{mentor.email}\")]")

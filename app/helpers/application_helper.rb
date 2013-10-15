@@ -58,9 +58,7 @@ module ApplicationHelper
   end
 
   def mentor_image(mentor)
-    image_tag("learn/face-#{mentor.first_name.downcase}.png")
-  rescue ActionView::Template::Error
-    image_tag("learn/face-no-face.png")
+    image_tag gravatar_url(mentor.email, size: '300')
   end
 
   def featured_mentors
