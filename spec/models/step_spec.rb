@@ -17,17 +17,19 @@ describe Step do
 
   describe '#resources' do
     it 'returns the step non-thoughtbot resources' do
-      step_hash = FakeTrailMap.new.trail['steps'].first
       step = Step.new(step_hash)
 
       expect(step.resources).to eq step_hash['resources']
     end
 
     it 'is empty if the step is only thoughtbot resources' do
-      fake_trail_map = FakeTrailMap.new
-      fake_trail_map.resource_uri = 'http://learn.thoughtbot.com/workshops/1'
-      step_hash = fake_trail_map.trail['steps'].first
-      step = Step.new(step_hash)
+      step = Step.new(thoughtbot_resource_step_hash)
+
+      expect(step.resources).to be_empty
+    end
+
+    it 'returns an empty array when there are no resources in the step' do
+      step = Step.new({})
 
       expect(step.resources).to be_empty
     end
@@ -35,29 +37,39 @@ describe Step do
 
   describe '#validations' do
     it 'returns the step validations array' do
-      step_hash = FakeTrailMap.new.trail['steps'].first
       step = Step.new(step_hash)
 
       expect(step.validations).to eq step_hash['validations']
+    end
+
+    it 'returns an empty array when there are no validations in the step' do
+      step = Step.new({})
+
+      expect(step.validations).to be_empty
     end
   end
 
   describe '#thoughbot_resources' do
     it 'returns an array of the resources provided by thoughtbot' do
-      fake_trail_map = FakeTrailMap.new
-      fake_trail_map.resource_uri = 'http://learn.thoughtbot.com/workshops/1'
-      step_hash = fake_trail_map.trail['steps'].first
-      step = Step.new(step_hash)
+      step = Step.new(thoughtbot_resource_step_hash)
 
-      expect(step.thoughtbot_resources).to eq step_hash['resources']
+      expect(step.thoughtbot_resources).
+        to eq thoughtbot_resource_step_hash['resources']
     end
 
     it 'is empty if there are no thoughtbot resources' do
-      fake_trail_map = FakeTrailMap.new
-      step_hash = fake_trail_map.trail['steps'].first
       step = Step.new(step_hash)
 
       expect(step.thoughtbot_resources).to be_empty
     end
+  end
+
+  def step_hash
+    FakeTrailMap.new.trail['steps'].first
+  end
+
+  def thoughtbot_resource_step_hash
+    fake_trail_map = FakeTrailMap.new(thoughtbot_resource: true)
+    fake_trail_map.trail['steps'].first
   end
 end

@@ -5,8 +5,8 @@ class Step
 
   def initialize(step_hash)
     @name = step_hash['name']
-    @resources = step_hash['resources']
-    @validations = step_hash['validations']
+    @resources = step_hash['resources'] || []
+    @validations = step_hash['validations'] || []
   end
 
   def <=>(another_step)

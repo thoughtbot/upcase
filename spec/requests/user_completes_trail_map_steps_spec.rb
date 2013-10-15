@@ -22,13 +22,13 @@ feature 'User can see their trail map progress' do
     trail = create(:trail, trail_map: fake_trail_map.trail, topic: topic)
     completion = @current_user.completions.create(
       trail_name: 'Git',
-      trail_object_id: fake_trail_map.resource_id
+      trail_object_id: fake_trail_map.validation_id
     )
 
     visit topics_path
 
     expect(page).to have_content "1/2 complete"
-    expect(page).to have_css(".trail-bullet.complete[data-id='#{fake_trail_map.resource_id}']")
+    expect(page).to have_css(".trail-bullet.complete[data-id='#{fake_trail_map.validation_id}']")
   end
 
   scenario 'A user with items completed has the item checked', js: true do
@@ -37,12 +37,12 @@ feature 'User can see their trail map progress' do
     trail = create(:trail, trail_map: fake_trail_map.trail, topic: topic)
     completion = @current_user.completions.create(
       trail_name: 'Git',
-      trail_object_id: fake_trail_map.resource_id
+      trail_object_id: fake_trail_map.validation_id
     )
 
     visit topic_path(topic)
 
-    expect(find_field(fake_trail_map.resource_id)).to be_checked
+    expect(find_field(fake_trail_map.validation_id)).to be_checked
   end
 
   scenario 'A user completes an item', js: true do
@@ -50,21 +50,21 @@ feature 'User can see their trail map progress' do
     topic = create(:topic, name: 'Git', featured: true)
     trail = create(:trail, trail_map: fake_trail_map.trail, topic: topic)
 
-    expect(@current_user.completions.where(trail_object_id: fake_trail_map.resource_id)).
+    expect(@current_user.completions.where(trail_object_id: fake_trail_map.validation_id)).
       to be_empty
 
     visit topic_path(topic)
 
-    find("[data-id='#{fake_trail_map.resource_id}'] .trail-bullet-hit-area").click
+    find("[data-id='#{fake_trail_map.validation_id}'] .trail-bullet-hit-area").click
 
     @current_user.reload
-    expect(@current_user.completions.where(trail_object_id: fake_trail_map.resource_id)).
+    expect(@current_user.completions.where(trail_object_id: fake_trail_map.validation_id)).
       not_to be_empty
 
-    find("[data-id='#{fake_trail_map.resource_id}'] .trail-bullet-hit-area").click
+    find("[data-id='#{fake_trail_map.validation_id}'] .trail-bullet-hit-area").click
 
     @current_user.reload
-    expect(@current_user.completions.where(trail_object_id: fake_trail_map.resource_id)).
+    expect(@current_user.completions.where(trail_object_id: fake_trail_map.validation_id)).
       to be_empty
   end
 

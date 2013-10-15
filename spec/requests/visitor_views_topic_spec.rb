@@ -72,8 +72,7 @@ feature 'Topic pages' do
   end
 
   scenario 'a topic has thoughtbot trail items listed separately' do
-    fake_trail_map = FakeTrailMap.new
-    fake_trail_map.resource_uri = 'http://learn.thoughtbot.com/workshops/1'
+    fake_trail_map = FakeTrailMap.new(thoughtbot_resource: true)
     learn_trail = create(:trail, trail_map: fake_trail_map.trail)
 
     visit topic_path(learn_trail.topic)
