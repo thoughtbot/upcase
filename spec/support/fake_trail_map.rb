@@ -5,7 +5,10 @@ class FakeTrailMap
     :validation_id,
     :validation_title,
     :name,
-    :prerequisites
+    :prerequisites,
+    :reference_id,
+    :reference_title,
+    :reference_uri
 
   def initialize(options = {})
     options[:thoughtbot_resource] ||= false
@@ -21,6 +24,9 @@ class FakeTrailMap
     @validation_title = 'Create a commit'
     @name = 'Git'
     @prerequisites = []
+    @reference_title = 'Git Reference'
+    @reference_id = '370e8fa66aa9a73b477932a21680cc1328460e58'
+    @reference_uri = 'http://gitref.org/'
   end
 
   def trail
@@ -45,8 +51,15 @@ class FakeTrailMap
              }
            ]
          }
-       ]
-     }
+       ],
+       'reference' => [
+         {
+           'title' => reference_title,
+           'uri' => reference_uri,
+           'id' => reference_id
+         }
+      ],
+    }
   end
 
 end

@@ -89,6 +89,15 @@ feature 'Topic pages' do
     expect_to_have_non_learn_resource(fake_trail_map.resource_id)
   end
 
+  scenario "a topic lists the trail map's reference" do
+    fake_trail_map = FakeTrailMap.new
+    learn_trail = create(:trail, trail_map: fake_trail_map.trail)
+
+    visit topic_path(learn_trail.topic)
+
+    expect_to_have_reference(fake_trail_map.reference_id)
+  end
+
   scenario "view a topic's related products" do
     topic = create(:topic, name: 'Topic 1')
     topic.workshops << create(:workshop, name: 'workshop 1')
@@ -182,5 +191,10 @@ feature 'Topic pages' do
       not_to have_css("ul.learn .resource[data-id='#{resource_id}']")
     expect(page).
       to have_css("ul.other .resource[data-id='#{resource_id}']")
+  end
+
+  def expect_to_have_reference(reference_id)
+    expect(page).
+      to have_css("ul.reference li[data-id='#{reference_id}']")
   end
 end

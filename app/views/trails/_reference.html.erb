@@ -1,0 +1,8 @@
+<%= content_tag :li, :class => resource_classes(reference), 'data-id' => reference['id'] do %>
+  <span class="icon"></span>
+  <% if reference['uri'].present? %>
+    <span><%= link_to(reference['title'], reference['uri']) %></span>
+  <% else %>
+    <span><%= reference['title'] %></span>
+  <% end %>
+<% end %>

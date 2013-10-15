@@ -9,4 +9,11 @@
 <section class="all-trail-map-steps">
   <div class="gutter-sizer"></div>
   <%= render partial: 'trails/step', collection: trail.steps, locals: { trail: trail } %>
+
+  <section class='trail-map-reference'>
+    <h2 class="ongoing">Ongoing Reference</h2>
+    <ul class="reference">
+      <%= render partial: 'trails/reference', collection: trail.reference %>
+    </ul>
+  </section>
 </section>

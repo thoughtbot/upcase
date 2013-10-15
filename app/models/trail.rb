@@ -42,9 +42,13 @@ class Trail < ActiveRecord::Base
 
   def resources_and_validations
     items = steps.map do |step|
-      (step.validations || []) << (step.resources || [])
+      step.validations << step.resources
     end
     items.flatten
+  end
+
+  def reference
+    trail_map['reference'] || []
   end
 
   private
