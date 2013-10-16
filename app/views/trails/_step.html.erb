@@ -1,14 +1,9 @@
 <section class='trail-map-steps' data-name="<%= trail.name %>">
-  <% if step.name == 'Ongoing Reference' %>
-    <h2 class="ongoing"><%= step.name %></h2>
-  <% else %>
-    <h2><%= step.name %></h2>
-  <% end %>
-  <% if step.thoughtbot_resources.present? %>
-    <ul class="learn">
-      <%= render partial: 'trails/resource', collection: step.thoughtbot_resources %>
-    </ul>
-  <% end %>
+  <h2><%= step.name %></h2>
+
+  <ul class="learn">
+    <%= render partial: 'trails/resource', collection: step.thoughtbot_resources %>
+  </ul>
   <% if step.resources.present? %>
     <h3>Use these resources to supplement thoughtbot's workshops</h3>
     <ul class="other">
