@@ -16,19 +16,19 @@ describe Step do
   end
 
   describe '#resources' do
-    it 'returns the step non-thoughtbot resources' do
+    it 'returns the non-thoughtbot resources' do
       step = Step.new(step_hash)
 
       expect(step.resources).to eq step_hash['resources']
     end
 
-    it 'is empty if the step is only thoughtbot resources' do
+    it 'is empty if there is only thoughtbot resources' do
       step = Step.new(thoughtbot_resource_step_hash)
 
       expect(step.resources).to be_empty
     end
 
-    it 'returns an empty array when there are no resources in the step' do
+    it 'returns an empty array when there are no resources' do
       step = Step.new({})
 
       expect(step.resources).to be_empty
