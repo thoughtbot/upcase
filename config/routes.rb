@@ -76,6 +76,7 @@ Workshops::Application.routes.draw do
 
   get '/podcast.xml' => redirect('/giantrobots.xml')
   get '/podcast' => redirect('/giantrobots')
+  get '/podcast/articles' => 'articles#index', id: 'podcast'
   get '/podcast/:id' => redirect("/giantrobots/%{id}")
   get '/podcasts' => redirect('/giantrobots')
   get '/podcasts/:id' => redirect("/giantrobots/%{id}")
