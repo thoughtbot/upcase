@@ -6,8 +6,16 @@ describe ApplicationHelper, '#mentor_image' do
   it 'returns an image with a gravatar' do
     mentor = stub('mentor', email: 'someone@example.com')
 
-    mentor_image = helper.mentor_image(mentor)
+    mentor_image_tag = helper.mentor_image(mentor)
 
-    expect(mentor_image).to include gravatar_url('someone@example.com')
+    expect(mentor_image_tag).to include gravatar_url('someone@example.com')
+  end
+
+  it 'returns an image whose src uses https' do
+    mentor = stub('mentor', email: 'someone@example.com')
+
+    mentor_image_tag = helper.mentor_image(mentor)
+
+    expect(mentor_image_tag).to include 'https'
   end
 end
