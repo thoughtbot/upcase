@@ -11,17 +11,13 @@ module TopicsHelper
 
   def resource_classes(resource)
     classes = ['resource']
-    if learn_resource?(resource['uri'])
-      classes << 'learn-resource'
-    end
+    classes << resource_type(resource)
     classes.join(' ')
   end
 
   private
 
-  def learn_resource?(uri)
-    if uri.present?
-      Addressable::URI.parse(uri).host == 'learn.thoughtbot.com'
-    end
+  def resource_type(resource)
+    resource['type']
   end
 end

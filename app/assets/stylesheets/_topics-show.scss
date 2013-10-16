@@ -135,19 +135,22 @@ body.topics-show {
     padding: .75rem 1rem .75rem 3rem;
     position: relative;
 
-    &.learn-resource:not(.complete) {
-      background: rgba(255, 255, 0, .2);
+    &.learn-resource {
+      border: 3px solid $learnred;
+      border-width: 3px 3px 3px 0;
+      box-shadow: inset 3px 0px 0px 0px #b22115;
+      margin-bottom: 0;
+    }
 
-      .trail-bullet {
-        background-color: #fff;
-      }
+    &.learn-resource + .learn-resource {
+      border-top: 0px;
     }
 
     &:last-child {
       border-bottom: 0;
     }
 
-    &.complete {
+    &.validation.complete {
       background: lighten($journey-line-color, 8%);
       color: darken($journey-line-color, 30%);
 

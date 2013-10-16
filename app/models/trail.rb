@@ -28,21 +28,27 @@ class Trail < ActiveRecord::Base
 
   def total
     steps.inject(0) do |count, step|
-      count += step['resources'].length if step['resources']
-      count += step['validations'].length if step['validations']
+      count += step.resources.length if step.resources
+      count += step.validations.length if step.validations
       count
     end
   end
 
   def steps
-    trail_map['steps']
+    trail_map['steps'].map do |step_hash|
+      Step.new(step_hash)
+    end
   end
 
   def resources_and_validations
     items = steps.map do |step|
-      (step['validations'] || []) << (step['resources'] || [])
+      step.validations << step.resources
     end
     items.flatten
+  end
+
+  def reference
+    trail_map['reference'] || []
   end
 
   private

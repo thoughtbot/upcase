@@ -5,16 +5,28 @@ class FakeTrailMap
     :validation_id,
     :validation_title,
     :name,
-    :prerequisites
+    :prerequisites,
+    :reference_id,
+    :reference_title,
+    :reference_uri
 
-  def initialize
+  def initialize(options = {})
+    options[:thoughtbot_resource] ||= false
+
     @resource_id = '2f720eaa8bcd602a7dc731feb224ff99bb85a03c'
     @resource_title = 'Try Git'
-    @resource_uri = 'http://try.github.com'
+    if options[:thoughtbot_resource]
+      @resource_uri = 'http://learn.thoughtbot.com/workshops/1'
+    else
+      @resource_uri = 'http://try.github.com'
+    end
     @validation_id = 'cab73a959ee344204b0a6d9778d589c4298dd9d3'
     @validation_title = 'Create a commit'
     @name = 'Git'
     @prerequisites = []
+    @reference_title = 'Git Reference'
+    @reference_id = '370e8fa66aa9a73b477932a21680cc1328460e58'
+    @reference_uri = 'http://gitref.org/'
   end
 
   def trail
@@ -39,7 +51,15 @@ class FakeTrailMap
              }
            ]
          }
-       ]
-     }
+       ],
+       'reference' => [
+         {
+           'title' => reference_title,
+           'uri' => reference_uri,
+           'id' => reference_id
+         }
+      ],
+    }
   end
+
 end
