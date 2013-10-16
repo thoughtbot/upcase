@@ -8,7 +8,7 @@ class Loader
         article.external_url = post[:tumblr_url]
         article.save!
         post[:tags].each do |tag|
-          topic = Topic.find_by_slug(tag.downcase.parameterize)
+          topic = Topic.find_by_slug(CGI::escape(tag).downcase)
           if topic.nil?
             topic = Topic.new
             topic.name = tag.downcase
