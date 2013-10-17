@@ -81,7 +81,7 @@ describe SubscriptionInvoice do
       invoice.balance.should eq 5.00
     end
 
-    describe 'amount_paid' do
+    describe '#amount_paid' do
       it 'returns zero when not paid' do
         stripe_invoice = SubscriptionInvoice.new('in_1s4JSgbcUaElzU')
         stub_invoice = stub(paid: false)
@@ -120,6 +120,7 @@ describe SubscriptionInvoice do
       invoice.user_state.should eq user.state
       invoice.user_zip_code.should eq user.zip_code
       invoice.user_country.should eq user.country
+      invoice.user_email.should eq user.email
     end
 
     it 'returns the proper partial path' do
