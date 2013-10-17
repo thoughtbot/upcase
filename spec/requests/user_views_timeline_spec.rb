@@ -32,8 +32,8 @@ feature 'User views their timeline' do
 
     visit timeline_path(as: completion.user)
 
-    expect(page).to have_css '.week', text: 'Aug 5 - Aug 11'
     expect(page).to have_css '.week', text: 'Jul 29 - Aug 4'
+    expect(page).to have_css '.week', text: 'Jul 22 - Jul 28'
   end
 
   scenario 'they see their bio' do

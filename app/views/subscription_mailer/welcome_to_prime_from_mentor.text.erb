@@ -4,31 +4,28 @@ First off, thanks for subscribing to <%= t('shared.subscription.name') %>!
 We're glad to have you.
 
 Secondly, I wanted to introduce myself. My name is <%= @mentor.name %> and I'll
-be your mentor.
+be your mentor. I look forward to working with you!
 
-I'd like to set up a 30-minute Skype session right now so we can discuss your
-goals.
+Before our first call, please do the following:
 
-You can view my calendar here:
+1. Send me some background on yourself and your goals for working together. Who
+are you? What are you doing now? What do you want to do?
+
+2. Add me to any repositories you'd like to work on together or code you think
+represents where you're currently at as a developer. I'll take a look to get a
+better sense of your current experience level, and provide feedback. My github
+username is <%= @mentor.github_username %>.
+
+3. Send me an invitation for a monthly, recurring 30-minute Skype session using
+your favorite scheduling program. As long as you've picked a time where I'm
+free, I'll accept. You can view my calendar here:
 https://www.google.com/calendar/embed?src=<%=u @mentor.email %>&mode=week.
 
-Once you've found a time that works for both of us, please send me a calendar
-invite using your favorite scheduling program. As long as you've picked a time
-where I'm free, I'll accept.
-
-I'm generally available from 9:30am to 5pm US Eastern. Please include your
+I'm generally available <%= @mentor.availability %>. Please include your
 Skype handle in your scheduling request.
 
-Before our first call, I recommend you visit our Trail Maps to perform a
-self-assessment of your skills: <%= topics_url %>
-
-During these sessions, we'll discuss whatever you like: code review of
-something you're working on, tips for getting hired for your first Rails job,
-salary negotiation advice, whatever. My job is to be your guide to improving as
-a developer.
-
-If you have anything you'd like to share before our call, just hit 'Reply' and
-lay it on me.
+Finally, check out your timeline, where you can track your progress and we can
+leave notes for each other: <%= timeline_path %>
 
 Thanks again,
 -<%= @mentor.first_name %>
