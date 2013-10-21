@@ -47,7 +47,7 @@ class InvoicePaymentProcessor
   def notify_airbrake_of_missing_user
     Airbrake.notify_or_ignore({
       error_message: 'No matching user for Stripe Customer ID',
-      error_class: 'Stripe',
+      error_class: 'StripeEvent',
       parameters: {
         stripe_invoice: invoice.stripe_invoice,
         invoice_in_payment_processor: invoice
