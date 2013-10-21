@@ -87,7 +87,7 @@ class SubscriptionInvoice
   end
 
   def user
-    @user ||= User.find_by_stripe_customer_id(stripe_invoice.customer)
+    @user ||= User.find_by(stripe_customer_id: stripe_invoice.customer)
   end
 
   def to_partial_path

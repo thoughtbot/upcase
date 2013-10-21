@@ -3,20 +3,8 @@ StripeEvent.setup do
     subscription_plan = event.data.object.lines.subscriptions.first.plan
 
     if PlanFinder.where(sku: subscription_plan.id).first
-      invoice = SubscriptionInvoice.new(event.data.object)
-
-      SubscriptionMailer.delay.subscription_receipt(
-        invoice.user.email,
-        invoice.subscription_item_name,
-        invoice.amount_paid,
-        invoice.stripe_invoice_id
-      )
-
-      event_notifier = KissmetricsEventNotifier.new
-      event_notifier.notify_of_subscription_billing(
-        invoice.user.email,
-        invoice.amount_paid
-      )
+      paid_invoice = SubscriptionInvoice.new(event.data.object)
+      InvoicePaymentProcessor.send_receipt_and_notify_of_subscription_billing(paid_invoice)
     end
   end
 

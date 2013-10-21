@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe 'successful charges reported by Stripe webhook' do
-  it 'sends the event to Kissmetrics' do
-    ActionMailer::Base.deliveries.clear
-    user = create(
+describe 'successful charges are reported by Stripe webhook' do
+  it 'calls InvoicePaymentProcessor to send a receipt and report to Kissmetrics' do
+    InvoicePaymentProcessor.stubs(:send_receipt_and_notify_of_subscription_billing)
+    create(
       :user,
       :with_subscription,
       stripe_customer_id: FakeStripe::CUSTOMER_ID
@@ -12,35 +12,11 @@ describe 'successful charges reported by Stripe webhook' do
 
     simulate_stripe_webhook_firing
 
-    kissmetrics_should_receive_succesful_charge_event(user)
-  end
-
-  it 'sends the customer a receipt' do
-    ActionMailer::Base.deliveries.clear
-    user = create(
-      :user,
-      :with_subscription,
-      stripe_customer_id: FakeStripe::CUSTOMER_ID
-    )
-    create(:plan, sku: 'prime')
-
-    simulate_stripe_webhook_firing
-
-    customer_should_receive_receipt_email(user)
+    expect(InvoicePaymentProcessor).to have_received(:send_receipt_and_notify_of_subscription_billing)
   end
 
   def simulate_stripe_webhook_firing
     post '/stripe-webhook', 'id' => FakeStripe::EVENT_ID_FOR_SUCCESSFUL_INVOICE_PAYMENT
-  end
-
-  def kissmetrics_should_receive_succesful_charge_event(user)
-    expect(FakeKissmetrics.events_for(user.email)).to be_present
-  end
-
-  def customer_should_receive_receipt_email(user)
-    email = ActionMailer::Base.deliveries.first
-    email.subject.should include('receipt')
-    email.to.should eq [user.email]
   end
 end
 
@@ -54,7 +30,7 @@ describe 'subscription cancellations reported by Stripe webhook' do
 
     simulate_stripe_webhook_firing
 
-    user.should_not have_active_subscription
+    expect(user).not_to have_active_subscription
   end
 
   def simulate_stripe_webhook_firing
