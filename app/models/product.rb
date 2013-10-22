@@ -61,14 +61,14 @@ class Product < ActiveRecord::Base
   end
 
   def image_url
-    raw_url = self.product_image.url(product_type_symbol)
+    raw_url = product_image.url(product_type_symbol)
     product_image_file_name? ? raw_url : "/assets/#{raw_url}"
   end
 
   def product_type_symbol
-    self.product_type.split(' ')[0].downcase.to_sym
+    product_type.split(' ')[0].downcase.to_sym
   rescue
-    'book'
+    :book
   end
 
   def to_param

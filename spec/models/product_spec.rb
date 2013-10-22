@@ -24,6 +24,20 @@ describe Product do
     end
   end
 
+  describe '#product_type_symbol' do
+    it 'returns product_type_symbol' do
+      video = create(:video_product)
+
+      expect(video.product_type_symbol).to eq(:video)
+    end
+
+    it 'returns book as a symbol if product_type is nil' do
+      product = build(:product, product_type: '')
+
+      expect(product.product_type_symbol).to eq(:book)
+    end
+  end
+
   describe "#meta_keywords" do
     it { should delegate(:meta_keywords).to(:topics) }
   end

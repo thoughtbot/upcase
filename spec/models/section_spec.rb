@@ -15,7 +15,7 @@ describe Section do
   it { should validate_presence_of :starts_on }
   it { should validate_presence_of :stop_at }
 
-  describe 'self.active' do
+  describe '.active' do
     it "includes sections thats haven't started" do
       active = create(:section, starts_on: 1.day.from_now, ends_on: 7.days.from_now)
       create(:section, starts_on: 1.week.ago, ends_on: 7.days.from_now)
@@ -160,15 +160,29 @@ describe Section do
       expect(last_week).not_to be_upcoming
     end
   end
-end
 
-describe Section do
-  context 'self.by_starts_on_desc' do
+  context '.by_starts_on_desc' do
     it 'returns sections newest to oldest by starts_on' do
       old_section = create(:section, starts_on: 2.weeks.from_now)
       new_section = create(:section, starts_on: 4.weeks.from_now)
 
       Section.by_starts_on_desc.should == [new_section, old_section]
+    end
+  end
+
+  describe '.in_active_workshop' do
+    it 'returns sections which are in active workshop' do
+      active_workshop = create(:workshop, active: true)
+      section = create(:section, workshop: active_workshop)
+
+      expect(Section.in_active_workshop).to include(section)
+    end
+
+    it 'does not returns sections if workshops are not active' do
+      inactive_workshop = create(:workshop, active: false)
+      section = create(:section, workshop: inactive_workshop)
+
+      expect(Section.in_active_workshop).not_to include(section)
     end
   end
 
