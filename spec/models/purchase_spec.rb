@@ -21,6 +21,20 @@ describe Purchase do
     purchase.price.should eq 200
   end
 
+  context '#first_name' do
+    it "has a first_name that is the first part of name" do
+      user = Purchase.new(name: "first last")
+      expect(user.first_name).to eq "first"
+    end
+  end
+
+  context '#last_name' do
+    it "has a last_name that is the last part of name" do
+      user = Purchase.new(name: "first last")
+      expect(user.last_name).to eq "last"
+    end
+  end
+
   describe '.paid' do
     it 'returns paid purchases' do
       paid = create(:purchase)
