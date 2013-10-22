@@ -11,12 +11,7 @@ class InvoicePaymentProcessor
 
   def send_receipt
     if invoice_has_a_user?
-      SubscriptionMailer.delay.subscription_receipt(
-        invoice.user_email,
-        invoice.subscription_item_name,
-        invoice.amount_paid,
-        invoice.stripe_invoice_id
-      )
+      email_receipt
     end
   end
 
@@ -36,6 +31,15 @@ class InvoicePaymentProcessor
     invoice.user_email.present?
   end
 
+  def email_receipt
+    SubscriptionMailer.delay.subscription_receipt(
+      invoice.user_email,
+      invoice.subscription_item_name,
+      invoice.amount_paid,
+      invoice.stripe_invoice_id
+    )
+  end
+
   def notify_kissmetrics
     event_notifier = KissmetricsEventNotifier.new
     event_notifier.notify_of_subscription_billing(
@@ -48,10 +52,14 @@ class InvoicePaymentProcessor
     Airbrake.notify_or_ignore({
       error_message: 'No matching user for Stripe Customer ID',
       error_class: 'StripeEvent',
-      parameters: {
-        stripe_invoice: invoice.stripe_invoice,
-        invoice_in_payment_processor: invoice
-      }
+      parameters: invoice_debugging_information
     })
+  end
+
+  def invoice_debugging_information
+    {
+      stripe_invoice: invoice.stripe_invoice,
+      invoice_in_payment_processor: invoice
+    }
   end
 end
