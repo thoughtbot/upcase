@@ -1,6 +1,9 @@
 class SubscriptionInvoice
   attr_reader :stripe_invoice
 
+  delegate :name, :organization, :address1, :address2, :city, :state, :zip_code, :country, :email,
+     to: :user, prefix: true
+
   def self.find_all_by_stripe_customer_id(stripe_customer_id)
     if stripe_customer_id.present?
       stripe_invoices_for_customer_id(stripe_customer_id).map do |invoice|
@@ -83,40 +86,8 @@ class SubscriptionInvoice
     cents_to_dollars(stripe_invoice.discount.coupon.amount_off)
   end
 
-  def user_name
-    user.name
-  end
-
-  def user_organization
-    user.organization
-  end
-
-  def user_address1
-    user.address1
-  end
-
-  def user_address2
-    user.address2
-  end
-
-  def user_city
-    user.city
-  end
-
-  def user_state
-    user.state
-  end
-
-  def user_zip_code
-    user.zip_code
-  end
-
-  def user_country
-    user.country
-  end
-
   def user
-    @user ||= User.find_by_stripe_customer_id(stripe_invoice.customer)
+    @user ||= User.find_by(stripe_customer_id: stripe_invoice.customer)
   end
 
   def to_partial_path
