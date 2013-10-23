@@ -155,6 +155,26 @@ FactoryGirl.define do
       includes_mentor false
       includes_workshops false
     end
+
+    trait :prime_basic_plan do
+      sku IndividualPlan::PRIME_BASIC_SKU
+    end
+
+    trait :prime_basic_yearly_plan do
+      sku IndividualPlan::PRIME_BASIC_YEARLY_SKU
+    end
+
+    trait :prime_workshops_plan do
+      sku IndividualPlan::PRIME_WORKSHOPS_SKU
+    end
+
+    trait :prime_workshops_yearly_plan do
+      sku IndividualPlan::PRIME_WORKSHOPS_YEARLY_SKU
+    end
+
+    trait :prime_with_mentoring_plan do
+      sku IndividualPlan::PRIME_WITH_MENTORING_SKU
+    end
   end
 
   factory :team_plan do
