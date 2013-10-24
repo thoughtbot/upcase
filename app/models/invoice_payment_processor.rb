@@ -28,7 +28,7 @@ class InvoicePaymentProcessor
   attr_reader :invoice
 
   def invoice_has_a_user?
-    invoice.user_email.present?
+    invoice.user.present?
   end
 
   def email_receipt
