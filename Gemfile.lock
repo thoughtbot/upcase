@@ -94,9 +94,9 @@ GEM
     acts_as_list (0.2.0)
       activerecord (>= 3.0)
     addressable (2.3.5)
-    airbrake (3.0.9)
-      activesupport
+    airbrake (3.1.14)
       builder
+      json
     arel (4.0.0)
     atomic (1.1.14)
     attr_required (0.0.5)
@@ -233,6 +233,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (4.0.5)
       railties (>= 3.1.0)
+    json (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
     kaminari (0.14.1)
@@ -252,7 +253,7 @@ GEM
     minitest (4.7.5)
     mocha (0.14.0)
       metaclass (~> 0.0.1)
-    multi_json (1.8.0)
+    multi_json (1.8.2)
     multi_test (0.0.2)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
@@ -431,7 +432,7 @@ GEM
       polyglot (>= 0.3.1)
     typhoeus (0.3.3)
       mime-types
-    tzinfo (0.3.37)
+    tzinfo (0.3.38)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
@@ -462,7 +463,7 @@ DEPENDENCIES
   RedCloth (= 4.2.9)
   active_model_serializers (~> 0.7.0)
   acts_as_list (= 0.2.0)
-  airbrake (= 3.0.9)
+  airbrake (= 3.1.14)
   aws-sdk (= 1.6.2)
   bluecloth
   bourbon (= 3.1.6)
