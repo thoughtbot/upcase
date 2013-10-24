@@ -65,11 +65,11 @@ describe InvoicePaymentProcessor do
   end
 
   def stub_invoice
-    stub('invoice', user_email: 'someone@example.com', subscription_item_name: 'something', amount_paid: '$500', stripe_invoice_id: 'stripe_id')
+    stub('invoice', user: true, user_email: 'someone@example.com', subscription_item_name: 'something', amount_paid: '$500', stripe_invoice_id: 'stripe_id')
   end
 
   def stub_invoice_without_matching_customer_id
-    stub('invoice', user_email: nil, subscription_item_name: 'something', amount_paid: '$500', stripe_invoice_id: 'stripe_id', stripe_invoice: nil)
+    stub('invoice', user: nil, user_email: nil, subscription_item_name: 'something', amount_paid: '$500', stripe_invoice_id: 'stripe_id', stripe_invoice: nil)
   end
 
   def customer_should_receive_receipt_email(invoice)
