@@ -102,7 +102,7 @@ Workshops::Application.routes.draw do
   get '/auth/:provider/callback', to: 'auth_callbacks#create'
 
   resource :timeline, only: :show
-  resource :note, only: :create
+  resources :notes, only: [:create, :edit, :update]
 
   get "/pages/*id" => 'pages#show', format: false
   get '/prime' => 'pages#show', as: :prime, id: 'prime'

@@ -396,12 +396,12 @@ ActiveRecord::Schema.define(version: 20131024150525) do
     t.string   "salt",                limit: 128
     t.string   "confirmation_token",  limit: 128
     t.string   "remember_token",      limit: 128
-    t.boolean  "email_confirmed",                 default: true,  null: false
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.boolean  "email_confirmed",                 default: true,                     null: false
+    t.datetime "created_at",                                                         null: false
+    t.datetime "updated_at",                                                         null: false
     t.string   "customer_id",                     default: ""
     t.string   "reference",                       default: ""
-    t.boolean  "admin",                           default: false, null: false
+    t.boolean  "admin",                           default: false,                    null: false
     t.string   "stripe_customer_id"
     t.string   "github_username"
     t.string   "auth_provider"

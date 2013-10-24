@@ -1,0 +1,7 @@
+<h3>Edit the note</h3>
+<%= form_for @note, html: { class: 'note-form edit' } do |f| %>
+  <fieldset>
+    <%= f.text_area :body %>
+    <%= f.submit 'Save changes' %>
+  </fieldset>
+<% end %>

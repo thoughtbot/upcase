@@ -19,4 +19,38 @@ describe Note do
       expect(note.body_html).to eq '<p>Some <em>awesome</em> markdown</p>'
     end
   end
+
+  context '#created_by?' do
+    it 'returns true if the note was created by the passed in user' do
+      user = create(:user)
+      note = build(:note, contributor_id: user.id)
+
+      expect(note.created_by?(user)).to be_true
+    end
+
+    it 'returns true if the note was created by the passed in user' do
+      user = create(:user)
+      id_of_another_user = 1234
+      note = build(:note, contributor_id: id_of_another_user)
+
+      expect(note.created_by?(user)).to be_false
+    end
+  end
+
+  context '#allowed_to_be_edited_by(user)' do
+    it 'returns true if the passed in user created the note' do
+      user = create(:user)
+      note = build(:note, contributor_id: user.id)
+
+      expect(note.allowed_to_be_edited_by?(user)).to be_true
+    end
+
+    it 'returns false if the passed in user did not create the note' do
+      user = create(:user)
+      id_of_another_user = 1234
+      note = build(:note, contributor_id: id_of_another_user)
+
+      expect(note.allowed_to_be_edited_by?(user)).to be_false
+    end
+  end
 end
