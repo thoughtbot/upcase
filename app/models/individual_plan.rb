@@ -1,6 +1,8 @@
 class IndividualPlan < ActiveRecord::Base
   PRIME_BASIC_SKU = 'prime-basic'
+  PRIME_BASIC_YEARLY_SKU = 'PRIMEBASICYEAR'
   PRIME_WORKSHOPS_SKU = 'prime'
+  PRIME_WORKSHOPS_YEARLY_SKU = 'primeyear'
   PRIME_WITH_MENTORING_SKU = 'prime-mentor'
 
   has_many :announcements, as: :announceable, dependent: :destroy
@@ -16,15 +18,23 @@ class IndividualPlan < ActiveRecord::Base
   include PlanWithCountableSubscriptions
 
   def self.prime_basic
-    where(sku: PRIME_BASIC_SKU).first
+    find_by(sku: PRIME_BASIC_SKU)
+  end
+
+  def self.prime_basic_yearly
+    find_by(sku: PRIME_BASIC_YEARLY_SKU)
   end
 
   def self.prime_workshops
-    where(sku: PRIME_WORKSHOPS_SKU).first
+    find_by(sku: PRIME_WORKSHOPS_SKU)
+  end
+
+  def self.prime_workshops_yearly
+    find_by(sku: PRIME_WORKSHOPS_YEARLY_SKU)
   end
 
   def self.prime_with_mentoring
-    where(sku: PRIME_WITH_MENTORING_SKU).first
+    find_by(sku: PRIME_WITH_MENTORING_SKU)
   end
 
   def self.active
