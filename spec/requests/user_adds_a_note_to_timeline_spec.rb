@@ -12,26 +12,28 @@ feature 'User adds a note to timeline' do
     visit timeline_path(as: user)
 
     expect(week_sections.count).to eq 2
-    expect(page.all('.add-note-form').count).to eq 1
+    expect(page.all('.note-form').count).to eq 1
   end
 
   context 'with note body filled in' do
     scenario 'they see the note on the timeline page' do
       user = create(:user)
       visit timeline_path(as: user)
+      note = NoteOnPage.new('I love learn')
 
-      create_note('I love to learn')
+      note.create
 
-      expect(page).to have_role 'note', text: 'I love to learn'
+      expect(note).to be_displayed_on_page
     end
 
     scenario 'they see the note rendered as markdown' do
       user = create(:user)
       visit timeline_path(as: user)
+      note = NoteOnPage.new('# I love learn')
 
-      create_note('# I love to learn')
+      note.create
 
-      expect(page).to have_role 'note', text: 'I love to learn'
+      expect(note).to have_content 'I love learn'
     end
   end
 
@@ -39,8 +41,9 @@ feature 'User adds a note to timeline' do
     scenario 'they are redirected back to the user timeline' do
       user = create(:user)
       visit timeline_path(as: user)
+      note = NoteOnPage.new('')
 
-      create_note('')
+      note.create
 
       expect(current_path).to eq timeline_path
     end
@@ -49,24 +52,18 @@ feature 'User adds a note to timeline' do
   scenario 'a mentor can add a note to the timeline' do
     mentor = create(:mentor)
     mentee = create(:user, mentor: mentor)
+    note = NoteOnPage.new('This is a note from your mentor!')
 
     visit user_timeline_path(mentee, as: mentor)
-    create_note('This is a note from your mentor!')
+    note.create
 
-    expect(page).to have_role 'note', text: 'This is a note from your mentor!'
+    expect(note).to be_displayed_on_page
   end
 
   private
 
   def fake_trail_map
     @fake_trail_map ||= FakeTrailMap.new
-  end
-
-  def create_note(body)
-    within '.notes' do
-      fill_in 'note_body', with: body
-      click_on 'save this note'
-    end
   end
 
   def week_sections

@@ -11,4 +11,8 @@ class Note < ActiveRecord::Base
   def body_html
     BlueCloth.new(body).to_html
   end
+
+  def created_by?(user)
+    contributor_id == user.id
+  end
 end

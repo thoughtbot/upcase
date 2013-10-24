@@ -15,7 +15,7 @@ describe NotesController do
       another_user = create(:user)
       sign_in_as(non_admin)
 
-      post :create, note: { body: 'Hi', timeline_user_id: another_user.id }
+      post :create, user_id: another_user.id, note: { body: 'Hi' }
 
       expect(response).to redirect_to timeline_path
     end

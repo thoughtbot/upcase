@@ -4,7 +4,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/autorun'
 require 'rspec/rails'
 require 'paperclip/matchers'
-require "email_spec"
+require 'email_spec'
 require 'webmock/rspec'
 require 'clearance/testing'
 require 'capybara/poltergeist'

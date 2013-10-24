@@ -5,7 +5,7 @@ class Timeline
     @user = user
   end
 
-  delegate :name, :bio, to: :user, prefix: true
+  delegate :id, :name, :bio, to: :user, prefix: true
 
   def has_items?
     timeline_items.values.present?

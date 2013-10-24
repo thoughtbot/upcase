@@ -1,0 +1,57 @@
+.notes {
+  .content {
+    max-width: 900px;
+  }
+
+  h3 {
+    margin-top: 20px;
+  }
+}
+
+
+.note-form {
+  margin: 0 0 4rem 0;
+
+  &.edit {
+    margin-top: 20px;
+  }
+
+  fieldset {
+    line-height: 0;
+    position: relative;
+  }
+
+  textarea {
+    border: 1px solid #fff;
+    border-radius: 3px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .15);
+    color: $darkwarmgray;
+    font: normal 1rem/1.4 $sans-serif;
+    height: 9rem;
+    padding: 1rem 1rem 44px;
+    resize: vertical;
+    width: 100%;
+
+    &:focus {
+      border-color: lightblue;
+      box-shadow: 0 1px 6px rgba(255, 0, 0, .3);
+      outline: none;
+    }
+  }
+
+  input[type=submit] {
+    background: #fff;
+    border: none;
+    color: $learnred;
+    font: normal 1rem/1.4 $sans-serif;
+    line-height: 1;
+    padding: .3rem 0 .3rem;
+    @include position(absolute, 0 1rem 5px 1rem);
+    text-transform: none;
+    @include user-select(none);
+
+    &:focus, &:hover {
+      text-decoration: underline;
+    }
+  }
+}

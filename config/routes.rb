@@ -103,7 +103,6 @@ Workshops::Application.routes.draw do
   get '/auth/:provider/callback', to: 'auth_callbacks#create'
 
   resource :timeline, only: :show
-  resource :note, only: :create
 
   get "/pages/*id" => 'pages#show', format: false
   get '/prime' => 'pages#show', as: :prime, id: 'prime'
@@ -123,6 +122,7 @@ Workshops::Application.routes.draw do
   patch '/my_account' => 'users#update', as: 'edit_my_account'
   get '/my_account' => 'users#edit', as: 'my_account'
   resources :users, controller: 'users' do
+    resources :notes, only: [:create, :edit, :update]
     resource :timeline, only: :show
   end
   get '/sign_up' => 'users#new', as: 'sign_up_app'
