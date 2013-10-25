@@ -396,4 +396,12 @@ describe User do
       expect(user.has_logged_in_to_forum?).to eq false
     end
   end
+
+  describe '#availability' do
+    it "has a default" do
+      user = User.new
+
+      expect(user.availability).to eq '11am to 5pm on Fridays'
+    end
+  end
 end

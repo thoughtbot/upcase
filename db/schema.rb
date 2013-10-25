@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130925202220) do
+ActiveRecord::Schema.define(version: 20131024150525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -417,6 +417,7 @@ ActiveRecord::Schema.define(version: 20130925202220) do
     t.boolean  "available_to_mentor",             default: false
     t.text     "bio"
     t.integer  "mentor_id"
+    t.string   "availability",                    default: "11am to 5pm on Fridays", null: false
   end
 
   add_index "users", ["admin"], name: "index_users_on_admin", using: :btree
