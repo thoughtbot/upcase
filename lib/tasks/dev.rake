@@ -13,6 +13,7 @@ namespace :dev do
     create_mentors
     create_users
     create_team_plan
+    create_topic
   end
 
   def create_bytes
@@ -104,6 +105,10 @@ namespace :dev do
 
   def create_team_plan
     FactoryGirl.create(:team_plan)
+  end
+
+  def create_topic
+    FactoryGirl.create(:topic, name: 'Ruby on Rails')
   end
 
   def header(msg)
