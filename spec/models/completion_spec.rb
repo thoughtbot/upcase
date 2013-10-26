@@ -32,6 +32,14 @@ describe Completion do
 
       expect(completion.title).to eq fake_trail_map.validation_title
     end
+
+    it 'returns nil if there is no associated step' do
+      fake_trail_map = FakeTrailMap.new
+      create(:trail, trail_map: fake_trail_map.trail)
+      completion = create(:completion, trail_object_id: 'nonexistent')
+
+      expect(completion.title).to be_nil
+    end
   end
 
   context '#trail_name=' do

@@ -10,7 +10,9 @@ class Completion < ActiveRecord::Base
   end
 
   def title
-    step['title']
+    if step
+      step['title']
+    end
   end
 
   def trail_name=(name)
@@ -25,7 +27,7 @@ class Completion < ActiveRecord::Base
   end
 
   def step
-    @step = resources_and_validations.detect { |step| step['id'] == trail_object_id }
+    @step ||= resources_and_validations.detect { |step| step['id'] == trail_object_id }
   end
 
   def set_slug
