@@ -34,7 +34,7 @@ describe Completion do
     end
   end
 
-  context '#title=' do
+  context '#trail_name=' do
     it 'sets the trail name and corresponding trail slug' do
       fake_trail_map = FakeTrailMap.new
       create(:trail, trail_map: fake_trail_map.trail, slug: 'git')
