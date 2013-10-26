@@ -85,6 +85,9 @@ end
 group :test do
   gem 'bourne'
   gem 'capybara', '1.1.2'
+  gem 'capybara_discoball',
+    github: 'thoughtbot/capybara_discoball'
+  gem 'capybara-webkit'
   gem 'cucumber-rails', require: false, git: 'https://github.com/cucumber/cucumber-rails.git'
   gem 'database_cleaner', '1.0.1'
   gem 'email_spec', '1.2.1'
@@ -99,6 +102,4 @@ group :test do
   gem 'sinatra'
   gem 'timecop', '0.3.5'
   gem 'webmock', '1.8.7'
-  gem 'capybara_discoball',
-    github: 'thoughtbot/capybara_discoball'
 end

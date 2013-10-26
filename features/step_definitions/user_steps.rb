@@ -29,17 +29,6 @@ Then /^the site should know my github username$/ do
   find_field("Github username").value.should == "cpytel"
 end
 
-Then /^the site should have my github information$/ do
-  visit my_account_path
-  find_field("user_name").value.should == "Test User"
-  find_field("Email").value.should == "user@example.com"
-  find_field("Github username").value.should == "thoughtbot"
-end
-
-Then /^I should have no password field$/ do
-  page.should_not have_css("#user_password")
-end
-
 When /^I visit my profile$/ do
   visit my_account_path
 end
