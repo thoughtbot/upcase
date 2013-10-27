@@ -2,12 +2,12 @@
   <h4>Includes</h4>
   <ul>
     <% if plan.includes_mentor? %>
-      <li class="mentor">1-1 Mentoring</li>
+      <li class="mentor"><%= t 'individual_plans.mentoring' %></li>
     <% end %>
     <% if plan.includes_workshops? %>
-      <li class="workshops">Workshops</li>
+      <li class="workshops"><%= t 'individual_plans.workshops' %></li>
     <% end %>
-    <li>Learn Forum</li>
+    <li><%= t 'individual_plans.forum' %></li>
     <li>Screencasts</li>
     <li>Books</li>
     <li>Prime Bytes</li>

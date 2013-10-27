@@ -32,6 +32,11 @@ en:
       heading:
         All %{topic} articles
 
+  individual_plans:
+    mentoring: '1-1 Mentoring'
+    workshops: 'Hands-On Workshops'
+    forum: 'Private Discourse Forum'
+
   notes:
     flashes:
       error: 'Please fill in the note'

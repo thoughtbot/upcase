@@ -29,7 +29,7 @@ body.subscriptions-new nav .prime {
 
   h3 {
     color: darken($darkwarmgray, 15%);
-    font: 700 1.25rem/1.4em $sans-serif;
+    font: 700 1.25rem/1.3em $sans-serif;
     margin-bottom: 25px;
     @include span-columns(2);
 
@@ -93,10 +93,10 @@ body.subscriptions-new nav .prime {
     h4 {
       color: $darkwarmgray;
       float: left;
-      font: 700 1.25rem/1.4em $sans-serif;
+      font: 700 1.25rem/1.3em $sans-serif;
       padding-right: 1rem;
       text-align: right;
-      width: 50%;
+      width: 30%;
     }
 
     ul {
@@ -105,14 +105,14 @@ body.subscriptions-new nav .prime {
       list-style-type: none;
       margin: 0;
       padding: 0 0 0 1rem;
-      width: 50%;
+      width: 70%;
     }
 
     li {
       clear: both;
       float: left;
-      font: 700 1.25rem/1.4em $sans-serif;
-      margin: 0;
+      font: 700 1.25rem/1.3em $sans-serif;
+      margin: 0 0 .6em;
     }
   }
 }
