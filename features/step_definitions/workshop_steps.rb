@@ -10,18 +10,6 @@ Given 'I create the following workshop:' do |workshop_fields|
   }
 end
 
-Then /^I should see the json for the active workshops$/ do
-  workshops = Workshop.only_active
-  JSON.parse(page.source).should == JSON.parse(workshops_json(workshops))
-end
-
-Then /^I should see the json for the active workshops with the callback "([^"]*)"$/ do |callback|
-  workshops = Workshop.only_active
-  matcher = /#{callback}\(([^\)]+)\)/
-  matches = matcher.match(page.source)
-  JSON.parse(matches[1]).should == JSON.parse(workshops_json(workshops))
-end
-
 Given /^a non-active workshop "([^"]*)"$/ do |workshop_name|
   workshop = Workshop.find_by_name!(workshop_name)
   workshop.active = false

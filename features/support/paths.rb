@@ -9,10 +9,6 @@ module NavigationHelpers
       my_account_path
     when 'my dashboard'
       dashboard_path
-    when 'the workshops json page'
-      workshops_path(format: :json)
-    when /the workshops json page with the callback "([^"]+)"/
-      workshops_path(format: :json, callback: $1)
     when /the workshop page of "([^"]+)"/
       workshop_path(Workshop.find_by_name!($1))
     when /the section page of "([^"]+)"/
