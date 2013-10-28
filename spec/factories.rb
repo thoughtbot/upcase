@@ -86,6 +86,14 @@ FactoryGirl.define do
       online true
       length_in_days 28
     end
+
+    trait :active do
+      active true
+    end
+
+    trait :inactive do
+      active false
+    end
   end
 
   factory :download
