@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131024150525) do
+ActiveRecord::Schema.define(version: 20131028033305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -210,12 +210,12 @@ ActiveRecord::Schema.define(version: 20131024150525) do
     t.string   "call_to_action"
     t.string   "short_description"
     t.text     "description"
-    t.integer  "individual_price",              default: 0,    null: false
-    t.integer  "company_price",                 default: 0,    null: false
+    t.integer  "individual_price",           default: 0,    null: false
+    t.integer  "company_price",              default: 0,    null: false
     t.string   "product_type"
-    t.boolean  "active",                        default: true, null: false
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.boolean  "active",                     default: true, null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.string   "fulfillment_method"
     t.integer  "github_team"
     t.string   "github_url"
@@ -226,11 +226,8 @@ ActiveRecord::Schema.define(version: 20131024150525) do
     t.string   "product_image_file_size"
     t.string   "product_image_content_type"
     t.string   "product_image_updated_at"
-    t.text     "external_purchase_url"
-    t.string   "external_purchase_name"
-    t.string   "external_purchase_description"
-    t.integer  "discount_percentage",           default: 0,    null: false
-    t.string   "discount_title",                default: "",   null: false
+    t.integer  "discount_percentage",        default: 0,    null: false
+    t.string   "discount_title",             default: "",   null: false
   end
 
   create_table "purchases", force: true do |t|
@@ -396,12 +393,12 @@ ActiveRecord::Schema.define(version: 20131024150525) do
     t.string   "salt",                limit: 128
     t.string   "confirmation_token",  limit: 128
     t.string   "remember_token",      limit: 128
-    t.boolean  "email_confirmed",                 default: true,  null: false
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.boolean  "email_confirmed",                 default: true,                     null: false
+    t.datetime "created_at",                                                         null: false
+    t.datetime "updated_at",                                                         null: false
     t.string   "customer_id",                     default: ""
     t.string   "reference",                       default: ""
-    t.boolean  "admin",                           default: false, null: false
+    t.boolean  "admin",                           default: false,                    null: false
     t.string   "stripe_customer_id"
     t.string   "github_username"
     t.string   "auth_provider"
