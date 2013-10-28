@@ -87,42 +87,6 @@ describe Section do
     end
   end
 
-  describe '#send_reminders' do
-    it 'sends reminder emails to all paid registrants' do
-      section = create(:section)
-      create_subscriber_purchase_from_purchaseable(section)
-      create_subscriber_purchase_from_purchaseable(section)
-      unpaid = create_subscriber_purchase_from_purchaseable(section)
-      unpaid.paid = false
-      unpaid.payment_method = 'paypal'
-      unpaid.save!
-      create_subscriber_purchase :section
-      ActionMailer::Base.deliveries.clear
-
-      section.send_reminders
-
-      ActionMailer::Base.deliveries.should have(2).email
-    end
-  end
-
-  describe '.send_reminders' do
-    it 'only sends reminders for a week from today' do
-      sections = [
-        create(:section, starts_on: 1.week.from_now),
-        create(:section, starts_on: 1.week.from_now + 1.day),
-        create(:section, starts_on: 1.week.from_now - 1.day)
-      ]
-      sections.each do |section|
-        create_subscriber_purchase_from_purchaseable(section)
-      end
-      ActionMailer::Base.deliveries.clear
-
-      Section.send_reminders
-
-      ActionMailer::Base.deliveries.should have(1).email
-    end
-  end
-
   describe '#to_param' do
     it 'returns the id and parameterized workshop name' do
       section = create(:section)
