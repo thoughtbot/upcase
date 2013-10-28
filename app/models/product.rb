@@ -52,10 +52,6 @@ class Product < ActiveRecord::Base
     @announcement ||= announcements.current
   end
 
-  def external?
-    fulfillment_method == 'external'
-  end
-
   def subscription?
     false
   end
