@@ -5,6 +5,7 @@ feature 'Purchasing a product' do
   include PurchaseHelpers
 
   scenario 'Visitor signs up while purchasing a product' do
+    AssociatePreviousPurchases.stubs(:create_associations_for)
     product = create(:video_product)
     visit product_path(product)
     click_purchase_link_for(product)
@@ -16,6 +17,7 @@ feature 'Purchasing a product' do
     fill_in 'Password', with: 'password'
     click_button 'Create an account'
 
+    previous_purchases_are_associated_with('ben@thoughtbot.com')
     expect(page).to have_css('form#new_purchase')
     expect(field_labeled('Email').value).to eq 'ben@thoughtbot.com'
     expect(field_labeled('Name').value).to eq 'Ben Orenstein'
@@ -113,6 +115,11 @@ feature 'Purchasing a product' do
     click_purchase_link_for(product)
     click_button 'Submit Payment'
     expect(page).to have_css("li.error input#github_username_1")
+  end
+
+  def previous_purchases_are_associated_with(email)
+    user = User.find_by(email: email)
+    expect(AssociatePreviousPurchases).to have_received(:create_associations_for).with(user)
   end
 
   def stub_stripe_to_fail

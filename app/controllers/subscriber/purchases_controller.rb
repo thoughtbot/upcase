@@ -1,11 +1,11 @@
 module Subscriber
   class PurchasesController < ApplicationController
     def new
-      @purchaseable = find_purchaseable
+      @purchaseable = PurchaseableDecorator.new(requested_purchaseable)
     end
 
     def create
-      @purchaseable = find_purchaseable
+      @purchaseable = requested_purchaseable
       subscriber_purchase = SubscriberPurchase.new(@purchaseable,
         current_user,
         comments)

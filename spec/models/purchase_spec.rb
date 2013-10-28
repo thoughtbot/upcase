@@ -398,13 +398,11 @@ describe Purchase, 'with no price' do
 end
 
 describe 'Purchases with various payment methods' do
-  before do
-    @stripe = create(:purchase, payment_method: 'stripe')
-    @paypal = create(:purchase, payment_method: 'paypal')
-  end
-
   it 'includes only stripe payments in the stripe finder' do
-    Purchase.stripe.should == [@stripe]
+    @stripe_purchase = create(:purchase, payment_method: 'stripe')
+    @paypal_purchase = create(:purchase, payment_method: 'paypal')
+
+    Purchase.with_stripe_customer_id.should == [@stripe_purchase]
   end
 end
 

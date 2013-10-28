@@ -10,6 +10,7 @@ class UsersController < Clearance::UsersController
     @user = User.new(create_user_from_params)
 
     if @user.save
+      AssociatePreviousPurchases.create_associations_for(@user)
       sign_in @user
       redirect_back_or url_after_create
     else

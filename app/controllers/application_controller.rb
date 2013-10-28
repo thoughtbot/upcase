@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user_is_admin?
 
-  def find_purchaseable
+  def requested_purchaseable
     if params[:product_id]
       Product.find(params[:product_id])
     elsif params[:individual_plan_id]
