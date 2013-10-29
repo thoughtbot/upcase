@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_filter :authorize
+  before_action :authorize
   before_action :redirect_unless_user_is_allowed_to_post
 
   def create
