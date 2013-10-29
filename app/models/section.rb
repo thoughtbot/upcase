@@ -59,10 +59,6 @@ class Section < ActiveRecord::Base
     )
   end
 
-  def self.send_reminders
-    upcoming.each &:send_reminders
-  end
-
   def self.send_video_notifications
     current.each &:send_video_notifications
   end
@@ -97,12 +93,6 @@ class Section < ActiveRecord::Base
 
   def seats_available
     super || workshop.maximum_students
-  end
-
-  def send_reminders
-    paid_purchases.each do |purchase|
-      WorkshopMailer.delay.section_reminder(purchase.id, id)
-    end
   end
 
   def send_video_notifications

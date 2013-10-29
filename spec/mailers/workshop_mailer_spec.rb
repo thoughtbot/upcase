@@ -41,63 +41,6 @@ describe WorkshopMailer do
     end
   end
 
-  describe '.section_reminder' do
-    it 'has the correct subject' do
-      expect(sent_email.subject).to match(/#{workshop_name}/)
-    end
-
-    it 'has the correct recipient' do
-      expect(sent_email.to).to include(recipient)
-    end
-
-    it "has the registrant's name in the body" do
-      expect(sent_email.body).to include('Benny Burns')
-    end
-
-    context 'for an online workshop' do
-      it 'does not contain a section about comments or dietary restrictions' do
-        purchase = create_subscriber_purchase(:online_section)
-        purchase.comments = 'comments and requests'
-        purchase.save!
-        section = purchase.purchaseable
-        email = WorkshopMailer.section_reminder(purchase.id, section.id)
-
-        expect(email).not_to have_body_text(/following comments|dietary restrictions/)
-      end
-    end
-
-    context 'for an in-person workshop' do
-      it 'does not contain a section about comments or dietary restrictions' do
-        purchase = create_subscriber_purchase(:in_person_section)
-        purchase.comments = 'comments and requests'
-        purchase.save!
-        section = purchase.purchaseable
-        email = WorkshopMailer.section_reminder(purchase.id, section.id)
-
-        expect(email).to have_body_text(/following comments|dietary restrictions/)
-      end
-    end
-
-    def workshop_name
-      'Hilarious Backbone.js'
-    end
-
-    def recipient
-      'frankie-z@example.com'
-    end
-
-    def sent_email
-      workshop = create(:workshop, name: workshop_name)
-      section = create(:section, workshop: workshop)
-      purchase = create_subscriber_purchase_from_purchaseable(section)
-      purchase.email = recipient
-      purchase.name = 'Benny Burns'
-      purchase.save!
-
-      WorkshopMailer.section_reminder(purchase, section)
-    end
-  end
-
   describe '.teacher_notification' do
     it "mentions the workshop name in the body" do
       workshop = create(:workshop, name: "Foo bar")

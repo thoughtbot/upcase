@@ -18,16 +18,6 @@ class WorkshopMailer < BaseMailer
     )
   end
 
-  def section_reminder(purchase_id, section_id)
-    @purchase = Purchase.find(purchase_id)
-    @section = Section.find(section_id)
-
-    mail(
-      to: @purchase.email,
-      subject: "Reminder: #{@purchase.purchaseable_name} is scheduled to start in a week on #{@section.starts_on.to_s(:simple)}. Mark your calendar!"
-    )
-  end
-
   def video_notification(email, video)
     @video = video
 

@@ -108,8 +108,6 @@ module NavigationHelpers
       'workshop_location_name'
     when 'max students'
       'workshop_maximum_students'
-    when 'reminder email text'
-      'section_reminder_email'
     when 'workshop follow up email'
       'workshop_followup_email'
     when 'login email'
