@@ -6,7 +6,8 @@ class NotesController < ApplicationController
     if note_body_is_present?
       create_note_and_reload_timeline
     else
-      redirect_to_current_user_timeline_with_flash_error
+      flash[:error] = 'Please fill in the note'
+      redirect_to correct_timeline_path
     end
   end
 
@@ -16,8 +17,12 @@ class NotesController < ApplicationController
 
   def update
     @note = Note.find(params[:id])
-    @note.update_attributes(note_params)
-    redirect_to correct_timeline_path, notice: 'Successfully updated the note'
+    if @note.update_attributes(note_params)
+      redirect_to correct_timeline_path, notice: 'Successfully updated the note'
+    else
+      flash[:error] = 'Please fill in the note'
+      render :edit
+    end
   end
 
   private
@@ -32,7 +37,8 @@ class NotesController < ApplicationController
 
   def redirect_unless_user_is_allowed_to_post
     unless current_user_allowed_to_post?
-      redirect_to_current_user_timeline_with_flash_error
+      flash[:error] = 'You do not have permission to post to that timeline.'
+      redirect_to correct_timeline_path
     end
   end
 
@@ -46,11 +52,6 @@ class NotesController < ApplicationController
 
   def current_user_is_timeline_user?
     current_user == timeline_user
-  end
-
-  def redirect_to_current_user_timeline_with_flash_error
-    flash[:error] = 'You do not have permission to post to that timeline.'
-    redirect_to timeline_path
   end
 
   def create_note_and_reload_timeline
@@ -67,7 +68,7 @@ class NotesController < ApplicationController
   end
 
   def note_already_exists?
-    params[:id]
+    params[:id].present?
   end
 
   def note_params

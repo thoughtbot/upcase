@@ -5,7 +5,7 @@ module TimelinesHelper
 
   def edit_note_link(note)
     if note.allowed_to_be_edited_by?(current_user)
-      link_to 'edit note', edit_note_path(note)
+      link_to 'edit note', edit_note_path(note, timeline_user_id: @timeline.user_id)
     end
   end
 end

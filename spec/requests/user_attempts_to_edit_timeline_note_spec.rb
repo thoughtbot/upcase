@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'User attempts to edit a timeline note' do
   context 'that was added by them' do
-    scenario 'and the note is updated successfully' do
+    scenario 'and the note is updated successfully when the note is valid' do
       user = create(:user)
       note = NoteOnPage.create_with_defaults_for(user)
       visit timeline_path(as: user)
@@ -11,6 +11,16 @@ feature 'User attempts to edit a timeline note' do
 
       expect(note).to be_displayed_on_page
       expect(flash).to have_content 'Successfully updated the note'
+    end
+
+    scenario 'and a message is displayed on the edit page when the note is invalid' do
+      user = create(:user)
+      note = NoteOnPage.create_with_defaults_for(user)
+      visit timeline_path(as: user)
+
+      note.update_body ''
+
+      expect(flash).to have_content 'Please fill in the note'
     end
   end
 
