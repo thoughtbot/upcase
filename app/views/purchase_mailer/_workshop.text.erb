@@ -23,11 +23,7 @@ Where
 <% if purchaseable.city.present? %><%= purchaseable.city %>, <% end %><%= purchaseable.state %> <%= purchaseable.zip %>
 <% end -%>
 
-<% unless purchaseable.starts_immediately? -%>
-We will be in touch before <%= purchase.starts_on.to_s(:simple) %> with a reminder and any further instructions. However, please don't hesitate to get in touch with us at learn@thoughtbot.com should you have any questions or concerns.
-<% end -%>
-
-<%= purchaseable.reminder_email %>
+We will be in touch before the workshop with a reminder and any further instructions. However, please don't hesitate to get in touch with us at learn@thoughtbot.com should you have any questions or concerns.
 
 <% if purchaseable.workshop.announcement.present? -%>
 <%= purchaseable.workshop.announcement.message %>
