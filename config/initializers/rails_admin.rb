@@ -61,44 +61,6 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model Episode do
-    list do
-      field :show
-      field :number
-      field :title
-      field :published_on
-      field :downloads_count
-    end
-
-    edit do
-      group :default do
-        field :show
-        field :new_mp3_url
-        field :mp3
-        field :title
-        field :description do
-          help 'All one line, no formatting or links'
-        end
-        field :notes do
-          help 'Format with Markdown'
-        end
-        field :published_on
-        field :topics
-        field :downloads_count do
-          read_only true
-        end
-      end
-
-      group :information do
-        help 'Leave blank to have this information automatically populated'
-        field :number
-        field :file_size
-        field :duration
-        field :old_url
-      end
-    end
-  end
-
   config.model Product do
     list do
       field :id

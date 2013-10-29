@@ -6,7 +6,6 @@ describe Topic do
   it { should have_many(:bytes).through(:classifications) }
   it { should have_many(:classifications) }
   it { should have_many(:workshops).through(:classifications) }
-  it { should have_many(:episodes).through(:classifications) }
   it { should have_many(:products).through(:classifications) }
   it { should have_many(:topics).through(:classifications) }
   it { should have_one(:trail) }

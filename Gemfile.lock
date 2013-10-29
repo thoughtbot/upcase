@@ -165,8 +165,6 @@ GEM
     delayed_job_active_record (4.0.0)
       activerecord (>= 3.0, < 4.1)
       delayed_job (>= 3.0, < 4.1)
-    delayed_paperclip (2.6.1)
-      paperclip (>= 3.3.0)
     diff-lcs (1.2.4)
     doorkeeper (0.7.2)
       jquery-rails (>= 2.0.2)
@@ -382,7 +380,6 @@ GEM
     ruby-freshbooks (0.4.0)
       builder (>= 2.1.2)
       httparty (>= 0.5.0)
-    ruby-mp3info (0.8)
     rubyzip (0.9.9)
     safe_yaml (0.9.7)
     safety_mailer (0.0.3)
@@ -481,7 +478,6 @@ DEPENDENCIES
   debugger
   delayed_job (~> 4.0.0)
   delayed_job_active_record (= 4.0.0)
-  delayed_paperclip
   doorkeeper (~> 0.7.1)
   dynamic_form (= 1.1.4)
   email_spec (= 1.2.1)
@@ -520,7 +516,6 @@ DEPENDENCIES
   rails_admin (~> 0.5.0)
   rspec-rails
   ruby-freshbooks (= 0.4.0)
-  ruby-mp3info (~> 0.8)
   rubyzip (= 0.9.9)
   safety_mailer (= 0.0.3)
   sass-rails (= 4.0.0)

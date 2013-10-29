@@ -41,10 +41,6 @@ module ApplicationHelper
     '/auth/github'
   end
 
-  def format_podcast_notes(notes)
-    BlueCloth.new(notes).to_html
-  end
-
   def format_resources(resources)
     BlueCloth.new(resources).to_html
   end

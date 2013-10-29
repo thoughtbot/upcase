@@ -74,17 +74,16 @@ Workshops::Application.routes.draw do
     resources :stripe_redemptions, only: [:new]
   end
 
-  get '/podcast.xml' => redirect('/giantrobots.xml')
-  get '/podcast' => redirect('/giantrobots')
+  get '/podcast.xml' => redirect('http://podcasts.thoughtbot.com/giantrobots.xml')
+  get '/podcast' => redirect('http://podcasts.thoughtbot.com/giantrobots')
   get '/podcast/articles' => 'articles#index', id: 'podcast'
-  get '/podcast/:id' => redirect("/giantrobots/%{id}")
-  get '/podcasts' => redirect('/giantrobots')
-  get '/podcasts/:id' => redirect("/giantrobots/%{id}")
-
-  constraints show_id: /giantrobots|buildphase|tinyrobots/ do
-    get '/:show_id' => 'episodes#index', as: :show_episodes
-    get '/:show_id/:id' => 'episodes#show', as: :show_episode
-  end
+  get '/podcast/:id' => redirect("http://podcasts.thoughtbot.com/giantrobots/%{id}")
+  get '/podcasts' => redirect('http://podcasts.thoughtbot.com/giantrobots')
+  get '/podcasts/:id' => redirect("http://podcasts.thoughtbot.com/giantrobots/%{id}")
+  get '/giantrobots' => redirect('http://podcasts.thoughtbot.com/giantrobots')
+  get '/giantrobots/:id' => redirect("http://podcasts.thoughtbot.com/giantrobots/%{id}")
+  get '/buildphase' => redirect('http://podcasts.thoughtbot.com/buildphase')
+  get '/buildphase/:id' => redirect("http://podcasts.thoughtbot.com/buildphase/%{id}")
 
   resources :design_for_developers_resources, path: 'design-for-developers-resources', only: [:index, :show]
   resources :test_driven_rails_resources, path: 'test-driven-rails-resources', only: [:index]
