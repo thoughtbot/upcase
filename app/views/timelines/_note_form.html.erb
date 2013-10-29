@@ -1,6 +1,5 @@
-<%= form_for :note, url: notes_path, html: { class: 'note-form' } do |form| %>
+<%= form_for :note, url: notes_path(timeline_user_id: timeline_user.id), html: { class: 'note-form' } do |form| %>
   <fieldset>
-    <%= form.hidden_field :timeline_user_id, value: timeline_user.id %>
     <%= form.text_area :body, placeholder: 'Type a note here... (markdown supported)' %>
     <%= form.submit 'save this note' %>
   </fieldset>
