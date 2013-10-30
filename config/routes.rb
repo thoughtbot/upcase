@@ -80,8 +80,10 @@ Workshops::Application.routes.draw do
   get '/podcast/:id' => redirect("http://podcasts.thoughtbot.com/giantrobots/%{id}")
   get '/podcasts' => redirect('http://podcasts.thoughtbot.com/giantrobots')
   get '/podcasts/:id' => redirect("http://podcasts.thoughtbot.com/giantrobots/%{id}")
+  get '/giantrobots.xml' => redirect('http://podcasts.thoughtbot.com/giantrobots.xml'
   get '/giantrobots' => redirect('http://podcasts.thoughtbot.com/giantrobots')
   get '/giantrobots/:id' => redirect("http://podcasts.thoughtbot.com/giantrobots/%{id}")
+  get '/buildphase.xml' => redirect('http://podcasts.thoughtbot.com/buildphase.xml')
   get '/buildphase' => redirect('http://podcasts.thoughtbot.com/buildphase')
   get '/buildphase/:id' => redirect("http://podcasts.thoughtbot.com/buildphase/%{id}")
 
