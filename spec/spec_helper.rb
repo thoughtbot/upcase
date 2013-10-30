@@ -15,7 +15,6 @@ Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].e
 
 FakeStripeRunner.boot
 FakeMailchimpRunner.boot
-Paperclip.processor(:id3)
 FakeGithubRunner.boot
 
 Delayed::Worker.delay_jobs = false

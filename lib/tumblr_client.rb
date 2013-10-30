@@ -19,14 +19,6 @@ class TumblrClient
     all_posts
   end
 
-  def post_episode(episode)
-    post = Tumblr::Post::Link.new(tumblr_post_params(episode))
-    client = Tumblr::Client.new(ENV['TUMBLR_HOSTNAME'], oauth_hash)
-    request = post.post(client)
-
-    request.perform
-  end
-
   private
 
   def self.posts_url(tumblr_handle, offset)
@@ -53,36 +45,5 @@ class TumblrClient
         tags: post['tags']
       }
     end
-  end
-
-  def oauth_hash
-    {
-      consumer_key: ENV['TUMBLR_CONSUMER_KEY'],
-      consumer_secret: ENV['TUMBLR_CONSUMER_SECRET'],
-      token: ENV['TUMBLR_TOKEN'],
-      token_secret: ENV['TUMBLR_TOKEN_SECRET']
-    }
-  end
-
-  def tumblr_post_params(episode)
-    {
-      state: 'published',
-      tags: 'podcast,rails,ruby',
-      format: 'markdown',
-      title: "#{episode.show.short_title} Podcast #{episode.full_title}",
-      url: show_episode_url(episode.show, episode, host: HOST),
-      description: episode_description(episode)
-    }
-  end
-
-  def episode_description(episode)
-    description = <<-DESCRIPTION
-#{episode.description}
-
-* [Episode Notes and Links](#{show_episode_url(episode.show, episode, host: HOST)})
-* [Subscribe via iTunes](#{episode.show.itunes_url})
-* [Subscribe via RSS](#{show_episodes_url(episode.show, format: :xml, host: HOST)})
-* [Direct Download](#{show_episode_url(episode.show, episode, format: :mp3, host: HOST)})
-DESCRIPTION
   end
 end

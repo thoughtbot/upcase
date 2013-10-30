@@ -4,7 +4,6 @@ class Topic < ActiveRecord::Base
   with_options(through: :classifications, source: :classifiable) do |options|
     options.has_many :articles, source_type: 'Article'
     options.has_many :bytes, source_type: 'Byte'
-    options.has_many :episodes, source_type: 'Episode'
     options.has_many :products, source_type: 'Product'
     options.has_many :topics, source_type: 'Topic'
     options.has_many :workshops, source_type: 'Workshop'
