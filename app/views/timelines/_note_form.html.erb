@@ -1,4 +1,4 @@
-<%= form_for :note, url: notes_path(timeline_user_id: timeline_user.id), html: { class: 'note-form' } do |form| %>
+<%= form_for :note, url: user_notes_path(timeline_user), html: { class: 'note-form' } do |form| %>
   <fieldset>
     <%= form.text_area :body, placeholder: 'Type a note here... (markdown supported)' %>
     <%= form.submit 'save this note' %>

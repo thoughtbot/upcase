@@ -68,15 +68,14 @@ class NotesController < ApplicationController
   end
 
   def timeline_user
-    User.find(params[:timeline_user_id])
+    User.find(params[:user_id])
   end
 
   def note_params
     params.
       require(:note).
       permit(
-        :body,
-        :timeline_user_id,
+        :body
       ).
       merge(contributor_id: current_user.id)
   end
