@@ -8,4 +8,10 @@ module TimelinesHelper
       link_to 'edit note', edit_user_note_path(@timeline.user, note)
     end
   end
+
+  private
+
+  def note_allowed_to_be_edited?(note)
+    note.created_by?(current_user)
+  end
 end

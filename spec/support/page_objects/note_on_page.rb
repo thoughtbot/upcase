@@ -41,10 +41,22 @@ class NoteOnPage
     note.has_link? 'edit'
   end
 
+  def has_success_flash_message?
+    flash.has_content? I18n.t('notes.flashes.success')
+  end
+
+  def has_error_flash_message?
+    flash.has_content? I18n.t('notes.flashes.error')
+  end
+
   private
   attr_accessor :body
 
   def note
     find('[data-role="note"]')
+  end
+
+  def flash
+    find('.flash')
   end
 end
