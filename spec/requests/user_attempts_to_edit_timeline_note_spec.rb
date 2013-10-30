@@ -10,7 +10,7 @@ feature 'User attempts to edit a timeline note' do
       note.update_body 'My updated note'
 
       expect(note).to be_displayed_on_page
-      expect(flash).to have_content 'Successfully updated the note'
+      expect(flash).to have_content I18n.t('notes.flashes.success')
     end
 
     scenario 'and a message is displayed on the edit page when the note is invalid' do

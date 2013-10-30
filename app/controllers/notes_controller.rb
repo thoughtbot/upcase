@@ -17,7 +17,7 @@ class NotesController < ApplicationController
   def update
     @note = Note.find(params[:id])
     if @note.update_attributes(note_params)
-      redirect_to correct_timeline_path, notice: 'Successfully updated the note'
+      redirect_to correct_timeline_path, notice: t('notes.flashes.success')
     else
       render_edit_form_with_flash_error
     end

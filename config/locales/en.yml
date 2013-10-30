@@ -35,6 +35,7 @@ en:
   notes:
     flashes:
       error: 'Please fill in the note'
+      success: 'Your note was added to the timeline'
 
   offerings:
     alternate:
