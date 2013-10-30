@@ -3,8 +3,8 @@ class NotesController < ApplicationController
   before_action :redirect_unless_user_is_allowed_to_post
 
   def create
-    if note_body_is_present?
-      create_note_and_reload_timeline
+    if timeline_user.notes.create(note_params)
+      redirect_to :back
     else
       redirect_to_users_timeline_with_flash_error
     end
@@ -49,17 +49,8 @@ class NotesController < ApplicationController
     current_user_is_timeline_user? || current_user_is_admin?
   end
 
-  def note_body_is_present?
-    params[:note][:body].present?
-  end
-
   def current_user_is_timeline_user?
     current_user == timeline_user
-  end
-
-  def create_note_and_reload_timeline
-    timeline_user.notes.create!(note_params)
-    redirect_to :back
   end
 
   def render_edit_form_with_flash_error
