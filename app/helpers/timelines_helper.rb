@@ -4,14 +4,14 @@ module TimelinesHelper
   end
 
   def edit_note_link(note)
-    if note.allowed_to_be_edited_by?(current_user)
+    if allowed_to_be_edited?(note)
       link_to 'edit note', edit_user_note_path(@timeline.user, note)
     end
   end
 
   private
 
-  def note_allowed_to_be_edited?(note)
+  def allowed_to_be_edited?(note)
     note.created_by?(current_user)
   end
 end

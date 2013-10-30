@@ -10,7 +10,7 @@ feature 'User attempts to edit a timeline note' do
       note.update_body 'My updated note'
 
       expect(note).to be_displayed_on_page
-      expect(note).to have_success_flash_message
+      expect(page).to have_success_message
     end
 
     scenario 'and a message is displayed on the edit page when the note is invalid' do
@@ -20,7 +20,7 @@ feature 'User attempts to edit a timeline note' do
 
       note.update_body ''
 
-      expect(note).to have_error_flash_message
+      expect(page).to have_error_message
     end
   end
 
@@ -34,5 +34,15 @@ feature 'User attempts to edit a timeline note' do
       expect(note).to be_displayed_on_page
       expect(note).not_to have_edit_link
     end
+  end
+
+  private
+
+  def have_success_message
+    have_content I18n.t('notes.flashes.success')
+  end
+
+  def have_error_message
+    have_content I18n.t('notes.flashes.error')
   end
 end
