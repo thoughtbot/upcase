@@ -82,12 +82,12 @@ Workshops::Application.routes.draw do
   get '/podcasts/:id' => redirect("http://podcasts.thoughtbot.com/giantrobots/%{id}")
   get '/giantrobots.xml' => redirect('http://podcasts.thoughtbot.com/giantrobots.xml')
   get '/giantrobots' => redirect('http://podcasts.thoughtbot.com/giantrobots')
-  get '/giantrobots/:id' => redirect("http://podcasts.thoughtbot.com/giantrobots/%{id}")
   get '/giantrobots/:id.mp3' => redirect("http://podcasts.thoughtbot.com/giantrobots/%{id}.mp3")
+  get '/giantrobots/:id' => redirect("http://podcasts.thoughtbot.com/giantrobots/%{id}")
   get '/buildphase.xml' => redirect('http://podcasts.thoughtbot.com/buildphase.xml')
   get '/buildphase' => redirect('http://podcasts.thoughtbot.com/buildphase')
-  get '/buildphase/:id' => redirect("http://podcasts.thoughtbot.com/buildphase/%{id}")
   get '/buildphase/:id.mp3' => redirect("http://podcasts.thoughtbot.com/buildphase/%{id}.mp3")
+  get '/buildphase/:id' => redirect("http://podcasts.thoughtbot.com/buildphase/%{id}")
 
   resources :design_for_developers_resources, path: 'design-for-developers-resources', only: [:index, :show]
   resources :test_driven_rails_resources, path: 'test-driven-rails-resources', only: [:index]
