@@ -6,7 +6,7 @@ class NotesController < ApplicationController
     if note_body_is_present?
       create_note_and_reload_timeline
     else
-      redirect_to_timline_with_flash_error
+      redirect_to_users_timeline_with_flash_error
     end
   end
 
@@ -30,6 +30,11 @@ class NotesController < ApplicationController
       flash[:error] = 'You do not have permission to post to that timeline.'
       redirect_to correct_timeline_path
     end
+  end
+
+  def redirect_to_users_timeline_with_flash_error
+    flash[:error] = t('notes.flashes.error')
+    redirect_to correct_timeline_path
   end
 
   def correct_timeline_path
@@ -57,13 +62,8 @@ class NotesController < ApplicationController
     redirect_to :back
   end
 
-  def redirect_to_timline_with_flash_error
-    flash[:error] = 'Please fill in the note'
-    redirect_to correct_timeline_path
-  end
-
   def render_edit_form_with_flash_error
-    flash[:error] = 'Please fill in the note'
+    flash[:error] = t('notes.flashes.error')
     render :edit
   end
 

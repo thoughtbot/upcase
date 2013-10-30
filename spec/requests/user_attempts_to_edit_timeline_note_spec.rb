@@ -20,7 +20,7 @@ feature 'User attempts to edit a timeline note' do
 
       note.update_body ''
 
-      expect(flash).to have_content 'Please fill in the note'
+      expect(flash).to have_content I18n.t('notes.flashes.error')
     end
   end
 

@@ -32,6 +32,10 @@ en:
       heading:
         All %{topic} articles
 
+  notes:
+    flashes:
+      error: 'Please fill in the note'
+
   offerings:
     alternate:
       in_person_workshop_cities_html: "In %{cities}?"
