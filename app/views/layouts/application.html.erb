@@ -1,24 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head prefix="og: http://ogp.me/ns#">
-    <%= render 'shared/optimizely' %>
-
-    <meta charset="utf-8" />
-    <title><%= page_title(app_name: t('layouts.app_name')) %></title>
-    <%= stylesheet_link_tag 'application' %>
-    <%= stylesheet_link_tag 'print', media: :print %>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <meta http-equiv="Description" name="Description" content="<%= yield(:meta_description).presence || t('layouts.meta_description') %>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Keywords" name="Keywords" content="<%= keywords(yield :meta_keywords) %>" />
-    <%= yield :meta %>
-    <%= open_graph_tags %>
-    <%= render 'shared/typekit' %>
-    <%= csrf_meta_tag %>
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <%= render 'shared/stripe' %>
+    <%= render 'application/head_contents' %>
   </head>
 
   <body class="<%= body_class %> <%= yield(:additional_body_classes) %>">

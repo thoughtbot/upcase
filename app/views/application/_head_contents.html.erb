@@ -1,0 +1,13 @@
+<%= render 'layouts/optimizely' %>
+<meta charset="utf-8" />
+<title><%= page_title(app_name: t('layouts.app_name')) %></title>
+<%= render 'layouts/stylesheets' %>
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<meta http-equiv="Description" name="Description" content="<%= yield(:meta_description).presence || t('layouts.meta_description') %>" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Keywords" name="Keywords" content="<%= keywords(yield :meta_keywords) %>" />
+<%= open_graph_tags %>
+<%= render 'layouts/typekit' %>
+<%= csrf_meta_tag %>
+<%= render 'layouts/ie_shiv' %>
+<%= render 'layouts/stripe' %>

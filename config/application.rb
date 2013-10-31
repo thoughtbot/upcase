@@ -9,10 +9,6 @@ Bundler.require(:default, Rails.env)
 
 module Workshops
   class Application < Rails::Application
-    config.to_prepare do
-      Doorkeeper::ApplicationController.layout 'doorkeeper'
-    end
-
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
