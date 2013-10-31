@@ -8,7 +8,7 @@ module RailsAdmin
     module Actions
       class PurchaseRefund < RailsAdmin::Config::Actions::Base
         register_instance_option :visible? do
-          authorized? && bindings && bindings[:object].respond_to?(:refund)
+          authorized? && bindings && bindings[:object].respond_to?(:payment)
         end
 
         register_instance_option :member? do
@@ -21,7 +21,7 @@ module RailsAdmin
 
         register_instance_option :controller do
           Proc.new do
-            @object.refund
+            PurchaseRefunder.new(@object).refund
             flash = { success: "#{@model_config.label} refunded." }
             redirect_to back_or_index, flash: flash
           end

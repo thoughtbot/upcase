@@ -16,9 +16,34 @@ describe Purchase do
     it { should delegate(:subscription?).to(:purchaseable) }
   end
 
-  it 'produces the paid price when possible' do
-    purchase = create(:purchase, paid_price: 200)
-    purchase.price.should eq 200
+  context '#price' do
+    it 'produces the paid price if it is present' do
+      purchase = create(:purchase, paid_price: 200)
+
+      expect(purchase.price).to eq 200
+    end
+
+    it 'uses a one-time coupon just once' do
+      coupon = create(:one_time_coupon, amount: 25)
+      first_purchase = create(:purchase, coupon: coupon, paid: true)
+
+      expect(first_purchase.price).to eq 11.25
+
+      second_purchase = create(:purchase, coupon: coupon.reload)
+
+      expect(second_purchase.price).to eq 15.00
+    end
+
+    it 'it uses PurchasePriceCalculator to calculate the price if paid price is blank' do
+      purchase = build(:purchase)
+      price_calculator_stub = stub('price_calculator', calculate: true)
+      PurchasePriceCalculator.stubs(new: price_calculator_stub)
+
+      purchase.price
+
+      expect(PurchasePriceCalculator).to have_received(:new).with(purchase)
+      expect(price_calculator_stub).to have_received(:calculate)
+    end
   end
 
   context '#first_name' do
@@ -165,35 +190,11 @@ describe Purchase do
     purchase.to_param.should eq 'findme'
   end
 
-  it 'computes its final price off its product variant' do
-    product = build_stubbed(:product, individual_price: 15, company_price: 50)
-    individual_purchase =
-      build_stubbed(:purchase, variant: 'individual', purchaseable: product)
-    company_purchase =
-      build_stubbed(:purchase, variant: 'company', purchaseable: product)
-
-    individual_purchase.price.should eq 15
-    company_purchase.price.should eq 50
-  end
-
   it 'generates a lookup' do
     purchase = build(:purchase, lookup: nil)
 
     purchase.save!
     purchase.lookup.should_not be_nil
-  end
-
-  it 'uses its coupon in its charged price' do
-    coupon = build_stubbed(:coupon, amount: 25)
-    product = build_stubbed(:product, individual_price: 40)
-    purchase = build_stubbed(
-      :purchase,
-      coupon: coupon,
-      purchaseable: product,
-      variant: 'individual'
-    )
-
-    purchase.price.should eq 30
   end
 end
 
@@ -204,63 +205,6 @@ describe Purchase, 'with stripe and a bad card' do
     product = build(:product, individual_price: 15, company_price: 50)
     purchase = build(:purchase, purchaseable: product, payment_method: 'stripe')
     purchase.save.should be_false
-  end
-end
-
-describe Purchase, '#refund' do
-  it 'sets the purchase as unpaid' do
-    purchase = create(:paid_purchase)
-
-    purchase.refund
-
-    purchase.should_not be_paid
-  end
-
-  it 'does not issue a refund if it is unpaid' do
-    payment = stub('payment', place: true)
-    Payments::StripePayment.stubs(:new).returns(payment)
-    purchase = create(:unpaid_purchase)
-
-    purchase.refund
-
-    payment.should have_received(:refund).never
-    purchase.should_not be_paid
-  end
-
-  context 'when not fulfilled_with_github' do
-    it 'does not remove from github' do
-      purchase = create(:paid_purchase)
-      fulfillment = stub(:remove)
-      GithubFulfillment.stubs(:new).returns(fulfillment)
-
-      purchase.refund
-
-      fulfillment.should have_received(:remove).never
-    end
-  end
-
-  context 'when fulfilled_with_github' do
-    it 'removes from github' do
-      product = create(:github_book_product)
-      purchase = create(:paid_purchase, purchaseable: product)
-      fulfillment = stub(:remove)
-      GithubFulfillment.stubs(:new).returns(fulfillment)
-
-      purchase.refund
-
-      fulfillment.should have_received(:remove)
-    end
-  end
-
-  it "removes the purchaser's email from lists" do
-    product = create(:book_product)
-    purchase = create(:paid_purchase, purchaseable: product)
-    fulfillment = stub(:remove)
-    MailchimpFulfillment.stubs(:new).returns(fulfillment)
-
-    purchase.refund
-
-    fulfillment.should have_received(:remove)
   end
 end
 
@@ -288,16 +232,6 @@ describe Purchase, 'being paid' do
 
     SendPurchaseReceiptEmailJob.should have_received(:enqueue).with(purchase.id)
   end
-
-  it 'uses a one-time coupon' do
-    coupon = create(:one_time_coupon, amount: 25)
-    first_purchase = create(:purchase, coupon: coupon, paid: true)
-    first_purchase.price.should eq 11.25
-
-    second_purchase = create(:purchase, coupon: coupon.reload)
-
-    second_purchase.price.should eq 15.00
-  end
 end
 
 describe Purchase, 'with stripe' do
@@ -310,30 +244,12 @@ describe Purchase, 'with stripe' do
     Payments::StripePayment.stubs(:new).returns(payment)
   end
 
-  it 'calculates its price and paid price using the subscription coupon when there is a stripe coupon' do
-    subscription_coupon = stub(apply: 20)
-    SubscriptionCoupon.stubs(:new).returns(subscription_coupon)
-    purchase = create(:plan_purchase, stripe_coupon_id: '25OFF')
-
-    expect(purchase.price).to eq 20
-  end
-
   it 'is still a stripe purchase if its coupon discounts 100%' do
     subscription_coupon = stub(apply: 0)
     SubscriptionCoupon.stubs(:new).returns(subscription_coupon)
     purchase = create(:plan_purchase, stripe_coupon_id: 'FREEMONTH')
 
     expect(purchase).to be_stripe
-  end
-
-  it 'refunds money to purchaser' do
-    purchase = build(:paid_purchase, payment_method: 'stripe')
-    payment = stub('payment', refund: true, place: true)
-    Payments::StripePayment.stubs(:new).with(purchase).returns(payment)
-
-    purchase.refund
-
-    payment.should have_received(:refund)
   end
 end
 
@@ -359,19 +275,6 @@ describe Purchase, 'with paypal' do
 
     payment.
       should have_received(:complete).with(params)
-  end
-
-  context 'and refunded' do
-    it 'refunds money to purchaser' do
-      subject.payment_transaction_id = 'TRANSACTION-ID'
-      subject.paid = true
-      subject.save!
-
-      subject.refund
-
-      payment.should have_received(:refund)
-      subject.reload.paid.should be_false
-    end
   end
 end
 
@@ -406,6 +309,21 @@ describe 'Purchases with various payment methods' do
   end
 end
 
+describe Purchase, 'after_save' do
+  it 'copies purchase info to the purchaser' do
+    purchase_info_copier_stub = stub('payment_info_copier', copy_info_to_user: true)
+    PurchaseInfoCopier.stubs(new: purchase_info_copier_stub)
+    user = create(:user)
+    purchase = build(:purchase, user: user)
+    expect(purchase_info_copier_stub).to have_received(:copy_info_to_user).never
+
+    purchase.save
+
+    expect(PurchaseInfoCopier).to have_received(:new).with(purchase, purchase.user)
+    expect(purchase_info_copier_stub).to have_received(:copy_info_to_user)
+  end
+end
+
 describe 'Purchases for various emails' do
   context '#by_email' do
     let(:email) { 'user@example.com' }
@@ -423,166 +341,8 @@ describe 'Purchases for various emails' do
   end
 end
 
-describe Purchase, 'for a user' do
-  context 'with github_usernames' do
-    it 'saves the first github_username to the user' do
-      user = create(:user)
-      user.github_username.should be_blank
-      purchase = create(:purchase, user: user, github_usernames: ['tbot', 'other'])
-      user.reload.github_username.should == 'tbot'
-    end
-
-    it "doesn't overwrite first github_username to the user" do
-      user = create(:user, github_username: 'test')
-      purchase = create(:purchase, user: user, github_usernames: ['tbot', 'other'])
-      user.reload.github_username.should == 'test'
-    end
-  end
-
-  context 'with address information' do
-    it 'saves the address to the user' do
-      user = create(:user)
-      user.address1.should be_blank
-
-      purchase = create(
-        :purchase,
-        user: user,
-        organization: 'thoughtbot',
-        address1: '41 Winter St.',
-        address2: 'Floor 7',
-        city: 'Boston',
-        state: 'MA',
-        zip_code: '02108',
-        country: 'USA'
-      )
-      user.reload
-
-      user.organization.should eq 'thoughtbot'
-      user.address1.should eq '41 Winter St.'
-      user.address2.should eq 'Floor 7'
-      user.city.should eq 'Boston'
-      user.state.should eq 'MA'
-      user.zip_code.should eq '02108'
-      user.country.should eq 'USA'
-    end
-
-    it "doesn't overwite the organization with blank" do
-      user = create(:user, organization: 'thoughtbot')
-
-      purchase = create(
-        :purchase,
-        user: user,
-        organization: ''
-      )
-      user.reload
-
-      user.organization.should eq 'thoughtbot'
-    end
-
-    it 'overwrites the address if provided' do
-      user = create(:user, address1: 'testing')
-
-      purchase = create(
-        :purchase,
-        user: user,
-        organization: 'thoughtbot',
-        address1: '41 Winter St.',
-        address2: 'Floor 7',
-        city: 'Boston',
-        state: 'MA',
-        zip_code: '02108',
-        country: 'USA'
-      )
-      user.reload
-
-      user.address1.should eq '41 Winter St.'
-      user.address2.should eq 'Floor 7'
-      user.city.should eq 'Boston'
-      user.state.should eq 'MA'
-      user.zip_code.should eq '02108'
-      user.country.should eq 'USA'
-    end
-
-    it "doesn't overwrite the address if not provided" do
-      user = create(:user, address1: 'testing')
-
-      purchase = create(
-        :purchase,
-        user: user,
-        address1: '',
-        address2: 'Floor 7',
-        city: 'Boston',
-        state: 'MA',
-        zip_code: '02108',
-        country: 'USA'
-      )
-      user.reload
-
-      user.address1.should eq 'testing'
-      user.address2.should be_blank
-      user.city.should be_blank
-      user.state.should be_blank
-      user.zip_code.should be_blank
-      user.country.should be_blank
-    end
-  end
-end
-
 describe Purchase, 'given a purchaser' do
-  let(:purchaser) do
-    create(
-      :user,
-      github_username: 'Hello',
-      organization: 'thoughtbot',
-      address1: '41 Winter St.',
-      address2: 'Floor 7',
-      city: 'Boston',
-      state: 'MA',
-      zip_code: '02108',
-      country: 'USA'
-    )
-  end
-
-  it 'populates default info when given a purchaser' do
-    product = create(:product, fulfillment_method: 'other')
-    purchase = product.purchases.build
-    purchase.defaults_from_user(purchaser)
-
-    purchase.name.should == purchaser.name
-    purchase.email.should == purchaser.email
-    purchase.github_usernames.try(:first).should be_blank
-    purchase.organization.should eq 'thoughtbot'
-    purchase.address1.should eq '41 Winter St.'
-    purchase.address2.should eq 'Floor 7'
-    purchase.city.should eq 'Boston'
-    purchase.state.should eq 'MA'
-    purchase.zip_code.should eq '02108'
-    purchase.country.should eq 'USA'
-  end
-
-  context 'for a product fulfilled through github' do
-    it 'populates default info including first github_username' do
-      product = create(:github_book_product)
-      purchase = product.purchases.build
-      purchase.defaults_from_user(purchaser)
-
-      purchase.name.should == purchaser.name
-      purchase.email.should == purchaser.email
-      purchase.github_usernames.first.should == purchaser.github_username
-    end
-  end
-
   context 'for a subscription plan' do
-    it 'populates default info including first github_username' do
-      plan = create(:plan)
-      purchase = plan.purchases.build
-      purchase.defaults_from_user(purchaser)
-
-      purchase.name.should == purchaser.name
-      purchase.email.should == purchaser.email
-      purchase.github_usernames.first.should == purchaser.github_username
-    end
-
     it 'requires a password if there is no user' do
       plan = create(:plan)
       purchase = build(:purchase, purchaseable: plan, user: nil)
@@ -653,37 +413,14 @@ describe Purchase, '#active?' do
   end
 end
 
-describe Purchase, '.of_sections' do
-  it 'returns no Purchases when none are Sections' do
-    create(:book_purchase)
-    expect(Purchase.of_sections).to be_empty
-  end
+describe Purchase, '#payment' do
+  it 'returns the correct payment using the Payments::Factory' do
+    purchase = build(:purchase)
+    payment_stub = stub('payment', new: true)
+    Payments::Factory.stubs(new: payment_stub)
 
-  it 'returns Purchases for Sections' do
-    purchase = create_subscriber_purchase(:section)
-    expect(Purchase.of_sections).to eq [purchase]
-  end
-end
+    purchase.payment
 
-describe Purchase, '.date_of_last_workshop_purchase' do
-  it 'returns the date of the most-recent workshop purchase' do
-    expect(Purchase.date_of_last_workshop_purchase).to be_nil
-
-    purchase = create_subscriber_purchase(:section)
-    Timecop.travel(Date.yesterday) do
-      create_subscriber_purchase(:section)
-    end
-    expect(Purchase.date_of_last_workshop_purchase).to eq Time.zone.today
-  end
-end
-
-describe Purchase, '.within_30_days' do
-  it 'returns Purchases made within the last 30 days' do
-    Timecop.freeze Time.now do
-      create(:purchase, created_at: 30.days.ago, name: 'within range')
-      create(:purchase, created_at: (30.days + 1.second).ago, name: 'outside range')
-
-      expect(Purchase.within_30_days.map(&:name)).to eq ['within range']
-    end
+    expect(Payments::Factory).to have_received(:new).with(purchase.payment_method)
   end
 end

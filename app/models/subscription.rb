@@ -97,7 +97,7 @@ class Subscription < ActiveRecord::Base
 
   def deactivate_subscription_purchases
     user.subscription_purchases.each do |purchase|
-      purchase.refund
+      PurchaseRefunder.new(purchase).refund
     end
   end
 
