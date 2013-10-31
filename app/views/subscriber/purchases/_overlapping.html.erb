@@ -1,4 +1,4 @@
-<% if current_user.has_conflict?(@purchaseable) %>
+<% if @purchaseable.overlaps_with_other_purchases?(current_user) %>
   <h3><%= t('workshops.overlapping') %></h3>
   <p>We want each workshop you take with thoughtbot to be incredibly valuable. We think you'll get the most out of each workshop if you take and focus on just one at a time.</p>
   <p>The workload of each workshop assumes you are only taking one, and many of the workshop office hours overlap, making it difficult to fully participate in each workshop even if you have a lot of time to take them.</p>

@@ -1,6 +1,6 @@
 class AuthCallbacksController < ApplicationController
   def create
-    @user = User.find_or_create_from_auth_hash(auth_hash)
+    @user = AuthHashService.new(auth_hash).find_or_create_user_from_auth_hash
     sign_in @user
     redirect_to url_after_auth
   end

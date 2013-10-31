@@ -8,7 +8,7 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    @purchase = find_purchaseable.purchases.build(purchase_params)
+    @purchase = requested_purchaseable.purchases.build(purchase_params)
     @purchase.user = current_user
     @purchase.coupon = current_coupon
     @purchase.stripe_customer_id = existing_stripe_customer_id
@@ -84,11 +84,11 @@ class PurchasesController < ApplicationController
   end
 
   def subscriber_purchase_url
-    polymorphic_url([:new, :subscriber, find_purchaseable, :purchase])
+    polymorphic_url([:new, :subscriber, requested_purchaseable, :purchase])
   end
 
   def build_purchase_with_defaults
-    purchase = find_purchaseable.purchases.build(variant: variant)
+    purchase = requested_purchaseable.purchases.build(variant: variant)
     purchase.defaults_from_user(current_user)
     purchase.mentor_id = cookies[:mentor_id]
     purchase

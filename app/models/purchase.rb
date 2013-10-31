@@ -84,7 +84,7 @@ class Purchase < ActiveRecord::Base
     where(paid: true)
   end
 
-  def self.stripe
+  def self.with_stripe_customer_id
     where("stripe_customer_id is not null")
   end
 

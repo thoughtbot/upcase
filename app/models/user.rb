@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  THOUGHTBOT_TEAM_ID = 3675
-
   include Clearance::User
 
   has_many :paid_purchases, -> { where paid: true }, class_name: 'Purchase'
@@ -12,36 +10,6 @@ class User < ActiveRecord::Base
   has_many :mentees, class_name: 'User', foreign_key: 'mentor_id'
 
   validates :name, presence: true
-
-  after_create :associate_previous_purchases
-
-  def self.find_or_create_from_auth_hash(auth_hash)
-    find_by_auth_hash(auth_hash) || create_from_auth_hash(auth_hash)
-  end
-
-  def self.find_by_auth_hash(auth_hash)
-    where(auth_provider: auth_hash['provider'], auth_uid: auth_hash['uid']).first
-  end
-
-  def self.create_from_auth_hash(auth_hash)
-    begin
-      name = auth_hash['info']['name'] ?
-        auth_hash['info']['name'] : auth_hash['info']['nickname']
-      create(
-        auth_provider: auth_hash['provider'],
-        auth_uid: auth_hash['uid'],
-        name: name,
-        email: auth_hash['info']['email'],
-        github_username: auth_hash['info']['nickname']
-      ).tap { |user| user.promote_thoughtbot_employee_to_admin }
-    rescue NoMethodError => e
-      Airbrake.notify(
-        :error_class   => "Auth hash error",
-        :error_message => e.message,
-        :parameters    => auth_hash
-      )
-    end
-  end
 
   def self.mentors
     where(available_to_mentor: true)
@@ -61,14 +29,6 @@ class User < ActiveRecord::Base
 
   def paid_products
     paid_purchases.where("purchaseable_type != 'IndividualPlan'")
-  end
-
-  def promote_thoughtbot_employee_to_admin
-    client = Octokit::Client.new(login: GITHUB_USER, password: GITHUB_PASSWORD)
-    if client.team_member?(THOUGHTBOT_TEAM_ID, github_username)
-      self.admin = true
-      save!
-    end
   end
 
   def first_name
@@ -109,21 +69,6 @@ class User < ActiveRecord::Base
     subscription.try(:created_at)
   end
 
-  def has_conflict?(desired_purchaseable)
-    if desired_purchaseable.is_a?(Section)
-      purchases = paid_purchases.where(purchaseable_type: 'Section')
-
-      purchases.any? do |purchase|
-        range = purchase.starts_on..purchase.ends_on
-
-        range.cover?(desired_purchaseable.starts_on(Time.zone.today)) ||
-          range.cover?(desired_purchaseable.ends_on(Time.zone.today))
-      end
-    else
-      false
-    end
-  end
-
   def credit_card
     if stripe_customer
       stripe_customer['active_card']
@@ -148,16 +93,5 @@ class User < ActiveRecord::Base
 
   def password_optional?
     super || external_auth?
-  end
-
-  def associate_previous_purchases
-    previous_purchases = Purchase.by_email(email)
-    self.purchases << previous_purchases
-
-    existing_stripe_customer_id = previous_purchases.stripe.last.try(:stripe_customer_id)
-
-    if existing_stripe_customer_id
-      self.update_column(:stripe_customer_id, existing_stripe_customer_id)
-    end
   end
 end
