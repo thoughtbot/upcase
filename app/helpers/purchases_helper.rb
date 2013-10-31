@@ -104,9 +104,9 @@ module PurchasesHelper
 
   def new_plan_link(plan)
     link_to(
-       I18n.t('subscriptions.choose_plan_html', plan_name: plan.name).html_safe,
-       new_individual_plan_purchase_path(plan),
-       class: 'button'
+      I18n.t('subscriptions.choose_plan_html', plan_name: plan.name).html_safe,
+      new_individual_plan_purchase_path(plan),
+      class: 'button'
     )
   end
 end

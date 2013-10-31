@@ -69,7 +69,7 @@ Workshops::Application.routes.draw do
     resources :stripe_redemptions, only: [:new]
   end
 
-  resources :team_plans, only: [] do
+  resources :team_plans, only: [:index] do
     resources :purchases, only: [:new, :create]
     resources :stripe_redemptions, only: [:new]
   end

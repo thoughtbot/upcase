@@ -15,28 +15,13 @@ describe IndividualPlan do
   it { should be_subscription }
 
   it_behaves_like 'a Plan with countable subscriptions'
+  it_behaves_like 'a Plan for public listing'
 
   describe '.active' do
     it 'only includes active plans' do
       active = create(:plan, active: true)
       inactive = create(:plan, active: false)
       expect(IndividualPlan.active).to eq [active]
-    end
-  end
-
-  describe '.featured' do
-    it 'only featured plans' do
-      featured = create(:plan, featured: true)
-      notfeatured = create(:plan, featured: false)
-      expect(IndividualPlan.featured).to eq [featured]
-    end
-  end
-
-  describe '.ordered' do
-    it 'sorts by individual price' do
-      second = create(:plan, individual_price: 29)
-      first = create(:plan, individual_price: 99)
-      expect(IndividualPlan.ordered).to eq [first, second]
     end
   end
 
@@ -127,13 +112,6 @@ describe IndividualPlan do
       plan = create(:plan)
       create_inactive_subscription_for(plan)
       expect(plan.subscription_count).to eq 0
-    end
-  end
-
-  describe '#to_param' do
-    it 'returns the sku' do
-      plan = create(:plan)
-      plan.to_param.should == "#{plan.sku}"
     end
   end
 

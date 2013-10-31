@@ -8,14 +8,16 @@ class TeamPlan < ActiveRecord::Base
 
   validates :sku, presence: true
   validates :name, presence: true
+  validates :individual_price, presence: true
 
   include PlanWithCountableSubscriptions
+  include PlanForPublicListing
 
   def self.instance
     if last
       last
     else
-      create!(sku: 'primeteam', name: 'Prime for Teams')
+      create!(sku: 'primeteam', name: 'Prime for Teams', individual_price: 0)
     end
   end
 
@@ -25,10 +27,6 @@ class TeamPlan < ActiveRecord::Base
 
   def subscription?
     true
-  end
-
-  def individual_price
-    1299
   end
 
   def fulfillment_method
@@ -41,18 +39,6 @@ class TeamPlan < ActiveRecord::Base
 
   def subscription_interval
     'month'
-  end
-
-  def terms
-    'No minimum subscription length. Cancel at any time.'
-  end
-
-  def includes_mentor?
-    false
-  end
-
-  def includes_workshops?
-    true
   end
 
   def announcement

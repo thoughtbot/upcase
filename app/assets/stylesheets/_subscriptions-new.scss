@@ -6,10 +6,16 @@ body.subscriptions-new nav .prime {
   @include clearfix;
   margin: 6rem 0 0;
 
+  body.team_plans-index & {
+    margin: 3rem;
+  }
+
   @include body-mobile {
     margin: 1rem 0;
   }
 }
+
+
 
 .plans div {
   clear: both;
@@ -17,25 +23,9 @@ body.subscriptions-new nav .prime {
   overflow: auto;
   width: 100%;
 
-  &.prime-mentor .features ul li {
+  .features ul li {
     &.mentor, &.workshops {
       background: rgba(255, 255, 0, .3);
-    }
-  }
-
-  &.prime .features ul li {
-    &.mentor {
-      display: none;
-    }
-
-    &.workshops {
-      background: rgba(255, 255, 0, .3);
-    }
-  }
-
-  &.prime-basic .features ul li {
-    &.mentor, &.workshops {
-      display: none;
     }
   }
 

@@ -16,6 +16,7 @@ class IndividualPlan < ActiveRecord::Base
   validates :sku, presence: true
 
   include PlanWithCountableSubscriptions
+  include PlanForPublicListing
 
   def self.prime_basic
     find_by(sku: PRIME_BASIC_SKU)
@@ -41,14 +42,6 @@ class IndividualPlan < ActiveRecord::Base
     where active: true
   end
 
-  def self.featured
-    where featured: true
-  end
-
-  def self.ordered
-    order('individual_price desc')
-  end
-
   def self.default
     active.featured.ordered.first
   end
@@ -63,10 +56,6 @@ class IndividualPlan < ActiveRecord::Base
 
   def projected_monthly_revenue
     subscription_count * individual_price
-  end
-
-  def to_param
-    sku
   end
 
   def purchase_for(user)
