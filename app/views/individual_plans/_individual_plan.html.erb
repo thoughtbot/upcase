@@ -13,15 +13,5 @@
     <% end %>
     <%= choose_plan_link(individual_plan) %>
   </section>
-  <section class="features">
-    <h4>Includes</h4>
-    <ul>
-      <li class="mentor">1-1 Mentoring</li>
-      <li class="workshops">Workshops</li>
-      <li>Learn Forum</li>
-      <li>Screencasts</li>
-      <li>Books</li>
-      <li>Prime Bytes</li>
-    </ul>
-  </section>
+  <%= render 'plans/features', plan: individual_plan %>
 <% end %>

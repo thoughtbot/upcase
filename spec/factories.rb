@@ -180,6 +180,7 @@ FactoryGirl.define do
   factory :team_plan do
     sku 'team_plan'
     name 'Prime for Teams'
+    individual_price 1299
   end
 
   factory :team do
