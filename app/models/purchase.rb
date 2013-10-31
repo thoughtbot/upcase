@@ -33,40 +33,12 @@ class Purchase < ActiveRecord::Base
   after_save :send_receipt, if: :being_paid?
   after_save :update_user_payment_info, if: :being_paid?
 
-  delegate :name,
-    :sku,
+  delegate :name, :sku,
     to: :purchaseable,
     prefix: :purchaseable,
     allow_nil: true
-  delegate :fulfilled_with_github?,
-    :subscription?,
-    :terms,
-    :fulfillment_method,
+  delegate :fulfilled_with_github?, :subscription?, :terms, :fulfillment_method,
     to: :purchaseable
-
-  def self.of_sections
-    where(purchaseable_type: 'Section')
-  end
-
-  def self.from_month(date)
-    where(
-      ["created_at >= ? AND created_at <= ?",
-        date.beginning_of_month,
-        date.end_of_month
-      ]
-    )
-  end
-
-  def self.within_30_days
-    where('created_at >= ?', 30.days.ago)
-  end
-
-  def self.date_of_last_workshop_purchase
-    purchase = of_sections.order('created_at DESC').first
-    if purchase
-      purchase.created_at.to_date
-    end
-  end
 
   def self.within_range(start_time, end_time)
     paid.where("created_at >= ? and created_at <= ?", start_time, end_time)
@@ -93,7 +65,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def price
-    paid_price || calculated_price
+    paid_price || PurchasePriceCalculator.new(self).calculate
   end
 
   def first_name
@@ -128,33 +100,9 @@ class Purchase < ActiveRecord::Base
     end
   end
 
-  def defaults_from_user(purchaser)
-    if purchaser
-      attributes_from_user.each do |attr|
-        self.send(:"#{attr}=", purchaser.send(:"#{attr}"))
-      end
-
-      if github_username_needed? && purchaser.github_username.present?
-        self.github_usernames = [purchaser.github_username]
-      end
-    end
-  end
-
   def complete_payment(params)
     payment.complete(params)
     save!
-  end
-
-  def refund
-    if paid?
-      payment.refund
-      set_as_unpaid!
-
-      if fulfilled_with_github?
-        GithubFulfillment.new(self).remove
-      end
-      MailchimpFulfillment.new(self).remove
-    end
   end
 
   def starts_on
@@ -189,6 +137,10 @@ class Purchase < ActiveRecord::Base
     self.paid = false
   end
 
+  def payment
+    @payment ||= Payments::Factory.new(payment_method).new(self)
+  end
+
   private
 
   def password_required?
@@ -213,32 +165,8 @@ class Purchase < ActiveRecord::Base
     @stripe_customer ||= Stripe::Customer.retrieve(stripe_customer_id)
   end
 
-  def attributes_from_user
-    %w(name email organization address1 address2 city state zip_code country)
-  end
-
-  def github_username_needed?
-    fulfilled_with_github? || subscription?
-  end
-
   def being_paid?
     paid? && paid_was == false
-  end
-
-  def calculated_price
-    if variant.blank?
-      0
-    else
-      full_price = purchaseable.send(:"#{variant}_price")
-      if coupon
-        coupon.apply(full_price)
-      elsif stripe_coupon_id.present?
-        subscription_coupon = SubscriptionCoupon.new(stripe_coupon_id)
-        subscription_coupon.apply(full_price)
-      else
-        full_price
-      end
-    end
   end
 
   def place_payment
@@ -249,10 +177,6 @@ class Purchase < ActiveRecord::Base
     if user
       payment.update_user(user)
     end
-  end
-
-  def payment
-    @payment ||= Payments::Factory.new(payment_method).new(self)
   end
 
   def fulfill
@@ -275,38 +199,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def save_info_to_user
-    save_github_username_to_user
-    save_organization_to_user
-    save_address_to_user
-  end
-
-  def save_github_username_to_user
-    if github_usernames.present? && user.github_username.blank?
-      user.update_column(:github_username, github_usernames.first)
-    end
-  end
-
-  def save_organization_to_user
-    if organization.present?
-      write_user_columns %w(organization)
-    end
-  end
-
-  def save_address_to_user
-    if address1.present?
-      write_user_columns(%w(address1 address2 city state zip_code country))
-    end
-  end
-
-  def write_user_columns(names)
-    if user
-      names.each { |name| user.update_column name, send(name) }
-    end
-  end
-
-  def set_as_unpaid!
-    set_as_unpaid
-    save!
+    PurchaseInfoCopier.new(self, user).copy_info_to_user
   end
 
   def send_receipt
