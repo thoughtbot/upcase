@@ -212,7 +212,6 @@ RailsAdmin.config do |config|
       group :details do
         field :workshop
         field :seats_available
-        field :reminder_email
         field :teachers
       end
     end
