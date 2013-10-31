@@ -11,8 +11,6 @@ class PagesController < HighVoltage::PagesController
     case params[:id]
     when 'prime'
       'empty-body'
-    when 'learnsale'
-      'empty-body'
     when 'new-product'
       'header-only'
     else
