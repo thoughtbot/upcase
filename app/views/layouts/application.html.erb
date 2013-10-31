@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head prefix="og: http://ogp.me/ns#">
+    <%= render 'shared/optimizely' %>
+
     <meta charset="utf-8" />
     <title><%= page_title(app_name: t('layouts.app_name')) %></title>
     <%= stylesheet_link_tag 'application' %>
@@ -18,6 +20,7 @@
     <![endif]-->
     <%= render 'shared/stripe' %>
   </head>
+
   <body class="<%= body_class %> <%= yield(:additional_body_classes) %>">
     <%= render 'shared/header' %>
 
