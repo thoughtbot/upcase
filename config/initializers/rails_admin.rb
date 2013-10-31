@@ -58,6 +58,8 @@ RailsAdmin.config do |config|
       field :purchases
       field :subscription
       field :stripe_customer_id
+      field :available_to_mentor
+      field :availability
     end
   end
 
