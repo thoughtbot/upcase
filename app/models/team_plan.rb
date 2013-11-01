@@ -2,16 +2,16 @@
 #
 # Currently, there is only one level of team plan.
 class TeamPlan < ActiveRecord::Base
-  has_many :subscriptions, as: :plan
   has_many :purchases, as: :purchaseable
+  has_many :subscriptions, as: :plan
   has_many :teams
 
-  validates :sku, presence: true
-  validates :name, presence: true
   validates :individual_price, presence: true
+  validates :name, presence: true
+  validates :sku, presence: true
 
-  include PlanWithCountableSubscriptions
   include PlanForPublicListing
+  include PlanWithCountableSubscriptions
 
   def self.instance
     if last

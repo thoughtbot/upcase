@@ -22,6 +22,7 @@ feature 'Visitor can purchase a subscription for their team' do
       expect(page).to have_content team_plan.name
       expect(page).to have_content team_plan.description
     end
+
     TeamPlan.where(featured: false).each do |team_plan|
       expect(page).not_to have_content team_plan.name
     end

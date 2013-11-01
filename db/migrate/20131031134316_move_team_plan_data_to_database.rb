@@ -7,9 +7,9 @@ class MoveTeamPlanDataToDatabase < ActiveRecord::Migration
     add_column :team_plans, :featured, :boolean, null: false, default: true
     add_column :team_plans, :description, :text
 
-    update 'update team_plans set individual_price=1299'
+    update 'UPDATE team_plans SET individual_price=1299'
     change_column_null :team_plans, :individual_price, true
 
-    update "update team_plans set terms='No minimum subscription length. Cancel at any time.'"
+    update "UPDATE team_plans SET terms='No minimum subscription length. Cancel at any time.'"
   end
 end

@@ -1,8 +1,8 @@
 shared_examples 'a Plan for public listing' do
   describe '.featured' do
-    it 'only featured plans' do
+    it 'only includes featured plans' do
       featured = create(factory_name, featured: true)
-      notfeatured = create(factory_name, featured: false)
+      not_featured = create(factory_name, featured: false)
 
       expect(described_class.featured).to eq [featured]
     end
@@ -20,7 +20,7 @@ shared_examples 'a Plan for public listing' do
   describe '#to_param' do
     it 'returns the sku' do
       plan = create_plan
-      plan.to_param.should == "#{plan.sku}"
+      expect(plan.to_param).to eq plan.sku
     end
   end
 

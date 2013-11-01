@@ -3,7 +3,7 @@ module PlanForPublicListing
 
   module ClassMethods
     def featured
-      where featured: true
+      where(featured: true)
     end
 
     def ordered

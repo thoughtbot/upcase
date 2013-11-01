@@ -262,14 +262,6 @@ ActiveRecord::Schema.define(version: 20131031134316) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
 
-  create_table "resources", force: true do |t|
-    t.integer "course_id"
-    t.string  "name"
-    t.string  "url"
-  end
-
-  add_index "resources", ["course_id"], name: "index_resources_on_course_id", using: :btree
-
   create_table "section_teachers", force: true do |t|
     t.integer  "section_id"
     t.integer  "teacher_id"
