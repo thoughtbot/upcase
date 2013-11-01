@@ -91,7 +91,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'launchy'
   gem 'poltergeist'
-  gem 'selenium-webdriver', '2.32.1'
+  gem 'selenium-webdriver'
   gem 'rubyzip', '0.9.9'
   gem 'sham_rack', '1.3.1'
   gem 'shoulda-matchers'
