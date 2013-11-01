@@ -1,6 +1,4 @@
 # TeamPlans represent a purchase of a subscription plan for an entire team.
-#
-# Currently, there is only one level of team plan.
 class TeamPlan < ActiveRecord::Base
   has_many :purchases, as: :purchaseable
   has_many :subscriptions, as: :plan
