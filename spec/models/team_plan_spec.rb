@@ -26,6 +26,14 @@ describe TeamPlan do
         expect(TeamPlan.count).to eq 1
       end
     end
+
+    context 'when multiple instances already exist' do
+      it 'returns the first one' do
+        plan = create(:team_plan)
+        create(:team_plan)
+        expect(TeamPlan.instance).to eq plan
+      end
+    end
   end
 
   describe '#subscription?' do
