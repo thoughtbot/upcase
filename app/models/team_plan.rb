@@ -14,8 +14,8 @@ class TeamPlan < ActiveRecord::Base
   include PlanWithCountableSubscriptions
 
   def self.instance
-    if last
-      last
+    if first
+      first
     else
       create!(sku: 'primeteam', name: 'Prime for Teams', individual_price: 0)
     end
