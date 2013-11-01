@@ -32,7 +32,7 @@ Workshops::Application.routes.draw do
 
   get '/courses.json' => redirect('/workshops.json')
   get '/courses/:id' => redirect('/workshops/%{id}')
-  resources :workshops, only: [:index, :show] do
+  resources :workshops, only: [:show] do
     resources :follow_ups, only: [:create]
   end
 
