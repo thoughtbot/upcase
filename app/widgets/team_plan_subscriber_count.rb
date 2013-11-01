@@ -3,7 +3,7 @@ widget :team_plan_subscriber_count do
   type "number_and_secondary"
   data do
     {
-      value: TeamPlan.all.sum(&:subscription_count)
+      value: TeamPlan.instance.subscription_count
     }
   end
 end
