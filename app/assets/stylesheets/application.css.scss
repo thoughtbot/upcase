@@ -17,13 +17,13 @@
 @import "layout/header";
 @import "layout/footer";
 
-@import "authenticating/clearance";
-
-@import "users-edit";
-@import "dashboards-show";
-@import "products-index";
-@import "products-workshops-show";
+@import "prime-marketing";
 @import "subscriptions-new";
+@import "authenticating";
+@import "users-edit";
+@import "products-index";
+@import "dashboards-show";
+@import "products-workshops-show";
 @import "purchases-new";
 @import "purchases-show";
 @import "video";
@@ -36,9 +36,5 @@
 @import "invoices";
 @import "cancellation";
 @import "timeline";
-@import "notes";
-
-@import "prime-marketing/base";
-@import "prime-marketing/journey";
 
 @import "prettify";

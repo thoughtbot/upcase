@@ -1,4 +1,3 @@
-<h3>Edit the note</h3>
 <%= form_for @note, url: [@note.user, @note], html: { class: 'note-form edit' } do |f| %>
   <fieldset>
     <%= f.text_area :body %>
