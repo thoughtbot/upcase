@@ -56,7 +56,7 @@ feature 'Purchasing a product' do
     expect(page).to have_content 'Sign out'
   end
 
-  scenario 'Visitor purchases product with paypal', js: true, driver: :poltergeist do
+  scenario 'Visitor purchases product with paypal', js: true do
     product = create(:video_product)
     visit product_path(product)
     click_purchase_link_for(product)
@@ -65,7 +65,7 @@ feature 'Purchasing a product' do
     expect_to_have_purchased(product)
   end
 
-  scenario 'Visitor purchases a product with stripe', js: true, driver: :poltergeist do
+  scenario 'Visitor purchases a product with stripe', js: true do
     product = create(:video_product)
     visit product_path(product)
     click_purchase_link_for(product)
@@ -74,7 +74,7 @@ feature 'Purchasing a product' do
     expect_to_have_purchased(product)
   end
 
-  scenario 'Visitor tries to pay with Stripe but gets a failure', js: true, driver: :poltergeist do
+  scenario 'Visitor tries to pay with Stripe but gets a failure', js: true do
     product = create(:video_product)
     stub_stripe_to_fail
     visit product_path(product)
@@ -84,18 +84,30 @@ feature 'Purchasing a product' do
     expect(page).to have_content 'There was a problem processing your credit card'
   end
 
-  scenario 'User purchases a github book with a reader', js: true, driver: :poltergeist do
+  scenario 'User purchases a github book with a reader', js: true do
     product = create(:github_book_product)
     user = create(:user)
     visit product_path(product, as: user)
     click_purchase_link_for(product)
-    fill_in "github_username_1", with: "cpytel"
+    fill_in 'github_username_1', with: 'cpytel'
     pay_using_stripe
 
     expect_to_have_purchased(product)
 
     visit my_account_path
-    expect(find_field("Github username").value).to eq 'cpytel'
+    expect(find_field('Github username').value).to eq 'cpytel'
+  end
+
+  scenario 'User purchases a product with an existing credit card', js: true do
+    product = create(:video_product)
+    user = create(:user, stripe_customer_id: 'test')
+    stub_existing_card_for_user(user)
+
+    visit product_path(product, as: user)
+    click_purchase_link_for(product)
+    pay_using_stripe_with_existing_card
+
+    expect_to_have_purchased(product)
   end
 
   scenario 'User with a github username has it already supplied on purchasing' do
@@ -105,25 +117,21 @@ feature 'Purchasing a product' do
     visit product_path(product, as: user)
     click_purchase_link_for(product)
 
-    expect(find_field("Github username").value).to eq 'thoughtbot'
+    expect(find_field('Github username').value).to eq 'thoughtbot'
   end
 
-  scenario 'User attempts to purchase a github book without specifying a reader', js: true, driver: :poltergeist do
+  scenario 'User attempts to purchase a github book without specifying a reader', js: true do
     product = create(:github_book_product)
     user = create(:user)
     visit product_path(product, as: user)
     click_purchase_link_for(product)
     click_button 'Submit Payment'
-    expect(page).to have_css("li.error input#github_username_1")
+    expect(page).to have_css('li.error input#github_username_1')
   end
 
   def previous_purchases_are_associated_with(email)
     user = User.find_by(email: email)
     expect(AssociatePreviousPurchases).to have_received(:create_associations_for).with(user)
-  end
-
-  def stub_stripe_to_fail
-    FakeStripe.failure = true
   end
 
   def pay_using_paypal
@@ -133,5 +141,12 @@ feature 'Purchasing a product' do
     fill_in_name_and_email
     click_button 'Proceed to Checkout'
     click_button 'Pay using Paypal'
+  end
+
+  def stub_existing_card_for_user(user)
+    user.update_column(:stripe_customer_id, 'test')
+    Stripe::Customer.stubs(:retrieve).returns(
+      {'active_card' => {'last4' => '1234', 'type' => 'Visa'}}
+    )
   end
 end
