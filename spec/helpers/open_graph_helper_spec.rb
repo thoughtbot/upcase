@@ -3,7 +3,7 @@ require 'spec_helper'
 describe OpenGraphHelper do
   before :each do
     helper.request.symbolized_path_parameters.
-      merge!(:controller => 'homes', :action => 'show')
+      merge!(controller: 'homes', action: 'show')
   end
 
   it 'produces the desired open graph tags' do
