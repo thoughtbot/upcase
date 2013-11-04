@@ -7,9 +7,14 @@ describe 'workshops/show.html.erb' do
     workshop = create(:workshop)
     create(:question, workshop: workshop, question: 'What color?', answer: 'Blue')
     create(:question, workshop: workshop, question: 'Pets allowed?', answer: 'No')
-
     assign(:workshop, workshop)
     assign(:offering, workshop)
+    assign(:section_teachers, [])
+    assign(:sections, [])
+    Mocha::Configuration.allow :stubbing_non_existent_method do
+      view.stubs(current_user_has_active_subscription?: false)
+    end
+
     render template: 'workshops/show', workshop: workshop
 
     expect(rendered).to include('What color?')
