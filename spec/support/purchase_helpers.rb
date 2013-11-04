@@ -1,6 +1,6 @@
-module PurchaseHelpers
-  VALID_SANDBOX_CREDIT_CARD_NUMBER = '4111111111111111'
+VALID_SANDBOX_CREDIT_CARD_NUMBER = '4111111111111111'
 
+module PurchaseHelpers
   def click_purchase_link_for(product, variant = 'individual')
     click_link I18n.t(
       "products.show.price.#{product.product_type}.#{variant}_html",
@@ -59,5 +59,4 @@ module PurchaseHelpers
     expect(page).to have_content "Thank you for purchasing #{product.name}"
     expect(FakeMailchimp.lists[product.sku]).to include email
   end
-
 end

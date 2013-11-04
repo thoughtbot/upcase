@@ -121,18 +121,10 @@ feature 'Visitor signs up for a subscription' do
     @plan = create(:plan)
   end
 
-  def sign_out
-    visit root_path(as: nil)
-  end
-
   def attempt_to_subscribe
     visit prime_path
     click_landing_page_call_to_action
     click_link 'Choose'
-  end
-
-  def current_user
-    @current_user
   end
 
   def plan

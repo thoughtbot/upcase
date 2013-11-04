@@ -68,11 +68,6 @@ feature 'User can see their trail map progress' do
       to be_empty
   end
 
-  def sign_in
-    @current_user = create(:user)
-    visit root_path(as: @current_user)
-  end
-
   def trail_node(name, total)
     ".steps-complete[data-trail-name='#{name}'][data-total='#{total}']"
   end

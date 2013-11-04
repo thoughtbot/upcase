@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 feature 'User creates a subscription' do
-
-  VALID_SANDBOX_CREDIT_CARD_NUMBER = '4111111111111111'
-
   background do
     create_plan
     create_mentors
@@ -122,7 +119,7 @@ feature 'User creates a subscription' do
   end
 
   scenario 'sees option to update billing for subscribers' do
-    sign_in_as_subscriber
+    sign_in_as_user_with_subscription
     visit my_account_path
 
     expect(page).to have_content('Your Billing Info')
@@ -130,7 +127,7 @@ feature 'User creates a subscription' do
 
   scenario 'changes subscription plan' do
     new_plan = create(:plan, name: 'New Plan', sku: 'new-plan')
-    sign_in_as_subscriber
+    sign_in_as_user_with_subscription
     visit my_account_path
 
     expect_to_see_the_current_plan(current_user.subscription.plan)
@@ -159,16 +156,6 @@ feature 'User creates a subscription' do
     @plan = create(:plan)
   end
 
-  def sign_in
-    @current_user = create(:user)
-    visit root_path(as: @current_user)
-  end
-
-  def sign_in_as_subscriber
-    @current_user = create(:user, :with_subscription)
-    visit root_path(as: @current_user)
-  end
-
   def subscribe_with_valid_credit_card
     visit_plan_purchase_page
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
@@ -180,37 +167,8 @@ feature 'User creates a subscription' do
     fill_out_subscription_form_with 'bad cc number'
   end
 
-  def current_user
-    @current_user
-  end
-
   def plan
     @plan
-  end
-
-  def create_amount_stripe_coupon(id, duration, amount_off)
-    Stripe::Coupon.create(
-      :id => id,
-      :duration => duration,
-      :amount_off => amount_off
-    )
-  end
-
-  def create_recurring_stripe_coupon(id, duration, amount_off)
-    Stripe::Coupon.create(
-      :id => id,
-      :duration => 'repeating',
-      :duration_in_months => duration,
-      :amount_off => amount_off
-    )
-  end
-
-  def create_percentage_off_stripe_coupon(id, duration, percent_off)
-    Stripe::Coupon.create(
-      id: id,
-      duration: duration,
-      percent_off: percent_off,
-    )
   end
 
   def apply_coupon_with_code(code)
