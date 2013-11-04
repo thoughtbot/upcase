@@ -8,8 +8,8 @@
         <%= t('shared.subscription.name') %> except for a mentor and workshops.
         You still get books, screencasts, <%= t('shared.bytes') %>, the forum,
         and you'll also continue to have access to the workshops you've already
-        taken, for <%= price_per_month(IndividualPlan.downgraded) %> instead of
-        <%= price_per_month(current_user.subscription.plan) %>.
+        taken, for <%= individual_price_per_month(IndividualPlan.downgraded) %> instead of
+        <%= individual_price_per_month(current_user.subscription.plan) %>.
       </p>
       <p>
         Any remaining balance you have on your account will be applied to your
@@ -17,7 +17,7 @@
       </p>
       <p>
         <%= link_to(
-          "Change to #{price_per_month(IndividualPlan.downgraded)} &rarr;".html_safe,
+          "Change to #{individual_price_per_month(IndividualPlan.downgraded)} &rarr;".html_safe,
           [:subscriber, :downgrade],
           method: :create
         ) %>

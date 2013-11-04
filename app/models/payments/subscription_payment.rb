@@ -1,7 +1,5 @@
 module Payments
-  # Represents a one-time payment with a zero price, which does not actually
-  # need to be charged.
-  class FreePayment
+  class SubscriptionPayment
     def initialize(purchase)
       @purchase = purchase
     end

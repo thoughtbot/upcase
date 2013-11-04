@@ -2,6 +2,8 @@ $(".coupon input[type=submit]").click(function(e) {
   $.ajax({
     url: $(".coupon").data('url'),
     data: {
+      'purchase[variant]': $('#purchase_variant').val(),
+      'purchase[quantity]': $('#purchase_quantity').val(),
       'coupon[code]': $('#coupon_code').val()
     },
     dataType: 'script',
@@ -80,6 +82,13 @@ $('.reveal-address').click(function() {
   return false;
 });
 
+function updatePurchaseAmountForQuantity() {
+  var individualPrice = $('#purchase_quantity_input').data('individual-price');
+  var quantity = $('#purchase_quantity').val();
+  var newAmount = individualPrice * quantity;
+  updatePurchaseSubmitAmount("$" + newAmount + " per month");
+}
+
 $(document).ready(function(){
   $('#purchase_payment_method_input input').change(function() {
     $("li.stripe").toggle($("#purchase_payment_method_stripe").is(":checked"));
@@ -95,5 +104,11 @@ $(document).ready(function(){
     $("#purchase_expiration_input").toggle();
     $("#purchase_cvc_input").toggle();
   });
-});
 
+  $('#purchase_quantity').change(function() {
+    updatePurchaseAmountForQuantity();
+  });
+  if($('#purchase_quantity').length) {
+    updatePurchaseAmountForQuantity();
+  }
+});

@@ -1,7 +1,8 @@
 class RedemptionsController < ApplicationController
   def new
     @coupon = Coupon.find_by_code_and_active(params[:coupon][:code], true)
-    @buying = purchaseable.purchases.build(variant: params[:variant], coupon: @coupon)
+    @buying = purchaseable.purchases.build(purchase_params)
+    @buying.coupon = @coupon
   end
 
   private
@@ -12,5 +13,9 @@ class RedemptionsController < ApplicationController
     elsif params[:product_id]
       Product.find(params[:product_id])
     end
+  end
+
+  def purchase_params
+    params.require(:purchase).permit(:variant, :quantity, :coupon)
   end
 end

@@ -42,4 +42,8 @@ class TeamPlan < ActiveRecord::Base
   def announcement
     ''
   end
+
+  def minimum_quantity
+    5
+  end
 end

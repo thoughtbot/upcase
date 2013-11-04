@@ -136,7 +136,7 @@ class PurchasesController < ApplicationController
     params.require(:purchase).permit(:stripe_coupon_id, :variant,
       :name, :email, :password, {:github_usernames => []}, :organization,
       :address1, :address2, :city, :state, :zip_code, :country,
-      :payment_method, :stripe_token, :comments, :mentor_id)
+      :payment_method, :stripe_token, :comments, :mentor_id, :quantity)
   end
 
   def variant

@@ -14,19 +14,8 @@
     <%= form.input :variant, as: :hidden %>
     <%= form.input :name %>
     <%= form.input :email %>
-    <% if @purchase.subscription? %>
-      <% if signed_out? %>
-        <%= form.input :password, required: true %>
-        <%= form.input :mentor_id, as: :hidden %>
-      <% end %>
-      <% if signed_out? || (signed_in? && current_user.github_username.blank?) %>
-        <%= render 'first_github_username', label: 'GitHub username', purchase: @purchase %>
-      <% end %>
-    <% end %>
-    <% if @purchase.fulfillment_method == 'in-person' %>
-      <%= form.input :comments, label: t('purchase.comments') %>
-    <% end %>
-    <%= render partial: 'purchases/github_usernames', locals: { purchase: @purchase, form: form } %>
+    <%= render purchase_form_partial(@purchase.purchaseable), form: form, purchase: @purchase %>
+    <%= render 'purchases/github_usernames', form: form, purchase: @purchase %>
   <% end %>
 
   <%= link_to 'Need an address on your receipt?', '#', class: 'reveal-address' %>

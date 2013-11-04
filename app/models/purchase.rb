@@ -1,7 +1,7 @@
 require 'digest/md5'
 
 class Purchase < ActiveRecord::Base
-  PAYMENT_METHODS = %w(stripe paypal free)
+  PAYMENT_METHODS = %w(stripe paypal subscription free)
 
   belongs_to :user
   belongs_to :purchaseable, polymorphic: true
@@ -10,23 +10,23 @@ class Purchase < ActiveRecord::Base
 
   attr_accessor :stripe_token, :paypal_url, :password, :mentor_id
 
-  validates :variant, presence: true
-  validates :purchaseable_id, presence: true
-  validates :purchaseable_type, presence: true
-  validates :name, presence: true
-  validates :lookup, presence: true
-  validates :payment_method, presence: true
-  validate :payment_method_must_match_price
   validates :email, presence: true,
     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
+  validates :lookup, presence: true
+  validates :name, presence: true
   validates :password, presence: true, if: :password_required?
+  validates :payment_method, inclusion: { in: PAYMENT_METHODS }, presence: true
+  validates :purchaseable_id, presence: true
+  validates :purchaseable_type, presence: true
+  validates :quantity, presence: true
   validates :user_id, presence: true, if: :subscription?
+  validates :variant, presence: true
 
   before_validation :create_user, if: :password_required?
   before_validation :generate_lookup, on: :create
+  before_validation :set_free_payment_method, on: :create
 
   before_create :place_payment
-  before_create :set_as_paid, if: :free?
 
   after_save :save_info_to_user, if: :user
   after_save :fulfill, if: :being_paid?
@@ -81,23 +81,19 @@ class Purchase < ActiveRecord::Base
   end
 
   def stripe?
-    payment_method == "stripe"
+    payment_method == 'stripe'
   end
 
   def paypal?
-    payment_method == "paypal"
+    payment_method == 'paypal'
   end
 
   def free?
-    payment_method == "free"
+    price.zero?
   end
 
-  def payment_method
-    if price.zero? && !subscription?
-      "free"
-    else
-      read_attribute :payment_method
-    end
+  def purchasing_as_subscriber?
+    payment_method == 'subscription'
   end
 
   def complete_payment(params)
@@ -161,6 +157,12 @@ class Purchase < ActiveRecord::Base
     errors
   end
 
+  def set_free_payment_method
+    if free? && !subscription? && !purchasing_as_subscriber?
+      self.payment_method = 'free'
+    end
+  end
+
   def stripe_customer
     @stripe_customer ||= Stripe::Customer.retrieve(stripe_customer_id)
   end
@@ -190,12 +192,6 @@ class Purchase < ActiveRecord::Base
   def generate_lookup
     key = "#{email}#{purchaseable_name}#{Time.zone.now}\n"
     self.lookup = Digest::MD5.hexdigest(key).downcase
-  end
-
-  def payment_method_must_match_price
-    if free? && price > 0
-      errors.add(:payment_method, 'cannot be free')
-    end
   end
 
   def save_info_to_user

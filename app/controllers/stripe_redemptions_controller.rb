@@ -1,6 +1,6 @@
 class StripeRedemptionsController < ApplicationController
   def new
-    @purchase = purchaseable.purchases.build(variant: variant)
+    @purchase = purchaseable.purchases.build(purchase_params)
     @subscription_coupon = SubscriptionCoupon.new(params[:coupon][:code])
   end
 
@@ -14,11 +14,7 @@ class StripeRedemptionsController < ApplicationController
     end
   end
 
-  def variant
-    if params[:variant].present?
-      params[:variant]
-    else
-      'individual'
-    end
+  def purchase_params
+    params.require(:purchase).permit(:variant, :quantity)
   end
 end
