@@ -16,7 +16,7 @@ module AdwordsHelper
         </script>
         <noscript>
         <div style="display:inline;">
-        <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/983769411/?value=#{flash[:purchase_paid_price]}&amp;label=h6fpCI3R6QkQw8KM1QM&amp;guid=ON&amp;script=0"/>
+        <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/983769411/?value=#{flash[:purchase_paid_price]}&label=h6fpCI3R6QkQw8KM1QM&guid=ON&script=0"/>
         </div>
         </noscript>
       JS
