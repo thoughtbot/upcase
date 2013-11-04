@@ -1,12 +1,12 @@
 # Learn
 
-Learn is a Rails 3 app running on Ruby 1.9 and deployed to Heroku.
+Learn is a Rails 4 app running on Ruby 2.0 and deployed to Heroku.
 
 ## Development
 
 ### Rules of the road
 
-This project is now following Sandi Metz's Rules. 
+This project is now following Sandi Metz's Rules.
 
 You can read a [description of the rules here](http://robots.thoughtbot.com/post/50655960596/sandi-metz-rules-for-developers).
 
@@ -32,25 +32,20 @@ All new code should follow these rules. If you make changes in a pre-existing fi
 
         $ git clone git@github.com:thoughtbot/learn.git
 
-5. Configure the heroku remotes
-
-        $ git remote add staging git@heroku.com:learn-staging.git
-        $ git remote add production git@heroku.com:learn-production.git
-
-6. Setup your environment.
+5. Setup your environment.
 
         $ rake setup
         $ cp .env.sample .env
 
-7. Start your Redis server.
+6. Start your Redis server.
 
         $ redis-server
 
-8. Start Foreman.
+7. Start Foreman.
 
         $ foreman start
 
-9. Verify that the app is up and running.
+8. Verify that the app is up and running.
 
         $ open http://localhost:5000
 
