@@ -5,5 +5,9 @@
         <%= flash[key] %>
       </div>
     <% end -%>
+
+   <% if flash[:purchase_paid_price] %>
+     <%= adwords_conversion_tracker(flash[:purchase_paid_price]) %>
+   <% end %>
   </div>
 <% end %>
