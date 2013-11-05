@@ -1,7 +1,3 @@
-body.prime-marketing {
-  background: $journey-line-color;
-}
-
 .prime-signin {
   color: $darkwarmgray;
   font-family: $sans-serif;
@@ -10,9 +6,10 @@ body.prime-marketing {
 }
 
 .journey-headline {
-  background: $lightwarmgray;
   padding: 2rem 6vw 8rem;
+  position: relative;
   text-align: center;
+  z-index: 2;
 
   @include prime-marketing-mobile {
     padding-bottom: 2rem;
@@ -20,9 +17,6 @@ body.prime-marketing {
   }
 
   .logo {
-    @include animation(box-shadow-expand .75s $ease-in-out-back);
-    @include animation-fill-mode(both);
-    border-radius: 100%;
     display: inline-block;
     line-height: 0;
     margin-bottom: 1rem;
@@ -123,7 +117,6 @@ body.prime-marketing svg._jsPlumb_connector path, svg._jsPlumb_endpoint path {
 }
 
 .journey {
-  background: $lightwarmgray;
   overflow: hidden;
   position: relative;
 
@@ -270,6 +263,8 @@ body.prime-marketing svg._jsPlumb_connector path, svg._jsPlumb_endpoint path {
   }
 
   .pitch.final {
+    margin-bottom: 0;
+
     .supporting-visual {
       width: 30%;
 
