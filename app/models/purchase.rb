@@ -64,8 +64,8 @@ class Purchase < ActiveRecord::Base
     where(email: email)
   end
 
-  def price
-    paid_price || PurchasePriceCalculator.new(self).calculate
+  def price(coupon=CouponFactory.for_purchase(self))
+    paid_price || PurchasePriceCalculator.new(self, coupon).calculate
   end
 
   def first_name
