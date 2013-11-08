@@ -31,27 +31,25 @@ feature 'User updated credit card' do
   end
 
   def submit_new_credit_card_info
-    credit_card_expires_on = Time.now.advance(years: 1)
-    month_selection = credit_card_expires_on.strftime('%-m - %B')
-
-    year_selection = credit_card_expires_on.strftime('%Y')
     valid_cc_num = '4242424242424242'
-
-    fill_in 'Card Number', with: valid_cc_num
-    select month_selection, from: 'date[month]'
-    select year_selection, from: 'date[year]'
-    fill_in 'CVC', with: '333'
-    click_button 'Update Your Card'
+    credit_card_info(valid_cc_num)
   end
 
   def submit_declining_credit_card_info
+    declining_cc_num = '4000 0000 0000 0069'
+    credit_card_info(declining_cc_num)
+  end
+
+  private
+
+  def credit_card_info(card_number)
     credit_card_expires_on = Time.now.advance(years: 1)
     month_selection = credit_card_expires_on.strftime('%-m - %B')
 
     year_selection = credit_card_expires_on.strftime('%Y')
-    declining_cc_num = '4000 0000 0000 0069'
+    cc_num = card_number
 
-    fill_in 'Card Number', with: declining_cc_num
+    fill_in 'Card Number', with: cc_num
     select month_selection, from: 'date[month]'
     select year_selection, from: 'date[year]'
     fill_in 'CVC', with: '333'
