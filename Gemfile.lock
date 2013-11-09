@@ -122,6 +122,9 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    capybara-webkit (0.13.1)
+      capybara (>= 1.0.0, < 1.2)
+      json
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     clearance (1.0.1)
@@ -461,6 +464,7 @@ DEPENDENCIES
   bourbon (= 3.1.6)
   bourne
   capybara (= 1.1.2)
+  capybara-webkit
   capybara_discoball!
   chameleon!
   clearance (= 1.0.1)
