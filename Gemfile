@@ -59,6 +59,8 @@ gem 'heroku-deflater'
 
 group :development do
   gem 'hirb', '0.6.2'
+  gem 'spring'
+  gem 'spring-commands-rspec', require: false
 end
 
 group :development, :test do
