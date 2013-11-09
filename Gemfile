@@ -88,7 +88,6 @@ group :test do
   gem 'capybara_discoball',
     github: 'thoughtbot/capybara_discoball'
   gem 'capybara-webkit'
-  gem 'cucumber-rails', require: false, git: 'https://github.com/cucumber/cucumber-rails.git'
   gem 'database_cleaner', '1.0.1'
   gem 'email_spec', '1.2.1'
   gem 'factory_girl_rails'
