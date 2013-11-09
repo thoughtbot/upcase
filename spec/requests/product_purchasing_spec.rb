@@ -134,15 +134,6 @@ feature 'Purchasing a product' do
     expect(AssociatePreviousPurchases).to have_received(:create_associations_for).with(user)
   end
 
-  def pay_using_paypal
-    uri = URI.parse(current_url)
-    Payments::PaypalPayment.host = "#{uri.host}:#{uri.port}"
-    choose 'purchase_payment_method_paypal'
-    fill_in_name_and_email
-    click_button 'Proceed to Checkout'
-    click_button 'Pay using Paypal'
-  end
-
   def stub_existing_card_for_user(user)
     user.update_column(:stripe_customer_id, 'test')
     Stripe::Customer.stubs(:retrieve).returns(
