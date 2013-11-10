@@ -32,17 +32,17 @@ feature 'User updated credit card' do
 
   def submit_new_credit_card_info
     valid_cc_num = '4242424242424242'
-    credit_card_info(valid_cc_num)
+    enter_credit_card_info(valid_cc_num)
   end
 
   def submit_declining_credit_card_info
     declining_cc_num = '4000 0000 0000 0069'
-    credit_card_info(declining_cc_num)
+    enter_credit_card_info(declining_cc_num)
   end
 
   private
 
-  def credit_card_info(card_number)
+  def enter_credit_card_info(card_number)
     credit_card_expires_on = Time.now.advance(years: 1)
     month_selection = credit_card_expires_on.strftime('%-m - %B')
 
