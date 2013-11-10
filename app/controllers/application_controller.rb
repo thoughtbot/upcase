@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
     elsif params[:individual_plan_id]
       IndividualPlan.where(sku: params[:individual_plan_id]).first
     elsif params[:team_plan_id]
-      TeamPlan.instance
+      TeamPlan.where(sku: params[:team_plan_id]).first
     elsif params[:section_id]
       Section.find(params[:section_id])
     else

@@ -149,6 +149,20 @@ describe PurchasesController do
     end
   end
 
+  describe 'purchasing a team plan when there is more than one' do
+    it 'uses the requested plan' do
+      user = create(:user)
+      stub_current_user_with(user)
+
+      create(:team_plan, sku: 'sku1')
+      desired_plan = create(:team_plan, sku: 'sku2')
+
+      get :new, team_plan_id: desired_plan.sku
+
+      expect(assigns(:purchase).purchaseable).to eq desired_plan
+    end
+  end
+
   def customer_params(token='stripe token')
     {
       name: 'User',
