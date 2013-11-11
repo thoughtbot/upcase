@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Video do
   it { should belong_to(:watchable) }
+
+  it { should validate_presence_of(:title) }
   it { should validate_presence_of(:watchable_id) }
   it { should validate_presence_of(:watchable_type) }
   it { should validate_presence_of(:wistia_id) }

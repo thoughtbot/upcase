@@ -3,6 +3,7 @@ class Video < ActiveRecord::Base
 
   belongs_to :watchable, polymorphic: true
 
+  validates :title, presence: true
   validates :watchable_id, presence: true
   validates :watchable_type, presence: true
   validates :wistia_id, presence: true
