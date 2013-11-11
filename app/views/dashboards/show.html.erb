@@ -13,18 +13,12 @@
   <a class="nav show-all">all screencasts</a>
 </section>
 
-<section class="forum">
-  <p class="forum-desc">Ask questions about any piece of content, get answers from us, collaborate with other members.</p>
-  <%= link_to forum_url do %>
-    View the <%= t('shared.subscription.name') %> forum <span>&#x27f6;</span>
-  <% end %>
+<section class="reading vertical-slider revealed">
+  <%= render partial: 'products/book', collection: books %>
 </section>
 
-<section class="reading">
-  <section class="list books">
-    <header>
-      <h2>Library</h2>
-    </header>
-    <%= render partial: 'products/book', collection: books %>
-  </section>
-</section>
+<footer>
+  <%= link_to forum_url, target: '_blank' do %>
+    <span>Get answers from us, collaborate with other members &mdash; View the <%= t('shared.subscription.name') %> forum &rarr;</span>
+  <% end %>
+</footer>
