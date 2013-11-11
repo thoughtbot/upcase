@@ -70,7 +70,7 @@ class FakeMailchimp < Sinatra::Base
 end
 
 FakeMailchimpRunner = Capybara::Discoball::Runner.new(FakeMailchimp) do |server|
-  url = server.url('')
+  url = "http://#{server.host}:#{server.port}"
 
   ::Gibbon.api_endpoint = url
 end

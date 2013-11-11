@@ -83,15 +83,14 @@ end
 
 group :test do
   gem 'bourne'
-  gem 'capybara', '1.1.2'
+  gem 'capybara'
   gem 'capybara_discoball',
     github: 'thoughtbot/capybara_discoball'
   gem 'capybara-webkit'
-  gem 'database_cleaner', '1.0.1'
+  gem 'database_cleaner'
   gem 'email_spec', '1.2.1'
   gem 'factory_girl_rails'
   gem 'launchy'
-  gem 'poltergeist'
   gem 'selenium-webdriver'
   gem 'rubyzip', '0.9.9'
   gem 'sham_rack', '1.3.1'

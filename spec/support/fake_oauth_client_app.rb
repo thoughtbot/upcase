@@ -41,8 +41,8 @@ class FakeOauthClientApp < Sinatra::Base
   end
 
   def self.boot
-    Capybara::Discoball.spin(FakeOauthClientApp) do |client|
-      client.url('')
+    Capybara::Discoball.spin(FakeOauthClientApp) do |server|
+      "http://#{server.host}:#{server.port}"
     end
   end
 end

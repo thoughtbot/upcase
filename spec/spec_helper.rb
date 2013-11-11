@@ -11,7 +11,6 @@ require 'paperclip/matchers'
 require 'email_spec'
 require 'webmock/rspec'
 require 'clearance/testing'
-require 'capybara/poltergeist'
 
 WebMock.disable_net_connect!(:allow_localhost => true)
 
@@ -22,6 +21,12 @@ FakeMailchimpRunner.boot
 FakeGithubRunner.boot
 
 Delayed::Worker.delay_jobs = false
+
+Capybara.javascript_driver = :webkit
+Capybara.configure do |config|
+  config.match = :prefer_exact
+  config.ignore_hidden_elements = false
+end
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
@@ -35,8 +40,8 @@ RSpec.configure do |config|
   config.include Subscriptions
   config.include PurchaseHelpers
   config.include StripeHelpers
-  config.include SessionHelpers, type: :request
-  config.include PaypalHelpers, type: :request
+  config.include SessionHelpers, type: :feature
+  config.include PaypalHelpers, type: :feature
 
   config.mock_with :mocha
   config.treat_symbols_as_metadata_keys_with_true_values = true

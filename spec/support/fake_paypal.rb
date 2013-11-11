@@ -80,7 +80,7 @@ class FakePaypal < Sinatra::Base
 end
 
 FakePaypalRunner = Capybara::Discoball.spin(FakePaypal) do |server|
-  url = server.url('/')
+  url = "http://#{server.host}:#{server.port}/"
   Paypal::NVP::Request.endpoint = url
   Paypal.endpoint = url
 end

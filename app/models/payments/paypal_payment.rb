@@ -28,7 +28,7 @@ module Payments
     end
 
     def self.host
-      if defined?(@@host)
+      if defined?(@@host) && @@host.present?
         @@host
       else
         ActionMailer::Base.default_url_options[:host]

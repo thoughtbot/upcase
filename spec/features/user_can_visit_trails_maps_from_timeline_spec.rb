@@ -39,7 +39,7 @@ feature 'User can visit trail maps from timeline' do
   end
 
   def trail_map_links
-    page.all 'a', text: 'trail map', href: topics_path
+    page.all 'a', text: 'trail map'
   end
 
   def week_sections
