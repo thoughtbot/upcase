@@ -127,6 +127,29 @@
     width: $product-card-width;
   }
 
+  &.dashboard-resource {
+    border-top: 5px solid $green;
+    height: 165px;
+
+    h4 {
+      color: $darkwarmgray;
+      padding-bottom: 0;
+
+      img {
+        float: right;
+      }
+    }
+
+    p {
+      margin-top: 0;
+    }
+
+    &.trails {
+      background: url(<%= asset_path 'learn/trails-graphic.svg' %>) #fff no-repeat 3rem .8rem;
+      background-size: 75%;
+    }
+  }
+
   > a {
     display: block;
     height: 100%;
