@@ -52,12 +52,4 @@ module ApplicationHelper
   def forum_url(suffix=nil)
     "http://forum.thoughtbot.com/#{suffix}"
   end
-
-  def mentor_image(mentor)
-    image_tag gravatar_url(mentor.email, size: '300')
-  end
-
-  def featured_mentors
-    User.mentors.first(2)
-  end
 end

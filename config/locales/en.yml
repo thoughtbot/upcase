@@ -32,6 +32,10 @@ en:
       heading:
         All %{topic} articles
 
+  dashboard:
+    show:
+      contact_your_mentor: "Contact your mentor, %{mentor_name}"
+
   individual_plans:
     mentoring: '1-1 Mentoring'
     workshops: 'Hands-On Workshops'
