@@ -3,6 +3,7 @@
   font-family: $sans-serif;
   padding: .75rem 1.25rem;
   @include position(absolute, 0px 0px 0 0);
+  z-index: 3;
 }
 
 .journey-headline {
