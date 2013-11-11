@@ -380,6 +380,7 @@ FactoryGirl.define do
 
   factory :video do
     association :watchable, factory: :product
+    title
     wistia_id '1194803'
   end
 

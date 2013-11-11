@@ -3,6 +3,7 @@ class Video < ActiveRecord::Base
 
   belongs_to :watchable, polymorphic: true
 
+  validates :title, presence: true
   validates :watchable_id, presence: true
   validates :watchable_type, presence: true
   validates :wistia_id, presence: true
@@ -10,7 +11,7 @@ class Video < ActiveRecord::Base
   delegate :name, to: :watchable, prefix: true
 
   def self.ordered
-    order('active_on_day asc, position asc')
+    order('position asc')
   end
 
   def video_sizes
@@ -35,18 +36,6 @@ class Video < ActiveRecord::Base
 
   def wistia_thumbnail
     @wistia_thumbnail ||= wistia_hash["thumbnail"]["url"] rescue nil
-  end
-
-  def available?(start_date)
-    available_on(start_date) <= Time.zone.today
-  end
-
-  def available_on(start_date)
-    start_date + active_on_day.days
-  end
-
-  def starts_today?(start_date)
-    available_on(start_date) == Time.zone.today
   end
 
   def has_notes?

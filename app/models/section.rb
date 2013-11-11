@@ -59,10 +59,6 @@ class Section < ActiveRecord::Base
     )
   end
 
-  def self.send_video_notifications
-    current.each &:send_video_notifications
-  end
-
   def self.send_surveys
     current.each &:send_surveys
   end
@@ -93,11 +89,6 @@ class Section < ActiveRecord::Base
 
   def seats_available
     super || workshop.maximum_students
-  end
-
-  def send_video_notifications
-    video_notifier = VideoNotifier.new(self, paid_purchases)
-    video_notifier.send_notifications_for(videos)
   end
 
   def send_surveys
