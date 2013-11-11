@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 feature 'User adds a note to timeline' do
-  include Gravatarify::Helper
-
   scenario 'they see only one add note form when there are multiple weeks' do
     user = create(:user)
     trail = create(:trail, trail_map: FakeTrailMap.new.trail)

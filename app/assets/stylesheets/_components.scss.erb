@@ -39,86 +39,7 @@
     text-indent: 18px;
   }
 
-  &.meta {
-    background: none;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-
-    .mentor {
-      overflow: auto;
-      margin-bottom: 2rem;
-
-      img {
-        border-radius: 100%;
-        float: left;
-        position: relative;
-        width: 95px;
-        z-index: 3;
-      }
-
-      hgroup {
-        background: $lightwarmgray;
-        display: inline-block;
-        padding-left: .8rem;
-        position: relative;
-        width: 129px;
-        z-index: 2;
-
-        h2, h3 {
-          color: $darkwarmgray;
-          font-size: 1rem;
-          font-weight: 600;
-          line-height: 1.5rem;
-        }
-
-        h2 {
-          font-size: 1.3rem;
-        }
-
-        p {
-          margin: .4rem 0 0;
-          padding: 0;
-
-          &:last-child {
-            margin: 0;
-          }
-
-          a {
-            color: $darkwarmgray;
-            display: inline-block;
-            font-family: $sans-serif;
-            font-weight: 600;
-          }
-
-          .mentor-help {
-            color: lighten($darkwarmgray, 15%);
-            font-family: $serif;
-            font-style: italic;
-            font-weight: 100;
-          }
-        }
-      }
-    }
-
-    .trails {
-      background: url(<%= asset_path 'learn/trails-graphic.svg' %>) no-repeat 40px -2px;
-      background-size: contain;
-      padding: 0;
-
-      a {
-        display: block;
-      }
-
-      h3 {
-        color: $darkwarmgray;
-        font: 400 1.5rem/1.5em $sans-serif;
-        padding-top: 1.5rem;
-      }
-    }
-  }
-
-  &.screencast {
+  &.thumbnail {
     background: none;
     border: 0;
     box-shadow: none;
@@ -153,12 +74,13 @@
     }
 
     h5 {
-      margin-bottom: .25rem;
+      margin-bottom: .15rem;
     }
 
     h4 {
       color: $darkwarmgray;
       margin: 0;
+      padding-bottom: 0;
       padding-top: 0;
     }
 
@@ -183,6 +105,15 @@
         @include user-select(none);
         z-index: 1;
       }
+    }
+
+    .console-illustration {
+      background: #111;
+      color: #ddd;
+      font: bold 3rem/1 monospace;
+      height: 124px;
+      margin: 0;
+      padding: .5rem 1rem;
     }
   }
 
@@ -440,6 +371,11 @@
     .nav.show-all {
       background: #fff;
     }
+  }
+
+  &.exercises {
+    background: #fff;
+    margin-bottom: $product-card-margin;
   }
 
   &.reading {

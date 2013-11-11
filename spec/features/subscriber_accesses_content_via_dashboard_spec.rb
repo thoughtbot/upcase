@@ -1,18 +1,6 @@
 require 'spec_helper'
 
 feature 'Subscriber accesses content' do
-  include Gravatarify::Helper
-
-  scenario 'access mentor details' do
-    sign_in_as_user_with_subscription
-    mentor = @current_user.mentor
-    mentor_image = gravatar_url(mentor.email)
-
-    expect(page).to have_content('Your Mentor')
-    expect(page).to have_xpath("//img[contains(@src, \"#{mentor_image}\")]")
-    expect(page).to have_xpath("//a[contains(@href, \"mailto:#{mentor.email}\")]")
-  end
-
   scenario 'begins an online workshop' do
     online_section = create(:online_section)
 
@@ -62,7 +50,7 @@ feature 'Subscriber accesses content' do
 
     expect(current_path).to eq edit_subscription_path
   end
- 
+
 
   scenario 'gets access to a book product' do
     book_product = create(:github_book_product)
