@@ -6,7 +6,7 @@ describe 'Workshops' do
   it 'displays their formatted resources' do
     workshop = create(:workshop, resources: "* Item 1\n*Item 2")
     section = create(:section, starts_on: Time.zone.today, ends_on: 1.month.from_now, workshop: workshop)
-    video = create(:video, watchable: workshop, active_on_day: 0, title: 'Video One')
+    video = create(:video, watchable: workshop)
     purchase = create_subscriber_purchase_from_purchaseable(section)
 
     visit purchase_path(purchase)
@@ -19,7 +19,7 @@ describe 'Workshops' do
   it 'links to the video chat url and lists office hours' do
     workshop = create(:workshop, video_chat_url: 'http://example.com', office_hours: '1pm EST')
     section = create(:section, starts_on: 7.days.from_now, ends_on: 1.month.from_now, workshop: workshop)
-    video = create(:video, watchable: workshop, active_on_day: 0, title: 'Video One')
+    video = create(:video, watchable: workshop)
     purchase = create_subscriber_purchase_from_purchaseable(section)
 
     visit purchase_path(purchase)

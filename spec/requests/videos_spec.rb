@@ -4,7 +4,7 @@ describe 'Videos' do
   context 'get show' do
     it 'does not allow watching a video without paying first' do
       product = create(:video_product)
-      video = create_available_video(product, 0, 'Video One')
+      video = create(:video, watchable: product)
       purchase = create(:unpaid_purchase, purchaseable: product)
       purchase.lookup = 'unpaid'
       purchase.save!
@@ -21,10 +21,10 @@ describe 'Videos' do
 
   context 'GET /' do
     it 'lists the videos for a workshop' do
-      workshop = create(:workshop)
-      section = create(:section, starts_on: Date.yesterday, ends_on: 1.month.from_now, workshop: workshop)
-      video_one = create_available_video(workshop, 0, 'Video One')
-      video_two = create_available_video(workshop, 2, 'Video Two')
+      workshop = create(:online_workshop)
+      section = create(:section, workshop: workshop)
+      video_one = create(:video, watchable: workshop, position: 1)
+      video_two = create(:video, watchable: workshop, position: 2)
       purchase = create_subscriber_purchase_from_purchaseable(section)
 
       visit purchase_path(purchase)
@@ -41,8 +41,8 @@ describe 'Videos' do
 
     it 'lists the videos for a product' do
       purchase = create(:video_purchase)
-      video_one = create_available_video(purchase.purchaseable, 0, 'Video One')
-      video_two = create_available_video(purchase.purchaseable, 0, 'Video Two')
+      video_one = create(:video, watchable: purchase.purchaseable)
+      video_two = create(:video, watchable: purchase.purchaseable)
 
       visit purchase_path(purchase)
 
@@ -53,9 +53,10 @@ describe 'Videos' do
 
     it "doesn't say it's a series with one video" do
       purchase = create(:video_purchase)
-      video_one = create_available_video(purchase.purchaseable, 0, 'Video One')
+      video_one = create(:video, watchable: purchase.purchaseable)
 
       visit purchase_path(purchase)
+
       expect(page).not_to have_content("in the series")
       expect(page).not_to have_content("in this workshop")
     end
@@ -64,6 +65,7 @@ describe 'Videos' do
       purchase = create(:video_purchase)
 
       visit purchase_path(purchase)
+
       expect(page).not_to have_content("includes support")
     end
 
@@ -73,11 +75,8 @@ describe 'Videos' do
       purchase = create(:video_purchase)
 
       visit purchase_path(purchase)
+
       expect(page).to have_content("includes support")
     end
-  end
-
-  def create_available_video(watchable, active_on_day, title)
-    create(:video, watchable: watchable, active_on_day: active_on_day, title: title)
   end
 end
