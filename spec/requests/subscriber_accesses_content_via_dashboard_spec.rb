@@ -91,16 +91,6 @@ feature 'Subscriber accesses content' do
     expect(page).to have_content('Watch or download video')
   end
 
-  scenario 'accesses Prime Bytes' do
-    byte = create(:byte)
-
-    sign_in_as_user_with_subscription
-    click_link 'View all Prime Bytes'
-
-    expect(page).to have_content(byte.title)
-    expect(current_path).to eq bytes_path
-  end
-
   scenario "registering for overlapping workshops" do
     online_section = create(:online_section)
     overlapping_section = create(
