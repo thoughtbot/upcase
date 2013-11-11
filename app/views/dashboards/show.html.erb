@@ -1,4 +1,4 @@
-<section class="workshops vertical-slider">
+<section class="workshops vertical-slider revealed">
   <figure class="meta product-card">
     <%= render 'mentor' %>
     <%= render 'trails' %>
@@ -8,7 +8,7 @@
   <a class="nav show-all">all workshops</a>
 </section>
 
-<section class="screencasts vertical-slider">
+<section class="screencasts vertical-slider revealed">
   <%= render partial: 'products/video', collection: videos %>
   <a class="nav show-all">all screencasts</a>
 </section>
@@ -21,13 +21,6 @@
 </section>
 
 <section class="reading">
-  <section class="list bytes">
-    <header>
-      <h2>Recommended Reading &mdash; <%= t('shared.bytes') %></h2>
-    </header>
-    <%= render partial: 'articles/byte', collection: bytes.first(3) %>
-    <%= link_to "View all #{t('shared.bytes')}", bytes_path, class: 'bytes-index' %>
-  </section>
   <section class="list books">
     <header>
       <h2>Library</h2>
