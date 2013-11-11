@@ -92,6 +92,7 @@ body.passwords-create {
 
       @media screen and (max-width: 755px) {
         display: block;
+        text-align: center;
       }
     }
 
@@ -107,6 +108,29 @@ body.passwords-create {
         float: none;
         margin: 0;
         text-align: center;
+      }
+
+      &.mentor {
+        @include position(relative, -18px 0 0 0);
+
+        img {
+          border-radius: 100%;
+          float: left;
+          width: 68px;
+
+          @include body-mobile {
+            display: none;
+          }
+        }
+
+        a {
+          float: left;
+          top: 18px;
+
+          @include body-mobile {
+            float: none;
+          }
+        }
       }
     }
 

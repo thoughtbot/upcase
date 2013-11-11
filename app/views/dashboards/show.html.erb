@@ -1,8 +1,14 @@
+<% content_for :additional_header_links do %>
+  <% if current_user.has_subscription_with_mentor? %>
+    <li class="mentor">
+      <%= mentor_image(current_user.mentor) %>
+      <%= link_to "View #{current_user.mentor.first_name}'s Availability", '#', target: '_target' %>
+    </li>
+  <% end %>
+<% end %>
+
 <section class="workshops vertical-slider revealed">
-  <figure class="meta product-card">
-    <%= render 'mentor' %>
-    <%= render 'trails' %>
-  </figure>
+  <%= render 'trails' %>
   <%= render partial: 'products/workshop', collection: online_workshops %>
   <%= render partial: 'products/workshop', collection: in_person_workshops %>
 </section>
