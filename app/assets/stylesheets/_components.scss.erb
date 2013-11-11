@@ -39,7 +39,7 @@
     text-indent: 18px;
   }
 
-  &.screencast {
+  &.thumbnail {
     background: none;
     border: 0;
     box-shadow: none;
@@ -74,12 +74,13 @@
     }
 
     h5 {
-      margin-bottom: .25rem;
+      margin-bottom: .15rem;
     }
 
     h4 {
       color: $darkwarmgray;
       margin: 0;
+      padding-bottom: 0;
       padding-top: 0;
     }
 
@@ -104,6 +105,15 @@
         @include user-select(none);
         z-index: 1;
       }
+    }
+
+    .console-illustration {
+      background: #111;
+      color: #ddd;
+      font: bold 3rem/1 monospace;
+      height: 124px;
+      margin: 0;
+      padding: .5rem 1rem;
     }
   }
 
@@ -361,6 +371,11 @@
     .nav.show-all {
       background: #fff;
     }
+  }
+
+  &.exercises {
+    background: #fff;
+    margin-bottom: $product-card-margin;
   }
 
   &.reading {

@@ -28,29 +28,37 @@ body.dashboards-show {
       -webkit-font-smoothing: antialiased;
     }
   }
-}
 
-.vertical-slider.workshops .trails {
-  background: url(<%= asset_path 'learn/trails-graphic.svg' %>) no-repeat 10px -4px;
-  background-size: contain;
-  display: inline-block;
-  float: left;
-  height: 330px;
-  margin: 0 $product-card-margin/2 $product-card-margin;
-  padding: 0;
-  position: relative;
-  vertical-align: top;
-  white-space: normal;
-  width: $product-card-width;
+  .vertical-slider.workshops .trails {
+    background: url(<%= asset_path 'learn/trails-graphic.svg' %>) no-repeat 10px -4px;
+    background-size: contain;
+    display: inline-block;
+    float: left;
+    height: 330px;
+    margin: 0 $product-card-margin/2 $product-card-margin;
+    padding: 0;
+    position: relative;
+    vertical-align: top;
+    white-space: normal;
+    width: $product-card-width;
 
-  a {
-    display: block;
-    margin-top: 1.45rem;
+    a {
+      display: block;
+      margin-top: 1.45rem;
+    }
+
+    h3 {
+      color: $darkwarmgray;
+      font: 400 1.5rem/1.5em $sans-serif;
+      padding-top: .6rem;
+    }
   }
 
-  h3 {
-    color: $darkwarmgray;
-    font: 400 1.5rem/1.5em $sans-serif;
-    padding-top: .6rem;
+  .vertical-slider.screencasts {
+    margin-bottom: 0;
+  }
+
+  .vertical-slider.exercises {
+    padding-top: 0;
   }
 }

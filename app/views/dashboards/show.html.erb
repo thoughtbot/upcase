@@ -17,6 +17,21 @@
   <%= render partial: 'products/video', collection: videos %>
 </section>
 
+<section class="exercises vertical-slider revealed">
+  <% 2.times do %>
+  <figure class="exercise thumbnail product-card">
+    <%= link_to '#', title: 'video name' do %>
+      <figure>
+        <p class="console-illustration">>_</p>
+      </figure>
+      <h5>Exercise</h5>
+      <h4>Shakespeare Analyzer</h4>
+      <p>Write a command-line program that prints the number of lines spoken by each character.</p>
+    <% end %>
+  </figure>
+  <% end %>
+</section>
+
 <section class="reading vertical-slider revealed">
   <%= render partial: 'products/book', collection: books %>
 </section>
