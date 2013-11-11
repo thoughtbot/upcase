@@ -208,42 +208,6 @@ describe Section do
     end
   end
 
-  describe '.send_video_notifications' do
-    it 'sends video notifications for each current section' do
-      notifier = stub(send_notifications_for: nil)
-      VideoNotifier.stubs(new: notifier)
-      future = create(:future_section)
-      workshop = future.workshop
-      current = create(:section, workshop: workshop, starts_on: Time.zone.today, ends_on: 1.day.from_now)
-      future_purchase = create_subscriber_purchase_from_purchaseable(future)
-      current_purchase = create_subscriber_purchase_from_purchaseable(current)
-      video = create(:video, watchable: workshop)
-
-      Section.send_video_notifications
-
-      expect(VideoNotifier).to have_received(:new).with(current, [current_purchase])
-      expect(notifier).to have_received(:send_notifications_for).with([video])
-      expect(VideoNotifier).to have_received(:new).with(future, [future_purchase]).never
-    end
-
-    it 'sends video notifications for each current purchase to an rolling section' do
-      notifier = stub(send_notifications_for: nil)
-      VideoNotifier.stubs(new: notifier)
-      current = create(:online_section, starts_on: 30.days.ago, ends_on: nil)
-      Timecop.travel(3.days.ago) do
-        @current_purchase = create_subscriber_purchase_from_purchaseable(
-          current
-        )
-      end
-      video = create(:video, watchable: current.workshop, active_on_day: 3)
-
-      Section.send_video_notifications
-
-      expect(VideoNotifier).to have_received(:new).with(current, [@current_purchase])
-      expect(notifier).to have_received(:send_notifications_for).with([video])
-    end
-  end
-
   describe '.send_office_hours_reminders' do
     it 'sends an office hour reminder for each current section' do
       workshop = create(:workshop, office_hours: '1pm')

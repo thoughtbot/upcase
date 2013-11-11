@@ -7,11 +7,10 @@ describe Video do
   it { should validate_presence_of(:wistia_id) }
 
   context 'self.ordered' do
-    it 'returns videos in order by active_on_day and order' do
-      video1 = create(:video, active_on_day: 37)
-      video3 = create(:video, active_on_day: 1, position: 2)
-      video2 = create(:video, active_on_day: 1, position: 1)
-      Video.ordered.should == [video2, video3, video1]
+    it 'returns videos in order by position' do
+      video1 = create(:video, position: 2)
+      video2 = create(:video, position: 1)
+      Video.ordered.should == [video2, video1]
     end
   end
 
@@ -29,41 +28,6 @@ describe Video do
       video = create(:video, watchable: workshop)
 
       expect(video.watchable_name).to eq workshop.name
-    end
-  end
-
-  describe 'available?' do
-    it 'returns true when the video is available based on the given start date' do
-      video = create(:video, active_on_day: 0)
-      expect(video.available?(Time.zone.today)).to be_true
-    end
-
-    it 'returns false when the video is not available based on the given start date' do
-      video = create(:video, active_on_day: 2)
-      expect(video.available?(Time.zone.today)).not_to be_true
-    end
-  end
-
-  describe 'starts_today?' do
-    it 'returns true when the video is available starting today based on the given start date' do
-      video = create(:video, active_on_day: 0)
-      expect(video.starts_today?(Time.zone.today)).to be_true
-    end
-
-    it 'returns false when the video is not available starting today based on the given start date' do
-      video = create(:video, active_on_day: 2)
-      expect(video.starts_today?(Time.zone.today)).not_to be_true
-    end
-  end
-
-  describe 'available_on' do
-    it 'gives the date the video will be available based on the given start date' do
-      start_date = 7.days.from_now.to_date
-      video_one = create(:video, active_on_day: 0)
-      video_two = create(:video, active_on_day: 2)
-
-      expect(video_one.available_on(start_date)).to eq 7.days.from_now.to_date
-      expect(video_two.available_on(start_date)).to eq 9.days.from_now.to_date
     end
   end
 
