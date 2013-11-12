@@ -12,6 +12,18 @@ Workshops::Application.routes.draw do
     end
   end
 
+  namespace :widgets do
+    with_options only: :show do |route|
+      route.resource :plan_churn
+      route.resource :plan_ltv
+      route.resource :plan_subscriber_count
+      route.resource :projected_monthly_revenue
+      route.resource :total_churn
+      route.resource :total_new_subscriber_count
+      route.resource :total_subscriber_count
+    end
+  end
+
   get '/pages/tmux' => redirect('/products/4-humans-present-tmux')
 
   if Rails.env.staging? || Rails.env.production?

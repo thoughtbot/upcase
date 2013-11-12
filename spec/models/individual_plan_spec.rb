@@ -41,46 +41,6 @@ describe IndividualPlan do
     end
   end
 
-  describe '.prime_basic' do
-    it 'returns the instance of IndividualPlan corresponding to Prime Basic' do
-      prime_basic_plan = create(:plan, :prime_basic_plan)
-
-      expect(IndividualPlan.prime_basic).to eq prime_basic_plan
-    end
-  end
-
-  describe '.prime_basic_yearly' do
-    it 'returns the instance of IndividualPlan corresponding to Prime Basic Yearly' do
-      prime_basic_yearly_plan = create(:plan, :prime_basic_yearly_plan)
-
-      expect(IndividualPlan.prime_basic_yearly).to eq prime_basic_yearly_plan
-    end
-  end
-
-  describe '.prime_workshops' do
-    it 'returns the IndividualPlan instance corresponding to Prime Workshops' do
-      prime_workshops_plan = create(:plan, :prime_workshops_plan)
-
-      expect(IndividualPlan.prime_workshops).to eq prime_workshops_plan
-    end
-  end
-
-  describe '.prime_workshops_yearly' do
-    it 'returns the IndividualPlan instance corresponding to Prime Workshops Yearly' do
-      prime_workshops_yearly_plan = create(:plan, :prime_workshops_yearly_plan)
-
-      expect(IndividualPlan.prime_workshops_yearly).to eq prime_workshops_yearly_plan
-    end
-  end
-
-  describe '.prime_with_mentoring' do
-    it 'returns the IndividualPlan instance corresponding to Prime with Mentoring' do
-      prime_with_mentoring_plan = create(:plan, :prime_with_mentoring_plan)
-
-      expect(IndividualPlan.prime_with_mentoring).to eq prime_with_mentoring_plan
-    end
-  end
-
   describe '.downgraded' do
     it 'returns the downgraded plan' do
       downgraded_plan = create(:downgraded_plan)
@@ -201,13 +161,13 @@ describe IndividualPlan do
 
   describe '#projected_monthly_revenue' do
     it 'returns 0 when there are no subscribers' do
-      plan = create(:plan, :prime_basic_plan)
+      plan = create(:individual_plan)
 
       expect(plan.projected_monthly_revenue).to eq 0
     end
 
     it 'returns the subscriber count times the individual price for a Plan' do
-      plan = create(:plan, :prime_basic_plan)
+      plan = create(:individual_plan)
       create(:subscription, plan: plan)
       create(:subscription, plan: plan)
 

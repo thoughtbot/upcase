@@ -30,12 +30,6 @@ GIT
       capybara
 
 GIT
-  remote: git://github.com/thoughtbot/chameleon.git
-  revision: 6708f321fad77bab7dc6093b55a5626b87e0f57e
-  specs:
-    chameleon (0.2.3)
-
-GIT
   remote: git://github.com/thoughtbot/high_voltage.git
   revision: 5802c8841b5210a6aa2efda40282635819e5103b
   specs:
@@ -437,7 +431,6 @@ DEPENDENCIES
   capybara
   capybara-webkit
   capybara_discoball!
-  chameleon!
   clearance (= 1.0.1)
   coffee-rails (~> 4.0.0)
   csv_rails (= 0.6.1)
