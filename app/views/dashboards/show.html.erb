@@ -7,6 +7,13 @@
   <% end %>
 <% end %>
 
+<section class="resources vertical-slider revealed">
+  <%= render 'learn_repo' %>
+  <%= render 'learn_live' %>
+  <%= render 'forum' %>
+  <%= render 'trails' %>
+</section>
+
 <section class="workshops vertical-slider revealed">
   <%= render 'trails' %>
   <%= render partial: 'products/workshop', collection: online_workshops %>
