@@ -1,4 +1,4 @@
-<%= content_tag :div, class: individual_plan.sku do %>
+<%= content_tag :div, class: "plan #{individual_plan.sku}" do %>
   <h3><%= individual_plan.name %> &mdash; <%= individual_price_per_month individual_plan %></h3>
   <section>
     <%== individual_plan.description %>

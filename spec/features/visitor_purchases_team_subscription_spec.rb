@@ -7,7 +7,6 @@ feature 'Visitor can purchase a subscription for their team' do
     hidden_team_plan = create(:team_plan, name: 'Not Featured', featured: false)
 
     visit new_subscription_path
-    click_link I18n.t('shared.company_subscription_call_to_action')
 
     expect_to_see_featured_team_plans
 
