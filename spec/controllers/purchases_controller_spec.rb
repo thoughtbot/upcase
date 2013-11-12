@@ -89,20 +89,6 @@ describe PurchasesController do
     end
   end
 
-  describe 'creating a subscription' do
-    it 'sends a message to the notifier' do
-      create_mentors
-      stub_current_user_with(create(:user, :with_github))
-      plan = create(:plan)
-      notifier = stub('notifier', :notify_of_purchase)
-      KissmetricsEventNotifier.stubs(:new).returns(notifier)
-
-      post :create, purchase: customer_params, individual_plan_id: plan
-
-      notifier.should have_received(:notify_of_purchase).with(assigns(:purchase))
-    end
-  end
-
   it 'saves a comment for section purchase' do
     stub_current_user_with(create(:user))
     product = create(:product)

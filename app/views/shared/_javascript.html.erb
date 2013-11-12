@@ -1,7 +1,5 @@
 <%= javascript_include_tag 'application', 'prefilled_input' %>
 
-<%= render 'shared/kissmetrics' %>
-
 <%= yield :javascript %>
 
 <% if Rails.env.production? %>
@@ -25,9 +23,3 @@
     $.ajaxSetup({ async: false });
   <% end %>
 <% end %>
-
-<script type="text/javascript">
-  <% Split::Experiment.all.each do |experiment| %>
-    _kmq.push(['set', { '<%= experiment.name %>': '<%= ab_test(experiment.name, *experiment.alternative_names) %>' }]);
-  <% end %>
-</script>

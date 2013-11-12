@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'successful charges are reported by Stripe webhook' do
-  it 'calls InvoicePaymentProcessor to send a receipt and report to Kissmetrics' do
+  it 'calls InvoicePaymentProcessor to send a receipt notifications' do
     InvoicePaymentProcessor.stubs(:send_receipt_and_notify_of_subscription_billing)
     create(
       :user,

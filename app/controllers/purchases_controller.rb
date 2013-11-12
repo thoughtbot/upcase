@@ -14,7 +14,6 @@ class PurchasesController < ApplicationController
     @purchase.stripe_customer_id = existing_stripe_customer_id
 
     if @purchase.save
-      notify_kissmetrics_of(@purchase)
       sign_in_purchasing_user(@purchase)
 
       redirect_to success_url,
@@ -39,7 +38,6 @@ class PurchasesController < ApplicationController
     flash.keep
     @purchase = Purchase.find_by_lookup(params[:id])
     @purchase.complete_payment(params)
-    notify_kissmetrics_of(@purchase)
     redirect_to @purchase
   end
 
@@ -98,11 +96,6 @@ class PurchasesController < ApplicationController
     if signed_out? && purchase.user
       sign_in purchase.user
     end
-  end
-
-  def notify_kissmetrics_of(purchase)
-    event_notifier = KissmetricsEventNotifier.new
-    event_notifier.notify_of_purchase(purchase)
   end
 
   def existing_stripe_customer_id
