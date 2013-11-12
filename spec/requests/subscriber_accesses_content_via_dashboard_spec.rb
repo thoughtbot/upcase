@@ -192,7 +192,7 @@ feature 'Subscriber accesses content' do
   end
 
   def click_ebook_detail_link(book)
-    within('section.books') do
+    within('section.reading') do
       click_link book.name
     end
   end
