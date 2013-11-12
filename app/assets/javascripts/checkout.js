@@ -81,10 +81,6 @@ $('.reveal-address').click(function() {
 });
 
 $(document).ready(function(){
-  $('#new_purchase').submit(function(){
-    var email = $('#purchase_email').val();
-    _kmq.push(['identify', email]);
-  });
   $('#purchase_payment_method_input input').change(function() {
     $("li.stripe").toggle($("#purchase_payment_method_stripe").is(":checked"));
     if($("#purchase_payment_method_stripe").is(":checked")) {

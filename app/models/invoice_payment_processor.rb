@@ -16,9 +16,7 @@ class InvoicePaymentProcessor
   end
 
   def notify_of_subscription_billing
-    if invoice_has_a_user?
-      notify_kissmetrics
-    else
+    unless invoice_has_a_user?
       notify_airbrake_of_missing_user
     end
   end
@@ -37,14 +35,6 @@ class InvoicePaymentProcessor
       invoice.subscription_item_name,
       invoice.amount_paid,
       invoice.stripe_invoice_id
-    )
-  end
-
-  def notify_kissmetrics
-    event_notifier = KissmetricsEventNotifier.new
-    event_notifier.notify_of_subscription_billing(
-      invoice.user_email,
-      invoice.amount_paid
     )
   end
 

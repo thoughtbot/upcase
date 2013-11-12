@@ -7,8 +7,6 @@ class WorkshopsController < ApplicationController
 
     if signed_in? && @workshop.purchase_for(current_user)
       redirect_to @workshop.purchase_for(current_user)
-    else
-      km.record("Viewed Product", { "Product Name" => @workshop.name })
     end
   end
 end

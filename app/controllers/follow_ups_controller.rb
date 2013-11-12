@@ -4,7 +4,6 @@ class FollowUpsController < ApplicationController
     follow_up = workshop.follow_ups.build(workshop_params)
     if follow_up.save
       redirect_to workshop, notice: "We will contact you when we schedule #{workshop.name}."
-      km.record('Requested Followup', { 'Course Name' => workshop.name })
     else
       redirect_to workshop, notice: "Could not save follow up. Please check your email address."
     end
