@@ -2,7 +2,7 @@
   <% if current_user.has_subscription_with_mentor? %>
     <li class="mentor">
       <%= mentor_image(current_user.mentor) %>
-      <%= link_to "View #{current_user.mentor.first_name}'s Availability", '#', target: '_target' %>
+      <%= link_to "View #{current_user.mentor.first_name}'s Availability", 'TODO: FIX THIS' target: '_target' %>
     </li>
   <% end %>
 <% end %>
