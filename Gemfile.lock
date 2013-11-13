@@ -188,6 +188,8 @@ GEM
     haml (4.0.3)
       tilt
     hashie (2.0.5)
+    heroku-deflater (0.5.2)
+      rack (>= 1.4.5)
     hike (1.2.3)
     hirb (0.6.2)
     httparty (0.8.1)
@@ -455,6 +457,7 @@ DEPENDENCIES
   formtastic (= 2.2.0)
   gibbon (= 0.4.6)
   gravatarify (~> 3.1.0)
+  heroku-deflater
   high_voltage!
   hirb (= 0.6.2)
   httparty (= 0.8.1)
