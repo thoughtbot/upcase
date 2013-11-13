@@ -10,7 +10,15 @@ Workshops::Application.configure do
   config.assets.digest = true
   config.assets.js_compressor = :uglifier
   config.assets.precompile += %w( print.css prefilled_input.js )
-  config.serve_static_assets = false
+
+  # Serve static assets, which allows us to populate the CDN with compressed
+  # assets if a client supports them via Heroku::Deflater
+  config.serve_static_assets = true
+
+  # Fiddling with expires values is kind of pointless as we use hashing to bust
+  # caches during redeploys, but it should bump up our google pagespeed
+  # ranking.
+  config.static_cache_control = 'public, max-age=31536000'
 
   config.eager_load = true
   config.cache_store = :dalli_store
