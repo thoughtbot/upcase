@@ -39,7 +39,7 @@ IntercomRails.config do |config|
   config.user.custom_data = {
     user_hash: Proc.new { |current_user| OpenSSL::HMAC.hexdigest("sha256",
                                                                  ENV['INTERCOM_API_SECRET'],
-                                                                 current_user.id) },
+                                                                 current_user.id.to_s) },
     plan: :plan_name,
     has_logged_in_to_forum: :has_logged_in_to_forum?,
     has_active_subscription: :has_active_subscription?,
