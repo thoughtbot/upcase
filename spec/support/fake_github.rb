@@ -22,6 +22,6 @@ class FakeGithub < Sinatra::Base
 end
 
 FakeGithubRunner = Capybara::Discoball::Runner.new(FakeGithub) do |server|
-  url = server.url('')
+  url = "http://#{server.host}:#{server.port}"
   Octokit.api_endpoint = url
 end

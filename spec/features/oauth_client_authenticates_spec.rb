@@ -39,10 +39,11 @@ feature 'An OAuth client authenticates', js: true do
 
   def authorize_via_redirect(user)
     click_on 'Sign Into Learn'
+
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
-    click_on 'Sign in'
-    click_on 'Authorize'
+    click_button 'Sign in'
+    click_button 'Authorize'
   end
 
   def authorize_via_password(user)

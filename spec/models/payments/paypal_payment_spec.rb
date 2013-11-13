@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Payments::PaypalPayment do
   context '#place' do
     include Rails.application.routes.url_helpers
-    let(:host) { ActionMailer::Base.default_url_options[:host] }
 
     it 'starts a paypal transaction' do
       express_request = stub_express_request
@@ -27,8 +26,8 @@ describe Payments::PaypalPayment do
         should have_received(:setup).
           with(
             payment_request,
-            paypal_purchase_url(purchase, host: host),
-            products_url(host: host)
+            paypal_purchase_url(purchase, host: Payments::PaypalPayment.host),
+            products_url(host: Payments::PaypalPayment.host)
           )
       purchase.paypal_url.should == 'http://paypalurl'
       purchase.should have_received(:set_as_unpaid)
@@ -73,16 +72,6 @@ describe Payments::PaypalPayment do
   end
 
   context '#host' do
-    it 'can produce the host after setting it' do
-      Payments::PaypalPayment.host = 'hottiesandcreepers.com:123467'
-      Payments::PaypalPayment.host.should == 'hottiesandcreepers.com:123467'
-    end
-
-    it 'gives default host when host is not set' do
-      Payments::PaypalPayment.host.
-        should eq ActionMailer::Base.default_url_options[:host]
-    end
-
     around do |example|
       original_host = Payments::PaypalPayment.host
       begin
@@ -90,6 +79,17 @@ describe Payments::PaypalPayment do
       ensure
         Payments::PaypalPayment.host = original_host
       end
+    end
+
+    it 'can produce the host after setting it' do
+      Payments::PaypalPayment.host = 'hottiesandcreepers.com:123467'
+      Payments::PaypalPayment.host.should == 'hottiesandcreepers.com:123467'
+    end
+
+    it 'gives default host when host is not set' do
+      Payments::PaypalPayment.host = nil
+      Payments::PaypalPayment.host.
+        should eq ActionMailer::Base.default_url_options[:host]
     end
   end
 

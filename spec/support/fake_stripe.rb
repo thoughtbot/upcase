@@ -412,7 +412,7 @@ class FakeStripe < Sinatra::Base
 end
 
 FakeStripeRunner = Capybara::Discoball::Runner.new(FakeStripe) do |server|
-  url = server.url('')
+  url = "http://#{server.host}:#{server.port}"
   Stripe.api_base = url
 end
 
