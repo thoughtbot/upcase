@@ -105,6 +105,16 @@ body.purchases-new, body.purchases-create, body.subscriber-purchases {
         }
       }
 
+      &#purchase_quantity_input {
+        select {
+          font-size: 2rem;
+          height: auto;
+          letter-spacing: 1px;
+          text-rendering: optimizeLegibility;
+          white-space: normal;
+        }
+      }
+
       &#purchase_cc_existing {
         margin-left: 115px;
         width: auto;
