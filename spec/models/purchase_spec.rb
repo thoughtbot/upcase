@@ -5,6 +5,7 @@ describe Purchase do
     subject { described_class.new(purchaseable: create(:product)) }
     it { should belong_to(:user) }
     it { should validate_presence_of(:email) }
+    it { should validate_presence_of(:quantity) }
     it { should allow_value('chad-help@co.uk').for(:email) }
     it { should allow_value('chad-help@thoughtbot.com').for(:email) }
     it { should allow_value('chad.help@thoughtbot.com').for(:email) }
@@ -289,12 +290,12 @@ describe Purchase, 'with no price' do
 
     it { should be_free }
     it { should be_paid }
-    its(:payment_method) { should == 'free' }
+    it { expect(subject.payment_method).to eq 'free' }
   end
 
   context 'a purchase with an invalid payment method' do
     let(:product) { create(:product, individual_price: 1000) }
-    let(:purchase) { build(:purchase, purchaseable: product, payment_method: 'free') }
+    let(:purchase) { build(:purchase, purchaseable: product, payment_method: 'invalid') }
     subject { purchase }
     it { should_not be_valid }
   end

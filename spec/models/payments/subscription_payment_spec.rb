@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Payments::FreePayment do
+describe Payments::SubscriptionPayment do
   it 'implements #update_user' do
     expect(build_payment).to respond_to(:update_user).with(1).argument
   end
@@ -15,7 +15,7 @@ describe Payments::FreePayment do
     end
 
     it 'sets the purchase as paid' do
-      purchase = build_free_purchase
+      purchase = build_subscription_purchase
       payment = Payments::FreePayment.new(purchase)
 
       payment.place
@@ -25,11 +25,11 @@ describe Payments::FreePayment do
   end
 
   def build_payment
-    purchase = build_free_purchase
+    purchase = build_subscription_purchase
     Payments::FreePayment.new(purchase)
   end
 
-  def build_free_purchase
+  def build_subscription_purchase
     stub('purchase', set_as_paid: true)
   end
 end

@@ -234,6 +234,7 @@ ActiveRecord::Schema.define(version: 20131111023909) do
     t.string   "purchaseable_type"
     t.text     "comments"
     t.string   "stripe_coupon_id"
+    t.integer  "quantity",               default: 1,        null: false
   end
 
   add_index "purchases", ["lookup"], name: "index_purchases_on_lookup", using: :btree

@@ -1,5 +1,5 @@
 <%= content_tag :div, class: individual_plan.sku do %>
-  <h3><%= individual_plan.name %> &mdash; <%= price_per_month individual_plan %></h3>
+  <h3><%= individual_plan.name %> &mdash; <%= individual_price_per_month individual_plan %></h3>
   <section>
     <%== individual_plan.description %>
     <% if individual_plan.includes_mentor? %>

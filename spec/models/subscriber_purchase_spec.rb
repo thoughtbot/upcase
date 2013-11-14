@@ -4,8 +4,7 @@ describe '#create' do
   it 'sets the payment_method on Purchase to subscription' do
     user = create(:user, :with_subscription)
     create_subscriber_purchase(create(:book_product), user)
-    user.purchases.last.payment_method.should eq 'free'
-    user.purchases.last[:payment_method].should eq 'subscription'
+    user.purchases.last.payment_method.should eq 'subscription'
   end
 
   it 'sets the comments on the purchase if provided' do

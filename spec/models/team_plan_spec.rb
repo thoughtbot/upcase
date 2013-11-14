@@ -85,6 +85,14 @@ describe TeamPlan do
     end
   end
 
+  context '#minimum_quantity' do
+    it 'is 5' do
+      team_plan = TeamPlan.new
+
+      expect(team_plan.minimum_quantity).to eq 5
+    end
+  end
+
   def team_plan
     build(:team_plan)
   end

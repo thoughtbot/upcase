@@ -83,6 +83,18 @@ module PurchasesHelper
     end
   end
 
+  def purchase_form_partial(purchaseable)
+    "purchases/#{purchaseable.class.name.underscore}_form"
+  end
+
+  def need_to_collect_github_username?
+    signed_in? && current_user.github_username.blank?
+  end
+
+  def need_to_create_user_account?
+    signed_out?
+  end
+
   private
 
   def change_plan_link(plan)

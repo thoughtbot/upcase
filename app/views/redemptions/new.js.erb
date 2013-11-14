@@ -3,7 +3,7 @@
   $(".coupon .error").hide();
   $(".coupon").hide();
   $("#coupon_id").val(<%= @coupon.id %>);
-  <% if @buying.price == 0 %>
+  <% if @buying.free? %>
     $("fieldset#billing-information").remove();
   <% end %>
 <% else %>

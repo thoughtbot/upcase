@@ -34,6 +34,6 @@ class PurchasePriceCalculator < SimpleDelegator
   end
 
   def full_price
-    purchaseable.send(:"#{variant}_price")
+    purchaseable.send(:"#{variant}_price") * quantity
   end
 end

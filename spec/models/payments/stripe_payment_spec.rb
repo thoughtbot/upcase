@@ -23,7 +23,20 @@ describe Payments::StripePayment do
 
       expect(customer).
         to have_received(:update_subscription).
-          with(plan: purchase.purchaseable.sku)
+          with(plan: purchase.purchaseable.sku, quantity: 1)
+    end
+
+    it "updates the customer's plan with the given quantity" do
+      customer = stub_existing_customer
+      purchase = build_plan_purchase
+      purchase.quantity = 5
+      payment = Payments::StripePayment.new(purchase)
+
+      payment.place
+
+      expect(customer).
+        to have_received(:update_subscription).
+          with(plan: purchase.purchaseable.sku, quantity: purchase.quantity)
     end
 
     it 'updates the subscription with the given coupon' do
@@ -37,7 +50,7 @@ describe Payments::StripePayment do
 
       expect(customer).
         to have_received(:update_subscription).
-          with(plan: purchase.purchaseable_sku, coupon: '25OFF')
+          with(plan: purchase.purchaseable_sku, coupon: '25OFF', quantity: 1)
     end
 
     it "creates a customer if one isn't assigned" do

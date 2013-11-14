@@ -186,9 +186,9 @@ FactoryGirl.define do
   end
 
   factory :team_plan do
+    individual_price 89
+    name 'Workshops for Teams'
     sku 'team_plan'
-    name 'Prime for Teams'
-    individual_price 1299
   end
 
   factory :team do

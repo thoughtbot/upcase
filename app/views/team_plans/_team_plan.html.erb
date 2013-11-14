@@ -1,7 +1,10 @@
 <%= content_tag :div, class: team_plan.sku do %>
-  <h3><%= team_plan.name %> &mdash; <%= price_per_month team_plan %></h3>
+  <h3><%= team_plan.name %> &mdash; <%= team_price_per_month team_plan %></h3>
   <section>
     <%== team_plan.description %>
+    <p>
+      <strong>New team members can be added for just <%= individual_price_per_month team_plan %> each.</strong>
+    </p>
     <%= link_to(
       I18n.t('subscriptions.choose_plan_html', plan_name: team_plan.name).html_safe,
       new_team_plan_purchase_path(team_plan),

@@ -75,13 +75,26 @@ module Payments
     end
 
     def update_subscription
+      p subscription_attributes
+      stripe_customer.update_subscription(subscription_attributes)
+    end
+
+    def subscription_attributes
+      base_subscription_attributes.merge(coupon_attributes)
+    end
+
+    def base_subscription_attributes
+      {
+        plan: @purchase.purchaseable_sku,
+        quantity: @purchase.quantity
+      }
+    end
+
+    def coupon_attributes
       if @purchase.stripe_coupon_id.present?
-        stripe_customer.update_subscription(
-          plan: @purchase.purchaseable_sku,
-          coupon: @purchase.stripe_coupon_id
-        )
+        { coupon: @purchase.stripe_coupon_id }
       else
-        stripe_customer.update_subscription(plan: @purchase.purchaseable_sku)
+        {}
       end
     end
 

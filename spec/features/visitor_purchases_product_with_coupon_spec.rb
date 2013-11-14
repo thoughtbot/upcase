@@ -25,7 +25,7 @@ feature 'Using coupons' do
     expect_to_have_purchased(product)
   end
 
-  scenario 'Visior purchases with a 100%-off coupon', js: true do
+  scenario 'Visitor purchases with a 100%-off coupon', js: true do
     product = create(:video_product)
     create(:coupon, code: 'CODE', discount_type: 'percentage', amount: 100)
 
