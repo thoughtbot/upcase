@@ -60,6 +60,7 @@ feature 'User creates a team subscription' do
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
+    expect(current_path).to eq dashboard_path # need this check for capybara to wait
     expect(FakeStripe.last_coupon_used).to eq '5OFF'
     expect(FakeStripe.customer_plan_quantity).to eq plan.minimum_quantity.to_s
   end

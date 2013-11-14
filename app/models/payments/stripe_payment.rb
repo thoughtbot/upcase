@@ -75,7 +75,6 @@ module Payments
     end
 
     def update_subscription
-      p subscription_attributes
       stripe_customer.update_subscription(subscription_attributes)
     end
 
