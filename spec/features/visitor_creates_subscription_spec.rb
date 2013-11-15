@@ -8,22 +8,6 @@ feature 'Visitor signs up for a subscription' do
     sign_out
   end
 
-  scenario 'visitor subscribes and is assigned a mentor' do
-    visit prime_path
-    click_landing_page_call_to_action
-
-    mentor_name = /This is (.*)/.match(find('.mentor figcaption strong').text)[1]
-    click_link 'Choose'
-
-    expect_to_be_on_subscription_purchase_page
-
-    fill_out_account_creation_form
-    fill_out_subscription_form_with_valid_credit_card
-
-    expect(current_path).to eq dashboard_path
-    expect_to_see_mentor(mentor_name)
-  end
-
   scenario 'visitor attempts to subscribe and creates email/password user' do
     attempt_to_subscribe
 
@@ -108,13 +92,6 @@ feature 'Visitor signs up for a subscription' do
       '#purchase_password_input.error p.inline-errors',
       text: "can't be blank"
     )
-  end
-
-  def expect_to_see_mentor(mentor_name)
-    expect(page).to have_css('section.mentor h3', text: 'Your Mentor')
-    within 'section.mentor h2' do
-      expect(page).to have_content(mentor_name)
-    end
   end
 
   def create_plan
