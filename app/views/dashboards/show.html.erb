@@ -1,30 +1,23 @@
-<% content_for :additional_header_links do %>
-  <% if current_user.has_subscription_with_mentor? %>
-    <li class="mentor">
-      <%= mentor_image(current_user.mentor) %>
-      <%= mentor_contact_link(current_user.mentor) %>
-    </li>
-  <% end %>
-<% end %>
+<%= render 'mentor_info' %>
 
-<section class="workshops vertical-slider revealed">
+<section class='resources vertical-slider revealed'>
+  <%= render 'learn_repo' %>
+  <%= render 'learn_live' %>
+  <%= render 'forum' %>
   <%= render 'trails' %>
+</section>
+
+<section class='workshops vertical-slider revealed'>
   <%= render partial: 'products/workshop', collection: online_workshops %>
   <%= render partial: 'products/workshop', collection: in_person_workshops %>
 </section>
 
-<section class="screencasts vertical-slider revealed">
+<section class='screencasts vertical-slider revealed'>
   <%= render partial: 'products/video', collection: videos %>
 </section>
 
 <%= render 'exercises' %>
 
-<section class="reading vertical-slider revealed">
+<section class='reading vertical-slider revealed'>
   <%= render partial: 'products/book', collection: books %>
 </section>
-
-<footer>
-  <%= link_to forum_url, target: '_blank' do %>
-    <span>Get answers from us, collaborate with other members &mdash; View the <%= t('shared.subscription.name') %> forum &rarr;</span>
-  <% end %>
-</footer>

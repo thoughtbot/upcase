@@ -1,0 +1,8 @@
+<% content_for :additional_header_links do %>
+  <% if current_user.has_subscription_with_mentor? %>
+    <li class='mentor'>
+      <%= mentor_image(current_user.mentor) %>
+      <%= mentor_contact_link(current_user.mentor) %>
+    </li>
+  <% end %>
+<% end %>
