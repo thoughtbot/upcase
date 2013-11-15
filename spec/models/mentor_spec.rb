@@ -8,7 +8,7 @@ describe Mentor do
 
       Mentor.new(relation).featured
 
-      expect(mentors).to have_received(:sample).with(5)
+      expect(mentors).to have_received(:sample).with(Mentor::NUMBER_OF_MENTORS_TO_FEATURE)
     end
   end
 end
