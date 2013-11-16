@@ -22,7 +22,11 @@ module PlanWithCountableSubscriptions
   private
 
   def churn_for_last_30_days
-    canceled_in_last_30_days_count / subscription_count_30_days_ago
+    if subscription_count_30_days_ago.zero?
+      0
+    else
+      canceled_in_last_30_days_count / subscription_count_30_days_ago
+    end
   end
 
   def active_paid_subscriptions

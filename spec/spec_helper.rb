@@ -42,6 +42,7 @@ RSpec.configure do |config|
   config.include StripeHelpers
   config.include SessionHelpers, type: :feature
   config.include PaypalHelpers, type: :feature
+  config.include WidgetHelpers, type: :controller
 
   config.mock_with :mocha
   config.treat_symbols_as_metadata_keys_with_true_values = true

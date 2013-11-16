@@ -1,9 +1,5 @@
 class IndividualPlan < ActiveRecord::Base
   PRIME_BASIC_SKU = 'prime-basic'
-  PRIME_BASIC_YEARLY_SKU = 'PRIMEBASICYEAR'
-  PRIME_WORKSHOPS_SKU = 'prime'
-  PRIME_WORKSHOPS_YEARLY_SKU = 'primeyear'
-  PRIME_WITH_MENTORING_SKU = 'prime-mentor'
 
   has_many :announcements, as: :announceable, dependent: :destroy
   has_many :purchases, as: :purchaseable
@@ -18,26 +14,6 @@ class IndividualPlan < ActiveRecord::Base
   include PlanWithCountableSubscriptions
   include PlanForPublicListing
 
-  def self.prime_basic
-    find_by(sku: PRIME_BASIC_SKU)
-  end
-
-  def self.prime_basic_yearly
-    find_by(sku: PRIME_BASIC_YEARLY_SKU)
-  end
-
-  def self.prime_workshops
-    find_by(sku: PRIME_WORKSHOPS_SKU)
-  end
-
-  def self.prime_workshops_yearly
-    find_by(sku: PRIME_WORKSHOPS_YEARLY_SKU)
-  end
-
-  def self.prime_with_mentoring
-    find_by(sku: PRIME_WITH_MENTORING_SKU)
-  end
-
   def self.active
     where active: true
   end
@@ -47,7 +23,7 @@ class IndividualPlan < ActiveRecord::Base
   end
 
   def self.downgraded
-    prime_basic
+    where(sku: PRIME_BASIC_SKU).first
   end
 
   def subscription_count

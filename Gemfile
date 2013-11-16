@@ -9,7 +9,6 @@ gem 'airbrake', '3.1.14'
 gem 'aws-sdk', '= 1.6.2' # Bug https://github.com/thoughtbot/paperclip/issues/751
 gem 'bluecloth'
 gem 'bourbon', '3.1.6'
-gem 'chameleon', github: 'thoughtbot/chameleon'
 gem 'clearance', '1.0.1'
 gem 'csv_rails', '0.6.1'
 gem 'curb', '0.8.1'
