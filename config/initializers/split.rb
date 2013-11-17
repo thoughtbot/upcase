@@ -1,4 +1,5 @@
 Split.configure do |config|
+  config.enabled = !Rails.env.test?
 end
 
 Split::Dashboard.use Rack::Auth::Basic do |username, password|
