@@ -16,6 +16,8 @@ class PurchasesController < ApplicationController
     if @purchase.save
       sign_in_purchasing_user(@purchase)
 
+      AbTests::LandingHeadlineTest.finish(session, request)
+
       redirect_to success_url,
         notice: t('purchase.flashes.success', name: @purchase.purchaseable_name),
         flash: { purchase_paid_price: @purchase.paid_price }
