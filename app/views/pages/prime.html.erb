@@ -12,7 +12,10 @@
       <%= image_tag('learn/learn-ralph.png') %>
     </h1>
   </div>
-  <h1>Become an expert level Rails developer with <%= t('shared.subscription.name') %>. Learn from one of the most prolific and well respected Rails consultancies in the world.<br /><%= link_to t('subscriptions.join_cta'), new_subscription_path %></h1>
+  <h1>
+    <%= AbTests::LandingHeadlineTest.start(session, request, params) %><br />
+    <%= link_to t('subscriptions.join_cta'), new_subscription_path %>
+  </h1>
 </section>
 
 <section class="journey">
