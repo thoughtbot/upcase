@@ -23,6 +23,8 @@
   <% end %>
 </div>
 
+<%= render partial: 'shared/stripe' %>
+
 <% content_for :javascript do -%>
   <script type="text/javascript" charset="utf-8">
     Stripe.setPublishableKey('<%= STRIPE_PUBLIC_KEY %>');
