@@ -16,7 +16,11 @@ module PlanWithCountableSubscriptions
   end
 
   def current_ltv
-    individual_price * (1 / churn_for_last_30_days)
+    if churn_for_last_30_days.zero?
+      0
+    else
+      individual_price * (1 / churn_for_last_30_days)
+    end
   end
 
   private

@@ -83,6 +83,23 @@ shared_examples 'a Plan with countable subscriptions' do
   end
 
   describe '#current_ltv' do
+    context 'with no subscribers' do
+      it 'returns the plan price' do
+        plan = create_plan
+
+        expect(plan.current_ltv).to be_zero
+      end
+    end
+
+    context 'with paid subscriptions, and no recent unsubscribers' do
+      it 'returns the plan price' do
+        plan = create_plan
+        create(:subscription, plan: plan, paid: true, created_at: 31.days.ago)
+
+        expect(plan.current_ltv).to be_zero
+      end
+    end
+
     context 'the plan has a single active, paid subscription that canceled yesterday' do
       it 'returns the plan price' do
         plan = create_plan
