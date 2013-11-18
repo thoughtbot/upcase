@@ -113,7 +113,7 @@ hr {
   height: 2px;
 }
 
-@include font-face(entypo, 'entypo/entypo', $asset-pipeline: true);
+@include font-face(entypo, '/assets/entypo/entypo');
 .icon {
   font-family: "entypo";
   font-size: 25px;
