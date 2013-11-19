@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :purchases
   has_many :completions
   has_many :notes, -> { order 'created_at DESC' }
-  has_one :subscription
+  has_one :subscription, dependent: :destroy
   belongs_to :mentor, class_name: 'User'
   has_many :mentees, class_name: 'User', foreign_key: 'mentor_id'
 

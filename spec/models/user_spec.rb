@@ -8,6 +8,7 @@ describe User do
     it { should have_many(:notes).order('created_at DESC') }
     it { should belong_to(:mentor).class_name('User') }
     it { should have_many(:mentees).class_name('User') }
+    it { should have_one(:subscription).dependent(:destroy) }
   end
 
   context "validations" do

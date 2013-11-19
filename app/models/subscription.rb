@@ -13,6 +13,7 @@ class Subscription < ActiveRecord::Base
 
   validates :plan_id, presence: true
   validates :plan_type, presence: true
+  validates :user_id, presence: true
 
   after_create :add_user_to_mailing_list
   after_create :add_user_to_github_team
