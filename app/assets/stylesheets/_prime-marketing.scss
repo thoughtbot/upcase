@@ -392,24 +392,6 @@ body.prime-marketing svg._jsPlumb_connector path, svg._jsPlumb_endpoint path {
           z-index: 5;
         }
 
-        // animate the fly-in when waypoints adds the visible class
-        // only animate on desktop devices due to iOS animation crashes
-        &.visible {
-          figure {
-            opacity: 1;
-
-            @include prime-marketing-fullsize {
-              @for $i from 0 through 2 {
-                &:nth-of-type(#{$i + 1}) {
-                  @include animation(two-stacked-fly-in .9s $ease-out-circ);
-                  @include animation-delay(#{($i + 1) * .2}s);
-                  @include animation-fill-mode(backwards);
-                }
-              }
-            }
-          }
-        }
-
         .figuregroup {
           height: 380px;
           width: 270px;
@@ -476,7 +458,6 @@ body.prime-marketing svg._jsPlumb_connector path, svg._jsPlumb_endpoint path {
       .figuregroup > figure {
         background: #fff;
         border: 1px solid $warmgray;
-        opacity: 0;
         position: absolute;
         @include transform(translate(0, 0) rotate(0deg));
         @include transition(.25s ease);

@@ -38,16 +38,6 @@ if ($('.journey').length) {
     });
   };
 
-  $(function() {
-    $('.pitch > .two-stacked').waypoint(function(direction) {
-      $(this).children('div').addClass('visible');
-    }, { offset: '93%' });
-
-    $('.buffet').waypoint(function(direction) {
-      $(this).addClass('visible');
-    }, { offset: '93%' });
-  });
-
   $(window).load(function() {
     setPlumbSettings();
     $('.curtain').addClass('animate');
