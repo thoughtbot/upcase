@@ -37,7 +37,7 @@ Workshops::Application.routes.draw do
 
   resource :session, controller: 'sessions'
 
-  resources :sections, only: [] do
+  resources :sections, only: [:show] do
     resources :purchases, only: [:new, :create]
     resources :redemptions, only: [:new]
   end
