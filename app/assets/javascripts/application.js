@@ -5,7 +5,6 @@
 //= require prettify/prettify
 //= require prettyprint
 //= require jquery.jsPlumb-1.4.0-all-min
-//= require ticker
 //= require masonry.min.js
 //= require prime
 //= require slider
