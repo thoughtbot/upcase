@@ -72,3 +72,5 @@
     <%= form.action :submit, label: "Submit Payment &mdash; #{submit_amount(@purchase)}".html_safe %>
   <% end %>
 <% end %>
+
+<%= render partial: 'shared/stripe' %>
