@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   delegate :email, to: :mentor, prefix: true
+  delegate :name, to: :mentor, prefix: true, allow_nil: true
 
   def self.mentors
     where(available_to_mentor: true)
@@ -67,10 +68,6 @@ class User < ActiveRecord::Base
     if stripe_customer
       stripe_customer['active_card']
     end
-  end
-
-  def mentor_name
-    mentor.try(:name)
   end
 
   def assign_mentor(user)
