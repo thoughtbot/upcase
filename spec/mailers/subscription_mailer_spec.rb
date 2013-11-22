@@ -13,11 +13,7 @@ describe SubscriptionMailer do
       user = build_stubbed(:user, :with_mentor)
       email = SubscriptionMailer.welcome_to_prime_from_mentor(user)
 
-      expect(email.subject).to eq "Welcome to Prime! I'm your new mentor"
-      expect(email.from).to include(user.mentor.email)
       expect(email.reply_to).to include(user.mentor.email)
-      expect(email.body).to include(user.mentor.first_name)
-      expect(email.body).to include(url_encode(user.mentor.email))
     end
 
     it 'is BCCed to the mentor' do
