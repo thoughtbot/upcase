@@ -4,14 +4,14 @@ First off, thanks for subscribing to <%= t('shared.subscription.name') %>!
 We're glad to have you.
 
 Secondly, I wanted to introduce myself. My name is <%= @mentor.name %> and I'll
-be your mentor. I look forward to working with you!
+be your mentor. I'm excited to work with you!
 
 Before our first call, please do the following:
 
 1. Send me some background on yourself and your goals for working together. Who
 are you? What are you doing now? What do you want to do?
 
-2. Add me to any repositories you'd like to work on together or code you think
+2. Add me to any repositories you'd like to work on together, or code you think
 represents where you're currently at as a developer. I'll take a look to get a
 better sense of your current experience level, and provide feedback. My github
 username is <%= @mentor.github_username %>.
@@ -24,8 +24,8 @@ https://www.google.com/calendar/embed?src=<%=u @mentor.email %>&mode=week.
 I'm generally available <%= @mentor.availability %>. Please include your
 Skype handle in your scheduling request.
 
-Finally, check out your timeline, where you can track your progress and we can
-leave notes for each other: <%= timeline_path %>
+4. Prepare some questions for our call. How can I help you?
 
-Thanks again,
--<%= @mentor.first_name %>
+Talk soon!
+
+- <%= @mentor.first_name %>

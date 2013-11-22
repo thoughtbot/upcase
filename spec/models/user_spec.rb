@@ -203,17 +203,11 @@ describe User do
   end
 
   describe '#mentor_name' do
-    it 'returns mentor name if mentor exists' do
+    it 'returns the mentor name' do
       mentee = build_stubbed(:user, :with_mentor)
       mentor = mentee.mentor
 
       expect(mentee.mentor_name).to eq mentor.name
-    end
-
-    it "returns nil if mentor doesn't exist" do
-      user_without_a_mentor = build(:user)
-
-      expect(user_without_a_mentor.mentor_name).to eq nil
     end
   end
 
@@ -288,6 +282,20 @@ describe User do
       user = User.new
 
       expect(user.availability).to eq '11am to 5pm on Fridays'
+    end
+  end
+
+  describe '#mentor_email' do
+    it "delegates to the user's mentor" do
+      user = create(:user, :with_mentor)
+      expect(user.mentor_email).to eq user.mentor.email
+    end
+  end
+
+  describe '#mentor_first_name' do
+    it "delegates to the user's mentor" do
+      user = create(:user, :with_mentor)
+      expect(user.mentor_first_name).to eq user.mentor.first_name
     end
   end
 end
