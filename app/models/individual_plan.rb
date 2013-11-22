@@ -30,10 +30,6 @@ class IndividualPlan < ActiveRecord::Base
     subscriptions.active.paid.count
   end
 
-  def projected_monthly_revenue
-    subscription_count * individual_price
-  end
-
   def purchase_for(user)
     purchases.paid.where(user_id: user).first
   end

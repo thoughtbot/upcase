@@ -137,6 +137,23 @@ shared_examples 'a Plan with countable subscriptions' do
     end
   end
 
+  describe '#projected_monthly_revenue' do
+    it 'returns 0 when there are no subscribers' do
+      plan = create_plan
+
+      expect(plan.projected_monthly_revenue).to eq 0
+    end
+
+    it 'returns the sum of the next payment amounts' do
+      plan = create_plan
+      create(:subscription, next_payment_amount: 10, plan: plan)
+      create(:subscription, next_payment_amount: 20, plan: plan)
+
+      expected_revenue = 30
+      expect(plan.projected_monthly_revenue).to eq expected_revenue
+    end
+  end
+
   def create_plan
     create(factory_name)
   end

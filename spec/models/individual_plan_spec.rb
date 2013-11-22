@@ -159,23 +159,6 @@ describe IndividualPlan do
     end
   end
 
-  describe '#projected_monthly_revenue' do
-    it 'returns 0 when there are no subscribers' do
-      plan = create(:individual_plan)
-
-      expect(plan.projected_monthly_revenue).to eq 0
-    end
-
-    it 'returns the subscriber count times the individual price for a Plan' do
-      plan = create(:individual_plan)
-      create(:subscription, plan: plan)
-      create(:subscription, plan: plan)
-
-      expected_revenue = plan.individual_price * 2
-      expect(plan.projected_monthly_revenue).to eq expected_revenue
-    end
-  end
-
   def create_inactive_subscription_for(plan)
     create(:inactive_subscription, plan: plan)
   end
