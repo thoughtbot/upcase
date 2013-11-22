@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   delegate :email, to: :mentor, prefix: true
-  delegate :name, to: :mentor, prefix: true, allow_nil: true
+  delegate :first_name, to: :mentor, prefix: true
+  delegate :name, to: :mentor, prefix: true
 
   def self.mentors
     where(available_to_mentor: true)
