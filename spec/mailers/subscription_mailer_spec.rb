@@ -3,62 +3,72 @@ require 'spec_helper'
 describe SubscriptionMailer do
   describe '.welcome_to_prime_from_mentor' do
     it 'is sent to the user' do
-      user = build_stubbed(:user, :with_mentor)
-      email = SubscriptionMailer.welcome_to_prime_from_mentor(user)
+      user = user_with_mentor
+      email = welcome_email_for(user)
+
       expect(email.to).to include(user.email)
       expect(email).to have_body_text(/Hi #{user.first_name}/)
     end
 
     it 'comes from the mentor' do
-      user = build_stubbed(:user, :with_mentor)
-      email = SubscriptionMailer.welcome_to_prime_from_mentor(user)
+      user = user_with_mentor
+      email = welcome_email_for(user)
 
-      expect(email.reply_to).to include(user.mentor.email)
+      expect(email.reply_to).to include(user.mentor_email)
     end
 
-    it 'is BCCed to the mentor' do
-      user = build_stubbed(:user, :with_mentor)
-      email = SubscriptionMailer.welcome_to_prime_from_mentor(user)
+    it 'BCCs the mentor' do
+      user = user_with_mentor
+      email = welcome_email_for(user)
 
-      expect(email.bcc).to include user.mentor.email
+      expect(email.bcc).to include user.mentor_email
     end
 
     it 'mentions mentoring and scheduling a call' do
-      user = build_stubbed(:user, :with_mentor)
-      email = SubscriptionMailer.welcome_to_prime_from_mentor(user)
+      user = user_with_mentor
+      email = welcome_email_for(user)
 
       expect(email.body).to include('mentor')
       expect(email.body).to include('calendar')
     end
 
     it "contains the mentor's availability" do
-      user = build_stubbed(:user, :with_mentor)
+      user = user_with_mentor
       user.mentor.availability = 'Never available'
-      email = SubscriptionMailer.welcome_to_prime_from_mentor(user)
+      email = welcome_email_for(user)
 
       expect(email.body).to include('Never available')
     end
 
     it "contains the mentor's github username" do
-      user = build_stubbed(:user, :with_mentor)
+      user = user_with_mentor
       user.mentor.github_username = 'gituser'
-      email = SubscriptionMailer.welcome_to_prime_from_mentor(user)
+      email = welcome_email_for(user)
 
       expect(email.body).to include('gituser')
+    end
+
+    def user_with_mentor
+      build_stubbed(:user, :with_mentor)
+    end
+
+    def welcome_email_for(user)
+      SubscriptionMailer.welcome_to_prime_from_mentor(user)
     end
   end
 
   describe '.welcome_to_prime' do
     it 'is sent to the user' do
       user = create(:subscription).user
-      email = SubscriptionMailer.welcome_to_prime(user)
+      email = welcome_to_prime_email_for(user)
+
       expect(email.to).to include(user.email)
       expect(email).to have_body_text(/Hi #{user.first_name}/)
     end
 
     it 'comes from Chad' do
       user = create(:subscription, plan: create(:downgraded_plan)).user
-      email = SubscriptionMailer.welcome_to_prime(user)
+      email = welcome_to_prime_email_for(user)
 
       expect(email.from).to include('chad@thoughtbot.com')
       expect(email.reply_to).to include('learn@thoughtbot.com')
@@ -66,7 +76,7 @@ describe SubscriptionMailer do
 
     it 'does not mention mentoring, scheduling a call' do
       user = create(:subscription).user
-      email = SubscriptionMailer.welcome_to_prime(user)
+      email = welcome_to_prime_email_for(user)
 
       expect(email.subject).to eq 'Welcome to Prime!'
       expect(email.body).not_to include('mentor')
@@ -76,9 +86,13 @@ describe SubscriptionMailer do
 
     it 'does not mention workshops if not included in subscription' do
       user = create(:subscription, plan: create(:downgraded_plan)).user
-      email = SubscriptionMailer.welcome_to_prime(user)
+      email = welcome_to_prime_email_for(user)
 
       expect(email.body).not_to include('workshops')
+    end
+
+    def welcome_to_prime_email_for(user)
+      SubscriptionMailer.welcome_to_prime(user)
     end
   end
 
@@ -86,8 +100,8 @@ describe SubscriptionMailer do
     it 'sends a survey to the user who just unsubscribed' do
       user = create(:user)
       email = SubscriptionMailer.cancellation_survey(user)
+
       expect(email.to).to include(user.email)
-      expect(email).to have_body_text(/Hi #{user.first_name}/)
       expect(email).to have_body_text(/just canceled/)
     end
   end
