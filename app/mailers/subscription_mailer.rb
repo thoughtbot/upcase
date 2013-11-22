@@ -15,6 +15,7 @@ class SubscriptionMailer < BaseMailer
 
     mail(
       to: @user.email,
+      bcc: @mentor.email,
       subject: "Welcome to Prime! I'm your new mentor",
       from: mentor_email(@mentor),
       reply_to: mentor_email(@mentor)
