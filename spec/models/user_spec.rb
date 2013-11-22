@@ -202,17 +202,21 @@ describe User do
   end
 
   describe '#mentor_name' do
-    it 'returns mentor name if mentor exists' do
-      mentee = build_stubbed(:user, :with_mentor)
-      mentor = mentee.mentor
+    context 'when the user has a mentor' do
+      it 'returns the mentor name' do
+        mentee = build_stubbed(:user, :with_mentor)
+        mentor = mentee.mentor
 
-      expect(mentee.mentor_name).to eq mentor.name
+        expect(mentee.mentor_name).to eq mentor.name
+      end
     end
 
-    it "returns nil if mentor doesn't exist" do
-      user_without_a_mentor = build(:user)
+    context 'when the user does not have a mentor' do
+      it "returns nil if mentor doesn't exist" do
+        user_without_a_mentor = build(:user)
 
-      expect(user_without_a_mentor.mentor_name).to eq nil
+        expect(user_without_a_mentor.mentor_name).to eq nil
+      end
     end
   end
 
