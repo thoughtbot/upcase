@@ -289,4 +289,11 @@ describe User do
       expect(user.availability).to eq '11am to 5pm on Fridays'
     end
   end
+
+  describe '#mentor_email' do
+    it "delegates to the user's mentor" do
+      user = create(:user, :with_mentor)
+      expect(user.mentor_email).to eq user.mentor.email
+    end
+  end
 end
