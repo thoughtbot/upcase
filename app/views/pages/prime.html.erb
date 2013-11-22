@@ -26,7 +26,7 @@
       <p>thoughtbot mentors will hold calls with you once a month to discuss whatever you like: code review, landing your first Rails job, salary negotiation, etc.</p>
     </article>
     <figure class="supporting-visual mentors">
-      <% Mentor.new.featured.each do |mentor| %>
+      <% Mentor.featured.each do |mentor| %>
         <div>
           <%= mentor_image(mentor) %>
           <p><strong>This is <%= mentor.first_name %></strong>. <%= mentor.bio %></p>

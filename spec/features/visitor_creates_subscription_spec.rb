@@ -57,9 +57,9 @@ feature 'Visitor signs up for a subscription' do
   end
 
   scenario 'visitor attempts to subscribe, signs in with github, but already has plan' do
-    user = create(:user, :with_subscription)
-    attempt_to_subscribe
+    create(:user, :with_subscription, :with_github_auth)
 
+    attempt_to_subscribe
     click_link 'Already have an account? Sign in'
     click_on 'Sign in with GitHub'
 

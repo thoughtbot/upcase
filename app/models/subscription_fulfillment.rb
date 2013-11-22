@@ -15,6 +15,6 @@ class SubscriptionFulfillment
   private
 
   def mentor
-    User.find_or_sample_mentor(@purchase.mentor_id)
+    Mentor.find_or_sample(@purchase.mentor_id)
   end
 end

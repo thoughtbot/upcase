@@ -16,6 +16,10 @@ en:
         menu: Timeline
         title: Timeline
         breadcrumb: Timeline
+      mentees:
+        menu: Mentees
+        title: Mentees
+        breadcrumb: Mentees
     misc:
       filter_date_format: '%D'
 

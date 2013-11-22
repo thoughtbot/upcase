@@ -19,7 +19,7 @@ class SubscriptionsController < ApplicationController
   private
 
   def assign_mentor
-    @mentor = User.find_or_sample_mentor(cookies[:mentor_id])
+    @mentor = Mentor.find_or_sample(cookies[:mentor_id])
 
     if cookies[:mentor_id].blank?
       cookies[:mentor_id] ||= @mentor.id

@@ -28,7 +28,7 @@ describe SubscriptionFulfillment do
 
     it 'assigns a mentor on creation' do
       create_mentors
-      mentor = User.mentors.first
+      mentor = Mentor.first
       user = create(:user, :with_github)
       purchase = build(:plan_purchase, user: user, mentor_id: mentor.id)
 

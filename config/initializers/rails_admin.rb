@@ -26,7 +26,7 @@ RailsAdmin.config do |config|
 
   config.current_user_method { current_user }
 
-  config.main_app_name = ['Workshops', 'Admin']
+  config.main_app_name = ['Learn', 'Admin']
 
   config.yell_for_non_accessible_fields = false
 
@@ -36,6 +36,37 @@ RailsAdmin.config do |config|
     purchase_accounting
     section_students
     timeline
+  end
+
+  config.model Mentor do
+    list do
+      field :name
+      field :active_mentee_count do
+        label 'Mentees'
+      end
+      field :availability
+    end
+
+    show do
+      field :user
+      field :availability
+      field :active_mentees do
+        pretty_value do
+          value.map do |user|
+            bindings[:view].link_to(
+              user.name,
+              bindings[:view].url_for(:model_name => 'user', :id => user.to_param),
+              :class => 'pjax'
+            )
+          end.to_sentence.html_safe
+        end
+      end
+    end
+
+    edit do
+      field :user
+      field :availability
+    end
   end
 
   config.model User do
@@ -58,8 +89,6 @@ RailsAdmin.config do |config|
       field :purchases
       field :subscription
       field :stripe_customer_id
-      field :available_to_mentor
-      field :availability
     end
   end
 

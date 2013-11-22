@@ -304,6 +304,10 @@ FactoryGirl.define do
     end
   end
 
+  factory :mentor do
+    association :user, :with_github, factory: :admin
+  end
+
   factory :user do
     email
     name 'Dan Deacon'
@@ -313,12 +317,15 @@ FactoryGirl.define do
       admin true
     end
 
-    factory :mentor do
-      admin true
-      available_to_mentor true
+    factory :subscriber do
+      with_subscription
     end
 
     trait :with_github do
+      github_username 'thoughtbot'
+    end
+
+    trait :with_github_auth do
       github_username 'thoughtbot'
       auth_provider 'github'
       auth_uid 1
@@ -338,6 +345,26 @@ FactoryGirl.define do
       end
     end
 
+    trait :with_downgraded_subscription do
+      with_github
+      stripe_customer_id 'cus12345'
+
+      after :create do |instance|
+        downgrade = create(:downgraded_plan)
+        create(:subscription, plan: downgrade, user: instance)
+      end
+    end
+
+    trait :with_inactive_subscription do
+      with_mentor
+      with_github
+      stripe_customer_id 'cus12345'
+
+      after :create do |instance|
+        create(:inactive_subscription, user: instance)
+      end
+    end
+
     trait :with_team_subscription do
       with_mentor
       with_github
@@ -353,7 +380,7 @@ FactoryGirl.define do
     end
 
     trait :with_mentor do
-      association :mentor, factory: :user
+      mentor
     end
   end
 

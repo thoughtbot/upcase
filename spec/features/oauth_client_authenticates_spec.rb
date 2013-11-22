@@ -4,14 +4,14 @@ feature 'An OAuth client authenticates', js: true do
   scenario 'via redirect' do
     create_client_app
     visit_client_app
-    user = create(:user, :with_subscription)
+    user = create(:subscriber)
     authorize_via_redirect(user)
     verify_signed_in_user_details_from_page(user)
   end
 
   scenario 'via password' do
     create_client_app
-    user = create(:user, :with_subscription)
+    user = create(:subscriber)
     json = authorize_via_password(user)
     verify_signed_in_user_details json, user
   end

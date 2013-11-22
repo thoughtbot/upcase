@@ -14,7 +14,7 @@ describe UserSerializer do
 
   context 'when the user has an active subscription' do
     it 'includes a key granting forum access' do
-      user = create(:user, :with_subscription)
+      user = create(:subscriber)
 
       user_json = parse_serialized_json(user)
 
@@ -22,7 +22,7 @@ describe UserSerializer do
     end
 
     it 'includes a key indicating a subscription' do
-      user = create(:user, :with_subscription)
+      user = create(:subscriber)
 
       user_json = parse_serialized_json(user)
 

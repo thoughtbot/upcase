@@ -130,14 +130,14 @@ describe PurchaseMailer do
     context 'for user who has a subscription' do
       context 'for a non-subscription product' do
         it 'does not contain the receipt' do
-          user = create(:user, :with_subscription)
+          user = create(:subscriber)
           purchase = create(:book_purchase, user: user)
 
           expect_not_to_contain_receipt(purchase)
         end
 
         it 'does not include support' do
-          user = create(:user, :with_subscription)
+          user = create(:subscriber)
           purchase = create(:book_purchase, user: user)
 
           expect(email_for(purchase)).not_to have_body_text(/support/)
@@ -150,35 +150,35 @@ describe PurchaseMailer do
         end
 
         it 'does contain the receipt' do
-          user = create(:user, :with_subscription)
+          user = create(:subscriber)
           purchase = create(:plan_purchase, user: user)
 
           expect_to_contain_receipt(purchase)
         end
 
         it 'includes support' do
-          user = create(:user, :with_subscription)
+          user = create(:subscriber)
           purchase = create(:plan_purchase, user: user)
 
           expect(email_for(purchase)).to have_body_text(/support/)
         end
 
         it 'has a thank you for subscribing' do
-          user = create(:user, :with_subscription)
+          user = create(:subscriber)
           purchase = create(:plan_purchase, user: user)
 
           expect(email_for(purchase)).to have_body_text(/Thank you for subscribing/)
         end
 
         it 'mentions the mentor email' do
-          user = create(:user, :with_subscription)
+          user = create(:subscriber)
           purchase = create(:plan_purchase, user: user)
 
           expect(email_for(purchase)).to have_body_text(/mentor/)
         end
 
         it 'does not mention the features the user does not have' do
-          user = create(:user, :with_subscription)
+          user = create(:subscriber)
           purchase = create(
             :plan_purchase,
             user: user,
