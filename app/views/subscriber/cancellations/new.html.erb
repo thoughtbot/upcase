@@ -6,8 +6,8 @@
         subscription from your account, we want to make sure you know about the
         option to switch to a lower priced plan: Prime Basic is everything in
         <%= t('shared.subscription.name') %> except for a mentor and workshops.
-        You still get books, screencasts, the forum, and you'll also continue
-        to have access to the workshops you've already taken, for
+        You still get books, screencasts, office hours, the forum, and you'll
+        also continue to have access to the workshops you've already taken, for
         <%= individual_price_per_month(IndividualPlan.downgraded) %> instead of
         <%= individual_price_per_month(current_user.subscription.plan) %>.
       </p>

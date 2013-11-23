@@ -10,15 +10,12 @@
   <% end %>
 
   <%= render 'shared/sidebar_forum', purchaseable: purchaseable %>
-  <%= render 'shared/sidebar_chat', purchaseable: purchaseable %>
 
-  <% if purchaseable.office_hours.present? %>
-    <div class="video-chat">
-      <h3>Video Chat Schedule</h3>
-      <hr>
-      <p>Each Friday from <%= purchaseable.office_hours %> you can join the
-      teacher and other students in this video chat.</p>
-      <%= link_to "Join Video Chat", purchaseable.video_chat_url, class: 'button' %>
-    </div>
-  <% end %>
+  <div class="office-hours">
+    <h3>Office Hours Schedule</h3>
+    <hr>
+    <p>Each Friday at <%= OfficeHours.time %> you can join thoughtbot and other
+    students in this chat.</p>
+    <%= link_to "Join Chat", OfficeHours.url, class: 'button' %>
+  </div>
 </aside>

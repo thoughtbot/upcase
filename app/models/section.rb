@@ -8,10 +8,9 @@ class Section < ActiveRecord::Base
   has_many :announcements, as: :announceable, dependent: :destroy
   has_many :downloads, as: :purchaseable
 
-  delegate :name, :description, :terms, :videos, :resources, :video_chat_url,
-    :office_hours, :in_person?, :online?, :github_team,
-    :fulfilled_with_github?, :length_in_days, :sku, :fulfillment_method,
-    :subscription?, to: :workshop, allow_nil: true
+  delegate :name, :description, :terms, :videos, :resources, :in_person?,
+    :online?, :github_team, :fulfilled_with_github?, :length_in_days, :sku,
+    :fulfillment_method, :subscription?, to: :workshop, allow_nil: true
 
   accepts_nested_attributes_for :section_teachers
 
@@ -98,10 +97,8 @@ class Section < ActiveRecord::Base
   end
 
   def send_office_hours_reminders
-    if office_hours.present?
-      current_student_emails.each do |email|
-        WorkshopMailer.office_hours_reminder(self, email).deliver
-      end
+    current_student_emails.each do |email|
+      WorkshopMailer.office_hours_reminder(self, email).deliver
     end
   end
 

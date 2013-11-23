@@ -16,26 +16,15 @@ describe 'Workshops' do
     expect(page).to have_css('.resources li', text: 'Item 1')
   end
 
-  it 'links to the video chat url and lists office hours' do
-    workshop = create(:workshop, video_chat_url: 'http://example.com', office_hours: '1pm EST')
+  it 'lists office hours' do
+    workshop = create(:workshop)
     section = create(:section, starts_on: 7.days.from_now, ends_on: 1.month.from_now, workshop: workshop)
-    video = create(:video, watchable: workshop)
+    create(:video, watchable: workshop)
     purchase = create_subscriber_purchase_from_purchaseable(section)
 
     visit purchase_path(purchase)
 
-    expect(page).to have_css('.video-chat a.button[href="http://example.com"]')
-    expect(page).to have_css('.video-chat', text: '1pm EST')
-    visit purchase_video_path(purchase, video)
-    expect(page).to have_css('.video-chat a.button[href="http://example.com"]')
-  end
-
-  it 'includes support' do
-    purchase = create_subscriber_purchase(:section)
-
-    visit purchase_path(purchase)
-
-    expect(page).to have_content('includes support')
+    expect(page).to have_css('.office-hours', text: OfficeHours.time)
   end
 
   it 'that are online include the date range' do

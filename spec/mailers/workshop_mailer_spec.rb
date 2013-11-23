@@ -86,14 +86,14 @@ describe WorkshopMailer do
 
   describe '.office_hours_reminder' do
     it 'sends an office_hour notification to the email for the section' do
-      workshop = create(:workshop, name: 'Workshop name', office_hours: '1pm')
+      workshop = create(:workshop, name: 'Workshop name')
       section = create(:section, workshop: workshop)
 
       email = WorkshopMailer.office_hours_reminder(section, email)
 
       expect(email.from).to eq(%w(learn@thoughtbot.com))
       expect(email).to have_subject('[Learn] Workshop name: Office Hours')
-      expect(email).to have_body_text(/This is a reminder that the Workshop name office hours are today at 1pm/)
+      expect(email).to have_body_text(/This is a reminder that the Workshop name office hours are today at #{OfficeHours.time}/)
     end
   end
 
