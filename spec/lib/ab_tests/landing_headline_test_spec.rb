@@ -11,7 +11,7 @@ describe AbTests::LandingHeadlineTest do
 
     it "returns variations on demand" do
       subject.stubs(ab_test: 'v1')
-      expect(subject.setup).to match(/Learn to attract/)
+      expect(subject.setup).to match(/Learn to code so you can/)
     end
   end
 
