@@ -52,4 +52,8 @@ module ApplicationHelper
   def forum_url(suffix=nil)
     "http://forum.thoughtbot.com/#{suffix}"
   end
+
+  def blog_articles_url(topic)
+    "http://robots.thoughtbot.com/tags/#{topic.slug}"
+  end
 end

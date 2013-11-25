@@ -24,9 +24,7 @@
 <% end %>
 
 <div class="related-reading">
-  <% if @topic.articles.present? %>
-    <p><%= link_to 'View related Giant Robots articles &rarr;'.html_safe, topic_articles_path(@topic) %></p>
-  <% end %>
+  <p><%= link_to "View related #{@topic.name} articles &rarr;".html_safe, blog_articles_url(@topic) %></p>
 </div>
 
 <%= render @topic.related %>
