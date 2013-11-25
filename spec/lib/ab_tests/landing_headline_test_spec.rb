@@ -14,4 +14,14 @@ describe AbTests::LandingHeadlineTest do
       expect(subject.setup).to match(/Learn to attract/)
     end
   end
+
+  describe '#finish' do
+    subject { AbTests::LandingHeadlineTest.new(stub, stub, stub) }
+
+    it "should delegate to Split#finished" do
+      subject.stubs(:finished)
+      subject.finish
+      expect(subject).to have_received(:finished).with(subject.test_name)
+    end
+  end
 end
