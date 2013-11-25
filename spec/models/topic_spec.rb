@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Topic do
   # Associations
   it { should have_many(:articles).through(:classifications) }
-  it { should have_many(:bytes).through(:classifications) }
   it { should have_many(:classifications) }
   it { should have_many(:workshops).through(:classifications) }
   it { should have_many(:products).through(:classifications) }

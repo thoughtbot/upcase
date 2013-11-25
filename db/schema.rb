@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131111023909) do
+ActiveRecord::Schema.define(version: 20131125194326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,19 +35,6 @@ ActiveRecord::Schema.define(version: 20131111023909) do
     t.string   "external_url", null: false
     t.date     "published_on", null: false
   end
-
-  create_table "bytes", force: true do |t|
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "title",                        null: false
-    t.text     "body_html",                    null: false
-    t.date     "published_on",                 null: false
-    t.text     "body",                         null: false
-    t.boolean  "draft",        default: false, null: false
-  end
-
-  add_index "bytes", ["draft"], name: "index_bytes_on_draft", using: :btree
-  add_index "bytes", ["published_on"], name: "index_bytes_on_published_on", using: :btree
 
   create_table "classifications", force: true do |t|
     t.integer  "topic_id"
@@ -262,6 +249,14 @@ ActiveRecord::Schema.define(version: 20131111023909) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
+
+  create_table "resources", force: true do |t|
+    t.integer "course_id"
+    t.string  "name"
+    t.string  "url"
+  end
+
+  add_index "resources", ["course_id"], name: "index_resources_on_course_id", using: :btree
 
   create_table "section_teachers", force: true do |t|
     t.integer  "section_id"

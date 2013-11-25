@@ -16,9 +16,4 @@ namespace :notifications do
   task prime_welcome: :environment do
     Subscription.deliver_welcome_emails
   end
-
-  desc 'Send notifications for published bytes'
-  task bytes: :environment do
-    Subscription.deliver_byte_notifications
-  end
 end

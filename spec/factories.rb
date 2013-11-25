@@ -45,13 +45,6 @@ FactoryGirl.define do
     external_url
   end
 
-  factory :byte do
-    body 'article body'
-    body_html 'article body'
-    published_on Time.zone.today
-    title
-  end
-
   factory :classification do
     association :classifiable, factory: :article
     topic

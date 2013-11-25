@@ -70,33 +70,6 @@ describe Subscription do
     end
   end
 
-  describe '.deliver_byte_notifications' do
-    it 'initializes the ArticleNotifier with subscriber emails' do
-      inactive_subscription = create(:inactive_subscription)
-      subscription = create(:subscription)
-      notifier = stub(send_notifications: nil)
-      ByteNotifier.stubs(new: notifier)
-
-      Subscription.deliver_byte_notifications
-
-      expect(ByteNotifier).to have_received(:new).
-        with([subscription.user.email])
-      expect(notifier).to have_received(:send_notifications)
-    end
-
-    it 'delivers a byte notification to each subscriber' do
-      subscription = create(:subscription)
-      byte = create(:byte, published_on: Time.zone.today, body: 'test')
-
-      Subscription.deliver_byte_notifications
-
-      result = ActionMailer::Base.deliveries.any? do |email|
-        email.to == [subscription.user.email] && email.subject =~ /Byte/i
-      end
-      expect(result).to eq true
-    end
-  end
-
   describe '#active?' do
     it "returns true if deactivated_on is nil" do
       subscription = Subscription.new(deactivated_on: nil)
