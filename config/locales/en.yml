@@ -124,6 +124,11 @@ en:
     bytes: Prime Bytes
     all_bytes: All Prime Bytes
 
+  headlines:
+    landing:
+      orig: Become an expert level Rails developer with %{name}. Learn from one of the most prolific and well respected Rails consultancies in the world.
+      v1: Learn to code so you can land that job or launch that startup
+
   topics:
     workshop:
       heading:

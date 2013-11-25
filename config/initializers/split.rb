@@ -1,5 +1,5 @@
 Split.configure do |config|
-  config.allow_multiple_experiments = true
+  config.enabled = !Rails.env.test?
 end
 
 Split::Dashboard.use Rack::Auth::Basic do |username, password|
