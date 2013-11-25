@@ -27,13 +27,6 @@
   <% if @topic.articles.present? %>
     <p><%= link_to 'View related Giant Robots articles &rarr;'.html_safe, topic_articles_path(@topic) %></p>
   <% end %>
-  <% if @topic.bytes.present? %>
-    <p>
-      <%= link_to topic_bytes_path(@topic) do %>
-        View related <%= t('shared.bytes') %> &rarr;
-      <% end %>
-    </p>
-  <% end %>
 </div>
 
 <%= render @topic.related %>

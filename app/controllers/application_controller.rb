@@ -68,11 +68,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :videos
 
-  def bytes
-    Byte.ordered.published
-  end
-  helper_method :bytes
-
   def topics
     Topic.top
   end

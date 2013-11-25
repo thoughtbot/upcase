@@ -5,14 +5,9 @@ You were just charged <%= number_to_currency @amount %> for Learn <%= @plan_name
 You can view the invoice for this month at
 <%= subscriber_invoice_url(@stripe_invoice_id) %>
 
-Also!
-
-* Have a technical question about something you're working on in your personal
-  project, a workshop, or any of our books?  Post it to the forum at 
-  http://forum.thoughtbot.com
-
-* Each week we deliver a new Byte to your email. You can access the archive of
-all previous <%= t('shared.bytes') %> at <%= bytes_url %>
+Have a technical question about something you're working on in your personal
+project, a workshop, or any of our books?  Post it to the forum at 
+http://forum.thoughtbot.com
 
 Thanks for subscribing to thoughtbot's Learn <%= @plan_name %>!
 thoughtbot

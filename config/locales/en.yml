@@ -12,10 +12,6 @@ en:
         menu: Students
         title: Students
         breadcrumb: Students
-      bytes:
-        menu: Bytes
-        title: Bytes
-        breadcrumb: Bytes
       timeline:
         menu: Timeline
         title: Timeline
@@ -120,9 +116,6 @@ en:
       icon: ✶
       protected_content: ✶ Sorry, that article is only available to Prime subscribers.
       user_required: ✶ Sign in or sign up to subscribe to Prime.
-    byte: Prime Byte
-    bytes: Prime Bytes
-    all_bytes: All Prime Bytes
 
   topics:
     workshop:

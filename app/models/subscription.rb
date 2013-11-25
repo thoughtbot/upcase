@@ -23,11 +23,6 @@ class Subscription < ActiveRecord::Base
     end
   end
 
-  def self.deliver_byte_notifications
-    notifier = ByteNotifier.new(subscriber_emails)
-    notifier.send_notifications
-  end
-
   def self.paid
     where(paid: true)
   end

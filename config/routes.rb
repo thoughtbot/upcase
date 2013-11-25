@@ -108,9 +108,6 @@ Workshops::Application.routes.draw do
 
   resources :topics, only: :index, path: 'trails'
 
-  resources :bytes, only: [:index, :show]
-  get '/articles/:id' => redirect("/bytes/%{id}")
-
   namespace :reports do
     resource :purchases_charts, only: :show
   end
@@ -149,9 +146,6 @@ Workshops::Application.routes.draw do
 
   mount StripeEvent::Engine, at: 'stripe-webhook'
 
-  resources 'bytes', only: :index
-
   get ':id' => 'topics#show', as: :topic
   get '/:id/articles' => 'articles#index', as: 'topic_articles'
-  get '/:topic_id/bytes' => 'topics/bytes#index', as: 'topic_bytes'
 end
