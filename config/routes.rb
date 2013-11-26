@@ -147,5 +147,5 @@ Workshops::Application.routes.draw do
   mount StripeEvent::Engine, at: 'stripe-webhook'
 
   get ':id' => 'topics#show', as: :topic
-  get '/:id/articles' => 'articles#index', as: 'topic_articles'
+  get '/:id/articles' => redirect('http://robots.thoughtbot.com/tags/%{id}')
 end

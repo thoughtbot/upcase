@@ -23,11 +23,6 @@ en:
     meta_description: 'Workshops, screencasts, videos, and books to help you learn web design and development.'
     app_name: 'thoughtbot Learn'
 
-  articles:
-    index:
-      heading:
-        All %{topic} articles
-
   dashboard:
     show:
       contact_your_mentor: "Contact your mentor, %{mentor_name}"
@@ -114,7 +109,6 @@ en:
       name: Prime
     subscriptions:
       icon: ✶
-      protected_content: ✶ Sorry, that article is only available to Prime subscribers.
       user_required: ✶ Sign in or sign up to subscribe to Prime.
 
   topics:
@@ -158,11 +152,6 @@ en:
         Related products
       topics:
         Related topics
-    show:
-      related_reading:
-        Related Reading
-      view_articles:
-        View all %{name} articles
 
   purchase:
     flashes:

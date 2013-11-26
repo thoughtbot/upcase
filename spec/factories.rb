@@ -19,10 +19,6 @@ FactoryGirl.define do
     "http://robots.thoughtbot.com/#{n}"
   end
 
-  sequence :tumblr_user_name do |n|
-    "user#{n}"
-  end
-
   factory :alternate do
     ignore do
       key 'online_workshop'
@@ -38,15 +34,8 @@ FactoryGirl.define do
     message 'Foo: http://example.com'
   end
 
-  factory :article do
-    body_html 'article body'
-    published_on Time.zone.today
-    title
-    external_url
-  end
-
   factory :classification do
-    association :classifiable, factory: :article
+    association :classifiable, factory: :product
     topic
   end
 

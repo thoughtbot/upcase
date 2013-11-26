@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131125194326) do
+ActiveRecord::Schema.define(version: 20131125202014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,15 +26,6 @@ ActiveRecord::Schema.define(version: 20131125194326) do
   end
 
   add_index "announcements", ["announceable_id", "announceable_type", "ends_at"], name: "index_announcements_on_announceable_and_ends_at", using: :btree
-
-  create_table "articles", force: true do |t|
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "title",        null: false
-    t.text     "body_html",    null: false
-    t.string   "external_url", null: false
-    t.date     "published_on", null: false
-  end
 
   create_table "classifications", force: true do |t|
     t.integer  "topic_id"

@@ -80,7 +80,6 @@ feature 'Topic pages' do
     topic.products << create(:book_product, name: 'Book 1')
     topic.products << create(:video_product, name: 'Video 1')
     topic.products << create(:video_product, :inactive, name: 'Video Inactive')
-    topic.articles << create(:article)
 
     visit topic_path(topic)
 
@@ -90,20 +89,13 @@ feature 'Topic pages' do
     expect_to_not_see_related_item_named 'Video Inactive'
   end
 
-  scenario "view a topic's related products on the topic's articles index" do
+  scenario "A topic links to Giant Robots" do
     topic = create(:topic, name: 'Topic 1')
-    topic.workshops << create(:workshop, name: 'workshop 1')
-    topic.products << create(:book_product, name: 'Book 1')
-    topic.products << create(:video_product, name: 'Video 1')
-    topic.products << create(:video_product, :inactive, name: 'Video Inactive')
-    topic.articles << create(:article)
 
     visit topic_path(topic)
-    click_link "View related Giant Robots articles"
 
-    expect_to_see_related_workshop_named 'workshop 1'
-    expect_to_see_related_book_named 'Book 1'
-    expect_to_see_related_video_named 'Video 1'
+    expect(find_link("View related Topic 1 articles")[:href]).
+      to eq "http://robots.thoughtbot.com/tags/#{topic.slug}"
   end
 
   scenario "view the type for a topic's related products" do

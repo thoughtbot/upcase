@@ -74,36 +74,6 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model Article do
-    list do
-      field :title
-      field :draft
-      field :published_on
-      field :external_url do
-        visible false
-        filterable true
-      end
-      filters [:title, :draft, :published_on, :external_url]
-      sort_by :published_on
-    end
-
-    edit do
-      group :default do
-        field :title
-        field :body
-        field :draft
-        field :published_on
-        field :topics
-      end
-
-      group :extras do
-        active false
-        field :external_url
-        field :body_html
-      end
-    end
-  end
-
   config.model Workshop do
     list do
       field :name

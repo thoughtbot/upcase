@@ -81,18 +81,6 @@ CLI by installing the gem and running the suite:
 * To test that adding/removing GitHub users works, use the GitHub user
   "cpyteltest".
 
-### Tumblr Imports
-
-1. Create `.env` file with `TUMBLR_API_KEY`.
-
-        $ heroku plugins:install git://github.com/ddollar/heroku-config.git
-        $ heroku config:pull --overwrite --interactive -r staging
-
-2. Run a task to fetch all articles or only the latest.
-
-        $ foreman run rake fetch:tumblr:all
-        $ foreman run rake fetch:tumblr:recent
-
 ### Payment Testing
 
 #### Stripe

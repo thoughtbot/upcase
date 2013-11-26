@@ -47,7 +47,6 @@ gem 'typhoeus', '0.3.3'
 gem 'to_js', git: 'git://github.com/cpytel/to_js.git'
 gem 'validates_email_format_of', '1.5.3'
 gem 'gibbon', '0.4.6'
-gem 'tumblr-rb', git: 'https://github.com/thoughtbot/tumblr'
 gem 'sprockets-redirect', github: 'arunagw/sprockets-redirect', branch: 'aa-rails4'
 gem 'unicorn'
 
