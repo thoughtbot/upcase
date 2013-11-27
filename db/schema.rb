@@ -12,7 +12,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20131126205201) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -404,10 +403,8 @@ ActiveRecord::Schema.define(version: 20131126205201) do
     t.text     "terms"
     t.boolean  "online",                    default: false, null: false
     t.text     "resources",                 default: "",    null: false
-    t.string   "video_chat_url"
     t.integer  "github_team"
     t.integer  "length_in_days"
-    t.string   "office_hours",              default: "",    null: false
     t.string   "sku"
   end
 

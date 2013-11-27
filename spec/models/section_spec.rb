@@ -210,7 +210,7 @@ describe Section do
 
   describe '.send_office_hours_reminders' do
     it 'sends an office hour reminder for each current section' do
-      workshop = create(:workshop, office_hours: '1pm')
+      workshop = create(:workshop)
       future = create(:future_section, workshop: workshop)
       current = create(
         :section,
@@ -218,19 +218,10 @@ describe Section do
         starts_on: Time.zone.today,
         ends_on: 1.day.from_now
       )
-      current_no_hours = create(
-        :section,
-        workshop: create(:workshop, office_hours: ''),
-        starts_on: Time.zone.today,
-        ends_on: 1.day.from_now
-      )
       email = stub(deliver: nil)
       WorkshopMailer.stubs(office_hours_reminder: email)
       future_purchase = create_subscriber_purchase_from_purchaseable(future)
       current_purchase = create_subscriber_purchase_from_purchaseable(current)
-      current_no_hours_purchase = create_subscriber_purchase_from_purchaseable(
-        current_no_hours
-      )
 
       Section.send_office_hours_reminders
 
@@ -239,8 +230,6 @@ describe Section do
       expect(email).to have_received(:deliver)
       expect(WorkshopMailer).to have_received(:office_hours_reminder).
         with(future, future_purchase.email).never
-      expect(WorkshopMailer).to have_received(:office_hours_reminder).
-        with(current_no_hours, current_no_hours_purchase.email).never
     end
   end
 
