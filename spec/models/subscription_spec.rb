@@ -9,6 +9,7 @@ describe Subscription do
 
   it { should validate_presence_of(:plan_id) }
   it { should validate_presence_of(:plan_type) }
+  it { should validate_presence_of(:user_id) }
 
   it 'defaults paid to true' do
     Subscription.new.should be_paid
