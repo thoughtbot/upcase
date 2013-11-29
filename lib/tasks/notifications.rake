@@ -1,7 +1,6 @@
 namespace :notifications do
   desc 'Send notifications for current sections'
   task section: :environment do
-    Section.send_video_notifications
     if Date.today.friday?
       Section.send_office_hours_reminders
     end
