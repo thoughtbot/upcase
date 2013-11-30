@@ -10,7 +10,8 @@ class Section < ActiveRecord::Base
 
   delegate :name, :description, :terms, :videos, :resources, :in_person?,
     :online?, :github_team, :fulfilled_with_github?, :length_in_days, :sku,
-    :fulfillment_method, :subscription?, to: :workshop, allow_nil: true
+    :fulfillment_method, :subscription?, :offering_type,
+    to: :workshop, allow_nil: true
 
   accepts_nested_attributes_for :section_teachers
 
@@ -68,10 +69,6 @@ class Section < ActiveRecord::Base
 
   def announcement
     @announcement ||= announcements.current
-  end
-
-  def product_type
-    'workshop'
   end
 
   def full?
@@ -136,6 +133,10 @@ class Section < ActiveRecord::Base
 
   def starts_immediately?
     self[:ends_on].blank?
+  end
+
+  def collection?
+    true
   end
 
   private

@@ -21,7 +21,7 @@ describe PurchasePrepopulater, '#prepopulate_with_user_info' do
 
   context 'for a product fulfilled through github' do
     it 'populates default info including first github_username' do
-      product = create(:github_book_product)
+      product = create(:book, :github)
       purchase = product.purchases.build
       purchaser = create_purchaser
       PurchasePrepopulater.new(purchase, purchaser).prepopulate_with_user_info

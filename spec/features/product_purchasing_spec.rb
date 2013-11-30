@@ -6,7 +6,7 @@ feature 'Purchasing a product' do
 
   scenario 'Visitor signs up while purchasing a product' do
     AssociatePreviousPurchases.stubs(:create_associations_for)
-    product = create(:video_product)
+    product = create(:screencast)
     visit product_path(product)
     click_purchase_link_for(product)
     click_link 'Already have an account? Sign in'
@@ -26,7 +26,7 @@ feature 'Purchasing a product' do
 
   scenario 'Visitor signs in with GitHub while purchasing a product' do
     create(:user, :with_github)
-    product = create(:video_product)
+    product = create(:screencast)
 
     visit product_path(product)
     click_purchase_link_for(product)
@@ -41,7 +41,7 @@ feature 'Purchasing a product' do
 
   scenario 'Visitor signs in with email and password while purchasing a product' do
     user = create(:user, password: 'password')
-    product = create(:video_product)
+    product = create(:screencast)
 
     visit product_path(product)
     click_purchase_link_for(product)
@@ -57,7 +57,7 @@ feature 'Purchasing a product' do
   end
 
   scenario 'Visitor purchases product with paypal', js: true do
-    product = create(:video_product)
+    product = create(:screencast)
     visit product_path(product)
     click_purchase_link_for(product)
     pay_using_paypal
@@ -66,7 +66,7 @@ feature 'Purchasing a product' do
   end
 
   scenario 'Visitor purchases a product with stripe', js: true do
-    product = create(:video_product)
+    product = create(:screencast)
     visit product_path(product)
     click_purchase_link_for(product)
     pay_using_stripe
@@ -75,7 +75,7 @@ feature 'Purchasing a product' do
   end
 
   scenario 'Visitor tries to pay with Stripe but gets a failure', js: true do
-    product = create(:video_product)
+    product = create(:screencast)
     stub_stripe_to_fail
     visit product_path(product)
     click_purchase_link_for(product)
@@ -85,7 +85,7 @@ feature 'Purchasing a product' do
   end
 
   scenario 'User purchases a github book with a reader', js: true do
-    product = create(:github_book_product)
+    product = create(:book, :github)
     user = create(:user)
     visit product_path(product, as: user)
     click_purchase_link_for(product)
@@ -99,7 +99,7 @@ feature 'Purchasing a product' do
   end
 
   scenario 'User purchases a product with an existing credit card', js: true do
-    product = create(:video_product)
+    product = create(:screencast)
     user = create(:user, stripe_customer_id: 'test')
     stub_existing_card_for_user(user)
 
@@ -111,7 +111,7 @@ feature 'Purchasing a product' do
   end
 
   scenario 'User with a github username has it already supplied on purchasing' do
-    product = create(:github_book_product)
+    product = create(:book, :github)
     user = create(:user, github_username: 'thoughtbot')
 
     visit product_path(product, as: user)
@@ -121,7 +121,7 @@ feature 'Purchasing a product' do
   end
 
   scenario 'User attempts to purchase a github book without specifying a reader', js: true do
-    product = create(:github_book_product)
+    product = create(:book, :github)
     user = create(:user)
     visit product_path(product, as: user)
     click_purchase_link_for(product)

@@ -176,7 +176,7 @@ describe Purchase do
 
   context 'when fulfilled_with_github' do
     it 'fulfills with github' do
-      product = create(:github_book_product)
+      product = create(:book, :github)
       purchase = build(:purchase, purchaseable: product)
       fulfillment = stub(:fulfill)
       GithubFulfillment.stubs(:new).returns(fulfillment)
@@ -188,7 +188,7 @@ describe Purchase do
   end
 
   it 'fulfills with mailchimp' do
-    product = create(:book_product)
+    product = create(:book)
     purchase = build(:purchase, purchaseable: product)
     fulfillment = stub(:fulfill)
     MailchimpFulfillment.stubs(:new).returns(fulfillment)

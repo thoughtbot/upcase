@@ -53,27 +53,29 @@ feature 'Subscriber accesses content' do
 
 
   scenario 'gets access to a book product' do
-    book_product = create(:github_book_product)
+    book = create(:book, :github)
     sign_in_as_user_with_subscription
     stub_github_fulfillment_job
 
-    click_ebook_detail_link(book_product)
-    click_link I18n.t('products.show.purchase_for_subscribed_user', product_type: book_product.product_type)
+    click_ebook_detail_link(book)
+    click_link I18n.t('products.show.purchase_for_subscribed_user', offering_type: book.offering_type)
     click_button 'Get Access'
 
     expect(GithubFulfillmentJob).to have_received(:enqueue).
       with(
-        book_product.github_team,
+        book.github_team,
         [@current_user.github_username],
         Purchase.last.id
       )
   end
 
   scenario 'gets access to a screencast' do
-    video = create(:video_product)
+    screencast = create(:screencast)
+    create(:video, watchable: screencast)
     sign_in_as_user_with_subscription
-    click_screencast_detail_link(video)
-    click_link 'Get this video'
+    click_screencast_detail_link(screencast)
+
+    click_link 'Get this screencast'
     click_button 'Get Access'
 
     expect(page).to have_content('Watch or download video')

@@ -5,7 +5,7 @@ describe 'A Purchased book' do
     include ProductsHelper
 
     it 'does not include support' do
-      book = create(:book_product, name: 'Book title')
+      book = create(:book, name: 'Book title')
       purchase = create(:paid_purchase, purchaseable: book)
 
       visit purchase_path(purchase)
@@ -14,7 +14,7 @@ describe 'A Purchased book' do
     end
 
     it 'includes support with a subscription' do
-      book = create(:book_product, name: 'Book title')
+      book = create(:book, name: 'Book title')
       purchase = create(:paid_purchase, purchaseable: book)
 
       sign_in_as_user_with_subscription
@@ -24,7 +24,7 @@ describe 'A Purchased book' do
     end
 
     it 'includes a send to readmill button' do
-      book = create(:github_book_product, name: 'Book title')
+      book = create(:book, :github, name: 'Book title')
       purchase = create(:paid_purchase, purchaseable: book)
 
       visit purchase_path(purchase)

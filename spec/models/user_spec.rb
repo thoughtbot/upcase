@@ -146,8 +146,8 @@ describe User do
     end
 
     def create_subscription_purchase(user)
-      video_product = create(:video_product)
-      subscription_purchase = SubscriberPurchase.new(video_product, user)
+      screencast = create(:screencast)
+      subscription_purchase = SubscriberPurchase.new(screencast, user)
       subscription_purchase.create
     end
 

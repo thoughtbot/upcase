@@ -3,16 +3,16 @@ require 'spec_helper'
 include StubCurrentUserHelper
 
 describe PurchasesController do
-  describe '#new when purchasing a product as a user with an active subscription' do
+  describe '#new when purchasing a screencast as a user with an active subscription' do
     it 'renders a subscriber-specific layout' do
       user = create(:user, :with_subscription)
-      product = create(:video_product)
+      product = create(:screencast)
       stub_current_user_with(user)
 
       get :new, product_id: product
 
       expect(response).to(
-        redirect_to(new_subscriber_product_purchase_path(product))
+        redirect_to(new_subscriber_screencast_purchase_path(product))
       )
     end
   end
@@ -44,7 +44,7 @@ describe PurchasesController do
   describe '#new with no variant specified' do
     it 'defaults purchase to individual' do
       user = create(:user)
-      product = create(:video_product)
+      product = create(:screencast)
       stub_current_user_with(user)
 
       get :new, product_id: product
@@ -56,7 +56,7 @@ describe PurchasesController do
   describe '#new with company variant specified' do
     it 'defaults purchase to company' do
       user = create(:user)
-      product = create(:video_product)
+      product = create(:screencast)
       stub_current_user_with(user)
 
       get :new, product_id: product, variant: 'company'
@@ -121,7 +121,7 @@ describe PurchasesController do
   end
 
   describe "product is not paid" do
-    let(:product) { create(:product, individual_price: 15) }
+    let(:product) { create(:book, individual_price: 15) }
     let(:purchase) { create(:purchase, purchaseable: product) }
 
     it "redirects from show to the product page" do
@@ -131,7 +131,7 @@ describe PurchasesController do
 
       get :show, id: purchase.to_param
 
-      response.should redirect_to(product_path(product))
+      response.should redirect_to(book_path(product))
     end
   end
 

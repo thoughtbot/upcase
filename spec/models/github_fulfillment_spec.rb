@@ -3,7 +3,7 @@ require 'spec_helper'
 describe GithubFulfillment do
   describe 'fulfill' do
     it "doesn't add users to the github team when there are blank usernames" do
-      product = create(:github_book_product)
+      product = create(:book, :github)
       GithubFulfillmentJob.stubs(:enqueue)
       purchase = build(
         :book_purchase,
@@ -17,7 +17,7 @@ describe GithubFulfillment do
     end
 
     it 'adds user to the github team' do
-      product = build(:github_book_product)
+      product = build(:book, :github)
       GithubFulfillmentJob.stubs(:enqueue)
       purchase = build(
         :book_purchase,
@@ -32,7 +32,7 @@ describe GithubFulfillment do
     end
 
     it 'adds multiple users to the github team' do
-      product = build(:github_book_product)
+      product = build(:book, :github)
       GithubFulfillmentJob.stubs(:enqueue)
       purchase = build(
         :book_purchase,
@@ -50,7 +50,7 @@ describe GithubFulfillment do
   describe 'remove' do
     it 'removes user from github team' do
       GithubRemovalJob.stubs(:enqueue)
-      product = build(:github_book_product)
+      product = build(:book, :github)
       purchase = build(
         :book_purchase,
         purchaseable: product, 

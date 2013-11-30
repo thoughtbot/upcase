@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'User can download books directly' do
   scenario 'User sees links for various book formats' do
     user = create(:user)
-    product = create(:github_book_product, name: 'test github')
+    product = create(:book, :github, name: 'test github')
     create(:purchase, user: user, purchaseable: product)
 
     visit product_path(product, as: user)

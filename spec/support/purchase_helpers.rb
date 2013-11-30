@@ -3,7 +3,7 @@ VALID_SANDBOX_CREDIT_CARD_NUMBER = '4111111111111111'
 module PurchaseHelpers
   def click_purchase_link_for(product, variant = 'individual')
     click_link I18n.t(
-      "products.show.price.#{product.product_type}.#{variant}_html",
+      "products.show.price.#{product.offering_type}.#{variant}_html",
       default: [:"products.show.price.#{variant}_html"],
       price: ''
     )

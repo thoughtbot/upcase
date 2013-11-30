@@ -3,8 +3,8 @@ require 'spec_helper'
 feature 'The products index' do
   scenario 'a visitor views the product index' do
     workshop = create(:workshop)
-    screencast = create(:video_product)
-    book = create(:book_product)
+    screencast = create(:screencast)
+    book = create(:book)
 
     visit products_path
 

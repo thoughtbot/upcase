@@ -1,4 +1,14 @@
-body.products-show, body.workshops-show {
+body.products-show,
+body.workshops-show,
+body.books-show,
+body.screencasts-show {
+  .discount-title {
+    color: $darkwarmgray;
+    font-size: 18px;
+    margin: 12px 0 24px;
+    text-align: center;
+  }
+
   .workshop-alert {
     background: $lightwarmgray;
     margin-bottom: 2em;
@@ -136,6 +146,8 @@ body.products-show, body.workshops-show {
 
 body.products-show aside,
 body.workshops-show aside,
+body.books-show aside,
+body.screencasts-show aside,
 body.purchases-new aside {
   .original-price {
     color: lighten($darkwarmgray, 22%);

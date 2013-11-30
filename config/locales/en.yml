@@ -53,9 +53,9 @@ en:
   products:
     show:
       free_to_subscribers: "You're a subscriber, so you receive this product for free!"
-      subscribe_cta: "This %{product_type} is free with a subscription to %{subscription_name}"
-      purchase_for_subscribed_user: Get this %{product_type}
-      purchase_collection_for_subscribed_user: Get this %{product_type} collection
+      subscribe_cta: "This %{offering_type} is free with a subscription to %{subscription_name}"
+      purchase_for_subscribed_user: Get this %{offering_type}
+      purchase_collection_for_subscribed_user: Get this %{offering_type} collection
       price:
         individual_html: "For yourself: %{price}"
         company_html: "For your company: %{price}"

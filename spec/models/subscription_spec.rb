@@ -120,8 +120,8 @@ describe Subscription do
     end
 
     def create_subscription_purchase(user)
-      github_book_product = create(:github_book_product)
-      subscription_purchase = SubscriberPurchase.new(github_book_product, user)
+      product = create(:book, :github)
+      subscription_purchase = SubscriberPurchase.new(product, user)
       subscription_purchase.create
     end
 

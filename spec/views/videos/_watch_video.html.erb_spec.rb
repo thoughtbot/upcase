@@ -16,7 +16,7 @@ describe 'videos/_watch_video.html.erb' do
   end
 
   def render_view(video)
-    purchase = build_stubbed(:video_purchase)
+    purchase = build_stubbed(:screencast_purchase)
 
     render 'videos/watch_video', video: video, purchase: purchase
   end

@@ -273,7 +273,7 @@ body.topics-show aside {
     top: 1px;
   }
 
-  &.video .icon::after, &.screencast .icon::after {
+  &.screencast .icon::after {
     content: "\25B6";
     font-size: 43px;
     left: 11px;

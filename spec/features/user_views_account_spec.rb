@@ -37,15 +37,15 @@ feature 'Account Settings' do
 
   scenario 'user with paid and unpaid purchases' do
     user = create(:user)
-    book = create(:book_product, name: 'A Great Book')
-    video = create(:video_product, name: 'A Great Video')
+    book = create(:book, name: 'A Great Book')
+    screencast = create(:screencast, name: 'A Great Video')
     create(:paid_purchase, purchaseable: book, user: user)
-    create(:unpaid_purchase, purchaseable: video, user: user)
+    create(:unpaid_purchase, purchaseable: screencast, user: user)
 
     visit edit_my_account_path(as: user)
 
     expect(page).to have_content book.name
-    expect(page).not_to have_content video.name
+    expect(page).not_to have_content screencast.name
   end
 
   scenario 'user edits account information' do

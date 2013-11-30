@@ -3,7 +3,7 @@ require 'spec_helper'
 describe '#create' do
   it 'sets the payment_method on Purchase to subscription' do
     user = create(:user, :with_subscription)
-    create_subscriber_purchase(create(:book_product), user)
+    create_subscriber_purchase(create(:book), user)
     user.purchases.last.payment_method.should eq 'subscription'
   end
 
@@ -20,7 +20,7 @@ describe '#create' do
     it 'enqueues a job to add the subscriber to the repo' do
       GithubFulfillmentJob.stubs(:enqueue)
       user = create(:user, :with_subscription, github_username: 'github_username')
-      product = create(:github_book_product)
+      product = create(:book, :github)
 
       create_subscriber_purchase(product, user)
 

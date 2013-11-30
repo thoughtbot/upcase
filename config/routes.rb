@@ -55,6 +55,16 @@ Workshops::Application.routes.draw do
   end
   get '/products/:id/purchases/:lookup' => redirect("/purchases/%{lookup}")
 
+  resources :books, only: :show, controller: 'products' do
+    resources :redemptions, only: [:new]
+    resources :purchases, only: [:create]
+  end
+
+  resources :screencasts, only: :show, controller: 'products' do
+    resources :redemptions, only: [:new]
+    resources :purchases, only: [:create]
+  end
+
   resources :purchases, only: [:show] do
     resources :videos, only: [:show]
     member do
@@ -63,7 +73,10 @@ Workshops::Application.routes.draw do
   end
 
   namespace :subscriber do
-    resources :products, only: [] do
+    resources :books, only: [] do
+      resources :purchases, only: [:new, :create]
+    end
+    resources :screencasts, only: [] do
       resources :purchases, only: [:new, :create]
     end
     resources :sections, only: [] do

@@ -34,7 +34,7 @@ describe PurchaseRefunder, '#refund' do
 
   context 'when fulfilled_with_github' do
     it 'removes from github' do
-      product = create(:github_book_product)
+      product = create(:book, :github)
       purchase = create(:paid_purchase, purchaseable: product)
       fulfillment = stub(:remove)
       GithubFulfillment.stubs(:new).returns(fulfillment)
@@ -71,7 +71,7 @@ describe PurchaseRefunder, '#refund' do
   end
 
   it "removes the purchaser's email from lists" do
-    product = create(:book_product)
+    product = create(:book)
     purchase = create(:paid_purchase, purchaseable: product)
     fulfillment = stub(:remove)
     MailchimpFulfillment.stubs(:new).returns(fulfillment)

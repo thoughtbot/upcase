@@ -3,12 +3,12 @@ require 'spec_helper'
 feature 'Viewing products' do
   scenario 'of different types' do
     book = create(
-      :book_product,
+      :book,
       name: 'Book',
       short_description: 'An awesome book'
     )
-    video = create(
-      :video_product,
+    screencast = create(
+      :screencast,
       name: 'Video',
       short_description: 'An awesome video'
     )
@@ -19,15 +19,15 @@ feature 'Viewing products' do
     expect_page_to_have_meta_description(book.short_description)
     expect_page_to_have_title('Book: a book by thoughtbot')
 
-    visit product_url(video)
+    visit product_url(screencast)
 
     expect(page).not_to have_content 'includes support'
-    expect_page_to_have_meta_description(video.short_description)
-    expect_page_to_have_title('Video: a video by thoughtbot')
+    expect_page_to_have_meta_description(screencast.short_description)
+    expect_page_to_have_title('Video: a screencast by thoughtbot')
   end
 
   scenario 'that are inactive' do
-    product = create(:book_product, :inactive)
+    product = create(:book, :inactive)
 
     visit product_path(product)
 
