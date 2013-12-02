@@ -14,11 +14,11 @@ describe Trail do
   end
 
   context '#total' do
-    it 'is the number of resources and validations' do
+    it 'is the number of validations' do
       trail_map = FakeTrailMap.new.trail
       trail = build(:trail, trail_map: trail_map)
 
-      expect(trail.total).to eq 2
+      expect(trail.total).to eq 1
     end
   end
 

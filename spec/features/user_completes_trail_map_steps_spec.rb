@@ -11,8 +11,8 @@ feature 'User can see their trail map progress' do
 
     visit topics_path
 
-    expect(page).to have_content "0/2 complete"
-    expect(page).to have_css trail_node('Git', 2)
+    expect(page).to have_content "0/1 complete"
+    expect(page).to have_css trail_node('Git', 1)
     expect(page).not_to have_css(".journey-bullet.complete")
   end
 
@@ -27,7 +27,7 @@ feature 'User can see their trail map progress' do
 
     visit topics_path
 
-    expect(page).to have_content "1/2 complete"
+    expect(page).to have_content "1/1 complete"
     expect(page).to have_css(".trail-bullet.complete[data-id='#{fake_trail_map.validation_id}']")
   end
 
