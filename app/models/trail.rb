@@ -28,7 +28,6 @@ class Trail < ActiveRecord::Base
 
   def total
     steps.inject(0) do |count, step|
-      count += step.resources.length if step.resources
       count += step.validations.length if step.validations
       count
     end

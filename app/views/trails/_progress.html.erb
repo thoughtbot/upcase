@@ -6,7 +6,7 @@
     <h2 class="text-complete"></h2>
     <div class="dots">
       <% trail.steps.each do |step| %>
-        <% (step.resources + step.validations).each do |item| %>
+        <% (step.validations).each do |item| %>
           <figure data-id="<%= item['id'] %>" class="trail-bullet"></figure>
         <% end %>
       <% end %>
