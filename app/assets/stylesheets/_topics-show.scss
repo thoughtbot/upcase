@@ -212,7 +212,12 @@ body.topics-show aside {
 
   .related-products li {
     float: left;
+    margin-top: 0;
     width: 48%;
+    
+    h5 {
+      margin-top: 0;
+    }
 
     &:nth-child(odd) {
       margin-right: 4%;
