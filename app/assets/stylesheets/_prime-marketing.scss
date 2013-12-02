@@ -104,7 +104,7 @@ body.prime-marketing footer {
   }
 }
 
-body.prime-marketing svg._jsPlumb_connector path, svg._jsPlumb_endpoint path {
+body.prime-marketing svg path {
   border-radius: 100%;
   stroke: $journey-line-color;
   stroke-dasharray: 15px, 21px;
