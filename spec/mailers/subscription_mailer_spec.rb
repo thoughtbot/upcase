@@ -57,45 +57,6 @@ describe SubscriptionMailer do
     end
   end
 
-  describe '.welcome_to_prime' do
-    it 'is sent to the user' do
-      user = create(:subscription).user
-      email = welcome_to_prime_email_for(user)
-
-      expect(email.to).to include(user.email)
-      expect(email).to have_body_text(/Hi #{user.first_name}/)
-    end
-
-    it 'comes from Chad' do
-      user = create(:subscription, plan: create(:downgraded_plan)).user
-      email = welcome_to_prime_email_for(user)
-
-      expect(email.from).to include('chad@thoughtbot.com')
-      expect(email.reply_to).to include('learn@thoughtbot.com')
-    end
-
-    it 'does not mention mentoring, scheduling a call' do
-      user = create(:subscription).user
-      email = welcome_to_prime_email_for(user)
-
-      expect(email.subject).to eq 'Welcome to Prime!'
-      expect(email.body).not_to include('mentor')
-      expect(email.body).not_to include('calendar')
-      expect(email.body).to include('workshops')
-    end
-
-    it 'does not mention workshops if not included in subscription' do
-      user = create(:subscription, plan: create(:downgraded_plan)).user
-      email = welcome_to_prime_email_for(user)
-
-      expect(email.body).not_to include('workshops')
-    end
-
-    def welcome_to_prime_email_for(user)
-      SubscriptionMailer.welcome_to_prime(user)
-    end
-  end
-
   describe '.cancellation_survey' do
     it 'sends a survey to the user who just unsubscribed' do
       user = create(:user)
