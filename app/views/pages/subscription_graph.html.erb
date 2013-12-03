@@ -1,0 +1,85 @@
+<% content_for :subject, 'Active Learn Users' %>
+<% content_for :page_title, 'Subscription Graph' %>
+
+<style type='text/css'>
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+  }
+
+  .axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+  }
+
+  .growth-area {
+    stroke: #ABBACC;
+    fill: #ABBACC;
+    opacity: 0.4;
+  }
+
+  .growth-line {
+    fill: none;
+    stroke: black;
+    stroke-width: 2;
+  }
+
+  .rate-of-change-line {
+    stroke: #f7394c;
+    stroke-width: 2;
+    fill: none;
+  }
+
+  .projected-growth-line {
+    stroke: black;
+    stroke-dasharray: 5,5;
+  }
+
+  .tooltip-rect {
+    fill: white;
+    stroke: #ccc;
+    opacity: 0.8;
+  }
+
+  .tooltip-line {
+    stroke-width: 0.75px;
+    fill: none;
+    stroke: #666;
+    stroke-dasharray: 1,1;
+  }
+
+  .tooltip-text {
+    font-size: 12px;
+  }
+
+  .tooltip-value-text {
+    font-weight: bold;
+  }
+
+  .graph-title {
+    text-anchor: middle;
+    font-family: skolar-1, skolar-2, serif;
+    font-size: 16px;
+  }
+
+  .graph-container {
+    padding-bottom: 30px;
+  }
+
+  .projected-date {
+    margin-left: 30px;
+  }
+
+  .event-markers {
+  }
+</style>
+
+<div id='projected_growth_target' data-count='1000'></div>
+<div id='growth_graph' class='graph-container'>
+</div>
+<div id='rate_of_growth_graph' class='graph-container'>
+</div>
+
+<%= javascript_include_tag 'subscription_graph/subscription_graph' %>

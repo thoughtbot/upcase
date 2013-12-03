@@ -139,6 +139,7 @@ Workshops::Application.routes.draw do
   end
   get '/sign_up' => 'users#new', as: 'sign_up_app'
   get '/sign_in' => 'sessions#new', as: 'sign_in_app'
+  get '/subscription-graph' => 'pages#show', as: :subscription_graph, id: 'subscription_graph'
   resources :passwords, controller: 'passwords'
   resource :dashboard, only: :show
 
