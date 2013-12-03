@@ -39,10 +39,11 @@ describe Purchase do
       purchase = build(:purchase)
       price_calculator_stub = stub('price_calculator', calculate: true)
       PurchasePriceCalculator.stubs(new: price_calculator_stub)
+      coupon = CouponFactory.for_purchase(purchase)
 
-      purchase.price
+      purchase.price(coupon)
 
-      expect(PurchasePriceCalculator).to have_received(:new).with(purchase)
+      expect(PurchasePriceCalculator).to have_received(:new).with(purchase, coupon)
       expect(price_calculator_stub).to have_received(:calculate)
     end
   end
