@@ -50,6 +50,14 @@ feature 'Registering for a followup' do
     expect_to_see_email_failure
   end
 
+  scenario 'There is no follow up for workshops that start immediately' do
+    section = create(:online_section)
+
+    visit workshop_path(section.workshop)
+
+    expect(page).not_to have_css('#notify-me')
+  end
+
   def submit_follow_up(email_address)
     fill_in 'follow_up_email', with: email_address
     click_button 'Submit'
