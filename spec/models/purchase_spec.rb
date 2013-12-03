@@ -119,6 +119,18 @@ describe Purchase do
     end
   end
 
+  context 'purchasing as subcriber' do
+    it 'does not send a receipt' do
+      purchase = create(:unpaid_purchase, payment_method: 'subscription')
+      purchase.paid = true
+      SendPurchaseReceiptEmailJob.stubs(:enqueue)
+
+      purchase.save!
+
+      SendPurchaseReceiptEmailJob.should have_received(:enqueue).never
+    end
+  end
+
   context '#set_as_paid' do
     it 'sets paid properties' do
       purchase = build(:unpaid_purchase)

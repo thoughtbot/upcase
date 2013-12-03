@@ -199,6 +199,8 @@ class Purchase < ActiveRecord::Base
   end
 
   def send_receipt
-    SendPurchaseReceiptEmailJob.enqueue(id)
+    unless purchasing_as_subscriber?
+      SendPurchaseReceiptEmailJob.enqueue(id)
+    end
   end
 end
