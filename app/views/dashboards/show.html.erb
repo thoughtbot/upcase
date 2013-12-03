@@ -7,10 +7,19 @@
   <%= render 'trails' %>
 </section>
 
-<section class='workshops vertical-slider revealed'>
-  <%= render partial: 'products/workshop', collection: online_workshops %>
-  <%= render partial: 'products/workshop', collection: in_person_workshops %>
-</section>
+<% if subscription_includes_workshops? %>
+  <section class='workshops vertical-slider revealed'>
+    <%= render partial: 'products/workshop', collection: online_workshops %>
+    <%= render partial: 'products/workshop', collection: in_person_workshops %>
+  </section>
+<% else %>
+  <section class='workshops vertical-slider revealed disabled'>
+    <div class='disabled-text'>
+      <h2>Workshops &mdash; <%= link_to 'upgrade to Prime Workshops', edit_subscription_path %> to get access</h2>
+      <%= link_to "See what you're missing", products_path %>
+    </div>
+  </section>
+<% end %>
 
 <section class='screencasts vertical-slider revealed'>
   <%= render partial: 'products/video', collection: videos %>
