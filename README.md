@@ -55,6 +55,8 @@ You'll need to install phantom.js to run some of the specs.
 
         brew install phantomjs
 
+Also, you may want to use the [spring gem](https://github.com/jonleighton/spring) to speed up the boot time of your specs. The rspec binstub has been updated to take advantage of spring if it's found.
+
 ### Continuous Integration
 
 CI is hosted with TDDium. Commits pushed to branches are not run automatically,
