@@ -47,13 +47,7 @@ describe Subscription do
     it 'sends emails for each new mentored subscriber in the last 24 hours' do
       old_subscription = create(:subscription, created_at: 25.hours.ago)
       new_subscription = create(:subscription, created_at: 10.hours.ago)
-      new_basic_subscription = create(
-        :subscription,
-        created_at: 10.hours.ago,
-        plan: create(:downgraded_plan)
-      )
       mailer = stub(deliver: true)
-      SubscriptionMailer.stubs(welcome_to_prime: mailer)
       SubscriptionMailer.stubs(welcome_to_prime_from_mentor: mailer)
 
       Subscription.deliver_welcome_emails
@@ -62,12 +56,9 @@ describe Subscription do
         to have_received(:welcome_to_prime_from_mentor).
         with(new_subscription.user)
       expect(SubscriptionMailer).
-        to have_received(:welcome_to_prime).
-        with(new_basic_subscription.user)
-      expect(SubscriptionMailer).
-        to have_received(:welcome_to_prime).
+        to have_received(:welcome_to_prime_from_mentor).
         with(old_subscription.user).never
-      expect(mailer).to have_received(:deliver).twice
+      expect(mailer).to have_received(:deliver).once
     end
   end
 

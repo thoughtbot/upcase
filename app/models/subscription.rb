@@ -64,8 +64,6 @@ class Subscription < ActiveRecord::Base
   def deliver_welcome_email
     if includes_mentor?
       SubscriptionMailer.welcome_to_prime_from_mentor(user).deliver
-    else
-      SubscriptionMailer.welcome_to_prime(user).deliver
     end
   end
 

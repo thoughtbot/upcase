@@ -1,14 +1,4 @@
 class SubscriptionMailer < BaseMailer
-  def welcome_to_prime(user)
-    @user = user
-
-    mail(
-      to: @user.email,
-      subject: 'Welcome to Prime!',
-      from: 'Chad Pytel <chad@thoughtbot.com>'
-    )
-  end
-
   def welcome_to_prime_from_mentor(user)
     @user = user
     @mentor = user.mentor
