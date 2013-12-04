@@ -34,8 +34,7 @@ All new code should follow these rules. If you make changes in a pre-existing fi
 
 5. Setup your environment.
 
-        $ rake setup
-        $ cp .env.sample .env
+        $ bin/setup
 
 6. Start your Redis server.
 

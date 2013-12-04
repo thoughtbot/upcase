@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+
+# Set up Rails app. Run this script immediately after cloning the codebase.
+# https://github.com/thoughtbot/guides/tree/master/protocol
+
+# Set up Ruby dependencies via Bundler
+bundle install
+
+# Set up Heroku remotes
+git remote add staging git@heroku.com:learn-staging.git
+git remote add production git@heroku.com:learn-production.git
+
+# Set up the database
+bundle exec rake db:setup
+bundle exec rake dev:prime
+
+# Set up configurable environment variables
+if [ ! -f .env ]; then
+  cp .sample.env .env
+fi
+
+# Pick a port for Foreman
+echo "port: 5000" > .foreman
