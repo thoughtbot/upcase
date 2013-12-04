@@ -6,113 +6,132 @@ body.subscriptions-new nav .prime {
   @include clearfix;
   margin: 6rem 0 0;
 
-  body.team_plans-index & {
-    margin: 3rem;
-  }
-
   @include body-mobile {
     margin: 1rem 0;
   }
-}
 
-.plans div {
-  clear: both;
-  margin-bottom: 3rem;
-  overflow: auto;
-  width: 100%;
-
-  .features ul li {
-    &.mentor, &.workshops {
-      background: rgba(255, 255, 0, .3);
-    }
-  }
-
-  h3 {
-    color: darken($darkwarmgray, 15%);
-    font: 700 1.25rem/1.3em $sans-serif;
-    margin-bottom: 25px;
-    @include span-columns(2);
-
-    @include body-mobile {
-      @include span-columns(12);
-    }
-  }
-
-  section {
-    position: relative;
+  .category-description {
+    margin-bottom: 4rem;
+    @include shift(2);
     @include span-columns(6);
 
-    @include body-mobile {
-      @include span-columns(12);
+    h2 {
+      margin-bottom: .8rem;
     }
 
-    p {
+    p:first-of-type {
+      font-weight: bold;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .plan {
+    clear: both;
+    margin-bottom: 3rem;
+    overflow: auto;
+    width: 100%;
+
+    &.team {
+      background: lighten($warmgray, 5%);
+      box-shadow: 0 0 0 2rem lighten($warmgray, 5%);
+    }
+
+    .features ul li {
+      &.mentor, &.workshops {
+        background: rgba(255, 255, 0, .3);
+      }
+    }
+
+    h3 {
       color: darken($darkwarmgray, 15%);
-    }
-  }
-
-  figure.mentor {
-    border-radius: 3px 0 0 3px;
-    margin: 1rem 0;
-    padding-left: 1.5rem;
-
-    img {
-      border-radius: 100%;
-      height: 100px;
-      margin: 0 1rem 0 0;
-      @include position(absolute, 0 0 0 -100px);
-      width: 100px;
-    }
-
-    p {
-      font-style: italic;
-    }
-
-    strong {
-      font-style: normal;
-    }
-  }
-
-  .button {
-    border-bottom: 0;
-    font: 700 1.25rem/1.4em $sans-serif;
-    height: auto;
-    margin: .4rem 0 25px;
-    padding: .5rem 1rem;
-    text-transform: none;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .features {
-    @include span-columns(4);
-
-    @include body-mobile {
-      @include span-columns(12);
-    }
-
-    h4 {
-      color: $darkwarmgray;
-      float: left;
       font: 700 1.25rem/1.3em $sans-serif;
-      padding-right: 1rem;
-      text-align: right;
-      width: 30%;
+      margin-bottom: 25px;
+      @include span-columns(2);
+
+      @include body-mobile {
+        @include span-columns(12);
+      }
     }
 
-    ul {
-      border-left: 3px solid $warmgray;
-      float: right;
-      list-style-type: none;
-      margin: 0;
-      padding: 0 0 0 1rem;
-      width: 70%;
+    section {
+      position: relative;
+      @include span-columns(6);
+
+      @include body-mobile {
+        @include span-columns(12);
+      }
+
+      p {
+        color: darken($darkwarmgray, 15%);
+      }
     }
 
-    li {
-      clear: both;
-      float: left;
-      font: 700 1.25rem/1.3em $sans-serif;
-      margin: 0 0 .6em;
+    figure.mentor {
+      border-radius: 3px 0 0 3px;
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+
+      img {
+        border-radius: 100%;
+        height: 100px;
+        margin: 0 1rem 0 0;
+        @include position(absolute, 0 0 0 -100px);
+        width: 100px;
+      }
+
+      p {
+        font-style: italic;
+      }
+
+      strong {
+        font-style: normal;
+      }
+    }
+
+    .button {
+      border-bottom: 0;
+      font: 700 1.25rem/1.4em $sans-serif;
+      height: auto;
+      margin: .4rem 0 25px;
+      padding: .5rem 1rem;
+      text-transform: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .features {
+      @include span-columns(4);
+
+      @include body-mobile {
+        @include span-columns(12);
+      }
+
+      h4 {
+        color: $darkwarmgray;
+        float: left;
+        font: 700 1.25rem/1.3em $sans-serif;
+        padding-right: 1rem;
+        text-align: right;
+        width: 30%;
+      }
+
+      ul {
+        border-left: 3px solid $warmgray;
+        float: right;
+        list-style-type: none;
+        margin: 0;
+        padding: 0 0 0 1rem;
+        width: 70%;
+      }
+
+      li {
+        clear: both;
+        float: left;
+        font: 700 1.25rem/1.3em $sans-serif;
+        margin: 0 0 .6em;
+      }
     }
   }
 }

@@ -3,6 +3,7 @@ class SubscriptionsController < ApplicationController
 
   def new
     @plans = IndividualPlan.featured.active.ordered
+    @team_plans = TeamPlan.featured.ordered
   end
 
   def edit

@@ -1,5 +1,9 @@
 <section class="plans">
   <%= render @plans %>
+  <div class="category-description">
+    <h2>Team plans</h2>
+    <p>Sign your team up for <%= t('shared.subscription.name') %> today, and give them the finest Ruby on Rails content and the kindest expert teachers.</p>
+    <p>Your team gets all of the great benefits of <%= link_to t('shared.subscription.name'), prime_path %>, with convenient monthly group billing, as well as a nice discount. <%= t('shared.subscription.name') %> Teams have a minimum of 5 members, and a 10% discount off the normal price. New members can be added at any time.</p>
+  </div>
+  <%= render @team_plans %>
 </section>
-
-<span class="prime-aside-links"><%= link_to t('shared.company_subscription_call_to_action'), team_plans_path %> &mdash; <%= link_to 'View all the features of Prime', '/prime' %></span>
