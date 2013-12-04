@@ -5,12 +5,14 @@
   <%= render 'terms', workshop: @offering %>
 </aside>
 
-<% content_for :outside do %>
-  <section id="additional-information">
-    <section id="additional-information-wrapper">
-      <section id="main-content">
-        <%= render 'follow_up', workshop: @offering %>
+<% unless @offering.starts_immediately? %>
+  <% content_for :outside do %>
+    <section id="additional-information">
+      <section id="additional-information-wrapper">
+        <section id="main-content">
+          <%= render 'follow_up', workshop: @offering %>
+        </section>
       </section>
     </section>
-  </section>
+  <% end %>
 <% end %>
