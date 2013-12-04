@@ -11,16 +11,16 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 
+  delegate :email, to: :mentor, prefix: true
+  delegate :first_name, to: :mentor, prefix: true
+  delegate :name, to: :mentor, prefix: true
+
   def self.mentors
     where(available_to_mentor: true)
   end
 
   def self.find_or_sample_mentor(user_id)
     where(id: user_id).first || mentors.sample
-  end
-
-  def mentor_name
-    mentor.try(:name)
   end
 
   def subscription_purchases
@@ -53,10 +53,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def has_subscription_with_mentor?
-    subscription.try(:includes_mentor?)
-  end
-
   def has_logged_in_to_forum?
     OauthAccessToken.for_user(self).present?
   end
@@ -77,6 +73,10 @@ class User < ActiveRecord::Base
 
   def assign_mentor(user)
     update_attribute(:mentor_id, user.id)
+  end
+
+  def has_subscription_with_mentor?
+    subscription.try(:includes_mentor?)
   end
 
   def plan_name
