@@ -19,10 +19,6 @@ class TeamPlan < ActiveRecord::Base
     end
   end
 
-  def projected_monthly_revenue
-    teams.count * individual_price
-  end
-
   def subscription?
     true
   end

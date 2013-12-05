@@ -66,25 +66,6 @@ describe TeamPlan do
     end
   end
 
-  describe '#projected_monthly_revenue' do
-    context 'when there are no Teams' do
-      it 'returns 0' do
-        expect(team_plan.projected_monthly_revenue).to eq 0
-      end
-    end
-
-    context 'when there are Teams' do
-      it 'returns the number of Teams multiplied by the individual price' do
-        team_plan = create(:team_plan)
-        create(:team, team_plan: team_plan)
-        create(:team, team_plan: team_plan)
-
-        expected_value = team_plan.individual_price * 2
-        expect(team_plan.projected_monthly_revenue).to eq expected_value
-      end
-    end
-  end
-
   context '#minimum_quantity' do
     it 'is 5' do
       team_plan = TeamPlan.new

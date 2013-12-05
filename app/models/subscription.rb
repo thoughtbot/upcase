@@ -18,6 +18,10 @@ class Subscription < ActiveRecord::Base
   after_create :add_user_to_mailing_list
   after_create :add_user_to_github_team
 
+  def self.active
+    where(deactivated_on: nil)
+  end
+
   def self.deliver_welcome_emails
     recent.each do |subscription|
       subscription.deliver_welcome_email
@@ -75,10 +79,6 @@ class Subscription < ActiveRecord::Base
 
   def self.subscriber_emails
     active.joins(:user).pluck(:email)
-  end
-
-  def self.active
-    where(deactivated_on: nil)
   end
 
   def self.recent

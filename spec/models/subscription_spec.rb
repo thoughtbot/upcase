@@ -43,6 +43,16 @@ describe Subscription do
     end
   end
 
+  describe 'self.active' do
+    it 'only includes non-deactivated subscriptions' do
+      active = create(:subscription, deactivated_on: nil)
+      deactivated = create(:subscription, deactivated_on: Date.today)
+
+      Subscription.active.should_not include(deactivated)
+      Subscription.active.should include(active)
+    end
+  end
+
   describe '.deliver_welcome_emails' do
     it 'sends emails for each new mentored subscriber in the last 24 hours' do
       old_subscription = create(:subscription, created_at: 25.hours.ago)

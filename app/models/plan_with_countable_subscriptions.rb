@@ -23,6 +23,10 @@ module PlanWithCountableSubscriptions
     end
   end
 
+  def projected_monthly_revenue
+    active_paid_subscriptions.sum(:next_payment_amount)
+  end
+
   private
 
   def churn_for_last_30_days
