@@ -17,12 +17,10 @@ All new code should follow these rules. If you make changes in a pre-existing fi
 1. Install Homebrew packages.
 
         $ brew install postgres --no-python
-        $ brew install redis
 
 2. Follow post-install instructions for loading launch agents.
 
         $ brew info postgres
-        $ brew info redis
 
 3. Install RVM.
 
@@ -40,15 +38,11 @@ All new code should follow these rules. If you make changes in a pre-existing fi
 
         $ vim .env
 
-7. Start your Redis server.
-
-        $ redis-server
-
-8. Start Foreman.
+7. Start Foreman.
 
         $ foreman start
 
-9. Verify that the app is up and running.
+8. Verify that the app is up and running.
 
         $ open http://localhost:5000
 

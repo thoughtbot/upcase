@@ -10,12 +10,6 @@ module Teams
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:individual_price) }
 
-    it_behaves_like 'a Plan with countable subscriptions' do
-      def factory_name
-        :team_plan
-      end
-    end
-
     it_behaves_like 'a Plan for public listing' do
       def factory_name
         :team_plan
@@ -73,25 +67,6 @@ module Teams
     describe '#announcement' do
       it 'returns empty string' do
         expect(team_plan.announcement).to be_blank
-      end
-    end
-
-    describe '#projected_monthly_revenue' do
-      context 'when there are no Teams' do
-        it 'returns 0' do
-          expect(team_plan.projected_monthly_revenue).to eq 0
-        end
-      end
-
-      context 'when there are Teams' do
-        it 'returns the number of Teams multiplied by the individual price' do
-          team_plan = create(:team_plan)
-          create(:team, team_plan: team_plan)
-          create(:team, team_plan: team_plan)
-
-          expected_value = team_plan.individual_price * 2
-          expect(team_plan.projected_monthly_revenue).to eq expected_value
-        end
       end
     end
 
