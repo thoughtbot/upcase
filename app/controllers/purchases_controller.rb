@@ -70,7 +70,7 @@ class PurchasesController < ApplicationController
   end
 
   def included_in_subscription?
-    !workshop_purchase? || (workshop_purchase? && subscription_includes_workshops?)
+    !workshop_purchase? || (workshop_purchase? && current_user_has_access_to_workshops?)
   end
 
   def plan_purchase?

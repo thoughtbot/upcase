@@ -316,4 +316,32 @@ describe User do
       expect(user.mentor_first_name).to be_nil
     end
   end
+
+  describe '#has_access_to_workshops?' do
+    context 'when the user does not have a subscription' do
+      it 'returns false' do
+        user = build_stubbed(:user)
+
+        expect(user.has_access_to_workshops?).to_not be
+      end
+    end
+
+    context 'when the user has an inactive subscription' do
+      it 'returns false' do
+        user = create(:user, :with_subscription)
+        user.subscription.stubs(:active?).returns(false)
+
+        expect(user.has_access_to_workshops?).to_not be
+      end
+    end
+
+    context 'when the user has an active subscription' do
+      it "delegates to the subscription's includes_workshops? method" do
+        user = create(:user, :with_subscription)
+        user.subscription.stubs(:includes_workshops?).returns('expected')
+
+        expect(user.has_access_to_workshops?).to eq 'expected'
+      end
+    end
+  end
 end

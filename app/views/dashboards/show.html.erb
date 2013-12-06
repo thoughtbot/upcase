@@ -7,7 +7,7 @@
   <%= render 'trails' %>
 </section>
 
-<% if subscription_includes_workshops? %>
+<% if current_user_has_access_to_workshops? %>
   <section class='workshops vertical-slider revealed'>
     <%= render partial: 'products/workshop', collection: online_workshops %>
     <%= render partial: 'products/workshop', collection: in_person_workshops %>
