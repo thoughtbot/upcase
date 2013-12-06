@@ -36,15 +36,19 @@ All new code should follow these rules. If you make changes in a pre-existing fi
 
         $ bin/setup
 
-6. Start your Redis server.
+6. Follow instructions in .env to configure Stripe.
+
+        $ vim .env
+
+7. Start your Redis server.
 
         $ redis-server
 
-7. Start Foreman.
+8. Start Foreman.
 
         $ foreman start
 
-8. Verify that the app is up and running.
+9. Verify that the app is up and running.
 
         $ open http://localhost:5000
 
