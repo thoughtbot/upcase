@@ -202,15 +202,6 @@ describe User do
     end
   end
 
-  describe '#mentor_name' do
-    it 'returns the mentor name' do
-      mentee = build_stubbed(:user, :with_mentor)
-      mentor = mentee.mentor
-
-      expect(mentee.mentor_name).to eq mentor.name
-    end
-  end
-
   describe '.find_or_sample_mentor' do
     it 'returns a mentor for the given id' do
       mentor = create(:user)
@@ -285,10 +276,31 @@ describe User do
     end
   end
 
+  describe '#mentor_name' do
+    it 'returns the mentor name' do
+      mentee = build_stubbed(:user, :with_mentor)
+      mentor = mentee.mentor
+
+      expect(mentee.mentor_name).to eq mentor.name
+    end
+
+    it 'returns nil if the user has no mentor' do
+      user = build_stubbed(:user)
+
+      expect(user.mentor_name).to be_nil
+    end
+  end
+
   describe '#mentor_email' do
     it "delegates to the user's mentor" do
       user = create(:user, :with_mentor)
       expect(user.mentor_email).to eq user.mentor.email
+    end
+
+    it 'returns nil if the user has no mentor' do
+      user = build_stubbed(:user)
+
+      expect(user.mentor_email).to be_nil
     end
   end
 
@@ -296,6 +308,12 @@ describe User do
     it "delegates to the user's mentor" do
       user = create(:user, :with_mentor)
       expect(user.mentor_first_name).to eq user.mentor.first_name
+    end
+
+    it 'returns nil if the user has no mentor' do
+      user = build_stubbed(:user)
+
+      expect(user.mentor_first_name).to be_nil
     end
   end
 end
