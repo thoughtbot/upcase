@@ -66,7 +66,6 @@ end
 group :development, :test do
   gem 'foreman', '0.46.0'
   gem 'rspec-rails'
-  gem 'debugger'
   gem 'pry-rails'
 end
 
