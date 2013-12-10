@@ -29,7 +29,7 @@ FactoryGirl.define do
   end
 
   factory :announcement do
-    association :announceable, factory: :book_product
+    association :announceable, factory: :book
     ends_at { 1.day.from_now }
     message 'Foo: http://example.com'
   end
@@ -101,7 +101,7 @@ FactoryGirl.define do
     workshop
   end
 
-  factory :product, traits: [:active] do
+  factory :product, traits: [:active], class: 'Book' do
     trait :active do
       active true
     end
@@ -110,26 +110,22 @@ FactoryGirl.define do
       active false
     end
 
-    company_price 50
-    fulfillment_method 'fetch'
-    individual_price 15
-    name { generate(:name) }
-    sku 'TEST'
-    product_type 'test'
-
-    factory :book_product do
-      product_type 'book'
-    end
-
-    factory :github_book_product do
-      product_type 'book'
+    trait :github do
       github_team 9999
       fulfillment_method 'github'
       github_url 'http://github.com/thoughtbot/book-repo'
     end
 
-    factory :video_product do
-      product_type 'video'
+    company_price 50
+    fulfillment_method 'fetch'
+    individual_price 15
+    name { generate(:name) }
+    sku 'TEST'
+
+    factory :book, class: 'Book' do
+    end
+
+    factory :screencast, class: 'Screencast' do
     end
   end
 
@@ -160,7 +156,7 @@ FactoryGirl.define do
   factory :purchase, aliases: [:individual_purchase] do
     email
     name 'Test User'
-    association :purchaseable, factory: :product
+    association :purchaseable, factory: :book
     variant 'individual'
 
     trait :free do
@@ -200,11 +196,11 @@ FactoryGirl.define do
     end
 
     factory :book_purchase do
-      association :purchaseable, factory: :book_product
+      association :purchaseable, factory: :book
     end
 
-    factory :video_purchase do
-      association :purchaseable, factory: :video_product
+    factory :screencast_purchase do
+      association :purchaseable, factory: :screencast
     end
 
     factory :plan_purchase do

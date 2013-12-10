@@ -35,8 +35,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_is_admin?
 
   def requested_purchaseable
-    if params[:product_id]
-      Product.find(params[:product_id])
+    if product_param
+      Product.find(product_param)
     elsif params[:individual_plan_id]
       IndividualPlan.where(sku: params[:individual_plan_id]).first
     elsif params[:team_plan_id]
@@ -59,17 +59,21 @@ class ApplicationController < ActionController::Base
   helper_method :online_workshops
 
   def books
-    Product.books.active.ordered
+    Book.active.ordered
   end
   helper_method :books
 
-  def videos
-    Product.videos.active.newest_first
+  def screencasts
+    Screencast.active.newest_first
   end
-  helper_method :videos
+  helper_method :screencasts
 
   def topics
     Topic.top
   end
   helper_method :topics
+
+  def product_param
+    params[:product_id] || params[:screencast_id] || params[:book_id]
+  end
 end

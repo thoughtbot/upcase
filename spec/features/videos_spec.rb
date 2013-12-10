@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Videos' do
   context 'get show' do
     it 'does not allow watching a video without paying first' do
-      product = create(:video_product)
+      product = create(:screencast)
       video = create(:video, watchable: product)
       purchase = create(:unpaid_purchase, purchaseable: product)
       purchase.lookup = 'unpaid'
@@ -11,11 +11,11 @@ describe 'Videos' do
 
       visit purchase_path(purchase)
 
-      expect(current_path).to eq product_path(product)
+      expect(current_path).to eq screencast_path(product)
 
       visit purchase_video_path(purchase, video)
 
-      expect(current_path).to eq product_path(product)
+      expect(current_path).to eq screencast_path(product)
     end
   end
 
@@ -40,7 +40,7 @@ describe 'Videos' do
     end
 
     it 'lists the videos for a product' do
-      purchase = create(:video_purchase)
+      purchase = create(:screencast_purchase)
       video_one = create(:video, watchable: purchase.purchaseable)
       video_two = create(:video, watchable: purchase.purchaseable)
 
@@ -52,7 +52,7 @@ describe 'Videos' do
     end
 
     it "doesn't say it's a series with one video" do
-      purchase = create(:video_purchase)
+      purchase = create(:screencast_purchase)
       video_one = create(:video, watchable: purchase.purchaseable)
 
       visit purchase_path(purchase)
@@ -62,7 +62,8 @@ describe 'Videos' do
     end
 
     it "doesn't say it includes support with no subscription" do
-      purchase = create(:video_purchase)
+      purchase = create(:screencast_purchase)
+      create(:video, watchable: purchase.purchaseable)
 
       visit purchase_path(purchase)
 
@@ -72,7 +73,8 @@ describe 'Videos' do
     it 'includes support with a subscription' do
       sign_in_as_user_with_subscription
 
-      purchase = create(:video_purchase)
+      purchase = create(:screencast_purchase)
+      create(:video, watchable: purchase.purchaseable)
 
       visit purchase_path(purchase)
 

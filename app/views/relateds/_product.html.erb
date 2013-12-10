@@ -1,9 +1,9 @@
-<%= content_tag :li, class: product.product_type do %>
+<%= content_tag :li, class: product.offering_type do %>
   <%= link_to product do %>
     <span class="icon"></span>
     <hgroup>
       <h5><%= product.name %></h5>
-      <h4><%= t ".headings.#{product.product_type}" %></h4>
+      <h4><%= t ".headings.#{product.offering_type}" %></h4>
     </hgroup>
   <% end %>
 <% end %>

@@ -1,39 +1,26 @@
 class Product < ActiveRecord::Base
-  # Associations
   has_many :announcements, as: :announceable, dependent: :destroy
   has_many :classifications, as: :classifiable
   has_many :downloads, as: :purchaseable
   has_many :purchases, as: :purchaseable
   has_many :topics, through: :classifications
-  has_many :videos, as: :watchable
 
-  # Nested Attributes
   accepts_nested_attributes_for :downloads, allow_destroy: true
 
-  # Validations
   validates :name, presence: true
   validates :fulfillment_method, presence: true
   validates :sku, presence: true
-  validates :product_type, presence: true
+  validates :type, presence: true
 
-  # Plugins
   has_attached_file :product_image, {
     styles: {
       book: '230x300#',
-      video: '153x100#'
+      screencast: '153x100#'
     }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
 
   def self.active
     where active: true
-  end
-
-  def self.books
-    where product_type: 'book'
-  end
-
-  def self.videos
-    where product_type: 'video'
   end
 
   def self.ordered
@@ -62,9 +49,7 @@ class Product < ActiveRecord::Base
   end
 
   def product_type_symbol
-    product_type.split(' ')[0].downcase.to_sym
-  rescue
-    :book
+    type.underscore.to_sym
   end
 
   def to_param
@@ -103,16 +88,12 @@ class Product < ActiveRecord::Base
     purchases.paid.where(user_id: user).first
   end
 
-  def book_filename
-    name.parameterize
-  end
-
   def title
-    "#{name}: a #{product_type} by thoughtbot"
+    "#{name}: a #{type.downcase} by thoughtbot"
   end
 
   def offering_type
-    product_type
+    type.downcase
   end
 
   def alternates
@@ -121,6 +102,10 @@ class Product < ActiveRecord::Base
 
   def fulfilled_with_github?
     github_team.present?
+  end
+
+  def collection?
+    false
   end
 
   private

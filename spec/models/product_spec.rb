@@ -1,115 +1,13 @@
 require 'spec_helper'
 
 describe Product do
-  # Associations
-  it { should have_many(:announcements).dependent(:destroy) }
-  it { should have_many(:classifications) }
-  it { should have_many(:downloads) }
-  it { should have_many(:purchases) }
-  it { should have_many(:topics).through(:classifications) }
-  it { should have_many(:videos) }
+  context '#alternates' do
+    it 'is empty' do
+      product = Product.new
 
-  # Validations
-  it { should validate_presence_of(:fulfillment_method) }
-  it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:sku) }
-  it { should validate_presence_of(:product_type) }
+      result = product.alternates
 
-  describe '#announcement' do
-    it 'calls Announcement.current' do
-      Announcement.stubs :current
-      product = create(:book_product)
-      product.announcement
-      Announcement.should have_received(:current)
-    end
-  end
-
-  describe '#product_type_symbol' do
-    it 'returns product_type_symbol' do
-      video = create(:video_product)
-
-      expect(video.product_type_symbol).to eq(:video)
-    end
-
-    it 'returns book as a symbol if product_type is nil' do
-      product = build(:product, product_type: '')
-
-      expect(product.product_type_symbol).to eq(:book)
-    end
-  end
-
-  describe "#meta_keywords" do
-    it { should delegate(:meta_keywords).to(:topics) }
-  end
-
-  describe '.books' do
-    it 'only includes books' do
-      book = create(:book_product)
-      create :video_product
-      Product.books.should == [book]
-    end
-  end
-
-  describe '.videos' do
-    it 'only includes videos' do
-      video = create(:video_product)
-      create :book_product
-      Product.videos.should == [video]
-    end
-  end
-
-  describe '.newest_first' do
-    it 'returns products in reverse chronological order' do
-      older_video = create(:video_product, created_at: 1.day.ago)
-      newer_video = create(:video_product, created_at: Time.zone.today)
-      expect(Product.newest_first).to eq [newer_video, older_video]
-    end
-  end
-
-  describe 'with a discount' do
-    it 'returns a discounted individual price' do
-      product = create(:product, individual_price: 50)
-      product.individual_price.should == 50
-      product.discount_percentage = 20
-      product.individual_price.should == 40
-    end
-
-    it 'returns a discounted company price' do
-      product = create(:product, company_price: 50)
-      product.company_price.should == 50
-      product.discount_percentage = 20
-      product.company_price.should == 40
-    end
-
-    it 'reports that the product is discounted' do
-      product = create(:product, discount_percentage: 20)
-      product.should be_discounted
-    end
-  end
-
-  it 'reports that it is not discounted' do
-    product = create(:product, discount_percentage: 0)
-    product.should_not be_discounted
-  end
-
-  describe 'starts_on' do
-    it 'returns the given date' do
-      product = create(:product)
-      expect(product.starts_on(Time.zone.today)).to eq Time.zone.today
-    end
-  end
-
-  describe 'ends_on' do
-    it 'returns the given date' do
-      product = create(:product)
-      expect(product.ends_on(Time.zone.today)).to eq Time.zone.today
-    end
-  end
-
-  describe '#subscription?' do
-    it 'returns false' do
-      product = build_stubbed(:book_product)
-      expect(product).not_to be_subscription
+      expect(result).to eq []
     end
   end
 
@@ -131,56 +29,9 @@ describe Product do
     end
   end
 
-  context 'book_filename' do
-    it 'returns the parameterized product name' do
-      book = Product.new(name: 'Backbone.js on Rails')
-      expect(book.book_filename).to eq 'backbone-js-on-rails'
-    end
-  end
-
-  context 'title' do
-    it 'describes the product name and type' do
-      product = build_stubbed(:book_product, name: 'Juice')
-
-      result = product.title
-
-      expect(result).to eq 'Juice: a book by thoughtbot'
-    end
-  end
-
-  context 'offering_type' do
-    it 'returns the product type' do
-      product = build_stubbed(:book_product)
-
-      result = product.offering_type
-
-      expect(result).to eq 'book'
-    end
-  end
-
-  context '#alternates' do
-    it 'is empty' do
-      product = Product.new
-
-      result = product.alternates
-
-      expect(result).to eq []
-    end
-  end
-
-  context '#fulfilled_with_github' do
-    it 'is true when product has a github team' do
-      product = build(:github_book_product)
-      purchase = build(:purchase, purchaseable: product)
-
-      purchase.should be_fulfilled_with_github
-    end
-
-    it 'is false when product has no github team' do
-      product = build(:book_product, github_team: nil)
-      purchase = build(:purchase, purchaseable: product)
-
-      purchase.should_not be_fulfilled_with_github
+  describe '#collection?' do
+    it 'returns false' do
+      expect(Product.new).not_to be_collection
     end
   end
 end

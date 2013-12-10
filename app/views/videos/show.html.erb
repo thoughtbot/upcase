@@ -1,4 +1,4 @@
-<% unless single_video?(@purchaseable) %>
+<% if @purchaseable.collection? %>
   <% content_for :additional_header_links do %>
     <li class="all-videos"><%= link_to 'All Videos', @purchase %></li>
   <% end %>
@@ -7,11 +7,11 @@
 <% content_for :subject_block do %>
   <h1><%= @purchaseable.name %></h1>
   <h2 class="tagline">
-    <% if single_video?(@purchaseable) %>
-      Watch or download video
-    <% else %>
+    <% if @purchaseable.collection? %>
       Watch or download videos,
       <%= pluralize @purchaseable.videos.size, 'video' %> in the series.
+    <% else %>
+      Watch or download video
     <% end %>
   </h2>
 <% end %>
@@ -22,4 +22,4 @@
   </div>
 </div>
 
-<%= render "#{@purchaseable.product_type.pluralize}/aside", purchaseable: @purchaseable, purchase: @purchase %>
+<%= render "#{@purchaseable.class.name.pluralize}/aside", purchaseable: @purchaseable, purchase: @purchase %>

@@ -129,7 +129,7 @@ class PurchasesController < ApplicationController
   end
 
   def polymorphic_purchaseable_template
-    "#{@purchaseable.product_type.pluralize}/#{@purchaseable.product_type}_purchase_show"
+    "#{@purchaseable.to_partial_path}_purchase_show"
   end
 
   def purchase_params

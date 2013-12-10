@@ -7,7 +7,7 @@ describe ProductsController do
       purchase = create(:purchase, user: user)
       sign_in_as user
 
-      get :show, id: purchase.purchaseable.to_param
+      get :show, id: purchase.purchaseable
 
       expect(response).to redirect_to purchase_path(purchase)
     end
@@ -17,7 +17,7 @@ describe ProductsController do
       purchase = create(:purchase)
       sign_in_as user
 
-      get :show, id: purchase.purchaseable.to_param
+      get :show, id: purchase.purchaseable
 
       expect(response).to render_template "show"
     end

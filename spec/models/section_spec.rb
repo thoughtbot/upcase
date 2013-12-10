@@ -353,4 +353,10 @@ describe Section do
       expect(section.starts_immediately?).to be true
     end
   end
+
+  describe '#collection?' do
+    it 'should be true' do
+      expect(Section.new).to be_collection
+    end
+  end
 end

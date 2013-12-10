@@ -4,11 +4,11 @@ feature 'Using coupons' do
   include StripeHelpers
   include PurchaseHelpers
 
-  scenario 'Visitor purchases with a valid coupon', js: true do
-    product = create(:video_product)
+  scenario 'Visitor purchases screencast with a valid coupon', js: true do
+    product = create(:screencast)
     create(:coupon, code: 'CODE', discount_type: 'percentage', amount: 10)
 
-    visit product_path(product)
+    visit screencast_path(product)
     click_purchase_link_for(product)
     click_link 'Have a coupon code?'
 
@@ -25,11 +25,11 @@ feature 'Using coupons' do
     expect_to_have_purchased(product)
   end
 
-  scenario 'Visitor purchases with a 100%-off coupon', js: true do
-    product = create(:video_product)
+  scenario 'Visitor purchases a screencast with a 100%-off coupon', js: true do
+    product = create(:screencast)
     create(:coupon, code: 'CODE', discount_type: 'percentage', amount: 100)
 
-    visit product_path(product)
+    visit screencast_path(product)
     click_purchase_link_for(product)
     click_link 'Have a coupon code?'
     fill_in 'Code', with: 'CODE'

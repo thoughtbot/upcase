@@ -223,14 +223,14 @@ describe Workshop do
 
   describe '#fulfilled_with_github' do
     it 'is true when product has a github team' do
-      product = build(:github_book_product)
+      product = build(:book, :github)
       purchase = build(:purchase, purchaseable: product)
 
       purchase.should be_fulfilled_with_github
     end
 
     it 'is false when product has no github team' do
-      product = build(:book_product, github_team: nil)
+      product = build(:book, github_team: nil)
       purchase = build(:purchase, purchaseable: product)
 
       purchase.should_not be_fulfilled_with_github

@@ -1,10 +1,10 @@
 <section id="license" class="<%= product.offering_type %>">
-  <%= render 'discount', product: product %>
+  <%= render 'products/discount', product: product %>
   <%= render 'offerings/prime_purchase', offering: product %>
 
   <% if product.active? %>
-    <%= render 'active', product: product %>
+    <%= render 'products/active', product: product %>
   <% else %>
-    <%= render 'inactive', product: product %>
+    <%= render 'products/inactive', product: product %>
   <% end %>
 </section>

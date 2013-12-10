@@ -3,7 +3,7 @@ require 'spec_helper'
 describe MailchimpFulfillment do
   describe 'fulfill' do
     it 'triggers the job to add the user to mailchimp lists' do
-      product = create(:github_book_product)
+      product = create(:book, :github)
       MailchimpFulfillmentJob.stubs(:enqueue)
       purchase = build(
         :book_purchase,
@@ -21,7 +21,7 @@ describe MailchimpFulfillment do
   describe 'remove' do
     it 'triggers the job to remove the purchaser from mailchimp lists' do
       MailchimpRemovalJob.stubs(:enqueue)
-      product = build(:github_book_product)
+      product = build(:book, :github)
       purchase = build(
         :book_purchase,
         purchaseable: product, 

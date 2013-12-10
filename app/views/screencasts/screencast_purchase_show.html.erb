@@ -1,25 +1,25 @@
 <% content_for :subject_block do %>
   <h1><%= @purchaseable.name %></h1>
   <h2 class="tagline">
-    <% if single_video?(@purchaseable) %>
-      Watch or download video
-    <% else %>
+    <% if @purchaseable.collection? %>
       Watch or download videos,
       <%= pluralize @purchaseable.videos.size, 'video' %> in the series.
+    <% else %>
+      Watch or download video
     <% end %>
   </h2>
 <% end %>
 
 <div class="text-box-wrapper">
   <div class="text-box">
-    <% if single_video?(@purchaseable) %>
-      <%= render 'videos/watch_video', video: @purchaseable.videos.first, purchase: @purchase %>
-    <% else %>
+    <% if @purchaseable.collection? %>
       <section id="videos">
         <%= render @purchaseable.videos.ordered, purchase: @purchase %>
       </section>
+    <% else %>
+      <%= render 'videos/watch_video', video: @purchaseable.videos.first, purchase: @purchase %>
     <% end %>
   </div>
 </div>
 
-<%= render 'videos/aside', purchaseable: @purchaseable, purchase: @purchase %>
+<%= render 'screencasts/aside', purchaseable: @purchaseable, purchase: @purchase %>

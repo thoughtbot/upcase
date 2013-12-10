@@ -9,7 +9,7 @@
         <%= purchase_button_text(product) %>
       <% else %>
         <%= render(
-          'price',
+          'products/price',
           product: product,
           price: product.individual_price,
           original_price: product.original_individual_price,
