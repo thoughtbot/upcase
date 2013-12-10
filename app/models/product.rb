@@ -16,7 +16,8 @@ class Product < ActiveRecord::Base
     styles: {
       book: '230x300#',
       screencast: '153x100#'
-    }
+    },
+    path: "products/:attachment/:id_partition/:style/:filename"
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
 
   def self.active
