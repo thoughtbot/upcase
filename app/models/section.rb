@@ -139,6 +139,10 @@ class Section < ActiveRecord::Base
     true
   end
 
+  def to_aside_partial
+    'sections/aside'
+  end
+
   private
 
   def self.xml_content(document, tag_name)
