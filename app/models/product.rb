@@ -109,6 +109,10 @@ class Product < ActiveRecord::Base
     false
   end
 
+  def to_aside_partial
+    "#{self.class.name.underscore.pluralize}/aside"
+  end
+
   private
 
   def apply_discount(price)

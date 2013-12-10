@@ -22,4 +22,4 @@
   </div>
 </div>
 
-<%= render "#{@purchaseable.class.name.pluralize}/aside", purchaseable: @purchaseable, purchase: @purchase %>
+<%= render @purchaseable.to_aside_partial, purchaseable: @purchaseable, purchase: @purchase %>

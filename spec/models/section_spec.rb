@@ -359,4 +359,10 @@ describe Section do
       expect(Section.new).to be_collection
     end
   end
+
+  describe '#to_aside_partial' do
+    it 'returns the path to the aside partial' do
+      expect(Section.new.to_aside_partial).to eq 'sections/aside'
+    end
+  end
 end
