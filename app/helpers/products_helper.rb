@@ -11,22 +11,6 @@ module ProductsHelper
     'https://learn.thoughtbot.com/workshops/21-intermediate-ruby-on-rails'
   end
 
-  def purchase_button_text(product)
-    if current_user_has_active_subscription?
-      if product.collection?
-        I18n.t('products.show.purchase_collection_for_subscribed_user', offering_type: product.offering_type)
-      else
-        I18n.t('products.show.purchase_for_subscribed_user', offering_type: product.offering_type)
-      end
-    else
-      if product.subscription?
-        I18n.t('products.show.subscribe_cta')
-      else
-        I18n.t('products.show.purchase_for_yourself')
-      end
-    end
-  end
-
   def cover_image(book)
     "product_images/book/#{book.sku.downcase}-cover-large.png"
   end
