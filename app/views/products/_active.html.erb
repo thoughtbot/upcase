@@ -1,9 +1,0 @@
-<% unless current_user_has_active_subscription? %>
-  <p class="or">Or buy individually</p>
-<% end %>
-<div class="individual-purchase">
-  <%= render 'products/individual_purchase', product: product%>
-</div>
-<div class="company-purchase">
-  <%= render 'products/company_purchase', product: product %>
-</div>

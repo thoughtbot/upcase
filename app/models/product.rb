@@ -113,9 +113,49 @@ class Product < ActiveRecord::Base
     "#{self.class.name.underscore.pluralize}/aside"
   end
 
+  def licenses_for(user)
+    if user.present? && user.has_active_subscription?
+      [subscriber_license]
+    else
+      product_licenses
+    end
+  end
+
   private
 
   def apply_discount(price)
     price - (price * discount_percentage * 0.01)
+  end
+
+  def subscriber_license
+    SubscriberLicense.new(
+      collection: collection?,
+      offering_type: offering_type,
+      product_id: id,
+      sku: sku
+    )
+  end
+
+  def product_licenses
+    [
+      ProductLicense.new(
+        discounted: discounted?,
+        offering_type: offering_type,
+        original_price: original_individual_price,
+        price: individual_price,
+        product_id: id,
+        sku: sku,
+        variant: :individual
+      ),
+      ProductLicense.new(
+        discounted: discounted?,
+        offering_type: offering_type,
+        original_price: original_company_price,
+        price: company_price,
+        product_id: id,
+        sku: sku,
+        variant: :company
+      )
+    ]
   end
 end

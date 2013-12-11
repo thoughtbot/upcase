@@ -1,0 +1,18 @@
+<div class="<%= product_license.variant %>-purchase">
+  <div class="license">
+    <%= link_to new_product_purchase_path(product_license, variant: product_license.variant),
+      class: "license-button button",
+      id: "#{product_license.sku}-purchase-#{product_license.variant}" do %>
+        <% if product_license.discounted? %>
+          <span class="original-price">
+            <%= number_to_currency product_license.original_price, precision: 0 %>
+          </span>
+        <% end %>
+        <%= t(
+          "products.show.price.#{product_license.offering_type}.#{product_license.variant}_html",
+          default: [:"products.show.price.#{product_license.variant}_html"],
+          price: number_to_currency(product_license.price, precision: 0)
+        ) %>
+    <% end %>
+  </div>
+</div>

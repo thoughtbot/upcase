@@ -3,7 +3,7 @@
   <%= render 'offerings/prime_purchase', offering: product %>
 
   <% if product.active? %>
-    <%= render 'products/active', product: product %>
+    <%= render product.licenses_for(current_user) %>
   <% else %>
     <%= render 'products/inactive', product: product %>
   <% end %>
