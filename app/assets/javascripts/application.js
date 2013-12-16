@@ -7,6 +7,7 @@
 //= require jquery.jsPlumb-1.4.0-all-min
 //= require masonry.min.js
 //= require prime
+//= require plans
 //= require slider
 //= require topics
 //= require checkout

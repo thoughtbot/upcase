@@ -15,7 +15,7 @@
         <% if signed_in? %>
           <li class="back"><%= link_to '&larr; Dashboard'.html_safe, dashboard_path %></li>
         <% else %>
-          <li class="toggle-slider"><%= link_to 'View all our products', '#', class: 'toggle-slider' %></li>
+          <li class="view-plans"><%= link_to t('subscriptions.join_cta'), new_subscription_path %></li>
         <% end %>
         <%= yield(:additional_header_links) %>
       </ul>
@@ -39,7 +39,3 @@
     </nav>
   </div>
 </section>
-
-<% if !current_user_has_active_subscription? && !signed_in? %>
-  <%= render Catalog.new %>
-<% end %>
