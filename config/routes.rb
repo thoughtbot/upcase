@@ -143,6 +143,7 @@ Workshops::Application.routes.draw do
   get '/geocodingonrails' => redirect('/products/22-geocoding-on-rails')
   get '/5by5' => redirect('/workshops/19-design-for-developers?utm_source=5by5')
   get '/rubyist-booster-shot' => "pages#show", as: :rubyist_booster_shot, id: "rubyist-booster-shot"
+  get '/live' => redirect(OfficeHours.url)
 
   patch '/my_account' => 'users#update', as: 'edit_my_account'
   get '/my_account' => 'users#edit', as: 'my_account'
