@@ -1,11 +1,8 @@
+# Handlers for Stripe's webhook.
 StripeEvent.setup do
   subscribe 'invoice.payment_succeeded' do |event|
-    subscription_plan = event.data.object.lines.subscriptions.first.plan
-
-    if PlanFinder.where(sku: subscription_plan.id).first
-      paid_invoice = SubscriptionInvoice.new(event.data.object)
-      InvoicePaymentProcessor.send_receipt_and_notify_of_subscription_billing(paid_invoice)
-    end
+    invoice = SubscriptionInvoice.new(event.data.object)
+    InvoiceNotifier.new(invoice).send_receipt
   end
 
   subscribe 'customer.subscription.deleted' do |event|

@@ -1,22 +1,12 @@
-class InvoicePaymentProcessor
+class InvoiceNotifier
   def initialize(invoice)
     @invoice = invoice
-  end
-
-  def self.send_receipt_and_notify_of_subscription_billing(invoice)
-    payment_processor = new(invoice)
-    payment_processor.send_receipt
-    payment_processor.notify_of_subscription_billing
   end
 
   def send_receipt
     if invoice_has_a_user?
       email_receipt
-    end
-  end
-
-  def notify_of_subscription_billing
-    unless invoice_has_a_user?
+    else
       notify_airbrake_of_missing_user
     end
   end
