@@ -4,7 +4,7 @@ describe Section do
   # Associations
   it { should belong_to(:workshop) }
   it { should have_many(:paid_purchases) }
-  it { should have_many(:purchases) }
+  it { should have_many(:purchases).dependent(:destroy) }
   it { should have_many(:section_teachers) }
   it { should have_many(:unpaid_purchases) }
   it { should have_many(:teachers).through(:section_teachers) }
