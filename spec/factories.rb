@@ -78,7 +78,9 @@ FactoryGirl.define do
     end
   end
 
-  factory :download
+  factory :download do
+    download_file_name { 'some_video.mpg' }
+  end
 
   factory :follow_up do
     email
@@ -127,6 +129,9 @@ FactoryGirl.define do
 
     factory :screencast, class: 'Screencast' do
     end
+
+    factory :show, class: 'Show' do
+    end
   end
 
   factory :individual_plan, aliases: [:plan] do
@@ -141,6 +146,17 @@ FactoryGirl.define do
       includes_mentor false
       includes_workshops false
     end
+  end
+
+  factory :product_license do
+    discounted false
+    offering_type 'Book'
+    original_price 10
+    price 10
+    product_id 123
+    sku 'book1'
+    variant 'individual'
+    initialize_with { new(attributes) }
   end
 
   factory :team_plan do

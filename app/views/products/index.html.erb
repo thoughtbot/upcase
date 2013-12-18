@@ -12,6 +12,13 @@
   <%= render partial: 'products/workshop', collection: @catalog.in_person_workshops %>
 </section>
 
+<section id="shows" class="shows vertical-slider revealed">
+  <header>
+    <h2>All shows</h2>
+  </header>
+  <%= render @catalog.shows %>
+</section>
+
 <section id="screencasts" class="screencasts vertical-slider revealed">
   <header>
     <h2>All screencasts</h2>

@@ -5,6 +5,7 @@ feature 'The products index' do
     workshop = create(:workshop)
     screencast = create(:screencast)
     book = create(:book)
+    show = create(:show)
 
     visit products_path
 
@@ -19,6 +20,9 @@ feature 'The products index' do
     end
     within('.reading') do
       expect(page).to have_css("a[title='#{book.name}']")
+    end
+    within('.shows') do
+      expect(page).to have_content(show.name)
     end
   end
 end

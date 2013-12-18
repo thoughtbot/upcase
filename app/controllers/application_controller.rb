@@ -24,6 +24,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user_has_access_to_workshops?
 
+  def current_user_has_access_to_shows?
+    current_user && current_user.has_access_to_shows?
+  end
+  helper_method :current_user_has_access_to_shows?
+
   def subscription_includes_mentor?
     current_user.has_subscription_with_mentor?
   end
@@ -54,6 +59,9 @@ class ApplicationController < ActionController::Base
   helper_method :topics
 
   def product_param
-    params[:product_id] || params[:screencast_id] || params[:book_id]
+    params[:product_id] ||
+      params[:screencast_id] ||
+      params[:book_id] ||
+      params[:show_id]
   end
 end

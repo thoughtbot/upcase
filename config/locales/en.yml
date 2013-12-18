@@ -23,9 +23,15 @@ en:
     meta_description: 'Workshops, screencasts, videos, and books to help you learn web design and development.'
     app_name: 'thoughtbot Learn'
 
-  dashboard:
+  dashboards:
     show:
       contact_your_mentor: "Contact your mentor, %{mentor_name}"
+      no_workshops:
+        title_html: "Workshops are locked &mdash; %{link} to get access"
+        link: "upgrade to Prime Workshops"
+      no_shows:
+        title_html: "Workshops and shows are locked &mdash; %{link} to get access"
+        link: "subscribe to Prime"
 
   individual_plans:
     mentoring: '1-1 Mentoring'
@@ -61,6 +67,8 @@ en:
         company_html: "For your company: %{price}"
         subscription:
           individual_html: "%{price}"
+    license:
+      or_buy_individually: "Or buy individually"
 
   workshops:
     overlapping: You're already taking another workshop

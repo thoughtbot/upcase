@@ -26,7 +26,7 @@ describe MentorHelper do
       mentor = stub('mentor',
                     email: 'bob@thoughtbot.com',
                     first_name: 'Bob')
-      anchor_text = I18n.t('dashboard.show.contact_your_mentor',
+      anchor_text = I18n.t('dashboards.show.contact_your_mentor',
                            mentor_name: mentor.first_name)
 
       result = helper.mentor_contact_link(mentor)
