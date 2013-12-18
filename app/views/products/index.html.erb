@@ -8,20 +8,20 @@
   <header>
     <h2>All workshops</h2>
   </header>
-  <%= render partial: 'products/workshop', collection: online_workshops %>
-  <%= render partial: 'products/workshop', collection: in_person_workshops %>
+  <%= render partial: 'products/workshop', collection: @catalog.online_workshops %>
+  <%= render partial: 'products/workshop', collection: @catalog.in_person_workshops %>
 </section>
 
 <section id="screencasts" class="screencasts vertical-slider revealed">
   <header>
     <h2>All screencasts</h2>
   </header>
-  <%= render screencasts %>
+  <%= render @catalog.screencasts %>
 </section>
 
 <section id="books" class="reading vertical-slider revealed">
   <header>
     <h2>All books</h2>
   </header>
-  <%= render books %>
+  <%= render @catalog.books %>
 </section>

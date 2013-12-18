@@ -48,26 +48,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def in_person_workshops
-    Workshop.only_active.by_position.in_person
-  end
-  helper_method :in_person_workshops
-
-  def online_workshops
-    Workshop.only_active.by_position.online
-  end
-  helper_method :online_workshops
-
-  def books
-    Book.active.ordered
-  end
-  helper_method :books
-
-  def screencasts
-    Screencast.active.newest_first
-  end
-  helper_method :screencasts
-
   def topics
     Topic.top
   end

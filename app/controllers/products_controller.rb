@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   def index
+    @catalog = Catalog.new
     render layout: 'header-only'
   end
 
