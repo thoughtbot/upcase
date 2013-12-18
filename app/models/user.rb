@@ -61,6 +61,10 @@ class User < ActiveRecord::Base
     subscription.present? && subscription.active?
   end
 
+  def has_access_to_shows?
+    has_active_subscription?
+  end
+
   def has_access_to_workshops?
     has_active_subscription? && subscription.includes_workshops?
   end

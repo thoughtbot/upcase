@@ -1,0 +1,33 @@
+require 'spec_helper'
+
+feature 'User views show' do
+  scenario 'with a subscription' do
+    user = create(:user, :with_subscription)
+    show = create(:show)
+    video = create(:video, watchable: show)
+    download = create(:download, purchaseable: show)
+
+    visit dashboard_path(as: user)
+    click_on show.name
+    click_on 'Get this show'
+    click_on 'Get Access'
+
+    expect(page).to have_content(show.name)
+    expect(page).to have_content(video.title)
+    expect(page).to have_content(download.display_name)
+  end
+
+  scenario 'without a subscription' do
+    user = create(:user)
+    show = create(:show)
+
+    visit dashboard_path(as: user)
+
+    expect(page).not_to have_link_to(show.name)
+    expect(page).to have_content('subscribe to Prime to get access')
+  end
+
+  def have_link_to(text)
+    have_selector('a', text: text)
+  end
+end

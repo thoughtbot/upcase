@@ -32,6 +32,13 @@ describe Catalog do
     end
   end
 
+  describe '#shows' do
+    it 'returns active shows by name' do
+      catalog = Catalog.new
+      expect(catalog.shows).to find_relation(Show.active.ordered)
+    end
+  end
+
   describe '#to_partial_path' do
     it 'returns a renderable path' do
       catalog = Catalog.new

@@ -2,8 +2,12 @@
   <%= render 'products/discount', product: product %>
   <%= render 'offerings/prime_purchase', offering: product %>
 
+  <% if !current_user_has_active_subscription? && licenses.present? %>
+    <p class="or"><%= t '.or_buy_individually' %></p>
+  <% end %>
+
   <% if product.active? %>
-    <%= render product.licenses_for(current_user) %>
+    <%= render licenses %>
   <% else %>
     <%= render 'products/inactive', product: product %>
   <% end %>

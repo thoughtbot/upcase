@@ -65,6 +65,11 @@ Workshops::Application.routes.draw do
     resources :purchases, only: [:create]
   end
 
+  resources :shows, only: :show, controller: 'products' do
+    resources :redemptions, only: [:new]
+    resources :purchases, only: [:show]
+  end
+
   resources :purchases, only: [:show] do
     resources :videos, only: [:show]
     member do
@@ -77,6 +82,9 @@ Workshops::Application.routes.draw do
       resources :purchases, only: [:new, :create]
     end
     resources :screencasts, only: [] do
+      resources :purchases, only: [:new, :create]
+    end
+    resources :shows, only: [] do
       resources :purchases, only: [:new, :create]
     end
     resources :sections, only: [] do

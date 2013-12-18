@@ -4,8 +4,12 @@ module MentorHelper
   end
 
   def mentor_contact_link(mentor)
-    mail_to mentor.email,
-      I18n.t('dashboard.show.contact_your_mentor',
-             mentor_name: mentor.first_name)
+    mail_to(
+      mentor.email,
+      I18n.t(
+        'dashboards.show.contact_your_mentor',
+        mentor_name: mentor.first_name
+      )
+    )
   end
 end

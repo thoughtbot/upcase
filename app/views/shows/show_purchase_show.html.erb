@@ -1,0 +1,16 @@
+<% content_for :subject_block do %>
+  <h1><%= @purchaseable.name %></h1>
+  <h2 class="tagline">
+    Watch or download episodes.
+  </h2>
+<% end %>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <section id="videos">
+      <%= render @purchaseable.videos.ordered, purchase: @purchase %>
+    </section>
+  </div>
+</div>
+
+<%= render 'shows/aside', purchaseable: @purchaseable, purchase: @purchase %>

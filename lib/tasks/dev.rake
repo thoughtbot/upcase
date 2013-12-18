@@ -25,6 +25,8 @@ namespace :dev do
 
     puts_product FactoryGirl.create(:screencast)
     puts_product FactoryGirl.create(:screencast)
+
+    puts_product FactoryGirl.create(:show, name: 'The Weekly Iteration')
   end
 
   def create_sections_with_workshops
