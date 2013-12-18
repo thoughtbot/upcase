@@ -7,8 +7,4 @@ module SessionHelpers
   def current_user
     @current_user
   end
-
-  def sign_out
-    visit root_path(as: nil)
-  end
 end

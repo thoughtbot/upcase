@@ -4,6 +4,12 @@
   padding: .75rem 1.25rem;
   @include position(absolute, 0px 0px 0 0);
   z-index: 3;
+
+  a {
+    color: $darkwarmgray;
+    font-family: $sans-serif;
+    text-transform:lowercase;
+  }
 }
 
 .journey-headline {

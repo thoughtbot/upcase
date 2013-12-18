@@ -1,10 +1,13 @@
 <%= content_for :additional_body_classes, 'prime-marketing' %>
 
-<% if signed_in? %>
-  <%= link_to 'account', my_account_path, class: 'prime-signin' %>
-<% else %>
-  <%= link_to 'sign in', sign_in_path, class: 'prime-signin' %>
-<% end %>
+<div class="prime-signin">
+  <% if signed_in? %>
+    <%= link_to 'Account', my_account_path %> |
+    <%= link_to 'Sign out', sign_out_path  %>
+  <% else %>
+    <%= link_to 'Sign in', sign_in_path %>
+  <% end %>
+</div>
 
 <section class="journey-headline">
   <div class="logo">
