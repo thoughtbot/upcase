@@ -1,0 +1,8 @@
+<section class="products card-slider header">
+  <a class="nav prev disabled"></a>
+  <%= render partial: 'products/workshop', collection: catalog.online_workshops %>
+  <%= render partial: 'products/workshop', collection: catalog.in_person_workshops %>
+  <%= render catalog.screencasts %>
+  <%= render catalog.books %>
+  <a class="nav next"></a>
+</section>
