@@ -14,6 +14,6 @@ class Catalog
   end
 
   def screencasts
-    Screencast.active.ordered
+    Screencast.active.newest_first
   end
 end
