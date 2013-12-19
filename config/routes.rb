@@ -158,11 +158,13 @@ Workshops::Application.routes.draw do
   resources :users, controller: 'users' do
     resources :notes, only: [:create, :edit, :update]
     resource :timeline, only: :show
+    resource :password, :controller => 'passwords', :only => [:create, :edit, :update]
   end
   get '/sign_up' => 'users#new', as: 'sign_up_app'
   get '/sign_in' => 'sessions#new', as: 'sign_in_app'
   get '/subscription-graph' => 'pages#show', as: :subscription_graph, id: 'subscription_graph'
-  resources :passwords, controller: 'passwords'
+  resources :passwords, controller: 'passwords', :only => [:create, :new]
+
   resource :dashboard, only: :show
 
   mount Split::Dashboard, at: 'split'

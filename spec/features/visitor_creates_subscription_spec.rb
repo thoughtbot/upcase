@@ -5,7 +5,6 @@ feature 'Visitor signs up for a subscription' do
   background do
     create_plan
     create_mentors
-    sign_out
   end
 
   scenario 'visitor attempts to subscribe and creates email/password user' do
