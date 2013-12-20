@@ -53,6 +53,9 @@ Workshops::Application.configure do
   config.serve_static_assets  = true
   config.static_cache_control = "public, max-age=3600"
 
+  # Use memory cache to avoid errors when running tests in parallel
+  config.cache_store = :memory_store
+
   HOST = 'www.example.com'
   config.action_mailer.default_url_options = { host: HOST }
 
