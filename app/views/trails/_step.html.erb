@@ -1,16 +1,18 @@
 <section class='trail-map-steps' data-name="<%= trail.name %>">
   <h2><%= step.name %></h2>
-  <ul class="learn">
+  <% if step.thoughtbot_resources_present? %>
     <h3>Use these thoughtbot resources first</h3>
-    <%= render partial: 'trails/resource', collection: step.thoughtbot_resources %>
-  </ul>
-  <% if step.resources.present? %>
+    <ul class="learn">
+      <%= render partial: 'trails/resource', collection: step.thoughtbot_resources %>
+    </ul>
+  <% end %>
+  <% if step.resources_present? %>
     <h3>Use these additional resources for reference and additional practice</h3>
     <ul class="other">
       <%= render partial: 'trails/resource', collection: step.resources %>
     </ul>
   <% end %>
-  <% if step.validations.present? %>
+  <% if step.validations_present? %>
     <h3><%= step.name %> developers should be able to</h3>
     <ul>
       <%= render partial: 'trails/validation', collection: step.validations %>
