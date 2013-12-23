@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe SubscriptionCountReport do
   before do
-    Timecop.freeze(Date.new(2013,10,28))
+    Timecop.freeze(Time.zone.parse('2013-10-28 10:00:00'))
   end
 
   after do
@@ -26,13 +26,13 @@ describe SubscriptionCountReport do
     end
   end
 
-  def create_user_with_subscription(subscription_date = Time.zone.today - 1)
+  def create_user_with_subscription(subscription_date)
     subscription = create(:subscription, created_at: subscription_date)
     user = create(:user, subscription: subscription, created_at: subscription_date)
     user
   end
 
-  def unsubscribe_user(user, subscription_date = Time.zone.today)
+  def unsubscribe_user(user, subscription_date)
     user.subscription.update(deactivated_on: subscription_date)
   end
 end

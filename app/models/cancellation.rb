@@ -25,7 +25,7 @@ class Cancellation
   def record_scheduled_cancellation_date(stripe_customer)
     @subscription.update_column(
       :scheduled_for_cancellation_on,
-      Time.at(stripe_customer.subscription.current_period_end)
+      Time.zone.at(stripe_customer.subscription.current_period_end)
     )
   end
 end

@@ -93,7 +93,7 @@ FactoryGirl.define do
     contributor { user }
 
     trait :current_week do
-      created_at Time.local(2013, 'aug', 5)
+      created_at Time.zone.local(2013, 'aug', 5)
     end
   end
 
@@ -296,11 +296,11 @@ FactoryGirl.define do
     user
 
     trait :previous_week do
-      created_at Time.local(2013, 'jul', 29)
+      created_at Time.zone.local(2013, 'jul', 29)
     end
 
     trait :current_week do
-      created_at Time.local(2013, 'aug', 5)
+      created_at Time.zone.local(2013, 'aug', 5)
     end
   end
 
