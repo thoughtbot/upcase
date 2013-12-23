@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe SubscriptionCountReport do
   before do
-    Timecop.freeze(Date.new(2013,10,28))
+    Timecop.freeze(Time.zone.parse('2013-10-28 10:00:00'))
   end
 
   after do
