@@ -26,13 +26,13 @@ describe SubscriptionCountReport do
     end
   end
 
-  def create_user_with_subscription(subscription_date = Time.zone.today - 1)
+  def create_user_with_subscription(subscription_date)
     subscription = create(:subscription, created_at: subscription_date)
     user = create(:user, subscription: subscription, created_at: subscription_date)
     user
   end
 
-  def unsubscribe_user(user, subscription_date = Time.zone.today)
+  def unsubscribe_user(user, subscription_date)
     user.subscription.update(deactivated_on: subscription_date)
   end
 end
