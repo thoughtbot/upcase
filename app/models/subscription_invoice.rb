@@ -109,7 +109,7 @@ class SubscriptionInvoice
   end
 
   def convert_stripe_time(time)
-    Time.at(time)
+    Time.zone.at(time)
   end
 
   def subscription

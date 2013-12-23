@@ -19,7 +19,7 @@ describe SubscriptionInvoice do
     let(:invoice) { SubscriptionInvoice.new('in_1s4JSgbcUaElzU') }
 
     it 'has a number equal to its subscription id and date' do
-      date = Time.at(1369159688)
+      date = Time.zone.at(1369159688)
       invoice.number.should == date.to_s(:invoice)
     end
 
@@ -40,7 +40,7 @@ describe SubscriptionInvoice do
     end
 
     it 'returns the invoice date from stripe' do
-      invoice.date.should eq Time.at(1369159688)
+      invoice.date.should eq Time.zone.at(1369159688)
     end
 
     it 'returns the subscription name from stripe' do
