@@ -9,4 +9,10 @@ describe MailchimpRemovalJob do
 
     expect(FakeMailchimp.lists['product']).not_to include 'user@example.com'
   end
+
+  it 'silently fail if the mailing list is missing' do
+    Gibbon.stubs new: stub(lists: {"total"=>0, "data"=>[]})
+
+    expect { MailchimpRemovalJob.new('product', 'user@example.com').perform }.not_to raise_error
+  end
 end

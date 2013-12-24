@@ -13,4 +13,13 @@ describe MailchimpFulfillmentJob do
     expect(master_list).to include 'user@example.com'
     expect(FakeMailchimp.lists['product']).to include 'user@example.com'
   end
+
+  it 'notifies Airbrake if the mailing list is missing' do
+    Gibbon.stubs new: stub(lists: {"total"=>0, "data"=>[]}, list_subscribe: true)
+    Airbrake.stubs(:notify_or_ignore)
+
+    MailchimpFulfillmentJob.new('product', 'user@example.com').perform
+
+    expect(Airbrake).to have_received(:notify_or_ignore)
+  end
 end
