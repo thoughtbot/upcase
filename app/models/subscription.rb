@@ -1,6 +1,5 @@
 # This class represents a user's subscription to Learn content
 class Subscription < ActiveRecord::Base
-  MAILING_LIST = 'Active Subscribers'
   GITHUB_TEAM = 516450
 
   belongs_to :user
@@ -15,7 +14,6 @@ class Subscription < ActiveRecord::Base
   validates :plan_type, presence: true
   validates :user_id, presence: true
 
-  after_create :add_user_to_mailing_list
   after_create :add_user_to_github_team
 
   def self.deliver_welcome_emails
@@ -46,7 +44,6 @@ class Subscription < ActiveRecord::Base
 
   def deactivate
     deactivate_subscription_purchases
-    remove_user_from_mailing_list
     remove_user_from_github_team
     update_column(:deactivated_on, Time.zone.today)
   end
@@ -93,14 +90,6 @@ class Subscription < ActiveRecord::Base
     user.subscription_purchases.each do |purchase|
       PurchaseRefunder.new(purchase).refund
     end
-  end
-
-  def add_user_to_mailing_list
-    MailchimpFulfillmentJob.enqueue(MAILING_LIST, user.email)
-  end
-
-  def remove_user_from_mailing_list
-    MailchimpRemovalJob.enqueue(MAILING_LIST, user.email)
   end
 
   def add_user_to_github_team

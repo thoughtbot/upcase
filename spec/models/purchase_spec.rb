@@ -187,17 +187,6 @@ describe Purchase do
     end
   end
 
-  it 'fulfills with mailchimp' do
-    product = create(:book)
-    purchase = build(:purchase, purchaseable: product)
-    fulfillment = stub(:fulfill)
-    MailchimpFulfillment.stubs(:new).returns(fulfillment)
-
-    purchase.save!
-
-    fulfillment.should have_received(:fulfill)
-  end
-
   it 'uses its lookup for its param' do
     purchase = build(:purchase, lookup: 'findme')
 

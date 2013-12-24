@@ -17,7 +17,6 @@ WebMock.disable_net_connect!(:allow_localhost => true)
 Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
 
 FakeStripeRunner.boot
-FakeMailchimpRunner.boot
 FakeGithubRunner.boot
 
 Delayed::Worker.delay_jobs = false
