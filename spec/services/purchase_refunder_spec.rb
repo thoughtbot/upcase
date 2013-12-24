@@ -69,15 +69,4 @@ describe PurchaseRefunder, '#refund' do
       expect(purchase.reload).not_to be_paid
     end
   end
-
-  it "removes the purchaser's email from lists" do
-    product = create(:book)
-    purchase = create(:paid_purchase, purchaseable: product)
-    fulfillment = stub(:remove)
-    MailchimpFulfillment.stubs(:new).returns(fulfillment)
-
-    PurchaseRefunder.new(purchase).refund
-
-    expect(fulfillment).to have_received(:remove)
-  end
 end
