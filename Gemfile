@@ -83,9 +83,9 @@ end
 group :test do
   gem 'bourne'
   gem 'capybara'
-  gem 'capybara_discoball',
-    github: 'thoughtbot/capybara_discoball'
+  gem 'capybara_discoball', github: 'thoughtbot/capybara_discoball'
   gem 'capybara-webkit'
+  gem 'codeclimate-test-reporter', require: nil
   gem 'database_cleaner'
   gem 'email_spec', '1.2.1'
   gem 'factory_girl_rails'
