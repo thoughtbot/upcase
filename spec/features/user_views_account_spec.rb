@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'Account Settings' do
   scenario 'user views subscription' do
-    user = create(:user, :with_subscription)
+    user = create(:subscriber)
 
     visit edit_my_account_path(as: user)
 

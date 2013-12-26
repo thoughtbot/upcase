@@ -87,7 +87,7 @@ describe IndividualPlan do
 
     it 'returns nil when a user has not purchased the plan' do
       create_mentors
-      user = create(:user, :with_github)
+      user = create(:user)
       purchase = create(:plan_purchase)
       plan = purchase.purchaseable
 

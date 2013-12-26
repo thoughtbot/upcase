@@ -6,8 +6,7 @@ describe User do
     it { should have_many(:purchases) }
     it { should have_many(:completions) }
     it { should have_many(:notes).order('created_at DESC') }
-    it { should belong_to(:mentor).class_name('User') }
-    it { should have_many(:mentees).class_name('User') }
+    it { should belong_to(:mentor) }
     it { should have_one(:subscription).dependent(:destroy) }
   end
 
@@ -84,7 +83,7 @@ describe User do
 
   describe '#subscribed_at' do
     it 'returns the date the user subscribed if the user has a subscription' do
-      user = create(:user, :with_subscription)
+      user = create(:subscriber)
 
       expect(user.subscribed_at).to eq user.subscription.created_at
     end
@@ -181,38 +180,14 @@ describe User do
     end
   end
 
-  describe '.mentors' do
-    it 'includes only mentors' do
-      user = create(:user)
-      mentor = create(:user, available_to_mentor: true)
-
-      expect(User.mentors).to include mentor
-      expect(User.mentors).not_to include user
-    end
-  end
-
   describe '#assign_mentor' do
     it 'sets the given user as the mentor' do
       mentee = create(:user)
-      mentor = create(:user, available_to_mentor: true)
+      mentor = create(:mentor)
 
       mentee.assign_mentor(mentor)
 
       expect(mentee.mentor).not_to be_nil
-    end
-  end
-
-  describe '.find_or_sample_mentor' do
-    it 'returns a mentor for the given id' do
-      mentor = create(:user)
-
-      expect(User.find_or_sample_mentor(mentor.id)).to eq mentor
-    end
-
-    it 'returns a random mentor if one cannot be found with the given id' do
-      mentor = create(:user, available_to_mentor: true)
-
-      expect(User.find_or_sample_mentor(nil)).to eq mentor
     end
   end
 
@@ -242,7 +217,7 @@ describe User do
 
   describe '#plan_name' do
     it 'delegates to Subscription for the Plan name' do
-      user = create(:user, :with_subscription)
+      user = create(:subscriber)
       expect(user.plan_name).to eq user.subscription.plan.name
     end
 
@@ -265,14 +240,6 @@ describe User do
       OauthAccessToken.stubs(:for_user).with(user).returns(nil)
 
       expect(user.has_logged_in_to_forum?).to eq false
-    end
-  end
-
-  describe '#availability' do
-    it "has a default" do
-      user = User.new
-
-      expect(user.availability).to eq '11am to 5pm on Fridays'
     end
   end
 
@@ -358,7 +325,7 @@ describe User do
 
     context 'when the user has an inactive subscription' do
       it 'returns false' do
-        user = create(:user, :with_subscription)
+        user = create(:subscriber)
         user.subscription.stubs(:active?).returns(false)
 
         expect(user.has_access_to_workshops?).to_not be
@@ -367,7 +334,7 @@ describe User do
 
     context 'when the user has an active subscription' do
       it "delegates to the subscription's includes_workshops? method" do
-        user = create(:user, :with_subscription)
+        user = create(:subscriber)
         user.subscription.stubs(:includes_workshops?).returns('expected')
 
         expect(user.has_access_to_workshops?).to eq 'expected'

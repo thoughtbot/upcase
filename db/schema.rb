@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131130183532) do
+ActiveRecord::Schema.define(version: 20131226142103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,13 @@ ActiveRecord::Schema.define(version: 20131130183532) do
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
   end
+
+  create_table "mentors", force: true do |t|
+    t.integer "user_id",                                         null: false
+    t.string  "availability", default: "11am to 5pm on Fridays", null: false
+  end
+
+  add_index "mentors", ["user_id"], name: "index_mentors_on_user_id", using: :btree
 
   create_table "notes", force: true do |t|
     t.integer  "user_id"
@@ -337,15 +344,15 @@ ActiveRecord::Schema.define(version: 20131130183532) do
 
   create_table "users", force: true do |t|
     t.string   "email"
-    t.string   "encrypted_password",  limit: 128
-    t.string   "salt",                limit: 128
-    t.string   "confirmation_token",  limit: 128
-    t.string   "remember_token",      limit: 128
-    t.boolean  "email_confirmed",                 default: true,                     null: false
+    t.string   "encrypted_password", limit: 128
+    t.string   "salt",               limit: 128
+    t.string   "confirmation_token", limit: 128
+    t.string   "remember_token",     limit: 128
+    t.boolean  "email_confirmed",                default: true,  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "reference"
-    t.boolean  "admin",                           default: false,                    null: false
+    t.boolean  "admin",                          default: false, null: false
     t.string   "stripe_customer_id"
     t.string   "github_username"
     t.string   "auth_provider"
@@ -358,10 +365,8 @@ ActiveRecord::Schema.define(version: 20131130183532) do
     t.string   "zip_code"
     t.string   "country"
     t.string   "name"
-    t.boolean  "available_to_mentor",             default: false
     t.text     "bio"
     t.integer  "mentor_id"
-    t.string   "availability",                    default: "11am to 5pm on Fridays", null: false
   end
 
   add_index "users", ["admin"], name: "index_users_on_admin", using: :btree

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Widgets::TotalSubscriberCountsController do
   it 'returns the total subscriber count for all plans' do
-    create(:user, :with_subscription)
+    create(:subscriber)
     create(:user, :with_team_subscription)
 
     get :show, format: :json

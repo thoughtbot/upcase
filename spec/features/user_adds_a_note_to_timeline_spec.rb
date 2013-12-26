@@ -52,7 +52,7 @@ feature 'User adds a note to timeline' do
     mentee = create(:user, mentor: mentor)
     note = NoteOnPage.new('This is a note from your mentor!')
 
-    visit user_timeline_path(mentee, as: mentor)
+    visit user_timeline_path(mentee, as: mentor.user)
     note.create
 
     expect(note).to be_displayed_on_page

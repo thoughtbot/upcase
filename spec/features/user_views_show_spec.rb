@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'User views show' do
   scenario 'with a subscription' do
-    user = create(:user, :with_subscription)
+    user = create(:subscriber)
     show = create(:show)
     video = create(:video, watchable: show)
     download = create(:download, purchaseable: show)

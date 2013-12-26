@@ -25,7 +25,7 @@ feature 'Purchasing a product' do
   end
 
   scenario 'Visitor signs in with GitHub while purchasing a product' do
-    create(:user, :with_github)
+    create(:user, :with_github_auth)
     product = create(:screencast)
 
     visit product_path(product)

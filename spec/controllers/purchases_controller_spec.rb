@@ -5,7 +5,7 @@ include StubCurrentUserHelper
 describe PurchasesController do
   describe '#new when purchasing a screencast as a user with an active subscription' do
     it 'renders a subscriber-specific layout' do
-      user = create(:user, :with_subscription)
+      user = create(:subscriber)
       product = create(:screencast)
       stub_current_user_with(user)
 
@@ -20,7 +20,7 @@ describe PurchasesController do
   describe '#new when purchasing a plan as a user with an active subscription' do
     context 'when purchasing an individual plan' do
       it 'renders a subscriber-specific layout' do
-        user = create(:user, :with_subscription)
+        user = create(:subscriber)
         stub_current_user_with(user)
 
         get :new, individual_plan_id: user.subscription.plan
@@ -31,7 +31,7 @@ describe PurchasesController do
 
     context 'when purchase a team plan' do
       it 'renders a subscriber-specific layout' do
-        user = create(:user, :with_subscription)
+        user = create(:subscriber)
         stub_current_user_with(user)
 
         get :new, team_plan_id: user.subscription.plan

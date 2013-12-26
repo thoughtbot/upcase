@@ -42,10 +42,9 @@ describe SubscriptionMailer do
 
     it "contains the mentor's github username" do
       user = user_with_mentor
-      user.mentor.github_username = 'gituser'
       email = welcome_email_for(user)
 
-      expect(email.body).to include('gituser')
+      expect(email.body).to include(user.mentor.github_username)
     end
 
     def user_with_mentor

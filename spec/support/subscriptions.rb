@@ -1,8 +1,7 @@
 module Subscriptions
   def sign_in_as_user_with_subscription
     @current_user = create(
-      :user,
-      :with_subscription,
+      :subscriber,
       stripe_customer_id: FakeStripe::CUSTOMER_ID
     )
     visit dashboard_path(as: @current_user)
@@ -22,6 +21,6 @@ module Subscriptions
   end
 
   def create_mentors
-    create(:user, available_to_mentor: true)
+    create(:mentor)
   end
 end

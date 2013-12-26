@@ -6,22 +6,13 @@ class User < ActiveRecord::Base
   has_many :completions
   has_many :notes, -> { order 'created_at DESC' }
   has_one :subscription, dependent: :destroy
-  belongs_to :mentor, class_name: 'User'
-  has_many :mentees, class_name: 'User', foreign_key: 'mentor_id'
+  belongs_to :mentor
 
   validates :name, presence: true
 
   delegate :email, to: :mentor, prefix: true, allow_nil: true
   delegate :first_name, to: :mentor, prefix: true, allow_nil: true
   delegate :name, to: :mentor, prefix: true, allow_nil: true
-
-  def self.mentors
-    where(available_to_mentor: true)
-  end
-
-  def self.find_or_sample_mentor(user_id)
-    where(id: user_id).first || mentors.sample
-  end
 
   def subscription_purchases
     paid_purchases.where(payment_method: 'subscription')
@@ -79,8 +70,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def assign_mentor(user)
-    update_attribute(:mentor_id, user.id)
+  def assign_mentor(mentor)
+    update(mentor: mentor)
   end
 
   def has_subscription_with_mentor?

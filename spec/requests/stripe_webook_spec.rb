@@ -3,11 +3,7 @@ require 'spec_helper'
 describe 'successful charges are reported by Stripe webhook' do
   it 'calls InvoicePaymentProcessor to send a receipt notifications' do
     InvoicePaymentProcessor.stubs(:send_receipt_and_notify_of_subscription_billing)
-    create(
-      :user,
-      :with_subscription,
-      stripe_customer_id: FakeStripe::CUSTOMER_ID
-    )
+    create(:subscriber, stripe_customer_id: FakeStripe::CUSTOMER_ID)
     create(:plan, sku: 'prime')
 
     simulate_stripe_webhook_firing
@@ -22,11 +18,7 @@ end
 
 describe 'subscription cancellations reported by Stripe webhook' do
   it 'deactivates the subscription' do
-    user = create(
-      :user,
-      :with_subscription,
-      stripe_customer_id: FakeStripe::CUSTOMER_ID
-    )
+    user = create(:subscriber, stripe_customer_id: FakeStripe::CUSTOMER_ID)
 
     simulate_stripe_webhook_firing
 
