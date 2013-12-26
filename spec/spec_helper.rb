@@ -1,3 +1,9 @@
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.configure do |config|
+  config.logger.level = Logger::WARN
+end
+CodeClimate::TestReporter.start
+
 if ENV["COVERAGE"]
   require 'simplecov'
   SimpleCov.start 'rails'
@@ -12,7 +18,7 @@ require 'email_spec'
 require 'webmock/rspec'
 require 'clearance/testing'
 
-WebMock.disable_net_connect!(:allow_localhost => true)
+WebMock.disable_net_connect!(allow_localhost: true, allow: 'codeclimate.com')
 
 Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
 

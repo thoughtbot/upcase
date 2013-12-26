@@ -108,6 +108,8 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.1)
       climate_control (>= 0.0.3, < 1.0)
+    codeclimate-test-reporter (0.2.0)
+      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.0.9)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
@@ -407,6 +409,7 @@ DEPENDENCIES
   capybara-webkit
   capybara_discoball!
   clearance (= 1.0.1)
+  codeclimate-test-reporter
   coffee-rails (~> 4.0.0)
   csv_rails (= 0.6.1)
   curb (= 0.8.1)
