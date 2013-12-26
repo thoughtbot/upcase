@@ -285,6 +285,8 @@ ActiveRecord::Schema.define(version: 20131230094755) do
     t.integer  "plan_id",                                                  null: false
     t.integer  "team_id"
     t.string   "plan_type",                     default: "IndividualPlan", null: false
+    t.decimal  "next_payment_amount",           default: 0.0,              null: false
+    t.date     "next_payment_on"
   end
 
   add_index "subscriptions", ["plan_id", "plan_type"], name: "index_subscriptions_on_plan_id_and_plan_type", using: :btree
