@@ -8,6 +8,7 @@ class Subscription < ActiveRecord::Base
 
   delegate :includes_mentor?, to: :plan
   delegate :includes_workshops?, to: :plan
+  delegate :name, to: :plan, prefix: true
   delegate :stripe_customer_id, to: :user
 
   validates :plan_id, presence: true
@@ -36,6 +37,10 @@ class Subscription < ActiveRecord::Base
 
   def self.created_before(time)
     where('created_at <= ?', time)
+  end
+
+  def self.next_payment_in_2_days
+    where(next_payment_on: 2.days.from_now)
   end
 
   def active?

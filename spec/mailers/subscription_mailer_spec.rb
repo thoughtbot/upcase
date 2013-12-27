@@ -89,5 +89,37 @@ describe SubscriptionMailer do
       SubscriptionMailer.subscription_receipt('email@example.com', 'Prime', 99, 'invoice_id')
     end
   end
-end
 
+  describe '.upcoming_payment_notification' do
+    include Rails.application.routes.url_helpers
+
+    it 'is sent to the given email' do
+      expect(upcoming_payment_notification_email.to).to eq ['email@example.com']
+    end
+
+    it 'is sent from learn' do
+      expect(upcoming_payment_notification_email.from).to eq ['learn@thoughtbot.com']
+    end
+
+    it 'includes a link to account page' do
+      expect(upcoming_payment_notification_email).to have_body_text(my_account_url)
+    end
+
+    it 'includes a correct plan name' do
+      expect(upcoming_payment_notification_email).to have_body_text('Individual')
+    end
+
+    it 'includes the next billing date' do
+      expect(upcoming_payment_notification_email).to have_body_text('2014-01-01')
+    end
+
+    def upcoming_payment_notification_email
+      user = build_stubbed(:user, email: 'email@example.com')
+      subscription = build_stubbed(:subscription, next_payment_on: Date.parse('2014-01-01'),
+        user: user)
+      subscription.stubs(plan_name: 'Individual')
+
+      SubscriptionMailer.upcoming_payment_notification(subscription)
+    end
+  end
+end

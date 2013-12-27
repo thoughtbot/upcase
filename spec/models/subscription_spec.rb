@@ -53,6 +53,17 @@ describe Subscription do
     end
   end
 
+  describe '.next_payment_in_2_days' do
+    it 'only includes subscription that will be billed in 2 days' do
+      billed_today = create(:subscription, next_payment_on: Date.current)
+      billed_tomorrow = create(:subscription, next_payment_on: Date.current + 1.day)
+      billed_2_days_from_now = create(:subscription, next_payment_on: Date.current + 2.days)
+      billed_3_days_from_now = create(:subscription, next_payment_on: Date.current + 3.days)
+
+      expect(Subscription.next_payment_in_2_days).to eq [billed_2_days_from_now]
+    end
+  end
+
   describe '#active?' do
     it "returns true if deactivated_on is nil" do
       subscription = Subscription.new(deactivated_on: nil)
@@ -138,6 +149,15 @@ describe Subscription do
       subscription.change_plan(different_plan)
 
       expect(subscription.plan).to eq different_plan
+    end
+  end
+
+  describe '#plan_name' do
+    it 'delegates to plan' do
+      plan = build_stubbed(:plan, name: 'Individual')
+      subscription = build_stubbed(:subscription, plan: plan)
+
+      expect(subscription.plan_name).to eq 'Individual'
     end
   end
 
