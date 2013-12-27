@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131226142103) do
+ActiveRecord::Schema.define(version: 20131227145412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,8 +113,9 @@ ActiveRecord::Schema.define(version: 20131226142103) do
   end
 
   create_table "mentors", force: true do |t|
-    t.integer "user_id",                                         null: false
-    t.string  "availability", default: "11am to 5pm on Fridays", null: false
+    t.integer "user_id",                                                  null: false
+    t.string  "availability",          default: "11am to 5pm on Fridays", null: false
+    t.boolean "accepting_new_mentees", default: true,                     null: false
   end
 
   add_index "mentors", ["user_id"], name: "index_mentors_on_user_id", using: :btree

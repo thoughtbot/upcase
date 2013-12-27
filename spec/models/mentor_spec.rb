@@ -6,7 +6,7 @@ describe Mentor do
   describe '.featured' do
     it 'executes queries on the relation' do
       mentors = stub('mentors', :sample)
-      Mentor.stubs(all: mentors)
+      Mentor.stubs(accepting_new_mentees: mentors)
 
       Mentor.featured
 
@@ -25,6 +25,12 @@ describe Mentor do
       mentor = create(:mentor)
 
       expect(Mentor.find_or_sample(nil)).to eq mentor
+    end
+
+    it 'does not return unavailable mentors when sampling' do
+      create(:mentor, accepting_new_mentees: false)
+
+      expect(Mentor.find_or_sample(nil)).to be_nil
     end
   end
 

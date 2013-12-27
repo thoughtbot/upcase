@@ -7,11 +7,11 @@ class Mentor < ActiveRecord::Base
   delegate :name, :first_name, :email, :github_username, :bio, to: :user
 
   def self.featured
-    all.sample(NUMBER_OF_MENTORS_TO_FEATURE)
+    accepting_new_mentees.sample(NUMBER_OF_MENTORS_TO_FEATURE)
   end
 
   def self.find_or_sample(mentor_id)
-    where(id: mentor_id).first || all.sample
+    where(id: mentor_id).first || accepting_new_mentees.sample
   end
 
   def active_mentees
@@ -22,5 +22,11 @@ class Mentor < ActiveRecord::Base
 
   def active_mentee_count
     active_mentees.count
+  end
+
+  private
+
+  def self.accepting_new_mentees
+    where(accepting_new_mentees: true)
   end
 end
