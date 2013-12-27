@@ -41,6 +41,7 @@ RailsAdmin.config do |config|
   config.model Mentor do
     list do
       field :name
+      field :available
       field :active_mentee_count do
         label 'Mentees'
       end
@@ -49,6 +50,7 @@ RailsAdmin.config do |config|
 
     show do
       field :user
+      field :available
       field :availability
       field :active_mentees do
         pretty_value do
@@ -65,6 +67,7 @@ RailsAdmin.config do |config|
 
     edit do
       field :user
+      field :available
       field :availability
     end
   end
