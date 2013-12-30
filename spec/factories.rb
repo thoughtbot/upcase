@@ -141,7 +141,7 @@ FactoryGirl.define do
     short_description 'A great Subscription'
     description 'A long description'
 
-    factory :downgraded_plan do
+    factory :basic_plan do
       sku IndividualPlan::PRIME_BASIC_SKU
       includes_mentor false
       includes_workshops false
@@ -345,13 +345,13 @@ FactoryGirl.define do
       end
     end
 
-    trait :with_downgraded_subscription do
+    trait :with_basic_subscription do
       with_github
       stripe_customer_id 'cus12345'
 
       after :create do |instance|
-        downgrade = create(:downgraded_plan)
-        create(:subscription, plan: downgrade, user: instance)
+        plan = create(:basic_plan)
+        create(:subscription, plan: plan, user: instance)
       end
     end
 

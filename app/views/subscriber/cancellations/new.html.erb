@@ -1,6 +1,6 @@
 <div class="text-box-wrapper solo cancellation-discount">
   <article>
-    <% if !current_user.subscription.downgraded? %>
+    <% if @cancellation.can_downgrade_instead? %>
       <p>
         We're sorry to hear you want to cancel. Before we remove the
         subscription from your account, we want to make sure you know about the
@@ -8,8 +8,8 @@
         <%= t('shared.subscription.name') %> except for a mentor and workshops.
         You still get books, screencasts, office hours, the forum, and you'll
         also continue to have access to the workshops you've already taken, for
-        <%= individual_price_per_month(IndividualPlan.downgraded) %> instead of
-        <%= individual_price_per_month(current_user.subscription.plan) %>.
+        <%= individual_price_per_month(@cancellation.downgrade_plan) %> instead of
+        <%= individual_price_per_month(@cancellation.subscribed_plan) %>.
       </p>
       <p>
         Any remaining balance you have on your account will be applied to your
@@ -17,7 +17,7 @@
       </p>
       <p>
         <%= link_to(
-          "Change to #{individual_price_per_month(IndividualPlan.downgraded)} &rarr;".html_safe,
+          "Change to #{individual_price_per_month(@cancellation.downgrade_plan)} &rarr;".html_safe,
           [:subscriber, :downgrade],
           method: :create
         ) %>
@@ -33,13 +33,13 @@
   </article>
   <%= form_for(
     :cancellation, 
-    url: [:subscriber, :cancellation], 
+    url: [:subscriber, :cancellation],
     html: { class: 'cancellation-feedback' }
   ) do |form| %>
-    <% if current_user.subscription.downgraded? %>
-      <%= form.submit t('subscriptions.confirm_cancel') %>
-    <% else %>
+    <% if @cancellation.can_downgrade_instead? %>
       <%= form.submit t('subscriptions.confirm_cancel_reject_deal') %>
+    <% else %>
+      <%= form.submit t('subscriptions.confirm_cancel') %>
     <% end %>
   <% end %>
 </div>

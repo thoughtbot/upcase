@@ -41,12 +41,12 @@ describe IndividualPlan do
     end
   end
 
-  describe '.downgraded' do
-    it 'returns the downgraded plan' do
-      downgraded_plan = create(:downgraded_plan)
+  describe '.basic' do
+    it 'returns the basic plan' do
+      basic_plan = create(:basic_plan)
       create(:plan)
 
-      expect(IndividualPlan.downgraded).to eq downgraded_plan
+      expect(IndividualPlan.basic).to eq basic_plan
     end
   end
 

@@ -22,7 +22,7 @@ class IndividualPlan < ActiveRecord::Base
     active.featured.ordered.first
   end
 
-  def self.downgraded
+  def self.basic
     where(sku: PRIME_BASIC_SKU).first
   end
 

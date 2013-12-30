@@ -47,7 +47,7 @@ describe Mentor do
       mentor = create(:mentor)
       active = create(:subscriber)
       inactive = create(:user, :with_inactive_subscription)
-      without_mentoring = create(:user, :with_downgraded_subscription)
+      without_mentoring = create(:user, :with_basic_subscription)
       mentor.mentees = [active, inactive, without_mentoring]
 
       expect(mentor.active_mentees).to eq [active]

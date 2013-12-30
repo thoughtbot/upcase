@@ -141,17 +141,6 @@ describe Subscription do
     end
   end
 
-  describe "#downgraded?" do
-    it 'is downgraded if it has the downgraded plan' do
-      downgraded_plan = create(:downgraded_plan)
-      subscription = create(:active_subscription)
-
-      subscription.change_plan(downgraded_plan)
-
-      expect(subscription).to be_downgraded
-    end
-  end
-
   describe '.canceled_in_last_30_days' do
     it 'returns nothing when none have been canceled within 30 days' do
       create(:subscription, deactivated_on: 60.days.ago)

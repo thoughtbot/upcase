@@ -70,4 +70,61 @@ describe Cancellation do
       subscription.should have_received(:cancel_subscription).never
     end
   end
+
+  describe '#can_downgrade_instead?' do
+    it 'returns false if the subscribed plan is the downgrade plan' do
+      stub_downgrade_plan
+      subscribed_plan = build_stubbed(:plan)
+      subscription = build_stubbed(:subscription, plan: subscribed_plan)
+      cancellation = Cancellation.new(subscription)
+
+      expect(cancellation.can_downgrade_instead?).to be_true
+    end
+
+    it 'returns true if the subscribed plan is not the downgrade plan' do
+      downgrade_plan = stub_downgrade_plan
+      subscription = build_stubbed(:subscription, plan: downgrade_plan)
+      cancellation = Cancellation.new(subscription)
+
+      expect(cancellation.can_downgrade_instead?).to be_false
+    end
+  end
+
+  describe '#downgrade_plan' do
+    it 'returns the basic plan' do
+      downgrade_plan = stub_downgrade_plan
+      subscription = build_stubbed(:subscription)
+      cancellation = Cancellation.new(subscription)
+
+      expect(cancellation.downgrade_plan).to eq(downgrade_plan)
+    end
+  end
+
+  describe '#subscribed_plan' do
+    it 'returns the plan from the subscription' do
+      subscription = build_stubbed(:subscription)
+      cancellation = Cancellation.new(subscription)
+
+      expect(cancellation.subscribed_plan).to eq(subscription.plan)
+    end
+  end
+
+  describe '#downgrade' do
+    it 'switches to the downgrade plan' do
+      downgrade_plan = stub_downgrade_plan
+      subscription = build_stubbed(:subscription)
+      subscription.stubs(:change_plan)
+      cancellation = Cancellation.new(subscription)
+
+      cancellation.downgrade
+
+      expect(subscription).to have_received(:change_plan).with(downgrade_plan)
+    end
+  end
+
+  def stub_downgrade_plan
+    build_stubbed(:plan).tap do |plan|
+      IndividualPlan.stubs(:basic).returns(plan)
+    end
+  end
 end
