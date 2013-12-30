@@ -27,11 +27,13 @@ describe 'A Purchased book' do
       book = create(:book, :github, name: 'Book title')
       purchase = create(:paid_purchase, purchaseable: book)
 
-      visit purchase_path(purchase)
+      Timecop.freeze(Time.now) do
+        visit purchase_path(purchase)
 
-      readmill = find('a.send-to-readmill')
-      expect(readmill['data-download-url']).to eq epub_url(book)
-      expect(readmill['data-buy-url']).to eq product_url(book)
+        readmill = find('a.send-to-readmill')
+        expect(readmill['data-download-url']).to eq epub_url(book)
+        expect(readmill['data-buy-url']).to eq product_url(book)
+      end
     end
   end
 end
