@@ -129,10 +129,6 @@ Workshops::Application.routes.draw do
 
   resources :topics, only: :index, path: 'trails'
 
-  namespace :reports do
-    resource :purchases_charts, only: :show
-  end
-
   get '/auth/:provider/callback', to: 'auth_callbacks#create'
 
   resource :timeline, only: :show
