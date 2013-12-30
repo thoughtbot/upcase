@@ -22,7 +22,7 @@ describe 'subscription cancellations reported by Stripe webhook' do
 
     simulate_stripe_webhook_firing
 
-    expect(user).not_to have_active_subscription
+    expect(user.reload).not_to have_active_subscription
   end
 
   def simulate_stripe_webhook_firing

@@ -167,6 +167,7 @@ FactoryGirl.define do
 
   factory :team do
     name 'Google'
+    subscription
   end
 
   factory :purchase, aliases: [:individual_purchase] do
@@ -312,6 +313,11 @@ FactoryGirl.define do
     email
     name 'Dan Deacon'
     password 'password'
+    purchased_subscription { subscription }
+
+    ignore do
+      subscription nil
+    end
 
     factory :admin do
       admin true
@@ -341,7 +347,7 @@ FactoryGirl.define do
       stripe_customer_id 'cus12345'
 
       after :create do |instance|
-        create(:subscription, user: instance)
+        instance.purchased_subscription = create(:subscription, user: instance)
       end
     end
 

@@ -20,6 +20,15 @@ module Subscriptions
     click_link 'Prime Membership'
   end
 
+  def settings_page
+    click_on 'Settings'
+    page
+  end
+
+  def have_subscription_to(plan_name)
+    have_css('.subscription', text: plan_name)
+  end
+
   def create_mentors
     create(:mentor)
   end

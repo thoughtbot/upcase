@@ -5,10 +5,12 @@ class User < ActiveRecord::Base
   has_many :purchases
   has_many :completions
   has_many :notes, -> { order 'created_at DESC' }
-  has_one :subscription, dependent: :destroy
+  has_one :purchased_subscription, dependent: :destroy, class_name: 'Subscription'
   belongs_to :mentor
+  belongs_to :team
 
   validates :name, presence: true
+  validates :mentor_id, presence: true, if: :has_subscription_with_mentor?
 
   delegate :email, to: :mentor, prefix: true, allow_nil: true
   delegate :first_name, to: :mentor, prefix: true, allow_nil: true
@@ -82,7 +84,17 @@ class User < ActiveRecord::Base
     subscription.try(:plan).try(:name)
   end
 
+  def subscription
+    purchased_subscription || team_subscription
+  end
+
   private
+
+  def team_subscription
+    if team.present?
+      team.subscription
+    end
+  end
 
   def stripe_customer
     if stripe_customer_id.present?

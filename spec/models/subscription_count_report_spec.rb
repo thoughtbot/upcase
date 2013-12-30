@@ -28,7 +28,12 @@ describe SubscriptionCountReport do
 
   def create_user_with_subscription(subscription_date)
     subscription = create(:subscription, created_at: subscription_date)
-    user = create(:user, subscription: subscription, created_at: subscription_date)
+    user = create(
+      :user,
+      :with_mentor,
+      subscription: subscription,
+      created_at: subscription_date
+    )
     user
   end
 
