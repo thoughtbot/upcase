@@ -16,6 +16,22 @@ class Cancellation
     deliver_unsubscription_survey
   end
 
+  def can_downgrade_instead?
+    !downgraded?
+  end
+
+  def downgrade_plan
+    IndividualPlan.basic
+  end
+
+  def subscribed_plan
+    @subscription.plan
+  end
+
+  def downgrade
+    @subscription.change_plan(IndividualPlan.basic)
+  end
+
   private
 
   def deliver_unsubscription_survey
@@ -27,5 +43,9 @@ class Cancellation
       :scheduled_for_cancellation_on,
       Time.zone.at(stripe_customer.subscription.current_period_end)
     )
+  end
+
+  def downgraded?
+    @subscription.plan == downgrade_plan
   end
 end

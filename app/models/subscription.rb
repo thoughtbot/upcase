@@ -54,10 +54,6 @@ class Subscription < ActiveRecord::Base
     save!
   end
 
-  def downgraded?
-    plan == IndividualPlan.downgraded
-  end
-
   def deliver_welcome_email
     if includes_mentor?
       SubscriptionMailer.welcome_to_prime_from_mentor(user).deliver
