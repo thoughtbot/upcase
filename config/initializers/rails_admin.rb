@@ -125,7 +125,6 @@ RailsAdmin.config do |config|
         field :short_description
         field :description
         field :maximum_students
-        field :external_registration_url
         field :active
         field :video_chat_url
         field :topics

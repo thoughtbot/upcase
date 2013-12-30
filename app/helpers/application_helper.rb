@@ -30,11 +30,7 @@ module ApplicationHelper
   end
 
   def registration_url(section)
-    if section.workshop.external_registration_url.blank?
-      new_section_purchase_path(section, variant: :individual)
-    else
-      section.workshop.external_registration_url
-    end
+    new_section_purchase_path(section, variant: :individual)
   end
 
   def github_auth_path
