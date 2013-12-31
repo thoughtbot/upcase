@@ -4,15 +4,11 @@ class GithubFulfillment
   end
 
   def fulfill
-    if usernames.present?
-      GithubFulfillmentJob.enqueue(team, usernames, @purchase.id)
-    end
+    GithubFulfillmentJob.enqueue(team, usernames, @purchase.id)
   end
 
   def remove
-    if usernames.present?
-      GithubRemovalJob.enqueue(team, usernames)
-    end
+    GithubRemovalJob.enqueue(team, usernames)
   end
 
   private
@@ -26,7 +22,6 @@ class GithubFulfillment
   end
 
   def usernames
-    users = @purchase.github_usernames || []
-    users.map(&:strip).reject(&:blank?).compact
+    @purchase.github_usernames
   end
 end

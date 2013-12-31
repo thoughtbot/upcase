@@ -1,32 +1,26 @@
-class GithubFulfillmentJob < Struct.new(:github_team, :usernames, :purchase_id)
+class GithubFulfillmentJob < Struct.new(:github_team, :username, :purchase_id)
   include ErrorReporting
 
   PRIORITY = 1
   API_SLEEP_TIME = 0.2
 
   def self.enqueue(github_team, usernames, purchase_id=nil)
-    Delayed::Job.enqueue(new(github_team, usernames, purchase_id))
+    usernames.each do |username|
+      job = new(github_team, username, purchase_id)
+      Delayed::Job.enqueue(job, :run_at => API_SLEEP_TIME.seconds.from_now)
+    end
   end
 
   def perform
-    usernames.each do |username|
-      begin
-        github_client.add_team_member(github_team, username)
-      rescue Octokit::NotFound, Net::HTTPBadResponse => e
-        report_error(e, username)
-      end
-      sleep API_SLEEP_TIME
-    end
+    github_client.add_team_member(github_team, username)
+  rescue Octokit::NotFound, Net::HTTPBadResponse
+    email_purchaser
+    raise
   end
 
   private
 
-  def report_error(e, username)
-    email_purchaser(username)
-    Airbrake.notify(e)
-  end
-
-  def email_purchaser(username)
+  def email_purchaser
     if purchase_id
       purchase = Purchase.find(purchase_id)
       PurchaseMailer.fulfillment_error(purchase, username).deliver
