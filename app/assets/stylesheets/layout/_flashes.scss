@@ -10,6 +10,7 @@
     border-width: 0;
     display: inline-block;
     margin-bottom: 0;
+    overflow-y: auto;
     padding: 1rem 2rem;
 
     &.failure {
