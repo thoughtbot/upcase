@@ -236,7 +236,7 @@ FactoryGirl.define do
     teacher
   end
 
-  factory :section_without_teacher, class: Section do
+  factory :section_without_teacher, class: 'Section' do
     association :workshop
     starts_on { 1.day.from_now.to_date }
     ends_on   { 2.days.from_now.to_date }
