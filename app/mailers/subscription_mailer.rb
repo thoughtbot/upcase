@@ -32,6 +32,16 @@ class SubscriptionMailer < BaseMailer
     )
   end
 
+  def upcoming_payment_notification(subscription)
+    @subscription = subscription
+    @user = subscription.user
+
+    mail(
+      to: @user.email,
+      subject: '[Learn] thoughtbot is about to charge for your Learn Prime subscription'
+    )
+  end
+
   private
 
   def mentor_email(mentor)
