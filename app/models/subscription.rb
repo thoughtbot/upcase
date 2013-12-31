@@ -1,10 +1,9 @@
-# This class represents a user's subscription to Learn content
+# This class represents a user or team's subscription to Learn content
 class Subscription < ActiveRecord::Base
-  GITHUB_TEAM = 516450
-
   belongs_to :user
   belongs_to :plan, polymorphic: true
-  belongs_to :team
+
+  has_one :team, dependent: :destroy
 
   delegate :includes_mentor?, to: :plan
   delegate :includes_workshops?, to: :plan
@@ -14,8 +13,6 @@ class Subscription < ActiveRecord::Base
   validates :plan_id, presence: true
   validates :plan_type, presence: true
   validates :user_id, presence: true
-
-  after_create :add_user_to_github_team
 
   def self.deliver_welcome_emails
     recent.each do |subscription|
@@ -48,8 +45,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def deactivate
-    deactivate_subscription_purchases
-    remove_user_from_github_team
+    SubscriptionFulfillment.new(purchase, user).remove
     update_column(:deactivated_on, Time.zone.today)
   end
 
@@ -65,14 +61,14 @@ class Subscription < ActiveRecord::Base
     end
   end
 
+  def purchase
+    user.purchases.for_purchaseable(plan).first
+  end
+
   private
 
   def self.canceled_within_period(start_time, end_time)
     where(deactivated_on: start_time...end_time)
-  end
-
-  def self.subscriber_emails
-    active.joins(:user).pluck(:email)
   end
 
   def self.active
@@ -85,19 +81,5 @@ class Subscription < ActiveRecord::Base
 
   def stripe_customer
     Stripe::Customer.retrieve(stripe_customer_id)
-  end
-
-  def deactivate_subscription_purchases
-    user.subscription_purchases.each do |purchase|
-      PurchaseRefunder.new(purchase).refund
-    end
-  end
-
-  def add_user_to_github_team
-    GithubFulfillmentJob.enqueue(GITHUB_TEAM, [user.github_username])
-  end
-
-  def remove_user_from_github_team
-    GithubRemovalJob.enqueue(GITHUB_TEAM, [user.github_username])
   end
 end

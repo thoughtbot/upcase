@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131230094755) do
+ActiveRecord::Schema.define(version: 20131230195418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -283,14 +283,12 @@ ActiveRecord::Schema.define(version: 20131230094755) do
     t.date     "scheduled_for_cancellation_on"
     t.boolean  "paid",                          default: true,             null: false
     t.integer  "plan_id",                                                  null: false
-    t.integer  "team_id"
     t.string   "plan_type",                     default: "IndividualPlan", null: false
     t.decimal  "next_payment_amount",           default: 0.0,              null: false
     t.date     "next_payment_on"
   end
 
   add_index "subscriptions", ["plan_id", "plan_type"], name: "index_subscriptions_on_plan_id_and_plan_type", using: :btree
-  add_index "subscriptions", ["team_id"], name: "index_subscriptions_on_team_id", using: :btree
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "teachers", force: true do |t|
@@ -316,10 +314,11 @@ ActiveRecord::Schema.define(version: 20131230094755) do
   end
 
   create_table "teams", force: true do |t|
-    t.string   "name",         null: false
+    t.string   "name",            null: false
     t.integer  "team_plan_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "subscription_id", null: false
   end
 
   create_table "topics", force: true do |t|
@@ -370,6 +369,7 @@ ActiveRecord::Schema.define(version: 20131230094755) do
     t.string   "name"
     t.text     "bio"
     t.integer  "mentor_id"
+    t.integer  "team_id"
   end
 
   add_index "users", ["admin"], name: "index_users_on_admin", using: :btree
@@ -377,6 +377,7 @@ ActiveRecord::Schema.define(version: 20131230094755) do
   add_index "users", ["id", "confirmation_token"], name: "index_users_on_id_and_confirmation_token", using: :btree
   add_index "users", ["mentor_id"], name: "index_users_on_mentor_id", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+  add_index "users", ["team_id"], name: "index_users_on_team_id", using: :btree
 
   create_table "videos", force: true do |t|
     t.integer  "watchable_id"

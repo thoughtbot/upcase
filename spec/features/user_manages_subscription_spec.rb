@@ -9,9 +9,9 @@ feature 'User creates a subscription' do
 
   scenario 'creates a Stripe subscription with a valid credit card' do
     subscribe_with_valid_credit_card
-    expect(current_user).to have_active_subscription
     expect(current_path).to eq dashboard_path
     expect(page).to have_content(I18n.t('purchase.flashes.success', name: plan.name))
+    expect(settings_page).to have_subscription_to(plan.name)
   end
 
   scenario 'does not create a Stripe subscription with an invalid credit card' do

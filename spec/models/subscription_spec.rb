@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Subscription do
-  it { should belong_to(:team) }
+  it { should have_one(:team).dependent(:destroy) }
   it { should belong_to(:plan) }
   it { should belong_to(:user) }
 
@@ -13,15 +13,6 @@ describe Subscription do
 
   it 'defaults paid to true' do
     Subscription.new.should be_paid
-  end
-
-  it 'adds the user to the subscriber github team' do
-    GithubFulfillmentJob.stubs(:enqueue)
-
-    subscription = create(:subscription)
-
-    GithubFulfillmentJob.should have_received(:enqueue).
-      with(Subscription::GITHUB_TEAM, [subscription.user.github_username])
   end
 
   describe 'self.paid' do
@@ -86,45 +77,22 @@ describe Subscription do
       expect(subscription.deactivated_on).to eq Time.zone.today
     end
 
-    it 'removes all subscription purchases' do
+    it 'unfulfills itself' do
+      fulfillment = stub('fulfilment', :remove)
       subscription = create(:active_subscription)
-      user = subscription.user
-      create_subscription_purchase(user)
-      book_purchase = create_paid_purchase(user)
-      github_fulfillment = stub_github_fulfillment
+      purchase = create(
+        :purchase,
+        user: subscription.user,
+        purchaseable: subscription.plan
+      )
+      SubscriptionFulfillment.
+        stubs(:new).
+        with(purchase, subscription.user).
+        returns(fulfillment)
 
       subscription.deactivate
 
-      user.paid_purchases.count.should eq 1
-      user.paid_purchases.should eq [book_purchase]
-      user.subscription_purchases.count.should eq 0
-      github_fulfillment.should have_received(:remove)
-    end
-
-    it 'removes the user from the subscriber github team' do
-      GithubRemovalJob.stubs(:enqueue)
-
-      subscription = create(:subscription)
-      subscription.deactivate
-
-      GithubRemovalJob.should have_received(:enqueue).
-        with(Subscription::GITHUB_TEAM, [subscription.user.github_username])
-    end
-
-    def create_subscription_purchase(user)
-      product = create(:book, :github)
-      subscription_purchase = SubscriberPurchase.new(product, user)
-      subscription_purchase.create
-    end
-
-    def create_paid_purchase(user)
-      create(:book_purchase, user: user)
-    end
-
-    def stub_github_fulfillment
-      github_fulfillment = stub(remove: nil)
-      GithubFulfillment.stubs(:new).returns(github_fulfillment)
-      github_fulfillment
+      fulfillment.should have_received(:remove)
     end
   end
 
@@ -214,6 +182,31 @@ describe Subscription do
       subscription = create(:subscription, created_at: 2.days.ago)
 
       expect(Subscription.created_before(1.day.ago)).to eq [subscription]
+    end
+  end
+
+  describe '#purchase' do
+    it 'returns the purchase used to acquire this subscription' do
+      stub_fulfillment
+
+      user = create(:user)
+      plan = create(:plan)
+      other_plan = create(:plan)
+      other_user = create(:user)
+      subscription = create(:subscription, user: user, plan: plan)
+      other_user_purchase =
+        create(:plan_purchase, purchaseable: plan, user: other_user)
+      other_plan_purchase =
+        create(:plan_purchase, purchaseable: other_plan, user: user)
+      subscription_purchase =
+        create(:plan_purchase, purchaseable: plan, user: user)
+
+      expect(subscription.purchase).to eq(subscription_purchase)
+    end
+
+    def stub_fulfillment
+      fulfillment = stub('fulfillment', :fulfill)
+      SubscriptionFulfillment.stubs(:new).returns(fulfillment)
     end
   end
 end

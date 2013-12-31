@@ -199,6 +199,37 @@ describe Purchase do
     purchase.save!
     purchase.lookup.should_not be_nil
   end
+
+  it 'validates the presence of a user when purchasing a plan' do
+    expect(build(:plan_purchase)).to validate_presence_of(:user_id)
+  end
+
+  it 'fulfills a subscription when purchasing a plan' do
+    purchase = build(:plan_purchase)
+    fulfillment = stub_subscription_fulfillment(purchase)
+
+    purchase.save!
+
+    fulfillment.should have_received(:fulfill)
+  end
+
+  it "doesn't fulfill a subscription when not purchasing a plan" do
+    purchase = build(:book_purchase)
+    fulfillment = stub_subscription_fulfillment(purchase)
+
+    purchase.save!
+
+    fulfillment.should have_received(:fulfill).never
+  end
+
+  def stub_subscription_fulfillment(purchase)
+    stub('fulfillment', :fulfill).tap do |fulfillment|
+      SubscriptionFulfillment.
+        stubs(:new).
+        with(purchase, purchase.user).
+        returns(fulfillment)
+    end
+  end
 end
 
 describe Purchase, 'with stripe and a bad card' do
@@ -208,20 +239,6 @@ describe Purchase, 'with stripe and a bad card' do
     product = build(:product, individual_price: 15, company_price: 50)
     purchase = build(:purchase, purchaseable: product, payment_method: 'stripe')
     purchase.save.should be_false
-  end
-end
-
-describe Purchase, 'of a subscription' do
-  it 'validates the presence of a user' do
-    expect(build_plan_purchase).to validate_presence_of(:user_id)
-  end
-
-  def build_plan_purchase
-    build(
-      :plan_purchase,
-      purchaseable: create(:plan),
-      payment_method: 'stripe'
-    )
   end
 end
 
