@@ -106,7 +106,7 @@ GEM
       rails (>= 3.1)
     climate_control (0.0.3)
       activesupport (>= 3.0)
-    cocaine (0.5.1)
+    cocaine (0.5.3)
       climate_control (>= 0.0.3, < 1.0)
     codeclimate-test-reporter (0.2.0)
       simplecov (>= 0.7.1, < 1.0.0)
@@ -168,9 +168,9 @@ GEM
       rack (>= 1.4.5)
     hike (1.2.3)
     hirb (0.6.2)
-    httparty (0.8.1)
-      multi_json
-      multi_xml
+    httparty (0.10.2)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
     httpauth (0.2.0)
     i18n (0.6.9)
     intercom-rails (0.2.24)
@@ -429,7 +429,7 @@ DEPENDENCIES
   heroku-deflater
   high_voltage!
   hirb (= 0.6.2)
-  httparty (= 0.8.1)
+  httparty (~> 0.10.0)
   intercom-rails (~> 0.2.21)
   jquery-rails
   jquery-ui-rails
