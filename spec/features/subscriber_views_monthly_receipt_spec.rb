@@ -61,8 +61,8 @@ feature 'Subscriber views subscription invoices' do
     @current_user.stripe_customer_id = "cus_NOMATCH"
     @current_user.save!
 
-    visit subscriber_invoice_path("in_1s4JSgbcUaElzU")
-
-    expect(page).to have_content 'ActiveRecord::RecordNotFound'
+    expect {
+      visit subscriber_invoice_path("in_1s4JSgbcUaElzU")
+    }.to raise_error ActiveRecord::RecordNotFound
   end
 end
