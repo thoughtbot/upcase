@@ -19,10 +19,22 @@ class Step
     end
   end
 
+  def resources_present?
+    resources
+  end
+
   def thoughtbot_resources
     @resources.select do |resource|
       thoughtbot_resource?(resource)
     end
+  end
+
+  def thoughtbot_resources_present?
+    thoughtbot_resources
+  end
+
+  def validations_present?
+    validations.count >= 1
   end
 
   private
@@ -32,4 +44,5 @@ class Step
       Addressable::URI.parse(resource['uri']).host == 'learn.thoughtbot.com'
     end
   end
+
 end
