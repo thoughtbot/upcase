@@ -126,6 +126,13 @@ FactoryGirl.define do
     end
 
     factory :screencast, class: 'Screencast' do
+      ignore do
+        number_of_videos 1
+      end
+
+      after :create do |screencast, evaluator|
+        FactoryGirl.create_list :video, evaluator.number_of_videos, watchable: screencast
+      end
     end
 
     factory :show, class: 'Show' do
