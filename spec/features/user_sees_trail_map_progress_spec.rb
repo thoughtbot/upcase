@@ -35,7 +35,7 @@ feature 'User can see their trail map progress' do
   end
 
   scenario 'A user sees thoughtbot resources if they are available' do
-    trail = create(:trail, trail_map: fake_trail_map({apply_thoughtbot_resource: true}).trail, topic: topic)
+    trail = create(:trail, trail_map: fake_trail_map(:include_thoughtbot_resource).trail, topic: topic)
 
     visit topic_path(topic)
     expect(page).to have_content "Use these thoughtbot resources first"
@@ -85,8 +85,7 @@ feature 'User can see their trail map progress' do
     @topic ||= create(:topic, name: 'Git', featured: true)
   end
 
-  def fake_trail_map(options = {})
-    options[:apply_thoughtbot_resource] ||= false
-    @fake_trail_map ||= FakeTrailMap.new({thoughtbot_resource: options[:apply_thoughtbot_resource]})
+  def fake_trail_map(include_thoughtbot_resource = false)
+    @fake_trail_map ||= FakeTrailMap.new({thoughtbot_resource: include_thoughtbot_resource})
   end
 end
