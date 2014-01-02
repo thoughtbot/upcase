@@ -137,6 +137,10 @@ class Purchase < ActiveRecord::Base
     @payment ||= Payments::Factory.new(payment_method).new(self)
   end
 
+  def github_usernames
+    Array(super).compact.map(&:strip).reject(&:blank?)
+  end
+
   private
 
   def password_required?

@@ -162,18 +162,6 @@ describe Purchase do
     end
   end
 
-  context 'when not fulfilled_with_github' do
-    it 'does not fulfill with github' do
-      purchase = build(:paid_purchase)
-      fulfillment = stub(:fulfill)
-      GithubFulfillment.stubs(:new).returns(fulfillment)
-
-      purchase.save!
-
-      fulfillment.should have_received(:fulfill).never
-    end
-  end
-
   context 'when fulfilled_with_github' do
     it 'fulfills with github' do
       product = create(:book, :github)
@@ -184,6 +172,26 @@ describe Purchase do
       purchase.save!
 
       fulfillment.should have_received(:fulfill)
+    end
+  end
+
+  describe '#github_usernames' do
+    it 'serializes an array of stripped, non-empty strings' do
+      expect(serialize_github_usernames(['', '  one  ', 'two'])).
+        to eq(%w(one two))
+    end
+
+    it 'serializes nil into an empty array' do
+      expect(serialize_github_usernames(nil)).to eq([])
+    end
+
+    it 'removes nil entries' do
+      expect(serialize_github_usernames([nil, 'name'])).to eq(%w(name))
+    end
+
+    def serialize_github_usernames(github_usernames)
+      purchase = create(:purchase, github_usernames: github_usernames)
+      purchase.reload.github_usernames
     end
   end
 
