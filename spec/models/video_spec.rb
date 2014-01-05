@@ -37,15 +37,15 @@ describe Video do
     it 'returns true when the video has notes' do
       video = build_stubbed(:video, notes: "Some notes")
 
-      expect(video.has_notes?).to be_true
+      expect(video).to have_notes
     end
 
     it 'returns false for videos with empty or no notes' do
       video_one = build_stubbed(:video)
       video_two = build_stubbed(:video, notes: '')
 
-      expect(video_one.has_notes?).to be_false
-      expect(video_two.has_notes?).to be_false
+      expect(video_one).not_to have_notes
+      expect(video_two).not_to have_notes
     end
   end
 
