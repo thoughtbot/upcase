@@ -12,3 +12,4 @@ tags
 .env
 .bundle
 .foreman
+dump.rdb
