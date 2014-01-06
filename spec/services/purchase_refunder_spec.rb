@@ -20,18 +20,6 @@ describe PurchaseRefunder, '#refund' do
     expect(purchase).not_to be_paid
   end
 
-  context 'when not fulfilled_with_github' do
-    it 'does not remove from github' do
-      purchase = create(:paid_purchase)
-      fulfillment = stub(:remove)
-      GithubFulfillment.stubs(:new).returns(fulfillment)
-
-      PurchaseRefunder.new(purchase).refund
-
-      expect(fulfillment).to have_received(:remove).never
-    end
-  end
-
   context 'when fulfilled_with_github' do
     it 'removes from github' do
       product = create(:book, :github)

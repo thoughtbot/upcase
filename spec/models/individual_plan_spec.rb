@@ -176,6 +176,19 @@ describe IndividualPlan do
     end
   end
 
+  describe '#fulfill' do
+    it 'starts a subscription' do
+      user = build_stubbed(:user)
+      purchase = build_stubbed(:purchase, user: user)
+      plan = build_stubbed(:individual_plan)
+      fulfillment = stub_subscription_fulfillment(purchase)
+
+      plan.fulfill(purchase, user)
+
+      expect(fulfillment).to have_received(:fulfill)
+    end
+  end
+
   def create_inactive_subscription_for(plan)
     create(:inactive_subscription, plan: plan)
   end

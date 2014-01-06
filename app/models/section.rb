@@ -143,6 +143,10 @@ class Section < ActiveRecord::Base
     'sections/aside'
   end
 
+  def fulfill(purchase, user)
+    GithubFulfillment.new(purchase).fulfill
+  end
+
   private
 
   def self.xml_content(document, tag_name)

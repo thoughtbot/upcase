@@ -365,4 +365,19 @@ describe Section do
       expect(Section.new.to_aside_partial).to eq 'sections/aside'
     end
   end
+
+  describe '#fulfill' do
+    it 'fulfills using GitHub with a GitHub team' do
+      purchase = build_stubbed(:purchase)
+      user = build_stubbed(:user)
+      fulfillment = stub('fulfillment', :fulfill)
+      workshop = build_stubbed(:workshop, github_team: 'example')
+      section = build_stubbed(:section, workshop: workshop)
+      GithubFulfillment.stubs(:new).with(purchase).returns(fulfillment)
+
+      section.fulfill(purchase, user)
+
+      fulfillment.should have_received(:fulfill)
+    end
+  end
 end

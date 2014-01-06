@@ -121,6 +121,10 @@ class Product < ActiveRecord::Base
     end
   end
 
+  def fulfill(purchase, user)
+    GithubFulfillment.new(purchase).fulfill
+  end
+
   private
 
   def apply_discount(price)

@@ -10,7 +10,7 @@ describe Team do
     it "fulfils that user's subscription" do
       team = create(:team)
       user = create(:user, :with_mentor)
-      fulfillment = stub_subscription_fulfillment(team.subscription, user)
+      fulfillment = stub_team_fulfillment(team, user)
 
       team.add_user(user)
 
@@ -22,8 +22,8 @@ describe Team do
   describe '#remove_user' do
     it "removes that user's subscription" do
       team = create(:team)
-      user = create(:user, :with_mentor, team: team)
-      fulfillment = stub_subscription_fulfillment(team.subscription, user)
+      user = create(:user, :with_mentor)
+      fulfillment = stub_team_fulfillment(team, user)
 
       team.remove_user(user)
 
@@ -32,14 +32,9 @@ describe Team do
     end
   end
 
-  def stub_subscription_fulfillment(subscription, user)
+  def stub_team_fulfillment(team, user)
     purchase = build_stubbed(:purchase)
-    subscription.stubs(:purchase).returns(purchase)
-    stub('fulfillment', fulfill: true, remove: true).tap do |fulfillment|
-      SubscriptionFulfillment.
-        stubs(:new).
-        with(purchase, user).
-        returns(fulfillment)
-    end
+    team.subscription.stubs(:purchase).returns(purchase)
+    stub_subscription_fulfillment(purchase, user)
   end
 end

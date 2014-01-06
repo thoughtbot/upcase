@@ -162,19 +162,6 @@ describe Purchase do
     end
   end
 
-  context 'when fulfilled_with_github' do
-    it 'fulfills with github' do
-      product = create(:book, :github)
-      purchase = build(:purchase, purchaseable: product)
-      fulfillment = stub(:fulfill)
-      GithubFulfillment.stubs(:new).returns(fulfillment)
-
-      purchase.save!
-
-      fulfillment.should have_received(:fulfill)
-    end
-  end
-
   describe '#github_usernames' do
     it 'serializes an array of stripped, non-empty strings' do
       expect(serialize_github_usernames(['', '  one  ', 'two'])).
@@ -212,30 +199,34 @@ describe Purchase do
     expect(build(:plan_purchase)).to validate_presence_of(:user_id)
   end
 
-  it 'fulfills a subscription when purchasing a plan' do
-    purchase = build(:plan_purchase)
-    fulfillment = stub_subscription_fulfillment(purchase)
+  describe '#save' do
+    it 'tells its purchaseable to fulfill' do
+      purchaseable = create(:book)
+      purchaseable.stubs(:fulfill)
+      purchase = build(:purchase, purchaseable: purchaseable)
 
-    purchase.save!
+      purchase.save!
 
-    fulfillment.should have_received(:fulfill)
-  end
+      expect(purchaseable).
+        to have_received(:fulfill).with(purchase, purchase.user)
+    end
 
-  it "doesn't fulfill a subscription when not purchasing a plan" do
-    purchase = build(:book_purchase)
-    fulfillment = stub_subscription_fulfillment(purchase)
+    it 'fulfills a subscription when purchasing a plan' do
+      purchase = build(:plan_purchase)
+      fulfillment = stub_subscription_fulfillment(purchase)
 
-    purchase.save!
+      purchase.save!
 
-    fulfillment.should have_received(:fulfill).never
-  end
+      fulfillment.should have_received(:fulfill)
+    end
 
-  def stub_subscription_fulfillment(purchase)
-    stub('fulfillment', :fulfill).tap do |fulfillment|
-      SubscriptionFulfillment.
-        stubs(:new).
-        with(purchase, purchase.user).
-        returns(fulfillment)
+    it "doesn't fulfill a subscription when not purchasing a plan" do
+      purchase = build(:book_purchase)
+      fulfillment = stub_subscription_fulfillment(purchase)
+
+      purchase.save!
+
+      fulfillment.should have_received(:fulfill).never
     end
   end
 end

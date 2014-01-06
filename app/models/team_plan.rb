@@ -46,4 +46,8 @@ class TeamPlan < ActiveRecord::Base
   def minimum_quantity
     5
   end
+
+  def fulfill(purchase, user)
+    SubscriptionFulfillment.new(purchase, user).fulfill
+  end
 end
