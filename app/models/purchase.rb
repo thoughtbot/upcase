@@ -186,13 +186,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def fulfill
-    if fulfilled_with_github?
-      GithubFulfillment.new(self).fulfill
-    end
-
-    if subscription?
-      SubscriptionFulfillment.new(self, user).fulfill
-    end
+    purchaseable.fulfill(self, user)
   end
 
   def generate_lookup

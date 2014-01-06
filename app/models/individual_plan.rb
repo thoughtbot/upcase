@@ -74,6 +74,10 @@ class IndividualPlan < ActiveRecord::Base
     @announcement ||= announcements.current
   end
 
+  def fulfill(purchase, user)
+    SubscriptionFulfillment.new(purchase, user).fulfill
+  end
+
   private
 
   def stripe_plan

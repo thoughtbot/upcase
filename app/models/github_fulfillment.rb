@@ -4,14 +4,22 @@ class GithubFulfillment
   end
 
   def fulfill
-    GithubFulfillmentJob.enqueue(team, usernames, @purchase.id)
+    if fulfilled_with_github?
+      GithubFulfillmentJob.enqueue(team, usernames, @purchase.id)
+    end
   end
 
   def remove
-    GithubRemovalJob.enqueue(team, usernames)
+    if fulfilled_with_github?
+      GithubRemovalJob.enqueue(team, usernames)
+    end
   end
 
   private
+
+  def fulfilled_with_github?
+    team.present?
+  end
 
   def team
     purchaseable.github_team
