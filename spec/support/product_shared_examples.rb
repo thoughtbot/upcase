@@ -5,7 +5,6 @@ shared_examples 'a class inheriting from Product' do
   it { should have_many(:purchases) }
   it { should have_many(:topics).through(:classifications) }
 
-  it { should validate_presence_of(:fulfillment_method) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:sku) }
   it { should validate_presence_of(:type) }

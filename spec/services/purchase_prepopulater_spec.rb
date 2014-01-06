@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe PurchasePrepopulater, '#prepopulate_with_user_info' do
   it 'populates default info when given a purchaser' do
-    product = create(:product, fulfillment_method: 'other')
+    product = create(:product)
     purchase = product.purchases.build
     purchaser = create_purchaser
     PurchasePrepopulater.new(purchase, purchaser).prepopulate_with_user_info

@@ -114,12 +114,10 @@ FactoryGirl.define do
 
     trait :github do
       github_team 9999
-      fulfillment_method 'github'
       github_url 'http://github.com/thoughtbot/book-repo'
     end
 
     company_price 50
-    fulfillment_method 'fetch'
     individual_price 15
     name { generate(:name) }
     sku 'TEST'
