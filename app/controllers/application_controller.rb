@@ -40,28 +40,16 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_is_admin?
 
   def requested_purchaseable
-    if product_param
-      Product.find(product_param)
-    elsif params[:individual_plan_id]
-      IndividualPlan.where(sku: params[:individual_plan_id]).first
-    elsif params[:team_plan_id]
-      TeamPlan.where(sku: params[:team_plan_id]).first
-    elsif params[:section_id]
-      Section.find(params[:section_id])
-    else
-      raise "Could not find a purchaseable object from given params: #{params}"
-    end
+    PolymorphicFinder.
+      finding(Section, :id, [:section_id]).
+      finding(TeamPlan, :sku, [:team_plan_id]).
+      finding(IndividualPlan, :sku, [:individual_plan_id]).
+      finding(Product, :id, [:product_id, :screencast_id, :book_id, :show_id]).
+      find(params)
   end
 
   def topics
     Topic.top
   end
   helper_method :topics
-
-  def product_param
-    params[:product_id] ||
-      params[:screencast_id] ||
-      params[:book_id] ||
-      params[:show_id]
-  end
 end
