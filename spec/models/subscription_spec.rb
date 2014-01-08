@@ -191,15 +191,25 @@ describe Subscription do
 
       user = create(:user)
       plan = create(:plan)
-      other_plan = create(:plan)
       other_user = create(:user)
       subscription = create(:subscription, user: user, plan: plan)
       other_user_purchase =
         create(:plan_purchase, purchaseable: plan, user: other_user)
-      other_plan_purchase =
-        create(:plan_purchase, purchaseable: other_plan, user: user)
       subscription_purchase =
         create(:plan_purchase, purchaseable: plan, user: user)
+
+      expect(subscription.purchase).to eq(subscription_purchase)
+    end
+
+    it 'returns the purchase before the plan was changed' do
+      stub_fulfillment
+
+      user = create(:user)
+      original_plan = create(:plan)
+      new_plan = create(:plan)
+      subscription = create(:subscription, user: user, plan: new_plan)
+      subscription_purchase =
+        create(:plan_purchase, purchaseable: original_plan, user: user)
 
       expect(subscription.purchase).to eq(subscription_purchase)
     end
