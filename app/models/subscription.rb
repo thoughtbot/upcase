@@ -65,6 +65,10 @@ class Subscription < ActiveRecord::Base
     user.purchases.for_purchaseable(plan).first
   end
 
+  def team?
+    team.present?
+  end
+
   private
 
   def self.canceled_within_period(start_time, end_time)

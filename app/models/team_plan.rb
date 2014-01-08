@@ -49,5 +49,6 @@ class TeamPlan < ActiveRecord::Base
 
   def fulfill(purchase, user)
     SubscriptionFulfillment.new(purchase, user).fulfill
+    TeamFulfillment.new(purchase, user).fulfill
   end
 end
