@@ -56,26 +56,6 @@ class Product < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
-  def individual_price
-    apply_discount(original_individual_price)
-  end
-
-  def company_price
-    apply_discount(original_company_price)
-  end
-
-  def original_company_price
-    self[:company_price] || 0
-  end
-
-  def original_individual_price
-    self[:individual_price] || 0
-  end
-
-  def discounted?
-    discount_percentage > 0
-  end
-
   def starts_on(purchase_date)
     purchase_date
   end
@@ -126,10 +106,6 @@ class Product < ActiveRecord::Base
 
   private
 
-  def apply_discount(price)
-    price - (price * discount_percentage * 0.01)
-  end
-
   def subscriber_license
     SubscriberLicense.new(
       collection: collection?,
@@ -142,18 +118,16 @@ class Product < ActiveRecord::Base
   def product_licenses
     [
       ProductLicense.new(
-        discounted: discounted?,
         offering_type: offering_type,
-        original_price: original_individual_price,
+        original_price: individual_price,
         price: individual_price,
         product_id: id,
         sku: sku,
         variant: :individual
       ),
       ProductLicense.new(
-        discounted: discounted?,
         offering_type: offering_type,
-        original_price: original_company_price,
+        original_price: company_price,
         price: company_price,
         product_id: id,
         sku: sku,

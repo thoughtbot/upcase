@@ -189,8 +189,6 @@ ActiveRecord::Schema.define(version: 20140106122343) do
     t.string   "product_image_file_size"
     t.string   "product_image_content_type"
     t.string   "product_image_updated_at"
-    t.integer  "discount_percentage",        default: 0,    null: false
-    t.string   "discount_title",             default: "",   null: false
   end
 
   create_table "purchases", force: true do |t|

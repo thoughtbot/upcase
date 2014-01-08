@@ -1,5 +1,4 @@
 <section id="license" class="<%= product.offering_type %>">
-  <%= render 'products/discount', product: product %>
   <%= render 'offerings/prime_purchase', offering: product %>
 
   <% if !current_user_has_active_subscription? && licenses.present? %>

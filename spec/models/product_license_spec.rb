@@ -16,14 +16,6 @@ describe ProductLicense do
     end
   end
 
-  describe "#discounted?" do
-    it 'returns the discounted value given when initialized' do
-      license = ProductLicense.new(discounted: 'example-value')
-
-      expect(license.discounted?).to eq('example-value')
-    end
-  end
-
   %w(offering_type original_price price sku variant).each do |attribute|
     describe "##{attribute}" do
       it 'returns the value given when initialized' do
