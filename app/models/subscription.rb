@@ -62,7 +62,10 @@ class Subscription < ActiveRecord::Base
   end
 
   def purchase
-    user.purchases.for_purchaseable(plan).first
+    user.
+      purchases.
+      includes(:purchaseable).
+      detect { |purchase| purchase.subscription? }
   end
 
   def team?
