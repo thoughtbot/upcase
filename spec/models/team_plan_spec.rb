@@ -94,15 +94,26 @@ describe TeamPlan do
   end
 
   describe '#fulfill' do
-    it 'starts a subscription' do
+    it 'starts a subscription for a new team' do
       user = build_stubbed(:user)
       purchase = build_stubbed(:purchase, user: user)
       plan = build_stubbed(:team_plan)
-      fulfillment = stub_subscription_fulfillment(purchase)
+      subscription_fulfillment = stub_subscription_fulfillment(purchase)
+      team_fulfillment = stub_team_fulfillment(purchase)
 
       plan.fulfill(purchase, user)
 
-      expect(fulfillment).to have_received(:fulfill)
+      expect(subscription_fulfillment).to have_received(:fulfill)
+      expect(team_fulfillment).to have_received(:fulfill)
+    end
+
+    def stub_team_fulfillment(purchase)
+      stub('team-fulfillment', :fulfill).tap do |fulfillment|
+        TeamFulfillment.
+          stubs(:new).
+          with(purchase, purchase.user).
+          returns(fulfillment)
+      end
     end
   end
 

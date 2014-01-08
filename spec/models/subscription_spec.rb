@@ -209,4 +209,18 @@ describe Subscription do
       SubscriptionFulfillment.stubs(:new).returns(fulfillment)
     end
   end
+
+  describe '#team?' do
+    it 'returns true with a team' do
+      subscription = create(:team).subscription
+
+      expect(subscription.team?).to be_true
+    end
+
+    it 'returns false without a team' do
+      subscription = create(:subscription)
+
+      expect(subscription.team?).to be_false
+    end
+  end
 end
