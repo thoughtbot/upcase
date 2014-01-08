@@ -251,7 +251,13 @@ class FakeStripe < Sinatra::Base
 
   get '/v1/invoices/:id' do
     content_type :json
-    customer_invoice.to_json
+
+    case params[:id]
+    when 'in_1s4JSgbcUaElzU'
+      customer_invoice.to_json
+    when 'in_3Eh5UIbuDVdhat'
+      customer_invoice_with_discount_in_percent.to_json
+    end
   end
 
   get "/v1/events/#{EVENT_ID_FOR_SUCCESSFUL_INVOICE_PAYMENT}" do
@@ -352,6 +358,36 @@ class FakeStripe < Sinatra::Base
       amount_due: 7900,
       customer: CUSTOMER_ID
     }
+  end
+
+  def customer_invoice_with_discount_in_percent
+    customer_invoice.merge(
+      id: "in_3Eh5UIbuDVdhat",
+      discount: {
+        id: "di_3Eh51qD66WOIHs",
+        coupon: {
+          id: "RESOLVE2014",
+          percent_off: 100,
+          amount_off: nil,
+          currency: nil,
+          object: "coupon",
+          livemode: true,
+          duration: "once",
+          redeem_by: 1389225599,
+          max_redemptions: nil,
+          times_redeemed: 77,
+          duration_in_months: nil,
+          valid: true
+        },
+        start: 1388677692,
+        object: "discount",
+        customer: CUSTOMER_ID,
+        end: nil
+      },
+      total: 0,
+      subtotal: 9900,
+      amount_due: 0
+    )
   end
 
   def customer_subscription

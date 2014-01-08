@@ -127,4 +127,12 @@ describe SubscriptionInvoice do
       invoice.to_partial_path.should eq 'subscriber/invoices/subscription_invoice'
     end
   end
+
+  context 'invoice which has discount in percent' do
+    let(:invoice) { SubscriptionInvoice.new('in_3Eh5UIbuDVdhat') }
+
+    it 'returns the correct discount amount' do
+      expect(invoice.discount_amount).to eq 99.00
+    end
+  end
 end
