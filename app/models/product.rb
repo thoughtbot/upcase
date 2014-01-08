@@ -8,7 +8,6 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :downloads, allow_destroy: true
 
   validates :name, presence: true
-  validates :fulfillment_method, presence: true
   validates :sku, presence: true
   validates :type, presence: true
 
