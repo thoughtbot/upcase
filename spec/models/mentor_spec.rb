@@ -45,7 +45,7 @@ describe Mentor do
   describe '#active_mentees' do
     it 'returns the list of active mentees' do
       mentor = create(:mentor)
-      active = create(:subscriber)
+      active = create(:subscriber, :includes_mentor)
       inactive = create(:user, :with_inactive_subscription)
       without_mentoring = create(:user, :with_basic_subscription)
       mentor.mentees = [active, inactive, without_mentoring]
@@ -58,8 +58,8 @@ describe Mentor do
     it 'returns the list of active mentees' do
       mentor = create(:mentor)
       mentor.mentees = [
-        create(:subscriber),
-        create(:subscriber)
+        create(:subscriber, :includes_mentor),
+        create(:subscriber, :includes_mentor)
       ]
 
       expect(mentor.active_mentee_count).to eq 2

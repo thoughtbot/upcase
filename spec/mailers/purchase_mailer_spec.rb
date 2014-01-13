@@ -171,8 +171,9 @@ describe PurchaseMailer do
         end
 
         it 'mentions the mentor email' do
-          user = create(:subscriber)
-          purchase = create(:plan_purchase, user: user)
+          plan = create(:individual_plan, :includes_mentor)
+          user = create(:subscriber, plan: plan)
+          purchase = create(:plan_purchase, user: user, purchaseable: plan)
 
           expect(email_for(purchase)).to have_body_text(/mentor/)
         end
