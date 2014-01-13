@@ -2,3 +2,6 @@
 :tddium:
   :ruby_version: ruby-2.0.0-p247
   :bundler_version: 1.3.5
+  :hooks:
+    :worker: bundle exec rake db:migrate
+    :post: bundle exec rake assets:precompile
