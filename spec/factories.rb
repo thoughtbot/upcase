@@ -141,8 +141,11 @@ FactoryGirl.define do
 
     factory :basic_plan do
       sku IndividualPlan::PRIME_BASIC_SKU
-      includes_mentor false
       includes_workshops false
+    end
+
+    trait :includes_mentor do
+      includes_mentor true
     end
   end
 
@@ -323,6 +326,12 @@ FactoryGirl.define do
 
     factory :subscriber do
       with_subscription
+
+      trait :includes_mentor do
+        ignore do
+          plan { create(:individual_plan, :includes_mentor) }
+        end
+      end
     end
 
     trait :with_github do
@@ -344,8 +353,13 @@ FactoryGirl.define do
       with_github
       stripe_customer_id 'cus12345'
 
-      after :create do |instance|
-        instance.purchased_subscription = create(:subscription, user: instance)
+      ignore do
+        plan { create(:plan) }
+      end
+
+      after :create do |instance, attributes|
+        instance.purchased_subscription =
+          create(:subscription, plan: attributes.plan, user: instance)
       end
     end
 

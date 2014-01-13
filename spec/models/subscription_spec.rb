@@ -27,8 +27,11 @@ describe Subscription do
 
   describe '.deliver_welcome_emails' do
     it 'sends emails for each new mentored subscriber in the last 24 hours' do
-      old_subscription = create(:subscription, created_at: 25.hours.ago)
-      new_subscription = create(:subscription, created_at: 10.hours.ago)
+      plan = create(:individual_plan, includes_mentor: true)
+      old_subscription =
+        create(:subscription, plan: plan, created_at: 25.hours.ago)
+      new_subscription =
+        create(:subscription, plan: plan, created_at: 10.hours.ago)
       mailer = stub(deliver: true)
       SubscriptionMailer.stubs(welcome_to_prime_from_mentor: mailer)
 

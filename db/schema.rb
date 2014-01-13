@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140106122343) do
+ActiveRecord::Schema.define(version: 20140113204616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,18 +98,18 @@ ActiveRecord::Schema.define(version: 20140106122343) do
   add_index "follow_ups", ["workshop_id"], name: "index_follow_ups_on_workshop_id", using: :btree
 
   create_table "individual_plans", force: true do |t|
-    t.string   "name",                              null: false
-    t.string   "sku",                               null: false
-    t.string   "short_description",                 null: false
-    t.text     "description",                       null: false
-    t.boolean  "active",             default: true, null: false
-    t.integer  "individual_price",                  null: false
+    t.string   "name",                               null: false
+    t.string   "sku",                                null: false
+    t.string   "short_description",                  null: false
+    t.text     "description",                        null: false
+    t.boolean  "active",             default: true,  null: false
+    t.integer  "individual_price",                   null: false
     t.text     "terms"
-    t.boolean  "includes_mentor",    default: true
+    t.boolean  "includes_mentor",    default: false
     t.boolean  "includes_workshops", default: true
-    t.boolean  "featured",           default: true, null: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.boolean  "featured",           default: true,  null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "mentors", force: true do |t|
@@ -298,15 +298,15 @@ ActiveRecord::Schema.define(version: 20140106122343) do
   end
 
   create_table "team_plans", force: true do |t|
-    t.string   "sku",                               null: false
-    t.string   "name",                              null: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.string   "sku",                                null: false
+    t.string   "name",                               null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "individual_price"
     t.text     "terms"
-    t.boolean  "includes_mentor",    default: true, null: false
-    t.boolean  "includes_workshops", default: true, null: false
-    t.boolean  "featured",           default: true, null: false
+    t.boolean  "includes_mentor",    default: false, null: false
+    t.boolean  "includes_workshops", default: true,  null: false
+    t.boolean  "featured",           default: true,  null: false
     t.text     "description"
   end
 

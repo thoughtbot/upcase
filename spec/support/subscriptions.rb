@@ -1,10 +1,15 @@
 module Subscriptions
-  def sign_in_as_user_with_subscription
+  def sign_in_as_user_with_subscription(*traits)
     @current_user = create(
       :subscriber,
+      *traits,
       stripe_customer_id: FakeStripe::CUSTOMER_ID
     )
     visit dashboard_path(as: @current_user)
+  end
+
+  def sign_in_as_user_with_mentoring_subscription
+    sign_in_as_user_with_subscription(:includes_mentor)
   end
 
   def sign_in_as_user_with_downgraded_subscription
