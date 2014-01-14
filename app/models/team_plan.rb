@@ -51,4 +51,8 @@ class TeamPlan < ActiveRecord::Base
     SubscriptionFulfillment.new(purchase, user).fulfill
     TeamFulfillment.new(purchase, user).fulfill
   end
+
+  def after_purchase_url(controller, purchase)
+    controller.dashboard_path
+  end
 end

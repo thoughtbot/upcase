@@ -78,6 +78,10 @@ class IndividualPlan < ActiveRecord::Base
     SubscriptionFulfillment.new(purchase, user).fulfill
   end
 
+  def after_purchase_url(controller, purchase)
+    controller.dashboard_path
+  end
+
   private
 
   def stripe_plan

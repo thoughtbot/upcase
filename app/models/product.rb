@@ -104,6 +104,10 @@ class Product < ActiveRecord::Base
     GithubFulfillment.new(purchase).fulfill
   end
 
+  def after_purchase_url(controller, purchase)
+    controller.purchase_path(purchase)
+  end
+
   private
 
   def subscriber_license
