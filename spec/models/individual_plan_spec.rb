@@ -16,6 +16,7 @@ describe IndividualPlan do
 
   it_behaves_like 'a Plan with countable subscriptions'
   it_behaves_like 'a Plan for public listing'
+  it_behaves_like 'Purchaseable plan'
 
   describe '.active' do
     it 'only includes active plans' do

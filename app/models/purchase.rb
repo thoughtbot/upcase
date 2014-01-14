@@ -141,6 +141,14 @@ class Purchase < ActiveRecord::Base
     Array(super).compact.map(&:strip).reject(&:blank?)
   end
 
+  def success_url(controller)
+    if paypal?
+      paypal_url
+    else
+      purchaseable.after_purchase_url(controller, self)
+    end
+  end
+
   private
 
   def password_required?

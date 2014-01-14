@@ -229,6 +229,36 @@ describe Purchase do
       fulfillment.should have_received(:fulfill).never
     end
   end
+
+  describe '#success_url' do
+    it 'returns its paypal URL for paypal' do
+      controller = stub('controller')
+      purchase = build_stubbed(
+        :purchase,
+        payment_method: 'paypal',
+        paypal_url: 'http://example.com/paypal'
+      )
+
+      expect(purchase.success_url(controller)).to eq(purchase.paypal_url)
+    end
+
+    it 'delegates to its purchaseable' do
+      controller = stub('controller')
+      after_purchase_url = 'http://example.com/after_purchase'
+      product = build_stubbed(:product)
+      purchase = build_stubbed(
+        :purchase,
+        purchaseable: product,
+        payment_method: 'stripe'
+      )
+      product.
+        stubs(:after_purchase_url).
+        with(controller, purchase).
+        returns(after_purchase_url)
+
+      expect(purchase.success_url(controller)).to eq(after_purchase_url)
+    end
+  end
 end
 
 describe Purchase, 'with stripe and a bad card' do

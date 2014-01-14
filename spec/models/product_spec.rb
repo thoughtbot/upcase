@@ -95,4 +95,18 @@ describe Product do
       fulfillment.should have_received(:fulfill)
     end
   end
+
+  describe '#after_purchase_url' do
+    it 'returns the purchase path' do
+      purchase_path = 'http://example.com/purchase'
+      product = build_stubbed(:product)
+      purchase = build_stubbed(:purchase, purchaseable: product)
+      controller = stub('controller')
+      controller.stubs(:purchase_path).with(purchase).returns(purchase_path)
+
+      after_purchase_url = product.after_purchase_url(controller, purchase)
+
+      expect(after_purchase_url).to eq(purchase_path)
+    end
+  end
 end

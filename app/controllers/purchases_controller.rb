@@ -115,13 +115,7 @@ class PurchasesController < ApplicationController
   end
 
   def success_url
-    if @purchase.paypal?
-      @purchase.paypal_url
-    elsif @purchase.subscription?
-      dashboard_path
-    else
-      purchase_path @purchase
-    end
+    @purchase.success_url(self)
   end
 
   def url_after_denied_access_when_signed_out
