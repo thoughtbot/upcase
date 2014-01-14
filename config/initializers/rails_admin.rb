@@ -129,7 +129,6 @@ RailsAdmin.config do |config|
         field :topics
         field :resources
         field :terms
-        field :office_hours
         field :length_in_days
       end
 
