@@ -8,7 +8,7 @@ describe TeamFulfillment do
         :with_subscription,
         email: 'user.name@whatever.somethingcool.com'
       )
-      purchase = build_stubbed(:purchase)
+      purchase = build_stubbed(:purchase, quantity: 4)
 
       TeamFulfillment.new(purchase, user).fulfill
 
@@ -16,6 +16,7 @@ describe TeamFulfillment do
       expect(team).to be_present
       expect(team.name).to eq('Somethingcool')
       expect(team.subscription).to eq(user.subscription)
+      expect(team.max_users).to eq(purchase.quantity)
     end
   end
 end

@@ -169,6 +169,7 @@ FactoryGirl.define do
   factory :team do
     name 'Google'
     subscription
+    max_users 10
   end
 
   factory :purchase, aliases: [:individual_purchase] do
