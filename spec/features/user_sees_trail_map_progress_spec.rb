@@ -30,12 +30,14 @@ feature 'User can see their trail map progress' do
   end
 
   scenario 'A user does not see thoughtbot resources if they are not available' do
+    trail = create(:trail, trail_map: fake_trail_map.trail, topic: topic)
+
     visit topic_path(topic)
     expect(page).to_not have_content "Use these thoughtbot resources first"
   end
 
   scenario 'A user sees thoughtbot resources if they are available' do
-    trail = create(:trail, trail_map: fake_trail_map(:include_thoughtbot_resource).trail, topic: topic)
+    trail = create(:trail, trail_map: fake_trail_map_with_thoughtbot_resource.trail, topic: topic)
 
     visit topic_path(topic)
     expect(page).to have_content "Use these thoughtbot resources first"
@@ -85,7 +87,11 @@ feature 'User can see their trail map progress' do
     @topic ||= create(:topic, name: 'Git', featured: true)
   end
 
-  def fake_trail_map(include_thoughtbot_resource = false)
-    @fake_trail_map ||= FakeTrailMap.new({thoughtbot_resource: include_thoughtbot_resource})
+  def fake_trail_map
+    @fake_trail_map ||= FakeTrailMap.new
+  end
+
+  def fake_trail_map_with_thoughtbot_resource
+    @fake_trail_map_with_thoughtbot_resource ||= FakeTrailMap.new(thoughtbot_resource: true)
   end
 end

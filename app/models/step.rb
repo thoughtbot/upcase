@@ -20,7 +20,7 @@ class Step
   end
 
   def resources_present?
-    resources
+    resources.present?
   end
 
   def thoughtbot_resources
@@ -30,7 +30,7 @@ class Step
   end
 
   def thoughtbot_resources_present?
-    thoughtbot_resources
+    thoughtbot_resources.present?
   end
 
   def validations_present?
