@@ -1,15 +1,72 @@
-<section class="features">
-  <h4>Includes</h4>
-  <ul>
-    <% if plan.includes_mentor? %>
-      <li class="mentor"><%= t 'individual_plans.mentoring' %></li>
-    <% end %>
-    <% if plan.includes_workshops? %>
-      <li class="workshops"><%= t 'individual_plans.workshops' %></li>
-    <% end %>
-    <li>Access to the Learn repo on GitHub</li>
-    <li><%= t 'individual_plans.forum' %></li>
-    <li>Screencasts</li>
-    <li>Books</li>
-  </ul>
+<div class="features">
+  <figure class="<%= 'inactive' if !plan.includes_mentor? %>" data-target="mentoring">
+    <h4 class="feature-title">1-1 Mentoring</h4>
+    <div class="circle mentoring">
+      <%= mentor_image(@mentor) %>
+    </div>
+  </figure>
+  <figure class="<%= 'inactive' if !plan.includes_workshops? %>" data-target="workshop">
+    <h4 class="feature-title">Hands-on Workshops</h4>
+    <div class="circle workshop">
+      <%= image_tag('learn/workshop-plans-preview.png') %>
+    </div>
+  </figure>
+  <figure data-target="repo">
+    <h4 class="feature-title">Source code to this application</h4>
+    <div class="circle repo">
+      <%= image_tag('learn/learn-github-plans-preview.jpg') %>
+    </div>
+  </figure>
+  <figure data-target="weekly-iteration">
+    <h4 class="feature-title">The Weekly Iteration</h4>
+    <div class="circle weekly-iteration">
+      <%= image_tag('learn/weekly-iteration-plans-preview.jpg') %>
+    </div>
+  </figure>
+  <figure data-target="forum">
+    <h4 class="feature-title"><%= t 'individual_plans.forum' %></h4>
+    <div class="circle forum">
+      <%= image_tag('learn/forum-plans-preview.png') %>
+    </div>
+  </figure>
+  <figure data-target="screencast">
+    <h4 class="feature-title">Screencasts</h4>
+    <div class="circle screencast">
+      <%= image_tag('learn/screencast-plans-preview.png') %>
+    </div>
+  </figure>
+  <figure data-target="book">
+    <h4 class="feature-title">Books</h4>
+    <div class="circle book">
+      <%= image_tag('learn/book-plans-preview.png') %>
+    </div>
+  </figure>
+</div>
+
+<section class="feature-details">
+  <% if plan.includes_mentor? %>
+    <section data-target-id="mentoring" class="feature-detail mentoring">
+      <%= render 'plans/mentoring_detail', mentor: @mentor %>
+    </section>
+  <% end %>
+  <% if plan.includes_workshops? %>
+    <section data-target-id="workshop" class="feature-detail workshop">
+      <%= render 'plans/workshops_detail' %>
+    </section>
+  <% end %>
+  <section data-target-id="repo" class="feature-detail repo">
+    <%= render 'plans/learn_repo_detail' %>
+  </section>
+  <section data-target-id="weekly-iteration" class="feature-detail weekly-iteration">
+    <%= render 'plans/weekly_iteration_detail' %>
+  </section>
+  <section data-target-id="forum" class="feature-detail forum">
+    <%= render 'plans/forum_detail' %>
+  </section>
+  <section data-target-id="screencast" class="feature-detail screencast">
+    <%= render 'plans/screencasts_detail' %>
+  </section>
+  <section data-target-id="book" class="feature-detail book">
+    <%= render 'plans/books_detail' %>
+  </section>
 </section>

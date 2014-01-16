@@ -7,7 +7,6 @@
   }
 }
 
-
 @include keyframes(two-stacked-fly-in) {
   0% {
     opacity: 0;
@@ -19,8 +18,7 @@
   }
 }
 
-
-@include keyframes(backwards-stacked-fly-in) {
+@include keyframes(fade-in) {
   0% {
     opacity: 0;
   }
@@ -35,5 +33,17 @@
   }
   100% {
     box-shadow: 0 0 0 300px $journey-line-color;
+  }
+}
+
+@include keyframes(feature-detail-appear) {
+  0% {
+    opacity: 0;
+    @include transform(translate3D(0, -4rem, 0));
+  }
+
+  100% {
+    opacity: 1;
+    @include transform(translate3D(0, 0, 0));
   }
 }

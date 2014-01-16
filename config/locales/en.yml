@@ -183,8 +183,8 @@ en:
     confirm_cancel_reject_deal: No thanks, just cancel my subscription
     confirm_cancel: Yes, cancel my subscription
     change_plan: Change plan
-    choose_plan_html: Choose %{plan_name} &rarr;
-    current_plan_html: <p><em>This is your current plan!</em></p>
+    choose_plan_html: Sign up for %{plan_name}
+    current_plan_html: <p class="current-plan">This is your current plan</p>
     discount:
       forever: $%{final_price}
       once: $%{final_price} the first month, then $%{full_price}

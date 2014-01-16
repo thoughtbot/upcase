@@ -1,17 +1,8 @@
 <%= content_tag :div, class: "plan #{individual_plan.sku}" do %>
-  <h3><%= individual_plan.name %> &mdash; <%= individual_price_per_month individual_plan %></h3>
-  <section>
-    <%== individual_plan.description %>
-    <% if individual_plan.includes_mentor? %>
-      <figure class="mentor">
-        <%= mentor_image(@mentor) %>
-        <figcaption>
-          <p><strong>This is <%= @mentor.first_name %></strong>. If you choose this plan, <%= @mentor.first_name %> will be your mentor. <%= @mentor.bio %></p>
-          <p>If you think another mentor with different skills would make more sense, we can talk about transferring during our first mentor meeting.</p>
-        </figcaption>
-      </figure>
-    <% end %>
-    <%= choose_plan_link(individual_plan) %>
-  </section>
+  <h2><%= individual_plan.name %> <span><%= individual_price_per_month individual_plan %></span></h2>
   <%= render 'plans/features', plan: individual_plan %>
+  <%= choose_plan_link(individual_plan) %>
+  <section class="plan-details">
+    <%== individual_plan.description %>
+  </section>
 <% end %>

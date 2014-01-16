@@ -133,6 +133,7 @@ feature 'User creates a subscription' do
     expect_to_see_the_current_plan(current_user.subscription.plan)
 
     click_link I18n.t('subscriptions.change_plan')
+    puts page.body
     click_link new_plan.name
 
     expect(current_path).to eq my_account_path
@@ -149,7 +150,7 @@ feature 'User creates a subscription' do
 
   def visit_plan_purchase_page
     visit new_subscription_path
-    click_link('Choose')
+    click_link('Sign up for')
   end
 
   def create_plan
