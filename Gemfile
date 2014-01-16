@@ -8,7 +8,7 @@ gem 'acts_as_list', '0.2.0'
 gem 'airbrake', '3.1.14'
 gem 'aws-sdk', '= 1.6.2' # Bug https://github.com/thoughtbot/paperclip/issues/751
 gem 'bluecloth'
-gem 'bourbon', '3.2.0.beta.1'
+gem 'bourbon', '3.2.0.beta.2'
 gem 'clearance', '1.0.1'
 gem 'csv_rails', '0.6.1'
 gem 'curb', '0.8.1'
@@ -51,7 +51,7 @@ gem 'unicorn'
 
 # Gems used only for assets and not required
 # in production environments by default.
-gem 'sass', '3.3.0.rc.1'
+gem 'sass', '3.3.0.rc.2'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '1.3.0'
 gem 'heroku-deflater'

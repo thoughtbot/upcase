@@ -100,7 +100,7 @@ feature 'Visitor signs up for a subscription' do
   def attempt_to_subscribe
     visit prime_path
     click_landing_page_call_to_action
-    click_link 'Choose'
+    click_link 'Sign up for'
   end
 
   def plan

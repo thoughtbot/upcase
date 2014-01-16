@@ -122,7 +122,7 @@ feature 'User creates a team subscription' do
 
   def visit_team_plan_purchase_page
     visit new_subscription_path
-    click_link('Choose')
+    click_link('Sign up for')
   end
 
   def create_team_plan
