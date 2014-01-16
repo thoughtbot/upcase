@@ -10,29 +10,29 @@ describe PurchaseableDecorator, '#overlaps_with_other_purchases?' do
     expect(book_purchase.overlaps_with_other_purchases?(user)).to be_false
   end
 
-  it 'returns false if trying to register for an ongoing section with no conflict' do
+  it 'returns false if trying to register for a workshop with no conflict' do
     user = create(:user)
-    online_section = create(:online_section, starts_on: 30.days.ago, ends_on: 20.days.ago)
+    workshop = create(:workshop, length_in_days: 20)
     Timecop.travel(26.days.ago) do
-      create_subscriber_purchase_from_purchaseable(online_section, user)
+      create_subscriber_purchase_from_purchaseable(workshop, user)
     end
-    new_online_section = create(:online_section, starts_on: 22.days.ago.to_date, ends_on: nil)
+    new_workshop = create(:workshop, length_in_days: 20)
 
-    new_online_section = PurchaseableDecorator.new(new_online_section)
+    new_workshop = PurchaseableDecorator.new(new_workshop)
 
-    expect(new_online_section.overlaps_with_other_purchases?(user)).to be_false
+    expect(new_workshop.overlaps_with_other_purchases?(user)).to be_false
   end
 
-  it 'returns true if trying to register for a section that overlaps with a previous purchase' do
+  it 'returns true if trying to register for a workshop that overlaps with a previous purchase' do
     user = create(:user)
-    online_section = create(:online_section, starts_on: 15.days.from_now, ends_on: 20.days.from_now)
-    Timecop.travel(26.days.ago) do
-      create_subscriber_purchase_from_purchaseable(online_section, user)
+    workshop = create(:workshop, length_in_days: 20)
+    Timecop.travel(10.days.ago) do
+      create_subscriber_purchase_from_purchaseable(workshop, user)
     end
 
-    new_online_section = create(:section, starts_on: 16.days.from_now.to_date, ends_on: 20.days.from_now)
-    new_online_section = PurchaseableDecorator.new(new_online_section)
+    new_workshop = create(:workshop, length_in_days: 20)
+    new_workshop = PurchaseableDecorator.new(new_workshop)
 
-    expect(new_online_section.overlaps_with_other_purchases?(user)).to be_true
+    expect(new_workshop.overlaps_with_other_purchases?(user)).to be_true
   end
 end

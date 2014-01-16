@@ -23,10 +23,6 @@ module Teams
       true
     end
 
-    def fulfillment_method
-      'subscription'
-    end
-
     def fulfilled_with_github?
       false
     end

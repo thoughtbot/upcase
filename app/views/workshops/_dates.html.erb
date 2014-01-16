@@ -1,6 +1,2 @@
-<% if purchaseable.starts_immediately? %>
-  <p><strong>Your <%= purchaseable.fulfillment_method %> workshop runs from <%= purchase_date_range(purchase) %>.</strong> The recommended pace for this workshop is one lesson per week. Feel free to progress faster if you are able.</p>
-  <p>You will know you have learned the material when you are able to rebuild the application yourself, without the help of the video lessons, or apply the concepts in the lessons to your own work.</p>
-<% elsif purchaseable.upcoming? %>
-  <p>Please don't hesitate to get in touch with us at <%= mail_to 'learn@thoughtbot.com' %> should you have any questions or concerns.</p>
-<% end %>
+<p><strong>Your workshop runs from <%= purchase_date_range(purchase) %>.</strong> The recommended pace for this workshop is one lesson per week. Feel free to progress faster if you are able.</p>
+<p>You will know you have learned the material when you are able to rebuild the application yourself, without the help of the video lessons, or apply the concepts in the lessons to your own work.</p>

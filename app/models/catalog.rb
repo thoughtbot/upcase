@@ -5,12 +5,8 @@ class Catalog
     Book.active.ordered
   end
 
-  def in_person_workshops
-    Workshop.only_active.by_position.in_person
-  end
-
-  def online_workshops
-    Workshop.only_active.by_position.online
+  def workshops
+    Workshop.only_active.by_position
   end
 
   def screencasts

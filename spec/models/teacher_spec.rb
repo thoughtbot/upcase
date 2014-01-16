@@ -1,21 +1,20 @@
 require 'spec_helper'
 
 describe Teacher do
-  describe ".by_name" do
-    let!(:bob) { create(:teacher, name: "Bob Doe") }
-    let!(:albert) { create(:teacher, name: "Albert Doe") }
-    subject { Teacher.by_name }
+  it { should belong_to(:user) }
+  it { should belong_to(:workshop) }
 
-    it "sorts the result by name" do
-      subject.should == [albert, bob]
-    end
-  end
+  [:name, :email, :bio].each do |attribute|
+    describe "##{attribute}" do
+      it 'delegates to the user' do
+        user = build_stubbed(:user)
+        user.stubs(attribute).returns('text')
+        teacher = build_stubbed(:teacher, user: user)
 
-  describe "#image_name" do
-    it 'returns image name in proper format' do
-      teacher = build_stubbed(:teacher, name: 'Arun Agrawal')
+        teacher.send(attribute)
 
-      expect(teacher.image_name).to eq('aagrawal')
+        expect(user).to have_received(attribute)
+      end
     end
   end
 end

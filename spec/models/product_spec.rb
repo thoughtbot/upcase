@@ -1,16 +1,6 @@
 require 'spec_helper'
 
 describe Product do
-  describe '#alternates' do
-    it 'is empty' do
-      product = Product.new
-
-      result = product.alternates
-
-      expect(result).to eq []
-    end
-  end
-
   describe '#licenses_for' do
     it 'returns a subscriber license for a subscriber' do
       user = build_stubbed(:user)

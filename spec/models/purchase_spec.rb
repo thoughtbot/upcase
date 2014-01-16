@@ -97,25 +97,30 @@ describe Purchase do
   end
 
   context '#status' do
-    it 'returns in-progress when it can purchaseable online and ends in future' do
-      section = create(:online_section, ends_on: 2.days.from_now)
-      purchase = create_subscriber_purchase_from_purchaseable(section)
+    it 'returns in-progress when it ends today' do
+      workshop = create(:workshop, length_in_days: 5)
+      Timecop.travel(5.days.ago) do
+        @purchase = create_subscriber_purchase_from_purchaseable(workshop)
+      end
+
+      expect(@purchase.status).to eq 'in-progress'
+    end
+
+    it 'returns in-progress when it ends in future' do
+      workshop = create(:workshop, length_in_days: 5)
+      purchase = create_subscriber_purchase_from_purchaseable(workshop)
 
       expect(purchase.status).to eq 'in-progress'
     end
 
-    it 'returns registered when it ends in future' do
-      section = create(:section, ends_on: 5.days.since)
-      purchase = create_subscriber_purchase_from_purchaseable(section)
+    it 'returns complete when already ended' do
+      workshop = create(:workshop, length_in_days: 5)
 
-      expect(purchase.status).to eq 'registered'
-    end
+      Timecop.travel(6.days.ago) do
+        @purchase = create_subscriber_purchase_from_purchaseable(workshop)
+      end
 
-    it 'returns complete when already end' do
-       section = create(:section, ends_on: 5.days.ago)
-      purchase = create_subscriber_purchase_from_purchaseable(section)
-
-      expect(purchase.status).to eq 'complete'
+      expect(@purchase.status).to eq 'complete'
     end
   end
 

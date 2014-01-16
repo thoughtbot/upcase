@@ -52,7 +52,7 @@ class PurchasesController < ApplicationController
   end
 
   def user_wants_to_take_a_workshop?
-    params[:section_id].present?
+    params[:workshop_id].present?
   end
 
   def redirect_to_purchase_or_subscription_path
@@ -81,7 +81,7 @@ class PurchasesController < ApplicationController
   end
 
   def workshop_purchase?
-    params[:section_id].present?
+    params[:workshop_id].present?
   end
 
   def subscriber_purchase_url
@@ -133,7 +133,7 @@ class PurchasesController < ApplicationController
     params.require(:purchase).permit(:stripe_coupon_id, :variant,
       :name, :email, :password, {:github_usernames => []}, :organization,
       :address1, :address2, :city, :state, :zip_code, :country,
-      :payment_method, :stripe_token, :comments, :mentor_id, :quantity)
+      :payment_method, :stripe_token, :mentor_id, :quantity)
   end
 
   def variant

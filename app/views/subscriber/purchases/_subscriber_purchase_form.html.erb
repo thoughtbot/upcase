@@ -1,15 +1,4 @@
 <%= semantic_form_for :subscriber_purchase, url: [:subscriber, @purchaseable, :purchases] do |form| %>
-  <% if @purchaseable.respond_to? :fulfillment_method %>
-    <%= hidden_field_tag 'section_id', @purchaseable.id %>
-    <% if @purchaseable.fulfillment_method == 'in-person' %>
-      <%= form.inputs do %>
-        <%= form.input :comments, label: t('purchase.comments') %>
-      <% end %>
-    <% end %>
-  <% else %>
-    <%= hidden_field_tag 'product_id', @purchaseable.id %>
-  <% end %>
-
   <%= form.actions do %>
     <%= form.action :submit, label: 'Get Access' %>
   <% end %>

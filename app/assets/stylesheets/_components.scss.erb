@@ -9,7 +9,7 @@
   position: relative;
   width: $product-card-width;
 
-  &.workshop-online:hover, &.workshop-in-person:hover {
+  &.workshop:hover {
     .hover-text {
       @include transform(translate3D(0, 0, 0));
     }
@@ -166,12 +166,8 @@
     font-weight: 700;
   }
 
-  &.workshop-online h4 {
-    background: $workshop-online-color;
-  }
-
-  &.workshop-in-person h4 {
-    background: $workshop-inperson-color;
+  &.workshop h4 {
+    background: $workshop-color;
   }
 
   &.mentor h4 {

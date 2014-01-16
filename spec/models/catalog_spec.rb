@@ -8,19 +8,11 @@ describe Catalog do
     end
   end
 
-  describe '#in_person_workshops' do
-    it 'returns active in-person workshops in order' do
+  describe '#workshops' do
+    it 'returns active workshops in order' do
       catalog = Catalog.new
-      expect(catalog.in_person_workshops).
-        to find_relation(Workshop.only_active.by_position.in_person)
-    end
-  end
-
-  describe '#online_workshops' do
-    it 'returns active online workshops in order' do
-      catalog = Catalog.new
-      expect(catalog.online_workshops).
-        to find_relation(Workshop.only_active.by_position.online)
+      expect(catalog.workshops).
+        to find_relation(Workshop.only_active.by_position)
     end
   end
 

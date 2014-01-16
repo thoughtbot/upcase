@@ -21,11 +21,10 @@ describe 'Videos' do
 
   context 'GET /' do
     it 'lists the videos for a workshop' do
-      workshop = create(:online_workshop)
-      section = create(:section, workshop: workshop)
+      workshop = create(:workshop)
       video_one = create(:video, watchable: workshop, position: 1)
       video_two = create(:video, watchable: workshop, position: 2)
-      purchase = create_subscriber_purchase_from_purchaseable(section)
+      purchase = create_subscriber_purchase_from_purchaseable(workshop)
 
       visit purchase_path(purchase)
 

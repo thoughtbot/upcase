@@ -1,0 +1,12 @@
+<ul class="teachers">
+  <li>
+    <%= teacher_gravatar teacher, 92 %>
+    <h5><%= t '.header' %></h5>
+    <h2>
+      <%= teacher.name %>
+    </h2>
+    <section class="bio">
+      <%= raw textilize(teacher.bio) %>
+    </section>
+  </li>
+</ul>

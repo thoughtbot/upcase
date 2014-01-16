@@ -36,46 +36,4 @@ feature 'Viewing products' do
       'This book is not currently available. Contact learn@thoughtbot.com'
     )
   end
-
-  scenario 'online workshop with in-person alternate' do
-    online = create(:online_workshop)
-    in_person = create(:in_person_workshop, name: online.name)
-
-    visit workshop_path(online)
-
-    expect_to_see_workshop_link(in_person)
-  end
-
-  scenario 'online workshop without in-person alternate' do
-    online = create(:online_workshop)
-
-    visit workshop_path(online)
-
-    expect_to_not_see_workshop_link
-  end
-
-  scenario 'in-person workshop with online alternate' do
-    online = create(:online_workshop)
-    in_person = create(:in_person_workshop, name: online.name)
-
-    visit workshop_path(in_person)
-
-    expect_to_see_workshop_link(online)
-  end
-
-  scenario 'in-person workshop without online alternate' do
-    in_person = create(:in_person_workshop)
-
-    visit workshop_path(in_person)
-
-    expect_to_not_see_workshop_link
-  end
-
-  def expect_to_see_workshop_link(workshop)
-    expect(find('.workshop-alert a')[:href]).to eq workshop_path(workshop)
-  end
-  
-  def expect_to_not_see_workshop_link
-    expect(page).not_to have_css('.workshop-alert')
-  end
 end

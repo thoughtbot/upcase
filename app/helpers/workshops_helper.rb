@@ -9,30 +9,9 @@ module WorkshopsHelper
     json.html_safe
   end
 
-  def workshop_data_role(workshop)
-    if workshop.online?
-      'online-workshop'
-    else
-      'in-person-workshop'
-    end
-  end
-
-  def workshop_frequency_note(workshop)
-    if workshop.starts_immediately?
-      "This #{workshop.fulfillment_method} workshop
-       starts as soon as you register."
-    else
-      "This #{workshop.fulfillment_method} workshop is held about every
-      six weeks. #{link_to 'Get notified', '#new_follow_up'} when the next one
-      is scheduled.".html_safe
-    end
-  end
-
   def workshop_card_classes(workshop)
-    classes = ["workshop-#{workshop.fulfillment_method}", 'product-card']
-    if workshop.purchase_for(current_user) && signed_in?
-      classes << workshop.purchase_for(current_user).status
-    end
+    classes = ["workshop", 'product-card']
+    classes << workshop_card_status(workshop)
     classes.join(' ')
   end
 

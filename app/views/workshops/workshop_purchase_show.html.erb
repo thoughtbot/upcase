@@ -1,8 +1,6 @@
 <% content_for :subject_block do %>
   <h1><%= @purchaseable.name %></h1>
-  <% if @purchaseable.in_person? && @purchaseable.upcoming? %>
-    <h2 class="tagline">See you on <%= purchase_date_range(@purchase) %> from <%= @purchaseable.time_range %> at <%= @purchaseable.address %>, <%= @purchaseable.city %>, <%= @purchaseable.state %> <%= @purchaseable.zip %>!</h2>
-  <% elsif @purchaseable.videos.any? %>
+  <% if @purchaseable.videos.any? %>
     <h2 class="tagline">Watch or download video lessons, <%= pluralize @purchaseable.videos.size, 'lesson' %> in this workshop.</h2>
   <% end %>
 <% end %>
@@ -14,4 +12,4 @@
   </section>
 </div>
 
-<%= render 'sections/aside', purchaseable: @purchaseable, purchase: @purchase %>
+<%= render 'workshops/aside', purchaseable: @purchaseable, purchase: @purchase %>

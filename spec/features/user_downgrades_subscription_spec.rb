@@ -2,9 +2,9 @@ require 'spec_helper'
 
 feature 'User downgrades subscription', js: true do
   scenario 'successfully downgrades and then cancels' do
-    prime = create(:plan, sku: 'prime', name: 'Prime')
+    create(:plan, sku: 'prime', name: 'Prime')
     basic_plan = create(:basic_plan)
-    section = create(:online_section)
+    workshop = create(:workshop)
 
     sign_in_as_user_with_subscription
     @current_user.should have_active_subscription
@@ -23,7 +23,7 @@ feature 'User downgrades subscription', js: true do
     @current_user.reload
     expect(@current_user.subscription.plan).to eq basic_plan
 
-    visit workshop_path(section.workshop)
+    visit workshop_path(workshop)
 
     expect(page).not_to have_css('.free-with-prime')
 

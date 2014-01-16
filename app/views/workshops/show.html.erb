@@ -4,15 +4,3 @@
   <%= render 'license', workshop: @offering, sections: @sections %>
   <%= render 'terms', workshop: @offering %>
 </aside>
-
-<% unless @offering.starts_immediately? %>
-  <% content_for :outside do %>
-    <section id="additional-information">
-      <section id="additional-information-wrapper">
-        <section id="main-content">
-          <%= render 'follow_up', workshop: @offering %>
-        </section>
-      </section>
-    </section>
-  <% end %>
-<% end %>

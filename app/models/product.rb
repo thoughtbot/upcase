@@ -77,10 +77,6 @@ class Product < ActiveRecord::Base
     type.downcase
   end
 
-  def alternates
-    []
-  end
-
   def fulfilled_with_github?
     github_team.present?
   end

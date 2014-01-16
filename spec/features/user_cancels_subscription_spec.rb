@@ -2,11 +2,9 @@ require 'spec_helper'
 
 feature 'User cancels a subscription', js: true do
   scenario 'successfully unsubscribes' do
-    prime = create(:plan, sku: 'prime', name: 'Prime')
-    basic_plan = create(:basic_plan)
-    create(:online_section,
-      workshop: create(:workshop, name: 'A Cool Workshop')
-    )
+    create(:plan, sku: 'prime', name: 'Prime')
+    create(:basic_plan)
+    create(:workshop, name: 'A Cool Workshop')
 
     sign_in_as_user_with_subscription
     @current_user.should have_active_subscription

@@ -104,26 +104,6 @@ describe IndividualPlan do
     end
   end
 
-  describe 'fulfillment_method' do
-    it 'returns subscription' do
-      plan = build_stubbed(:plan)
-
-      result = plan.fulfillment_method
-
-      expect(result).to eq 'subscription'
-    end
-  end
-
-  describe '#alternates' do
-    it 'is empty' do
-      plan = IndividualPlan.new
-
-      result = plan.alternates
-
-      expect(result).to eq []
-    end
-  end
-
   describe '#announcement' do
     it 'calls Announcement.current' do
       Announcement.stubs :current

@@ -13,6 +13,7 @@ describe 'workshops/show.html.erb' do
     assign(:sections, [])
     Mocha::Configuration.allow :stubbing_non_existent_method do
       view.stubs(current_user_has_active_subscription?: false)
+      view.stubs(current_user_has_access_to_workshops?: false)
     end
 
     render template: 'workshops/show', workshop: workshop

@@ -68,10 +68,10 @@ describe PurchasesController do
   describe '#new when attempting to purchase a workshop' do
     it 'redirects to the subscription page' do
       user = create(:user)
-      section = create(:section)
+      workshop = create(:workshop)
       stub_current_user_with(user)
 
-      get :new, section_id: section.id
+      get :new, workshop_id: workshop.id
 
       expect(response).to redirect_to new_subscription_path
     end
@@ -98,7 +98,7 @@ describe PurchasesController do
     assigns(:purchase).comments.should == 'test-comment'
   end
 
-  it 'sets flash[:purchase_amount]' do
+  it 'sets flash[:purchase_paid_price]' do
     stub_current_user_with(create(:user))
     product = create(:product)
 
