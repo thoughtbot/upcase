@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
   has_many :downloads, as: :purchaseable
   has_many :purchases, as: :purchaseable
   has_many :topics, through: :classifications
+  has_many :videos, as: :watchable, dependent: :destroy
 
   accepts_nested_attributes_for :downloads, allow_destroy: true
 
