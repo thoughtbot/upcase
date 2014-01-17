@@ -141,7 +141,7 @@ To test integration with AWS S3, set the following environment variables:
 
         $ rake deploy:production
 
-4. Manually invalidate the 12 hour index and topics cache (optional).
+4. Manually invalidate the 12 hour index and topics/videos cache (optional).
 
         $ heroku run rake heroku:flush_cache -r staging
         $ heroku run rake heroku:flush_cache -r production

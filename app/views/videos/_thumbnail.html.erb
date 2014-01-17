@@ -1,9 +1,11 @@
-<%= image_tag video.wistia_thumbnail, width: 100, height: 60, alt: video.title, :class => "thumbnail" %>
-<div class="thumbnail-text">
-  <h3><%= video.title %></h3>
-  <p class="videoinfo">
-    <em>
-      <%= distance_of_time_in_words video.wistia_running_time %>
-    </em>
-  </p>
-</div>
+<% cache(video) do %>
+  <%= image_tag video.wistia_thumbnail, width: 100, height: 60, alt: video.title, :class => "thumbnail" %>
+  <div class="thumbnail-text">
+    <h3><%= video.title %></h3>
+    <p class="videoinfo">
+      <em>
+        <%= distance_of_time_in_words video.wistia_running_time %>
+      </em>
+    </p>
+  </div>
+<% end %>
