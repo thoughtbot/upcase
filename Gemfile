@@ -70,7 +70,7 @@ end
 
 group :production, :staging do
   gem 'memcachier'
-  gem 'dalli', '2.1.0'
+  gem 'dalli'
   gem 'newrelic_rpm'
   gem 'rack-cache', '1.2'
   gem 'rails_12factor'
