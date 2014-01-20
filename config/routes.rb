@@ -162,6 +162,10 @@ Workshops::Application.routes.draw do
   resources :passwords, controller: 'passwords', :only => [:create, :new]
 
   resource :dashboard, only: :show
+  resource :team, only: :edit
+  resources :invitations, only: [:create] do
+    resources :acceptances, only: [:new, :create]
+  end
 
   mount Split::Dashboard, at: 'split'
 

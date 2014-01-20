@@ -149,6 +149,25 @@ FactoryGirl.define do
     end
   end
 
+  factory :invitation do
+    email
+    sender factory: :user
+    team
+
+    after :stub do |invitation|
+      invitation.code = 'abc'
+    end
+  end
+
+  factory :acceptance do
+    github_username 'username'
+    invitation
+    name
+    password 'secret'
+
+    initialize_with { new(invitation, attributes.except(:invitation)) }
+  end
+
   factory :product_license do
     discounted false
     offering_type 'Book'

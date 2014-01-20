@@ -1,0 +1,17 @@
+<% content_for :page_title, 'Team Members' %>
+<% content_for :subject, 'Team Members' %>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <table>
+      <tr>
+        <th>Invite a member</th>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <%= render 'invitations/form', invitation: Invitation.new %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

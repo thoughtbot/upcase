@@ -32,6 +32,28 @@ describe Team do
     end
   end
 
+  describe '#has_users_remaining?' do
+    it 'returns true when the number of users is less than the max' do
+      expect(team_with_user_counts(actual: 1, max: 2)).
+        to have_users_remaining
+    end
+
+    it 'returns false when the number of users is equal to the max' do
+      expect(team_with_user_counts(actual: 2, max: 2)).
+        not_to have_users_remaining
+    end
+
+    it 'returns false when the number of users is greater than the max' do
+      expect(team_with_user_counts(actual: 3, max: 2)).
+        not_to have_users_remaining
+    end
+
+    def team_with_user_counts(counts)
+      users = create_list(:user, counts[:actual])
+      create(:team, max_users: counts[:max], users: users)
+    end
+  end
+
   def stub_team_fulfillment(team, user)
     purchase = build_stubbed(:purchase)
     team.subscription.stubs(:purchase).returns(purchase)

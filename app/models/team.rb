@@ -21,4 +21,8 @@ class Team < ActiveRecord::Base
     user.team = nil
     user.save!
   end
+
+  def has_users_remaining?
+    users.count < max_users
+  end
 end

@@ -16,7 +16,6 @@ describe IndividualPlan do
 
   it_behaves_like 'a Plan with countable subscriptions'
   it_behaves_like 'a Plan for public listing'
-  it_behaves_like 'Purchaseable plan'
 
   describe '.active' do
     it 'only includes active plans' do
@@ -187,6 +186,20 @@ describe IndividualPlan do
       plan.fulfill(purchase, user)
 
       expect(fulfillment).to have_received(:fulfill)
+    end
+  end
+
+  describe '#after_purchase_url' do
+    it 'returns the dashboard path' do
+      dashboard_path = 'http://example.com/dashboard'
+      plan = build_stubbed(:individual_plan)
+      purchase = build_stubbed(:purchase, purchaseable: plan)
+      controller = stub('controller')
+      controller.stubs(:dashboard_path).returns(dashboard_path)
+
+      after_purchase_url = plan.after_purchase_url(controller, purchase)
+
+      expect(after_purchase_url).to eq(dashboard_path)
     end
   end
 

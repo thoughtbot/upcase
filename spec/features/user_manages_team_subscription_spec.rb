@@ -2,15 +2,13 @@ require 'spec_helper'
 
 feature 'User creates a team subscription' do
   background do
-    create_team_plan
-    create_mentors
     sign_in
   end
 
   scenario 'creates a team subscription with a valid credit card' do
     subscribe_with_valid_credit_card
 
-    expect(current_path).to eq dashboard_path
+    expect(current_path).to eq after_sign_up_path
     expect(page).
       to have_content(I18n.t('purchase.flashes.success', name: plan.name))
     expect(settings_page).to have_subscription_to(plan.name)
@@ -43,7 +41,7 @@ feature 'User creates a team subscription' do
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
-    expect(current_path).to eq dashboard_path
+    expect(current_path).to eq after_sign_up_path
     expect(FakeStripe.customer_plan_quantity).to eq requested_quantity
   end
 
@@ -60,7 +58,7 @@ feature 'User creates a team subscription' do
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
-    expect(current_path).to eq dashboard_path # need this check for capybara to wait
+    expect(current_path).to eq after_sign_up_path # need this check for capybara to wait
     expect(FakeStripe.last_coupon_used).to eq '5OFF'
     expect(FakeStripe.customer_plan_quantity).to eq plan.minimum_quantity.to_s
   end
@@ -105,7 +103,7 @@ feature 'User creates a team subscription' do
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
-    expect(current_path).to eq dashboard_path
+    expect(current_path).to eq after_sign_up_path
     expect(page).to have_content(I18n.t('purchase.flashes.success', name: plan.name))
     expect(FakeStripe.last_coupon_used).to eq '5OFF'
   end
@@ -120,15 +118,6 @@ feature 'User creates a team subscription' do
     expect(page).to have_content('The coupon code you supplied is not valid.')
   end
 
-  def visit_team_plan_purchase_page
-    visit new_subscription_path
-    click_link('Sign up for')
-  end
-
-  def create_team_plan
-    @plan = create(:team_plan)
-  end
-
   def subscribe_with_valid_credit_card
     visit_team_plan_purchase_page
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
@@ -141,7 +130,7 @@ feature 'User creates a team subscription' do
   end
 
   def plan
-    @plan
+    TeamPlan.first
   end
 
   def apply_coupon_with_code(code)
@@ -156,6 +145,10 @@ feature 'User creates a team subscription' do
       final_price: new,
       full_price: original,
     )
+  end
+
+  def after_sign_up_path
+    edit_team_path
   end
 
   def expect_to_see_the_current_plan(plan)

@@ -14,6 +14,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def must_be_team_member
+    authorize
+    if signed_in? && current_user.team.blank?
+      deny_access('You must be a member of a team to access that resource.')
+    end
+  end
+
   def current_user_has_active_subscription?
     current_user && current_user.has_active_subscription?
   end

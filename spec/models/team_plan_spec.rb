@@ -11,7 +11,6 @@ describe TeamPlan do
 
   it_behaves_like 'a Plan with countable subscriptions'
   it_behaves_like 'a Plan for public listing'
-  it_behaves_like 'Purchaseable plan'
 
   describe '.instance' do
     context 'when an instance already exists' do
@@ -115,6 +114,20 @@ describe TeamPlan do
           with(purchase, purchase.user).
           returns(fulfillment)
       end
+    end
+  end
+
+  describe '#after_purchase_url' do
+    it 'returns the edit team path' do
+      edit_team_path = 'http://example.com/edit_team'
+      plan = build_stubbed(:team_plan)
+      purchase = build_stubbed(:purchase, purchaseable: plan)
+      controller = stub('controller')
+      controller.stubs(:edit_team_path).returns(edit_team_path)
+
+      after_purchase_url = plan.after_purchase_url(controller, purchase)
+
+      expect(after_purchase_url).to eq(edit_team_path)
     end
   end
 
