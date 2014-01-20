@@ -54,7 +54,9 @@ body.subscriptions-new .journey-headline {
       font-size: 1rem;
       letter-spacing: 1px;
       margin: 0 0 2rem;
+      position: relative;
       word-spacing: 1px;
+      z-index: 2;
 
       @include body-mobile {
         height: auto;
@@ -73,6 +75,7 @@ body.subscriptions-new .journey-headline {
   .features {
     display: table;
     margin-bottom: 2rem;
+    position: relative;
     width: 100%;
 
     @include body-mobile {
