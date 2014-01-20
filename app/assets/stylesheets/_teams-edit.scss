@@ -1,18 +1,56 @@
-.teams-edit .text-box {
-  table {
-    min-width: 80%;
+body.teams-edit {
+  .members {
     margin: 0;
+    padding: 0;
+
+    .member {
+      border: 1px solid $warmgray;
+      border-radius: 3px;
+      display: block;
+      list-style-type: none;
+      margin: 0 0 .5rem;
+      padding: .5rem 1rem;
+      position: relative;
+
+      &.pending {
+        background: #eee;
+        border-style: dashed;
+
+        &:before {
+          content: '(pending) ';
+        }
+      }
+
+      a {
+        padding: 0.5rem 1rem;
+        @include position(absolute, 0px 0px 0 0);
+      }
+    }
   }
 
-  table th {
-    padding: 1rem 0;
-  }
+  .invite-members {
+    margin-top: 2rem;
 
-  #invitation_email_input {
-    display: inline-block;
-  }
+    > p {
+      text-align: center;
+      font-weight: bold;
+    }
 
-  #invitation_email {
-    width: 250px;
+    form {
+      margin: 0;
+    }
+
+    li.email, input[type=submit] {
+      display: inline-block;
+      vertical-align: bottom;
+    }
+
+    li.email {
+      width: 50%;
+    }
+
+    input[type=email] {
+      margin: 0;
+    }
   }
 }
