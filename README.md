@@ -10,7 +10,9 @@ This project is now following Sandi Metz's Rules.
 
 You can read a [description of the rules here](http://robots.thoughtbot.com/post/50655960596/sandi-metz-rules-for-developers).
 
-All new code should follow these rules. If you make changes in a pre-existing file that violates these rules you should fix the violations as part of your work.
+All new code should follow these rules. If you make changes in a pre-existing
+file that violates these rules you should fix the violations as part of
+your work.
 
 ### Setup
 
@@ -52,7 +54,9 @@ You'll need to install phantom.js to run some of the specs.
 
         brew install phantomjs
 
-Also, you may want to use the [spring gem](https://github.com/jonleighton/spring) to speed up the boot time of your specs. The rspec binstub has been updated to take advantage of spring if it's found.
+Also, you may want to use the [spring gem](https://github.com/jonleighton/spring)
+to speed up the boot time of your specs. The rspec, rake, and rails binstubs
+have been updated to take advantage of spring if it's found.
 
 ### Continuous Integration
 
@@ -73,9 +77,11 @@ CLI by installing the gem and running the suite:
 
         $ rake dev:prime
 
-* Dump production data into your local db.
+* Dump production data into your local db. (Note that you need to drop your
+  local database first).
 
-        $ heroku db:pull -r production
+        $ rake db:drop
+        $ heroku pg:pull DATABASE_URL workshops_development -r production
 
 * To test that adding/removing GitHub users works, use the GitHub user
   "cpyteltest".
