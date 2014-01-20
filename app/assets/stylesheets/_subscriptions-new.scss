@@ -96,17 +96,19 @@ body.subscriptions-new .journey-headline {
         white-space: normal;
       }
 
-      &.active {
-        &:after {
-          @include animation(fade-in .75s ease);
-          background: lighten($warmgray, 5%);
-          content: '';
-          height: 1.5rem;
-          margin-left: -.75rem;
-          @include position(absolute, 0 0 -3.25rem 50%);
-          @include transform(rotate(45deg));
-          width: 1.5rem;
-        }
+      &:after {
+        background: lighten($warmgray, 5%);
+        content: '';
+        height: 1.5rem;
+        margin-left: -.75rem;
+        opacity: 0;
+        @include position(absolute, 0 0 -3.25rem 50%);
+        @include transform(rotate(45deg));
+        width: 1.5rem;
+      }
+
+      &.active:after {
+        @include animation(fade-in .75s ease both);
       }
 
       &.inactive {
