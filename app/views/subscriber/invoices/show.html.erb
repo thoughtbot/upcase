@@ -1,5 +1,7 @@
 <% content_for :page_title, "Invoice" %>
-<% content_for :subject, "Invoice #{@invoice.number}" %>
+<% content_for :subject_block do %>
+  <h1>Invoice <%= @invoice.number %></h1>
+<% end %>
 
 <div class="text-box-wrapper">
   <div class="text-box">

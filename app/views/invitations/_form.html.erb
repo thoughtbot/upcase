@@ -1,0 +1,7 @@
+<%= semantic_form_for invitation do |form| %>
+  <%= form.semantic_errors :team %>
+  <%= form.inputs do %>
+    <%= form.input :email %>
+    <%= form.submit 'Send invite' %>
+  <% end %>
+<% end %>

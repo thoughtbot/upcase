@@ -21,6 +21,7 @@ gem 'dynamic_form', '1.1.4'
 gem 'escape_utils', '0.2.4' # Fix UTF-8 regexp match warning
 gem 'flutie', '2.0.0'
 gem 'formtastic', '2.2.0'
+gem 'friendly_id', '~> 5.0.2'
 gem 'gravatarify', '~> 3.1.0'
 gem 'high_voltage', github: 'thoughtbot/high_voltage'
 gem 'httparty', '~> 0.10.0'

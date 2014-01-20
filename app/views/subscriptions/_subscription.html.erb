@@ -8,10 +8,6 @@
     <p>Canceled on <%= subscription.deactivated_on.to_s(:simple) %></p>
   <% end %>
 
-  <% if subscription.team? %>
-    <%= render subscription.team %>
-  <% end %>
-
   <%= link_to 'View all invoices', subscriber_invoices_path, class: 'invoices' %>
   <% if subscription.active? && subscription.scheduled_for_cancellation_on.blank? %>
     <%= link_to t('subscriptions.cancel'), new_subscriber_cancellation_path, class: 'cancel' %>

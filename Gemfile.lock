@@ -160,6 +160,8 @@ GEM
       thor (>= 0.13.6)
     formtastic (2.2.0)
       actionpack (>= 3.0)
+    friendly_id (5.0.2)
+      activerecord (~> 4.0.0)
     gravatarify (3.1.0)
     haml (4.0.3)
       tilt
@@ -433,6 +435,7 @@ DEPENDENCIES
   flutie (= 2.0.0)
   foreman (= 0.46.0)
   formtastic (= 2.2.0)
+  friendly_id (~> 5.0.2)
   gravatarify (~> 3.1.0)
   heroku-deflater
   high_voltage!

@@ -1,4 +1,6 @@
-<%= content_for :subject, 'Account' %>
+<% content_for :subject_block do %>
+  <h1>Account<h1>
+<% end %>
 
 <div class="text-box-wrapper">
   <div class="text-box">
@@ -30,6 +32,11 @@
     <ol class="subscription">
       <%= render current_user.subscription %>
     </ol>
+  <% end %>
+
+  <% if current_user.team %>
+    <h3>Your Team</h3>
+    <%= render current_user.team %>
   <% end %>
 
   <% if current_user.has_purchased? %>

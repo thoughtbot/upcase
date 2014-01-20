@@ -29,10 +29,10 @@ body.users-edit {
       display: block;
       margin-top: .5rem;
       padding: .5rem;
-
-      &:first-of-type {
-        margin-top: 1.5rem;
-      }
     }
+  }
+
+  .card-cvc {
+    margin: 0;
   }
 }

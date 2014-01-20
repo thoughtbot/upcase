@@ -53,6 +53,6 @@ class TeamPlan < ActiveRecord::Base
   end
 
   def after_purchase_url(controller, purchase)
-    controller.dashboard_path
+    controller.edit_team_path
   end
 end
