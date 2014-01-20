@@ -83,7 +83,7 @@ class SubscriptionInvoice
   end
 
   def discount_amount
-    cents_to_dollars(stripe_invoice.discount.coupon.amount_off)
+    cents_to_dollars(stripe_invoice.subtotal - stripe_invoice.total)
   end
 
   def user
