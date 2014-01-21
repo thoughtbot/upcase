@@ -1,10 +1,10 @@
 <%= javascript_include_tag 'application', 'prefilled_input' %>
 
-<%= yield :javascript %>
-
 <% if Rails.env.production? %>
   <%= render 'shared/analytics' %>
 <% end %>
+
+<%= yield :javascript %>
 
 <% unless Rails.env.test? %>
   <script type="text/javascript">

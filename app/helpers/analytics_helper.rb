@@ -20,4 +20,11 @@ module AnalyticsHelper
       }
     }
   end
+
+  def purchased_hash(purchase_amount, purchase_name)
+    {
+      revenue: purchase_amount,
+      label: purchase_name
+    }
+  end
 end

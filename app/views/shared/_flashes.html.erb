@@ -6,8 +6,12 @@
       </div>
     <% end -%>
 
-   <% if flash[:purchase_paid_price] %>
-     <%= adwords_conversion_tracker(flash[:purchase_paid_price]) %>
+  <% if flash[:purchase_amount] %>
+     <% content_for :javascript do %>
+       <%= render 'conversions/purchased',
+             purchase_amount: flash[:purchase_amount],
+             purchase_name: flash[:purchase_name] %>
+     <% end %>
    <% end %>
   </div>
 <% end %>
