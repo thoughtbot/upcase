@@ -9,7 +9,7 @@ describe SubscriptionsController do
       get :new
 
       expect(assigns(:team_plans)).
-        to find_relation(TeamPlan.featured.ordered)
+        to find_relation(Teams::TeamPlan.featured.ordered)
     end
   end
 end

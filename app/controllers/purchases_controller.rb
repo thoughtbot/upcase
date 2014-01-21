@@ -74,7 +74,7 @@ class PurchasesController < ApplicationController
   end
 
   def plan_purchase?
-    params[:individual_plan_id].present? || params[:team_plan_id].present?
+    params[:individual_plan_id].present? || params[:teams_team_plan_id].present?
   end
 
   def workshop_purchase?

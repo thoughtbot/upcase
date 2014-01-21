@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
   def requested_purchaseable
     PolymorphicFinder.
       finding(Section, :id, [:section_id]).
-      finding(TeamPlan, :sku, [:team_plan_id]).
+      finding(Teams::TeamPlan, :sku, [:teams_team_plan_id]).
       finding(IndividualPlan, :sku, [:individual_plan_id]).
       finding(Product, :id, [:product_id, :screencast_id, :book_id, :show_id]).
       find(params)

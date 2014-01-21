@@ -3,7 +3,7 @@ class Subscription < ActiveRecord::Base
   belongs_to :user
   belongs_to :plan, polymorphic: true
 
-  has_one :team, dependent: :destroy
+  has_one :team, dependent: :destroy, class_name: 'Teams::Team'
 
   delegate :includes_mentor?, to: :plan
   delegate :includes_workshops?, to: :plan

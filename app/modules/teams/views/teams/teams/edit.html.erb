@@ -1,0 +1,15 @@
+<% content_for :page_title, 'Team Members' %>
+<% content_for :subject_block do %>
+  <h1>Team Members</h1>
+<% end %>
+
+<div class="text-box-wrapper solo">
+  <div class="text-box">
+    <ul class="members">
+    </ul>
+    <div class="invite-members">
+      <p>Invite a member</p>
+      <%= render 'teams/invitations/form', invitation: Teams::Invitation.new %>
+    </div>
+  </div>
+</div>

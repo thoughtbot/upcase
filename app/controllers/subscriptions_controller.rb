@@ -3,7 +3,7 @@ class SubscriptionsController < ApplicationController
 
   def new
     @plans = IndividualPlan.featured.active.ordered
-    @team_plans = TeamPlan.featured.ordered
+    @team_plans = Teams::TeamPlan.featured.ordered
 
     render :layout => 'empty-body'
   end
