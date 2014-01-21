@@ -29,12 +29,12 @@ describe PurchasesController do
       end
     end
 
-    context 'when purchase a team plan' do
+    context 'when purchasing a team plan' do
       it 'renders a subscriber-specific layout' do
         user = create(:subscriber)
         stub_current_user_with(user)
 
-        get :new, team_plan_id: user.subscription.plan
+        get :new, teams_team_plan_id: user.subscription.plan
 
         expect(response).to redirect_to dashboard_path
       end
@@ -143,7 +143,7 @@ describe PurchasesController do
       create(:team_plan, sku: 'sku1')
       desired_plan = create(:team_plan, sku: 'sku2')
 
-      get :new, team_plan_id: desired_plan.sku
+      get :new, teams_team_plan_id: desired_plan.sku
 
       expect(assigns(:purchase).purchaseable).to eq desired_plan
     end

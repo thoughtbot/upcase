@@ -28,7 +28,7 @@ describe PolymorphicFinder do
 
       result = PolymorphicFinder.
         finding(IndividualPlan, :sku, [:individual_plan_id]).
-        finding(TeamPlan, :sku, [:team_plan_id]).
+        finding(Teams::TeamPlan, :sku, [:team_plan_id]).
         find(team_plan_id: 'def')
 
       expect(result).to eq(team_plan)
