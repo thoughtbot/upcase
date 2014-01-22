@@ -1,5 +1,5 @@
 <% cache(video) do %>
-  <p class="videowrapper"><%= render 'videos/code', video_hash_id: video.video_hash_id %></p>
+  <p class="videowrapper"><%= wistia_video_embed(video.video_hash_id) %></p>
 
   <section class="assets-wrapper">
     <div class="assets">
