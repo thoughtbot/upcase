@@ -98,13 +98,13 @@ describe PurchasesController do
     assigns(:purchase).comments.should == 'test-comment'
   end
 
-  it 'sets flash[:purchase_paid_price]' do
+  it 'sets flash[:purchase_amount]' do
     stub_current_user_with(create(:user))
     product = create(:product)
 
     post :create, purchase: customer_params, product_id: product
 
-    flash[:purchase_paid_price].should eq product.individual_price
+    flash[:purchase_amount].should eq product.individual_price
   end
 
   describe "processing on paypal" do

@@ -18,7 +18,10 @@ class PurchasesController < ApplicationController
 
       redirect_to success_url,
         notice: t('purchase.flashes.success', name: @purchase.purchaseable_name),
-        flash: { purchase_paid_price: @purchase.paid_price }
+        flash: {
+          purchase_amount: @purchase.paid_price,
+          purchase_name: @purchase.purchaseable_name
+        }
     else
       render :new
     end
