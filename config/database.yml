@@ -11,4 +11,5 @@ development:
 
 test:
   <<: *default
+  pool: 4
   database: workshops_test
