@@ -1,6 +1,6 @@
 <%= javascript_include_tag 'application', 'prefilled_input' %>
 
-<% if Rails.env.production? %>
+<% if analytics? %>
   <%= render 'shared/analytics' %>
 <% end %>
 
