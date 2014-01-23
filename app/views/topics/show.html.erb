@@ -1,22 +1,21 @@
 <% content_for :meta_description, @topic.summary %>
 <% content_for :meta_keywords, @topic.keywords %>
 <% content_for :page_title, "Learn #{@topic.name}" %>
-<% content_for :subject, @topic.name %>
-
 <% content_for :additional_header_links do %>
   <li class="all-trails"><%= link_to 'All Trails', topics_path %></li>
 <% end %>
+<% content_for :subject_block do %>
+  <h1><%= @topic.name %></h1>
+  <% if @topic.summary.present? %>
+    <h2 class="tagline"><%= @topic.summary %></h2>
+  <% end %>
+<% end %>
 
-<% if @topic.summary.present? %>
-  <div class="summary">
-    <p><%= @topic.summary %></p>
-    <% if @topic.related.topics.present? %>
-      <p class="related-topics">
-        Related topics:
-        <%= render partial: 'relateds/topic', collection: @topic.related.topics %>
-      </p>
-    <% end %>
-  </div>
+<% if @topic.trail %>
+  <%= link_to 'Contribute to this list', @topic.trail.contribute_url, class: 'contribute', target: '_blank' %>
+<% end %>
+<% if @topic.related.topics.present? %>
+  <p class="related-topics">Related Trails: <%= render partial: 'relateds/topic', collection: @topic.related.topics %></p>
 <% end %>
 
 <% if @topic.trail %>
