@@ -8,8 +8,7 @@
   <h1><%= @purchaseable.name %></h1>
   <h2 class="tagline">
     <% if @purchaseable.collection? %>
-      Watch or download videos,
-      <%= pluralize @purchaseable.videos.size, 'video' %> in the series.
+      <%= @video.title %>
     <% else %>
       Watch or download video
     <% end %>
