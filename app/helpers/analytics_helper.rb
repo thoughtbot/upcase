@@ -1,4 +1,8 @@
 module AnalyticsHelper
+  def analytics?
+    ENV['ANALYTICS']
+  end
+
   def analytics_hash
     {
       created: current_user.created_at,
