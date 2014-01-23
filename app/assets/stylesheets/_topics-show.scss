@@ -9,14 +9,6 @@ body.topics-show {
     position: relative;
   }
 
-  .subject {
-    margin-left: 0;
-  }
-
-  .summary p {
-    margin-left: 0;
-  }
-
   .steps-complete {
     clear: both;
     display: block;
@@ -40,6 +32,29 @@ body.topics-show {
   }
 }
 
+.contribute {
+  border: 2px solid $learnred;
+  border-radius: 3px;
+  display: block;
+  margin: 0 auto 1rem;
+  padding: .25rem .5rem;
+  text-align: center;
+  width: 175px;
+}
+
+.related-topics {
+  margin: 0 0 2.5rem;
+  text-align: center;
+
+  span:after {
+    content: ', ';
+  }
+
+  span:last-of-type:after {
+    content: '';
+  }
+}
+
 .trails-save-progress {
   clear: both;
   font: 700 2rem/1 $sans-serif;
@@ -56,20 +71,6 @@ body.topics-show {
   a {
     border-bottom: 2px solid $learnred;
     font-family: $sans-serif;
-  }
-}
-
-.contribute {
-  @include position(absolute, 2.45em 2em 0 0);
-
-  @include body-mobile {
-    margin-bottom: 1rem;
-    position: static;
-    text-align: center;
-  }
-
-  a {
-    display: block;
   }
 }
 
@@ -221,30 +222,6 @@ body.topics-show aside {
 
     &:nth-child(odd) {
       margin-right: 4%;
-    }
-  }
-}
-
-.related-topics {
-  span:after {
-    content: ', ';
-  }
-
-  span:last-of-type:after {
-    content: '';
-  }
-
-  li {
-    width: 100%;
-    float: none;
-    margin: 0 0 1.5rem;
-
-    a {
-      display: block;
-    }
-
-    hgroup h5, hgroup h4 {
-      margin: 0;
     }
   }
 }
