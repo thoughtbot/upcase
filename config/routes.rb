@@ -12,18 +12,6 @@ Workshops::Application.routes.draw do
     end
   end
 
-  namespace :widgets do
-    with_options only: :show do |route|
-      route.resource :plan_churn
-      route.resource :plan_ltv
-      route.resource :plan_subscriber_count
-      route.resource :projected_monthly_revenue
-      route.resource :total_cancellations
-      route.resource :total_churn
-      route.resource :total_new_subscriber_count
-      route.resource :total_subscriber_count
-    end
-  end
 
   namespace :teams do
     resources :invitations, only: [:create] do
@@ -170,8 +158,6 @@ Workshops::Application.routes.draw do
   resources :passwords, controller: 'passwords', :only => [:create, :new]
 
   resource :dashboard, only: :show
-
-  mount Split::Dashboard, at: 'split'
 
   mount StripeEvent::Engine, at: 'stripe-webhook'
 

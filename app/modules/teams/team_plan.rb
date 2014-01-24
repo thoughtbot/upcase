@@ -10,7 +10,6 @@ module Teams
     validates :sku, presence: true
 
     include PlanForPublicListing
-    include PlanWithCountableSubscriptions
 
     def self.instance
       if first
@@ -18,10 +17,6 @@ module Teams
       else
         create!(sku: 'primeteam', name: 'Prime for Teams', individual_price: 0)
       end
-    end
-
-    def projected_monthly_revenue
-      teams.count * individual_price
     end
 
     def subscription?

@@ -14,7 +14,6 @@ describe IndividualPlan do
   it { should_not be_fulfilled_with_github }
   it { should be_subscription }
 
-  it_behaves_like 'a Plan with countable subscriptions'
   it_behaves_like 'a Plan for public listing'
 
   describe '.active' do
@@ -47,31 +46,6 @@ describe IndividualPlan do
       create(:plan)
 
       expect(IndividualPlan.basic).to eq basic_plan
-    end
-  end
-
-  describe '#subscription_count' do
-    it 'returns 0 when the plan has no subscriptions' do
-      plan = create(:plan)
-      expect(plan.subscription_count).to eq 0
-    end
-
-    it 'returns 1 when the plan has a single active subscription that is paid' do
-      plan = create(:plan)
-      create(:active_subscription, plan: plan, paid: true)
-      expect(plan.subscription_count).to eq 1
-    end
-
-    it 'returns 0 when the plan has an active subscription that is unpaid' do
-      plan = create(:plan)
-      create(:active_subscription, plan: plan, paid: false)
-      expect(plan.subscription_count).to eq 0
-    end
-
-    it 'returns 0 when the plan has only an inactive subscription' do
-      plan = create(:plan)
-      create_inactive_subscription_for(plan)
-      expect(plan.subscription_count).to eq 0
     end
   end
 
@@ -156,23 +130,6 @@ describe IndividualPlan do
       plan = create(:plan)
       plan.announcement
       expect(Announcement).to have_received(:current)
-    end
-  end
-
-  describe '#projected_monthly_revenue' do
-    it 'returns 0 when there are no subscribers' do
-      plan = create(:individual_plan)
-
-      expect(plan.projected_monthly_revenue).to eq 0
-    end
-
-    it 'returns the subscriber count times the individual price for a Plan' do
-      plan = create(:individual_plan)
-      create(:subscription, plan: plan)
-      create(:subscription, plan: plan)
-
-      expected_revenue = plan.individual_price * 2
-      expect(plan.projected_monthly_revenue).to eq expected_revenue
     end
   end
 
