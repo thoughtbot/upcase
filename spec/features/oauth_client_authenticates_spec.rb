@@ -43,7 +43,6 @@ feature 'An OAuth client authenticates', js: true do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Sign in'
-    click_button 'Authorize'
   end
 
   def authorize_via_password(user)
