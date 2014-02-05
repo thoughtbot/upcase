@@ -7,15 +7,6 @@ describe '#create' do
     user.purchases.last.payment_method.should eq 'subscription'
   end
 
-  it 'sets the comments on the purchase if provided' do
-    user = create(:subscriber)
-    section = create(:section)
-    subscriber_purchase = SubscriberPurchase.new(section, user, 'test')
-    purchase = subscriber_purchase.create
-
-    purchase.comments.should == 'test'
-  end
-
   context 'when the purchaseable is a github fulfilled product' do
     it 'enqueues a job to add the subscriber to the repo' do
       GithubFulfillmentJob.stubs(:enqueue)

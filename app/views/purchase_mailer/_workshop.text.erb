@@ -1,0 +1,7 @@
+Thank you! <%= purchase.name %> is now registered for <%= purchaseable.name %>.
+You can view the workshop lessons and other workshop resources here:
+<%= purchase_url(purchase) %>
+
+<% if purchaseable.announcement.present? -%>
+<%= purchaseable.announcement.message %>
+<% end -%>

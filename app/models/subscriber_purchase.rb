@@ -1,10 +1,9 @@
 # Handles the special-casing necessary to create Purchases for Subscribers without charging them.
 
 class SubscriberPurchase
-  def initialize(purchaseable, subscriber, comments = nil)
+  def initialize(purchaseable, subscriber)
     @purchaseable = purchaseable
     @subscriber = subscriber
-    @comments = comments
   end
 
   def create
@@ -23,7 +22,6 @@ class SubscriberPurchase
     purchase.email = @subscriber.email
     purchase.github_usernames = [@subscriber.github_username]
     purchase.user = @subscriber
-    purchase.comments = @comments
     purchase.save!
     @purchase = purchase
   end

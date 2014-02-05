@@ -19,15 +19,6 @@ FactoryGirl.define do
     "http://robots.thoughtbot.com/#{n}"
   end
 
-  factory :alternate do
-    ignore do
-      key 'online_workshop'
-      offering { build(:workshop) }
-    end
-
-    initialize_with { new(key, offering) }
-  end
-
   factory :announcement do
     association :announceable, factory: :book
     ends_at { 1.day.from_now }
@@ -51,22 +42,13 @@ FactoryGirl.define do
 
   factory :workshop do
     description 'Solve 8-Queens over and over again'
-    maximum_students 12
     name { generate(:name) }
     short_description 'Solve 8-Queens'
     sku 'EIGHTQUEENS'
+    length_in_days 28
 
     factory :private_workshop do
       active false
-    end
-
-    factory :in_person_workshop do
-      online false
-    end
-
-    factory :online_workshop do
-      online true
-      length_in_days 28
     end
 
     trait :active do
@@ -80,11 +62,6 @@ FactoryGirl.define do
 
   factory :download do
     download_file_name { 'some_video.mpg' }
-  end
-
-  factory :follow_up do
-    email
-    workshop
   end
 
   factory :note do
@@ -221,16 +198,8 @@ FactoryGirl.define do
 
     factory :free_purchase, traits: [:free]
 
-    factory :section_purchase do
-      association :purchaseable, factory: :section
-
-      factory :in_person_section_purchase do
-        association :purchaseable, factory: :in_person_section
-      end
-
-      factory :online_section_purchase do
-        association :purchaseable, factory: :online_section
-      end
+    factory :workshop_purchase do
+      association :purchaseable, factory: :workshop
     end
 
     factory :book_purchase do
@@ -253,48 +222,9 @@ FactoryGirl.define do
     end
   end
 
-  factory :section_teacher do
-    section
-    teacher
-  end
-
-  factory :section_without_teacher, class: 'Section' do
-    association :workshop
-    starts_on { 1.day.from_now.to_date }
-    ends_on   { 2.days.from_now.to_date }
-    start_at    '9:00'
-    stop_at     '17:00'
-    address     '41 Winter St'
-
-    factory :section do
-      after(:build) do |s|
-        s.teachers << build(:teacher)
-      end
-
-      factory :future_section do
-        starts_on { 2.days.from_now.to_date }
-        ends_on   { 4.days.from_now.to_date }
-      end
-
-      factory :past_section do
-        starts_on { 6.days.ago.to_date }
-        ends_on   { 4.days.ago.to_date }
-      end
-
-      factory :in_person_section do
-        association :workshop, factory: :in_person_workshop
-      end
-
-      factory :online_section do
-        ends_on nil
-        association :workshop, factory: :online_workshop
-      end
-    end
-  end
-
   factory :teacher do
-    email 'bmadison@example.com'
-    name 'Billy Madison'
+    user
+    workshop
   end
 
   factory :topic do

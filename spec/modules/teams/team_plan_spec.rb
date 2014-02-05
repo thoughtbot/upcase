@@ -46,12 +46,6 @@ module Teams
       end
     end
 
-    describe '#fulfillment_method' do
-      it 'returns the fulfillment method' do
-        expect(team_plan.fulfillment_method).to eq 'subscription'
-      end
-    end
-
     describe '#fulfilled_with_github?' do
       it 'returns false' do
         expect(team_plan.fulfilled_with_github?).to be_false

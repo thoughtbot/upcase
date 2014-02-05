@@ -87,13 +87,9 @@ en:
     new:
       subscribe_cta: "You could have this %{product_type} as part of a subscription to %{subscription_name} instead"
 
-  section_teachers:
-    section_teacher:
-      header:
-        one:
-          Taught by
-        other:
-          Taught in %{city} by
+  teachers:
+    teacher:
+      header: Taught by
 
   shared:
     intro:

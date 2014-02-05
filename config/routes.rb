@@ -34,15 +34,11 @@ Workshops::Application.routes.draw do
 
   resource :session, controller: 'sessions'
 
-  resources :sections, only: [:show] do
-    resources :purchases, only: [:new, :create]
-    resources :redemptions, only: [:new]
-  end
-
   get '/courses.json' => redirect('/workshops.json')
   get '/courses/:id' => redirect('/workshops/%{id}')
   resources :workshops, only: [:show] do
-    resources :follow_ups, only: [:create]
+    resources :purchases, only: [:new, :create]
+    resources :redemptions, only: [:new]
   end
 
   resources :products, only: [:index, :show] do
@@ -83,7 +79,7 @@ Workshops::Application.routes.draw do
     resources :shows, only: [] do
       resources :purchases, only: [:new, :create]
     end
-    resources :sections, only: [] do
+    resources :workshops, only: [] do
       resources :purchases, only: [:new, :create]
     end
     resources :invoices, only: [:index, :show]

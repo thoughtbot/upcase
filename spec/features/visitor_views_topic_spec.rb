@@ -100,13 +100,11 @@ feature 'Topic pages' do
 
   scenario "view the type for a topic's related products" do
     topic = create(:topic, name: 'Rails')
-    topic.workshops << create(:in_person_workshop, name: 'In-Person Rails')
-    topic.workshops << create(:online_workshop, name: 'Online Rails')
+    topic.workshops << create(:workshop, name: 'Online Rails')
 
     visit topic_path(topic)
 
-    expect_related_in_person_worshop_named('In-Person Rails')
-    expect_related_online_workshop_named('Online Rails')
+    expect_to_see_related_workshop_named('Online Rails')
   end
 
   def expect_to_see_related_workshop_named(workshop_name)
@@ -131,14 +129,6 @@ feature 'Topic pages' do
     within('aside') do
       expect(page).not_to have_content name
     end
-  end
-
-  def expect_related_in_person_worshop_named(workshop_name)
-    expect(type_of_related_workshop_named(workshop_name)).to eq 'In Person'
-  end
-
-  def expect_related_online_workshop_named(workshop_name)
-    expect(type_of_related_workshop_named(workshop_name)).to eq 'Online'
   end
 
   def type_of_related_workshop_named(name)

@@ -87,16 +87,6 @@ ActiveRecord::Schema.define(version: 20140123145010) do
     t.string   "purchaseable_type"
   end
 
-  create_table "follow_ups", force: true do |t|
-    t.string   "email"
-    t.integer  "workshop_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "notified_at"
-  end
-
-  add_index "follow_ups", ["workshop_id"], name: "index_follow_ups_on_workshop_id", using: :btree
-
   create_table "individual_plans", force: true do |t|
     t.string   "name",                               null: false
     t.string   "sku",                                null: false
@@ -229,7 +219,6 @@ ActiveRecord::Schema.define(version: 20140123145010) do
     t.decimal  "paid_price"
     t.integer  "purchaseable_id"
     t.string   "purchaseable_type"
-    t.text     "comments"
     t.string   "stripe_coupon_id"
     t.integer  "quantity",               default: 1,        null: false
   end
@@ -260,32 +249,6 @@ ActiveRecord::Schema.define(version: 20140123145010) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
 
-  create_table "section_teachers", force: true do |t|
-    t.integer  "section_id"
-    t.integer  "teacher_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "section_teachers", ["section_id", "teacher_id"], name: "index_section_teachers_on_section_id_and_teacher_id", unique: true, using: :btree
-
-  create_table "sections", force: true do |t|
-    t.integer  "workshop_id"
-    t.date     "starts_on"
-    t.date     "ends_on"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "seats_available"
-    t.time     "start_at"
-    t.time     "stop_at"
-    t.string   "address"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-  end
-
-  add_index "sections", ["workshop_id"], name: "index_sections_on_workshop_id", using: :btree
-
   create_table "subscriptions", force: true do |t|
     t.integer  "user_id"
     t.datetime "created_at",                                               null: false
@@ -303,13 +266,11 @@ ActiveRecord::Schema.define(version: 20140123145010) do
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "teachers", force: true do |t|
-    t.string   "name"
-    t.string   "gravatar_hash"
-    t.text     "bio"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "email"
+    t.integer "user_id"
+    t.integer "workshop_id"
   end
+
+  add_index "teachers", ["user_id", "workshop_id"], name: "index_teachers_on_user_id_and_workshop_id", unique: true, using: :btree
 
   create_table "team_plans", force: true do |t|
     t.string   "sku",                                null: false
@@ -405,17 +366,15 @@ ActiveRecord::Schema.define(version: 20140123145010) do
   add_index "videos", ["watchable_type", "watchable_id"], name: "index_videos_on_watchable_type_and_watchable_id", using: :btree
 
   create_table "workshops", force: true do |t|
-    t.string   "name",                              null: false
+    t.string   "name",                             null: false
     t.text     "description"
-    t.integer  "maximum_students"
-    t.boolean  "active",            default: true,  null: false
+    t.boolean  "active",            default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "short_description"
     t.integer  "position"
     t.text     "terms"
-    t.boolean  "online",            default: false, null: false
-    t.text     "resources",         default: "",    null: false
+    t.text     "resources",         default: "",   null: false
     t.integer  "github_team"
     t.integer  "length_in_days"
     t.string   "sku"

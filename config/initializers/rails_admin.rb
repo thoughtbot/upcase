@@ -1,5 +1,4 @@
 require 'rails_admin/config/actions/purchase_accounting'
-require 'rails_admin/config/actions/section_students'
 require 'rails_admin/config/actions/timeline'
 
 module RailsAdmin
@@ -34,7 +33,6 @@ RailsAdmin.config do |config|
     init_actions!
     purchase_refund
     purchase_accounting
-    section_students
     timeline
   end
 
@@ -109,18 +107,11 @@ RailsAdmin.config do |config|
   config.model Workshop do
     list do
       field :name
-      field :sections do
-        pretty_value do
-          bindings[:view].render 'rails_admin/sections/list',
-            sections: value, workshop: bindings[:object]
-        end
-      end
     end
 
     edit do
       group :default do
         field :name
-        field :online
         field :sku
         field :short_description
         field :description
@@ -135,10 +126,6 @@ RailsAdmin.config do |config|
       group :faq do
         label 'FAQ'
         field :questions
-      end
-
-      group :follow_ups do
-        field :follow_ups
       end
 
       group :videos do
@@ -184,43 +171,7 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model Section do
-    object_label_method { :section_label_method }
-
-    list do
-      field :workshop
-      field :starts_on
-      field :ends_on
-    end
-
-    edit do
-      group :dates do
-        field :starts_on
-        field :ends_on
-        field :start_at
-        field :stop_at
-      end
-
-      group :address do
-        field :address
-        field :city
-        field :state
-        field :zip
-      end
-
-      group :details do
-        field :workshop
-        field :seats_available
-        field :teachers
-      end
-    end
-  end
-
   def purchase_label_method
     "Purchase #{self.id} (#{self.purchaseable_name})"
-  end
-
-  def section_label_method
-    "#{self.workshop.name} [#{self.online? ? 'Online' : 'In person'}] (#{self.starts_on} - #{self.ends_on})"
   end
 end

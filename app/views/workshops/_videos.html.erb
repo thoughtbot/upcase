@@ -1,7 +1,3 @@
-<% if purchaseable.in_person? && purchaseable.videos.any? %>
-  <p>In addition to the in-person workshop, you receive video versions of the lessons.</p>
-<% end %>
-
 <% if purchaseable.videos.any? %>
   <%= render purchaseable.videos.ordered, purchase: purchase %>
 <% end %>

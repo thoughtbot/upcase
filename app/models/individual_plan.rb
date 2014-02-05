@@ -49,14 +49,6 @@ class IndividualPlan < ActiveRecord::Base
     'subscription'
   end
 
-  def fulfillment_method
-    'subscription'
-  end
-
-  def alternates
-    []
-  end
-
   def fulfilled_with_github?
     false
   end

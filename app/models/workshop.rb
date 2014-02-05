@@ -2,19 +2,20 @@ class Workshop < ActiveRecord::Base
   # Associations
   has_many :announcements, as: :announceable, dependent: :destroy
   has_many :classifications, as: :classifiable, dependent: :destroy
-  has_many :follow_ups, dependent: :destroy
+  has_many :downloads, as: :purchaseable
+  has_many :purchases, as: :purchaseable, dependent: :restrict_with_exception
   has_many :questions, -> { order 'created_at ASC' }, dependent: :destroy
-  has_many :purchases, through: :sections
-  has_many :sections
+  has_many :teachers, dependent: :destroy
   has_many :topics, through: :classifications
+  has_many :users, through: :teachers
   has_many :videos, as: :watchable
 
   # Nested Attributes
-  accepts_nested_attributes_for :follow_ups, reject_if: :all_blank
   accepts_nested_attributes_for :questions, reject_if: :all_blank
 
   # Validations
   validates :description, presence: true
+  validates :length_in_days, presence: true
   validates :name, presence: true
   validates :short_description, presence: true
   validates :sku, presence: true
@@ -26,53 +27,12 @@ class Workshop < ActiveRecord::Base
     order 'workshops.position ASC'
   end
 
-  def self.in_person
-    where online: false
-  end
-
-  def self.online
-    where online: true
-  end
-
   def self.only_active
     where active: true
   end
 
-  def self.unscheduled
-    sql = <<-SQL
-      workshops.id NOT IN (
-        SELECT sections.workshop_id
-        FROM sections
-        WHERE sections.ends_on >= ?
-      )
-    SQL
-
-    where sql, Time.zone.today
-  end
-
-  def active_section
-    sections.active[0]
-  end
-
-  def active_sections
-    sections.active
-  end
-
   def announcement
     @announcement ||= announcements.current
-  end
-
-  def as_json(options = {})
-    options ||= {}
-    super(options.merge(:methods => [:active_sections]))
-  end
-
-  def follow_ups_with_blank
-    follow_ups + [follow_ups.new]
-  end
-
-  def in_person?
-    ! online?
   end
 
   def questions_with_blank
@@ -96,74 +56,42 @@ class Workshop < ActiveRecord::Base
   end
 
   def offering_type
-    if online?
-      'online_workshop'
-    else
-      'in_person_workshop'
-    end
+    'workshop'
   end
 
   def tagline
     short_description
   end
 
-  def alternates
-    if alternate_workshop
-      [Alternate.new(alternate_key, alternate_workshop)]
-    else
-      []
-    end
-  end
-
-  def fulfillment_method
-    if in_person?
-      'in-person'
-    else
-      'online'
-    end
-  end
-
   def fulfilled_with_github?
     github_team.present?
-  end
-
-  def starts_immediately?
-    active_section.try(:starts_immediately?)
   end
 
   def thumbnail_path
     "workshop_thumbs/#{name.parameterize}.png"
   end
 
-  def in_person_cities
-    if in_person_workshop && in_person_workshop.active_sections.present?
-      in_person_workshop.active_sections.collect(&:city).sort.
-        to_sentence(
-          two_words_connector: ' or ',
-          last_word_connector: ' or '
-        )
-    end
-  end
-
   def subscription?
     false
   end
 
-  private
-
-  def alternate_workshop
-    self.class.only_active.where(name: name, online: !online).first
+  def fulfill(purchase, user)
+    GithubFulfillment.new(purchase).fulfill
   end
 
-  def in_person_workshop
-    self.class.only_active.where(name: name, online: false).first
+  def starts_on(purchase_date = nil)
+    purchase_date || Time.zone.today
   end
 
-  def alternate_key
-    if online?
-      'in_person_workshop'
-    else
-      'online_workshop'
-    end
+  def ends_on(purchase_date = nil)
+    starts_on(purchase_date) + length_in_days
+  end
+
+  def collection?
+    true
+  end
+
+  def to_aside_partial
+    'workshops/aside'
   end
 end

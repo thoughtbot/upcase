@@ -1,6 +1,6 @@
 class PurchaseableDecorator < SimpleDelegator
   def overlaps_with_other_purchases?(user)
-    purchases = user.paid_purchases.where(purchaseable_type: 'Section')
+    purchases = user.paid_purchases.where(purchaseable_type: 'Workshop')
     one_or_more_customer_purchases_overlap?(purchases)
   end
 

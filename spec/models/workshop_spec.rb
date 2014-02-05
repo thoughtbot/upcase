@@ -4,11 +4,12 @@ describe Workshop do
   # Associations
   it { should have_many(:announcements).dependent(:destroy) }
   it { should have_many(:classifications).dependent(:destroy) }
-  it { should have_many(:follow_ups).dependent(:destroy) }
+  it { should have_many(:downloads) }
+  it { should have_many(:purchases).dependent(:restrict_with_exception) }
   it { should have_many(:questions).dependent(:destroy) }
-  it { should have_many(:purchases).through(:sections) }
-  it { should have_many(:sections) }
+  it { should have_many(:teachers).dependent(:destroy) }
   it { should have_many(:topics).through(:classifications) }
+  it { should have_many(:users).through(:teachers) }
   it { should have_many(:videos) }
 
   # Validations
@@ -16,6 +17,7 @@ describe Workshop do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:short_description) }
   it { should validate_presence_of(:sku) }
+  it { should validate_presence_of(:length_in_days) }
 
   describe '#announcement' do
     it 'calls Announcement.current' do
@@ -26,34 +28,6 @@ describe Workshop do
     end
   end
 
-  describe '.in_person' do
-    it 'returns in-person workshops' do
-      workshop = create(:workshop, online: false)
-
-      Workshop.in_person.should == [workshop]
-    end
-
-    it 'does not return online workshops' do
-      create(:workshop, online: true)
-
-      Workshop.in_person.should be_empty
-    end
-  end
-
-  describe '.online' do
-    it 'returns online workshops' do
-      workshop = create(:workshop, online: true)
-
-      Workshop.online.should == [workshop]
-    end
-
-    it 'does not return in-person workshops' do
-      create(:workshop, online: false)
-
-      Workshop.online.should be_empty
-    end
-  end
-
   describe '#to_param' do
     it 'returns the id and parameterized name' do
       workshop = create(:workshop)
@@ -61,119 +35,19 @@ describe Workshop do
     end
   end
 
-  describe '#in_person?' do
-    it 'returns true if the workshop is an in-person workshop' do
-      workshop = create(:workshop, online: false)
-
-      workshop.should be_in_person
-    end
-
-    it 'returns false if the workshop is not an in-person workshop' do
-      workshop = create(:workshop, online: true)
-
-      workshop.should_not be_in_person
-    end
-  end
-
-  describe '#alternates' do
-    it 'returns the active online workshop with the same name' do
-      offline_workshop = create(:workshop, online: false)
-      wrong_online_workshop = create(:workshop, online: true)
-      online_workshop = create(
-        :workshop,
-        online: true,
-        name: offline_workshop.name,
-        active: true
-      )
-
-      result = offline_workshop.alternates
-
-      expect(result).to eq [
-        build(:alternate, key: 'online_workshop', offering: online_workshop)
-      ]
-    end
-
-    it 'returns the in_person workshop when it exists' do
-      online_workshop = create(:workshop, online: true)
-      in_person_workshop = create(
-        :workshop,
-        online: false,
-        name: online_workshop.name,
-        active: true
-      )
-
-      result = online_workshop.alternates
-
-      expect(result).to eq [
-        build(:alternate, key: 'in_person_workshop', offering: in_person_workshop)
-      ]
-    end
-
-    it 'returns nothing for an in_person workshop without an online workshop' do
-      in_person_workshop = create(:workshop, online: false)
-
-      result = in_person_workshop.alternates
-
-      expect(result).to eq []
-    end
-
-    it 'returns nothing for an online workshop without an offline workshop' do
-      online_workshop = create(:workshop, online: true)
-
-      result = online_workshop.alternates
-
-      expect(result).to eq []
-    end
-
-    it 'returns nothing when the alternate is inactive' do
-      online_workshop = create(:workshop, online: true)
-      in_person_workshop = create(
-        :workshop,
-        online: false,
-        name: online_workshop.name,
-        active: false
-      )
-
-      result = online_workshop.alternates
-
-      expect(result).to eq []
-    end
-  end
-
-  describe '#in_person_cities' do
-    it 'returns the cities of active in person sessions' do
-      section = create(
-        :in_person_section,
-        starts_on: Time.zone.today,
-        ends_on: 1.day.from_now,
-        city: 'Boston'
-      )
-      workshop = section.workshop
-      section = create(
-        :in_person_section,
-        starts_on: Time.zone.today,
-        ends_on: 1.day.from_now,
-        city: 'Denver',
-        workshop: workshop
-      )
-
-      expect(workshop.in_person_cities).to eq 'Boston or Denver'
-    end
-  end
-
   context 'purchase_for' do
     it 'returns the purchase when a user has purchased a section of the workshop' do
       user = create(:user)
-      purchase = create_subscriber_purchase(:section, user)
-      workshop = purchase.purchaseable.workshop
+      purchase = create_subscriber_purchase(:workshop, user)
+      workshop = purchase.purchaseable
 
       expect(workshop.purchase_for(user)).to eq purchase
     end
 
     it 'returns nil when a user has not purchased a section fo the workshop' do
       user = create(:user)
-      purchase = create_subscriber_purchase(:section)
-      workshop = purchase.purchaseable.workshop
+      purchase = create_subscriber_purchase(:workshop)
+      workshop = purchase.purchaseable
 
       expect(workshop.purchase_for(user)).to be_nil
     end
@@ -194,20 +68,12 @@ describe Workshop do
   end
 
   describe 'offering_type' do
-    it 'returns in_person_workshop for an in-person workshop' do
-      workshop = Workshop.new(online: false)
+    it 'returns workshop' do
+      workshop = Workshop.new
 
       result = workshop.offering_type
 
-      expect(result).to eq 'in_person_workshop'
-    end
-
-    it 'returns online_workshop for an online workshop' do
-      workshop = Workshop.new(online: true)
-
-      result = workshop.offering_type
-
-      expect(result).to eq 'online_workshop'
+      expect(result).to eq 'workshop'
     end
   end
 
@@ -237,36 +103,6 @@ describe Workshop do
     end
   end
 
-  describe '#starts_immediately?' do
-    it 'does not start immediately when the active section has an end date' do
-      section = create(
-        :section,
-        starts_on: Time.zone.today,
-        ends_on: 1.day.from_now
-      )
-      workshop = section.workshop
-
-      expect(workshop.starts_immediately?).to be false
-    end
-
-    it 'starts immediately when the active section does not have an end date' do
-      section = create(
-        :section,
-        starts_on: Time.zone.today,
-        ends_on: nil
-      )
-      workshop = section.workshop
-
-      expect(workshop.starts_immediately?).to be_true
-    end
-
-    it 'does not start immediately when there is no active section' do
-      workshop = create(:workshop)
-
-      expect(workshop.starts_immediately?).to be_false
-    end
-  end
-
   describe '#thumbnail_path' do
     it 'returns the path to a thumbnail image representing the workshop' do
       workshop = build_stubbed(:workshop, name: 'Intro to Ruby On Rails')
@@ -275,23 +111,66 @@ describe Workshop do
     end
   end
 
-  describe '#fulfillment_method' do
-    it 'returns in-person if the workshop is an in-person one' do
-      workshop = create(:in_person_workshop, online: false)
-
-      expect(workshop.fulfillment_method).to eq('in-person')
-    end
-
-    it 'returns online if the workshop is an online one' do
-      workshop = create(:online_workshop, online: true)
-
-      expect(workshop.fulfillment_method).to eq('online')
-    end
-  end
-
   describe '#subscription?' do
     it 'returns false' do
       expect(Workshop.new).not_to be_subscription
+    end
+  end
+
+  describe '#fulfill' do
+    it 'fulfills using GitHub with a GitHub team' do
+      purchase = build_stubbed(:purchase)
+      user = build_stubbed(:user)
+      fulfillment = stub('fulfillment', :fulfill)
+      workshop = build_stubbed(:workshop, github_team: 'example')
+      GithubFulfillment.stubs(:new).with(purchase).returns(fulfillment)
+
+      workshop.fulfill(purchase, user)
+
+      fulfillment.should have_received(:fulfill)
+    end
+  end
+
+  describe 'starts_on' do
+    it 'returns the given date' do
+      workshop = build(:workshop)
+      yesterday = 1.day.ago
+
+      expect(workshop.starts_on(yesterday)).to eq yesterday
+    end
+
+    it 'returns the today when given no date' do
+      workshop = build(:workshop)
+
+      expect(workshop.starts_on).to eq Time.zone.today
+    end
+  end
+
+  describe 'ends_on' do
+    it 'returns the date equal to the given date plus the length of the workshop' do
+      workshop = build(:workshop, length_in_days: 28)
+      yesterday = 1.day.ago.to_date
+
+      expect(workshop.ends_on(yesterday)).to eq (yesterday + 28.days)
+    end
+
+    it 'returns the date equal to today plus the length of the workshop when given no date' do
+      ends_on = 14.days.from_now.to_date
+      workshop = build(:workshop, length_in_days: 14)
+
+      expect(workshop.ends_on).to eq ends_on
+    end
+  end
+
+  describe '#collection?' do
+    it 'should be true' do
+      expect(Workshop.new).to be_collection
+    end
+  end
+
+  describe '#to_aside_partial' do
+    it 'returns the path to the aside partial' do
+      expect(Workshop.new.to_aside_partial).to eq 'workshops/aside'
     end
   end
 end

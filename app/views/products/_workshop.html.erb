@@ -1,28 +1,9 @@
 <%= content_tag :figure, class: workshop_card_classes(workshop) do %>
-  <%= link_to workshop, title: workshop.name, 'data-role' => workshop_data_role(workshop) do %>
+  <%= link_to workshop, title: workshop.name, 'data-role' => 'workshop' do %>
     <h4><%= workshop.name %></h4>
     <span class="hover-text">View Details &rarr;</span>
-    <% if workshop.online? %>
-      <%= image_tag(workshop.thumbnail_path) %>
-      <h5>Online Workshop</h5>
-    <% else %>
-      <div class="inperson-date">
-        <span class="upcoming">Upcoming</span>
-        <% workshop.active_sections.each do |section| %>
-          <section>
-            <span class="city"><%= section.city %>: </span>
-            <span class="month"><%= section.starts_on.to_s(:abbreviated_month) %></span>
-            <span class="day"><%= section.starts_on.day %></span>
-          </section>
-        <% end %>
-        <% if workshop.active_sections.empty? %>
-          <section>
-            <span>No upcoming dates</span>
-          </section>
-        <% end %>
-      </div>
-      <h5>In-Person Workshop</h5>
-    <% end %>
+    <%= image_tag(workshop.thumbnail_path) %>
+    <h5>Online Workshop</h5>
     <h5 class="status"><%= workshop_card_status(workshop) %></h5>
     <p><%= workshop.short_description %></p>
   <% end %>
