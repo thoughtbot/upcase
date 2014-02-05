@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head prefix="og: http://ogp.me/ns#">
+    <%= render 'application/head_contents' %>
+  </head>
+
+  <body class="<%= body_class %> <%= yield(:additional_body_classes) %>">
+    <section id="header-wrapper">
+      <div class="header-container">
+        <h1 class="small-logo">
+          <%= image_tag('learn/learn-ralph-small.png') %>
+          <span><%= t 'shared.learn' %></span>
+        </h1>
+        <nav class="left">
+          <ul>
+            <li class="back">
+              <%= yield(:landing_page_back_link) %>
+            </li>
+          </ul>
+        </nav>
+        <nav>
+          <ul>
+            <li class="account"><%= link_to 'Sign in', sign_in_path %></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+    <section class="content">
+      <% if content_for?(:subject_block) %>
+        <div class="subject"><%= yield(:subject_block) %></div>
+      <% end %>
+      <%= yield %>
+    </section>
+
+    <footer class="links">
+      <p id="copyright">
+        © 2012 - <%= Time.zone.today.year %> thoughtbot, inc. The
+        <em>design of a robot</em> and <em>thoughtbot</em> are registered
+        trademarks of thoughtbot,&nbsp;inc. See our
+        <%= link_to 'Privacy Policy', privacy_path %> and
+        <%= link_to 'Terms & Conditions', terms_path %>.
+      </p>
+    </footer>
+
+    <%= render 'chat' %>
+    <%= render 'shared/javascript' %>
+  </body>
+</html>

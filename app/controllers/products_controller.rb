@@ -8,8 +8,8 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @offering = @product
 
-    if signed_in? && @product.purchase_for(current_user)
-      redirect_to @product.purchase_for(current_user)
+    if purchase = current_user_purchase_of(@product)
+      redirect_to purchase
     end
   end
 end
