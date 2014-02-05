@@ -115,7 +115,6 @@ RailsAdmin.config do |config|
         field :sku
         field :short_description
         field :description
-        field :maximum_students
         field :active
         field :topics
         field :resources
