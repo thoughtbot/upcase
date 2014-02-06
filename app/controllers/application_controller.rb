@@ -59,4 +59,10 @@ class ApplicationController < ActionController::Base
     Topic.top
   end
   helper_method :topics
+
+  def current_user_purchase_of(purchaseable)
+    if signed_in?
+      purchaseable.purchase_for(current_user)
+    end
+  end
 end

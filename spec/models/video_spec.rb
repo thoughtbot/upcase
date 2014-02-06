@@ -24,6 +24,19 @@ describe Video do
     end
   end
 
+  context '#full_sized_wistia_thumbnail' do
+    it 'returns the full sized thumbnail cached from wistia' do
+      video = build_stubbed(:video,
+        wistia_hash: {
+          'thumbnail' => {
+            'url' => 'http://images.com/hi.jpg?image_crop_resized=100x60'
+          }
+        }
+      )
+      video.full_sized_wistia_thumbnail.should == 'http://images.com/hi.jpg'
+    end
+  end
+
   context 'watchable_name' do
     it 'returns the name of the watchable' do
       workshop = create(:workshop, name: 'Workshop')

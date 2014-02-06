@@ -79,5 +79,25 @@ describe 'Videos' do
 
       expect(page).to have_content("includes support")
     end
+
+    it 'redirects subscribers from Weekly Iteration landing page' do
+      sign_in_as_user_with_subscription
+
+      show = create(:show, name: Show::THE_WEEKLY_ITERATION)
+
+      visit '/the-weekly-iteration'
+
+      expect(page.current_path).to eq show_path(show)
+    end
+
+    it 'encourages subscribers to purchase The Weekly Iteration' do
+      user = create(:subscriber)
+      show = create(:show)
+      video = create(:video, watchable: show)
+
+      visit public_video_path(video, as: user)
+
+      expect(page).to have_content 'Get this show'
+    end
   end
 end

@@ -3,8 +3,8 @@ class WorkshopsController < ApplicationController
     @workshop = Workshop.find(params[:id])
     @offering = @workshop
 
-    if signed_in? && @workshop.purchase_for(current_user)
-      redirect_to @workshop.purchase_for(current_user)
+    if purchase = current_user_purchase_of(@workshop)
+      redirect_to purchase
     end
   end
 end

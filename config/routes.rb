@@ -12,7 +12,6 @@ Workshops::Application.routes.draw do
     end
   end
 
-
   namespace :teams do
     resources :invitations, only: [:create] do
       resources :acceptances, only: [:new, :create]
@@ -61,6 +60,9 @@ Workshops::Application.routes.draw do
     resources :redemptions, only: [:new]
     resources :purchases, only: [:show]
   end
+
+  get '/the-weekly-iteration' => 'weekly_iterations#show'
+  get '/videos/:id' => 'episodes#show', as: :public_video
 
   resources :purchases, only: [:show] do
     resources :videos, only: [:show]

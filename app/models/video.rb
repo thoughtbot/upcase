@@ -38,6 +38,10 @@ class Video < ActiveRecord::Base
     @wistia_thumbnail ||= wistia_hash["thumbnail"]["url"] rescue nil
   end
 
+  def full_sized_wistia_thumbnail
+    wistia_thumbnail.try(:split, '?').try(:first)
+  end
+
   def has_notes?
     notes.present?
   end
