@@ -107,6 +107,7 @@ RailsAdmin.config do |config|
   config.model Workshop do
     list do
       field :name
+      field :active
     end
 
     edit do
