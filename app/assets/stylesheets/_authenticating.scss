@@ -15,7 +15,7 @@
     text-transform: uppercase;
 
     &:after {
-      content: url(<%= asset_path 'GitHub-Mark-32px.png' %>);
+      content: asset-url('GitHub-Mark-32px.png');
       height: 32px;
       left: 14px;
       margin-top: -15px;
