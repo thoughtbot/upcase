@@ -297,7 +297,7 @@
     }
   }
 
-  > figure, > .figure-container {
+  > figure {
     margin-right: $product-card-margin;
     margin-right: calc(#{$product-card-margin} - 4px); // remove inline-block 4px space issue
     @include transition(.15s);
@@ -376,20 +376,24 @@
     text-transform: uppercase;
   }
 
-  &.screencasts {
+  &.screencasts, &.exercises {
     background-color: #fff;
     height: 300px;
     margin-bottom: $product-card-margin;
     margin-top: 0;
     padding-top: $product-card-margin;
 
-    > figure, > .figure-container {
-      height: 200px;
-    }
-
     .nav.show-all {
       background: #fff;
     }
+  }
+
+  &.screencasts > figure {
+    height: 200px;
+  }
+
+  &.exercises > figure {
+    height: 300px;
   }
 
   &.exercises {
@@ -409,7 +413,7 @@
     }
   }
 
-  > figure, > .figure-container {
+  > figure {
     float: left;
     margin: 0 $product-card-margin/2 $product-card-margin;
     @include transition(.15s);
