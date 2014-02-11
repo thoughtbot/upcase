@@ -88,7 +88,6 @@ RailsAdmin.config do |config|
       field :mentor
       field :paid_purchases
       field :purchases
-      field :subscription
       field :stripe_customer_id
     end
   end
