@@ -33,7 +33,6 @@ Workshops::Application.routes.draw do
 
   resource :session, controller: 'sessions'
 
-  get '/courses.json' => redirect('/workshops.json')
   get '/courses/:id' => redirect('/workshops/%{id}')
   resources :workshops, only: [:show] do
     resources :purchases, only: [:new, :create]
