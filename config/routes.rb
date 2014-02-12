@@ -158,6 +158,6 @@ Workshops::Application.routes.draw do
 
   mount StripeEvent::Engine, at: 'stripe-webhook'
 
-  get ':id' => 'topics#show', as: :topic
+  get ':id' => 'topics#show', as: :topic, :constraints => { :format => /(html)/ }
   get '/:id/articles' => redirect('http://robots.thoughtbot.com/tags/%{id}')
 end
