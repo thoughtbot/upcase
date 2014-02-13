@@ -28,7 +28,7 @@ class PurchasesController < ApplicationController
   end
 
   def show
-    @purchase = Purchase.find_by_lookup(params[:id])
+    @purchase = Purchase.find_by_lookup!(params[:id])
     @purchaseable = @purchase.purchaseable
     if @purchase.paid?
       render polymorphic_purchaseable_template
