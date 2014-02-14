@@ -37,6 +37,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.use_instantiated_fixtures  = false
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.order = 'random'
 
   config.include Paperclip::Shoulda::Matchers
   config.include EmailSpec::Helpers
