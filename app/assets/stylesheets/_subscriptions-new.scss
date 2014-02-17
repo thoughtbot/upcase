@@ -118,7 +118,7 @@ body.subscriptions-new .journey-headline {
         cursor: default;
 
         .circle {
-          background: url(cross.svg) transparent center center;
+          background: asset-url('cross.svg') transparent center center;
           border: 0;
 
           img {
