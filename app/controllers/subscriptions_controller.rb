@@ -11,7 +11,7 @@ class SubscriptionsController < ApplicationController
   def edit
     @plans = IndividualPlan.featured.active.ordered
 
-    render :layout => 'empty-body'
+    render :layout => 'header-only'
   end
 
   def update
