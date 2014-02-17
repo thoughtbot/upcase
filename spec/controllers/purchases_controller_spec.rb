@@ -140,6 +140,14 @@ describe PurchasesController do
     end
   end
 
+  describe '#show' do
+    it 'should response with 404 if no purchase found' do
+      expect{
+        get :show, id: 'robots.txt'
+      }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
+
   def customer_params(token='stripe token')
     {
       name: 'User',
