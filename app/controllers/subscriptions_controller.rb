@@ -10,6 +10,8 @@ class SubscriptionsController < ApplicationController
 
   def edit
     @plans = IndividualPlan.featured.active.ordered
+
+    render :layout => 'empty-body'
   end
 
   def update
