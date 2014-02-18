@@ -14,6 +14,7 @@ class Cancellation
   def process
     @subscription.deactivate
     deliver_unsubscription_survey
+    unsubscribe_from_intercom
   end
 
   def can_downgrade_instead?
@@ -33,6 +34,10 @@ class Cancellation
   end
 
   private
+
+  def unsubscribe_from_intercom
+    IntercomUpdater.new(@subscription.user).unsubscribe
+  end
 
   def deliver_unsubscription_survey
     SubscriptionMailer.cancellation_survey(@subscription.user).deliver
