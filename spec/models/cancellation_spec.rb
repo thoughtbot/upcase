@@ -1,14 +1,29 @@
 require 'spec_helper'
 
 describe Cancellation do
-  it 'makes the subscription inactive and records the current date' do
-    subscription = create(:subscription)
-    cancellation = Cancellation.new(subscription)
+  describe 'process' do
+    let(:subscription)  { create(:subscription) }
+    let(:cancellation)  { Cancellation.new(subscription) }
 
-    subscription.stubs(:stripe_customer_id).returns('cus_1CXxPJDpw1VLvJ')
-    cancellation.process
+    before :each do
+      subscription.stubs(:stripe_customer_id).returns('cus_1CXxPJDpw1VLvJ')
+    end
 
-    subscription.deactivated_on.should == Time.zone.today
+    it 'makes the subscription inactive and records the current date' do
+      cancellation.process
+
+      subscription.deactivated_on.should == Time.zone.today
+    end
+
+    it 'sends a unsubscription survey email' do
+      mailer = stub(deliver: true)
+      SubscriptionMailer.stubs(:cancellation_survey).with(subscription.user).returns(mailer)
+
+      cancellation.process
+
+      expect(SubscriptionMailer).to have_received(:cancellation_survey).with(subscription.user)
+      expect(SubscriptionMailer.cancellation_survey(subscription.user)).to have_received(:deliver)
+    end
   end
 
   describe 'schedule' do
