@@ -9,7 +9,8 @@ describe Cancellation do
       subscription.stubs(:stripe_customer_id).returns('cus_1CXxPJDpw1VLvJ')
 
       mailer = stub(deliver: true)
-      SubscriptionMailer.stubs(:cancellation_survey).with(subscription.user).returns(mailer)
+      SubscriptionMailer.stubs(:cancellation_survey).
+        with(subscription.user).returns(mailer)
 
       updater = stub(unsubscribe: true)
       AnalyticsUpdater.stubs(:new).with(subscription.user).returns(updater)
@@ -24,15 +25,19 @@ describe Cancellation do
     it 'sends a unsubscription survey email' do
       cancellation.process
 
-      expect(SubscriptionMailer).to have_received(:cancellation_survey).with(subscription.user)
-      expect(SubscriptionMailer.cancellation_survey(subscription.user)).to have_received(:deliver)
+      expect(SubscriptionMailer).
+        to have_received(:cancellation_survey).with(subscription.user)
+      expect(SubscriptionMailer.cancellation_survey(subscription.user)).
+        to have_received(:deliver)
     end
 
     it 'update intercom status for user' do
       cancellation.process
 
-      expect(AnalyticsUpdater).to have_received(:new).with(subscription.user)
-      expect(AnalyticsUpdater.new(subscription.user)).to have_received(:unsubscribe)
+      expect(AnalyticsUpdater).
+        to have_received(:new).with(subscription.user)
+      expect(AnalyticsUpdater.new(subscription.user)).
+        to have_received(:unsubscribe)
     end
   end
 

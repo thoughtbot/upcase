@@ -21,9 +21,7 @@ class AnalyticsUpdater
   attr_reader :user
 
   def initialize_analytics
-    AnalyticsRuby.init({
-      secret: ENV['SEGMENT_KEY']
-    })
+    AnalyticsRuby.init(secret: ENV['SEGMENT_KEY'])
   end
 
   def user_id

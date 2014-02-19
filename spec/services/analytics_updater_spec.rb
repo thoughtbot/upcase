@@ -25,10 +25,11 @@ describe AnalyticsUpdater do
         updater = AnalyticsUpdater.new(user)
         updater.unsubscribe
 
-        expect(AnalyticsRuby).to have_received(:init).with({secret: key})
-        expect(AnalyticsRuby).to have_received(:identify).
-          with(user_id: user.id.to_s,
-               traits: { has_active_subscription: false }.merge(intercom_hash))
+        expect(AnalyticsRuby).
+          to have_received(:init).with(secret: key)
+        expect(AnalyticsRuby).
+          to have_received(:identify).with(user_id: user.id.to_s, traits: { has_active_subscription: false }.
+                                           merge(intercom_hash))
       end
     end
 
@@ -57,7 +58,9 @@ describe AnalyticsUpdater do
   def intercom_hash
     {
       'Intercom' => {
-        userHash: OpenSSL::HMAC.hexdigest('sha256', ENV['INTERCOM_API_SECRET'], user.id.to_s)
+        userHash: OpenSSL::HMAC.hexdigest('sha256',
+                                          ENV['INTERCOM_API_SECRET'],
+                                          user.id.to_s)
       }
     }
   end
