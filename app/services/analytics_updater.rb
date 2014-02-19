@@ -6,12 +6,10 @@ class AnalyticsUpdater
   end
 
   def unsubscribe
-    return unless analytics?
-    initialize_analytics
-    AnalyticsRuby.identify(
-      user_id: user_id,
-      traits: traits
-    )
+    if analytics?
+      initialize_analytics
+      unsubscribe_analytics
+    end
   end
 
   private
@@ -22,7 +20,14 @@ class AnalyticsUpdater
     AnalyticsRuby.init(secret: ENV['SEGMENT_KEY'])
   end
 
-  def traits
+  def unsubscribe_analytics
+    AnalyticsRuby.identify(
+      user_id: user_id,
+      traits: unsubscribe_traits
+    )
+  end
+
+  def unsubscribe_traits
     { has_active_subscription: false }.merge(intercom_hash(user))
   end
 
