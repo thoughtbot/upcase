@@ -10,9 +10,7 @@ class AnalyticsUpdater
     initialize_analytics
     AnalyticsRuby.identify(
       user_id: user_id,
-      traits: {
-        has_active_subscription: false
-      }.merge(intercom_hash(user))
+      traits: traits
     )
   end
 
@@ -22,6 +20,10 @@ class AnalyticsUpdater
 
   def initialize_analytics
     AnalyticsRuby.init(secret: ENV['SEGMENT_KEY'])
+  end
+
+  def traits
+    { has_active_subscription: false }.merge(intercom_hash(user))
   end
 
   def user_id

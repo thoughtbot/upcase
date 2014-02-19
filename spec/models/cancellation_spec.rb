@@ -2,9 +2,6 @@ require 'spec_helper'
 
 describe Cancellation do
   describe 'process' do
-    let(:subscription)  { create(:subscription) }
-    let(:cancellation)  { Cancellation.new(subscription) }
-
     before :each do
       subscription.stubs(:stripe_customer_id).returns('cus_1CXxPJDpw1VLvJ')
 
@@ -156,5 +153,13 @@ describe Cancellation do
     build_stubbed(:plan).tap do |plan|
       IndividualPlan.stubs(:basic).returns(plan)
     end
+  end
+
+  def subscription
+    @subscription ||= create(:subscription)
+  end
+
+  def cancellation
+    @cancellation ||= Cancellation.new(subscription)
   end
 end

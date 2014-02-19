@@ -58,9 +58,10 @@ describe AnalyticsUpdater do
   def intercom_hash
     {
       'Intercom' => {
-        userHash: OpenSSL::HMAC.hexdigest('sha256',
-                                          ENV['INTERCOM_API_SECRET'],
-                                          user.id.to_s)
+        userHash: OpenSSL::HMAC.hexdigest(
+          'sha256',
+          ENV['INTERCOM_API_SECRET'],
+          user.id.to_s)
       }
     }
   end
