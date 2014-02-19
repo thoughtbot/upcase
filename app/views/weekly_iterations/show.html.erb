@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= auto_discovery_link_tag(:rss, weekly_iteration_url(format: 'rss')) %>
+<% end %>
+
 <%= render 'offerings/meta', offering: @show %>
 
 <div class="text-box-wrapper">

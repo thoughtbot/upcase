@@ -90,6 +90,22 @@ describe 'Videos' do
       expect(page.current_path).to eq show_path(show)
     end
 
+    it 'provides RSS to distribute the Weekly Iteration to various channels' do
+      create(:plan, sku: IndividualPlan::PRIME_BASIC_SKU)
+      create(:show, name: Show::THE_WEEKLY_ITERATION)
+
+      visit '/the-weekly-iteration'
+
+      expect(page).to have_css("link[href*='the-weekly-iteration.rss']")
+
+      visit '/the-weekly-iteration.rss'
+
+      expect(page).to have_xpath(
+        '//rss/channel/title',
+        text: 'The Weekly Iteration'
+      )
+    end
+
     it 'encourages subscribers to purchase The Weekly Iteration' do
       user = create(:subscriber)
       show = create(:show)
