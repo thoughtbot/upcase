@@ -6,15 +6,14 @@ class IntercomUpdater
   end
 
   def unsubscribe
+    intercom_user = Intercom::User.find_by_email(email)
     intercom_user.custom_data[SUBSCRIPTION_FLAG] = false
     intercom_user.save
+  rescue Intercom::ResourceNotFound => e
+    Airbrake.notify(e)
   end
 
   private
-
-  def intercom_user
-    @intercom_user ||= Intercom::User.find_by_email(email)
-  end
 
   attr_reader :user
 

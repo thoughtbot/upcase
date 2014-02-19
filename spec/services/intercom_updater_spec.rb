@@ -20,5 +20,21 @@ describe IntercomUpdater do
       expect(intercom_user).to have_received(:save)
       expect(intercom_user.custom_data['has_active_subscription']).to eq(false)
     end
+
+    describe 'no user found' do
+      let(:error_class) { Intercom::ResourceNotFound }
+
+      before :each do
+        Airbrake.stubs(:notify)
+        Intercom::User.stubs(:find_by_email).with(user.email).raises(error_class.new)
+      end
+
+      it 'should notify' do
+        updater = IntercomUpdater.new(user)
+        updater.unsubscribe
+
+        Airbrake.should have_received(:notify).with(instance_of(error_class))
+      end
+    end
   end
 end
