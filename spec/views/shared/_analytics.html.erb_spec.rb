@@ -7,7 +7,7 @@ describe 'shared/_analytics.html.erb' do
     end
 
     it 'loads the Segment.io JavaScript library' do
-      segment_load_line = 'window.analytics.load("2nexpdgku3");'
+      segment_load_line = "window.analytics.load(#{ENV['SEGMENT_KEY']});"
 
       render
 

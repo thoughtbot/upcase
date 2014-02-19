@@ -12,7 +12,7 @@ describe Cancellation do
       SubscriptionMailer.stubs(:cancellation_survey).with(subscription.user).returns(mailer)
 
       updater = stub(unsubscribe: true)
-      IntercomUpdater.stubs(:new).with(subscription.user).returns(updater)
+      AnalyticsUpdater.stubs(:new).with(subscription.user).returns(updater)
     end
 
     it 'makes the subscription inactive and records the current date' do
@@ -31,8 +31,8 @@ describe Cancellation do
     it 'update intercom status for user' do
       cancellation.process
 
-      expect(IntercomUpdater).to have_received(:new).with(subscription.user)
-      expect(IntercomUpdater.new(subscription.user)).to have_received(:unsubscribe)
+      expect(AnalyticsUpdater).to have_received(:new).with(subscription.user)
+      expect(AnalyticsUpdater.new(subscription.user)).to have_received(:unsubscribe)
     end
   end
 
