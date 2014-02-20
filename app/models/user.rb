@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   end
 
   def last_name
-    name.split(" ").last
+    name.split(' ').drop(1).join(' ')
   end
 
   def external_auth?
