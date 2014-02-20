@@ -37,6 +37,8 @@
 }
 
 .assets-wrapper {
+  margin-bottom: 1rem;
+
   .assets {
     .asset-download {
       float: left;
@@ -68,6 +70,12 @@
     list-style-type: none;
     margin-top: 0;
     margin-bottom: 20px;
+  }
+}
+
+.video-notes {
+  h3 {
+    margin-top: .8rem;
   }
 }
 

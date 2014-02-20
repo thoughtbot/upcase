@@ -1,3 +1,4 @@
+<% content_for :additional_content_classes, 'fullscreen' %>
 <% if @purchaseable.collection? %>
   <% content_for :additional_header_links do %>
     <li class="all-videos"><%= link_to 'All Videos', @purchase %></li>
@@ -15,10 +16,4 @@
   </h2>
 <% end %>
 
-<div class="text-box-wrapper">
-  <div class="text-box">
-    <%= render 'watch_video', video: @video, purchase: @purchase %>
-  </div>
-</div>
-
-<%= render @purchaseable.to_aside_partial, purchaseable: @purchaseable, purchase: @purchase %>
+<%= render 'watch_video', video: @video, purchase: @purchase %>

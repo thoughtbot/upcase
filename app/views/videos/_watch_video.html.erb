@@ -11,8 +11,10 @@
 <% end %>
 
 <% if video.has_notes? %>
-  <section class='video-notes'>
-    <h3>Notes</h3>
-    <%= raw(video.notes_html) %>
-  </section>
+  <div class="text-box">
+    <section class='video-notes'>
+      <h3>Notes</h3>
+      <%= raw(video.notes_html) %>
+    </section>
+  </div>
 <% end %>

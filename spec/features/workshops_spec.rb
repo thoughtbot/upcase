@@ -11,8 +11,6 @@ describe 'Workshops' do
     visit purchase_path(purchase)
 
     expect(page).to have_css('.resources li', text: 'Item 1')
-    visit purchase_video_path(purchase, video)
-    expect(page).to have_css('.resources li', text: 'Item 1')
   end
 
   it 'lists office hours' do
