@@ -32,10 +32,13 @@ describe User do
     end
   end
 
-  context "#last_name" do
-    it "has a last_name that is the last part of name" do
-      user = User.new(name: "first last")
-      expect(user.last_name).to eq "last"
+  context '#last_name' do
+    it 'returns everything except the first name' do
+      user = User.new(name: 'First Last')
+      expect(user.last_name).to eq 'Last'
+
+      user_with_multi_part_last_name = User.new(name: 'First van der Last')
+      expect(user_with_multi_part_last_name.last_name).to eq 'van der Last'
     end
   end
 
