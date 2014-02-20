@@ -4,30 +4,25 @@
   </section>
 <% end %>
 
-<section id="workshops" class="workshops vertical-slider revealed">
-  <header>
-    <h2>All workshops</h2>
-  </header>
+<h2>Every workshop</h2>
+<section id="workshops" class="workshops">
   <%= render partial: 'products/workshop', collection: @catalog.workshops %>
 </section>
 
-<section id="shows" class="shows vertical-slider revealed">
-  <header>
-    <h2>All shows</h2>
-  </header>
+<h2>Every show</h2>
+<section id="shows" class="shows">
   <%= render @catalog.shows %>
 </section>
 
-<section id="screencasts" class="screencasts vertical-slider revealed">
-  <header>
-    <h2>All screencasts</h2>
-  </header>
+<h2>Every screencast</h2>
+<section id="screencasts" class="screencasts">
   <%= render @catalog.screencasts %>
 </section>
 
-<section id="books" class="reading vertical-slider revealed">
-  <header>
-    <h2>All books</h2>
-  </header>
+<h2>Every exercise</h2>
+<%= render 'products/exercises' %>
+
+<h2>Every book</h2>
+<section id="books" class="reading">
   <%= render @catalog.books %>
 </section>

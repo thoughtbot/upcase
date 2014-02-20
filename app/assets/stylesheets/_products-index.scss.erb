@@ -3,8 +3,21 @@ body.products-index {
     margin-bottom: $product-card-margin / 2;
   }
 
-  .toggle-slider {
-    display: none;
+  .content > section {
+    @include display(flex);
+    @include flex-flow(wrap);
+    @include justify-content(space-around);
+    margin-bottom: 3.5rem;
+  }
+
+  .content > h2 {
+    margin: 0 0 1.75rem;
+    text-align: center;
+  }
+
+  .product-card {
+    margin-bottom: 1.75rem;
+    vertical-align: top;
   }
 
   .prime .button {

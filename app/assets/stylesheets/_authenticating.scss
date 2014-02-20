@@ -6,13 +6,13 @@
   }
 
   .github-signin a {
-    @include prime-button(#444);
+    background: #444;
+    border-color: #000;
     display: block;
     font: 400 1rem/1.2em $sans-serif;
     letter-spacing: 1px;
     margin: 2rem 0;
-    padding: 1rem;
-    text-transform: uppercase;
+    position: relative;
 
     &:after {
       content: asset-url('GitHub-Mark-32px.png');
@@ -42,13 +42,9 @@
   }
 
   input[type="submit"] {
-    @include prime-button;
     font: 400 1rem/1.2em $sans-serif;
-    height: auto;
     letter-spacing: 1px;
     margin-top: 1rem;
-    padding: 1rem;
-    text-transform: uppercase;
     width: 100%;
   }
 

@@ -1,6 +1,6 @@
 <%= render 'mentor_info' %>
 
-<section class='resources vertical-slider revealed'>
+<section class='resources'>
   <%= render 'learn_repo' %>
   <%= render 'learn_live' %>
   <%= render 'forum' %>
@@ -8,11 +8,11 @@
 </section>
 
 <% if current_user_has_access_to_workshops? %>
-  <section class='workshops vertical-slider revealed'>
+  <section class='workshops'>
     <%= render partial: 'products/workshop', collection: @catalog.workshops %>
   </section>
 <% else %>
-  <section class='workshops vertical-slider revealed disabled'>
+  <section class='workshops disabled'>
     <div class='disabled-text'>
       <h2>
         <% if current_user_has_access_to_shows? %>
@@ -33,17 +33,17 @@
 <% end %>
 
 <% if current_user_has_access_to_shows? %>
-  <section class='shows vertical-slider revealed'>
+  <section class='shows'>
     <%= render @catalog.shows %>
   </section>
 <% end %>
 
-<section class='screencasts vertical-slider revealed'>
+<section class='screencasts'>
   <%= render @catalog.screencasts %>
 </section>
 
-<%= render 'exercises' %>
+<%= render 'products/exercises' %>
 
-<section class='reading vertical-slider revealed'>
+<section class='reading'>
   <%= render @catalog.books %>
 </section>

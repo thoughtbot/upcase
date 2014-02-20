@@ -5,12 +5,11 @@
 @import "base-variables";
 @import "base-breakpoints";
 @import "base-extends";
-@import "base-mixins";
 @import "base-animations";
 @import "base-typography";
 @import "base-forms";
 
-@import "components";
+@import "product-card";
 
 @import "layout/layout";
 @import "layout/flashes";

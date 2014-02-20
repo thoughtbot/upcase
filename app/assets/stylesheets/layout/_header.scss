@@ -74,15 +74,6 @@ body.passwords-create {
       .back a:hover {
         @include transform(translate3D(-.2rem, 0, 0));
       }
-
-      .toggle-slider a:before {
-        content: '\2193';
-        margin-right: .25rem;
-      }
-
-      .toggle-slider .down:before {
-        content: '\2191';
-      }
     }
 
     ul {
@@ -159,24 +150,5 @@ body.passwords-create {
     .account a {
       color: $darkwarmgray;
     }
-  }
-}
-
-.card-slider.header {
-  height: 0;
-  margin-bottom: 0;
-  opacity: 0;
-  padding-top: 0;
-  @include transition(.25s);
-
-  &.active {
-    height: 380px;
-    margin-bottom: $product-card-margin;
-    opacity: 1;
-    padding-top: $product-card-margin;
-  }
-
-  .product-card.screencast {
-    margin-top: 49px;
   }
 }
