@@ -1,14 +1,41 @@
 require 'spec_helper'
 
 describe Cancellation do
-  it 'makes the subscription inactive and records the current date' do
-    subscription = create(:subscription)
-    cancellation = Cancellation.new(subscription)
+  describe 'process' do
+    before :each do
+      subscription.stubs(:stripe_customer_id).returns('cus_1CXxPJDpw1VLvJ')
 
-    subscription.stubs(:stripe_customer_id).returns('cus_1CXxPJDpw1VLvJ')
-    cancellation.process
+      mailer = stub(deliver: true)
+      SubscriptionMailer.stubs(:cancellation_survey).
+        with(subscription.user).returns(mailer)
 
-    subscription.deactivated_on.should == Time.zone.today
+      updater = stub(unsubscribe: true)
+      AnalyticsUpdater.stubs(:new).with(subscription.user).returns(updater)
+    end
+
+    it 'makes the subscription inactive and records the current date' do
+      cancellation.process
+
+      subscription.deactivated_on.should == Time.zone.today
+    end
+
+    it 'sends a unsubscription survey email' do
+      cancellation.process
+
+      expect(SubscriptionMailer).
+        to have_received(:cancellation_survey).with(subscription.user)
+      expect(SubscriptionMailer.cancellation_survey(subscription.user)).
+        to have_received(:deliver)
+    end
+
+    it 'update intercom status for user' do
+      cancellation.process
+
+      expect(AnalyticsUpdater).
+        to have_received(:new).with(subscription.user)
+      expect(AnalyticsUpdater.new(subscription.user)).
+        to have_received(:unsubscribe)
+    end
   end
 
   describe 'schedule' do
@@ -126,5 +153,13 @@ describe Cancellation do
     build_stubbed(:plan).tap do |plan|
       IndividualPlan.stubs(:basic).returns(plan)
     end
+  end
+
+  def subscription
+    @subscription ||= create(:subscription)
+  end
+
+  def cancellation
+    @cancellation ||= Cancellation.new(subscription)
   end
 end

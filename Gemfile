@@ -7,6 +7,7 @@ gem 'active_model_serializers', '~> 0.7.0'
 gem 'acts_as_list', '0.2.0'
 gem 'airbrake', '3.1.14'
 gem 'aws-sdk', '= 1.6.2' # Bug https://github.com/thoughtbot/paperclip/issues/751
+gem 'analytics-ruby'
 gem 'bluecloth'
 gem 'bourbon', '3.2.0.beta.2'
 gem 'clearance', '1.0.1'
@@ -61,9 +62,10 @@ group :development do
 end
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'foreman', '0.46.0'
-  gem 'rspec-rails'
   gem 'pry-rails'
+  gem 'rspec-rails'
 end
 
 group :production, :staging do
