@@ -8,7 +8,6 @@
 //= require masonry.min.js
 //= require prime
 //= require plans
-//= require slider
 //= require topics
 //= require checkout
 //= require autoresize

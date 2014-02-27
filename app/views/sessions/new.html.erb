@@ -1,6 +1,6 @@
 <section id="auth-form-container">
   <div class="github-signin">
-    <%= link_to "Sign in with GitHub", github_auth_path %>
+    <%= link_to "Sign in with GitHub", github_auth_path, class: 'button' %>
   </div>
   <div class="thoughtbot-signin">
     <%= semantic_form_for :session, url: session_path do |form| %>

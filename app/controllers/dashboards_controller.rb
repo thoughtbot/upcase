@@ -3,6 +3,5 @@ class DashboardsController < ApplicationController
 
   def show
     @catalog = Catalog.new
-    render layout: 'header-only'
   end
 end
