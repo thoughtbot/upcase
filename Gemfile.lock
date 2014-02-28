@@ -71,6 +71,10 @@ GEM
     airbrake (3.1.14)
       builder
       json
+    analytics-ruby (0.5.4)
+      faraday (>= 0.8, < 0.10)
+      faraday_middleware (>= 0.8, < 0.10)
+      multi_json (~> 1.0)
     arel (4.0.1)
     atomic (1.1.14)
     attr_required (0.0.5)
@@ -135,6 +139,9 @@ GEM
     doorkeeper (0.7.2)
       jquery-rails (>= 2.0.2)
       railties (>= 3.1)
+    dotenv (0.9.0)
+    dotenv-rails (0.9.0)
+      dotenv (= 0.9.0)
     dynamic_form (1.1.4)
     email_spec (1.2.1)
       mail (~> 2.2)
@@ -405,6 +412,7 @@ DEPENDENCIES
   active_model_serializers (~> 0.7.0)
   acts_as_list (= 0.2.0)
   airbrake (= 3.1.14)
+  analytics-ruby
   aws-sdk (= 1.6.2)
   bluecloth
   bourbon (= 3.2.0.beta.2)
@@ -422,6 +430,7 @@ DEPENDENCIES
   delayed_job (~> 4.0.0)
   delayed_job_active_record (= 4.0.0)
   doorkeeper (~> 0.7.1)
+  dotenv-rails
   dynamic_form (= 1.1.4)
   email_spec (= 1.2.1)
   escape_utils (= 0.2.4)

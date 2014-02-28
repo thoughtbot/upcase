@@ -17,10 +17,13 @@ module AnalyticsHelper
     }
   end
 
-  def intercom_hash
+  def intercom_hash(user = current_user)
     {
       'Intercom' => {
-        userHash: OpenSSL::HMAC.hexdigest('sha256', ENV['INTERCOM_API_SECRET'], current_user.id.to_s)
+        userHash: OpenSSL::HMAC.hexdigest(
+          'sha256',
+          ENV['INTERCOM_API_SECRET'],
+          user.id.to_s)
       }
     }
   end
