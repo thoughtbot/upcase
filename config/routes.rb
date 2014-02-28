@@ -129,7 +129,7 @@ Workshops::Application.routes.draw do
   resource :timeline, only: :show
 
   get "/pages/*id" => 'pages#show', format: false
-  get '/prime' => 'pages#show', as: :prime, id: 'prime'
+  get '/prime' => 'promoted_catalogs#show', as: :prime
   get '/privacy' => 'pages#show', as: :privacy, id: 'privacy'
   get '/terms' => 'pages#show', as: :terms, id: 'terms'
   get '/directions' => "pages#show", as: :directions, id: "directions"

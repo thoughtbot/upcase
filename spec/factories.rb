@@ -58,6 +58,10 @@ FactoryGirl.define do
     trait :inactive do
       active false
     end
+
+    trait :promoted do
+      promoted true
+    end
   end
 
   factory :download do
@@ -91,6 +95,10 @@ FactoryGirl.define do
 
     trait :inactive do
       active false
+    end
+
+    trait :promoted do
+      promoted true
     end
 
     trait :github do

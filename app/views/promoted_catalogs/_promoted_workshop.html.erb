@@ -1,0 +1,8 @@
+<figure class="workshop product-card">
+  <%= link_to workshop, title: "The #{workshop.name} online workshop details" do %>
+    <h4><%= workshop.name %></h4>
+    <%= image_tag(workshop.thumbnail_path) %>
+    <h5>Online Workshop</h5>
+    <p><%= workshop.short_description %></p>
+  <% end %>
+</figure>

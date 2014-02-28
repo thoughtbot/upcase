@@ -26,12 +26,7 @@
       <p>thoughtbot mentors will hold calls with you once a month to discuss whatever you like: code review, landing your first Rails job, salary negotiation, etc.</p>
     </article>
     <figure class="supporting-visual mentors">
-      <% Mentor.featured.each do |mentor| %>
-        <div>
-          <%= mentor_image(mentor) %>
-          <p><strong>This is <%= mentor.first_name %></strong>. <%= mentor.bio %></p>
-        </div>
-      <% end %>
+      <%= render partial: 'promoted_mentor', collection: @catalog.mentors, as: :mentor %>
     </figure>
   </section>
   <section class="pitch left enroll">
@@ -44,51 +39,13 @@
       <div>
         <h3>Online workshops</h3>
         <div class="figuregroup">
-          <figure class="workshop product-card">
-            <%= link_to '/workshops/21-intermediate-ruby-on-rails', title: 'The Intermediate Ruby on Rails online workshop details' do %>
-              <h4>Intermediate Ruby on Rails</h4>
-              <%= image_tag('workshop_thumbs/intermediate-ruby-on-rails-thumbnail.jpg') %>
-              <h5>Online Workshop</h5>
-              <p>Dig deeper into Ruby on Rails</p>
-            <% end %>
-          </figure>
-          <figure class="workshop product-card">
-            <%= link_to '/workshops/19-design-for-developers', title: 'The Design for Developers online workshop details' do %>
-              <h4>Design for Developers</h4>
-              <%= image_tag('workshop_thumbs/design-for-developers-thumbnail.jpg') %>
-              <h5>Online Workshop</h5>
-              <p>Get better at visual design and create something great</p>
-            <% end %>
-          </figure>
-          <figure class="workshop product-card">
-            <%= link_to '/workshops/20-intro-to-ruby-on-rails', title: 'The Intro to Ruby on Rails online workshop details' do %>
-              <h4>Intro to Ruby on Rails</h4>
-              <%= image_tag('workshop_thumbs/intro-to-ruby-on-rails-thumbnail.jpg') %>
-              <h5>Online Workshop</h5>
-              <p>Learn how to develop web applications using Ruby on Rails</p>
-            <% end %>
-          </figure>
+          <%= render partial: 'promoted_workshop', collection: @catalog.workshops.in_groups(2, false).first, as: :workshop %>
         </div>
       </div>
       <div>
         <h3>&nbsp;</h3>
         <div class="figuregroup">
-          <figure class="workshop product-card">
-            <%= link_to '/workshops/22-hands-on-backbone-js-on-rails', title: 'The Hands-on Backbone.js on Rails online workshop details' do %>
-              <h4>Hands-on Backbone.js on Rails</h4>
-              <%= image_tag('workshop_thumbs/hands-on-backbone-js-on-rails-thumbnail.jpg') %>
-              <h5>Online Workshop</h5>
-              <p>Build snappier, more interactive apps with cleaner code in less time</p>
-            <% end %>
-          </figure>
-          <figure class="workshop product-card">
-            <%= link_to '/workshops/18-test-driven-rails', title: 'The Test Driven Rails online workshop details' do %>
-              <h4>Test-Driven Rails</h4>
-              <%= image_tag('workshop_thumbs/test-driven-rails-thumbnail.jpg') %>
-              <h5>Online Workshop</h5>
-              <p>Learn Test-Driven Development using RSpec and Capybara</p>
-            <% end %>
-          </figure>
+          <%= render partial: 'promoted_workshop', collection: @catalog.workshops.in_groups(2, false).second, as: :workshop %>
         </div>
       </div>
     </figure>
@@ -115,44 +72,13 @@
       <div>
         <h3>Screencasts</h3>
         <div class="figuregroup">
-          <figure class="screencast thumbnail product-card">
-            <%= link_to '/products/7-the-playbook-video-edition', title: 'The Playbook: Video Edition' do %>
-              <figure>
-                <%= image_tag('screencast_thumbs/playbook-video-edition.jpg') %>
-              </figure>
-              <h5>Screencast</h5>
-              <h4>The Playbook: Video Edition</h4>
-              <p>How to plan, design, develop, and launch a successful web application</p>
-            <% end %>
-          </figure>
-          <figure class="screencast thumbnail product-card">
-            <%= link_to '/products/21-navigating-ruby-files-with-vim', title: 'Navigating Ruby Files with Vim' do %>
-              <figure>
-                <%= image_tag('screencast_thumbs/navigating-ruby-files-with-vim.jpg') %>
-              </figure>
-              <h5>Screencast</h5>
-              <h4>Navigating Ruby Files with Vim</h4>
-              <p>Stop scrolling and searching, start precision jumping</p>
-            <% end %>
-          </figure>
-          <figure class="screencast thumbnail product-card">
-            <%= link_to '/products/17-the-art-of-vim', title: 'The Art of Vim' do %>
-              <figure>
-                <%= image_tag('screencast_thumbs/art-of-vim.png') %>
-              </figure>
-              <h5>Screencast</h5>
-              <h4>The Art of Vim</h4>
-              <p>Create and edit your code more efficiently</p>
-            <% end %>
-          </figure>
+          <%= render partial: 'promoted_screencast', collection: @catalog.screencasts, as: :screencast %>
         </div>
       </div>
       <div>
         <h3>Books</h3>
         <div class="figuregroup">
-          <figure class="book product-card"><%= link_to image_tag('product_images/book/backbone-cover-large.png'), '/books/1-backbone-js-on-rails' %></figure>
-          <figure class="book product-card"><%= link_to image_tag('product_images/book/geocoding-cover-large.png'), '/books/22-geocoding-on-rails' %></figure>
-          <figure class="book product-card"><%= link_to image_tag('product_images/book/rubyscience-cover-large.png'), '/books/13-ruby-science' %></figure>
+          <%= render partial: 'promoted_book', collection: @catalog.books, as: :book %>
         </div>
       </div>
     </figure>

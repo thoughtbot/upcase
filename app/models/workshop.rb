@@ -31,6 +31,10 @@ class Workshop < ActiveRecord::Base
     where active: true
   end
 
+  def self.promoted
+    where promoted: true
+  end
+
   def announcement
     @announcement ||= announcements.current
   end

@@ -1,5 +1,5 @@
 class Mentor < ActiveRecord::Base
-  NUMBER_OF_MENTORS_TO_FEATURE = 2
+  NUMBER_OF_MENTORS_TO_PROMOTE = 2
 
   belongs_to :user
   has_many :mentees, class_name: 'User', foreign_key: 'mentor_id'
@@ -8,8 +8,8 @@ class Mentor < ActiveRecord::Base
 
   delegate :name, :first_name, :email, :github_username, :bio, to: :user
 
-  def self.featured
-    accepting_new_mentees.sample(NUMBER_OF_MENTORS_TO_FEATURE)
+  def self.promoted
+    accepting_new_mentees.sample(NUMBER_OF_MENTORS_TO_PROMOTE)
   end
 
   def self.find_or_sample(mentor_id)

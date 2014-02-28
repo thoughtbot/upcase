@@ -8,10 +8,7 @@ class PagesController < HighVoltage::PagesController
   private
 
   def layout_for_page
-    case params[:id]
-    when 'prime'
-      'empty-body'
-    when 'new-product'
+    if params[:id] == 'new-product'
       'header-only'
     else
       'application'

@@ -20,11 +20,16 @@ namespace :dev do
 
     @prime = FactoryGirl.create(:plan)
     puts_product @prime
-    @book = FactoryGirl.create(:book, sku: 'VIM', name: 'Vim for Rails Developers')
+    @book = FactoryGirl.create(
+      :book,
+      :promoted,
+      sku: 'VIM',
+      name: 'Vim for Rails Developers'
+    )
     puts_product @book
 
-    puts_product FactoryGirl.create(:screencast)
-    puts_product FactoryGirl.create(:screencast)
+    puts_product FactoryGirl.create(:screencast, :promoted)
+    puts_product FactoryGirl.create(:screencast, :promoted)
 
     puts_product FactoryGirl.create(:show, name: 'The Weekly Iteration')
   end
