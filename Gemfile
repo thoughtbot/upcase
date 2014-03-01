@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
+ruby '2.1.1'
 
 gem 'RedCloth', '4.2.9', require: 'redcloth'
 gem 'active_model_serializers', '~> 0.7.0'
@@ -50,7 +50,7 @@ gem 'unicorn'
 
 # Gems used only for assets and not required
 # in production environments by default.
-gem 'sass', '3.3.0.rc.2'
+gem 'sass', '3.3.0.rc.5'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '1.3.0'
 gem 'heroku-deflater'
