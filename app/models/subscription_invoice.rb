@@ -68,7 +68,11 @@ class SubscriptionInvoice
   end
 
   def subscription_item_name
-    "Subscription to #{subscription.plan.name}"
+    if subscription_is_active?
+      "Subscription to #{subscription.plan.name}"
+    else
+      '(Canceled) Subscription to Prime'
+    end
   end
 
   def subscription_item_amount
@@ -115,5 +119,9 @@ class SubscriptionInvoice
 
   def subscription
     stripe_invoice.lines.subscriptions.first
+  end
+
+  def subscription_is_active?
+    subscription.plan
   end
 end

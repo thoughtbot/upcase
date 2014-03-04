@@ -135,4 +135,18 @@ describe SubscriptionInvoice do
       expect(invoice.discount_amount).to eq 99.00
     end
   end
+
+  context 'when the user has canceled their account, leading to a nil plan' do
+    it 'references their canceled subscription rather than a plan name' do
+      canceled_subscription = stub('subscription', plan: nil)
+      subscriptions_collection = stub('subscriptions collection',
+                                      first: canceled_subscription)
+      lines = stub('invoice lines', subscriptions: subscriptions_collection)
+      stripe_invoice = stub('stripe_invoice', lines: lines)
+      invoice = SubscriptionInvoice.new(stripe_invoice)
+
+      expect(invoice.subscription_item_name)
+        .to eq '(Canceled) Subscription to Prime'
+    end
+  end
 end
