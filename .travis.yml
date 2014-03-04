@@ -1,0 +1,12 @@
+language: ruby
+cache: bundler
+rvm: ruby-2.1.1
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+before_script:
+  - cp .sample.env .env
+notifications:
+  campfire:
+    rooms:
+      secure: cYr9O9tRieysyX2k3i55MJWkP8cJj6QhXAVwPHkhHG96Ev7UYCvNc//veW250wEoZ8Zd2wSx0xVe5OwlXvAdvWCgLMb1byzTNzERQ6rdbszBDRIUbpKe2AmpwqvMISkGboxri45ouqnpTyfBIDJXJLo7zb41iUWZWBDs1XAJnwk=
