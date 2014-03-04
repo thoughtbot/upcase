@@ -1,5 +1,7 @@
 module Subscriber
   class PurchasesController < ApplicationController
+    before_filter :authorize
+
     def new
       @purchaseable = PurchaseableDecorator.new(requested_purchaseable)
     end
