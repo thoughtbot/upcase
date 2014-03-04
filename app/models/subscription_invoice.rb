@@ -1,3 +1,4 @@
+# Finds and wraps Stripe's Invoice object with convenience methods
 class SubscriptionInvoice
   attr_reader :stripe_invoice
 
