@@ -25,7 +25,7 @@ Workshops::Application.configure do
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
 
-  config.log_level = :debug
+  config.log_level = :info
   config.log_formatter = ::Logger::Formatter.new
 
   HOST = 'learn.thoughtbot.com'
