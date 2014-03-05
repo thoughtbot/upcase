@@ -1,19 +1,19 @@
 <% content_for :additional_content_classes, 'fullscreen' %>
-<% if @purchaseable.collection? %>
+<% if @video_page.collection? %>
   <% content_for :additional_header_links do %>
-    <li class="all-videos"><%= link_to 'All Videos', @purchase %></li>
+    <li class="all-videos"><%= link_to 'All Videos', @video_page.purchase %></li>
   <% end %>
 <% end %>
 
 <% content_for :subject_block do %>
-  <h1><%= @purchaseable.name %></h1>
+  <h1><%= @video_page.name %></h1>
   <h2 class="tagline">
-    <% if @purchaseable.collection? %>
-      <%= @video.title %>
+    <% if @video_page.collection? %>
+      <%= @video_page.title %>
     <% else %>
       Watch or download video
     <% end %>
   </h2>
 <% end %>
 
-<%= render 'watch_video', video: @video, purchase: @purchase %>
+<%= render 'watch_video', video: @video_page.video, purchase: @video_page.purchase %>
