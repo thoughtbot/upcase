@@ -1,14 +1,14 @@
-<% if @video_page.purchaseable.collection? %>
+<% if @video_page.collection? %>
   <% content_for :additional_header_links do %>
     <li class="all-videos"><%= link_to 'All Videos', @video_page.purchase %></li>
   <% end %>
 <% end %>
 
 <% content_for :subject_block do %>
-  <h1><%= @video_page.purchaseable.name %></h1>
+  <h1><%= @video_page.name %></h1>
   <h2 class="tagline">
-    <% if @video_page.purchaseable.collection? %>
-      <%= @video_page.video.title %>
+    <% if @video_page.collection? %>
+      <%= @video_page.video_title %>
     <% else %>
       Watch or download video
     <% end %>
@@ -21,4 +21,4 @@
   </div>
 </div>
 
-<%= render @video_page.purchaseable.to_aside_partial, purchaseable: @video_page.purchaseable, purchase: @video_page.purchase %>
+<%= render @video_page.to_aside_partial, purchaseable: @video_page.purchaseable, purchase: @video_page.purchase %>
