@@ -33,7 +33,6 @@ Workshops::Application.routes.draw do
 
   resource :session, controller: 'sessions'
 
-  get '/courses.json' => redirect('/workshops.json')
   get '/courses/:id' => redirect('/workshops/%{id}')
   resources :workshops, only: [:show] do
     resources :purchases, only: [:new, :create]
@@ -159,6 +158,6 @@ Workshops::Application.routes.draw do
 
   mount StripeEvent::Engine, at: 'stripe-webhook'
 
-  get ':id' => 'topics#show', as: :topic
+  get ':id' => 'topics#show', as: :topic, :constraints => { :format => /(html)/ }
   get '/:id/articles' => redirect('http://robots.thoughtbot.com/tags/%{id}')
 end
