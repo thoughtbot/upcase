@@ -7,20 +7,12 @@
   .actions {
     margin-top: 3rem;
 
-    form {
-      width: 48%;
-      float: left;
-      margin: 0;
-
-      &:last-child {
-        float: right;
-      }
-
-      input {
-        height: auto;
-        white-space: normal;
-        width: 100%;
-      }
+    form input {
+      display: block;
+      height: auto;
+      margin: 0 auto 1rem;
+      white-space: normal;
+      width: 50%;
     }
   }
 }

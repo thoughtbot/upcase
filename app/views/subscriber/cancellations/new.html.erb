@@ -1,50 +1,11 @@
 <div class="text-box-wrapper solo cancellation-discount">
   <article>
-    <% if @cancellation.can_downgrade_instead? %>
-      <p>
-        We're sorry to hear you want to cancel. Before we remove the
-        subscription from your account, we want to make sure you know about the
-        option to switch to a lower priced plan: Prime Basic is everything in
-        <%= t('shared.subscription.name') %> except for a mentor and workshops.
-        You still get books, screencasts, office hours, the forum, and you'll
-        also continue to have access to the workshops you've already taken, for
-        <%= individual_price_per_month(@cancellation.downgrade_plan) %> instead of
-        <%= individual_price_per_month(@cancellation.subscribed_plan) %>.
-      </p>
-      <p>
-        Any remaining balance you have on your account will be applied to your
-        new, less-expensive plan.
-      </p>
-      <p>
-        <%= link_to(
-          "Change to #{individual_price_per_month(@cancellation.downgrade_plan)} &rarr;".html_safe,
-          [:subscriber, :downgrade],
-          method: :create
-        ) %>
-      </p>
-    <% else %>
-      <p>
-        Are you sure you want to cancel your <%= t('shared.subscription.name') %>
-        subscription? You will lose access to the products you acquired through
-        <%= t('shared.subscription.name') %>, as well as the forum at
-        the end of your billing cycle.
-      </p>
-    <% end %>
+    <p>Your subscription has been cancelled. We're sorry to see you go. You'll lose access to all the products acquired through your subscription at the end of this billing cycle &mdash; if you've purchased anything seperately, you'll retain access to those products on your account.</p>
   </article>
   <section class="actions">
-    <%= form_for(
-      :cancellation, 
-      url: [:subscriber, :cancellation],
-      html: { class: 'cancellation-feedback' }
-    ) do |form| %>
-      <% if @cancellation.can_downgrade_instead? %>
-        <%= form.submit t('subscriptions.confirm_cancel_reject_deal') %>
-      <% else %>
-        <%= form.submit t('subscriptions.confirm_cancel') %>
-      <% end %>
-    <% end %>
     <form>
-      <input name="commit" type="submit" value="Cancel my subscription and get a refund">
+      <input name="commit" type="submit" value="Get a refund">
+      <p>This will refund the last bill charged to your account &mdash; you'll lose access to all the products acquired through your subscription immediately.
     </form>
   </section>
 </div>
