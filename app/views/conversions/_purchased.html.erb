@@ -1,5 +1,5 @@
 <script type="text/javascript">
-  analytics.track('Purchased',
+  window.analytics.track('Purchased',
     <%= raw purchased_hash(purchase_amount, purchase_name).to_json %>
   );
 </script>
