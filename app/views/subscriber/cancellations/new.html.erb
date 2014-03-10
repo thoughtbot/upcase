@@ -31,15 +31,20 @@
       </p>
     <% end %>
   </article>
-  <%= form_for(
-    :cancellation, 
-    url: [:subscriber, :cancellation],
-    html: { class: 'cancellation-feedback' }
-  ) do |form| %>
-    <% if @cancellation.can_downgrade_instead? %>
-      <%= form.submit t('subscriptions.confirm_cancel_reject_deal') %>
-    <% else %>
-      <%= form.submit t('subscriptions.confirm_cancel') %>
+  <section class="actions">
+    <%= form_for(
+      :cancellation, 
+      url: [:subscriber, :cancellation],
+      html: { class: 'cancellation-feedback' }
+    ) do |form| %>
+      <% if @cancellation.can_downgrade_instead? %>
+        <%= form.submit t('subscriptions.confirm_cancel_reject_deal') %>
+      <% else %>
+        <%= form.submit t('subscriptions.confirm_cancel') %>
+      <% end %>
     <% end %>
-  <% end %>
+    <form>
+      <input name="commit" type="submit" value="Cancel my subscription and get a refund">
+    </form>
+  </section>
 </div>
