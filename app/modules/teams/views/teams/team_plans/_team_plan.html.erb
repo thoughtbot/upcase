@@ -1,4 +1,4 @@
-<%= content_tag :div, class: "plan team #{team_plan.sku}" do %>
+<%= content_tag :div, class: "plan team #{team_plan.sku}", id: team_plan.sku do %>
   <h2><%= team_plan.name %> <span><%= team_price_per_month team_plan %></span></h2>
   <%= render 'plans/features', plan: team_plan %>
   <%= link_to(

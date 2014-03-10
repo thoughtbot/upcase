@@ -1,4 +1,4 @@
-<%= content_tag :div, class: "plan #{individual_plan.sku}" do %>
+<%= content_tag :div, class: "plan #{individual_plan.sku}", id: individual_plan.sku do %>
   <h2><%= individual_plan.name %> <span><%= individual_price_per_month individual_plan %></span></h2>
   <%= render 'plans/features', plan: individual_plan %>
   <%= choose_plan_link(individual_plan) %>
