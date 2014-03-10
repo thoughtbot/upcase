@@ -2,7 +2,7 @@
   <h1>Account<h1>
 <% end %>
 
-<div class="text-box-wrapper">
+<div class="text-box-wrapper right">
   <div class="text-box">
     <%= semantic_form_for current_user, url: edit_my_account_path do |form| %>
       <%= form.inputs "Your Information [#{link_to('Sign out', sign_out_path, method: :delete)}]" do %>

@@ -1,16 +1,17 @@
 <li class="subscription">
   <% if subscription.active? %>
-    <p><strong><%= subscription.plan.name %></strong> <br /> Active since <%= subscription.created_at.to_s(:simple) %></p>
+    <p class="subscription-name"><strong><%= subscription.plan.name %></strong> <br /> Active since <%= subscription.created_at.to_s(:simple) %></p>
     <% if subscription.scheduled_for_cancellation_on %>
       <p><%= t('subscriptions.cancellation_scheduled_on', date: subscription.scheduled_for_cancellation_on.to_s(:simple)) %></p>
     <% end %>
   <% else %>
     <p>Canceled on <%= subscription.deactivated_on.to_s(:simple) %></p>
   <% end %>
-
+  <% if subscription.active? && subscription.scheduled_for_cancellation_on.blank? %>
+    <%= link_to t('subscriptions.change_plan'), edit_subscription_path %>
+  <% end %>
   <%= link_to 'View all invoices', subscriber_invoices_path, class: 'invoices' %>
   <% if subscription.active? && subscription.scheduled_for_cancellation_on.blank? %>
     <%= link_to t('subscriptions.cancel'), new_subscriber_cancellation_path, class: 'cancel' %>
-    <%= link_to t('subscriptions.change_plan'), edit_subscription_path %>
   <% end %>
 </li>
