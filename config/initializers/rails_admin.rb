@@ -68,6 +68,10 @@ RailsAdmin.config do |config|
       field :accepting_new_mentees
       field :availability
     end
+
+    object_label_method do
+      :id
+    end
   end
 
   config.model User do

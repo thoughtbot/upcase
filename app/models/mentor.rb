@@ -4,6 +4,8 @@ class Mentor < ActiveRecord::Base
   belongs_to :user
   has_many :mentees, class_name: 'User', foreign_key: 'mentor_id'
 
+  validates :user, presence: true
+
   delegate :name, :first_name, :email, :github_username, :bio, to: :user
 
   def self.featured
