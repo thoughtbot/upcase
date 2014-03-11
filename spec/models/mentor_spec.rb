@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Mentor do
   it { should have_many(:mentees) }
+  it { should validate_presence_of(:user) }
 
   describe '.featured' do
     it 'executes queries on the relation' do
