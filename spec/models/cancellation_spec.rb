@@ -70,7 +70,8 @@ describe Cancellation do
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
       cancellation.schedule
 
-      Stripe::Customer.should have_received(:retrieve).with('cus_1CXxPJDpw1VLvJ')
+      expect(Stripe::Customer).to have_received(:retrieve)
+        .with('cus_1CXxPJDpw1VLvJ')
     end
 
     it 'does not make the subscription inactive if stripe unsubscribe fails' do
@@ -95,6 +96,44 @@ describe Cancellation do
 
       expect { cancellation.schedule }.to raise_error
       subscription.should have_received(:cancel_subscription).never
+    end
+  end
+
+  describe 'cancel_and_refund' do
+    it 'cancels immediately and refunds the last charge with Stripe' do
+      subscription = create(:subscription)
+      charge = stub('Stripe::Charge', id: 'charge_id', refund: nil)
+      subscription.stubs(:last_charge).returns(charge)
+      cancellation = Cancellation.new(subscription)
+      stripe_customer = stub(
+        'Stripe::Customer',
+        cancel_subscription: nil,
+        subscription: stub(current_period_end: 1361234235)
+      )
+      Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
+
+      cancellation.cancel_and_refund
+
+      expect(stripe_customer).to have_received(:cancel_subscription)
+        .with(at_period_end: false)
+      expect(charge).to have_received(:refund)
+      expect(subscription.scheduled_for_cancellation_on).to be_nil
+    end
+
+    it 'does not error if the customer was not charged' do
+      subscription = create(:subscription)
+      subscription.stubs(:last_charge).returns(nil)
+      cancellation = Cancellation.new(subscription)
+      stripe_customer = stub(
+        'Stripe::Customer',
+        cancel_subscription: nil,
+        subscription: stub(current_period_end: 1361234235)
+      )
+      Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
+
+      expect { cancellation.cancel_and_refund }.not_to raise_error
+      expect(stripe_customer).to have_received(:cancel_subscription)
+        .with(at_period_end: false)
     end
   end
 

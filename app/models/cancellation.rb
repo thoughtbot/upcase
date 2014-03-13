@@ -5,10 +5,14 @@ class Cancellation
 
   def schedule
     Subscription.transaction do
-      stripe_customer = Stripe::Customer.retrieve(@subscription.stripe_customer_id)
       stripe_customer.cancel_subscription(at_period_end: true)
       record_scheduled_cancellation_date(stripe_customer)
     end
+  end
+
+  def cancel_and_refund
+    stripe_customer.cancel_subscription(at_period_end: false)
+    @subscription.last_charge.try(:refund)
   end
 
   def process
@@ -52,5 +56,13 @@ class Cancellation
 
   def downgraded?
     @subscription.plan == downgrade_plan
+  end
+
+  def stripe_customer
+    @stripe_customer ||= Stripe::Customer.retrieve(stripe_customer_id)
+  end
+
+  def stripe_customer_id
+    @subscription.stripe_customer_id
   end
 end

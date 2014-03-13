@@ -2,7 +2,7 @@
   <% if subscription.active? %>
     <p><strong><%= subscription.plan.name %></strong> <br /> Active since <%= subscription.created_at.to_s(:simple) %></p>
     <% if subscription.scheduled_for_cancellation_on %>
-      <p>Scheduled for cancellation on <%= subscription.scheduled_for_cancellation_on.to_s(:simple) %></p>
+      <p><%= t('subscriptions.cancellation_scheduled_on', date: subscription.scheduled_for_cancellation_on.to_s(:simple)) %></p>
     <% end %>
   <% else %>
     <p>Canceled on <%= subscription.deactivated_on.to_s(:simple) %></p>

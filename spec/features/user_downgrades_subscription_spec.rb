@@ -39,7 +39,15 @@ feature 'User downgrades subscription', js: true do
 
     click_button I18n.t('subscriptions.confirm_cancel')
 
-    expect(page).to have_content "Scheduled for cancellation on February 19, 2013"
     expect(page).to have_content I18n.t('subscriptions.flashes.cancel.success')
+
+    click_link I18n.t('subscriptions.reject_refund')
+
+    expect(page).to have_content(
+      I18n.t(
+        'subscriptions.cancellation_scheduled_on',
+        date: 'February 19, 2013'
+      )
+    )
   end
 end

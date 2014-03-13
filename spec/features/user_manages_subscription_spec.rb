@@ -147,6 +147,22 @@ feature 'User creates a subscription' do
     expect(page).not_to have_content('Your Billing Info')
   end
 
+  scenario 'does not see call out to subscribe if already subscribed' do
+    plan = create(:plan, name: 'Prime')
+    create(:workshop, name: 'A Cool Workshop')
+    sign_in_as_user_with_subscription
+
+    visit products_path
+
+    expect(find('.header-container')).not_to have_content(
+      "#{plan.name} Membership"
+    )
+
+    click_link 'View Details'
+
+    expect(page).not_to have_link("Subscribe to #{plan.name}")
+  end
+
   def visit_plan_purchase_page
     visit new_subscription_path
     click_link('Sign up for')

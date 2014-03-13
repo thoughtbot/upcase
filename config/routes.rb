@@ -87,6 +87,7 @@ Workshops::Application.routes.draw do
     resources :invoices, only: [:index, :show]
     resource :cancellation, only: [:new, :create]
     resource :downgrade, only: :create
+    resource :refund, only: [:new, :create]
   end
 
   resource :subscription, only: [:new, :edit, :update]
