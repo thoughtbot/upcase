@@ -25,10 +25,14 @@ body.users-edit {
     }
 
     .subscription a {
-      background: #eee;
+      border-bottom: 1px solid #eee;
       display: block;
-      margin-top: .5rem;
       padding: .5rem;
+
+      &:first-of-type {
+        background-color: #eee;
+        border-color: #ccc;
+      }
     }
   }
 

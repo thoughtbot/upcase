@@ -1,10 +1,18 @@
 .cancellation-discount {
   article {
     font-size: 1.5rem;
-    margin: 5em 0 0;
+    margin: 3em 0 0;
   }
 
-  .cancellation-feedback {
-    margin: 3em 0;
+  .actions {
+    margin-top: 3rem;
+
+    form input {
+      display: block;
+      height: auto;
+      margin: 0 auto 1rem;
+      white-space: normal;
+      width: 50%;
+    }
   }
 }
