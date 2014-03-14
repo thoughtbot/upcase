@@ -69,6 +69,10 @@ class Subscription < ActiveRecord::Base
     team.present?
   end
 
+  def last_charge
+    Stripe::Charge.all(count: 1, customer: stripe_customer_id).first
+  end
+
   private
 
   def self.canceled_within_period(start_time, end_time)

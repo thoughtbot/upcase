@@ -1,0 +1,19 @@
+<div class="text-box-wrapper solo cancellation-discount">
+  <article>
+    <p>
+      Your subscription has been cancelled. We're sorry to see you go. You'll lose access to all the products acquired through your subscription at the end of this billing cycle &mdash; if you've purchased anything seperately, you'll retain access to those products on your account.
+    </p>
+    <p>
+      We hope that you've enjoyed <%= t('shared.subscription.name') %> while you've been a subscriber. If that's not the case, you can get a refund immediately for your last charge.
+    </p>
+    <p>
+      <%= link_to([:subscriber, :refund], method: :create) do %>
+        <%= t('subscriptions.take_refund') %> &rarr;
+      <% end %>
+    </p>
+    <p class="help">
+     This will refund the last charge to your account &mdash; your subscription will also be cancelled immediately and you'll lose access to the all the products acquired through your subscription.
+    </p>
+  </article>
+  <%= link_to t('subscriptions.reject_refund'), my_account_path, class: 'button' %>
+</div>

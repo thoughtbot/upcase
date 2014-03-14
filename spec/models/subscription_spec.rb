@@ -221,9 +221,21 @@ describe Subscription do
     end
 
     it 'returns false without a team' do
-      subscription = create(:subscription)
+      subscription = build_stubbed(:subscription)
 
       expect(subscription.team?).to be_false
+    end
+  end
+
+  describe '#last_charge' do
+    it 'returns the last charge for the customer' do
+      charge = stub('Stripe::Charge')
+      Stripe::Charge.stubs(:all).returns([charge])
+      subscription = build_stubbed(:subscription)
+
+      expect(subscription.last_charge).to eq charge
+      expect(Stripe::Charge).to have_received(:all)
+        .with(count: 1, customer: subscription.stripe_customer_id)
     end
   end
 end

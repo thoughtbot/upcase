@@ -9,7 +9,7 @@ class Subscriber::CancellationsController < ApplicationController
     cancellation = build_cancellation
     cancellation.schedule
     redirect_to(
-      my_account_path,
+      after_cancellation_path,
       notice: t('subscriptions.flashes.cancel.success')
     )
   end
@@ -18,5 +18,13 @@ class Subscriber::CancellationsController < ApplicationController
 
   def build_cancellation
     Cancellation.new(current_user.subscription)
+  end
+
+  def after_cancellation_path
+    if current_user.subscription.last_charge
+      new_subscriber_refund_path
+    else
+      my_account_path
+    end
   end
 end
