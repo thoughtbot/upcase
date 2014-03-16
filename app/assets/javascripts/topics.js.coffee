@@ -90,16 +90,13 @@ class CompletionView
       checkbox = $(@)
       if window.loggedIn
         if checkbox.prop("checked")
-          $.post "/api/v1/completions",
+          request = $.post "/api/v1/completions",
             trail_object_id: checkbox.attr("id")
             trail_name: checkbox.parents(".trail-map-steps").data("name")
-          .done ->
-            completionView = new CompletionView
-            completionView.fetchCompletions(completionView.renderBullets)
         else
-          $.ajax
+          request = $.ajax
             url: "/api/v1/completions/" + checkbox.attr("id")
             type: "DELETE"
-          .done ->
-            completionView = new CompletionView
-            completionView.fetchCompletions(completionView.renderBullets)
+        request.done ->
+          completionView = new CompletionView
+          completionView.fetchCompletions(completionView.renderBullets)
