@@ -2,14 +2,15 @@ require 'spec_helper'
 
 describe UserSerializer do
   it 'serializes simple attributes' do
-    user = build_stubbed(:user)
+    user = build_stubbed(:user, :with_github)
 
     user_json = parse_serialized_json(user)
 
-    user_json['id'].should == user.id
-    user_json['first_name'].should == user.first_name
-    user_json['last_name'].should == user.last_name
     user_json['email'].should == user.email
+    user_json['first_name'].should == user.first_name
+    user_json['username'].should == user.github_username
+    user_json['id'].should == user.id
+    user_json['last_name'].should == user.last_name
   end
 
   context 'with public keys' do
