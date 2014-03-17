@@ -1,3 +1,5 @@
+<% content_for :additional_content_classes, 'fullscreen' %>
+
 <% content_for :subject_block do %>
   <h1><%= @purchaseable.name %></h1>
   <h2 class="tagline">
@@ -10,16 +12,16 @@
   </h2>
 <% end %>
 
-<div class="text-box-wrapper">
-  <div class="text-box">
-    <% if @purchaseable.collection? %>
+<% if @purchaseable.collection? %>
+  <div class="text-box-wrapper">
+    <div class="text-box">
       <section id="videos">
         <%= render @purchaseable.videos.ordered, purchase: @purchase %>
       </section>
-    <% else %>
-      <%= render 'videos/watch_video', video: @purchaseable.videos.first, purchase: @purchase %>
-    <% end %>
+    </div>
   </div>
-</div>
+<% else %>
+  <%= render 'videos/watch_video', video: @purchaseable.videos.first, purchase: @purchase %>
+<% end %>
 
 <%= render 'screencasts/aside', purchaseable: @purchaseable, purchase: @purchase %>

@@ -9,7 +9,7 @@
 
     <%= render 'shared/flashes' %>
 
-    <section class="content">
+    <section class="content <%= yield(:additional_content_classes) %>">
       <% if content_for?(:subject) %>
         <h1 class="subject"><%= yield(:subject) %></h1>
       <% end %>
