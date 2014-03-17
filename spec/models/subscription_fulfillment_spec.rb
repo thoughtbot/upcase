@@ -3,9 +3,8 @@ require 'spec_helper'
 describe SubscriptionFulfillment do
   describe '#fulfill' do
     it 'adds a subscription to the user that created the purchase' do
-      create_mentors
-      user = create(:user, :with_github)
-      purchase = build(:plan_purchase, user: user)
+      user = build_subscribable_user
+      purchase = build_stubbed(:plan_purchase, user: user)
 
       expect(user.subscription).to be_nil
 
@@ -16,8 +15,8 @@ describe SubscriptionFulfillment do
     end
 
     it "doesn't add a subscription to a user that didn't create the purchase" do
-      user = create(:user, :with_github)
-      purchase = build(:plan_purchase)
+      user = build_subscribable_user
+      purchase = build_stubbed(:plan_purchase)
 
       SubscriptionFulfillment.new(purchase, user).fulfill
 
@@ -25,35 +24,46 @@ describe SubscriptionFulfillment do
     end
 
     it 'assigns a mentor on creation' do
-      create_mentors
-      mentor = Mentor.first
-      user = create(:user, :with_github)
-      purchase = build(:plan_purchase, mentor_id: mentor.id)
+      mentor = build_stubbed(:mentor)
+      Mentor.stubs(:find_or_sample).returns(mentor)
+      user = build_subscribable_user
+      purchase = build_stubbed(:plan_purchase, mentor_id: mentor.id)
 
       expect(user.subscription).to be_nil
 
       SubscriptionFulfillment.new(purchase, user).fulfill
 
-      expect(user.mentor).not_to be_nil
+      expect(user).to have_received(:assign_mentor).with(mentor)
     end
 
     it 'adds the user to the subscriber github team' do
       GithubFulfillmentJob.stubs(:enqueue)
-      user = create(:user, :with_github)
-      purchase = build(:plan_purchase)
+      user = build_subscribable_user
+      purchase = build_stubbed(:plan_purchase)
 
       SubscriptionFulfillment.new(purchase, user).fulfill
 
       GithubFulfillmentJob.should have_received(:enqueue).
         with(SubscriptionFulfillment::GITHUB_TEAM, [user.github_username])
     end
+
+    it "downloads the user's GitHub public keys" do
+      GitHubPublicKeyDownloadFulfillmentJob.stubs(:enqueue)
+      user = build_subscribable_user
+      purchase = build_stubbed(:plan_purchase)
+
+      SubscriptionFulfillment.new(purchase, user).fulfill
+
+      GitHubPublicKeyDownloadFulfillmentJob.should have_received(:enqueue)
+        .with(user.id)
+    end
   end
 
   describe '#remove' do
     it 'removes the user from the subscriber github team' do
       GithubRemovalJob.stubs(:enqueue)
-      user = create(:user, :with_github)
-      purchase = build(:plan_purchase)
+      user = build_subscribable_user
+      purchase = build_stubbed(:plan_purchase)
 
       SubscriptionFulfillment.new(purchase, user).remove
 
@@ -62,34 +72,38 @@ describe SubscriptionFulfillment do
     end
 
     it 'removes all subscription purchases' do
-      user = create(:user, :with_github)
-      create_subscription_purchase(user)
-      book_purchase = create_paid_purchase(user)
-      github_fulfillment = stub_github_fulfillment
-      plan_purchase = build(:plan_purchase)
+      user = build_subscribable_user
+      purchases = stub_subscription_purchases(user)
+      refunders = stub_refunds(purchases)
+      plan_purchase = build_stubbed(:plan_purchase)
 
       SubscriptionFulfillment.new(plan_purchase, user).remove
 
-      user.paid_purchases.count.should eq 1
-      user.paid_purchases.should eq [book_purchase]
-      user.subscription_purchases.count.should eq 0
-      github_fulfillment.should have_received(:remove)
+      refunders.each do |refunder|
+        expect(refunder).to have_received(:refund)
+      end
     end
 
-    def create_subscription_purchase(user)
-      product = create(:book, :github)
-      subscription_purchase = SubscriberPurchase.new(product, user)
-      subscription_purchase.create
+    def stub_subscription_purchases(user)
+      [build_stubbed(:purchase), build_stubbed(:purchase)].tap do |purchases|
+        user.stubs(:subscription_purchases).returns(purchases)
+      end
     end
 
-    def create_paid_purchase(user)
-      create(:book_purchase, user: user)
+    def stub_refunds(purchases)
+      purchases.map do |purchase|
+        stub('refunder').tap do |refunder|
+          PurchaseRefunder.stubs(:new).with(purchase).returns(refunder)
+          refunder.stubs(:refund)
+        end
+      end
     end
+  end
 
-    def stub_github_fulfillment
-      github_fulfillment = stub(remove: nil)
-      GithubFulfillment.stubs(:new).returns(github_fulfillment)
-      github_fulfillment
+  def build_subscribable_user
+    build_stubbed(:user, :with_github).tap do |user|
+      user.stubs(:assign_mentor)
+      User.stubs(:find).with(user.id).returns(user)
     end
   end
 end

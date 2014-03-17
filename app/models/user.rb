@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :purchases
   has_many :completions
   has_many :notes, -> { order 'created_at DESC' }
+  has_many :public_keys, dependent: :destroy
   has_one :purchased_subscription, dependent: :destroy, class_name: 'Subscription'
   belongs_to :mentor
   belongs_to :team, class_name: 'Teams::Team'

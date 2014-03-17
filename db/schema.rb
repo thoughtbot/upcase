@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140123145010) do
+ActiveRecord::Schema.define(version: 20140313201034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_stat_statements"
 
   create_table "announcements", force: true do |t|
     t.datetime "created_at",        null: false
@@ -194,6 +195,15 @@ ActiveRecord::Schema.define(version: 20140123145010) do
     t.string   "product_image_content_type"
     t.string   "product_image_updated_at"
   end
+
+  create_table "public_keys", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.text     "data",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "public_keys", ["user_id"], name: "index_public_keys_on_user_id", using: :btree
 
   create_table "purchases", force: true do |t|
     t.string   "stripe_customer_id"

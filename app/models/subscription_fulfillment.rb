@@ -10,6 +10,7 @@ class SubscriptionFulfillment
     assign_mentor
     create_subscription
     add_user_to_github_team
+    download_public_keys
   end
 
   def remove
@@ -35,6 +36,10 @@ class SubscriptionFulfillment
 
   def add_user_to_github_team
     GithubFulfillmentJob.enqueue(GITHUB_TEAM, [@user.github_username])
+  end
+
+  def download_public_keys
+    GitHubPublicKeyDownloadFulfillmentJob.enqueue(@user.id)
   end
 
   def remove_user_from_github_team
