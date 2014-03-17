@@ -77,6 +77,11 @@ img {
       margin: auto;
       float: none;
     }
+
+    &.right {
+      float: right;
+      margin: 0 0 0 flex-gutter(12);
+    }
   }
 
   .text-box-in-text-box {
