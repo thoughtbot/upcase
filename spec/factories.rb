@@ -80,6 +80,10 @@ FactoryGirl.define do
     workshop
   end
 
+  factory :public_key do
+    data 'ssh-rsa abc123hexadecimal'
+  end
+
   factory :product, traits: [:active], class: 'Book' do
     trait :active do
       active true

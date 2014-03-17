@@ -19,6 +19,18 @@ class FakeGithub < Sinatra::Base
 
     {}.to_json
   end
+
+  get '/users/:username/keys' do
+    content_type :json
+
+    [{ 'id' => 1, 'key' => 'ssh-rsa AAA' }].to_json
+  end
+
+  not_found do
+    content_type :json
+
+    { 'error' => "Edit #{__FILE__} to fake out this request" }.to_json
+  end
 end
 
 FakeGithubRunner = Capybara::Discoball::Runner.new(FakeGithub) do |server|

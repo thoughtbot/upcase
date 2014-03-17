@@ -12,6 +12,20 @@ describe UserSerializer do
     user_json['email'].should == user.email
   end
 
+  context 'with public keys' do
+    it 'serializes public keys as an array of strings' do
+      public_keys = [
+        build_stubbed(:public_key, data: 'key-one'),
+        build_stubbed(:public_key, data: 'key-two')
+      ]
+      user = build_stubbed(:user, public_keys: public_keys)
+
+      user_json = parse_serialized_json(user)
+
+      user_json['public_keys'].should match_array(%w(key-one key-two))
+    end
+  end
+
   context 'when the user has an active subscription' do
     it 'includes a key granting forum access' do
       user = create(:subscriber)
