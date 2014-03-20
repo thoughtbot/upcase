@@ -1,0 +1,62 @@
+<% content_for :subject_block do %>
+  <h1>FAQs<h1>
+<% end %>
+
+<div class="text-box-wrapper solo">
+  <div class="text-box">
+    <div class="product-title">
+      <h2>Q: Why was I billed so much (or so little) after changing my
+        subscription level?</h2>
+    </div>
+
+    <p>Sorry about the confusion! The way Stripe (our payment processor)
+    handles things when someone changes their subscription level can be a
+    little odd.</p>
+
+    <p>The confusing part is that Stripe both prorates charges <em>and</em>
+    waits to bill you until your next billing date. Here are two examples that
+    might make things clearer.</p>
+
+    <p><strong>Example 1. You change to a more expensive plan:</strong></p>
+
+    <ol>
+      <li>You change from a $29 to a $99 plan 15 days into your billing cycle,
+      and are able to immediately access the new $99 level content.</li>
+
+      <li>Stripe creates a charge for 15 days worth of the $99 subscription:
+      $49.50. Stripe won't process this charge until your next billing
+      date.</li>
+
+      <li>Stripe creates a credit for the unused 15 days of the $29
+      subscription: $14.50. Again, Stripe doesn't process it.</li>
+
+      <li>15 days go by and now it's your next billing date.</li>
+
+      <li>Stripe bills you $99 for your upcoming month of service plus the
+      $49.50 mentioned in step 2. It then subtracts the $14.50 credit. Your
+      invoice for $134.00 seems too high, but actually reflects that you
+      haven't paid for the previous 15 days yet.</li>
+    </ol>
+
+    <p><strong>Example 2. You change to a less expensive plan:</strong></p>
+
+    <ol>
+      <li>You change from a $99 to a $29 plan 15 days into your billing cycle,
+      and immediately lose access to the $99 level features.</li>
+
+      <li>Stripe creates a credit for the unused 15 days of the $99
+      subscription: $49.50. Stripe won't process this credit until your next
+      billing date.</li>
+
+      <li>Stripe creates a charge for 15 days worth of the $29 subscription:
+      $14.50. Again, Stripe doesn't process it.</li>
+
+      <li>15 days go by and now it's your next billing date.</li>
+
+      <li>Stripe bills you $29 for your upcoming month of service plus the
+      $14.50 mentioned in step 2. It then subtracts the $49.50 credit. Since
+      you have more credit than charges, you're billed nothing, and retain a $6
+      credit to be used the next month.</li>
+    </ol>
+  </div>
+</div>

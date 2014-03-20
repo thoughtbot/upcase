@@ -88,25 +88,6 @@ img {
     }
   }
 
-  .text-box-in-text-box {
-    background-color: $lightwarmgray;
-    @extend %main-content-box;
-
-    .thumbnail {
-      float: left;
-      margin-right: 12px;
-    }
-
-    .thumbnail-text {
-      margin-left: 112px;
-
-      h2 {
-        margin-bottom: 0;
-        padding-bottom: 0;
-      }
-    }
-  }
-
   .summary {
     clear: both;
     display: block;
@@ -140,7 +121,7 @@ img {
     color: $darkwarmgray;
   }
 
-  hgroup.product-title {
+  .product-title {
     h2 {
       margin-top: .5rem;
     }
@@ -152,7 +133,7 @@ img {
     }
   }
 
-  hgroup.post-link-header {
+  .post-link-header {
     h3 {
       margin-bottom: .5rem;
     }
