@@ -1,6 +1,6 @@
 # Learn
 
-Learn is a Rails 4 app running on Ruby 2.0 and deployed to Heroku.
+Learn is a Rails 4 app running on Ruby 2.1 and deployed to Heroku.
 
 ## Development
 
