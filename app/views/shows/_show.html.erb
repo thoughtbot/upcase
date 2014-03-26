@@ -4,7 +4,7 @@
       <%= image_tag(show.product_image.url) %>
       <span><%= show.tagline %></span>
     </figure>
-    <h5>Show (<%= pluralize show.videos.count, 'episode' %>)</h5>
+    <h5>Show (<%= pluralize show.published_videos.count, 'episode' %>)</h5>
     <h4><%= show.name %></h4>
   <% end %>
 </figure>

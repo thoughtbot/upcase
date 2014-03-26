@@ -54,7 +54,7 @@ feature 'Subscriber accesses content' do
 
   scenario 'gets access to a screencast' do
     screencast = create(:screencast)
-    create(:video, watchable: screencast)
+    create(:video, :published, watchable: screencast)
     sign_in_as_user_with_subscription
     click_screencast_detail_link(screencast)
 

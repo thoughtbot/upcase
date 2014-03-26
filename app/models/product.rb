@@ -105,6 +105,10 @@ class Product < ActiveRecord::Base
     controller.purchase_path(purchase)
   end
 
+  def published_videos
+    videos.published
+  end
+
   private
 
   def subscriber_license

@@ -16,6 +16,24 @@ describe Video do
     end
   end
 
+  context 'self.published' do
+    it 'returns only published videos' do
+      Timecop.freeze(Time.zone.now) do
+        published_videos = [
+          create(:video, published_on: 1.day.ago.to_date),
+          create(:video, published_on: Time.zone.today),
+        ]
+        unpublished_videos = [
+          create(:video, published_on: 1.day.from_now.to_date),
+          create(:video, published_on: nil),
+        ]
+
+        expect(Video.published).to match_array(published_videos)
+        expect(Video.published).not_to match_array(unpublished_videos)
+      end
+    end
+  end
+
   context '#wistia_thumbnail' do
     it 'returns the thumbnail cached from wistia' do
       video = build_stubbed(:video,

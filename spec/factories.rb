@@ -369,6 +369,10 @@ FactoryGirl.define do
     association :watchable, factory: :product
     title
     wistia_id '1194803'
+
+    trait :published do
+      published_on Time.zone.today
+    end
   end
 
   factory :oauth_access_token do

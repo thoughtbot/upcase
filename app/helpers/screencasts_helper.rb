@@ -7,7 +7,7 @@ module ScreencastsHelper
 
   def screecast_video_count(screencast)
     if screencast.collection?
-      "(#{screencast.videos.count} videos)"
+      "(#{screencast.published_videos.count} videos)"
     end
   end
 end

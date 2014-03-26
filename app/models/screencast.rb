@@ -1,5 +1,5 @@
 class Screencast < Product
   def collection?
-    videos.count > 1
+    published_videos.count > 1
   end
 end

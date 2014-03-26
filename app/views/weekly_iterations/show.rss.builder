@@ -6,7 +6,7 @@ xml.rss version: '2.0' do
     xml.link weekly_iteration_url
     xml.title @show.name
 
-    @show.videos.ordered.each do |video|
+    @show.published_videos.ordered.each do |video|
       xml.item do
         xml.description truncate(strip_tags(video.notes_html), length: 250)
         xml.guid public_video_url(video)
