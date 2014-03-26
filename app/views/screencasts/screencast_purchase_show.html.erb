@@ -5,7 +5,7 @@
   <h2 class="tagline">
     <% if @purchaseable.collection? %>
       Watch or download videos,
-      <%= pluralize @purchaseable.videos.size, 'video' %> in the series.
+      <%= pluralize @purchaseable.published_videos.size, 'video' %> in the series.
     <% else %>
       Watch or download video
     <% end %>
@@ -16,7 +16,7 @@
   <div class="text-box-wrapper">
     <div class="text-box">
       <section id="videos">
-        <%= render @purchaseable.videos.ordered, purchase: @purchase %>
+        <%= render @purchaseable.published_videos.ordered, purchase: @purchase %>
       </section>
     </div>
   </div>

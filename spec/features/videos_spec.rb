@@ -38,21 +38,32 @@ describe 'Videos' do
       expect(page).to have_css('iframe')
     end
 
-    it 'lists the videos for a product' do
+    it 'lists the published videos for a product' do
       purchase = create(:screencast_purchase)
       video_one = create(:video, watchable: purchase.purchaseable)
       video_two = create(:video, watchable: purchase.purchaseable)
+      unpublished_video = create(
+        :video,
+        :unpublished,
+        watchable: purchase.purchaseable
+      )
 
       visit purchase_path(purchase)
 
       expect(page).to have_content("2 videos in the series")
       expect(page).to have_content(video_one.title)
       expect(page).to have_content(video_two.title)
+      expect(page).not_to have_content(unpublished_video.title)
     end
 
-    it "doesn't say it's a series with one video" do
+    it "doesn't say it's a series with one published video" do
       purchase = create(:screencast_purchase)
       video_one = create(:video, watchable: purchase.purchaseable)
+      unpublished_video = create(
+        :video,
+        :unpublished,
+        watchable: purchase.purchaseable
+      )
 
       visit purchase_path(purchase)
 
