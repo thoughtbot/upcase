@@ -21,7 +21,7 @@
     </div>
   </div>
 <% else %>
-  <%= render 'videos/watch_video', video: @purchaseable.videos.first, purchase: @purchase %>
+  <%= render 'videos/watch_video', video: @purchaseable.published_videos.first, purchase: @purchase %>
 <% end %>
 
 <%= render 'screencasts/aside', purchaseable: @purchaseable, purchase: @purchase %>

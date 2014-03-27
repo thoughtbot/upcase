@@ -19,13 +19,17 @@ describe Video do
   context 'self.published' do
     it 'returns only published videos' do
       Timecop.freeze do
-        video1 = create(:video, published_at: 1.second.ago)
-        video2 = create(:video, published_at: Time.zone.now)
-        video3 = create(:video, published_at: 1.second.from_now)
-        video4 = create(:video, published_at: nil)
+        published_videos = [
+          create(:video, published_at: 1.second.ago),
+          create(:video, published_at: Time.zone.now),
+        ]
+        unpublished_videos = [
+          create(:video, published_at: 1.second.from_now),
+          create(:video, published_at: nil),
+        ]
 
-        expect(Video.published).to include(video1, video2)
-        expect(Video.published).not_to include(video3, video4)
+        expect(Video.published).to include(*published_videos)
+        expect(Video.published).not_to include(*unpublished_videos)
       end
     end
   end
