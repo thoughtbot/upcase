@@ -123,7 +123,7 @@ describe 'Videos' do
 
       visit '/the-weekly-iteration.rss'
 
-      channel= Nokogiri::XML::Document.parse(page.body).xpath('.//rss/channel')
+      channel = Nokogiri::XML::Document.parse(page.body).xpath('.//rss/channel')
 
       expect(text_in(channel, './/title')).to eq('The Weekly Iteration')
       expect(text_in(channel, './/link')).to eq(weekly_iteration_url)
