@@ -20,10 +20,11 @@ describe 'Videos' do
   end
 
   context 'GET /' do
-    it 'lists the videos for a workshop' do
+    it 'lists the published videos for a workshop' do
       workshop = create(:workshop)
       video_one = create(:video, watchable: workshop, position: 1)
       video_two = create(:video, watchable: workshop, position: 2)
+      unpublished_video = create(:video, :unpublished, watchable: workshop)
       purchase = create_subscriber_purchase_from_purchaseable(workshop)
 
       visit purchase_path(purchase)
@@ -31,6 +32,7 @@ describe 'Videos' do
       expect(page).to have_content("2 lessons in this workshop")
       expect(page).to have_content(video_one.title)
       expect(page).to have_content(video_two.title)
+      expect(page).not_to have_content(unpublished_video.title)
       expect(page.body.index(video_one.title) < page.body.index(video_two.title)).to be
 
       visit purchase_video_path(purchase, video_two)

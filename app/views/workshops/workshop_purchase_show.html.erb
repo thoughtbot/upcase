@@ -1,7 +1,7 @@
 <% content_for :subject_block do %>
   <h1><%= @purchaseable.name %></h1>
   <% if @purchaseable.videos.any? %>
-    <h2 class="tagline">Watch or download video lessons, <%= pluralize @purchaseable.videos.size, 'lesson' %> in this workshop.</h2>
+    <h2 class="tagline">Watch or download video lessons, <%= pluralize @purchaseable.published_videos.size, 'lesson' %> in this workshop.</h2>
   <% end %>
 <% end %>
 

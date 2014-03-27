@@ -94,4 +94,8 @@ class Workshop < ActiveRecord::Base
   def to_aside_partial
     'workshops/aside'
   end
+
+  def published_videos
+    videos.published
+  end
 end
