@@ -115,6 +115,7 @@ describe 'Videos' do
         create(:video, watchable: show, position: 0, notes: notes),
         create(:video, watchable: show, position: 1, notes: notes),
       ]
+      unpublished_video = create(:video, :unpublished, watchable: show)
 
       visit '/the-weekly-iteration'
 
@@ -127,6 +128,9 @@ describe 'Videos' do
       expect(text_in(channel, './/title')).to eq('The Weekly Iteration')
       expect(text_in(channel, './/link')).to eq(weekly_iteration_url)
       expect(text_in(channel, './/description')).to eq(show.short_description)
+
+      unpublished_xpath = ".//item/title[text()='#{unpublished_video.title}']"
+      expect(channel.xpath(unpublished_xpath)).to be_empty
 
       videos.each_with_index do |video, index|
         item = channel.xpath('.//item')[index]
