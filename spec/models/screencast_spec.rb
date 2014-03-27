@@ -8,8 +8,7 @@ describe Screencast do
   describe '#collection?' do
     it 'is a collection if there is more than one published video' do
       screencast = create(:screencast)
-      create(:video, watchable: screencast)
-      create(:video, watchable: screencast)
+      create_list(:video, 2, :published, watchable: screencast)
 
       expect(screencast).to be_collection
     end
@@ -19,8 +18,8 @@ describe Screencast do
 
       expect(screencast).not_to be_collection
 
+      create(:video, :published, watchable: screencast)
       create(:video, watchable: screencast)
-      create(:video, :unpublished, watchable: screencast)
 
       expect(screencast).not_to be_collection
     end

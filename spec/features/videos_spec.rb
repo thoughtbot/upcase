@@ -22,50 +22,63 @@ describe 'Videos' do
   context 'GET /' do
     it 'lists the published videos for a workshop' do
       workshop = create(:workshop)
-      video_one = create(:video, watchable: workshop, position: 1)
-      video_two = create(:video, watchable: workshop, position: 2)
-      unpublished_video = create(:video, :unpublished, watchable: workshop)
+      published_video_one = create(
+        :video,
+        :published,
+        watchable: workshop,
+        position: 1
+      )
+      published_video_two = create(
+        :video,
+        :published,
+        watchable: workshop,
+        position: 2
+      )
+      video = create(:video, watchable: workshop)
       purchase = create_subscriber_purchase_from_purchaseable(workshop)
 
       visit purchase_path(purchase)
 
       expect(page).to have_content("2 lessons in this workshop")
-      expect(page).to have_content(video_one.title)
-      expect(page).to have_content(video_two.title)
-      expect(page).not_to have_content(unpublished_video.title)
-      expect(page.body.index(video_one.title) < page.body.index(video_two.title)).to be
+      expect(page).to have_content(published_video_one.title)
+      expect(page).to have_content(published_video_two.title)
+      expect(page).not_to have_content(video.title)
+      expect(
+        page.body.index(published_video_one.title) <
+        page.body.index(published_video_two.title)
+      ).to be
 
-      visit purchase_video_path(purchase, video_two)
+      visit purchase_video_path(purchase, published_video_two)
 
       expect(page).to have_css('iframe')
     end
 
     it 'lists the published videos for a product' do
       purchase = create(:screencast_purchase)
-      video_one = create(:video, watchable: purchase.purchaseable)
-      video_two = create(:video, watchable: purchase.purchaseable)
-      unpublished_video = create(
+      published_video_one = create(
         :video,
-        :unpublished,
+        :published,
         watchable: purchase.purchaseable
       )
+      published_video_two = create(
+        :video,
+        :published,
+        watchable: purchase.purchaseable
+      )
+      video = create(:video, watchable: purchase.purchaseable)
 
       visit purchase_path(purchase)
 
       expect(page).to have_content("2 videos in the series")
-      expect(page).to have_content(video_one.title)
-      expect(page).to have_content(video_two.title)
-      expect(page).not_to have_content(unpublished_video.title)
+      expect(page).to have_content(published_video_one.title)
+      expect(page).to have_content(published_video_two.title)
+      expect(page).not_to have_content(video.title)
     end
 
     it "doesn't say it's a series with one published video" do
       purchase = create(:screencast_purchase)
-      video_one = create(:video, watchable: purchase.purchaseable)
-      unpublished_video = create(
-        :video,
-        :unpublished,
-        watchable: purchase.purchaseable
-      )
+      create(:video, :published, watchable: purchase.purchaseable)
+      create(:video, watchable: purchase.purchaseable)
 
       visit purchase_path(purchase)
 
@@ -86,7 +99,7 @@ describe 'Videos' do
       sign_in_as_user_with_subscription
 
       purchase = create(:screencast_purchase)
-      create(:video, watchable: purchase.purchaseable)
+      create(:video, :published, watchable: purchase.purchaseable)
 
       visit purchase_path(purchase)
 
@@ -111,11 +124,11 @@ describe 'Videos' do
         short_description: 'a description'
       )
       notes = 'a' * 251
-      videos = [
-        create(:video, watchable: show, position: 0, notes: notes),
-        create(:video, watchable: show, position: 1, notes: notes),
+      published_videos = [
+        create(:video, :published, watchable: show, position: 0, notes: notes),
+        create(:video, :published, watchable: show, position: 1, notes: notes),
       ]
-      unpublished_video = create(:video, :unpublished, watchable: show)
+      video = create(:video, watchable: show)
 
       visit '/the-weekly-iteration'
 
@@ -129,17 +142,17 @@ describe 'Videos' do
       expect(text_in(channel, './/link')).to eq(weekly_iteration_url)
       expect(text_in(channel, './/description')).to eq(show.short_description)
 
-      unpublished_xpath = ".//item/title[text()='#{unpublished_video.title}']"
+      unpublished_xpath = ".//item/title[text()='#{video.title}']"
       expect(channel.xpath(unpublished_xpath)).to be_empty
 
-      videos.each_with_index do |video, index|
+      published_videos.each_with_index do |published_video, index|
         item = channel.xpath('.//item')[index]
 
-        expect(text_in(item, './/title')).to eq(video.title)
-        expect(text_in(item, './/link')).to eq(public_video_url(video))
-        expect(text_in(item, './/guid')).to eq(public_video_url(video))
+        expect(text_in(item, './/title')).to eq(published_video.title)
+        expect(text_in(item, './/link')).to eq(public_video_url(published_video))
+        expect(text_in(item, './/guid')).to eq(public_video_url(published_video))
         expect(text_in(item, './/pubDate')).
-          to eq(video.created_at.to_s(:rfc822))
+          to eq(published_video.created_at.to_s(:rfc822))
         expect(text_in(item, './/description')).to eq("#{'a' * 247}...")
       end
     end

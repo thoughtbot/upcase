@@ -4,8 +4,8 @@ feature 'User views show' do
   scenario 'with a subscription' do
     user = create(:subscriber)
     show = create(:show)
+    published_video = create(:video, :published, watchable: show)
     video = create(:video, watchable: show)
-    unpublished_video = create(:video, :unpublished, watchable: show)
     download = create(:download, purchaseable: show)
 
     visit dashboard_path(as: user)
@@ -14,9 +14,9 @@ feature 'User views show' do
     click_on 'Get Access'
 
     expect(page).to have_content(show.name)
-    expect(page).to have_content(video.title)
+    expect(page).to have_content(published_video.title)
     expect(page).to have_content(download.display_name)
-    expect(page).not_to have_content(unpublished_video.title)
+    expect(page).not_to have_content(video.title)
   end
 
   scenario 'without a subscription' do

@@ -369,10 +369,9 @@ FactoryGirl.define do
     association :watchable, factory: :product
     title
     wistia_id '1194803'
-    published_on Time.zone.today
 
-    trait :unpublished do
-      published_on nil
+    trait :published do
+      published_on Time.zone.today
     end
   end
 
