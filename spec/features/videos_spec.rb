@@ -149,10 +149,15 @@ describe 'Videos' do
         item = channel.xpath('.//item')[index]
 
         expect(text_in(item, './/title')).to eq(published_video.title)
-        expect(text_in(item, './/link')).to eq(public_video_url(published_video))
-        expect(text_in(item, './/guid')).to eq(public_video_url(published_video))
+        expect(text_in(item, './/link')).
+          to eq(public_video_url(published_video))
+
+        expect(text_in(item, './/guid')).
+          to eq(public_video_url(published_video))
+
         expect(text_in(item, './/pubDate')).
           to eq(published_video.created_at.to_s(:rfc822))
+
         expect(text_in(item, './/description')).to eq("#{'a' * 247}...")
       end
     end
