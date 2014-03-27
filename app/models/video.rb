@@ -15,7 +15,7 @@ class Video < ActiveRecord::Base
   end
 
   def self.published
-    where('published_at <= ?', Time.zone.now)
+    where('published_on <= ?', Time.zone.today)
   end
 
   def video_sizes

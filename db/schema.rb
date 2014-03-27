@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140326153845) do
+ActiveRecord::Schema.define(version: 20140327132133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -371,7 +371,7 @@ ActiveRecord::Schema.define(version: 20140326153845) do
     t.string   "watchable_type"
     t.integer  "position",       default: 0, null: false
     t.text     "notes"
-    t.datetime "published_at"
+    t.date     "published_on"
   end
 
   add_index "videos", ["watchable_type", "watchable_id"], name: "index_videos_on_watchable_type_and_watchable_id", using: :btree
