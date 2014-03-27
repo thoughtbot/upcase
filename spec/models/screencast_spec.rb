@@ -7,15 +7,13 @@ describe Screencast do
 
   describe '#collection?' do
     it 'is a collection if there is more than one video' do
-      screencast = create(:screencast)
-      create(:video, watchable: screencast)
-      create(:video, watchable: screencast)
+      screencast = create(:screencast, number_of_videos: 2)
 
       expect(screencast).to be_collection
     end
 
     it 'is not a collection of there is 1 video or less' do
-      screencast = create(:screencast)
+      screencast = create(:screencast, number_of_videos: 0)
 
       expect(screencast).not_to be_collection
 

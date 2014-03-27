@@ -39,9 +39,10 @@ describe 'Videos' do
     end
 
     it 'lists the videos for a product' do
-      purchase = create(:screencast_purchase)
-      video_one = create(:video, watchable: purchase.purchaseable)
-      video_two = create(:video, watchable: purchase.purchaseable)
+      screencast = create(:screencast, number_of_videos: 2)
+      purchase = create(:screencast_purchase, purchaseable: screencast)
+      video_one = screencast.videos.first
+      video_two = screencast.videos.second
 
       visit purchase_path(purchase)
 
@@ -51,8 +52,8 @@ describe 'Videos' do
     end
 
     it "doesn't say it's a series with one video" do
-      purchase = create(:screencast_purchase)
-      video_one = create(:video, watchable: purchase.purchaseable)
+      screencast = create(:screencast, number_of_videos: 1)
+      purchase = create(:screencast_purchase, purchaseable: screencast)
 
       visit purchase_path(purchase)
 

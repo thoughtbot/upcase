@@ -1,3 +1,5 @@
+require './spec/support/ignore_missing_product_image'
+
 #This prevents caching via the browser
 #in testing mode
 module ActionController::ConditionalGet
@@ -26,7 +28,7 @@ Workshops::Application.configure do
   config.action_controller.perform_caching = false
 
   # Raise exceptions instead of rendering exception templates
-  config.action_dispatch.show_exceptions = true
+  config.action_dispatch.show_exceptions = false
 
   # Disable request forgery protection in test environment
   config.action_controller.allow_forgery_protection    = false
@@ -75,4 +77,5 @@ Workshops::Application.configure do
   ENV['AWS_SECRET_ACCESS_KEY'] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
   config.middleware.use Clearance::BackDoor
+  config.middleware.insert_before ActionDispatch::DebugExceptions, IgnoreMissingProductImage
 end
