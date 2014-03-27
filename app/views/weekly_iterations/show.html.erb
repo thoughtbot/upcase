@@ -11,7 +11,7 @@
     </p>
 
     <section id="videos">
-      <% @show.videos.ordered.each do |video| %>
+      <% @show.published_videos.ordered.each do |video| %>
         <%= content_tag_for :div, video do %>
           <%= link_to public_video_path(video) do %>
             <%= render 'videos/thumbnail', video: video %>

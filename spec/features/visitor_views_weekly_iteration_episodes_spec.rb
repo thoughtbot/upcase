@@ -8,10 +8,13 @@ feature 'Visitor' do
     video_title = 'Unfriendly Nil'
     video_notes = 'Nil is contagious.'
     create(:video, title: video_title, notes: video_notes, watchable: show)
+    unpublished_video = create(:video, :unpublished, watchable: show)
 
     visit '/the-weekly-iteration'
 
     expect(page).to have_content(show_name)
+
+    expect(page).not_to have_content(unpublished_video.title)
 
     click_link video_title
 
