@@ -105,7 +105,16 @@ describe 'Videos' do
 
     it 'provides RSS to distribute the Weekly Iteration to various channels' do
       create(:plan, sku: IndividualPlan::PRIME_BASIC_SKU)
-      create(:show, name: Show::THE_WEEKLY_ITERATION)
+      show = create(
+        :show,
+        name: Show::THE_WEEKLY_ITERATION,
+        short_description: 'a description'
+      )
+      notes = 'a' * 251
+      videos = [
+        create(:video, watchable: show, position: 0, notes: notes),
+        create(:video, watchable: show, position: 1, notes: notes),
+      ]
 
       visit '/the-weekly-iteration'
 
@@ -113,10 +122,26 @@ describe 'Videos' do
 
       visit '/the-weekly-iteration.rss'
 
-      expect(page).to have_xpath(
-        '//rss/channel/title',
-        text: 'The Weekly Iteration'
-      )
+      channel= Nokogiri::XML::Document.parse(page.body).xpath('.//rss/channel')
+
+      expect(text_in(channel, './/title')).to eq('The Weekly Iteration')
+      expect(text_in(channel, './/link')).to eq(weekly_iteration_url)
+      expect(text_in(channel, './/description')).to eq(show.short_description)
+
+      videos.each_with_index do |video, index|
+        item = channel.xpath('.//item')[index]
+
+        expect(text_in(item, './/title')).to eq(video.title)
+        expect(text_in(item, './/link')).to eq(public_video_url(video))
+        expect(text_in(item, './/guid')).to eq(public_video_url(video))
+        expect(text_in(item, './/pubDate')).
+          to eq(video.created_at.to_s(:rfc822))
+        expect(text_in(item, './/description')).to eq("#{'a' * 247}...")
+      end
+    end
+
+    def text_in(node, xpath)
+      node.xpath(xpath).first.text
     end
 
     it 'encourages subscribers to purchase The Weekly Iteration' do
