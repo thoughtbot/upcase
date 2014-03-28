@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'shows/_show.html.erb' do
   it 'includes published episodes count' do
-    show = create(:show)
+    show = build_stubbed(:show)
     create_list(:video, 2, :published, watchable: show)
     create(:video, watchable: show)
 
