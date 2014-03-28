@@ -158,7 +158,7 @@ describe 'Videos' do
         expect(text_in(item, './/pubDate')).
           to eq(published_video.created_at.to_s(:rfc822))
 
-        expect(text_in(item, './/description')).to eq("#{'a' * 247}...")
+        expect(text_in(item, './/description')).to eq(notes.truncate(250))
       end
     end
 
