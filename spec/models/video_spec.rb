@@ -28,8 +28,8 @@ describe Video do
           create(:video, published_on: nil),
         ]
 
-        expect(Video.published).to include(*published_videos)
-        expect(Video.published).not_to include(*unpublished_videos)
+        expect(Video.published).to match_array(published_videos)
+        expect(Video.published).not_to match_array(unpublished_videos)
       end
     end
   end
