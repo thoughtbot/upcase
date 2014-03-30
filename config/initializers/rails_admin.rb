@@ -101,7 +101,7 @@ RailsAdmin.config do |config|
       field :id
       field :name
       field :sku
-      field :product_type
+      field :type
       field :individual_price
       field :company_price
     end
