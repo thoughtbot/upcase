@@ -16,6 +16,10 @@ body.users-edit {
     &.purchases li {
       overflow: hidden;
       text-overflow: ellipsis;
+
+      &.view-all {
+        font-weight: bold;
+      }
     }
 
     li a {

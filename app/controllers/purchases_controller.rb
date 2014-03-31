@@ -37,6 +37,10 @@ class PurchasesController < ApplicationController
     end
   end
 
+  def index
+    @purchases = current_user.paid_products
+  end
+
   def paypal
     flash.keep
     @purchase = Purchase.find_by_lookup(params[:id])

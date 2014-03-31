@@ -1,0 +1,17 @@
+<tr>
+  <td class="name">
+    <%= link_to(purchase.purchaseable_name, purchase) %>
+  </td>
+
+  <td class="date">
+    <%= purchase.created_at.to_s(:short_date) %>
+  </td>
+
+  <td class="price">
+    <%= number_to_currency purchase.price %>
+  </td>
+
+  <td class="payment-method">
+    <%= t("purchases.payment_methods.#{purchase.payment_method}") %>
+  </td>
+</tr>

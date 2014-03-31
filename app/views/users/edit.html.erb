@@ -43,6 +43,9 @@
     <h3>Your purchases</h3>
     <ol class="purchases">
       <%= render current_user.paid_products %>
+      <li class="view-all">
+        <%= link_to t('account.view_purchases'), purchases_path %>
+      </li>
     </ol>
   <% end %>
 </aside>
