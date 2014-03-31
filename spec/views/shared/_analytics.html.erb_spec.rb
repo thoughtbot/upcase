@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe 'shared/_analytics.html.erb' do
+  include AnalyticsHelper
+
   context 'when signed out' do
     before do
       view_stubs(signed_in?: false)
@@ -38,14 +40,11 @@ describe 'shared/_analytics.html.erb' do
       end
     end
 
-    before(:each) do
+    it 'identifies the user' do
       view_stubs(
-        current_user: stub_everything('current user', id: current_user_id),
+        current_user: stub_everything('current user', id: 1),
         signed_in?: true
       )
-    end
-
-    it 'identifies the user' do
       identify_line = 'analytics.identify('
 
       render
@@ -53,28 +52,24 @@ describe 'shared/_analytics.html.erb' do
       expect(rendered).to include(identify_line)
     end
 
-    it 'records current properties of user' do
-      user_properties = {
-        created: nil,
-        email: nil,
-        has_active_subscription: nil,
-        has_logged_in_to_forum: nil,
-        mentor_name: nil,
-        name: nil,
-        plan: nil,
-        subscribed_at: nil,
-        username: nil
-      }.to_json
+    it 'sends user data' do
+      user = build_stubbed(:user)
+      view_stubs(current_user: user, signed_in?: true)
 
       render
 
-      expect(rendered).to include(user_properties)
+      expect(rendered).to include(analytics_hash(user).to_json)
     end
 
     it 'uses Intercom secure mode' do
+      user_id = 1
+      view_stubs(
+        current_user: stub_everything('current user', id: user_id),
+        signed_in?: true
+      )
       intercom_secure_mode = {
         'Intercom' => {
-          userHash: OpenSSL::HMAC.hexdigest('sha256', secret, current_user_id.to_s)
+          userHash: OpenSSL::HMAC.hexdigest('sha256', secret, user_id.to_s)
         }
       }.to_json
 
@@ -85,10 +80,6 @@ describe 'shared/_analytics.html.erb' do
 
     def secret
       'secret'
-    end
-
-    def current_user_id
-      1
     end
   end
 end
