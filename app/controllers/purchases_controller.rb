@@ -38,7 +38,7 @@ class PurchasesController < ApplicationController
   end
 
   def index
-    @purchases = current_user.paid_products
+    @purchases = current_user.ordered_paid_products
   end
 
   def paypal

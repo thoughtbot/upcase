@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
     paid_purchases.where("purchaseable_type != 'IndividualPlan'")
   end
 
+  def ordered_paid_products
+    paid_products.order('created_at DESC')
+  end
+
   def first_name
     name.split(" ").first
   end

@@ -198,6 +198,24 @@ describe User do
     end
   end
 
+  describe '#ordered_paid_products' do
+    it 'returns paid products ordered by creation date' do
+      user = create(:user)
+      purchase_two = create(
+        :paid_purchase,
+        user: user,
+        created_at: 5.minutes.ago
+      )
+      purchase_one = create(
+        :paid_purchase,
+        user: user,
+        created_at: 1.minutes.ago
+      )
+
+      expect(user.ordered_paid_products).to eq([purchase_one, purchase_two])
+    end
+  end
+
   describe '#credit_card' do
     it 'returns nil if there is no stripe_customer_id' do
       user = create(:user, stripe_customer_id: nil)

@@ -151,7 +151,16 @@ describe PurchasesController do
   describe '#index' do
     it 'assigns paid purchases belonging to the current user' do
       user = create(:user, :with_github)
-      paid_purchases = create_list(:paid_purchase, 2, user: user)
+      purchase_two = create(
+        :paid_purchase,
+        user: user,
+        created_at: 5.minute.ago
+      )
+      purchase_one = create(
+        :paid_purchase,
+        user: user,
+        created_at: 1.minute.ago
+      )
       create(:unpaid_purchase, user: user)
       create(:plan_purchase, user: user)
       create(:paid_purchase, user: create(:user))
@@ -159,7 +168,7 @@ describe PurchasesController do
 
       get :index
 
-      expect(assigns(:purchases)).to eq(paid_purchases)
+      expect(assigns(:purchases)).to eq([purchase_one, purchase_two])
     end
   end
 
