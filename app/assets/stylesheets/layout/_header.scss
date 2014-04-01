@@ -67,6 +67,10 @@ body.passwords-create {
       position: static;
     }
 
+    @media print {
+      display: none;
+    }
+
     &.left {
       right: auto;
       left: 1rem;
