@@ -37,6 +37,9 @@ en:
         title_html: "Workshops and shows are locked &mdash; %{link} to get access"
         link: "subscribe to Prime"
 
+  account:
+    view_purchases: 'View all purchases'
+
   individual_plans:
     mentoring: '1-1 Mentoring'
     workshops: 'Hands-On Workshops'
@@ -86,6 +89,11 @@ en:
   purchases:
     new:
       subscribe_cta: "You could have this %{product_type} as part of a subscription to %{subscription_name} instead"
+    payment_methods:
+      stripe: Stripe
+      paypal: PayPal
+      subscription: Subscription
+      free: Free
 
   teachers:
     teacher:

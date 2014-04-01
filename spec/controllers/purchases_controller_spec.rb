@@ -148,6 +148,30 @@ describe PurchasesController do
     end
   end
 
+  describe '#index' do
+    it 'assigns paid purchases belonging to the current user' do
+      user = create(:user, :with_github)
+      purchase_two = create(
+        :paid_purchase,
+        user: user,
+        created_at: 5.minute.ago
+      )
+      purchase_one = create(
+        :paid_purchase,
+        user: user,
+        created_at: 1.minute.ago
+      )
+      create(:unpaid_purchase, user: user)
+      create(:plan_purchase, user: user)
+      create(:paid_purchase, user: create(:user))
+      stub_current_user_with(user)
+
+      get :index
+
+      expect(assigns(:purchases)).to eq([purchase_one, purchase_two])
+    end
+  end
+
   def customer_params(token='stripe token')
     {
       name: 'User',

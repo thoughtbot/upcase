@@ -64,7 +64,7 @@ Workshops::Application.routes.draw do
   get '/the-weekly-iteration' => 'weekly_iterations#show', as: :weekly_iteration
   get '/videos/:id' => 'episodes#show', as: :public_video
 
-  resources :purchases, only: [:show] do
+  resources :purchases, only: [:show, :index] do
     resources :videos, only: [:show]
     member do
       get 'paypal'

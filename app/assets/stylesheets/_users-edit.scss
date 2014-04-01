@@ -9,38 +9,47 @@ body.users-edit {
     font-size: 1em;
   }
 
-  #account-sidebar ol {
-    list-style-type: none;
-    margin: 1em 0 0 0;
+  #account-sidebar {
+    ol {
+      list-style-type: none;
+      margin: 1em 0 0 0;
 
-    &.purchases li {
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    li a {
-      font-size: 1rem;
-      font-style: normal;
-    }
-
-    .subscription-name {
-      @extend %main-content-box;
-      border-radius: 0;
-      box-shadow: none;
-      border-width: 0 0 1px 0;
-      margin: 0;
-      padding: .5rem;
-    }
-
-    .subscription a {
-      border-bottom: 1px solid #ddd;
-      display: block;
-      padding: .5rem;
-
-      &:first-of-type {
-        background-color: #eee;
-        border-color: #ccc;
+      &.purchases li {
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
+
+      li a {
+        font-size: 1rem;
+        font-style: normal;
+      }
+
+      .subscription-name {
+        @extend %main-content-box;
+        border-radius: 0;
+        box-shadow: none;
+        border-width: 0 0 1px 0;
+        margin: 0;
+        padding: .5rem;
+      }
+
+      .subscription a {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        padding: .5rem;
+
+        &:first-of-type {
+          background-color: #eee;
+          border-color: #ccc;
+        }
+      }
+    }
+
+    a.view-all-purchases {
+      display: block;
+      color: $darkwarmgray;
+      font-weight: bold;
+      margin-top: 1em;
     }
   }
 

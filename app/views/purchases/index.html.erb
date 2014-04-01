@@ -1,0 +1,18 @@
+<% content_for :page_title, 'Purchases' %>
+<% content_for :subject_block do %>
+  <h1>Purchases</h1>
+<% end %>
+
+<div class="text-box-wrapper solo">
+  <div class="text-box">
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Price</th>
+        <th>Payment method</th>
+      </tr>
+      <%= render partial: 'purchases/purchase_table_row', collection: @purchases, as: :purchase %>
+    </table>
+  </div>
+</div>

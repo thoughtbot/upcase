@@ -11,11 +11,15 @@ feature 'Account Settings' do
 
   scenario 'user views paid purchases' do
     user = create(:user)
-    create_list(:paid_purchase, 3, user: user)
+    create_list(:paid_purchase, 4, user: user, created_at: 6.minutes.ago)
+    purchase_two = create(:paid_purchase, user: user, created_at: 5.minutes.ago)
+    purchase_one = create(:paid_purchase, user: user, created_at: 1.minutes.ago)
 
     visit edit_my_account_path(as: user)
 
     expect_to_see_my_paid_purchases(user)
+    expect(purchase_one.purchaseable_name).
+      to appear_before(purchase_two.purchaseable_name)
   end
 
   scenario 'user with no purchases' do
@@ -64,10 +68,13 @@ feature 'Account Settings' do
   private 
 
   def expect_to_see_my_subscription
-    expect(page).to have_css("ol.subscription li")
+    expect(page).to have_css('ol.subscription li')
   end
 
   def expect_to_see_my_paid_purchases(user)
-    expect(page).to have_css("ol.purchases li", count: user.paid_purchases.count)
+    expect(page).to have_css(
+      'ol.purchases li',
+      count: [user.paid_purchases.count, 5].min
+    )
   end
 end
