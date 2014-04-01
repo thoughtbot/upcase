@@ -8,6 +8,10 @@ footer.links {
   @include transition(opacity .5s);
   width: 93%;
 
+  @media print {
+    display: none;
+  }
+
   &:hover {
     opacity: 1;
   }
