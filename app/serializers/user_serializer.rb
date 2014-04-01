@@ -1,15 +1,17 @@
 class UserSerializer < ActiveModel::Serializer
+  include Gravatarify::Helper
 
   attributes(
     :admin,
+    :avatar_url,
     :email,
     :first_name,
-    :username,
     :has_active_subscription,
     :has_forum_access,
     :id,
     :last_name,
-    :public_keys
+    :public_keys,
+    :username
   )
 
   def has_forum_access
@@ -26,5 +28,9 @@ class UserSerializer < ActiveModel::Serializer
 
   def username
     object.github_username
+  end
+
+  def avatar_url
+    gravatar_url(object.email)
   end
 end
