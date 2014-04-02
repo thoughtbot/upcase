@@ -190,6 +190,7 @@ en:
     choose_plan_html: Sign up for %{plan_name}
     current_plan_html: <p class="current-plan">This is your current plan</p>
     take_refund: Get a refund
+    processing_refund: Processing...
     reject_refund: No thanks, I'm happy
     cancellation_scheduled_on: Scheduled for cancellation on %{date}
     discount:

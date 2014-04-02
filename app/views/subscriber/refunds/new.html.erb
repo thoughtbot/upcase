@@ -7,7 +7,7 @@
       We hope that you've enjoyed <%= t('shared.subscription.name') %> while you've been a subscriber. If that's not the case, you can get a refund immediately for your last charge.
     </p>
     <p>
-      <%= link_to([:subscriber, :refund], method: :create) do %>
+    <%= link_to([:subscriber, :refund], method: :create, data: { disable_with: t('subscriptions.processing_refund') }) do %>
         <%= t('subscriptions.take_refund') %> &rarr;
       <% end %>
     </p>
