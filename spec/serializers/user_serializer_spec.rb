@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe UserSerializer do
+  include Gravatarify::Helper
+
   it 'serializes simple attributes' do
     user = build_stubbed(:user, :with_github)
 
@@ -11,6 +13,7 @@ describe UserSerializer do
     user_json['username'].should == user.github_username
     user_json['id'].should == user.id
     user_json['last_name'].should == user.last_name
+    user_json['avatar_url'].should == gravatar_url(user.email)
   end
 
   context 'with public keys' do
