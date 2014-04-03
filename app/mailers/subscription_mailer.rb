@@ -21,14 +21,13 @@ class SubscriptionMailer < BaseMailer
     )
   end
 
-  def subscription_receipt(email, plan_name, amount, stripe_invoice_id)
-    @plan_name = plan_name
+  def subscription_receipt(email, amount, stripe_invoice_id)
     @amount = amount
     @stripe_invoice_id = stripe_invoice_id
 
     mail(
       to: email,
-      subject: "[Learn] Your #{plan_name} receipt and some tips"
+      subject: '[Learn] Your receipt and some tips'
     )
   end
 

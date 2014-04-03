@@ -28,14 +28,16 @@
     </p>
 
     <table>
-      <tr class="subscription">
-        <td>
-          <%= @invoice.subscription_item_name %>
-        </td>
-        <td>
-          <%= number_to_currency @invoice.subscription_item_amount, precision: 2 %> USD
-        </td>
-      </tr>
+      <% @invoice.line_items.each do |line_item| %>
+        <tr class="line-item">
+          <td>
+            <%= line_item.description %>
+          </td>
+          <td>
+            <%= number_to_currency line_item.amount, precision: 2 %> USD
+          </td>
+        </tr>
+      <% end %>
       <tr class="subtotal">
         <td>
           Subtotal

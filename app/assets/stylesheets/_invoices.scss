@@ -16,7 +16,7 @@ body.subscriber-invoices-show {
       text-align: right;
     }
 
-    tr.subscription, tr.discount {
+    tr.line-item, tr.discount {
       td:first-child {
         text-align: left;
       }

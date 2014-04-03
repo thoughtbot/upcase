@@ -1,7 +1,7 @@
 # Handlers for Stripe's webhook.
 StripeEvent.setup do
   subscribe 'invoice.payment_succeeded' do |event|
-    invoice = SubscriptionInvoice.new(event.data.object)
+    invoice = Invoice.new(event.data.object)
     InvoiceNotifier.new(invoice).send_receipt
   end
 
