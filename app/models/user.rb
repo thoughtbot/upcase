@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
   end
 
   def has_subscription_with_mentor?
-    subscription.try(:includes_mentor?)
+    has_active_subscription? && subscription.try(:includes_mentor?)
   end
 
   def plan_name

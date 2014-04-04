@@ -244,23 +244,31 @@ describe User do
 
   describe '#has_subscription_with_mentor?' do
     it 'returns true when the subscription includes mentoring' do
-      plan = create(:plan, includes_mentor: true)
-      subscription = create(:subscription, plan: plan)
-      user = create(:user, :with_mentor, subscription: subscription)
+      plan = build(:plan, includes_mentor: true)
+      subscription = build(:subscription, plan: plan)
+      user = build(:user, :with_mentor, subscription: subscription)
 
       expect(user.has_subscription_with_mentor?).to be_true
     end
 
     it 'returns false when the subscription does not include mentoring' do
-      plan = create(:plan, includes_mentor: false)
-      subscription = create(:subscription, plan: plan)
-      user = create(:user, subscription: subscription)
+      plan = build(:plan, includes_mentor: false)
+      subscription = build(:subscription, plan: plan)
+      user = build(:user, subscription: subscription)
+
+      expect(user.has_subscription_with_mentor?).to be_false
+    end
+
+    it 'returns false when the subscription is inactive' do
+      plan = build(:plan, includes_mentor: true)
+      subscription = build(:inactive_subscription, plan: plan)
+      user = build(:user, :with_mentor, subscription: subscription)
 
       expect(user.has_subscription_with_mentor?).to be_false
     end
 
     it 'returns false when there is no subscription' do
-      user = create(:user)
+      user = build(:user)
 
       expect(user.has_subscription_with_mentor?).to be_false
     end
