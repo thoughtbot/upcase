@@ -38,7 +38,7 @@ en:
         link: "subscribe to Prime"
 
   account:
-    view_purchases: 'View all purchases'
+    view_purchases: 'View all purchases →'
 
   individual_plans:
     mentoring: '1-1 Mentoring'
