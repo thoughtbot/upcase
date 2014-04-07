@@ -1,6 +1,6 @@
 <li class="subscription">
   <% if subscription.active? %>
-    <p class="subscription-name"><strong><%= subscription.plan.name %></strong> <br /> Active since <%= subscription.created_at.to_s(:simple) %></p>
+    <p><strong><%= subscription.plan.name %></strong> <br /> Active since <%= subscription.created_at.to_s(:simple) %></p>
     <% if subscription.scheduled_for_cancellation_on %>
       <p><%= t('subscriptions.cancellation_scheduled_on', date: subscription.scheduled_for_cancellation_on.to_s(:simple)) %></p>
     <% end %>
