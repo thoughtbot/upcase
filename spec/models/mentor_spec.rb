@@ -53,6 +53,13 @@ describe Mentor do
 
       expect(mentor.active_mentees).to eq [active]
     end
+
+    it 'eager loads mentees' do
+      mentor = create(:mentor)
+
+      expect { mentor.reload.active_mentees }.
+        to eager_load { create(:subscriber, :includes_mentor, mentor: mentor) }
+    end
   end
 
   describe '#active_mentee_count' do

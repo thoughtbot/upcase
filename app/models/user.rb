@@ -17,6 +17,11 @@ class User < ActiveRecord::Base
   delegate :first_name, to: :mentor, prefix: true, allow_nil: true
   delegate :name, to: :mentor, prefix: true, allow_nil: true
 
+  def self.with_active_subscription
+    includes(purchased_subscription: :plan, team: { subscription: :plan }).
+      select(&:has_active_subscription?)
+  end
+
   def subscription_purchases
     paid_purchases.where(payment_method: 'subscription')
   end
