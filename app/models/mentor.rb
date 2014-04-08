@@ -17,9 +17,9 @@ class Mentor < ActiveRecord::Base
   end
 
   def active_mentees
-    mentees.select do |mentee|
-      mentee.has_active_subscription? && mentee.has_subscription_with_mentor?
-    end
+    mentees
+      .with_active_subscription
+      .select(&:has_subscription_with_mentor?)
   end
 
   def active_mentee_count

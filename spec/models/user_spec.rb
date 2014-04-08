@@ -425,4 +425,35 @@ describe User do
       expect(user.subscription).to be_nil
     end
   end
+
+  describe '.with_active_subscription' do
+    it 'returns users with active subscriptions' do
+      with_active_subscription = create(:user, name: 'active')
+      with_inactive_subscription = create(:user, name: 'inactive')
+      create(:user, name: 'without subscription')
+      create(:active_subscription, user: with_active_subscription)
+      create(:inactive_subscription, user: with_inactive_subscription)
+
+      result = User.with_active_subscription
+
+      expect(result.map(&:name)).to eq(%w(active))
+    end
+
+    it 'eager loads individual subscriptions' do
+      expect { User.with_active_subscription.map(&:plan_name) }.
+        to eager_load { create(:active_subscription) }
+    end
+
+    it 'eager loads team subscriptions' do
+      expect { User.with_active_subscription.map(&:plan_name) }.
+        to eager_load { create_user_with_team }
+    end
+
+    def create_user_with_team
+      owner = create(:user, :with_github)
+      subscription = create(:active_subscription, user: owner)
+      team = create(:team, subscription: subscription)
+      create(:user, team: team)
+    end
+  end
 end
