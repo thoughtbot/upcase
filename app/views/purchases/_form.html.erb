@@ -13,7 +13,7 @@
     <%= form.input :stripe_coupon_id, as: :hidden %>
     <%= form.input :variant, as: :hidden %>
     <%= form.input :name %>
-    <%= form.input :email %>
+    <%= form.input :email, as: :email %>
     <%= render purchase_form_partial(@purchase.purchaseable), form: form, purchase: @purchase %>
     <%= render 'purchases/github_usernames', form: form, purchase: @purchase %>
   <% end %>
