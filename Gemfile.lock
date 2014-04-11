@@ -15,15 +15,6 @@ GIT
       visitor
 
 GIT
-  remote: git://github.com/intridea/omniauth-github.git
-  revision: a17d8b9e4765251de9892f47facba1fcfd6a8fa7
-  ref: a17d8b9e4765251de9892f47facba1fcfd6a8fa7
-  specs:
-    omniauth-github (1.1.1)
-      omniauth (~> 1.0)
-      omniauth-oauth2 (~> 1.1)
-
-GIT
   remote: git://github.com/stripe/stripe-ruby.git
   revision: f369ca16f956979d7e2a68242399417197f43168
   specs:
@@ -191,7 +182,7 @@ GEM
     httparty (0.10.2)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
-    httpauth (0.2.0)
+    httpauth (0.2.1)
     i18n (0.6.9)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
@@ -199,7 +190,7 @@ GEM
     jquery-ui-rails (4.0.5)
       railties (>= 3.1.0)
     json (1.8.1)
-    jwt (0.1.8)
+    jwt (0.1.11)
       multi_json (>= 1.5)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
@@ -240,6 +231,9 @@ GEM
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
       rack
+    omniauth-github (1.1.2)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
@@ -449,7 +443,7 @@ DEPENDENCIES
   nokogiri (= 1.5.2)
   octokit (~> 1.24.0)
   omniauth (~> 1.1.0)
-  omniauth-github!
+  omniauth-github (~> 1.1.2)
   paperclip (= 3.4.2)
   paypal-express (= 0.4.6)
   pg (= 0.13.2)
