@@ -22,7 +22,6 @@ class InvoiceNotifier
   def email_receipt
     SubscriptionMailer.delay.subscription_receipt(
       invoice.user_email,
-      invoice.subscription_item_name,
       invoice.amount_paid,
       invoice.stripe_invoice_id
     )

@@ -86,7 +86,11 @@ describe SubscriptionMailer do
     end
 
     def subscription_receipt_email
-      SubscriptionMailer.subscription_receipt('email@example.com', 'Prime', 99, 'invoice_id')
+      SubscriptionMailer.subscription_receipt(
+        'email@example.com',
+        99,
+        'invoice_id'
+      )
     end
   end
 

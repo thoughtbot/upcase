@@ -37,13 +37,52 @@ feature 'Subscriber views subscription invoices' do
 
     expect(page).to have_content('Invoice 130521')
     expect(page).to have_content('Date 05/21/13')
-    expect(page).to have_css('.subscription', text: 'Subscription to Prime')
-    expect(page).to have_css('.subscription', text: '$99.00 USD')
+    expect(page).to have_css('.line-item', text: 'Subscription to Prime')
+    expect(page).to have_css('.line-item', text: '$99.00 USD')
     expect(page).to have_css('.subtotal', text: '$99.00 USD')
     expect(page).to have_css('.discount', text: 'Discount: railsconf')
     expect(page).to have_css('.discount', text: '- $20.00 USD')
     expect(page).to have_css('.total', text: '$79.00 USD')
     expect(page).to have_content('Invoice lookup: in_1s4JSgbcUaElzU')
+
+    expect(page).to have_content(@current_user.organization)
+    expect(page).to have_content(@current_user.address1)
+    expect(page).to have_content(@current_user.address2)
+    expect(page).to have_content(@current_user.city)
+    expect(page).to have_content(@current_user.state)
+    expect(page).to have_content(@current_user.zip_code)
+    expect(page).to have_content(@current_user.country)
+  end
+
+  scenario 'Subscriber views a cancelation or down/upgrade invoice' do
+    sign_in_as_user_with_subscription
+    @current_user.stripe_customer_id = FakeStripe::CUSTOMER_ID
+    @current_user.organization = 'Sprockets, LLC'
+    @current_user.address1 = '1 Street Way'
+    @current_user.address2 = 'Suite 3'
+    @current_user.city = 'Austin'
+    @current_user.state = 'TX'
+    @current_user.zip_code = '00000'
+    @current_user.country = 'USA'
+    @current_user.save!
+
+    visit subscriber_invoice_path('in_3lNBWqTVMT9sFb')
+
+    expect(page).to have_content('Invoice 130521')
+    expect(page).to have_content('Date 05/21/13')
+    expect(page).to have_css(
+      '.line-item',
+      text: 'Remaining time on Prime Workshops after 22 Feb 2014'
+    )
+    expect(page).to have_css('.line-item', text: '$98.76 USD')
+    expect(page).to have_css(
+      '.line-item',
+      text: 'Unused time on Prime Basic after 22 Feb 2014'
+    )
+    expect(page).to have_css('.line-item', text: '-$28.93 USD')
+    expect(page).to have_css('.subtotal', text: '$69.83 USD')
+    expect(page).to have_css('.total', text: '$69.83 USD')
+    expect(page).to have_content('Invoice lookup: in_3lNBWqTVMT9sFb')
 
     expect(page).to have_content(@current_user.organization)
     expect(page).to have_content(@current_user.address1)

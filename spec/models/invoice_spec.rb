@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe SubscriptionInvoice do
+describe Invoice do
   it 'retrieves all invoices for a customer' do
-    invoices = SubscriptionInvoice.
+    invoices = Invoice.
       find_all_by_stripe_customer_id(FakeStripe::CUSTOMER_ID)
 
     invoices.length.should eq 1
@@ -10,13 +10,13 @@ describe SubscriptionInvoice do
   end
 
   it 'does not find invoices with a blank customer' do
-    SubscriptionInvoice.find_all_by_stripe_customer_id(' ').length.should eq 0
-    SubscriptionInvoice.find_all_by_stripe_customer_id('').length.should eq 0
-    SubscriptionInvoice.find_all_by_stripe_customer_id(nil).length.should eq 0
+    Invoice.find_all_by_stripe_customer_id(' ').length.should eq 0
+    Invoice.find_all_by_stripe_customer_id('').length.should eq 0
+    Invoice.find_all_by_stripe_customer_id(nil).length.should eq 0
   end
 
   describe 'invoice fields' do
-    let(:invoice) { SubscriptionInvoice.new('in_1s4JSgbcUaElzU') }
+    let(:invoice) { Invoice.new('in_1s4JSgbcUaElzU') }
 
     it 'has a number equal to its subscription id and date' do
       date = Time.zone.at(1369159688)
@@ -43,14 +43,6 @@ describe SubscriptionInvoice do
       invoice.date.should eq Time.zone.at(1369159688)
     end
 
-    it 'returns the subscription name from stripe' do
-      invoice.subscription_item_name.should eq "Subscription to Prime"
-    end
-
-    it 'returns the subscription billed amount from stripe' do
-      invoice.subscription_item_amount.should eq 99
-    end
-
     it 'returns true if there is a discount on the invoice' do
       invoice.should be_discounted
     end
@@ -74,7 +66,7 @@ describe SubscriptionInvoice do
     end
 
     it 'returns a balance equal to the amount_due when not paid' do
-      stripe_invoice = SubscriptionInvoice.new('in_1s4JSgbcUaElzU')
+      stripe_invoice = Invoice.new('in_1s4JSgbcUaElzU')
       stub_invoice = stub(paid: false, amount_due: 500)
       Stripe::Invoice.stubs(:retrieve).returns(stub_invoice)
 
@@ -83,7 +75,7 @@ describe SubscriptionInvoice do
 
     describe '#amount_paid' do
       it 'returns zero when not paid' do
-        stripe_invoice = SubscriptionInvoice.new('in_1s4JSgbcUaElzU')
+        stripe_invoice = Invoice.new('in_1s4JSgbcUaElzU')
         stub_invoice = stub(paid: false)
         Stripe::Invoice.stubs(:retrieve).returns(stub_invoice)
 
@@ -91,7 +83,7 @@ describe SubscriptionInvoice do
       end
 
       it 'returns the amount_due when paid' do
-        stripe_invoice = SubscriptionInvoice.new('in_1s4JSgbcUaElzU')
+        stripe_invoice = Invoice.new('in_1s4JSgbcUaElzU')
         stub_invoice = stub(paid: true, amount_due: 500)
         Stripe::Invoice.stubs(:retrieve).returns(stub_invoice)
 
@@ -124,29 +116,38 @@ describe SubscriptionInvoice do
     end
 
     it 'returns the proper partial path' do
-      invoice.to_partial_path.should eq 'subscriber/invoices/subscription_invoice'
+      invoice.to_partial_path.should eq 'subscriber/invoices/invoice'
     end
   end
 
   context 'invoice which has discount in percent' do
-    let(:invoice) { SubscriptionInvoice.new('in_3Eh5UIbuDVdhat') }
+    let(:invoice) { Invoice.new('in_3Eh5UIbuDVdhat') }
 
     it 'returns the correct discount amount' do
       expect(invoice.discount_amount).to eq 99.00
     end
   end
 
-  context 'when the user has canceled their account, leading to a nil plan' do
-    it 'references their canceled subscription rather than a plan name' do
-      canceled_subscription = stub('subscription', plan: nil)
-      subscriptions_collection = stub('subscriptions collection',
-                                      first: canceled_subscription)
-      lines = stub('invoice lines', subscriptions: subscriptions_collection)
+  describe '#line_items' do
+    it 'returns line items for all the stripe invoice lines' do
+      lines = stub(
+        'lines',
+        invoiceitems: [:invoiceitem],
+        prorations: [:proration],
+        subscriptions: [:subscription],
+      )
       stripe_invoice = stub('stripe_invoice', lines: lines)
-      invoice = SubscriptionInvoice.new(stripe_invoice)
+      invoice = Invoice.new(stripe_invoice)
 
-      expect(invoice.subscription_item_name)
-        .to eq '(Canceled) Subscription to Prime'
+      stripe_line_items = stripe_invoice.lines.invoiceitems +
+        stripe_invoice.lines.prorations +
+        stripe_invoice.lines.subscriptions
+
+      line_items = stripe_line_items.map do |stripe_line_item|
+        LineItem.new(stripe_line_item)
+      end
+
+      expect(invoice.line_items).to eq(line_items)
     end
   end
 end

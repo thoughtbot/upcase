@@ -31,7 +31,6 @@ describe InvoiceNotifier do
       'invoice',
       user: true,
       user_email: 'someone@example.com',
-      subscription_item_name: 'something',
       amount_paid: '$500',
       stripe_invoice_id: 'stripe_id'
     )
@@ -42,7 +41,6 @@ describe InvoiceNotifier do
       'invoice',
       user: nil,
       user_email: nil,
-      subscription_item_name: 'something',
       amount_paid: '$500',
       stripe_invoice_id: 'stripe_id',
       stripe_invoice: nil

@@ -230,6 +230,8 @@ class FakeStripe < Sinatra::Base
       customer_invoice.to_json
     when 'in_3Eh5UIbuDVdhat'
       customer_invoice_with_discount_in_percent.to_json
+    when 'in_3lNBWqTVMT9sFb'
+      customer_unsubscribe_invoice.to_json
     end
   end
 
@@ -250,18 +252,7 @@ class FakeStripe < Sinatra::Base
       id: EVENT_ID_FOR_INVOICE_PAYMENT_FOR_UNSUBSCRIBED_USER,
       type: "invoice.payment_succeeded",
       data: {
-        object: {
-          date: 1369159688,
-          id: "in_1s4JSgbcUaElzU",
-          period_start: 1366567645,
-          period_end: 1369159645,
-          lines: {
-            invoiceitems: [],
-            prorations: [],
-            subscriptions: []
-          },
-          customer: CUSTOMER_ID
-        }
+        object: customer_unsubscribe_invoice
       }
     }.to_json
   end
@@ -383,6 +374,55 @@ class FakeStripe < Sinatra::Base
       subtotal: 9900,
       amount_due: 0
     )
+  end
+
+  def customer_unsubscribe_invoice
+    {
+      date: 1369159688,
+      id: 'in_3lNBWqTVMT9sFb',
+      period_start: 1366567645,
+      period_end: 1369159645,
+      lines: {
+        invoiceitems: [
+          {
+            object: 'invoiceitem',
+            id: 'ii_3XgI5MRjNLJsqj',
+            date: 1393056868,
+            amount: 9876,
+            livemode: true,
+            proration: true,
+            currency: 'usd',
+            customer: CUSTOMER_ID,
+            description: 'Remaining time on Prime Workshops after 22 Feb 2014',
+            metadata: {},
+            invoice: 'in_3lNBWqTVMT9sFb',
+            subscription: 'sub_3Xehu54zpkQS1b',
+          },
+          {
+            object: 'invoiceitem',
+            id: 'ii_3XgIlCOcNHW6pT',
+            date: 1393056868,
+            amount: -2893,
+            livemode: true,
+            proration: true,
+            currency: 'usd',
+            customer: CUSTOMER_ID,
+            description: 'Unused time on Prime Basic after 22 Feb 2014',
+            metadata: {},
+            invoice: 'in_3lNBWqTVMT9sFb',
+            subscription: 'sub_3Xehu54zpkQS1b',
+          },
+        ],
+        prorations: [],
+        subscriptions: [],
+      },
+      discount: nil,
+      customer: CUSTOMER_ID,
+      paid: true,
+      subtotal: 6983,
+      total: 6983,
+      amount_due: 6983,
+    }
   end
 
   def customer_subscription

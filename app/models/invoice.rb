@@ -1,5 +1,5 @@
 # Finds and wraps Stripe's Invoice object with convenience methods
-class SubscriptionInvoice
+class Invoice
   attr_reader :stripe_invoice
 
   delegate :name, :organization, :address1, :address2, :city, :state, :zip_code, :country, :email,
@@ -8,7 +8,7 @@ class SubscriptionInvoice
   def self.find_all_by_stripe_customer_id(stripe_customer_id)
     if stripe_customer_id.present?
       stripe_invoices_for_customer_id(stripe_customer_id).map do |invoice|
-        SubscriptionInvoice.new(invoice)
+        new(invoice)
       end
     else
       []
@@ -67,18 +67,6 @@ class SubscriptionInvoice
     convert_stripe_time(stripe_invoice.date)
   end
 
-  def subscription_item_name
-    if subscription_is_active?
-      "Subscription to #{subscription.plan.name}"
-    else
-      '(Canceled) Subscription to Prime'
-    end
-  end
-
-  def subscription_item_amount
-    cents_to_dollars(subscription.amount)
-  end
-
   def discounted?
     stripe_invoice.discount.present?
   end
@@ -99,6 +87,10 @@ class SubscriptionInvoice
     "subscriber/invoices/#{self.class.name.underscore}"
   end
 
+  def line_items
+    stripe_line_items.map { |stripe_line_item| LineItem.new(stripe_line_item) }
+  end
+
   private
 
   def self.stripe_invoices_for_customer_id(stripe_customer_id)
@@ -117,11 +109,9 @@ class SubscriptionInvoice
     Time.zone.at(time)
   end
 
-  def subscription
-    stripe_invoice.lines.subscriptions.first
-  end
-
-  def subscription_is_active?
-    subscription.plan
+  def stripe_line_items
+    stripe_invoice.lines.invoiceitems +
+    stripe_invoice.lines.prorations +
+    stripe_invoice.lines.subscriptions
   end
 end
