@@ -46,6 +46,12 @@ namespace :dev do
     user = FactoryGirl.create(:admin, email: 'admin@example.com')
     puts_user user, 'admin'
 
+    user = FactoryGirl.create(:admin,
+                              :with_subscription,
+                              :with_github,
+                              email: 'whetstone@example.com')
+    puts_user user, 'ready to auth against whetstone'
+
     user = FactoryGirl.create(:user, email: 'none@example.com')
     puts_user user, 'no purchases'
 
