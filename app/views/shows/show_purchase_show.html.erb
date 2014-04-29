@@ -8,7 +8,7 @@
 <div class="text-box-wrapper">
   <div class="text-box">
     <section id="videos">
-      <%= render @purchaseable.published_videos.ordered, purchase: @purchase %>
+      <%= render @purchaseable.published_videos.recently_published_first, purchase: @purchase %>
     </section>
   </div>
 </div>
