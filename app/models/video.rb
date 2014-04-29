@@ -18,6 +18,10 @@ class Video < ActiveRecord::Base
     where('published_on <= ?', Time.zone.today)
   end
 
+  def self.recently_published_first
+    order('published_on desc')
+  end
+
   def video_sizes
     @video_sizes ||= wistia_hash['assets'].inject({}) do |result, asset|
       result.merge(asset['type'] => human_file_size(asset['fileSize']))

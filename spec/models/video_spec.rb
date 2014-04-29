@@ -34,6 +34,17 @@ describe Video do
     end
   end
 
+  context '.recently_published_first' do
+    it 'orders by published_on with the newest first' do
+      Timecop.freeze(Time.zone.now) do
+        old_video = create(:video, published_on: Date.yesterday)
+        new_video = create(:video, published_on: Date.today)
+
+        expect(Video.recently_published_first).to eq [new_video, old_video]
+      end
+    end
+  end
+
   context '#wistia_thumbnail' do
     it 'returns the thumbnail cached from wistia' do
       video = build_stubbed(:video,
