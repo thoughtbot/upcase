@@ -34,6 +34,18 @@ describe Video do
     end
   end
 
+  context '.recently_published_first' do
+    it 'sorts the collection so that recently published videos are first' do
+      create(:video, published_on: Date.today, title: 'new')
+      create(:video, published_on: 2.days.ago, title: 'old')
+      create(:video, published_on: Date.yesterday, title: 'middle')
+
+      expect(Video.recently_published_first.map(&:title)).to eq ['new',
+                                                                 'middle',
+                                                                 'old']
+    end
+  end
+
   context '#wistia_thumbnail' do
     it 'returns the thumbnail cached from wistia' do
       video = build_stubbed(:video,
