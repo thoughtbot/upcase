@@ -7,7 +7,11 @@
   <%= render 'trails' %>
 </section>
 
+<p class="product-headline">Hone your skills by completing these exercises</p>
+<%= render 'products/exercises' %>
+
 <% if current_user_has_access_to_workshops? %>
+  <p class="product-headline">Enroll in our online workshops</p>
   <section class='workshops'>
     <%= render partial: 'products/workshop', collection: @catalog.workshops %>
   </section>
@@ -33,6 +37,7 @@
 <% end %>
 
 <% if current_user_has_access_to_shows? %>
+  <p class="product-headline center">Watch our web shows and screencasts</p>
   <section class='shows'>
     <%= render @catalog.shows %>
   </section>
@@ -42,8 +47,7 @@
   <%= render @catalog.screencasts %>
 </section>
 
-<%= render 'products/exercises' %>
-
+<p class="product-headline">Read our eBooks to boost your knowledge</p>
 <section class='reading'>
   <%= render @catalog.books %>
 </section>

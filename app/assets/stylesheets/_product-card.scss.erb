@@ -107,13 +107,33 @@
       }
     }
 
+    &.exercise {
+      figure {
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26);
+      }
+    }
+
     .console-illustration {
-      background: #111;
-      color: #ddd;
-      font: bold 3rem/1 monospace;
+      background-color: #fff;
+      background-image: image-url('exercise.svg');
+      background-position: center;
+      background-repeat: no-repeat;
       height: 124px;
       margin: 0;
       padding: .5rem 1rem;
+      position: relative;
+
+      &:after {
+        border: 2px solid #E9F2FD;
+        border-radius: 2px;
+        bottom: 0;
+        content: "";
+        left: 0;
+        margin: 5px;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
     }
   }
 
