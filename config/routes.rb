@@ -20,13 +20,15 @@ Workshops::Application.routes.draw do
     resource :team, only: :edit
   end
 
-  get '/pages/tmux' => redirect('/products/4-humans-present-tmux')
+  get '/pages/tmux' => redirect('https://www.youtube.com/watch?v=CKC8Ph-s2F4')
 
   if Rails.env.staging? || Rails.env.production?
     get '/products/:id' => redirect('/workshops/18-test-driven-rails'),
       constraints: { id: /(10|12).*/ }
     get '/products/:id' => redirect('/workshops/19-design-for-developers'),
       constraints: { id: /(9|11).*/ }
+    get '/products/:id' => redirect('https://www.youtube.com/watch?v=CKC8Ph-s2F4'),
+      constraints: { id: /(4).*/ }
     get '/products/14' => redirect('/prime')
     get '/products/14-prime' => redirect('/prime')
   end
@@ -134,7 +136,7 @@ Workshops::Application.routes.draw do
   get '/terms' => 'pages#show', as: :terms, id: 'terms'
   get '/directions' => "pages#show", as: :directions, id: "directions"
   get '/group-training' => "pages#show", as: :group_training, id: "group-training"
-  get '/humans-present/oss' => "pages#show", as: :humans_present_oss, id: "humans-present-oss"
+  get '/humans-present/oss' => redirect('https://www.youtube.com/watch?v=VMBhumlUP-A')
   get '/backbone.js' => redirect('/backbone')
   get '/backbone-js-on-rails' => redirect('/products/1-backbone-js-on-rails')
   get '/geocoding-on-rails' => redirect('/products/22-geocoding-on-rails')
