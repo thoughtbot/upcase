@@ -49,7 +49,7 @@ class Product < ActiveRecord::Base
   end
 
   def image_url
-    raw_url = product_image.url(product_type_symbol)
+    raw_url = product_image.url
     product_image_file_name? ? raw_url : "/assets/#{raw_url}"
   end
 
