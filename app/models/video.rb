@@ -46,6 +46,10 @@ class Video < ActiveRecord::Base
     @wistia_thumbnail ||= wistia_hash["thumbnail"]["url"] rescue nil
   end
 
+  def preview_video_hash_id
+    @preview_video_hash_id ||= preview_wistia_hash['hashed_id']
+  end
+
   def full_sized_wistia_thumbnail
     wistia_thumbnail.try(:split, '?').try(:first)
   end
@@ -59,6 +63,12 @@ class Video < ActiveRecord::Base
   end
 
   private
+
+  def preview_wistia_hash
+    unless preview_wistia_id.nil?
+      @preview_wistia_hash ||= Wistia.get_media_hash_from_id(preview_wistia_id)
+    end
+  end
 
   def human_file_size num
     helpers.number_to_human_size(num)

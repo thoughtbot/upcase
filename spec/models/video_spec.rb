@@ -67,6 +67,18 @@ describe Video do
     end
   end
 
+  context '#preview_video_hash_id' do
+    it 'returns the video_hash_id for the preview video' do
+      video = Video.new(preview_wistia_id: '123')
+      wistia_hash = { 'hashed_id' => stub }
+      Wistia.stubs(:get_media_hash_from_id).with('123').returns(wistia_hash)
+
+      hash_id = video.preview_video_hash_id
+
+      expect(hash_id).to eq wistia_hash['hashed_id']
+    end
+  end
+
   context 'watchable_name' do
     it 'returns the name of the watchable' do
       workshop = create(:workshop, name: 'Workshop')
