@@ -24,6 +24,10 @@ class Product < ActiveRecord::Base
     where active: true
   end
 
+  def self.promoted
+    where promoted: true
+  end
+
   def self.ordered
     order 'name ASC'
   end

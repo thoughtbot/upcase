@@ -19,6 +19,15 @@ describe Workshop do
   it { should validate_presence_of(:sku) }
   it { should validate_presence_of(:length_in_days) }
 
+  describe 'self.promoted' do
+    it 'returns promoted workshops' do
+      promoted_workshops = create_list(:workshop, 2, promoted: true)
+      create(:workshop, promoted: false)
+
+      expect(Workshop.promoted).to eq(promoted_workshops)
+    end
+  end
+
   describe '#announcement' do
     it 'calls Announcement.current' do
       Announcement.stubs :current

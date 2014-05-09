@@ -16,4 +16,8 @@ class Catalog
   def shows
     Show.active.ordered
   end
+
+  def mentors
+    Mentor.all
+  end
 end

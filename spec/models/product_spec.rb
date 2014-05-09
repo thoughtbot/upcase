@@ -1,6 +1,15 @@
 require 'spec_helper'
 
 describe Product do
+  describe 'self.promoted' do
+    it 'returns promoted products' do
+      promoted_products = create_list(:product, 2, promoted: true)
+      create(:product, promoted: false)
+
+      expect(Product.promoted).to eq(promoted_products)
+    end
+  end
+
   describe '#licenses_for' do
     it 'returns a subscriber license for a subscriber' do
       user = build_stubbed(:user)

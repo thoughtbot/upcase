@@ -4,14 +4,15 @@ describe Mentor do
   it { should have_many(:mentees) }
   it { should validate_presence_of(:user) }
 
-  describe '.featured' do
+  describe '.promoted' do
     it 'executes queries on the relation' do
       mentors = stub('mentors', :sample)
       Mentor.stubs(accepting_new_mentees: mentors)
 
-      Mentor.featured
+      Mentor.promoted
 
-      expect(mentors).to have_received(:sample).with(Mentor::NUMBER_OF_MENTORS_TO_FEATURE)
+      expect(mentors).
+        to have_received(:sample).with(Mentor::NUMBER_OF_MENTORS_TO_PROMOTE)
     end
   end
 

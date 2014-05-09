@@ -31,6 +31,13 @@ describe Catalog do
     end
   end
 
+  describe '#mentors' do
+    it 'returns all mentors' do
+      catalog = Catalog.new
+      expect(catalog.mentors).to find_relation(Mentor.all)
+    end
+  end
+
   describe '#to_partial_path' do
     it 'returns a renderable path' do
       catalog = Catalog.new
