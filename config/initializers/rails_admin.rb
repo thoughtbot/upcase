@@ -120,6 +120,7 @@ RailsAdmin.config do |config|
         field :short_description
         field :description
         field :active
+        field :promoted
         field :topics
         field :resources
         field :terms
