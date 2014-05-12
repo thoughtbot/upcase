@@ -5,7 +5,7 @@ describe 'Workshops' do
 
   it 'displays their formatted resources' do
     workshop = create(:workshop, resources: "* Item 1\n*Item 2")
-    video = create(:video, watchable: workshop)
+    create(:video, watchable: workshop)
     purchase = create_subscriber_purchase_from_purchaseable(workshop)
 
     visit purchase_path(purchase)
