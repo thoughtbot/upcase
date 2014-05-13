@@ -17,7 +17,9 @@ module WistiaHelper
   private
 
   def wistia_video_url_with_settings(video_hash, width, height)
-    unless Rails.env.test?
+    if Rails.env.test?
+      "#{request.host}/#{video_hash}"
+    else
       "#{wistia_video_url(video_hash)}?#{wistia_query(width, height)}".html_safe
     end
   end
