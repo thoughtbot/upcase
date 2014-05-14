@@ -125,6 +125,7 @@ RailsAdmin.config do |config|
         field :resources
         field :terms
         field :length_in_days
+        field :github_team
       end
 
       group :faq do
