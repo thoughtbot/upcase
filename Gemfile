@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
+ruby '2.1.2'
 
 gem 'RedCloth', '4.2.9', require: 'redcloth'
 gem 'active_model_serializers', '~> 0.7.0'
