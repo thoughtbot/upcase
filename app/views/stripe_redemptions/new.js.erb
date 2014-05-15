@@ -2,7 +2,7 @@
   updatePurchaseSubmitAmount('<%= t("subscriptions.discount.#{@subscription_coupon.duration}", final_price: number_to_currency(@subscription_coupon.apply(@purchase.price), unit: ''), full_price: number_to_currency(@purchase.price, unit: ''), duration_in_months: @subscription_coupon.duration_in_months) %>');
 $(".coupon .error").hide();
 $(".coupon").hide();
-$("#purchase_stripe_coupon_id").val("<%= @subscription_coupon.code %>");
+$("#purchase_stripe_coupon_id").val("<%=j @subscription_coupon.code.html_safe %>");
 <% else %>
   $(".coupon .error").show();
 <% end %>
