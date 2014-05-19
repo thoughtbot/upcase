@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'videos/_watch_video.html.erb' do
   it "includes a video's notes as html" do
-    video = build_stubbed(:video, notes: 'Some notes')
+    video = Video.new(wistia_id: '123', notes: 'Some notes')
 
     render_view(video)
 
@@ -10,7 +10,8 @@ describe 'videos/_watch_video.html.erb' do
   end
 
   it "can still render a video without notes" do
-    video = build_stubbed(:video)
+    video = Video.new(wistia_id: '123')
+    video.clip.stubs(:sizes).returns({})
 
     expect { render_view(video) }.to_not raise_error
   end

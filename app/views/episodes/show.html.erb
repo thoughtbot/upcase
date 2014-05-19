@@ -5,11 +5,7 @@
 <% cache(@video) do %>
   <div class="text-box-wrapper">
     <div class="text-box">
-      <% if @video.preview_wistia_id.present? %>
-        <%= wistia_video_embed(@video.preview_video_hash_id) %>
-      <% else %>
-        <%= image_tag @video.full_sized_wistia_thumbnail, alt: @video.title, class: "thumbnail" %>
-      <% end %>
+      <%= render @video.preview, title: @video.title %>
 
       <section class='video-notes'>
         <h3>Notes</h3>

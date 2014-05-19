@@ -24,6 +24,11 @@ Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].e
 
 FakeStripeRunner.boot
 FakeGithubRunner.boot
+FakeWistiaRunner.boot
+
+silence_warnings do
+  Clip::WISTIA_EMBED_BASE_URL = 'localhost/'
+end
 
 Delayed::Worker.delay_jobs = false
 

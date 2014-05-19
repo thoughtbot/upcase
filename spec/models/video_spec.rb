@@ -39,43 +39,43 @@ describe Video do
       create(:video, published_on: Date.today, title: 'new')
       create(:video, published_on: 2.days.ago, title: 'old')
       create(:video, published_on: Date.yesterday, title: 'middle')
+      titles = %w(new middle old)
 
-      expect(Video.recently_published_first.map(&:title)).to eq ['new',
-                                                                 'middle',
-                                                                 'old']
+      expect(Video.recently_published_first.map(&:title)).to eq titles
     end
   end
 
-  context '#wistia_thumbnail' do
-    it 'returns the thumbnail cached from wistia' do
-      video = build_stubbed(:video,
-        wistia_hash: { 'thumbnail' => { 'url' => 'http://images.com/hi.jpg' } })
-      video.wistia_thumbnail.should == 'http://images.com/hi.jpg'
+  context 'video' do
+    it 'creates a Video object with the correct wistia_id' do
+      video = Video.new(wistia_id: '123')
+      Clip.stubs(:new)
+
+      video.clip
+
+      expect(Clip).to have_received(:new).with(video.wistia_id)
     end
   end
 
-  context '#full_sized_wistia_thumbnail' do
-    it 'returns the full sized thumbnail cached from wistia' do
-      video = build_stubbed(:video,
-        wistia_hash: {
-          'thumbnail' => {
-            'url' => 'http://images.com/hi.jpg?image_crop_resized=100x60'
-          }
-        }
-      )
-      video.full_sized_wistia_thumbnail.should == 'http://images.com/hi.jpg'
-    end
-  end
-
-  context '#preview_video_hash_id' do
-    it 'returns the video_hash_id for the preview video' do
+  context 'preview' do
+    it 'returns a promo video if preview_wistia_id is set' do
       video = Video.new(preview_wistia_id: '123')
-      wistia_hash = { 'hashed_id' => stub }
-      Wistia.stubs(:get_media_hash_from_id).with('123').returns(wistia_hash)
+      Clip.stubs(:new)
 
-      hash_id = video.preview_video_hash_id
+      video.preview
 
-      expect(hash_id).to eq wistia_hash['hashed_id']
+      expect(Clip).to have_received(:new).with(video.preview_wistia_id)
+    end
+
+    it 'returns a thumbnail if preview_wistia_id is not set' do
+      video = Video.new
+      url = stub
+      clip = stub(full_sized_thumbnail: url)
+      Clip.stubs(:new).returns(clip)
+      VideoThumbnail.stubs(:new)
+
+      video.preview
+
+      expect(VideoThumbnail).to have_received(:new).with(url)
     end
   end
 
@@ -90,7 +90,7 @@ describe Video do
 
   describe 'has_notes?' do
     it 'returns true when the video has notes' do
-      video = build_stubbed(:video, notes: "Some notes")
+      video = build_stubbed(:video, notes: 'Some notes')
 
       expect(video).to have_notes
     end
@@ -108,7 +108,7 @@ describe Video do
     it "converts the video's notes to html" do
       video = build_stubbed(:video, notes: 'Some *awesome* markdown')
 
-      expect(video.notes_html).to eq "<p>Some <em>awesome</em> markdown</p>"
+      expect(video.notes_html).to eq '<p>Some <em>awesome</em> markdown</p>'
     end
   end
 end
