@@ -139,6 +139,7 @@ Workshops::Application.routes.draw do
   get '/backbone-js-on-rails' => redirect('/products/1-backbone-js-on-rails')
   get '/geocoding-on-rails' => redirect('/products/22-geocoding-on-rails')
   get '/geocodingonrails' => redirect('/products/22-geocoding-on-rails')
+  get '/gettingstartedwithios' => redirect('/workshops/24-getting-started-with-ios-development?utm_source=podcast')
   get '/5by5' => redirect('/workshops/19-design-for-developers?utm_source=5by5')
   get '/rubyist-booster-shot' => "pages#show", as: :rubyist_booster_shot, id: "rubyist-booster-shot"
   get '/live' => redirect(OfficeHours.url)
