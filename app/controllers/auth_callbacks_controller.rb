@@ -28,6 +28,6 @@ class AuthCallbacksController < ApplicationController
   end
 
   def auth_origin
-    request.env['omniauth.origin'] || dashboard_url
+    session[:return_to] || request.env['omniauth.origin'] || dashboard_url
   end
 end

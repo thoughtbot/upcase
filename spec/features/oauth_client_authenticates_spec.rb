@@ -9,6 +9,21 @@ feature 'An OAuth client authenticates', js: true do
     verify_signed_in_user_details_from_page(user)
   end
 
+  scenario 'via redirect with GitHub' do
+    create_client_app
+    visit_client_app
+
+    click_on 'Sign Into Learn'
+    click_link 'with GitHub'
+
+    user = User.find_by_email!(
+      OmniAuth.config.mock_auth[:github]['info']['email']
+    )
+
+    expect(current_path).not_to eq dashboard_path
+    verify_signed_in_user_details_from_page(user)
+  end
+
   scenario 'via password' do
     create_client_app
     user = create(:subscriber)
@@ -63,6 +78,5 @@ feature 'An OAuth client authenticates', js: true do
   def verify_signed_in_user_details(json, checked_user)
     user = json['user']
     user['email'].should eq checked_user.email
-    user['has_forum_access'].should be_true
   end
 end
