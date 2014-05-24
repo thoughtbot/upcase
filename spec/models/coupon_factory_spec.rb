@@ -11,7 +11,7 @@ describe CouponFactory, '.for_purchase' do
   end
 
   it 'returns a subscription coupon if a stripe_coupon_id is present' do
-    subscription_coupon = stub(apply: 20)
+    subscription_coupon = double(apply: 20)
     SubscriptionCoupon.stubs(:new).returns(subscription_coupon)
     purchase = build(:plan_purchase, stripe_coupon_id: '25OFF')
 
@@ -21,7 +21,7 @@ describe CouponFactory, '.for_purchase' do
   end
 
   it 'returns a null coupon when there are no regular or subscription coupons' do
-    null_coupon_stub = stub('null_coupon')
+    null_coupon_stub = double('null_coupon')
     NullCoupon.stubs(new: null_coupon_stub)
     purchase = build(:purchase)
 

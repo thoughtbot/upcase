@@ -5,14 +5,14 @@ describe Invoice do
     invoices = Invoice.
       find_all_by_stripe_customer_id(FakeStripe::CUSTOMER_ID)
 
-    invoices.length.should eq 1
-    invoices.first.stripe_invoice_id.should eq 'in_1s4JSgbcUaElzU'
+    expect(invoices.length).to eq 1
+    expect(invoices.first.stripe_invoice_id).to eq 'in_1s4JSgbcUaElzU'
   end
 
   it 'does not find invoices with a blank customer' do
-    Invoice.find_all_by_stripe_customer_id(' ').length.should eq 0
-    Invoice.find_all_by_stripe_customer_id('').length.should eq 0
-    Invoice.find_all_by_stripe_customer_id(nil).length.should eq 0
+    expect(Invoice.find_all_by_stripe_customer_id(' ').length).to eq 0
+    expect(Invoice.find_all_by_stripe_customer_id('').length).to eq 0
+    expect(Invoice.find_all_by_stripe_customer_id(nil).length).to eq 0
   end
 
   describe 'invoice fields' do
@@ -20,74 +20,74 @@ describe Invoice do
 
     it 'has a number equal to its subscription id and date' do
       date = Time.zone.at(1369159688)
-      invoice.number.should == date.to_s(:invoice)
+      expect(invoice.number).to eq(date.to_s(:invoice))
     end
 
     it 'returns the invoice total from stripe' do
-      invoice.total.should == 79
+      expect(invoice.total).to eq(79)
     end
 
     it 'returns the invoice subtotal from stripe' do
-      invoice.subtotal.should == 99
+      expect(invoice.subtotal).to eq(99)
     end
 
     it 'returns the amount_due from stripe' do
-      invoice.amount_due.should == 79
+      expect(invoice.amount_due).to eq(79)
     end
 
     it 'returns the invoice paid status from stripe' do
-      invoice.should be_paid
+      expect(invoice).to be_paid
     end
 
     it 'returns the invoice date from stripe' do
-      invoice.date.should eq Time.zone.at(1369159688)
+      expect(invoice.date).to eq Time.zone.at(1369159688)
     end
 
     it 'returns true if there is a discount on the invoice' do
-      invoice.should be_discounted
+      expect(invoice).to be_discounted
     end
 
     it 'returns the name of the discount from stripe' do
-      invoice.discount_name.should eq 'railsconf'
+      expect(invoice.discount_name).to eq 'railsconf'
     end
 
     it 'returns the amount of the discount from stripe' do
-      invoice.discount_amount.should eq 20
+      expect(invoice.discount_amount).to eq 20
     end
 
     it 'returns the user who matches the stripe customer' do
       user = create(:user, stripe_customer_id: FakeStripe::CUSTOMER_ID)
 
-      invoice.user.should eq user
+      expect(invoice.user).to eq user
     end
 
     it 'returns a zero balance when paid' do
-      invoice.balance.should eq 0.00
+      expect(invoice.balance).to eq 0.00
     end
 
     it 'returns a balance equal to the amount_due when not paid' do
       stripe_invoice = Invoice.new('in_1s4JSgbcUaElzU')
-      stub_invoice = stub(paid: false, amount_due: 500)
+      stub_invoice = double(paid: false, amount_due: 500)
       Stripe::Invoice.stubs(:retrieve).returns(stub_invoice)
 
-      invoice.balance.should eq 5.00
+      expect(invoice.balance).to eq 5.00
     end
 
     describe '#amount_paid' do
       it 'returns zero when not paid' do
         stripe_invoice = Invoice.new('in_1s4JSgbcUaElzU')
-        stub_invoice = stub(paid: false)
+        stub_invoice = double(paid: false)
         Stripe::Invoice.stubs(:retrieve).returns(stub_invoice)
 
-        invoice.amount_paid.should eq 0.00
+        expect(invoice.amount_paid).to eq 0.00
       end
 
       it 'returns the amount_due when paid' do
         stripe_invoice = Invoice.new('in_1s4JSgbcUaElzU')
-        stub_invoice = stub(paid: true, amount_due: 500)
+        stub_invoice = double(paid: true, amount_due: 500)
         Stripe::Invoice.stubs(:retrieve).returns(stub_invoice)
 
-        invoice.amount_paid.should eq 5.00
+        expect(invoice.amount_paid).to eq 5.00
       end
     end
 
@@ -104,19 +104,19 @@ describe Invoice do
         country: 'USA'
       )
 
-      invoice.user_name.should == user.name
-      invoice.user_organization.should eq user.organization
-      invoice.user_address1.should eq user.address1
-      invoice.user_address2.should eq user.address2
-      invoice.user_city.should eq user.city
-      invoice.user_state.should eq user.state
-      invoice.user_zip_code.should eq user.zip_code
-      invoice.user_country.should eq user.country
-      invoice.user_email.should eq user.email
+      expect(invoice.user_name).to eq(user.name)
+      expect(invoice.user_organization).to eq user.organization
+      expect(invoice.user_address1).to eq user.address1
+      expect(invoice.user_address2).to eq user.address2
+      expect(invoice.user_city).to eq user.city
+      expect(invoice.user_state).to eq user.state
+      expect(invoice.user_zip_code).to eq user.zip_code
+      expect(invoice.user_country).to eq user.country
+      expect(invoice.user_email).to eq user.email
     end
 
     it 'returns the proper partial path' do
-      invoice.to_partial_path.should eq 'subscriber/invoices/invoice'
+      expect(invoice.to_partial_path).to eq 'subscriber/invoices/invoice'
     end
   end
 
@@ -130,13 +130,13 @@ describe Invoice do
 
   describe '#line_items' do
     it 'returns line items for all the stripe invoice lines' do
-      lines = stub(
+      lines = double(
         'lines',
         invoiceitems: [:invoiceitem],
         prorations: [:proration],
         subscriptions: [:subscription],
       )
-      stripe_invoice = stub('stripe_invoice', lines: lines)
+      stripe_invoice = double('stripe_invoice', lines: lines)
       invoice = Invoice.new(stripe_invoice)
 
       stripe_line_items = stripe_invoice.lines.invoiceitems +

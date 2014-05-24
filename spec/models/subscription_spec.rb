@@ -12,7 +12,7 @@ describe Subscription do
   it { should validate_presence_of(:user_id) }
 
   it 'defaults paid to true' do
-    Subscription.new.should be_paid
+    expect(Subscription.new).to be_paid
   end
 
   describe 'self.paid' do
@@ -20,8 +20,8 @@ describe Subscription do
       paid = create(:subscription, paid: true)
       free = create(:subscription, paid: false)
 
-      Subscription.paid.should_not include(free)
-      Subscription.paid.should include(paid)
+      expect(Subscription.paid).not_to include(free)
+      expect(Subscription.paid).to include(paid)
     end
   end
 
@@ -32,7 +32,7 @@ describe Subscription do
         create(:subscription, plan: plan, created_at: 25.hours.ago)
       new_subscription =
         create(:subscription, plan: plan, created_at: 10.hours.ago)
-      mailer = stub(deliver: true)
+      mailer = double(deliver: true)
       SubscriptionMailer.stubs(welcome_to_prime_from_mentor: mailer)
 
       Subscription.deliver_welcome_emails
@@ -61,12 +61,12 @@ describe Subscription do
   describe '#active?' do
     it "returns true if deactivated_on is nil" do
       subscription = Subscription.new(deactivated_on: nil)
-      subscription.should be_active
+      expect(subscription).to be_active
     end
 
     it "returns false if deactivated_on is not nil" do
       subscription = Subscription.new(deactivated_on: Time.zone.today)
-      subscription.should_not be_active
+      expect(subscription).not_to be_active
     end
   end
 
@@ -81,7 +81,7 @@ describe Subscription do
     end
 
     it 'unfulfills itself' do
-      fulfillment = stub('fulfilment', :remove)
+      fulfillment = double('fulfilment', :remove)
       subscription = create(:active_subscription)
       purchase = create(
         :purchase,
@@ -95,7 +95,7 @@ describe Subscription do
 
       subscription.deactivate
 
-      fulfillment.should have_received(:remove)
+      expect(fulfillment).to have_received(:remove)
     end
   end
 
@@ -103,7 +103,7 @@ describe Subscription do
     it 'updates the plan in Stripe' do
       different_plan = create(:plan, sku: 'different')
       subscription = create(:active_subscription)
-      stripe_customer = stub(update_subscription: nil)
+      stripe_customer = double(update_subscription: nil)
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 
       subscription.change_plan(different_plan)
@@ -208,7 +208,7 @@ describe Subscription do
     end
 
     def stub_fulfillment
-      fulfillment = stub('fulfillment', :fulfill)
+      fulfillment = double('fulfillment', :fulfill)
       SubscriptionFulfillment.stubs(:new).returns(fulfillment)
     end
   end
@@ -229,7 +229,7 @@ describe Subscription do
 
   describe '#last_charge' do
     it 'returns the last charge for the customer' do
-      charge = stub('Stripe::Charge')
+      charge = double('Stripe::Charge')
       Stripe::Charge.stubs(:all).returns([charge])
       subscription = build_stubbed(:subscription)
 

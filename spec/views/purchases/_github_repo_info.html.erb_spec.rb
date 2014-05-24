@@ -7,7 +7,7 @@ describe 'purchases/_github_repo_info.html.erb' do
 
       render 'purchases/github_repo_info', purchaseable: purchaseable
 
-      rendered.should include(purchaseable.github_url)
+      expect(rendered).to include(purchaseable.github_url)
     end
   end
 end

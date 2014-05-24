@@ -30,6 +30,6 @@ describe Payments::FreePayment do
   end
 
   def build_free_purchase
-    stub('purchase', set_as_paid: true)
+    double('purchase', set_as_paid: true)
   end
 end

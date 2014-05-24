@@ -43,7 +43,7 @@ describe SubscriptionFulfillment do
 
       SubscriptionFulfillment.new(purchase, user).fulfill
 
-      GithubFulfillmentJob.should have_received(:enqueue).
+      expect(GithubFulfillmentJob).to have_received(:enqueue).
         with(SubscriptionFulfillment::GITHUB_TEAM, [user.github_username])
     end
 
@@ -54,7 +54,7 @@ describe SubscriptionFulfillment do
 
       SubscriptionFulfillment.new(purchase, user).fulfill
 
-      GitHubPublicKeyDownloadFulfillmentJob.should have_received(:enqueue)
+      expect(GitHubPublicKeyDownloadFulfillmentJob).to have_received(:enqueue)
         .with(user.id)
     end
   end
@@ -67,7 +67,7 @@ describe SubscriptionFulfillment do
 
       SubscriptionFulfillment.new(purchase, user).remove
 
-      GithubRemovalJob.should have_received(:enqueue).
+      expect(GithubRemovalJob).to have_received(:enqueue).
         with(SubscriptionFulfillment::GITHUB_TEAM, [user.github_username])
     end
 
@@ -92,7 +92,7 @@ describe SubscriptionFulfillment do
 
     def stub_refunds(purchases)
       purchases.map do |purchase|
-        stub('refunder').tap do |refunder|
+        double('refunder').tap do |refunder|
           PurchaseRefunder.stubs(:new).with(purchase).returns(refunder)
           refunder.stubs(:refund)
         end

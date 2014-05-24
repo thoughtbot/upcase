@@ -46,15 +46,15 @@ describe User do
   describe "#has_purchased?" do
     it "returns true if the user has any paid purchases" do
       user = build_stubbed(:user)
-      user.stubs(:paid_purchases).returns([stub])
+      user.stubs(:paid_purchases).returns([double])
 
-      user.should have_purchased
+      expect(user).to have_purchased
     end
 
     it "returns false if the user has no purchases" do
       user = build_stubbed(:user)
-      user.stubs(:purchases).returns([stub])
-      user.should_not have_purchased
+      user.stubs(:purchases).returns([double])
+      expect(user).not_to have_purchased
     end
   end
 
@@ -135,7 +135,7 @@ describe User do
       user.admin = true
       user.save
 
-      user.reload.should be_admin
+      expect(user.reload).to be_admin
     end
 
     def create_user_without_cached_password(attributes)
@@ -173,8 +173,8 @@ describe User do
       create_subscription_purchase(user)
       create_paid_purchase(user)
 
-      user.paid_purchases.count.should eq 2
-      user.subscription_purchases.count.should eq 1
+      expect(user.paid_purchases.count).to eq 2
+      expect(user.subscription_purchases.count).to eq 1
     end
 
     def create_subscription_purchase(user)

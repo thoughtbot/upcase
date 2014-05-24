@@ -19,7 +19,7 @@ describe GitHubPublicKeyDownloadFulfillmentJob do
     it "downloads the user's public keys from GitHub" do
       user = build_stubbed(:user, :with_github)
       User.stubs(:find).with(user.id).returns(user)
-      fulfillment = stub('fulfillment', fulfill: true)
+      fulfillment = double('fulfillment', fulfill: true)
       GitHubPublicKeyDownloadFulfillment
         .stubs(:new)
         .with(user)

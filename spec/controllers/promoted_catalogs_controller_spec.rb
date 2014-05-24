@@ -3,7 +3,7 @@ require 'spec_helper'
 describe PromotedCatalogsController do
   describe '#show' do
     it 'uses the empty-body layout' do
-      promoted_catalog = stub('promoted_catalog')
+      promoted_catalog = double('promoted_catalog')
       PromotedCatalog.stubs(:new).returns(promoted_catalog)
       get :show
 

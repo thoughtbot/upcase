@@ -12,7 +12,7 @@ describe Video do
     it 'returns videos in order by position' do
       video1 = create(:video, position: 2)
       video2 = create(:video, position: 1)
-      Video.ordered.should == [video2, video1]
+      expect(Video.ordered).to eq([video2, video1])
     end
   end
 
@@ -68,8 +68,8 @@ describe Video do
 
     it 'returns a thumbnail if preview_wistia_id is not set' do
       video = Video.new
-      url = stub
-      clip = stub(full_sized_thumbnail: url)
+      url = double
+      clip = double(full_sized_thumbnail: url)
       Clip.stubs(:new).returns(clip)
       VideoThumbnail.stubs(:new)
 

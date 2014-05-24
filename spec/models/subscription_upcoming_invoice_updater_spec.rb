@@ -48,7 +48,7 @@ describe SubscriptionUpcomingInvoiceUpdater do
   private
 
   def stub_stripe_invoice_with_total(amount)
-    stripe_invoice = stub(total: amount, period_end: 1387929600)
+    stripe_invoice = double(total: amount, period_end: 1387929600)
     Stripe::Invoice.stubs(upcoming: stripe_invoice)
     stripe_invoice
   end

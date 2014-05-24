@@ -14,7 +14,7 @@ shared_examples 'a class inheriting from Product' do
       Announcement.stubs :current
       product = create_product
       product.announcement
-      Announcement.should have_received(:current)
+      expect(Announcement).to have_received(:current)
     end
   end
 
@@ -81,14 +81,14 @@ shared_examples 'a class inheriting from Product' do
       product = build(factory_name, :github)
       purchase = build(:purchase, purchaseable: product)
 
-      purchase.should be_fulfilled_with_github
+      expect(purchase).to be_fulfilled_with_github
     end
 
     it 'is false when product has no github team' do
       product = build(factory_name, github_team: nil)
       purchase = build(:purchase, purchaseable: product)
 
-      purchase.should_not be_fulfilled_with_github
+      expect(purchase).not_to be_fulfilled_with_github
     end
   end
 

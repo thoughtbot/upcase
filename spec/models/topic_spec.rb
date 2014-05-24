@@ -20,7 +20,7 @@ describe Topic do
     end
 
     it 'generates a stripped, url encoded slug based on name' do
-      @topic.slug.should == 'test+driven+development'
+      expect(@topic.slug).to eq('test+driven+development')
     end
   end
 
@@ -32,8 +32,8 @@ describe Topic do
     end
 
     it 'returns the top 20 featured topics' do
-      Topic.top.count.should == 20
-      Topic.top.all? {|topic| topic.count >= 5 }.should be
+      expect(Topic.top.count).to eq(20)
+      expect(Topic.top.all? {|topic| topic.count >= 5 }).to be
     end
   end
 
@@ -41,8 +41,8 @@ describe Topic do
     it 'returns the featured topics' do
       normal = create(:topic, featured: false)
       featured = create(:topic, featured: true)
-      Topic.featured.should include featured
-      Topic.featured.should_not include normal
+      expect(Topic.featured).to include featured
+      expect(Topic.featured).not_to include normal
     end
   end
 

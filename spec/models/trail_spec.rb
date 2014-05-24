@@ -25,13 +25,13 @@ describe Trail do
   context '#import' do
     before do
       fake_body_str = FakeTrailMap.new.trail.to_json
-      Curl.stubs(get: stub(body_str: fake_body_str, response_code: 200))
+      Curl.stubs(get: double(body_str: fake_body_str, response_code: 200))
     end
 
     it 'downloads a trail and stores it' do
       trail = create(:trail, slug: 'fake-trail')
       trail.import
-      trail.trail_map.should == FakeTrailMap.new.trail
+      expect(trail.trail_map).to eq(FakeTrailMap.new.trail)
     end
 
     it "populates the topic's summary with the trail's description" do
@@ -40,7 +40,7 @@ describe Trail do
 
       trail.import
 
-      topic.reload.summary.should == 'Description of Git'
+      expect(topic.reload.summary).to eq('Description of Git')
     end
 
     it "populates the topic's name with the trail's name" do
@@ -49,7 +49,7 @@ describe Trail do
 
       trail.import
 
-      topic.reload.name.should == 'Git'
+      expect(topic.reload.name).to eq('Git')
     end
 
     it 'leaves the existing trail map alone and notifies Airbrake when there is a json error' do
@@ -63,21 +63,21 @@ describe Trail do
       trail.import
       topic.reload
 
-      Airbrake.should have_received(:notify).with(exception)
-      trail.trail_map["old"].should == true
-      topic.summary.should == 'old summary'
+      expect(Airbrake).to have_received(:notify).with(exception)
+      expect(trail.trail_map["old"]).to eq(true)
+      expect(topic.summary).to eq('old summary')
     end
 
     it 'does not update trail map if there is a non-200 http response' do
-      Curl.stubs(get: stub(response_code: 'not 200', body_str: FakeTrailMap.new.trail.to_json))
+      Curl.stubs(get: double(response_code: 'not 200', body_str: FakeTrailMap.new.trail.to_json))
       topic = create(:topic, summary: 'old summary', name: 'old name', slug: 'old+name')
       trail = create(:trail, topic: topic, trail_map: {'name' => 'old name', 'description' => 'old summary'})
 
       trail.import
 
       topic.reload
-      topic.summary.should == 'old summary'
-      topic.name.should == 'old name'
+      expect(topic.summary).to eq('old summary')
+      expect(topic.name).to eq('old name')
     end
   end
 
@@ -86,7 +86,7 @@ describe Trail do
       fake_trail_map = FakeTrailMap.new
       fake_trail_map.prerequisites = ['exists', 'doesnotexist']
       fake_body_str = fake_trail_map.trail.to_json
-      Curl.stubs(get: stub(body_str: fake_body_str, response_code: 200))
+      Curl.stubs(get: double(body_str: fake_body_str, response_code: 200))
     end
 
     it 'associates the topic that exists' do
@@ -103,7 +103,7 @@ describe Trail do
     it 'returns the correct url based on slug' do
       trail = Trail.new
       trail.slug = 'ruby-on-rails'
-      trail.contribute_url.should eq 'https://github.com/thoughtbot/trail-map/blob/master/trails/ruby-on-rails.json'
+      expect(trail.contribute_url).to eq 'https://github.com/thoughtbot/trail-map/blob/master/trails/ruby-on-rails.json'
     end
   end
 
@@ -155,7 +155,7 @@ describe Trail do
   context '.import' do
     it 'imports each trail' do
       trail = create(:trail, trail_map: { hello: 'world' })
-      Curl.stubs(get: stub(body_str: FakeTrailMap.new.trail.to_json, response_code: 200))
+      Curl.stubs(get: double(body_str: FakeTrailMap.new.trail.to_json, response_code: 200))
 
       expect(trail.trail_map).not_to eq FakeTrailMap.new.trail
 

@@ -13,7 +13,7 @@ describe GithubFulfillment do
 
       GithubFulfillment.new(purchase).fulfill
 
-      GithubFulfillmentJob.should have_received(:enqueue)
+      expect(GithubFulfillmentJob).to have_received(:enqueue)
     end
 
     it "doesn't fulfill using GitHub with a blank GitHub team" do
@@ -27,7 +27,7 @@ describe GithubFulfillment do
 
       GithubFulfillment.new(purchase).fulfill
 
-      GithubFulfillmentJob.should have_received(:enqueue).never
+      expect(GithubFulfillmentJob).to have_received(:enqueue).never
     end
   end
 
@@ -43,7 +43,7 @@ describe GithubFulfillment do
 
       GithubFulfillment.new(purchase).remove
 
-      GithubRemovalJob.should have_received(:enqueue).
+      expect(GithubRemovalJob).to have_received(:enqueue).
         with(product.github_team, ['jayroh', 'cpytel'])
     end
 
@@ -58,7 +58,7 @@ describe GithubFulfillment do
 
       GithubFulfillment.new(purchase).remove
 
-      GithubRemovalJob.should have_received(:enqueue).never
+      expect(GithubRemovalJob).to have_received(:enqueue).never
     end
   end
 end

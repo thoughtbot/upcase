@@ -27,7 +27,7 @@ describe Clip do
   context '#running_time' do
     it 'returns the running time' do
       video = Clip.new('123')
-      wistia_hash = { 'duration' => stub }
+      wistia_hash = { 'duration' => double }
       Wistia.stubs(:get_media_hash_from_id).with('123').returns(wistia_hash)
 
       expect(video.running_time).to eq wistia_hash['duration']

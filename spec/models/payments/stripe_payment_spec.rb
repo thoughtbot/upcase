@@ -9,9 +9,9 @@ describe Payments::StripePayment do
 
       result = payment.place
 
-      result.should be_true
-      purchase.payment_transaction_id.should ==  'TRANSACTION-123'
-      purchase.should be_paid
+      expect(result).to be_true
+      expect(purchase.payment_transaction_id).to eq('TRANSACTION-123')
+      expect(purchase).to be_paid
     end
 
     it "updates the customer's plan for a subscription" do
@@ -41,7 +41,7 @@ describe Payments::StripePayment do
 
     it 'updates the subscription with the given coupon' do
       customer = stub_existing_customer
-      coupon = stub('coupon', amount_off: 25)
+      coupon = double('coupon', amount_off: 25)
       Stripe::Coupon.stubs(:retrieve).returns(coupon)
       purchase = build_plan_purchase(stripe_coupon_id: '25OFF')
       payment = Payments::StripePayment.new(purchase)
@@ -60,7 +60,7 @@ describe Payments::StripePayment do
 
       payment.place
 
-      purchase.stripe_customer_id.should == 'stripe'
+      expect(purchase.stripe_customer_id).to eq('stripe')
     end
 
     it "doesn't create a customer if one is already assigned" do
@@ -71,7 +71,7 @@ describe Payments::StripePayment do
 
       payment.place
 
-      purchase.stripe_customer_id.should == 'original'
+      expect(purchase.stripe_customer_id).to eq('original')
     end
 
     it 'it adds an error message with a bad card' do
@@ -84,8 +84,8 @@ describe Payments::StripePayment do
 
       result = payment.place
 
-      result.should be_false
-      purchase.errors[:base].should include(
+      expect(result).to be_false
+      expect(purchase.errors[:base]).to include(
         'There was a problem processing your credit card, your card was declined'
       )
     end
@@ -101,7 +101,7 @@ describe Payments::StripePayment do
 
       payment.update_user(user)
 
-      user.reload.stripe_customer_id.should eq 'stripe'
+      expect(user.reload.stripe_customer_id).to eq 'stripe'
     end
   end
 
@@ -113,8 +113,8 @@ describe Payments::StripePayment do
 
       payment.refund
 
-      Stripe::Charge.should have_received(:retrieve).with('TRANSACTION-ID')
-      charge.should have_received(:refund).with(amount: 1500)
+      expect(Stripe::Charge).to have_received(:retrieve).with('TRANSACTION-ID')
+      expect(charge).to have_received(:refund).with(amount: 1500)
     end
 
     it 'ignores a missing charge' do
@@ -132,26 +132,26 @@ describe Payments::StripePayment do
 
       payment.refund
 
-      charge.should have_received(:refund).never
+      expect(charge).to have_received(:refund).never
     end
   end
 
   def stub_existing_customer
-    customer = stub('customer', update_subscription: true)
+    customer = double('customer', update_subscription: true)
     Stripe::Customer.stubs(:retrieve).returns(customer)
     customer
   end
 
   def stub_existing_charge(overides = {})
     attributes = { refunded: false, id: 'TRANSACTION-123' }.merge(overides)
-    refunded = stub('refunded_charge', attributes.merge(refunded: true))
-    stub('charge', attributes.merge(refund: refunded)).tap do |charge|
+    refunded = double('refunded_charge', attributes.merge(refunded: true))
+    double('charge', attributes.merge(refund: refunded)).tap do |charge|
       Stripe::Charge.stubs(:retrieve).returns(charge)
     end
   end
 
   def stub_purchase(overrides = {})
-    stub(
+    double(
       'purchase',
       {
         price: 1,
@@ -166,8 +166,8 @@ describe Payments::StripePayment do
       transaction_id: 'TRANSACTION-ID'
     }.merge(overrides)
 
-    Stripe::Customer.stubs(:create).returns(stub(id: arguments[:customer_id]))
-    Stripe::Charge.stubs(:create).returns(stub(id: arguments[:transaction_id]))
+    Stripe::Customer.stubs(:create).returns(double(id: arguments[:customer_id]))
+    Stripe::Charge.stubs(:create).returns(double(id: arguments[:transaction_id]))
   end
 
   def build_plan_purchase(overrides = {})

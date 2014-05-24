@@ -26,9 +26,9 @@ describe IndividualPlan do
 
   describe '.default' do
     it 'returns the first, active, featured, ordered plan' do
-      ordered = stub(first: stub())
-      featured = stub(ordered: ordered)
-      active = stub(featured: featured)
+      ordered = double(first: double())
+      featured = double(ordered: ordered)
+      active = double(featured: featured)
       IndividualPlan.stubs(active: active)
 
       IndividualPlan.default
@@ -86,7 +86,7 @@ describe IndividualPlan do
   describe 'subscription_interval' do
     it 'returns the interval from the stripe plan' do
       plan = build_stubbed(:plan)
-      stripe_plan = stub(interval: 'year')
+      stripe_plan = double(interval: 'year')
       Stripe::Plan.stubs(:retrieve).returns(stripe_plan)
 
       expect(plan.subscription_interval).to eq 'year'
@@ -131,7 +131,7 @@ describe IndividualPlan do
       dashboard_path = 'http://example.com/dashboard'
       plan = build_stubbed(:individual_plan)
       purchase = build_stubbed(:purchase, purchaseable: plan)
-      controller = stub('controller')
+      controller = double('controller')
       controller.stubs(:dashboard_path).returns(dashboard_path)
 
       after_purchase_url = plan.after_purchase_url(controller, purchase)

@@ -43,7 +43,7 @@ describe AuthHashService, '#find_or_create_user_from_auth_hash' do
   end
 
   def stub_team_member(return_value)
-    client = stub('github_client')
+    client = double('github_client')
     client.
       stubs(:team_member?).
       with(AuthHashService::THOUGHTBOT_GITHUB_TEAM_ID, 'thoughtbot').

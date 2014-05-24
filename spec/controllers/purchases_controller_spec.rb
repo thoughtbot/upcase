@@ -85,7 +85,7 @@ describe PurchasesController do
 
       post :create, purchase: customer_params(stripe_token), product_id: product.to_param
 
-      FakeStripe.should have_charged(1500).to('test@example.com').with_token(stripe_token)
+      expect(FakeStripe).to have_charged(1500).to('test@example.com').with_token(stripe_token)
     end
   end
 
@@ -95,7 +95,7 @@ describe PurchasesController do
 
     post :create, purchase: customer_params, product_id: product
 
-    flash[:purchase_amount].should eq product.individual_price
+    expect(flash[:purchase_amount]).to eq product.individual_price
   end
 
   describe "processing on paypal" do
@@ -105,9 +105,9 @@ describe PurchasesController do
 
       post :create, purchase: { variant: "individual", name: "User", email: "test@example.com", payment_method: "paypal" }, product_id: product.to_param
 
-      response.status.should == 302
-      response.location.should == FakePaypal.outgoing_uri
-      assigns(:purchase).should_not be_paid
+      expect(response.status).to eq(302)
+      expect(response.location).to eq(FakePaypal.outgoing_uri)
+      expect(assigns(:purchase)).not_to be_paid
     end
   end
 
@@ -122,7 +122,7 @@ describe PurchasesController do
 
       get :show, id: purchase.to_param
 
-      response.should redirect_to(book_path(product))
+      expect(response).to redirect_to(book_path(product))
     end
   end
 

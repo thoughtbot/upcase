@@ -33,14 +33,14 @@ describe Workshop do
       Announcement.stubs :current
       workshop = create(:workshop)
       workshop.announcement
-      Announcement.should have_received(:current)
+      expect(Announcement).to have_received(:current)
     end
   end
 
   describe '#to_param' do
     it 'returns the id and parameterized name' do
       workshop = create(:workshop)
-      workshop.to_param.should == "#{workshop.id}-#{workshop.name.parameterize}"
+      expect(workshop.to_param).to eq("#{workshop.id}-#{workshop.name.parameterize}")
     end
   end
 
@@ -101,14 +101,14 @@ describe Workshop do
       product = build(:book, :github)
       purchase = build(:purchase, purchaseable: product)
 
-      purchase.should be_fulfilled_with_github
+      expect(purchase).to be_fulfilled_with_github
     end
 
     it 'is false when product has no github team' do
       product = build(:book, github_team: nil)
       purchase = build(:purchase, purchaseable: product)
 
-      purchase.should_not be_fulfilled_with_github
+      expect(purchase).not_to be_fulfilled_with_github
     end
   end
 
@@ -130,13 +130,13 @@ describe Workshop do
     it 'fulfills using GitHub with a GitHub team' do
       purchase = build_stubbed(:purchase)
       user = build_stubbed(:user)
-      fulfillment = stub('fulfillment', :fulfill)
+      fulfillment = double('fulfillment', :fulfill)
       workshop = build_stubbed(:workshop, github_team: 'example')
       GithubFulfillment.stubs(:new).with(purchase).returns(fulfillment)
 
       workshop.fulfill(purchase, user)
 
-      fulfillment.should have_received(:fulfill)
+      expect(fulfillment).to have_received(:fulfill)
     end
   end
 

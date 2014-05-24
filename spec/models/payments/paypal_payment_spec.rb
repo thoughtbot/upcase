@@ -12,8 +12,8 @@ describe Payments::PaypalPayment do
 
       payment.place
 
-      Paypal::Payment::Request.
-        should have_received(:new).
+      expect(Paypal::Payment::Request).
+        to have_received(:new).
         with(
           currency_code: :USD,
           amount: purchase.price,
@@ -22,16 +22,16 @@ describe Payments::PaypalPayment do
             { amount: purchase.price, description: purchase.purchaseable_name }
           ]
         )
-      express_request.
-        should have_received(:setup).
+      expect(express_request).
+        to have_received(:setup).
           with(
             payment_request,
             paypal_purchase_url(purchase, host: Payments::PaypalPayment.host),
             products_url(host: Payments::PaypalPayment.host)
           )
-      purchase.paypal_url.should == 'http://paypalurl'
-      purchase.should have_received(:set_as_unpaid)
-      purchase.should have_received(:set_as_paid).never
+      expect(purchase.paypal_url).to eq('http://paypalurl')
+      expect(purchase).to have_received(:set_as_unpaid)
+      expect(purchase).to have_received(:set_as_paid).never
     end
   end
 
@@ -44,9 +44,9 @@ describe Payments::PaypalPayment do
 
       payment.complete token: 'TOKEN', PayerID: 'PAYERID'
 
-      purchase.payment_transaction_id.should == 'TRANSACTION-ID'
-      purchase.should have_received(:set_as_paid)
-      purchase.should have_received(:set_as_unpaid).never
+      expect(purchase.payment_transaction_id).to eq('TRANSACTION-ID')
+      expect(purchase).to have_received(:set_as_paid)
+      expect(purchase).to have_received(:set_as_unpaid).never
     end
   end
 
@@ -58,7 +58,7 @@ describe Payments::PaypalPayment do
 
       payment.refund
 
-      express_request.should have_received(:refund!).with('TRANSACTION-ID')
+      expect(express_request).to have_received(:refund!).with('TRANSACTION-ID')
     end
   end
 
@@ -67,7 +67,7 @@ describe Payments::PaypalPayment do
       purchase = stub_purchase
       payment = Payments::PaypalPayment.new(purchase)
 
-      expect { payment.update_user(stub('user')) }.not_to raise_error
+      expect { payment.update_user(double('user')) }.not_to raise_error
     end
   end
 
@@ -83,23 +83,23 @@ describe Payments::PaypalPayment do
 
     it 'can produce the host after setting it' do
       Payments::PaypalPayment.host = 'hottiesandcreepers.com:123467'
-      Payments::PaypalPayment.host.should == 'hottiesandcreepers.com:123467'
+      expect(Payments::PaypalPayment.host).to eq('hottiesandcreepers.com:123467')
     end
 
     it 'gives default host when host is not set' do
       Payments::PaypalPayment.host = nil
-      Payments::PaypalPayment.host.
-        should eq ActionMailer::Base.default_url_options[:host]
+      expect(Payments::PaypalPayment.host).
+        to eq ActionMailer::Base.default_url_options[:host]
     end
   end
 
   def stub_express_request(overrides = {})
     transaction_id = overrides[:transaction_id] || 'TRANSACTION-123'
 
-    stub(
+    double(
       'express_request',
-      setup: stub(redirect_uri: 'http://paypalurl'),
-      checkout!: stub(payment_info: [stub(transaction_id: transaction_id)]),
+      setup: double(redirect_uri: 'http://paypalurl'),
+      checkout!: double(payment_info: [double(transaction_id: transaction_id)]),
       refund!: nil
     ).tap do |express_request|
       Paypal::Express::Request.stubs(new: express_request)
@@ -107,7 +107,7 @@ describe Payments::PaypalPayment do
   end
 
   def stub_payment_request
-    stub('payment_request').tap do |payment_request|
+    double('payment_request').tap do |payment_request|
       Paypal::Payment::Request.stubs(new: payment_request)
     end
   end

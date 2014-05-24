@@ -6,7 +6,7 @@ describe ReportUploader do
     it 'uploads report file to s3' do
       AWS.config(stub_requests: true)
 
-      stubbed_report = stub(rows: report_fixture, report_name: 'subscription_count')
+      stubbed_report = double(rows: report_fixture, report_name: 'subscription_count')
       report_uploader = ReportUploader.new(stubbed_report, aws_config)
 
       aws_report_object = report_uploader.bucket_report_object.expects(:write).with(report_fixture_string, acl: :public_read)
@@ -19,7 +19,7 @@ describe ReportUploader do
 
   describe '#bucket_report_object' do
     it 'returns the bucket object with correct key' do
-      stubbed_report = stub(rows: [], report_name: 'subscription_count')
+      stubbed_report = double(rows: [], report_name: 'subscription_count')
       report_uploader = ReportUploader.new(stubbed_report, aws_config)
 
       bucket_object = report_uploader.bucket_report_object

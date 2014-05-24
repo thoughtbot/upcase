@@ -87,7 +87,7 @@ module Teams
       end
 
       def stub_team_fulfillment(purchase)
-        stub('team-fulfillment', :fulfill).tap do |fulfillment|
+        double('team-fulfillment', :fulfill).tap do |fulfillment|
           TeamFulfillment.
             stubs(:new).
             with(purchase, purchase.user).
@@ -101,7 +101,7 @@ module Teams
         edit_teams_team_path = 'http://example.com/edit_team'
         plan = build_stubbed(:team_plan)
         purchase = build_stubbed(:purchase, purchaseable: plan)
-        controller = stub('controller')
+        controller = double('controller')
         controller.stubs(:edit_teams_team_path).returns(edit_teams_team_path)
 
         after_purchase_url = plan.after_purchase_url(controller, purchase)

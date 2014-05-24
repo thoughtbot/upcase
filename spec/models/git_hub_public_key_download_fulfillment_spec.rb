@@ -3,7 +3,7 @@ require 'spec_helper'
 describe GitHubPublicKeyDownloadFulfillment do
   describe '#fulfill' do
     it "uses the GitHub API to download the user's API keys" do
-      public_keys = stub('public_keys')
+      public_keys = double('public_keys')
       public_keys.stubs(:create!)
       user = build_stubbed(:user, :with_github)
       user.stubs(:public_keys).returns(public_keys)
@@ -12,7 +12,7 @@ describe GitHubPublicKeyDownloadFulfillment do
         Hashie::Mash.new(key: 'key-one'),
         Hashie::Mash.new(key: 'key-two')
       ]
-      github_client = stub('github_client')
+      github_client = double('github_client')
       Octokit::Client
         .stubs(:new)
         .with(login: GITHUB_USER, password: GITHUB_PASSWORD)

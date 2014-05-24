@@ -6,7 +6,7 @@ describe Mentor do
 
   describe '.promoted' do
     it 'executes queries on the relation' do
-      mentors = stub('mentors', :sample)
+      mentors = double('mentors', :sample)
       Mentor.stubs(accepting_new_mentees: mentors)
 
       Mentor.promoted

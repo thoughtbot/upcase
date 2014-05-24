@@ -5,18 +5,18 @@ describe Cancellation do
     before :each do
       subscription.stubs(:stripe_customer_id).returns('cus_1CXxPJDpw1VLvJ')
 
-      mailer = stub(deliver: true)
+      mailer = double(deliver: true)
       SubscriptionMailer.stubs(:cancellation_survey).
         with(subscription.user).returns(mailer)
 
-      updater = stub(unsubscribe: true)
+      updater = double(unsubscribe: true)
       AnalyticsUpdater.stubs(:new).with(subscription.user).returns(updater)
     end
 
     it 'makes the subscription inactive and records the current date' do
       cancellation.process
 
-      subscription.deactivated_on.should == Time.zone.today
+      expect(subscription.deactivated_on).to eq(Time.zone.today)
     end
 
     it 'sends a unsubscription survey email' do
@@ -43,18 +43,18 @@ describe Cancellation do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription)
 
-      stripe_customer = stub(
+      stripe_customer = double(
         'Stripe::Customer',
         cancel_subscription: nil,
-        subscription: stub(current_period_end: 1361234235)
+        subscription: double(current_period_end: 1361234235)
       )
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
       cancellation.schedule
 
-      stripe_customer.should have_received(:cancel_subscription).
+      expect(stripe_customer).to have_received(:cancel_subscription).
         with(at_period_end: true)
 
-      subscription.scheduled_for_cancellation_on.should eq Time.zone.at(1361234235).to_date
+      expect(subscription.scheduled_for_cancellation_on).to eq Time.zone.at(1361234235).to_date
     end
 
     it 'retrieves the customer correctly' do
@@ -62,10 +62,10 @@ describe Cancellation do
       cancellation = Cancellation.new(subscription)
 
       subscription.stubs(:stripe_customer_id).returns('cus_1CXxPJDpw1VLvJ')
-      stripe_customer = stub(
+      stripe_customer = double(
         'Stripe::Customer',
         cancel_subscription: nil,
-        subscription: stub(current_period_end: 1361234235)
+        subscription: double(current_period_end: 1361234235)
       )
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
       cancellation.schedule
@@ -78,37 +78,37 @@ describe Cancellation do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription)
 
-      stripe_customer = stub('Stripe::Customer')
+      stripe_customer = double('Stripe::Customer')
       stripe_customer.stubs(:cancel_subscription).raises(Stripe::APIError)
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 
       expect { cancellation.schedule }.to raise_error
-      Subscription.find(subscription.id).should be_active
+      expect(Subscription.find(subscription.id)).to be_active
     end
 
     it 'does not unsubscribe from stripe if deactivating the subscription failed' do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription)
 
-      stripe_customer = stub('Stripe::Customer')
+      stripe_customer = double('Stripe::Customer')
       subscription.stubs(:destroy).raises(ActiveRecord::RecordNotSaved)
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 
       expect { cancellation.schedule }.to raise_error
-      subscription.should have_received(:cancel_subscription).never
+      expect(subscription).to have_received(:cancel_subscription).never
     end
   end
 
   describe 'cancel_and_refund' do
     it 'cancels immediately and refunds the last charge with Stripe' do
       subscription = create(:subscription)
-      charge = stub('Stripe::Charge', id: 'charge_id', refund: nil)
+      charge = double('Stripe::Charge', id: 'charge_id', refund: nil)
       subscription.stubs(:last_charge).returns(charge)
       cancellation = Cancellation.new(subscription)
-      stripe_customer = stub(
+      stripe_customer = double(
         'Stripe::Customer',
         cancel_subscription: nil,
-        subscription: stub(current_period_end: 1361234235)
+        subscription: double(current_period_end: 1361234235)
       )
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 
@@ -124,10 +124,10 @@ describe Cancellation do
       subscription = create(:subscription)
       subscription.stubs(:last_charge).returns(nil)
       cancellation = Cancellation.new(subscription)
-      stripe_customer = stub(
+      stripe_customer = double(
         'Stripe::Customer',
         cancel_subscription: nil,
-        subscription: stub(current_period_end: 1361234235)
+        subscription: double(current_period_end: 1361234235)
       )
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 

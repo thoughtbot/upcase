@@ -30,6 +30,6 @@ describe Payments::SubscriptionPayment do
   end
 
   def build_subscription_purchase
-    stub('purchase', set_as_paid: true)
+    double('purchase', set_as_paid: true)
   end
 end
