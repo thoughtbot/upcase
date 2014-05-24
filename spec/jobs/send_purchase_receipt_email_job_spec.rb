@@ -7,7 +7,7 @@ describe SendPurchaseReceiptEmailJob do
     it 'enqueues a job' do
       purchase = create(:purchase)
 
-      SendPurchaseReceiptEmailJob.enqueue(purchase.id).should
+      expect(SendPurchaseReceiptEmailJob.enqueue(purchase.id)).to
         enqueue_delayed_job(SendPurchaseReceiptEmailJob)
     end
   end
@@ -19,8 +19,8 @@ describe SendPurchaseReceiptEmailJob do
 
       SendPurchaseReceiptEmailJob.new(purchase.id).perform
 
-      PurchaseMailer.should have_received(:purchase_receipt).with(purchase)
-      mail_stub.should have_received(:deliver)
+      expect(PurchaseMailer).to have_received(:purchase_receipt).with(purchase)
+      expect(mail_stub).to have_received(:deliver)
     end
   end
 end

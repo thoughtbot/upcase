@@ -3,8 +3,8 @@ require 'spec_helper'
 describe VideoPage do
   describe '#purchaseable' do
     it 'delegates to purchase' do
-      purchaseable = stub('purchaseable')
-      purchase = stub('purchase', purchaseable: purchaseable)
+      purchaseable = double('purchaseable')
+      purchase = double('purchase', purchaseable: purchaseable)
 
       result = create_video_page(purchase: purchase).purchaseable
 
@@ -14,8 +14,8 @@ describe VideoPage do
 
   describe '#collection?' do
     it 'delegates to purchaseable' do
-      purchaseable = stub('purchaseable', collection?: true)
-      purchase = stub('purchase', purchaseable: purchaseable)
+      purchaseable = double('purchaseable', collection?: true)
+      purchase = double('purchase', purchaseable: purchaseable)
 
       result = create_video_page(purchase: purchase).collection?
 
@@ -25,8 +25,8 @@ describe VideoPage do
 
   describe '#name' do
     it 'delegates to purchaseable' do
-      purchaseable = stub('purchaseable', name: 'abc123')
-      purchase = stub('purchase', purchaseable: purchaseable)
+      purchaseable = double('purchaseable', name: 'abc123')
+      purchase = double('purchase', purchaseable: purchaseable)
 
       name = create_video_page(purchase: purchase).name
 
@@ -36,7 +36,7 @@ describe VideoPage do
 
   describe '#paid?' do
     it 'delegates to purchase' do
-      purchase = stub('purchase', paid?: true)
+      purchase = double('purchase', paid?: true)
 
       result = create_video_page(purchase: purchase)
 
@@ -46,7 +46,7 @@ describe VideoPage do
 
   describe '#title' do
     it 'delegates to video' do
-      video = stub('video', title: 'abc123')
+      video = double('video', title: 'abc123')
 
       title = create_video_page(video: video).title
 
@@ -55,8 +55,8 @@ describe VideoPage do
   end
 
   def create_video_page(options)
-    purchase = options[:purchase] || stub('purchase')
-    video = options[:video] || stub('video')
+    purchase = options[:purchase] || double('purchase')
+    video = options[:video] || double('video')
     VideoPage.new(purchase: purchase, video: video)
   end
 end

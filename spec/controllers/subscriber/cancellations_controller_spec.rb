@@ -31,9 +31,9 @@ describe Subscriber::CancellationsController do
   describe '#create with a subscription that has never been charged' do
     it 'redirects to the account page' do
       user = build_stubbed(:user)
-      subscription = stub(last_charge: nil)
+      subscription = double(last_charge: nil)
       user.stubs(subscription: subscription)
-      Cancellation.stubs(:new).returns(stub(schedule: nil))
+      Cancellation.stubs(:new).returns(double(schedule: nil))
       sign_in_as(user)
 
       post :create

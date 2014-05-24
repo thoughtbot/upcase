@@ -6,7 +6,7 @@ describe 'videos/_watch_video.html.erb' do
 
     render_view(video)
 
-    rendered.should include(video.notes_html)
+    expect(rendered).to include(video.notes_html)
   end
 
   it "can still render a video without notes" do

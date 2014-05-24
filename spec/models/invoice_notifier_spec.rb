@@ -27,7 +27,7 @@ describe InvoiceNotifier do
   end
 
   def stub_invoice
-    stub(
+    double(
       'invoice',
       user: true,
       user_email: 'someone@example.com',
@@ -37,7 +37,7 @@ describe InvoiceNotifier do
   end
 
   def stub_invoice_with_no_user
-    stub(
+    double(
       'invoice',
       user: nil,
       user_email: nil,
@@ -49,7 +49,7 @@ describe InvoiceNotifier do
 
   def customer_should_receive_receipt_email(invoice)
     email = ActionMailer::Base.deliveries.first
-    email.subject.should include('receipt')
-    email.to.should eq [invoice.user_email]
+    expect(email.subject).to include('receipt')
+    expect(email.to).to eq [invoice.user_email]
   end
 end

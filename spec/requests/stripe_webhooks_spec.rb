@@ -4,7 +4,7 @@ describe 'Stripe webhooks' do
   describe 'invoice.payment_succeeded' do
     describe 'invoice has a subscription' do
       it 'sends out a receipt email' do
-        invoice_notifier = stub('invoice_notifier')
+        invoice_notifier = double('invoice_notifier')
         invoice_notifier.stubs(:send_receipt)
         InvoiceNotifier.stubs(:new).returns(invoice_notifier)
         create(:subscriber, stripe_customer_id: FakeStripe::CUSTOMER_ID)
@@ -29,7 +29,7 @@ describe 'Stripe webhooks' do
 
     context 'invoice missing a subscription (user canceled or up/downgraded)' do
       it 'sends out a receipt email' do
-        invoice_notifier = stub('invoice_notifier')
+        invoice_notifier = double('invoice_notifier')
         invoice_notifier.stubs(:send_receipt)
         InvoiceNotifier.stubs(:new).returns(invoice_notifier)
         create(:subscriber, stripe_customer_id: FakeStripe::CUSTOMER_ID)

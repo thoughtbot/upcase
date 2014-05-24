@@ -43,7 +43,7 @@ module Teams
       end
 
       def stub_mailer
-        stub('mailer', :invitation).tap do |mailer|
+        double('mailer', :invitation).tap do |mailer|
           InvitationMailer.stubs(:delay).returns(mailer)
         end
       end

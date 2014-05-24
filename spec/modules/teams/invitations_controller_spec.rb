@@ -4,7 +4,7 @@ module Teams
   describe InvitationsController, type: :controller do
     it_behaves_like 'must be team member' do
       def perform_request
-        invitation = stub('invitation', deliver: true)
+        invitation = double('invitation', deliver: true)
         Invitation.stubs(:new).returns(invitation)
 
         post :create, teams_invitation: { email: 'somebody@example.com' }

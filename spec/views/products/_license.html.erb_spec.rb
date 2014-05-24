@@ -6,7 +6,7 @@ describe 'products/_license.html' do
 
     render_with_licenses
 
-    rendered.should_not have_buy_individually_text
+    expect(rendered).not_to have_buy_individually_text
   end
 
   it 'renders with licenses and no subscription' do
@@ -14,7 +14,7 @@ describe 'products/_license.html' do
 
     render_with_licenses
 
-    rendered.should have_buy_individually_text
+    expect(rendered).to have_buy_individually_text
   end
 
   it 'renders with no licenses and no subscription' do
@@ -22,7 +22,7 @@ describe 'products/_license.html' do
 
     render_with_no_licenses
 
-    rendered.should_not have_buy_individually_text
+    expect(rendered).not_to have_buy_individually_text
   end
 
   def stub_active_subscription

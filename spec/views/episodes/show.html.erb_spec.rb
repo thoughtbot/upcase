@@ -37,7 +37,7 @@ describe 'episodes/show' do
   end
 
   def stub_controller(video)
-    assign :plan, stub
+    assign :plan, double
     assign :video, video
 
     view_stubs(:signed_out?).returns(true)

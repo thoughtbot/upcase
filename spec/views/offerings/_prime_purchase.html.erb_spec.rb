@@ -5,18 +5,18 @@ describe 'offerings/_prime_purchase.html.erb' do
     current_user_has_subscription = false
     render_template current_user_has_subscription
 
-    rendered.should include('Subscribe to')
+    expect(rendered).to include('Subscribe to')
   end
 
   it "does not sell the user on Prime if the CTA shouldn't be displayed" do
     current_user_has_subscription = true
     render_template current_user_has_subscription
 
-    rendered.should_not include('Subscribe to')
+    expect(rendered).not_to include('Subscribe to')
   end
 
   def render_template(current_user_has_subscription)
-    product = stub('product', offering_type: 'book')
+    product = double('product', offering_type: 'book')
 
     Mocha::Configuration.allow :stubbing_non_existent_method do
       view.stubs(

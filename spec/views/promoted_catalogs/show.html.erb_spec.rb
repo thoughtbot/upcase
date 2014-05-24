@@ -128,7 +128,7 @@ describe 'promoted_catalogs/show.html.erb' do
   def assign_catalog(books: [], workshops: [], screencasts: [], mentors: [])
     assign(
       :catalog,
-      stub(
+      double(
         books: books,
         workshops: workshops,
         screencasts: screencasts,

@@ -8,9 +8,9 @@ feature 'User can download books directly' do
 
     visit product_path(product, as: user)
 
-    page.should have_css("a[href*='test-github.pdf']")
-    page.should have_css("a[href*='test-github.epub']")
-    page.should have_css("a[href*='test-github.mobi']")
+    expect(page).to have_css("a[href*='test-github.pdf']")
+    expect(page).to have_css("a[href*='test-github.epub']")
+    expect(page).to have_css("a[href*='test-github.mobi']")
   end
 
 end

@@ -19,7 +19,7 @@ feature 'Visitor views workshop details' do
 
     workshop_page.load
 
-    expect(workshop_page).to have(0).questions
-    expect(workshop_page).to have(0).answers
+    expect(workshop_page.size).to eq(0)
+    expect(workshop_page.size).to eq(0)
   end
 end

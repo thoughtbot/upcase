@@ -9,8 +9,8 @@ describe GithubRemovalJob do
 
     GithubRemovalJob.new(3, ['gabebw', 'cpytel']).perform
 
-    client.should have_received(:remove_team_member).with(3, 'gabebw')
-    client.should have_received(:remove_team_member).with(3, 'cpytel')
+    expect(client).to have_received(:remove_team_member).with(3, 'gabebw')
+    expect(client).to have_received(:remove_team_member).with(3, 'cpytel')
   end
 
   [Octokit::NotFound, Net::HTTPBadResponse].each do |error_class|
@@ -21,12 +21,12 @@ describe GithubRemovalJob do
 
       GithubRemovalJob.new(3, ['gabebw']).perform
 
-      Airbrake.should have_received(:notify).with(instance_of(error_class))
+      expect(Airbrake).to have_received(:notify).with(instance_of(error_class))
     end
   end
 
   def stub_octokit
-    stub('Octokit::Client').tap do |client|
+    double('Octokit::Client').tap do |client|
       Octokit::Client.stubs(:new =>  client)
     end
   end

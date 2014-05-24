@@ -45,7 +45,7 @@ feature 'Using coupons' do
   end
 
   def expect_payment_options_to_be_hidden
-    page.should have_no_css('#billing-information')
+    expect(page).to have_no_css('#billing-information')
   end
 
 end

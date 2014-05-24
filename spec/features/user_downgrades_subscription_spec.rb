@@ -7,7 +7,7 @@ feature 'User downgrades subscription', js: true do
     workshop = create(:workshop)
 
     sign_in_as_user_with_subscription
-    @current_user.should have_active_subscription
+    expect(@current_user).to have_active_subscription
     visit products_path
     expect(find('.header-container')).not_to have_content('Prime Membership')
     expect(page).not_to have_link('Subscribe to Prime')

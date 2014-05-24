@@ -6,7 +6,7 @@ module DelayedJobsHelpers
   end
 
   def stub_mail_method(klass, method_name)
-    stub('mail', deliver: true).tap do |mail|
+    double('mail', deliver: true).tap do |mail|
       klass.stubs(method_name => mail)
     end
   end

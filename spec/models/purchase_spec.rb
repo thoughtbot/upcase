@@ -37,7 +37,7 @@ describe Purchase do
 
     it 'it uses PurchasePriceCalculator to calculate the price if paid price is blank' do
       purchase = build(:purchase)
-      price_calculator_stub = stub('price_calculator', calculate: true)
+      price_calculator_stub = double('price_calculator', calculate: true)
       PurchasePriceCalculator.stubs(new: price_calculator_stub)
       coupon = CouponFactory.for_purchase(purchase)
 
@@ -66,7 +66,7 @@ describe Purchase do
     it 'returns paid purchases' do
       paid = create(:purchase)
       unpaid = create(:unpaid_purchase)
-      Purchase.paid.should == [paid]
+      expect(Purchase.paid).to eq([paid])
     end
   end
 
@@ -132,7 +132,7 @@ describe Purchase do
 
       purchase.save!
 
-      SendPurchaseReceiptEmailJob.should have_received(:enqueue).never
+      expect(SendPurchaseReceiptEmailJob).to have_received(:enqueue).never
     end
   end
 
@@ -142,8 +142,8 @@ describe Purchase do
 
       purchase.set_as_paid
 
-      purchase.paid.should be_true
-      purchase.paid_price.should eq purchase.price
+      expect(purchase.paid).to be_true
+      expect(purchase.paid_price).to eq purchase.price
     end
 
     it 'applies a coupon' do
@@ -153,7 +153,7 @@ describe Purchase do
 
       purchase.set_as_paid
 
-      coupon.should have_received(:applied)
+      expect(coupon).to have_received(:applied)
     end
   end
 
@@ -163,7 +163,7 @@ describe Purchase do
 
       purchase.set_as_unpaid
 
-      purchase.should_not be_paid
+      expect(purchase).not_to be_paid
     end
   end
 
@@ -190,14 +190,14 @@ describe Purchase do
   it 'uses its lookup for its param' do
     purchase = build(:purchase, lookup: 'findme')
 
-    purchase.to_param.should eq 'findme'
+    expect(purchase.to_param).to eq 'findme'
   end
 
   it 'generates a lookup' do
     purchase = build(:purchase, lookup: nil)
 
     purchase.save!
-    purchase.lookup.should_not be_nil
+    expect(purchase.lookup).not_to be_nil
   end
 
   it 'validates the presence of a user when purchasing a plan' do
@@ -222,7 +222,7 @@ describe Purchase do
 
       purchase.save!
 
-      fulfillment.should have_received(:fulfill)
+      expect(fulfillment).to have_received(:fulfill)
     end
 
     it "doesn't fulfill a subscription when not purchasing a plan" do
@@ -231,13 +231,13 @@ describe Purchase do
 
       purchase.save!
 
-      fulfillment.should have_received(:fulfill).never
+      expect(fulfillment).to have_received(:fulfill).never
     end
   end
 
   describe '#success_url' do
     it 'returns its paypal URL for paypal' do
-      controller = stub('controller')
+      controller = double('controller')
       purchase = build_stubbed(
         :purchase,
         payment_method: 'paypal',
@@ -248,7 +248,7 @@ describe Purchase do
     end
 
     it 'delegates to its purchaseable' do
-      controller = stub('controller')
+      controller = double('controller')
       after_purchase_url = 'http://example.com/after_purchase'
       product = build_stubbed(:product)
       purchase = build_stubbed(
@@ -268,11 +268,11 @@ end
 
 describe Purchase, 'with stripe and a bad card' do
   it "doesn't save" do
-    payment = stub('payment', place: false)
+    payment = double('payment', place: false)
     Payments::StripePayment.stubs(:new).returns(payment)
     product = build(:product, individual_price: 15, company_price: 50)
     purchase = build(:purchase, purchaseable: product, payment_method: 'stripe')
-    purchase.save.should be_false
+    expect(purchase.save).to be_false
   end
 end
 
@@ -284,14 +284,14 @@ describe Purchase, 'being paid' do
 
     purchase.save!
 
-    SendPurchaseReceiptEmailJob.should have_received(:enqueue).with(purchase.id)
+    expect(SendPurchaseReceiptEmailJob).to have_received(:enqueue).with(purchase.id)
   end
 end
 
 describe Purchase, 'with stripe' do
   let(:product) { create(:product, individual_price: 15, company_price: 50) }
   let(:purchase) { build(:purchase, purchaseable: product, payment_method: 'stripe') }
-  let(:payment) { stub('payment', :refund => true, :update_user => true, place: true) }
+  let(:payment) { double('payment', :refund => true, :update_user => true, place: true) }
   subject { purchase }
 
   before do
@@ -299,7 +299,7 @@ describe Purchase, 'with stripe' do
   end
 
   it 'is still a stripe purchase if its coupon discounts 100%' do
-    subscription_coupon = stub(apply: 0)
+    subscription_coupon = double(apply: 0)
     SubscriptionCoupon.stubs(:new).returns(subscription_coupon)
     purchase = create(:plan_purchase, stripe_coupon_id: 'FREEMONTH')
 
@@ -309,7 +309,7 @@ end
 
 describe Purchase, 'with paypal' do
   let(:product) { create(:product, individual_price: 15, company_price: 50) }
-  let(:payment) { stub('payment', place: true, refund: true, complete: true) }
+  let(:payment) { double('payment', place: true, refund: true, complete: true) }
 
   subject { build(:purchase, purchaseable: product, payment_method: 'paypal') }
 
@@ -319,16 +319,16 @@ describe Purchase, 'with paypal' do
   end
 
   it 'starts a paypal transaction' do
-    payment.should have_received(:place)
-    subject.reload.should_not be_paid
+    expect(payment).to have_received(:place)
+    expect(subject.reload).not_to be_paid
   end
 
   it 'completes a transaction' do
     params = { token: 'TOKEN' }
     subject.complete_payment(params)
 
-    payment.
-      should have_received(:complete).with(params)
+    expect(payment).
+      to have_received(:complete).with(params)
   end
 end
 
@@ -359,13 +359,13 @@ describe 'Purchases with various payment methods' do
     @stripe_purchase = create(:purchase, payment_method: 'stripe')
     @paypal_purchase = create(:purchase, payment_method: 'paypal')
 
-    Purchase.with_stripe_customer_id.should == [@stripe_purchase]
+    expect(Purchase.with_stripe_customer_id).to eq([@stripe_purchase])
   end
 end
 
 describe Purchase, 'after_save' do
   it 'copies purchase info to the purchaser' do
-    purchase_info_copier_stub = stub('payment_info_copier', copy_info_to_user: true)
+    purchase_info_copier_stub = double('payment_info_copier', copy_info_to_user: true)
     PurchaseInfoCopier.stubs(new: purchase_info_copier_stub)
     user = create(:user)
     purchase = build(:purchase, user: user)
@@ -389,8 +389,8 @@ describe 'Purchases for various emails' do
     end
 
     it '#by_email' do
-      Purchase.by_email(email).should =~ @prev_purchases
-      Purchase.by_email(email).should_not include @other_purchase
+      expect(Purchase.by_email(email)).to match(@prev_purchases)
+      expect(Purchase.by_email(email)).not_to include @other_purchase
     end
   end
 end
@@ -470,7 +470,7 @@ end
 describe Purchase, '#payment' do
   it 'returns the correct payment using the Payments::Factory' do
     purchase = build(:purchase)
-    payment_stub = stub('payment', new: true)
+    payment_stub = double('payment', new: true)
     Payments::Factory.stubs(new: payment_stub)
 
     purchase.payment

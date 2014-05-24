@@ -2,21 +2,21 @@ require 'spec_helper'
 
 describe Related do
   it 'is initialized with an item' do
-    Related.new(stub)
+    Related.new(double)
   end
 
   describe 'to_partial_path' do
     it 'returns the proper partial path' do
-      related = Related.new(stub)
+      related = Related.new(double)
       expect(related.to_partial_path).to eq 'relateds/related'
     end
   end
 
   describe 'products' do
     it 'returns the ordered active products of the item' do
-      ordered = stub(:ordered)
-      active = stub(active: ordered)
-      item = stub(products: active)
+      ordered = double(:ordered)
+      active = double(active: ordered)
+      item = double(products: active)
 
       related = Related.new(item)
       related.products
@@ -29,9 +29,9 @@ describe Related do
 
   describe 'workshops' do
     it 'returns the active ordered workshops of the item' do
-      by_position = stub(:by_position)
-      only_active = stub(only_active: by_position)
-      item = stub(workshops: only_active)
+      by_position = double(:by_position)
+      only_active = double(only_active: by_position)
+      item = double(workshops: only_active)
 
       related = Related.new(item)
       related.workshops
@@ -44,7 +44,7 @@ describe Related do
 
   describe 'topics' do
     it 'returns the related topics of the item' do
-      item = stub(topics: [])
+      item = double(topics: [])
 
       related = Related.new(item)
       related.topics

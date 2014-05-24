@@ -30,7 +30,7 @@ describe PurchaseMailer do
     end
 
     def stubbed_purchase
-      stub(
+      double(
         purchaseable_name: 'Backbone.js on Rails',
         name: 'Benny Burns',
         email: 'benny@theburns.org'

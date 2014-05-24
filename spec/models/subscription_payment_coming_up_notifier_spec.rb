@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe SubscriptionPaymentComingUpNotifier do
   it 'sends email to each subscribers' do
-    mailer = stub(deliver: true)
+    mailer = double(deliver: true)
     SubscriptionMailer.stubs(upcoming_payment_notification: mailer)
     subscription_one = build_stubbed(:subscription)
     subscription_two = build_stubbed(:subscription)

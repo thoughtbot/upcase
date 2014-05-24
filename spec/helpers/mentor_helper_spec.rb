@@ -5,7 +5,7 @@ describe MentorHelper do
     include Gravatarify::Helper
 
     it 'returns an image with a gravatar' do
-      mentor = stub('mentor', email: 'someone@example.com')
+      mentor = double('mentor', email: 'someone@example.com')
 
       mentor_image_tag = helper.mentor_image(mentor)
 
@@ -13,7 +13,7 @@ describe MentorHelper do
     end
 
     it 'returns an image whose src uses https' do
-      mentor = stub('mentor', email: 'someone@example.com')
+      mentor = double('mentor', email: 'someone@example.com')
 
       mentor_image_tag = helper.mentor_image(mentor)
 
@@ -23,7 +23,7 @@ describe MentorHelper do
 
   describe '#mentor_contact_link' do
     it 'returns a mailto link for the mentor' do
-      mentor = stub('mentor',
+      mentor = double('mentor',
                     email: 'bob@thoughtbot.com',
                     first_name: 'Bob')
       anchor_text = I18n.t('dashboards.show.contact_your_mentor',

@@ -8,12 +8,12 @@ describe UserSerializer do
 
     user_json = parse_serialized_json(user)
 
-    user_json['email'].should == user.email
-    user_json['first_name'].should == user.first_name
-    user_json['username'].should == user.github_username
-    user_json['id'].should == user.id
-    user_json['last_name'].should == user.last_name
-    user_json['avatar_url'].should == gravatar_url(user.email)
+    expect(user_json['email']).to eq(user.email)
+    expect(user_json['first_name']).to eq(user.first_name)
+    expect(user_json['username']).to eq(user.github_username)
+    expect(user_json['id']).to eq(user.id)
+    expect(user_json['last_name']).to eq(user.last_name)
+    expect(user_json['avatar_url']).to eq(gravatar_url(user.email))
   end
 
   context 'with public keys' do
@@ -26,7 +26,7 @@ describe UserSerializer do
 
       user_json = parse_serialized_json(user)
 
-      user_json['public_keys'].should match_array(%w(key-one key-two))
+      expect(user_json['public_keys']).to match_array(%w(key-one key-two))
     end
   end
 
@@ -36,7 +36,7 @@ describe UserSerializer do
 
       user_json = parse_serialized_json(user)
 
-      user_json['has_forum_access'].should be_true
+      expect(user_json['has_forum_access']).to be_true
     end
 
     it 'includes a key indicating a subscription' do
@@ -44,7 +44,7 @@ describe UserSerializer do
 
       user_json = parse_serialized_json(user)
 
-      user_json['has_active_subscription'].should be_true
+      expect(user_json['has_active_subscription']).to be_true
     end
   end
 
@@ -54,7 +54,7 @@ describe UserSerializer do
 
       user_json = parse_serialized_json(user)
 
-      user_json['has_forum_access'].should be_false
+      expect(user_json['has_forum_access']).to be_false
     end
 
     it 'includes a key indicating no subscription' do
@@ -62,7 +62,7 @@ describe UserSerializer do
 
       user_json = parse_serialized_json(user)
 
-      user_json['has_active_subscription'].should be_false
+      expect(user_json['has_active_subscription']).to be_false
     end
   end
 
@@ -72,7 +72,7 @@ describe UserSerializer do
 
       user_json = parse_serialized_json(user)
 
-      user_json['has_forum_access'].should be_true
+      expect(user_json['has_forum_access']).to be_true
     end
 
     it 'includes a key indicating they are an admin' do
@@ -80,7 +80,7 @@ describe UserSerializer do
 
       user_json = parse_serialized_json(user)
 
-      user_json['admin'].should be_true
+      expect(user_json['admin']).to be_true
     end
   end
 

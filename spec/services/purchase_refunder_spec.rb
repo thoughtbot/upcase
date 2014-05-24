@@ -10,7 +10,7 @@ describe PurchaseRefunder, '#refund' do
   end
 
   it 'does not issue a refund if it is unpaid' do
-    payment = stub('payment', place: true)
+    payment = double('payment', place: true)
     Payments::StripePayment.stubs(:new).returns(payment)
     purchase = create(:unpaid_purchase)
 
@@ -24,7 +24,7 @@ describe PurchaseRefunder, '#refund' do
     it 'removes from github' do
       product = create(:book, :github)
       purchase = create(:paid_purchase, purchaseable: product)
-      fulfillment = stub(:remove)
+      fulfillment = double(:remove)
       GithubFulfillment.stubs(:new).returns(fulfillment)
 
       PurchaseRefunder.new(purchase).refund
@@ -36,7 +36,7 @@ describe PurchaseRefunder, '#refund' do
   context 'with stripe' do
     it 'refunds money to purchaser' do
       purchase = build(:paid_purchase, payment_method: 'stripe')
-      payment = stub('payment', refund: true, place: true)
+      payment = double('payment', refund: true, place: true)
       Payments::StripePayment.stubs(:new).with(purchase).returns(payment)
 
       PurchaseRefunder.new(purchase).refund
@@ -48,7 +48,7 @@ describe PurchaseRefunder, '#refund' do
   context 'with paypal' do
     it 'refunds money to purchaser' do
       purchase = build(:paid_purchase, payment_method: 'paypal')
-      payment = stub('payment', refund: true, place: true)
+      payment = double('payment', refund: true, place: true)
       Payments::PaypalPayment.stubs(:new).with(purchase).returns(payment)
 
       PurchaseRefunder.new(purchase).refund

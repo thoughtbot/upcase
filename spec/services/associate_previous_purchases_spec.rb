@@ -3,7 +3,7 @@ require 'spec_helper'
 describe AssociatePreviousPurchases, '.create_associations_for' do
   it 'associates purchases and the stripe customer id' do
     user = create(:user)
-    associator_stub = stub(associate_purchases: true, associate_stripe_customer_id: true)
+    associator_stub = double(associate_purchases: true, associate_stripe_customer_id: true)
     AssociatePreviousPurchases.stubs(new: associator_stub)
 
     AssociatePreviousPurchases.create_associations_for(user)

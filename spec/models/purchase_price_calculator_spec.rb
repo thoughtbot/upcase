@@ -30,7 +30,7 @@ describe PurchasePriceCalculator, '#calculate' do
   end
 
   it 'calculates its price using the subscription coupon when there is a stripe coupon' do
-    subscription_coupon = stub(apply: 20)
+    subscription_coupon = double(apply: 20)
     SubscriptionCoupon.stubs(:new).returns(subscription_coupon)
     purchase = create(:plan_purchase, stripe_coupon_id: '25OFF')
 

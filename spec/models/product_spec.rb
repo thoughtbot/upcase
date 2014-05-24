@@ -85,13 +85,13 @@ describe Product do
     it 'fulfills using GitHub with a GitHub team' do
       purchase = build_stubbed(:purchase)
       user = build_stubbed(:user)
-      fulfillment = stub('fulfillment', :fulfill)
+      fulfillment = double('fulfillment', :fulfill)
       product = build_stubbed(:product, github_team: 'example')
       GithubFulfillment.stubs(:new).with(purchase).returns(fulfillment)
 
       product.fulfill(purchase, user)
 
-      fulfillment.should have_received(:fulfill)
+      expect(fulfillment).to have_received(:fulfill)
     end
   end
 
@@ -100,7 +100,7 @@ describe Product do
       purchase_path = 'http://example.com/purchase'
       product = build_stubbed(:product)
       purchase = build_stubbed(:purchase, purchaseable: product)
-      controller = stub('controller')
+      controller = double('controller')
       controller.stubs(:purchase_path).with(purchase).returns(purchase_path)
 
       after_purchase_url = product.after_purchase_url(controller, purchase)
