@@ -117,13 +117,34 @@ describe SubscriptionMailer do
       expect(upcoming_payment_notification_email).to have_body_text('2014-01-01')
     end
 
-    def upcoming_payment_notification_email
-      user = build_stubbed(:user, email: 'email@example.com')
-      subscription = build_stubbed(:subscription, next_payment_on: Date.parse('2014-01-01'),
-        user: user)
+    it 'includes the next payment amount' do
+      subscription = build_subscription(next_payment_amount: 10.00)
+
+      result = upcoming_payment_notification_email(subscription)
+
+      expect(result).to have_body_text('$10.00')
+    end
+
+    def upcoming_payment_notification_email(subscription = nil)
+      subscription = subscription || build_subscription
       subscription.stubs(plan_name: 'Individual')
 
       SubscriptionMailer.upcoming_payment_notification(subscription)
+    end
+
+    def build_subscription(attributes = {})
+      user = build_user
+      build_stubbed(
+        :subscription,
+        {
+          next_payment_on: Date.parse('2014-01-01'),
+          user: user
+        }.merge(attributes)
+      )
+    end
+
+    def build_user
+      build_stubbed(:user, email: 'email@example.com')
     end
   end
 end
