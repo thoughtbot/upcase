@@ -72,18 +72,6 @@ body.purchases-new, body.purchases-create, body.subscriber-purchases {
         margin: 0;
       }
 
-      &#purchase_city_input,
-      &#purchase_state_input,
-      &#purchase_zip_code_input,
-      &#purchase_country_input {
-        float: left;
-        width: flex-grid(6);
-      }
-
-      &#purchase_city_input, &#purchase_zip_code_input {
-        margin-right: flex-gutter();
-      }
-
       &#purchase_submit_action {
         margin-left: 0;
         margin-top: .25rem;
