@@ -369,7 +369,7 @@ FactoryGirl.define do
     association :user, :with_stripe, :with_mentor, :with_github
 
     factory :inactive_subscription do
-      deactivated_on Time.zone.today
+      deactivated_on { Time.zone.today }
     end
   end
 
@@ -377,9 +377,10 @@ FactoryGirl.define do
     association :watchable, factory: :product
     title
     wistia_id '1194803'
+    published_on { 1.day.from_now }
 
     trait :published do
-      published_on Time.zone.today
+      published_on { 1.day.ago }
     end
   end
 

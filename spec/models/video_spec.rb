@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Video do
   it { should belong_to(:watchable) }
 
+  it { should validate_presence_of(:published_on) }
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:watchable_id) }
   it { should validate_presence_of(:watchable_type) }
@@ -24,8 +25,7 @@ describe Video do
           create(:video, published_on: Time.zone.today),
         ]
         unpublished_videos = [
-          create(:video, published_on: 1.day.from_now.to_date),
-          create(:video, published_on: nil),
+          create(:video, published_on: 1.day.from_now.to_date)
         ]
 
         expect(Video.published).to match_array(published_videos)
