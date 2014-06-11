@@ -3,10 +3,11 @@ require 'spec_helper'
 describe VideoThumbnail do
   context '#url' do
     it 'returns the url' do
-      url = stub
-      thumbnail = VideoThumbnail.new(url)
+      wistia_id = stub
+      clip = stub(wistia_id: wistia_id)
+      thumbnail = VideoThumbnail.new(clip)
 
-      expect(thumbnail.url).to eq url
+      expect(thumbnail.wistia_id).to eq wistia_id
     end
   end
 end

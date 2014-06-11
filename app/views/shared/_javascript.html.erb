@@ -22,3 +22,7 @@
     $.ajaxSetup({ async: false });
   <% end %>
 <% end %>
+
+<%= javascript_tag do %>
+  Wistia.host = '<%= ENV['WISTIA_HOST'] %>'
+<% end %>

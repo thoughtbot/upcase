@@ -68,14 +68,13 @@ describe Video do
 
     it 'returns a thumbnail if preview_wistia_id is not set' do
       video = Video.new
-      url = stub
-      clip = stub(full_sized_thumbnail: url)
+      clip = stub(wistia_id: stub)
       Clip.stubs(:new).returns(clip)
       VideoThumbnail.stubs(:new)
 
       video.preview
 
-      expect(VideoThumbnail).to have_received(:new).with(url)
+      expect(VideoThumbnail).to have_received(:new).with(clip)
     end
   end
 

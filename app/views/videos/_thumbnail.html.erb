@@ -1,11 +1,7 @@
-<% cache(clip) do %>
-  <%= image_tag clip.thumbnail, width: 100, height: 60, alt: title, :class => "thumbnail" %>
-  <div class="thumbnail-text">
-    <h3><%= title %></h3>
-    <p class="videoinfo">
-      <em>
-        <%= distance_of_time_in_words clip.running_time %>
-      </em>
-    </p>
-  </div>
-<% end %>
+<%= small_wistia_thumbnail_for(clip, title) %>
+<div class="thumbnail-text">
+  <h3><%= title %></h3>
+  <p class="videoinfo">
+    <em></em>
+  </p>
+</div>

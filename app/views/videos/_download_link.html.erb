@@ -1,6 +1,3 @@
-<% if clip.sizes[download_type_key].present? %>
-  <a class="button-mini <%= download_type %>" href="<%= clip.download_url(download_type) %>">
-    <%=size_display%>
-    <span class="size"><%= clip.sizes[download_type_key] %></span>
-  </a>
-<% end %>
+<a class="button-mini <%= download_type %>" href="<%= clip.download_url(download_type) %>">
+  <%=size_display%>
+</a>

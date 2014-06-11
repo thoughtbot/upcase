@@ -9,14 +9,15 @@ describe 'episodes/show' do
       preview_wistia_id: '123456'
     )
 
-    preview_video = Clip.new('123456')
-    preview_video.stubs(:embed_url).returns('http://example.com/medias/xyz890')
+    wistia_id = '123'
+    preview_video = Clip.new(wistia_id)
     video.stubs(:preview).returns(preview_video)
     stub_controller(video)
 
     render template: 'episodes/show'
 
-    expect(rendered).to have_css("iframe[src*='xyz890']")
+    expect(rendered).
+      to have_css("p.videowrapper[data-wistia-id='#{wistia_id}']")
   end
 
   it 'shows a thumbnail when there is no preview' do
@@ -27,13 +28,15 @@ describe 'episodes/show' do
       preview_wistia_id: nil
     )
 
-    thumbnail = VideoThumbnail.new('http://embed.wistia.com/some_id')
+    wistia_id = '123'
+    clip = stub(wistia_id: wistia_id)
+    thumbnail = VideoThumbnail.new(clip)
     video.stubs(:preview).returns(thumbnail)
     stub_controller(video)
 
     render template: 'episodes/show'
 
-    expect(rendered).to have_css("img[src*='embed.wistia.com']")
+    expect(rendered).to have_css("img.thumbnail[data-wistia-id='#{wistia_id}']")
   end
 
   def stub_controller(video)

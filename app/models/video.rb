@@ -29,7 +29,7 @@ class Video < ActiveRecord::Base
     if preview_wistia_id.present?
       Clip.new(preview_wistia_id)
     else
-      VideoThumbnail.new(clip.full_sized_thumbnail)
+      VideoThumbnail.new(clip)
     end
   end
 

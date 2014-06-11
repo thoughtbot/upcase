@@ -20,7 +20,7 @@ describe 'Videos' do
   end
 
   context 'GET /' do
-    it 'lists the published videos for a workshop' do
+    it 'lists the published videos for a workshop', js: true do
       workshop = create(:workshop)
       published_video_one = create(
         :video,
@@ -53,7 +53,7 @@ describe 'Videos' do
       expect(page).to have_css('iframe')
     end
 
-    it 'lists the published videos for a product' do
+    it 'lists the published videos for a product', js: true do
       purchase = create(:screencast_purchase)
       published_video_one = create(
         :video,
@@ -72,6 +72,7 @@ describe 'Videos' do
       expect(page).to have_content("2 videos in the series")
       expect(page).to have_content(published_video_one.title)
       expect(page).to have_content(published_video_two.title)
+      expect(page).to have_content("2 minutes")
       expect(page).not_to have_content(video.title)
     end
 

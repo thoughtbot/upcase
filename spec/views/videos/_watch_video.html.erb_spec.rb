@@ -11,7 +11,6 @@ describe 'videos/_watch_video.html.erb' do
 
   it "can still render a video without notes" do
     video = Video.new(wistia_id: '123')
-    video.clip.stubs(:sizes).returns({})
 
     expect { render_view(video) }.to_not raise_error
   end

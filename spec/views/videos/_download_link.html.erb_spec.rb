@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe 'videos/_download_link.html.erb' do
   it "includes the clip's download url" do
-    size = stub('size', :[] => true)
     clip = stub('clip')
-    clip.stubs(:sizes).returns(size)
     clip.stubs(:download_url).returns('http://example.com/download')
 
     render_partial(clip)

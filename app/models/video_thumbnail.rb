@@ -1,8 +1,8 @@
 class VideoThumbnail
-  attr_reader :url
+  attr_reader :wistia_id
 
-  def initialize(url)
-    @url = url
+  def initialize(clip)
+    @wistia_id = clip.wistia_id
   end
 
   def to_partial_path
