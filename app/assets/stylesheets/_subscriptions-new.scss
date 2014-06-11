@@ -152,7 +152,7 @@ body.subscriptions-new .journey-headline {
         top: -2rem;
       }
 
-      &.book img {
+      &.library img {
         top: 0;
       }
 
@@ -206,11 +206,15 @@ body.subscriptions-new .journey-headline {
       }
     }
 
-    &.book {
-      figure img {
-        float: left;
-        padding-right: .5rem;
-        width: 33%;
+    &.library {
+      figure {
+        max-width: 65%;
+
+        img {
+          float: left;
+          padding-right: .5rem;
+          width: 25%;
+        }
       }
     }
 
@@ -219,6 +223,14 @@ body.subscriptions-new .journey-headline {
         float: left;
         padding-right: .5rem;
         width: 50%;
+      }
+    }
+
+    &.exercise {
+      figure img {
+        float: left;
+        padding-right: .5rem;
+        width: 100%;
       }
     }
 
@@ -238,6 +250,8 @@ body.subscriptions-new .journey-headline {
       }
 
       iframe {
+        clear: both;
+        margin-top: .5rem;
         max-width: 100%;
       }
     }

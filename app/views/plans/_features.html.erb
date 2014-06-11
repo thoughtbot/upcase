@@ -11,6 +11,12 @@
       <%= image_tag('learn/workshop-plans-preview.png') %>
     </div>
   </figure>
+  <figure data-target="exercise">
+    <h4 class="feature-title">Exercises</h4>
+    <div class="circle repo">
+      <%= image_tag('learn/exercise-plans-preview.png') %>
+    </div>
+  </figure>
   <figure data-target="repo">
     <h4 class="feature-title">Source code to this application</h4>
     <div class="circle repo">
@@ -29,16 +35,10 @@
       <%= image_tag('learn/forum-plans-preview.png') %>
     </div>
   </figure>
-  <figure data-target="screencast">
-    <h4 class="feature-title">Screencasts</h4>
-    <div class="circle screencast">
-      <%= image_tag('learn/screencast-plans-preview.png') %>
-    </div>
-  </figure>
-  <figure data-target="book">
-    <h4 class="feature-title">Books</h4>
-    <div class="circle book">
-      <%= image_tag('learn/book-plans-preview.png') %>
+  <figure data-target="library">
+    <h4 class="feature-title">Library</h4>
+    <div class="circle library">
+      <%= image_tag('learn/library-plans-preview.png') %>
     </div>
   </figure>
 </div>
@@ -54,6 +54,9 @@
       <%= render 'plans/workshops_detail' %>
     </section>
   <% end %>
+  <section data-target-id="exercise" class="feature-detail exercise">
+    <%= render 'plans/exercise_detail' %>
+  </section>
   <section data-target-id="repo" class="feature-detail repo">
     <%= render 'plans/learn_repo_detail' %>
   </section>
@@ -63,10 +66,7 @@
   <section data-target-id="forum" class="feature-detail forum">
     <%= render 'plans/forum_detail' %>
   </section>
-  <section data-target-id="screencast" class="feature-detail screencast">
-    <%= render 'plans/screencasts_detail' %>
-  </section>
-  <section data-target-id="book" class="feature-detail book">
-    <%= render 'plans/books_detail' %>
+  <section data-target-id="library" class="feature-detail library">
+    <%= render 'plans/library_detail' %>
   </section>
 </section>
