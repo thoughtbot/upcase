@@ -56,6 +56,10 @@ class Clip
     'clips/clip'
   end
 
+  def cache_key
+    "video-#{@wistia_id}"
+  end
+
   private
 
   def wistia_hash

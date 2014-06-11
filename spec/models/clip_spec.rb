@@ -73,4 +73,12 @@ describe Clip do
       expect(url).to eq expected_url
     end
   end
+
+  context '#cache_key' do
+    it 'returns a cache key based on the wistia id' do
+      clip = Clip.new('123')
+
+      expect(clip.cache_key).to eq 'video-123'
+    end
+  end
 end
