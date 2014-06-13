@@ -8,6 +8,10 @@ module Subscriptions
     visit dashboard_path(as: @current_user)
   end
 
+  def sign_in_as_user_with_workshops_subscription
+    sign_in_as_user_with_subscription(:includes_workshops)
+  end
+
   def sign_in_as_user_with_mentoring_subscription
     sign_in_as_user_with_subscription(:includes_mentor)
   end

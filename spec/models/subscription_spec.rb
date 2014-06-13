@@ -27,7 +27,7 @@ describe Subscription do
 
   describe '.deliver_welcome_emails' do
     it 'sends emails for each new mentored subscriber in the last 24 hours' do
-      plan = create(:individual_plan, includes_mentor: true)
+      plan = create(:individual_plan, :with_mentoring)
       old_subscription =
         create(:subscription, plan: plan, created_at: 25.hours.ago)
       new_subscription =

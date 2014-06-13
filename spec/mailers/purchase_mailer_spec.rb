@@ -129,36 +129,37 @@ describe PurchaseMailer do
       describe 'for a subscription product' do
         it 'does contain the receipt' do
           user = create(:subscriber)
-          purchase = create(:plan_purchase, user: user)
+          purchase = build_stubbed(:plan_purchase, user: user)
 
           expect_to_contain_receipt(purchase)
         end
 
         it 'includes support' do
           user = create(:subscriber)
-          purchase = create(:plan_purchase, user: user)
+          purchase = build_stubbed(:plan_purchase, user: user)
 
           expect(email_for(purchase)).to have_body_text(/support/)
         end
 
         it 'has a thank you for subscribing' do
           user = create(:subscriber)
-          purchase = create(:plan_purchase, user: user)
+          purchase = build_stubbed(:plan_purchase, user: user)
 
           expect(email_for(purchase)).to have_body_text(/Thank you for subscribing/)
         end
 
         it 'mentions the mentor email' do
-          plan = create(:individual_plan, :includes_mentor)
+          plan = create(:individual_plan, :with_mentoring)
           user = create(:subscriber, plan: plan)
-          purchase = create(:plan_purchase, user: user, purchaseable: plan)
+          purchase =
+            build_stubbed(:plan_purchase, user: user, purchaseable: plan)
 
           expect(email_for(purchase)).to have_body_text(/mentor/)
         end
 
         it 'does not mention the features the user does not have' do
           user = create(:subscriber)
-          purchase = create(
+          purchase = build_stubbed(
             :plan_purchase,
             user: user,
             purchaseable: create(:basic_plan)

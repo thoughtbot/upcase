@@ -4,7 +4,7 @@ feature 'Subscriber accesses content' do
   scenario 'begins a workshop' do
     workshop = create(:workshop)
 
-    sign_in_as_user_with_subscription
+    sign_in_as_user_with_workshops_subscription
     click_workshop_detail_link
 
     expect(page).to have_content I18n.t('workshops.show.free_to_subscribers')
@@ -24,6 +24,7 @@ feature 'Subscriber accesses content' do
     create(:workshop)
 
     sign_in_as_user_with_downgraded_subscription
+    click_workshop_preview_link
     click_workshop_detail_link
 
     expect(page).not_to have_content I18n.t('workshops.show.free_to_subscribers')
@@ -67,7 +68,7 @@ feature 'Subscriber accesses content' do
     workshop = create(:workshop)
     overlapping_workshop = create(:workshop)
 
-    sign_in_as_user_with_subscription
+    sign_in_as_user_with_workshops_subscription
     click_link workshop.name
     click_link I18n.t('workshops.show.register_free')
     click_button 'Get Access'
@@ -83,7 +84,7 @@ feature 'Subscriber accesses content' do
   scenario 'show in-progress status for current workshop' do
     workshop = create(:workshop, length_in_days: 2)
 
-    sign_in_as_user_with_subscription
+    sign_in_as_user_with_workshops_subscription
     click_workshop_detail_link
     click_link I18n.t('workshops.show.register_free')
     click_button 'Get Access'
@@ -104,7 +105,7 @@ feature 'Subscriber accesses content' do
   end
 
   def get_access_to_workshop
-    sign_in_as_user_with_subscription
+    sign_in_as_user_with_workshops_subscription
     click_workshop_detail_link
     click_link I18n.t('workshops.show.register_free')
     click_button 'Get Access'
@@ -138,5 +139,9 @@ feature 'Subscriber accesses content' do
       ".product-card a[title='#{workshop.name}'] .status",
       text: 'in-progress'
     )
+  end
+
+  def click_workshop_preview_link
+    click_link "See what you're missing"
   end
 end

@@ -18,7 +18,7 @@ describe User do
 
   context 'with a subscription that includes a mentor' do
     it 'is invalid without a mentor' do
-      plan = create(:plan, includes_mentor: true)
+      plan = create(:plan, :with_mentoring)
       subscription = create(:subscription, plan: plan)
       user = create(:user, :with_mentor, subscription: subscription)
 
@@ -244,7 +244,7 @@ describe User do
 
   describe '#has_subscription_with_mentor?' do
     it 'returns true when the subscription includes mentoring' do
-      plan = build(:plan, includes_mentor: true)
+      plan = create(:plan, :with_mentoring)
       subscription = build(:subscription, plan: plan)
       user = build(:user, :with_mentor, subscription: subscription)
 
@@ -252,7 +252,7 @@ describe User do
     end
 
     it 'returns false when the subscription does not include mentoring' do
-      plan = build(:plan, includes_mentor: false)
+      plan = build(:plan)
       subscription = build(:subscription, plan: plan)
       user = build(:user, subscription: subscription)
 
@@ -260,7 +260,7 @@ describe User do
     end
 
     it 'returns false when the subscription is inactive' do
-      plan = build(:plan, includes_mentor: true)
+      plan = create(:plan, :with_mentoring)
       subscription = build(:inactive_subscription, plan: plan)
       user = build(:user, :with_mentor, subscription: subscription)
 

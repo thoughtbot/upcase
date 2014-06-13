@@ -19,6 +19,18 @@ FactoryGirl.define do
     "http://robots.thoughtbot.com/#{n}"
   end
 
+  trait :with_mentoring do
+    after(:create) do |plan|
+      create(:mentoring_feature, plan: plan)
+    end
+  end
+
+  trait :with_workshops do
+    after(:create) do |plan|
+      create(:workshops_feature, plan: plan)
+    end
+  end
+
   factory :announcement do
     association :announceable, factory: :book
     ends_at { 1.day.from_now }
@@ -130,11 +142,6 @@ FactoryGirl.define do
 
     factory :basic_plan do
       sku IndividualPlan::PRIME_BASIC_SKU
-      includes_workshops false
-    end
-
-    trait :includes_mentor do
-      includes_mentor true
     end
   end
 
@@ -284,8 +291,18 @@ FactoryGirl.define do
       with_subscription
 
       trait :includes_mentor do
-        ignore do
-          plan { create(:individual_plan, :includes_mentor) }
+        plan do
+          create(:individual_plan).tap do |plan|
+            create(:mentoring_feature, plan: plan)
+          end
+        end
+      end
+
+      trait :includes_workshops do
+        plan do
+          create(:individual_plan).tap do |plan|
+            create(:workshops_feature, plan: plan)
+          end
         end
       end
     end
@@ -381,5 +398,18 @@ FactoryGirl.define do
   factory :oauth_access_token do
     application_id 1
     token 'abc123'
+  end
+
+  factory :feature do
+    association :plan
+    key 'feature-identifier'
+
+    factory :mentoring_feature do
+      key Feature::MENTORING_KEY
+    end
+
+    factory :workshops_feature do
+      key Feature::WORKSHOPS_KEY
+    end
   end
 end
