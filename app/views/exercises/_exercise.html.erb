@@ -1,0 +1,10 @@
+<figure class='exercise thumbnail product-card'>
+  <%= link_to exercise.url, title: exercise.title do %>
+    <figure>
+      <p class='console-illustration'></p>
+    </figure>
+    <h5>Exercise</h5>
+    <h4><%= exercise.title %></h4>
+    <p><%= exercise.description %></p>
+  <% end %>
+</figure>

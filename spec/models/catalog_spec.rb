@@ -31,6 +31,13 @@ describe Catalog do
     end
   end
 
+  describe '#exercises' do
+    it 'returns exercises by position' do
+      catalog = Catalog.new
+      expect(catalog.exercises).to find_relation(Exercise.ordered)
+    end
+  end
+
   describe '#mentors' do
     it 'returns all mentors' do
       catalog = Catalog.new
