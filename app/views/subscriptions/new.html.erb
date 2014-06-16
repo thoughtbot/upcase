@@ -6,13 +6,15 @@
 
 <section class="journey-headline">
   <div class="logo">
-    <h1>
-      <%= image_tag('learn/learn-ralph.png') %>
-    </h1>
+    <h1><%= image_tag('learn/learn-ralph.png') %></h1>
+    <h2>Get access to Learn</h2>
   </div>
 </section>
 
-<section class="plans">
-  <%= render @plans %>
-  <%= render @team_plans %>
+<section class="subscriptions">
+  <%= render 'pricing' %>
+  <%= render 'testimonials' %>
+  <%= render 'plan_features' %>
+  <%= render 'footer' %>
 </section>
+<%= render 'promoted_catalogs/footer' %>

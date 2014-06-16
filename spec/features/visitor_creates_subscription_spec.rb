@@ -8,7 +8,9 @@ feature 'Visitor signs up for a subscription' do
   scenario 'visitor signs up by navigating from landing page' do
     visit prime_path
     click_link I18n.t('subscriptions.join_cta')
-    click_link I18n.t('subscriptions.choose_plan_html', plan_name: @plan.name)
+    within("[data-sku='#{@plan.sku}']") do
+      click_link I18n.t('subscriptions.choose_plan_html')
+    end
     fill_out_account_creation_form
     fill_out_credit_card_form_with_valid_credit_card
 
@@ -101,7 +103,7 @@ feature 'Visitor signs up for a subscription' do
   end
 
   def create_plan
-    @plan = create(:plan)
+    @plan = create(:plan, sku: IndividualPlan::PRIME_99_SKU)
   end
 
   def attempt_to_subscribe

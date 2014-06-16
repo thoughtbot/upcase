@@ -1,0 +1,36 @@
+<section class="plans footer">
+  <div class="inner">
+    <div class="logo">
+      <h1><%= image_tag('learn/learn-ralph.png') %></h1>
+      <h2>Get access to Learn</h2>
+    </div>
+
+    <section class="plan">
+      <h3>1-on-1<br>Coaching</h3>
+      <p>Best for someone seeking 1-on-1 coaching.</p>
+      <div class="price">$249 / month</div>
+      <%= choose_plan_link(IndividualPlan::PRIME_249_SKU) %>
+    </section>
+
+    <section class="plan popular">
+      <h3>Aspiring Professional</h3>
+      <p class="popular">Best for an active learner seeking coding exercises and real feedback.</p>
+      <div class="price">$99 / month</div>
+      <%= choose_plan_link(IndividualPlan::PRIME_99_SKU) %>
+    </section>
+
+    <section class="plan">
+      <h3>Part-time<br>Study</h3>
+      <p>Best for a self-guided studier.</p>
+      <div class="price">$49 / month</div>
+      <%= choose_plan_link(IndividualPlan::PRIME_49_SKU) %>
+    </section>
+
+    <section class="plan">
+      <h3>30 Minutes a Week</h3>
+      <p>Best for those with limited time.</p>
+      <div class="price">$29 / month</div>
+      <%= choose_plan_link(IndividualPlan::PRIME_29_SKU) %>
+    </section>
+  </div>
+</section>

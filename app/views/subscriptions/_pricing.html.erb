@@ -1,0 +1,94 @@
+<section class="plans">
+  <div class="inner">
+    <header class="audiance">
+      <p></p>
+      <p>Best for an active learner seeking 1-on-1 personal coaching.</p>
+      <p class="popular">Best for an active learner seeking coding exercises and real feedback.</p>
+      <p>Best for a <br>self-guided studier.</p>
+      <p>Best for those with limited time.</p>
+    </header>
+    <nav class="features">
+      <ol>
+        <li>
+          <a href="#personal_coach">Personal coach</a>
+        </li>
+        <li>
+          <a href="#coding_exercises">Coding exercises</a>
+        </li>
+        <li>
+          <a href="#ebooks">Premium eBooks</a>
+        </li>
+        <li>
+          <a href="#app_source_code">App source code</a>
+        </li>
+        <li>
+          <a href="#video_tutorials">Video tutorials</a>
+        </li>
+        <li>
+          <a href="#office_hours">Office hours</a>
+        </li>
+        <li>
+          <a href="#community_forum">Community forum</a>
+        </li>
+        <li>
+          <a href="#weekly_iteration">The Weekly Iteration</a>
+        </li>
+      </ol>
+      <div class="teams-pricing"><a href="mailto:learn@thoughtbot.com">Email for team pricing</a></div>
+    </nav>
+
+    <section class="plan" data-sku="prime-249">
+      <h3>1-on-1 Coaching</h3>
+      <ol>
+        <li class="check-lg"><%= image_tag("pricing-check-lg.svg") %></li>
+        <% 7.times do %>
+          <li><%= image_tag("pricing-check.svg") %></li>
+        <% end %>
+      </ol>
+      <div class="price">$249 / month</div>
+      <%= choose_plan_link(IndividualPlan::PRIME_249_SKU) %>
+    </section>
+
+    <section class="plan popular" data-sku="prime-99">
+      <h3>Aspiring Professional</h3>
+      <ol>
+        <li><%= image_tag("pricing-x.svg") %></li>
+        <% 3.times do %>
+          <li class="check-lg"><%= image_tag("pricing-check-lg.svg") %></li>
+        <% end %>
+        <% 4.times do %>
+          <li><%= image_tag("pricing-check.svg") %></li>
+        <% end %>
+      </ol>
+      <div class="price">$99 / month</div>
+      <%= choose_plan_link(IndividualPlan::PRIME_99_SKU) %>
+    </section>
+
+    <section class="plan" data-sku="prime-49">
+      <h3>Part-time Study</h3>
+      <ol>
+        <% 4.times do %>
+          <li><%= image_tag("pricing-x.svg") %></li>
+        <% end %>
+        <% 3.times do %>
+        <li class="check-lg"><%= image_tag("pricing-check-lg.svg") %></li>
+        <% end %>
+        <li><%= image_tag("pricing-check.svg") %></li>
+      </ol>
+      <div class="price">$49 / month</div>
+      <%= choose_plan_link(IndividualPlan::PRIME_49_SKU) %>
+    </section>
+
+    <section class="plan" data-sku="prime-29">
+      <h3>30 Minutes a Week</h3>
+      <ol>
+        <% 7.times do %>
+          <li><%= image_tag("pricing-x.svg") %></li>
+        <% end %>
+        <li class="check-lg"><%= image_tag("pricing-check-lg.svg") %></li>
+      </ol>
+      <div class="price">$29 / month</div>
+      <%= choose_plan_link(IndividualPlan::PRIME_29_SKU) %>
+    </section>
+  </div>
+</section>
