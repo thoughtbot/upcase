@@ -1,6 +1,7 @@
 module Teams
   # TeamPlan represents a purchase of a subscription plan for an entire team.
   class TeamPlan < ActiveRecord::Base
+    has_many :features, as: :plan
     has_many :purchases, as: :purchaseable
     has_many :subscriptions, as: :plan
     has_many :teams
@@ -10,6 +11,7 @@ module Teams
     validates :sku, presence: true
 
     include PlanForPublicListing
+    include QueryableFeatures
 
     def self.instance
       if first

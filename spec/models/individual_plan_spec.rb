@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe IndividualPlan do
   it { should have_many(:announcements) }
+  it { should have_many(:features) }
   it { should have_many(:purchases) }
   it { should have_many(:subscriptions) }
 
@@ -15,6 +16,7 @@ describe IndividualPlan do
   it { should be_subscription }
 
   it_behaves_like 'a Plan for public listing'
+  it_behaves_like 'a Plan with queryable features'
 
   describe '.active' do
     it 'only includes active plans' do

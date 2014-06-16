@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140509152714) do
+ActiveRecord::Schema.define(version: 20140613181351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,19 +88,28 @@ ActiveRecord::Schema.define(version: 20140509152714) do
     t.string   "purchaseable_type"
   end
 
+  create_table "features", force: true do |t|
+    t.string   "key",        null: false
+    t.integer  "plan_id",    null: false
+    t.string   "plan_type",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "features", ["key"], name: "index_features_on_key", using: :btree
+  add_index "features", ["plan_id", "plan_type"], name: "index_features_on_plan_id_and_plan_type", using: :btree
+
   create_table "individual_plans", force: true do |t|
-    t.string   "name",                               null: false
-    t.string   "sku",                                null: false
-    t.string   "short_description",                  null: false
-    t.text     "description",                        null: false
-    t.boolean  "active",             default: true,  null: false
-    t.integer  "individual_price",                   null: false
+    t.string   "name",                             null: false
+    t.string   "sku",                              null: false
+    t.string   "short_description",                null: false
+    t.text     "description",                      null: false
+    t.boolean  "active",            default: true, null: false
+    t.integer  "individual_price",                 null: false
     t.text     "terms"
-    t.boolean  "includes_mentor",    default: false
-    t.boolean  "includes_workshops", default: true
-    t.boolean  "featured",           default: true,  null: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.boolean  "featured",          default: true, null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "invitations", force: true do |t|
@@ -284,15 +293,13 @@ ActiveRecord::Schema.define(version: 20140509152714) do
   add_index "teachers", ["user_id", "workshop_id"], name: "index_teachers_on_user_id_and_workshop_id", unique: true, using: :btree
 
   create_table "team_plans", force: true do |t|
-    t.string   "sku",                                null: false
-    t.string   "name",                               null: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.string   "sku",                             null: false
+    t.string   "name",                            null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "individual_price"
     t.text     "terms"
-    t.boolean  "includes_mentor",    default: false, null: false
-    t.boolean  "includes_workshops", default: true,  null: false
-    t.boolean  "featured",           default: true,  null: false
+    t.boolean  "featured",         default: true, null: false
     t.text     "description"
   end
 

@@ -18,8 +18,11 @@ class User < ActiveRecord::Base
   delegate :name, to: :mentor, prefix: true, allow_nil: true
 
   def self.with_active_subscription
-    includes(purchased_subscription: :plan, team: { subscription: :plan }).
-      select(&:has_active_subscription?)
+    includes(
+      purchased_subscription: :plan,
+      team: { subscription: :plan }
+    ).
+    select(&:has_active_subscription?)
   end
 
   def subscription_purchases
@@ -72,6 +75,10 @@ class User < ActiveRecord::Base
     has_active_subscription? && subscription.includes_workshops?
   end
 
+  def has_subscription_with_mentor?
+    has_active_subscription? && subscription.includes_mentor?
+  end
+
   def subscribed_at
     subscription.try(:created_at)
   end
@@ -84,10 +91,6 @@ class User < ActiveRecord::Base
 
   def assign_mentor(mentor)
     update(mentor: mentor)
-  end
-
-  def has_subscription_with_mentor?
-    has_active_subscription? && subscription.try(:includes_mentor?)
   end
 
   def plan_name

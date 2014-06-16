@@ -2,6 +2,7 @@ require 'spec_helper'
 
 module Teams
   describe TeamPlan, type: :model do
+    it { should have_many(:features) }
     it { should have_many(:purchases) }
     it { should have_many(:subscriptions) }
     it { should have_many(:teams) }
@@ -11,6 +12,12 @@ module Teams
     it { should validate_presence_of(:individual_price) }
 
     it_behaves_like 'a Plan for public listing' do
+      def factory_name
+        :team_plan
+      end
+    end
+
+    it_behaves_like 'a Plan with queryable features' do
       def factory_name
         :team_plan
       end
@@ -110,8 +117,52 @@ module Teams
       end
     end
 
-    def team_plan
-      build(:team_plan)
+    describe '#includes_mentor?' do
+      context 'when the plan includes mentoring' do
+        it 'returns true' do
+          plan = team_plan(:with_mentoring)
+
+          result = plan.includes_mentor?
+
+          expect(result).to be_true
+        end
+      end
+
+      context 'when the plan does not include mentoring' do
+        it 'returns false' do
+          plan = team_plan
+
+          result = plan.includes_mentor?
+
+          expect(result).to be_false
+        end
+      end
+    end
+
+    describe '#includes_workshops?' do
+      context 'when the plan includes workshops' do
+        it 'returns true' do
+          plan = team_plan(:with_workshops)
+
+          result = plan.includes_workshops?
+
+          expect(result).to be_true
+        end
+      end
+
+      context 'when the plan does not include workshops' do
+        it 'returns false' do
+          plan = team_plan
+
+          result = plan.includes_workshops?
+
+          expect(result).to be_false
+        end
+      end
+    end
+
+    def team_plan(options = [])
+      create(:team_plan, *options)
     end
   end
 end

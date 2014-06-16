@@ -2,6 +2,7 @@ class IndividualPlan < ActiveRecord::Base
   PRIME_BASIC_SKU = 'prime-basic'
 
   has_many :announcements, as: :announceable, dependent: :destroy
+  has_many :features, as: :plan
   has_many :purchases, as: :purchaseable
   has_many :subscriptions, as: :plan
 
@@ -12,6 +13,7 @@ class IndividualPlan < ActiveRecord::Base
   validates :sku, presence: true
 
   include PlanForPublicListing
+  include QueryableFeatures
 
   def self.active
     where active: true
