@@ -21,7 +21,9 @@ class SubscriptionFulfillment
   private
 
   def assign_mentor
-    @user.assign_mentor(mentor)
+    if @purchase.includes_mentor?
+      @user.assign_mentor(mentor)
+    end
   end
 
   def create_subscription

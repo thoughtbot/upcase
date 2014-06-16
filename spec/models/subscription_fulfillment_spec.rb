@@ -23,19 +23,6 @@ describe SubscriptionFulfillment do
       expect(user.subscription).to be_nil
     end
 
-    it 'assigns a mentor on creation' do
-      mentor = build_stubbed(:mentor)
-      Mentor.stubs(:random).returns(mentor)
-      user = build_subscribable_user
-      purchase = build_stubbed(:plan_purchase)
-
-      expect(user.subscription).to be_nil
-
-      SubscriptionFulfillment.new(purchase, user).fulfill
-
-      expect(user).to have_received(:assign_mentor).with(mentor)
-    end
-
     it 'adds the user to the subscriber github team' do
       GithubFulfillmentJob.stubs(:enqueue)
       user = build_subscribable_user
@@ -56,6 +43,32 @@ describe SubscriptionFulfillment do
 
       GitHubPublicKeyDownloadFulfillmentJob.should have_received(:enqueue)
         .with(user.id)
+    end
+
+    context 'when the purchased Plan includes mentoring' do
+      it 'assigns a mentor' do
+        mentor = build_stubbed(:mentor)
+        Mentor.stubs(:random).returns(mentor)
+        user = build_subscribable_user
+        purchase = build_stubbed(:plan_purchase)
+        purchase.stubs(:includes_mentor?).returns(true)
+
+        SubscriptionFulfillment.new(purchase, user).fulfill
+
+        expect(user).to have_received(:assign_mentor).with(mentor)
+      end
+    end
+
+    context 'when the purchased Plan does not include mentoring' do
+      it 'does not assign a mentor' do
+        user = build_subscribable_user
+        purchase = build_stubbed(:plan_purchase)
+        purchase.stubs(:includes_mentor?).returns(false)
+
+        SubscriptionFulfillment.new(purchase, user).fulfill
+
+        expect(user).to have_received(:assign_mentor).never
+      end
     end
   end
 

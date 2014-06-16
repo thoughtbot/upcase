@@ -37,7 +37,13 @@ class Purchase < ActiveRecord::Base
     to: :purchaseable,
     prefix: :purchaseable,
     allow_nil: true
-  delegate :fulfilled_with_github?, :subscription?, :terms, to: :purchaseable
+  delegate(
+    :fulfilled_with_github?,
+    :includes_mentor?,
+    :subscription?,
+    :terms,
+    to: :purchaseable
+  )
 
   def self.within_range(start_time, end_time)
     paid.where("created_at >= ? and created_at <= ?", start_time, end_time)
