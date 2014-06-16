@@ -17,6 +17,10 @@ class Catalog
     Show.active.ordered
   end
 
+  def exercises
+    Exercise.all.ordered
+  end
+
   def mentors
     Mentor.all
   end

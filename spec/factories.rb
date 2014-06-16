@@ -378,6 +378,12 @@ FactoryGirl.define do
     end
   end
 
+  factory :exercise do
+    title
+    url 'http://www.example.com'
+    description 'Exercise description'
+  end
+
   factory :oauth_access_token do
     application_id 1
     token 'abc123'
