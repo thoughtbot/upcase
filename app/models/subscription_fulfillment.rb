@@ -53,6 +53,6 @@ class SubscriptionFulfillment
   end
 
   def mentor
-    Mentor.find_or_sample(@purchase.mentor_id)
+    Mentor.random
   end
 end

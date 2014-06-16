@@ -16,23 +16,17 @@ describe Mentor do
     end
   end
 
-  describe '.find_or_sample' do
-    it 'returns a mentor for the given id' do
-      mentor = create(:mentor)
+  describe '.random' do
+    it 'returns a random mentor' do
+      mentor = create(:mentor, accepting_new_mentees: true)
 
-      expect(Mentor.find_or_sample(mentor.id)).to eq mentor
-    end
-
-    it 'returns a random mentor if one cannot be found with the given id' do
-      mentor = create(:mentor)
-
-      expect(Mentor.find_or_sample(nil)).to eq mentor
+      expect(Mentor.random).to eq mentor
     end
 
     it 'does not return unavailable mentors when sampling' do
       create(:mentor, accepting_new_mentees: false)
 
-      expect(Mentor.find_or_sample(nil)).to be_nil
+      expect(Mentor.random).to be_nil
     end
   end
 

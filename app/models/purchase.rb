@@ -8,7 +8,7 @@ class Purchase < ActiveRecord::Base
   belongs_to :coupon
   serialize :github_usernames
 
-  attr_accessor :stripe_token, :paypal_url, :password, :mentor_id
+  attr_accessor :stripe_token, :paypal_url, :password
 
   validates :email, presence: true,
     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }

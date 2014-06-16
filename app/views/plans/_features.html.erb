@@ -2,7 +2,7 @@
   <figure class="<%= 'inactive' if !plan.includes_mentor? %>" data-target="mentoring">
     <h4 class="feature-title">1-1 Mentoring</h4>
     <div class="circle mentoring">
-      <%= mentor_image(@mentor) %>
+      <%= image_tag('learn/face-ben.png') %>
     </div>
   </figure>
   <figure class="<%= 'inactive' if !plan.includes_workshops? %>" data-target="workshop">
@@ -46,7 +46,7 @@
 <section class="feature-details">
   <% if plan.includes_mentor? %>
     <section data-target-id="mentoring" class="feature-detail mentoring">
-      <%= render 'plans/mentoring_detail', mentor: @mentor %>
+      <%= render 'plans/mentoring_detail' %>
     </section>
   <% end %>
   <% if plan.includes_workshops? %>

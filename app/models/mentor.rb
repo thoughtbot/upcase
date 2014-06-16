@@ -12,8 +12,8 @@ class Mentor < ActiveRecord::Base
     accepting_new_mentees.sample(NUMBER_OF_MENTORS_TO_PROMOTE)
   end
 
-  def self.find_or_sample(mentor_id)
-    where(id: mentor_id).first || accepting_new_mentees.sample
+  def self.random
+    accepting_new_mentees.sample
   end
 
   def active_mentees

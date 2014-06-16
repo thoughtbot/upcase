@@ -408,7 +408,6 @@ describe Purchase, 'given a purchaser' do
     end
 
     it 'creates a user when saved with a password' do
-      create_mentors
       plan = create(:plan)
       purchase = build(
         :purchase,

@@ -97,7 +97,6 @@ class PurchasesController < ApplicationController
   def build_purchase_with_defaults
     purchase = requested_purchaseable.purchases.build(variant: variant)
     PurchasePrepopulater.new(purchase, current_user).prepopulate_with_user_info
-    purchase.mentor_id = cookies[:mentor_id]
     purchase
   end
 

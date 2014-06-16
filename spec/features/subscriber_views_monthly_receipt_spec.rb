@@ -20,7 +20,6 @@ feature 'Subscriber views subscription invoices' do
   end
 
   scenario 'Subscriber can view a subscription invoice' do
-    create_mentors
     sign_in_as_user_with_subscription
     plan_purchase = create(:plan_purchase, user: @current_user)
     @current_user.stripe_customer_id = FakeStripe::CUSTOMER_ID
@@ -94,7 +93,6 @@ feature 'Subscriber views subscription invoices' do
   end
 
   scenario "a subscriber can't view another user's invoice" do
-    create_mentors
     sign_in_as_user_with_subscription
     plan_purchase = create(:plan_purchase, user: @current_user)
     @current_user.stripe_customer_id = "cus_NOMATCH"

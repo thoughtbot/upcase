@@ -33,8 +33,4 @@ module Subscriptions
   def have_subscription_to(plan_name)
     have_css('.subscription', text: plan_name)
   end
-
-  def create_mentors
-    create(:mentor)
-  end
 end

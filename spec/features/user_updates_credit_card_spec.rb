@@ -3,7 +3,6 @@ require 'spec_helper'
 feature 'User updated credit card' do
   background do
     create_plan
-    create_mentors
   end
 
   scenario 'updates credit card information', js: true do

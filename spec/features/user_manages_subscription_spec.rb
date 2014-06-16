@@ -3,7 +3,6 @@ require 'spec_helper'
 feature 'User creates a subscription' do
   background do
     create_plan
-    create_mentors
     sign_in
   end
 

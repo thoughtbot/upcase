@@ -25,9 +25,9 @@ describe SubscriptionFulfillment do
 
     it 'assigns a mentor on creation' do
       mentor = build_stubbed(:mentor)
-      Mentor.stubs(:find_or_sample).returns(mentor)
+      Mentor.stubs(:random).returns(mentor)
       user = build_subscribable_user
-      purchase = build_stubbed(:plan_purchase, mentor_id: mentor.id)
+      purchase = build_stubbed(:plan_purchase)
 
       expect(user.subscription).to be_nil
 

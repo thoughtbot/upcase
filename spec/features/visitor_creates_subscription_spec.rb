@@ -1,10 +1,8 @@
 require 'spec_helper'
 
 feature 'Visitor signs up for a subscription' do
-
   background do
     create_plan
-    create_mentors
   end
 
   scenario 'visitor attempts to subscribe and creates email/password user' do

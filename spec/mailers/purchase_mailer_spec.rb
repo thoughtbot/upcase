@@ -127,10 +127,6 @@ describe PurchaseMailer do
       end
 
       describe 'for a subscription product' do
-        before do
-          create_mentors
-        end
-
         it 'does contain the receipt' do
           user = create(:subscriber)
           purchase = create(:plan_purchase, user: user)

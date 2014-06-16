@@ -37,7 +37,6 @@ class PurchaseBuilder
              :country,
              :payment_method,
              :stripe_token,
-             :mentor_id,
              :quantity)
   end
 

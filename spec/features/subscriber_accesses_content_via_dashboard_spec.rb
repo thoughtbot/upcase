@@ -22,7 +22,6 @@ feature 'Subscriber accesses content' do
 
   scenario 'subscriber without access to workshops attempts to begin a workshop' do
     create(:workshop)
-    create_mentors
 
     sign_in_as_user_with_downgraded_subscription
     click_workshop_detail_link
