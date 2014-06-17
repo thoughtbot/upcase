@@ -3,9 +3,9 @@ $plan-width: 190px;
 $plan-width-callout: $plan-width + 10px;
 $plan-padding: 35px;
 $plan-header-height: 120px;
+$plan-max-width: 960px;
 $celestial-blue: #4A90E2;
 $yellow: #F3E86B;
-$landing-page-min-width: 960px;
 
 body.subscriptions-new nav .prime, body.subscriptions-new nav .view-plans {
   display: none;
@@ -176,12 +176,31 @@ body.subscriptions-new .journey-headline {
 
 .plans.footer {
   .inner {
-    width: $plan-width*3 + $plan-width-callout;
+    width: ($plan-width + 20)*3 + $plan-width-callout + 20;
   }
 
-  section.plan .price {
-    margin-top: 0;
+  section.plan {
+    width: $plan-width + 20;
+
+    &.popular {
+      width: $plan-width-callout + 20;
+    }
+
+    h3 {
+      height: auto;
+      padding-bottom: 1em;
+    }
+
+    p {
+      padding: 0 $plan-padding/2;
+      margin-bottom: 2em;
+    }
+
+    .price {
+      margin-top: 0;
+    }
   }
+
 }
 
 // Testimonials
@@ -191,17 +210,15 @@ body.subscriptions-new .journey-headline {
   background-color: $celestial-blue;
 
   figure {
-    
     img {
       @include size(160px);
       border-radius: 50%;
       margin-bottom: em(14);
     }
   }
-  
+
   h2 {
     $testimonials-padding: 75px 0;
-
     color: white;
     padding: $testimonials-padding;
     text-align: center;
@@ -212,8 +229,7 @@ body.subscriptions-new .journey-headline {
     margin: 0 auto;
     padding: 36px;
     padding-bottom: 72px;
-    max-width: $max-width;
-    min-width: 960px;
+    width: $plan-max-width;
 
     figure > p {
       color: white;
@@ -226,7 +242,7 @@ body.subscriptions-new .journey-headline {
   .feature-quote {
     @include outer-container;
     margin-bottom: 72px;
-    
+
     figure {
       @include span-columns(3);
       text-align: center;
@@ -299,7 +315,7 @@ body.subscriptions-new .journey-headline {
     .supporting-quote {
       @include span-columns(4);
       margin-bottom: 50px;
-         
+
       figure {
         background-color: $celestial-blue;
         margin-bottom: em(36);
@@ -349,8 +365,24 @@ body.subscriptions-new .journey-headline {
       }
     }
   }
-    
+
   strong {
     color: #0053b3; //dark blue
+  }
+}
+
+.plan-features {
+  padding: 80px 0;
+  background: #fff;
+  @include clearfix;
+
+  .inner {
+    max-width: $plan-max-width;
+    margin: 0 auto;
+  }
+
+  article {
+    @include span-columns(6);
+    @include omega(2n + 1);
   }
 }
