@@ -1,5 +1,12 @@
 <section class="plans">
   <div class="inner">
+    <header class="audiance">
+      <p></p>
+      <p>Best for an active learner seeking 1-on-1 personal coaching.</p>
+      <p class="popular">Best for an active learner seeking coding exercises and real feedback.</p>
+      <p>Best for a <br>self-guided studier.</p>
+      <p>Best for those with limited time.</p>
+    </header>
     <nav class="features">
       <ol>
         <li>
@@ -9,13 +16,16 @@
           <a href="#">Coding exercises</a>
         </li>
         <li>
-          <a href="#">eBooks</a>
+          <a href="#">Premium eBooks</a>
         </li>
         <li>
           <a href="#">App source code</a>
         </li>
         <li>
           <a href="#">Workshops</a>
+        </li>
+        <li>
+          <a href="#">Office hours</a>
         </li>
         <li>
           <a href="#">Community forum</a>
@@ -29,8 +39,9 @@
     <section class="plan">
       <h3>Personal Coaching</h3>
       <ol>
+        <li class="check-lg"><%= image_tag("pricing-check-lg.svg") %></li>
         <% 7.times do %>
-          <li class="true">OK</li>
+          <li><%= image_tag("pricing-check.svg") %></li>
         <% end %>
       </ol>
       <div class="price">$249 / month</div>
@@ -40,8 +51,10 @@
     <section class="plan popular">
       <h3>Feedback Loop</h3>
       <ol>
-        <% 7.times do %>
-          <li class="true">OK</li>
+        <li><%= image_tag("pricing-x.svg") %></li>
+        <li class="check-lg"><%= image_tag("pricing-check-lg.svg") %></li>
+        <% 6.times do %>
+          <li><%= image_tag("pricing-check.svg") %></li>
         <% end %>
       </ol>
       <div class="price">$99 / month</div>
@@ -49,10 +62,14 @@
     </section>
 
     <section class="plan">
-      <h3>Study Buddy</h3>
+      <h3>Workshop-aholic</h3>
       <ol>
-        <% 7.times do %>
-          <li class="true">OK</li>
+        <% 4.times do %>
+          <li><%= image_tag("pricing-x.svg") %></li>
+        <% end %>
+        <li class="check-lg"><%= image_tag("pricing-check-lg.svg") %></li>
+        <% 3.times do %>
+          <li><%= image_tag("pricing-check.svg") %></li>
         <% end %>
       </ol>
       <div class="price">$49 / month</div>
@@ -63,8 +80,9 @@
       <h3>Watch and Learn</h3>
       <ol>
         <% 7.times do %>
-          <li class="true">OK</li>
+          <li><%= image_tag("pricing-x.svg") %></li>
         <% end %>
+        <li class="check-lg"><%= image_tag("pricing-check-lg.svg") %></li>
       </ol>
       <div class="price">$29 / month</div>
       <a href="#" class="sign-up">Sign up</a>

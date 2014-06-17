@@ -1,3 +1,8 @@
+$plan-width: 190px;
+$plan-width-callout: $plan-width + 10px;
+$plan-padding: 35px;
+$plan-header-height: 120px;
+
 body.subscriptions-new nav .prime, body.subscriptions-new nav .view-plans {
   display: none;
 }
@@ -13,18 +18,14 @@ body.subscriptions-new .journey-headline {
 .plans {
   background: #fff;
 
-  $plan-width: 190px;
-  $plan-padding: 35px;
-  $header-height: 120px;
-
   .inner {
     @include clearfix;
     margin: 0 auto;
-    padding: 100px 0;
-    width: $plan-width * 5 + 10;
+    padding: 80px 0 100px;
+    width: $plan-width * 4 + $plan-width-callout;
   }
 
-  nav, .plan {
+  nav, .plan, header p {
     float: left;
     width: $plan-width;
 
@@ -32,6 +33,34 @@ body.subscriptions-new .journey-headline {
       list-style: none;
       margin: 0;
     }
+
+    li {
+      height: 26px;
+    }
+  }
+
+  header {
+    @include clearfix;
+    display: block;
+    width: 100%;
+    @include display(flex);
+    @include align-items(center);
+
+    p {
+      color: #4A4A4A;
+      display: block;
+      font-family: $sans-serif;
+      line-height: 1.4;
+      padding: $plan-padding/2;
+      padding-top: 0;
+      text-align: center;
+
+      &.popular {
+        font-weight: bold;
+        width: $plan-width-callout;
+      }
+    }
+
   }
 
   nav {
@@ -39,21 +68,36 @@ body.subscriptions-new .journey-headline {
     text-align: right;
 
     ol {
-      margin-top: $header-height;
+      margin-top: $plan-header-height;
+    }
+
+    a {
+      $color: #276FC3;
+      border-bottom: 1px solid rgba($color, 0.15);
+      color: $color;
+      display: inline-block;
+      line-height: 1;
+      @include transform(translateY(-4px));
+      font-family: $sans-serif;
+      font-weight: 600;
+
+      &:hover {
+        border-bottom-color: rgba($color, 0.75);
+      }
     }
   }
 
-  .plan {
+  section.plan {
     border: 1px solid $warmgray;
     border-left-width: 0;
     border-right-width: 0;
     text-align: center;
 
-    &:nth-child(2) {
+    &:nth-of-type(1) {
       box-shadow: -1px 0 0 $warmgray;
     }
 
-    &:nth-child(5) {
+    &:nth-of-type(4) {
       box-shadow: 1px 0 0 $warmgray, -1px 0 0 $warmgray;
     }
 
@@ -61,7 +105,7 @@ body.subscriptions-new .journey-headline {
       color: darken($darkwarmgray, 10%);
       font-size: 1.2rem;
       font-weight: 600;
-      height: $header-height;
+      height: $plan-header-height;
       padding: $plan-padding;
     }
 
@@ -71,6 +115,14 @@ body.subscriptions-new .journey-headline {
 
       &:last-of-type {
         box-shadow: none;
+      }
+
+      img {
+        @include transform(translateY(-2px));
+      }
+
+      &.check-lg img {
+        @include transform(translateY(-4px));
       }
     }
 
@@ -86,7 +138,7 @@ body.subscriptions-new .journey-headline {
       color: $darkwarmgray;
       display: block;
       font-family: $sans-serif;
-      margin: 2rem $plan-padding;;
+      margin: 2rem $plan-padding;
       padding: 0.5rem 0;
     }
   }
@@ -98,8 +150,8 @@ body.subscriptions-new .journey-headline {
     border-right-width: 1px;
     box-shadow: 0 1px 4px hsla(0, 0%, 0%, 0.14);
     margin-top: -12px;
-    padding: 12px 0 22px;
-    width: $plan-width + 10;
+    padding: 12px 0 15px;
+    width: $plan-width-callout;
 
     h3 {
       color: #3C85DB;
@@ -109,9 +161,22 @@ body.subscriptions-new .journey-headline {
 
     .sign-up {
       background: #4A90E2;
-      color: #fff;
       border: 0;
+      color: #fff;
       font-weight: 700;
+      @include transform(translateY(-0.2rem));
+      padding: 0.8rem 0;
+      margin: 2rem $plan-padding*0.9;
     }
+  }
+}
+
+.plans.footer {
+  .inner {
+    width: $plan-width*3 + $plan-width-callout;
+  }
+
+  section.plan .price {
+    margin-top: 0;
   }
 }
