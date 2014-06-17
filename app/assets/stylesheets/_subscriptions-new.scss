@@ -1,7 +1,10 @@
+// Variables
 $plan-width: 190px;
 $plan-width-callout: $plan-width + 10px;
 $plan-padding: 35px;
 $plan-header-height: 120px;
+$celestial-blue: #4A90E2;
+$landing-page-min-width: 960px;
 
 body.subscriptions-new nav .prime, body.subscriptions-new nav .view-plans {
   display: none;
@@ -178,5 +181,168 @@ body.subscriptions-new .journey-headline {
 
   section.plan .price {
     margin-top: 0;
+  }
+}
+
+// Testimonials
+////////////////////////////////////////////////////////////////////////////
+
+.testimonials {
+  background-color: $celestial-blue;
+
+  figure {
+    
+    img {
+      @include size(160px);
+      border-radius: 50%;
+      margin-bottom: em(14);
+
+    }
+  }
+  
+  h2 {
+    
+    $testimonials-padding: 75px 0;
+
+    color: white;
+    padding: $testimonials-padding;
+    text-align: center;
+  }
+
+  .inner {
+    @include clearfix;
+    margin: 0 auto;
+    padding: 36px;
+    padding-bottom: 72px;
+    max-width: $max-width;
+    min-width: 960px;
+
+    figure > p {
+      color: white;
+      line-height: 1.3;
+      font-family: $sans-serif;
+      font-weight: 800;
+    }
+  }
+
+  .feature-quote {
+    @include outer-container;
+    margin-bottom: 72px;
+    
+    figure {
+      @include span-columns(3);
+      text-align: center;
+      font-size: 120%;
+    }
+
+    blockquote {
+      @include span-columns(9);
+      @include omega();
+
+      position: relative;
+      border: 1px solid #1C6CC9;
+      background-color: white;
+      border-radius: em(12);
+      padding: 45px;
+      margin: 0;
+      z-index: 0;
+
+     &:before {
+        @include triangle(42px, white, left);
+
+        content: "";
+        position: absolute;
+        left: -21px;
+        top: 25%;
+        z-index: 2;
+     }
+
+      &:after {
+        @include triangle(42px, #1C6CC9, left);
+
+        content: "";
+        position: absolute;
+        left: -22px;
+        top: 25%;
+        z-index: 1;
+      }
+
+      p {
+        color: $celestial-blue;
+        font-family: $sans-serif;
+        font-size: em(24);
+      }
+    }
+  }
+
+  .supporting-quotes {
+    @include outer-container;
+
+    img {
+      @include size(70px);
+
+      float: left;
+      display: inline-block;
+      margin-right: 24px;
+      margin-bottom: 30px;
+    }
+
+    .supporting-quote {
+      @include span-columns(4);
+      margin-bottom: 50px;
+
+      figure {
+        background-color: $celestial-blue;
+        margin-bottom: em(36);
+
+        p {
+          padding-top: em(36);
+        }
+      }
+
+      blockquote {
+        background-color: #2879D6;  
+        border: 1px solid #1C6CC9;
+        border-radius: em(12);
+        padding: 30px;
+        margin: 0;
+        position: relative;
+        z-index: 0;
+
+        &:before {
+          @include triangle(26px, #2879D6, up);
+
+          content: "";
+          position: absolute;
+          left: 20px;
+          top: -13px;
+          z-index: 2;
+        }
+
+        &:after {
+          @include triangle(26px, #1C6CC9, up);
+
+          content: "";
+          position: absolute;
+          left: 20px;
+          top: -14px;
+          z-index: 1;
+        }
+
+
+        & > p {
+          color: white;
+          font-family: $sans-serif;
+        }
+      }
+    }
+  }
+
+  strong {
+    color: #F3E86B;
+    display: block;
+    font-size: em(13);
+    text-transform: uppercase;
+    letter-spacing: em(1);
   }
 }
