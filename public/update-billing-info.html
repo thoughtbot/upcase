@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Update Your Payment Information — thoughtbot</title>
+  <link rel="stylesheet" href="css/main.css" type="text/css" />
+</head>
+<body style="margin: 0;">
+  <iframe id="form" style="position:fixed; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden;"></iframe>
+</body>
+<script>
+
+  // Allow us to get the value of a query string parameter.
+  // See http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values .
+  function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+  // This is the app's ID on Churn Buster.
+  var appId = '44';
+
+  // Get the customer ID from a query string parameter.
+  var customerId = getParameterByName('id');
+
+  // Generate the URL to the publicly accessible update form.
+  var formUrl = "https://manage.churnbuster.io/public/accounts/" + appId + "/customers/" + customerId + "/edit";
+
+  // Direct the IFRAME to that page.
+  document.getElementById("form").setAttribute('src', formUrl);
+
+</script>
+</html>
