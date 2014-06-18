@@ -485,7 +485,7 @@ body.subscriptions-new .journey-headline {
       }
 
       $count: 1;
-      $plans: "Personal Coaching", "Full-time Learner", "Part-time Learner", "The Dabbler";
+      $plans: "1-on-1 Coaching", "Aspiring Professional", "Part-time Learner", "30 Minutes a Week";
       @each $plan in $plans {
         &:nth-of-type(#{$count}):before {
           content: "#{$plan}";
