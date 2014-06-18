@@ -7,19 +7,28 @@
   <%= render 'trails' %>
 </section>
 
-<p class="product-headline">Hone your skills by completing these exercises</p>
-<%= render 'products/exercises' %>
+<% if current_user_has_access_to_exercises? %>
+  <p class="product-headline">Hone your skills by completing these exercises</p>
+  <%= render 'products/exercises' %>
+<% end %>
 
 <% if current_user_has_access_to_workshops? %>
   <p class="product-headline">Enroll in our online workshops</p>
   <section class='workshops'>
     <%= render partial: 'products/workshop', collection: @catalog.workshops %>
   </section>
-<% else %>
+<% end %>
+
+<% if !current_user_has_access_to_exercises? %>
   <section class='workshops disabled'>
     <div class='disabled-text'>
       <h2>
-        <% if current_user_has_access_to_shows? %>
+        <% if current_user_has_access_to_workshops? %>
+          <%= t(
+            '.no_exercises.title_html',
+            link: link_to(t('.no_exercises.link'), edit_subscription_path)
+          ) %>
+        <% elsif current_user_has_access_to_shows? %>
           <%= t(
             '.no_workshops.title_html',
             link: link_to(t('.no_workshops.link'), edit_subscription_path)

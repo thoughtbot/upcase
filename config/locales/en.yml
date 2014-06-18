@@ -30,11 +30,14 @@ en:
   dashboards:
     show:
       contact_your_mentor: "Contact your mentor, %{mentor_name}"
+      no_exercises:
+        title_html: "Exercises are locked &mdash; %{link} to get access"
+        link: "upgrade your subscription"
       no_workshops:
-        title_html: "Workshops are locked &mdash; %{link} to get access"
-        link: "upgrade to Prime Workshops"
+        title_html: "Exercises and workshops are locked &mdash; %{link} to get access"
+        link: "upgrade your subscription"
       no_shows:
-        title_html: "Workshops and shows are locked &mdash; %{link} to get access"
+        title_html: "Exercises, workshops, and shows are locked &mdash; %{link} to get access"
         link: "subscribe to Prime"
 
   account:

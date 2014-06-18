@@ -72,6 +72,10 @@ class User < ActiveRecord::Base
     has_active_subscription? && subscription.includes_workshops?
   end
 
+  def has_access_to_exercises?
+    has_active_subscription? && subscription.includes_exercises?
+  end
+
   def subscribed_at
     subscription.try(:created_at)
   end

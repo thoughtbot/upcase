@@ -401,6 +401,34 @@ describe User do
     end
   end
 
+  describe '#has_access_to_exercises?' do
+    context 'when the user does not have a subscription' do
+      it 'returns false' do
+        user = build_stubbed(:user)
+
+        expect(user.has_access_to_exercises?).to_not be
+      end
+    end
+
+    context 'when the user has an inactive subscription' do
+      it 'returns false' do
+        user = create(:subscriber)
+        user.subscription.stubs(:active?).returns(false)
+
+        expect(user.has_access_to_exercises?).to_not be
+      end
+    end
+
+    context 'when the user has an active subscription' do
+      it "delegates to the subscription's includes_exercises? method" do
+        user = create(:subscriber)
+        user.subscription.stubs(:includes_exercises?).returns('expected')
+
+        expect(user.has_access_to_exercises?).to eq 'expected'
+      end
+    end
+  end
+
   describe '#subscription' do
     it 'returns a purchased subscription' do
       subscription = build_stubbed(:subscription)

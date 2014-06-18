@@ -7,6 +7,7 @@ class Subscription < ActiveRecord::Base
 
   delegate :includes_mentor?, to: :plan
   delegate :includes_workshops?, to: :plan
+  delegate :includes_exercises?, to: :plan
   delegate :name, to: :plan, prefix: true
   delegate :stripe_customer_id, to: :user
 

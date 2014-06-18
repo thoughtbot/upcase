@@ -26,6 +26,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user_has_active_subscription?
 
+  def current_user_has_access_to_exercises?
+    current_user && current_user.has_access_to_exercises?
+  end
+  helper_method :current_user_has_access_to_exercises?
+
   def current_user_has_access_to_workshops?
     current_user && current_user.has_access_to_workshops?
   end

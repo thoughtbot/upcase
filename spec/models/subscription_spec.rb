@@ -6,6 +6,9 @@ describe Subscription do
   it { should belong_to(:user) }
 
   it { should delegate(:stripe_customer_id).to(:user) }
+  it { should delegate(:includes_mentor?).to(:plan) }
+  it { should delegate(:includes_workshops?).to(:plan) }
+  it { should delegate(:includes_exercises?).to(:plan) }
 
   it { should validate_presence_of(:plan_id) }
   it { should validate_presence_of(:plan_type) }
