@@ -4,6 +4,7 @@ $plan-width-callout: $plan-width + 10px;
 $plan-padding: 35px;
 $plan-header-height: 120px;
 $celestial-blue: #4A90E2;
+$yellow: #F3E86B;
 $landing-page-min-width: 960px;
 
 body.subscriptions-new nav .prime, body.subscriptions-new nav .view-plans {
@@ -63,7 +64,6 @@ body.subscriptions-new .journey-headline {
         width: $plan-width-callout;
       }
     }
-
   }
 
   nav {
@@ -196,12 +196,10 @@ body.subscriptions-new .journey-headline {
       @include size(160px);
       border-radius: 50%;
       margin-bottom: em(14);
-
     }
   }
   
   h2 {
-    
     $testimonials-padding: 75px 0;
 
     color: white;
@@ -247,7 +245,7 @@ body.subscriptions-new .journey-headline {
       margin: 0;
       z-index: 0;
 
-     &:before {
+      &:before {
         @include triangle(42px, white, left);
 
         content: "";
@@ -255,7 +253,7 @@ body.subscriptions-new .journey-headline {
         left: -21px;
         top: 25%;
         z-index: 2;
-     }
+      }
 
       &:after {
         @include triangle(42px, #1C6CC9, left);
@@ -269,9 +267,20 @@ body.subscriptions-new .journey-headline {
 
       p {
         color: $celestial-blue;
-        font-family: $sans-serif;
-        font-size: em(24);
+        font-size: em(25);
+        font-style: italic;
       }
+    }
+  }
+
+  .quotee {
+
+    strong {
+      color: #0053b3;
+      display: block;
+      font-size: em(13);
+      text-transform: uppercase;
+      letter-spacing: em(1);
     }
   }
 
@@ -290,13 +299,13 @@ body.subscriptions-new .journey-headline {
     .supporting-quote {
       @include span-columns(4);
       margin-bottom: 50px;
-
+         
       figure {
         background-color: $celestial-blue;
         margin-bottom: em(36);
 
-        p {
-          padding-top: em(36);
+      p {
+          padding: em(16) 0;
         }
       }
 
@@ -308,6 +317,10 @@ body.subscriptions-new .journey-headline {
         margin: 0;
         position: relative;
         z-index: 0;
+
+        strong {
+          color: $yellow;
+        }
 
         &:before {
           @include triangle(26px, #2879D6, up);
@@ -329,20 +342,15 @@ body.subscriptions-new .journey-headline {
           z-index: 1;
         }
 
-
         & > p {
           color: white;
-          font-family: $sans-serif;
+          font-style: italic;
         }
       }
     }
   }
-
+    
   strong {
-    color: #F3E86B;
-    display: block;
-    font-size: em(13);
-    text-transform: uppercase;
-    letter-spacing: em(1);
+    color: #0053b3; //dark blue
   }
 }
