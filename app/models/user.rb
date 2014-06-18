@@ -68,12 +68,8 @@ class User < ActiveRecord::Base
     has_active_subscription?
   end
 
-  def has_access_to_workshops?
-    has_active_subscription? && subscription.includes_workshops?
-  end
-
-  def has_access_to_exercises?
-    has_active_subscription? && subscription.includes_exercises?
+  def has_access_to?(feature)
+    subscription && subscription.has_access_to?(feature)
   end
 
   def subscribed_at

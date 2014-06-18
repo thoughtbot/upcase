@@ -8,7 +8,6 @@ describe Subscription do
   it { should delegate(:stripe_customer_id).to(:user) }
   it { should delegate(:includes_mentor?).to(:plan) }
   it { should delegate(:includes_workshops?).to(:plan) }
-  it { should delegate(:includes_exercises?).to(:plan) }
 
   it { should validate_presence_of(:plan_id) }
   it { should validate_presence_of(:plan_type) }
@@ -123,6 +122,34 @@ describe Subscription do
       subscription.change_plan(different_plan)
 
       expect(subscription.plan).to eq different_plan
+    end
+  end
+
+  describe '#has_access_to?' do
+    context 'when the subscription is inactive' do
+      it 'returns false' do
+        subscription = build_stubbed(:subscription, deactivated_on: Date.today)
+
+        expect(subscription.has_access_to?('workshops')).to be_false
+      end
+    end
+
+    context 'when subscription is active but does not include feature' do
+      it "returns false" do
+        plan = create(:plan, includes_workshops: false)
+        subscription = build_stubbed(:subscription, plan: plan)
+
+        expect(subscription.has_access_to?('workshops')).to be_false
+      end
+    end
+
+    context 'when subscription is active and includes feature' do
+      it "returns true" do
+        plan = create(:plan, includes_workshops: true)
+        subscription = build_stubbed(:subscription, plan: plan)
+
+        expect(subscription.has_access_to?('workshops')).to be_true
+      end
     end
   end
 

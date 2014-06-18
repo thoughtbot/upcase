@@ -1,29 +1,35 @@
 <%= render 'mentor_info' %>
 
 <section class='resources'>
-  <%= render 'learn_repo' %>
-  <%= render 'learn_live' %>
-  <%= render 'forum' %>
+  <% if current_user_has_access_to?(:source_code) %>
+    <%= render 'learn_repo' %>
+  <% end %>
+  <% if current_user_has_access_to?(:office_hours) %>
+    <%= render 'learn_live' %>
+  <% end %>
+  <% if current_user_has_access_to?(:forum) %>
+    <%= render 'forum' %>
+  <% end %>
   <%= render 'trails' %>
 </section>
 
-<% if current_user_has_access_to_exercises? %>
+<% if current_user_has_access_to?(:exercises) %>
   <p class="product-headline">Hone your skills by completing these exercises</p>
   <%= render 'products/exercises' %>
 <% end %>
 
-<% if current_user_has_access_to_workshops? %>
+<% if current_user_has_access_to?(:workshops) %>
   <p class="product-headline">Enroll in our online workshops</p>
   <section class='workshops'>
     <%= render partial: 'products/workshop', collection: @catalog.workshops %>
   </section>
 <% end %>
 
-<% if !current_user_has_access_to_exercises? %>
+<% if !current_user_has_access_to?(:exercises) %>
   <section class='workshops disabled'>
     <div class='disabled-text'>
       <h2>
-        <% if current_user_has_access_to_workshops? %>
+        <% if current_user_has_access_to?(:workshops) %>
           <%= t(
             '.no_exercises.title_html',
             link: link_to(t('.no_exercises.link'), edit_subscription_path)

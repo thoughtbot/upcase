@@ -52,4 +52,8 @@ module ApplicationHelper
   def blog_articles_url(topic)
     "http://robots.thoughtbot.com/tags/#{topic.slug}"
   end
+
+  def current_user_has_access_to?(feature)
+    current_user && current_user.has_access_to?(feature)
+  end
 end

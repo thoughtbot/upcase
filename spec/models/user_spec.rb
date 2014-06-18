@@ -373,12 +373,12 @@ describe User do
     end
   end
 
-  describe '#has_access_to_workshops?' do
+  describe '#has_access_to?' do
     context 'when the user does not have a subscription' do
       it 'returns false' do
         user = build_stubbed(:user)
 
-        expect(user.has_access_to_workshops?).to_not be
+        expect(user.has_access_to?('workshops')).to_not be
       end
     end
 
@@ -387,44 +387,16 @@ describe User do
         user = create(:subscriber)
         user.subscription.stubs(:active?).returns(false)
 
-        expect(user.has_access_to_workshops?).to_not be
+        expect(user.has_access_to?('workshops')).to_not be
       end
     end
 
     context 'when the user has an active subscription' do
-      it "delegates to the subscription's includes_workshops? method" do
+      it "delegates to the subscription's has_access_to? method" do
         user = create(:subscriber)
-        user.subscription.stubs(:includes_workshops?).returns('expected')
+        user.subscription.stubs(:has_access_to?).returns('expected')
 
-        expect(user.has_access_to_workshops?).to eq 'expected'
-      end
-    end
-  end
-
-  describe '#has_access_to_exercises?' do
-    context 'when the user does not have a subscription' do
-      it 'returns false' do
-        user = build_stubbed(:user)
-
-        expect(user.has_access_to_exercises?).to_not be
-      end
-    end
-
-    context 'when the user has an inactive subscription' do
-      it 'returns false' do
-        user = create(:subscriber)
-        user.subscription.stubs(:active?).returns(false)
-
-        expect(user.has_access_to_exercises?).to_not be
-      end
-    end
-
-    context 'when the user has an active subscription' do
-      it "delegates to the subscription's includes_exercises? method" do
-        user = create(:subscriber)
-        user.subscription.stubs(:includes_exercises?).returns('expected')
-
-        expect(user.has_access_to_exercises?).to eq 'expected'
+        expect(user.has_access_to?('workshops')).to eq('expected')
       end
     end
   end
