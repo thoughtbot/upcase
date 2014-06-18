@@ -1,14 +1,47 @@
 <section class="plan-features">
   <div class="inner">
     <article id="personal_coach">
-      <h3>Personal Coach</h3>
+      <header>
+        <h3>Personal Coach</h3>
+
+        <div class="included-in">
+          <% 1.times do %>
+            <div class="true">
+              <%= image_tag("pricing-check.svg") %>
+            </div>
+          <% end %>
+
+          <% 3.times do %>
+            <div class="false">
+              <%= image_tag("pricing-x.svg") %>
+            </div>
+          <% end %>
+        </div>
+      </header>
+
       <h4>Get unadulturated access to one-on-one communication with a thoughtbot developer.</h4>
       <p>You will be assigned an experienced thoughtbot developer, your personal coach, who will coach you one-on-one for 30 mins each month in a video chat.</p>
       <p>Dicussion topics are up to you, focusing on whatever you like: getting that first Rails position, salary negotiation, a specific problem in a side-project, etc.</p>
     </article>
 
     <article id="coding_exercises">
-      <h3>Coding Exercises</h3>
+      <header>
+        <h3>Coding Exercises</h3>
+
+        <div class="included-in">
+          <% 2.times do %>
+            <div class="true">
+              <%= image_tag("pricing-check.svg") %>
+            </div>
+          <% end %>
+
+          <% 2.times do %>
+            <div class="false">
+              <%= image_tag("pricing-x.svg") %>
+            </div>
+          <% end %>
+        </div>
+      </header>
       <h4>The ultimate way to sharpen your development skills, custom crafted by thoughtbot.</h4>
       <p>Submit your exercise solutions to be reviewed by thoughtbot and other subscribers.</p>
 
@@ -18,7 +51,23 @@
     </article>
 
     <article id="ebooks">
-      <h3>Premium eBooks</h3>
+      <header>
+        <h3>Premium eBooks</h3>
+
+        <div class="included-in">
+          <% 2.times do %>
+            <div class="true">
+              <%= image_tag("pricing-check.svg") %>
+            </div>
+          <% end %>
+
+          <% 2.times do %>
+            <div class="false">
+              <%= image_tag("pricing-x.svg") %>
+            </div>
+          <% end %>
+        </div>
+      </header>
       <h4>Valued at over $150 &ndash; you get full access to all 4 of our premium eBooks.</h4>
       <p>Only available on Learn, and we offer them in Kindle, PDF, and EPub formats. We add you to each book's GitHub repo so you can stay up-to-date on changes.</p>
       <p>You'll get full access to:</p>
@@ -31,7 +80,23 @@
     </article>
 
     <article id="app_source_code">
-      <h3>App Source Code</h3>
+      <header>
+        <h3>App Source Code</h3>
+
+        <div class="included-in">
+          <% 2.times do %>
+            <div class="true">
+              <%= image_tag("pricing-check.svg") %>
+            </div>
+          <% end %>
+
+          <% 2.times do %>
+            <div class="false">
+              <%= image_tag("pricing-x.svg") %>
+            </div>
+          <% end %>
+        </div>
+      </header>
       <h4>See what a real-world, complex, fully tested production application looks like.</h4>
       <p>As a subscriber, you have access to the source code of Learn, this application. Clone it, disect it, and follow code reviews.</p>
 
@@ -39,7 +104,23 @@
     </article>
 
     <article id="video_tutorials">
-      <h3>Video Tutorials</h3>
+      <header>
+        <h3>Video Tutorials</h3>
+
+        <div class="included-in">
+          <% 3.times do %>
+            <div class="true">
+              <%= image_tag("pricing-check.svg") %>
+            </div>
+          <% end %>
+
+          <% 1.times do %>
+            <div class="false">
+              <%= image_tag("pricing-x.svg") %>
+            </div>
+          <% end %>
+        </div>
+      </header>
       <h4>The best way to learn is to do.</h4>
       <p>In each video tutorial, a thoughtbot subject-matter expert takes you deep within a topic during several hours of detailed videos. You follow along by coding the related exercises on your own time. Your instructor answers all your questions in a chat room each week.</p>
 
@@ -55,13 +136,45 @@
     </article>
 
     <article id="office_hours">
-      <h3>Office Hours</h3>
+      <header>
+        <h3>Office Hours</h3>
+
+        <div class="included-in">
+          <% 3.times do %>
+            <div class="true">
+              <%= image_tag("pricing-check.svg") %>
+            </div>
+          <% end %>
+
+          <% 1.times do %>
+            <div class="false">
+              <%= image_tag("pricing-x.svg") %>
+            </div>
+          <% end %>
+        </div>
+      </header>
       <h4>Get help each week from a thoughtbot developer.</h4>
       <p></p>
     </article>
 
     <article id="community_forum">
-      <h3>Community Forum</h3>
+      <header>
+        <h3>Community Forum</h3>
+
+        <div class="included-in">
+          <% 3.times do %>
+            <div class="true">
+              <%= image_tag("pricing-check.svg") %>
+            </div>
+          <% end %>
+
+          <% 1.times do %>
+            <div class="false">
+              <%= image_tag("pricing-x.svg") %>
+            </div>
+          <% end %>
+        </div>
+      </header>
       <h4>Don’t develop alone, post questions to thoughtbotters and other subscribers.</h4>
       <p>Get in depth answers to questions you have about unfamiliar development topics, your personal projects, and our workshops and books.</p>
         <p>Or deeply learn a topic by teaching it to another person on the forum. Subscribers often answer each others' questions.</p>
@@ -70,7 +183,17 @@
     </article>
 
     <article id="weekly_iteration">
-      <h3>Weekly Iteration</h3>
+      <header>
+        <h3>Weekly Iteration</h3>
+
+        <div class="included-in">
+          <% 4.times do %>
+            <div class="true">
+              <%= image_tag("pricing-check.svg") %>
+            </div>
+          <% end %>
+        </div>
+      </header>
       <h4>The Weekly Iteration is a video show hosted by Ben Orenstein, released every Friday.</h4>
       <p>In each episode, Ben invites a thoughtbot developer to discuss topics chosen to make you a better programmer.</p>
 

@@ -407,6 +407,10 @@ body.subscriptions-new .journey-headline {
     }
   }
 
+  header {
+    position: relative;
+  }
+
   h3 {
     border-bottom: 2px solid transparent;
     color: $learnred;
@@ -427,5 +431,53 @@ body.subscriptions-new .journey-headline {
     font-size: 1.05em;
     line-height: 1.55;
     margin-bottom: 0.85em;
+  }
+
+  .included-in {
+    position: absolute;
+    right: 0;
+    top: 5px;
+
+    > div {
+      display: inline-block;
+      position: relative;
+
+      &:before {
+        background: #333;
+        border-radius: 3px;
+        color: hsla(0, 0%, 100%, 0.9);
+        content: "foo";
+        cursor: pointer;
+        font-size: 0.8rem;
+        line-height: 1;
+        opacity: 0;
+        padding: 5px 6px 3px;
+        position: absolute;
+        top: -40px;
+        @include transform(translateX(-45%));
+        white-space: nowrap;
+      }
+
+      &:hover:before {
+        opacity: 1;
+      }
+
+      $count: 1;
+      $plans: "Personal Coaching", "Full-time Learner", "Part-time Learner", "The Dabbler";
+      @each $plan in $plans {
+        &:nth-of-type(#{$count}):before {
+          content: "#{$plan}";
+          $count: $count + 1;
+        }
+      }
+    }
+
+    img {
+      height: 14px;
+    }
+
+    .false img {
+      height: 12px;
+    }
   }
 }
