@@ -91,6 +91,7 @@ body.subscriptions-new .journey-headline {
   }
 
   section.plan {
+    background: #fff;
     border: 1px solid $warmgray;
     border-left-width: 0;
     border-right-width: 0;
@@ -174,7 +175,12 @@ body.subscriptions-new .journey-headline {
   }
 }
 
+// Footer
+////////////////////////////////////////////////////////////////////////////
+
 .plans.footer {
+  background: $lightwarmgray;
+
   .inner {
     width: ($plan-width + 20)*3 + $plan-width-callout + 20;
   }
@@ -382,24 +388,44 @@ body.subscriptions-new .journey-headline {
   }
 
   article {
-    margin-bottom: 40px;
-    @include pad(0 36px);
+    margin-bottom: 25px;
+    padding-left: 36px;
+    padding-right: 18px;
+    padding-top: 25px;
     @include span-columns(6 of 12);
+
+    &:target {
+      h3 {
+        border-bottom: 2px solid currentColor;
+      }
+    }
 
     &:nth-of-type(2n) {
       @include omega();
+      padding-left: (36px/2);
+      padding-right: 36px;
     }
   }
 
   h3 {
+    border-bottom: 2px solid transparent;
     color: $learnred;
+    font-size: 1.5rem;
     font-weight: 700;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.7em;
+    @include transition(border-color 0.5s $ease-in-quad);
   }
 
   h4 {
-    color: darken($darkwarmgray, 15%);
+    color: darken($darkwarmgray, 8%);
     font-size: 1.2rem;
-    font-weight: normal;
+    line-height: 1.3;
+    margin-bottom: 0.6em;
+  }
+
+  p, ul {
+    font-size: 1.05em;
+    line-height: 1.55;
+    margin-bottom: 0.85em;
   }
 }
