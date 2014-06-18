@@ -374,15 +374,32 @@ body.subscriptions-new .journey-headline {
 .plan-features {
   padding: 80px 0;
   background: #fff;
-  @include clearfix;
 
   .inner {
+    @include clearfix;
     max-width: $plan-max-width;
     margin: 0 auto;
   }
 
   article {
-    @include span-columns(6);
-    @include omega(2n + 1);
+    margin-bottom: 40px;
+    @include pad(0 36px);
+    @include span-columns(6 of 12);
+
+    &:nth-of-type(2n) {
+      @include omega();
+    }
+  }
+
+  h3 {
+    color: $learnred;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+  }
+
+  h4 {
+    color: darken($darkwarmgray, 15%);
+    font-size: 1.2rem;
+    font-weight: normal;
   }
 }

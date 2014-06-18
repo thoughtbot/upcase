@@ -10,28 +10,28 @@
     <nav class="features">
       <ol>
         <li>
-          <a href="#">Personal coach</a>
+          <a href="#personal_coach">Personal coach</a>
         </li>
         <li>
-          <a href="#">Coding exercises</a>
+          <a href="#coding_exercises">Coding exercises</a>
         </li>
         <li>
-          <a href="#">Premium eBooks</a>
+          <a href="#ebooks">Premium eBooks</a>
         </li>
         <li>
-          <a href="#">App source code</a>
+          <a href="#app_source_code">App source code</a>
         </li>
         <li>
-          <a href="#">Workshops</a>
+          <a href="#video_tutorials">Video tutorials</a>
         </li>
         <li>
-          <a href="#">Office hours</a>
+          <a href="#office_hours">Office hours</a>
         </li>
         <li>
-          <a href="#">Community forum</a>
+          <a href="#community_forum">Community forum</a>
         </li>
         <li>
-          <a href="#">The Weekly Iteration</a>
+          <a href="#weekly_iteration">The Weekly Iteration</a>
         </li>
       </ol>
     </nav>
@@ -49,11 +49,13 @@
     </section>
 
     <section class="plan popular">
-      <h3>Feedback Loop</h3>
+      <h3>Full-time Learner</h3>
       <ol>
         <li><%= image_tag("pricing-x.svg") %></li>
-        <li class="check-lg"><%= image_tag("pricing-check-lg.svg") %></li>
-        <% 6.times do %>
+        <% 3.times do %>
+          <li class="check-lg"><%= image_tag("pricing-check-lg.svg") %></li>
+        <% end %>
+        <% 4.times do %>
           <li><%= image_tag("pricing-check.svg") %></li>
         <% end %>
       </ol>
@@ -62,13 +64,15 @@
     </section>
 
     <section class="plan">
-      <h3>Workshop-aholic</h3>
+      <h3>Part-time Study</h3>
       <ol>
         <% 4.times do %>
           <li><%= image_tag("pricing-x.svg") %></li>
         <% end %>
-        <li class="check-lg"><%= image_tag("pricing-check-lg.svg") %></li>
         <% 3.times do %>
+        <li class="check-lg"><%= image_tag("pricing-check-lg.svg") %></li>
+        <% end %>
+        <% 1.times do %>
           <li><%= image_tag("pricing-check.svg") %></li>
         <% end %>
       </ol>
@@ -77,7 +81,7 @@
     </section>
 
     <section class="plan">
-      <h3>Watch and Learn</h3>
+      <h3>The Dabbler</h3>
       <ol>
         <% 7.times do %>
           <li><%= image_tag("pricing-x.svg") %></li>
