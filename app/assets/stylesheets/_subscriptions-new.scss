@@ -301,7 +301,7 @@ body.subscriptions-new .journey-headline {
         content: "";
         position: absolute;
         left: -21px;
-        top: 25%;
+        top: 15%;
         z-index: 2;
       }
 
@@ -311,14 +311,32 @@ body.subscriptions-new .journey-headline {
         content: "";
         position: absolute;
         left: -22px;
-        top: 25%;
+        top: 15%;
         z-index: 1;
       }
 
       p {
         color: $celestial-blue;
-        font-size: em(25);
+        font-size: em(20);
         font-style: italic;
+        position: relative;
+        padding-left: em(30);
+      
+        &:before {
+          @include size(11px);
+          padding: 11px 16px 11px 6px;
+          margin: 0 auto;
+          color: white;
+          content: "“";
+          border-radius: 50%;
+          background-color: $learnred;
+          font-style: none;
+          font-family: $sans-serif;
+          font-size: em(32);
+          position: absolute;
+          left: -3%;
+          z-index: 0;
+        }
       }
     }
   }
