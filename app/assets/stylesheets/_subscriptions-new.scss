@@ -27,6 +27,7 @@ body.subscriptions-new .journey-headline {
     @include clearfix;
     margin: 0 auto;
     padding: 80px 0 100px;
+    position: relative;
     width: $plan-width * 4 + $plan-width-callout;
   }
 
@@ -174,6 +175,24 @@ body.subscriptions-new .journey-headline {
       margin: 2rem $plan-padding*0.9;
     }
   }
+
+  .teams-pricing {
+    margin-top: 98px;
+
+    a {
+      // border-bottom: 0;
+      border-bottom-color: hsla(0, 0%, 65%, 0.15);
+      color: hsla(0, 0%, 65%, 1);
+      font-size: 0.75rem;
+      line-height: 1.5;
+      text-transform: uppercase;
+      white-space: nowrap;
+
+      &:hover {
+        border-bottom-color: hsla(0, 0%, 65%, 0.75);
+      }
+    }
+  }
 }
 
 // Footer
@@ -205,8 +224,11 @@ body.subscriptions-new .journey-headline {
     }
 
     p {
-      padding: 0 $plan-padding/2;
+      @include align-items(center);
+      @include display(flex);
       margin-bottom: 2em;
+      min-height: 72px;
+      padding: 0 $plan-padding/2;
     }
 
     .price {
