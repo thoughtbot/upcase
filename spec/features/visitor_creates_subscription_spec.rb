@@ -7,8 +7,8 @@ feature 'Visitor signs up for a subscription' do
 
   scenario 'visitor signs up by navigating from landing page' do
     visit prime_path
-    click_link 'See Plans & Pricing for Prime'
-    click_link 'Sign up'
+    click_link I18n.t('subscriptions.join_cta')
+    click_link I18n.t('subscriptions.choose_plan_html', plan_name: @plan.name)
     fill_out_account_creation_form
     fill_out_credit_card_form_with_valid_credit_card
 
