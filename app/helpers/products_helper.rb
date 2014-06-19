@@ -30,4 +30,12 @@ module ProductsHelper
   def book_releases_url(book)
     HostedBookUrl.new(book).releases
   end
+
+  def exercise_link(url, options = {}, &block)
+    if current_user_has_access_to?(:exercises)
+      link_to url, options, &block
+    else
+      content_tag "a", &block
+    end
+  end
 end
