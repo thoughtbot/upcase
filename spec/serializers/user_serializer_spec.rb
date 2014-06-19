@@ -31,14 +31,6 @@ describe UserSerializer do
   end
 
   context 'when the user has an active subscription' do
-    it 'includes a key granting forum access' do
-      user = create(:subscriber)
-
-      user_json = parse_serialized_json(user)
-
-      user_json['has_forum_access'].should be_true
-    end
-
     it 'includes a key indicating a subscription' do
       user = create(:subscriber)
 
@@ -63,6 +55,26 @@ describe UserSerializer do
       user_json = parse_serialized_json(user)
 
       user_json['has_active_subscription'].should be_false
+    end
+  end
+
+  context 'when the user has subscription without access to forum' do
+    it 'includes a key denying forum access' do
+      user = create(:user, :with_basic_subscription).reload
+
+      user_json = parse_serialized_json(user)
+
+      user_json['has_forum_access'].should be_false
+    end
+  end
+
+  context 'when the user has subscription with access to forum' do
+    it 'includes a key allowing forum access' do
+      user = create(:subscriber)
+
+      user_json = parse_serialized_json(user)
+
+      user_json['has_forum_access'].should be_true
     end
   end
 

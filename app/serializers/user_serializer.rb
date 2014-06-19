@@ -15,7 +15,7 @@ class UserSerializer < ActiveModel::Serializer
   )
 
   def has_forum_access
-    object.has_active_subscription? || object.admin?
+    object.has_access_to?(:forum) || object.admin?
   end
 
   def has_active_subscription

@@ -130,6 +130,12 @@ FactoryGirl.define do
 
     factory :basic_plan do
       sku IndividualPlan::PRIME_BASIC_SKU
+      includes_books false
+      includes_exercises false
+      includes_forum false
+      includes_office_hours false
+      includes_screencasts false
+      includes_source_code false
       includes_workshops false
     end
 
