@@ -6,13 +6,6 @@ feature 'User creates a subscription' do
     sign_in
   end
 
-  scenario 'creates a Stripe subscription with a valid credit card' do
-    subscribe_with_valid_credit_card
-    expect(current_path).to eq dashboard_path
-    expect(page).to have_content(I18n.t('purchase.flashes.success', name: plan.name))
-    expect(settings_page).to have_subscription_to(plan.name)
-  end
-
   scenario 'does not create a Stripe subscription with an invalid credit card' do
     subscribe_with_invalid_credit_card
     expect(current_user).not_to have_active_subscription
@@ -37,8 +30,7 @@ feature 'User creates a subscription' do
 
     visit_plan_purchase_page
 
-    expect(page).to have_content('GitHub username')
-    expect(page).to have_css('input#github_username_1')
+    expect(page).to have_github_input
   end
 
   scenario "user with github username doesn't see github username input" do
@@ -47,8 +39,7 @@ feature 'User creates a subscription' do
 
     visit_plan_purchase_page
 
-    expect(page).not_to have_content('GitHub username')
-    expect(page).not_to have_css('input#github_username_1')
+    expect(page).not_to have_github_input
   end
 
   scenario 'creates a Stripe subscription with a valid amount off coupon', js: true do
@@ -64,8 +55,8 @@ feature 'User creates a subscription' do
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
-    expect(current_path).to eq dashboard_path
-    expect(page).to have_content(I18n.t('purchase.flashes.success', name: plan.name))
+    expect(current_path).to be_the_dashboard
+    expect_to_see_purchase_success_flash_for(@plan.name)
     expect(FakeStripe.last_coupon_used).to eq '5OFF'
   end
 
@@ -82,7 +73,7 @@ feature 'User creates a subscription' do
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
-    expect(page).to have_content(I18n.t('purchase.flashes.success', name: plan.name))
+    expect_to_see_purchase_success_flash_for(@plan.name)
     expect(FakeStripe.last_coupon_used).to eq 'THREEFREE'
   end
 
@@ -99,9 +90,9 @@ feature 'User creates a subscription' do
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
-    expect(page).to have_content(I18n.t('purchase.flashes.success', name: plan.name))
+    expect_to_see_purchase_success_flash_for(@plan.name)
     expect(FakeStripe.last_coupon_used).to eq '50OFF'
-    expect(current_path).to eq dashboard_path
+    expect(current_path).to be_the_dashboard
     expect(Purchase.last.stripe_customer_id).to be_present
   end
 
@@ -163,8 +154,7 @@ feature 'User creates a subscription' do
   end
 
   def visit_plan_purchase_page
-    visit new_subscription_path
-    click_link('Sign up for')
+    visit new_individual_plan_purchase_path(@plan)
   end
 
   def create_plan
@@ -180,10 +170,6 @@ feature 'User creates a subscription' do
     visit_plan_purchase_page
     FakeStripe.failure = true
     fill_out_subscription_form_with 'bad cc number'
-  end
-
-  def plan
-    @plan
   end
 
   def apply_coupon_with_code(code)
@@ -205,5 +191,10 @@ feature 'User creates a subscription' do
       '.subscription p strong',
       text: plan.name
     )
+  end
+
+  def have_github_input
+    have_content('GitHub username') &&
+      have_css('input#github_username_1')
   end
 end
