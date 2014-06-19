@@ -1,15 +1,9 @@
 <%= render 'mentor_info' %>
 
 <section class='resources'>
-  <% if current_user_has_access_to?(:source_code) %>
-    <%= render 'learn_repo' %>
-  <% end %>
-  <% if current_user_has_access_to?(:office_hours) %>
-    <%= render 'learn_live' %>
-  <% end %>
-  <% if current_user_has_access_to?(:forum) %>
-    <%= render 'forum' %>
-  <% end %>
+  <%= render 'learn_repo' %>
+  <%= render 'learn_live' %>
+  <%= render 'forum' %>
   <%= render 'trails' %>
 </section>
 

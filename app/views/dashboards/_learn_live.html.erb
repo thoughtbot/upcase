@@ -1,6 +1,9 @@
 <figure class='dashboard-resource learn-live product-card'>
-  <%= link_to OfficeHours.url, target: '_blank' do %>
+  <%= learn_live_link do %>
     <h4>Learn Live</h4>
     <p>Join other members in a live chatroom. Thoughtbotters are present for office hours on Friday.</p>
+  <% end %>
+  <% unless current_user_has_access_to?(:office_hours) %>
+    <%= render 'locked' %>
   <% end %>
 </figure>

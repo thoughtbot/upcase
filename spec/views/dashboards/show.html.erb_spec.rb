@@ -1,40 +1,42 @@
 require 'spec_helper'
 
 describe 'dashboards/show.html' do
-  it 'renders without access to learn repo if not part of subscription' do
-    render_show
+  ENV['LEARN_REPO_URL'] = 'learn_repo_url'
 
-    expect(rendered).not_to have_content('Learn Repo')
+  context 'when a user does not have access to the learn repo' do
+    it 'renders without a link to learn repo' do
+      render_show
+
+      expect(rendered).
+        not_to have_css("a[href='learn_repo_url']")
+      expect(rendered).to have_css("a[href='#{edit_subscription_path}']")
+    end
   end
 
-  it 'renders with access to learn repo if part of subscription' do
-    render_show source_code: true
+  context 'when a user has access to the learn repo' do
+    it 'renders with a link to learn repo' do
+      render_show source_code: true
 
-    expect(rendered).to have_content('Learn Repo')
+      expect(rendered).
+        to have_css("a[href='learn_repo_url']")
+    end
   end
 
-  it 'renders without access to learn live if not part of subscription' do
-    render_show
+  context 'when a user does not have access to learn live' do
+    it 'renders without a link to learn live' do
+      render_show
 
-    expect(rendered).not_to have_content('Learn Live')
+      expect(rendered).not_to have_css("a[href='#{OfficeHours.url}']")
+      expect(rendered).to have_css("a[href='#{edit_subscription_path}']")
+    end
   end
 
-  it 'renders with access to learn live if part of subscription' do
-    render_show office_hours: true
+  context 'when a user has access to learn live' do
+    it 'renders with a link to learn live' do
+      render_show office_hours: true
 
-    expect(rendered).to have_content('Learn Live')
-  end
-
-  it 'renders without access to forum if not part of subscription' do
-    render_show
-
-    expect(rendered).not_to have_content('Forum')
-  end
-
-  it 'renders with access to forum if part of subscription' do
-    render_show forum: true
-
-    expect(rendered).to have_content('Forum')
+      expect(rendered).to have_css("a[href='#{OfficeHours.url}']")
+    end
   end
 
   it 'renders with access to workshops and shows' do

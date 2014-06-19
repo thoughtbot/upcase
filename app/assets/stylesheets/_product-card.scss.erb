@@ -260,4 +260,23 @@
     font: normal .8rem/1em $sans-serif;
     position: absolute;
   }
+
+  .product-card-locked {
+    background: $journey-line-color;
+    @include border-bottom-radius(0.25rem);
+    margin-left: -5px;
+    padding: 10px;
+    width: calc(100% + 10px);
+
+    .icon {
+      float: left;
+      margin-right: 7px;
+      top: -2px;
+    }
+
+    h5 {
+      color: $darkwarmgray;
+      margin: 0;
+    }
+  }
 }
