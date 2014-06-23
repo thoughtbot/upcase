@@ -1,22 +1,15 @@
 <div class="individual-purchase">
   <div class="license">
-    <h2 class="active-subscription"><span><%= t 'products.show.free_to_subscribers' %></span></h2>
-    <%= link_to(
-      new_product_purchase_path(subscriber_license, variant: :individual),
-      class: "license-button button free-with-prime",
-      id: "#{subscriber_license.sku}-purchase-individual"
-    ) do %>
-      <% if subscriber_license.collection? %>
-        <%= t(
-          'products.show.purchase_collection_for_subscribed_user',
-          offering_type: subscriber_license.offering_type
-        ) %>
-      <% else %>
-        <%= t(
-          'products.show.purchase_for_subscribed_user',
-          offering_type: subscriber_license.offering_type
-        ) %>
-      <% end %>
+    <% if included_in_current_users_plan?(product) %>
+      <%= render(
+        'subscriber_licenses/subscriber_license_included',
+        subscriber_license: subscriber_license
+      ) %>
+    <% else %>
+      <%= render(
+        'subscriber_licenses/subscriber_license_not_included',
+        subscriber_license: subscriber_license
+      ) %>
     <% end %>
   </div>
 </div>

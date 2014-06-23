@@ -7,6 +7,7 @@ class Video < ActiveRecord::Base
   validates :watchable_type, presence: true
   validates :wistia_id, presence: true
 
+  delegate :included_in_plan?, to: :watchable
   delegate :name, to: :watchable, prefix: true
 
   def self.ordered

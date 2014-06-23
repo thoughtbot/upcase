@@ -77,6 +77,7 @@ en:
         company_html: "For your company: %{price}"
         subscription:
           individual_html: "%{price}"
+      upgrade: "Upgrade your plan to access this %{offering_type}"
     license:
       or_buy_individually: "Or buy individually"
 

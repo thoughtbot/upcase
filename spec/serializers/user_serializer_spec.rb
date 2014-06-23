@@ -60,7 +60,7 @@ describe UserSerializer do
 
   context 'when the user has subscription without access to forum' do
     it 'includes a key denying forum access' do
-      user = create(:user, :with_basic_subscription).reload
+      user = create(:basic_subscriber)
 
       user_json = parse_serialized_json(user)
 

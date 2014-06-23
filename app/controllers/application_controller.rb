@@ -55,6 +55,11 @@ class ApplicationController < ActionController::Base
       find(params)
   end
 
+  def included_in_current_users_plan?(purchaseable)
+    purchaseable.included_in_plan?(current_user.plan)
+  end
+  helper_method :included_in_current_users_plan?
+
   def topics
     Topic.top
   end

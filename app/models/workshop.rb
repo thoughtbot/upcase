@@ -102,4 +102,8 @@ class Workshop < ActiveRecord::Base
   def published_videos
     videos.published
   end
+
+  def included_in_plan?(plan)
+    plan.includes_workshops?
+  end
 end

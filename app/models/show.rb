@@ -5,6 +5,10 @@ class Show < Product
     where(name: THE_WEEKLY_ITERATION).first
   end
 
+  def included_in_plan?(plan)
+    plan.includes_shows?
+  end
+
   private
 
   def product_licenses

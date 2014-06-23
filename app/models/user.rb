@@ -98,6 +98,10 @@ class User < ActiveRecord::Base
     purchased_subscription || team_subscription
   end
 
+  def plan
+    subscription.plan
+  end
+
   private
 
   def team_subscription

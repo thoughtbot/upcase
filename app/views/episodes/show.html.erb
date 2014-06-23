@@ -18,7 +18,7 @@
     <% if signed_out? %>
       <%= render 'weekly_iterations/subscribe', plan: @plan, show: @video.watchable %>
     <% else %>
-      <%= render @video.watchable.licenses_for(current_user) %>
+      <%= render @video.watchable.licenses_for(current_user), product: @video %>
     <% end %>
 
     <%= render 'products/terms', product: @video.watchable %>

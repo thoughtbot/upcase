@@ -62,7 +62,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def has_access_to?(feature)
-    active? && plan.send("includes_#{feature}?".to_sym)
+    active? && plan.public_send("includes_#{feature}?")
   end
 
   def purchase

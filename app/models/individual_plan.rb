@@ -69,6 +69,10 @@ class IndividualPlan < ActiveRecord::Base
     controller.dashboard_path
   end
 
+  def included_in_plan?(plan)
+    false
+  end
+
   private
 
   def stripe_plan

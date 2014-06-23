@@ -6,7 +6,7 @@
   <% end %>
 
   <% if product.active? %>
-    <%= render licenses %>
+    <%= render licenses, product: product %>
   <% else %>
     <%= render 'products/inactive', product: product %>
   <% end %>

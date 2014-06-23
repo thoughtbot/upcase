@@ -47,5 +47,9 @@ module Teams
     def after_purchase_url(controller, purchase)
       controller.edit_teams_team_path
     end
+
+    def included_in_plan?(plan)
+      false
+    end
   end
 end

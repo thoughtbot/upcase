@@ -1,7 +1,9 @@
 class PurchasesController < ApplicationController
   def new
-    if current_user_purchase_is_free? || user_wants_to_take_a_workshop?
-      redirect_to_purchase_or_subscription_path
+    if current_user_has_active_subscription?
+      redirect_for_user_with_subscription
+    elsif workshop_purchase?
+      redirect_for_non_subscriber_purchasing_a_workshop
     else
       @purchase = build_purchase_with_defaults
     end
@@ -52,21 +54,9 @@ class PurchasesController < ApplicationController
 
   private
 
-  def current_user_purchase_is_free?
+  def current_user_plan_includes_purchaseable?
     current_user_has_active_subscription? &&
       (plan_purchase? || included_in_subscription?)
-  end
-
-  def user_wants_to_take_a_workshop?
-    params[:workshop_id].present?
-  end
-
-  def redirect_to_purchase_or_subscription_path
-    if current_user_purchase_is_free?
-      redirect_to_subscriber_purchase_or_default(dashboard_path)
-    else
-      redirect_to new_subscription_path
-    end
   end
 
   def redirect_to_subscriber_purchase_or_default(default_path)
@@ -79,7 +69,7 @@ class PurchasesController < ApplicationController
   end
 
   def included_in_subscription?
-    !workshop_purchase? || (workshop_purchase? && current_user_has_access_to_workshops?)
+    requested_purchaseable.included_in_plan?(current_user.plan)
   end
 
   def plan_purchase?
@@ -124,5 +114,21 @@ class PurchasesController < ApplicationController
     else
       'individual'
     end
+  end
+
+  def redirect_for_user_with_subscription
+    if current_user_plan_includes_purchaseable?
+      redirect_to_subscriber_purchase_or_default(dashboard_path)
+    else
+      redirect_for_subscription_without_access
+    end
+  end
+
+  def redirect_for_subscription_without_access
+    redirect_to edit_subscription_path
+  end
+
+  def redirect_for_non_subscriber_purchasing_a_workshop
+    redirect_to new_subscription_path
   end
 end

@@ -142,6 +142,14 @@ FactoryGirl.define do
     trait :includes_mentor do
       includes_mentor true
     end
+
+    trait :includes_screencasts do
+      includes_screencasts true
+    end
+
+    trait :includes_books do
+      includes_books true
+    end
   end
 
   factory :invitation, class: 'Teams::Invitation' do
@@ -289,9 +297,25 @@ FactoryGirl.define do
     factory :subscriber do
       with_subscription
 
+      factory :basic_subscriber do
+        plan { create(:basic_plan) }
+      end
+
       trait :includes_mentor do
         ignore do
           plan { create(:individual_plan, :includes_mentor) }
+        end
+      end
+
+      trait :includes_screencasts do
+        ignore do
+          plan { create(:individual_plan, :includes_screencasts) }
+        end
+      end
+
+      trait :includes_books do
+        ignore do
+          plan { create(:individual_plan, :includes_books) }
         end
       end
     end
