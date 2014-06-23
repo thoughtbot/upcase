@@ -1,5 +1,9 @@
 class IndividualPlan < ActiveRecord::Base
   PRIME_BASIC_SKU = 'prime-basic'
+  PRIME_249_SKU = 'prime-249'
+  PRIME_99_SKU = 'prime-99'
+  PRIME_49_SKU = 'prime-49'
+  PRIME_29_SKU = 'prime-29'
 
   has_many :announcements, as: :announceable, dependent: :destroy
   has_many :purchases, as: :purchaseable

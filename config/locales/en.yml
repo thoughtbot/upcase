@@ -190,7 +190,7 @@ en:
     confirm_cancel_reject_deal: No thanks, just cancel my subscription
     confirm_cancel: Yes, cancel my subscription
     change_plan: Change plan
-    choose_plan_html: Sign up for %{plan_name}
+    choose_plan_html: Start learning
     current_plan_html: <p class="current-plan">This is your current plan</p>
     take_refund: Get a refund
     processing_refund: Processing...

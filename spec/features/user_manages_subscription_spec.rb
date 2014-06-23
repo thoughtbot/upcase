@@ -116,19 +116,21 @@ feature 'User creates a subscription' do
   end
 
   scenario 'changes subscription plan' do
-    new_plan = create(:plan, name: 'New Plan', sku: 'new-plan')
+    new_plan = create(:plan, sku: IndividualPlan::PRIME_99_SKU)
     sign_in_as_user_with_subscription
     visit my_account_path
 
     expect_to_see_the_current_plan(current_user.subscription.plan)
 
     click_link I18n.t('subscriptions.change_plan')
-    click_link new_plan.name
+    within("[data-sku='#{new_plan.sku}']") do
+      click_link I18n.t("subscriptions.choose_plan_html")
+    end
 
     expect(current_path).to eq my_account_path
     expect_to_see_the_current_plan(new_plan)
     expect(page).to have_content(I18n.t('subscriptions.flashes.change.success'))
-    expect(FakeStripe.customer_plan_id).to eq 'new-plan'
+    expect(FakeStripe.customer_plan_id).to eq IndividualPlan::PRIME_99_SKU
   end
 
   scenario 'does not see option to update billing if not subscribing' do

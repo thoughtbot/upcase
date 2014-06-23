@@ -75,11 +75,11 @@ module PurchasesHelper
     end
   end
 
-  def choose_plan_link(plan)
+  def choose_plan_link(sku)
     if current_user_has_active_subscription?
-      change_plan_link(plan)
+      change_plan_link(sku)
     else
-      new_plan_link(plan)
+      new_plan_link(sku)
     end
   end
 
@@ -97,28 +97,32 @@ module PurchasesHelper
 
   private
 
-  def change_plan_link(plan)
-    if current_user.subscription.plan == plan
+  def change_plan_link(sku)
+    if current_plan.sku == sku
       I18n.t('subscriptions.current_plan_html').html_safe
     else
-      update_plan_link(plan)
+      update_plan_link(sku)
     end
   end
 
-  def update_plan_link(plan)
+  def current_plan
+    current_user.subscription.plan
+  end
+
+  def update_plan_link(sku)
     link_to(
-      I18n.t('subscriptions.choose_plan_html', plan_name: plan.name).html_safe,
-      subscription_path(plan_id: plan.to_param),
+      I18n.t('subscriptions.choose_plan_html').html_safe,
+      subscription_path(plan_id: sku),
       method: :put,
-      class: 'button'
+      class: 'sign-up'
     )
   end
 
-  def new_plan_link(plan)
+  def new_plan_link(sku)
     link_to(
-      I18n.t('subscriptions.choose_plan_html', plan_name: plan.name).html_safe,
-      new_individual_plan_purchase_path(plan),
-      class: 'button'
+      I18n.t('subscriptions.choose_plan_html').html_safe,
+      new_individual_plan_purchase_path(sku),
+      class: 'sign-up'
     )
   end
 end

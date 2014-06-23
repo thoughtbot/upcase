@@ -37,7 +37,7 @@
       <div class="teams-pricing"><a href="mailto:learn@thoughtbot.com">Email for team pricing</a></div>
     </nav>
 
-    <section class="plan">
+    <section class="plan" data-sku="prime-249">
       <h3>1-on-1 Coaching</h3>
       <ol>
         <li class="check-lg"><%= image_tag("pricing-check-lg.svg") %></li>
@@ -46,10 +46,10 @@
         <% end %>
       </ol>
       <div class="price">$249 / month</div>
-      <a href="#" class="sign-up">Start learning</a>
+      <%= choose_plan_link(IndividualPlan::PRIME_249_SKU) %>
     </section>
 
-    <section class="plan popular">
+    <section class="plan popular" data-sku="prime-99">
       <h3>Aspiring Professional</h3>
       <ol>
         <li><%= image_tag("pricing-x.svg") %></li>
@@ -61,10 +61,10 @@
         <% end %>
       </ol>
       <div class="price">$99 / month</div>
-      <a href="#" class="sign-up">Start learning</a>
+      <%= choose_plan_link(IndividualPlan::PRIME_99_SKU) %>
     </section>
 
-    <section class="plan">
+    <section class="plan" data-sku="prime-49">
       <h3>Part-time Study</h3>
       <ol>
         <% 4.times do %>
@@ -78,10 +78,10 @@
         <% end %>
       </ol>
       <div class="price">$49 / month</div>
-      <a href="#" class="sign-up">Start learning</a>
+      <%= choose_plan_link(IndividualPlan::PRIME_49_SKU) %>
     </section>
 
-    <section class="plan">
+    <section class="plan" data-sku="prime-29">
       <h3>30 Minutes a Week</h3>
       <ol>
         <% 7.times do %>
@@ -90,7 +90,7 @@
         <li class="check-lg"><%= image_tag("pricing-check-lg.svg") %></li>
       </ol>
       <div class="price">$29 / month</div>
-      <a href="#" class="sign-up">Start learning</a>
+      <%= choose_plan_link(IndividualPlan::PRIME_29_SKU) %>
     </section>
   </div>
 </section>
