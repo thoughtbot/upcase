@@ -34,10 +34,10 @@ en:
         title_html: "Exercises are locked &mdash; %{link} to get access"
         link: "upgrade your subscription"
       no_workshops:
-        title_html: "Exercises and workshops are locked &mdash; %{link} to get access"
+        title_html: "Exercises and video tutorials are locked &mdash; %{link} to get access"
         link: "upgrade your subscription"
       no_shows:
-        title_html: "Exercises, workshops, and shows are locked &mdash; %{link} to get access"
+        title_html: "Exercises, video tutorials, and shows are locked &mdash; %{link} to get access"
         link: "subscribe to Prime"
 
   account:

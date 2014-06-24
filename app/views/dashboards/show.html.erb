@@ -52,9 +52,11 @@
   </section>
 <% end %>
 
-<section class='screencasts'>
-  <%= render @catalog.screencasts %>
-</section>
+<% if current_user_has_access_to?(:screencasts) %>
+  <section class='screencasts'>
+    <%= render @catalog.screencasts %>
+  </section>
+<% end %>
 
 <p class="product-headline">Read our eBooks to boost your knowledge</p>
 <section class='reading'>
