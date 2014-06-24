@@ -93,6 +93,7 @@ body.topics-show {
 .trail-map-steps {
   @extend %main-content-box;
   background: white;
+  border-radius: 4px;
   float: left;
   margin-bottom: 4%;
   padding: 0;
@@ -139,7 +140,7 @@ body.topics-show {
     }
 
     &.validation.complete {
-      background: lighten($journey-line-color, 8%);
+      background: lighten($journey-line-color, 14%);
       color: darken($journey-line-color, 30%);
 
       a {

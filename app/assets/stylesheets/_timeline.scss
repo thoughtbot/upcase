@@ -13,7 +13,7 @@ body.timelines {
   // the line of the timeline
   &:after {
     content: '';
-    @include linear-gradient(transparent 0px, $warmgray 800px);
+    @include linear-gradient(transparent 0px, $journey-line-color 800px);
     margin-left: -2px;
     @include position(absolute, 0px 0 0px 60%);
     width: 4px;
@@ -79,7 +79,7 @@ body.timelines {
 }
 
 .week-of {
-  background: $lightwarmgray;
+  background: $base-background-1;
   font: 700 1.2rem/1.5 $sans-serif;
   left: 60%;
   margin: 0 0 4rem -150px;
@@ -130,7 +130,7 @@ body.timelines {
   .goal-bullet {
     @extend %trail-bullet-complete;
     @extend %trail-bullet;
-    background-color: $warmgray;
+    background-color: darken($base-border-color-1, 5%);
   }
 
 
@@ -227,9 +227,10 @@ body.timelines {
   }
 
   textarea {
-    border: 1px solid #fff;
+    background: $base-background-2;
+    border: 1px solid $base-border-color-1;
     border-radius: 3px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, .15);
+    box-shadow: $base-box-shadow;
     color: $darkwarmgray;
     font: normal 1rem/1.4 $sans-serif;
     height: 9rem;
@@ -245,7 +246,7 @@ body.timelines {
   }
 
   input[type=submit] {
-    background: #fff;
+    background: $base-background-2;
     border: none;
     color: $learnred;
     font: normal 1rem/1.4 $sans-serif;

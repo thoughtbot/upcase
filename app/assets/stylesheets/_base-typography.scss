@@ -19,7 +19,7 @@ h2 {
 }
 
 h3 {
-  color: lighten($darkwarmgray, 15%);
+  color: $gray-2;
   font-size: 26px;
   font-weight: 800;
 }
@@ -33,7 +33,7 @@ h4 {
 
 p, li {
   color: $darkwarmgray;
-  font: normal 1em/1.5em $serif;
+  font: normal 1em/1.75em $serif;
   margin-bottom: .8em;
   -webkit-font-smoothing: antialiased;
 
@@ -54,6 +54,7 @@ strong {
 
 pre code {
   background-color: $lightwarmgray;
+  background-color: darken($off-white, 7%);
   border-radius: 3px;
   display: block;
   line-height: 1.4rem;

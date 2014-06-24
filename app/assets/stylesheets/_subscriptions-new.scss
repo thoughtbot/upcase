@@ -7,11 +7,13 @@ $plan-max-width: 960px;
 $celestial-blue: #4A90E2;
 $yellow: #F3E86B;
 
-body.subscriptions-new nav .prime, body.subscriptions-new nav .view-plans {
+body.subscriptions-new nav .prime,
+body.subscriptions-new nav .view-plans {
   display: none;
 }
 
 body.subscriptions-new .journey-headline {
+  background: $lightwarmgray;
   padding-bottom: 0;
 
   h2 {
@@ -21,10 +23,14 @@ body.subscriptions-new .journey-headline {
 
 body.subscriptions.subscriptions-new {
 
+  .footer-wrapper {
+    background: $lightwarmgray;
+  }
+
   footer.links {
     margin: 0 auto;
-    max-width: 111rem;
-    padding: 5rem 6vw;
+    max-width: $plan-max-width;
+    padding: 5rem 4vw;
     width: 100%;
 
     a {
@@ -34,7 +40,7 @@ body.subscriptions.subscriptions-new {
 }
 
 .plans {
-  background: #fff;
+  background: $base-background-1;
   padding: 0 $plan-padding;
 
   .inner {
@@ -107,7 +113,7 @@ body.subscriptions.subscriptions-new {
   }
 
   section.plan {
-    background: #fff;
+    background: $base-background-1;
     border: 1px solid $warmgray;
     border-left-width: 0;
     border-right-width: 0;
@@ -257,6 +263,8 @@ body.subscriptions.subscriptions-new {
     p {
       @include align-items(center);
       @include display(flex);
+      font-size: $font-size-small;
+      line-height: 1.5;
       margin-bottom: 2em;
       min-height: 72px;
       padding: 0 $plan-padding/2;
@@ -348,7 +356,7 @@ body.subscriptions.subscriptions-new {
 
       p {
         color: $celestial-blue;
-        font-size: em(20);
+        font-size: 1.15rem;
         font-style: italic;
         position: relative;
         padding-left: em(30);
@@ -370,13 +378,12 @@ body.subscriptions.subscriptions-new {
   }
 
   .quotee {
-
     strong {
       color: #0053b3;
-      display: block;
       font-size: em(13);
-      text-transform: uppercase;
+      font-weight: 700;
       letter-spacing: em(1);
+      text-transform: uppercase;
     }
   }
 
@@ -400,7 +407,7 @@ body.subscriptions.subscriptions-new {
         background-color: $celestial-blue;
         margin-bottom: em(36);
 
-      p {
+        p {
           padding: em(16) 0;
         }
       }
@@ -416,6 +423,7 @@ body.subscriptions.subscriptions-new {
 
         strong {
           color: $yellow;
+          display: inline;
         }
 
         &:before {
@@ -438,16 +446,19 @@ body.subscriptions.subscriptions-new {
           z-index: 1;
         }
 
-        & > p {
+        p {
           color: white;
+          font-size: $font-size-small;
           font-style: italic;
+          line-height: 1.55;
         }
       }
     }
   }
 
   strong {
-    color: #0053b3; //dark blue
+    color: darken($celestial-blue, 20%);
+    display: block;
   }
 }
 
@@ -456,7 +467,7 @@ body.subscriptions.subscriptions-new {
 
 .plan-features {
   padding: 80px 0;
-  background: #fff;
+  background: $base-background-1;
 
   .inner {
     @include clearfix;
@@ -505,8 +516,8 @@ body.subscriptions.subscriptions-new {
   }
 
   p, ul {
-    font-size: 1.05em;
-    line-height: 1.55;
+    font-size: $font-size-small;
+    line-height: 1.6;
     margin-bottom: 0.85em;
   }
 

@@ -2,6 +2,12 @@ body.products-show,
 body.workshops-show,
 body.books-show,
 body.screencasts-show {
+  .text-box {
+    background: none;
+    box-shadow: none;
+    border: 0;
+  }
+
   .workshop-alert {
     background: $lightwarmgray;
     margin-bottom: 2em;
@@ -110,10 +116,11 @@ body.screencasts-show {
   }
 
   .what-you-learn {
-    @include outer-container;
-    background-color: $lightwarmgray;
-    border-radius: 3px;
+    border: 1px dashed #ccc;
+    border-left: 0;
+    border-right: 0;
     margin: 28px 0 28px 0;
+    @include outer-container;
     padding: 4%;
 
     h3 {
@@ -144,6 +151,7 @@ body.screencasts-show aside,
 body.weekly_iterations-show aside,
 body.episodes-show aside,
 body.purchases-new aside {
+
   #license > div:last-child {
     margin-bottom: 2rem;
   }
@@ -158,8 +166,8 @@ body.purchases-new aside {
     }
 
     .active-subscription, .active-subscription span {
-      font: italic 400 1rem/1.4em $serif;
-      margin: .5rem 0;
+      font: italic 400 0.9rem/1.5em $serif;
+      margin: .5rem 0 0.8rem;
     }
 
     .when {

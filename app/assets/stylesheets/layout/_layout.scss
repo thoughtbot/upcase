@@ -1,5 +1,5 @@
 body {
-  background-color: $lightwarmgray;
+  background-color: $base-background-1;
   border-top: none;
   font-family: $sans-serif;
   line-height: 20px;
@@ -107,6 +107,7 @@ img {
 
 .text-box {
   @extend %main-content-box;
+  padding: 20px;
 
   h1, h2, h3, h4, h5, h6 {
     color: $darkwarmgray;
@@ -175,9 +176,12 @@ img {
 }
 
 aside {
-  @include span-columns(3);
-  float: right;
+  @extend %main-content-box;
+  font-size: $font-size-small;
+  box-shadow: none;
   display: inline-block;
+  float: right;
+  @include span-columns(3);
 
   hgroup {
     margin-left: 48px;
@@ -198,10 +202,15 @@ aside {
   h3 {
     margin-top: 40px;
 
-    &:first-child {
+    &:first-child, &:only-child {
       margin-top: 0;
     }
   }
+
+  &, p {
+    line-height: 1.5;
+  }
+
 
   .button {
     height: auto;

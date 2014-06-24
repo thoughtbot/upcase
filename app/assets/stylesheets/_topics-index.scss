@@ -13,8 +13,8 @@
     @include transition(.07s);
 
     &:hover {
-      background-color: lighten($warmgray, 10%);
-      box-shadow: 0 0 0 1.5rem lighten($warmgray, 10%);
+      background-color: lighten($gray-4, 10%);
+      box-shadow: 0 0 0 1.5rem lighten($gray-4, 10%);
     }
 
     &:hover .steps-complete {

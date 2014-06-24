@@ -1,3 +1,7 @@
+body.promoted_catalogs {
+  background-color: $lightwarmgray;
+}
+
 .prime-signin {
   color: $darkwarmgray;
   font-family: $sans-serif;
@@ -399,8 +403,10 @@ body.prime-marketing svg path {
       }
 
       p {
+        font-size: 0.9rem;
         font-style: italic;
         margin-top: 1rem;
+        text-rendering: optimizeLegibility;
 
         strong {
           font-style: normal;

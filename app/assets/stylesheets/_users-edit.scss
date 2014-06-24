@@ -10,6 +10,25 @@ body.users-edit {
   }
 
   #account-sidebar {
+    text-align: center;
+
+    a {
+      font-size: $font-size-small;;
+    }
+
+    h3 {
+      border-top: 1px solid $base-border-color-1;
+      font-size: 1.4rem;
+      margin-top: 30px;
+      padding-top: 30px;
+
+      &:first-of-type {
+        border-top: 0;
+        margin-top: 0;
+        padding-top: 0;
+      }
+    }
+
     ol {
       list-style-type: none;
       margin: 1em 0 0 0;
@@ -20,34 +39,23 @@ body.users-edit {
       }
 
       li a {
-        font-size: 1rem;
         font-style: normal;
+        text-decoration: underline;
+        padding: .25rem 0;
       }
 
       .subscription p {
-        @extend %main-content-box;
-        border-radius: 0;
-        box-shadow: none;
-        border-width: 0 0 1px 0;
-        margin: 0;
-        padding: .5rem;
+        padding: .5rem 0;
       }
 
       .subscription a {
-        border-bottom: 1px solid #ddd;
         display: block;
-        padding: .5rem;
-
-        &:first-of-type {
-          background-color: #eee;
-          border-color: #ccc;
-        }
       }
     }
 
     a.view-all-purchases {
       display: block;
-      margin-top: 1em;
+      margin-top: 2em;
       font-family: $sans-serif;
     }
   }

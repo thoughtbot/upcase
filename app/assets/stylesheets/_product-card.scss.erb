@@ -1,8 +1,9 @@
 .product-card {
-  background: #fff;
+  background: $base-background-2;
   border-bottom: 2px solid rgb(200, 200, 200);
   border-radius: .25rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
+  box-shadow: $base-box-shadow;
+  border: 1px solid $base-border-color-1;;
   display: inline-block;
   height: 330px;
   padding: 5px;
@@ -109,7 +110,8 @@
 
     &.exercise {
       figure {
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26);
+        border: 1px solid darken($base-border-color-blue, 8%);
+        box-shadow: $base-box-shadow;
       }
     }
 
@@ -124,12 +126,11 @@
       position: relative;
 
       &:after {
-        border: 2px solid #E9F2FD;
+        border: 4px solid $base-border-color-blue;
         border-radius: 2px;
         bottom: 0;
         content: "";
         left: 0;
-        margin: 5px;
         position: absolute;
         right: 0;
         top: 0;
@@ -165,7 +166,7 @@
     }
 
     &.trails {
-      background: url(<%= asset_path 'learn/trails-graphic.svg' %>) #fff no-repeat 3rem .8rem;
+      background: url(<%= asset_path 'learn/trails-graphic.svg' %>) $base-background-2 no-repeat 3rem .8rem;
       background-size: 75%;
     }
   }
@@ -195,7 +196,7 @@
   }
 
   .hover-text {
-    background: rgb(240, 240, 240);
+    background: $base-background-2;
     color: #606060;
     display: block;
     font: 400 1rem/120px $serif;

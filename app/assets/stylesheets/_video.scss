@@ -1,6 +1,6 @@
 .videowrapper, .mapwrapper {
   height: 0;
-  margin: 0 0 1em 0;
+  margin: 0 0 2em 0;
   overflow: hidden;
   padding-bottom: 56.25%;
   padding-top: 0px;
@@ -75,8 +75,15 @@
 
 .video-notes {
   h3 {
-    margin-top: .8rem;
+    margin-top: 0;
   }
+}
+
+#videos.text-box {
+  @extend %main-content-box;
+  background: $base-background-1;
+  padding-top: 20px;
+  margin-bottom: 2em;
 }
 
 #videos .video {
