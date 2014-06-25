@@ -1,0 +1,12 @@
+<section class='workshops disabled'>
+  <div class='disabled-text'>
+    <h2>
+      <%= t(
+        '.locked_features.title_html',
+        features: locked_features_text,
+        link: link_to(subscribe_or_upgrade, edit_subscription_path)
+      ) %>
+    </h2>
+  <%= link_to "See what you're missing", products_path %>
+  </div>
+</section>

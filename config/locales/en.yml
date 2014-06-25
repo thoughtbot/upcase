@@ -28,17 +28,13 @@ en:
     app_name: 'thoughtbot Learn'
 
   dashboards:
+    locked_features:
+      locked_features:
+        title_html: "%{features} are locked &mdash; %{link} to get access"
+        upgrade_link: "upgrade your subscription"
+        subscribe_link: "subscribe to Prime"
     show:
       contact_your_mentor: "Contact your mentor, %{mentor_name}"
-      no_exercises:
-        title_html: "Exercises are locked &mdash; %{link} to get access"
-        link: "upgrade your subscription"
-      no_workshops:
-        title_html: "Exercises and video tutorials are locked &mdash; %{link} to get access"
-        link: "upgrade your subscription"
-      no_shows:
-        title_html: "Exercises, video tutorials, and shows are locked &mdash; %{link} to get access"
-        link: "subscribe to Prime"
 
   account:
     view_purchases: 'View all purchases →'

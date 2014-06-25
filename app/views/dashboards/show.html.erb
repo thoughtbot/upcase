@@ -7,6 +7,10 @@
   <%= render 'trails' %>
 </section>
 
+<% if locked_features.any? %>
+  <%= render 'locked_features' %>
+<% end %>
+
 <% if current_user_has_access_to?(:exercises) %>
   <p class="product-headline">Hone your skills by completing these exercises</p>
   <%= render 'products/exercises' %>
@@ -19,34 +23,13 @@
   </section>
 <% end %>
 
-<% if !current_user_has_access_to?(:exercises) %>
-  <section class='workshops disabled'>
-    <div class='disabled-text'>
-      <h2>
-        <% if current_user_has_access_to?(:workshops) %>
-          <%= t(
-            '.no_exercises.title_html',
-            link: link_to(t('.no_exercises.link'), edit_subscription_path)
-          ) %>
-        <% elsif current_user_has_access_to_shows? %>
-          <%= t(
-            '.no_workshops.title_html',
-            link: link_to(t('.no_workshops.link'), edit_subscription_path)
-          ) %>
-        <% else %>
-          <%= t(
-            '.no_shows.title_html',
-            link: link_to(t('.no_shows.link'), edit_subscription_path)
-          ) %>
-        <% end %>
-      </h2>
-    <%= link_to "See what you're missing", products_path %>
-    </div>
-  </section>
+<% if current_user_has_access_to?(:shows) && current_user_has_access_to?(:screencasts) %>
+  <p class="product-headline center">Watch our web shows and screencasts</p>
+<% elsif current_user_has_access_to?(:shows) %>
+  <p class="product-headline center">Watch The Weekly Iteration</p>
 <% end %>
 
-<% if current_user_has_access_to_shows? %>
-  <p class="product-headline center">Watch our web shows and screencasts</p>
+<% if current_user_has_access_to?(:shows) %>
   <section class='shows'>
     <%= render @catalog.shows %>
   </section>
@@ -58,7 +41,9 @@
   </section>
 <% end %>
 
-<p class="product-headline">Read our eBooks to boost your knowledge</p>
-<section class='reading'>
-  <%= render @catalog.books %>
-</section>
+<% if current_user_has_access_to?(:books) %>
+  <p class="product-headline">Read our eBooks to boost your knowledge</p>
+  <section class='reading'>
+    <%= render @catalog.books %>
+  </section>
+<% end %>

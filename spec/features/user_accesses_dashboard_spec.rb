@@ -4,6 +4,6 @@ feature 'User without subscription' do
   scenario 'accesses dashboard' do
     visit dashboard_path(as: create(:user))
 
-    expect(page).to have_content("Read our eBooks")
+    expect(page).to have_content("Learn Repo")
   end
 end
