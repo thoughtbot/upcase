@@ -362,10 +362,27 @@ FactoryGirl.define do
     trait :with_inactive_subscription do
       with_mentor
       with_github
-      stripe_customer_id 'cus12345'
+      stripe_customer_id "cus12345"
 
       after :create do |instance|
-        create(:inactive_subscription, user: instance)
+        instance.purchased_subscription =
+          create(:inactive_subscription, user: instance)
+      end
+    end
+
+    trait :with_inactive_team_subscription do
+      with_mentor
+      with_github
+      stripe_customer_id 'cus12345'
+      team
+
+      after :create do |instance|
+        create(
+          :inactive_subscription,
+          user: instance,
+          plan: create(:team_plan),
+          team: instance.team
+        )
       end
     end
 
@@ -373,12 +390,14 @@ FactoryGirl.define do
       with_mentor
       with_github
       stripe_customer_id 'cus12345'
+      team
 
       after :create do |instance|
         create(
           :subscription,
           user: instance,
-          plan: create(:team_plan)
+          plan: create(:team_plan),
+          team: instance.team
         )
       end
     end

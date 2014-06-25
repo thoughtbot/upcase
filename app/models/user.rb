@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   delegate :email, to: :mentor, prefix: true, allow_nil: true
   delegate :first_name, to: :mentor, prefix: true, allow_nil: true
   delegate :name, to: :mentor, prefix: true, allow_nil: true
+  delegate :plan, to: :subscription, allow_nil: true
 
   def self.with_active_subscription
     includes(purchased_subscription: :plan, team: { subscription: :plan }).
@@ -51,8 +52,10 @@ class User < ActiveRecord::Base
   end
 
   def inactive_subscription
-    if subscription.present? && !subscription.active?
-      subscription
+    if has_active_subscription?
+      nil
+    else
+      most_recently_deactivated_subscription
     end
   end
 
@@ -61,7 +64,7 @@ class User < ActiveRecord::Base
   end
 
   def has_active_subscription?
-    subscription.present? && subscription.active?
+    subscription.present?
   end
 
   def has_access_to_shows?
@@ -91,17 +94,11 @@ class User < ActiveRecord::Base
   end
 
   def plan_name
-    subscription.try(:plan).try(:name)
+    plan.try(:name)
   end
 
   def subscription
-    purchased_subscription || team_subscription
-  end
-
-  def plan
-    if subscription.present?
-      subscription.plan
-    end
+    [purchased_subscription, team_subscription].compact.detect(&:active?)
   end
 
   private
@@ -120,5 +117,12 @@ class User < ActiveRecord::Base
 
   def password_optional?
     super || external_auth?
+  end
+
+  def most_recently_deactivated_subscription
+    [purchased_subscription, team_subscription].
+      compact.
+      reject(&:active?).
+      max_by(&:deactivated_on)
   end
 end

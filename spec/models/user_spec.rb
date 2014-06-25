@@ -77,6 +77,45 @@ describe User do
       user = User.new
       expect(user.inactive_subscription).to be nil
     end
+
+    context "with an active subscription and an inactive team subscription" do
+      it "returns nil" do
+        user = create(
+          :user,
+          :with_subscription,
+          :with_inactive_team_subscription
+        )
+
+        expect(user.inactive_subscription).to be nil
+      end
+    end
+
+    context "with an inactive subscription and an active team subscription" do
+      it "returns nil" do
+        user = create(
+          :user,
+          :with_inactive_subscription,
+          :with_team_subscription
+        )
+
+        expect(user.inactive_subscription).to be nil
+      end
+    end
+
+    context "with an inactive subscription and an inactive team subscription" do
+      it "returns the subscription most recently deactivated" do
+        user = create(
+          :user,
+          :with_inactive_subscription,
+          :with_inactive_team_subscription
+        )
+        user.team.subscription.update_attributes!(
+          deactivated_on: user.purchased_subscription.deactivated_on + 1.day
+        )
+
+        expect(user.inactive_subscription).to eq(user.team.subscription)
+      end
+    end
   end
 
   context '#has_active_subscription?' do
@@ -111,6 +150,42 @@ describe User do
     it "returns false if the user doesn't even have a subscription" do
       user = User.new
       expect(user).not_to have_active_subscription
+    end
+
+    context "with an inactive subscription and an active team subscription" do
+      it "returns true" do
+        user = create(
+          :user,
+          :with_inactive_subscription,
+          :with_team_subscription
+        )
+
+        expect(user).to have_active_subscription
+      end
+    end
+
+    context "with an active subscription and an inactive team subscription" do
+      it "returns true" do
+        user = create(
+          :user,
+          :with_subscription,
+          :with_inactive_team_subscription
+        )
+
+        expect(user).to have_active_subscription
+      end
+    end
+
+    context "with an inactive subscription and an inactive team subscription" do
+      it "returns false" do
+        user = create(
+          :user,
+          :with_inactive_subscription,
+          :with_inactive_team_subscription
+        )
+
+        expect(user).not_to have_active_subscription
+      end
     end
   end
 
@@ -274,6 +349,29 @@ describe User do
     end
   end
 
+  describe "#plan" do
+    context "for a user with an active subscription" do
+      it "delegates to the active subscription" do
+        user = create(:subscriber)
+        expect(user.plan).to eq(user.subscription.plan)
+      end
+    end
+
+    context "for a user with an inactive subscription" do
+      it "returns nil" do
+        user = create(:user, :with_inactive_subscription)
+        expect(user.plan).to be_nil
+      end
+    end
+
+    context "for a user without a subscription" do
+      it "returns nil" do
+        user = create(:user)
+        expect(user.plan).to be_nil
+      end
+    end
+  end
+
   describe '#plan_name' do
     it 'delegates to Subscription for the Plan name' do
       user = create(:subscriber)
@@ -397,6 +495,20 @@ describe User do
         user.subscription.stubs(:has_access_to?).returns('expected')
 
         expect(user.has_access_to?('workshops')).to eq('expected')
+      end
+    end
+
+    context "with an inactive subscription and an active team subscription" do
+      it "delegates to the team subscription's has_access_to? method" do
+        user = create(
+          :user,
+          :with_inactive_subscription,
+          :with_team_subscription
+        )
+
+        user.team.subscription.stubs(:has_access_to?).returns("expected")
+
+        expect(user.has_access_to?("workshops")).to eq("expected")
       end
     end
   end
