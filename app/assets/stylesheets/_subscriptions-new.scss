@@ -152,7 +152,8 @@ body.subscriptions.subscriptions-new {
       margin: 2rem 0;
     }
 
-    .sign-up {
+    .sign-up,
+    .current-plan {
       border: 1px solid $warmgray;
       border-radius: 2px;
       color: $darkwarmgray;
@@ -160,6 +161,16 @@ body.subscriptions.subscriptions-new {
       font-family: $sans-serif;
       margin: 2rem $plan-padding;
       padding: 0.5rem 0;
+    }
+
+    .current-plan {
+      background: rgba(#ccc, 0.16);
+      border: 0;
+      font-size: 0.9rem;
+      font-weight: bold;
+      line-height: 1;
+      margin-top: -6px;
+      padding: 0.5rem 0.2rem;
     }
   }
 
@@ -179,14 +190,20 @@ body.subscriptions.subscriptions-new {
       font-weight: 800;
     }
 
+    $blue: #4A90E2;
     .sign-up {
-      background: #4A90E2;
+      background: $blue;
       border: 0;
       color: #fff;
       font-weight: 700;
       @include transform(translateY(-0.2rem));
       padding: 0.8rem 0;
       margin: 2rem $plan-padding*0.9;
+    }
+
+    .current-plan {
+      background: rgba($blue, 0.16);
+      color: darken($blue, 15%);
     }
   }
 
