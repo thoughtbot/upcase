@@ -426,6 +426,21 @@ describe User do
     end
   end
 
+  describe "#plan" do
+    it "delegates to subscription" do
+      user = create(:subscriber)
+      subscription = user.subscription
+
+      expect(user.plan).to eq subscription.plan
+    end
+
+    it "returns nil for user without subscription" do
+      user = User.new
+
+      expect(user.plan).to be_nil
+    end
+  end
+
   describe '.with_active_subscription' do
     it 'returns users with active subscriptions' do
       with_active_subscription = create(:user, name: 'active')

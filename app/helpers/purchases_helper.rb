@@ -98,15 +98,11 @@ module PurchasesHelper
   private
 
   def change_plan_link(sku)
-    if current_plan.sku == sku
+    if current_user.plan.sku == sku
       I18n.t('subscriptions.current_plan_html').html_safe
     else
       update_plan_link(sku)
     end
-  end
-
-  def current_plan
-    current_user.subscription.plan
   end
 
   def update_plan_link(sku)

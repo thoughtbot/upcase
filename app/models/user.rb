@@ -99,7 +99,9 @@ class User < ActiveRecord::Base
   end
 
   def plan
-    subscription.plan
+    if subscription.present?
+      subscription.plan
+    end
   end
 
   private
