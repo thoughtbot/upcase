@@ -124,7 +124,7 @@ FactoryGirl.define do
   factory :individual_plan, aliases: [:plan] do
     name 'Prime'
     individual_price 99
-    sku 'prime'
+    sku "prime-99"
     short_description 'A great Subscription'
     description 'A long description'
 

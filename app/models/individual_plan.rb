@@ -29,6 +29,14 @@ class IndividualPlan < ActiveRecord::Base
     where(sku: PRIME_BASIC_SKU).first
   end
 
+  def self.popular
+    where(sku: PRIME_99_SKU).first
+  end
+
+  def popular?
+    self == self.class.popular
+  end
+
   def purchase_for(user)
     purchases.paid.where(user_id: user).first
   end
