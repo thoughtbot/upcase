@@ -117,12 +117,13 @@ describe SubscriptionMailer do
       expect(upcoming_payment_notification_email).to have_body_text('2014-01-01')
     end
 
-    it 'includes the next payment amount' do
-      subscription = build_subscription(next_payment_amount: 10.00)
+    it "includes the next payment amount" do
+      amount_in_cents = 1999
+      subscription = build_subscription(next_payment_amount: amount_in_cents)
 
       result = upcoming_payment_notification_email(subscription)
 
-      expect(result).to have_body_text('$10.00')
+      expect(result).to have_body_text("$19.99")
     end
 
     def upcoming_payment_notification_email(subscription = nil)
