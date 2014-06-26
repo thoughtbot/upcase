@@ -4,10 +4,9 @@
       <p>
         We're sorry to hear you want to cancel. Before we remove the
         subscription from your account, we want to make sure you know about the
-        option to switch to a lower priced plan: Prime Basic is everything in
-        <%= t('shared.subscription.name') %> except for a mentor and workshops.
-        You still get books, screencasts, office hours, the forum, and you'll
-        also continue to have access to the workshops you've already taken, for
+        option to switch to a lower priced plan: with 30 Minutes a Week you'll
+        still be able to watch The Weekly Iteration, and you'll also continue to
+        have access to the <%= link_to "workshops you've already taken", purchases_path %> for
         <%= individual_price_per_month(@cancellation.downgrade_plan) %> instead of
         <%= individual_price_per_month(@cancellation.subscribed_plan) %>.
       </p>
@@ -32,7 +31,7 @@
     <% end %>
   </article>
   <%= form_for(
-    :cancellation, 
+    :cancellation,
     url: [:subscriber, :cancellation],
     html: { class: 'cancellation-feedback' }
   ) do |form| %>

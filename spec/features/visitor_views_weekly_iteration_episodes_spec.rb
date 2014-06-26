@@ -4,7 +4,7 @@ feature 'Visitor' do
   scenario 'views Weekly Iteration episodes' do
     show_name = Show::THE_WEEKLY_ITERATION
     show = create(:show, name: show_name)
-    create(:individual_plan, sku: IndividualPlan::PRIME_BASIC_SKU)
+    create(:individual_plan, sku: IndividualPlan::PRIME_29_SKU)
     published_video_title = 'Unfriendly Nil'
     published_video_notes = 'Nil is contagious.'
     create(

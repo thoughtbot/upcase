@@ -1,5 +1,4 @@
 class IndividualPlan < ActiveRecord::Base
-  PRIME_BASIC_SKU = 'prime-basic'
   PRIME_249_SKU = 'prime-249'
   PRIME_99_SKU = 'prime-99'
   PRIME_49_SKU = 'prime-49'
@@ -26,7 +25,7 @@ class IndividualPlan < ActiveRecord::Base
   end
 
   def self.basic
-    where(sku: PRIME_BASIC_SKU).first
+    where(sku: PRIME_29_SKU).first
   end
 
   def self.popular

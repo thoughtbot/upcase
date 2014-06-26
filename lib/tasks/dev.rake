@@ -102,7 +102,7 @@ namespace :dev do
 
   def create_individual_plans
     [29, 49, 249].each do |n|
-      FactoryGirl.create(:plan, sku: "prime_#{n}", individual_price: n)
+      FactoryGirl.create(:plan, sku: "prime-#{n}", individual_price: n)
     end
   end
 

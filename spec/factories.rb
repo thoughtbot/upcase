@@ -129,7 +129,7 @@ FactoryGirl.define do
     description 'A long description'
 
     factory :basic_plan do
-      sku IndividualPlan::PRIME_BASIC_SKU
+      sku IndividualPlan::PRIME_29_SKU
       includes_books false
       includes_exercises false
       includes_forum false
