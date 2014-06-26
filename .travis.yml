@@ -2,17 +2,13 @@ language: ruby
 cache: bundler
 rvm: ruby-2.1.2
 before_install:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
 before_script:
   - cp .sample.env .env
 notifications:
-  campfire:
-    rooms:
-      secure: cYr9O9tRieysyX2k3i55MJWkP8cJj6QhXAVwPHkhHG96Ev7UYCvNc//veW250wEoZ8Zd2wSx0xVe5OwlXvAdvWCgLMb1byzTNzERQ6rdbszBDRIUbpKe2AmpwqvMISkGboxri45ouqnpTyfBIDJXJLo7zb41iUWZWBDs1XAJnwk=
-    on_success: change
-    on_failure: always
-    template: '%{repository_name} build #%{build_number} on %{branch} by %{author} finished: %{message}: %{build_url}'
+  slack:
+    secure: TWlhDWFpPYyTd8syhLf7QqRDmzVcnTJa4m05jsDxzg4FWj+yHInx5DZY+eUWRI0BfVt7sypISR1MlueLybRWzO8sapF4URaY2GeGeJyi9J8UzrsU/01Rt2gZpkX6Su4gEZKQSaLRTwHTaITD6xfa7mb1pwMyLBateGm4INF9Rkg=
 branches:
   only:
   - master
