@@ -2,7 +2,7 @@ Hi <%= @user.first_name %>,
 
 This is a reminder that your Learn <%= @subscription.plan_name %> subscription
 will be automatically renewed on <%= l @subscription.next_payment_on %> for the
-amount of <%= number_to_currency(@subscription.next_payment_amount) %>.
+amount of <%= number_to_currency(@subscription.next_payment_amount / 100) %>.
 
 If you need to make any changes, you can do so by accessing your account page at
 <%= my_account_url %>
