@@ -2,7 +2,7 @@
   <div class="inner">
     <header class="audiance">
       <p></p>
-      <% @plans.each do |plan| %>
+      <% plans.each do |plan| %>
         <p class=<%= popular(plan) %> ><%= plan.short_description %></p>
       <% end %>
     </header>
@@ -36,7 +36,6 @@
       <div class="teams-pricing"><a href="mailto:learn@thoughtbot.com">Email for team pricing</a></div>
     </nav>
 
-    <%= render @plans %>
-
+    <%= render plans %>
   </div>
 </section>

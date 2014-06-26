@@ -20,4 +20,8 @@ class Catalog
   def mentors
     Mentor.all
   end
+
+  def individual_plans
+    IndividualPlan.featured.active.ordered
+  end
 end
