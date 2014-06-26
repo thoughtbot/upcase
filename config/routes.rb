@@ -138,9 +138,11 @@ Workshops::Application.routes.draw do
   get '/group-training' => "pages#show", as: :group_training, id: "group-training"
   get '/humans-present/oss' => redirect('https://www.youtube.com/watch?v=VMBhumlUP-A')
   get '/backbone.js' => redirect('/backbone')
-  get '/backbone-js-on-rails' => redirect('/products/1-backbone-js-on-rails')
-  get '/geocoding-on-rails' => redirect('/products/22-geocoding-on-rails')
+  get "/backbone-js-on-rails" => redirect("/products/1-backbone-js-on-rails"), as: :backbone_js_on_rails
+  get "/geocoding-on-rails" => redirect("/products/22-geocoding-on-rails"), as: :geocoding_on_rails
   get '/geocodingonrails' => redirect('/products/22-geocoding-on-rails')
+  get "/ios-on-rails" => redirect("/products/25-ios-on-rails-beta"), as: :ios_on_rails
+  get "/ruby-science" => redirect("/products/13-ruby-science"), as: :ruby_science
   get '/gettingstartedwithios' => redirect('/workshops/24-getting-started-with-ios-development?utm_source=podcast')
   get '/5by5' => redirect('/workshops/19-design-for-developers?utm_source=5by5')
   get '/rubyist-booster-shot' => "pages#show", as: :rubyist_booster_shot, id: "rubyist-booster-shot"
