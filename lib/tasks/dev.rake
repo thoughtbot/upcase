@@ -13,6 +13,7 @@ namespace :dev do
     create_users
     create_team_plan
     create_topic
+    create_individual_plans
   end
 
   def create_products
@@ -54,6 +55,7 @@ namespace :dev do
     user = FactoryGirl.create(:admin,
                               :with_subscription,
                               :with_github,
+                              plan: @prime,
                               email: 'whetstone@example.com')
     puts_user user, 'ready to auth against whetstone'
 
@@ -96,6 +98,12 @@ namespace :dev do
 
   def create_topic
     FactoryGirl.create(:topic, name: 'Ruby on Rails')
+  end
+
+  def create_individual_plans
+    [29, 49, 249].each do |n|
+      FactoryGirl.create(:plan, sku: "prime_#{n}", individual_price: n)
+    end
   end
 
   def header(msg)
