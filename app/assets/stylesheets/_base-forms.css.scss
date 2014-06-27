@@ -26,6 +26,7 @@ input[type="submit"] {
   padding: .75em 1em;
   text-align:center;
   text-transform: uppercase;
+  -webkit-appearance: none;
 
   &:hover {
     background-color: #C42107;
