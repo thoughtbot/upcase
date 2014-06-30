@@ -121,6 +121,29 @@ describe Subscription do
 
       expect(subscription.plan).to eq different_plan
     end
+
+    it "fulfills features gained by the new plan" do
+      subscription = create(:active_subscription)
+      feature_fulfillment = stub_feature_fulfillment
+      subscription.change_plan(build_stubbed(:plan))
+      expect(feature_fulfillment).to have_received(:fulfill_gained_features)
+    end
+
+    it "unfulfills features lost by the old plan" do
+      subscription = create(:active_subscription)
+      feature_fulfillment = stub_feature_fulfillment
+      subscription.change_plan(build_stubbed(:plan))
+      expect(feature_fulfillment).to have_received(:unfulfill_lost_features)
+    end
+
+    def stub_feature_fulfillment
+      fulfillment = stub(
+        fulfill_gained_features: nil,
+        unfulfill_lost_features: nil
+      )
+      FeatureFulfillment.stubs(:new).returns(fulfillment)
+      fulfillment
+    end
   end
 
   describe '#has_access_to?' do

@@ -48,9 +48,11 @@ class Subscription < ActiveRecord::Base
   end
 
   def change_plan(new_plan)
-    stripe_customer.update_subscription(plan: new_plan.sku)
-    self.plan = new_plan
-    save!
+    update_features do
+      stripe_customer.update_subscription(plan: new_plan.sku)
+      self.plan = new_plan
+      save!
+    end
   end
 
   def deliver_welcome_email
@@ -87,6 +89,20 @@ class Subscription < ActiveRecord::Base
 
   def self.recent
     where('created_at > ?', 24.hours.ago)
+  end
+
+  def update_features
+    old_plan = plan
+    yield
+    new_plan = plan
+
+    feature_fulfillment = FeatureFulfillment.new(
+      new_plan: new_plan,
+      old_plan: old_plan,
+      user: user
+    )
+    feature_fulfillment.fulfill_gained_features
+    feature_fulfillment.unfulfill_lost_features
   end
 
   def stripe_customer
