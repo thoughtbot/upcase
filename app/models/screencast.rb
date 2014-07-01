@@ -4,6 +4,6 @@ class Screencast < Product
   end
 
   def included_in_plan?(plan)
-    plan.includes_screencasts?
+    plan.has_feature?(:screencasts)
   end
 end

@@ -51,5 +51,9 @@ module Teams
     def included_in_plan?(plan)
       false
     end
+
+    def has_feature?(feature)
+      public_send("includes_#{feature}?")
+    end
   end
 end

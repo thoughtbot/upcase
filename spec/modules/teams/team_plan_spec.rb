@@ -110,6 +110,23 @@ module Teams
       end
     end
 
+    describe "#has_feature?" do
+      it "returns true if the plan has the feature" do
+        plan = build_stubbed(:team_plan, :includes_mentor)
+        expect(plan.has_feature?(:mentor)).to be_true
+      end
+
+      it "returns false if the plan does not have the feature" do
+        plan = build_stubbed(:team_plan, :no_mentor)
+        expect(plan.has_feature?(:mentor)).to be_false
+      end
+
+      it "raises an exception with an invalid feature name" do
+        plan = build_stubbed(:team_plan)
+        expect{ plan.has_feature?(:foo) }.to raise_error
+      end
+    end
+
     def team_plan
       build(:team_plan)
     end

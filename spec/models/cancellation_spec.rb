@@ -195,7 +195,7 @@ describe Cancellation do
   end
 
   def subscription
-    @subscription ||= create(:subscription)
+    @subscription ||= create(:subscription, :purchased)
   end
 
   def cancellation

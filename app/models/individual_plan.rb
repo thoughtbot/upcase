@@ -80,6 +80,10 @@ class IndividualPlan < ActiveRecord::Base
     false
   end
 
+  def has_feature?(feature)
+    public_send("includes_#{feature}?")
+  end
+
   private
 
   def stripe_plan

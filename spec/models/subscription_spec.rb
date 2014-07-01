@@ -6,8 +6,6 @@ describe Subscription do
   it { should belong_to(:user) }
 
   it { should delegate(:stripe_customer_id).to(:user) }
-  it { should delegate(:includes_mentor?).to(:plan) }
-  it { should delegate(:includes_workshops?).to(:plan) }
 
   it { should validate_presence_of(:plan_id) }
   it { should validate_presence_of(:plan_type) }
@@ -74,7 +72,7 @@ describe Subscription do
 
   describe '#deactivate' do
     it "updates the subscription record by setting deactivated_on to today" do
-      subscription = create(:active_subscription)
+      subscription = create(:active_subscription, :purchased)
 
       subscription.deactivate
       subscription.reload

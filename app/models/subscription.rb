@@ -5,8 +5,6 @@ class Subscription < ActiveRecord::Base
 
   has_one :team, dependent: :destroy, class_name: 'Teams::Team'
 
-  delegate :includes_mentor?, to: :plan
-  delegate :includes_workshops?, to: :plan
   delegate :name, to: :plan, prefix: true
   delegate :stripe_customer_id, to: :user
 
@@ -56,13 +54,13 @@ class Subscription < ActiveRecord::Base
   end
 
   def deliver_welcome_email
-    if includes_mentor?
+    if has_access_to?(:mentor)
       SubscriptionMailer.welcome_to_prime_from_mentor(user).deliver
     end
   end
 
   def has_access_to?(feature)
-    active? && plan.public_send("includes_#{feature}?")
+    active? && plan.has_feature?(feature)
   end
 
   def purchase

@@ -15,7 +15,6 @@ describe Purchase do
     it { should_not validate_presence_of(:user_id) }
 
     it { should delegate(:subscription?).to(:purchaseable) }
-    it { should delegate(:includes_mentor?).to(:purchaseable) }
   end
 
   context '#price' do

@@ -104,6 +104,6 @@ class Workshop < ActiveRecord::Base
   end
 
   def included_in_plan?(plan)
-    plan.includes_workshops?
+    plan.has_feature?(:workshops)
   end
 end
