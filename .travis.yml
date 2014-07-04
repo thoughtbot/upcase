@@ -6,6 +6,7 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 before_script:
   - cp .sample.env .env
+  - bundle exec rake db:setup
 notifications:
   slack:
     secure: TWlhDWFpPYyTd8syhLf7QqRDmzVcnTJa4m05jsDxzg4FWj+yHInx5DZY+eUWRI0BfVt7sypISR1MlueLybRWzO8sapF4URaY2GeGeJyi9J8UzrsU/01Rt2gZpkX6Su4gEZKQSaLRTwHTaITD6xfa7mb1pwMyLBateGm4INF9Rkg=
