@@ -358,6 +358,18 @@ FactoryGirl.define do
       after :create do |instance, attributes|
         instance.purchased_subscription = create(
           :subscription,
+          plan: attributes.plan,
+          user: instance
+        )
+      end
+    end
+
+    trait :with_subscription_purchase do
+      with_subscription
+
+      after :create do |instance, attributes|
+        instance.purchased_subscription = create(
+          :subscription,
           :purchased,
           plan: attributes.plan,
           user: instance
