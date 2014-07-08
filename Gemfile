@@ -17,7 +17,7 @@ gem 'curb', '0.8.1'
 gem 'delayed_job_active_record'
 gem 'delayed_job'
 
-gem 'doorkeeper', '~> 0.7.1'
+gem 'doorkeeper'
 gem 'dynamic_form', '1.1.4'
 gem 'escape_utils', '0.2.4' # Fix UTF-8 regexp match warning
 gem 'flutie', '2.0.0'
