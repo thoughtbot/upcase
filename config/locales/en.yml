@@ -189,9 +189,6 @@ en:
     change_plan: Change plan
     choose_plan_html: Start learning
     current_plan_html: <p class="current-plan">This is your current plan</p>
-    take_refund: Get a refund
-    processing_refund: Processing...
-    reject_refund: No thanks, I'm happy
     cancellation_scheduled_on: Scheduled for cancellation on %{date}
     discount:
       forever: $%{final_price}
@@ -205,9 +202,7 @@ en:
       downgrade:
         success: Your subscription has been downgraded.
       cancel:
-        success: We're sorry to see you go. You will have access to all the benefits of Prime until the end of your current billing cycle.
-      refund:
-        success: We've canceled your subscription immediately and refunded the last subscription charge.
+        success: We're sorry to see you go. You will have access to all the features of your plan until the end of your current billing cycle.
 
   weekly_iteration_subscribe_cta:
     Subscribe to Watch the Weekly Iteration
