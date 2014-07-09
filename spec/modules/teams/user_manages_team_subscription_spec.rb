@@ -33,7 +33,7 @@ feature 'User creates a team subscription' do
 
     visit_team_plan_purchase_page
 
-    expect_submit_button_to_contain("$445 per month")
+    expect_submit_button_to_contain_default_text
 
     select requested_quantity, from: 'Number of team members'
 
@@ -50,11 +50,11 @@ feature 'User creates a team subscription' do
 
     visit_team_plan_purchase_page
 
-    expect_submit_button_to_contain("$445 per month")
+    expect_submit_button_to_contain_default_text
 
     apply_coupon_with_code('5OFF')
 
-    expect_submit_button_to_contain discount_text('440.00', '445.00')
+    expect_submit_button_to_contain discount_text("262.00", "267.00")
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
@@ -95,11 +95,11 @@ feature 'User creates a team subscription' do
 
     visit_team_plan_purchase_page
 
-    expect_submit_button_to_contain("$445 per month")
+    expect_submit_button_to_contain_default_text
 
     apply_coupon_with_code('5OFF')
 
-    expect_submit_button_to_contain discount_text('440.00', '445.00')
+    expect_submit_button_to_contain discount_text("262.00", "267.00")
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
@@ -111,7 +111,7 @@ feature 'User creates a team subscription' do
   scenario 'tries to subscribe with an invalid coupon', :js => true do
     visit_team_plan_purchase_page
 
-    expect_submit_button_to_contain('$445 per month')
+    expect_submit_button_to_contain_default_text
 
     apply_coupon_with_code('5OFF')
 
@@ -156,5 +156,9 @@ feature 'User creates a team subscription' do
       '.subscription p strong',
       text: plan.name
     )
+  end
+
+  def expect_submit_button_to_contain_default_text
+    expect_submit_button_to_contain("$267 per month")
   end
 end

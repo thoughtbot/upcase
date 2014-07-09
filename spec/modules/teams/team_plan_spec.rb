@@ -65,10 +65,10 @@ module Teams
     end
 
     context '#minimum_quantity' do
-      it 'is 5' do
+      it "is 3" do
         team_plan = TeamPlan.new
 
-        expect(team_plan.minimum_quantity).to eq 5
+        expect(team_plan.minimum_quantity).to eq 3
       end
     end
 

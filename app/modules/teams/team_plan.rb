@@ -36,7 +36,7 @@ module Teams
     end
 
     def minimum_quantity
-      5
+      3
     end
 
     def fulfill(purchase, user)
