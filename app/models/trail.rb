@@ -61,7 +61,9 @@ class Trail < ActiveRecord::Base
   end
 
   def fetch_trail_map
-    http = Curl.get(github_url)
+    http = Curl.get(github_url) do |curl|
+      curl.follow_location = true
+    end
     parse_remote_trail_map(http) || trail_map
   end
 
