@@ -40,7 +40,8 @@ describe 'episodes/show' do
   end
 
   def stub_controller(video)
-    assign :plan, stub
+    plan = stub("plan", individual_price: 29)
+    assign :plan, plan
     assign :video, video
 
     view_stubs(:signed_out?).returns(true)
