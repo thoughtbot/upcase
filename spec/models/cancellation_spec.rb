@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe Cancellation do
-  describe 'process' do
+  describe "#process" do
     before :each do
-      subscription.stubs(:stripe_customer_id).returns('cus_1CXxPJDpw1VLvJ')
+      subscription.stubs(:stripe_customer_id).returns("cus_1CXxPJDpw1VLvJ")
 
       mailer = stub(deliver: true)
       SubscriptionMailer.stubs(:cancellation_survey).
@@ -13,28 +13,43 @@ describe Cancellation do
       AnalyticsUpdater.stubs(:new).with(subscription.user).returns(updater)
     end
 
-    it 'makes the subscription inactive and records the current date' do
-      cancellation.process
+    context "with an active subscription" do
+      it "makes the subscription inactive and records the current date" do
+        cancellation.process
 
-      subscription.deactivated_on.should == Time.zone.today
+        subscription.deactivated_on.should == Time.zone.today
+      end
+
+      it "sends a unsubscription survey email" do
+        cancellation.process
+
+        expect(SubscriptionMailer).
+          to have_received(:cancellation_survey).with(subscription.user)
+        expect(SubscriptionMailer.cancellation_survey(subscription.user)).
+          to have_received(:deliver)
+      end
+
+      it "updates intercom status for user" do
+        cancellation.process
+
+        expect(AnalyticsUpdater).
+          to have_received(:new).with(subscription.user)
+        expect(AnalyticsUpdater.new(subscription.user)).
+          to have_received(:unsubscribe)
+      end
     end
 
-    it 'sends a unsubscription survey email' do
-      cancellation.process
+    context "with an inactive subscription" do
+      it "doesn't send any updates" do
+        subscription.stubs(:active?).returns(false)
 
-      expect(SubscriptionMailer).
-        to have_received(:cancellation_survey).with(subscription.user)
-      expect(SubscriptionMailer.cancellation_survey(subscription.user)).
-        to have_received(:deliver)
-    end
+        cancellation.process
 
-    it 'update intercom status for user' do
-      cancellation.process
-
-      expect(AnalyticsUpdater).
-        to have_received(:new).with(subscription.user)
-      expect(AnalyticsUpdater.new(subscription.user)).
-        to have_received(:unsubscribe)
+        expect(SubscriptionMailer.cancellation_survey(subscription.user)).
+          to have_received(:deliver).never
+        expect(AnalyticsUpdater.new(subscription.user)).
+          to have_received(:unsubscribe).never
+      end
     end
   end
 

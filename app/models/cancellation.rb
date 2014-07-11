@@ -16,9 +16,11 @@ class Cancellation
   end
 
   def process
-    @subscription.deactivate
-    deliver_unsubscription_survey
-    unsubscribe_from_analytics
+    if @subscription.active?
+      @subscription.deactivate
+      deliver_unsubscription_survey
+      unsubscribe_from_analytics
+    end
   end
 
   def can_downgrade_instead?

@@ -52,7 +52,7 @@ describe 'Stripe webhooks' do
   end
 
   describe 'customer.subscription.deleted' do
-    it 'deactivates the subscription' do
+    it "deactivates an active subscription" do
       user = create(
         :subscriber,
         :with_subscription_purchase,
@@ -64,14 +64,16 @@ describe 'Stripe webhooks' do
       )
 
       expect(user.reload).not_to have_active_subscription
+      expect(response).to be_success
     end
 
-    it 'responds with 200 OK' do
-      create(
+    it "accepts an inactive subscription without error" do
+      user = create(
         :subscriber,
         :with_subscription_purchase,
         stripe_customer_id: FakeStripe::CUSTOMER_ID
       )
+      user.subscription.deactivate
 
       simulate_stripe_webhook_firing(
         FakeStripe::EVENT_ID_FOR_SUBSCRIPTION_DELETION
