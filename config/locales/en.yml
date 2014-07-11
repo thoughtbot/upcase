@@ -206,3 +206,8 @@ en:
 
   weekly_iteration_subscribe_cta:
     Subscribe to Watch the Weekly Iteration
+
+  trails:
+    thoughtbot_resources: Use these thoughtbot resources first
+    other_resources: Use these resources for reference and additional practice
+    validations: "%{name} developers should be able to"
