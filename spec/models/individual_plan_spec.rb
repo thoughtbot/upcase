@@ -114,13 +114,16 @@ describe IndividualPlan do
   describe '#fulfill' do
     it 'starts a subscription' do
       user = build_stubbed(:user)
-      purchase = build_stubbed(:purchase, user: user)
+      user.stubs(:create_purchased_subscription)
       plan = build_stubbed(:individual_plan)
+      purchase = build_stubbed(:purchase, user: user, purchaseable: plan)
       fulfillment = stub_subscription_fulfillment(purchase)
 
       plan.fulfill(purchase, user)
 
       expect(fulfillment).to have_received(:fulfill)
+      expect(user).
+        to have_received(:create_purchased_subscription).with(plan: plan)
     end
   end
 

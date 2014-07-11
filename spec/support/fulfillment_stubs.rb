@@ -3,7 +3,7 @@ module FulfillmentStubs
     stub('fulfillment', fulfill: true, remove: true).tap do |fulfillment|
       SubscriptionFulfillment.
         stubs(:new).
-        with(purchase, user).
+        with(user, purchase.purchaseable).
         returns(fulfillment)
     end
   end

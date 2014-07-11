@@ -69,7 +69,8 @@ class IndividualPlan < ActiveRecord::Base
   end
 
   def fulfill(purchase, user)
-    SubscriptionFulfillment.new(purchase, user).fulfill
+    user.create_purchased_subscription(plan: self)
+    SubscriptionFulfillment.new(user, self).fulfill
   end
 
   def after_purchase_url(controller, purchase)

@@ -75,8 +75,9 @@ module Teams
     describe '#fulfill' do
       it 'starts a subscription for a new team' do
         user = build_stubbed(:user)
-        purchase = build_stubbed(:purchase, user: user)
+        user.stubs(:create_purchased_subscription)
         plan = build_stubbed(:team_plan)
+        purchase = build_stubbed(:purchase, user: user, purchaseable: plan)
         subscription_fulfillment = stub_subscription_fulfillment(purchase)
         team_fulfillment = stub_team_fulfillment(purchase)
 
@@ -84,6 +85,8 @@ module Teams
 
         expect(subscription_fulfillment).to have_received(:fulfill)
         expect(team_fulfillment).to have_received(:fulfill)
+        expect(user).
+          to have_received(:create_purchased_subscription).with(plan: plan)
       end
 
       def stub_team_fulfillment(purchase)

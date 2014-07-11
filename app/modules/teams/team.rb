@@ -12,19 +12,25 @@ module Teams
     validates :name, presence: true
 
     def add_user(user)
-      SubscriptionFulfillment.new(subscription.purchase, user).fulfill
+      fulfillment_for(user).fulfill
       user.team = self
       user.save!
     end
 
     def remove_user(user)
-      SubscriptionFulfillment.new(subscription.purchase, user).remove
+      fulfillment_for(user).remove
       user.team = nil
       user.save!
     end
 
     def has_users_remaining?
       users.count < max_users
+    end
+
+    private
+
+    def fulfillment_for(user)
+      SubscriptionFulfillment.new(user, subscription.plan)
     end
   end
 end

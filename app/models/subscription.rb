@@ -43,7 +43,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def deactivate
-    SubscriptionFulfillment.new(purchase, user).remove
+    SubscriptionFulfillment.new(user, plan).remove
     update_column(:deactivated_on, Time.zone.today)
   end
 
@@ -63,10 +63,6 @@ class Subscription < ActiveRecord::Base
 
   def has_access_to?(feature)
     active? && plan.has_feature?(feature)
-  end
-
-  def purchase
-    user.purchases.for_purchaseable(plan).first
   end
 
   def team?

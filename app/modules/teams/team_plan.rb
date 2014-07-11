@@ -40,7 +40,8 @@ module Teams
     end
 
     def fulfill(purchase, user)
-      SubscriptionFulfillment.new(purchase, user).fulfill
+      user.create_purchased_subscription(plan: self)
+      SubscriptionFulfillment.new(user, self).fulfill
       TeamFulfillment.new(purchase, user).fulfill
     end
 

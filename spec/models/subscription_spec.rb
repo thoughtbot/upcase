@@ -83,19 +83,27 @@ describe Subscription do
     it 'unfulfills itself' do
       fulfillment = stub('fulfilment', :remove)
       subscription = create(:active_subscription)
-      purchase = create(
-        :purchase,
-        user: subscription.user,
-        purchaseable: subscription.plan
-      )
       SubscriptionFulfillment.
         stubs(:new).
-        with(purchase, subscription.user).
+        with(subscription.user, subscription.plan).
         returns(fulfillment)
 
       subscription.deactivate
 
       fulfillment.should have_received(:remove)
+    end
+
+    it "unfulfills for a user who changed their plan" do
+      original_plan = create(:individual_plan)
+      new_plan = create(:individual_plan)
+      subscription = create(:active_subscription, plan: new_plan)
+      create(
+        :purchase,
+        user: subscription.user,
+        purchaseable: original_plan
+      )
+
+      expect { subscription.deactivate }.not_to raise_error
     end
   end
 
@@ -236,31 +244,6 @@ describe Subscription do
       subscription = create(:subscription, created_at: 2.days.ago)
 
       expect(Subscription.created_before(1.day.ago)).to eq [subscription]
-    end
-  end
-
-  describe '#purchase' do
-    it 'returns the purchase used to acquire this subscription' do
-      stub_fulfillment
-
-      user = create(:user)
-      plan = create(:plan)
-      other_plan = create(:plan)
-      other_user = create(:user)
-      subscription = create(:subscription, user: user, plan: plan)
-      other_user_purchase =
-        create(:plan_purchase, purchaseable: plan, user: other_user)
-      other_plan_purchase =
-        create(:plan_purchase, purchaseable: other_plan, user: user)
-      subscription_purchase =
-        create(:plan_purchase, purchaseable: plan, user: user)
-
-      expect(subscription.purchase).to eq(subscription_purchase)
-    end
-
-    def stub_fulfillment
-      fulfillment = stub('fulfillment', :fulfill)
-      SubscriptionFulfillment.stubs(:new).returns(fulfillment)
     end
   end
 

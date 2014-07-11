@@ -56,8 +56,7 @@ module Teams
     end
 
     def stub_team_fulfillment(team, user)
-      purchase = build_stubbed(:purchase)
-      team.subscription.stubs(:purchase).returns(purchase)
+      purchase = build_stubbed(:purchase, purchaseable: team.subscription.plan)
       stub_subscription_fulfillment(purchase, user)
     end
   end
