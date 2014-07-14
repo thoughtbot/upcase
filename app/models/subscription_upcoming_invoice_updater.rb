@@ -5,8 +5,10 @@ class SubscriptionUpcomingInvoiceUpdater
 
   def process
     @subscriptions.each do |subscription|
-      upcoming_invoice = upcoming_invoice_for(subscription.stripe_customer_id)
-      update_next_payment_information(subscription, upcoming_invoice)
+      if subscription.stripe_customer_id
+        upcoming_invoice = upcoming_invoice_for(subscription.stripe_customer_id)
+        update_next_payment_information(subscription, upcoming_invoice)
+      end
     end
   end
 
