@@ -10,6 +10,6 @@ class WorkshopsController < ApplicationController
   private
 
   def workshop
-    Workshop.find(params[:id])
+    Workshop.friendly.find(params[:id])
   end
 end

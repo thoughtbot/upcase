@@ -2,9 +2,18 @@ require 'spec_helper'
 
 describe Product do
   it { should have_many(:licenses) }
+  it { should validate_presence_of(:slug) }
 
-  describe 'self.promoted' do
-    it 'returns promoted products' do
+  context "uniqueness" do
+    before do
+      create :product
+    end
+
+    it { should validate_uniqueness_of(:slug) }
+  end
+
+  describe "self.promoted" do
+    it "returns promoted products" do
       promoted_products = create_list(:product, 2, promoted: true)
       create(:product, promoted: false)
 

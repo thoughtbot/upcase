@@ -107,7 +107,7 @@ describe "Videos" do
       channel = Nokogiri::XML::Document.parse(page.body).xpath(".//rss/channel")
 
       expect(text_in(channel, ".//title")).to eq("The Weekly Iteration")
-      expect(text_in(channel, ".//link")).to eq(weekly_iteration_url)
+      expect(text_in(channel, ".//link")).to eq(show_url(show))
       expect(text_in(channel, ".//description")).to eq(show.short_description)
 
       unpublished_xpath = ".//item/title[text()='#{video.title}']"

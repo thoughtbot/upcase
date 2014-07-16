@@ -13,13 +13,13 @@ feature "Viewing products" do
       short_description: "An awesome video"
     )
 
-    visit product_url(book)
+    visit book_url(book)
 
     expect(page).not_to have_content "includes support"
     expect_page_to_have_meta_description(book.short_description)
     expect_page_to_have_title("Book: a book by thoughtbot")
 
-    visit product_url(screencast)
+    visit screencast_url(screencast)
 
     expect(page).not_to have_content "includes support"
     expect_page_to_have_meta_description(screencast.short_description)
@@ -29,7 +29,7 @@ feature "Viewing products" do
   scenario "that are inactive" do
     product = create(:book, :inactive)
 
-    visit product_path(product)
+    visit book_url(product)
 
     expect(page).not_to have_content "Purchase for Yourself"
     expect(page).to have_content(

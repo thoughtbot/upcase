@@ -1,4 +1,6 @@
 class Product < ActiveRecord::Base
+  extend FriendlyId
+
   has_many :announcements, as: :announceable, dependent: :destroy
   has_many :classifications, as: :classifiable
   has_many :downloads, as: :purchaseable
@@ -6,11 +8,14 @@ class Product < ActiveRecord::Base
   has_many :topics, through: :classifications
   has_many :videos, as: :watchable, dependent: :destroy
 
+  friendly_id :name, use: :slugged
+
   accepts_nested_attributes_for :downloads, allow_destroy: true
 
   validates :name, presence: true
   validates :sku, presence: true
   validates :type, presence: true
+  validates :slug, presence: true, uniqueness: true
 
   has_attached_file :product_image, {
     styles: {
@@ -58,7 +63,7 @@ class Product < ActiveRecord::Base
   end
 
   def to_param
-    "#{id}-#{name.parameterize}"
+    slug
   end
 
   def starts_on(license_date)

@@ -16,7 +16,7 @@ describe PolymorphicFinder do
       screencast = create(:screencast)
 
       result = PolymorphicFinder.
-        finding(Product, :id, [:book_id, :screencast_id, :product_id]).
+        finding(Product, :slug, [:book_id, :screencast_id, :product_id]).
         find(screencast_id: screencast.to_param)
 
       expect(result).to eq(screencast)

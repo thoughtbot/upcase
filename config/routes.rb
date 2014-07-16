@@ -40,28 +40,28 @@ Upcase::Application.routes.draw do
 
   get "/courses.json" => redirect("/workshops.json")
   get "/courses/:id" => redirect("/workshops/%{id}")
-  resources :workshops, only: [:show] do
+
+  resources :workshops, only: [] do
     resources :licenses, only: [:create]
   end
 
-  resources :products, only: [:index, :show] do
+  resources :products, only: [:index] do
     resources :licenses, only: [:create]
   end
   get "/products/:id/purchases/:lookup" => redirect("/purchases/%{lookup}")
   get "/purchases/:lookup" => "pages#show", id: "purchase-show"
 
-  resources :books, only: :show, controller: "products" do
+  resources :books, only: [], controller: "products" do
     resources :licenses, only: [:create]
   end
 
-  resources :screencasts, only: :show, controller: "products" do
+  resources :screencasts, only: [], controller: "products" do
     resources :licenses, only: [:create]
   end
 
-  resources :shows, only: :show do
+  resources :shows, only: [] do
     resources :licenses, only: [:create]
   end
-  get "/the-weekly-iteration" => "shows#show", as: :weekly_iteration, id: 23
 
   resources :licenses, only: [:index]
   resources :videos, only: [:show]
@@ -138,17 +138,14 @@ Upcase::Application.routes.draw do
   get "/humans-present/oss" =>
     redirect("https://www.youtube.com/watch?v=VMBhumlUP-A")
   get "/backbone.js" => redirect("/backbone")
-  get "/backbone-js-on-rails" => redirect("/products/1-backbone-js-on-rails")
-  get "/geocoding-on-rails" => redirect("/products/22-geocoding-on-rails")
-  get "/geocodingonrails" => redirect("/products/22-geocoding-on-rails")
-  get "/ios-on-rails" => redirect("/products/25-ios-on-rails-beta")
-  get "/ruby-science" => redirect("/products/13-ruby-science")
+  get "/geocodingonrails" => redirect("/geocoding-on-rails")
+  get "/ios-on-rails" => redirect("/ios-on-rails-beta")
   get(
     "/gettingstartedwithios" => redirect(
       "/workshops/24-getting-started-with-ios-development?utm_source=podcast"
     )
   )
-  get "/5by5" => redirect("/workshops/19-design-for-developers?utm_source=5by5")
+  get "/5by5" => redirect("/design-for-developers?utm_source=5by5")
   get(
     "/rubyist-booster-shot" => "pages#show",
     as: :rubyist_booster_shot,
@@ -173,6 +170,27 @@ Upcase::Application.routes.draw do
   resource :dashboard, only: :show
 
   mount StripeEvent::Engine, at: "stripe-webhook"
+
+  get(
+    ":id" => "products#show",
+    as: :book,
+    constraints: LicenseableConstraint.new(Book)
+  )
+  get(
+    ":id" => "products#show",
+    as: :screencast,
+    constraints: LicenseableConstraint.new(Screencast)
+  )
+  get(
+    ":id" => "shows#show",
+    as: :show,
+    constraints: LicenseableConstraint.new(Show)
+  )
+  get(
+    ":id" => "workshops#show",
+    as: :workshop,
+    constraints: LicenseableConstraint.new(Workshop)
+  )
 
   get ":id" => "topics#show", as: :topic
   get "/:id/articles" => redirect("http://robots.thoughtbot.com/tags/%{id}")

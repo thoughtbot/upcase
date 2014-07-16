@@ -13,6 +13,6 @@ class ShowsController < ApplicationController
   private
 
   def requested_show
-    Show.find(params[:id])
+    Show.friendly.find(params[:id])
   end
 end
