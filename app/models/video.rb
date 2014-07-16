@@ -1,7 +1,10 @@
 class Video < ActiveRecord::Base
+  extend FriendlyId
+
   belongs_to :watchable, polymorphic: true
 
   validates :published_on, presence: true
+  validates :slug, presence: true, uniqueness: true
   validates :title, presence: true
   validates :watchable_id, presence: true
   validates :watchable_type, presence: true
@@ -9,6 +12,8 @@ class Video < ActiveRecord::Base
 
   delegate :included_in_plan?, to: :watchable
   delegate :name, to: :watchable, prefix: true
+
+  friendly_id :title, use: [:slugged, :finders]
 
   def self.ordered
     order('position asc')
@@ -40,5 +45,9 @@ class Video < ActiveRecord::Base
 
   def notes_html
     BlueCloth.new(notes).to_html
+  end
+
+  def to_param
+    slug
   end
 end
