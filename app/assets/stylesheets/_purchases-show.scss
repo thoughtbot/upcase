@@ -142,25 +142,6 @@ body.purchases-show, body.videos-show {
       margin-bottom: 1em;
     }
 
-    .readmill {
-      border-radius: 3px;
-      @include box-sizing(content-box);
-      height: 26px;
-      line-height: 26px;
-      padding: .75rem;
-      text-align: center;
-
-      span {
-        color: $darkwarmgray;
-        font-size: 13px;
-        font-weight: 700;
-        line-height: 26px;
-        margin-left: .5rem;
-        @include position(relative, -.5rem 0 0 0);
-        text-transform: uppercase;
-      }
-    }
-
     .view-github {
       display: block;
       margin-top: 1rem;
