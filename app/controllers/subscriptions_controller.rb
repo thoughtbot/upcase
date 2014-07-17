@@ -1,12 +1,12 @@
 class SubscriptionsController < ApplicationController
   def new
-    @plans = IndividualPlan.featured.active.ordered
+    @catalog = Catalog.new
 
     render :layout => 'empty-body'
   end
 
   def edit
-    @plans = IndividualPlan.featured.active.ordered
+    @catalog = Catalog.new
 
     render :layout => 'header-only'
   end

@@ -6,8 +6,6 @@ describe Subscription do
   it { should belong_to(:user) }
 
   it { should delegate(:stripe_customer_id).to(:user) }
-  it { should delegate(:includes_mentor?).to(:plan) }
-  it { should delegate(:includes_workshops?).to(:plan) }
 
   it { should validate_presence_of(:plan_id) }
   it { should validate_presence_of(:plan_type) }
@@ -74,7 +72,7 @@ describe Subscription do
 
   describe '#deactivate' do
     it "updates the subscription record by setting deactivated_on to today" do
-      subscription = create(:active_subscription)
+      subscription = create(:active_subscription, :purchased)
 
       subscription.deactivate
       subscription.reload
@@ -85,19 +83,27 @@ describe Subscription do
     it 'unfulfills itself' do
       fulfillment = stub('fulfilment', :remove)
       subscription = create(:active_subscription)
-      purchase = create(
-        :purchase,
-        user: subscription.user,
-        purchaseable: subscription.plan
-      )
       SubscriptionFulfillment.
         stubs(:new).
-        with(purchase, subscription.user).
+        with(subscription.user, subscription.plan).
         returns(fulfillment)
 
       subscription.deactivate
 
       fulfillment.should have_received(:remove)
+    end
+
+    it "unfulfills for a user who changed their plan" do
+      original_plan = create(:individual_plan)
+      new_plan = create(:individual_plan)
+      subscription = create(:active_subscription, plan: new_plan)
+      create(
+        :purchase,
+        user: subscription.user,
+        purchaseable: original_plan
+      )
+
+      expect { subscription.deactivate }.not_to raise_error
     end
   end
 
@@ -122,6 +128,29 @@ describe Subscription do
       subscription.change_plan(different_plan)
 
       expect(subscription.plan).to eq different_plan
+    end
+
+    it "fulfills features gained by the new plan" do
+      subscription = create(:active_subscription)
+      feature_fulfillment = stub_feature_fulfillment
+      subscription.change_plan(build_stubbed(:plan))
+      expect(feature_fulfillment).to have_received(:fulfill_gained_features)
+    end
+
+    it "unfulfills features lost by the old plan" do
+      subscription = create(:active_subscription)
+      feature_fulfillment = stub_feature_fulfillment
+      subscription.change_plan(build_stubbed(:plan))
+      expect(feature_fulfillment).to have_received(:unfulfill_lost_features)
+    end
+
+    def stub_feature_fulfillment
+      fulfillment = stub(
+        fulfill_gained_features: nil,
+        unfulfill_lost_features: nil
+      )
+      FeatureFulfillment.stubs(:new).returns(fulfillment)
+      fulfillment
     end
   end
 
@@ -215,31 +244,6 @@ describe Subscription do
       subscription = create(:subscription, created_at: 2.days.ago)
 
       expect(Subscription.created_before(1.day.ago)).to eq [subscription]
-    end
-  end
-
-  describe '#purchase' do
-    it 'returns the purchase used to acquire this subscription' do
-      stub_fulfillment
-
-      user = create(:user)
-      plan = create(:plan)
-      other_plan = create(:plan)
-      other_user = create(:user)
-      subscription = create(:subscription, user: user, plan: plan)
-      other_user_purchase =
-        create(:plan_purchase, purchaseable: plan, user: other_user)
-      other_plan_purchase =
-        create(:plan_purchase, purchaseable: other_plan, user: user)
-      subscription_purchase =
-        create(:plan_purchase, purchaseable: plan, user: user)
-
-      expect(subscription.purchase).to eq(subscription_purchase)
-    end
-
-    def stub_fulfillment
-      fulfillment = stub('fulfillment', :fulfill)
-      SubscriptionFulfillment.stubs(:new).returns(fulfillment)
     end
   end
 

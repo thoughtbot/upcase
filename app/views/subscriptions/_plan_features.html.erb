@@ -70,10 +70,9 @@
       <p>Only available on Learn, and we offer them in Kindle, PDF, and EPub formats. We add you to each book's GitHub repo so you can stay up-to-date on changes.</p>
       <p>You'll get full access to:</p>
       <ul>
-        <li><%= link_to "Backbone on Rails", backbone_js_on_rails_path %></li>
-        <li><%= link_to "Geocoding on Rails", geocoding_on_rails_path %></li>
-        <li><%= link_to "iOS on Rails", ios_on_rails_path %></li>
-        <li><%= link_to "Ruby Science", ruby_science_path %></li>
+        <% catalog.books.each do |book| %>
+          <li><%= link_to book.name, book %></li>
+        <% end %>
       </ul>
     </article>
 
@@ -123,11 +122,9 @@
       <p>We offer the following full-length video tutorials, and additional videos are added regularly:</p>
 
       <ul>
-        <li>Intro to Ruby on Rails</li>
-        <li>Intermediate Ruby on Rails</li>
-        <li>Test-Driven Rails</li>
-        <li>Design for Developers</li>
-        <li>Hands-on Backbone.js on Rails</li>
+        <% catalog.workshops.each do |workshop| %>
+          <li><%= link_to workshop.name, workshop %></li>
+        <% end %>
       </ul>
     </article>
 
@@ -199,7 +196,7 @@
 
       <p>The show covers topics like powerful refactoring techniques, improving your development environment, and mastering the finer points of TDD. And, importantly, it does so within 30 minutes.</p>
 
-      <p>The short format of The Weekly Iteration focuses on the right topics that will quickly pay off with consistent effort. The concepts tought are very likely to stick.</p>
+      <p>The short format of The Weekly Iteration focuses on the right topics that will quickly pay off with consistent effort. The concepts taught are very likely to stick.</p>
     </article>
   </div>
 </section>

@@ -441,36 +441,6 @@ describe User do
     end
   end
 
-  describe '#has_access_to_shows?' do
-    context 'when the user has an active subscription' do
-      it 'returns true' do
-        subscription = build_stubbed(:subscription)
-        subscription.stubs(:active?).returns(true)
-        user = build_stubbed(:user, subscription: subscription)
-
-        expect(user).to have_access_to_shows
-      end
-    end
-
-    context 'when the user has an inactive subscription' do
-      it 'returns true' do
-        subscription = build_stubbed(:subscription)
-        subscription.stubs(:active?).returns(false)
-        user = build_stubbed(:user, subscription: subscription)
-
-        expect(user).not_to have_access_to_shows
-      end
-    end
-
-    context 'when the user does not have a subscription' do
-      it 'returns false' do
-        user = build_stubbed(:user)
-
-        expect(user).not_to have_access_to_shows
-      end
-    end
-  end
-
   describe '#has_access_to?' do
     context 'when the user does not have a subscription' do
       it 'returns false' do

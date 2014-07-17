@@ -65,18 +65,19 @@ module Teams
     end
 
     context '#minimum_quantity' do
-      it 'is 5' do
+      it "is 3" do
         team_plan = TeamPlan.new
 
-        expect(team_plan.minimum_quantity).to eq 5
+        expect(team_plan.minimum_quantity).to eq 3
       end
     end
 
     describe '#fulfill' do
       it 'starts a subscription for a new team' do
         user = build_stubbed(:user)
-        purchase = build_stubbed(:purchase, user: user)
+        user.stubs(:create_purchased_subscription)
         plan = build_stubbed(:team_plan)
+        purchase = build_stubbed(:purchase, user: user, purchaseable: plan)
         subscription_fulfillment = stub_subscription_fulfillment(purchase)
         team_fulfillment = stub_team_fulfillment(purchase)
 
@@ -84,6 +85,8 @@ module Teams
 
         expect(subscription_fulfillment).to have_received(:fulfill)
         expect(team_fulfillment).to have_received(:fulfill)
+        expect(user).
+          to have_received(:create_purchased_subscription).with(plan: plan)
       end
 
       def stub_team_fulfillment(purchase)
@@ -107,6 +110,23 @@ module Teams
         after_purchase_url = plan.after_purchase_url(controller, purchase)
 
         expect(after_purchase_url).to eq(edit_teams_team_path)
+      end
+    end
+
+    describe "#has_feature?" do
+      it "returns true if the plan has the feature" do
+        plan = build_stubbed(:team_plan, :includes_mentor)
+        expect(plan.has_feature?(:mentor)).to be_true
+      end
+
+      it "returns false if the plan does not have the feature" do
+        plan = build_stubbed(:team_plan, :no_mentor)
+        expect(plan.has_feature?(:mentor)).to be_false
+      end
+
+      it "raises an exception with an invalid feature name" do
+        plan = build_stubbed(:team_plan)
+        expect{ plan.has_feature?(:foo) }.to raise_error
       end
     end
 

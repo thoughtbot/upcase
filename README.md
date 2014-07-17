@@ -177,3 +177,36 @@ To see what the current recipient is:
 
 3. Access the [general admin panel](http://learn.thoughtbot.com/admin) or
    the [workshop admin panel](http://learn.thoughtbot.com/admin).
+
+Credits
+-------
+
+![thoughtbot](http://thoughtbot.com/logo.png)
+
+This application is maintained and funded by [thoughtbot, inc](http://thoughtbot.com/community)
+
+Thank you to all [the contributors](https://github.com/thoughtbot/paperclip/contributors)!
+
+The names and logos for thoughtbot are trademarks of thoughtbot, inc.
+
+License
+-------
+
+This application is Copyright © 2007 thoughtbot, inc. It is provided to Learn
+subscribers for educational purposes only, and Subscribers do not have a license
+to reuse or distribute the application or its source code.
+
+If you submit a Contribution to this application's source code, you hereby grant
+to thoughtbot, inc. a worldwide, royalty-free, exclusive, perpetual and
+irrevocable license, with the right to grant or transfer an unlimited number of
+non-exclusive licenses or sublicenses to third parties, under the Copyright
+covering the Contribution to use the Contribution by all means, including but
+not limited to:
+
+* to publish the Contribution,
+* to modify the Contribution, to prepare Derivative Works based upon or
+  containing the Contribution and to combine the Contribution with other
+  software code,
+* to reproduce the Contribution in original or modified form,
+* to distribute, to make the Contribution available to the public, display and
+  publicly perform the Contribution in original or modified form.

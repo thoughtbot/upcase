@@ -31,11 +31,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user_has_access_to_workshops?
 
-  def current_user_has_access_to_shows?
-    current_user && current_user.has_access_to_shows?
-  end
-  helper_method :current_user_has_access_to_shows?
-
   def subscription_includes_mentor?
     current_user.has_subscription_with_mentor?
   end

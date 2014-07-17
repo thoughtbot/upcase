@@ -17,30 +17,13 @@ describe Subscriber::CancellationsController do
     end
   end
 
-  describe '#create with a subscription that has been charged' do
-    it 'redirects to the refund page' do
+  describe "#create" do
+    it "redirects to the account page" do
       subscription = create(:subscription)
       sign_in_as(subscription.user.reload)
 
       post :create
 
-      expect(response).to redirect_to new_subscriber_refund_path
-    end
-  end
-
-  describe '#create with a subscription that has never been charged' do
-    it 'redirects to the account page' do
-      user = build_stubbed(:user)
-      subscription = stub(last_charge: nil)
-      user.stubs(subscription: subscription)
-      Cancellation.stubs(:new).returns(stub(schedule: nil))
-      sign_in_as(user)
-
-      post :create
-
-      expect(Cancellation).to have_received(:new)
-        .with(subscription)
-      expect(subscription).to have_received(:last_charge)
       expect(response).to redirect_to my_account_path
     end
   end

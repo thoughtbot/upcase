@@ -1,5 +1,4 @@
 class IndividualPlan < ActiveRecord::Base
-  PRIME_BASIC_SKU = 'prime-basic'
   PRIME_249_SKU = 'prime-249'
   PRIME_99_SKU = 'prime-99'
   PRIME_49_SKU = 'prime-49'
@@ -26,7 +25,7 @@ class IndividualPlan < ActiveRecord::Base
   end
 
   def self.basic
-    where(sku: PRIME_BASIC_SKU).first
+    where(sku: PRIME_29_SKU).first
   end
 
   def self.popular
@@ -70,7 +69,8 @@ class IndividualPlan < ActiveRecord::Base
   end
 
   def fulfill(purchase, user)
-    SubscriptionFulfillment.new(purchase, user).fulfill
+    user.create_purchased_subscription(plan: self)
+    SubscriptionFulfillment.new(user, self).fulfill
   end
 
   def after_purchase_url(controller, purchase)
@@ -79,6 +79,10 @@ class IndividualPlan < ActiveRecord::Base
 
   def included_in_plan?(plan)
     false
+  end
+
+  def has_feature?(feature)
+    public_send("includes_#{feature}?")
   end
 
   private

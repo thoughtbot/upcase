@@ -6,7 +6,7 @@ class Show < Product
   end
 
   def included_in_plan?(plan)
-    plan.includes_shows?
+    plan.has_feature?(:shows)
   end
 
   private

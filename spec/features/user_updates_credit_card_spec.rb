@@ -15,9 +15,9 @@ feature 'User updated credit card' do
   end
 
   scenario 'updates Stripe subscription with declining credit card', js: true do
-    FakeStripe.failure = true
     sign_in_as_user_with_subscription
     visit my_account_path
+    FakeStripe.failure = true
     submit_declining_credit_card_info
 
     expect(current_path).to eq my_account_path

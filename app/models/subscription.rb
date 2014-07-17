@@ -5,8 +5,6 @@ class Subscription < ActiveRecord::Base
 
   has_one :team, dependent: :destroy, class_name: 'Teams::Team'
 
-  delegate :includes_mentor?, to: :plan
-  delegate :includes_workshops?, to: :plan
   delegate :name, to: :plan, prefix: true
   delegate :stripe_customer_id, to: :user
 
@@ -45,28 +43,26 @@ class Subscription < ActiveRecord::Base
   end
 
   def deactivate
-    SubscriptionFulfillment.new(purchase, user).remove
+    SubscriptionFulfillment.new(user, plan).remove
     update_column(:deactivated_on, Time.zone.today)
   end
 
   def change_plan(new_plan)
-    stripe_customer.update_subscription(plan: new_plan.sku)
-    self.plan = new_plan
-    save!
+    update_features do
+      stripe_customer.update_subscription(plan: new_plan.sku)
+      self.plan = new_plan
+      save!
+    end
   end
 
   def deliver_welcome_email
-    if includes_mentor?
+    if has_access_to?(:mentor)
       SubscriptionMailer.welcome_to_prime_from_mentor(user).deliver
     end
   end
 
   def has_access_to?(feature)
-    active? && plan.public_send("includes_#{feature}?")
-  end
-
-  def purchase
-    user.purchases.for_purchaseable(plan).first
+    active? && plan.has_feature?(feature)
   end
 
   def team?
@@ -89,6 +85,20 @@ class Subscription < ActiveRecord::Base
 
   def self.recent
     where('created_at > ?', 24.hours.ago)
+  end
+
+  def update_features
+    old_plan = plan
+    yield
+    new_plan = plan
+
+    feature_fulfillment = FeatureFulfillment.new(
+      new_plan: new_plan,
+      old_plan: old_plan,
+      user: user
+    )
+    feature_fulfillment.fulfill_gained_features
+    feature_fulfillment.unfulfill_lost_features
   end
 
   def stripe_customer

@@ -129,7 +129,7 @@ FactoryGirl.define do
     description 'A long description'
 
     factory :basic_plan do
-      sku IndividualPlan::PRIME_BASIC_SKU
+      sku IndividualPlan::PRIME_29_SKU
       includes_books false
       includes_exercises false
       includes_forum false
@@ -149,6 +149,10 @@ FactoryGirl.define do
 
     trait :includes_books do
       includes_books true
+    end
+
+    trait :no_mentor do
+      includes_mentor false
     end
   end
 
@@ -186,6 +190,14 @@ FactoryGirl.define do
     individual_price 89
     name 'Workshops for Teams'
     sku 'team_plan'
+
+    trait :includes_mentor do
+      includes_mentor true
+    end
+
+    trait :no_mentor do
+      includes_mentor false
+    end
   end
 
   factory :team, class: 'Teams::Team' do
@@ -344,8 +356,24 @@ FactoryGirl.define do
       end
 
       after :create do |instance, attributes|
-        instance.purchased_subscription =
-          create(:subscription, plan: attributes.plan, user: instance)
+        instance.purchased_subscription = create(
+          :subscription,
+          plan: attributes.plan,
+          user: instance
+        )
+      end
+    end
+
+    trait :with_subscription_purchase do
+      with_subscription
+
+      after :create do |instance, attributes|
+        instance.purchased_subscription = create(
+          :subscription,
+          :purchased,
+          plan: attributes.plan,
+          user: instance
+        )
       end
     end
 
@@ -413,6 +441,16 @@ FactoryGirl.define do
 
     factory :inactive_subscription do
       deactivated_on { Time.zone.today }
+    end
+
+    trait :purchased do
+      after :create do |subscription|
+        create(
+          :plan_purchase,
+          purchaseable: subscription.plan,
+          user: subscription.user
+        )
+      end
     end
   end
 

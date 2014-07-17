@@ -38,6 +38,14 @@ describe Catalog do
     end
   end
 
+  describe "#individual_plans" do
+    it "returns all featured active plans" do
+      catalog = Catalog.new
+      expect(catalog.individual_plans).
+        to find_relation(IndividualPlan.featured.active.ordered)
+    end
+  end
+
   describe '#to_partial_path' do
     it 'returns a renderable path' do
       catalog = Catalog.new

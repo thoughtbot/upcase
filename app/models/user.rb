@@ -67,10 +67,6 @@ class User < ActiveRecord::Base
     subscription.present?
   end
 
-  def has_access_to_shows?
-    has_active_subscription?
-  end
-
   def has_access_to?(feature)
     subscription && subscription.has_access_to?(feature)
   end
@@ -90,7 +86,7 @@ class User < ActiveRecord::Base
   end
 
   def has_subscription_with_mentor?
-    has_active_subscription? && subscription.try(:includes_mentor?)
+    has_access_to?(:mentor)
   end
 
   def plan_name

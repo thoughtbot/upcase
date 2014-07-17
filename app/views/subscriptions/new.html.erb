@@ -11,12 +11,7 @@
   </div>
 </section>
 
-<section class="subscriptions">
-  <%= render 'pricing' %>
-  <%= render 'testimonials' %>
-  <%= render 'plan_features' %>
-  <%= render 'footer' %>
-</section>
+<%= render 'plans', catalog: @catalog %>
 <div class="footer-wrapper">
   <%= render 'promoted_catalogs/footer' %>
 </div>

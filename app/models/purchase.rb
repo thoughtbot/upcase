@@ -39,7 +39,6 @@ class Purchase < ActiveRecord::Base
     allow_nil: true
   delegate(
     :fulfilled_with_github?,
-    :includes_mentor?,
     :subscription?,
     :terms,
     to: :purchaseable

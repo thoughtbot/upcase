@@ -31,6 +31,15 @@ describe SubscriptionUpcomingInvoiceUpdater do
     expect(subscription.next_payment_on).to be_nil
   end
 
+  it "doesn't raise errors for subscriptions without customer IDs" do
+    subscription = build_stubbed(:subscription)
+    subscription.stubs(:stripe_customer_id).returns(nil)
+    subscriptions = [subscription]
+
+    expect { SubscriptionUpcomingInvoiceUpdater.new(subscriptions).process }.
+      not_to raise_error
+  end
+
   it "sends the error to Airbrake if it isn't 404" do
     Airbrake.stubs(:notify)
     error = Stripe::InvalidRequestError.new('Server error', '', 500)

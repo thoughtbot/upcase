@@ -1,60 +1,44 @@
 class SubscriptionFulfillment
-  GITHUB_TEAM = 516450
-
-  def initialize(purchase, user)
-    @purchase = purchase
+  def initialize(user, plan)
     @user = user
+    @plan = plan
   end
 
   def fulfill
-    assign_mentor
-    create_subscription
-    add_user_to_github_team
+    fulfill_gained_features
     download_public_keys
   end
 
   def remove
-    remove_user_from_github_team
+    unfulfill_lost_features
     deactivate_subscription_purchases
   end
 
   private
 
-  def assign_mentor
-    if @purchase.includes_mentor?
-      @user.assign_mentor(mentor)
-    end
+  def fulfill_gained_features
+    FeatureFulfillment.new(
+      old_plan: NullPlan.new,
+      new_plan: @plan,
+      user: @user
+    ).fulfill_gained_features
   end
 
-  def create_subscription
-    if purchaser?
-      @user.create_purchased_subscription(plan: @purchase.purchaseable)
-    end
-  end
-
-  def purchaser?
-    @purchase.user == @user
-  end
-
-  def add_user_to_github_team
-    GithubFulfillmentJob.enqueue(GITHUB_TEAM, [@user.github_username])
+  def unfulfill_lost_features
+    FeatureFulfillment.new(
+      old_plan: @plan,
+      new_plan: NullPlan.new,
+      user: @user
+    ).unfulfill_lost_features
   end
 
   def download_public_keys
     GitHubPublicKeyDownloadFulfillmentJob.enqueue(@user.id)
   end
 
-  def remove_user_from_github_team
-    GithubRemovalJob.enqueue(GITHUB_TEAM, [@user.github_username])
-  end
-
   def deactivate_subscription_purchases
     @user.subscription_purchases.each do |purchase|
       PurchaseRefunder.new(purchase).refund
     end
-  end
-
-  def mentor
-    Mentor.random
   end
 end

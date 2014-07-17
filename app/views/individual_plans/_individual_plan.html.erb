@@ -1,4 +1,4 @@
-<section class="plan <%= popular(individual_plan) %>" data-sku=<%= individual_plan.sku %>>
+<section class="plan <%= popular(individual_plan) %>" data-sku="<%= individual_plan.sku %>">
   <h3><%= individual_plan.name %></h3>
   <%= render grid_partial_for(individual_plan) %>
   <div class="price"><%= individual_price_per_month(individual_plan) %></div>

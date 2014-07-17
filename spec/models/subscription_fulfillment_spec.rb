@@ -2,98 +2,61 @@ require 'spec_helper'
 
 describe SubscriptionFulfillment do
   describe '#fulfill' do
-    it 'adds a subscription to the user that created the purchase' do
-      user = build_subscribable_user
-      purchase = build_stubbed(:plan_purchase, user: user)
-
-      expect(user.subscription).to be_nil
-
-      SubscriptionFulfillment.new(purchase, user).fulfill
-
-      expect(user.subscription).not_to be_nil
-      expect(user.subscription.plan).to eq purchase.purchaseable
-    end
-
-    it "doesn't add a subscription to a user that didn't create the purchase" do
-      user = build_subscribable_user
-      purchase = build_stubbed(:plan_purchase)
-
-      SubscriptionFulfillment.new(purchase, user).fulfill
-
-      expect(user.subscription).to be_nil
-    end
-
-    it 'adds the user to the subscriber github team' do
-      GithubFulfillmentJob.stubs(:enqueue)
-      user = build_subscribable_user
-      purchase = build_stubbed(:plan_purchase)
-
-      SubscriptionFulfillment.new(purchase, user).fulfill
-
-      GithubFulfillmentJob.should have_received(:enqueue).
-        with(SubscriptionFulfillment::GITHUB_TEAM, [user.github_username])
-    end
-
     it "downloads the user's GitHub public keys" do
       GitHubPublicKeyDownloadFulfillmentJob.stubs(:enqueue)
       user = build_subscribable_user
-      purchase = build_stubbed(:plan_purchase)
+      plan = build_stubbed(:individual_plan)
 
-      SubscriptionFulfillment.new(purchase, user).fulfill
+      SubscriptionFulfillment.new(user, plan).fulfill
 
       GitHubPublicKeyDownloadFulfillmentJob.should have_received(:enqueue)
         .with(user.id)
     end
 
-    context 'when the purchased Plan includes mentoring' do
-      it 'assigns a mentor' do
-        mentor = build_stubbed(:mentor)
-        Mentor.stubs(:random).returns(mentor)
-        user = build_subscribable_user
-        purchase = build_stubbed(:plan_purchase)
-        purchase.stubs(:includes_mentor?).returns(true)
+    it "fulfills all gained features" do
+      user = build_subscribable_user
+      plan = build_stubbed(:individual_plan)
+      fulfillment = stub_feature_fulfillment
 
-        SubscriptionFulfillment.new(purchase, user).fulfill
+      SubscriptionFulfillment.new(user, plan).fulfill
 
-        expect(user).to have_received(:assign_mentor).with(mentor)
-      end
+      expect(fulfillment).to have_received(:fulfill_gained_features)
     end
 
-    context 'when the purchased Plan does not include mentoring' do
-      it 'does not assign a mentor' do
-        user = build_subscribable_user
-        purchase = build_stubbed(:plan_purchase)
-        purchase.stubs(:includes_mentor?).returns(false)
-
-        SubscriptionFulfillment.new(purchase, user).fulfill
-
-        expect(user).to have_received(:assign_mentor).never
+    def stub_feature_fulfillment
+      stub(fulfill_gained_features: nil).tap do |fulfillment|
+        FeatureFulfillment.stubs(:new).returns(fulfillment)
       end
     end
   end
 
   describe '#remove' do
-    it 'removes the user from the subscriber github team' do
-      GithubRemovalJob.stubs(:enqueue)
-      user = build_subscribable_user
-      purchase = build_stubbed(:plan_purchase)
-
-      SubscriptionFulfillment.new(purchase, user).remove
-
-      GithubRemovalJob.should have_received(:enqueue).
-        with(SubscriptionFulfillment::GITHUB_TEAM, [user.github_username])
-    end
-
     it 'removes all subscription purchases' do
       user = build_subscribable_user
       purchases = stub_subscription_purchases(user)
       refunders = stub_refunds(purchases)
-      plan_purchase = build_stubbed(:plan_purchase)
+      plan = build_stubbed(:individual_plan)
 
-      SubscriptionFulfillment.new(plan_purchase, user).remove
+      SubscriptionFulfillment.new(user, plan).remove
 
       refunders.each do |refunder|
         expect(refunder).to have_received(:refund)
+      end
+    end
+
+    it "unfulfills all lost features" do
+      user = build_subscribable_user
+      plan = build_stubbed(:individual_plan)
+      fulfillment = stub_feature_unfulfillment
+
+      SubscriptionFulfillment.new(user, plan).remove
+
+      expect(fulfillment).to have_received(:unfulfill_lost_features)
+    end
+
+    def stub_feature_unfulfillment
+      stub(unfulfill_lost_features: nil).tap do |fulfillment|
+        FeatureFulfillment.stubs(:new).returns(fulfillment)
       end
     end
 

@@ -36,11 +36,12 @@ module Teams
     end
 
     def minimum_quantity
-      5
+      3
     end
 
     def fulfill(purchase, user)
-      SubscriptionFulfillment.new(purchase, user).fulfill
+      user.create_purchased_subscription(plan: self)
+      SubscriptionFulfillment.new(user, self).fulfill
       TeamFulfillment.new(purchase, user).fulfill
     end
 
@@ -50,6 +51,10 @@ module Teams
 
     def included_in_plan?(plan)
       false
+    end
+
+    def has_feature?(feature)
+      public_send("includes_#{feature}?")
     end
   end
 end
