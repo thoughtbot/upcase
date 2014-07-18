@@ -38,29 +38,29 @@ Workshops::Application.routes.draw do
   get '/courses.json' => redirect('/workshops.json')
   get '/courses/:id' => redirect('/workshops/%{id}')
   resources :workshops, only: [:show] do
-    resources :purchases, only: [:new, :create]
+    resources :licenses, only: [:create]
     resources :redemptions, only: [:new]
   end
 
   resources :products, only: [:index, :show] do
     resources :redemptions, only: [:new]
-    resources :purchases, only: [:new, :create]
+    resources :licenses, only: [:create]
   end
   get '/products/:id/purchases/:lookup' => redirect("/purchases/%{lookup}")
 
   resources :books, only: :show, controller: 'products' do
     resources :redemptions, only: [:new]
-    resources :purchases, only: [:create]
+    resources :licenses, only: [:create]
   end
 
   resources :screencasts, only: :show, controller: 'products' do
     resources :redemptions, only: [:new]
-    resources :purchases, only: [:create]
+    resources :licenses, only: [:create]
   end
 
   resources :shows, only: :show, controller: 'products' do
     resources :redemptions, only: [:new]
-    resources :purchases, only: [:show]
+    resources :licenses, only: [:show]
   end
 
   get '/the-weekly-iteration' => 'weekly_iterations#show', as: :weekly_iteration
@@ -74,18 +74,6 @@ Workshops::Application.routes.draw do
   end
 
   namespace :subscriber do
-    resources :books, only: [] do
-      resources :purchases, only: [:new, :create]
-    end
-    resources :screencasts, only: [] do
-      resources :purchases, only: [:new, :create]
-    end
-    resources :shows, only: [] do
-      resources :purchases, only: [:new, :create]
-    end
-    resources :workshops, only: [] do
-      resources :purchases, only: [:new, :create]
-    end
     resources :invoices, only: [:index, :show]
     resource :cancellation, only: [:new, :create]
     resource :downgrade, only: :create

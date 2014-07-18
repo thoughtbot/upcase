@@ -1,27 +1,27 @@
 <% content_for :additional_content_classes, 'fullscreen' %>
 
 <% content_for :subject_block do %>
-  <h1><%= @purchaseable.name %></h1>
+  <h1><%= @offering.name %></h1>
   <h2 class="tagline">
-    <% if @purchaseable.collection? %>
+    <% if @offering.collection? %>
       Watch or download videos,
-      <%= pluralize @purchaseable.published_videos.size, 'video' %> in the series.
+      <%= pluralize @offering.published_videos.size, 'video' %> in the series.
     <% else %>
       Watch or download video
     <% end %>
   </h2>
 <% end %>
 
-<% if @purchaseable.collection? %>
+<% if @offering.collection? %>
   <div class="text-box-wrapper">
     <div class="text-box">
       <section id="videos">
-        <%= render @purchaseable.published_videos.ordered, purchase: @purchase %>
+        <%= render @offering.published_videos.ordered, license: @license %>
       </section>
     </div>
   </div>
 <% else %>
-  <%= render 'videos/watch_video', video: @purchaseable.published_videos.first, purchase: @purchase %>
+  <%= render 'videos/watch_video', video: @offering.published_videos.first, license: @license %>
 <% end %>
 
-<%= render 'screencasts/aside', purchaseable: @purchaseable, purchase: @purchase %>
+<%= render 'screencasts/aside', offering: @offering, license: @license %>

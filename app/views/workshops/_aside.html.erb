@@ -1,15 +1,15 @@
 <aside>
-  <%= render 'purchases/downloads_info', purchaseable: purchaseable %>
+  <%= render 'licenses/downloads_info', offering: offering %>
 
-  <% if purchaseable.resources.present? %>
+  <% if offering.resources.present? %>
     <div class="resources">
       <h3>Resources</h3>
       <hr>
-      <%== format_resources(purchaseable.resources) %>
+      <%== format_resources(offering.resources) %>
     </div>
   <% end %>
 
-  <%= render 'shared/sidebar_forum', purchaseable: purchaseable %>
+  <%= render 'shared/sidebar_forum', offering: offering %>
 
   <div class="office-hours">
     <h3>Office Hours Schedule</h3>

@@ -174,11 +174,6 @@ en:
       heading_html: Complete your purchase of <em>%{name}</em>
     comments: Dietary restrictions or special requests?
 
-  subscriber_purchase:
-    flashes:
-      success: Success! Enjoy your shiny new product.
-      error:  "You're already subscribed to Upcase!"
-
   subscriptions:
     join_cta: See Plans & Pricing for Upcase
     cancel: Cancel
@@ -224,3 +219,8 @@ en:
   line_item:
     canceled_description: (Canceled) Subscription to Upcase
     plan_description: Subscription to %{plan_name}
+
+  licenses:
+    flashes:
+      success: Success! Enjoy your shiny new product.
+      error:  "You're already subscribed to Prime!"

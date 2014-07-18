@@ -1,8 +1,8 @@
-<% if purchaseable.downloads.present? %>
+<% if offering.downloads.present? %>
   <h3>Download Files</h3>
 
   <ul class="download_items">
-    <% purchaseable.downloads.each do |download| %>
+    <% offering.downloads.each do |download| %>
       <li>
       <%= link_to download.display_name, (download.download.respond_to?(:expiring_url) ?
                                           download.download.expiring_url(300) :

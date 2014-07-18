@@ -41,11 +41,9 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user_is_admin?
 
-  def requested_purchaseable
+  def requested_licenseable
     PolymorphicFinder.
       finding(Workshop, :id, [:workshop_id]).
-      finding(Teams::TeamPlan, :sku, [:teams_team_plan_id]).
-      finding(IndividualPlan, :sku, [:individual_plan_id]).
       finding(Product, :id, [:product_id, :screencast_id, :book_id, :show_id]).
       find(params)
   end
@@ -64,5 +62,10 @@ class ApplicationController < ActionController::Base
     if signed_in?
       licenseable.license_for(current_user)
     end
+  end
+  helper_method :current_user_license_of
+
+  def polymorphic_licenseable_template
+    "#{@offering.to_partial_path}_purchase_show"
   end
 end

@@ -2,9 +2,10 @@
   <span><%= t 'products.show.free_to_subscribers' %></span>
 </h2>
 <%= link_to(
-  new_product_purchase_path(product, variant: :individual),
+  [product, :licenses],
   class: "license-button button free-with-prime",
-  id: "#{product.sku}-purchase-individual"
+  id: "#{product.sku}-purchase-individual",
+  method: :post
 ) do %>
   <% if product.collection? %>
     <%= t(
