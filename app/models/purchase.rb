@@ -105,26 +105,6 @@ class Purchase < ActiveRecord::Base
     save!
   end
 
-  def starts_on
-    purchaseable.starts_on(created_at.to_date)
-  end
-
-  def ends_on
-    purchaseable.ends_on(created_at.to_date)
-  end
-
-  def active?
-    (starts_on..ends_on).cover?(Time.zone.today)
-  end
-
-  def status
-    if self.ends_on.today? || self.ends_on.future?
-      'in-progress'
-    elsif self.ends_on.past?
-      'complete'
-    end
-  end
-
   def set_as_paid
     self.paid = true
     self.paid_price = price

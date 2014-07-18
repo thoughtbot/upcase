@@ -206,6 +206,11 @@ FactoryGirl.define do
     max_users 10
   end
 
+  factory :license do
+    user
+    association :licenseable, factory: :screencast
+  end
+
   factory :purchase, aliases: [:individual_purchase] do
     email
     name

@@ -12,7 +12,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20140725142656) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_stat_statements"
@@ -123,6 +122,17 @@ ActiveRecord::Schema.define(version: 20140725142656) do
 
   add_index "invitations", ["code"], name: "index_invitations_on_code", using: :btree
   add_index "invitations", ["team_id"], name: "index_invitations_on_team_id", using: :btree
+
+  create_table "licenses", force: true do |t|
+    t.integer  "user_id",          null: false
+    t.integer  "licenseable_id",   null: false
+    t.string   "licenseable_type", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "licenses", ["user_id", "licenseable_id", "licenseable_type"], name: "index_licenses_on_user_id_and_licenseable", unique: true, using: :btree
+  add_index "licenses", ["user_id"], name: "index_licenses_on_user_id", using: :btree
 
   create_table "mentors", force: true do |t|
     t.integer "user_id",                                                  null: false

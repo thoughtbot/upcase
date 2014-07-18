@@ -96,34 +96,6 @@ describe Purchase do
     end
   end
 
-  context '#status' do
-    it 'returns in-progress when it ends today' do
-      workshop = create(:workshop, length_in_days: 5)
-      Timecop.travel(5.days.ago) do
-        @purchase = create_subscriber_purchase_from_purchaseable(workshop)
-      end
-
-      expect(@purchase.status).to eq 'in-progress'
-    end
-
-    it 'returns in-progress when it ends in future' do
-      workshop = create(:workshop, length_in_days: 5)
-      purchase = create_subscriber_purchase_from_purchaseable(workshop)
-
-      expect(purchase.status).to eq 'in-progress'
-    end
-
-    it 'returns complete when already ended' do
-      workshop = create(:workshop, length_in_days: 5)
-
-      Timecop.travel(6.days.ago) do
-        @purchase = create_subscriber_purchase_from_purchaseable(workshop)
-      end
-
-      expect(@purchase.status).to eq 'complete'
-    end
-  end
-
   context 'purchasing as subcriber' do
     it 'does not send a receipt' do
       purchase = create(:unpaid_purchase, payment_method: 'subscription')
@@ -205,17 +177,6 @@ describe Purchase do
   end
 
   describe '#save' do
-    it 'tells its purchaseable to fulfill' do
-      purchaseable = create(:book)
-      purchaseable.stubs(:fulfill)
-      purchase = build(:purchase, purchaseable: purchaseable)
-
-      purchase.save!
-
-      expect(purchaseable).
-        to have_received(:fulfill).with(purchase, purchase.user)
-    end
-
     it 'fulfills a subscription when purchasing a plan' do
       purchase = build(:plan_purchase)
       fulfillment = stub_subscription_fulfillment(purchase)
