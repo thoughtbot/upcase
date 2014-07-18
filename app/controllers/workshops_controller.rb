@@ -1,10 +1,15 @@
 class WorkshopsController < ApplicationController
   def show
-    @workshop = Workshop.find(params[:id])
-    @offering = @workshop
+    @offering = Offering.new(workshop, current_user)
 
-    if purchase = current_user_purchase_of(@workshop)
-      redirect_to purchase
+    if @offering.user_has_license?
+      render polymorphic_licenseable_template
     end
+  end
+
+  private
+
+  def workshop
+    Workshop.find(params[:id])
   end
 end

@@ -1,46 +1,65 @@
 require 'spec_helper'
 
 describe Coupon do
-  it { should have_many(:purchases) }
+  it 'has a code of the given stripe coupon code' do
+    coupon = Coupon.new('25OFF')
+    expect(coupon.code).to eq '25OFF'
+  end
 
-  context "with a discount type of percentage" do
-    subject { create(:coupon, amount: 10, discount_type: "percentage") }
-    it "applies the coupon as a percentage" do
-      subject.apply(50).should == 45
+  it 'uses the corresponding stripe coupon' do
+    stripe_coupon = create_stripe_coupon(id: '25OFF', amount_off: 2500, duration: 'once')
+    coupon = Coupon.new('25OFF')
+
+    expect(coupon.stripe_coupon.id).to eq stripe_coupon.id
+  end
+
+  it 'delegates duration to stripe_coupon' do
+    stripe_coupon = create_stripe_coupon(id: '25OFF', amount_off: 2500, duration: 'once')
+    coupon = Coupon.new('25OFF')
+
+    expect(coupon.duration).to eq 'once'
+  end
+
+  it 'delegates duration_in_months to stripe_coupon' do
+    stripe_coupon = create_stripe_coupon(id: '25OFF', amount_off: 2500, duration: 'once', duration_in_months: 3)
+    coupon = Coupon.new('25OFF')
+
+    expect(coupon.duration_in_months).to eq '3'
+  end
+
+  it 'is not valid if the coupon code does not exist' do
+    exception = Stripe::InvalidRequestError.new('No such coupon', 'NONE')
+    Stripe::Coupon.stubs(:retrieve).raises(exception)
+    coupon = Coupon.new('NONE')
+
+    expect(coupon).not_to be_valid
+  end
+
+  describe '#apply' do
+    context 'when it is an amount off discount' do
+      it 'deducts that dollar amount' do
+        create_stripe_coupon(id: '25OFF', amount_off: 2500, duration: 'forever')
+        coupon = Coupon.new('25OFF')
+
+        amount = coupon.apply(99)
+
+        expect(amount).to eq 74
+      end
+    end
+
+    context 'when it is a percentage off discount' do
+      it 'deducts that percentage off the amount' do
+        create_stripe_coupon(id: '50OFF', percent_off: 50, duration: 'forever')
+        coupon = Coupon.new('50OFF')
+
+        amount = coupon.apply(99)
+
+        expect(amount).to eq 49.50
+      end
     end
   end
 
-  context "with a discount type of dollars" do
-    subject { create(:coupon, amount: 10, discount_type: "dollars") }
-    it "applies the coupon as a dollar discount" do
-      subject.apply(50).should == 40
-    end
-  end
-
-  context 'telling the coupon that it has been #applied' do
-    it 'produces the full price on the second try if it is one-time use' do
-      coupon = create(:one_time_coupon, amount: 10, discount_type: 'dollars')
-      coupon.apply(50).should == 40
-      coupon.applied
-      coupon.apply(50).should == 50
-      coupon.should_not be_active
-    end
-
-    it 'produces the discounted price each time' do
-      coupon = create(:coupon, amount: 10, discount_type: 'dollars')
-      coupon.apply(50).should == 40
-      coupon.applied
-      coupon.apply(50).should == 40
-      coupon.should be_active
-    end
-  end
-end
-
-describe Coupon, '.active' do
-  it 'returns active coupons' do
-    active_coupon = create(:coupon, active: true)
-    inactive_coupon = create(:coupon, active: false)
-
-    Coupon.active.should eq [active_coupon]
+  def create_stripe_coupon(attributes)
+    Stripe::Coupon.create(attributes)
   end
 end

@@ -1,0 +1,65 @@
+<%= semantic_form_for checkout, url: checkouts_path(checkout.subscribeable), html: { method: 'post' } do |form| %>
+  <%= form.semantic_errors %>
+
+  <%= form.inputs do %>
+    <% if signed_out? %>
+      <ul class="checkout-sigin-signup-toggle">
+        <li class="workshop-alert sign-in-prompt"><%= link_to "Already have an account? Sign in", sign_in_path(return_to: request.fullpath) %></li>
+        <li><%= link_to "Sign up with GitHub", github_auth_path %></li>
+      </ul>
+    <% end %>
+
+    <%= hidden_field_tag "coupon_id" %>
+    <%= form.input :stripe_coupon_id, as: :hidden %>
+    <% if need_to_create_user_account? %>
+      <%= form.input :name, required: true %>
+      <%= form.input :email, as: :email, required: true %>
+      <%= form.input :password, required: true %>
+    <% end %>
+    <% if need_to_create_user_account? || need_to_collect_github_username? %>
+      <%= form.input :github_username, required: true, label: "GitHub username", hint: "Be sure to enter a valid GitHub username. Organizations are not allowed." %>
+    <% end %>
+    <%= render checkout_form_partial(@checkout.subscribeable), form: form, checkout: @checkout %>
+  <% end %>
+
+  <%= link_to 'Need an address on your receipt?', '#', class: 'reveal-address' %>
+  <%= form.inputs class: 'address-info' do %>
+    <%= render 'users/address_fields', form: form %>
+  <% end %>
+
+  <%= form.inputs id: 'billing-information' do %>
+    <li>
+      <%= image_tag "icons/visa.png" %><%= image_tag "icons/master.png" %><%= image_tag "icons/american_express.png" %>
+    </li>
+    <li class="payment-errors"></li>
+    <% if signed_in? && current_user.credit_card %>
+      <li id="checkout_cc_existing" class="stripe">
+        <input type="checkbox" id="use_existing_card" name="use_existing_card" class="use_existing_card" />
+        <label for="use_existing_card">
+          Use existing card (<%= display_card_type(current_user.credit_card["type"]) %> ending in <%= current_user.credit_card["last4"] %>)
+        </label>
+      </li>
+    <% end %>
+    <li id="checkout_cc_input" class="stripe">
+      <label for='card-number'>Card Number</label>
+      <input type='text' size='20' autocomplete='off' id='card-number' class='card-number'/>
+    </li>
+    <li id="checkout_expiration_input" class="stripe">
+      <label>Expiration</label>
+      <%= select_month nil, { prompt: 'Month', add_month_numbers: true }, class: 'card-expiry-month' %>
+      <%= select_year nil, { prompt: 'Year', start_year: Time.zone.today.year, end_year: 10.years.from_now.year }, class: 'card-expiry-year' %>
+    </li>
+    <li id="checkout_cvc_input" class="stripe">
+      <label for='card-cvc'>CVC</label>
+      <input type='text' size='4' autocomplete='off' id='card-cvc' class='card-cvc'/>
+    </li>
+  <% end %>
+
+  <%= render 'redemptions/form', checkout: checkout %>
+
+  <%= form.actions do %>
+    <%= form.action :submit, label: "Submit Payment &mdash; #{submit_amount(checkout)}".html_safe %>
+  <% end %>
+<% end %>
+
+<%= render partial: 'shared/stripe' %>

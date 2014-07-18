@@ -1,21 +1,17 @@
-class GithubRemovalJob < Struct.new(:github_team, :usernames)
+class GithubRemovalJob < Struct.new(:github_team, :username)
   include ErrorReporting
 
   PRIORITY = 1
-  API_SLEEP_TIME = 0.2
 
-  def self.enqueue(github_team, usernames)
-    Delayed::Job.enqueue(new(github_team, usernames))
+  def self.enqueue(github_team, username)
+    Delayed::Job.enqueue(new(github_team, username))
   end
 
   def perform
-    usernames.each do |username|
-      begin
-        github_client.remove_team_member(github_team, username)
-      rescue Octokit::NotFound, Net::HTTPBadResponse => e
-        Airbrake.notify(e)
-      end
-      sleep API_SLEEP_TIME
+    begin
+      github_client.remove_team_member(github_team, username)
+    rescue Octokit::NotFound, Net::HTTPBadResponse => e
+      Airbrake.notify(e)
     end
   end
 

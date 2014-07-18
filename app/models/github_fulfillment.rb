@@ -1,17 +1,17 @@
 class GithubFulfillment
-  def initialize(purchase)
-    @purchase = purchase
+  def initialize(license)
+    @license = license
   end
 
   def fulfill
     if fulfilled_with_github?
-      GithubFulfillmentJob.enqueue(team, usernames, @purchase.id)
+      GithubFulfillmentJob.enqueue(team, username, @license.id)
     end
   end
 
   def remove
     if fulfilled_with_github?
-      GithubRemovalJob.enqueue(team, usernames)
+      GithubRemovalJob.enqueue(team, username)
     end
   end
 
@@ -22,14 +22,14 @@ class GithubFulfillment
   end
 
   def team
-    purchaseable.github_team
+    licenseable.github_team
   end
 
-  def purchaseable
-    @purchase.purchaseable
+  def licenseable
+    @license.licenseable
   end
 
-  def usernames
-    @purchase.github_usernames
+  def username
+    @license.github_username
   end
 end

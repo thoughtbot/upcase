@@ -2,8 +2,7 @@ $(".coupon input[type=submit]").click(function(e) {
   $.ajax({
     url: $(".coupon").data('url'),
     data: {
-      'purchase[variant]': $('#purchase_variant').val(),
-      'purchase[quantity]': $('#purchase_quantity').val(),
+      'checkout[quantity]': $('#checkout_quantity').val(),
       'coupon[code]': $('#coupon_code').val()
     },
     dataType: 'script',
@@ -31,7 +30,7 @@ function checkUsername() {
     checkValidGithubUsername(element.val(), element);
   }
 }
-$("input.github_username").blur(checkUsername);
+$("input#checkout_github_username").blur(checkUsername);
 
 function checkValidGithubUsername(username, element) {
   var container = element.parent("li");
@@ -49,16 +48,16 @@ function checkValidGithubUsername(username, element) {
   });
 }
 
-function updatePurchaseSubmitText(newText) {
-  updatePurchaseSubmit(newText, purchaseSubmitText().amount);
+function updateCheckoutSubmitText(newText) {
+  updateCheckoutSubmit(newText, checkoutSubmitText().amount);
 }
 
-function updatePurchaseSubmitAmount(newAmount) {
-  updatePurchaseSubmit(purchaseSubmitText().text, newAmount);
+function updateCheckoutSubmitAmount(newAmount) {
+  updateCheckoutSubmit(checkoutSubmitText().text, newAmount);
 }
 
-function purchaseSubmitText() {
-  var currentText = $('#purchase_submit_action input').val();
+function checkoutSubmitText() {
+  var currentText = $('#checkout_submit_action input').val();
   var parts = currentText.split("—");
   return {
     text: parts[0],
@@ -66,8 +65,8 @@ function purchaseSubmitText() {
   }
 }
 
-function updatePurchaseSubmit(text, amount) {
-  $('#purchase_submit_action input').val(trim(text) + " — " + trim(amount));
+function updateCheckoutSubmit(text, amount) {
+  $('#checkout_submit_action input').val(trim(text) + " — " + trim(amount));
 }
 
 function trim(text) {
@@ -82,33 +81,24 @@ $('.reveal-address').click(function() {
   return false;
 });
 
-function updatePurchaseAmountForQuantity() {
-  var individualPrice = $('#purchase_quantity_input').data('individual-price');
-  var quantity = $('#purchase_quantity').val();
+function updateCheckoutAmountForQuantity() {
+  var individualPrice = $('#checkout_quantity_input').data('individual-price');
+  var quantity = $('#checkout_quantity').val();
   var newAmount = individualPrice * quantity;
-  updatePurchaseSubmitAmount("$" + newAmount + " per month");
+  updateCheckoutSubmitAmount("$" + newAmount + " per month");
 }
 
 $(document).ready(function(){
-  $('#purchase_payment_method_input input').change(function() {
-    $("li.stripe").toggle($("#purchase_payment_method_stripe").is(":checked"));
-    if($("#purchase_payment_method_stripe").is(":checked")) {
-      updatePurchaseSubmitText("Submit Payment");
-    } else {
-      updatePurchaseSubmitText("Proceed to Checkout");
-    }
-  });
-
   $(".use_existing_card").click(function(event){
-    $("#purchase_cc_input").toggle();
-    $("#purchase_expiration_input").toggle();
-    $("#purchase_cvc_input").toggle();
+    $("#checkout_cc_input").toggle();
+    $("#checkout_expiration_input").toggle();
+    $("#checkout_cvc_input").toggle();
   });
 
-  $('#purchase_quantity').change(function() {
-    updatePurchaseAmountForQuantity();
+  $('#checkout_quantity').change(function() {
+    updateCheckoutAmountForQuantity();
   });
-  if($('#purchase_quantity').length) {
-    updatePurchaseAmountForQuantity();
+  if($('#checkout_quantity').length) {
+    updateCheckoutAmountForQuantity();
   }
 });

@@ -1,26 +1,20 @@
-require 'spec_helper'
+require "spec_helper"
 
-describe 'Videos' do
-  context 'get show' do
-    it 'does not allow watching a video without paying first' do
+describe "Videos" do
+  context "get show" do
+    it "does not allow watching a video without a license" do
       product = create(:screencast)
       video = create(:video, watchable: product)
-      purchase = create(:unpaid_purchase, purchaseable: product)
-      purchase.lookup = 'unpaid'
-      purchase.save!
 
-      visit purchase_path(purchase)
-
-      expect(current_path).to eq screencast_path(product)
-
-      visit purchase_video_path(purchase, video)
+      visit video_path(video)
 
       expect(current_path).to eq screencast_path(product)
     end
   end
 
-  context 'GET /' do
-    it 'lists the published videos for a workshop', js: true do
+  context "GET /" do
+    it "lists the published videos for a workshop", js: true do
+      sign_in_as_user_with_subscription
       workshop = create(:workshop)
       published_video_one = create(
         :video,
@@ -35,9 +29,9 @@ describe 'Videos' do
         position: 2
       )
       video = create(:video, watchable: workshop)
-      purchase = create_subscriber_purchase_from_purchaseable(workshop)
+      create_license_from_licenseable(workshop, current_user)
 
-      visit purchase_path(purchase)
+      visit workshop_path(workshop)
 
       expect(page).to have_content("2 lessons in this workshop")
       expect(page).to have_content(published_video_one.title)
@@ -48,26 +42,29 @@ describe 'Videos' do
         page.body.index(published_video_two.title)
       ).to be
 
-      visit purchase_video_path(purchase, published_video_two)
+      visit video_path(published_video_two)
 
-      expect(page).to have_css('iframe')
+      expect(page).to have_css("iframe")
     end
 
-    it 'lists the published videos for a product', js: true do
-      purchase = create(:screencast_purchase)
+    it "lists the published videos for a product", js: true do
+      sign_in_as_user_with_subscription
+
+      screencast = create(:screencast)
+      create_license_from_licenseable(screencast, current_user)
       published_video_one = create(
         :video,
         :published,
-        watchable: purchase.purchaseable
+        watchable: screencast
       )
       published_video_two = create(
         :video,
         :published,
-        watchable: purchase.purchaseable
+        watchable: screencast
       )
-      video = create(:video, watchable: purchase.purchaseable)
+      video = create(:video, watchable: screencast)
 
-      visit purchase_path(purchase)
+      visit screencast_path(screencast)
 
       expect(page).to have_content("2 videos in the series")
       expect(page).to have_content(published_video_one.title)
@@ -77,89 +74,69 @@ describe 'Videos' do
     end
 
     it "doesn't say it's a series with one published video" do
-      purchase = create(:screencast_purchase)
-      create(:video, :published, watchable: purchase.purchaseable)
-      create(:video, watchable: purchase.purchaseable)
+      workshop = create(:workshop)
+      create(:video, :published, watchable: workshop)
+      create(:video, watchable: workshop)
 
-      visit purchase_path(purchase)
+      visit workshop_path(workshop)
 
       expect(page).not_to have_content("in the series")
       expect(page).not_to have_content("in this workshop")
     end
 
-    it "doesn't say it includes support with no subscription" do
-      purchase = create(:screencast_purchase)
-      create(:video, watchable: purchase.purchaseable)
-
-      visit purchase_path(purchase)
-
-      expect(page).not_to have_content("includes support")
-    end
-
-    it 'includes support with a subscription' do
-      sign_in_as_user_with_subscription
-
-      purchase = create(:screencast_purchase)
-      create(:video, :published, watchable: purchase.purchaseable)
-
-      visit purchase_path(purchase)
-
-      expect(page).to have_content("includes support")
-    end
-
-    it 'redirects subscribers from Weekly Iteration landing page' do
+    it "redirects subscribers from Weekly Iteration landing page" do
       sign_in_as_user_with_subscription
 
       show = create(:show, name: Show::THE_WEEKLY_ITERATION)
 
-      visit '/the-weekly-iteration'
+      visit "/the-weekly-iteration"
 
       expect(page.current_path).to eq show_path(show)
     end
 
-    it 'provides RSS to distribute the Weekly Iteration to various channels' do
+    it "provides RSS to distribute the Weekly Iteration to various channels" do
       create(:plan, sku: IndividualPlan::PRIME_29_SKU)
       show = create(
         :show,
         name: Show::THE_WEEKLY_ITERATION,
-        short_description: 'a description'
+        short_description: "a description"
       )
-      notes = 'a' * 251
+      notes = "a" * 251
       published_videos = [
         create(:video, :published, watchable: show, position: 0, notes: notes),
         create(:video, :published, watchable: show, position: 1, notes: notes),
       ]
       video = create(:video, watchable: show)
 
-      visit '/the-weekly-iteration'
+      visit "/the-weekly-iteration"
 
       expect(page).to have_css("link[href*='the-weekly-iteration.rss']")
 
-      visit '/the-weekly-iteration.rss'
+      visit "/the-weekly-iteration.rss"
 
-      channel = Nokogiri::XML::Document.parse(page.body).xpath('.//rss/channel')
+      channel = Nokogiri::XML::Document.parse(page.body).xpath(".//rss/channel")
 
-      expect(text_in(channel, './/title')).to eq('The Weekly Iteration')
-      expect(text_in(channel, './/link')).to eq(weekly_iteration_url)
-      expect(text_in(channel, './/description')).to eq(show.short_description)
+      expect(text_in(channel, ".//title")).to eq("The Weekly Iteration")
+      expect(text_in(channel, ".//link")).to eq(weekly_iteration_url)
+      expect(text_in(channel, ".//description")).to eq(show.short_description)
 
       unpublished_xpath = ".//item/title[text()='#{video.title}']"
       expect(channel.xpath(unpublished_xpath)).to be_empty
 
       published_videos.each_with_index do |published_video, index|
-        item = channel.xpath('.//item')[index]
+        item = channel.xpath(".//item")[index]
 
-        expect(text_in(item, './/title')).to eq(published_video.title)
-        expect(text_in(item, './/link')).
-          to eq(public_video_url(published_video))
+        expect(text_in(item, ".//title")).to eq(published_video.title)
+        expect(text_in(item, ".//link")).
+          to eq(video_url(published_video))
 
-        expect(text_in(item, './/guid')).
-          to eq(public_video_url(published_video))
+        expect(text_in(item, ".//guid")).
+          to eq(video_url(published_video))
 
-        expect(text_in(item, './/pubDate')).
+        expect(text_in(item, ".//pubDate")).
           to eq(published_video.created_at.to_s(:rfc822))
 
-        expect(text_in(item, './/description')).to eq(notes.truncate(250))
+        expect(text_in(item, ".//description")).to eq(notes.truncate(250))
       end
     end
 
@@ -167,14 +144,14 @@ describe 'Videos' do
       node.xpath(xpath).first.text
     end
 
-    it 'encourages subscribers to purchase The Weekly Iteration' do
+    it "encourages subscribers to purchase The Weekly Iteration" do
       user = create(:subscriber)
       show = create(:show)
       video = create(:video, watchable: show)
 
-      visit public_video_path(video, as: user)
+      visit video_path(video, as: user)
 
-      expect(page).to have_content 'Get this show'
+      expect(page).to have_content "Get this Show"
     end
   end
 end

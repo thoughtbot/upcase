@@ -1,13 +1,12 @@
 class RedemptionsController < ApplicationController
   def new
-    @coupon = Coupon.find_by_code_and_active(params[:coupon][:code], true)
-    @buying = requested_purchaseable.purchases.build(purchase_params)
-    @buying.coupon = @coupon
+    @checkout = requested_subscribeable.checkouts.build(checkout_params)
+    @coupon = Coupon.new(params[:coupon][:code])
   end
 
   private
 
-  def purchase_params
-    params.require(:purchase).permit(:variant, :quantity, :coupon)
+  def checkout_params
+    params.require(:checkout).permit(:quantity)
   end
 end

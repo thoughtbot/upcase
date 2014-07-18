@@ -1,7 +1,7 @@
 module DelayedJobsHelpers
-  def stubbed_purchase
-    build_stubbed(:workshop_purchase).tap do |purchase|
-      Purchase.stubs(:find).with(purchase.id).returns(purchase)
+  def stubbed_checkout
+    build_stubbed(:checkout).tap do |checkout|
+      Checkout.stubs(:find).with(checkout.id).returns(checkout)
     end
   end
 

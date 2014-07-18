@@ -62,6 +62,10 @@ FactoryGirl.define do
     trait :promoted do
       promoted true
     end
+
+    trait :github do
+      github_team 9999
+    end
   end
 
   factory :download do
@@ -206,52 +210,17 @@ FactoryGirl.define do
     max_users 10
   end
 
-  factory :purchase, aliases: [:individual_purchase] do
+  factory :license do
+    user
+    association :licenseable, factory: :screencast
+  end
+
+  factory :checkout do
     email
     name
-    association :purchaseable, factory: :book
-    variant 'individual'
-
-    trait :free do
-      paid_price 0
-      payment_method 'free'
-    end
-
-    factory :paid_purchase do
-      paid true
-    end
-
-    factory :unpaid_purchase do
-      paid false
-
-      after(:create) do |purchase|
-        purchase.paid = false
-        purchase.save!
-      end
-    end
-
-    factory :stripe_purchase do
-      payment_method 'stripe'
-    end
-
-    factory :free_purchase, traits: [:free]
-
-    factory :workshop_purchase do
-      association :purchaseable, factory: :workshop
-    end
-
-    factory :book_purchase do
-      association :purchaseable, factory: :book
-    end
-
-    factory :screencast_purchase do
-      association :purchaseable, factory: :screencast
-    end
-
-    factory :plan_purchase do
-      association :purchaseable, factory: :plan
-      association :user, :with_stripe, :with_mentor, :with_github
-    end
+    github_username 'test'
+    association :subscribeable, factory: :plan
+    association :user, :with_stripe, :with_mentor, :with_github
   end
 
   factory :teacher do
@@ -446,8 +415,8 @@ FactoryGirl.define do
     trait :purchased do
       after :create do |subscription|
         create(
-          :plan_purchase,
-          purchaseable: subscription.plan,
+          :checkout,
+          subscribeable: subscription.plan,
           user: subscription.user
         )
       end
@@ -462,6 +431,10 @@ FactoryGirl.define do
 
     trait :published do
       published_on { 1.day.ago }
+    end
+
+    trait :with_preview do
+      preview_wistia_id '1194804'
     end
   end
 

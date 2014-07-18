@@ -31,17 +31,14 @@ describe SubscriptionFulfillment do
   end
 
   describe '#remove' do
-    it 'removes all subscription purchases' do
+    it 'removes all subscription licenses' do
       user = build_subscribable_user
-      purchases = stub_subscription_purchases(user)
-      refunders = stub_refunds(purchases)
+      licenses = stub_subscription_licenses(user)
       plan = build_stubbed(:individual_plan)
 
       SubscriptionFulfillment.new(user, plan).remove
 
-      refunders.each do |refunder|
-        expect(refunder).to have_received(:refund)
-      end
+      expect(licenses).to have_received(:destroy)
     end
 
     it "unfulfills all lost features" do
@@ -60,19 +57,10 @@ describe SubscriptionFulfillment do
       end
     end
 
-    def stub_subscription_purchases(user)
-      [build_stubbed(:purchase), build_stubbed(:purchase)].tap do |purchases|
-        user.stubs(:subscription_purchases).returns(purchases)
-      end
-    end
-
-    def stub_refunds(purchases)
-      purchases.map do |purchase|
-        stub('refunder').tap do |refunder|
-          PurchaseRefunder.stubs(:new).with(purchase).returns(refunder)
-          refunder.stubs(:refund)
-        end
-      end
+    def stub_subscription_licenses(user)
+      licenses = stub(destroy: true)
+      user.stubs(:licenses).returns(licenses)
+      licenses
     end
   end
 

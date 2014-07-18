@@ -8,10 +8,4 @@ class Show < Product
   def included_in_plan?(plan)
     plan.has_feature?(:shows)
   end
-
-  private
-
-  def product_licenses
-    []
-  end
 end

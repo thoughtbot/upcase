@@ -1,19 +1,19 @@
-<% content_for :additional_content_classes, 'fullscreen' %>
-<% if @video_page.collection? %>
-  <% content_for :additional_header_links do %>
-    <li class="all-videos"><%= link_to 'All Videos', @video_page.purchase %></li>
-  <% end %>
+<% content_for :landing_page_back_link do %>
+  <%= link_to '&larr; All Videos'.html_safe, '/the-weekly-iteration' %>
 <% end %>
 
-<% content_for :subject_block do %>
-  <h1><%= @video_page.name %></h1>
-  <h2 class="tagline">
-    <% if @video_page.collection? %>
-      <%= @video_page.title %>
-    <% else %>
-      Watch or download video
-    <% end %>
-  </h2>
-<% end %>
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <%= render @video.preview, title: @video.title %>
 
-<%= render 'watch_video', video: @video_page.video, purchase: @video_page.purchase %>
+    <section class='video-notes'>
+      <h3>Notes</h3>
+      <%= raw(@video.notes_html) %>
+    </section>
+  </div>
+</div>
+
+<aside>
+  <%= render "products/license", offering: @offering %>
+  <%= render 'products/terms', offering: @offering %>
+</aside>

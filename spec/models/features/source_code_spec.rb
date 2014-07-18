@@ -8,7 +8,7 @@ describe Features::SourceCode do
       Features::SourceCode.new(user: user).fulfill
 
       GithubFulfillmentJob.should have_received(:enqueue).
-        with(Features::SourceCode::GITHUB_TEAM, [user.github_username])
+        with(Features::SourceCode::GITHUB_TEAM, user.github_username)
     end
   end
 
@@ -19,7 +19,7 @@ describe Features::SourceCode do
       Features::SourceCode.new(user: user).unfulfill
 
       GithubRemovalJob.should have_received(:enqueue).
-        with(Features::SourceCode::GITHUB_TEAM, [user.github_username])
+        with(Features::SourceCode::GITHUB_TEAM, user.github_username)
     end
   end
 end

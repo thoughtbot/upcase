@@ -2,22 +2,22 @@ require 'spec_helper'
 
 describe ProductsController do
   context "show" do
-    it "redirects to a user's purchase if the user has one" do
+    it "render the show licensed page if the user has one" do
       user = create(:user)
-      purchase = create(:purchase, user: user)
+      license = create(:license, user: user)
       sign_in_as user
 
-      get :show, id: purchase.purchaseable
+      get :show, id: license.licenseable
 
-      expect(response).to redirect_to purchase_path(purchase)
+      expect(response).to render_template "show_licensed"
     end
 
-    it 'renders the show page if a user has not purchased' do
+    it "renders the show page if a user has not purchased" do
       user = create(:user)
-      purchase = create(:purchase)
+      license = create(:license)
       sign_in_as user
 
-      get :show, id: purchase.purchaseable
+      get :show, id: license.licenseable
 
       expect(response).to render_template "show"
     end

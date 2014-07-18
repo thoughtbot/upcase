@@ -2,22 +2,22 @@ require 'spec_helper'
 
 describe WorkshopsController do
   context "show" do
-    it "redirects to a user's purchase if the user has one" do
+    it "renders the show_licensed page if the user has licensed" do
       user = create(:user)
-      purchase = create_subscriber_purchase(:workshop, user)
+      license = create_license(:workshop, user)
       sign_in_as user
 
-      get :show, id: purchase.purchaseable.to_param
+      get :show, id: license.licenseable
 
-      expect(response).to redirect_to purchase_path(purchase)
+      expect(response).to render_template "show_licensed"
     end
 
-    it 'renders the show page if a user has not purchased' do
+    it 'renders the show page if a user has not licensed' do
       user = create(:user)
-      purchase = create_subscriber_purchase(:workshop)
+      license = create_license(:workshop)
       sign_in_as user
 
-      get :show, id: purchase.purchaseable.to_param
+      get :show, id: license.licenseable
 
       expect(response).to render_template "show"
     end

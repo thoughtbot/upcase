@@ -49,10 +49,9 @@ RSpec.configure do |config|
   config.include EmailSpec::Matchers
   config.include FactoryGirl::Syntax::Methods
   config.include Subscriptions
-  config.include PurchaseHelpers
+  config.include CheckoutHelpers
   config.include StripeHelpers
   config.include SessionHelpers, type: :feature
-  config.include PaypalHelpers, type: :feature
   config.include PathHelpers, type: :feature
 
   config.mock_with :mocha

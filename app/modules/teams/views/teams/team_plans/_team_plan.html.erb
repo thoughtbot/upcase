@@ -3,7 +3,7 @@
   <%= render 'plans/features', plan: team_plan %>
   <%= link_to(
     I18n.t('subscriptions.choose_plan_html', plan_name: team_plan.name).html_safe,
-    new_teams_team_plan_purchase_path(team_plan),
+    new_checkout_path(team_plan),
     class: 'button'
   ) %>
   <section class="plan-details">

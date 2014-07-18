@@ -98,9 +98,9 @@ describe Subscription do
       new_plan = create(:individual_plan)
       subscription = create(:active_subscription, plan: new_plan)
       create(
-        :purchase,
+        :checkout,
         user: subscription.user,
-        purchaseable: original_plan
+        subscribeable: original_plan
       )
 
       expect { subscription.deactivate }.not_to raise_error

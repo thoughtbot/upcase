@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'Accept team invitations' do
   scenario 'and signs up' do
-    visit_team_plan_purchase_page
+    visit_team_plan_checkout_page
     fill_out_account_creation_form email: 'owner@somedomain.com'
     fill_out_credit_card_form_with_valid_credit_card
 
@@ -26,7 +26,7 @@ feature 'Accept team invitations' do
   end
 
   scenario 'and fills in the form incorrectly' do
-    visit_team_plan_purchase_page
+    visit_team_plan_checkout_page
     fill_out_account_creation_form email: 'owner@somedomain.com'
     fill_out_credit_card_form_with_valid_credit_card
 

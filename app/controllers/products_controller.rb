@@ -4,11 +4,16 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
-    @offering = @product
+    @offering = Offering.new(product, current_user)
 
-    if purchase = current_user_purchase_of(@product)
-      redirect_to purchase
+    if @offering.user_has_license?
+      render polymorphic_licenseable_template
     end
+  end
+
+  private
+
+  def product
+    Product.find(params[:id])
   end
 end
