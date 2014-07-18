@@ -2,7 +2,7 @@ class Product < ActiveRecord::Base
   has_many :announcements, as: :announceable, dependent: :destroy
   has_many :classifications, as: :classifiable
   has_many :downloads, as: :purchaseable
-  has_many :purchases, as: :purchaseable
+  has_many :licenses, as: :licenseable
   has_many :topics, through: :classifications
   has_many :videos, as: :watchable, dependent: :destroy
 
@@ -61,16 +61,16 @@ class Product < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
-  def starts_on(purchase_date)
-    purchase_date
+  def starts_on(license_date)
+    license_date
   end
 
-  def ends_on(purchase_date)
-    purchase_date
+  def ends_on(license_date)
+    license_date
   end
 
-  def purchase_for(user)
-    purchases.paid.where(user_id: user).first
+  def license_for(user)
+    licenses.where(user_id: user).first
   end
 
   def title
@@ -93,14 +93,6 @@ class Product < ActiveRecord::Base
     "#{self.class.name.underscore.pluralize}/aside"
   end
 
-  def licenses_for(user)
-    if user.present? && user.has_active_subscription?
-      [subscriber_license]
-    else
-      product_licenses
-    end
-  end
-
   def fulfill(purchase, user)
     GithubFulfillment.new(purchase).fulfill
   end
@@ -111,37 +103,5 @@ class Product < ActiveRecord::Base
 
   def published_videos
     videos.published
-  end
-
-  private
-
-  def subscriber_license
-    SubscriberLicense.new(
-      collection: collection?,
-      offering_type: offering_type,
-      product_id: id,
-      sku: sku
-    )
-  end
-
-  def product_licenses
-    [
-      ProductLicense.new(
-        offering_type: offering_type,
-        original_price: individual_price,
-        price: individual_price,
-        product_id: id,
-        sku: sku,
-        variant: :individual
-      ),
-      ProductLicense.new(
-        offering_type: offering_type,
-        original_price: company_price,
-        price: company_price,
-        product_id: id,
-        sku: sku,
-        variant: :company
-      )
-    ]
   end
 end

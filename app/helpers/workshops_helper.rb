@@ -16,8 +16,8 @@ module WorkshopsHelper
   end
 
   def workshop_card_status(workshop)
-    if workshop.purchase_for(current_user) && signed_in?
-      workshop.purchase_for(current_user).status
+    if workshop.license_for(current_user) && signed_in?
+      workshop.license_for(current_user).status
     end
   end
 end

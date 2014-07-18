@@ -1,12 +1,8 @@
-<%= render 'offerings/details', offering: @offering %>
+<%= render "offerings/details", offering: @offering %>
 
 <aside>
-  <%= render(
-    'products/license',
-    product: @offering,
-    licenses: @offering.licenses_for(current_user)
-  ) %>
-  <%= render 'products/terms', product: @offering %>
+  <%= render "products/license", product: @offering %>
+  <%= render "products/terms", product: @offering %>
 </aside>
 
 <% content_for :outside do %>

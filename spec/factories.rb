@@ -62,6 +62,10 @@ FactoryGirl.define do
     trait :promoted do
       promoted true
     end
+
+    trait :github do
+      github_team 9999
+    end
   end
 
   factory :download do

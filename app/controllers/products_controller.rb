@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @offering = @product
 
-    if purchase = current_user_purchase_of(@product)
+    if purchase = current_user_license_of(@product)
       redirect_to purchase
     end
   end

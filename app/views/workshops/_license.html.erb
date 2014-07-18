@@ -1,13 +1,4 @@
 <section id="license" class="<%= workshop.offering_type %>">
   <%= render 'offerings/prime_purchase', offering: workshop %>
-
-  <div class="individual-purchase">
-    <div class="license">
-      <%= render(
-        'subscriber_purchase_link',
-        workshop: workshop,
-        register_text: t('workshops.show.register_free')
-      ) %>
-    </div>
-  </div>
+  <%= render 'licenses/link', product: workshop %>
 </section>

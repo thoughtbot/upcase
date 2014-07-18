@@ -50,8 +50,8 @@ class ApplicationController < ActionController::Base
       find(params)
   end
 
-  def included_in_current_users_plan?(purchaseable)
-    purchaseable.included_in_plan?(current_user.plan)
+  def included_in_current_users_plan?(licenseable)
+    licenseable.included_in_plan?(current_user.plan)
   end
   helper_method :included_in_current_users_plan?
 
@@ -60,9 +60,9 @@ class ApplicationController < ActionController::Base
   end
   helper_method :topics
 
-  def current_user_purchase_of(purchaseable)
+  def current_user_license_of(licenseable)
     if signed_in?
-      purchaseable.purchase_for(current_user)
+      licenseable.license_for(current_user)
     end
   end
 end
