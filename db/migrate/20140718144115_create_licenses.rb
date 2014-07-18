@@ -11,5 +11,18 @@ class CreateLicenses < ActiveRecord::Migration
       unique: true,
       name: :index_licenses_on_user_id_and_licenseable
     )
+    insert(<<-SQL)
+      INSERT INTO licenses
+        (user_id, licenseable_id, licenseable_type, created_at, updated_at)
+        (SELECT DISTINCT ON (user_id, purchaseable_id, purchaseable_type)
+            user_id, purchaseable_id, purchaseable_type, created_at, updated_at
+            FROM purchases
+            WHERE
+              payment_method='subscription' AND
+              user_id IS NOT NULL AND
+              purchaseable_id IS NOT NULL AND
+              purchaseable_type IS NOT NULL
+        )
+    SQL
   end
 end
