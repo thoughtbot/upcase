@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
   include Clearance::User
 
-  has_many :paid_purchases, -> { where paid: true }, class_name: 'Purchase'
-  has_many :purchases
+  has_many :licenses
   has_many :completions
   has_many :public_keys, dependent: :destroy
   has_one :purchased_subscription, dependent: :destroy, class_name: 'Subscription'
@@ -22,16 +21,8 @@ class User < ActiveRecord::Base
       select(&:has_active_subscription?)
   end
 
-  def subscription_purchases
-    paid_purchases.where(payment_method: 'subscription')
-  end
-
-  def paid_products
-    paid_purchases.where("purchaseable_type != 'IndividualPlan'")
-  end
-
-  def ordered_paid_products
-    paid_products.order('created_at DESC')
+  def ordered_licenses
+    licenses.order('created_at DESC')
   end
 
   def first_name
@@ -46,8 +37,8 @@ class User < ActiveRecord::Base
     auth_provider.present?
   end
 
-  def has_purchased?
-    paid_purchases.present?
+  def has_licensed?
+    licenses.present?
   end
 
   def inactive_subscription
@@ -65,7 +56,6 @@ class User < ActiveRecord::Base
   def has_active_subscription?
     subscription.present?
   end
-
   def has_access_to?(feature)
     subscription && subscription.has_access_to?(feature)
   end

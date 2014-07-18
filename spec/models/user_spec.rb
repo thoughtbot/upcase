@@ -2,8 +2,7 @@ require 'spec_helper'
 
 describe User do
   context "associations" do
-    it { should have_many(:paid_purchases) }
-    it { should have_many(:purchases) }
+    it { should have_many(:licenses) }
     it { should have_many(:completions) }
     it { should belong_to(:mentor) }
     it { should have_many(:public_keys).dependent(:destroy) }
@@ -42,18 +41,19 @@ describe User do
     end
   end
 
-  describe "#has_purchased?" do
-    it "returns true if the user has any paid purchases" do
+  describe "#has_licensed?" do
+    it "returns true if the user has any licenses" do
       user = build_stubbed(:user)
-      user.stubs(:paid_purchases).returns([stub])
+      user.stubs(:licenses).returns([stub])
 
-      user.should have_purchased
+      expect(user).to have_licensed
     end
 
     it "returns false if the user has no purchases" do
       user = build_stubbed(:user)
-      user.stubs(:purchases).returns([stub])
-      user.should_not have_purchased
+      user.stubs(:licenses).returns([])
+
+      expect(user).to_not have_licensed
     end
   end
 
@@ -218,6 +218,7 @@ describe User do
     end
   end
 
+<<<<<<< HEAD
   describe '#subscription_purchases' do
     it 'includes only subscription purchases' do
       subscription = create(:active_subscription)
@@ -250,21 +251,13 @@ describe User do
     end
   end
 
-  describe '#ordered_paid_products' do
-    it 'returns paid products ordered by creation date' do
+  describe '#ordered_licenses' do
+    it 'returns licenses ordered by creation date' do
       user = create(:user)
-      purchase_two = create(
-        :paid_purchase,
-        user: user,
-        created_at: 5.minutes.ago
-      )
-      purchase_one = create(
-        :paid_purchase,
-        user: user,
-        created_at: 1.minutes.ago
-      )
+      license_two = create(:license, user: user, created_at: 5.minutes.ago)
+      license_one = create(:license, user: user, created_at: 1.minutes.ago)
 
-      expect(user.ordered_paid_products).to eq([purchase_one, purchase_two])
+      expect(user.ordered_licenses).to eq([license_one, license_two])
     end
   end
 
