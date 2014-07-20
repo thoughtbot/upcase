@@ -66,6 +66,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_license_of
 
   def polymorphic_licenseable_template
-    "#{@offering.to_partial_path}_purchase_show"
+    "#{@offering.class.name.tableize}/show_licensed"
   end
 end

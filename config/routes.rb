@@ -43,24 +43,24 @@ Workshops::Application.routes.draw do
   end
 
   resources :products, only: [:index, :show] do
-    resources :redemptions, only: [:new]
     resources :licenses, only: [:create]
+    resources :redemptions, only: [:new]
   end
   get '/products/:id/purchases/:lookup' => redirect("/purchases/%{lookup}")
 
   resources :books, only: :show, controller: 'products' do
-    resources :redemptions, only: [:new]
     resources :licenses, only: [:create]
+    resources :redemptions, only: [:new]
   end
 
   resources :screencasts, only: :show, controller: 'products' do
-    resources :redemptions, only: [:new]
     resources :licenses, only: [:create]
+    resources :redemptions, only: [:new]
   end
 
   resources :shows, only: :show, controller: 'products' do
+    resources :licenses, only: [:create]
     resources :redemptions, only: [:new]
-    resources :licenses, only: [:show]
   end
 
   get '/the-weekly-iteration' => 'weekly_iterations#show', as: :weekly_iteration
