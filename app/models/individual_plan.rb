@@ -5,7 +5,7 @@ class IndividualPlan < ActiveRecord::Base
   PRIME_29_SKU = 'prime-29'
 
   has_many :announcements, as: :announceable, dependent: :destroy
-  has_many :purchases, as: :purchaseable
+  has_many :checkouts, as: :subscribeable
   has_many :subscriptions, as: :plan
 
   validates :description, presence: true
@@ -34,22 +34,6 @@ class IndividualPlan < ActiveRecord::Base
 
   def popular?
     self == self.class.popular
-  end
-
-  def purchase_for(user)
-    purchases.paid.where(user_id: user).first
-  end
-
-  def starts_on(purchase_date)
-    purchase_date
-  end
-
-  def ends_on(purchase_date)
-    purchase_date
-  end
-
-  def subscription?
-    true
   end
 
   def subscription_interval

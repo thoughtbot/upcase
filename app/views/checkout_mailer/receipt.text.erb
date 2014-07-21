@@ -1,0 +1,24 @@
+Thank you for subscribing to <%= @checkout.subscribeable_name %>!
+
+<%- if @checkout.subscribeable.has_feature?(:mentor) -%>
+You will receive an email from your mentor soon.
+<%- end -%>
+
+In the meantime, one of the first things you might do is visit our Trail Maps
+<%- if @checkout.subscribeable.has_feature?(:workshops) -%>
+and check off your skills to determine which workshops are right for you:
+<%- else -%>
+and check off your skills to identify new things to learn:
+<%- end -%>
+<%= topics_url %>
+
+<%= @checkout.subscribeable_name %> also includes access to our forum. Get help
+from thoughtbot and other subscribers here:
+<%= forum_url %>
+
+If you have any customer support or billing questions, please email us at
+learn@thoughtbot.com.
+
+You have been added to the GitHub repo for the <%= @checkout.subscribeable.offering_type %>.
+You will also receive a notification from GitHub. Please contact us at
+learn@thoughtbot.com if you do not get access to this repository.

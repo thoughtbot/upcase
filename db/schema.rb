@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 20140725142656) do
 
   add_index "announcements", ["announceable_id", "announceable_type", "ends_at"], name: "index_announcements_on_announceable_and_ends_at", using: :btree
 
+  create_table "checkouts", force: true do |t|
+    t.integer "user_id",                        null: false
+    t.integer "subscribeable_id",               null: false
+    t.string  "subscribeable_type",             null: false
+    t.integer "quantity",           default: 1, null: false
+    t.string  "stripe_coupon_id"
+  end
+
+  add_index "checkouts", ["user_id"], name: "index_checkouts_on_user_id", using: :btree
+
   create_table "classifications", force: true do |t|
     t.integer  "topic_id"
     t.string   "classifiable_type"

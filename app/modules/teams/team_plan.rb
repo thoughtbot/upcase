@@ -1,7 +1,7 @@
 module Teams
   # TeamPlan represents a purchase of a subscription plan for an entire team.
   class TeamPlan < ActiveRecord::Base
-    has_many :purchases, as: :purchaseable
+    has_many :checkouts, as: :subscribeable
     has_many :subscriptions, as: :plan
     has_many :teams
 
@@ -21,10 +21,6 @@ module Teams
           individual_price: 0,
         )
       end
-    end
-
-    def subscription?
-      true
     end
 
     def fulfilled_with_github?

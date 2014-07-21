@@ -7,12 +7,6 @@ module PurchasesHelper
     end
   end
 
-  def include_receipt?(purchase)
-    purchase.user.blank? ||
-    !purchase.user.has_active_subscription? ||
-    (purchase.user.has_active_subscription? && purchase.subscription?)
-  end
-
   def coupon_redemption_url(purchaseable)
     polymorphic_path(
       [purchaseable, coupon_type(purchaseable)],
