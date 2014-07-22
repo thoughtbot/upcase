@@ -1,8 +1,8 @@
-class PurchaseBuilder
+class CheckoutBuilder
   def initialize(options)
     @params = options[:params]
     @user = options[:user]
-    @purchases_collection = options[:purchases_collection]
+    @checkouts_collection = options[:checkouts_collection]
   end
 
   def build
@@ -11,7 +11,7 @@ class PurchaseBuilder
       stripe_customer_id: existing_stripe_customer_id,
     )
 
-    @purchases_collection.build(attributes)
+    @checkouts_collection.build(attributes)
   end
 
   private
@@ -20,7 +20,7 @@ class PurchaseBuilder
 
   def permitted_params
     params.
-      require(:purchase).
+      require(:checkout).
       permit(:stripe_coupon_id,
              :name,
              :email,

@@ -28,6 +28,10 @@ class Checkout < ActiveRecord::Base
     subscribeable.individual_price
   end
 
+  def success_url(controller)
+    subscribeable.after_checkout_url(controller, self)
+  end
+
   private
 
   def create_user
@@ -35,6 +39,13 @@ class Checkout < ActiveRecord::Base
       self.user = User.create(name: name, email: email, password: password, github_username: github_username)
       add_errors_from_user unless user.valid?
     end
+  end
+
+  def add_errors_from_user
+    errors[:email] = user.errors[:email]
+    errors[:name] = user.errors[:name]
+    errors[:password] = user.errors[:password]
+    errors
   end
 
   def place_payment

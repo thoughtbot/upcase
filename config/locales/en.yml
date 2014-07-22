@@ -82,15 +82,6 @@ en:
       upgrade: Upgrade your plan to access this workshop
       free_to_subscribers: "You're a subscriber, so you can take this workshop free!"
 
-  purchases:
-    new:
-      subscribe_cta: "You could have this %{product_type} as part of a subscription to %{subscription_name} instead"
-    payment_methods:
-      stripe: Stripe
-      paypal: PayPal
-      subscription: Subscription
-      free: Free
-
   teachers:
     teacher:
       header: Taught by
@@ -167,12 +158,9 @@ en:
       topics:
         Related topics
 
-  purchase:
+  checkout:
     flashes:
-      success: Thank you for purchasing %{name}. We will email you your receipt shortly.
-    product:
-      heading_html: Complete your purchase of <em>%{name}</em>
-    comments: Dietary restrictions or special requests?
+      success: Thank you for subscribing to %{name}. We will email you your receipt shortly.
 
   subscriptions:
     join_cta: See Plans & Pricing for Upcase

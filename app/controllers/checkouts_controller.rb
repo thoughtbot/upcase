@@ -16,11 +16,11 @@ class CheckoutsController < ApplicationController
         build
 
     if @checkout.save
-      sign_in_purchasing_user(@checkout)
+      sign_in_checkout_user(@checkout)
 
       redirect_to(
         success_url,
-        notice: t('checkout.flashes.success', name: @checkout.checkoutable_name)
+        notice: t('checkout.flashes.success', name: @checkout.subscribeable_name)
       )
     else
       render :new
@@ -35,7 +35,7 @@ class CheckoutsController < ApplicationController
     checkout
   end
 
-  def sign_in_purchasing_user(checkout)
+  def sign_in_checkout_user(checkout)
     if signed_out? && checkout.user
       sign_in checkout.user
     end
@@ -47,33 +47,5 @@ class CheckoutsController < ApplicationController
 
   def url_after_denied_access_when_signed_out
     sign_up_url
-  end
-
-  def polymorphic_checkoutable_template
-    "#{@checkoutable.to_partial_path}_checkout_show"
-  end
-
-  def variant
-    if params[:variant].present?
-      params[:variant]
-    else
-      'individual'
-    end
-  end
-
-  def redirect_for_user_with_subscription
-    if current_user_plan_includes_checkoutable?
-      redirect_to_subscriber_checkout_or_default(dashboard_path)
-    else
-      redirect_for_subscription_without_access
-    end
-  end
-
-  def redirect_for_subscription_without_access
-    redirect_to edit_subscription_path
-  end
-
-  def redirect_for_non_subscriber_purchasing_a_workshop
-    redirect_to new_subscription_path
   end
 end

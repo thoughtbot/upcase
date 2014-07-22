@@ -57,7 +57,7 @@ class IndividualPlan < ActiveRecord::Base
     SubscriptionFulfillment.new(user, self).fulfill
   end
 
-  def after_purchase_url(controller, purchase)
+  def after_checkout_url(controller, purchase)
     controller.dashboard_path
   end
 

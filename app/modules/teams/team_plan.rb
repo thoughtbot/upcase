@@ -45,7 +45,7 @@ module Teams
       TeamFulfillment.new(purchase, user).fulfill
     end
 
-    def after_purchase_url(controller, purchase)
+    def after_checkout_url(controller, checkout)
       controller.edit_teams_team_path
     end
 
