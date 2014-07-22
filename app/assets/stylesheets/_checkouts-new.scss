@@ -156,3 +156,58 @@ body.checkouts-new, body.checkouts-create {
     }
   }
 }
+
+#billing-information {
+  ol {
+    width: 100%;
+
+    li {
+      &.overflow {
+        @extend .clearfix;
+      }
+
+      &#checkout_expiration_input {
+        float: left;
+        margin-right: flex-gutter();
+        width: flex-grid(8);
+
+        select {
+          border: 1px solid darken($warmgray, 5%);
+          box-shadow: none;
+          @include box-sizing(border-box);
+          float: left;
+          font: 1rem $sans-serif;
+          height: 45px;
+          padding: 0 1rem;
+          -webkit-appearance: none;
+          width: flex-grid(6);
+
+          &.card-expiry-month {
+            margin-right: flex-gutter();
+          }
+
+          &:focus {
+            border: 1px solid $learnred;
+            outline: none;
+            outline-color: none;
+          }
+        }
+      }
+
+      &#checkout_cvc_input {
+        float: left;
+        width: flex-grid(4);
+      }
+
+      &#checkout_country_input {
+        clear: left;
+      }
+
+      &#checkout_cc_existing {
+        input, label {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

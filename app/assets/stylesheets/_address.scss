@@ -1,7 +1,7 @@
-#purchase_city_input,
-#purchase_state_input,
-#purchase_zip_code_input,
-#purchase_country_input,
+#checkout_city_input,
+#checkout_state_input,
+#checkout_zip_code_input,
+#checkout_country_input,
 #user_city_input,
 #user_state_input,
 #user_zip_code_input,
@@ -10,7 +10,7 @@
   width: flex-grid(6);
 }
 
-#purchase_city_input, #purchase_zip_code_input,
+#checkout_city_input, #checkout_zip_code_input,
 #user_city_input, #user_zip_code_input {
   margin-right: flex-gutter();
 }
