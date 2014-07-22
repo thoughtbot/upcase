@@ -36,7 +36,10 @@ feature 'Subscriber views subscription invoices' do
 
     expect(page).to have_content('Invoice 130521')
     expect(page).to have_content('Date 05/21/13')
-    expect(page).to have_css('.line-item', text: 'Subscription to Prime')
+    expect(page).to have_css(
+      '.line-item',
+      text: I18n.t("shared.subscription.name")
+    )
     expect(page).to have_css('.line-item', text: '$99.00 USD')
     expect(page).to have_css('.subtotal', text: '$99.00 USD')
     expect(page).to have_css('.discount', text: 'Discount: railsconf')

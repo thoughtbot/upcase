@@ -6,7 +6,7 @@ class SubscriptionMailer < BaseMailer
     mail(
       to: @user.email,
       bcc: @mentor.email,
-      subject: "Welcome to Prime! I'm your new mentor",
+      subject: t("mailers.subscription.welcome_from_mentor.subject"),
       from: mentor_email(@mentor),
       reply_to: mentor_email(@mentor)
     )
@@ -17,7 +17,7 @@ class SubscriptionMailer < BaseMailer
 
     mail(
       to: user.email,
-      subject: 'Suggestions for improving Prime'
+      subject: t("mailers.subscription.cancellation_survey.subject"),
     )
   end
 
@@ -27,7 +27,7 @@ class SubscriptionMailer < BaseMailer
 
     mail(
       to: email,
-      subject: '[Learn] Your receipt and some tips'
+      subject: t("mailers.subscription.subscription_receipt.subject"),
     )
   end
 
@@ -37,7 +37,8 @@ class SubscriptionMailer < BaseMailer
 
     mail(
       to: @user.email,
-      subject: '[Learn] thoughtbot is about to charge for your Learn Prime subscription'
+      subject:
+        t("mailers.subscription.upcoming_payment_notification.subject"),
     )
   end
 

@@ -122,7 +122,7 @@ FactoryGirl.define do
   end
 
   factory :individual_plan, aliases: [:plan] do
-    name 'Prime'
+    name I18n.t("shared.subscription.name")
     individual_price 99
     sku "prime-99"
     short_description 'A great Subscription'

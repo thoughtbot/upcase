@@ -48,7 +48,12 @@ describe LineItem do
           )
           line_item = LineItem.new(stripe_line_item)
 
-          expect(line_item.description).to eq('Subscription to Plan')
+          expect(line_item.description).to eq(
+            I18n.t(
+              "line_item.plan_description",
+              plan_name: stripe_line_item.plan.name
+            )
+          )
         end
       end
 
@@ -62,8 +67,9 @@ describe LineItem do
           )
           line_item = LineItem.new(stripe_line_item)
 
-          expect(line_item.description).
-            to eq('(Canceled) Subscription to Prime')
+          expect(line_item.description).to eq(
+            I18n.t("line_item.canceled_description")
+          )
         end
       end
     end
