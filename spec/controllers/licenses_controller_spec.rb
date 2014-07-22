@@ -22,4 +22,18 @@ describe LicensesController do
       should deny_access
     end
   end
+
+  describe "#index" do
+    it "assigns paid licenses belonging to the current user" do
+      user = create(:user)
+      license_two = create(:license, user: user, created_at: 5.minute.ago)
+      license_one = create(:license, user: user, created_at: 1.minute.ago)
+      create(:license)
+      stub_current_user_with(user)
+
+      get :index
+
+      expect(assigns(:licenses)).to eq([license_one, license_two])
+    end
+  end
 end

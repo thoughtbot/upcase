@@ -13,6 +13,8 @@ describe Checkout do
   it { should delegate(:user_github_username).to(:user).as(:github_username) }
   it { should delegate(:subscribeable_sku).to(:subscribeable).as(:sku) }
   it { should delegate(:subscribeable_name).to(:subscribeable).as(:name) }
+  it { should delegate(:terms).to(:subscribeable) }
+  it { should delegate(:price).to(:subscribeable) }
 
   context "#save" do
     it "fulfills a subscription when purchasing a plan" do
@@ -72,5 +74,12 @@ describe Checkout do
 
       expect(checkout.user).to be_persisted
     end
+  end
+
+  it "uses the individual_price of the subscribeable as it's price" do
+    plan = build(:individual_plan, individual_price: 50)
+    checkout = build(:checkout, subscribeable: plan)
+
+    expect(checkout.price).to eq 50
   end
 end

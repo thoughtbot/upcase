@@ -39,28 +39,23 @@ Workshops::Application.routes.draw do
   get '/courses/:id' => redirect('/workshops/%{id}')
   resources :workshops, only: [:show] do
     resources :licenses, only: [:create]
-    resources :redemptions, only: [:new]
   end
 
   resources :products, only: [:index, :show] do
     resources :licenses, only: [:create]
-    resources :redemptions, only: [:new]
   end
   get '/products/:id/purchases/:lookup' => redirect("/purchases/%{lookup}")
 
   resources :books, only: :show, controller: 'products' do
     resources :licenses, only: [:create]
-    resources :redemptions, only: [:new]
   end
 
   resources :screencasts, only: :show, controller: 'products' do
     resources :licenses, only: [:create]
-    resources :redemptions, only: [:new]
   end
 
   resources :shows, only: :show, controller: 'products' do
     resources :licenses, only: [:create]
-    resources :redemptions, only: [:new]
   end
 
   get '/the-weekly-iteration' => 'weekly_iterations#show', as: :weekly_iteration
@@ -68,9 +63,6 @@ Workshops::Application.routes.draw do
 
   resources :purchases, only: [:show, :index] do
     resources :videos, only: [:show]
-    member do
-      get 'paypal'
-    end
   end
 
   namespace :subscriber do
@@ -82,14 +74,9 @@ Workshops::Application.routes.draw do
   resource :subscription, only: [:new, :edit, :update]
   resource :credit_card, only: [:update]
 
-  resources :individual_plans, only: [] do
-    resources :purchases, only: [:new, :create]
-    resources :stripe_redemptions, only: [:new]
-  end
-
-  resources :teams_team_plans, only: [] do
-    resources :purchases, only: [:new, :create]
-    resources :stripe_redemptions, only: [:new]
+  scope ':plan' do
+    resources :checkouts, only: [:new, :create]
+    resources :redemptions, only: [:new]
   end
 
   get '/podcast.xml' => redirect('http://podcasts.thoughtbot.com/giantrobots.xml')

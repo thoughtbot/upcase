@@ -2,5 +2,5 @@
   <%= form.input :password, required: true %>
 <% end %>
 <% if need_to_create_user_account? || need_to_collect_github_username? %>
-  <%= render 'first_github_username', label: 'GitHub username', purchase: purchase %>
+  <%= form.input :github_username, required: true, hint: "Be sure to enter a valid GitHub username. Organizations are not allowed."
 <% end %>

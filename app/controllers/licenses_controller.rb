@@ -8,6 +8,10 @@ class LicensesController < ApplicationController
     redirect_to licenseable, notice: t("licenses.flashes.success")
   end
 
+  def index
+    @checkouts = current_user.ordered_licenses
+  end
+
   private
 
   def authorize_subscription

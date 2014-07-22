@@ -8,7 +8,6 @@ class PurchaseBuilder
   def build
     attributes = permitted_params.merge(
       user: user,
-      coupon: coupon,
       stripe_customer_id: existing_stripe_customer_id,
     )
 
@@ -23,11 +22,10 @@ class PurchaseBuilder
     params.
       require(:purchase).
       permit(:stripe_coupon_id,
-             :variant,
              :name,
              :email,
              :password,
-             { github_usernames: [] },
+             :github_username,
              :organization,
              :address1,
              :address2,
@@ -38,10 +36,6 @@ class PurchaseBuilder
              :payment_method,
              :stripe_token,
              :quantity)
-  end
-
-  def coupon
-    Coupon.active.find_by(id: params[:coupon_id])
   end
 
   def existing_stripe_customer_id

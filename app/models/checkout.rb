@@ -13,6 +13,7 @@ class Checkout < ActiveRecord::Base
   delegate :organization, to: :user, prefix: true
   delegate :sku, to: :subscribeable, prefix: true
   delegate :name, to: :subscribeable, prefix: true
+  delegate :terms, to: :subscribeable
 
   attr_accessor :email, :name, :github_username, :password, :stripe_customer_id, :stripe_token, :organization, :address1, :address2, :city, :state, :zip_code, :country
 
@@ -22,6 +23,10 @@ class Checkout < ActiveRecord::Base
   after_save :fulfill
   after_save :send_receipt
   after_save :update_user_payment_info
+
+  def price
+    subscribeable.individual_price
+  end
 
   private
 

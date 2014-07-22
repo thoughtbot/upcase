@@ -1,14 +1,6 @@
-body.purchases-new, body.purchases-create, body.subscriber-purchases {
+body.checkouts-new, body.checkouts-create {
   form {
     margin-bottom: 0;
-  }
-
-  .subscriber_purchase {
-    margin-bottom: 0;
-
-    input[type="submit"] {
-      width: 100%;
-    }
   }
 
   .checkout-sigin-signup-toggle {
@@ -72,7 +64,7 @@ body.purchases-new, body.purchases-create, body.subscriber-purchases {
         margin: 0;
       }
 
-      &#purchase_submit_action {
+      &#checkout_submit_action {
         margin-left: 0;
         margin-top: .25rem;
         width: 100%;
@@ -87,7 +79,7 @@ body.purchases-new, body.purchases-create, body.subscriber-purchases {
         }
       }
 
-      &#purchase_quantity_input {
+      &#checkout_quantity_input {
         select {
           font-size: 2rem;
           height: auto;
@@ -97,32 +89,12 @@ body.purchases-new, body.purchases-create, body.subscriber-purchases {
         }
       }
 
-      &#purchase_cc_existing {
+      &#checkout_cc_existing {
         margin-left: 115px;
         width: auto;
 
         label {
           width: auto;
-        }
-      }
-
-      &#purchase_payment_method_input {
-        margin-left: 115px;
-        width: auto;
-
-        input {
-          margin-right: .5rem;
-        }
-
-        label, input {
-          display: inline-block;
-          line-height: 0;
-          vertical-align: middle;
-
-          img {
-            display: inline-block;
-            margin-right: 3px;
-          }
         }
       }
     }
@@ -164,18 +136,14 @@ body.purchases-new, body.purchases-create, body.subscriber-purchases {
 
   @media screen and (max-width: 910px) {
     fieldset ol, #billing-information ol {
-      li#purchase_zip_code_input,
-      li#purchase_state_input,
-      li#purchase_city_input,
-      li#purchase_country_input,
-      li#purchase_expiration_input,
-      li#purchase_cvc_input {
+      li#checkout_zip_code_input,
+      li#checkout_state_input,
+      li#checkout_city_input,
+      li#checkout_country_input,
+      li#checkout_expiration_input,
+      li#checkout_cvc_input {
         float: none;
         width: flex-grid(12);
-      }
-
-      li#purchase_payment_method_input {
-        margin-left: 90px;
       }
 
       label {
