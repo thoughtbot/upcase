@@ -18,19 +18,19 @@ module Subscriptions
   end
 
   def click_landing_page_call_to_action
-    click_link I18n.t('subscriptions.join_cta')
+    click_link I18n.t("subscriptions.join_cta")
   end
 
   def click_prime_call_to_action_in_header
-    click_link 'Prime Membership'
+    click_link "Upcase Membership"
   end
 
   def settings_page
-    click_on 'Settings'
+    click_on "Settings"
     page
   end
 
   def have_subscription_to(plan_name)
-    have_css('.subscription', text: plan_name)
+    have_css(".subscription", text: plan_name)
   end
 end

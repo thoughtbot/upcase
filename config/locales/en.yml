@@ -32,7 +32,7 @@ en:
       locked_features:
         title_html: "%{features} are locked &mdash; %{link} to get access"
         upgrade_link: "upgrade your subscription"
-        subscribe_link: "subscribe to Prime"
+        subscribe_link: "subscribe to Upcase"
     show:
       contact_your_mentor: "Contact your mentor, %{mentor_name}"
 
@@ -122,12 +122,12 @@ en:
     trails:
       Trail Maps
     subscription:
-      name: Prime
+      name: Upcase
     subscriptions:
       icon: ✶
-      user_required: ✶ Sign in or sign up to subscribe to Prime.
+      user_required: ✶ Sign in or sign up to subscribe to Upcase.
     team_plan_name:
-      Prime for Teams
+      Upcase for Teams
 
   topics:
     workshop:
@@ -181,10 +181,10 @@ en:
   subscriber_purchase:
     flashes:
       success: Success! Enjoy your shiny new product.
-      error:  "You're already subscribed to Prime!"
+      error:  "You're already subscribed to Upcase!"
 
   subscriptions:
-    join_cta: See Plans & Pricing for Prime
+    join_cta: See Plans & Pricing for Upcase
     cancel: Cancel
     confirm_cancel_reject_deal: No thanks, just cancel my subscription
     confirm_cancel: Yes, cancel my subscription
@@ -217,14 +217,14 @@ en:
   mailers:
     subscription:
       cancellation_survey:
-        subject: Suggestions for improving Prime
+        subject: Suggestions for improving Upcase
       subscription_receipt:
         subject: "[Learn] Your receipt and some tips"
       upcoming_payment_notification:
-        subject: "[Learn] thoughtbot is about to charge for your Learn Prime subscription"
+        subject: "[Learn] thoughtbot is about to charge for your Learn Upcase subscription"
       welcome_from_mentor:
-        subject: Welcome to Prime! I'm your new mentor
+        subject: Welcome to Upcase! I'm your new mentor
 
   line_item:
-    canceled_description: (Canceled) Subscription to Prime
+    canceled_description: (Canceled) Subscription to Upcase
     plan_description: Subscription to %{plan_name}
