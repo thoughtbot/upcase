@@ -1,6 +1,6 @@
 class LicensesController < ApplicationController
   before_filter :authorize
-  before_filter :authorize_subscription
+  before_filter :authorize_subscription, only: :create
 
   def create
     licenseable = requested_licenseable
@@ -9,7 +9,7 @@ class LicensesController < ApplicationController
   end
 
   def index
-    @checkouts = current_user.ordered_licenses
+    @licenses = current_user.ordered_licenses
   end
 
   private

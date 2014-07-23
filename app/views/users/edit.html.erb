@@ -56,6 +56,6 @@
     <ol class="purchases">
       <%= render current_user.ordered_licenses.limit(5) %>
     </ol>
-    <%= link_to t("account.view_licenses"), purchases_path, class: "view-all-licenses" %>
+    <%= link_to t("account.view_licenses"), licenses_path, class: "view-all-licenses" %>
   <% end %>
 </aside>
