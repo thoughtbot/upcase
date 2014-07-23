@@ -57,18 +57,6 @@ ActiveRecord::Schema.define(version: 20140725142656) do
   add_index "completions", ["trail_object_id"], name: "index_completions_on_trail_object_id", using: :btree
   add_index "completions", ["user_id"], name: "index_completions_on_user_id", using: :btree
 
-  create_table "coupons", force: true do |t|
-    t.string   "code"
-    t.integer  "amount"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "active",            default: true,         null: false
-    t.string   "discount_type",     default: "percentage", null: false
-    t.boolean  "one_time_use_only", default: false,        null: false
-  end
-
-  add_index "coupons", ["code"], name: "index_coupons_on_code", using: :btree
-
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0
     t.integer  "attempts",   default: 0

@@ -6,29 +6,22 @@ feature 'User creates a subscription' do
     sign_in
   end
 
-  scenario 'does not create a Stripe subscription with an invalid credit card' do
+  scenario "does not create a Stripe subscription with an invalid credit card" do
     subscribe_with_invalid_credit_card
     expect(current_user).not_to have_active_subscription
   end
 
-  scenario 'sees that the subscription is per month' do
-    visit_plan_purchase_page
+  scenario "sees that the subscription is per month" do
+    visit_plan_checkout_page
 
     expect_submit_button_to_contain('per month')
-  end
-
-  scenario 'does not see the option to pay with paypal' do
-    visit_plan_purchase_page
-    click_prime_call_to_action_in_header
-
-    expect(page).not_to have_css('#purchase_payment_method_paypal')
   end
 
   scenario "user without github username sees github username input" do
     current_user.github_username = nil
     current_user.save!
 
-    visit_plan_purchase_page
+    visit_plan_checkout_page
 
     expect(page).to have_github_input
   end
@@ -37,7 +30,7 @@ feature 'User creates a subscription' do
     current_user.github_username = 'cpyteltest'
     current_user.save!
 
-    visit_plan_purchase_page
+    visit_plan_checkout_page
 
     expect(page).not_to have_github_input
   end
@@ -45,7 +38,7 @@ feature 'User creates a subscription' do
   scenario 'creates a Stripe subscription with a valid amount off coupon', js: true do
     create_amount_stripe_coupon('5OFF', 'once', 500)
 
-    visit_plan_purchase_page
+    visit_plan_checkout_page
 
     expect_submit_button_to_contain("$99 per month")
 
@@ -56,14 +49,14 @@ feature 'User creates a subscription' do
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
     expect(current_path).to be_the_dashboard
-    expect_to_see_purchase_success_flash_for(@plan.name)
+    expect_to_see_checkout_success_flash_for(@plan.name)
     expect(FakeStripe.last_coupon_used).to eq '5OFF'
   end
 
   scenario 'creates a Stripe subscription with a free month coupon', js: true do
     create_recurring_stripe_coupon('THREEFREE', 3, 9900)
 
-    visit_plan_purchase_page
+    visit_plan_checkout_page
 
     expect_submit_button_to_contain("$99 per month")
 
@@ -73,14 +66,14 @@ feature 'User creates a subscription' do
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
-    expect_to_see_purchase_success_flash_for(@plan.name)
+    expect_to_see_checkout_success_flash_for(@plan.name)
     expect(FakeStripe.last_coupon_used).to eq 'THREEFREE'
   end
 
   scenario 'creates a Stripe subscription with a valid percentage off coupon', js: true do
     create_percentage_off_stripe_coupon('50OFF', 'once', 50)
 
-    visit_plan_purchase_page
+    visit_plan_checkout_page
 
     expect_submit_button_to_contain("$99 per month")
 
@@ -90,14 +83,14 @@ feature 'User creates a subscription' do
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
-    expect_to_see_purchase_success_flash_for(@plan.name)
-    expect(FakeStripe.last_coupon_used).to eq '50OFF'
+    expect_to_see_checkout_success_flash_for(@plan.name)
     expect(current_path).to be_the_dashboard
-    expect(Purchase.last.stripe_customer_id).to be_present
+    expect(Checkout.last.stripe_coupon_id).to eq "50OFF"
+    expect(FakeStripe.last_coupon_used).to eq '50OFF'
   end
 
   scenario 'creates a Stripe subscription with an invalid coupon', :js => true do
-    visit_plan_purchase_page
+    visit_plan_checkout_page
 
     expect_submit_button_to_contain('$99 per month')
 
@@ -155,8 +148,17 @@ feature 'User creates a subscription' do
     expect(page).not_to have_link("Subscribe to #{plan.name}")
   end
 
-  def visit_plan_purchase_page
-    visit new_individual_plan_purchase_path(@plan)
+  scenario "User subscribes with an existing credit card", js: true do
+    user = create(:user, :with_github, stripe_customer_id: 'test')
+
+    visit new_checkout_path(@plan, as: user)
+    pay_using_stripe_with_existing_card
+
+    expect_to_see_checkout_success_flash_for(@plan.name)
+  end
+
+  def visit_plan_checkout_page
+    visit new_checkout_path(@plan)
   end
 
   def create_plan
@@ -164,12 +166,12 @@ feature 'User creates a subscription' do
   end
 
   def subscribe_with_valid_credit_card
-    visit_plan_purchase_page
+    visit_plan_checkout_page
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
   end
 
   def subscribe_with_invalid_credit_card
-    visit_plan_purchase_page
+    visit_plan_checkout_page
     FakeStripe.failure = true
     fill_out_subscription_form_with 'bad cc number'
   end
@@ -197,6 +199,6 @@ feature 'User creates a subscription' do
 
   def have_github_input
     have_content('GitHub username') &&
-      have_css('input#github_username_1')
+      have_css('input#checkout_github_username')
   end
 end

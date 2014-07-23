@@ -6,6 +6,8 @@ describe Checkout do
 
   it { should validate_presence_of(:user_id) }
   it { should validate_presence_of(:quantity) }
+  it { should validate_presence_of(:email) }
+  it { should validate_presence_of(:github_username) }
 
   it { should delegate(:user_email).to(:user).as(:email) }
   it { should delegate(:user_first_name).to(:user).as(:first_name) }

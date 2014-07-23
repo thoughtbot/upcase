@@ -2,6 +2,8 @@ class Checkout < ActiveRecord::Base
   belongs_to :user
   belongs_to :subscribeable, polymorphic: true
 
+  validates :github_username, presence: true
+  validates :email, presence: true
   validates :user_id, presence: true
   validates :quantity, presence: true
   validates :password, presence: true, if: :password_required?

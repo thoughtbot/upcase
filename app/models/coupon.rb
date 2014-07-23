@@ -1,37 +1,47 @@
-class Coupon < ActiveRecord::Base
-  DISCOUNT_TYPES = ["percentage", "dollars"]
+class Coupon
+  delegate :duration, :duration_in_months, to: :stripe_coupon
 
-  has_many :purchases
+  def initialize(coupon_code)
+    @stripe_coupon_id = coupon_code
+  end
 
-  validates :code, presence: true
-  validates :amount, presence: true
-  validates :discount_type, inclusion: { in: DISCOUNT_TYPES }, presence: true
+  def code
+    @stripe_coupon_id
+  end
 
   def apply(full_price)
-    full_price - discount(full_price)
+    full_price - monthly_deduction(full_price)
   end
 
-  def applied
-    update_column(:active, false) if one_time_use_only?
+  def stripe_coupon
+    @stripe_coupon ||= Stripe::Coupon.retrieve(@stripe_coupon_id)
+  rescue Stripe::InvalidRequestError => exception
+    @stripe_coupon = nil
   end
 
-  def self.active
-    where(active: true)
+  def valid?
+    stripe_coupon.present?
   end
 
   private
 
-  def discount(full_price)
-    if inactive?
-      0
-    elsif discount_type == "percentage"
-      full_price * amount * 0.01
-    else
-      amount
+  def monthly_deduction(full_price)
+    if stripe_coupon.amount_off.present?
+      cents_to_dollars(stripe_coupon.amount_off.to_i)
+    elsif stripe_coupon.percent_off.present?
+      percent_to_dollars(full_price, stripe_coupon.percent_off)
     end
   end
 
-  def inactive?
-    !active
+  def percent_to_dollars(full_price, percentage)
+    full_price * percent_to_decimal(percentage)
+  end
+
+  def percent_to_decimal(percentage)
+    percentage.to_f / 100
+  end
+
+  def cents_to_dollars(amount)
+    amount / 100
   end
 end

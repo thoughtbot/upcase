@@ -53,6 +53,10 @@ module PurchasesHelper
     signed_out?
   end
 
+  def checkout_form_partial(subscribeable)
+    "checkouts/#{subscribeable.class.name.underscore}_form"
+  end
+
   private
 
   def change_plan_link(plan)
@@ -66,7 +70,7 @@ module PurchasesHelper
   def update_plan_link(plan)
     link_to(
       I18n.t('subscriptions.choose_plan_html').html_safe,
-      subscription_path(plan),
+      subscription_path(plan_id: plan),
       method: :put,
       class: 'sign-up'
     )

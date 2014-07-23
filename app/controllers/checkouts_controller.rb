@@ -1,7 +1,10 @@
 class CheckoutsController < ApplicationController
   def new
     if current_user_has_active_subscription?
-      redirect_to edit_subscription_path
+      redirect_to(
+        edit_subscription_path,
+        notice: t("checkout.flashes.already_subscribed")
+      )
     else
       @checkout = build_checkout_with_defaults
     end
@@ -14,6 +17,7 @@ class CheckoutsController < ApplicationController
             user: current_user,
             checkouts_collection: requested_subscribeable.checkouts).
         build
+    CheckoutPrepopulator.new(@checkout, current_user).prepopulate_with_user_info
 
     if @checkout.save
       sign_in_checkout_user(@checkout)
