@@ -33,7 +33,7 @@ en:
       contact_your_mentor: "Contact your mentor, %{mentor_name}"
 
   account:
-    view_purchases: 'View all purchases →'
+    view_licenses: 'View all →'
 
   individual_plans:
     mentoring: '1-1 Mentoring'
@@ -45,22 +45,8 @@ en:
       error: 'Please fill in the note'
       success: 'Your note was saved successfully'
 
-  offerings:
-    alternate:
-      in_person_workshop_cities_html: "In %{cities}?"
-      online_workshop_cities_html: "Not in %{cities}?"
-      in_person_workshop_html: "<b>Take the In-Person Workshop.</b>"
-      online_workshop_html: "<b>Take the Online Workshop.</b>"
-    subtitle:
-      book: ''
-      in_person_workshop: 'in-person'
-      online_workshop: 'online'
-      subscription: ''
-      video: ''
-
   products:
     show:
-      free_to_subscribers: "You're a subscriber, so you receive this product free!"
       subscribe_cta: "This %{offering_type} is free with a subscription to %{subscription_name}"
 
   book:
@@ -80,41 +66,19 @@ en:
     checkout_cta_for_collection: Begin this Workshop
     upgrade_cta: Upgrade your plan to access this Workshop
 
-  workshops:
-    show:
-      free_to_subscribers: "You're a subscriber, so you can take this workshop free!"
-
   teachers:
     teacher:
       header: Taught by
 
   shared:
-    intro:
-      Guided learning on modern design & development best practices, by topic. Dig in.
-    prime_intro:
-      Professional grade workshops, screencasts & ebooks
     books:
       Books
-    in_person_workshops:
-      In-person Workshops
     learn:
       Learn
-    workshops:
-      online: online
-      in_person: in-person
-    subscription_call_to_action:
-      Get access to everything
-    company_subscription_call_to_action:
-      Get access for your entire team
-    videos:
-      Screencasts
-    trails:
-      Trail Maps
     subscription:
       name: Upcase
     subscriptions:
       icon: ✶
-      user_required: ✶ Sign in or sign up to subscribe to Upcase.
     team_plan_name:
       Upcase for Teams
 
@@ -123,11 +87,7 @@ en:
       heading:
         online:
           Online workshop
-        in_person:
-          In-person workshop
     index:
-      heading:
-        In-person workshop
       view_products:
         View all thoughtbot products
     promoted_product:
@@ -140,9 +100,6 @@ en:
       workshop:
         action:
           Register
-    promoted_workshop:
-      action:
-        Register
     trail_map:
       resources:
         Resources
@@ -154,11 +111,6 @@ en:
           Book
         video:
           Video
-    related:
-      products:
-        Related products
-      topics:
-        Related topics
 
   checkout:
     flashes:
