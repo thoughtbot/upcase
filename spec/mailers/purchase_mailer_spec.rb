@@ -88,7 +88,9 @@ describe PurchaseMailer do
       end
 
       it 'contains a link to create a new account in the body' do
-        expect(email_for(purchase)).to have_body_text(/#{new_user_url(host: HOST)}/)
+        expect(email_for(purchase)).to(
+          have_body_text(/#{new_user_url(host: ENV['APP_DOMAIN'])}/)
+        )
       end
     end
 
@@ -96,7 +98,9 @@ describe PurchaseMailer do
       it 'does not contain a link to create a new account in the body' do
         purchase = create(:purchase, user: create(:user))
 
-        expect(email_for(purchase)).not_to have_body_text(/#{new_user_url(host: HOST)}/)
+        expect(email_for(purchase)).not_to(
+          have_body_text(/#{new_user_url(host: ENV['APP_DOMAIN'])}/)
+        )
       end
     end
 

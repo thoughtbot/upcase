@@ -56,9 +56,6 @@ Workshops::Application.configure do
   # Use memory cache to avoid errors when running tests in parallel
   config.cache_store = :memory_store
 
-  HOST = 'www.example.com'
-  config.action_mailer.default_url_options = { host: HOST }
-
   config.after_initialize do
     Timecop.travel(Time.now)
   end

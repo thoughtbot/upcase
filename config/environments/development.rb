@@ -30,8 +30,6 @@ Workshops::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  HOST = 'localhost:3000'
-  config.action_mailer.default_url_options = { host: HOST }
   config.action_mailer.delivery_method = :test
 
   Paypal.sandbox = true
