@@ -28,7 +28,7 @@ Workshops::Application.configure do
   config.log_level = :info
   config.log_formatter = ::Logger::Formatter.new
 
-  HOST = 'learn.thoughtbot.com'
+  HOST = "upcase.com"
   config.action_mailer.default_url_options = {host: HOST}
 
   config.middleware.use Rack::SslEnforcer,
