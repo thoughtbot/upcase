@@ -21,7 +21,7 @@ en:
 
   layouts:
     meta_description: 'Workshops, screencasts, videos, and books to help you learn web design and development.'
-    app_name: 'thoughtbot Learn'
+    app_name: 'Upcase from thoughtbot'
 
   dashboards:
     locked_features:
@@ -104,8 +104,6 @@ en:
       Books
     in_person_workshops:
       In-person Workshops
-    learn:
-      Learn
     workshops:
       online: online
       in_person: in-person
@@ -215,9 +213,9 @@ en:
       cancellation_survey:
         subject: Suggestions for improving Upcase
       subscription_receipt:
-        subject: "[Learn] Your receipt and some tips"
+        subject: "[Upcase] Your receipt and some tips"
       upcoming_payment_notification:
-        subject: "[Learn] thoughtbot is about to charge for your Learn Upcase subscription"
+        subject: "[Upcase] thoughtbot is about to charge for your Upcase subscription"
       welcome_from_mentor:
         subject: Welcome to Upcase! I'm your new mentor
 
