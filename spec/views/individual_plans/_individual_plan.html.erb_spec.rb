@@ -40,7 +40,7 @@ describe "individual_plans/_individual_plan.html" do
 
       render_plan(plan)
 
-      link = new_individual_plan_purchase_path(plan.sku)
+      link = new_checkout_path(plan)
       expect(rendered).to have_css("a[href='#{link}']")
     end
 
