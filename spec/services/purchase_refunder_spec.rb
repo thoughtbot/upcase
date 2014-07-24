@@ -44,17 +44,4 @@ describe PurchaseRefunder, '#refund' do
       expect(payment).to have_received(:refund)
     end
   end
-
-  context 'with paypal' do
-    it 'refunds money to purchaser' do
-      purchase = build(:paid_purchase, payment_method: 'paypal')
-      payment = stub('payment', refund: true, place: true)
-      Payments::PaypalPayment.stubs(:new).with(purchase).returns(payment)
-
-      PurchaseRefunder.new(purchase).refund
-
-      expect(payment).to have_received(:refund)
-      expect(purchase.reload).not_to be_paid
-    end
-  end
 end

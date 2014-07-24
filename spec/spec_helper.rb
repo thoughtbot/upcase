@@ -52,7 +52,6 @@ RSpec.configure do |config|
   config.include PurchaseHelpers
   config.include StripeHelpers
   config.include SessionHelpers, type: :feature
-  config.include PaypalHelpers, type: :feature
   config.include PathHelpers, type: :feature
 
   config.mock_with :mocha

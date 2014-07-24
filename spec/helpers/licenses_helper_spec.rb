@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PurchasesHelper, '#formatted_date_range' do
+describe LicensesHelper, '#formatted_date_range' do
   context 'when starts_on and ends_on are nil' do
     it 'returns nil' do
       expect(formatted_date_range(nil, nil)).to be_nil

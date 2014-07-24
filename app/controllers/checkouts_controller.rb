@@ -24,7 +24,11 @@ class CheckoutsController < ApplicationController
 
       redirect_to(
         success_url,
-        notice: t('checkout.flashes.success', name: @checkout.subscribeable_name)
+        notice: t('checkout.flashes.success', name: @checkout.subscribeable_name),
+        flash: {
+          purchase_amount: @checkout.price,
+          purchase_name: @checkout.subscribeable_name
+        }
       )
     else
       render :new

@@ -9,9 +9,9 @@ describe CheckoutsController do
         user = create(:subscriber)
         stub_current_user_with(user)
 
-        get :new, individual_plan_id: user.subscription.plan
+        get :new, plan: user.subscription.plan
 
-        expect(response).to redirect_to edit_plan_path
+        expect(response).to redirect_to edit_subscription_path
       end
     end
   end
@@ -24,7 +24,7 @@ describe CheckoutsController do
       create(:team_plan, sku: "sku1")
       desired_plan = create(:team_plan, sku: "sku2")
 
-      get :new, teams_team_plan_id: desired_plan.sku
+      get :new, plan: desired_plan
 
       expect(assigns(:checkout).subscribeable).to eq desired_plan
     end
@@ -37,15 +37,18 @@ describe CheckoutsController do
       plan = create(:individual_plan)
       stripe_token = "token"
 
-      post(
-        :create,
-        checkout: customer_params(stripe_token),
-        plan_id: plan.to_param
-      )
+      post :create, checkout: customer_params(stripe_token), plan: plan
 
-      FakeStripe.should(
-        have_charged(1500).to("test@example.com").with_token(stripe_token)
-      )
+      expect(FakeStripe.customer_plan_id).to eq plan.sku
+    end
+
+    it "sets flash[:purchase_amount]" do
+      stub_current_user_with(create(:user))
+      plan = create(:individual_plan)
+
+      post :create, checkout: customer_params, plan: plan
+
+      expect(flash[:purchase_amount]).to eq plan.individual_price
     end
   end
 
@@ -53,9 +56,8 @@ describe CheckoutsController do
     {
       name: "User",
       email: "test@example.com",
-      variant: "individual",
+      github_username: 'test',
       stripe_token: token,
-      payment_method: "stripe"
     }
   end
 end
