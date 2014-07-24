@@ -218,6 +218,7 @@ FactoryGirl.define do
   factory :checkout do
     email
     name
+    github_username 'test'
     association :subscribeable, factory: :plan
     association :user, :with_stripe, :with_mentor, :with_github
   end
