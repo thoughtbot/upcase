@@ -21,7 +21,7 @@ feature 'Subscriber views subscription invoices' do
 
   scenario 'Subscriber can view a subscription invoice' do
     sign_in_as_user_with_subscription
-    plan_purchase = create(:plan_purchase, user: @current_user)
+    create(:checkout, user: @current_user)
     @current_user.stripe_customer_id = FakeStripe::CUSTOMER_ID
     @current_user.organization = 'Sprockets, LLC'
     @current_user.address1 = '1 Street Way'
