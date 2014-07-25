@@ -1,42 +1,42 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe GithubFulfillmentJob do
-  it_behaves_like 'a Delayed Job that notifies Airbrake about errors'
+  it_behaves_like "a Delayed Job that notifies Airbrake about errors"
 
-  it 'adds the given username to a github team' do
+  it "adds the given username to a github team" do
     client = stub_octokit
     client.stubs(:add_team_member => nil)
 
-    GithubFulfillmentJob.new(3, 'gabebw').perform
+    GithubFulfillmentJob.new(3, "gabebw").perform
 
-    client.should have_received(:add_team_member).with(3, 'gabebw')
+    client.should have_received(:add_team_member).with(3, "gabebw")
   end
 
   [Octokit::NotFound, Net::HTTPBadResponse].each do |error_class|
     it "sends an email when #{error_class} is raised" do
-      purchase_id = create(:purchase).id
+      license_id = create(:license).id
       client = stub_octokit
       client.stubs(:add_team_member).raises(error_class)
-      PurchaseMailer.stubs(:fulfillment_error => stub("deliver", :deliver => true))
+      LicenseMailer.stubs(:fulfillment_error => stub("deliver", :deliver => true))
 
-      expect { GithubFulfillmentJob.new(3, 'gabebw', purchase_id).perform }.
+      expect { GithubFulfillmentJob.new(3, "gabebw", license_id).perform }.
         to raise_error(error_class)
 
-      PurchaseMailer.should have_received(:fulfillment_error).
-        with(instance_of(Purchase), 'gabebw')
+      LicenseMailer.should have_received(:fulfillment_error).
+        with(instance_of(License), "gabebw")
     end
 
-    it "sends no email when #{error_class} is raised with no purchase" do
+    it "sends no email when #{error_class} is raised with no license" do
       client = stub_octokit
       client.stubs(:add_team_member).raises(error_class)
-      PurchaseMailer.stubs(fulfillment_error: stub("deliver", deliver: true))
+      LicenseMailer.stubs(fulfillment_error: stub("deliver", deliver: true))
 
-      expect { GithubFulfillmentJob.new(3, 'gabebw').perform }.
+      expect { GithubFulfillmentJob.new(3, "gabebw").perform }.
         to raise_error(error_class)
 
-      expect(PurchaseMailer).to(
+      expect(LicenseMailer).to(
         have_received(:fulfillment_error).
-          with(instance_of(Purchase), 'gabebw').
+          with(instance_of(License), "gabebw").
           never
       )
     end

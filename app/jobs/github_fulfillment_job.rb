@@ -16,7 +16,7 @@ class GithubFulfillmentJob < Struct.new(:github_team, :username, :license_id)
 
   private
 
-  def email_licenser
+  def email_user
     if license_id
       license = License.find(license_id)
       LicenseMailer.fulfillment_error(license, username).deliver
