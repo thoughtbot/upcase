@@ -97,10 +97,6 @@ class Product < ActiveRecord::Base
     GithubFulfillment.new(purchase).fulfill
   end
 
-  def after_purchase_url(controller, purchase)
-    controller.purchase_path(purchase)
-  end
-
   def published_videos
     videos.published
   end
