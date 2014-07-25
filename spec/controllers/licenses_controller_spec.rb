@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+include StubCurrentUserHelper
+
 describe LicensesController do
   describe "#create without being signed in" do
     it "redirects to sign in page" do
