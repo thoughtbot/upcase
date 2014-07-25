@@ -1,8 +1,8 @@
-require 'spec_helper'
+require "spec_helper"
 
 module Teams
   describe TeamPlan, type: :model do
-    it { should have_many(:purchases) }
+    it { should have_many(:checkouts) }
     it { should have_many(:subscriptions) }
     it { should have_many(:teams) }
 
@@ -10,29 +10,29 @@ module Teams
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:individual_price) }
 
-    it_behaves_like 'a Plan for public listing' do
+    it_behaves_like "a Plan for public listing" do
       def factory_name
         :team_plan
       end
     end
 
-    describe '.instance' do
-      context 'when an instance already exists' do
-        it 'returns it' do
+    describe ".instance" do
+      context "when an instance already exists" do
+        it "returns it" do
           plan = create(:team_plan)
           expect(TeamPlan.instance).to eq plan
         end
       end
 
-      context 'when no instance exists' do
-        it 'creates one and returns it' do
+      context "when no instance exists" do
+        it "creates one and returns it" do
           expect(TeamPlan.instance).to be_a TeamPlan
           expect(TeamPlan.count).to eq 1
         end
       end
 
-      context 'when multiple instances already exist' do
-        it 'returns the first one' do
+      context "when multiple instances already exist" do
+        it "returns the first one" do
           plan = create(:team_plan)
           create(:team_plan)
           expect(TeamPlan.instance).to eq plan
@@ -40,31 +40,31 @@ module Teams
       end
     end
 
-    describe '#subscription?' do
-      it 'returns true' do
+    describe "#subscription?" do
+      it "returns true" do
         expect(team_plan.subscription?).to be_true
       end
     end
 
-    describe '#fulfilled_with_github?' do
-      it 'returns false' do
+    describe "#fulfilled_with_github?" do
+      it "returns false" do
         expect(team_plan.fulfilled_with_github?).to be_false
       end
     end
 
-    describe '#subscription_interval' do
-      it 'returns month' do
-        expect(team_plan.subscription_interval).to eq 'month'
+    describe "#subscription_interval" do
+      it "returns month" do
+        expect(team_plan.subscription_interval).to eq "month"
       end
     end
 
-    describe '#announcement' do
-      it 'returns empty string' do
+    describe "#announcement" do
+      it "returns empty string" do
         expect(team_plan.announcement).to be_blank
       end
     end
 
-    context '#minimum_quantity' do
+    context "#minimum_quantity" do
       it "is 3" do
         team_plan = TeamPlan.new
 
@@ -72,16 +72,16 @@ module Teams
       end
     end
 
-    describe '#fulfill' do
-      it 'starts a subscription for a new team' do
+    describe "#fulfill" do
+      it "starts a subscription for a new team" do
         user = build_stubbed(:user)
         user.stubs(:create_purchased_subscription)
         plan = build_stubbed(:team_plan)
-        purchase = build_stubbed(:purchase, user: user, purchaseable: plan)
-        subscription_fulfillment = stub_subscription_fulfillment(purchase)
-        team_fulfillment = stub_team_fulfillment(purchase)
+        checkout = build_stubbed(:checkout, user: user, subscribeable: plan)
+        subscription_fulfillment = stub_subscription_fulfillment(checkout)
+        team_fulfillment = stub_team_fulfillment(checkout)
 
-        plan.fulfill(purchase, user)
+        plan.fulfill(checkout, user)
 
         expect(subscription_fulfillment).to have_received(:fulfill)
         expect(team_fulfillment).to have_received(:fulfill)
@@ -89,27 +89,27 @@ module Teams
           to have_received(:create_purchased_subscription).with(plan: plan)
       end
 
-      def stub_team_fulfillment(purchase)
-        stub('team-fulfillment', :fulfill).tap do |fulfillment|
+      def stub_team_fulfillment(checkout)
+        stub("team-fulfillment", :fulfill).tap do |fulfillment|
           TeamFulfillment.
             stubs(:new).
-            with(purchase, purchase.user).
+            with(checkout, checkout.user).
             returns(fulfillment)
         end
       end
     end
 
-    describe '#after_purchase_url' do
-      it 'returns the edit team path' do
-        edit_teams_team_path = 'http://example.com/edit_team'
+    describe "#after_checkout_url" do
+      it "returns the edit team path" do
+        edit_teams_team_path = "http://example.com/edit_team"
         plan = build_stubbed(:team_plan)
-        purchase = build_stubbed(:purchase, purchaseable: plan)
-        controller = stub('controller')
+        checkout = build_stubbed(:checkout, subscribeable: plan)
+        controller = stub("controller")
         controller.stubs(:edit_teams_team_path).returns(edit_teams_team_path)
 
-        after_purchase_url = plan.after_purchase_url(controller, purchase)
+        after_checkout_url = plan.after_checkout_url(controller, checkout)
 
-        expect(after_purchase_url).to eq(edit_teams_team_path)
+        expect(after_checkout_url).to eq(edit_teams_team_path)
       end
     end
 
