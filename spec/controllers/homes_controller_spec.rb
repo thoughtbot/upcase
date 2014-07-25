@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe HomesController do
-  it 'redirects to Prime if the visitor is not logged in' do
+  it 'redirects to the landing page if the visitor is not logged in' do
     get :show
 
     expect(response).to redirect_to prime_path

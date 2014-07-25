@@ -28,9 +28,6 @@ Workshops::Application.configure do
   config.log_level = :debug
   config.log_formatter = ::Logger::Formatter.new
 
-  HOST = 'learn-staging.herokuapp.com'
-
-  config.action_mailer.default_url_options = {host: HOST}
   config.action_mailer.smtp_settings = MAIL_SETTINGS
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default(charset: "utf-8")

@@ -47,6 +47,15 @@ describe SubscriptionMailer do
       expect(email.body).to include(user.mentor.github_username)
     end
 
+    it "specifies the subject" do
+      user = user_with_mentor
+      email = welcome_email_for(user)
+
+      expect(email.subject).to eq(
+        I18n.t("mailers.subscription.welcome_from_mentor.subject")
+      )
+    end
+
     def user_with_mentor
       build_stubbed(:user, :with_mentor)
     end
@@ -63,6 +72,15 @@ describe SubscriptionMailer do
 
       expect(email.to).to include(user.email)
       expect(email).to have_body_text(/just canceled/)
+    end
+
+    it "specifies the subject" do
+      user = build_stubbed(:user)
+      email = SubscriptionMailer.cancellation_survey(user)
+
+      expect(email.subject).to eq(
+        I18n.t("mailers.subscription.cancellation_survey.subject")
+      )
     end
   end
 
@@ -83,6 +101,12 @@ describe SubscriptionMailer do
 
     it 'is sent from learn' do
       expect(subscription_receipt_email.from).to eq(%w(learn@thoughtbot.com))
+    end
+
+    it "specifies the subject" do
+      expect(subscription_receipt_email.subject).to eq(
+        I18n.t("mailers.subscription.subscription_receipt.subject")
+      )
     end
 
     def subscription_receipt_email
@@ -124,6 +148,12 @@ describe SubscriptionMailer do
       result = upcoming_payment_notification_email(subscription)
 
       expect(result).to have_body_text("$19.99")
+    end
+
+    it "specifies the subject" do
+      expect(upcoming_payment_notification_email.subject).to eq(
+        I18n.t("mailers.subscription.upcoming_payment_notification.subject")
+      )
     end
 
     def upcoming_payment_notification_email(subscription = nil)

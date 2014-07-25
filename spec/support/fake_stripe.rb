@@ -309,7 +309,7 @@ class FakeStripe < Sinatra::Base
             quantity: 1,
             plan: {
               interval: "month",
-              name: "Prime",
+              name: I18n.t("shared.subscription.name"),
               amount: 9900,
               currency: "usd",
               id: "prime",

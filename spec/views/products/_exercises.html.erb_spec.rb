@@ -7,7 +7,7 @@ describe "products/_exercises.html" do
     render "products/exercises"
 
     expect(rendered).
-      to have_css("a[href='https://whetstone.thoughtbot.com/exercises/1']")
+      to have_css("a[href='https://exercises.upcase.com/exercises/1']")
   end
 
   it "does not render links to exercises for users without access" do

@@ -1,6 +1,6 @@
 Hi <%= @user.first_name %>,
 
-This is a reminder that your Learn <%= @subscription.plan_name %> subscription
+This is a reminder that your Upcase <%= @subscription.plan_name %> subscription
 will be automatically renewed on <%= l @subscription.next_payment_on %> for the
 amount of <%= number_to_currency(@subscription.next_payment_amount / 100) %>.
 

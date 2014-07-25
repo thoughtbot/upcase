@@ -32,9 +32,12 @@ class LineItem
 
   def subscription_description
     if canceled?
-      '(Canceled) Subscription to Prime'
+      I18n.t("line_item.canceled_description")
     else
-      "Subscription to #{stripe_line_item.plan.name}"
+      I18n.t(
+        "line_item.plan_description",
+        plan_name: stripe_line_item.plan.name
+      )
     end
   end
 

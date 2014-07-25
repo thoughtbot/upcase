@@ -26,7 +26,7 @@ feature 'User views show' do
     visit dashboard_path(as: user)
 
     expect(page).not_to have_link_to(show.name)
-    expect(page).to have_content('subscribe to Prime to get access')
+    expect(page).to have_content("subscribe to Upcase to get access")
   end
 
   def have_link_to(text)
