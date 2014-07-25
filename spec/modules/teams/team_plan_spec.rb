@@ -40,27 +40,9 @@ module Teams
       end
     end
 
-    describe "#subscription?" do
-      it "returns true" do
-        expect(team_plan.subscription?).to be_true
-      end
-    end
-
-    describe "#fulfilled_with_github?" do
-      it "returns false" do
-        expect(team_plan.fulfilled_with_github?).to be_false
-      end
-    end
-
     describe "#subscription_interval" do
       it "returns month" do
         expect(team_plan.subscription_interval).to eq "month"
-      end
-    end
-
-    describe "#announcement" do
-      it "returns empty string" do
-        expect(team_plan.announcement).to be_blank
       end
     end
 

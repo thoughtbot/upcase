@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe IndividualPlan do
   it { should have_many(:announcements) }
-  it { should have_many(:purchases) }
+  it { should have_many(:checkouts) }
   it { should have_many(:subscriptions) }
 
   it { should validate_presence_of(:description) }
@@ -10,9 +10,6 @@ describe IndividualPlan do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:short_description) }
   it { should validate_presence_of(:sku) }
-
-  it { should_not be_fulfilled_with_github }
-  it { should be_subscription }
 
   it_behaves_like 'a Plan for public listing'
 
@@ -49,38 +46,6 @@ describe IndividualPlan do
     end
   end
 
-  describe 'purchase_for' do
-    it 'returns the purchase when a user has purchased the plan' do
-      user = create(:user, :with_github)
-      purchase = create(:plan_purchase, user: user)
-      plan = purchase.purchaseable
-
-      expect(plan.purchase_for(user)).to eq purchase
-    end
-
-    it 'returns nil when a user has not purchased the plan' do
-      user = create(:user)
-      purchase = create(:plan_purchase)
-      plan = purchase.purchaseable
-
-      expect(plan.purchase_for(user)).to be_nil
-    end
-  end
-
-  describe 'starts_on' do
-    it 'returns the given date' do
-      plan = create(:plan)
-      expect(plan.starts_on(Time.zone.today)).to eq Time.zone.today
-    end
-  end
-
-  describe 'ends_on' do
-    it 'returns the given date' do
-      plan = create(:plan)
-      expect(plan.ends_on(Time.zone.today)).to eq Time.zone.today
-    end
-  end
-
   describe 'subscription_interval' do
     it 'returns the interval from the stripe plan' do
       plan = build_stubbed(:plan)
@@ -92,34 +57,15 @@ describe IndividualPlan do
     end
   end
 
-  describe 'offering_type' do
-    it 'returns subscription' do
-      plan = build_stubbed(:plan)
-
-      result = plan.offering_type
-
-      expect(result).to eq 'subscription'
-    end
-  end
-
-  describe '#announcement' do
-    it 'calls Announcement.current' do
-      Announcement.stubs :current
-      plan = create(:plan)
-      plan.announcement
-      expect(Announcement).to have_received(:current)
-    end
-  end
-
   describe '#fulfill' do
     it 'starts a subscription' do
       user = build_stubbed(:user)
       user.stubs(:create_purchased_subscription)
       plan = build_stubbed(:individual_plan)
-      purchase = build_stubbed(:purchase, user: user, purchaseable: plan)
-      fulfillment = stub_subscription_fulfillment(purchase)
+      checkout = build_stubbed(:checkout, user: user, subscribeable: plan)
+      fulfillment = stub_subscription_fulfillment(checkout)
 
-      plan.fulfill(purchase, user)
+      plan.fulfill(checkout, user)
 
       expect(fulfillment).to have_received(:fulfill)
       expect(user).
@@ -127,17 +73,17 @@ describe IndividualPlan do
     end
   end
 
-  describe '#after_purchase_url' do
+  describe '#after_checkout_url' do
     it 'returns the dashboard path' do
       dashboard_path = 'http://example.com/dashboard'
       plan = build_stubbed(:individual_plan)
-      purchase = build_stubbed(:purchase, purchaseable: plan)
+      checkout = build_stubbed(:checkout, subscribeable: plan)
       controller = stub('controller')
       controller.stubs(:dashboard_path).returns(dashboard_path)
 
-      after_purchase_url = plan.after_purchase_url(controller, purchase)
+      after_checkout_url = plan.after_checkout_url(controller, checkout)
 
-      expect(after_purchase_url).to eq(dashboard_path)
+      expect(after_checkout_url).to eq(dashboard_path)
     end
   end
 

@@ -23,16 +23,8 @@ module Teams
       end
     end
 
-    def fulfilled_with_github?
-      false
-    end
-
     def subscription_interval
       'month'
-    end
-
-    def announcement
-      ''
     end
 
     def minimum_quantity

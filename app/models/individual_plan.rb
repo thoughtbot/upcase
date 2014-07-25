@@ -40,18 +40,6 @@ class IndividualPlan < ActiveRecord::Base
     stripe_plan.interval
   end
 
-  def offering_type
-    'subscription'
-  end
-
-  def fulfilled_with_github?
-    false
-  end
-
-  def announcement
-    @announcement ||= announcements.current
-  end
-
   def fulfill(purchase, user)
     user.create_purchased_subscription(plan: self)
     SubscriptionFulfillment.new(user, self).fulfill
