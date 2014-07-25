@@ -49,10 +49,8 @@ class ApplicationController < ActionController::Base
   end
 
   def requested_subscribeable
-    PolymorphicFinder.
-      finding(Teams::TeamPlan, :sku, [:plan]).
-      finding(IndividualPlan, :sku, [:plan]).
-      find(params)
+    Teams::TeamPlan.where(sku: params[:plan]).first ||
+      IndividualPlan.where(sku: params[:plan]).first
   end
 
   def included_in_current_users_plan?(licenseable)
