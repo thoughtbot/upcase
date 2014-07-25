@@ -97,7 +97,7 @@ feature 'Subscriber views subscription invoices' do
 
   scenario "a subscriber can't view another user's invoice" do
     sign_in_as_user_with_subscription
-    plan_purchase = create(:plan_purchase, user: @current_user)
+    create(:checkout, user: @current_user)
     @current_user.stripe_customer_id = "cus_NOMATCH"
     @current_user.save!
 
