@@ -12,10 +12,6 @@ en:
         menu: Students
         title: Students
         breadcrumb: Students
-      timeline:
-        menu: Timeline
-        title: Timeline
-        breadcrumb: Timeline
       mentees:
         menu: Mentees
         title: Mentees

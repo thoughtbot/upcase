@@ -127,8 +127,6 @@ Workshops::Application.routes.draw do
 
   get '/auth/:provider/callback', to: 'auth_callbacks#create'
 
-  resource :timeline, only: :show
-
   get "/pages/*id" => 'pages#show', format: false
   get '/prime' => 'promoted_catalogs#show', as: :prime
   get '/privacy' => 'pages#show', as: :privacy, id: 'privacy'
@@ -151,7 +149,6 @@ Workshops::Application.routes.draw do
   get '/my_account' => 'users#edit', as: 'my_account'
   resources :users, controller: 'users' do
     resources :notes, only: [:create, :edit, :update]
-    resource :timeline, only: :show
     resource :password, :controller => 'passwords', :only => [:create, :edit, :update]
   end
   get '/sign_up' => 'users#new', as: 'sign_up_app'

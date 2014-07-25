@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   has_many :paid_purchases, -> { where paid: true }, class_name: 'Purchase'
   has_many :purchases
   has_many :completions
-  has_many :notes, -> { order 'created_at DESC' }
   has_many :public_keys, dependent: :destroy
   has_one :purchased_subscription, dependent: :destroy, class_name: 'Subscription'
   belongs_to :mentor

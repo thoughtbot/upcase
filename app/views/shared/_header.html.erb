@@ -30,7 +30,6 @@
           </li>
         <% end %>
         <% if signed_in? %>
-          <li class="timeline"><%= link_to 'Timeline', timeline_path %></li>
           <li class="account"><%= link_to 'Settings', my_account_path %></li>
         <% else %>
           <li class="account"><%= link_to 'Sign in', sign_in_path %></li>

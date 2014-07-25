@@ -5,7 +5,6 @@ describe User do
     it { should have_many(:paid_purchases) }
     it { should have_many(:purchases) }
     it { should have_many(:completions) }
-    it { should have_many(:notes).order('created_at DESC') }
     it { should belong_to(:mentor) }
     it { should have_many(:public_keys).dependent(:destroy) }
     it { should belong_to(:team) }
@@ -216,28 +215,6 @@ describe User do
     def create_user_without_cached_password(attributes)
       user = create(:user, attributes)
       User.find(user.id)
-    end
-  end
-
-  context '#notes' do
-    it 'returns only the users notes and no others' do
-      user = create(:user)
-      another_user = create(:user)
-      create(:note, user: another_user)
-
-      note = create(:note, user: user)
-
-      expect(user.notes).to eq [note]
-    end
-
-    it 'returns items sorted DESC by creation_date' do
-      user = create(:user)
-
-      oldest_item = create(:note, user: user)
-      middle_item = create(:note, user: user)
-      newest_item = create(:note, user: user)
-
-      expect(user.notes).to eq [newest_item, middle_item, oldest_item]
     end
   end
 

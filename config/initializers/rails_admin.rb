@@ -1,5 +1,4 @@
 require 'rails_admin/config/actions/purchase_accounting'
-require 'rails_admin/config/actions/timeline'
 
 module RailsAdmin
   module Config
@@ -33,7 +32,6 @@ RailsAdmin.config do |config|
     init_actions!
     purchase_refund
     purchase_accounting
-    timeline
   end
 
   config.model Mentor do
