@@ -1,6 +1,6 @@
 module DelayedJobsHelpers
   def stubbed_checkout
-    build_stubbed(:checkout).tap do |purchase|
+    build_stubbed(:checkout).tap do |checkout|
       Checkout.stubs(:find).with(checkout.id).returns(checkout)
     end
   end
