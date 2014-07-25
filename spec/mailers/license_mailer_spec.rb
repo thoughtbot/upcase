@@ -6,7 +6,7 @@ describe LicenseMailer do
       license = stubbed_license
       mailer = LicenseMailer.fulfillment_error(license, github_username)
 
-      expect(mailer).to deliver_to(license.email)
+      expect(mailer).to deliver_to(license.user_email)
       expect(mailer).to cc_to('learn@thoughtbot.com')
       expect(mailer).to reply_to('learn@thoughtbot.com')
     end
@@ -33,7 +33,7 @@ describe LicenseMailer do
       stub(
         licenseable_name: 'Backbone.js on Rails',
         name: 'Benny Burns',
-        email: 'benny@theburns.org'
+        user_email: 'benny@theburns.org'
       )
     end
   end
