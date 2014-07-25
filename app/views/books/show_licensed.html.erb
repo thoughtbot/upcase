@@ -1,16 +1,16 @@
 <% content_for :subject_block do %>
-  <h1><%= @purchaseable.name %></h1>
+  <h1><%= @offering.name %></h1>
 <% end %>
 
 <div class="text-box-wrapper">
   <div class="text-box">
-    <%= render 'licenses/downloads_info', offering: @purchaseable %>
-    <%= render 'licenses/github_repo_info', offering: @purchaseable %>
+    <%= render 'licenses/downloads_info', offering: @offering %>
+    <%= render 'licenses/github_repo_info', offering: @offering %>
 
     <figure class="book-cover">
-      <%= image_tag(cover_image(@purchaseable)) %>
+      <%= image_tag(cover_image(@offering)) %>
     </figure>
   </div>
 </div>
 
-<%= render 'books/aside', offering: @purchaseable, purchase: @purchase %>
+<%= render 'books/aside', offering: @offering %>
