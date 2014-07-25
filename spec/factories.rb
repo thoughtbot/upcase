@@ -415,8 +415,8 @@ FactoryGirl.define do
     trait :purchased do
       after :create do |subscription|
         create(
-          :plan_purchase,
-          purchaseable: subscription.plan,
+          :checkout,
+          subscribeable: subscription.plan,
           user: subscription.user
         )
       end

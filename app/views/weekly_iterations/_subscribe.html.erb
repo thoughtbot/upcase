@@ -1,7 +1,7 @@
 <section id="license" class="show">
   <div class="prime-purchase">
     <div class="license">
-      <%= link_to new_individual_plan_purchase_path(plan), class: 'license-button button prime-button' do %>
+      <%= link_to new_checkout_path(plan), class: 'license-button button prime-button' do %>
         <%= t('weekly_iteration_subscribe_cta') %> for <%= individual_price_per_month(plan) %>
       <% end %>
     </div>

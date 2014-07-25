@@ -11,7 +11,7 @@ class SubscriptionFulfillment
 
   def remove
     unfulfill_lost_features
-    deactivate_subscription_purchases
+    remove_licenses
   end
 
   private
@@ -36,9 +36,7 @@ class SubscriptionFulfillment
     GitHubPublicKeyDownloadFulfillmentJob.enqueue(@user.id)
   end
 
-  def deactivate_subscription_purchases
-    @user.subscription_purchases.each do |purchase|
-      PurchaseRefunder.new(purchase).refund
-    end
+  def remove_licenses
+    @user.licenses.destroy
   end
 end
