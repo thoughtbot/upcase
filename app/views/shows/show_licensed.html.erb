@@ -1,5 +1,5 @@
 <% content_for :subject_block do %>
-  <h1><%= @purchaseable.name %></h1>
+  <h1><%= @offering.name %></h1>
   <h2 class="tagline">
     Watch or download episodes.
   </h2>
@@ -8,10 +8,9 @@
 <div class="text-box-wrapper">
   <div class="text-box">
     <section id="videos">
-      <%= render @purchaseable.published_videos.recently_published_first,
-        purchase: @purchase %>
+      <%= render @offering.published_videos.recently_published_first %>
     </section>
   </div>
 </div>
 
-<%= render 'shows/aside', purchaseable: @purchaseable, purchase: @purchase %>
+<%= render 'shows/aside', offering: @offering %>
