@@ -40,12 +40,12 @@ class IndividualPlan < ActiveRecord::Base
     stripe_plan.interval
   end
 
-  def fulfill(purchase, user)
+  def fulfill(checkout, user)
     user.create_purchased_subscription(plan: self)
     SubscriptionFulfillment.new(user, self).fulfill
   end
 
-  def after_checkout_url(controller, purchase)
+  def after_checkout_url(controller, checkout)
     controller.dashboard_path
   end
 

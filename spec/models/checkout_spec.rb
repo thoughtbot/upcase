@@ -97,7 +97,7 @@ describe Checkout do
       after_checkout_url = "http://example.com/after_checkout"
       plan = build_stubbed(:individual_plan)
       checkout = build_stubbed(:checkout, subscribeable: plan)
-      checkout.
+      plan.
         stubs(:after_checkout_url).
         with(controller, checkout).
         returns(after_checkout_url)
