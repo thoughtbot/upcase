@@ -16,7 +16,6 @@ describe Checkout do
   it { should delegate(:subscribeable_sku).to(:subscribeable).as(:sku) }
   it { should delegate(:subscribeable_name).to(:subscribeable).as(:name) }
   it { should delegate(:terms).to(:subscribeable) }
-  it { should delegate(:price).to(:subscribeable) }
 
   context "#save" do
     it "fulfills a subscription when purchasing a plan" do
@@ -83,6 +82,13 @@ describe Checkout do
     checkout = build(:checkout, subscribeable: plan)
 
     expect(checkout.price).to eq 50
+  end
+
+  it "uses the individual_price of the subscribeable and quantity as it's price" do
+    plan = build(:individual_plan, individual_price: 50)
+    checkout = build(:checkout, subscribeable: plan, quantity: 3)
+
+    expect(checkout.price).to eq 150
   end
 
   describe "#success_url" do

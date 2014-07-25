@@ -27,7 +27,7 @@ class Checkout < ActiveRecord::Base
   after_save :update_user_payment_info
 
   def price
-    subscribeable.individual_price
+    subscribeable.individual_price * quantity
   end
 
   def success_url(controller)

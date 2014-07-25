@@ -15,7 +15,7 @@ module TeamPlansHelper
   def team_plan_quantity_select_attributes(plan)
     {
       :class => "string input required",
-      :id => "purchase_quantity_input",
+      :id => "checkout_quantity_input",
       "data-individual-price" => plan.individual_price
     }
   end
