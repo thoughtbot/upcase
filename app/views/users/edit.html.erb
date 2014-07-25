@@ -52,8 +52,7 @@
   <% end %>
 
   <% if current_user.has_licensed? %>
-    <h3>Your purchases</h3>
-    <ol class="purchases">
+    <ol class="licenses">
       <%= render current_user.ordered_licenses.limit(5) %>
     </ol>
     <%= link_to t("account.view_licenses"), licenses_path, class: "view-all-licenses" %>
