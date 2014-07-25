@@ -1,30 +1,13 @@
 class VideosController < ApplicationController
   def show
-    @video_page = VideoPage.new(purchase: purchase, video: video)
-    unless @video_page.paid?
-      redirect_to video.watchable
+    @video = Video.find(params[:id])
+
+    if @license = current_user_license_of(@video.watchable)
+      render "show_licensed"
+    elsif @video.preview_wistia_id.present?
+      render "show"
+    else
+      redirect_to @video.watchable
     end
-  end
-
-  private
-
-  def purchase
-    Purchase.find_by_lookup!(purchase_id)
-  end
-
-  def purchaseable
-    purchase.purchaseable
-  end
-
-  def video
-    purchaseable.videos.find(video_id)
-  end
-
-  def purchase_id
-    params[:purchase_id]
-  end
-
-  def video_id
-    params[:id]
   end
 end

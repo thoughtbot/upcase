@@ -432,6 +432,10 @@ FactoryGirl.define do
     trait :published do
       published_on { 1.day.ago }
     end
+
+    trait :with_preview do
+      preview_wistia_id '1194804'
+    end
   end
 
   factory :oauth_access_token do

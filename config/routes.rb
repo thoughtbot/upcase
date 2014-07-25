@@ -59,11 +59,9 @@ Workshops::Application.routes.draw do
   end
 
   get '/the-weekly-iteration' => 'weekly_iterations#show', as: :weekly_iteration
-  get '/videos/:id' => 'episodes#show', as: :public_video
 
-  resources :licenses, only: [:index] do
-    resources :videos, only: [:show]
-  end
+  resources :licenses, only: [:index]
+  resources :videos, only: [:show]
 
   namespace :subscriber do
     resources :invoices, only: [:index, :show]
