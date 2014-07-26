@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-include StubCurrentUserHelper
-
 describe LicensesController do
   describe "#create without being signed in" do
     it "redirects to sign in page" do
@@ -31,7 +29,7 @@ describe LicensesController do
       license_two = create(:license, user: user, created_at: 5.minute.ago)
       license_one = create(:license, user: user, created_at: 1.minute.ago)
       create(:license)
-      stub_current_user_with(user)
+      sign_in_as user
 
       get :index
 
