@@ -1,5 +1,5 @@
 module Teams
-  # TeamPlan represents a purchase of a subscription plan for an entire team.
+  # TeamPlan represents a subscription plan for an entire team.
   class TeamPlan < ActiveRecord::Base
     has_many :checkouts, as: :subscribeable
     has_many :subscriptions, as: :plan
@@ -31,10 +31,10 @@ module Teams
       3
     end
 
-    def fulfill(purchase, user)
+    def fulfill(checkout, user)
       user.create_purchased_subscription(plan: self)
       SubscriptionFulfillment.new(user, self).fulfill
-      TeamFulfillment.new(purchase, user).fulfill
+      TeamFulfillment.new(checkout, user).fulfill
     end
 
     def after_checkout_url(controller, checkout)

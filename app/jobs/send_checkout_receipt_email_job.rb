@@ -1,8 +1,8 @@
 class SendCheckoutReceiptEmailJob < Struct.new(:checkout_id)
   include ErrorReporting
 
-  def self.enqueue(purchase_id)
-    Delayed::Job.enqueue(new(purchase_id))
+  def self.enqueue(checkout_id)
+    Delayed::Job.enqueue(new(checkout_id))
   end
 
   def perform

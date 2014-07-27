@@ -1,8 +1,5 @@
 module Teams
-  # A Team represents a company that has purchased a TeamPlan subscription.
-  #
-  # Because purchases of TeamPlans happens rarely, Teams are created manually,
-  # and not through the UI.
+  # A Team represents a company that has a TeamPlan subscription.
   class Team < ActiveRecord::Base
     belongs_to :subscription
     belongs_to :team_plan

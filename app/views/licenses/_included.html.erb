@@ -1,7 +1,6 @@
 <%= link_to(
   [product, :licenses],
   class: "license-button button free-with-prime",
-  id: "#{product.sku}-purchase-individual",
   method: :post
 ) do %>
   <% if product.collection? %>

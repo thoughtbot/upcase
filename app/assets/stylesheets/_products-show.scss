@@ -1,45 +1,5 @@
-body.purchases-show, body.videos-show {
-  section.receipt {
-    @include outer-container;
-    margin-top: 50px;
-
-    .billing-address {
-      @include nth-omega(2n);
-      @include span-columns(6);
-      margin-bottom: 10px;
-      margin-top: 20px;
-    }
-
-    .item {
-      margin-top: 20px;
-    }
-
-    .purchase-pricing {
-      @include span-columns(12);
-      margin-bottom: 20px;
-      margin-top: 20px;
-
-      tbody {
-        @include outer-container;
-      }
-
-      tr {
-        @include span-columns(10);
-      }
-
-      td {
-        margin-bottom: 6px;
-        text-align: left;
-        @include span-columns(6);
-
-        &.amount {
-          text-align: right;
-          @include span-columns(4);
-        }
-      }
-    }
-  }
-
+body.products-show,
+body.videos-show {
   .text-box-wrapper {
     .text-box {
       padding-top: 20px;
@@ -165,31 +125,8 @@ body.purchases-show, body.videos-show {
   }
 
   @include body-mobile {
-    section.receipt .billing-address,
-    section.receipt .purchase-pricing {
-      @include span-columns(12);
-
-      tr {
-        @include span-columns(12);
-      }
-
-      td {
-        @include span-columns(8);
-
-        &.amount {
-          @include span-columns(4);
-        }
-      }
-    }
-
     .text-box-wrapper .get-video {
       width: 80% !important;
-    }
-
-    .purchase-return-link {
-      display: block;
-      float: left;
-      margin-top: 0;
     }
 
     .assets-wrapper .assets .button-mini {

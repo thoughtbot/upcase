@@ -215,37 +215,6 @@ ActiveRecord::Schema.define(version: 20140725142656) do
 
   add_index "public_keys", ["user_id"], name: "index_public_keys_on_user_id", using: :btree
 
-  create_table "purchases", force: true do |t|
-    t.string   "stripe_customer_id"
-    t.string   "variant"
-    t.string   "name"
-    t.string   "email"
-    t.string   "organization"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip_code"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "lookup"
-    t.integer  "coupon_id"
-    t.text     "github_usernames"
-    t.boolean  "paid",                   default: false,    null: false
-    t.string   "payment_method",         default: "stripe", null: false
-    t.string   "country"
-    t.string   "payment_transaction_id"
-    t.integer  "user_id"
-    t.decimal  "paid_price"
-    t.integer  "purchaseable_id"
-    t.string   "purchaseable_type"
-    t.string   "stripe_coupon_id"
-    t.integer  "quantity",               default: 1,        null: false
-  end
-
-  add_index "purchases", ["lookup"], name: "index_purchases_on_lookup", using: :btree
-  add_index "purchases", ["stripe_customer_id"], name: "index_purchases_on_stripe_customer", using: :btree
-
   create_table "questions", force: true do |t|
     t.integer  "workshop_id"
     t.string   "question"

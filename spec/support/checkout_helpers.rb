@@ -1,14 +1,6 @@
 VALID_SANDBOX_CREDIT_CARD_NUMBER = '4111111111111111'
 
-module PurchaseHelpers
-  def click_purchase_link_for(product, variant = 'individual')
-    click_link I18n.t(
-      "products.show.price.#{product.offering_type}.#{variant}_html",
-      default: [:"products.show.price.#{variant}_html"],
-      price: ''
-    )
-  end
-
+module CheckoutHelpers
   def fill_in_name_and_email
     fill_in 'Name', with: 'Ben'
     fill_in 'Email', with: 'ben@thoughtbot.com'
