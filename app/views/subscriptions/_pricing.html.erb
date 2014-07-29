@@ -33,7 +33,7 @@
           <a href="#weekly_iteration">The Weekly Iteration</a>
         </li>
       </ol>
-      <div class="teams-pricing"><a href="mailto:learn@thoughtbot.com">Email for team pricing</a></div>
+      <div class="teams-pricing"><%= mail_to ENV["SUPPORT_EMAIL"], "Email for team pricing" %></div>
     </nav>
 
     <%= render plans %>

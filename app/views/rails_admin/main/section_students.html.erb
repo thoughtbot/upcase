@@ -3,7 +3,7 @@
 </h3>
 <p>
   <%= mail_to(
-    'learn@thoughtbot.com',
+    ENV["SUPPORT_EMAIL"],
     'Email all paid students',
     subject: @section.name,
     bcc: @section.paid_purchases.map(&:email).join(',')

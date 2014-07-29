@@ -4,7 +4,7 @@
     <li>
       Enter the <strong>GitHub usernames</strong> of up to 9 additional people. 
       You can add more names later by emailing 
-      <%= mail_to "learn@thoughtbot.com", "learn@thoughtbot.com" %>.
+      <%= mail_to ENV["SUPPORT_EMAIL"] %>.
     </li>
     <% (2...11).each do |github_username| %>
       <li>
