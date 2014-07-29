@@ -218,39 +218,6 @@ describe User do
     end
   end
 
-<<<<<<< HEAD
-  describe '#subscription_purchases' do
-    it 'includes only subscription purchases' do
-      subscription = create(:active_subscription)
-      user = subscription.user
-      create_subscription_purchase(user)
-      create_paid_purchase(user)
-
-      user.paid_purchases.count.should eq 2
-      user.subscription_purchases.count.should eq 1
-    end
-
-    def create_subscription_purchase(user)
-      screencast = create(:screencast)
-      subscription_purchase = SubscriberPurchase.new(screencast, user)
-      subscription_purchase.create
-    end
-
-    def create_paid_purchase(user)
-      create(:book_purchase, user: user)
-    end
-  end
-
-  describe '#paid_products' do
-    it 'includes purchased products with no subscription plans' do
-      user = create(:user, :with_mentor, :with_github)
-      book_purchase = create(:book_purchase, user: user)
-      prime_plan = create(:plan_purchase, user: user)
-
-      expect(user.paid_products).to eq [book_purchase]
-    end
-  end
-
   describe '#ordered_licenses' do
     it 'returns licenses ordered by creation date' do
       user = create(:user)
