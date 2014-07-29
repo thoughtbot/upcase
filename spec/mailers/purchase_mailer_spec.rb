@@ -7,8 +7,8 @@ describe PurchaseMailer do
       mailer = PurchaseMailer.fulfillment_error(purchase, github_username)
 
       expect(mailer).to deliver_to(purchase.email)
-      expect(mailer).to cc_to('learn@thoughtbot.com')
-      expect(mailer).to reply_to('learn@thoughtbot.com')
+      expect(mailer).to cc_to(ENV["SUPPORT_EMAIL"])
+      expect(mailer).to reply_to(ENV["SUPPORT_EMAIL"])
     end
 
     it 'sets the correct subject' do

@@ -33,7 +33,7 @@ feature 'Viewing products' do
 
     expect(page).not_to have_content 'Purchase for Yourself'
     expect(page).to have_content(
-      'This book is not currently available. Contact learn@thoughtbot.com'
+      "This book is not currently available."
     )
   end
 end

@@ -100,7 +100,7 @@ describe SubscriptionMailer do
     end
 
     it 'is sent from learn' do
-      expect(subscription_receipt_email.from).to eq(%w(learn@thoughtbot.com))
+      expect(subscription_receipt_email.from).to include(ENV["SUPPORT_EMAIL"])
     end
 
     it "specifies the subject" do
@@ -126,7 +126,7 @@ describe SubscriptionMailer do
     end
 
     it 'is sent from learn' do
-      expect(upcoming_payment_notification_email.from).to eq ['learn@thoughtbot.com']
+      expect(upcoming_payment_notification_email.from).to include ENV["SUPPORT_EMAIL"]
     end
 
     it 'includes a link to account page' do
