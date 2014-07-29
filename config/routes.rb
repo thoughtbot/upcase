@@ -152,7 +152,8 @@ Workshops::Application.routes.draw do
   get "/auth/:provider/callback", to: "auth_callbacks#create"
 
   get "/pages/*id" => "pages#show", format: false
-  get "/prime" => "promoted_catalogs#show", as: :prime
+  get "/prime" => redirect("/subscribe")
+  get "/subscribe" => "promoted_catalogs#show", as: :subscribe
   get "/privacy" => "pages#show", as: :privacy, id: "privacy"
   get "/terms" => "pages#show", as: :terms, id: "terms"
   get "/directions" => "pages#show", as: :directions, id: "directions"
