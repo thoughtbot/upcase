@@ -1,32 +1,37 @@
 require 'spec_helper'
 
 describe 'promoted_catalogs/show.html.erb' do
-  context 'when signed in' do
-    before { view_stubs(signed_in?: true) }
-
-    it 'includes a sign out link' do
+  context "when signed in without a subscription" do
+    before do
+      view_stubs(signed_in?: true)
+      view_stubs(current_user_has_active_subscription?: false)
       assign_catalog
-
       render
-
-      expect(rendered).
-        to include(link_to('Sign out', sign_out_path, method: :delete))
     end
 
-    it 'includes an account link' do
-      assign_catalog
-
-      render
-
-      expect(rendered).to include(link_to('Account', my_account_path))
+    it "includes a settings link" do
+      expect(rendered).to include(link_to("Settings", my_account_path))
     end
 
-    it 'does not include a sign in link' do
+    it "does not include a sign in link" do
+      expect(rendered).not_to include(link_to("Sign in", sign_in_path))
+    end
+
+    it "includes a membership link" do
+      expect(rendered).to include("Upcase Membership")
+    end
+  end
+
+  context "when signed in with a subscription" do
+    before do
+      view_stubs(signed_in?: true)
+      view_stubs(current_user_has_active_subscription?: true)
       assign_catalog
-
       render
+    end
 
-      expect(rendered).not_to include(link_to('Sign in', sign_in_path))
+    it "does not include a membership link" do
+      expect(rendered).not_to include("Upcase Membership")
     end
   end
 
@@ -35,6 +40,7 @@ describe 'promoted_catalogs/show.html.erb' do
     include MentorHelper
 
     before { view_stubs(signed_in?: false) }
+    before { view_stubs(current_user_has_active_subscription?: true) }
 
     it 'includes a sign in link' do
       assign_catalog

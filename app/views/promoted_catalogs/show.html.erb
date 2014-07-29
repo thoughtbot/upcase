@@ -1,37 +1,65 @@
 <%= content_for :additional_body_classes, 'prime-marketing' %>
 
-<div class="prime-signin">
-  <% if signed_in? %>
-    <%= link_to 'Account', my_account_path %> |
-    <%= link_to 'Sign out', sign_out_path, method: :delete %>
-  <% else %>
-    <%= link_to 'Sign in', sign_in_path %>
-  <% end %>
-</div>
+<%= render "shared/header" %>
 
 <section class="journey-headline">
-  <div class="logo">
-    <h1>
-      <%= image_tag('learn/learn-ralph.png') %>
-    </h1>
-  </div>
-  <h1>Become an expert level Rails developer with <%= t('shared.subscription.name') %>. Learn from one of the most prolific and well respected Rails consultancies in the world.<br /><%= link_to t('subscriptions.join_cta'), new_subscription_path %></h1>
+  <h1>
+    Sharpen your programming skills from the comfort of your own laptop.
+  </h1>
 </section>
 
 <section class="journey">
-  <section class="pitch center">
+  <section class="pitch left exclusive-content">
     <article>
       <figure id="bullet-1" class="journey-bullet">1.</figure>
-      <h2><span>Join <%= t('shared.subscription.name') %> to</span> Work with a mentor</h2>
-      <p>thoughtbot mentors will hold calls with you once a month to discuss whatever you like: code review, landing your first Rails job, salary negotiation, etc.</p>
+      <h2>Watch one, do one, teach one</h2>
+
+      <p>It often feels like "best practices" have a shelf-life of a few months
+      before being replaced by better ideas. Between Rails&rsquo; constant
+      changes and a never-ending stream of new gems and philosophies, it’s a
+      real challenge to keep up with the state of the art.</p>
+
+      <p>To help you stay sharp, we provide regular, exclusive screencasts on
+      intermediate and advanced topics such as Vim mastery, TDD, and
+      object-oriented design.</p>
+
+      <p>Watching isn't enough, though. Programmers need to program.  So, Upcase
+      provides peer-reviewed coding exercises that you complete using your local
+      development environment, submit with a <code>git push</code> and get your
+      solution reviewed by real humans (including thoughtbot folks).</p>
     </article>
-    <figure class="supporting-visual mentors">
-      <%= render partial: 'promoted_mentor', collection: @catalog.mentors, as: :mentor %>
+    <figure class="supporting-visual two-stacked">
+      <div>
+        <h3>Screencasts</h3>
+        <div class="figuregroup">
+          <%= render partial: 'promoted_screencast', collection: @catalog.screencasts, as: :screencast %>
+        </div>
+      </div>
+      <div>
+        <h3>Books</h3>
+        <div class="figuregroup">
+          <%= render partial: 'promoted_book', collection: @catalog.books, as: :book %>
+        </div>
+      </div>
+    </figure>
+    <figure class="supporting-visual">
+      <img src="http://images.thoughtbot.com/upcase/exercise-ui.png" />
+    </figure>
+  </section>
+  <section class="pitch center">
+    <article>
+      <figure id="bullet-2" class="journey-bullet">2.</figure>
+      <h2>Collaborate with thoughtbotters and other members</h2>
+      <p>Don&rsquo;t develop alone, communicate with thoughtbotters and other motivated professionals. Ask questions about workshops, books, or personal projects. Join interesting conversations.</p>
+    </article>
+    <figure class="supporting-visual two-screenshot">
+      <%= image_tag('learn/forum-2.png') %>
+      <%= image_tag('learn/forum-1.png') %>
     </figure>
   </section>
   <section class="pitch left enroll">
     <article>
-      <figure id="bullet-2" class="journey-bullet">2.</figure>
+      <figure id="bullet-3" class="journey-bullet">3.</figure>
       <h2>Enroll in premium, hands-on workshops</h2>
       <p>Our workshops are more than just video tutorials. You&rsquo;ll build real apps and communicate directly with a thoughtbot developer or designer. Begin an online workshop as soon as you sign up.</p>
     </article>
@@ -52,47 +80,12 @@
   </section>
   <section class="pitch center">
     <article>
-      <figure id="bullet-3" class="journey-bullet">3.</figure>
-      <h2>Collaborate with thoughtbotters and other members</h2>
-      <p>Don&rsquo;t develop alone, communicate with thoughtbotters and other motivated professionals. Ask questions about workshops, books, or personal projects. Join interesting conversations.</p>
-    </article>
-    <figure class="supporting-visual two-screenshot">
-      <%= image_tag('learn/forum-2.png') %>
-      <%= image_tag('learn/forum-1.png') %>
-    </figure>
-  </section>
-  <section class="pitch left exclusive-content">
-    <article>
       <figure id="bullet-4" class="journey-bullet">4.</figure>
-      <h2>Keep up with regular, exclusive content</h2>
-
-      <p>It often feels like "best practices" have a shelf-life of a few months
-      before being replaced by better ideas. Between Rails&rsquo; constant
-      changes and a never-ending stream of new gems and philosophies, it’s a
-      real challenge to keep up with the state of the art.</p>
-
-      <p>Stay on top of it by reading the source of the Upcase app itself,
-      watching the thoughtbot team contribute to it, reading our books (which
-      also come with high quality source code), and watching screencasts on
-      vim, development tools, and more.</p>
+      <h2><span>Work with a mentor</h2>
+      <p>thoughtbot mentors will hold calls with you once a month to discuss whatever you like: code review, landing your first Rails job, salary negotiation, etc.</p>
     </article>
-    <figure class="supporting-visual two-stacked">
-      <div>
-        <h3>Screencasts</h3>
-        <div class="figuregroup">
-          <%= render partial: 'promoted_screencast', collection: @catalog.screencasts, as: :screencast %>
-        </div>
-      </div>
-      <div>
-        <h3>Books</h3>
-        <div class="figuregroup">
-          <%= render partial: 'promoted_book', collection: @catalog.books, as: :book %>
-        </div>
-      </div>
-    </figure>
-    <figure class="supporting-visual two-screenshot">
-      <%= image_tag('learn/learn-github-preview.jpg') %>
-      <%= image_tag('learn/learn-github-preview-2.jpg') %>
+    <figure class="supporting-visual mentors">
+      <%= render partial: 'promoted_mentor', collection: @catalog.mentors, as: :mentor %>
     </figure>
   </section>
   <section class="pitch center final">
