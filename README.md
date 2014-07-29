@@ -60,8 +60,8 @@ have been updated to take advantage of spring if it's found.
 
 ### Continuous Integration
 
-CI is hosted with Travis. Commits pushed to feature branches are not run
-automatically, until a pull request is made to master.
+CI is hosted with Circle. The build is run automatically whenever any branch is
+updated on Github.
 
 ### Ongoing
 
@@ -125,27 +125,25 @@ To test integration with AWS S3, set the following environment variables:
 
 ## Deployment
 
-1. Install the Heroku toolbelt.
+Circle CI deploys to staging automatically when a build passes on master. Once
+your changes have been verified in a browser on staging, you can deploy to
+production:
 
-        $ brew install heroku-toolbelt
+    git push production master
+    heroku run rake db:migrate --remote production
+    heroku restart --remote production
 
-2. Deploy to staging.
+## Flushing the caches
 
-        $ rake deploy:staging
+Topics and videos are cached for 12 hours. If you need to flush them, you can.
 
-3. Deploy to production.
+Staging:
 
-        $ rake deploy:production
+    heroku run rake heroku:flush_cache -r staging
 
-4. Manually invalidate the 12 hour index and topics/videos cache (optional).
+Production:
 
-        $ heroku run rake heroku:flush_cache -r staging
-        $ heroku run rake heroku:flush_cache -r production
-
-5. Check the status of running web and background processes.
-
-        $ heroku ps -r staging
-        $ heroku ps -r production
+    heroku run rake heroku:flush_cache -r production
 
 ## Sending email on staging
 

@@ -1,0 +1,7 @@
+deployment:
+  staging:
+    branch: master
+    commands:
+      - git push -f git@heroku.com:learn-staging.git $CIRCLE_SHA1:master
+      - heroku run rake db:migrate --app learn-staging
+      - heroku restart --app learn-staging
