@@ -46,7 +46,7 @@ module ApplicationHelper
   end
 
   def forum_url(suffix=nil)
-    "http://forum.thoughtbot.com/#{suffix}"
+    "http://forum.upcase.com/#{suffix}"
   end
 
   def blog_articles_url(topic)
