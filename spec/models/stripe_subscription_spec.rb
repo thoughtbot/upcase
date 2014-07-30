@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe StripePayment do
-  context '#place' do
+describe StripeSubscription do
+  context '#create' do
     it "updates the customer's plan" do
       customer = stub_existing_customer
       checkout = build(:checkout)
-      payment = StripePayment.new(checkout)
+      subscription = StripeSubscription.new(checkout)
 
-      payment.place
+      subscription.create
 
       expect(customer).
         to have_received(:update_subscription).
@@ -18,9 +18,9 @@ describe StripePayment do
       customer = stub_existing_customer
       checkout = build(:checkout)
       checkout.quantity = 5
-      payment = StripePayment.new(checkout)
+      subscription = StripeSubscription.new(checkout)
 
-      payment.place
+      subscription.create
 
       expect(customer).
         to have_received(:update_subscription).
@@ -32,9 +32,9 @@ describe StripePayment do
       coupon = stub("coupon", amount_off: 25)
       Stripe::Coupon.stubs(:retrieve).returns(coupon)
       checkout = build(:checkout, stripe_coupon_id: "25OFF")
-      payment = StripePayment.new(checkout)
+      subscription = StripeSubscription.new(checkout)
 
-      payment.place
+      subscription.create
 
       expect(customer).
         to have_received(:update_subscription).
@@ -44,9 +44,9 @@ describe StripePayment do
     it "creates a customer if one isn't assigned" do
       stub_stripe_customer(customer_id: "stripe")
       checkout = build(:checkout, user: create(:user))
-      payment = StripePayment.new(checkout)
+      subscription = StripeSubscription.new(checkout)
 
-      payment.place
+      subscription.create
 
       checkout.stripe_customer_id.should == "stripe"
     end
@@ -55,9 +55,9 @@ describe StripePayment do
       stub_stripe_customer
       checkout = build(:checkout)
       checkout.stripe_customer_id = 'original'
-      payment = StripePayment.new(checkout)
+      subscription = StripeSubscription.new(checkout)
 
-      payment.place
+      subscription.create
 
       checkout.stripe_customer_id.should == 'original'
     end
@@ -68,9 +68,9 @@ describe StripePayment do
         stubs(:create).
         raises(Stripe::StripeError, "Your card was declined")
       checkout = build(:checkout)
-      payment = StripePayment.new(checkout)
+      subscription = StripeSubscription.new(checkout)
 
-      result = payment.place
+      result = subscription.create
 
       result.should be_false
       checkout.errors[:base].should include(
@@ -83,11 +83,11 @@ describe StripePayment do
     it "saves the stripe customer id on the user" do
       stub_stripe_customer customer_id: 'stripe'
       checkout = build(:checkout)
-      payment = StripePayment.new(checkout)
-      payment.place
+      subscription = StripeSubscription.new(checkout)
+      subscription.create
       user = create(:user, stripe_customer_id: nil)
 
-      payment.update_user(user)
+      subscription.update_user(user)
 
       user.reload.stripe_customer_id.should eq "stripe"
     end

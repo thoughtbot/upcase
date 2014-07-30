@@ -28,8 +28,8 @@ describe Checkout do
     end
 
     it "does not save with a bad credit card" do
-      payment = stub("payment", place: false)
-      StripePayment.stubs(:new).returns(payment)
+      stripe_subscription = stub("stripe_subscription", create: false)
+      StripeSubscription.stubs(:new).returns(stripe_subscription)
       checkout = build(:checkout)
 
       expect(checkout.save).to be_false

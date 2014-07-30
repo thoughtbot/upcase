@@ -1,9 +1,9 @@
-class StripePayment
+class StripeSubscription
   def initialize(checkout)
     @checkout = checkout
   end
 
-  def place
+  def create
     rescue_stripe_exception do
       ensure_customer_exists
       update_subscription
