@@ -11,9 +11,9 @@ module LicensesHelper
     elsif starts_on.year != ends_on.year
       "#{starts_on.to_s(:simple)}-#{ends_on.to_s(:simple)}"
     elsif starts_on.month != ends_on.month
-      "#{starts_on.strftime('%B %d')}-#{ends_on.to_s(:simple)}"
+      "#{starts_on.strftime("%B %d")}-#{ends_on.to_s(:simple)}"
     else
-      "#{starts_on.strftime('%B %d')}-#{ends_on.strftime('%d, %Y')}"
+      "#{starts_on.strftime("%B %d")}-#{ends_on.strftime("%d, %Y")}"
     end
   end
 end
