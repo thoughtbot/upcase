@@ -45,6 +45,7 @@ Workshops::Application.routes.draw do
     resources :licenses, only: [:create]
   end
   get '/products/:id/purchases/:lookup' => redirect("/purchases/%{lookup}")
+  get '/purchases/:lookup' => 'pages#show', id: 'purchase-show'
 
   resources :books, only: :show, controller: 'products' do
     resources :licenses, only: [:create]
