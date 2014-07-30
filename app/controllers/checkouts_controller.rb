@@ -84,6 +84,6 @@ class CheckoutsController < ApplicationController
   end
 
   def using_existing_card?
-    params[:use_existing_card] == 'on'
+    params[:use_existing_card] == "on"
   end
 end
