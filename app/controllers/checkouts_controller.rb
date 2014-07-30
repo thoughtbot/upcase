@@ -25,7 +25,7 @@ class CheckoutsController < ApplicationController
       redirect_to(
         success_url,
         notice: t(
-          'checkout.flashes.success',
+          "checkout.flashes.success",
           name: @checkout.subscribeable_name
         ),
         flash: {
