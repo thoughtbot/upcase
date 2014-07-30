@@ -7,9 +7,9 @@
 
 <div class="text-box-wrapper">
   <section class="text-box" id="videos">
-    <%= render 'workshops/dates', offering: @offering, license: @license %>
-    <%= render 'workshops/videos', offering: @offering, license: @license %>
+    <%= render 'workshops/dates', offering: @offering, license: @offering.license %>
+    <%= render 'workshops/videos', offering: @offering %>
   </section>
 </div>
 
-<%= render 'workshops/aside', offering: @offering, license: @license %>
+<%= render 'workshops/aside', offering: @offering %>

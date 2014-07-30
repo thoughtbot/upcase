@@ -1,10 +1,10 @@
 <% if signed_in? %>
-  <% unless current_user_license_of(product) %>
+  <% unless offering.user_has_license? %>
     <div class="license">
-      <% if included_in_current_users_plan?(product) %>
-        <%= render "licenses/included", product: product %>
+      <% if included_in_current_users_plan?(offering) %>
+        <%= render "licenses/included", offering: offering %>
       <% else %>
-        <%= render "licenses/not_included", product: product %>
+        <%= render "licenses/not_included", offering: offering %>
       <% end %>
     </div>
   <% end %>

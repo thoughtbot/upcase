@@ -1,5 +1,5 @@
 <% content_for :additional_content_classes, 'fullscreen' %>
-<% if @video.watchable.collection? %>
+<% if @offering.collection? %>
   <% content_for :additional_header_links do %>
     <li class="all-videos"><%= link_to 'All Videos', @video.watchable %></li>
   <% end %>
