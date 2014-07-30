@@ -2,20 +2,18 @@
   <%= link_to '&larr; All Videos'.html_safe, '/the-weekly-iteration' %>
 <% end %>
 
-<% cache(@video) do %>
-  <div class="text-box-wrapper">
-    <div class="text-box">
-      <%= render @video.preview, title: @video.title %>
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <%= render @video.preview, title: @video.title %>
 
-      <section class='video-notes'>
-        <h3>Notes</h3>
-        <%= raw(@video.notes_html) %>
-      </section>
-    </div>
+    <section class='video-notes'>
+      <h3>Notes</h3>
+      <%= raw(@video.notes_html) %>
+    </section>
   </div>
+</div>
 
-  <aside>
-    <%= render "products/license", product: @video.watchable %>
-    <%= render 'products/terms', product: @video.watchable %>
-  </aside>
-<% end %>
+<aside>
+  <%= render "products/license", offering: @offering %>
+  <%= render 'products/terms', offering: @offering %>
+</aside>

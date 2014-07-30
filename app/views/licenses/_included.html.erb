@@ -1,11 +1,11 @@
 <%= link_to(
-  [product, :licenses],
+  [offering, :licenses],
   class: "license-button button free-with-prime",
   method: :post
 ) do %>
-  <% if product.collection? %>
-    <%= t "#{product.offering_type}.checkout_cta_for_collection" %>
+  <% if offering.collection? %>
+    <%= t "#{offering.offering_type}.checkout_cta_for_collection" %>
   <% else %>
-    <%= t "#{product.offering_type}.checkout_cta" %>
+    <%= t "#{offering.offering_type}.checkout_cta" %>
   <% end %>
 <% end %>
