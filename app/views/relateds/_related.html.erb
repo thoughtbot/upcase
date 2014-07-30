@@ -11,7 +11,7 @@
   <ul class='related-products related-workshops'>
     <% if current_user && !current_user.has_active_subscription? %>
       <li class="prime">
-        <%= link_to subscribe_path do %>
+        <%= link_to root_path do %>
           <span class="icon"><%= t('shared.subscriptions.icon') %></span>
           <hgroup>
             <h4>Access all of our products by subscribing to <%= t('shared.subscription.name') %></h4>

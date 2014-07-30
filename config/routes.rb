@@ -3,7 +3,7 @@ Workshops::Application.routes.draw do
 
   mount RailsAdmin::Engine => "/admin", :as => "admin"
 
-  root to: "homes#show"
+  root to: "subscriptions#new"
 
   get "/api/v1/me.json" => "api/v1/users#show", as: :resource_owner
   namespace :api do
@@ -153,7 +153,6 @@ Workshops::Application.routes.draw do
 
   get "/pages/*id" => "pages#show", format: false
   get "/prime" => redirect("/subscribe")
-  get "/subscribe" => "promoted_catalogs#show", as: :subscribe
   get "/privacy" => "pages#show", as: :privacy, id: "privacy"
   get "/terms" => "pages#show", as: :terms, id: "terms"
   get "/directions" => "pages#show", as: :directions, id: "directions"

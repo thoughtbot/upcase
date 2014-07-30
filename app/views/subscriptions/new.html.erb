@@ -1,18 +1,7 @@
-<% if signed_in? %>
-  <%= link_to 'account', my_account_path, class: 'prime-signin' %>
-<% else %>
-  <%= link_to 'sign in', sign_in_path, class: 'prime-signin' %>
-<% end %>
-
-<section class="journey-headline">
-  <div class="logo">
-    <h1><%= image_tag('learn/learn-ralph.png') %></h1>
-    <h2>Get access to Upcase</h2>
-  </div>
-</section>
+<%= render "shared/header" %>
 
 <%= render 'plans', catalog: @catalog %>
 
 <div class="footer-wrapper">
-  <%= render 'promoted_catalogs/footer' %>
+  <%= render "visitor_footer" %>
 </div>
