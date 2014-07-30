@@ -6,7 +6,6 @@
 //= require prettyprint
 //= require jquery.jsPlumb-1.4.0-all-min
 //= require masonry.min.js
-//= require prime
 //= require plans
 //= require topics
 //= require checkout

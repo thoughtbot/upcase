@@ -1,8 +1,11 @@
 class SubscriptionsController < ApplicationController
   def new
-    @catalog = Catalog.new
-
-    render :layout => 'empty-body'
+    if signed_in?
+      redirect_to dashboard_path
+    else
+      @catalog = Catalog.new
+      render layout: "empty-body"
+    end
   end
 
   def edit

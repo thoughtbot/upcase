@@ -1,6 +1,6 @@
 <% if !current_user_has_active_subscription? %>
   <section class="prime">
-    <%= link_to "Subscribe to #{t('shared.subscription.name')} to access all of these products", subscribe_path, class: 'button' %>
+    <%= link_to "Subscribe to #{t('shared.subscription.name')} to access all of these products", root_path, class: 'button' %>
   </section>
 <% end %>
 
