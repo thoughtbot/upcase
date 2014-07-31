@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe "teams/invitations/index", type: :view do
   it "renders no invitations" do
-    assign(:team, build(:team))
+    assign(:team, build_stubbed(:team))
 
     render
 
@@ -11,8 +11,8 @@ describe "teams/invitations/index", type: :view do
 
   it "renders pending invitations" do
     email = "pat@thoughtbot.com"
-    invitation = build(:invitation, email: email)
-    assign(:team, build(:team, invitations: [invitation]))
+    invitation = build_stubbed(:invitation, email: email)
+    assign(:team, build_stubbed(:team, invitations: [invitation]))
 
     render
 
@@ -22,8 +22,8 @@ describe "teams/invitations/index", type: :view do
 
   it "renders accepted invitations" do
     email = "pat@thoughtbot.com"
-    invitation = build(:invitation, :accepted, email: email)
-    assign(:team, build(:team, invitations: [invitation]))
+    invitation = build_stubbed(:invitation, :accepted, email: email)
+    assign(:team, build_stubbed(:team, invitations: [invitation]))
 
     render
 
