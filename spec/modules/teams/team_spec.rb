@@ -69,6 +69,22 @@ module Teams
       end
     end
 
+    describe "#invitations_remaining" do
+      it "returns the difference between users and max users" do
+        team = create(:team, max_users: 5)
+        create_list(:user, 3, team: team)
+
+        expect(team.invitations_remaining).to eq 2
+      end
+
+      it "never returns negative" do
+        team = create(:team, max_users: 2)
+        create_list(:user, 4, team: team)
+
+        expect(team.invitations_remaining).to eq 0
+      end
+    end
+
     def stub_team_fulfillment(team, user)
       checkout = build_stubbed(:checkout, subscribeable: team.subscription.plan)
       stub_subscription_fulfillment(checkout, user)

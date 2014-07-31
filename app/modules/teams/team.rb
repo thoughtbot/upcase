@@ -22,17 +22,25 @@ module Teams
     end
 
     def has_users_remaining?
-      users.count < max_users
+      users_count < max_users
     end
 
     def has_invited_users?
       invitations.any?
     end
 
+    def invitations_remaining
+      [0, max_users - users_count].max
+    end
+
     private
 
     def fulfillment_for(user)
       SubscriptionFulfillment.new(user, subscription.plan)
+    end
+
+    def users_count
+      users.count
     end
   end
 end
