@@ -5,6 +5,7 @@ module Teams
     belongs_to :team_plan
 
     has_many :users, dependent: :nullify
+    has_many :invitations
 
     validates :name, presence: true
 
@@ -22,6 +23,10 @@ module Teams
 
     def has_users_remaining?
       users.count < max_users
+    end
+
+    def has_invited_users?
+      invitations.any?
     end
 
     private

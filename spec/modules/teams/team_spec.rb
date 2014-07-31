@@ -55,6 +55,20 @@ module Teams
       end
     end
 
+    describe "#has_invited_users?" do
+      it "returns false when the team has no invitations" do
+        team = build(:team, invitations: [])
+
+        expect(team).not_to have_invited_users
+      end
+
+      it "returns true when the team has invitations" do
+        team = build(:team, invitations: build_list(:invitation, 3))
+
+        expect(team).to have_invited_users
+      end
+    end
+
     def stub_team_fulfillment(team, user)
       checkout = build_stubbed(:checkout, subscribeable: team.subscription.plan)
       stub_subscription_fulfillment(checkout, user)

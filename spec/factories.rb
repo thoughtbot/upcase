@@ -168,6 +168,11 @@ FactoryGirl.define do
     after :stub do |invitation|
       invitation.code = 'abc'
     end
+
+    trait :accepted do
+      recipient factory: :user
+      accepted_at { Time.now }
+    end
   end
 
   factory :acceptance, class: 'Teams::Acceptance' do

@@ -13,7 +13,7 @@ Workshops::Application.routes.draw do
   end
 
   namespace :teams do
-    resources :invitations, only: [:create] do
+    resources :invitations, only: [:index, :create] do
       resources :acceptances, only: [:new, :create]
     end
 
