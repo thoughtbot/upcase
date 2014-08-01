@@ -21,9 +21,6 @@ en:
     show:
       contact_your_mentor: "Contact your mentor, %{mentor_name}"
 
-  account:
-    view_licenses: 'View all →'
-
   individual_plans:
     mentoring: '1-1 Mentoring'
     workshops: 'Hands-On Workshops'

@@ -218,16 +218,6 @@ describe User do
     end
   end
 
-  describe '#ordered_licenses' do
-    it 'returns licenses ordered by creation date' do
-      user = create(:user)
-      license_two = create(:license, user: user, created_at: 5.minutes.ago)
-      license_one = create(:license, user: user, created_at: 1.minutes.ago)
-
-      expect(user.ordered_licenses).to eq([license_one, license_two])
-    end
-  end
-
   describe '#credit_card' do
     it 'returns nil if there is no stripe_customer_id' do
       user = create(:user, stripe_customer_id: nil)

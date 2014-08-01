@@ -9,27 +9,6 @@ feature "Account Settings" do
     expect_to_see_my_subscription
   end
 
-  scenario "user views licenses" do
-    user = create(:user)
-    create_list(:license, 4, user: user, created_at: 6.minutes.ago)
-    license_two = create(:license, user: user, created_at: 5.minutes.ago)
-    license_one = create(:license, user: user, created_at: 1.minutes.ago)
-
-    visit edit_my_account_path(as: user)
-
-    expect_to_see_my_licenses(user)
-    expect(license_one.licenseable_name).
-      to appear_before(license_two.licenseable_name)
-  end
-
-  scenario "user with no licenses" do
-    user = create(:user)
-
-    visit edit_my_account_path(as: user)
-
-    expect(page).not_to have_css "ol.licenses"
-  end
-
   scenario "user edits account information" do
     user = create(:user, name: "Test User")
 
@@ -56,7 +35,7 @@ feature "Account Settings" do
     expect(field_labeled("Address 1").value).to eq "New Address"
   end
 
-  private 
+  private
 
   def expect_to_see_my_subscription
     expect(page).to have_css("ol.subscription li")

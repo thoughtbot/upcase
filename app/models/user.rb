@@ -21,10 +21,6 @@ class User < ActiveRecord::Base
       select(&:has_active_subscription?)
   end
 
-  def ordered_licenses
-    licenses.order('created_at DESC')
-  end
-
   def first_name
     name.split(" ").first
   end
