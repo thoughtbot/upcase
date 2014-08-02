@@ -2,6 +2,7 @@ require "spec_helper"
 
 feature "User views show" do
   scenario "with a subscription" do
+    create(:basic_plan)
     user = create(:subscriber)
     show = create(:show)
     published_video = create(:video, :published, watchable: show)

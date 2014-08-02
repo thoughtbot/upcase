@@ -1,8 +1,8 @@
 <% content_for :head do %>
-  <%= auto_discovery_link_tag(:rss, weekly_iteration_url(format: 'rss')) %>
+  <%= auto_discovery_link_tag(:rss, weekly_iteration_url(format: "rss")) %>
 <% end %>
 
-<%= render 'offerings/meta', offering: @show %>
+<%= render "offerings/meta", offering: @offering %>
 
 <div class="text-box-wrapper">
   <div class="text-box">
@@ -11,10 +11,10 @@
     </p>
 
     <section id="videos">
-      <% @show.published_videos.ordered.each do |video| %>
+      <% @offering.published_videos.recently_published_first.each do |video| %>
         <%= content_tag_for :div, video do %>
           <%= link_to video_path(video) do %>
-            <%= render 'videos/thumbnail', clip: video.clip, title: video.title %>
+            <%= render "videos/thumbnail", clip: video.clip, title: video.title %>
           <% end %>
         <% end %>
       <% end %>
@@ -23,6 +23,6 @@
 </div>
 
 <aside>
-  <%= render 'subscribe', plan: @plan, show: @show %>
-  <%= render 'products/terms', offering: @show %>
+  <%= render "subscribe", plan: @plan, offering: @offering %>
+  <%= render "products/terms", offering: @offering %>
 </aside>

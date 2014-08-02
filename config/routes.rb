@@ -58,11 +58,10 @@ Workshops::Application.routes.draw do
     resources :licenses, only: [:create]
   end
 
-  resources :shows, only: :show, controller: "products" do
+  resources :shows, only: :show do
     resources :licenses, only: [:create]
   end
-
-  get "/the-weekly-iteration" => "weekly_iterations#show", as: :weekly_iteration
+  get "/the-weekly-iteration" => "shows#show", as: :weekly_iteration, id: 23
 
   resources :licenses, only: [:index]
   resources :videos, only: [:show]

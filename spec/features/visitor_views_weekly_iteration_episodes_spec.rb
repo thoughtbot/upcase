@@ -4,7 +4,7 @@ feature 'Visitor' do
   scenario 'views Weekly Iteration episodes' do
     show_name = Show::THE_WEEKLY_ITERATION
     show = create(:show, name: show_name)
-    create(:individual_plan, sku: IndividualPlan::PRIME_29_SKU)
+    create(:basic_plan)
     published_video_title = 'Unfriendly Nil'
     published_video_notes = 'Nil is contagious.'
     create(
@@ -17,7 +17,7 @@ feature 'Visitor' do
     )
     video = create(:video, watchable: show)
 
-    visit '/the-weekly-iteration'
+    visit show_url(show)
 
     expect(page).to have_content(show_name)
 
