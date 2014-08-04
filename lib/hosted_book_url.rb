@@ -24,7 +24,9 @@ class HostedBookUrl
   private
 
   def url_for_format(format)
-    s3_files["#{book.filename}.#{format}"].url_for(:read, expires: 10.minutes).to_s
+    s3_files["#{book.filename}/#{book.filename}.#{format}"].
+      url_for(:read, expires: 10.minutes).
+      to_s
   end
 
   def s3_bucket_name
