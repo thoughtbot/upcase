@@ -33,14 +33,14 @@ describe Workshop do
       Announcement.stubs :current
       workshop = create(:workshop)
       workshop.announcement
-      Announcement.should have_received(:current)
+      expect(Announcement).to have_received(:current)
     end
   end
 
   describe '#to_param' do
     it 'returns the id and parameterized name' do
       workshop = create(:workshop)
-      workshop.to_param.should == "#{workshop.id}-#{workshop.name.parameterize}"
+      expect(workshop.to_param).to eq "#{workshop.id}-#{workshop.name.parameterize}"
     end
   end
 
@@ -134,7 +134,7 @@ describe Workshop do
 
       workshop.fulfill(license, user)
 
-      fulfillment.should have_received(:fulfill)
+      expect(fulfillment).to have_received(:fulfill)
     end
   end
 

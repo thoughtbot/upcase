@@ -25,7 +25,7 @@ describe CheckoutInfoCopier, "#copy_info_to_user" do
   context "with address information" do
     it "saves the address to the user" do
       user = create(:user)
-      user.address1.should be_blank
+      expect(user.address1).to be_blank
       checkout = build(
         :checkout,
         user: user,

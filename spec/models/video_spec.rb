@@ -13,7 +13,7 @@ describe Video do
     it 'returns videos in order by position' do
       video1 = create(:video, position: 2)
       video2 = create(:video, position: 1)
-      Video.ordered.should == [video2, video1]
+      expect(Video.ordered).to eq [video2, video1]
     end
   end
 

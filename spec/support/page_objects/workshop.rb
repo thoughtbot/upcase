@@ -29,6 +29,14 @@ module PageObjects
       end
     end
 
+    def has_no_questions?
+      questions.empty?
+    end
+
+    def has_no_answers?
+      answers.empty?
+    end
+
     def has_answers?(*answers)
       answers.reduce do |result, answer|
         within '#faq' do

@@ -48,7 +48,7 @@ describe StripeSubscription do
 
       subscription.create
 
-      checkout.stripe_customer_id.should == "stripe"
+      expect(checkout.stripe_customer_id).to eq "stripe"
     end
 
     it "doesn't create a customer if one is already assigned" do
@@ -59,7 +59,7 @@ describe StripeSubscription do
 
       subscription.create
 
-      checkout.stripe_customer_id.should == 'original'
+      expect(checkout.stripe_customer_id).to eq "original"
     end
 
     it "it adds an error message with a bad card" do
@@ -72,8 +72,8 @@ describe StripeSubscription do
 
       result = subscription.create
 
-      result.should be_false
-      checkout.errors[:base].should include(
+      expect(result).to be_false
+      expect(checkout.errors[:base]).to include(
         "There was a problem processing your credit card, your card was declined"
       )
     end
@@ -89,7 +89,7 @@ describe StripeSubscription do
 
       subscription.update_user(user)
 
-      user.reload.stripe_customer_id.should eq "stripe"
+      expect(user.reload.stripe_customer_id).to eq "stripe"
     end
   end
 
