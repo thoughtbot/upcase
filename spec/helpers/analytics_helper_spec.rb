@@ -5,7 +5,7 @@ describe AnalyticsHelper do
     it "is true when ENV['ANALYTICS'] is present" do
       ENV['ANALYTICS'] = 'anything'
 
-      expect(analytics?).to be_true
+      expect(helper).to be_analytics
 
       ENV['ANALYTICS'] = nil
     end
@@ -13,7 +13,7 @@ describe AnalyticsHelper do
     it "is false when ENV['ANALYTICS'] is not present" do
       ENV['ANALYTICS'] = nil
 
-      expect(analytics?).to be_false
+      expect(helper).to_not be_analytics
     end
   end
 

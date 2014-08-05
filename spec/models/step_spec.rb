@@ -5,14 +5,14 @@ describe Step do
     step = Step.new('name' => 'Test')
     step2 = Step.new('name' => 'Test')
 
-    expect(step == step2).to be_true
+    expect(step == step2).to be true
   end
 
   it 'is not equal to a step with a different name' do
     step = Step.new('name' => 'Test')
     step2 = Step.new('name' => 'Different')
 
-    expect(step == step2).to be_false
+    expect(step == step2).to be false
   end
 
   describe '#resources' do

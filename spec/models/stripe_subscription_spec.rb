@@ -72,7 +72,7 @@ describe StripeSubscription do
 
       result = subscription.create
 
-      expect(result).to be_false
+      expect(result).to be false
       expect(checkout.errors[:base]).to include(
         "There was a problem processing your credit card, your card was declined"
       )

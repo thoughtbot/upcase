@@ -160,7 +160,7 @@ describe Cancellation do
       subscription = build_stubbed(:subscription, plan: subscribed_plan)
       cancellation = Cancellation.new(subscription)
 
-      expect(cancellation.can_downgrade_instead?).to be_true
+      expect(cancellation).to be_can_downgrade_instead
     end
 
     it 'returns true if the subscribed plan is not the downgrade plan' do
@@ -168,7 +168,7 @@ describe Cancellation do
       subscription = build_stubbed(:subscription, plan: downgrade_plan)
       cancellation = Cancellation.new(subscription)
 
-      expect(cancellation.can_downgrade_instead?).to be_false
+      expect(cancellation).to_not be_can_downgrade_instead
     end
   end
 

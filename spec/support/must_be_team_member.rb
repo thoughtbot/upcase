@@ -1,4 +1,4 @@
-share_examples_for 'must be team member' do
+shared_examples_for "must be team member" do
   it 'allows a user with a team' do
     team = build_stubbed(:team)
     user = build_stubbed(:user, team: team)

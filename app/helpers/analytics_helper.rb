@@ -1,6 +1,6 @@
 module AnalyticsHelper
   def analytics?
-    ENV['ANALYTICS']
+    ENV["ANALYTICS"].present?
   end
 
   def analytics_hash(user = current_user)
