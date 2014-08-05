@@ -46,7 +46,7 @@ describe Product do
 
       product.fulfill(license, user)
 
-      fulfillment.should have_received(:fulfill)
+      expect(fulfillment).to have_received(:fulfill)
     end
   end
 end

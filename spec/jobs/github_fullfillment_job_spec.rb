@@ -9,7 +9,7 @@ describe GithubFulfillmentJob do
 
     GithubFulfillmentJob.new(3, "gabebw").perform
 
-    client.should have_received(:add_team_member).with(3, "gabebw")
+    expect(client).to have_received(:add_team_member).with(3, "gabebw")
   end
 
   [Octokit::NotFound, Net::HTTPBadResponse].each do |error_class|
@@ -22,7 +22,7 @@ describe GithubFulfillmentJob do
       expect { GithubFulfillmentJob.new(3, "gabebw", license_id).perform }.
         to raise_error(error_class)
 
-      LicenseMailer.should have_received(:fulfillment_error).
+      expect(LicenseMailer).to have_received(:fulfillment_error).
         with(instance_of(License), "gabebw")
     end
 

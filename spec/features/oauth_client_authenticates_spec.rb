@@ -77,6 +77,6 @@ feature 'An OAuth client authenticates', js: true do
 
   def verify_signed_in_user_details(json, checked_user)
     user = json['user']
-    user['email'].should eq checked_user.email
+    expect(user["email"]).to eq checked_user.email
   end
 end

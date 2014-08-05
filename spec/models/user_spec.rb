@@ -209,7 +209,7 @@ describe User do
       user.admin = true
       user.save
 
-      user.reload.should be_admin
+      expect(user.reload).to be_admin
     end
 
     def create_user_without_cached_password(attributes)

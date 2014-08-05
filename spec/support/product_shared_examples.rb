@@ -14,7 +14,7 @@ shared_examples "a class inheriting from Product" do
       Announcement.stubs :current
       product = create_product
       product.announcement
-      Announcement.should have_received(:current)
+      expect(Announcement).to have_received(:current)
     end
   end
 
