@@ -59,7 +59,7 @@ describe StripeSubscription do
 
       subscription.create
 
-      expect(checkout.stripe_customer_id).to eq 'original'
+      expect(checkout.stripe_customer_id).to eq "original"
     end
 
     it "it adds an error message with a bad card" do

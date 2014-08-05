@@ -40,7 +40,7 @@ describe Trail do
 
       trail.import
 
-      expect(topic.reload.summary).to eq 'Description of Git'
+      expect(topic.reload.summary).to eq "Description of Git"
     end
 
     it "populates the topic's name with the trail's name" do
@@ -49,7 +49,7 @@ describe Trail do
 
       trail.import
 
-      expect(topic.reload.name).to eq 'Git'
+      expect(topic.reload.name).to eq "Git"
     end
 
     it 'leaves the existing trail map alone and notifies Airbrake when there is a json error' do
@@ -65,7 +65,7 @@ describe Trail do
 
       expect(Airbrake).to have_received(:notify).with(exception)
       expect(trail.trail_map["old"]).to eq true
-      expect(topic.summary).to eq 'old summary'
+      expect(topic.summary).to eq "old summary"
     end
 
     it 'does not update trail map if there is a non-200 http response' do
@@ -76,8 +76,8 @@ describe Trail do
       trail.import
 
       topic.reload
-      expect(topic.summary).to eq 'old summary'
-      expect(topic.name).to eq 'old name'
+      expect(topic.summary).to eq "old summary"
+      expect(topic.name).to eq "old name"
     end
   end
 
@@ -103,7 +103,7 @@ describe Trail do
     it 'returns the correct url based on slug' do
       trail = Trail.new
       trail.slug = 'ruby-on-rails'
-      expect(trail.contribute_url).to eq 'https://github.com/thoughtbot/trail-map/blob/master/trails/ruby-on-rails.json'
+      expect(trail.contribute_url).to eq "https://github.com/thoughtbot/trail-map/blob/master/trails/ruby-on-rails.json"
     end
   end
 

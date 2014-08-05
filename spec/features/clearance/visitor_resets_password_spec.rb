@@ -31,7 +31,7 @@ feature 'Visitor resets password' do
   end
 
   def page_should_display_change_password_message
-    expect(page).to have_content I18n.t('passwords.create.description')
+    expect(page).to have_content I18n.t("passwords.create.description")
   end
 
   def mailer_should_have_delivery(recipient, subject, body)

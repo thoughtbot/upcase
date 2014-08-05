@@ -6,12 +6,12 @@ describe Invoice do
       find_all_by_stripe_customer_id(FakeStripe::CUSTOMER_ID)
 
     expect(invoices.length).to eq 1
-    expect(invoices.first.stripe_invoice_id).to eq 'in_1s4JSgbcUaElzU'
+    expect(invoices.first.stripe_invoice_id).to eq "in_1s4JSgbcUaElzU"
   end
 
   it 'does not find invoices with a blank customer' do
-    expect(Invoice.find_all_by_stripe_customer_id(' ').length).to eq 0
-    expect(Invoice.find_all_by_stripe_customer_id('').length).to eq 0
+    expect(Invoice.find_all_by_stripe_customer_id(" ").length).to eq 0
+    expect(Invoice.find_all_by_stripe_customer_id("").length).to eq 0
     expect(Invoice.find_all_by_stripe_customer_id(nil).length).to eq 0
   end
 
@@ -48,7 +48,7 @@ describe Invoice do
     end
 
     it 'returns the name of the discount from stripe' do
-      expect(invoice.discount_name).to eq 'railsconf'
+      expect(invoice.discount_name).to eq "railsconf"
     end
 
     it 'returns the amount of the discount from stripe' do
@@ -116,7 +116,7 @@ describe Invoice do
     end
 
     it 'returns the proper partial path' do
-      expect(invoice.to_partial_path).to eq 'subscriber/invoices/invoice'
+      expect(invoice.to_partial_path).to eq "subscriber/invoices/invoice"
     end
   end
 

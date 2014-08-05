@@ -20,7 +20,7 @@ describe Topic do
     end
 
     it 'generates a stripped, url encoded slug based on name' do
-      expect(@topic.slug).to eq 'test+driven+development'
+      expect(@topic.slug).to eq "test+driven+development"
     end
   end
 
@@ -33,7 +33,7 @@ describe Topic do
 
     it 'returns the top 20 featured topics' do
       expect(Topic.top.count).to eq 20
-      expect(Topic.top.all? {|topic| topic.count >= 5 }).to be
+      expect(Topic.top.all? { |topic| topic.count >= 5 }).to be
     end
   end
 

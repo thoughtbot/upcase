@@ -49,7 +49,7 @@ describe InvoiceNotifier do
 
   def customer_should_receive_receipt_email(invoice)
     email = ActionMailer::Base.deliveries.first
-    expect(email.subject).to include('receipt')
+    expect(email.subject).to include("receipt")
     expect(email.to).to eq [invoice.user_email]
   end
 end

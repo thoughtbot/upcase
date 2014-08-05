@@ -13,7 +13,9 @@ describe TopicsHelper, '#format_content' do
     content   = 'On the new learn homepage, the topic excerpts are too long. It would be additionally great to add a function into the view that controls the numbers of words present, so a designer can fool with it.'
     expected  = "On the new learn homepage, the topic excerpts are too long. It would be additionally great to add a function into the view that#{ellipsis}"
     expect(helper.format_content(content)).to eq expected
-    expect(helper.format_content(content, length: 9, omission: "...")).to eq "On the..."
+    expect(helper.format_content(content, length: 9, omission: "...")).to eq(
+      "On the..."
+    )
   end
 
   it 'does not include an ellipsis if the content is short' do
