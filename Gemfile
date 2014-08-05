@@ -66,7 +66,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'foreman', '0.46.0'
   gem 'pry-rails'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.99.0'
 end
 
 group :production, :staging do
@@ -88,7 +88,7 @@ group :test do
   gem 'capybara-webkit'
   gem 'codeclimate-test-reporter', require: nil
   gem 'database_cleaner'
-  gem 'email_spec', '1.2.1'
+  gem 'email_spec'
   gem 'factory_girl_rails'
   gem 'launchy'
   gem 'selenium-webdriver'

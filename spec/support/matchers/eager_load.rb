@@ -20,6 +20,10 @@ module EagerLoadMatcher
         "Queries:\n#{@output.third.join("\n")}"
     end
 
+    def supports_block_expectations?
+      true
+    end
+
     private
 
     def trace_queries(&block)

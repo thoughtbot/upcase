@@ -30,13 +30,13 @@ describe Offering do
       user = create(:user)
       offering = Offering.new(create(:product), user)
 
-      expect(offering.user_has_license?).to be_false
+      expect(offering.user_has_license?).to be false
     end
 
     it "returns false if there is no user given" do
       offering = Offering.new(build_stubbed(:product), nil)
 
-      expect(offering.user_has_license?).to be_false
+      expect(offering.user_has_license?).to be false
     end
 
     it "returns true if the given user has a license to the offering" do
@@ -46,7 +46,7 @@ describe Offering do
 
       offering = Offering.new(product, user)
 
-      expect(offering.user_has_license?).to be_true
+      expect(offering.user_has_license?).to be true
     end
   end
 
