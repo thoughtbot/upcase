@@ -48,7 +48,7 @@ body.checkouts-new, body.checkouts-create {
       label {
         vertical-align: middle;
         display: table-cell;
-        width: 115px;
+        width: 108px;
 
         &[for=card-cvc] {
           width: auto;
@@ -158,6 +158,39 @@ body.checkouts-new, body.checkouts-create {
 }
 
 #billing-information {
+  background-color: $base-background-1;
+  border: 1px solid $base-border-color-1;
+  border-radius: 3px;
+  width: 100%;
+  margin: em(20) 0 0;
+  padding: em(20);
+
+  h3 {
+    color: $gray-3;
+    margin: 0;
+    font-weight: 600;
+
+    &:before {
+      @include size(18 24);
+      background: image-url('icons/secure.svg') no-repeat;
+      content: "";
+      display: inline-block;
+      padding: 0 em(2) 0;
+      vertical-align: -5%;
+    }
+  }
+
+  #credit-card-icons {
+
+    img {
+      padding: 0 em(5);
+
+      &:first-child {
+        padding-left: 0;
+      }
+    }
+  }
+
   ol {
     width: 100%;
 

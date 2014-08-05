@@ -28,8 +28,12 @@
   <% end %>
 
   <%= form.inputs id: 'billing-information' do %>
-    <li>
-      <%= image_tag "icons/visa.png" %><%= image_tag "icons/master.png" %><%= image_tag "icons/american_express.png" %>
+    <h3>Secure Credit Card Payment</h3>
+    <li id="credit-card-icons">
+      <%= image_tag "icons/visa.png" %>
+      <%= image_tag "icons/master.png" %>
+      <%= image_tag "icons/american_express.png" %>
+      <%= image_tag "icons/discover.png" %>
     </li>
     <li class="payment-errors"></li>
     <% if signed_in? && current_user.credit_card %>
