@@ -15,7 +15,7 @@ module Teams
 
         team.add_user(user)
 
-        expect(user.reload.team).to eq(team)
+        expect(user.reload.team).to eq team
         expect(fulfillment).to have_received(:fulfill)
       end
     end
