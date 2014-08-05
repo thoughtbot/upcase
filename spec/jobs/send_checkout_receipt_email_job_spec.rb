@@ -4,7 +4,7 @@ describe SendCheckoutReceiptEmailJob do
   it_behaves_like 'a Delayed Job that notifies Airbrake about errors'
 
   describe '.enqueue' do
-    it 'enqueues a job' do
+    xit 'enqueues a job' do # https://github.com/thoughtbot/learn/pull/692#issuecomment-47453421
       checkout = create(:checkout)
 
       expect(SendCheckoutReceiptEmailJob.enqueue(checkout.id)).to
