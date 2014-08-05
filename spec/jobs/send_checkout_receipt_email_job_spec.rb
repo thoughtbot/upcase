@@ -4,11 +4,15 @@ describe SendCheckoutReceiptEmailJob do
   it_behaves_like 'a Delayed Job that notifies Airbrake about errors'
 
   describe '.enqueue' do
-    xit "enqueues a job" do # https://github.com/thoughtbot/learn/pull/692#issuecomment-47453421
+    it "enqueues a job" do
       checkout = create(:checkout)
+      Delayed::Job.stubs(:enqueue)
 
-      expect(SendCheckoutReceiptEmailJob.enqueue(checkout.id)).to
-        enqueue_delayed_job(SendCheckoutReceiptEmailJob)
+      SendCheckoutReceiptEmailJob.enqueue(checkout.id)
+
+      expect(Delayed::Job).to have_received(:enqueue).with(
+        kind_of(SendCheckoutReceiptEmailJob)
+      )
     end
   end
 
