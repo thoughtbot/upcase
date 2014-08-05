@@ -18,7 +18,7 @@ describe Announcement do
   describe '.current' do
     context 'without any announcements' do
       it 'returns nil' do
-        Announcement.current.should be_nil
+        expect(Announcement.current).to be_nil
       end
     end
 
@@ -27,7 +27,7 @@ describe Announcement do
         create :announcement, ends_at: Time.now.yesterday
         create :announcement, ends_at: 7.days.from_now
         current = create(:announcement, ends_at: 1.day.from_now)
-        Announcement.current.should eq(current)
+        expect(Announcement.current).to eq(current)
       end
     end
   end

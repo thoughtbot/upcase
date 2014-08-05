@@ -9,7 +9,7 @@ describe GithubRemovalJob do
 
     GithubRemovalJob.new(3, "gabebw").perform
 
-    client.should have_received(:remove_team_member).with(3, "gabebw")
+    expect(client).to have_received(:remove_team_member).with(3, "gabebw")
   end
 
   [Octokit::NotFound, Net::HTTPBadResponse].each do |error_class|
@@ -20,7 +20,7 @@ describe GithubRemovalJob do
 
       GithubRemovalJob.new(3, "gabebw").perform
 
-      Airbrake.should have_received(:notify).with(instance_of(error_class))
+      expect(Airbrake).to have_received(:notify).with(instance_of(error_class))
     end
   end
 

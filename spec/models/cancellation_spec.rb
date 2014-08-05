@@ -17,7 +17,7 @@ describe Cancellation do
       it "makes the subscription inactive and records the current date" do
         cancellation.process
 
-        subscription.deactivated_on.should == Time.zone.today
+        expect(subscription.deactivated_on).to eq Time.zone.today
       end
 
       it "sends a unsubscription survey email" do
@@ -66,10 +66,10 @@ describe Cancellation do
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
       cancellation.schedule
 
-      stripe_customer.should have_received(:cancel_subscription).
+      expect(stripe_customer).to have_received(:cancel_subscription).
         with(at_period_end: true)
 
-      subscription.scheduled_for_cancellation_on.should eq Time.zone.at(1361234235).to_date
+      expect(subscription.scheduled_for_cancellation_on).to eq Time.zone.at(1361234235).to_date
     end
 
     it 'retrieves the customer correctly' do
@@ -98,7 +98,7 @@ describe Cancellation do
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 
       expect { cancellation.schedule }.to raise_error
-      Subscription.find(subscription.id).should be_active
+      expect(Subscription.find(subscription.id)).to be_active
     end
 
     it 'does not unsubscribe from stripe if deactivating the subscription failed' do
@@ -110,7 +110,7 @@ describe Cancellation do
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 
       expect { cancellation.schedule }.to raise_error
-      subscription.should have_received(:cancel_subscription).never
+      expect(subscription).to have_received(:cancel_subscription).never
     end
   end
 

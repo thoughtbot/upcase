@@ -24,7 +24,7 @@ describe Checkout do
 
       checkout.save!
 
-      fulfillment.should have_received(:fulfill)
+      expect(fulfillment).to have_received(:fulfill)
     end
 
     it "does not save with a bad credit card" do

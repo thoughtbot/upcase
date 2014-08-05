@@ -16,7 +16,7 @@ module Teams
         team.add_user(user)
 
         expect(user.reload.team).to eq(team)
-        fulfillment.should have_received(:fulfill)
+        expect(fulfillment).to have_received(:fulfill)
       end
     end
 
@@ -29,7 +29,7 @@ module Teams
         team.remove_user(user)
 
         expect(user.reload.team).to be_nil
-        fulfillment.should have_received(:remove)
+        expect(fulfillment).to have_received(:remove)
       end
     end
 

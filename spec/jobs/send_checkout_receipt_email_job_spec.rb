@@ -7,7 +7,7 @@ describe SendCheckoutReceiptEmailJob do
     it 'enqueues a job' do
       checkout = create(:checkout)
 
-      SendCheckoutReceiptEmailJob.enqueue(checkout.id).should
+      expect(SendCheckoutReceiptEmailJob.enqueue(checkout.id)).to
         enqueue_delayed_job(SendCheckoutReceiptEmailJob)
     end
   end
@@ -19,8 +19,8 @@ describe SendCheckoutReceiptEmailJob do
 
       SendCheckoutReceiptEmailJob.new(checkout.id).perform
 
-      CheckoutMailer.should have_received(:receipt).with(checkout)
-      mail_stub.should have_received(:deliver)
+      expect(CheckoutMailer).to have_received(:receipt).with(checkout)
+      expect(mail_stub).to have_received(:deliver)
     end
   end
 end

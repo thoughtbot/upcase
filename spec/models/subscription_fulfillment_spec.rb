@@ -9,7 +9,7 @@ describe SubscriptionFulfillment do
 
       SubscriptionFulfillment.new(user, plan).fulfill
 
-      GitHubPublicKeyDownloadFulfillmentJob.should have_received(:enqueue)
+      expect(GitHubPublicKeyDownloadFulfillmentJob).to have_received(:enqueue)
         .with(user.id)
     end
 
