@@ -69,7 +69,8 @@ describe Cancellation do
       expect(stripe_customer).to have_received(:cancel_subscription).
         with(at_period_end: true)
 
-      expect(subscription.scheduled_for_cancellation_on).to eq Time.zone.at(1361234235).to_date
+      expect(subscription.scheduled_for_cancellation_on).
+        to eq Time.zone.at(1361234235).to_date
     end
 
     it 'retrieves the customer correctly' do

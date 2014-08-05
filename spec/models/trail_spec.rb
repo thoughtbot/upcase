@@ -103,7 +103,8 @@ describe Trail do
     it 'returns the correct url based on slug' do
       trail = Trail.new
       trail.slug = 'ruby-on-rails'
-      expect(trail.contribute_url).to eq "https://github.com/thoughtbot/trail-map/blob/master/trails/ruby-on-rails.json"
+      expect(trail.contribute_url).to eq "https://github.com/thoughtbot/\
+trail-map/blob/master/trails/ruby-on-rails.json"
     end
   end
 
