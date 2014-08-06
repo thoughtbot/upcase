@@ -16,37 +16,25 @@ your work.
 
 ### Setup
 
-1. Install Homebrew packages.
+1. Get the code.
 
-        $ brew install postgres --no-python
+        % git clone git@github.com:thoughtbot/learn.git
 
-2. Follow post-install instructions for loading launch agents.
+2. Setup your environment.
 
-        $ brew info postgres
+        % bin/setup
 
-3. Install RVM.
+3. Follow instructions in .env to configure Stripe.
 
-        $ \curl -L https://get.rvm.io | bash -s stable --ruby
+        % vim .env
 
-4. Get the code.
+4. Start Foreman.
 
-        $ git clone git@github.com:thoughtbot/learn.git
+        % foreman start
 
-5. Setup your environment.
+5. Verify that the app is up and running.
 
-        $ bin/setup
-
-6. Follow instructions in .env to configure Stripe.
-
-        $ vim .env
-
-7. Start Foreman.
-
-        $ foreman start
-
-8. Verify that the app is up and running.
-
-        $ open http://localhost:5000
+        % open http://localhost:5000
 
 ### Testing
 
@@ -54,30 +42,26 @@ You'll need to install phantom.js to run some of the specs.
 
         brew install phantomjs
 
-Also, you may want to use the [spring gem](https://github.com/jonleighton/spring)
-to speed up the boot time of your specs. The rspec, rake, and rails binstubs
-have been updated to take advantage of spring if it's found.
-
 ### Continuous Integration
 
-CI is hosted with Circle. The build is run automatically whenever any branch is
-updated on Github.
+CI is hosted with [CircleCI](https://circleci.com/gh/thoughtbot/learn). The
+build is run automatically whenever any branch is updated on Github.
 
 ### Ongoing
 
 * Run test suite before committing to the master branch.
 
-        $ rake
+        % rake
 
 * Reset development data as needed.
 
-        $ rake dev:prime
+        % rake dev:prime
 
 * Dump production data into your local db. (Note that you need to drop your
   local database first).
 
-        $ rake db:drop
-        $ heroku pg:pull DATABASE_URL workshops_development -r production
+        % rake db:drop
+        % heroku pg:pull DATABASE_URL workshops_development -r production
 
 * To test that adding/removing GitHub users works, use the GitHub user
   "cpyteltest".
@@ -125,7 +109,7 @@ To test integration with AWS S3, set the following environment variables:
 
 ## Deployment
 
-Circle CI deploys to staging automatically when a build passes on master. Once
+CircleCI deploys to staging automatically when a build passes on master. Once
 your changes have been verified in a browser on staging, you can deploy to
 production:
 
@@ -167,11 +151,11 @@ To see what the current recipient is:
 
 2. Update your user.
 
-        $ heroku run console -r production
-        $ user = User.find_by_email('foo@example.com')
-        $ user.admin = true
-        $ user.save!
-        $ exit
+        % heroku run console -r production
+        % user = User.find_by_email('foo@example.com')
+        % user.admin = true
+        % user.save!
+        % exit
 
 3. Access the [general admin panel](http://learn.thoughtbot.com/admin) or
    the [workshop admin panel](http://learn.thoughtbot.com/admin).
