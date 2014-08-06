@@ -250,7 +250,7 @@ describe User do
       subscription = build(:subscription, plan: plan)
       user = build(:user, :with_mentor, subscription: subscription)
 
-      expect(user.has_subscription_with_mentor?).to be true
+      expect(user).to have_subscription_with_mentor
     end
 
     it 'returns false when the subscription does not include mentoring' do
@@ -258,7 +258,7 @@ describe User do
       subscription = build(:subscription, plan: plan)
       user = build(:user, subscription: subscription)
 
-      expect(user.has_subscription_with_mentor?).to be false
+      expect(user).to_not have_subscription_with_mentor
     end
 
     it 'returns false when the subscription is inactive' do
@@ -266,13 +266,12 @@ describe User do
       subscription = build(:inactive_subscription, plan: plan)
       user = build(:user, :with_mentor, subscription: subscription)
 
-      expect(user.has_subscription_with_mentor?).to be false
+      expect(user).to_not have_subscription_with_mentor
     end
 
     it 'returns false when there is no subscription' do
       user = build(:user)
-
-      expect(user.has_subscription_with_mentor?).to be false
+      expect(user).to_not have_subscription_with_mentor
     end
   end
 
@@ -316,14 +315,14 @@ describe User do
       user = User.new
       OauthAccessToken.stubs(:for_user).with(user).returns(true)
 
-      expect(user.has_logged_in_to_forum?).to be true
+      expect(user).to have_logged_in_to_forum
     end
 
     it 'returns false when the user has never logged in to the forum' do
       user = User.new
       OauthAccessToken.stubs(:for_user).with(user).returns(nil)
 
-      expect(user.has_logged_in_to_forum?).to be false
+      expect(user).to_not have_logged_in_to_forum
     end
   end
 
