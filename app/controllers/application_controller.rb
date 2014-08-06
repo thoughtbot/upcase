@@ -41,17 +41,20 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user_is_admin?
 
-  def requested_purchaseable
+  def requested_licenseable
     PolymorphicFinder.
       finding(Workshop, :id, [:workshop_id]).
-      finding(Teams::TeamPlan, :sku, [:teams_team_plan_id]).
-      finding(IndividualPlan, :sku, [:individual_plan_id]).
       finding(Product, :id, [:product_id, :screencast_id, :book_id, :show_id]).
       find(params)
   end
 
-  def included_in_current_users_plan?(purchaseable)
-    purchaseable.included_in_plan?(current_user.plan)
+  def requested_subscribeable
+    Teams::TeamPlan.where(sku: params[:plan]).first ||
+      IndividualPlan.where(sku: params[:plan]).first
+  end
+
+  def included_in_current_users_plan?(licenseable)
+    licenseable.included_in_plan?(current_user.plan)
   end
   helper_method :included_in_current_users_plan?
 
@@ -60,9 +63,14 @@ class ApplicationController < ActionController::Base
   end
   helper_method :topics
 
-  def current_user_purchase_of(purchaseable)
+  def current_user_license_of(licenseable)
     if signed_in?
-      purchaseable.purchase_for(current_user)
+      licenseable.license_for(current_user)
     end
+  end
+  helper_method :current_user_license_of
+
+  def polymorphic_licenseable_template
+    "#{@offering.licenseable.class.name.tableize}/show_licensed"
   end
 end

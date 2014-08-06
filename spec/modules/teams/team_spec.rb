@@ -15,8 +15,8 @@ module Teams
 
         team.add_user(user)
 
-        expect(user.reload.team).to eq(team)
-        fulfillment.should have_received(:fulfill)
+        expect(user.reload.team).to eq team
+        expect(fulfillment).to have_received(:fulfill)
       end
     end
 
@@ -29,7 +29,7 @@ module Teams
         team.remove_user(user)
 
         expect(user.reload.team).to be_nil
-        fulfillment.should have_received(:remove)
+        expect(fulfillment).to have_received(:remove)
       end
     end
 
@@ -55,9 +55,39 @@ module Teams
       end
     end
 
+    describe "#has_invited_users?" do
+      it "returns false when the team has no invitations" do
+        team = build(:team, invitations: [])
+
+        expect(team).not_to have_invited_users
+      end
+
+      it "returns true when the team has invitations" do
+        team = build(:team, invitations: build_list(:invitation, 3))
+
+        expect(team).to have_invited_users
+      end
+    end
+
+    describe "#invitations_remaining" do
+      it "returns the difference between users and max users" do
+        team = create(:team, max_users: 5)
+        create_list(:user, 3, team: team)
+
+        expect(team.invitations_remaining).to eq 2
+      end
+
+      it "never returns negative" do
+        team = create(:team, max_users: 2)
+        create_list(:user, 4, team: team)
+
+        expect(team.invitations_remaining).to eq 0
+      end
+    end
+
     def stub_team_fulfillment(team, user)
-      purchase = build_stubbed(:purchase, purchaseable: team.subscription.plan)
-      stub_subscription_fulfillment(purchase, user)
+      checkout = build_stubbed(:checkout, subscribeable: team.subscription.plan)
+      stub_subscription_fulfillment(checkout, user)
     end
   end
 end

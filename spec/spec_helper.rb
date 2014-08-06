@@ -39,6 +39,10 @@ Capybara.configure do |config|
 end
 
 RSpec.configure do |config|
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
+
   config.use_transactional_fixtures = false
   config.use_instantiated_fixtures  = false
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -49,10 +53,9 @@ RSpec.configure do |config|
   config.include EmailSpec::Matchers
   config.include FactoryGirl::Syntax::Methods
   config.include Subscriptions
-  config.include PurchaseHelpers
+  config.include CheckoutHelpers
   config.include StripeHelpers
   config.include SessionHelpers, type: :feature
-  config.include PaypalHelpers, type: :feature
   config.include PathHelpers, type: :feature
 
   config.mock_with :mocha

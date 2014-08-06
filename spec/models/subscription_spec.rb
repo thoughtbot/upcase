@@ -12,7 +12,7 @@ describe Subscription do
   it { should validate_presence_of(:user_id) }
 
   it 'defaults paid to true' do
-    Subscription.new.should be_paid
+    expect(Subscription.new).to be_paid
   end
 
   describe 'self.paid' do
@@ -20,8 +20,8 @@ describe Subscription do
       paid = create(:subscription, paid: true)
       free = create(:subscription, paid: false)
 
-      Subscription.paid.should_not include(free)
-      Subscription.paid.should include(paid)
+      expect(Subscription.paid).not_to include(free)
+      expect(Subscription.paid).to include(paid)
     end
   end
 
@@ -61,12 +61,12 @@ describe Subscription do
   describe '#active?' do
     it "returns true if deactivated_on is nil" do
       subscription = Subscription.new(deactivated_on: nil)
-      subscription.should be_active
+      expect(subscription).to be_active
     end
 
     it "returns false if deactivated_on is not nil" do
       subscription = Subscription.new(deactivated_on: Time.zone.today)
-      subscription.should_not be_active
+      expect(subscription).not_to be_active
     end
   end
 
@@ -90,7 +90,7 @@ describe Subscription do
 
       subscription.deactivate
 
-      fulfillment.should have_received(:remove)
+      expect(fulfillment).to have_received(:remove)
     end
 
     it "unfulfills for a user who changed their plan" do
@@ -98,9 +98,9 @@ describe Subscription do
       new_plan = create(:individual_plan)
       subscription = create(:active_subscription, plan: new_plan)
       create(
-        :purchase,
+        :checkout,
         user: subscription.user,
-        purchaseable: original_plan
+        subscribeable: original_plan
       )
 
       expect { subscription.deactivate }.not_to raise_error

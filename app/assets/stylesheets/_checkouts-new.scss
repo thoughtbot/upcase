@@ -1,0 +1,246 @@
+body.checkouts-new, body.checkouts-create {
+  form {
+    margin-bottom: 0;
+  }
+
+  .checkout-sigin-signup-toggle {
+    display: table;
+    margin-bottom: 2em;
+    width: 100%;
+
+    li {
+      display: table-cell;
+      vertical-align: middle;
+      width: 50%;
+    }
+
+    a {
+      background: #f0f0f0;
+      border-radius: 3px;
+      display: block;
+      margin: 2px;
+      padding: 1em;
+      text-align: center;
+
+      &:active {
+        background: #ccc;
+      }
+    }
+  }
+
+  fieldset {
+    ol {
+      list-style-type: none;
+      margin: 0;
+      padding: 0px;
+    }
+
+    li {
+      display: table;
+      margin-right: 0;
+      margin-top: 1rem;
+      width: 100%;
+
+      &.hidden {
+        display: none;
+      }
+
+      label {
+        vertical-align: middle;
+        display: table-cell;
+        width: 108px;
+
+        &[for=card-cvc] {
+          width: auto;
+        }
+      }
+
+      input[type=text], input[type=email], input[type=password], select {
+        display: table-cell;
+        margin: 0;
+      }
+
+      .inline-hints {
+        margin: 0;
+      }
+
+      &#checkout_submit_action {
+        margin-left: 0;
+        margin-top: .25rem;
+        width: 100%;
+
+        input {
+          font-size: 1rem;
+          height: auto;
+          letter-spacing: 1px;
+          text-rendering: optimizeLegibility;
+          white-space: normal;
+          width: 100%;
+        }
+      }
+
+      &#checkout_quantity_input {
+        select {
+          font-size: 2rem;
+          height: auto;
+          letter-spacing: 1px;
+          text-rendering: optimizeLegibility;
+          white-space: normal;
+        }
+      }
+
+      &#checkout_cc_existing {
+        margin-left: 115px;
+        width: auto;
+
+        label {
+          width: auto;
+        }
+      }
+    }
+  }
+
+  .address-info {
+    margin: 3rem 0;
+  }
+
+  .coupon {
+    position: relative;
+
+    form {
+      margin-bottom: 1em;
+      position: relative;
+    }
+
+    label {
+      display: none;
+    }
+
+    input[type='text'] {
+      margin: 1.5rem 0 1.25rem;
+    }
+
+    input[type='submit'] {
+      border-bottom: 0;
+      height: 39px;
+      @include position(absolute, 27px 3px 0px 0);
+    }
+  }
+
+  .coupon-note, .reveal-address {
+    border-radius: 3px;
+    display: inline-block;
+    margin: 1.5rem 0 1.5rem 115px;
+    padding: .5rem 0;
+  }
+
+  @media screen and (max-width: 910px) {
+    fieldset ol, #billing-information ol {
+      li#checkout_zip_code_input,
+      li#checkout_state_input,
+      li#checkout_city_input,
+      li#checkout_country_input,
+      li#checkout_expiration_input,
+      li#checkout_cvc_input {
+        float: none;
+        width: flex-grid(12);
+      }
+
+      label {
+        width: 90px;
+      }
+    }
+
+    .coupon-note, .reveal-address,  {
+      margin-left: 90px;
+    }
+  }
+}
+
+#billing-information {
+  background-color: $base-background-1;
+  border: 1px solid $base-border-color-1;
+  border-radius: 3px;
+  width: 100%;
+  margin: em(20) 0 0;
+  padding: em(20);
+
+  h3 {
+    color: $gray-3;
+    margin: 0;
+    font-weight: 600;
+
+    &:before {
+      @include size(18 24);
+      background: image-url('icons/secure.svg') no-repeat;
+      content: "";
+      display: inline-block;
+      padding: 0 em(2) 0;
+      vertical-align: -5%;
+    }
+  }
+
+  #credit-card-icons {
+
+    img {
+      padding: 0 em(5);
+
+      &:first-child {
+        padding-left: 0;
+      }
+    }
+  }
+
+  ol {
+    width: 100%;
+
+    li {
+      &.overflow {
+        @extend .clearfix;
+      }
+
+      &#checkout_expiration_input {
+        float: left;
+        margin-right: flex-gutter();
+        width: flex-grid(8);
+
+        select {
+          border: 1px solid darken($warmgray, 5%);
+          box-shadow: none;
+          @include box-sizing(border-box);
+          float: left;
+          font: 1rem $sans-serif;
+          height: 45px;
+          padding: 0 1rem;
+          -webkit-appearance: none;
+          width: flex-grid(6);
+
+          &.card-expiry-month {
+            margin-right: flex-gutter();
+          }
+
+          &:focus {
+            border: 1px solid $learnred;
+            outline: none;
+            outline-color: none;
+          }
+        }
+      }
+
+      &#checkout_cvc_input {
+        float: left;
+        width: flex-grid(4);
+      }
+
+      &#checkout_country_input {
+        clear: left;
+      }
+
+      &#checkout_cc_existing {
+        input, label {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

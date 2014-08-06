@@ -62,22 +62,29 @@ namespace :dev do
     user = FactoryGirl.create(:user, email: 'none@example.com')
     puts_user user, 'no purchases'
 
-    user = FactoryGirl.create(:user, email: 'product@example.com')
-    FactoryGirl.create :purchase, :free, user: user, purchaseable: @book
-    puts_user user, 'product purchase'
+    user = FactoryGirl.create(:basic_subscriber, email: 'basic@example.com')
+    puts_user user, 'basic subscriber'
 
-    user = FactoryGirl.create(:user, email: 'prime@example.com')
-    FactoryGirl.create :purchase, :free, user: user, purchaseable: @prime
-    puts_user user, 'prime purchase'
+    user = FactoryGirl.create(
+      :subscriber,
+      :includes_mentor,
+      email: 'has_mentor@example.com'
+    )
+    puts_user user, 'mentor subscriber'
 
-    user = FactoryGirl.create(:user, email: 'workshop@example.com')
-    FactoryGirl.create :purchase, :free, user: user, purchaseable: @workshop
-    puts_user user, 'workshop purchase'
+    user = FactoryGirl.create(
+      :subscriber,
+      :includes_screencasts,
+      email: 'screencasts@example.com'
+    )
+    puts_user user, 'subscriber with screencasts'
 
-    user = FactoryGirl.create(:user, email: 'both@example.com')
-    FactoryGirl.create :purchase, :free, user: user, purchaseable: @book
-    FactoryGirl.create :purchase, :free, user: user, purchaseable: @workshop
-    puts_user user, 'product and workshop purchase'
+    user = FactoryGirl.create(
+      :subscriber,
+      :includes_books,
+      email: 'books@example.com'
+    )
+    puts_user user, 'subscriber with books'
 
     puts "\n"
   end

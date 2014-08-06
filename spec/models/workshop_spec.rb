@@ -5,7 +5,7 @@ describe Workshop do
   it { should have_many(:announcements).dependent(:destroy) }
   it { should have_many(:classifications).dependent(:destroy) }
   it { should have_many(:downloads) }
-  it { should have_many(:purchases).dependent(:restrict_with_exception) }
+  it { should have_many(:licenses).dependent(:restrict_with_exception) }
   it { should have_many(:questions).dependent(:destroy) }
   it { should have_many(:teachers).dependent(:destroy) }
   it { should have_many(:topics).through(:classifications) }
@@ -33,32 +33,32 @@ describe Workshop do
       Announcement.stubs :current
       workshop = create(:workshop)
       workshop.announcement
-      Announcement.should have_received(:current)
+      expect(Announcement).to have_received(:current)
     end
   end
 
   describe '#to_param' do
     it 'returns the id and parameterized name' do
       workshop = create(:workshop)
-      workshop.to_param.should == "#{workshop.id}-#{workshop.name.parameterize}"
+      expect(workshop.to_param).to eq "#{workshop.id}-#{workshop.name.parameterize}"
     end
   end
 
-  context 'purchase_for' do
-    it 'returns the purchase when a user has purchased a section of the workshop' do
+  context "license_for" do
+    it "returns the license when a user has licensed a section of the workshop" do
       user = create(:user)
-      purchase = create_subscriber_purchase(:workshop, user)
-      workshop = purchase.purchaseable
+      workshop = create(:workshop)
+      license = create(:license, licenseable: workshop, user: user)
 
-      expect(workshop.purchase_for(user)).to eq purchase
+      expect(workshop.license_for(user)).to eq license
     end
 
-    it 'returns nil when a user has not purchased a section fo the workshop' do
+    it 'returns nil when a user has not licensed a section fo the workshop' do
       user = create(:user)
-      purchase = create_subscriber_purchase(:workshop)
-      workshop = purchase.purchaseable
+      workshop = create(:workshop)
+      create(:license, licenseable: workshop)
 
-      expect(workshop.purchase_for(user)).to be_nil
+      expect(workshop.license_for(user)).to be_nil
     end
   end
 
@@ -96,19 +96,17 @@ describe Workshop do
     end
   end
 
-  describe '#fulfilled_with_github' do
-    it 'is true when product has a github team' do
-      product = build(:book, :github)
-      purchase = build(:purchase, purchaseable: product)
+  describe "#fulfilled_with_github" do
+    it "is true when workshop has a github team" do
+      workshop = build(:workshop, :github)
 
-      purchase.should be_fulfilled_with_github
+      expect(workshop).to be_fulfilled_with_github
     end
 
-    it 'is false when product has no github team' do
-      product = build(:book, github_team: nil)
-      purchase = build(:purchase, purchaseable: product)
+    it "is false when workshop has no github team" do
+      workshop = build(:workshop, github_team: nil)
 
-      purchase.should_not be_fulfilled_with_github
+      expect(workshop).to_not be_fulfilled_with_github
     end
   end
 
@@ -128,15 +126,15 @@ describe Workshop do
 
   describe '#fulfill' do
     it 'fulfills using GitHub with a GitHub team' do
-      purchase = build_stubbed(:purchase)
+      license = build_stubbed(:license)
       user = build_stubbed(:user)
       fulfillment = stub('fulfillment', :fulfill)
       workshop = build_stubbed(:workshop, github_team: 'example')
-      GithubFulfillment.stubs(:new).with(purchase).returns(fulfillment)
+      GithubFulfillment.stubs(:new).with(license).returns(fulfillment)
 
-      workshop.fulfill(purchase, user)
+      workshop.fulfill(license, user)
 
-      fulfillment.should have_received(:fulfill)
+      expect(fulfillment).to have_received(:fulfill)
     end
   end
 

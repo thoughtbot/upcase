@@ -20,7 +20,7 @@ feature 'Send team invitations' do
   end
 
   def subscribe_to_team_plan
-    visit_team_plan_purchase_page
+    visit_team_plan_checkout_page
     fill_out_account_creation_form
     fill_out_credit_card_form_with_valid_credit_card
   end

@@ -1,5 +1,5 @@
 <%= link_to "Have a coupon code?", "#", class: 'coupon-note' %>
-<div class="coupon" style="display: none;" data-url="<%= coupon_redemption_url(purchase.purchaseable) %>">
+<div class="coupon" style="display: none;" data-url="<%= new_redemption_url(checkout.subscribeable) %>">
   <fieldset class="inputs">
     <ol>
       <li class="string input optional stringish" id="coupon_code_input">

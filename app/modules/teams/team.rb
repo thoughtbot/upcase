@@ -1,13 +1,11 @@
 module Teams
-  # A Team represents a company that has purchased a TeamPlan subscription.
-  #
-  # Because purchases of TeamPlans happens rarely, Teams are created manually,
-  # and not through the UI.
+  # A Team represents a company that has a TeamPlan subscription.
   class Team < ActiveRecord::Base
     belongs_to :subscription
     belongs_to :team_plan
 
     has_many :users, dependent: :nullify
+    has_many :invitations
 
     validates :name, presence: true
 
@@ -24,13 +22,25 @@ module Teams
     end
 
     def has_users_remaining?
-      users.count < max_users
+      users_count < max_users
+    end
+
+    def has_invited_users?
+      invitations.any?
+    end
+
+    def invitations_remaining
+      [0, max_users - users_count].max
     end
 
     private
 
     def fulfillment_for(user)
       SubscriptionFulfillment.new(user, subscription.plan)
+    end
+
+    def users_count
+      users.count
     end
   end
 end

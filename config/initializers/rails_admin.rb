@@ -1,16 +1,3 @@
-require 'rails_admin/config/actions/purchase_accounting'
-require 'rails_admin/config/actions/timeline'
-
-module RailsAdmin
-  module Config
-    module Actions
-      class PurchaseRefund < RailsAdmin::Config::Actions::Base
-        RailsAdmin::Config::Actions.register(self)
-      end
-    end
-  end
-end
-
 RailsAdmin.config do |config|
   config.authenticate_with do
     unless current_user
@@ -31,9 +18,6 @@ RailsAdmin.config do |config|
 
   config.actions do
     init_actions!
-    purchase_refund
-    purchase_accounting
-    timeline
   end
 
   config.model Mentor do
@@ -137,46 +121,5 @@ RailsAdmin.config do |config|
         field :videos
       end
     end
-  end
-
-  config.model Purchase do
-    object_label_method { :purchase_label_method }
-
-    list do
-      field :purchaseable_id do
-        visible true
-        filterable true
-      end
-      field :purchaseable_type do
-        visible true
-        filterable true
-      end
-      include_all_fields
-    end
-
-    export do
-      field :purchaseable_name do
-        visible true
-        filterable true
-      end
-      field :price do
-        visible true
-        filterable true
-      end
-      field :created_at do
-        export_value { value.to_s }
-      end
-      include_all_fields
-    end
-
-    edit do
-      configure :created_at do
-        visible
-      end
-    end
-  end
-
-  def purchase_label_method
-    "Purchase #{self.id} (#{self.purchaseable_name})"
   end
 end

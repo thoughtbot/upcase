@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624141447) do
+ActiveRecord::Schema.define(version: 20140727180715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,18 @@ ActiveRecord::Schema.define(version: 20140624141447) do
   end
 
   add_index "announcements", ["announceable_id", "announceable_type", "ends_at"], name: "index_announcements_on_announceable_and_ends_at", using: :btree
+
+  create_table "checkouts", force: true do |t|
+    t.integer  "user_id",                        null: false
+    t.integer  "subscribeable_id",               null: false
+    t.string   "subscribeable_type",             null: false
+    t.integer  "quantity",           default: 1, null: false
+    t.string   "stripe_coupon_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "checkouts", ["user_id"], name: "index_checkouts_on_user_id", using: :btree
 
   create_table "classifications", force: true do |t|
     t.integer  "topic_id"
@@ -47,18 +59,6 @@ ActiveRecord::Schema.define(version: 20140624141447) do
 
   add_index "completions", ["trail_object_id"], name: "index_completions_on_trail_object_id", using: :btree
   add_index "completions", ["user_id"], name: "index_completions_on_user_id", using: :btree
-
-  create_table "coupons", force: true do |t|
-    t.string   "code"
-    t.integer  "amount"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "active",            default: true,         null: false
-    t.string   "discount_type",     default: "percentage", null: false
-    t.boolean  "one_time_use_only", default: false,        null: false
-  end
-
-  add_index "coupons", ["code"], name: "index_coupons_on_code", using: :btree
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0
@@ -124,6 +124,17 @@ ActiveRecord::Schema.define(version: 20140624141447) do
   add_index "invitations", ["code"], name: "index_invitations_on_code", using: :btree
   add_index "invitations", ["team_id"], name: "index_invitations_on_team_id", using: :btree
 
+  create_table "licenses", force: true do |t|
+    t.integer  "user_id",          null: false
+    t.integer  "licenseable_id",   null: false
+    t.string   "licenseable_type", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "licenses", ["user_id", "licenseable_id", "licenseable_type"], name: "index_licenses_on_user_id_and_licenseable", unique: true, using: :btree
+  add_index "licenses", ["user_id"], name: "index_licenses_on_user_id", using: :btree
+
   create_table "mentors", force: true do |t|
     t.integer "user_id",                                                  null: false
     t.string  "availability",          default: "11am to 5pm on Fridays", null: false
@@ -131,14 +142,6 @@ ActiveRecord::Schema.define(version: 20140624141447) do
   end
 
   add_index "mentors", ["user_id"], name: "index_mentors_on_user_id", using: :btree
-
-  create_table "notes", force: true do |t|
-    t.integer  "user_id"
-    t.text     "body"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "contributor_id", null: false
-  end
 
   create_table "oauth_access_grants", force: true do |t|
     t.integer  "resource_owner_id", null: false
@@ -212,37 +215,6 @@ ActiveRecord::Schema.define(version: 20140624141447) do
   end
 
   add_index "public_keys", ["user_id"], name: "index_public_keys_on_user_id", using: :btree
-
-  create_table "purchases", force: true do |t|
-    t.string   "stripe_customer_id"
-    t.string   "variant"
-    t.string   "name"
-    t.string   "email"
-    t.string   "organization"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip_code"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "lookup"
-    t.integer  "coupon_id"
-    t.text     "github_usernames"
-    t.boolean  "paid",                   default: false,    null: false
-    t.string   "payment_method",         default: "stripe", null: false
-    t.string   "country"
-    t.string   "payment_transaction_id"
-    t.integer  "user_id"
-    t.decimal  "paid_price"
-    t.integer  "purchaseable_id"
-    t.string   "purchaseable_type"
-    t.string   "stripe_coupon_id"
-    t.integer  "quantity",               default: 1,        null: false
-  end
-
-  add_index "purchases", ["lookup"], name: "index_purchases_on_lookup", using: :btree
-  add_index "purchases", ["stripe_customer_id"], name: "index_purchases_on_stripe_customer", using: :btree
 
   create_table "questions", force: true do |t|
     t.integer  "workshop_id"

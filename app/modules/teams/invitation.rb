@@ -11,6 +11,8 @@ module Teams
     belongs_to :sender, class_name: 'User'
     belongs_to :team
 
+    delegate :name, to: :recipient, prefix: true, allow_nil: true
+
     before_create :generate_code
 
     friendly_id :code, use: [:finders]

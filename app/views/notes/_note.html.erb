@@ -1,8 +1,0 @@
-<li class="note" data-role="note">
-  <span class="time"><%= note.created_at.strftime('%B %d') %></span>
-  <% if current_user != note.contributor %>
-    <%= image_tag gravatar_url(note.contributor, size: '50'), class: 'user-image' %>
-  <% end %>
-  <%= note.body_html.html_safe %>
-  <%= edit_note_link(note) %>
-</li>

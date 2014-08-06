@@ -1,0 +1,74 @@
+<% content_for :subject_block do %>
+  <h1><%= @checkout.subscribeable_name %></h1>
+<% end %>
+
+<% content_for :additional_body_classes, @checkout.subscribeable_name %>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <%= render "checkouts/form", checkout: @checkout %>
+  </div>
+</div>
+
+<aside class="terms">
+  <section id="terms">
+    <dl>
+      <dt><p>Terms and conditions</p></dt>
+      <dd><p>If you&rsquo;re not happy, just let us know within 30 days and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</p></dd>
+      <%== @checkout.terms %>
+    </dl>
+  </section>
+</aside>
+
+<% content_for :javascript do -%>
+  <script type="text/javascript">
+    // this identifies your website in the createToken call below
+  Stripe.setPublishableKey('<%= STRIPE_PUBLIC_KEY %>');
+
+  function stripeResponseHandler(status, response) {
+    if (response.error) {
+      // re-enable the submit button
+      $('fieldset.actions input').removeAttr("disabled");
+      // show the errors on the form
+      $(".payment-errors").html(response.error.message);
+    } else {
+      var form$ = $("#new_checkout");
+      // token contains id, last4, and card type
+      var token = response['id'];
+      // insert the token into the form so it gets submitted to the server
+      form$.append("<input type='hidden' name='checkout[stripe_token]' value='" + token + "' />");
+      // and submit
+      form$.get(0).submit();
+    }
+  }
+
+  $(document).ready(function() {
+    $("#new_checkout").submit(function(event) {
+      $("input.github_username[required]").each(checkUsername);
+
+      if($('li.error .github_username').length == 0) {
+        if($("input.use_existing_card").is(":checked")) {
+          return true;
+        }
+
+        // disable the submit button to prevent repeated clicks
+        $('fieldset.actions input').prop("disabled", true);
+        <% unless Rails.env.test? %>
+          // createToken returns immediately
+          // the supplied callback submits the form if there are no errors
+          Stripe.createToken({
+            number: $('.card-number').val(),
+            cvc: $('.card-cvc').val(),
+            exp_month: $('.card-expiry-month').val(),
+            exp_year: $('.card-expiry-year').val()
+          }, stripeResponseHandler);
+          return false; // submit from callback
+        <% end %>
+      } else {
+        return false;
+      }
+      return true;
+    });
+  });
+  </script>
+<% end %>

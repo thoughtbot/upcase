@@ -5,7 +5,7 @@ class PurchaseMailer < BaseMailer
 
     mail(
       to: purchase.email,
-      cc: 'learn@thoughtbot.com',
+      cc: ENV["SUPPORT_EMAIL"],
       subject: "Fulfillment issues with #{purchase.purchaseable_name}"
     )
   end

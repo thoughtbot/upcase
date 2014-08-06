@@ -1,21 +1,6 @@
 en:
   admin:
     actions:
-      purchase_refund:
-        menu:
-          Refund Purchase
-      purchase_accounting:
-        menu: Accounting
-        title: Accounting
-        breadcrumb: Accounting
-      section_students:
-        menu: Students
-        title: Students
-        breadcrumb: Students
-      timeline:
-        menu: Timeline
-        title: Timeline
-        breadcrumb: Timeline
       mentees:
         menu: Mentees
         title: Mentees
@@ -25,7 +10,7 @@ en:
 
   layouts:
     meta_description: 'Workshops, screencasts, videos, and books to help you learn web design and development.'
-    app_name: 'thoughtbot Learn'
+    app_name: 'Upcase from thoughtbot'
 
   dashboards:
     locked_features:
@@ -35,9 +20,6 @@ en:
         subscribe_link: "subscribe to Upcase"
     show:
       contact_your_mentor: "Contact your mentor, %{mentor_name}"
-
-  account:
-    view_purchases: 'View all purchases →'
 
   individual_plans:
     mentoring: '1-1 Mentoring'
@@ -49,83 +31,40 @@ en:
       error: 'Please fill in the note'
       success: 'Your note was saved successfully'
 
-  offerings:
-    alternate:
-      in_person_workshop_cities_html: "In %{cities}?"
-      online_workshop_cities_html: "Not in %{cities}?"
-      in_person_workshop_html: "<b>Take the In-Person Workshop.</b>"
-      online_workshop_html: "<b>Take the Online Workshop.</b>"
-    subtitle:
-      book: ''
-      in_person_workshop: 'in-person'
-      online_workshop: 'online'
-      subscription: ''
-      video: ''
-
   products:
     show:
-      free_to_subscribers: "You're a subscriber, so you receive this product free!"
       subscribe_cta: "This %{offering_type} is free with a subscription to %{subscription_name}"
-      purchase_for_subscribed_user: Get this %{offering_type}
-      purchase_collection_for_subscribed_user: Get this %{offering_type} collection
-      price:
-        individual_html: "For yourself: %{price}"
-        company_html: "For your company: %{price}"
-        subscription:
-          individual_html: "%{price}"
-      upgrade: "Upgrade your plan to access this %{offering_type}"
-    license:
-      or_buy_individually: "Or buy individually"
 
-  workshops:
-    overlapping: You're already taking another workshop
-    show:
-      register: Register for this Workshop
-      register_free_inperson: Register for this Workshop
-      register_free: Begin this Workshop
-      upgrade: Upgrade your plan to access this workshop
-      free_to_subscribers: "You're a subscriber, so you can take this workshop free!"
-
-  purchases:
-    new:
-      subscribe_cta: "You could have this %{product_type} as part of a subscription to %{subscription_name} instead"
-    payment_methods:
-      stripe: Stripe
-      paypal: PayPal
-      subscription: Subscription
-      free: Free
+  book:
+    checkout_cta: Get this Book
+    checkout_cta_for_collection: Get this Book
+    upgrade_cta: Upgrade your plan to access this Book
+  screencast:
+    checkout_cta: Get this Screencast
+    checkout_cta_for_collection: Get this Screencast Collection
+    upgrade_cta: Upgrade your plan to access this Screencast
+  show:
+    checkout_cta: Get this Show
+    checkout_cta_for_collection: Get this Series
+    upgrade_cta: Upgrade your plan to access this Show
+  workshop:
+    checkout_cta: Begin this Workshop
+    checkout_cta_for_collection: Begin this Workshop
+    upgrade_cta: Upgrade your plan to access this Workshop
 
   teachers:
     teacher:
       header: Taught by
 
   shared:
-    intro:
-      Guided learning on modern design & development best practices, by topic. Dig in.
-    prime_intro:
-      Professional grade workshops, screencasts & ebooks
     books:
       Books
-    in_person_workshops:
-      In-person Workshops
     learn:
       Learn
-    workshops:
-      online: online
-      in_person: in-person
-    subscription_call_to_action:
-      Get access to everything
-    company_subscription_call_to_action:
-      Get access for your entire team
-    videos:
-      Screencasts
-    trails:
-      Trail Maps
     subscription:
       name: Upcase
     subscriptions:
       icon: ✶
-      user_required: ✶ Sign in or sign up to subscribe to Upcase.
     team_plan_name:
       Upcase for Teams
 
@@ -134,11 +73,7 @@ en:
       heading:
         online:
           Online workshop
-        in_person:
-          In-person workshop
     index:
-      heading:
-        In-person workshop
       view_products:
         View all thoughtbot products
     promoted_product:
@@ -151,9 +86,6 @@ en:
       workshop:
         action:
           Register
-    promoted_workshop:
-      action:
-        Register
     trail_map:
       resources:
         Resources
@@ -165,23 +97,11 @@ en:
           Book
         video:
           Video
-    related:
-      products:
-        Related products
-      topics:
-        Related topics
 
-  purchase:
+  checkout:
     flashes:
-      success: Thank you for purchasing %{name}. We will email you your receipt shortly.
-    product:
-      heading_html: Complete your purchase of <em>%{name}</em>
-    comments: Dietary restrictions or special requests?
-
-  subscriber_purchase:
-    flashes:
-      success: Success! Enjoy your shiny new product.
-      error:  "You're already subscribed to Upcase!"
+      success: Thank you for subscribing to %{name}. We will email you your receipt shortly.
+      already_subscribed: You are already subscribed. You can change your plan.
 
   subscriptions:
     join_cta: See Plans & Pricing for Upcase
@@ -219,12 +139,17 @@ en:
       cancellation_survey:
         subject: Suggestions for improving Upcase
       subscription_receipt:
-        subject: "[Learn] Your receipt and some tips"
+        subject: "[Upcase] Your receipt and some tips"
       upcoming_payment_notification:
-        subject: "[Learn] thoughtbot is about to charge for your Learn Upcase subscription"
+        subject: "[Upcase] thoughtbot is about to charge for your Upcase subscription"
       welcome_from_mentor:
         subject: Welcome to Upcase! I'm your new mentor
 
   line_item:
     canceled_description: (Canceled) Subscription to Upcase
     plan_description: Subscription to %{plan_name}
+
+  licenses:
+    flashes:
+      success: Success! Enjoy your shiny new product.
+      error:  "You're already subscribed to Prime!"

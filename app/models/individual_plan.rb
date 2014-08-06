@@ -5,7 +5,7 @@ class IndividualPlan < ActiveRecord::Base
   PRIME_29_SKU = 'prime-29'
 
   has_many :announcements, as: :announceable, dependent: :destroy
-  has_many :purchases, as: :purchaseable
+  has_many :checkouts, as: :subscribeable
   has_many :subscriptions, as: :plan
 
   validates :description, presence: true
@@ -36,44 +36,16 @@ class IndividualPlan < ActiveRecord::Base
     self == self.class.popular
   end
 
-  def purchase_for(user)
-    purchases.paid.where(user_id: user).first
-  end
-
-  def starts_on(purchase_date)
-    purchase_date
-  end
-
-  def ends_on(purchase_date)
-    purchase_date
-  end
-
-  def subscription?
-    true
-  end
-
   def subscription_interval
     stripe_plan.interval
   end
 
-  def offering_type
-    'subscription'
-  end
-
-  def fulfilled_with_github?
-    false
-  end
-
-  def announcement
-    @announcement ||= announcements.current
-  end
-
-  def fulfill(purchase, user)
+  def fulfill(checkout, user)
     user.create_purchased_subscription(plan: self)
     SubscriptionFulfillment.new(user, self).fulfill
   end
 
-  def after_purchase_url(controller, purchase)
+  def after_checkout_url(controller, checkout)
     controller.dashboard_path
   end
 

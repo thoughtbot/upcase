@@ -6,14 +6,14 @@
 
   <h2>
     thoughtbot, Inc.<br />
-    learn.thoughtbot.com
+    upcase.com
  </h2>
 
   <p>THIS IS A CONTRACT. PLEASE CAREFULLY READ THE FOLLOWING TERMS BEFORE
   ACCESSING THIS SITE. BY ACCESSING THE SITE, YOU ACCEPT AND AGREE TO ALL
   OF THE COVENANTS AND CONDITIONS IMPOSED IN THIS AGREEMENT. IF YOU DO
   NOT AGREE TO THESE TERMS, YOU MAY NOT ACCESS THE SITE.</p>
-  <p>BY USING LEARN.THOUGHTBOT.COM&#8217;S SERVICE, YOU AGREE THAT YOU HAVE
+  <p>BY USING UPCASE.COM&#8217;S SERVICE, YOU AGREE THAT YOU HAVE
   READ, UNDERSTAND AND AGREE TO THESE TERMS. YOU ALSO AGREE TO REVIEW
   THIS AGREEMENT PERIODICALLY TO BE AWARE OF MODIFICATIONS TO THE
   AGREEMENT, WHICH MODIFICATIONS THOUGHTBOT MAY MAKE AT ANY TIME. YOUR
@@ -26,7 +26,7 @@
   41 Winter St. Floor 7<br />
   Boston, MA 02108</p>
   <p><strong>Customer Service</strong><br />
-  Email: <a href="mailto:learn@thoughtbot.com">learn@thoughtbot.com</a><br />
+  Email: <%= mail_to ENV["SUPPORT_EMAIL"] %><br />
   Telephone: <a href='tel:1 (617) 482-1300'>1 (617) 482-1300</a>
   Toll Free <a href='tel:+1 (877) 976-2687'>+1 (877) 976-2687</a><br />
   Website: <a href="http://thoughtbot.com/contact">contact form</a></p>
@@ -40,7 +40,7 @@
     <li>&#8220;Agreement&#8221; or &#8220;Terms&#8221; refers to these Terms
     and Conditions of Use and any subsequent modifications.</li>
 
-    <li>&#8220;thoughtbot and learn.thoughtbot.com&#8221; refers to thoughtbot,
+    <li>&#8220;thoughtbot and upcase.com&#8221; refers to thoughtbot,
     Inc., a Massachusetts corporation.</li> <li>l#8220;Upcase&#8221; means the
     subscription-based database of books, screencasts, workshops, forum, and
     support that is available through the Site and are part of the Site.</li>
@@ -52,9 +52,6 @@
     <li>&#8220;Customer&#8221; refers to a User who purchases something from
     the site. This can be an individual product, workshop, or
     subscription.</li>
-
-    <li>&#8220;One-time Purchaser&#8221; refers to a Customer who one or more
-    individual books, screencasts, or workshops.</li>
 
     <li>&#8220;Single-User Subscriber&#8221; refers to a Subscriber who
     purchases a subscription to Upcase <%= t('shared.subscription.name')
@@ -74,7 +71,7 @@
 
     <li>&#8220;Website&#8221; or &#8220;Site&#8221; refers to the website
     maintained on the World Wide Web by thoughtbot, available at
-    http://learn.thoughtbot.com, and includes the Upcase Content&#174;.</li>
+    http://upcase.com, and includes the Upcase Content&#174;.</li>
 
     <li>&#8220;You&#8221; or &#8220;Your&#8221; refers to the User. If You are
     Accessing the Site as an employee or agent of another, &#8220;You&#8221; or
@@ -110,17 +107,9 @@
   responsible for management of the User accounts.</p>
 
   <h2>5. Fees; Renewal; Refund Policies</h2>
-  <h3>One-time Purchasers</h3>
-  <ul>
-    <li>Access to the specific product or workshop that was purchased.</li>
-    <li>Purchase price is refundable up to thirty (30) days after the date of purchase.</li>
-    <li>Discounts, rebates or other special offers only valid for initial purchase</li>
-    <li>Right of Access to the purchased Upcase Content granted under these
-    Terms is effective only upon payment of the purchase fees.</li>
-  </ul>
   <h3>Single-User Subscribers</h3>
   <ul>
-    <li>Access to all learn.thoughtbot.com Content</li>
+    <li>Access to all upcase.com Content</li>
     <li>Monthly subscription plan</li>
     <li>Automatically renews monthly until cancelled by Subscriber
     <ul>
@@ -146,7 +135,7 @@
   </ul>
   <h3>Multi-User Subscribers</h3>
   <ul>
-    <li>Access to all learn.thoughtbot.com Content</li>
+    <li>Access to all upcase.com Content</li>
     <li>Monthly subscription plan</li>
     <li>Automatically renews monthly until cancelled by Subscriber
     <ul>
@@ -276,7 +265,7 @@
   DISCRETION: (A) TO REPLACE THE DEFECTIVE MEDIA OR SOFTWARE; (B) TO ADVISE THE USER
   HOW TO ACHIEVE SUBSTANTIALLY THE SAME FUNCTIONALITY WITH THE SOFTWARE AS DESCRIBED;
   OR (C) IF THE ABOVE REMEDIES ARE IMPRACTICABLE, TO REFUND THE SUBSCRIPTION FEE PAID
-  FOR ACCESS TO THE LEARN CONTENT. THE USER MUST INFORM THOUGHTBOT OF ANY PROBLEM WITH THE SOFTWARE
+  FOR ACCESS TO THE UPCASE CONTENT. THE USER MUST INFORM THOUGHTBOT OF ANY PROBLEM WITH THE SOFTWARE
   WITHIN THIRTY (30) CALENDAR DAYS OF DISCOVERING THE PROBLEM OR THOUGHTBOT WILL NOT
   BE OBLIGATED TO HONOR THIS WARRANTY. THOUGHTBOT WILL USE COMMERCIALLY REASONABLE
   EFFORTS TO REPAIR, REPLACE, OR REFUND THE SOFTWARE PURSUANT TO THE FOREGOING WARRANTY
@@ -312,10 +301,10 @@
   IS AT YOUR SOLE RISK AND ANY CONTENT THAT YOU DOWNLOAD IS DOWNLOADED AT YOUR OWN
   DISCRETION AND RISK, AND YOU ARE SOLELY RESPONSIBLE FOR ANY DAMAGE TO YOUR COMPUTER
   SYSTEM IN EXCESS OF THE AMOUNT THOUGHTBOT RECEIVED FROM THE CUSTOMER FOR A SUBSCRIPTION
-  TO ACCESS THE LEARN CONTENT OR A ONE-TIME PURCHASE, AND FOR ANY LOSS OF DATA THAT RESULTS FROM THE DOWNLOADING OF
+  TO ACCESS THE UPCASE CONTENT OR A ONE-TIME PURCHASE, AND FOR ANY LOSS OF DATA THAT RESULTS FROM THE DOWNLOADING OF
   ANY SUCH CONTENT, INCLUDING ANY DAMAGES RESULTING FROM COMPUTER VIRUSES. IN NO EVENT
   WILL THOUGHTBOT BE LIABLE FOR ANY DAMAGES IN EXCESS OF THE AMOUNT THOUGHTBOT RECEIVED
-  FROM THE CUSTOMER FOR A SUBSCRIPTION TO ACCESS THE LEARN CONTENT OR A ONE-TIME PURCHASE, EVEN IF THOUGHTBOT SHALL
+  FROM THE CUSTOMER FOR A SUBSCRIPTION TO ACCESS THE UPCASE CONTENT OR A ONE-TIME PURCHASE, EVEN IF THOUGHTBOT SHALL
   HAVE BEEN INFORMED OF THE POSSIBILITY OF SUCH DAMAGES, OR FOR ANY CLAIM BY ANY OTHER
   PARTY. IN NO EVENT WILL WARRANTIES PROVIDED BY LAW, IF ANY, APPLY UNLESS THEY ARE
   REQUIRED TO APPLY BY STATUTE NOTWITHSTANDING THEIR EXCLUSION BY CONTRACT. THIS DISCLAIMER
@@ -341,7 +330,7 @@
   only, and thoughtbot&#8217;s use of the content constitutes neither an endorsement
   nor a recommendation by thoughtbot of the content. thoughtbot assumes no responsibility
   for third party products or services.</p>
-  <p>learn.thoughtbot.com may contain links and references to other third party websites and materials.
+  <p>upcase.com may contain links and references to other third party websites and materials.
   thoughtbot does not assume any responsibility for these websites or materials and
   provides these links or materials solely for the convenience of Users. thoughtbot
   does not endorse or otherwise recommend any of these third party websites, references,
@@ -475,6 +464,6 @@
   related to or arising from these Terms. Each party shall bear his/her/its own expenses
   and attorneys&#8217; fees related to any arbitration, claim or action.</p>
 
-  <p>EFFECTIVE DATE: APRIL 24, 2013</p>
+  <p>EFFECTIVE DATE: AUGUST 5, 2014</p>
 </div>
 </div>

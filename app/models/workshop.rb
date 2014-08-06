@@ -3,7 +3,7 @@ class Workshop < ActiveRecord::Base
   has_many :announcements, as: :announceable, dependent: :destroy
   has_many :classifications, as: :classifiable, dependent: :destroy
   has_many :downloads, as: :purchaseable
-  has_many :purchases, as: :purchaseable, dependent: :restrict_with_exception
+  has_many :licenses, as: :licenseable, dependent: :restrict_with_exception
   has_many :questions, -> { order 'created_at ASC' }, dependent: :destroy
   has_many :teachers, dependent: :destroy
   has_many :topics, through: :classifications
@@ -47,8 +47,8 @@ class Workshop < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
-  def purchase_for(user)
-    purchases.paid.where(user_id: user).first
+  def license_for(user)
+    licenses.where(user_id: user).first
   end
 
   def title
@@ -79,16 +79,16 @@ class Workshop < ActiveRecord::Base
     false
   end
 
-  def fulfill(purchase, user)
-    GithubFulfillment.new(purchase).fulfill
+  def fulfill(license, user)
+    GithubFulfillment.new(license).fulfill
   end
 
-  def starts_on(purchase_date = nil)
-    purchase_date || Time.zone.today
+  def starts_on(license_date = nil)
+    license_date || Time.zone.today
   end
 
-  def ends_on(purchase_date = nil)
-    starts_on(purchase_date) + length_in_days
+  def ends_on(license_date = nil)
+    starts_on(license_date) + length_in_days
   end
 
   def collection?

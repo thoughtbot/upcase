@@ -1,7 +1,7 @@
 module Teams
-  # TeamPlan represents a purchase of a subscription plan for an entire team.
+  # TeamPlan represents a subscription plan for an entire team.
   class TeamPlan < ActiveRecord::Base
-    has_many :purchases, as: :purchaseable
+    has_many :checkouts, as: :subscribeable
     has_many :subscriptions, as: :plan
     has_many :teams
 
@@ -23,33 +23,21 @@ module Teams
       end
     end
 
-    def subscription?
-      true
-    end
-
-    def fulfilled_with_github?
-      false
-    end
-
     def subscription_interval
       'month'
-    end
-
-    def announcement
-      ''
     end
 
     def minimum_quantity
       3
     end
 
-    def fulfill(purchase, user)
+    def fulfill(checkout, user)
       user.create_purchased_subscription(plan: self)
       SubscriptionFulfillment.new(user, self).fulfill
-      TeamFulfillment.new(purchase, user).fulfill
+      TeamFulfillment.new(checkout, user).fulfill
     end
 
-    def after_purchase_url(controller, purchase)
+    def after_checkout_url(controller, checkout)
       controller.edit_teams_team_path
     end
 

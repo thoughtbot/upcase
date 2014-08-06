@@ -2,10 +2,8 @@ require 'spec_helper'
 
 describe User do
   context "associations" do
-    it { should have_many(:paid_purchases) }
-    it { should have_many(:purchases) }
+    it { should have_many(:licenses) }
     it { should have_many(:completions) }
-    it { should have_many(:notes).order('created_at DESC') }
     it { should belong_to(:mentor) }
     it { should have_many(:public_keys).dependent(:destroy) }
     it { should belong_to(:team) }
@@ -43,18 +41,19 @@ describe User do
     end
   end
 
-  describe "#has_purchased?" do
-    it "returns true if the user has any paid purchases" do
+  describe "#has_licensed?" do
+    it "returns true if the user has any licenses" do
       user = build_stubbed(:user)
-      user.stubs(:paid_purchases).returns([stub])
+      user.stubs(:licenses).returns([stub])
 
-      user.should have_purchased
+      expect(user).to have_licensed
     end
 
     it "returns false if the user has no purchases" do
       user = build_stubbed(:user)
-      user.stubs(:purchases).returns([stub])
-      user.should_not have_purchased
+      user.stubs(:licenses).returns([])
+
+      expect(user).to_not have_licensed
     end
   end
 
@@ -210,84 +209,12 @@ describe User do
       user.admin = true
       user.save
 
-      user.reload.should be_admin
+      expect(user.reload).to be_admin
     end
 
     def create_user_without_cached_password(attributes)
       user = create(:user, attributes)
       User.find(user.id)
-    end
-  end
-
-  context '#notes' do
-    it 'returns only the users notes and no others' do
-      user = create(:user)
-      another_user = create(:user)
-      create(:note, user: another_user)
-
-      note = create(:note, user: user)
-
-      expect(user.notes).to eq [note]
-    end
-
-    it 'returns items sorted DESC by creation_date' do
-      user = create(:user)
-
-      oldest_item = create(:note, user: user)
-      middle_item = create(:note, user: user)
-      newest_item = create(:note, user: user)
-
-      expect(user.notes).to eq [newest_item, middle_item, oldest_item]
-    end
-  end
-
-  describe '#subscription_purchases' do
-    it 'includes only subscription purchases' do
-      subscription = create(:active_subscription)
-      user = subscription.user
-      create_subscription_purchase(user)
-      create_paid_purchase(user)
-
-      user.paid_purchases.count.should eq 2
-      user.subscription_purchases.count.should eq 1
-    end
-
-    def create_subscription_purchase(user)
-      screencast = create(:screencast)
-      subscription_purchase = SubscriberPurchase.new(screencast, user)
-      subscription_purchase.create
-    end
-
-    def create_paid_purchase(user)
-      create(:book_purchase, user: user)
-    end
-  end
-
-  describe '#paid_products' do
-    it 'includes purchased products with no subscription plans' do
-      user = create(:user, :with_mentor, :with_github)
-      book_purchase = create(:book_purchase, user: user)
-      prime_plan = create(:plan_purchase, user: user)
-
-      expect(user.paid_products).to eq [book_purchase]
-    end
-  end
-
-  describe '#ordered_paid_products' do
-    it 'returns paid products ordered by creation date' do
-      user = create(:user)
-      purchase_two = create(
-        :paid_purchase,
-        user: user,
-        created_at: 5.minutes.ago
-      )
-      purchase_one = create(
-        :paid_purchase,
-        user: user,
-        created_at: 1.minutes.ago
-      )
-
-      expect(user.ordered_paid_products).to eq([purchase_one, purchase_two])
     end
   end
 

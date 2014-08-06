@@ -10,42 +10,4 @@ body.clearance-users {
       }
     }
   }
-
-  #form-sidebar {
-    float: left;
-    padding: 205px 0 0 0;
-    width: 100%;
-
-    h4 {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 1em;
-      margin: 0;
-      margin-bottom: 12px;
-      text-rendering: optimizeLegibility;
-    }
-
-    p {
-      color: #666;
-      margin: 0 0 6px 0;
-    }
-
-    ul {
-      color: #666;
-    }
-
-    li {
-      color: #666;
-      list-style: outside;
-      margin: 0 0 4px 15px;
-    }
-  }
-}
-
-body.purchases,
-body.users-edit {
-  #form-column {
-    float: left;
-    width: 100%;
-  }
 }

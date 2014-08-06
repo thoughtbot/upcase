@@ -50,12 +50,4 @@
     <h3>Your Team</h3>
     <%= render current_user.team %>
   <% end %>
-
-  <% if current_user.has_purchased? %>
-    <h3>Your purchases</h3>
-    <ol class="purchases">
-      <%= render current_user.ordered_paid_products.limit(5) %>
-    </ol>
-    <%= link_to t('account.view_purchases'), purchases_path, class: 'view-all-purchases' %>
-  <% end %>
 </aside>

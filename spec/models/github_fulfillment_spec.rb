@@ -1,64 +1,68 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe GithubFulfillment do
-  describe '#fulfill' do
-    it 'adds each user to the github team' do
+  describe "#fulfill" do
+    it "adds GitHub user to the github team" do
       product = build(:book, :github)
+      user = create(:user, github_username: "github_username")
       GithubFulfillmentJob.stubs(:enqueue)
-      purchase = build(
-        :book_purchase,
-        purchaseable: product,
-        github_usernames: ['cpytel', 'github_username2']
+      license = build(
+        :license,
+        licenseable: product,
+        user: user
       )
 
-      GithubFulfillment.new(purchase).fulfill
+      GithubFulfillment.new(license).fulfill
 
-      GithubFulfillmentJob.should have_received(:enqueue)
+      expect(GithubFulfillmentJob).to have_received(:enqueue)
     end
 
     it "doesn't fulfill using GitHub with a blank GitHub team" do
       product = build(:book, github_team: nil)
+      user = create(:user, github_username: "github_username")
       GithubFulfillmentJob.stubs(:enqueue)
-      purchase = build(
-        :book_purchase,
-        purchaseable: product,
-        github_usernames: ['cpytel']
+      license = build(
+        :license,
+        licenseable: product,
+        user: user
       )
 
-      GithubFulfillment.new(purchase).fulfill
+      GithubFulfillment.new(license).fulfill
 
-      GithubFulfillmentJob.should have_received(:enqueue).never
+      expect(GithubFulfillmentJob).to have_received(:enqueue).never
     end
   end
 
-  describe '#remove' do
-    it 'removes user from github team' do
+  describe "#remove" do
+    it "removes user from github team" do
       GithubRemovalJob.stubs(:enqueue)
+      user = create(:user, github_username: "test")
       product = build(:book, :github)
-      purchase = build(
-        :book_purchase,
-        purchaseable: product,
-        github_usernames: ['jayroh', 'cpytel']
+      license = build(
+        :license,
+        licenseable: product,
+        user: user
       )
 
-      GithubFulfillment.new(purchase).remove
+      GithubFulfillment.new(license).remove
 
-      GithubRemovalJob.should have_received(:enqueue).
-        with(product.github_team, ['jayroh', 'cpytel'])
+      expect(GithubRemovalJob).to have_received(:enqueue).
+        with(product.github_team, "test")
     end
 
     it "doesn't remove using GitHub with a blank GitHub team" do
       GithubRemovalJob.stubs(:enqueue)
+      user = create(:user, github_username: "test")
       product = build(:book, github_team: nil)
-      purchase = build(
-        :book_purchase,
-        purchaseable: product,
-        github_usernames: ['jayroh']
+      license = build(
+        :license,
+        licenseable: product,
+        user: user
       )
 
-      GithubFulfillment.new(purchase).remove
+      GithubFulfillment.new(license).remove
 
-      GithubRemovalJob.should have_received(:enqueue).never
+      expect(GithubRemovalJob).to have_received(:enqueue).never
     end
   end
 end

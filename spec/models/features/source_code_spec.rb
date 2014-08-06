@@ -7,8 +7,8 @@ describe Features::SourceCode do
       user = build_stubbed(:user, :with_github)
       Features::SourceCode.new(user: user).fulfill
 
-      GithubFulfillmentJob.should have_received(:enqueue).
-        with(Features::SourceCode::GITHUB_TEAM, [user.github_username])
+      expect(GithubFulfillmentJob).to have_received(:enqueue).
+        with(Features::SourceCode::GITHUB_TEAM, user.github_username)
     end
   end
 
@@ -18,8 +18,8 @@ describe Features::SourceCode do
       user = build_stubbed(:user, :with_github)
       Features::SourceCode.new(user: user).unfulfill
 
-      GithubRemovalJob.should have_received(:enqueue).
-        with(Features::SourceCode::GITHUB_TEAM, [user.github_username])
+      expect(GithubRemovalJob).to have_received(:enqueue).
+        with(Features::SourceCode::GITHUB_TEAM, user.github_username)
     end
   end
 end

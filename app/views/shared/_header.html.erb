@@ -7,7 +7,7 @@
         <% else %>
           <%= image_tag('learn/learn-ralph-small.png') %>
         <% end %>
-        <span><%= t 'shared.learn' %></span>
+        <span>Upcase</span>
       <% end %>
     </h1>
     <nav class="left">
@@ -22,15 +22,14 @@
     </nav>
     <nav>
       <ul>
-        <% if !current_user_has_active_subscription? %>
-          <li class="prime">
-            <%= link_to prime_path do %>
-              <span><%= t('shared.subscriptions.icon') %></span> <%= t('shared.subscription.name') %> Membership
-            <% end %>
-          </li>
-        <% end %>
         <% if signed_in? %>
-          <li class="timeline"><%= link_to 'Timeline', timeline_path %></li>
+          <% if !current_user_has_active_subscription? %>
+            <li class="prime">
+              <%= link_to subscribe_path do %>
+                <span><%= t('shared.subscriptions.icon') %></span> <%= t('shared.subscription.name') %> Membership
+              <% end %>
+            </li>
+          <% end %>
           <li class="account"><%= link_to 'Settings', my_account_path %></li>
         <% else %>
           <li class="account"><%= link_to 'Sign in', sign_in_path %></li>

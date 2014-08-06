@@ -1,13 +1,8 @@
-<section id="license" class="<%= product.offering_type %>">
-  <%= render 'offerings/prime_purchase', offering: product %>
-
-  <% if !current_user_has_active_subscription? && licenses.present? %>
-    <p class="or"><%= t '.or_buy_individually' %></p>
-  <% end %>
-
-  <% if product.active? %>
-    <%= render licenses, product: product %>
+<section id="license" class="<%= offering.offering_type %>">
+  <% if offering.active? %>
+    <%= render "offerings/prime", offering: offering %>
+    <%= render "licenses/link", offering: offering %>
   <% else %>
-    <%= render 'products/inactive', product: product %>
+    <%= render "products/inactive", offering: offering %>
   <% end %>
 </section>
