@@ -86,25 +86,6 @@ footer.links {
   }
 }
 
-a.chat, a.chat:link, a.chat:visited {
-  background: #AD141E none repeat scroll 0 0;
-  border-radius: 5px 5px 0 0;
-  bottom: 0px;
-  color: white;
-  display: block;
-  margin: 0px 20px;
-  opacity: 1;
-  padding: .5em 1em;
-  position: fixed;
-  right: 0px;
-  text-decoration: none;
-  z-index: 99999999;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
 @include body-mobile {
   footer {
     width: 100%;
