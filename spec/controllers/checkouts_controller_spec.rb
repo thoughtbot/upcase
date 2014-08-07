@@ -2,7 +2,7 @@ require "spec_helper"
 
 include StubCurrentUserHelper
 
-describe CheckoutsController, :type => :controller do
+describe CheckoutsController, type: :controller do
   describe "#new when purchasing a plan as an active subscriber" do
     context "when purchasing an individual plan" do
       it "redirects to plan editing" do

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe WorkshopsController, :type => :controller do
+describe WorkshopsController, type: :controller do
   context "show" do
     it "renders the show_licensed page if the user has licensed" do
       user = create(:user)

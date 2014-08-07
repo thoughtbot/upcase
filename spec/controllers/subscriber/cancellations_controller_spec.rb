@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Subscriber::CancellationsController, :type => :controller do
+describe Subscriber::CancellationsController, type: :controller do
   describe '#new without being signed in' do
     it 'redirects to sign in page' do
       get :new

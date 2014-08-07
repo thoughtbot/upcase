@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe HomesController, :type => :controller do
+describe HomesController, type: :controller do
   it 'redirects to the landing page if the visitor is not logged in' do
     get :show
 
