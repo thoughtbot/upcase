@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Visitor resets password' do
   scenario 'by navigating to the page' do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe SubscriptionFulfillment, type: :model do
   describe '#fulfill' do

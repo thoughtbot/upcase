@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe StripeSubscription, type: :model do
   context '#create' do

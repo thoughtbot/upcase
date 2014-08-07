@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "A visitor visits the home page", type: :request do
   it "a visitor has a browser that supports compression" do

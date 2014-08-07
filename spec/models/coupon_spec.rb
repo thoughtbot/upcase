@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Coupon, type: :model do
   it 'has a code of the given stripe coupon code' do

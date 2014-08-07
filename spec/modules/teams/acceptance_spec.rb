@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 module Teams
   describe Acceptance, type: :model do

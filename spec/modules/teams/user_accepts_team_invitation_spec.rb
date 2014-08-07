@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Accept team invitations' do
   scenario 'and signs up' do

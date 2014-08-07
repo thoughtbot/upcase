@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe SubscriptionUpcomingInvoiceUpdater, type: :model do
   it 'updates the next_payment_amount and next_payment_on for the given subscriptions' do

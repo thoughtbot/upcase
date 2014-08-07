@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Video, type: :model do
   it { should belong_to(:watchable) }

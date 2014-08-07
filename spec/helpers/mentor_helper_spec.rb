@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe MentorHelper, type: :helper do
   describe '#mentor_image' do

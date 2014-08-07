@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Completion, type: :model do
   it { should belong_to(:user) }

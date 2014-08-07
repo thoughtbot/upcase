@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe LicensesController, type: :controller do
   describe "#create without being signed in" do

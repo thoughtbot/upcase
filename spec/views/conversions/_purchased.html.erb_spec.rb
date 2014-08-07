@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'conversions/_purchased.html.erb', :type => :view do
   before do

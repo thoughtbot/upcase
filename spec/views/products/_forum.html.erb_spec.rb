@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'products/_forum_link', :type => :view do
   context 'when the user has a subscription' do

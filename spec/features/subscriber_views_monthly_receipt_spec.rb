@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Subscriber views subscription invoices' do
   scenario 'Subscriber views a listing of all invoices' do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Workshops', :type => :feature do
   it 'displays their formatted resources' do

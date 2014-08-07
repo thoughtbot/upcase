@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'User can download books directly' do
   scenario 'User sees links for various book formats' do

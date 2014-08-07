@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ReturnPathFinder, type: :model do
   describe '#return_path' do

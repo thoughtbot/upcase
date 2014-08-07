@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'shows/_screencast.html.erb', :type => :view do
   it 'includes published episodes count' do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Invoice, type: :model do
   it 'retrieves all invoices for a customer' do

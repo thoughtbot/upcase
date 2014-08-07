@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'promoted_catalogs/show.html.erb', :type => :view do
   context "when signed in without a subscription" do

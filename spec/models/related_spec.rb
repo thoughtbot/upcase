@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Related, type: :model do
   it 'is initialized with an item' do

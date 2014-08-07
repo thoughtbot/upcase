@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Topic pages' do
   scenario 'a visitor views the list of featured topics' do
