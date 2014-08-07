@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe IndividualPlan do
+describe IndividualPlan, :type => :model do
   it { should have_many(:announcements) }
   it { should have_many(:checkouts) }
   it { should have_many(:subscriptions) }

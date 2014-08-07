@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Book do
+describe Book, :type => :model do
   describe '#filename' do
     it 'returns the parameterized product name' do
       book = Book.new(name: 'Backbone.js on Rails')

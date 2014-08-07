@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe VideoThumbnail do
+describe VideoThumbnail, :type => :model do
   context '#url' do
     it 'returns the url' do
       wistia_id = stub

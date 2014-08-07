@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe User do
+describe User, :type => :model do
   context "associations" do
     it { should have_many(:licenses) }
     it { should have_many(:completions) }

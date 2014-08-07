@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "individual_plans/_individual_plan.html" do
+describe "individual_plans/_individual_plan.html", :type => :view do
   context "grid partial" do
     it "renders the grid partial matching the plan" do
       prime_29 = build_plan

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe LicenseMailer do
+describe LicenseMailer, :type => :mailer do
   describe '.fulfillment_error' do
     it 'sets the correct recipients' do
       license = stubbed_license

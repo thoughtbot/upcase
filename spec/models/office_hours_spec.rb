@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OfficeHours do
+describe OfficeHours, :type => :model do
   around(:each) do |example|
     old_env_url = ENV['CHAT_LINK']
     old_env_time = ENV['OFFICE_HOURS']

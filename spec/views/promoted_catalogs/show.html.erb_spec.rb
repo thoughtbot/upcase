@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'promoted_catalogs/show.html.erb' do
+describe 'promoted_catalogs/show.html.erb', :type => :view do
   context "when signed in without a subscription" do
     before do
       view_stubs(signed_in?: true)

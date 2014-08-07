@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ProductsController do
+describe ProductsController, :type => :controller do
   context "show" do
     it "render the show licensed page if the user has one" do
       user = create(:user)

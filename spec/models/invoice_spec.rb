@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Invoice do
+describe Invoice, :type => :model do
   it 'retrieves all invoices for a customer' do
     invoices = Invoice.
       find_all_by_stripe_customer_id(FakeStripe::CUSTOMER_ID)

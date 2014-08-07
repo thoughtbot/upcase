@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe GithubFulfillment do
+describe GithubFulfillment, :type => :model do
   describe "#fulfill" do
     it "adds GitHub user to the github team" do
       product = build(:book, :github)

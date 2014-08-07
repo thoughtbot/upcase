@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Product do
+describe Product, :type => :model do
   it { should have_many(:licenses) }
 
   describe 'self.promoted' do

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Announcement do
+describe Announcement, :type => :model do
   # Database
   it { should have_db_column(:created_at).with_options(null: false) }
   it { should have_db_column(:updated_at).with_options(null: false) }

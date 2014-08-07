@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Step do
+describe Step, :type => :model do
   it 'is equal to a step with the identical name' do
     step = Step.new('name' => 'Test')
     step2 = Step.new('name' => 'Test')

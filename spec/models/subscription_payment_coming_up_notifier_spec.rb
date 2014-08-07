@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SubscriptionPaymentComingUpNotifier do
+describe SubscriptionPaymentComingUpNotifier, :type => :model do
   it 'sends email to each subscribers' do
     mailer = stub(deliver: true)
     SubscriptionMailer.stubs(upcoming_payment_notification: mailer)

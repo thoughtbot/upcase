@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'workshops/show.html.erb' do
+describe 'workshops/show.html.erb', :type => :view do
   include Capybara::DSL
 
   it 'includes workshop FAQs' do

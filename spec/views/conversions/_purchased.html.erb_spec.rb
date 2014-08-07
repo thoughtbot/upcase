@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'conversions/_purchased.html.erb' do
+describe 'conversions/_purchased.html.erb', :type => :view do
   before do
     view_stubs(
       purchase_amount: purchase_amount,

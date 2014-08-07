@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Screencast do
+describe Screencast, :type => :model do
   it { should have_many(:videos) }
 
   it_behaves_like 'a class inheriting from Product'

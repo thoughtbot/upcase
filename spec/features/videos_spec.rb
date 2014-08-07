@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "Videos" do
+describe "Videos", :type => :feature do
   context "get show" do
     it "does not allow watching a video without a license" do
       product = create(:screencast)

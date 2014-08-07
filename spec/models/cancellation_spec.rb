@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Cancellation do
+describe Cancellation, :type => :model do
   describe "#process" do
     before :each do
       subscription.stubs(:stripe_customer_id).returns("cus_1CXxPJDpw1VLvJ")

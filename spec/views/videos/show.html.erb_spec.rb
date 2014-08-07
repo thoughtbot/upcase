@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "videos/show" do
+describe "videos/show", :type => :view do
   it "embeds a preview when available" do
     video = build(
       :video,

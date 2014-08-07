@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SubscriptionMailer do
+describe SubscriptionMailer, :type => :mailer do
   describe '.welcome_to_prime_from_mentor' do
     it 'is sent to the user' do
       user = user_with_mentor

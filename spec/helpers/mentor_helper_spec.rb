@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MentorHelper do
+describe MentorHelper, :type => :helper do
   describe '#mentor_image' do
     include Gravatarify::Helper
 

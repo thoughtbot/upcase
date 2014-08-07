@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PromotedCatalog do
+describe PromotedCatalog, :type => :model do
   describe 'any method' do
     it 'delegates to catalog and calls promoted on the returned object' do
       book_relation = stub('book_relation', promoted: :some_books)

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CheckoutMailer do
+describe CheckoutMailer, :type => :mailer do
   describe '.receipt' do
     include Rails.application.routes.url_helpers
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Mentor do
+describe Mentor, :type => :model do
   it { should have_many(:mentees) }
   it { should validate_presence_of(:user) }
 

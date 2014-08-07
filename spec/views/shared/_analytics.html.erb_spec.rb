@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'shared/_analytics.html.erb' do
+describe 'shared/_analytics.html.erb', :type => :view do
   include AnalyticsHelper
 
   context 'when signed out' do

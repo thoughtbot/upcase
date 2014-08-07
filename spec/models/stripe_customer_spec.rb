@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe StripeCustomer do
+describe StripeCustomer, :type => :model do
   describe '#url' do
     it 'returns a url to the customer in the stripe management console' do
       stripe_customer_id = 'whatever'

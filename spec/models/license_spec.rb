@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe License do
+describe License, :type => :model do
   it { should belong_to(:licenseable) }
   it { should belong_to(:user) }
   it { should validate_presence_of(:user_id) }
@@ -50,7 +50,7 @@ describe License do
   end
 end
 
-describe License, "#starts_on" do
+describe License, "#starts_on", :type => :model do
   it "gets the starts_on from it's licenseable and it's own created_at" do
     created_at = 1.day.ago
     product = build(:product)
@@ -63,7 +63,7 @@ describe License, "#starts_on" do
   end
 end
 
-describe License, "#ends_on" do
+describe License, "#ends_on", :type => :model do
   it "gets the starts_on from it's licenseable and it's own created_at" do
     created_at = 1.day.ago
     product = build(:product)
@@ -76,7 +76,7 @@ describe License, "#ends_on" do
   end
 end
 
-describe License, "#active?" do
+describe License, "#active?", :type => :model do
   it "is true when today is between start and end" do
     product = build(:product)
     product.stubs(starts_on: Date.yesterday, ends_on: 4.days.from_now.to_date)

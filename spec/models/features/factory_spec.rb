@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Features::Factory do
+describe Features::Factory, :type => :model do
   describe "#new" do
     it "returns a specific instance for features with custom fulfillment" do
       factory = Features::Factory.new(user: build_stubbed(:user))

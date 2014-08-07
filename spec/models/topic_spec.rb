@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Topic do
+describe Topic, :type => :model do
   # Associations
   it { should have_many(:classifications) }
   it { should have_many(:workshops).through(:classifications) }

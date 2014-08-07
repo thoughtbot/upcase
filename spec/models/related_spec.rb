@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Related do
+describe Related, :type => :model do
   it 'is initialized with an item' do
     Related.new(stub)
   end
