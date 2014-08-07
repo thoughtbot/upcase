@@ -1,7 +1,7 @@
 module PageObjects
   class Workshop
     include Capybara::DSL
-    include Workshops::Application.routes.url_helpers
+    include Upcase::Application.routes.url_helpers
 
     attr_reader :workshop
 

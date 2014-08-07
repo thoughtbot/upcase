@@ -7,7 +7,7 @@ require 'rails/all'
 # or test environments.
 Bundler.require(:default, Rails.env)
 
-module Workshops
+module Upcase
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

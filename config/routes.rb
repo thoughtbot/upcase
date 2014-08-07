@@ -1,4 +1,4 @@
-Workshops::Application.routes.draw do
+Upcase::Application.routes.draw do
   use_doorkeeper
 
   mount RailsAdmin::Engine => "/admin", :as => "admin"
