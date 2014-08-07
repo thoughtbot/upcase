@@ -35,4 +35,12 @@ class TeamPlan < ActiveRecord::Base
   def has_feature?(feature)
     public_send("includes_#{feature}?")
   end
+
+  def annualized_payment
+    12 * individual_price
+  end
+
+  def discounted_annual_payment
+    10 * individual_price
+  end
 end

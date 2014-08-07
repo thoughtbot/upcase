@@ -104,6 +104,22 @@ describe IndividualPlan do
     end
   end
 
+  describe "#annualized_payment" do
+    it "returns the payment amount times 12" do
+      plan = build_stubbed(:individual_plan)
+
+      expect(plan.annualized_payment).to eq(12 * plan.individual_price)
+    end
+  end
+
+  describe "#discounted_annual_payment" do
+    it "returns the payment amount times 10" do
+      plan = build_stubbed(:individual_plan)
+
+      expect(plan.discounted_annual_payment).to eq(10 * plan.individual_price)
+    end
+  end
+
   def create_inactive_subscription_for(plan)
     create(:inactive_subscription, plan: plan)
   end

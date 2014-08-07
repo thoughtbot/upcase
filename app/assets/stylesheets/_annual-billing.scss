@@ -1,0 +1,29 @@
+#annual-subscription-subject {
+  margin-bottom: em(100);
+}
+
+.subject {
+  h2 {
+    font-size: em(28);
+    font-weight: 400;
+  }
+}
+
+.subscription-charge {
+  color: $red;
+  font-weight: 800;
+}
+
+.disclaimer {
+  padding-top: em(20);
+}
+
+.no-background {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+.switch-subscription {
+  padding: em(15);
+}

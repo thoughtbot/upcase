@@ -27,6 +27,7 @@ Upcase::Application.routes.draw do
 
   root to: "homes#show"
 
+  resource :annual_billing, only: [:new, :create]
   resource :credit_card, only: [:update]
   resource :dashboard, only: :show
   resource :session, controller: :sessions

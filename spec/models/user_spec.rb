@@ -479,4 +479,24 @@ describe User do
       create(:user, team: team)
     end
   end
+
+  describe "#annualized_payment" do
+    it "delegates to the user's plan" do
+      user = create(:subscriber)
+
+      user.plan.stubs(:annualized_payment).returns(1234)
+
+      expect(user.annualized_payment).to eq(1234)
+    end
+  end
+
+  describe "#discounted_annual_payment" do
+    it "delegates to the user's plan" do
+      user = create(:subscriber)
+
+      user.plan.stubs(:discounted_annual_payment).returns(1234)
+
+      expect(user.discounted_annual_payment).to eq(1234)
+    end
+  end
 end

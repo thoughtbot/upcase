@@ -1,0 +1,50 @@
+<div id="annual-subscription-subject" class="subject">
+  <h1>Get two free months of Upcase</h1>
+  <h2>Switch to annual billing and commit to long-term learning</h2>
+</div>
+
+<div class="text-box-wrapper left">
+  <div class="text-box no-background">
+    <p>Successful students realize that learning is an extended journey. If
+    you'd like to join us for the long haul, we're happy to offer you annual
+    billing.</p>
+
+    <p>
+      <strong>
+        Annual billing benefits:
+      </strong>
+    </p>
+    <ul>
+      <li>2 months free! If you upgrade, you'll get 12 months of Upcase for the
+      price of 10. That's a 17% discount on what you'd pay on monthly
+      billing.</li>
+
+      <li>You'll have one fewer monthly expense to plan for and categorize.</li>
+
+      <li>You'll be helping to support the Upcase program, allowing us to
+      invest heavily in producing new content for you.</li>
+    </ul>
+
+    <%= button_to "Switch to annual billing", annual_billing_path,
+      form_class: "switch-subscription" %>
+  </div>
+</div>
+
+<aside>
+  <dt>
+    <p>What you pay now (annually):</p>
+  </dt>
+  <dd>
+    <p class="subscription-charge">$<%= @annualized_payment %></p>
+  </dd>
+  <dt>
+    <p>What you'll pay when you switch to annual billing:</p>
+  </dt>
+  <dd>
+    <p class="subscription-charge">$<%= @discounted_annual_payment %></p>
+  </dd>
+  <dd>
+    <p class="disclaimer">Annual plans are charged up-front, once a year. We
+    offer a 100% refund when requested within 30 days.</p>
+  </dd>
+</aside>

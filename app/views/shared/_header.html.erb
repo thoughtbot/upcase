@@ -30,6 +30,9 @@
               <% end %>
             </li>
           <% end %>
+          <li class="account">
+            <%= render 'shared/annual_billing' %>
+          </li>
           <li class="account"><%= link_to 'Settings', my_account_path %></li>
         <% else %>
           <li class="account"><%= link_to 'Sign in', sign_in_path %></li>
