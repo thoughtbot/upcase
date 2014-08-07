@@ -5,18 +5,21 @@ describe GithubFulfillmentJob do
 
   it "adds the given username to a github team" do
     client = stub_octokit
-    client.stubs(add_team_member: nil)
+    client.stubs(add_team_membership: nil)
 
     GithubFulfillmentJob.new(3, "gabebw").perform
 
-    expect(client).to have_received(:add_team_member).with(3, "gabebw")
+    expect(client).to(
+      have_received(:add_team_membership).
+      with(3, "gabebw", accept: GithubFulfillmentJob::PREVIEW_MEDIA_TYPE)
+    )
   end
 
   [Octokit::NotFound, Net::HTTPBadResponse].each do |error_class|
     it "sends an email when #{error_class} is raised" do
       license_id = create(:license).id
       client = stub_octokit
-      client.stubs(:add_team_member).raises(error_class)
+      client.stubs(:add_team_membership).raises(error_class)
       LicenseMailer.stubs(fulfillment_error: stub("deliver", :deliver => true))
 
       expect { GithubFulfillmentJob.new(3, "gabebw", license_id).perform }.
@@ -28,7 +31,7 @@ describe GithubFulfillmentJob do
 
     it "sends no email when #{error_class} is raised with no license" do
       client = stub_octokit
-      client.stubs(:add_team_member).raises(error_class)
+      client.stubs(:add_team_membership).raises(error_class)
       LicenseMailer.stubs(fulfillment_error: stub("deliver", deliver: true))
 
       expect { GithubFulfillmentJob.new(3, "gabebw").perform }.
@@ -36,8 +39,8 @@ describe GithubFulfillmentJob do
 
       expect(LicenseMailer).to(
         have_received(:fulfillment_error).
-          with(instance_of(License), "gabebw").
-          never
+        with(instance_of(License), "gabebw").
+        never
       )
     end
   end

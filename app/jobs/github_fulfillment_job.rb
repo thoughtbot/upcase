@@ -2,13 +2,20 @@ class GithubFulfillmentJob < Struct.new(:github_team, :username, :license_id)
   include ErrorReporting
 
   PRIORITY = 1
+  PREVIEW_MEDIA_TYPE =
+    "application/vnd.github.the-wasp-preview+json".freeze
 
   def self.enqueue(github_team, username, license_id=nil)
     Delayed::Job.enqueue(new(github_team, username, license_id))
   end
 
   def perform
-    github_client.add_team_member(github_team, username)
+    # TODO remove accept once GitHub removes preview mode.
+    github_client.add_team_membership(
+      github_team,
+      username,
+      accept: PREVIEW_MEDIA_TYPE
+    )
   rescue Octokit::NotFound, Net::HTTPBadResponse
     email_user
     raise
