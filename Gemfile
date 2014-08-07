@@ -92,7 +92,7 @@ group :test do
   gem 'rubyzip', '0.9.9'
   gem 'sham_rack', '1.3.1'
   gem 'shoulda-matchers'
-  gem 'simplecov', require: false
+  gem 'simplecov', '~> 0.9', require: false
   gem 'sinatra'
   gem 'timecop', '0.3.5'
   gem 'webmock', '1.8.7'
