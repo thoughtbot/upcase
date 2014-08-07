@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OpenGraphHelper, :type => :helper do
+describe OpenGraphHelper, type: :helper do
   before :each do
     helper.request.symbolized_path_parameters.
       merge!(controller: 'homes', action: 'show')
