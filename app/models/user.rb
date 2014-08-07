@@ -52,8 +52,9 @@ class User < ActiveRecord::Base
   def has_active_subscription?
     subscription.present?
   end
+
   def has_access_to?(feature)
-    subscription && subscription.has_access_to?(feature)
+    subscription.present? && subscription.has_access_to?(feature)
   end
 
   def subscribed_at

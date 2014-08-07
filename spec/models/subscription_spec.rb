@@ -159,7 +159,7 @@ describe Subscription do
       it 'returns false' do
         subscription = build_stubbed(:subscription, deactivated_on: Date.today)
 
-        expect(subscription.has_access_to?('workshops')).to be_false
+        expect(subscription).to_not have_access_to("workshops")
       end
     end
 
@@ -168,7 +168,7 @@ describe Subscription do
         plan = create(:plan, includes_workshops: false)
         subscription = build_stubbed(:subscription, plan: plan)
 
-        expect(subscription.has_access_to?('workshops')).to be_false
+        expect(subscription).to_not have_access_to("workshops")
       end
     end
 
@@ -177,7 +177,7 @@ describe Subscription do
         plan = create(:plan, includes_workshops: true)
         subscription = build_stubbed(:subscription, plan: plan)
 
-        expect(subscription.has_access_to?('workshops')).to be_true
+        expect(subscription).to have_access_to("workshops")
       end
     end
   end
@@ -251,13 +251,13 @@ describe Subscription do
     it 'returns true with a team' do
       subscription = create(:team).subscription
 
-      expect(subscription.team?).to be_true
+      expect(subscription).to be_team
     end
 
     it 'returns false without a team' do
       subscription = build_stubbed(:subscription)
 
-      expect(subscription.team?).to be_false
+      expect(subscription).to_not be_team
     end
   end
 

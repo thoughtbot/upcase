@@ -32,7 +32,7 @@ describe Checkout do
       StripeSubscription.stubs(:new).returns(stripe_subscription)
       checkout = build(:checkout)
 
-      expect(checkout.save).to be_false
+      expect(checkout.save).to be false
     end
 
     it "sends a receipt" do

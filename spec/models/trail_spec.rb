@@ -64,7 +64,7 @@ describe Trail do
       topic.reload
 
       expect(Airbrake).to have_received(:notify).with(exception)
-      expect(trail.trail_map["old"]).to eq true
+      expect(trail.trail_map["old"]).to be true
       expect(topic.summary).to eq "old summary"
     end
 

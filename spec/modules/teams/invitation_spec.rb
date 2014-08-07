@@ -29,7 +29,7 @@ module Teams
 
         expect(invitation).to be_persisted
         expect(mailer).to have_received(:invitation).with(invitation.id)
-        expect(result).to be_true
+        expect(result).to be true
       end
 
       it "doesn't send an invalid invitation" do
@@ -39,7 +39,7 @@ module Teams
         result = invitation.deliver
 
         expect(mailer).to have_received(:invitation).never
-        expect(result).to be_false
+        expect(result).to be false
       end
 
       def stub_mailer

@@ -62,7 +62,7 @@ module Teams
         expect(user).to be_present
         expect(user).to eq(acceptance.user)
         expect(invitation).to have_received(:accept).with(user)
-        expect(result).to be_true
+        expect(result).to be true
       end
     end
   end
