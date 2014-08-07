@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe GithubRemovalJob do
   it_behaves_like "a Delayed Job that notifies Airbrake about errors"

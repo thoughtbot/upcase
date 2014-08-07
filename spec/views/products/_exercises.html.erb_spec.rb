@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "products/_exercises.html", type: :view do
   it "renders links to exercises for users with access" do

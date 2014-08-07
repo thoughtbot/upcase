@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Offering, type: :model do
   context "#license" do

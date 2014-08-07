@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe 'Workshops', :type => :feature do
+describe 'Workshops', type: :feature do
   it 'displays their formatted resources' do
     user = create(:user)
     workshop = create(:workshop, resources: "* Item 1\n*Item 2")

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe PlanComparer, type: :model do
   describe "#features_gained" do

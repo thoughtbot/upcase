@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "subscriptions/_plan_features.html", type: :view do
   it "shows each workshop in the catalog" do

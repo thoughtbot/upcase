@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "Account Settings" do
   scenario "user views subscription" do

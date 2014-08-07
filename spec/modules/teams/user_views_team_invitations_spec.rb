@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "View team invitations" do
   scenario "when some have been accepted" do

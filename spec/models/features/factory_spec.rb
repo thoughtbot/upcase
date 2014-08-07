@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Features::Factory, type: :model do
   describe "#new" do

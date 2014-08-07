@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "videos/show", type: :view do
   it "embeds a preview when available" do

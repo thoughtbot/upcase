@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "subscriptions/_pricing.html", type: :view do
   context "header" do

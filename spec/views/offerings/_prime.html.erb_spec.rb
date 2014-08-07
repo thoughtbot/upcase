@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "offerings/_prime.html.erb", type: :view do
   it "tries to sell the user on Prime" do

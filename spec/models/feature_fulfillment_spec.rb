@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe FeatureFulfillment, type: :model do
   describe "#fulfill_gained_features" do

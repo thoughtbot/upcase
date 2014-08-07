@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe GithubFulfillment, type: :model do
   describe "#fulfill" do

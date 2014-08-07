@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "Viewing products" do
   scenario "of different types" do
