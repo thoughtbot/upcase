@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature 'User attempts to add OAuth application' do
   scenario 'as non-admin' do

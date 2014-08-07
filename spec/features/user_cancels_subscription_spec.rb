@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature 'User cancels a subscription' do
   scenario 'successfully unsubscribes without a refund' do

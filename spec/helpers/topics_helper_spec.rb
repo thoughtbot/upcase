@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe TopicsHelper, '#format_content', type: :helper do
   let(:ellipsis) { '&#8230;' }

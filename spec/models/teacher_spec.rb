@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Teacher, type: :model do
   it { should belong_to(:user) }

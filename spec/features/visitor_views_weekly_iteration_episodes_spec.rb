@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature 'Visitor' do
   scenario 'views Weekly Iteration episodes' do

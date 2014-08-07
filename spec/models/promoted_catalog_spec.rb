@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe PromotedCatalog, type: :model do
   describe 'any method' do

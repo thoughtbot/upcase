@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature 'Admin manages mentors' do
   scenario 'creating a new mentor' do

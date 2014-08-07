@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe PromotedCatalogsController, type: :controller do
   describe '#show' do

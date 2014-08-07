@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Workshop, type: :model do
   # Associations

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Step, type: :model do
   it 'is equal to a step with the identical name' do

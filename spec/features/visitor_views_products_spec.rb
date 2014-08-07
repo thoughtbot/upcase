@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature 'The products index' do
   scenario 'a visitor views the product index' do

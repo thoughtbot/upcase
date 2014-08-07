@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature 'An OAuth client authenticates', js: true do
   scenario 'via redirect' do

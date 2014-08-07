@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe 'shared/_analytics.html.erb', type: :view do
   include AnalyticsHelper

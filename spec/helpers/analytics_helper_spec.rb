@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe AnalyticsHelper, type: :helper do
   describe '#analytics?' do

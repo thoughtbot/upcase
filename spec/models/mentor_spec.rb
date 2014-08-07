@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Mentor, type: :model do
   it { should have_many(:mentees) }

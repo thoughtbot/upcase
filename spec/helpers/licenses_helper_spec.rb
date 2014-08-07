@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe LicensesHelper, '#formatted_date_range', type: :helper do
   context 'when starts_on and ends_on are nil' do

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe WorkshopsController, type: :controller do
   context "show" do

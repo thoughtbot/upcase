@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe '.for_user', type: :model do
   it 'returns the last access token for a given user' do

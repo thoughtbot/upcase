@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature 'User downgrades subscription', js: true do
   scenario 'successfully downgrades and then cancels' do

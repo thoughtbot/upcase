@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature 'Send team invitations' do
   scenario 'with valid data' do

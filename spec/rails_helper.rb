@@ -10,13 +10,13 @@ if ENV["COVERAGE"]
 end
 
 ENV["RAILS_ENV"] ||= 'test'
-require 'spec_helper'
+require "spec_helper"
 require File.expand_path("../../config/environment", __FILE__)
-require 'clearance/rspec'
-require 'email_spec'
-require 'paperclip/matchers'
-require 'rspec/rails'
-require 'webmock/rspec'
+require "clearance/rspec"
+require "email_spec"
+require "paperclip/matchers"
+require "rspec/rails"
+require "webmock/rspec"
 
 WebMock.disable_net_connect!(allow_localhost: true, allow: 'codeclimate.com')
 

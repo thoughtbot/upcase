@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe InvoiceNotifier, type: :model do
   describe '#send_receipt' do

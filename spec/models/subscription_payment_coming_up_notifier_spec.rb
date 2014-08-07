@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe SubscriptionPaymentComingUpNotifier, type: :model do
   it 'sends email to each subscribers' do

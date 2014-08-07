@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature 'Subscriber can contact his mentor' do
   scenario 'from the dashboard' do

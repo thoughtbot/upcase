@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe VideoThumbnail, type: :model do
   context '#url' do

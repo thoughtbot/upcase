@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature 'Test-Driven Rails Resources' do
   scenario 'View the resources' do

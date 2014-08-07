@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe LicenseMailer, type: :mailer do
   describe '.fulfillment_error' do

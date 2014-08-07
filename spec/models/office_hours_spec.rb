@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe OfficeHours, type: :model do
   around(:each) do |example|

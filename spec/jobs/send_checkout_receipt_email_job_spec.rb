@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe SendCheckoutReceiptEmailJob do
   it_behaves_like 'a Delayed Job that notifies Airbrake about errors'
