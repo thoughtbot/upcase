@@ -11,7 +11,6 @@ end
 
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
-require 'rspec/autorun'
 require 'rspec/rails'
 require 'paperclip/matchers'
 require 'email_spec'
@@ -59,6 +58,5 @@ RSpec.configure do |config|
   config.include PathHelpers, type: :feature
 
   config.mock_with :mocha
-  config.treat_symbols_as_metadata_keys_with_true_values = true
   config.infer_spec_type_from_file_location!
 end
