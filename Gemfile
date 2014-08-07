@@ -66,7 +66,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'foreman', '0.46.0'
   gem 'pry-rails'
-  gem 'rspec-rails', '~> 2.99.0'
+  gem 'rspec-rails', '~> 3.0.2'
 end
 
 group :production, :staging do
