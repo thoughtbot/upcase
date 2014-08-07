@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Download, :type => :model do
+describe Download, type: :model do
 
   describe '#display_name' do
     it 'displays name with file name and size' do

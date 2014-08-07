@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Video, :type => :model do
+describe Video, type: :model do
   it { should belong_to(:watchable) }
 
   it { should validate_presence_of(:published_on) }

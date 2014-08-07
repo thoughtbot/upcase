@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Offering, :type => :model do
+describe Offering, type: :model do
   context "#license" do
     it "returns the license for a user with one" do
       user = create(:user)

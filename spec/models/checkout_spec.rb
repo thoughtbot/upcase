@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Checkout, :type => :model do
+describe Checkout, type: :model do
   it { should belong_to(:user) }
   it { should belong_to(:subscribeable) }
 

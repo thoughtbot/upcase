@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Classification, :type => :model do
+describe Classification, type: :model do
   it { should belong_to(:classifiable) }
   it { should belong_to(:topic) }
 

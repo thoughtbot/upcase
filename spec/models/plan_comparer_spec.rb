@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe PlanComparer, :type => :model do
+describe PlanComparer, type: :model do
   describe "#features_gained" do
     it "returns features the new plan has and the old plan doesn't have" do
       old_plan = build_stubbed(:plan, :no_mentor)

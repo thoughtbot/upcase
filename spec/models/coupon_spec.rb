@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Coupon, :type => :model do
+describe Coupon, type: :model do
   it 'has a code of the given stripe coupon code' do
     coupon = Coupon.new('25OFF')
     expect(coupon.code).to eq '25OFF'

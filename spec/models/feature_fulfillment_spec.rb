@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe FeatureFulfillment, :type => :model do
+describe FeatureFulfillment, type: :model do
   describe "#fulfill_gained_features" do
     it "calls #fulfill on each gained feature" do
       old_plan = build_stubbed(:plan, :no_mentor)

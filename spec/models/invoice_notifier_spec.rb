@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe InvoiceNotifier, :type => :model do
+describe InvoiceNotifier, type: :model do
   describe '#send_receipt' do
     context 'invoice has a user' do
       it 'sends a receipt to the person who was charged' do
