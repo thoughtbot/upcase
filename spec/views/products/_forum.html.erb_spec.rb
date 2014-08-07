@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'products/_forum_link', :type => :view do
+describe 'products/_forum_link', type: :view do
   context 'when the user has a subscription' do
     it 'includes a link to the forum' do
       render partial: 'products/forum_link', locals: { current_user: user_with_subscription }

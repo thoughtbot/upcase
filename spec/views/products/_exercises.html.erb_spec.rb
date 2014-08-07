@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "products/_exercises.html", :type => :view do
+describe "products/_exercises.html", type: :view do
   it "renders links to exercises for users with access" do
     view_stubs(:current_user_has_access_to?).with(:exercises).returns(true)
 

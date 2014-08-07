@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "subscriptions/_plan_features.html", :type => :view do
+describe "subscriptions/_plan_features.html", type: :view do
   it "shows each workshop in the catalog" do
     workshop = build_stubbed(:workshop, name: "Best Workshop")
     catalog = stub(workshops: [workshop], books: [])

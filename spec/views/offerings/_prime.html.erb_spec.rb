@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "offerings/_prime.html.erb", :type => :view do
+describe "offerings/_prime.html.erb", type: :view do
   it "tries to sell the user on Prime" do
     current_user_has_subscription = false
     render_template current_user_has_subscription

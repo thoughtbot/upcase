@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'shared/_analytics.html.erb', :type => :view do
+describe 'shared/_analytics.html.erb', type: :view do
   include AnalyticsHelper
 
   context 'when signed out' do
