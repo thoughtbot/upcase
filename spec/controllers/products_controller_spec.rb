@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe ProductsController, type: :controller do
+describe ProductsController do
   context "show" do
     it "render the show licensed page if the user has one" do
       user = create(:user)

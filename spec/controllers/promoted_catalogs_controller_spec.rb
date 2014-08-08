@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe PromotedCatalogsController, type: :controller do
+describe PromotedCatalogsController do
   describe '#show' do
     it 'uses the empty-body layout' do
       promoted_catalog = stub('promoted_catalog')

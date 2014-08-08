@@ -2,7 +2,7 @@ require "rails_helper"
 
 include StubCurrentUserHelper
 
-describe VideosController, type: :controller do
+describe VideosController do
   describe "#show when viewing a video as user with a license" do
     it "renders the licensed show so they can watch video" do
       user = create(:subscriber)

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe HomesController, type: :controller do
+describe HomesController do
   it 'redirects to the landing page if the visitor is not logged in' do
     get :show
 

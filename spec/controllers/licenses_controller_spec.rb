@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe LicensesController, type: :controller do
+describe LicensesController do
   describe "#create without being signed in" do
     it "redirects to sign in page" do
       workshop = build_stubbed(:workshop)

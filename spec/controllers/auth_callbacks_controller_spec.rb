@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe AuthCallbacksController, type: :controller do
+describe AuthCallbacksController do
   context '#create' do
     it 'redirects to the dashboard path without an auth origin' do
       request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:github]
