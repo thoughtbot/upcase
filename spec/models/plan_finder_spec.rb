@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe PlanFinder, type: :model do
+describe PlanFinder do
   describe '.where' do
     it 'finds IndividualPlans by sku' do
       individual_plan = create(:individual_plan, sku: 'individual_plan')

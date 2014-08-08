@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe StripeSubscription, type: :model do
+describe StripeSubscription do
   context '#create' do
     it "updates the customer's plan" do
       customer = stub_existing_customer

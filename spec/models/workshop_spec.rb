@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Workshop, type: :model do
+describe Workshop do
   # Associations
   it { should have_many(:announcements).dependent(:destroy) }
   it { should have_many(:classifications).dependent(:destroy) }

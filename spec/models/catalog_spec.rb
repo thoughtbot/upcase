@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Catalog, type: :model do
+describe Catalog do
   describe '#books' do
     it 'returns active books in order' do
       catalog = Catalog.new

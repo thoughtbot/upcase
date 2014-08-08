@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Download, type: :model do
+describe Download do
 
   describe '#display_name' do
     it 'displays name with file name and size' do

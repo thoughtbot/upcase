@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Checkout, type: :model do
+describe Checkout do
   it { should belong_to(:user) }
   it { should belong_to(:subscribeable) }
 

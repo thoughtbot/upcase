@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe VideoThumbnail, type: :model do
+describe VideoThumbnail do
   context '#url' do
     it 'returns the url' do
       wistia_id = stub

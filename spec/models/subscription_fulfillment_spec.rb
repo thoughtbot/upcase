@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe SubscriptionFulfillment, type: :model do
+describe SubscriptionFulfillment do
   describe '#fulfill' do
     it "downloads the user's GitHub public keys" do
       GitHubPublicKeyDownloadFulfillmentJob.stubs(:enqueue)

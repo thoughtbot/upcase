@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Topic, type: :model do
+describe Topic do
   # Associations
   it { should have_many(:classifications) }
   it { should have_many(:workshops).through(:classifications) }

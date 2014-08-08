@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe OfficeHours, type: :model do
+describe OfficeHours do
   around(:each) do |example|
     old_env_url = ENV['CHAT_LINK']
     old_env_time = ENV['OFFICE_HOURS']

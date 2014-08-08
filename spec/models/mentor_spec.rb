@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Mentor, type: :model do
+describe Mentor do
   it { should have_many(:mentees) }
   it { should validate_presence_of(:user) }
 

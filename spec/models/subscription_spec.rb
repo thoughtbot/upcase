@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Subscription, type: :model do
+describe Subscription do
   it { should have_one(:team).dependent(:destroy) }
   it { should belong_to(:plan) }
   it { should belong_to(:user) }

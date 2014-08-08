@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Trail, type: :model do
+describe Trail do
   it { should belong_to(:topic) }
 
   it { should validate_presence_of(:topic_id) }

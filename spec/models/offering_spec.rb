@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Offering, type: :model do
+describe Offering do
   context "#license" do
     it "returns the license for a user with one" do
       user = create(:user)

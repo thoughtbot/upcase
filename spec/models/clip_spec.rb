@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Clip, type: :model do
+describe Clip do
   context '#download_url' do
     it 'returns the download url for the video' do
       video = Clip.new('123')

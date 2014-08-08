@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe StripeCustomer, type: :model do
+describe StripeCustomer do
   describe '#url' do
     it 'returns a url to the customer in the stripe management console' do
       stripe_customer_id = 'whatever'

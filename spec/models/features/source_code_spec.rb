@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Features::SourceCode, type: :model do
+describe Features::SourceCode do
   describe "#fulfill" do
     it "adds the user to the subscriber github team" do
       GithubFulfillmentJob.stubs(:enqueue)

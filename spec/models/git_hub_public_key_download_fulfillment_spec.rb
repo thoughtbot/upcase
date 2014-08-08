@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe GitHubPublicKeyDownloadFulfillment, type: :model do
+describe GitHubPublicKeyDownloadFulfillment do
   describe '#fulfill' do
     it "uses the GitHub API to download the user's API keys" do
       public_keys = stub('public_keys')

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe SubscriptionPaymentComingUpNotifier, type: :model do
+describe SubscriptionPaymentComingUpNotifier do
   it 'sends email to each subscribers' do
     mailer = stub(deliver: true)
     SubscriptionMailer.stubs(upcoming_payment_notification: mailer)

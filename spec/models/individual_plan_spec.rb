@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe IndividualPlan, type: :model do
+describe IndividualPlan do
   it { should have_many(:announcements) }
   it { should have_many(:checkouts) }
   it { should have_many(:subscriptions) }

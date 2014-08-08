@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe InvoiceNotifier, type: :model do
+describe InvoiceNotifier do
   describe '#send_receipt' do
     context 'invoice has a user' do
       it 'sends a receipt to the person who was charged' do

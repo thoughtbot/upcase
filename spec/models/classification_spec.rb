@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Classification, type: :model do
+describe Classification do
   it { should belong_to(:classifiable) }
   it { should belong_to(:topic) }
 

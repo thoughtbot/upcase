@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe User, type: :model do
+describe User do
   context "associations" do
     it { should have_many(:licenses) }
     it { should have_many(:completions) }

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Coupon, type: :model do
+describe Coupon do
   it 'has a code of the given stripe coupon code' do
     coupon = Coupon.new('25OFF')
     expect(coupon.code).to eq '25OFF'

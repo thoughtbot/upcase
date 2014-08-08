@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Teacher, type: :model do
+describe Teacher do
   it { should belong_to(:user) }
   it { should belong_to(:workshop) }
 

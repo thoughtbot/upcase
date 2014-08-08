@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Features::Mentor, type: :model do
+describe Features::Mentor do
   describe "#fulfill" do
     it "assigns a mentor to the user if they don't have one already" do
       mentor = build_stubbed(:mentor)

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe GithubFulfillment, type: :model do
+describe GithubFulfillment do
   describe "#fulfill" do
     it "adds GitHub user to the github team" do
       product = build(:book, :github)

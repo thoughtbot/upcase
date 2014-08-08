@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe LineItem, type: :model do
+describe LineItem do
   describe '#==' do
     it 'returns true if the other line item has the same stripe line item' do
       stripe_line_item = stub('stripe_line_item')

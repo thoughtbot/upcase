@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe SubscriptionUpcomingInvoiceUpdater, type: :model do
+describe SubscriptionUpcomingInvoiceUpdater do
   it 'updates the next_payment_amount and next_payment_on for the given subscriptions' do
     stripe_invoice = stub_stripe_invoice_with_total(10)
     subscription = create(:subscription)
