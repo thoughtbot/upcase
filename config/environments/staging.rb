@@ -1,6 +1,6 @@
 require Rails.root.join('config/initializers/mail')
 
-Workshops::Application.configure do
+Upcase::Application.configure do
   config.cache_classes = true
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true

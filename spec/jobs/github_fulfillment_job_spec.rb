@@ -20,7 +20,7 @@ describe GithubFulfillmentJob do
       license_id = create(:license).id
       client = stub_octokit
       client.stubs(:add_team_membership).raises(error_class)
-      LicenseMailer.stubs(:fulfillment_error => stub("deliver", :deliver => true))
+      LicenseMailer.stubs(fulfillment_error: stub("deliver", :deliver => true))
 
       expect { GithubFulfillmentJob.new(3, "gabebw", license_id).perform }.
         to raise_error(error_class)
@@ -45,10 +45,9 @@ describe GithubFulfillmentJob do
     end
   end
 
-
   def stub_octokit
     stub("Octokit::Client").tap do |client|
-      Octokit::Client.stubs(:new =>  client)
+      Octokit::Client.stubs(new: client)
     end
   end
 end

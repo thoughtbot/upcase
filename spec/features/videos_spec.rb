@@ -84,16 +84,6 @@ describe "Videos" do
       expect(page).not_to have_content("in this workshop")
     end
 
-    it "redirects subscribers from Weekly Iteration landing page" do
-      sign_in_as_user_with_subscription
-
-      show = create(:show, name: Show::THE_WEEKLY_ITERATION)
-
-      visit "/the-weekly-iteration"
-
-      expect(page.current_path).to eq show_path(show)
-    end
-
     it "provides RSS to distribute the Weekly Iteration to various channels" do
       create(:plan, sku: IndividualPlan::PRIME_29_SKU)
       show = create(
@@ -108,11 +98,11 @@ describe "Videos" do
       ]
       video = create(:video, watchable: show)
 
-      visit "/the-weekly-iteration"
+      visit show_url(show)
 
       expect(page).to have_css("link[href*='the-weekly-iteration.rss']")
 
-      visit "/the-weekly-iteration.rss"
+      visit show_url(show, format: "rss")
 
       channel = Nokogiri::XML::Document.parse(page.body).xpath(".//rss/channel")
 

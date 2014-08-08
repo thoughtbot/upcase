@@ -2,7 +2,7 @@ require 'sinatra/base'
 require 'capybara_discoball'
 
 class FakeGithub < Sinatra::Base
-  put '/teams/:team_id/members/:id' do
+  put "/teams/:team_id/memberships/:id" do
     content_type :json
 
     {}.to_json
