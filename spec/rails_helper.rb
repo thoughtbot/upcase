@@ -1,15 +1,16 @@
-require 'codeclimate-test-reporter'
+require "codeclimate-test-reporter"
+
 CodeClimate::TestReporter.configure do |config|
   config.logger.level = Logger::WARN
 end
 CodeClimate::TestReporter.start
 
 if ENV["COVERAGE"]
-  require 'simplecov'
-  SimpleCov.start 'rails'
+  require "simplecov"
+  SimpleCov.start "rails"
 end
 
-ENV["RAILS_ENV"] ||= 'test'
+ENV["RAILS_ENV"] ||= "test"
 require "spec_helper"
 require File.expand_path("../../config/environment", __FILE__)
 require "clearance/rspec"
@@ -18,16 +19,16 @@ require "paperclip/matchers"
 require "rspec/rails"
 require "webmock/rspec"
 
-WebMock.disable_net_connect!(allow_localhost: true, allow: 'codeclimate.com')
+WebMock.disable_net_connect!(allow_localhost: true, allow: "codeclimate.com")
 
-Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
+Dir[File.expand_path(File.join(File.dirname(__FILE__),"support","**","*.rb"))].each {|f| require f}
 
 FakeStripeRunner.boot
 FakeGithubRunner.boot
 FakeWistiaRunner.boot
 
 silence_warnings do
-  Clip::WISTIA_EMBED_BASE_URL = 'localhost/'
+  Clip::WISTIA_EMBED_BASE_URL = "localhost/"
 end
 
 Delayed::Worker.delay_jobs = false
