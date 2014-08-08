@@ -1,7 +1,7 @@
 require "rails_helper"
 
 module Teams
-  describe TeamsController do
+  describe TeamsController, type: :controller do
     it_behaves_like 'must be team member' do
       def perform_request
         get :edit

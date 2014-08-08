@@ -1,7 +1,7 @@
 require "rails_helper"
 
 module Teams
-  describe AcceptancesController do
+  describe AcceptancesController, type: :controller do
     it 'denies access when no users are remaining' do
       invitation = build_stubbed(:invitation)
       invitation.stubs(:has_users_remaining?).returns(false)
