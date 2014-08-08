@@ -1,7 +1,7 @@
 require "rails_helper"
 
 module Teams
-  describe InvitationMailer, type: :mailer do
+  describe InvitationMailer do
     describe '#invitation' do
       it 'delivers an invitation email' do
         invitation = build_stubbed(:invitation)

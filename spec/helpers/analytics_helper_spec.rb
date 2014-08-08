@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe AnalyticsHelper, type: :helper do
+describe AnalyticsHelper do
   describe '#analytics?' do
     it "is true when ENV['ANALYTICS'] is present" do
       ENV['ANALYTICS'] = 'anything'

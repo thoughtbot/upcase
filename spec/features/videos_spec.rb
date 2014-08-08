@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Videos", type: :feature do
+describe "Videos" do
   context "get show" do
     it "does not allow watching a video without a license" do
       product = create(:screencast)

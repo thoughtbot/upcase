@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe TopicsHelper, '#format_content', type: :helper do
+describe TopicsHelper, '#format_content' do
   let(:ellipsis) { '&#8230;' }
 
   it 'strips tags from content' do

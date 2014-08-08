@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe MentorHelper, type: :helper do
+describe MentorHelper do
   describe '#mentor_image' do
     include Gravatarify::Helper
 

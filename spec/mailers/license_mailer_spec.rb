@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe LicenseMailer, type: :mailer do
+describe LicenseMailer do
   describe '.fulfillment_error' do
     it 'sets the correct recipients' do
       license = stubbed_license
