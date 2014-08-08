@@ -17,4 +17,4 @@ from thoughtbot and other subscribers here:
 <%= forum_url %>
 
 If you have any customer support or billing questions, please email us at
-learn@thoughtbot.com.
+<%= mail_to ENV["SUPPORT_EMAIL"] %>.
