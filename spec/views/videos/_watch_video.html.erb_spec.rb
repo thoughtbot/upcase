@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe 'videos/_watch_video.html.erb', type: :view do
+describe 'videos/_watch_video.html.erb' do
   it "includes a video's notes as html" do
     video = Video.new(wistia_id: '123', notes: 'Some notes')
 

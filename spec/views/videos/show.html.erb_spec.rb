@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "videos/show", type: :view do
+describe "videos/show" do
   it "embeds a preview when available" do
     video = build(
       :video,

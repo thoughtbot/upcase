@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "teams/invitations/index", type: :view do
+describe "teams/invitations/index" do
   it "renders no invitations" do
     assign(:team, build_stubbed(:team))
 

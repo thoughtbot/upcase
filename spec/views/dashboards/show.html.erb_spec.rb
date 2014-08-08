@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "dashboards/show.html", type: :view do
+describe "dashboards/show.html" do
   ENV["LEARN_REPO_URL"] = "learn_repo_url"
 
   context "when a user does not have access to the learn repo" do

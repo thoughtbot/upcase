@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe 'Stripe webhooks', type: :request do
+describe 'Stripe webhooks' do
   describe 'invoice.payment_succeeded' do
     describe 'invoice has a subscription' do
       it 'sends out a receipt email' do

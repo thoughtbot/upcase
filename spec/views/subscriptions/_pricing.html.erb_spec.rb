@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "subscriptions/_pricing.html", type: :view do
+describe "subscriptions/_pricing.html" do
   context "header" do
     it "shows short descriptions for each plan" do
       prime_29 = build_stubbed(:plan, sku: "prime-29")

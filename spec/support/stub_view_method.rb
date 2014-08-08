@@ -7,5 +7,5 @@ module ViewStubs
 end
 
 RSpec.configure do |config|
-  config.include ViewStubs, type: :view
+  config.include ViewStubs
 end

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "individual_plans/_individual_plan.html", type: :view do
+describe "individual_plans/_individual_plan.html" do
   context "grid partial" do
     it "renders the grid partial matching the plan" do
       prime_29 = build_plan
