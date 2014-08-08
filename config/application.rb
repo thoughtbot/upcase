@@ -36,5 +36,3 @@ module Upcase
     config.action_mailer.default_url_options = { host: ENV["APP_DOMAIN"] }
   end
 end
-
-BLACKLIST_TOPICS = ["this week in open source", "thoughtbot", "hoptoad", "airbrake"]
