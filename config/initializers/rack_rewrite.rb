@@ -14,6 +14,7 @@ Rails.configuration.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
   end
 
   r301 licenseable_id_url_for("books"), "/$1$2"
+  r301 licenseable_id_url_for("products"), "/$1$2"
   r301 licenseable_id_url_for("screencasts"), "/$1$2"
   r301 licenseable_id_url_for("shows"), "/$1$2"
   r301 licenseable_id_url_for("workshops"), "/$1$2"
