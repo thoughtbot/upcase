@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 describe LicenseMailer do
   describe '.fulfillment_error' do

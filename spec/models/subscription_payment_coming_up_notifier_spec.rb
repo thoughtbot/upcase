@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 describe SubscriptionPaymentComingUpNotifier do
   it 'sends email to each subscribers' do

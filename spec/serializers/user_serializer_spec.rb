@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 describe UserSerializer do
   include Gravatarify::Helper

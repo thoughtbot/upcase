@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 describe 'shows/_show.html.erb' do
   it 'includes published episodes count' do

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "User views show" do
   scenario "with a subscription" do

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "Subscriber accesses content" do
   scenario "begins a workshop" do

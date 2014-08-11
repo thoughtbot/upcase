@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Features::Mentor do
   describe "#fulfill" do

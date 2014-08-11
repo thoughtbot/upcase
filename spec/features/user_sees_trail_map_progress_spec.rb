@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 feature 'User can see their trail map progress' do
   background do

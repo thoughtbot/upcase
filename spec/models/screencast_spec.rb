@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 describe Screencast do
   it { should have_many(:videos) }

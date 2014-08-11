@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 describe SubscriptionMailer do
   describe '.welcome_to_prime_from_mentor' do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 describe 'videos/_watch_video.html.erb' do
   it "includes a video's notes as html" do

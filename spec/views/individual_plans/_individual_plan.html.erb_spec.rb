@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "individual_plans/_individual_plan.html" do
   context "grid partial" do

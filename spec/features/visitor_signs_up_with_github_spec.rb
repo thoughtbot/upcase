@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 feature 'Visitor creates an account' do
   scenario 'authorizing through GitHub' do

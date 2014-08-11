@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 describe Clip do
   context '#download_url' do

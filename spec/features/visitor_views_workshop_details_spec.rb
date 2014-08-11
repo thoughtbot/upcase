@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 feature 'Visitor views workshop details' do
   scenario 'views workshop FAQs' do

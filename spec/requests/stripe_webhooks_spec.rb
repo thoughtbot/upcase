@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 describe 'Stripe webhooks' do
   describe 'invoice.payment_succeeded' do

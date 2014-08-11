@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 describe CheckoutPrepopulator, '#prepopulate_with_user_info' do
   it 'populates default info when given a subscriber' do

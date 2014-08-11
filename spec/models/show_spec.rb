@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 describe Show do
   it_behaves_like 'a class inheriting from Product'

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Offering do
   context "#license" do

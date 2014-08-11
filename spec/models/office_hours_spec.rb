@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 describe OfficeHours do
   around(:each) do |example|

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 feature 'Visitor updates password' do
   scenario 'with valid password' do

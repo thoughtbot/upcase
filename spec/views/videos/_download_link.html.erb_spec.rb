@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 describe 'videos/_download_link.html.erb' do
   it "includes the clip's download url" do

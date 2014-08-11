@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 describe Subscription do
   it { should have_one(:team).dependent(:destroy) }

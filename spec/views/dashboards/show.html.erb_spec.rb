@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "dashboards/show.html" do
   ENV["LEARN_REPO_URL"] = "learn_repo_url"

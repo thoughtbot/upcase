@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 describe InvoiceNotifier do
   describe '#send_receipt' do

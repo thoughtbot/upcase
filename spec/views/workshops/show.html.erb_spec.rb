@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 describe 'workshops/show.html.erb' do
   include Capybara::DSL

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 feature 'Visitor can purchase a subscription for their team' do
   scenario 'successful purchase' do

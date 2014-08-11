@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 describe Subscriber::CancellationsController do
   describe '#new without being signed in' do

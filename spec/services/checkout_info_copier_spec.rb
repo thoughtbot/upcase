@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe CheckoutInfoCopier, "#copy_info_to_user" do
   context "with github_username" do

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "subscriptions/_pricing.html" do
   context "header" do

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "teams/invitations/index", type: :view do
   it "renders no invitations" do
