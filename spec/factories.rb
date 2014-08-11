@@ -41,6 +41,8 @@ FactoryGirl.define do
   end
 
   factory :workshop do
+    after(:stub) { |workshop| workshop.slug = workshop.name.parameterize }
+
     description 'Solve 8-Queens over and over again'
     name { generate(:name) }
     short_description 'Solve 8-Queens'
@@ -93,6 +95,8 @@ FactoryGirl.define do
   end
 
   factory :product, traits: [:active], class: 'Book' do
+    after(:stub) { |product| product.slug = product.name.parameterize }
+
     trait :active do
       active true
     end

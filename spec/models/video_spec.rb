@@ -4,15 +4,33 @@ describe Video do
   it { should belong_to(:watchable) }
 
   it { should validate_presence_of(:published_on) }
+  it { should validate_presence_of(:slug) }
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:watchable_id) }
   it { should validate_presence_of(:watchable_type) }
   it { should validate_presence_of(:wistia_id) }
 
+  context "uniqueness" do
+    before do
+      create :video
+    end
+
+    it { should validate_uniqueness_of(:slug) }
+  end
+
+  describe "#to_param" do
+    it "returns the slug" do
+      video = create(:video)
+
+      expect(video.to_param).to eq video.slug
+    end
+  end
+
   context 'self.ordered' do
     it 'returns videos in order by position' do
       video1 = create(:video, position: 2)
       video2 = create(:video, position: 1)
+
       expect(Video.ordered).to eq [video2, video1]
     end
   end

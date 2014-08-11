@@ -1,4 +1,6 @@
 class Workshop < ActiveRecord::Base
+  extend FriendlyId
+
   # Associations
   has_many :announcements, as: :announceable, dependent: :destroy
   has_many :classifications, as: :classifiable, dependent: :destroy
@@ -19,9 +21,11 @@ class Workshop < ActiveRecord::Base
   validates :name, presence: true
   validates :short_description, presence: true
   validates :sku, presence: true
+  validates :slug, presence: true, uniqueness: true
 
   # Plugins
   acts_as_list
+  friendly_id :name, use: :slugged
 
   def self.by_position
     order 'workshops.position ASC'
@@ -44,7 +48,7 @@ class Workshop < ActiveRecord::Base
   end
 
   def to_param
-    "#{id}-#{name.parameterize}"
+    slug
   end
 
   def license_for(user)

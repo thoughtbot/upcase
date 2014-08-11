@@ -18,6 +18,15 @@ describe Workshop do
   it { should validate_presence_of(:short_description) }
   it { should validate_presence_of(:sku) }
   it { should validate_presence_of(:length_in_days) }
+  it { should validate_presence_of(:slug) }
+
+  context "uniqueness" do
+    before do
+      create :workshop
+    end
+
+    it { should validate_uniqueness_of(:slug) }
+  end
 
   describe 'self.promoted' do
     it 'returns promoted workshops' do
@@ -37,10 +46,10 @@ describe Workshop do
     end
   end
 
-  describe '#to_param' do
-    it 'returns the id and parameterized name' do
+  describe "#to_param" do
+    it "returns the slug" do
       workshop = create(:workshop)
-      expect(workshop.to_param).to eq "#{workshop.id}-#{workshop.name.parameterize}"
+      expect(workshop.to_param).to eq workshop.slug
     end
   end
 

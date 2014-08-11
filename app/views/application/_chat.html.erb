@@ -1,5 +1,0 @@
-<% if Rails.env.staging? || Rails.env.production? %>
-  <% if !signed_in? %>
-    <%= render 'javascript_olark' %>
-  <% end %>
-<% end %>

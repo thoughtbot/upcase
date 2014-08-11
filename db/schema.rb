@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140727180715) do
+ActiveRecord::Schema.define(version: 20140808165629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -205,7 +205,10 @@ ActiveRecord::Schema.define(version: 20140727180715) do
     t.string   "product_image_content_type"
     t.string   "product_image_updated_at"
     t.boolean  "promoted",                   default: false, null: false
+    t.string   "slug",                                       null: false
   end
+
+  add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
 
   create_table "public_keys", force: true do |t|
     t.integer  "user_id",    null: false
@@ -360,8 +363,10 @@ ActiveRecord::Schema.define(version: 20140727180715) do
     t.text     "notes"
     t.date     "published_on"
     t.string   "preview_wistia_id"
+    t.string   "slug",                          null: false
   end
 
+  add_index "videos", ["slug"], name: "index_videos_on_slug", unique: true, using: :btree
   add_index "videos", ["watchable_type", "watchable_id"], name: "index_videos_on_watchable_type_and_watchable_id", using: :btree
 
   create_table "workshops", force: true do |t|
@@ -378,6 +383,9 @@ ActiveRecord::Schema.define(version: 20140727180715) do
     t.integer  "length_in_days"
     t.string   "sku"
     t.boolean  "promoted",          default: false, null: false
+    t.string   "slug",                              null: false
   end
+
+  add_index "workshops", ["slug"], name: "index_workshops_on_slug", unique: true, using: :btree
 
 end

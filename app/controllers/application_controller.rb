@@ -43,8 +43,12 @@ class ApplicationController < ActionController::Base
 
   def requested_licenseable
     PolymorphicFinder.
-      finding(Workshop, :id, [:workshop_id]).
-      finding(Product, :id, [:product_id, :screencast_id, :book_id, :show_id]).
+      finding(Workshop, :slug, [:workshop_id]).
+      finding(
+        Product,
+        :slug,
+        [:product_id, :screencast_id, :book_id, :show_id]
+      ).
       find(params)
   end
 

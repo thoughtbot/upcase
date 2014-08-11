@@ -74,8 +74,7 @@ RailsAdmin.config do |config|
       field :bio
       field :github_username
       field :mentor
-      field :paid_purchases
-      field :purchases
+      field :licenses
       field :stripe_customer_id
     end
   end

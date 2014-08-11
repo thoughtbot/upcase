@@ -14,6 +14,6 @@ class ProductsController < ApplicationController
   private
 
   def product
-    Product.find(params[:id])
+    Product.friendly.find(params[:id])
   end
 end
