@@ -14,7 +14,7 @@ gem 'clearance', '1.3.0'
 gem 'csv_rails', '0.6.1'
 gem 'curb', '0.8.1'
 gem 'delayed_job_active_record', '~> 4.0.1'
-gem 'doorkeeper', '~> 1.3.0'
+gem 'doorkeeper', '1.3.0'
 gem 'dynamic_form', '1.1.4'
 gem 'escape_utils', '0.2.4' # Fix UTF-8 regexp match warning
 gem 'flutie', '2.0.0'
