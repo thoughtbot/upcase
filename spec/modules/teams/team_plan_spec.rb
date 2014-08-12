@@ -16,30 +16,6 @@ module Teams
       end
     end
 
-    describe ".instance" do
-      context "when an instance already exists" do
-        it "returns it" do
-          plan = create(:team_plan)
-          expect(TeamPlan.instance).to eq plan
-        end
-      end
-
-      context "when no instance exists" do
-        it "creates one and returns it" do
-          expect(TeamPlan.instance).to be_a TeamPlan
-          expect(TeamPlan.count).to eq 1
-        end
-      end
-
-      context "when multiple instances already exist" do
-        it "returns the first one" do
-          plan = create(:team_plan)
-          create(:team_plan)
-          expect(TeamPlan.instance).to eq plan
-        end
-      end
-    end
-
     describe "#subscription_interval" do
       it "returns month" do
         expect(team_plan.subscription_interval).to eq "month"

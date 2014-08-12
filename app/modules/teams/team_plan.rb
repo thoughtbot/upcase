@@ -11,18 +11,6 @@ module Teams
 
     include PlanForPublicListing
 
-    def self.instance
-      if first
-        first
-      else
-        create!(
-          sku: 'primeteam',
-          name: I18n.t("shared.team_plan_name"),
-          individual_price: 0,
-        )
-      end
-    end
-
     def subscription_interval
       'month'
     end
