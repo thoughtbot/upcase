@@ -12,7 +12,7 @@ RailsAdmin.config do |config|
 
   config.current_user_method { current_user }
 
-  config.main_app_name = ['Learn', 'Admin']
+  config.main_app_name = ['Upcase', 'Admin']
 
   config.yell_for_non_accessible_fields = false
 

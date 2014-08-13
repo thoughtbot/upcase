@@ -17,6 +17,6 @@ class CreateShows < ActiveRecord::Migration
     add_column :episodes, :show_id, :integer
     add_index :episodes, :show_id
 
-    update "UPDATE episodes set old_url = 'http://learn.thoughtbot.com/podcast/' || id WHERE old_url IS NULL"
+    update "UPDATE episodes set old_url = 'http://upcase.com/podcast/' || id WHERE old_url IS NULL"
   end
 end

@@ -59,8 +59,8 @@ en:
   shared:
     books:
       Books
-    learn:
-      Learn
+    upcase:
+      Upcase
     subscription:
       name: Upcase
     subscriptions:

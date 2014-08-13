@@ -19,7 +19,7 @@ class FakeOauthClientApp < Sinatra::Base
 
   get '/fake_oauth_client_app' do
     auth_url = client.auth_code.authorize_url(redirect_uri: self.class.redirect_uri)
-    %{<a href="#{auth_url}">Sign Into Learn</a>}
+    %{<a href="#{auth_url}">Sign Into Upcase</a>}
   end
 
   get '/fake_oauth_client_app/authorize' do

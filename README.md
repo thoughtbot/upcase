@@ -1,6 +1,6 @@
-# Learn
+# Upcase
 
-Learn is a Rails 4 app running on Ruby 2.1 and deployed to Heroku.
+Upcase is a Rails 4 app running on Ruby 2.1 and deployed to Heroku.
 
 ## Development
 
@@ -147,7 +147,7 @@ To see what the current recipient is:
 
 ## Admin Access
 
-1. Register on the [Learn](http://learn.thoughtbot.com/sign_up) site.
+1. Register on the [Upcase](https://upcase.com/sign_up) site.
 
 2. Update your user.
 
@@ -157,8 +157,8 @@ To see what the current recipient is:
         % user.save!
         % exit
 
-3. Access the [general admin panel](http://learn.thoughtbot.com/admin) or
-   the [workshop admin panel](http://learn.thoughtbot.com/admin).
+3. Access the [general admin panel](http://upcase.com/admin) or
+   the [workshop admin panel](http://upcase.com/admin).
 
 Credits
 -------
