@@ -1,7 +1,7 @@
 require "rails_helper"
 
 module Teams
-  describe Invitation, type: :model do
+  describe Invitation do
     it { should validate_presence_of(:email) }
     it { should validate_presence_of(:sender_id) }
     it { should validate_presence_of(:team_id) }
