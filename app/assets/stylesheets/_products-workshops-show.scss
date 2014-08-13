@@ -15,7 +15,7 @@ body.screencasts-show {
     text-align: center;
 
     a {
-      color: $learnred;
+      color: $upcase-red;
     }
 
     b {
@@ -80,7 +80,7 @@ body.screencasts-show {
     }
 
     a:hover .title {
-      background: rgba($learnred, 0.75);
+      background: rgba($upcase-red, 0.75);
       @include transition;
     }
   }
@@ -201,7 +201,7 @@ body.videos-show aside {
       background: #fff;
       border: 3px solid #ddd;
       border-width: 1px 1px 3px 1px;
-      color: $learnred;
+      color: $upcase-red;
 
       &:active {
         background: #eee;
@@ -224,7 +224,7 @@ body.videos-show aside {
     margin: 1.5rem 0 1.5em 0;
 
     h2 {
-      color: $learnred;
+      color: $upcase-red;
       font: 800 1.4rem/1.2 $sans-serif;
       margin: 0 0 .75rem 0;
     }

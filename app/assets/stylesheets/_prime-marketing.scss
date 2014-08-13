@@ -55,8 +55,8 @@ body.promoted_catalogs {
     }
 
     a {
-      border-bottom: 2px solid $learnred;
-      color: $learnred;
+      border-bottom: 2px solid $upcase-red;
+      color: $upcase-red;
       display: inline-block;
       font: 400 2rem/1.3 $sans-serif;
 
@@ -87,8 +87,8 @@ body.promoted_catalogs {
 
 .prime-journey-cta {
   @include appearance(none);
-  background: $learnred;
-  border-bottom: .2rem solid darken($learnred, 10%);
+  background: $upcase-red;
+  border-bottom: .2rem solid darken($upcase-red, 10%);
   border-radius: 3px;
   color: #fff;
   display: block;
@@ -99,11 +99,11 @@ body.promoted_catalogs {
   z-index: 5;
 
   &:hover {
-    background: lighten($learnred, 3%);
+    background: lighten($upcase-red, 3%);
   }
 
   &:active {
-    background: darken($learnred, 3%);
+    background: darken($upcase-red, 3%);
   }
 
   @include prime-marketing-mobile {

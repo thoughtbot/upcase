@@ -33,7 +33,7 @@ body.topics-show {
 }
 
 .contribute {
-  border: 2px solid $learnred;
+  border: 2px solid $upcase-red;
   border-radius: 3px;
   display: block;
   margin: 0 auto 1rem;
@@ -69,7 +69,7 @@ body.topics-show {
   }
 
   a {
-    border-bottom: 2px solid $learnred;
+    border-bottom: 2px solid $upcase-red;
     font-family: $sans-serif;
   }
 }
@@ -110,7 +110,7 @@ body.topics-show {
   }
 
   h2 {
-    background: $learnred;
+    background: $upcase-red;
     color: #fff;
 
     &.ongoing {
@@ -227,7 +227,7 @@ body.topics-show aside {
   }
 }
 
-.related-products li, .trail-map-steps .learn li {
+.related-products li, .trail-map-steps .upcase li {
   &.prime h4 {
     color: $darkwarmgray;
     font-family: $sans-serif;
@@ -239,7 +239,7 @@ body.topics-show aside {
   &.prime .icon {
     background: #fff;
     box-shadow: inset 0 -1px 0 #ccc, 0 1px 0 #ccc;
-    color: $learnred;
+    color: $upcase-red;
     font-size: 28px;
     line-height: 38px;
   }
@@ -265,9 +265,9 @@ body.topics-show aside {
   }
 
   .icon {
-    background: $learnred;
+    background: $upcase-red;
     border-radius: 34px;
-    box-shadow: inset 0 -1px 0 $learndarkred, 0 1px 0 $learndarkred;
+    box-shadow: inset 0 -1px 0 $upcase-darkred, 0 1px 0 $upcase-darkred;
     color: white;
     display: block;
     float: left;
@@ -282,7 +282,7 @@ body.topics-show aside {
   }
 }
 
-.trail-map-steps .learn li {
+.trail-map-steps .upcase li {
   &.screencast .icon::after {
     left: 4px;
   }
@@ -290,7 +290,7 @@ body.topics-show aside {
   .icon {
     background: none;
     box-shadow: none;
-    color: $learnred;
+    color: $upcase-red;
     height: 1.5rem;
     line-height: 1.5rem;
     @include position(absolute, .75rem 0 0 .75rem);

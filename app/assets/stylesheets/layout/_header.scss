@@ -34,12 +34,12 @@ body.passwords-create {
     }
 
     a {
-      color: $learnred;
+      color: $upcase-red;
       text-align: center;
     }
 
     img, span {
-      color: $learnred;
+      color: $upcase-red;
       position: relative;
       display: inline-block;
       vertical-align: top;
@@ -146,7 +146,7 @@ body.passwords-create {
       font-weight: 700;
 
       &:hover, &:active {
-        background: $learnred;
+        background: $upcase-red;
         color: #fff;
       }
     }
