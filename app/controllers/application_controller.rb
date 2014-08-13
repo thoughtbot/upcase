@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  prepend_view_path(['app/views/teams'])
+  prepend_view_path(["app/views/teams"])
 
   protected
 
