@@ -228,7 +228,7 @@ body.topics-show aside {
 }
 
 .related-products li, .trail-map-steps .upcase li {
-  &.prime h4 {
+  &.upcase h4 {
     color: $darkwarmgray;
     font-family: $sans-serif;
     font-style: normal;
@@ -236,7 +236,7 @@ body.topics-show aside {
     text-shadow: 0 1px 0 #fff;
   }
 
-  &.prime .icon {
+  &.upcase .icon {
     background: #fff;
     box-shadow: inset 0 -1px 0 #ccc, 0 1px 0 #ccc;
     color: $upcase-red;

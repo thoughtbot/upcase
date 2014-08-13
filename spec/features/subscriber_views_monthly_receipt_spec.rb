@@ -74,12 +74,12 @@ feature 'Subscriber views subscription invoices' do
     expect(page).to have_content('Date 05/21/13')
     expect(page).to have_css(
       '.line-item',
-      text: 'Remaining time on Prime Workshops after 22 Feb 2014'
+      text: 'Remaining time on Upcase Workshops after 22 Feb 2014'
     )
     expect(page).to have_css('.line-item', text: '$98.76 USD')
     expect(page).to have_css(
       '.line-item',
-      text: 'Unused time on Prime Basic after 22 Feb 2014'
+      text: 'Unused time on Upcase Basic after 22 Feb 2014'
     )
     expect(page).to have_css('.line-item', text: '-$28.93 USD')
     expect(page).to have_css('.subtotal', text: '$69.83 USD')

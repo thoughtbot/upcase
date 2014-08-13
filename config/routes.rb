@@ -32,8 +32,8 @@ Upcase::Application.routes.draw do
         redirect("https://www.youtube.com/watch?v=CKC8Ph-s2F4"),
       constraints: { id: /(4).*/ }
     )
-    get "/products/14" => redirect("/prime")
-    get "/products/14-prime" => redirect("/prime")
+    get "/products/14" => redirect("/upcase")
+    get "/products/14-upcase" => redirect("/upcase")
   end
 
   resource :session, controller: "sessions"
@@ -125,7 +125,7 @@ Upcase::Application.routes.draw do
   get "/auth/:provider/callback", to: "auth_callbacks#create"
 
   get "/pages/*id" => "pages#show", format: false
-  get "/prime" => redirect("/subscribe")
+  get "/upcase" => redirect("/subscribe")
   get "/subscribe" => "promoted_catalogs#show", as: :subscribe
   get "/privacy" => "pages#show", as: :privacy, id: "privacy"
   get "/terms" => "pages#show", as: :terms, id: "terms"

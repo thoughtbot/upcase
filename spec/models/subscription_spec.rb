@@ -33,15 +33,15 @@ describe Subscription do
       new_subscription =
         create(:subscription, plan: plan, created_at: 10.hours.ago)
       mailer = stub(deliver: true)
-      SubscriptionMailer.stubs(welcome_to_prime_from_mentor: mailer)
+      SubscriptionMailer.stubs(welcome_to_upcase_from_mentor: mailer)
 
       Subscription.deliver_welcome_emails
 
       expect(SubscriptionMailer).
-        to have_received(:welcome_to_prime_from_mentor).
+        to have_received(:welcome_to_upcase_from_mentor).
         with(new_subscription.user)
       expect(SubscriptionMailer).
-        to have_received(:welcome_to_prime_from_mentor).
+        to have_received(:welcome_to_upcase_from_mentor).
         with(old_subscription.user).never
       expect(mailer).to have_received(:deliver).once
     end

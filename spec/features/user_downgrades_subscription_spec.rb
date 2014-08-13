@@ -2,15 +2,15 @@ require "rails_helper"
 
 feature 'User downgrades subscription', js: true do
   scenario 'successfully downgrades and then cancels' do
-    create(:plan, sku: 'prime', name: 'Prime')
+    create(:plan, sku: 'upcase', name: 'Upcase')
     basic_plan = create(:basic_plan)
     workshop = create(:workshop)
 
     sign_in_as_user_with_subscription
     expect(@current_user).to have_active_subscription
     visit products_path
-    expect(find('.header-container')).not_to have_content('Prime Membership')
-    expect(page).not_to have_link('Subscribe to Prime')
+    expect(find('.header-container')).not_to have_content('Upcase Membership')
+    expect(page).not_to have_link('Subscribe to Upcase')
 
     ActionMailer::Base.deliveries.clear
 
@@ -25,7 +25,7 @@ feature 'User downgrades subscription', js: true do
 
     visit workshop_path(workshop)
 
-    expect(page).not_to have_css('.free-with-prime')
+    expect(page).not_to have_css('.free-with-upcase')
 
     visit products_path
 

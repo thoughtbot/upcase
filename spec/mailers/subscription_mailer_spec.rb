@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe SubscriptionMailer do
-  describe '.welcome_to_prime_from_mentor' do
+  describe '.welcome_to_upcase_from_mentor' do
     it 'is sent to the user' do
       user = user_with_mentor
       email = welcome_email_for(user)
@@ -61,7 +61,7 @@ describe SubscriptionMailer do
     end
 
     def welcome_email_for(user)
-      SubscriptionMailer.welcome_to_prime_from_mentor(user)
+      SubscriptionMailer.welcome_to_upcase_from_mentor(user)
     end
   end
 

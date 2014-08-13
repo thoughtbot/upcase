@@ -1,5 +1,5 @@
 $(function() {
-  showFeatureDetail('.prime-mentor figure[data-target=mentoring]');
+  showFeatureDetail('.upcase-mentor figure[data-target=mentoring]');
 });
 
 $('.plan .features figure:not(.inactive)').on('click', function() {
