@@ -1,7 +1,7 @@
 require "rails_helper"
 
 module Teams
-  describe InvitationsController, type: :controller do
+  describe InvitationsController do
     it_behaves_like 'must be team member' do
       def perform_request
         invitation = stub('invitation', deliver: true)

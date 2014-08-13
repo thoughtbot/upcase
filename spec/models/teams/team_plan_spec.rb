@@ -1,7 +1,7 @@
 require "rails_helper"
 
 module Teams
-  describe TeamPlan, type: :model do
+  describe TeamPlan do
     it { should have_many(:checkouts) }
     it { should have_many(:subscriptions) }
     it { should have_many(:teams) }

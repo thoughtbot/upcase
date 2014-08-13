@@ -1,7 +1,7 @@
 require "rails_helper"
 
 module Teams
-  describe Team, type: :model do
+  describe Team do
     it { should belong_to(:subscription) }
     it { should belong_to(:team_plan) }
     it { should have_many(:users).dependent(:nullify) }

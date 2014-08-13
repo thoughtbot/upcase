@@ -1,7 +1,7 @@
 require "rails_helper"
 
 module Teams
-  describe Acceptance, type: :model do
+  describe Acceptance do
     it 'should be ActiveModel-compliant' do
       acceptance = build(:acceptance)
       expect(acceptance).to be_a(ActiveModel::Model)
