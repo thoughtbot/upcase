@@ -12,13 +12,11 @@ Upcase::Application.routes.draw do
     end
   end
 
-  namespace :teams do
-    resources :invitations, only: [:index, :create] do
-      resources :acceptances, only: [:new, :create]
-    end
-
-    resource :team, only: :edit
+  resources :invitations, only: [:index, :create] do
+    resources :acceptances, only: [:new, :create]
   end
+
+  resource :team, only: :edit
 
   get "/pages/tmux" => redirect("https://www.youtube.com/watch?v=CKC8Ph-s2F4")
 

@@ -125,7 +125,7 @@ describe User do
     end
 
     it "returns true with an active team subscription" do
-      team = Teams::Team.new
+      team = Team.new
       team.subscription = build_stubbed(:active_subscription)
       user = User.new
       user.team = team
@@ -133,7 +133,7 @@ describe User do
     end
 
     it "returns false with an inactive team subscription" do
-      team = Teams::Team.new
+      team = Team.new
       team.subscription = build_stubbed(:inactive_subscription)
       user = User.new
       user.team = team
@@ -419,7 +419,7 @@ describe User do
     end
 
     it 'returns a team subscription' do
-      team = Teams::Team.new
+      team = Team.new
       team.subscription = build_stubbed(:subscription)
       user = User.new
       user.team = team
