@@ -3,7 +3,7 @@ class Subscription < ActiveRecord::Base
   belongs_to :user
   belongs_to :plan, polymorphic: true
 
-  has_one :team, dependent: :destroy, class_name: 'Team'
+  has_one :team, dependent: :destroy
 
   delegate :name, to: :plan, prefix: true
   delegate :stripe_customer_id, to: :user
@@ -27,11 +27,11 @@ class Subscription < ActiveRecord::Base
   end
 
   def self.active_as_of(time)
-    where('deactivated_on is null OR deactivated_on > ?', time)
+    where("deactivated_on is null OR deactivated_on > ?", time)
   end
 
   def self.created_before(time)
-    where('created_at <= ?', time)
+    where("created_at <= ?", time)
   end
 
   def self.next_payment_in_2_days

@@ -30,7 +30,7 @@ class Acceptance
 
   def unused_invitation
     if invitation.accepted?
-      errors.add :invitation, 'has already been accepted'
+      errors.add :invitation, "has already been accepted"
     end
   end
 end

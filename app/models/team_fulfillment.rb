@@ -20,7 +20,7 @@ class TeamFulfillment
   end
 
   def generate_team_name
-    @user.email.sub(/^.*@/, '').split('.')[-2].titleize
+    @user.email.sub(/^.*@/, "").split(".")[-2].titleize
   end
 
   def subscription

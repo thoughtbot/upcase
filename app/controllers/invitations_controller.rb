@@ -21,7 +21,7 @@ class InvitationsController < ApplicationController
   end
 
   def redirect_with_notice
-    redirect_to edit_team_path, notice: 'Invitation sent.'
+    redirect_to edit_team_path, notice: "Invitation sent."
   end
 
   def render_errors

@@ -4,7 +4,7 @@ class InvitationMailer < BaseMailer
 
     mail(
       to: @invitation.email,
-      subject: 'Invitation'
+      subject: "Invitation"
     )
   end
 end

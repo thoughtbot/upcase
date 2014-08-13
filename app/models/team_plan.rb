@@ -11,7 +11,7 @@ class TeamPlan < ActiveRecord::Base
   include PlanForPublicListing
 
   def subscription_interval
-    'month'
+    "month"
   end
 
   def minimum_quantity
@@ -24,11 +24,11 @@ class TeamPlan < ActiveRecord::Base
     TeamFulfillment.new(checkout, user).fulfill
   end
 
-  def after_checkout_url(controller, checkout)
+  def after_checkout_url(controller, _)
     controller.edit_team_path
   end
 
-  def included_in_plan?(plan)
+  def included_in_plan?(_)
     false
   end
 

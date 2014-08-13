@@ -33,7 +33,7 @@ class AcceptancesController < ApplicationController
 
   def must_have_users_remaining
     unless find_invitation.has_users_remaining?
-      deny_access 'There are no users remaining for that team.'
+      deny_access "There are no users remaining for that team."
     end
   end
 end

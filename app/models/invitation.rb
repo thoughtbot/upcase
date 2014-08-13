@@ -6,8 +6,8 @@ class Invitation < ActiveRecord::Base
   validates :team_id, presence: true
   validate :limit_invitation_count
 
-  belongs_to :recipient, class_name: 'User'
-  belongs_to :sender, class_name: 'User'
+  belongs_to :recipient, class_name: User
+  belongs_to :sender, class_name: User
   belongs_to :team
 
   delegate :name, to: :recipient, prefix: true, allow_nil: true
@@ -52,7 +52,7 @@ class Invitation < ActiveRecord::Base
 
   def limit_invitation_count
     if max_users_reached?
-      errors.add :team, 'has no users remaining'
+      errors.add :team, "has no users remaining"
     end
   end
 
