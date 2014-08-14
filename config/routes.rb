@@ -1,111 +1,39 @@
+class ActionDispatch::Routing::Mapper
+  def draw(routes_name)
+    instance_eval(File.read(
+      Rails.root.join("config/routes/#{routes_name}.rb")
+    ))
+  end
+end
+
 Upcase::Application.routes.draw do
   use_doorkeeper
 
-  mount RailsAdmin::Engine => "/admin", :as => "admin"
+  draw :admin
+  draw :api
+  draw :books
+  draw :pages
+  draw :plan
+  draw :podcasts
+  draw :products
+  draw :redirects
+  draw :screencasts
+  draw :shows
+  draw :stripe
+  draw :subscriber
+  draw :teams
+  draw :users
+  draw :workshops
 
   root to: "homes#show"
 
-  get "/api/v1/me.json" => "api/v1/users#show", as: :resource_owner
-  namespace :api do
-    namespace :v1 do
-      resources :completions, only: [:index, :show, :create, :destroy]
-    end
-  end
-
-  resources :invitations, only: [:index, :create] do
-    resources :acceptances, only: [:new, :create]
-  end
-
-  resource :team, only: :edit
-
-  get "/pages/tmux" => redirect("https://www.youtube.com/watch?v=CKC8Ph-s2F4")
-
-  if Rails.env.staging? || Rails.env.production?
-    get "/products/:id" => redirect("/workshops/18-test-driven-rails"),
-      constraints: { id: /(10|12).*/ }
-    get "/products/:id" => redirect("/workshops/19-design-for-developers"),
-      constraints: { id: /(9|11).*/ }
-    get(
-      "/products/:id" =>
-        redirect("https://www.youtube.com/watch?v=CKC8Ph-s2F4"),
-      constraints: { id: /(4).*/ }
-    )
-    get "/products/14" => redirect("/upcase")
-    get "/products/14-upcase" => redirect("/upcase")
-  end
-
-  resource :session, controller: "sessions"
-
-  get "/courses.json" => redirect("/workshops.json")
-  get "/courses/:id" => redirect("/workshops/%{id}")
-
-  resources :workshops, only: [] do
-    resources :licenses, only: [:create]
-  end
-
-  resources :products, only: [:index] do
-    resources :licenses, only: [:create]
-  end
-  get "/products/:id/purchases/:lookup" => redirect("/purchases/%{lookup}")
-  get "/purchases/:lookup" => "pages#show", id: "purchase-show"
-
-  resources :books, only: [], controller: "products" do
-    resources :licenses, only: [:create]
-  end
-
-  resources :screencasts, only: [], controller: "products" do
-    resources :licenses, only: [:create]
-  end
-
-  resources :shows, only: [] do
-    resources :licenses, only: [:create]
-  end
-
-  resources :licenses, only: [:index]
-  resources :videos, only: [:show]
-
-  namespace :subscriber do
-    resources :invoices, only: [:index, :show]
-    resource :cancellation, only: [:new, :create]
-    resource :downgrade, only: :create
-  end
-
-  resource :subscription, only: [:new, :edit, :update]
   resource :credit_card, only: [:update]
-
-  scope ':plan' do
-    resources :checkouts, only: [:new, :create]
-    resources :redemptions, only: [:new]
-  end
-
-  get "/podcast.xml" =>
-    redirect("http://podcasts.thoughtbot.com/giantrobots.xml")
-  get "/podcast" =>
-    redirect("http://podcasts.thoughtbot.com/giantrobots")
-  get "/podcast/articles" => "articles#index", id: "podcast"
-  get "/podcast/:id" =>
-    redirect("http://podcasts.thoughtbot.com/giantrobots/%{id}")
-  get "/podcasts" =>
-    redirect("http://podcasts.thoughtbot.com/giantrobots")
-  get "/podcasts/:id" =>
-    redirect("http://podcasts.thoughtbot.com/giantrobots/%{id}")
-  get "/giantrobots.xml" =>
-    redirect("http://podcasts.thoughtbot.com/giantrobots.xml")
-  get "/giantrobots" =>
-    redirect("http://podcasts.thoughtbot.com/giantrobots")
-  get "/giantrobots/:id.mp3" =>
-    redirect("http://podcasts.thoughtbot.com/giantrobots/%{id}.mp3")
-  get "/giantrobots/:id" =>
-    redirect("http://podcasts.thoughtbot.com/giantrobots/%{id}")
-  get "/buildphase.xml" =>
-    redirect("http://podcasts.thoughtbot.com/buildphase.xml")
-  get "/buildphase" =>
-    redirect("http://podcasts.thoughtbot.com/buildphase")
-  get "/buildphase/:id.mp3" =>
-    redirect("http://podcasts.thoughtbot.com/buildphase/%{id}.mp3")
-  get "/buildphase/:id" =>
-    redirect("http://podcasts.thoughtbot.com/buildphase/%{id}")
-
+  resource :dashboard, only: :show
+  resource :session, controller: :sessions
+  resource :subscription, only: [:new, :edit, :update]
+  resources :licenses, only: [:index]
+  resources :topics, only: :index, path: :trails
+  resources :videos, only: [:show]
   resources(
     :design_for_developers_resources,
     path: "design-for-developers-resources",
@@ -116,80 +44,7 @@ Upcase::Application.routes.draw do
     path: "test-driven-rails-resources",
     only: [:index]
   )
-  get "/d4d-resources" => redirect("/design-for-developers-resources")
-
-  resources :topics, only: :index, path: "trails"
-
-  get "/auth/:provider/callback", to: "auth_callbacks#create"
-
-  get "/pages/*id" => "pages#show", format: false
-  get "/upcase" => redirect("/subscribe")
-  get "/subscribe" => "promoted_catalogs#show", as: :subscribe
-  get "/privacy" => "pages#show", as: :privacy, id: "privacy"
-  get "/terms" => "pages#show", as: :terms, id: "terms"
-  get "/directions" => "pages#show", as: :directions, id: "directions"
-  get(
-    "/group-training" => "pages#show",
-    as: :group_training,
-    id: "group-training"
-  )
-  get "/humans-present/oss" =>
-    redirect("https://www.youtube.com/watch?v=VMBhumlUP-A")
-  get "/backbone.js" => redirect("/backbone")
-  get "/geocodingonrails" => redirect("/geocoding-on-rails")
-  get "/ios-on-rails" => redirect("/ios-on-rails-beta")
-  get(
-    "/gettingstartedwithios" => redirect(
-      "/workshops/24-getting-started-with-ios-development?utm_source=podcast"
-    )
-  )
-  get "/5by5" => redirect("/design-for-developers?utm_source=5by5")
-  get(
-    "/rubyist-booster-shot" => "pages#show",
-    as: :rubyist_booster_shot,
-    id: "rubyist-booster-shot"
-  )
-  get "/live" => redirect(OfficeHours.url)
-
-  patch "/my_account" => "users#update", as: "edit_my_account"
-  get "/my_account" => "users#edit", as: "my_account"
-  resources :users, controller: "users" do
-    resources :notes, only: [:create, :edit, :update]
-    resource(
-      :password,
-      controller: "passwords",
-      only: [:create, :edit, :update]
-    )
-  end
-  get "/sign_up" => "users#new", as: "sign_up_app"
-  get "/sign_in" => "sessions#new", as: "sign_in_app"
-  resources :passwords, controller: "passwords", only: [:create, :new]
-
-  resource :dashboard, only: :show
-
-  mount StripeEvent::Engine, at: "stripe-webhook"
-
-  get(
-    ":id" => "products#show",
-    as: :book,
-    constraints: LicenseableConstraint.new(Book)
-  )
-  get(
-    ":id" => "products#show",
-    as: :screencast,
-    constraints: LicenseableConstraint.new(Screencast)
-  )
-  get(
-    ":id" => "shows#show",
-    as: :show,
-    constraints: LicenseableConstraint.new(Show)
-  )
-  get(
-    ":id" => "workshops#show",
-    as: :workshop,
-    constraints: LicenseableConstraint.new(Workshop)
-  )
 
   get ":id" => "topics#show", as: :topic
-  get "/:id/articles" => redirect("http://robots.thoughtbot.com/tags/%{id}")
+  get "/auth/:provider/callback", to: "auth_callbacks#create"
 end
