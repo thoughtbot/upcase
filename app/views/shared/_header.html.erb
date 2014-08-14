@@ -24,7 +24,7 @@
       <ul>
         <% if signed_in? %>
           <% if !current_user_has_active_subscription? %>
-            <li class="upcase">
+            <li class="subscription">
               <%= link_to subscribe_path do %>
                 <span><%= t('shared.subscriptions.icon') %></span> <%= t('shared.subscription.name') %> Membership
               <% end %>

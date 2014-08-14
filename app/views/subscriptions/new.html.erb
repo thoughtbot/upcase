@@ -1,7 +1,7 @@
 <% if signed_in? %>
-  <%= link_to 'account', my_account_path, class: 'upcase-signin' %>
+  <%= link_to 'account', my_account_path, class: 'signin' %>
 <% else %>
-  <%= link_to 'sign in', sign_in_path, class: 'upcase-signin' %>
+  <%= link_to 'sign in', sign_in_path, class: 'signin' %>
 <% end %>
 
 <section class="journey-headline">
