@@ -50,7 +50,7 @@ img {
     }
 
     .tagline a {
-      border-bottom: 2px solid $learnred;
+      border-bottom: 2px solid $upcase-red;
       margin: 0 3px;
     }
   }
@@ -148,7 +148,7 @@ img {
 
   a {
     h2 {
-      color: $learnred;
+      color: $upcase-red;
     }
 
     &:hover {
@@ -157,7 +157,7 @@ img {
       }
 
       h3 {
-        color: $learnred;
+        color: $upcase-red;
       }
     }
   }

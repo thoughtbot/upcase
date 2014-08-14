@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature 'User cancels a subscription' do
   scenario 'successfully unsubscribes without a refund' do
-    create(:plan, name: 'Prime')
+    create(:plan, name: 'Upcase')
     create(:basic_plan)
     create(:workshop, name: 'A Cool Workshop')
 

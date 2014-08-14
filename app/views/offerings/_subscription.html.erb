@@ -1,5 +1,5 @@
 <% unless current_user_has_active_subscription? %>
-  <div class="prime-cta">
+  <div class="subscription-cta">
     <h2>
       <%= I18n.t('products.show.subscribe_cta',
                  offering_type: offering.offering_type.humanize.downcase,
@@ -7,7 +7,7 @@
     </h2>
 
     <div class="license">
-      <%= link_to new_subscription_path, class: 'license-button button prime-button' do %>
+      <%= link_to new_subscription_path, class: 'license-button button subscription-button' do %>
         Subscribe to <%= t('shared.subscription.name') %>
       <% end %>
     </div>

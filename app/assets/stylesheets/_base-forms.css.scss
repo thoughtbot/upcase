@@ -15,8 +15,8 @@ input[type="submit"] {
 }
 
 .button, input[type="submit"] {
-  background-color: $learnred;
-  border-bottom: 3px solid $learndarkred;
+  background-color: $upcase-red;
+  border-bottom: 3px solid $upcase-darkred;
   border-radius: 3px;
   color: white;
   display: inline-block;
@@ -33,7 +33,7 @@ input[type="submit"] {
   }
 
   &:active {
-    background-color: $learndarkred;
+    background-color: $upcase-darkred;
   }
 
   &[disabled] {
@@ -58,7 +58,7 @@ input[type="submit"] {
 
 .button-mini {
   @extend .button;
-  border-bottom: 2px solid $learndarkred;
+  border-bottom: 2px solid $upcase-darkred;
   height: auto;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -75,7 +75,7 @@ form {
   }
 
   .errors, .errors li {
-    color: $learnred;
+    color: $upcase-red;
     font-size: 18px;
     font-style: bold;
     margin-top: 20px;
@@ -85,7 +85,7 @@ form {
     list-style-type: none;
 
     &.payment-errors, &.subscription-errors {
-      color: $learnred;
+      color: $upcase-red;
       font-style: bold;
 
       &:empty {
@@ -125,7 +125,7 @@ form {
       width: 100%;
 
       &:focus {
-        border: 1px solid $learnred;
+        border: 1px solid $upcase-red;
         outline: none;
         outline-color: none;
       }

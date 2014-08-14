@@ -1,5 +1,5 @@
 class SubscriptionMailer < BaseMailer
-  def welcome_to_prime_from_mentor(user)
+  def welcome_to_upcase_from_mentor(user)
     @user = user
     @mentor = user.mentor
 

@@ -21,7 +21,7 @@ module Subscriptions
     click_link I18n.t("subscriptions.join_cta")
   end
 
-  def click_prime_call_to_action_in_header
+  def click_upcase_call_to_action_in_header
     click_link "Upcase Membership"
   end
 

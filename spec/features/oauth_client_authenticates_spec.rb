@@ -13,7 +13,7 @@ feature 'An OAuth client authenticates', js: true do
     create_client_app
     visit_client_app
 
-    click_on 'Sign Into Learn'
+    click_on 'Sign Into Upcase'
     click_link 'with GitHub'
 
     user = User.find_by_email!(
@@ -53,7 +53,7 @@ feature 'An OAuth client authenticates', js: true do
   end
 
   def authorize_via_redirect(user)
-    click_on 'Sign Into Learn'
+    click_on 'Sign Into Upcase'
 
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password

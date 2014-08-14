@@ -10,8 +10,8 @@ describe TopicsHelper, '#format_content' do
   end
 
   it 'truncates the number of characters to max of 140' do
-    content   = 'On the new learn homepage, the topic excerpts are too long. It would be additionally great to add a function into the view that controls the numbers of words present, so a designer can fool with it.'
-    expected  = "On the new learn homepage, the topic excerpts are too long. It would be additionally great to add a function into the view that#{ellipsis}"
+    content   = 'On the new upcase homepage, the topic excerpts are too long. It would be additionally great to add a function into the view that controls the numbers of words present, so a designer can fool with it.'
+    expected  = "On the new upcase homepage, the topic excerpts are too long. It would be additionally great to add a function into the view that#{ellipsis}"
     expect(helper.format_content(content)).to eq expected
     expect(helper.format_content(content, length: 9, omission: "...")).to eq(
       "On the..."

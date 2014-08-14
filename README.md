@@ -1,6 +1,6 @@
-# Learn
+# Upcase
 
-Learn is a Rails 4 app running on Ruby 2.1 and deployed to Heroku.
+Upcase is a Rails 4 app running on Ruby 2.1 and deployed to Heroku.
 
 ## Development
 
@@ -55,13 +55,13 @@ build is run automatically whenever any branch is updated on Github.
 
 * Reset development data as needed.
 
-        % rake dev:prime
+        % rake dev:upcase
 
 * Dump production data into your local db. (Note that you need to drop your
   local database first).
 
         % rake db:drop
-        % heroku pg:pull DATABASE_URL workshops_development -r production
+        % heroku pg:pull DATABASE_URL upcase_development -r production
 
 * To test that adding/removing GitHub users works, use the GitHub user
   "cpyteltest".
@@ -147,7 +147,7 @@ To see what the current recipient is:
 
 ## Admin Access
 
-1. Register on the [Learn](http://learn.thoughtbot.com/sign_up) site.
+1. Register on the [Upcase](https://upcase.com/sign_up) site.
 
 2. Update your user.
 
@@ -157,8 +157,8 @@ To see what the current recipient is:
         % user.save!
         % exit
 
-3. Access the [general admin panel](http://learn.thoughtbot.com/admin) or
-   the [workshop admin panel](http://learn.thoughtbot.com/admin).
+3. Access the [general admin panel](http://upcase.com/admin) or
+   the [workshop admin panel](http://upcase.com/admin).
 
 Credits
 -------

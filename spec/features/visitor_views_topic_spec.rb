@@ -44,32 +44,32 @@ feature 'Topic pages' do
 
     expect_page_to_have_meta_description(topic.summary)
     expect_page_to_have_meta_keywords(topic.keywords)
-    expect_page_to_have_title("Learn #{topic.name}")
+    expect_page_to_have_title("Upcase #{topic.name}")
   end
 
   scenario 'a topic has thoughtbot trail items listed separately' do
     fake_trail_map = FakeTrailMap.new(thoughtbot_resource: true)
-    learn_trail = create(:trail, trail_map: fake_trail_map.trail)
+    upcase_trail = create(:trail, trail_map: fake_trail_map.trail)
 
-    visit topic_path(learn_trail.topic)
+    visit topic_path(upcase_trail.topic)
 
-    expect_to_have_learn_resource(fake_trail_map.resource_id)
+    expect_to_have_upcase_resource(fake_trail_map.resource_id)
   end
 
   scenario 'a topic has non-thoughtbot trail items listed under other resources' do
     fake_trail_map = FakeTrailMap.new
-    learn_trail = create(:trail, trail_map: fake_trail_map.trail)
+    upcase_trail = create(:trail, trail_map: fake_trail_map.trail)
 
-    visit topic_path(learn_trail.topic)
+    visit topic_path(upcase_trail.topic)
 
-    expect_to_have_non_learn_resource(fake_trail_map.resource_id)
+    expect_to_have_non_upcase_resource(fake_trail_map.resource_id)
   end
 
   scenario "a topic lists the trail map's reference" do
     fake_trail_map = FakeTrailMap.new
-    learn_trail = create(:trail, trail_map: fake_trail_map.trail)
+    upcase_trail = create(:trail, trail_map: fake_trail_map.trail)
 
-    visit topic_path(learn_trail.topic)
+    visit topic_path(upcase_trail.topic)
 
     expect_to_have_reference(fake_trail_map.reference_id)
   end
@@ -137,16 +137,16 @@ feature 'Topic pages' do
     end
   end
 
-  def expect_to_have_learn_resource(resource_id)
+  def expect_to_have_upcase_resource(resource_id)
     expect(page).
-      to have_css("ul.learn .resource[data-id='#{resource_id}']")
+      to have_css("ul.subscription .resource[data-id='#{resource_id}']")
     expect(page).
       not_to have_css("ul.other .resource[data-id='#{resource_id}']")
   end
 
-  def expect_to_have_non_learn_resource(resource_id)
+  def expect_to_have_non_upcase_resource(resource_id)
     expect(page).
-      not_to have_css("ul.learn .resource[data-id='#{resource_id}']")
+      not_to have_css("ul.subscription .resource[data-id='#{resource_id}']")
     expect(page).
       to have_css("ul.other .resource[data-id='#{resource_id}']")
   end

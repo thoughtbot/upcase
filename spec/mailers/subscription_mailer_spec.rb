@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe SubscriptionMailer do
-  describe '.welcome_to_prime_from_mentor' do
+  describe '.welcome_to_upcase_from_mentor' do
     it 'is sent to the user' do
       user = user_with_mentor
       email = welcome_email_for(user)
@@ -61,7 +61,7 @@ describe SubscriptionMailer do
     end
 
     def welcome_email_for(user)
-      SubscriptionMailer.welcome_to_prime_from_mentor(user)
+      SubscriptionMailer.welcome_to_upcase_from_mentor(user)
     end
   end
 
@@ -99,7 +99,7 @@ describe SubscriptionMailer do
       expect(subscription_receipt_email).to have_body_text(subscriber_invoice_url('invoice_id'))
     end
 
-    it 'is sent from learn' do
+    it 'is sent from upcase' do
       expect(subscription_receipt_email.from).to include(ENV["SUPPORT_EMAIL"])
     end
 
@@ -125,7 +125,7 @@ describe SubscriptionMailer do
       expect(upcoming_payment_notification_email.to).to eq ['email@example.com']
     end
 
-    it 'is sent from learn' do
+    it 'is sent from upcase' do
       expect(upcoming_payment_notification_email.from).to include ENV["SUPPORT_EMAIL"]
     end
 

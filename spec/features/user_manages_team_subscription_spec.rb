@@ -66,7 +66,7 @@ feature "User creates a team subscription" do
 
   scenario "does not see the option to pay with paypal" do
     visit_team_plan_checkout_page
-    click_prime_call_to_action_in_header
+    click_upcase_call_to_action_in_header
 
     expect(page).not_to have_css("#checkout_payment_method_paypal")
   end

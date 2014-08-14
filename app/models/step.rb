@@ -41,7 +41,7 @@ class Step
 
   def thoughtbot_resource?(resource)
     if resource['uri']
-      Addressable::URI.parse(resource['uri']).host == 'learn.thoughtbot.com'
+      Addressable::URI.parse(resource['uri']).host == 'upcase.com'
     end
   end
 

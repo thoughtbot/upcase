@@ -10,7 +10,7 @@
   <hr>
   <ul class='related-products related-workshops'>
     <% if current_user && !current_user.has_active_subscription? %>
-      <li class="prime">
+      <li class="subscription">
         <%= link_to subscribe_path do %>
           <span class="icon"><%= t('shared.subscriptions.icon') %></span>
           <hgroup>

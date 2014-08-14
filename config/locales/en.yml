@@ -59,8 +59,8 @@ en:
   shared:
     books:
       Books
-    learn:
-      Learn
+    upcase:
+      Upcase
     subscription:
       name: Upcase
     subscriptions:
@@ -152,4 +152,4 @@ en:
   licenses:
     flashes:
       success: Success! Enjoy your shiny new product.
-      error:  "You're already subscribed to Prime!"
+      error:  "You're already subscribed to Upcase!"

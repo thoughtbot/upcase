@@ -2,7 +2,7 @@
   <h2><%= step.name %></h2>
   <% if step.thoughtbot_resources_present? %>
     <h3><%= t('trails.thoughtbot_resources') %></h3>
-    <ul class="learn">
+    <ul class="subscription">
       <%= render partial: 'trails/resource', collection: step.thoughtbot_resources %>
     </ul>
   <% end %>

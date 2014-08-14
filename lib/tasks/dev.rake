@@ -1,6 +1,6 @@
 namespace :dev do
   desc 'Creates sample data for local development'
-  task prime: ['db:setup'] do
+  task upcase: ['db:setup'] do
     unless Rails.env.development?
       raise 'This task can only be run in the development environment'
     end
@@ -19,8 +19,8 @@ namespace :dev do
   def create_products
     header "Products"
 
-    @prime = FactoryGirl.create(:plan)
-    puts_product @prime
+    @upcase = FactoryGirl.create(:plan)
+    puts_product @upcase
     @book = FactoryGirl.create(
       :book,
       :promoted,
@@ -55,7 +55,7 @@ namespace :dev do
     user = FactoryGirl.create(:admin,
                               :with_subscription,
                               :with_github,
-                              plan: @prime,
+                              plan: @upcase,
                               email: 'whetstone@example.com')
     puts_user user, 'ready to auth against whetstone'
 
@@ -109,7 +109,7 @@ namespace :dev do
 
   def create_individual_plans
     [29, 49, 249].each do |n|
-      FactoryGirl.create(:plan, sku: "prime-#{n}", individual_price: n)
+      FactoryGirl.create(:plan, sku: "upcase-#{n}", individual_price: n)
     end
   end
 

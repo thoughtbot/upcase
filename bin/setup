@@ -15,7 +15,7 @@ git remote add production git@heroku.com:learn-production.git
 
 # Set up the database
 bundle exec rake db:setup
-bundle exec rake dev:prime
+bundle exec rake dev:upcase
 
 # Set up configurable environment variables
 if [ ! -f .env ]; then

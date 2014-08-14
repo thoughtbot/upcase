@@ -1,29 +1,29 @@
 require "rails_helper"
 
 describe "dashboards/show.html" do
-  ENV["LEARN_REPO_URL"] = "learn_repo_url"
+  ENV["UPCASE_REPO_URL"] = "upcase_repo_url"
 
-  context "when a user does not have access to the learn repo" do
-    it "renders without a link to learn repo" do
+  context "when a user does not have access to the upcase repo" do
+    it "renders without a link to upcase repo" do
       render_show
 
       expect(rendered).
-        not_to have_css("a[href='learn_repo_url']")
+        not_to have_css("a[href='upcase_repo_url']")
       expect(rendered).to have_css("a[href='#{edit_subscription_path}']")
     end
   end
 
-  context "when a user has access to the learn repo" do
-    it "renders with a link to learn repo" do
+  context "when a user has access to the upcase repo" do
+    it "renders with a link to upcase repo" do
       render_show source_code: true
 
       expect(rendered).
-        to have_css("a[href='learn_repo_url']")
+        to have_css("a[href='upcase_repo_url']")
     end
   end
 
-  context "when a user does not have access to learn live" do
-    it "renders without a link to learn live" do
+  context "when a user does not have access to upcase live" do
+    it "renders without a link to upcase live" do
       render_show
 
       expect(rendered).not_to have_css("a[href='#{OfficeHours.url}']")
@@ -31,8 +31,8 @@ describe "dashboards/show.html" do
     end
   end
 
-  context "when a user has access to learn live" do
-    it "renders with a link to learn live" do
+  context "when a user has access to upcase live" do
+    it "renders with a link to upcase live" do
       render_show office_hours: true
 
       expect(rendered).to have_css("a[href='#{OfficeHours.url}']")

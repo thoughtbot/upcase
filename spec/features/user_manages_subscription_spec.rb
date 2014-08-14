@@ -133,7 +133,7 @@ feature 'User creates a subscription' do
   end
 
   scenario 'does not see call out to subscribe if already subscribed' do
-    plan = create(:plan, name: 'Prime')
+    plan = create(:plan, name: 'Upcase')
     create(:workshop, name: 'A Cool Workshop')
     sign_in_as_user_with_subscription
 

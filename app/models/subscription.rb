@@ -1,4 +1,4 @@
-# This class represents a user or team's subscription to Learn content
+# This class represents a user or team's subscription to Upcase content
 class Subscription < ActiveRecord::Base
   belongs_to :user
   belongs_to :plan, polymorphic: true
@@ -57,7 +57,7 @@ class Subscription < ActiveRecord::Base
 
   def deliver_welcome_email
     if has_access_to?(:mentor)
-      SubscriptionMailer.welcome_to_prime_from_mentor(user).deliver
+      SubscriptionMailer.welcome_to_upcase_from_mentor(user).deliver
     end
   end
 
