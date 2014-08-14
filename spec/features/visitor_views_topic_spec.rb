@@ -139,14 +139,14 @@ feature 'Topic pages' do
 
   def expect_to_have_upcase_resource(resource_id)
     expect(page).
-      to have_css("ul.upcase .resource[data-id='#{resource_id}']")
+      to have_css("ul.subscription .resource[data-id='#{resource_id}']")
     expect(page).
       not_to have_css("ul.other .resource[data-id='#{resource_id}']")
   end
 
   def expect_to_have_non_upcase_resource(resource_id)
     expect(page).
-      not_to have_css("ul.upcase .resource[data-id='#{resource_id}']")
+      not_to have_css("ul.subscription .resource[data-id='#{resource_id}']")
     expect(page).
       to have_css("ul.other .resource[data-id='#{resource_id}']")
   end

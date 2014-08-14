@@ -1,7 +1,7 @@
 <section id="license" class="<%= offering.offering_type %>">
   <% if offering.active? %>
     <% unless current_user_has_active_subscription? %>
-      <div class="upcase-cta">
+      <div class="subscription-cta">
         <div class="license">
           <%= link_to new_checkout_path(plan), class: 'license-button button subscription-button' do %>
             <%= t('weekly_iteration_subscribe_cta') %> for <%= individual_price_per_month(plan) %>
