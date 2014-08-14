@@ -8,9 +8,9 @@ default: &default
 
 development:
   <<: *default
-  database: workshops_development
+  database: upcase_development
 
 test:
   <<: *default
   pool: 4
-  database: workshops_test
+  database: upcase_test
