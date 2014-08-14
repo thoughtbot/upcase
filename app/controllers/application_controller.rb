@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
   end
 
   def requested_subscribeable
-    Teams::TeamPlan.where(sku: params[:plan]).first ||
+    TeamPlan.where(sku: params[:plan]).first ||
       IndividualPlan.where(sku: params[:plan]).first
   end
 

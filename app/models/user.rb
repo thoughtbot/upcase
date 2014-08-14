@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :public_keys, dependent: :destroy
   has_one :purchased_subscription, dependent: :destroy, class_name: 'Subscription'
   belongs_to :mentor
-  belongs_to :team, class_name: 'Teams::Team'
+  belongs_to :team
 
   validates :name, presence: true
   validates :mentor_id, presence: true, if: :has_subscription_with_mentor?

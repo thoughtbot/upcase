@@ -164,7 +164,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :invitation, class: 'Teams::Invitation' do
+  factory :invitation, class: 'Invitation' do
     email
     sender factory: :user
     team
@@ -179,7 +179,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :acceptance, class: 'Teams::Acceptance' do
+  factory :acceptance, class: 'Acceptance' do
     github_username 'username'
     invitation
     name
@@ -199,7 +199,7 @@ FactoryGirl.define do
     initialize_with { new(attributes) }
   end
 
-  factory :team_plan, class: 'Teams::TeamPlan' do
+  factory :team_plan, class: 'TeamPlan' do
     individual_price 89
     name 'Workshops for Teams'
     sku 'team_plan'
@@ -213,7 +213,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :team, class: 'Teams::Team' do
+  factory :team, class: 'Team' do
     name 'Google'
     subscription
     max_users 10
