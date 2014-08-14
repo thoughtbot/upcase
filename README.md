@@ -61,7 +61,7 @@ build is run automatically whenever any branch is updated on Github.
   local database first).
 
         % rake db:drop
-        % heroku pg:pull DATABASE_URL workshops_development -r production
+        % heroku pg:pull DATABASE_URL upcase_development -r production
 
 * To test that adding/removing GitHub users works, use the GitHub user
   "cpyteltest".
