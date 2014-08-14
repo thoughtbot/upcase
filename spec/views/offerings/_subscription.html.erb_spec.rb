@@ -25,7 +25,7 @@ describe "offerings/_upcase.html.erb" do
     end
 
     render(
-      template: "offerings/_upcase",
+      template: "offerings/_subscription",
       locals: { offering: product }
     )
   end

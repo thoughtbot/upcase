@@ -1,5 +1,5 @@
 module DashboardsHelper
-  def upcase_live_link(&block)
+  def live_chat_link(&block)
     if current_user_has_access_to?(:office_hours)
       link_to OfficeHours.url, target: "_blank", &block
     else

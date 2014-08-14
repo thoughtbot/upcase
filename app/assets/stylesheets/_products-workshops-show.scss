@@ -182,7 +182,7 @@ body.videos-show aside {
       margin-top: 0;
     }
 
-    .button:not(.upcase-button):not(.free-with-upcase) {
+    .button:not(.subscription-button):not(.free-with-subscription) {
       background: darken($warmgray, 28%);
       border-color: $darkwarmgray;
 
@@ -197,7 +197,7 @@ body.videos-show aside {
       }
     }
 
-    .free-with-upcase {
+    .free-with-subscription {
       background: #fff;
       border: 3px solid #ddd;
       border-width: 1px 1px 3px 1px;
@@ -220,7 +220,7 @@ body.videos-show aside {
     }
   }
 
-  .upcase-cta {
+  .subscription-cta {
     margin: 1.5rem 0 1.5em 0;
 
     h2 {
