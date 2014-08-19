@@ -1,4 +1,4 @@
-resources :invitations, only: [:index, :create] do
+resources :invitations, only: [:create] do
   resources :acceptances, only: [:new, :create]
 end
 

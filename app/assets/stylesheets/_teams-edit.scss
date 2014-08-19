@@ -1,9 +1,9 @@
 body.teams-edit {
-  .members {
+  .members, .invitations {
     margin: 0;
     padding: 0;
 
-    .member {
+    li {
       border: 1px solid $warmgray;
       border-radius: 3px;
       display: block;
@@ -12,12 +12,9 @@ body.teams-edit {
       padding: .5rem 1rem;
       position: relative;
 
-      &.pending {
-        background: #eee;
-        border-style: dashed;
-
-        &:before {
-          content: '(pending) ';
+      &.owner {
+        &:after {
+          content: '(Owner) ';
         }
       }
 
@@ -26,6 +23,11 @@ body.teams-edit {
         @include position(absolute, 0px 0px 0 0);
       }
     }
+  }
+
+  .invitations li {
+    background: #eee;
+    border-style: dashed;
   }
 
   .invite-members {

@@ -1,10 +1,12 @@
 require "rails_helper"
 
-describe Subscriber::CancellationsController do
-  context "create" do
+describe SubscriptionsController do
+  context "update" do
     it_behaves_like "must be subscription owner" do
       def perform_request
-        post :create
+        plan = create(:individual_plan)
+
+        post :update, plan_id: plan
       end
 
       def authorize
@@ -13,10 +15,10 @@ describe Subscriber::CancellationsController do
     end
   end
 
-  context "new" do
+  context "edit" do
     it_behaves_like "must be subscription owner" do
       def perform_request
-        get :new
+        get :edit
       end
 
       def authorize

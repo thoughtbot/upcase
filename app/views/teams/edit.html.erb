@@ -6,6 +6,19 @@
 <div class="text-box-wrapper solo">
   <div class="text-box">
     <ul class="members">
+      <% @team.users.each do |user| %>
+        <li class="<%= "owner" if @team.owner?(user) %>">
+          <%= user.name %>
+        </li>
+      <% end %>
+    </ul>
+
+    <ul class="invitations">
+      <% @team.invitations.each do |invitation| %>
+        <% unless invitation.accepted? %>
+          <li><%= invitation.email %></li>
+        <% end %>
+      <% end %>
     </ul>
 
     <% if @team.has_users_remaining? %>

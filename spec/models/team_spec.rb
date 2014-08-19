@@ -6,6 +6,8 @@ describe Team do
   it { should have_many(:users).dependent(:nullify) }
   it { should validate_presence_of(:name) }
 
+  it { should delegate(:owner?).to(:subscription) }
+
   describe '#add_user' do
     it "fulfils that user's subscription" do
       team = create(:team)

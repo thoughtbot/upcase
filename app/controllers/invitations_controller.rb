@@ -1,9 +1,5 @@
 class InvitationsController < ApplicationController
-  before_filter :must_be_team_member
-
-  def index
-    @team = current_user.team
-  end
+  before_filter :must_be_team_owner
 
   def create
     if deliver_invitation

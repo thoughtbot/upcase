@@ -1,4 +1,6 @@
 class SubscriptionsController < ApplicationController
+  before_filter :must_be_subscription_owner, only: [:edit, :update]
+
   def new
     @catalog = Catalog.new
 

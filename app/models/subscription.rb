@@ -42,6 +42,10 @@ class Subscription < ActiveRecord::Base
     deactivated_on.nil?
   end
 
+  def scheduled_for_cancellation?
+    scheduled_for_cancellation_on.present?
+  end
+
   def deactivate
     SubscriptionFulfillment.new(user, plan).remove
     update_column(:deactivated_on, Time.zone.today)
@@ -71,6 +75,10 @@ class Subscription < ActiveRecord::Base
 
   def last_charge
     Stripe::Charge.all(count: 1, customer: stripe_customer_id).first
+  end
+
+  def owner?(other_user)
+    user == other_user
   end
 
   private

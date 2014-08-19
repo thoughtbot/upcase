@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe InvitationsController do
-  it_behaves_like 'must be team member' do
+  it_behaves_like "must be team owner" do
     def perform_request
       invitation = stub('invitation', deliver: true)
       Invitation.stubs(:new).returns(invitation)

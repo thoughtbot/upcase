@@ -1,6 +1,6 @@
 module Subscriber
   class InvoicesController < ApplicationController
-    before_filter :authorize
+    before_filter :must_be_subscription_owner
 
     def index
       @invoices = Invoice.
@@ -9,15 +9,6 @@ module Subscriber
 
     def show
       @invoice = Invoice.new(params[:id])
-      ensure_invoice_belongs_to_user
-    end
-
-    private
-
-    def ensure_invoice_belongs_to_user
-      if @invoice.user != current_user
-        raise ActiveRecord::RecordNotFound
-      end
     end
   end
 end

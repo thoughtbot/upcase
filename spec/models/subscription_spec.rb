@@ -70,6 +70,22 @@ describe Subscription do
     end
   end
 
+  describe "#scheduled_for_cancellation?" do
+    it "returns false if scheduled_for_cancellation_on is nil" do
+      subscription = Subscription.new(scheduled_for_cancellation_on: nil)
+
+      expect(subscription).not_to be_scheduled_for_cancellation
+    end
+
+    it "returns true if scheduled_for_cancellation_on is not nil" do
+      subscription = Subscription.new(
+        scheduled_for_cancellation_on: Time.zone.today
+      )
+
+      expect(subscription).to be_scheduled_for_cancellation
+    end
+  end
+
   describe '#deactivate' do
     it "updates the subscription record by setting deactivated_on to today" do
       subscription = create(:active_subscription, :purchased)
@@ -270,6 +286,26 @@ describe Subscription do
       expect(subscription.last_charge).to eq charge
       expect(Stripe::Charge).to have_received(:all)
         .with(count: 1, customer: subscription.stripe_customer_id)
+    end
+  end
+
+  describe "owner?" do
+    context "when the given user is the owner" do
+      it "returns true" do
+        user = User.new
+        subscription = build_stubbed(:subscription, user: user)
+
+        expect(subscription.owner?(user)).to eq true
+      end
+    end
+
+    context "when the given user is not the owner" do
+      it "returns false" do
+        user = User.new
+        subscription = build_stubbed(:subscription)
+
+        expect(subscription.owner?(user)).to eq false
+      end
     end
   end
 end

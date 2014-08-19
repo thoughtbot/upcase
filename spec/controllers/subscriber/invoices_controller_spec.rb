@@ -1,22 +1,22 @@
 require "rails_helper"
 
-describe Subscriber::CancellationsController do
-  context "create" do
+describe Subscriber::InvoicesController do
+  context "index" do
     it_behaves_like "must be subscription owner" do
       def perform_request
-        post :create
+        get :index
       end
 
       def authorize
-        redirect_to(my_account_path)
+        respond_with(:success)
       end
     end
   end
 
-  context "new" do
+  context "show" do
     it_behaves_like "must be subscription owner" do
       def perform_request
-        get :new
+        get :show, id: "in_1s4JSgbcUaElzU"
       end
 
       def authorize

@@ -8,6 +8,8 @@ class Team < ActiveRecord::Base
 
   validates :name, presence: true
 
+  delegate :owner?, to: :subscription
+
   def add_user(user)
     fulfillment_for(user).fulfill
     user.team = self

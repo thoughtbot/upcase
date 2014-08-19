@@ -94,15 +94,4 @@ feature 'Subscriber views subscription invoices' do
     expect(page).to have_content(@current_user.zip_code)
     expect(page).to have_content(@current_user.country)
   end
-
-  scenario "a subscriber can't view another user's invoice" do
-    sign_in_as_user_with_subscription
-    create(:checkout, user: @current_user)
-    @current_user.stripe_customer_id = "cus_NOMATCH"
-    @current_user.save!
-
-    visit subscriber_invoice_path("in_1s4JSgbcUaElzU")
-
-    expect(page).to have_content 'ActiveRecord::RecordNotFound'
-  end
 end
