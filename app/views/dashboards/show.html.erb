@@ -13,7 +13,9 @@
 
 <% if current_user_has_access_to?(:exercises) %>
   <p class="product-headline">Hone your skills by completing these exercises</p>
-  <%= render 'products/exercises' %>
+  <section class='exercises'>
+    <%= render @catalog.exercises %>
+  </section>
 <% end %>
 
 <% if current_user_has_access_to?(:workshops) %>

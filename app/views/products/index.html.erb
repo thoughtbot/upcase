@@ -20,7 +20,9 @@
 </section>
 
 <h2>Every exercise</h2>
-<%= render 'products/exercises' %>
+<section id="exercises" class="exercises">
+  <%= render @catalog.exercises %>
+</section>
 
 <h2>Every book</h2>
 <section id="books" class="reading">
