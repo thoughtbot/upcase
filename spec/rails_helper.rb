@@ -41,6 +41,8 @@ Capybara.configure do |config|
   config.ignore_hidden_elements = false
 end
 
+ActiveRecord::Migration.maintain_test_schema!
+
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.use_instantiated_fixtures  = false
