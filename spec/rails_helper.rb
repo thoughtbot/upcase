@@ -19,6 +19,7 @@ require "email_spec"
 require "paperclip/matchers"
 require "rspec/rails"
 require "webmock/rspec"
+require "shoulda/matchers"
 
 WebMock.disable_net_connect!(allow_localhost: true, allow: "codeclimate.com")
 

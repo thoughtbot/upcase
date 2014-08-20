@@ -91,7 +91,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'rubyzip', '0.9.9'
   gem 'sham_rack', '1.3.1'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', require: false
   gem 'simplecov', '~> 0.9', require: false
   gem 'sinatra'
   gem 'timecop', '0.3.5'
