@@ -14,7 +14,23 @@ feature "Subscriber upgrades to annual billing" do
     expect(last_email.to).to include(ENV["SUPPORT_EMAIL"])
   end
 
+  scenario "user with no subscription doesn't see link" do
+    sign_in
+
+    expect_to_not_see_upgrade_link
+  end
+
+  scenario "visitor doesn't see link" do
+    visit products_url
+
+    expect_to_not_see_upgrade_link
+  end
+
   def last_email
     ActionMailer::Base.deliveries.last
+  end
+
+  def expect_to_not_see_upgrade_link
+    expect(page).to_not have_content "Get two months free"
   end
 end
