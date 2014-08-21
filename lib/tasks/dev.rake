@@ -6,21 +6,70 @@ namespace :dev do
     end
 
     require 'factory_girl_rails'
+    include FactoryGirl::Syntax::Methods
 
+    create_individual_plans
     create_products
     create_workshops
     create_mentors
     create_users
     create_team_plan
     create_topic
-    create_individual_plans
+  end
+
+  def create_individual_plans
+    screencasts_features = {
+      includes_forum: true,
+      includes_screencasts: true,
+    }
+
+    @screencasts_plan = create(:plan, {
+      individual_price: 29,
+      name: "30 Minutes a Week",
+      short_description: "Best for those with limited time.",
+      sku: "prime-29",
+    }.merge(screencasts_features))
+
+    basic_features = {
+      includes_office_hours: true,
+      includes_shows: true,
+    }.merge(screencasts_features)
+
+    @basic_plan = create(:plan, {
+      individual_price: 49,
+      name: "Part-time Study",
+      short_description: "Best for a self-guided learner.",
+      sku: "prime-49",
+    }.merge(basic_features))
+
+    books_features = {
+      includes_books: true,
+      includes_exercises: true,
+      includes_source_code: true,
+    }.merge(basic_features)
+
+    @books_plan = create(:plan, {
+      individual_price: 99,
+      name: "Aspiring Professional",
+      short_description: "Best for an active learner seeking coding exercises and real feedback.",
+      sku: "prime-99",
+    }.merge(books_features))
+
+    mentor_features = {
+      includes_mentor: true,
+      name: "1-on-1 Coaching",
+      short_description: "Best for an active learner seeking 1-on-1 personal coaching.",
+    }.merge(books_features)
+
+    @mentor_plan = create(:plan, {
+      sku: "prime-249",
+      individual_price: 249,
+    }.merge(mentor_features))
   end
 
   def create_products
     header "Products"
 
-    @upcase = FactoryGirl.create(:plan)
-    puts_product @upcase
     @book = FactoryGirl.create(
       :book,
       :promoted,
@@ -52,37 +101,46 @@ namespace :dev do
     user = FactoryGirl.create(:admin, email: 'admin@example.com')
     puts_user user, 'admin'
 
-    user = FactoryGirl.create(:admin,
-                              :with_subscription,
-                              :with_github,
-                              plan: @upcase,
-                              email: 'whetstone@example.com')
+    user = FactoryGirl.create(
+      :admin,
+      :with_subscription,
+      :with_github,
+      email: 'whetstone@example.com',
+      plan: @mentor_plan,
+    )
     puts_user user, 'ready to auth against whetstone'
 
     user = FactoryGirl.create(:user, email: 'none@example.com')
     puts_user user, 'no purchases'
 
-    user = FactoryGirl.create(:basic_subscriber, email: 'basic@example.com')
+    user = FactoryGirl.create(
+      :basic_subscriber,
+      email: 'basic@example.com',
+      plan: @basic_plan,
+    )
     puts_user user, 'basic subscriber'
 
     user = FactoryGirl.create(
       :subscriber,
       :includes_mentor,
-      email: 'has_mentor@example.com'
+      email: 'has_mentor@example.com',
+      plan: @mentor_plan,
     )
     puts_user user, 'mentor subscriber'
 
     user = FactoryGirl.create(
       :subscriber,
       :includes_screencasts,
-      email: 'screencasts@example.com'
+      email: 'screencasts@example.com',
+      plan: @screencasts_plan,
     )
     puts_user user, 'subscriber with screencasts'
 
     user = FactoryGirl.create(
       :subscriber,
       :includes_books,
-      email: 'books@example.com'
+      email: 'books@example.com',
+      plan: @books_plan,
     )
     puts_user user, 'subscriber with books'
 
@@ -105,12 +163,6 @@ namespace :dev do
 
   def create_topic
     FactoryGirl.create(:topic, name: 'Ruby on Rails')
-  end
-
-  def create_individual_plans
-    [29, 49, 249].each do |n|
-      FactoryGirl.create(:plan, sku: "upcase-#{n}", individual_price: n)
-    end
   end
 
   def header(msg)
