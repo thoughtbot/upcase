@@ -1,1 +1,7 @@
-<%= form.input :quantity, as: :hidden, wrapper_html: { "data-individual-price" => @checkout.price } %>
+<%= form.input(
+  :quantity,
+  as: :hidden,
+  wrapper_html: {
+    "data-individual-price" => @checkout.price,
+    "data-interval" => @checkout.subscribeable.subscription_interval
+  }) %>

@@ -83,9 +83,10 @@ $('.reveal-address').click(function() {
 
 function updateCheckoutAmountForQuantity() {
   var individualPrice = $('#checkout_quantity_input').data('individual-price');
+  var interval = $('#checkout_quantity_input').data('interval');
   var quantity = $('#checkout_quantity').val();
   var newAmount = individualPrice * quantity;
-  updateCheckoutSubmitAmount("$" + newAmount + " per month");
+  updateCheckoutSubmitAmount("$" + newAmount + " per " + interval);
 }
 
 $(document).ready(function(){
