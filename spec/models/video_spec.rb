@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe Video do
   it { should belong_to(:watchable) }
+  it { should have_many(:classifications) }
 
   it { should validate_presence_of(:published_on) }
   it { should validate_presence_of(:slug) }

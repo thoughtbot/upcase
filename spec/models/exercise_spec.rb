@@ -3,8 +3,9 @@ require "rails_helper"
 describe Exercise do
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:url) }
+  it { should have_many(:classifications) }
 
-  context ".ordered" do
+  describe ".ordered" do
     it "returns older exercises first" do
       create(:exercise, title: "first", created_at: 3.days.ago)
       create(:exercise, title: "third", created_at: 1.day.ago)

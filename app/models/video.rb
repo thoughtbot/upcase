@@ -2,6 +2,7 @@ class Video < ActiveRecord::Base
   extend FriendlyId
 
   belongs_to :watchable, polymorphic: true
+  has_many :classifications, as: :classifiable
 
   validates :published_on, presence: true
   validates :slug, presence: true, uniqueness: true

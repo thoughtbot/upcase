@@ -1,4 +1,6 @@
 class Exercise < ActiveRecord::Base
+  has_many :classifications, as: :classifiable
+
   validates :title, presence: true
   validates :url, presence: true
 
