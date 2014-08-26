@@ -56,20 +56,6 @@ describe Team do
     end
   end
 
-  describe "#has_invited_users?" do
-    it "returns false when the team has no invitations" do
-      team = build(:team, invitations: [])
-
-      expect(team).not_to have_invited_users
-    end
-
-    it "returns true when the team has invitations" do
-      team = build(:team, invitations: build_list(:invitation, 3))
-
-      expect(team).to have_invited_users
-    end
-  end
-
   describe "#invitations_remaining" do
     it "returns the difference between users and max users" do
       team = create(:team, max_users: 5)

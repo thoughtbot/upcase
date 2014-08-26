@@ -29,9 +29,5 @@
     <% else %>
       <p>You're out of invitations right now, but that's easy to fix. <%= mail_to ENV["SUPPORT_EMAIL"], "Send us a short email" %> and we'll take care of you.</p>
     <% end %>
-
-    <% if @team.has_invited_users? %>
-      <p><%= link_to "View existing invitations", invitations_path %></p>
-    <% end %>
   </div>
 </div>

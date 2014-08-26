@@ -26,10 +26,6 @@ class Team < ActiveRecord::Base
     users_count < max_users
   end
 
-  def has_invited_users?
-    invitations.any?
-  end
-
   def invitations_remaining
     [0, max_users - users_count].max
   end
