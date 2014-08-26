@@ -10,8 +10,8 @@ bundle install
 mkdir -p .git/safe
 
 # Set up Heroku remotes
-git remote add staging git@heroku.com:learn-staging.git
-git remote add production git@heroku.com:learn-production.git
+git remote add staging git@heroku.com:upcase-staging.git
+git remote add production git@heroku.com:upcase-production.git
 
 # Set up the database
 bundle exec rake db:setup
