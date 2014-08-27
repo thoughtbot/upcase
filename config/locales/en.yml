@@ -26,11 +26,6 @@ en:
     workshops: 'Hands-On Workshops'
     forum: 'Private Discourse Forum'
 
-  notes:
-    flashes:
-      error: 'Please fill in the note'
-      success: 'Your note was saved successfully'
-
   products:
     show:
       subscribe_cta: "This %{offering_type} is free with a subscription to %{subscription_name}"
