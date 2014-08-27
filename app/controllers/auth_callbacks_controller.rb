@@ -29,12 +29,12 @@ class AuthCallbacksController < ApplicationController
   end
 
   def auth_origin
-    p "return to #{session[:return_to]}"
-    p "request.env #{request.env['omniauth.origin']}"
     session[:return_to] || request.env['omniauth.origin'] || dashboard_url
   end
 
   def clear_return_to
+    p "clearing return_to #{session[:return_to]}"
     session[:return_to] = nil
+    p "cleared return_to #{session[:return_to]}"
   end
 end
