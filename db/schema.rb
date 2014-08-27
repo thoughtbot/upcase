@@ -298,7 +298,6 @@ ActiveRecord::Schema.define(version: 20140826203235) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "subscription_id", null: false
-    t.integer  "max_users",       null: false
   end
 
   create_table "topics", force: true do |t|

@@ -16,7 +16,6 @@ describe TeamFulfillment do
       expect(team).to be_present
       expect(team.name).to eq("Somethingcool")
       expect(team.subscription).to eq(user.subscription)
-      expect(team.max_users).to eq(checkout.quantity)
     end
   end
 end

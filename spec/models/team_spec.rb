@@ -2,14 +2,14 @@ require "rails_helper"
 
 describe Team do
   it { should belong_to(:subscription) }
-  it { should belong_to(:team_plan) }
   it { should have_many(:users).dependent(:nullify) }
   it { should validate_presence_of(:name) }
 
+  it { should delegate(:plan).to(:subscription) }
   it { should delegate(:owner?).to(:subscription) }
 
   describe '#add_user' do
-    it "fulfils that user's subscription" do
+    it "fulfills that user's subscription" do
       team = create(:team)
       user = create(:user, :with_mentor)
       fulfillment = stub_team_fulfillment(team, user)
@@ -18,6 +18,35 @@ describe Team do
 
       expect(user.reload.team).to eq team
       expect(fulfillment).to have_received(:fulfill)
+    end
+
+    context "when below the minimum" do
+      it "updates the team's subscription quantity with the minimum" do
+        team = team_with_stubbed_subscription_change_quantity
+        minimum_quantity = team.subscription.plan.minimum_quantity
+        user = create(:user, :with_mentor, :with_github)
+
+        team.add_user(user)
+
+        expect(team.subscription).
+          to have_received(:change_quantity).
+          with(minimum_quantity)
+      end
+    end
+
+    context "when above the minimum" do
+      it "updates the team's subscription with the number of team members" do
+        team = team_with_stubbed_subscription_change_quantity
+        minimum_quantity = team.subscription.plan.minimum_quantity
+        create_list(:user, minimum_quantity, team: team)
+        user = create(:user, :with_mentor, :with_github)
+
+        team.add_user(user)
+
+        expect(team.subscription).
+          to have_received(:change_quantity).
+          with(minimum_quantity + 1)
+      end
     end
   end
 
@@ -32,44 +61,63 @@ describe Team do
       expect(user.reload.team).to be_nil
       expect(fulfillment).to have_received(:remove)
     end
+
+    context "when below the minimum" do
+      it "updates the team's subscription quantity with the minimum" do
+        team = team_with_stubbed_subscription_change_quantity
+        minimum_quantity = team.subscription.plan.minimum_quantity
+        user = create(:user, :with_mentor, :with_github, team: team)
+
+        team.remove_user(user)
+
+        expect(team.subscription).
+          to have_received(:change_quantity).
+          with(minimum_quantity)
+      end
+    end
+
+    context "when above the minimum" do
+      it "updates the team's subscription with the number of team members" do
+        team = team_with_stubbed_subscription_change_quantity
+        minimum_quantity = team.subscription.plan.minimum_quantity
+        create_list(:user, minimum_quantity + 2, team: team)
+        user = create(:user, :with_mentor, :with_github, team: team)
+
+        team.remove_user(user)
+
+        expect(team.subscription).
+          to have_received(:change_quantity).
+          with(minimum_quantity + 2)
+      end
+    end
   end
 
-  describe '#has_users_remaining?' do
-    it 'returns true when the number of users is less than the max' do
-      expect(team_with_user_counts(actual: 1, max: 2)).
-        to have_users_remaining
+  describe "#below_minimum_users?" do
+    context "the team will stay under the minimum" do
+      it "returns nothing if the team is below the minimum" do
+        team = create(:team)
+        create(:user, team: team)
+
+        expect(team.below_minimum_users?).to be_truthy
+      end
     end
 
-    it 'returns false when the number of users is equal to the max' do
-      expect(team_with_user_counts(actual: 2, max: 2)).
-        not_to have_users_remaining
-    end
+    context "the team will go above the minimum" do
+      it "returns the amount and interval" do
+        team = create(:team)
+        create_list(:user, team.plan.minimum_quantity, team: team)
 
-    it 'returns false when the number of users is greater than the max' do
-      expect(team_with_user_counts(actual: 3, max: 2)).
-        not_to have_users_remaining
-    end
-
-    def team_with_user_counts(counts)
-      users = create_list(:user, counts[:actual])
-      create(:team, max_users: counts[:max], users: users)
+        expect(team.below_minimum_users?).to be_falsey
+      end
     end
   end
 
-  describe "#invitations_remaining" do
-    it "returns the difference between users and max users" do
-      team = create(:team, max_users: 5)
-      create_list(:user, 3, team: team)
-
-      expect(team.invitations_remaining).to eq 2
-    end
-
-    it "never returns negative" do
-      team = create(:team, max_users: 2)
-      create_list(:user, 4, team: team)
-
-      expect(team.invitations_remaining).to eq 0
-    end
+  def team_with_stubbed_subscription_change_quantity
+    team = create(:team)
+    subscription = build_stubbed(:team_subscription)
+    subscription.stubs(change_quantity: nil)
+    team.stubs(:subscription).returns(subscription)
+    team
   end
 
   def stub_team_fulfillment(team, user)

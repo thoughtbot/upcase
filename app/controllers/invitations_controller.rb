@@ -9,6 +9,12 @@ class InvitationsController < ApplicationController
     end
   end
 
+  def destroy
+    invitation = current_team.invitations.find(params[:id])
+    invitation.destroy
+    redirect_to edit_team_path, notice: "The invitation has been removed."
+  end
+
   private
 
   def deliver_invitation
@@ -28,6 +34,6 @@ class InvitationsController < ApplicationController
     params.
       require(:invitation).
       permit(:email).
-      merge(sender: current_user, team: current_user.team)
+      merge(sender: current_user, team: current_team)
   end
 end

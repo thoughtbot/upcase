@@ -1,39 +1,44 @@
 # A Team represents a company that has a TeamPlan subscription.
 class Team < ActiveRecord::Base
   belongs_to :subscription
-  belongs_to :team_plan
 
   has_many :users, dependent: :nullify
   has_many :invitations
 
   validates :name, presence: true
 
-  delegate :owner?, to: :subscription
+  delegate :owner?, :plan, to: :subscription
 
   def add_user(user)
-    fulfillment_for(user).fulfill
     user.team = self
     user.save!
+    update_billing_quantity
+    fulfillment_for(user).fulfill
   end
 
   def remove_user(user)
-    fulfillment_for(user).remove
     user.team = nil
     user.save!
+    update_billing_quantity
+    fulfillment_for(user).remove
   end
 
-  def has_users_remaining?
-    users_count < max_users
-  end
-
-  def invitations_remaining
-    [0, max_users - users_count].max
+  def below_minimum_users?
+    users_count < plan.minimum_quantity
   end
 
   private
 
+  def update_billing_quantity
+    subscription.change_quantity(billing_quantity)
+  end
+
+  def billing_quantity
+    [users_count, plan.minimum_quantity].max
+  end
+
   def fulfillment_for(user)
-    SubscriptionFulfillment.new(user, subscription.plan)
+    SubscriptionFulfillment.new(user, plan)
   end
 
   def users_count

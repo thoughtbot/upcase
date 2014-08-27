@@ -1,4 +1,3 @@
 def add_user_to_team(user, team)
-  user.team = team
-  user.save!
+  team.add_user(user)
 end

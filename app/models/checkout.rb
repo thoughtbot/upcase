@@ -24,7 +24,6 @@ class Checkout < ActiveRecord::Base
   after_save :save_info_to_user
   after_save :fulfill
   after_save :send_receipt
-  after_save :update_user_payment_info
 
   def price
     subscribeable.individual_price * quantity
@@ -58,12 +57,6 @@ class Checkout < ActiveRecord::Base
     @stripe_subscription ||= StripeSubscription.new(self)
   end
 
-  def update_user_payment_info
-    if user
-      stripe_subscription.update_user(user)
-    end
-  end
-
   def fulfill
     subscribeable.fulfill(self, user)
   end
@@ -78,5 +71,6 @@ class Checkout < ActiveRecord::Base
 
   def save_info_to_user
     CheckoutInfoCopier.new(self, user).copy_info_to_user
+    stripe_subscription.update_user(user)
   end
 end

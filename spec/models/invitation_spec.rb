@@ -9,16 +9,6 @@ describe Invitation do
   it { should belong_to(:sender) }
   it { should belong_to(:team) }
 
-  it 'limits the number of invitations' do
-    team = build_stubbed(:team)
-    team.stubs(:has_users_remaining?).returns(false)
-
-    invitation = build_stubbed(:invitation, team: team)
-
-    expect(invitation).to be_invalid
-    expect(invitation.errors[:team]).to eq(['has no users remaining'])
-  end
-
   describe '#deliver' do
     it 'saves and sends a valid invitation' do
       mailer = stub_mailer
@@ -118,22 +108,21 @@ describe Invitation do
     end
   end
 
-  describe '#has_users_remaining?' do
-    it 'delegates to its team' do
-      team = build_stubbed(:team)
-      team.stubs(:has_users_remaining?).returns('expected value')
-      invitation = build_stubbed(:invitation, team: team)
-
-      expect(invitation.has_users_remaining?).to eq('expected value')
-    end
-  end
-
   describe '#sender_name' do
     it 'delegates to its sender' do
       sender = build_stubbed(:user, name: 'Billy Boy')
       invitation = build_stubbed(:invitation, sender: sender)
 
       expect(invitation.sender_name).to eq('Billy Boy')
+    end
+  end
+
+  describe ".pending" do
+    it "includes only invitations that have not been accepted" do
+      pending = create(:invitation)
+      create(:invitation, :accepted)
+
+      expect(Invitation.pending).to eq [pending]
     end
   end
 end

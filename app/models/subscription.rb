@@ -59,6 +59,10 @@ class Subscription < ActiveRecord::Base
     end
   end
 
+  def change_quantity(new_quantity)
+    stripe_customer.update_subscription(quantity: new_quantity)
+  end
+
   def deliver_welcome_email
     if has_access_to?(:mentor)
       SubscriptionMailer.welcome_to_upcase_from_mentor(user).deliver
@@ -79,6 +83,10 @@ class Subscription < ActiveRecord::Base
 
   def owner?(other_user)
     user == other_user
+  end
+
+  def next_payment_amount_in_dollars
+    next_payment_amount / 100
   end
 
   private

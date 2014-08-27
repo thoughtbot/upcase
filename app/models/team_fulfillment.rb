@@ -14,8 +14,7 @@ class TeamFulfillment
   def create_team
     Team.create!(
       name: generate_team_name,
-      subscription: subscription,
-      max_users: @checkout.quantity
+      subscription: subscription
     )
   end
 

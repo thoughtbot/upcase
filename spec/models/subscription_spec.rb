@@ -170,6 +170,20 @@ describe Subscription do
     end
   end
 
+  describe "#change_quantity" do
+    it "updates the plan in Stripe" do
+      subscription = create(:active_subscription)
+      stripe_customer = stub(update_subscription: nil)
+      Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
+
+      subscription.change_quantity(4)
+
+      expect(stripe_customer).
+        to have_received(:update_subscription).
+        with(quantity: 4)
+    end
+  end
+
   describe '#has_access_to?' do
     context 'when the subscription is inactive' do
       it 'returns false' do
@@ -306,6 +320,14 @@ describe Subscription do
 
         expect(subscription.owner?(user)).to eq false
       end
+    end
+  end
+
+  describe "next_payment_amount_in_dollars" do
+    it "returns the next payment amount in dollars" do
+      subscription = build(:subscription, next_payment_amount: 1000)
+
+      expect(subscription.next_payment_amount_in_dollars).to eq 10
     end
   end
 end

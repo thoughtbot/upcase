@@ -1,4 +1,11 @@
 body.teams-edit {
+  h4 {
+    span {
+      font-style: normal;
+      font-weight: normal;
+    }
+  }
+
   .members, .invitations {
     margin: 0;
     padding: 0;
@@ -34,7 +41,6 @@ body.teams-edit {
     margin-top: 2rem;
 
     > p {
-      text-align: center;
       font-weight: bold;
     }
 
@@ -44,15 +50,23 @@ body.teams-edit {
 
     li.email, input[type=submit] {
       display: inline-block;
-      vertical-align: bottom;
+      vertical-align: top;
     }
 
     li.email {
-      width: 50%;
+      @include span-columns(10);
+
+      label {
+        display: none;
+      }
+    }
+
+    input[type=submit] {
+      @include span-columns(2);
     }
 
     input[type=email] {
-      margin: 0;
+      margin: 0 0 0.5rem 0;
     }
   }
 }

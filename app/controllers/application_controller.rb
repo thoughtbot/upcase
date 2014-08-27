@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   def must_be_team_owner
     authorize
     if signed_in?
-      if current_user.team.blank? || !current_user.team.owner?(current_user)
+      if current_team.blank? || !current_team.owner?(current_user)
         deny_access("You must be the owner of the team.")
       end
     end
@@ -90,4 +90,9 @@ class ApplicationController < ActionController::Base
   def polymorphic_licenseable_template
     "#{@offering.licenseable.class.name.tableize}/show_licensed"
   end
+
+  def current_team
+    current_user.team
+  end
+  helper_method :current_team
 end

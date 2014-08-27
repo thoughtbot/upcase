@@ -1,6 +1,4 @@
 class AcceptancesController < ApplicationController
-  before_filter :must_have_users_remaining
-
   def new
     @acceptance = build_acceptance
   end
@@ -29,11 +27,5 @@ class AcceptancesController < ApplicationController
     params.
       require(:acceptance).
       permit(:github_username, :name, :password)
-  end
-
-  def must_have_users_remaining
-    unless find_invitation.has_users_remaining?
-      deny_access "There are no users remaining for that team."
-    end
   end
 end

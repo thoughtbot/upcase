@@ -222,8 +222,7 @@ FactoryGirl.define do
 
   factory :team, class: 'Team' do
     name 'Google'
-    subscription
-    max_users 10
+    association :subscription, factory: :team_subscription
   end
 
   factory :license do
@@ -406,12 +405,13 @@ FactoryGirl.define do
       team
 
       after :create do |instance|
-        create(
+        subscription = create(
           :subscription,
           user: instance,
           plan: create(:team_plan),
           team: instance.team
         )
+        SubscriptionFulfillment.new(instance, subscription.plan).fulfill
       end
     end
 
@@ -426,6 +426,10 @@ FactoryGirl.define do
 
     factory :inactive_subscription do
       deactivated_on { Time.zone.today }
+    end
+
+    factory :team_subscription do
+      association :plan, factory: :team_plan
     end
 
     trait :purchased do

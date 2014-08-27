@@ -1,5 +1,6 @@
-resources :invitations, only: [:create] do
+resource :team, only: :edit
+
+resources :invitations, only: [:create, :destroy] do
   resources :acceptances, only: [:new, :create]
 end
-
-resource :team, only: :edit
+resources :memberships, only: [:destroy]

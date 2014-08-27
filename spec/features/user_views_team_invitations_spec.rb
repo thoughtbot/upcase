@@ -4,7 +4,7 @@ feature "View team invitations" do
   scenario "when some have been accepted" do
     owner = create(:user, :with_team_subscription)
     team = owner.team
-    add_user_to_team(create(:user), team)
+    add_user_to_team(create(:user, :with_github), team)
     create_list(:invitation, 2, team: team)
     create_list(:invitation, 2, :accepted, team: team)
 
@@ -16,7 +16,7 @@ feature "View team invitations" do
   end
 
   scenario "a non-team owner can't manage the team" do
-    sign_in
+    sign_in_as create(:user, :with_github)
     add_user_to_team(current_user, create(:team))
 
     visit my_account_path

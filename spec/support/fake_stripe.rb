@@ -222,6 +222,12 @@ class FakeStripe < Sinatra::Base
     }.to_json
   end
 
+  get '/v1/invoices/upcoming' do
+    content_type :json
+
+    customer_invoice.to_json
+  end
+
   get '/v1/invoices/:id' do
     content_type :json
 

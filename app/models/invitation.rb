@@ -4,7 +4,6 @@ class Invitation < ActiveRecord::Base
   validates :email, presence: true
   validates :sender_id, presence: true
   validates :team_id, presence: true
-  validate :limit_invitation_count
 
   belongs_to :recipient, class_name: User
   belongs_to :sender, class_name: User
@@ -15,6 +14,10 @@ class Invitation < ActiveRecord::Base
   before_create :generate_code
 
   friendly_id :code, use: [:finders]
+
+  def self.pending
+    where(accepted_at: nil)
+  end
 
   def deliver
     if save
@@ -36,10 +39,6 @@ class Invitation < ActiveRecord::Base
     accepted_at.present?
   end
 
-  def has_users_remaining?
-    team.has_users_remaining?
-  end
-
   def sender_name
     sender.name
   end
@@ -48,15 +47,5 @@ class Invitation < ActiveRecord::Base
 
   def generate_code
     self.code = SecureRandom.hex(16)
-  end
-
-  def limit_invitation_count
-    if max_users_reached?
-      errors.add :team, "has no users remaining"
-    end
-  end
-
-  def max_users_reached?
-    team.present? && !has_users_remaining?
   end
 end

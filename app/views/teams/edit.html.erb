@@ -1,33 +1,51 @@
 <% content_for :page_title, 'Team Members' %>
 <% content_for :subject_block do %>
-  <h1>Team Members</h1>
+  <h1>Your Team</h1>
 <% end %>
 
 <div class="text-box-wrapper solo">
   <div class="text-box">
+    <h4>Members <span>- Your next charge will be on <%= @team.subscription.next_payment_on.to_s(:simple) %> for <%= number_to_currency(@team.subscription.next_payment_amount_in_dollars) %></span></h4>
     <ul class="members">
       <% @team.users.each do |user| %>
         <li class="<%= "owner" if @team.owner?(user) %>">
           <%= user.name %>
+          <%= link_to(
+            "✖",
+            membership_path(user),
+            method: :delete,
+            id: dom_id(user, "remove"),
+            data: {
+              confirm: "Are you sure you want to remove this user from your team? They will lose access to all the content they have as part of the team."
+            }
+          ) %>
         </li>
       <% end %>
     </ul>
 
-    <ul class="invitations">
-      <% @team.invitations.each do |invitation| %>
-        <% unless invitation.accepted? %>
-          <li><%= invitation.email %></li>
+    <% if @team.invitations.pending.any? %>
+      <h4>Pending Invitations</h4>
+      <ul class="invitations">
+        <% @team.invitations.pending.each do |invitation| %>
+          <li>
+            <%= invitation.email %>
+            <%= link_to(
+              "✖",
+              invitation_path(invitation),
+              method: :delete,
+              id: dom_id(invitation, "remove"),
+              data: {
+                confirm: "Are you sure you want to remove this invitation?"
+              }
+            ) %>
+          </li>
         <% end %>
-      <% end %>
-    </ul>
-
-    <% if @team.has_users_remaining? %>
-      <div class="invite-members">
-        <p>Invite a member - You have <%= pluralize(@team.invitations_remaining, 'invitation') %> left</p>
-        <%= render 'invitations/form', invitation: Invitation.new %>
-      </div>
-    <% else %>
-      <p>You're out of invitations right now, but that's easy to fix. <%= mail_to ENV["SUPPORT_EMAIL"], "Send us a short email" %> and we'll take care of you.</p>
+      </ul>
     <% end %>
+
+    <div class="invite-members">
+      <p>Invite a new team member.</p>
+      <%= render 'invitations/form', invitation: @team.invitations.build %>
+    </div>
   </div>
 </div>
