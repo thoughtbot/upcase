@@ -18,7 +18,7 @@
         <%= link_to(
           "Change to #{individual_price_per_month(@cancellation.downgrade_plan)} &rarr;".html_safe,
           [:subscriber, :downgrade],
-          method: :create
+          method: :post
         ) %>
       </p>
     <% else %>
