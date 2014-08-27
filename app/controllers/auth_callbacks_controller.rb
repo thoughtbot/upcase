@@ -9,9 +9,15 @@ class AuthCallbacksController < ApplicationController
   private
 
   def url_after_auth
+    p "auth_origin #{auth_origin}"
+    p "sign_in_url #{sign_in_url}"
+    p "sign_up_url #{sign_up_url}"
+    p originated_from_sign_in_or_sign_up?
     if originated_from_sign_in_or_sign_up?
+      p "using custom_return_path_or_default"
       custom_return_path_or_default(dashboard_path)
     else
+      p "using auth_origin"
       auth_origin
     end
   end
@@ -33,8 +39,6 @@ class AuthCallbacksController < ApplicationController
   end
 
   def clear_return_to
-    p "clearing return_to #{session[:return_to]}"
     session[:return_to] = nil
-    p "cleared return_to #{session[:return_to]}"
   end
 end

@@ -25,6 +25,9 @@ feature 'An OAuth client authenticates', js: true do
 
     visit my_account_path
     click_link "Sign out"
+
+    p "signing in again"
+
     visit sign_in_path
     click_link "with GitHub"
     expect(current_path).to eq dashboard_path
