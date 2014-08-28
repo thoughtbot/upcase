@@ -18,7 +18,7 @@ your work.
 
 1. Get the code.
 
-        % git clone git@github.com:thoughtbot/learn.git
+        % git clone git@github.com:thoughtbot/upcase.git
 
 2. Setup your environment.
 
@@ -44,7 +44,7 @@ You'll need to install phantom.js to run some of the specs.
 
 ### Continuous Integration
 
-CI is hosted with [CircleCI](https://circleci.com/gh/thoughtbot/learn). The
+CI is hosted with [CircleCI](https://circleci.com/gh/thoughtbot/upcase). The
 build is run automatically whenever any branch is updated on Github.
 
 ### Ongoing
@@ -96,7 +96,7 @@ To test Stripe payments on staging use a fake credit card.
 To test PayPal payments on staging, use your thoughtbot credit card as the
 paypal process is live and not sandboxed. After making your purchase you may
 perform a refund through the
-[staging admin panel](http://learn-staging.herokuapp.com/admin/purchase).
+[staging admin panel](http://upcase-staging.herokuapp.com/admin/purchase).
 
 
 ## Amazon AWS S3
@@ -167,7 +167,7 @@ Credits
 
 This application is maintained and funded by [thoughtbot, inc](http://thoughtbot.com/community)
 
-Thank you to all [the contributors](https://github.com/thoughtbot/learn/contributors)!
+Thank you to all [the contributors](https://github.com/thoughtbot/upcase/contributors)!
 
 The names and logos for thoughtbot are trademarks of thoughtbot, inc.
 
