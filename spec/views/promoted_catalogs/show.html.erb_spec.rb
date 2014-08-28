@@ -74,7 +74,7 @@ describe 'promoted_catalogs/show.html.erb' do
 
       render
 
-      expect(rendered).to include(book_image_link(book))
+      expect(rendered).to have_css("a[href='#{book_path(book)}']")
     end
 
     it 'includes promoted screencasts' do
@@ -121,13 +121,6 @@ describe 'promoted_catalogs/show.html.erb' do
       expect(rendered).to include(mentor.first_name)
       expect(rendered).to include(mentor.bio)
       expect(rendered).to include(mentor_image(mentor))
-    end
-
-    def book_image_link(book)
-      link_to(
-        image_tag(book.image_url),
-        book_path(book)
-      )
     end
   end
 

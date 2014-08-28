@@ -15,7 +15,7 @@ feature "subscriber views resources for a topic" do
 
     sign_in_as_user_with_subscription
 
-    expect(page).to have_css(".card", count: 4)
+    expect(page).to have_css(".topic .card", count: 4)
 
     click_on "View All"
 
