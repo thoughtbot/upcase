@@ -7,12 +7,7 @@
     <%= render partial: "products/#{resource.to_partial_path}", object: resource %>
   <% end %>
 
-  <figure class="card see-more">
-    <%= link_to topic_resources_path(topic) do %>
-      <h4>
-        <%= pluralize topic.count, "more #{topic.name} resource" %>
-      </h4>
-      <p>View All</p>
-    <% end %>
-  </figure>
+  <% if has_more_resources?(topic) %>
+    <%= render 'view_all_card', topic: topic %>
+  <% end %>
 </section>

@@ -1,4 +1,6 @@
 module DashboardsHelper
+  MAX_RESOURCES_TO_SHOW = 3
+
   def live_chat_link(&block)
     if current_user_has_access_to?(:office_hours)
       link_to OfficeHours.url, target: "_blank", &block
@@ -13,6 +15,10 @@ module DashboardsHelper
     else
       content_tag "a", &block
     end
+  end
+
+  def has_more_resources?(topic)
+    topic.count > MAX_RESOURCES_TO_SHOW
   end
 
   def locked_features

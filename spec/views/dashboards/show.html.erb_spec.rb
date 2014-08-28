@@ -86,7 +86,6 @@ describe "dashboards/show.html" do
     options.each do |feature, value|
       view_stubs(:current_user_has_access_to?).with(feature).returns(value)
     end
-    assign :catalog, Catalog.new
     render template: "dashboards/show"
   end
 
