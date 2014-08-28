@@ -22,6 +22,15 @@ feature 'An OAuth client authenticates', js: true do
 
     expect(current_path).not_to eq dashboard_path
     verify_signed_in_user_details_from_page(user)
+
+    visit my_account_path
+    click_link "Sign out"
+
+    p "signing in again"
+
+    visit sign_in_path
+    click_link "with GitHub"
+    expect(current_path).to eq dashboard_path
   end
 
   scenario 'via password' do

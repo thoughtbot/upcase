@@ -3,14 +3,21 @@ class AuthCallbacksController < ApplicationController
     @user = AuthHashService.new(auth_hash).find_or_create_user_from_auth_hash
     sign_in @user
     redirect_to url_after_auth
+    clear_return_to
   end
 
   private
 
   def url_after_auth
+    p "auth_origin #{auth_origin}"
+    p "sign_in_url #{sign_in_url}"
+    p "sign_up_url #{sign_up_url}"
+    p originated_from_sign_in_or_sign_up?
     if originated_from_sign_in_or_sign_up?
+      p "using custom_return_path_or_default"
       custom_return_path_or_default(dashboard_path)
     else
+      p "using auth_origin"
       auth_origin
     end
   end
@@ -29,5 +36,9 @@ class AuthCallbacksController < ApplicationController
 
   def auth_origin
     session[:return_to] || request.env['omniauth.origin'] || dashboard_url
+  end
+
+  def clear_return_to
+    session[:return_to] = nil
   end
 end
