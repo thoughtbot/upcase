@@ -8,6 +8,10 @@ module Features
       user.assign_mentor(mentor) unless user.mentor
     end
 
+    def unfulfill
+      user.assign_mentor(nil)
+    end
+
     private
 
     attr_reader :user

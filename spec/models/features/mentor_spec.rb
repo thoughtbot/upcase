@@ -22,4 +22,15 @@ describe Features::Mentor do
       expect(user).to have_received(:assign_mentor).never
     end
   end
+
+  describe "#unfulfill" do
+    it "remove mentor for user" do
+      user = build_stubbed(:user, :with_mentor)
+      user.stubs(:assign_mentor)
+
+      Features::Mentor.new(user: user).unfulfill
+
+      expect(user).to have_received(:assign_mentor).with(nil)
+    end
+  end
 end
