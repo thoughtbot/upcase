@@ -8,6 +8,21 @@ describe Catalog do
     end
   end
 
+  describe "#products" do
+    it "returns active products in order" do
+      catalog = Catalog.new
+      expect(catalog.products).to find_relation(Product.active.ordered)
+    end
+  end
+
+  describe "#videos" do
+    it "returns published videos in order" do
+      catalog = Catalog.new
+      expect(catalog.videos).
+        to find_relation(Video.published.recently_published_first)
+    end
+  end
+
   describe "#workshops" do
     it "returns active workshops in order" do
       catalog = Catalog.new

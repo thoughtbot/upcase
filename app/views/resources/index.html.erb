@@ -1,0 +1,8 @@
+<% content_for :subject_block do %>
+  <h1><%= @topic.name %></h1>
+  <% if @topic.summary.present? %>
+    <h2 class="tagline"><%= @topic.summary %></h2>
+  <% end %>
+<% end %>
+
+<%= render partial: "resources/topic", object: @topic %>

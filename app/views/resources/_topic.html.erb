@@ -1,0 +1,5 @@
+<section class="topic">
+  <% topic.resources.each do |resource| %>
+    <%= render partial: "products/#{resource.to_partial_path}", object: resource %>
+  <% end %>
+</section>

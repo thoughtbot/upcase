@@ -12,16 +12,16 @@ feature 'The products index' do
     expect(page).to have_content('workshop')
     expect(page).to have_content('screencast')
     expect(page).to have_content('book')
-    within('.workshops') do
+    within('.workshop') do
       expect(page).to have_content(workshop.name)
     end
-    within('.screencasts') do
+    within('.screencast') do
       expect(page).to have_content(screencast.name)
     end
-    within('.reading') do
+    within('.ebook') do
       expect(page).to have_css("a[title='#{book.name}']")
     end
-    within('.shows') do
+    within('.weekly-iteration') do
       expect(page).to have_content(show.name)
     end
   end

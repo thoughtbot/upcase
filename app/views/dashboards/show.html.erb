@@ -11,41 +11,4 @@
   <%= render 'locked_features' %>
 <% end %>
 
-<% if current_user_has_access_to?(:exercises) %>
-  <p class="product-headline">Hone your skills by completing these exercises</p>
-  <section class='exercises'>
-    <%= render @catalog.exercises %>
-  </section>
-<% end %>
-
-<% if current_user_has_access_to?(:workshops) %>
-  <p class="product-headline">Enroll in our online workshops</p>
-  <section class='workshops'>
-    <%= render partial: 'products/workshop', collection: @catalog.workshops %>
-  </section>
-<% end %>
-
-<% if current_user_has_access_to?(:shows) && current_user_has_access_to?(:screencasts) %>
-  <p class="product-headline center">Watch our web shows and screencasts</p>
-<% elsif current_user_has_access_to?(:shows) %>
-  <p class="product-headline center">Watch The Weekly Iteration</p>
-<% end %>
-
-<% if current_user_has_access_to?(:shows) %>
-  <section class='shows'>
-    <%= render @catalog.shows %>
-  </section>
-<% end %>
-
-<% if current_user_has_access_to?(:screencasts) %>
-  <section class='screencasts'>
-    <%= render @catalog.screencasts %>
-  </section>
-<% end %>
-
-<% if current_user_has_access_to?(:books) %>
-  <p class="product-headline">Read our eBooks to boost your knowledge</p>
-  <section class='reading'>
-    <%= render @catalog.books %>
-  </section>
-<% end %>
+<%= render partial: "dashboards/topic", collection: @topics.to_a %>

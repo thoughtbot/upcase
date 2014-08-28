@@ -51,21 +51,6 @@ describe "dashboards/show.html" do
 
       expect(rendered).not_to have_content("locked")
     end
-
-    it "renders all features" do
-      render_show(
-        books: true,
-        shows: true,
-        workshops: true,
-        exercises: true,
-        screencasts: true
-      )
-
-      expect(rendered).to include_exercises
-      expect(rendered).to include_workshops
-      expect(rendered).to include_screencasts_and_shows
-      expect(rendered).to include_books
-    end
   end
 
   context "when a user has access to shows and workshops" do
@@ -73,15 +58,6 @@ describe "dashboards/show.html" do
       render_show shows: true, workshops: true, screencasts: true
 
       expect(rendered).to have_content("Books and exercises are locked")
-    end
-
-    it "renders shows and workshops" do
-      render_show shows: true, workshops: true, screencasts: true
-
-      expect(rendered).not_to include_exercises
-      expect(rendered).to include_workshops
-      expect(rendered).to include_screencasts_and_shows
-      expect(rendered).not_to include_books
     end
   end
 
@@ -92,16 +68,6 @@ describe "dashboards/show.html" do
       text = "Books, exercises, screencasts, and workshops are locked"
       expect(rendered).to have_content(text)
     end
-
-    it "renders shows" do
-      render_show shows: true
-
-      expect(rendered).to include_shows
-      expect(rendered).not_to include_exercises
-      expect(rendered).not_to include_workshops
-      expect(rendered).not_to include_screencasts_and_shows
-      expect(rendered).not_to include_books
-    end
   end
 
   context "when a user does not have access to any features" do
@@ -110,16 +76,6 @@ describe "dashboards/show.html" do
 
       text = "Books, exercises, screencasts, shows, and workshops are locked"
       expect(rendered).to have_content(text)
-    end
-
-    it "does not render any features" do
-      render_show
-
-      expect(rendered).not_to include_shows
-      expect(rendered).not_to include_exercises
-      expect(rendered).not_to include_workshops
-      expect(rendered).not_to include_screencasts_and_shows
-      expect(rendered).not_to include_books
     end
   end
 

@@ -1,6 +1,10 @@
 class Catalog
   include ActiveModel::Conversion
 
+  def products
+    Product.active.ordered
+  end
+
   def books
     Book.active.ordered
   end
@@ -27,5 +31,9 @@ class Catalog
 
   def individual_plans
     IndividualPlan.featured.active.ordered
+  end
+
+  def videos
+    Video.published.recently_published_first
   end
 end

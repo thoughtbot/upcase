@@ -1,151 +1,112 @@
-.product-card {
-  background: $base-background-2;
-  border-bottom: 2px solid rgb(200, 200, 200);
+.topic {
+  @include display(flex);
+  @include flex-flow(wrap);
+  @include justify-content(space-around);
+  @include transition (all 0.3s ease-in-out);
+  background: white;
+  border-bottom: 1px solid darken(white, 8);
+  padding: em(30) em(20);
+
+  &:hover {
+    background: darken(white, 3);
+    cursor: pointer;
+  }
+
+  header {
+    width: 100%;
+    display: block;
+    margin-top: em(30);
+    padding: 0 em(15);
+
+    .topic-headline {
+      display: inline-block;
+      float: left;
+      font: 600 24px/30px $sans-serif;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+.card {
+  @include transition (all 0.3s ease-in-out);
+  background: white;
   border-radius: .25rem;
+  border: 1px solid $base-border-color-1;
   box-shadow: $base-box-shadow;
-  border: 1px solid $base-border-color-1;;
   display: inline-block;
   height: 330px;
+  margin-bottom: em(30);
+  overflow: hidden;
   padding: 5px;
   position: relative;
   width: $product-card-width;
 
-  &.workshop:hover {
-    .hover-text {
-      @include transform(translate3D(0, 0, 0));
-    }
-
-    .hover-text + img, .hover-text + .inperson-date {
-      @include transform(translate3D(110%, 0, 0));
-    }
+  &:hover {
+    @include transform(translateY(-5px));
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
   }
 
-  &.in-progress, &.registered, &.complete, {
-    h5 {
-      display: none;
-    }
-  }
-
-  &.in-progress .status, &.registered .status {
-    background: rgba(255, 255, 0, .4);
-    color: $darkwarmgray;
+  > a {
     display: block;
-  }
-
-  &.complete .status {
-    background: url(<%= asset_path 'check.svg' %>) no-repeat 5px 5px #83EBA8;
-    background-size: 18px;
-    color: darken(#83EBA8, 45%);
-    display: block;
-    text-indent: 18px;
-  }
-
-  &.thumbnail {
-    background: none;
-    border: 0;
-    box-shadow: none;
-    height: auto;
-    padding: 0;
-
-    &:hover figure span {
-      opacity: 1;
-      @include transform(scale(1));
-    }
-
-    &.group:after, &.group:before {
-      background: #eee;
-      border-radius: 3px;
-      box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.17);
-      content: '';
-      display: block;
-      height: 50px;
-      @include position(absolute, -.4em 0 0 5%);
-      width: 90%;
-      z-index: 1;
-    }
-
-    &.group:before {
-      left: 10%;
-      top: -.75em;
-      width: 80%;
-    }
-
-    &.group figure {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, .1), 0 -12px 0 -11px rgba(0, 0, 0, .17);
-    }
-
-    h5 {
-      margin-bottom: .15rem;
-    }
-
-    h4 {
-      color: $darkwarmgray;
-      margin: 0;
-      padding-bottom: 0;
-      padding-top: 0;
-    }
-
-    figure {
-      border-radius: 3px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
-      line-height: 0;
-      overflow: hidden;
-      position: relative;
-      z-index: 2;
-
-      span {
-        border-radius: 3px;
-        box-shadow: inset 0 0 300px rgba(0, 0, 0, 1);
-        color: #fff;
-        font: 400 1rem/1.4em $serif;
-        opacity: 0;
-        padding: .8rem 1rem;
-        @include position(absolute, 0px 0px 0px 0px);
-        @include transform(scale(.95));
-        @include transition(.1s);
-        @include user-select(none);
-        z-index: 1;
-      }
-    }
-
-    &.exercise {
-      figure {
-        border: 1px solid darken($base-border-color-blue, 8%);
-        box-shadow: $base-box-shadow;
-      }
-    }
-
-    .console-illustration {
-      background-color: #fff;
-      background-image: image-url('exercise.svg');
-      background-position: center;
-      background-repeat: no-repeat;
-      height: 124px;
-      margin: 0;
-      padding: .5rem 1rem;
-      position: relative;
-
-      &:after {
-        border: 4px solid $base-border-color-blue;
-        border-radius: 2px;
-        bottom: 0;
-        content: "";
-        left: 0;
-        position: absolute;
-        right: 0;
-        top: 0;
-      }
-    }
-  }
-
-  &.book {
-    border: 1px solid rgb(200, 200, 200);
-    display: inline-block;
-    height: auto;
+    height: 100%;
     line-height: 0;
-    padding: 0;
+    overflow: hidden;
     position: relative;
-    width: $product-card-width;
+  }
+
+  p {
+    font-size: $font-size-small;
+    line-height: 1.6;
+    margin: 0 .6rem .6rem;
+  }
+
+  h4 {
+    color: $darkwarmgray;
+    font-weight: 700;
+    margin-bottom: 0;
+    padding: .75rem .6rem;
+  }
+
+  h5 {
+    border-radius: .20rem .20rem 0 0;
+    color: white;
+    font-size: .8rem;
+    margin-bottom: em(5);
+    padding: em(15);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .console-illustration {
+    background-color: #fff;
+    background-image: image-url('exercise.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 118px;
+    margin: 0;
+    padding: .5rem 1rem;
+    position: relative;
+
+    &:after {
+      border-radius: 2px;
+      border: 4px solid $base-border-color-blue;
+      bottom: 0;
+      content: "";
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  &.ebook {
+    img {
+      box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.08);
+      height: auto;
+      margin: 0 auto;
+      padding: 0;
+      position: relative;
+    }
   }
 
   &.dashboard-resource {
@@ -166,118 +127,99 @@
     }
 
     &.trails {
-      background: url(<%= asset_path 'upcase/trails-graphic.svg' %>) $base-background-2 no-repeat 3rem .8rem;
+      background: url(<%= asset_path 'upcase/trails-graphic.svg' %>) white no-repeat 3rem .8rem;
       background-size: 75%;
     }
   }
 
-  > a {
-    display: block;
-    height: 100%;
-    line-height: 0;
-    overflow: hidden;
-    position: relative;
-  }
-
-  h4 {
-    border-radius: 2px;
-    color: #fff;
-    margin-bottom: .3rem;
-    padding: .75rem .6rem;
-    font-weight: 700;
-  }
-
-  &.workshop h4 {
-    background: $workshop-color;
-  }
-
-  &.mentor h4 {
-    background: $upcase-red;
-  }
-
-  .hover-text {
-    background: $base-background-2;
-    color: #606060;
-    display: block;
-    font: 400 1rem/120px $serif;
-    height: 120px;
-    @include position(absolute, 0 0px 0 0px);
-    text-align: center;
-    text-transform: uppercase;
-    @include transform(translate3D(-110%, 0, 0));
-    @include transition(.3s $ease-out-quart);
-  }
-
-  img {
-    @include transition(.3s $ease-out-quart);
-  }
-
-  h5, p {
-    margin: .6rem;
-  }
-
-  h5 {
-    color: rgb(175, 175, 175);
-    font-size: .8rem;
-    text-transform: uppercase;
-  }
-
   .status {
+    border-radius: 0 0 .20rem .20rem;
     display: none;
-    line-height: 1.2em;
-    margin: .3rem 0;
-    padding: .3rem .6rem;
+    font-size: em(14);
+    margin: 6px 0;
+    padding: em(5);
+    text-indent: 5px;
+    text-transform: uppercase;
   }
 
-  .inperson-date {
-    background: rgb(220, 220, 220);
-    height: 120px;
-    padding: 1.4rem .5rem;
+  &.in-progress .status, &.registered .status {
+    background: rgba(255, 255, 0, .4);
+    color: $darkwarmgray;
+    display: block;
+  }
+
+  &.complete .status {
+    background: url(<%= asset_path 'check.svg' %>) no-repeat 5px 5px #83EBA8;
+    background-size: 18px;
+    color: darken(#83EBA8, 45%);
+    display: block;
+    text-indent: 25px;
+  }
+}
+
+.resources {
+  @extend .topic;
+
+  &:hover {
+    background-color: white;
+  }
+}
+
+.card {
+  &.exercise {
+    h5 {
+      background-color: $exercise-color;
+    }
+  }
+
+  &.workshop {
+    h5 {
+      background-color: $workshop-color;
+    }
+  }
+
+  &.weekly-iteration {
+    h5 {
+      background-color: $weekly-iteration-color;
+    }
+  }
+
+  &.screencast {
+    h5 {
+      background-color: $screencasts-color;
+    }
+  }
+
+  &.ebook {
+    h5 {
+      background-color: $ebook-color;
+    }
+  }
+
+  &.see-more {
+    padding-top: 78px;
+    position: relative;
     text-align: center;
-    @include transition(.3s $ease-out-quart);
 
-    section {
-      margin: .25rem;
-    }
-
-    .upcoming {
-      border-bottom: 2px solid #999;
-      display: inline-block;
-      margin-bottom: .4rem;
-    }
-
-    span {
-      color: #606060;
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.2em;
-      text-align: left;
-      text-transform: uppercase;
-    }
-  }
-
-  .note {
-    bottom: 0;
-    font: normal .8rem/1em $sans-serif;
-    position: absolute;
-  }
-
-  .product-card-locked {
-    background: $journey-line-color;
-    @include border-bottom-radius(0.25rem);
-    margin-left: -5px;
-    padding: 10px;
-    width: calc(100% + 10px);
-
-    .icon {
-      float: left;
-      margin-right: 7px;
-      top: -2px;
+    a {
+      background-image: image-url('more-arrow.svg');
+      background-position: top center;
+      background-repeat: no-repeat;
+      padding-top: 100px;
     }
 
     h5 {
-      color: $darkwarmgray;
-      margin: 0;
+      background-color: $upcase-red;
+    }
+
+    p {
+      bottom: 0;
+      border-radius: .25rem;
+      border: 1px solid $base-border-color-1;
+      left: 0;
+      padding: 9px;
+      position: absolute;
+      right: 0;
     }
   }
 }

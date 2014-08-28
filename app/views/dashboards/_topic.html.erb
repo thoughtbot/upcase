@@ -1,0 +1,18 @@
+<section class="topic">
+  <header>
+    <p class="topic-headline"><%= topic.name %></p>
+  </header>
+
+  <% topic.dashboard_resources.each do |resource| %>
+    <%= render partial: "products/#{resource.to_partial_path}", object: resource %>
+  <% end %>
+
+  <figure class="card see-more">
+    <%= link_to topic_resources_path(topic) do %>
+      <h4>
+        <%= pluralize topic.count, "more #{topic.name} resource" %>
+      </h4>
+      <p>View All</p>
+    <% end %>
+  </figure>
+</section>

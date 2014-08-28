@@ -10,7 +10,7 @@ module WorkshopsHelper
   end
 
   def workshop_card_classes(workshop)
-    classes = ["workshop", 'product-card']
+    classes = ["workshop", "card"]
     classes << workshop_card_status(workshop)
     classes.join(' ')
   end

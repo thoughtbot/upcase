@@ -39,6 +39,19 @@ describe Topic do
     end
   end
 
+  context ".dashboard" do
+    it "returns topics flagged by the dashboard" do
+      create(:topic, dashboard: true, name: "two", count: 2)
+      create(:topic, dashboard: true, name: "one", count: 3)
+      create(:topic, dashboard: true, name: "three", count: 1)
+      create(:topic, dashboard: false, name: "hidden", count: 4)
+
+      result = Topic.dashboard
+
+      expect(result.map(&:name)).to eq(%w(one two three))
+    end
+  end
+
   context 'self.featured' do
     it 'returns the featured topics' do
       normal = create(:topic, featured: false)

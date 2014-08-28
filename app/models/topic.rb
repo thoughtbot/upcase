@@ -18,7 +18,11 @@ class Topic < ActiveRecord::Base
   before_validation :generate_slug, on: :create
 
   def self.top
-    featured.order('count DESC').limit 20
+    featured.order("count DESC").limit 20
+  end
+
+  def self.dashboard
+    where(dashboard: true).order("count DESC")
   end
 
   def self.featured
@@ -26,7 +30,7 @@ class Topic < ActiveRecord::Base
   end
 
   def self.meta_keywords
-    pluck(:name).join(', ')
+    pluck(:name).join(", ")
   end
 
   def to_param

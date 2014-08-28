@@ -1,9 +1,7 @@
-<figure class="screencast thumbnail product-card">
+<figure class="screencast thumbnail card">
   <%= link_to screencast_path(screencast), title: screencast.name do %>
-    <figure>
-      <%= image_tag(screencast.image_url) %>
-    </figure>
     <h5>Screencast</h5>
+    <%= image_tag(screencast.image_url) %>
     <h4><%= screencast.name %></h4>
     <p><%= screencast.short_description %></p>
   <% end %>

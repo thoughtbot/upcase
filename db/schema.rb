@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819205806) do
+ActiveRecord::Schema.define(version: 20140826203235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -310,8 +310,10 @@ ActiveRecord::Schema.define(version: 20140819205806) do
     t.text     "summary"
     t.integer  "count"
     t.boolean  "featured",   default: false, null: false
+    t.boolean  "dashboard",  default: false, null: false
   end
 
+  add_index "topics", ["dashboard"], name: "index_topics_on_dashboard", using: :btree
   add_index "topics", ["slug"], name: "index_topics_on_slug", unique: true, using: :btree
 
   create_table "trails", force: true do |t|

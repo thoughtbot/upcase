@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "Subscriber accesses content" do
   scenario "begins a workshop" do
-    workshop = create(:workshop)
+    workshop = create(:workshop, :in_dashboard)
 
     sign_in_as_user_with_subscription
     click_workshop_detail_link
@@ -16,7 +16,7 @@ feature "Subscriber accesses content" do
   end
 
   scenario "subscriber without access to workshops attempts to begin a workshop" do
-    create(:workshop)
+    create(:workshop, :in_dashboard)
 
     sign_in_as_user_with_downgraded_subscription
     click_workshop_detail_link
@@ -29,7 +29,7 @@ feature "Subscriber accesses content" do
   end
 
   scenario "gets access to a book product" do
-    book = create(:book, :github)
+    book = create(:book, :github, :in_dashboard)
     sign_in_as_user_with_subscription
     stub_github_fulfillment_job
 
@@ -45,7 +45,7 @@ feature "Subscriber accesses content" do
   end
 
   scenario "gets access to a screencast" do
-    screencast = create(:screencast)
+    screencast = create(:screencast, :in_dashboard)
     create(:video, :published, watchable: screencast)
     sign_in_as_user_with_subscription
     click_screencast_detail_link(screencast)
@@ -56,25 +56,25 @@ feature "Subscriber accesses content" do
   end
 
   scenario "show in-progress status for current workshop" do
-    workshop = create(:workshop, length_in_days: 2)
+    workshop = create(:workshop, :in_dashboard, length_in_days: 2)
 
     sign_in_as_user_with_subscription
     click_workshop_detail_link
     click_link I18n.t("workshop.checkout_cta")
 
     visit dashboard_url
-    expect(page).to have_css(".product-card.in-progress", text: workshop.name)
+    expect(page).to have_css(".card.in-progress", text: workshop.name)
   end
 
   scenario "show complete status for past workshop" do
-    workshop = create(:workshop, length_in_days: 2)
+    workshop = create(:workshop, :in_dashboard, length_in_days: 2)
 
     Timecop.travel(3.days.ago) do
       get_access_to_workshop
     end
 
     visit dashboard_url
-    expect(page).to have_css(".product-card.complete", text: workshop.name)
+    expect(page).to have_css(".card.complete", text: workshop.name)
   end
 
   def get_access_to_workshop
@@ -88,9 +88,7 @@ feature "Subscriber accesses content" do
   end
 
   def click_workshop_detail_link
-    within(".workshop") do
-      click_link "View Details"
-    end
+    find(".workshop > a").click
   end
 
   def click_screencast_detail_link(screencast)
@@ -100,15 +98,13 @@ feature "Subscriber accesses content" do
   end
 
   def click_ebook_detail_link(book)
-    within("section.reading") do
-      click_link book.name
-    end
+    click_link book.name
   end
 
   def expect_dashboard_to_show_workshop_active(workshop)
     visit dashboard_path
     expect(page).to have_css(
-      ".product-card a[title='#{workshop.name}'] .status",
+      ".card a[title='#{workshop.name}'] .status",
       text: "in-progress"
     )
   end

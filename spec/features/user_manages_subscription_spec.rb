@@ -150,7 +150,7 @@ feature "User creates a subscription" do
       "#{plan.name} Membership"
     )
 
-    click_link "View Details"
+    find(".workshop > a").click
 
     expect(page).not_to have_link("Subscribe to #{plan.name}")
   end

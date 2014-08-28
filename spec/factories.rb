@@ -19,6 +19,13 @@ FactoryGirl.define do
     "http://robots.thoughtbot.com/#{n}"
   end
 
+  trait :in_dashboard do
+    after :create do |classifiable|
+      topic = create(:topic, dashboard: true)
+      classifiable.classifications.create!(topic: topic)
+    end
+  end
+
   factory :announcement do
     association :announceable, factory: :book
     ends_at { 1.day.from_now }

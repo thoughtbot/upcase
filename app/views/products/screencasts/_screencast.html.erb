@@ -1,0 +1,8 @@
+<figure class="card screencast">
+  <%= link_to screencast, title: screencast.name do %>
+    <h5>Screencast <%= screecast_video_count(screencast) %></h5>
+    <%= image_tag(screencast.product_image.url) %>
+    <h4><%= screencast.name %></h4>
+    <p><%= screencast.tagline %></p>
+  <% end %>
+</figure>

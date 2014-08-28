@@ -9,8 +9,7 @@ feature "User views show" do
     video = create(:video, watchable: show)
     download = create(:download, purchaseable: show)
 
-    visit dashboard_path(as: user)
-    click_on show.name
+    visit show_path(show, as: user)
     click_on "Get this Show"
 
     expect(page).to have_content(show.name)

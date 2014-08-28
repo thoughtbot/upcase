@@ -47,5 +47,6 @@ Upcase::Application.routes.draw do
   )
 
   get ":id" => "topics#show", as: :topic
+  get ":topic_id/resources" => "resources#index", as: :topic_resources
   get "/auth/:provider/callback", to: "auth_callbacks#create"
 end

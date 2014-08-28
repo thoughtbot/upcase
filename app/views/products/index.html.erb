@@ -5,26 +5,41 @@
 <% end %>
 
 <h2>Every workshop</h2>
-<section id="workshops" class="workshops">
-  <%= render partial: 'products/workshop', collection: @catalog.workshops %>
+<section class="resources">
+  <%= render(
+    partial: "products/workshops/workshop",
+    collection: @catalog.workshops
+  ) %>
 </section>
 
 <h2>Every show</h2>
-<section id="shows" class="shows">
-  <%= render @catalog.shows %>
+<section class="resources">
+  <%= render(
+    partial: "products/shows/show",
+    collection: @catalog.shows
+  ) %>
 </section>
 
 <h2>Every screencast</h2>
-<section id="screencasts" class="screencasts">
-  <%= render @catalog.screencasts %>
+<section class="resources">
+  <%= render(
+    partial: "products/screencasts/screencast",
+    collection: @catalog.screencasts
+  ) %>
 </section>
 
 <h2>Every exercise</h2>
-<section id="exercises" class="exercises">
-  <%= render @catalog.exercises %>
+<section class="resources">
+  <%= render(
+    partial: "products/exercises/exercise",
+    collection: @catalog.exercises
+  ) %>
 </section>
 
 <h2>Every book</h2>
-<section id="books" class="reading">
-  <%= render @catalog.books %>
+<section class="resources">
+  <%= render(
+    partial: "products/books/book",
+    collection: @catalog.books
+  ) %>
 </section>
