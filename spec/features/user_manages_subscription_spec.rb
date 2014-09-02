@@ -42,7 +42,7 @@ feature "User creates a subscription" do
     expect(page).not_to have_github_input
   end
 
-  scenario "creates a subscription with a valid amount off coupon", js: true do
+  scenario "with a valid amount off coupon", js: true do
     create_amount_stripe_coupon("5OFF", "once", 500)
 
     visit_plan_checkout_page
@@ -60,7 +60,7 @@ feature "User creates a subscription" do
     expect(FakeStripe.last_coupon_used).to eq "5OFF"
   end
 
-  scenario "creates a subscription with a free month coupon", js: true do
+  scenario "with a free month coupon", js: true do
     create_recurring_stripe_coupon("THREEFREE", 3, 9900)
 
     visit_plan_checkout_page
@@ -77,7 +77,7 @@ feature "User creates a subscription" do
     expect(FakeStripe.last_coupon_used).to eq "THREEFREE"
   end
 
-  scenario "creates a subscription with a valid percent off coupon", js: true do
+  scenario "with a valid percent off coupon", js: true do
     create_percentage_off_stripe_coupon("50OFF", "once", 50)
 
     visit_plan_checkout_page
@@ -96,7 +96,7 @@ feature "User creates a subscription" do
     expect(FakeStripe.last_coupon_used).to eq "50OFF"
   end
 
-  scenario "creates a subscription with an invalid coupon", js: true do
+  scenario "with an invalid coupon", js: true do
     visit_plan_checkout_page
 
     expect_submit_button_to_contain("$99 per month")
