@@ -274,6 +274,10 @@ class FakeStripe < Sinatra::Base
     }.to_json
   end
 
+  def self.clean_up_coupons
+    @@coupons = {}
+  end
+
   def create_coupon_hash(params)
     {
       id: params[:id],

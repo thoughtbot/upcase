@@ -24,4 +24,8 @@ module StripeHelpers
   def create_percentage_off_stripe_coupon(id, duration, percent_off)
     Stripe::Coupon.create(id: id, duration: duration, percent_off: percent_off)
   end
+
+  def clean_up_stripe_coupons
+    FakeStripe.clean_up_coupons
+  end
 end

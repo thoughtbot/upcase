@@ -6,6 +6,10 @@ feature "User creates a subscription" do
     sign_in
   end
 
+  after do
+    clean_up_stripe_coupons
+  end
+
   scenario "doesn't create a Stripe subscription with an invalid credit card" do
     subscribe_with_invalid_credit_card
     expect(current_user).not_to have_active_subscription
