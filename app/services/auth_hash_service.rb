@@ -6,12 +6,16 @@ class AuthHashService
   end
 
   def find_or_create_user_from_auth_hash
-    find_by_auth_hash || create_from_auth_hash
+    find_by_auth_hash || find_by_email || create_from_auth_hash
   end
 
   private
 
   attr_accessor :auth_hash
+
+  def find_by_email
+    User.find_by(email: auth_hash["info"]["email"])
+  end
 
   def find_by_auth_hash
     User.find_by(auth_provider: auth_hash['provider'], auth_uid: auth_hash['uid'])
