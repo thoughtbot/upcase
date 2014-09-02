@@ -6,19 +6,26 @@ class AuthHashService
   end
 
   def find_or_create_user_from_auth_hash
-    find_by_auth_hash || find_by_email || create_from_auth_hash
+    find_by_auth_hash ||
+      find_by_github ||
+      find_by_email ||
+      create_from_auth_hash
   end
 
   private
 
   attr_accessor :auth_hash
 
+  def find_by_github
+    user = User.find_by(github_username: auth_hash["info"]["nickname"])
+    update_provider_info(user)
+    user
+  end
+
   def find_by_email
-    User.find_by(email: auth_hash["info"]["email"]).tap do |user|
-      user.auth_provider = auth_hash["provider"]
-      user.auth_uid = auth_hash["uid"]
-      user.save
-    end
+    user = User.find_by(email: auth_hash["info"]["email"])
+    update_provider_info(user)
+    user
   end
 
   def find_by_auth_hash
@@ -28,6 +35,15 @@ class AuthHashService
   def create_from_auth_hash
     create_user.tap do |user|
       promote_thoughtbot_employee_to_admin(user)
+    end
+  end
+
+  def update_provider_info(user)
+    if user
+      user.update_attributes(
+        auth_provider: auth_hash["provider"],
+        auth_uid: auth_hash["uid"]
+      )
     end
   end
 

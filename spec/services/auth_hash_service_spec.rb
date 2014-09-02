@@ -44,6 +44,17 @@ describe AuthHashService, '#find_or_create_user_from_auth_hash' do
       expect(existing_user.auth_uid).to eq auth_hash["uid"]
     end
 
+    it "finds the user by github username" do
+      github_username = "a_github_username"
+      existing_user = create(:user, github_username: github_username)
+      options = { "info" => { "nickname" => github_username } }
+
+      expect(existing_user).to eq AuthHashService.new(auth_hash(options)).
+        find_or_create_user_from_auth_hash
+      expect(existing_user.reload.auth_provider).to eq auth_hash["provider"]
+      expect(existing_user.auth_uid).to eq auth_hash["uid"]
+    end
+
     it "finds the user by auth_provider and auth_uid" do
       existing_user = create(:user, auth_provider: 'github', auth_uid: 1)
 
