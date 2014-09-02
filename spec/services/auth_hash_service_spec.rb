@@ -38,13 +38,15 @@ describe AuthHashService, '#find_or_create_user_from_auth_hash' do
     it "finds the user by email" do
       existing_user = create(:user, email: auth_hash["info"]["email"])
 
-      expect(existing_user).to eq AuthHashService.new(auth_hash).find_or_create_user_from_auth_hash
+      expect(existing_user).to eq AuthHashService.new(auth_hash).
+        find_or_create_user_from_auth_hash
     end
 
     it "finds the user by auth_provider and auth_uid" do
       existing_user = create(:user, auth_provider: 'github', auth_uid: 1)
 
-      expect(existing_user).to eq AuthHashService.new(auth_hash).find_or_create_user_from_auth_hash
+      expect(existing_user).to eq AuthHashService.new(auth_hash).
+        find_or_create_user_from_auth_hash
     end
   end
 
