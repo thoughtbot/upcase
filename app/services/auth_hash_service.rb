@@ -14,7 +14,11 @@ class AuthHashService
   attr_accessor :auth_hash
 
   def find_by_email
-    User.find_by(email: auth_hash["info"]["email"])
+    User.find_by(email: auth_hash["info"]["email"]).tap do |user|
+      user.auth_provider = auth_hash["provider"]
+      user.auth_uid = auth_hash["uid"]
+      user.save
+    end
   end
 
   def find_by_auth_hash
