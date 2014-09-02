@@ -3,7 +3,5 @@
 $(".coupon").hide();
 $("#checkout_stripe_coupon_id").val("<%=j @coupon.code.html_safe %>");
 <% else %>
-  $(".coupon .inputs ol").append('<li class="error">' +
-    '<p class="inline-errors">The coupon code you supplied is not valid.</p>' +
-  '</li>');
+  $(".coupon .inputs ol").append("<%=j render 'coupon_error' %>");
 <% end %>
