@@ -1,8 +1,9 @@
 <% if @coupon.valid? %>
   updateCheckoutSubmitAmount('<%= t("subscriptions.discount.#{@coupon.duration}", final_price: number_to_currency(@coupon.apply(@checkout.price), unit: ''), full_price: number_to_currency(@checkout.price, unit: ''), duration_in_months: @coupon.duration_in_months) %>');
-$(".coupon .error").hide();
 $(".coupon").hide();
 $("#checkout_stripe_coupon_id").val("<%=j @coupon.code.html_safe %>");
 <% else %>
-  $(".coupon .error").show();
+  $(".coupon .inputs ol").append('<li class="error">' +
+    '<p class="inline-errors">The coupon code you supplied is not valid.</p>' +
+  '</li>');
 <% end %>
