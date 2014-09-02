@@ -6,6 +6,10 @@ feature "User creates a team subscription" do
     sign_in
   end
 
+  after do
+    clean_up_stripe_coupons
+  end
+
   scenario "creates a team subscription with a valid credit card" do
     subscribe_with_valid_credit_card
 

@@ -19,7 +19,7 @@ describe SubscriptionUpcomingInvoiceUpdater do
 
   it 'sets the next_payment_amount to 0 when it is 404' do
     Stripe::Invoice.stubs(:upcoming).raises(
-      Stripe::InvalidRequestError.new('No upcoming invoices for customer', '', 404)
+      Stripe::APIError.new("No upcoming invoices for customer", "", 404)
     )
     subscription = create(:subscription)
     subscriptions = [subscription]
@@ -42,7 +42,7 @@ describe SubscriptionUpcomingInvoiceUpdater do
 
   it "sends the error to Airbrake if it isn't 404" do
     Airbrake.stubs(:notify)
-    error = Stripe::InvalidRequestError.new('Server error', '', 500)
+    error = Stripe::APIError.new("Server error", "", 500)
     Stripe::Invoice.stubs(:upcoming).raises(
       error
     )
