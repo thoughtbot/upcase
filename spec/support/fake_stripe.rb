@@ -555,4 +555,8 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  config.after do
+    FakeStripe.clean_up_coupons
+  end
 end
