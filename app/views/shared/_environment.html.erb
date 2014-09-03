@@ -1,0 +1,7 @@
+<div id="rails_env">
+  <%= Rails.env %>
+  -
+  <%= `git rev-parse --abbrev-ref HEAD` %>
+  -
+  <%= `git log --abbrev-commit -n1 | head -1`.split.last %>
+</div>

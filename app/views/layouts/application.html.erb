@@ -5,6 +5,7 @@
   </head>
 
   <body class="<%= body_class %> <%= yield(:additional_body_classes) %>">
+    <%= render 'shared/environment' unless Rails.env.production? %>
     <%= render 'shared/header' %>
 
     <%= render 'shared/flashes' %>
