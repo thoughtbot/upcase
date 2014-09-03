@@ -4,9 +4,9 @@
       <%= t(
         '.locked_features.title_html',
         features: locked_features_text,
-        link: link_to(subscribe_or_upgrade, edit_subscription_path)
+        link: subscribe_or_upgrade_link
       ) %>
     </h2>
-  <%= link_to "See what you're missing", products_path %>
+    <%= link_to "See what you're missing", products_path %>
   </div>
 </section>

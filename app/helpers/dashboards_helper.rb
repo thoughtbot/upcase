@@ -29,11 +29,11 @@ module DashboardsHelper
     locked_features.to_sentence.capitalize
   end
 
-  def subscribe_or_upgrade
+  def subscribe_or_upgrade_link
     if current_user_has_active_subscription?
-      t(".locked_features.upgrade_link")
+      link_to t(".locked_features.upgrade_link"), edit_subscription_path
     else
-      t(".locked_features.subscribe_link")
+      link_to t(".locked_features.subscribe_link"), new_subscription_path
     end
   end
 
