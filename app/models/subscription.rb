@@ -60,7 +60,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def change_quantity(new_quantity)
-    stripe_customer.update_subscription(quantity: new_quantity)
+    stripe_customer.update_subscription(plan: plan.sku, quantity: new_quantity)
   end
 
   def deliver_welcome_email

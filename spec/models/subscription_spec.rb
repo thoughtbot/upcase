@@ -180,7 +180,7 @@ describe Subscription do
 
       expect(stripe_customer).
         to have_received(:update_subscription).
-        with(quantity: 4)
+        with(plan: subscription.plan.sku, quantity: 4)
     end
   end
 

@@ -61,7 +61,15 @@ class FakeStripe < Sinatra::Base
     @@customer_plan_quantity = params[:quantity]
     content_type :json
 
-    customer_subscription.to_json
+    if params[:plan].blank?
+      status 400
+      {
+        type: "invalid_request_error",
+        message: "Missing required param: plan"
+      }.to_json
+    else
+      customer_subscription.to_json
+    end
   end
 
   post '/v1/customers' do
