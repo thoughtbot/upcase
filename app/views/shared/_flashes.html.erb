@@ -1,6 +1,6 @@
 <% if flash.any? %>
   <div class="flashes">
-    <% flash.each do |key, value| -%>
+    <% flash.to_hash.slice("notice", "error").each do |key, value| -%>
       <div class="flash <%= key %>">
         <%= value %>
       </div>
