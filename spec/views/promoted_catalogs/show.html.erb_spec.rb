@@ -5,6 +5,7 @@ describe 'promoted_catalogs/show.html.erb' do
     before do
       view_stubs(signed_in?: true)
       view_stubs(current_user_has_active_subscription?: false)
+      view_stubs(current_user_is_subscription_owner?: false)
       assign_catalog
       render
     end
@@ -26,6 +27,7 @@ describe 'promoted_catalogs/show.html.erb' do
     before do
       view_stubs(signed_in?: true)
       view_stubs(current_user_has_active_subscription?: true)
+      view_stubs(current_user_is_subscription_owner?: true)
       assign_catalog
       render
     end

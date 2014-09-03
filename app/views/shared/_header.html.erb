@@ -23,7 +23,7 @@
     <nav>
       <ul>
         <% if signed_in? %>
-          <% if current_user_has_active_subscription? %>
+          <% if current_user_is_subscription_owner? %>
             <li class="account">
               <%= render "shared/annual_billing" %>
             </li>
