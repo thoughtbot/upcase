@@ -21,7 +21,7 @@ describe "invitations/_additional_charge.html" do
 
       render "invitations/additional_charge", team: team
 
-      expect(rendered).to_not have_content(
+      expect(rendered).to have_content(
         "#{price}/#{interval}"
       )
     end
