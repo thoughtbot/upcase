@@ -18,16 +18,6 @@ feature "User views show" do
     expect(page).not_to have_content(video.title)
   end
 
-  scenario "without a subscription" do
-    user = create(:user)
-    show = create(:show)
-
-    visit dashboard_path(as: user)
-
-    expect(page).not_to have_link_to(show.name)
-    expect(page).to have_content("subscribe to Upcase to get access")
-  end
-
   def have_link_to(text)
     have_selector("a", text: text)
   end

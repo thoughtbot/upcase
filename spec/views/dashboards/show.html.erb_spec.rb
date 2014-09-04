@@ -81,6 +81,7 @@ describe "dashboards/show.html" do
 
   def render_show(options = {})
     options = default_options.merge(options)
+    assign(:dashboard, stub(shows: [], topics: []))
     view_stubs(:current_user).returns(build_stubbed(:user))
     view_stubs(:current_user_has_active_subscription?).returns(true)
     options.each do |feature, value|

@@ -8,4 +8,8 @@ class Show < Product
   def included_in_plan?(plan)
     plan.has_feature?(:shows)
   end
+
+  def latest_videos(take = Dashboard::LIMIT)
+    videos.recently_published_first.limit(take)
+  end
 end

@@ -8,6 +8,7 @@ describe DashboardsController do
 
     get :show
 
-    expect(assigns(:topics)).to eq(topics.reverse)
+    result = assigns(:dashboard).topics
+    expect(result).to eq(topics.reverse)
   end
 end
