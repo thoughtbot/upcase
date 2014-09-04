@@ -28,6 +28,7 @@ describe 'promoted_catalogs/show.html.erb' do
       view_stubs(signed_in?: true)
       view_stubs(current_user_has_active_subscription?: true)
       view_stubs(current_user_is_subscription_owner?: true)
+      view_stubs(current_user_has_monthly_subscription?: true)
       assign_catalog
       render
     end

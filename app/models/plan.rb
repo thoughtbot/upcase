@@ -69,6 +69,10 @@ class Plan < ActiveRecord::Base
     false
   end
 
+  def monthly?
+    !annual?
+  end
+
   def has_feature?(feature)
     public_send("includes_#{feature}?")
   end

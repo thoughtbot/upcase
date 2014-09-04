@@ -10,6 +10,7 @@ describe "shared/_header.html.erb" do
       view_stubs(signed_in?: true)
       view_stubs(current_user_has_active_subscription?: true)
       view_stubs(current_user_is_subscription_owner?: true)
+      view_stubs(current_user_has_monthly_subscription?: true)
 
       render
 
@@ -22,6 +23,19 @@ describe "shared/_header.html.erb" do
       view_stubs(signed_in?: true)
       view_stubs(current_user_has_active_subscription?: true)
       view_stubs(current_user_is_subscription_owner?: false)
+
+      render
+
+      expect(rendered).not_to have_content(call_to_action_label)
+    end
+  end
+
+  context "when user is the subscription owner of an annual plan" do
+    it "does not show an annual upsell link" do
+      view_stubs(signed_in?: true)
+      view_stubs(current_user_has_active_subscription?: true)
+      view_stubs(current_user_is_subscription_owner?: true)
+      view_stubs(current_user_has_monthly_subscription?: false)
 
       render
 

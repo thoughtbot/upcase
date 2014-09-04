@@ -40,6 +40,12 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user_has_active_subscription?
 
+  def current_user_has_monthly_subscription?
+    current_user_has_active_subscription? &&
+      current_user.has_monthly_subscription?
+  end
+  helper_method :current_user_has_monthly_subscription?
+
   def current_user_has_access_to_video_tutorials?
     current_user && current_user.has_access_to?(:video_tutorials)
   end

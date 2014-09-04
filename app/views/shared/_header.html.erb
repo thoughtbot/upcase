@@ -23,7 +23,7 @@
     <nav>
       <ul>
         <% if signed_in? %>
-          <% if current_user_is_subscription_owner? %>
+          <% if show_upgrade_to_annual_cta? %>
             <li class="account">
               <%= render "shared/annual_billing" %>
             </li>

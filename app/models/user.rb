@@ -83,6 +83,10 @@ class User < ActiveRecord::Base
     [purchased_subscription, team_subscription].compact.detect(&:active?)
   end
 
+  def has_monthly_subscription?
+    plan.present? && plan.monthly?
+  end
+
   def annualized_payment
     plan.annualized_payment
   end
