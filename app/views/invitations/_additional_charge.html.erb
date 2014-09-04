@@ -1,3 +1,3 @@
 <% unless team.below_minimum_users? %>
-  Your bill will be increased by <%= number_to_currency team.plan.individual_price %>}/<%= team.plan.subscription_interval %> once this user accepts the invitation.
+  Your bill will be increased by <%= number_to_currency team.plan.individual_price %>/<%= team.plan.subscription_interval %> once this user accepts the invitation.
 <% end %>
