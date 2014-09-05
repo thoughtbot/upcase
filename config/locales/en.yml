@@ -9,7 +9,7 @@ en:
       filter_date_format: '%D'
 
   layouts:
-    meta_description: 'Workshops, screencasts, videos, and books to help you learn web design and development.'
+    meta_description: 'Video Tutorials, screencasts, videos, and books to help you learn web design and development.'
     app_name: 'Upcase from thoughtbot'
 
   dashboards:
@@ -23,7 +23,7 @@ en:
 
   individual_plans:
     mentoring: '1-1 Mentoring'
-    workshops: 'Hands-On Workshops'
+    video_tutorials: 'Hands-On Video Tutorials'
     forum: 'Private Discourse Forum'
 
   products:
@@ -42,10 +42,10 @@ en:
     checkout_cta: Get this Show
     checkout_cta_for_collection: Get this Series
     upgrade_cta: Upgrade your plan to access this Show
-  workshop:
-    checkout_cta: Begin this Workshop
-    checkout_cta_for_collection: Begin this Workshop
-    upgrade_cta: Upgrade your plan to access this Workshop
+  video_tutorial:
+    checkout_cta: Begin this Video Tutorial
+    checkout_cta_for_collection: Begin this Video Tutorial
+    upgrade_cta: Upgrade your plan to access this Video Tutorial
 
   teachers:
     teacher:
@@ -64,10 +64,10 @@ en:
       Upcase for Teams
 
   topics:
-    workshop:
+    video_tutorial:
       heading:
         online:
-          Online workshop
+          Online video tutorial
     index:
       view_products:
         View all thoughtbot products
@@ -78,7 +78,7 @@ en:
       video:
         action:
           Watch
-      workshop:
+      video_tutorial:
         action:
           Register
     trail_map:

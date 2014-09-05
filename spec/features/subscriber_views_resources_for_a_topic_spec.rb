@@ -1,15 +1,15 @@
 require "rails_helper"
 
 feature "subscriber views resources for a topic" do
-  scenario "sees exercises, workshops, videos, and products" do
+  scenario "sees exercises, video_tutorials, videos, and products" do
     topic = create(:topic, dashboard: true)
-    workshop = create(:workshop)
+    video_tutorial = create(:video_tutorial)
     exercise = create(:exercise)
     video = create(:video, :published)
     book = create(:book)
     screencast = create(:screencast)
 
-    [workshop, exercise, video, book, screencast].each do |resource|
+    [video_tutorial, exercise, video, book, screencast].each do |resource|
       resource.classifications.create!(topic: topic)
     end
 
@@ -19,7 +19,7 @@ feature "subscriber views resources for a topic" do
 
     click_on "View All"
 
-    expect(page).to have_content(workshop.name)
+    expect(page).to have_content(video_tutorial.name)
     expect(page).to have_content(exercise.title)
     expect(page).to have_content(video.title)
     expect(page).to have_css("a[title='#{book.name}']")

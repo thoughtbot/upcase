@@ -1,10 +1,10 @@
 require "rails_helper"
 
-describe WorkshopsController do
+describe VideoTutorialsController do
   context "show" do
     it "renders the show_licensed page if the user has licensed" do
       user = create(:user)
-      license = create_license(:workshop, user)
+      license = create_license(:video_tutorial, user)
       sign_in_as user
 
       get :show, id: license.licenseable
@@ -14,7 +14,7 @@ describe WorkshopsController do
 
     it 'renders the show page if a user has not licensed' do
       user = create(:user)
-      license = create_license(:workshop)
+      license = create_license(:video_tutorial)
       sign_in_as user
 
       get :show, id: license.licenseable

@@ -7,7 +7,7 @@ module Features
       office_hours
       screencasts
       shows
-      workshops
+      video_tutorials
     )
     FULFILLABLE_FEATURES = %w(mentor source_code)
     ALL_FEATURES = GENERIC_FEATURES + FULFILLABLE_FEATURES

@@ -1,4 +1,4 @@
-class Workshop < ActiveRecord::Base
+class VideoTutorial < ActiveRecord::Base
   extend FriendlyId
 
   # Associations
@@ -28,7 +28,7 @@ class Workshop < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
   def self.by_position
-    order 'workshops.position ASC'
+    order 'video_tutorials.position ASC'
   end
 
   def self.only_active
@@ -56,7 +56,7 @@ class Workshop < ActiveRecord::Base
   end
 
   def title
-    "#{name}: a workshop from thoughtbot"
+    "#{name}: a video_tutorial from thoughtbot"
   end
 
   def meta_keywords
@@ -64,7 +64,7 @@ class Workshop < ActiveRecord::Base
   end
 
   def offering_type
-    'workshop'
+    'video_tutorial'
   end
 
   def tagline
@@ -76,7 +76,7 @@ class Workshop < ActiveRecord::Base
   end
 
   def thumbnail_path
-    "workshop_thumbs/#{name.parameterize}.png"
+    "video_tutorial_thumbs/#{name.parameterize}.png"
   end
 
   def subscription?
@@ -100,7 +100,7 @@ class Workshop < ActiveRecord::Base
   end
 
   def to_aside_partial
-    'workshops/aside'
+    'video_tutorials/aside'
   end
 
   def published_videos
@@ -108,6 +108,6 @@ class Workshop < ActiveRecord::Base
   end
 
   def included_in_plan?(plan)
-    plan.has_feature?(:workshops)
+    plan.has_feature?(:video_tutorials)
   end
 end

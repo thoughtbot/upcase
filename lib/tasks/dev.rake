@@ -10,7 +10,7 @@ namespace :dev do
 
     create_individual_plans
     create_products
-    create_workshops
+    create_video_tutorials
     create_mentors
     create_users
     create_team_plan
@@ -84,15 +84,15 @@ namespace :dev do
     puts_product FactoryGirl.create(:show, name: 'The Weekly Iteration')
   end
 
-  def create_workshops
-    header "Workshops"
+  def create_video_tutorials
+    header "VideoTutorials"
 
-    @workshop = FactoryGirl.create(:workshop,
+    @video_tutorial = FactoryGirl.create(:video_tutorial,
       name: 'Intermediate Ruby on Rails',
       short_description: 'Dig deeper into Ruby on Rails.',
-      description: 'This intermediate Ruby on Rails workshop is designed for developers who have built a few smaller Rails applications and would like to start making more complicated ones...'
+      description: 'This intermediate Ruby on Rails video_tutorial is designed for developers who have built a few smaller Rails applications and would like to start making more complicated ones...'
     )
-    puts_workshop @workshop
+    puts_video_tutorial @video_tutorial
   end
 
   def create_users
@@ -173,12 +173,12 @@ namespace :dev do
     puts "#{product.name}"
   end
 
-  def puts_workshop(workshop)
-    puts "#{workshop.name}"
+  def puts_video_tutorial(video_tutorial)
+    puts "#{video_tutorial.name}"
   end
 
-  def puts_workshop(workshop)
-    puts "#{workshop.name} (#{workshop.starts_on} - #{workshop.ends_on})"
+  def puts_video_tutorial(video_tutorial)
+    puts "#{video_tutorial.name} (#{video_tutorial.starts_on} - #{video_tutorial.ends_on})"
   end
 
   def puts_user(user, description)

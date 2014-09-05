@@ -1,14 +1,14 @@
 module ProductsHelper
   def test_driven_rails_url
-    'https://upcase.com/workshops/18-test-driven-rails'
+    "https://upcase.com/video_tutorials/18-test-driven-rails"
   end
 
   def design_for_developers_url
-    'https://upcase.com/workshops/19-design-for-developers'
+    "https://upcase.com/video_tutorials/19-design-for-developers"
   end
 
   def intermediate_rails_url
-    'https://upcase.com/workshops/21-intermediate-ruby-on-rails'
+    "https://upcase.com/video_tutorials/21-intermediate-ruby-on-rails"
   end
 
   def cover_image(book)

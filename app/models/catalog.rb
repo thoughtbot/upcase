@@ -9,8 +9,8 @@ class Catalog
     Book.active.ordered
   end
 
-  def workshops
-    Workshop.only_active.by_position
+  def video_tutorials
+    VideoTutorial.only_active.by_position
   end
 
   def screencasts

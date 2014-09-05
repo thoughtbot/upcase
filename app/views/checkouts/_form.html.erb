@@ -4,7 +4,10 @@
   <%= form.inputs do %>
     <% if signed_out? %>
       <ul class="checkout-sigin-signup-toggle">
-        <li class="workshop-alert sign-in-prompt"><%= link_to "Already have an account? Sign in", sign_in_path(return_to: request.fullpath) %></li>
+        <li class="video_tutorial-alert sign-in-prompt">
+          <%= link_to "Already have an account? Sign in",
+                      sign_in_path(return_to: request.fullpath) %>
+        </li>
         <li><%= link_to "Sign up with GitHub", github_auth_path %></li>
       </ul>
     <% end %>

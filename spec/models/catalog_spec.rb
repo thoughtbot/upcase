@@ -23,11 +23,11 @@ describe Catalog do
     end
   end
 
-  describe "#workshops" do
-    it "returns active workshops in order" do
+  describe "#video_tutorials" do
+    it "returns active video_tutorials in order" do
       catalog = Catalog.new
-      expect(catalog.workshops).
-        to find_relation(Workshop.only_active.by_position)
+      expect(catalog.video_tutorials).
+        to find_relation(VideoTutorial.only_active.by_position)
     end
   end
 

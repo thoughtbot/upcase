@@ -1,16 +1,16 @@
 module PageObjects
-  class Workshop
+  class VideoTutorial
     include Capybara::DSL
     include Upcase::Application.routes.url_helpers
 
-    attr_reader :workshop
+    attr_reader :video_tutorial
 
-    def initialize(workshop)
-      @workshop = workshop
+    def initialize(video_tutorial)
+      @video_tutorial = video_tutorial
     end
 
     def load
-      visit workshop_path(workshop)
+      visit video_tutorial_path(video_tutorial)
     end
 
     def questions

@@ -50,7 +50,7 @@
     <article>
       <figure id="bullet-2" class="journey-bullet">2.</figure>
       <h2>Collaborate with thoughtbotters and other members</h2>
-      <p>Don&rsquo;t develop alone, communicate with thoughtbotters and other motivated professionals. Ask questions about workshops, books, or personal projects. Join interesting conversations.</p>
+      <p>Don&rsquo;t develop alone, communicate with thoughtbotters and other motivated professionals. Ask questions about video tutorials, books, or personal projects. Join interesting conversations.</p>
     </article>
     <figure class="supporting-visual two-screenshot">
       <%= image_tag('upcase/forum-2.png') %>
@@ -60,20 +60,20 @@
   <section class="pitch left enroll">
     <article>
       <figure id="bullet-3" class="journey-bullet">3.</figure>
-      <h2>Enroll in premium, hands-on workshops</h2>
-      <p>Our workshops are more than just video tutorials. You&rsquo;ll build real apps and communicate directly with a thoughtbot developer or designer. Begin an online workshop as soon as you sign up.</p>
+      <h2>Enroll in premium, hands-on video tutorials</h2>
+      <p>Our video tutorials are more than just video tutorials. You&rsquo;ll build real apps and communicate directly with a thoughtbot developer or designer. Begin an online video tutorial as soon as you sign up.</p>
     </article>
     <figure class="supporting-visual two-stacked">
       <div>
-        <h3>Online workshops</h3>
+        <h3>Online video tutorials</h3>
         <div class="figuregroup">
-          <%= render partial: 'promoted_workshop', collection: @catalog.workshops.in_groups(2, false).first, as: :workshop %>
+          <%= render partial: 'promoted_video_tutorial', collection: @catalog.video_tutorials.in_groups(2, false).first, as: :video_tutorial %>
         </div>
       </div>
       <div>
         <h3>&nbsp;</h3>
         <div class="figuregroup">
-          <%= render partial: 'promoted_workshop', collection: @catalog.workshops.in_groups(2, false).second, as: :workshop %>
+          <%= render partial: 'promoted_video_tutorial', collection: @catalog.video_tutorials.in_groups(2, false).second, as: :video_tutorial %>
         </div>
       </div>
     </figure>

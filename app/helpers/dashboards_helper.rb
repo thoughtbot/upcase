@@ -38,6 +38,6 @@ module DashboardsHelper
   end
 
   def features
-    %i(books exercises screencasts shows workshops)
+    %i(books exercises screencasts shows video_tutorials)
   end
 end

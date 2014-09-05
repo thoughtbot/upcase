@@ -2,18 +2,18 @@ require "rails_helper"
 
 feature 'The products index' do
   scenario 'a visitor views the product index' do
-    workshop = create(:workshop)
+    video_tutorial = create(:video_tutorial)
     screencast = create(:screencast)
     book = create(:book)
     show = create(:show)
 
     visit products_path
 
-    expect(page).to have_content('workshop')
+    expect(page).to have_content('video tutorial')
     expect(page).to have_content('screencast')
     expect(page).to have_content('book')
-    within('.workshop') do
-      expect(page).to have_content(workshop.name)
+    within('.video_tutorial') do
+      expect(page).to have_content(video_tutorial.name)
     end
     within('.screencast') do
       expect(page).to have_content(screencast.name)

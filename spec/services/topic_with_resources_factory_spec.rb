@@ -8,7 +8,7 @@ describe TopicWithResourcesFactory do
       resources = [
         create(:exercise, title: "exercise-one"),
         create(:video, :published, title: "video-one"),
-        create(:workshop, name: "workshop-one"),
+        create(:video_tutorial, name: "video_tutorial-one"),
         create(:book, name: "product-one")
       ]
       resources.each do |classifiable|

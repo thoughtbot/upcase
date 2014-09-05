@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe Teacher do
   it { should belong_to(:user) }
-  it { should belong_to(:workshop) }
+  it { should belong_to(:video_tutorial) }
 
   [:name, :email, :bio].each do |attribute|
     describe "##{attribute}" do

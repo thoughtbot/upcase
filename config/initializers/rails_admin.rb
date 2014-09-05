@@ -90,7 +90,7 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model Workshop do
+  config.model VideoTutorial do
     list do
       field :name
       field :active

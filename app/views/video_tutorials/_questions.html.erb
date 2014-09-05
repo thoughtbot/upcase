@@ -1,7 +1,7 @@
-<% if workshop.questions.any? -%>
+<% if video_tutorial.questions.any? -%>
   <section id="faq">
     <dl>
-      <% workshop.questions.each do |question| %>
+      <% video_tutorial.questions.each do |question| %>
         <dt><%=raw textilize question.question %></dt>
         <dd><%=raw textilize question.answer %></dd>
       <% end %>

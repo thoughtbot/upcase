@@ -411,7 +411,7 @@ class FakeStripe < Sinatra::Base
             proration: true,
             currency: 'usd',
             customer: CUSTOMER_ID,
-            description: 'Remaining time on Upcase Workshops after 22 Feb 2014',
+            description: 'Remaining time on Upcase VideoTutorials after 22 Feb 2014',
             metadata: {},
             invoice: 'in_3lNBWqTVMT9sFb',
             subscription: 'sub_3Xehu54zpkQS1b',

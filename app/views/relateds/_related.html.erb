@@ -8,7 +8,7 @@
   <% end %>
   <h3><%= t '.products' %></h3>
   <hr>
-  <ul class='related-products related-workshops'>
+  <ul class='related-products related-video_tutorials'>
     <% if current_user && !current_user.has_active_subscription? %>
       <li class="subscription">
         <%= link_to subscribe_path do %>
@@ -19,7 +19,7 @@
         <% end %>
       </li>
     <% end %>
-    <%= render partial: 'relateds/workshop', collection: related.workshops %>
+    <%= render partial: 'relateds/video_tutorial', collection: related.video_tutorials %>
     <%= render partial: 'relateds/product', collection: related.products %>
   </ul>
 </aside>

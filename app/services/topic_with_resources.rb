@@ -1,5 +1,5 @@
 # Decorates a Topic to allow attaching a list of related resources, such as
-# exercises and workshops.
+# exercises and video tutorials.
 class TopicWithResources < SimpleDelegator
   def initialize(topic, resources:, limit: nil)
     super(topic)

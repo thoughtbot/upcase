@@ -24,6 +24,6 @@ describe 'conversions/_purchased.html.erb' do
   end
 
   def purchase_name
-    'Workshops Subscription'
+    'VideoTutorials Subscription'
   end
 end

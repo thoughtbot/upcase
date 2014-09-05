@@ -13,27 +13,27 @@ describe "Videos" do
   end
 
   context "GET /" do
-    it "lists the published videos for a workshop", js: true do
+    it "lists the published videos for a video_tutorial", js: true do
       sign_in_as_user_with_subscription
-      workshop = create(:workshop)
+      video_tutorial = create(:video_tutorial)
       published_video_one = create(
         :video,
         :published,
-        watchable: workshop,
+        watchable: video_tutorial,
         position: 1
       )
       published_video_two = create(
         :video,
         :published,
-        watchable: workshop,
+        watchable: video_tutorial,
         position: 2
       )
-      video = create(:video, watchable: workshop)
-      create_license_from_licenseable(workshop, current_user)
+      video = create(:video, watchable: video_tutorial)
+      create_license_from_licenseable(video_tutorial, current_user)
 
-      visit workshop_path(workshop)
+      visit video_tutorial_path(video_tutorial)
 
-      expect(page).to have_content("2 lessons in this workshop")
+      expect(page).to have_content("2 lessons in this video tutorial")
       expect(page).to have_content(published_video_one.title)
       expect(page).to have_content(published_video_two.title)
       expect(page).not_to have_content(video.title)
@@ -74,14 +74,14 @@ describe "Videos" do
     end
 
     it "doesn't say it's a series with one published video" do
-      workshop = create(:workshop)
-      create(:video, :published, watchable: workshop)
-      create(:video, watchable: workshop)
+      video_tutorial = create(:video_tutorial)
+      create(:video, :published, watchable: video_tutorial)
+      create(:video, watchable: video_tutorial)
 
-      visit workshop_path(workshop)
+      visit video_tutorial_path(video_tutorial)
 
       expect(page).not_to have_content("in the series")
-      expect(page).not_to have_content("in this workshop")
+      expect(page).not_to have_content("in this video_tutorial")
     end
 
     it "provides RSS to distribute the Weekly Iteration to various channels" do

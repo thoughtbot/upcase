@@ -95,20 +95,20 @@ describe 'promoted_catalogs/show.html.erb' do
       expect(rendered).to include(image_tag(screencast.image_url))
     end
 
-    it 'includes promoted workshops' do
-      workshop = build_stubbed(:workshop)
+    it 'includes promoted video_tutorials' do
+      video_tutorial = build_stubbed(:video_tutorial)
 
-      assign_catalog(workshops: [workshop])
+      assign_catalog(video_tutorials: [video_tutorial])
       view_stubs(signed_in?: false)
 
       render
 
-      expect(rendered).to include(workshop.name)
-      expect(rendered).to include(workshop.short_description)
-      expect(rendered).to include(image_tag(workshop.thumbnail_path))
-      link_title = "The #{workshop.name} online workshop details"
+      expect(rendered).to include(video_tutorial.name)
+      expect(rendered).to include(video_tutorial.short_description)
+      expect(rendered).to include(image_tag(video_tutorial.thumbnail_path))
+      link_title = "The #{video_tutorial.name} online video tutorial details"
       expect(rendered).
-        to have_css("a[href='#{workshop_path(workshop)}'][title='#{link_title}']")
+        to have_css("a[href='#{video_tutorial_path(video_tutorial)}'][title='#{link_title}']")
     end
 
     it 'includes featured mentors' do
@@ -126,12 +126,12 @@ describe 'promoted_catalogs/show.html.erb' do
     end
   end
 
-  def assign_catalog(books: [], workshops: [], screencasts: [], mentors: [])
+  def assign_catalog(books: [], video_tutorials: [], screencasts: [], mentors: [])
     assign(
       :catalog,
       stub(
         books: books,
-        workshops: workshops,
+        video_tutorials: video_tutorials,
         screencasts: screencasts,
         mentors: mentors
       )

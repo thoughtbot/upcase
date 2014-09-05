@@ -141,7 +141,7 @@ feature "User creates a subscription" do
 
   scenario "does not see call out to subscribe if already subscribed" do
     plan = create(:plan, name: "Upcase")
-    create(:workshop, name: "A Cool Workshop")
+    create(:video_tutorial, name: "A Cool VideoTutorial")
     sign_in_as_user_with_subscription
 
     visit products_path
@@ -150,7 +150,7 @@ feature "User creates a subscription" do
       "#{plan.name} Membership"
     )
 
-    find(".workshop > a").click
+    find(".video_tutorial > a").click
 
     expect(page).not_to have_link("Subscribe to #{plan.name}")
   end

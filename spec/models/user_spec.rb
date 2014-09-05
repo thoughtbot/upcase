@@ -372,7 +372,7 @@ describe User do
       it 'returns false' do
         user = build_stubbed(:user)
 
-        expect(user.has_access_to?('workshops')).to_not be
+        expect(user.has_access_to?('video_tutorials')).to_not be
       end
     end
 
@@ -381,7 +381,7 @@ describe User do
         user = create(:subscriber)
         user.subscription.stubs(:active?).returns(false)
 
-        expect(user.has_access_to?('workshops')).to_not be
+        expect(user.has_access_to?('video_tutorials')).to_not be
       end
     end
 
@@ -390,7 +390,7 @@ describe User do
         user = create(:subscriber)
         user.subscription.stubs(:has_access_to?).returns('expected')
 
-        expect(user.has_access_to?('workshops')).to eq('expected')
+        expect(user.has_access_to?('video_tutorials')).to eq('expected')
       end
     end
 
@@ -404,7 +404,7 @@ describe User do
 
         user.team.subscription.stubs(:has_access_to?).returns("expected")
 
-        expect(user.has_access_to?("workshops")).to eq("expected")
+        expect(user.has_access_to?("video_tutorials")).to eq("expected")
       end
     end
   end

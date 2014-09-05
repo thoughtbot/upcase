@@ -23,7 +23,7 @@ Upcase::Application.routes.draw do
   draw :subscriber
   draw :teams
   draw :users
-  draw :workshops
+  draw :video_tutorials
 
   root to: "homes#show"
 

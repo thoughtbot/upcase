@@ -3,8 +3,8 @@ class Related
     @item = item
   end
 
-  def workshops
-    @item.workshops.only_active.by_position
+  def video_tutorials
+    @item.video_tutorials.only_active.by_position
   end
 
   def products

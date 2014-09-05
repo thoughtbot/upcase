@@ -189,25 +189,25 @@ describe Subscription do
       it 'returns false' do
         subscription = build_stubbed(:subscription, deactivated_on: Date.today)
 
-        expect(subscription).to_not have_access_to("workshops")
+        expect(subscription).to_not have_access_to("video_tutorials")
       end
     end
 
     context 'when subscription is active but does not include feature' do
       it "returns false" do
-        plan = create(:plan, includes_workshops: false)
+        plan = create(:plan, includes_video_tutorials: false)
         subscription = build_stubbed(:subscription, plan: plan)
 
-        expect(subscription).to_not have_access_to("workshops")
+        expect(subscription).to_not have_access_to("video_tutorials")
       end
     end
 
     context 'when subscription is active and includes feature' do
       it "returns true" do
-        plan = create(:plan, includes_workshops: true)
+        plan = create(:plan, includes_video_tutorials: true)
         subscription = build_stubbed(:subscription, plan: plan)
 
-        expect(subscription).to have_access_to("workshops")
+        expect(subscription).to have_access_to("video_tutorials")
       end
     end
   end

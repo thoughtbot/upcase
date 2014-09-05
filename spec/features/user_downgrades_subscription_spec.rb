@@ -4,7 +4,7 @@ feature "User downgrades subscription" do
   scenario "successfully downgrades and then cancels" do
     create(:plan, sku: "upcase", name: "Upcase")
     basic_plan = create(:basic_plan)
-    workshop = create(:workshop)
+    video_tutorial = create(:video_tutorial)
 
     sign_in_as_user_with_subscription
     expect(@current_user).to have_active_subscription
@@ -23,7 +23,7 @@ feature "User downgrades subscription" do
     @current_user.reload
     expect(@current_user.subscription.plan).to eq basic_plan
 
-    visit workshop_path(workshop)
+    visit video_tutorial_path(video_tutorial)
 
     expect(page).not_to have_css(".free-with-upcase")
 

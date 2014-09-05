@@ -4,7 +4,7 @@ describe Topic do
   # Associations
   it { should have_many(:classifications) }
   it { should have_many(:exercises).through(:classifications) }
-  it { should have_many(:workshops).through(:classifications) }
+  it { should have_many(:video_tutorials).through(:classifications) }
   it { should have_many(:products).through(:classifications) }
   it { should have_many(:topics).through(:classifications) }
   it { should have_many(:videos).through(:classifications) }

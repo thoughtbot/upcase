@@ -1,7 +1,7 @@
 # Factory which can decorate a Topic with a list of related resources from a
 # Catalog.
 class TopicWithResourcesFactory
-  RESOURCE_TYPES = %i(exercises products videos workshops)
+  RESOURCE_TYPES = %i(exercises products videos video_tutorials)
 
   def initialize(catalog:, limit: nil)
     @catalog = catalog

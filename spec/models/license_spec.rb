@@ -10,26 +10,26 @@ describe License do
 
   context "#status" do
     it "returns in-progress when it ends today" do
-      workshop = create(:workshop, length_in_days: 5)
+      video_tutorial = create(:video_tutorial, length_in_days: 5)
       Timecop.travel(5.days.ago) do
-        @license = create_license_from_licenseable(workshop)
+        @license = create_license_from_licenseable(video_tutorial)
       end
 
       expect(@license.status).to eq "in-progress"
     end
 
     it "returns in-progress when it ends in future" do
-      workshop = create(:workshop, length_in_days: 5)
-      license = create_license_from_licenseable(workshop)
+      video_tutorial = create(:video_tutorial, length_in_days: 5)
+      license = create_license_from_licenseable(video_tutorial)
 
       expect(license.status).to eq "in-progress"
     end
 
     it "returns complete when already ended" do
-      workshop = create(:workshop, length_in_days: 5)
+      video_tutorial = create(:video_tutorial, length_in_days: 5)
 
       Timecop.travel(6.days.ago) do
-        @license = create_license_from_licenseable(workshop)
+        @license = create_license_from_licenseable(video_tutorial)
       end
 
       expect(@license.status).to eq "complete"

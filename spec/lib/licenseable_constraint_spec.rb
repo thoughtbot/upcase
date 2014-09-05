@@ -30,21 +30,21 @@ describe LicenseableConstraint do
       end
     end
 
-    context "when request has an id that matches a workshop slug" do
+    context "when request has an id that matches a video_tutorial slug" do
       it "returns true" do
-        workshop = create(:workshop)
-        request = stub_request_with_id(workshop.slug)
+        video_tutorial = create(:video_tutorial)
+        request = stub_request_with_id(video_tutorial.slug)
 
-        expect(LicenseableConstraint.new(Workshop).matches?(request)).to be true
+        expect(LicenseableConstraint.new(VideoTutorial).matches?(request)).to be true
       end
     end
 
-    context "when request has an id not matching a workshop slug" do
+    context "when request has an id not matching a video_tutorial slug" do
       it "returns false" do
         request = stub_request_with_id("test")
 
         expect(
-          LicenseableConstraint.new(Workshop).matches?(request)
+          LicenseableConstraint.new(VideoTutorial).matches?(request)
         ).to be false
       end
     end

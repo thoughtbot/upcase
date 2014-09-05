@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140827165919) do
+ActiveRecord::Schema.define(version: 20140905210137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,25 +96,25 @@ ActiveRecord::Schema.define(version: 20140827165919) do
   end
 
   create_table "individual_plans", force: true do |t|
-    t.string   "name",                                  null: false
-    t.string   "sku",                                   null: false
-    t.string   "short_description",                     null: false
-    t.text     "description",                           null: false
-    t.boolean  "active",                default: true,  null: false
-    t.integer  "individual_price",                      null: false
+    t.string   "name",                                     null: false
+    t.string   "sku",                                      null: false
+    t.string   "short_description",                        null: false
+    t.text     "description",                              null: false
+    t.boolean  "active",                   default: true,  null: false
+    t.integer  "individual_price",                         null: false
     t.text     "terms"
-    t.boolean  "includes_mentor",       default: false
-    t.boolean  "includes_workshops",    default: true
-    t.boolean  "featured",              default: true,  null: false
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.boolean  "includes_exercises",    default: true,  null: false
-    t.boolean  "includes_source_code",  default: true,  null: false
-    t.boolean  "includes_forum",        default: true,  null: false
-    t.boolean  "includes_books",        default: true,  null: false
-    t.boolean  "includes_screencasts",  default: true,  null: false
-    t.boolean  "includes_office_hours", default: true,  null: false
-    t.boolean  "includes_shows",        default: true,  null: false
+    t.boolean  "includes_mentor",          default: false
+    t.boolean  "includes_video_tutorials", default: true
+    t.boolean  "featured",                 default: true,  null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.boolean  "includes_exercises",       default: true,  null: false
+    t.boolean  "includes_source_code",     default: true,  null: false
+    t.boolean  "includes_forum",           default: true,  null: false
+    t.boolean  "includes_books",           default: true,  null: false
+    t.boolean  "includes_screencasts",     default: true,  null: false
+    t.boolean  "includes_office_hours",    default: true,  null: false
+    t.boolean  "includes_shows",           default: true,  null: false
   end
 
   create_table "invitations", force: true do |t|
@@ -227,14 +227,14 @@ ActiveRecord::Schema.define(version: 20140827165919) do
   add_index "public_keys", ["user_id"], name: "index_public_keys_on_user_id", using: :btree
 
   create_table "questions", force: true do |t|
-    t.integer  "workshop_id"
+    t.integer  "video_tutorial_id"
     t.string   "question"
     t.text     "answer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "questions", ["workshop_id"], name: "index_questions_on_workshop_id", using: :btree
+  add_index "questions", ["video_tutorial_id"], name: "index_questions_on_video_tutorial_id", using: :btree
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
@@ -267,29 +267,29 @@ ActiveRecord::Schema.define(version: 20140827165919) do
 
   create_table "teachers", force: true do |t|
     t.integer "user_id"
-    t.integer "workshop_id"
+    t.integer "video_tutorial_id"
   end
 
-  add_index "teachers", ["user_id", "workshop_id"], name: "index_teachers_on_user_id_and_workshop_id", unique: true, using: :btree
+  add_index "teachers", ["user_id", "video_tutorial_id"], name: "index_teachers_on_user_id_and_video_tutorial_id", unique: true, using: :btree
 
   create_table "team_plans", force: true do |t|
-    t.string   "sku",                                   null: false
-    t.string   "name",                                  null: false
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.string   "sku",                                      null: false
+    t.string   "name",                                     null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.integer  "individual_price"
     t.text     "terms"
-    t.boolean  "includes_mentor",       default: false, null: false
-    t.boolean  "includes_workshops",    default: true,  null: false
-    t.boolean  "featured",              default: true,  null: false
+    t.boolean  "includes_mentor",          default: false, null: false
+    t.boolean  "includes_video_tutorials", default: true,  null: false
+    t.boolean  "featured",                 default: true,  null: false
     t.text     "description"
-    t.boolean  "includes_exercises",    default: true,  null: false
-    t.boolean  "includes_source_code",  default: true,  null: false
-    t.boolean  "includes_forum",        default: true,  null: false
-    t.boolean  "includes_books",        default: true,  null: false
-    t.boolean  "includes_screencasts",  default: true,  null: false
-    t.boolean  "includes_office_hours", default: true,  null: false
-    t.boolean  "includes_shows",        default: true,  null: false
+    t.boolean  "includes_exercises",       default: true,  null: false
+    t.boolean  "includes_source_code",     default: true,  null: false
+    t.boolean  "includes_forum",           default: true,  null: false
+    t.boolean  "includes_books",           default: true,  null: false
+    t.boolean  "includes_screencasts",     default: true,  null: false
+    t.boolean  "includes_office_hours",    default: true,  null: false
+    t.boolean  "includes_shows",           default: true,  null: false
   end
 
   create_table "teams", force: true do |t|
@@ -360,24 +360,7 @@ ActiveRecord::Schema.define(version: 20140827165919) do
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
   add_index "users", ["team_id"], name: "index_users_on_team_id", using: :btree
 
-  create_table "videos", force: true do |t|
-    t.integer  "watchable_id"
-    t.string   "wistia_id"
-    t.string   "title"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.string   "watchable_type"
-    t.integer  "position",          default: 0, null: false
-    t.text     "notes"
-    t.date     "published_on"
-    t.string   "preview_wistia_id"
-    t.string   "slug",                          null: false
-  end
-
-  add_index "videos", ["slug"], name: "index_videos_on_slug", unique: true, using: :btree
-  add_index "videos", ["watchable_type", "watchable_id"], name: "index_videos_on_watchable_type_and_watchable_id", using: :btree
-
-  create_table "workshops", force: true do |t|
+  create_table "video_tutorials", force: true do |t|
     t.string   "name",                              null: false
     t.text     "description"
     t.boolean  "active",            default: true,  null: false
@@ -394,6 +377,23 @@ ActiveRecord::Schema.define(version: 20140827165919) do
     t.string   "slug",                              null: false
   end
 
-  add_index "workshops", ["slug"], name: "index_workshops_on_slug", unique: true, using: :btree
+  add_index "video_tutorials", ["slug"], name: "index_video_tutorials_on_slug", unique: true, using: :btree
+
+  create_table "videos", force: true do |t|
+    t.integer  "watchable_id"
+    t.string   "wistia_id"
+    t.string   "title"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "watchable_type"
+    t.integer  "position",          default: 0, null: false
+    t.text     "notes"
+    t.date     "published_on"
+    t.string   "preview_wistia_id"
+    t.string   "slug",                          null: false
+  end
+
+  add_index "videos", ["slug"], name: "index_videos_on_slug", unique: true, using: :btree
+  add_index "videos", ["watchable_type", "watchable_id"], name: "index_videos_on_watchable_type_and_watchable_id", using: :btree
 
 end

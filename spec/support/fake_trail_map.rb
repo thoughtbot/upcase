@@ -16,7 +16,7 @@ class FakeTrailMap
     @resource_id = '2f720eaa8bcd602a7dc731feb224ff99bb85a03c'
     @resource_title = 'Try Git'
     if options[:thoughtbot_resource]
-      @resource_uri = 'http://upcase.com/workshops/1'
+      @resource_uri = 'http://upcase.com/video_tutorials/1'
     else
       @resource_uri = 'http://try.github.com'
     end

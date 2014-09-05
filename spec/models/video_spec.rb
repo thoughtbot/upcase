@@ -99,10 +99,10 @@ describe Video do
 
   context 'watchable_name' do
     it 'returns the name of the watchable' do
-      workshop = create(:workshop, name: 'Workshop')
-      video = create(:video, watchable: workshop)
+      video_tutorial = create(:video_tutorial, name: 'VideoTutorial')
+      video = create(:video, watchable: video_tutorial)
 
-      expect(video.watchable_name).to eq workshop.name
+      expect(video.watchable_name).to eq video_tutorial.name
     end
   end
 

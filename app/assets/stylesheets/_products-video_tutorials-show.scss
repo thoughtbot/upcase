@@ -1,5 +1,5 @@
 body.products-show,
-body.workshops-show,
+body.video_tutorials-show,
 body.books-show,
 body.screencasts-show {
   .text-box {
@@ -8,7 +8,7 @@ body.screencasts-show {
     border: 0;
   }
 
-  .workshop-alert {
+  .video_tutorial-alert {
     background: $lightwarmgray;
     margin-bottom: 2em;
     padding: 1em;
@@ -145,7 +145,7 @@ body.screencasts-show {
 }
 
 body.products-show aside,
-body.workshops-show aside,
+body.video_tutorials-show aside,
 body.books-show aside,
 body.screencasts-show aside,
 body.shows-show aside,

@@ -47,8 +47,8 @@ FactoryGirl.define do
     end
   end
 
-  factory :workshop do
-    after(:stub) { |workshop| workshop.slug = workshop.name.parameterize }
+  factory :video_tutorial do
+    after(:stub) { |video_tutorial| video_tutorial.slug = video_tutorial.name.parameterize }
 
     description 'Solve 8-Queens over and over again'
     name { generate(:name) }
@@ -56,7 +56,7 @@ FactoryGirl.define do
     sku 'EIGHTQUEENS'
     length_in_days 28
 
-    factory :private_workshop do
+    factory :private_video_tutorial do
       active false
     end
 
@@ -94,7 +94,7 @@ FactoryGirl.define do
   factory :question do
     answer 'Not much, bro.'
     question "What's up, buddy?"
-    workshop
+    video_tutorial
   end
 
   factory :public_key do
@@ -151,7 +151,7 @@ FactoryGirl.define do
       includes_office_hours false
       includes_screencasts false
       includes_source_code false
-      includes_workshops false
+      includes_video_tutorials false
     end
 
     trait :includes_mentor do
@@ -208,7 +208,7 @@ FactoryGirl.define do
 
   factory :team_plan, class: 'TeamPlan' do
     individual_price 89
-    name 'Workshops for Teams'
+    name 'VideoTutorials for Teams'
     sku 'team_plan'
 
     trait :includes_mentor do
@@ -240,7 +240,7 @@ FactoryGirl.define do
 
   factory :teacher do
     user
-    workshop
+    video_tutorial
   end
 
   factory :topic do

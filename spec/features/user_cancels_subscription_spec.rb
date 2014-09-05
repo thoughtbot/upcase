@@ -4,7 +4,7 @@ feature 'User cancels a subscription' do
   scenario 'successfully unsubscribes without a refund' do
     create(:plan, name: 'Upcase')
     create(:basic_plan)
-    create(:workshop, name: 'A Cool Workshop')
+    create(:video_tutorial, name: 'A Cool VideoTutorial')
 
     sign_in_as_user_with_subscription
 
