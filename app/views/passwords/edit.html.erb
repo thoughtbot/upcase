@@ -1,15 +1,16 @@
-<section id="container">
-  <h2>Change your password</h2>
+<section id="auth-form-container">
+  <section class="thoughtbot-signin">
+    <%= semantic_form_for(:password_reset, url: user_password_path(@user, token: @user.confirmation_token), html: { method: :put }) do |form| %>
+      <p class="flash_success">Your password has been reset. Choose a new
+      password below.</p>
 
-  <p class="flash_success">Your password has been reset. Choose a new password below.</p>
-
-  <%= semantic_form_for(:password_reset, url: user_password_path(@user, token: @user.confirmation_token), html: { method: :put }) do |form| %>
-    <%= form.error_messages %>
-    <%= form.inputs do -%>
-      <%= form.input :password, as: :password, label: "Choose password" %>
-    <% end -%>
-    <%= form.actions do -%>
-      <%= form.action :submit, label: "Save this password" %>
-    <% end -%>
-  <% end %>
+      <%= form.error_messages %>
+      <%= form.inputs do -%>
+        <%= form.input :password, as: :password, label: "Choose password" %>
+      <% end -%>
+      <%= form.actions do -%>
+        <%= form.action :submit, label: "Save this password" %>
+      <% end -%>
+    <% end %>
+  </section>
 </section>
