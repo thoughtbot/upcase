@@ -1,13 +1,14 @@
 # Decorates a Topic to allow attaching a list of related resources, such as
 # exercises and workshops.
 class TopicWithResources < SimpleDelegator
-  def initialize(topic, resources:)
+  def initialize(topic, resources:, limit: nil)
     super(topic)
     @resources = resources
+    @limit = limit
   end
 
   def dashboard_resources
-    resources.take(Dashboard::LIMIT)
+    resources.take(@limit)
   end
 
   def resources

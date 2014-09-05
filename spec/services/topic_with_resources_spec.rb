@@ -39,7 +39,9 @@ describe TopicWithResources do
         stub("four", created_at: 4.days.ago, name: "four")
       ]
       topic = Topic.new
-      topic_with_resources = TopicWithResources.new(topic, resources: resources)
+      topic_with_resources = TopicWithResources.new(topic,
+                                                    resources: resources,
+                                                    limit: 3)
 
       result = topic_with_resources.dashboard_resources
 

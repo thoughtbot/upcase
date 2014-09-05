@@ -3,13 +3,16 @@
 class TopicWithResourcesFactory
   RESOURCE_TYPES = %i(exercises products videos workshops)
 
-  def initialize(catalog:)
+  def initialize(catalog:, limit: nil)
     @catalog = catalog
     @resources = {}
+    @limit = limit
   end
 
   def decorate(topic)
-    TopicWithResources.new(topic, resources: resources(topic))
+    TopicWithResources.new(topic,
+                           resources: resources(topic),
+                           limit: @limit)
   end
 
   def resources(topic)
