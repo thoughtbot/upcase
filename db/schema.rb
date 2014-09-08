@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 20140910213739) do
     t.boolean  "includes_screencasts",     default: true,  null: false
     t.boolean  "includes_office_hours",    default: true,  null: false
     t.boolean  "includes_shows",           default: true,  null: false
+    t.boolean  "includes_team",            default: false
   end
 
   create_table "invitations", force: true do |t|
