@@ -10,7 +10,7 @@ gem 'aws-sdk', '= 1.6.2' # Bug https://github.com/thoughtbot/paperclip/issues/75
 gem 'analytics-ruby'
 gem 'bluecloth'
 gem 'bourbon', '3.2.3'
-gem 'clearance', '1.3.0'
+gem 'clearance', '1.4.2'
 gem 'csv_rails', '0.6.1'
 gem 'curb', '0.8.1'
 gem 'delayed_job_active_record', '~> 4.0.1'
