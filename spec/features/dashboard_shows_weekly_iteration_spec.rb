@@ -7,6 +7,6 @@ feature "User without a subscription" do
     visit dashboard_path(as: create(:user))
 
     expect(page).to have_content(show.name)
-    expect(page).to have_content("more #{show.name} episodes")
+    expect(page).to have_content("more episodes")
   end
 end
