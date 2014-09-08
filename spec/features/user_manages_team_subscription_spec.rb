@@ -3,7 +3,7 @@ include ActionView::Helpers::NumberHelper
 
 feature "User edits a team subscription" do
   background do
-    create(:team_plan)
+    create(:plan, :team)
     sign_in
   end
 
@@ -44,6 +44,6 @@ feature "User edits a team subscription" do
   end
 
   def plan
-    TeamPlan.first
+    IndividualPlan.team.first
   end
 end

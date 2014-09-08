@@ -21,8 +21,8 @@ describe CheckoutsController do
       user = create(:user)
       stub_current_user_with(user)
 
-      create(:team_plan, sku: "sku1")
-      desired_plan = create(:team_plan, sku: "sku2")
+      create(:plan, :team, sku: "sku1")
+      desired_plan = create(:plan, :team, sku: "sku2")
 
       get :new, plan: desired_plan
 

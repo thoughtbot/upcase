@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "User creates a team subscription" do
   background do
-    create(:team_plan)
+    create(:plan, :team)
     sign_in
   end
 
@@ -76,7 +76,7 @@ feature "User creates a team subscription" do
   end
 
   def plan
-    TeamPlan.first
+    IndividualPlan.team.first
   end
 
   def apply_coupon_with_code(code)

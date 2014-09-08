@@ -1,6 +1,6 @@
 module Features
   def visit_team_plan_checkout_page
-    plan = create(:team_plan)
+    plan = create(:plan, :team)
     visit new_checkout_path(plan)
   end
 end

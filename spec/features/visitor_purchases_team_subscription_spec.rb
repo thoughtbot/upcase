@@ -14,7 +14,7 @@ feature 'Visitor can purchase a subscription for their team' do
   end
 
   def team_plan
-    TeamPlan.first
+    IndividualPlan.team.first
   end
 
   def expect_to_see_team_name(team_name)

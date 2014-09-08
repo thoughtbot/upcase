@@ -24,11 +24,11 @@ describe PolymorphicFinder do
 
     it 'cascades when the first finder is not present' do
       create(:individual_plan, sku: 'abc')
-      team_plan = create(:team_plan, sku: 'def')
+      team_plan = create(:plan, :team, sku: 'def')
 
       result = PolymorphicFinder.
         finding(IndividualPlan, :sku, [:individual_plan_id]).
-        finding(TeamPlan, :sku, [:team_plan_id]).
+        finding(IndividualPlan, :sku, [:team_plan_id]).
         find(team_plan_id: 'def')
 
       expect(result).to eq(team_plan)

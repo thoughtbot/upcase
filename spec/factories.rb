@@ -169,6 +169,13 @@ FactoryGirl.define do
     trait :no_mentor do
       includes_mentor false
     end
+
+    trait :team do
+      individual_price 89
+      name 'VideoTutorials for Teams'
+      sku 'team_plan'
+      includes_team true
+    end
   end
 
   factory :invitation, class: 'Invitation' do
@@ -204,20 +211,6 @@ FactoryGirl.define do
     sku 'book1'
     variant 'individual'
     initialize_with { new(attributes) }
-  end
-
-  factory :team_plan, class: 'TeamPlan' do
-    individual_price 89
-    name 'VideoTutorials for Teams'
-    sku 'team_plan'
-
-    trait :includes_mentor do
-      includes_mentor true
-    end
-
-    trait :no_mentor do
-      includes_mentor false
-    end
   end
 
   factory :team, class: 'Team' do
@@ -392,7 +385,7 @@ FactoryGirl.define do
         create(
           :inactive_subscription,
           user: instance,
-          plan: create(:team_plan),
+          plan: create(:plan, :team),
           team: instance.team
         )
       end
@@ -408,7 +401,7 @@ FactoryGirl.define do
         subscription = create(
           :subscription,
           user: instance,
-          plan: create(:team_plan),
+          plan: create(:plan, :team),
           team: instance.team
         )
         SubscriptionFulfillment.new(instance, subscription.plan).fulfill
@@ -429,7 +422,7 @@ FactoryGirl.define do
     end
 
     factory :team_subscription do
-      association :plan, factory: :team_plan
+      association :plan, factory: [:plan, :team]
     end
 
     trait :purchased do

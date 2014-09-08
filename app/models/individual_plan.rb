@@ -16,6 +16,10 @@ class IndividualPlan < ActiveRecord::Base
 
   include PlanForPublicListing
 
+  def self.team
+    where includes_team: true
+  end
+
   def self.active
     where active: true
   end
@@ -43,10 +47,21 @@ class IndividualPlan < ActiveRecord::Base
   def fulfill(checkout, user)
     user.create_purchased_subscription(plan: self)
     SubscriptionFulfillment.new(user, self).fulfill
+    if includes_team?
+      TeamFulfillment.new(checkout, user).fulfill
+    end
   end
 
-  def after_checkout_url(controller, checkout)
-    controller.dashboard_path
+  def after_checkout_url(controller, _checkout)
+    if includes_team?
+      controller.edit_team_path
+    else
+      controller.dashboard_path
+    end
+  end
+
+  def minimum_quantity
+    3
   end
 
   def included_in_plan?(plan)
