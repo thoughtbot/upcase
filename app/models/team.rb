@@ -24,7 +24,7 @@ class Team < ActiveRecord::Base
   end
 
   def below_minimum_users?
-    users_count < plan.minimum_quantity
+    users_count < IndividualPlan::MINIMUM_TEAM_SIZE
   end
 
   private
@@ -34,7 +34,7 @@ class Team < ActiveRecord::Base
   end
 
   def billing_quantity
-    [users_count, plan.minimum_quantity].max
+    [users_count, IndividualPlan::MINIMUM_TEAM_SIZE].max
   end
 
   def fulfillment_for(user)

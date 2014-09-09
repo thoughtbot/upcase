@@ -23,7 +23,7 @@ describe Team do
     context "when below the minimum" do
       it "updates the team's subscription quantity with the minimum" do
         team = team_with_stubbed_subscription_change_quantity
-        minimum_quantity = team.subscription.plan.minimum_quantity
+        minimum_quantity = IndividualPlan::MINIMUM_TEAM_SIZE
         user = create(:user, :with_mentor, :with_github)
 
         team.add_user(user)
@@ -37,7 +37,7 @@ describe Team do
     context "when above the minimum" do
       it "updates the team's subscription with the number of team members" do
         team = team_with_stubbed_subscription_change_quantity
-        minimum_quantity = team.subscription.plan.minimum_quantity
+        minimum_quantity = IndividualPlan::MINIMUM_TEAM_SIZE
         create_list(:user, minimum_quantity, team: team)
         user = create(:user, :with_mentor, :with_github)
 
@@ -65,7 +65,7 @@ describe Team do
     context "when below the minimum" do
       it "updates the team's subscription quantity with the minimum" do
         team = team_with_stubbed_subscription_change_quantity
-        minimum_quantity = team.subscription.plan.minimum_quantity
+        minimum_quantity = IndividualPlan::MINIMUM_TEAM_SIZE
         user = create(:user, :with_mentor, :with_github, team: team)
 
         team.remove_user(user)
@@ -79,7 +79,7 @@ describe Team do
     context "when above the minimum" do
       it "updates the team's subscription with the number of team members" do
         team = team_with_stubbed_subscription_change_quantity
-        minimum_quantity = team.subscription.plan.minimum_quantity
+        minimum_quantity = IndividualPlan::MINIMUM_TEAM_SIZE
         create_list(:user, minimum_quantity + 2, team: team)
         user = create(:user, :with_mentor, :with_github, team: team)
 
@@ -105,7 +105,7 @@ describe Team do
     context "the team will go above the minimum" do
       it "returns the amount and interval" do
         team = create(:team)
-        create_list(:user, team.plan.minimum_quantity, team: team)
+        create_list(:user, IndividualPlan::MINIMUM_TEAM_SIZE, team: team)
 
         expect(team.below_minimum_users?).to be_falsey
       end

@@ -121,14 +121,6 @@ describe IndividualPlan do
   end
 
 
-  context "#minimum_quantity" do
-    it "is 3" do
-      team_plan = IndividualPlan.new
-
-      expect(team_plan.minimum_quantity).to eq 3
-    end
-  end
-
   describe "#fulfill" do
     it "starts a subscription for a new team" do
       user = build_stubbed(:user)

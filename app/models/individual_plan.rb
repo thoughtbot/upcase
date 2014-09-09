@@ -3,6 +3,7 @@ class IndividualPlan < ActiveRecord::Base
   PRIME_99_SKU = 'prime-99'
   PRIME_49_SKU = 'prime-49'
   PRIME_29_SKU = 'prime-29'
+  MINIMUM_TEAM_SIZE = 3
 
   has_many :announcements, as: :announceable, dependent: :destroy
   has_many :checkouts, as: :subscribeable
@@ -58,10 +59,6 @@ class IndividualPlan < ActiveRecord::Base
     else
       controller.dashboard_path
     end
-  end
-
-  def minimum_quantity
-    3
   end
 
   def included_in_plan?(plan)

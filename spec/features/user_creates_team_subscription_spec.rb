@@ -13,7 +13,7 @@ feature "User creates a team subscription" do
     expect(page).
       to have_content(I18n.t("checkout.flashes.success", name: plan.name))
     expect(settings_page).to have_subscription_to(plan.name)
-    expect(FakeStripe.customer_plan_quantity).to eq plan.minimum_quantity.to_s
+    expect(FakeStripe.customer_plan_quantity).to eq IndividualPlan::MINIMUM_TEAM_SIZE.to_s
   end
 
   scenario "sees that the subscription is per month" do
@@ -26,7 +26,7 @@ feature "User creates a team subscription" do
     visit_team_plan_checkout_page
 
     expect(field_labeled("Number of team members").value).
-      to eq plan.minimum_quantity.to_s
+      to eq IndividualPlan::MINIMUM_TEAM_SIZE.to_s
   end
 
   scenario "creates a team subscription with more members", js: true do
@@ -61,7 +61,7 @@ feature "User creates a team subscription" do
 
     expect(current_path).to eq after_sign_up_path
     expect(FakeStripe.last_coupon_used).to eq "5OFF"
-    expect(FakeStripe.customer_plan_quantity).to eq plan.minimum_quantity.to_s
+    expect(FakeStripe.customer_plan_quantity).to eq IndividualPlan::MINIMUM_TEAM_SIZE.to_s
   end
 
   def subscribe_with_valid_credit_card

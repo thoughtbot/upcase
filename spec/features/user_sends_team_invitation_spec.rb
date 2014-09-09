@@ -27,7 +27,7 @@ feature "Send team invitations" do
 
   scenario "with valid data and under the minimum members" do
     owner = create(:user, :with_team_subscription)
-    IndividualPlan.team.first.minimum_quantity.times do
+    IndividualPlan::MINIMUM_TEAM_SIZE.times do
       add_user_to_team(create(:user, :with_github), owner.team)
     end
 
