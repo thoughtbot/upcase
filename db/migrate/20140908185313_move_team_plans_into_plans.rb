@@ -1,5 +1,5 @@
 class MoveTeamPlansIntoPlans < ActiveRecord::Migration
-  def change
+  def up
     say_with_time "Moving team_plans into plans" do
       # Need to reset the id_seq, because:
       #   SELECT MAX(id) FROM individual_plans => 20
@@ -26,5 +26,9 @@ class MoveTeamPlansIntoPlans < ActiveRecord::Migration
           TRUE, name FROM team_plans
       SQL
     end
+  end
+
+  def down
+    raise ActiveRecord::IrreversibleMigration
   end
 end
