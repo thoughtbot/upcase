@@ -1,4 +1,4 @@
-class IndividualPlan < ActiveRecord::Base
+class Plan < ActiveRecord::Base
   PRIME_249_SKU = 'prime-249'
   PRIME_99_SKU = 'prime-99'
   PRIME_49_SKU = 'prime-49'
@@ -16,6 +16,10 @@ class IndividualPlan < ActiveRecord::Base
   validates :sku, presence: true
 
   include PlanForPublicListing
+
+  def self.individual
+    where includes_team: false
+  end
 
   def self.team
     where includes_team: true
@@ -75,6 +79,14 @@ class IndividualPlan < ActiveRecord::Base
 
   def discounted_annual_payment
     10 * individual_price
+  end
+
+  def minimum_team_price
+    individual_price * minimum_quantity
+  end
+
+  def minimum_quantity
+    MINIMUM_TEAM_SIZE
   end
 
   private

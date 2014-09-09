@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe CheckoutPrepopulator, '#prepopulate_with_user_info' do
   it 'populates default info when given a subscriber' do
-    plan = create(:individual_plan)
+    plan = create(:plan)
     checkout = plan.checkouts.build
     subscriber = create_subscriber
     CheckoutPrepopulator.new(checkout, subscriber).prepopulate_with_user_info

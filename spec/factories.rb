@@ -136,7 +136,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :individual_plan, aliases: [:plan] do
+  factory :plan do
     name I18n.t("shared.subscription.name")
     individual_price 99
     sku "prime-99"
@@ -144,7 +144,7 @@ FactoryGirl.define do
     description 'A long description'
 
     factory :basic_plan do
-      sku IndividualPlan::PRIME_29_SKU
+      sku Plan::PRIME_29_SKU
       includes_books false
       includes_exercises false
       includes_forum false
@@ -292,19 +292,19 @@ FactoryGirl.define do
 
       trait :includes_mentor do
         ignore do
-          plan { create(:individual_plan, :includes_mentor) }
+          plan { create(:plan, :includes_mentor) }
         end
       end
 
       trait :includes_screencasts do
         ignore do
-          plan { create(:individual_plan, :includes_screencasts) }
+          plan { create(:plan, :includes_screencasts) }
         end
       end
 
       trait :includes_books do
         ignore do
-          plan { create(:individual_plan, :includes_books) }
+          plan { create(:plan, :includes_books) }
         end
       end
     end

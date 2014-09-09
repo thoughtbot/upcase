@@ -13,7 +13,7 @@ describe Subscription do
 
   describe '.deliver_welcome_emails' do
     it 'sends emails for each new mentored subscriber in the last 24 hours' do
-      plan = create(:individual_plan, includes_mentor: true)
+      plan = create(:plan, includes_mentor: true)
       old_subscription =
         create(:subscription, plan: plan, created_at: 25.hours.ago)
       new_subscription =
@@ -96,8 +96,8 @@ describe Subscription do
     end
 
     it "unfulfills for a user who changed their plan" do
-      original_plan = create(:individual_plan)
-      new_plan = create(:individual_plan)
+      original_plan = create(:plan)
+      new_plan = create(:plan)
       subscription = create(:active_subscription, plan: new_plan)
       create(
         :checkout,

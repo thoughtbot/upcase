@@ -95,29 +95,6 @@ ActiveRecord::Schema.define(version: 20140910213739) do
     t.datetime "updated_at"
   end
 
-  create_table "individual_plans", force: true do |t|
-    t.string   "name",                                     null: false
-    t.string   "sku",                                      null: false
-    t.string   "short_description",                        null: false
-    t.text     "description",                              null: false
-    t.boolean  "active",                   default: true,  null: false
-    t.integer  "individual_price",                         null: false
-    t.text     "terms"
-    t.boolean  "includes_mentor",          default: false
-    t.boolean  "includes_video_tutorials", default: true
-    t.boolean  "featured",                 default: true,  null: false
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.boolean  "includes_exercises",       default: true,  null: false
-    t.boolean  "includes_source_code",     default: true,  null: false
-    t.boolean  "includes_forum",           default: true,  null: false
-    t.boolean  "includes_books",           default: true,  null: false
-    t.boolean  "includes_screencasts",     default: true,  null: false
-    t.boolean  "includes_office_hours",    default: true,  null: false
-    t.boolean  "includes_shows",           default: true,  null: false
-    t.boolean  "includes_team",            default: false
-  end
-
   create_table "invitations", force: true do |t|
     t.string   "email",        null: false
     t.string   "code",         null: false
@@ -189,6 +166,29 @@ ActiveRecord::Schema.define(version: 20140910213739) do
   end
 
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
+
+  create_table "plans", force: true do |t|
+    t.string   "name",                                     null: false
+    t.string   "sku",                                      null: false
+    t.string   "short_description",                        null: false
+    t.text     "description",                              null: false
+    t.boolean  "active",                   default: true,  null: false
+    t.integer  "individual_price",                         null: false
+    t.text     "terms"
+    t.boolean  "includes_mentor",          default: false
+    t.boolean  "includes_video_tutorials", default: true
+    t.boolean  "featured",                 default: true,  null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.boolean  "includes_exercises",       default: true,  null: false
+    t.boolean  "includes_source_code",     default: true,  null: false
+    t.boolean  "includes_forum",           default: true,  null: false
+    t.boolean  "includes_books",           default: true,  null: false
+    t.boolean  "includes_screencasts",     default: true,  null: false
+    t.boolean  "includes_office_hours",    default: true,  null: false
+    t.boolean  "includes_shows",           default: true,  null: false
+    t.boolean  "includes_team",            default: false
+  end
 
   create_table "products", force: true do |t|
     t.string   "name"
@@ -271,26 +271,6 @@ ActiveRecord::Schema.define(version: 20140910213739) do
   end
 
   add_index "teachers", ["user_id", "video_tutorial_id"], name: "index_teachers_on_user_id_and_video_tutorial_id", unique: true, using: :btree
-
-  create_table "team_plans", force: true do |t|
-    t.string   "sku",                                      null: false
-    t.string   "name",                                     null: false
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.integer  "individual_price"
-    t.text     "terms"
-    t.boolean  "includes_mentor",          default: false, null: false
-    t.boolean  "includes_video_tutorials", default: true,  null: false
-    t.boolean  "featured",                 default: true,  null: false
-    t.text     "description"
-    t.boolean  "includes_exercises",       default: true,  null: false
-    t.boolean  "includes_source_code",     default: true,  null: false
-    t.boolean  "includes_forum",           default: true,  null: false
-    t.boolean  "includes_books",           default: true,  null: false
-    t.boolean  "includes_screencasts",     default: true,  null: false
-    t.boolean  "includes_office_hours",    default: true,  null: false
-    t.boolean  "includes_shows",           default: true,  null: false
-  end
 
   create_table "teams", force: true do |t|
     t.string   "name",            null: false

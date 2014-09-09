@@ -28,7 +28,7 @@ class Cancellation
   end
 
   def downgrade_plan
-    IndividualPlan.basic
+    Plan.basic
   end
 
   def subscribed_plan
@@ -36,7 +36,7 @@ class Cancellation
   end
 
   def downgrade
-    @subscription.change_plan(IndividualPlan.basic)
+    @subscription.change_plan(Plan.basic)
   end
 
   private

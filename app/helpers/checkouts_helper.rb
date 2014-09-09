@@ -36,7 +36,11 @@ module CheckoutsHelper
   end
 
   def checkout_form_partial(subscribeable)
-    "checkouts/#{subscribeable.class.name.underscore}_form"
+    if subscribeable.includes_team?
+      "checkouts/team_plan_form"
+    else
+      "checkouts/individual_plan_form"
+    end
   end
 
   private

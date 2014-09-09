@@ -4,7 +4,7 @@ describe SubscriptionsController do
   context "update" do
     it_behaves_like "must be subscription owner" do
       def perform_request
-        plan = create(:individual_plan)
+        plan = create(:plan)
 
         post :update, plan_id: plan
       end

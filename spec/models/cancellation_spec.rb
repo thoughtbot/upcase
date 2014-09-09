@@ -206,7 +206,7 @@ describe Cancellation do
 
   def stub_downgrade_plan
     build_stubbed(:plan).tap do |plan|
-      IndividualPlan.stubs(:basic).returns(plan)
+      Plan.stubs(:basic).returns(plan)
     end
   end
 

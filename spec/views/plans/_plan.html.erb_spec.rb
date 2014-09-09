@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "individual_plans/_individual_plan.html" do
+describe "plans/_plan.html" do
   context "grid partial" do
     it "renders the grid partial matching the plan" do
       prime_29 = build_plan
@@ -8,7 +8,7 @@ describe "individual_plans/_individual_plan.html" do
 
       render_plan(prime_29)
 
-      expect(view).to render_template("individual_plans/_prime_29")
+      expect(view).to render_template("plans/_prime_29")
     end
   end
 
@@ -69,6 +69,6 @@ describe "individual_plans/_individual_plan.html" do
   end
 
   def render_plan(plan)
-    render "individual_plans/individual_plan", individual_plan: plan
+    render "plans/plan", plan: plan
   end
 end

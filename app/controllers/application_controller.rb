@@ -67,7 +67,7 @@ class ApplicationController < ActionController::Base
   end
 
   def requested_subscribeable
-    IndividualPlan.where(sku: params[:plan]).first
+    Plan.where(sku: params[:plan]).first
   end
 
   def included_in_current_users_plan?(licenseable)

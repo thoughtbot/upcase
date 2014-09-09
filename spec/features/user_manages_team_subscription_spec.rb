@@ -44,6 +44,6 @@ feature "User edits a team subscription" do
   end
 
   def plan
-    IndividualPlan.team.first
+    Plan.team.first
   end
 end

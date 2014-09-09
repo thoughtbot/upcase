@@ -30,7 +30,7 @@ class Catalog
   end
 
   def individual_plans
-    IndividualPlan.featured.active.ordered
+    Plan.individual.featured.active.ordered
   end
 
   def videos

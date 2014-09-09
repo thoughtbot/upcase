@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe IndividualPlan do
+describe Plan do
   it { should have_many(:announcements) }
   it { should have_many(:checkouts) }
   it { should have_many(:subscriptions) }
@@ -16,8 +16,8 @@ describe IndividualPlan do
   describe '.active' do
     it 'only includes active plans' do
       active = create(:plan, active: true)
-      inactive = create(:plan, active: false)
-      expect(IndividualPlan.active).to eq [active]
+      _inactive = create(:plan, active: false)
+      expect(Plan.active).to eq [active]
     end
   end
 
@@ -26,14 +26,14 @@ describe IndividualPlan do
       ordered = stub(first: stub())
       featured = stub(ordered: ordered)
       active = stub(featured: featured)
-      IndividualPlan.stubs(active: active)
+      Plan.stubs(active: active)
 
-      IndividualPlan.default
+      Plan.default
 
       expect(ordered).to have_received(:first)
       expect(featured).to have_received(:ordered)
       expect(active).to have_received(:featured)
-      expect(IndividualPlan).to have_received(:active)
+      expect(Plan).to have_received(:active)
     end
   end
 
@@ -42,7 +42,7 @@ describe IndividualPlan do
       basic_plan = create(:basic_plan)
       create(:plan)
 
-      expect(IndividualPlan.basic).to eq basic_plan
+      expect(Plan.basic).to eq basic_plan
     end
   end
 
@@ -61,7 +61,7 @@ describe IndividualPlan do
     it 'starts a subscription' do
       user = build_stubbed(:user)
       user.stubs(:create_purchased_subscription)
-      plan = build_stubbed(:individual_plan)
+      plan = build_stubbed(:plan)
       checkout = build_stubbed(:checkout, user: user, subscribeable: plan)
       fulfillment = stub_subscription_fulfillment(checkout)
 
@@ -76,7 +76,7 @@ describe IndividualPlan do
   describe '#after_checkout_url' do
     it 'returns the dashboard path' do
       dashboard_path = 'http://example.com/dashboard'
-      plan = build_stubbed(:individual_plan)
+      plan = build_stubbed(:plan)
       checkout = build_stubbed(:checkout, subscribeable: plan)
       controller = stub('controller')
       controller.stubs(:dashboard_path).returns(dashboard_path)
@@ -89,24 +89,24 @@ describe IndividualPlan do
 
   describe "#has_feature?" do
     it "returns true if the plan has the feature" do
-      plan = build_stubbed(:individual_plan, :includes_mentor)
+      plan = build_stubbed(:plan, :includes_mentor)
       expect(plan).to have_feature(:mentor)
     end
 
     it "returns false if the plan does not have the feature" do
-      plan = build_stubbed(:individual_plan, :no_mentor)
+      plan = build_stubbed(:plan, :no_mentor)
       expect(plan).to_not have_feature(:mentor)
     end
 
     it "raises an exception with an invalid feature name" do
-      plan = build_stubbed(:individual_plan)
+      plan = build_stubbed(:plan)
       expect{ plan.has_feature?(:foo) }.to raise_error
     end
   end
 
   describe "#annualized_payment" do
     it "returns the payment amount times 12" do
-      plan = build_stubbed(:individual_plan)
+      plan = build_stubbed(:plan)
 
       expect(plan.annualized_payment).to eq(12 * plan.individual_price)
     end
@@ -114,12 +114,11 @@ describe IndividualPlan do
 
   describe "#discounted_annual_payment" do
     it "returns the payment amount times 10" do
-      plan = build_stubbed(:individual_plan)
+      plan = build_stubbed(:plan)
 
       expect(plan.discounted_annual_payment).to eq(10 * plan.individual_price)
     end
   end
-
 
   describe "#fulfill" do
     it "starts a subscription for a new team" do
@@ -161,7 +160,6 @@ describe IndividualPlan do
       expect(after_checkout_url).to eq(edit_team_path)
     end
   end
-
 
   def create_inactive_subscription_for(plan)
     create(:inactive_subscription, plan: plan)

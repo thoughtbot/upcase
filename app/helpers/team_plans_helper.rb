@@ -1,6 +1,6 @@
 module TeamPlansHelper
   def team_price_per_month(plan)
-    "starting at #{team_minimum_price(plan)} for #{team_minimum_people(plan)}"
+    "starting at #{minimum_team_price(plan)} for #{minimum_team_people(plan)}"
   end
 
   def team_plan_quantity_select(form, checkout, plan)
@@ -22,21 +22,19 @@ module TeamPlansHelper
   end
 
   def options_for_team_quantity(checkout, plan)
-    options_for_select(
-      (IndividualPlan::MINIMUM_TEAM_SIZE...50),
-      selected_team_plan_quantity(checkout, plan)
-    )
+    options_for_select (plan.minimum_quantity...50),
+                       selected_team_plan_quantity(checkout, plan)
   end
 
   def selected_team_plan_quantity(checkout, plan)
-    [checkout.quantity, IndividualPlan::MINIMUM_TEAM_SIZE].max
+    [checkout.quantity, plan.minimum_quantity].max
   end
 
-  def team_minimum_price(plan)
-    price_per_month(plan.individual_price * IndividualPlan::MINIMUM_TEAM_SIZE)
+  def minimum_team_price(plan)
+    price_per_month plan.minimum_team_price
   end
 
-  def team_minimum_people(plan)
-    pluralize(IndividualPlan::MINIMUM_TEAM_SIZE, 'person')
+  def minimum_team_people(plan)
+    pluralize(plan.minimum_quantity, 'person')
   end
 end

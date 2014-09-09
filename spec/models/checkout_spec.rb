@@ -78,14 +78,14 @@ describe Checkout do
   end
 
   it "uses the individual_price of the subscribeable as it's price" do
-    plan = build(:individual_plan, individual_price: 50)
+    plan = build(:plan, individual_price: 50)
     checkout = build(:checkout, subscribeable: plan)
 
     expect(checkout.price).to eq 50
   end
 
   it "uses the individual_price of the subscribeable and quantity as it's price" do
-    plan = build(:individual_plan, individual_price: 50)
+    plan = build(:plan, individual_price: 50)
     checkout = build(:checkout, subscribeable: plan, quantity: 3)
 
     expect(checkout.price).to eq 150
@@ -95,7 +95,7 @@ describe Checkout do
     it "delegates to its subscribeable" do
       controller = stub("controller")
       after_checkout_url = "http://example.com/after_checkout"
-      plan = build_stubbed(:individual_plan)
+      plan = build_stubbed(:plan)
       checkout = build_stubbed(:checkout, subscribeable: plan)
       plan.
         stubs(:after_checkout_url).

@@ -21,7 +21,7 @@ describe CheckoutMailer do
         end
 
         it 'mentions the mentor email' do
-          plan = create(:individual_plan, :includes_mentor)
+          plan = create(:plan, :includes_mentor)
           user = create(:subscriber, plan: plan)
           checkout = create(:checkout, user: user, subscribeable: plan)
 

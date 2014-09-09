@@ -3,7 +3,7 @@ class ShowsController < ApplicationController
 
   def show
     @offering = Offering.new(requested_show, current_user)
-    @plan = IndividualPlan.basic
+    @plan = Plan.basic
 
     if @offering.user_has_license?
       render polymorphic_licenseable_template, layout: "application"

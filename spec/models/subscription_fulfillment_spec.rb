@@ -5,7 +5,7 @@ describe SubscriptionFulfillment do
     it "downloads the user's GitHub public keys" do
       GitHubPublicKeyDownloadFulfillmentJob.stubs(:enqueue)
       user = build_subscribable_user
-      plan = build_stubbed(:individual_plan)
+      plan = build_stubbed(:plan)
 
       SubscriptionFulfillment.new(user, plan).fulfill
 
@@ -15,7 +15,7 @@ describe SubscriptionFulfillment do
 
     it "fulfills all gained features" do
       user = build_subscribable_user
-      plan = build_stubbed(:individual_plan)
+      plan = build_stubbed(:plan)
       fulfillment = stub_feature_fulfillment
 
       SubscriptionFulfillment.new(user, plan).fulfill
@@ -25,7 +25,7 @@ describe SubscriptionFulfillment do
 
     it "updates the subscription next invoice information" do
       user = create(:user, :with_subscription)
-      plan = create(:individual_plan)
+      plan = create(:plan)
       invoice_updater = stub(process: nil)
       SubscriptionUpcomingInvoiceUpdater.stubs(:new).returns(invoice_updater)
 
@@ -47,7 +47,7 @@ describe SubscriptionFulfillment do
     it 'removes all subscription licenses' do
       user = build_subscribable_user
       licenses = stub_subscription_licenses(user)
-      plan = build_stubbed(:individual_plan)
+      plan = build_stubbed(:plan)
 
       SubscriptionFulfillment.new(user, plan).remove
 
@@ -56,7 +56,7 @@ describe SubscriptionFulfillment do
 
     it "unfulfills all lost features" do
       user = build_subscribable_user
-      plan = build_stubbed(:individual_plan)
+      plan = build_stubbed(:plan)
       fulfillment = stub_feature_unfulfillment
 
       SubscriptionFulfillment.new(user, plan).remove

@@ -60,11 +60,11 @@ describe Catalog do
     end
   end
 
-  describe "#individual_plans" do
+  describe "#plans" do
     it "returns all featured active plans" do
       catalog = Catalog.new
       expect(catalog.individual_plans).
-        to find_relation(IndividualPlan.featured.active.ordered)
+        to find_relation(Plan.individual.featured.active.ordered)
     end
   end
 

@@ -8,7 +8,7 @@ module PlansHelper
   end
 
   def grid_partial_for(plan)
-    "individual_plans/#{plan.sku.underscore}"
+    "plans/#{plan.sku.underscore}"
   end
 
   def formatted_name(plan)

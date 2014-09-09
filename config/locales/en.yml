@@ -21,7 +21,7 @@ en:
     show:
       contact_your_mentor: "Contact your mentor, %{mentor_name}"
 
-  individual_plans:
+  plans:
     mentoring: '1-1 Mentoring'
     video_tutorials: 'Hands-On Video Tutorials'
     forum: 'Private Discourse Forum'

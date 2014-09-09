@@ -128,7 +128,7 @@ feature 'Visitor signs up for a subscription' do
   end
 
   def create_plan
-    @plan = create(:plan, sku: IndividualPlan::PRIME_99_SKU)
+    @plan = create(:plan, sku: Plan::PRIME_99_SKU)
   end
 
   def attempt_to_subscribe
