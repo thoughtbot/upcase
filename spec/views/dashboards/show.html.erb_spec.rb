@@ -53,7 +53,7 @@ describe "dashboards/show.html" do
     end
   end
 
-  context "when a user has access to shows and video_tutorials" do
+  context "when a user has access to shows and video tutorials" do
     it "renders locked features partial with exercises and books" do
       render_show shows: true, video_tutorials: true, screencasts: true
 
@@ -65,7 +65,7 @@ describe "dashboards/show.html" do
     it "renders locked features partial with correct features" do
       render_show shows: true
 
-      text = "Books, exercises, screencasts, and video_tutorials are locked"
+      text = "Books, exercises, screencasts, and video tutorials are locked"
       expect(rendered).to have_content(text)
     end
   end
@@ -74,7 +74,7 @@ describe "dashboards/show.html" do
     it "renders locked features partial with all features" do
       render_show
 
-      text = "Books, exercises, screencasts, shows, and video_tutorials are locked"
+      text = "Books, exercises, screencasts, shows, and video tutorials are locked"
       expect(rendered).to have_content(text)
     end
   end
@@ -101,25 +101,5 @@ describe "dashboards/show.html" do
       exercises: false,
       books: false
     }
-  end
-
-  def include_exercises
-    have_content("Hone your skills")
-  end
-
-  def include_video_tutorials
-    have_content("Enroll in our online video_tutorials")
-  end
-
-  def include_screencasts_and_shows
-    have_content("Watch our web shows and screencasts")
-  end
-
-  def include_shows
-    have_content("Watch The Weekly Iteration")
-  end
-
-  def include_books
-    have_content("Read our eBooks")
   end
 end

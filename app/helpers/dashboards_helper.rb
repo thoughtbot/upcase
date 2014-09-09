@@ -26,7 +26,7 @@ module DashboardsHelper
   end
 
   def locked_features_text
-    locked_features.to_sentence.capitalize
+    locked_features.to_sentence.humanize
   end
 
   def subscribe_or_upgrade_link
