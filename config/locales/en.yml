@@ -148,3 +148,8 @@ en:
     flashes:
       success: Success! Enjoy your shiny new product.
       error:  "You're already subscribed to Upcase!"
+
+  users:
+    flashes:
+      update:
+        success: Your profile has been updated.

@@ -22,7 +22,7 @@ class UsersController < Clearance::UsersController
 
   def update
     if current_user.update_attributes(create_user_from_params)
-      redirect_to my_account_path
+      redirect_to my_account_path, notice: I18n.t("users.flashes.update.success")
     else
       render action: :edit
     end
