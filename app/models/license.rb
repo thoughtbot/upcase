@@ -6,7 +6,7 @@ class License < ActiveRecord::Base
 
   after_save :fulfill
 
-  delegate :email, to: :user, prefix: true
+  delegate :email, :name, to: :user, prefix: true
   delegate :github_username, to: :user
   delegate :name, to: :licenseable, prefix: true
 
