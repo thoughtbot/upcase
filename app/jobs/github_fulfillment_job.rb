@@ -10,18 +10,24 @@ class GithubFulfillmentJob < Struct.new(:github_team, :username, :license_id)
   end
 
   def perform
-    # TODO remove accept once GitHub removes preview mode.
-    github_client.add_team_membership(
-      github_team,
-      username,
-      accept: PREVIEW_MEDIA_TYPE
-    )
+    add_on_github
   rescue Octokit::NotFound, Net::HTTPBadResponse
     email_user
     raise
   end
 
   private
+
+  def add_on_github
+    if username
+      # TODO remove accept once GitHub removes preview mode.
+      github_client.add_team_membership(
+        github_team,
+        username,
+        accept: PREVIEW_MEDIA_TYPE
+      )
+    end
+  end
 
   def email_user
     if license_id

@@ -15,6 +15,20 @@ describe GithubFulfillmentJob do
     )
   end
 
+  context "when username is nil" do
+    it "doesn't call GitHub" do
+      client = stub_octokit
+      client.stubs(add_team_membership: nil)
+
+      GithubFulfillmentJob.new(3, nil).perform
+
+      expect(client).to(
+        have_received(:add_team_membership).
+        never
+      )
+    end
+  end
+
   [Octokit::NotFound, Net::HTTPBadResponse].each do |error_class|
     it "sends an email when #{error_class} is raised" do
       license_id = create(:license).id
