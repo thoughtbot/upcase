@@ -5,7 +5,7 @@ ruby '2.1.2'
 gem 'RedCloth', '4.2.9', require: 'redcloth'
 gem 'active_model_serializers', '~> 0.7.0'
 gem 'acts_as_list', '0.2.0'
-gem 'airbrake', '3.1.14'
+gem 'airbrake', '~> 4.0.0'
 gem 'aws-sdk', '= 1.6.2' # Bug https://github.com/thoughtbot/paperclip/issues/751
 gem 'analytics-ruby'
 gem 'bluecloth'
