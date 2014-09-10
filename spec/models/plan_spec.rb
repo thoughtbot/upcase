@@ -73,20 +73,6 @@ describe Plan do
     end
   end
 
-  describe '#after_checkout_url' do
-    it 'returns the dashboard path' do
-      dashboard_path = 'http://example.com/dashboard'
-      plan = build_stubbed(:plan)
-      checkout = build_stubbed(:checkout, subscribeable: plan)
-      controller = stub('controller')
-      controller.stubs(:dashboard_path).returns(dashboard_path)
-
-      after_checkout_url = plan.after_checkout_url(controller, checkout)
-
-      expect(after_checkout_url).to eq(dashboard_path)
-    end
-  end
-
   describe "#has_feature?" do
     it "returns true if the plan has the feature" do
       plan = build_stubbed(:plan, :includes_mentor)
@@ -144,20 +130,6 @@ describe Plan do
           with(checkout, checkout.user).
           returns(fulfillment)
       end
-    end
-  end
-
-  describe "#after_checkout_url" do
-    it "returns the edit team path" do
-      edit_team_path = "http://example.com/edit_team"
-      plan = build_stubbed(:plan, :team)
-      checkout = build_stubbed(:checkout, subscribeable: plan)
-      controller = stub("controller")
-      controller.stubs(:edit_team_path).returns(edit_team_path)
-
-      after_checkout_url = plan.after_checkout_url(controller, checkout)
-
-      expect(after_checkout_url).to eq(edit_team_path)
     end
   end
 

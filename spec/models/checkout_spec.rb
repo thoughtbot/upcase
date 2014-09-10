@@ -90,19 +90,4 @@ describe Checkout do
 
     expect(checkout.price).to eq 150
   end
-
-  describe "#success_url" do
-    it "delegates to its subscribeable" do
-      controller = stub("controller")
-      after_checkout_url = "http://example.com/after_checkout"
-      plan = build_stubbed(:plan)
-      checkout = build_stubbed(:checkout, subscribeable: plan)
-      plan.
-        stubs(:after_checkout_url).
-        with(controller, checkout).
-        returns(after_checkout_url)
-
-      expect(checkout.success_url(controller)).to eq(after_checkout_url)
-    end
-  end
 end

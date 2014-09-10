@@ -50,7 +50,11 @@ class CheckoutsController < ApplicationController
   end
 
   def success_url
-    @checkout.success_url(self)
+    if @checkout.includes_team?
+      edit_team_path
+    else
+      dashboard_path
+    end
   end
 
   def url_after_denied_access_when_signed_out

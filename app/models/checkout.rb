@@ -14,6 +14,7 @@ class Checkout < ActiveRecord::Base
   delegate :last_name, to: :user, prefix: true
   delegate :organization, to: :user, prefix: true
   delegate :sku, to: :subscribeable, prefix: true
+  delegate :includes_team?, to: :subscribeable
   delegate :name, to: :subscribeable, prefix: true
   delegate :terms, to: :subscribeable
 
@@ -27,10 +28,6 @@ class Checkout < ActiveRecord::Base
 
   def price
     subscribeable.individual_price * quantity
-  end
-
-  def success_url(controller)
-    subscribeable.after_checkout_url(controller, self)
   end
 
   private

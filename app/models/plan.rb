@@ -57,14 +57,6 @@ class Plan < ActiveRecord::Base
     end
   end
 
-  def after_checkout_url(controller, _checkout)
-    if includes_team?
-      controller.edit_team_path
-    else
-      controller.dashboard_path
-    end
-  end
-
   def included_in_plan?(plan)
     false
   end
