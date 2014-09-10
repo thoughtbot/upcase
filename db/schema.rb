@@ -335,6 +335,7 @@ ActiveRecord::Schema.define(version: 20140911184704) do
 
   add_index "users", ["admin"], name: "index_users_on_admin", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["github_username"], name: "index_users_on_github_username", unique: true, using: :btree
   add_index "users", ["id", "confirmation_token"], name: "index_users_on_id_and_confirmation_token", using: :btree
   add_index "users", ["mentor_id"], name: "index_users_on_mentor_id", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree

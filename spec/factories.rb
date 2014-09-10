@@ -11,6 +11,10 @@ FactoryGirl.define do
     "name #{n}"
   end
 
+  sequence :github_username do |n|
+    "github_#{n}"
+  end
+
   sequence :title do |n|
     "title #{n}"
   end
@@ -194,7 +198,7 @@ FactoryGirl.define do
   end
 
   factory :acceptance, class: 'Acceptance' do
-    github_username 'username'
+    github_username
     invitation
     name
     password 'secret'
@@ -226,7 +230,7 @@ FactoryGirl.define do
   factory :checkout do
     email
     name
-    github_username 'test'
+    github_username
     association :subscribeable, factory: :plan
     association :user, :with_stripe, :with_mentor, :with_github
   end
@@ -310,11 +314,11 @@ FactoryGirl.define do
     end
 
     trait :with_github do
-      github_username 'thoughtbot'
+      github_username
     end
 
     trait :with_github_auth do
-      github_username 'thoughtbot'
+      github_username
       auth_provider 'github'
       auth_uid 1
     end
