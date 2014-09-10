@@ -100,7 +100,7 @@
 
   &.dashboard-resource {
     border-top: 5px solid $green;
-    height: 165px;
+    height: 185px;
 
     h4 {
       color: $darkwarmgray;
@@ -115,9 +115,24 @@
       margin-top: 0;
     }
 
+    &.card > a {
+      height: 82%;
+    }
+
     &.trails {
       background: url(<%= asset_path 'upcase/trails-graphic.svg' %>) white no-repeat 3rem .8rem;
       background-size: 75%;
+    }
+
+    .product-card-locked {
+      text-align: center;
+
+      a.upgrade-link {
+        color: $darkwarmgray;
+        font-size: .75rem;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
     }
   }
 
