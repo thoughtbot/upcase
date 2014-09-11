@@ -35,6 +35,7 @@
             </li>
           <% end %>
           <li class="account"><%= link_to 'Settings', my_account_path %></li>
+          <%= render 'shared/masquerade_link' if masquerading? %>
         <% else %>
           <li class="account"><%= link_to 'Sign in', sign_in_path %></li>
         <% end %>

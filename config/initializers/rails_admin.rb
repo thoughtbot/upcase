@@ -65,6 +65,15 @@ RailsAdmin.config do |config|
       field :email
       field :github_username
       field :subscription
+      field :masquerade do
+        pretty_value do
+          bindings[:view].link_to(
+            'Mask',
+            bindings[:view].main_app.user_masquerade_path(bindings[:object]),
+            method: :post
+          )
+        end
+      end
     end
 
     edit do

@@ -3,6 +3,7 @@ require "rails_helper"
 describe 'promoted_catalogs/show.html.erb' do
   context "when signed in without a subscription" do
     before do
+      view_stubs(masquerading?: false)
       view_stubs(signed_in?: true)
       view_stubs(current_user_has_active_subscription?: false)
       view_stubs(current_user_is_subscription_owner?: false)
@@ -25,6 +26,7 @@ describe 'promoted_catalogs/show.html.erb' do
 
   context "when signed in with a subscription" do
     before do
+      view_stubs(masquerading?: false)
       view_stubs(signed_in?: true)
       view_stubs(current_user_has_active_subscription?: true)
       view_stubs(current_user_is_subscription_owner?: true)

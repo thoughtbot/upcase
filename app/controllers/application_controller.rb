@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def must_be_admin
-    unless current_user && current_user.admin?
+    unless current_user_is_admin?
       flash[:error] = 'You do not have permission to view that page.'
       redirect_to root_url
     end
@@ -57,9 +57,13 @@ class ApplicationController < ActionController::Base
   helper_method :subscription_includes_mentor?
 
   def current_user_is_admin?
-    current_user && current_user.admin?
+    current_user && (current_user.admin? || masquerading?)
   end
-  helper_method :current_user_is_admin?
+
+  def masquerading?
+    session[:admin_id].present?
+  end
+  helper_method :masquerading?
 
   def requested_licenseable
     PolymorphicFinder.
