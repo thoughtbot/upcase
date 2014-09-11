@@ -11,20 +11,6 @@ describe Subscription do
   it { should validate_presence_of(:plan_type) }
   it { should validate_presence_of(:user_id) }
 
-  it 'defaults paid to true' do
-    expect(Subscription.new).to be_paid
-  end
-
-  describe 'self.paid' do
-    it 'only includes paid subscriptions' do
-      paid = create(:subscription, paid: true)
-      free = create(:subscription, paid: false)
-
-      expect(Subscription.paid).not_to include(free)
-      expect(Subscription.paid).to include(paid)
-    end
-  end
-
   describe '.deliver_welcome_emails' do
     it 'sends emails for each new mentored subscriber in the last 24 hours' do
       plan = create(:individual_plan, includes_mentor: true)

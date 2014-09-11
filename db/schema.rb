@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140908153238) do
+ActiveRecord::Schema.define(version: 20140910213739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -255,7 +255,6 @@ ActiveRecord::Schema.define(version: 20140908153238) do
     t.datetime "updated_at",                                               null: false
     t.date     "deactivated_on"
     t.date     "scheduled_for_cancellation_on"
-    t.boolean  "paid",                          default: true,             null: false
     t.integer  "plan_id",                                                  null: false
     t.string   "plan_type",                     default: "IndividualPlan", null: false
     t.decimal  "next_payment_amount",           default: 0.0,              null: false

@@ -18,10 +18,6 @@ class Subscription < ActiveRecord::Base
     end
   end
 
-  def self.paid
-    where(paid: true)
-  end
-
   def self.canceled_in_last_30_days
     canceled_within_period(30.days.ago, Time.zone.now)
   end
