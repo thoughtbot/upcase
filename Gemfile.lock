@@ -298,6 +298,8 @@ GEM
     raindrops (0.12.0)
     rake (10.3.2)
     remotipart (1.2.1)
+    responders (1.0.0)
+      railties (>= 3.2, < 5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     restclient_with_cert (0.0.8)
@@ -453,6 +455,7 @@ DEPENDENCIES
   rails (= 4.1.5)
   rails_12factor
   rails_admin (~> 0.6.2)
+  responders
   rspec-rails (~> 3.0.2)
   ruby-freshbooks (= 0.4.0)
   rubyzip (= 0.9.9)

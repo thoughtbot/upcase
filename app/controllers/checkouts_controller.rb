@@ -1,4 +1,7 @@
 class CheckoutsController < ApplicationController
+  self.responder = Responders::CheckoutResponder
+  respond_to :html
+
   def new
     if current_user_has_active_subscription?
       redirect_to(
@@ -16,23 +19,7 @@ class CheckoutsController < ApplicationController
     @checkout.stripe_customer_id = existing_stripe_customer_id
     CheckoutPrepopulator.new(@checkout, current_user).prepopulate_with_user_info
 
-    if @checkout.save
-      sign_in_checkout_user(@checkout)
-
-      redirect_to(
-        success_url,
-        notice: t(
-          "checkout.flashes.success",
-          name: @checkout.subscribeable_name
-        ),
-        flash: {
-          purchase_amount: @checkout.price,
-          purchase_name: @checkout.subscribeable_name
-        }
-      )
-    else
-      render :new
-    end
+    respond_with @checkout
   end
 
   private
@@ -41,16 +28,6 @@ class CheckoutsController < ApplicationController
     checkout = requested_subscribeable.checkouts.build
     CheckoutPrepopulator.new(checkout, current_user).prepopulate_with_user_info
     checkout
-  end
-
-  def sign_in_checkout_user(checkout)
-    if signed_out? && checkout.user
-      sign_in checkout.user
-    end
-  end
-
-  def success_url
-    @checkout.success_url(self)
   end
 
   def url_after_denied_access_when_signed_out
