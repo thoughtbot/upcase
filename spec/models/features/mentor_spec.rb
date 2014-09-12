@@ -26,11 +26,17 @@ describe Features::Mentor do
   describe "#unfulfill" do
     it "remove mentor for user" do
       user = build_stubbed(:user, :with_mentor)
-      user.stubs(:assign_mentor)
+      user.stubs(:assign_mentor).with(nil)
+      mail = stub(deliver: true)
+      DowngradeMailer.
+        stubs(:notify_mentor).
+        with(mentee_id: user.id, mentor_id: user.mentor_id).
+        returns(mail)
 
       Features::Mentor.new(user: user).unfulfill
 
       expect(user).to have_received(:assign_mentor).with(nil)
+      expect(DowngradeMailer).to have_received(:notify_mentor)
     end
   end
 end
