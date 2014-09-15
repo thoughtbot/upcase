@@ -5,7 +5,16 @@
 
 <div class="text-box-wrapper solo">
   <div class="text-box">
-    <h4>Members <span>- Your next charge will be on <%= @team.subscription.next_payment_on.to_s(:simple) %> for <%= number_to_currency(@team.subscription.next_payment_amount_in_dollars) %></span></h4>
+    <h4>
+      Members
+      <% if @team.subscription.next_payment_on.present? %>
+      <span>
+        - Your next charge will be
+        on <%= @team.subscription.next_payment_on.to_s(:simple) %>
+        for <%= number_to_currency(@team.subscription.next_payment_amount_in_dollars) %>
+      </span>
+      <% end %>
+    </h4>
     <ul class="members">
       <% @team.users.each do |user| %>
         <li class="<%= "owner" if @team.owner?(user) %>">
