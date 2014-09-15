@@ -49,4 +49,23 @@ feature "Accept team invitations" do
       expect(page).to have_content("Dashboard")
     end
   end
+
+  scenario "has existing account" do
+    create(:user, email: "invited-member@example.com")
+
+    visit_team_plan_checkout_page
+    fill_out_account_creation_form email: "owner@somedomain.com"
+    fill_out_credit_card_form_with_valid_credit_card
+
+    fill_in "Email", with: "invited-member@example.com"
+    click_on "Send"
+
+    using_session :team_member do
+      open_email "invited-member@example.com"
+      click_first_link_in_email
+
+      expect(page).to have_content("you already have an account")
+      expect(page).to have_content("Please email help@upcase.com")
+    end
+  end
 end

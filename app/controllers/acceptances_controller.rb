@@ -1,5 +1,6 @@
 class AcceptancesController < ApplicationController
   def new
+    @existing_user = User.exists?(email: find_invitation.email)
     @acceptance = build_acceptance
   end
 

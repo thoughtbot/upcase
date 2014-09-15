@@ -1,16 +1,9 @@
 <section id="auth-form-container">
   <div class="thoughtbot-signin">
-    <%= semantic_form_for(
-      @acceptance,
-      url: invitation_acceptances_path(@acceptance.invitation)
-    ) do |form| %>
-      <%= form.semantic_errors :invitation %>
-      <%= form.inputs do %>
-        <%= form.input :name %>
-        <%= form.input :github_username %>
-        <%= form.input :password %>
-        <%= form.submit 'Create an account' %>
-      <% end %>
+    <% if @existing_user %>
+      <%= render 'existing_user' %>
+    <% else %>
+      <%= render 'form', acceptance: @acceptance %>
     <% end %>
   </div>
 </section>
