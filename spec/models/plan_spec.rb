@@ -10,34 +10,54 @@ describe Plan do
   it { should validate_presence_of(:short_description) }
   it { should validate_presence_of(:sku) }
 
-  it_behaves_like 'a Plan for public listing'
+  it_behaves_like "a Plan for public listing"
 
-  describe '.active' do
-    it 'only includes active plans' do
+  describe ".active" do
+    it "only includes active plans" do
       active = create(:plan, active: true)
       _inactive = create(:plan, active: false)
       expect(Plan.active).to eq [active]
     end
   end
 
-  describe '.default' do
-    it 'returns the first, active, featured, ordered plan' do
+  describe ".default" do
+    it "returns the first, active, featured, ordered plan" do
       ordered = stub(first: stub())
       featured = stub(ordered: ordered)
       active = stub(featured: featured)
-      Plan.stubs(active: active)
+      individual = stub(active: active)
+      Plan.stubs(individual: individual)
 
       Plan.default
 
       expect(ordered).to have_received(:first)
       expect(featured).to have_received(:ordered)
       expect(active).to have_received(:featured)
-      expect(Plan).to have_received(:active)
+      expect(individual).to have_received(:active)
+      expect(Plan).to have_received(:individual)
     end
   end
 
-  describe '.basic' do
-    it 'returns the basic plan' do
+  describe ".default_team" do
+    it "returns the first, active, featured, ordered team plan" do
+      ordered = stub(first: stub())
+      featured = stub(ordered: ordered)
+      active = stub(featured: featured)
+      team = stub(active: active)
+      Plan.stubs(team: team)
+
+      Plan.default_team
+
+      expect(ordered).to have_received(:first)
+      expect(featured).to have_received(:ordered)
+      expect(active).to have_received(:featured)
+      expect(team).to have_received(:active)
+      expect(Plan).to have_received(:team)
+    end
+  end
+
+  describe ".basic" do
+    it "returns the basic plan" do
       basic_plan = create(:basic_plan)
       create(:plan)
 
@@ -45,19 +65,19 @@ describe Plan do
     end
   end
 
-  describe 'subscription_interval' do
-    it 'returns the interval from the stripe plan' do
+  describe "subscription_interval" do
+    it "returns the interval from the stripe plan" do
       plan = build_stubbed(:plan)
-      stripe_plan = stub(interval: 'year')
+      stripe_plan = stub(interval: "year")
       Stripe::Plan.stubs(:retrieve).returns(stripe_plan)
 
-      expect(plan.subscription_interval).to eq 'year'
+      expect(plan.subscription_interval).to eq "year"
       expect(Stripe::Plan).to have_received(:retrieve).with(plan.sku)
     end
   end
 
-  describe '#fulfill' do
-    it 'starts a subscription' do
+  describe "#fulfill" do
+    it "starts a subscription" do
       subscription = build_stubbed(:subscription)
       subscription.stubs(update: nil)
       user = build_stubbed(:user)

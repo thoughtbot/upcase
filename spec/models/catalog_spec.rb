@@ -47,6 +47,17 @@ describe Catalog do
     end
   end
 
+  describe "#team_plan" do
+    it "returns the first team featured active plans" do
+      team_plan = stub(:plan)
+      Plan.stubs(default_team: team_plan)
+      catalog = Catalog.new
+
+      expect(catalog.team_plan).to eq team_plan
+      expect(Plan).to have_received(:default_team)
+    end
+  end
+
   describe "#to_partial_path" do
     it "returns a renderable path" do
       catalog = Catalog.new

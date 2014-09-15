@@ -1,6 +1,6 @@
 @import "reset";
 @import "bourbon";
-@import "neat/neat";
+@import "neat";
 
 @import "base-variables";
 @import "base-breakpoints";
@@ -8,6 +8,7 @@
 @import "base-typography";
 @import "base-forms";
 @import "base-lists";
+@import "font-awesome";
 
 @import "product-card";
 
@@ -22,6 +23,7 @@
 @import "address";
 @import "users-edit";
 @import "teams-edit";
+@import "teams-index";
 @import "products-index";
 @import "trails";
 @import "landing-pages";

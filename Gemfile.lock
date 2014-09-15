@@ -172,6 +172,9 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    neat (1.5.1)
+      bourbon (>= 3.1)
+      sass (~> 3.2.19)
     nested_form (0.3.2)
     netrc (0.8.0)
     newrelic_rpm (3.8.1.221)
@@ -388,6 +391,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   launchy
+  neat
   newrelic_rpm (~> 3.8.1.221)
   nokogiri (~> 1.6.4)
   octokit (~> 3.5.2)

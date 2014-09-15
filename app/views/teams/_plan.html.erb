@@ -1,0 +1,12 @@
+<section class="plan">
+  <div class="price">
+    <span class="amount">
+      <%= number_to_currency plan.individual_price, precision: 0 %>
+    </span>
+    <div class="info">
+      <span class="interval">per month</span>
+      <span class="unit">per user</span>
+    </div>
+  </div>
+  <%= link_to "Enroll your team today", new_checkout_path(plan), class: "sign-up" %>
+</section>

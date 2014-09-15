@@ -1,3 +1,4 @@
+resources :teams, only: :index
 resource :team, only: :edit
 
 resources :invitations, only: [:create, :destroy] do

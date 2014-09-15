@@ -28,7 +28,11 @@ class Plan < ActiveRecord::Base
   end
 
   def self.default
-    active.featured.ordered.first
+    individual.active.featured.ordered.first
+  end
+
+  def self.default_team
+    team.active.featured.ordered.first
   end
 
   def self.basic

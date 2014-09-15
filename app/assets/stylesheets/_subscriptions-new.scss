@@ -12,7 +12,8 @@ body.subscriptions-new nav .view-plans {
   display: none;
 }
 
-body.subscriptions.subscriptions-new {
+body.subscriptions.subscriptions-new,
+body.teams.teams-index {
   .signin {
     color: $darkwarmgray;
     font-family: $sans-serif;
@@ -405,7 +406,7 @@ body.subscriptions.subscriptions-new {
 
   strong {
     color: darken($celestial-blue, 20%);
-    display: block;
+    display: inline;
   }
 }
 

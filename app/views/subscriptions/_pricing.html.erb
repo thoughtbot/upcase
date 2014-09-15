@@ -27,7 +27,7 @@
           <a href="#weekly_iteration">The Weekly Iteration</a>
         </li>
       </ol>
-      <div class="teams-pricing"><%= mail_to ENV["SUPPORT_EMAIL"], "Email for team pricing" %></div>
+      <div class="teams-pricing"><%= link_to "Team pricing", teams_path %></div>
     </nav>
 
     <%= render plans %>
