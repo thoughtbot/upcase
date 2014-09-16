@@ -6,7 +6,7 @@ class Catalog
   end
 
   def video_tutorials
-    VideoTutorial.only_active.by_position
+    VideoTutorial.active
   end
 
   def screencasts

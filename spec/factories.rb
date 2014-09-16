@@ -50,7 +50,7 @@ FactoryGirl.define do
 
     description 'Solve 8-Queens over and over again'
     name { generate(:name) }
-    short_description 'Solve 8-Queens'
+    tagline 'Solve 8-Queens'
     sku 'EIGHTQUEENS'
     length_in_days 28
 

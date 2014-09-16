@@ -73,11 +73,11 @@ class Product < ActiveRecord::Base
   end
 
   def title
-    "#{name}: a #{type.downcase} by thoughtbot"
+    "#{name}: a #{offering_type} by thoughtbot"
   end
 
   def offering_type
-    type.downcase
+    type.underscore
   end
 
   def fulfilled_with_github?

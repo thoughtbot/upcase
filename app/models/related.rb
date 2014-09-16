@@ -4,7 +4,7 @@ class Related
   end
 
   def video_tutorials
-    @item.video_tutorials.only_active.by_position
+    @item.video_tutorials.active
   end
 
   def products

@@ -97,7 +97,7 @@ describe 'promoted_catalogs/show.html.erb' do
       render
 
       expect(rendered).to include(video_tutorial.name)
-      expect(rendered).to include(video_tutorial.short_description)
+      expect(rendered).to include(video_tutorial.tagline)
       expect(rendered).to include(image_tag(video_tutorial.thumbnail_path))
       link_title = "The #{video_tutorial.name} online video tutorial details"
       expect(rendered).
