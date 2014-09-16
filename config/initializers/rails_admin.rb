@@ -68,7 +68,7 @@ RailsAdmin.config do |config|
       field :masquerade do
         pretty_value do
           bindings[:view].link_to(
-            'Mask',
+            'Masquerade',
             bindings[:view].main_app.user_masquerade_path(bindings[:object]),
             method: :post
           )
