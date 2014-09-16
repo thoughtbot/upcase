@@ -2,7 +2,6 @@ require "rails_helper"
 
 describe VideoTutorial do
   # Associations
-  it { should have_many(:announcements).dependent(:destroy) }
   it { should have_many(:classifications).dependent(:destroy) }
   it { should have_many(:downloads) }
   it { should have_many(:licenses).dependent(:restrict_with_exception) }
@@ -34,15 +33,6 @@ describe VideoTutorial do
       create(:video_tutorial, promoted: false)
 
       expect(VideoTutorial.promoted).to eq(promoted_video_tutorials)
-    end
-  end
-
-  describe '#announcement' do
-    it 'calls Announcement.current' do
-      Announcement.stubs :current
-      video_tutorial = create(:video_tutorial)
-      video_tutorial.announcement
-      expect(Announcement).to have_received(:current)
     end
   end
 

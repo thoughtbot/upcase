@@ -11,21 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140911184704) do
+ActiveRecord::Schema.define(version: 20140916212112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "announcements", force: true do |t|
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "announceable_id",   null: false
-    t.string   "announceable_type", null: false
-    t.text     "message",           null: false
-    t.datetime "ends_at",           null: false
-  end
-
-  add_index "announcements", ["announceable_id", "announceable_type", "ends_at"], name: "index_announcements_on_announceable_and_ends_at", using: :btree
 
   create_table "checkouts", force: true do |t|
     t.integer  "user_id",                        null: false

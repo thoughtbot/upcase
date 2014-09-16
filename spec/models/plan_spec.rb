@@ -1,7 +1,6 @@
 require "rails_helper"
 
 describe Plan do
-  it { should have_many(:announcements) }
   it { should have_many(:checkouts) }
   it { should have_many(:subscriptions) }
 

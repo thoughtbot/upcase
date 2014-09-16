@@ -2,7 +2,6 @@ class VideoTutorial < ActiveRecord::Base
   extend FriendlyId
 
   # Associations
-  has_many :announcements, as: :announceable, dependent: :destroy
   has_many :classifications, as: :classifiable, dependent: :destroy
   has_many :downloads, as: :purchaseable
   has_many :licenses, as: :licenseable, dependent: :restrict_with_exception
@@ -37,10 +36,6 @@ class VideoTutorial < ActiveRecord::Base
 
   def self.promoted
     where promoted: true
-  end
-
-  def announcement
-    @announcement ||= announcements.current
   end
 
   def questions_with_blank

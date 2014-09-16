@@ -1,7 +1,6 @@
 class Product < ActiveRecord::Base
   extend FriendlyId
 
-  has_many :announcements, as: :announceable, dependent: :destroy
   has_many :classifications, as: :classifiable
   has_many :downloads, as: :purchaseable
   has_many :licenses, as: :licenseable
@@ -43,10 +42,6 @@ class Product < ActiveRecord::Base
 
   def meta_keywords
     topics.meta_keywords
-  end
-
-  def announcement
-    @announcement ||= announcements.current
   end
 
   def subscription?

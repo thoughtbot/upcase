@@ -5,7 +5,6 @@ class Plan < ActiveRecord::Base
   PRIME_29_SKU = 'prime-29'
   MINIMUM_TEAM_SIZE = 3
 
-  has_many :announcements, as: :announceable, dependent: :destroy
   has_many :checkouts, as: :subscribeable
   has_many :subscriptions, as: :plan
 

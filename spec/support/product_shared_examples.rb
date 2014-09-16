@@ -1,5 +1,4 @@
 shared_examples "a class inheriting from Product" do
-  it { should have_many(:announcements).dependent(:destroy) }
   it { should have_many(:classifications) }
   it { should have_many(:downloads) }
   it { should have_many(:licenses) }
@@ -8,15 +7,6 @@ shared_examples "a class inheriting from Product" do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:sku) }
   it { should validate_presence_of(:type) }
-
-  describe "#announcement" do
-    it "calls Announcement.current" do
-      Announcement.stubs :current
-      product = create_product
-      product.announcement
-      expect(Announcement).to have_received(:current)
-    end
-  end
 
   describe "#product_type_symbol" do
     it "returns product_type_symbol" do

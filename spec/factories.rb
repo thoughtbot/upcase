@@ -30,12 +30,6 @@ FactoryGirl.define do
     end
   end
 
-  factory :announcement do
-    association :announceable, factory: :book
-    ends_at { 1.day.from_now }
-    message 'Foo: http://example.com'
-  end
-
   factory :classification do
     association :classifiable, factory: :product
     topic
