@@ -2,62 +2,21 @@ require "rails_helper"
 
 describe VideoTutorial do
   # Associations
-  it { should have_many(:classifications).dependent(:destroy) }
-  it { should have_many(:downloads) }
-  it { should have_many(:licenses).dependent(:restrict_with_exception) }
   it { should have_many(:questions).dependent(:destroy) }
   it { should have_many(:teachers).dependent(:destroy) }
-  it { should have_many(:topics).through(:classifications) }
   it { should have_many(:users).through(:teachers) }
-  it { should have_many(:videos) }
 
   # Validations
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:short_description) }
+  it { should validate_presence_of(:tagline) }
   it { should validate_presence_of(:sku) }
   it { should validate_presence_of(:length_in_days) }
-  it { should validate_presence_of(:slug) }
-
-  context "uniqueness" do
-    before do
-      create :video_tutorial
-    end
-
-    it { should validate_uniqueness_of(:slug) }
-  end
-
-  describe 'self.promoted' do
-    it 'returns promoted video_tutorials' do
-      promoted_video_tutorials = create_list(:video_tutorial, 2, promoted: true)
-      create(:video_tutorial, promoted: false)
-
-      expect(VideoTutorial.promoted).to eq(promoted_video_tutorials)
-    end
-  end
 
   describe "#to_param" do
     it "returns the slug" do
       video_tutorial = create(:video_tutorial)
       expect(video_tutorial.to_param).to eq video_tutorial.slug
-    end
-  end
-
-  context "license_for" do
-    it "returns the license when a user has licensed a section of the video_tutorial" do
-      user = create(:user)
-      video_tutorial = create(:video_tutorial)
-      license = create(:license, licenseable: video_tutorial, user: user)
-
-      expect(video_tutorial.license_for(user)).to eq license
-    end
-
-    it 'returns nil when a user has not licensed a section fo the video_tutorial' do
-      user = create(:user)
-      video_tutorial = create(:video_tutorial)
-      create(:license, licenseable: video_tutorial)
-
-      expect(video_tutorial.license_for(user)).to be_nil
     end
   end
 
@@ -67,7 +26,7 @@ describe VideoTutorial do
 
       result = video_tutorial.title
 
-      expect(result).to eq 'Billy: a video_tutorial from thoughtbot'
+      expect(result).to eq 'Billy: a video tutorial by thoughtbot'
     end
   end
 
@@ -82,16 +41,6 @@ describe VideoTutorial do
       result = video_tutorial.offering_type
 
       expect(result).to eq 'video_tutorial'
-    end
-  end
-
-  describe '#tagline' do
-    it 'returns the short description' do
-      video_tutorial = build_stubbed(:video_tutorial)
-
-      result = video_tutorial.tagline
-
-      expect(result).to eq(video_tutorial.short_description)
     end
   end
 
@@ -120,20 +69,6 @@ describe VideoTutorial do
   describe '#subscription?' do
     it 'returns false' do
       expect(VideoTutorial.new).not_to be_subscription
-    end
-  end
-
-  describe '#fulfill' do
-    it 'fulfills using GitHub with a GitHub team' do
-      license = build_stubbed(:license)
-      user = build_stubbed(:user)
-      fulfillment = stub('fulfillment', :fulfill)
-      video_tutorial = build_stubbed(:video_tutorial, github_team: 'example')
-      GithubFulfillment.stubs(:new).with(license).returns(fulfillment)
-
-      video_tutorial.fulfill(license, user)
-
-      expect(fulfillment).to have_received(:fulfill)
     end
   end
 

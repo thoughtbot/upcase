@@ -1,7 +1,11 @@
 require "rails_helper"
 
 describe Product do
-  it { should have_many(:licenses) }
+  it { should have_many(:classifications).dependent(:destroy) }
+  it { should have_many(:downloads).dependent(:destroy) }
+  it { should have_many(:licenses).dependent(:destroy) }
+  it { should have_many(:topics).through(:classifications) }
+  it { should have_many(:videos).dependent(:destroy) }
   it { should validate_presence_of(:slug) }
 
   context "uniqueness" do

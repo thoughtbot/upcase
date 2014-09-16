@@ -203,6 +203,8 @@ ActiveRecord::Schema.define(version: 20140917182800) do
     t.string   "product_image_updated_at"
     t.boolean  "promoted",                   default: false, null: false
     t.string   "slug",                                       null: false
+    t.integer  "length_in_days"
+    t.text     "resources",                  default: "",    null: false
   end
 
   add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
@@ -328,25 +330,6 @@ ActiveRecord::Schema.define(version: 20140917182800) do
   add_index "users", ["mentor_id"], name: "index_users_on_mentor_id", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
   add_index "users", ["team_id"], name: "index_users_on_team_id", using: :btree
-
-  create_table "video_tutorials", force: true do |t|
-    t.string   "name",                              null: false
-    t.text     "description"
-    t.boolean  "active",            default: true,  null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "short_description"
-    t.integer  "position"
-    t.text     "terms"
-    t.text     "resources",         default: "",    null: false
-    t.integer  "github_team"
-    t.integer  "length_in_days"
-    t.string   "sku"
-    t.boolean  "promoted",          default: false, null: false
-    t.string   "slug",                              null: false
-  end
-
-  add_index "video_tutorials", ["slug"], name: "index_video_tutorials_on_slug", unique: true, using: :btree
 
   create_table "videos", force: true do |t|
     t.integer  "watchable_id"

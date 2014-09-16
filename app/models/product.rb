@@ -1,9 +1,9 @@
 class Product < ActiveRecord::Base
   extend FriendlyId
 
-  has_many :classifications, as: :classifiable
-  has_many :downloads, as: :purchaseable
-  has_many :licenses, as: :licenseable
+  has_many :classifications, as: :classifiable, dependent: :destroy
+  has_many :downloads, as: :purchaseable, dependent: :destroy
+  has_many :licenses, as: :licenseable, dependent: :destroy
   has_many :topics, through: :classifications
   has_many :videos, as: :watchable, dependent: :destroy
 
@@ -73,11 +73,11 @@ class Product < ActiveRecord::Base
   end
 
   def title
-    "#{name}: a #{type.downcase} by thoughtbot"
+    "#{name}: a #{offering_type.humanize.downcase} by thoughtbot"
   end
 
   def offering_type
-    type.downcase
+    type.underscore
   end
 
   def fulfilled_with_github?

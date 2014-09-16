@@ -29,16 +29,14 @@ describe Related do
 
   describe 'video_tutorials' do
     it 'returns the active ordered video_tutorials of the item' do
-      by_position = stub(:by_position)
-      only_active = stub(only_active: by_position)
-      item = stub(video_tutorials: only_active)
+      active = stub(:active)
+      item = stub(video_tutorials: active)
 
       related = Related.new(item)
       related.video_tutorials
 
       expect(item).to have_received(:video_tutorials)
-      expect(only_active).to have_received(:only_active)
-      expect(by_position).to have_received(:by_position)
+      expect(active).to have_received(:active)
     end
   end
 

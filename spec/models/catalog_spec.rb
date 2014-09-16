@@ -20,7 +20,7 @@ describe Catalog do
     it "returns active video_tutorials in order" do
       catalog = Catalog.new
       expect(catalog.video_tutorials).
-        to find_relation(VideoTutorial.only_active.by_position)
+        to find_relation(VideoTutorial.active)
     end
   end
 
