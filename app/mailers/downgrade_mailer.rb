@@ -1,6 +1,6 @@
 class DowngradeMailer < BaseMailer
   def notify_mentor(mentor_id:, mentee_id:)
-    @mentor = User.find mentor_id
+    @mentor = Mentor.find(mentor_id).user
     @mentee = User.find mentee_id
 
     mail(
