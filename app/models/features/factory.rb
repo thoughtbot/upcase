@@ -4,7 +4,6 @@ module Features
       exercises
       forum
       office_hours
-      screencasts
       shows
       video_tutorials
     )

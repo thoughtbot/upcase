@@ -45,29 +45,12 @@ FactoryGirl.define do
     end
   end
 
-  factory :video_tutorial do
-    after(:stub) { |video_tutorial| video_tutorial.slug = video_tutorial.name.parameterize }
-
-    description 'Solve 8-Queens over and over again'
+  factory :video_tutorial, parent: :product do
     name { generate(:name) }
-    tagline 'Solve 8-Queens'
     sku 'EIGHTQUEENS'
-    length_in_days 28
 
     factory :private_video_tutorial do
       active false
-    end
-
-    trait :active do
-      active true
-    end
-
-    trait :inactive do
-      active false
-    end
-
-    trait :promoted do
-      promoted true
     end
 
     trait :github do
@@ -99,8 +82,11 @@ FactoryGirl.define do
     data 'ssh-rsa abc123hexadecimal'
   end
 
-  factory :product, traits: [:active], class: 'Screencast' do
+  factory :product, traits: [:active], class: "VideoTutorial" do
     after(:stub) { |product| product.slug = product.name.parameterize }
+    description 'Solve 8-Queens over and over again'
+    length_in_days 28
+    tagline 'Solve 8-Queens'
 
     trait :active do
       active true
@@ -119,9 +105,6 @@ FactoryGirl.define do
     name { generate(:name) }
     sku 'TEST'
 
-    factory :screencast, class: 'Screencast' do
-    end
-
     factory :show, class: 'Show' do
     end
   end
@@ -138,17 +121,12 @@ FactoryGirl.define do
       includes_exercises false
       includes_forum false
       includes_office_hours false
-      includes_screencasts false
       includes_source_code false
       includes_video_tutorials false
     end
 
     trait :includes_mentor do
       includes_mentor true
-    end
-
-    trait :includes_screencasts do
-      includes_screencasts true
     end
 
     trait :no_mentor do
@@ -189,11 +167,11 @@ FactoryGirl.define do
 
   factory :product_license do
     discounted false
-    offering_type 'Screencast'
+    offering_type 'VideoTutorial'
     original_price 10
     price 10
     product_id 123
-    sku 'screencast1'
+    sku 'video_tutorial_1'
     variant 'individual'
     initialize_with { new(attributes) }
   end
@@ -205,7 +183,7 @@ FactoryGirl.define do
 
   factory :license do
     user
-    association :licenseable, factory: :screencast
+    association :licenseable, factory: :video_tutorial
   end
 
   factory :checkout do
@@ -280,13 +258,6 @@ FactoryGirl.define do
           plan { create(:plan, :includes_mentor) }
         end
       end
-
-      trait :includes_screencasts do
-        ignore do
-          plan { create(:plan, :includes_screencasts) }
-        end
-      end
-
     end
 
     trait :with_github do
@@ -417,7 +388,7 @@ FactoryGirl.define do
   end
 
   factory :video do
-    association :watchable, factory: :screencast
+    association :watchable, factory: :video_tutorial
     title
     wistia_id '1194803'
     published_on { 1.day.from_now }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140917203922) do
+ActiveRecord::Schema.define(version: 20140923180945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,7 +172,6 @@ ActiveRecord::Schema.define(version: 20140917203922) do
     t.boolean  "includes_exercises",       default: true,  null: false
     t.boolean  "includes_source_code",     default: true,  null: false
     t.boolean  "includes_forum",           default: true,  null: false
-    t.boolean  "includes_screencasts",     default: true,  null: false
     t.boolean  "includes_office_hours",    default: true,  null: false
     t.boolean  "includes_shows",           default: true,  null: false
     t.boolean  "includes_team",            default: false, null: false

@@ -17,9 +17,6 @@ class Product < ActiveRecord::Base
   validates :slug, presence: true, uniqueness: true
 
   has_attached_file :product_image, {
-    styles: {
-      screencast: '153x100#'
-    },
     path: "products/:attachment/:id_partition/:style/:filename"
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
 

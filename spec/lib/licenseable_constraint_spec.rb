@@ -13,7 +13,7 @@ describe LicenseableConstraint do
 
     context "when request has an id that doesn't match right model" do
       it "returns false" do
-        product = create(:screencast)
+        product = create(:product)
         request = stub_request_with_id(product.slug)
 
         expect(

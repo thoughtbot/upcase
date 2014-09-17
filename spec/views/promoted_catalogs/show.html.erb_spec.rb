@@ -72,22 +72,6 @@ describe 'promoted_catalogs/show.html.erb' do
       expect(rendered).not_to include(link_to('Account', my_account_path))
     end
 
-    it 'includes promoted screencasts' do
-      screencast = build_stubbed(
-        :screencast,
-        short_description: 'some description',
-        product_image_file_name: 'some file',
-      )
-      assign_catalog(screencasts: [screencast])
-      view_stubs(signed_in?: false)
-
-      render
-
-      expect(rendered).to include(screencast.name)
-      expect(rendered).to include(screencast.short_description)
-      expect(rendered).to include(image_tag(screencast.image_url))
-    end
-
     it 'includes promoted video_tutorials' do
       video_tutorial = build_stubbed(:video_tutorial)
 
@@ -119,12 +103,11 @@ describe 'promoted_catalogs/show.html.erb' do
     end
   end
 
-  def assign_catalog(video_tutorials: [], screencasts: [], mentors: [])
+  def assign_catalog(video_tutorials: [], mentors: [])
     assign(
       :catalog,
       stub(
         video_tutorials: video_tutorials,
-        screencasts: screencasts,
         mentors: mentors
       )
     )

@@ -13,13 +13,13 @@ describe PolymorphicFinder do
     end
 
     it 'finds the first of several possible params' do
-      screencast = create(:screencast)
+      video_tutorial = create(:video_tutorial)
 
       result = PolymorphicFinder.
-        finding(Product, :slug, [:screencast_id, :product_id]).
-        find(screencast_id: screencast.to_param)
+        finding(Product, :slug, [:video_tutorial_id, :product_id]).
+        find(video_tutorial_id: video_tutorial.to_param)
 
-      expect(result).to eq(screencast)
+      expect(result).to eq(video_tutorial)
     end
 
     it 'cascades when the first finder is not present' do

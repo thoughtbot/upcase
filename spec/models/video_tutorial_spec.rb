@@ -104,8 +104,22 @@ describe VideoTutorial do
   end
 
   describe '#collection?' do
-    it 'should be true' do
-      expect(VideoTutorial.new).to be_collection
+    it 'is a collection if there is more than one published video' do
+      video_tutorial = create(:video_tutorial)
+      create_list(:video, 2, :published, watchable: video_tutorial)
+
+      expect(video_tutorial).to be_collection
+    end
+
+    it 'is not a collection if there is 1 published video or less' do
+      video_tutorial = create(:video_tutorial)
+
+      expect(video_tutorial).not_to be_collection
+
+      create(:video, :published, watchable: video_tutorial)
+      create(:video, watchable: video_tutorial)
+
+      expect(video_tutorial).not_to be_collection
     end
   end
 

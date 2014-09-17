@@ -24,14 +24,6 @@ describe Catalog do
     end
   end
 
-  describe "#screencasts" do
-    it "returns active screencasts with the most recent first" do
-      catalog = Catalog.new
-      expect(catalog.screencasts).
-        to find_relation(Screencast.active.newest_first)
-    end
-  end
-
   describe "#shows" do
     it "returns active shows by name" do
       catalog = Catalog.new

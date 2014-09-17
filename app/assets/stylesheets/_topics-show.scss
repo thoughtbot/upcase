@@ -251,14 +251,6 @@ body.topics-show aside {
     top: 1px;
   }
 
-  &.screencast .icon::after {
-    content: "\25B6";
-    font-size: 43px;
-    left: 11px;
-    position: absolute;
-    top: 1px;
-  }
-
   .icon {
     background: $upcase-red;
     border-radius: 34px;
@@ -278,10 +270,6 @@ body.topics-show aside {
 }
 
 .trail-map-steps .upcase li {
-  &.screencast .icon::after {
-    left: 4px;
-  }
-
   .icon {
     background: none;
     box-shadow: none;

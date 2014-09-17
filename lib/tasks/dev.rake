@@ -18,23 +18,6 @@ namespace :dev do
   end
 
   def create_individual_plans
-    screencasts_features = {
-      includes_forum: true,
-      includes_screencasts: true,
-    }
-
-    @screencasts_plan = create(:plan, {
-      individual_price: 29,
-      name: "30 Minutes a Week",
-      short_description: "Best for those with limited time.",
-      sku: "prime-29",
-    }.merge(screencasts_features))
-
-    basic_features = {
-      includes_office_hours: true,
-      includes_shows: true,
-    }.merge(screencasts_features)
-
     @basic_plan = create(:plan, {
       individual_price: 49,
       name: "Part-time Study",
@@ -56,9 +39,6 @@ namespace :dev do
 
   def create_products
     header "Products"
-
-    puts_product FactoryGirl.create(:screencast, :promoted)
-    puts_product FactoryGirl.create(:screencast, :promoted)
 
     puts_product FactoryGirl.create(:show, name: 'The Weekly Iteration')
   end
@@ -106,14 +86,6 @@ namespace :dev do
       plan: @mentor_plan,
     )
     puts_user user, 'mentor subscriber'
-
-    user = FactoryGirl.create(
-      :subscriber,
-      :includes_screencasts,
-      email: 'screencasts@example.com',
-      plan: @screencasts_plan,
-    )
-    puts_user user, 'subscriber with screencasts'
 
     puts "\n"
   end

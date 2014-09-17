@@ -3,12 +3,12 @@ require "rails_helper"
 describe "Videos" do
   context "get show" do
     it "does not allow watching a video without a license" do
-      product = create(:screencast)
+      product = create(:video_tutorial)
       video = create(:video, watchable: product)
 
       visit video_path(video)
 
-      expect(current_path).to eq screencast_path(product)
+      expect(current_path).to eq video_tutorial_path(product)
     end
   end
 
@@ -50,23 +50,22 @@ describe "Videos" do
     it "lists the published videos for a product", js: true do
       sign_in_as_user_with_subscription
 
-      screencast = create(:screencast)
-      create_license_from_licenseable(screencast, current_user)
+      video_tutorial = create(:video_tutorial)
+      create_license_from_licenseable(video_tutorial, current_user)
       published_video_one = create(
         :video,
         :published,
-        watchable: screencast
+        watchable: video_tutorial
       )
       published_video_two = create(
         :video,
         :published,
-        watchable: screencast
+        watchable: video_tutorial
       )
-      video = create(:video, watchable: screencast)
+      video = create(:video, watchable: video_tutorial)
 
-      visit screencast_path(screencast)
+      visit video_tutorial_path(video_tutorial)
 
-      expect(page).to have_content("2 videos in the series")
       expect(page).to have_content(published_video_one.title)
       expect(page).to have_content(published_video_two.title)
       expect(page).to have_content("2 minutes")

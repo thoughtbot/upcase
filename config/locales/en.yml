@@ -9,7 +9,7 @@ en:
       filter_date_format: '%D'
 
   layouts:
-    meta_description: 'Video Tutorials, screencasts, and videos to help you learn web design and development.'
+    meta_description: 'Video Tutorials, and videos to help you learn web design and development.'
     app_name: 'Upcase from thoughtbot'
 
   dashboards:
@@ -30,10 +30,6 @@ en:
     show:
       subscribe_cta: "This %{offering_type} is free with a subscription to %{subscription_name}"
 
-  screencast:
-    checkout_cta: Get this Screencast
-    checkout_cta_for_collection: Get this Screencast Collection
-    upgrade_cta: Upgrade your plan to access this Screencast
   show:
     checkout_cta: Get this Show
     checkout_cta_for_collection: Get this Series
