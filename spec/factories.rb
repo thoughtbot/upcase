@@ -99,7 +99,7 @@ FactoryGirl.define do
     data 'ssh-rsa abc123hexadecimal'
   end
 
-  factory :product, traits: [:active], class: 'Book' do
+  factory :product, traits: [:active], class: 'Screencast' do
     after(:stub) { |product| product.slug = product.name.parameterize }
 
     trait :active do
@@ -114,18 +114,10 @@ FactoryGirl.define do
       promoted true
     end
 
-    trait :github do
-      github_team 9999
-      github_url 'http://github.com/thoughtbot/book-repo'
-    end
-
     company_price 50
     individual_price 15
     name { generate(:name) }
     sku 'TEST'
-
-    factory :book, class: 'Book' do
-    end
 
     factory :screencast, class: 'Screencast' do
     end
@@ -143,7 +135,6 @@ FactoryGirl.define do
 
     factory :basic_plan do
       sku Plan::PRIME_29_SKU
-      includes_books false
       includes_exercises false
       includes_forum false
       includes_office_hours false
@@ -158,10 +149,6 @@ FactoryGirl.define do
 
     trait :includes_screencasts do
       includes_screencasts true
-    end
-
-    trait :includes_books do
-      includes_books true
     end
 
     trait :no_mentor do
@@ -202,11 +189,11 @@ FactoryGirl.define do
 
   factory :product_license do
     discounted false
-    offering_type 'Book'
+    offering_type 'Screencast'
     original_price 10
     price 10
     product_id 123
-    sku 'book1'
+    sku 'screencast1'
     variant 'individual'
     initialize_with { new(attributes) }
   end
@@ -300,11 +287,6 @@ FactoryGirl.define do
         end
       end
 
-      trait :includes_books do
-        ignore do
-          plan { create(:plan, :includes_books) }
-        end
-      end
     end
 
     trait :with_github do
@@ -435,7 +417,7 @@ FactoryGirl.define do
   end
 
   factory :video do
-    association :watchable, factory: :product
+    association :watchable, factory: :screencast
     title
     wistia_id '1194803'
     published_on { 1.day.from_now }

@@ -1,6 +1,5 @@
 body.products-show,
 body.video_tutorials-show,
-body.books-show,
 body.screencasts-show {
   .text-box {
     background: none;
@@ -47,41 +46,6 @@ body.screencasts-show {
         font-weight: 100;
         @include position(absolute, .25rem 0 0 0px);
       }
-    }
-  }
-
-  #book-graphic {
-    box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.35);
-    float: right;
-    margin: 15px 0 20px 25px;
-    position: relative;
-    @include transition;
-    width: 185px;
-
-    &:hover {
-      bottom: 3px;
-    }
-
-    img {
-      display: block;
-    }
-
-    .title {
-      background: hsla(0, 0%, 22%, 0.75);
-      bottom: 50px;
-      color: white;
-      font-size: 18px;
-      left: 0;
-      padding: 10px 0;
-      position: absolute;
-      text-align: center;
-      text-shadow: 0 1px 0 hsla(0, 0%, 0%, 0.45);
-      width: 100%;
-    }
-
-    a:hover .title {
-      background: rgba($upcase-red, 0.75);
-      @include transition;
     }
   }
 
@@ -146,7 +110,6 @@ body.screencasts-show {
 
 body.products-show aside,
 body.video_tutorials-show aside,
-body.books-show aside,
 body.screencasts-show aside,
 body.shows-show aside,
 body.videos-show aside {

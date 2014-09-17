@@ -9,7 +9,6 @@ describe TopicWithResourcesFactory do
         create(:exercise, title: "exercise-one"),
         create(:video, :published, title: "video-one"),
         create(:video_tutorial, name: "video_tutorial-one"),
-        create(:book, name: "product-one")
       ]
       resources.each do |classifiable|
         topic.classifications.create!(classifiable: classifiable)

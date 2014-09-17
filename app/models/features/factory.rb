@@ -1,7 +1,6 @@
 module Features
   class Factory
     GENERIC_FEATURES = %w(
-      books
       exercises
       forum
       office_hours

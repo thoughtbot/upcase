@@ -1,13 +1,6 @@
 require "rails_helper"
 
 describe Catalog do
-  describe "#books" do
-    it "returns active books in order" do
-      catalog = Catalog.new
-      expect(catalog.books).to find_relation(Book.active.ordered)
-    end
-  end
-
   describe "#products" do
     it "returns active products in order" do
       catalog = Catalog.new

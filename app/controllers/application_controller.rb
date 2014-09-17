@@ -71,7 +71,7 @@ class ApplicationController < ActionController::Base
       finding(
         Product,
         :slug,
-        [:product_id, :screencast_id, :book_id, :show_id]
+        [:product_id, :screencast_id, :show_id]
       ).
       find(params)
   end

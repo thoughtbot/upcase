@@ -9,7 +9,7 @@ en:
       filter_date_format: '%D'
 
   layouts:
-    meta_description: 'Video Tutorials, screencasts, videos, and books to help you learn web design and development.'
+    meta_description: 'Video Tutorials, screencasts, and videos to help you learn web design and development.'
     app_name: 'Upcase from thoughtbot'
 
   dashboards:
@@ -30,10 +30,6 @@ en:
     show:
       subscribe_cta: "This %{offering_type} is free with a subscription to %{subscription_name}"
 
-  book:
-    checkout_cta: Get this Book
-    checkout_cta_for_collection: Get this Book
-    upgrade_cta: Upgrade your plan to access this Book
   screencast:
     checkout_cta: Get this Screencast
     checkout_cta_for_collection: Get this Screencast Collection
@@ -52,8 +48,6 @@ en:
       header: Taught by
 
   shared:
-    books:
-      Books
     upcase:
       Upcase
     subscription:
@@ -72,9 +66,6 @@ en:
       view_products:
         View all thoughtbot products
     promoted_product:
-      book:
-        action:
-          Read
       video:
         action:
           Watch
@@ -88,8 +79,6 @@ en:
         You should be able to
     product:
       headings:
-        book:
-          Book
         video:
           Video
 

@@ -16,7 +16,7 @@ describe "offerings/_upcase.html.erb" do
   end
 
   def render_template(current_user_has_subscription)
-    product = stub("product", offering_type: "book")
+    product = stub("product", offering_type: "workshop")
 
     Mocha::Configuration.allow :stubbing_non_existent_method do
       view.stubs(

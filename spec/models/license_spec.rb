@@ -38,7 +38,7 @@ describe License do
 
   context "#save" do
     it "tells its licenseable to fulfill" do
-      licenseable = create(:book)
+      licenseable = create(:product)
       licenseable.stubs(:fulfill)
       license = build(:license, licenseable: licenseable)
 

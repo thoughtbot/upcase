@@ -5,10 +5,6 @@ class Catalog
     Product.active.ordered
   end
 
-  def books
-    Book.active.ordered
-  end
-
   def video_tutorials
     VideoTutorial.only_active.by_position
   end

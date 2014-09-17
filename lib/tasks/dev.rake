@@ -42,24 +42,11 @@ namespace :dev do
       sku: "prime-49",
     }.merge(basic_features))
 
-    books_features = {
-      includes_books: true,
-      includes_exercises: true,
-      includes_source_code: true,
-    }.merge(basic_features)
-
-    @books_plan = create(:plan, {
-      individual_price: 99,
-      name: "Aspiring Professional",
-      short_description: "Best for an active learner seeking coding exercises and real feedback.",
-      sku: "prime-99",
-    }.merge(books_features))
-
     mentor_features = {
       includes_mentor: true,
       name: "1-on-1 Coaching",
       short_description: "Best for an active learner seeking 1-on-1 personal coaching.",
-    }.merge(books_features)
+    }.merge(basic_features)
 
     @mentor_plan = create(:plan, {
       sku: "prime-249",
@@ -69,14 +56,6 @@ namespace :dev do
 
   def create_products
     header "Products"
-
-    @book = FactoryGirl.create(
-      :book,
-      :promoted,
-      sku: 'VIM',
-      name: 'Vim for Rails Developers'
-    )
-    puts_product @book
 
     puts_product FactoryGirl.create(:screencast, :promoted)
     puts_product FactoryGirl.create(:screencast, :promoted)
@@ -135,14 +114,6 @@ namespace :dev do
       plan: @screencasts_plan,
     )
     puts_user user, 'subscriber with screencasts'
-
-    user = FactoryGirl.create(
-      :subscriber,
-      :includes_books,
-      email: 'books@example.com',
-      plan: @books_plan,
-    )
-    puts_user user, 'subscriber with books'
 
     puts "\n"
   end

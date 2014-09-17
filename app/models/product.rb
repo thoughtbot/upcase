@@ -18,7 +18,6 @@ class Product < ActiveRecord::Base
 
   has_attached_file :product_image, {
     styles: {
-      book: '230x300#',
       screencast: '153x100#'
     },
     path: "products/:attachment/:id_partition/:style/:filename"

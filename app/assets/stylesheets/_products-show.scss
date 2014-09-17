@@ -25,86 +25,11 @@ body.videos-show {
     list-style-type: none;
   }
 
-  figure.book-cover {
-    margin: 2.5em 0;
-    text-align: center;
-
-    img {
-      display: inline-block;
-      margin-right: 2.5em;
-      width: 300px;
-
-      @include body-mobile {
-        margin: 0;
-      }
-    }
-
-    figcaption {
-      display: inline-block;
-      margin: 0;
-      max-width: 300px;
-      text-align: left;
-      vertical-align: top;
-
-      @include body-mobile {
-        margin-top: 2em;
-      }
-
-      h3 {
-        color: #000;
-        font-weight: 800;
-        margin: 0 0 1em 0;
-      }
-
-      p {
-        margin: 0 0 1em 0;
-
-        a {
-          color: inherit;
-          display: block;
-          font-family: $sans-serif;
-          font-weight: 600;
-          overflow: auto;
-        }
-
-        .title, .date {
-          font-weight: 100;
-        }
-      }
-
-      p:nth-child(3) {
-        opacity: .7;
-      }
-
-      p:nth-child(4) {
-        opacity: .4;
-      }
-
-      .allupdates {
-        margin-top: 1em;
-        color: $upcase-red;
-      }
-    }
-  }
-
   aside > div {
     margin-bottom: 1.25rem;
 
     p:last-of-type {
       margin-bottom: 0;
-    }
-  }
-
-  .start-reading {
-    margin-bottom: 1em;
-
-    .button {
-      margin-bottom: 1em;
-    }
-
-    .view-github {
-      display: block;
-      margin-top: 1rem;
     }
   }
 

@@ -77,14 +77,12 @@ feature 'Topic pages' do
   scenario "view a topic's related products" do
     topic = create(:topic, name: 'Topic 1')
     topic.video_tutorials << create(:video_tutorial, name: 'video_tutorial 1')
-    topic.products << create(:book, name: 'Book 1')
     topic.products << create(:screencast, name: 'Video 1')
     topic.products << create(:screencast, :inactive, name: 'Video Inactive')
 
     visit topic_path(topic)
 
     expect_to_see_related_video_tutorial_named 'video_tutorial 1'
-    expect_to_see_related_book_named 'Book 1'
     expect_to_see_related_video_named 'Video 1'
     expect_to_not_see_related_item_named 'Video Inactive'
   end
@@ -110,12 +108,6 @@ feature 'Topic pages' do
   def expect_to_see_related_video_tutorial_named(video_tutorial_name)
     within('aside .video_tutorial') do
       expect(page).to have_content video_tutorial_name
-    end
-  end
-
-  def expect_to_see_related_book_named(book_name)
-    within('aside .book') do
-      expect(page).to have_content book_name
     end
   end
 

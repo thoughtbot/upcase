@@ -28,22 +28,6 @@ feature "Subscriber accesses content" do
     expect(current_path).to eq edit_subscription_path
   end
 
-  scenario "gets access to a book product" do
-    book = create(:book, :github, :in_dashboard)
-    sign_in_as_user_with_subscription
-    stub_github_fulfillment_job
-
-    click_ebook_detail_link(book)
-    click_link I18n.t("book.checkout_cta")
-
-    expect(GithubFulfillmentJob).to have_received(:enqueue).
-      with(
-        book.github_team,
-        @current_user.github_username,
-        License.last.id
-      )
-  end
-
   scenario "gets access to a screencast" do
     screencast = create(:screencast, :in_dashboard)
     create(:video, :published, watchable: screencast)
@@ -95,10 +79,6 @@ feature "Subscriber accesses content" do
     within(".screencast") do
       click_link screencast.name
     end
-  end
-
-  def click_ebook_detail_link(book)
-    click_link book.name
   end
 
   def expect_dashboard_to_show_video_tutorial_active(video_tutorial)
