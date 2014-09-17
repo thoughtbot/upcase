@@ -42,7 +42,6 @@ describe "dashboards/show.html" do
   context "when a user has access to all features" do
     it "does not render the locked_features partial" do
       render_show(
-        books: true,
         shows: true,
         video_tutorials: true,
         exercises: true,
@@ -54,10 +53,10 @@ describe "dashboards/show.html" do
   end
 
   context "when a user has access to shows and video tutorials" do
-    it "renders locked features partial with exercises and books" do
+    it "renders locked features partial with exercises" do
       render_show shows: true, video_tutorials: true, screencasts: true
 
-      expect(rendered).to have_content("Books and exercises are locked")
+      expect(rendered).to have_content("Exercises are locked")
     end
   end
 
@@ -65,7 +64,7 @@ describe "dashboards/show.html" do
     it "renders locked features partial with correct features" do
       render_show shows: true
 
-      text = "Books, exercises, screencasts, and video tutorials are locked"
+      text = "Exercises, screencasts, and video tutorials are locked"
       expect(rendered).to have_content(text)
     end
   end
@@ -74,7 +73,7 @@ describe "dashboards/show.html" do
     it "renders locked features partial with all features" do
       render_show
 
-      text = "Books, exercises, screencasts, shows, and video tutorials are locked"
+      text = "Exercises, screencasts, shows, and video tutorials are locked"
       expect(rendered).to have_content(text)
     end
   end
@@ -99,7 +98,6 @@ describe "dashboards/show.html" do
       shows: false,
       video_tutorials: false,
       exercises: false,
-      books: false
     }
   end
 end

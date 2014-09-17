@@ -72,16 +72,6 @@ describe 'promoted_catalogs/show.html.erb' do
       expect(rendered).not_to include(link_to('Account', my_account_path))
     end
 
-    it 'includes promoted books' do
-      book = build_stubbed(:book, product_image_file_name: 'some file')
-      assign_catalog(books: [book])
-      view_stubs(signed_in?: false)
-
-      render
-
-      expect(rendered).to have_css("a[href='#{book_path(book)}']")
-    end
-
     it 'includes promoted screencasts' do
       screencast = build_stubbed(
         :screencast,
@@ -129,11 +119,10 @@ describe 'promoted_catalogs/show.html.erb' do
     end
   end
 
-  def assign_catalog(books: [], video_tutorials: [], screencasts: [], mentors: [])
+  def assign_catalog(video_tutorials: [], screencasts: [], mentors: [])
     assign(
       :catalog,
       stub(
-        books: books,
         video_tutorials: video_tutorials,
         screencasts: screencasts,
         mentors: mentors

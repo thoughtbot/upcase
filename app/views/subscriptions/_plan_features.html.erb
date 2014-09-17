@@ -48,34 +48,6 @@
       <p>Once you submit your solution you can review other subscribers' solutions and have your solution reviewed by others. We've built a custom interface for collaborative solution review.</p>
     </article>
 
-    <article id="ebooks">
-      <header>
-        <h3>Premium eBooks</h3>
-
-        <div class="included-in">
-          <% 2.times do %>
-            <div class="true">
-              <%= image_tag("pricing-check.svg") %>
-            </div>
-          <% end %>
-
-          <% 2.times do %>
-            <div class="false">
-              <%= image_tag("pricing-x.svg") %>
-            </div>
-          <% end %>
-        </div>
-      </header>
-      <h4>Valued at over $150 &ndash; you get full access to all 4 of our premium eBooks.</h4>
-      <p>Only available on Upcase, and we offer them in Kindle, PDF, and EPub formats. We add you to each book's GitHub repo so you can stay up-to-date on changes.</p>
-      <p>You'll get full access to:</p>
-      <ul>
-        <% catalog.books.each do |book| %>
-          <li><%= link_to book.name, book %></li>
-        <% end %>
-      </ul>
-    </article>
-
     <article id="app_source_code">
       <header>
         <h3>App Source Code</h3>
