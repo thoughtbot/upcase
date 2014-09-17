@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+# Usage: ./bin/configure_oauth_tokens app_name port /path/to/.env
+
+app_name = ARGV[0]
+port = ARGV[1]
+env_file = ARGV[2]
+
+if app_name.nil? || port.nil? || env_file.nil?
+  puts 'Not enough arguments. Example usage:'
+  puts
+  puts '% ./bin/configure_oauth_tokens example 7000 ~/dev/example/.env'
+  exit
+end
+
+require_relative '../config/environment'
+
+application =
+  Doorkeeper::Application
+    .create_with(redirect_uri: "http://localhost:#{port}/auth/learn/callback")
+    .find_or_create_by!(name: app_name)
+
+contents = IO.read(env_file)
+File.open(env_file, 'w') do |file|
+  updated_contents = contents
+    .sub(/LEARN_CLIENT_ID=.*/, "LEARN_CLIENT_ID=#{application.uid}")
+    .sub(/LEARN_CLIENT_SECRET=.*/, "LEARN_CLIENT_SECRET=#{application.secret}")
+  file.write(updated_contents)
+end
