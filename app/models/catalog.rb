@@ -9,10 +9,6 @@ class Catalog
     VideoTutorial.active
   end
 
-  def screencasts
-    Screencast.active.newest_first
-  end
-
   def shows
     Show.active.ordered
   end

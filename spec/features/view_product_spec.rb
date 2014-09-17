@@ -8,8 +8,8 @@ feature "Viewing products" do
       name: "Show",
       short_description: "An awesome show"
     )
-    screencast = create(
-      :screencast,
+    video_tutorial = create(
+      :video_tutorial,
       name: "Video",
       short_description: "An awesome video"
     )
@@ -20,11 +20,11 @@ feature "Viewing products" do
     expect_page_to_have_meta_description(show.short_description)
     expect_page_to_have_title("Show: a show by thoughtbot")
 
-    visit screencast_url(screencast)
+    visit video_tutorial_url(video_tutorial)
 
     expect(page).not_to have_content "includes support"
-    expect_page_to_have_meta_description(screencast.short_description)
-    expect_page_to_have_title("Video: a screencast by thoughtbot")
+    expect_page_to_have_meta_description(video_tutorial.short_description)
+    expect_page_to_have_title("Video: a video tutorial by thoughtbot")
   end
 
   scenario "that are inactive" do

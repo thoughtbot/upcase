@@ -119,9 +119,6 @@ FactoryGirl.define do
     name { generate(:name) }
     sku 'TEST'
 
-    factory :screencast, class: 'Screencast' do
-    end
-
     factory :show, class: 'Show' do
     end
   end
@@ -138,17 +135,12 @@ FactoryGirl.define do
       includes_exercises false
       includes_forum false
       includes_office_hours false
-      includes_screencasts false
       includes_source_code false
       includes_video_tutorials false
     end
 
     trait :includes_mentor do
       includes_mentor true
-    end
-
-    trait :includes_screencasts do
-      includes_screencasts true
     end
 
     trait :no_mentor do
@@ -205,7 +197,7 @@ FactoryGirl.define do
 
   factory :license do
     user
-    association :licenseable, factory: :screencast
+    association :licenseable, factory: :video_tutorial
   end
 
   factory :checkout do
@@ -280,13 +272,6 @@ FactoryGirl.define do
           plan { create(:plan, :includes_mentor) }
         end
       end
-
-      trait :includes_screencasts do
-        ignore do
-          plan { create(:plan, :includes_screencasts) }
-        end
-      end
-
     end
 
     trait :with_github do

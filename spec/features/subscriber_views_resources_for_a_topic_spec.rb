@@ -6,9 +6,8 @@ feature "subscriber views resources for a topic" do
     video_tutorial = create(:video_tutorial)
     exercise = create(:exercise)
     video = create(:video, :published)
-    screencast = create(:screencast)
 
-    [video_tutorial, exercise, video, screencast].each do |resource|
+    [video_tutorial, exercise, video].each do |resource|
       resource.classifications.create!(topic: topic)
     end
 
@@ -21,6 +20,5 @@ feature "subscriber views resources for a topic" do
     expect(page).to have_content(video_tutorial.name)
     expect(page).to have_content(exercise.title)
     expect(page).to have_content(video.title)
-    expect(page).to have_content(screencast.name)
   end
 end

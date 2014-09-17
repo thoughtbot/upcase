@@ -3,12 +3,12 @@ require "rails_helper"
 describe "Videos" do
   context "get show" do
     it "does not allow watching a video without a license" do
-      product = create(:screencast)
+      product = create(:video_tutorial)
       video = create(:video, watchable: product)
 
       visit video_path(video)
 
-      expect(current_path).to eq screencast_path(product)
+      expect(current_path).to eq video_tutorial_path(product)
     end
   end
 
@@ -45,32 +45,6 @@ describe "Videos" do
       visit video_path(published_video_two)
 
       expect(page).to have_css("iframe")
-    end
-
-    it "lists the published videos for a product", js: true do
-      sign_in_as_user_with_subscription
-
-      screencast = create(:screencast)
-      create_license_from_licenseable(screencast, current_user)
-      published_video_one = create(
-        :video,
-        :published,
-        watchable: screencast
-      )
-      published_video_two = create(
-        :video,
-        :published,
-        watchable: screencast
-      )
-      video = create(:video, watchable: screencast)
-
-      visit screencast_path(screencast)
-
-      expect(page).to have_content("2 videos in the series")
-      expect(page).to have_content(published_video_one.title)
-      expect(page).to have_content(published_video_two.title)
-      expect(page).to have_content("2 minutes")
-      expect(page).not_to have_content(video.title)
     end
 
     it "doesn't say it's a series with one published video" do

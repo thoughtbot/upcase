@@ -73,7 +73,7 @@ class Product < ActiveRecord::Base
   end
 
   def title
-    "#{name}: a #{offering_type} by thoughtbot"
+    "#{name}: a #{offering_type.humanize.downcase} by thoughtbot"
   end
 
   def offering_type

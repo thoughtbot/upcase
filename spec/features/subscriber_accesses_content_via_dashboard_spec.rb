@@ -28,17 +28,6 @@ feature "Subscriber accesses content" do
     expect(current_path).to eq edit_subscription_path
   end
 
-  scenario "gets access to a screencast" do
-    screencast = create(:screencast, :in_dashboard)
-    create(:video, :published, watchable: screencast)
-    sign_in_as_user_with_subscription
-    click_screencast_detail_link(screencast)
-
-    click_link I18n.t("screencast.checkout_cta")
-
-    expect(page).to have_content("Watch or download video")
-  end
-
   scenario "show in-progress status for current video_tutorial" do
     video_tutorial = create(:video_tutorial, :in_dashboard, length_in_days: 2)
 
@@ -73,12 +62,6 @@ feature "Subscriber accesses content" do
 
   def click_video_tutorial_detail_link
     find(".video_tutorial > a").click
-  end
-
-  def click_screencast_detail_link(screencast)
-    within(".screencast") do
-      click_link screencast.name
-    end
   end
 
   def expect_dashboard_to_show_video_tutorial_active(video_tutorial)

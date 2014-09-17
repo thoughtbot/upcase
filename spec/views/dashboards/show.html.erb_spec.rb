@@ -44,8 +44,7 @@ describe "dashboards/show.html" do
       render_show(
         shows: true,
         video_tutorials: true,
-        exercises: true,
-        screencasts: true
+        exercises: true
       )
 
       expect(rendered).not_to have_content("locked")
@@ -54,7 +53,7 @@ describe "dashboards/show.html" do
 
   context "when a user has access to shows and video tutorials" do
     it "renders locked features partial with exercises" do
-      render_show shows: true, video_tutorials: true, screencasts: true
+      render_show shows: true, video_tutorials: true
 
       expect(rendered).to have_content("Exercises are locked")
     end
@@ -64,7 +63,7 @@ describe "dashboards/show.html" do
     it "renders locked features partial with correct features" do
       render_show shows: true
 
-      text = "Exercises, screencasts, and video tutorials are locked"
+      text = "Exercises and video tutorials are locked"
       expect(rendered).to have_content(text)
     end
   end
@@ -73,7 +72,7 @@ describe "dashboards/show.html" do
     it "renders locked features partial with all features" do
       render_show
 
-      text = "Exercises, screencasts, shows, and video tutorials are locked"
+      text = "Exercises, shows, and video tutorials are locked"
       expect(rendered).to have_content(text)
     end
   end
@@ -94,7 +93,6 @@ describe "dashboards/show.html" do
       source_code: false,
       office_hours: false,
       forum: false,
-      screencasts: false,
       shows: false,
       video_tutorials: false,
       exercises: false,

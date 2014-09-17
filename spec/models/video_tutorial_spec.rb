@@ -30,7 +30,7 @@ describe VideoTutorial do
 
       result = video_tutorial.title
 
-      expect(result).to eq 'Billy: a video_tutorial by thoughtbot'
+      expect(result).to eq 'Billy: a video tutorial by thoughtbot'
     end
   end
 
@@ -104,12 +104,6 @@ describe VideoTutorial do
       video_tutorial = build(:video_tutorial, length_in_days: 14)
 
       expect(video_tutorial.ends_on).to eq ends_on
-    end
-  end
-
-  describe '#collection?' do
-    it 'should be true' do
-      expect(VideoTutorial.new).to be_collection
     end
   end
 
