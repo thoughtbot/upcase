@@ -1,8 +1,11 @@
-<figure class="dashboard-resource upcase-live card">
+<figure class="dashboard-resource upcase-live card
+  <%= locked_dashboard_resource(:office_hours) %>">
+
   <%= live_chat_link do %>
     <h4>Upcase Live</h4>
     <p>Join other members in a live chatroom. Thoughtbotters are present for office hours on Friday.</p>
   <% end %>
+
   <% unless current_user_has_access_to?(:office_hours) %>
     <%= render "locked" %>
   <% end %>

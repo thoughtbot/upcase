@@ -100,7 +100,11 @@
 
   &.dashboard-resource {
     border-top: 5px solid $green;
-    height: 185px;
+    height: 180px;
+
+    &.locked-resource {
+      height: 200px;
+    }
 
     h4 {
       color: $darkwarmgray;
@@ -115,10 +119,6 @@
       margin-top: 0;
     }
 
-    &.card > a {
-      height: 82%;
-    }
-
     &.trails {
       background: url(<%= asset_path 'upcase/trails-graphic.svg' %>) white no-repeat 3rem .8rem;
       background-size: 75%;
@@ -126,6 +126,7 @@
 
     .product-card-locked {
       text-align: center;
+      margin-top: -27px;
 
       a.upgrade-link {
         color: $darkwarmgray;

@@ -21,6 +21,12 @@ module DashboardsHelper
     topic.count > MAX_RESOURCES_TO_SHOW
   end
 
+  def locked_dashboard_resource(resource)
+    unless current_user_has_access_to?(resource)
+      'locked-resource'
+    end
+  end
+
   def locked_features
     features.reject { |feature| current_user_has_access_to?(feature) }
   end
