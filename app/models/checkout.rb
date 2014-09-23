@@ -43,6 +43,7 @@ class Checkout < ActiveRecord::Base
     errors[:email] = user.errors[:email]
     errors[:name] = user.errors[:name]
     errors[:password] = user.errors[:password]
+    errors[:github_username] = user.errors[:github_username]
     errors
   end
 

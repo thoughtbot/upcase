@@ -67,6 +67,17 @@ describe Checkout do
       expect(checkout.errors[:password]).to include "can't be blank"
     end
 
+    it "requires a unique GitHub username if there is no user" do
+      create :user, github_username: "taken"
+      checkout =
+        build(:checkout, user: nil, github_username: "taken", password: "test")
+
+      checkout.save
+
+      expect(checkout.errors.full_messages).
+        to include("Github username has already been taken")
+    end
+
     it "creates a user when saved with a password" do
       checkout = build(:checkout, user: nil, github_username: "cpytel")
       checkout.password = "test"
