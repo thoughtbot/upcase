@@ -61,20 +61,6 @@ feature "Subscriber accesses content" do
     expect(page).to have_css(".card.complete", text: video_tutorial.name)
   end
 
-  scenario "gets added to the GitHub team for a repository" do
-    repository = create(:repository, :in_dashboard)
-    sign_in_as_user_with_subscription
-    stub_github_fulfillment_job
-
-    visit dashboard_url
-    click_on "Upcase Repositories"
-    click_on repository.name
-    click_link I18n.t("repository.checkout_cta")
-
-    expect(GithubFulfillmentJob).
-      to have_added_current_user_to_team_for(repository)
-  end
-
   def get_access_to_video_tutorial
     sign_in_as_user_with_subscription
     click_video_tutorial_detail_link
@@ -101,14 +87,5 @@ feature "Subscriber accesses content" do
       ".card a[title='#{video_tutorial.name}'] .status",
       text: "in-progress"
     )
-  end
-
-  def have_added_current_user_to_team_for(product)
-    have_received(:enqueue).
-      with(
-        product.github_team,
-        @current_user.github_username,
-        License.last.id
-      )
   end
 end

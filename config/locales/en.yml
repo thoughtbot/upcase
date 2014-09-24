@@ -43,10 +43,6 @@ en:
     checkout_cta_for_collection: Begin this Video Tutorial
     upgrade_cta: Upgrade your plan to access this Video Tutorial
 
-  repository:
-    checkout_cta: View this Repository
-    upgrade_cta: Upgrade your plan to access this Repository
-
   teachers:
     teacher:
       header: Taught by

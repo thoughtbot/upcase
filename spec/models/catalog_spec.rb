@@ -61,14 +61,6 @@ describe Catalog do
     end
   end
 
-  describe "#repositories" do
-    it "returns all active repositories in order" do
-      catalog = Catalog.new
-      expect(catalog.repositories).
-        to find_relation(Repository.active.ordered)
-    end
-  end
-
   describe "#to_partial_path" do
     it "returns a renderable path" do
       catalog = Catalog.new

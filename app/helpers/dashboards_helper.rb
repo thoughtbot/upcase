@@ -9,6 +9,14 @@ module DashboardsHelper
     end
   end
 
+  def upcase_repo_link(&block)
+    if current_user_has_access_to?(:source_code)
+      link_to ENV['UPCASE_REPO_URL'], target: "_blank", &block
+    else
+      content_tag "a", &block
+    end
+  end
+
   def has_more_resources?(topic)
     topic.count > MAX_RESOURCES_TO_SHOW
   end

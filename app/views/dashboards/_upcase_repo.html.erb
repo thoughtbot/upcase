@@ -1,12 +1,10 @@
 <figure class="dashboard-resource upcase-repo card
   <%= locked_dashboard_resource(:source_code) %>">
 
-  <%= link_to repositories_path do %>
-    <h4>Upcase Repositories</h4>
-    <p>
-      See the code that powers this app (and feel free to submit a pull
-      request!)
-    </p>
+  <%= upcase_repo_link do %>
+    <h4>Upcase Repo</h4>
+    <p>See the code that powers this app (and feel free to submit a pull request!)</p>
+    <p><img src="https://codeclimate.com/repos/509bdbd313d6373b2b001546/badges/ca2720aded19a6da11e7/gpa.png" /></p>
   <% end %>
 
   <% unless current_user_has_access_to?(:source_code) %>

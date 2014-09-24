@@ -32,8 +32,4 @@ class Catalog
   def videos
     Video.published.recently_published_first
   end
-
-  def repositories
-    Repository.active.ordered
-  end
 end
