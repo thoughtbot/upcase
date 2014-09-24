@@ -1,27 +1,6 @@
 require "rails_helper"
 
 describe "dashboards/show.html" do
-  ENV["UPCASE_REPO_URL"] = "upcase_repo_url"
-
-  context "when a user does not have access to the upcase repo" do
-    it "renders without a link to upcase repo" do
-      render_show
-
-      expect(rendered).
-        not_to have_css("a[href='upcase_repo_url']")
-      expect(rendered).to have_css("a[href='#{edit_subscription_path}']")
-    end
-  end
-
-  context "when a user has access to the upcase repo" do
-    it "renders with a link to upcase repo" do
-      render_show source_code: true
-
-      expect(rendered).
-        to have_css("a[href='upcase_repo_url']")
-    end
-  end
-
   context "when a user does not have access to upcase live" do
     it "renders without a link to upcase live" do
       render_show

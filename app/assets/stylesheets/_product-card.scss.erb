@@ -193,6 +193,20 @@
     }
   }
 
+  &.repository {
+    h5 {
+      background-color: $repository-color;
+    }
+
+    .console-illustration {
+      background-image: image-url('repository.svg');
+
+      &:after {
+        border-color: rgba($repository-color, 0.1);
+      }
+    }
+  }
+
   &.see-more {
     padding-top: 78px;
     position: relative;

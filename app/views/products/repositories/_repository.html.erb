@@ -1,0 +1,10 @@
+<figure class="repository card">
+  <%= link_to repository, title: repository.name do %>
+    <h5>GitHub Repository</h5>
+    <figure>
+      <p class="console-illustration"></p>
+    </figure>
+    <h4><%= repository.name %></h4>
+    <p><%= repository.tagline %></p>
+  <% end %>
+</figure>

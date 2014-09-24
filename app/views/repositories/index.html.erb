@@ -1,0 +1,11 @@
+<% content_for :subject_block do %>
+  <h1>Upcase Repositories</h1>
+  <h2 class="tagline">See the code that powers this app!</h2>
+<% end %>
+
+<section class="topic">
+  <%= render(
+    partial: "products/repositories/repository",
+    collection: @catalog.repositories
+  ) %>
+</section>
