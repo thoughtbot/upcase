@@ -130,7 +130,7 @@ FactoryGirl.define do
       includes_exercises false
       includes_forum false
       includes_office_hours false
-      includes_source_code false
+      includes_repositories false
       includes_video_tutorials false
     end
 

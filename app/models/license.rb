@@ -10,6 +10,12 @@ class License < ActiveRecord::Base
   delegate :github_username, to: :user
   delegate :name, to: :licenseable, prefix: true
 
+  # Returns an array because licenseable_type is always `Product` in the DB (and
+  # querying through Arel)
+  def self.for_type(type)
+    all.select { |license| license.licenseable.type == type }
+  end
+
   def starts_on
     licenseable.starts_on(created_at.to_date)
   end

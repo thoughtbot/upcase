@@ -3,7 +3,7 @@ class Repository < Product
   validates :github_url, presence: true
 
   def included_in_plan?(plan)
-    plan.has_feature?(:source_code)
+    plan.has_feature?(:repositories)
   end
 
   def has_github_member?(user)

@@ -103,7 +103,10 @@ class Subscription < ActiveRecord::Base
     old_plan = plan
     yield
     new_plan = plan
+    update_feature_fulfillments(old_plan, new_plan)
+  end
 
+  def update_feature_fulfillments(old_plan, new_plan)
     feature_fulfillment = FeatureFulfillment.new(
       new_plan: new_plan,
       old_plan: old_plan,

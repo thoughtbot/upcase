@@ -69,7 +69,7 @@ describe "dashboards/show.html" do
 
   def default_options
     {
-      source_code: false,
+      repositories: false,
       office_hours: false,
       forum: false,
       shows: false,

@@ -1,5 +1,5 @@
 <figure class="dashboard-resource upcase-repo card
-  <%= locked_dashboard_resource(:source_code) %>">
+  <%= locked_dashboard_resource(:repositories) %>">
 
   <%= link_to repositories_path do %>
     <h4>Upcase Repositories</h4>
@@ -9,7 +9,7 @@
     </p>
   <% end %>
 
-  <% unless current_user_has_access_to?(:source_code) %>
+  <% unless current_user_has_access_to?(:repositories) %>
     <%= render "locked" %>
   <% end %>
 </figure>
