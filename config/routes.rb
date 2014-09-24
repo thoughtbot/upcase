@@ -17,6 +17,7 @@ Upcase::Application.routes.draw do
   draw :podcasts
   draw :products
   draw :redirects
+  draw :repositories
   draw :shows
   draw :stripe
   draw :subscriber

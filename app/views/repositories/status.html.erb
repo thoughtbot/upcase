@@ -1,0 +1,17 @@
+<%= render "offerings/meta", offering: @offering %>
+
+<p>
+  We're adding you to the GitHub repository, and we'll redirect you as soon it's
+  ready. You may receive an email from GitHub asking you to confirm your
+  membership, so make sure to take quick look in your inbox.
+</p>
+
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    (function () {
+      setTimeout(function reload() {
+        window.location.reload();
+      }, 5000);
+    })();
+  </script>
+<% end -%>
