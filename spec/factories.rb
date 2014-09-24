@@ -124,6 +124,11 @@ FactoryGirl.define do
 
     factory :show, class: 'Show' do
     end
+
+    factory :repository, class: 'Repository' do
+      github_team 9999
+      github_url "http://github.com/thoughtbot/upcase"
+    end
   end
 
   factory :plan do
