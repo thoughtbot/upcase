@@ -6,9 +6,10 @@ module Features
       office_hours
       screencasts
       shows
+      source_code
       video_tutorials
     )
-    FULFILLABLE_FEATURES = %w(mentor source_code)
+    FULFILLABLE_FEATURES = %w(mentor)
     ALL_FEATURES = GENERIC_FEATURES + FULFILLABLE_FEATURES
 
     def initialize(user:)
