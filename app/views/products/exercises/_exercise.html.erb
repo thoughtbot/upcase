@@ -6,5 +6,8 @@
     </figure>
     <h4><%= exercise.title %></h4>
     <p><%= exercise.summary %></p>
+    <h6 class="status">
+      <%= state_for(exercise: exercise, user: current_user) %>
+    </h6>
   <% end %>
 </figure>

@@ -417,4 +417,9 @@ FactoryGirl.define do
     application_id 1
     token 'abc123'
   end
+
+  factory :status do
+    user
+    exercise
+  end
 end
