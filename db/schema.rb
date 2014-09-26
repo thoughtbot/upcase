@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140924174818) do
+ActiveRecord::Schema.define(version: 20140926183202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -240,6 +240,16 @@ ActiveRecord::Schema.define(version: 20140924174818) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
+
+  create_table "statuses", force: true do |t|
+    t.integer  "exercise_id"
+    t.integer  "user_id"
+    t.string   "state",       default: "Started"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "statuses", ["exercise_id", "user_id"], name: "index_statuses_on_exercise_id_and_user_id", unique: true, using: :btree
 
   create_table "subscriptions", force: true do |t|
     t.integer  "user_id"
