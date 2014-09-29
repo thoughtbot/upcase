@@ -23,13 +23,13 @@ namespace :dev do
       name: "Part-time Study",
       short_description: "Best for a self-guided learner.",
       sku: "prime-49",
-    }.merge(basic_features))
+    })
 
     mentor_features = {
       includes_mentor: true,
       name: "1-on-1 Coaching",
       short_description: "Best for an active learner seeking 1-on-1 personal coaching.",
-    }.merge(basic_features)
+    }
 
     @mentor_plan = create(:plan, {
       sku: "prime-249",
