@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20140930185615) do
     t.text     "summary",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "uuid"
   end
 
   create_table "invitations", force: true do |t|

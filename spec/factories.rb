@@ -11,6 +11,10 @@ FactoryGirl.define do
     "name #{n}"
   end
 
+  sequence :uuid do |n|
+    "uuid_#{n}"
+  end
+
   sequence :github_username do |n|
     "github_#{n}"
   end
@@ -408,9 +412,10 @@ FactoryGirl.define do
   end
 
   factory :exercise do
+    summary "Exercise summary"
     title
     url "http://www.example.com"
-    summary "Exercise summary"
+    uuid
   end
 
   factory :oauth_access_token do
