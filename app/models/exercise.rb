@@ -10,6 +10,6 @@ class Exercise < ActiveRecord::Base
   end
 
   def status_for(user)
-    statuses.where(user: user).first || NotStarted.new
+    statuses.where(user: user).most_recent || NotStarted.new
   end
 end

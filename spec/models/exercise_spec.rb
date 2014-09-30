@@ -22,5 +22,16 @@ describe Exercise do
 
       expect(exercise.status_for(user)).to be_a NotStarted
     end
+
+    it "returns the latest status for the user" do
+      exercise = create(:exercise)
+      user = create(:user)
+      status = create(:status, exercise: exercise, user: user)
+      Timecop.travel(1.day.ago) do
+        create(:status, exercise: exercise, user: user)
+      end
+
+      expect(exercise.status_for(user)).to eq status
+    end
   end
 end

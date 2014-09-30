@@ -6,5 +6,8 @@ class Status < ActiveRecord::Base
 
   validates :exercise_id, :user_id, presence: true
   validates :state, inclusion: { in: STATES }
-  validates :user_id, uniqueness: { scope: :exercise_id }
+
+  def self.most_recent
+    order(:created_at).last
+  end
 end

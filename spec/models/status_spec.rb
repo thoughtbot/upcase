@@ -8,12 +8,15 @@ describe Status do
   it { should validate_presence_of(:user_id) }
   it { should ensure_inclusion_of(:state).in_array(Status::STATES) }
 
-  context "uniqueness" do
-    subject do
-      create(:status)
-    end
+  context ".most_recent" do
+    it "returns the latest status" do
+      status = create(:status)
+      Timecop.travel(1.day.ago) do
+        create(:status)
+      end
 
-    it { should validate_uniqueness_of(:user_id).scoped_to(:exercise_id) }
+      expect(Status.most_recent).to eq status
+    end
   end
 
   context "#state" do
