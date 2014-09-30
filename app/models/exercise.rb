@@ -1,6 +1,6 @@
 class Exercise < ActiveRecord::Base
-  has_many :classifications, as: :classifiable
-  has_many :statuses
+  has_many :classifications, as: :classifiable, dependent: :destroy
+  has_many :statuses, dependent: :destroy
 
   validates :title, presence: true
   validates :url, presence: true
