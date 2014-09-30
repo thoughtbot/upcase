@@ -218,7 +218,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :trail do
+  factory :legacy_trail do
     slug 'trail'
     topic
   end

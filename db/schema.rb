@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930185615) do
+ActiveRecord::Schema.define(version: 20140930204417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,16 @@ ActiveRecord::Schema.define(version: 20140930185615) do
 
   add_index "invitations", ["code"], name: "index_invitations_on_code", using: :btree
   add_index "invitations", ["team_id"], name: "index_invitations_on_team_id", using: :btree
+
+  create_table "legacy_trails", force: true do |t|
+    t.integer  "topic_id"
+    t.string   "slug"
+    t.text     "trail_map"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "legacy_trails", ["topic_id"], name: "index_legacy_trails_on_topic_id", using: :btree
 
   create_table "licenses", force: true do |t|
     t.integer  "user_id",          null: false
@@ -293,16 +303,6 @@ ActiveRecord::Schema.define(version: 20140930185615) do
 
   add_index "topics", ["dashboard"], name: "index_topics_on_dashboard", using: :btree
   add_index "topics", ["slug"], name: "index_topics_on_slug", unique: true, using: :btree
-
-  create_table "trails", force: true do |t|
-    t.integer  "topic_id"
-    t.string   "slug"
-    t.text     "trail_map"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "trails", ["topic_id"], name: "index_trails_on_topic_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"

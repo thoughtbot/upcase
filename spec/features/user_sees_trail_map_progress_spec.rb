@@ -6,7 +6,7 @@ feature 'User can see their trail map progress' do
   end
 
   scenario 'A user with nothing completed sees they have no progress', js: true do
-    trail = create(:trail, trail_map: fake_trail_map.trail, topic: topic)
+    trail = create(:legacy_trail, trail_map: fake_trail_map.trail, topic: topic)
 
     visit topics_path
 
@@ -16,7 +16,7 @@ feature 'User can see their trail map progress' do
   end
 
   scenario 'A user with items completed sees they have progress', js: true do
-    trail = create(:trail, trail_map: fake_trail_map.trail, topic: topic)
+    trail = create(:legacy_trail, trail_map: fake_trail_map.trail, topic: topic)
 
     completion = @current_user.completions.create(
       trail_name: 'Git',
@@ -30,21 +30,21 @@ feature 'User can see their trail map progress' do
   end
 
   scenario 'A user does not see thoughtbot resources if they are not available' do
-    trail = create(:trail, trail_map: fake_trail_map.trail, topic: topic)
+    trail = create(:legacy_trail, trail_map: fake_trail_map.trail, topic: topic)
 
     visit topic_path(topic)
     expect(page).to_not have_content "Use these thoughtbot resources first"
   end
 
   scenario 'A user sees thoughtbot resources if they are available' do
-    trail = create(:trail, trail_map: fake_trail_map_with_thoughtbot_resource.trail, topic: topic)
+    trail = create(:legacy_trail, trail_map: fake_trail_map_with_thoughtbot_resource.trail, topic: topic)
 
     visit topic_path(topic)
     expect(page).to have_content "Use these thoughtbot resources first"
   end
 
   scenario 'A user with items completed has the item checked', js: true do
-    trail = create(:trail, trail_map: fake_trail_map.trail, topic: topic)
+    trail = create(:legacy_trail, trail_map: fake_trail_map.trail, topic: topic)
 
     completion = @current_user.completions.create(
       trail_name: 'Git',
@@ -57,7 +57,7 @@ feature 'User can see their trail map progress' do
   end
 
   scenario 'A user completes an item', js: true do
-    trail = create(:trail, trail_map: fake_trail_map.trail, topic: topic)
+    trail = create(:legacy_trail, trail_map: fake_trail_map.trail, topic: topic)
 
     expect(@current_user.completions.where(trail_object_id: fake_trail_map.validation_id)).
       to be_empty

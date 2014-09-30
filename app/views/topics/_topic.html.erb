@@ -6,8 +6,8 @@
         <p><em><%= topic.summary %></em></p>
       <% end %>
     </section>
-    <% if topic.trail %>
-      <%= render 'trails/progress', trail: topic.trail %>
+    <% if topic.legacy_trail %>
+      <%= render 'legacy_trails/progress', trail: topic.legacy_trail %>
     <% end %>
   <% end %>
 </div>

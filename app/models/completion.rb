@@ -23,7 +23,7 @@ class Completion < ActiveRecord::Base
   private
 
   def resources_and_validations
-    @resources_and_validations ||= Trail.find_by_slug(slug).resources_and_validations
+    @resources_and_validations ||= LegacyTrail.find_by_slug(slug).resources_and_validations
   end
 
   def step
@@ -31,7 +31,7 @@ class Completion < ActiveRecord::Base
   end
 
   def set_slug
-    Trail.all.each do |trail|
+    LegacyTrail.all.each do |trail|
       if trail.trail_map['name'] == trail_name
         write_attribute(:slug, trail.slug)
       end

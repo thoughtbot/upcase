@@ -49,7 +49,7 @@ feature 'Topic pages' do
 
   scenario 'a topic has thoughtbot trail items listed separately' do
     fake_trail_map = FakeTrailMap.new(thoughtbot_resource: true)
-    upcase_trail = create(:trail, trail_map: fake_trail_map.trail)
+    upcase_trail = create(:legacy_trail, trail_map: fake_trail_map.trail)
 
     visit topic_path(upcase_trail.topic)
 
@@ -58,7 +58,7 @@ feature 'Topic pages' do
 
   scenario 'a topic has non-thoughtbot trail items listed under other resources' do
     fake_trail_map = FakeTrailMap.new
-    upcase_trail = create(:trail, trail_map: fake_trail_map.trail)
+    upcase_trail = create(:legacy_trail, trail_map: fake_trail_map.trail)
 
     visit topic_path(upcase_trail.topic)
 
@@ -67,7 +67,7 @@ feature 'Topic pages' do
 
   scenario "a topic lists the trail map's reference" do
     fake_trail_map = FakeTrailMap.new
-    upcase_trail = create(:trail, trail_map: fake_trail_map.trail)
+    upcase_trail = create(:legacy_trail, trail_map: fake_trail_map.trail)
 
     visit topic_path(upcase_trail.topic)
 

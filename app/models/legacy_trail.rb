@@ -1,4 +1,4 @@
-class Trail < ActiveRecord::Base
+class LegacyTrail < ActiveRecord::Base
   belongs_to :topic
 
   validates :topic_id, :slug, presence: true
