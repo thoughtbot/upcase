@@ -11,9 +11,6 @@
   <% end %>
 <% end %>
 
-<% if @topic.legacy_trail %>
-  <%= link_to 'Contribute to this list', @topic.legacy_trail.contribute_url, class: 'contribute', target: '_blank' %>
-<% end %>
 <% if @topic.related.topics.present? %>
   <p class="related-topics">Related Trails: <%= render partial: 'relateds/topic', collection: @topic.related.topics %></p>
 <% end %>
