@@ -242,9 +242,9 @@ ActiveRecord::Schema.define(version: 20140926183202) do
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
 
   create_table "statuses", force: true do |t|
-    t.integer  "exercise_id"
-    t.integer  "user_id"
-    t.string   "state",       default: "Started"
+    t.integer  "exercise_id",                     null: false
+    t.integer  "user_id",                         null: false
+    t.string   "state",       default: "Started", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

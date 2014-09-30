@@ -1,9 +1,9 @@
 class CreateStatuses < ActiveRecord::Migration
   def change
     create_table :statuses do |t|
-      t.belongs_to :exercise
-      t.belongs_to :user
-      t.string     :state, default: "Started"
+      t.belongs_to :exercise, null: false
+      t.belongs_to :user, null: false
+      t.string     :state, default: "Started", null: false
       t.timestamps
     end
 
