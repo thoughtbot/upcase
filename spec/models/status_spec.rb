@@ -6,8 +6,15 @@ describe Status do
 
   it { should validate_presence_of(:exercise_id) }
   it { should validate_presence_of(:user_id) }
-  it { should validate_uniqueness_of(:user_id).scoped_to(:exercise_id) }
   it { should ensure_inclusion_of(:state).in_array(Status::STATES) }
+
+  context "uniqueness" do
+    subject do
+      create(:status)
+    end
+
+    it { should validate_uniqueness_of(:user_id).scoped_to(:exercise_id) }
+  end
 
   context "#state" do
     it "has a default state of Started" do
