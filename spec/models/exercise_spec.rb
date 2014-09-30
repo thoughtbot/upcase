@@ -14,4 +14,13 @@ describe Exercise do
       expect(Exercise.ordered.pluck(:title)).to eq(%w(first second third))
     end
   end
+
+  describe "#status_for" do
+    it "returns null object if no related status" do
+      exercise = Exercise.new
+      user = User.new
+
+      expect(exercise.status_for(user)).to be_a NotStarted
+    end
+  end
 end
