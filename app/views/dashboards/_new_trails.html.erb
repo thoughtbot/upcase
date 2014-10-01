@@ -1,58 +1,35 @@
 <section class="trails-progress">
-  <div class="subject">
-    <h1>Workflow</h1>
-  </div>
-  <section class="trail" domflag>
-    <header>
-      <h1><a href="#">Testing fundamentals</a></h1>
-      <span class="numerical-progress">6 steps remaining</span>
-    </header>
+  <header class="dashboard-section-title">
+    <h1>Trails</h1>
+    <h2>Upcase Trails are focused exercises targeting your interests. They help you learn by doing and keep your skillset sharp.</h2>
+  </header>
 
-    <section class="progress">
-      <% 4.times do %>
-      <div class="step complete">
-        <div class="dot"></div>
-        <div class="tooltip"></div>
-      </div>
-      <% end %>
-      <div class="step active">
-        <div class="dot"></div>
-        <div class="tooltip"></div>
-      </div>
-      <% 5.times do %>
-        <div class="step">
+  <div class="started">
+    <section class="trail">
+      <header>
+        <h1><a href="#">Testing fundamentals</a></h1>
+        <span class="numerical-progress">6 steps remaining</span>
+      </header>
+
+      <section class="progress">
+        <% 4.times do %>
+          <div class="step complete">
+            <div class="dot"></div>
+            <div class="tooltip"></div>
+          </div>
+        <% end %>
+        <div class="step active">
           <div class="dot"></div>
           <div class="tooltip"></div>
         </div>
-      <% end %>
+        <% 5.times do %>
+          <div class="step">
+            <div class="dot"></div>
+            <div class="tooltip"></div>
+          </div>
+        <% end %>
+      </section>
     </section>
-    <section class="topic">
+  </div>
 
-      <figure class="card trail-step complete">
-        <a href="#">
-          <h5>Complete</h5>
-          <figure>
-            <p class="trail-complete-illustration"></p>
-          </figure>
-          <h4>Exercise Title</h4>
-          <p>Exercise summary Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis erat su...</p>
-        </a>
-      </figure>
-
-      <figure class="card trail-step in-progress">
-        <a href="#">
-          <h5>In Progress</h5>
-          <figure>
-            <p class="trail-in-progress-illustration"></p>
-          </figure>
-          <h4>Exercise Title</h4>
-          <p>Exercise summary lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis erat su...</p>
-        </a>
-      </figure>
-
-      <figure class="card"></figure>
-    </section>
-
-
-  </section>
 </section>

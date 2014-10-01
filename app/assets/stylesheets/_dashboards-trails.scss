@@ -1,6 +1,45 @@
+.dashboard-section-title {
+  margin: 0 auto 80px;
+  text-align: center;
+  width: 85%;
+
+  h1 {
+    color: $red;
+    font-size: em(41);
+    font-weight: 700;
+    margin-bottom: 0.6em;
+  }
+
+  h2 {
+    font-size: em(27);
+    font-weight: normal;
+    line-height: 1.2;
+  }
+}
+
+
 .trails-progress {
+  display: block;
   position: relative;
   z-index: 1;
+
+  .seperator {
+    border-top: 1px solid $gray-4;
+    text-align: center;
+    margin-bottom: 50px;
+
+    span {
+      background: #fff;
+      color: $gray-3;
+      display: inline-block;
+      font-size: em(14);
+      padding: 0 18px;
+      text-transform: uppercase;
+      position: relative;
+      top: -11px;
+      font-weight: 600;
+    }
+  }
 
   .trail {
     padding: 0 em(30);
@@ -31,7 +70,7 @@
         color: $gray-3;
         float: right;
         font-size: 0.92rem;
-        font-weight: 600;
+        font-weight: 500;
         margin-top: 8px;
       }
     }
@@ -73,7 +112,7 @@
       }
 
       &.in-progress .dot {
-        background: #F5A623;
+        background: #F5A623; // make variable
       }
 
       &.complete .dot {
@@ -81,7 +120,7 @@
       }
 
       &.active .dot {
-        background: #4A90E2;
+        background: #4A90E2; // make variable
 
         &:before {
           border: 2px solid #4A90E2;
