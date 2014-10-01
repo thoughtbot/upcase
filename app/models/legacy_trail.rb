@@ -18,7 +18,7 @@ class LegacyTrail < ActiveRecord::Base
 
   def steps
     trail_map['steps'].map do |step_hash|
-      Step.new(step_hash)
+      LegacyStep.new(step_hash)
     end
   end
 

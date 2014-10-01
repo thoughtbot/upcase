@@ -1,4 +1,4 @@
-class Step
+class LegacyStep
   include Comparable
 
   attr_reader :name, :validations

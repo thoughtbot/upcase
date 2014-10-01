@@ -28,7 +28,7 @@ describe LegacyTrail do
       trail = build(:legacy_trail, trail_map: trail_map)
 
       expect(trail.steps.size).to eq 1
-      expect(trail.steps.first).to eq Step.new(trail_map['steps'].first)
+      expect(trail.steps.first).to eq LegacyStep.new(trail_map['steps'].first)
     end
   end
 
