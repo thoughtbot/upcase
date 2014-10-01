@@ -57,6 +57,7 @@
       h1 {
         float: left;
         font-size: 1.5rem;
+        font-weight: 600;
 
         a {
           color: $darkwarmgray;
@@ -92,31 +93,40 @@
     }
 
     .step {
-      padding: 10px;
+      $step-padding: 14px;
+      $dot-size: 13px;
+      padding: $step-padding;
       position: relative;
       cursor: pointer;
 
       .dot {
-        $s: 13px;
         background: #D8D8D8;
-        border-radius: $s;
-        @include size($s);
+        border-radius: $dot-size;
+        @include size($dot-size);
 
         &:before {
-          border-radius: $s;
+          border-radius: $dot-size;
           content: "";
+          margin-left: -2px;
+          margin-top: -2px;
           position: absolute;
-          @include size($s);
+          @include size($dot-size);
           z-index: 0;
         }
       }
 
       &:hover .tooltip {
-        display: block;
+        opacity: 1;
+        @include transform(translate(-50%, 0));
       }
 
       &.started .dot, &.pushed .dot, &.submitted .dot {
-        background: #F5A623; // make variable
+        background: $gold-trail; // make variable
+
+        &:before {
+          border: 2px solid $gold-trail; // make variable
+          @extend %animation-radiate;
+        }
       }
 
       &.reviewed .dot {
@@ -124,26 +134,53 @@
       }
 
       &.active .dot {
-        background: #4A90E2; // make variable
+        background: $blue-trail; // make variable
 
         &:before {
-          border: 2px solid #4A90E2;
-          margin-left: -2px;
-          margin-top: -2px;
+          border: 2px solid $blue-trail;
           @extend %animation-radiate;
         }
       }
 
       .tooltip {
-       background: red;
-       display: none;
-       height: 200px;
-       left: 0;
-       pointer-events: none;
-       position: absolute;
-       top: 34px;
-       @include transform(translateX(-46%));
-       width: 100px;
+        opacity: 0;
+        left: ($step-padding*2 + $dot-size) * 0.5;
+        pointer-events: none;
+        position: absolute;
+        top: 40px;
+        @include transition(all 0.2s $ease-out-quad);
+        @include transform(translate(-50%, 6px));
+
+        &:before, &:after {
+          $size: 20px;
+          content: "";
+          @include triangle($size 8px, $base-border-color-1, up);
+          position: absolute;
+          top: -$size * 0.5 + 3px;
+          left: 50%;
+          @include calc(left, "50% - #{$size / 2}");
+          z-index: 1;
+        }
+
+        &:before {
+          @include transform(scale(1.15));
+          @include transform-origin(center bottom);
+        }
+
+        &:after {
+          $size: 20px;
+          @include triangle($size 8px, #fff, up);
+        }
+
+
+        .card {
+          z-index: 0;
+          height: auto;
+
+          figure {
+            display: none;
+          }
+        }
       }
     }
   }
