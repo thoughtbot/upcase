@@ -1,8 +1,8 @@
 <div class="step <%= exercise.status_for(current_user).state.parameterize %>">
   <%= exercise_link exercise.url, title: exercise.title do %>
     <div class="dot"></div>
-    <div class="tooltip">
-      <%= render "products/exercises/exercise", exercise: exercise %>
-    </div>
   <% end %>
+  <div class="tooltip">
+    <%= render "products/exercises/exercise", exercise: exercise %>
+  </div>
 </div>
