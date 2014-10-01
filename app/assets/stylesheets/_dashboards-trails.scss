@@ -43,6 +43,7 @@
       border-radius: 60px;
       @include display(flex);
       height: 58px;
+      margin-bottom: 50px;
       @include justify-content(space-around);
       padding: 0 10px;
     }
@@ -76,7 +77,7 @@
       }
 
       &.complete .dot {
-        background: #1DBE76;
+        background: $green-trail;
       }
 
       &.active .dot {
