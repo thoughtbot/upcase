@@ -1,0 +1,106 @@
+.trails-progress {
+  position: relative;
+  z-index: 1;
+
+  .trail {
+    padding: 0 em(30);
+    width: 100%;
+
+    header {
+      clear: both;
+      @include clearfix;
+      margin-bottom: 25px;
+
+      h1 {
+        float: left;
+        font-size: 1.5rem;
+
+        a {
+          color: $darkwarmgray;
+          font-family: $sans-serif;
+          font-size: 1em;
+          font-weight: 600;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      span {
+        color: $gray-3;
+        float: right;
+        font-size: 0.92rem;
+        font-weight: 600;
+        margin-top: 8px;
+      }
+    }
+
+    .progress {
+      @include align-items(center);
+      @include background-image(linear-gradient(#FBFBFB, #F3F3F3));
+      border: 1px solid #D8D8D8;
+      border-radius: 60px;
+      @include display(flex);
+      height: 58px;
+      @include justify-content(space-around);
+      padding: 0 10px;
+    }
+
+    .step {
+      padding: 10px;
+      position: relative;
+      cursor: pointer;
+
+      .dot {
+        $s: 13px;
+        background: #D8D8D8;
+        border-radius: $s;
+        @include size($s);
+
+        &:before {
+          border-radius: $s;
+          content: "";
+          position: absolute;
+          @include size($s);
+          z-index: 0;
+        }
+      }
+
+      &:hover .tooltip {
+        display: block;
+      }
+
+      &.in-progress .dot {
+        background: #F5A623;
+      }
+
+      &.complete .dot {
+        background: #1DBE76;
+      }
+
+      &.active .dot {
+        background: #4A90E2;
+
+        &:before {
+          border: 2px solid #4A90E2;
+          margin-left: -2px;
+          margin-top: -2px;
+          @extend %animation-radiate;
+        }
+      }
+
+      .tooltip {
+       background: red;
+       display: none;
+       height: 200px;
+       left: 0;
+       pointer-events: none;
+       position: absolute;
+       top: 34px;
+       @include transform(translateX(-46%));
+       width: 100px;
+      }
+    }
+  }
+}

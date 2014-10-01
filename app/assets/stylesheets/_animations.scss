@@ -1,0 +1,15 @@
+%animation-radiate {
+  @include animation(radiate 2s $ease-out-sine 0s forwards);
+  @include animation-iteration-count(infinite);
+  opacity: 1;
+}
+@include keyframes(radiate) {
+  0% {
+    opacity: 0.7;
+    @include transform(scale(0.8));
+  }
+  100% {
+    opacity: 0;
+    @include transform(scale(2.2));
+  }
+}
