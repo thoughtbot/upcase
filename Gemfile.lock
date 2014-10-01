@@ -74,10 +74,7 @@ GEM
     airbrake (4.0.0)
       builder
       multi_json
-    analytics-ruby (0.5.4)
-      faraday (>= 0.8, < 0.10)
-      faraday_middleware (>= 0.8, < 0.10)
-      multi_json (~> 1.0)
+    analytics-ruby (2.0.10)
     arel (5.0.1.20140414130214)
     attr_required (0.0.5)
     aws-sdk (1.6.2)
@@ -157,8 +154,6 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
-    faraday_middleware (0.9.1)
-      faraday (>= 0.7.4, < 0.10)
     ffi (1.9.3)
     flutie (2.0.0)
     font-awesome-rails (4.1.0.0)
@@ -402,7 +397,7 @@ DEPENDENCIES
   active_model_serializers (~> 0.7.0)
   acts_as_list (= 0.2.0)
   airbrake (~> 4.0.0)
-  analytics-ruby
+  analytics-ruby (~> 2.0.0)
   aws-sdk (= 1.6.2)
   bluecloth
   bourbon (= 3.2.3)

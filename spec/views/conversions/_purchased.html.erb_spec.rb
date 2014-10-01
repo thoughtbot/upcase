@@ -1,29 +1,20 @@
 require "rails_helper"
 
-describe 'conversions/_purchased.html.erb' do
+describe "conversions/_purchased.html.erb" do
   before do
     view_stubs(
-      purchase_amount: purchase_amount,
-      purchase_name: purchase_name
+      current_user: stub("user", id: user_id),
+      purchased_hash: ""
     )
   end
 
-  it 'records the purchase amount and purchase name in Segment.io' do
-    purchase_properties = {
-      revenue: purchase_amount,
-      label: purchase_name
-    }.to_json
+  def user_id
+    123
+  end
 
+  it "aliases the user id" do
     render
 
-    expect(rendered).to include(purchase_properties)
-  end
-
-  def purchase_amount
-    99
-  end
-
-  def purchase_name
-    'VideoTutorials Subscription'
+    expect(rendered).to include(%{analytics.alias("#{user_id}")})
   end
 end

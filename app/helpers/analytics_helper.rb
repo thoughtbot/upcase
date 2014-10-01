@@ -12,9 +12,11 @@ module AnalyticsHelper
       mentor_name: user.mentor_name,
       name: user.name,
       plan: user.plan_name,
+      scheduled_for_cancellation_on: user.scheduled_for_cancellation_on,
+      stripe_customer_url: StripeCustomer.new(user).url,
       subscribed_at: user.subscribed_at,
       username: user.github_username,
-      stripe_customer_url: StripeCustomer.new(user).url,
+      user_id: user.id,
     }
   end
 
@@ -24,15 +26,18 @@ module AnalyticsHelper
         userHash: OpenSSL::HMAC.hexdigest(
           'sha256',
           ENV['INTERCOM_API_SECRET'],
-          user.id.to_s)
+          user.id.to_s
+        )
       }
     }
   end
 
-  def purchased_hash(purchase_amount, purchase_name)
+  def purchased_hash
     {
-      revenue: purchase_amount,
-      label: purchase_name
+      revenue: flash[:purchase_amount],
+      context: {
+        campaign: session[:campaign_params].to_json,
+      }
     }
   end
 end

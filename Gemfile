@@ -7,7 +7,7 @@ gem 'active_model_serializers', '~> 0.7.0'
 gem 'acts_as_list', '0.2.0'
 gem 'airbrake', '~> 4.0.0'
 gem 'aws-sdk', '= 1.6.2' # Bug https://github.com/thoughtbot/paperclip/issues/751
-gem 'analytics-ruby'
+gem "analytics-ruby", "~> 2.0.0", require: "segment/analytics"
 gem 'bluecloth'
 gem 'bourbon', '3.2.3'
 gem 'clearance', '1.4.2'

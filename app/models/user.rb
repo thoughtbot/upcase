@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   delegate :first_name, to: :mentor, prefix: true, allow_nil: true
   delegate :name, to: :mentor, prefix: true, allow_nil: true
   delegate :plan, to: :subscription, allow_nil: true
+  delegate :scheduled_for_cancellation_on, to: :subscription, allow_nil: true
 
   def self.with_active_subscription
     includes(purchased_subscription: :plan, team: { subscription: :plan }).

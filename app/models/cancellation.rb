@@ -7,6 +7,7 @@ class Cancellation
     Subscription.transaction do
       stripe_customer.cancel_subscription(at_period_end: true)
       record_scheduled_cancellation_date(stripe_customer)
+      track_cancelled
     end
   end
 
@@ -19,7 +20,6 @@ class Cancellation
     if @subscription.active?
       @subscription.deactivate
       deliver_unsubscription_survey
-      unsubscribe_from_analytics
     end
   end
 
@@ -41,8 +41,8 @@ class Cancellation
 
   private
 
-  def unsubscribe_from_analytics
-    AnalyticsUpdater.new(@subscription.user).unsubscribe
+  def track_cancelled
+    Analytics.new(@subscription.user).track_cancelled
   end
 
   def deliver_unsubscription_survey

@@ -26,8 +26,7 @@ class CheckoutsController < ApplicationController
           name: @checkout.subscribeable_name
         ),
         flash: {
-          purchase_amount: @checkout.price,
-          purchase_name: @checkout.subscribeable_name
+          purchase_amount: @checkout.price
         }
       )
     else

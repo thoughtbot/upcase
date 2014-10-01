@@ -1,6 +1,6 @@
 <% if flash.any? %>
   <div class="flashes">
-    <% flash.to_hash.slice("notice", "error").each do |key, value| -%>
+    <% user_facing_flashes.each do |key, value| -%>
       <div class="flash <%= key %>">
         <%= value %>
       </div>
@@ -8,9 +8,7 @@
 
   <% if flash[:purchase_amount] %>
      <% content_for :javascript do %>
-       <%= render 'conversions/purchased',
-             purchase_amount: flash[:purchase_amount],
-             purchase_name: flash[:purchase_name] %>
+       <%= render "conversions/purchased" %>
      <% end %>
    <% end %>
   </div>

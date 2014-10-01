@@ -8,9 +8,6 @@ describe Cancellation do
       mailer = stub(deliver: true)
       SubscriptionMailer.stubs(:cancellation_survey).
         with(subscription.user).returns(mailer)
-
-      updater = stub(unsubscribe: true)
-      AnalyticsUpdater.stubs(:new).with(subscription.user).returns(updater)
     end
 
     context "with an active subscription" do
@@ -28,15 +25,6 @@ describe Cancellation do
         expect(SubscriptionMailer.cancellation_survey(subscription.user)).
           to have_received(:deliver)
       end
-
-      it "updates intercom status for user" do
-        cancellation.process
-
-        expect(AnalyticsUpdater).
-          to have_received(:new).with(subscription.user)
-        expect(AnalyticsUpdater.new(subscription.user)).
-          to have_received(:unsubscribe)
-      end
     end
 
     context "with an inactive subscription" do
@@ -47,8 +35,6 @@ describe Cancellation do
 
         expect(SubscriptionMailer.cancellation_survey(subscription.user)).
           to have_received(:deliver).never
-        expect(AnalyticsUpdater.new(subscription.user)).
-          to have_received(:unsubscribe).never
       end
     end
   end
@@ -57,20 +43,22 @@ describe Cancellation do
     it 'schedules a cancellation with Stripe' do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription)
-
       stripe_customer = stub(
         'Stripe::Customer',
         cancel_subscription: nil,
         subscription: stub(current_period_end: 1361234235)
       )
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
+      analytics_updater = stub(track_cancelled: true)
+      Analytics.stubs(:new).returns(analytics_updater)
+
       cancellation.schedule
 
       expect(stripe_customer).to have_received(:cancel_subscription).
         with(at_period_end: true)
-
       expect(subscription.scheduled_for_cancellation_on).
         to eq Time.zone.at(1361234235).to_date
+      expect(analytics_updater).to have_received(:track_cancelled)
     end
 
     it 'retrieves the customer correctly' do
@@ -100,6 +88,7 @@ describe Cancellation do
 
       expect { cancellation.schedule }.to raise_error
       expect(Subscription.find(subscription.id)).to be_active
+      expect(Analytics).to have_received(:new).never
     end
 
     it 'does not unsubscribe from stripe if deactivating the subscription failed' do
@@ -112,6 +101,7 @@ describe Cancellation do
 
       expect { cancellation.schedule }.to raise_error
       expect(subscription).to have_received(:cancel_subscription).never
+      expect(Analytics).to have_received(:new).never
     end
   end
 
