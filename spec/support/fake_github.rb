@@ -35,37 +35,7 @@ class FakeGithub < Sinatra::Base
   end
 end
 
-class HostMap
-  def initialize(mappings)
-    @mappings = mappings
-  end
-
-  def call(env)
-    app_for(env["SERVER_NAME"]).call(env)
-  end
-
-  private
-
-  def app_for(server_name)
-    @mappings[server_name] || NOT_FOUND
-  end
-
-  NOT_FOUND = lambda do |env|
-    [
-      404,
-      { "Content-Type" => "text/html" },
-      ["Unmapped server name: #{env["SERVER_NAME"]}"]
-    ]
-  end
-end
-
 FakeGithubRunner = Capybara::Discoball::Runner.new(FakeGithub) do |server|
   url = "http://#{server.host}:#{server.port}"
   Octokit.api_endpoint = url
 end
-
-Capybara.app = HostMap.new(
-  "www.example.com" => Capybara.app,
-  "127.0.0.1" => Capybara.app,
-  "github.com" => FakeGithub
-)

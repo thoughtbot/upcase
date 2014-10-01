@@ -29,6 +29,13 @@ FakeStripeRunner.boot
 FakeGithubRunner.boot
 FakeWistiaRunner.boot
 
+Capybara.app = HostMap.new(
+  "www.example.com" => Capybara.app,
+  "127.0.0.1" => Capybara.app,
+  "github.com" => FakeGithub,
+  "exercises.upcase.com" => FakeUpcaseExercises
+)
+
 silence_warnings do
   Clip::WISTIA_EMBED_BASE_URL = "localhost/"
 end

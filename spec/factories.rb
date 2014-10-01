@@ -414,7 +414,7 @@ FactoryGirl.define do
   factory :exercise do
     summary "Exercise summary"
     title
-    url "http://www.example.com"
+    url { "http://exercises.upcase.com/exercises/#{uuid}" }
     uuid
   end
 
@@ -426,5 +426,15 @@ FactoryGirl.define do
   factory :status do
     user
     exercise
+  end
+
+  factory :trail do
+    name "Trail name"
+  end
+
+  factory :step do
+    exercise
+    trail
+    sequence(:position) { |n| n }
   end
 end

@@ -11,5 +11,6 @@
   <%= render 'locked_features' %>
 <% end %>
 
+<%= render partial: "dashboards/trail", collection: @dashboard.trails %>
 <%= render partial: "dashboards/show", collection: @dashboard.shows %>
 <%= render partial: "dashboards/topic", collection: @dashboard.topics %>

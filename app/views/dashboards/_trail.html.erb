@@ -1,0 +1,5 @@
+<%= trail.name %>
+
+<%= pluralize(trail.steps_remaining_for(current_user), "step") %> remaining
+
+<%= render partial: "trails/exercise", collection: trail.exercises.ordered %>

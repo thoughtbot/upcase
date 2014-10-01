@@ -1,0 +1,7 @@
+<%= exercise_link(
+  exercise.url,
+  title: exercise.title,
+  class: exercise.status_for(current_user).state.parameterize
+) do %>
+  <%= exercise.title %>
+<% end %>

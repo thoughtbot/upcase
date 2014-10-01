@@ -12,4 +12,8 @@ class Dashboard
     )
     topics.to_a.sort_by(&:count).reverse
   end
+
+  def trails
+    Trail.most_recent
+  end
 end

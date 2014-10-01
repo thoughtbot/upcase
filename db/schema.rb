@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930204417) do
+ActiveRecord::Schema.define(version: 20141001145943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -260,6 +260,16 @@ ActiveRecord::Schema.define(version: 20140930204417) do
     t.datetime "updated_at"
   end
 
+  create_table "steps", force: true do |t|
+    t.integer  "trail_id",    null: false
+    t.integer  "exercise_id", null: false
+    t.integer  "position",    null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "steps", ["trail_id"], name: "index_steps_on_trail_id", using: :btree
+
   create_table "subscriptions", force: true do |t|
     t.integer  "user_id"
     t.datetime "created_at",                                               null: false
@@ -303,6 +313,12 @@ ActiveRecord::Schema.define(version: 20140930204417) do
 
   add_index "topics", ["dashboard"], name: "index_topics_on_dashboard", using: :btree
   add_index "topics", ["slug"], name: "index_topics_on_slug", unique: true, using: :btree
+
+  create_table "trails", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: true do |t|
     t.string   "email"
