@@ -111,11 +111,11 @@
         display: block;
       }
 
-      &.in-progress .dot {
+      &.started .dot, &.pushed .dot, &.submitted .dot {
         background: #F5A623; // make variable
       }
 
-      &.complete .dot {
+      &.reviewed .dot {
         background: $green-trail;
       }
 

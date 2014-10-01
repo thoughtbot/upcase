@@ -1,5 +1,17 @@
-<%= trail.name %>
+<div class="started">
+  <section class="trail">
+    <header>
+      <h1><%= trail.name %></h1>
+      <span class="numerical-progress">
+        <%= pluralize(
+          trail.steps_remaining_for(current_user),
+          "step"
+        ) %> remaining
+      </span>
+    </header>
 
-<%= pluralize(trail.steps_remaining_for(current_user), "step") %> remaining
-
-<%= render partial: "trails/exercise", collection: trail.exercises.ordered %>
+    <section class="progress">
+      <%= render partial: "trails/exercise", collection: trail.exercises.ordered %>
+    </section>
+  </section>
+</div>

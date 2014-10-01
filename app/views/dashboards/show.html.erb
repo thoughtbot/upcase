@@ -11,9 +11,20 @@
   </div>
 </section>
 
+<% if locked_features.any? %>
+  <%= render "locked_features" %>
+<% end %>
+
 <section class="root-trails">
   <div class="content">
-    <%= render partial: "dashboards/trail", collection: @dashboard.trails %>
+    <section class="trails-progress">
+      <header class="dashboard-section-title">
+        <h1>Trails</h1>
+        <h2>Upcase Trails are focused exercises targeting your interests. They help you learn by doing and keep your skillset sharp.</h2>
+      </header>
+
+      <%= render partial: "dashboards/trail", collection: @dashboard.trails %>
+    </section>
   </div>
 </section>
 
