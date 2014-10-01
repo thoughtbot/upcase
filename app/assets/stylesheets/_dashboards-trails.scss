@@ -80,6 +80,14 @@
       }
     }
 
+    .complete-mask {
+      overflow: hidden;
+
+      .tooltip {
+        display: none;
+      }
+    }
+
     .progress {
       @include align-items(center);
       @include background-image(linear-gradient(#FBFBFB, #F3F3F3));
@@ -90,6 +98,11 @@
       margin-bottom: 50px;
       @include justify-content(space-around);
       padding: 0 10px;
+
+      &.complete {
+        @include transform(translateX(-60%));
+      }
+
     }
 
     .step {
@@ -98,6 +111,13 @@
       padding: $step-padding;
       position: relative;
       cursor: pointer;
+
+      &:last-of-type {
+        &.reviewed .dot {
+          @include size(36);
+          background: url('trail-complete-check.svg') center /36px no-repeat;
+        }
+      }
 
       .dot {
         background: #D8D8D8;
@@ -182,6 +202,31 @@
           }
         }
       }
+    }
+  }
+
+  .complete {
+    position: relative;
+    z-index: -1;
+
+    h1 {
+      width: 100%;
+    }
+
+    .complete-subhead {
+      float: left;
+      font-family: $serif;
+      font-style: italic;
+      margin-bottom: .5em;
+    }
+
+    p {
+      color: shade($green-trail, 30%);
+      font-size: 21px;
+      font-style: italic;
+      left: 45%;
+      position: absolute;
+      top: 50%;
     }
   }
 }
