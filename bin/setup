@@ -4,14 +4,40 @@
 # https://github.com/thoughtbot/guides/tree/master/protocol
 
 # Set up Ruby dependencies via Bundler
+if ! command -v bundle > /dev/null; then
+  gem install bundler --no-document
+fi
+
 bundle install
 
 # Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
-mkdir -p .git/safe
+if [ ! -d .git/safe ]; then
+  mkdir -p .git/safe
+fi
 
-# Set up Heroku remotes
-git remote add staging git@heroku.com:upcase-staging.git
-git remote add production git@heroku.com:upcase-production.git
+# Set up deploys
+git remote add staging git@heroku.com:upcase-staging.git || true
+git remote add production git@heroku.com:upcase-production.git || true
+
+if ! command -v heroku > /dev/null; then
+  printf 'Heroku Toolbelt is not installed.\n'
+  printf 'See https://toolbelt.heroku.com/ for install instructions.\n'
+  exit 1
+fi
+
+if heroku join --app upcase-staging &> /dev/null; then
+  printf 'You are a collaborator on the "upcase-staging" Heroku app\n'
+else
+  printf 'Ask for access to the "upcase-staging" Heroku app\n'
+  exit 1
+fi
+
+if heroku join --app upcase-production &> /dev/null; then
+  printf 'You are a collaborator on the "upcase-production" Heroku app\n'
+else
+  printf 'Ask for access to the "upcase-production" Heroku app\n'
+  exit 1
+fi
 
 # Set up the database
 bundle exec rake db:setup
@@ -23,4 +49,12 @@ if [ ! -f .env ]; then
 fi
 
 # Pick a port for Foreman
-echo "port: 5000" > .foreman
+if ! command -v foreman > /dev/null; then
+  printf 'Foreman is not installed.\n'
+  printf 'See https://github.com/ddollar/foreman for install instructions.\n'
+  exit 1
+fi
+
+if ! grep -qs 'port' .foreman; then
+  printf 'port: 5000\n' >> .foreman
+fi
