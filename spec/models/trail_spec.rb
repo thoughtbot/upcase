@@ -40,9 +40,9 @@ describe Trail do
       trail.add_exercise(first)
       trail.add_exercise(second)
       trail.add_exercise(third)
-      first.statuses.create!(user: user, state: "Reviewed")
-      second.statuses.create!(user: user, state: "Submitted")
-      first.statuses.create!(user: other_user, state: "Reviewed")
+      first.statuses.create!(user: user, state: Status::REVIEWED)
+      second.statuses.create!(user: user, state: Status::SUBMITTED)
+      first.statuses.create!(user: other_user, state: Status::REVIEWED)
 
       result = trail.steps_remaining_for(user)
 

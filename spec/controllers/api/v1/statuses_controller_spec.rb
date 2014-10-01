@@ -14,10 +14,10 @@ describe Api::V1::StatusesController do
       controller.stubs(:doorkeeper_token).returns(stub(accessible?: true))
       controller.stubs(:resource_owner).returns(user)
 
-      post :create, exercise_uuid: exercise.uuid, state: "Submitted"
+      post :create, exercise_uuid: exercise.uuid, state: Status::SUBMITTED
 
       expect(response).to be_success
-      expect(exercise.status_for(user).state).to eq "Submitted"
+      expect(exercise.status_for(user).state).to eq Status::SUBMITTED
     end
   end
 end
