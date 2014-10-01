@@ -19,11 +19,20 @@
   <div class="content">
     <section class="trails-progress">
       <header class="dashboard-section-title">
-        <h1>Trails</h1>
-        <h2>Upcase Trails are focused exercises targeting your interests. They help you learn by doing and keep your skillset sharp.</h2>
+        <h1>Beta Trails</h1>
+        <h2>
+          These new trails are focused exercises targeting your interests. They
+          help you learn by doing and keep your skillset sharp.
+        </h2>
       </header>
 
       <%= render partial: "dashboards/trail", collection: @dashboard.trails %>
+
+      <footer>
+        <%= link_to "/trails" do %>
+          View All Trails &rarr;
+        <% end %>
+      </footer>
     </section>
   </div>
 </section>

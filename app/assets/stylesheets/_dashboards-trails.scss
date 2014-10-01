@@ -23,6 +23,10 @@
   position: relative;
   z-index: 1;
 
+  & > footer {
+    text-align: center;
+  }
+
   .seperator {
     border-top: 1px solid $gray-4;
     text-align: center;
