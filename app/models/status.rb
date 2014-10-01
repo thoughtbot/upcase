@@ -1,4 +1,5 @@
 class Status < ActiveRecord::Base
+  NOT_STARTED = "Not Started"
   STARTED = "Started"
   PUSHED = "Pushed"
   SUBMITTED = "Submitted"

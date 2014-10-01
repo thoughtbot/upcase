@@ -1,5 +1,5 @@
 class NotStarted
   def state
-    "Not Started"
+    Status::NOT_STARTED
   end
 end

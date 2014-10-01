@@ -1,6 +1,10 @@
 class Dashboard
   LIMIT = 3
 
+  def initialize(user)
+    @user = user
+  end
+
   def shows
     Catalog.new.shows
   end
@@ -14,6 +18,8 @@ class Dashboard
   end
 
   def trails
-    Trail.most_recent
+    Trail.most_recent.map do |trail|
+      TrailWithProgress.new(trail, user: @user)
+    end
   end
 end
