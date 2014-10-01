@@ -228,27 +228,25 @@
     }
   }
 
-  &.trail-step {
-    &.complete {
-      h5 {
-        background-color: $green-trail;
-      }
-
-      .trail-complete-illustration {
-        background: url('trail-step-complete.svg') center /58px no-repeat;
-        height: $product-card-illustration-height;
-      }
+  &.complete {
+    h5 {
+      background-color: $green-trail;
     }
 
-    &.in-progress {
-      h5 {
-        background-color: $gold-trail;
-      }
+    .trail-complete-illustration {
+      background: url('trail-step-complete.svg') center /58px no-repeat;
+      height: $product-card-illustration-height;
+    }
+  }
 
-      .trail-in-progress-illustration {
-        background: url('trail-step-in-progress.svg') center /60px no-repeat;
-        height: $product-card-illustration-height;
-      }
+  &.in-progress {
+    h5 {
+      background-color: $gold-trail;
+    }
+
+    .trail-in-progress-illustration {
+      background: url('trail-step-in-progress.svg') center /60px no-repeat;
+      height: $product-card-illustration-height;
     }
   }
 }
