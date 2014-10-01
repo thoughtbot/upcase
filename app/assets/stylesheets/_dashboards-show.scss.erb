@@ -12,11 +12,34 @@ body.dashboards-show {
     }
   }
 
-  .content > section {
-    @include display(flex);
-    @include flex-flow(wrap);
-    @include justify-content(space-around);
-    margin-bottom: 3.5rem;
+  > div.content {
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+
+  .root-trails, .root-library {
+    @extend %dashboard-gradient;
+    padding: 80px 0;
+  }
+
+  .root-library {
+    padding-bottom: 0;
+  }
+
+  .root-resources .content {
+    padding-bottom: 0;
+  }
+
+  .root-resources,
+  .root-library {
+    .content > section {
+      @include display(flex);
+      @include flex-flow(wrap);
+      @include justify-content(space-around);
+      margin-bottom: 3.5rem;
+    }
   }
 
   .product-headline {
