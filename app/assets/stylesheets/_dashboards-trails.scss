@@ -1,0 +1,231 @@
+.dashboard-section-title {
+  margin: 0 auto 80px;
+  text-align: center;
+  width: 85%;
+
+  h1 {
+    color: $red;
+    font-size: em(41);
+    font-weight: 700;
+    margin-bottom: 0.6em;
+  }
+
+  h2 {
+    font-size: em(27);
+    font-weight: normal;
+    line-height: 1.2;
+  }
+}
+
+
+.trails-progress {
+  display: block;
+  position: relative;
+  z-index: 1;
+
+  & > footer {
+    text-align: center;
+  }
+
+  .separator {
+    border-top: 1px solid $gray-4;
+    margin-bottom: 50px;
+    text-align: center;
+
+    span {
+      background: #fff;
+      color: $gray-3;
+      display: inline-block;
+      font-size: em(14);
+      font-weight: 600;
+      padding: 0 18px;
+      position: relative;
+      text-transform: uppercase;
+      top: -11px;
+    }
+  }
+
+  .trail {
+    padding: 0 em(30);
+    width: 100%;
+
+    header {
+      @include clearfix;
+      margin-bottom: 25px;
+
+      h1 {
+        float: left;
+        font-size: 1.5rem;
+        font-weight: 600;
+
+        a {
+          color: $darkwarmgray;
+          font-family: $sans-serif;
+          font-size: 1em;
+          font-weight: 600;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      span {
+        color: $gray-3;
+        float: right;
+        font-size: 0.92rem;
+        font-weight: 500;
+        margin-top: 8px;
+      }
+    }
+
+    .complete-mask {
+      overflow: hidden;
+
+      .tooltip {
+        display: none;
+      }
+    }
+
+    .progress {
+      @include align-items(center);
+      @include background-image(linear-gradient(#FBFBFB, #F3F3F3));
+      @include display(flex);
+      @include justify-content(space-around);
+      border: 1px solid #D8D8D8;
+      border-radius: 60px;
+      height: 58px;
+      margin-bottom: 50px;
+      padding: 0 10px;
+
+      &.complete {
+        @include transform(translateX(-60%));
+      }
+
+    }
+
+    .step {
+      $step-padding: 14px;
+      $dot-size: 13px;
+      padding: $step-padding;
+      position: relative;
+      cursor: pointer;
+
+      &:last-of-type {
+        &.reviewed .dot {
+          @include size(36);
+          background: url('trail-complete-check.svg') center /36px no-repeat;
+        }
+      }
+
+      .dot {
+        background: #D8D8D8;
+        border-radius: $dot-size;
+        @include size($dot-size);
+
+        &:before {
+          border-radius: $dot-size;
+          content: "";
+          margin-left: -2px;
+          margin-top: -2px;
+          position: absolute;
+          @include size($dot-size);
+          z-index: 0;
+        }
+      }
+
+      &:hover .tooltip {
+        opacity: 1;
+        @include transform(translate(-50%, 0));
+      }
+
+      &.started .dot, &.pushed .dot, &.submitted .dot {
+        background: $gold-trail;
+
+        &:before {
+          border: 2px solid $gold-trail;
+          @extend %animation-radiate;
+        }
+      }
+
+      &.reviewed .dot {
+        background: $green-trail;
+      }
+
+      &.next-up .dot {
+        background: $blue-trail;
+
+        &:before {
+          border: 2px solid $blue-trail;
+          @extend %animation-radiate;
+        }
+      }
+
+      .tooltip {
+        @include transition(all 0.2s $ease-out-quad);
+        @include transform(translate(-50%, 6px));
+        left: ($step-padding*2 + $dot-size) * 0.5;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 40px;
+
+        &:before, &:after {
+          $size: 20px;
+          @include calc(left, "50% - #{$size / 2}");
+          @include triangle($size 8px, $base-border-color-1, up);
+          content: "";
+          left: 50%;
+          position: absolute;
+          top: -$size * 0.5 + 3px;
+          z-index: 1;
+        }
+
+        &:before {
+          @include transform(scale(1.15));
+          @include transform-origin(center bottom);
+        }
+
+        &:after {
+          $size: 20px;
+          @include triangle($size 8px, #fff, up);
+        }
+
+
+        .card {
+          z-index: 0;
+          height: auto;
+
+          figure {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .complete {
+    position: relative;
+    z-index: -1;
+
+    h1 {
+      width: 100%;
+    }
+
+    .complete-subhead {
+      float: left;
+      font-family: $serif;
+      font-style: italic;
+      margin-bottom: .5em;
+    }
+
+    p {
+      color: shade($green-trail, 30%);
+      font-size: 21px;
+      font-style: italic;
+      left: 45%;
+      position: absolute;
+      top: 50%;
+    }
+  }
+}

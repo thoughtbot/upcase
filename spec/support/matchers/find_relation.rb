@@ -8,7 +8,7 @@ RSpec::Matchers.define :find_relation do |expected_relation|
   failure_message do |actual_relation|
     expectation = eq(expected_relation.to_sql)
     match_expectation expectation, actual_relation
-    expectation.failure_message_for_should
+    expectation.failure_message
   end
 
   def match_expectation(expectation, actual_relation)

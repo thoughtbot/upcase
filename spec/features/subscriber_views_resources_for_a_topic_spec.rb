@@ -14,13 +14,14 @@ feature "subscriber views resources for a topic" do
 
     sign_in_as_user_with_subscription
 
-    expect(page).to have_css(".topic .card", count: 4)
+    within ".root-library" do
+      expect(page).to have_css(".topic .card", count: 4)
 
-    click_on "View All"
+      click_on "View All"
 
-    expect(page).to have_content(video_tutorial.name)
-    expect(page).to have_content(exercise.title)
-    expect(page).to have_content(video_1.title)
-    expect(page).to have_content(video_2.title)
+      expect(page).to have_content(exercise.title)
+      expect(page).to have_content(video_1.title)
+      expect(page).to have_content(video_2.title)
+    end
   end
 end

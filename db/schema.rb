@@ -265,6 +265,16 @@ ActiveRecord::Schema.define(version: 20141002154430) do
   add_index "statuses", ["exercise_id"], name: "index_statuses_on_exercise_id", using: :btree
   add_index "statuses", ["user_id"], name: "index_statuses_on_user_id", using: :btree
 
+  create_table "steps", force: true do |t|
+    t.integer  "trail_id",    null: false
+    t.integer  "exercise_id", null: false
+    t.integer  "position",    null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "steps", ["trail_id"], name: "index_steps_on_trail_id", using: :btree
+
   create_table "subscriptions", force: true do |t|
     t.integer  "user_id"
     t.datetime "created_at",                                               null: false
@@ -308,6 +318,12 @@ ActiveRecord::Schema.define(version: 20141002154430) do
 
   add_index "topics", ["dashboard"], name: "index_topics_on_dashboard", using: :btree
   add_index "topics", ["slug"], name: "index_topics_on_slug", unique: true, using: :btree
+
+  create_table "trails", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: true do |t|
     t.string   "email"

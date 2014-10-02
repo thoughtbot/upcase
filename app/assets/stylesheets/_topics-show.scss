@@ -162,7 +162,7 @@ body.topics-show {
       background-color: darken($journey-line-color, 10%);
     }
 
-    &:active .trail-bullet {
+    &:next-up .trail-bullet {
       @include transition(0s);
     }
   }

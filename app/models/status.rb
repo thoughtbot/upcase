@@ -1,5 +1,12 @@
 class Status < ActiveRecord::Base
-  STATES = %w(Started Pushed Submitted Reviewed)
+  NOT_STARTED = "Not Started"
+  STARTED = "Started"
+  PUSHED = "Pushed"
+  SUBMITTED = "Submitted"
+  REVIEWED = "Reviewed"
+  NEXT_UP = "Next Up"
+
+  STATES = [STARTED, PUSHED, SUBMITTED, REVIEWED]
 
   belongs_to :exercise
   belongs_to :user

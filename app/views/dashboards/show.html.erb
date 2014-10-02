@@ -1,15 +1,50 @@
 <%= render 'mentor_info' %>
 
-<section class='resources'>
-  <%= render 'upcase_repo' %>
-  <%= render 'upcase_live' %>
-  <%= render 'forum' %>
-  <%= render 'trails' %>
+<section class="root-resources">
+  <div class="content">
+    <section class="resources">
+      <%= render "upcase_repo" %>
+      <%= render "upcase_live" %>
+      <%= render "forum" %>
+      <%= render "trails" %>
+    </section>
+  </div>
 </section>
 
 <% if locked_features.any? %>
-  <%= render 'locked_features' %>
+  <%= render "locked_features" %>
 <% end %>
 
-<%= render partial: "dashboards/show", collection: @dashboard.shows %>
-<%= render partial: "dashboards/topic", collection: @dashboard.topics %>
+<section class="root-trails">
+  <div class="content">
+    <section class="trails-progress">
+      <header class="dashboard-section-title">
+        <h1>New Trails (Beta)</h1>
+        <h2>
+          These new trails are focused exercises targeting your interests. They
+          help you learn by doing and keep your skillset sharp.
+        </h2>
+      </header>
+
+      <%= render partial: "dashboards/trail", collection: @dashboard.trails %>
+
+      <footer>
+        <%= link_to "/trails" do %>
+          View All Trails &rarr;
+        <% end %>
+      </footer>
+    </section>
+  </div>
+</section>
+
+<section class="root-library">
+  <div class="content">
+    <header class="dashboard-section-title">
+      <h1>Library</h1>
+      <h2>Upcase's exclusive video tutorials and resources on intermediate and advanced topics such as Vim mastery, TDD, and object-oriented design.</h2>
+    </header>
+
+    <%= render partial: "dashboards/show", collection: @dashboard.shows %>
+    <%= render partial: "dashboards/topic", collection: @dashboard.topics %>
+  </div>
+</section>
