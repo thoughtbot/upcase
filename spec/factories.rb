@@ -418,7 +418,12 @@ FactoryGirl.define do
     uuid
   end
 
-  factory :oauth_access_token do
+  factory :oauth_access_token, class: "Doorkeeper::AccessToken" do
+    ignore do
+      user nil
+    end
+
+    resource_owner_id { user.try(:id) }
     application_id 1
     token 'abc123'
   end
