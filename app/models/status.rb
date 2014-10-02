@@ -4,6 +4,7 @@ class Status < ActiveRecord::Base
   PUSHED = "Pushed"
   SUBMITTED = "Submitted"
   REVIEWED = "Reviewed"
+  ACTIVE = "Active"
 
   STATES = [STARTED, PUSHED, SUBMITTED, REVIEWED]
 

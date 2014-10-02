@@ -1,4 +1,4 @@
-<div class="step <%= exercise.status_for(current_user).state.parameterize %> <%= "active" if exercise.active? %>">
+<div class="step <%= exercise.state.parameterize %> ">
   <%= exercise_link exercise.url, title: exercise.title do %>
     <div class="dot"></div>
   <% end %>

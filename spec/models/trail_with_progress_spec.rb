@@ -26,9 +26,9 @@ describe TrailWithProgress do
 
         result = trail_with_progress.exercises
 
-        expect(result.first).not_to be_active
-        expect(result.second).to be_active
-        expect(result.third).not_to be_active
+        expect(result.first.state).to eq(Status::REVIEWED)
+        expect(result.second.state).to eq(Status::ACTIVE)
+        expect(result.third.state).to eq(Status::NOT_STARTED)
         expect(result.first.title).to eq(first.title)
       end
     end
@@ -48,9 +48,9 @@ describe TrailWithProgress do
 
         result = trail_with_progress.exercises
 
-        expect(result.first).not_to be_active
-        expect(result.second).not_to be_active
-        expect(result.third).not_to be_active
+        expect(result.first.state).to eq(Status::STARTED)
+        expect(result.second.state).to eq(Status::NOT_STARTED)
+        expect(result.third.state).to eq(Status::NOT_STARTED)
       end
     end
   end

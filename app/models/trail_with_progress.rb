@@ -6,27 +6,35 @@ class TrailWithProgress < SimpleDelegator
   end
 
   def exercises
-    first_incomplete = true
+    previous_state = Status::REVIEWED
     @trail.exercises.map do |exercise|
       state = exercise.status_for(@user).state
-      ExerciseWithProgress.new(exercise, state, first_incomplete).tap do
-        if state != Status::REVIEWED
-          first_incomplete = false
-        end
+      ExerciseWithProgress.new(exercise, state, previous_state).tap do
+        previous_state = state
       end
     end
   end
 
   class ExerciseWithProgress < SimpleDelegator
-    def initialize(exercise, state, first_incomplete)
+    def initialize(exercise, state, previous_state)
       super(exercise)
       @exercise = exercise
       @state = state
-      @first_incomplete = first_incomplete
+      @previous_state = previous_state
     end
 
+    def state
+      if active?
+        Status::ACTIVE
+      else
+        @state
+      end
+    end
+
+    private
+
     def active?
-      @first_incomplete && @state == Status::NOT_STARTED
+      @previous_state == Status::REVIEWED && @state == Status::NOT_STARTED
     end
   end
 
