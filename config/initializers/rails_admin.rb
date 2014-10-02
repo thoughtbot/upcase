@@ -130,4 +130,15 @@ RailsAdmin.config do |config|
       end
     end
   end
+
+  config.model Exercise do
+    list do
+      field :id
+      field :title
+    end
+    edit do
+      include_all_fields
+      exclude_fields :classifications, :statuses
+    end
+  end
 end
