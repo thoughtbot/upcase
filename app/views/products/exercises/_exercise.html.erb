@@ -10,4 +10,8 @@
       <%= exercise.status_for(current_user).state %>
     </h6>
   <% end %>
+
+  <% unless current_user_has_access_to?(:exercises) %>
+    <%= render "dashboards/locked" %>
+  <% end %>
 </figure>
