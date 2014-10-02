@@ -15,7 +15,7 @@ module ProductsHelper
     if current_user_has_access_to?(:exercises)
       link_to url, options, &block
     else
-      content_tag "a", &block
+      link_to edit_subscription_path, options, &block
     end
   end
 end
