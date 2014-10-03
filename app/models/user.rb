@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   delegate :plan, to: :subscription, allow_nil: true
   delegate :scheduled_for_cancellation_on, to: :subscription, allow_nil: true
 
+  before_save :clean_github_username
+
   def self.with_active_subscription
     includes(purchased_subscription: :plan, team: { subscription: :plan }).
       select(&:has_active_subscription?)
@@ -98,6 +100,12 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def clean_github_username
+    if github_username.blank?
+      self.github_username = nil
+    end
+  end
 
   def team_subscription
     if team.present?

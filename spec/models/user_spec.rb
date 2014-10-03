@@ -42,6 +42,16 @@ describe User do
     end
   end
 
+  context "#github_username" do
+    it "doesn't raise DB exception when saving empty strings" do
+      create(:user, github_username: "")
+      user = build(:user, github_username: "")
+
+      expect(user.save).to be true
+      expect(user.github_username).to be nil
+    end
+  end
+
   describe "#has_licensed?" do
     it "returns true if the user has any licenses" do
       user = build_stubbed(:user)
