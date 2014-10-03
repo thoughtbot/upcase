@@ -107,6 +107,7 @@
     .step {
       $step-padding: 14px;
       $dot-size: 13px;
+      $arrow-size: 20px;
       padding: $step-padding;
       position: relative;
       cursor: pointer;
@@ -136,7 +137,7 @@
 
       &:hover .tooltip {
         opacity: 1;
-        @include transform(translate(-50%, 0));
+        @include transform(translate(calc(-50% - #{$arrow-size / 2}), 0));
       }
 
       &.started .dot, &.pushed .dot, &.submitted .dot {
@@ -163,7 +164,7 @@
 
       .tooltip {
         @include transition(all 0.2s $ease-out-quad);
-        @include transform(translate(-50%, 6px));
+        @include transform(translate(calc(-50% - #{$arrow-size / 2}), 6px));
         left: ($step-padding*2 + $dot-size) * 0.5;
         opacity: 0;
         pointer-events: none;
@@ -171,13 +172,12 @@
         top: 40px;
 
         &:before, &:after {
-          $size: 20px;
-          @include calc(left, "50% - #{$size / 2}");
-          @include triangle($size 8px, $base-border-color-1, up);
+          @include calc(left, "50% - #{$arrow-size / 2}");
+          @include triangle($arrow-size 8px, $base-border-color-1, up);
           content: "";
           left: 50%;
           position: absolute;
-          top: -$size * 0.5 + 3px;
+          top: -$arrow-size * 0.5 + 3px;
           z-index: 1;
         }
 
@@ -187,8 +187,7 @@
         }
 
         &:after {
-          $size: 20px;
-          @include triangle($size 8px, #fff, up);
+          @include triangle($arrow-size 8px, #fff, up);
         }
 
 
