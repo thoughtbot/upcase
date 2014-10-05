@@ -1,7 +1,6 @@
 class GithubFulfillmentJob < Struct.new(:github_team, :username, :license_id)
   include ErrorReporting
 
-  PRIORITY = 1
   PREVIEW_MEDIA_TYPE =
     "application/vnd.github.the-wasp-preview+json".freeze
 
