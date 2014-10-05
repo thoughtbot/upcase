@@ -36,12 +36,6 @@ your work.
 
         % open http://localhost:5000
 
-### Testing
-
-You'll need to install phantom.js to run some of the specs.
-
-        brew install phantomjs
-
 ### Continuous Integration
 
 CI is hosted with [CircleCI](https://circleci.com/gh/thoughtbot/upcase). The
