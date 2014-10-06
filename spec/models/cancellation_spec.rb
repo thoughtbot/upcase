@@ -58,6 +58,7 @@ describe Cancellation do
         with(at_period_end: true)
       expect(subscription.scheduled_for_cancellation_on).
         to eq Time.zone.at(1361234235).to_date
+      expect(subscription.next_payment_on).to be_nil
       expect(analytics_updater).to have_received(:track_cancelled)
     end
 

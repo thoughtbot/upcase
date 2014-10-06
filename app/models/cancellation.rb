@@ -6,7 +6,7 @@ class Cancellation
   def schedule
     Subscription.transaction do
       stripe_customer.cancel_subscription(at_period_end: true)
-      record_scheduled_cancellation_date(stripe_customer)
+      schedule_cancellation_and_clear_next_payment_date(stripe_customer)
       track_cancelled
     end
   end
@@ -49,10 +49,11 @@ class Cancellation
     SubscriptionMailer.cancellation_survey(@subscription.user).deliver
   end
 
-  def record_scheduled_cancellation_date(stripe_customer)
-    @subscription.update_column(
-      :scheduled_for_cancellation_on,
-      Time.zone.at(stripe_customer.subscription.current_period_end)
+  def schedule_cancellation_and_clear_next_payment_date(stripe_customer)
+    @subscription.update(
+      next_payment_on: nil,
+      scheduled_for_cancellation_on:
+        Time.zone.at(stripe_customer.subscription.current_period_end),
     )
   end
 
