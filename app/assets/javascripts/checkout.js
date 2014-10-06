@@ -1,13 +1,17 @@
-$(".coupon input[type=submit]").click(function(e) {
-  $.ajax({
-    url: $(".coupon").data('url'),
-    data: {
-      'checkout[quantity]': $('#checkout_quantity').val(),
-      'coupon[code]': $('#coupon_code').val()
-    },
-    dataType: 'script',
-    type: 'GET'
-  });
+$(".coupon input[type=button]").click(function(e) {
+  var coupon_code = $.trim($('#coupon_code').val());
+
+  if(coupon_code.length > 0) {
+    $.ajax({
+      url: $(".coupon").data('url'),
+      data: {
+        'checkout[quantity]': $('#checkout_quantity').val(),
+        'coupon[code]': coupon_code
+      },
+      dataType: 'script',
+      type: 'GET'
+    });
+  }
 
   return false;
 });

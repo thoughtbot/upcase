@@ -120,7 +120,7 @@ body.checkouts-new, body.checkouts-create {
       margin: 1.5rem 0 1.25rem;
     }
 
-    input[type='submit'] {
+    input[type='button'] {
       border-bottom: 0;
       height: 39px;
       @include position(absolute, 27px 3px 0px 0);

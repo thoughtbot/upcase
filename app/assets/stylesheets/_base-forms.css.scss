@@ -1,4 +1,4 @@
-input[type="submit"] {
+input[type="submit"], input[type="button"] {
   border-bottom-width: none;
   border-image: initial;
   border-left-color: none;
@@ -14,7 +14,7 @@ input[type="submit"] {
   padding: 13px 30px 0 30px;
 }
 
-.button, input[type="submit"] {
+.button, input[type="submit"], input[type="button"] {
   background-color: $upcase-red;
   border-bottom: 3px solid $upcase-darkred;
   border-radius: 3px;

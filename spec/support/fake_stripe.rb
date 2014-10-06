@@ -215,6 +215,13 @@ class FakeStripe < Sinatra::Base
       @@coupons[params[:id]].to_json
     else
       status 404
+      {
+        error: {
+          type: "invalid_request_error",
+          message: "No such coupon: #{params[:id]}",
+          param: "id"
+        }
+      }.to_json
     end
   end
 

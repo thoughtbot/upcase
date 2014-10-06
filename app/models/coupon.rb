@@ -15,7 +15,7 @@ class Coupon
 
   def stripe_coupon
     @stripe_coupon ||= Stripe::Coupon.retrieve(@stripe_coupon_id)
-  rescue Stripe::APIError
+  rescue Stripe::InvalidRequestError
     @stripe_coupon = nil
   end
 
