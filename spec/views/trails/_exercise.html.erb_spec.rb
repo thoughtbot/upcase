@@ -20,6 +20,7 @@ describe "trails/_exercise.html" do
   def stub_exercise(state: "Imaginary")
     Mocha::Configuration.allow(:stubbing_non_existent_method) do
       build_stubbed(:exercise). tap do |exercise|
+        exercise.stubs(:can_be_accessed?)
         exercise.stubs(:state).returns(state)
       end
     end

@@ -1,7 +1,6 @@
 <div class="step <%= exercise.state.parameterize %>">
-  <%= exercise_link exercise.url, title: exercise.title do %>
-    <div class="dot"></div>
-  <% end %>
+  <%= render "trails/exercise_dot", exercise: exercise %>
+
   <div class="tooltip">
     <%= render "products/exercises/exercise", exercise: exercise %>
   </div>

@@ -31,6 +31,10 @@ class TrailWithProgress < SimpleDelegator
       end
     end
 
+    def can_be_accessed?
+      state != Status::NOT_STARTED
+    end
+
     private
 
     def next_up?

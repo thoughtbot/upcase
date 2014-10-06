@@ -43,5 +43,22 @@ describe TrailWithProgress do
         expect(result.third.state).to eq(Status::NOT_STARTED)
       end
     end
+
+    describe "#can_be_accessed?" do
+      it "can access if its state is Next Up, or already had access" do
+        exercises = create_list(:exercise, 4)
+        trail = create(:trail, exercises: exercises)
+        user = create(:user)
+        exercises.first.statuses.create!(user: user, state: Status::REVIEWED)
+        trail_with_progress = TrailWithProgress.new(trail, user: user)
+
+        result = trail_with_progress.exercises
+
+        expect(result.first.can_be_accessed?).to be_truthy
+        expect(result.second.can_be_accessed?).to be_truthy
+        expect(result.third.can_be_accessed?).to be_falsy
+        expect(result.fourth.can_be_accessed?).to be_falsy
+      end
+    end
   end
 end

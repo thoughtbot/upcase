@@ -110,7 +110,6 @@
       $arrow-size: 20px;
       padding: $step-padding;
       position: relative;
-      cursor: pointer;
 
       &:last-of-type {
         &.reviewed .dot {
