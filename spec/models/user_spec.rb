@@ -324,14 +324,18 @@ describe User do
   describe "#has_logged_in_to_forum?" do
     it "returns true when the user has logged in to the forum" do
       user = User.new
-      OauthAccessToken.stubs(:for_user).with(user).returns(true)
+      forum_scoped = stub(:scope)
+      forum_scoped.stubs(:for_user).with(user).returns(true)
+      OauthAccessToken.stubs(:for_forum).returns forum_scoped
 
       expect(user).to have_logged_in_to_forum
     end
 
     it "returns false when the user has never logged in to the forum" do
       user = User.new
-      OauthAccessToken.stubs(:for_user).with(user).returns(nil)
+      forum_scoped = stub(:scope)
+      forum_scoped.stubs(:for_user).with(user).returns(nil)
+      OauthAccessToken.stubs(:for_forum).returns forum_scoped
 
       expect(user).to_not have_logged_in_to_forum
     end

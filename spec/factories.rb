@@ -427,6 +427,12 @@ FactoryGirl.define do
     token 'abc123'
   end
 
+  factory :oauth_application, class: "Doorkeeper::Application" do
+    sequence(:name) { |n| "Application #{n}" }
+    sequence(:uid) { |n| n }
+    redirect_uri "http://www.example.com/callback"
+  end
+
   factory :status do
     user
     exercise
