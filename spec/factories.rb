@@ -121,12 +121,12 @@ FactoryGirl.define do
   factory :plan do
     name I18n.t("shared.subscription.name")
     individual_price 99
-    sku "prime-99"
+    sku "professional"
     short_description 'A great Subscription'
     description 'A long description'
 
     factory :basic_plan do
-      sku Plan::PRIME_29_SKU
+      sku Plan::THE_WEEKLY_ITERATION_SKU
       includes_exercises false
       includes_forum false
       includes_office_hours false

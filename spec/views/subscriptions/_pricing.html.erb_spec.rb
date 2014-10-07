@@ -3,20 +3,20 @@ require "rails_helper"
 describe "subscriptions/_pricing.html" do
   context "header" do
     it "shows short descriptions for each plan" do
-      prime_29 = build_stubbed(:plan, sku: "prime-29")
-      prime_49 = build_stubbed(:plan, sku: "prime-49")
+      the_weekly_iteration = build_stubbed(:plan, sku: Plan::THE_WEEKLY_ITERATION_SKU)
+      professional = build_stubbed(:plan, sku: "professional")
 
-      render_pricing_with_plans [prime_29, prime_49]
+      render_pricing_with_plans [the_weekly_iteration, professional]
 
-      expect(rendered).to have_content(prime_29.short_description)
-      expect(rendered).to have_content(prime_49.short_description)
+      expect(rendered).to have_content(the_weekly_iteration.short_description)
+      expect(rendered).to have_content(professional.short_description)
     end
 
     it "adds the 'popular' class to the plan designated as popular" do
-      prime_29 = build_stubbed(:plan, sku: "prime-29")
-      prime_29.stubs(:popular?).returns(true)
+      the_weekly_iteration = build_stubbed(:plan, sku: Plan::THE_WEEKLY_ITERATION_SKU)
+      the_weekly_iteration.stubs(:popular?).returns(true)
 
-      render_pricing_with_plans [prime_29]
+      render_pricing_with_plans [the_weekly_iteration]
 
       expect(rendered).to have_css(".popular")
     end

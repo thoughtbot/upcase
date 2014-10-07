@@ -117,14 +117,11 @@ body.subscriptions.subscriptions-new {
     border: 1px solid $warmgray;
     border-left-width: 0;
     border-right-width: 0;
+    box-shadow: -1px 0 0 $warmgray;
     text-align: center;
 
-    &:nth-of-type(1) {
-      box-shadow: -1px 0 0 $warmgray;
-    }
-
-    &:nth-of-type(4) {
-      box-shadow: 1px 0 0 $warmgray, -1px 0 0 $warmgray;
+    &:nth-of-type(3) {
+      box-shadow: 1px 0 0 $warmgray;
     }
 
     h3 {
@@ -239,7 +236,7 @@ body.subscriptions.subscriptions-new {
   background: $lightwarmgray;
 
   .inner {
-    width: ($plan-width + 20)*3 + $plan-width-callout + 20;
+    width: ($plan-width + 20)*2 + $plan-width-callout + 20;
   }
 
   .logo {
@@ -567,7 +564,7 @@ body.subscriptions.subscriptions-new {
       }
 
       $count: 1;
-      $plans: "1-on-1 Coaching", "Aspiring Professional", "Part-time Learner", "30 Minutes a Week";
+      $plans: "1-on-1 Coaching", "Professional", "The Weekly Iteration";
       @each $plan in $plans {
         &:nth-of-type(#{$count}):before {
           content: "#{$plan}";

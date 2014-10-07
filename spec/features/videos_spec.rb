@@ -84,7 +84,7 @@ describe "Videos" do
     end
 
     it "provides RSS to distribute the Weekly Iteration to various channels" do
-      create(:plan, sku: Plan::PRIME_29_SKU)
+      create(:plan, sku: Plan::THE_WEEKLY_ITERATION_SKU)
       show = create(
         :show,
         name: Show::THE_WEEKLY_ITERATION,

@@ -3,12 +3,12 @@ require "rails_helper"
 describe "plans/_plan.html" do
   context "grid partial" do
     it "renders the grid partial matching the plan" do
-      prime_29 = build_plan
+      the_weekly_iteration = build_plan
       stub_view
 
-      render_plan(prime_29)
+      render_plan(the_weekly_iteration)
 
-      expect(view).to render_template("plans/_prime_29")
+      expect(view).to render_template("plans/_the_weekly_iteration")
     end
   end
 
@@ -63,7 +63,7 @@ describe "plans/_plan.html" do
   end
 
   def build_plan
-    build_stubbed(:plan, sku: "prime-29").tap do |plan|
+    build_stubbed(:plan, sku: Plan::THE_WEEKLY_ITERATION_SKU).tap do |plan|
       plan.stubs(popular?: false)
     end
   end

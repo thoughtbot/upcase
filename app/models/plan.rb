@@ -1,8 +1,7 @@
 class Plan < ActiveRecord::Base
-  PRIME_249_SKU = 'prime-249'
-  PRIME_99_SKU = 'prime-99'
-  PRIME_49_SKU = 'prime-49'
-  PRIME_29_SKU = 'prime-29'
+  PRIME_249_SKU = "prime-249"
+  PROFESSIONAL_SKU = "professional"
+  THE_WEEKLY_ITERATION_SKU = "the-weekly-iteration"
   MINIMUM_TEAM_SIZE = 3
 
   has_many :checkouts, as: :subscribeable
@@ -33,11 +32,11 @@ class Plan < ActiveRecord::Base
   end
 
   def self.basic
-    where(sku: PRIME_29_SKU).first
+    where(sku: THE_WEEKLY_ITERATION_SKU).first
   end
 
   def self.popular
-    where(sku: PRIME_99_SKU).first
+    where(sku: PROFESSIONAL_SKU).first
   end
 
   def popular?
