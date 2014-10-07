@@ -85,14 +85,6 @@ To test Stripe payments on staging use a fake credit card.
   </tbody>
 </table>
 
-#### PayPal
-
-To test PayPal payments on staging, use your thoughtbot credit card as the
-paypal process is live and not sandboxed. After making your purchase you may
-perform a refund through the
-[staging admin panel](http://upcase-staging.herokuapp.com/admin/purchase).
-
-
 ## Amazon AWS S3
 
 To test integration with AWS S3, set the following environment variables:
