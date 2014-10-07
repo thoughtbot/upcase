@@ -3,7 +3,6 @@ module Features
     GENERIC_FEATURES = %w(
       exercises
       forum
-      office_hours
       shows
     )
     LICENSEABLE_FEATURES = %w(repositories video_tutorials)

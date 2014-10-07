@@ -10,12 +10,4 @@
   <% end %>
 
   <%= render 'shared/sidebar_forum', offering: offering %>
-
-  <div class="office-hours">
-    <h3>Office Hours Schedule</h3>
-    <hr>
-    <p>Each Friday at <%= OfficeHours.time %> you can join thoughtbot and other
-    students in this chat.</p>
-    <%= link_to "Join Chat", OfficeHours.url, class: 'button' %>
-  </div>
 </aside>

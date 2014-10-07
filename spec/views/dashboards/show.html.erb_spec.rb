@@ -1,23 +1,6 @@
 require "rails_helper"
 
 describe "dashboards/show.html" do
-  context "when a user does not have access to upcase live" do
-    it "renders without a link to upcase live" do
-      render_show
-
-      expect(rendered).not_to have_css("a[href='#{OfficeHours.url}']")
-      expect(rendered).to have_css("a[href='#{edit_subscription_path}']")
-    end
-  end
-
-  context "when a user has access to upcase live" do
-    it "renders with a link to upcase live" do
-      render_show office_hours: true
-
-      expect(rendered).to have_css("a[href='#{OfficeHours.url}']")
-    end
-  end
-
   context "when a user has access to all features" do
     it "does not render the locked_features partial" do
       render_show(
@@ -70,7 +53,6 @@ describe "dashboards/show.html" do
   def default_options
     {
       repositories: false,
-      office_hours: false,
       forum: false,
       shows: false,
       video_tutorials: false,

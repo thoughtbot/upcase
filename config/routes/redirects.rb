@@ -13,7 +13,7 @@ get(
 get "/humans-present/oss" => redirect( "https://www.youtube.com/watch?v=VMBhumlUP-A")
 get "/ios-on-rails" => redirect("https://gumroad.com/l/ios-on-rails")
 get "/ios-on-rails-beta" => redirect("https://gumroad.com/l/ios-on-rails")
-get "/live" => redirect(OfficeHours.url)
+get "/live" => redirect("http://forum.upcase.com")
 get "/pages/tmux" => redirect("https://www.youtube.com/watch?v=CKC8Ph-s2F4")
 get "/prime" => redirect("/subscribe")
 get "/products/:id/purchases/:lookup" => redirect("/purchases/%{lookup}")

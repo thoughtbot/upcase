@@ -129,7 +129,6 @@ FactoryGirl.define do
       sku Plan::THE_WEEKLY_ITERATION_SKU
       includes_exercises false
       includes_forum false
-      includes_office_hours false
       includes_repositories false
       includes_video_tutorials false
     end
