@@ -19,10 +19,10 @@ namespace :dev do
 
   def create_individual_plans
     @basic_plan = create(:plan, {
-      individual_price: 49,
-      name: "Part-time Study",
-      short_description: "Best for a self-guided learner.",
-      sku: "prime-49",
+      individual_price: 9,
+      name: "The Weekly Iteration",
+      short_description: "One new video per week on advanced Ruby topics.",
+      sku: "the-weekly-iteration",
     })
 
     mentor_features = {
