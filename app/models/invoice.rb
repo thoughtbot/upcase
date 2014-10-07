@@ -110,8 +110,6 @@ class Invoice
   end
 
   def stripe_line_items
-    stripe_invoice.lines.invoiceitems +
-    stripe_invoice.lines.prorations +
-    stripe_invoice.lines.subscriptions
+    stripe_invoice.lines
   end
 end

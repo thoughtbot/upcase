@@ -66,8 +66,10 @@ class User < ActiveRecord::Base
   end
 
   def credit_card
-    if stripe_customer
-      stripe_customer['active_card']
+    customer = stripe_customer
+
+    if customer
+      customer.cards.detect { |card| card.id == customer.default_card }
     end
   end
 

@@ -49,14 +49,19 @@ class Subscription < ActiveRecord::Base
 
   def change_plan(new_plan)
     update_features do
-      stripe_customer.update_subscription(plan: new_plan.sku)
+      subscription = stripe_customer.subscriptions.first
+      subscription.plan = new_plan.sku
+      subscription.save
       self.plan = new_plan
       save!
     end
   end
 
   def change_quantity(new_quantity)
-    stripe_customer.update_subscription(plan: plan.sku, quantity: new_quantity)
+    subscription = stripe_customer.subscriptions.first
+    subscription.plan = plan.sku
+    subscription.quantity = new_quantity
+    subscription.save
   end
 
   def deliver_welcome_email

@@ -43,19 +43,14 @@ describe Cancellation do
     it 'schedules a cancellation with Stripe' do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription)
-      stripe_customer = stub(
-        'Stripe::Customer',
-        cancel_subscription: nil,
-        subscription: stub(current_period_end: 1361234235)
-      )
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
       analytics_updater = stub(track_cancelled: true)
       Analytics.stubs(:new).returns(analytics_updater)
 
       cancellation.schedule
 
-      expect(stripe_customer).to have_received(:cancel_subscription).
-        with(at_period_end: true)
+      expect(stripe_customer.subscriptions.first).
+        to have_received(:delete).with(at_period_end: true)
       expect(subscription.scheduled_for_cancellation_on).
         to eq Time.zone.at(1361234235).to_date
       expect(analytics_updater).to have_received(:track_cancelled)
@@ -66,11 +61,6 @@ describe Cancellation do
       cancellation = Cancellation.new(subscription)
 
       subscription.stubs(:stripe_customer_id).returns('cus_1CXxPJDpw1VLvJ')
-      stripe_customer = stub(
-        'Stripe::Customer',
-        cancel_subscription: nil,
-        subscription: stub(current_period_end: 1361234235)
-      )
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
       cancellation.schedule
 
@@ -82,8 +72,8 @@ describe Cancellation do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription)
 
-      stripe_customer = stub('Stripe::Customer')
-      stripe_customer.stubs(:cancel_subscription).raises(Stripe::APIError)
+      stripe_customer.subscriptions.first.stubs(:delete).
+        raises(Stripe::APIError)
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 
       expect { cancellation.schedule }.to raise_error
@@ -111,17 +101,11 @@ describe Cancellation do
       charge = stub('Stripe::Charge', id: 'charge_id', refund: nil)
       subscription.stubs(:last_charge).returns(charge)
       cancellation = Cancellation.new(subscription)
-      stripe_customer = stub(
-        'Stripe::Customer',
-        cancel_subscription: nil,
-        subscription: stub(current_period_end: 1361234235)
-      )
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 
       cancellation.cancel_and_refund
 
-      expect(stripe_customer).to have_received(:cancel_subscription)
-        .with(at_period_end: false)
+      expect(stripe_customer.subscriptions.first).to have_received(:delete)
       expect(charge).to have_received(:refund)
       expect(subscription.scheduled_for_cancellation_on).to be_nil
     end
@@ -130,16 +114,10 @@ describe Cancellation do
       subscription = create(:subscription)
       subscription.stubs(:last_charge).returns(nil)
       cancellation = Cancellation.new(subscription)
-      stripe_customer = stub(
-        'Stripe::Customer',
-        cancel_subscription: nil,
-        subscription: stub(current_period_end: 1361234235)
-      )
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 
       expect { cancellation.cancel_and_refund }.not_to raise_error
-      expect(stripe_customer).to have_received(:cancel_subscription)
-        .with(at_period_end: false)
+      expect(stripe_customer.subscriptions.first).to have_received(:delete)
     end
   end
 
@@ -206,5 +184,17 @@ describe Cancellation do
 
   def cancellation
     @cancellation ||= Cancellation.new(subscription)
+  end
+
+  def stripe_customer
+    @stripe_customer ||= stub(
+      "Stripe::Customer",
+      subscriptions: [
+        stub(
+          current_period_end: 1361234235,
+          delete: true
+        )
+      ]
+    )
   end
 end

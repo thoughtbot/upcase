@@ -130,18 +130,11 @@ describe Invoice do
 
   describe '#line_items' do
     it 'returns line items for all the stripe invoice lines' do
-      lines = stub(
-        'lines',
-        invoiceitems: [:invoiceitem],
-        prorations: [:proration],
-        subscriptions: [:subscription],
-      )
+      lines = [:subscription]
       stripe_invoice = stub('stripe_invoice', lines: lines)
       invoice = Invoice.new(stripe_invoice)
 
-      stripe_line_items = stripe_invoice.lines.invoiceitems +
-        stripe_invoice.lines.prorations +
-        stripe_invoice.lines.subscriptions
+      stripe_line_items = stripe_invoice.lines
 
       line_items = stripe_line_items.map do |stripe_line_item|
         LineItem.new(stripe_line_item)

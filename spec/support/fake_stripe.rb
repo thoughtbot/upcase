@@ -24,38 +24,34 @@ class FakeStripe < Sinatra::Base
     {
       interval: "month",
       name: "Upcase",
+      created: 1408639724,
       amount: 9900,
       currency: "usd",
       id: params[:id],
       object: "plan",
       livemode: false,
       interval_count: 1,
-      trial_period_days: nil
+      trial_period_days: nil,
+      metadata: {},
+      statement_description: nil
     }.to_json
   end
 
   get '/v1/customers/:id' do
     content_type :json
 
-    {
-      object: "customer",
-      created: 1359583041,
-      id: CUSTOMER_ID,
-      livemode: false,
-      description: nil,
-      email: CUSTOMER_EMAIL,
-      delinquent: false,
-      discount: nil,
-      account_balance: 0,
-      subscription: customer_subscription,
-      active_card: {
-        last4: '1234',
-        type: 'Visa'
-      }
-    }.to_json
+    customer(params[:id]).to_json
   end
 
-  post '/v1/customers/:id/subscription' do
+  post "/v1/customers/:customer_id/subscriptions" do
+    content_type :json
+    customer_subscription.merge(
+      id: params[:id],
+      customer: params[:customer_id]
+    ).to_json
+  end
+
+  post "/v1/customers/:customer_id/subscriptions/:id" do
     @@customer_plan_id = params[:plan]
     @@last_coupon_used = params[:coupon]
     @@customer_plan_quantity = params[:quantity]
@@ -68,7 +64,10 @@ class FakeStripe < Sinatra::Base
         message: "Missing required param: plan"
       }.to_json
     else
-      customer_subscription.to_json
+      customer_subscription.merge(
+        id: params[:id],
+        customer: params[:customer_id]
+      ).to_json
     end
   end
 
@@ -79,34 +78,58 @@ class FakeStripe < Sinatra::Base
 
     if failure
       status 402
-      { type:"card_error", message: "card declined"}.to_json
+      { type: "card_error", message: "card declined" }.to_json
     else
-      { description: nil,
-        delinquent: false,
+      {
+        object: "customer",
         created: 1336671710,
+        id: CUSTOMER_ID,
+        livemode: false,
+        description: CUSTOMER_EMAIL,
+        email: CUSTOMER_EMAIL,
+        delinquent: false,
+        metadata: {},
+        subscriptions: {
+          object: "list",
+          total_count: 1,
+          has_more: false,
+          url: "/v1/customers/#{CUSTOMER_ID}/subscriptions",
+          data: [customer_subscription]
+        },
         discount: {
           coupon: {
-            redeem_by: nil,
-            percent_off: 10,
-            times_redeemed: 1,
-            object: "coupon",
-            max_redemptions: nil,
-            duration_in_months: nil,
-            duration: "once",
             id: "JAVA-COUPON-55529463-58ac-4bc0-ac3f-cb981fa4c82c",
-            livemode: false },
-        end: 1339350110,
-        start: 1336671710,
-        object: "discount",
-        customer: CUSTOMER_ID,
-        id: "di_N8U1hA4YzyRH9w" },
-      account_balance: 0,
-      email: nil,
-      object: "customer",
-      active_card: nil,
-      subscription: nil,
-      id: CUSTOMER_ID,
-      livemode: false }.to_json
+            created: 1410384799,
+            percent_off: 10,
+            amount_off: nil,
+            currency: "usd",
+            object: "coupon",
+            livemode: false,
+            duration: "once",
+            redeem_by: nil,
+            max_redemptions: nil,
+            times_redeemed: 1,
+            duration_in_months: nil,
+            valid: true,
+            metadata: {}
+          },
+          start: 1336671710,
+          object: "discount",
+          customer: CUSTOMER_ID,
+          subscription: nil,
+          end: 1339350110
+        },
+        account_balance: 0,
+        currency: "usd",
+        cards: {
+          object: "list",
+          total_count: 1,
+          has_more: false,
+          url: "/v1/customers/#{CUSTOMER_ID}/cards",
+          data: [card]
+        },
+        default_card: "card_2NCtCAVwvnMUUs"
+      }.to_json
     end
   end
 
@@ -114,48 +137,76 @@ class FakeStripe < Sinatra::Base
     @@last_charge = params[:amount]
     content_type :json
 
-    { failure_message: nil,
-      description: nil,
-      created: 1336671705,
-      paid: true,
-      currency: "usd",
-      amount: params[:amount],
-      fee: 0,
+    {
+      id: "ch_JQhSfU9Rz21owt",
       object: "charge",
+      created: 1336671705,
+      livemode: false,
+      paid: true,
+      amount: params[:amount],
+      currency: "usd",
       refunded: false,
       card: {
-        exp_year: 2015,
-        type: "Visa",
-        address_zip: "94301",
-        fingerprint: "qhjxpr7DiCdFYTlH",
-        address_line1: "522 Ramona St",
-        last4: "4242",
-        address_line2: "Palo Alto",
-        cvc_check: "pass",
-        object: "card",
-        address_country: "USA",
-        country: "US",
-        address_zip_check: "pass",
-        name: "Java Bindings Cardholder",
-        address_state: "CA",
-        exp_month: 12,
         id: "cc_7qBiSeyivjSSjR",
-        address_line1_check: "pass" },
-      customer: nil,
+        object: "card",
+        last4: "4242",
+        brand: "Visa",
+        funding: "credit",
+        exp_month: 12,
+        exp_year: 2015,
+        fingerprint: "qhjxpr7DiCdFYTlH",
+        country: "US",
+        name: "Java Bindings Cardholder",
+        address_line1: "522 Ramona St",
+        address_line2: "Palo Alto",
+        address_city: nil,
+        address_state: "CA",
+        address_zip: "94301",
+        address_country: "USA",
+        cvc_check: "pass",
+        address_line1_check: "pass",
+        address_zip_check: "pass",
+        customer: CUSTOMER_ID
+      },
+      captured: true,
+      refunds: {
+        object: "list",
+        total_count: 0,
+        has_more: false,
+        url: "/v1/charges/ch_JQhSfU9Rz21owt/refunds",
+        data: []
+      },
+      balance_transaction: "txn_2OMDmEVTgCgMmp",
+      failure_message: nil,
+      failure_code: nil,
       amount_refunded: 0,
-      id: "ch_JQhSfU9Rz21owt",
-      disputed: false,
-      invoice: nil,
-      livemode: false
+      customer: CUSTOMER_ID,
+      invoice: "in_1s4JSgbcUaElzU",
+      description: nil,
+      dispute: nil,
+      metadata: {},
+      statement_description: nil,
+      receipt_email: nil,
+      receipt_number: nil
     }.to_json
   end
 
-  delete '/v1/customers/:id/subscription' do
+  delete "/v1/customers/:customer_id/subscriptions/:id" do
     content_type :json
-    customer_subscription.merge({
-      id: params[:id],
-      deleted: true
-    }).to_json
+    if params[:at_period_end] == "true"
+      customer_subscription.merge(
+        id: params[:id],
+        customer: params[:customer_id],
+        status: "active",
+        cancel_at_period_end: true
+      ).to_json
+    else
+      customer_subscription.merge(
+        id: params[:id],
+        customer: params[:customer_id],
+        status: "canceled",
+      ).to_json
+    end
   end
 
   get '/v1/charges' do
@@ -168,11 +219,18 @@ class FakeStripe < Sinatra::Base
     charge(params[:id]).to_json
   end
 
-  post '/v1/charges/:id/refund' do
+  post "/v1/charges/:id/refunds" do
     content_type :json
     {
-      id: params[:id],
-      deleted: true
+      id: "re_3gOGZxTuX3KKJS",
+      amount: 9900,
+      currency: "usd",
+      created: 1369159688,
+      object: "refund",
+      balance_transaction: "txn_2OMDmEVTgCgMmp",
+      metadata: {},
+      charge: params[:id],
+      receipt_number: nil
     }.to_json
   end
 
@@ -195,7 +253,7 @@ class FakeStripe < Sinatra::Base
         message: "Empty string given for card."
       }
     else
-      '{}'
+      customer.to_json
     end
   end
 
@@ -296,6 +354,7 @@ class FakeStripe < Sinatra::Base
   def create_coupon_hash(params)
     {
       id: params[:id],
+      created: 1403972754,
       percent_off: params[:percent_off],
       amount_off: params[:amount_off],
       currency: params[:currency],
@@ -305,7 +364,40 @@ class FakeStripe < Sinatra::Base
       redeem_by: params[:redeem_by],
       max_redemptions: params[:max_redemptions],
       times_redeemed: params[:times_redeemed],
-      duration_in_months: params[:duration_in_months]
+      duration_in_months: params[:duration_in_months],
+      valid: true,
+      metadata: {}
+    }
+  end
+
+  def customer(id = CUSTOMER_ID)
+    {
+      object: "customer",
+      created: 1359583041,
+      id: id,
+      livemode: false,
+      description: CUSTOMER_EMAIL,
+      email: CUSTOMER_EMAIL,
+      delinquent: false,
+      metadata: {},
+      subscriptions: {
+        object: "list",
+        total_count: 1,
+        has_more: false,
+        url: "/v1/customers/#{id}/subscriptions",
+        data: [customer_subscription]
+      },
+      discount: nil,
+      account_balance: 0,
+      currency: "usd",
+      cards: {
+        object: "list",
+        total_count: 1,
+        has_more: false,
+        url: "/v1/customers/#{id}/cards",
+        data: [card]
+      },
+      default_card: "card_2NCtCAVwvnMUUs"
     }
   end
 
@@ -316,11 +408,13 @@ class FakeStripe < Sinatra::Base
       period_start: 1366567645,
       period_end: 1369159645,
       lines: {
-        invoiceitems: [],
-        prorations: [],
-        subscriptions: [
+        object: "list",
+        total_count: 1,
+        has_more: false,
+        url: "/v1/invoices/in_1s4JSgbcUaElzU/lines",
+        data: [
           {
-            id: "su_1ri03Utwow0Sue",
+            id: "sub_1ri03Utwow0Sue",
             object: "line_item",
             type: "subscription",
             livemode: true,
@@ -335,39 +429,66 @@ class FakeStripe < Sinatra::Base
             plan: {
               interval: "month",
               name: I18n.t("shared.subscription.name"),
+              created: 1367971199,
               amount: 9900,
               currency: "usd",
               id: "upcase",
               object: "plan",
               livemode: false,
               interval_count: 1,
-              trial_period_days: nil
+              trial_period_days: nil,
+              metadata: {},
+              statement_description: nil
             },
-            description: nil
+            description: nil,
+            metadata: nil
           }
-        ]
+        ],
       },
+      subtotal: 9900,
+      total: 7900,
+      customer: CUSTOMER_ID,
+      object: "invoice",
+      attempted: true,
+      closed: true,
+      forgiven: false,
+      paid: true,
+      livemode: false,
+      attempt_count: 1,
+      amount_due: 7900,
+      currency: "usd",
+      starting_balance: 0,
+      ending_balance: 0,
+      next_payment_attempt: nil,
+      webhooks_delivered_at: 1403972754,
+      charge: "ch_JQhSfU9Rz21owt",
       discount: {
-        id: "di_1m6sZ5I9P0fk8d",
         coupon: {
           id: "railsconf",
+          created: 1410384799,
           percent_off: nil,
           amount_off: 2000,
           currency: "usd",
           object: "coupon",
-          livemode: true,
+          livemode: false,
           duration: "once",
           redeem_by: 1367971199,
           max_redemptions: nil,
           times_redeemed: 1,
-          duration_in_months:nil
-        }
+          duration_in_months: nil,
+          valid: true,
+          metadata: {}
+        },
+        start: 1336671710,
+        object: "discount",
+        customer: CUSTOMER_ID,
+        subscription: nil,
+        end: 1339350110
       },
-      paid: true,
-      total: 7900,
-      subtotal: 9900,
-      amount_due: 7900,
-      customer: CUSTOMER_ID
+      application_fee: nil,
+      subscription: "sub_3Xehu54zpkQS1b",
+      description: nil,
+      receipt_number: nil
     }
   end
 
@@ -375,24 +496,25 @@ class FakeStripe < Sinatra::Base
     customer_invoice.merge(
       id: "in_3Eh5UIbuDVdhat",
       discount: {
-        id: "di_3Eh51qD66WOIHs",
         coupon: {
           id: "RESOLVE2014",
           percent_off: 100,
           amount_off: nil,
           currency: nil,
           object: "coupon",
-          livemode: true,
+          livemode: false,
           duration: "once",
           redeem_by: 1389225599,
           max_redemptions: nil,
           times_redeemed: 77,
           duration_in_months: nil,
-          valid: true
+          valid: true,
+          metadata: {}
         },
         start: 1388677692,
         object: "discount",
         customer: CUSTOMER_ID,
+        subscription: nil,
         end: nil
       },
       total: 0,
@@ -404,64 +526,120 @@ class FakeStripe < Sinatra::Base
   def customer_unsubscribe_invoice
     {
       date: 1369159688,
-      id: 'in_3lNBWqTVMT9sFb',
+      id: "in_3lNBWqTVMT9sFb",
       period_start: 1366567645,
       period_end: 1369159645,
       lines: {
-        invoiceitems: [
+        object: "list",
+        total_count: 2,
+        has_more: false,
+        url: "/v1/invoices/in_3lNBWqTVMT9sFb/lines",
+        data: [
           {
-            object: 'invoiceitem',
-            id: 'ii_3XgI5MRjNLJsqj',
-            date: 1393056868,
+            id: "ii_3XgI5MRjNLJsqj",
+            object: "line_item",
+            type: "invoiceitem",
+            livemode: false,
             amount: 9876,
-            livemode: true,
+            currency: "usd",
             proration: true,
-            currency: 'usd',
-            customer: CUSTOMER_ID,
-            description: 'Remaining time on Upcase VideoTutorials after 22 Feb 2014',
-            metadata: {},
-            invoice: 'in_3lNBWqTVMT9sFb',
-            subscription: 'sub_3Xehu54zpkQS1b',
+            period: {
+              start: 1393056868,
+              end: 1393056868
+            },
+            quantity: 1,
+            plan: {
+              interval: "month",
+              name: "Prime Workshops",
+              created: 1360789384,
+              amount: 9900,
+              currency: "usd",
+              id: "prime",
+              object: "plan",
+              livemode: false,
+              interval_count: 1,
+              trial_period_days: nil,
+              metadata: {},
+              statement_description: nil
+            },
+            description: "Remaining time on Upcase VideoTutorials after 22 Feb 2014",
+            metadata: {}
           },
           {
-            object: 'invoiceitem',
-            id: 'ii_3XgIlCOcNHW6pT',
-            date: 1393056868,
+            id: "ii_3XgIlCOcNHW6pT",
+            object: "line_item",
+            type: "invoiceitem",
+            livemode: false,
             amount: -2893,
-            livemode: true,
+            currency: "usd",
             proration: true,
-            currency: 'usd',
-            customer: CUSTOMER_ID,
-            description: 'Unused time on Upcase Basic after 22 Feb 2014',
-            metadata: {},
-            invoice: 'in_3lNBWqTVMT9sFb',
-            subscription: 'sub_3Xehu54zpkQS1b',
-          },
-        ],
-        prorations: [],
-        subscriptions: [],
+            period: {
+              start: 1393056868,
+              end: 1393056868
+            },
+            quantity: 1,
+            plan: {
+              interval: "month",
+              name: "Prime Basic",
+              created: 1376357374,
+              amount: 2900,
+              currency: "usd",
+              id: "prime-basic",
+              object: "plan",
+              livemode: false,
+              interval_count: 1,
+              trial_period_days: nil,
+              metadata: {},
+              statement_description: nil
+            },
+            description: "Unused time on Upcase Basic after 22 Feb 2014",
+            metadata: {}
+          }
+        ]
       },
-      discount: nil,
-      customer: CUSTOMER_ID,
-      paid: true,
       subtotal: 6983,
       total: 6983,
+      customer: CUSTOMER_ID,
+      object: "invoice",
+      attempted: true,
+      closed: true,
+      forgiven: false,
+      paid: true,
+      livemode: false,
+      attempt_count: 1,
       amount_due: 6983,
+      currency: "usd",
+      starting_balance: 0,
+      ending_balance: 0,
+      next_payment_attempt: nil,
+      webhooks_delivered_at: 1395470224,
+      charge: "ch_3iA6QoQ8ji0rpA",
+      discount: nil,
+      application_fee: nil,
+      subscription: "sub_3Xehu54zpkQS1b",
+      metadata: {},
+      statement_description: nil,
+      description: nil,
+      receipt_number: "2507-2258"
     }
   end
 
   def customer_subscription
     {
+      id: "sub_4uJxAs8DlW3Z0w",
       plan: {
         interval: 'month',
         name: 'Java Bindings Plan',
+        created: 1403972754,
         amount: 100,
         currency: 'usd',
         id: 'JAVA-PLAN-1b3a5c51-5c1a-421b-8822-69138c2d937b',
         object: 'plan',
         livemode: false,
         interval_count: 1,
-        trial_period_days: nil
+        trial_period_days: nil,
+        metadata: {},
+        statement_description: nil
       },
       object: 'subscription',
       start: 1358555835,
@@ -474,45 +652,44 @@ class FakeStripe < Sinatra::Base
       trial_start: nil,
       trial_end: nil,
       canceled_at: nil,
-      quantity: 1
+      quantity: 1,
+      application_fee_percent: nil,
+      discount: nil,
+      metadata: {}
     }
   end
 
-  def charge(charge_id = 'charge_id')
+  def charge(charge_id = "ch_JQhSfU9Rz21owt")
     {
-      failure_message: nil,
-      description: nil,
-      created: 1336671705,
-      paid: true,
-      currency: 'usd',
-      amount: 1500,
-      fee: 0,
-      object: 'charge',
-      refunded: false,
-      card: {
-        exp_year: 2015,
-        type: 'Visa',
-        address_zip: '94301',
-        fingerprint: 'qhjxpr7DiCdFYTlH',
-        address_line1: '522 Ramona St',
-        last4: '4242',
-        address_line2: 'Palo Alto',
-        cvc_check: 'pass',
-        object: 'card',
-        address_country: 'USA',
-        country: 'US',
-        address_zip_check: 'pass',
-        name: 'Java Bindings Cardholder',
-        address_state: 'CA',
-        exp_month: 12,
-        id: 'cc_7qBiSeyivjSSjR',
-        address_line1_check: 'pass' },
-      customer: nil,
-      amount_refunded: 0,
       id: charge_id,
-      disputed: false,
-      invoice: nil,
-      livemode: false
+      object: "charge",
+      created: 1336671705,
+      livemode: false,
+      paid: true,
+      amount: 1500,
+      currency: "usd",
+      refunded: false,
+      card: card,
+      captured: true,
+      refunds: {
+        object: "list",
+        total_count: 0,
+        has_more: false,
+        url: "/v1/charges/#{charge_id}/refunds",
+        data: []
+      },
+      balance_transaction: "txn_2OMDmEVTgCgMmp",
+      failure_message: nil,
+      failure_code: nil,
+      amount_refunded: 0,
+      customer: CUSTOMER_ID,
+      invoice: "in_1s4JSgbcUaElzU",
+      description: nil,
+      dispute: nil,
+      metadata: {},
+      statement_description: nil,
+      receipt_email: nil,
+      receipt_number: nil
     }
   end
 
@@ -524,24 +701,32 @@ class FakeStripe < Sinatra::Base
       used: false,
       object: "token",
       type: "card",
-      card: {
-        id: "card_2NCtCAVwvnMUUs",
-        object: "card",
-        last4: "4242",
-        type: "Visa",
-        exp_month: 3,
-        exp_year: 2014,
-        fingerprint: "61N1s4XuvJOoLAnb",
-        customer: CUSTOMER_ID,
-        country: "US",
-        name: nil,
-        address_line1: nil,
-        address_line2: nil,
-        address_city: nil,
-        address_state: nil,
-        address_zip: nil,
-        address_country: nil
-      }
+      card: card.except(:cvc_check, :address_line1_check, :address_zip_check)
+    }
+  end
+
+  def card
+    {
+      id: "card_2NCtCAVwvnMUUs",
+      object: "card",
+      last4: "1234",
+      brand: "Visa",
+      funding: "credit",
+      exp_month: 2,
+      exp_year: 2016,
+      fingerprint: "61N1s4XuvJOoLAnb",
+      country: "US",
+      name: nil,
+      address_line1: nil,
+      address_line2: nil,
+      address_city: nil,
+      address_state: nil,
+      address_zip: nil,
+      address_country: nil,
+      cvc_check: "pass",
+      address_line1_check: nil,
+      address_zip_check: nil,
+      customer: CUSTOMER_ID
     }
   end
 end
@@ -573,5 +758,14 @@ RSpec.configure do |config|
 
   config.after do
     FakeStripe.clean_up_coupons
+  end
+end
+
+Stripe.verify_ssl_certs = false
+
+module Stripe
+  # Overriding this so it does not warn us about turning off SSL
+  def self.ssl_preflight_passed?
+    true
   end
 end

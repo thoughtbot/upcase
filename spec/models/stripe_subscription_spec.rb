@@ -9,9 +9,9 @@ describe StripeSubscription do
 
       subscription.create
 
-      expect(customer).
-        to have_received(:update_subscription).
-          with(plan: checkout.subscribeable_sku, quantity: 1)
+      new_subscription = customer.subscriptions.first
+      expect(new_subscription[:plan]).to eq checkout.subscribeable_sku
+      expect(new_subscription[:quantity]).to eq 1
     end
 
     it "updates the customer's plan with the given quantity" do
@@ -22,9 +22,9 @@ describe StripeSubscription do
 
       subscription.create
 
-      expect(customer).
-        to have_received(:update_subscription).
-          with(plan: checkout.subscribeable_sku, quantity: checkout.quantity)
+      new_subscription = customer.subscriptions.first
+      expect(new_subscription[:plan]).to eq checkout.subscribeable_sku
+      expect(new_subscription[:quantity]).to eq checkout.quantity
     end
 
     it "updates the subscription with the given coupon" do
@@ -36,9 +36,10 @@ describe StripeSubscription do
 
       subscription.create
 
-      expect(customer).
-        to have_received(:update_subscription).
-          with(plan: checkout.subscribeable_sku, coupon: '25OFF', quantity: 1)
+      new_subscription = customer.subscriptions.first
+      expect(new_subscription[:plan]).to eq checkout.subscribeable_sku
+      expect(new_subscription[:coupon]).to eq "25OFF"
+      expect(new_subscription[:quantity]).to eq 1
     end
 
     it "creates a customer if one isn't assigned" do
@@ -94,7 +95,8 @@ describe StripeSubscription do
   end
 
   def stub_existing_customer
-    customer = stub('customer', update_subscription: true)
+    subscriptions = FakeSubscriptionList.new([FakeSubscription.new])
+    customer = stub("customer", subscriptions: subscriptions)
     Stripe::Customer.stubs(:retrieve).returns(customer)
     customer
   end

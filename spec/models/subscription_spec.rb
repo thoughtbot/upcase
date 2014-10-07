@@ -113,14 +113,12 @@ describe Subscription do
     it 'updates the plan in Stripe' do
       different_plan = create(:plan, sku: 'different')
       subscription = create(:active_subscription)
-      stripe_customer = stub(update_subscription: nil)
+      stripe_customer = stub(subscriptions: [FakeSubscription.new])
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 
       subscription.change_plan(different_plan)
 
-      expect(stripe_customer).
-        to have_received(:update_subscription).
-        with(plan: different_plan.sku)
+      expect(stripe_customer.subscriptions.first.plan).to eq different_plan.sku
     end
 
     it 'changes the subscription plan to the given plan' do
@@ -159,14 +157,12 @@ describe Subscription do
   describe "#change_quantity" do
     it "updates the plan in Stripe" do
       subscription = create(:active_subscription)
-      stripe_customer = stub(update_subscription: nil)
+      stripe_customer = stub(subscriptions: [FakeSubscription.new])
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 
       subscription.change_quantity(4)
 
-      expect(stripe_customer).
-        to have_received(:update_subscription).
-        with(plan: subscription.plan.sku, quantity: 4)
+      expect(stripe_customer.subscriptions.first.quantity).to eq 4
     end
   end
 

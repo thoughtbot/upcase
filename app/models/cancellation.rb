@@ -5,14 +5,14 @@ class Cancellation
 
   def schedule
     Subscription.transaction do
-      stripe_customer.cancel_subscription(at_period_end: true)
+      stripe_customer.subscriptions.first.delete(at_period_end: true)
       record_scheduled_cancellation_date(stripe_customer)
       track_cancelled
     end
   end
 
   def cancel_and_refund
-    stripe_customer.cancel_subscription(at_period_end: false)
+    stripe_customer.subscriptions.first.delete
     @subscription.last_charge.try(:refund)
   end
 
@@ -52,7 +52,7 @@ class Cancellation
   def record_scheduled_cancellation_date(stripe_customer)
     @subscription.update_column(
       :scheduled_for_cancellation_on,
-      Time.zone.at(stripe_customer.subscription.current_period_end)
+      Time.zone.at(stripe_customer.subscriptions.first.current_period_end)
     )
   end
 

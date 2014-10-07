@@ -46,7 +46,13 @@ class StripeSubscription
   end
 
   def update_subscription
-    stripe_customer.update_subscription(subscription_attributes)
+    if stripe_customer.subscriptions.total_count == 0
+      stripe_customer.subscriptions.create(subscription_attributes)
+    else
+      subscription = stripe_customer.subscriptions.first
+      subscription_attributes.each { |key, value| subscription[key] = value }
+      subscription.save
+    end
   end
 
   def subscription_attributes
