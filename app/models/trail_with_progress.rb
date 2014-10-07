@@ -5,6 +5,10 @@ class TrailWithProgress < SimpleDelegator
     @user = user
   end
 
+  def complete?
+    exercises.all? { |exercise| exercise.state == Status::REVIEWED }
+  end
+
   def exercises
     previous_state = Status::REVIEWED
     @trail.exercises.map do |exercise|

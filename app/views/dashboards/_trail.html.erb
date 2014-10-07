@@ -1,17 +1,5 @@
-<div class="started">
-  <section class="trail">
-    <header>
-      <h1><%= trail.name %></h1>
-      <span class="numerical-progress">
-        <%= pluralize(
-          trail.steps_remaining_for(current_user),
-          "step"
-        ) %> remaining
-      </span>
-    </header>
-
-    <section class="progress">
-      <%= render partial: "trails/exercise", collection: trail.exercises %>
-    </section>
-  </section>
-</div>
+<% if trail.complete? %>
+  <%= render "dashboards/complete_trail", trail: trail %>
+<% else %>
+  <%= render "dashboards/in_progress_trail", trail: trail %>
+<% end %>

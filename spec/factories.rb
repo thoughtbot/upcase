@@ -434,6 +434,7 @@ FactoryGirl.define do
 
   factory :trail do
     name "Trail name"
+    complete_text "Way to go!"
   end
 
   factory :step do
