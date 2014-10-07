@@ -105,11 +105,13 @@
     }
 
     .step {
-      $step-padding: 14px;
       $dot-size: 13px;
+      $dot-margin: 14px;
       $arrow-size: 20px;
-      padding: $step-padding;
       position: relative;
+      @include flex(1);
+      @include display(flex);
+      @include justify-content(center);
 
       &:last-of-type {
         &.reviewed .dot {
@@ -121,7 +123,10 @@
       .dot {
         background: #D8D8D8;
         border-radius: $dot-size;
+        margin: $dot-margin;
+        position: relative;
         @include size($dot-size);
+        z-index: 1;
 
         &:before {
           border-radius: $dot-size;
@@ -136,7 +141,7 @@
 
       &:hover .tooltip {
         opacity: 1;
-        @include transform(translate(calc(-50% - #{$arrow-size / 2}), 0));
+        @include transform(translate(-50%, 0));
       }
 
       &.started .dot, &.pushed .dot, &.submitted .dot {
@@ -145,6 +150,44 @@
         &:before {
           border: 2px solid $gold-trail;
           @extend %animation-radiate;
+        }
+      }
+
+      &.not-started {
+        cursor: w-resize;
+
+        h5 {
+          background: $gray-3;
+        }
+      }
+
+      // Trail line that connects the dots
+      &.reviewed, &.next-up {
+        &:before {
+          background: hsla(0, 0%, 0%, 0.1);
+          content: "";
+          height: 2px;
+          left: 50%;
+          position: absolute;
+          right: 0;
+          top: 48%;
+          width: 100%;
+        }
+      }
+
+      // Show line
+      &:first-of-type {
+        &.reviewed:before {
+          display: block;
+        }
+      }
+
+      // Hide line
+      &:first-of-type,
+      &:last-of-type,
+      &.next-up {
+        &:before {
+          display: none;
         }
       }
 
@@ -163,8 +206,8 @@
 
       .tooltip {
         @include transition(all 0.2s $ease-out-quad);
-        @include transform(translate(calc(-50% - #{$arrow-size / 2}), 6px));
-        left: ($step-padding*2 + $dot-size) * 0.5;
+        @include transform(translate(-50%, 6px));
+        left: 50%;
         opacity: 0;
         pointer-events: none;
         position: absolute;
@@ -172,12 +215,11 @@
         z-index: 1;
 
         &:before, &:after {
-          @include calc(left, "50% - #{$arrow-size / 2}");
           @include triangle($arrow-size 8px, $base-border-color-1, up);
           content: "";
-          left: 50%;
           position: absolute;
           top: -$arrow-size * 0.5 + 3px;
+          @include calc(left, "50% - #{$arrow-size / 2}");
           z-index: 1;
         }
 
