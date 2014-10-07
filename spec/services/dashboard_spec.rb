@@ -2,12 +2,12 @@ require "rails_helper"
 
 describe Dashboard do
   describe "#trails" do
-    it "decorates the most recent trails" do
+    it "decorates the most recent, published trails" do
       user = stub(:user)
       undecorated = stub(:undecorated)
       trails = [undecorated]
       trail_with_progress = stub(:trail_with_progress)
-      Trail.stubs(:most_recent).returns(trails)
+      Trail.stubs(:most_recent_published).returns(trails)
       TrailWithProgress.
         stubs(:new).
         with(undecorated, user: user).

@@ -6,15 +6,25 @@ describe Trail do
   it { should have_many(:steps).dependent(:destroy) }
   it { should have_many(:exercises).through(:steps) }
 
-  describe ".most_recent" do
+  describe ".most_recent_published" do
     it "returns more recent trails first" do
-      create :trail, created_at: 2.day.ago, name: "two"
-      create :trail, created_at: 1.days.ago, name: "one"
-      create :trail, created_at: 3.days.ago, name: "three"
+      create :trail, published: true, created_at: 2.day.ago, name: "two"
+      create :trail, published: true, created_at: 1.days.ago, name: "one"
+      create :trail, published: true, created_at: 3.days.ago, name: "three"
 
-      result = Trail.most_recent
+      result = Trail.most_recent_published
 
       expect(result.map(&:name)).to eq(%w(one two three))
+    end
+
+    it "only returns published trails" do
+      create :trail, published: true, name: "two"
+      create :trail, published: true, name: "one"
+      create :trail, published: false, name: "unpublished"
+
+      result = Trail.most_recent_published
+
+      expect(result.map(&:name)).to match_array(%w(one two))
     end
   end
 

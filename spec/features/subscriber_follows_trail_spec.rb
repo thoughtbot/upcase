@@ -6,7 +6,7 @@ feature "subscriber follows trail" do
       create(:exercise, title: "First Exercise"),
       create(:exercise, title: "Second Exercise")
     ]
-    create(:trail, name: "Baby Exercises", exercises: exercises)
+    create(:trail, :published, name: "Baby Exercises", exercises: exercises)
 
     sign_in_as_user_with_subscription
     click_on "First Exercise"
@@ -19,7 +19,7 @@ feature "subscriber follows trail" do
       create(:exercise, title: "First Exercise"),
       create(:exercise, title: "Second Exercise")
     ]
-    create(:trail, name: "Baby Exercises", exercises: exercises)
+    create(:trail, :published, name: "Baby Exercises", exercises: exercises)
     user = create(:subscriber)
     exercises.first.statuses.create!(user: user, state: Status::REVIEWED)
 

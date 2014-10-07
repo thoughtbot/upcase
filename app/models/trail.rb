@@ -10,7 +10,7 @@ class Trail < ActiveRecord::Base
       count { |exercise| exercise.status_for(user).state != Status::REVIEWED }
   end
 
-  def self.most_recent
-    order(created_at: :desc)
+  def self.most_recent_published
+    order(created_at: :desc).where(published: true)
   end
 end

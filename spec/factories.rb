@@ -435,6 +435,10 @@ FactoryGirl.define do
   factory :trail do
     name "Trail name"
     complete_text "Way to go!"
+
+    trait :published do
+      published true
+    end
   end
 
   factory :step do

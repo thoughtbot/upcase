@@ -18,7 +18,7 @@ class Dashboard
   end
 
   def trails
-    Trail.most_recent.map do |trail|
+    Trail.most_recent_published.map do |trail|
       TrailWithProgress.new(trail, user: @user)
     end
   end
