@@ -11,6 +11,10 @@ module ProductsHelper
     "https://upcase.com/video_tutorials/21-intermediate-ruby-on-rails"
   end
 
+  def state_class_for(exercise)
+    exercise.status_for(current_user).state.parameterize
+  end
+
   def exercise_link(url, options = {}, &block)
     if current_user_has_access_to?(:exercises)
       link_to url, options, &block
