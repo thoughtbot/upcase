@@ -76,19 +76,18 @@
     text-transform: uppercase;
   }
 
-  .console-illustration {
+
+  .illustration {
     background-color: #fff;
-    background-image: image-url('exercise.svg');
     background-position: center;
     background-repeat: no-repeat;
     height: $product-card-illustration-height;
     margin: 0;
-    padding: .5rem 1rem;
     position: relative;
 
     &:after {
       border-radius: 2px;
-      border: 4px solid $base-border-color-blue;
+      border: 4px solid transparent;
       bottom: 0;
       content: "";
       left: 0;
@@ -177,6 +176,14 @@
     h5 {
       background-color: $exercise-color;
     }
+
+    .illustration {
+      background-image: image-url('exercise.svg');
+
+      &:after {
+        border-color: $base-border-color-blue;
+      }
+    }
   }
 
   &.video_tutorial {
@@ -189,6 +196,7 @@
     h5 {
       background-color: $weekly-iteration-color;
     }
+
   }
 
   &.repository {
@@ -196,7 +204,7 @@
       background-color: $repository-color;
     }
 
-    .console-illustration {
+    .illustration {
       background-image: image-url('repository.svg');
 
       &:after {
@@ -237,9 +245,12 @@
       background-color: $green-trail;
     }
 
-    .console-illustration {
+    .illustration {
       background: url('trail-step-complete.svg') center /58px no-repeat;
-      height: $product-card-illustration-height;
+
+      &:after {
+        display: none;
+      }
     }
   }
 
@@ -248,9 +259,12 @@
       background-color: lighten(saturate($gold-trail, 7%), 5%);
     }
 
-    .console-illustration {
+    .illustration {
       background: url('trail-step-in-progress.svg') center /60px no-repeat;
-      height: $product-card-illustration-height;
+
+      &:after {
+        display: none;
+      }
     }
   }
 }

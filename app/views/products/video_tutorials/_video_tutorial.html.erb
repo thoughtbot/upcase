@@ -1,7 +1,9 @@
 <%= content_tag :figure, class: video_tutorial_card_classes(video_tutorial) do %>
   <%= link_to video_tutorial, title: video_tutorial.name, 'data-role' => 'video_tutorial' do %>
     <h5>Video Tutorial</h5>
-    <%= image_tag(video_tutorial.thumbnail_path) %>
+    <div class="illustration">
+      <%= image_tag(video_tutorial.thumbnail_path) %>
+    </div>
     <h6 class="status"><%= video_tutorial_card_status(video_tutorial) %></h6>
     <h4><%= video_tutorial.name %></h4>
     <p><%= video_tutorial.tagline %></p>
