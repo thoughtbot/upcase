@@ -32,9 +32,13 @@ describe Catalog do
   end
 
   describe "#exercises" do
-    it "returns exercises by position" do
-      catalog = Catalog.new
-      expect(catalog.exercises).to find_relation(Exercise.ordered)
+    it "returns exercises through Factory" do
+      ExerciseWithProgressQuery.stubs(:new)
+
+      Catalog.new.exercises
+
+      expect(ExerciseWithProgressQuery).
+        to have_received(:new)
     end
   end
 

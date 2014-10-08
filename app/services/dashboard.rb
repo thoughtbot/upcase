@@ -12,7 +12,10 @@ class Dashboard
   def topics
     topics = TopicsWithResources.new(
       topics: Topic.dashboard,
-      factory: TopicWithResourcesFactory.new(catalog: Catalog.new, limit: LIMIT)
+      factory: TopicWithResourcesFactory.new(
+        catalog: Catalog.new(user: @user),
+        limit: LIMIT
+      )
     )
     topics.to_a.sort_by(&:count).reverse
   end

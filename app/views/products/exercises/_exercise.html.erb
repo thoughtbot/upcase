@@ -1,8 +1,8 @@
-<figure class="exercise card <%= state_class_for(exercise) %>">
+<figure class="exercise card <%= exercise.state.parameterize %>">
   <%= exercise_link exercise.url, title: exercise.title do %>
     <h5>
       <%= t(
-        exercise.status_for(current_user).state.parameterize,
+        exercise.state.parameterize,
         scope: [:exercises, :statuses]
       ) %>
     </h5>

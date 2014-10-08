@@ -3,7 +3,10 @@ require "rails_helper"
 describe "dashboards/_topic.html" do
   context "with less than 4 resources" do
     it "doesn't show View All card" do
-      exercise = build_stubbed(:exercise)
+      exercise = ExerciseWithProgress.new(
+        build_stubbed(:exercise),
+        "Not Started"
+      )
       topic_with_resources = stub(
         "topic_with_resources",
         name: "Topic",

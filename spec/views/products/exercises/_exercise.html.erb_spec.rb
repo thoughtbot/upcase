@@ -34,7 +34,7 @@ describe "products/exercises/_exercise.html" do
   end
 
   def render_exercise
-    exercise = build_stubbed(:exercise)
+    exercise = ExerciseWithProgress.new(build_stubbed(:exercise), "Not Started")
     render "products/exercises/exercise", exercise: exercise
   end
 

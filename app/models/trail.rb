@@ -9,9 +9,9 @@ class Trail < ActiveRecord::Base
   friendly_id :name, use: [:slugged, :finders]
 
   def steps_remaining_for(user)
-    exercises.
-      to_a.
-      count { |exercise| exercise.status_for(user).state != Status::REVIEWED }
+    ExerciseWithProgressQuery.
+      new(user: user, exercises: exercises).
+      count { |exercise| exercise.state != Status::REVIEWED }
   end
 
   def self.most_recent_published

@@ -16,8 +16,9 @@ describe Api::V1::StatusesController do
 
       post :create, exercise_uuid: exercise.uuid, state: Status::SUBMITTED
 
+      state = exercise.statuses.where(user: user).most_recent.state
       expect(response).to be_success
-      expect(exercise.status_for(user).state).to eq Status::SUBMITTED
+      expect(state).to eq Status::SUBMITTED
     end
   end
 end

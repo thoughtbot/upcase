@@ -16,24 +16,4 @@ describe Exercise do
       expect(Exercise.ordered.pluck(:title)).to eq(%w(first second third))
     end
   end
-
-  describe "#status_for" do
-    it "returns null object if no related status" do
-      exercise = Exercise.new
-      user = User.new
-
-      expect(exercise.status_for(user)).to be_a NotStarted
-    end
-
-    it "returns the latest status for the user" do
-      exercise = create(:exercise)
-      user = create(:user)
-      status = create(:status, exercise: exercise, user: user)
-      Timecop.travel(1.day.ago) do
-        create(:status, exercise: exercise, user: user)
-      end
-
-      expect(exercise.status_for(user)).to eq status
-    end
-  end
 end

@@ -33,11 +33,13 @@ describe TrailWithProgress do
       it "marks the first unstarted exercise as next up" do
         trail = create_trail_with_progress(Status::REVIEWED, nil, nil)
 
-        result = trail.exercises
+        result = trail.exercises.to_a
 
-        expect(result.first.state).to eq(Status::REVIEWED)
-        expect(result.second.state).to eq(Status::NEXT_UP)
-        expect(result.third.state).to eq(Status::NOT_STARTED)
+        expect(result.map(&:state)).to match_array([
+          Status::REVIEWED,
+          Status::NEXT_UP,
+          Status::NOT_STARTED
+        ])
       end
     end
 
@@ -45,11 +47,13 @@ describe TrailWithProgress do
       it "doesn't mark any exercises as next up" do
         trail = create_trail_with_progress(Status::STARTED, nil, nil)
 
-        result = trail.exercises
+        result = trail.exercises.to_a
 
-        expect(result.first.state).to eq(Status::STARTED)
-        expect(result.second.state).to eq(Status::NOT_STARTED)
-        expect(result.third.state).to eq(Status::NOT_STARTED)
+        expect(result.map(&:state)).to match_array([
+          Status::STARTED,
+          Status::NOT_STARTED,
+          Status::NOT_STARTED
+        ])
       end
     end
 
@@ -57,12 +61,10 @@ describe TrailWithProgress do
       it "can access if its state is Next Up, or already had access" do
         trail = create_trail_with_progress(Status::REVIEWED, nil, nil, nil)
 
-        result = trail.exercises
+        result = trail.exercises.to_a
 
-        expect(result.first.can_be_accessed?).to be_truthy
-        expect(result.second.can_be_accessed?).to be_truthy
-        expect(result.third.can_be_accessed?).to be_falsy
-        expect(result.fourth.can_be_accessed?).to be_falsy
+        expect(result.map(&:can_be_accessed?)).
+          to match_array([true, true, false, false])
       end
     end
   end

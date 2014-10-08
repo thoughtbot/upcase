@@ -1,6 +1,10 @@
 class Catalog
   include ActiveModel::Conversion
 
+  def initialize(user: nil)
+    @user = user
+  end
+
   def products
     Product.active.ordered
   end
@@ -14,7 +18,7 @@ class Catalog
   end
 
   def exercises
-    Exercise.ordered
+    ExerciseWithProgressQuery.new(user: @user)
   end
 
   def mentors

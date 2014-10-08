@@ -21,6 +21,8 @@ class TopicWithResourcesFactory
       flatten
   end
 
+  private
+
   def classified_as(topic, resource_type)
     catalog(resource_type).select do |classifiable|
       classifiable.classifications.map(&:topic_id).include?(topic.id)

@@ -10,8 +10,4 @@ class Exercise < ActiveRecord::Base
   def self.ordered
     order(:created_at)
   end
-
-  def status_for(user)
-    statuses.where(user: user).most_recent || NotStarted.new
-  end
 end
