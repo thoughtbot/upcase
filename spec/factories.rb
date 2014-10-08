@@ -375,6 +375,7 @@ FactoryGirl.define do
   factory :subscription, aliases: [:active_subscription] do
     association :plan
     association :user, :with_stripe, :with_mentor, :with_github
+    next_payment_on { 3.weeks.from_now }
 
     factory :inactive_subscription do
       deactivated_on { Time.zone.today }
