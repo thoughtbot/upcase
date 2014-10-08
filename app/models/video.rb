@@ -3,6 +3,7 @@ class Video < ActiveRecord::Base
 
   belongs_to :watchable, polymorphic: true
   has_many :classifications, as: :classifiable
+  has_many :topics, through: :classifications
 
   validates :published_on, presence: true
   validates :slug, presence: true, uniqueness: true

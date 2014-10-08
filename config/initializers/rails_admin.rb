@@ -141,4 +141,38 @@ RailsAdmin.config do |config|
       exclude_fields :classifications, :statuses
     end
   end
+
+  config.model Video do
+    list do
+      field :id
+
+      field :watchable do
+        label "Product name"
+
+        pretty_value do
+          value.name
+        end
+      end
+
+      field :title
+      field :created_at
+    end
+
+    edit do
+      group :default do
+        field :title
+        field :slug
+        field :notes
+        field :topics
+        field :watchable
+        field :position
+        field :published_on
+      end
+
+      group :wistia do
+        field :wistia_id
+        field :preview_wistia_id
+      end
+    end
+  end
 end
