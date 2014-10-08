@@ -21,6 +21,14 @@ en:
     show:
       contact_your_mentor: "Contact your mentor, %{mentor_name}"
 
+  exercises:
+    statuses:
+      not-started: "Exercise"
+      started: "In Progress"
+      pushed: "In Progress"
+      submitted: "In Progress"
+      reviewed: "Complete"
+
   plans:
     mentoring: '1-1 Mentoring'
     video_tutorials: 'Hands-On Video Tutorials'

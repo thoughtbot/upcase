@@ -232,23 +232,23 @@
     }
   }
 
-  &.complete {
+  &.reviewed {
     h5 {
       background-color: $green-trail;
     }
 
-    .trail-complete-illustration {
+    .console-illustration {
       background: url('trail-step-complete.svg') center /58px no-repeat;
       height: $product-card-illustration-height;
     }
   }
 
-  &.in-progress {
+  &.started, &.pushed, &.submitted {
     h5 {
       background-color: lighten(saturate($gold-trail, 7%), 5%);
     }
 
-    .trail-in-progress-illustration {
+    .console-illustration {
       background: url('trail-step-in-progress.svg') center /60px no-repeat;
       height: $product-card-illustration-height;
     }

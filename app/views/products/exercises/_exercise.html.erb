@@ -1,14 +1,16 @@
 <figure class="exercise card <%= state_class_for(exercise) %>">
   <%= exercise_link exercise.url, title: exercise.title do %>
-    <h5>Exercise</h5>
+    <h5>
+      <%= t(
+        exercise.status_for(current_user).state.parameterize,
+        scope: [:exercises, :statuses]
+      ) %>
+    </h5>
     <figure>
       <p class="console-illustration"></p>
     </figure>
     <h4><%= exercise.title %></h4>
     <p><%= exercise.summary %></p>
-    <h6 class="status">
-      <%= exercise.status_for(current_user).state %>
-    </h6>
   <% end %>
 
   <% unless current_user_has_access_to?(:exercises) %>

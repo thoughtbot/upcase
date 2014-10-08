@@ -22,6 +22,7 @@ Upcase::Application.routes.draw do
   draw :stripe
   draw :subscriber
   draw :teams
+  draw :trails
   draw :users
   draw :video_tutorials
 

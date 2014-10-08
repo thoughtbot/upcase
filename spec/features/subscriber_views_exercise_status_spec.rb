@@ -9,9 +9,7 @@ feature "Subscriber sees the current status of an exercise" do
     sign_in
     visit dashboard_path
 
-    within ".card.exercise" do
-      expect(page).to have_content "Not Started"
-    end
+    expect(page).to have_exercise_title "Exercise"
   end
 
   scenario "subscriber has started exercise" do
@@ -24,9 +22,11 @@ feature "Subscriber sees the current status of an exercise" do
     sign_in_as user
     visit dashboard_path
 
-    within ".card.exercise" do
-      expect(page).to have_content "Started"
-      expect(page).not_to have_content "Not Started"
-    end
+    expect(page).to have_exercise_title "In Progress"
+    expect(page).not_to have_exercise_title "Exercise"
+  end
+
+  def have_exercise_title(title)
+    have_selector(".exercise h5:contains('#{title}')")
   end
 end

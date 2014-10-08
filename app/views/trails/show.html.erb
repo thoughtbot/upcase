@@ -1,0 +1,17 @@
+<% content_for :page_title, @trail.name %>
+<% content_for :subject_block do %>
+  <h1><%= @trail.name %></h1>
+<% end %>
+
+<section class="trails-progress">
+  <section class="trail">
+    <%= render "trails/exercise_dots", trail: @trail %>
+  </section>
+</section>
+
+<section class="topic">
+  <%= render(
+    partial: "products/exercises/exercise",
+    collection: @trail.exercises
+  ) %>
+</section>

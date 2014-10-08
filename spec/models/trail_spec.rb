@@ -56,4 +56,24 @@ describe Trail do
       expect(result).to eq(2)
     end
   end
+
+  describe "#find" do
+    it "finds its to_param value" do
+      trail = create(:trail)
+
+      result = Trail.find(trail.to_param)
+
+      expect(result).to eq(trail)
+    end
+  end
+
+  describe "#to_param" do
+    it "returns a value based on its name" do
+      trail = create(:trail, name: "Example Trail")
+
+      result = trail.to_param
+
+      expect(result).to eq("example-trail")
+    end
+  end
 end

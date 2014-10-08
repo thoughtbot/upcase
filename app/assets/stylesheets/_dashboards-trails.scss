@@ -70,13 +70,14 @@
         }
       }
 
-      span {
-        color: $gray-3;
-        float: right;
-        font-size: 0.92rem;
-        font-weight: 500;
-        margin-top: 8px;
-      }
+    }
+
+    .numerical-progress {
+      color: $gray-3;
+      float: right;
+      font-size: 0.92rem;
+      font-weight: 500;
+      margin-top: 8px;
     }
 
     .complete-mask {
@@ -102,6 +103,9 @@
         @include transform(translateX(-60%));
       }
 
+      .numerical-progress {
+        margin: 0 30px 0 0;
+      }
     }
 
     .step {
