@@ -130,7 +130,6 @@
         margin: $dot-margin;
         position: relative;
         @include size($dot-size);
-        z-index: 1;
 
         &:before {
           border-radius: $dot-size;
