@@ -9,6 +9,7 @@ describe Topic do
   it { should have_many(:topics).through(:classifications) }
   it { should have_many(:videos).through(:classifications) }
   it { should have_one(:legacy_trail) }
+  it { should have_one(:trail) }
 
   # Validations
   it { should validate_presence_of(:name) }

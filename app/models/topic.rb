@@ -9,6 +9,7 @@ class Topic < ActiveRecord::Base
     options.has_many :video_tutorials, source_type: 'VideoTutorial'
   end
   has_one :legacy_trail
+  has_one :trail
 
   # Validations
   validates :name, presence: true

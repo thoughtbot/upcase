@@ -328,6 +328,7 @@ ActiveRecord::Schema.define(version: 20141014183929) do
     t.boolean  "published",     default: false, null: false
     t.string   "slug",                          null: false
     t.text     "description",   default: "",    null: false
+    t.integer  "topic_id"
   end
 
   add_index "trails", ["published"], name: "index_trails_on_published", using: :btree
