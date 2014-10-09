@@ -72,6 +72,21 @@ describe Topic do
     end
   end
 
+  context "has_new_trail?" do
+    it "returns true if it has a related trail" do
+      topic = Topic.new
+
+      expect(topic.has_new_trail?).to be false
+    end
+
+    it "returns false if it has no related trail" do
+      topic = Topic.new
+      topic.trail = Trail.new
+
+      expect(topic.has_new_trail?).to be true
+    end
+  end
+
   describe '#meta_keywords' do
     it 'returns a comma delimited string of topics' do
       create(:topic, name: 'Ruby')

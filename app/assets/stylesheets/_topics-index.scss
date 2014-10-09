@@ -6,12 +6,22 @@
     margin: 0 0 2rem 0;
   }
 
-  > a {
+  &:hover {
+    z-index: 2;
+  }
+
+  > a, .new-trail {
     display: block;
     height: 100%;
     overflow: auto;
     @include transition(.07s);
+  }
 
+  .new-trail .steps-complete {
+    top: 35%;
+  }
+
+  > a {
     &:hover {
       background-color: lighten($gray-4, 10%);
       box-shadow: 0 0 0 1.5rem lighten($gray-4, 10%);

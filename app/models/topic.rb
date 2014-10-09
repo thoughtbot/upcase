@@ -42,6 +42,10 @@ class Topic < ActiveRecord::Base
     @related ||= Related.new(self)
   end
 
+  def has_new_trail?
+    trail.present?
+  end
+
   private
 
   def generate_slug
