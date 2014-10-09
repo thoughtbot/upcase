@@ -2,17 +2,17 @@ require "rails_helper"
 
 describe ExerciseWithProgressQuery do
   describe "#each" do
-    it "decorates an exercise with progress" do
-      create(:exercise)
+    it "decorates exercises with progress" do
       exercise = create(:exercise)
+      create(:exercise)
       user = create(:user)
-      create(:status, exercise: exercise, user: user, state: "Pushed")
       query = ExerciseWithProgressQuery.new(user: user, exercises: Exercise.all)
 
-      exercises_array = query.to_a
+      exercises = query.to_a
 
-      expect(exercises_array.last.title).to eq(exercise.title)
-      expect(exercises_array.last.state).to eq("Pushed")
+      expect(exercises[0].title).to eq(exercise.title)
+      expect(exercises[0].state).to eq(Status::NEXT_UP)
+      expect(exercises[1].state).to eq(Status::NOT_STARTED)
     end
   end
 

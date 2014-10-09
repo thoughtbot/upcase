@@ -8,7 +8,7 @@ class ExerciseWithProgressQuery
   end
 
   def each(&block)
-    previous_exercise_state = nil
+    previous_exercise_state = Status::REVIEWED
     @exercises.all.map do |exercise|
       state = status_for(exercise.id).state
       ExerciseWithProgress.new(exercise, state, previous_exercise_state).tap do

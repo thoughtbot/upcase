@@ -23,7 +23,7 @@ en:
 
   exercises:
     statuses:
-      next-up: "Next Up"
+      next-up: "Exercise"
       not-started: "Exercise"
       started: "In Progress"
       pushed: "In Progress"
