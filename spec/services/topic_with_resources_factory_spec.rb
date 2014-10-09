@@ -6,7 +6,7 @@ describe TopicWithResourcesFactory do
       topic = create(:topic)
       other_topic = create(:topic)
       resources = [
-        create(:exercise, title: "exercise-one"),
+        create(:exercise, :public, title: "exercise-one"),
         create(:video, :published, title: "video-one"),
         create(:video_tutorial, name: "video_tutorial-one"),
       ]

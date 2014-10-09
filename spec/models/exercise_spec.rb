@@ -16,4 +16,14 @@ describe Exercise do
       expect(Exercise.ordered.pluck(:title)).to eq(%w(first second third))
     end
   end
+
+  describe ".public" do
+    it "only returns public exercises" do
+      create(:exercise, title: "first", public: true)
+      create(:exercise, title: "second", public: true)
+      create(:exercise, title: "hidden", public: false)
+
+      expect(Exercise.public.pluck(:title)).to match_array(%w(first second))
+    end
+  end
 end

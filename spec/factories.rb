@@ -415,6 +415,10 @@ FactoryGirl.define do
     title
     url { "http://exercises.upcase.com/exercises/#{uuid}" }
     uuid
+
+    trait :public do
+      public true
+    end
   end
 
   factory :oauth_access_token, class: "Doorkeeper::AccessToken" do

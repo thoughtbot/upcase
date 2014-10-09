@@ -2,7 +2,7 @@
 class ExerciseWithProgressQuery
   include Enumerable
 
-  def initialize(user:, exercises: Exercise)
+  def initialize(user:, exercises:)
     @user = user
     @exercises = exercises
   end

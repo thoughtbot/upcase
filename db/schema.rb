@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008154607) do
+ActiveRecord::Schema.define(version: 20141009203729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,14 +78,16 @@ ActiveRecord::Schema.define(version: 20141008154607) do
   end
 
   create_table "exercises", force: true do |t|
-    t.string   "title",      null: false
-    t.string   "url",        null: false
-    t.text     "summary",    null: false
+    t.string   "title",                      null: false
+    t.string   "url",                        null: false
+    t.text     "summary",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "uuid",       null: false
+    t.string   "uuid",                       null: false
+    t.boolean  "public",     default: false, null: false
   end
 
+  add_index "exercises", ["public"], name: "index_exercises_on_public", using: :btree
   add_index "exercises", ["uuid"], name: "index_exercises_on_uuid", unique: true, using: :btree
 
   create_table "invitations", force: true do |t|

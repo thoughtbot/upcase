@@ -3,7 +3,7 @@ require "rails_helper"
 feature "Subscriber sees the current status of an exercise" do
   scenario "subscriber has not started exercise" do
     topic = create(:topic, dashboard: true)
-    exercise = create(:exercise)
+    exercise = create(:exercise, :public)
     exercise.classifications.create!(topic: topic)
 
     sign_in
@@ -14,7 +14,7 @@ feature "Subscriber sees the current status of an exercise" do
 
   scenario "subscriber has started exercise" do
     topic = create(:topic, dashboard: true)
-    exercise = create(:exercise)
+    exercise = create(:exercise, :public)
     user = create(:user, :with_subscription)
     exercise.classifications.create!(topic: topic)
     exercise.statuses.create!(user: user)

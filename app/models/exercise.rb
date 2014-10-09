@@ -10,4 +10,8 @@ class Exercise < ActiveRecord::Base
   def self.ordered
     order(:created_at)
   end
+
+  def self.public
+    where(public: true)
+  end
 end

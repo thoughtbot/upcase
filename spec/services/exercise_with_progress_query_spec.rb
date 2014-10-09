@@ -7,7 +7,7 @@ describe ExerciseWithProgressQuery do
       exercise = create(:exercise)
       user = create(:user)
       create(:status, exercise: exercise, user: user, state: "Pushed")
-      query = ExerciseWithProgressQuery.new(user: user)
+      query = ExerciseWithProgressQuery.new(user: user, exercises: Exercise.all)
 
       exercises_array = query.to_a
 
@@ -31,7 +31,7 @@ describe ExerciseWithProgressQuery do
   describe "#status_for" do
     it "returns null object if no related status" do
       user = User.new
-      query = ExerciseWithProgressQuery.new(user: user)
+      query = ExerciseWithProgressQuery.new(user: user, exercises: Exercise.all)
 
       expect(query.status_for(user)).to be_a NotStarted
     end
@@ -43,7 +43,7 @@ describe ExerciseWithProgressQuery do
       Timecop.travel(1.day.ago) do
         create(:status, exercise: exercise, user: user)
       end
-      query = ExerciseWithProgressQuery.new(user: user)
+      query = ExerciseWithProgressQuery.new(user: user, exercises: Exercise.all)
 
       expect(query.status_for(exercise.id)).to eq status
     end

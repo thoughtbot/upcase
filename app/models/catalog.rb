@@ -18,7 +18,10 @@ class Catalog
   end
 
   def exercises
-    ExerciseWithProgressQuery.new(user: @user)
+    ExerciseWithProgressQuery.new(
+      exercises: Exercise.public.ordered,
+      user: @user
+    )
   end
 
   def mentors

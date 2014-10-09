@@ -4,7 +4,7 @@ feature "subscriber views resources for a topic" do
   scenario "sees exercises, video_tutorials, videos, and products" do
     topic = create(:topic, dashboard: true)
     video_tutorial = create(:video_tutorial)
-    exercise = create(:exercise)
+    exercise = create(:exercise, :public)
     video_1 = create(:video, :published)
     video_2 = create(:video, :published)
 
