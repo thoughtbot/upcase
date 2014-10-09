@@ -23,9 +23,22 @@ describe "dashboards/_trail.html" do
     end
   end
 
-  def stub_trail(complete:)
+  context "with an unstarted trail" do
+    it "renders as unstarted" do
+      trail = stub_trail(complete: false, unstarted: true)
+
+      render_trail trail
+
+      expect(rendered).to have_selector(".unstarted")
+      expect(rendered).to have_content(trail.name)
+      expect(rendered).not_to have_complete(trail)
+    end
+  end
+
+  def stub_trail(complete:, unstarted: false)
     build_stubbed(:trail).tap do |trail|
       Mocha::Configuration.allow(:stubbing_non_existent_method) do
+        trail.stubs(:unstarted?).returns(unstarted)
         trail.stubs(:complete?).returns(complete)
       end
     end

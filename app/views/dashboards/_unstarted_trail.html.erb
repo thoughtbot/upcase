@@ -1,0 +1,16 @@
+<div class="unstarted">
+  <section class="trail">
+    <header>
+      <h1><%= link_to trail.name, trail %></h1>
+      <p><%= trail.description %></p>
+    </header>
+
+    <%= render "trails/exercise_dots", trail: trail %>
+
+    <% if trail.exercises.present? %>
+      <%= exercise_link trail.exercises.first.url, class: "start-trail" do %>
+        Start trail
+      <% end %>
+    <% end %>
+  </section>
+</div>
