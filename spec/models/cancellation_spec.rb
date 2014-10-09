@@ -43,6 +43,7 @@ describe Cancellation do
     it 'schedules a cancellation with Stripe' do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription)
+      cancellation.stubs(:clear_next_payment_on_if_no_outstanding_balance)
       stripe_customer = stub(
         'Stripe::Customer',
         cancel_subscription: nil,
@@ -54,6 +55,7 @@ describe Cancellation do
 
       cancellation.schedule
 
+      expect(cancellation).to have_received(:clear_next_payment_on_if_no_outstanding_balance)
       expect(stripe_customer).to have_received(:cancel_subscription).
         with(at_period_end: true)
       expect(subscription.scheduled_for_cancellation_on).
@@ -64,6 +66,7 @@ describe Cancellation do
     it 'retrieves the customer correctly' do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription)
+      cancellation.stubs(:clear_next_payment_on_if_no_outstanding_balance)
 
       subscription.stubs(:stripe_customer_id).returns('cus_1CXxPJDpw1VLvJ')
       stripe_customer = stub(
@@ -178,6 +181,46 @@ describe Cancellation do
       cancellation = Cancellation.new(subscription)
 
       expect(cancellation.subscribed_plan).to eq(subscription.plan)
+    end
+  end
+
+  describe "#clear_next_payment_on_if_no_outstanding_balance" do
+    it "clears next_payment_on if there's no outstanding balance" do
+      subscription = create(:subscription, next_payment_on: 1.month.from_now)
+      cancellation = Cancellation.new(subscription)
+      cancellation.stubs(:has_no_outstanding_balance?).returns(true)
+
+      cancellation.clear_next_payment_on_if_no_outstanding_balance
+
+      expect(subscription.next_payment_on).to be_nil
+    end
+
+    it "does not clear next_payment_on if there is outstanding balance" do
+      subscription = create(:subscription, next_payment_on: 1.month.from_now)
+      cancellation = Cancellation.new(subscription)
+      cancellation.stubs(:has_no_outstanding_balance?).returns(false)
+
+      cancellation.clear_next_payment_on_if_no_outstanding_balance
+
+      expect(subscription.next_payment_on).to be_present
+    end
+  end
+
+  describe "#has_no_outstanding_balance?" do
+    it "when no outstanding balance" do
+      subscription = build_stubbed(:subscription)
+      cancellation = Cancellation.new(subscription)
+      cancellation.stubs(:stripe_customer).returns("account_balance" => 0)
+
+      expect(cancellation.has_no_outstanding_balance?).to be_truthy
+    end
+
+    it "with outstanding balance" do
+      subscription = build_stubbed(:subscription)
+      cancellation = Cancellation.new(subscription)
+      cancellation.stubs(:stripe_customer).returns("account_balance" => -10)
+
+      expect(cancellation.has_no_outstanding_balance?).to be_falsy
     end
   end
 

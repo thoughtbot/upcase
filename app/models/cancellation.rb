@@ -7,6 +7,7 @@ class Cancellation
     Subscription.transaction do
       stripe_customer.cancel_subscription(at_period_end: true)
       record_scheduled_cancellation_date(stripe_customer)
+      clear_next_payment_on_if_no_outstanding_balance
       track_cancelled
     end
   end
@@ -37,6 +38,16 @@ class Cancellation
 
   def downgrade
     @subscription.change_plan(Plan.basic)
+  end
+
+  def clear_next_payment_on_if_no_outstanding_balance
+    if has_no_outstanding_balance?
+      @subscription.update(next_payment_on: nil)
+    end
+  end
+
+  def has_no_outstanding_balance?
+    stripe_customer["account_balance"] == 0
   end
 
   private
