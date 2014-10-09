@@ -23,9 +23,10 @@ describe "dashboards/_trail.html" do
     end
   end
 
-  def stub_trail(complete:)
+  def stub_trail(complete:, unstarted: false)
     build_stubbed(:trail).tap do |trail|
       Mocha::Configuration.allow(:stubbing_non_existent_method) do
+        trail.stubs(:unstarted?).returns(unstarted)
         trail.stubs(:complete?).returns(complete)
       end
     end

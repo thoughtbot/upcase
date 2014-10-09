@@ -1,5 +1,7 @@
 <% if trail.complete? %>
   <%= render "dashboards/complete_trail", trail: trail %>
+<% elsif trail.unstarted? %>
+  <%= render "dashboards/unstarted_trail", trail: trail %>
 <% else %>
   <%= render "dashboards/in_progress_trail", trail: trail %>
 <% end %>

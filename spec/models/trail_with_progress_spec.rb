@@ -10,6 +10,24 @@ describe TrailWithProgress do
     expect(trail_with_progress.name).to eq(trail.name)
   end
 
+  describe "#unstarted?" do
+    context "before starting any exercise" do
+      it "returns false" do
+        trail = create_trail_with_progress(nil, nil)
+
+        expect(trail).to be_unstarted
+      end
+    end
+
+    context "after starting an exercise" do
+      it "returns true" do
+        trail = create_trail_with_progress(Status::STARTED, nil)
+
+        expect(trail).not_to be_unstarted
+      end
+    end
+  end
+
   describe "#complete?" do
     context "before receving a review on each exercise" do
       it "returns false" do

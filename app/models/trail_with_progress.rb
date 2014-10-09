@@ -5,6 +5,12 @@ class TrailWithProgress < SimpleDelegator
     @user = user
   end
 
+  def unstarted?
+    exercises.all? do |exercise|
+      [Status::NOT_STARTED, Status::NEXT_UP].include? exercise.state
+    end
+  end
+
   def complete?
     exercises.all? { |exercise| exercise.state == Status::REVIEWED }
   end
