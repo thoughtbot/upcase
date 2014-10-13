@@ -32,6 +32,7 @@
 
 
 .trails-progress {
+  $arrow-size: 20px;
   $not-started-dot-color: #D8D8D8;
   display: block;
   position: relative;
@@ -83,7 +84,44 @@
           }
         }
       }
+    }
 
+    .trail-description {
+      float: left;
+      margin-left: 6px;
+
+      span {
+        cursor: pointer;
+      }
+
+      .help-tooltip {
+        @include transition(all 0.2s $ease-out-quad);
+        @include transform(translate(-47%, 0));
+        display: none;
+        position: absolute;
+
+        &:before, &:after {
+          @include triangle($arrow-size 8px, $base-border-color-1, up);
+          content: "";
+          position: absolute;
+          top: -$arrow-size * 0.5 + 3px;
+          @include calc(left, "50% - #{$arrow-size / 2}");
+          z-index: 1;
+        }
+
+        .card {
+          height: auto;
+          width: $product-card-width * 1.5;
+
+          &:hover {
+            transform: none;
+          }
+        }
+      }
+
+      span:hover + .help-tooltip {
+        display: block;
+      }
     }
 
     .numerical-progress {
@@ -134,7 +172,6 @@
     .step {
       $dot-size: 13px;
       $dot-margin: 14px;
-      $arrow-size: 20px;
       position: relative;
       @include flex(1);
       @include display(flex);
@@ -248,7 +285,6 @@
           @include triangle($arrow-size 8px, #fff, up);
         }
 
-
         .card {
           height: auto;
 
@@ -268,11 +304,6 @@
       float: left;
       margin-right: 4em;
       width: 50%;
-
-      h1 {
-        float: none;
-        margin-bottom: .5em;
-      }
     }
 
     .step {
