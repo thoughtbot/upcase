@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009203729) do
+ActiveRecord::Schema.define(version: 20141013173406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -327,6 +327,7 @@ ActiveRecord::Schema.define(version: 20141009203729) do
     t.string   "complete_text",                 null: false
     t.boolean  "published",     default: false, null: false
     t.string   "slug",                          null: false
+    t.text     "description",   default: "",    null: false
   end
 
   add_index "trails", ["published"], name: "index_trails_on_published", using: :btree
