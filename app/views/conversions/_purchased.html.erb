@@ -1,4 +1,4 @@
 <script type="text/javascript">
   window.analytics.alias("<%= current_user.id %>");
-  window.analytics.track("Subscribed", <%= raw purchased_hash.to_json %>});
+  window.analytics.track("Subscribed", <%= raw purchased_hash.to_json %>);
 </script>
