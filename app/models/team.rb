@@ -10,6 +10,7 @@ class Team < ActiveRecord::Base
   delegate :owner?, :plan, to: :subscription
 
   def add_user(user)
+    user.deactivate_personal_subscription
     user.team = self
     user.save!
     update_billing_quantity

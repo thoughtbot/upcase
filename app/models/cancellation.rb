@@ -11,6 +11,14 @@ class Cancellation
     end
   end
 
+  def cancel_now
+    Subscription.transaction do
+      stripe_customer.subscriptions.first.delete
+      @subscription.deactivate
+      track_cancelled
+    end
+  end
+
   def cancel_and_refund
     stripe_customer.subscriptions.first.delete
     @subscription.last_charge.try(:refund)

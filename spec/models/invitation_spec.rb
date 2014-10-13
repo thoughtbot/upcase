@@ -9,8 +9,8 @@ describe Invitation do
   it { should belong_to(:sender) }
   it { should belong_to(:team) }
 
-  describe '#deliver' do
-    it 'saves and sends a valid invitation' do
+  describe "#deliver" do
+    it "saves and sends a valid invitation" do
       mailer = stub_mailer
       invitation = build(:invitation)
 
@@ -23,7 +23,7 @@ describe Invitation do
 
     it "doesn't send an invalid invitation" do
       mailer = stub_mailer
-      invitation = build(:invitation, email: '')
+      invitation = build(:invitation, email: "")
 
       result = invitation.deliver
 
@@ -32,14 +32,14 @@ describe Invitation do
     end
 
     def stub_mailer
-      stub('mailer', :invitation).tap do |mailer|
+      stub("mailer", :invitation).tap do |mailer|
         InvitationMailer.stubs(:delay).returns(mailer)
       end
     end
   end
 
-  describe '#code' do
-    it' generates a code' do
+  describe "#code" do
+    it "generates a code" do
       invitation = create(:invitation)
 
       invitation.deliver
@@ -47,7 +47,7 @@ describe Invitation do
       expect(invitation.code).to be_present
     end
 
-    it 'generates a new code for each invitation' do
+    it "generates a new code for each invitation" do
       first_invitation = create(:invitation)
       second_invitation = create(:invitation)
 
@@ -55,30 +55,39 @@ describe Invitation do
     end
   end
 
-  describe '#to_param' do
-    it 'returns its code' do
+  describe "#to_param" do
+    it "returns its code" do
       invitation = create(:invitation)
 
       expect(invitation.to_param).to eq(invitation.code)
     end
   end
 
-  describe '.find' do
-    it 'finds models by code' do
+  describe "#user_by_email" do
+    it "returns user by email" do
+      user = create(:user)
+      invitation = build(:invitation, email: user.email)
+
+      expect(invitation.user_by_email).to eq(user)
+    end
+  end
+
+  describe ".find" do
+    it "finds models by code" do
       invitation = create(:invitation)
 
       expect(Invitation.find(invitation.code)).to eq(invitation)
     end
 
-    it 'finds models by ID' do
+    it "finds models by ID" do
       invitation = create(:invitation)
 
       expect(Invitation.find(invitation.id)).to eq(invitation)
     end
   end
 
-  describe '#accept' do
-    it 'adds the user to the team' do
+  describe "#accept" do
+    it "adds the user to the team" do
       Timecop.freeze Time.now.beginning_of_day do
         team = build_stubbed(:team)
         team.stubs(:add_user)
@@ -94,26 +103,26 @@ describe Invitation do
     end
   end
 
-  describe '#accepted?' do
-    it 'returns true if accepted' do
+  describe "#accepted?" do
+    it "returns true if accepted" do
       invitation = build_stubbed(:invitation, accepted_at: Time.now)
 
       expect(invitation).to be_accepted
     end
 
-    it 'returns false if unaccepted' do
+    it "returns false if unaccepted" do
       invitation = build_stubbed(:invitation, nil)
 
       expect(invitation).not_to be_accepted
     end
   end
 
-  describe '#sender_name' do
-    it 'delegates to its sender' do
-      sender = build_stubbed(:user, name: 'Billy Boy')
+  describe "#sender_name" do
+    it "delegates to its sender" do
+      sender = build_stubbed(:user, name: "Billy Boy")
       invitation = build_stubbed(:invitation, sender: sender)
 
-      expect(invitation.sender_name).to eq('Billy Boy')
+      expect(invitation.sender_name).to eq("Billy Boy")
     end
   end
 

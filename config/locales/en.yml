@@ -30,6 +30,11 @@ en:
       submitted: "In Progress"
       reviewed: "Complete"
 
+  formtastic:
+    labels:
+      acceptance:
+        github_username: 'GitHub username'
+
   plans:
     mentoring: '1-1 Mentoring'
     video_tutorials: 'Hands-On Video Tutorials'

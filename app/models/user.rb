@@ -100,6 +100,12 @@ class User < ActiveRecord::Base
     plan.discounted_annual_payment
   end
 
+  def deactivate_personal_subscription
+    if purchased_subscription
+      Cancellation.new(purchased_subscription).cancel_now
+    end
+  end
+
   private
 
   def clean_github_username

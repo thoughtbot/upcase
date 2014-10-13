@@ -1,9 +1,17 @@
 <section id="auth-form-container">
   <div class="thoughtbot-signin">
-    <% if @existing_user %>
-      <%= render 'existing_user' %>
-    <% else %>
-      <%= render 'form', acceptance: @acceptance %>
+    <%= semantic_form_for(
+      @acceptance,
+      url: invitation_acceptances_path(@acceptance.invitation)
+    ) do |form| %>
+      <%= form.semantic_errors :invitation %>
+      <%= form.inputs do %>
+        <% if @acceptance.existing_user %>
+          <%= render "existing_user", form: form %>
+        <% else %>
+          <%= render "new_user", form: form %>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
 </section>

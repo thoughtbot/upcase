@@ -20,6 +20,15 @@ describe Team do
       expect(fulfillment).to have_received(:fulfill)
     end
 
+    it "cancels user's personal subscription" do
+      team = create(:team)
+      user = create(:subscriber)
+
+      team.add_user(user)
+
+      expect(user.purchased_subscription).not_to be_active
+    end
+
     context "when below the minimum" do
       it "updates the team's subscription quantity with the minimum" do
         team = team_with_stubbed_subscription_change_quantity

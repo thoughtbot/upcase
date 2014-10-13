@@ -1,6 +1,5 @@
 class AcceptancesController < ApplicationController
   def new
-    @existing_user = User.exists?(email: find_invitation.email)
     @acceptance = build_acceptance
   end
 
@@ -8,7 +7,10 @@ class AcceptancesController < ApplicationController
     @acceptance = build_acceptance(acceptance_attributes)
     if @acceptance.save
       sign_in @acceptance.user
-      redirect_to dashboard_url
+      redirect_to(
+        dashboard_url,
+        notice: "You've been added to the team. Enjoy!"
+      )
     else
       render :new
     end
@@ -17,7 +19,11 @@ class AcceptancesController < ApplicationController
   private
 
   def build_acceptance(attributes = {})
-    Acceptance.new(find_invitation, attributes)
+    Acceptance.new(
+      invitation: find_invitation,
+      current_user: current_user,
+      attributes: attributes
+    )
   end
 
   def find_invitation

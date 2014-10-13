@@ -166,7 +166,9 @@ FactoryGirl.define do
     name
     password 'secret'
 
-    initialize_with { new(invitation, attributes.except(:invitation)) }
+    initialize_with do
+      new(invitation: invitation, attributes: attributes.except(:invitation))
+    end
   end
 
   factory :product_license do
