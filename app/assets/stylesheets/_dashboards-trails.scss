@@ -313,6 +313,8 @@
     }
   }
 
+  // Unstarted Trail
+  ///////////////////////////////////////////////////////////////////////////
   .unstarted {
     @include clearfix;
     margin-bottom: 2.5em;
@@ -328,6 +330,7 @@
         @include trail-line;
         cursor: auto;
       }
+
       // Hide line instructions override
       &:last-of-type,
       &.next-up {
@@ -335,6 +338,7 @@
           display: block;
         }
       }
+
       &:last-of-type {
         &:before {
           @include linear-gradient(to right, hsla(0, 0%, 0%, 0.05), white);
@@ -347,20 +351,36 @@
         background: none;
         border: 0;
         margin-bottom: 20px;
-        margin-left: -45px;
+        padding-left: 0;
       }
-      .step.next-up {
+
+      .step {
+        @include justify-content(flex-start);
+        pointer-events: none;
+
         .dot {
+          margin: 0;
           background: $not-started-dot-color;
 
           &:before {
-            border: 0;
+            display: none;
+            @include animation(none);
           }
         }
+
+        &:before {
+          left: 0;
+        }
+      }
+
+      .tooltip {
+        display: none;
       }
     }
   }
 
+  // Completed Trail
+  ///////////////////////////////////////////////////////////////////////////
   .complete {
     position: relative;
     z-index: -1;
