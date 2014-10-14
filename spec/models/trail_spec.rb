@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe Trail do
   it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:description) }
 
   it { should have_many(:steps).dependent(:destroy) }
   it { should have_many(:exercises).through(:steps) }

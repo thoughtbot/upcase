@@ -444,6 +444,7 @@ FactoryGirl.define do
 
   factory :trail do
     name "Trail name"
+    description "Trail description"
     complete_text "Way to go!"
 
     trait :published do

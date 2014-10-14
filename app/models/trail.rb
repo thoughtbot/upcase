@@ -1,7 +1,7 @@
 class Trail < ActiveRecord::Base
   extend FriendlyId
 
-  validates :name, presence: true
+  validates :name, :description, presence: true
 
   has_many :steps, dependent: :destroy
   has_many :exercises, through: :steps
