@@ -262,6 +262,7 @@
 
   .unstarted {
     @include clearfix;
+    margin-bottom: 2.5em;
 
     header {
       float: left;
