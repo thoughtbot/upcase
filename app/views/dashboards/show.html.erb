@@ -28,8 +28,26 @@
       <%= render partial: "dashboards/trail", collection: @dashboard.trails %>
 
       <footer>
-        <%= link_to "/trails" do %>
-          View All Trails &rarr;
+        <p>
+          <%= link_to "/trails" do %>
+            View old trails &rarr;
+          <% end %>
+        </p>
+
+        <p>
+          or
+        </p>
+
+        <p>
+          <a href="#" class="trail-hint">Tell us which trails you'd like to see</a>
+        </p>
+
+        <% content_for :javascript do %>
+          <script type="text/javascript">
+            $(".trail-hint" ).click(function() {
+              $('#intercom-launcher').click()
+            });
+          </script>
         <% end %>
       </footer>
     </section>
