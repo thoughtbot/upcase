@@ -1,8 +1,9 @@
-<div class="unstarted">
+<div class="<%= trail.unstarted? ? "unstarted" : "started" %>">
   <section class="trail">
     <header>
       <h1><%= link_to trail.name, trail %></h1>
       <%= render 'trail_description_tooltip', trail: trail %>
+      <%= render "trails/steps_remaining", trail: trail %>
     </header>
 
     <%= render "trails/exercise_dots", trail: trail %>

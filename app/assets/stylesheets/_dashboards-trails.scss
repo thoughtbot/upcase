@@ -46,18 +46,6 @@
     border-top: 1px solid $gray-4;
     margin-bottom: 50px;
     text-align: center;
-
-    span {
-      background: #fff;
-      color: $gray-1;
-      display: inline-block;
-      font-size: em(14);
-      font-weight: 600;
-      padding: 0 18px;
-      position: relative;
-      text-transform: uppercase;
-      top: -15px;
-    }
   }
 
   .trail {
@@ -86,34 +74,37 @@
       }
     }
 
-    .help-icon {
-      opacity: .8;
-      width: 18px;
-      padding-top: 5px;
-    }
-
     .trail-description {
       float: left;
       margin-left: 6px;
 
-      span {
+      .help-icon {
+        @include size(20px);
+        background: $gray-3;
+        border-radius: 50%;
+        color: #fff;
         cursor: pointer;
-        width: 2px;
+        font-size: 15px;
+        line-height: 1;
+        margin: 4px;
+        opacity: .6;
+        padding: 3px 6px;
       }
 
       .help-tooltip {
         @include transition(all 0.2s $ease-out-quad);
-        @include transform(translate(-47%, 0));
+        @include transform(translate(-46%, 0));
         display: none;
-        position: absolute;
         margin-top: 3px;
+        position: absolute;
+        z-index: 3;
 
         &:before, &:after {
+          @include calc(left, "50% - #{$arrow-size / 2}");
           @include triangle($arrow-size 8px, $base-border-color-1, up);
           content: "";
           position: absolute;
           top: -$arrow-size * 0.5 + 3px;
-          @include calc(left, "50% - #{$arrow-size / 2}");
           z-index: 1;
         }
 
@@ -136,7 +127,7 @@
         }
       }
 
-      span:hover + .help-tooltip {
+      .help-icon:hover + .help-tooltip {
         display: block;
       }
     }
@@ -313,6 +304,12 @@
     }
   }
 
+  .started {
+    .start-trail {
+      display: none;
+    }
+  }
+
   // Unstarted Trail
   ///////////////////////////////////////////////////////////////////////////
   .unstarted {
@@ -322,7 +319,12 @@
     header {
       float: left;
       margin-right: 4em;
+      min-height: 4em;
       width: 50%;
+    }
+
+    .numerical-progress {
+      display: none;
     }
 
     .step {
@@ -356,15 +358,14 @@
 
       .step {
         @include justify-content(flex-start);
-        pointer-events: none;
 
         .dot {
           margin: 0;
           background: $not-started-dot-color;
 
           &:before {
-            display: none;
             @include animation(none);
+            display: none;
           }
         }
 
@@ -374,7 +375,8 @@
       }
 
       .tooltip {
-        display: none;
+        left: 6px;
+        top: 22px;
       }
     }
   }
