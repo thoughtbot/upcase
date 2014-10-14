@@ -83,7 +83,7 @@ describe Subscription do
     end
 
     it 'unfulfills itself' do
-      fulfillment = stub('fulfilment', :remove)
+      fulfillment = stub('fulfillment', :remove)
       subscription = create(:active_subscription)
       SubscriptionFulfillment.
         stubs(:new).
