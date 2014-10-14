@@ -1,0 +1,93 @@
+<div class="landing-page-wrapper">
+  <header class="landing-hero">
+    <h1>
+      Watch One, Do One, Teach One.
+    </h1>
+
+    <p>
+      Upcase is an online training platform for developers.
+      <br/>
+      To make the most of Upcase, follow the motto "Watch One, Do One, Teach One."
+    </p>
+  </header>
+
+  <article>
+    <h2>
+      Watch One
+    </h2>
+
+    <p class="sub-header">
+      Watch a "Weekly Iteration" episode or "Video Tutorial".
+    </p>
+
+    <p>
+      <img src="http://images.thoughtbot.com/upcase/javascript-category.png">
+    </p>
+
+    <p>
+      "Weekly Iteration" episodes are 15-20 minutes
+      and feature thoughtbot developers Ben Orenstein and Joe Ferris.
+      Some examples are
+      <%= link_to "Ping-Pong Pair Programming", "https://upcase.com/videos/ping-pong-paired-programing" %>
+      and
+      <%= link_to "RSpec Best Practices", "https://upcase.com/videos/rspec-best-practices" %>
+    </p>
+
+    <p>
+      "Video Tutorials" are series of videos.
+      They contain about 10 videos, 5-15 minutes each.
+      Some examples are
+      <%= link_to "Analytics for Developers", "https://upcase.com/analytics-for-developers" %>
+      and
+      <%= link_to "The Art of Vim", "https://upcase.com/the-art-of-vim" %>
+    </p>
+  </article>
+
+  <article>
+    <h2>
+      Do One
+    </h2>
+
+    <p class="sub-header">
+      Complete an exercise to put knowledge into practice.
+    </p>
+
+    <p>
+      <img src="http://images.thoughtbot.com/upcase/an-exercise.png">
+    </p>
+
+    <p>
+      An example is
+
+      <%= link_to "https://exercises.upcase.com/exercises/testing-fundamentals-passing-your-first-test" do %>
+        Testing Fundamentals: Passing Your First Test
+      <% end %>
+    </p>
+
+    <p>
+      Clone the exercise's Git repo.
+      Write code to solve the problem, then submit your solution.
+      You'll then see other Upcase subscribers' solutions.
+    </p>
+  </article>
+
+  <article>
+    <h2>
+      Teach One
+    </h2>
+
+    <p class="sub-header">
+      Review some else's solution to discover other ways to solve the problem,
+      to cement your new knowledge,
+      and to create a virtuous cycle where others will review your solution.
+    </p>
+
+    <p>
+      <img src="http://images.thoughtbot.com/upcase/exercise-ui.png">
+    </p>
+  </article>
+
+  <div class="call-to-action">
+    <%= link_to "Start Watching, Doing, and Teaching", new_subscription_path %>
+  </div>
+</div>
