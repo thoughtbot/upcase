@@ -36,6 +36,33 @@ your work.
 
         % open http://localhost:5000
 
+### Protocol
+
+1. Look for cards in the **Next Up** list.
+2. When you start a card, add yourself and move the card to the **In Progress**
+   list.
+3. When opening a pull request, move the card to the **Code Review** list and
+   ask in Slack for a review.
+4. Once the review is complete, merge into master as usual. Wait for CI to
+   finish running the build.
+5. Once CI is finished running the build, it will deploy to staging. Move the
+   card to **On Staging for acceptance** at this time. Comment on the card with
+  acceptance instructions. Include a URL to staging. Ask in Slack for
+  acceptance.
+
+In order to avoid bottlenecks and confusion:
+
+* Try to only work on one card at a time. Bring all the way from **Next Up** to
+  **Verified on staging** as quickly as possible.
+* Prioritize reviewing others' work, both during code reviews and acceptance on
+  staging.
+* Feel free to be persistent when looking for reviews and acceptance.
+
+For more information, check out the [guides] and [Playbook].
+
+[guides]: https://github.com/thoughtbot/guides/tree/master/protocol/rails
+[Playbook]: http://playbook.thoughtbot.com/#tasks
+
 ### Continuous Integration
 
 CI is hosted with [CircleCI](https://circleci.com/gh/thoughtbot/upcase). The
