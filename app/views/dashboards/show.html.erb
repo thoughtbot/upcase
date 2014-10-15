@@ -44,8 +44,9 @@
 
         <% content_for :javascript do %>
           <script type="text/javascript">
-            $(".trail-hint" ).click(function() {
-              $('#intercom-launcher').click()
+            $(".trail-hint" ).click(function(event) {
+              Intercom('show');
+              event.preventDefault();
             });
           </script>
         <% end %>
