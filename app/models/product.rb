@@ -96,4 +96,8 @@ class Product < ActiveRecord::Base
   def published_videos
     videos.published
   end
+
+  validates_attachment_content_type :product_image, content_type: /\Aimage\/.*\Z/
+  attr_accessor :delete_product_image
+  before_validation { product_image.clear if delete_product_image == "1" }
 end

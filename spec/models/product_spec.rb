@@ -25,6 +25,28 @@ describe Product do
     end
   end
 
+  describe "delete_product_image" do
+    it "RailsAdmin doesn't clear product image if value is not '1'" do
+      product = Product.new
+      product.product_image.stubs(:clear)
+      product.delete_product_image = nil
+
+      product.valid?
+
+      expect(product.product_image).to have_received(:clear).never
+    end
+
+    it "RailsAdmin clears product image if value is 1" do
+      product = Product.new
+      product.product_image.stubs(:clear)
+      product.delete_product_image = "1"
+
+      product.valid?
+
+      expect(product.product_image).to have_received(:clear)
+    end
+  end
+
   describe "license_for" do
     it 'returns the license when a user has licensed a product' do
       user = create(:user)

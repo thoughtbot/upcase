@@ -110,6 +110,7 @@ RailsAdmin.config do |config|
         field :name
         field :sku
         field :short_description
+        field :product_image, :paperclip
         field :description
         field :active
         field :promoted
@@ -118,11 +119,6 @@ RailsAdmin.config do |config|
         field :terms
         field :length_in_days
         field :github_team
-      end
-
-      group :faq do
-        label 'FAQ'
-        field :questions
       end
 
       group :videos do
