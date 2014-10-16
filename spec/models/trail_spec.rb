@@ -77,4 +77,14 @@ describe Trail do
       expect(result).to eq("example-trail")
     end
   end
+
+  describe "#exercises" do
+    it "should be in order of the step position" do
+      trail = create(:trail)
+      second_step = create(:step, trail: trail, position: 2)
+      first_step = create(:step, trail: trail, position: 1)
+
+      expect(trail.exercises).to eq [first_step.exercise, second_step.exercise]
+    end
+  end
 end

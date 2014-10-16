@@ -3,7 +3,7 @@ class Trail < ActiveRecord::Base
 
   validates :name, :description, presence: true
 
-  has_many :steps, dependent: :destroy
+  has_many :steps, -> { order "position ASC" }, dependent: :destroy
   has_many :exercises, through: :steps
 
   friendly_id :name, use: [:slugged, :finders]
