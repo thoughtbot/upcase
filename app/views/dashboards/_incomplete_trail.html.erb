@@ -2,6 +2,7 @@
   <section class="trail">
     <header>
       <h1><%= link_to trail.name, trail %></h1>
+      <p class="description"><%= trail.description %></p>
       <%= render 'trail_description_tooltip', trail: trail %>
       <%= render "trails/steps_remaining", trail: trail %>
     </header>

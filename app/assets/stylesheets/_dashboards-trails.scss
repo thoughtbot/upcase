@@ -305,7 +305,7 @@
   }
 
   .started {
-    .start-trail {
+    p.description, .start-trail {
       display: none;
     }
   }
@@ -319,11 +319,10 @@
     header {
       float: left;
       margin-right: 4em;
-      min-height: 4em;
       width: 50%;
     }
 
-    .numerical-progress {
+    .numerical-progress, .help-icon, .help-tooltip {
       display: none;
     }
 
@@ -349,6 +348,10 @@
     }
 
     .trail {
+      header h1 {
+        float: none;
+      }
+
       .progress {
         background: none;
         border: 0;
