@@ -58,14 +58,6 @@ describe VideoTutorial do
     end
   end
 
-  describe '#thumbnail_path' do
-    it 'returns the path to a thumbnail image representing the video_tutorial' do
-      video_tutorial = build_stubbed(:video_tutorial, name: 'Intro to Ruby On Rails')
-
-      expect(video_tutorial.thumbnail_path).to eq "video_tutorial_thumbs/#{video_tutorial.name.parameterize}.png"
-    end
-  end
-
   describe '#subscription?' do
     it 'returns false' do
       expect(VideoTutorial.new).not_to be_subscription
