@@ -1,6 +1,6 @@
 <figure class="card see-more">
   <%= link_to topic_resources_path(topic) do %>
-    <h4><%= pluralize topic.count, "more #{topic.name} resource" %></h4>
+    <h4><%= pluralize topic.count, "#{topic.name} resource" %></h4>
     <p>View All</p>
   <% end %>
 </figure>
