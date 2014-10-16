@@ -82,7 +82,7 @@ describe 'promoted_catalogs/show.html.erb' do
 
       expect(rendered).to include(video_tutorial.name)
       expect(rendered).to include(video_tutorial.tagline)
-      expect(rendered).to include(image_tag(video_tutorial.thumbnail_path))
+      expect(rendered).to include(image_tag(video_tutorial.product_image.url))
       link_title = "The #{video_tutorial.name} online video tutorial details"
       expect(rendered).
         to have_css("a[href='#{video_tutorial_path(video_tutorial)}'][title='#{link_title}']")

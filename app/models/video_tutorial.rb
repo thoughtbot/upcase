@@ -11,10 +11,6 @@ class VideoTutorial < Product
   validates :length_in_days, presence: true
   validates :tagline, presence: true
 
-  def thumbnail_path
-    "video_tutorial_thumbs/#{name.parameterize}.png"
-  end
-
   def starts_on(license_date = nil)
     license_date || Time.zone.today
   end
