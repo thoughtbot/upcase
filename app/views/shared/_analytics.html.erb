@@ -4,6 +4,19 @@
   window.analytics.page();
 </script>
 
+<% if flash[:purchase_amount] %>
+  <script type="text/javascript">
+    window.analytics.alias("<%= current_user.id %>");
+    window.analytics.track("Subscribed", <%= raw purchased_hash.to_json %>);
+  </script>
+<% end %>
+
 <% if signed_in? %>
-  <%= render 'shared/signed_in_analytics' %>
+  <script type="text/javascript">
+    analytics.identify(
+      '<%= current_user.id %>',
+      <%= raw analytics_hash.to_json %>,
+      <%= raw intercom_hash.to_json %>
+    );
+  </script>
 <% end %>

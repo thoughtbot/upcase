@@ -5,11 +5,5 @@
         <%= value %>
       </div>
     <% end -%>
-
-  <% if flash[:purchase_amount] %>
-     <% content_for :javascript do %>
-       <%= render "conversions/purchased" %>
-     <% end %>
-   <% end %>
   </div>
 <% end %>
