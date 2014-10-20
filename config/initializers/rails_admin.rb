@@ -132,9 +132,23 @@ RailsAdmin.config do |config|
       field :id
       field :title
     end
+
     edit do
       include_all_fields
-      exclude_fields :classifications, :statuses
+      exclude_fields :classifications, :statuses, :steps
+    end
+  end
+
+  config.model Trail do
+    list do
+      field :id
+      field :name
+      field :published
+    end
+
+    edit do
+      include_all_fields
+      exclude_fields :steps
     end
   end
 
