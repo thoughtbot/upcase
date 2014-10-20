@@ -7,7 +7,7 @@ describe Api::V1::StatusesController do
     expect(response.code).to eq "401"
   end
 
-  context "#update" do
+  describe "#create" do
     it "updates the status of the given exercise for the authenticated user" do
       exercise = create(:exercise)
       user = create(:user)
