@@ -1,0 +1,28 @@
+class Api::V1::ExercisesController < ApiController
+  doorkeeper_for :all
+  skip_before_filter :verify_authenticity_token
+
+  def update
+    if authenticated_via_client_credentials_token?
+      exercise = Exercise.find_or_initialize_by(uuid: params[:id])
+
+      if exercise.update_attributes(exercise_parameters)
+        render json: exercise
+      else
+        render json: { errors: exercise.errors }, status: :unprocessable_entity
+      end
+    else
+      head :unauthorized
+    end
+  end
+
+  private
+
+  def authenticated_via_client_credentials_token?
+    doorkeeper_token.resource_owner_id.nil?
+  end
+
+  def exercise_parameters
+    params.require(:exercise).permit(:title, :url, :summary)
+  end
+end

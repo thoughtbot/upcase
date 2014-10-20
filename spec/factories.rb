@@ -429,6 +429,10 @@ FactoryGirl.define do
     resource_owner_id { user.try(:id) }
     application_id 1
     token 'abc123'
+
+    trait :with_application do
+      association :application, factory: :oauth_application
+    end
   end
 
   factory :oauth_application, class: "Doorkeeper::Application" do
