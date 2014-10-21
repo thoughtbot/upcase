@@ -188,7 +188,7 @@ GEM
     memcachier (0.0.2)
     metaclass (0.0.1)
     method_source (0.8.2)
-    mime-types (2.4.2)
+    mime-types (2.4.3)
     minitest (5.4.2)
     mocha (0.14.0)
       metaclass (~> 0.0.1)
