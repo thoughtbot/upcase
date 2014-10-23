@@ -1,0 +1,19 @@
+<div class="complete">
+  <section class="trail">
+    <header>
+      <h1><%= link_to trail.name, trail %></h1>
+      <p><%= trail.complete_text %></p>
+    </header>
+
+    <ul>
+      <li class="step"><div class="dot"></div></li>
+      <li class="step"><div class="dot"></div></li>
+      <li class="step"><div class="dot"></div></li>
+      <li class="step"><div class="dot"></div></li>
+      <li class="step"><div class="dot"></div></li>
+      <li class="step"><div class="dot"></div></li>
+    </ul>
+
+    <%= link_to "Revisit Trail", trail_path(trail), class: "revisit-trail" %>
+  </section>
+</div>

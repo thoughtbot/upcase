@@ -29,6 +29,12 @@ class Trail < ActiveRecord::Base
     TrailWithProgress.new(self, user: user).update_status
   end
 
+  def self.completed_for(user)
+    all.
+      map { |trail| TrailWithProgress.new(trail, user: user) }.
+      select(&:complete?)
+  end
+
   def self.most_recent_published
     order(created_at: :desc).where(published: true)
   end

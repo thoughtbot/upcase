@@ -29,6 +29,24 @@ describe Trail do
     end
   end
 
+  describe ".completed_for" do
+    it "shows completed trails for a user" do
+      _incomplete = create(:trail)
+      completed = create(:trail)
+      user = create(:user)
+      create(
+        :status,
+        completeable: completed,
+        user: user,
+        state: Status::COMPLETE
+      )
+
+      result = Trail.completed_for(user)
+
+      expect(result).to match_array([completed])
+    end
+  end
+
   describe "#steps_remaining_for" do
     it "returns the number of exercises the user hasn't completed" do
       user = create(:user)

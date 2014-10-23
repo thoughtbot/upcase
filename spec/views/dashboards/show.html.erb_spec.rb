@@ -1,6 +1,20 @@
 require "rails_helper"
 
 describe "dashboards/show.html" do
+  context "when a user has activity in trails" do
+    it "doesn't show 'view completed' link when it has no completed trails" do
+      render_show
+
+      expect(rendered).not_to have_content("View completed trails")
+    end
+
+    it "shows 'View completed trails' link when it has completed trails" do
+      render_show(has_completed_trails: true)
+
+      expect(rendered).to have_content("View completed trails")
+    end
+  end
+
   context "when a user has access to all features" do
     it "does not render the locked_features partial" do
       render_show(
@@ -41,7 +55,11 @@ describe "dashboards/show.html" do
 
   def render_show(options = {})
     options = default_options.merge(options)
-    assign(:dashboard, stub(shows: [], topics: [], trails: []))
+    completed = options[:has_completed_trails]
+    assign(
+      :dashboard,
+      stub(shows: [], topics: [], trails: [], has_completed_trails?: completed)
+    )
     view_stubs(:current_user).returns(build_stubbed(:user))
     view_stubs(:current_user_has_active_subscription?).returns(true)
     options.each do |feature, value|

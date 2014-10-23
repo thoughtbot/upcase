@@ -35,6 +35,14 @@
           <% end %>
         </p>
 
+        <% if @dashboard.has_completed_trails? %>
+          <p>
+            <%= link_to completed_trails_path do %>
+              View completed trails &rarr;
+            <% end %>
+          </p>
+        <% end %>
+
         <% if analytics? %>
           <p>
             or

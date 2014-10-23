@@ -1,0 +1,16 @@
+<div class="just-finished">
+  <section class="trail just-finished">
+    <header>
+      <span class="just-finished-subhead">You just finished</span>
+      <h1><%= link_to trail.name, trail %></h1>
+    </header>
+
+    <div class="just-finished-mask">
+      <section class="progress just-finished">
+        <%= render partial: "trails/exercise", collection: trail.exercises %>
+      </section>
+    </div>
+
+    <p><%= trail.complete_text %></p>
+  </section>
+</div>

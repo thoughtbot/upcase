@@ -1,5 +1,5 @@
-<% if trail.complete? %>
-  <%= render "dashboards/complete_trail", trail: trail %>
+<% if trail.just_finished? %>
+  <%= render "dashboards/just_finished_trail", trail: trail %>
 <% else %>
   <%= render "dashboards/incomplete_trail", trail: trail %>
 <% end %>

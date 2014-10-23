@@ -1,3 +1,8 @@
+$dot-size: 13px;
+$dot-margin: 14px;
+$arrow-size: 20px;
+$not-started-dot-color: #D8D8D8;
+
 @mixin trail-line {
   &:before {
     background: hsla(0, 0%, 0%, 0.1);
@@ -32,13 +37,12 @@
 
 
 .trails-progress {
-  $arrow-size: 20px;
-  $not-started-dot-color: #D8D8D8;
   display: block;
   position: relative;
   z-index: 1;
 
   & > footer {
+    clear: left;
     text-align: center;
   }
 
@@ -140,7 +144,7 @@
       margin-top: 8px;
     }
 
-    .complete-mask {
+    .just-finished-mask {
       overflow: hidden;
 
       .tooltip {
@@ -159,7 +163,7 @@
       margin-bottom: 50px;
       padding: 0 10px;
 
-      &.complete {
+      &.just-finished {
         @include transform(translateX(-60%));
       }
 
@@ -178,8 +182,6 @@
     }
 
     .step {
-      $dot-size: 13px;
-      $dot-margin: 14px;
       position: relative;
       @include flex(1);
       @include display(flex);
@@ -384,9 +386,121 @@
     }
   }
 
-  // Completed Trail
+  // Complete Trail
   ///////////////////////////////////////////////////////////////////////////
+  .trails-complete {
+    @include display(flex);
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    @include justify-content(space-around);
+  }
+
   .complete {
+    width: 47%;
+    border: 10px solid $gray-5;
+    height: $card-height;
+    margin: 30px 0 0;
+    padding: $card-padding;
+    position: relative;
+
+    .trail {
+      padding: 0;
+    }
+
+    header, p {
+      text-align: center;
+    }
+
+    .trail header h1 {
+      float: none;
+    }
+
+    header p {
+      color: $gray-2;
+      font-family: $serif;
+      font-size: 1.5em;
+      font-style: italic;
+      margin-top: 25px;
+    }
+
+    ul {
+      left: 10px;
+      list-style-type: none;
+      margin-left: 0;
+      position: absolute;
+      top: 165px;
+    }
+
+    .step {
+      @include trail-line;
+      display: inline-block;
+
+      &:before {
+        height: 3px;
+        background: $gray-5;
+      }
+
+      // Hide line
+      &:first-of-type {
+        &:before {
+          display: block;
+        }
+
+        // Show line before first dot
+        &:after {
+          display: block;
+          background: $gray-5;
+          content: "";
+          height: 3px;
+          position: absolute;
+          right: 50%;
+          top: 48%;
+          width: 100%;
+          z-index: -1;
+        }
+      }
+    }
+
+    .trail .step .dot {
+      @include size($dot-size);
+      background: $just-finished-green;
+      border-radius: $dot-size;
+      margin: $dot-margin;
+      position: relative;
+    }
+
+    li.step:last-of-type {
+      @extend %trail-bullet-complete;
+      @include size(30px);
+      background-color: $just-finished-green;
+      border-radius: 50%;
+      bottom: 6px;
+      left: 15px;
+
+      .dot {
+        display: none;
+      }
+    }
+
+    .revisit-trail {
+      bottom: $card-padding;
+      border: 2px solid $lightwarmgray;
+      border-radius: 2px;
+      color: $darkwarmgray;
+      font-family: $sans-serif;
+      font-size: 1.2em;
+      left: 50%;
+      margin-left: -78px;
+      padding: 12px 0;
+      position: absolute;
+      text-align: center;
+      width: 156px;
+    }
+  }
+
+  // Just Finished Trail
+  ///////////////////////////////////////////////////////////////////////////
+  .just-finished {
     position: relative;
     z-index: -1;
 
@@ -394,15 +508,16 @@
       width: 100%;
     }
 
-    .complete-subhead {
+    .just-finished-subhead {
+      color: $gray-3;
       float: left;
       font-family: $serif;
       font-style: italic;
-      margin-bottom: .5em;
+      margin-bottom: .2em;
     }
 
     p {
-      color: shade($green-trail, 30%);
+      color: shade($green-trail, 20%);
       font-size: 21px;
       font-style: italic;
       left: 45%;

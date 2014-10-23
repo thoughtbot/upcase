@@ -15,4 +15,16 @@ class Status < ActiveRecord::Base
   def self.most_recent
     order(:created_at).last
   end
+
+  def unstarted?
+    false
+  end
+
+  def in_progress?
+    state == Status::IN_PROGRESS
+  end
+
+  def complete?
+    state == Status::COMPLETE
+  end
 end

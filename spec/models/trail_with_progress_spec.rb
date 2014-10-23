@@ -10,41 +10,57 @@ describe TrailWithProgress do
     expect(trail_with_progress.name).to eq(trail.name)
   end
 
-  describe "#unstarted?" do
+  describe "state" do
     context "before starting any exercise" do
-      it "returns false" do
+      it "is unstarted" do
         trail = create_trail_with_progress(nil, nil)
 
         expect(trail).to be_unstarted
+        expect(trail).not_to be_in_progress
+        expect(trail).not_to be_complete
+        expect(trail).not_to be_just_finished
       end
     end
 
     context "after starting an exercise" do
-      it "returns true" do
+      it "is in progress" do
         trail = create_trail_with_progress(Status::IN_PROGRESS, nil)
 
         expect(trail).not_to be_unstarted
+        expect(trail).to be_in_progress
+        expect(trail).not_to be_complete
+        expect(trail).not_to be_just_finished
       end
     end
-  end
 
-  describe "#complete?" do
-    context "before receving a review on each exercise" do
-      it "returns false" do
+    context "after completing all exercises recently" do
+      it "has been completed, and is just finished" do
         trail = create_trail_with_progress(Status::COMPLETE, Status::COMPLETE)
 
+        expect(trail).not_to be_unstarted
+        expect(trail).not_to be_in_progress
         expect(trail).to be_complete
+        expect(trail).to be_just_finished
       end
     end
 
-    context "after receving a review on each exercise" do
-      it "returns true" do
-        trail = create_trail_with_progress(
-          Status::COMPLETE,
-          Status::IN_PROGRESS
+    context "after completing all exercises in the past" do
+      it "has been completed, and is complete" do
+        trail = create(:trail)
+        user = create(:user)
+        create(
+          :status,
+          completeable: trail,
+          user: user,
+          state: Status::COMPLETE,
+          created_at: 1.week.ago
         )
+        trail = TrailWithProgress.new(trail, user: user)
 
-        expect(trail).not_to be_complete
+        expect(trail).not_to be_unstarted
+        expect(trail).not_to be_in_progress
+        expect(trail).to be_complete
+        expect(trail).not_to be_just_finished
       end
     end
   end
