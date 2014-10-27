@@ -135,7 +135,7 @@ RailsAdmin.config do |config|
 
     edit do
       include_all_fields
-      exclude_fields :classifications, :statuses
+      exclude_fields :classifications, :statuses, :steps
     end
   end
 
@@ -152,6 +152,8 @@ RailsAdmin.config do |config|
       field :exercises do
         orderable true
       end
+
+      exclude_fields :steps
      end
    end
 
