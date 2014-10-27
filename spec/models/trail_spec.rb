@@ -87,4 +87,26 @@ describe Trail do
       expect(trail.exercises).to eq [first_step.exercise, second_step.exercise]
     end
   end
+
+  describe "#exercise_ids=" do
+    it "should preserve ordering" do
+      exercises = create_list(:exercise, 3)
+
+      trail = create(
+        :trail,
+        exercise_ids: [exercises[2], exercises[1], exercises[0]].map(&:id)
+      )
+
+      expect(trail.exercises(true).map(&:id)).to eq(
+        [exercises[2], exercises[1], exercises[0]].map(&:id)
+      )
+
+      trail.exercise_ids = [exercises[0], exercises[2], exercises[1]].map(&:id)
+      trail.save!
+
+      expect(trail.exercises(true).map(&:id)).to eq(
+        [exercises[0], exercises[2], exercises[1]].map(&:id)
+      )
+    end
+  end
 end

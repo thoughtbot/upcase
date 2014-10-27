@@ -8,6 +8,16 @@ class Trail < ActiveRecord::Base
 
   friendly_id :name, use: [:slugged, :finders]
 
+  # Override setters so it preserves the ordering
+  def exercise_ids=(new_exercise_ids)
+    super
+    new_exercise_ids = new_exercise_ids.reject(&:blank?).map(&:to_i)
+
+    new_exercise_ids.each_with_index do |exercise_id, index|
+      steps.where(exercise_id: exercise_id).update_all(position: index + 1)
+    end
+  end
+
   def steps_remaining_for(user)
     ExerciseWithProgressQuery.
       new(user: user, exercises: exercises).
