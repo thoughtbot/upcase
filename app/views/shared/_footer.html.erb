@@ -1,9 +1,21 @@
 <footer class="links">
+  <a href="http://www.thoughtbot.com"><%= image_tag('ralph.svg') %></a>
   <nav>
-    <section id="thoughtbot">
+    <section class="trails">
+      <ul>
+        <li><%= link_to 'Trail Maps', topics_path %></li>
+      </ul>
+      <ul>
+        <% topics.each do |topic| %>
+          <li><%= link_to topic.name, topic %></li>
+        <% end %>
+      </ul>
+    </section>
+    <section class="thoughtbot">
       <ul>
         <% if signed_in? %>
           <li><%= link_to('Sign out', sign_out_path, method: :delete) %></li>
+          <li><%= render partial: 'shared/admin_sign_out' %></li>
         <% else %>
           <li><%= link_to 'Sign in', sign_in_path %></li>
         <% end %>
@@ -16,19 +28,7 @@
         <li><%= link_to 'Terms & Conditions', terms_path %></li>
       </ul>
     </section>
-
-    <section id="trails">
-      <ul>
-        <li><%= link_to 'Trail Maps', topics_path %></li>
-      </ul>
-      <ul>
-        <% topics.each do |topic| %>
-          <li><%= link_to topic.name, topic %></li>
-        <% end %>
-      </ul>
-    </section>
   </nav>
 
-  <p id="copyright">© 2012 - <%= Time.zone.today.year %> thoughtbot, inc. The <em>design of a robot</em> and <em>thoughtbot</em> are registered trademarks of thoughtbot,&nbsp;inc.</p>
-  <%= render partial: 'shared/admin_sign_out' %>
+  <p class="copyright">© 2012 - <%= Time.zone.today.year %> thoughtbot, inc. The <em>design of a robot</em> and <em>thoughtbot</em> are registered trademarks of thoughtbot,&nbsp;inc.</p>
 </footer>

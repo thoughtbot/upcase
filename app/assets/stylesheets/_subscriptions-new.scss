@@ -29,9 +29,13 @@ body.subscriptions.subscriptions-new {
 
   footer.links {
     margin: 0 auto;
-    max-width: $plan-max-width;
     padding: 5rem 4vw;
+    text-align: center;
     width: 100%;
+
+    p:first-of-type {
+      margin-top: 30px;
+    }
 
     a {
       margin: 0 .25rem;

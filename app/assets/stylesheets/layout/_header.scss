@@ -13,13 +13,14 @@ body.passwords-create {
   @include linear-gradient($upcase-blue-1, $upcase-blue-2);
   margin: 0 auto 40px;
   width: 100%;
+  flex: none;
 }
 
 .header-container {
-  max-width: $max-width;
   @include outer-container;
-  position: relative;
   @include user-select(none);
+  max-width: $max-width;
+  position: relative;
 
   .small-logo {
     display: inline-block;
