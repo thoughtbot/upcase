@@ -2,6 +2,5 @@ deployment:
   staging:
     branch: master
     commands:
-      - git push -f git@heroku.com:upcase-staging.git $CIRCLE_SHA1:master
-      - heroku run rake db:migrate --app upcase-staging
-      - heroku restart --app upcase-staging
+      - git remote add staging git@heroku.com:upcase-staging.git
+      - ./bin/deploy staging

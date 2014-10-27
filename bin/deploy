@@ -1,0 +1,35 @@
+#!/usr/bin/env sh
+
+# Run this script to deploy the app to Heroku.
+
+set -e
+
+if ! command -v open >/dev/null; then
+  open() {
+    $BROWSER "$@"
+  }
+fi
+
+if printenv | grep CIRCLE_SHA1 > /dev/null; then
+  branch=$CIRCLE_SHA1
+else
+  branch="$(basename "$(git symbolic-ref HEAD)")"
+fi
+
+if [ -z "$1" ]; then
+  printf "You must provide an environment (staging|production).\n"
+  exit 1
+else
+  git push "$1" "$branch:master"
+  heroku run rake db:migrate --remote "$1"
+  heroku restart --remote "$1"
+
+  if [ "$1" = "production" ]; then
+    open https://upcase.com
+    heroku addons:open newrelic --remote "$1"
+
+    if command -v watch >/dev/null; then
+      watch heroku ps --remote "$1"
+    fi
+  fi
+fi

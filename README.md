@@ -122,25 +122,11 @@ To test integration with AWS S3, set the following environment variables:
 
 ## Deployment
 
-CircleCI deploys to staging automatically when a build passes on master. Once
-your changes have been verified in a browser on staging, you can deploy to
-production:
+CircleCI deploys to staging automatically when a build passes on master.
 
-    git push production master
-    heroku run rake db:migrate --remote production
-    heroku restart --remote production
+Once your changes have been verified on staging, deploy to production:
 
-## Flushing the caches
-
-Topics and videos are cached for 12 hours. If you need to flush them, you can.
-
-Staging:
-
-    heroku run rake heroku:flush_cache -r staging
-
-Production:
-
-    heroku run rake heroku:flush_cache -r production
+    ./bin/deploy production
 
 ## Sending email on staging
 
