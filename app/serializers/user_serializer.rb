@@ -10,7 +10,6 @@ class UserSerializer < ActiveModel::Serializer
     :has_forum_access,
     :id,
     :last_name,
-    :public_keys,
     :username
   )
 
@@ -20,10 +19,6 @@ class UserSerializer < ActiveModel::Serializer
 
   def has_active_subscription
     object.has_active_subscription?
-  end
-
-  def public_keys
-    object.public_keys.map(&:data)
   end
 
   def username

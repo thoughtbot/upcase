@@ -2,17 +2,6 @@ require "rails_helper"
 
 describe SubscriptionFulfillment do
   describe '#fulfill' do
-    it "downloads the user's GitHub public keys" do
-      GitHubPublicKeyDownloadFulfillmentJob.stubs(:enqueue)
-      user = build_subscribable_user
-      plan = build_stubbed(:plan)
-
-      SubscriptionFulfillment.new(user, plan).fulfill
-
-      expect(GitHubPublicKeyDownloadFulfillmentJob).to have_received(:enqueue)
-        .with(user.id)
-    end
-
     it "fulfills all gained features" do
       user = build_subscribable_user
       plan = build_stubbed(:plan)

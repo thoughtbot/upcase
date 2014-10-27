@@ -82,10 +82,6 @@ FactoryGirl.define do
     video_tutorial
   end
 
-  factory :public_key do
-    data 'ssh-rsa abc123hexadecimal'
-  end
-
   factory :product, traits: [:active], class: "VideoTutorial" do
     after(:stub) { |product| product.slug = product.name.parameterize }
     description 'Solve 8-Queens over and over again'

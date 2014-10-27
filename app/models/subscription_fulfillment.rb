@@ -6,7 +6,6 @@ class SubscriptionFulfillment
 
   def fulfill
     fulfill_gained_features
-    download_public_keys
     update_next_invoice_info
   end
 
@@ -35,10 +34,6 @@ class SubscriptionFulfillment
 
   def update_next_invoice_info
     SubscriptionUpcomingInvoiceUpdater.new([@user.subscription]).process
-  end
-
-  def download_public_keys
-    GitHubPublicKeyDownloadFulfillmentJob.enqueue(@user.id)
   end
 
   def remove_licenses

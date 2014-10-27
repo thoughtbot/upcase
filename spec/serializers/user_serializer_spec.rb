@@ -16,20 +16,6 @@ describe UserSerializer do
     expect(user_json['avatar_url']).to eq gravatar_url(user.email)
   end
 
-  context 'with public keys' do
-    it 'serializes public keys as an array of strings' do
-      public_keys = [
-        build_stubbed(:public_key, data: 'key-one'),
-        build_stubbed(:public_key, data: 'key-two')
-      ]
-      user = build_stubbed(:user, public_keys: public_keys)
-
-      user_json = parse_serialized_json(user)
-
-      expect(user_json['public_keys']).to match_array(%w(key-one key-two))
-    end
-  end
-
   context 'when the user has an active subscription' do
     it 'includes a key indicating a subscription' do
       user = create(:subscriber)

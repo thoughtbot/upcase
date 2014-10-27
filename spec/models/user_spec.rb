@@ -5,7 +5,6 @@ describe User do
     it { should have_many(:licenses) }
     it { should have_many(:completions) }
     it { should belong_to(:mentor) }
-    it { should have_many(:public_keys).dependent(:destroy) }
     it { should belong_to(:team) }
     it { should have_one(:purchased_subscription).dependent(:destroy) }
     it { should validate_uniqueness_of(:github_username) }

@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
 
   has_many :licenses
   has_many :completions
-  has_many :public_keys, dependent: :destroy
   has_one :purchased_subscription, dependent: :destroy, class_name: 'Subscription'
   belongs_to :mentor
   belongs_to :team
