@@ -44,7 +44,7 @@ feature 'Topic pages' do
 
     expect_page_to_have_meta_description(topic.summary)
     expect_page_to_have_meta_keywords(topic.keywords)
-    expect_page_to_have_title("Upcase #{topic.name}")
+    expect_page_to_have_title("#{topic.name} | Upcase")
   end
 
   scenario 'a topic has thoughtbot trail items listed separately' do
