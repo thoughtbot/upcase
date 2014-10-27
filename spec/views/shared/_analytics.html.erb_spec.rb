@@ -1,14 +1,14 @@
 require "rails_helper"
 
-describe 'shared/_analytics.html.erb' do
+describe "shared/_analytics.html.erb" do
   include AnalyticsHelper
 
-  context 'when signed out' do
+  context "when signed out" do
     before do
       view_stubs(signed_in?: false)
     end
 
-    it 'loads the Segment.io JavaScript library' do
+    it "loads the Segment JavaScript library" do
       segment_load_line = "window.analytics.load('#{ENV['SEGMENT_KEY']}');"
 
       render
@@ -17,7 +17,7 @@ describe 'shared/_analytics.html.erb' do
     end
 
     it 'records a pageview' do
-      record_pageview_line = 'window.analytics.page();'
+      record_pageview_line = %{window.analytics.page('', {"context":{"campaign":null}});}
 
       render
 

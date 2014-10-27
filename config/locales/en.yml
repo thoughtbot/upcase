@@ -10,7 +10,7 @@ en:
 
   layouts:
     meta_description: 'Video Tutorials, and videos to help you learn web design and development.'
-    app_name: 'Upcase from thoughtbot'
+    app_name: 'Upcase'
 
   dashboards:
     locked_features:

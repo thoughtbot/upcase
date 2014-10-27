@@ -3,23 +3,23 @@ require "rails_helper"
 describe AnalyticsHelper do
   describe '#analytics?' do
     it "is true when ENV['ANALYTICS'] is present" do
-      ENV['ANALYTICS'] = 'anything'
+      ENV["ANALYTICS"] = "anything"
 
       expect(helper).to be_analytics
 
-      ENV['ANALYTICS'] = nil
+      ENV["ANALYTICS"] = nil
     end
 
     it "is false when ENV['ANALYTICS'] is not present" do
-      ENV['ANALYTICS'] = nil
+      ENV["ANALYTICS"] = nil
 
       expect(helper).to_not be_analytics
     end
   end
 
-  describe '#analytics_hash' do
-    it 'returns a hash of data to be sent to analytics' do
-      user = build_stubbed(:user, stripe_customer_id: 'something')
+  describe "#analytics_hash" do
+    it "returns a hash of data to be sent to analytics" do
+      user = build_stubbed(:user, stripe_customer_id: "something")
 
       expect(analytics_hash(user)).to eq(
         created: user.created_at,
@@ -48,7 +48,7 @@ describe AnalyticsHelper do
 
     context "without campaign params" do
       it "tracks nil" do
-        expect(purchased_hash[:context]).to eq({ campaign: "null" })
+        expect(purchased_hash[:context]).to eq(campaign: nil)
       end
     end
 
@@ -61,9 +61,7 @@ describe AnalyticsHelper do
         }
         session[:campaign_params] = campaign_params
 
-        expect(purchased_hash[:context]).to eq(
-          { campaign: campaign_params.to_json }
-        )
+        expect(purchased_hash[:context]).to eq(campaign: campaign_params)
       end
     end
   end

@@ -33,10 +33,13 @@ module AnalyticsHelper
   end
 
   def purchased_hash
+    campaign_hash.merge(revenue: flash[:purchase_amount])
+  end
+
+  def campaign_hash
     {
-      revenue: flash[:purchase_amount],
       context: {
-        campaign: session[:campaign_params].to_json,
+        campaign: session[:campaign_params]
       }
     }
   end
