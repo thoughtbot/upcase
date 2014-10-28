@@ -15,8 +15,8 @@ input[type="submit"], input[type="button"] {
 }
 
 .button, input[type="submit"], input[type="button"] {
-  background-color: $upcase-red;
-  border-bottom: 3px solid $upcase-darkred;
+  background-color: $upcase-green;
+  border-bottom: 3px solid $upcase-green-4;
   border-radius: 3px;
   color: white;
   display: inline-block;
@@ -29,11 +29,11 @@ input[type="submit"], input[type="button"] {
   -webkit-appearance: none;
 
   &:hover {
-    background-color: #C42107;
+    background-color: $upcase-green-2;
   }
 
   &:active {
-    background-color: $upcase-darkred;
+    background-color: $upcase-green-3
   }
 
   &[disabled] {
@@ -58,7 +58,7 @@ input[type="submit"], input[type="button"] {
 
 .button-mini {
   @extend .button;
-  border-bottom: 2px solid $upcase-darkred;
+  border-bottom: 2px solid $upcase-green;
   height: auto;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -75,7 +75,7 @@ form {
   }
 
   .errors, .errors li {
-    color: $upcase-red;
+    color: $upcase-blue;
     font-size: 18px;
     font-style: bold;
     margin-top: 20px;
@@ -85,7 +85,7 @@ form {
     list-style-type: none;
 
     &.payment-errors, &.subscription-errors {
-      color: $upcase-red;
+      color: $upcase-blue;
       font-style: bold;
 
       &:empty {
@@ -125,7 +125,7 @@ form {
       width: 100%;
 
       &:focus {
-        border: 1px solid $upcase-red;
+        border: 1px solid $upcase-blue;
         outline: none;
         outline-color: none;
       }
@@ -144,7 +144,7 @@ form {
         }
 
         p.inline-errors {
-          color: $red;
+          color: $upcase-blue;
           font-size: 16px;
         }
 
@@ -154,7 +154,7 @@ form {
           }
 
           p.inline-hints {
-            color: $red;
+            color: $upcase-blue;
           }
 
           input[type=text],

@@ -6,20 +6,36 @@
   text-align: center;
 
   .flash {
-    @extend %main-content-box;
-    border-width: 0;
+    background: $light-yellow;
+    border: 1px solid $light-brown;
+    border-radius: 3px;
     display: inline-block;
     margin-bottom: 0;
     overflow-y: auto;
     padding: 1rem 2rem;
 
-    &.failure {
-      background: #f8bcba;
+    a {
+      font-family: $sans-serif;
+      font-weight: 600;
     }
+  }
 
-    &.notice {
-      color: $upcase-red;
-      font: 400 1.2rem/1.2em $sans-serif;
+  .failure {
+    background: #f8bcba;
+    border: 1px solid $red;
+    color: $red;
+
+    a {
+      color: $red;
+    }
+  }
+
+  .notice {
+    color: $dark-brown;
+    font: 400 1.2rem/1.2em $sans-serif;
+
+    a {
+      color: $upcase-blue-6;
     }
   }
 }

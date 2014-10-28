@@ -87,8 +87,8 @@ body.promoted_catalogs {
 
 .upcase-journey-cta {
   @include appearance(none);
-  background: $upcase-red;
-  border-bottom: .2rem solid darken($upcase-red, 10%);
+  background: $upcase-green;
+  border-bottom: .2rem solid $upcase-green-4;
   border-radius: 3px;
   color: #fff;
   display: block;
@@ -99,11 +99,11 @@ body.promoted_catalogs {
   z-index: 5;
 
   &:hover {
-    background: lighten($upcase-red, 3%);
+    background: $upcase-green-2;
   }
 
   &:active {
-    background: darken($upcase-red, 3%);
+    background: $upcase-green-3;
   }
 
   @include marketing-mobile {
