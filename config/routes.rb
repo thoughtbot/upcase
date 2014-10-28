@@ -48,6 +48,7 @@ Upcase::Application.routes.draw do
     only: [:index]
   )
 
+  get "sitemap.xml" => "sitemaps#show", as: :sitemap, format: "xml"
   get ":id" => "topics#show", as: :topic
   get ":topic_id/resources" => "resources#index", as: :topic_resources
   get "/auth/:provider/callback", to: "auth_callbacks#create"
