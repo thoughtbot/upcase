@@ -48,7 +48,7 @@ describe Cancellation do
       expect(subscription.deactivated_on).to eq Time.zone.today
     end
 
-    it "schedules a cancellation with Stripe" do
+    it "cancels with Stripe" do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription)
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)

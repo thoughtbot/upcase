@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
   end
 
   def deactivate_personal_subscription
-    if purchased_subscription
+    if purchased_subscription && purchased_subscription.active?
       Cancellation.new(purchased_subscription).cancel_now
     end
   end

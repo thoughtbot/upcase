@@ -127,6 +127,28 @@ describe User do
     end
   end
 
+  context "#deactivate_personal_subscription" do
+    it "cancels subscription" do
+      user = create(:user, :with_subscription)
+      cancellation = stub(cancel_now: true)
+      Cancellation.stubs(:new).returns(cancellation)
+
+      user.deactivate_personal_subscription
+
+      expect(Cancellation).to have_received(:new)
+    end
+
+    it "doesn't cancel deactivated subscription" do
+      user = create(:user, :with_inactive_subscription)
+      cancellation = stub(cancel_now: true)
+      Cancellation.stubs(:new).returns(cancellation)
+
+      user.deactivate_personal_subscription
+
+      expect(Cancellation).to have_received(:new).never
+    end
+  end
+
   context "#has_active_subscription?" do
     it "returns true if the user's associated subscription is active" do
       user = User.new
