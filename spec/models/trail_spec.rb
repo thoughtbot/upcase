@@ -35,11 +35,11 @@ describe Trail do
       other_user = create(:user)
       exercises = create_list(:exercise, 3)
       trail = create(:trail, exercises: exercises)
-      exercises.first.statuses.create!(user: user, state: Status::REVIEWED)
-      exercises.second.statuses.create!(user: user, state: Status::SUBMITTED)
+      exercises.first.statuses.create!(user: user, state: Status::COMPLETE)
+      exercises.second.statuses.create!(user: user, state: Status::IN_PROGRESS)
       exercises.first.statuses.create!(
         user: other_user,
-        state: Status::REVIEWED
+        state: Status::COMPLETE
       )
 
       result = trail.steps_remaining_for(user)

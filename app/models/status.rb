@@ -1,12 +1,9 @@
 class Status < ActiveRecord::Base
-  NOT_STARTED = "Not Started"
-  STARTED = "Started"
-  PUSHED = "Pushed"
-  SUBMITTED = "Submitted"
-  REVIEWED = "Reviewed"
-  NEXT_UP = "Next Up"
+  UNSTARTED = "Unstarted"
+  IN_PROGRESS = "In Progress"
+  COMPLETE = "Complete"
 
-  STATES = [STARTED, PUSHED, SUBMITTED, REVIEWED]
+  STATES = [IN_PROGRESS, COMPLETE]
 
   belongs_to :exercise
   belongs_to :user

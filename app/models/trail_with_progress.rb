@@ -6,13 +6,11 @@ class TrailWithProgress < SimpleDelegator
   end
 
   def unstarted?
-    exercises.all? do |exercise|
-      [Status::NOT_STARTED, Status::NEXT_UP].include? exercise.state
-    end
+    exercises.all? { |exercise| exercise.state == Status::UNSTARTED }
   end
 
   def complete?
-    exercises.all? { |exercise| exercise.state == Status::REVIEWED }
+    exercises.all? { |exercise| exercise.state == Status::COMPLETE }
   end
 
   def exercises

@@ -23,12 +23,9 @@ en:
 
   exercises:
     statuses:
-      next-up: "Exercise"
-      not-started: "Exercise"
-      started: "In Progress"
-      pushed: "In Progress"
-      submitted: "In Progress"
-      reviewed: "Complete"
+      unstarted: "Exercise"
+      in_progress: "In Progress"
+      complete: "Complete"
 
   formtastic:
     labels:

@@ -21,7 +21,7 @@ class Trail < ActiveRecord::Base
   def steps_remaining_for(user)
     ExerciseWithProgressQuery.
       new(user: user, exercises: exercises).
-      count { |exercise| exercise.state != Status::REVIEWED }
+      count { |exercise| exercise.state != Status::COMPLETE }
   end
 
   def self.most_recent_published

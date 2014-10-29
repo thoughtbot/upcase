@@ -14,11 +14,11 @@ describe Api::V1::StatusesController do
       access_token = build_stubbed(:oauth_access_token, user: user)
       Doorkeeper::OAuth::Token.stubs(:authenticate).returns(access_token)
 
-      post :create, exercise_uuid: exercise.uuid, state: Status::SUBMITTED
+      post :create, exercise_uuid: exercise.uuid, state: Status::COMPLETE
 
       state = exercise.statuses.where(user: user).most_recent.state
       expect(response).to be_success
-      expect(state).to eq Status::SUBMITTED
+      expect(state).to eq Status::COMPLETE
     end
   end
 end

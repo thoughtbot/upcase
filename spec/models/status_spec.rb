@@ -20,10 +20,10 @@ describe Status do
   end
 
   context "#state" do
-    it "has a default state of Started" do
+    it "has a default state of In Progress" do
       status = Status.new
 
-      expect(status.state).to eq "Started"
+      expect(status.state).to eq "In Progress"
     end
   end
 end

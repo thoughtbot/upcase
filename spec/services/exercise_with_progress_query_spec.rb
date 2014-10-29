@@ -11,8 +11,8 @@ describe ExerciseWithProgressQuery do
       exercises = query.to_a
 
       expect(exercises[0].title).to eq(exercise.title)
-      expect(exercises[0].state).to eq(Status::NEXT_UP)
-      expect(exercises[1].state).to eq(Status::NOT_STARTED)
+      expect(exercises[0].state).to eq(Status::UNSTARTED)
+      expect(exercises[1].state).to eq(Status::UNSTARTED)
     end
   end
 
@@ -33,7 +33,7 @@ describe ExerciseWithProgressQuery do
       user = User.new
       query = ExerciseWithProgressQuery.new(user: user, exercises: Exercise.all)
 
-      expect(query.status_for(user)).to be_a NotStarted
+      expect(query.status_for(user)).to be_a Unstarted
     end
 
     it "returns the latest status for the user" do

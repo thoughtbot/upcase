@@ -21,7 +21,7 @@ feature "subscriber follows trail" do
     ]
     create(:trail, :published, name: "Baby Exercises", exercises: exercises)
     user = create(:subscriber)
-    exercises.first.statuses.create!(user: user, state: Status::REVIEWED)
+    exercises.first.statuses.create!(user: user, state: Status::COMPLETE)
 
     visit dashboard_path(as: user)
 

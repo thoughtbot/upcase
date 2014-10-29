@@ -5,7 +5,7 @@ describe ExerciseWithProgress do
     it "delegates to its exercise" do
       title = stub("title")
       exercise = Exercise.new(title: title)
-      exercise_with_progress = ExerciseWithProgress.new(exercise, "Not Started")
+      exercise_with_progress = ExerciseWithProgress.new(exercise, "Unstarted")
 
       result = exercise_with_progress.title
 
@@ -14,32 +14,18 @@ describe ExerciseWithProgress do
   end
 
   describe "#state" do
-    it "is 'Next Up' if previous is reviewed and current not started" do
+    it "returns state that was passed in initializer" do
       exercise = Exercise.new
-      exercise_with_progress = ExerciseWithProgress.new(
-        exercise,
-        "Not Started",
-        "Reviewed"
-      )
+      exercise_with_progress = ExerciseWithProgress.new(exercise, "In Progress")
 
       result = exercise_with_progress.state
 
-      expect(result).to eq(Status::NEXT_UP)
-    end
-
-    it "is what was passed in initializer otherwise" do
-      exercise = Exercise.new
-      exercise_with_progress = ExerciseWithProgress.new(exercise, "Started")
-
-      result = exercise_with_progress.state
-
-      expect(result).to eq("Started")
+      expect(result).to eq("In Progress")
     end
   end
 
   describe "#can_be_accessed?" do
-    [Status::STARTED, Status::PUSHED, Status::SUBMITTED, Status::REVIEWED,
-     Status::NEXT_UP].each do |state|
+    [Status::IN_PROGRESS, Status::COMPLETE].each do |state|
       it "can be accessed if is #{state}" do
         exercise = Exercise.new
         exercise_with_progress = ExerciseWithProgress.new(exercise, state)
@@ -50,9 +36,9 @@ describe ExerciseWithProgress do
       end
     end
 
-    it "can't be accessed if is Not Started" do
+    it "can't be accessed if is Unstarted" do
       exercise = Exercise.new
-      exercise_with_progress = ExerciseWithProgress.new(exercise, "Not Started")
+      exercise_with_progress = ExerciseWithProgress.new(exercise, "Unstarted")
 
       result = exercise_with_progress.can_be_accessed?
 
