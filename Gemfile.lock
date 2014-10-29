@@ -149,6 +149,8 @@ GEM
     flutie (2.0.0)
     font-awesome-rails (4.1.0.0)
       railties (>= 3.2, < 5.0)
+    font_assets (0.1.11)
+      rack
     foreman (0.63.0)
       dotenv (>= 0.7)
       thor (>= 0.13.6)
@@ -413,6 +415,7 @@ DEPENDENCIES
   escape_utils (= 0.2.4)
   factory_girl_rails
   flutie (= 2.0.0)
+  font_assets
   foreman
   formtastic (= 2.2.0)
   friendly_id (= 5.0.4)

@@ -59,4 +59,6 @@ Upcase::Application.configure do
     entitystore: "memcached://#{ENV['MEMCACHE_SERVERS']}"
 
   config.middleware.insert_before Rack::Runtime, Sprockets::Redirect, manifest: Dir["#{Rails.root}/public/assets/manifest-*.json"].first
+
+  config.font_assets.origin = "https://#{ENV["APP_DOMAIN"]}"
 end
