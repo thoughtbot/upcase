@@ -46,7 +46,7 @@ footer.links {
   nav {
     @extend .clearfix;
     @include transition(opacity .5s);
-    display: flex;
+    @include display(flex);
     margin: 0 auto;
     width: 50%;
   }
@@ -67,7 +67,7 @@ footer.links {
   }
 
   .trails {
-    flex: 2;
+    @include flex(2);
   }
 
   .trails ul li {
@@ -86,7 +86,7 @@ footer.links {
   }
 
   .thoughtbot {
-    flex: none;
+    @include flex(none);
   }
 
   .thoughtbot ul:first-of-type {
