@@ -186,7 +186,7 @@
       @include justify-content(center);
 
       &:last-of-type {
-        &.reviewed .dot {
+        &.complete-exercise .dot {
           @include size(36);
           background: url('trail-complete-check.svg') center /36px no-repeat;
         }
@@ -215,7 +215,7 @@
         @include transform(translate(-50%, 0));
       }
 
-      &.started .dot, &.pushed .dot, &.submitted .dot {
+      &.in-progress-exercise .dot {
         background: $gold-trail;
 
         &:before {
@@ -224,7 +224,7 @@
         }
       }
 
-      &.not-started {
+      &.unstarted-exercise {
         cursor: w-resize;
 
         h5 {
@@ -232,13 +232,13 @@
         }
       }
 
-      &.reviewed, &.next-up {
+      &.complete-exercise, &.next-up-exercise {
         @include trail-line;
       }
 
       // Show line
       &:first-of-type {
-        &.reviewed:before {
+        &.complete-exercise:before {
           display: block;
         }
       }
@@ -246,17 +246,17 @@
       // Hide line
       &:first-of-type,
       &:last-of-type,
-      &.next-up {
+      &.next-up-exercise {
         &:before {
           display: none;
         }
       }
 
-      &.reviewed .dot {
+      &.complete-exercise .dot {
         background: $green-trail;
       }
 
-      &.next-up .dot {
+      &.next-up-exercise .dot {
         background: $blue-trail;
 
         &:before {
@@ -327,14 +327,14 @@
     }
 
     .step {
-      &.not-started {
+      &.unstarted-exercise {
         @include trail-line;
         cursor: auto;
       }
 
       // Hide line instructions override
       &:last-of-type,
-      &.next-up {
+      &.next-up-exercise {
         &:before {
           display: block;
         }

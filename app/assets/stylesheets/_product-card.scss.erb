@@ -146,17 +146,14 @@
     text-transform: uppercase;
   }
 
-  &.started .status,
-  &.pushed .status,
-  &.submitted .status,
-  &.reviewed .status,
-  &.in-progress .status, &.registered .status {
+  &.in-progress-exercise .status,
+  &.complete-exercise .status {
     background: rgba(255, 255, 0, .4);
     color: $darkwarmgray;
     display: block;
   }
 
-  &.complete .status {
+  &.complete-exercise .status {
     background: url(<%= asset_path 'check.svg' %>) no-repeat 5px 5px #83EBA8;
     background-size: 18px;
     color: darken(#83EBA8, 45%);
@@ -240,7 +237,7 @@
     }
   }
 
-  &.reviewed {
+  &.complete {
     h5 {
       background-color: $green-trail;
     }
@@ -254,7 +251,7 @@
     }
   }
 
-  &.started, &.pushed, &.submitted {
+  &.in-progress-exercise {
     h5 {
       background-color: lighten(saturate($gold-trail, 7%), 5%);
     }

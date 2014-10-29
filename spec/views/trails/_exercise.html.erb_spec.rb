@@ -7,7 +7,7 @@ describe "trails/_exercise.html" do
 
     render "trails/exercise", exercise: exercise
 
-    expect(rendered).to have_css(".two-words")
+    expect(rendered).to have_css(".two-words-exercise")
   end
 
   def stub_user
