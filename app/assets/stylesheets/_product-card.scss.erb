@@ -3,25 +3,21 @@
   @include flex-flow(wrap);
   @include justify-content(space-around);
   @include transition (all 0.3s ease-in-out);
-  background: white;
+  @include linear-gradient(white, #fafafa);
   border-bottom: 1px solid darken(white, 8);
-  padding: em(30) em(20);
-
-  &:hover {
-    background: darken(white, 3);
-  }
 
   header {
     width: 100%;
     display: block;
-    margin-top: em(30);
-    padding: 0 em(15);
+    padding: $dashboard-padding;
+    padding-bottom: 0;
 
     .topic-headline {
       display: inline-block;
       float: left;
-      font: 600 24px/30px $sans-serif;
-      margin-bottom: 30px;
+      font-size: em(20);
+      font-family: $sans-serif;
+      font-weight: 600;
     }
   }
 }
@@ -98,7 +94,7 @@
   }
 
   &.dashboard-resource {
-    border-top: 5px solid $green;
+    border-top: 5px solid $upcase-green;
     height: 180px;
 
     &.locked-resource {
@@ -162,12 +158,6 @@
     color: darken(#83EBA8, 45%);
     display: block;
     text-indent: 25px;
-  }
-}
-
-.resources {
-  &:hover {
-    background-color: white;
   }
 }
 
