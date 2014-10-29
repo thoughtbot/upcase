@@ -50,8 +50,36 @@ describe TrailWithProgress do
   end
 
   describe "#exercises" do
+    context "with no in-progress exercises" do
+      it "marks the first unstarted exercise as next up" do
+        trail = create_trail_with_progress(Status::COMPLETE, nil, nil)
+
+        result = trail.exercises.to_a
+
+        expect(result.map(&:state)).to match_array([
+          Status::COMPLETE,
+          Status::NEXT_UP,
+          Status::UNSTARTED
+        ])
+      end
+    end
+
+    context "with an in-progress exercise" do
+      it "doesn't mark any exercises as next up" do
+        trail = create_trail_with_progress(Status::IN_PROGRESS, nil, nil)
+
+        result = trail.exercises.to_a
+
+        expect(result.map(&:state)).to match_array([
+          Status::IN_PROGRESS,
+          Status::UNSTARTED,
+          Status::UNSTARTED
+        ])
+      end
+    end
+
     describe "#can_be_accessed?" do
-      it "can access if its state is complete, or already had access" do
+      it "can access if its state is Next Up, or already had access" do
         trail = create_trail_with_progress(Status::COMPLETE, nil, nil, nil)
 
         result = trail.exercises.to_a

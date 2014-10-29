@@ -11,7 +11,7 @@ describe ExerciseWithProgressQuery do
       exercises = query.to_a
 
       expect(exercises[0].title).to eq(exercise.title)
-      expect(exercises[0].state).to eq(Status::UNSTARTED)
+      expect(exercises[0].state).to eq(Status::NEXT_UP)
       expect(exercises[1].state).to eq(Status::UNSTARTED)
     end
   end

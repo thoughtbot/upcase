@@ -2,6 +2,7 @@ class Status < ActiveRecord::Base
   UNSTARTED = "Unstarted"
   IN_PROGRESS = "In Progress"
   COMPLETE = "Complete"
+  NEXT_UP = "Next Up"
 
   STATES = [IN_PROGRESS, COMPLETE]
 

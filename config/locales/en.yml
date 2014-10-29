@@ -23,6 +23,7 @@ en:
 
   exercises:
     statuses:
+      next-up: "Exercise"
       unstarted: "Exercise"
       in_progress: "In Progress"
       complete: "Complete"
