@@ -53,14 +53,13 @@ body.videos-show aside {
     }
 
     .free-with-subscription {
-      background: #fff;
-      border: 3px solid #ddd;
+      background: $upcase-green;
+      border: 3px solid $upcase-green-2;
       border-width: 1px 1px 3px 1px;
-      color: $upcase-red;
+      color: white;
 
       &:active {
-        background: #eee;
-        border-color: #ccc;
+        background: $upcase-green-3;
       }
     }
 
@@ -79,7 +78,7 @@ body.videos-show aside {
     margin: 1.5rem 0 1.5em 0;
 
     h2 {
-      color: $upcase-red;
+      color: $upcase-blue;
       font: 800 1.4rem/1.2 $sans-serif;
       margin: 0 0 .75rem 0;
     }

@@ -22,6 +22,10 @@ body.subscriptions-new .journey-headline {
 }
 
 body.subscriptions.subscriptions-new {
+  img {
+    margin: 80px auto 0;
+    display: block;
+  }
 
   .footer-wrapper {
     background: $lightwarmgray;
@@ -50,7 +54,7 @@ body.subscriptions.subscriptions-new {
   .inner {
     @include clearfix;
     margin: 0 auto;
-    padding: 80px 0 100px;
+    padding: 40px 0 100px;
     position: relative;
     width: $plan-width * 4 + $plan-width-callout;
   }
@@ -237,7 +241,8 @@ body.subscriptions.subscriptions-new {
 ////////////////////////////////////////////////////////////////////////////
 
 .plans.footer {
-  background: $lightwarmgray;
+  background: #fafafa;
+  padding-top: 40px;
 
   .inner {
     width: ($plan-width + 20)*2 + $plan-width-callout + 20;
@@ -368,7 +373,7 @@ body.subscriptions.subscriptions-new {
           color: white;
           content: "“";
           border-radius: 50%;
-          background-color: $upcase-red;
+          background-color: $upcase-green;
           font-family: $sans-serif;
           font-size: em(32);
           position: absolute;
@@ -502,7 +507,7 @@ body.subscriptions.subscriptions-new {
 
   h3 {
     border-bottom: 2px solid transparent;
-    color: $upcase-red;
+    color: #A4A4A4;
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 0.7em;

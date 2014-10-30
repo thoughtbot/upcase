@@ -6,12 +6,7 @@
   <%= link_to 'sign in', sign_in_path, class: 'signin' %>
 <% end %>
 
-<section class="journey-headline">
-  <div class="logo">
-    <h1><%= image_tag('upcase/upcase-ralph.png') %></h1>
-    <h2>Get access to Upcase</h2>
-  </div>
-</section>
+<%= link_to image_tag("upcase/upcase-header-logo-small-gray.svg"), root_path %>
 
 <%= render 'plans', catalog: @catalog %>
 

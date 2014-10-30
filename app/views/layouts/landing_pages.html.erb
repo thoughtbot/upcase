@@ -8,8 +8,9 @@
     <section id="header-wrapper">
       <div class="header-container">
         <h1 class="small-logo">
-          <%= image_tag('upcase/upcase-ralph-small.png') %>
-          <span>Upcase</span>
+          <%= link_to root_path do %>
+            <%= image_tag("upcase/upcase-header-logo-small.svg") %>
+          <% end %>
         </h1>
         <nav class="left">
           <ul>

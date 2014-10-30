@@ -1,10 +1,5 @@
 <section class="plans footer">
   <div class="inner">
-    <div class="logo">
-      <h1><%= image_tag('upcase/upcase-ralph.png') %></h1>
-      <h2>Get access to Upcase</h2>
-    </div>
-
     <% plans.each do |plan| %>
       <section class="plan <%= popular(plan) %>">
         <h3><%= formatted_name(plan) %></h3>
