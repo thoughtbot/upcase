@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 describe Status do
-  it { should belong_to(:exercise) }
+  it { should belong_to(:completeable) }
   it { should belong_to(:user) }
 
-  it { should validate_presence_of(:exercise_id) }
+  it { should validate_presence_of(:completeable_type) }
+  it { should validate_presence_of(:completeable_id) }
   it { should validate_presence_of(:user_id) }
   it { should ensure_inclusion_of(:state).in_array(Status::STATES) }
 

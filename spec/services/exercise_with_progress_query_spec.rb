@@ -39,9 +39,9 @@ describe ExerciseWithProgressQuery do
     it "returns the latest status for the user" do
       exercise = create(:exercise)
       user = create(:user)
-      status = create(:status, exercise: exercise, user: user)
+      status = create(:status, completeable: exercise, user: user)
       Timecop.travel(1.day.ago) do
-        create(:status, exercise: exercise, user: user)
+        create(:status, completeable: exercise, user: user)
       end
       query = ExerciseWithProgressQuery.new(user: user, exercises: Exercise.all)
 
