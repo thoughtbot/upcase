@@ -1,19 +1,16 @@
 <%= render 'mentor_info' %>
 <% content_for :page_title, "Dashboard" %>
 
-<section class="root-resources">
-  <div class="content">
-    <section class="resources">
-      <%= render "upcase_repo" %>
-      <%= render "forum" %>
-      <%= render "trails" %>
-    </section>
-  </div>
-</section>
-
 <% if locked_features.any? %>
   <%= render "locked_features" %>
 <% end %>
+
+<section class="welcome">
+ <div class="content">
+  <h1>Welcome, Ben</h1>
+  <p>This is your dashboard for monitoring your overall exercise progress, as well as a jumping point for accessing Exercises and Library content.</p>
+</div>
+</section>
 
 <section class="root-trails">
   <div class="content">
@@ -67,5 +64,13 @@
 
     <%= render partial: "dashboards/show", collection: @dashboard.shows %>
     <%= render partial: "dashboards/topic", collection: @dashboard.topics %>
+  </div>
+</section>
+
+<section class="root-resources">
+  <div class="content">
+    <section class="resources">
+      <%= render "upcase_repo" %>
+    </section>
   </div>
 </section>

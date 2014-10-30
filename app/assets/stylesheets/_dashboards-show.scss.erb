@@ -1,5 +1,5 @@
 body.dashboards-show {
-  background: $base-background-2;
+  background: white;
 
   p {
     font-size: $font-size-small;
@@ -20,42 +20,6 @@ body.dashboards-show {
     padding-right: 0;
   }
 
-  .root-resources .content {
-    padding: 20px 0 30px;
-  }
-
-  .root-resources figure {
-    width: 100%;
-    display: block;
-    height: 50px;
-
-    &:first-of-type h4 {
-      color: $upcase-green;
-    }
-
-    &:nth-of-type(2) h4 {
-      color: $gold-trail;
-    }
-
-    &:nth-of-type(3) h4 {
-      color: $upcase-red;
-    }
-  }
-
-  .root-resources h4 {
-    display: inline-block;
-    text-align: left;
-
-    &:after {
-      content: ' - ';
-    }
-  }
-
-  .root-resources p {
-    display: inline-block;
-    text-align: left;
-  }
-
   .root-trails, .root-library {
     .content {
       border: 1px solid $gray-4;
@@ -64,8 +28,23 @@ body.dashboards-show {
     }
   }
 
+  .welcome {
+    .content {
+      padding: 1em 0;
+    }
+
+    h1 {
+      font-size: em(26);
+      margin-bottom: 10px;
+    }
+
+    p {
+      width: 80%;
+    }
+  }
+
   .root-trails .content {
-    @include linear-gradient(white, #fafafa);
+    @include linear-gradient(#fafafa, white);
   }
 
   .root-trails .progress .numerical-progress {
@@ -75,6 +54,46 @@ body.dashboards-show {
   .root-library {
     margin-top: 80px;
     padding-bottom: 0;
+
+    .topic {
+      display: block;
+      padding: 2rem 1rem 3rem;
+
+      header {
+        float: left;
+        margin: 0;
+        padding: 0;
+        width: auto;
+      }
+
+      .topic-headline {
+        display: inline-block;
+        font-size: em(20);
+        font-family: $sans-serif;
+        font-weight: 600;
+        line-height: 1.2rem;
+      }
+
+      h4 {
+        line-height: 1.1rem;
+        margin: 0 20px 0 0;
+      }
+
+      p {
+        line-height: 1.2rem;
+        margin: 0;
+      }
+
+      .see-more {
+        float: right;
+      }
+
+      h4, p {
+        display: inline-block;
+        text-align: left;
+        vertical-align: bottom;
+      }
+    }
   }
 
   .product-headline {

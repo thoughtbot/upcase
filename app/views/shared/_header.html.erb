@@ -9,6 +9,7 @@
       <ul>
         <% if signed_in? %>
           <li class="back"><%= link_to "Dashboard".html_safe, dashboard_path %></li>
+          <li class="forum"><a href="">Forum</a></li>
           <% if show_upgrade_to_annual_cta? %>
             <li class="account">
               <%= render "shared/annual_billing" %>

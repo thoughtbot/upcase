@@ -2,12 +2,5 @@
   <header>
     <p class="topic-headline"><%= topic.name %></p>
   </header>
-
-  <% topic.dashboard_resources.each do |resource| %>
-    <%= render partial: "products/#{resource.to_partial_path}", object: resource %>
-  <% end %>
-
-  <% if has_more_resources?(topic) %>
     <%= render 'view_all_card', topic: topic %>
-  <% end %>
 </section>
