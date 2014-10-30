@@ -95,6 +95,7 @@ describe TrailWithProgress do
     exercises =
       states.map { |state| create_exercise_with_state(state, user: user) }
     trail = create(:trail, exercises: exercises)
+    trail.update_state_for(user)
     TrailWithProgress.new(trail, user: user)
   end
 

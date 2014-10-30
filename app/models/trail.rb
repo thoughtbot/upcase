@@ -25,6 +25,10 @@ class Trail < ActiveRecord::Base
       count { |exercise| exercise.state != Status::COMPLETE }
   end
 
+  def update_state_for(user)
+    TrailWithProgress.new(self, user: user).update_status
+  end
+
   def self.most_recent_published
     order(created_at: :desc).where(published: true)
   end

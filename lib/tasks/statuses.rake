@@ -1,7 +1,8 @@
 namespace :statuses do
-  desc "Rename old states in state column"
+  desc "Create Trails statuses"
   task update_states: :environment do
-    Status.where(state: "Reviewed").update_all(state: "Complete")
-    Status.where("state != ?", "Complete").update_all(state: "In Progress")
+    User.find_each do |user|
+      Trail.find_each { |trail| trail.update_state_for(user) }
+    end
   end
 end

@@ -78,6 +78,53 @@ describe Trail do
     end
   end
 
+  describe "#update_state_for" do
+    it "updates the status of an unstarted trail" do
+      user = create(:user)
+      exercise = create(:exercise)
+      trail = create(:trail, exercises: [exercise])
+
+      trail.update_state_for(user)
+
+      trail_status = trail.statuses.where(user: user).most_recent
+      expect(trail_status).to be_nil
+    end
+
+    it "updates the status of an in-progress trail" do
+      user = create(:user)
+      exercise = create(:exercise)
+      create(
+        :status,
+        completeable: exercise,
+        user: user,
+        state: Status::IN_PROGRESS
+      )
+      trail = create(:trail, exercises: [exercise])
+
+      trail.update_state_for(user)
+
+      trail_state = trail.statuses.where(user: user).most_recent.state
+      expect(trail_state).to eq Status::IN_PROGRESS
+    end
+
+    it "updates the status of a complete trail" do
+      user = create(:user)
+      trail = trail_with_exercise_states(user, Status::COMPLETE, nil)
+      exercise = trail.exercises.last
+      create(
+        :status,
+        completeable: exercise,
+        user: user,
+        state: Status::COMPLETE
+      )
+
+      trail.update_state_for(user)
+
+      trail_state = trail.statuses.where(user: user).most_recent.state
+      expect(trail_state).to eq Status::COMPLETE
+    end
+  end
+
   describe "#exercises" do
     it "should be in order of the step position" do
       trail = create(:trail)
@@ -107,6 +154,20 @@ describe Trail do
       expect(trail.exercises(true).map(&:id)).to eq(
         [exercises[0], exercises[2], exercises[1]].map(&:id)
       )
+    end
+  end
+
+  def trail_with_exercise_states(user, *states)
+    exercises =
+      states.map { |state| create_exercise_with_state(state, user: user) }
+    create(:trail, exercises: exercises)
+  end
+
+  def create_exercise_with_state(state, user:)
+    create(:exercise).tap do |exercise|
+      if state.present?
+        exercise.statuses.create!(user: user, state: state)
+      end
     end
   end
 end

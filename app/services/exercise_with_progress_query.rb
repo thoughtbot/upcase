@@ -29,11 +29,7 @@ class ExerciseWithProgressQuery
 
   def statuses
     @statuses ||= Status.
-      where(
-        completeable_type: "Exercise",
-        completeable_id: @exercises.ids,
-        user: @user
-      ).
+      where(completeable: @exercises, user: @user).
       order("created_at DESC").
       group_by(&:completeable_id)
   end
