@@ -12,24 +12,28 @@
 }
 
 .dashboard-section-title {
-  margin: 0 auto 80px;
-  text-align: center;
-  width: 85%;
+  margin: 0 auto;
+  text-align: left;
 
   h1 {
-    color: $red;
-    font-size: em(41);
+    background: white;
+    border-bottom: 1px solid $gray-4;
+    color: $darkwarmgray;
+    font-size: em(24);
+    font-style: italic;
     font-weight: 700;
     margin-bottom: 0.6em;
+    padding: $dashboard-padding;
   }
 
   h2 {
-    font-size: em(27);
+    font-size: em(20);
     font-weight: normal;
-    line-height: 1.2;
+    line-height: 1.4em;
+    padding: $dashboard-padding;
+    width: 85%;
   }
 }
-
 
 .trails-progress {
   $arrow-size: 20px;
@@ -49,8 +53,8 @@
   }
 
   .trail {
-    padding: 0 em(30);
     width: 100%;
+    padding: $dashboard-padding;
 
     header {
       @include clearfix;
@@ -58,7 +62,7 @@
 
       h1 {
         float: left;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         font-weight: 600;
 
         a {
@@ -86,7 +90,7 @@
         cursor: pointer;
         font-size: 15px;
         line-height: 1;
-        margin: 4px;
+        margin: 0 4px;
         opacity: .6;
         padding: 3px 6px;
       }
@@ -348,6 +352,7 @@
     }
 
     .trail {
+
       header h1 {
         float: none;
       }

@@ -1,4 +1,6 @@
 body.dashboards-show {
+  background: white;
+
   p {
     font-size: $font-size-small;
     line-height: 1.6;
@@ -18,10 +20,31 @@ body.dashboards-show {
     padding-right: 0;
   }
 
-
   .root-trails, .root-library {
-    @extend %dashboard-gradient;
-    padding: 80px 0;
+    .content {
+      border: 1px solid $gray-4;
+      border-radius: 3px;
+      padding: 0;
+    }
+  }
+
+  .welcome {
+    .content {
+      padding: 1em 0;
+    }
+
+    h1 {
+      font-size: em(26);
+      margin-bottom: 10px;
+    }
+
+    p {
+      width: 80%;
+    }
+  }
+
+  .root-trails .content {
+    @include linear-gradient(#fafafa, white);
   }
 
   .root-trails .progress .numerical-progress {
@@ -29,20 +52,47 @@ body.dashboards-show {
   }
 
   .root-library {
+    margin-top: 80px;
     padding-bottom: 0;
-  }
 
-  .root-resources .content {
-    padding-bottom: 0;
-  }
+    .topic {
+      display: block;
+      padding: 2rem 1rem 3rem;
 
-  .root-resources,
-  .root-library {
-    .content > section {
-      @include display(flex);
-      @include flex-flow(wrap);
-      @include justify-content(space-around);
-      margin-bottom: 3.5rem;
+      header {
+        float: left;
+        margin: 0;
+        padding: 0;
+        width: auto;
+      }
+
+      .topic-headline {
+        display: inline-block;
+        font-size: em(20);
+        font-family: $sans-serif;
+        font-weight: 600;
+        line-height: 1.2rem;
+      }
+
+      h4 {
+        line-height: 1.1rem;
+        margin: 0 20px 0 0;
+      }
+
+      p {
+        line-height: 1.2rem;
+        margin: 0;
+      }
+
+      .see-more {
+        float: right;
+      }
+
+      h4, p {
+        display: inline-block;
+        text-align: left;
+        vertical-align: bottom;
+      }
     }
   }
 
@@ -72,7 +122,7 @@ body.dashboards-show {
     }
 
     a {
-      color: $upcase-darkred;
+      color: $upcase-blue;
       font-family: $sans-serif;
       line-height: 1.8rem;
     }
