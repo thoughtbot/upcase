@@ -68,11 +68,8 @@ group :development, :test do
 end
 
 group :production, :staging do
-  gem "dalli"
   gem "font_assets"
-  gem 'memcachier'
   gem 'newrelic_rpm'
-  gem 'rack-cache', '1.2'
   gem 'rails_12factor'
 end
 

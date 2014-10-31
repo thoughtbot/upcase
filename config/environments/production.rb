@@ -21,7 +21,6 @@ Upcase::Application.configure do
   config.static_cache_control = 'public, max-age=31536000'
 
   config.eager_load = true
-  config.cache_store = :dalli_store
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
 
@@ -52,11 +51,6 @@ Upcase::Application.configure do
 
   GITHUB_KEY = ENV['GITHUB_KEY']
   GITHUB_SECRET = ENV['GITHUB_SECRET']
-
-  config.middleware.use Rack::Cache,
-    verbose: true,
-    metastore: "memcached://#{ENV['MEMCACHE_SERVERS']}",
-    entitystore: "memcached://#{ENV['MEMCACHE_SERVERS']}"
 
   config.middleware.insert_before Rack::Runtime, Sprockets::Redirect, manifest: Dir["#{Rails.root}/public/assets/manifest-*.json"].first
 
