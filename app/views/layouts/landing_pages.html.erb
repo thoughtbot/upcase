@@ -29,16 +29,7 @@
       <%= yield %>
     </section>
 
-    <footer class="links">
-      <p id="copyright">
-        © 2012 - <%= Time.zone.today.year %> thoughtbot, inc. The
-        <em>design of a robot</em> and <em>thoughtbot</em> are registered
-        trademarks of thoughtbot,&nbsp;inc. See our
-        <%= link_to 'Privacy Policy', privacy_path %> and
-        <%= link_to 'Terms & Conditions', terms_path %>.
-      </p>
-    </footer>
-
+    <%= render 'shared/footer' %>
     <%= render 'shared/javascript' %>
   </body>
 </html>

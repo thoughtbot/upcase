@@ -155,22 +155,6 @@ section {
     }
   }
 
-  a {
-    h2 {
-      color: $upcase-red;
-    }
-
-    &:hover {
-      h2 {
-        color: #C42107;
-      }
-
-      h3 {
-        color: $upcase-red;
-      }
-    }
-  }
-
   table {
     color: $darkwarmgray;
     font: normal 1em/1.5em $serif;
