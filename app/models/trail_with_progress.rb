@@ -20,7 +20,7 @@ class TrailWithProgress < SimpleDelegator
   def update_status
     if exercises.all?(&:complete?)
       statuses.create!(user: @user, state: Status::COMPLETE)
-    elsif exercises.any?(&:in_progress?)
+    elsif exercises.any?(&:in_progress?) || exercises.any?(&:complete?)
       statuses.create!(user: @user, state: Status::IN_PROGRESS)
     end
   end

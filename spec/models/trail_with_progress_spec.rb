@@ -49,6 +49,32 @@ describe TrailWithProgress do
     end
   end
 
+  describe "#update_status" do
+    it "sets completed if all exercises are completed" do
+      trail = create_trail_with_progress(Status::COMPLETE, Status::COMPLETE)
+
+      result = trail.update_status.state
+
+      expect(result).to eq(Status::COMPLETE)
+    end
+
+    it "sets in progress if any exercise is in progress" do
+      trail = create_trail_with_progress(Status::IN_PROGRESS, nil)
+
+      result = trail.update_status.state
+
+      expect(result).to eq(Status::IN_PROGRESS)
+    end
+
+    it "sets in progress if all exercises are completed or unstarted" do
+      trail = create_trail_with_progress(Status::COMPLETE, nil)
+
+      result = trail.update_status.state
+
+      expect(result).to eq(Status::IN_PROGRESS)
+    end
+  end
+
   describe "#exercises" do
     context "with no in-progress exercises" do
       it "marks the first unstarted exercise as next up" do
