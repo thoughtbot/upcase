@@ -11,9 +11,9 @@
       <%= raw(@video.notes_html) %>
     </section>
   </div>
-</div>
 
-<%= render "comments", video: @video %>
+  <%= render "comments", video: @video %>
+</div>
 
 <aside>
   <%= render "products/license", offering: @offering %>
