@@ -2,8 +2,8 @@
   <section id="faq">
     <dl>
       <% video_tutorial.questions.each do |question| %>
-        <dt><%=raw textilize question.question %></dt>
-        <dd><%=raw textilize question.answer %></dd>
+        <dt><%= format_resources question.question %></dt>
+        <dd><%= format_resources question.answer %></dd>
       <% end %>
     </dl>
   </section>

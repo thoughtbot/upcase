@@ -1,3 +1,6 @@
+test:
+  pre:
+    - cp .sample.env .env
 deployment:
   staging:
     branch: master

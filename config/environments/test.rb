@@ -60,9 +60,6 @@ Upcase::Application.configure do
     Timecop.travel(Time.now)
   end
 
-  PAYPAL_USERNAME = "username"
-  PAYPAL_PASSWORD = "password"
-  PAYPAL_SIGNATURE = "signature"
   PAPERCLIP_STORAGE_OPTIONS = {}
 
   GITHUB_KEY = 'githubkey'

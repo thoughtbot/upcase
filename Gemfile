@@ -1,98 +1,86 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-ruby '2.1.4'
+ruby "2.1.4"
 
-gem 'RedCloth', '4.2.9', require: 'redcloth'
-gem 'active_model_serializers', '~> 0.7.0'
-gem 'acts_as_list', '0.2.0'
-gem 'airbrake', '~> 4.0.0'
-gem 'aws-sdk', '= 1.6.2' # Bug https://github.com/thoughtbot/paperclip/issues/751
+gem "active_model_serializers", "~> 0.7.0"
+gem "acts_as_list"
+gem "airbrake"
 gem "analytics-ruby", "~> 2.0.0", require: "segment/analytics"
-gem 'bluecloth'
-gem 'bourbon', '3.2.3'
-gem 'clearance', '1.4.2'
-gem 'csv_rails', '0.6.1'
-gem 'curb', '0.8.1'
-gem 'delayed_job_active_record', '~> 4.0.1'
-gem 'doorkeeper', '1.3.0'
-gem 'dynamic_form', '1.1.4'
-gem 'escape_utils', '0.2.4' # Fix UTF-8 regexp match warning
-gem 'flutie', '2.0.0'
-gem 'formtastic', '2.2.0'
-gem 'friendly_id', '5.0.4'
-gem 'gravatarify', '~> 3.1.0'
-gem 'high_voltage', github: 'thoughtbot/high_voltage'
-gem 'httparty', '~> 0.10.0'
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
-gem 'nokogiri', '1.5.2'
-gem 'octokit', '~> 3.3.0'
-gem 'omniauth', '~> 1.2.1'
-gem 'omniauth-github', '~> 1.1.2'
-gem 'paperclip', '4.1.1'
-gem 'paypal-express', '0.4.6', require: 'paypal'
-gem 'pg', '0.13.2'
-gem 'rack-rewrite', '1.2.1'
-gem 'rack-ssl-enforcer', '0.2.4'
-gem 'rails', '4.1.6'
-gem 'rails_admin', '~> 0.6.2'
-gem 'ruby-freshbooks', '0.4.0'
-gem 'stripe'
-gem 'stripe_event'
-gem 'typhoeus', '0.3.3'
-gem 'to_js', git: 'git://github.com/cpytel/to_js.git'
-gem 'validates_email_format_of', '1.5.3'
-gem 'sprockets-redirect', github: 'arunagw/sprockets-redirect', branch: 'aa-rails4'
-gem 'unicorn'
-
-# Gems used only for assets and not required
-# in production environments by default.
-gem 'sass-rails', '~> 4.0.3'
-gem 'sass', '3.2.19'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'uglifier', '1.3.0'
-gem 'heroku-deflater'
+gem "aws-sdk"
+gem "bluecloth"
+gem "bourbon", "~> 3.2.1"
+gem "clearance", "~> 1.4.2"
+gem "coffee-rails"
+gem "delayed_job_active_record"
+gem "doorkeeper", "1.3.0"
+gem "dynamic_form", "~> 1.1.4"
+gem "flutie"
+gem "formtastic", "~> 2.2.0"
+gem "friendly_id", "~> 5.0.4"
+gem "gravatarify", "~> 3.1.0"
+gem "heroku-deflater"
+gem "high_voltage"
+gem "jquery-rails"
+gem "jquery-ui-rails"
+gem "nokogiri", "~> 1.6.4"
+gem "octokit", "~> 3.5.2"
+gem "omniauth", "~> 1.2.1"
+gem "omniauth-github", "~> 1.1.2"
+gem "paperclip", "~> 4.2.0"
+gem "pg"
+gem "rack-rewrite", "~> 1.5.0"
+gem "rack-ssl-enforcer", "~> 0.2.4"
+gem "rails", "4.1.7"
+gem "rails_admin", "~> 0.6.2"
+gem "recipient_interceptor"
+gem "ruby-freshbooks", "~> 0.4.0"
+gem "sass-rails", "~> 4.0.4"
+gem "sprockets-redirect",
+   github: "arunagw/sprockets-redirect",
+   branch: "aa-rails4"
+gem "stripe"
+gem "stripe_event"
+gem "uglifier"
+gem "unicorn"
+gem "validates_email_format_of"
 
 group :development do
-  gem 'hirb', '0.6.2'
-  gem 'spring'
-  gem 'spring-commands-rspec'
-  gem 'quiet_assets'
+  gem "quiet_assets"
+  gem "spring"
+  gem "spring-commands-rspec"
 end
 
 group :development, :test do
-  gem 'dotenv-rails'
-  gem "foreman"
-  gem 'pry-rails'
-  gem 'rspec-rails', '~> 3.0.2'
+  gem "dotenv-rails"
+  gem "pry-rails"
+  gem "rspec-rails", "~> 3.1.0"
 end
 
 group :production, :staging do
   gem "font_assets"
-  gem 'newrelic_rpm'
-  gem 'rails_12factor'
+  gem "newrelic_rpm", "~> 3.8.1.221"
+  gem "rails_12factor"
 end
 
 group :staging do
-  gem 'safety_mailer', '0.0.3'
+  gem "safety_mailer", "~> 0.0.3"
 end
 
 group :test do
-  gem 'bourne'
-  gem 'capybara'
-  gem 'capybara_discoball', github: 'thoughtbot/capybara_discoball'
-  gem 'capybara-webkit'
-  gem 'codeclimate-test-reporter', require: nil
-  gem 'database_cleaner'
-  gem 'email_spec'
-  gem 'factory_girl_rails'
-  gem 'launchy'
-  gem 'selenium-webdriver'
-  gem 'rubyzip', '0.9.9'
-  gem 'sham_rack', '1.3.1'
-  gem 'shoulda-matchers', require: false
-  gem 'simplecov', '~> 0.9', require: false
-  gem 'sinatra'
-  gem 'timecop', '0.3.5'
-  gem 'webmock', '1.8.7'
+  gem "bourne"
+  gem "capybara"
+  gem "capybara-webkit"
+  gem "capybara_discoball", github: "thoughtbot/capybara_discoball"
+  gem "codeclimate-test-reporter", require: nil
+  gem "database_cleaner"
+  gem "email_spec"
+  gem "factory_girl_rails"
+  gem "launchy"
+  gem "selenium-webdriver"
+  gem "sham_rack"
+  gem "shoulda-matchers", require: false
+  gem "simplecov", "~> 0.9", require: false
+  gem "sinatra"
+  gem "timecop"
+  gem "webmock"
 end

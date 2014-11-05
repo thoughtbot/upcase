@@ -22,7 +22,7 @@ module ApplicationHelper
   end
 
   def format_resources(resources)
-    BlueCloth.new(resources).to_html
+    BlueCloth.new(resources).to_html.html_safe
   end
 
   def partial_name(model)

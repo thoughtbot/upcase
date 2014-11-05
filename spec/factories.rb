@@ -244,7 +244,7 @@ FactoryGirl.define do
     password 'password'
     purchased_subscription { subscription }
 
-    ignore do
+    transient do
       subscription nil
     end
 
@@ -260,7 +260,7 @@ FactoryGirl.define do
       end
 
       trait :includes_mentor do
-        ignore do
+        transient do
           plan { create(:plan, :includes_mentor) }
         end
       end
@@ -285,7 +285,7 @@ FactoryGirl.define do
       with_github
       stripe_customer_id 'cus12345'
 
-      ignore do
+      transient do
         plan { create(:plan) }
       end
 
@@ -420,7 +420,7 @@ FactoryGirl.define do
   end
 
   factory :oauth_access_token, class: "Doorkeeper::AccessToken" do
-    ignore do
+    transient do
       user nil
     end
 

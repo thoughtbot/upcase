@@ -7,7 +7,7 @@ describe Status do
   it { should validate_presence_of(:completeable_type) }
   it { should validate_presence_of(:completeable_id) }
   it { should validate_presence_of(:user_id) }
-  it { should ensure_inclusion_of(:state).in_array(Status::STATES) }
+  it { should validate_inclusion_of(:state).in_array(Status::STATES) }
 
   context ".most_recent" do
     it "returns the latest status" do

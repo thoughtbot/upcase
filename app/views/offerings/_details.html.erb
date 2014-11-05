@@ -2,7 +2,7 @@
 
 <div class="text-box-wrapper">
   <div class="text-box">
-    <%== textilize offering.description %>
+    <%= format_resources offering.description %>
     <%= render "#{offering.to_partial_path}_details", offering: offering %>
   </div>
 </div>

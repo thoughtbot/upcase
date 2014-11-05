@@ -32,11 +32,6 @@ Upcase::Application.configure do
 
   config.action_mailer.delivery_method = :test
 
-  Paypal.sandbox = true
-  PAYPAL_USERNAME = ENV['PAYPAL_USERNAME']
-  PAYPAL_PASSWORD = ENV['PAYPAL_PASSWORD']
-  PAYPAL_SIGNATURE = ENV['PAYPAL_SIGNATURE']
-
   PAPERCLIP_STORAGE_OPTIONS = {
      storage: :s3,
      s3_credentials: "#{Rails.root}/config/s3.yml",
