@@ -7,10 +7,17 @@ class FakeStripe < Sinatra::Base
   EVENT_ID_FOR_SUBSCRIPTION_DELETION = 'evt_2X6Z2OXmhBVcm9'
   CUSTOMER_ID = 'cus_1CXxPJDpw1VLvJ'
   CUSTOMER_EMAIL = 'foo@bar.com'
+  PLAN_ID = 'JAVA-PLAN-1b3a5c51-5c1a-421b-8822-69138c2d937b'
 
   cattr_reader :last_charge, :last_customer_email, :last_token, :coupons,
     :customer_plan_id, :last_coupon_used, :customer_plan_quantity
-  cattr_accessor :failure
+  cattr_accessor :coupons, :customer_ids, :failure
+
+  def self.reset
+    self.coupons = {}
+    self.customer_ids = [CUSTOMER_ID]
+    self.failure = nil
+  end
 
   get '/v1/tokens' do
     content_type 'application/javascript'
@@ -69,6 +76,21 @@ class FakeStripe < Sinatra::Base
         customer: params[:customer_id]
       ).to_json
     end
+  end
+
+  get "/v1/customers" do
+    content_type :json
+
+    {
+      "object" => "list",
+      "url" => "v1/customers",
+      "has_more" => false,
+      "data" => paginate(
+        collection: customer_ids.map { |customer_id| customer(customer_id) },
+        starting_after: params[:starting_after],
+        limit: (params[:limit] || 10).to_i
+      )
+    }.to_json
   end
 
   post '/v1/customers' do
@@ -258,19 +280,17 @@ class FakeStripe < Sinatra::Base
   end
 
   post '/v1/coupons' do
-    @@coupons ||= {}
-    @@coupons[params[:id]] = create_coupon_hash(params)
+    coupons[params[:id]] = create_coupon_hash(params)
     content_type :json
 
-    @@coupons[params[:id]].to_json
+    coupons[params[:id]].to_json
   end
 
   get '/v1/coupons/:id' do
-    @@coupons ||= {}
     content_type :json
 
-    if @@coupons[params[:id]]
-      @@coupons[params[:id]].to_json
+    if coupons[params[:id]]
+      coupons[params[:id]].to_json
     else
       status 404
       {
@@ -345,10 +365,6 @@ class FakeStripe < Sinatra::Base
         object: customer_subscription
       }
     }.to_json
-  end
-
-  def self.clean_up_coupons
-    @@coupons = {}
   end
 
   def create_coupon_hash(params)
@@ -633,7 +649,7 @@ class FakeStripe < Sinatra::Base
         created: 1403972754,
         amount: 100,
         currency: 'usd',
-        id: 'JAVA-PLAN-1b3a5c51-5c1a-421b-8822-69138c2d937b',
+        id: PLAN_ID,
         object: 'plan',
         livemode: false,
         interval_count: 1,
@@ -729,6 +745,13 @@ class FakeStripe < Sinatra::Base
       customer: CUSTOMER_ID
     }
   end
+
+  def paginate(collection:, starting_after:, limit:)
+    collection.
+      split { |item| item[:id] == starting_after }.
+      last.
+      take(limit)
+  end
 end
 
 FakeStripeRunner = Capybara::Discoball::Runner.new(FakeStripe) do |server|
@@ -736,29 +759,8 @@ FakeStripeRunner = Capybara::Discoball::Runner.new(FakeStripe) do |server|
   Stripe.api_base = url
 end
 
-module FakeStripeFailureStatus
-  def ensure_fake_stripe_failure_status_is_reset
-    fake_stripe_failure = FakeStripe.failure
-    begin
-      yield
-    ensure
-      FakeStripe.failure = fake_stripe_failure
-    end
-  end
-end
-
 RSpec.configure do |config|
-  config.include FakeStripeFailureStatus
-
-  config.around do |example|
-    ensure_fake_stripe_failure_status_is_reset do
-      example.run
-    end
-  end
-
-  config.after do
-    FakeStripe.clean_up_coupons
-  end
+  config.before { FakeStripe.reset }
 end
 
 Stripe.verify_ssl_certs = false
