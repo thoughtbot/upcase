@@ -1,10 +1,16 @@
 <ul class="teachers">
   <li>
-    <%= teacher_gravatar teacher, 92 %>
-    <h5><%= t '.header' %></h5>
-    <h2>
-      <%= teacher.name %>
-    </h2>
+    <section class="teacher-info">
+      <div class="teacher-image">
+        <%= teacher_gravatar teacher, 92 %>
+      </div>
+      <div class="teacher-name">
+        <h5><%= t '.header' %></h5>
+        <h2>
+          <%= teacher.name %>
+        </h2>
+      </div>
+    </section>
     <section class="bio">
       <%= format_resources teacher.bio %>
     </section>

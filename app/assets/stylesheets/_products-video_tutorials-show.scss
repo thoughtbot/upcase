@@ -1,6 +1,5 @@
 body.products-show,
 body.video_tutorials-show,
-
 body.products-show aside,
 body.video_tutorials-show aside,
 body.shows-show aside,
@@ -80,6 +79,33 @@ body.videos-show aside {
       color: $darkwarmgray;
       font: 800 1.4rem/1.2 $sans-serif;
       margin: 0 0 .75rem 0;
+    }
+  }
+
+  .teachers {
+    list-style-type: none;
+    margin: 2rem 0 0 0;
+
+    li {
+      @include display(flex);
+      @include flex-direction(column);
+    }
+
+    .teacher-info {
+      @include display(flex);
+      @include flex-direction(row);
+    }
+
+    .teacher-name {
+      margin: 1rem 0 0 1rem;
+    }
+
+    h2, h5 {
+      margin: 0;
+    }
+
+    .bio {
+      margin-top: .5rem;
     }
   }
 }
