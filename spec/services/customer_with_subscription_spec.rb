@@ -1,9 +1,9 @@
 require "rails_helper"
 
-describe SubscriptionChecker do
+describe CustomerWithSubscription do
   describe "#has_out_of_sync_user?" do
     it "returns false if there's no local user" do
-      checker = SubscriptionChecker.new(stripe_customer)
+      checker = CustomerWithSubscription.new(stripe_customer)
 
       expect(checker).not_to have_out_of_sync_user
     end
@@ -12,7 +12,7 @@ describe SubscriptionChecker do
       user = create(:subscriber)
       customer =
         stripe_customer_for(user, plan_id: user.purchased_subscription.plan.sku)
-      checker = SubscriptionChecker.new(customer)
+      checker = CustomerWithSubscription.new(customer)
 
       expect(checker).not_to have_out_of_sync_user
     end
@@ -20,7 +20,7 @@ describe SubscriptionChecker do
     it "returns true if upcase customer has another plan" do
       user = create(:subscriber)
       customer = stripe_customer_for(user, plan_id: "other-plan")
-      checker = SubscriptionChecker.new(customer)
+      checker = CustomerWithSubscription.new(customer)
 
       expect(checker).to have_out_of_sync_user
     end
@@ -30,7 +30,7 @@ describe SubscriptionChecker do
     it "inspects the customer, subscription, user, and plan" do
       user = create(:subscriber)
       customer = stripe_customer_for(user, plan_id: "plan_id")
-      checker = SubscriptionChecker.new(customer)
+      checker = CustomerWithSubscription.new(customer)
 
       result = checker.to_s
 

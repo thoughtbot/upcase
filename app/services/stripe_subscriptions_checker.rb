@@ -4,9 +4,10 @@ class StripeSubscriptionsChecker
   end
 
   def check_all
-    each_customer do |customer|
-      if customer.has_out_of_sync_user?
-        output.puts customer
+    StripeCustomerCollection.new(per_page: 100).each do |customer|
+      customer_with_subscription = CustomerWithSubscription.new(customer)
+      if customer_with_subscription.has_out_of_sync_user?
+        output.puts customer_with_subscription
       end
     end
   end
@@ -14,10 +15,4 @@ class StripeSubscriptionsChecker
   private
 
   attr_reader :output
-
-  def each_customer
-    StripeCustomerCollection.new(per_page: 100).each do |customer|
-      yield SubscriptionChecker.new(customer)
-    end
-  end
 end

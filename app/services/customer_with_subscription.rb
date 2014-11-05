@@ -1,4 +1,4 @@
-class SubscriptionChecker
+class CustomerWithSubscription
   def initialize(stripe_customer)
     @stripe_customer = stripe_customer
   end
