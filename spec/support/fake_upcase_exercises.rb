@@ -3,8 +3,8 @@ require "sinatra/base"
 class FakeUpcaseExercises < Sinatra::Base
   disable :protection
 
-  get "/exercises/:uuid" do |uuid|
-    exercise = Exercise.find_by!(uuid: uuid)
+  get "/exercises/:slug" do |slug|
+    exercise = Exercise.find_by!("url LIKE ?", "%/exercises/#{slug}")
     <<-HTML
       Exercise: #{exercise.title}
     HTML

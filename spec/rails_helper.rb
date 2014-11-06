@@ -33,7 +33,8 @@ Capybara.app = HostMap.new(
   "www.example.com" => Capybara.app,
   "127.0.0.1" => Capybara.app,
   "github.com" => FakeGithub,
-  "exercises.upcase.com" => FakeUpcaseExercises
+  "exercises.upcase.com" => FakeUpcaseExercises,
+  "localhost" => FakeUpcaseExercises
 )
 
 silence_warnings do

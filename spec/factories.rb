@@ -409,9 +409,13 @@ FactoryGirl.define do
   end
 
   factory :exercise do
+    transient do
+      slug { title.downcase.gsub(/\s+/, "-") }
+    end
+
     summary "Exercise summary"
-    title
-    url { "http://exercises.upcase.com/exercises/#{uuid}" }
+    sequence(:title) { |n| "Exercise #{n}" }
+    url { "http://localhost:7000/exercises/#{slug}" }
     uuid
 
     trait :public do

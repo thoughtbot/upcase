@@ -15,6 +15,7 @@ namespace :dev do
     create_users
     create_team_plan
     create_topic
+    create_trails
   end
 
   def create_individual_plans
@@ -57,7 +58,13 @@ namespace :dev do
   def create_users
     header "Users"
 
-    user = FactoryGirl.create(:admin, email: 'admin@example.com')
+    user = FactoryGirl.create(
+      :admin,
+      :with_subscription,
+      :with_github,
+      email: 'admin@example.com',
+      plan: @mentor_plan
+    )
     puts_user user, 'admin'
 
     user = FactoryGirl.create(
@@ -108,6 +115,66 @@ namespace :dev do
     FactoryGirl.create(:topic, name: 'Ruby on Rails')
   end
 
+  def create_trails
+    header "Trails"
+    user = User.find_by_email!("whetstone@example.com")
+
+    trail = FactoryGirl.create(:trail, :published, name: "Testing Fundamentals")
+    FactoryGirl.create_list(:step, 3, trail: trail)
+    puts_trail trail, "unstarted"
+
+    trail = FactoryGirl.create(:trail, :published, name: "Refactoring")
+    FactoryGirl.create_list(:step, 3, trail: trail)
+    FactoryGirl.create(:status,
+      completeable: trail,
+      state: Status::IN_PROGRESS,
+      user: user
+    )
+    puts_trail trail, "in-progress"
+
+    trail = FactoryGirl.create(:trail, :published, name: "iOS Development")
+    steps = FactoryGirl.create_list(:step, 3, trail: trail)
+    FactoryGirl.create(:status,
+      completeable: trail,
+      state: Status::COMPLETE,
+      user: user
+    )
+
+    steps.each do |step|
+      FactoryGirl.create(
+        :status,
+        completeable: step.exercise,
+        state: Status::COMPLETE,
+        user: user
+      )
+    end
+
+    puts_trail trail, "completed recently"
+
+    trail = FactoryGirl.create(:trail, :published, name: "Android Development")
+    steps = FactoryGirl.create_list(:step, 3, trail: trail)
+    FactoryGirl.create(:status,
+      completeable: trail,
+      state: Status::COMPLETE,
+      user: user,
+      created_at: 30.days.ago
+    )
+
+    steps.each do |step|
+      FactoryGirl.create(
+        :status,
+        completeable: step.exercise,
+        state: Status::COMPLETE,
+        user: user,
+        created_at: 30.days.ago
+      )
+    end
+
+    puts_trail trail, "completed more than 5 days ago"
+
+    puts "(Please sign in as whetstone@example.com to see trail progress.)"
+  end
+
   def header(msg)
     puts "\n\n*** #{msg.upcase} *** \n\n"
   end
@@ -126,5 +193,9 @@ namespace :dev do
 
   def puts_user(user, description)
     puts "#{user.email} / #{user.password} (#{description})"
+  end
+
+  def puts_trail(trail, description)
+    puts "#{trail.name} (#{description})"
   end
 end
