@@ -134,8 +134,15 @@ RailsAdmin.config do |config|
     end
 
     edit do
-      include_all_fields
-      exclude_fields :classifications, :statuses, :steps
+      field :whetstone_edit_url do
+        label false
+        help false
+        partial "whetstone_edit_url"
+      end
+
+      field :public
+      field :topics
+      field :trails
     end
   end
 

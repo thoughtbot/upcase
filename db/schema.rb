@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20141112201747) do
     t.datetime "updated_at"
     t.string   "uuid",                       null: false
     t.boolean  "public",     default: false, null: false
+    t.string   "edit_url"
   end
 
   add_index "exercises", ["public"], name: "index_exercises_on_public", using: :btree

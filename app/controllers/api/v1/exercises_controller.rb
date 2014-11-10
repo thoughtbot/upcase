@@ -23,6 +23,6 @@ class Api::V1::ExercisesController < ApiController
   end
 
   def exercise_parameters
-    params.require(:exercise).permit(:title, :url, :summary)
+    params.require(:exercise).permit(:edit_url, :summary, :title, :url)
   end
 end

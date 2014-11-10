@@ -12,6 +12,7 @@ describe "PUT /api/v1/exercises/:id" do
       expect(exercise.title).to eq exercise_attributes[:title]
       expect(exercise.uuid).to eq "uuid-1234"
       expect(exercise.url).to eq exercise_attributes[:url]
+      expect(exercise.edit_url).to eq exercise_attributes[:edit_url]
       expect(exercise.summary).to eq exercise_attributes[:summary]
     end
   end
@@ -44,9 +45,11 @@ describe "PUT /api/v1/exercises/:id" do
 
   def exercise_attributes
     {
+      edit_url:
+        "https://exercise.upcase.com/admin/exercises/shakespeare-analyzer/edit",
       title: "Shakespeare Analyzer",
-      url: "https://exercise.upcase.com/exercises/shakespeare-analyzer",
-      summary: "Analyse Shakespeare's literature"
+      summary: "Analyse Shakespeare's literature",
+      url: "https://exercise.upcase.com/exercises/shakespeare-analyzer"
     }
   end
 end
