@@ -242,7 +242,6 @@ FactoryGirl.define do
     email
     name 'Dan Deacon'
     password 'password'
-    purchased_subscription { subscription }
 
     transient do
       subscription nil
@@ -290,7 +289,7 @@ FactoryGirl.define do
       end
 
       after :create do |instance, attributes|
-        instance.purchased_subscription = create(
+        instance.subscriptions << create(
           :subscription,
           plan: attributes.plan,
           user: instance
@@ -302,7 +301,7 @@ FactoryGirl.define do
       with_subscription
 
       after :create do |instance, attributes|
-        instance.purchased_subscription = create(
+        instance.subscriptions << create(
           :subscription,
           :purchased,
           plan: attributes.plan,
@@ -327,7 +326,7 @@ FactoryGirl.define do
       stripe_customer_id "cus12345"
 
       after :create do |instance|
-        instance.purchased_subscription =
+        instance.subscriptions <<
           create(:inactive_subscription, user: instance)
       end
     end

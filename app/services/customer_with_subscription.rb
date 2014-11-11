@@ -27,8 +27,7 @@ class CustomerWithSubscription
   end
 
   def upcase_plan_sku
-    @upcase_plan_sku ||=
-      upcase_user.try(:purchased_subscription).try(:plan).try(:sku)
+    @upcase_plan_sku ||= upcase_user.try(:subscription).try(:plan).try(:sku)
   end
 
   def stripe_plan_id

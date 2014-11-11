@@ -10,8 +10,7 @@ describe CustomerWithSubscription do
 
     it "returns false if upcase customer has same plan" do
       user = create(:subscriber)
-      customer =
-        stripe_customer_for(user, plan_id: user.purchased_subscription.plan.sku)
+      customer = stripe_customer_for(user, plan_id: user.subscription.plan.sku)
       checker = CustomerWithSubscription.new(customer)
 
       expect(checker).not_to have_out_of_sync_user
@@ -36,7 +35,7 @@ describe CustomerWithSubscription do
 
       expect(result).to eq(<<-EOS.squish)
         Customer #{customer["id"]} has subscription plan_id in Stripe, and
-        #{user.purchased_subscription.plan.sku} in Upcase
+        #{user.subscription.plan.sku} in Upcase
       EOS
     end
   end

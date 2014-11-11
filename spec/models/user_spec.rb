@@ -6,7 +6,7 @@ describe User do
     it { should have_many(:completions) }
     it { should belong_to(:mentor) }
     it { should belong_to(:team) }
-    it { should have_one(:purchased_subscription).dependent(:destroy) }
+    it { should have_many(:subscriptions).dependent(:destroy) }
     it { should validate_uniqueness_of(:github_username) }
   end
 
@@ -18,7 +18,7 @@ describe User do
     it "is invalid without a mentor" do
       plan = create(:plan, includes_mentor: true)
       subscription = create(:subscription, plan: plan)
-      user = create(:user, :with_mentor, subscription: subscription)
+      user = create(:user, :with_mentor, subscriptions: [subscription])
 
       expect(user).to validate_presence_of(:mentor_id)
     end
@@ -71,14 +71,16 @@ describe User do
     it "returns the user's associated subscription if it is inactive" do
       user = User.new
       subscription = build_stubbed(:inactive_subscription)
-      user.purchased_subscription = subscription
+      user.stubs(:subscriptions).returns([subscription])
+
       expect(user.inactive_subscription).to be subscription
     end
 
     it "returns nil if the user's associated subscription is active" do
       user = User.new
       subscription = build_stubbed(:active_subscription)
-      user.purchased_subscription = subscription
+      user.stubs(:subscriptions).returns([subscription])
+
       expect(user.inactive_subscription).to be nil
     end
 
@@ -119,7 +121,7 @@ describe User do
           :with_inactive_team_subscription
         )
         user.team.subscription.update_attributes!(
-          deactivated_on: user.purchased_subscription.deactivated_on + 1.day
+          deactivated_on: user.subscriptions.first.deactivated_on + 1.day
         )
 
         expect(user.inactive_subscription).to eq(user.team.subscription)
@@ -152,7 +154,9 @@ describe User do
   context "#has_active_subscription?" do
     it "returns true if the user's associated subscription is active" do
       user = User.new
-      user.purchased_subscription = build_stubbed(:active_subscription)
+      subscription = build_stubbed(:active_subscription)
+      user.stubs(:subscriptions).returns([subscription])
+
       expect(user).to have_active_subscription
     end
 
@@ -174,12 +178,15 @@ describe User do
 
     it "returns false if the user's associated subscription is not active" do
       user = User.new
-      user.purchased_subscription = build_stubbed(:inactive_subscription)
+      subscription = build_stubbed(:inactive_subscription)
+      user.stubs(:subscriptions).returns([subscription])
+
       expect(user).not_to have_active_subscription
     end
 
     it "returns false if the user doesn't even have a subscription" do
       user = User.new
+
       expect(user).not_to have_active_subscription
     end
 
@@ -280,7 +287,7 @@ describe User do
     it "returns true when the subscription includes mentoring" do
       plan = build(:plan, includes_mentor: true)
       subscription = build(:subscription, plan: plan)
-      user = build(:user, :with_mentor, subscription: subscription)
+      user = build(:user, :with_mentor, subscriptions: [subscription])
 
       expect(user).to have_subscription_with_mentor
     end
@@ -449,7 +456,7 @@ describe User do
     it "returns a purchased subscription" do
       subscription = build_stubbed(:subscription)
       user = User.new
-      user.purchased_subscription = subscription
+      user.stubs(:subscription).returns(subscription)
 
       expect(user.subscription).to eq(subscription)
     end
@@ -461,6 +468,13 @@ describe User do
       user.team = team
 
       expect(user.subscription).to eq(team.subscription)
+    end
+
+    it "returns the active subscription if there's inactive ones" do
+      user = create(:user, :with_inactive_subscription)
+      subscription = create(:subscription, user: user)
+
+      expect(user.reload.subscription).to eq(subscription)
     end
 
     it "returns nil without a subscription" do
@@ -489,7 +503,7 @@ describe User do
     it "with inactive subscription" do
       user = User.new
       subscription = build_stubbed(:inactive_subscription)
-      user.purchased_subscription = subscription
+      user.stubs(:subscriptions).returns([subscription])
 
       expect(user.has_monthly_subscription?).to be false
     end
@@ -497,7 +511,7 @@ describe User do
     it "with active subscription" do
       user = User.new
       subscription = build_stubbed(:subscription)
-      user.purchased_subscription = subscription
+      user.stubs(:subscription).returns(subscription)
 
       expect(user.has_monthly_subscription?).to be true
     end

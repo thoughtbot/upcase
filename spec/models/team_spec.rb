@@ -26,7 +26,7 @@ describe Team do
 
       team.add_user(user)
 
-      expect(user.purchased_subscription).not_to be_active
+      expect(user.subscriptions.first).not_to be_active
     end
 
     context "when below the minimum" do

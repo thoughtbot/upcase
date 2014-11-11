@@ -48,7 +48,7 @@ class Plan < ActiveRecord::Base
   end
 
   def fulfill(checkout, user)
-    user.create_purchased_subscription(plan: self)
+    user.create_subscription(plan: self)
     SubscriptionFulfillment.new(user, self).fulfill
     if includes_team?
       TeamFulfillment.new(checkout, user).fulfill

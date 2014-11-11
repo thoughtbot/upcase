@@ -9,7 +9,7 @@ StripeEvent.setup do
     stripe_customer_id = event.data.object.customer
 
     if user = User.find_by_stripe_customer_id(stripe_customer_id)
-      cancellation = Cancellation.new(user.purchased_subscription)
+      cancellation = Cancellation.new(user.subscription)
       cancellation.process
     end
   end

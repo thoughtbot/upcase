@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :licenses
   has_many :completions
-  has_one :purchased_subscription, dependent: :destroy, class_name: 'Subscription'
+  has_many :subscriptions, dependent: :destroy
   belongs_to :mentor
   belongs_to :team
 
@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   before_save :clean_github_username
 
   def self.with_active_subscription
-    includes(purchased_subscription: :plan, team: { subscription: :plan }).
+    includes(subscriptions: :plan, team: { subscription: :plan }).
       select(&:has_active_subscription?)
   end
 
@@ -50,6 +50,10 @@ class User < ActiveRecord::Base
 
   def has_logged_in_to_forum?
     OauthAccessToken.for_forum.for_user(self).present?
+  end
+
+  def create_subscription(attributes)
+    subscriptions.create(attributes)
   end
 
   def has_active_subscription?
@@ -85,7 +89,7 @@ class User < ActiveRecord::Base
   end
 
   def subscription
-    [purchased_subscription, team_subscription].compact.detect(&:active?)
+    [personal_subscription, team_subscription].compact.detect(&:active?)
   end
 
   def has_monthly_subscription?
@@ -101,12 +105,16 @@ class User < ActiveRecord::Base
   end
 
   def deactivate_personal_subscription
-    if purchased_subscription && purchased_subscription.active?
-      Cancellation.new(purchased_subscription).cancel_now
+    if personal_subscription
+      Cancellation.new(personal_subscription).cancel_now
     end
   end
 
   private
+
+  def personal_subscription
+    subscriptions.detect(&:active?)
+  end
 
   def clean_github_username
     if github_username.blank?
@@ -131,7 +139,7 @@ class User < ActiveRecord::Base
   end
 
   def most_recently_deactivated_subscription
-    [purchased_subscription, team_subscription].
+    [*subscriptions, team_subscription].
       compact.
       reject(&:active?).
       max_by(&:deactivated_on)
