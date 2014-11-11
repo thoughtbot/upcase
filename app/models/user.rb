@@ -57,8 +57,8 @@ class User < ActiveRecord::Base
     OauthAccessToken.for_forum.for_user(self).present?
   end
 
-  def create_subscription(attributes)
-    subscriptions.create(attributes)
+  def create_subscription(plan:, stripe_id:)
+    subscriptions.create(plan: plan, stripe_id: stripe_id)
   end
 
   def has_active_subscription?

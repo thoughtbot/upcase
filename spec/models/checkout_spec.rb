@@ -27,6 +27,15 @@ describe Checkout do
       expect(fulfillment).to have_received(:fulfill)
     end
 
+    it "creates a subscription with proper stripe_id" do
+      checkout = build(:checkout)
+
+      checkout.fulfill
+      result = checkout.user.subscription.stripe_id
+
+      expect(result).to eq(FakeStripe::SUBSCRIPTION_ID)
+    end
+
     it "does not fulfill with a bad credit card" do
       stripe_subscription = stub("stripe_subscription", create: false)
       StripeSubscription.stubs(:new).returns(stripe_subscription)

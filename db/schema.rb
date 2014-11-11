@@ -279,9 +279,11 @@ ActiveRecord::Schema.define(version: 20141112201747) do
     t.string   "plan_type",                     default: "IndividualPlan", null: false
     t.decimal  "next_payment_amount",           default: 0.0,              null: false
     t.date     "next_payment_on"
+    t.string   "stripe_id"
   end
 
   add_index "subscriptions", ["plan_id", "plan_type"], name: "index_subscriptions_on_plan_id_and_plan_type", using: :btree
+  add_index "subscriptions", ["stripe_id"], name: "index_subscriptions_on_stripe_id", using: :btree
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "teachers", force: true do |t|

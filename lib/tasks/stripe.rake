@@ -1,5 +1,5 @@
 namespace :stripe do
   task sync: :environment do
-    StripeSubscriptionsChecker.new(output: STDOUT).check_all
+    StripeSubscriptionSynchronizer.new.check_all
   end
 end

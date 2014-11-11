@@ -44,6 +44,7 @@ class Checkout < ActiveRecord::Base
 
   def create_subscriptions
     if create_stripe_subscription && save
+      self.stripe_subscription_id = stripe_subscription.id
       save_info_to_user
       plan.fulfill(self, user)
       send_receipt

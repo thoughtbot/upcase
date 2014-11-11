@@ -1,4 +1,8 @@
 class FakeSubscription < Hash
+  def id
+    FactoryGirl.generate(:uuid)
+  end
+
   def save
   end
 

@@ -1,4 +1,6 @@
 class StripeSubscription
+  attr_reader :id
+
   def initialize(checkout)
     @checkout = checkout
   end
@@ -47,12 +49,15 @@ class StripeSubscription
 
   def update_subscription
     if stripe_customer.subscriptions.total_count == 0
-      stripe_customer.subscriptions.create(subscription_attributes)
+      subscription =
+        stripe_customer.subscriptions.create(subscription_attributes)
     else
       subscription = stripe_customer.subscriptions.first
       subscription_attributes.each { |key, value| subscription[key] = value }
       subscription.save
     end
+
+    @id = subscription.id
   end
 
   def subscription_attributes

@@ -4,30 +4,40 @@ class CustomerWithSubscription
   end
 
   def has_out_of_sync_user?
-    upcase_user.present? && plan_mismatched?
+    user.present? && plan_mismatched?
+  end
+
+  def update_subscription_stripe_id
+    if subscription
+      subscription.update(stripe_id: stripe_subscription["id"])
+    end
   end
 
   def to_s
     <<-EOS.squish
     Customer #{stripe_customer["id"]} has subscription #{stripe_plan_id} in
-    Stripe, and #{upcase_plan_sku} in Upcase
+    Stripe, and #{plan_sku} in Upcase
     EOS
   end
 
   private
 
-  def upcase_user
-    @upcase_user ||= User.find_by(stripe_customer_id: stripe_customer["id"])
+  def user
+    User.find_by(stripe_customer_id: stripe_customer["id"])
   end
 
   attr_reader :stripe_customer
 
   def plan_mismatched?
-    upcase_plan_sku != stripe_plan_id
+    plan_sku != stripe_plan_id
   end
 
-  def upcase_plan_sku
-    @upcase_plan_sku ||= upcase_user.try(:subscription).try(:plan).try(:sku)
+  def plan_sku
+    subscription.try(:plan).try(:sku)
+  end
+
+  def subscription
+    user.try(:subscription)
   end
 
   def stripe_plan_id

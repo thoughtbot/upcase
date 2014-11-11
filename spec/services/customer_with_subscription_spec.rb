@@ -25,6 +25,18 @@ describe CustomerWithSubscription do
     end
   end
 
+  describe "#update_subscription_stripe_id" do
+    it "updates local subscription stripe_id" do
+      user = create(:subscriber)
+      customer = stripe_customer_for(user, plan_id: "plan_id")
+
+      CustomerWithSubscription.new(customer).update_subscription_stripe_id
+
+      expect(user.subscription.reload.stripe_id).
+        to eq(customer["subscriptions"]["data"][0]["id"])
+    end
+  end
+
   describe "#to_s" do
     it "inspects the customer, subscription, user, and plan" do
       user = create(:subscriber)
@@ -41,21 +53,19 @@ describe CustomerWithSubscription do
   end
 
   def stripe_customer_for(user, plan_id:)
-    {
-      "id" => user.stripe_customer_id,
-      "subscriptions" => {
-        "data" => [
-          "plan" => { "id" => plan_id }
-        ]
-      }
-    }
+    stripe_customer(plan_id: plan_id).merge(
+      "id" => user.stripe_customer_id
+    )
   end
 
   def stripe_customer(plan_id: "any")
     {
       "id" => "cus_stripe_id",
       "subscriptions" => {
-        "data" => ["plan" => { "id" => plan_id }]
+        "data" => [
+          "id" => "sub_12345",
+          "plan" => { "id" => plan_id }
+        ]
       }
     }
   end

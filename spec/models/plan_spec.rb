@@ -58,8 +58,10 @@ describe Plan do
 
   describe '#fulfill' do
     it 'starts a subscription' do
+      subscription = build_stubbed(:subscription)
+      subscription.stubs(update: nil)
       user = build_stubbed(:user)
-      user.stubs(:create_subscription)
+      user.stubs(:create_subscription).returns(subscription)
       plan = build_stubbed(:plan)
       checkout = build_stubbed(:checkout, user: user, plan: plan)
       fulfillment = stub_subscription_fulfillment(checkout)
@@ -68,7 +70,10 @@ describe Plan do
 
       expect(fulfillment).to have_received(:fulfill)
       expect(user).
-        to have_received(:create_subscription).with(plan: plan)
+        to have_received(:create_subscription).with(
+          plan: plan,
+          stripe_id: checkout.stripe_subscription_id
+        )
     end
   end
 
@@ -107,8 +112,10 @@ describe Plan do
 
   describe "#fulfill" do
     it "starts a subscription for a new team" do
+      subscription = build_stubbed(:subscription)
+      subscription.stubs(update: nil)
       user = build_stubbed(:user)
-      user.stubs(:create_subscription)
+      user.stubs(:create_subscription).returns(subscription)
       plan = build_stubbed(:plan, :team)
       checkout = build_stubbed(:checkout, user: user, plan: plan)
       subscription_fulfillment = stub_subscription_fulfillment(checkout)
@@ -119,7 +126,10 @@ describe Plan do
       expect(subscription_fulfillment).to have_received(:fulfill)
       expect(team_fulfillment).to have_received(:fulfill)
       expect(user).
-        to have_received(:create_subscription).with(plan: plan)
+        to have_received(:create_subscription).with(
+          plan: plan,
+          stripe_id: checkout.stripe_subscription_id
+        )
     end
 
     def stub_team_fulfillment(checkout)
