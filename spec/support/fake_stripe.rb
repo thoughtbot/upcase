@@ -1,13 +1,13 @@
-require 'sinatra/base'
-require 'capybara_discoball'
+require "sinatra/base"
+require "capybara_discoball"
 
 class FakeStripe < Sinatra::Base
-  EVENT_ID_FOR_SUCCESSFUL_INVOICE_PAYMENT = 'evt_1X6Z2OXmhBVcm9'
-  EVENT_ID_FOR_INVOICE_PAYMENT_FOR_UNSUBSCRIBED_USER = 'evt_3X6Z2OXmhBVcm9'
-  EVENT_ID_FOR_SUBSCRIPTION_DELETION = 'evt_2X6Z2OXmhBVcm9'
-  CUSTOMER_ID = 'cus_1CXxPJDpw1VLvJ'
-  CUSTOMER_EMAIL = 'foo@bar.com'
-  PLAN_ID = 'JAVA-PLAN-1b3a5c51-5c1a-421b-8822-69138c2d937b'
+  EVENT_ID_FOR_SUCCESSFUL_INVOICE_PAYMENT = "evt_1X6Z2OXmhBVcm9"
+  EVENT_ID_FOR_INVOICE_PAYMENT_FOR_UNSUBSCRIBED_USER = "evt_3X6Z2OXmhBVcm9"
+  EVENT_ID_FOR_SUBSCRIPTION_DELETION = "evt_2X6Z2OXmhBVcm9"
+  CUSTOMER_ID = "cus_1CXxPJDpw1VLvJ"
+  CUSTOMER_EMAIL = "foo@bar.com"
+  PLAN_ID = "JAVA-PLAN-1b3a5c51-5c1a-421b-8822-69138c2d937b"
 
   cattr_reader :last_charge, :last_customer_email, :last_token, :coupons,
     :customer_plan_id, :last_coupon_used, :customer_plan_quantity
@@ -19,13 +19,13 @@ class FakeStripe < Sinatra::Base
     self.failure = nil
   end
 
-  get '/v1/tokens' do
-    content_type 'application/javascript'
+  get "/v1/tokens" do
+    content_type "application/javascript"
 
     "#{params[:callback]}(#{token.to_json}, 201)"
   end
 
-  get '/v1/plans/:id' do
+  get "/v1/plans/:id" do
     content_type :json
 
     {
@@ -44,7 +44,7 @@ class FakeStripe < Sinatra::Base
     }.to_json
   end
 
-  get '/v1/customers/:id' do
+  get "/v1/customers/:id" do
     content_type :json
 
     customer(params[:id]).to_json
@@ -93,7 +93,7 @@ class FakeStripe < Sinatra::Base
     }.to_json
   end
 
-  post '/v1/customers' do
+  post "/v1/customers" do
     @@last_customer_email = params[:email]
     @@last_token = params[:card]
     content_type :json
@@ -155,7 +155,7 @@ class FakeStripe < Sinatra::Base
     end
   end
 
-  post '/v1/charges' do
+  post "/v1/charges" do
     @@last_charge = params[:amount]
     content_type :json
 
@@ -231,12 +231,12 @@ class FakeStripe < Sinatra::Base
     end
   end
 
-  get '/v1/charges' do
+  get "/v1/charges" do
     content_type :json
     [charge].to_json
   end
 
-  get '/v1/charges/:id' do
+  get "/v1/charges/:id" do
     content_type :json
     charge(params[:id]).to_json
   end
@@ -256,7 +256,7 @@ class FakeStripe < Sinatra::Base
     }.to_json
   end
 
-  post '/v1/customers/:id' do
+  post "/v1/customers/:id" do
     content_type :json
     if failure
       status 402
@@ -279,14 +279,14 @@ class FakeStripe < Sinatra::Base
     end
   end
 
-  post '/v1/coupons' do
+  post "/v1/coupons" do
     coupons[params[:id]] = create_coupon_hash(params)
     content_type :json
 
     coupons[params[:id]].to_json
   end
 
-  get '/v1/coupons/:id' do
+  get "/v1/coupons/:id" do
     content_type :json
 
     if coupons[params[:id]]
@@ -303,7 +303,7 @@ class FakeStripe < Sinatra::Base
     end
   end
 
-  get '/v1/invoices' do
+  get "/v1/invoices" do
     content_type :json
     {
       object: "list",
@@ -315,21 +315,21 @@ class FakeStripe < Sinatra::Base
     }.to_json
   end
 
-  get '/v1/invoices/upcoming' do
+  get "/v1/invoices/upcoming" do
     content_type :json
 
     customer_invoice.to_json
   end
 
-  get '/v1/invoices/:id' do
+  get "/v1/invoices/:id" do
     content_type :json
 
     case params[:id]
-    when 'in_1s4JSgbcUaElzU'
+    when "in_1s4JSgbcUaElzU"
       customer_invoice.to_json
-    when 'in_3Eh5UIbuDVdhat'
+    when "in_3Eh5UIbuDVdhat"
       customer_invoice_with_discount_in_percent.to_json
-    when 'in_3lNBWqTVMT9sFb'
+    when "in_3lNBWqTVMT9sFb"
       customer_unsubscribe_invoice.to_json
     end
   end
@@ -644,22 +644,22 @@ class FakeStripe < Sinatra::Base
     {
       id: "sub_4uJxAs8DlW3Z0w",
       plan: {
-        interval: 'month',
-        name: 'Java Bindings Plan',
+        interval: "month",
+        name: "Java Bindings Plan",
         created: 1403972754,
         amount: 100,
-        currency: 'usd',
+        currency: "usd",
         id: PLAN_ID,
-        object: 'plan',
+        object: "plan",
         livemode: false,
         interval_count: 1,
         trial_period_days: nil,
         metadata: {},
         statement_description: nil
       },
-      object: 'subscription',
+      object: "subscription",
       start: 1358555835,
-      status: 'active',
+      status: "active",
       customer: CUSTOMER_ID,
       cancel_at_period_end: false,
       current_period_start: 1358555835,
