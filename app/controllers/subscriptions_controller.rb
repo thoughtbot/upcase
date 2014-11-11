@@ -14,8 +14,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def update
-    plan = Plan.find_by_sku!(params[:plan_id])
-    current_user.subscription.change_plan(plan)
+    current_user.subscription.change_plan(sku: params[:plan_id])
     redirect_to my_account_path,
                 notice: I18n.t("subscriptions.flashes.change.success")
   end

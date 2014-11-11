@@ -44,7 +44,7 @@ class Cancellation
   end
 
   def downgrade
-    @subscription.change_plan(Plan.basic)
+    @subscription.change_plan(sku: Plan.basic.sku)
   end
 
   private

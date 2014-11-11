@@ -47,12 +47,12 @@ class Subscription < ActiveRecord::Base
     update_column(:deactivated_on, Time.zone.today)
   end
 
-  def change_plan(new_plan)
+  def change_plan(sku:)
     update_features do
       subscription = stripe_customer.subscriptions.first
-      subscription.plan = new_plan.sku
+      subscription.plan = sku
       subscription.save
-      self.plan = new_plan
+      self.plan = Plan.find_by!(sku: sku)
       save!
     end
   end

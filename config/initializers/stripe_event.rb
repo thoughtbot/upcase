@@ -1,16 +1,15 @@
 # Handlers for Stripe's webhook.
 StripeEvent.setup do
-  subscribe 'invoice.payment_succeeded' do |event|
+  subscribe "invoice.payment_succeeded" do |event|
     invoice = Invoice.new(event.data.object)
     InvoiceNotifier.new(invoice).send_receipt
   end
 
-  subscribe 'customer.subscription.deleted' do |event|
-    stripe_customer_id = event.data.object.customer
+  subscribe "customer.subscription.updated" do |event|
+    StripeEvents.new(event).customer_subscription_updated
+  end
 
-    if user = User.find_by_stripe_customer_id(stripe_customer_id)
-      cancellation = Cancellation.new(user.subscription)
-      cancellation.process
-    end
+  subscribe "customer.subscription.deleted" do |event|
+    StripeEvents.new(event).customer_subscription_deleted
   end
 end
