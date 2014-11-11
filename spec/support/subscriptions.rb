@@ -14,7 +14,7 @@ module Subscriptions
 
   def sign_in_as_user_with_downgraded_subscription
     sign_in_as_user_with_subscription
-    @current_user.subscription.change_plan(create(:basic_plan))
+    @current_user.subscription.change_plan(sku: create(:basic_plan).sku)
   end
 
   def click_landing_page_call_to_action

@@ -116,7 +116,7 @@ describe Subscription do
       stripe_customer = stub(subscriptions: [FakeSubscription.new])
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 
-      subscription.change_plan(different_plan)
+      subscription.change_plan(sku: different_plan.sku)
 
       expect(stripe_customer.subscriptions.first.plan).to eq different_plan.sku
     end
@@ -125,7 +125,7 @@ describe Subscription do
       different_plan = create(:plan, sku: 'different')
       subscription = create(:active_subscription)
 
-      subscription.change_plan(different_plan)
+      subscription.change_plan(sku: different_plan.sku)
 
       expect(subscription.plan).to eq different_plan
     end
@@ -133,14 +133,14 @@ describe Subscription do
     it "fulfills features gained by the new plan" do
       subscription = create(:active_subscription)
       feature_fulfillment = stub_feature_fulfillment
-      subscription.change_plan(build_stubbed(:plan))
+      subscription.change_plan(sku: build_stubbed(:plan).sku)
       expect(feature_fulfillment).to have_received(:fulfill_gained_features)
     end
 
     it "unfulfills features lost by the old plan" do
       subscription = create(:active_subscription)
       feature_fulfillment = stub_feature_fulfillment
-      subscription.change_plan(build_stubbed(:plan))
+      subscription.change_plan(sku: build_stubbed(:plan).sku)
       expect(feature_fulfillment).to have_received(:unfulfill_lost_features)
     end
 

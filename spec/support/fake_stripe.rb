@@ -4,11 +4,13 @@ require "capybara_discoball"
 class FakeStripe < Sinatra::Base
   EVENT_ID_FOR_SUCCESSFUL_INVOICE_PAYMENT = "evt_1X6Z2OXmhBVcm9"
   EVENT_ID_FOR_INVOICE_PAYMENT_FOR_UNSUBSCRIBED_USER = "evt_3X6Z2OXmhBVcm9"
+  EVENT_ID_FOR_SUBSCRIPTION_UPDATE = "evt_2X6Z2OXmhBVc11"
   EVENT_ID_FOR_SUBSCRIPTION_DELETION = "evt_2X6Z2OXmhBVcm9"
   CUSTOMER_ID = "cus_1CXxPJDpw1VLvJ"
   CUSTOMER_EMAIL = "foo@bar.com"
   SUBSCRIPTION_ID = "sub_4uJxAs8DlW3Z0w"
   PLAN_ID = "JAVA-PLAN-1b3a5c51-5c1a-421b-8822-69138c2d937b"
+  SUBSCRIPTION_ID = "sub_4uJxAs8DlW3Z0w"
 
   cattr_reader :last_charge, :last_customer_email, :last_token, :coupons,
     :customer_plan_id, :last_coupon_used, :customer_plan_quantity
@@ -353,6 +355,17 @@ class FakeStripe < Sinatra::Base
       type: "invoice.payment_succeeded",
       data: {
         object: customer_unsubscribe_invoice
+      }
+    }.to_json
+  end
+
+  get "/v1/events/#{EVENT_ID_FOR_SUBSCRIPTION_UPDATE}" do
+    content_type :json
+    {
+      id: EVENT_ID_FOR_SUBSCRIPTION_UPDATE,
+      type: "customer.subscription.updated",
+      data: {
+        object: customer_subscription
       }
     }.to_json
   end

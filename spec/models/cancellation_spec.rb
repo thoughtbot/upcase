@@ -228,7 +228,8 @@ describe Cancellation do
 
       cancellation.downgrade
 
-      expect(subscription).to have_received(:change_plan).with(downgrade_plan)
+      expect(subscription).to have_received(:change_plan).
+        with(sku: downgrade_plan.sku)
     end
   end
 
