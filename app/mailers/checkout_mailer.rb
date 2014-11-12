@@ -4,7 +4,7 @@ class CheckoutMailer < BaseMailer
 
     mail(
       to: @checkout.user_email,
-      subject: "Your receipt for #{@checkout.subscribeable_name}"
+      subject: "Your receipt for #{@checkout.plan_name}"
     )
   end
 end

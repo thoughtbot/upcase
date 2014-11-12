@@ -26,7 +26,7 @@ describe CheckoutsController do
 
       get :new, plan: desired_plan
 
-      expect(assigns(:checkout).subscribeable).to eq desired_plan
+      expect(assigns(:checkout).plan).to eq desired_plan
     end
   end
 

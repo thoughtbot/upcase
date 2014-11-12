@@ -3,5 +3,5 @@
   as: :hidden,
   wrapper_html: {
     "data-individual-price" => @checkout.price,
-    "data-interval" => @checkout.subscribeable.subscription_interval
+    "data-interval" => @checkout.plan.subscription_interval
   }) %>

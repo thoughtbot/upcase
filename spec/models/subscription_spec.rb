@@ -102,7 +102,7 @@ describe Subscription do
       create(
         :checkout,
         user: subscription.user,
-        subscribeable: original_plan
+        plan: original_plan
       )
 
       expect { subscription.deactivate }.not_to raise_error

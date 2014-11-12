@@ -10,7 +10,7 @@ describe StripeSubscription do
       subscription.create
 
       new_subscription = customer.subscriptions.first
-      expect(new_subscription[:plan]).to eq checkout.subscribeable_sku
+      expect(new_subscription[:plan]).to eq checkout.plan_sku
       expect(new_subscription[:quantity]).to eq 1
     end
 
@@ -23,7 +23,7 @@ describe StripeSubscription do
       subscription.create
 
       new_subscription = customer.subscriptions.first
-      expect(new_subscription[:plan]).to eq checkout.subscribeable_sku
+      expect(new_subscription[:plan]).to eq checkout.plan_sku
       expect(new_subscription[:quantity]).to eq checkout.quantity
     end
 
@@ -37,7 +37,7 @@ describe StripeSubscription do
       subscription.create
 
       new_subscription = customer.subscriptions.first
-      expect(new_subscription[:plan]).to eq checkout.subscribeable_sku
+      expect(new_subscription[:plan]).to eq checkout.plan_sku
       expect(new_subscription[:coupon]).to eq "25OFF"
       expect(new_subscription[:quantity]).to eq 1
     end

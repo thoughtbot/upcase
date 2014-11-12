@@ -1,4 +1,4 @@
-<%= semantic_form_for checkout, url: checkouts_path(checkout.subscribeable), html: { method: 'post' } do |form| %>
+<%= semantic_form_for checkout, url: checkouts_path(checkout.plan), html: { method: 'post' } do |form| %>
   <%= form.semantic_errors %>
 
   <%= form.inputs do %>
@@ -23,7 +23,7 @@
       <%= form.input :github_username, required: true, label: "GitHub username",
         hint: "Be sure to enter a valid, unique GitHub username. Organizations are not allowed." %>
     <% end %>
-    <%= render checkout_form_partial(@checkout.subscribeable), form: form, checkout: @checkout %>
+    <%= render checkout_form_partial(@checkout.plan), form: form, checkout: @checkout %>
   <% end %>
 
   <%= link_to 'Need an address on your receipt?', '#', class: 'reveal-address' %>

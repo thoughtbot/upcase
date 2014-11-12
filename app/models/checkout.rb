@@ -1,6 +1,6 @@
 class Checkout < ActiveRecord::Base
   belongs_to :user
-  belongs_to :subscribeable, polymorphic: true
+  belongs_to :plan
 
   validates :github_username, presence: true
   validates :email, presence: true
@@ -13,12 +13,14 @@ class Checkout < ActiveRecord::Base
   delegate :github_username, to: :user, prefix: true
   delegate :last_name, to: :user, prefix: true
   delegate :organization, to: :user, prefix: true
-  delegate :sku, to: :subscribeable, prefix: true
-  delegate :includes_team?, to: :subscribeable
-  delegate :name, to: :subscribeable, prefix: true
-  delegate :terms, to: :subscribeable
+  delegate :sku, to: :plan, prefix: true
+  delegate :includes_team?, to: :plan
+  delegate :name, to: :plan, prefix: true
+  delegate :terms, to: :plan
 
-  attr_accessor :email, :name, :github_username, :password, :stripe_customer_id, :stripe_token, :organization, :address1, :address2, :city, :state, :zip_code, :country
+  attr_accessor :email, :name, :github_username, :password, :stripe_customer_id,
+    :stripe_token, :organization, :address1, :address2, :city, :state,
+    :zip_code, :country
 
   before_validation :create_user, if: :password_required?
   before_create :create_subscription
@@ -27,7 +29,7 @@ class Checkout < ActiveRecord::Base
   after_save :send_receipt
 
   def price
-    subscribeable.individual_price * quantity
+    plan.individual_price * quantity
   end
 
   private
@@ -56,7 +58,7 @@ class Checkout < ActiveRecord::Base
   end
 
   def fulfill
-    subscribeable.fulfill(self, user)
+    plan.fulfill(self, user)
   end
 
   def password_required?

@@ -11,7 +11,7 @@ class CheckoutsController < ApplicationController
   end
 
   def create
-    @checkout = requested_subscribeable.checkouts.build(checkout_params)
+    @checkout = plan.checkouts.build(checkout_params)
     @checkout.user = current_user
     @checkout.stripe_customer_id = existing_stripe_customer_id
     CheckoutPrepopulator.new(@checkout, current_user).prepopulate_with_user_info
@@ -23,7 +23,7 @@ class CheckoutsController < ApplicationController
         success_url,
         notice: t(
           "checkout.flashes.success",
-          name: @checkout.subscribeable_name
+          name: @checkout.plan_name
         ),
         flash: {
           purchase_amount: @checkout.price
@@ -37,7 +37,7 @@ class CheckoutsController < ApplicationController
   private
 
   def build_checkout_with_defaults
-    checkout = requested_subscribeable.checkouts.build
+    checkout = plan.checkouts.build
     CheckoutPrepopulator.new(checkout, current_user).prepopulate_with_user_info
     checkout
   end
@@ -84,6 +84,10 @@ class CheckoutsController < ApplicationController
     if using_existing_card?
       current_user.stripe_customer_id
     end
+  end
+
+  def plan
+    Plan.where(sku: params[:plan]).first
   end
 
   def using_existing_card?

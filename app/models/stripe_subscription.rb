@@ -61,7 +61,7 @@ class StripeSubscription
 
   def base_subscription_attributes
     {
-      plan: @checkout.subscribeable_sku,
+      plan: @checkout.plan_sku,
       quantity: @checkout.quantity
     }
   end

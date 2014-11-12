@@ -23,7 +23,7 @@ describe CheckoutMailer do
         it 'mentions the mentor email' do
           plan = create(:plan, :includes_mentor)
           user = create(:subscriber, plan: plan)
-          checkout = create(:checkout, user: user, subscribeable: plan)
+          checkout = create(:checkout, user: user, plan: plan)
 
           expect(email_for(checkout)).to have_body_text(/mentor/)
         end
@@ -33,7 +33,7 @@ describe CheckoutMailer do
           checkout = create(
             :checkout,
             user: user,
-            subscribeable: create(:basic_plan)
+            plan: create(:basic_plan)
           )
 
           expect(email_for(checkout)).not_to have_body_text(/mentor/)

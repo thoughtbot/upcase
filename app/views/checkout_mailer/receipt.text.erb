@@ -1,18 +1,18 @@
-Thank you for subscribing to <%= @checkout.subscribeable_name %>!
+Thank you for subscribing to <%= @checkout.plan_name %>!
 
-<%- if @checkout.subscribeable.has_feature?(:mentor) -%>
+<%- if @checkout.plan.has_feature?(:mentor) -%>
 You will receive an email from your mentor soon.
 <%- end -%>
 
 In the meantime, one of the first things you might do is visit our Trail Maps
-<%- if @checkout.subscribeable.has_feature?(:video_tutorials) -%>
+<%- if @checkout.plan.has_feature?(:video_tutorials) -%>
 and check off your skills to determine which video tutorials are right for you:
 <%- else -%>
 and check off your skills to identify new things to learn:
 <%- end -%>
 <%= topics_url %>
 
-<%= @checkout.subscribeable_name %> also includes access to our forum. Get help
+<%= @checkout.plan_name %> also includes access to our forum. Get help
 from thoughtbot and other subscribers here:
 <%= forum_url %>
 

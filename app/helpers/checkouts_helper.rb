@@ -16,7 +16,7 @@ module CheckoutsHelper
   end
 
   def subscription_interval(checkout)
-    checkout.subscribeable.subscription_interval
+    checkout.plan.subscription_interval
   end
 
   def choose_plan_link(plan)
@@ -35,8 +35,8 @@ module CheckoutsHelper
     signed_out?
   end
 
-  def checkout_form_partial(subscribeable)
-    if subscribeable.includes_team?
+  def checkout_form_partial(plan)
+    if plan.includes_team?
       "checkouts/team_plan_form"
     else
       "checkouts/individual_plan_form"

@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe Checkout do
   it { should belong_to(:user) }
-  it { should belong_to(:subscribeable) }
+  it { should belong_to(:plan) }
 
   it { should validate_presence_of(:user_id) }
   it { should validate_presence_of(:quantity) }
@@ -13,9 +13,9 @@ describe Checkout do
   it { should delegate(:user_first_name).to(:user).as(:first_name) }
   it { should delegate(:user_last_name).to(:user).as(:last_name) }
   it { should delegate(:user_github_username).to(:user).as(:github_username) }
-  it { should delegate(:subscribeable_sku).to(:subscribeable).as(:sku) }
-  it { should delegate(:subscribeable_name).to(:subscribeable).as(:name) }
-  it { should delegate(:terms).to(:subscribeable) }
+  it { should delegate(:plan_sku).to(:plan).as(:sku) }
+  it { should delegate(:plan_name).to(:plan).as(:name) }
+  it { should delegate(:terms).to(:plan) }
 
   context "#save" do
     it "fulfills a subscription when purchasing a plan" do
@@ -88,16 +88,16 @@ describe Checkout do
     end
   end
 
-  it "uses the individual_price of the subscribeable as it's price" do
+  it "uses the individual_price of the plan as it's price" do
     plan = build(:plan, individual_price: 50)
-    checkout = build(:checkout, subscribeable: plan)
+    checkout = build(:checkout, plan: plan)
 
     expect(checkout.price).to eq 50
   end
 
-  it "uses the individual_price of the subscribeable and quantity as it's price" do
+  it "uses the individual_price of the plan and quantity as it's price" do
     plan = build(:plan, individual_price: 50)
-    checkout = build(:checkout, subscribeable: plan, quantity: 3)
+    checkout = build(:checkout, plan: plan, quantity: 3)
 
     expect(checkout.price).to eq 150
   end

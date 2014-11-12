@@ -130,7 +130,7 @@ describe Team do
   end
 
   def stub_team_fulfillment(team, user)
-    checkout = build_stubbed(:checkout, subscribeable: team.subscription.plan)
+    checkout = build_stubbed(:checkout, plan: team.subscription.plan)
     stub_subscription_fulfillment(checkout, user)
   end
 end

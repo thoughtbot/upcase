@@ -61,7 +61,7 @@ describe Plan do
       user = build_stubbed(:user)
       user.stubs(:create_subscription)
       plan = build_stubbed(:plan)
-      checkout = build_stubbed(:checkout, user: user, subscribeable: plan)
+      checkout = build_stubbed(:checkout, user: user, plan: plan)
       fulfillment = stub_subscription_fulfillment(checkout)
 
       plan.fulfill(checkout, user)
@@ -110,7 +110,7 @@ describe Plan do
       user = build_stubbed(:user)
       user.stubs(:create_subscription)
       plan = build_stubbed(:plan, :team)
-      checkout = build_stubbed(:checkout, user: user, subscribeable: plan)
+      checkout = build_stubbed(:checkout, user: user, plan: plan)
       subscription_fulfillment = stub_subscription_fulfillment(checkout)
       team_fulfillment = stub_team_fulfillment(checkout)
 

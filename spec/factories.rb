@@ -196,7 +196,7 @@ FactoryGirl.define do
     email
     name
     github_username
-    association :subscribeable, factory: :plan
+    association :plan, factory: :plan
     association :user, :with_stripe, :with_mentor, :with_github
   end
 
@@ -385,7 +385,7 @@ FactoryGirl.define do
       after :create do |subscription|
         create(
           :checkout,
-          subscribeable: subscription.plan,
+          plan: subscription.plan,
           user: subscription.user
         )
       end
