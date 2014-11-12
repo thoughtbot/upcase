@@ -63,7 +63,7 @@ describe "shared/_header.html.erb" do
         current_user_has_active_subscription: false
       )
 
-      expect(rendered).to have_css("a[href='#{subscribe_path}']")
+      expect(rendered).to have_css("a[href='#{new_subscription_path}']")
     end
   end
 
@@ -74,7 +74,7 @@ describe "shared/_header.html.erb" do
         current_user_has_active_subscription: true
       )
 
-      expect(rendered).not_to have_css("a[href='#{subscribe_path}']")
+      expect(rendered).not_to have_css("a[href='#{new_subscription_path}']")
     end
   end
 

@@ -6,8 +6,8 @@ feature 'Visitor signs up for a subscription' do
   end
 
   scenario 'visitor signs up by navigating from landing page' do
-    visit subscribe_path
-    click_link I18n.t('subscriptions.join_cta')
+    visit "/"
+    click_link "Join"
     within("[data-sku='#{@plan.sku}']") do
       click_link I18n.t('subscriptions.choose_plan_html')
     end

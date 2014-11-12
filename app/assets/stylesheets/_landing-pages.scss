@@ -5,7 +5,7 @@ body.shows-show #videos {
 .landing-page-wrapper {
   @include span-columns(9);
   @include shift(1.5);
-  padding-top: 4em;
+  padding: 1em 0 3em;
 
   header.landing-hero {
     text-align: center;

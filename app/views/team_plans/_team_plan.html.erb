@@ -8,7 +8,7 @@
   ) %>
   <section class="plan-details">
     <p>Sign your team up for <%= t('shared.subscription.name') %> today, and give them the finest Ruby on Rails content and the kindest expert teachers.</p>
-    <p>Your team gets all of the great benefits of <%= link_to t('shared.subscription.name'), subscribe_path %>, with convenient monthly group billing, as well as a nice discount. <%= t('shared.subscription.name') %> Teams have a minimum of 5 members, and a 10% discount off the normal price. New members can be added at any time.</p>
+    <p>Your team gets all of the great benefits of <%= link_to t('shared.subscription.name'), new_subscription_path %>, with convenient monthly group billing, as well as a nice discount. <%= t('shared.subscription.name') %> Teams have a minimum of 5 members, and a 10% discount off the normal price. New members can be added at any time.</p>
     <%== team_plan.description %>
     <p><strong>New team members can be added for just <%= individual_price_per_month team_plan %> each.</strong></p>
   </section>
