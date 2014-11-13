@@ -36,7 +36,7 @@ Upcase::Application.routes.draw do
   resource :subscription, only: [:new, :edit, :update]
   resources :licenses, only: [:index]
   resources :topics, only: :index, path: :trails
-  resources :videos, only: [:show]
+  resources :videos, only: [:index, :show]
   resources(
     :design_for_developers_resources,
     path: "design-for-developers-resources",

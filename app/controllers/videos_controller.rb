@@ -1,4 +1,8 @@
 class VideosController < ApplicationController
+  def index
+    @videos = Video.published.recently_published_first
+  end
+
   def show
     @video = Video.find(params[:id])
     @offering = Offering.new(@video.watchable, current_user)
