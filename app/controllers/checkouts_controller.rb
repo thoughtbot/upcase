@@ -6,29 +6,15 @@ class CheckoutsController < ApplicationController
         notice: t("checkout.flashes.already_subscribed")
       )
     else
-      @checkout = build_checkout_with_defaults
+      @checkout = build_checkout({})
     end
   end
 
   def create
-    @checkout = plan.checkouts.build(checkout_params)
-    @checkout.user = current_user
-    @checkout.stripe_customer_id = existing_stripe_customer_id
-    CheckoutPrepopulator.new(@checkout, current_user).prepopulate_with_user_info
+    @checkout = build_checkout(checkout_params_with_user)
 
-    if @checkout.save
-      sign_in_checkout_user(@checkout)
-
-      redirect_to(
-        success_url,
-        notice: t(
-          "checkout.flashes.success",
-          name: @checkout.plan_name
-        ),
-        flash: {
-          purchase_amount: @checkout.price
-        }
-      )
+    if @checkout.fulfill
+      sign_in_and_redirect
     else
       render :new
     end
@@ -36,16 +22,27 @@ class CheckoutsController < ApplicationController
 
   private
 
-  def build_checkout_with_defaults
-    checkout = plan.checkouts.build
+  def build_checkout(arguments)
+    checkout = plan.checkouts.build(arguments)
     CheckoutPrepopulator.new(checkout, current_user).prepopulate_with_user_info
     checkout
   end
 
-  def sign_in_checkout_user(checkout)
-    if signed_out? && checkout.user
-      sign_in checkout.user
-    end
+  def checkout_params_with_user
+    checkout_params.merge(
+      stripe_customer_id: existing_stripe_customer_id,
+      user: current_user
+    )
+  end
+
+  def sign_in_and_redirect
+    sign_in @checkout.user
+
+    redirect_to(
+      success_url,
+      notice: t("checkout.flashes.success", name: @checkout.plan_name),
+      flash: { purchase_amount: @checkout.price }
+    )
   end
 
   def success_url
@@ -61,23 +58,23 @@ class CheckoutsController < ApplicationController
   end
 
   def checkout_params
-    params.
-      require(:checkout).
-      permit(:stripe_coupon_id,
-             :name,
-             :email,
-             :password,
-             :github_username,
-             :organization,
-             :address1,
-             :address2,
-             :city,
-             :state,
-             :zip_code,
-             :country,
-             :payment_method,
-             :stripe_token,
-             :quantity)
+    params.require(:checkout).permit(
+      :address1,
+      :address2,
+      :city,
+      :country,
+      :email,
+      :github_username,
+      :name,
+      :organization,
+      :password,
+      :payment_method,
+      :quantity,
+      :state,
+      :stripe_coupon_id,
+      :stripe_token,
+      :zip_code
+    )
   end
 
   def existing_stripe_customer_id

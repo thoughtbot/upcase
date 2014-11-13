@@ -1,32 +1,40 @@
 class Checkout < ActiveRecord::Base
-  belongs_to :user
   belongs_to :plan
+  belongs_to :user
 
-  validates :github_username, presence: true
-  validates :email, presence: true
-  validates :user_id, presence: true
-  validates :quantity, presence: true
-  validates :password, presence: true, if: :password_required?
+  validates :email, :github_username, :quantity, :user_id, presence: true
 
+  delegate :name, :sku, to: :plan, prefix: true
+  delegate :includes_team?, :terms, to: :plan
   delegate :email, to: :user, prefix: true
   delegate :first_name, to: :user, prefix: true
   delegate :github_username, to: :user, prefix: true
   delegate :last_name, to: :user, prefix: true
   delegate :organization, to: :user, prefix: true
-  delegate :sku, to: :plan, prefix: true
-  delegate :includes_team?, to: :plan
-  delegate :name, to: :plan, prefix: true
-  delegate :terms, to: :plan
 
-  attr_accessor :email, :name, :github_username, :password, :stripe_customer_id,
-    :stripe_token, :organization, :address1, :address2, :city, :state,
-    :zip_code, :country
+  attr_accessor \
+    :address1,
+    :address2,
+    :city,
+    :country,
+    :email,
+    :github_username,
+    :name,
+    :organization,
+    :password,
+    :state,
+    :stripe_customer_id,
+    :stripe_subscription_id,
+    :stripe_token,
+    :zip_code
 
-  before_validation :create_user, if: :password_required?
-  before_create :create_subscription
-  after_save :save_info_to_user
-  after_save :fulfill
-  after_save :send_receipt
+  def fulfill
+    transaction do
+      if user.present? || create_valid_user
+        create_subscriptions
+      end
+    end
+  end
 
   def price
     plan.individual_price * quantity
@@ -34,43 +42,47 @@ class Checkout < ActiveRecord::Base
 
   private
 
-  def create_user
-    if name.present? && email.present? && password.present? && github_username.present?
-      self.user = User.create(name: name, email: email, password: password, github_username: github_username)
-      add_errors_from_user unless user.valid?
+  def create_subscriptions
+    if create_stripe_subscription && save
+      save_info_to_user
+      plan.fulfill(self, user)
+      send_receipt
     end
   end
 
-  def add_errors_from_user
-    errors[:email] = user.errors[:email]
-    errors[:name] = user.errors[:name]
-    errors[:password] = user.errors[:password]
-    errors[:github_username] = user.errors[:github_username]
-    errors
+  def create_valid_user
+    self.user = User.create(
+      name: name,
+      email: email,
+      password: password,
+      github_username: github_username
+    )
+    copy_user_validations
+    user.valid?
   end
 
-  def create_subscription
+  def copy_user_validations
+    if user.invalid?
+      %i(email name password github_username).each do |attribute|
+        errors[attribute] = user.errors[attribute]
+      end
+    end
+  end
+
+  def create_stripe_subscription
     stripe_subscription.create
   end
 
-  def stripe_subscription
-    @stripe_subscription ||= StripeSubscription.new(self)
-  end
-
-  def fulfill
-    plan.fulfill(self, user)
-  end
-
-  def password_required?
-    user.blank?
+  def save_info_to_user
+    CheckoutInfoCopier.new(self, user).copy_info_to_user
+    stripe_subscription.update_user(user)
   end
 
   def send_receipt
     SendCheckoutReceiptEmailJob.enqueue(id)
   end
 
-  def save_info_to_user
-    CheckoutInfoCopier.new(self, user).copy_info_to_user
-    stripe_subscription.update_user(user)
+  def stripe_subscription
+    @stripe_subscription ||= StripeSubscription.new(self)
   end
 end

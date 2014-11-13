@@ -17,29 +17,29 @@ describe Checkout do
   it { should delegate(:plan_name).to(:plan).as(:name) }
   it { should delegate(:terms).to(:plan) }
 
-  context "#save" do
+  context "#fulfill" do
     it "fulfills a subscription when purchasing a plan" do
       checkout = build(:checkout)
       fulfillment = stub_subscription_fulfillment(checkout)
 
-      checkout.save!
+      checkout.fulfill
 
       expect(fulfillment).to have_received(:fulfill)
     end
 
-    it "does not save with a bad credit card" do
+    it "does not fulfill with a bad credit card" do
       stripe_subscription = stub("stripe_subscription", create: false)
       StripeSubscription.stubs(:new).returns(stripe_subscription)
       checkout = build(:checkout)
 
-      expect(checkout.save).to be false
+      expect(checkout.fulfill).to be_falsey
     end
 
     it "sends a receipt" do
       checkout = build(:checkout)
       SendCheckoutReceiptEmailJob.stubs(:enqueue)
 
-      checkout.save!
+      checkout.fulfill
 
       expect(SendCheckoutReceiptEmailJob).
         to have_received(:enqueue).with(checkout.id)
@@ -52,19 +52,10 @@ describe Checkout do
       checkout = build(:checkout, user: user)
       expect(checkout_info_copier_stub).to have_received(:copy_info_to_user).never
 
-      checkout.save
+      checkout.fulfill
 
       expect(CheckoutInfoCopier).to have_received(:new).with(checkout, checkout.user)
       expect(checkout_info_copier_stub).to have_received(:copy_info_to_user)
-    end
-
-    it "requires a password if there is no user" do
-      checkout = build(:checkout, user: nil)
-      checkout.password = ""
-
-      checkout.save
-
-      expect(checkout.errors[:password]).to include "can't be blank"
     end
 
     it "requires a unique GitHub username if there is no user" do
@@ -72,17 +63,17 @@ describe Checkout do
       checkout =
         build(:checkout, user: nil, github_username: "taken", password: "test")
 
-      checkout.save
+      checkout.fulfill
 
       expect(checkout.errors.full_messages).
         to include("Github username has already been taken")
     end
 
-    it "creates a user when saved with a password" do
+    it "creates a user when fulfilled with a password" do
       checkout = build(:checkout, user: nil, github_username: "cpytel")
       checkout.password = "test"
 
-      checkout.save!
+      checkout.fulfill
 
       expect(checkout.user).to be_persisted
     end
