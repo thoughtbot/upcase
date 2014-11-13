@@ -567,4 +567,33 @@ describe User do
       expect(user.discounted_annual_payment).to eq(1234)
     end
   end
+
+  describe ".subscriber_count" do
+    it "counts users with an active individual subscription" do
+      subscriber("active1", subscriptions: [create(:subscription)])
+      subscriber("active2", subscriptions: [create(:subscription)])
+      subscriber("inactive", subscriptions: [create(:inactive_subscription)])
+
+      result = User.subscriber_count
+
+      expect(result).to eq(2)
+    end
+
+    it "counts users with an active team subscription" do
+      team = create(:team, subscription: create(:subscription))
+      inactive_team =
+        create(:team, subscription: create(:inactive_subscription))
+      subscriber("active1", team: team)
+      subscriber("active2", team: team)
+      subscriber("inactive1", team: inactive_team)
+
+      result = User.subscriber_count
+
+      expect(result).to eq(2)
+    end
+
+    def subscriber(name, subscriptions: [], team: nil)
+      create(:user, name: name, subscriptions: subscriptions, team: team)
+    end
+  end
 end

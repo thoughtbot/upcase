@@ -5,7 +5,7 @@ class HomesController < ApplicationController
     if signed_in?
       redirect_to dashboard_path
     else
-      @community_size = User.with_active_subscription.count
+      @community_size = User.subscriber_count
       render template: "landing_pages/watch-one-do-one-teach-one"
     end
   end

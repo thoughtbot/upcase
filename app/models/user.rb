@@ -24,6 +24,11 @@ class User < ActiveRecord::Base
       select(&:has_active_subscription?)
   end
 
+  def self.subscriber_count
+    Subscription.active.joins(team: :users).count +
+      Subscription.active.includes(:team).where(teams: { id: nil }).count
+  end
+
   def first_name
     name.split(" ").first
   end
