@@ -2,8 +2,9 @@ require "rails_helper"
 
 feature "Accept team invitations" do
   scenario "and signs up" do
+    owner_email = "owner@somedomain.com"
     visit_team_plan_checkout_page
-    fill_out_account_creation_form email: "owner@somedomain.com"
+    fill_out_account_creation_form name: "Pink Panther", email: owner_email
     fill_out_credit_card_form_with_valid_credit_card
 
     fill_in "Email", with: "invited-member@example.com"
@@ -22,6 +23,9 @@ feature "Accept team invitations" do
 
       expect(page).to have_field("Email", with: "invited-member@example.com")
       expect(page).to have_content("Team: Somedomain")
+      expect(page).to have_content <<-EOS.squish
+        Your team owner, Pink Panther, can make changes to your subscription.
+      EOS
     end
   end
 

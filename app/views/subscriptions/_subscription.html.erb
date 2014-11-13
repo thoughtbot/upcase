@@ -7,5 +7,6 @@
   <% else %>
     <p>Canceled on <%= subscription.deactivated_on.to_s(:simple) %></p>
   <% end %>
+
   <%= render 'subscriptions/management', subscription: subscription %>
 </li>

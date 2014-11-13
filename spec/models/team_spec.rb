@@ -8,7 +8,15 @@ describe Team do
   it { should delegate(:plan).to(:subscription) }
   it { should delegate(:owner?).to(:subscription) }
 
-  describe '#add_user' do
+  describe "#owner" do
+    it "gets the team owner" do
+      team = create(:team)
+
+      expect(team.owner).to eq(team.subscription.user)
+    end
+  end
+
+  describe "#add_user" do
     it "fulfills that user's subscription" do
       team = create(:team)
       user = create(:user, :with_mentor)
@@ -59,7 +67,7 @@ describe Team do
     end
   end
 
-  describe '#remove_user' do
+  describe "#remove_user" do
     it "removes that user's subscription" do
       team = create(:team)
       user = create(:user, :with_mentor)
