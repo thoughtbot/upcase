@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.1.4"
+ruby "2.1.5"
 
 gem "active_model_serializers", "~> 0.7.0"
 gem "acts_as_list"
