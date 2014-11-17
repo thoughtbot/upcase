@@ -20,7 +20,7 @@ feature 'Visitor' do
     visit show_url(show)
 
     expect(page).to have_content(show_name)
-
+    expect_page_to_have_title("#{show.title} | Upcase")
     expect(page).not_to have_content(video.title)
 
     click_link published_video_title
@@ -29,5 +29,6 @@ feature 'Visitor' do
     expect(page).to have_content(
       "Subscribe to #{I18n.t('shared.subscription.name')}"
     )
+    expect_page_to_have_title("#{published_video_title} | Upcase")
   end
 end
