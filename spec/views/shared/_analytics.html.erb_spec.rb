@@ -9,7 +9,7 @@ describe "shared/_analytics.html.erb" do
     end
 
     it "loads the Segment JavaScript library" do
-      segment_load_line = "window.analytics.load('#{ENV['SEGMENT_KEY']}');"
+      segment_load_line = %{window.analytics.load("#{ENV["SEGMENT_KEY"]}");}
 
       render
 
@@ -17,7 +17,7 @@ describe "shared/_analytics.html.erb" do
     end
 
     it 'records a pageview' do
-      record_pageview_line = %{window.analytics.page('', {"context":{"campaign":null}});}
+      record_pageview_line = %{window.analytics.page("", {"context":{"campaign":null}});}
 
       render
 

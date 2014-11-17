@@ -1,4 +1,4 @@
-<% content_for :page_title, @video.title %>
+<% content_for :page_title, @video.title.html_safe %>
 
 <% content_for :landing_page_back_link do %>
   <%= link_to '&larr; All Videos'.html_safe, '/the-weekly-iteration' %>

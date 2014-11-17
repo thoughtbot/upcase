@@ -1,12 +1,12 @@
 require "rails_helper"
 
-feature 'Visitor' do
-  scenario 'views Weekly Iteration episodes' do
+feature "Visitor" do
+  scenario "views Weekly Iteration episodes" do
     show_name = Show::THE_WEEKLY_ITERATION
     show = create(:show, name: show_name)
     create(:basic_plan)
     video_title_with_unsafe_character = "Unfriendly Nil's Unfriendly"
-    video_notes = 'Nil is contagious.'
+    video_notes = "Nil is contagious."
     create(
       :video,
       :published,
@@ -20,7 +20,7 @@ feature 'Visitor' do
     visit show_url(show)
 
     expect(page).to have_content(show_name)
-
+    expect_page_to_have_title("#{show.title} | Upcase")
     expect(page).not_to have_content(video.title)
 
     click_link video_title_with_unsafe_character

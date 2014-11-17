@@ -181,6 +181,7 @@ describe "Videos" do
       visit video_path(video, as: user)
 
       expect(page).to have_content "Get this Show"
+      expect_page_to_have_title("#{show.title} | Upcase")
     end
   end
 end

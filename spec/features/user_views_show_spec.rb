@@ -16,6 +16,10 @@ feature "User views show" do
     expect(page).to have_content(published_video.title)
     expect(page).to have_content(download.display_name)
     expect(page).not_to have_content(video.title)
+
+    click_on published_video.title
+
+    expect_page_to_have_title("#{published_video.title} | Upcase")
   end
 
   def have_link_to(text)
