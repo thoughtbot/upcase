@@ -1,5 +1,5 @@
 class Api::V1::ExercisesController < ApiController
-  doorkeeper_for :all
+  before_action :doorkeeper_authorize!
   skip_before_filter :verify_authenticity_token
 
   def update

@@ -43,8 +43,8 @@ feature "An OAuth client authenticates", js: true do
       admin = create(:admin)
       visit oauth_applications_path(as: admin)
       click_on "New Application"
-      fill_in "Name", with: "Fake"
-      fill_in "Redirect uri", with: FakeOauthClientApp.redirect_uri
+      fill_in "doorkeeper_application_name", with: "Fake"
+      fill_in "doorkeeper_application_redirect_uri", with: FakeOauthClientApp.redirect_uri
       click_on "Submit"
 
       FakeOauthClientApp.client_id = find("#application_id").text
