@@ -5,14 +5,14 @@ feature 'Visitor' do
     show_name = Show::THE_WEEKLY_ITERATION
     show = create(:show, name: show_name)
     create(:basic_plan)
-    published_video_title = 'Unfriendly Nil'
-    published_video_notes = 'Nil is contagious.'
+    video_title_with_unsafe_character = "Unfriendly Nil's Unfriendly"
+    video_notes = 'Nil is contagious.'
     create(
       :video,
       :published,
       :with_preview,
-      title: published_video_title,
-      notes: published_video_notes,
+      title: video_title_with_unsafe_character,
+      notes: video_notes,
       watchable: show
     )
     video = create(:video, watchable: show)
@@ -23,12 +23,12 @@ feature 'Visitor' do
     expect_page_to_have_title("#{show.title} | Upcase")
     expect(page).not_to have_content(video.title)
 
-    click_link published_video_title
+    click_link video_title_with_unsafe_character
 
-    expect(page).to have_content(published_video_notes)
+    expect(page).to have_content(video_notes)
     expect(page).to have_content(
       "Subscribe to #{I18n.t('shared.subscription.name')}"
     )
-    expect_page_to_have_title("#{published_video_title} | Upcase")
+    expect_page_to_have_title("#{video_title_with_unsafe_character} | Upcase")
   end
 end
