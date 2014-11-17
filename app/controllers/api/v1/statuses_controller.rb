@@ -1,5 +1,5 @@
 class Api::V1::StatusesController < ApiController
-  doorkeeper_for :all
+  before_action :doorkeeper_authorize!
 
   def create
     exercise.statuses.create!(user: resource_owner, state: params[:state])
