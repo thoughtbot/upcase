@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <style type="text/css">
+    video {
+      height: auto;
+      max-width: 600px;
+      width: 100%;
+    }
+  </style>
+
+  <video width="100%" controls>
+    <source src="https://thoughtbotlearn.wistia.com/medias/<%= @video.preview_wistia_id %>/download?asset=hd_mp4" type="video/mp4">
+    Your browser does not support video
+  </video>
+</body>
+</html>

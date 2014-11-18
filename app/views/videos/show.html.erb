@@ -1,5 +1,11 @@
 <% content_for :page_title, @video.title.html_safe %>
 
+<% if @video.preview_wistia_id.present? %>
+  <% content_for :head do %>
+    <%= render "twitter_player_cards/meta", video: @video %>
+  <% end %>
+<% end %>
+
 <% content_for :landing_page_back_link do %>
   <%= link_to '&larr; All Videos'.html_safe, '/the-weekly-iteration' %>
 <% end %>

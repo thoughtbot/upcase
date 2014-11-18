@@ -2,10 +2,10 @@ require "rails_helper"
 
 describe "videos/show" do
   it "embeds a preview when available" do
-    video = build(
+    video = create(
       :video,
       :published,
-      watchable: build_stubbed(:show),
+      watchable: create(:show),
       preview_wistia_id: "123456"
     )
 
