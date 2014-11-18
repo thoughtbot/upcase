@@ -8,7 +8,9 @@ env_file = ARGV[2]
 if app_name.nil? || port.nil? || env_file.nil?
   puts 'Not enough arguments. Example usage:'
   puts
-  puts '% ./bin/configure_oauth_tokens example 7000 ~/dev/example/.env'
+  puts(<<-EOS.strip)
+    % ./bin/configure_oauth_tokens_for_client example 7000 ~/dev/example/.env
+  EOS
   exit
 end
 
@@ -16,13 +18,13 @@ require_relative '../config/environment'
 
 application =
   Doorkeeper::Application
-    .create_with(redirect_uri: "http://localhost:#{port}/auth/learn/callback")
+    .create_with(redirect_uri: "http://localhost:#{port}/auth/upcase/callback")
     .find_or_create_by!(name: app_name)
 
 contents = IO.read(env_file)
 File.open(env_file, 'w') do |file|
   updated_contents = contents
-    .sub(/LEARN_CLIENT_ID=.*/, "LEARN_CLIENT_ID=#{application.uid}")
-    .sub(/LEARN_CLIENT_SECRET=.*/, "LEARN_CLIENT_SECRET=#{application.secret}")
+    .sub(/UPCASE_CLIENT_ID=.*/, "UPCASE_CLIENT_ID=#{application.uid}")
+    .sub(/UPCASE_CLIENT_SECRET=.*/, "UPCASE_CLIENT_SECRET=#{application.secret}")
   file.write(updated_contents)
 end
