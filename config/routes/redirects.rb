@@ -15,11 +15,11 @@ get "/ios-on-rails" => redirect("https://gumroad.com/l/ios-on-rails")
 get "/ios-on-rails-beta" => redirect("https://gumroad.com/l/ios-on-rails")
 get "/live" => redirect("http://forum.upcase.com")
 get "/pages/tmux" => redirect("https://www.youtube.com/watch?v=CKC8Ph-s2F4")
-get "/prime" => redirect("/subscribe")
+get "/prime" => redirect("/")
+get "/subscribe" => redirect("/")
 get "/products/:id/purchases/:lookup" => redirect("/purchases/%{lookup}")
 get "/ruby-science" => redirect("https://gumroad.com/l/ruby-science")
 get "/workshops/:id" => redirect("/video_tutorials/%{id}")
-
 
 if Rails.env.staging? || Rails.env.production?
   get(
