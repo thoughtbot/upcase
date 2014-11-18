@@ -1,5 +1,18 @@
 <% content_for :page_title, @video.title.html_safe %>
 
+<% content_for :head do %>
+  <meta name="twitter:card" content="player">
+  <meta name="twitter:site" content="@upcase">
+  <meta name="twitter:title" content="<%= @video.title %>">
+  <meta name="twitter:description" content="<%= videos_description(@video) %>">
+  <meta name="twitter:image" content="https://embed-ssl.wistia.com/deliveries/6c9fbe73c7a462de2f9d521ac3fc656463c77892.jpg?image_crop_resized=960x540">
+  <meta name="twitter:player" content="<%= video_twitter_player_card_url(@video) %>">
+  <meta name="twitter:player:width" content="490">
+  <meta name="twitter:player:height" content="276">
+  <meta name="twitter:player:stream" content="https://thoughtbot.wistia.com/medias/<%= @video.wistia_id %>">
+  <meta name="twitter:player:stream:content_type" content="video/mp4">
+<% end %>
+
 <% content_for :landing_page_back_link do %>
   <%= link_to '&larr; All Videos'.html_safe, '/the-weekly-iteration' %>
 <% end %>

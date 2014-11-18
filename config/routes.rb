@@ -36,7 +36,11 @@ Upcase::Application.routes.draw do
   resource :subscription, only: [:new, :edit, :update]
   resources :licenses, only: [:index]
   resources :topics, only: :index, path: :trails
-  resources :videos, only: [:index, :show]
+
+  resources :videos, only: [:index, :show] do
+    resource :twitter_player_card, only: [:show]
+  end
+
   resources(
     :design_for_developers_resources,
     path: "design-for-developers-resources",
