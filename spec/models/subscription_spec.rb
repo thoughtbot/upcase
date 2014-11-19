@@ -126,9 +126,8 @@ describe Subscription do
   describe "#change_stripe_plan" do
     it "updates the plan in Stripe" do
       different_plan = create(:plan, sku: "different")
+      stripe_customer = setup_cutomer
       subscription = create(:active_subscription)
-      stripe_customer = stub(subscriptions: [FakeSubscription.new])
-      Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 
       subscription.change_stripe_plan(sku: different_plan.sku)
 
@@ -137,6 +136,16 @@ describe Subscription do
   end
 
   describe "#write_plan" do
+    it "notifies Analytics" do
+      analytics_updater = stub(track_updated: true)
+      Analytics.stubs(:new).returns(analytics_updater)
+      subscription = create(:active_subscription)
+
+      subscription.write_plan(sku: create(:plan).sku)
+
+      expect(analytics_updater).to have_received(:track_updated)
+    end
+
     it "changes the subscription plan to the given plan" do
       different_plan = create(:plan, sku: "different")
       subscription = create(:active_subscription)
@@ -172,9 +181,8 @@ describe Subscription do
 
   describe "#change_quantity" do
     it "updates the plan in Stripe" do
+      stripe_customer = setup_cutomer
       subscription = create(:active_subscription)
-      stripe_customer = stub(subscriptions: [FakeSubscription.new])
-      Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 
       subscription.change_quantity(4)
 
@@ -327,5 +335,11 @@ describe Subscription do
 
       expect(subscription.next_payment_amount_in_dollars).to eq 10
     end
+  end
+
+  def setup_cutomer
+    stripe_customer = stub(subscriptions: [FakeSubscription.new])
+    Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
+    stripe_customer
   end
 end

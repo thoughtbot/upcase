@@ -56,6 +56,7 @@ class Subscription < ActiveRecord::Base
     update_features do
       self.plan = Plan.find_by!(sku: sku)
       save!
+      track_updated
     end
   end
 
@@ -127,6 +128,10 @@ class Subscription < ActiveRecord::Base
     )
     feature_fulfillment.fulfill_gained_features
     feature_fulfillment.unfulfill_lost_features
+  end
+
+  def track_updated
+    Analytics.new(user).track_updated
   end
 
   def stripe_customer

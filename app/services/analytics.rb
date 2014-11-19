@@ -12,6 +12,10 @@ class Analytics
     track("Cancelled")
   end
 
+  def track_updated
+    track("Updated")
+  end
+
   private
 
   attr_reader :user
