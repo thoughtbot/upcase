@@ -1,16 +1,6 @@
 <%= render 'mentor_info' %>
 <% content_for :page_title, "Dashboard" %>
 
-<section class="root-resources">
-  <div class="content">
-    <section class="resources">
-      <%= render "upcase_repo" %>
-      <%= render "forum" %>
-      <%= render "trails" %>
-    </section>
-  </div>
-</section>
-
 <% if locked_features.any? %>
   <%= render "locked_features" %>
 <% end %>

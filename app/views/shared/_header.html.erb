@@ -8,7 +8,9 @@
     <nav>
       <ul>
         <% if signed_in? %>
-          <li class="back"><%= link_to "Dashboard".html_safe, dashboard_path %></li>
+          <li class="practice"><a href="#">Practice</a></li>
+          <li class="explore"><a href="#">Explore</a></li>
+          <li class="discuss"><a href="#">Discuss</a></li>
           <% if show_upgrade_to_annual_cta? %>
             <li class="account">
               <%= render "shared/annual_billing" %>
@@ -23,7 +25,7 @@
             </li>
           <% end %>
           <%= yield :additional_header_links %>
-          <li class="account"><%= link_to "Settings", my_account_path %></li>
+          <li class="account"><%= link_to image_tag("user.jpeg"), my_account_path %></li>
           <%= render "shared/masquerade_link" if masquerading? %>
         <% else %>
           <li class="view-plans">

@@ -138,21 +138,6 @@ body.promoted_catalogs {
   }
 }
 
-body.marketing footer {
-  margin: 4rem 0 0;
-  padding: 5rem 6vw;
-  text-align: center;
-  width: 100%;
-
-  a {
-    margin: 0 .25rem;
-  }
-
-  p:first-of-type {
-    margin-top: 30px;
-  }
-}
-
 body.marketing svg path {
   border-radius: 100%;
   stroke: $journey-line-color;

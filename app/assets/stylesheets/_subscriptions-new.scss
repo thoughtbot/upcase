@@ -26,25 +26,6 @@ body.subscriptions.subscriptions-new {
     margin: 80px auto 0;
     display: block;
   }
-
-  .footer-wrapper {
-    background: $lightwarmgray;
-  }
-
-  footer.links {
-    margin: 0 auto;
-    padding: 5rem 4vw;
-    text-align: center;
-    width: 100%;
-
-    p:first-of-type {
-      margin-top: 30px;
-    }
-
-    a {
-      margin: 0 .25rem;
-    }
-  }
 }
 
 .plans {
@@ -233,51 +214,6 @@ body.subscriptions.subscriptions-new {
       &:hover {
         border-bottom-color: hsla(0, 0%, 65%, 0.75);
       }
-    }
-  }
-}
-
-// Footer
-////////////////////////////////////////////////////////////////////////////
-
-.plans.footer {
-  background: #fafafa;
-  padding-top: 40px;
-
-  .inner {
-    width: ($plan-width + 20)*2 + $plan-width-callout + 20;
-  }
-
-  .logo {
-    text-align: center;
-    margin-bottom: 80px;
-  }
-
-
-  section.plan {
-    width: $plan-width + 20;
-
-    &.popular {
-      width: $plan-width-callout + 20;
-    }
-
-    h3 {
-      height: auto;
-      padding-bottom: 1em;
-    }
-
-    p {
-      @include align-items(center);
-      @include display(flex);
-      font-size: $font-size-small;
-      line-height: 1.5;
-      margin-bottom: 2em;
-      min-height: 72px;
-      padding: 0 $plan-padding/2;
-    }
-
-    .price {
-      margin-top: 0;
     }
   }
 }

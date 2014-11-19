@@ -19,19 +19,16 @@ body.passwords-create {
 .header-container {
   @include outer-container;
   @include user-select(none);
-  max-width: $max-width;
   position: relative;
 
   .small-logo {
-    display: inline-block;
+    float: left;
     font-size: 0;
-    line-height: 1em;
     padding: 1rem 0;
-    text-align: left;
-    width: auto;
 
     @media screen and (max-width: 755px) {
       display: block;
+      float: none;
       text-align: center;
     }
 
@@ -49,12 +46,10 @@ body.passwords-create {
   }
 
   nav {
-    line-height: 0;
-    @include position(absolute, 12px 1rem 0 0);
-    text-align: right;
-    width: auto;
+    float: right;
 
     @media screen and (max-width: 755px) {
+      clear: left;
       display: block;
       float: none;
       position: static;
@@ -65,10 +60,10 @@ body.passwords-create {
     }
 
     ul {
-      display: inline-block;
       list-style-type: none;
+      height: $navigation-height;
       margin: 0;
-      text-align: left;
+      padding: 0;
 
       @media screen and (max-width: 755px) {
         display: block;
@@ -77,57 +72,46 @@ body.passwords-create {
     }
 
     li {
+      @include transition;
+      display: block;
       float: left;
-      line-height: 1.2em;
       margin: 0;
-      margin-left: .2em;
 
       @media screen and (max-width: 755px) {
-        border-bottom: 1px solid $lightwarmgray;
+        border-bottom: 1px solid darken($upcase-blue, 5);
         display: block;
-        float: none;
         margin: 0;
-        text-align: center;
+        width: 100%;
       }
 
-      &.mentor {
-        @include position(relative, -18px 0 0 0);
+      &:hover,
+      &.active {
+        background: darken($upcase-blue, 5);
+      }
 
-        img {
-          border-radius: 100%;
-          float: left;
-          width: 68px;
+      &:first-child a {
+        border: 0;
+      }
 
-          @include body-mobile {
-            display: none;
-          }
-        }
-
-        a {
-          float: left;
-          top: 18px;
-
-          @include body-mobile {
-            float: none;
-          }
-        }
+      img {
+        border-radius: 10%;
+        vertical-align: bottom;
       }
     }
 
     li a {
-      border-radius: 3px;
+      border-left: 1px solid darken($upcase-blue, 5);
       color: white;
-      display: block;
+      float: left;
       font-family: $sans-serif;
       font-size: 100%;
       font-weight: 600;
-      outline: none;
-      padding: .6em .8em;
-      position: relative;
-      @include transition;
+      height: $navigation-height;
+      padding: 1rem 2.8rem;
 
-      &:hover {
-        opacity: .8;
+      @media screen and (max-width: 755px) {
+        text-align: center;
+        width: 100%;
       }
     }
 
