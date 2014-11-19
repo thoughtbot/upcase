@@ -1,8 +1,8 @@
 require "rails_helper"
 
 feature 'User without subscription' do
-  scenario 'accesses dashboard' do
-    visit dashboard_path(as: create(:user))
+  scenario 'accesses the practice page' do
+    visit practice_path(as: create(:user))
 
     expect(page).to have_content("Upcase Repo")
   end

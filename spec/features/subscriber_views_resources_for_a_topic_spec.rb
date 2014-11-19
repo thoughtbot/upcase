@@ -13,6 +13,7 @@ feature "subscriber views resources for a topic" do
     end
 
     sign_in_as_user_with_subscription
+    click_link I18n.t("shared.header.explore")
 
     within ".root-library" do
       expect(page).to have_css(".topic .card", count: 4)

@@ -23,7 +23,7 @@ feature "subscriber follows trail" do
     user = create(:subscriber)
     exercises.first.statuses.create!(user: user, state: Status::COMPLETE)
 
-    visit dashboard_path(as: user)
+    visit practice_path(as: user)
 
     expect(page).to have_content("1 step remaining")
   end

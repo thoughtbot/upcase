@@ -8,11 +8,17 @@
     <nav>
       <ul>
         <% if signed_in? %>
-          <li class="practice"><a href="#">Practice</a></li>
-          <li class="explore"><a href="#">Explore</a></li>
-          <li class="discuss"><a href="#">Discuss</a></li>
+          <li class="practice">
+            <%= link_to t("shared.header.practice"), practice_path %>
+          </li>
+          <li class="explore">
+            <%= link_to t("shared.header.explore"), explore_path %>
+          </li>
+          <li class="discuss">
+            <%= link_to t("shared.header.discuss"), forum_url %>
+          </li>
           <% if show_upgrade_to_annual_cta? %>
-            <li class="account">
+            <li class="annual">
               <%= render "shared/annual_billing" %>
             </li>
           <% end %>

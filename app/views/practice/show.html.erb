@@ -1,8 +1,8 @@
-<%= render 'mentor_info' %>
-<% content_for :page_title, "Dashboard" %>
+<%= render "mentor_info" %>
+<% content_for :page_title, "Practice" %>
 
 <% if locked_features.any? %>
-  <%= render "locked_features" %>
+  <%= render "products/locked_features" %>
 <% end %>
 
 <section class="root-trails">
@@ -16,7 +16,7 @@
         </h2>
       </header>
 
-      <%= render partial: "dashboards/trail", collection: @dashboard.trails %>
+      <%= render partial: "practice/trail", collection: @dashboard.trails %>
 
       <footer>
         <p>
@@ -53,17 +53,5 @@
         <% end %>
       </footer>
     </section>
-  </div>
-</section>
-
-<section class="root-library">
-  <div class="content">
-    <header class="dashboard-section-title">
-      <h1>Library</h1>
-      <h2>Upcase's exclusive video tutorials and resources on intermediate and advanced topics such as Vim mastery, TDD, and object-oriented design.</h2>
-    </header>
-
-    <%= render partial: "dashboards/show", collection: @dashboard.shows %>
-    <%= render partial: "dashboards/topic", collection: @dashboard.topics %>
   </div>
 </section>

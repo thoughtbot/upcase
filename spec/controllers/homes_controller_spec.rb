@@ -13,6 +13,6 @@ describe HomesController do
 
     get :show
 
-    expect(response).to redirect_to dashboard_path
+    expect(response).to redirect_to practice_path
   end
 end

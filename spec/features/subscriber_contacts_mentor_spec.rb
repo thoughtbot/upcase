@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature 'Subscriber can contact his mentor' do
-  scenario 'from the dashboard' do
+  scenario 'from the practice page' do
     sign_in_as_user_with_mentoring_subscription
     mentor = @current_user.mentor
 

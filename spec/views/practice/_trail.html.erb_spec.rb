@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "dashboards/_trail.html" do
+describe "practice/_trail.html" do
   context "with a just_finished trail" do
     it "renders as just_finished" do
       trail = stub_trail(just_finished: true)
@@ -46,7 +46,7 @@ describe "dashboards/_trail.html" do
 
   def render_trail(trail)
     view_stubs(:current_user).returns(build_stubbed(:user))
-    render "dashboards/trail", trail: trail
+    render "practice/trail", trail: trail
   end
 
   def have_just_finished(trail)

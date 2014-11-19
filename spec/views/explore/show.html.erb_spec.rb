@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "dashboards/show.html" do
+describe "practice/show.html" do
   context "when a user has activity in trails" do
     it "doesn't show 'view completed' link when it has no completed trails" do
       render_show
@@ -65,7 +65,7 @@ describe "dashboards/show.html" do
     options.each do |feature, value|
       view_stubs(:current_user_has_access_to?).with(feature).returns(value)
     end
-    render template: "dashboards/show"
+    render template: "practice/show"
   end
 
   def default_options

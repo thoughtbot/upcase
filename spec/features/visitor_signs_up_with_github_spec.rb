@@ -5,6 +5,6 @@ feature 'Visitor creates an account' do
     visit sign_up_path
     click_link 'with GitHub'
 
-    expect(current_path).to eq dashboard_path
+    expect(current_path).to eq practice_path
   end
 end

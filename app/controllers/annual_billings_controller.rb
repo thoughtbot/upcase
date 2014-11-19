@@ -10,7 +10,7 @@ class AnnualBillingsController < ApplicationController
     AnnualBillingMailer.notification(current_user).deliver
 
     redirect_to(
-      dashboard_path,
+      practice_path,
       notice: "Thanks! We'll upgrade your account to annual billing."
     )
   end

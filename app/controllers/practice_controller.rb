@@ -1,4 +1,4 @@
-class DashboardsController < ApplicationController
+class PracticeController < ApplicationController
   before_action :authorize
 
   def show

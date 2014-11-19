@@ -1,0 +1,5 @@
+<% if trail.just_finished? %>
+  <%= render "practice/just_finished_trail", trail: trail %>
+<% else %>
+  <%= render "practice/incomplete_trail", trail: trail %>
+<% end %>

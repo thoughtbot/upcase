@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe DashboardsController do
+describe ExploreController do
   it "sorts topics by number of resources" do
     sign_in
     topics = [stub(count: 1), stub(count: 2)]
