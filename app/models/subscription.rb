@@ -48,13 +48,21 @@ class Subscription < ActiveRecord::Base
   end
 
   def change_plan(sku:)
+    write_plan(sku: sku)
+    change_stripe_plan(sku: sku)
+  end
+
+  def write_plan(sku:)
     update_features do
-      subscription = stripe_customer.subscriptions.first
-      subscription.plan = sku
-      subscription.save
       self.plan = Plan.find_by!(sku: sku)
       save!
     end
+  end
+
+  def change_stripe_plan(sku:)
+    subscription = stripe_customer.subscriptions.first
+    subscription.plan = sku
+    subscription.save
   end
 
   def change_quantity(new_quantity)

@@ -11,7 +11,7 @@ class StripeEvents
 
   def customer_subscription_updated
     if subscription
-      subscription.change_plan(sku: stripe_subscription.plan.id)
+      subscription.write_plan(sku: stripe_subscription.plan.id)
       SubscriptionUpcomingInvoiceUpdater.new([subscription]).process
     end
   end

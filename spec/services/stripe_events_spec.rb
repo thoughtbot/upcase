@@ -38,7 +38,7 @@ describe StripeEvents do
 
       StripeEvents.new(event).customer_subscription_updated
 
-      expect(subscription).to have_received(:change_plan).
+      expect(subscription).to have_received(:write_plan).
         with(sku: FakeStripe::PLAN_ID)
       expect(SubscriptionUpcomingInvoiceUpdater).
         to have_received(:new).with([subscription])
@@ -51,7 +51,7 @@ describe StripeEvents do
   def stub_subscription
     subscription = build_stubbed(:subscription)
     Subscription.stubs(:find_by).returns(subscription)
-    subscription.stubs(:change_plan)
+    subscription.stubs(:write_plan)
     subscription
   end
 
