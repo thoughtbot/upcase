@@ -120,11 +120,21 @@ namespace :dev do
     user = User.find_by_email!("whetstone@example.com")
 
     trail = FactoryGirl.create(:trail, :published, name: "Testing Fundamentals")
-    FactoryGirl.create_list(:step, 3, trail: trail)
+    create_steps_for(
+      trail,
+      "Passing Your First Test",
+      "Testing ActiveRecord",
+      "Write an Integration Test"
+    )
     puts_trail trail, "unstarted"
 
     trail = FactoryGirl.create(:trail, :published, name: "Refactoring")
-    FactoryGirl.create_list(:step, 3, trail: trail)
+    create_steps_for(
+      trail,
+      "Extract Method",
+      "Extract Class",
+      "Replace Variable with Query"
+    )
     FactoryGirl.create(:status,
       completeable: trail,
       state: Status::IN_PROGRESS,
@@ -133,7 +143,12 @@ namespace :dev do
     puts_trail trail, "in-progress"
 
     trail = FactoryGirl.create(:trail, :published, name: "iOS Development")
-    steps = FactoryGirl.create_list(:step, 3, trail: trail)
+    steps = create_steps_for(
+      trail,
+      "Install Xcode",
+      "Install Homebrew",
+      "Intro to the App Store"
+    )
     FactoryGirl.create(:status,
       completeable: trail,
       state: Status::COMPLETE,
@@ -152,7 +167,12 @@ namespace :dev do
     puts_trail trail, "completed recently"
 
     trail = FactoryGirl.create(:trail, :published, name: "Android Development")
-    steps = FactoryGirl.create_list(:step, 3, trail: trail)
+    steps = create_steps_for(
+      trail,
+      "Install Java",
+      "Learn FRP",
+      "Root your phone"
+    )
     FactoryGirl.create(:status,
       completeable: trail,
       state: Status::COMPLETE,
@@ -173,6 +193,13 @@ namespace :dev do
     puts_trail trail, "completed more than 5 days ago"
 
     puts "(Please sign in as whetstone@example.com to see trail progress.)"
+  end
+
+  def create_steps_for(trail, *titles)
+    titles.map do |title|
+      exercise = FactoryGirl.create(:exercise, title: title)
+      FactoryGirl.create(:step, trail: trail, exercise: exercise)
+    end
   end
 
   def header(msg)
