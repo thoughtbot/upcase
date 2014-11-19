@@ -59,6 +59,11 @@ body.passwords-create {
       display: none;
     }
 
+    img {
+      border-radius: 10%;
+      vertical-align: bottom;
+    }
+
     ul {
       list-style-type: none;
       height: $navigation-height;
@@ -92,11 +97,25 @@ body.passwords-create {
       &:first-child a {
         border: 0;
       }
+    }
+
+    li.mentor {
+      a {
+        padding-right: 0.8rem;
+      }
 
       img {
-        border-radius: 10%;
-        vertical-align: bottom;
+        @include size(35px);
+        margin: 0.8rem 2.8rem 0 0;
+
+        @include body-mobile {
+          display: none;
+        }
       }
+    }
+
+    li.account a {
+      padding: 1rem;
     }
 
     li a {
