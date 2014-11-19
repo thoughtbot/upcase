@@ -18,12 +18,7 @@ feature 'User cancels a subscription' do
     click_button I18n.t('subscriptions.confirm_cancel_reject_deal')
 
     expect(page).to have_content I18n.t('subscriptions.flashes.cancel.success')
-    expect(analytics).to have_tracked("Cancelled").
-      for_user(@current_user).
-      with_properties(
-        has_active_subscription: true,
-        scheduled_for_cancellation_on: @current_user.reload.scheduled_for_cancellation_on
-      )
+    expect(analytics).to have_tracked("Cancelled").for_user(@current_user)
   end
 
   def expect_to_see_alternate_offer

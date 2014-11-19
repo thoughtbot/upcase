@@ -1,17 +1,24 @@
 class FakeAnalyticsRuby
   def initialize
+    @identified_events = EventsList.new([])
     @tracked_events = EventsList.new([])
+  end
+
+  def identify(options)
+    @identified_events << options
   end
 
   def track(options)
     @tracked_events << options
   end
 
-  delegate :tracked_events_for, to: :tracked_events
+  def identified_events_for(user)
+    @identified_events.events_for(user)
+  end
 
-  private
-
-  attr_reader :tracked_events
+  def tracked_events_for(user)
+    @tracked_events.events_for(user)
+  end
 
   class EventsList
     def initialize(events)
@@ -22,7 +29,7 @@ class FakeAnalyticsRuby
       @events << event
     end
 
-    def tracked_events_for(user)
+    def events_for(user)
       self.class.new(
         events.select do |event|
           event[:user_id] == user.id
@@ -40,7 +47,9 @@ class FakeAnalyticsRuby
 
     def has_properties?(options)
       events.any? do |event|
-        options.all? { |key, value| event[:properties][key] == value }
+        options.all? do |key, value|
+          (event[:properties] || event[:traits])[key] == value
+        end
       end
     end
 

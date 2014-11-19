@@ -3,7 +3,7 @@ module AnalyticsHelper
     ENV["ANALYTICS"].present?
   end
 
-  def analytics_hash(user = current_user)
+  def identify_hash(user = current_user)
     {
       created: user.created_at,
       email: user.email,

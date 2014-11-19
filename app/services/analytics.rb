@@ -9,22 +9,22 @@ class Analytics
   end
 
   def track_cancelled
-    track("Cancelled")
+    track(event: "Cancelled", properties: {})
   end
 
   def track_updated
-    track("Updated")
+    backend.identify(user_id: user.id, traits: identify_hash(user))
   end
 
   private
 
   attr_reader :user
 
-  def track(name)
+  def track(event:, properties:)
     backend.track(
-      event: name,
+      event: event,
       user_id: user.id,
-      properties: analytics_hash(user),
+      properties: properties
     )
   end
 end

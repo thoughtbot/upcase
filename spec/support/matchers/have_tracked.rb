@@ -6,7 +6,7 @@ RSpec::Matchers.define :have_tracked do |event_name|
     backend.
       tracked_events_for(@user).
       named(@event_name).
-      has_properties?(@properties)
+      has_properties?(@properties || {})
   end
 
   chain(:for_user) { |user| @user = user }

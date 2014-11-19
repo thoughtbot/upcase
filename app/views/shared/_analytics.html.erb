@@ -15,7 +15,7 @@
   <script type="text/javascript">
     analytics.identify(
       '<%= current_user.id %>',
-      <%= raw analytics_hash.to_json %>,
+      <%= raw identify_hash.to_json %>,
       <%= raw intercom_hash.to_json %>
     );
   </script>

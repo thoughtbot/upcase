@@ -74,7 +74,7 @@ describe "shared/_analytics.html.erb" do
 
       render
 
-      expect(rendered).to include(analytics_hash(user).to_json)
+      expect(rendered).to include(identify_hash(user).to_json)
     end
 
     it 'uses Intercom secure mode' do
