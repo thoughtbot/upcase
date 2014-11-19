@@ -9,7 +9,7 @@ class Trail < ActiveRecord::Base
 
   friendly_id :name, use: [:slugged, :finders]
 
-  # Override setters so it preserves the ordering
+  # Override setters so it preserves the order
   def exercise_ids=(new_exercise_ids)
     super
     new_exercise_ids = new_exercise_ids.reject(&:blank?).map(&:to_i)

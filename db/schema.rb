@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119235913) do
+ActiveRecord::Schema.define(version: 20141120214043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -267,6 +267,7 @@ ActiveRecord::Schema.define(version: 20141119235913) do
     t.datetime "updated_at",  null: false
   end
 
+  add_index "steps", ["trail_id", "position"], name: "index_steps_on_trail_id_and_position", using: :btree
   add_index "steps", ["trail_id"], name: "index_steps_on_trail_id", using: :btree
 
   create_table "subscriptions", force: true do |t|
