@@ -145,9 +145,9 @@ namespace :dev do
     trail = FactoryGirl.create(:trail, :published, name: "iOS Development")
     steps = create_steps_for(
       trail,
-      "Install xcode",
-      "Install homebrew",
-      "Intro to the app store"
+      "Install Xcode",
+      "Install Homebrew",
+      "Intro to the App Store"
     )
     FactoryGirl.create(:status,
       completeable: trail,
