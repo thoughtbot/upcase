@@ -15,6 +15,10 @@ FactoryGirl.define do
     "uuid_#{n}"
   end
 
+  sequence :stripe_id do |n|
+    "sub_#{n}"
+  end
+
   sequence :github_username do |n|
     "github_#{n}"
   end
@@ -372,6 +376,7 @@ FactoryGirl.define do
   factory :subscription, aliases: [:active_subscription] do
     association :plan
     association :user, :with_stripe, :with_mentor, :with_github
+    stripe_id
 
     factory :inactive_subscription do
       deactivated_on { Time.zone.today }
