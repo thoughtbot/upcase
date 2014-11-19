@@ -5,6 +5,7 @@ feature "Subscriber accesses content" do
     video_tutorial = create(:video_tutorial, :in_dashboard)
 
     sign_in_as_user_with_subscription
+    visit explore_path
     click_video_tutorial_detail_link
 
     click_link I18n.t("video_tutorial.checkout_cta")
@@ -19,6 +20,7 @@ feature "Subscriber accesses content" do
     create(:video_tutorial, :in_dashboard)
 
     sign_in_as_user_with_downgraded_subscription
+    visit explore_path
     click_video_tutorial_detail_link
 
     expect(page).to have_content I18n.t("video_tutorial.upgrade_cta")
@@ -32,6 +34,7 @@ feature "Subscriber accesses content" do
     video_tutorial = create(:video_tutorial, :in_dashboard, length_in_days: 2)
 
     sign_in_as_user_with_subscription
+    visit explore_path
     click_video_tutorial_detail_link
     click_link I18n.t("video_tutorial.checkout_cta")
 
@@ -56,7 +59,7 @@ feature "Subscriber accesses content" do
     stub_github_fulfillment_job
 
     visit explore_path
-    click_on "Upcase Repositories"
+    click_on "Upcase Repo on Github"
     click_on repository.name
     click_link I18n.t("repository.checkout_cta")
 
@@ -66,6 +69,7 @@ feature "Subscriber accesses content" do
 
   def get_access_to_video_tutorial
     sign_in_as_user_with_subscription
+    visit explore_path
     click_video_tutorial_detail_link
     click_link I18n.t("video_tutorial.checkout_cta")
   end
