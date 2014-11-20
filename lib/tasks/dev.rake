@@ -9,12 +9,13 @@ namespace :dev do
     include FactoryGirl::Syntax::Methods
 
     create_individual_plans
+    create_topics
     create_products
+    create_episodes
     create_video_tutorials
     create_mentors
     create_users
     create_team_plan
-    create_topic
     create_trails
   end
 
@@ -48,7 +49,31 @@ namespace :dev do
   def create_products
     header "Products"
 
-    puts_product FactoryGirl.create(:show, name: 'The Weekly Iteration')
+    @weekly_iteration = FactoryGirl.create(:show, name: "The Weekly Iteration")
+
+    puts_product @weekly_iteration
+  end
+
+  def create_episodes
+    header "Episodes"
+
+    create_episode 1, "Ping-pong TDD", "Testing"
+    create_episode 2, "Unit vs Integration Testing", "Testing"
+    create_episode 3, "Refactoring in steps", "Clean Code"
+    create_episode 4, "Functional Swift", "iOS"
+    create_episode 5, "Spring", "Ruby on Rails"
+    create_episode 6, "Payload", "Ruby on Rails"
+    create_episode 7, "Rails as a JSON database", "Ruby on Rails"
+  end
+
+  def create_episode(age_in_days, title, topic_name)
+    episode = create(
+      :video,
+      published_on: age_in_days.days.ago,
+      title: title,
+      watchable: @weekly_iteration
+    )
+    classify episode, topic_name
   end
 
   def create_video_tutorials
@@ -59,6 +84,7 @@ namespace :dev do
       short_description: 'Dig deeper into Ruby on Rails.',
       description: 'This intermediate Ruby on Rails video_tutorial is designed for developers who have built a few smaller Rails applications and would like to start making more complicated ones...'
     )
+    classify @video_tutorial, "Ruby on Rails"
     puts_video_tutorial @video_tutorial
   end
 
@@ -118,8 +144,12 @@ namespace :dev do
     FactoryGirl.create(:plan, :team)
   end
 
-  def create_topic
-    FactoryGirl.create(:topic, name: 'Ruby on Rails')
+  def create_topics
+    FactoryGirl.create(:topic, dashboard: true, name: "Ruby on Rails")
+    FactoryGirl.create(:topic, dashboard: true, name: "Testing")
+    FactoryGirl.create(:topic, dashboard: true, name: "Workflow")
+    FactoryGirl.create(:topic, dashboard: true, name: "iOS")
+    FactoryGirl.create(:topic, dashboard: true, name: "Clean Code")
   end
 
   def create_trails
@@ -133,6 +163,9 @@ namespace :dev do
       "Testing ActiveRecord",
       "Write an Integration Test"
     )
+    classify_exercise "Passing Your First Test", "Testing"
+    classify_exercise "Testing ActiveRecord", "Testing"
+    classify_exercise "Write an Integration Test", "Testing"
     puts_trail trail, "unstarted"
 
     trail = FactoryGirl.create(:trail, :published, name: "Refactoring")
@@ -142,6 +175,9 @@ namespace :dev do
       "Extract Class",
       "Replace Variable with Query"
     )
+    classify_exercise "Extract Method", "Clean Code"
+    classify_exercise "Extract Class", "Clean Code"
+    classify_exercise "Replace Variable with Query", "Clean Code"
     FactoryGirl.create(:status,
       completeable: trail,
       state: Status::IN_PROGRESS,
@@ -156,6 +192,9 @@ namespace :dev do
       "Install Homebrew",
       "Intro to the App Store"
     )
+    classify_exercise "Install Xcode", "iOS"
+    classify_exercise "Install Homebrew", "Workflow"
+    classify_exercise "Intro to the App Store", "iOS"
     FactoryGirl.create(:status,
       completeable: trail,
       state: Status::COMPLETE,
@@ -204,9 +243,18 @@ namespace :dev do
 
   def create_steps_for(trail, *titles)
     titles.map do |title|
-      exercise = FactoryGirl.create(:exercise, title: title)
+      exercise = FactoryGirl.create(:exercise, title: title, public: true)
       FactoryGirl.create(:step, trail: trail, exercise: exercise)
     end
+  end
+
+  def classify_exercise(title, topic_name)
+    classify Exercise.find_by!(title: title), topic_name
+  end
+
+  def classify(classifiable, topic_name)
+    topic = Topic.find_by!(name: topic_name)
+    classifiable.classifications.create!(topic: topic)
   end
 
   def header(msg)
