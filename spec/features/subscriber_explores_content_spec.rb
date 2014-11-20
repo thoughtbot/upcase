@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "Subscriber accesses content" do
   scenario "begins a video_tutorial" do
-    video_tutorial = create(:video_tutorial, :in_dashboard)
+    video_tutorial = create(:video_tutorial, :explorable)
 
     sign_in_as_user_with_subscription
     visit explore_path
@@ -17,7 +17,7 @@ feature "Subscriber accesses content" do
   end
 
   scenario "subscriber without access to video_tutorials attempts to begin a video_tutorial" do
-    create(:video_tutorial, :in_dashboard)
+    create(:video_tutorial, :explorable)
 
     sign_in_as_user_with_downgraded_subscription
     visit explore_path
@@ -31,7 +31,7 @@ feature "Subscriber accesses content" do
   end
 
   scenario "show in-progress status for current video_tutorial" do
-    video_tutorial = create(:video_tutorial, :in_dashboard, length_in_days: 2)
+    video_tutorial = create(:video_tutorial, :explorable, length_in_days: 2)
 
     sign_in_as_user_with_subscription
     visit explore_path
@@ -43,7 +43,7 @@ feature "Subscriber accesses content" do
   end
 
   scenario "show complete status for past video_tutorial" do
-    video_tutorial = create(:video_tutorial, :in_dashboard, length_in_days: 2)
+    video_tutorial = create(:video_tutorial, :explorable, length_in_days: 2)
 
     Timecop.travel(3.days.ago) do
       get_access_to_video_tutorial
@@ -54,7 +54,7 @@ feature "Subscriber accesses content" do
   end
 
   scenario "gets added to the GitHub team for a repository" do
-    repository = create(:repository, :in_dashboard)
+    repository = create(:repository, :explorable)
     sign_in_as_user_with_subscription
     stub_github_fulfillment_job
 

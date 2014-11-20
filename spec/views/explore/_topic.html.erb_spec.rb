@@ -10,7 +10,7 @@ describe "explore/_topic.html" do
       topic_with_resources = stub(
         "topic_with_resources",
         name: "Topic",
-        dashboard_resources: [exercise, exercise, exercise],
+        featured_resources: [exercise, exercise, exercise],
         count: 3
       )
       view_stubs(:current_user).returns(build_stubbed(:user))

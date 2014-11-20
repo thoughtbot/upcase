@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "subscriber views resources for a topic" do
   scenario "sees exercises, video_tutorials, videos, and products" do
-    topic = create(:topic, dashboard: true)
+    topic = create(:topic, explorable: true)
     video_tutorial = create(:video_tutorial)
     exercise = create(:exercise, :public)
     video_1 = create(:video, :published)

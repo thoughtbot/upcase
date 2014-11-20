@@ -12,9 +12,6 @@ en:
     meta_description: 'Video Tutorials, and videos to help you learn web design and development.'
     app_name: 'Upcase'
 
-  dashboards:
-    show:
-      contact_your_mentor: "Contact your mentor, %{mentor_name}"
 
   exercises:
     statuses:
@@ -60,6 +57,7 @@ en:
 
   shared:
     header:
+      contact_your_mentor: "Contact your mentor, %{mentor_name}"
       discuss: Discuss
       explore: Explore
       practice: Practice

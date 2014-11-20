@@ -27,9 +27,9 @@ FactoryGirl.define do
     "http://robots.thoughtbot.com/#{n}"
   end
 
-  trait :in_dashboard do
+  trait :explorable do
     after :create do |classifiable|
-      topic = create(:topic, dashboard: true)
+      topic = create(:topic, explorable: true)
       classifiable.classifications.create!(topic: topic)
     end
   end

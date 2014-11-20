@@ -3,7 +3,7 @@
     <p class="topic-headline"><%= topic.name %></p>
   </header>
 
-  <% topic.dashboard_resources.each do |resource| %>
+  <% topic.featured_resources.each do |resource| %>
     <%= render partial: "products/#{resource.to_partial_path}", object: resource %>
   <% end %>
 

@@ -11,7 +11,7 @@ class Dashboard
 
   def topics
     topics = TopicsWithResources.new(
-      topics: Topic.dashboard,
+      topics: Topic.explorable,
       factory: TopicWithResourcesFactory.new(
         catalog: Catalog.new(user: @user),
         limit: LIMIT

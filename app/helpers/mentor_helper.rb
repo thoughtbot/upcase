@@ -7,7 +7,7 @@ module MentorHelper
     mail_to(
       mentor.email,
       I18n.t(
-        'dashboards.show.contact_your_mentor',
+        'shared.header.contact_your_mentor',
         mentor_name: mentor.first_name
       )
     )

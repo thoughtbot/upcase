@@ -1,11 +1,11 @@
-module DashboardsHelper
+module ResourcesHelper
   MAX_RESOURCES_TO_SHOW = 3
 
   def has_more_resources?(topic)
     topic.count > MAX_RESOURCES_TO_SHOW
   end
 
-  def locked_dashboard_resource(resource)
+  def locked_resource(resource)
     unless current_user_has_access_to?(resource)
       'locked-resource'
     end

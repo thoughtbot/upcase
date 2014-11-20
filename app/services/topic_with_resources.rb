@@ -7,7 +7,7 @@ class TopicWithResources < SimpleDelegator
     @limit = limit
   end
 
-  def dashboard_resources
+  def featured_resources
     resources.take(@limit)
   end
 
