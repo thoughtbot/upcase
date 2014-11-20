@@ -1,5 +1,5 @@
 class ExploreController < ApplicationController
   def show
-    @dashboard = Dashboard.new(current_user)
+    @explore = Explore.new(current_user)
   end
 end

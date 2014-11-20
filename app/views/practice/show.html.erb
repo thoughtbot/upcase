@@ -16,7 +16,7 @@
         </h2>
       </header>
 
-      <%= render partial: "practice/trail", collection: @dashboard.trails %>
+      <%= render partial: "practice/trail", collection: @practice.trails %>
 
       <footer>
         <p>
@@ -25,7 +25,7 @@
           <% end %>
         </p>
 
-        <% if @dashboard.has_completed_trails? %>
+        <% if @practice.has_completed_trails? %>
           <p>
             <%= link_to completed_trails_path do %>
               View completed trails &rarr;

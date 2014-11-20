@@ -57,7 +57,7 @@ describe "practice/show.html" do
     options = default_options.merge(options)
     completed = options[:has_completed_trails]
     assign(
-      :dashboard,
+      :practice,
       stub(shows: [], topics: [], trails: [], has_completed_trails?: completed)
     )
     view_stubs(:current_user).returns(build_stubbed(:user))

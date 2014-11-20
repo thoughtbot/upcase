@@ -8,7 +8,7 @@ describe ExploreController do
 
     get :show
 
-    result = assigns(:dashboard).topics
+    result = assigns(:explore).topics
     expect(result).to eq(topics.reverse)
   end
 end
