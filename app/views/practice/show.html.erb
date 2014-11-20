@@ -19,12 +19,6 @@
       <%= render partial: "practice/trail", collection: @practice.trails %>
 
       <footer>
-        <p>
-          <%= link_to "/trails" do %>
-            View all trails &rarr;
-          <% end %>
-        </p>
-
         <% if @practice.has_completed_trails? %>
           <p>
             <%= link_to completed_trails_path do %>

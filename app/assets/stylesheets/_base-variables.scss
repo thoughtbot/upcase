@@ -5,16 +5,8 @@ $serif: "adelle-1", "adelle-2", $helvetica;
 $upcase-blue: #2387E0;
 $upcase-blue-1: #487BF6;
 $upcase-blue-2: #0093CB;
-$upcase-blue-3: #3FBCFF;
-$upcase-blue-4: #3FBCFF;
-$upcase-blue-5: #A2F6F9;
-$upcase-blue-6: #04659B;
-$upcase-blue-7: #3D9FF7;
 
 $upcase-green: #57C75C;
-$upcase-green-2: #3CBD41;
-$upcase-green-3: #73E179;
-$upcase-green-4: #36AC3A;
 
 $red: #ad141e;
 $off-white: darken(white, 1.5);
@@ -23,9 +15,6 @@ $warmgray: #D9D4CC;
 $darkwarmgray: #555;
 $upcase-red: #FF4856;
 $upcase-darkred: #660000;
-$green: $upcase-green;
-$green-trail: $upcase-green;
-$just-finished-green: $upcase-green;
 $gold-trail: #F5A623;
 $blue-trail: #4A90E2;
 $exercise-color: #9cc0ed;
@@ -44,6 +33,8 @@ $gray-4: #DDD;
 $gray-5: #F3F3F3;
 
 $base-button-color: $upcase-green;
+
+$flash-color: #04659B;
 
 $footer-background: rgba(46, 48, 58, 0.96);
 $footer-link-color: #7a7a7a;
