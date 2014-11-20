@@ -19,23 +19,30 @@ namespace :dev do
   end
 
   def create_individual_plans
-    @basic_plan = create(:plan, {
+    @basic_plan = create(
+      :plan,
       individual_price: 9,
       name: "The Weekly Iteration",
       short_description: "One new video per week on advanced Ruby topics.",
       sku: "the-weekly-iteration",
-    })
+    )
 
-    mentor_features = {
+    @professional_plan = create(
+      :plan,
+      individual_price: 29,
+      name: "Professional",
+      short_description: "Do exercises and become a general whiz kid.",
+      sku: "professional",
+    )
+
+    @mentor_plan = create(
+      :plan,
       includes_mentor: true,
+      individual_price: 249,
       name: "1-on-1 Coaching",
       short_description: "Best for an active learner seeking 1-on-1 personal coaching.",
-    }
-
-    @mentor_plan = create(:plan, {
       sku: "prime-249",
-      individual_price: 249,
-    }.merge(mentor_features))
+    )
   end
 
   def create_products
@@ -72,7 +79,7 @@ namespace :dev do
       :with_subscription,
       :with_github,
       email: 'whetstone@example.com',
-      plan: @mentor_plan,
+      plan: @professional_plan,
     )
     puts_user user, 'ready to auth against whetstone'
 
