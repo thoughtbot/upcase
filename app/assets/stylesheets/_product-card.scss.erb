@@ -97,45 +97,6 @@
     }
   }
 
-  &.dashboard-resource {
-    border-top: 5px solid $green;
-    height: 180px;
-
-    &.locked-resource {
-      height: 200px;
-    }
-
-    h4 {
-      color: $darkwarmgray;
-      padding-bottom: 0;
-
-      img {
-        float: right;
-      }
-    }
-
-    p {
-      margin-top: 0;
-    }
-
-    &.trails {
-      background: url(<%= asset_path 'upcase/trails-graphic.svg' %>) white no-repeat 3rem .8rem;
-      background-size: 75%;
-    }
-
-    .product-card-locked {
-      text-align: center;
-      margin-top: -27px;
-
-      a.upgrade-link {
-        color: $darkwarmgray;
-        font-size: .75rem;
-        font-weight: bold;
-        text-transform: uppercase;
-      }
-    }
-  }
-
   .status {
     border-radius: 0 0 .20rem .20rem;
     display: none;
@@ -239,7 +200,7 @@
 
   &.complete-exercise {
     h5 {
-      background-color: $green-trail;
+      background-color: $upcase-green;
     }
 
     .illustration {

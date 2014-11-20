@@ -52,12 +52,11 @@ body.videos-show aside {
 
     .free-with-subscription {
       background: $upcase-green;
-      border: 3px solid $upcase-green-2;
-      border-width: 1px 1px 3px 1px;
+      border-bottom: 3px solid lighten($upcase-green, 5);
       color: white;
 
       &:active {
-        background: $upcase-green-3;
+        background-color: darken($upcase-green, 5);
       }
     }
 

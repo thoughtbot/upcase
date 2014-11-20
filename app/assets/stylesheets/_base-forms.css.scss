@@ -1,70 +1,39 @@
-input[type="submit"], input[type="button"] {
-  border-bottom-width: none;
-  border-image: initial;
-  border-left-color: none;
-  border-left-style: none;
-  border-left-width: none;
-  border-right-color: none;
-  border-right-style: none;
-  border-right-width: none;
-  border-top-color: none;
-  border-top-style: none;
-  border-top-width: none;
-  cursor: pointer;
-  padding: 13px 30px 0 30px;
-}
-
-.button, input[type="submit"], input[type="button"] {
-  background-color: $upcase-green;
-  border-bottom: 3px solid $upcase-green-4;
+%button {
+  -webkit-font-smoothing: antialiased;
+  background-color: $base-button-color;
   border-radius: 3px;
   color: white;
   display: inline-block;
-  font: 600 14px/1.4em $sans-serif;
-  height: 44px;
-  margin: 0 auto;
-  padding: .75em 1em;
-  text-align:center;
+  font-family: $sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1;
+  padding: 0.75em 1em;
+  text-decoration: none;
   text-transform: uppercase;
-  -webkit-appearance: none;
 
   &:hover {
-    background-color: $upcase-green-2;
-  }
-
-  &:active {
-    background-color: $upcase-green-3
-  }
-
-  &[disabled] {
-    background-color: $lightwarmgray;
-    border-bottom: 4px solid $warmgray;
-    color: $warmgray;
-    cursor: wait;
-  }
-
-  a {
+    background-color: shade($base-button-color, 2);
     color: white;
-    display: block;
-    height:100%;
-    padding-top: 15px;
-    width: 100%;
   }
 
-  span {
-    font-weight: 100;
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 }
 
-.button-mini {
-  @extend .button;
-  border-bottom: 2px solid $upcase-green;
-  height: auto;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  padding-bottom: 4px;
-  padding-top: 6px;
+button,
+input[type="submit"] {
+  @extend %button;
+  @include appearance(none);
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
 }
+
 
 form {
   margin: 0 0 2em 0;

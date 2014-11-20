@@ -105,17 +105,13 @@ body.passwords-create {
       }
 
       img {
-        @include size(35px);
-        margin: 0.8rem 2.8rem 0 0;
+        @include size(30px);
+        margin: 1rem 2.8rem 0 0;
 
         @include body-mobile {
           display: none;
         }
       }
-    }
-
-    li.account a {
-      padding: 1rem;
     }
 
     li a {
@@ -134,13 +130,12 @@ body.passwords-create {
       }
     }
 
+    .account a {
+      padding: 1rem;
+    }
+
     .subscription a {
       font-weight: 700;
-
-      &:hover, &:active {
-        background: $upcase-blue-3;
-        color: #fff;
-      }
     }
   }
 }
