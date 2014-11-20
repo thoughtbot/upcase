@@ -1,7 +1,7 @@
 class ResourcesController < ApplicationController
   def index
     @topic = TopicsWithResources.new(
-      topics: Topic.dashboard,
+      topics: Topic.explorable,
       factory: TopicWithResourcesFactory.new(
         catalog: Catalog.new(user: current_user)
       )

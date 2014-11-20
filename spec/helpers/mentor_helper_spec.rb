@@ -21,16 +21,23 @@ describe MentorHelper do
     end
   end
 
-  describe '#mentor_contact_link' do
-    it 'returns a mailto link for the mentor' do
-      mentor = stub('mentor',
-                    email: 'bob@thoughtbot.com',
-                    first_name: 'Bob')
-      anchor_text = I18n.t('dashboards.show.contact_your_mentor',
-                           mentor_name: mentor.first_name)
+  describe "#mentor_contact_link" do
+    it "returns a mailto link for the mentor" do
+      mentor = stub(
+        "mentor",
+        email: "bob@thoughtbot.com",
+        first_name: "Bob"
+      )
+      anchor_text = I18n.t(
+        "shared.header.contact_your_mentor",
+        mentor_name: mentor.first_name
+      )
 
       result = helper.mentor_contact_link(mentor)
-      expect(result).to eq "<a href=\"mailto:#{mentor.email}\">#{anchor_text}</a>"
+
+      expect(result).to eq(<<-HTML.strip)
+        <a href="mailto:#{mentor.email}">#{anchor_text}</a>
+      HTML
     end
   end
 end

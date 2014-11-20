@@ -9,7 +9,7 @@
   <%= content_tag :section, class: 'steps-complete trails-progress' do %>
     <% trail = TrailWithProgress.new(trail, user: current_user) %>
     <% if trail.complete? %>
-      <%= render "dashboards/just_finished_trail", trail: trail %>
+      <%= render "practice/just_finished_trail", trail: trail %>
     <% else %>
       <div class="started">
         <section class="trail">

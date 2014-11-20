@@ -1,9 +1,9 @@
 require "rails_helper"
 
-describe Dashboard do
+describe Practice do
   describe "#trails" do
     it "decorates the most recent, published trails" do
-      dashboard = Dashboard.new(user)
+      practice = Practice.new(user)
       trail_show = stub("undecorated_show")
       trail_hide = stub("undecorated_hide")
       Trail.stubs(:most_recent_published).returns([trail_show, trail_hide])
@@ -13,25 +13,25 @@ describe Dashboard do
         active: true
       )
 
-      expect(dashboard.trails).to eq([trail_with_progress_show])
+      expect(practice.trails).to eq([trail_with_progress_show])
     end
   end
 
   describe "#has_completed_trails?" do
     it "returns false if it has no completed trails" do
       user = build_stubbed(:user)
-      dashboard = Dashboard.new(user)
+      practice = Practice.new(user)
 
-      expect(dashboard).not_to have_completed_trails
+      expect(practice).not_to have_completed_trails
     end
 
     it "returns true if it has completed trails" do
       user = create(:user)
       trail = create(:trail)
       create(:status, completeable: trail, state: "Complete", user: user)
-      dashboard = Dashboard.new(user)
+      practice = Practice.new(user)
 
-      expect(dashboard).to have_completed_trails
+      expect(practice).to have_completed_trails
     end
   end
 

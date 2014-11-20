@@ -1,8 +1,8 @@
 require "rails_helper"
 
-describe DashboardsHelper, "#subscribe_or_upgrade_link" do
+describe ResourcesHelper, "#subscribe_or_upgrade_link" do
   before do
-    @virtual_path = "dashboards.show"
+    @virtual_path = "explore.show"
     helper.instance_variable_set(:@virtual_path, @virtual_path)
   end
 

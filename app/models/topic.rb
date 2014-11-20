@@ -22,8 +22,8 @@ class Topic < ActiveRecord::Base
     featured.order("count DESC").limit 20
   end
 
-  def self.dashboard
-    where(dashboard: true).order("count DESC")
+  def self.explorable
+    where(explorable: true).order("count DESC")
   end
 
   def self.featured

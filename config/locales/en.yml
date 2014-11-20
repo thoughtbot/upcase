@@ -12,14 +12,6 @@ en:
     meta_description: 'Video Tutorials, and videos to help you learn web design and development.'
     app_name: 'Upcase'
 
-  dashboards:
-    locked_features:
-      locked_features:
-        title_html: "%{features} are locked &mdash; %{link} to get access"
-        upgrade_link: "upgrade your subscription"
-        subscribe_link: "subscribe to Upcase"
-    show:
-      contact_your_mentor: "Contact your mentor, %{mentor_name}"
 
   exercises:
     statuses:
@@ -39,6 +31,10 @@ en:
     forum: 'Private Discourse Forum'
 
   products:
+    locked_features:
+      title_html: "%{features} are locked &mdash; %{link} to get access"
+      upgrade_link: "upgrade your subscription"
+      subscribe_link: "subscribe to Upcase"
     show:
       subscribe_cta: "This %{offering_type} is free with a subscription to %{subscription_name}"
 
@@ -60,6 +56,11 @@ en:
       header: Taught by
 
   shared:
+    header:
+      contact_your_mentor: "Contact your mentor, %{mentor_name}"
+      discuss: Discuss
+      explore: Explore
+      practice: Practice
     upcase:
       Upcase
     subscription:

@@ -10,7 +10,7 @@ class AuthCallbacksController < ApplicationController
 
   def url_after_auth
     if originated_from_sign_in_or_sign_up?
-      custom_return_path_or_default(dashboard_path)
+      custom_return_path_or_default(practice_path)
     else
       auth_origin
     end
@@ -25,11 +25,11 @@ class AuthCallbacksController < ApplicationController
   end
 
   def auth_hash
-    request.env['omniauth.auth']
+    request.env["omniauth.auth"]
   end
 
   def auth_origin
-    session[:return_to] || request.env['omniauth.origin'] || dashboard_url
+    session[:return_to] || request.env["omniauth.origin"] || practice_url
   end
 
   def clear_return_to

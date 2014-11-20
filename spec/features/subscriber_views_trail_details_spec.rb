@@ -10,7 +10,7 @@ feature "subscriber views trail details" do
     user = create(:subscriber)
     exercises.first.statuses.create!(user: user, state: Status::COMPLETE)
 
-    visit dashboard_path(as: user)
+    visit practice_path(as: user)
     click_link "Baby Exercises"
 
     expect(page).to have_content("Baby Exercises")

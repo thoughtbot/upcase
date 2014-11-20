@@ -19,7 +19,7 @@ feature "Accept team invitations" do
       fill_in "Password", with: "secret"
       click_on "Create an account"
 
-      click_on "Settings"
+      my_account_link.click
 
       expect(page).to have_field("Email", with: "invited-member@example.com")
       expect(page).to have_content("Team: Somedomain")
@@ -50,7 +50,7 @@ feature "Accept team invitations" do
       fill_in "Password", with: "secret"
       click_on "Create an account"
 
-      expect(page).to have_content("Dashboard")
+      expect(page).to have_content("Practice")
     end
   end
 
@@ -74,7 +74,7 @@ feature "Accept team invitations" do
 
       expect(page).to have_content("You've been added to the team. Enjoy!")
 
-      click_on "Settings"
+      my_account_link.click
       expect(page).to have_field("Email", with: "invited-member@example.com")
       expect(page).to have_content("Team: Somedomain")
     end
@@ -99,7 +99,7 @@ feature "Accept team invitations" do
 
       expect(page).to have_content("You've been added to the team. Enjoy!")
 
-      click_on "Settings"
+      my_account_link.click
       expect(page).to have_field("Email", with: "invited-member@example.com")
       expect(page).to have_content("Team: Somedomain")
     end
@@ -125,7 +125,7 @@ feature "Accept team invitations" do
 
       expect(page).to have_content("You've been added to the team. Enjoy!")
 
-      click_on "Settings"
+      my_account_link.click
       expect(page).to have_field("Email", with: "member@example.com")
       expect(page).to have_content("Team: Somedomain")
     end

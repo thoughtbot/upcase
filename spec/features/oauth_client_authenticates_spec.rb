@@ -20,7 +20,7 @@ feature 'An OAuth client authenticates', js: true do
       OmniAuth.config.mock_auth[:github]['info']['email']
     )
 
-    expect(current_path).not_to eq dashboard_path
+    expect(current_path).not_to eq practice_path
     verify_signed_in_user_details_from_page(user)
 
     visit my_account_path
@@ -28,7 +28,7 @@ feature 'An OAuth client authenticates', js: true do
 
     visit sign_in_path
     click_link "with GitHub"
-    expect(current_path).to eq dashboard_path
+    expect(current_path).to eq practice_path
   end
 
   scenario 'via password' do

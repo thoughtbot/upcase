@@ -30,7 +30,7 @@ describe TopicWithResources do
     end
   end
 
-  describe "#dashboard_resources" do
+  describe "#featured_resources" do
     it "sorts its resources by creation, takes a certain amount" do
       resources = [
         stub("two", created_at: 2.days.ago, name: "two"),
@@ -43,7 +43,7 @@ describe TopicWithResources do
                                                     resources: resources,
                                                     limit: 3)
 
-      result = topic_with_resources.dashboard_resources
+      result = topic_with_resources.featured_resources
 
       expect(result.map(&:name)).to eq(%w(one two three))
     end

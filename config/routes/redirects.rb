@@ -20,6 +20,7 @@ get "/subscribe" => redirect("/")
 get "/products/:id/purchases/:lookup" => redirect("/purchases/%{lookup}")
 get "/ruby-science" => redirect("https://gumroad.com/l/ruby-science")
 get "/workshops/:id" => redirect("/video_tutorials/%{id}")
+get "/dashboard" => redirect("/practice")
 
 if Rails.env.staging? || Rails.env.production?
   get(

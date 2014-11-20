@@ -5,7 +5,7 @@ module Subscriptions
       *traits,
       stripe_customer_id: FakeStripe::CUSTOMER_ID
     )
-    visit dashboard_path(as: @current_user)
+    visit practice_path(as: @current_user)
   end
 
   def sign_in_as_user_with_mentoring_subscription
@@ -26,7 +26,7 @@ module Subscriptions
   end
 
   def settings_page
-    click_on "Settings"
+    my_account_link.click
     page
   end
 

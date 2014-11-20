@@ -8,7 +8,7 @@ feature 'Visitor can purchase a subscription for their team' do
 
     expect_to_see_checkout_success_flash_for(team_plan.name)
 
-    click_link 'Settings'
+    my_account_link.click
 
     expect_to_see_team_name 'Fabtabulous'
   end

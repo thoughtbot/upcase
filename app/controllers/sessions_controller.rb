@@ -11,7 +11,7 @@ class SessionsController < Clearance::SessionsController
     if current_user.admin?
       admin_path
     else
-      dashboard_path
+      practice_path
     end
   end
 end

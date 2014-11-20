@@ -8,7 +8,7 @@ class AcceptancesController < ApplicationController
     if @acceptance.save
       sign_in @acceptance.user
       redirect_to(
-        dashboard_url,
+        practice_url,
         notice: "You've been added to the team. Enjoy!"
       )
     else

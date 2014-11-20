@@ -49,7 +49,7 @@ class CheckoutsController < ApplicationController
     if @checkout.includes_team?
       edit_team_path
     else
-      dashboard_path
+      practice_path
     end
   end
 

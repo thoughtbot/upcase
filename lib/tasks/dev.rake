@@ -145,11 +145,11 @@ namespace :dev do
   end
 
   def create_topics
-    FactoryGirl.create(:topic, dashboard: true, name: "Ruby on Rails")
-    FactoryGirl.create(:topic, dashboard: true, name: "Testing")
-    FactoryGirl.create(:topic, dashboard: true, name: "Workflow")
-    FactoryGirl.create(:topic, dashboard: true, name: "iOS")
-    FactoryGirl.create(:topic, dashboard: true, name: "Clean Code")
+    FactoryGirl.create(:topic, explorable: true, name: "Ruby on Rails")
+    FactoryGirl.create(:topic, explorable: true, name: "Testing")
+    FactoryGirl.create(:topic, explorable: true, name: "Workflow")
+    FactoryGirl.create(:topic, explorable: true, name: "iOS")
+    FactoryGirl.create(:topic, explorable: true, name: "Clean Code")
   end
 
   def create_trails

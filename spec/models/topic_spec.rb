@@ -40,14 +40,14 @@ describe Topic do
     end
   end
 
-  context ".dashboard" do
-    it "returns topics flagged by the dashboard" do
-      create(:topic, dashboard: true, name: "two", count: 2)
-      create(:topic, dashboard: true, name: "one", count: 3)
-      create(:topic, dashboard: true, name: "three", count: 1)
-      create(:topic, dashboard: false, name: "hidden", count: 4)
+  context ".explorable" do
+    it "returns topics to be displayed on the explore page" do
+      create(:topic, explorable: true, name: "two", count: 2)
+      create(:topic, explorable: true, name: "one", count: 3)
+      create(:topic, explorable: true, name: "three", count: 1)
+      create(:topic, explorable: false, name: "hidden", count: 4)
 
-      result = Topic.dashboard
+      result = Topic.explorable
 
       expect(result.map(&:name)).to eq(%w(one two three))
     end

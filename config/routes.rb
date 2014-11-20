@@ -31,7 +31,6 @@ Upcase::Application.routes.draw do
 
   resource :annual_billing, only: [:new, :create]
   resource :credit_card, only: [:update]
-  resource :dashboard, only: :show
   resource :session, controller: :sessions
   resource :subscription, only: [:new, :edit, :update]
   resources :licenses, only: [:index]
@@ -52,6 +51,8 @@ Upcase::Application.routes.draw do
     only: [:index]
   )
 
+  get "practice" => "practice#show", as: :practice
+  get "explore" => "explore#show", as: :explore
   get "sitemap.xml" => "sitemaps#show", as: :sitemap, format: "xml"
   get ":id" => "topics#show", as: :topic
   get ":topic_id/resources" => "resources#index", as: :topic_resources
