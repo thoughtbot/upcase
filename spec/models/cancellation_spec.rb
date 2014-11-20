@@ -77,7 +77,7 @@ describe Cancellation do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription)
       stripe_customer.subscriptions.first.stubs(:delete).
-        raises(Stripe::APIError)
+        raises(Stripe::InvalidRequestError)
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 
       expect { cancellation.cancel_now }.to raise_error
@@ -133,7 +133,7 @@ describe Cancellation do
       cancellation = Cancellation.new(subscription)
 
       stripe_customer.subscriptions.first.stubs(:delete).
-        raises(Stripe::APIError)
+        raises(Stripe::InvalidRequestError)
       Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
 
       expect { cancellation.schedule }.to raise_error

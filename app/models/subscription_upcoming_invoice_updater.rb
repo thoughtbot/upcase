@@ -16,7 +16,7 @@ class SubscriptionUpcomingInvoiceUpdater
 
   def upcoming_invoice_for(stripe_customer_id)
     Stripe::Invoice.upcoming(customer: stripe_customer_id)
-  rescue Stripe::APIError => error
+  rescue Stripe::InvalidRequestError => error
     notify_airbrake(error)
     nil
   end
