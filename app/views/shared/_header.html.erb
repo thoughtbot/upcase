@@ -31,7 +31,11 @@
             </li>
           <% end %>
           <%= yield :additional_header_links %>
-          <li class="account"><%= link_to image_tag("user.jpeg"), my_account_path %></li>
+          <li class="account">
+            <%= link_to my_account_path do %>
+              <%= image_tag gravatar_url(current_user.email, size: "30") %>
+            <% end %>
+          </li>
           <%= render "shared/masquerade_link" if masquerading? %>
         <% else %>
           <li class="view-plans">

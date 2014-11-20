@@ -2,8 +2,19 @@ require "rails_helper"
 
 describe "shared/_header.html.erb" do
   include AnalyticsHelper
+  include Gravatarify::Helper
 
   let(:call_to_action_label) { "Get two months free" }
+
+  it "renders the user's avatar" do
+    email = generate(:email)
+
+    render(signed_in: true, current_user_email: email)
+
+    expect(rendered).to have_css(<<-CSS.strip)
+      img[src='#{gravatar_url(email, size: "30")}']
+    CSS
+  end
 
   context "when user is the subscription owner" do
     it "shows an annual upsell link" do
@@ -79,6 +90,7 @@ describe "shared/_header.html.erb" do
   end
 
   def render(
+    current_user_email: "user@example.com",
     current_user_has_active_subscription: true,
     current_user_has_monthly_subscription: true,
     current_user_is_subscription_owner: true,
@@ -99,6 +111,7 @@ describe "shared/_header.html.erb" do
     )
     view_stubs(masquerading?: masquerading)
     view_stubs(signed_in?: signed_in)
+    view_stubs(current_user: stub("user", email: current_user_email))
     super()
   end
 end
