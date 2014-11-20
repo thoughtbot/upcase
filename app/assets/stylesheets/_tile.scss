@@ -1,0 +1,48 @@
+.tiles ul {
+  @include display(flex);
+  @include flex-direction(row);
+  @include flex-wrap(wrap);
+  @include justify-content(space-around);
+
+  .tile {
+    border-radius: 0 0 3px 3px;
+    border-top: 10px solid $vim;
+    box-shadow: 0 0 0 1px $gray-4;
+    margin: 0;
+    padding: 40px;
+    position: relative;
+    text-align: center;
+    width: 47%;
+
+    h1 {
+      margin-bottom: em(8);
+
+      &:before {
+        content: asset-url('play.svg');
+        margin-right: 10px;
+      }
+
+      a {
+        color: $darkwarmgray;
+        font-size: 20px;
+      }
+    }
+
+    h2 {
+      color: $gray-3;
+      font-size: em(12);
+      font-weight: 700;
+      letter-spacing: .5px;
+      line-height: em(30);
+      text-transform: uppercase;
+    }
+
+    h1, h2, p {
+      text-align: left;
+    }
+
+    .cta {
+      @extend %secondary-button;
+    }
+  }
+}

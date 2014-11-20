@@ -1,0 +1,45 @@
+body.resources-index {
+  #header-wrapper {
+    margin: 0;
+  }
+
+  .subject {
+    background: $clean-code;
+    padding: 3rem 2rem 2rem;
+
+    h1, h2, p {
+      margin: 0 auto;
+      max-width: $max-width;
+    }
+
+    h1 {
+      color: darken($clean-code, 60);
+      margin-bottom: 0.6rem;
+    }
+
+    h2 {
+    font-size: 1.125em;
+    font-weight: normal;
+    line-height: 1.6em;
+    margin-bottom: 2rem;
+    margin-left: 0;
+    width: 85%;
+  }
+}
+
+  .topic-nav {
+    li {
+      display: inline-block;
+      margin-right: 3rem;
+    }
+
+    a {
+      color: darken($clean-code, 60);
+      font-size: em(14);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+  }
+}
+
+
