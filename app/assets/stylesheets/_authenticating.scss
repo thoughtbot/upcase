@@ -5,23 +5,25 @@
     padding: 0 1rem;
   }
 
-  .github-signin a {
-    background: #444;
-    border-color: #000;
-    display: block;
-    font: 400 1rem/1.2em $sans-serif;
-    letter-spacing: 1px;
-    margin: 2rem 0;
-    position: relative;
+  .github-signin  {
+    padding: 0;
 
-    &:after {
-      content: asset-url('GitHub-Mark-32px.png');
-      height: 32px;
-      left: 14px;
-      margin-top: -15px;
-      position: absolute;
-      top: 50%;
-      width: 32px;
+    a {
+      color: $darkwarmgray;
+      display: block;
+      margin: 2rem 0;
+      padding-left: 3.8rem;
+      position: relative;
+
+      &:after {
+        content: asset-url('GitHub-Mark-32px.png');
+        height: 32px;
+        left: 14px;
+        margin-top: -15px;
+        position: absolute;
+        top: 50%;
+        width: 32px;
+      }
     }
   }
 
@@ -42,7 +44,7 @@
   }
 
   input[type="submit"] {
-    font: 400 1rem/1.2em $sans-serif;
+    font-size: 1rem;
     letter-spacing: 1px;
     margin-top: 1rem;
     width: 100%;

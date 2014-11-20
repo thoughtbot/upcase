@@ -1,144 +1,63 @@
 footer.links {
-  @extend .clearfix;
-  clear: both;
-  background: $footer-dark-gray;
-  padding-top: 60px;
+  background: $footer-background;
   position: relative;
 
-  @media print {
-    display: none;
-  }
-
-  &:hover {
-    opacity: 1;
-  }
-
-  img {
-    opacity: 1;
-    position: absolute;
-    top: 40px;
-    left: 50%;
-    margin-left: -34px;
-  }
-
-  h3 {
-    color: #545454;
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 1em;
-    margin-bottom: 1em;
+  .footer-content {
+    @include outer-container;
   }
 
   a {
-    color: #7a7a7a;
-    font-size: $font-size-small;
-    text-decoration: none;
-
-    &:link {
-      color: #7a7a7a;
-    }
-
-    &:hover {
-      opacity: 1;
-    }
+    color: $footer-link-color;
   }
 
-  nav {
-    @extend .clearfix;
-    @include transition(opacity .5s);
-    @include display(flex);
-    margin: 0 auto;
-    width: 50%;
+  li {
+    display: inline-block;
+    margin: 0 1rem 0 0;
   }
 
-  nav a {
-    opacity: .7;
-  }
-
-  nav ul {
-    list-style: none;
-    margin: 0 0 1em 0;
-    overflow: auto;
-
-    li {
-      display: block;
-      margin-bottom: .5em;
-    }
-  }
-
-  .trails {
-    @include flex(2);
-  }
-
-  .trails ul li {
-    width: 25%;
-    float: left;
-  }
-
-  .trails ul:first-of-type li a {
-    font-family: $sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-
-  .trails ul:nth-of-type(2) {
-    padding-top: 30px;
+  .sign-out {
+    float: right;
+    padding: 1.5rem 2rem;
   }
 
   .thoughtbot {
-    @include flex(none);
-  }
-
-  .thoughtbot ul:first-of-type {
-    text-align: right;
-
-    li {
-      display: inline-block;
-      margin-left: 10px;
-    }
-
-    a {
-      font-family: $sans-serif;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-  }
-
-  .thoughtbot ul:nth-of-type(2) {
-    padding-top: 30px;
+    float: left;
+    padding: 1.5rem 2rem 1.5rem 0;
   }
 
   .copyright {
-    background: $footer-dark-gray;
-    color: #7a7a7a;
+    background: $footer-background;
+    clear: left;
     display: block;
     font: italic $font-size-small $serif;
     line-height: 1.5rem;
-    margin: 1rem 0 0;
-    padding: 1rem;
-    text-align: center;
-    text-rendering: optimizeSpeed;
+    padding: 1rem 2rem;
+
+    div {
+      @include outer-container;
+      text-align: center;
+    }
+
+    a, p {
+      display: inline-block;
+      margin-bottom: 0;
+      vertical-align: middle;
+    }
+
+    img {
+      @include size(40px);
+      margin-right: 1rem;
+    }
   }
 }
 
 @include body-mobile {
-  footer {
-    width: 100%;
-  }
+  footer.links {
+    text-align: center;
 
-  footer nav section {
-    float: none;
-    margin-bottom: 2em;
-    width: 100% !important;
-  }
-
-  footer nav .trails {
-    width: 100%;
-    margin-right: 0;
-
-    ul li {
-      width: 50%;
-      float: left;
+    .thoughtbot,
+    .sign-out {
+      display: none;
     }
   }
 }

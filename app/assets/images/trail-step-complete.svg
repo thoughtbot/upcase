@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="56px" height="56px" viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.1 (8751) - http://www.bohemiancoding.com/sketch -->
-    <title>trail-step-complete</title>
-    <desc>Created with Sketch.</desc>
+<svg width="54px" height="54px" viewBox="0 0 54 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs></defs>
-    <g id="Trails-horiz.-iterations" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="03-dashboard_trails-detail_v1" sketch:type="MSArtboardGroup" transform="translate(-253.000000, -601.000000)">
-            <g id="Group-2" sketch:type="MSLayerGroup" transform="translate(15.000000, 10.000000)">
-                <g id="Rectangle-16-+-Complete-+-Rectangle-17-+-Oval-20-+-Shape" transform="translate(159.000000, 517.000000)" sketch:type="MSShapeGroup">
-                    <g id="Rectangle-17-+-Oval-20-+-Shape" transform="translate(0.000000, 40.000000)">
-                        <g id="trail-step-complete" transform="translate(81.000000, 36.000000)">
-                            <path d="M26,52 C40.3594035,52 52,40.3594035 52,26 C52,11.6405965 40.3594035,0 26,0 C11.6405965,0 0,11.6405965 0,26 C0,40.3594035 11.6405965,52 26,52 Z" id="Oval-20" stroke="#1DBE76" stroke-width="2"></path>
-                            <path d="M37.4664062,16.6279576 L21.2866939,32.8076699 L14.1179936,25.6389695 C13.6143725,25.1353485 12.7973586,25.1353485 12.2943824,25.6389695 C11.7907614,26.1425906 11.7907614,26.9589596 12.2943824,27.4625806 L20.3748884,35.5437314 C20.6167039,35.7855469 20.9449281,35.9209636 21.2866939,35.9209636 C21.6284598,35.9209636 21.956684,35.7855469 22.1984995,35.5437314 L39.2906622,18.4515687 C39.7942832,17.9479477 39.7942832,17.1315787 39.2906622,16.6279576 C38.7870412,16.1243366 37.9700273,16.1236918 37.4664062,16.6279576 L37.4664062,16.6279576 Z" id="Shape" fill="#1DBE76"></path>
-                        </g>
-                    </g>
-                </g>
-            </g>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="trail-step-complete" transform="translate(1.000000, 1.000000)">
+            <path d="M26,52 C40.3594035,52 52,40.3594035 52,26 C52,11.6405965 40.3594035,0 26,0 C11.6405965,0 0,11.6405965 0,26 C0,40.3594035 11.6405965,52 26,52 L26,52 Z" id="Oval-20" stroke="#57C75C" stroke-width="2"></path>
+            <path d="M37.4664062,16.6279576 L21.2866939,32.8076699 L14.1179936,25.6389695 C13.6143725,25.1353485 12.7973586,25.1353485 12.2943824,25.6389695 C11.7907614,26.1425906 11.7907614,26.9589596 12.2943824,27.4625806 L20.3748884,35.5437314 C20.6167039,35.7855469 20.9449281,35.9209636 21.2866939,35.9209636 C21.6284598,35.9209636 21.956684,35.7855469 22.1984995,35.5437314 L39.2906622,18.4515687 C39.7942832,17.9479477 39.7942832,17.1315787 39.2906622,16.6279576 C38.7870412,16.1243366 37.9700273,16.1236918 37.4664062,16.6279576 L37.4664062,16.6279576 L37.4664062,16.6279576 Z" id="Shape" fill="#57C75C"></path>
         </g>
     </g>
 </svg>

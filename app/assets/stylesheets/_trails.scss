@@ -16,7 +16,7 @@ $not-started-dot-color: #D8D8D8;
   }
 }
 
-.dashboard-section-title {
+.section-title {
   margin: 0 auto 80px;
   text-align: center;
   width: 85%;
@@ -173,12 +173,7 @@ $not-started-dot-color: #D8D8D8;
     }
 
     a.start-trail {
-      background: $upcase-green;
-      border-radius: .25rem;
-      color: white;
-      font-size: 1.2em;
-      padding: 12px 30px;
-      text-align: center;
+      @extend %button;
     }
 
     .step {
@@ -255,7 +250,7 @@ $not-started-dot-color: #D8D8D8;
       }
 
       &.complete-exercise .dot {
-        background: $green-trail;
+        background: $upcase-green;
       }
 
       &.next-up-exercise .dot {
@@ -307,7 +302,7 @@ $not-started-dot-color: #D8D8D8;
   }
 
   .started {
-    p.description, .start-trail {
+    p.description, a.start-trail {
       display: none;
     }
   }
@@ -316,7 +311,7 @@ $not-started-dot-color: #D8D8D8;
   ///////////////////////////////////////////////////////////////////////////
   .unstarted {
     @include clearfix;
-    margin-bottom: 2.5em;
+    margin-bottom: 3.5em;
 
     header {
       float: left;
@@ -357,7 +352,7 @@ $not-started-dot-color: #D8D8D8;
       .progress {
         background: none;
         border: 0;
-        margin-bottom: 20px;
+        margin-bottom: 0;
         padding-left: 0;
       }
 
@@ -463,7 +458,7 @@ $not-started-dot-color: #D8D8D8;
 
     .trail .step .dot {
       @include size($dot-size);
-      background: $just-finished-green;
+      background: $upcase-green;
       border-radius: $dot-size;
       margin: $dot-margin;
       position: relative;
@@ -472,7 +467,7 @@ $not-started-dot-color: #D8D8D8;
     li.step:last-of-type {
       @extend %trail-bullet-complete;
       @include size(30px);
-      background-color: $just-finished-green;
+      background-color: $upcase-green;
       border-radius: 50%;
       bottom: 6px;
       left: 15px;
@@ -517,7 +512,7 @@ $not-started-dot-color: #D8D8D8;
     }
 
     p {
-      color: shade($green-trail, 20%);
+      color: darken($upcase-green, 10);
       font-size: 21px;
       font-style: italic;
       left: 45%;

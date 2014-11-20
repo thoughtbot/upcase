@@ -1,16 +1,6 @@
 <%= render 'mentor_info' %>
 <% content_for :page_title, "Dashboard" %>
 
-<section class="root-resources">
-  <div class="content">
-    <section class="resources">
-      <%= render "upcase_repo" %>
-      <%= render "forum" %>
-      <%= render "trails" %>
-    </section>
-  </div>
-</section>
-
 <% if locked_features.any? %>
   <%= render "locked_features" %>
 <% end %>
@@ -18,7 +8,7 @@
 <section class="root-trails">
   <div class="content">
     <section class="trails-progress">
-      <header class="dashboard-section-title">
+      <header class="section-title">
         <h1>New Trails (Beta)</h1>
         <h2>
           These new trails are focused exercises targeting your interests. They
