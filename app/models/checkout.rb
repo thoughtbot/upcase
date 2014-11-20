@@ -2,7 +2,7 @@ class Checkout < ActiveRecord::Base
   belongs_to :plan
   belongs_to :user
 
-  validates :email, :github_username, :quantity, :user_id, presence: true
+  validates :email, :github_username, :quantity, :user, presence: true
 
   delegate :name, :sku, to: :plan, prefix: true
   delegate :includes_team?, :terms, to: :plan
@@ -30,7 +30,7 @@ class Checkout < ActiveRecord::Base
 
   def fulfill
     transaction do
-      if user.present? || create_valid_user
+      if find_or_create_valid_user
         create_subscriptions
       end
     end
@@ -51,13 +51,15 @@ class Checkout < ActiveRecord::Base
     end
   end
 
-  def create_valid_user
-    self.user = User.create(
+  def find_or_create_valid_user
+    self.user ||= User.new
+    user.attributes = {
       name: name,
       email: email,
       password: password,
       github_username: github_username
-    )
+    }
+    user.save
     copy_user_validations
     user.valid?
   end

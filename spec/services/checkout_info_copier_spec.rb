@@ -1,27 +1,6 @@
 require "rails_helper"
 
 describe CheckoutInfoCopier, "#copy_info_to_user" do
-  context "with github_username" do
-    it "saves the github_username to the user" do
-      user = create(:user)
-      expect(user.github_username).to be_blank
-      checkout = build(:checkout, user: user, github_username: "tbot")
-
-      CheckoutInfoCopier.new(checkout, user).copy_info_to_user
-
-      expect(user.github_username).to eq "tbot"
-    end
-
-    it "doesn't overwrite first github_username to the user" do
-      user = create(:user, github_username: "test")
-      checkout = build(:checkout, user: user, github_username: "tbot")
-
-      CheckoutInfoCopier.new(checkout, user).copy_info_to_user
-
-      expect(user.github_username).to eq "test"
-    end
-  end
-
   context "with address information" do
     it "saves the address to the user" do
       user = create(:user)

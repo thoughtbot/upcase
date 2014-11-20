@@ -5,19 +5,12 @@ class CheckoutInfoCopier
   end
 
   def copy_info_to_user
-    save_github_username_to_user
     save_organization_to_user
     save_address_to_user
   end
 
   private
   attr_reader :checkout, :user
-
-  def save_github_username_to_user
-    if checkout.github_username.present? && user.github_username.blank?
-      user.update_column(:github_username, checkout.github_username)
-    end
-  end
 
   def save_organization_to_user
     if checkout.organization.present?

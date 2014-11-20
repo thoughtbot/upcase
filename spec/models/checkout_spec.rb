@@ -4,7 +4,7 @@ describe Checkout do
   it { should belong_to(:user) }
   it { should belong_to(:plan) }
 
-  it { should validate_presence_of(:user_id) }
+  it { should validate_presence_of(:user) }
   it { should validate_presence_of(:quantity) }
   it { should validate_presence_of(:email) }
   it { should validate_presence_of(:github_username) }
@@ -69,8 +69,7 @@ describe Checkout do
 
     it "requires a unique GitHub username if there is no user" do
       create :user, github_username: "taken"
-      checkout =
-        build(:checkout, user: nil, github_username: "taken", password: "test")
+      checkout = build(:checkout, user: nil, github_username: "taken")
 
       checkout.fulfill
 
@@ -86,19 +85,41 @@ describe Checkout do
 
       expect(checkout.user).to be_persisted
     end
+
+    it "saves github_username to the user" do
+      user = create(:user, github_username: nil)
+      checkout = build(:checkout, user: user, github_username: "tbot")
+
+      checkout.fulfill
+
+      expect(user.github_username).to eq "tbot"
+    end
+
+    it "validates uniqueness of github_username for existing user" do
+      create(:user, github_username: "taken")
+      user = create(:user)
+      checkout = build(:checkout, user: user, github_username: "taken")
+
+      checkout.fulfill
+
+      expect(checkout.errors.full_messages).
+        to include("Github username has already been taken")
+    end
   end
 
-  it "uses the individual_price of the plan as it's price" do
-    plan = build(:plan, individual_price: 50)
-    checkout = build(:checkout, plan: plan)
+  context "#price" do
+    it "uses the individual_price of the plan as it's price" do
+      plan = build(:plan, individual_price: 50)
+      checkout = build(:checkout, plan: plan)
 
-    expect(checkout.price).to eq 50
-  end
+      expect(checkout.price).to eq 50
+    end
 
-  it "uses the individual_price of the plan and quantity as it's price" do
-    plan = build(:plan, individual_price: 50)
-    checkout = build(:checkout, plan: plan, quantity: 3)
+    it "uses the individual_price of the plan and quantity as it's price" do
+      plan = build(:plan, individual_price: 50)
+      checkout = build(:checkout, plan: plan, quantity: 3)
 
-    expect(checkout.price).to eq 150
+      expect(checkout.price).to eq 150
+    end
   end
 end
