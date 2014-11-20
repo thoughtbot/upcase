@@ -3,11 +3,11 @@ require "rails_helper"
 describe VideosHelper do
   describe "#video_description" do
     it "returns plain text video notes" do
-      video = stub("video", notes_html: "<h1>Citizen Kane</h1>")
+      video = stub("video", notes_html: "<h1>Vim's Power</h1>")
 
       result = video_description(video)
 
-      expect(result).to eq "Citizen Kane"
+      expect(result).to eq "Vim's Power"
     end
 
     it "truncates the video notes to 250 characters by default" do
