@@ -21,7 +21,7 @@
     <% end %>
   </div>
 
-  <% if current_user.stripe_customer_id %>
+  <% if current_user.has_credit_card? %>
     <%= render 'credit_card_form' %>
   <% end %>
 

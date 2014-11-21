@@ -115,6 +115,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def has_credit_card?
+    stripe_customer_id.present?
+  end
+
   private
 
   def personal_subscription

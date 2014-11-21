@@ -35,13 +35,15 @@ describe SubscriptionUpcomingInvoiceUpdater do
     expect(subscription.next_payment_on).to be_nil
   end
 
-  it "doesn't raise errors for subscriptions without customer IDs" do
+  it "doesn't update subscriptions with empty customer IDs" do
     subscription = build_stubbed(:subscription)
-    subscription.stubs(:stripe_customer_id).returns(nil)
-    subscriptions = [subscription]
+    subscription.stubs(:stripe_customer_id).returns("")
+    subscription.stubs(:update!)
+    updater = SubscriptionUpcomingInvoiceUpdater.new([subscription])
 
-    expect { SubscriptionUpcomingInvoiceUpdater.new(subscriptions).process }.
-      not_to raise_error
+    updater.process
+
+    expect(subscription).to have_received(:update!).never
   end
 
   it "sends the error to Airbrake if it isn't 404" do

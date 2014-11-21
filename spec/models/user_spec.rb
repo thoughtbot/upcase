@@ -259,7 +259,7 @@ describe User do
 
   describe "#credit_card" do
     it "returns nil if there is no stripe_customer_id" do
-      user = create(:user, stripe_customer_id: nil)
+      user = create(:user, stripe_customer_id: "")
 
       expect(user.credit_card).to be_nil
     end
@@ -269,6 +269,20 @@ describe User do
 
       expect(user.credit_card).not_to be_nil
       expect(user.credit_card["last4"]).to eq "1234"
+    end
+  end
+
+  describe "#has_credit_card?" do
+    it "returns false if there is no stripe_customer_id" do
+      user = build(:user, stripe_customer_id: "")
+
+      expect(user.has_credit_card?).to eq(false)
+    end
+
+    it "returns true if there is stripe_customer_id" do
+      user = build(:user, stripe_customer_id: "cus_123")
+
+      expect(user.has_credit_card?).to eq(true)
     end
   end
 

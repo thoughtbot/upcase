@@ -86,7 +86,7 @@ describe StripeSubscription do
       checkout = build(:checkout)
       subscription = StripeSubscription.new(checkout)
       subscription.create
-      user = create(:user, stripe_customer_id: nil)
+      user = create(:user, stripe_customer_id: "")
 
       subscription.update_user(user)
 
