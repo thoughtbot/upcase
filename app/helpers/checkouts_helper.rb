@@ -27,8 +27,10 @@ module CheckoutsHelper
     end
   end
 
-  def need_to_collect_github_username?
-    signed_in? && current_user.github_username.blank?
+  def needs_github_username?
+    signed_in? &&
+      (current_user.github_username.blank? ||
+       current_user.errors[:github_username].present?)
   end
 
   def need_to_create_user_account?

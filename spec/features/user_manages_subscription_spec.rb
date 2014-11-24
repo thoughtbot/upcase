@@ -155,6 +155,18 @@ feature "User creates a subscription" do
     expect(page).not_to have_link("Subscribe to #{plan.name}")
   end
 
+  scenario "existing user tries to subscribe with duplicate github", js: true do
+    create(:user, github_username: "taken")
+    user = create(:user)
+
+    visit new_checkout_path(@plan, as: user)
+    fill_in "GitHub username", with: "taken"
+    fill_out_subscription_form_with_valid_credit_card
+
+    expect(page).to have_content("has already been taken")
+    expect(page).not_to have_content("Your Billing Info")
+  end
+
   scenario "User subscribes with an existing credit card", js: true do
     user = create(:user, :with_github, stripe_customer_id: "test")
 

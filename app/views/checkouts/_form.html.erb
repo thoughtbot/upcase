@@ -19,7 +19,7 @@
       <%= form.input :email, as: :email, required: true %>
       <%= form.input :password, required: true %>
     <% end %>
-    <% if need_to_create_user_account? || need_to_collect_github_username? %>
+    <% if need_to_create_user_account? || needs_github_username? %>
       <%= form.input :github_username, required: true, label: "GitHub username",
         hint: "Be sure to enter a valid, unique GitHub username. Organizations are not allowed." %>
     <% end %>
