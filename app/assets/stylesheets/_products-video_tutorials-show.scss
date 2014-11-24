@@ -50,16 +50,6 @@ body.videos-show aside {
       }
     }
 
-    .free-with-subscription {
-      background: $upcase-green;
-      border-bottom: 3px solid lighten($upcase-green, 5);
-      color: white;
-
-      &:active {
-        background-color: darken($upcase-green, 5);
-      }
-    }
-
     .license-button {
       margin-bottom: 0;
       text-transform: uppercase;

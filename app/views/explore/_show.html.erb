@@ -5,7 +5,7 @@
 
   <%= render partial: "products/videos/video", collection: show.latest_videos %>
 
-  <figure class="card see-more">
+  <figure class="see-more">
     <%= link_to show do %>
       <h4><%= pluralize show.videos.count, "more episode" %></h4>
       <p>View All</p>

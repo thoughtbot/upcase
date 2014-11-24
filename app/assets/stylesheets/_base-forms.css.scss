@@ -34,6 +34,24 @@ input[type="submit"] {
   white-space: nowrap;
 }
 
+%secondary-button {
+  border: 1px solid $gray-4;
+  border-radius: 3px;
+  color: $gray-2;
+  display: inline-block;
+  font-size: em(14);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-top: em(40);
+  padding: em(5) em(12);
+  text-align: center;
+  text-transform: uppercase;
+
+  &:hover {
+    background: $off-white;
+  }
+}
+
 
 form {
   margin: 0 0 2em 0;

@@ -5,18 +5,42 @@
   <%= render "products/locked_features" %>
 <% end %>
 
-<section class="root-trails">
+<section class="practice">
   <div class="content">
     <section class="trails-progress">
       <header class="section-title">
-        <h1>New Trails (Beta)</h1>
+        <h1>Welcome, Ben.</h1>
         <h2>
-          These new trails are focused exercises targeting your interests. They
-          help you learn by doing and keep your skillset sharp.
+          Here's where you left off...
         </h2>
       </header>
 
+      <span class="divider">
+        <h4 class="text">Your Trails</h4>
+      </span>
+
       <%= render partial: "practice/trail", collection: @practice.trails %>
+
+      <span class="divider">
+        <h4 class="text">Completed Trails</h4>
+      </span>
+
+      <section class="trail-titles">
+        <span class="divider">
+          <h4 class="text">All Trails</h4>
+        </span>
+        <ul>
+          <li class="haskell"><a href="">Haskell Fundamentals</a></li>
+          <li class="clean-code"><a href="">Refactoring</a></li>
+          <li class="testing"><a href="">Testing Fundamentals</a></li>
+          <li class="vim"><a href="">Vim Fundamentals</a></li>
+          <li class="javascript"><a href="">Javascript Fundamentals</a></li>
+          <li class="clojure"><a href="">Clojure Fundamentals</a></li>
+          <li class="ruby-on-rails"><a href="">Ruby Fundamentals</a></li>
+          <li class="workflow"><a href="">Workflow Fundamentals</a></li>
+          <li class="analytics"><a href="">Analytics Fundamentals</a></li>
+        </ul>
+      </section>
 
       <footer>
         <% if @practice.has_completed_trails? %>

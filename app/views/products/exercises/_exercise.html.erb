@@ -1,4 +1,4 @@
-<figure class="exercise card <%= exercise.state.parameterize %>-exercise">
+<div class="exercise <%= exercise.state.parameterize %>-exercise">
   <%= exercise_link exercise.url, title: exercise.title do %>
     <h5>
       <%= t(
@@ -6,9 +6,6 @@
         scope: [:exercises, :statuses]
       ) %>
     </h5>
-    <figure>
-      <div class="illustration"></div>
-    </figure>
     <h4><%= exercise.title %></h4>
     <p><%= exercise.summary %></p>
   <% end %>
@@ -16,4 +13,4 @@
   <% unless current_user_has_access_to?(:exercises) %>
     <%= render "products/locked" %>
   <% end %>
-</figure>
+</div>

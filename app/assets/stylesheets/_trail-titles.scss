@@ -1,0 +1,37 @@
+.trail-titles {
+  margin-bottom: 3rem;
+
+  li {
+    border-radius: 0 3px 3px 0;
+    box-shadow: 0 0 0 1px $gray-4;
+    display: inline-block;
+    font-family: $sans-serif;
+    font-size: em(20);
+    margin: 10px;
+    padding: 10px 20px;
+  }
+
+  a {
+    color: $gray-2;
+  }
+}
+
+$topics: (
+  clean-code: $clean-code,
+  haskell: $haskell,
+  clojure: $clojure,
+  design: $design,
+  testing: $testing,
+  vim: $vim,
+  ios: $ios,
+  analytics: $analytics,
+  javascript: $javascript,
+  ruby-on-rails: $ruby-on-rails,
+  workflow: $workflow
+);
+
+@each $topic, $color in $topics {
+  .trail-titles .#{$topic} {
+    border-left: 10px solid $color;
+  }
+}

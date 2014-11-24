@@ -2,6 +2,14 @@
   <h1><%= @topic.name %></h1>
   <% if @topic.summary.present? %>
     <h2 class="tagline"><%= @topic.summary %></h2>
+    <nav class="topic-nav">
+      <ul>
+        <li><a href="">Your Trails</a></li>
+        <li><a href="">All Trails</a></li>
+        <li><a href="">The Weekly Iteration</a></li>
+        <li><a href="">Video Tutorials</a></li>
+      </ul>
+    </nav>
   <% end %>
 <% end %>
 

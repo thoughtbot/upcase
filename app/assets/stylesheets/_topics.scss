@@ -1,0 +1,110 @@
+.topics {
+  margin-bottom: 2em;
+
+  .divider {
+    margin-bottom: 0;
+  }
+
+  ul {
+    @include display(flex);
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    @include justify-content(space-around);
+  }
+
+  .topic-link {
+    height: 350px;
+    margin: 0;
+    padding: 40px;
+    position: relative;
+    width: 50%;
+
+    &:after {
+      position: absolute;
+      top: 0;
+      right: 1em;
+      bottom: 0;
+      left: 0;
+      border-bottom: 1px solid $gray-4;
+      content: "";
+      z-index: -1;
+    }
+
+    &:last-child:after {
+      border: 0;
+    }
+  }
+
+  .topic-link:nth-child(even) {
+    background-position: 15%;
+
+    &:before {
+      position: absolute;
+      top: 1em;
+      right: 0.5em;
+      bottom: 1em;
+      left: 0;
+      border-left: 1px solid $gray-4;
+      content: "";
+      z-index: -1;
+    }
+
+    &:after {
+      left: 1em;
+      right: 0;
+    }
+
+    ul {
+      left: 50%;
+    }
+  }
+
+  .topic-link ul {
+    position: absolute;
+    left: 40%;
+    top: 38%;
+  }
+
+  .topic-link ul li {
+    width: 100%;
+    margin: 0;
+
+    &.topic-title {
+      margin-bottom: .7em;
+
+      a {
+        font-weight: 700;
+        font-size: em(22);
+      }
+    }
+
+    a {
+      color: $darkwarmgray;
+    }
+
+    .number {
+      font-weight: 700;
+    }
+  }
+}
+
+$topic-icons: (
+  clean-code,
+  haskell,
+  clojure,
+  design,
+  testing,
+  vim,
+  ios,
+  analytics,
+  javascript,
+  ruby-on-rails,
+  workflow,
+);
+
+@each $topic-icon in $topic-icons {
+  .topic-link.#{$topic-icon} {
+    background: image-url('topics/#{$topic-icon}.svg') no-repeat 0% 50%
+  }
+}
+
