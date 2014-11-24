@@ -115,7 +115,7 @@
   }
 
   &.complete-exercise .status {
-    background: url(<%= asset_path 'check.svg' %>) no-repeat 5px 5px #83EBA8;
+    background: image-url('check.svg') no-repeat 5px 5px #83EBA8;
     background-size: 18px;
     color: darken(#83EBA8, 45%);
     display: block;
