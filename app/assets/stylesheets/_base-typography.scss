@@ -162,3 +162,36 @@ hr {
     padding: 0 1em;
   }
 }
+
+.subject {
+  margin-bottom: 3em;
+  text-align: left;
+  width: 85%;
+
+  @include body-mobile {
+    width: 100%;
+  }
+
+  h1 {
+    color: $darkwarmgray;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+
+    @include body-mobile {
+      font-size: 30px;
+    }
+  }
+
+  h2 {
+    font-size: 1em;
+    font-weight: normal;
+    line-height: 1.75em;
+    width: 85%;
+  }
+
+  .tagline, .tagline a {
+    @include body-mobile {
+      font-size: 20px;
+    }
+  }
+}

@@ -17,8 +17,9 @@ body.passwords-create {
 }
 
 .header-container {
-  @include outer-container;
   @include user-select(none);
+  @include outer-container;
+  max-width: $max-width;
   position: relative;
 
   .small-logo {

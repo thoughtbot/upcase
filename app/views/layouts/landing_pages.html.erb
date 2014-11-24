@@ -24,7 +24,7 @@
 
     <section class="content">
       <% if content_for?(:subject_block) %>
-        <div class="subject"><%= yield(:subject_block) %></div>
+        <section class="subject"><%= yield(:subject_block) %></section>
       <% end %>
       <%= yield %>
     </section>
