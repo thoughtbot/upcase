@@ -7,11 +7,12 @@ class CheckoutsController < ApplicationController
       )
     else
       @checkout = build_checkout({})
+      initialize_checkout_from_user
     end
   end
 
   def create
-    @checkout = build_checkout(checkout_params_with_user)
+    @checkout = build_checkout(checkout_params_with_customer)
 
     if @checkout.fulfill
       sign_in_and_redirect
@@ -23,15 +24,12 @@ class CheckoutsController < ApplicationController
   private
 
   def build_checkout(arguments)
-    checkout = plan.checkouts.build(arguments)
-    CheckoutPrepopulator.new(checkout, current_user).prepopulate_with_user_info
-    checkout
+    plan.checkouts.build arguments.merge(default_arguments)
   end
 
-  def checkout_params_with_user
+  def checkout_params_with_customer
     checkout_params.merge(
-      stripe_customer_id: existing_stripe_customer_id,
-      user: current_user
+      stripe_customer_id: current_user.try(:stripe_customer_id)
     )
   end
 
@@ -46,10 +44,34 @@ class CheckoutsController < ApplicationController
   end
 
   def success_url
-    if @checkout.includes_team?
+    if @checkout.plan_includes_team?
       edit_team_path
     else
       practice_path
+    end
+  end
+
+  def default_arguments
+    { user: current_user }.merge(github_argument)
+  end
+
+  def github_argument
+    github = current_user.try(:github_username)
+
+    if github.present?
+      { github_username: github }
+    else
+      {}
+    end
+  end
+
+  def initialize_checkout_from_user
+    if current_user.present?
+      AttributesCopier.new(
+        target: @checkout,
+        source: current_user,
+        attributes: Checkout::COMMON_ATTRIBUTES
+      ).copy_present_attributes
     end
   end
 
@@ -77,14 +99,8 @@ class CheckoutsController < ApplicationController
     )
   end
 
-  def existing_stripe_customer_id
-    if using_existing_card?
-      current_user.stripe_customer_id
-    end
-  end
-
   def plan
-    Plan.where(sku: params[:plan]).first
+    Plan.find_by!(sku: params[:plan])
   end
 
   def using_existing_card?

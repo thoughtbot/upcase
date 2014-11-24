@@ -6,16 +6,13 @@ describe Checkout do
 
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:quantity) }
-  it { should validate_presence_of(:email) }
   it { should validate_presence_of(:github_username) }
 
-  it { should delegate(:user_email).to(:user).as(:email) }
-  it { should delegate(:user_first_name).to(:user).as(:first_name) }
-  it { should delegate(:user_last_name).to(:user).as(:last_name) }
-  it { should delegate(:user_github_username).to(:user).as(:github_username) }
-  it { should delegate(:plan_sku).to(:plan).as(:sku) }
+  it { should delegate(:plan_includes_team?).to(:plan).as(:includes_team?) }
   it { should delegate(:plan_name).to(:plan).as(:name) }
-  it { should delegate(:terms).to(:plan) }
+  it { should delegate(:plan_sku).to(:plan).as(:sku) }
+  it { should delegate(:plan_terms).to(:plan).as(:terms) }
+  it { should delegate(:user_email).to(:user).as(:email) }
 
   context "#fulfill" do
     it "fulfills a subscription when purchasing a plan" do
@@ -55,26 +52,12 @@ describe Checkout do
     end
 
     it "copies checkout info to the user" do
-      checkout_info_copier_stub = stub("payment_info_copier", copy_info_to_user: true)
-      CheckoutInfoCopier.stubs(new: checkout_info_copier_stub)
       user = create(:user, :with_github)
-      checkout = build(:checkout, user: user)
-      expect(checkout_info_copier_stub).to have_received(:copy_info_to_user).never
+      checkout = build(:checkout, user: user, organization: "The thoughtbot")
 
       checkout.fulfill
 
-      expect(CheckoutInfoCopier).to have_received(:new).with(checkout, checkout.user)
-      expect(checkout_info_copier_stub).to have_received(:copy_info_to_user)
-    end
-
-    it "requires a unique GitHub username if there is no user" do
-      create :user, github_username: "taken"
-      checkout = build(:checkout, user: nil, github_username: "taken")
-
-      checkout.fulfill
-
-      expect(checkout.errors.full_messages).
-        to include("Github username has already been taken")
+      expect(user.organization).to eq("The thoughtbot")
     end
 
     it "creates a user when fulfilled with a password" do
@@ -95,7 +78,17 @@ describe Checkout do
       expect(user.github_username).to eq "tbot"
     end
 
-    it "validates uniqueness of github_username for existing user" do
+    it "requires a unique GitHub username if there is no user" do
+      create :user, github_username: "taken"
+      checkout = build(:checkout, user: nil, github_username: "taken")
+
+      checkout.fulfill
+
+      expect(checkout.errors.full_messages).
+        to include("Github username has already been taken")
+    end
+
+    it "requires a unique github_username for existing user" do
       create(:user, github_username: "taken")
       user = create(:user)
       checkout = build(:checkout, user: user, github_username: "taken")

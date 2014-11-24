@@ -80,20 +80,6 @@ describe StripeSubscription do
     end
   end
 
-  context "#update_user" do
-    it "saves the stripe customer id on the user" do
-      stub_stripe_customer customer_id: 'stripe'
-      checkout = build(:checkout)
-      subscription = StripeSubscription.new(checkout)
-      subscription.create
-      user = create(:user, stripe_customer_id: "")
-
-      subscription.update_user(user)
-
-      expect(user.reload.stripe_customer_id).to eq "stripe"
-    end
-  end
-
   def stub_existing_customer
     subscriptions = FakeSubscriptionList.new([FakeSubscription.new])
     customer = stub("customer", subscriptions: subscriptions)

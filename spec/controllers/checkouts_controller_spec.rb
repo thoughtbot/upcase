@@ -32,8 +32,7 @@ describe CheckoutsController do
 
   describe "#create" do
     it "creates and saves a stripe customer and charges it for the product" do
-      user = create(:user)
-      stub_current_user_with(user)
+      stub_current_user_with create(:user)
       plan = create(:plan)
       stripe_token = "token"
 
@@ -43,7 +42,7 @@ describe CheckoutsController do
     end
 
     it "sets flash[:purchase_amount]" do
-      stub_current_user_with(create(:user))
+      stub_current_user_with create(:user)
       plan = create(:plan)
 
       post :create, checkout: customer_params, plan: plan

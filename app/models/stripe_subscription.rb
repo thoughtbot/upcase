@@ -12,10 +12,6 @@ class StripeSubscription
     end
   end
 
-  def update_user(user)
-    user.update_column :stripe_customer_id, @checkout.stripe_customer_id
-  end
-
   private
 
   def rescue_stripe_exception
