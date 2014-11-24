@@ -1,0 +1,114 @@
+.topics {
+  margin-bottom: 2em;
+
+  .divider {
+    margin-bottom: 0;
+  }
+
+  ul {
+    @include display(flex);
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    @include justify-content(space-around);
+  }
+
+  .topic-link {
+    @include transition (all 0.3s ease-in-out);
+    height: 350px;
+    margin: 0;
+    padding: 40px;
+    position: relative;
+    width: 50%;
+
+    @media screen and (max-width: 755px) {
+      width: 100%;
+    }
+
+    &:after {
+      position: absolute;
+      top: 0;
+      right: 1em;
+      bottom: 0;
+      left: 0;
+      border-bottom: 1px solid $gray-4;
+      content: "";
+      z-index: -1;
+    }
+
+    &:last-child:after {
+      border: 0;
+    }
+  }
+
+  .topic-link:nth-child(even) {
+    &:before {
+      position: absolute;
+      top: 1em;
+      right: 0.5em;
+      bottom: 1em;
+      left: 0;
+      border-left: 1px solid $gray-4;
+      content: "";
+      z-index: -1;
+
+      @media screen and (max-width: 755px) {
+        border-left: 0;
+      }
+    }
+
+    &:after {
+      left: 1em;
+      right: 0;
+    }
+
+    ul {
+      left: 50%;
+
+      @media screen and (max-width: 755px) {
+        position: relative;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+
+  .topic-link img {
+    position: absolute;
+    top: 25%;
+    left: 5%;
+
+    @media screen and (max-width: 755px) {
+      position: relative;
+      top: 0;
+      left: 0;
+      margin-bottom: 10px;
+    }
+  }
+
+  .topic-link ul {
+    position: absolute;
+    left: 50%;
+    top: 38%;
+
+    @media screen and (max-width: 755px) {
+      position: relative;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .topic-link ul li {
+    width: 100%;
+    margin: 0;
+    color: $darkwarmgray;
+
+    &.topic-title {
+      margin-bottom: .7em;
+      font-weight: 700;
+      font-size: em(22);
+    }
+    .topic-num {
+      font-weight: 700;
+    }
+  }
+}

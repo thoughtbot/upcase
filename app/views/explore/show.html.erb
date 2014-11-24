@@ -9,10 +9,21 @@
   <div class="content">
     <header class="section-title">
       <h1>Explore</h1>
-      <h2>Upcase's exclusive video tutorials and resources on intermediate and advanced topics such as Vim mastery, TDD, and object-oriented design.</h2>
+      <h2>
+        Upcase's exclusive video tutorials and resources on intermediate and
+        advanced topics such as Vim mastery, TDD, and object-oriented design.
+      </h2>
     </header>
 
-    <%= render partial: "show", collection: @explore.shows %>
-    <%= render partial: "topic", collection: @explore.topics %>
+    <section class="topics">
+      <span class="divider">
+        <h4 class="text">Topics</h4>
+      </span>
+      <ul>
+        <%= render partial: "topic_tile",
+          collection: @explore.topics,
+          as: :topic %>
+      </ul>
+    </section>
   </div>
 </section>

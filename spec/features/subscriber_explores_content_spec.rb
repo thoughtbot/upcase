@@ -1,8 +1,15 @@
 require "rails_helper"
 
 feature "Subscriber accesses content" do
+  before do
+    show = create(:show, name: Show::THE_WEEKLY_ITERATION)
+    create(:video, watchable: show)
+  end
+
   scenario "begins a video_tutorial" do
-    video_tutorial = create(:video_tutorial, :explorable)
+    pending
+    # https://github.com/thoughtbot/upcase/pull/1072
+    video_tutorial = create(:video_tutorial)
 
     sign_in_as_user_with_subscription
     visit explore_path
@@ -13,11 +20,13 @@ feature "Subscriber accesses content" do
     expect(page).to have_content I18n.t("licenses.flashes.success")
     expect(page).not_to have_content("Receipt")
 
-    expect_explore_to_show_video_tutorial_active(video_tutorial)
+    expect_products_to_show_video_tutorial_active(video_tutorial)
   end
 
   scenario "subscriber without access to video_tutorials attempts to begin a video_tutorial" do
-    create(:video_tutorial, :explorable)
+    pending
+    # https://github.com/thoughtbot/upcase/pull/1072
+    create(:video_tutorial)
 
     sign_in_as_user_with_downgraded_subscription
     visit explore_path
@@ -30,31 +39,9 @@ feature "Subscriber accesses content" do
     expect(current_path).to eq edit_subscription_path
   end
 
-  scenario "show in-progress status for current video_tutorial" do
-    video_tutorial = create(:video_tutorial, :explorable, length_in_days: 2)
-
-    sign_in_as_user_with_subscription
-    visit explore_path
-    click_video_tutorial_detail_link
-    click_link I18n.t("video_tutorial.checkout_cta")
-
-    visit explore_path
-    expect(page).to have_css(".card.in-progress", text: video_tutorial.name)
-  end
-
-  scenario "show complete status for past video_tutorial" do
-    video_tutorial = create(:video_tutorial, :explorable, length_in_days: 2)
-
-    Timecop.travel(3.days.ago) do
-      get_access_to_video_tutorial
-    end
-
-    visit explore_path
-    expect(page).to have_css(".card.complete", text: video_tutorial.name)
-  end
-
   scenario "gets added to the GitHub team for a repository" do
-    repository = create(:repository, :explorable)
+    create(:video_tutorial)
+    repository = create(:repository)
     sign_in_as_user_with_subscription
     stub_github_fulfillment_job
 
@@ -79,11 +66,11 @@ feature "Subscriber accesses content" do
   end
 
   def click_video_tutorial_detail_link
-    find(".video_tutorial > a").click
+    find(".video-tutorial a:first").click
   end
 
-  def expect_explore_to_show_video_tutorial_active(video_tutorial)
-    visit explore_path
+  def expect_products_to_show_video_tutorial_active(video_tutorial)
+    visit products_path
     expect(page).to have_css(
       ".card a[title='#{video_tutorial.name}'] .status",
       text: "in-progress"

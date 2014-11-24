@@ -171,33 +171,6 @@
     }
   }
 
-  &.see-more {
-    padding-top: 78px;
-    position: relative;
-    text-align: center;
-
-    a {
-      background-image: image-url('more-arrow.svg');
-      background-position: top center;
-      background-repeat: no-repeat;
-      padding-top: 100px;
-    }
-
-    h5 {
-      background-color: $upcase-red;
-    }
-
-    p {
-      bottom: 0;
-      border-radius: .25rem;
-      border: 1px solid $base-border-color-1;
-      left: 0;
-      padding: 9px;
-      position: absolute;
-      right: 0;
-    }
-  }
-
   &.complete-exercise {
     h5 {
       background-color: $upcase-green;
