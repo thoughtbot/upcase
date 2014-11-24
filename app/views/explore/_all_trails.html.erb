@@ -1,0 +1,13 @@
+<section class="trail-titles">
+  <span class="divider">
+    <h4 class="text">All Trails</h4>
+  </span>
+
+  <ul>
+    <% trails.each do |trail| %>
+      <li class="<%= topic_classes([trail.topic]) %>">
+        <%= link_to trail.name, trail %>
+      </li>
+    <% end %>
+  </ul>
+</section>

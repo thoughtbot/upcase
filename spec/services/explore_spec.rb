@@ -25,4 +25,13 @@ describe Explore do
       expect(video).to eq(video)
     end
   end
+
+  describe "#trails" do
+    it "returns most recently published Trails" do
+      user = stub
+      explore = Explore.new(user)
+
+      expect(explore.trails).to find_relation(Trail.most_recent_published)
+    end
+  end
 end

@@ -145,11 +145,17 @@ namespace :dev do
   end
 
   def create_topics
-    FactoryGirl.create(:topic, explorable: true, name: "Ruby on Rails")
-    FactoryGirl.create(:topic, explorable: true, name: "Testing")
-    FactoryGirl.create(:topic, explorable: true, name: "Workflow")
-    FactoryGirl.create(:topic, explorable: true, name: "iOS")
-    FactoryGirl.create(:topic, explorable: true, name: "Clean Code")
+    FactoryGirl.create(:topic, :explorable, name: "Clean Code")
+    FactoryGirl.create(:topic, :explorable, name: "Design")
+    FactoryGirl.create(:topic, :explorable, name: "Javascript")
+    FactoryGirl.create(:topic, :explorable, name: "Vim")
+    FactoryGirl.create(:topic, :explorable, name: "Workflow")
+    FactoryGirl.create(:topic, :explorable, name: "iOS")
+
+    rails = FactoryGirl.create(:topic, :explorable, name: "Ruby on Rails")
+    rails.update(slug: "rails")
+    testing = FactoryGirl.create(:topic, :explorable, name: "Testing")
+    testing.update(slug: "test-driven+development")
   end
 
   def create_trails
@@ -157,6 +163,7 @@ namespace :dev do
     user = User.find_by_email!("whetstone@example.com")
 
     trail = FactoryGirl.create(:trail, :published, name: "Testing Fundamentals")
+    trail.update(topic: Topic.find_by(slug: "test-driven+development"))
     create_steps_for(
       trail,
       "Passing Your First Test",

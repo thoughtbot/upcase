@@ -23,4 +23,8 @@ class Explore
     )
     topics.to_a.sort_by(&:count).reverse
   end
+
+  def trails
+    Trail.most_recent_published
+  end
 end

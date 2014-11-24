@@ -3,6 +3,7 @@
   @include flex-direction(row);
   @include flex-wrap(wrap);
   @include justify-content(space-around);
+  margin-bottom: 2em;
 
   .tile {
     border-radius: 0 0 3px 3px;

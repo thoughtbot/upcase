@@ -4,11 +4,11 @@ feature "Subscriber accesses content" do
   before do
     show = create(:show, name: Show::THE_WEEKLY_ITERATION)
     create(:video, watchable: show)
+    create(:video_tutorial)
   end
 
   scenario "begins a video_tutorial" do
     video_tutorial = create(:video_tutorial)
-
     sign_in_as_user_with_subscription
     visit explore_path
     click_video_tutorial_detail_link
@@ -22,8 +22,6 @@ feature "Subscriber accesses content" do
   end
 
   scenario "subscriber without access to video_tutorials attempts to begin a video_tutorial" do
-    create(:video_tutorial)
-
     sign_in_as_user_with_downgraded_subscription
     visit explore_path
     click_video_tutorial_detail_link
@@ -59,7 +57,6 @@ feature "Subscriber accesses content" do
   end
 
   scenario "gets added to the GitHub team for a repository" do
-    create(:video_tutorial)
     repository = create(:repository)
     sign_in_as_user_with_subscription
     stub_github_fulfillment_job

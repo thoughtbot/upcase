@@ -203,6 +203,9 @@ FactoryGirl.define do
     name
     summary 'short yet descriptive'
 
+    trait :explorable do
+      explorable true
+    end
     trait :featured do
       featured true
     end
@@ -444,6 +447,7 @@ FactoryGirl.define do
     name "Trail name"
     description "Trail description"
     complete_text "Way to go!"
+    topic
 
     trait :published do
       published true
