@@ -13,17 +13,6 @@ class Catalog
     VideoTutorial.active
   end
 
-  def shows
-    Show.active.ordered
-  end
-
-  def exercises
-    ExerciseWithProgressQuery.new(
-      exercises: Exercise.public.ordered,
-      user: @user
-    )
-  end
-
   def mentors
     Mentor.all
   end

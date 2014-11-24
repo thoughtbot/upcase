@@ -27,13 +27,6 @@ FactoryGirl.define do
     "http://robots.thoughtbot.com/#{n}"
   end
 
-  trait :explorable do
-    after :create do |classifiable|
-      topic = create(:topic, explorable: true)
-      classifiable.classifications.create!(topic: topic)
-    end
-  end
-
   factory :classification do
     association :classifiable, factory: :product
     topic

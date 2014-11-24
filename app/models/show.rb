@@ -12,4 +12,8 @@ class Show < Product
   def latest_videos(take = Explore::LIMIT)
     videos.recently_published_first.limit(take)
   end
+
+  def latest_video
+    latest_videos(1).first
+  end
 end

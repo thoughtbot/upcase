@@ -9,8 +9,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1, h1 a {
-  font-size: 72px;
-  font-weight: 800;
+  font-size: 36px;
+  font-weight: 700;
 }
 
 h2 {
@@ -24,7 +24,7 @@ h3 {
 }
 
 h4 {
-  color: #94918C;
+  color: $gray-3;
   font-size: 1em;
   font-weight: 600;
   margin-bottom: 1rem;
@@ -32,7 +32,7 @@ h4 {
 
 p, li {
   color: $darkwarmgray;
-  font: normal 1em/1.75em $serif;
+  font: normal 1em/1.75em $sans-serif;
   margin-bottom: .8em;
   -webkit-font-smoothing: antialiased;
 
@@ -139,6 +139,7 @@ hr {
 
 .divider {
   display: block;
+  margin-bottom: 2em;
   position: relative;
   text-align: center;
   width: 100%;
@@ -150,7 +151,7 @@ hr {
     right: 0px;
     bottom: 0.5em;
     left: 0px;
-    border-bottom: 1px solid $warmgray;
+    border-bottom: 1px solid $gray-4;
     content: "";
     z-index: -1;
   }

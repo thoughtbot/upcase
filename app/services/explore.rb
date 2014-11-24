@@ -5,8 +5,12 @@ class Explore
     @user = user
   end
 
-  def shows
-    Catalog.new.shows
+  def show
+    Show.the_weekly_iteration
+  end
+
+  def latest_video_tutorial
+    VideoTutorial.order(:created_at).last
   end
 
   def topics

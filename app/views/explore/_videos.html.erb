@@ -1,0 +1,21 @@
+<section class="tiles">
+  <span class="divider">
+    <h4 class="text">Videos</h4>
+  </span>
+
+  <ul>
+    <li class="tile show <%= topic_slugs(show_latest_video) %>">
+      <h2><%= show.name %></h2>
+      <h1><%= link_to show_latest_video.title, show_latest_video %></h1>
+      <p class="description"><%= show.tagline %></p>
+      <%= link_to "View All Episodes", show, class: "cta" %>
+    </li>
+
+    <li class="tile video-tutorial <%= topic_slugs(latest_video_tutorial) %>">
+      <h2>Video Tutorial</h2>
+      <h1><%= link_to latest_video_tutorial.name, latest_video_tutorial %></h1>
+      <p class="description"><%= latest_video_tutorial.tagline %></p>
+      <%= link_to "View All Videos", products_path, class: "cta" %>
+    </li>
+  </ul>
+</section>

@@ -26,4 +26,23 @@ describe VideosHelper do
       expect(result.length).to eq 200
     end
   end
+
+  describe "#topic_slugs" do
+    it "returns nil if no related topic found" do
+      video = stub(topics: [])
+
+      result = topic_slugs(video)
+
+      expect(result).to be_nil
+    end
+
+    it "returns parameterized slug of related topic when found" do
+      topic = stub(slug: "test-driven+development")
+      video = stub(topics: [topic])
+
+      result = topic_slugs(video)
+
+      expect(result).to eq("test-driven-development")
+    end
+  end
 end
