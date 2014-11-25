@@ -30,7 +30,6 @@ Upcase::Application.configure do
   config.middleware.use \
     Rack::SslEnforcer,
     hsts: false,
-    except: %r{^/podcast},
     strict: true,
     redirect_to: "https://#{ENV["APP_DOMAIN"]}"
 
