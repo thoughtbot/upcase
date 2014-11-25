@@ -38,5 +38,13 @@ describe ShowsController do
         "show"
       )
     end
+
+    it "doesn't render other formats" do
+      show = create(:show)
+
+      expect do
+        get :show, id: show, format: :json
+      end.to raise_exception(ActionController::UnknownFormat)
+    end
   end
 end

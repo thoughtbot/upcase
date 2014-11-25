@@ -31,6 +31,16 @@ describe RepositoriesController do
         expect(controller).to render_template("repositories/show")
       end
     end
+
+    it "doesn't recognize other formats" do
+      user = build_stubbed(:user)
+      sign_in_as user
+      repository = create(:repository)
+
+      expect do
+        get :show, id: repository.to_param, format: :json
+      end.to raise_exception(ActionController::UnknownFormat)
+    end
   end
 
   def show_repository(repository, license:, github_access:)

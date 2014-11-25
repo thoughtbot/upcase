@@ -20,7 +20,7 @@ class RepositoriesController < ApplicationController
     if @offering.user_has_license?
       yield
     else
-      render :show
+      render_html :show
     end
   end
 
@@ -28,7 +28,13 @@ class RepositoriesController < ApplicationController
     if @repository.has_github_member?(current_user)
       yield
     else
-      render :status
+      render_html :status
+    end
+  end
+
+  def render_html(template_name)
+    respond_to do |format|
+      format.html { render template_name }
     end
   end
 end

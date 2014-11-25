@@ -13,6 +13,14 @@ describe ExploreController do
         result = assigns(:explore).topics
         expect(result).to eq(topics.reverse)
       end
+
+      it "doesn't recognize other formats" do
+        sign_in
+
+        expect do
+          get :show, format: :rss
+        end.to raise_exception(ActionController::UnknownFormat)
+      end
     end
 
     context "signed out" do
