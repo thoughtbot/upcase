@@ -21,9 +21,9 @@ module ResourcesHelper
 
   def subscribe_or_upgrade_link
     if current_user_has_active_subscription?
-      link_to t(".locked_features.upgrade_link"), edit_subscription_path
+      link_to t("products.locked_features.upgrade_link"), edit_subscription_path
     else
-      link_to t(".locked_features.subscribe_link"), new_subscription_path
+      link_to t("products.locked_features.subscribe_link"), new_subscription_path
     end
   end
 
