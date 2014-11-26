@@ -27,11 +27,12 @@ Upcase::Application.configure do
   config.log_level = :info
   config.log_formatter = ::Logger::Formatter.new
 
-  config.middleware.use Rack::SslEnforcer,
+  config.middleware.use \
+    Rack::SslEnforcer,
     hsts: false,
     except: %r{^/podcast},
     strict: true,
-    redirect_to: "https://#{ENV['APP_DOMAIN']}"
+    redirect_to: "https://#{ENV["APP_DOMAIN"]}"
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = MAIL_SETTINGS
