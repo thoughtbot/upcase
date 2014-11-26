@@ -12,7 +12,7 @@ describe ResourcesHelper, "#subscribe_or_upgrade_link" do
 
       result = helper.subscribe_or_upgrade_link
 
-      expect(result).to match(t(".locked_features.subscribe_link"))
+      expect(result).to match("subscribe to Upcase")
       expect(result).to match(new_subscription_path)
     end
   end
@@ -23,7 +23,7 @@ describe ResourcesHelper, "#subscribe_or_upgrade_link" do
 
       result = helper.subscribe_or_upgrade_link
 
-      expect(result).to match(t(".locked_features.upgrade_link"))
+      expect(result).to match("upgrade your subscription")
       expect(result).to match(edit_subscription_path)
     end
   end
