@@ -21,38 +21,6 @@
       margin-bottom: 1em;
     }
 
-    &.clean-code {
-      border-top-color: $clean-code;
-    }
-
-    &.design {
-      border-top-color: $design;
-    }
-
-    &.ios {
-      border-top-color: $ios;
-    }
-
-    &.javascript {
-      border-top-color: $javascript;
-    }
-
-    &.rails {
-      border-top-color: $rails;
-    }
-
-    &.test-driven-development {
-      border-top-color: $test-driven-development;
-    }
-
-    &.vim {
-      border-top-color: $vim;
-    }
-
-    &.workflow {
-      border-top-color: $workflow;
-    }
-
     h1 {
       line-height: 26px;
       margin-bottom: em(8);

@@ -35,7 +35,7 @@ Upcase::Application.routes.draw do
   resource :forum_sessions, only: :new
   resource :subscription, only: [:new, :edit, :update]
   resources :licenses, only: [:index]
-  resources :topics, only: :index, path: :trails
+  resources :topics, only: :index, format: :css
 
   resources :videos, only: [:index, :show] do
     resource :twitter_player_card, only: [:show]

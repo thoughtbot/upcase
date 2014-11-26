@@ -9,46 +9,6 @@
     font-family: $sans-serif;
     font-size: em(20);
     margin: 10px;
-
-    &.clean-code {
-      border-color: $clean-code;
-    }
-
-    &.design {
-      border-color: $design;
-    }
-
-    &.foundations {
-      border-color: $foundations;
-    }
-
-    &.haskell {
-      border-color: $haskell;
-    }
-
-    &.ios {
-      border-color: $ios;
-    }
-
-    &.javascript {
-      border-color: $javascript;
-    }
-
-    &.rails {
-      border-color: $rails;
-    }
-
-    &.test-driven-development {
-      border-color: $test-driven-development;
-    }
-
-    &.vim {
-      border-color: $vim;
-    }
-
-    &.workflow {
-      border-color: $workflow;
-    }
   }
 
   a {

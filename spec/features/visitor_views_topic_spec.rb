@@ -6,7 +6,7 @@ feature 'Topic pages' do
     create(:topic, name: 'Topic 2')
     create(:topic, :featured, name: 'Topic 3')
 
-    visit topics_path
+    visit trails_path
 
     within('#topics-list') do
       expect(page).to have_content 'Topic 1'
@@ -24,7 +24,7 @@ feature 'Topic pages' do
       name: 'Topic 1'
     )
 
-    visit topics_path
+    visit trails_path
     click_link 'Topic 1'
 
     within('.subject') do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141214172601) do
+ActiveRecord::Schema.define(version: 20141216212241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -306,15 +306,17 @@ ActiveRecord::Schema.define(version: 20141214172601) do
   end
 
   create_table "topics", force: true do |t|
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.string   "keywords"
-    t.string   "name",                       null: false
-    t.string   "slug",                       null: false
+    t.string   "name",                         null: false
+    t.string   "slug",                         null: false
     t.text     "summary"
     t.integer  "count"
-    t.boolean  "featured",   default: false, null: false
-    t.boolean  "explorable", default: false, null: false
+    t.boolean  "featured",     default: false, null: false
+    t.boolean  "explorable",   default: false, null: false
+    t.string   "color",        default: "",    null: false
+    t.string   "color_accent", default: "",    null: false
   end
 
   add_index "topics", ["explorable"], name: "index_topics_on_explorable", using: :btree

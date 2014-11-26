@@ -38,6 +38,10 @@ class Topic < ActiveRecord::Base
     pluck(:name).join(", ")
   end
 
+  def self.with_colors
+    where("color != ''")
+  end
+
   def to_param
     slug
   end

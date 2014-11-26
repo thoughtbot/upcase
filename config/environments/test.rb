@@ -1,8 +1,3 @@
-#This prevents caching via the browser
-#in testing mode
-module ActionController::ConditionalGet
-  def expires_in(*_) ; end
-end
 Upcase::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 

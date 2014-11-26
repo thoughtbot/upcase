@@ -2,7 +2,7 @@
 <% content_for :meta_keywords, @topic.keywords %>
 <% content_for :page_title, @topic.name %>
 <% content_for :additional_header_links do %>
-  <li class="all-trails"><%= link_to 'All Trails', topics_path %></li>
+  <li class="all-trails"><%= link_to 'All Trails', trails_path %></li>
 <% end %>
 <% content_for :subject_block do %>
   <h1><%= @topic.name %></h1>
