@@ -1,7 +1,7 @@
 require "rails_helper"
 
-feature 'An OAuth client authenticates', js: true do
-  scenario 'via redirect' do
+feature "An OAuth client authenticates", js: true do
+  scenario "via redirect" do
     create_client_app
     visit_client_app
     user = create(:subscriber)
@@ -9,15 +9,15 @@ feature 'An OAuth client authenticates', js: true do
     verify_signed_in_user_details_from_page(user)
   end
 
-  scenario 'via redirect with GitHub' do
+  scenario "via redirect with GitHub" do
     create_client_app
     visit_client_app
 
-    click_on 'Sign Into Upcase'
-    click_link 'with GitHub'
+    click_on "Sign Into Upcase"
+    click_link "with GitHub"
 
     user = User.find_by_email!(
-      OmniAuth.config.mock_auth[:github]['info']['email']
+      OmniAuth.config.mock_auth[:github]["info"]["email"]
     )
 
     expect(current_path).not_to eq practice_path
@@ -31,7 +31,7 @@ feature 'An OAuth client authenticates', js: true do
     expect(current_path).to eq practice_path
   end
 
-  scenario 'via password' do
+  scenario "via password" do
     create_client_app
     user = create(:subscriber)
     json = authorize_via_password(user)
@@ -39,32 +39,32 @@ feature 'An OAuth client authenticates', js: true do
   end
 
   def create_client_app
-    using_session 'admin' do
+    using_session "admin" do
       admin = create(:admin)
       visit oauth_applications_path(as: admin)
-      click_on 'New Application'
-      fill_in 'Name', with: 'Fake'
-      fill_in 'Redirect uri', with: FakeOauthClientApp.redirect_uri
-      click_on 'Submit'
+      click_on "New Application"
+      fill_in "doorkeeper_application_name", with: "Fake"
+      fill_in "doorkeeper_application_redirect_uri", with: FakeOauthClientApp.redirect_uri
+      click_on "Submit"
 
-      FakeOauthClientApp.client_id = find('#application_id').text
-      FakeOauthClientApp.client_secret = find('#secret').text
+      FakeOauthClientApp.client_id = find("#application_id").text
+      FakeOauthClientApp.client_secret = find("#secret").text
 
-      server_url = URI.parse(page.current_url).merge('/').to_s
+      server_url = URI.parse(page.current_url).merge("/").to_s
       FakeOauthClientApp.server_url = server_url
     end
   end
 
   def visit_client_app
-    visit FakeOauthClientApp.client_url + '/fake_oauth_client_app'
+    visit FakeOauthClientApp.client_url + "/fake_oauth_client_app"
   end
 
   def authorize_via_redirect(user)
-    click_on 'Sign Into Upcase'
+    click_on "Sign Into Upcase"
 
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Sign in'
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    click_button "Sign in"
   end
 
   def authorize_via_password(user)
@@ -78,12 +78,12 @@ feature 'An OAuth client authenticates', js: true do
   end
 
   def verify_signed_in_user_details_from_page(user)
-    json = JSON.parse(page.find('#data').text)
+    json = JSON.parse(page.find("#data").text)
     verify_signed_in_user_details json, user
   end
 
   def verify_signed_in_user_details(json, checked_user)
-    user = json['user']
+    user = json["user"]
     expect(user["email"]).to eq checked_user.email
   end
 end

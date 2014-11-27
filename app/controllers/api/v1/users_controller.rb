@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApiController
-  doorkeeper_for :all
+  before_action :doorkeeper_authorize!
 
   def show
     respond_with resource_owner

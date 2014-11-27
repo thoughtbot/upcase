@@ -1,5 +1,5 @@
 class Api::V1::CompletionsController < ApiController
-  doorkeeper_for :all, if: lambda { !signed_in? }
+  before_action :doorkeeper_authorize!, if: lambda { !signed_in? }
 
   def index
     respond_with current_resource_owner.completions.only_trail_object_ids
