@@ -5,7 +5,7 @@
     margin-bottom: 0;
   }
 
-  ul {
+  .topics-list {
     @include display(flex);
     @include flex-direction(row);
     @include flex-wrap(wrap);
@@ -14,9 +14,8 @@
 
   .topic-link {
     @include transition (all 0.3s ease-in-out);
-    height: 350px;
     margin: 0;
-    padding: 40px;
+    padding: 30px 0;
     position: relative;
     width: 50%;
 
@@ -32,15 +31,20 @@
       left: 0;
       border-bottom: 1px solid $gray-4;
       content: "";
-      z-index: -1;
-    }
 
-    &:last-child:after {
-      border: 0;
+      @media screen and (max-width: 755px) {
+        right: 0;
+      }
     }
   }
 
   .topic-link:nth-child(even) {
+    padding-left: 30px;
+
+    @media screen and (max-width: 755px) {
+      padding-left: 0;
+    }
+
     &:before {
       position: absolute;
       top: 1em;
@@ -49,7 +53,6 @@
       left: 0;
       border-left: 1px solid $gray-4;
       content: "";
-      z-index: -1;
 
       @media screen and (max-width: 755px) {
         border-left: 0;
@@ -59,54 +62,39 @@
     &:after {
       left: 1em;
       right: 0;
-    }
-
-    ul {
-      left: 50%;
 
       @media screen and (max-width: 755px) {
-        position: relative;
-        top: 0;
         left: 0;
       }
     }
   }
 
-  .topic-link img {
-    position: absolute;
-    top: 25%;
-    left: 5%;
-
-    @media screen and (max-width: 755px) {
-      position: relative;
-      top: 0;
-      left: 0;
-      margin-bottom: 10px;
-    }
+  .topic-link:nth-child(odd):last-child:after {
+    border: 0;
   }
 
-  .topic-link ul {
-    position: absolute;
-    left: 50%;
-    top: 38%;
-
-    @media screen and (max-width: 755px) {
-      position: relative;
-      top: 0;
-      left: 0;
-    }
-  }
-
-  .topic-link ul li {
-    width: 100%;
+  .topic-tile {
+    @include display(flex);
+    @include flex-direction(row);
     margin: 0;
-    color: $darkwarmgray;
 
-    &.topic-title {
-      margin-bottom: .7em;
-      font-weight: 700;
-      font-size: em(22);
+    ul {
+      width: 50%;
+      margin: 50px 0 0 50px;
     }
+
+    ul li {
+      width: 100%;
+      margin: 0;
+      color: $darkwarmgray;
+
+      &.topic-title {
+        margin-bottom: .5em;
+        font-weight: 700;
+        font-size: em(22);
+      }
+    }
+
     .topic-num {
       font-weight: 700;
     }

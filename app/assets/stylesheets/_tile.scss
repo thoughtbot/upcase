@@ -8,38 +8,52 @@
     border-radius: 0 0 3px 3px;
     border-top: 10px solid $gray-5;
     box-shadow: 0 0 0 1px $gray-4;
+    height: 280px;
     margin: 0;
     padding: 40px;
     position: relative;
     text-align: center;
     width: 47%;
 
+    @media screen and (max-width: 755px) {
+      width: 100%;
+      margin-bottom: 1em;
+    }
+
     &.clean-code {
       border-top-color: $clean-code;
     }
+
     &.design {
       border-top-color: $design;
     }
+
     &.ios {
       border-top-color: $ios;
     }
+
     &.javascript {
       border-top-color: $javascript;
     }
+
     &.rails {
       border-top-color: $rails;
     }
+
     &.test-driven-development {
       border-top-color: $test-driven-development;
     }
+
     &.vim {
       border-top-color: $vim;
     }
+
     &.workflow {
       border-top-color: $workflow;
     }
 
     h1 {
+      line-height: 26px;
       margin-bottom: em(8);
 
       &:before {
@@ -68,6 +82,10 @@
 
     .cta {
       @extend %secondary-button;
+      bottom: 20px;
+      margin-left: -90px;
+      position: absolute;
+      width: 180px;
     }
   }
 }
