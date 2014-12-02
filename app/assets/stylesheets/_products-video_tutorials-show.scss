@@ -8,6 +8,14 @@ body.videos-show aside {
     margin-bottom: 2rem;
   }
 
+  .button {
+    @extend %button;
+    letter-spacing: 1px;
+    line-height: 1.5em;
+    margin-top: 0;
+    text-align: center;
+  }
+
   div {
 
     h2 a {
@@ -29,16 +37,6 @@ body.videos-show aside {
 
     .license {
       margin-top: 0;
-    }
-
-    .button {
-      @extend %button;
-      font-size: 12px;
-      letter-spacing: 1px;
-      line-height: 1.5em;
-      margin-top: 0;
-      padding: 1em;
-      text-align: center;
     }
 
     .location-name {

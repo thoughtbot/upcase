@@ -1,14 +1,13 @@
-<% if !current_user_has_active_subscription? %>
-  <section class="subscription">
-    <%= link_to "Subscribe to #{t('shared.subscription.name')} to access all of these products",
-      new_subscription_path,
-      class: 'button' %>
-  </section>
-<% end %>
-
-<header class="section-title">
+<section class="subject">
   <h1>Video Tutorials</h1>
-</header>
+  <% if !current_user_has_active_subscription? %>
+    <div class="subscription">
+      <%= link_to "Subscribe to #{t('shared.subscription.name')}",
+        new_subscription_path,
+        class: 'button' %> to access all of these products.
+    </div>
+  <% end %>
+</section>
 
 <section class="resources">
   <%= render(
