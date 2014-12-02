@@ -7,7 +7,7 @@
       <%= hidden_field_tag :return_to, params[:return_to] if params[:return_to] %>
       <%= form.inputs do %>
         <%= form.input :name %>
-        <%= form.input :email, as: :email %>
+        <%= form.input :email, as: :email, required: true %>
         <%= form.input :password, required: true %>
       <% end %>
 
