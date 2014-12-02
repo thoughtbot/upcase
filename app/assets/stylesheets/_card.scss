@@ -67,7 +67,7 @@
 
   h5 {
     border-radius: .20rem .20rem 0 0;
-    color: white;
+    color: $darkwarmgray;
     font-size: .8rem;
     margin-bottom: em(5);
     padding: em(15);
@@ -131,7 +131,7 @@
 .card {
   &.exercise {
     h5 {
-      background-color: $exercise-color;
+      border-bottom: 1px solid $base-border-color-1;
     }
 
     .illustration {
@@ -143,24 +143,7 @@
     }
   }
 
-  &.video_tutorial {
-    h5 {
-      background-color: $video-tutorial-color;
-    }
-  }
-
-  &.weekly-iteration {
-    h5 {
-      background-color: $weekly-iteration-color;
-    }
-
-  }
-
   &.repository {
-    h5 {
-      background-color: $repository-color;
-    }
-
     .illustration {
       background-image: image-url('repository.svg');
 
@@ -171,10 +154,6 @@
   }
 
   &.complete-exercise {
-    h5 {
-      background-color: $upcase-green;
-    }
-
     .illustration {
       background: image-url('trail-step-complete.svg') center /58px no-repeat;
 
@@ -185,10 +164,6 @@
   }
 
   &.in-progress-exercise {
-    h5 {
-      background-color: lighten(saturate($gold-trail, 7%), 5%);
-    }
-
     .illustration {
       background: image-url('trail-step-in-progress.svg') center /60px no-repeat;
 
