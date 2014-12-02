@@ -32,37 +32,13 @@ body.videos-show aside {
     }
 
     .button {
+      @extend %button;
+      font-size: 12px;
+      letter-spacing: 1px;
+      line-height: 1.5em;
       margin-top: 0;
-    }
-
-    .button:not(.subscription-button):not(.free-with-subscription) {
-      background: darken($warmgray, 28%);
-      border-color: $darkwarmgray;
-
-      &:hover {
-        background: darken($warmgray, 20%);
-        border-color: lighten($darkwarmgray, 5%);
-      }
-
-      &:active {
-        background: darken($warmgray, 35%);
-        border-color: darken($darkwarmgray, 5%);
-      }
-    }
-
-    .free-with-subscription {
-      background: $upcase-green;
-      border-bottom: 3px solid lighten($upcase-green, 5);
-      color: white;
-
-      &:active {
-        background-color: darken($upcase-green, 5);
-      }
-    }
-
-    .license-button {
-      margin-bottom: 0;
-      text-transform: uppercase;
+      padding: 1em;
+      text-align: center;
     }
 
     .location-name {
