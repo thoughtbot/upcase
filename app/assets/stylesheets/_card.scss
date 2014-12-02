@@ -1,10 +1,9 @@
-.topic {
+.resources-container {
   @include display(flex);
   @include flex-flow(wrap);
   @include justify-content(space-around);
   @include transition (all 0.3s ease-in-out);
   background: white;
-  border-bottom: 1px solid darken(white, 8);
   padding: em(30) em(20);
 
   &:hover {

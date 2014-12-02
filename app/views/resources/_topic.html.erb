@@ -1,4 +1,4 @@
-<section class="topic">
+<section class="resources-container">
   <% topic.resources.each do |resource| %>
     <%= render partial: "products/#{resource.to_partial_path}", object: resource %>
   <% end %>
