@@ -49,7 +49,7 @@ Upcase::Application.configure do
 
   config.middleware.insert_before Rack::Runtime, Sprockets::Redirect, manifest: Dir["#{Rails.root}/public/assets/manifest-*.json"].first
 
-  config.font_assets.origin = "http://#{ENV["APP_DOMAIN"]}"
+  config.font_assets.origin = "https://#{ENV["APP_DOMAIN"]}"
 
   Mail.register_interceptor(
     RecipientInterceptor.new(ENV.fetch("EMAIL_RECIPIENTS"))
