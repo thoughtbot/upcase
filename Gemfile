@@ -44,6 +44,7 @@ gem "stripe_event"
 gem "uglifier"
 gem "unicorn"
 gem "validates_email_format_of"
+gem "font-awesome-rails"
 
 group :development do
   gem "quiet_assets"

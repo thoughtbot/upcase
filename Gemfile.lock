@@ -382,6 +382,7 @@ DEPENDENCIES
   email_spec
   factory_girl_rails
   flutie
+  font-awesome-rails
   font_assets
   formtastic (~> 2.2.0)
   friendly_id (~> 5.0.4)
