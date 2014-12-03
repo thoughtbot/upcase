@@ -372,6 +372,7 @@ DEPENDENCIES
   capybara-webkit
   capybara_discoball!
   clearance (~> 1.4.2)
+  climate_control
   codeclimate-test-reporter
   coffee-rails
   database_cleaner

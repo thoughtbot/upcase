@@ -32,6 +32,7 @@ Upcase::Application.routes.draw do
   resource :annual_billing, only: [:new, :create]
   resource :credit_card, only: [:update]
   resource :session, controller: :sessions
+  resource :forum_sessions, only: :new
   resource :subscription, only: [:new, :edit, :update]
   resources :licenses, only: [:index]
   resources :topics, only: :index, path: :trails

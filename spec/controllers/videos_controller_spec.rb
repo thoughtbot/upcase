@@ -22,7 +22,6 @@ describe VideosController do
       user = create(:subscriber)
       video = create(:video)
       create(:license, user: user, licenseable: video.watchable)
-      controller.stubs(:signed_in?).returns(true)
       stub_current_user_with(user)
 
       get :show, id: video
