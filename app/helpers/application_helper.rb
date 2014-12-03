@@ -29,6 +29,10 @@ module ApplicationHelper
     File.basename(model.to_partial_path)
   end
 
+  def forum_url(suffix=nil)
+    "https://forum.upcase.com/#{suffix}"
+  end
+
   def blog_articles_url(topic)
     "http://robots.thoughtbot.com/tags/#{topic.slug}"
   end

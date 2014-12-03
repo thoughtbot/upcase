@@ -73,6 +73,7 @@ group :test do
   gem "capybara"
   gem "capybara-webkit"
   gem "capybara_discoball", github: "thoughtbot/capybara_discoball"
+  gem "climate_control"
   gem "codeclimate-test-reporter", require: nil
   gem "database_cleaner"
   gem "email_spec"

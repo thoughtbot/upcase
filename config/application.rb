@@ -17,6 +17,7 @@ module Upcase
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += [
       "#{config.root}/lib",
+      "#{config.root}/vendor/lib",
       "#{config.root}/app/serializers",
       "#{config.root}/app/jobs",
       "#{config.root}/app/modules"
