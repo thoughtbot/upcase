@@ -1,0 +1,39 @@
+body.repositories-show aside {
+  .button {
+    @extend %button;
+    letter-spacing: 1px;
+    line-height: 1.5em;
+    margin-top: 0;
+    text-align: center;
+  }
+}
+
+
+body.repositories-index {
+  .repos-list a:first-child .repository {
+    padding-top: 1em;
+  }
+
+  .repository {
+    border-bottom: 1px solid $base-border-color-1;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 3em 0;
+    width: 100%;
+
+    .repo-name {
+      float: left;
+      clear: left;
+    }
+  }
+
+  .repo-info {
+    float: right;
+
+    li {
+      float: left;
+      margin: 0 1em 0 0;
+    }
+  }
+}

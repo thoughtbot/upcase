@@ -4,8 +4,14 @@
 <% end %>
 
 <section class="resources">
-  <%= render(
-    partial: "products/repositories/repository",
-    collection: @catalog.repositories
-  ) %>
+  <span class="divider">
+    <h4 class="text">Github Repos</h4>
+  </span>
+
+  <ul class="repos-list">
+    <%= render(
+      partial: "products/repositories/repository",
+      collection: @catalog.repositories
+    ) %>
+  </ul>
 </section>

@@ -4,3 +4,15 @@ ol {
   padding: 0;
   list-style-type: none;
 }
+
+ul {
+  .list-title {
+    margin-bottom: .5em;
+    font-weight: 700;
+    font-size: em(22);
+  }
+
+  .number {
+    font-weight: 700;
+  }
+}

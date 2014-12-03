@@ -1,10 +1,12 @@
-<figure class="repository card">
-  <%= link_to repository, title: repository.name do %>
-    <h5>GitHub Repository</h5>
-    <figure>
-      <div class="illustration"></div>
-    </figure>
-    <h4><%= repository.name %></h4>
-    <p><%= repository.tagline %></p>
-  <% end %>
-</figure>
+<%= link_to repository, title: repository.name do %>
+  <li class="repository">
+    <div class="repo-name">
+      <h1 class="list-title"><%= repository.name %></h1>
+      <p class="description"><%= repository.tagline %></p>
+    </div>
+
+    <ul class="repo-info">
+      <%= raw repository.alternative_description %>
+    </ul>
+  </li>
+<% end %>
