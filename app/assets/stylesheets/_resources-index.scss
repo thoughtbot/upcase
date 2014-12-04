@@ -1,0 +1,236 @@
+body.resources-index {
+  #header-wrapper {
+    margin: 0;
+  }
+
+  .subject {
+    background: #ddd;
+    position: relative;
+    width: 100%;
+
+    .topic-header {
+      margin: 0 auto;
+      max-width: $max-width;
+      padding: 4.5rem 0;
+      position: relative;
+
+      @media screen and (max-width: 755px) {
+        padding: 2rem 0;
+        text-align: center;
+      }
+    }
+
+    h1 {
+      margin-bottom: 0.6rem;
+    }
+
+    h2 {
+      font-size: 1.125em;
+      font-weight: normal;
+      line-height: 1.6em;
+      margin-bottom: 2rem;
+
+      @media screen and (max-width: 755px) {
+        margin-bottom: 0;
+        width: 100%;
+      }
+    }
+
+    .topic-image {
+      @include size(180px);
+      position: absolute;
+      right: 0;
+      top: 1em;
+
+      @media screen and (max-width: 755px) {
+        top: 0;
+        position: relative;
+        display: inline-block;
+      }
+    }
+  }
+
+  .content {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .resources-container {
+    @include outer-container;
+    max-width: $max-width;
+    flex: 1;
+    padding: 0 2em 3em 2em;
+    width: 100%;
+
+    @media only screen and (min-width: 800px)  {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    &.fullscreen {
+      max-width: 100%;
+    }
+  }
+
+  .trails-progress {
+    padding: 1px;
+
+    header {
+      padding: 0;
+    }
+  }
+}
+
+body.resources-index.clean-code {
+  .subject {
+    background: $clean-code;
+  }
+
+  .topic-image {
+    background: image-url('topics/clean+code.svg') no-repeat;
+  }
+
+  h1 {
+    color: $clean-code-accent;
+  }
+}
+
+body.resources-index.design {
+  .subject {
+    background: $design;
+  }
+
+  .topic-image {
+    background: image-url('topics/design.svg') no-repeat;
+  }
+
+  h1 {
+    color: $design-accent;
+  }
+}
+
+body.resources-index.haskell {
+  .subject {
+    background: $haskell;
+  }
+
+  .topic-image {
+    background: image-url('topics/haskell.svg') no-repeat;
+  }
+
+  h1 {
+    color: $haskell-accent;
+  }
+}
+
+body.resources-index.clojure {
+  .subject {
+    background: $clojure;
+  }
+
+  .topic-image {
+    background: image-url('topics/clojure.svg') no-repeat;
+  }
+
+  h1 {
+    color: $clojure-accent;
+  }
+}
+
+body.resources-index.ios {
+  .subject {
+    background: $ios;
+  }
+
+  .topic-image {
+    background: image-url('topics/ios.svg') no-repeat;
+  }
+
+  h1 {
+    color: $ios-accent;
+  }
+}
+
+body.resources-index.javascript {
+  .subject {
+    background: $javascript;
+  }
+
+  .topic-image {
+    background: image-url('topics/javascript.svg') no-repeat;
+  }
+
+  h1 {
+    color: $javascript-accent;
+  }
+}
+
+body.resources-index.analytics {
+  .subject {
+    background: $analytics;
+  }
+
+  .topic-image {
+    background: image-url('topics/analytics.svg') no-repeat;
+  }
+
+  h1 {
+    color: $analytics-accent;
+  }
+}
+
+body.resources-index.rails {
+  .subject {
+    background: $rails;
+  }
+
+  .topic-image {
+    background: image-url('topics/rails.svg') no-repeat;
+  }
+
+  h1 {
+    color: $rails-accent;
+  }
+}
+
+body.resources-index.test-driven-development {
+  .subject {
+    background: $test-driven-development;
+  }
+
+  .topic-image {
+    background: image-url('topics/test-driven+development.svg') no-repeat;
+  }
+
+  h1 {
+    color: $test-driven-development-accent;
+  }
+}
+
+body.resources-index.vim {
+  .subject {
+    background: $vim;
+  }
+
+  .topic-image {
+    background: image-url('topics/vim.svg') no-repeat;
+  }
+
+  h1 {
+    color: $vim-accent;
+  }
+}
+
+body.resources-index.workflow {
+  .subject {
+    background: $workflow;
+  }
+
+  .topic-image {
+    background: image-url('topics/workflow.svg') no-repeat;
+  }
+
+  h1 {
+    color: $workflow-accent;
+  }
+}

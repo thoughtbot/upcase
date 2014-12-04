@@ -176,6 +176,7 @@ namespace :dev do
     puts_trail trail, "unstarted"
 
     trail = FactoryGirl.create(:trail, :published, name: "Refactoring")
+    trail.update(topic: Topic.find_by(slug: "clean+code"))
     create_steps_for(
       trail,
       "Extract Method",

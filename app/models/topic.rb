@@ -7,7 +7,9 @@ class Topic < ActiveRecord::Base
     options.has_many :products, source_type: 'Product'
     options.has_many :topics, source_type: 'Topic'
     options.has_many :videos, source_type: 'Video'
-    options.has_many :video_tutorials, source_type: 'VideoTutorial'
+    options.has_many :video_tutorials,
+                     -> { where(type: "VideoTutorial") },
+                     source_type: "Product"
   end
 
   has_one :legacy_trail

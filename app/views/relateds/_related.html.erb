@@ -6,6 +6,7 @@
       <p class="related-topics"><%= render partial: 'relateds/topic', collection: related.topics %></p>
     </section>
   <% end %>
+
   <h3><%= t '.products' %></h3>
   <hr>
   <ul class='related-products related-video_tutorials'>
@@ -19,7 +20,6 @@
         <% end %>
       </li>
     <% end %>
-    <%= render partial: 'relateds/video_tutorial', collection: related.video_tutorials %>
     <%= render partial: 'relateds/product', collection: related.products %>
   </ul>
 </aside>

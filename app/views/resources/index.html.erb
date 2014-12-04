@@ -1,8 +1,15 @@
+<% content_for :additional_body_classes, @topic.slug.parameterize %>
+
 <% content_for :subject_block do %>
-  <h1><%= @topic.name %></h1>
-  <% if @topic.summary.present? %>
-    <h2 class="tagline"><%= @topic.summary %></h2>
-  <% end %>
+  <div class="topic-header">
+    <h1><%= @topic.name %></h1>
+
+    <% if @topic.summary.present? %>
+      <h2 class="tagline"><%= @topic.summary %></h2>
+    <% end %>
+
+    <div class="topic-image"></div>
+  </div>
 <% end %>
 
 <%= render partial: "resources/topic", object: @topic %>

@@ -30,25 +30,6 @@ describe TopicWithResources do
     end
   end
 
-  describe "#featured_resources" do
-    it "sorts its resources by creation, takes a certain amount" do
-      resources = [
-        stub("two", created_at: 2.days.ago, name: "two"),
-        stub("one", created_at: 1.day.ago, name: "one"),
-        stub("three", created_at: 3.days.ago, name: "three"),
-        stub("four", created_at: 4.days.ago, name: "four")
-      ]
-      topic = Topic.new
-      topic_with_resources = TopicWithResources.new(topic,
-                                                    resources: resources,
-                                                    limit: 3)
-
-      result = topic_with_resources.featured_resources
-
-      expect(result.map(&:name)).to eq(%w(one two three))
-    end
-  end
-
   describe "#count" do
     it "counts the number of resources" do
       resources = [

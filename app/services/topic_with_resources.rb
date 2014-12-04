@@ -7,10 +7,6 @@ class TopicWithResources < SimpleDelegator
     @limit = limit
   end
 
-  def featured_resources
-    resources.take(@limit)
-  end
-
   def resources
     @resources.sort_by(&:created_at).reverse
   end
