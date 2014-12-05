@@ -2,12 +2,16 @@
   <li class="subscription team">
     <p class="subscription-name"><strong>Team:</strong> <%= team.name %></p>
 
-    <% if team.owner?(current_user) %>
-      <%= link_to 'Manage Users', edit_team_path %>
+    <% if team.subscription %>
+      <% if team.owner?(current_user) %>
+        <%= link_to 'Manage Users', edit_team_path %>
+      <% else %>
+        Your team owner,
+        <%= mail_to team.owner.email, team.owner.name, class: "owner-email" %>,
+        can make changes to your subscription.
+      <% end %>
     <% else %>
-      Your team owner,
-      <%= mail_to team.owner.email, team.owner.name, class: "owner-email" %>,
-      can make changes to your subscription.
+      Your team currently has no subscription.
     <% end %>
   </li>
 </ol>
