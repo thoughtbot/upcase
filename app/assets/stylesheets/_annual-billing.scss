@@ -1,20 +1,14 @@
-#annual-subscription-subject {
-  margin-bottom: em(100);
-}
-
 .subscription-charge {
   color: $upcase-blue;
   font-weight: 800;
-}
-
-.disclaimer {
-  padding-top: em(20);
+  font-size: 1.5em;
 }
 
 .no-background {
   background: none;
   border: none;
   box-shadow: none;
+  padding: 0;
 }
 
 .switch-subscription {
