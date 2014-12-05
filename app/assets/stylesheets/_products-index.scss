@@ -4,8 +4,6 @@ body.products-index {
   }
 
   .subscription {
-    width: 100%;
-
     .button {
       @extend %button;
       margin-right: 5px;
