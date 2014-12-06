@@ -46,11 +46,11 @@ describe "shared/_header.html.erb" do
       view_stubs(signed_in?: true)
       view_stubs(current_user_has_active_subscription?: true)
       view_stubs(current_user_is_subscription_owner?: true)
-      view_stubs(current_user_has_monthly_subscription?: false)
+      view_stubs(current_user_is_eligible_for_annual_upgrade?: false)
 
       render(
         current_user_has_active_subscription: true,
-        current_user_has_monthly_subscription: false,
+        current_user_is_eligible_for_annual_upgrade: false,
         current_user_is_subscription_owner: true,
         signed_in: true
       )
@@ -92,7 +92,7 @@ describe "shared/_header.html.erb" do
   def render(
     current_user_email: "user@example.com",
     current_user_has_active_subscription: true,
-    current_user_has_monthly_subscription: true,
+    current_user_is_eligible_for_annual_upgrade: true,
     current_user_is_subscription_owner: true,
     masquerading: false,
     signed_in: true
@@ -102,8 +102,8 @@ describe "shared/_header.html.erb" do
         current_user_has_active_subscription
     )
     view_stubs(
-      current_user_has_monthly_subscription?:
-        current_user_has_monthly_subscription
+      current_user_is_eligible_for_annual_upgrade?:
+        current_user_is_eligible_for_annual_upgrade
     )
     view_stubs(
       current_user_is_subscription_owner?:

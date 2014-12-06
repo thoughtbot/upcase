@@ -43,6 +43,6 @@ module ApplicationHelper
 
   def show_upgrade_to_annual_cta?
     current_user_is_subscription_owner? &&
-      current_user_has_monthly_subscription?
+      current_user_is_eligible_for_annual_upgrade?
   end
 end

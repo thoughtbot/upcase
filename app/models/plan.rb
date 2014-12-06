@@ -6,6 +6,7 @@ class Plan < ActiveRecord::Base
 
   has_many :checkouts
   has_many :subscriptions, as: :plan
+  belongs_to :annual_plan, class_name: "Plan"
 
   validates :description, presence: true
   validates :individual_price, presence: true
@@ -66,8 +67,8 @@ class Plan < ActiveRecord::Base
     false
   end
 
-  def monthly?
-    !annual?
+  def has_annual_plan?
+    annual_plan.present?
   end
 
   def has_feature?(feature)
@@ -79,7 +80,11 @@ class Plan < ActiveRecord::Base
   end
 
   def discounted_annual_payment
-    10 * individual_price
+    annual_plan.individual_price
+  end
+
+  def annual_plan_sku
+    annual_plan.sku
   end
 
   def minimum_team_price

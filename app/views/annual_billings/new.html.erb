@@ -29,7 +29,10 @@
       invest heavily in producing new content for you.</li>
     </ul>
 
-    <%= button_to "Switch to annual billing", annual_billing_path,
+    <%= button_to \
+      "Switch to annual billing",
+      subscription_path(plan_id: @annual_plan_sku),
+      method: "put",
       form_class: "switch-subscription" %>
   </div>
 </div>

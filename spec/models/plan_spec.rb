@@ -3,6 +3,7 @@ require "rails_helper"
 describe Plan do
   it { should have_many(:checkouts) }
   it { should have_many(:subscriptions) }
+  it { should belong_to(:annual_plan).class_name("Plan") }
 
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:individual_price) }
@@ -123,10 +124,19 @@ describe Plan do
   end
 
   describe "#discounted_annual_payment" do
-    it "returns the payment amount times 10" do
-      plan = build_stubbed(:plan)
+    it "returns the payment amount of the annual plan" do
+      plan = build_stubbed(:plan, :with_annual_plan)
 
-      expect(plan.discounted_annual_payment).to eq(10 * plan.individual_price)
+      expect(plan.discounted_annual_payment).to eq(990)
+    end
+  end
+
+  describe "#annual_plan_sku" do
+    it "returns the sku of associated annual plan" do
+      plan = build_stubbed(:plan, :with_annual_plan)
+      annual_plan = plan.annual_plan
+
+      expect(plan.annual_plan_sku).to eq(annual_plan.sku)
     end
   end
 
@@ -159,6 +169,20 @@ describe Plan do
           with(checkout, checkout.user).
           returns(fulfillment)
       end
+    end
+  end
+
+  describe "#has_annual_plan?" do
+    it "returns false when the plan has no annual version" do
+      plan = build_stubbed(:plan, annual_plan: nil)
+
+      expect(plan.has_annual_plan?).to be false
+    end
+
+    it "returns true when the plan has annual version" do
+      plan = build_stubbed(:plan, annual_plan: build_stubbed(:plan, :annual))
+
+      expect(plan.has_annual_plan?).to be true
     end
   end
 

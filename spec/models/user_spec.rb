@@ -513,21 +513,23 @@ describe User do
     end
   end
 
-  describe "#has_monthly_subscription?" do
-    it "with inactive subscription" do
-      user = User.new
-      subscription = build_stubbed(:inactive_subscription)
-      user.stubs(:subscriptions).returns([subscription])
-
-      expect(user.has_monthly_subscription?).to be false
-    end
-
-    it "with active subscription" do
+  describe "#eligible_for_annual_upgrade?" do
+    it "returns true with eligible plan" do
       user = User.new
       subscription = build_stubbed(:subscription)
       user.stubs(:subscription).returns(subscription)
+      subscription.plan.annual_plan = build_stubbed(:plan, :annual)
 
-      expect(user.has_monthly_subscription?).to be true
+      expect(user.eligible_for_annual_upgrade?).to be true
+    end
+
+    it "returns false with ineligible plan" do
+      user = User.new
+      subscription = build_stubbed(:subscription)
+      user.stubs(:subscription).returns(subscription)
+      subscription.plan.annual_plan = nil
+
+      expect(user.eligible_for_annual_upgrade?).to be false
     end
   end
 
@@ -579,6 +581,16 @@ describe User do
       user.plan.stubs(:discounted_annual_payment).returns(1234)
 
       expect(user.discounted_annual_payment).to eq(1234)
+    end
+  end
+
+  describe "#annual_plan_sku" do
+    it "delegates to the user's plan" do
+      user = create(:subscriber)
+
+      user.plan.stubs(:annual_plan_sku).returns("professional-yearly")
+
+      expect(user.annual_plan_sku).to eq("professional-yearly")
     end
   end
 

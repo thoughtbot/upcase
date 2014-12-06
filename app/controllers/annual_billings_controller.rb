@@ -1,17 +1,18 @@
 class AnnualBillingsController < ApplicationController
-  before_filter :authorize
+  before_action :authorize
+  before_action :validate_upgrade_eligibility
 
   def new
     @annualized_payment = current_user.annualized_payment
     @discounted_annual_payment = current_user.discounted_annual_payment
+    @annual_plan_sku = current_user.annual_plan_sku
   end
 
-  def create
-    AnnualBillingMailer.notification(current_user).deliver
+  private
 
-    redirect_to(
-      practice_path,
-      notice: "Thanks! We'll upgrade your account to annual billing."
-    )
+  def validate_upgrade_eligibility
+    unless current_user_is_eligible_for_annual_upgrade?
+      redirect_to root_path
+    end
   end
 end

@@ -97,8 +97,8 @@ class User < ActiveRecord::Base
     [personal_subscription, team_subscription].compact.detect(&:active?)
   end
 
-  def has_monthly_subscription?
-    plan.present? && plan.monthly?
+  def eligible_for_annual_upgrade?
+    plan.present? && plan.has_annual_plan?
   end
 
   def annualized_payment
@@ -107,6 +107,10 @@ class User < ActiveRecord::Base
 
   def discounted_annual_payment
     plan.discounted_annual_payment
+  end
+
+  def annual_plan_sku
+    plan.annual_plan_sku
   end
 
   def deactivate_personal_subscription

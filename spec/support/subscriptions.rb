@@ -17,6 +17,12 @@ module Subscriptions
     @current_user.subscription.change_plan(sku: create(:basic_plan).sku)
   end
 
+  def sign_in_as_user_with_subscription_that_is_eligible_for_annual_upgrade
+    sign_in_as_user_with_subscription
+    Plan.first.update_attributes! annual_plan: create(:plan, :annual)
+    visit practice_path(as: @current_user)
+  end
+
   def click_landing_page_call_to_action
     click_link I18n.t("subscriptions.join_cta")
   end

@@ -136,6 +136,17 @@ FactoryGirl.define do
       sku 'team_plan'
       includes_team true
     end
+
+    trait :annual do
+      name "#{I18n.t("shared.subscription.name")} (Yearly)"
+      individual_price 990
+      sku "professional-yearly"
+      annual true
+    end
+
+    trait :with_annual_plan do
+      association :annual_plan, factory: [:plan, :annual]
+    end
   end
 
   factory :invitation, class: 'Invitation' do
