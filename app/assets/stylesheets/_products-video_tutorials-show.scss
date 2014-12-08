@@ -8,6 +8,18 @@ body.videos-show aside {
     margin-bottom: 2rem;
   }
 
+  #license .subscription-cta {
+    h2 {
+      font-size: 1.3em;
+      line-height: 1.5em;
+      margin-bottom: 1em;
+    }
+  }
+
+  #terms {
+    margin-top: 1.5em;
+  }
+
   .button {
     @extend %button;
     letter-spacing: 1px;
