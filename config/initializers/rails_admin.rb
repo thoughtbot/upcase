@@ -96,6 +96,8 @@ RailsAdmin.config do |config|
       field :type
       field :individual_price
       field :company_price
+
+      sort_by :name
     end
   end
 
