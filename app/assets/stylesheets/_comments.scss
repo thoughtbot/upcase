@@ -1,0 +1,10 @@
+#discourse-comments {
+  .embedded {
+    padding-left: 0;
+  }
+
+  .button {
+    @extend %button;
+    margin-right: 10px;
+  }
+}
