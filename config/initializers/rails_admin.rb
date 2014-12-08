@@ -186,7 +186,11 @@ RailsAdmin.config do |config|
         field :slug
         field :notes
         field :topics
-        field :watchable
+
+        field :watchable do
+          partial "form_watchable_association"
+        end
+
         field :position
         field :published_on
       end
