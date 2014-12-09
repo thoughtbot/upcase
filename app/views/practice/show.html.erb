@@ -27,24 +27,13 @@
           </p>
         <% end %>
 
-        <% if analytics? %>
-          <p>
-            or
-          </p>
+        <p>
+          or
+        </p>
 
-          <p>
-            <a href="#" class="trail-hint">Tell us which trails you'd like to see</a>
-          </p>
-
-          <% content_for :javascript do %>
-            <script type="text/javascript">
-              $(".trail-hint" ).click(function(event) {
-                Intercom('show');
-                event.preventDefault();
-              });
-            </script>
-          <% end %>
-        <% end %>
+        <p>
+          <%= link_to "View all the old and new Trails", topics_path %>
+        </p>
       </footer>
     </section>
   </div>
