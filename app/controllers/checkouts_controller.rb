@@ -28,7 +28,7 @@ class CheckoutsController < ApplicationController
   def redirect_when_plan_not_found
     unless plan.present?
       redirect_to(
-        new_checkout_path(plan: Plan.default),
+        new_checkout_path(plan: Plan.popular),
         notice: I18n.t("checkout.flashes.plan_not_found")
       )
     end
