@@ -1,4 +1,6 @@
 class CheckoutsController < ApplicationController
+  before_action :redirect_when_plan_not_found
+
   def new
     if current_user_has_active_subscription?
       redirect_to(
@@ -22,6 +24,15 @@ class CheckoutsController < ApplicationController
   end
 
   private
+
+  def redirect_when_plan_not_found
+    unless plan.present?
+      redirect_to(
+        new_checkout_path(plan: Plan.default),
+        notice: I18n.t("checkout.flashes.plan_not_found")
+      )
+    end
+  end
 
   def build_checkout(arguments)
     plan.checkouts.build arguments.merge(default_arguments)
@@ -100,7 +111,7 @@ class CheckoutsController < ApplicationController
   end
 
   def plan
-    Plan.find_by!(sku: params[:plan])
+    Plan.find_by(sku: params[:plan])
   end
 
   def using_existing_card?

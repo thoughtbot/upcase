@@ -3,8 +3,8 @@ require "rails_helper"
 include StubCurrentUserHelper
 
 describe CheckoutsController do
-  describe "#new when purchasing a plan as an active subscriber" do
-    context "when purchasing an individual plan" do
+  describe "#new" do
+    context "when purchasing an individual plan as an active subscriber" do
       it "redirects to plan editing" do
         user = create(:subscriber)
         stub_current_user_with(user)
@@ -14,19 +14,31 @@ describe CheckoutsController do
         expect(response).to redirect_to edit_subscription_path
       end
     end
-  end
 
-  describe "#new with a team plan when there is more than one" do
-    it "uses the requested plan" do
-      user = create(:user)
-      stub_current_user_with(user)
+    context "with a team plan when there is more than one" do
+      it "uses the requested plan" do
+        user = create(:user)
+        stub_current_user_with(user)
 
-      create(:plan, :team, sku: "sku1")
-      desired_plan = create(:plan, :team, sku: "sku2")
+        create(:plan, :team, sku: "sku1")
+        desired_plan = create(:plan, :team, sku: "sku2")
 
-      get :new, plan: desired_plan
+        get :new, plan: desired_plan
 
-      expect(assigns(:checkout).plan).to eq desired_plan
+        expect(assigns(:checkout).plan).to eq desired_plan
+      end
+    end
+
+    context "with a plan that is not found" do
+      it "redirects to the default plan" do
+        default = build_stubbed(:plan)
+        Plan.stubs(:default).returns(default)
+
+        get :new, plan: "notfound"
+
+        expect(response).to redirect_to new_checkout_path(plan: default)
+        expect(flash[:notice]).to eq I18n.t("checkout.flashes.plan_not_found")
+      end
     end
   end
 
