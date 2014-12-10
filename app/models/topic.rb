@@ -1,6 +1,7 @@
 class Topic < ActiveRecord::Base
   # Associations
   has_many :classifications
+
   with_options(through: :classifications, source: :classifiable) do |options|
     options.has_many :exercises, source_type: 'Exercise'
     options.has_many :products, source_type: 'Product'
@@ -8,8 +9,9 @@ class Topic < ActiveRecord::Base
     options.has_many :videos, source_type: 'Video'
     options.has_many :video_tutorials, source_type: 'VideoTutorial'
   end
+
   has_one :legacy_trail
-  has_one :trail
+  has_many :trails
 
   # Validations
   validates :name, presence: true
@@ -40,10 +42,6 @@ class Topic < ActiveRecord::Base
 
   def related
     @related ||= Related.new(self)
-  end
-
-  def has_new_trail?
-    trail.present?
   end
 
   private

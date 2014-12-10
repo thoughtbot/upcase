@@ -1,7 +1,5 @@
 <div class="trail-category">
-  <% if topic.has_new_trail? %>
-    <%= render 'trail', trail: topic.trail %>
-  <% else %>
-    <%= render 'legacy_trail', topic: topic %>
-  <% end %>
+
+  <%= render(partial: "trail", collection: topic.trails) ||
+        render("legacy_trail", topic: topic) %>
 </div>

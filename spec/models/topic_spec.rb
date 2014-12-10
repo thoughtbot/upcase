@@ -9,7 +9,7 @@ describe Topic do
   it { should have_many(:topics).through(:classifications) }
   it { should have_many(:videos).through(:classifications) }
   it { should have_one(:legacy_trail) }
-  it { should have_one(:trail) }
+  it { should have_many(:trails) }
 
   # Validations
   it { should validate_presence_of(:name) }
@@ -69,21 +69,6 @@ describe Topic do
       end
 
       it { should validate_uniqueness_of(:slug) }
-    end
-  end
-
-  context "has_new_trail?" do
-    it "returns true if it has a related trail" do
-      topic = Topic.new
-
-      expect(topic.has_new_trail?).to be false
-    end
-
-    it "returns false if it has no related trail" do
-      topic = Topic.new
-      topic.trail = Trail.new
-
-      expect(topic.has_new_trail?).to be true
     end
   end
 
