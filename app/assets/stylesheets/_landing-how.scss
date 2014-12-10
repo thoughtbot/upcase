@@ -1,6 +1,4 @@
 .how {
-  padding-top: 40px;
-
   ul {
     @include outer-container;
     padding-bottom: 4em;
@@ -28,6 +26,16 @@
     line-height: 1;
     margin: 1em 0 0.5em;
     text-align: center;
+  }
+
+  p {
+    font-size: 0.875em;
+    opacity: 0.8;
+
+    &.lede {
+      font-size: 1em;
+      font-weight: 600;
+    }
   }
 }
 
