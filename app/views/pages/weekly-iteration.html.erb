@@ -1,0 +1,54 @@
+<% content_for :page_title, "Upcase" %>
+<% content_for :additional_body_classes, "landing" %>
+
+<section class="features">
+  <h2>Join the community</h2>
+  <ul>
+    <li>
+      <div class="features-illustration">
+        <div class="illustration">
+          <%= image_tag "upcase/forum.png", alt: "Community Forum" %>
+        </div>
+      </div>
+      <div class="features-description">
+        <h3>Engage with other Subscribers</h3>
+        <p>You’ll use the Community Forum to get in-depth answers to questions you have about unfamiliar development topics, your personal projects, and our video tutorials and books – or deeply learn a topic by teaching it to another person on the forum. Subscribers often answer each others' questions.</p>
+        <p>thoughtbotters browse and use the forum regularly, and new content is posted every day — we’ve even organized programming exercises and group challenges through the forum.</p>
+      </div>
+    </li>
+    <li>
+      <div class="features-illustration">
+        <div class="illustration">
+          <%= image_tag "upcase/weekly-iteration.jpg", alt: "The Weekly Iteration" %>
+        </div>
+      </div>
+      <div class="features-description">
+        <h3>Watch The Weekly Iteration</h3>
+        <p>The Weekly Iteration is a video show hosted by Ben Orenstein, released every Friday. In each episode, Ben invites a thoughtbot developer to discuss topics chosen to make you a better programmer.</p>
+        <p>The show covers topics like powerful refactoring techniques, improving your development environment, and mastering the finer points of TDD. And, importantly, it does so within 30 minutes.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section class="price blue">
+  <header class="price-header">
+    <h3>The Weekly Iteration</h3>
+    <h4><sup>$</sup>9 <sub>per Month</sub></h4>
+  </header>
+  <section class="price-info">
+    <div class="price-description">
+      <p>A relatively concise explanation of why this plan is best for you. Dolore ullamco non anim qui do in elit ipsum ut eiusmod sit.</p>
+      <%= link_to "Join the Community", "#plans", :class => "signup" %>
+    </div>
+    <div class="price-includes">
+      <h5>Includes</h5>
+      <ul>
+        <li>Community Forum</li>
+        <li>The Weekly Iteration</li>
+      </ul>
+    </div>
+  </section>
+</section>
+
+<%= render 'subscriptions/testimonials' %>
