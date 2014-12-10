@@ -1,55 +1,186 @@
 <% content_for :page_title, "Upcase" %>
 
-<div class="landing-page-wrapper">
-  <header class="landing-hero">
-    <h1>
-      Watch One, Do One, Teach One
-    </h1>
-
-    <p>
-      Upcase is an online training community
-      for intermediate and advanced developers.
-    </p>
-  </header>
-
-  <article>
-    <h2>
-      1. Watch a video
-    </h2>
-
-    <p>
-      5-15 minute videos include
-      <%= link_to "Ping-Pong Pair Programming", "https://upcase.com/videos/ping-pong-paired-programing" %>,
-      <%= link_to "RSpec Best Practices", "https://upcase.com/videos/rspec-best-practices" %>,
-      and
-      <%= link_to "The Art of Vim", "https://upcase.com/the-art-of-vim" %>.
-    </p>
-  </article>
-
-  <article>
-    <h2>
-      2. Write code
-    </h2>
-
-    <p>
-      Exercises include "Refactoring: Explaining Variable" and
-      "Regular Expressions: Repeating Patterns".
-      Clone the exercise's Git repo.
-      Solve the problem on your own machine, then submit your solution.
-    </p>
-  </article>
-
-  <article>
-    <h2>
-      3. Review a peer's code
-    </h2>
-
-    <p>
-      Review other Upcase community members' solutions to exercises.
-    </p>
-  </article>
-
-  <div class="call-to-action">
-    <%= link_to "Join #{@community_size} other developers", new_subscription_path %>
+<section class="hero">
+  <div class="hero-content">
+    <h1>Take the Next Step</h1>
+    <p>Upcase is an online training community for intermediate and advanced developers who aspire to continually improve their skills and knowledge.</p>
+    <div class="hero-cta">
+      <h5>Sign up now and join a community of <strong><%= @community_size %></strong> other developers:</h5>
+      <%= link_to "View Pricing", "#price", :class => "signup" %>
+    </div>
   </div>
-</div>
+</section>
+
+<section class="features">
+  <h2>What you’ll do</h2>
+  <ul>
+    <li>
+      <div class="features-illustration">
+        <div class="illustration">
+          <%= image_tag "upcase/code.png", alt: "Dig into Real Code" %>
+        </div>
+      </div>
+      <div class="features-description">
+        <h3>Dig into Real Code</h3>
+        <p>As a subscriber, you have access to the source code of Upcase, this application. Clone it, dissect it, change it, and participate in pull request discussions.</p>
+        <p>We think Upcase is a good example of a large app with great code. It has extensive test coverage, a full implementation of SaaS billing with Stripe, and serves as an OAuth endpoint for our Discourse forum.</p>
+      </div>
+    </li>
+    <li>
+      <div class="features-illustration">
+        <div class="illustration">
+          <%= image_tag "upcase/best-practices.jpg", alt: "Learn Best Practices" %>
+        </div>
+      </div>
+      <div class="features-description">
+        <h3>Learn Best Practices</h3>
+        <p>Techniques such as <a href="#">Test-Driven Development</a>, and <a href="#">Refactoring</a> help you create better code more quickly.</p>
+        <p>thoughtbot is one of the leading Ruby on Rails development companies in the world. We’ve built hundreds of Rails applications, open source libraries, and we’ve followed and helped establish the best-practices of our community.</p>
+      </div>
+    </li>
+    <li>
+      <div class="features-illustration">
+        <div class="illustration">
+          <%= image_tag "upcase/vim.jpg", alt: "Master your Tools" %>
+        </div>
+      </div>
+      <div class="features-description">
+        <h3>Master your Tools</h3>
+        <p>Being quick and efficient with your tools such as your editor and your shell are essential to being a better developer.</p>
+        <p>Upcase features videos, exercises, and discussion around tools such as <a href="#">Vim</a> and <a href="#">Chrome Developer Tools</a>.</p>
+      </div>
+    </li>
+    <li>
+      <div class="features-illustration">
+        <div class="illustration">
+          <%= image_tag "upcase/new-tech.png", alt: "Learn new Technologies" %>
+        </div>
+      </div>
+      <div class="features-description">
+        <h3>Learn new Technologies</h3>
+        <p>Great developers continually explore new things which helps them grow and pick up new perspectives which can be brought back to their day-to-day work.</p>
+        <p>Upcase features videos, exercises, and discussion around emerging technologies such as <a href="#">Clojure</a> and <a href="#">Haskell</a>.</p>
+      </div>
+    </li>
+</section>
+
+<section class="how">
+  <h2>How it works</h2>
+  <ul>
+    <li>
+      <div class="illustration">
+        <%= image_tag "upcase/metrics.jpg", alt: "Watch One" %>
+      </div>
+      <div class="how-description">
+        <h6 class="how-counter">1</h6>
+        <h3>Watch One</h3>
+        <p>Begin by watching a thoughtbot subject-matter expert take you deep within a topic during several hours of detailed videos.</p>
+        <p>
+          Our 5-15 minute videos include
+          <%= link_to "Ping-Pong Pair Programming", "https://upcase.com/videos/ping-pong-paired-programing" %>,
+          <%= link_to "RSpec Best Practices", "https://upcase.com/videos/rspec-best-practices" %>,
+          and
+          <%= link_to "The Art of Vim", "https://upcase.com/the-art-of-vim" %>.
+        </p>
+      </div>
+    </li>
+    <li>
+      <div class="illustration">
+        <%= image_tag "upcase/trail.png", alt: "Do One" %>
+      </div>
+      <div class="how-description">
+        <h6 class="how-counter">2</h6>
+        <h3>Do One</h3>
+        <p>You’ll follow along by coding the related exercises on your own time, on your own computer.</p>
+        <p>Our Git-based system gives you your own clone to work in and push your solution to. Your instructor will answer all your questions in a chat room each week.</p>
+      </div>
+    </li>
+    <li>
+      <div class="illustration">
+        <%= image_tag "upcase/review.png", alt: "Teach One" %>
+      </div>
+      <div class="how-description">
+        <h6 class="how-counter">3</h6>
+        <h3>Teach One</h3>
+        <p>Once you’ve submitted your solution, it will be reviewed by thoughtbot and other Upcase subscribers.</p>
+        <p>Submitting a solution will also allow you to review other subscribers’ solutions. We've built a custom interface for collaborative solution review.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section class="price" id="price">
+  <h2>Get started now</h2>
+  <header class="price-header">
+    <h3>Professional</h3>
+    <h4><sup>$</sup>29 <sub>per Month</sub></h4>
+  </header>
+  <section class="price-info">
+    <div class="price-description">
+      <p>A relatively concise explanation of why this plan is best for you. Dolore ullamco non anim qui do in elit ipsum ut eiusmod sit.</p>
+      <%= link_to "Start Learning", "#plans", :class => "signup" %>
+    </div>
+    <div class="price-includes">
+      <h5>Includes</h5>
+      <ul>
+        <li>Coding exercises</li>
+        <li>Upcase source code</li>
+        <li>Video Tutorials</li>
+        <li>Community Forum</li>
+        <li>The Weekly Iteration</li>
+      </ul>
+    </div>
+  </section>
+</section>
+
+<section class="features blue">
+  <h2>Join the community</h2>
+  <ul>
+    <li>
+      <div class="features-illustration">
+        <div class="illustration">
+          <%= image_tag "upcase/forum.png", alt: "Community Forum" %>
+        </div>
+      </div>
+      <div class="features-description">
+        <h3>Engage with other Subscribers</h3>
+        <p>You’ll use the Community Forum to get in-depth answers to questions you have about unfamiliar development topics, your personal projects, and our video tutorials and books – or deeply learn a topic by teaching it to another person on the forum. Subscribers often answer each others' questions.</p>
+        <p>thoughtbotters browse and use the forum regularly, and new content is posted every day — we’ve even organized programming exercises and group challenges through the forum.</p>
+      </div>
+    </li>
+    <li>
+      <div class="features-illustration">
+        <div class="illustration">
+          <%= image_tag "upcase/weekly-iteration.jpg", alt: "The Weekly Iteration" %>
+        </div>
+      </div>
+      <div class="features-description">
+        <h3>Watch The Weekly Iteration</h3>
+        <p>The Weekly Iteration is a video show hosted by Ben Orenstein, released every Friday. In each episode, Ben invites a thoughtbot developer to discuss topics chosen to make you a better programmer.</p>
+        <p>The show covers topics like powerful refactoring techniques, improving your development environment, and mastering the finer points of TDD. And, importantly, it does so within 30 minutes.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section class="price blue">
+  <header class="price-header">
+    <h3>The Weekly Iteration</h3>
+    <h4><sup>$</sup>9 <sub>per Month</sub></h4>
+  </header>
+  <section class="price-info">
+    <div class="price-description">
+      <p>A relatively concise explanation of why this plan is best for you. Dolore ullamco non anim qui do in elit ipsum ut eiusmod sit.</p>
+      <%= link_to "Join the Community", "#plans", :class => "signup" %>
+    </div>
+    <div class="price-includes">
+      <h5>Includes</h5>
+      <ul>
+        <li>Community Forum</li>
+        <li>The Weekly Iteration</li>
+      </ul>
+    </div>
+  </section>
+</section>
+
+<%= render 'subscriptions/testimonials' %>

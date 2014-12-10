@@ -229,7 +229,7 @@ body.teams.teams-index {
 
 .testimonials {
   background-color: $celestial-blue;
-  padding: $plan-padding;
+  padding: 6em 0 4em;
 
   figure {
     img {
@@ -249,7 +249,6 @@ body.teams.teams-index {
   .inner {
     @include clearfix;
     margin: 0 auto;
-    padding-bottom: 72px;
     width: $plan-max-width;
 
     figure > p {

@@ -1,52 +1,44 @@
+$landing-width: em(848);
+
 body.shows-show #videos {
   margin-top: 25px;
 }
 
-.landing-page-wrapper {
-  @include span-columns(9);
-  @include shift(1.5);
-  padding: 1em 0 3em;
+.homes {
+  #header-wrapper {
+    margin-bottom: 0;
+  }
 
-  header.landing-hero {
+  .header-container {
+    padding: 0 1em;
+  }
+
+  .content {
+    max-width: none;
+    padding: 0;
+  }
+
+  h2 {
+    $testimonials-padding: 75px 0;
+    color: $celestial-blue;
+    padding: $testimonials-padding;
     text-align: center;
+  }
 
+  .blue {
+    background: $celestial-blue;
+
+    h2,
+    h3,
     p {
-      border-bottom: 1px solid $base-border-color-1;
-      border-top: 1px solid $base-border-color-1;
-      margin: 2em 0 4em;
-      padding: 2em 0;
+      color: white;
     }
   }
+}
 
-  article {
-    margin-bottom: 4em;
-
-    h2 {
-      margin-bottom: 0.2em;
-    }
-
-    p.sub-header {
-      font-weight: bold;
-      font-family: $sans-serif;
-      margin-bottom: 2em;
-    }
-  }
-
-  .call-to-action {
-    border: 1px solid #9CBEE5;
-    background: #EDF5FF;
-    padding: 2em;
-
-    a {
-      @include transform(translateY(-0.2rem));
-      background: #4A90E2;
-      border-radius: 2px;
-      color: #fff;
-      display: block;
-      font-family: $sans-serif;
-      font-weight: 700;
-      padding: 0.8rem 0;
-      text-align: center;
-    }
+.illustration {
+  img {
+    border-radius: 3px;
+    display: block;
   }
 }

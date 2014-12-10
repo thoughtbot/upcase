@@ -1,0 +1,45 @@
+.how {
+  padding-top: 40px;
+
+  ul {
+    @include outer-container;
+    padding-bottom: 4em;
+  }
+
+  li {
+    @include span-columns(4);
+    @include omega(3n);
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0 1em;
+  }
+
+  .illustration {
+    border-bottom: 1px solid rgba($celestial-blue, 0.333);
+  }
+}
+
+.how-description {
+  position: relative;
+
+  h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+    line-height: 1;
+    margin: 1em 0 0.5em;
+    text-align: center;
+  }
+}
+
+.how-counter {
+  background: $upcase-blue;
+  border-radius: 50%;
+  color: white;
+  font-size: 0.875em;
+  font-weight: 400;
+  height: 1.5rem;
+  margin: -0.75rem auto 0;
+  line-height: 1.5rem;
+  text-align: center;
+  width: 1.5rem;
+}

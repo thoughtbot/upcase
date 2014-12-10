@@ -1,0 +1,60 @@
+.hero {
+  background: #333a40 image_url('upcase/laptop.jpg') center center;
+  background-size: cover;
+  padding: 6em 0;
+}
+
+.hero-content {
+  @include outer-container;
+  padding: 0 1em;
+
+  h1 {
+    color: white;
+    font-size: 3em;
+    font-weight: 100;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    color: white;
+    font-size: 1.25em;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 1em 0 3em;
+    max-width: 23em;
+  }
+}
+
+.hero-cta {
+  font-size: 1.5em;
+
+  h5 {
+    color: white;
+    font-size: 0.625em;
+    font-weight: 500;
+    margin: 2em 0;
+
+    strong {
+      background: rgba(white, 0.1);
+      border-radius: 3px;
+      display: inline-block;
+      font-weight: 700;
+      margin: 0 0.125em;
+      padding: 0.125em 0.375em;
+    }
+  }
+}
+
+.signup {
+  background: $upcase-green;
+  border-radius: 2px;
+  color: white;
+  display: inline-block;
+  font-family: $sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  min-width: 8em;
+  padding: 0.75em 2em;
+  text-align: center;
+}
