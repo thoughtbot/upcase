@@ -1,4 +1,4 @@
-class @Wistia
+class @WistiaHelper
   embedVideos: ->
     videos = $('.wistia-video[data-wistia-id]')
     for video in videos
@@ -32,7 +32,7 @@ class @Wistia
 
   _encodedUrl: ($elem, params) ->
     hashedId = $elem.data('wistia-id')
-    baseUrl = Wistia.host + "/oembed.json?url="
+    baseUrl = WistiaHelper.host + "/oembed.json?url="
     mediaUrl = "http://thoughtbotlearn.wistia.com/medias/#{hashedId}"
     encodedUrl = encodeURIComponent(mediaUrl + params)
     baseUrl + encodedUrl
@@ -41,7 +41,7 @@ class @Wistia
     Math.floor(seconds/60)
 
 $ ->
-  wistia = new Wistia
+  wistia = new WistiaHelper
   if $('.wistia-video').length
     wistia.embedVideos()
   if $('.wistia-thumbnail').length

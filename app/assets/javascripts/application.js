@@ -11,7 +11,7 @@
 //= require topics
 //= require checkout
 //= require autoresize
-//= require wistia
+//= require wistia_helper
 
 $(function() {
   if ($('.all-trail-map-steps').length) {
