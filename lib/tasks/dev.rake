@@ -52,6 +52,44 @@ namespace :dev do
     @weekly_iteration = FactoryGirl.create(:show, name: "The Weekly Iteration")
 
     puts_product @weekly_iteration
+
+    repository = FactoryGirl.create(
+      :repository,
+      name: "Upcase",
+      tagline: <<-TAGLINE.strip_heredoc,
+        Source for the main Upcase repository, including users, billing, video
+        tutorials, and more.
+      TAGLINE
+      alternative_description: <<-ALTERNATIVE_DESCRIPTION.strip_heredoc,
+        <li>
+          <a href="https://codeclimate.com/repos/509bdbd313d6373b2b001546/feed">
+            <img src="https://codeclimate.com/repos/509bdbd313d6373b2b001546/badges/ca2720aded19a6da11e7/gpa.svg" />
+          </a>
+        </li>
+        <li>
+          <a href="https://codeclimate.com/repos/509bdbd313d6373b2b001546/feed">
+            <img src="https://codeclimate.com/repos/509bdbd313d6373b2b001546/badges/ca2720aded19a6da11e7/coverage.svg" />
+          </a>
+        </li>
+      ALTERNATIVE_DESCRIPTION
+      description: <<-DESCRIPTION.strip_heredoc
+        This is the full source code the Rails app that runs the Upcase
+        website. It includes authentication, users, subscription billing with
+        Stripe, video tutorials, and more.
+
+        As a subscriber, you have access to the source code of Upcase, this
+        application. Clone it, disect it, and follow code reviews. See what a
+        real-world, complex, fully tested production application looks like.
+
+        We've been working full-time on Upcase for more than a year, and we
+        think it's a good example of a large app with great code. Upcase has
+        extensive test coverage, a full implementation of SaaS billing with
+        Stripe, and serves as an OAuth endpoint for our Discourse forum, among
+        other things. We encourage you to make changes and participate in pull
+        request discussions. It has a 4.0 score on Code Climate.
+      DESCRIPTION
+    )
+    puts_product repository
   end
 
   def create_episodes
@@ -82,7 +120,14 @@ namespace :dev do
     @video_tutorial = FactoryGirl.create(:video_tutorial,
       name: 'Intermediate Ruby on Rails',
       short_description: 'Dig deeper into Ruby on Rails.',
-      description: 'This intermediate Ruby on Rails video_tutorial is designed for developers who have built a few smaller Rails applications and would like to start making more complicated ones...'
+      users: [
+        FactoryGirl.create(:user, bio: "Dan is a seasoned Rails developer.")
+      ],
+      description: <<-DESCRIPTION.squish
+        This intermediate Ruby on Rails video_tutorial is designed for
+        developers who have built a few smaller Rails applications and would
+        like to start making more complicated ones...
+      DESCRIPTION
     )
     classify @video_tutorial, "Ruby on Rails"
     puts_video_tutorial @video_tutorial

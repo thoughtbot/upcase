@@ -103,7 +103,7 @@ FactoryGirl.define do
 
     factory :repository, class: 'Repository' do
       github_team 9999
-      github_url "http://github.com/thoughtbot/upcase"
+      github_url "https://github.com/thoughtbot/upcase"
     end
   end
 
