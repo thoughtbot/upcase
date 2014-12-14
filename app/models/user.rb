@@ -53,10 +53,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def has_logged_in_to_forum?
-    OauthAccessToken.for_forum.for_user(self).present?
-  end
-
   def create_subscription(plan:, stripe_id:)
     subscriptions.create(plan: plan, stripe_id: stripe_id)
   end

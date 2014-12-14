@@ -10,6 +10,9 @@ describe ForumSessionsController do
         stub_current_user_with(user)
         discourse_sso = discourse_sso_stub
         DiscourseSignOn.stubs(:parse).returns(discourse_sso)
+        analytics = stub("analytics")
+        analytics.stubs(:track_forum_access)
+        Analytics.stubs(:new).returns(analytics)
 
         get :new, sso: "ssohash", sig: "sig"
 
@@ -31,6 +34,7 @@ describe ForumSessionsController do
         expect(discourse_sso).to have_received(:sso_secret=).with(
           ENV["DISCOURSE_SSO_SECRET"]
         )
+        expect(analytics).to have_received(:track_forum_access)
       end
     end
 

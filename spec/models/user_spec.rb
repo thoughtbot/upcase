@@ -363,26 +363,6 @@ describe User do
     end
   end
 
-  describe "#has_logged_in_to_forum?" do
-    it "returns true when the user has logged in to the forum" do
-      user = User.new
-      forum_scoped = stub(:scope)
-      forum_scoped.stubs(:for_user).with(user).returns(true)
-      OauthAccessToken.stubs(:for_forum).returns forum_scoped
-
-      expect(user).to have_logged_in_to_forum
-    end
-
-    it "returns false when the user has never logged in to the forum" do
-      user = User.new
-      forum_scoped = stub(:scope)
-      forum_scoped.stubs(:for_user).with(user).returns(nil)
-      OauthAccessToken.stubs(:for_forum).returns forum_scoped
-
-      expect(user).to_not have_logged_in_to_forum
-    end
-  end
-
   describe "#mentor_name" do
     it "returns the mentor name" do
       mentee = build_stubbed(:user, :with_mentor)

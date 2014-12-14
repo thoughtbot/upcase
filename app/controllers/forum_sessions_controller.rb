@@ -8,6 +8,7 @@ class ForumSessionsController < ApplicationController
       ENV["DISCOURSE_SSO_SECRET"]
     )
     populate_sso_for_current_user(sso)
+    track_forum_access
 
     redirect_to sso.to_url(Forum.sso_url)
   end
@@ -33,5 +34,9 @@ class ForumSessionsController < ApplicationController
     sso.username = current_user.github_username
     sso.external_id = current_user.id
     sso.sso_secret = ENV["DISCOURSE_SSO_SECRET"]
+  end
+
+  def track_forum_access
+    Analytics.new(current_user).track_forum_access
   end
 end

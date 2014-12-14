@@ -25,7 +25,6 @@ describe AnalyticsHelper do
         created: user.created_at,
         email: user.email,
         has_active_subscription: user.has_active_subscription?,
-        has_logged_in_to_forum: user.has_logged_in_to_forum?,
         mentor_name: user.mentor_name,
         name: user.name,
         plan: user.plan_name,
