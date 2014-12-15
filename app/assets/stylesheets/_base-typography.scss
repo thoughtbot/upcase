@@ -18,9 +18,8 @@ h2 {
 }
 
 h3 {
-  color: $gray-2;
   font-size: 26px;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 h4 {
@@ -143,7 +142,6 @@ hr {
   position: relative;
   text-align: center;
   width: 100%;
-  z-index: 0;
 
   &:after {
     position: absolute;

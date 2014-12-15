@@ -1,6 +1,6 @@
 <% content_for :page_title, @trail.name %>
 <% content_for :subject_block do %>
-  <h1><%= @trail.name %></h1>
+  <%= render "header", topic: @trail.topic, trail: @trail %>
 <% end %>
 
 <section class="trails-progress">
@@ -9,7 +9,11 @@
   </section>
 </section>
 
-<section class="resources-container">
+<section class="exercises-container">
+  <span class="divider">
+    <h4 class="text">Exercises</h4>
+  </span>
+
   <%= render(
     partial: "products/exercises/exercise",
     collection: @trail.exercises

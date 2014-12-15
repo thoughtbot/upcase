@@ -2,6 +2,18 @@
   <%= render "trails/exercise_dot", exercise: exercise %>
 
   <div class="tooltip">
-    <%= render "products/exercises/exercise", exercise: exercise %>
+    <figure class="exercise card <%= exercise.state.parameterize %>-exercise">
+      <%= exercise_link exercise.url, title: exercise.title do %>
+        <h5>
+          <%= t(exercise.state.parameterize, scope: [:exercises, :statuses]) %>
+        </h5>
+        <h4><%= exercise.title %></h4>
+        <p><%= exercise.summary %></p>
+      <% end %>
+
+      <% unless current_user_has_access_to?(:exercises) %>
+        <%= render "products/locked" %>
+      <% end %>
+    </figure>
   </div>
 </div>

@@ -1,0 +1,12 @@
+<%= link_to "< Back to #{topic.name} resources", topic_resources_path(topic) %>
+
+<header>
+  <div class="topic-image">
+    <%= image_tag "topics/#{topic.slug}.svg" %>
+  </div>
+
+  <div class="topic-title">
+    <h2><%= topic.name %></h2>
+    <h1><%= trail.name %></h1>
+  </div>
+</header>

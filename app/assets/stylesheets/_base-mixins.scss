@@ -1,0 +1,12 @@
+@mixin trail-line {
+  &:before {
+    background: hsla(0, 0%, 0%, 0.1);
+    content: "";
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    right: 0;
+    top: 48%;
+    width: 100%;
+  }
+}
