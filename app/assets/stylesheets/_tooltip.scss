@@ -9,6 +9,7 @@
         pointer-events: none;
         position: absolute;
         top: 40px;
+        z-index: 1;
 
         &:before, &:after {
           @include triangle($arrow-size 8px, $base-border-color-1, up);
