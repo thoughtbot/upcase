@@ -32,6 +32,10 @@ $not-started-dot-color: #D8D8D8;
     text-align: center;
   }
 
+  & > div {
+    margin-bottom: 5em;
+  }
+
   .trail {
     width: 100%;
 
@@ -139,7 +143,6 @@ $not-started-dot-color: #D8D8D8;
       border: 1px solid $not-started-dot-color;
       border-radius: 60px;
       height: 58px;
-      margin-bottom: 50px;
       padding: 0 10px;
 
       &.just-finished {
@@ -454,7 +457,7 @@ $not-started-dot-color: #D8D8D8;
       font-style: italic;
       left: 45%;
       position: absolute;
-      top: 50%;
+      top: 65%;
     }
   }
 }
