@@ -15,10 +15,11 @@
     height: 100%;
     overflow: auto;
     @include transition(.07s);
+    margin-top: 3em;
   }
 
-  .new-trail .steps-complete {
-    top: 35%;
+  .new-trail .trails-progress > div {
+    margin-top: 2em;
   }
 
   > a {
