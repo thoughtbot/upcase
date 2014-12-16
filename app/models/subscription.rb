@@ -131,7 +131,17 @@ class Subscription < ActiveRecord::Base
   end
 
   def track_updated
-    Analytics.new(user).track_updated
+    users_for_analytics_tracking.each do |user|
+      Analytics.new(user).track_updated
+    end
+  end
+
+  def users_for_analytics_tracking
+    if team
+      team.users
+    else
+      [user]
+    end
   end
 
   def stripe_customer

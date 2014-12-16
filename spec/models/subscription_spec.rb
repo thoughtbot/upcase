@@ -136,14 +136,33 @@ describe Subscription do
   end
 
   describe "#write_plan" do
-    it "notifies Analytics" do
-      analytics_updater = stub(track_updated: true)
-      Analytics.stubs(:new).returns(analytics_updater)
-      subscription = create(:active_subscription)
+    context "when subscription is for an individual" do
+      it "notifies Analytics for current user" do
+        analytics_updater = stub(track_updated: true)
+        Analytics.stubs(:new).returns(analytics_updater)
+        subscription = create(:subscription, team: nil)
 
-      subscription.write_plan(sku: create(:plan).sku)
+        subscription.write_plan(sku: create(:plan).sku)
 
-      expect(analytics_updater).to have_received(:track_updated)
+        expect(Analytics).to have_received(:new).with(subscription.user)
+        expect(analytics_updater).to have_received(:track_updated)
+      end
+    end
+
+    context "when subscription is for a team" do
+      it "notifies Analytics for all users in the team" do
+        analytics_updater = stub(track_updated: true)
+        Analytics.stubs(:new).returns(analytics_updater)
+        users = create_list(:user, 2)
+        team = create(:team, users: users)
+        subscription = create(:team_subscription, team: team, user: users.first)
+
+        subscription.write_plan(sku: create(:plan).sku)
+
+        expect(Analytics).to have_received(:new).with(users.first)
+        expect(Analytics).to have_received(:new).with(users.second)
+        expect(analytics_updater).to have_received(:track_updated).twice
+      end
     end
 
     it "changes the subscription plan to the given plan" do
