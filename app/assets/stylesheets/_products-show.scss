@@ -1,9 +1,26 @@
 body.products-show,
+body.video_tutorials-show,
 body.videos-show {
   .text-box-wrapper {
     .text-box {
       padding-top: 20px;
       overflow: auto;
+
+      ul {
+        list-style-type: square;
+      }
+
+      ol {
+        list-style-type: decimal;
+      }
+
+      li {
+        margin: 0 0 0 20px;
+
+        &:last-child {
+          margin-bottom: 0.8em;
+        }
+      }
     }
 
     .video-button-wrapper {
