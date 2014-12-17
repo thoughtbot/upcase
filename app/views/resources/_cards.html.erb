@@ -3,6 +3,7 @@
     <h4 class="text"><%= title %></h4>
   </span>
 
+<div class="tiles-container">
   <% resources.each do |resource| %>
     <%= render partial: "products/#{resource.to_partial_path}",
       object: resource %>
