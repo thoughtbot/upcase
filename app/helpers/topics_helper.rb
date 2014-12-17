@@ -5,8 +5,8 @@ module TopicsHelper
     strip_tags(content).truncate(length, separator: " ", omission: omission)
   end
 
-  def topic_classes(topics)
-    topics.map(&:slug).map(&:parameterize).join(" ")
+  def topic_class(topic)
+    topic.slug.parameterize
   end
 
   def resource_classes(resource)

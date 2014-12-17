@@ -1,6 +1,7 @@
 <div class="complete">
-  <section class="trail">
+  <section class="trail <%= topic_class(trail.topic) %>">
     <header>
+      <span class="topic-label"><%= trail.topic.name %></span>
       <h1><%= link_to trail.name, trail %></h1>
       <p><%= trail.complete_text %></p>
     </header>

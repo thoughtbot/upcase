@@ -1,6 +1,7 @@
 <div class="<%= trail.unstarted? ? "unstarted" : "started" %>">
-  <section class="trail">
+  <section class="trail <%= topic_class(trail.topic) %>">
     <header>
+      <span class="topic-label"><%= trail.topic.name %></span>
       <h1><%= link_to trail.name, trail %></h1>
       <p class="description"><%= trail.description %></p>
       <%= render "practice/trail_description_tooltip", trail: trail %>

@@ -18,4 +18,9 @@
   .trail-titles li.<%= topic.slug.parameterize %> {
     border-color: <%= topic.color %>;
   }
+
+  .trail.<%= topic.slug.parameterize %> .topic-label {
+    background: <%= topic.color %>;
+    color: <%= topic.color_accent %>;
+  }
 <% end %>

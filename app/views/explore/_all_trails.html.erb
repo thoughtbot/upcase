@@ -5,7 +5,7 @@
 
   <ul>
     <% trails.each do |trail| %>
-      <li class="<%= topic_classes([trail.topic]) %>">
+      <li class="<%= topic_class(trail.topic) %>">
         <%= link_to trail.name, trail %>
       </li>
     <% end %>
