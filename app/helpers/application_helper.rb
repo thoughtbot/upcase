@@ -21,7 +21,7 @@ module ApplicationHelper
     '/auth/github'
   end
 
-  def format_resources(resources)
+  def format_markdown(resources)
     BlueCloth.new(resources).to_html.html_safe
   end
 

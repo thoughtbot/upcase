@@ -1,10 +1,6 @@
 class VideoTutorial < Product
-  has_many :questions, -> { order 'created_at ASC' }, dependent: :destroy
   has_many :teachers, dependent: :destroy
   has_many :users, through: :teachers
-
-  # Nested Attributes
-  accepts_nested_attributes_for :questions, reject_if: :all_blank
 
   # Validations
   validates :description, presence: true

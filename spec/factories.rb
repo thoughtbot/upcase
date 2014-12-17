@@ -69,12 +69,6 @@ FactoryGirl.define do
     end
   end
 
-  factory :question do
-    answer 'Not much, bro.'
-    question "What's up, buddy?"
-    video_tutorial
-  end
-
   factory :product, traits: [:active], class: "VideoTutorial" do
     after(:stub) { |product| product.slug = product.name.parameterize }
     description 'Solve 8-Queens over and over again'

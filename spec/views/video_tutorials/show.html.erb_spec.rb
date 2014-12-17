@@ -4,9 +4,10 @@ describe 'video_tutorials/show.html.erb' do
   include Capybara::DSL
 
   it 'includes video_tutorial FAQs' do
-    video_tutorial = create(:video_tutorial)
-    create(:question, video_tutorial: video_tutorial, question: 'What color?', answer: 'Blue')
-    create(:question, video_tutorial: video_tutorial, question: 'Pets allowed?', answer: 'No')
+    video_tutorial = create(
+      :video_tutorial,
+      questions: "### What color?\n\nBlue\n\n### Pets allowed?\n\nNo"
+    )
     assign(:video_tutorial, video_tutorial)
     assign(:offering, video_tutorial)
     assign(:section_teachers, [])

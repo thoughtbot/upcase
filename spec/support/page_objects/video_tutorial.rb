@@ -14,17 +14,17 @@ module PageObjects
     end
 
     def questions
-      all('#id dt')
+      all("#faq h3")
     end
 
     def answers
-      all('#id dd')
+      all("#faq p")
     end
 
     def has_questions?(*questions)
       questions.reduce do |result, question|
-        within '#faq' do
-          result && has_content?(question)
+        within "#faq" do
+          find "h3", text: question
         end
       end
     end
@@ -39,22 +39,22 @@ module PageObjects
 
     def has_answers?(*answers)
       answers.reduce do |result, answer|
-        within '#faq' do
-          result && has_content?(answer)
+        within "#faq" do
+          find "p", text: answer
         end
       end
     end
 
     def located_in?(location)
-      has_css?('.location-name', text: location)
+      has_css?(".location-name", text: location)
     end
 
     def taught_by?(teacher)
-      has_css?('.teachers h2', text: teacher)
+      has_css?(".teachers h2", text: teacher)
     end
 
     def only_taught_by?(teacher)
-      has_css?('.teachers h2', text: teacher, count: 1)
+      has_css?(".teachers h2", text: teacher, count: 1)
     end
 
     def held_at?(time_period)
@@ -66,7 +66,7 @@ module PageObjects
     end
 
     def has_date_range?
-      has_selector?('[data-role=date-range]')
+      has_selector?("[data-role=date-range]")
     end
 
     def has_an_avatar_for?(name)

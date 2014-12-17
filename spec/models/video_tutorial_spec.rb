@@ -2,7 +2,6 @@ require "rails_helper"
 
 describe VideoTutorial do
   # Associations
-  it { should have_many(:questions).dependent(:destroy) }
   it { should have_many(:teachers).dependent(:destroy) }
   it { should have_many(:users).through(:teachers) }
 
