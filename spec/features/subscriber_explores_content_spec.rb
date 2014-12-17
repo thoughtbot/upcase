@@ -8,7 +8,7 @@ feature "Subscriber accesses content" do
   end
 
   scenario "begins a video_tutorial" do
-    video_tutorial = create(:video_tutorial)
+    create(:video_tutorial)
     sign_in_as_user_with_subscription
     visit explore_path
     click_video_tutorial_detail_link
@@ -17,8 +17,6 @@ feature "Subscriber accesses content" do
 
     expect(page).to have_content I18n.t("licenses.flashes.success")
     expect(page).not_to have_content("Receipt")
-
-    expect_products_to_show_video_tutorial_active(video_tutorial)
   end
 
   scenario "subscriber without access to video_tutorials attempts to begin a video_tutorial" do
@@ -42,7 +40,7 @@ feature "Subscriber accesses content" do
     click_link I18n.t("video_tutorial.checkout_cta")
 
     visit products_path
-    expect(page).to have_css(".card.in-progress", text: video_tutorial.name)
+    expect(page).to have_css(".tile.in-progress", text: video_tutorial.name)
   end
 
   scenario "show complete status for past video_tutorial" do
@@ -53,7 +51,7 @@ feature "Subscriber accesses content" do
     end
 
     visit products_path
-    expect(page).to have_css(".card.complete", text: video_tutorial.name)
+    expect(page).to have_css(".tile.complete", text: video_tutorial.name)
   end
 
   scenario "gets added to the GitHub team for a repository" do
@@ -83,14 +81,6 @@ feature "Subscriber accesses content" do
 
   def click_video_tutorial_detail_link
     find(".video-tutorial a:first").click
-  end
-
-  def expect_products_to_show_video_tutorial_active(video_tutorial)
-    visit products_path
-    expect(page).to have_css(
-      ".card a[title='#{video_tutorial.name}'] .status",
-      text: "in-progress"
-    )
   end
 
   def have_added_current_user_to_team_for(product)

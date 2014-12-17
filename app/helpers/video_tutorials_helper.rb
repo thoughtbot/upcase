@@ -11,7 +11,7 @@ module VideoTutorialsHelper
   end
 
   def video_tutorial_card_classes(video_tutorial)
-    classes = ["video_tutorial", "card"]
+    classes = %w(video_tutorial tile)
     classes << video_tutorial_card_status(video_tutorial)
     classes.join(" ")
   end
