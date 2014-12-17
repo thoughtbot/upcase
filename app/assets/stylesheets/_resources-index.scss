@@ -91,7 +91,7 @@ body.resources-index.clean-code {
     background: image-url('topics/clean+code.svg') no-repeat;
   }
 
-  h1 {
+  .topic-header h1 {
     color: $clean-code-accent;
   }
 }
@@ -105,7 +105,7 @@ body.resources-index.design {
     background: image-url('topics/design.svg') no-repeat;
   }
 
-  h1 {
+  .topic-header h1 {
     color: $design-accent;
   }
 }
@@ -119,7 +119,7 @@ body.resources-index.haskell {
     background: image-url('topics/haskell.svg') no-repeat;
   }
 
-  h1 {
+  .topic-header h1 {
     color: $haskell-accent;
   }
 }
@@ -133,7 +133,7 @@ body.resources-index.clojure {
     background: image-url('topics/clojure.svg') no-repeat;
   }
 
-  h1 {
+  .topic-header h1 {
     color: $clojure-accent;
   }
 }
@@ -147,7 +147,7 @@ body.resources-index.ios {
     background: image-url('topics/ios.svg') no-repeat;
   }
 
-  h1 {
+  .topic-header h1 {
     color: $ios-accent;
   }
 }
@@ -161,7 +161,7 @@ body.resources-index.javascript {
     background: image-url('topics/javascript.svg') no-repeat;
   }
 
-  h1 {
+  .topic-header h1 {
     color: $javascript-accent;
   }
 }
@@ -175,7 +175,7 @@ body.resources-index.analytics {
     background: image-url('topics/analytics.svg') no-repeat;
   }
 
-  h1 {
+  .topic-header h1 {
     color: $analytics-accent;
   }
 }
@@ -189,7 +189,7 @@ body.resources-index.rails {
     background: image-url('topics/rails.svg') no-repeat;
   }
 
-  h1 {
+  .topic-header h1 {
     color: $rails-accent;
   }
 }
@@ -203,7 +203,7 @@ body.resources-index.test-driven-development {
     background: image-url('topics/test-driven+development.svg') no-repeat;
   }
 
-  h1 {
+  .topic-header h1 {
     color: $test-driven-development-accent;
   }
 }
@@ -217,7 +217,7 @@ body.resources-index.vim {
     background: image-url('topics/vim.svg') no-repeat;
   }
 
-  h1 {
+  .topic-header h1 {
     color: $vim-accent;
   }
 }
@@ -231,7 +231,7 @@ body.resources-index.workflow {
     background: image-url('topics/workflow.svg') no-repeat;
   }
 
-  h1 {
+  .topic-header h1 {
     color: $workflow-accent;
   }
 }
