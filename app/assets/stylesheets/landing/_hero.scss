@@ -63,18 +63,3 @@ $landing-hero: #313b41;
     }
   }
 }
-
-.typed-cursor{
-  @include animation(blink 0.7s infinite);
-  font-weight: 100;
-  opacity: 1;
-}
-
-@include keyframes(blink) {
-  0%, 100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-}

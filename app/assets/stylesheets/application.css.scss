@@ -43,13 +43,14 @@
 @import "annual-billing";
 @import "topics";
 @import "tile";
-@import "landing-pages";
-@import "landing-hero";
-@import "landing-features";
-@import "landing-how";
-@import "landing-testimonials";
-@import "landing-price";
-@import "landing-topics";
-@import "landing-community";
+
+@import "landing/pages";
+@import "landing/hero";
+@import "landing/features";
+@import "landing/how";
+@import "landing/testimonials";
+@import "landing/price";
+@import "landing/topics";
+@import "landing/community";
 
 @import "prettify";
