@@ -4,6 +4,7 @@ body.shows-show #videos {
 
 .landing {
   #header-wrapper {
+    box-shadow: 0 0 0 1px rgba(black, 0.15);
     margin-bottom: 0;
 
     @include marketing-fullsize {
