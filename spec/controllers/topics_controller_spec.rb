@@ -10,6 +10,7 @@ describe TopicsController do
     expect(response).to be_success
     expect(response).to render_template("topics/index")
     expect(response.headers["Content-Type"]).to match(/text\/css/)
+    expect(response.headers["Cache-Control"]).to match(/max-age/)
   end
 
   def setup_stubbed_topics
