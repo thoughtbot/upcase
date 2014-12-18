@@ -41,11 +41,10 @@
   text-align: center;
   text-decoration: none;
 
-  &:focus {
+  &:hover {
     @include transform(scale(1.0625));
     background: $celestial-blue;
     box-shadow: 0 1em 2em rgba(black, 0.1);
-    outline: none;
     z-index: 1;
 
     h4 {
