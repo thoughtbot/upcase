@@ -10,6 +10,10 @@ class Trail < ActiveRecord::Base
 
   friendly_id :name, use: [:slugged, :finders]
 
+  def self.published
+    where(published: true)
+  end
+
   # Override setters so it preserves the order
   def exercise_ids=(new_exercise_ids)
     super
@@ -37,6 +41,6 @@ class Trail < ActiveRecord::Base
   end
 
   def self.most_recent_published
-    order(created_at: :desc).where(published: true)
+    order(created_at: :desc).published
   end
 end

@@ -42,6 +42,10 @@ class Topic < ActiveRecord::Base
     where("color != ''")
   end
 
+  def published_trails
+    trails.published
+  end
+
   def to_param
     slug
   end

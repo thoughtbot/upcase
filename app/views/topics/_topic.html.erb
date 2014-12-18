@@ -1,5 +1,4 @@
 <div class="trail-category">
-
-  <%= render(partial: "trail", collection: topic.trails) ||
+  <%= render(partial: "trail", collection: topic.published_trails) ||
         render("legacy_trail", topic: topic) %>
 </div>

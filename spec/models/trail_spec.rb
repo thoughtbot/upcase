@@ -32,6 +32,15 @@ describe Trail do
     end
   end
 
+  context "self.published" do
+    it "returns published trails" do
+      _unpublished = create(:trail, published: false)
+      published = create(:trail, published: true)
+
+      expect(Trail.published).to eq([published])
+    end
+  end
+
   describe ".completed_for" do
     it "shows completed trails for a user" do
       _incomplete = create(:trail)
