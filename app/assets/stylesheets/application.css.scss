@@ -5,6 +5,7 @@
 @import "base-variables";
 @import "base-breakpoints";
 @import "base-extends";
+@import "base-mixins";
 @import "base-typography";
 @import "base-forms";
 @import "base-lists";
@@ -26,11 +27,6 @@
 @import "teams-index";
 @import "products-index";
 @import "trails";
-@import "landing-pages";
-@import "landing-hero";
-@import "landing-features";
-@import "landing-how";
-@import "landing-price";
 @import "products-video_tutorials-show";
 @import "checkouts-new";
 @import "products-show";
@@ -47,5 +43,13 @@
 @import "annual-billing";
 @import "topics";
 @import "tile";
+@import "landing-pages";
+@import "landing-hero";
+@import "landing-features";
+@import "landing-how";
+@import "landing-testimonials";
+@import "landing-price";
+@import "landing-topics";
+@import "landing-community";
 
 @import "prettify";

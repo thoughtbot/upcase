@@ -1,0 +1,28 @@
+.community {
+  background: darken($base-background-2, 4);
+  padding: 2em;
+  position: relative;
+
+  ul {
+    @include outer-container;
+    position: relative;
+  }
+
+  li {
+    @include span-columns(6);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  h3 {
+    font-size: 1.25em;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+  }
+
+  p {
+    font-size: 0.875em;
+    line-height: 1.5;
+    margin: 0;
+  }
+}

@@ -1,0 +1,29 @@
+<section class="hero">
+  <div class="hero-content">
+    <h1>Advance your <span id="typed"></span> skills.</h1>
+    <p>Upcase: a training community for professional developers who never stop learning.</p>
+    <div class="hero-cta">
+      <h5>Sign up now and join a community of <strong><%= @community_size %></strong> other developers:</h5>
+      <%= link_to "View Pricing", "#price", :class => "signup" %>
+    </div>
+  </div>
+</section>
+
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    /* uncomment this for hero animation.
+    $(function(){
+
+      $("#typed").typed({
+        strings: ["^500Ruby", "^500Testing", "^500iOS", "^500Javascript", "^500Design"],
+        typeSpeed: 10,
+        backSpeed: 10,
+        backDelay: 1000,
+        loop: true,
+        contentType: 'text',
+        loopCount: false,
+      });
+    });
+    */
+  </script>
+<% end %>

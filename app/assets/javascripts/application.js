@@ -12,6 +12,7 @@
 //= require checkout
 //= require autoresize
 //= require wistia
+//= require typed
 
 $(function() {
   if ($('.all-trail-map-steps').length) {

@@ -1,17 +1,11 @@
-@mixin marketing-mobile {
-  @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
-    @content;
-  }
-}
-
-@mixin marketing-tablet {
-  @media screen and (max-device-width: 1088px), screen and (max-width: 1088px) {
+@mixin marketing-small {
+  @media (min-width: 480px) {
     @content;
   }
 }
 
 @mixin marketing-fullsize {
-  @media only screen and (min-width: 800px) {
+  @media only screen and (min-width: 755px) {
     @content;
   }
 }
