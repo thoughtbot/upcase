@@ -1,6 +1,6 @@
 module Subscriber
   class InvoicesController < ApplicationController
-    before_filter :must_be_subscription_owner
+    before_filter :authorize
 
     def index
       @invoices = Invoice.
@@ -9,6 +9,19 @@ module Subscriber
 
     def show
       @invoice = Invoice.new(params[:id])
+      if @invoice.user == current_user
+        render
+      else
+        not_found
+      end
+    rescue Stripe::InvalidRequestError
+      not_found
+    end
+
+    private
+
+    def not_found
+      raise ActionController::RoutingError, "No invoice #{params[:id]}"
     end
   end
 end

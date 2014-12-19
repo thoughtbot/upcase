@@ -8,6 +8,7 @@ class FakeStripe < Sinatra::Base
   EVENT_ID_FOR_SUBSCRIPTION_DELETION = "evt_2X6Z2OXmhBVcm9"
   CUSTOMER_ID = "cus_1CXxPJDpw1VLvJ"
   CUSTOMER_EMAIL = "foo@bar.com"
+  INVOICE_ID = "in_1s4JSgbcUaElzU"
   PLAN_ID = "JAVA-PLAN-1b3a5c51-5c1a-421b-8822-69138c2d937b"
   SUBSCRIPTION_ID = "sub_4uJxAs8DlW3Z0w"
 
@@ -205,7 +206,7 @@ class FakeStripe < Sinatra::Base
       failure_code: nil,
       amount_refunded: 0,
       customer: CUSTOMER_ID,
-      invoice: "in_1s4JSgbcUaElzU",
+      invoice: INVOICE_ID,
       description: nil,
       dispute: nil,
       metadata: {},
@@ -323,11 +324,22 @@ class FakeStripe < Sinatra::Base
     customer_invoice.to_json
   end
 
+  get "/v1/invoices/bad-stripe-invoice-id" do
+    json_response = {
+      "error" => {
+        "type" => "invalid_request_error",
+        "message" => "No such invoice: bad-stripe-invoice-id",
+        "param" => "id"
+      }
+    }.to_json
+    [404, {}, json_response]
+  end
+
   get "/v1/invoices/:id" do
     content_type :json
 
     case params[:id]
-    when "in_1s4JSgbcUaElzU"
+    when INVOICE_ID
       customer_invoice.to_json
     when "in_3Eh5UIbuDVdhat"
       customer_invoice_with_discount_in_percent.to_json
@@ -433,7 +445,7 @@ class FakeStripe < Sinatra::Base
   def customer_invoice
     {
       date: 1369159688,
-      id: "in_1s4JSgbcUaElzU",
+      id: INVOICE_ID,
       period_start: 1366567645,
       period_end: 1369159645,
       lines: {
@@ -712,7 +724,7 @@ class FakeStripe < Sinatra::Base
       failure_code: nil,
       amount_refunded: 0,
       customer: CUSTOMER_ID,
-      invoice: "in_1s4JSgbcUaElzU",
+      invoice: INVOICE_ID,
       description: nil,
       dispute: nil,
       metadata: {},
