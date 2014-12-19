@@ -35,6 +35,12 @@ body.videos-show {
     .video-button-wrapper + p {
       margin-top: 30px;
     }
+
+    #faq {
+      h3 {
+        font-size: inherit;
+      }
+    }
   }
 
   .download_items, .resources ul {
