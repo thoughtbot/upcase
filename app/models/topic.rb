@@ -1,6 +1,6 @@
 class Topic < ActiveRecord::Base
   # Associations
-  has_many :classifications
+  has_many :classifications, dependent: :destroy
 
   with_options(through: :classifications, source: :classifiable) do |options|
     options.has_many :exercises, source_type: 'Exercise'
