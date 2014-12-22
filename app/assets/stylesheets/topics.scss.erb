@@ -1,0 +1,28 @@
+<% Topic.with_colors.each do |topic| %>
+  body.resources-index.<%= topic.slug.parameterize %> {
+    h1 {
+      color: <%= topic.color_accent %>;
+    }
+
+    .subject {
+      background: <%= topic.color %>;
+    }
+
+    .topic-image {
+      background: image-url('topics/<%= topic.slug %>.svg') no-repeat;
+    }
+  }
+
+  .tiles ul .tile.<%= topic.slug.parameterize %> {
+    border-top-color: <%= topic.color %>;
+  }
+
+  .trail-titles li.<%= topic.slug.parameterize %> {
+    border-color: <%= topic.color %>;
+  }
+
+  .trail.<%= topic.slug.parameterize %> .topic-label {
+    background: <%= topic.color %>;
+    color: <%= topic.color_accent %>;
+  }
+<% end %>
