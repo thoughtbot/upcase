@@ -2,7 +2,9 @@ class Api::V1::CompletionsController < ApiController
   before_action :doorkeeper_authorize!, if: lambda { !signed_in? }
 
   def index
-    respond_with completions: current_resource_owner.completions.only_trail_object_ids
+    respond_with(
+      completions: current_resource_owner.completions.only_trail_object_ids
+    )
   end
 
   def create
