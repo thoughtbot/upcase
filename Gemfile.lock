@@ -8,17 +8,8 @@ GIT
       rack
 
 GIT
-  remote: git://github.com/eitoball/delayed_job.git
-  revision: f3fa1aecbdf3af214bc330ac14a28c4750c9185f
-  branch: rails_4_2
-  specs:
-    delayed_job (4.0.4)
-      activesupport (>= 3.0, < 5.0)
-
-GIT
-  remote: git://github.com/eitoball/delayed_job_active_record.git
-  revision: 5a034344a219fe218849ee6034dc85882a70dbef
-  branch: rails_4_2
+  remote: git://github.com/collectiveidea/delayed_job_active_record.git
+  revision: cd50131a6b9801a74e63fe58e436a98ff18af365
   specs:
     delayed_job_active_record (4.0.2)
       activerecord (>= 3.0, < 5.0)
@@ -124,6 +115,8 @@ GEM
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     database_cleaner (1.3.0)
+    delayed_job (4.0.6)
+      activesupport (>= 3.0, < 5.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
     doorkeeper (2.0.0)
@@ -412,7 +405,6 @@ DEPENDENCIES
   codeclimate-test-reporter
   coffee-rails
   database_cleaner
-  delayed_job!
   delayed_job_active_record!
   doorkeeper (= 2.0.0)
   dotenv-rails
