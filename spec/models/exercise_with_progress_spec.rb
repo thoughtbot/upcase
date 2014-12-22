@@ -3,7 +3,7 @@ require "rails_helper"
 describe ExerciseWithProgress do
   describe "#title" do
     it "delegates to its exercise" do
-      title = stub("title")
+      title = "some-title"
       exercise = Exercise.new(title: title)
       exercise_with_progress = ExerciseWithProgress.new(exercise, "Unstarted")
 
