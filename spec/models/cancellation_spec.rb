@@ -109,6 +109,7 @@ describe Cancellation do
 
       cancellation.schedule
 
+      subscription.reload
       expect(stripe_customer.subscriptions.first).
         to have_received(:delete).with(at_period_end: true)
       expect(subscription.scheduled_for_cancellation_on).
