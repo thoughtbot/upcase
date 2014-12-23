@@ -13,7 +13,7 @@ Upcase::Application.configure do
 
   # Serve static assets, which allows us to populate the CDN with compressed
   # assets if a client supports them
-  config.serve_static_assets = true
+  config.serve_static_files = true
 
   # Fiddling with expires values is kind of pointless as we use hashing to bust
   # caches during redeploys, but it should bump up our google pagespeed
