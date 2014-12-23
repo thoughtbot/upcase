@@ -400,7 +400,7 @@ DEPENDENCIES
   codeclimate-test-reporter
   coffee-rails
   database_cleaner
-  delayed_job_active_record
+  delayed_job_active_record (~> 4.0.3)
   doorkeeper (= 2.0.0)
   dotenv-rails
   dynamic_form (~> 1.1.4)
