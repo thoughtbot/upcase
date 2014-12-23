@@ -32,7 +32,7 @@ feature 'Subscriber views subscription invoices' do
     @current_user.country = 'USA'
     @current_user.save!
 
-    visit subscriber_invoice_path("in_1s4JSgbcUaElzU")
+    visit subscriber_invoice_path(FakeStripe::INVOICE_ID)
 
     expect(page).to have_content('Invoice 130521')
     expect(page).to have_content('Date 05/21/13')

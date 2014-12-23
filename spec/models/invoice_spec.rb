@@ -6,7 +6,7 @@ describe Invoice do
       find_all_by_stripe_customer_id(FakeStripe::CUSTOMER_ID)
 
     expect(invoices.length).to eq 1
-    expect(invoices.first.stripe_invoice_id).to eq "in_1s4JSgbcUaElzU"
+    expect(invoices.first.stripe_invoice_id).to eq FakeStripe::INVOICE_ID
   end
 
   it 'does not find invoices with a blank customer' do
@@ -16,7 +16,7 @@ describe Invoice do
   end
 
   describe 'invoice fields' do
-    let(:invoice) { Invoice.new('in_1s4JSgbcUaElzU') }
+    let(:invoice) { Invoice.new(FakeStripe::INVOICE_ID) }
 
     it 'has a number equal to its subscription id and date' do
       date = Time.zone.at(1369159688)
@@ -66,7 +66,7 @@ describe Invoice do
     end
 
     it 'returns a balance equal to the amount_due when not paid' do
-      stripe_invoice = Invoice.new('in_1s4JSgbcUaElzU')
+      Invoice.new(FakeStripe::INVOICE_ID)
       stub_invoice = stub(paid: false, amount_due: 500)
       Stripe::Invoice.stubs(:retrieve).returns(stub_invoice)
 
@@ -75,7 +75,7 @@ describe Invoice do
 
     describe '#amount_paid' do
       it 'returns zero when not paid' do
-        stripe_invoice = Invoice.new('in_1s4JSgbcUaElzU')
+        Invoice.new(FakeStripe::INVOICE_ID)
         stub_invoice = stub(paid: false)
         Stripe::Invoice.stubs(:retrieve).returns(stub_invoice)
 
@@ -83,7 +83,7 @@ describe Invoice do
       end
 
       it 'returns the amount_due when paid' do
-        stripe_invoice = Invoice.new('in_1s4JSgbcUaElzU')
+        Invoice.new(FakeStripe::INVOICE_ID)
         stub_invoice = stub(paid: true, amount_due: 500)
         Stripe::Invoice.stubs(:retrieve).returns(stub_invoice)
 

@@ -5,7 +5,7 @@ Upcase::Application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  config.action_controller.asset_host = "//d3v2mfwlau8x6c.cloudfront.net"
+  config.action_controller.asset_host = ENV.fetch("ASSET_HOST")
   config.assets.compile = false
   config.assets.digest = true
   config.assets.js_compressor = :uglifier
