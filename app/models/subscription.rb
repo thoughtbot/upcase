@@ -75,7 +75,7 @@ class Subscription < ActiveRecord::Base
 
   def deliver_welcome_email
     if has_access_to?(:mentor)
-      SubscriptionMailer.welcome_to_upcase_from_mentor(user).deliver
+      SubscriptionMailer.welcome_to_upcase_from_mentor(user).deliver_now
     end
   end
 

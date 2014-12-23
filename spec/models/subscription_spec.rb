@@ -18,7 +18,7 @@ describe Subscription do
         create(:subscription, plan: plan, created_at: 25.hours.ago)
       new_subscription =
         create(:subscription, plan: plan, created_at: 10.hours.ago)
-      mailer = stub(deliver: true)
+      mailer = stub(deliver_now: true)
       SubscriptionMailer.stubs(welcome_to_upcase_from_mentor: mailer)
 
       Subscription.deliver_welcome_emails
@@ -29,7 +29,7 @@ describe Subscription do
       expect(SubscriptionMailer).
         to have_received(:welcome_to_upcase_from_mentor).
         with(old_subscription.user).never
-      expect(mailer).to have_received(:deliver).once
+      expect(mailer).to have_received(:deliver_now).once
     end
   end
 

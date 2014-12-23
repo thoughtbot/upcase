@@ -54,7 +54,7 @@ class Cancellation
   end
 
   def deliver_unsubscription_survey
-    SubscriptionMailer.cancellation_survey(@subscription.user).deliver
+    SubscriptionMailer.cancellation_survey(@subscription.user).deliver_now
   end
 
   def record_scheduled_cancellation_date(stripe_customer)

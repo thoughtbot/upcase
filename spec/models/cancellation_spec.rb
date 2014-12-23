@@ -5,7 +5,7 @@ describe Cancellation do
     before :each do
       subscription.stubs(:stripe_customer_id).returns("cus_1CXxPJDpw1VLvJ")
 
-      mailer = stub(deliver: true)
+      mailer = stub(deliver_now: true)
       SubscriptionMailer.stubs(:cancellation_survey).
         with(subscription.user).returns(mailer)
     end
@@ -23,7 +23,7 @@ describe Cancellation do
         expect(SubscriptionMailer).
           to have_received(:cancellation_survey).with(subscription.user)
         expect(SubscriptionMailer.cancellation_survey(subscription.user)).
-          to have_received(:deliver)
+          to have_received(:deliver_now)
       end
     end
 
@@ -34,7 +34,7 @@ describe Cancellation do
         cancellation.process
 
         expect(SubscriptionMailer.cancellation_survey(subscription.user)).
-          to have_received(:deliver).never
+          to have_received(:deliver_now).never
       end
     end
   end
