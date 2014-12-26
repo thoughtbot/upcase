@@ -7,7 +7,7 @@ module WistiaHelper
       data: {
         wistia_id: clip.wistia_id,
         width: "653",
-        height: "367"
+        height: "391"
       }
     )
   end
