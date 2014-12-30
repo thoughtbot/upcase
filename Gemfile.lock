@@ -1,13 +1,4 @@
 GIT
-  remote: git://github.com/arunagw/sprockets-redirect.git
-  revision: 7335b0865f9486bd2125189c43708edf6f52382f
-  branch: aa-rails4
-  specs:
-    sprockets-redirect (0.1.0)
-      activesupport (>= 3.1.0)
-      rack
-
-GIT
   remote: git://github.com/thoughtbot/capybara_discoball.git
   revision: 5435c838e90a1c7f9dfffc36103c6b8040f3ce15
   specs:
@@ -327,6 +318,9 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    sprockets-redirect (0.2.0)
+      activesupport (>= 3.1.0)
+      rack
     stripe (1.16.0)
       json (~> 1.8.1)
       mime-types (>= 1.25, < 3.0)
@@ -420,7 +414,7 @@ DEPENDENCIES
   sinatra
   spring
   spring-commands-rspec
-  sprockets-redirect!
+  sprockets-redirect
   stripe
   stripe_event
   timecop

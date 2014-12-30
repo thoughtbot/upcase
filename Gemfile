@@ -36,9 +36,7 @@ gem "rails_admin", "~> 0.6.2"
 gem "recipient_interceptor"
 gem "ruby-freshbooks", "~> 0.4.0"
 gem "sass-rails", "~> 4.0.4"
-gem "sprockets-redirect",
-   github: "arunagw/sprockets-redirect",
-   branch: "aa-rails4"
+gem "sprockets-redirect"
 gem "stripe"
 gem "stripe_event"
 gem "uglifier"
