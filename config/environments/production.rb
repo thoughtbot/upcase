@@ -9,7 +9,7 @@ Upcase::Application.configure do
   config.assets.compile = false
   config.assets.digest = true
   config.assets.js_compressor = :uglifier
-  config.assets.precompile += %w( print.css prefilled_input.js )
+  config.assets.precompile += %w( print.css prefilled_input.js topics.css )
 
   # Serve static assets, which allows us to populate the CDN with compressed
   # assets if a client supports them
