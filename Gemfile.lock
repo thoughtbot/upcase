@@ -1,4 +1,23 @@
 GIT
+  remote: git://github.com/sferik/rails_admin.git
+  revision: 78d71104675436150dd74312a6b273078a25d805
+  specs:
+    rails_admin (0.6.6)
+      builder (~> 3.1)
+      coffee-rails (~> 4.0)
+      font-awesome-rails (>= 3.0, < 5)
+      haml (~> 4.0)
+      jquery-rails (>= 3.0, < 5)
+      jquery-ui-rails (~> 5.0)
+      kaminari (~> 0.14)
+      nested_form (~> 0.3)
+      rack-pjax (~> 0.7)
+      rails (~> 4.0)
+      remotipart (~> 1.0)
+      safe_yaml (~> 1.0)
+      sass-rails (>= 4.0, < 6)
+
+GIT
   remote: git://github.com/thoughtbot/capybara_discoball.git
   revision: 5435c838e90a1c7f9dfffc36103c6b8040f3ce15
   specs:
@@ -250,20 +269,6 @@ GEM
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
-    rails_admin (0.6.6)
-      builder (~> 3.1)
-      coffee-rails (~> 4.0)
-      font-awesome-rails (>= 3.0, < 5)
-      haml (~> 4.0)
-      jquery-rails (>= 3.0, < 5)
-      jquery-ui-rails (~> 5.0)
-      kaminari (~> 0.14)
-      nested_form (~> 0.3)
-      rack-pjax (~> 0.7)
-      rails (~> 4.0)
-      remotipart (~> 1.0)
-      safe_yaml (~> 1.0)
-      sass-rails (>= 4.0, < 6)
     rails_serve_static_assets (0.0.3)
     rails_stdout_logging (0.0.3)
     railties (4.2.0)
@@ -380,7 +385,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.7.0)
-  acts_as_list
+  acts_as_list (= 0.5.0)
   airbrake
   analytics-ruby (~> 2.0.0)
   aws-sdk
@@ -426,7 +431,7 @@ DEPENDENCIES
   rack-ssl-enforcer (~> 0.2.4)
   rails (= 4.2)
   rails_12factor
-  rails_admin (~> 0.6.2)
+  rails_admin!
   recipient_interceptor
   responders (~> 2.0)
   rspec-rails (~> 3.1.0)
