@@ -2,8 +2,8 @@ source "https://rubygems.org"
 
 ruby "2.2.0"
 
-gem "active_model_serializers", "~> 0.7.0"
-gem "acts_as_list", "0.5.0"
+gem "active_model_serializers", "0.8.3"
+gem "acts_as_list", "0.6.0"
 gem "airbrake"
 gem "analytics-ruby", "~> 2.0.0", require: "segment/analytics"
 gem "aws-sdk"
