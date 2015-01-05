@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.1.5"
+ruby "2.2.0"
 
 gem "active_model_serializers", "~> 0.7.0"
 gem "acts_as_list"
@@ -37,9 +37,7 @@ gem "recipient_interceptor"
 gem "responders", "~> 2.0"
 gem "ruby-freshbooks", "~> 0.4.0"
 gem "sass-rails", "~> 4.0.4"
-gem "sprockets-redirect",
-   github: "arunagw/sprockets-redirect",
-   branch: "aa-rails4"
+gem "sprockets-redirect"
 gem "stripe"
 gem "stripe_event"
 gem "uglifier"

@@ -2,29 +2,34 @@
 <div class="footer-content">
     <ul class="sign-out">
       <% if signed_in? %>
-        <li><%= link_to('Sign out', sign_out_path, method: :delete) %></li>
-        <li><%= render partial: 'shared/admin_sign_out' %></li>
+        <li><%= link_to("Sign out", sign_out_path, method: :delete) %></li>
+        <li><%= render partial: "shared/admin_sign_out" %></li>
       <% else %>
-        <li><%= link_to 'Sign in', sign_in_path %></li>
+        <li><%= link_to "Sign in", sign_in_path %></li>
       <% end %>
     </ul>
     <section class="thoughtbot">
       <ul>
-        <li>
-          <%= link_to 'Upcase source code on GitHub', repositories_path %>
-        </li>
+        <% if signed_in? %>
+          <li>
+            <%= link_to "Upcase source code on GitHub", repositories_path %>
+          </li>
+        <% else %>
+          <li>
+            <%= mail_to ENV["SUPPORT_EMAIL"], "Contact us" %>
+          </li>
+        <% end %>
         <li><a href="http://thoughtbot.com">About thoughtbot</a></li>
-        <li><a href="http://apprentice.io">Apprentice.io</a></li>
-        <li><a href="http://thoughtbot.com/podcast">Podcast</a></li>
-        <li><%= link_to 'Blog', 'http://robots.thoughtbot.com' %></li>
-        <li><%= link_to 'Privacy Policy', privacy_path %></li>
-        <li><%= link_to 'Terms & Conditions', terms_path %></li>
+        <li><a href="http://thoughtbot.com/podcast">Podcasts</a></li>
+        <li><%= link_to "Blog", "http://robots.thoughtbot.com" %></li>
+        <li><%= link_to "Privacy Policy", privacy_path %></li>
+        <li><%= link_to "Terms & Conditions", terms_path %></li>
       </ul>
     </section>
   </div>
   <section class="copyright">
     <div>
-      <a href="http://www.thoughtbot.com"><%= image_tag('ralph.svg') %></a>
+      <a href="http://www.thoughtbot.com"><%= image_tag("ralph.svg") %></a>
       <p>© 2012 - <%= Time.zone.today.year %> thoughtbot, inc. The <em>design of a robot</em> and <em>thoughtbot</em> are registered trademarks of thoughtbot,&nbsp;inc.</p>
     </div>
   </section>

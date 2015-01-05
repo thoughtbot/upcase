@@ -47,7 +47,5 @@ Upcase::Application.configure do
   GITHUB_KEY = ENV['GITHUB_KEY']
   GITHUB_SECRET = ENV['GITHUB_SECRET']
 
-  config.middleware.insert_before Rack::Runtime, Sprockets::Redirect, manifest: Dir["#{Rails.root}/public/assets/manifest-*.json"].first
-
   config.font_assets.origin = "https://#{ENV["APP_DOMAIN"]}"
 end
