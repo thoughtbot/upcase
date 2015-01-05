@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/justinfrench/formtastic.git
+  revision: cd05665bba4f5c681bfe791daefed6d521ab5517
+  branch: 1117-silence-deprecation
+  specs:
+    formtastic (3.2.0.pre)
+      actionpack (>= 3.2.13)
+
+GIT
   remote: git://github.com/sferik/rails_admin.git
   revision: 78d71104675436150dd74312a6b273078a25d805
   specs:
@@ -150,8 +158,6 @@ GEM
       railties (>= 3.2, < 5.0)
     font_assets (0.1.11)
       rack
-    formtastic (3.1.2)
-      actionpack (>= 3.2.13)
     friendly_id (5.1.0.beta.1)
       activerecord (>= 4.0.0)
     globalid (0.3.0)
@@ -243,7 +249,7 @@ GEM
       rack (~> 1.1)
     rack-protection (1.5.3)
       rack
-    rack-rewrite (1.5.0)
+    rack-rewrite (1.5.1)
     rack-ssl-enforcer (0.2.8)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -409,7 +415,7 @@ DEPENDENCIES
   flutie
   font-awesome-rails
   font_assets
-  formtastic
+  formtastic!
   friendly_id (= 5.1.0.beta.1)
   gravatarify (~> 3.1.0)
   heroku-deflater
@@ -427,7 +433,7 @@ DEPENDENCIES
   pg
   pry-rails
   quiet_assets
-  rack-rewrite (~> 1.5.0)
+  rack-rewrite (~> 1.5.1)
   rack-ssl-enforcer (~> 0.2.4)
   rails (= 4.2)
   rails_12factor

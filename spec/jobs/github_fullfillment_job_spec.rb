@@ -20,7 +20,7 @@ describe GithubFulfillmentJob do
       license_id = create(:license).id
       client = stub_octokit
       client.stubs(:add_team_membership).raises(error_class)
-      LicenseMailer.stubs(:fulfillment_error => stub("deliver", :deliver => true))
+      LicenseMailer.stubs(fulfillment_error: stub("deliver", deliver_now: true))
 
       expect { GithubFulfillmentJob.new(3, "gabebw", license_id).perform }.
         to raise_error(error_class)
@@ -32,7 +32,7 @@ describe GithubFulfillmentJob do
     it "sends no email when #{error_class} is raised with no license" do
       client = stub_octokit
       client.stubs(:add_team_membership).raises(error_class)
-      LicenseMailer.stubs(fulfillment_error: stub("deliver", deliver: true))
+      LicenseMailer.stubs(fulfillment_error: stub("deliver", deliver_now: true))
 
       expect { GithubFulfillmentJob.new(3, "gabebw").perform }.
         to raise_error(error_class)
