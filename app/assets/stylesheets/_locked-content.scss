@@ -1,0 +1,20 @@
+.locked-message {
+  background: darken($upcase-blue, 5);
+
+  p {
+    color: white;
+    padding: 1em;
+    text-align: center;
+
+    &:before {
+      content: asset-url('icons/lock-white.svg');
+      margin-right: 10px;
+    }
+  }
+
+  a {
+    color: white;
+    border-bottom: 2px solid white;
+    font-weight: 600;
+  }
+}

@@ -12,6 +12,9 @@ feature "Subscriber accesses content" do
     visit explore_path
     click_video_tutorial_detail_link
 
+    expect(page.body).to include(
+      I18n.t("watchables.preview.cta", subscribe_url: subscribe_path).html_safe
+    )
     expect(page).to have_content I18n.t("video_tutorial.upgrade_cta")
 
     click_link I18n.t("video_tutorial.upgrade_cta")

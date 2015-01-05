@@ -1,6 +1,7 @@
 <%= render "products/meta", product: watchable %>
 
 <div class="text-box-wrapper">
+  <%= render "watchables/preview" %>
   <div class="text-box">
     <%= format_markdown watchable.description %>
     <%= render "watchables/questions", watchable: watchable %>

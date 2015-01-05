@@ -22,13 +22,21 @@ feature "Visitor" do
     expect(page).to have_content(show_name)
     expect_page_to_have_title("#{show.title} | Upcase")
     expect(page).not_to have_content(video.title)
+    expect_page_to_have_preview_cta
 
     click_link video_title_with_unsafe_character
 
     expect(page).to have_content(video_notes)
+    expect_page_to_have_preview_cta
     expect(page).to have_content(
       "Subscribe to #{I18n.t('shared.subscription.name')}"
     )
     expect_page_to_have_title("#{video_title_with_unsafe_character} | Upcase")
+  end
+
+  def expect_page_to_have_preview_cta
+    expect(page.body).to include(
+      I18n.t("watchables.preview.cta", subscribe_url: subscribe_path).html_safe
+    )
   end
 end

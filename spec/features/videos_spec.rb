@@ -1,17 +1,6 @@
 require "rails_helper"
 
 describe "Videos" do
-  context "get show" do
-    it "does not allow watching a video without a license" do
-      product = create(:video_tutorial)
-      video = create(:video, watchable: product)
-
-      visit video_path(video)
-
-      expect(current_path).to eq video_tutorial_path(product)
-    end
-  end
-
   context "GET /" do
     it "lists the published videos for a video_tutorial", js: true do
       sign_in_as_user_with_subscription
