@@ -1,4 +1,4 @@
-<figure class="weekly-iteration tile">
+<figure class="weekly-iteration tile <%= topic_slugs(show) %>">
   <%= link_to show, title: show.name do %>
     <h5><%= show.name %></h5>
     <%= image_tag(show.product_image.url) %>
