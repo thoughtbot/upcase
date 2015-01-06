@@ -1,4 +1,8 @@
 module TeacherHelper
+  def teacher_names(teachers)
+    teachers.map(&:name).to_sentence
+  end
+
   def teacher_label
     Proc.new do |teacher|
       teacher_gravatar(teacher)+h(teacher.name)

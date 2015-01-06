@@ -1,11 +1,6 @@
 require "rails_helper"
 
 describe VideoTutorial do
-  # Associations
-  it { should have_many(:teachers).dependent(:destroy) }
-  it { should have_many(:users).through(:teachers) }
-
-  # Validations
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:tagline) }
@@ -18,13 +13,13 @@ describe VideoTutorial do
     end
   end
 
-  describe 'title' do
-    it 'describes the video_tutorial name' do
-      video_tutorial = build_stubbed(:video_tutorial, name: 'Billy')
+  describe "title" do
+    it "describes the video_tutorial name" do
+      video_tutorial = build_stubbed(:video_tutorial, name: "Billy")
 
       result = video_tutorial.title
 
-      expect(result).to eq 'Billy: a video tutorial by thoughtbot'
+      expect(result).to eq "Billy: a video tutorial by thoughtbot"
     end
   end
 
@@ -32,13 +27,13 @@ describe VideoTutorial do
     it { should delegate(:meta_keywords).to(:topics) }
   end
 
-  describe 'offering_type' do
-    it 'returns video_tutorial' do
+  describe "offering_type" do
+    it "returns video_tutorial" do
       video_tutorial = VideoTutorial.new
 
       result = video_tutorial.offering_type
 
-      expect(result).to eq 'video_tutorial'
+      expect(result).to eq "video_tutorial"
     end
   end
 
@@ -56,21 +51,21 @@ describe VideoTutorial do
     end
   end
 
-  describe '#subscription?' do
-    it 'returns false' do
+  describe "#subscription?" do
+    it "returns false" do
       expect(VideoTutorial.new).not_to be_subscription
     end
   end
 
-  describe '#collection?' do
-    it 'is a collection if there is more than one published video' do
+  describe "#collection?" do
+    it "is a collection if there is more than one published video" do
       video_tutorial = create(:video_tutorial)
       create_list(:video, 2, :published, watchable: video_tutorial)
 
       expect(video_tutorial).to be_collection
     end
 
-    it 'is not a collection if there is 1 published video or less' do
+    it "is not a collection if there is 1 published video or less" do
       video_tutorial = create(:video_tutorial)
 
       expect(video_tutorial).not_to be_collection
@@ -82,9 +77,32 @@ describe VideoTutorial do
     end
   end
 
-  describe '#to_aside_partial' do
-    it 'returns the path to the aside partial' do
-      expect(VideoTutorial.new.to_aside_partial).to eq 'video_tutorials/aside'
+  describe "#teachers" do
+    it "returns teachers from it's videos" do
+      repeated = Teacher.create(user: create(:user))
+      teacher_1 = Teacher.create(user: create(:user))
+      teacher_2 = Teacher.create(user: create(:user))
+      video_tutorial = create(:video_tutorial)
+      create(
+        :video,
+        watchable: video_tutorial,
+        teachers: [repeated, teacher_1]
+      )
+      create(
+        :video,
+        watchable: video_tutorial,
+        teachers: [repeated, teacher_2]
+      )
+
+      result = video_tutorial.teachers.all
+
+      expect(result).to match_array([repeated, teacher_1, teacher_2])
+    end
+  end
+
+  describe "#to_aside_partial" do
+    it "returns the path to the aside partial" do
+      expect(VideoTutorial.new.to_aside_partial).to eq "video_tutorials/aside"
     end
   end
 end

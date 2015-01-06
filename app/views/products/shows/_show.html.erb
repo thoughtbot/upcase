@@ -1,7 +1,6 @@
 <figure class="weekly-iteration tile <%= topic_slugs(show) %>">
   <%= link_to show, title: show.name do %>
     <h5><%= show.name %></h5>
-    <%= image_tag(show.product_image.url) %>
     <h4><%= pluralize show.published_videos.count, 'episode' %></h4>
     <p><%= show.tagline %></p>
   <% end %>

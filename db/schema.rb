@@ -281,10 +281,10 @@ ActiveRecord::Schema.define(version: 20150108220013) do
 
   create_table "teachers", force: true do |t|
     t.integer "user_id"
-    t.integer "video_tutorial_id"
+    t.integer "video_id"
   end
 
-  add_index "teachers", ["user_id", "video_tutorial_id"], name: "index_teachers_on_user_id_and_video_tutorial_id", unique: true, using: :btree
+  add_index "teachers", ["user_id", "video_id"], name: "index_teachers_on_user_id_and_video_id", unique: true, using: :btree
 
   create_table "teams", force: true do |t|
     t.string   "name",            null: false

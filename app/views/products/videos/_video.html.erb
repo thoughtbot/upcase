@@ -1,7 +1,11 @@
 <figure class="tile weekly-iteration <%= topic_slugs(video) %>">
   <%= link_to video, title: video.title do %>
+    <% video.teachers.each do |teacher| %>
+      <div class="person"><%= teacher_gravatar teacher, 92 %></div>
+    <% end %>
     <h2>Weekly Iteration</h2>
     <h1><%= video.title %></h1>
+    <h3><%= teacher_names(video.teachers) %></h3>
     <p class="description"><%= truncate_html video.notes_html %></p>
   <% end %>
 </figure>

@@ -183,7 +183,7 @@ FactoryGirl.define do
 
   factory :teacher do
     user
-    video_tutorial
+    video
   end
 
   factory :topic do

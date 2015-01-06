@@ -1,10 +1,9 @@
 class VideoTutorial < Product
-  has_many :teachers, dependent: :destroy
-  has_many :users, through: :teachers
+  validates :description, :tagline, presence: true
 
-  # Validations
-  validates :description, presence: true
-  validates :tagline, presence: true
+  def teachers
+    Teacher.joins(:video).merge(videos)
+  end
 
   def collection?
     published_videos.count > 1
