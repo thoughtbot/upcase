@@ -8,8 +8,8 @@ class Analytics
     @user = user
   end
 
-  def track_cancelled
-    track(event: "Cancelled", properties: {})
+  def track_cancelled(reason)
+    track(event: "Cancelled", properties: { reason: reason })
   end
 
   def track_updated

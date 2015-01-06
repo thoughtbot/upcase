@@ -12,15 +12,6 @@ class SubscriptionMailer < BaseMailer
     )
   end
 
-  def cancellation_survey(user)
-    @user = user
-
-    mail(
-      to: user.email,
-      subject: t("mailers.subscription.cancellation_survey.subject"),
-    )
-  end
-
   def subscription_receipt(email, amount, stripe_invoice_id)
     @amount = amount
     @stripe_invoice_id = stripe_invoice_id

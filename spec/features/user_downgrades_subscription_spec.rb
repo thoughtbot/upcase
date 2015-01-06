@@ -37,6 +37,7 @@ feature "User downgrades subscription" do
     expect(page).not_to have_content "deal"
     expect(page).not_to have_content "Change to"
 
+    fill_in "cancellation_reason", with: "I didn't like it"
     click_button I18n.t("subscriptions.confirm_cancel")
 
     expect(page).to have_content I18n.t("subscriptions.flashes.cancel.success")

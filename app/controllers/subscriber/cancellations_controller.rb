@@ -2,21 +2,27 @@ class Subscriber::CancellationsController < ApplicationController
   before_filter :must_be_subscription_owner
 
   def new
-    @cancellation = build_cancellation
+    @cancellation = Cancellation.new(current_user.subscription)
   end
 
   def create
-    cancellation = build_cancellation
-    cancellation.schedule
-    redirect_to(
-      my_account_path,
-      notice: t('subscriptions.flashes.cancel.success')
+    @cancellation = Cancellation.new(
+      current_user.subscription,
+      cancellation_params[:reason]
     )
+    if @cancellation.schedule
+      redirect_to(
+        my_account_path,
+        notice: t("subscriptions.flashes.cancel.success")
+      )
+    else
+      render :new
+    end
   end
 
   private
 
-  def build_cancellation
-    Cancellation.new(current_user.subscription)
+  def cancellation_params
+    params.require(:cancellation).permit(:reason)
   end
 end
