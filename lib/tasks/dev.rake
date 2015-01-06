@@ -107,6 +107,7 @@ namespace :dev do
   def create_episode(age_in_days, title, topic_name)
     episode = create(
       :video,
+      notes: "Blah" + " blah" * 100,
       published_on: age_in_days.days.ago,
       title: title,
       watchable: @weekly_iteration
@@ -120,6 +121,7 @@ namespace :dev do
     @video_tutorial = FactoryGirl.create(:video_tutorial,
       name: 'Intermediate Ruby on Rails',
       short_description: 'Dig deeper into Ruby on Rails.',
+      tagline: 'Dig deeper into Ruby on Rails.',
       users: [
         FactoryGirl.create(:user, bio: "Dan is a seasoned Rails developer.")
       ],
