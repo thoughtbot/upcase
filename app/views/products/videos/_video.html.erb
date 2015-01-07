@@ -1,10 +1,7 @@
-<figure class="card weekly-iteration">
+<figure class="tile weekly-iteration">
   <%= link_to video, title: video.title do %>
-    <h5>Weekly Iteration</h5>
-    <div class="illustration">
-      <%= medium_wistia_thumbnail_for(video.clip, video.title) %>
-    </div>
-    <h4><%= video.title %></h4>
-    <p><%= truncate_html video.notes_html %></p>
+    <h2>Weekly Iteration</h2>
+    <h1><%= video.title %></h1>
+    <p class="description"><%= truncate_html video.notes_html %></p>
   <% end %>
 </figure>

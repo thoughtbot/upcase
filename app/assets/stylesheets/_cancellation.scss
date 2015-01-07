@@ -5,7 +5,11 @@
   }
 
   .cancellation-feedback {
-    margin: 3em 0;
+    margin: 2em 0;
+
+    textarea {
+      height: 6em;
+    }
   }
 
   .help {

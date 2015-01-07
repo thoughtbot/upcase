@@ -65,25 +65,6 @@ describe SubscriptionMailer do
     end
   end
 
-  describe '.cancellation_survey' do
-    it 'sends a survey to the user who just unsubscribed' do
-      user = create(:user)
-      email = SubscriptionMailer.cancellation_survey(user)
-
-      expect(email.to).to include(user.email)
-      expect(email).to have_body_text(/just canceled/)
-    end
-
-    it "specifies the subject" do
-      user = build_stubbed(:user)
-      email = SubscriptionMailer.cancellation_survey(user)
-
-      expect(email.subject).to eq(
-        I18n.t("mailers.subscription.cancellation_survey.subject")
-      )
-    end
-  end
-
   describe '.subscription_receipt' do
     include Rails.application.routes.url_helpers
 

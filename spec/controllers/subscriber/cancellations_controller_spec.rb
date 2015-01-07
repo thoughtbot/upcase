@@ -4,7 +4,7 @@ describe Subscriber::CancellationsController do
   context "create" do
     it_behaves_like "must be subscription owner" do
       def perform_request
-        post :create
+        post :create, cancellation: { reason: "reason" }
       end
 
       def authorize

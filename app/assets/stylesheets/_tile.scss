@@ -1,16 +1,19 @@
-.tiles ul {
+.tiles ul,
+.tiles-container {
   @include display(flex);
   @include flex-direction(row);
   @include flex-wrap(wrap);
   @include justify-content(space-around);
   margin-bottom: 2em;
+  width: 100%;
 
   .tile {
     border-radius: 0 0 3px 3px;
     border-top: 10px solid $gray-5;
     box-shadow: 0 0 0 1px $gray-4;
     height: 280px;
-    margin: 0;
+    margin: 0 0 2em 0;
+    overflow: hidden;
     padding: 40px;
     position: relative;
     text-align: center;
@@ -22,6 +25,7 @@
     }
 
     h1 {
+      font-size: 20px;
       line-height: 26px;
       margin-bottom: em(8);
 
@@ -56,5 +60,13 @@
       position: absolute;
       width: 180px;
     }
+  }
+}
+
+.resources-index .tiles-container .tile {
+  height: 280px;
+
+  h1 {
+    color: $darkwarmgray;
   }
 }

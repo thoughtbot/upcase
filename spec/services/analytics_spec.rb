@@ -6,9 +6,13 @@ describe Analytics do
       user = build(:user)
       user_analytics = Analytics.new(user)
 
-      user_analytics.track_cancelled
+      user_analytics.track_cancelled("reason")
 
-      expect(analytics).to have_tracked("Cancelled").for_user(user)
+      expect(analytics).to(
+        have_tracked("Cancelled").
+        for_user(user).
+        with_properties(reason: "reason")
+      )
     end
   end
 

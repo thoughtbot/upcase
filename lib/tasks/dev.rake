@@ -107,6 +107,7 @@ namespace :dev do
   def create_episode(age_in_days, title, topic_name)
     episode = create(
       :video,
+      notes: "Blah" + " blah" * 100,
       published_on: age_in_days.days.ago,
       title: title,
       watchable: @weekly_iteration
@@ -120,6 +121,7 @@ namespace :dev do
     @video_tutorial = FactoryGirl.create(:video_tutorial,
       name: 'Intermediate Ruby on Rails',
       short_description: 'Dig deeper into Ruby on Rails.',
+      tagline: 'Dig deeper into Ruby on Rails.',
       users: [
         FactoryGirl.create(:user, bio: "Dan is a seasoned Rails developer.")
       ],
@@ -190,17 +192,27 @@ namespace :dev do
   end
 
   def create_topics
-    FactoryGirl.create(:topic, :explorable, name: "Clean Code")
-    FactoryGirl.create(:topic, :explorable, name: "Design")
-    FactoryGirl.create(:topic, :explorable, name: "Javascript")
-    FactoryGirl.create(:topic, :explorable, name: "Vim")
-    FactoryGirl.create(:topic, :explorable, name: "Workflow")
-    FactoryGirl.create(:topic, :explorable, name: "iOS")
+    create_topic color: "#E5FEFF", accent: "#1DC8CF", name: "Clean Code"
+    create_topic color: "#E8E9FF", accent: "#2B2F8E", name: "Design"
+    create_topic color: "#FFE8CA", accent: "#D87D2F", name: "Javascript"
+    create_topic color: "#E1F5FF", accent: "#2192CF", name: "Vim"
+    create_topic color: "#FCF5C8", accent: "#F4BC15", name: "Workflow"
+    create_topic color: "#D7ECFF", accent: "#396189", name: "iOS"
 
     rails = FactoryGirl.create(:topic, :explorable, name: "Ruby on Rails")
     rails.update(slug: "rails")
     testing = FactoryGirl.create(:topic, :explorable, name: "Testing")
     testing.update(slug: "test-driven+development")
+  end
+
+  def create_topic(name:, color:, accent:)
+    FactoryGirl.create(
+      :topic,
+      :explorable,
+      name: name,
+      color: color,
+      color_accent: accent
+    )
   end
 
   def create_trails

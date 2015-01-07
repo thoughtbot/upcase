@@ -1,13 +1,21 @@
 class Cancellation
-  def initialize(subscription)
+  include ActiveModel::Model
+
+  attr_accessor :reason
+
+  validates :reason, presence: true
+
+  def initialize(subscription, reason = "")
     @subscription = subscription
+    @reason = reason
   end
 
   def schedule
-    Subscription.transaction do
-      stripe_customer.subscriptions.first.delete(at_period_end: true)
-      record_scheduled_cancellation_date(stripe_customer)
-      track_cancelled
+    if valid?
+      cancel_at_period_end
+      true
+    else
+      false
     end
   end
 
@@ -27,7 +35,6 @@ class Cancellation
   def process
     if @subscription.active?
       @subscription.deactivate
-      deliver_unsubscription_survey
     end
   end
 
@@ -49,12 +56,16 @@ class Cancellation
 
   private
 
-  def track_cancelled
-    Analytics.new(@subscription.user).track_cancelled
+  def cancel_at_period_end
+    Subscription.transaction do
+      stripe_customer.subscriptions.first.delete(at_period_end: true)
+      record_scheduled_cancellation_date(stripe_customer)
+      track_cancelled
+    end
   end
 
-  def deliver_unsubscription_survey
-    SubscriptionMailer.cancellation_survey(@subscription.user).deliver_now
+  def track_cancelled
+    Analytics.new(@subscription.user).track_cancelled(reason)
   end
 
   def record_scheduled_cancellation_date(stripe_customer)
