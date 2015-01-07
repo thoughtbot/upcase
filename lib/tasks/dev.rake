@@ -327,15 +327,11 @@ namespace :dev do
   end
 
   def puts_product(product)
-    puts "#{product.name}"
+    puts product.name
   end
 
   def puts_video_tutorial(video_tutorial)
-    puts "#{video_tutorial.name}"
-  end
-
-  def puts_video_tutorial(video_tutorial)
-    puts "#{video_tutorial.name} (#{video_tutorial.starts_on} - #{video_tutorial.ends_on})"
+    puts video_tutorial.name
   end
 
   def puts_user(user, description)

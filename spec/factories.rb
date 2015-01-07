@@ -72,7 +72,6 @@ FactoryGirl.define do
   factory :product, traits: [:active], class: "VideoTutorial" do
     after(:stub) { |product| product.slug = product.name.parameterize }
     description 'Solve 8-Queens over and over again'
-    length_in_days 28
     tagline 'Solve 8-Queens'
 
     trait :active do
