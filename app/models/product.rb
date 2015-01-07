@@ -89,8 +89,8 @@ class Product < ActiveRecord::Base
     "#{self.class.name.underscore.pluralize}/aside"
   end
 
-  def fulfill(license, user)
-    GithubFulfillment.new(license).fulfill
+  def fulfill(user)
+    GithubFulfillment.new(self, user).fulfill
   end
 
   def published_videos

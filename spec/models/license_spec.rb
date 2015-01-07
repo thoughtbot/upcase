@@ -44,8 +44,7 @@ describe License do
 
       license.save!
 
-      expect(licenseable).
-        to have_received(:fulfill).with(license, license.user)
+      expect(licenseable).to have_received(:fulfill).with(license.user)
     end
   end
 end

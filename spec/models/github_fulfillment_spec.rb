@@ -3,31 +3,22 @@ require "rails_helper"
 describe GithubFulfillment do
   describe "#fulfill" do
     it "adds GitHub user to the github team" do
-      product = build(:video_tutorial, :github)
-      user = create(:user, github_username: "github_username")
+      repository = build_stubbed(:repository)
+      user = build_stubbed(:user, github_username: "github_username")
       GithubFulfillmentJob.stubs(:enqueue)
-      license = build(
-        :license,
-        licenseable: product,
-        user: user
-      )
 
-      GithubFulfillment.new(license).fulfill
+      GithubFulfillment.new(repository, user).fulfill
 
-      expect(GithubFulfillmentJob).to have_received(:enqueue)
+      expect(GithubFulfillmentJob).to have_received(:enqueue).
+        with(repository.id, user.id)
     end
 
     it "doesn't fulfill using GitHub with a blank GitHub team" do
-      product = build(:video_tutorial, github_team: nil)
-      user = create(:user, github_username: "github_username")
+      repository = build_stubbed(:show, github_team: nil)
+      user = build_stubbed(:user, github_username: "github_username")
       GithubFulfillmentJob.stubs(:enqueue)
-      license = build(
-        :license,
-        licenseable: product,
-        user: user
-      )
 
-      GithubFulfillment.new(license).fulfill
+      GithubFulfillment.new(repository, user).fulfill
 
       expect(GithubFulfillmentJob).to have_received(:enqueue).never
     end
@@ -36,31 +27,21 @@ describe GithubFulfillment do
   describe "#remove" do
     it "removes user from github team" do
       GithubRemovalJob.stubs(:enqueue)
-      user = create(:user, github_username: "test")
-      product = build(:video_tutorial, :github)
-      license = build(
-        :license,
-        licenseable: product,
-        user: user
-      )
+      repository = build_stubbed(:repository)
+      user = build_stubbed(:user, github_username: "test")
 
-      GithubFulfillment.new(license).remove
+      GithubFulfillment.new(repository, user).remove
 
       expect(GithubRemovalJob).to have_received(:enqueue).
-        with(product.github_team, "test")
+        with(repository.github_team, "test")
     end
 
     it "doesn't remove using GitHub with a blank GitHub team" do
       GithubRemovalJob.stubs(:enqueue)
+      repository = build(:show, github_team: nil)
       user = create(:user, github_username: "test")
-      product = build(:video_tutorial, github_team: nil)
-      license = build(
-        :license,
-        licenseable: product,
-        user: user
-      )
 
-      GithubFulfillment.new(license).remove
+      GithubFulfillment.new(repository, user).remove
 
       expect(GithubRemovalJob).to have_received(:enqueue).never
     end

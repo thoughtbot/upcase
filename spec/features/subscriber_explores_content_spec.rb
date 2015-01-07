@@ -84,11 +84,6 @@ feature "Subscriber accesses content" do
   end
 
   def have_added_current_user_to_team_for(product)
-    have_received(:enqueue).
-      with(
-        product.github_team,
-        @current_user.github_username,
-        License.last.id
-      )
+    have_received(:enqueue).with(product.id, @current_user.id)
   end
 end

@@ -71,15 +71,14 @@ describe Product do
     end
   end
 
-  describe '#fulfill' do
-    it 'fulfills using GitHub with a GitHub team' do
-      license = build_stubbed(:license)
+  describe "#fulfill" do
+    it "fulfills using GitHub with a GitHub team" do
       user = build_stubbed(:user)
-      fulfillment = stub('fulfillment', :fulfill)
-      product = build_stubbed(:product, github_team: 'example')
-      GithubFulfillment.stubs(:new).with(license).returns(fulfillment)
+      fulfillment = stub("fulfillment", :fulfill)
+      product = build_stubbed(:product, github_team: "example")
+      GithubFulfillment.stubs(:new).with(product, user).returns(fulfillment)
 
-      product.fulfill(license, user)
+      product.fulfill(user)
 
       expect(fulfillment).to have_received(:fulfill)
     end

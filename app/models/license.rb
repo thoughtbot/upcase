@@ -39,6 +39,6 @@ class License < ActiveRecord::Base
   private
 
   def fulfill
-    licenseable.fulfill(self, user)
+    licenseable.fulfill(user)
   end
 end

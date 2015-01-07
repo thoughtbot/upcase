@@ -1,11 +1,12 @@
 class GithubFulfillment
-  def initialize(license)
-    @license = license
+  def initialize(repository, user)
+    @repository = repository
+    @user = user
   end
 
   def fulfill
     if fulfilled_with_github?
-      GithubFulfillmentJob.enqueue(team, username, @license.id)
+      GithubFulfillmentJob.enqueue(@repository.id, @user.id)
     end
   end
 
@@ -22,14 +23,10 @@ class GithubFulfillment
   end
 
   def team
-    licenseable.github_team
-  end
-
-  def licenseable
-    @license.licenseable
+    @repository.github_team
   end
 
   def username
-    @license.github_username
+    @user.github_username
   end
 end
