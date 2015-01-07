@@ -297,6 +297,23 @@ FactoryGirl.define do
       end
     end
 
+    trait :with_full_subscription do
+      with_subscription
+
+      transient do
+        plan do
+          create(
+            :plan,
+            includes_exercises: true,
+            includes_forum: true,
+            includes_mentor: true,
+            includes_repositories: true,
+            includes_video_tutorials: true
+          )
+        end
+      end
+    end
+
     trait :with_subscription_purchase do
       with_subscription
 

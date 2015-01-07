@@ -39,10 +39,9 @@ feature "Subscriber accesses content" do
     visit explore_path
     click_on "Upcase source code on GitHub"
     click_on repository.name
-    click_link I18n.t("repository.checkout_cta")
+    click_link I18n.t("repository.view_repository")
 
-    expect(GithubFulfillmentJob).
-      to have_added_current_user_to_team_for(repository)
+    expect(page).to have_content("We're adding you to the GitHub repository")
   end
 
   def get_access_to_video_tutorial
