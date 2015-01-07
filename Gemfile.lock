@@ -210,7 +210,7 @@ GEM
       rack (~> 1.1)
     rack-protection (1.5.3)
       rack
-    rack-rewrite (1.5.0)
+    rack-rewrite (1.5.1)
     rack-ssl-enforcer (0.2.8)
     rack-test (0.6.2)
       rack (>= 1.0)
