@@ -43,7 +43,7 @@ describe "videos/show" do
     plan = stub("plan", individual_price: 29)
     assign :plan, plan
     assign :video, video
-    assign :offering, Offering.new(video.watchable, nil)
+    assign :offering, video.watchable
 
     view_stubs(:signed_out?).returns(true)
     view_stubs(:signed_in?).returns(false)

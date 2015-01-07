@@ -2,10 +2,9 @@ require "rails_helper"
 
 describe ShowsController do
   context "show" do
-    it "render the show licensed page if the user has one" do
-      user = create(:user)
+    it "renders show_licensed page if user is subscribed" do
+      user = create(:subscriber)
       show = create(:show)
-      create(:license, user: user, licenseable: show)
       sign_in_as user
 
       get :show, id: show

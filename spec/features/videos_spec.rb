@@ -173,14 +173,13 @@ describe "Videos" do
       node.xpath(xpath).first.text
     end
 
-    it "encourages subscribers to purchase The Weekly Iteration" do
-      user = create(:subscriber)
+    it "user visits The Weekly Iteration video and sees title for the show" do
+      user = create(:user)
       show = create(:show)
       video = create(:video, watchable: show)
 
       visit video_path(video, as: user)
 
-      expect(page).to have_content "Get this Show"
       expect_page_to_have_title("#{show.title} | Upcase")
     end
   end

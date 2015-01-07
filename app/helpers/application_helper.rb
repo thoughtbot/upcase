@@ -37,10 +37,6 @@ module ApplicationHelper
     "http://robots.thoughtbot.com/tags/#{topic.slug}"
   end
 
-  def current_user_has_access_to?(feature)
-    current_user && current_user.has_access_to?(feature)
-  end
-
   def show_upgrade_to_annual_cta?
     current_user_is_subscription_owner? &&
       current_user_is_eligible_for_annual_upgrade?

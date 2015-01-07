@@ -3,7 +3,6 @@ class Product < ActiveRecord::Base
 
   has_many :classifications, as: :classifiable, dependent: :destroy
   has_many :downloads, as: :purchaseable, dependent: :destroy
-  has_many :licenses, as: :licenseable, dependent: :destroy
   has_many :topics, through: :classifications
   has_many :videos, as: :watchable, dependent: :destroy
 
@@ -55,10 +54,6 @@ class Product < ActiveRecord::Base
 
   def to_param
     slug
-  end
-
-  def license_for(user)
-    licenses.where(user_id: user).first
   end
 
   def title

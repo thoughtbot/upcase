@@ -7,18 +7,6 @@ feature "Subscriber accesses content" do
     create(:video_tutorial)
   end
 
-  scenario "begins a video_tutorial" do
-    create(:video_tutorial)
-    sign_in_as_user_with_subscription
-    visit explore_path
-    click_video_tutorial_detail_link
-
-    click_link I18n.t("video_tutorial.checkout_cta")
-
-    expect(page).to have_content I18n.t("licenses.flashes.success")
-    expect(page).not_to have_content("Receipt")
-  end
-
   scenario "subscriber without access to video_tutorials attempts to begin a video_tutorial" do
     sign_in_as_user_with_downgraded_subscription
     visit explore_path

@@ -1,15 +1,15 @@
 <% content_for :subject_block do %>
-  <h1><%= @offering.name %></h1>
-  <% if @offering.videos.any? %>
-    <h2 class="tagline">Watch or download video lessons, <%= pluralize @offering.published_videos.size, 'lesson' %> in this video tutorial.</h2>
+  <h1><%= @video_tutorial.name %></h1>
+  <% if @video_tutorial.videos.any? %>
+    <h2 class="tagline">Watch or download video lessons, <%= pluralize @video_tutorial.published_videos.size, 'lesson' %> in this video tutorial.</h2>
   <% end %>
 <% end %>
 
 <div class="text-box-wrapper">
   <section class="text-box" id="videos">
-    <%= render 'video_tutorials/dates', offering: @offering, license: @offering.license %>
-    <%= render 'video_tutorials/videos', offering: @offering %>
+    <%= render 'video_tutorials/dates', offering: @video_tutorial %>
+    <%= render 'video_tutorials/videos', offering: @video_tutorial %>
   </section>
 </div>
 
-<%= render 'video_tutorials/aside', offering: @offering %>
+<%= render 'video_tutorials/aside', offering: @video_tutorial %>

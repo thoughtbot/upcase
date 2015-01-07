@@ -38,10 +38,6 @@ en:
     show:
       subscribe_cta: "This %{offering_type} is free with a subscription to %{subscription_name}"
 
-  show:
-    checkout_cta: Get this Show
-    checkout_cta_for_collection: Get this Series
-    upgrade_cta: Upgrade your plan to access this Show
   video_tutorial:
     checkout_cta: Begin this Video Tutorial
     checkout_cta_for_collection: Begin this Video Tutorial

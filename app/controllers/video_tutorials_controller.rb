@@ -1,15 +1,9 @@
 class VideoTutorialsController < ApplicationController
   def show
-    @offering = Offering.new(video_tutorial, current_user)
+    @video_tutorial = VideoTutorial.friendly.find(params[:id])
 
-    if @offering.user_has_license?
-      render polymorphic_licenseable_template
+    if current_user_has_access_to?(:video_tutorials)
+      render "show_licensed"
     end
-  end
-
-  private
-
-  def video_tutorial
-    VideoTutorial.friendly.find(params[:id])
   end
 end

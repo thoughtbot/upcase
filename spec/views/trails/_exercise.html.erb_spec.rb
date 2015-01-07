@@ -11,8 +11,8 @@ describe "trails/_exercise.html" do
   end
 
   def stub_user
+    view_stubs(:current_user_has_access_to?).returns(true)
     build_stubbed(:user).tap do |user|
-      user.stubs(:has_access_to?).returns(true)
       view_stubs(:current_user).returns(user)
     end
   end

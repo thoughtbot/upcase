@@ -1,16 +1,9 @@
-<section id="license" class="<%= offering.offering_type %>">
-  <% if offering.active? %>
-    <% unless current_user_has_active_subscription? %>
-      <div class="subscription-cta">
-        <div class="license">
-          <%= link_to new_checkout_path(plan), class: 'license-button button subscription-button' do %>
-            <%= t('weekly_iteration_subscribe_cta') %> for <%= individual_price_per_month(plan) %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-    <%= render "licenses/link", offering: offering %>
-  <% else %>
-    <%= render "products/inactive", offering: offering %>
-  <% end %>
-</section>
+<% if !signed_in? || !current_user.has_access_to?(:shows) %>
+  <section class="show">
+    <div class="subscription-cta">
+      <%= link_to t("weekly_iteration_subscribe_cta"),
+        new_subscription_path,
+        class: "license-button button subscription-button" %>
+    </div>
+  </section>
+<% end %>

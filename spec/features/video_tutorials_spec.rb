@@ -2,10 +2,9 @@ require "rails_helper"
 
 describe 'VideoTutorials' do
   it 'displays their formatted resources' do
-    user = create(:user)
+    user = create(:user, :with_full_subscription)
     video_tutorial = create(:video_tutorial, resources: "* Item 1\n*Item 2")
     create(:video, watchable: video_tutorial)
-    license = create_license_from_licenseable(video_tutorial, user)
 
     visit video_tutorial_path(video_tutorial, as: user)
 

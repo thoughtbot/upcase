@@ -48,10 +48,10 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user_is_eligible_for_annual_upgrade?
 
-  def current_user_has_access_to_video_tutorials?
-    current_user && current_user.has_access_to?(:video_tutorials)
+  def current_user_has_access_to?(feature)
+    current_user && current_user.has_access_to?(feature)
   end
-  helper_method :current_user_has_access_to_video_tutorials?
+  helper_method :current_user_has_access_to?
 
   def subscription_includes_mentor?
     current_user.has_subscription_with_mentor?
@@ -87,17 +87,6 @@ class ApplicationController < ActionController::Base
     Topic.top
   end
   helper_method :topics
-
-  def current_user_license_of(licenseable)
-    if signed_in?
-      licenseable.license_for(current_user)
-    end
-  end
-  helper_method :current_user_license_of
-
-  def polymorphic_licenseable_template
-    "#{@offering.licenseable.class.name.tableize}/show_licensed"
-  end
 
   def current_team
     current_user.team

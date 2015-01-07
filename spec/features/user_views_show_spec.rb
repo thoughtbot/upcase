@@ -2,7 +2,6 @@ require "rails_helper"
 
 feature "User views show" do
   scenario "with a subscription" do
-    create(:basic_plan)
     user = create(:subscriber)
     show = create(:show)
     published_video = create(:video, :published, watchable: show)
@@ -10,7 +9,6 @@ feature "User views show" do
     download = create(:download, purchaseable: show)
 
     visit show_path(show, as: user)
-    click_on "Get this Show"
 
     expect(page).to have_content(show.name)
     expect(page).to have_content(published_video.title)

@@ -3,7 +3,6 @@ require "rails_helper"
 describe Product do
   it { should have_many(:classifications).dependent(:destroy) }
   it { should have_many(:downloads).dependent(:destroy) }
-  it { should have_many(:licenses).dependent(:destroy) }
   it { should have_many(:topics).through(:classifications) }
   it { should have_many(:videos).dependent(:destroy) }
   it { should validate_presence_of(:slug) }
@@ -44,24 +43,6 @@ describe Product do
       product.valid?
 
       expect(product.product_image).to have_received(:clear)
-    end
-  end
-
-  describe "license_for" do
-    it 'returns the license when a user has licensed a product' do
-      user = create(:user)
-      license = create(:license, user: user)
-      product = license.licenseable
-
-      expect(product.license_for(user)).to eq license
-    end
-
-    it 'returns nil when a user has not licensed a product' do
-      user = create(:user)
-      license = create(:license)
-      product = license.licenseable
-
-      expect(product.license_for(user)).to be_nil
     end
   end
 

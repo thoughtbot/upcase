@@ -2,22 +2,22 @@ require "rails_helper"
 
 describe VideoTutorialsController do
   context "show" do
-    it "renders the show_licensed page if the user has licensed" do
-      user = create(:user)
-      license = create_license(:video_tutorial, user)
+    it "renders show_licensed if user has access" do
+      video_tutorial = create(:video_tutorial)
+      user = create(:subscriber, :with_full_subscription)
       sign_in_as user
 
-      get :show, id: license.licenseable
+      get :show, id: video_tutorial
 
       expect(response).to render_template "show_licensed"
     end
 
-    it 'renders the show page if a user has not licensed' do
+    it "renders show page if user has not access" do
+      video_tutorial = create(:video_tutorial)
       user = create(:user)
-      license = create_license(:video_tutorial)
       sign_in_as user
 
-      get :show, id: license.licenseable
+      get :show, id: video_tutorial
 
       expect(response).to render_template "show"
     end
