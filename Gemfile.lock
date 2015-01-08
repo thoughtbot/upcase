@@ -1,7 +1,6 @@
 GIT
   remote: git://github.com/justinfrench/formtastic.git
-  revision: cd05665bba4f5c681bfe791daefed6d521ab5517
-  branch: 1117-silence-deprecation
+  revision: 0de7941dfd37c1391452320696be7516a8782d9c
   specs:
     formtastic (3.2.0.pre)
       actionpack (>= 3.2.13)
