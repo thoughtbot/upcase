@@ -2,21 +2,31 @@ class @WistiaHelper
   embedVideos: ->
     videos = $('.wistia-video[data-wistia-id]')
     for video in videos
-      @_embedIframe(video)
+      @_embedVideo(video)
 
   embedThumbnails: ->
     thumbnails = $('.wistia-thumbnail[data-wistia-id]')
     for thumbnail in thumbnails
       @_insertThumbnailUrl(thumbnail)
 
-  _embedIframe: (video) ->
-    $video = $(video)
-    width = $video.data('width')
-    height = $video.data('height')
-    params = "?videoWidth=#{width}&videoHeight=#{height}&controlsVisibleOnLoad=true"
-    $.getJSON(@_encodedUrl($video, params), (data) ->
-      $video.html(data.html)
-    )
+  _embedVideo: (video) ->
+    hashedId = $(video).data('wistia-id')
+    $(video).prop("id", "wistia_#{hashedId}")
+    window.wistiaEmbed = Wistia.embed hashedId,
+      controlsVisibleOnLoad: true
+      videoFoam: true
+    wistiaEmbed.bind "play", ->
+      unless wistiaEmbed.started
+        $.post "/api/v1/videos/#{hashedId}/status",
+          state: "In Progress"
+        wistiaEmbed.started = true
+    wistiaEmbed.bind "secondchange", (second) ->
+      wistiaEmbed.watchedThreshold ||= Math.floor(wistiaEmbed.duration() * 0.8)
+
+      if second > wistiaEmbed.watchedThreshold && !wistiaEmbed.watched
+        $.post "/api/v1/videos/#{hashedId}/status",
+          state: "Complete"
+        wistiaEmbed.watched = true
 
   _insertThumbnailUrl: (thumbnail) ->
     $thumbnail = $(thumbnail)
@@ -33,7 +43,7 @@ class @WistiaHelper
   _encodedUrl: ($elem, params) ->
     hashedId = $elem.data('wistia-id')
     baseUrl = WistiaHelper.host + "/oembed.json?url="
-    mediaUrl = "http://thoughtbotlearn.wistia.com/medias/#{hashedId}"
+    mediaUrl = WistiaHelper.host + "/medias/#{hashedId}"
     encodedUrl = encodeURIComponent(mediaUrl + params)
     baseUrl + encodedUrl
 

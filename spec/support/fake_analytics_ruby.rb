@@ -53,6 +53,10 @@ class FakeAnalyticsRuby
       end
     end
 
+    def empty?
+      events.empty?
+    end
+
     private
 
     attr_reader :events

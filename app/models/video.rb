@@ -4,6 +4,7 @@ class Video < ActiveRecord::Base
   belongs_to :watchable, polymorphic: true
   has_many :classifications, as: :classifiable
   has_many :topics, through: :classifications
+  has_many :statuses, as: :completeable, dependent: :destroy
 
   validates :published_on, presence: true
   validates :slug, presence: true, uniqueness: true
@@ -51,5 +52,10 @@ class Video < ActiveRecord::Base
 
   def to_param
     slug
+  end
+
+  def update_trails_state_for(_user)
+    # Waiting on story for adding Videos as steps of a trail, does
+    # nothing for now.
   end
 end

@@ -20,6 +20,16 @@ class Analytics
     track(event: "Logged into Forum", properties: {})
   end
 
+  def track_status_created(completable, state)
+    if completable.is_a? Video
+      if state == Status::IN_PROGRESS
+        track(event: "Started video", properties: { video_id: completable.id })
+      elsif state == Status::COMPLETE
+        track(event: "Finished video", properties: { video_id: completable.id })
+      end
+    end
+  end
+
   private
 
   attr_reader :user

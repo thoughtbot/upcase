@@ -32,7 +32,7 @@ describe "Videos" do
 
       visit video_path(published_video_two)
 
-      expect(page).to have_css("iframe")
+      expect(page).to have_css("p.wistia-video")
     end
 
     it "lists the published videos for a product", js: true do

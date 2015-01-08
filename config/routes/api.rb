@@ -3,7 +3,8 @@ namespace :api do
     resources :completions, only: [:index, :show, :create, :destroy]
     resources :exercises, only: [:update]
 
-    post "exercises/:exercise_uuid/status" => "statuses#create", as: :status
+    post "exercises/:exercise_uuid/status" => "statuses#create"
+    post "videos/:video_wistia_id/status" => "statuses#create"
   end
 end
 
