@@ -17,11 +17,10 @@ describe VideosController do
     end
   end
 
-  describe "#show when viewing a video as user with a license" do
-    it "renders the licensed show so they can watch video" do
+  describe "#show when viewing a video as user with access" do
+    it "renders licensed_show view so they can watch video" do
       user = create(:subscriber)
       video = create(:video)
-      create(:license, user: user, licenseable: video.watchable)
       stub_current_user_with(user)
 
       get :show, id: video
@@ -36,8 +35,8 @@ describe VideosController do
     end
   end
 
-  describe "#show when viewing a video with preview without a license" do
-    it "renders the licensed show so they can watch video" do
+  describe "#show when viewing a video with preview without access" do
+    it "renders show" do
       video = create(:video, :with_preview)
 
       get :show, id: video
@@ -46,8 +45,8 @@ describe VideosController do
     end
   end
 
-  describe "#show when viewing a video without a preview without a license" do
-    it "renders the licensed show so they can watch video" do
+  describe "#show when viewing a video without a preview without access" do
+    it "renders show" do
       video = create(:video)
 
       get :show, id: video

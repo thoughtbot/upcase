@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "offerings/_upcase.html.erb" do
+describe "products/_subscription.html.erb" do
   it "tries to sell the user on Upcase" do
     current_user_has_subscription = false
     render_template current_user_has_subscription
@@ -25,7 +25,7 @@ describe "offerings/_upcase.html.erb" do
     end
 
     render(
-      template: "offerings/_subscription",
+      template: "products/_subscription",
       locals: { offering: product }
     )
   end

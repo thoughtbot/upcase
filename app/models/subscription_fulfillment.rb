@@ -11,7 +11,6 @@ class SubscriptionFulfillment
 
   def remove
     unfulfill_lost_features
-    remove_licenses
   end
 
   private
@@ -34,9 +33,5 @@ class SubscriptionFulfillment
 
   def update_next_invoice_info
     SubscriptionUpcomingInvoiceUpdater.new([@user.subscription]).process
-  end
-
-  def remove_licenses
-    @user.licenses.destroy
   end
 end

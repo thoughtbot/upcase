@@ -48,7 +48,7 @@ describe ForumSessionsController do
         should deny_access(
           redirect: new_subscription_url,
           flash: I18n.t(
-            "products.show.subscribe_cta",
+            "products.subscribe_cta",
             offering_type: "forum",
             subscription_name: I18n.t("shared.upcase")
           )
@@ -66,7 +66,7 @@ describe ForumSessionsController do
         should deny_access(
           redirect: new_subscription_url,
           flash: I18n.t(
-            "products.show.subscribe_cta",
+            "products.subscribe_cta",
             offering_type: "forum",
             subscription_name: I18n.t("shared.upcase")
           )

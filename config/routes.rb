@@ -34,7 +34,6 @@ Upcase::Application.routes.draw do
   resource :session, controller: :sessions
   resource :forum_sessions, only: :new
   resource :subscription, only: [:new, :edit, :update]
-  resources :licenses, only: [:index]
   resources :topics, only: :index, format: :css
 
   resources :videos, only: [:index, :show] do

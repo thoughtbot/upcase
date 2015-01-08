@@ -35,12 +35,10 @@ en:
       title_html: "%{features} are locked &mdash; %{link} to get access"
       upgrade_link: "upgrade your subscription"
       subscribe_link: "subscribe to Upcase"
-    show:
-      subscribe_cta: "This %{offering_type} is free with a subscription to %{subscription_name}"
+    subscribe_cta: "You can access this %{offering_type} and others with a subscription to %{subscription_name}"
 
   video_tutorial:
     checkout_cta: Begin this Video Tutorial
-    checkout_cta_for_collection: Begin this Video Tutorial
     upgrade_cta: Upgrade your plan to access this Video Tutorial
 
   repository:
@@ -122,9 +120,6 @@ en:
         success: We're sorry to see you go. You will have access to all the features of your plan until the end of your current billing cycle.
       subscription_required: You need a subscription to Upcase to access that feature.
       upgrade_required: You must upgrade your plan to access that feature.
-
-  weekly_iteration_subscribe_cta:
-    Subscribe to Watch the Weekly Iteration
 
   trails:
     thoughtbot_resources: Use these thoughtbot resources first

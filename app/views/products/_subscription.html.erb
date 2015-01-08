@@ -1,7 +1,7 @@
 <% unless current_user_has_active_subscription? %>
   <div class="subscription-cta">
     <h2>
-      <%= I18n.t('products.show.subscribe_cta',
+      <%= I18n.t('products.subscribe_cta',
                  offering_type: offering.offering_type.humanize.downcase,
                  subscription_name: t('shared.subscription.name')) %>
     </h2>

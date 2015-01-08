@@ -1,5 +1,5 @@
 get(
   ":id" => "shows#show",
   as: :show,
-  constraints: LicenseableConstraint.new(Show)
+  constraints: SlugConstraint.new(Show)
 )

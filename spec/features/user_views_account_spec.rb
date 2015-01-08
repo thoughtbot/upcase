@@ -44,11 +44,4 @@ feature "Account Settings" do
   def expect_to_see_my_subscription
     expect(page).to have_css("ol.subscription li")
   end
-
-  def expect_to_see_my_licenses(user)
-    expect(page).to have_css(
-      "ol.licenses li",
-      count: [user.licenses.count, 5].min
-    )
-  end
 end

@@ -15,7 +15,7 @@ describe 'video_tutorials/show.html.erb' do
     Mocha::Configuration.allow :stubbing_non_existent_method do
       view.stubs(signed_in?: false)
       view.stubs(current_user_has_active_subscription?: false)
-      view.stubs(current_user_has_access_to_video_tutorials?: false)
+      view.stubs(current_user_has_access_to?: false)
     end
 
     render template: 'video_tutorials/show', video_tutorial: video_tutorial

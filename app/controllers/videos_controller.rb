@@ -9,7 +9,7 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.find(params[:id])
-    @offering = @video.watchable
+    @watchable = @video.watchable
 
     respond_to do |format|
       format.html { render_show_template }
@@ -29,15 +29,8 @@ class VideosController < ApplicationController
   end
 
   def has_access?
-    can_access_show? || can_access_video_tutorial?
-  end
-
-  def can_access_show?
-    @video.watchable.is_a?(Show) && current_user_has_access_to?(:shows)
-  end
-
-  def can_access_video_tutorial?
-    @video.watchable.is_a?(VideoTutorial) &&
-      current_user_has_access_to?(:video_tutorials)
+    signed_in? &&
+      current_user.plan.present? &&
+      @video.watchable.included_in_plan?(current_user.plan)
   end
 end

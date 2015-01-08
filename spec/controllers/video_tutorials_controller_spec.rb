@@ -9,7 +9,7 @@ describe VideoTutorialsController do
 
       get :show, id: video_tutorial
 
-      expect(response).to render_template "show_licensed"
+      expect(response).to render_template "show_subscribed"
     end
 
     it "renders show page if user has not access" do

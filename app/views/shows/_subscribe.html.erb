@@ -1,9 +1,0 @@
-<% if !signed_in? || !current_user.has_access_to?(:shows) %>
-  <section class="show">
-    <div class="subscription-cta">
-      <%= link_to t("weekly_iteration_subscribe_cta"),
-        new_subscription_path,
-        class: "license-button button subscription-button" %>
-    </div>
-  </section>
-<% end %>

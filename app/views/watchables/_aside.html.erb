@@ -1,4 +1,13 @@
 <aside>
-  <%= render 'licenses/downloads_info', offering: offering %>
-  <%= render 'shared/sidebar_forum', offering: offering %>
+  <%= render "products/downloads_info", product: watchable %>
+
+  <% if watchable.resources.present? %>
+    <div class="resources">
+      <h3>Resources</h3>
+      <hr>
+      <%= format_markdown watchable.resources  %>
+    </div>
+  <% end %>
+
+  <%= render "shared/sidebar_forum", watchable: watchable %>
 </aside>

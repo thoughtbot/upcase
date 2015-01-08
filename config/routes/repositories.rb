@@ -5,5 +5,5 @@ end
 get(
   ":id" => "repositories#show",
   as: :repository,
-  constraints: LicenseableConstraint.new(Repository)
+  constraints: SlugConstraint.new(Repository)
 )

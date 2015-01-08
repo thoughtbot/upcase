@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150106164342) do
+ActiveRecord::Schema.define(version: 20150108220013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,17 +122,6 @@ ActiveRecord::Schema.define(version: 20150106164342) do
   end
 
   add_index "legacy_trails", ["topic_id"], name: "index_legacy_trails_on_topic_id", using: :btree
-
-  create_table "licenses", force: true do |t|
-    t.integer  "user_id",          null: false
-    t.integer  "licenseable_id",   null: false
-    t.string   "licenseable_type", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "licenses", ["user_id", "licenseable_id", "licenseable_type"], name: "index_licenses_on_user_id_and_licenseable", unique: true, using: :btree
-  add_index "licenses", ["user_id"], name: "index_licenses_on_user_id", using: :btree
 
   create_table "mentors", force: true do |t|
     t.integer "user_id",                                                  null: false

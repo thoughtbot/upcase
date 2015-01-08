@@ -33,18 +33,6 @@ describe SubscriptionFulfillment do
   end
 
   describe '#remove' do
-    it 'removes all subscription licenses' do
-      user = build_subscribable_user
-      licenses = stub_subscription_licenses(user)
-      plan = build_stubbed(:plan)
-      fulfillment = stub_feature_unfulfillment
-
-      SubscriptionFulfillment.new(user, plan).remove
-
-      expect(licenses).to have_received(:destroy)
-      expect(fulfillment).to have_received(:unfulfill_lost_features)
-    end
-
     it "unfulfills all lost features" do
       user = build_subscribable_user
       plan = build_stubbed(:plan)
@@ -59,12 +47,6 @@ describe SubscriptionFulfillment do
       stub(unfulfill_lost_features: nil).tap do |fulfillment|
         FeatureFulfillment.stubs(:new).returns(fulfillment)
       end
-    end
-
-    def stub_subscription_licenses(user)
-      licenses = stub(destroy: true)
-      user.stubs(:licenses).returns(licenses)
-      licenses
     end
   end
 

@@ -29,7 +29,6 @@ describe "Videos" do
         position: 2
       )
       video = create(:video, watchable: video_tutorial)
-      create_license_from_licenseable(video_tutorial, current_user)
 
       visit video_tutorial_path(video_tutorial)
 
@@ -51,7 +50,6 @@ describe "Videos" do
       sign_in_as_user_with_subscription
 
       video_tutorial = create(:video_tutorial)
-      create_license_from_licenseable(video_tutorial, current_user)
       published_video_one = create(
         :video,
         :published,

@@ -1,8 +1,0 @@
-<section id="license" class="<%= offering.offering_type %>">
-  <% if offering.active? %>
-    <%= render "offerings/subscription", offering: offering %>
-    <%= render "licenses/link", offering: offering %>
-  <% else %>
-    <%= render "products/inactive", offering: offering %>
-  <% end %>
-</section>

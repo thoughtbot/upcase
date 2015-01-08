@@ -2,7 +2,7 @@
   <%= auto_discovery_link_tag(:rss, show_url(@show, format: "rss")) %>
 <% end %>
 
-<%= render "offerings/meta", offering: @show %>
+<%= render "products/meta", product: @show %>
 
 <div class="text-box-wrapper">
   <div class="text-box">
@@ -23,5 +23,6 @@
 </div>
 
 <aside>
-  <%= render "subscribe", plan: @plan, offering: @show %>
+  <%= render "watchables/subscribe", watchable: @show %>
+  <%= render "watchables/terms", watchable: @show %>
 </aside>

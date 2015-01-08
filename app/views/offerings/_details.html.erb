@@ -1,9 +1,0 @@
-<%= render 'offerings/meta', offering: offering %>
-
-<div class="text-box-wrapper">
-  <div class="text-box">
-    <%= format_markdown offering.description %>
-    <%= render "offerings/questions", offering: offering %>
-    <%= render "#{offering.to_partial_path}_details", offering: offering %>
-  </div>
-</div>

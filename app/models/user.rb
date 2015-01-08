@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   include Clearance::User
 
-  has_many :licenses
   has_many :completions
   has_many :subscriptions, dependent: :destroy
   belongs_to :mentor
@@ -39,10 +38,6 @@ class User < ActiveRecord::Base
 
   def external_auth?
     auth_provider.present?
-  end
-
-  def has_licensed?
-    licenses.present?
   end
 
   def inactive_subscription

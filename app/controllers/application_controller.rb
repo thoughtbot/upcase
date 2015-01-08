@@ -67,17 +67,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :masquerading?
 
-  def requested_licenseable
-    PolymorphicFinder.
-      finding(VideoTutorial, :slug, [:video_tutorial_id]).
-      finding(
-        Product,
-        :slug,
-        [:product_id, :show_id, :repository_id]
-      ).
-      find(params)
-  end
-
   def included_in_current_users_plan?(licenseable)
     licenseable.included_in_plan?(current_user.plan)
   end

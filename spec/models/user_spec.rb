@@ -2,7 +2,6 @@ require "rails_helper"
 
 describe User do
   context "associations" do
-    it { should have_many(:licenses) }
     it { should have_many(:completions) }
     it { should belong_to(:mentor) }
     it { should belong_to(:team) }
@@ -48,22 +47,6 @@ describe User do
 
       expect(user.save).to be true
       expect(user.github_username).to be nil
-    end
-  end
-
-  describe "#has_licensed?" do
-    it "returns true if the user has any licenses" do
-      user = build_stubbed(:user)
-      user.stubs(:licenses).returns([stub])
-
-      expect(user).to have_licensed
-    end
-
-    it "returns false if the user has no purchases" do
-      user = build_stubbed(:user)
-      user.stubs(:licenses).returns([])
-
-      expect(user).to_not have_licensed
     end
   end
 

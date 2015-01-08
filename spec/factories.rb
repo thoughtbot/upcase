@@ -168,25 +168,9 @@ FactoryGirl.define do
     end
   end
 
-  factory :product_license do
-    discounted false
-    offering_type 'VideoTutorial'
-    original_price 10
-    price 10
-    product_id 123
-    sku 'video_tutorial_1'
-    variant 'individual'
-    initialize_with { new(attributes) }
-  end
-
   factory :team, class: 'Team' do
     name 'Google'
     association :subscription, factory: :team_subscription
-  end
-
-  factory :license do
-    user
-    association :licenseable, factory: :video_tutorial
   end
 
   factory :checkout do

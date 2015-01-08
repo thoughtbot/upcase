@@ -1,4 +1,4 @@
-class LicenseableConstraint
+class SlugConstraint
   def initialize(model)
     @model = model
   end

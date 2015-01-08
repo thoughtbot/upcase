@@ -1,13 +1,13 @@
 require "rails_helper"
 
-describe LicenseableConstraint do
+describe SlugConstraint do
   describe "#matches?" do
     context "when request has an id that matches a product slug" do
       it "returns true" do
         product = create(:product)
         request = stub_request_with_id(product.slug)
 
-        expect(LicenseableConstraint.new(Product).matches?(request)).to be true
+        expect(SlugConstraint.new(Product).matches?(request)).to be true
       end
     end
 
@@ -17,7 +17,7 @@ describe LicenseableConstraint do
         request = stub_request_with_id(product.slug)
 
         expect(
-          LicenseableConstraint.new(Show).matches?(request)
+          SlugConstraint.new(Show).matches?(request)
         ).to be false
       end
     end
@@ -26,7 +26,7 @@ describe LicenseableConstraint do
       it "returns false" do
         request = stub_request_with_id("test")
 
-        expect(LicenseableConstraint.new(Product).matches?(request)).to be false
+        expect(SlugConstraint.new(Product).matches?(request)).to be false
       end
     end
 
@@ -35,7 +35,9 @@ describe LicenseableConstraint do
         video_tutorial = create(:video_tutorial)
         request = stub_request_with_id(video_tutorial.slug)
 
-        expect(LicenseableConstraint.new(VideoTutorial).matches?(request)).to be true
+        expect(
+          SlugConstraint.new(VideoTutorial).matches?(request)
+        ).to be true
       end
     end
 
@@ -44,7 +46,7 @@ describe LicenseableConstraint do
         request = stub_request_with_id("test")
 
         expect(
-          LicenseableConstraint.new(VideoTutorial).matches?(request)
+          SlugConstraint.new(VideoTutorial).matches?(request)
         ).to be false
       end
     end

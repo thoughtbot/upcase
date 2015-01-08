@@ -42,19 +42,4 @@ feature "Viewing products" do
       "Subscribe to #{I18n.t("shared.subscription.name")}"
     )
   end
-
-  scenario "a user views a product with a license without a subscription" do
-    show = create(:show, name: "show title")
-    show.published_videos.create(attributes_for(:video))
-
-    user = create(:user)
-    create(:license, user: user, licenseable: show)
-
-    visit show_url(show, as: user)
-
-    expect(page).to have_content("show title")
-    expect(page).to_not have_content(
-      "Subscribe to #{I18n.t("shared.subscription.name")}"
-    )
-  end
 end

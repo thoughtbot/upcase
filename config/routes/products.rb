@@ -1,3 +1,1 @@
-resources :products, only: [:index] do
-  resources :licenses, only: [:create]
-end
+resources :products, only: [:index]

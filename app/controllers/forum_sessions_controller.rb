@@ -20,7 +20,7 @@ class ForumSessionsController < ApplicationController
       redirect_to(
         new_subscription_url,
         notice: I18n.t(
-          "products.show.subscribe_cta",
+          "products.subscribe_cta",
           offering_type: "forum",
           subscription_name: I18n.t("shared.upcase")
         )

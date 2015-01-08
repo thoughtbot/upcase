@@ -24,6 +24,14 @@
 </div>
 
 <aside>
-  <%= render "products/license", offering: @offering %>
-  <%= render 'products/terms', offering: @offering %>
+  <section id="license" class="<%= @watchable.offering_type %>">
+    <% if @watchable.active? %>
+      <%= render "products/subscription", offering: @watchable %>
+      <%= render "watchables/link", watchable: @watchable %>
+    <% else %>
+      <%= render "watchables/inactive", watchable: @watchable %>
+    <% end %>
+  </section>
+
+  <%= render 'watchables/terms', watchable: @watchable %>
 </aside>
