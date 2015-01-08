@@ -11,7 +11,7 @@ describe Analytics do
       expect(analytics).to(
         have_tracked("Cancelled").
         for_user(user).
-        with_properties(reason: "reason")
+        with_properties(reason: "reason", email: user.email)
       )
     end
   end
