@@ -23,7 +23,7 @@ describe Topic do
     end
 
     it 'generates a stripped, url encoded slug based on name' do
-      expect(@topic.slug).to eq "test+driven+development"
+      expect(@topic.slug).to eq "test-driven-development"
     end
   end
 
