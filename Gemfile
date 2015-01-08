@@ -34,7 +34,6 @@ gem "rack-ssl-enforcer", "~> 0.2.4"
 gem "rails", "4.1.8"
 gem "rails_admin", "~> 0.6.2"
 gem "recipient_interceptor"
-gem "ruby-freshbooks", "~> 0.4.0"
 gem "sass-rails", "~> 4.0.4"
 gem "sprockets-redirect"
 gem "stripe"
@@ -62,10 +61,6 @@ group :production, :staging do
   gem "rails_12factor"
 end
 
-group :staging do
-  gem "safety_mailer", "~> 0.0.3"
-end
-
 group :test do
   gem "bourne"
   gem "capybara"
@@ -77,8 +72,6 @@ group :test do
   gem "email_spec"
   gem "factory_girl_rails"
   gem "launchy"
-  gem "selenium-webdriver"
-  gem "sham_rack"
   gem "shoulda-matchers", require: false
   gem "simplecov", "~> 0.9", require: false
   gem "sinatra"
