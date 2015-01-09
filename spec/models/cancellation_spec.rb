@@ -16,7 +16,6 @@ describe Cancellation do
   describe "#process" do
     before :each do
       subscription.stubs(:stripe_customer_id).returns("cus_1CXxPJDpw1VLvJ")
-
     end
 
     context "with an active subscription" do
@@ -25,7 +24,6 @@ describe Cancellation do
 
         expect(subscription.deactivated_on).to eq Time.zone.today
       end
-
     end
   end
 

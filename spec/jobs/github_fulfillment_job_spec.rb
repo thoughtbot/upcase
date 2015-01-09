@@ -53,7 +53,7 @@ describe GithubFulfillmentJob do
           job = GithubFulfillmentJob.new(repository.id, user.id)
 
           expect { job.perform }.to raise_error(error_class)
-          expect(mailer).to have_received(:deliver)
+          expect(mailer).to have_received(:deliver_now)
         end
       end
     end
