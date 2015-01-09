@@ -5,8 +5,8 @@ module Features
       forum
       shows
     )
-    LICENSEABLE_FEATURES = %w(repositories video_tutorials)
-    FULFILLABLE_FEATURES = %w(mentor)
+    LICENSEABLE_FEATURES = %w(video_tutorials)
+    FULFILLABLE_FEATURES = %w(mentor repositories)
     ALL_FEATURES = GENERIC_FEATURES + LICENSEABLE_FEATURES +
       FULFILLABLE_FEATURES
 

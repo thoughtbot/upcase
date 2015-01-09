@@ -48,8 +48,7 @@ en:
     upgrade_cta: Upgrade your plan to access this Video Tutorial
 
   repository:
-    checkout_cta: View this Repository
-    upgrade_cta: Upgrade your plan to access this Repository
+    view_repository: View this Repository
 
   teachers:
     teacher:
@@ -125,6 +124,8 @@ en:
         success: Your subscription has been downgraded.
       cancel:
         success: We're sorry to see you go. You will have access to all the features of your plan until the end of your current billing cycle.
+      subscription_required: You need a subscription to Upcase to access that feature.
+      upgrade_required: You must upgrade your plan to access that feature.
 
   weekly_iteration_subscribe_cta:
     Subscribe to Watch the Weekly Iteration

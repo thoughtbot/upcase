@@ -9,7 +9,7 @@ class Analytics
   end
 
   def track_cancelled(reason)
-    track(event: "Cancelled", properties: { reason: reason })
+    track(event: "Cancelled", properties: { reason: reason, email: user.email })
   end
 
   def track_updated

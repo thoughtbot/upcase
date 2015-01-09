@@ -4,6 +4,7 @@ feature "User downgrades subscription" do
   scenario "successfully downgrades and then cancels" do
     create(:plan, sku: "upcase", name: "Upcase")
     basic_plan = create(:basic_plan)
+    create(:repository, name: "Exercises Repository Unfulfillment")
     video_tutorial = create(:video_tutorial)
 
     sign_in_as_user_with_subscription

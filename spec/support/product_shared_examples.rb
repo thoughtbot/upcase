@@ -29,20 +29,6 @@ shared_examples "a class inheriting from Product" do
     end
   end
 
-  describe "starts_on" do
-    it "returns the given date" do
-      product = create_product
-      expect(product.starts_on(Time.zone.today)).to eq Time.zone.today
-    end
-  end
-
-  describe "ends_on" do
-    it "returns the given date" do
-      product = create_product
-      expect(product.ends_on(Time.zone.today)).to eq Time.zone.today
-    end
-  end
-
   describe "#subscription?" do
     it "returns false" do
       product = build_stubbed_product

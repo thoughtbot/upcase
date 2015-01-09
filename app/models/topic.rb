@@ -1,5 +1,6 @@
 class Topic < ActiveRecord::Base
-  # Associations
+  extend FriendlyId
+
   has_many :classifications, dependent: :destroy
 
   with_options(through: :classifications, source: :classifiable) do |options|
@@ -15,12 +16,10 @@ class Topic < ActiveRecord::Base
   has_one :legacy_trail
   has_many :trails
 
-  # Validations
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true
 
-  # Callbacks
-  before_validation :generate_slug, on: :create
+  friendly_id :name, use: :slugged
 
   def self.top
     featured.order("count DESC").limit 20
@@ -52,13 +51,5 @@ class Topic < ActiveRecord::Base
 
   def related
     @related ||= Related.new(self)
-  end
-
-  private
-
-  def generate_slug
-    if name
-      self.slug = CGI::escape(name.strip).downcase
-    end
   end
 end

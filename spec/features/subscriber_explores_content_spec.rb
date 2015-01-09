@@ -31,29 +31,6 @@ feature "Subscriber accesses content" do
     expect(current_path).to eq edit_subscription_path
   end
 
-  scenario "show in-progress status for current video_tutorial" do
-    video_tutorial = create(:video_tutorial, length_in_days: 2)
-
-    sign_in_as_user_with_subscription
-    visit explore_path
-    click_video_tutorial_detail_link
-    click_link I18n.t("video_tutorial.checkout_cta")
-
-    visit products_path
-    expect(page).to have_css(".tile.in-progress", text: video_tutorial.name)
-  end
-
-  scenario "show complete status for past video_tutorial" do
-    video_tutorial = create(:video_tutorial, length_in_days: 2)
-
-    Timecop.travel(3.days.ago) do
-      get_access_to_video_tutorial
-    end
-
-    visit products_path
-    expect(page).to have_css(".tile.complete", text: video_tutorial.name)
-  end
-
   scenario "gets added to the GitHub team for a repository" do
     repository = create(:repository)
     sign_in_as_user_with_subscription
@@ -62,10 +39,9 @@ feature "Subscriber accesses content" do
     visit explore_path
     click_on "Upcase source code on GitHub"
     click_on repository.name
-    click_link I18n.t("repository.checkout_cta")
+    click_link I18n.t("repository.view_repository")
 
-    expect(GithubFulfillmentJob).
-      to have_added_current_user_to_team_for(repository)
+    expect(page).to have_content("We're adding you to the GitHub repository")
   end
 
   def get_access_to_video_tutorial
@@ -84,11 +60,6 @@ feature "Subscriber accesses content" do
   end
 
   def have_added_current_user_to_team_for(product)
-    have_received(:enqueue).
-      with(
-        product.github_team,
-        @current_user.github_username,
-        License.last.id
-      )
+    have_received(:enqueue).with(product.id, @current_user.id)
   end
 end

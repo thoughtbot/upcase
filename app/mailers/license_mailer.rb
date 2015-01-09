@@ -1,12 +1,12 @@
 class LicenseMailer < BaseMailer
-  def fulfillment_error(license, username)
-    @username = username
-    @license = license
+  def fulfillment_error(repository, user)
+    @repository = repository
+    @user = user
 
     mail(
-      to: license.user_email,
+      to: @user.email,
       cc: ENV["SUPPORT_EMAIL"],
-      subject: "Fulfillment issues with #{license.licenseable_name}"
+      subject: "Fulfillment issues with #{@repository.name}"
     )
   end
 end

@@ -5,9 +5,8 @@ class RepositoriesController < ApplicationController
 
   def show
     @repository = Repository.friendly.find(params[:id])
-    @offering = Offering.new(@repository, current_user)
 
-    check_license do
+    check_collaboration do
       check_github_access do
         redirect_to @repository.github_url
       end
@@ -16,8 +15,8 @@ class RepositoriesController < ApplicationController
 
   private
 
-  def check_license
-    if @offering.user_has_license?
+  def check_collaboration
+    if @repository.has_collaborator?(current_user)
       yield
     else
       render_html :show

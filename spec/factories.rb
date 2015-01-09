@@ -72,7 +72,6 @@ FactoryGirl.define do
   factory :product, traits: [:active], class: "VideoTutorial" do
     after(:stub) { |product| product.slug = product.name.parameterize }
     description 'Solve 8-Queens over and over again'
-    length_in_days 28
     tagline 'Solve 8-Queens'
 
     trait :active do
@@ -295,6 +294,23 @@ FactoryGirl.define do
           plan: attributes.plan,
           user: instance
         )
+      end
+    end
+
+    trait :with_full_subscription do
+      with_subscription
+
+      transient do
+        plan do
+          create(
+            :plan,
+            includes_exercises: true,
+            includes_forum: true,
+            includes_mentor: true,
+            includes_repositories: true,
+            includes_video_tutorials: true
+          )
+        end
       end
     end
 

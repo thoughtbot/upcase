@@ -6,7 +6,7 @@ feature "User cancels a subscription" do
     create(:basic_plan)
     create(:video_tutorial, name: "A Cool VideoTutorial")
 
-    sign_in_as_user_with_subscription
+    sign_in_as_user_with_subscription :with_full_subscription
 
     expect(@current_user).to have_active_subscription
 

@@ -10,7 +10,6 @@ describe VideoTutorial do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:tagline) }
   it { should validate_presence_of(:sku) }
-  it { should validate_presence_of(:length_in_days) }
 
   describe "#to_param" do
     it "returns the slug" do
@@ -60,37 +59,6 @@ describe VideoTutorial do
   describe '#subscription?' do
     it 'returns false' do
       expect(VideoTutorial.new).not_to be_subscription
-    end
-  end
-
-  describe 'starts_on' do
-    it 'returns the given date' do
-      video_tutorial = build(:video_tutorial)
-      yesterday = 1.day.ago
-
-      expect(video_tutorial.starts_on(yesterday)).to eq yesterday
-    end
-
-    it 'returns the today when given no date' do
-      video_tutorial = build(:video_tutorial)
-
-      expect(video_tutorial.starts_on).to eq Time.zone.today
-    end
-  end
-
-  describe 'ends_on' do
-    it 'returns the date equal to the given date plus the length of the video_tutorial' do
-      video_tutorial = build(:video_tutorial, length_in_days: 28)
-      yesterday = 1.day.ago.to_date
-
-      expect(video_tutorial.ends_on(yesterday)).to eq (yesterday + 28.days)
-    end
-
-    it 'returns the date equal to today plus the length of the video_tutorial when given no date' do
-      ends_on = 14.days.from_now.to_date
-      video_tutorial = build(:video_tutorial, length_in_days: 14)
-
-      expect(video_tutorial.ends_on).to eq ends_on
     end
   end
 

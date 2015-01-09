@@ -1,5 +1,5 @@
 resources :repositories, only: [:index] do
-  resources :licenses, only: [:create]
+  resource :collaboration, only: [:create]
 end
 
 get(

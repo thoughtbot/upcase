@@ -57,14 +57,6 @@ class Product < ActiveRecord::Base
     slug
   end
 
-  def starts_on(license_date)
-    license_date
-  end
-
-  def ends_on(license_date)
-    license_date
-  end
-
   def license_for(user)
     licenses.where(user_id: user).first
   end
@@ -89,8 +81,8 @@ class Product < ActiveRecord::Base
     "#{self.class.name.underscore.pluralize}/aside"
   end
 
-  def fulfill(license, user)
-    GithubFulfillment.new(license).fulfill
+  def fulfill(user)
+    GithubFulfillment.new(self, user).fulfill
   end
 
   def published_videos

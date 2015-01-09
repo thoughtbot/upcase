@@ -1,11 +1,10 @@
-class GithubFulfillmentJob < Struct.new(:github_team, :username, :license_id)
+class GithubFulfillmentJob < Struct.new(:repository_id, :user_id)
   include ErrorReporting
 
-  PREVIEW_MEDIA_TYPE =
-    "application/vnd.github.the-wasp-preview+json".freeze
+  PREVIEW_MEDIA_TYPE = "application/vnd.github.the-wasp-preview+json".freeze
 
-  def self.enqueue(github_team, username, license_id=nil)
-    Delayed::Job.enqueue(new(github_team, username, license_id))
+  def self.enqueue(repository_id, user_id)
+    Delayed::Job.enqueue(new(repository_id, user_id))
   end
 
   def perform
@@ -18,21 +17,26 @@ class GithubFulfillmentJob < Struct.new(:github_team, :username, :license_id)
   private
 
   def add_on_github
-    if username
+    if user.github_username?
       # TODO remove accept once GitHub removes preview mode.
       github_client.add_team_membership(
-        github_team,
-        username,
+        repository.github_team,
+        user.github_username,
         accept: PREVIEW_MEDIA_TYPE
       )
     end
   end
 
   def email_user
-    if license_id
-      license = License.find(license_id)
-      LicenseMailer.fulfillment_error(license, username).deliver_now
-    end
+    LicenseMailer.fulfillment_error(repository, user).deliver_now
+  end
+
+  def repository
+    Product.find(repository_id)
+  end
+
+  def user
+    User.find(user_id)
   end
 
   def github_client
