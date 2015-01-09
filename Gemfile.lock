@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/justinfrench/formtastic.git
-  revision: 0de7941dfd37c1391452320696be7516a8782d9c
-  specs:
-    formtastic (3.2.0.pre)
-      actionpack (>= 3.2.13)
-
-GIT
   remote: git://github.com/sferik/rails_admin.git
   revision: 78d71104675436150dd74312a6b273078a25d805
   specs:
@@ -157,6 +150,8 @@ GEM
       railties (>= 3.2, < 5.0)
     font_assets (0.1.11)
       rack
+    formtastic (3.1.3)
+      actionpack (>= 3.2.13)
     friendly_id (5.1.0.beta.1)
       activerecord (>= 4.0.0)
     globalid (0.3.0)
@@ -414,7 +409,7 @@ DEPENDENCIES
   flutie
   font-awesome-rails
   font_assets
-  formtastic!
+  formtastic (~> 3.1.3)
   friendly_id (= 5.1.0.beta.1)
   gravatarify (~> 3.1.0)
   heroku-deflater
