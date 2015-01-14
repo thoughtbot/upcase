@@ -20,7 +20,7 @@ class VideosController < ApplicationController
 
   def render_show_template
     if has_access?
-      render "show_licensed"
+      render "show_subscribed"
     elsif @video.preview_wistia_id.present?
       render "show"
     else

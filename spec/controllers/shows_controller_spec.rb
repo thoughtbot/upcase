@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe ShowsController do
   context "show" do
-    it "renders show_licensed page if user is subscribed" do
+    it "renders show_subscribed page if user is subscribed" do
       user = create(:subscriber)
       show = create(:show)
       sign_in_as user
@@ -11,7 +11,7 @@ describe ShowsController do
 
       expect(response).to render_template(
         "layouts/application",
-        "show_licensed"
+        "show_subscribed"
       )
     end
 

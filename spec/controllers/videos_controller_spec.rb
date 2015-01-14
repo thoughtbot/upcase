@@ -25,7 +25,7 @@ describe VideosController do
 
       get :show, id: video
 
-      expect(response).to render_template "show_licensed"
+      expect(response).to render_template "show_subscribed"
     end
 
     it "doesn't recognize other formats" do

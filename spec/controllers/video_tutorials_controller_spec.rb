@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe VideoTutorialsController do
   context "show" do
-    it "renders show_licensed if user has access" do
+    it "renders show_subscribed if user has access" do
       video_tutorial = create(:video_tutorial)
       user = create(:subscriber, :with_full_subscription)
       sign_in_as user
