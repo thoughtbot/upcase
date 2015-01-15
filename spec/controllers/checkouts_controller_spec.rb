@@ -59,7 +59,7 @@ describe CheckoutsController do
 
       post :create, checkout: customer_params, plan: plan
 
-      expect(flash[:purchase_amount]).to eq plan.individual_price
+      expect(flash[:purchase_amount]).to eq plan.price
     end
   end
 

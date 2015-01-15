@@ -40,7 +40,7 @@ describe "videos/show" do
   end
 
   def stub_controller(video)
-    plan = stub("plan", individual_price: 29)
+    plan = stub("plan", price: 29)
     assign :plan, plan
     assign :video, video
     assign :watchable, video.watchable

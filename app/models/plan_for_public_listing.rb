@@ -7,7 +7,7 @@ module PlanForPublicListing
     end
 
     def ordered
-      order('individual_price desc')
+      order("price desc")
     end
   end
 

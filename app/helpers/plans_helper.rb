@@ -1,10 +1,18 @@
 module PlansHelper
-  def individual_price_per_month(plan)
-    price_per_month(plan.individual_price)
+  def plan_price(plan)
+    "#{formatted_price(plan.price)} / #{plan_interval(plan)}"
   end
 
-  def price_per_month(price)
-    "#{number_to_currency(price, precision: 0)} / month"
+  def formatted_price(price)
+    number_to_currency(price, precision: 0)
+  end
+
+  def plan_interval(plan)
+    if plan.annual?
+      "year"
+    else
+      "month"
+    end
   end
 
   def grid_partial_for(plan)

@@ -36,7 +36,7 @@ class Checkout < ActiveRecord::Base
   end
 
   def price
-    plan.individual_price * quantity
+    plan.price * quantity
   end
 
   def needs_github?

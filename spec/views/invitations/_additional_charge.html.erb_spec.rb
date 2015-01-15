@@ -16,14 +16,12 @@ describe "invitations/_additional_charge.html" do
     it "returns the amount and interval" do
       team = build_stubbed(:team)
       team.stubs(below_minimum_users?: false)
-      price = number_to_currency(team.plan.individual_price)
+      price = number_to_currency(team.plan.price, precision: 0)
       interval = team.plan.subscription_interval
 
       render "invitations/additional_charge", team: team
 
-      expect(rendered).to have_content(
-        "#{price}/#{interval}"
-      )
+      expect(rendered).to have_content("#{price} / #{interval}")
     end
   end
 end

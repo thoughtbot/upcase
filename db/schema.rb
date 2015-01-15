@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150108220013) do
+ActiveRecord::Schema.define(version: 20150115151014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,7 +177,7 @@ ActiveRecord::Schema.define(version: 20150108220013) do
     t.string   "short_description",                        null: false
     t.text     "description",                              null: false
     t.boolean  "active",                   default: true,  null: false
-    t.integer  "individual_price",                         null: false
+    t.integer  "price",                                    null: false
     t.text     "terms"
     t.boolean  "includes_mentor",          default: false
     t.boolean  "includes_video_tutorials", default: true
@@ -202,8 +202,6 @@ ActiveRecord::Schema.define(version: 20150108220013) do
     t.string   "call_to_action"
     t.string   "short_description"
     t.text     "description"
-    t.integer  "individual_price",           default: 0,     null: false
-    t.integer  "company_price",              default: 0,     null: false
     t.string   "type",                                       null: false
     t.boolean  "active",                     default: true,  null: false
     t.datetime "created_at"

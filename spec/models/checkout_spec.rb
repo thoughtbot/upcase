@@ -101,15 +101,15 @@ describe Checkout do
   end
 
   context "#price" do
-    it "uses the individual_price of the plan as it's price" do
-      plan = build(:plan, individual_price: 50)
+    it "uses the price of the plan as it's price" do
+      plan = build(:plan, price: 50)
       checkout = build(:checkout, plan: plan)
 
       expect(checkout.price).to eq 50
     end
 
-    it "uses the individual_price of the plan and quantity as it's price" do
-      plan = build(:plan, individual_price: 50)
+    it "uses the price of the plan and quantity as it's price" do
+      plan = build(:plan, price: 50)
       checkout = build(:checkout, plan: plan, quantity: 3)
 
       expect(checkout.price).to eq 150

@@ -6,7 +6,7 @@ describe Plan do
   it { should belong_to(:annual_plan).class_name("Plan") }
 
   it { should validate_presence_of(:description) }
-  it { should validate_presence_of(:individual_price) }
+  it { should validate_presence_of(:price) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:short_description) }
   it { should validate_presence_of(:sku) }
@@ -119,7 +119,7 @@ describe Plan do
     it "returns the payment amount times 12" do
       plan = build_stubbed(:plan)
 
-      expect(plan.annualized_payment).to eq(12 * plan.individual_price)
+      expect(plan.annualized_payment).to eq(12 * plan.price)
     end
   end
 

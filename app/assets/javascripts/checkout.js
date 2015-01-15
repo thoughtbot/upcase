@@ -86,10 +86,10 @@ $('.reveal-address').click(function() {
 });
 
 function updateCheckoutAmountForQuantity() {
-  var individualPrice = $('#checkout_quantity_input').data('individual-price');
+  var price = $('#checkout_quantity_input').data('price');
   var interval = $('#checkout_quantity_input').data('interval');
   var quantity = $('#checkout_quantity').val();
-  var newAmount = individualPrice * quantity;
+  var newAmount = price * quantity;
   updateCheckoutSubmitAmount("$" + newAmount + " per " + interval);
 }
 

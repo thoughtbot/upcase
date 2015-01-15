@@ -86,8 +86,6 @@ FactoryGirl.define do
       promoted true
     end
 
-    company_price 50
-    individual_price 15
     name { generate(:name) }
     sku 'TEST'
 
@@ -102,7 +100,7 @@ FactoryGirl.define do
 
   factory :plan do
     name I18n.t("shared.subscription.name")
-    individual_price 99
+    price 99
     sku "professional"
     short_description 'A great Subscription'
     description 'A long description'
@@ -124,7 +122,7 @@ FactoryGirl.define do
     end
 
     trait :team do
-      individual_price 89
+      price 89
       name 'VideoTutorials for Teams'
       sku 'team_plan'
       includes_team true
@@ -132,7 +130,7 @@ FactoryGirl.define do
 
     trait :annual do
       name "#{I18n.t("shared.subscription.name")} (Yearly)"
-      individual_price 990
+      price 990
       sku "professional-yearly"
       annual true
     end
