@@ -1,0 +1,85 @@
+.features {
+  padding: 2em 2em 0;
+  position: relative;
+
+  ul {
+    @include outer-container;
+  }
+
+  li {
+    @include row();
+    border-top: 1px solid darken($base-background-2, 5);
+    margin: 0 -2em;
+    padding-top: 3em;
+
+    &:nth-child(odd) {
+      @include marketing-fullsize {
+        .features-description {
+          float: right;
+        }
+      }
+    }
+
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+  }
+
+  .trails-progress {
+    @include outer-container;
+    margin-bottom: 5em;
+
+    header h1 {
+      float: none;
+      text-align: center;
+
+      a {
+        color: $gray-2;
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .product-card-locked {
+    display: none;
+  }
+}
+
+.features-screenshot {
+  margin-bottom: 3em;
+  padding: 0 2em;
+
+  @include marketing-fullsize {
+    float: left;
+    width: 40%;
+  }
+}
+
+.features-description {
+  margin-bottom: 3em;
+  padding: 0 2em;
+
+  @include marketing-fullsize {
+    float: left;
+    vertical-align: top;
+    width: 60%;
+  }
+
+  h3 {
+    font-size: 1.5em;
+    font-weight: 400;
+    margin: 0.5em 0 1em;
+  }
+
+  p {
+    font-size: 1.125em;
+    opacity: 0.8;
+  }
+}
+
+.screenshot {
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(black, 0.1);
+}

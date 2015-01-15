@@ -12,6 +12,7 @@
 //= require checkout
 //= require autoresize
 //= require wistia_helper
+//= require headhesive.min.js
 
 $(function() {
   if ($('.all-trail-map-steps').length) {
@@ -24,3 +25,9 @@ $(function() {
 
   $('textarea').autosize();
 });
+
+var options = {
+  offset: 500
+}
+
+var header = new Headhesive('.landing #header-wrapper', options);

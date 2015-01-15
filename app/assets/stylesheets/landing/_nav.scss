@@ -1,0 +1,39 @@
+.landing #header-wrapper {
+  margin-bottom: 0;
+  z-index: 9999;
+
+  @include marketing-fullsize {
+    padding: 0 2em;
+
+    nav {
+      margin-right: -2em;
+
+      a {
+        padding: 1rem 2rem;
+      }
+    }
+
+    &:not(.headhesive) {
+      @include position(absolute, 0em 0em null 0em);
+      background: none;
+
+      nav li a {
+        border-left: none;
+      }
+    }
+  }
+
+  &.headhesive {
+    @include position(fixed, 0em 0em 0 0em);
+    @include transform(translateY(-100%));
+    @include transition(transform 0.2s);
+
+    @media screen and (max-width: 755px) {
+      display: none;
+    }
+  }
+
+  &.headhesive--stick {
+    @include transform(translateY(0));
+  }
+}

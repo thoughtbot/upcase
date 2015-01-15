@@ -1,0 +1,42 @@
+body.shows-show #videos {
+  margin-top: 25px;
+}
+
+.landing {
+  .content {
+    max-width: none;
+    padding: 0;
+  }
+
+  h2 {
+    color: $celestial-blue;
+    font-size: 2.5em;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 0 auto;
+    max-width: 30em;
+    padding: 2em 0;
+    text-align: center;
+  }
+}
+
+.signup {
+  background: $upcase-green;
+  border-radius: 2px;
+  color: white;
+  display: inline-block;
+  font-family: $sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  margin: 0 0.5em 0.5em 0;
+  min-width: 8em;
+  padding: 0.75em 2em;
+  text-align: center;
+
+  &.grey {
+    background: darken($base-background-2, 2);
+    color: $upcase-green;
+  }
+}

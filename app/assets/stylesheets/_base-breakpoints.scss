@@ -1,3 +1,9 @@
+@mixin marketing-small {
+  @media (min-width: 560px) {
+    @content;
+  }
+}
+
 @mixin marketing-mobile {
   @media screen and (max-device-width: 620px), screen and (max-width: 620px) {
     @content;

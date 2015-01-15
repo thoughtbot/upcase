@@ -1,0 +1,47 @@
+.topics {
+  background: $base-background-2;
+  margin-bottom: 0;
+  padding: 2em 2em 4em;
+  position: relative;
+
+  ol {
+    @include outer-container;
+
+    > li {
+      @include span-columns(6);
+      @include omega(2n);
+      margin-top: 0;
+      margin-bottom: 2.36%;
+      text-align: center;
+
+      @include marketing-small {
+        @include span-columns(3);
+        @include omega-reset(2n);
+        @include omega(4n);
+      }
+    }
+  }
+}
+
+.topic-card {
+  background: white;
+  border-radius: 0.5em;
+  box-shadow: 0 0 0 rgba(black, 0.3);
+  display: block;
+  text-align: center;
+  text-decoration: none;
+
+  h4 {
+    font-weight: 400;
+    font-size: 1.125em;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    margin: 0;
+    padding: 0 0 1.5em;
+  }
+}
+
+.topic-icon {
+  margin: 20% auto 10%;
+  width: 60%;
+}

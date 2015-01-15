@@ -1,11 +1,10 @@
 require "rails_helper"
 
 describe HomesController do
-  it "renders the landing page if the visitor is not logged in" do
+  it "redirects to join if the visitor is not logged in" do
     get :show
 
-    expect(response).
-      to render_template("landing_pages/watch-one-do-one-teach-one")
+    expect(response).to redirect_to join_path
   end
 
   it "redirects to products if the visitor is logged in" do

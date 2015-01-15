@@ -6,11 +6,11 @@ feature 'Visitor signs up for a subscription' do
   end
 
   scenario 'visitor signs up by navigating from landing page' do
+    create(:trail, :published)
+    create(:basic_plan)
+
     visit "/"
-    click_link "Join"
-    within("[data-sku='#{@plan.sku}']") do
-      click_link I18n.t('subscriptions.choose_plan_html')
-    end
+    click_link "Start Learning"
     fill_out_account_creation_form
     fill_out_credit_card_form_with_valid_credit_card
 

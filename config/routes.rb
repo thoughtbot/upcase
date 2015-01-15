@@ -23,7 +23,6 @@ Upcase::Application.routes.draw do
   draw :subscriber
   draw :teams
   draw :trails
-  draw :landing_pages
   draw :users
   draw :video_tutorials
 
@@ -51,6 +50,7 @@ Upcase::Application.routes.draw do
     only: [:index]
   )
 
+  get "join" => "subscriptions#new", as: :join
   get "practice" => "practice#show", as: :practice
   get "explore" => "explore#show", as: :explore
   get "sitemap.xml" => "sitemaps#show", as: :sitemap, format: "xml"

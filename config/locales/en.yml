@@ -98,7 +98,7 @@ en:
       plan_not_found: We have a new subscription plan for you.
 
   subscriptions:
-    join_cta: See Plans & Pricing for Upcase
+    join_cta: See Pricing
     cancel: Cancel
     confirm_cancel_reject_deal: No thanks, just cancel my subscription
     confirm_cancel: Yes, cancel my subscription

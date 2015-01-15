@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "subscriptions/_pricing.html" do
+describe "plans/_pricing.html" do
   context "header" do
     it "shows short descriptions for each plan" do
       the_weekly_iteration = build_stubbed(:plan, sku: Plan::THE_WEEKLY_ITERATION_SKU)
@@ -24,6 +24,6 @@ describe "subscriptions/_pricing.html" do
 
   def render_pricing_with_plans(plans)
     view_stubs(:current_user_has_active_subscription?).returns(false)
-    render "subscriptions/pricing", plans: plans
+    render "plans/pricing", plans: plans
   end
 end

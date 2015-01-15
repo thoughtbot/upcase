@@ -1,12 +1,9 @@
 class HomesController < ApplicationController
-  layout "landing_pages"
-
   def show
     if signed_in?
       redirect_user_to_dashboard
     else
-      @community_size = User.subscriber_count
-      render template: "landing_pages/watch-one-do-one-teach-one"
+      redirect_to join_path
     end
   end
 

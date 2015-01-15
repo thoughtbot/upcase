@@ -1,11 +1,16 @@
-<% content_for :page_title, "Plans and Pricing" %>
+<% content_for :page_title, "Upcase" %>
+<% content_for :additional_body_classes, "landing" %>
 
-<% if signed_in? %>
-  <%= link_to 'account', my_account_path, class: 'signin' %>
-<% else %>
-  <%= link_to 'sign in', sign_in_path, class: 'signin' %>
-<% end %>
+<%= render 'subscriptions/hero', community_size: @landing_page.community_size %>
 
-<h1><%= link_to image_tag("upcase/upcase-header-logo-small-gray.svg"), root_path %></h1>
+<%= render 'subscriptions/topics', topics: @landing_page.topics %>
 
-<%= render 'plans', catalog: @catalog %>
+<%= render 'subscriptions/trails', example: @landing_page.example_trail %>
+
+<%= render 'subscriptions/support' %>
+
+<%= render 'subscriptions/price',
+  primary: @landing_page.primary_plan,
+  secondary: @landing_page.secondary_plan %>
+
+<%= render 'subscriptions/testimonials' %>

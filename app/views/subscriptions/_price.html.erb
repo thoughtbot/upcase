@@ -1,0 +1,31 @@
+<section class="pricing" id="price">
+  <header class="price-header">
+    <h3>Subscribe to Upcase</h3>
+    <h4><sup>$</sup><%= primary.price %> <sub>per Month</sub></h4>
+  </header>
+  <section class="price-info">
+    <div class="price-description">
+      <p>For development professionals who are looking to continue learning new
+      skills, stay on top of best practices, and keep up to date with new
+      technologies.</p>
+      <%= link_to "Start Learning", new_checkout_path(plan: primary), :class => "signup" %>
+      <%= link_to "Get Your Team Started", teams_path, :class => "signup grey" %>
+    </div>
+    <div class="price-includes">
+      <h5>Includes</h5>
+      <ul>
+        <li>Coding exercises</li>
+        <li>Upcase source code</li>
+        <li>Video Tutorials</li>
+        <li>Community Forum</li>
+        <li>The Weekly Iteration</li>
+        <li><strong>30 day money-back guarantee</strong></li>
+      </ul>
+    </div>
+  </section>
+  <h6 class="price-alternative">
+    <%= link_to new_checkout_path(plan: secondary) do %>
+      Get access to the Forum and Weekly Iteration for $<%= secondary.price %>/month.
+    <% end %>
+  </h6>
+</section>
