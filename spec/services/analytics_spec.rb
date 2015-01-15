@@ -62,7 +62,7 @@ describe Analytics do
 
         expect(analytics).to have_tracked("Started video").
           for_user(user).
-          with_properties(video_id: video.id)
+          with_properties(video_slug: video.slug)
       end
 
       it "tracks finished video event if state is Complete" do
@@ -74,7 +74,7 @@ describe Analytics do
 
         expect(analytics).to have_tracked("Finished video").
           for_user(user).
-          with_properties(video_id: video.id)
+          with_properties(video_slug: video.slug)
       end
     end
   end

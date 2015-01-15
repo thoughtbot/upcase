@@ -23,9 +23,15 @@ class Analytics
   def track_status_created(completable, state)
     if completable.is_a? Video
       if state == Status::IN_PROGRESS
-        track(event: "Started video", properties: { video_id: completable.id })
+        track(
+          event: "Started video",
+          properties: { video_slug: completable.slug }
+        )
       elsif state == Status::COMPLETE
-        track(event: "Finished video", properties: { video_id: completable.id })
+        track(
+          event: "Finished video",
+          properties: { video_slug: completable.slug }
+        )
       end
     end
   end

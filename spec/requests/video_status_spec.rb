@@ -24,7 +24,7 @@ describe "Video status" do
 
       expect(analytics).to have_tracked("Started video").
         for_user(@current_user).
-        with_properties(video_id: video.id)
+        with_properties(video_slug: video.slug)
     end
   end
 
@@ -47,7 +47,7 @@ describe "Video status" do
 
       expect(analytics).to have_tracked("Finished video").
         for_user(@current_user).
-        with_properties(video_id: video.id)
+        with_properties(video_slug: video.slug)
     end
   end
 
