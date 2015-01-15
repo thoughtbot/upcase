@@ -117,14 +117,15 @@ namespace :dev do
 
   def create_video_tutorials
     header "VideoTutorials"
+    user = FactoryGirl.create(:user, bio: "Dan is a seasoned Rails developer.")
+    video = FactoryGirl.create(:video)
+    FactoryGirl.create(:teacher, user: user, video: video)
 
     @video_tutorial = FactoryGirl.create(:video_tutorial,
       name: 'Intermediate Ruby on Rails',
       short_description: 'Dig deeper into Ruby on Rails.',
       tagline: 'Dig deeper into Ruby on Rails.',
-      users: [
-        FactoryGirl.create(:user, bio: "Dan is a seasoned Rails developer.")
-      ],
+      videos: [ video ],
       description: <<-DESCRIPTION.squish
         This intermediate Ruby on Rails video_tutorial is designed for
         developers who have built a few smaller Rails applications and would
