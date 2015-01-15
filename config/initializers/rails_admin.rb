@@ -83,7 +83,6 @@ RailsAdmin.config do |config|
       field :bio
       field :github_username
       field :mentor
-      field :licenses
       field :stripe_customer_id
     end
   end
