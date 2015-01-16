@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123174831) do
+ActiveRecord::Schema.define(version: 20150127171316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_stat_statements"
 
   create_table "checkouts", force: :cascade do |t|
-    t.integer  "user_id",                      null: false
-    t.integer  "plan_id",                      null: false
+    t.integer  "user_id",          null: false
+    t.integer  "plan_id",          null: false
     t.string   "stripe_coupon_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -252,11 +252,12 @@ ActiveRecord::Schema.define(version: 20150123174831) do
   add_index "statuses", ["user_id"], name: "index_statuses_on_user_id", using: :btree
 
   create_table "steps", force: :cascade do |t|
-    t.integer  "trail_id",    null: false
-    t.integer  "exercise_id", null: false
-    t.integer  "position",    null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "trail_id",          null: false
+    t.integer  "completeable_id",   null: false
+    t.integer  "position",          null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "completeable_type", null: false
   end
 
   add_index "steps", ["trail_id", "position"], name: "index_steps_on_trail_id_and_position", using: :btree
@@ -372,6 +373,7 @@ ActiveRecord::Schema.define(version: 20150123174831) do
     t.date     "published_on"
     t.string   "preview_wistia_id"
     t.string   "slug",                          null: false
+    t.text     "summary"
   end
 
   add_index "videos", ["slug"], name: "index_videos_on_slug", unique: true, using: :btree

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "products/exercises/_exercise.html" do
+describe "exercises/_exercise_for_trail_preview.html" do
   context "without access to exercises" do
     it "renders an upgrade link" do
       stub_access(exercises: false)
@@ -34,8 +34,9 @@ describe "products/exercises/_exercise.html" do
   end
 
   def render_exercise
-    exercise = ExerciseWithProgress.new(build_stubbed(:exercise), "Not Started")
-    render "products/exercises/exercise", exercise: exercise
+    exercise = CompleteableWithProgress.
+      new(build_stubbed(:exercise), "Not Started")
+    render "exercises/exercise_for_trail_preview", exercise: exercise
   end
 
   def have_upgrade_link

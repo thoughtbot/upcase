@@ -1,0 +1,6 @@
+<% completeables.each do |completeable| %>
+  <%= render(
+    partial: "#{completeable.to_partial_path}_for_trail",
+    locals: { completeable.model_name.singular.to_sym => completeable }
+  ) %>
+<% end %>

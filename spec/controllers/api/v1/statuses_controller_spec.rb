@@ -19,17 +19,20 @@ describe Api::V1::StatusesController do
     it "updates the status of the given exercise for the authenticated user" do
       stub_oauth_authenticated_user
       exercise = stub_exercise
+      updater = mock("status_updater")
+      updater.stubs(:update_state)
+      StatusUpdater.stubs(:new).returns(updater)
 
       post :create, exercise_uuid: exercise.uuid, state: Status::COMPLETE
 
       expect(response.code).to eq "200"
-      expect(exercise).to have_received(:update_trails_state_for)
+      expect(StatusUpdater).to have_received(:new)
+      expect(updater).to have_received(:update_state).with(Status::COMPLETE)
     end
   end
 
   def stub_exercise
     exercise = build_stubbed(:exercise)
-    exercise.stubs(:update_trails_state_for)
     Exercise.stubs(:find_by!).returns(exercise)
     exercise
   end

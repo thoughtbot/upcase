@@ -1,9 +1,9 @@
-class ExerciseWithProgress < SimpleDelegator
-  def initialize(exercise, state, previous_exercise_state = nil)
-    super(exercise)
-    @exercise = exercise
+class CompleteableWithProgress < SimpleDelegator
+  def initialize(completeable, state, previous_completeable_state = nil)
+    super(completeable)
+    @completeable = completeable
     @state = state
-    @previous_exercise_state = previous_exercise_state
+    @previous_completeable_state = previous_completeable_state
   end
 
   def state
@@ -33,7 +33,7 @@ class ExerciseWithProgress < SimpleDelegator
   private
 
   def next_up?
-    @previous_exercise_state == Status::COMPLETE &&
+    @previous_completeable_state == Status::COMPLETE &&
       @state == Status::UNSTARTED
   end
 end

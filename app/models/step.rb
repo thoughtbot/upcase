@@ -1,8 +1,14 @@
 class Step < ActiveRecord::Base
   belongs_to :trail
-  belongs_to :exercise
+  belongs_to :completeable, polymorphic: true
 
+  validates :completeable, presence: true
   validates :position, uniqueness: { scope: :trail_id }
+  validates :trail, presence: true
 
   acts_as_list scope: :trail
+
+  def title
+    "#{completeable.class.model_name} - #{completeable.title}"
+  end
 end

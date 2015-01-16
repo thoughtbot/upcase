@@ -16,17 +16,17 @@ class TrailWithProgress < SimpleDelegator
   end
 
   def update_status
-    if exercises.all?(&:complete?)
+    if completeables.all?(&:complete?)
       statuses.create!(user: @user, state: Status::COMPLETE)
-    elsif exercises.any?(&:in_progress?) || exercises.any?(&:complete?)
+    elsif completeables.any?(&:in_progress?) || completeables.any?(&:complete?)
       statuses.create!(user: @user, state: Status::IN_PROGRESS)
     end
   end
 
-  def exercises
-    ExerciseWithProgressQuery.new(
+  def completeables
+    CompleteableWithProgressQuery.new(
       user: @user,
-      exercises: @trail.exercises
+      completeables: @trail.completeables
     ).to_a
   end
 

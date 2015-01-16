@@ -156,11 +156,11 @@ RailsAdmin.config do |config|
     edit do
       include_all_fields
 
-      field :exercises do
+      field :steps do
         orderable true
       end
 
-      exclude_fields :steps
+      exclude_fields :exercises, :videos
      end
    end
 

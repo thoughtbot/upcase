@@ -8,7 +8,10 @@
 
     <div class="just-finished-mask">
       <section class="progress just-finished">
-        <%= render partial: "trails/exercise", collection: trail.exercises %>
+        <%= render(
+          partial: "steps/steps",
+          locals: { completeables: trail.completeables }
+        ) %>
       </section>
     </div>
 

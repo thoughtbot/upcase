@@ -1,11 +1,11 @@
 require "rails_helper"
 
-describe "trails/_exercise.html" do
+describe "exercises/_exercise_for_trail.html" do
   it "renders a class based on the exercise state" do
     stub_user
     exercise = stub_exercise(state: "Two Words")
 
-    render "trails/exercise", exercise: exercise
+    render "exercises/exercise_for_trail", exercise: exercise
 
     expect(rendered).to have_css(".two-words-exercise")
   end

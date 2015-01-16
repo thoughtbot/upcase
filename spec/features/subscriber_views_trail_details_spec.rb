@@ -6,7 +6,14 @@ feature "subscriber views trail details" do
       create(:exercise, title: "First Exercise"),
       create(:exercise, title: "Second Exercise")
     ]
-    create(:trail, :published, name: "Baby Exercises", exercises: exercises)
+    video = create(:video, title: "First Video")
+    create(
+      :trail,
+      :published,
+      name: "Baby Exercises",
+      exercises: exercises,
+      videos: [video]
+    )
     user = create(:subscriber)
     exercises.first.statuses.create!(user: user, state: Status::COMPLETE)
 
@@ -16,6 +23,7 @@ feature "subscriber views trail details" do
     expect(page).to have_content("Baby Exercises")
     expect(page).to have_content("First Exercise")
     expect(page).to have_content("Second Exercise")
-    expect(page).to have_content("1 step remaining")
+    expect(page).to have_content("First Video")
+    expect(page).to have_content("2 steps remaining")
   end
 end

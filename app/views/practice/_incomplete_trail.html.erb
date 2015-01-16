@@ -7,10 +7,10 @@
       <%= render "practice/trail_description_tooltip", trail: trail %>
     </header>
 
-    <%= render "trails/exercise_dots", trail: trail %>
+    <%= render "trails/step_dots", trail: trail %>
 
     <% if trail.exercises.present? %>
-      <%= exercise_link trail.exercises.first.url, class: "start-trail" do %>
+      <%= completeable_link trail.exercises.first.url, class: "start-trail" do %>
         Start trail
       <% end %>
     <% end %>

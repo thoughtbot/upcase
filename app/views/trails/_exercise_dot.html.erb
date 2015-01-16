@@ -1,5 +1,5 @@
 <% if exercise.can_be_accessed? %>
-  <%= exercise_link exercise.url, title: exercise.title do %>
+  <%= completeable_link exercise.url, title: exercise.title do %>
     <div class="dot"></div>
   <% end %>
 <% else %>

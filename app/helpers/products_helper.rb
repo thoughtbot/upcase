@@ -11,7 +11,7 @@ module ProductsHelper
     "https://upcase.com/intermediate-ruby-on-rails"
   end
 
-  def exercise_link(url, options = {}, &block)
+  def completeable_link(url, options = {}, &block)
     if current_user_has_access_to?(:exercises)
       link_to url, options, &block
     else

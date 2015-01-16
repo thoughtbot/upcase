@@ -9,6 +9,7 @@ describe Trail do
   it { should have_many(:statuses).dependent(:destroy) }
   it { should have_many(:steps).dependent(:destroy) }
   it { should have_many(:exercises).through(:steps) }
+  it { should have_many(:videos).through(:steps) }
 
   describe ".most_recent_published" do
     it "returns more recent trails first" do
@@ -64,17 +65,21 @@ describe Trail do
       user = create(:user)
       other_user = create(:user)
       exercises = create_list(:exercise, 3)
-      trail = create(:trail, exercises: exercises)
+      videos = create_list(:video, 2)
+      trail = create(:trail, exercises: exercises, videos: videos)
       exercises.first.statuses.create!(user: user, state: Status::COMPLETE)
       exercises.second.statuses.create!(user: user, state: Status::IN_PROGRESS)
       exercises.first.statuses.create!(
         user: other_user,
         state: Status::COMPLETE
       )
+      videos.first.statuses.create!(user: user, state: Status::COMPLETE)
+      videos.second.statuses.create!(user: user, state: Status::IN_PROGRESS)
+      videos.second.statuses.create!(user: other_user, state: Status::COMPLETE)
 
       result = trail.steps_remaining_for(user)
 
-      expect(result).to eq(2)
+      expect(result).to eq(3)
     end
 
     it "returns the total number of steps for a user who hasn't started" do
@@ -161,28 +166,35 @@ describe Trail do
       second_step = create(:step, trail: trail, position: 2)
       first_step = create(:step, trail: trail, position: 1)
 
-      expect(trail.exercises).to eq [first_step.exercise, second_step.exercise]
+      expect(trail.exercises).
+        to eq([first_step.completeable, second_step.completeable])
     end
   end
 
-  describe "#exercise_ids=" do
+  describe "#completeables" do
+    it "should return all videos and exercises for that trail" do
+      trail = create(:trail)
+      video = create(:video)
+      exercise = create(:exercise)
+      create(:step, completeable: video, trail: trail)
+      create(:step, completeable: exercise, trail: trail)
+
+      expect(trail.completeables).to eq [video, exercise]
+    end
+  end
+
+  describe "#step_ids=" do
     it "should preserve ordering" do
-      exercises = create_list(:exercise, 3)
+      trail = create(:trail)
+      steps = create_list(:step, 3, trail: trail)
 
-      trail = create(
-        :trail,
-        exercise_ids: [exercises[2], exercises[1], exercises[0]].map(&:id)
-      )
+      expect(trail.steps(true).map(&:id)).to eq(steps.map(&:id))
 
-      expect(trail.exercises(true).map(&:id)).to eq(
-        [exercises[2], exercises[1], exercises[0]].map(&:id)
-      )
-
-      trail.exercise_ids = [exercises[0], exercises[2], exercises[1]].map(&:id)
+      trail.step_ids = [steps[0], steps[2], steps[1]].map(&:id)
       trail.save!
 
-      expect(trail.exercises(true).map(&:id)).to eq(
-        [exercises[0], exercises[2], exercises[1]].map(&:id)
+      expect(trail.steps(true).map(&:id)).to eq(
+        [steps[0], steps[2], steps[1]].map(&:id)
       )
     end
   end

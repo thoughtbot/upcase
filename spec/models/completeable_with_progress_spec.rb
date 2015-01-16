@@ -1,13 +1,14 @@
 require "rails_helper"
 
-describe ExerciseWithProgress do
+describe CompleteableWithProgress do
   describe "#title" do
-    it "delegates to its exercise" do
+    it "delegates to its completeable" do
       title = "some-title"
       exercise = Exercise.new(title: title)
-      exercise_with_progress = ExerciseWithProgress.new(exercise, "Unstarted")
+      completeable_with_progress = CompleteableWithProgress.
+        new(exercise, "Unstarted")
 
-      result = exercise_with_progress.title
+      result = completeable_with_progress.title
 
       expect(result).to eq(title)
     end
@@ -16,22 +17,23 @@ describe ExerciseWithProgress do
   describe "#state" do
     it "is 'Next Up' if previous is reviewed and current not started" do
       exercise = Exercise.new
-      exercise_with_progress = ExerciseWithProgress.new(
+      completeable_with_progress = CompleteableWithProgress.new(
         exercise,
         "Unstarted",
         "Complete"
       )
 
-      result = exercise_with_progress.state
+      result = completeable_with_progress.state
 
       expect(result).to eq(Status::NEXT_UP)
     end
 
     it "is what was passed in initializer otherwise" do
       exercise = Exercise.new
-      exercise_with_progress = ExerciseWithProgress.new(exercise, "In Progress")
+      completeable_with_progress = CompleteableWithProgress.
+        new(exercise, "In Progress")
 
-      result = exercise_with_progress.state
+      result = completeable_with_progress.state
 
       expect(result).to eq("In Progress")
     end
@@ -41,9 +43,10 @@ describe ExerciseWithProgress do
     [Status::IN_PROGRESS, Status::COMPLETE, Status::NEXT_UP].each do |state|
       it "can be accessed if is #{state}" do
         exercise = Exercise.new
-        exercise_with_progress = ExerciseWithProgress.new(exercise, state)
+        completeable_with_progress = CompleteableWithProgress.
+          new(exercise, state)
 
-        result = exercise_with_progress.can_be_accessed?
+        result = completeable_with_progress.can_be_accessed?
 
         expect(result).to be_truthy
       end
@@ -51,9 +54,10 @@ describe ExerciseWithProgress do
 
     it "can't be accessed if is Unstarted" do
       exercise = Exercise.new
-      exercise_with_progress = ExerciseWithProgress.new(exercise, "Unstarted")
+      completeable_with_progress = CompleteableWithProgress.
+        new(exercise, "Unstarted")
 
-      result = exercise_with_progress.can_be_accessed?
+      result = completeable_with_progress.can_be_accessed?
 
       expect(result).to be_falsy
     end

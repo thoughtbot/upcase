@@ -5,8 +5,15 @@ class Trail < ActiveRecord::Base
 
   belongs_to :topic
   has_many :statuses, as: :completeable, dependent: :destroy
-  has_many :steps, -> { order "position ASC" }, dependent: :destroy
-  has_many :exercises, through: :steps
+  has_many :steps,
+    -> { order "position ASC" },
+    dependent: :destroy,
+    inverse_of: :trail
+  has_many :exercises,
+    through: :steps,
+    source: :completeable,
+    source_type: "Exercise"
+  has_many :videos, through: :steps, source: :completeable, source_type: "Video"
 
   friendly_id :name, use: [:slugged, :finders]
 
@@ -15,19 +22,23 @@ class Trail < ActiveRecord::Base
   end
 
   # Override setters so it preserves the order
-  def exercise_ids=(new_exercise_ids)
+  def step_ids=(new_step_ids)
     super
-    new_exercise_ids = new_exercise_ids.reject(&:blank?).map(&:to_i)
+    new_step_ids = new_step_ids.reject(&:blank?).map(&:to_i)
 
-    new_exercise_ids.each_with_index do |exercise_id, index|
-      steps.where(exercise_id: exercise_id).update_all(position: index + 1)
+    new_step_ids.each_with_index do |step_id, index|
+      steps.where(id: step_id).update_all(position: index + 1)
     end
   end
 
+  def completeables
+    steps.includes(:completeable).map(&:completeable)
+  end
+
   def steps_remaining_for(user)
-    ExerciseWithProgressQuery.
-      new(user: user, exercises: exercises).
-      count { |exercise| exercise.state != Status::COMPLETE }
+    CompleteableWithProgressQuery.
+      new(user: user, completeables: completeables).
+      count { |completeable| completeable.state != Status::COMPLETE }
   end
 
   def update_state_for(user)

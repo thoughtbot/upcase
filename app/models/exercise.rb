@@ -2,8 +2,8 @@ class Exercise < ActiveRecord::Base
   has_many :classifications, as: :classifiable, dependent: :destroy
   has_many :statuses, as: :completeable, dependent: :destroy
   has_many :topics, through: :classifications
-  has_many :trails, through: :steps
-  has_many :steps, dependent: :destroy
+  has_many :trails, through: :steps, as: :completeables
+  has_many :steps, dependent: :destroy, as: :completeable
 
   validates :title, presence: true
   validates :url, presence: true

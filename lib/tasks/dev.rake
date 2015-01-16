@@ -238,6 +238,17 @@ namespace :dev do
       "Testing ActiveRecord",
       "Write an Integration Test"
     )
+    video = create(
+      :video,
+      notes: "Blah" + " blah" * 100,
+      published_on: 1.day.ago,
+      title: "Red, Green, Refactor",
+      watchable: @weekly_iteration,
+      wistia_id: "uaxw299qz9",
+      preview_wistia_id: "uaxw299qz9"
+    )
+    FactoryGirl.create(:step, trail: trail, completeable: video)
+
     classify_exercise "Passing Your First Test", "Testing"
     classify_exercise "Testing ActiveRecord", "Testing"
     classify_exercise "Write an Integration Test", "Testing"
@@ -280,7 +291,7 @@ namespace :dev do
     steps.each do |step|
       FactoryGirl.create(
         :status,
-        completeable: step.exercise,
+        completeable: step.completeable,
         state: Status::COMPLETE,
         user: user
       )
@@ -305,7 +316,7 @@ namespace :dev do
     steps.each do |step|
       FactoryGirl.create(
         :status,
-        completeable: step.exercise,
+        completeable: step.completeable,
         state: Status::COMPLETE,
         user: user,
         created_at: 30.days.ago
@@ -320,7 +331,7 @@ namespace :dev do
   def create_steps_for(trail, *titles)
     titles.map do |title|
       exercise = FactoryGirl.create(:exercise, title: title, public: true)
-      FactoryGirl.create(:step, trail: trail, exercise: exercise)
+      FactoryGirl.create(:step, trail: trail, completeable: exercise)
     end
   end
 

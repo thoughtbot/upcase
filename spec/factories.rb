@@ -465,7 +465,7 @@ FactoryGirl.define do
   end
 
   factory :step do
-    exercise
+    association :completeable, factory: :exercise
     trail
     sequence(:position) { |n| n }
   end

@@ -3,7 +3,7 @@
 
   <div class="tooltip">
     <figure class="exercise card <%= exercise.state.parameterize %>-exercise">
-      <%= exercise_link exercise.url, title: exercise.title do %>
+      <%= completeable_link exercise.url, title: exercise.title do %>
         <h5>
           <%= t(exercise.state.parameterize, scope: [:exercises, :statuses]) %>
         </h5>

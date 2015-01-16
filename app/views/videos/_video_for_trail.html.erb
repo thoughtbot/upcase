@@ -1,0 +1,19 @@
+<div class="step <%= video.state.parameterize %>-exercise">
+  <%= render "trails/video_dot", video: video %>
+
+  <div class="tooltip">
+    <figure class="exercise card <%= video.state.parameterize %>-exercise">
+      <%= completeable_link video_path(video), title: video.title do %>
+        <h5>
+          <%= t(video.state.parameterize, scope: [:exercises, :statuses]) %>
+        </h5>
+        <h4><%= video.title %></h4>
+        <p><%= video.summary %></p>
+      <% end %>
+
+      <% unless current_user_has_access_to?(:exercises) %>
+        <%= render "products/locked" %>
+      <% end %>
+    </figure>
+  </div>
+</div>

@@ -2,11 +2,9 @@ class Api::V1::StatusesController < ApiController
   before_action :doorkeeper_authorize!, unless: :signed_in?
 
   def create
-    completable.statuses.create!(
-      user: current_resource_owner,
-      state: params[:state]
-    )
-    completable.update_trails_state_for(current_resource_owner)
+    StatusUpdater.
+      new(completable, current_resource_owner).
+      update_state(params[:state])
     analytics.track_status_created(completable, params[:state])
     render nothing: true
   end
