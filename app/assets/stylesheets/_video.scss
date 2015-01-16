@@ -1,25 +1,11 @@
-.videowrapper, .mapwrapper {
-  height: 0;
-  margin: 0 0 2em 0;
-  overflow: hidden;
-  position: relative;
-}
-
-.wistia-holder {
-  width: auto;
-  background-color: #333;
-  border: 1px solid #111;
-  margin: 0 auto;
-  padding: 40px 0 40px 0;
-  text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-
-  .wistia_embed {
-    margin: 0 auto;
-    max-height: 392px;
-  }
+/*
+ * Wistia requires a parent element that does NOT calculate its with based on
+ * the width of its children.
+ *
+ * http://wistia.com/doc/video-foam
+ */
+.wistia-wrapper {
+  width: 100%;
 }
 
 .assets-wrapper {

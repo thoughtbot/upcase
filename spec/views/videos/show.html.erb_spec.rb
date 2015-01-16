@@ -17,7 +17,7 @@ describe "videos/show" do
     render template: "videos/show"
 
     expect(rendered).
-      to have_css("p.videowrapper[data-wistia-id='#{wistia_id}']")
+      to have_css("p[data-wistia-id='#{wistia_id}']")
   end
 
   it "shows a thumbnail when there is no preview" do

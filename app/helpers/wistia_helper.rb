@@ -3,7 +3,7 @@ module WistiaHelper
     content_tag(
       'p',
       nil,
-      class: "videowrapper wistia-video",
+      class: "wistia-video",
       data: {
         wistia_id: clip.wistia_id,
         width: "653",
