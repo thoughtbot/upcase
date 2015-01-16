@@ -40,6 +40,18 @@ describe CheckoutsController do
         expect(flash[:notice]).to eq I18n.t("checkout.flashes.plan_not_found")
       end
     end
+
+    context "with a valid stripe_coupon in the session" do
+      it "should set a stripe_coupon_id on the checkout" do
+        user = create(:user)
+        stub_current_user_with(user)
+        session[:coupon] = "a_coupon"
+
+        get :new, plan: create(:plan)
+
+        expect(assigns(:checkout).stripe_coupon_id).to eq "a_coupon"
+      end
+    end
   end
 
   describe "#create" do
@@ -61,6 +73,22 @@ describe CheckoutsController do
 
       expect(flash[:purchase_amount]).to eq plan.price
     end
+
+    it "removes any coupon from the session" do
+      create_amount_stripe_coupon("5OFF", "once", 500)
+      session[:coupon] = "5OFF"
+      stub_current_user_with create(:user)
+      plan = create(:plan)
+      stripe_token = "token"
+
+      post(
+        :create,
+        checkout: customer_params(stripe_token).merge(stripe_coupon_id: "5OFF"),
+        plan: plan
+      )
+
+      expect(session[:coupon]).to be_nil
+    end
   end
 
   def customer_params(token = "stripe token")
@@ -68,7 +96,7 @@ describe CheckoutsController do
       name: "User",
       email: "test@example.com",
       github_username: 'test',
-      stripe_token: token,
+      stripe_token: token
     }
   end
 end

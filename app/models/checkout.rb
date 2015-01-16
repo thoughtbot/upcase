@@ -16,7 +16,7 @@ class Checkout < ActiveRecord::Base
   belongs_to :plan
   belongs_to :user
 
-  validates :github_username, :quantity, :user, presence: true
+  validates :github_username, :user, presence: true
 
   delegate :includes_team?, :name, :sku, :terms, to: :plan, prefix: true
   delegate :email, to: :user, prefix: true
@@ -39,10 +39,18 @@ class Checkout < ActiveRecord::Base
     plan.price * quantity
   end
 
+  def quantity
+    plan.minimum_quantity
+  end
+
   def needs_github?
     user.nil? ||
       user.github_username.blank? ||
       errors[:github_username].present?
+  end
+
+  def coupon
+    @coupon ||= Coupon.new(stripe_coupon_id)
   end
 
   private

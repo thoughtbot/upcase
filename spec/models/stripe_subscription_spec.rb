@@ -16,15 +16,14 @@ describe StripeSubscription do
 
     it "updates the customer's plan with the given quantity" do
       customer = stub_existing_customer
-      checkout = build(:checkout)
-      checkout.quantity = 5
+      checkout = build(:checkout, plan: create(:plan, minimum_quantity: 5))
       subscription = StripeSubscription.new(checkout)
 
       subscription.create
 
       new_subscription = customer.subscriptions.first
       expect(new_subscription[:plan]).to eq checkout.plan_sku
-      expect(new_subscription[:quantity]).to eq checkout.quantity
+      expect(new_subscription[:quantity]).to eq 5
     end
 
     it "updates the subscription with the given coupon" do

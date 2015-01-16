@@ -130,6 +130,7 @@ FactoryGirl.define do
       name 'VideoTutorials for Teams'
       sku 'team_plan'
       includes_team true
+      minimum_quantity 3
     end
 
     trait :annual do

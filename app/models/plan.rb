@@ -2,7 +2,6 @@ class Plan < ActiveRecord::Base
   PRIME_249_SKU = "prime-249"
   PROFESSIONAL_SKU = "professional"
   THE_WEEKLY_ITERATION_SKU = "the-weekly-iteration"
-  MINIMUM_TEAM_SIZE = 3
 
   has_many :checkouts
   has_many :subscriptions, as: :plan
@@ -85,10 +84,6 @@ class Plan < ActiveRecord::Base
 
   def annual_plan_sku
     annual_plan.sku
-  end
-
-  def minimum_quantity
-    MINIMUM_TEAM_SIZE
   end
 
   private

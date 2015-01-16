@@ -8,6 +8,7 @@ feature "User creates a subscription" do
 
   scenario "doesn't create a Stripe subscription with an invalid credit card" do
     subscribe_with_invalid_credit_card
+
     expect(current_user).not_to have_active_subscription
   end
 
@@ -68,13 +69,12 @@ feature "User creates a subscription" do
   scenario "with a valid amount off coupon", js: true do
     create_amount_stripe_coupon("5OFF", "once", 500)
 
+    visit coupon_path("5OFF")
     visit_plan_checkout_page
 
     expect_submit_button_to_contain("$99 per month")
 
-    apply_coupon_with_code("5OFF")
-
-    expect_submit_button_to_contain discount_text("94.00", "99.00")
+    expect_submit_button_to_contain discount_text("$94.00", "$99")
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
@@ -86,13 +86,11 @@ feature "User creates a subscription" do
   scenario "with a free month coupon", js: true do
     create_recurring_stripe_coupon("THREEFREE", 3, 9900)
 
+    visit coupon_path("THREEFREE")
     visit_plan_checkout_page
 
     expect_submit_button_to_contain("$99 per month")
-
-    apply_coupon_with_code("THREEFREE")
-
-    expect_submit_button_to_contain("$0.00 for 3 months, then $99.00")
+    expect_submit_button_to_contain("$0.00 for 3 months, then $99")
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
@@ -103,13 +101,12 @@ feature "User creates a subscription" do
   scenario "with a valid percent off coupon", js: true do
     create_percentage_off_stripe_coupon("50OFF", "once", 50)
 
+    visit coupon_path("50OFF")
     visit_plan_checkout_page
 
     expect_submit_button_to_contain("$99 per month")
 
-    apply_coupon_with_code("50OFF")
-
-    expect_submit_button_to_contain discount_text("49.50", "99.00")
+    expect_submit_button_to_contain discount_text("$49.50", "$99")
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
@@ -120,15 +117,12 @@ feature "User creates a subscription" do
   end
 
   scenario "with an invalid coupon", js: true do
+    visit coupon_path("50OFF")
+    expect(page).to have_content("The coupon code you supplied is not valid.")
+
     visit_plan_checkout_page
 
     expect_submit_button_to_contain("$99 per month")
-
-    click_link "Have a coupon code?"
-    fill_in "Code", with: "5OFF"
-    click_button "Apply Coupon"
-
-    expect(page).to have_content("The coupon code you supplied is not valid.")
   end
 
   scenario "sees option to update billing for subscribers" do
@@ -216,12 +210,6 @@ feature "User creates a subscription" do
     visit_plan_checkout_page
     FakeStripe.failure = true
     fill_out_subscription_form_with "bad cc number"
-  end
-
-  def apply_coupon_with_code(code)
-    click_link "Have a coupon code?"
-    fill_in "Code", with: code
-    click_button "Apply Coupon"
   end
 
   def discount_text(new, original)

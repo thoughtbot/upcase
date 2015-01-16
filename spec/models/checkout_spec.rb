@@ -5,7 +5,6 @@ describe Checkout do
   it { should belong_to(:plan) }
 
   it { should validate_presence_of(:user) }
-  it { should validate_presence_of(:quantity) }
   it { should validate_presence_of(:github_username) }
 
   it { should delegate(:plan_includes_team?).to(:plan).as(:includes_team?) }
@@ -108,11 +107,29 @@ describe Checkout do
       expect(checkout.price).to eq 50
     end
 
-    it "uses the price of the plan and quantity as it's price" do
-      plan = build(:plan, price: 50)
-      checkout = build(:checkout, plan: plan, quantity: 3)
+    it "uses the price of the plan and minimum quantity as it's price" do
+      plan = build_stubbed(:plan, minimum_quantity: 3, price: 50)
+      checkout = build(:checkout, plan: plan)
 
       expect(checkout.price).to eq 150
+    end
+  end
+
+  context "#quantity" do
+    it "is the minimum_quantity of the plan" do
+      plan = build_stubbed(:plan, minimum_quantity: 3)
+      checkout = build(:checkout, plan: plan)
+
+      expect(checkout.quantity).to eq 3
+    end
+  end
+
+  context "#coupon" do
+    it "returns a coupon from stripe_coupon_id" do
+      create_amount_stripe_coupon("5OFF", "once", 500)
+      checkout = build(:checkout, stripe_coupon_id: "5OFF")
+
+      expect(checkout.coupon.code).to eq "5OFF"
     end
   end
 end

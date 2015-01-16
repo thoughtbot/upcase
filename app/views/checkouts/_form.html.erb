@@ -13,7 +13,6 @@
     <% end %>
 
     <%= hidden_field_tag "coupon_id" %>
-    <%= form.input :stripe_coupon_id, as: :hidden %>
     <% if signed_out? %>
       <%= form.input :name, required: true %>
       <%= form.input :email, as: :email, required: true %>
@@ -24,8 +23,6 @@
       <%= form.input :github_username, required: true, label: "GitHub username",
         hint: "Be sure to enter a valid, unique GitHub username. Organizations are not allowed." %>
     <% end %>
-
-    <%= render checkout_form_partial(@checkout.plan), form: form, checkout: @checkout %>
   <% end %>
 
   <%= link_to 'Need an address on your receipt?', '#', class: 'reveal-address' %>
@@ -64,8 +61,6 @@
       <input type='text' size='4' autocomplete='off' id='card-cvc' class='card-cvc'/>
     </li>
   <% end %>
-
-  <%= render 'redemptions/form', checkout: checkout %>
 
   <%= form.actions do %>
     <%= form.action :submit, label: "Submit Payment &mdash; #{submit_amount(checkout)}".html_safe %>

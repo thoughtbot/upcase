@@ -8,15 +8,16 @@ class CheckoutsController < ApplicationController
         notice: t("checkout.flashes.already_subscribed")
       )
     else
-      @checkout = build_checkout({})
+      @checkout = build_checkout(stripe_coupon_id: session[:coupon])
       initialize_checkout_from_user
     end
   end
 
   def create
-    @checkout = build_checkout(checkout_params_with_customer)
+    @checkout = build_checkout(checkout_params_with_customer_and_coupon)
 
     if @checkout.fulfill
+      session.delete(:coupon)
       sign_in_and_redirect
     else
       render :new
@@ -38,9 +39,10 @@ class CheckoutsController < ApplicationController
     plan.checkouts.build arguments.merge(default_arguments)
   end
 
-  def checkout_params_with_customer
+  def checkout_params_with_customer_and_coupon
     checkout_params.merge(
-      stripe_customer_id: current_user.try(:stripe_customer_id)
+      stripe_customer_id: current_user.try(:stripe_customer_id),
+      stripe_coupon_id: session[:coupon]
     )
   end
 
@@ -104,7 +106,6 @@ class CheckoutsController < ApplicationController
       :payment_method,
       :quantity,
       :state,
-      :stripe_coupon_id,
       :stripe_token,
       :zip_code
     )

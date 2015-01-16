@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120162640) do
+ActiveRecord::Schema.define(version: 20150123174831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20150120162640) do
   create_table "checkouts", force: :cascade do |t|
     t.integer  "user_id",                      null: false
     t.integer  "plan_id",                      null: false
-    t.integer  "quantity",         default: 1, null: false
     t.string   "stripe_coupon_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -191,6 +190,7 @@ ActiveRecord::Schema.define(version: 20150120162640) do
     t.boolean  "includes_team",            default: false, null: false
     t.boolean  "annual",                   default: false
     t.integer  "annual_plan_id"
+    t.integer  "minimum_quantity",         default: 1,     null: false
   end
 
   add_index "plans", ["annual_plan_id"], name: "index_plans_on_annual_plan_id", using: :btree

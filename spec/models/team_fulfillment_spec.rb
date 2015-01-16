@@ -8,7 +8,7 @@ describe TeamFulfillment do
         :with_subscription,
         email: "user.name@whatever.somethingcool.com"
       )
-      checkout = build_stubbed(:checkout, quantity: 4)
+      checkout = build_stubbed(:checkout)
 
       TeamFulfillment.new(checkout, user).fulfill
 

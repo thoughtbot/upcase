@@ -8,15 +8,28 @@ module CheckoutsHelper
   end
 
   def submit_amount(checkout)
-    "#{subscription_price(checkout)} per #{subscription_interval(checkout)}"
+    formatted_subscription_price(checkout) +
+      " per " +
+      subscription_interval(checkout)
   end
 
-  def subscription_price(checkout)
-    number_to_currency(checkout.price, precision: 0)
+  def formatted_subscription_price(checkout)
+    if checkout.stripe_coupon_id.blank?
+      number_to_currency(checkout.price, precision: 0)
+    else
+      formatted_subscription_price_with_coupon(checkout)
+    end
   end
 
   def subscription_interval(checkout)
     checkout.plan.subscription_interval
+  end
+
+  def formatted_subscription_price_with_coupon(checkout)
+    t("subscriptions.discount.#{checkout.coupon.duration}",
+      final_price: number_to_currency(checkout.coupon.apply(checkout.price)),
+      full_price: number_to_currency(checkout.price, precision: 0),
+      duration_in_months: checkout.coupon.duration_in_months)
   end
 
   def choose_plan_link(plan)
@@ -24,14 +37,6 @@ module CheckoutsHelper
       change_plan_link(plan)
     else
       new_plan_link(plan)
-    end
-  end
-
-  def checkout_form_partial(plan)
-    if plan.includes_team?
-      "checkouts/team_plan_form"
-    else
-      "checkouts/individual_plan_form"
     end
   end
 
