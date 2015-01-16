@@ -93,8 +93,7 @@ RailsAdmin.config do |config|
       field :name
       field :sku
       field :type
-      field :individual_price
-      field :company_price
+      field :price
 
       sort_by :name
     end

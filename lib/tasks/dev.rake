@@ -22,7 +22,7 @@ namespace :dev do
   def create_individual_plans
     @basic_plan = create(
       :plan,
-      individual_price: 9,
+      price: 9,
       name: "The Weekly Iteration",
       short_description: "One new video per week on advanced Ruby topics.",
       sku: "the-weekly-iteration",
@@ -30,7 +30,7 @@ namespace :dev do
 
     @professional_plan = create(
       :plan,
-      individual_price: 29,
+      price: 29,
       name: "Professional",
       short_description: "Do exercises and become a general whiz kid.",
       sku: "professional",
@@ -39,7 +39,7 @@ namespace :dev do
     @mentor_plan = create(
       :plan,
       includes_mentor: true,
-      individual_price: 249,
+      price: 249,
       name: "1-on-1 Coaching",
       short_description: "Best for an active learner seeking 1-on-1 personal coaching.",
       sku: "prime-249",
