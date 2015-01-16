@@ -24,10 +24,8 @@ $(function() {
   }
 
   $('textarea').autosize();
+
+  if ($('.landing #header-wrapper').length) {
+    var header = new Headhesive('.landing #header-wrapper', { offset: 500 });
+  }
 });
-
-var options = {
-  offset: 500
-}
-
-var header = new Headhesive('.landing #header-wrapper', options);
