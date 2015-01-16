@@ -78,25 +78,29 @@ describe VideoTutorial do
   end
 
   describe "#teachers" do
-    it "returns teachers from it's videos" do
-      repeated = Teacher.create(user: create(:user))
-      teacher_1 = Teacher.create(user: create(:user))
-      teacher_2 = Teacher.create(user: create(:user))
+    it "returns unique teachers from its videos" do
+      only_first = create(:user, name: "only_first")
+      only_second = create(:user, name: "only_second")
+      both = create(:user, name: "both")
       video_tutorial = create(:video_tutorial)
       create(
         :video,
         watchable: video_tutorial,
-        teachers: [repeated, teacher_1]
+        teachers: [teacher(both), teacher(only_first)]
       )
       create(
         :video,
         watchable: video_tutorial,
-        teachers: [repeated, teacher_2]
+        teachers: [teacher(both), teacher(only_second)]
       )
 
-      result = video_tutorial.teachers.all
+      result = video_tutorial.teachers
 
-      expect(result).to match_array([repeated, teacher_1, teacher_2])
+      expect(result.map(&:name)).to match_array(%w(only_first only_second both))
+    end
+
+    def teacher(user)
+      Teacher.create!(user: user)
     end
   end
 
