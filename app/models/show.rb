@@ -9,11 +9,7 @@ class Show < Product
     plan.has_feature?(:shows)
   end
 
-  def latest_videos(take = Explore::LIMIT)
-    videos.recently_published_first.limit(take)
-  end
-
   def latest_video
-    latest_videos(1).first
+    videos.published.recently_published_first.first
   end
 end

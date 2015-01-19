@@ -19,6 +19,10 @@ FactoryGirl.define do
     "github_#{n}"
   end
 
+  sequence :tagline do |n|
+    "tagline #{n}"
+  end
+
   sequence :title do |n|
     "title #{n}"
   end
@@ -72,7 +76,7 @@ FactoryGirl.define do
   factory :product, traits: [:active], class: "VideoTutorial" do
     after(:stub) { |product| product.slug = product.name.parameterize }
     description 'Solve 8-Queens over and over again'
-    tagline 'Solve 8-Queens'
+    tagline
 
     trait :active do
       active true
@@ -404,6 +408,8 @@ FactoryGirl.define do
     trait :with_preview do
       preview_wistia_id '1194804'
     end
+
+    after(:stub) { |video| video.slug = video.id.to_s }
   end
 
   factory :exercise do

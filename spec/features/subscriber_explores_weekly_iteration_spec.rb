@@ -3,7 +3,7 @@ require "rails_helper"
 feature "User without a subscription" do
   scenario "Sees latest TWI and Video Tutorial in Explore" do
     show = create(:show, name: Show::THE_WEEKLY_ITERATION)
-    twi_video = create(:video, watchable: show)
+    twi_video = create(:video, :published, watchable: show)
     video_tutorial = create(:video_tutorial)
 
     visit explore_path(as: create(:user))

@@ -28,9 +28,10 @@
       </ul>
     </section>
 
-    <%= render "videos",
+    <%= render(
+      "videos",
       show: @explore.show,
-      show_latest_video: @explore.show.latest_video,
-      latest_video_tutorial: @explore.latest_video_tutorial %>
+      video_tutorial: @explore.latest_video_tutorial
+    ) %>
   </div>
 </section>

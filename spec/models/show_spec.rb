@@ -14,16 +14,24 @@ describe Show do
   end
 
   describe "#latest_video" do
-    it "returns it's latest video" do
+    it "returns its latest, published video" do
       show = create(:show)
-      latest = Timecop.travel(1.days.ago) do
-        create(:video, watchable: show)
-      end
-      Timecop.travel(2.days.ago) do
-        create(:video, watchable: show)
-      end
+      other_show = create(:show)
+      create_video "older_published", show: show, published_on: 2.days.ago
+      create_video "latest_published", show: show, published_on: 1.day.ago
+      create_video "unpublished", show: show, published_on: 1.day.from_now
+      create_video "other_show", show: other_show, published_on: Time.now
 
-      expect(show.latest_video).to eq(latest)
+      expect(show.latest_video.title).to eq("latest_published")
+    end
+
+    def create_video(title, show:, published_on:)
+      create(
+        :video,
+        title: title,
+        watchable: show,
+        published_on: published_on
+      )
     end
   end
 end
