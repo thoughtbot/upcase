@@ -10,7 +10,7 @@ Upcase::Application.configure do
   config.autoload_paths += [File.expand_path("#{config.root}/spec/support")]
 
   # Configure static asset server for tests with Cache-Control for performance
-  config.serve_static_assets = true
+  config.serve_static_files = true
   config.static_cache_control = "public, max-age=3600"
 
   # Do not compress assets

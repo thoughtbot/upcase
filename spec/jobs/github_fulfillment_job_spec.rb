@@ -43,7 +43,7 @@ describe GithubFulfillmentJob do
           client = stub_octokit
           client.stubs(:add_team_membership).raises(error_class)
           mailer = stub("mailer")
-          mailer.stubs(:deliver)
+          mailer.stubs(:deliver_now)
           repository = stub_repository
           user = stub_user(github_username: "gabebw")
           LicenseMailer.
@@ -53,7 +53,7 @@ describe GithubFulfillmentJob do
           job = GithubFulfillmentJob.new(repository.id, user.id)
 
           expect { job.perform }.to raise_error(error_class)
-          expect(mailer).to have_received(:deliver)
+          expect(mailer).to have_received(:deliver_now)
         end
       end
     end

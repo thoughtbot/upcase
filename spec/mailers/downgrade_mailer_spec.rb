@@ -10,7 +10,7 @@ describe DowngradeMailer do
 
       mail = DowngradeMailer.
                notify_mentor(mentor_id: mentor.id, mentee_id: mentee.id).
-               deliver
+               deliver_now
 
       expect(mail).to deliver_to(mentor.email)
       expect(mail).to deliver_from(Clearance.configuration.mailer_sender)

@@ -28,7 +28,7 @@ class GithubFulfillmentJob < Struct.new(:repository_id, :user_id)
   end
 
   def email_user
-    LicenseMailer.fulfillment_error(repository, user).deliver
+    LicenseMailer.fulfillment_error(repository, user).deliver_now
   end
 
   def repository
