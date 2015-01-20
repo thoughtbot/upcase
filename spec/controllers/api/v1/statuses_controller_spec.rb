@@ -9,7 +9,7 @@ describe Api::V1::StatusesController do
     end
 
     it "returns a 404 when exercise doesn't exist" do
-      stub_authenticated_user
+      stub_oauth_authenticated_user
 
       expect do
         post :create, exercise_uuid: "exercise-uuid"
@@ -17,7 +17,7 @@ describe Api::V1::StatusesController do
     end
 
     it "updates the status of the given exercise for the authenticated user" do
-      stub_authenticated_user
+      stub_oauth_authenticated_user
       exercise = stub_exercise
 
       post :create, exercise_uuid: exercise.uuid, state: Status::COMPLETE
@@ -32,13 +32,5 @@ describe Api::V1::StatusesController do
     exercise.stubs(:update_trails_state_for)
     Exercise.stubs(:find_by!).returns(exercise)
     exercise
-  end
-
-  def stub_authenticated_user
-    user = build_stubbed(:user)
-    User.stubs(:find).returns(user)
-    access_token = build_stubbed(:oauth_access_token, user: user)
-    Doorkeeper::OAuth::Token.stubs(:authenticate).returns(access_token)
-    user
   end
 end
