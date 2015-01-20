@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120162639) do
+ActiveRecord::Schema.define(version: 20150120162640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -219,8 +219,10 @@ ActiveRecord::Schema.define(version: 20150120162639) do
     t.string   "slug",                                       null: false
     t.integer  "length_in_days"
     t.text     "resources",                  default: "",    null: false
+    t.integer  "product_id"
   end
 
+  add_index "products", ["product_id"], name: "index_products_on_product_id", using: :btree
   add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
 
   create_table "rails_admin_histories", force: :cascade do |t|

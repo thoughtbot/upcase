@@ -132,6 +132,16 @@ namespace :dev do
         like to start making more complicated ones...
       DESCRIPTION
     )
+    FactoryGirl.create(
+      :repository,
+      name: "Test-Driven Rails Part 1",
+      product: @video_tutorial
+    )
+    FactoryGirl.create(
+      :repository,
+      name: "Test-Driven Rails Part 2",
+      product: @video_tutorial
+    )
     classify @video_tutorial, "Ruby on Rails"
     puts_video_tutorial @video_tutorial
   end

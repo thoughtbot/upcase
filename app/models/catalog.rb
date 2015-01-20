@@ -30,6 +30,6 @@ class Catalog
   end
 
   def repositories
-    Repository.active.ordered
+    Repository.active.top_level.ordered
   end
 end

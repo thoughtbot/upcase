@@ -1,6 +1,18 @@
 <aside>
   <%= render "products/downloads_info", product: watchable %>
 
+  <% if watchable.repositories.any? %>
+    <div class="resources">
+      <h3>Repositories</h3>
+      <hr>
+      <ul>
+        <% watchable.repositories.ordered.each do |repository| %>
+          <li><%= link_to repository.name, repository %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <% if watchable.resources.present? %>
     <div class="resources">
       <h3>Resources</h3>

@@ -40,10 +40,10 @@ describe Catalog do
   end
 
   describe "#repositories" do
-    it "returns all active repositories in order" do
+    it "returns all top-level, active repositories in order" do
       catalog = Catalog.new
       expect(catalog.repositories).
-        to find_relation(Repository.active.ordered)
+        to find_relation(Repository.active.top_level.ordered)
     end
   end
 

@@ -4,6 +4,7 @@ describe Repository do
   it_behaves_like 'a class inheriting from Product'
 
   it { should have_many(:collaborations).dependent(:destroy) }
+  it { should belong_to(:product) }
 
   it { should validate_presence_of(:github_team) }
   it { should validate_presence_of(:github_url) }
@@ -126,6 +127,19 @@ describe Repository do
           stubs(:new).
           with(login: GITHUB_USER, password: GITHUB_PASSWORD).returns(client)
       end
+    end
+  end
+
+  describe ".top_level" do
+    it "returns repositories without parent products" do
+      parent = create(:video_tutorial)
+      create(:repository, name: "with_parent", product: parent)
+      create(:repository, name: "no_parent1", product: nil)
+      create(:repository, name: "no_parent2", product: nil)
+
+      result = Repository.top_level
+
+      expect(result.map(&:name)).to match_array(%w(no_parent1 no_parent2))
     end
   end
 

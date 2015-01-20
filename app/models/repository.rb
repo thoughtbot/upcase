@@ -1,8 +1,13 @@
 class Repository < Product
+  belongs_to :product
   has_many :collaborations, dependent: :destroy
 
   validates :github_team, presence: true
   validates :github_url, presence: true
+
+  def self.top_level
+    where(product_id: nil)
+  end
 
   def included_in_plan?(plan)
     plan.has_feature?(:repositories)
