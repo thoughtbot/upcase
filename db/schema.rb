@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150115151014) do
+ActiveRecord::Schema.define(version: 20150120162639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_stat_statements"
 
-  create_table "checkouts", force: true do |t|
+  create_table "checkouts", force: :cascade do |t|
     t.integer  "user_id",                      null: false
     t.integer  "plan_id",                      null: false
     t.integer  "quantity",         default: 1, null: false
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
 
   add_index "checkouts", ["user_id"], name: "index_checkouts_on_user_id", using: :btree
 
-  create_table "classifications", force: true do |t|
+  create_table "classifications", force: :cascade do |t|
     t.integer  "topic_id"
     t.string   "classifiable_type"
     t.integer  "classifiable_id"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
     t.datetime "updated_at",        null: false
   end
 
-  create_table "collaborations", force: true do |t|
+  create_table "collaborations", force: :cascade do |t|
     t.integer  "repository_id", null: false
     t.integer  "user_id",       null: false
     t.datetime "created_at",    null: false
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
 
   add_index "collaborations", ["repository_id", "user_id"], name: "index_collaborations_on_repository_id_and_user_id", unique: true, using: :btree
 
-  create_table "completions", force: true do |t|
+  create_table "completions", force: :cascade do |t|
     t.string   "trail_object_id"
     t.string   "trail_name"
     t.integer  "user_id"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
   add_index "completions", ["trail_object_id"], name: "index_completions_on_trail_object_id", using: :btree
   add_index "completions", ["user_id"], name: "index_completions_on_user_id", using: :btree
 
-  create_table "delayed_jobs", force: true do |t|
+  create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0
     t.integer  "attempts",   default: 0
     t.text     "handler"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
-  create_table "downloads", force: true do |t|
+  create_table "downloads", force: :cascade do |t|
     t.integer  "purchaseable_id"
     t.string   "download_file_name"
     t.string   "download_file_size"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
     t.string   "purchaseable_type"
   end
 
-  create_table "exercises", force: true do |t|
+  create_table "exercises", force: :cascade do |t|
     t.string   "title",                      null: false
     t.string   "url",                        null: false
     t.text     "summary",                    null: false
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
   add_index "exercises", ["public"], name: "index_exercises_on_public", using: :btree
   add_index "exercises", ["uuid"], name: "index_exercises_on_uuid", unique: true, using: :btree
 
-  create_table "invitations", force: true do |t|
+  create_table "invitations", force: :cascade do |t|
     t.string   "email",        null: false
     t.string   "code",         null: false
     t.datetime "accepted_at"
@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
   add_index "invitations", ["code"], name: "index_invitations_on_code", using: :btree
   add_index "invitations", ["team_id"], name: "index_invitations_on_team_id", using: :btree
 
-  create_table "legacy_trails", force: true do |t|
+  create_table "legacy_trails", force: :cascade do |t|
     t.integer  "topic_id"
     t.string   "slug"
     t.text     "trail_map"
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
 
   add_index "legacy_trails", ["topic_id"], name: "index_legacy_trails_on_topic_id", using: :btree
 
-  create_table "mentors", force: true do |t|
+  create_table "mentors", force: :cascade do |t|
     t.integer "user_id",                                                  null: false
     t.string  "availability",          default: "11am to 5pm on Fridays", null: false
     t.boolean "accepting_new_mentees", default: true,                     null: false
@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
 
   add_index "mentors", ["user_id"], name: "index_mentors_on_user_id", using: :btree
 
-  create_table "oauth_access_grants", force: true do |t|
+  create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id", null: false
     t.integer  "application_id",    null: false
     t.string   "token",             null: false
@@ -144,7 +144,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
 
   add_index "oauth_access_grants", ["token"], name: "index_oauth_access_grants_on_token", unique: true, using: :btree
 
-  create_table "oauth_access_tokens", force: true do |t|
+  create_table "oauth_access_tokens", force: :cascade do |t|
     t.integer  "resource_owner_id"
     t.integer  "application_id",    null: false
     t.string   "token",             null: false
@@ -159,7 +159,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
   add_index "oauth_access_tokens", ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id", using: :btree
   add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true, using: :btree
 
-  create_table "oauth_applications", force: true do |t|
+  create_table "oauth_applications", force: :cascade do |t|
     t.string   "name",                      null: false
     t.string   "uid",                       null: false
     t.string   "secret",                    null: false
@@ -171,7 +171,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
 
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
 
-  create_table "plans", force: true do |t|
+  create_table "plans", force: :cascade do |t|
     t.string   "name",                                     null: false
     t.string   "sku",                                      null: false
     t.string   "short_description",                        null: false
@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
 
   add_index "plans", ["annual_plan_id"], name: "index_plans_on_annual_plan_id", using: :btree
 
-  create_table "products", force: true do |t|
+  create_table "products", force: :cascade do |t|
     t.string   "name"
     t.string   "sku"
     t.string   "tagline"
@@ -223,7 +223,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
 
   add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
 
-  create_table "rails_admin_histories", force: true do |t|
+  create_table "rails_admin_histories", force: :cascade do |t|
     t.text     "message"
     t.string   "username"
     t.integer  "item"
@@ -236,7 +236,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
 
-  create_table "statuses", force: true do |t|
+  create_table "statuses", force: :cascade do |t|
     t.integer  "completeable_id",                           null: false
     t.integer  "user_id",                                   null: false
     t.string   "state",             default: "In Progress", null: false
@@ -249,7 +249,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
   add_index "statuses", ["completeable_type"], name: "index_statuses_on_completeable_type", using: :btree
   add_index "statuses", ["user_id"], name: "index_statuses_on_user_id", using: :btree
 
-  create_table "steps", force: true do |t|
+  create_table "steps", force: :cascade do |t|
     t.integer  "trail_id",    null: false
     t.integer  "exercise_id", null: false
     t.integer  "position",    null: false
@@ -260,7 +260,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
   add_index "steps", ["trail_id", "position"], name: "index_steps_on_trail_id_and_position", using: :btree
   add_index "steps", ["trail_id"], name: "index_steps_on_trail_id", using: :btree
 
-  create_table "subscriptions", force: true do |t|
+  create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "created_at",                                               null: false
     t.datetime "updated_at",                                               null: false
@@ -277,21 +277,21 @@ ActiveRecord::Schema.define(version: 20150115151014) do
   add_index "subscriptions", ["stripe_id"], name: "index_subscriptions_on_stripe_id", using: :btree
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
-  create_table "teachers", force: true do |t|
+  create_table "teachers", force: :cascade do |t|
     t.integer "user_id"
     t.integer "video_id"
   end
 
   add_index "teachers", ["user_id", "video_id"], name: "index_teachers_on_user_id_and_video_id", unique: true, using: :btree
 
-  create_table "teams", force: true do |t|
+  create_table "teams", force: :cascade do |t|
     t.string   "name",            null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "subscription_id", null: false
   end
 
-  create_table "topics", force: true do |t|
+  create_table "topics", force: :cascade do |t|
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.string   "keywords"
@@ -308,7 +308,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
   add_index "topics", ["explorable"], name: "index_topics_on_explorable", using: :btree
   add_index "topics", ["slug"], name: "index_topics_on_slug", unique: true, using: :btree
 
-  create_table "trails", force: true do |t|
+  create_table "trails", force: :cascade do |t|
     t.string   "name",                          null: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
@@ -322,7 +322,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
   add_index "trails", ["published"], name: "index_trails_on_published", using: :btree
   add_index "trails", ["slug"], name: "index_trails_on_slug", unique: true, using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "encrypted_password", limit: 128
     t.string   "salt",               limit: 128
@@ -358,7 +358,7 @@ ActiveRecord::Schema.define(version: 20150115151014) do
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
   add_index "users", ["team_id"], name: "index_users_on_team_id", using: :btree
 
-  create_table "videos", force: true do |t|
+  create_table "videos", force: :cascade do |t|
     t.integer  "watchable_id"
     t.string   "wistia_id"
     t.string   "title"
