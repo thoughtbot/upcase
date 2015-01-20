@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def must_be_team_owner
-    authorize
+    require_login
     if signed_in?
       if current_team.blank? || !current_team.owner?(current_user)
         deny_access("You must be the owner of the team.")

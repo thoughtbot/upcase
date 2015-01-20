@@ -3,7 +3,7 @@ require "rails_helper"
 describe TopicWithResources do
   describe "#name" do
     it "delegates to its topic" do
-      name = stub("name")
+      name = "some-name"
       topic = Topic.new(name: name)
       topic_with_resources =
         TopicWithResources.new(topic, resources: stub('resources'))

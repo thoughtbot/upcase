@@ -27,7 +27,7 @@ describe Features::Mentor do
     it "remove mentor for user" do
       user = build_stubbed(:user, :with_mentor)
       user.stubs(:assign_mentor).with(nil)
-      mail = stub(deliver: true)
+      mail = stub(deliver_now: true)
       DowngradeMailer.
         stubs(:notify_mentor).
         with(mentee_id: user.id, mentor_id: user.mentor_id).

@@ -1,5 +1,5 @@
 class ExploreController < ApplicationController
-  before_action :authorize
+  before_action :require_login
 
   def show
     @explore = Explore.new(current_user)

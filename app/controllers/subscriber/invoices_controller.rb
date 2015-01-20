@@ -1,6 +1,6 @@
 module Subscriber
   class InvoicesController < ApplicationController
-    before_filter :authorize
+    before_filter :require_login
 
     def index
       @invoices = Invoice.

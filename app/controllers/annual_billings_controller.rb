@@ -1,5 +1,5 @@
 class AnnualBillingsController < ApplicationController
-  before_action :authorize
+  before_action :require_login
   before_action :validate_upgrade_eligibility
 
   def new

@@ -1,10 +1,14 @@
 class StripeSubscriptionSynchronizer
+  def initialize(output)
+    @output = output
+  end
+
   def check_all
     stripe_customer_collection.each do |customer|
       customer_with_subscription = CustomerWithSubscription.new(customer)
 
       if customer_with_subscription.has_out_of_sync_user?
-        puts customer_with_subscription
+        @output.puts customer_with_subscription
       end
     end
   end

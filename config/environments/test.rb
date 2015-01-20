@@ -10,7 +10,7 @@ Upcase::Application.configure do
   config.autoload_paths += [File.expand_path("#{config.root}/spec/support")]
 
   # Configure static asset server for tests with Cache-Control for performance
-  config.serve_static_assets = true
+  config.serve_static_files = true
   config.static_cache_control = "public, max-age=3600"
 
   # Do not compress assets
@@ -37,7 +37,7 @@ Upcase::Application.configure do
   # config.active_record.schema_format = :sql
 
   # Print deprecation notices to the stderr
-  config.active_support.deprecation = :stderr
+  config.active_support.deprecation = :raise
 
   # Do not eager load code on boot. This avoids loading your whole application
   # just for the purpose of running a single test. If you are using a tool that

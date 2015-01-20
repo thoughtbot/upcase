@@ -35,8 +35,8 @@ describe "Video status" do
 
       post "/api/v1/videos/#{video.wistia_id}/status", state: "Complete"
 
-      status = video.statuses(true).first
-      expect(status).to be_complete
+      video.reload
+      expect(video.statuses.most_recent).to be_complete
     end
 
     it "sends data to analytics backend" do
