@@ -17,7 +17,13 @@
             <li class="view-plans">
               <%= link_to t("subscriptions.join_cta"), "#price" %>
             </li>
-            <li class="account"><%= link_to "Sign in", sign_in_path %></li>
+            <li class="account">
+              <% if signed_in? %>
+                <%= link_to 'Account', my_account_path %>
+              <% else %>
+                <%= link_to 'Sign In', sign_in_path %>
+              <% end %>
+            </li>
           </ul>
         </nav>
       </div>

@@ -7,28 +7,6 @@ $plan-max-width: 960px;
 $celestial-blue: #4A90E2;
 $yellow: #F3E86B;
 
-//body.subscriptions.subscriptions-new,
-body.teams.teams-index {
-  .signin {
-    color: $darkwarmgray;
-    font-family: $sans-serif;
-    padding: .75rem 1.25rem;
-    @include position(absolute, 0px 0px 0 0);
-    z-index: 3;
-
-    a {
-      color: $darkwarmgray;
-      font-family: $sans-serif;
-      text-transform:lowercase;
-    }
-  }
-
-  h1 img {
-    margin: 80px auto 0;
-    display: block;
-  }
-}
-
 .plans {
   background: $base-background-1;
   padding: 0 $plan-padding;

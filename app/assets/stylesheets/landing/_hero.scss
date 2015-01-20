@@ -5,6 +5,7 @@ $landing-hero: #313b41;
     linear-gradient(180deg, rgba($upcase-blue-1, 0.888), rgba($upcase-blue-2, 0.888)),
     url(upcase/laptop.jpg)
   );
+
   background-color: $landing-hero;
   background-position: center center;
   background-size: cover;
@@ -41,7 +42,7 @@ $landing-hero: #313b41;
 }
 
 .hero-cta {
-  padding: 2em;
+  padding: 4em 2em 2em;
   text-align: center;
 
   p {
@@ -54,7 +55,7 @@ $landing-hero: #313b41;
     color: white;
     font-size: 1.125em;
     font-weight: 600;
-    margin: 2em 0;
+    margin: 0 0 2em;
 
     strong {
       font-weight: 700;

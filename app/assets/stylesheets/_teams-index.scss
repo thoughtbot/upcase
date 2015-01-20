@@ -1,85 +1,32 @@
-.teams-index {
-  .logo h2 {
-    margin-bottom: 2em;
-    margin-top: 1em;
-    text-align: center;
-  }
-
-  .plan-features .included-in {
-    display: none;
-  }
-
-  .quotee strong {
-    display: none;
-  }
-
-  .plan {
-    @include outer-container;
-    margin-bottom: 2em;
-
-    .price {
-      display: block;
-      margin-top: 2rem;
-      margin: 2rem auto;
-      width: 200px;
-
-      .amount, .info {
-        height: 3rem;
-      }
-
-      .amount {
-        @include span-columns(6);
-        font-size: 3rem;
-        padding-top: 0.2em;
-        text-align: right;
-        vertical-align: middle;
-      }
-
-      .info {
-        @include span-columns(6);
-        display: block;
-      }
-
-      .interval, .unit {
-        display: block;
-        text-align: left;
-        text-transform: uppercase;
-      }
-    }
-
-    .sign-up {
-      @extend %button;
-      @include shift(3);
-      @include span-columns(6);
-      display: block;
-      margin-bottom: 2rem;
-      margin-top: 2rem;
-      padding: 0.8rem 0;
-      text-align: center;
-    }
-  }
-}
-
-.benefits {
+.teams-index .benefits {
   $icon-bullet-size: 2em;
 
-  margin-left: 2em;
-  margin-right: 2em;
+  padding: 2em;
 
-  .benefit {
-    @include media($large-screen) {
+  ul {
+    @include outer-container;
+    max-width: 1440px;
+  }
+
+  li {
+    margin-top: 0;
+    margin-bottom: 2em;
+
+    @include marketing-fullsize {
       @include span-columns(4);
       @include omega(3n);
+      margin-bottom: 0;
+      padding: 0 1em;
     }
   }
 
   .benefit-icon {
     background: $upcase-blue;
     border-radius: 50%;
-    color: #fff;
+    color: white;
     float: left;
     height: $icon-bullet-size;
-    padding: $icon-bullet-size /4;
+    line-height: $icon-bullet-size;
     text-align: center;
     width: $icon-bullet-size;
   }
@@ -89,12 +36,9 @@
     padding-bottom: 2em;
   }
 
-  h2 {
-    border-bottom: 1px solid transparentize($base-font-color, .8);
-    display: inline-block;
-    font-size: $icon-bullet-size /1.5;
-    margin-bottom: $icon-bullet-size /6;
-    padding-top: 0;
-    line-height: $icon-bullet-size /1.4;
+  h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 0.125em 0 0.5em;
   }
 }

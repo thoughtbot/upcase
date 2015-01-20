@@ -4,7 +4,7 @@ class TeamsController < ApplicationController
   def index
     @catalog = Catalog.new
 
-    render layout: 'empty-body'
+    render layout: "landing_pages"
   end
 
   def edit

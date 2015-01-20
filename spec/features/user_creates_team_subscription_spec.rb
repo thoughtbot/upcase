@@ -103,6 +103,6 @@ feature "User creates a team subscription" do
 
   def visit_team_plan_checkout_page
     visit teams_path
-    click_link "Enroll your team today"
+    click_link "Get your team started today"
   end
 end

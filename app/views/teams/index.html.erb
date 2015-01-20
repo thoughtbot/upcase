@@ -1,72 +1,10 @@
-<% content_for :page_title, "Team Plans and Pricing" %>
+<% content_for :page_title, "Team Pricing" %>
+<% content_for :additional_body_classes, "landing" %>
 
-<% if signed_in? %>
-  <%= link_to 'account', my_account_path, class: 'signin' %>
-<% else %>
-  <%= link_to 'sign in', sign_in_path, class: 'signin' %>
-<% end %>
+<%= render 'teams/hero' %>
 
-<div class="logo">
-  <h1><%= link_to image_tag("upcase/upcase-header-logo-small-gray.svg"), root_path %></h1>
-  <h2>Someone's getting boss of the year</h2>
-</div>
+<%= render 'teams/benefits' %>
 
-<section class="subscriptions">
-  <section class="benefits">
-    <div class="benefit">
-      <div class="benefit-icon">
-        <%= fa_icon "heart" %>
-      </div>
-      <div class="benefit-content">
-        <h2>Keep your team together</h2>
-        <p>Bored people quit. If your team members stop learning and improving,
-        it won't be long before they seek that satisfaction elsewhere. Upcase is
-        full of the real-world knowledge that developers crave.</p>
-      </div>
-    </div>
-    <div class="benefit">
-      <div class="benefit-icon">
-        <%= fa_icon "life-saver" %>
-      </div>
-      <div class="benefit-content">
-        <h2>You know our code</h2>
-        <p><%= link_to "thoughtbot", "http://thoughtbot.com" %> has created some
-        of the most popular open source software in the Rails ecosystem,
-        including <%= link_to "FactoryGirl", "http://github.com/thoughtbot/factory_girl" %>,
-        <%= link_to "Paperclip", "http://github.com/thoughtbot/paperclip" %>,
-        and <%= link_to "Bourbon", "http://bourbon.io" %>. On Upcase, your team
-        will be able to work directly with the thoughtbot developers and
-        designers who make these tools.</p>
-      </div>
-    </div>
-    <div class="benefit">
-      <div class="benefit-icon">
-        <%= fa_icon "map-marker" %>
-      </div>
-      <div class="benefit-content">
-        <h2>Hit your deadlines</h2>
-        <p>If simple features have been taking longer, you're probably battling
-        technical debt. We can teach your team how to escape. You'll appreciate
-        the predictable estimates, and your team will love working in a clean
-        codebase.</p>
-      </div>
-    </div>
-  </section>
+<%= render 'teams/plan', plan: @catalog.team_plan %>
 
-  <%= render 'teams/plan', plan: @catalog.team_plan %>
-  <%= render 'testimonials' %>
-
-  <section class="plan-features">
-    <div class="inner">
-      <%= render 'features/exercises', catalog: @catalog %>
-      <%= render 'features/source_code', catalog: @catalog %>
-      <%= render 'features/video_tutorials', catalog: @catalog %>
-      <%= render 'features/forum', catalog: @catalog %>
-      <%= render 'features/weekly_iteration', catalog: @catalog %>
-    </div>
-  </section>
-</section>
-
-<section class="subscriptions">
-  <%= render 'teams/plan', plan: @catalog.team_plan %>
-</section>
+<%= render 'teams/testimonials' %>
