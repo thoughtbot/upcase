@@ -42,7 +42,23 @@ section {
   }
 
   .text-box-wrapper {
-    @include span-columns(9);
+    @include span-columns(8.5);
+    margin-right: 3%;
+    position: relative;
+
+    &:before {
+      position: absolute;
+      top: 10px;
+      right: -35px;
+      bottom: 0;
+      left: 0;
+      border-right: 1px solid $base-border-color-1;
+      content: "";
+
+      @media screen and (max-width: 755px) {
+        border-right: 0;
+      }
+    }
 
     &.solo {
       margin: auto;
@@ -74,7 +90,6 @@ section {
 
 .text-box {
   @extend %main-content-box;
-  padding: 20px;
 
   h1, h2, h3, h4, h5, h6 {
     color: $darkwarmgray;
@@ -133,6 +148,7 @@ aside {
   display: inline-block;
   float: right;
   @include span-columns(3);
+  padding-left: 30px;
 
   hgroup {
     margin-left: 48px;
@@ -151,7 +167,7 @@ aside {
   }
 
   h3 {
-    margin-top: 40px;
+    margin: 40px 0 10px;
 
     &:first-child, &:only-child {
       margin-top: 0;
@@ -160,6 +176,7 @@ aside {
 
   &, p {
     line-height: 1.5;
+    margin-bottom: 1em;
   }
 
   > div {
@@ -193,16 +210,16 @@ aside {
     padding: 1.5em .5em 2em;
 
     .text-box-wrapper {
-      display: block;
-      float: none;
       @include span-columns(12);
+    }
+
+    aside {
+      padding: 0;
     }
   }
 
   aside {
-    display: block;
-    float: none;
-    padding: 1em 24px;
     @include span-columns(12);
+    margin-top: 3em;
   }
 }

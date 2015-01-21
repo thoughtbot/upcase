@@ -5,15 +5,17 @@
 <%= render "products/meta", product: @show %>
 
 <div class="text-box-wrapper">
+  <span class="divider">
+    <h4 class="text">Videos</h4>
+  </span>
   <%= render "watchables/preview" %>
   <div class="text-box">
     <%= render Clip.new("ol6e0miehm") %>
-
     <section id="videos">
       <% @show.published_videos.recently_published_first.each do |video| %>
         <%= content_tag_for :div, video do %>
           <%= link_to video_path(video) do %>
-            <%= render "videos/thumbnail", clip: video.clip, name: video.name %>
+            <%= render "videos/summary", clip: video.clip, name: video.name %>
           <% end %>
         <% end %>
       <% end %>

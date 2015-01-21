@@ -4,7 +4,6 @@
   <% if watchable.repositories.any? %>
     <div class="resources">
       <h3>Repositories</h3>
-      <hr>
       <ul>
         <% watchable.repositories.ordered.each do |repository| %>
           <li><%= link_to repository.name, repository %></li>
@@ -16,7 +15,6 @@
   <% if watchable.resources.present? %>
     <div class="resources">
       <h3>Resources</h3>
-      <hr>
       <%= format_markdown watchable.resources  %>
     </div>
   <% end %>

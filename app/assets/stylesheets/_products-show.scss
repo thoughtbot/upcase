@@ -50,10 +50,6 @@ body.videos-show {
 
   aside > div {
     margin-bottom: 1.25rem;
-
-    p:last-of-type {
-      margin-bottom: 0;
-    }
   }
 
   @include body-mobile {

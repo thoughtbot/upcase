@@ -12,29 +12,8 @@ module WistiaHelper
     )
   end
 
-  def small_wistia_iframe_for(clip)
-    content_tag(
-      'figure',
-      nil,
-      class: "wistia-video",
-      data: {
-        wistia_id: clip.wistia_id,
-        width: "563",
-        height: "317"
-      }
-    )
-  end
-
   def large_wistia_thumbnail_for(thumbnail, title)
     thumbnail(thumbnail, title, 960, 540)
-  end
-
-  def medium_wistia_thumbnail_for(thumbnail, title)
-    thumbnail(thumbnail, title, 212, 118)
-  end
-
-  def small_wistia_thumbnail_for(thumbnail, title)
-    thumbnail(thumbnail, title, 100, 60)
   end
 
   private

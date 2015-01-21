@@ -1,5 +1,5 @@
 <%= content_tag_for :div, video do %>
   <%= link_to video_path(video) do %>
-    <%= render 'videos/thumbnail', clip: video.clip, name: video.name %>
+    <%= render 'videos/summary', clip: video.clip, name: video.name %>
   <% end %>
 <% end %>

@@ -9,6 +9,11 @@ class @WistiaHelper
     for thumbnail in thumbnails
       @_insertThumbnailUrl(thumbnail)
 
+  embedSummaries: ->
+    summaries = $(".wistia-summary[data-wistia-id]")
+    for summary in summaries
+      @_insertSummary(summary)
+
   _embedVideo: (video) ->
     hashedId = $(video).data('wistia-id')
     $(video).prop("id", "wistia_#{hashedId}")
@@ -36,9 +41,15 @@ class @WistiaHelper
     self = @
     $.getJSON(@_encodedUrl($thumbnail, params), (data) ->
       $thumbnail.attr('src', data.thumbnail_url)
-      minutes = self._convertSecondsToMinutes(data.duration)
-      $thumbnail.next().find('em').text("#{minutes} minutes")
     )
+
+  _insertSummary: (summary) ->
+    $summary = $(summary)
+    $.getJSON(@_encodedUrl($summary, ""), (data) =>
+      minutes = @_convertSecondsToMinutes(data.duration)
+      $summary.find('em').text("#{minutes} minutes")
+    )
+
 
   _encodedUrl: ($elem, params) ->
     hashedId = $elem.data('wistia-id')
@@ -56,3 +67,5 @@ $ ->
     wistia.embedVideos()
   if $('.wistia-thumbnail').length
     wistia.embedThumbnails()
+  if $(".wistia-summary").length
+    wistia.embedSummaries()

@@ -4,11 +4,7 @@ body.products-show aside,
 body.video_tutorials-show aside,
 body.shows-show aside,
 body.videos-show aside {
-  #license > div:last-child {
-    margin-bottom: 2rem;
-  }
-
-  #license .subscription-cta {
+  .subscription-cta {
     h2 {
       font-size: 1.3em;
       line-height: 1.5em;
@@ -29,7 +25,6 @@ body.videos-show aside {
   }
 
   div {
-
     h2 a {
       color: $darkwarmgray;
       font-family: $sans-serif;
@@ -45,10 +40,6 @@ body.videos-show aside {
       font-family: $sans-serif;
       font-weight: 600;
       margin: 0 0 .75rem;
-    }
-
-    .license {
-      margin-top: 0;
     }
 
     .location-name {
