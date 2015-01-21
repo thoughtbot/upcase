@@ -213,7 +213,7 @@ namespace :dev do
     rails = FactoryGirl.create(:topic, :explorable, name: "Ruby on Rails")
     rails.update(slug: "rails")
     testing = FactoryGirl.create(:topic, :explorable, name: "Testing")
-    testing.update(slug: "test-driven+development")
+    testing.update(slug: "testing")
   end
 
   def create_topic(name:, color:, accent:)
@@ -231,7 +231,7 @@ namespace :dev do
     user = User.find_by_email!("whetstone@example.com")
 
     trail = FactoryGirl.create(:trail, :published, name: "Testing Fundamentals")
-    trail.update(topic: Topic.find_by(slug: "test-driven+development"))
+    trail.update(topic: Topic.find_by(slug: "testing"))
     create_steps_for(
       trail,
       "Passing Your First Test",
@@ -244,7 +244,7 @@ namespace :dev do
     puts_trail trail, "unstarted"
 
     trail = FactoryGirl.create(:trail, :published, name: "Refactoring")
-    trail.update(topic: Topic.find_by(slug: "clean+code"))
+    trail.update(topic: Topic.find_by(slug: "clean-code"))
     create_steps_for(
       trail,
       "Extract Method",
