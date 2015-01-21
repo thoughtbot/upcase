@@ -22,7 +22,9 @@ get "/ruby-science" => redirect("https://gumroad.com/l/ruby-science")
 get "/workshops/:id" => redirect("/video_tutorials/%{id}")
 get "/dashboard" => redirect("/practice")
 get "/test-driven+development" => redirect("/testing")
+get "/test-driven+development/resources" => redirect("/testing/resources")
 get "/clean+code" => redirect("/clean-code")
+get "/clean+code/resources" => redirect("/clean-code/resources")
 
 if Rails.env.staging? || Rails.env.production?
   get(
