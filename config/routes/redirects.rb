@@ -21,6 +21,8 @@ get "/products/:id/purchases/:lookup" => redirect("/purchases/%{lookup}")
 get "/ruby-science" => redirect("https://gumroad.com/l/ruby-science")
 get "/workshops/:id" => redirect("/video_tutorials/%{id}")
 get "/dashboard" => redirect("/practice")
+get "/test-driven+development" => redirect("/testing")
+get "/clean+code" => redirect("/clean-code")
 
 if Rails.env.staging? || Rails.env.production?
   get(
