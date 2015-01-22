@@ -451,16 +451,28 @@ FactoryGirl.define do
   factory :status do
     user
     association :completeable, factory: :exercise
+
+    trait :completed do
+      state Status::COMPLETE
+    end
   end
 
   factory :trail do
-    name "Trail name"
+    sequence(:name) { |n| "Trail number #{n}" }
     description "Trail description"
     complete_text "Way to go!"
     topic
 
     trait :published do
       published true
+    end
+
+    trait :completed do
+      after :create do |instance|
+        Timecop.travel(1.week.ago) do
+          create(:status, :completed, completeable: instance)
+        end
+      end
     end
   end
 

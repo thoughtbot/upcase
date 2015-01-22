@@ -1,0 +1,16 @@
+<div class="completed">
+  <section class="trail <%= topic_class(trail.topic) %>">
+    <header>
+      <span class="topic-label"><%= trail.topic.name %></span>
+      <h1><%= link_to trail.name, trail %></h1>
+    </header>
+
+    <div class="just-finished-mask">
+      <section class="progress completed">
+        <%= render partial: "trails/exercise_dot", collection: trail.exercises %>
+      </section>
+    </div>
+
+    <p><%= trail.complete_text %></p>
+  </section>
+</div>

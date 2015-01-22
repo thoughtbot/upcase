@@ -3,18 +3,25 @@ class Practice
     @user = user
   end
 
+  def has_completed_trails?
+    completed_trails.any?
+  end
+
+  def completed_trails
+    trails.select(&:complete?)
+  end
+
+  def active_trails
+    trails.select(&:active?)
+  end
+
+  private
+
+  attr_reader :user
+
   def trails
     Trail.
       most_recent_published.
-      map { |trail| TrailWithProgress.new(trail, user: @user) }.
-      select(&:active?)
-  end
-
-  def has_completed_trails?
-    Status.where(
-      completeable_type: "Trail",
-      state: "Complete",
-      user: @user
-    ).exists?
+      map { |trail| TrailWithProgress.new(trail, user: user) }
   end
 end
