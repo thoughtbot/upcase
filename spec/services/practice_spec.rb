@@ -35,6 +35,29 @@ describe Practice do
     end
   end
 
+  describe "#completed_trails" do
+    it "returns completed trails" do
+      user = create(:user)
+      trail = create(:trail)
+      create(:status, completeable: trail, state: "Complete", user: user)
+      practice = Practice.new(user)
+
+      trails = practice.completed_trails
+      expect(trails).to include(trail)
+      expect(trails.count).to eq 1
+    end
+  end
+
+  describe "#uncompleted_trails" do
+    it "returns completed trails" do
+      user = build_stubbed(:user)
+      practice = Practice.new(user)
+
+      trails = practice.uncompleted_trails
+      expect(trails).to be_empty
+    end
+  end
+
   def setup_trail_with_progress(trail, active:)
     trail_with_progress = stub(
       "trail_with_progress_#{active}",

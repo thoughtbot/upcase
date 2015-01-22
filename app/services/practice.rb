@@ -11,10 +11,16 @@ class Practice
   end
 
   def has_completed_trails?
-    Status.where(
-      completeable_type: "Trail",
-      state: "Complete",
-      user: @user
-    ).exists?
+    completed_trails.any?
+  end
+
+  def completed_trails
+    Status.completed.by_user(@user).by_type("Trail").
+    map(&:completeable)
+  end
+
+  def uncompleted_trails
+    Status.uncompleted.by_user(@user).by_type("Trail").
+    map(&:completeable)
   end
 end
