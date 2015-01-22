@@ -16,6 +16,22 @@ class Status < ActiveRecord::Base
     order(:created_at).last
   end
 
+  def self.completed
+    where(state: "Complete")
+  end
+
+  def self.uncompleted
+    where.not(state: "Complete")
+  end
+
+  def self.by_user(user)
+    where(user: user)
+  end
+
+  def self.by_type(type)
+    where(completeable_type: type)
+  end
+
   def unstarted?
     false
   end
