@@ -1,4 +1,4 @@
-resources :teams, only: :index
+get "/teams", to: "teams#new"
 resource :team, only: :edit
 
 resources :invitations, only: [:create, :destroy] do
