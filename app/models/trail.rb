@@ -5,6 +5,7 @@ class Trail < ActiveRecord::Base
 
   belongs_to :topic
   has_many :statuses, as: :completeable, dependent: :destroy
+  has_many :users, through: :statuses
   has_many :steps, -> { order "position ASC" }, dependent: :destroy
   has_many :exercises, through: :steps
 
