@@ -453,7 +453,7 @@ FactoryGirl.define do
   end
 
   factory :trail do
-    name "Trail name"
+    sequence(:name) { |n| "Trail number #{n}" }
     description "Trail description"
     complete_text "Way to go!"
     topic
