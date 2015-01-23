@@ -22,12 +22,12 @@ describe "Videos" do
       visit video_tutorial_path(video_tutorial)
 
       expect(page).to have_content("2 lessons in this video tutorial")
-      expect(page).to have_content(published_video_one.title)
-      expect(page).to have_content(published_video_two.title)
-      expect(page).not_to have_content(video.title)
+      expect(page).to have_content(published_video_one.name)
+      expect(page).to have_content(published_video_two.name)
+      expect(page).not_to have_content(video.name)
       expect(
-        page.body.index(published_video_one.title) <
-        page.body.index(published_video_two.title)
+        page.body.index(published_video_one.name) <
+        page.body.index(published_video_two.name)
       ).to be
 
       visit video_path(published_video_two)
@@ -53,10 +53,10 @@ describe "Videos" do
 
       visit video_tutorial_path(video_tutorial)
 
-      expect(page).to have_content(published_video_one.title)
-      expect(page).to have_content(published_video_two.title)
+      expect(page).to have_content(published_video_one.name)
+      expect(page).to have_content(published_video_two.name)
       expect(page).to have_content("2 minutes")
-      expect(page).not_to have_content(video.title)
+      expect(page).not_to have_content(video.name)
     end
 
     it "doesn't say it's a series with one published video" do
@@ -96,13 +96,13 @@ describe "Videos" do
       expect(text_in(channel, ".//link")).to eq(show_url(show))
       expect(text_in(channel, ".//description")).to eq(show.short_description)
 
-      unpublished_xpath = ".//item/title[text()='#{video.title}']"
+      unpublished_xpath = ".//item/title[text()='#{video.name}']"
       expect(channel.xpath(unpublished_xpath)).to be_empty
 
       published_videos.each_with_index do |published_video, index|
         item = channel.xpath(".//item")[index]
 
-        expect(text_in(item, ".//title")).to eq(published_video.title)
+        expect(text_in(item, ".//title")).to eq(published_video.name)
         expect(text_in(item, ".//link")).
           to eq(video_url(published_video))
 
@@ -136,13 +136,13 @@ describe "Videos" do
         "Improve your programming skills with focused exercises."
       )
 
-      unpublished_xpath = ".//item/title[text()='#{video.title}']"
+      unpublished_xpath = ".//item/title[text()='#{video.name}']"
       expect(channel.xpath(unpublished_xpath)).to be_empty
 
       published_videos.each_with_index do |published_video, index|
         item = channel.xpath(".//item")[index]
 
-        expect(text_in(item, ".//title")).to eq(published_video.title)
+        expect(text_in(item, ".//title")).to eq(published_video.name)
         expect(text_in(item, ".//link")).
           to eq(video_url(published_video))
 

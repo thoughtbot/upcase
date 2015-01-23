@@ -10,7 +10,7 @@ feature "User without a subscription" do
 
     expect(page).to have_content(show.name)
     expect(page).to have_content(show.tagline)
-    expect(page).to have_content(twi_video.title)
+    expect(page).to have_content(twi_video.name)
     expect(page).to have_content("View All Episodes")
 
     expect(page).to have_content(video_tutorial.name)

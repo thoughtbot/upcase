@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20150127171316) do
   end
 
   create_table "exercises", force: :cascade do |t|
-    t.string   "title",                      null: false
+    t.string   "name",                       null: false
     t.string   "url",                        null: false
     t.text     "summary",                    null: false
     t.datetime "created_at"
@@ -364,7 +364,7 @@ ActiveRecord::Schema.define(version: 20150127171316) do
   create_table "videos", force: :cascade do |t|
     t.integer  "watchable_id"
     t.string   "wistia_id"
-    t.string   "title"
+    t.string   "name"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.string   "watchable_type"

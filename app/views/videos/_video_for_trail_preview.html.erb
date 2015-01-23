@@ -1,8 +1,8 @@
 <figure class="exercise <%= video.state.parameterize %>-exercise">
   <div class="dot"></div>
 
-  <%= completeable_link video_path(video), title: video.title do %>
-    <h3><%= video.title %></h3>
+  <%= completeable_link video_path(video), title: video.name do %>
+    <h3><%= video.name %></h3>
     <p><%= video.summary %></p>
   <% end %>
 

@@ -398,7 +398,7 @@ FactoryGirl.define do
 
   factory :video do
     association :watchable, factory: :video_tutorial
-    title
+    name
     wistia_id '1194803'
     published_on { 1.day.from_now }
 
@@ -415,11 +415,11 @@ FactoryGirl.define do
 
   factory :exercise do
     transient do
-      slug { title.downcase.gsub(/\s+/, "-") }
+      slug { name.downcase.gsub(/\s+/, "-") }
     end
 
     summary "Exercise summary"
-    sequence(:title) { |n| "Exercise #{n}" }
+    sequence(:name) { |n| "Exercise #{n}" }
     url { "http://localhost:7000/exercises/#{slug}" }
     uuid
 

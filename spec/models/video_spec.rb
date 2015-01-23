@@ -10,7 +10,7 @@ describe Video do
 
   it { should validate_presence_of(:published_on) }
   it { should validate_presence_of(:slug) }
-  it { should validate_presence_of(:title) }
+  it { should validate_presence_of(:name) }
   it { should validate_presence_of(:watchable_id) }
   it { should validate_presence_of(:watchable_type) }
   it { should validate_presence_of(:wistia_id) }
@@ -59,12 +59,12 @@ describe Video do
 
   context '.recently_published_first' do
     it 'sorts the collection so that recently published videos are first' do
-      create(:video, published_on: Date.today, title: 'new')
-      create(:video, published_on: 2.days.ago, title: 'old')
-      create(:video, published_on: Date.yesterday, title: 'middle')
-      titles = %w(new middle old)
+      create(:video, published_on: Date.today, name: 'new')
+      create(:video, published_on: 2.days.ago, name: 'old')
+      create(:video, published_on: Date.yesterday, name: 'middle')
+      names = %w(new middle old)
 
-      expect(Video.recently_published_first.map(&:title)).to eq titles
+      expect(Video.recently_published_first.map(&:name)).to eq names
     end
   end
 

@@ -11,7 +11,7 @@ describe "explore/_videos.html" do
       render "explore/videos", show: show, video_tutorial: video_tutorial
 
       expect(rendered).to have_text(show.tagline)
-      expect(rendered).to have_text(latest_video.title)
+      expect(rendered).to have_text(latest_video.name)
     end
   end
 

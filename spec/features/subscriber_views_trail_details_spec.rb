@@ -3,10 +3,10 @@ require "rails_helper"
 feature "subscriber views trail details" do
   scenario "sees progress" do
     exercises = [
-      create(:exercise, title: "First Exercise"),
-      create(:exercise, title: "Second Exercise")
+      create(:exercise, name: "First Exercise"),
+      create(:exercise, name: "Second Exercise")
     ]
-    video = create(:video, title: "First Video")
+    video = create(:video, name: "First Video")
     create(
       :trail,
       :published,

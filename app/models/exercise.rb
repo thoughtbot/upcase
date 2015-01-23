@@ -5,7 +5,7 @@ class Exercise < ActiveRecord::Base
   has_many :trails, through: :steps, as: :completeables
   has_many :steps, dependent: :destroy, as: :completeable
 
-  validates :title, presence: true
+  validates :name, presence: true
   validates :url, presence: true
 
   def self.ordered

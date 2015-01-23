@@ -11,15 +11,15 @@ feature "User views show" do
     visit show_path(show, as: user)
 
     expect(page).to have_content(show.name)
-    expect(page).to have_content(published_video.title)
+    expect(page).to have_content(published_video.name)
     expect(page).to have_content(download.display_name)
-    expect(page).not_to have_content(video.title)
+    expect(page).not_to have_content(video.name)
     expect_page_to_not_have_preview_cta
 
-    click_on published_video.title
+    click_on published_video.name
 
     expect_page_to_not_have_preview_cta
-    expect_page_to_have_title("#{published_video.title} | Upcase")
+    expect_page_to_have_title("#{published_video.name} | Upcase")
   end
 
   def have_link_to(text)
