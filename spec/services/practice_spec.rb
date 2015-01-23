@@ -37,9 +37,8 @@ describe Practice do
 
   describe "#completed_trails" do
     it "returns completed trails" do
-      user = create(:user)
-      trail = create(:trail)
-      create(:status, completeable: trail, state: "Complete", user: user)
+      trail = create(:trail, :completed)
+      user = trail.statuses.last.user
       practice = Practice.new(user)
 
       trails = practice.completed_trails

@@ -462,6 +462,12 @@ FactoryGirl.define do
     trait :published do
       published true
     end
+
+    trait :completed do
+      after :create do |instance|
+        create(:status, completeable: instance, state: Status::COMPLETE)
+      end
+    end
   end
 
   factory :step do
