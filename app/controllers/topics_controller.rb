@@ -14,7 +14,8 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find_by_slug!(params[:id])
+    @topic = Topic.find(params[:id])
+    respond_to :html
   end
 
   private

@@ -19,7 +19,7 @@ class Topic < ActiveRecord::Base
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true
 
-  friendly_id :name, use: :slugged
+  friendly_id :name, use: [:slugged, :finders]
 
   def self.top
     featured.order("count DESC").limit 20

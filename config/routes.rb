@@ -34,7 +34,7 @@ Upcase::Application.routes.draw do
   resource :forum_sessions, only: :new
   resource :subscription, only: [:new, :edit, :update]
   resources :coupons, only: :show
-  resources :topics, only: :index, format: :css
+  resources :topics, only: :index, constraints: { format: "css" }
 
   resources :videos, only: [:index, :show] do
     resource :twitter_player_card, only: [:show]
