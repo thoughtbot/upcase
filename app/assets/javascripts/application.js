@@ -1,7 +1,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require retina
 //= require prettify/prettify
 //= require prettyprint
 //= require jquery.jsPlumb-1.4.0-all-min
