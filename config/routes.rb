@@ -12,6 +12,7 @@ Upcase::Application.routes.draw do
   draw :admin
   draw :api
   draw :books
+  draw :clearance
   draw :pages
   draw :plan
   draw :podcasts
@@ -30,7 +31,6 @@ Upcase::Application.routes.draw do
 
   resource :annual_billing, only: :new
   resource :credit_card, only: [:update]
-  resource :session, controller: :sessions
   resource :forum_sessions, only: :new
   resource :subscription, only: [:new, :edit, :update]
   resources :coupons, only: :show
