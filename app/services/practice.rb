@@ -19,8 +19,8 @@ class Practice
     map(&:completeable)
   end
 
-  def uncompleted_trails
-    Status.uncompleted.by_user(@user).by_type("Trail").
+  def incompleted_trails
+    Status.incompleted.by_user(@user).by_type("Trail").
     map(&:completeable)
   end
 end

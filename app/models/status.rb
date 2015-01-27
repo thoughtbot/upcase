@@ -20,7 +20,7 @@ class Status < ActiveRecord::Base
     where(state: "Complete")
   end
 
-  def self.uncompleted
+  def self.incompleted
     where.not(state: "Complete")
   end
 

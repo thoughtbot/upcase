@@ -47,12 +47,12 @@ describe Practice do
     end
   end
 
-  describe "#uncompleted_trails" do
+  describe "#incompleted_trails" do
     it "returns completed trails" do
       user = build_stubbed(:user)
       practice = Practice.new(user)
 
-      trails = practice.uncompleted_trails
+      trails = practice.incompleted_trails
       expect(trails).to be_empty
     end
   end
