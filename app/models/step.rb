@@ -8,7 +8,7 @@ class Step < ActiveRecord::Base
 
   acts_as_list scope: :trail
 
-  def title
-    "#{completeable.class.model_name} - #{completeable.title}"
+  def name
+    "#{completeable.class.model_name} - #{completeable.name}"
   end
 end

@@ -6,7 +6,7 @@ class FakeUpcaseExercises < Sinatra::Base
   get "/exercises/:slug" do |slug|
     exercise = Exercise.find_by!("url LIKE ?", "%/exercises/#{slug}")
     <<-HTML
-      Exercise: #{exercise.title}
+      Exercise: #{exercise.name}
     HTML
   end
 

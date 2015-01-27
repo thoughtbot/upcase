@@ -24,7 +24,7 @@ describe Api::V1::ExercisesController do
       exercise = stub("exercise", update_attributes: false, errors: errors)
       Exercise.stubs(find_or_initialize_by: exercise)
 
-      put :update, id: "uuid-1234", exercise: { title: "", url: "" }
+      put :update, id: "uuid-1234", exercise: { name: "", url: "" }
 
       expect(response.status).to eq 422
       expect(response.body).to eq({ errors: errors }.to_json)

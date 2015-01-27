@@ -1,4 +1,4 @@
-<% content_for :page_title, @video.title.html_safe %>
+<% content_for :page_title, @video.name.html_safe %>
 
 <% if @watchable.collection? %>
   <% content_for :additional_header_links do %>
@@ -10,7 +10,7 @@
   <h1><%= @video.watchable_name %></h1>
   <h2 class="tagline">
     <% if @video.watchable.collection? %>
-      <%= @video.title %>
+      <%= @video.name %>
     <% else %>
       Watch or download video
     <% end %>

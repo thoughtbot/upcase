@@ -1,4 +1,4 @@
-<% content_for :page_title, @video.title.html_safe %>
+<% content_for :page_title, @video.name.html_safe %>
 
 <% if @video.preview_wistia_id.present? %>
   <% content_for :head do %>
@@ -13,7 +13,7 @@
 <div class="text-box-wrapper">
   <%= render "watchables/preview" %>
   <div class="text-box">
-    <%= render @video.preview, title: @video.title %>
+    <%= render @video.preview, name: @video.name %>
 
     <section class='video-notes'>
       <h3>Notes</h3>

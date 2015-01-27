@@ -104,12 +104,12 @@ namespace :dev do
     create_episode 7, "Rails as a JSON database", "Ruby on Rails"
   end
 
-  def create_episode(age_in_days, title, topic_name)
+  def create_episode(age_in_days, name, topic_name)
     episode = create(
       :video,
       notes: "Blah" + " blah" * 100,
       published_on: age_in_days.days.ago,
-      title: title,
+      name: name,
       watchable: @weekly_iteration
     )
     classify episode, topic_name
@@ -242,7 +242,7 @@ namespace :dev do
       :video,
       notes: "Blah" + " blah" * 100,
       published_on: 1.day.ago,
-      title: "Red, Green, Refactor",
+      name: "Red, Green, Refactor",
       watchable: @weekly_iteration,
       wistia_id: "uaxw299qz9",
       preview_wistia_id: "uaxw299qz9"
@@ -328,15 +328,15 @@ namespace :dev do
     puts "(Please sign in as whetstone@example.com to see trail progress.)"
   end
 
-  def create_steps_for(trail, *titles)
-    titles.map do |title|
-      exercise = FactoryGirl.create(:exercise, title: title, public: true)
+  def create_steps_for(trail, *names)
+    names.map do |name|
+      exercise = FactoryGirl.create(:exercise, name: name, public: true)
       FactoryGirl.create(:step, trail: trail, completeable: exercise)
     end
   end
 
-  def classify_exercise(title, topic_name)
-    classify Exercise.find_by!(title: title), topic_name
+  def classify_exercise(name, topic_name)
+    classify Exercise.find_by!(name: name), topic_name
   end
 
   def classify(classifiable, topic_name)

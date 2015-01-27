@@ -3,8 +3,8 @@ require "rails_helper"
 feature "subscriber follows trail" do
   scenario "clicks into exercise" do
     exercises = [
-      create(:exercise, title: "First Exercise"),
-      create(:exercise, title: "Second Exercise")
+      create(:exercise, name: "First Exercise"),
+      create(:exercise, name: "Second Exercise")
     ]
     create(:trail, :published, name: "Baby Exercises", exercises: exercises)
 
@@ -16,8 +16,8 @@ feature "subscriber follows trail" do
 
   scenario "sees status based on completed exercises" do
     exercises = [
-      create(:exercise, title: "First Exercise"),
-      create(:exercise, title: "Second Exercise")
+      create(:exercise, name: "First Exercise"),
+      create(:exercise, name: "Second Exercise")
     ]
     create(:trail, :published, name: "Baby Exercises", exercises: exercises)
     user = create(:subscriber)

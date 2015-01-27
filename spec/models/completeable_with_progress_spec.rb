@@ -1,16 +1,16 @@
 require "rails_helper"
 
 describe CompleteableWithProgress do
-  describe "#title" do
+  describe "#name" do
     it "delegates to its completeable" do
-      title = "some-title"
-      exercise = Exercise.new(title: title)
+      name = "some-name"
+      exercise = Exercise.new(name: name)
       completeable_with_progress = CompleteableWithProgress.
         new(exercise, "Unstarted")
 
-      result = completeable_with_progress.title
+      result = completeable_with_progress.name
 
-      expect(result).to eq(title)
+      expect(result).to eq(name)
     end
   end
 

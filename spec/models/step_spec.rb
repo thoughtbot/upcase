@@ -11,12 +11,12 @@ describe Step do
     it { should validate_uniqueness_of(:position).scoped_to(:trail_id) }
   end
 
-  describe "#title" do
-    it "returns the completeable type and title" do
-      completeable = create(:exercise, title: "My Completeable Title")
+  describe "#name" do
+    it "returns the completeable type and name" do
+      completeable = create(:exercise, name: "My Completeable Title")
       step = build(:step, completeable: completeable)
 
-      expect(step.title).to eq "Exercise - My Completeable Title"
+      expect(step.name).to eq "Exercise - My Completeable Title"
     end
   end
 end

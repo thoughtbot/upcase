@@ -9,7 +9,7 @@ describe "PUT /api/v1/exercises/:id" do
       expect(Exercise.count).to eq 1
 
       exercise = Exercise.first
-      expect(exercise.title).to eq exercise_attributes[:title]
+      expect(exercise.name).to eq exercise_attributes[:name]
       expect(exercise.uuid).to eq "uuid-1234"
       expect(exercise.url).to eq exercise_attributes[:url]
       expect(exercise.edit_url).to eq exercise_attributes[:edit_url]
@@ -19,7 +19,7 @@ describe "PUT /api/v1/exercises/:id" do
 
   context "when an exercise with given uuid exists" do
     it "updates the exercise" do
-      create(:exercise, title: "Old Title", uuid: "uuid-1234")
+      create(:exercise, name: "Old Title", uuid: "uuid-1234")
 
       perform_request("uuid-1234", exercise_attributes)
 
@@ -27,7 +27,7 @@ describe "PUT /api/v1/exercises/:id" do
       expect(Exercise.count).to eq 1
 
       exercise = Exercise.first
-      expect(exercise.title).to eq exercise_attributes[:title]
+      expect(exercise.name).to eq exercise_attributes[:name]
     end
   end
 
@@ -47,7 +47,7 @@ describe "PUT /api/v1/exercises/:id" do
     {
       edit_url:
         "https://exercise.upcase.com/admin/exercises/shakespeare-analyzer/edit",
-      title: "Shakespeare Analyzer",
+      name: "Shakespeare Analyzer",
       summary: "Analyse Shakespeare's literature",
       url: "https://exercise.upcase.com/exercises/shakespeare-analyzer"
     }

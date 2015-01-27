@@ -22,13 +22,13 @@ describe Show do
       create_video "unpublished", show: show, published_on: 1.day.from_now
       create_video "other_show", show: other_show, published_on: Time.now
 
-      expect(show.latest_video.title).to eq("latest_published")
+      expect(show.latest_video.name).to eq("latest_published")
     end
 
-    def create_video(title, show:, published_on:)
+    def create_video(name, show:, published_on:)
       create(
         :video,
-        title: title,
+        name: name,
         watchable: show,
         published_on: published_on
       )

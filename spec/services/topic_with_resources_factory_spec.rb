@@ -6,13 +6,13 @@ describe TopicWithResourcesFactory do
       topic = create(:topic)
       other_topic = create(:topic)
       resources = [
-        create(:video, :published, title: "video-one"),
+        create(:video, :published, name: "video-one"),
         create(:video_tutorial, name: "video_tutorial-one"),
       ]
       resources.each do |classifiable|
         topic.classifications.create!(classifiable: classifiable)
       end
-      other_resource = create(:exercise, title: "exercise-two")
+      other_resource = create(:exercise, name: "exercise-two")
       other_topic.classifications.create!(classifiable: other_resource)
       factory = TopicWithResourcesFactory.new(catalog: Catalog.new)
 
