@@ -193,6 +193,7 @@ RailsAdmin.config do |config|
 
         field :position
         field :published_on
+        field :users
       end
 
       group :wistia do

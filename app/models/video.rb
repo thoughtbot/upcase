@@ -8,6 +8,7 @@ class Video < ActiveRecord::Base
   has_many :teachers
   has_many :topics, through: :classifications
   has_many :trails, through: :steps
+  has_many :users, through: :teachers
 
   validates :published_on, presence: true
   validates :slug, presence: true, uniqueness: true

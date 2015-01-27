@@ -7,6 +7,7 @@ describe Video do
   it { should have_many(:steps).dependent(:destroy) }
   it { should have_many(:topics).through(:classifications) }
   it { should have_many(:trails).through(:steps) }
+  it { should have_many(:users).through(:teachers) }
 
   it { should validate_presence_of(:published_on) }
   it { should validate_presence_of(:slug) }
