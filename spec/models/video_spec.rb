@@ -5,6 +5,7 @@ describe Video do
   it { should have_many(:classifications) }
   it { should have_many(:statuses).dependent(:destroy) }
   it { should have_many(:steps).dependent(:destroy) }
+  it { should have_many(:teachers).dependent(:destroy) }
   it { should have_many(:topics).through(:classifications) }
   it { should have_many(:trails).through(:steps) }
   it { should have_many(:users).through(:teachers) }
