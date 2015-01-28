@@ -130,7 +130,7 @@ RailsAdmin.config do |config|
   config.model Exercise do
     list do
       field :id
-      field :title
+      field :name
     end
 
     edit do
@@ -176,13 +176,13 @@ RailsAdmin.config do |config|
         end
       end
 
-      field :title
+      field :name
       field :created_at
     end
 
     edit do
       group :default do
-        field :title
+        field :name
         field :slug
         field :notes
         field :topics
