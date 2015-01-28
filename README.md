@@ -168,12 +168,13 @@ This application is maintained and funded by [thoughtbot, inc](http://thoughtbot
 
 Thank you to all [the contributors](https://github.com/thoughtbot/upcase/contributors)!
 
-The names and logos for thoughtbot are trademarks of thoughtbot, inc.
+The names and logos for Upcase and thoughtbot are registered trademarks of
+thoughtbot, inc.
 
 License
 -------
 
-This application is Copyright © 2007 thoughtbot, inc. It is provided to Learn
+This application is Copyright © 2007 thoughtbot, inc. It is provided to
 subscribers for educational purposes only, and Subscribers do not have a license
 to reuse or distribute the application or its source code.
 
