@@ -154,6 +154,13 @@ en:
       update:
         success: Your profile has been updated.
 
+  videos:
+    statuses:
+      next-up: "Video"
+      unstarted: "Video"
+      in_progress: "In Progress"
+      complete: "Complete"
+
   watchables:
     preview:
       cta: This video is a preview. <a href="%{subscribe_url}">Subscribe to Upcase</a> to access the full-length video, and all other videos.
