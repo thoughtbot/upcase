@@ -16,7 +16,15 @@
         </h2>
       </section>
 
-      <%= render partial: "practice/trail", collection: @practice.trails %>
+      <section class="active-trails">
+        <h1>Your trails</h1>
+        <%= render partial: "practice/active_trail", collection: @practice.active_trails, as: :trail %>
+      </div>
+
+      <section class="completed-trails">
+        <h1>Completed trails</h1>
+        <%= render partial: "practice/compeleted_trail", collection: @practice.completed_trails, as: :trail %>
+      </div>
 
       <footer>
         <% if @practice.has_completed_trails? %>
