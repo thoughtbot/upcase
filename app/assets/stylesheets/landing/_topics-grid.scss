@@ -1,24 +1,63 @@
+%quarter {
+  @include marketing-fullsize {
+    width: 25%;
+  }
+}
+
+%fifth {
+  @include marketing-fullsize {
+    width: 20%;
+  }
+}
+
+%sixth {
+  @include marketing-fullsize {
+    width: 16.666%;
+  }
+}
+
 .topics-grid {
   background: $base-background-2;
   margin-bottom: 0;
-  padding: 2em 2em 4em;
+  padding: 2em 1.5em 4em;
   position: relative;
 
   ol {
-    @include outer-container;
+    @include display(flex);
+    @include flex-wrap(wrap);
+    margin: 0 auto;
+    max-width: 1116px;
   }
 
   .topic-link {
-    @include span-columns(6);
-    @include omega(2n);
     display: block;
-    margin-bottom: 2.36%;
+    padding: 0.5em;
     text-decoration: none;
+    width: 50%;
 
     @include marketing-small {
-      @include span-columns(3);
-      @include omega-reset(2n);
-      @include omega(4n);
+      width: 33.333%;
+    }
+
+    @each $n in 7, 8 {
+      &:first-child:nth-last-child(#{$n}),
+      &:first-child:nth-last-child(#{$n}) ~ .topic-link {
+        @extend %quarter;
+      }
+    }
+
+    @each $n in 9, 10, 13, 14, 15 {
+      &:first-child:nth-last-child(#{$n}),
+      &:first-child:nth-last-child(#{$n}) ~ .topic-link {
+        @extend %fifth;
+      }
+    }
+
+    @each $n in 6, 11, 12, 16, 17, 18 {
+      &:first-child:nth-last-child(#{$n}),
+      &:first-child:nth-last-child(#{$n}) ~ .topic-link {
+        @extend %sixth;
+      }
     }
   }
 
