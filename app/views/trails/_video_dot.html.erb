@@ -1,5 +1,5 @@
 <% if video.can_be_accessed? %>
-  <%= completeable_link video_path(video), title: video.title do %>
+  <%= completeable_link video_path(video), title: video.name do %>
     <div class="dot"></div>
   <% end %>
 <% else %>
