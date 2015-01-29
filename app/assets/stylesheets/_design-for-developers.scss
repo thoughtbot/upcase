@@ -10,7 +10,7 @@ body.design_for_developers_resources, body.test_driven_rails_resources {
 
       li {
         @include span-columns(4.5 9);
-        @include nth-omega(2n);
+        @include omega(2n);
         margin-left: 0;
         margin-top: 0;
         margin-bottom: 1.5em;
@@ -28,7 +28,7 @@ body.design_for_developers_resources, body.test_driven_rails_resources {
 
       article {
         @include span-columns(4.5 9);
-        @include nth-omega(2n);
+        @include omega(2n);
       }
     }
 
