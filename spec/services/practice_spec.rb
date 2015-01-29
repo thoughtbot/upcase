@@ -42,7 +42,7 @@ describe Practice do
   describe "#active_trails" do
     it "when there are unstarted trails" do
       user = build_stubbed(:user)
-      trail = create(:trail, published: true)
+      trail = create(:trail, :published)
       practice = Practice.new(user)
 
       expect(practice.active_trails).to eq([trail])
@@ -50,7 +50,7 @@ describe Practice do
 
     it "when there are started trails" do
       user = build_stubbed(:user)
-      trail = create(:trail, published: true)
+      trail = create(:trail, :published)
       status = create(:status, completeable: trail, user: user)
       practice = Practice.new(user)
 
@@ -59,8 +59,10 @@ describe Practice do
 
     it "when there are other old completed trails" do
       user = build_stubbed(:user)
-      trail = create(:trail, published: true)
-      create(:status, :completed, completeable: trail, user: user)
+      trail = create(:trail, :published)
+      Timecop.travel(1.week.ago) do
+        create(:status, :completed, completeable: trail, user: user)
+      end
       practice = Practice.new(user)
 
       expect(practice.active_trails).to be_empty
