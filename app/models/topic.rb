@@ -16,8 +16,13 @@ class Topic < ActiveRecord::Base
   has_one :legacy_trail
   has_many :trails
 
+  has_attached_file :image, {
+    path: "topics/:attachment/:id_partition/:style/:filename"
+  }.merge(PAPERCLIP_STORAGE_OPTIONS)
+
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   friendly_id :name, use: [:slugged, :finders]
 

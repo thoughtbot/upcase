@@ -60,4 +60,8 @@ Upcase::Application.configure do
   ENV['AWS_SECRET_ACCESS_KEY'] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
   config.middleware.use Clearance::BackDoor
+
+  config.assets.configure do |env|
+    env.cache = ActiveSupport::Cache.lookup_store(:memory_store)
+  end
 end

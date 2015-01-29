@@ -294,17 +294,21 @@ ActiveRecord::Schema.define(version: 20150203153815) do
   end
 
   create_table "topics", force: :cascade do |t|
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "keywords"
-    t.string   "name",                         null: false
-    t.string   "slug",                         null: false
+    t.string   "name",                               null: false
+    t.string   "slug",                               null: false
     t.text     "summary"
     t.integer  "count"
-    t.boolean  "featured",     default: false, null: false
-    t.boolean  "explorable",   default: false, null: false
-    t.string   "color",        default: "",    null: false
-    t.string   "color_accent", default: "",    null: false
+    t.boolean  "featured",           default: false, null: false
+    t.boolean  "explorable",         default: false, null: false
+    t.string   "color",              default: "",    null: false
+    t.string   "color_accent",       default: "",    null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "topics", ["explorable"], name: "index_topics_on_explorable", using: :btree
