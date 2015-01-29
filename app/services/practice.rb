@@ -1,13 +1,8 @@
 class Practice
+  attr_reader :user
+
   def initialize(user)
     @user = user
-  end
-
-  def trails
-    Trail.
-      most_recent_published.
-      map { |trail| TrailWithProgress.new(trail, user: @user) }.
-      select(&:active?)
   end
 
   def has_completed_trails?
@@ -15,12 +10,17 @@ class Practice
   end
 
   def completed_trails
-    Status.completed.by_user(@user).by_type("Trail").
-    map(&:completeable)
+    trails.select(&:complete?)
   end
 
-  def incompleted_trails
-    Status.incompleted.by_user(@user).by_type("Trail").
-    map(&:completeable)
+  def active_trails
+    trails.select(&:active?)
+  end
+
+  private
+  def trails
+    Trail.
+    most_recent_published.
+    map { |trail| TrailWithProgress.new(trail, user: user) }
   end
 end
