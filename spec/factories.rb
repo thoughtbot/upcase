@@ -453,7 +453,9 @@ FactoryGirl.define do
     association :completeable, factory: :exercise
 
     trait :completed do
-      state Status::COMPLETE
+      Timecop.travel(1.week.ago) do
+        state Status::COMPLETE
+      end
     end
   end
 
@@ -469,7 +471,7 @@ FactoryGirl.define do
 
     trait :completed do
       after :create do |instance|
-        create(:status, completeable: instance, state: Status::COMPLETE)
+        create(:status, :completed, completeable: instance)
       end
     end
   end
