@@ -10,12 +10,12 @@ feature "Subscriber views completed trails" do
 
     visit practice_path
 
-    within '.completed-trails' do
+    within ".completed-trails" do
       expect(page).to have_content(completed_trail.name)
       expect(page).to have_no_content(incomplete_trail.name)
     end
 
-    within '.active-trails' do
+    within ".active-trails" do
       expect(page).to have_no_content(completed_trail.name)
       expect(page).to have_content(incomplete_trail.name)
     end

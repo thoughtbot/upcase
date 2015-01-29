@@ -18,9 +18,10 @@ class Practice
   end
 
   private
+
   def trails
     Trail.
-    most_recent_published.
-    map { |trail| TrailWithProgress.new(trail, user: user) }
+      most_recent_published.
+      map { |trail| TrailWithProgress.new(trail, user: user) }
   end
 end

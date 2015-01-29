@@ -31,7 +31,7 @@ describe Practice do
 
     it "when there are incomplete trails" do
       user = create(:user)
-      trail =  create(:trail, :published)
+      trail = create(:trail, :published)
       create(:status, completeable: trail, user: user)
       practice = Practice.new(user)
 
@@ -51,7 +51,7 @@ describe Practice do
     it "when there are started trails" do
       user = build_stubbed(:user)
       trail = create(:trail, :published)
-      status = create(:status, completeable: trail, user: user)
+      create(:status, completeable: trail, user: user)
       practice = Practice.new(user)
 
       expect(practice.active_trails).to eq([trail])

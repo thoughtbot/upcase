@@ -16,11 +16,7 @@ class TrailWithProgress < SimpleDelegator
   end
 
   def unstarted?
-    if statuses_by_id.any?
-      false
-    else
-      true
-    end
+    statuses_by_id.empty?
   end
 
   def active?
