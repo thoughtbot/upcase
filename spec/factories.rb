@@ -451,6 +451,10 @@ FactoryGirl.define do
   factory :status do
     user
     association :completeable, factory: :exercise
+
+    trait :completed do
+      state Status::COMPLETE
+    end
   end
 
   factory :trail do

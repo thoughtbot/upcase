@@ -24,7 +24,19 @@ describe Status do
     it "has a default state of In Progress" do
       status = Status.new
 
-      expect(status.state).to eq "In Progress"
+      expect(status.state).to eq Status::IN_PROGRESS
+    end
+
+    it "#self.active" do
+      status = create(:status)
+
+      expect(Status.active).to include(status)
+    end
+
+    it "#self.incompleted" do
+      status = create(:status)
+
+      expect(Status.incompleted).to include(status)
     end
   end
 end

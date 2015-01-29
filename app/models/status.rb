@@ -17,11 +17,11 @@ class Status < ActiveRecord::Base
   end
 
   def self.completed
-    where(state: "Complete")
+    where(state: COMPLETE)
   end
 
   def self.incompleted
-    where.not(state: "Complete")
+    where.not(state: COMPLETE)
   end
 
   def self.by_user(user)
@@ -30,6 +30,10 @@ class Status < ActiveRecord::Base
 
   def self.by_type(type)
     where(completeable_type: type)
+  end
+
+  def self.active
+    where(state: [UNSTARTED, IN_PROGRESS])
   end
 
   def unstarted?
