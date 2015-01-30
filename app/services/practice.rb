@@ -1,6 +1,4 @@
 class Practice
-  attr_reader :user
-
   def initialize(user)
     @user = user
   end
@@ -18,6 +16,8 @@ class Practice
   end
 
   private
+
+  attr_reader :user
 
   def trails
     Trail.
