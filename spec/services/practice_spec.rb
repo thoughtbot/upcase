@@ -1,22 +1,6 @@
 require "rails_helper"
 
 describe Practice do
-  describe "#trails" do
-    it "decorates the most recent, published trails" do
-      practice = Practice.new(user)
-      trail_show = stub("undecorated_show")
-      trail_hide = stub("undecorated_hide")
-      Trail.stubs(:most_recent_published).returns([trail_show, trail_hide])
-      _hidden = setup_trail_with_progress(trail_hide, active: false)
-      trail_with_progress_show = setup_trail_with_progress(
-        trail_show,
-        active: true
-      )
-
-      expect(practice.trails).to eq([trail_with_progress_show])
-    end
-  end
-
   describe "#has_completed_trails?" do
     it "returns false if it has no completed trails" do
       user = build_stubbed(:user)
@@ -25,31 +9,63 @@ describe Practice do
       expect(practice).not_to have_completed_trails
     end
 
-    it "returns true if it has completed trails" do
+    it "returns true if it has completed published trails" do
       user = create(:user)
-      trail = create(:trail)
-      create(:status, completeable: trail, state: "Complete", user: user)
+      trail =  create(:trail, :published)
+      create(:status, :completed, completeable: trail, user: user)
       practice = Practice.new(user)
 
       expect(practice).to have_completed_trails
     end
   end
 
-  def setup_trail_with_progress(trail, active:)
-    trail_with_progress = stub(
-      "trail_with_progress_#{active}",
-      active?: active
-    )
+  describe "#completed_trails" do
+    it "when there are completed trails" do
+      user = create(:user)
+      trail =  create(:trail, :published)
+      create(:status, :completed, completeable: trail, user: user)
+      practice = Practice.new(user)
 
-    TrailWithProgress.
-      stubs(:new).
-      with(trail, user: user).
-      returns(trail_with_progress)
+      expect(practice.completed_trails).to eq([trail])
+    end
 
-    trail_with_progress
+    it "when there are incomplete trails" do
+      user = create(:user)
+      trail = create(:trail, :published)
+      create(:status, completeable: trail, user: user)
+      practice = Practice.new(user)
+
+      expect(practice.completed_trails).to be_empty
+    end
   end
 
-  def user
-    @user ||= stub(:user)
+  describe "#active_trails" do
+    it "when there are unstarted trails" do
+      user = build_stubbed(:user)
+      trail = create(:trail, :published)
+      practice = Practice.new(user)
+
+      expect(practice.active_trails).to eq([trail])
+    end
+
+    it "when there are started trails" do
+      user = build_stubbed(:user)
+      trail = create(:trail, :published)
+      create(:status, completeable: trail, user: user)
+      practice = Practice.new(user)
+
+      expect(practice.active_trails).to eq([trail])
+    end
+
+    it "when there are other old completed trails" do
+      user = build_stubbed(:user)
+      trail = create(:trail, :published)
+      Timecop.travel(1.week.ago) do
+        create(:status, :completed, completeable: trail, user: user)
+      end
+      practice = Practice.new(user)
+
+      expect(practice.active_trails).to be_empty
+    end
   end
 end

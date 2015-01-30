@@ -10,9 +10,6 @@ feature "Completed Trails" do
 
     visit root_path
 
-    expect(page).not_to have_content(complete_trail.name)
-    expect(page).to have_content(just_finished_trail.name)
-
     click_on "View completed trails →"
 
     expect(page).to have_content(complete_trail.name)
@@ -20,13 +17,10 @@ feature "Completed Trails" do
   end
 
   def create_trail(completed_at:)
-    trail = create(:trail, :published, name: "Trail #{completed_at}")
-    Status.create!(
-      user: user,
-      completeable: trail,
-      state: Status::COMPLETE,
-      created_at: completed_at
-    )
+    trail = create(:trail, :published)
+    Timecop.travel(completed_at) do
+      create(:status, :completed, completeable: trail, user: user)
+    end
     trail
   end
 end
