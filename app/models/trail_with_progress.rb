@@ -1,5 +1,5 @@
 class TrailWithProgress < SimpleDelegator
-  delegate :unstarted?, :in_progress?, :complete?, to: :status
+  delegate :in_progress?, :complete?, to: :status
 
   def initialize(trail, user:)
     super(trail)
@@ -11,8 +11,16 @@ class TrailWithProgress < SimpleDelegator
     complete? && status.created_at >= 5.days.ago
   end
 
+  def incomplete?
+    unstarted? || in_progress?
+  end
+
+  def unstarted?
+    statuses_by_id.empty?
+  end
+
   def active?
-    unstarted? || in_progress? || just_finished?
+    incomplete? || just_finished?
   end
 
   def update_status
