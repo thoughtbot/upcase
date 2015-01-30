@@ -27,16 +27,20 @@ describe Status do
       expect(status.state).to eq Status::IN_PROGRESS
     end
 
-    it "#self.active" do
-      status = create(:status)
+    describe ".active" do
+      it "start state is considered active" do
+        status = create(:status)
 
-      expect(Status.active).to include(status)
+        expect(Status.active).to include(status)
+      end
     end
 
-    it "#self.incompleted" do
-      status = create(:status)
+    describe ".incompleted" do
+      it "#self.incompleted" do
+        status = create(:status)
 
-      expect(Status.incompleted).to include(status)
+        expect(Status.incompleted).to include(status)
+      end
     end
   end
 end

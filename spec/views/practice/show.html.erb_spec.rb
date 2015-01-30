@@ -58,11 +58,13 @@ describe "practice/show.html" do
     completed = options[:has_completed_trails]
     assign(
       :practice,
-      stub(shows: [],
+      stub(
+           shows: [],
            topics: [],
            active_trails: [],
            completed_trails: [],
-           has_completed_trails?: completed)
+           has_completed_trails?: completed
+          )
     )
     view_stubs(:current_user).returns(build_stubbed(:user))
     view_stubs(:current_user_has_active_subscription?).returns(true)
