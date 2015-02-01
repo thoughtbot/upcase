@@ -90,6 +90,14 @@ describe SubscriptionMailer do
       )
     end
 
+    it "links to the forum" do
+      Forum.stubs(url: "https://forum.example.com")
+
+      expect(subscription_receipt_email).to(
+        have_body_text("https://forum.example.com")
+      )
+    end
+
     def subscription_receipt_email
       SubscriptionMailer.subscription_receipt(
         'email@example.com',
