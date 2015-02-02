@@ -18,15 +18,21 @@
 
       <% if @practice.active_trails.any? %>
         <section class="active-trails">
-          <h1>Your trails</h1>
+          <span class="divider">
+            <h4 class="text">Your Trails</h4>
+          </span>
           <%= render partial: "practice/active_trail", collection: @practice.active_trails, as: :trail %>
         </section>
       <% end %>
 
       <% if @practice.completed_trails.any? %>
-        <section class="completed-trails">
-          <h1>Completed trails</h1>
-          <%= render partial: "practice/compeleted_trail", collection: @practice.completed_trails, as: :trail %>
+        <section class="completed-trails trails-progress">
+          <span class="divider">
+            <h4 class="text">Completed Trails</h4>
+          </span>
+          <section class="trails-complete">
+            <%= render partial: "completed_trails/trail", collection: @practice.completed_trails, as: :trail %>
+          </section>
         </section>
       <% end %>
 

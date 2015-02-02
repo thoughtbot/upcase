@@ -1,4 +1,4 @@
-<div class="completed">
+<div class="complete">
   <section class="trail <%= topic_class(trail.topic) %>">
     <header>
       <span class="topic-label"><%= trail.topic.name %></span>
@@ -7,7 +7,10 @@
 
     <div class="just-finished-mask">
       <section class="progress completed">
-        <%= render partial: "trails/exercise_dot", collection: trail.exercises %>
+        <%= render(
+          partial: "steps/steps",
+          locals: { completeables: trail.completeables }
+        ) %>
       </section>
     </div>
 

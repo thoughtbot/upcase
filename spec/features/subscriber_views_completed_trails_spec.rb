@@ -1,3 +1,4 @@
+# coding: utf-8
 require "rails_helper"
 
 feature "Completed Trails" do
@@ -17,10 +18,12 @@ feature "Completed Trails" do
   end
 
   def create_trail(completed_at:)
+    completed_exercise = create(:status, :completed, user: user).completeable
     trail = create(:trail, :published)
     Timecop.travel(completed_at) do
       create(:status, :completed, completeable: trail, user: user)
     end
+    create(:step, trail: trail, completeable: completed_exercise)
     trail
   end
 end

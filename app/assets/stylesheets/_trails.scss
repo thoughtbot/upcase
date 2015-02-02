@@ -331,13 +331,14 @@ $not-started-dot-color: #D8D8D8;
     @include flex-direction(row);
     @include flex-wrap(wrap);
     @include justify-content(space-around);
+    margin-bottom: 5em;
   }
 
   .complete {
     width: 47%;
     border: 10px solid $gray-5;
     height: $card-height;
-    margin: 30px 0 0;
+    margin: 0 0 30px;
     padding: $card-padding;
     position: relative;
 
@@ -447,6 +448,7 @@ $not-started-dot-color: #D8D8D8;
   .just-finished {
     position: relative;
     z-index: -1;
+    width: 100%;
 
     h1 {
       width: 100%;
