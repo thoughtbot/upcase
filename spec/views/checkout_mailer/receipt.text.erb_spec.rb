@@ -2,9 +2,9 @@ require "rails_helper"
 
 describe "checkout_mailer/receipt.text" do
   it "renders receipt with trails_url" do
-    @checkout = build_stubbed(:checkout)
+    @plan = build_stubbed(:plan)
 
-    render template: "checkout_mailer/receipt", checkout: @checkout
+    render template: "checkout_mailer/receipt", plan: @plan
 
     expect(rendered).to include(trails_url)
   end

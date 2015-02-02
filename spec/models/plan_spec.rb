@@ -66,6 +66,14 @@ describe Plan do
     end
   end
 
+  describe "#basic?" do
+    it "returns true when is a weekly iteration" do
+      plan = build(:basic_plan)
+
+      expect(plan).to be_basic
+    end
+  end
+
   describe "subscription_interval" do
     it "returns the interval from the stripe plan" do
       plan = build_stubbed(:plan)
