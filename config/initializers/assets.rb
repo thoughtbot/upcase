@@ -4,4 +4,4 @@
 Rails.application.config.assets.version = "1.0"
 
 # Precompile additional assets.
-Rails.application.config.assets.precompile += %w( print.css prefilled_input.js )
+Rails.application.config.assets.precompile += %w( print.css )
