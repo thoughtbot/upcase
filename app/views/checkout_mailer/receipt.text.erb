@@ -4,8 +4,12 @@ Thank you for subscribing to <%= @plan.name %>!
 You will receive an email from your mentor soon.
 <%- end -%>
 
+Feel free to respond to this email and give us an idea of your background,
+experience, and what you'd like to learn next. We'll respond with some
+pointers for where to get started.
+
 <%- if @plan.has_feature?(:exercises) %>
-In the meantime, one of the first things you might do is visit our Trail Maps
+In additon, one of the first things you might do is visit our Trail Maps
 and check off your skills to identify new things to learn:
 <%= trails_url %>
 <%- end -%>
