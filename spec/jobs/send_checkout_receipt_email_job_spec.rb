@@ -23,7 +23,7 @@ describe SendCheckoutReceiptEmailJob do
 
       SendCheckoutReceiptEmailJob.new(checkout.id).perform
 
-      expect(CheckoutMailer).to have_received(:receipt).with(checkout)
+      expect(CheckoutMailer).to have_received(:receipt).with(checkout.user_email, checkout.plan_id)
       expect(mail_stub).to have_received(:deliver_now)
     end
   end

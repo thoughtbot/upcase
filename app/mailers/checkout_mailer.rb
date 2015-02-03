@@ -1,9 +1,9 @@
 class CheckoutMailer < BaseMailer
-  def receipt(checkout)
-    @plan = checkout.plan
+  def receipt(user_email, plan_id)
+    @plan = Plan.find(plan_id)
 
     mail(
-      to: checkout.user_email,
+      to: user_email,
       subject: "Your receipt for #{@plan.name}"
     )
   end

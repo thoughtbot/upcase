@@ -1,40 +1,31 @@
 require "rails_helper"
 
 describe CheckoutMailer do
-  describe '.receipt' do
+  describe ".receipt" do
     include Rails.application.routes.url_helpers
 
-    context 'for user who has a subscription' do
-      describe 'for a subscription product' do
-        it 'includes support' do
-          user = create(:subscriber)
-          checkout = create(:checkout, user: user)
+    context "for user who has a subscription" do
+      describe "for a subscription product" do
+        it "includes support" do
+          checkout = create(:checkout)
 
           expect(email_for(checkout)).to have_body_text(/support/)
         end
 
-        it 'has a thank you for subscribing' do
-          user = create(:subscriber)
-          checkout = create(:checkout, user: user)
+        it "has a thank you for subscribing" do
+          checkout = create(:checkout)
 
           expect(email_for(checkout)).to have_body_text(/Thank you for subscribing/)
         end
 
-        it 'mentions the mentor email' do
-          plan = create(:plan, :includes_mentor)
-          user = create(:subscriber, plan: plan)
-          checkout = create(:checkout, user: user, plan: plan)
+        it "mentions the mentor email" do
+          checkout = create(:checkout, plan: create(:plan, :includes_mentor))
 
           expect(email_for(checkout)).to have_body_text(/mentor/)
         end
 
-        it 'does not mention the features the user does not have' do
-          user = create(:subscriber)
-          checkout = create(
-            :checkout,
-            user: user,
-            plan: create(:basic_plan)
-          )
+        it "does not mention the features the user does not have" do
+          checkout = create(:checkout, plan: create(:basic_plan))
 
           expect(email_for(checkout)).not_to have_body_text(/mentor/)
           expect(email_for(checkout)).not_to have_body_text(/video_tutorials/)
@@ -51,12 +42,7 @@ describe CheckoutMailer do
     end
 
     def email_for(checkout)
-      CheckoutMailer.receipt(checkout)
-    end
-
-    def checkout
-      @checkout ||= create(:checkout, created_at: Time.zone.now, email: 'joe@example.com',
-                           lookup: 'asdf', name: 'Joe Smith')
+      CheckoutMailer.receipt("basic@exmaple.com", checkout.plan.id)
     end
   end
 end
