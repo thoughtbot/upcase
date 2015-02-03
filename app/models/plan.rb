@@ -47,10 +47,6 @@ class Plan < ActiveRecord::Base
     self == self.class.popular
   end
 
-  def includes_exercises?
-    sku != THE_WEEKLY_ITERATION_SKU
-  end
-
   def subscription_interval
     stripe_plan.interval
   end
