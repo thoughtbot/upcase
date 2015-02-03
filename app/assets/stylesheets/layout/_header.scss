@@ -132,7 +132,14 @@ body.passwords-create {
     }
 
     .account a {
-      padding: 1rem;
+      background: image-url("account.svg") center center no-repeat;
+      background-size: em(26);
+      padding: em(15);
+      width: $navigation-height + 1px;
+
+      img {
+        @include linear-gradient(#3481ea, #118ed5);
+      }
     }
 
     .subscription a {
