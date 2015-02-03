@@ -4,13 +4,9 @@ Thank you for subscribing to <%= @plan.name %>!
 You will receive an email from your mentor soon.
 <%- end -%>
 
-<%- unless @plan.basic? %>
+<%- if @plan.has_feature?(:exercises) %>
   In the meantime, one of the first things you might do is visit our Trail Maps
-  <%- if @plan.has_feature?(:video_tutorials) -%>
-  and check off your skills to determine which video tutorials are right for you:
-  <%- else -%>
   and check off your skills to identify new things to learn:
-  <%- end -%>
   <%= trails_url %>
 <%- end -%>
 

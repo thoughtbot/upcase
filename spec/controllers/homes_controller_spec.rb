@@ -27,7 +27,7 @@ describe HomesController do
 
   it "redirects to The Weekly Iteration if subscriber has no exercise access" do
     create(:show, name: Show::THE_WEEKLY_ITERATION)
-    plan = build_stubbed(:plan, includes_exercises: false)
+    plan = build_stubbed(:basic_plan)
     subscriber = create(:user, :with_subscription, plan: plan)
     sign_in_as subscriber
 

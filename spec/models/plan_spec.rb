@@ -66,14 +66,6 @@ describe Plan do
     end
   end
 
-  describe "#basic?" do
-    it "returns true when is a weekly iteration" do
-      plan = build(:basic_plan)
-
-      expect(plan).to be_basic
-    end
-  end
-
   describe "subscription_interval" do
     it "returns the interval from the stripe plan" do
       plan = build_stubbed(:plan)
@@ -120,6 +112,18 @@ describe Plan do
     it "raises an exception with an invalid feature name" do
       plan = build_stubbed(:plan)
       expect{ plan.has_feature?(:foo) }.to raise_error
+    end
+
+    it "returns false when weekly iteration cannot access trails" do
+      plan = build(:basic_plan)
+
+      expect(plan).to_not have_feature(:exercises)
+    end
+
+    it "returns true when a plan can access trails" do
+      plan = build(:plan)
+
+      expect(plan).to have_feature(:exercises)
     end
   end
 

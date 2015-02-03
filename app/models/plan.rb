@@ -47,8 +47,8 @@ class Plan < ActiveRecord::Base
     self == self.class.popular
   end
 
-  def basic?
-    sku == THE_WEEKLY_ITERATION_SKU
+  def includes_exercises?
+    sku != THE_WEEKLY_ITERATION_SKU
   end
 
   def subscription_interval
