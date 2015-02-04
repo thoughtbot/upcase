@@ -48,8 +48,14 @@ body.videos-show {
     list-style-type: none;
   }
 
-  aside > div {
-    margin-bottom: 1.25rem;
+  aside {
+    > div {
+      margin-bottom: 1.25rem;
+    }
+
+    .button {
+      width: 100%;
+    }
   }
 
   @include body-mobile {
