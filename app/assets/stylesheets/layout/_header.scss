@@ -137,6 +137,10 @@ body.passwords-create {
       padding: em(15);
       width: $navigation-height + 1px;
 
+      @media screen and (max-width: 755px) {
+        width: 100%;
+      }
+
       img {
         @include linear-gradient(#3481ea, #118ed5);
       }
