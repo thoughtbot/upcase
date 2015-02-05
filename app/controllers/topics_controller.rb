@@ -1,9 +1,7 @@
 class TopicsController < ApplicationController
   def index
     respond_to do |format|
-      format.css do
-        render text: assets.find_asset("topics.scss.erb").to_s
-      end
+      format.css
     end
 
     fresh_when(
