@@ -34,8 +34,8 @@ describe Subscriber::InvoicesController do
               :subscriber,
               stripe_customer_id: FakeStripe::CUSTOMER_ID
             )
-            invoice = stub(user: user)
-            Invoice.stubs(:new).returns(invoice)
+            invoice = double(user: user)
+            allow(Invoice).to receive(:new).and_return(invoice)
             sign_in_as user
 
             get :show, id: FakeStripe::INVOICE_ID

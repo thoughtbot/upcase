@@ -6,7 +6,7 @@ describe SendCheckoutReceiptEmailJob do
   describe '.enqueue' do
     it "enqueues a job" do
       checkout = create(:checkout)
-      Delayed::Job.stubs(:enqueue)
+      allow(Delayed::Job).to receive(:enqueue)
 
       SendCheckoutReceiptEmailJob.enqueue(checkout.id)
 

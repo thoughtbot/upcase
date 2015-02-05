@@ -27,13 +27,13 @@ describe Invitation do
 
       result = invitation.deliver
 
-      expect(mailer).to have_received(:invitation).never
+      expect(mailer).not_to have_received(:invitation)
       expect(result).to be false
     end
 
     def stub_mailer
-      stub("mailer", :invitation).tap do |mailer|
-        InvitationMailer.stubs(:delay).returns(mailer)
+      spy("mailer").tap do |mailer|
+        allow(InvitationMailer).to receive(:delay).and_return(mailer)
       end
     end
   end
@@ -90,7 +90,7 @@ describe Invitation do
     it "adds the user to the team" do
       Timecop.freeze Time.now.beginning_of_day do
         team = build_stubbed(:team)
-        team.stubs(:add_user)
+        allow(team).to receive(:add_user)
         user = create(:user)
         invitation = create(:invitation, team: team)
 

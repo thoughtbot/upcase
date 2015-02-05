@@ -23,8 +23,8 @@ describe Acceptance do
 
     it "requires user password if user is pre-existing" do
       user = build_stubbed(:user, :with_github, password: "password")
-      user.stubs(:authenticated?).returns(false)
-      User.stubs(:find_by).returns(user)
+      allow(user).to receive(:authenticated?).and_return(false)
+      allow(User).to receive(:find_by).and_return(user)
       acceptance = build(:acceptance, email: user.email, password: "other")
 
       expect(acceptance).to be_invalid
@@ -40,7 +40,7 @@ describe Acceptance do
 
     it "ensures the invitation has not been accepted" do
       invitation = build_stubbed(:invitation)
-      invitation.stubs(:accepted?).returns(true)
+      allow(invitation).to receive(:accepted?).and_return(true)
       acceptance = build(:acceptance, invitation: invitation)
 
       expect(acceptance).to be_invalid
@@ -69,7 +69,7 @@ describe Acceptance do
   describe "#save" do
     it "accepts an invitation for a new user" do
       invitation = build_stubbed(:invitation)
-      invitation.stubs(:accept)
+      allow(invitation).to receive(:accept)
       acceptance = build(:acceptance, invitation: invitation)
 
       result = acceptance.save

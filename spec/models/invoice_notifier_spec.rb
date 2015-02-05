@@ -15,7 +15,7 @@ describe InvoiceNotifier do
 
     context 'invoice has no user' do
       it 'sends a notification to Airbrake for further debugging' do
-        Airbrake.stubs(:notify_or_ignore)
+        allow(Airbrake).to receive(:notify_or_ignore)
         payment_processor =
           InvoiceNotifier.new(stub_invoice_with_no_user)
 
@@ -27,7 +27,7 @@ describe InvoiceNotifier do
   end
 
   def stub_invoice
-    stub(
+    double(
       'invoice',
       user: true,
       user_email: 'someone@example.com',
@@ -37,7 +37,7 @@ describe InvoiceNotifier do
   end
 
   def stub_invoice_with_no_user
-    stub(
+    double(
       'invoice',
       user: nil,
       user_email: nil,

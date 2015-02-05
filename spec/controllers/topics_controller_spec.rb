@@ -22,7 +22,7 @@ describe TopicsController do
   context "#show" do
     it "renders the show page for a found topic" do
       topic = stubbed_topic
-      Topic.stubs(:find).with(topic.to_param).returns(topic)
+      allow(Topic).to receive(:find).with(topic.to_param).and_return(topic)
 
       get :show, id: topic
 
@@ -40,7 +40,7 @@ describe TopicsController do
 
     it "renders 406 when an invalid format is used" do
       topic = stubbed_topic
-      Topic.stubs(:find).with(topic.to_param).returns(topic)
+      allow(Topic).to receive(:find).with(topic.to_param).and_return(topic)
 
       expect do
         get :show, id: topic, format: "txt"
@@ -51,10 +51,7 @@ describe TopicsController do
 
   def setup_stubbed_topics
     topics = [stubbed_topic]
-    Mocha::Configuration.allow(:stubbing_non_existent_method) do
-      topics.stubs(:maximum).with(:updated_at).returns(Time.now)
-    end
-    Topic.stubs(:with_colors).returns(topics)
+    allow(topics).to receive(:maximum).with(:updated_at).and_return(Time.now)
   end
 
   def stubbed_topic

@@ -30,9 +30,8 @@ describe ProductsHelper do
 
   def stub_access(features)
     features.each do |name, access|
-      Mocha::Configuration.allow(:stubbing_non_existent_method) do
-        helper.stubs(:current_user_has_access_to?).with(name).returns(access)
-      end
+      allow(helper).to receive(:current_user_has_access_to?).with(name).
+        and_return(access)
     end
   end
 end

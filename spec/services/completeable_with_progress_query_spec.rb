@@ -44,7 +44,7 @@ describe CompleteableWithProgressQuery do
   describe "#includes" do
     it "calls includes in underlying completeables array" do
       user = User.new
-      completeables = stub("completeables", includes: nil)
+      completeables = double("completeables", includes: nil)
       query = CompleteableWithProgressQuery.
         new(user: user, completeables: completeables)
 

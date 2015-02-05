@@ -3,8 +3,8 @@ require "rails_helper"
 describe InvitationsController do
   it_behaves_like "must be team owner" do
     def perform_request
-      invitation = stub('invitation', deliver: true)
-      Invitation.stubs(:new).returns(invitation)
+      invitation = double("invitation", deliver: true)
+      allow(Invitation).to receive(:new).and_return(invitation)
 
       post :create, invitation: { email: 'somebody@example.com' }
     end

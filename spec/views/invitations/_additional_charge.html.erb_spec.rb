@@ -4,7 +4,7 @@ describe "invitations/_additional_charge.html" do
   context "the team will stay under the minimum" do
     it "returns nothing if the team is below the minimum" do
       team = build_stubbed(:team)
-      team.stubs(below_minimum_users?: true)
+      allow(team).to receive(:below_minimum_users?).and_return(true)
 
       render "invitations/additional_charge", team: team
 
@@ -15,7 +15,7 @@ describe "invitations/_additional_charge.html" do
   context "the team will go above the minimum" do
     it "returns the amount and interval" do
       team = build_stubbed(:team)
-      team.stubs(below_minimum_users?: false)
+      allow(team).to receive(:below_minimum_users?).and_return(false)
       price = number_to_currency(team.plan.price, precision: 0)
       interval = team.plan.subscription_interval
 

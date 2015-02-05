@@ -34,8 +34,8 @@ describe FeatureFulfillment do
   end
 
   def stub_mentor_feature
-    stub(fulfill: nil, unfulfill: nil).tap do |mentor_feature|
-      Features::Mentor.stubs(:new).returns(mentor_feature)
+    double(fulfill: nil, unfulfill: nil).tap do |mentor_feature|
+      allow(Features::Mentor).to receive(:new).and_return(mentor_feature)
     end
   end
 end

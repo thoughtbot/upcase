@@ -12,11 +12,9 @@ describe 'video_tutorials/show.html.erb' do
     assign(:offering, video_tutorial)
     assign(:section_teachers, [])
     assign(:sections, [])
-    Mocha::Configuration.allow :stubbing_non_existent_method do
-      view.stubs(signed_in?: false)
-      view.stubs(current_user_has_active_subscription?: false)
-      view.stubs(current_user_has_access_to?: false)
-    end
+    view_stub_with_return(signed_in?: false)
+    view_stub_with_return(current_user_has_active_subscription?: false)
+    view_stub_with_return(current_user_has_access_to?: false)
 
     render template: 'video_tutorials/show', video_tutorial: video_tutorial
 

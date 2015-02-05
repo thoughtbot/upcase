@@ -4,7 +4,8 @@ describe InvitationMailer do
   describe '#invitation' do
     it 'delivers an invitation email' do
       invitation = build_stubbed(:invitation)
-      Invitation.stubs(:find).with(invitation.id).returns(invitation)
+      allow(Invitation).to receive(:find).with(invitation.id).
+        and_return(invitation)
 
       email = InvitationMailer.invitation(invitation.id)
 

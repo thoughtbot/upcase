@@ -2,8 +2,9 @@ require "rails_helper"
 
 describe 'videos/_download_link.html.erb' do
   it "includes the clip's download url" do
-    clip = stub('clip')
-    clip.stubs(:download_url).returns('http://example.com/download')
+    clip = double("clip")
+    allow(clip).to receive(:download_url).
+      and_return("http://example.com/download")
 
     render_partial(clip)
 

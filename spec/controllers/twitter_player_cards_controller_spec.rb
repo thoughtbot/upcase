@@ -18,6 +18,6 @@ describe TwitterPlayerCardsController do
   end
 
   def stub_video
-    Video.stubs(find: build_stubbed(:video))
+    allow(Video).to receive(:find).and_return(build_stubbed(:video))
   end
 end

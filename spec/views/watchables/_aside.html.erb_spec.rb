@@ -27,8 +27,9 @@ describe "watchables/_aside.html" do
   end
 
   def render_watchable(watchable)
-    view_stubs(:current_user_has_active_subscription?).returns(true)
-    watchable.repositories.stubs(:ordered).returns(watchable.repositories)
+    view_stubs(:current_user_has_active_subscription?).and_return(true)
+    allow(watchable.repositories).to receive(:ordered).
+      and_return(watchable.repositories)
     render "watchables/aside", watchable: watchable
   end
 

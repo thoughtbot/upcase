@@ -38,15 +38,13 @@ describe "practice/_trail.html" do
   def stub_trail(just_finished:, unstarted: false)
     topic = build_stubbed(:topic, slug: "clean+code")
     build_stubbed(:trail, topic: topic).tap do |trail|
-      Mocha::Configuration.allow(:stubbing_non_existent_method) do
-        trail.stubs(:unstarted?).returns(unstarted)
-        trail.stubs(:just_finished?).returns(just_finished)
-      end
+      allow(trail).to receive(:unstarted?).and_return(unstarted)
+      allow(trail).to receive(:just_finished?).and_return(just_finished)
     end
   end
 
   def render_trail(trail)
-    view_stubs(:current_user).returns(build_stubbed(:user))
+    view_stubs(:current_user).and_return(build_stubbed(:user))
     render "practice/trail", trail: trail
   end
 

@@ -12,7 +12,7 @@ describe "videos/_video_for_trail.html" do
   end
 
   def stub_user
-    view_stubs(:current_user_has_access_to?).returns(true)
+    view_stubs(:current_user_has_access_to?).and_return(true)
   end
 
   def build_video_with_progress(state:)

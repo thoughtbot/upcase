@@ -3,7 +3,7 @@ require "rails_helper"
 describe LandingPage do
   describe "#community_size" do
     it "returns the subscriber count" do
-      User.stubs(:subscriber_count).returns(5)
+      allow(User).to receive(:subscriber_count).and_return(5)
 
       result = LandingPage.new.community_size
 
@@ -15,7 +15,7 @@ describe LandingPage do
   describe "#topics" do
     it "returns the explorable topics" do
       topics = [build_stubbed(:topic)]
-      Topic.stubs(:explorable).returns(topics)
+      allow(Topic).to receive(:explorable).and_return(topics)
 
       result = LandingPage.new.topics
 
@@ -27,9 +27,9 @@ describe LandingPage do
   describe "#example_trail" do
     it "returns the first explorable as TrailWithProgress" do
       trail = build_stubbed(:trail)
-      Trail.stubs(:most_recent_published).returns([trail])
-      trail_with_progress = stub
-      TrailWithProgress.stubs(:new).returns(trail_with_progress)
+      allow(Trail).to receive(:most_recent_published).and_return([trail])
+      trail_with_progress = double
+      allow(TrailWithProgress).to receive(:new).and_return(trail_with_progress)
 
       result = LandingPage.new.example_trail
 
@@ -41,7 +41,7 @@ describe LandingPage do
   describe "#primary_plan" do
     it "returns the popular plan" do
       plan = build_stubbed(:plan)
-      Plan.stubs(:popular).returns(plan)
+      allow(Plan).to receive(:popular).and_return(plan)
 
       result = LandingPage.new.primary_plan
 
@@ -53,7 +53,7 @@ describe LandingPage do
   describe "#secondary_plan" do
     it "returns the basic plan" do
       plan = build_stubbed(:plan)
-      Plan.stubs(:basic).returns(plan)
+      allow(Plan).to receive(:basic).and_return(plan)
 
       result = LandingPage.new.secondary_plan
 

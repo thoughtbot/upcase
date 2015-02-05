@@ -3,7 +3,7 @@ require "rails_helper"
 describe "twitter_player_cards/show.html.erb" do
   it "includes a video source" do
     preview_wistia_id = "abc123"
-    video = stub(preview_wistia_id: preview_wistia_id)
+    video = double("video", preview_wistia_id: preview_wistia_id)
 
     assign :video, video
     render

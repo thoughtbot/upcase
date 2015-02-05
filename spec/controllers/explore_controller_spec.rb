@@ -5,8 +5,8 @@ describe ExploreController do
     context "signed in" do
       it "sorts topics by number of resources" do
         sign_in
-        topics = [stub(count: 1), stub(count: 2)]
-        TopicsWithResources.stubs(:new).returns(topics)
+        topics = [double("Topic", count: 1), double("Topic", count: 2)]
+        allow(TopicsWithResources).to receive(:new).and_return(topics)
 
         get :show
 

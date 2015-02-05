@@ -3,7 +3,7 @@ require "rails_helper"
 describe StripeEvents do
   describe "#customer_subscription_deleted" do
     it "sends notifications if no subscription is found" do
-      Airbrake.stubs(:notify_or_ignore)
+      allow(Airbrake).to receive(:notify_or_ignore)
 
       StripeEvents.new(event).customer_subscription_deleted
 
@@ -12,8 +12,8 @@ describe StripeEvents do
 
     it "cancels plan if subscription found" do
       subscription = stub_subscription
-      cancellation = stub(:process)
-      Cancellation.stubs(:new).returns(cancellation)
+      cancellation = spy("Cancellation")
+      allow(Cancellation).to receive(:new).and_return(cancellation)
 
       StripeEvents.new(event).customer_subscription_deleted
 
@@ -24,7 +24,7 @@ describe StripeEvents do
 
   describe "#customer_subscription_updated" do
     it "sends notifications if no local subscription is found" do
-      Airbrake.stubs(:notify_or_ignore)
+      allow(Airbrake).to receive(:notify_or_ignore)
 
       StripeEvents.new(event).customer_subscription_updated
 
@@ -33,8 +33,9 @@ describe StripeEvents do
 
     it "updates subscription plan if local subscription found" do
       subscription = stub_subscription
-      updater = stub(:process)
-      SubscriptionUpcomingInvoiceUpdater.stubs(new: updater)
+      updater = spy("Updater")
+      allow(SubscriptionUpcomingInvoiceUpdater).to receive(:new).
+        and_return(updater)
 
       StripeEvents.new(event).customer_subscription_updated
 
@@ -50,19 +51,24 @@ describe StripeEvents do
 
   def stub_subscription
     subscription = build_stubbed(:subscription)
-    Subscription.stubs(:find_by).returns(subscription)
-    subscription.stubs(:write_plan)
+    allow(Subscription).to receive(:find_by).and_return(subscription)
+    allow(subscription).to receive(:write_plan)
     subscription
   end
 
   def event
-    stub(data: stub(object: stripe_subscription), to_hash: {})
+    double(
+      "Event",
+      data: double("Data", object: stripe_subscription),
+      to_hash: {}
+    )
   end
 
   def stripe_subscription
-    stub(
+    double(
+      "StripeSubscription",
       id: FakeStripe::SUBSCRIPTION_ID,
-      plan: stub(id: FakeStripe::PLAN_ID)
+      plan: double("Plan", id: FakeStripe::PLAN_ID)
     )
   end
 end

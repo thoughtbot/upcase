@@ -67,8 +67,8 @@ describe Invoice do
 
     it 'returns a balance equal to the amount_due when not paid' do
       Invoice.new(FakeStripe::INVOICE_ID)
-      stub_invoice = stub(paid: false, amount_due: 500)
-      Stripe::Invoice.stubs(:retrieve).returns(stub_invoice)
+      stub_invoice = double("StripeInvoice", paid: false, amount_due: 500)
+      allow(Stripe::Invoice).to receive(:retrieve).and_return(stub_invoice)
 
       expect(invoice.balance).to eq 5.00
     end
@@ -76,16 +76,16 @@ describe Invoice do
     describe '#amount_paid' do
       it 'returns zero when not paid' do
         Invoice.new(FakeStripe::INVOICE_ID)
-        stub_invoice = stub(paid: false)
-        Stripe::Invoice.stubs(:retrieve).returns(stub_invoice)
+        stub_invoice = double("StripeInvoice", paid: false)
+        allow(Stripe::Invoice).to receive(:retrieve).and_return(stub_invoice)
 
         expect(invoice.amount_paid).to eq 0.00
       end
 
       it 'returns the amount_due when paid' do
         Invoice.new(FakeStripe::INVOICE_ID)
-        stub_invoice = stub(paid: true, amount_due: 500)
-        Stripe::Invoice.stubs(:retrieve).returns(stub_invoice)
+        stub_invoice = double("StripeInvoice", paid: true, amount_due: 500)
+        allow(Stripe::Invoice).to receive(:retrieve).and_return(stub_invoice)
 
         expect(invoice.amount_paid).to eq 5.00
       end
@@ -131,7 +131,7 @@ describe Invoice do
   describe '#line_items' do
     it 'returns line items for all the stripe invoice lines' do
       lines = [:subscription]
-      stripe_invoice = stub('stripe_invoice', lines: lines)
+      stripe_invoice = double("StripeInvoice", lines: lines)
       invoice = Invoice.new(stripe_invoice)
 
       stripe_line_items = stripe_invoice.lines

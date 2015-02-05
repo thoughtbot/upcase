@@ -2,12 +2,10 @@ shared_examples 'it has related items' do
   describe '#related' do
     it 'initializes and returns the related object' do
       item = described_class.new
-      related = stub
-      Related.stubs(new: related)
+      related = double("Related")
+      expect(Related).to receive(:new).and_return(related)
 
       item.related
-
-      expect(Related).to have_received(:new).with(item)
     end
   end
 end

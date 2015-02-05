@@ -4,9 +4,9 @@ describe Features::Mentor do
   describe "#fulfill" do
     it "assigns a mentor to the user if they don't have one already" do
       mentor = build_stubbed(:mentor)
-      Mentor.stubs(:random).returns(mentor)
+      allow(Mentor).to receive(:random).and_return(mentor)
       user = build_stubbed(:user)
-      user.stubs(:assign_mentor)
+      allow(user).to receive(:assign_mentor)
 
       Features::Mentor.new(user: user).fulfill
 
@@ -15,23 +15,22 @@ describe Features::Mentor do
 
     it "doesn't assign a new mentor if the user already has one" do
       user = build_stubbed(:user, :with_mentor)
-      user.stubs(:assign_mentor)
+      allow(user).to receive(:assign_mentor)
 
       Features::Mentor.new(user: user).fulfill
 
-      expect(user).to have_received(:assign_mentor).never
+      expect(user).not_to have_received(:assign_mentor)
     end
   end
 
   describe "#unfulfill" do
     it "remove mentor for user" do
       user = build_stubbed(:user, :with_mentor)
-      user.stubs(:assign_mentor).with(nil)
-      mail = stub(deliver_now: true)
-      DowngradeMailer.
-        stubs(:notify_mentor).
+      allow(user).to receive(:assign_mentor).with(nil)
+      mail = double(deliver_now: true)
+      allow(DowngradeMailer).to receive(:notify_mentor).
         with(mentee_id: user.id, mentor_id: user.mentor_id).
-        returns(mail)
+        and_return(mail)
 
       Features::Mentor.new(user: user).unfulfill
 

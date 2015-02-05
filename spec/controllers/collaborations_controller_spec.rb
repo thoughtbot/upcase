@@ -24,7 +24,7 @@ describe CollaborationsController do
         sign_in_as current_user
         post :create, repository_id: repository.to_param
 
-        expect(repository).to have_received(:add_collaborator).never
+        expect(repository).not_to have_received(:add_collaborator)
         expect(controller).to redirect_to(edit_subscription_path)
         expect(controller).to set_the_flash.to(
           I18n.t("subscriptions.flashes.upgrade_required")
@@ -38,7 +38,7 @@ describe CollaborationsController do
 
         post :create, repository_id: repository.to_param
 
-        expect(repository).to have_received(:add_collaborator).never
+        expect(repository).not_to have_received(:add_collaborator)
         expect(controller).to redirect_to(new_subscription_path)
         expect(controller).to set_the_flash.to(
           I18n.t("subscriptions.flashes.subscription_required")
@@ -49,17 +49,19 @@ describe CollaborationsController do
 
   def stub_user(repositories:)
     build_stubbed(:user).tap do |user|
-      user.stubs(:has_access_to?).with(:repositories).returns(repositories)
+      allow(user).to receive(:has_access_to?).with(:repositories).
+        and_return(repositories)
     end
   end
 
   def stub_repository
     build_stubbed(:repository).tap do |repository|
-      finder = stub("finder")
-      finder.stubs(:find).with(repository.to_param).returns(repository)
-      Repository.stubs(:friendly).returns(finder)
+      finder = spy("finder")
+      allow(finder).to receive(:find).with(repository.to_param).
+        and_return(repository)
+      allow(Repository).to receive(:friendly).and_return(finder)
 
-      repository.stubs(:add_collaborator)
+      allow(repository).to receive(:add_collaborator)
     end
   end
 end

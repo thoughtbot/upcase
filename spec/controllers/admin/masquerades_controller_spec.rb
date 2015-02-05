@@ -70,8 +70,8 @@ describe Admin::MasqueradesController do
 
   def build_user(type: :user)
     user = build_stubbed(type)
-    User.stubs(:find).with(user.id).returns(user)
-    User.stubs(:find).with(user.id.to_s).returns(user)
+    allow(User).to receive(:find).with(user.id).and_return(user)
+    allow(User).to receive(:find).with(user.id.to_s).and_return(user)
     user
   end
 end

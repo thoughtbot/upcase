@@ -12,7 +12,7 @@ describe "users/edit.html.erb" do
   def setup_user_with_deactivated_subscription
     subscription = build_stubbed(:team_subscription, deactivated_on: 1.day.ago)
     user = build_stubbed(:user, subscriptions: [subscription])
-    view_stubs(:current_user).returns(user)
-    view_stubs(:current_team).returns(user.team)
+    view_stubs(:current_user).and_return(user)
+    view_stubs(:current_team).and_return(user.team)
   end
 end

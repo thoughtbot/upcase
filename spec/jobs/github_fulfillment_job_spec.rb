@@ -7,7 +7,7 @@ describe GithubFulfillmentJob do
     context "with a GitHub username" do
       it "adds the given user to a repository's GitHub team" do
         client = stub_octokit
-        client.stubs(add_team_membership: nil)
+        allow(client).to receive(:add_team_membership).and_return(nil)
         repository = stub_repository(github_team: 3)
         user = stub_user(github_username: "gabebw")
 
@@ -27,13 +27,13 @@ describe GithubFulfillmentJob do
     context "without a GitHub username" do
       it "doesn't call GitHub" do
         client = stub_octokit
-        client.stubs(add_team_membership: nil)
+        allow(client).to receive(:add_team_membership).and_return(nil)
         repository = stub_repository(github_team: 3)
         user = stub_user(github_username: nil)
 
         GithubFulfillmentJob.new(repository.id, user.id).perform
 
-        expect(client).to have_received(:add_team_membership).never
+        expect(client).not_to have_received(:add_team_membership)
       end
     end
 
@@ -41,15 +41,13 @@ describe GithubFulfillmentJob do
       context "when #{error_class} is raised" do
         it "sends an email" do
           client = stub_octokit
-          client.stubs(:add_team_membership).raises(error_class)
-          mailer = stub("mailer")
-          mailer.stubs(:deliver_now)
+          allow(client).to receive(:add_team_membership).and_raise(error_class)
+          mailer = spy("mailer")
           repository = stub_repository
           user = stub_user(github_username: "gabebw")
-          LicenseMailer.
-            stubs(:fulfillment_error).
+          allow(LicenseMailer).to receive(:fulfillment_error).
             with(repository, user).
-            returns(mailer)
+            and_return(mailer)
           job = GithubFulfillmentJob.new(repository.id, user.id)
 
           expect { job.perform }.to raise_error(error_class)
@@ -61,19 +59,20 @@ describe GithubFulfillmentJob do
 
   def stub_repository(attributes = {})
     build_stubbed(:repository, attributes).tap do |repository|
-      Product.stubs(:find).with(repository.id).returns(repository)
+      allow(Product).to receive(:find).with(repository.id).
+        and_return(repository)
     end
   end
 
   def stub_user(attributes = {})
     build_stubbed(:user, attributes).tap do |user|
-      User.stubs(:find).with(user.id).returns(user)
+      allow(User).to receive(:find).with(user.id).and_return(user)
     end
   end
 
   def stub_octokit
-    stub("Octokit::Client").tap do |client|
-      Octokit::Client.stubs(new: client)
+    spy("Octokit::Client").tap do |client|
+      allow(Octokit::Client).to receive(:new).and_return(client)
     end
   end
 end

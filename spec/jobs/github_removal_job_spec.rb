@@ -5,7 +5,7 @@ describe GithubRemovalJob do
 
   it "removes a username from a github team" do
     client = stub_octokit
-    client.stubs(remove_team_member: nil)
+    allow(client).to receive(:remove_team_member).and_return(nil)
 
     GithubRemovalJob.new(3, "gabebw").perform
 
@@ -15,8 +15,8 @@ describe GithubRemovalJob do
   [Octokit::NotFound, Net::HTTPBadResponse].each do |error_class|
     it "notifies Airbrake when #{error_class} is raised" do
       client = stub_octokit
-      client.stubs(:remove_team_member).raises(error_class)
-      Airbrake.stubs(:notify)
+      allow(client).to receive(:remove_team_member).and_raise(error_class)
+      allow(Airbrake).to receive(:notify)
 
       GithubRemovalJob.new(3, "gabebw").perform
 
@@ -25,8 +25,8 @@ describe GithubRemovalJob do
   end
 
   def stub_octokit
-    stub("Octokit::Client").tap do |client|
-      Octokit::Client.stubs(new: client)
+    spy("Octokit::Client").tap do |client|
+      allow(Octokit::Client).to receive(:new).and_return(client)
     end
   end
 end

@@ -64,15 +64,13 @@ describe AuthHashService, '#find_or_create_user_from_auth_hash' do
   end
 
   def stub_team_member(return_value)
-    client = stub('github_client')
-    client.
-      stubs(:team_member?).
+    client = double("github_client")
+    allow(client).to receive(:team_member?).
       with(AuthHashService::THOUGHTBOT_GITHUB_TEAM_ID, 'thoughtbot').
-      returns(return_value)
-    Octokit::Client.
-      stubs(:new).
+      and_return(return_value)
+    allow(Octokit::Client).to receive(:new).
       with(login: GITHUB_USER, password: GITHUB_PASSWORD).
-      returns(client)
+      and_return(client)
   end
 
   def auth_hash(options = {})

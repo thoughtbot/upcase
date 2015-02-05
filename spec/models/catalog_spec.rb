@@ -49,8 +49,8 @@ describe Catalog do
 
   describe "#team_plan" do
     it "returns the first team featured active plans" do
-      team_plan = stub(:plan)
-      Plan.stubs(default_team: team_plan)
+      team_plan = double(:plan)
+      allow(Plan).to receive(:default_team).and_return(team_plan)
       catalog = Catalog.new
 
       expect(catalog.team_plan).to eq team_plan

@@ -25,12 +25,12 @@ describe "exercises/_exercise_for_trail_preview.html" do
 
   def stub_access(features)
     features.each do |name, access|
-      view_stubs(:current_user_has_access_to?).with(name).returns(access)
+      view_stubs(:current_user_has_access_to?).with(name).and_return(access)
     end
   end
 
   def stub_current_user
-    view_stubs(:current_user).returns(build_stubbed(:user))
+    view_stubs(:current_user).and_return(build_stubbed(:user))
   end
 
   def render_exercise

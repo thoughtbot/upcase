@@ -16,10 +16,10 @@ describe 'products/_forum_link' do
   end
 
   def user_without_subscription
-    stub('user', has_active_subscription?: false)
+    double("user", has_active_subscription?: false)
   end
 
   def user_with_subscription
-    stub('user', has_active_subscription?: true)
+    double("user", has_active_subscription?: true)
   end
 end

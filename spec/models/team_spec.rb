@@ -132,8 +132,8 @@ describe Team do
   def team_with_stubbed_subscription_change_quantity
     team = create(:team)
     subscription = build_stubbed(:team_subscription)
-    subscription.stubs(change_quantity: nil)
-    team.stubs(:subscription).returns(subscription)
+    allow(subscription).to receive(:change_quantity).and_return(nil)
+    allow(team).to receive(:subscription).and_return(subscription)
     team
   end
 

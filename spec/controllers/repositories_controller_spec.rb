@@ -43,18 +43,17 @@ describe RepositoriesController do
 
   def stub_repository(collaborator: false, github_access: false)
     build_stubbed(:repository).tap do |repository|
-      finder = stub("finder")
-      finder.stubs(:find).with(repository.to_param).returns(repository)
-      Repository.stubs(:friendly).returns(finder)
+      finder = double("finder")
+      allow(finder).to receive(:find).with(repository.to_param).
+        and_return(repository)
+      allow(Repository).to receive(:friendly).and_return(finder)
 
-      repository.
-        stubs(:has_collaborator?).
+      allow(repository).to receive(:has_collaborator?).
         with(current_user).
-        returns(collaborator)
-      repository.
-        stubs(:has_github_member?).
+        and_return(collaborator)
+      allow(repository).to receive(:has_github_member?).
         with(current_user).
-        returns(github_access)
+        and_return(github_access)
     end
   end
 

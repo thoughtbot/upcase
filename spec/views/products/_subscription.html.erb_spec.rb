@@ -16,13 +16,10 @@ describe "products/_subscription.html.erb" do
   end
 
   def render_template(current_user_has_subscription)
-    product = stub("product", offering_type: "workshop")
+    product = double("product", offering_type: "workshop")
 
-    Mocha::Configuration.allow :stubbing_non_existent_method do
-      view.stubs(
-        current_user_has_active_subscription?: current_user_has_subscription
-      )
-    end
+    allow(view).to receive(:current_user_has_active_subscription?).
+      and_return(current_user_has_subscription)
 
     render(
       template: "products/_subscription",

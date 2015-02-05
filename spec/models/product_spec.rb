@@ -28,17 +28,17 @@ describe Product do
   describe "delete_product_image" do
     it "RailsAdmin doesn't clear product image if value is not '1'" do
       product = Product.new
-      product.product_image.stubs(:clear)
+      allow(product.product_image).to receive(:clear)
       product.delete_product_image = nil
 
       product.valid?
 
-      expect(product.product_image).to have_received(:clear).never
+      expect(product.product_image).not_to have_received(:clear)
     end
 
     it "RailsAdmin clears product image if value is 1" do
       product = Product.new
-      product.product_image.stubs(:clear)
+      allow(product.product_image).to receive(:clear)
       product.delete_product_image = "1"
 
       product.valid?
@@ -56,9 +56,10 @@ describe Product do
   describe "#fulfill" do
     it "fulfills using GitHub with a GitHub team" do
       user = build_stubbed(:user)
-      fulfillment = stub("fulfillment", :fulfill)
+      fulfillment = spy("fulfillment")
       product = build_stubbed(:product, github_team: "example")
-      GithubFulfillment.stubs(:new).with(product, user).returns(fulfillment)
+      allow(GithubFulfillment).to receive(:new).with(product, user).
+        and_return(fulfillment)
 
       product.fulfill(user)
 

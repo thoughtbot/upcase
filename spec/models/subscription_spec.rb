@@ -18,8 +18,9 @@ describe Subscription do
         create(:subscription, plan: plan, created_at: 25.hours.ago)
       new_subscription =
         create(:subscription, plan: plan, created_at: 10.hours.ago)
-      mailer = stub(deliver_now: true)
-      SubscriptionMailer.stubs(welcome_to_upcase_from_mentor: mailer)
+      mailer = spy("Mailer")
+      allow(SubscriptionMailer).to receive(:welcome_to_upcase_from_mentor).
+        and_return(mailer)
 
       Subscription.deliver_welcome_emails
 
@@ -27,8 +28,8 @@ describe Subscription do
         to have_received(:welcome_to_upcase_from_mentor).
         with(new_subscription.user)
       expect(SubscriptionMailer).
-        to have_received(:welcome_to_upcase_from_mentor).
-        with(old_subscription.user).never
+        not_to have_received(:welcome_to_upcase_from_mentor).
+        with(old_subscription.user)
       expect(mailer).to have_received(:deliver_now).once
     end
   end
@@ -83,12 +84,11 @@ describe Subscription do
     end
 
     it "unfulfills itself" do
-      fulfillment = stub("fulfillment", :remove)
+      fulfillment = spy("fulfillment")
       subscription = create(:active_subscription)
-      SubscriptionFulfillment.
-        stubs(:new).
+      allow(SubscriptionFulfillment).to receive(:new).
         with(subscription.user, subscription.plan).
-        returns(fulfillment)
+        and_return(fulfillment)
 
       subscription.deactivate
 
@@ -112,8 +112,8 @@ describe Subscription do
   describe "#change_plan" do
     it "updates upcase and stripe plans" do
       subscription = build(:subscription)
-      subscription.stubs(:write_plan)
-      subscription.stubs(:change_stripe_plan)
+      allow(subscription).to receive(:write_plan)
+      allow(subscription).to receive(:change_stripe_plan)
       sku = "plan_sku"
 
       subscription.change_plan(sku: sku)
@@ -138,8 +138,8 @@ describe Subscription do
   describe "#write_plan" do
     context "when subscription is for an individual" do
       it "notifies Analytics for current user" do
-        analytics_updater = stub(track_updated: true)
-        Analytics.stubs(:new).returns(analytics_updater)
+        analytics_updater = spy("AnalyticsUpdater")
+        allow(Analytics).to receive(:new).and_return(analytics_updater)
         subscription = create(:subscription, team: nil)
 
         subscription.write_plan(sku: create(:plan).sku)
@@ -151,8 +151,8 @@ describe Subscription do
 
     context "when subscription is for a team" do
       it "notifies Analytics for all users in the team" do
-        analytics_updater = stub(track_updated: true)
-        Analytics.stubs(:new).returns(analytics_updater)
+        analytics_updater = spy("AnalyticsUpdater")
+        allow(Analytics).to receive(:new).and_return(analytics_updater)
         users = create_list(:user, 2)
         team = create(:team, users: users)
         subscription = create(:team_subscription, team: team, user: users.first)
@@ -189,11 +189,8 @@ describe Subscription do
     end
 
     def stub_feature_fulfillment
-      fulfillment = stub(
-        fulfill_gained_features: nil,
-        unfulfill_lost_features: nil
-      )
-      FeatureFulfillment.stubs(:new).returns(fulfillment)
+      fulfillment = spy("FeatureFulfillment")
+      allow(FeatureFulfillment).to receive(:new).and_return(fulfillment)
       fulfillment
     end
   end
@@ -318,8 +315,8 @@ describe Subscription do
 
   describe "#last_charge" do
     it "returns the last charge for the customer" do
-      charge = stub("Stripe::Charge")
-      Stripe::Charge.stubs(:all).returns([charge])
+      charge = double("Stripe::Charge")
+      allow(Stripe::Charge).to receive(:all).and_return([charge])
       subscription = build_stubbed(:subscription)
 
       expect(subscription.last_charge).to eq charge
@@ -357,8 +354,11 @@ describe Subscription do
   end
 
   def setup_cutomer
-    stripe_customer = stub(subscriptions: [FakeSubscription.new])
-    Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
+    stripe_customer = double(
+      "StripeCustomer",
+      subscriptions: [FakeSubscription.new]
+    )
+    allow(Stripe::Customer).to receive(:retrieve).and_return(stripe_customer)
     stripe_customer
   end
 end

@@ -58,18 +58,19 @@ describe "practice/show.html" do
     completed = options[:has_completed_trails]
     assign(
       :practice,
-      stub(
-           shows: [],
-           topics: [],
-           active_trails: [],
-           completed_trails: [],
-           has_completed_trails?: completed
-          )
+      double(
+        "Practice",
+        shows: [],
+        topics: [],
+        active_trails: [],
+        completed_trails: [],
+        has_completed_trails?: completed
+      )
     )
-    view_stubs(:current_user).returns(build_stubbed(:user))
-    view_stubs(:current_user_has_active_subscription?).returns(true)
+    view_stubs(:current_user).and_return(build_stubbed(:user))
+    view_stubs(:current_user_has_active_subscription?).and_return(true)
     options.each do |feature, value|
-      view_stubs(:current_user_has_access_to?).with(feature).returns(value)
+      view_stubs(:current_user_has_access_to?).with(feature).and_return(value)
     end
     render template: "practice/show"
   end

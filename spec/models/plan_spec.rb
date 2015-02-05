@@ -23,11 +23,11 @@ describe Plan do
 
   describe ".default" do
     it "returns the first, active, featured, ordered plan" do
-      ordered = stub(first: stub())
-      featured = stub(ordered: ordered)
-      active = stub(featured: featured)
-      individual = stub(active: active)
-      Plan.stubs(individual: individual)
+      ordered = spy(first: spy)
+      featured = spy(ordered: ordered)
+      active = spy(featured: featured)
+      individual = spy(active: active)
+      allow(Plan).to receive(:individual).and_return(individual)
 
       Plan.default
 
@@ -41,11 +41,11 @@ describe Plan do
 
   describe ".default_team" do
     it "returns the first, active, featured, ordered team plan" do
-      ordered = stub(first: stub())
-      featured = stub(ordered: ordered)
-      active = stub(featured: featured)
-      team = stub(active: active)
-      Plan.stubs(team: team)
+      ordered = spy(first: spy)
+      featured = spy(ordered: ordered)
+      active = spy(featured: featured)
+      team = spy(active: active)
+      allow(Plan).to receive(:team).and_return(team)
 
       Plan.default_team
 
@@ -69,8 +69,8 @@ describe Plan do
   describe "subscription_interval" do
     it "returns the interval from the stripe plan" do
       plan = build_stubbed(:plan)
-      stripe_plan = stub(interval: "year")
-      Stripe::Plan.stubs(:retrieve).returns(stripe_plan)
+      stripe_plan = double("StripePlan", interval: "year")
+      allow(Stripe::Plan).to receive(:retrieve).and_return(stripe_plan)
 
       expect(plan.subscription_interval).to eq "year"
       expect(Stripe::Plan).to have_received(:retrieve).with(plan.sku)
@@ -80,9 +80,9 @@ describe Plan do
   describe "#fulfill" do
     it "starts a subscription" do
       subscription = build_stubbed(:subscription)
-      subscription.stubs(update: nil)
+      allow(subscription).to receive(:update).and_return(nil)
       user = build_stubbed(:user)
-      user.stubs(:create_subscription).returns(subscription)
+      allow(user).to receive(:create_subscription).and_return(subscription)
       plan = build_stubbed(:plan)
       checkout = build_stubbed(:checkout, user: user, plan: plan)
       fulfillment = stub_subscription_fulfillment(checkout)
@@ -143,9 +143,9 @@ describe Plan do
   describe "#fulfill" do
     it "starts a subscription for a new team" do
       subscription = build_stubbed(:subscription)
-      subscription.stubs(update: nil)
+      allow(subscription).to receive(:update).and_return(nil)
       user = build_stubbed(:user)
-      user.stubs(:create_subscription).returns(subscription)
+      allow(user).to receive(:create_subscription).and_return(subscription)
       plan = build_stubbed(:plan, :team)
       checkout = build_stubbed(:checkout, user: user, plan: plan)
       subscription_fulfillment = stub_subscription_fulfillment(checkout)
@@ -163,11 +163,10 @@ describe Plan do
     end
 
     def stub_team_fulfillment(checkout)
-      stub("team-fulfillment", :fulfill).tap do |fulfillment|
-        TeamFulfillment.
-          stubs(:new).
+      spy("team-fulfillment").tap do |fulfillment|
+        allow(TeamFulfillment).to receive(:new).
           with(checkout, checkout.user).
-          returns(fulfillment)
+          and_return(fulfillment)
       end
     end
   end

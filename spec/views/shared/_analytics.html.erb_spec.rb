@@ -5,7 +5,7 @@ describe "shared/_analytics.html.erb" do
 
   context "when signed out" do
     before do
-      view_stubs(signed_in?: false)
+      view_stub_with_return(signed_in?: false)
     end
 
     it "loads the Segment JavaScript library" do
@@ -25,19 +25,20 @@ describe "shared/_analytics.html.erb" do
     end
 
     it 'does not load user-specific analytics' do
+      allow(rendered).to receive(:render)
+
       render
 
-      expect(rendered).to have_received(:render).
-        with('shared/signed_in_analytics').
-        never
+      expect(rendered).not_to have_received(:render).
+        with("shared/signed_in_analytics")
     end
   end
 
   context "when signing up" do
     it "aliases the user id" do
-      user_id = 123
-      view_stubs(
-        current_user: stub("user", id: user_id),
+      user = build_stubbed(:user)
+      view_stub_with_return(
+        current_user: user,
         flash: { purchase_amount: 29 },
         purchased_hash: "",
         signed_in?: false
@@ -45,7 +46,7 @@ describe "shared/_analytics.html.erb" do
 
       render
 
-      expect(rendered).to include(%{analytics.alias("#{user_id}")})
+      expect(rendered).to include(%{analytics.alias("#{user.id}")})
     end
   end
 
@@ -57,8 +58,9 @@ describe "shared/_analytics.html.erb" do
     end
 
     it 'identifies the user' do
-      view_stubs(
-        current_user: stub_everything('current user', id: 1),
+      user = build_stubbed(:user)
+      view_stub_with_return(
+        current_user: user,
         signed_in?: true
       )
       identify_line = 'analytics.identify('
@@ -70,7 +72,7 @@ describe "shared/_analytics.html.erb" do
 
     it 'sends user data' do
       user = build_stubbed(:user)
-      view_stubs(current_user: user, signed_in?: true)
+      view_stub_with_return(current_user: user, signed_in?: true)
 
       render
 
@@ -78,14 +80,14 @@ describe "shared/_analytics.html.erb" do
     end
 
     it 'uses Intercom secure mode' do
-      user_id = 1
-      view_stubs(
-        current_user: stub_everything('current user', id: user_id),
+      user = build_stubbed(:user)
+      view_stub_with_return(
+        current_user: user,
         signed_in?: true
       )
       intercom_secure_mode = {
         'Intercom' => {
-          userHash: OpenSSL::HMAC.hexdigest('sha256', secret, user_id.to_s)
+          userHash: OpenSSL::HMAC.hexdigest("sha256", secret, user.id.to_s)
         }
       }.to_json
 

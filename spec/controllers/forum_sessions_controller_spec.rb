@@ -9,10 +9,10 @@ describe ForumSessionsController do
         user = create(:subscriber)
         stub_current_user_with(user)
         discourse_sso = discourse_sso_stub
-        DiscourseSignOn.stubs(:parse).returns(discourse_sso)
-        analytics = stub("analytics")
-        analytics.stubs(:track_forum_access)
-        Analytics.stubs(:new).returns(analytics)
+        allow(DiscourseSignOn).to receive(:parse).and_return(discourse_sso)
+        analytics = double("analytics")
+        allow(analytics).to receive(:track_forum_access)
+        allow(Analytics).to receive(:new).and_return(analytics)
 
         get :new, sso: "ssohash", sig: "sig"
 
@@ -83,11 +83,11 @@ describe ForumSessionsController do
     end
 
     def discourse_sso_stub
-      sso = stub
+      sso = double("DiscourseSignOn")
       [:email, :name, :username, :external_id, :sso_secret].each do |accessor|
-        sso.stubs(:"#{accessor}=")
+        allow(sso).to receive(:"#{accessor}=")
       end
-      sso.stubs(:to_url).returns("https://forum.example.com")
+      allow(sso).to receive(:to_url).and_return("https://forum.example.com")
       sso
     end
   end

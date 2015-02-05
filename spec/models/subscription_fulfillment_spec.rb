@@ -15,8 +15,9 @@ describe SubscriptionFulfillment do
     it "updates the subscription next invoice information" do
       user = create(:user, :with_subscription)
       plan = create(:plan)
-      invoice_updater = stub(process: nil)
-      SubscriptionUpcomingInvoiceUpdater.stubs(:new).returns(invoice_updater)
+      invoice_updater = double("InvoiceUpdater", process: nil)
+      allow(SubscriptionUpcomingInvoiceUpdater).to receive(:new).
+        and_return(invoice_updater)
 
       SubscriptionFulfillment.new(user, plan).fulfill
 
@@ -26,8 +27,8 @@ describe SubscriptionFulfillment do
     end
 
     def stub_feature_fulfillment
-      stub(fulfill_gained_features: nil).tap do |fulfillment|
-        FeatureFulfillment.stubs(:new).returns(fulfillment)
+      spy("FeatureFulfillment").tap do |fulfillment|
+        allow(FeatureFulfillment).to receive(:new).and_return(fulfillment)
       end
     end
   end
@@ -44,17 +45,18 @@ describe SubscriptionFulfillment do
     end
 
     def stub_feature_unfulfillment
-      stub(unfulfill_lost_features: nil).tap do |fulfillment|
-        FeatureFulfillment.stubs(:new).returns(fulfillment)
+      spy("FeatureUnfulfillment").tap do |fulfillment|
+        allow(FeatureFulfillment).to receive(:new).and_return(fulfillment)
       end
     end
   end
 
   def build_subscribable_user
     build_stubbed(:user, :with_github).tap do |user|
-      user.stubs(:assign_mentor)
-      user.stubs(:subscription).returns(build_stubbed(:subscription))
-      User.stubs(:find).with(user.id).returns(user)
+      allow(user).to receive(:assign_mentor)
+      allow(user).to receive(:subscription).
+        and_return(build_stubbed(:subscription))
+      allow(User).to receive(:find).with(user.id).and_return(user)
     end
   end
 end

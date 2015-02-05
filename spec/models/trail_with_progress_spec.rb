@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe TrailWithProgress do
   it "decorates its component" do
-    user = stub("user")
+    user = double("user")
     trail = build_stubbed(:trail)
     trail_with_progress = TrailWithProgress.new(trail, user: user)
 

@@ -19,7 +19,8 @@ feature "User creates a subscription" do
   end
 
   scenario "sees that the subscription is per year", js: true do
-    Plan.any_instance.stubs(subscription_interval: "year")
+    allow_any_instance_of(Plan).to receive(:subscription_interval).
+      and_return("year")
     visit_plan_checkout_page
 
     expect_submit_button_to_contain("per year")

@@ -11,7 +11,7 @@ describe "videos/show" do
 
     wistia_id = "123"
     preview_video = Clip.new(wistia_id)
-    video.stubs(:preview).returns(preview_video)
+    allow(video).to receive(:preview).and_return(preview_video)
     stub_controller(video)
 
     render template: "videos/show"
@@ -29,9 +29,9 @@ describe "videos/show" do
     )
 
     wistia_id = "123"
-    clip = stub(wistia_id: wistia_id)
+    clip = double("Clip", wistia_id: wistia_id)
     thumbnail = VideoThumbnail.new(clip)
-    video.stubs(:preview).returns(thumbnail)
+    allow(video).to receive(:preview).and_return(thumbnail)
     stub_controller(video)
 
     render template: "videos/show"
@@ -40,13 +40,13 @@ describe "videos/show" do
   end
 
   def stub_controller(video)
-    plan = stub("plan", price: 29)
+    plan = double("plan", price: 29)
     assign :plan, plan
     assign :video, video
     assign :watchable, video.watchable
 
-    view_stubs(:signed_out?).returns(true)
-    view_stubs(:signed_in?).returns(false)
-    view_stubs(:current_user_has_active_subscription?).returns(false)
+    view_stubs(:signed_out?).and_return(true)
+    view_stubs(:signed_in?).and_return(false)
+    view_stubs(:current_user_has_active_subscription?).and_return(false)
   end
 end

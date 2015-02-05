@@ -29,7 +29,7 @@ describe Coupon do
 
   it 'is not valid if the coupon code does not exist' do
     exception = Stripe::InvalidRequestError.new("No such coupon", "NONE")
-    Stripe::Coupon.stubs(:retrieve).raises(exception)
+    allow(Stripe::Coupon).to receive(:retrieve).and_raise(exception)
     coupon = Coupon.new('NONE')
 
     expect(coupon).not_to be_valid

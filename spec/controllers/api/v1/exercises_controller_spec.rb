@@ -21,8 +21,8 @@ describe Api::V1::ExercisesController do
       access_token = build_stubbed(:oauth_access_token, resource_owner_id: nil)
       authenticate_with(access_token)
       errors = "errors"
-      exercise = stub("exercise", update_attributes: false, errors: errors)
-      Exercise.stubs(find_or_initialize_by: exercise)
+      exercise = double("exercise", update_attributes: false, errors: errors)
+      allow(Exercise).to receive(:find_or_initialize_by).and_return(exercise)
 
       put :update, id: "uuid-1234", exercise: { name: "", url: "" }
 
@@ -31,7 +31,8 @@ describe Api::V1::ExercisesController do
     end
 
     def authenticate_with(access_token)
-      Doorkeeper::OAuth::Token.stubs(:authenticate).returns(access_token)
+      allow(Doorkeeper::OAuth::Token).to receive(:authenticate).
+        and_return(access_token)
     end
   end
 end

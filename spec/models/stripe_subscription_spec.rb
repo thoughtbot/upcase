@@ -28,8 +28,8 @@ describe StripeSubscription do
 
     it "updates the subscription with the given coupon" do
       customer = stub_existing_customer
-      coupon = stub("coupon", amount_off: 25)
-      Stripe::Coupon.stubs(:retrieve).returns(coupon)
+      coupon = double("coupon", amount_off: 25)
+      allow(Stripe::Coupon).to receive(:retrieve).and_return(coupon)
       checkout = build(:checkout, stripe_coupon_id: "25OFF")
       subscription = StripeSubscription.new(checkout)
 
@@ -64,9 +64,8 @@ describe StripeSubscription do
 
     it "it adds an error message with a bad card" do
       stub_stripe_customer
-      Stripe::Customer.
-        stubs(:create).
-        raises(Stripe::StripeError, "Your card was declined")
+      allow(Stripe::Customer).to receive(:create).
+        and_raise(Stripe::StripeError, "Your card was declined")
       checkout = build(:checkout)
       subscription = StripeSubscription.new(checkout)
 
@@ -81,8 +80,8 @@ describe StripeSubscription do
 
   def stub_existing_customer
     subscriptions = FakeSubscriptionList.new([FakeSubscription.new])
-    customer = stub("customer", subscriptions: subscriptions)
-    Stripe::Customer.stubs(:retrieve).returns(customer)
+    customer = double("customer", subscriptions: subscriptions)
+    allow(Stripe::Customer).to receive(:retrieve).and_return(customer)
     customer
   end
 
@@ -91,6 +90,7 @@ describe StripeSubscription do
       customer_id: 'stripe',
     }.merge(overrides)
 
-    Stripe::Customer.stubs(:create).returns(stub(id: arguments[:customer_id]))
+    allow(Stripe::Customer).to receive(:create).
+      and_return(double("StripeCustomer", id: arguments[:customer_id]))
   end
 end

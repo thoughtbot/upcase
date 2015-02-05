@@ -18,11 +18,12 @@ describe SubscriptionUpcomingInvoiceUpdater do
   end
 
   it 'sets the next_payment_amount to 0 when it is 404' do
-    Stripe::Invoice.stubs(:upcoming).raises(
-      Stripe::InvalidRequestError.new(
-        "No upcoming invoices for customer",
-        "",
-        404
+    allow(Stripe::Invoice).to receive(:upcoming).
+      and_raise(
+        Stripe::InvalidRequestError.new(
+          "No upcoming invoices for customer",
+          "",
+          404
       )
     )
     subscription = create(:subscription)
@@ -37,21 +38,19 @@ describe SubscriptionUpcomingInvoiceUpdater do
 
   it "doesn't update subscriptions with empty customer IDs" do
     subscription = build_stubbed(:subscription)
-    subscription.stubs(:stripe_customer_id).returns("")
-    subscription.stubs(:update!)
+    allow(subscription).to receive(:stripe_customer_id).and_return("")
+    allow(subscription).to receive(:update!)
     updater = SubscriptionUpcomingInvoiceUpdater.new([subscription])
 
     updater.process
 
-    expect(subscription).to have_received(:update!).never
+    expect(subscription).not_to have_received(:update!)
   end
 
   it "sends the error to Airbrake if it isn't 404" do
-    Airbrake.stubs(:notify)
+    allow(Airbrake).to receive(:notify)
     error = Stripe::InvalidRequestError.new("Server error", "", 500)
-    Stripe::Invoice.stubs(:upcoming).raises(
-      error
-    )
+    allow(Stripe::Invoice).to receive(:upcoming).and_raise(error)
     subscription = create(:subscription)
     subscriptions = [subscription]
 
@@ -63,8 +62,12 @@ describe SubscriptionUpcomingInvoiceUpdater do
   private
 
   def stub_stripe_invoice_with_total(amount)
-    stripe_invoice = stub(total: amount, period_end: 1387929600)
-    Stripe::Invoice.stubs(upcoming: stripe_invoice)
+    stripe_invoice = spy(
+      "StripeInvoice",
+      total: amount,
+      period_end: 1387929600
+    )
+    allow(Stripe::Invoice).to receive(:upcoming).and_return(stripe_invoice)
     stripe_invoice
   end
 end

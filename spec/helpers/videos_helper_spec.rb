@@ -3,7 +3,7 @@ require "rails_helper"
 describe VideosHelper do
   describe "#video_description" do
     it "returns plain text video notes" do
-      video = stub("video", notes_html: "<h1>Vim's Power</h1>")
+      video = double("video", notes_html: "<h1>Vim's Power</h1>")
 
       result = video_description(video)
 
@@ -11,7 +11,7 @@ describe VideosHelper do
     end
 
     it "truncates the video notes to 250 characters by default" do
-      video = stub("video", notes_html: "D" * 251)
+      video = double("video", notes_html: "D" * 251)
 
       result = video_description(video)
 
@@ -19,7 +19,7 @@ describe VideosHelper do
     end
 
     it "truncates the video notes to the given character length" do
-      video = stub("video", notes_html: "D" * 201)
+      video = double("video", notes_html: "D" * 201)
 
       result = video_description(video, length: 200)
 
@@ -29,7 +29,7 @@ describe VideosHelper do
 
   describe "#topic_slugs" do
     it "returns nil if no related topic found" do
-      video = stub(topics: [])
+      video = double("video", topics: [])
 
       result = topic_slugs(video)
 
@@ -37,8 +37,8 @@ describe VideosHelper do
     end
 
     it "returns parameterized slug of related topic when found" do
-      topic = stub(slug: "test-driven+development")
-      video = stub(topics: [topic])
+      topic = double("topic", slug: "test-driven+development")
+      video = double("video", topics: [topic])
 
       result = topic_slugs(video)
 

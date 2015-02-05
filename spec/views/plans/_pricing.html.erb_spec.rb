@@ -14,7 +14,7 @@ describe "plans/_pricing.html" do
 
     it "adds the 'popular' class to the plan designated as popular" do
       the_weekly_iteration = build_stubbed(:plan, sku: Plan::THE_WEEKLY_ITERATION_SKU)
-      the_weekly_iteration.stubs(:popular?).returns(true)
+      allow(the_weekly_iteration).to receive(:popular?).and_return(true)
 
       render_pricing_with_plans [the_weekly_iteration]
 
@@ -23,7 +23,7 @@ describe "plans/_pricing.html" do
   end
 
   def render_pricing_with_plans(plans)
-    view_stubs(:current_user_has_active_subscription?).returns(false)
+    view_stubs(:current_user_has_active_subscription?).and_return(false)
     render "plans/pricing", plans: plans
   end
 end

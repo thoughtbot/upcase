@@ -15,7 +15,7 @@ describe "plans/_plan.html" do
   context "popular plan" do
     it "adds the 'popular' class to the plan designated as popular" do
       plan = build_plan
-      plan.stubs(popular?: true)
+      allow(plan).to receive(:popular?).and_return(true)
       stub_view
 
       render_plan(plan)
@@ -46,8 +46,8 @@ describe "plans/_plan.html" do
 
     it "links to change existing plan when user has a subscription" do
       plan = build_plan
-      user = stub("user", plan: build_stubbed(:plan))
-      view_stubs(:current_user).returns(user)
+      user = double("user", plan: build_stubbed(:plan))
+      view_stubs(:current_user).and_return(user)
       stub_view(active_subscription: true)
 
       render_plan(plan)
@@ -59,12 +59,12 @@ describe "plans/_plan.html" do
 
   def stub_view(active_subscription: false)
     view_stubs(:current_user_has_active_subscription?).
-      returns(active_subscription)
+      and_return(active_subscription)
   end
 
   def build_plan
     build_stubbed(:plan, sku: Plan::THE_WEEKLY_ITERATION_SKU).tap do |plan|
-      plan.stubs(popular?: false)
+      allow(plan).to receive(:popular?).and_return(false)
     end
   end
 

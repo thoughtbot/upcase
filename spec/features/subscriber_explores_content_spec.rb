@@ -43,7 +43,7 @@ feature "Subscriber accesses content" do
   end
 
   def stub_github_fulfillment_job
-    GithubFulfillmentJob.stubs(:enqueue)
+    allow(GithubFulfillmentJob).to receive(:enqueue)
   end
 
   def click_video_tutorial_detail_link

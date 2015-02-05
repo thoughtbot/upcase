@@ -32,7 +32,7 @@ describe CheckoutsController do
     context "with a plan that is not found" do
       it "redirects to the default plan" do
         popular = build_stubbed(:plan)
-        Plan.stubs(:popular).returns(popular)
+        allow(Plan).to receive(:popular).and_return(popular)
 
         get :new, plan: "notfound"
 

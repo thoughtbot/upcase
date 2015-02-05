@@ -77,7 +77,9 @@ describe SubscriptionMailer do
     end
 
     it 'includes a link to the invoice' do
-      expect(subscription_receipt_email).to have_body_text(subscriber_invoice_url('invoice_id'))
+      expect(subscription_receipt_email).to have_body_text(
+        subscriber_invoice_url("invoice_id")
+      )
     end
 
     it 'is sent from upcase' do
@@ -91,7 +93,7 @@ describe SubscriptionMailer do
     end
 
     it "links to the forum" do
-      Forum.stubs(url: "https://forum.example.com")
+      allow(Forum).to receive(:url).and_return("https://forum.example.com")
 
       expect(subscription_receipt_email).to(
         have_body_text("https://forum.example.com")
@@ -147,7 +149,7 @@ describe SubscriptionMailer do
 
     def upcoming_payment_notification_email(subscription = nil)
       subscription = subscription || build_subscription
-      subscription.stubs(plan_name: 'Individual')
+      allow(subscription).to receive(:plan_name).and_return("Individual")
 
       SubscriptionMailer.upcoming_payment_notification(subscription)
     end

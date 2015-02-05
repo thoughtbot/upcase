@@ -19,9 +19,9 @@ describe Api::V1::StatusesController do
     it "updates the status of the given exercise for the authenticated user" do
       stub_oauth_authenticated_user
       exercise = stub_exercise
-      updater = mock("status_updater")
-      updater.stubs(:update_state)
-      StatusUpdater.stubs(:new).returns(updater)
+      updater = spy("status_updater")
+      allow(updater).to receive(:update_state)
+      allow(StatusUpdater).to receive(:new).and_return(updater)
 
       post :create, exercise_uuid: exercise.uuid, state: Status::COMPLETE
 
@@ -33,7 +33,7 @@ describe Api::V1::StatusesController do
 
   def stub_exercise
     exercise = build_stubbed(:exercise)
-    Exercise.stubs(:find_by!).returns(exercise)
+    allow(Exercise).to receive(:find_by!).and_return(exercise)
     exercise
   end
 end

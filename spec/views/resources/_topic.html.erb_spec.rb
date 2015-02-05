@@ -37,7 +37,7 @@ describe "resources/_topic" do
       videos: [build_stubbed(:video, slug: "a-video")],
       video_tutorials: [build_stubbed(:video_tutorial)]
     ).tap do |topic|
-      topic.stubs(:published_trails).returns(published_trails)
+      allow(topic).to receive(:published_trails).and_return(published_trails)
     end
   end
 

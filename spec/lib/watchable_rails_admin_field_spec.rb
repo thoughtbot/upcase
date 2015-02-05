@@ -4,9 +4,10 @@ describe WatchableRailsAdminField do
   context "#associated_collection" do
     it "sorts the delegated value" do
       unsorted = [2, 1, 3]
-      type = stub("type")
-      field = stub("field")
-      field.stubs(:associated_collection).with(type).returns(unsorted)
+      type = double("type")
+      field = double("field")
+      allow(field).to receive(:associated_collection).with(type).
+        and_return(unsorted)
       sorted_field = WatchableRailsAdminField.new(field)
 
       result = sorted_field.associated_collection(type)
@@ -23,7 +24,7 @@ describe WatchableRailsAdminField do
         %w(Show Show),
         %w(Exercise Exercise)
       ]
-      field = stub("field", polymorphic_type_collection: types)
+      field = double("field", polymorphic_type_collection: types)
       sorted_field = WatchableRailsAdminField.new(field)
 
       result = sorted_field.polymorphic_type_collection
@@ -34,8 +35,8 @@ describe WatchableRailsAdminField do
 
   context "#method_missing" do
     it "delegates to the decorated field" do
-      value = stub("value")
-      field = stub("field", partial: value)
+      value = double("value")
+      field = double("field", partial: value)
       sorted_field = WatchableRailsAdminField.new(field)
 
       result = sorted_field.partial

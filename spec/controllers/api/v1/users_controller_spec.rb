@@ -6,8 +6,8 @@ describe Api::V1::UsersController do
       it "serializes the user" do
         user = stub_oauth_authenticated_user
         expected_json = { "expected" => "result" }
-        serializer = stub("serializer", as_json: expected_json)
-        UserSerializer.stubs(:new).with(user).returns(serializer)
+        serializer = double("serializer", as_json: expected_json)
+        allow(UserSerializer).to receive(:new).with(user).and_return(serializer)
 
         get :show, format: :json
 

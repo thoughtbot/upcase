@@ -11,18 +11,19 @@ describe "exercises/_exercise_for_trail.html" do
   end
 
   def stub_user
-    view_stubs(:current_user_has_access_to?).returns(true)
+    view_stubs(:current_user_has_access_to?).and_return(true)
     build_stubbed(:user).tap do |user|
-      view_stubs(:current_user).returns(user)
+      view_stubs(:current_user).and_return(user)
     end
   end
 
   def stub_exercise(state: "Imaginary")
-    Mocha::Configuration.allow(:stubbing_non_existent_method) do
-      build_stubbed(:exercise). tap do |exercise|
-        exercise.stubs(:can_be_accessed?)
-        exercise.stubs(:state).returns(state)
-      end
-    end
+    exercise = double("Exercise")
+    allow(exercise).to receive(:state).and_return(state)
+    allow(exercise).to receive(:can_be_accessed?).and_return(true)
+    allow(exercise).to receive(:url).and_return("http://example.com")
+    allow(exercise).to receive(:name).and_return("Name")
+    allow(exercise).to receive(:summary).and_return("Summary")
+    exercise
   end
 end

@@ -6,7 +6,7 @@ describe TopicWithResources do
       name = "some-name"
       topic = Topic.new(name: name)
       topic_with_resources =
-        TopicWithResources.new(topic, resources: stub('resources'))
+        TopicWithResources.new(topic, resources: double("resources"))
 
       result = topic_with_resources.name
 
@@ -17,9 +17,9 @@ describe TopicWithResources do
   describe "#resources" do
     it "sorts its resources by creation" do
       resources = [
-        stub("two", created_at: 2.days.ago, name: "two"),
-        stub("one", created_at: 1.day.ago, name: "one"),
-        stub("three", created_at: 3.days.ago, name: "three")
+        double("two", created_at: 2.days.ago, name: "two"),
+        double("one", created_at: 1.day.ago, name: "one"),
+        double("three", created_at: 3.days.ago, name: "three")
       ]
       topic = Topic.new
       topic_with_resources = TopicWithResources.new(topic, resources: resources)
@@ -33,10 +33,10 @@ describe TopicWithResources do
   describe "#count" do
     it "counts the number of resources" do
       resources = [
-        stub("two", created_at: 2.days.ago),
-        stub("one", created_at: 1.day.ago),
-        stub("three", created_at: 3.days.ago),
-        stub("four", created_at: 4.days.ago)
+        double("two", created_at: 2.days.ago),
+        double("one", created_at: 1.day.ago),
+        double("three", created_at: 3.days.ago),
+        double("four", created_at: 4.days.ago)
       ]
       topic = Topic.new
       topic_with_resources = TopicWithResources.new(topic, resources: resources)

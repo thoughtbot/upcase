@@ -55,7 +55,7 @@ end
 group :development, :test do
   gem "dotenv-rails"
   gem "pry-rails"
-  gem "rspec-rails", "~> 3.1.0"
+  gem "rspec-rails"
 end
 
 group :production, :staging do
@@ -65,7 +65,6 @@ group :production, :staging do
 end
 
 group :test do
-  gem "bourne"
   gem "capybara"
   gem "capybara-webkit"
   gem "capybara_discoball", github: "thoughtbot/capybara_discoball"

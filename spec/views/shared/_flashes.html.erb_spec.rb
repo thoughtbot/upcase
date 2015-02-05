@@ -3,7 +3,7 @@ require "rails_helper"
 describe "shared/_flashes.html.erb" do
   context "when signed out" do
     before do
-      view_stubs(
+      view_stub_with_return(
         flash: {
           "notice" => "Thank you",
           "purchase_amount" => 29,

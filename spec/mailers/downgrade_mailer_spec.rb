@@ -5,8 +5,8 @@ describe DowngradeMailer do
     it 'sends an email to the mentor' do
       mentee = build_stubbed(:subscriber)
       mentor = build_stubbed(:mentor)
-      User.stubs(:find).with(mentee.id).returns(mentee)
-      Mentor.stubs(:find).with(mentor.id).returns(mentor)
+      allow(User).to receive(:find).with(mentee.id).and_return(mentee)
+      allow(Mentor).to receive(:find).with(mentor.id).and_return(mentor)
 
       mail = DowngradeMailer.
                notify_mentor(mentor_id: mentor.id, mentee_id: mentee.id).

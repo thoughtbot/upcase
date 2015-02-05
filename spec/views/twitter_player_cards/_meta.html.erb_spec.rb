@@ -5,7 +5,7 @@ describe "twitter_player_cards/_meta.html.erb" do
     name = "1986 NBA Finals"
     description = "Bird steals the ball! Underneath to DJ and he lays it in!!!"
     wistia_id = "abc123"
-    view_stubs(video_description: description)
+    view_stub_with_return(video_description: description)
     video = create(
       :video,
       name: name,

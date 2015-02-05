@@ -6,8 +6,8 @@ describe Mentor do
 
   describe '.promoted' do
     it 'executes queries on the relation' do
-      mentors = stub('mentors', :sample)
-      Mentor.stubs(accepting_new_mentees: mentors)
+      mentors = spy("mentors")
+      allow(Mentor).to receive(:accepting_new_mentees).and_return(mentors)
 
       Mentor.promoted
 
@@ -73,7 +73,7 @@ describe Mentor do
     describe "##{attribute}" do
       it 'delegates the user' do
         user = build_stubbed(:user)
-        user.stubs(attribute).returns('text')
+        allow(user).to receive(attribute).and_return("text")
         mentor = build_stubbed(:mentor, user: user)
 
         mentor.send(attribute)

@@ -54,7 +54,7 @@ describe User do
     it "returns the user's associated subscription if it is inactive" do
       user = User.new
       subscription = build_stubbed(:inactive_subscription)
-      user.stubs(:subscriptions).returns([subscription])
+      allow(user).to receive(:subscriptions).and_return([subscription])
 
       expect(user.inactive_subscription).to be subscription
     end
@@ -62,7 +62,7 @@ describe User do
     it "returns nil if the user's associated subscription is active" do
       user = User.new
       subscription = build_stubbed(:active_subscription)
-      user.stubs(:subscriptions).returns([subscription])
+      allow(user).to receive(:subscriptions).and_return([subscription])
 
       expect(user.inactive_subscription).to be nil
     end
@@ -115,8 +115,8 @@ describe User do
   context "#deactivate_personal_subscription" do
     it "cancels subscription" do
       user = create(:user, :with_subscription)
-      cancellation = stub(cancel_now: true)
-      Cancellation.stubs(:new).returns(cancellation)
+      cancellation = double("Cancellation", cancel_now: true)
+      allow(Cancellation).to receive(:new).and_return(cancellation)
 
       user.deactivate_personal_subscription
 
@@ -125,12 +125,12 @@ describe User do
 
     it "doesn't cancel deactivated subscription" do
       user = create(:user, :with_inactive_subscription)
-      cancellation = stub(cancel_now: true)
-      Cancellation.stubs(:new).returns(cancellation)
+      cancellation = double("Cancellation", cancel_now: true)
+      allow(Cancellation).to receive(:new).and_return(cancellation)
 
       user.deactivate_personal_subscription
 
-      expect(Cancellation).to have_received(:new).never
+      expect(Cancellation).not_to have_received(:new)
     end
   end
 
@@ -138,7 +138,7 @@ describe User do
     it "returns true if the user's associated subscription is active" do
       user = User.new
       subscription = build_stubbed(:active_subscription)
-      user.stubs(:subscriptions).returns([subscription])
+      allow(user).to receive(:subscriptions).and_return([subscription])
 
       expect(user).to have_active_subscription
     end
@@ -162,7 +162,7 @@ describe User do
     it "returns false if the user's associated subscription is not active" do
       user = User.new
       subscription = build_stubbed(:inactive_subscription)
-      user.stubs(:subscriptions).returns([subscription])
+      allow(user).to receive(:subscriptions).and_return([subscription])
 
       expect(user).not_to have_active_subscription
     end
@@ -399,7 +399,7 @@ describe User do
     context "when the user has an inactive subscription" do
       it "returns false" do
         user = create(:subscriber)
-        user.subscription.stubs(:active?).returns(false)
+        allow(user.subscription).to receive(:active?).and_return(false)
 
         expect(user.has_access_to?("video_tutorials")).to_not be
       end
@@ -408,7 +408,8 @@ describe User do
     context "when the user has an active subscription" do
       it "delegates to the subscription's has_access_to? method" do
         user = create(:subscriber)
-        user.subscription.stubs(:has_access_to?).returns("expected")
+        allow(user.subscription).to receive(:has_access_to?).
+          and_return("expected")
 
         expect(user.has_access_to?("video_tutorials")).to eq("expected")
       end
@@ -422,7 +423,8 @@ describe User do
           :with_team_subscription
         )
 
-        user.team.subscription.stubs(:has_access_to?).returns("expected")
+        allow(user.team.subscription).to receive(:has_access_to?).
+          and_return("expected")
 
         expect(user.has_access_to?("video_tutorials")).to eq("expected")
       end
@@ -433,7 +435,7 @@ describe User do
     it "returns a purchased subscription" do
       subscription = build_stubbed(:subscription)
       user = User.new
-      user.stubs(:subscription).returns(subscription)
+      allow(user).to receive(:subscription).and_return(subscription)
 
       expect(user.subscription).to eq(subscription)
     end
@@ -480,7 +482,7 @@ describe User do
     it "returns true with eligible plan" do
       user = User.new
       subscription = build_stubbed(:subscription)
-      user.stubs(:subscription).returns(subscription)
+      allow(user).to receive(:subscription).and_return(subscription)
       subscription.plan.annual_plan = build_stubbed(:plan, :annual)
 
       expect(user.eligible_for_annual_upgrade?).to be true
@@ -489,7 +491,7 @@ describe User do
     it "returns false with ineligible plan" do
       user = User.new
       subscription = build_stubbed(:subscription)
-      user.stubs(:subscription).returns(subscription)
+      allow(user).to receive(:subscription).and_return(subscription)
       subscription.plan.annual_plan = nil
 
       expect(user.eligible_for_annual_upgrade?).to be false
@@ -531,7 +533,7 @@ describe User do
     it "delegates to the user's plan" do
       user = create(:subscriber)
 
-      user.plan.stubs(:annualized_payment).returns(1234)
+      allow(user.plan).to receive(:annualized_payment).and_return(1234)
 
       expect(user.annualized_payment).to eq(1234)
     end
@@ -541,7 +543,7 @@ describe User do
     it "delegates to the user's plan" do
       user = create(:subscriber)
 
-      user.plan.stubs(:discounted_annual_payment).returns(1234)
+      allow(user.plan).to receive(:discounted_annual_payment).and_return(1234)
 
       expect(user.discounted_annual_payment).to eq(1234)
     end
@@ -551,7 +553,8 @@ describe User do
     it "delegates to the user's plan" do
       user = create(:subscriber)
 
-      user.plan.stubs(:annual_plan_sku).returns("professional-yearly")
+      allow(user.plan).to receive(:annual_plan_sku).
+        and_return("professional-yearly")
 
       expect(user.annual_plan_sku).to eq("professional-yearly")
     end

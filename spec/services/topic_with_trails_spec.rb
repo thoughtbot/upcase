@@ -4,7 +4,7 @@ describe TopicWithTrails do
   describe "#name" do
     it "finds topic by slug and delegates to it" do
       topic = create(:topic, :explorable)
-      user = stub
+      user = double("user")
       topic_with_trails = TopicWithTrails.new(topic_slug: topic.slug, user: user)
 
       expect(topic_with_trails).to be_kind_of(SimpleDelegator)
@@ -30,7 +30,7 @@ describe TopicWithTrails do
 
   def create_topic_with_trails(trails)
     topic = create(:topic, :explorable, trails: trails)
-    user = stub
+    user = double("user")
     TopicWithTrails.new(topic_slug: topic.slug, user: user)
   end
 end

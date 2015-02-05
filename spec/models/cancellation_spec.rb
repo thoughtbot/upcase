@@ -15,7 +15,8 @@ describe Cancellation do
 
   describe "#process" do
     before :each do
-      subscription.stubs(:stripe_customer_id).returns("cus_1CXxPJDpw1VLvJ")
+      allow(subscription).to receive(:stripe_customer_id).
+        and_return("cus_1CXxPJDpw1VLvJ")
     end
 
     context "with an active subscription" do
@@ -29,7 +30,8 @@ describe Cancellation do
 
   describe "#cancel_now" do
     it "makes the subscription inactive and records the current date" do
-      subscription.stubs(:stripe_customer_id).returns("cus_1CXxPJDpw1VLvJ")
+      allow(subscription).to receive(:stripe_customer_id).
+        and_return("cus_1CXxPJDpw1VLvJ")
 
       cancellation.cancel_now
 
@@ -39,9 +41,9 @@ describe Cancellation do
     it "cancels with Stripe" do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription, "reason")
-      Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
-      analytics_updater = stub(track_cancelled: true)
-      Analytics.stubs(:new).returns(analytics_updater)
+      allow(Stripe::Customer).to receive(:retrieve).and_return(stripe_customer)
+      analytics_updater = double("AnalyticsUpdater", track_cancelled: true)
+      allow(Analytics).to receive(:new).and_return(analytics_updater)
 
       cancellation.cancel_now
 
@@ -52,8 +54,10 @@ describe Cancellation do
     it "retrieves the customer correctly" do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription, "reason")
-      subscription.stubs(:stripe_customer_id).returns("cus_1CXxPJDpw1VLvJ")
-      Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
+      allow(subscription).to receive(:stripe_customer_id).
+        and_return("cus_1CXxPJDpw1VLvJ")
+      allow(Stripe::Customer).to receive(:retrieve).
+        and_return(stripe_customer)
 
       cancellation.cancel_now
 
@@ -64,26 +68,32 @@ describe Cancellation do
     it "does not make the subscription inactive if stripe unsubscribe fails" do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription, "reason")
-      stripe_customer.subscriptions.first.stubs(:delete).
-        raises(Stripe::InvalidRequestError)
-      Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
+      stripe_invalid_request_error = double("String::InvalidRequestError")
+      allow(stripe_customer.subscriptions.first).to receive(:delete).
+        and_raise(stripe_invalid_request_error)
+      allow(Stripe::Customer).to receive(:retrieve).
+        and_return(stripe_customer)
+      allow(Analytics).to receive(:new)
 
       expect { cancellation.cancel_now }.to raise_error
       expect(Subscription.find(subscription.id)).to be_active
-      expect(Analytics).to have_received(:new).never
+      expect(Analytics).not_to have_received(:new)
     end
 
     it "does not unsubscribe from stripe if deactivating the subscription failed" do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription, "reason")
 
-      stripe_customer = stub("Stripe::Customer")
-      subscription.stubs(:destroy).raises(ActiveRecord::RecordNotSaved)
-      Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
+      stripe_customer = double("Stripe::Customer")
+      allow(subscription).to receive(:destroy).
+        and_raise(ActiveRecord::RecordNotSaved, "error")
+      allow(subscription).to receive(:cancel_subscription)
+      allow(Stripe::Customer).to receive(:retrieve).and_return(stripe_customer)
+      allow(Analytics).to receive(:new)
 
       expect { cancellation.cancel_now }.to raise_error
-      expect(subscription).to have_received(:cancel_subscription).never
-      expect(Analytics).to have_received(:new).never
+      expect(subscription).not_to have_received(:cancel_subscription)
+      expect(Analytics).not_to have_received(:new)
     end
   end
 
@@ -91,9 +101,9 @@ describe Cancellation do
     it "schedules a cancellation with Stripe" do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription, "reason")
-      Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
-      analytics_updater = stub(track_cancelled: true)
-      Analytics.stubs(:new).returns(analytics_updater)
+      allow(Stripe::Customer).to receive(:retrieve).and_return(stripe_customer)
+      analytics_updater = double("AnalyticsUpdater", track_cancelled: true)
+      allow(Analytics).to receive(:new).and_return(analytics_updater)
 
       cancellation.schedule
 
@@ -109,9 +119,11 @@ describe Cancellation do
     it "returns true when valid" do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription, "reason")
-      Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
-      analytics_updater = stub(track_cancelled: true)
-      Analytics.stubs(:new).returns(analytics_updater)
+      allow(Stripe::Customer).to receive(:retrieve).
+        and_return(stripe_customer)
+      analytics_updater = double("AnalyticsUpdater", track_cancelled: true)
+      allow(Analytics).to receive(:new).with(anything).
+        and_return(analytics_updater)
 
       expect(cancellation.schedule).to eq true
     end
@@ -119,9 +131,9 @@ describe Cancellation do
     it "returns false when invalid" do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription, "")
-      Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
-      analytics_updater = stub(track_cancelled: true)
-      Analytics.stubs(:new).returns(analytics_updater)
+      allow(Stripe::Customer).to receive(:retrieve).and_return(stripe_customer)
+      analytics_updater = double("AnalyticsUpdater", track_cancelled: true)
+      allow(Analytics).to receive(:new).and_return(analytics_updater)
 
       expect(cancellation.schedule).to eq false
     end
@@ -130,8 +142,10 @@ describe Cancellation do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription, "reason")
 
-      subscription.stubs(:stripe_customer_id).returns("cus_1CXxPJDpw1VLvJ")
-      Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
+      allow(subscription).to receive(:stripe_customer_id).
+        and_return("cus_1CXxPJDpw1VLvJ")
+      allow(Stripe::Customer).to receive(:retrieve).
+        and_return(stripe_customer)
       cancellation.schedule
 
       expect(Stripe::Customer).to have_received(:retrieve).
@@ -142,36 +156,44 @@ describe Cancellation do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription, "reason")
 
-      stripe_customer.subscriptions.first.stubs(:delete).
-        raises(Stripe::InvalidRequestError)
-      Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
+      stripe_invalid_request_error = double("String::InvalidRequestError")
+      allow(stripe_customer.subscriptions.first).to receive(:delete).
+        and_raise(stripe_invalid_request_error)
+      allow(Stripe::Customer).to receive(:retrieve).
+        and_return(stripe_customer)
+      allow(Analytics).to receive(:new)
 
       expect { cancellation.schedule }.to raise_error
       expect(Subscription.find(subscription.id)).to be_active
-      expect(Analytics).to have_received(:new).never
+      expect(Analytics).not_to have_received(:new)
     end
 
     it "does not unsubscribe from stripe if deactivating the subscription failed" do
       subscription = create(:subscription)
       cancellation = Cancellation.new(subscription, "reason")
 
-      stripe_customer = stub("Stripe::Customer")
-      subscription.stubs(:destroy).raises(ActiveRecord::RecordNotSaved)
-      Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
+      stripe_customer = double("Stripe::Customer")
+      allow(subscription).to receive(:destroy).
+        and_raise(ActiveRecord::RecordNotSaved, "error")
+      allow(subscription).to receive(:cancel_subscription)
+      allow(Stripe::Customer).to receive(:retrieve).
+        and_return(stripe_customer)
+      allow(Analytics).to receive(:new)
 
       expect { cancellation.schedule }.to raise_error
-      expect(subscription).to have_received(:cancel_subscription).never
-      expect(Analytics).to have_received(:new).never
+      expect(subscription).not_to have_received(:cancel_subscription)
+      expect(Analytics).not_to have_received(:new)
     end
   end
 
   describe "cancel_and_refund" do
     it "cancels immediately and refunds the last charge with Stripe" do
       subscription = create(:subscription)
-      charge = stub("Stripe::Charge", id: "charge_id", refund: nil)
-      subscription.stubs(:last_charge).returns(charge)
+      charge = double("Stripe::Charge", id: "charge_id", refund: nil)
+      allow(subscription).to receive(:last_charge).and_return(charge)
       cancellation = Cancellation.new(subscription, "reason")
-      Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
+      allow(Stripe::Customer).to receive(:retrieve).
+        and_return(stripe_customer)
 
       cancellation.cancel_and_refund
 
@@ -182,9 +204,9 @@ describe Cancellation do
 
     it "does not error if the customer was not charged" do
       subscription = create(:subscription)
-      subscription.stubs(:last_charge).returns(nil)
+      allow(subscription).to receive(:last_charge).and_return(nil)
       cancellation = Cancellation.new(subscription, "reason")
-      Stripe::Customer.stubs(:retrieve).returns(stripe_customer)
+      allow(Stripe::Customer).to receive(:retrieve).and_return(stripe_customer)
 
       expect { cancellation.cancel_and_refund }.not_to raise_error
       expect(stripe_customer.subscriptions.first).to have_received(:delete)
@@ -233,7 +255,7 @@ describe Cancellation do
     it "switches to the downgrade plan" do
       downgrade_plan = stub_downgrade_plan
       subscription = build_stubbed(:subscription)
-      subscription.stubs(:change_plan)
+      allow(subscription).to receive(:change_plan)
       cancellation = Cancellation.new(subscription, "reason")
 
       cancellation.downgrade
@@ -245,7 +267,7 @@ describe Cancellation do
 
   def stub_downgrade_plan
     build_stubbed(:plan).tap do |plan|
-      Plan.stubs(:basic).returns(plan)
+      allow(Plan).to receive(:basic).and_return(plan)
     end
   end
 
@@ -258,10 +280,11 @@ describe Cancellation do
   end
 
   def stripe_customer
-    @stripe_customer ||= stub(
+    @stripe_customer ||= double(
       "Stripe::Customer",
       subscriptions: [
-        stub(
+        double(
+          "Subscription",
           current_period_end: 1361234235,
           delete: true
         )

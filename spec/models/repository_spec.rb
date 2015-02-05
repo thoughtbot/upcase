@@ -11,9 +11,10 @@ describe Repository do
 
   describe "#included_in_plan?" do
     it "delegates to the plan's repositories feature" do
-      expected = stub("plan.has_feature?(:repositories)")
-      plan = stub("plan")
-      plan.stubs(:has_feature?).with(:repositories).returns(expected)
+      expected = double("plan.has_feature?(:repositories)")
+      plan = double("plan")
+      allow(plan).to receive(:has_feature?).with(:repositories).
+        and_return(expected)
       repository = Repository.new
 
       result = repository.included_in_plan?(plan)
@@ -90,7 +91,7 @@ describe Repository do
 
         repository.remove_collaborator(collaborator)
 
-        expect(fulfillment).to have_received(:remove).never
+        expect(fulfillment).not_to have_received(:remove)
       end
     end
   end
@@ -101,10 +102,9 @@ describe Repository do
         user = build_stubbed(:user)
         repository = build_stubbed(:repository)
         client = stub_github_client
-        client.
-          stubs(:team_member?).
+        allow(client).to receive(:team_member?).
           with(repository.github_team, user.github_username).
-          returns(true)
+          and_return(true)
 
         expect(repository).to have_github_member(user)
       end
@@ -115,17 +115,17 @@ describe Repository do
         user = build_stubbed(:user)
         repository = build_stubbed(:repository)
         client = stub_github_client
-        client.stubs(:team_member?).returns(false)
+        allow(client).to receive(:team_member?).and_return(false)
 
         expect(repository).not_to have_github_member(user)
       end
     end
 
     def stub_github_client
-      stub("github_client").tap do |client|
-        Octokit::Client.
-          stubs(:new).
-          with(login: GITHUB_USER, password: GITHUB_PASSWORD).returns(client)
+      double("github_client").tap do |client|
+        allow(Octokit::Client).to receive(:new).
+          with(login: GITHUB_USER, password: GITHUB_PASSWORD).
+          and_return(client)
       end
     end
   end
@@ -144,12 +144,12 @@ describe Repository do
   end
 
   def stub_fulfillment(repository, user)
-    stub("fulfillment").tap do |fulfillment|
-      fulfillment.stubs(:fulfill)
-      fulfillment.stubs(:remove)
-      GithubFulfillment.
-        stubs(:new).with(repository, user).
-        returns(fulfillment)
+    spy("fulfillment").tap do |fulfillment|
+      allow(fulfillment).to receive(:fulfill)
+      allow(fulfillment).to receive(:remove)
+      allow(GithubFulfillment).to receive(:new).
+        with(repository, user).
+        and_return(fulfillment)
     end
   end
 end

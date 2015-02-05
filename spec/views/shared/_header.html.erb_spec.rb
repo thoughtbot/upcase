@@ -42,11 +42,11 @@ describe "shared/_header.html.erb" do
 
   context "when user is the subscription owner of an annual plan" do
     it "does not show an annual upsell link" do
-      view_stubs(masquerading?: false)
-      view_stubs(signed_in?: true)
-      view_stubs(current_user_has_active_subscription?: true)
-      view_stubs(current_user_is_subscription_owner?: true)
-      view_stubs(current_user_is_eligible_for_annual_upgrade?: false)
+      view_stub_with_return(masquerading?: false)
+      view_stub_with_return(signed_in?: true)
+      view_stub_with_return(current_user_has_active_subscription?: true)
+      view_stub_with_return(current_user_is_subscription_owner?: true)
+      view_stub_with_return(current_user_is_eligible_for_annual_upgrade?: false)
 
       render(
         current_user_has_active_subscription: true,
@@ -97,21 +97,23 @@ describe "shared/_header.html.erb" do
     masquerading: false,
     signed_in: true
   )
-    view_stubs(
+    view_stub_with_return(
       current_user_has_active_subscription?:
         current_user_has_active_subscription
     )
-    view_stubs(
+    view_stub_with_return(
       current_user_is_eligible_for_annual_upgrade?:
         current_user_is_eligible_for_annual_upgrade
     )
-    view_stubs(
+    view_stub_with_return(
       current_user_is_subscription_owner?:
         current_user_is_subscription_owner
     )
-    view_stubs(masquerading?: masquerading)
-    view_stubs(signed_in?: signed_in)
-    view_stubs(current_user: stub("user", email: current_user_email))
+    view_stub_with_return(masquerading?: masquerading)
+    view_stub_with_return(signed_in?: signed_in)
+    view_stub_with_return(
+      current_user: double("user", email: current_user_email)
+    )
     super()
   end
 end

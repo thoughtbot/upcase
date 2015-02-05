@@ -73,7 +73,7 @@ describe Video do
   context 'video' do
     it 'creates a Video object with the correct wistia_id' do
       video = Video.new(wistia_id: '123')
-      Clip.stubs(:new)
+      allow(Clip).to receive(:new)
 
       video.clip
 
@@ -84,7 +84,7 @@ describe Video do
   context 'preview' do
     it 'returns a promo video if preview_wistia_id is set' do
       video = Video.new(preview_wistia_id: '123')
-      Clip.stubs(:new)
+      allow(Clip).to receive(:new)
 
       video.preview
 
@@ -93,9 +93,9 @@ describe Video do
 
     it 'returns a thumbnail if preview_wistia_id is not set' do
       video = Video.new
-      clip = stub(wistia_id: stub)
-      Clip.stubs(:new).returns(clip)
-      VideoThumbnail.stubs(:new)
+      clip = double("Clip", wistia_id: double)
+      allow(Clip).to receive(:new).and_return(clip)
+      allow(VideoThumbnail).to receive(:new)
 
       video.preview
 

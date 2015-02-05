@@ -1,10 +1,9 @@
 module FulfillmentStubs
   def stub_subscription_fulfillment(checkout, user = checkout.user)
-    stub('fulfillment', fulfill: true, remove: true).tap do |fulfillment|
-      SubscriptionFulfillment.
-        stubs(:new).
+    double("fulfillment", fulfill: true, remove: true).tap do |fulfillment|
+      allow(SubscriptionFulfillment).to receive(:new).
         with(user, checkout.plan).
-        returns(fulfillment)
+        and_return(fulfillment)
     end
   end
 end

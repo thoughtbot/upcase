@@ -5,7 +5,7 @@ describe "explore/_videos.html" do
     it "renders the video" do
       latest_video = build_stubbed(:video)
       show = build_stubbed(:show)
-      show.stubs(:latest_video).returns(latest_video)
+      allow(show).to receive(:latest_video).and_return(latest_video)
       video_tutorial = build_stubbed(:video_tutorial)
 
       render "explore/videos", show: show, video_tutorial: video_tutorial
@@ -18,7 +18,7 @@ describe "explore/_videos.html" do
   context "with no published episodes" do
     it "skips the video" do
       show = build_stubbed(:show)
-      show.stubs(:latest_video).returns(nil)
+      allow(show).to receive(:latest_video).and_return(nil)
       video_tutorial = build_stubbed(:video_tutorial)
 
       render "explore/videos", show: show, video_tutorial: video_tutorial

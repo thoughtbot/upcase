@@ -5,7 +5,7 @@ describe GithubFulfillment do
     it "adds GitHub user to the github team" do
       repository = build_stubbed(:repository)
       user = build_stubbed(:user, github_username: "github_username")
-      GithubFulfillmentJob.stubs(:enqueue)
+      allow(GithubFulfillmentJob).to receive(:enqueue)
 
       GithubFulfillment.new(repository, user).fulfill
 
@@ -16,17 +16,17 @@ describe GithubFulfillment do
     it "doesn't fulfill using GitHub with a blank GitHub team" do
       repository = build_stubbed(:show, github_team: nil)
       user = build_stubbed(:user, github_username: "github_username")
-      GithubFulfillmentJob.stubs(:enqueue)
+      allow(GithubFulfillmentJob).to receive(:enqueue)
 
       GithubFulfillment.new(repository, user).fulfill
 
-      expect(GithubFulfillmentJob).to have_received(:enqueue).never
+      expect(GithubFulfillmentJob).not_to have_received(:enqueue)
     end
   end
 
   describe "#remove" do
     it "removes user from github team" do
-      GithubRemovalJob.stubs(:enqueue)
+      allow(GithubRemovalJob).to receive(:enqueue)
       repository = build_stubbed(:repository)
       user = build_stubbed(:user, github_username: "test")
 
@@ -37,13 +37,13 @@ describe GithubFulfillment do
     end
 
     it "doesn't remove using GitHub with a blank GitHub team" do
-      GithubRemovalJob.stubs(:enqueue)
+      allow(GithubRemovalJob).to receive(:enqueue)
       repository = build(:show, github_team: nil)
       user = create(:user, github_username: "test")
 
       GithubFulfillment.new(repository, user).remove
 
-      expect(GithubRemovalJob).to have_received(:enqueue).never
+      expect(GithubRemovalJob).not_to have_received(:enqueue)
     end
   end
 end

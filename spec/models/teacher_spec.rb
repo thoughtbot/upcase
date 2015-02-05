@@ -8,7 +8,7 @@ describe Teacher do
     describe "##{attribute}" do
       it 'delegates to the user' do
         user = build_stubbed(:user)
-        user.stubs(attribute).returns('text')
+        allow(user).to receive(attribute).and_return("text")
         teacher = build_stubbed(:teacher, user: user)
 
         teacher.send(attribute)

@@ -3,9 +3,9 @@ require "rails_helper"
 describe Explore do
   describe "#show" do
     it "returns The Weekly Iteration" do
-      user = stub
-      twi_show = stub
-      Show.stubs(:the_weekly_iteration).returns(twi_show)
+      user = double
+      twi_show = double
+      allow(Show).to receive(:the_weekly_iteration).and_return(twi_show)
 
       show = Explore.new(user).show
 
@@ -15,10 +15,11 @@ describe Explore do
 
   describe "#latest_video_tutorial" do
     it "returns most recent VideoTutorial" do
-      user = stub
-      video_tutorial = stub
-      scope = stub(last: video_tutorial)
-      VideoTutorial.stubs(:order).with(:created_at).returns(scope)
+      user = double
+      video_tutorial = double
+      scope = double("Scope", last: video_tutorial)
+      allow(VideoTutorial).to receive(:order).with(:created_at).
+        and_return(scope)
 
       video = Explore.new(user).latest_video_tutorial
 
@@ -28,7 +29,7 @@ describe Explore do
 
   describe "#trails" do
     it "returns most recently published Trails" do
-      user = stub
+      user = double
       explore = Explore.new(user)
 
       expect(explore.trails).to find_relation(Trail.most_recent_published)

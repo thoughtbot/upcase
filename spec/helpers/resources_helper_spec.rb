@@ -37,8 +37,7 @@ describe ResourcesHelper, "#subscribe_or_upgrade_link" do
   end
 
   def stub_subscription(result)
-    Mocha::Configuration.allow(:stubbing_non_existent_method) do
-      helper.stubs(:current_user_has_active_subscription?).returns(result)
-    end
+    allow(helper).to receive(:current_user_has_active_subscription?).
+      and_return(result)
   end
 end

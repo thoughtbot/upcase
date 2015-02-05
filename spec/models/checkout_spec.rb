@@ -33,8 +33,9 @@ describe Checkout do
     end
 
     it "does not fulfill with a bad credit card" do
-      stripe_subscription = stub("stripe_subscription", create: false)
-      StripeSubscription.stubs(:new).returns(stripe_subscription)
+      stripe_subscription = double("stripe_subscription", create: false)
+      allow(StripeSubscription).to receive(:new).
+        and_return(stripe_subscription)
       checkout = build(:checkout)
 
       expect(checkout.fulfill).to be_falsey
@@ -42,7 +43,7 @@ describe Checkout do
 
     it "sends a receipt" do
       checkout = build(:checkout)
-      SendCheckoutReceiptEmailJob.stubs(:enqueue)
+      allow(SendCheckoutReceiptEmailJob).to receive(:enqueue)
 
       checkout.fulfill
 
