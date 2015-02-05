@@ -84,6 +84,10 @@ class User < ActiveRecord::Base
     plan.try(:name)
   end
 
+  def team_owner?
+    team && team.owner?(self)
+  end
+
   def subscription
     [personal_subscription, team_subscription].compact.detect(&:active?)
   end

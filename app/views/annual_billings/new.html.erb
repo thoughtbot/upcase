@@ -42,14 +42,23 @@
     <p>What you pay now (annually):</p>
   </dt>
   <dd>
-    <p class="subscription-charge">$<%= @annualized_payment %></p>
+    <p>
+      <span class="subscription-charge">$<%= @annualized_payment %></span>
+      per member
+    </p>
   </dd>
   <dt>
     <p>What you'll pay when you switch to annual billing:</p>
   </dt>
   <dd>
-    <p class="subscription-charge">$<%= @discounted_annual_payment %></p>
+    <p>
+      <span class="subscription-charge">$<%= @discounted_annual_payment %></span>
+      per member
+    </p>
   </dd>
+  <%- if current_user.team_owner? %>
+    <%= render partial: "annual_savings", locals: { team: current_user.team } %>
+  <% end %>
   <dd>
     <p class="disclaimer">Annual plans are charged up-front, once a year. We
     offer a 100% refund when requested within 30 days.</p>

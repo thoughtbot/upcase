@@ -131,6 +131,14 @@ describe Plan do
     end
   end
 
+  describe "#annualized_savings" do
+    it "returns savings gained when moving to yearly plan" do
+      plan = build_stubbed(:plan, :with_annual_plan)
+
+      expect(plan.annualized_savings).to eq(198)
+    end
+  end
+
   describe "#annual_plan_sku" do
     it "returns the sku of associated annual plan" do
       plan = build_stubbed(:plan, :with_annual_plan)

@@ -82,6 +82,10 @@ class Plan < ActiveRecord::Base
     annual_plan.price
   end
 
+  def annualized_savings
+    annualized_payment - discounted_annual_payment
+  end
+
   def annual_plan_sku
     annual_plan.sku
   end

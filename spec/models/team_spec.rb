@@ -51,6 +51,26 @@ describe Team do
       end
     end
 
+    context "#users_count" do
+      it "returns the number of team members" do
+        team = build_stubbed(:team)
+        create_list(:user, 2, team: team)
+
+        expect(team.users_count).to eq(2)
+      end
+    end
+
+    context "#annualized_savings" do
+      it "returns savings gained if moved to yearly plan" do
+        user = create(:user, :with_team_subscription)
+        user.plan.update(annual_plan: create(:plan, :annual))
+        team = user.team
+        allow(team).to receive(:users_count).and_return(3)
+
+        expect(team.annualized_savings).to eq(234)
+      end
+    end
+
     context "when above the minimum" do
       it "updates the team's subscription with the number of team members" do
         team = team_with_stubbed_subscription_change_quantity

@@ -32,6 +32,14 @@ class Team < ActiveRecord::Base
     users_count < plan.minimum_quantity
   end
 
+  def users_count
+    users.count
+  end
+
+  def annualized_savings
+    users_count * plan.annualized_savings
+  end
+
   private
 
   def update_billing_quantity
@@ -44,9 +52,5 @@ class Team < ActiveRecord::Base
 
   def fulfillment_for(user)
     SubscriptionFulfillment.new(user, plan)
-  end
-
-  def users_count
-    users.count
   end
 end
