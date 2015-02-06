@@ -14,16 +14,20 @@ describe Explore do
   end
 
   describe "#latest_video_tutorial" do
-    it "returns most recent VideoTutorial" do
+    it "returns most recent active VideoTutorial" do
       user = double
       video_tutorial = double
-      scope = double("Scope", last: video_tutorial)
-      allow(VideoTutorial).to receive(:order).with(:created_at).
-        and_return(scope)
+      order_scope = double("Order Scope", last: video_tutorial)
+      active_scope = double("Active Scope", order: order_scope)
+      allow(VideoTutorial).to receive(:active).and_return(active_scope)
+      allow(active_scope).to receive(:order).with(:created_at).
+        and_return(order_scope)
 
-      video = Explore.new(user).latest_video_tutorial
+      result = Explore.new(user).latest_video_tutorial
 
-      expect(video).to eq(video)
+      expect(result).to eq(video_tutorial)
+      expect(VideoTutorial).to have_received(:active)
+      expect(active_scope).to have_received(:order).with(:created_at)
     end
   end
 

@@ -10,7 +10,7 @@ class Explore
   end
 
   def latest_video_tutorial
-    VideoTutorial.order(:created_at).last
+    VideoTutorial.active.order(:created_at).last
   end
 
   def topics
