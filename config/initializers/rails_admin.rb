@@ -159,7 +159,7 @@ RailsAdmin.config do |config|
         orderable true
       end
 
-      exclude_fields :exercises, :videos
+      exclude_fields :exercises, :videos, :statuses, :users
      end
    end
 
