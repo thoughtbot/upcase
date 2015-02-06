@@ -183,6 +183,7 @@ RailsAdmin.config do |config|
       group :default do
         field :name
         field :slug
+        field :summary
         field :notes
         field :topics
 
