@@ -100,6 +100,11 @@ en:
       already_subscribed: You are already subscribed. You can change your plan.
       plan_not_found: We have a new subscription plan for you.
 
+  coupons:
+    flashes:
+      success: Your coupon %{code} was processed successfully. The discount will be applied at checkout.
+      invalid: The coupon code you supplied is not valid.
+
   subscriptions:
     accept_discounted_annual_subscription: Yes! I want to save $$$ and keep learning
     join_cta: See Pricing

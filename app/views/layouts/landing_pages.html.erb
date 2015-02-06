@@ -29,6 +29,10 @@
       </div>
     </section>
 
+    <div class="header-flash">
+      <%= render 'shared/flashes' %>
+    </div>
+
     <section class="content">
       <% if content_for?(:subject_block) %>
         <section class="subject"><%= yield(:subject_block) %></section>

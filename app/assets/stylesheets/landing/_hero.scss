@@ -1,4 +1,4 @@
-$landing-hero: #313b41;
+$hero-green: #4dd1aa;
 
 .hero {
   @include background-image(
@@ -6,10 +6,10 @@ $landing-hero: #313b41;
     url(upcase/laptop.jpg)
   );
 
-  background-color: $landing-hero;
+  background-color: $upcase-blue-2;
   background-position: center center;
   background-size: cover;
-  padding: 4em 2em 2em;
+  padding: 6em 2em 3em;
   position: relative;
   text-align: center;
   z-index: 10;
@@ -68,7 +68,7 @@ $landing-hero: #313b41;
   }
 
   .signup {
-    background: #0FD197;
+    background: $hero-green;
     font-size: 1.25em;
     font-weight: 300;
     margin: 0;

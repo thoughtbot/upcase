@@ -9,6 +9,9 @@ describe CouponsController do
         get :show, id: "5OFF"
 
         expect(session[:coupon]).to eq("5OFF")
+        expect(flash[:notice]).to(
+          eq I18n.t("coupons.flashes.success", code: "5OFF")
+        )
         expect(response).to redirect_to(root_path)
       end
     end
@@ -18,7 +21,7 @@ describe CouponsController do
         get :show, id: "5OFF"
 
         expect(session[:coupon]).to be_nil
-        expect(flash[:notice]).to include "is not valid"
+        expect(flash[:error]).to eq I18n.t("coupons.flashes.invalid")
         expect(response).to redirect_to(root_path)
       end
     end

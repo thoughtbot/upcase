@@ -2,8 +2,9 @@ class CouponsController < ApplicationController
   def show
     if coupon.valid?
       session[:coupon] = coupon.code
+      flash[:notice] = t("coupons.flashes.success", code: coupon.code)
     else
-      flash[:notice] = "The coupon code you supplied is not valid."
+      flash[:error] = t("coupons.flashes.invalid")
     end
 
     redirect_to root_path
