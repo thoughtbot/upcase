@@ -22,6 +22,10 @@ class Trail < ActiveRecord::Base
     where(published: true)
   end
 
+  def to_s
+    name
+  end
+
   # Override setters so it preserves the order
   def step_ids=(new_step_ids)
     super

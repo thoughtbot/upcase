@@ -1,4 +1,20 @@
 .trails-show {
+  .breadcrumbs {
+    color: $gray-3;
+
+    a {
+      color: $upcase-blue;
+      font-size: .9em;
+      padding: 0 10px;
+
+      &:last-child {
+        color: $gray-2;
+        font-weight: 400;
+        pointer-events: none;
+      }
+    }
+  }
+
   header {
     @include display(flex);
     margin-top: 3.2em;

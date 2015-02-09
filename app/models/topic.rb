@@ -41,6 +41,10 @@ class Topic < ActiveRecord::Base
     where("color != ''")
   end
 
+  def to_s
+    name
+  end
+
   def published_trails
     trails.published
   end
