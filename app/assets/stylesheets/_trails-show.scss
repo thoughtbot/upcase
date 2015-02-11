@@ -1,7 +1,11 @@
 .trails-show {
+  .prerequisite {
+    margin-top: 1em;
+  }
+
   header {
     @include display(flex);
-    margin-top: 3.2em;
+    margin-top: 2em;
 
     @media screen and (max-width: 755px) {
       display: block;
