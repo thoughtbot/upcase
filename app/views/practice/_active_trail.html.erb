@@ -1,5 +1,6 @@
 <div class="<%= trail.unstarted? ? "unstarted" : "started" %>">
   <section class="trail <%= topic_class(trail.topic) %>">
+    <p class="prerequisite">Hey, before you start this...Have you done the <a href="">Intro to Rails</a> tutorial?</p>
     <header>
       <span class="topic-label"><%= trail.topic.name %></span>
       <h1><%= link_to trail.name, trail %></h1>
