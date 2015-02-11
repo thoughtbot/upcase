@@ -9,6 +9,7 @@
     }
 
     .topic-image {
+      flex: none;
       margin-right: 2em;
 
       @media screen and (max-width: 755px) {
@@ -18,7 +19,7 @@
     }
 
     .topic-title {
-      margin-top: 3.5em;
+      margin-top: 1em;
     }
   }
 
