@@ -9,13 +9,25 @@ $landing-hero: #313b41;
   background-color: $landing-hero;
   background-position: center center;
   background-size: cover;
-  padding: 6em 2em 2em;
+  padding: 4em 2em 2em;
   position: relative;
   text-align: center;
   z-index: 10;
 
+  @include marketing-fullsize {
+    padding-top: 6em;
+
+    svg {
+      @include size(8em);
+    }
+
+    h1 {
+      font-size: 3.375em;
+    }
+  }
+
   svg {
-    @include size(8em);
+    @include size(6em);
     margin: 0 0 2em;
 
     circle {
@@ -25,35 +37,32 @@ $landing-hero: #313b41;
   }
 
   h1 {
-    @include clearfix;
-    background: left center no-repeat;
-    background-size: auto 100%;
-    color: rgba(white, 0.888);
-    font-size: 3.375em;
+    color: #fff;
+    font-size: 2em;
     font-weight: 100;
     letter-spacing: -0.02em;
-    position: relative;
-
-    strong {
-      font-weight: 600;
-      text-shadow: 0 0 0 rgba(white, 0.333), 0 2px 0 rgba(black, 0.111);
-    }
   }
 }
 
 .hero-cta {
-  padding: 4em 2em 2em;
+  padding: 2em 0;
   text-align: center;
 
-  p {
-    color: white;
-    font-size: 1.5em;
-    line-height: 1.2;
+  @include marketing-fullsize {
+    padding-top: 4em;
+
+    h5 {
+      font-size: 1.25em;
+    }
+
+    .signup {
+      font-size: 1.5em;
+    }
   }
 
   h5 {
     color: white;
-    font-size: 1.125em;
+    font-size: 1em;
     font-weight: 600;
     margin: 0 0 2em;
 
@@ -64,12 +73,8 @@ $landing-hero: #313b41;
 
   .signup {
     background: #0FD197;
-    font-size: 1.5em;
+    font-size: 1.25em;
     font-weight: 300;
+    margin: 0;
   }
-}
-
-.hero-icon {
-  @include size(8em);
-  margin-bottom: 1em;
 }
