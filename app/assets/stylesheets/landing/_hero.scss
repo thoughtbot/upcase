@@ -16,19 +16,15 @@ $landing-hero: #313b41;
 
   @include marketing-fullsize {
     padding-top: 6em;
-
-    svg {
-      @include size(8em);
-    }
-
-    h1 {
-      font-size: 3.375em;
-    }
   }
 
   svg {
     @include size(6em);
     margin: 0 0 2em;
+
+    @include marketing-fullsize {
+      @include size(8em);
+    }
 
     circle {
       fill: #fff;
@@ -41,6 +37,10 @@ $landing-hero: #313b41;
     font-size: 2em;
     font-weight: 100;
     letter-spacing: -0.02em;
+
+    @include marketing-fullsize {
+      font-size: 3.375em;
+    }
   }
 }
 
@@ -50,14 +50,6 @@ $landing-hero: #313b41;
 
   @include marketing-fullsize {
     padding-top: 4em;
-
-    h5 {
-      font-size: 1.25em;
-    }
-
-    .signup {
-      font-size: 1.5em;
-    }
   }
 
   h5 {
@@ -65,6 +57,10 @@ $landing-hero: #313b41;
     font-size: 1em;
     font-weight: 600;
     margin: 0 0 2em;
+
+    @include marketing-fullsize {
+      font-size: 1.25em;
+    }
 
     strong {
       font-weight: 700;
@@ -76,5 +72,9 @@ $landing-hero: #313b41;
     font-size: 1.25em;
     font-weight: 300;
     margin: 0;
+
+    @include marketing-fullsize {
+      font-size: 1.5em;
+    }
   }
 }
