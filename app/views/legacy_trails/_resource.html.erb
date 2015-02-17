@@ -1,9 +1,0 @@
-<%= content_tag :li, :class => resource_classes(resource), 'data-id' => resource['id'] do %>
-  <%= check_box_tag resource['id'] %>
-  <span class="icon"></span>
-  <% if resource['uri'].present? %>
-    <span><%= link_to(resource['title'], resource['uri']) %></span>
-  <% else %>
-    <span><%= resource['title'] %></span>
-  <% end %>
-<% end %>

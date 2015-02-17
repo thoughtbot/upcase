@@ -13,7 +13,6 @@ class Topic < ActiveRecord::Base
                      source_type: "Product"
   end
 
-  has_one :legacy_trail
   has_many :trails
 
   validates :name, presence: true
@@ -21,16 +20,8 @@ class Topic < ActiveRecord::Base
 
   friendly_id :name, use: [:slugged, :finders]
 
-  def self.top
-    featured.order("count DESC").limit 20
-  end
-
   def self.explorable
     where(explorable: true).order("count DESC")
-  end
-
-  def self.featured
-    where(featured: true)
   end
 
   def self.meta_keywords
@@ -51,9 +42,5 @@ class Topic < ActiveRecord::Base
 
   def to_param
     slug
-  end
-
-  def related
-    @related ||= Related.new(self)
   end
 end

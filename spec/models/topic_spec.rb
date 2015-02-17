@@ -8,14 +8,11 @@ describe Topic do
   it { should have_many(:products).through(:classifications) }
   it { should have_many(:topics).through(:classifications) }
   it { should have_many(:videos).through(:classifications) }
-  it { should have_one(:legacy_trail) }
   it { should have_many(:trails) }
 
   # Validations
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:slug) }
-
-  it_behaves_like 'it has related items'
 
   context '.create' do
     before do
@@ -24,19 +21,6 @@ describe Topic do
 
     it 'generates a stripped, url encoded slug based on name' do
       expect(@topic.slug).to eq "test-driven-development"
-    end
-  end
-
-  context 'self.top' do
-    before do
-      25.times do |i|
-        create :topic, count: i, featured: true
-      end
-    end
-
-    it 'returns the top 20 featured topics' do
-      expect(Topic.top.count).to eq 20
-      expect(Topic.top.all? { |topic| topic.count >= 5 }).to be
     end
   end
 
@@ -50,15 +34,6 @@ describe Topic do
       result = Topic.explorable
 
       expect(result.map(&:name)).to eq(%w(one two three))
-    end
-  end
-
-  context 'self.featured' do
-    it 'returns the featured topics' do
-      normal = create(:topic, featured: false)
-      featured = create(:topic, featured: true)
-      expect(Topic.featured).to include featured
-      expect(Topic.featured).not_to include normal
     end
   end
 

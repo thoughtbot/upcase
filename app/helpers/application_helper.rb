@@ -14,7 +14,7 @@ module ApplicationHelper
   end
 
   def keywords(keywords = nil)
-    keywords.presence || Topic.top.pluck(:name).join(', ')
+    keywords.presence || Topic.all.pluck(:name).join(", ")
   end
 
   def github_auth_path

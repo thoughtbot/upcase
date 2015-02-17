@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "resources/_topic" do
+describe "topics/_resources" do
   it "shows videos and video tutorials" do
     render_topic
 
@@ -28,7 +28,7 @@ describe "resources/_topic" do
     topic = topic_with_resources(**topic_attributes)
     view_stubs(:current_user)
     stub_template("practice/_trail.html.erb" => "")
-    render partial: "resources/topic", locals: { topic: topic }
+    render partial: "topics/resources", locals: { topic: topic }
   end
 
   def topic_with_resources(published_trails: [])

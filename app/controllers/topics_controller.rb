@@ -14,8 +14,10 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find(params[:id])
-    respond_to :html
+    @topic = TopicWithTrails.new(
+      topic_slug: params[:id],
+      user: current_user
+    )
   end
 
   private

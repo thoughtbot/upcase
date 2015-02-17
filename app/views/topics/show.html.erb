@@ -1,26 +1,15 @@
-<% content_for :meta_description, @topic.summary %>
-<% content_for :meta_keywords, @topic.keywords %>
-<% content_for :page_title, @topic.name %>
-<% content_for :additional_header_links do %>
-  <li class="all-trails"><%= link_to 'All Trails', trails_path %></li>
-<% end %>
+<% content_for :additional_body_classes, @topic.slug.parameterize %>
+
 <% content_for :subject_block do %>
-  <h1><%= @topic.name %></h1>
-  <% if @topic.summary.present? %>
-    <h2 class="tagline"><%= @topic.summary %></h2>
-  <% end %>
+  <div class="topic-header">
+    <h1><%= @topic.name %></h1>
+
+    <% if @topic.summary.present? %>
+      <h2 class="tagline"><%= @topic.summary %></h2>
+    <% end %>
+
+    <div class="topic-image"></div>
+  </div>
 <% end %>
 
-<% if @topic.related.topics.present? %>
-  <p class="related-topics">Related Trails: <%= render partial: 'relateds/topic', collection: @topic.related.topics %></p>
-<% end %>
-
-<% if @topic.legacy_trail %>
-  <%= render @topic.legacy_trail %>
-<% end %>
-
-<div class="related-reading">
-  <p><%= link_to "View related #{@topic.name} articles &rarr;".html_safe, blog_articles_url(@topic) %></p>
-</div>
-
-<%= render @topic.related %>
+<%= render "resources", topic: @topic %>

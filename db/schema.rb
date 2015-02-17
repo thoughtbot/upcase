@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203153815) do
+ActiveRecord::Schema.define(version: 20150218161414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,18 +43,6 @@ ActiveRecord::Schema.define(version: 20150203153815) do
   end
 
   add_index "collaborations", ["repository_id", "user_id"], name: "index_collaborations_on_repository_id_and_user_id", unique: true, using: :btree
-
-  create_table "completions", force: :cascade do |t|
-    t.string   "trail_object_id"
-    t.string   "trail_name"
-    t.integer  "user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "slug"
-  end
-
-  add_index "completions", ["trail_object_id"], name: "index_completions_on_trail_object_id", using: :btree
-  add_index "completions", ["user_id"], name: "index_completions_on_user_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0
@@ -111,16 +99,6 @@ ActiveRecord::Schema.define(version: 20150203153815) do
 
   add_index "invitations", ["code"], name: "index_invitations_on_code", using: :btree
   add_index "invitations", ["team_id"], name: "index_invitations_on_team_id", using: :btree
-
-  create_table "legacy_trails", force: :cascade do |t|
-    t.integer  "topic_id"
-    t.string   "slug"
-    t.text     "trail_map"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "legacy_trails", ["topic_id"], name: "index_legacy_trails_on_topic_id", using: :btree
 
   create_table "mentors", force: :cascade do |t|
     t.integer "user_id",                                                  null: false
@@ -301,7 +279,6 @@ ActiveRecord::Schema.define(version: 20150203153815) do
     t.string   "slug",                         null: false
     t.text     "summary"
     t.integer  "count"
-    t.boolean  "featured",     default: false, null: false
     t.boolean  "explorable",   default: false, null: false
     t.string   "color",        default: "",    null: false
     t.string   "color_accent", default: "",    null: false

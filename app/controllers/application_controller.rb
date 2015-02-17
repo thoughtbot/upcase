@@ -73,7 +73,7 @@ class ApplicationController < ActionController::Base
   helper_method :included_in_current_users_plan?
 
   def topics
-    Topic.top
+    Topic.all
   end
   helper_method :topics
 

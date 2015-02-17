@@ -197,14 +197,6 @@ FactoryGirl.define do
     trait :explorable do
       explorable true
     end
-    trait :featured do
-      featured true
-    end
-  end
-
-  factory :legacy_trail do
-    slug 'trail'
-    topic
   end
 
   factory :completion do

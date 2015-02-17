@@ -2,7 +2,6 @@ require "rails_helper"
 
 describe User do
   context "associations" do
-    it { should have_many(:completions) }
     it { should belong_to(:mentor) }
     it { should belong_to(:team) }
     it { should have_many(:subscriptions).dependent(:destroy) }

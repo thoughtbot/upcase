@@ -73,43 +73,4 @@
     display: block;
     position: static;
   }
-
-  .text-complete {
-    color: darken($darkwarmgray, 5%);
-    font-weight: 600;
-    position: absolute;
-    right: 0;
-    z-index: 2;
-
-    @include body-mobile {
-      font-size: 1.5rem;
-      padding-top: .5rem;
-      position: static;
-    }
-  }
-
-  .dots {
-    height: 100%;
-    left: 0%;
-    margin-top: 0;
-    position: relative;
-    @include transition(.4s $ease-in-quart);
-
-    @include body-mobile {
-      display: none;
-    }
-  }
-
-  .trail-bullet {
-    @extend %trail-bullet;
-    @include position(absolute, 0px 0 0 0px);
-    @include transition(.4s $ease-in-quart);
-    z-index: 1;
-  }
-
-  .trail-bullet.complete {
-    @extend %trail-bullet-complete;
-    margin-top: - 1.5rem / 2;
-    top: 50% !important;
-  }
 }

@@ -1,6 +1,5 @@
 namespace :api do
   namespace :v1 do
-    resources :completions, only: [:index, :show, :create, :destroy]
     resources :exercises, only: [:update]
 
     post "exercises/:exercise_uuid/status" => "statuses#create"

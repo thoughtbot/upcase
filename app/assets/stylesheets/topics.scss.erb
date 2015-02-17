@@ -1,11 +1,11 @@
 <% Topic.with_colors.each do |topic| %>
-  body.resources-index.<%= topic.slug.parameterize %> {
-    h1 {
-      color: <%= topic.color_accent %>;
-    }
-
+  body.topics.topics-show.<%= topic.slug.parameterize %> {
     .subject {
       background: <%= topic.color %>;
+    }
+
+    .subject h1 {
+      color: <%= topic.color_accent %>;
     }
 
     .topic-image {
