@@ -6,7 +6,7 @@ class Explore
   end
 
   def show
-    Show.the_weekly_iteration
+    Show.the_weekly_iteration || NullShow.new
   end
 
   def latest_video_tutorial

@@ -2,8 +2,6 @@ require "rails_helper"
 
 feature "Subscriber accesses content" do
   before do
-    show = create(:show, name: Show::THE_WEEKLY_ITERATION)
-    create(:video, watchable: show)
     create(:video_tutorial)
   end
 
