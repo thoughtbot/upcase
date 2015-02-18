@@ -2,14 +2,29 @@ require "rails_helper"
 
 describe Explore do
   describe "#show" do
-    it "returns The Weekly Iteration" do
-      user = double
-      twi_show = double
-      allow(Show).to receive(:the_weekly_iteration).and_return(twi_show)
+    context "when The Weekly Iteration exits" do
+      it "returns it" do
+        user = double
+        the_weekly_iteration = double
+        allow(Show).to(
+          receive(:the_weekly_iteration).and_return(the_weekly_iteration)
+        )
 
-      show = Explore.new(user).show
+        show = Explore.new(user).show
 
-      expect(show).to eq(twi_show)
+        expect(show).to eq(the_weekly_iteration)
+      end
+    end
+
+    context "when The Weekly Iteration does not exist" do
+      it "returns a NullShow" do
+        user = double
+        allow(Show).to receive(:the_weekly_iteration).and_return(nil)
+
+        show = Explore.new(user).show
+
+        expect(show).to be_a NullShow
+      end
     end
   end
 
