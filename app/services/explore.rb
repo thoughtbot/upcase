@@ -17,7 +17,7 @@ class Explore
     topics = TopicsWithResources.new(
       topics: Topic.explorable,
       factory: TopicWithResourcesFactory.new(
-        catalog: Catalog.new(user: @user),
+        catalog: Catalog.new,
         limit: LIMIT
       )
     )

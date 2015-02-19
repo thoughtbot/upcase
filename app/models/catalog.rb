@@ -1,10 +1,6 @@
 class Catalog
   include ActiveModel::Conversion
 
-  def initialize(user: nil)
-    @user = user
-  end
-
   def products
     Product.active.ordered
   end
