@@ -1,6 +1,4 @@
 class Explore
-  LIMIT = 3
-
   def initialize(user)
     @user = user
   end
@@ -17,8 +15,7 @@ class Explore
     topics = TopicsWithResources.new(
       topics: Topic.explorable,
       factory: TopicWithResourcesFactory.new(
-        catalog: Catalog.new,
-        limit: LIMIT
+        catalog: Catalog.new
       )
     )
     topics.to_a.sort_by(&:count).reverse
