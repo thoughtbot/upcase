@@ -55,5 +55,6 @@ Upcase::Application.routes.draw do
   get "explore" => "explore#show", as: :explore
   get "sitemap.xml" => "sitemaps#show", as: :sitemap, format: "xml"
   get ":id" => "topics#show", as: :topic
+  get ":topic_id/resources" => redirect("/%{topic_id}")
   get "/auth/:provider/callback", to: "auth_callbacks#create"
 end
