@@ -21,7 +21,7 @@ class Topic < ActiveRecord::Base
   friendly_id :name, use: [:slugged, :finders]
 
   def self.explorable
-    where(explorable: true).order("count DESC")
+    where(explorable: true)
   end
 
   def self.meta_keywords

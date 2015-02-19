@@ -26,10 +26,10 @@ describe Topic do
 
   context ".explorable" do
     it "returns topics to be displayed on the explore page" do
-      create(:topic, :explorable, name: "two", count: 2)
-      create(:topic, :explorable, name: "one", count: 3)
-      create(:topic, :explorable, name: "three", count: 1)
-      create(:topic, name: "hidden", count: 4)
+      create(:topic, :explorable, name: "one")
+      create(:topic, :explorable, name: "two")
+      create(:topic, :explorable, name: "three")
+      create(:topic, name: "hidden")
 
       result = Topic.explorable
 
