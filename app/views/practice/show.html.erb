@@ -10,10 +10,8 @@
     <section class="trails-progress">
       <section class="subject">
         <h1>Welcome, <%= current_user.first_name %>.</h1>
-        <h2>
-          These new trails are focused exercises targeting your interests. They
-          help you learn by doing and keep your skillset sharp.
-        </h2>
+        <h2>Here's where you left off...</h2>
+        <h2 class="new-user-state">Get started with Upcase trails to keep your programming skills sharp! Trails are made of videos and exercises, so you can learn by watching and doing.</h2>
       </section>
 
       <% if @practice.incomplete_trails.any? %>
@@ -22,6 +20,29 @@
             <h4 class="text">Your Trails</h4>
           </span>
           <%= render partial: "trails/incomplete_trail", collection: @practice.incomplete_trails, as: :trail %>
+          <div class="new-user-state">
+            <p>You haven't started any trails yet. What are you interested in practicing?</p>
+            <section class="trail-titles">
+              <ul>
+                <li class="design">
+                  <a href="">Trail Link</a>
+                </li>
+                <li class="haskell">
+                  <a href="">Trail Link</a>
+                </li>
+                <li class="rails">
+                  <a href="">Trail Link</a>
+                </li>
+                <li class="ios">
+                  <a href="">Trail Link</a>
+                </li>
+                <li class="testing">
+                  <a href="">Trail Link</a>
+                </li>
+              </ul>
+            </section>
+          </div>
+          <p>Not sure what you want? <a href="/explore">Explore</a> everything Upcase has to offer.</p>
         </section>
       <% end %>
 
@@ -33,18 +54,31 @@
           <section class="trails-complete">
             <%= render partial: "completed_trails/just_finished_trail", collection: @practice.just_finished_trails, as: :trail %>
           </section>
-        </section>
-      <% end %>
-
-      <footer>
-        <% if @practice.has_completed_trails? %>
-          <p>
-            <%= link_to completed_trails_path do %>
-              View all completed trails &rarr;
-            <% end %>
-          </p>
         <% end %>
-      </footer>
+          <footer>
+          <% if @practice.has_completed_trails? %>
+            <p>
+              <%= link_to completed_trails_path do %>
+                View all completed trails &rarr;
+              <% end %>
+            </p>
+          <% end %>
+        </footer>
+      </section>
+      <section class="weekly-iteration tiles">
+        <span class="divider">
+          <h4 class="text">The Weekly Iteration</h4>
+        </span>
+        <p>See what we're talking about each week on <a href="">The Weekly Iteration &rarr;</a></p>
+        <ul>
+          <li class="tile show ios">
+            <h2>Latest episode</h2>
+            <h1><a href="">Swift Fundamentals</a></h1>
+            <p class="description">This is the episode tagline.</p>
+            <a class="cta" href="">View Episode</a>
+          </li>
+        </ul>
+      </section>
     </section>
   </div>
 </section>
