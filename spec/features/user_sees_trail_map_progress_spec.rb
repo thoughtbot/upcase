@@ -45,6 +45,6 @@ feature 'User can see their trail map progress' do
   private
 
   def topic
-    @topic ||= create(:topic, name: "Git")
+    @topic ||= create(:topic, name: "Workflow")
   end
 end
