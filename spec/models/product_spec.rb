@@ -47,12 +47,6 @@ describe Product do
     end
   end
 
-  describe '#collection?' do
-    it 'returns false' do
-      expect(Product.new).not_to be_collection
-    end
-  end
-
   describe "#fulfill" do
     it "fulfills using GitHub with a GitHub team" do
       user = build_stubbed(:user)

@@ -69,10 +69,6 @@ class Product < ActiveRecord::Base
     github_team.present?
   end
 
-  def collection?
-    false
-  end
-
   def to_aside_partial
     "#{self.class.name.underscore.pluralize}/aside"
   end
