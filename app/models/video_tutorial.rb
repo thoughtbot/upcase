@@ -6,6 +6,6 @@ class VideoTutorial < Product
   end
 
   def included_in_plan?(plan)
-    plan.has_feature?(:video_tutorials)
+    plan.has_feature?(:trails)
   end
 end

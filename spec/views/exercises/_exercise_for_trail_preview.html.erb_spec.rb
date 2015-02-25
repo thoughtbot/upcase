@@ -3,7 +3,7 @@ require "rails_helper"
 describe "exercises/_exercise_for_trail_preview.html" do
   context "without access to exercises" do
     it "renders an upgrade link" do
-      stub_access(exercises: false)
+      stub_access(trails: false)
       stub_current_user
 
       render_exercise
@@ -14,7 +14,7 @@ describe "exercises/_exercise_for_trail_preview.html" do
 
   context "with access to exercises" do
     it "doesn't render an upgrade link" do
-      stub_access(exercises: true)
+      stub_access(trails: true)
       stub_current_user
 
       render_exercise

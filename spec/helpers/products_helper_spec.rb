@@ -4,7 +4,7 @@ describe ProductsHelper do
   describe "#completeable_link" do
     context "with access to exercises" do
       it "renders a link to the exercise url" do
-        stub_access(exercises: true)
+        stub_access(trails: true)
         url = "http://example.com/some/exercise"
 
         result = helper.completeable_link(url, class: "amazing") { "text" }
@@ -15,7 +15,7 @@ describe ProductsHelper do
 
     context "without access to exercises" do
       it "renders a link to the change plan page" do
-        stub_access(exercises: false)
+        stub_access(trails: false)
         provided_url = "http://example.com"
         expected_url = edit_subscription_path
 

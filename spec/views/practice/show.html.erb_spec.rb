@@ -17,38 +17,26 @@ describe "practice/show.html" do
 
   context "when a user has access to all features" do
     it "does not render the locked_features partial" do
-      render_show(
-        shows: true,
-        video_tutorials: true,
-        exercises: true
-      )
+      render_show shows: true, trails: true
 
       expect(rendered).not_to have_content("locked")
     end
   end
 
-  context "when a user has access to shows and video tutorials" do
-    it "renders locked features partial with exercises" do
-      render_show shows: true, video_tutorials: true
-
-      expect(rendered).to have_content("Exercises are locked")
-    end
-  end
-
   context "when a user has access to shows" do
     it "renders locked features partial with correct features" do
-      render_show shows: true
+      render_show shows: true, trails: false
 
-      text = "Exercises and video tutorials are locked"
+      text = "Trails are locked"
       expect(rendered).to have_content(text)
     end
   end
 
   context "when a user does not have access to any features" do
     it "renders locked features partial with all features" do
-      render_show
+      render_show shows: false, trails: false
 
-      text = "Exercises, shows, and video tutorials are locked"
+      text = "Trails and shows are locked"
       expect(rendered).to have_content(text)
     end
   end
@@ -80,8 +68,7 @@ describe "practice/show.html" do
       repositories: false,
       forum: false,
       shows: false,
-      video_tutorials: false,
-      exercises: false,
+      trails: false
     }
   end
 end

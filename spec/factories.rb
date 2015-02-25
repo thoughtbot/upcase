@@ -108,13 +108,13 @@ FactoryGirl.define do
     sku "professional"
     short_description 'A great Subscription'
     description 'A long description'
+    includes_trails true
 
     factory :basic_plan do
       sku Plan::THE_WEEKLY_ITERATION_SKU
-      includes_exercises false
+      includes_trails false
       includes_forum false
       includes_repositories false
-      includes_video_tutorials false
     end
 
     trait :includes_mentor do
@@ -283,11 +283,10 @@ FactoryGirl.define do
         plan do
           create(
             :plan,
-            includes_exercises: true,
+            includes_trails: true,
             includes_forum: true,
             includes_mentor: true,
-            includes_repositories: true,
-            includes_video_tutorials: true
+            includes_repositories: true
           )
         end
       end

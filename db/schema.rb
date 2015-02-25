@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150219211138) do
+ActiveRecord::Schema.define(version: 20150225211138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,26 +149,25 @@ ActiveRecord::Schema.define(version: 20150219211138) do
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
 
   create_table "plans", force: :cascade do |t|
-    t.string   "name",                                     null: false
-    t.string   "sku",                                      null: false
-    t.string   "short_description",                        null: false
-    t.text     "description",                              null: false
-    t.boolean  "active",                   default: true,  null: false
-    t.integer  "price",                                    null: false
+    t.string   "name",                                  null: false
+    t.string   "sku",                                   null: false
+    t.string   "short_description",                     null: false
+    t.text     "description",                           null: false
+    t.boolean  "active",                default: true,  null: false
+    t.integer  "price",                                 null: false
     t.text     "terms"
-    t.boolean  "includes_mentor",          default: false
-    t.boolean  "includes_video_tutorials", default: true
-    t.boolean  "featured",                 default: true,  null: false
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.boolean  "includes_exercises",       default: true,  null: false
-    t.boolean  "includes_repositories",    default: true,  null: false
-    t.boolean  "includes_forum",           default: true,  null: false
-    t.boolean  "includes_shows",           default: true,  null: false
-    t.boolean  "includes_team",            default: false, null: false
-    t.boolean  "annual",                   default: false
+    t.boolean  "includes_mentor",       default: false
+    t.boolean  "featured",              default: true,  null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.boolean  "includes_repositories", default: true,  null: false
+    t.boolean  "includes_forum",        default: true,  null: false
+    t.boolean  "includes_shows",        default: true,  null: false
+    t.boolean  "includes_team",         default: false, null: false
+    t.boolean  "annual",                default: false
     t.integer  "annual_plan_id"
-    t.integer  "minimum_quantity",         default: 1,     null: false
+    t.integer  "minimum_quantity",      default: 1,     null: false
+    t.boolean  "includes_trails",       default: false, null: false
   end
 
   add_index "plans", ["annual_plan_id"], name: "index_plans_on_annual_plan_id", using: :btree

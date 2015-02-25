@@ -391,7 +391,7 @@ describe User do
       it "returns false" do
         user = build_stubbed(:user)
 
-        expect(user.has_access_to?("video_tutorials")).to_not be
+        expect(user).not_to have_access_to(:trails)
       end
     end
 
@@ -400,7 +400,7 @@ describe User do
         user = create(:subscriber)
         allow(user.subscription).to receive(:active?).and_return(false)
 
-        expect(user.has_access_to?("video_tutorials")).to_not be
+        expect(user).not_to have_access_to(:trails)
       end
     end
 
@@ -410,7 +410,7 @@ describe User do
         allow(user.subscription).to receive(:has_access_to?).
           and_return("expected")
 
-        expect(user.has_access_to?("video_tutorials")).to eq("expected")
+        expect(user.has_access_to?(:trails)).to eq("expected")
       end
     end
 
@@ -425,7 +425,7 @@ describe User do
         allow(user.team.subscription).to receive(:has_access_to?).
           and_return("expected")
 
-        expect(user.has_access_to?("video_tutorials")).to eq("expected")
+        expect(user.has_access_to?(:trails)).to eq("expected")
       end
     end
   end

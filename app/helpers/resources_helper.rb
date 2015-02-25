@@ -28,6 +28,6 @@ module ResourcesHelper
   end
 
   def features
-    %i(exercises shows video_tutorials)
+    %i(trails shows)
   end
 end
