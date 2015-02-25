@@ -11,7 +11,7 @@ describe "practice/show.html" do
     it "shows 'View completed trails' link when it has completed trails" do
       render_show(has_completed_trails: true)
 
-      expect(rendered).to have_content("View completed trails")
+      expect(rendered).to have_content("View all completed trails")
     end
   end
 
@@ -50,8 +50,8 @@ describe "practice/show.html" do
         "Practice",
         shows: [],
         topics: [],
-        active_trails: [],
-        completed_trails: [],
+        incomplete_trails: [],
+        just_finished_trails: [],
         has_completed_trails?: completed
       )
     )

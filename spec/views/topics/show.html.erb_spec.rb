@@ -27,7 +27,8 @@ describe "topics/_resources" do
   def render_topic(**topic_attributes)
     topic = topic_with_resources(**topic_attributes)
     view_stubs(:current_user)
-    stub_template("practice/_trail.html.erb" => "")
+
+    stub_template("topics/_trail.html.erb" => "")
     render partial: "topics/resources", locals: { topic: topic }
   end
 
