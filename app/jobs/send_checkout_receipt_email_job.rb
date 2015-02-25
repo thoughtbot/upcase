@@ -7,6 +7,7 @@ class SendCheckoutReceiptEmailJob < Struct.new(:checkout_id)
 
   def perform
     checkout = Checkout.find(checkout_id)
-    CheckoutMailer.receipt(checkout).deliver_now
+
+    CheckoutMailer.receipt(checkout.user_email, checkout.plan_id).deliver_now
   end
 end

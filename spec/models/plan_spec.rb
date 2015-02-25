@@ -113,6 +113,18 @@ describe Plan do
       plan = build_stubbed(:plan)
       expect{ plan.has_feature?(:foo) }.to raise_error
     end
+
+    it "returns false when weekly iteration cannot access trails" do
+      plan = build(:basic_plan)
+
+      expect(plan).to_not have_feature(:exercises)
+    end
+
+    it "returns true when a plan can access trails" do
+      plan = build(:plan)
+
+      expect(plan).to have_feature(:exercises)
+    end
   end
 
   describe "#annualized_payment" do

@@ -20,6 +20,7 @@ class Checkout < ActiveRecord::Base
 
   delegate :includes_team?, :name, :sku, :terms, to: :plan, prefix: true
   delegate :email, to: :user, prefix: true
+  delegate :id, to: :plan, prefix: true
 
   attr_accessor \
     :stripe_customer_id,
