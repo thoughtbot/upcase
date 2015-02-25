@@ -19,14 +19,14 @@ describe Practice do
     end
   end
 
-  describe "#completed_trails" do
-    it "when there are completed trails" do
+  describe "#just_finished_trails" do
+    it "when there are recently completed trails" do
       user = create(:user)
       trail = create(:trail, :published)
       create(:status, :completed, completeable: trail, user: user)
       practice = Practice.new(user)
 
-      expect(practice.completed_trails).to eq([trail])
+      expect(practice.just_finished_trails).to eq([trail])
     end
 
     it "when there are incomplete trails" do
@@ -35,17 +35,17 @@ describe Practice do
       create(:status, completeable: trail, user: user)
       practice = Practice.new(user)
 
-      expect(practice.completed_trails).to be_empty
+      expect(practice.just_finished_trails).to be_empty
     end
   end
 
-  describe "#active_trails" do
+  describe "#incomplete_trails" do
     it "when there are unstarted trails" do
       user = build_stubbed(:user)
       trail = create(:trail, :published)
       practice = Practice.new(user)
 
-      expect(practice.active_trails).to eq([trail])
+      expect(practice.incomplete_trails).to eq([trail])
     end
 
     it "when there are started trails" do
@@ -54,10 +54,10 @@ describe Practice do
       create(:status, completeable: trail, user: user)
       practice = Practice.new(user)
 
-      expect(practice.active_trails).to eq([trail])
+      expect(practice.incomplete_trails).to eq([trail])
     end
 
-    it "when there are other old completed trails" do
+    it "when there are completed trails" do
       user = build_stubbed(:user)
       trail = create(:trail, :published)
       Timecop.travel(1.week.ago) do
@@ -65,7 +65,7 @@ describe Practice do
       end
       practice = Practice.new(user)
 
-      expect(practice.active_trails).to be_empty
+      expect(practice.incomplete_trails).to be_empty
     end
   end
 end

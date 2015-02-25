@@ -1,11 +1,11 @@
 <% if trail.just_finished? %>
-  <%= render "practice/just_finished_trail", trail: trail %>
+  <%= render "completed_trails/just_finished_trail", trail: trail %>
 <% else %>
   <div class="complete">
     <section class="trail <%= topic_class(trail.topic) %>">
       <header>
-        <span class="topic-label"><%= trail.topic.name %></span>
-        <h1><%= link_to trail.name, trail %></h1>
+        <span class="topic-label"><%= trail.topic %></span>
+        <h1><%= link_to trail, trail %></h1>
         <p><%= trail.complete_text %></p>
       </header>
 

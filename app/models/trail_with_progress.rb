@@ -19,10 +19,6 @@ class TrailWithProgress < SimpleDelegator
     statuses_by_id.empty?
   end
 
-  def active?
-    incomplete? || just_finished?
-  end
-
   def update_status
     if completeables.all?(&:complete?)
       statuses.create!(user: @user, state: Status::COMPLETE)

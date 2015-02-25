@@ -1,9 +1,9 @@
 <div class="just-finished">
   <section class="trail just-finished <%= topic_class(trail.topic) %>">
     <header>
-      <span class="topic-label"><%= trail.topic.name %></span>
+      <span class="topic-label"><%= trail.topic %></span>
       <span class="just-finished-subhead">You just finished</span>
-      <h1><%= link_to trail.name, trail %></h1>
+      <h1><%= link_to trail, trail %></h1>
     </header>
 
     <div class="just-finished-mask">

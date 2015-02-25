@@ -7,12 +7,12 @@ class Practice
     completed_trails.any?
   end
 
-  def completed_trails
-    trails.select(&:complete?)
+  def just_finished_trails
+    trails.select(&:just_finished?)
   end
 
-  def active_trails
-    trails.select(&:active?)
+  def incomplete_trails
+    trails.select(&:incomplete?)
   end
 
   private
@@ -23,5 +23,9 @@ class Practice
     Trail.
       most_recent_published.
       map { |trail| TrailWithProgress.new(trail, user: user) }
+  end
+
+  def completed_trails
+    trails.select(&:complete?)
   end
 end

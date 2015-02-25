@@ -11,7 +11,7 @@ feature "Completed Trails" do
 
     visit root_path
 
-    click_on "View completed trails →"
+    click_on "View all completed trails →"
 
     expect(page).to have_content(complete_trail.name)
     expect(page).to have_content(just_finished_trail.name)
