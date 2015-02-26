@@ -1,7 +1,8 @@
 class GithubFulfillmentJob < Struct.new(:repository_id, :user_id)
   include ErrorReporting
 
-  PREVIEW_MEDIA_TYPE = "application/vnd.github.the-wasp-preview+json".freeze
+  PREVIEW_MEDIA_TYPE = "application/vnd.github.moondragon+json".freeze
+  READ_ONLY_PERMISSION = "pull".freeze
 
   def self.enqueue(repository_id, user_id)
     Delayed::Job.enqueue(new(repository_id, user_id))
@@ -19,10 +20,11 @@ class GithubFulfillmentJob < Struct.new(:repository_id, :user_id)
   def add_on_github
     if user.github_username?
       # TODO remove accept once GitHub removes preview mode.
-      github_client.add_team_membership(
-        repository.github_team,
+      github_client.add_collaborator(
+        repository.github_repository,
         user.github_username,
-        accept: PREVIEW_MEDIA_TYPE
+        accept: PREVIEW_MEDIA_TYPE,
+        permission: READ_ONLY_PERMISSION
       )
     end
   end

@@ -48,10 +48,10 @@ describe Product do
   end
 
   describe "#fulfill" do
-    it "fulfills using GitHub with a GitHub team" do
+    it "fulfills using GitHub with a GitHub repo" do
       user = build_stubbed(:user)
       fulfillment = spy("fulfillment")
-      product = build_stubbed(:product, github_team: "example")
+      product = build_stubbed(:product, github_repository: "thoughtbot/upcase")
       allow(GithubFulfillment).to receive(:new).with(product, user).
         and_return(fulfillment)
 

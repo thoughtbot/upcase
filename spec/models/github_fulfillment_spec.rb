@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe GithubFulfillment do
   describe "#fulfill" do
-    it "adds GitHub user to the github team" do
+    it "adds a collaborator to the GitHub repo" do
       repository = build_stubbed(:repository)
       user = build_stubbed(:user, github_username: "github_username")
       allow(GithubFulfillmentJob).to receive(:enqueue)
@@ -13,8 +13,8 @@ describe GithubFulfillment do
         with(repository.id, user.id)
     end
 
-    it "doesn't fulfill using GitHub with a blank GitHub team" do
-      repository = build_stubbed(:show, github_team: nil)
+    it "doesn't fulfill using GitHub with a blank GitHub repo" do
+      repository = build_stubbed(:show, github_repository: nil)
       user = build_stubbed(:user, github_username: "github_username")
       allow(GithubFulfillmentJob).to receive(:enqueue)
 
@@ -25,7 +25,7 @@ describe GithubFulfillment do
   end
 
   describe "#remove" do
-    it "removes user from github team" do
+    it "removes a collaborator from the GitHub repo" do
       allow(GithubRemovalJob).to receive(:enqueue)
       repository = build_stubbed(:repository)
       user = build_stubbed(:user, github_username: "test")
@@ -33,12 +33,12 @@ describe GithubFulfillment do
       GithubFulfillment.new(repository, user).remove
 
       expect(GithubRemovalJob).to have_received(:enqueue).
-        with(repository.github_team, "test")
+        with(repository.github_repository, "test")
     end
 
-    it "doesn't remove using GitHub with a blank GitHub team" do
+    it "doesn't remove using GitHub with a blank GitHub repo" do
       allow(GithubRemovalJob).to receive(:enqueue)
-      repository = build(:show, github_team: nil)
+      repository = build(:show, github_repository: nil)
       user = create(:user, github_username: "test")
 
       GithubFulfillment.new(repository, user).remove

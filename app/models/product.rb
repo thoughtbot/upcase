@@ -65,10 +65,6 @@ class Product < ActiveRecord::Base
     type.underscore
   end
 
-  def fulfilled_with_github?
-    github_team.present?
-  end
-
   def to_aside_partial
     "#{self.class.name.underscore.pluralize}/aside"
   end

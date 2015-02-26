@@ -2,7 +2,7 @@ class Repository < Product
   belongs_to :product
   has_many :collaborations, dependent: :destroy
 
-  validates :github_team, presence: true
+  validates :github_repository, presence: true
   validates :github_url, presence: true
 
   def self.top_level
@@ -29,8 +29,8 @@ class Repository < Product
     collaborations.exists?(user_id: user)
   end
 
-  def has_github_member?(user)
-    github_client.team_member?(github_team, user.github_username)
+  def has_github_collaborator?(user)
+    github_client.collaborator?(github_repository, user.github_username)
   end
 
   private

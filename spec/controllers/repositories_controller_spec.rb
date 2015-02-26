@@ -51,7 +51,7 @@ describe RepositoriesController do
       allow(repository).to receive(:has_collaborator?).
         with(current_user).
         and_return(collaborator)
-      allow(repository).to receive(:has_github_member?).
+      allow(repository).to receive(:has_github_collaborator?).
         with(current_user).
         and_return(github_access)
     end

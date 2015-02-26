@@ -5,20 +5,21 @@ describe GithubFulfillmentJob do
 
   describe "#perform" do
     context "with a GitHub username" do
-      it "adds the given user to a repository's GitHub team" do
+      it "adds the given user to a GitHub repository" do
         client = stub_octokit
-        allow(client).to receive(:add_team_membership).and_return(nil)
-        repository = stub_repository(github_team: 3)
+        allow(client).to receive(:add_collaborator).and_return(nil)
+        repository = stub_repository(github_repository: "thoughtbot/upcase")
         user = stub_user(github_username: "gabebw")
 
         GithubFulfillmentJob.new(repository.id, user.id).perform
 
         expect(client).to(
-          have_received(:add_team_membership).
+          have_received(:add_collaborator).
           with(
-            repository.github_team,
+            repository.github_repository,
             user.github_username,
-            accept: GithubFulfillmentJob::PREVIEW_MEDIA_TYPE
+            accept: GithubFulfillmentJob::PREVIEW_MEDIA_TYPE,
+            permission: GithubFulfillmentJob::READ_ONLY_PERMISSION
           )
         )
       end
@@ -27,13 +28,13 @@ describe GithubFulfillmentJob do
     context "without a GitHub username" do
       it "doesn't call GitHub" do
         client = stub_octokit
-        allow(client).to receive(:add_team_membership).and_return(nil)
-        repository = stub_repository(github_team: 3)
+        allow(client).to receive(:add_collaborator).and_return(nil)
+        repository = stub_repository(github_repository: "thoughtbot/upcase")
         user = stub_user(github_username: nil)
 
         GithubFulfillmentJob.new(repository.id, user.id).perform
 
-        expect(client).not_to have_received(:add_team_membership)
+        expect(client).not_to have_received(:add_collaborator)
       end
     end
 
@@ -41,7 +42,7 @@ describe GithubFulfillmentJob do
       context "when #{error_class} is raised" do
         it "sends an email" do
           client = stub_octokit
-          allow(client).to receive(:add_team_membership).and_raise(error_class)
+          allow(client).to receive(:add_collaborator).and_raise(error_class)
           mailer = spy("mailer")
           repository = stub_repository
           user = stub_user(github_username: "gabebw")

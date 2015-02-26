@@ -1,15 +1,15 @@
-class GithubRemovalJob < Struct.new(:github_team, :username)
+class GithubRemovalJob < Struct.new(:repository, :username)
   include ErrorReporting
 
   PRIORITY = 1
 
-  def self.enqueue(github_team, username)
-    Delayed::Job.enqueue(new(github_team, username))
+  def self.enqueue(repository, username)
+    Delayed::Job.enqueue(new(repository, username))
   end
 
   def perform
     begin
-      github_client.remove_team_member(github_team, username)
+      github_client.remove_collaborator(repository, username)
     rescue Octokit::NotFound, Net::HTTPBadResponse => e
       Airbrake.notify(e)
     end

@@ -6,7 +6,7 @@ describe Repository do
   it { should have_many(:collaborations).dependent(:destroy) }
   it { should belong_to(:product) }
 
-  it { should validate_presence_of(:github_team) }
+  it { should validate_presence_of(:github_repository) }
   it { should validate_presence_of(:github_url) }
 
   describe "#included_in_plan?" do
@@ -96,17 +96,17 @@ describe Repository do
     end
   end
 
-  describe "#has_github_member?" do
+  describe "#has_github_collaborator?" do
     context "with GitHub access" do
       it "returns true" do
         user = build_stubbed(:user)
         repository = build_stubbed(:repository)
         client = stub_github_client
-        allow(client).to receive(:team_member?).
-          with(repository.github_team, user.github_username).
+        allow(client).to receive(:collaborator?).
+          with(repository.github_repository, user.github_username).
           and_return(true)
 
-        expect(repository).to have_github_member(user)
+        expect(repository).to have_github_collaborator(user)
       end
     end
 
@@ -115,9 +115,9 @@ describe Repository do
         user = build_stubbed(:user)
         repository = build_stubbed(:repository)
         client = stub_github_client
-        allow(client).to receive(:team_member?).and_return(false)
+        allow(client).to receive(:collaborator?).and_return(false)
 
-        expect(repository).not_to have_github_member(user)
+        expect(repository).not_to have_github_collaborator(user)
       end
     end
 

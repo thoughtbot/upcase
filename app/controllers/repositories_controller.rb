@@ -24,7 +24,7 @@ class RepositoriesController < ApplicationController
   end
 
   def check_github_access
-    if @repository.has_github_member?(current_user)
+    if @repository.has_github_collaborator?(current_user)
       yield
     else
       render_html :status

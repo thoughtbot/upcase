@@ -117,7 +117,6 @@ RailsAdmin.config do |config|
         field :resources
         field :questions
         field :terms
-        field :github_team
       end
 
       group :videos do

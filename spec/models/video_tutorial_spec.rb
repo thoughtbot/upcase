@@ -37,20 +37,6 @@ describe VideoTutorial do
     end
   end
 
-  describe "#fulfilled_with_github" do
-    it "is true when video_tutorial has a github team" do
-      video_tutorial = build(:video_tutorial, :github)
-
-      expect(video_tutorial).to be_fulfilled_with_github
-    end
-
-    it "is false when video_tutorial has no github team" do
-      video_tutorial = build(:video_tutorial, github_team: nil)
-
-      expect(video_tutorial).to_not be_fulfilled_with_github
-    end
-  end
-
   describe "#subscription?" do
     it "returns false" do
       expect(VideoTutorial.new).not_to be_subscription

@@ -53,10 +53,6 @@ FactoryGirl.define do
     factory :private_video_tutorial do
       active false
     end
-
-    trait :github do
-      github_team 9999
-    end
   end
 
   factory :download do
@@ -97,7 +93,7 @@ FactoryGirl.define do
     end
 
     factory :repository, class: 'Repository' do
-      github_team 9999
+      github_repository "thoughtbot/upcase"
       github_url "https://github.com/thoughtbot/upcase"
     end
   end

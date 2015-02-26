@@ -12,21 +12,21 @@ class GithubFulfillment
 
   def remove
     if fulfilled_with_github?
-      GithubRemovalJob.enqueue(team, username)
+      GithubRemovalJob.enqueue(github_repository, github_username)
     end
   end
 
   private
 
   def fulfilled_with_github?
-    team.present?
+    github_repository.present?
   end
 
-  def team
-    @repository.github_team
+  def github_repository
+    @repository.github_repository
   end
 
-  def username
+  def github_username
     @user.github_username
   end
 end
