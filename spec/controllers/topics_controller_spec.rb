@@ -3,12 +3,15 @@ require "rails_helper"
 describe TopicsController do
   context "#index" do
     it "renders topics CSS" do
-      setup_stubbed_topics
-
+      topics = setup_stubbed_topics
       get :index, format: :css
 
       expect(response).to be_success
       expect(response.headers["Content-Type"]).to match(/text\/css/)
+
+      topics.each do |topic|
+        expect(response.body).to include(topic.image.url)
+      end
     end
 
     it "renders 406 for alternate formats" do
@@ -52,6 +55,8 @@ describe TopicsController do
   def setup_stubbed_topics
     topics = [stubbed_topic]
     allow(topics).to receive(:maximum).with(:updated_at).and_return(Time.now)
+    allow(Topic).to receive(:with_colors).and_return(topics)
+    topics
   end
 
   def stubbed_topic
@@ -60,7 +65,8 @@ describe TopicsController do
       slug: "topic",
       color: "red",
       color_accent: "yellow",
-      updated_at: 1.month.ago
+      image_file_name: "example.svg",
+      updated_at: 1.month.ago,
     )
   end
 end
