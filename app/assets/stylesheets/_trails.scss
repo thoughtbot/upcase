@@ -336,7 +336,7 @@ $not-started-dot-color: #D8D8D8;
 
   .complete {
     width: 47%;
-    border: 10px solid $gray-5;
+    box-shadow: 0 0 0 1px $gray-4;
     height: $card-height;
     margin: 0 0 30px;
     padding: $card-padding;
@@ -344,10 +344,6 @@ $not-started-dot-color: #D8D8D8;
 
     .trail {
       padding: 0;
-    }
-
-    header, p {
-      text-align: center;
     }
 
     .topic-label {
@@ -369,7 +365,7 @@ $not-started-dot-color: #D8D8D8;
     }
 
     ul {
-      left: 10px;
+      left: 20px;
       list-style-type: none;
       margin-left: 0;
       position: absolute;
@@ -381,7 +377,7 @@ $not-started-dot-color: #D8D8D8;
       display: inline-block;
 
       &:before {
-        height: 3px;
+        height: 2px;
         background: $gray-5;
       }
 
@@ -396,7 +392,7 @@ $not-started-dot-color: #D8D8D8;
           display: block;
           background: $gray-5;
           content: "";
-          height: 3px;
+          height: 2px;
           position: absolute;
           right: 50%;
           top: 48%;
