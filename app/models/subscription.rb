@@ -55,6 +55,7 @@ class Subscription < ActiveRecord::Base
   def write_plan(sku:)
     update_features do
       self.plan = Plan.find_by!(sku: sku)
+      self.scheduled_for_cancellation_on = nil
       save!
       track_updated
     end

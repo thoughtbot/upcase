@@ -172,6 +172,7 @@ describe Subscription do
       subscription.write_plan(sku: different_plan.sku)
 
       expect(subscription.plan).to eq different_plan
+      expect(subscription.scheduled_for_cancellation_on).to be_nil
     end
 
     it "fulfills features gained by the new plan" do
