@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  sequence :bio do |n|
+    "The Amazing Brian the #{n}th"
+  end
+
   sequence :code do |n|
     "code#{n}"
   end
@@ -215,7 +219,7 @@ FactoryGirl.define do
 
   factory :user do
     email
-    name 'Dan Deacon'
+    name
     password 'password'
 
     transient do

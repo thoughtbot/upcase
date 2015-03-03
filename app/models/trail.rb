@@ -6,8 +6,9 @@ class Trail < ActiveRecord::Base
   belongs_to :topic
   has_many :statuses, as: :completeable, dependent: :destroy
   has_many :users, through: :statuses
-  has_many :steps,
-    -> { order "position ASC" },
+  has_many \
+    :steps,
+    -> { order "steps.position ASC" },
     dependent: :destroy,
     inverse_of: :trail
   has_many :exercises,
@@ -58,5 +59,9 @@ class Trail < ActiveRecord::Base
 
   def self.most_recent_published
     order(created_at: :desc).published
+  end
+
+  def teachers
+    Teacher.joins(:video).merge(videos).to_a.uniq(&:user_id)
   end
 end

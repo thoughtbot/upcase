@@ -199,6 +199,49 @@ describe Trail do
     end
   end
 
+  describe "#teachers" do
+    it "returns unique teachers from its video steps" do
+      only_first = create(:user, name: "only_first")
+      only_second = create(:user, name: "only_second")
+      both = create(:user, name: "both")
+      trail = create(:trail)
+      other_trail_teacher = create(:user, name: "other_trail")
+      other_trail = create(:trail)
+      create(
+        :step,
+        trail: trail,
+        completeable: create(
+          :video,
+          teachers: [teacher(both), teacher(only_first)]
+        )
+      )
+      create(
+        :step,
+        trail: trail,
+        completeable: create(
+          :video,
+          teachers: [teacher(both), teacher(only_second)]
+        )
+      )
+      create(
+        :step,
+        trail: other_trail,
+        completeable: create(
+          :video,
+          teachers: [teacher(other_trail_teacher)]
+        )
+      )
+
+      result = trail.teachers
+
+      expect(result.map(&:name)).to match_array(%w(only_first only_second both))
+    end
+
+    def teacher(user)
+      Teacher.create!(user: user)
+    end
+  end
+
   def trail_with_exercise_states(user, *states)
     exercises =
       states.map { |state| create_exercise_with_state(state, user: user) }

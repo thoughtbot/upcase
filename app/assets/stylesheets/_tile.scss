@@ -81,13 +81,3 @@
     color: $darkwarmgray;
   }
 }
-
-.tile .person {
-  float: left;
-  margin-right: 1em;
-
-  img {
-    @include size(50px);
-    border-radius: 50%;
-  }
-}

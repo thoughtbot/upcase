@@ -1,0 +1,101 @@
+.teachers {
+  list-style-type: none;
+  margin: 2rem 0 0;
+
+  li {
+    @include display(flex);
+    @include flex-direction(column);
+  }
+
+  .teacher-info {
+    @include display(flex);
+    @include flex-direction(row);
+  }
+
+  .teacher-name {
+    margin: 1rem 0 0 1rem;
+  }
+
+  h2,
+  h5 {
+    margin: 0;
+  }
+
+  .bio {
+    margin-top: 0.5rem;
+  }
+}
+
+.tile .person,
+.trail .person {
+  float: left;
+  margin: 12px 8px 0 0;
+
+  &:first-of-type {
+    clear: left;
+  }
+
+  img {
+    @include size(30px);
+    border-radius: 10%;
+  }
+}
+
+.trail .teacher-name {
+  clear: left;
+  color: $darkwarmgray;
+  font-weight: 600;
+}
+
+body.products-show,
+body.video_tutorials-show,
+body.products-show aside,
+body.video_tutorials-show aside,
+body.shows-show aside,
+body.videos-show aside {
+
+  .subscription-cta {
+    margin: 0 0 1.5em 0;
+  }
+
+  .subscription-cta h2 {
+    color: $darkwarmgray;
+    font: 800 1.4rem/1.2 $sans-serif;
+    line-height: 1.5em;
+    margin: 0 0 0.75rem 0;
+  }
+
+  #terms {
+    margin-top: 1.5em;
+  }
+
+  .button {
+    @extend %button;
+    letter-spacing: 1px;
+    line-height: 1.5em;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  div h2 a {
+    color: $darkwarmgray;
+    font-family: $sans-serif;
+    font-weight: 800;
+  }
+
+  div .active-subscription, .active-subscription span {
+    font: italic 400 0.9rem/1.5em $serif;
+    margin: 0.5rem 0 0.8rem;
+  }
+
+  div .when {
+    font-family: $sans-serif;
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+  }
+
+  div .location-name {
+    color: $darkwarmgray;
+    font: 800 36px/40px $sans-serif;
+  }
+}

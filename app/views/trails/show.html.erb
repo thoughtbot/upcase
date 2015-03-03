@@ -21,3 +21,13 @@
     ) %>
   <% end %>
 </section>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+    <%= render(
+      partial: "teachers/details",
+      collection: @trail.teachers,
+      as: :teacher
+    ) %>
+  </div>
+</div>

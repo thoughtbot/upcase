@@ -117,9 +117,8 @@ namespace :dev do
 
   def create_video_tutorials
     header "VideoTutorials"
-    user = FactoryGirl.create(:user, bio: "Dan is a seasoned Rails developer.")
     video = FactoryGirl.create(:video)
-    FactoryGirl.create(:teacher, user: user, video: video)
+    teach video, bio: "Dan is a seasoned Rails developer."
 
     @video_tutorial = FactoryGirl.create(:video_tutorial,
       name: 'Intermediate Ruby on Rails',
@@ -243,15 +242,41 @@ namespace :dev do
       notes: "Blah" + " blah" * 100,
       published_on: 1.day.ago,
       name: "Red, Green, Refactor",
-      watchable: @weekly_iteration,
       wistia_id: "uaxw299qz9",
       preview_wistia_id: "uaxw299qz9"
     )
+    teach video, bio: "The Amazing Dan"
     FactoryGirl.create(:step, trail: trail, completeable: video)
 
     classify_exercise "Passing Your First Test", "Testing"
     classify_exercise "Testing ActiveRecord", "Testing"
     classify_exercise "Write an Integration Test", "Testing"
+    puts_trail trail, "unstarted"
+
+    trail = FactoryGirl.create(:trail, :published, name: "Design Essentials")
+    trail.update(topic: Topic.find_by(slug: "design"))
+    video = create(
+      :video,
+      notes: "Blah" + " blah" * 100,
+      published_on: 1.day.ago,
+      name: "Squares",
+    )
+    teach video, bio: "I am Dan"
+    FactoryGirl.create(:step, trail: trail, completeable: video)
+    video = create(
+      :video,
+      notes: "Blah" + " blah" * 100,
+      published_on: 1.day.ago,
+      name: "Circles",
+    )
+    teach video, bio: "Dan I am"
+    FactoryGirl.create(:step, trail: trail, completeable: video)
+    FactoryGirl.create(:status,
+      completeable: trail,
+      state: Status::IN_PROGRESS,
+      user: user
+    )
+
     puts_trail trail, "unstarted"
 
     trail = FactoryGirl.create(:trail, :published, name: "Refactoring")
@@ -333,6 +358,11 @@ namespace :dev do
       exercise = FactoryGirl.create(:exercise, name: name, public: true)
       FactoryGirl.create(:step, trail: trail, completeable: exercise)
     end
+  end
+
+  def teach(video, bio:)
+    user = FactoryGirl.create(:user, bio: bio)
+    FactoryGirl.create(:teacher, video: video, user: user)
   end
 
   def classify_exercise(name, topic_name)
