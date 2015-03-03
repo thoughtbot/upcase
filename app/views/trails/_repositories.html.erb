@@ -1,0 +1,18 @@
+<% if trail.repositories.any? %>
+  <section class="repositories-container">
+    <span class="divider">
+      <h4 class="text">Repositories</h4>
+    </span>
+    <p>
+      Fork these repositories on GitHub so you can follow along with the
+      tutorial.
+    </p>
+
+    <ul class="repos-list">
+      <%= render(
+        partial: "products/repositories/repository",
+        collection: trail.repositories
+      ) %>
+    </ul>
+  </section>
+<% end %>

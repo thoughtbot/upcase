@@ -4,6 +4,7 @@ class Trail < ActiveRecord::Base
   validates :name, :description, :topic, presence: true
 
   belongs_to :topic
+  has_many :repositories, dependent: :destroy
   has_many :statuses, as: :completeable, dependent: :destroy
   has_many :users, through: :statuses
   has_many \

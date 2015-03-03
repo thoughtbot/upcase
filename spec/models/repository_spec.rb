@@ -5,6 +5,7 @@ describe Repository do
 
   it { should have_many(:collaborations).dependent(:destroy) }
   it { should belong_to(:product) }
+  it { should belong_to(:trail) }
 
   it { should validate_presence_of(:github_repository) }
   it { should validate_presence_of(:github_url) }
@@ -131,11 +132,13 @@ describe Repository do
   end
 
   describe ".top_level" do
-    it "returns repositories without parent products" do
-      parent = create(:video_tutorial)
-      create(:repository, name: "with_parent", product: parent)
-      create(:repository, name: "no_parent1", product: nil)
-      create(:repository, name: "no_parent2", product: nil)
+    it "returns repositories without parent products or trails" do
+      product = create(:video_tutorial)
+      trail = create(:trail)
+      create(:repository, name: "with_product", product: product, trail: nil)
+      create(:repository, name: "with_trail", product: nil, trail: trail)
+      create(:repository, name: "no_parent1", product: nil, trail: nil)
+      create(:repository, name: "no_parent2", product: nil, trail: nil)
 
       result = Repository.top_level
 

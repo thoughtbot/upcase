@@ -3,31 +3,7 @@
   <%= render "header", topic: @trail.topic, trail: @trail %>
 <% end %>
 
-<section class="trails-progress">
-  <section class="trail">
-    <%= render "trails/step_dots", trail: @trail %>
-  </section>
-</section>
-
-<section class="exercises-container">
-  <span class="divider">
-    <h4 class="text">Exercises</h4>
-  </span>
-
-  <% @trail.completeables.each do |completeable| %>
-    <%= render(
-      partial: "#{completeable.to_partial_path}_for_trail_preview",
-      locals: { completeable.model_name.singular.to_sym => completeable }
-    ) %>
-  <% end %>
-</section>
-
-<div class="text-box-wrapper">
-  <div class="text-box">
-    <%= render(
-      partial: "teachers/details",
-      collection: @trail.teachers,
-      as: :teacher
-    ) %>
-  </div>
-</div>
+<%= render "trails/progress", trail: @trail %>
+<%= render "trails/repositories", trail: @trail %>
+<%= render "trails/exercises", trail: @trail %>
+<%= render "trails/teachers", trail: @trail %>

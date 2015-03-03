@@ -6,6 +6,7 @@ describe Trail do
   it { should validate_presence_of(:topic) }
 
   it { should belong_to(:topic) }
+  it { should have_many(:repositories).dependent(:destroy) }
   it { should have_many(:statuses).dependent(:destroy) }
   it { should have_many(:steps).dependent(:destroy) }
   it { should have_many(:exercises).through(:steps) }

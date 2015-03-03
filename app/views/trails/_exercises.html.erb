@@ -1,0 +1,12 @@
+<section class="exercises-container">
+  <span class="divider">
+    <h4 class="text">Exercises</h4>
+  </span>
+
+  <% trail.completeables.each do |completeable| %>
+    <%= render(
+      partial: "#{completeable.to_partial_path}_for_trail_preview",
+      locals: { completeable.model_name.singular.to_sym => completeable }
+    ) %>
+  <% end %>
+</section>

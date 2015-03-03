@@ -230,6 +230,16 @@ namespace :dev do
     user = User.find_by_email!("whetstone@example.com")
 
     trail = FactoryGirl.create(:trail, :published, name: "Testing Fundamentals")
+    FactoryGirl.create(
+      :repository,
+      name: "Testing Fundamentals First Repo",
+      trail: trail
+    )
+    FactoryGirl.create(
+      :repository,
+      name: "Testing Fundamentals Second Repo",
+      trail: trail
+    )
     trail.update(topic: Topic.find_by(slug: "testing"))
     create_steps_for(
       trail,

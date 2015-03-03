@@ -1,12 +1,13 @@
 class Repository < Product
   belongs_to :product
+  belongs_to :trail
   has_many :collaborations, dependent: :destroy
 
   validates :github_repository, presence: true
   validates :github_url, presence: true
 
   def self.top_level
-    where(product_id: nil)
+    where(product_id: nil).where(trail_id: nil)
   end
 
   def included_in_plan?(plan)

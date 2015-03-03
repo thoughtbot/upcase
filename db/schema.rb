@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150226204426) do
+ActiveRecord::Schema.define(version: 20150303180418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -196,10 +196,12 @@ ActiveRecord::Schema.define(version: 20150226204426) do
     t.text     "resources",                  default: "",    null: false
     t.integer  "product_id"
     t.string   "github_repository"
+    t.integer  "trail_id"
   end
 
   add_index "products", ["product_id"], name: "index_products_on_product_id", using: :btree
   add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
+  add_index "products", ["trail_id"], name: "index_products_on_trail_id", using: :btree
 
   create_table "rails_admin_histories", force: :cascade do |t|
     t.text     "message"
