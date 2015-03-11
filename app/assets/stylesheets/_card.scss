@@ -32,7 +32,7 @@
   overflow: hidden;
   padding: 5px;
   position: relative;
-  width: $product-card-width;
+  width: $card-width;
 
   &:hover {
     @include transform(translateY(-5px));
