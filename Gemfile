@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.2.0"
+ruby "2.2.1"
 
 gem "active_model_serializers", "0.8.3"
 gem "acts_as_list", "~> 0.6.0"
@@ -33,6 +33,7 @@ gem "pg"
 gem "rack-rewrite", "~> 1.5.1"
 gem "rack-ssl-enforcer", "~> 0.2.4"
 gem "rails", "4.2.0"
+gem "rails_admin", "~> 0.6.7"
 gem "recipient_interceptor"
 gem "responders", "~> 2.0"
 gem "sass-rails", "~> 4.0.4"
@@ -43,9 +44,6 @@ gem "uglifier"
 gem "unicorn"
 gem "validates_email_format_of"
 gem "vanity", github: "assaf/vanity"
-
-# Waiting for 552eb6f7 to be released
-gem "rails_admin", "~> 0.6.7"
 
 group :development do
   gem "quiet_assets"
