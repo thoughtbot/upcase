@@ -6,12 +6,19 @@
 <div class="text-box-wrapper solo">
   <div class="text-box">
     <h4>
+      Upcoming Charge
+    </h4>
+
+    <span>
+      Your next charge will be on
+      <%= @team.subscription.next_payment_on.to_s(:simple) %> for
+      <%= number_to_currency(@team.subscription.next_payment_amount_in_dollars) %>
+    </span>
+  </div>
+
+  <div class="text-box">
+    <h4>
       Members
-      <span>
-        - Your next charge will be on
-        <%= @team.subscription.next_payment_on.to_s(:simple) %> for
-        <%= number_to_currency(@team.subscription.next_payment_amount_in_dollars) %>
-      </span>
     </h4>
 
     <ul class="members">
