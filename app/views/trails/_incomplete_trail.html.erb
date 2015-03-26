@@ -3,8 +3,6 @@
     <header>
       <span class="topic-label"><%= trail.topic %></span>
       <h1><%= link_to trail, trail %></h1>
-      <%= render trail.teachers %>
-      <p class="teacher-name"><%= teacher_names trail.teachers %></p>
       <p class="description"><%= trail.description %></p>
       <%= render "practice/trail_description_tooltip", trail: trail %>
     </header>
