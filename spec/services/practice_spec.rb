@@ -67,5 +67,19 @@ describe Practice do
 
       expect(practice.incomplete_trails).to be_empty
     end
+
+    context "sorting" do
+      it "returns all started trails before any unstarted trails" do
+        user = build_stubbed(:user)
+        started_trail = create(:trail, :published, name: "Started")
+        create(:status, completeable: started_trail, user: user)
+        create(:trail, :published, name: "Unstarted")
+        practice = Practice.new(user)
+
+        result = practice.incomplete_trails
+
+        expect(result.map(&:name)).to eq(["Started", "Unstarted"])
+      end
+    end
   end
 end
