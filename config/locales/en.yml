@@ -105,7 +105,7 @@ en:
     reason: Why have you decided to leave?
     reason_explanation: This information will help us make Upcase better for future members.
     change_plan: Change plan
-    choose_plan_html: Start learning
+    choose_plan: Switch Plan
     current_plan_html: <p class="current-plan">This is your current plan</p>
     cancellation_scheduled_on: Scheduled for cancellation on %{date}
     discount:

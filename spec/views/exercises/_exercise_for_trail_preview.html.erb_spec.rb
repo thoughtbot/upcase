@@ -4,7 +4,7 @@ describe "exercises/_exercise_for_trail_preview.html" do
   context "without access to exercises" do
     it "renders an upgrade link" do
       stub_access(trails: false)
-      stub_current_user
+      stub_signed_in
 
       render_exercise
 
@@ -15,7 +15,7 @@ describe "exercises/_exercise_for_trail_preview.html" do
   context "with access to exercises" do
     it "doesn't render an upgrade link" do
       stub_access(trails: true)
-      stub_current_user
+      stub_signed_in
 
       render_exercise
 
@@ -29,8 +29,8 @@ describe "exercises/_exercise_for_trail_preview.html" do
     end
   end
 
-  def stub_current_user
-    view_stubs(:current_user).and_return(build_stubbed(:user))
+  def stub_signed_in
+    view_stubs(:signed_in?).and_return(true)
   end
 
   def render_exercise
