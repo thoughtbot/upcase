@@ -1,23 +1,4 @@
 GIT
-  remote: git://github.com/sferik/rails_admin.git
-  revision: c0d9d932ef15895de427ec236a51febc4a2f0d1f
-  specs:
-    rails_admin (0.6.6)
-      builder (~> 3.1)
-      coffee-rails (~> 4.0)
-      font-awesome-rails (>= 3.0, < 5)
-      haml (~> 4.0)
-      jquery-rails (>= 3.0, < 5)
-      jquery-ui-rails (~> 5.0)
-      kaminari (~> 0.14)
-      nested_form (~> 0.3)
-      rack-pjax (~> 0.7)
-      rails (~> 4.0)
-      remotipart (~> 1.0)
-      safe_yaml (~> 1.0)
-      sass-rails (>= 4.0, < 6)
-
-GIT
   remote: git://github.com/thoughtbot/capybara_discoball.git
   revision: 5435c838e90a1c7f9dfffc36103c6b8040f3ce15
   specs:
@@ -168,7 +149,7 @@ GEM
       railties (>= 3.2.16)
     json (1.8.2)
     jwt (1.0.0)
-    kaminari (0.16.1)
+    kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.9.2)
@@ -258,6 +239,20 @@ GEM
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
+    rails_admin (0.6.7)
+      builder (~> 3.1)
+      coffee-rails (~> 4.0)
+      font-awesome-rails (>= 3.0, < 5)
+      haml (~> 4.0)
+      jquery-rails (>= 3.0, < 5)
+      jquery-ui-rails (~> 5.0)
+      kaminari (~> 0.14)
+      nested_form (~> 0.3)
+      rack-pjax (~> 0.7)
+      rails (~> 4.0)
+      remotipart (~> 1.0)
+      safe_yaml (~> 1.0)
+      sass-rails (>= 4.0, < 6)
     rails_serve_static_assets (0.0.2)
     rails_stdout_logging (0.0.3)
     railties (4.2.0)
@@ -407,7 +402,7 @@ DEPENDENCIES
   rack-ssl-enforcer (~> 0.2.4)
   rails (= 4.2.0)
   rails_12factor
-  rails_admin!
+  rails_admin (~> 0.6.7)
   recipient_interceptor
   responders (~> 2.0)
   rspec-rails

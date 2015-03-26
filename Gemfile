@@ -44,7 +44,7 @@ gem "validates_email_format_of"
 gem "font-awesome-rails"
 
 # Waiting for 552eb6f7 to be released
-gem "rails_admin", github: "sferik/rails_admin"
+gem "rails_admin", "~> 0.6.7"
 
 group :development do
   gem "quiet_assets"
