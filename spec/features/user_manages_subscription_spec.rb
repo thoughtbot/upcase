@@ -142,7 +142,7 @@ feature "User creates a subscription" do
 
     click_link I18n.t("subscriptions.change_plan")
     within("[data-sku='#{new_plan.sku}']") do
-      click_link I18n.t("subscriptions.choose_plan_html")
+      click_link I18n.t("subscriptions.choose_plan")
     end
 
     expect(current_path).to eq my_account_path
