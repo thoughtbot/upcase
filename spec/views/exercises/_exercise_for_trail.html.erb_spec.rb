@@ -3,11 +3,11 @@ require "rails_helper"
 describe "exercises/_exercise_for_trail.html" do
   it "renders a class based on the exercise state" do
     stub_user
-    exercise = stub_exercise(state: "Two Words")
+    exercise = stub_exercise(state: t("exercises.statuses.complete"))
 
     render "exercises/exercise_for_trail", exercise: exercise
 
-    expect(rendered).to have_css(".two-words-exercise")
+    expect(rendered).to have_css(".complete-exercise")
   end
 
   def stub_user
