@@ -47,6 +47,8 @@ Upcase::Application.configure do
   # Use memory cache to avoid errors when running tests in parallel
   config.cache_store = :memory_store
 
+  config.action_view.raise_on_missing_translations = true
+
   config.after_initialize do
     Timecop.travel(Time.now)
   end
