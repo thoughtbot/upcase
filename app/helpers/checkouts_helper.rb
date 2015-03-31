@@ -44,7 +44,7 @@ module CheckoutsHelper
 
   def change_plan_link(plan)
     if current_user.plan == plan
-      I18n.t("subscriptions.current_plan_html").html_safe
+      t("subscriptions.current_plan_html")
     else
       update_plan_link(plan)
     end
@@ -52,7 +52,7 @@ module CheckoutsHelper
 
   def update_plan_link(plan)
     link_to(
-      I18n.t("subscriptions.choose_plan_html").html_safe,
+      t("subscriptions.choose_plan"),
       subscription_path(plan_id: plan),
       method: :put,
       class: "sign-up"
@@ -61,7 +61,7 @@ module CheckoutsHelper
 
   def new_plan_link(plan)
     link_to(
-      I18n.t("subscriptions.choose_plan_html").html_safe,
+      t("subscriptions.choose_plan"),
       new_checkout_path(plan),
       class: "sign-up"
     )
