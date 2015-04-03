@@ -70,27 +70,6 @@
     text-transform: uppercase;
   }
 
-
-  .illustration {
-    background-color: #fff;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: $product-card-illustration-height;
-    margin: 0;
-    position: relative;
-
-    &:after {
-      border-radius: 2px;
-      border: 4px solid transparent;
-      bottom: 0;
-      content: "";
-      left: 0;
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-  }
-
   .status {
     border-radius: 0 0 .20rem .20rem;
     display: none;
