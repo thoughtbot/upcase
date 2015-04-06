@@ -177,67 +177,6 @@ describe Cancellation do
     end
   end
 
-  describe "cancel_and_refund" do
-    it "cancels immediately and refunds the last charge with Stripe" do
-      charge = double("Stripe::Charge", id: "charge_id", refund: nil)
-      allow(subscription).to receive(:last_charge).and_return(charge)
-      cancellation = build_cancellation(subscription: subscription)
-      allow(Stripe::Customer).to receive(:retrieve).
-        and_return(stripe_customer)
-
-      cancellation.cancel_and_refund
-
-      expect(stripe_customer.subscriptions.first).to have_received(:delete)
-      expect(charge).to have_received(:refund)
-      expect(subscription.scheduled_for_cancellation_on).to be_nil
-    end
-
-    it "does not error if the customer was not charged" do
-      allow(subscription).to receive(:last_charge).and_return(nil)
-      cancellation = build_cancellation(subscription: subscription)
-      allow(Stripe::Customer).to receive(:retrieve).and_return(stripe_customer)
-
-      expect { cancellation.cancel_and_refund }.not_to raise_error
-      expect(stripe_customer.subscriptions.first).to have_received(:delete)
-    end
-  end
-
-  describe "#can_downgrade_instead?" do
-    it "returns false if the subscriber is already on the downgraded plan" do
-      downgraded_plan = build_stubbed(:plan)
-      subscription = build_stubbed(:subscription, plan: downgraded_plan)
-      cancellation = build_cancellation(
-        subscription: subscription,
-        downgrade_plan: downgraded_plan
-      )
-
-      expect(cancellation.can_downgrade_instead?).to be_falsey
-    end
-
-    it "returns true if the subscribed plan is not the downgrade plan" do
-      downgrade_plan = build_stubbed(:plan)
-      other_plan = build_stubbed(:plan)
-      subscription = build_stubbed(:subscription, plan: other_plan)
-      cancellation = build_cancellation(
-        subscription: subscription,
-        downgrade_plan: downgrade_plan
-      )
-
-      expect(cancellation.can_downgrade_instead?).to be_truthy
-    end
-  end
-
-  describe "#downgrade_plan" do
-    it "returns the injected plan" do
-      downgrade_plan = build_stubbed(:plan)
-      cancellation = build_cancellation(
-        downgrade_plan: downgrade_plan
-      )
-
-      expect(cancellation.downgrade_plan).to eq(downgrade_plan)
-    end
-  end
-
   describe "#subscribed_plan" do
     it "returns the plan from the subscription" do
       subscription = build_stubbed(:subscription)
@@ -247,29 +186,10 @@ describe Cancellation do
     end
   end
 
-  describe "#downgrade" do
-    it "switches to the downgrade plan" do
-      downgrade_plan = build_stubbed(:plan)
-      subscription = build_stubbed(:subscription)
-      allow(subscription).to receive(:change_plan)
-      cancellation = build_cancellation(
-        subscription: subscription,
-        downgrade_plan: downgrade_plan
-      )
-
-      cancellation.downgrade
-
-      expect(subscription).to have_received(:change_plan).
-        with(sku: downgrade_plan.sku)
-    end
-  end
-
   def build_cancellation(subscription: create(:subscription),
-                         downgrade_plan: create(:plan),
                          reason: "reason")
     Cancellation.new(
       subscription: subscription,
-      downgrade_plan: downgrade_plan,
       reason: reason
     )
   end

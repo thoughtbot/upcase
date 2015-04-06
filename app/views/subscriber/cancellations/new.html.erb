@@ -1,48 +1,11 @@
 <div class="text-box-wrapper solo cancellation-discount">
   <article>
-    <% if @cancellation.can_downgrade_instead? %>
-      <p>
-        We're sorry to hear you want to cancel. Before we remove the
-        subscription from your account, we want to make sure you know about the
-        option to switch to a lower priced option: with The Weekly Iteration
-        plan you'll still be able to watch The Weekly Iteration
-        for <%= plan_price(@cancellation.downgrade_plan) %> instead of
-        <%= plan_price(@cancellation.subscribed_plan) %>.
-      </p>
-      <p>
-        Any remaining balance you have on your account will be applied to your
-        new, less-expensive plan.
-      </p>
-      <p>
-        <%= link_to(
-          "Change to #{plan_price(@cancellation.downgrade_plan)} &rarr;".html_safe,
-          [:subscriber, :downgrade],
-          method: :post
-        ) %>
-      </p>
+    <% if @cancellation_alternative.can_switch_to_discounted_plan? %>
+      <%= render 'discount_offer' %>
     <% else %>
-      <p>
-        Are you sure you want to cancel your <%= t("shared.subscription.name") %>
-        subscription? You will lose access to the products you acquired through
-        <%= t("shared.subscription.name") %>, as well as the forum at
-        the end of your billing cycle.
-      </p>
+      <%= render 'cancellation_confirmation' %>
     <% end %>
   </article>
-  <%= semantic_form_for(
-    @cancellation,
-    url: [:subscriber, :cancellation],
-    html: { class: "cancellation-feedback" }
-  ) do |form| %>
-    <%= form.inputs do %>
-      <%= form.input :reason, as: :text, label: t("subscriptions.reason"), hint: t("subscriptions.reason_explanation"), required: true %>
-    <% end %>
-    <%= form.actions do %>
-      <% if @cancellation.can_downgrade_instead? %>
-        <%= form.action :submit, label: t("subscriptions.confirm_cancel_reject_deal") %>
-      <% else %>
-        <%= form.action :submit, label: t("subscriptions.confirm_cancel") %>
-      <% end %>
-    <% end %>
-  <% end %>
+
+  <%= render 'form' %>
 </div>

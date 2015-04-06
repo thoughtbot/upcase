@@ -1,0 +1,18 @@
+<h4>Or, continue canceling</h4>
+
+<%= semantic_form_for(
+  @cancellation,
+  url: [:subscriber, :cancellation],
+  html: { class: "cancellation-feedback" }
+) do |form| %>
+  <%= form.inputs do %>
+    <%= form.input :reason, as: :text, label: t("subscriptions.reason"), hint: t("subscriptions.reason_explanation"), required: true %>
+  <% end %>
+  <%= form.actions do %>
+    <% if @cancellation_alternative.can_switch_to_discounted_plan? %>
+      <%= form.action :submit, label: t("subscriptions.confirm_cancel_reject_deal"), button_html: { class: "decline-offer" } %>
+    <% else %>
+      <%= form.action :submit, label: t("subscriptions.confirm_cancel") %>
+    <% end %>
+  <% end %>
+<% end %>

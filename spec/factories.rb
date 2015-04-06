@@ -117,6 +117,11 @@ FactoryGirl.define do
       includes_repositories false
     end
 
+    factory :discounted_annual_plan do
+      sku Plan::DISCOUNTED_ANNUAL_PLAN_SKU
+      annual true
+    end
+
     trait :includes_mentor do
       includes_mentor true
     end

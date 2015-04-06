@@ -28,6 +28,14 @@ namespace :dev do
       sku: "the-weekly-iteration",
     )
 
+    @discounted_annual_plan = create(
+      :discounted_annual_plan,
+      price: 199,
+      name: "Discounted Annual Plan",
+      short_description: "Everything you're used to, but a bit cheaper",
+      sku: Plan::DISCOUNTED_ANNUAL_PLAN_SKU,
+    )
+
     @professional_plan = create(
       :plan,
       price: 29,

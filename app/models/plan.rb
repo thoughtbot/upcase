@@ -1,4 +1,5 @@
 class Plan < ActiveRecord::Base
+  DISCOUNTED_ANNUAL_PLAN_SKU = "discounted-annual"
   PRIME_249_SKU = "prime-249"
   PROFESSIONAL_SKU = "professional"
   THE_WEEKLY_ITERATION_SKU = "the-weekly-iteration"
@@ -33,6 +34,10 @@ class Plan < ActiveRecord::Base
 
   def self.default_team
     team.active.featured.ordered.first
+  end
+
+  def self.discounted_annual
+    where(sku: DISCOUNTED_ANNUAL_PLAN_SKU).first
   end
 
   def self.basic

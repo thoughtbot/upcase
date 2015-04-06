@@ -2,14 +2,12 @@ class Cancellation
   include ActiveModel::Model
 
   attr_accessor :reason
-  attr_reader :downgrade_plan
 
   validates :reason, presence: true
 
-  def initialize(subscription:, downgrade_plan: Plan.basic, reason: "")
+  def initialize(subscription:, reason: "")
     @subscription = subscription
     @reason = reason
-    @downgrade_plan = downgrade_plan
   end
 
   def schedule
@@ -29,27 +27,18 @@ class Cancellation
     end
   end
 
-  def cancel_and_refund
-    stripe_customer.subscriptions.first.delete
-    @subscription.last_charge.try(:refund)
-  end
-
   def process
     if @subscription.active?
       @subscription.deactivate
     end
   end
 
-  def can_downgrade_instead?
-    !downgraded?
-  end
-
   def subscribed_plan
     @subscription.plan
   end
 
-  def downgrade
-    @subscription.change_plan(sku: downgrade_plan.sku)
+  def alternative_to_canceling
+    @alternative ||= CancellationAlternative.new(subscription: @subscription)
   end
 
   private
@@ -71,10 +60,6 @@ class Cancellation
       :scheduled_for_cancellation_on,
       Time.zone.at(stripe_customer.subscriptions.first.current_period_end)
     )
-  end
-
-  def downgraded?
-    @subscription.plan == downgrade_plan
   end
 
   def stripe_customer

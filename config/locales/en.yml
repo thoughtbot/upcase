@@ -98,9 +98,10 @@ en:
       plan_not_found: We have a new subscription plan for you.
 
   subscriptions:
+    accept_discounted_annual_subscription: Yes! I want to save $$$ and keep learning
     join_cta: See Pricing
     cancel: Cancel
-    confirm_cancel_reject_deal: No thanks, just cancel my subscription
+    confirm_cancel_reject_deal: Cancel my subscription
     confirm_cancel: Yes, cancel my subscription
     reason: Why have you decided to leave?
     reason_explanation: This information will help us make Upcase better for future members.
@@ -117,8 +118,8 @@ en:
         success: You have successfully updated your subscription credit card information.
       change:
         success: You have successfully changed your subscription plan, any remaining balance has been applied to future invoices.
-      downgrade:
-        success: Your subscription has been downgraded.
+      discount:
+        success: You've switched to a discounted subscription! Congrats.
       cancel:
         success: We're sorry to see you go. You will have access to all the features of your plan until the end of your current billing cycle.
       subscription_required: You need a subscription to Upcase to access that feature.

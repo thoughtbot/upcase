@@ -66,6 +66,14 @@ describe Plan do
     end
   end
 
+  describe ".discounted_annual" do
+    it "returns the discounted annual plan" do
+      discounted_annual_plan = create(:discounted_annual_plan)
+
+      expect(Plan.discounted_annual).to eq discounted_annual_plan
+    end
+  end
+
   describe "subscription_interval" do
     it "returns the interval from the stripe plan" do
       plan = build_stubbed(:plan)
