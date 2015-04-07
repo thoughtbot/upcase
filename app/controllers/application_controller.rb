@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :capture_campaign_params
 
+  use_vanity :current_user
+
   protected
 
   def must_be_admin

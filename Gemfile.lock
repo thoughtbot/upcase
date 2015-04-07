@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/assaf/vanity.git
+  revision: 0210b85c4ebb48f0d52b1d65aae770c6516fcd4e
+  specs:
+    vanity (2.0.0.beta5)
+      i18n
+
+GIT
   remote: git://github.com/thoughtbot/capybara_discoball.git
   revision: 5435c838e90a1c7f9dfffc36103c6b8040f3ce15
   specs:
@@ -419,4 +426,5 @@ DEPENDENCIES
   uglifier
   unicorn
   validates_email_format_of
+  vanity!
   webmock
