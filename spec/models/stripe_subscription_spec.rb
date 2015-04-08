@@ -2,43 +2,62 @@ require "rails_helper"
 
 describe StripeSubscription do
   context '#create' do
-    it "updates the customer's plan" do
-      customer = stub_existing_customer
-      checkout = build(:checkout)
-      subscription = StripeSubscription.new(checkout)
+    context "when there is an existing Stripe Customer record" do
+      it "updates the user's credit card" do
+        customer = stub_existing_customer
+        allow(customer).to receive(:card=)
+        allow(customer).to receive(:save)
+        checkout = build(
+          :checkout,
+          stripe_customer_id: "abc123",
+          stripe_token: "token123"
+        )
+        subscription = StripeSubscription.new(checkout)
 
-      subscription.create
+        subscription.create
 
-      new_subscription = customer.subscriptions.first
-      expect(new_subscription[:plan]).to eq checkout.plan_sku
-      expect(new_subscription[:quantity]).to eq 1
-    end
+        expect(customer).to have_received(:card=).with("token123")
+        expect(customer).to have_received(:save)
+      end
 
-    it "updates the customer's plan with the given quantity" do
-      customer = stub_existing_customer
-      checkout = build(:checkout, plan: create(:plan, minimum_quantity: 5))
-      subscription = StripeSubscription.new(checkout)
+      it "updates the customer's plan" do
+        customer = stub_existing_customer
+        checkout = build(:checkout)
+        subscription = StripeSubscription.new(checkout)
 
-      subscription.create
+        subscription.create
 
-      new_subscription = customer.subscriptions.first
-      expect(new_subscription[:plan]).to eq checkout.plan_sku
-      expect(new_subscription[:quantity]).to eq 5
-    end
+        new_subscription = customer.subscriptions.first
+        expect(new_subscription[:plan]).to eq checkout.plan_sku
+        expect(new_subscription[:quantity]).to eq 1
+      end
 
-    it "updates the subscription with the given coupon" do
-      customer = stub_existing_customer
-      coupon = double("coupon", amount_off: 25)
-      allow(Stripe::Coupon).to receive(:retrieve).and_return(coupon)
-      checkout = build(:checkout, stripe_coupon_id: "25OFF")
-      subscription = StripeSubscription.new(checkout)
+      it "updates the customer's plan with the given quantity" do
+        customer = stub_existing_customer
+        checkout = build(:checkout, plan: create(:plan, minimum_quantity: 5))
+        subscription = StripeSubscription.new(checkout)
 
-      subscription.create
+        subscription.create
 
-      new_subscription = customer.subscriptions.first
-      expect(new_subscription[:plan]).to eq checkout.plan_sku
-      expect(new_subscription[:coupon]).to eq "25OFF"
-      expect(new_subscription[:quantity]).to eq 1
+        new_subscription = customer.subscriptions.first
+        expect(new_subscription[:plan]).to eq checkout.plan_sku
+        expect(new_subscription[:quantity]).to eq 5
+      end
+
+      it "updates the subscription with the given coupon" do
+        customer = stub_existing_customer
+        coupon = double("coupon", amount_off: 25)
+        allow(Stripe::Coupon).to receive(:retrieve).and_return(coupon)
+        checkout = build(:checkout, stripe_coupon_id: "25OFF")
+        subscription = StripeSubscription.new(checkout)
+
+        subscription.create
+
+        new_subscription = customer.subscriptions.first
+        expect(new_subscription[:plan]).to eq checkout.plan_sku
+        expect(new_subscription[:coupon]).to eq "25OFF"
+        expect(new_subscription[:quantity]).to eq 1
+      end
     end
 
     it "creates a customer if one isn't assigned" do

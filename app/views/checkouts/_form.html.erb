@@ -39,14 +39,6 @@
       <%= image_tag "icons/discover.png" %>
     </li>
     <li class="payment-errors"></li>
-    <% if signed_in? && current_user.credit_card %>
-      <li id="checkout_cc_existing" class="stripe">
-        <input type="checkbox" id="use_existing_card" name="use_existing_card" class="use_existing_card" />
-        <label for="use_existing_card">
-          Use existing card (<%= display_card_type(current_user.credit_card["type"]) %> ending in <%= current_user.credit_card["last4"] %>)
-        </label>
-      </li>
-    <% end %>
     <li id="checkout_cc_input" class="stripe">
       <label for='card-number'>Card Number</label>
       <input type='text' size='20' autocomplete='off' id='card-number' class='card-number'/>

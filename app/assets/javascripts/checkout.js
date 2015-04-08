@@ -34,11 +34,3 @@ $('.reveal-address').click(function() {
 
   return false;
 });
-
-$(document).ready(function(){
-  $(".use_existing_card").click(function(event){
-    $("#checkout_cc_input").toggle();
-    $("#checkout_expiration_input").toggle();
-    $("#checkout_cvc_input").toggle();
-  });
-});

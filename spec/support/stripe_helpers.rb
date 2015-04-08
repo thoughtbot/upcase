@@ -1,9 +1,4 @@
 module StripeHelpers
-  def pay_using_stripe_with_existing_card
-    find(:css, "input.use_existing_card").set(true)
-    click_button 'Submit Payment'
-  end
-
   def stub_stripe_to_fail
     FakeStripe.failure = true
   end

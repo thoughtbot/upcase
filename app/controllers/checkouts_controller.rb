@@ -114,8 +114,4 @@ class CheckoutsController < ApplicationController
   def plan
     Plan.find_by(sku: params[:plan])
   end
-
-  def using_existing_card?
-    params[:use_existing_card] == "on"
-  end
 end

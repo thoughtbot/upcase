@@ -25,9 +25,16 @@ class StripeSubscription
   end
 
   def ensure_customer_exists
-    unless customer_exists?
+    if customer_exists?
+      update_card
+    else
       create_customer
     end
+  end
+
+  def update_card
+    stripe_customer.card = @checkout.stripe_token
+    stripe_customer.save
   end
 
   def customer_exists?

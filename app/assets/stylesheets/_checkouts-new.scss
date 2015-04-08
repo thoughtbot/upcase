@@ -88,14 +88,6 @@ body.checkouts-new, body.checkouts-create {
           white-space: normal;
         }
       }
-
-      &#checkout_cc_existing {
-        width: auto;
-
-        label {
-          width: auto;
-        }
-      }
     }
   }
 
@@ -235,11 +227,6 @@ body.checkouts-new, body.checkouts-create {
         clear: left;
       }
 
-      &#checkout_cc_existing {
-        input, label {
-          display: inline-block;
-        }
-      }
     }
   }
 }

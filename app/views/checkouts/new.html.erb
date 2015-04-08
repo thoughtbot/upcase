@@ -48,10 +48,6 @@
       $("input.github_username[required]").each(checkUsername);
 
       if($('li.error .github_username').length == 0) {
-        if($("input.use_existing_card").is(":checked")) {
-          return true;
-        }
-
         // disable the submit button to prevent repeated clicks
         $('fieldset.actions input').prop("disabled", true);
         <% unless Rails.env.test? %>

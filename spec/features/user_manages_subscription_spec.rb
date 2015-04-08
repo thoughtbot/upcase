@@ -185,15 +185,6 @@ feature "User creates a subscription" do
     expect(page).not_to have_content("Your Billing Info")
   end
 
-  scenario "User subscribes with an existing credit card", js: true do
-    user = create(:user, :with_github, stripe_customer_id: "test")
-
-    visit new_checkout_path(@plan, as: user)
-    pay_using_stripe_with_existing_card
-
-    expect_to_see_checkout_success_flash_for(@plan.name)
-  end
-
   def visit_plan_checkout_page
     visit new_checkout_path(@plan)
   end
