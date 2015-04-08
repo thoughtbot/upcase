@@ -110,7 +110,7 @@ class User < ActiveRecord::Base
 
   def deactivate_personal_subscription
     if personal_subscription
-      Cancellation.new(personal_subscription).cancel_now
+      Cancellation.new(subscription: personal_subscription).cancel_now
     end
   end
 

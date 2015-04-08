@@ -2,12 +2,14 @@ class Cancellation
   include ActiveModel::Model
 
   attr_accessor :reason
+  attr_reader :downgrade_plan
 
   validates :reason, presence: true
 
-  def initialize(subscription, reason = "")
+  def initialize(subscription:, downgrade_plan: Plan.basic, reason: "")
     @subscription = subscription
     @reason = reason
+    @downgrade_plan = downgrade_plan
   end
 
   def schedule
@@ -42,16 +44,12 @@ class Cancellation
     !downgraded?
   end
 
-  def downgrade_plan
-    Plan.basic
-  end
-
   def subscribed_plan
     @subscription.plan
   end
 
   def downgrade
-    @subscription.change_plan(sku: Plan.basic.sku)
+    @subscription.change_plan(sku: downgrade_plan.sku)
   end
 
   private

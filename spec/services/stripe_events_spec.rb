@@ -17,7 +17,10 @@ describe StripeEvents do
 
       StripeEvents.new(event).customer_subscription_deleted
 
-      expect(Cancellation).to have_received(:new).with(subscription)
+      expect(Cancellation).to(
+        have_received(:new).
+        with(subscription: subscription)
+      )
       expect(cancellation).to have_received(:process).once
     end
   end

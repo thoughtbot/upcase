@@ -5,7 +5,7 @@ class StripeEvents
 
   def customer_subscription_deleted
     if subscription
-      Cancellation.new(subscription).process
+      Cancellation.new(subscription: subscription).process
     end
   end
 
