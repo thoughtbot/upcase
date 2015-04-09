@@ -1,5 +1,5 @@
 class Plan < ActiveRecord::Base
-  DISCOUNTED_ANNUAL_PLAN_SKU = "discounted-annual"
+  DISCOUNTED_ANNUAL_PLAN_SKU = "175-annually"
   PRIME_249_SKU = "prime-249"
   PROFESSIONAL_SKU = "professional"
   THE_WEEKLY_ITERATION_SKU = "the-weekly-iteration"
