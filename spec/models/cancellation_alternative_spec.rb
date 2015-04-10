@@ -32,8 +32,8 @@ describe CancellationAlternative do
 
   describe "#discount_percentage" do
     it "returns the percentage discount that the alternative offers" do
-      current_plan = double("current_plan", price: 10)
-      discounted_plan = double("discounted_plan", price: 60)
+      current_plan = double("current_plan", price_in_dollars: 10)
+      discounted_plan = double("discounted_plan", price_in_dollars: 60)
 
       result = CancellationAlternative.new(
         current_plan: current_plan,
@@ -47,7 +47,7 @@ describe CancellationAlternative do
   describe "#discount_plan_price" do
     it "returns the price of the discounted plan" do
       current_plan = double("current_plan")
-      discounted_plan = double("discounted_plan", price: 60)
+      discounted_plan = double("discounted_plan", price_in_dollars: 60)
 
       result = CancellationAlternative.new(
         current_plan: current_plan,

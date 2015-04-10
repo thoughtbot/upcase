@@ -1,6 +1,6 @@
 module PlansHelper
   def plan_price(plan)
-    "#{formatted_price(plan.price)} / #{plan_interval(plan)}"
+    "#{formatted_price(plan.price_in_dollars)} / #{plan_interval(plan)}"
   end
 
   def formatted_price(price)

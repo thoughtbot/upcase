@@ -36,7 +36,7 @@ class Checkout < ActiveRecord::Base
   end
 
   def price
-    plan.price * quantity
+    plan.price_in_dollars * quantity
   end
 
   def quantity

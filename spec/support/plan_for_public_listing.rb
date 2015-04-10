@@ -10,8 +10,8 @@ shared_examples 'a Plan for public listing' do
 
   describe '.ordered' do
     it 'sorts by individual price' do
-      second = create(factory_name, price: 29)
-      first = create(factory_name, price: 99)
+      second = create(factory_name, price_in_dollars: 29)
+      first = create(factory_name, price_in_dollars: 99)
 
       expect(described_class.ordered).to eq [first, second]
     end

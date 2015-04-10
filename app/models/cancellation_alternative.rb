@@ -9,11 +9,11 @@ class CancellationAlternative
   end
 
   def discount_percentage_vs_current_plan_annualized
-    ((1 - (@discounted_plan.price / (@current_plan.price * 12.0))) * 100).
+    ((1 - (@discounted_plan.price_in_dollars / (@current_plan.price_in_dollars * 12.0))) * 100).
       round(0)
   end
 
   def discount_plan_price
-    @discounted_plan.price
+    @discounted_plan.price_in_dollars
   end
 end

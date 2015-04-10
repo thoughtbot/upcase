@@ -12,7 +12,7 @@ module TeamPlansHelper
     {
       :class => "string input required",
       :id => "checkout_quantity_input",
-      "data-price" => plan.price,
+      "data-price" => plan.price_in_dollars,
       "data-interval" => plan.subscription_interval
     }
   end

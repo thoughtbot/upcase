@@ -9,7 +9,7 @@ class Plan < ActiveRecord::Base
   belongs_to :annual_plan, class_name: "Plan"
 
   validates :description, presence: true
-  validates :price, presence: true
+  validates :price_in_dollars, presence: true
   validates :name, presence: true
   validates :short_description, presence: true
   validates :sku, presence: true
@@ -80,11 +80,11 @@ class Plan < ActiveRecord::Base
   end
 
   def annualized_payment
-    12 * price
+    12 * price_in_dollars
   end
 
   def discounted_annual_payment
-    annual_plan.price
+    annual_plan.price_in_dollars
   end
 
   def annualized_savings

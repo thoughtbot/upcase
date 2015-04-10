@@ -71,7 +71,7 @@ describe CheckoutsController do
 
       post :create, checkout: customer_params, plan: plan
 
-      expect(flash[:purchase_amount]).to eq plan.price
+      expect(flash[:purchase_amount]).to eq plan.price_in_dollars
     end
 
     it "removes any coupon from the session" do

@@ -102,14 +102,14 @@ describe Checkout do
 
   context "#price" do
     it "uses the price of the plan as it's price" do
-      plan = build(:plan, price: 50)
+      plan = build(:plan, price_in_dollars: 50)
       checkout = build(:checkout, plan: plan)
 
       expect(checkout.price).to eq 50
     end
 
     it "uses the price of the plan and minimum quantity as it's price" do
-      plan = build_stubbed(:plan, minimum_quantity: 3, price: 50)
+      plan = build_stubbed(:plan, minimum_quantity: 3, price_in_dollars: 50)
       checkout = build(:checkout, plan: plan)
 
       expect(checkout.price).to eq 150

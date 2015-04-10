@@ -16,7 +16,7 @@ describe "invitations/_additional_charge.html" do
     it "returns the amount and interval" do
       team = build_stubbed(:team)
       allow(team).to receive(:below_minimum_users?).and_return(false)
-      price = number_to_currency(team.plan.price, precision: 0)
+      price = number_to_currency(team.plan.price_in_dollars, precision: 0)
       interval = team.plan.subscription_interval
 
       render "invitations/additional_charge", team: team
