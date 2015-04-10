@@ -226,6 +226,7 @@ FactoryGirl.define do
     email
     name
     password 'password'
+    github_username
 
     transient do
       subscription nil

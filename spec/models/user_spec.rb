@@ -5,11 +5,12 @@ describe User do
     it { should belong_to(:mentor) }
     it { should belong_to(:team) }
     it { should have_many(:subscriptions).dependent(:destroy) }
-    it { should validate_uniqueness_of(:github_username) }
   end
 
   context "validations" do
     it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:github_username) }
+    it { should validate_uniqueness_of(:github_username) }
   end
 
   context "with a subscription that includes a mentor" do
@@ -36,16 +37,6 @@ describe User do
 
       user_with_multi_part_last_name = User.new(name: "First van der Last")
       expect(user_with_multi_part_last_name.last_name).to eq "van der Last"
-    end
-  end
-
-  context "#github_username" do
-    it "doesn't raise DB exception when saving empty strings" do
-      create(:user, github_username: "")
-      user = build(:user, github_username: "")
-
-      expect(user.save).to be true
-      expect(user.github_username).to be nil
     end
   end
 

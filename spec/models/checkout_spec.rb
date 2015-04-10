@@ -69,13 +69,13 @@ describe Checkout do
       expect(checkout.user).to be_persisted
     end
 
-    it "saves github_username to the user" do
-      user = create(:user, github_username: nil)
-      checkout = build(:checkout, user: user, github_username: "tbot")
+    it "updates github_username on the user" do
+      user = create(:user, github_username: "old")
+      checkout = build(:checkout, user: user, github_username: "new")
 
       checkout.fulfill
 
-      expect(user.github_username).to eq "tbot"
+      expect(user.github_username).to eq "new"
     end
 
     it "requires a unique GitHub username if there is no user" do

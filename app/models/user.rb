@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
   validates :mentor_id, presence: true, if: :has_subscription_with_mentor?
-  validates :github_username, uniqueness: { allow_blank: true }
+  validates :github_username, uniqueness: true, presence: true
 
   delegate :email, to: :mentor, prefix: true, allow_nil: true
   delegate :first_name, to: :mentor, prefix: true, allow_nil: true

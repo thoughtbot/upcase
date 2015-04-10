@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410153006) do
+ActiveRecord::Schema.define(version: 20150410155813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -313,7 +313,7 @@ ActiveRecord::Schema.define(version: 20150410153006) do
     t.string   "reference"
     t.boolean  "admin",                          default: false, null: false
     t.string   "stripe_customer_id",             default: "",    null: false
-    t.string   "github_username"
+    t.string   "github_username",                                null: false
     t.string   "auth_provider"
     t.integer  "auth_uid"
     t.string   "organization"

@@ -11,7 +11,6 @@ module CheckoutHelpers
   end
 
   def fill_out_subscription_form_with(credit_card_number)
-    fill_in 'GitHub username', with: 'cpytel'
     fill_out_credit_card_form_with(credit_card_number)
   end
 

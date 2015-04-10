@@ -26,15 +26,6 @@ feature "User creates a subscription" do
     expect_submit_button_to_contain("per year")
   end
 
-  scenario "user without github username sees github username input" do
-    current_user.github_username = nil
-    current_user.save!
-
-    visit_plan_checkout_page
-
-    expect(page).to have_github_input
-  end
-
   scenario "user with address has invoice address fields prepopulated" do
     current_user.update!(
       address1: "742 Evergreen Terrace",
@@ -171,18 +162,6 @@ feature "User creates a subscription" do
     find(".video_tutorial > a").click
 
     expect(page).not_to have_link("Subscribe to #{plan.name}")
-  end
-
-  scenario "existing user tries to subscribe with duplicate github", js: true do
-    create(:user, github_username: "taken")
-    user = create(:user)
-
-    visit new_checkout_path(@plan, as: user)
-    fill_in "GitHub username", with: "taken"
-    fill_out_subscription_form_with_valid_credit_card
-
-    expect(page).to have_content("has already been taken")
-    expect(page).not_to have_content("Your Billing Info")
   end
 
   def visit_plan_checkout_page
