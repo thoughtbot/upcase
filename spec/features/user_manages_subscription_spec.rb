@@ -26,29 +26,6 @@ feature "User creates a subscription" do
     expect_submit_button_to_contain("per year")
   end
 
-  scenario "user with address has invoice address fields prepopulated" do
-    current_user.update!(
-      address1: "742 Evergreen Terrace",
-      address2: ".",
-      city: "Springfield",
-      country: "USA",
-      organization: "The Simpsons",
-      state: "Oh The Mistery",
-      zip_code: "More Mistery"
-    )
-
-    visit_plan_checkout_page
-    click_on "Need an address on your receipt?"
-
-    expect(find_field("Address 1").value).to eq "742 Evergreen Terrace"
-    expect(find_field("Address 2").value).to eq "."
-    expect(find_field("City").value).to eq "Springfield"
-    expect(find_field("Country").value).to eq "USA"
-    expect(find_field("Organization").value).to eq "The Simpsons"
-    expect(find_field("State / Province").value).to eq "Oh The Mistery"
-    expect(find_field("Zip Code").value).to eq "More Mistery"
-  end
-
   scenario "user with github username doesn't see github username input" do
     current_user.github_username = "cpyteltest"
     current_user.save!

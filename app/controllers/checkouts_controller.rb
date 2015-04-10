@@ -8,13 +8,12 @@ class CheckoutsController < ApplicationController
         notice: t("checkout.flashes.already_subscribed")
       )
     else
-      @checkout = build_checkout(stripe_coupon_id: session[:coupon])
-      initialize_checkout_from_user
+      @checkout = build_checkout({})
     end
   end
 
   def create
-    @checkout = build_checkout(checkout_params_with_customer_and_coupon)
+    @checkout = build_checkout(checkout_params)
 
     if @checkout.fulfill
       session.delete(:coupon)
@@ -36,14 +35,22 @@ class CheckoutsController < ApplicationController
   end
 
   def build_checkout(arguments)
-    plan.checkouts.build arguments.merge(default_arguments)
+    plan.checkouts.build(arguments.merge(default_params))
   end
 
-  def checkout_params_with_customer_and_coupon
-    checkout_params.merge(
-      stripe_customer_id: current_user.try(:stripe_customer_id),
-      stripe_coupon_id: session[:coupon]
-    )
+  def default_params
+    if current_user
+      {
+        user: current_user,
+        github_username: current_user.github_username,
+        stripe_customer_id: current_user.stripe_customer_id,
+        stripe_coupon_id: session[:coupon]
+      }
+    else
+      {
+        stripe_coupon_id: session[:coupon]
+      }
+    end
   end
 
   def sign_in_and_redirect
@@ -61,30 +68,6 @@ class CheckoutsController < ApplicationController
       edit_team_path
     else
       practice_path
-    end
-  end
-
-  def default_arguments
-    { user: current_user }.merge(github_argument)
-  end
-
-  def github_argument
-    github = current_user.try(:github_username)
-
-    if github.present?
-      { github_username: github }
-    else
-      {}
-    end
-  end
-
-  def initialize_checkout_from_user
-    if current_user.present?
-      AttributesCopier.new(
-        target: @checkout,
-        source: current_user,
-        attributes: Checkout::COMMON_ATTRIBUTES
-      ).copy_present_attributes
     end
   end
 

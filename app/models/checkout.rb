@@ -16,7 +16,7 @@ class Checkout < ActiveRecord::Base
   belongs_to :plan
   belongs_to :user
 
-  validates :github_username, :user, presence: true
+  validates :user, presence: true
 
   delegate :includes_team?, :name, :sku, :terms, to: :plan, prefix: true
   delegate :email, to: :user, prefix: true
@@ -44,9 +44,7 @@ class Checkout < ActiveRecord::Base
   end
 
   def needs_github?
-    user.nil? ||
-      user.github_username.blank? ||
-      errors[:github_username].present?
+    user.nil? || user.github_username.blank?
   end
 
   def coupon
@@ -66,12 +64,16 @@ class Checkout < ActiveRecord::Base
 
   def find_or_create_valid_user
     initialize_user
-    user.save
-    validate_checkout_user
-    user.valid?
+
+    if user.save
+      true
+    else
+      copy_errors_to_user
+      false
+    end
   end
 
-  def validate_checkout_user
+  def copy_errors_to_user
     if user.invalid?
       %i(email name password github_username).each do |attribute|
         errors[attribute] = user.errors[attribute]
@@ -87,8 +89,8 @@ class Checkout < ActiveRecord::Base
     self.user ||= User.new
 
     AttributesCopier.new(
-      target: user,
       source: self,
+      target: user,
       attributes: COMMON_ATTRIBUTES
     ).copy_present_attributes
   end

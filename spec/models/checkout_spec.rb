@@ -5,7 +5,6 @@ describe Checkout do
   it { should belong_to(:plan) }
 
   it { should validate_presence_of(:user) }
-  it { should validate_presence_of(:github_username) }
 
   it { should delegate(:plan_includes_team?).to(:plan).as(:includes_team?) }
   it { should delegate(:plan_name).to(:plan).as(:name) }
