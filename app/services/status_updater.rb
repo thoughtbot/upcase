@@ -6,7 +6,7 @@ class StatusUpdater
 
   def update_state(state)
     create_status(state)
-    update_trails
+    update_trail
   end
 
   protected
@@ -19,7 +19,10 @@ class StatusUpdater
     Status.create!(completeable: completeable, user: user, state: state)
   end
 
-  def update_trails
-    completeable.trails.each { |trail| trail.update_state_for(user) }
+  def update_trail
+    trail = completeable.trail
+    if trail.present?
+      trail.update_state_for(user)
+    end
   end
 end

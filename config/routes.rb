@@ -12,6 +12,7 @@ Upcase::Application.routes.draw do
   draw :admin
   draw :api
   draw :clearance
+  draw :exercises
   draw :pages
   draw :plan
   draw :podcasts

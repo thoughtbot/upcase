@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410155813) do
+ActiveRecord::Schema.define(version: 20150415145819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -238,8 +238,8 @@ ActiveRecord::Schema.define(version: 20150410155813) do
     t.string   "completeable_type", null: false
   end
 
+  add_index "steps", ["trail_id", "completeable_id", "completeable_type"], name: "index_steps_on_trail_and_completeable_unique", unique: true, using: :btree
   add_index "steps", ["trail_id", "position"], name: "index_steps_on_trail_id_and_position", using: :btree
-  add_index "steps", ["trail_id"], name: "index_steps_on_trail_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"

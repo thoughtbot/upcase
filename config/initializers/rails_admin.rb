@@ -140,7 +140,7 @@ RailsAdmin.config do |config|
 
       field :public
       field :topics
-      field :trails
+      field :trail
     end
   end
 

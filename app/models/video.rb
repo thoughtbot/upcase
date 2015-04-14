@@ -4,11 +4,11 @@ class Video < ActiveRecord::Base
   belongs_to :watchable, polymorphic: true
   has_many :classifications, as: :classifiable
   has_many :statuses, as: :completeable, dependent: :destroy
-  has_many :steps, as: :completeable, dependent: :destroy
   has_many :teachers, dependent: :destroy
   has_many :topics, through: :classifications
-  has_many :trails, through: :steps
   has_many :users, through: :teachers
+  has_one :step, as: :completeable, dependent: :destroy
+  has_one :trail, through: :step
 
   validates :published_on, presence: true
   validates :slug, presence: true, uniqueness: true

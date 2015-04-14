@@ -12,12 +12,15 @@ en:
     meta_description: 'Video Tutorials, and videos to help you learn web design and development.'
     app_name: 'Upcase'
 
+  exercist_trails:
+    show:
+      no_trail: "No trail found for the exercise."
 
   exercises:
     statuses:
       next-up: "Exercise"
       unstarted: "Exercise"
-      in_progress: "In Progress"
+      in-progress: "In Progress"
       complete: "Complete"
 
   formtastic:
@@ -159,7 +162,7 @@ en:
     statuses:
       next-up: "Video"
       unstarted: "Video"
-      in_progress: "In Progress"
+      in-progress: "In Progress"
       complete: "Complete"
 
   watchables:

@@ -13,8 +13,8 @@ describe StatusUpdater do
         with(user: user, completeable: completeable, state: "New state")
     end
 
-    it "updates the state for trails associated with the completeable" do
-      completeable = mock_completeable(trails: [trail])
+    it "updates the state for the trail associated with the completeable" do
+      completeable = mock_completeable(trail: trail)
       updater = StatusUpdater.new(completeable, user)
       allow(Status).to receive(:create!)
 
@@ -23,9 +23,9 @@ describe StatusUpdater do
       expect(trail).to have_received(:update_state_for)
     end
 
-    def mock_completeable(trails: [])
-      @completeable ||= double("completeable").tap do |completeable|
-        allow(completeable).to receive(:trails).and_return(trails)
+    def mock_completeable(trail: nil)
+      double("completeable").tap do |completeable|
+        allow(completeable).to receive(:trail).and_return(trail)
       end
     end
 
