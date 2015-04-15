@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(version: 20150410155813) do
   enable_extension "pg_stat_statements"
 
   create_table "checkouts", force: :cascade do |t|
-    t.integer  "user_id",          null: false
-    t.integer  "plan_id",          null: false
-    t.string   "stripe_coupon_id"
+    t.integer  "user_id",                      null: false
+    t.integer  "plan_id",                      null: false
+    t.string   "stripe_coupon_id", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -29,10 +29,10 @@ ActiveRecord::Schema.define(version: 20150410155813) do
 
   create_table "classifications", force: :cascade do |t|
     t.integer  "topic_id"
-    t.string   "classifiable_type"
+    t.string   "classifiable_type", limit: 255
     t.integer  "classifiable_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "collaborations", force: :cascade do |t|
@@ -45,91 +45,91 @@ ActiveRecord::Schema.define(version: 20150410155813) do
   add_index "collaborations", ["repository_id", "user_id"], name: "index_collaborations_on_repository_id_and_user_id", unique: true, using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",   default: 0
-    t.integer  "attempts",   default: 0
+    t.integer  "priority",               default: 0
+    t.integer  "attempts",               default: 0
     t.text     "handler"
     t.text     "last_error"
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "locked_by",  limit: 255
+    t.string   "queue",      limit: 255
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "downloads", force: :cascade do |t|
     t.integer  "purchaseable_id"
-    t.string   "download_file_name"
-    t.string   "download_file_size"
-    t.string   "download_content_type"
-    t.string   "download_updated_at"
-    t.string   "description"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.string   "purchaseable_type"
+    t.string   "download_file_name",    limit: 255
+    t.string   "download_file_size",    limit: 255
+    t.string   "download_content_type", limit: 255
+    t.string   "download_updated_at",   limit: 255
+    t.string   "description",           limit: 255
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "purchaseable_type",     limit: 255
   end
 
   create_table "exercises", force: :cascade do |t|
-    t.string   "name",                       null: false
-    t.string   "url",                        null: false
-    t.text     "summary",                    null: false
+    t.string   "name",       limit: 255,                 null: false
+    t.string   "url",        limit: 255,                 null: false
+    t.text     "summary",                                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "uuid",                       null: false
-    t.boolean  "public",     default: false, null: false
-    t.string   "edit_url"
+    t.string   "uuid",       limit: 255,                 null: false
+    t.boolean  "public",                 default: false, null: false
+    t.string   "edit_url",   limit: 255
   end
 
   add_index "exercises", ["public"], name: "index_exercises_on_public", using: :btree
   add_index "exercises", ["uuid"], name: "index_exercises_on_uuid", unique: true, using: :btree
 
   create_table "invitations", force: :cascade do |t|
-    t.string   "email",        null: false
-    t.string   "code",         null: false
+    t.string   "email",        limit: 255, null: false
+    t.string   "code",         limit: 255, null: false
     t.datetime "accepted_at"
-    t.integer  "sender_id",    null: false
+    t.integer  "sender_id",                null: false
     t.integer  "recipient_id"
-    t.integer  "team_id",      null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "team_id",                  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "invitations", ["code"], name: "index_invitations_on_code", using: :btree
   add_index "invitations", ["team_id"], name: "index_invitations_on_team_id", using: :btree
 
   create_table "mentors", force: :cascade do |t|
-    t.integer "user_id",                                                  null: false
-    t.string  "availability",          default: "11am to 5pm on Fridays", null: false
-    t.boolean "accepting_new_mentees", default: true,                     null: false
+    t.integer "user_id",                                                              null: false
+    t.string  "availability",          limit: 255, default: "11am to 5pm on Fridays", null: false
+    t.boolean "accepting_new_mentees",             default: true,                     null: false
   end
 
   add_index "mentors", ["user_id"], name: "index_mentors_on_user_id", using: :btree
 
   create_table "oauth_access_grants", force: :cascade do |t|
-    t.integer  "resource_owner_id", null: false
-    t.integer  "application_id",    null: false
-    t.string   "token",             null: false
-    t.integer  "expires_in",        null: false
-    t.string   "redirect_uri",      null: false
-    t.datetime "created_at",        null: false
+    t.integer  "resource_owner_id",             null: false
+    t.integer  "application_id",                null: false
+    t.string   "token",             limit: 255, null: false
+    t.integer  "expires_in",                    null: false
+    t.string   "redirect_uri",      limit: 255, null: false
+    t.datetime "created_at",                    null: false
     t.datetime "revoked_at"
-    t.string   "scopes"
+    t.string   "scopes",            limit: 255
   end
 
   add_index "oauth_access_grants", ["token"], name: "index_oauth_access_grants_on_token", unique: true, using: :btree
 
   create_table "oauth_access_tokens", force: :cascade do |t|
     t.integer  "resource_owner_id"
-    t.integer  "application_id",    null: false
-    t.string   "token",             null: false
-    t.string   "refresh_token"
+    t.integer  "application_id",                null: false
+    t.string   "token",             limit: 255, null: false
+    t.string   "refresh_token",     limit: 255
     t.integer  "expires_in"
     t.datetime "revoked_at"
-    t.datetime "created_at",        null: false
-    t.string   "scopes"
+    t.datetime "created_at",                    null: false
+    t.string   "scopes",            limit: 255
   end
 
   add_index "oauth_access_tokens", ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true, using: :btree
@@ -137,63 +137,63 @@ ActiveRecord::Schema.define(version: 20150410155813) do
   add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true, using: :btree
 
   create_table "oauth_applications", force: :cascade do |t|
-    t.string   "name",                      null: false
-    t.string   "uid",                       null: false
-    t.string   "secret",                    null: false
-    t.string   "redirect_uri",              null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.string   "scopes",       default: "", null: false
+    t.string   "name",         limit: 255,              null: false
+    t.string   "uid",          limit: 255,              null: false
+    t.string   "secret",       limit: 255,              null: false
+    t.string   "redirect_uri", limit: 255,              null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.string   "scopes",       limit: 255, default: "", null: false
   end
 
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
 
   create_table "plans", force: :cascade do |t|
-    t.string   "name",                                  null: false
-    t.string   "sku",                                   null: false
-    t.string   "short_description",                     null: false
-    t.text     "description",                           null: false
-    t.boolean  "active",                default: true,  null: false
-    t.integer  "price_in_dollars",                      null: false
+    t.string   "name",                  limit: 255,                 null: false
+    t.string   "sku",                   limit: 255,                 null: false
+    t.string   "short_description",     limit: 255,                 null: false
+    t.text     "description",                                       null: false
+    t.boolean  "active",                            default: true,  null: false
+    t.integer  "price_in_dollars",                                  null: false
     t.text     "terms"
-    t.boolean  "includes_mentor",       default: false
-    t.boolean  "featured",              default: true,  null: false
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.boolean  "includes_repositories", default: true,  null: false
-    t.boolean  "includes_forum",        default: true,  null: false
-    t.boolean  "includes_shows",        default: true,  null: false
-    t.boolean  "includes_team",         default: false, null: false
-    t.boolean  "annual",                default: false
+    t.boolean  "includes_mentor",                   default: false
+    t.boolean  "featured",                          default: true,  null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.boolean  "includes_repositories",             default: true,  null: false
+    t.boolean  "includes_forum",                    default: true,  null: false
+    t.boolean  "includes_shows",                    default: true,  null: false
+    t.boolean  "includes_team",                     default: false, null: false
+    t.boolean  "annual",                            default: false
     t.integer  "annual_plan_id"
-    t.integer  "minimum_quantity",      default: 1,     null: false
-    t.boolean  "includes_trails",       default: false, null: false
+    t.integer  "minimum_quantity",                  default: 1,     null: false
+    t.boolean  "includes_trails",                   default: false, null: false
   end
 
   add_index "plans", ["annual_plan_id"], name: "index_plans_on_annual_plan_id", using: :btree
 
   create_table "products", force: :cascade do |t|
-    t.string   "name"
-    t.string   "sku"
-    t.string   "tagline"
-    t.string   "call_to_action"
-    t.string   "short_description"
+    t.string   "name",                       limit: 255
+    t.string   "sku",                        limit: 255
+    t.string   "tagline",                    limit: 255
+    t.string   "call_to_action",             limit: 255
+    t.string   "short_description",          limit: 255
     t.text     "description"
-    t.string   "type",                                       null: false
-    t.boolean  "active",                     default: true,  null: false
+    t.string   "type",                       limit: 255,                 null: false
+    t.boolean  "active",                                 default: true,  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "github_url"
+    t.string   "github_url",                 limit: 255
     t.text     "questions"
     t.text     "terms"
     t.text     "alternative_description"
-    t.string   "product_image_file_name"
-    t.string   "product_image_file_size"
-    t.string   "product_image_content_type"
-    t.string   "product_image_updated_at"
-    t.boolean  "promoted",                   default: false, null: false
-    t.string   "slug",                                       null: false
-    t.text     "resources",                  default: "",    null: false
+    t.string   "product_image_file_name",    limit: 255
+    t.string   "product_image_file_size",    limit: 255
+    t.string   "product_image_content_type", limit: 255
+    t.string   "product_image_updated_at",   limit: 255
+    t.boolean  "promoted",                               default: false, null: false
+    t.string   "slug",                       limit: 255,                 null: false
+    t.text     "resources",                              default: "",    null: false
     t.integer  "product_id"
     t.string   "github_repository"
     t.integer  "trail_id"
@@ -205,24 +205,24 @@ ActiveRecord::Schema.define(version: 20150410155813) do
 
   create_table "rails_admin_histories", force: :cascade do |t|
     t.text     "message"
-    t.string   "username"
+    t.string   "username",   limit: 255
     t.integer  "item"
-    t.string   "table"
+    t.string   "table",      limit: 255
     t.integer  "month",      limit: 2
     t.integer  "year",       limit: 8
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
 
   create_table "statuses", force: :cascade do |t|
-    t.integer  "completeable_id",                           null: false
-    t.integer  "user_id",                                   null: false
-    t.string   "state",             default: "In Progress", null: false
+    t.integer  "completeable_id",                                       null: false
+    t.integer  "user_id",                                               null: false
+    t.string   "state",             limit: 255, default: "In Progress", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "completeable_type",                         null: false
+    t.string   "completeable_type", limit: 255,                         null: false
   end
 
   add_index "statuses", ["completeable_id"], name: "index_statuses_on_completeable_id", using: :btree
@@ -243,15 +243,15 @@ ActiveRecord::Schema.define(version: 20150410155813) do
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at",                                               null: false
-    t.datetime "updated_at",                                               null: false
+    t.datetime "created_at",                                                           null: false
+    t.datetime "updated_at",                                                           null: false
     t.date     "deactivated_on"
     t.date     "scheduled_for_cancellation_on"
-    t.integer  "plan_id",                                                  null: false
-    t.string   "plan_type",                     default: "IndividualPlan", null: false
-    t.decimal  "next_payment_amount",           default: 0.0,              null: false
+    t.integer  "plan_id",                                                              null: false
+    t.string   "plan_type",                     limit: 255, default: "IndividualPlan", null: false
+    t.decimal  "next_payment_amount",                       default: 0.0,              null: false
     t.date     "next_payment_on"
-    t.string   "stripe_id"
+    t.string   "stripe_id",                     limit: 255
   end
 
   add_index "subscriptions", ["plan_id", "plan_type"], name: "index_subscriptions_on_plan_id_and_plan_type", using: :btree
@@ -266,35 +266,35 @@ ActiveRecord::Schema.define(version: 20150410155813) do
   add_index "teachers", ["user_id", "video_id"], name: "index_teachers_on_user_id_and_video_id", unique: true, using: :btree
 
   create_table "teams", force: :cascade do |t|
-    t.string   "name",            null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "subscription_id", null: false
+    t.string   "name",            limit: 255, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "subscription_id",             null: false
   end
 
   create_table "topics", force: :cascade do |t|
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "keywords"
-    t.string   "name",                         null: false
-    t.string   "slug",                         null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "keywords",     limit: 255
+    t.string   "name",         limit: 255,                 null: false
+    t.string   "slug",         limit: 255,                 null: false
     t.text     "summary"
-    t.boolean  "explorable",   default: false, null: false
-    t.string   "color",        default: "",    null: false
-    t.string   "color_accent", default: "",    null: false
+    t.boolean  "explorable",               default: false, null: false
+    t.string   "color",        limit: 255, default: "",    null: false
+    t.string   "color_accent", limit: 255, default: "",    null: false
   end
 
   add_index "topics", ["explorable"], name: "index_topics_on_explorable", using: :btree
   add_index "topics", ["slug"], name: "index_topics_on_slug", unique: true, using: :btree
 
   create_table "trails", force: :cascade do |t|
-    t.string   "name",                          null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.string   "complete_text",                 null: false
-    t.boolean  "published",     default: false, null: false
-    t.string   "slug",                          null: false
-    t.text     "description",   default: "",    null: false
+    t.string   "name",          limit: 255,                 null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.string   "complete_text", limit: 255,                 null: false
+    t.boolean  "published",                 default: false, null: false
+    t.string   "slug",          limit: 255,                 null: false
+    t.text     "description",               default: "",    null: false
     t.integer  "topic_id"
   end
 
@@ -302,7 +302,7 @@ ActiveRecord::Schema.define(version: 20150410155813) do
   add_index "trails", ["slug"], name: "index_trails_on_slug", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email"
+    t.string   "email",              limit: 255
     t.string   "encrypted_password", limit: 128
     t.string   "salt",               limit: 128
     t.string   "confirmation_token", limit: 128
@@ -310,20 +310,20 @@ ActiveRecord::Schema.define(version: 20150410155813) do
     t.boolean  "email_confirmed",                default: true,  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "reference"
+    t.string   "reference",          limit: 255
     t.boolean  "admin",                          default: false, null: false
-    t.string   "stripe_customer_id",             default: "",    null: false
+    t.string   "stripe_customer_id", limit: 255, default: "",    null: false
     t.string   "github_username",                                null: false
-    t.string   "auth_provider"
+    t.string   "auth_provider",      limit: 255
     t.integer  "auth_uid"
-    t.string   "organization"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip_code"
-    t.string   "country"
-    t.string   "name"
+    t.string   "organization",       limit: 255
+    t.string   "address1",           limit: 255
+    t.string   "address2",           limit: 255
+    t.string   "city",               limit: 255
+    t.string   "state",              limit: 255
+    t.string   "zip_code",           limit: 255
+    t.string   "country",            limit: 255
+    t.string   "name",               limit: 255
     t.text     "bio"
     t.integer  "mentor_id"
     t.integer  "team_id"
@@ -388,16 +388,16 @@ ActiveRecord::Schema.define(version: 20150410155813) do
 
   create_table "videos", force: :cascade do |t|
     t.integer  "watchable_id"
-    t.string   "wistia_id"
-    t.string   "name"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.string   "watchable_type"
-    t.integer  "position",          default: 0, null: false
+    t.string   "wistia_id",         limit: 255
+    t.string   "name",              limit: 255
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.string   "watchable_type",    limit: 255
+    t.integer  "position",                      default: 0, null: false
     t.text     "notes"
     t.date     "published_on"
-    t.string   "preview_wistia_id"
-    t.string   "slug",                          null: false
+    t.string   "preview_wistia_id", limit: 255
+    t.string   "slug",              limit: 255,             null: false
     t.text     "summary"
   end
 
