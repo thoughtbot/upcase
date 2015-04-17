@@ -24,6 +24,14 @@ else
   heroku run rake db:migrate --remote "$1"
   heroku restart --remote "$1"
 
+  if [ "$1" = "staging" ]; then
+    current_sha="$(git log -1 --abbrev-commit --oneline | cut -d ' ' -f 1)"
+    heroku config:set \
+      CURRENT_BRANCH="$branch" \
+      CURRENT_SHA="$current_sha" \
+      --remote "$1"
+  fi
+
   if [ "$1" = "production" ]; then
     open https://upcase.com
     heroku addons:open newrelic --remote "$1"
