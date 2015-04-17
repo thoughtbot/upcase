@@ -14,7 +14,7 @@ feature 'User updated credit card' do
     expect(page).to have_content(I18n.t('subscriptions.flashes.update.success'))
   end
 
-  scenario 'updates Stripe subscription with declining credit card', js: true do
+  scenario "updates Stripe subscription with declining credit card" do
     sign_in_as_user_with_subscription
     visit my_account_path
     FakeStripe.failure = true

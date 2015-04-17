@@ -22,7 +22,7 @@ feature "User creates a team subscription" do
     expect_submit_button_to_contain("per month")
   end
 
-  scenario "creates a subscription with a valid amount off coupon", js: true do
+  scenario "creates a subscription with a valid amount off coupon" do
     create_amount_stripe_coupon("5OFF", "once", 500)
 
     visit coupon_path("5OFF")

@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "Videos" do
   context "GET /" do
-    it "lists the published videos for a video_tutorial", js: true do
+    it "lists the published videos for a video_tutorial" do
       sign_in_as_user_with_subscription
       video_tutorial = create(:video_tutorial)
       published_video_one = create(

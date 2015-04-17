@@ -54,7 +54,7 @@ feature 'Visitor signs up for a subscription' do
     expect_to_see_checkout_success_flash_for(@plan.name)
   end
 
-  scenario "Visitor attempts to subscribe without specifying a GitHub username", js: true do
+  scenario "without specifying a GitHub username" do
     attempt_to_subscribe
 
     user = build(:user)

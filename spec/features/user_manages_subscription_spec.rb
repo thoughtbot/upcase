@@ -12,13 +12,13 @@ feature "User creates a subscription" do
     expect(current_user).not_to have_active_subscription
   end
 
-  scenario "sees that the subscription is per month", js: true do
+  scenario "sees that the subscription is per month" do
     visit_plan_checkout_page
 
     expect_submit_button_to_contain("per month")
   end
 
-  scenario "sees that the subscription is per year", js: true do
+  scenario "sees that the subscription is per year" do
     allow_any_instance_of(Plan).to receive(:subscription_interval).
       and_return("year")
     visit_plan_checkout_page
@@ -58,7 +58,7 @@ feature "User creates a subscription" do
     expect(page).not_to have_github_input
   end
 
-  scenario "with a valid amount off coupon", js: true do
+  scenario "with a valid amount off coupon" do
     create_amount_stripe_coupon("5OFF", "once", 500)
 
     visit coupon_path("5OFF")
@@ -75,7 +75,7 @@ feature "User creates a subscription" do
     expect(FakeStripe.last_coupon_used).to eq "5OFF"
   end
 
-  scenario "with a free month coupon", js: true do
+  scenario "with a free month coupon" do
     create_recurring_stripe_coupon("THREEFREE", 3, 9900)
 
     visit coupon_path("THREEFREE")
@@ -90,7 +90,7 @@ feature "User creates a subscription" do
     expect(FakeStripe.last_coupon_used).to eq "THREEFREE"
   end
 
-  scenario "with a valid percent off coupon", js: true do
+  scenario "with a valid percent off coupon" do
     create_percentage_off_stripe_coupon("50OFF", "once", 50)
 
     visit coupon_path("50OFF")
@@ -108,7 +108,7 @@ feature "User creates a subscription" do
     expect(FakeStripe.last_coupon_used).to eq "50OFF"
   end
 
-  scenario "with an invalid coupon", js: true do
+  scenario "with an invalid coupon" do
     visit coupon_path("50OFF")
     expect(page).to have_content("The coupon code you supplied is not valid.")
 
