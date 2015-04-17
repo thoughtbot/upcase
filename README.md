@@ -76,7 +76,7 @@ build is run automatically whenever any branch is updated on Github.
 
 * Reset development data as needed.
 
-        % rake dev:upcase
+        % rake dev:prime
 
 * Dump production data into your local db. (Note that you need to drop your
   local database first).

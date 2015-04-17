@@ -43,7 +43,7 @@ fi
 
 # Set up the database
 bundle exec rake db:setup
-bundle exec rake dev:upcase
+bundle exec rake dev:prime
 
 # Set up configurable environment variables
 if [ ! -f .env ]; then
