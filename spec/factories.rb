@@ -122,6 +122,10 @@ FactoryGirl.define do
       annual true
     end
 
+    trait :featured do
+      featured true
+    end
+
     trait :includes_mentor do
       includes_mentor true
     end

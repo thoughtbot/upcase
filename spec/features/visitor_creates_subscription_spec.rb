@@ -7,7 +7,6 @@ feature 'Visitor signs up for a subscription' do
 
   scenario 'visitor signs up by navigating from landing page' do
     create(:trail, :published)
-    create(:basic_plan)
 
     visit "/"
     click_link "Start Learning"
@@ -128,7 +127,7 @@ feature 'Visitor signs up for a subscription' do
   end
 
   def create_plan
-    @plan = create(:plan, sku: Plan::PROFESSIONAL_SKU)
+    @plan = create(:plan, :featured)
   end
 
   def attempt_to_subscribe

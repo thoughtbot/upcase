@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "User creates a team subscription" do
   background do
-    create(:plan, :team)
+    create(:plan, :team, :featured)
     sign_in
   end
 
