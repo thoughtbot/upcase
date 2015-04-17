@@ -2,7 +2,7 @@
 $plan-width: 190px;
 $plan-width-callout: $plan-width + 10px;
 $plan-padding: 35px;
-$plan-header-height: 120px;
+$plan-header-height: 59px;
 $plan-max-width: 960px;
 $celestial-blue: #4A90E2;
 $yellow: #F3E86B;
@@ -29,16 +29,20 @@ $yellow: #F3E86B;
     }
 
     li {
-      height: 26px;
+      @include align-items(center);
+      @include justify-content(center);
+      @include display(flex);
+      height: 46px;
     }
   }
 
   header {
+    @include align-items(center);
     @include clearfix;
+    @include display(flex);
     display: block;
     width: 100%;
-    @include display(flex);
-    @include align-items(center);
+
 
     p {
       color: #4A4A4A;
@@ -70,7 +74,7 @@ $yellow: #F3E86B;
       color: $color;
       display: inline-block;
       line-height: 1;
-      @include transform(translateY(-4px));
+      vertical-align: middle;
       font-family: $sans-serif;
       font-weight: 600;
 
@@ -96,24 +100,17 @@ $yellow: #F3E86B;
       color: darken($darkwarmgray, 10%);
       font-size: 1.2rem;
       font-weight: 600;
-      height: $plan-header-height;
+      height: 90px;
       padding: $plan-padding;
     }
 
     li {
       box-shadow: 0 1px 0 hsla(0, 0%, 0%, 0.05);
       padding: 0 $plan-padding;
+      margin: 0;
 
       &:last-of-type {
         box-shadow: none;
-      }
-
-      img {
-        @include transform(translateY(-2px));
-      }
-
-      &.check-lg img {
-        @include transform(translateY(-4px));
       }
     }
 

@@ -2,15 +2,18 @@
   padding: 2em 2em 0;
   position: relative;
 
+  .feature {
+    @include justify-content(flex-end);
+    padding: 0 10px;
+  }
+
   ul {
     @include outer-container;
   }
 
   li {
-    @include row();
     border-top: 1px solid darken($base-background-2, 5);
     margin: 0 -2em;
-    padding-top: 3em;
 
     &:nth-child(odd) {
       @include marketing-fullsize {
