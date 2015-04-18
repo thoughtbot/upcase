@@ -27,7 +27,6 @@ Dir[File.expand_path(File.join(File.dirname(__FILE__),"support","**","*.rb"))].e
 
 FakeStripeRunner.boot
 FakeGithubRunner.boot
-FakeWistiaRunner.boot
 
 Capybara.app = HostMap.new(
   "www.example.com" => Capybara.app,
