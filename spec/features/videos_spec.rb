@@ -1,8 +1,6 @@
 require "rails_helper"
 
 describe "Videos" do
-  before { FakeWistiaRunner.boot }
-
   context "GET /" do
     it "lists the published videos for a video_tutorial" do
       sign_in_as_user_with_subscription
@@ -38,6 +36,7 @@ describe "Videos" do
     end
 
     it "lists the published videos for a product", js: true do
+      FakeWistiaRunner.boot
       sign_in_as_user_with_subscription
 
       video_tutorial = create(:video_tutorial)
