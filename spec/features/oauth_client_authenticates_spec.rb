@@ -10,6 +10,7 @@ feature 'An OAuth client authenticates', js: true do
   end
 
   scenario 'via redirect with GitHub' do
+    FakeGithubRunner.boot
     create_client_app
     visit_client_app
 

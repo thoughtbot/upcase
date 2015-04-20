@@ -26,8 +26,6 @@ WebMock.disable_net_connect!(allow_localhost: true, allow: "codeclimate.com")
 Dir[File.expand_path(File.join(File.dirname(__FILE__),"support","**","*.rb"))].each {|f| require f}
 
 FakeStripeRunner.boot
-FakeGithubRunner.boot
-FakeWistiaRunner.boot
 
 Capybara.app = HostMap.new(
   "www.example.com" => Capybara.app,

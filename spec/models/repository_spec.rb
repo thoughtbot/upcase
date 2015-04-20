@@ -27,6 +27,7 @@ describe Repository do
   describe "#has_collaborator?" do
     context "after #add_collaborator with that user" do
       it "returns true" do
+        FakeGithubRunner.boot
         collaborator = create(:user)
         repository = create(:repository)
         repository.add_collaborator(collaborator)
@@ -37,6 +38,7 @@ describe Repository do
 
     context "after #add_collaborator with another user" do
       it "returns false" do
+        FakeGithubRunner.boot
         collaborator = create(:user)
         non_collaborator = create(:user)
         repository = create(:repository)
@@ -48,6 +50,7 @@ describe Repository do
 
     context "after #remove_collaborator" do
       it "returns false" do
+        FakeGithubRunner.boot
         collaborator = create(:user)
         repository = create(:repository)
         repository.add_collaborator(collaborator)
