@@ -12,11 +12,11 @@
       ) %>
     <% end %>
 
-    <li class="tile video-tutorial <%= topic_slugs(video_tutorial) %>">
+    <li class="tile video-tutorial <%= topic_class(trail.topic) %>">
       <h2>Video Tutorial</h2>
-      <h1><%= link_to video_tutorial.name, video_tutorial %></h1>
-      <p class="description"><%= video_tutorial.tagline %></p>
-      <%= link_to "View All Videos", products_path, class: "cta" %>
+      <h1><%= link_to trail.name, trail %></h1>
+      <p class="description"><%= trail.description %></p>
+      <%= link_to "View All Trails", trails_path, class: "cta" %>
     </li>
   </ul>
 </section>

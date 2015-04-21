@@ -5,7 +5,7 @@ feature "Subscriber views a topic" do
     create(:show, name: Show::THE_WEEKLY_ITERATION)
     topic = create(:topic, :explorable)
     video = create(:video)
-    trail = create(:trail, :published)
+    trail = create(:trail, :published, :video)
     topic.videos << video
     topic.trails << trail
 

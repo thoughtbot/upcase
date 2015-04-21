@@ -479,6 +479,13 @@ FactoryGirl.define do
         end
       end
     end
+
+    trait :video do
+      after :create do |trail|
+        video = create(:video, watchable: nil)
+        create(:step, trail: trail, completeable: video)
+      end
+    end
   end
 
   factory :step do

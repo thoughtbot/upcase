@@ -6,9 +6,9 @@ describe "explore/_videos.html" do
       latest_video = build_stubbed(:video)
       show = build_stubbed(:show)
       allow(show).to receive(:latest_video).and_return(latest_video)
-      video_tutorial = build_stubbed(:video_tutorial)
+      trail = build_stubbed(:trail)
 
-      render "explore/videos", show: show, video_tutorial: video_tutorial
+      render "explore/videos", show: show, trail: trail
 
       expect(rendered).to have_text(show.tagline)
       expect(rendered).to have_text(latest_video.name)
@@ -19,9 +19,9 @@ describe "explore/_videos.html" do
     it "skips the video" do
       show = build_stubbed(:show)
       allow(show).to receive(:latest_video).and_return(nil)
-      video_tutorial = build_stubbed(:video_tutorial)
+      trail = build_stubbed(:trail)
 
-      render "explore/videos", show: show, video_tutorial: video_tutorial
+      render "explore/videos", show: show, trail: trail
 
       expect(rendered).not_to have_text(show.tagline)
     end

@@ -13,21 +13,32 @@ describe Explore do
     end
   end
 
-  describe "#latest_video_tutorial" do
-    it "returns most recent active VideoTutorial" do
-      user = double
-      video_tutorial = double
-      order_scope = double("Order Scope", last: video_tutorial)
-      active_scope = double("Active Scope", order: order_scope)
-      allow(VideoTutorial).to receive(:active).and_return(active_scope)
-      allow(active_scope).to receive(:order).with(:created_at).
-        and_return(order_scope)
+  describe "#latest_video_trail" do
+    it "returns most recent published video trail" do
+      user = double(:user)
+      create_trail("Video Trail", published: 1.day.ago, type: :video)
+      create_trail("Old Trail", published: 2.days.ago, type: :video)
+      create_trail("Unpublished Trail", published: false, type: :video)
+      create_trail("Exercise Trail", published: Time.now, type: :exercise)
 
-      result = Explore.new(user).latest_video_tutorial
+      result = Explore.new(user).latest_video_trail
 
-      expect(result).to eq(video_tutorial)
-      expect(VideoTutorial).to have_received(:active)
-      expect(active_scope).to have_received(:order).with(:created_at)
+      expect(result.name).to eq("Video Trail")
+    end
+
+    def create_trail(name, published:, type:)
+      trail = create(
+        :trail,
+        name: name,
+        published: published.present?,
+        created_at: published || Time.now
+      )
+
+      create(
+        :step,
+        trail: trail,
+        completeable: create(type)
+      )
     end
   end
 

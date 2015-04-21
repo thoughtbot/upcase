@@ -7,8 +7,12 @@ class Explore
     Show.the_weekly_iteration
   end
 
-  def latest_video_tutorial
-    VideoTutorial.active.order(:created_at).last
+  def latest_video_trail
+    Trail.
+      most_recent_published.
+      distinct.
+      joins(:steps).where(steps: { completeable_type: "Video" }).
+      first
   end
 
   def topics
