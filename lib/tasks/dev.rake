@@ -238,9 +238,6 @@ namespace :dev do
     teach video, bio: "The Amazing Dan"
     FactoryGirl.create(:step, trail: trail, completeable: video)
 
-    classify_exercise "Passing Your First Test", "Testing"
-    classify_exercise "Testing ActiveRecord", "Testing"
-    classify_exercise "Write an Integration Test", "Testing"
     puts_trail trail, "unstarted"
 
     trail = FactoryGirl.create(:trail, :published, name: "Design Essentials")
@@ -272,9 +269,6 @@ namespace :dev do
       "Extract Class",
       "Replace Variable with Query"
     )
-    classify_exercise "Extract Method", "Clean Code"
-    classify_exercise "Extract Class", "Clean Code"
-    classify_exercise "Replace Variable with Query", "Clean Code"
     FactoryGirl.create(:status,
       completeable: trail,
       state: Status::IN_PROGRESS,
@@ -289,9 +283,6 @@ namespace :dev do
       "Install Homebrew",
       "Intro to the App Store"
     )
-    classify_exercise "Install Xcode", "iOS"
-    classify_exercise "Install Homebrew", "Workflow"
-    classify_exercise "Intro to the App Store", "iOS"
     FactoryGirl.create(:status,
       completeable: trail,
       state: Status::COMPLETE,
@@ -340,7 +331,7 @@ namespace :dev do
 
   def create_steps_for(trail, *names)
     names.map do |name|
-      exercise = FactoryGirl.create(:exercise, name: name, public: true)
+      exercise = FactoryGirl.create(:exercise, name: name)
       FactoryGirl.create(:step, trail: trail, completeable: exercise)
     end
   end
@@ -348,10 +339,6 @@ namespace :dev do
   def teach(video, bio:)
     user = FactoryGirl.create(:user, bio: bio)
     FactoryGirl.create(:teacher, video: video, user: user)
-  end
-
-  def classify_exercise(name, topic_name)
-    classify Exercise.find_by!(name: name), topic_name
   end
 
   def classify(classifiable, topic_name)

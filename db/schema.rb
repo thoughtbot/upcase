@@ -61,17 +61,15 @@ ActiveRecord::Schema.define(version: 20150422152603) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "exercises", force: :cascade do |t|
-    t.string   "name",       limit: 255,                 null: false
-    t.string   "url",        limit: 255,                 null: false
-    t.text     "summary",                                null: false
+    t.string   "name",       limit: 255, null: false
+    t.string   "url",        limit: 255, null: false
+    t.text     "summary",                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "uuid",       limit: 255,                 null: false
-    t.boolean  "public",                 default: false, null: false
+    t.string   "uuid",       limit: 255, null: false
     t.string   "edit_url",   limit: 255
   end
 
-  add_index "exercises", ["public"], name: "index_exercises_on_public", using: :btree
   add_index "exercises", ["uuid"], name: "index_exercises_on_uuid", unique: true, using: :btree
 
   create_table "invitations", force: :cascade do |t|

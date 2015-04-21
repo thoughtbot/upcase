@@ -3,7 +3,6 @@ require "rails_helper"
 describe Topic do
   # Associations
   it { should have_many(:classifications).dependent(:destroy) }
-  it { should have_many(:exercises).through(:classifications) }
   it { should have_many(:products).through(:classifications) }
   it { should have_many(:topics).through(:classifications) }
   it { should have_many(:videos).through(:classifications) }

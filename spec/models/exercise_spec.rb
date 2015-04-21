@@ -3,8 +3,6 @@ require "rails_helper"
 describe Exercise do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:url) }
-  it { should have_many(:classifications) }
-  it { should have_many(:topics).through(:classifications) }
   it { should have_one(:trail).through(:step) }
   it { should have_one(:step).dependent(:destroy) }
 
@@ -15,16 +13,6 @@ describe Exercise do
       create(:exercise, name: "second", created_at: 2.days.ago)
 
       expect(Exercise.ordered.pluck(:name)).to eq(%w(first second third))
-    end
-  end
-
-  describe ".public" do
-    it "only returns public exercises" do
-      create(:exercise, name: "first", public: true)
-      create(:exercise, name: "second", public: true)
-      create(:exercise, name: "hidden", public: false)
-
-      expect(Exercise.public.pluck(:name)).to match_array(%w(first second))
     end
   end
 end

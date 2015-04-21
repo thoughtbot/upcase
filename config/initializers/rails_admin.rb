@@ -111,7 +111,6 @@ RailsAdmin.config do |config|
         partial "whetstone_edit_url"
       end
 
-      field :public
       field :topics
       field :trail
     end

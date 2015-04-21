@@ -414,10 +414,6 @@ FactoryGirl.define do
     sequence(:name) { |n| "Exercise #{n}" }
     url { "http://localhost:7000/exercises/#{slug}" }
     uuid
-
-    trait :public do
-      public true
-    end
   end
 
   factory :oauth_access_token, class: "Doorkeeper::AccessToken" do
