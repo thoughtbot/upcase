@@ -292,11 +292,6 @@ namespace :dev do
     )
     teach video, bio: "Dan I am"
     FactoryGirl.create(:step, trail: trail, completeable: video)
-    FactoryGirl.create(:status,
-      completeable: trail,
-      state: Status::IN_PROGRESS,
-      user: user
-    )
 
     puts_trail trail, "unstarted"
 

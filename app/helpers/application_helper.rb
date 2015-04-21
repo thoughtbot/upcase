@@ -33,6 +33,10 @@ module ApplicationHelper
     "https://forum.upcase.com/#{suffix}"
   end
 
+  def exercise_path(exercise)
+    exercise.url
+  end
+
   def blog_articles_url(topic)
     "http://robots.thoughtbot.com/tags/#{topic.slug}"
   end

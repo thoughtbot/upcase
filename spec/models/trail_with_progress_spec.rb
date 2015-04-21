@@ -132,6 +132,21 @@ describe TrailWithProgress do
     end
   end
 
+  describe "#steps_remaining" do
+    it "delegates to the trail" do
+      trail = create_trail_with_progress(
+        Status::COMPLETE,
+        Status::IN_PROGRESS,
+        nil,
+        nil
+      )
+
+      result = trail.steps_remaining
+
+      expect(result).to eq(3)
+    end
+  end
+
   def create_trail_with_progress(*states)
     user = create(:user)
     exercises =

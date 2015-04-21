@@ -9,8 +9,8 @@
 
     <%= render "trails/step_dots", trail: trail %>
 
-    <% if trail.exercises.present? %>
-      <%= completeable_link trail.exercises.first.url, class: "start-trail" do %>
+    <% if trail.steps.present? %>
+      <%= completeable_link url_for(trail.steps.first.completeable), class: "start-trail" do %>
         Start trail
       <% end %>
     <% end %>

@@ -38,6 +38,10 @@ class TrailWithProgress < SimpleDelegator
     statuses_by_id[@trail.id].try(:first) || Unstarted.new
   end
 
+  def steps_remaining
+    @trail.steps_remaining_for(@user)
+  end
+
   private
 
   attr_reader :trail, :user

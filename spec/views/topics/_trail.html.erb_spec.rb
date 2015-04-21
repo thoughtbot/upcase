@@ -41,6 +41,7 @@ describe "topics/_trail.html" do
       allow(trail).to receive(:complete?).and_return(complete)
       allow(trail).to receive(:just_finished?).and_return(just_finished)
       allow(trail).to receive(:unstarted?).and_return(unstarted)
+      allow(trail).to receive(:steps_remaining).and_return(1)
     end
   end
 

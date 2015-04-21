@@ -206,6 +206,10 @@ FactoryGirl.define do
     trait :explorable do
       explorable true
     end
+
+    after :stub do |topic|
+      topic.slug ||= topic.name.parameterize
+    end
   end
 
   factory :completion do
