@@ -13,8 +13,6 @@ class Video < ActiveRecord::Base
   validates :published_on, presence: true
   validates :slug, presence: true, uniqueness: true
   validates :name, presence: true
-  validates :watchable_id, presence: true
-  validates :watchable_type, presence: true
   validates :wistia_id, presence: true
 
   delegate :included_in_plan?, to: :watchable
@@ -54,12 +52,11 @@ class Video < ActiveRecord::Base
     BlueCloth.new(notes).to_html
   end
 
-  def to_param
-    slug
+  def watchable
+    super || step.trail
   end
 
-  def update_trails_state_for(_user)
-    # Waiting on story for adding Videos as steps of a trail, does
-    # nothing for now.
+  def to_param
+    slug
   end
 end

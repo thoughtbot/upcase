@@ -243,6 +243,26 @@ describe Trail do
     end
   end
 
+  describe "#included_in_plan?" do
+    context "for a plan with trails" do
+      it "returns true" do
+        plan = build_stubbed(:plan, includes_trails: true)
+        trail = build_stubbed(:trail)
+
+        expect(trail).to be_included_in_plan(plan)
+      end
+    end
+
+    context "for a plan without trails" do
+      it "returns false" do
+        plan = build_stubbed(:plan, includes_trails: false)
+        trail = build_stubbed(:trail)
+
+        expect(trail).not_to be_included_in_plan(plan)
+      end
+    end
+  end
+
   def trail_with_exercise_states(user, *states)
     exercises =
       states.map { |state| create_exercise_with_state(state, user: user) }

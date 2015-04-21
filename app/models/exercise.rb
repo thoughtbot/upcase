@@ -15,8 +15,4 @@ class Exercise < ActiveRecord::Base
   def self.public
     where(public: true)
   end
-
-  def update_trails_state_for(user)
-    trails.each { |trail| trail.update_state_for(user) }
-  end
 end

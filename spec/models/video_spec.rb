@@ -13,8 +13,6 @@ describe Video do
   it { should validate_presence_of(:published_on) }
   it { should validate_presence_of(:slug) }
   it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:watchable_id) }
-  it { should validate_presence_of(:watchable_type) }
   it { should validate_presence_of(:wistia_id) }
 
   context "uniqueness" do
@@ -133,6 +131,31 @@ describe Video do
       video = build_stubbed(:video, notes: 'Some *awesome* markdown')
 
       expect(video.notes_html).to eq '<p>Some <em>awesome</em> markdown</p>'
+    end
+  end
+
+  describe "#watchable" do
+    context "for a video with a watchable" do
+      it "returns the watchable directly" do
+        show = build_stubbed(:show)
+        video = build_stubbed(:video, watchable: show)
+
+        result = video.watchable
+
+        expect(result).to eq(show)
+      end
+    end
+
+    context "for a video with a step" do
+      it "returns the trail" do
+        trail = build_stubbed(:trail)
+        step = build_stubbed(:step, trail: trail)
+        video = build_stubbed(:video, step: step, watchable: nil)
+
+        result = video.watchable
+
+        expect(result).to eq(trail)
+      end
     end
   end
 end

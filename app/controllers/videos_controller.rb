@@ -31,6 +31,6 @@ class VideosController < ApplicationController
   def has_access?
     signed_in? &&
       current_user.plan.present? &&
-      @video.watchable.included_in_plan?(current_user.plan)
+      @video.included_in_plan?(current_user.plan)
   end
 end
