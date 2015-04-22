@@ -157,5 +157,15 @@ describe Video do
         expect(result).to eq(trail)
       end
     end
+
+    context "for an unsaved video" do
+      it "returns nil" do
+        video = Video.new
+
+        result = video.watchable
+
+        expect(result).to be_nil
+      end
+    end
   end
 end

@@ -53,7 +53,7 @@ class Video < ActiveRecord::Base
   end
 
   def watchable
-    super || step.trail
+    super || step.try(:trail)
   end
 
   def to_param
