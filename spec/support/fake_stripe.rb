@@ -603,7 +603,7 @@ class FakeStripe < Sinatra::Base
               metadata: {},
               statement_description: nil
             },
-            description: "Remaining time on Upcase VideoTutorials after 22 Feb 2014",
+            description: "Remaining time on Upcase after 22 Feb 2014",
             metadata: {}
           },
           {

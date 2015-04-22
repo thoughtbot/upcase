@@ -2,74 +2,6 @@ require "rails_helper"
 
 describe "Videos" do
   context "GET /" do
-    it "lists the published videos for a video_tutorial" do
-      sign_in_as_user_with_subscription
-      video_tutorial = create(:video_tutorial)
-      published_video_one = create(
-        :video,
-        :published,
-        watchable: video_tutorial,
-        position: 1
-      )
-      published_video_two = create(
-        :video,
-        :published,
-        watchable: video_tutorial,
-        position: 2
-      )
-      video = create(:video, watchable: video_tutorial)
-
-      visit video_tutorial_path(video_tutorial)
-
-      expect(page).to have_content("2 lessons in this video tutorial")
-      expect(page).to have_content(published_video_one.name)
-      expect(page).to have_content(published_video_two.name)
-      expect(page).not_to have_content(video.name)
-      expect(
-        page.body.index(published_video_one.name) <
-        page.body.index(published_video_two.name)
-      ).to be
-
-      visit video_path(published_video_two)
-
-      expect(page).to have_css("p.wistia-video")
-    end
-
-    it "lists the published videos for a product", js: true do
-      sign_in_as_user_with_subscription
-
-      video_tutorial = create(:video_tutorial)
-      published_video_one = create(
-        :video,
-        :published,
-        watchable: video_tutorial
-      )
-      published_video_two = create(
-        :video,
-        :published,
-        watchable: video_tutorial
-      )
-      video = create(:video, watchable: video_tutorial)
-
-      visit video_tutorial_path(video_tutorial)
-
-      expect(page).to have_content(published_video_one.name)
-      expect(page).to have_content(published_video_two.name)
-      expect(page).to have_content("2 minutes")
-      expect(page).not_to have_content(video.name)
-    end
-
-    it "doesn't say it's a series with one published video" do
-      video_tutorial = create(:video_tutorial)
-      create(:video, :published, watchable: video_tutorial)
-      create(:video, watchable: video_tutorial)
-
-      visit video_tutorial_path(video_tutorial)
-
-      expect(page).not_to have_content("in the series")
-      expect(page).not_to have_content("in this video_tutorial")
-    end
-
     it "provides RSS to distribute the Weekly Iteration to various channels" do
       create(:plan, sku: Plan::THE_WEEKLY_ITERATION_SKU)
       show = create(
@@ -118,12 +50,12 @@ describe "Videos" do
 
     it "provides RSS to distribute the all videos to various channels" do
       show = create(:show)
-      video_tutorial = create(:video_tutorial)
+      trail = create(:trail, :published)
       notes = "a" * 251
-      published_videos = [
-        create(:video, :published, watchable: show, notes: notes),
-        create(:video, :published, watchable: video_tutorial, notes: notes),
-      ]
+      show_video = create(:video, :published, watchable: show, notes: notes)
+      trail_video = create(:video, :published, watchable: nil, notes: notes)
+      create(:step, trail: trail, completeable: trail_video)
+      published_videos = [show_video, trail_video]
       video = create(:video, watchable: show)
 
       visit videos_url(format: "rss")

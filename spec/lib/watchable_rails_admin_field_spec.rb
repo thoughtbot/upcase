@@ -20,7 +20,6 @@ describe WatchableRailsAdminField do
     it "filters STI subclasses out" do
       types = [
         %w(Product Product),
-        ["Video Tutorial", "VideoTutorial"],
         %w(Show Show),
         %w(Exercise Exercise)
       ]

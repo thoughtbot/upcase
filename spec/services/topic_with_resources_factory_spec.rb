@@ -7,7 +7,7 @@ describe TopicWithResourcesFactory do
       other_topic = create(:topic)
       resources = [
         create(:video, :published, name: "video-one"),
-        create(:video_tutorial, name: "video_tutorial-one"),
+        create(:show, name: "show-one"),
       ]
       resources.each do |classifiable|
         topic.classifications.create!(classifiable: classifiable)

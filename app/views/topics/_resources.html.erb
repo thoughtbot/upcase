@@ -1,7 +1,7 @@
 <section class="resources-container tiles-container">
   <% if topic.published_trails.present? %>
     <span class="divider">
-      <h4 class="text">All Trails</h4>
+      <h4 class="text">Trails</h4>
     </span>
 
     <section class="trails-progress">
@@ -14,8 +14,4 @@
   <%= render "cards",
     title: "The Weekly Iteration",
     resources: topic.videos %>
-
-  <%= render "cards",
-    title: "Video Tutorials",
-    resources: topic.video_tutorials %>
 </section>

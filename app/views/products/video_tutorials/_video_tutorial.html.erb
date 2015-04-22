@@ -1,9 +1,0 @@
-<figure class="video_tutorial tile <%= topic_slugs(video_tutorial) %>">
-  <%= link_to video_tutorial, title: video_tutorial.name, 'data-role' => 'video_tutorial' do %>
-    <%= render video_tutorial.teachers %>
-    <h2>Video Tutorial</h2>
-    <h1><%= video_tutorial.name %></h1>
-    <h3><%= teacher_names(video_tutorial.teachers) %></h3>
-    <p class="description"><%= video_tutorial.tagline %></p>
-  <% end %>
-</figure>

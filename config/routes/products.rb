@@ -1,1 +1,0 @@
-resources :products, only: [:index]

@@ -4,7 +4,6 @@ describe Repository do
   it_behaves_like 'a class inheriting from Product'
 
   it { should have_many(:collaborations).dependent(:destroy) }
-  it { should belong_to(:product) }
   it { should belong_to(:trail) }
 
   it { should validate_presence_of(:github_repository) }
@@ -132,13 +131,11 @@ describe Repository do
   end
 
   describe ".top_level" do
-    it "returns repositories without parent products or trails" do
-      product = create(:video_tutorial)
+    it "returns repositories without parent trails" do
       trail = create(:trail)
-      create(:repository, name: "with_product", product: product, trail: nil)
-      create(:repository, name: "with_trail", product: nil, trail: trail)
-      create(:repository, name: "no_parent1", product: nil, trail: nil)
-      create(:repository, name: "no_parent2", product: nil, trail: nil)
+      create(:repository, name: "with_trail", trail: trail)
+      create(:repository, name: "no_parent1", trail: nil)
+      create(:repository, name: "no_parent2", trail: nil)
 
       result = Repository.top_level
 

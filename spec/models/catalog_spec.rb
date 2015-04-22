@@ -16,14 +16,6 @@ describe Catalog do
     end
   end
 
-  describe "#video_tutorials" do
-    it "returns active video_tutorials in order" do
-      catalog = Catalog.new
-      expect(catalog.video_tutorials).
-        to find_relation(VideoTutorial.active)
-    end
-  end
-
   describe "#mentors" do
     it "returns all mentors" do
       catalog = Catalog.new

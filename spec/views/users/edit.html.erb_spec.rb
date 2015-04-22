@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "users/edit.html.erb" do
-  it "includes video_tutorial FAQs" do
+  it "includes an invoice link" do
     setup_user_with_deactivated_subscription
 
     render template: "users/edit"

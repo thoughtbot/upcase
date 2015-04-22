@@ -98,33 +98,6 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model VideoTutorial do
-    list do
-      field :name
-      field :active
-    end
-
-    edit do
-      group :default do
-        field :name
-        field :sku
-        field :short_description
-        field :product_image, :paperclip
-        field :description
-        field :active
-        field :promoted
-        field :topics
-        field :resources
-        field :questions
-        field :terms
-      end
-
-      group :videos do
-        field :videos
-      end
-    end
-  end
-
   config.model Exercise do
     list do
       field :id

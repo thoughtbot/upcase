@@ -47,11 +47,12 @@ describe VideosController do
 
   describe "#show when viewing a video without a preview without access" do
     it "renders show" do
-      video = create(:video)
+      show = create(:show)
+      video = create(:video, watchable: show)
 
       get :show, id: video
 
-      expect(response).to redirect_to video.watchable
+      expect(response).to redirect_to show_url(show)
     end
   end
 end

@@ -1,6 +1,5 @@
 shared_examples "a class inheriting from Product" do
   it { should have_many(:classifications) }
-  it { should have_many(:downloads) }
   it { should have_many(:topics).through(:classifications) }
 
   it { should validate_presence_of(:name) }

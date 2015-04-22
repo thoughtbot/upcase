@@ -37,7 +37,6 @@ describe CheckoutMailer do
           )
 
           expect(email_for(checkout)).not_to have_body_text(/mentor/)
-          expect(email_for(checkout)).not_to have_body_text(/video_tutorials/)
         end
       end
     end

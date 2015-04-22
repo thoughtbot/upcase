@@ -50,19 +50,6 @@ FactoryGirl.define do
     end
   end
 
-  factory :video_tutorial, parent: :product do
-    name { generate(:name) }
-    sku 'EIGHTQUEENS'
-
-    factory :private_video_tutorial do
-      active false
-    end
-  end
-
-  factory :download do
-    download_file_name { 'some_video.mpg' }
-  end
-
   factory :note do
     body 'Default note body'
     user
@@ -73,7 +60,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :product, traits: [:active], class: "VideoTutorial" do
+  factory :product, traits: [:active], class: "Show" do
     after(:stub) { |product| product.slug = product.name.parameterize }
     description 'Solve 8-Queens over and over again'
     tagline
@@ -136,8 +123,8 @@ FactoryGirl.define do
 
     trait :team do
       price_in_dollars 89
-      name 'VideoTutorials for Teams'
-      sku 'team_plan'
+      name "Upcase for Teams"
+      sku "team_plan"
       includes_team true
       minimum_quantity 3
     end
@@ -402,7 +389,7 @@ FactoryGirl.define do
   end
 
   factory :video do
-    association :watchable, factory: :video_tutorial
+    association :watchable, factory: :show
     name
     wistia_id '1194803'
     published_on { 1.day.from_now }

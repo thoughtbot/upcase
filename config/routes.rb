@@ -16,7 +16,6 @@ Upcase::Application.routes.draw do
   draw :pages
   draw :plan
   draw :podcasts
-  draw :products
   draw :redirects
   draw :repositories
   draw :shows
@@ -25,7 +24,6 @@ Upcase::Application.routes.draw do
   draw :teams
   draw :trails
   draw :users
-  draw :video_tutorials
 
   root to: "homes#show"
 

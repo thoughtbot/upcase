@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421145526) do
+ActiveRecord::Schema.define(version: 20150422152603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,18 +59,6 @@ ActiveRecord::Schema.define(version: 20150421145526) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
-
-  create_table "downloads", force: :cascade do |t|
-    t.integer  "purchaseable_id"
-    t.string   "download_file_name",    limit: 255
-    t.string   "download_file_size",    limit: 255
-    t.string   "download_content_type", limit: 255
-    t.string   "download_updated_at",   limit: 255
-    t.string   "description",           limit: 255
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.string   "purchaseable_type",     limit: 255
-  end
 
   create_table "exercises", force: :cascade do |t|
     t.string   "name",       limit: 255,                 null: false
@@ -194,12 +182,10 @@ ActiveRecord::Schema.define(version: 20150421145526) do
     t.boolean  "promoted",                               default: false, null: false
     t.string   "slug",                       limit: 255,                 null: false
     t.text     "resources",                              default: "",    null: false
-    t.integer  "product_id"
     t.string   "github_repository"
     t.integer  "trail_id"
   end
 
-  add_index "products", ["product_id"], name: "index_products_on_product_id", using: :btree
   add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
   add_index "products", ["trail_id"], name: "index_products_on_trail_id", using: :btree
 

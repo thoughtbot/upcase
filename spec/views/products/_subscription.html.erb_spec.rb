@@ -16,7 +16,7 @@ describe "products/_subscription.html.erb" do
   end
 
   def render_template(current_user_has_subscription)
-    product = double("product", offering_type: "video_tutorial")
+    product = double("product", offering_type: "show")
 
     allow(view).to receive(:current_user_has_active_subscription?).
       and_return(current_user_has_subscription)

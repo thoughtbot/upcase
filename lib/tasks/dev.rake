@@ -12,7 +12,6 @@ namespace :dev do
     create_topics
     create_products
     create_episodes
-    create_video_tutorials
     create_mentors
     create_users
     create_team_plan
@@ -124,36 +123,6 @@ namespace :dev do
       watchable: @weekly_iteration
     )
     classify episode, topic_name
-  end
-
-  def create_video_tutorials
-    header "VideoTutorials"
-    video = FactoryGirl.create(:video)
-    teach video, bio: "Dan is a seasoned Rails developer."
-
-    @video_tutorial = FactoryGirl.create(:video_tutorial,
-      name: 'Intermediate Ruby on Rails',
-      short_description: 'Dig deeper into Ruby on Rails.',
-      tagline: 'Dig deeper into Ruby on Rails.',
-      videos: [ video ],
-      description: <<-DESCRIPTION.squish
-        This intermediate Ruby on Rails video_tutorial is designed for
-        developers who have built a few smaller Rails applications and would
-        like to start making more complicated ones...
-      DESCRIPTION
-    )
-    FactoryGirl.create(
-      :repository,
-      name: "Test-Driven Rails Part 1",
-      product: @video_tutorial
-    )
-    FactoryGirl.create(
-      :repository,
-      name: "Test-Driven Rails Part 2",
-      product: @video_tutorial
-    )
-    classify @video_tutorial, "Ruby on Rails"
-    puts_video_tutorial @video_tutorial
   end
 
   def create_users
@@ -396,10 +365,6 @@ namespace :dev do
 
   def puts_product(product)
     puts product.name
-  end
-
-  def puts_video_tutorial(video_tutorial)
-    puts video_tutorial.name
   end
 
   def puts_user(user, description)

@@ -15,13 +15,14 @@
     </div>
   </header>
   <h4>The best way to learn is to do.</h4>
-  <p>In each video tutorial, a thoughtbot subject-matter expert takes you deep within a topic during several hours of detailed videos. You follow along by coding the related exercises on your own time.</p>
+  <p>
+    In each video tutorial, a thoughtbot subject-matter expert takes you deep
+    within a topic during several hours of detailed videos. You follow along by
+    coding the related exercises on your own time.
+  </p>
 
-  <p>We offer the following full-length video tutorials, and additional videos are added regularly:</p>
-
-  <ul>
-    <% catalog.video_tutorials.each do |video_tutorial| %>
-      <li><%= link_to video_tutorial.name, video_tutorial %></li>
-    <% end %>
-  </ul>
+  <p>
+    We offer full-length video tutorials, and additional videos are added
+    regularly.
+  </p>
 </article>

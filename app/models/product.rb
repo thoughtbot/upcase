@@ -2,14 +2,10 @@ class Product < ActiveRecord::Base
   extend FriendlyId
 
   has_many :classifications, as: :classifiable, dependent: :destroy
-  has_many :downloads, as: :purchaseable, dependent: :destroy
-  has_many :repositories, dependent: :destroy
   has_many :topics, through: :classifications
   has_many :videos, as: :watchable, dependent: :destroy
 
   friendly_id :name, use: :slugged
-
-  accepts_nested_attributes_for :downloads, allow_destroy: true
 
   validates :name, presence: true
   validates :sku, presence: true

@@ -5,7 +5,6 @@ describe "topics/_resources" do
     render_topic
 
     expect(rendered).to include("The Weekly Iteration")
-    expect(rendered).to include("Video Tutorials")
   end
 
   context "with published trails" do
@@ -35,14 +34,13 @@ describe "topics/_resources" do
   def topic_with_resources(published_trails: [])
     build_stubbed(
       :topic,
-      videos: [build_stubbed(:video, slug: "a-video")],
-      video_tutorials: [build_stubbed(:video_tutorial)]
+      videos: [build_stubbed(:video, slug: "a-video")]
     ).tap do |topic|
       allow(topic).to receive(:published_trails).and_return(published_trails)
     end
   end
 
   def have_trails_header
-    have_text("All Trails")
+    have_text("Trails")
   end
 end

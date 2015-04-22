@@ -40,11 +40,6 @@ en:
       upgrade_link: "upgrade your subscription"
     subscribe_cta: "You can access this %{offering_type} and others with a subscription to %{subscription_name}"
 
-  video_tutorial:
-    checkout_cta: Begin this Video Tutorial
-    preview_cta: This video is a preview. The full video tutorial is included with your Upcase membership.
-    upgrade_cta: Upgrade your plan to access this Video Tutorial
-
   repository:
     view_repository: View this Repository
 

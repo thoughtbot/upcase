@@ -5,10 +5,6 @@ class Catalog
     Product.active.ordered
   end
 
-  def video_tutorials
-    VideoTutorial.active
-  end
-
   def mentors
     Mentor.all
   end
