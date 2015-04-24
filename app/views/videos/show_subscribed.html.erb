@@ -11,6 +11,10 @@
   </h2>
 <% end %>
 
+<% if @video.trail.present? %>
+  <%= render "trails/progress", trail: TrailWithProgress.new(@video.trail, user: current_user) %>
+<% end %>
+
 <span class="divider">
   <h4 class="text">Video</h4>
 </span>
