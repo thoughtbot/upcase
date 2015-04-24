@@ -16,6 +16,11 @@
     <span class="divider">
       <h4 class="text">Video</h4>
     </span>
+
+    <% if @video.trail.present? %>
+      <%= render "trails/progress", trail: @video.trail %>
+    <% end %>
+
     <%= render @video.preview, name: @video.name %>
 
     <section class='video-notes'>
