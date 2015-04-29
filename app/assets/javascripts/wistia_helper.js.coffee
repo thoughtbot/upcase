@@ -30,15 +30,16 @@ class @WistiaHelper
 
       if second > wistiaEmbed.watchedThreshold && !wistiaEmbed.watched
         wistiaEmbed.watched = true
-        @_markComplete(hashedId).done ->
-          progressBar = $(".trails-progress")
-          trail = progressBar.data("trail")
-          $.get("/trails/#{trail}/progress_bar").done (progressBar) ->
-            progressBar.html(progressBar)
+        @_markComplete(hashedId).done(@_updateProgressBar)
 
   _markComplete: (wistiaId) ->
     $.post("/api/v1/videos/#{wistiaId}/status", state: "Complete")
 
+  _updateProgressBar: ->
+    $progressBar = $(".trails-progress")
+    trail = $progressBar.data("trail")
+    $.get("/trails/#{trail}/progress_bar").done (progressBar) ->
+      $progressBar.html(progressBar)
 
   _insertThumbnailUrl: (thumbnail) ->
     $thumbnail = $(thumbnail)
