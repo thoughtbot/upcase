@@ -69,7 +69,7 @@ describe Practice do
     end
 
     context "sorting" do
-      it "returns all started trails before any unstarted trails" do
+      it "returns started trails before unstarted trails" do
         user = build_stubbed(:user)
         started_trail = create(:trail, :published, name: "Started")
         create(:status, completeable: started_trail, user: user)
@@ -79,6 +79,34 @@ describe Practice do
         result = practice.incomplete_trails
 
         expect(result.map(&:name)).to eq(["Started", "Unstarted"])
+      end
+
+      it "applies a secondary sort on topic" do
+        topic = create(:topic)
+        create(:trail, :published, topic: topic, name: "Trail with Topic 1")
+        create(:trail, :published, topic: topic, name: "Trail with Topic 1")
+        create(
+          :trail,
+          :published,
+          topic: create(:topic),
+          name: "Trail with Topic 2"
+        )
+        create(
+          :trail,
+          :published,
+          topic: create(:topic),
+          name: "Trail with Topic 3"
+        )
+        practice = Practice.new(build_stubbed(:user))
+
+        result = practice.incomplete_trails
+
+        expect(result.map(&:name)).to(
+          eq(["Trail with Topic 1",
+              "Trail with Topic 1",
+              "Trail with Topic 2",
+              "Trail with Topic 3"])
+        )
       end
     end
   end
