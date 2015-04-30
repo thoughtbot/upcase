@@ -12,7 +12,11 @@ class Practice
   end
 
   def incomplete_trails
-    trails.select(&:incomplete?).partition(&:in_progress?).flatten
+    trails.
+      select(&:incomplete?).
+      partition(&:in_progress?).
+      map { |part| part.sort_by(&:topic) }.
+      flatten
   end
 
   private
