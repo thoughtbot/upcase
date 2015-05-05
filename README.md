@@ -1,6 +1,6 @@
 # Upcase
 
-Upcase is a Rails 4 app running on Ruby 2.1 and deployed to Heroku.
+Upcase is a Rails 4 app deployed to Heroku.
 
 ## Development
 
