@@ -37,10 +37,6 @@ class Cancellation
     @subscription.plan
   end
 
-  def alternative_to_canceling
-    @alternative ||= CancellationAlternative.new(subscription: @subscription)
-  end
-
   private
 
   def cancel_at_period_end
