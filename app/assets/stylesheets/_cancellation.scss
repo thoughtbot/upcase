@@ -4,46 +4,15 @@
     margin: 1em 0 0;
   }
 
-  .discount-offer {
-    margin-bottom: 80px;
-  }
-
   .cancellation-feedback {
     margin: 2em 0;
 
     textarea {
       height: 6em;
     }
-  }
 
-  .help {
-    font-size: 1rem;
-  }
-
-  a.button {
-    margin-top: 2em;
-  }
-
-  .decline-offer {
-    background-color: $red;
-  }
-
-  .accept-offer {
-    font-size: 1.2rem;
-    height: 55px;
-  }
-
-  .billing-warning {
-    font-size: 0.8rem;
-    font-style: italic;
-    margin-top: -38px;
-  }
-
-  h3 {
-    margin-bottom: 1.1em;
-  }
-
-  h4 {
-    font-size: 1.5rem;
+    input {
+      background-color: $red;
+    }
   }
 }
