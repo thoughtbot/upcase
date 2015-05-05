@@ -1,10 +1,6 @@
 <div class="text-box-wrapper solo cancellation-discount">
   <article>
-    <% if @cancellation_alternative.can_switch_to_discounted_plan? %>
-      <%= render 'discount_offer' %>
-    <% else %>
-      <%= render 'cancellation_confirmation' %>
-    <% end %>
+    <%= render 'cancellation_confirmation' %>
   </article>
 
   <%= render 'form' %>
