@@ -11,8 +11,12 @@ class Practice
     trails.select(&:just_finished?)
   end
 
-  def incomplete_trails
-    trails.select(&:incomplete?).partition(&:in_progress?).flatten
+  def unstarted_trails
+    trails.select(&:unstarted?)
+  end
+
+  def in_progress_trails
+    trails.select(&:in_progress?)
   end
 
   private

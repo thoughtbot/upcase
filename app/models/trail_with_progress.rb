@@ -11,10 +11,6 @@ class TrailWithProgress < SimpleDelegator
     complete? && status.created_at >= 5.days.ago
   end
 
-  def incomplete?
-    unstarted? || in_progress?
-  end
-
   def unstarted?
     statuses_by_id.empty?
   end

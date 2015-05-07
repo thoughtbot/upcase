@@ -50,7 +50,8 @@ describe "practice/show.html" do
         "Practice",
         shows: [],
         topics: [],
-        incomplete_trails: [],
+        in_progress_trails: [],
+        unstarted_trails: [],
         just_finished_trails: [],
         has_completed_trails?: completed
       )

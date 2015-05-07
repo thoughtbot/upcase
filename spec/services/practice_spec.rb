@@ -39,47 +39,31 @@ describe Practice do
     end
   end
 
-  describe "#incomplete_trails" do
-    it "when there are unstarted trails" do
+  describe "#unstarted_trails" do
+    it "returns trails that the user hasn't started" do
       user = build_stubbed(:user)
-      trail = create(:trail, :published)
+      started_trail = create(:trail, :published, name: "Started")
+      create(:status, completeable: started_trail, user: user)
+      create(:trail, :published, name: "Unstarted")
       practice = Practice.new(user)
 
-      expect(practice.incomplete_trails).to eq([trail])
-    end
+      result = practice.unstarted_trails
 
-    it "when there are started trails" do
+      expect(result.map(&:name)).to eq(["Unstarted"])
+    end
+  end
+
+  describe "#in_progress_trails" do
+    it "returns trails the user has started" do
       user = build_stubbed(:user)
-      trail = create(:trail, :published)
-      create(:status, completeable: trail, user: user)
+      started_trail = create(:trail, :published, name: "Started")
+      create(:status, completeable: started_trail, user: user)
+      create(:trail, :published, name: "Unstarted")
       practice = Practice.new(user)
 
-      expect(practice.incomplete_trails).to eq([trail])
-    end
+      result = practice.in_progress_trails
 
-    it "when there are completed trails" do
-      user = build_stubbed(:user)
-      trail = create(:trail, :published)
-      Timecop.travel(1.week.ago) do
-        create(:status, :completed, completeable: trail, user: user)
-      end
-      practice = Practice.new(user)
-
-      expect(practice.incomplete_trails).to be_empty
-    end
-
-    context "sorting" do
-      it "returns all started trails before any unstarted trails" do
-        user = build_stubbed(:user)
-        started_trail = create(:trail, :published, name: "Started")
-        create(:status, completeable: started_trail, user: user)
-        create(:trail, :published, name: "Unstarted")
-        practice = Practice.new(user)
-
-        result = practice.incomplete_trails
-
-        expect(result.map(&:name)).to eq(["Started", "Unstarted"])
-      end
+      expect(result.map(&:name)).to eq(["Started"])
     end
   end
 end
