@@ -104,6 +104,21 @@ feature 'Visitor signs up for a subscription' do
     expect(page).to have_content I18n.t("checkout.flashes.already_subscribed")
   end
 
+  scenario "visitor attempts to subscribe with existing github username" do
+    existing_user = create(:user, :with_github_auth)
+
+    attempt_to_subscribe
+    fill_out_account_creation_form_as existing_user
+    fill_out_credit_card_form_with_valid_credit_card
+
+    expect(current_path).to be_the_checkouts_page
+    expect_error_on_github_username_field
+  end
+
+  def expect_error_on_github_username_field
+    expect(github_username_field[:class]).to include("error")
+  end
+
   def expect_to_be_on_checkout_page
     expect(current_url).to eq new_checkout_url(@plan)
   end
@@ -132,5 +147,9 @@ feature 'Visitor signs up for a subscription' do
 
   def attempt_to_subscribe
     visit new_checkout_path(@plan)
+  end
+
+  def github_username_field
+    find("#checkout_github_username_input")
   end
 end

@@ -30,12 +30,18 @@ module CheckoutHelpers
     click_button 'Submit Payment'
   end
 
+  def fill_out_account_creation_form_as(user)
+    fill_out_account_creation_form(
+      user.slice(:name, :email, :password, :github_username)
+    )
+  end
+
   def fill_out_account_creation_form(user_attributes={})
-    user = build(:user)
-    fill_in 'Name', with: user_attributes[:name] || user.name
-    fill_in 'Email', with: user_attributes[:email] || user.email
-    fill_in 'Password', with: user.password
-    fill_in 'GitHub username', with: 'cpytel'
+    user = build(:user, { github_username: "cpytel" }.merge(user_attributes))
+    fill_in "Name", with: user.name
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    fill_in "GitHub username", with: user.github_username
   end
 
   def expect_submit_button_to_contain(text)

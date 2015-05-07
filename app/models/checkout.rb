@@ -43,8 +43,8 @@ class Checkout < ActiveRecord::Base
     plan.minimum_quantity
   end
 
-  def needs_github?
-    user.nil? || user.github_username.blank?
+  def needs_github_username?
+    user.nil? || issue_with_github_username?
   end
 
   def coupon
@@ -52,6 +52,10 @@ class Checkout < ActiveRecord::Base
   end
 
   private
+
+  def issue_with_github_username?
+    user.github_username.blank? || user.errors.include?(:github_username)
+  end
 
   def create_subscriptions
     if create_stripe_subscription && save

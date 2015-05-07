@@ -132,4 +132,28 @@ describe Checkout do
       expect(checkout.coupon.code).to eq "5OFF"
     end
   end
+
+  context "#needs_github_username?" do
+    it "is false if the user has a valid github username" do
+      user = build_stubbed(:user, github_username: "githubuser")
+      checkout = build_stubbed(:checkout, user: user)
+
+      expect(checkout.needs_github_username?).to be(false)
+    end
+
+    it "is true for new users without a github username" do
+      user = build_stubbed(:user, github_username: nil)
+      checkout = build_stubbed(:checkout, user: user)
+
+      expect(checkout.needs_github_username?).to be(true)
+    end
+
+    it "is true if there is an error for the user's github_username field" do
+      user = build_stubbed(:user, github_username: "user")
+      allow(user).to receive(:errors).and_return([:github_username])
+      checkout = build_stubbed(:checkout, user: user)
+
+      expect(checkout.needs_github_username?).to be(true)
+    end
+  end
 end

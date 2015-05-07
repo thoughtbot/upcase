@@ -1,5 +1,4 @@
 <%= semantic_form_for checkout, url: checkouts_path(checkout.plan), html: { method: 'post' } do |form| %>
-  <%= form.semantic_errors %>
 
   <%= form.inputs do %>
     <% if signed_out? %>
@@ -19,7 +18,7 @@
       <%= form.input :password, required: true %>
     <% end %>
 
-    <% if checkout.needs_github? %>
+    <% if checkout.needs_github_username? %>
       <%= form.input :github_username, required: true, label: "GitHub username",
         hint: "Be sure to enter a valid, unique GitHub username. Organizations are not allowed." %>
     <% end %>
