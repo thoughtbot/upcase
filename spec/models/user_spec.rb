@@ -419,6 +419,24 @@ describe User do
         expect(user.has_access_to?(:trails)).to eq("expected")
       end
     end
+
+    context "for quizzes" do
+      context "when the subscriber is an admin" do
+        it "returns true" do
+          subscriber = build(:admin)
+
+          expect(subscriber).to have_access_to(:quizzes)
+        end
+      end
+
+      context "when the subscriber is not an admin" do
+        it "returns false" do
+          subscriber = build(:subscriber)
+
+          expect(subscriber).not_to have_access_to(:quizzes)
+        end
+      end
+    end
   end
 
   describe "#subscription" do

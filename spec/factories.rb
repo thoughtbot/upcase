@@ -243,6 +243,10 @@ FactoryGirl.define do
           plan { create(:plan, :includes_mentor) }
         end
       end
+
+      trait :with_quiz_access do
+        admin true
+      end
     end
 
     trait :with_github do
@@ -475,5 +479,15 @@ FactoryGirl.define do
     association :completeable, factory: :exercise
     trail
     sequence(:position) { |n| n }
+  end
+
+  factory :quiz do
+    title
+  end
+
+  factory :question do
+    prompt "What do you think of this code?"
+    answer "It is bad for these reasons"
+    quiz
   end
 end

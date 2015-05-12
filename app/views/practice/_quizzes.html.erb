@@ -1,0 +1,6 @@
+<% if current_user.has_access_to?(:quizzes) %>
+  <h2><%= t('.quizzes-list-title') %></h2>
+  <section class="quizzes">
+    <%= render quizzes %>
+  </section>
+<% end %>

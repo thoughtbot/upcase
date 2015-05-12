@@ -1,0 +1,16 @@
+class QuestionsController < ApplicationController
+  def show
+    @quiz = find_quiz
+    @question = find_question
+  end
+
+  private
+
+  def find_question
+    Question.find(params[:id])
+  end
+
+  def find_quiz
+    Quiz.find(params[:quiz_id])
+  end
+end

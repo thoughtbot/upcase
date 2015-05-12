@@ -66,4 +66,15 @@ describe Practice do
       expect(result.map(&:name)).to eq(["Started"])
     end
   end
+
+  describe "#quizzes" do
+    it "returns all the quizzes" do
+      user = build_stubbed(:user)
+      quiz = create(:quiz)
+
+      practice = Practice.new(user)
+
+      expect(practice.quizzes).to eq([quiz])
+    end
+  end
 end

@@ -16,6 +16,7 @@ Upcase::Application.routes.draw do
   draw :pages
   draw :plan
   draw :podcasts
+  draw :quizzes
   draw :redirects
   draw :repositories
   draw :shows

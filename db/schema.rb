@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150422152603) do
+ActiveRecord::Schema.define(version: 20150512154633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -186,6 +186,23 @@ ActiveRecord::Schema.define(version: 20150422152603) do
 
   add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
   add_index "products", ["trail_id"], name: "index_products_on_trail_id", using: :btree
+
+  create_table "questions", force: :cascade do |t|
+    t.text     "prompt",     null: false
+    t.text     "answer",     null: false
+    t.integer  "position",   null: false
+    t.integer  "quiz_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "questions", ["quiz_id"], name: "index_questions_on_quiz_id", using: :btree
+
+  create_table "quizzes", force: :cascade do |t|
+    t.string   "title",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "rails_admin_histories", force: :cascade do |t|
     t.text     "message"

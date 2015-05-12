@@ -1,169 +1,160 @@
+---
 en:
   admin:
     actions:
       mentees:
+        breadcrumb: Mentees
         menu: Mentees
         title: Mentees
-        breadcrumb: Mentees
     misc:
       filter_date_format: '%D'
-
-  layouts:
-    meta_description: 'Video Tutorials, and videos to help you learn web design and development.'
-    app_name: 'Upcase'
-
-  exercist_trails:
-    show:
-      no_trail: "No trail found for the exercise."
-
+  checkout:
+    flashes:
+      already_subscribed: You are already subscribed. You can change your plan.
+      plan_not_found: We have a new subscription plan for you.
+      success: Thank you for subscribing to %{name}. We will email you your receipt
+        shortly.
+  coupons:
+    flashes:
+      invalid: The coupon code you supplied is not valid.
+      success: Your coupon %{code} was processed successfully. The discount will be
+        applied at checkout.
   exercises:
     statuses:
-      next-up: "Exercise"
-      unstarted: "Exercise"
-      in-progress: "In Progress"
-      complete: "Complete"
-
+      complete: Complete
+      in-progress: In Progress
+      next-up: Exercise
+      unstarted: Exercise
+  exercist_trails:
+    show:
+      no_trail: No trail found for the exercise.
   formtastic:
     labels:
       acceptance:
-        github_username: 'GitHub username'
-
-  plans:
-    mentoring: '1-1 Mentoring'
-    video_tutorials: 'Hands-On Video Tutorials'
-    forum: 'Private Discourse Forum'
-
-  products:
-    locked_features:
-      subscribe_link: "subscribe to Upcase"
-      title_html: "%{features} are locked &mdash; %{link} to get access"
-      upgrade_link: "upgrade your subscription"
-    subscribe_cta: "You can access this %{offering_type} and others with a subscription to %{subscription_name}"
-
-  repository:
-    view_repository: View this Repository
-
-  teachers:
-    teacher:
-      header: Taught by
-
-  shared:
-    header:
-      contact_your_mentor: "Contact your mentor, %{mentor_name}"
-      discuss: Discuss
-      explore: Explore
-      practice: Practice
-    upcase:
-      Upcase
-    subscription:
-      name: Upcase
-    subscriptions:
-      icon: ✶
-    team_plan_name:
-      Upcase for Teams
-  show:
-    preview_cta: This video is a preview. The full show is included with your Upcase membership.
-
-  topics:
-    video_tutorial:
-      heading:
-        online:
-          Online video tutorial
-    index:
-      view_products:
-        View all thoughtbot products
-    promoted_product:
-      video:
-        action:
-          Watch
-      video_tutorial:
-        action:
-          Register
-    trail_map:
-      resources:
-        Resources
-      validations:
-        You should be able to
-    product:
-      headings:
-        video:
-          Video
-
-  checkout:
+        github_username: GitHub username
+  layouts:
+    app_name: Upcase
+    meta_description: Video Tutorials, and videos to help you learn web design and
+      development.
+  licenses:
     flashes:
-      success: Thank you for subscribing to %{name}. We will email you your receipt shortly.
-      already_subscribed: You are already subscribed. You can change your plan.
-      plan_not_found: We have a new subscription plan for you.
-
-  coupons:
-    flashes:
-      success: Your coupon %{code} was processed successfully. The discount will be applied at checkout.
-      invalid: The coupon code you supplied is not valid.
-
-  subscriptions:
-    accept_discounted_annual_subscription: Yes! I want to save $$$ and keep learning
-    join_cta: See Pricing
-    cancel: Cancel
-    confirm_cancel: Yes, cancel my subscription
-    reason: Why have you decided to leave?
-    reason_explanation: This information will help us make Upcase better for future members.
-    change_plan: Change plan
-    choose_plan: Switch Plan
-    current_plan_html: <p class="current-plan">This is your current plan</p>
-    cancellation_scheduled_on: Scheduled for cancellation on %{date}
-    discount:
-      forever: "%{final_price}"
-      once: "%{final_price} the first month, then %{full_price}"
-      repeating: "%{final_price} for %{duration_in_months} months, then %{full_price}"
-    flashes:
-      update:
-        success: You have successfully updated your subscription credit card information.
-      change:
-        success: You have successfully changed your subscription plan, any remaining balance has been applied to future invoices.
-      discount:
-        success: You've switched to a discounted subscription! Congrats.
-      cancel:
-        success: We're sorry to see you go. You will have access to all the features of your plan until the end of your current billing cycle.
-      subscription_required: You need a subscription to Upcase to access that feature.
-      upgrade_required: You must upgrade your plan to access that feature.
-
-  trails:
-    thoughtbot_resources: Use these thoughtbot resources first
-    other_resources: Use these resources for reference and additional practice
-    validations: "%{name} developers should be able to"
-
+      error: You're already subscribed to Upcase!
+      success: Success! Enjoy your shiny new product.
+  line_item:
+    canceled_description: (Canceled) Subscription to Upcase
+    plan_description: Subscription to %{plan_name}
   mailers:
     subscription:
       cancellation_survey:
         subject: Suggestions for improving Upcase
       subscription_receipt:
-        subject: "[Upcase] Your receipt and some tips"
+        subject: '[Upcase] Your receipt and some tips'
       upcoming_payment_notification:
-        subject: "[Upcase] thoughtbot is about to charge for your Upcase subscription"
+        subject: '[Upcase] thoughtbot is about to charge for your Upcase subscription'
       welcome_from_mentor:
         subject: Welcome to Upcase! I'm your new mentor
-
-  line_item:
-    canceled_description: (Canceled) Subscription to Upcase
-    plan_description: Subscription to %{plan_name}
-
-  licenses:
+  plans:
+    forum: Private Discourse Forum
+    mentoring: 1-1 Mentoring
+    video_tutorials: Hands-On Video Tutorials
+  practice:
+    quizzes:
+      quizzes-list-title: Quizzes
+  products:
+    locked_features:
+      subscribe_link: subscribe to Upcase
+      title_html: '%{features} are locked &mdash; %{link} to get access'
+      upgrade_link: upgrade your subscription
+    subscribe_cta: You can access this %{offering_type} and others with a subscription
+      to %{subscription_name}
+  questions:
+    show:
+      answer: Answer
+      next-question: Next Question
+      numbered-title: Question %{position}
+      return-to-dashboard: Return to dashboard
+      reveal-answer: Reveal Answer
+  repository:
+    view_repository: View this Repository
+  shared:
+    header:
+      contact_your_mentor: Contact your mentor, %{mentor_name}
+      discuss: Discuss
+      explore: Explore
+      practice: Practice
+    subscription:
+      name: Upcase
+    subscriptions:
+      icon: ✶
+    team_plan_name: Upcase for Teams
+    upcase: Upcase
+  show:
+    preview_cta: This video is a preview. The full show is included with your Upcase
+      membership.
+  subscriptions:
+    accept_discounted_annual_subscription: Yes! I want to save $$$ and keep learning
+    cancel: Cancel
+    cancellation_scheduled_on: Scheduled for cancellation on %{date}
+    change_plan: Change plan
+    choose_plan: Switch Plan
+    confirm_cancel: Yes, cancel my subscription
+    current_plan_html: <p class="current-plan">This is your current plan</p>
+    discount:
+      forever: '%{final_price}'
+      once: '%{final_price} the first month, then %{full_price}'
+      repeating: '%{final_price} for %{duration_in_months} months, then %{full_price}'
     flashes:
-      success: Success! Enjoy your shiny new product.
-      error:  "You're already subscribed to Upcase!"
-
+      cancel:
+        success: We're sorry to see you go. You will have access to all the features
+          of your plan until the end of your current billing cycle.
+      change:
+        success: You have successfully changed your subscription plan, any remaining
+          balance has been applied to future invoices.
+      discount:
+        success: You've switched to a discounted subscription! Congrats.
+      subscription_required: You need a subscription to Upcase to access that feature.
+      update:
+        success: You have successfully updated your subscription credit card information.
+      upgrade_required: You must upgrade your plan to access that feature.
+    join_cta: See Pricing
+    reason: Why have you decided to leave?
+    reason_explanation: This information will help us make Upcase better for future
+      members.
+  teachers:
+    teacher:
+      header: Taught by
+  topics:
+    index:
+      view_products: View all thoughtbot products
+    product:
+      headings:
+        video: Video
+    promoted_product:
+      video:
+        action: Watch
+      video_tutorial:
+        action: Register
+    trail_map:
+      resources: Resources
+      validations: You should be able to
+    video_tutorial:
+      heading:
+        online: Online video tutorial
+  trails:
+    other_resources: Use these resources for reference and additional practice
+    thoughtbot_resources: Use these thoughtbot resources first
+    validations: '%{name} developers should be able to'
   users:
     flashes:
       update:
         success: Your profile has been updated.
-
   videos:
     statuses:
-      next-up: "Video"
-      unstarted: "Video"
-      in-progress: "In Progress"
-      complete: "Complete"
-
+      complete: Complete
+      in-progress: In Progress
+      next-up: Video
+      unstarted: Video
   watchables:
     preview:
-      cta: This video is a preview. <a href="%{subscribe_url}">Subscribe to Upcase</a> to access the full-length video, and all other videos.
+      cta: This video is a preview. <a href="%{subscribe_url}">Subscribe to Upcase</a>
+        to access the full-length video, and all other videos.

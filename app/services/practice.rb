@@ -19,6 +19,10 @@ class Practice
     trails.select(&:in_progress?)
   end
 
+  def quizzes
+    Quiz.all
+  end
+
   private
 
   attr_reader :user
