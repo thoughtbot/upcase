@@ -486,7 +486,7 @@ FactoryGirl.define do
   end
 
   factory :question do
-    title "Null object pattern"
+    sequence(:title) { |n| "Question Title #{n}" }
     prompt "How could you avoid testing for nil in these lines"
     answer "Use the Null Object pattern!"
     quiz

@@ -1,0 +1,17 @@
+<%= link_to "< all quizzes", admin_quizzes_path %>
+
+<h1><%= @quiz.title %></h1>
+
+<h3>Questions:</h3>
+<table class="questions-list">
+  <% @quiz.questions.each do |question| %>
+    <tr class="question" data-id="<%= question.id %>">
+      <td><%= question.position %></td>
+      <td class="title"><%= question.title %></td>
+      <td><%= link_to "Edit", edit_admin_quiz_question_path(@quiz, question) %></td>
+      <td><%= link_to "View", quiz_question_path(@quiz, question) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "Add Question", new_admin_quiz_question_path(@quiz) %>

@@ -1,0 +1,36 @@
+<div class="question-admin">
+  <h2><%= link_to quiz.title, admin_quiz_path(quiz) %></h2>
+
+  <%= semantic_form_for([:admin, quiz, question]) do |f| %>
+    <%= f.input :title %>
+    <%= f.input :position %>
+    <%= f.input :prompt %>
+    <%= f.input :answer %>
+    <%= f.submit %>
+  <% end %>
+
+  <div class="preview-wrapper">
+    <p>Note -- the title will not be displayed in the preview</p>
+    <div class="question-preview"></div>
+
+    <% content_for :javascript do %>
+      <script type="text/javascript">
+        $(function() {
+          var previewUrl = "<%= admin_quiz_question_preview_path(quiz) %>";
+          var $questionForm = $("form.question");
+          var $questionPreview = $(".question-preview");
+
+          var loadPreview = $.debounce(300, function() {
+            var previewFetched = $.post(previewUrl, $questionForm.serialize());
+            previewFetched.done(function(response) {
+              $questionPreview.html(response);
+            });
+          });
+
+          $questionForm.on("keyup", loadPreview);
+          loadPreview();
+        });
+      </script>
+    <% end %>
+  </div>
+</div>

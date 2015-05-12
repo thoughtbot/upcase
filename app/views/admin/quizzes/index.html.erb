@@ -1,0 +1,11 @@
+<h1>Quizzes List</h1>
+
+<ul class="quizzes-list">
+  <% @quizzes.each do |quiz| %>
+    <li class="quiz">
+      <%= link_to quiz.title, admin_quiz_path(quiz) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Add Quiz", new_admin_quiz_path %>

@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery.ba-throttle-debounce
 //= require prettify/prettify
 //= require prettyprint
 //= require jquery.jsPlumb-1.4.0-all-min
