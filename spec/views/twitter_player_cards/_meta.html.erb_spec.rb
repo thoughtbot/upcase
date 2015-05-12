@@ -27,7 +27,11 @@ describe "twitter_player_cards/_meta.html.erb" do
       "player:stream:content_type" => "video/mp4",
     }.each do |key, content|
       expect(rendered).
-        to have_css("meta[name='twitter:#{key}'][content='#{content}']")
+        to have_css(twitter_meta_tag(key, content), visible: false)
     end
+  end
+
+  def twitter_meta_tag(key, content)
+    "meta[name='twitter:#{key}'][content='#{content}']"
   end
 end

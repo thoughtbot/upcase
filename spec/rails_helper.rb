@@ -46,7 +46,7 @@ Delayed::Worker.delay_jobs = false
 Capybara.javascript_driver = :webkit
 Capybara.configure do |config|
   config.match = :prefer_exact
-  config.ignore_hidden_elements = false
+  config.ignore_hidden_elements = true
 end
 
 ActiveRecord::Migration.maintain_test_schema!

@@ -18,7 +18,7 @@ describe "Videos" do
 
       visit show_url(show)
 
-      expect(page).to have_css("link[href*='the-weekly-iteration.rss']")
+      expect(page).to have_rss_link
 
       visit show_url(show, format: "rss")
 
@@ -101,5 +101,9 @@ describe "Videos" do
 
       expect_page_to_have_title("#{show.title} | Upcase")
     end
+  end
+
+  def have_rss_link
+    have_css("link[href*='the-weekly-iteration.rss']", visible: false)
   end
 end
