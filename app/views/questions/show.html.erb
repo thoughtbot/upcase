@@ -1,36 +1,18 @@
 <div class="question">
   <h1>
-    <%= t('.numbered-title', position: @question.position) %>
+    <%= t(".numbered-title", position: @question.position) %>
   </h1>
 
   <div class="prompt">
     <%= format_markdown @question.prompt %>
   </div>
 
-  <h3><%= t('.answer') %></h3>
+  <h3><%= t(".answer") %></h3>
 
-  <%= link_to t('.reveal-answer'), "javascript:;", class: "reveal-answer" %>
-
-  <div class="answer hidden">
+  <% if @reviewing %>
     <%= format_markdown @question.answer %>
-
-    <% if @question.next.present? %>
-      <%= link_to t('.next-question'), [@question.quiz, @question.next] %>
-    <% else %>
-      <p>No more questions.</p>
-      <%= link_to t('.return-to-dashboard'), practice_path %>
-    <% end %>
-  </div>
-
-  <% content_for :javascript do -%>
-    <script type="text/javascript">
-      $(function() {
-        $revealAnswerLink = $(".reveal-answer");
-        $revealAnswerLink.on("click", function(event) {
-          $(".answer").show();
-          $revealAnswerLink.hide();
-        });
-      });
-    </script>
+    <%= link_to t(".return-to-results"), quiz_results_path(@question.quiz) %>
+  <% else %>
+    <%= render "questions/hidden_answer",  question: @question %>
   <% end %>
 </div>

@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   def show
     @quiz = find_quiz
     @question = find_question
+    @reviewing = params[:mode] == "reviewing"
   end
 
   private

@@ -1,0 +1,15 @@
+<h1><%= t(".title", title: @quiz.title) %></h1>
+
+<table class="results">
+  <% @quiz.questions.each do |question| %>
+    <tr class="attempt" data-question="<%= question.id %>">
+      <td class="confidence">
+        <%= question.most_recent_attempt_for(current_user).confidence %>
+      </td>
+      <td>
+        <%= link_to question.title,
+          quiz_question_path(question.quiz, question, mode: "reviewing") %>
+      </td>
+    </tr>
+  <% end %>
+</table>

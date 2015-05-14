@@ -1,0 +1,4 @@
+<%= form_for [question, question.attempts.new] do |f| %>
+  <%= f.hidden_field :confidence, value: confidence %>
+  <%= f.submit confidence %>
+<% end %>

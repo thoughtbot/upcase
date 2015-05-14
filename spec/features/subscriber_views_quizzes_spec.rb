@@ -22,25 +22,40 @@ feature "Subscriber views quizzes" do
     expect(page).to have_content(question.answer)
   end
 
-  scenario "and navigates to the next question" do
+  scenario "and rates their confidence with a question's content" do
     quiz = create(:quiz)
     create_list(:question, 2, quiz: quiz)
 
     navigate_to_quiz(quiz)
-    click_on next_question
+    mark_confidence_as(3)
 
     expect(page).to have_content("Question 2")
+    expect(last_question_attempt.confidence).to eq(3)
   end
 
   context "and completes the quiz" do
-    scenario "is taken back to the practice page with a success message" do
+    scenario "is taken to a quiz results summary page" do
       question = create(:question)
 
       navigate_to_quiz(question.quiz)
+      mark_confidence_as(2)
 
-      click_on return_to_dashbaord
+      expect(question_summary(question)).to have_content(question.title)
+      expect(question_summary(question)).to have_css(".confidence", text: 2)
+    end
 
-      expect(current_path).to eq(practice_path)
+    scenario "and returns to the expanded question to review it" do
+      question = create(:question)
+
+      navigate_to_quiz(question.quiz)
+      mark_confidence_as(2)
+      review_question(question)
+
+      expect(page).to have_content(question.answer)
+
+      return_to_results
+
+      expect(current_path).to eq(quiz_results_path(question.quiz))
     end
   end
 
@@ -51,19 +66,37 @@ feature "Subscriber views quizzes" do
     end
   end
 
+  def mark_confidence_as(level)
+    within ".confidence" do
+      click_on level
+    end
+  end
+
+  def review_question(question)
+    click_on question.title
+  end
+
+  def return_to_results
+    click_on I18n.t("questions.show.return-to-results")
+  end
+
+  def question_summary(question)
+    find(".attempt[data-question='#{question.id}']")
+  end
+
+  def last_question_attempt
+    Attempt.last
+  end
+
+  def results_title_for(quiz)
+    I18n.t("results.show.title", title: quiz.title)
+  end
+
   def quizzes_list
     find(".quizzes")
   end
 
-  def next_question
-    I18n.t("questions.show.next-question")
-  end
-
   def reveal_answer
-    I18n.t("questions.show.reveal-answer")
-  end
-
-  def return_to_dashbaord
-    I18n.t("questions.show.return-to-dashboard")
+    I18n.t("questions.hidden_answer.reveal-answer")
   end
 end

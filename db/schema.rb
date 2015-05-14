@@ -11,11 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150512154633) do
+ActiveRecord::Schema.define(version: 20150514195804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_stat_statements"
+
+  create_table "attempts", force: :cascade do |t|
+    t.integer  "confidence",  null: false
+    t.integer  "question_id", null: false
+    t.integer  "user_id",     null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "attempts", ["question_id"], name: "index_attempts_on_question_id", using: :btree
+  add_index "attempts", ["user_id"], name: "index_attempts_on_user_id", using: :btree
 
   create_table "checkouts", force: :cascade do |t|
     t.integer  "user_id",                      null: false
@@ -194,6 +205,7 @@ ActiveRecord::Schema.define(version: 20150512154633) do
     t.integer  "quiz_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "title",      null: false
   end
 
   add_index "questions", ["quiz_id"], name: "index_questions_on_quiz_id", using: :btree
@@ -405,4 +417,6 @@ ActiveRecord::Schema.define(version: 20150512154633) do
   add_index "videos", ["slug"], name: "index_videos_on_slug", unique: true, using: :btree
   add_index "videos", ["watchable_type", "watchable_id"], name: "index_videos_on_watchable_type_and_watchable_id", using: :btree
 
+  add_foreign_key "attempts", "questions"
+  add_foreign_key "attempts", "users"
 end

@@ -1,0 +1,27 @@
+<%= link_to t(".reveal-answer"),
+  "javascript:;", class: "reveal-answer" %>
+
+<div class="answer hidden">
+  <%= format_markdown question.answer %>
+
+  <div class="confidence">
+    <h4><%= t(".confidence-prompt") %></h4>
+
+    <% (1..5).each do |confidence| %>
+      <%= render partial: "attempts/confidence_button",
+        locals: { question: question, confidence: confidence } %>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :javascript do -%>
+  <script type="text/javascript">
+    $(function() {
+      $revealAnswerLink = $(".reveal-answer");
+      $revealAnswerLink.on("click", function(event) {
+        $(".answer").show();
+        $revealAnswerLink.hide();
+      });
+    });
+  </script>
+<% end %>

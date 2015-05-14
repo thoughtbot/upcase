@@ -486,8 +486,15 @@ FactoryGirl.define do
   end
 
   factory :question do
-    prompt "What do you think of this code?"
-    answer "It is bad for these reasons"
+    title "Null object pattern"
+    prompt "How could you avoid testing for nil in these lines"
+    answer "Use the Null Object pattern!"
     quiz
+  end
+
+  factory :attempt do
+    confidence 3
+    question
+    user
   end
 end
