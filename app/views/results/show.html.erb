@@ -1,14 +1,21 @@
 <h1><%= t(".title", title: @quiz.title) %></h1>
 
+<h3><%= t(".explanation") %></h3>
+
 <table class="results">
+  <tr>
+    <th>Question</th>
+    <th>Your rating</th>
+  </tr>
+
   <% @quiz.questions.each do |question| %>
     <tr class="attempt" data-question="<%= question.id %>">
-      <td class="confidence">
-        <%= question.most_recent_attempt_for(current_user).confidence %>
-      </td>
       <td>
         <%= link_to question.title,
           quiz_question_path(question.quiz, question, mode: "reviewing") %>
+      </td>
+      <td class="confidence">
+        <%= question.most_recent_attempt_for(current_user).confidence %>
       </td>
     </tr>
   <% end %>

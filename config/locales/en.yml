@@ -81,6 +81,7 @@ en:
   results:
     show:
       title: Results for %{title}
+      explanation: Click any question to review it
   shared:
     header:
       contact_your_mentor: Contact your mentor, %{mentor_name}
