@@ -245,7 +245,7 @@ FactoryGirl.define do
       end
 
       trait :with_quiz_access do
-        admin true
+        has_quiz_access true
       end
     end
 

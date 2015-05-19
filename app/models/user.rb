@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
 
   def has_access_to?(feature)
     if feature == :quizzes
-      admin?
+      admin? || has_quiz_access
     else
       subscription.present? && subscription.has_access_to?(feature)
     end

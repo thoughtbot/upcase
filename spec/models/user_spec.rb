@@ -429,7 +429,15 @@ describe User do
         end
       end
 
-      context "when the subscriber is not an admin" do
+      context "when the subscriber has been flagged as quiz tester" do
+        it "returns true" do
+          subscriber = build_stubbed(:subscriber, has_quiz_access: true)
+
+          expect(subscriber).to have_access_to(:quizzes)
+        end
+      end
+
+      context "when the subscriber is not an admin and not flagged" do
         it "returns false" do
           subscriber = build(:subscriber)
 
