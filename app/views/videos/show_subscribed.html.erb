@@ -5,7 +5,7 @@
 <% end %>
 
 <% content_for :subject_block do %>
-  <h1><%= @video.watchable_name %></h1>
+  <h1><%= link_to @video.watchable_name, @video.watchable %></h1>
   <h2 class="tagline">
     <%= @video.name %>
   </h2>
