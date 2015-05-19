@@ -1,0 +1,9 @@
+<% if @questions_to_review.present? %>
+  <h3><%= t(".review-queue") %></h3>
+
+  <ul>
+    <% @questions_to_review.each do |question| %>
+      <li><%= review_link(question) %></li>
+    <% end %>
+  </ul>
+<% end %>

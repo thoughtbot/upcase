@@ -70,12 +70,15 @@ en:
   questions:
     hidden_answer:
       confidence-prompt: "How confident did you feel with this topic? (5 is best)"
+      low-rating-adds-to-review-queue: Ratings below 4 will add this question to your review queue.
       reveal-answer: Reveal Answer
     show:
       answer: Answer
       next-question: Next Question
       numbered-title: Question %{position} of %{total}
       return-to-results: Return to Quiz Results
+    needing_review:
+      review-queue: Question Review Queue
   quizzes:
     index:
       title: Quizzes

@@ -5,12 +5,14 @@
   <%= format_markdown question.answer %>
 
   <div class="confidence">
-    <h4><%= t(".confidence-prompt") %></h4>
+    <h5 class="confidence-prompt"><%= t(".confidence-prompt") %></h5>
 
     <% (1..5).each do |confidence| %>
       <%= render partial: "attempts/confidence_button",
         locals: { question: question, confidence: confidence } %>
     <% end %>
+
+    <h4 class="low-rating"><%= t(".low-rating-adds-to-review-queue") %></h4>
   </div>
 </div>
 

@@ -57,6 +57,18 @@ feature "Subscriber views quizzes" do
 
       expect(current_path).to eq(quiz_results_path(question.quiz))
     end
+
+    scenario "and marks a question as needing review" do
+      question = create(:question)
+
+      navigate_to_quiz(question.quiz)
+      mark_confidence_as(2)
+      visit quizzes_path
+
+      within(".questions-needing-review") do
+        expect(page).to have_link(question.title)
+      end
+    end
   end
 
   def navigate_to_quiz(quiz)

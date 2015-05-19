@@ -1,4 +1,10 @@
-<h2><%= t('.title') %></h2>
+<h3><%= t('.title') %></h3>
+
 <section class="quizzes">
   <%= render @quizzes %>
+
+</section>
+
+<section class="questions-needing-review">
+  <%= render "questions/needing_review" %>
 </section>

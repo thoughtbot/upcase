@@ -11,8 +11,7 @@
   <% @quiz.questions.each do |question| %>
     <tr class="attempt" data-question="<%= question.id %>">
       <td>
-        <%= link_to question.title,
-          quiz_question_path(question.quiz, question, mode: "reviewing") %>
+        <%= review_link(question) %>
       </td>
       <td class="confidence">
         <%= question.most_recent_attempt_for(current_user).confidence %>
