@@ -112,7 +112,11 @@ describe "shared/_header.html.erb" do
     view_stub_with_return(masquerading?: masquerading)
     view_stub_with_return(signed_in?: signed_in)
     view_stub_with_return(
-      current_user: double("user", email: current_user_email)
+      current_user: double(
+        "user",
+        email: current_user_email,
+        has_access_to?: false
+      )
     )
     super()
   end

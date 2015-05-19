@@ -11,6 +11,11 @@
           <li class="practice">
             <%= link_to t("shared.header.practice"), practice_path %>
           </li>
+          <li>
+            <% if current_user.has_access_to?(:quizzes) %>
+              <%= link_to t("shared.header.quizzes"), quizzes_path %>
+            <% end %>
+          </li>
           <li class="explore">
             <%= link_to t("shared.header.explore"), explore_path %>
           </li>

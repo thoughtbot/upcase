@@ -77,6 +77,8 @@ en:
       numbered-title: Question %{position} of %{total}
       return-to-results: Return to Quiz Results
   quizzes:
+    index:
+      title: Quizzes
     quiz:
       number_of_questions: (%{length} questions)
   repository:
@@ -91,6 +93,7 @@ en:
       discuss: Discuss
       explore: Explore
       practice: Practice
+      quizzes: Quizzes
     subscription:
       name: Upcase
     subscriptions:

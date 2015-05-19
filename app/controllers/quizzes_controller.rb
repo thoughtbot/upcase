@@ -1,4 +1,8 @@
 class QuizzesController < ApplicationController
+  def index
+    @quizzes = Quiz.all
+  end
+
   def show
     redirect_to quiz_question_path(quiz, quiz.first_question)
   end

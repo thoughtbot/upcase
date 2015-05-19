@@ -60,7 +60,7 @@ feature "Subscriber views quizzes" do
   end
 
   def navigate_to_quiz(quiz)
-    visit practice_path(as: create(:subscriber, :with_quiz_access))
+    visit quizzes_path(as: create(:subscriber, :with_quiz_access))
     within quizzes_list do
       click_on quiz.title
     end

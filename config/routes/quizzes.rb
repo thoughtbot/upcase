@@ -1,4 +1,4 @@
-resources :quizzes, only: [:show] do
+resources :quizzes, only: [:show, :index] do
   resources :questions, only: [:show]
   resource :results, only: [:show]
 end
