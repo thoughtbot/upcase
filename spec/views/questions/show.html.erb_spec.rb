@@ -17,6 +17,7 @@ describe "questions/show.html" do
   def render_question(attributes)
     build_stubbed(:question, attributes).tap do |question|
       assign(:question, question)
+      assign(:quiz, question.quiz)
       render template: "questions/show"
     end
   end

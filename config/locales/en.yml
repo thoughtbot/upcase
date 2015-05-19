@@ -74,8 +74,11 @@ en:
     show:
       answer: Answer
       next-question: Next Question
-      numbered-title: Question %{position}
+      numbered-title: Question %{position} of %{total}
       return-to-results: Return to Quiz Results
+  quizzes:
+    quiz:
+      number_of_questions: (%{length} questions)
   repository:
     view_repository: View this Repository
   results:

@@ -1,6 +1,8 @@
 <div class="question">
   <h1>
-    <%= t(".numbered-title", position: @question.position) %>
+    <%= t(".numbered-title",
+          position: @question.position,
+          total: @quiz.length) %>
   </h1>
 
   <div class="prompt">

@@ -24,4 +24,16 @@ describe Quiz do
       expect(quiz.questions).to match([newer_question, older_question])
     end
   end
+
+  describe "#length" do
+    it "returns the number of questions the quiz has" do
+      quiz = create(:quiz)
+      create(:question, quiz: quiz)
+      create(:question, quiz: quiz)
+
+      result = quiz.length
+
+      expect(result).to eq(2)
+    end
+  end
 end

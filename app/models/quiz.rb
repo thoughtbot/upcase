@@ -6,4 +6,8 @@ class Quiz < ActiveRecord::Base
   def first_question
     questions.first
   end
+
+  def length
+    questions.count
+  end
 end
