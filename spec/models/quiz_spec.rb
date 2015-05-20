@@ -5,6 +5,15 @@ describe Quiz do
 
   it { should have_many(:questions).dependent(:destroy) }
 
+  describe ".published" do
+    it "returns only quizzes explicitly marked as published" do
+      published_quiz = create(:quiz, published: true)
+      _unpublished_quiz = create(:quiz, published: false)
+
+      expect(Quiz.published).to eq([published_quiz])
+    end
+  end
+
   describe "#first_question" do
     it "returns the first question" do
       quiz = create(:quiz)

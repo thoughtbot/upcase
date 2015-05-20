@@ -3,6 +3,10 @@ class Quiz < ActiveRecord::Base
 
   has_many :questions, -> { order(position: :asc) }, dependent: :destroy
 
+  def self.published
+    where(published: true)
+  end
+
   def first_question
     questions.first
   end

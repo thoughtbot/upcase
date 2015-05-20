@@ -483,6 +483,7 @@ FactoryGirl.define do
 
   factory :quiz do
     title
+    published true
   end
 
   factory :question do

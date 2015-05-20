@@ -1,6 +1,6 @@
 class QuizzesController < ApplicationController
   def index
-    @quizzes = Quiz.all
+    @quizzes = Quiz.published
     @questions_to_review = QuestionsNeedingReviewQuery.new(current_user).run
   end
 
