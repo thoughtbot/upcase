@@ -1,8 +1,14 @@
 class ProgressBarsController < ApplicationController
-
   def show
-    _trail = Trail.find(params[:trail_id])
-    @trail = TrailWithProgress.new(_trail, user: current_user)
+    @trail_with_progress = build_trail_with_progress
+
     render layout: false
+  end
+
+  private
+
+  def build_trail_with_progress
+    trail = Trail.find(params[:trail_id])
+    TrailWithProgress.new(trail, user: current_user)
   end
 end

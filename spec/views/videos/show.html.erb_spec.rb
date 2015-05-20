@@ -1,33 +1,6 @@
 require "rails_helper"
 
 describe "videos/show" do
-  context "with a corresponding trail" do
-    it "embeds the trail progress" do
-      video = create(
-        :video,
-        :published,
-        step: create(:step),
-      )
-      stub_controller(video)
-
-      render template: "videos/show"
-
-      expect(rendered).to have_trail_progress
-    end
-  end
-
-  context "without a corresponding trail" do
-    it "doesn't embed the trail progress" do
-      video = create(:video, :published)
-
-      stub_controller(video)
-
-      render template: "videos/show"
-
-      expect(rendered).not_to have_trail_progress
-    end
-  end
-
   it "embeds a preview when available" do
     video = create(
       :video,
@@ -64,10 +37,6 @@ describe "videos/show" do
     render template: "videos/show"
 
     expect(rendered).to have_css("img.thumbnail[data-wistia-id='#{wistia_id}']")
-  end
-
-  def have_trail_progress
-    have_css(".trails-progress")
   end
 
   def stub_controller(video)
