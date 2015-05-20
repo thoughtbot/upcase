@@ -141,7 +141,6 @@
     "scheduler",
     "pgbackups",
     "sendgrid",
-    "heroku-postgresql",
-    "newrelic"
+    "heroku-postgresql"
   ]
 }
