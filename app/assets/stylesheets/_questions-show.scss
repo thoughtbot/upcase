@@ -1,3 +1,17 @@
+.questions,
+.quizzes,
+.results {
+  #header-wrapper {
+    margin: 0 auto;
+
+    @include body-mobile {
+      nav {
+        display: none;
+      }
+    }
+  }
+}
+
 .questions-show {
   .hidden {
     display: none;
