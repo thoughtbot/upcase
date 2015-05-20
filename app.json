@@ -138,8 +138,6 @@
     }
   },
   "addons": [
-    "scheduler",
-    "pgbackups",
     "sendgrid",
     "heroku-postgresql"
   ]
