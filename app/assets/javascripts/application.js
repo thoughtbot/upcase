@@ -10,6 +10,7 @@
 //= require autoresize
 //= require wistia_helper
 //= require headhesive.min.js
+//= require fastclick
 
 $(function() {
   $('textarea').autosize();
@@ -17,4 +18,6 @@ $(function() {
   if ($('.landing #header-wrapper').length) {
     var header = new Headhesive('.landing #header-wrapper', { offset: 500 });
   }
+
+  FastClick.attach(document.body);
 });
