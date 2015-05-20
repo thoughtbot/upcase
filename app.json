@@ -1,7 +1,7 @@
 {
   "name": "upcase",
   "scripts": {
-    "postdeploy": "bundle exec rake db:setup dev:prime"
+    "postdeploy": "bundle exec rake db:setup"
   },
   "env": {
     "AIRBRAKE_API_KEY": {
