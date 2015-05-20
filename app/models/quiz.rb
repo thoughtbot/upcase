@@ -3,6 +3,10 @@ class Quiz < ActiveRecord::Base
 
   has_many :questions, -> { order(position: :asc) }, dependent: :destroy
 
+  def self.with_questions
+    all.select { |quiz| quiz.questions.any? }
+  end
+
   def first_question
     questions.first
   end

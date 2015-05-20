@@ -5,6 +5,16 @@ describe Quiz do
 
   it { should have_many(:questions).dependent(:destroy) }
 
+  describe ".with_questions" do
+    it "returns only quizzes with questions" do
+      first_quiz, second_quiz = create_pair(:quiz)
+
+      question = create(:question, quiz: first_quiz)
+
+      expect(Quiz.with_questions).to eq([first_quiz])
+    end
+  end
+
   describe "#first_question" do
     it "returns the first question" do
       quiz = create(:quiz)

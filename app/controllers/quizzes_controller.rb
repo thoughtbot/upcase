@@ -1,6 +1,6 @@
 class QuizzesController < ApplicationController
   def index
-    @quizzes = Quiz.all
+    @quizzes = Quiz.with_questions
   end
 
   def show
