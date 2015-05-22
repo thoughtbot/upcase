@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "videos/show" do
+describe "videos/show_for_visitors" do
   it "embeds a preview when available" do
     video = create(
       :video,
@@ -14,7 +14,7 @@ describe "videos/show" do
     allow(video).to receive(:preview).and_return(preview_video)
     stub_controller(video)
 
-    render template: "videos/show"
+    render template: "videos/show_for_visitors"
 
     expect(rendered).
       to have_css("p[data-wistia-id='#{wistia_id}']")
@@ -34,7 +34,7 @@ describe "videos/show" do
     allow(video).to receive(:preview).and_return(thumbnail)
     stub_controller(video)
 
-    render template: "videos/show"
+    render template: "videos/show_for_visitors"
 
     expect(rendered).to have_css("img.thumbnail[data-wistia-id='#{wistia_id}']")
   end

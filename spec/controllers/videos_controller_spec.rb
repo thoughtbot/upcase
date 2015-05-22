@@ -18,14 +18,14 @@ describe VideosController do
   end
 
   describe "#show when viewing a video as user with access" do
-    it "renders licensed_show view so they can watch video" do
+    it "renders the subscriber view so they can watch video" do
       user = create(:subscriber)
       video = create(:video)
       stub_current_user_with(user)
 
       get :show, id: video
 
-      expect(response).to render_template "show_subscribed"
+      expect(response).to render_template "show_for_subscribers"
     end
 
     it "doesn't recognize other formats" do
@@ -41,7 +41,7 @@ describe VideosController do
 
       get :show, id: video
 
-      expect(response).to render_template "show"
+      expect(response).to render_template "show_for_visitors"
     end
   end
 

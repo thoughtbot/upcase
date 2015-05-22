@@ -394,7 +394,7 @@ FactoryGirl.define do
 
   factory :video do
     association :watchable, factory: :show
-    name
+    sequence(:name) { |n| "Video #{n}" }
     wistia_id '1194803'
     published_on { 1.day.from_now }
 
@@ -404,6 +404,12 @@ FactoryGirl.define do
 
     trait :with_preview do
       preview_wistia_id '1194804'
+    end
+
+    trait :with_trail do
+      after :create do |video|
+        create(:step, trail: create(:trail), completeable: video)
+      end
     end
 
     after(:stub) { |video| video.slug = video.id.to_s }

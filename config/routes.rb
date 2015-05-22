@@ -25,6 +25,7 @@ Upcase::Application.routes.draw do
   draw :teams
   draw :trails
   draw :users
+  draw :videos
 
   root to: "homes#show"
 
@@ -34,10 +35,6 @@ Upcase::Application.routes.draw do
   resource :subscription, only: [:new, :edit, :update]
   resources :coupons, only: :show
   resources :topics, only: :index, constraints: { format: "css" }
-
-  resources :videos, only: [:index, :show] do
-    resource :twitter_player_card, only: [:show]
-  end
 
   resources(
     :design_for_developers_resources,

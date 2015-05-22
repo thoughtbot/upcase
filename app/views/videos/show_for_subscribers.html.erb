@@ -5,10 +5,15 @@
 <% end %>
 
 <% content_for :subject_block do %>
-  <h1><%= @video.watchable_name %></h1>
+  <h1><%= @video.name %></h1>
   <h2 class="tagline">
-    <%= @video.name %>
+    <%= link_to @video.watchable_name, @video.watchable %>
   </h2>
+<% end %>
+
+<% if @video.part_of_trail? %>
+  <%= render "trails/progress", trail:
+    TrailWithProgress.new(@video.trail, user: current_user) %>
 <% end %>
 
 <span class="divider">

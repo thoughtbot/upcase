@@ -168,4 +168,22 @@ describe Video do
       end
     end
   end
+
+  describe "#part_of_trail?" do
+    context "when the video is part of a trail" do
+      it "returns true" do
+        video = create(:video, :with_trail)
+
+        expect(video).to be_part_of_trail
+      end
+    end
+
+    context "when the video is not part of a trail" do
+      it "returns false" do
+        video = build_stubbed(:video)
+
+        expect(video).not_to be_part_of_trail
+      end
+    end
+  end
 end

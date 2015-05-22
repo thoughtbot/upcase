@@ -10,6 +10,7 @@
 
 .assets-wrapper {
   margin-bottom: 1rem;
+  float: left;
 
   .assets {
     .asset-download {
@@ -30,6 +31,10 @@
       text-decoration: none;
     }
   }
+}
+
+.mark-as-complete {
+  float: right;
 }
 
 .text-box {

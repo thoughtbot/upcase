@@ -20,9 +20,9 @@ class VideosController < ApplicationController
 
   def render_show_template
     if has_access?
-      render "show_subscribed"
+      render "show_for_subscribers"
     elsif @video.preview_wistia_id.present?
-      render "show"
+      render "show_for_visitors"
     else
       redirect_to @video.watchable
     end

@@ -69,16 +69,17 @@ en:
       to %{subscription_name}
   questions:
     hidden_answer:
-      confidence-prompt: "How confident did you feel with this topic? (5 is best)"
-      low-rating-adds-to-review-queue: Ratings below 4 will add this question to your review queue.
+      confidence-prompt: How confident did you feel with this topic? (5 is best)
+      low-rating-adds-to-review-queue: Ratings below 4 will add this question to your
+        review queue.
       reveal-answer: Reveal Answer
+    needing_review:
+      review-queue: Question Review Queue
     show:
       answer: Answer
       next-question: Next Question
       numbered-title: Question %{position} of %{total}
       return-to-results: Return to Quiz Results
-    needing_review:
-      review-queue: Question Review Queue
   quizzes:
     index:
       title: Quizzes
@@ -88,8 +89,8 @@ en:
     view_repository: View this Repository
   results:
     show:
-      title: Results for %{title}
       explanation: Click any question to review it
+      title: Results for %{title}
   shared:
     header:
       contact_your_mentor: Contact your mentor, %{mentor_name}
@@ -164,6 +165,8 @@ en:
       update:
         success: Your profile has been updated.
   videos:
+    show:
+      mark-as-complete: Mark as Complete
     statuses:
       complete: Complete
       in-progress: In Progress

@@ -59,4 +59,8 @@ class Video < ActiveRecord::Base
   def to_param
     slug
   end
+
+  def part_of_trail?
+    trail.present?
+  end
 end
