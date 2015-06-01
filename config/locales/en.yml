@@ -91,6 +91,7 @@ en:
     show:
       explanation: Click any question to review it
       title: Results for %{title}
+      back-to-all-quizzes: return to all quizzes
   shared:
     header:
       contact_your_mentor: Contact your mentor, %{mentor_name}

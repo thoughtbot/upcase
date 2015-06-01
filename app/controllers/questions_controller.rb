@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_action :require_login
+
   def show
     @quiz = find_quiz
     @question = find_question

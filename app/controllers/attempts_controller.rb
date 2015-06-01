@@ -1,6 +1,8 @@
 class AttemptsController < ApplicationController
+  before_action :require_login
+
   def create
-    question.attempts.create(attempt_params)
+    question.attempts.create!(attempt_params)
 
     redirect_to_next_question_or_results(question)
   end
