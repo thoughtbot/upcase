@@ -1,6 +1,6 @@
 <h1><%= t(".title", title: @quiz.title) %></h1>
 
-<h3><%= t(".explanation") %></h3>
+<h3><%= t(".explanation") %> or <%= link_to t(".back-to-all-quizzes"), quizzes_path %>.</h3>
 
 <table class="results">
   <tr>
