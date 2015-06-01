@@ -1,10 +1,13 @@
-<h3><%= t('.title') %></h3>
+<section class="root-quizzes">
+  <div class="content">
+    <h3><%= t('.title') %></h3>
 
-<section class="quizzes">
-  <%= render @quizzes %>
+    <section class="decks">
+      <%= render @quizzes %>
+    </section>
 
-</section>
-
-<section class="questions-needing-review">
-  <%= render "questions/needing_review" %>
+    <section class="saved-flashcards">
+      <%= render "questions/needing_review" %>
+    </section>
+  </div>
 </section>

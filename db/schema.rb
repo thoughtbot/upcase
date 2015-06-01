@@ -419,6 +419,6 @@ ActiveRecord::Schema.define(version: 20150520133739) do
   add_index "videos", ["slug"], name: "index_videos_on_slug", unique: true, using: :btree
   add_index "videos", ["watchable_type", "watchable_id"], name: "index_videos_on_watchable_type_and_watchable_id", using: :btree
 
-  add_foreign_key "attempts", "questions"
-  add_foreign_key "attempts", "users"
+  add_foreign_key "attempts", "questions", on_delete: :cascade
+  add_foreign_key "attempts", "users", on_delete: :cascade
 end

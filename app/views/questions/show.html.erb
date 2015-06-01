@@ -1,20 +1,21 @@
-<div class="question">
-  <h1>
+<h1 class="topic-label"><%= @quiz.title %></h1>
+
+<div class="flashcard">
+  <span class="flashcards-count">
     <%= t(".numbered-title",
           position: @question.position,
           total: @quiz.length) %>
-  </h1>
+  </span>
 
-  <div class="prompt">
+  <div class="flashcard-prompt">
     <%= format_markdown @question.prompt %>
   </div>
-
-  <h3><%= t(".answer") %></h3>
-
-  <% if @reviewing %>
-    <%= format_markdown @question.answer %>
-    <%= link_to t(".return-to-results"), quiz_results_path(@question.quiz) %>
-  <% else %>
-    <%= render "questions/hidden_answer",  question: @question %>
-  <% end %>
 </div>
+
+<% if @reviewing %>
+  <%= format_markdown @question.answer %>
+  <%= link_to t(".return-to-results"), quiz_results_path(@question.quiz) %>
+<% else %>
+  <h4><%= t(".answer") %></h4>
+  <%= render "questions/hidden_answer",  question: @question %>
+<% end %>

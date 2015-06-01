@@ -12,28 +12,3 @@
   }
 }
 
-.questions-show {
-  .hidden {
-    display: none;
-  }
-
-  .confidence {
-    margin-top: 30px;
-  }
-
-  .confidence-prompt {
-    margin-bottom: 25px;
-  }
-
-  .confidence form {
-    display: inline;
-  }
-
-  .low-rating {
-    margin-top: 25px;
-  }
-
-  .cursor {
-    background: $gray-3;
-  }
-}

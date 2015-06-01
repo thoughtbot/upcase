@@ -14,7 +14,7 @@
         <%= review_link(question) %>
       </td>
       <td class="confidence">
-        <%= question.most_recent_attempt_for(current_user).confidence %>
+        <%= if question.most_recent_attempt_for(current_user).confidence == 1 ; "Added to review queue" ; end  %>
       </td>
     </tr>
   <% end %>

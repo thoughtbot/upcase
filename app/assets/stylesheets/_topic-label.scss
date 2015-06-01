@@ -1,10 +1,13 @@
 .topic-label {
   border-radius: 3px;
-  font-size: em(12);
+  font-size: $font-size-smallest;
   font-weight: 600;
-  float: left;
   letter-spacing: 1px;
   margin-bottom: .8em;
-  padding: 5px 10px;
   text-transform: uppercase;
+
+  a & {
+    float: left;
+    padding: 5px 10px;
+  }
 }

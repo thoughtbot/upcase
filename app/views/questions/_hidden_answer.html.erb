@@ -1,19 +1,21 @@
 <%= link_to t(".reveal-answer"),
   "javascript:;", class: "reveal-answer" %>
 
-<div class="answer hidden">
-  <%= format_markdown question.answer %>
-
-  <div class="confidence">
-    <h5 class="confidence-prompt"><%= t(".confidence-prompt") %></h5>
-
-    <% (1..5).each do |confidence| %>
-      <%= render partial: "attempts/confidence_button",
-        locals: { question: question, confidence: confidence } %>
-    <% end %>
-
-    <h4 class="low-rating"><%= t(".low-rating-adds-to-review-queue") %></h4>
+<div class="revealed-answer hidden">
+  <div class="flashcard">
+    <%= format_markdown question.answer %>
   </div>
+
+  <p>Want to return this question later? Add it to your Review Queue.</p>
+  <%= form_for [question, question.attempts.new] do |f| %>
+    <%= f.hidden_field :confidence, value: 1 %>
+    <%= f.submit "Save for review", class: "keep-flashcard" %>
+  <% end %>
+
+  <%= form_for [question, question.attempts.new] do |f| %>
+    <%= f.hidden_field :confidence, value: 5 %>
+    <%= f.submit "Next flashcard", class: "next-flashcard" %>
+  <% end %>
 </div>
 
 <% content_for :javascript do -%>
@@ -21,7 +23,7 @@
     $(function() {
       $revealAnswerLink = $(".reveal-answer");
       $revealAnswerLink.on("click", function(event) {
-        $(".answer").show();
+        $(".revealed-answer").show();
         $revealAnswerLink.hide();
       });
     });

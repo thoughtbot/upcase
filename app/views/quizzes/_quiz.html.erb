@@ -1,3 +1,8 @@
-<div class="quiz">
-  <span class="title"><%= link_to quiz.title, quiz %> <%= t(".number_of_questions", length: quiz.length) %></span>
+<div class="deck">
+  <h4 class="deck-title">
+    <%= link_to quiz.title, quiz %>
+  </h4>
+  <p class="flashcards-count">
+    <%= t(".number_of_questions", length: quiz.length) %>
+  </p>
 </div>

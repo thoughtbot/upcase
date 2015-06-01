@@ -3,6 +3,7 @@
   @include animation-iteration-count(infinite);
   opacity: 1;
 }
+
 @include keyframes(radiate) {
   0% {
     opacity: 0.7;
@@ -11,5 +12,17 @@
   100% {
     opacity: 0;
     @include transform(scale(2.2));
+  }
+}
+
+@include keyframes(reveal-answer) {
+  0% {
+    @include transform(translate3d(0,-1em,0));
+    opacity: 0;
+  }
+
+  100% {
+    @include transform(translate3d(0,0,0));
+    opacity: 1;
   }
 }

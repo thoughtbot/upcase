@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="92px" height="45px" viewBox="0 0 92 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->
-    <title>Shape</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1-Copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="Group" sketch:type="MSLayerGroup" transform="translate(-67.000000, -78.000000)" fill="#CBCBCB">
-            <g id="icon_36179" transform="translate(67.000000, 79.000000)" sketch:type="MSShapeGroup">
-                <path d="M90.205,17.905 L59,-0.113 L59,8.988 C26,8.99 8.045,25.322 0.206,42.961 C18.497,25.324 45,26.823 59,26.824 L59,35.921 L90.205,17.905 L90.205,17.905 Z" id="Shape"></path>
+<svg width="92" height="45" viewBox="0 0 92 45" xmlns="http://www.w3.org/2000/svg">
+    <title>
+        Shape
+    </title>
+    <desc>
+        Created with Sketch.
+    </desc>
+    <g fill="none" fill-rule="evenodd">
+        <g fill="#CBCBCB">
+            <g>
+                <path d="M90.205 18.905L59 .887v9.1C26 9.99 8.045 26.323.206 43.962 18.496 26.325 45 27.824 59 27.825v9.097l31.205-18.015z"/>
             </g>
         </g>
     </g>

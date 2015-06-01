@@ -33,6 +33,9 @@ $gray-4: #DDD;
 $gray-5: #F3F3F3;
 
 $base-button-color: $upcase-green;
+$flashcard-border-color: lighten($gray-4, 5%);
+
+$flashcard-border: 2px solid $flashcard-border-color;
 
 $flash-color: #04659B;
 
@@ -41,9 +44,12 @@ $footer-link-color: #7a7a7a;
 
 $max-width: 1100px;
 $navigation-height: 60px;
+$button-padding: 0.75em 1em;
 $card-height: 370px;
 $card-padding: 30px;
 $card-width: 14rem;
+$flashcard-radius: 5px;
+$flashcard-spacing: 2em;
 
 $base-background-1: #fff;
 $base-background-2: #fafafa;
@@ -53,6 +59,7 @@ $base-border-color-blue: #E9F2FD;
 
 $base-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08);
 
+$font-size-smallest: rem(12);
 $font-size-small: 0.96rem;
 $base-font-color: $darkwarmgray;
 
@@ -60,3 +67,7 @@ $dot-size: 13px;
 $dot-margin: 14px;
 $arrow-size: 20px;
 $not-started-dot-color: #D8D8D8;
+
+$flashcard-transition: all 0.25s $ease-in-quad;
+
+$z-flashcard-deck: -1;

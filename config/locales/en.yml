@@ -74,17 +74,17 @@ en:
         review queue.
       reveal-answer: Reveal Answer
     needing_review:
-      review-queue: Question Review Queue
+      review-queue: Saved Flashcards
     show:
-      answer: Answer
+      answer: 'Answer:'
       next-question: Next Question
       numbered-title: Question %{position} of %{total}
       return-to-results: Return to Quiz Results
   quizzes:
     index:
-      title: Quizzes
+      title: Flashcards
     quiz:
-      number_of_questions: (%{length} questions)
+      number_of_questions: '%{length} flashcards'
   repository:
     view_repository: View this Repository
   results:

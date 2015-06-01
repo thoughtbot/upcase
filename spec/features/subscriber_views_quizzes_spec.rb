@@ -27,10 +27,20 @@ feature "Subscriber views quizzes" do
     create_list(:question, 2, quiz: quiz)
 
     navigate_to_quiz(quiz)
-    mark_confidence_as(3)
+    add_to_review_queue
 
     expect(page).to have_content("Question 2")
-    expect(last_question_attempt.confidence).to eq(3)
+    expect(last_question_attempt.confidence).to eq(1)
+  end
+
+  scenario "and navigates to the next question directly" do
+    quiz = create(:quiz)
+    create_list(:question, 2, quiz: quiz)
+
+    navigate_to_quiz(quiz)
+    navigate_to_next_flashcard
+
+    expect(page).to have_content("Question 2")
   end
 
   context "and completes the quiz" do
@@ -38,17 +48,19 @@ feature "Subscriber views quizzes" do
       question = create(:question)
 
       navigate_to_quiz(question.quiz)
-      mark_confidence_as(2)
+      add_to_review_queue
 
       expect(question_summary(question)).to have_content(question.title)
-      expect(question_summary(question)).to have_css(".confidence", text: 2)
+      expect(question_summary(question)).to(
+        have_css(".confidence", text: "Added to review queue")
+      )
     end
 
     scenario "and returns to the expanded question to review it" do
       question = create(:question)
 
       navigate_to_quiz(question.quiz)
-      mark_confidence_as(2)
+      add_to_review_queue
       review_question(question)
 
       expect(page).to have_content(question.answer)
@@ -62,10 +74,10 @@ feature "Subscriber views quizzes" do
       question = create(:question)
 
       navigate_to_quiz(question.quiz)
-      mark_confidence_as(2)
+      add_to_review_queue
       visit quizzes_path
 
-      within(".questions-needing-review") do
+      within(".saved-flashcards") do
         expect(page).to have_link(question.title)
       end
     end
@@ -78,10 +90,13 @@ feature "Subscriber views quizzes" do
     end
   end
 
-  def mark_confidence_as(level)
-    within ".confidence" do
-      click_on level
-    end
+  def navigate_to_next_flashcard
+    reveal_answer
+    click_button "Next flashcard"
+  end
+
+  def add_to_review_queue
+    click_button "Save for review"
   end
 
   def review_question(question)

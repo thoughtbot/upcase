@@ -1,0 +1,74 @@
+.decks {
+  @include display(flex);
+  @include flex-wrap(wrap);
+  margin: 2em 0;
+}
+
+.deck {
+  @extend %flashcard;
+  margin-right: $flashcard-spacing;
+  min-height: 10em;
+  transition: $flashcard-transition;
+  width: calc(50% - 1em);
+
+  @include dashboard-medium {
+    width: calc((100% / 3) - 2em);
+  }
+
+  &:hover {
+    border-color: darken($flashcard-border-color, 5%);
+
+    &::before {
+      @include transform(rotate(1deg));
+    }
+
+    &::after {
+      @include transform(rotate(3deg));
+    }
+  }
+
+  &:nth-of-type(2n) {
+    margin-right: 0;
+
+    @include dashboard-medium {
+      margin-right: $flashcard-spacing;
+    }
+  }
+
+  &::before,
+  &::after {
+    @include size(100%);
+    @include transform-origin(left bottom);
+    background-color: lighten($flashcard-border-color, 5%);
+    border: 1px solid lighten($flashcard-border-color, 2%);
+    border-radius: $flashcard-radius;
+    content: "";
+    display: block;
+    position: absolute;
+    transition: $flashcard-transition;
+  }
+
+  &::before {
+    left: 0.25em;
+    top: 0.35em;
+    z-index: $z-flashcard-deck;
+  }
+
+  &::after {
+    left: 0.5em;
+    top: 0.7em;
+    z-index: $z-flashcard-deck - 1;
+  }
+}
+
+.deck-title {
+  margin-bottom: 0;
+  text-align: center;
+
+  a {
+    @include align-items(center);
+    @include display(flex);
+    @include justify-content(center);
+    min-height: 8em;
+  }
+}

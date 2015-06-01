@@ -29,19 +29,13 @@
 }
 
 @mixin dashboard-large {
-  @media screen and (max-width: 1560px) {
+  @media screen and (min-width: 1050px) {
     @content;
   }
 }
 
 @mixin dashboard-medium {
-  @media screen and (max-width: 1050px) {
-    @content;
-  }
-}
-
-@mixin dashboard-small {
-  @media screen and (max-width: 860px) {
+  @media screen and (min-width: 800px) {
     @content;
   }
 }

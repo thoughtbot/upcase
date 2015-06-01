@@ -1,29 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_1" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 57 57"
-	 enable-background="new 0 0 57 57" xml:space="preserve">
-<title>trail-step-in-progress</title>
-<desc>Created with Sketch.</desc>
-<g id="Trails-horiz.-iterations" sketch:type="MSPage">
-	
-		<g id="_x30_3-dashboard_x5F_trails-detail_x5F_v1" transform="translate(-751.000000, -600.000000)" sketch:type="MSArtboardGroup">
-		<g id="Group-2" transform="translate(15.000000, 10.000000)" sketch:type="MSLayerGroup">
-			
-				<g id="Rectangle-16-_x2B_-Complete-2-_x2B_-Rectangle-17-_x2B_-Oval-20-_x2B_-Shape-3" transform="translate(658.000000, 517.000000)" sketch:type="MSShapeGroup">
-				<g id="Rectangle-17-_x2B_-Oval-20-_x2B_-Shape-2" transform="translate(0.000000, 40.000000)">
-					<g id="trail-step-in-progress" transform="translate(81.000000, 36.000000)">
-						<path id="Oval-20" fill="none" stroke="#FEAE2A" stroke-width="2" d="M26,52c14.4,0,26-11.6,26-26S40.4,0,26,0S0,11.6,0,26
-							S11.6,52,26,52z"/>
-						<path id="Oval-21" fill="#FEAE2A" d="M26,40c7.7,0,14-6.3,14-14s-6.3-14-14-14s-14,6.3-14,14S18.3,40,26,40z"/>
-						<path id="Oval-21_1_" fill="#FF9F00" fill-opacity="0.2923" stroke="#FEAE2A" stroke-width="2" d="M27,0c13.9,0.5,25,12,25,26
-							c0,14.4-11.6,26-26,26C12.3,52,1.1,41.4,0.1,28h13.1c1,6.2,6.3,11,12.8,11c7.2,0,13-5.8,13-13c0-6.8-5.3-12.5-12-13
-							C27,13,27,0,27,0z"/>
-					</g>
-				</g>
-			</g>
-		</g>
-	</g>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 57 57" enable-background="new 0 0 57 57">
+    <title>
+        trail-step-in-progress
+    </title>
+    <desc>
+        Created with Sketch.
+    </desc>
+    <g>
+        <g>
+            <g>
+                <g>
+                    <g>
+                        <g>
+                            <path fill="none" stroke="#FEAE2A" stroke-width="2" d="M29 55c14.4 0 26-11.6 26-26S43.4 3 29 3 3 14.6 3 29s11.6 26 26 26z"/>
+                            <path fill="#FEAE2A" d="M29 43c7.7 0 14-6.3 14-14s-6.3-14-14-14-14 6.3-14 14 6.3 14 14 14z"/>
+                            <path fill="#FF9F00" fill-opacity=".292" stroke="#FEAE2A" stroke-width="2" d="M30 3c13.9.5 25 12 25 26 0 14.4-11.6 26-26 26C15.3 55 4.1 44.4 3.1 31h13.1c1 6.2 6.3 11 12.8 11 7.2 0 13-5.8 13-13 0-6.8-5.3-12.5-12-13V3z"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
 </svg>

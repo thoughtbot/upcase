@@ -1,20 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="129px" height="39px" viewBox="0 0 129 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.0.1 (7597) - http://www.bohemiancoding.com/sketch -->
-    <title>Group</title>
-    <description>Created with Sketch.</description>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="Group" sketch:type="MSLayerGroup">
-            <rect id="Rectangle-9" fill="#5F9CE3" sketch:type="MSShapeGroup" x="34" y="19" width="61" height="4"></rect>
-            <rect id="Rectangle-13" fill="#5F9CE3" sketch:type="MSShapeGroup" x="120" y="18" width="9" height="4" rx="2"></rect>
-            <rect id="Rectangle-17" fill="#5F9CE3" sketch:type="MSShapeGroup" x="0" y="18" width="9" height="4" rx="2"></rect>
-            <rect id="Rectangle-10" fill="#9DC1EB" sketch:type="MSShapeGroup" x="95" y="0" width="8" height="39" rx="4"></rect>
-            <rect id="Rectangle-11" fill="#9DC1EB" sketch:type="MSShapeGroup" x="106" y="0" width="8" height="39" rx="4"></rect>
-            <rect id="Rectangle-12" fill="#9DC1EB" sketch:type="MSShapeGroup" x="117" y="3" width="6" height="34" rx="3"></rect>
-            <rect id="Rectangle-16" fill="#9DC1EB" sketch:type="MSShapeGroup" x="15" y="0" width="8" height="39" rx="4"></rect>
-            <rect id="Rectangle-14" fill="#9DC1EB" sketch:type="MSShapeGroup" x="26" y="0" width="8" height="39" rx="4"></rect>
-            <rect id="Rectangle-15" fill="#9DC1EB" sketch:type="MSShapeGroup" x="6" y="3" width="6" height="34" rx="3"></rect>
+<svg width="129" height="39" viewBox="0 0 129 39" xmlns="http://www.w3.org/2000/svg">
+    <title>
+        Group
+    </title>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <path fill="#5F9CE3" d="M34 19h61v4H34z"/>
+            <rect fill="#5F9CE3" x="120" y="18" width="9" height="4" rx="2"/>
+            <rect fill="#5F9CE3" y="18" width="9" height="4" rx="2"/>
+            <rect fill="#9DC1EB" x="95" width="8" height="39" rx="4"/>
+            <rect fill="#9DC1EB" x="106" width="8" height="39" rx="4"/>
+            <rect fill="#9DC1EB" x="117" y="3" width="6" height="34" rx="3"/>
+            <rect fill="#9DC1EB" x="15" width="8" height="39" rx="4"/>
+            <rect fill="#9DC1EB" x="26" width="8" height="39" rx="4"/>
+            <rect fill="#9DC1EB" x="6" y="3" width="6" height="34" rx="3"/>
         </g>
     </g>
 </svg>

@@ -1,0 +1,22 @@
+<svg width="93" height="61" viewBox="0 0 93 61" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>
+        flashcard
+    </title>
+    <desc>
+        Created with Sketch.
+    </desc>
+    <defs>
+        <rect id="a" width="87" height="55" rx="3"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <g transform="translate(-10 -14) translate(13 17)">
+                <mask id="b">
+                    <use xlink:href="#a"/>
+                </mask>
+                <use stroke="#ddd" stroke-width="3" fill="#fff" xlink:href="#a"/>
+                <path d="M.5 13h85.475" stroke="#F6B6C2" stroke-width="2" stroke-linecap="square" mask="url(#b)"/>
+            </g>
+        </g>
+    </g>
+</svg>
