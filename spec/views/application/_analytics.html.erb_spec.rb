@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "shared/_analytics.html.erb" do
+describe "application/_analytics.html.erb" do
   include AnalyticsHelper
 
   context "when signed out" do
@@ -17,20 +17,11 @@ describe "shared/_analytics.html.erb" do
     end
 
     it 'records a pageview' do
-      record_pageview_line = %{window.analytics.page("", {"context":{"campaign":null}});}
+      record_pageview_line = "window.analytics.page"
 
       render
 
       expect(rendered).to include(record_pageview_line)
-    end
-
-    it 'does not load user-specific analytics' do
-      allow(rendered).to receive(:render)
-
-      render
-
-      expect(rendered).not_to have_received(:render).
-        with("shared/signed_in_analytics")
     end
   end
 
@@ -63,7 +54,7 @@ describe "shared/_analytics.html.erb" do
         current_user: user,
         signed_in?: true
       )
-      identify_line = 'analytics.identify('
+      identify_line = "analytics.identify"
 
       render
 

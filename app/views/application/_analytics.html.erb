@@ -7,7 +7,7 @@
   <% end %>
 
   <% if signed_in? %>
-    analytics.identify(
+    window.analytics.identify(
       '<%= current_user.id %>',
       <%= raw identify_hash.to_json %>,
       <%= raw intercom_hash.to_json %>
@@ -18,5 +18,8 @@
     window.analytics.track("Subscribed", <%= raw purchased_hash.to_json %>);
   <% end %>
 
-  window.analytics.page("<%= j content_for(:page_title) %>", <%= raw campaign_hash.to_json %>);
+  window.analytics.page(
+    "<%= j content_for(:page_title) %>",
+    <%= raw campaign_hash.to_json %>
+  );
 </script>
