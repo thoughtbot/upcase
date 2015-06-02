@@ -35,7 +35,12 @@ class CheckoutsController < ApplicationController
   end
 
   def build_checkout(arguments)
-    plan.checkouts.build(arguments.merge(default_params))
+    plan.checkouts.build(
+      arguments.
+        merge(default_params).
+        merge(coupon_param).
+        merge(campaign_param)
+    )
   end
 
   def default_params
@@ -44,12 +49,25 @@ class CheckoutsController < ApplicationController
         user: current_user,
         github_username: current_user.github_username,
         stripe_customer_id: current_user.stripe_customer_id,
-        stripe_coupon_id: session[:coupon]
       }
     else
+      {}
+    end
+  end
+
+  def coupon_param
+    {
+      stripe_coupon_id: session[:coupon]
+    }
+  end
+
+  def campaign_param
+    if session[:campaign_params]
       {
-        stripe_coupon_id: session[:coupon]
+        utm_source: session[:campaign_params][:utm_source]
       }
+    else
+      {}
     end
   end
 

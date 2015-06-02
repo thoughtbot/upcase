@@ -10,6 +10,7 @@ class Checkout < ActiveRecord::Base
     organization
     password
     state
+    utm_source
     zip_code
   )
 

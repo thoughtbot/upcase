@@ -89,6 +89,24 @@ describe CheckoutsController do
 
       expect(session[:coupon]).to be_nil
     end
+
+    context "with customer acquisition channel saved in session" do
+      it "records channel as utm_source" do
+        session[:campaign_params] = { utm_source: "adwords" }
+        user = create(:user, utm_source: nil)
+        stub_current_user_with user
+        plan = create(:plan)
+        stripe_token = "token"
+
+        post(
+          :create,
+          checkout: customer_params(stripe_token),
+          plan: plan
+        )
+
+        expect(user.reload.utm_source).to eq "adwords"
+      end
+    end
   end
 
   def customer_params(token = "stripe token")
