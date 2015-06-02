@@ -92,11 +92,11 @@ feature "Subscriber views quizzes" do
 
   def navigate_to_next_flashcard
     reveal_answer
-    click_button "Next flashcard"
+    click_button I18n.t("questions.hidden_answer.next-flashcard")
   end
 
   def add_to_review_queue
-    click_button "Save for review"
+    click_button I18n.t("questions.hidden_answer.save-for-review")
   end
 
   def review_question(question)

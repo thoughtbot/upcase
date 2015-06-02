@@ -6,16 +6,18 @@
     <%= format_markdown question.answer %>
   </div>
 
-  <p>Want to return this question later? Click "Save for review" to have it added to your Review Queue.</p>
+  <p>Want to return to this question soon? Just click "<%=
+  t(".save-for-review") %>." (If this question is already in your queue,
+  clicking "<%= t(".next-flashcard") %>" will remove it.)</p>
 
   <%= form_for [question, question.attempts.new] do |f| %>
     <%= f.hidden_field :confidence, value: 1 %>
-    <%= f.submit "Save for review", class: "keep-flashcard" %>
+    <%= f.submit t(".save-for-review"), class: "keep-flashcard" %>
   <% end %>
 
   <%= form_for [question, question.attempts.new] do |f| %>
     <%= f.hidden_field :confidence, value: 5 %>
-    <%= f.submit "Next flashcard", class: "next-flashcard" %>
+    <%= f.submit t(".next-flashcard"), class: "next-flashcard" %>
   <% end %>
 </div>
 
