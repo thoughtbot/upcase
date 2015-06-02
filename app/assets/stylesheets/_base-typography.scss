@@ -52,21 +52,33 @@ strong {
 }
 
 pre code {
-  background-color: $lightwarmgray;
-  background-color: darken($off-white, 7%);
-  border-radius: 3px;
   display: block;
   line-height: 1.4rem;
   margin: 2rem 0;
-  overflow-x: scroll;
-  padding: 1rem;
   -webkit-overflow-scrolling: touch;
+  overflow-x: scroll;
+  padding: 0.5rem;
+
+  @include dashboard-medium {
+    font-size: 0.9rem;
+    padding: 1rem;
+  }
 }
 
 code {
-  color: $darkwarmgray;
+  background-color: darken($off-white, 7%);
+  border-radius: 3px;
   font-family: monaco;
-  font-size: .9rem;
+  font-size: $font-size-smallest;
+  padding: 0.125rem 0.25rem;
+
+  @include dashboard-medium {
+    font-size: 0.9rem;
+  }
+
+  .cursor {
+    background: darken($off-white, 25%);
+  }
 }
 
 // negate brs inserted into posts

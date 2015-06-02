@@ -43,10 +43,6 @@
 .revealed-answer {
   @include animation(reveal-answer 0.5s $ease-out-quad forwards);
 
-  &.hidden {
-    display: none;
-  }
-
   form {
     display: inline-block;
   }

@@ -20,6 +20,10 @@
 %flashcard {
   @extend %flashcard-colors;
   margin-bottom: $flashcard-spacing;
-  padding: 1em;
+  padding: 1em 0.5em;
   position: relative;
+
+  @include dashboard-medium {
+    padding: 1em;
+  }
 }

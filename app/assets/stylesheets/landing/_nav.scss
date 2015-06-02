@@ -40,7 +40,7 @@
     @include transition(transform 0.2s);
     z-index: 30;
 
-    @media screen and (max-width: 755px) {
+    @include dashboard-small-only {
       display: none;
     }
   }

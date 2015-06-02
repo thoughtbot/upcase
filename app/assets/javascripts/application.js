@@ -7,6 +7,7 @@
 //= require jquery.jsPlumb-1.4.0-all-min
 //= require plans
 //= require checkout
+//= require header-toggle
 //= require autoresize
 //= require wistia_helper
 //= require headhesive.min.js

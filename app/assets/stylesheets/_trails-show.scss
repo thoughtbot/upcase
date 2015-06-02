@@ -19,7 +19,7 @@
     @include display(flex);
     margin-top: 3.2em;
 
-    @media screen and (max-width: 755px) {
+    @include dashboard-small-only {
       display: block;
       text-align: center;
     }
@@ -28,7 +28,7 @@
       flex: none;
       margin-right: 2em;
 
-      @media screen and (max-width: 755px) {
+      @include dashboard-small-only {
         display: block;
         margin: 0 auto;
       }

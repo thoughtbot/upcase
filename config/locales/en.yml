@@ -84,7 +84,7 @@ en:
   quiz-title-teaser: 'From: %{title}'
   quizzes:
     index:
-      title: Flashcards
+      title: Quiz Decks
     quiz:
       number_of_questions: '%{length} flashcards'
   repository:

@@ -5,7 +5,8 @@
         <%= image_tag("upcase/upcase-header-logo-small.svg") %>
       <% end %>
     </h1>
-    <nav>
+    <a class="nav-toggle">Menu</a>
+    <nav class="closed">
       <ul>
         <% if signed_in? %>
           <li class="practice">

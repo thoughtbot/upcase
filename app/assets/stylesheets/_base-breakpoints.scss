@@ -40,4 +40,10 @@
   }
 }
 
+@mixin dashboard-small-only {
+  @media screen and (max-width: 800px) {
+    @content;
+  }
+}
+
 $large-screen: em(860);

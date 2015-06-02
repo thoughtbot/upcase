@@ -24,7 +24,7 @@ section {
   padding: 0 2em 3em 2em;
   width: 100%;
 
-  @media only screen and (min-width: 800px)  {
+  @include dashboard-medium {
     padding-left: 0;
     padding-right: 0;
   }
@@ -51,7 +51,7 @@ section {
       border-right: 1px solid $base-border-color-1;
       content: "";
 
-      @media screen and (max-width: 755px) {
+      @include dashboard-small-only {
         border-right: 0;
       }
     }
@@ -199,6 +199,10 @@ aside {
   dt p {
     font-weight: bold;
   }
+}
+
+.hidden {
+  display: none;
 }
 
 @include body-mobile {

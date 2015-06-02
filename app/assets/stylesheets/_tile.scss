@@ -19,7 +19,7 @@
     text-align: center;
     width: 47%;
 
-    @media screen and (max-width: 755px) {
+    @include dashboard-small-only {
       width: 100%;
       margin-bottom: 1em;
     }

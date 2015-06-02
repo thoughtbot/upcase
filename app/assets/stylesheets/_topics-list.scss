@@ -19,7 +19,7 @@
     position: relative;
     width: 50%;
 
-    @media screen and (max-width: 755px) {
+    @include dashboard-small-only {
       width: 100%;
     }
 
@@ -32,7 +32,7 @@
       border-bottom: 1px solid $gray-4;
       content: "";
 
-      @media screen and (max-width: 755px) {
+      @include dashboard-small-only {
         right: 0;
       }
     }
@@ -41,7 +41,7 @@
   .topic-link:nth-child(even) {
     padding-left: 30px;
 
-    @media screen and (max-width: 755px) {
+    @include dashboard-small-only {
       padding-left: 0;
     }
 
@@ -54,7 +54,7 @@
       border-left: 1px solid $gray-4;
       content: "";
 
-      @media screen and (max-width: 755px) {
+      @include dashboard-small-only {
         border-left: 0;
       }
     }
@@ -63,7 +63,7 @@
       left: 1em;
       right: 0;
 
-      @media screen and (max-width: 755px) {
+      @include dashboard-small-only {
         left: 0;
       }
     }

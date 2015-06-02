@@ -14,7 +14,7 @@ body.topics.topics-show {
       padding: 4.5rem 0;
       position: relative;
 
-      @media screen and (max-width: 755px) {
+      @include dashboard-small-only {
         padding: 2rem 0;
         text-align: center;
       }
@@ -30,7 +30,7 @@ body.topics.topics-show {
       line-height: 1.6em;
       margin-bottom: 2rem;
 
-      @media screen and (max-width: 755px) {
+      @include dashboard-small-only {
         margin-bottom: 0;
         width: 100%;
       }
@@ -42,7 +42,7 @@ body.topics.topics-show {
       right: 0;
       top: 1em;
 
-      @media screen and (max-width: 755px) {
+      @include dashboard-small-only {
         top: 0;
         position: relative;
         display: inline-block;
