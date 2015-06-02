@@ -1,9 +1,12 @@
 <% if @questions_to_review.present? %>
   <span class="divider"><h4 class="text"><%= t(".review-queue") %></h4></span>
 
-  <ul>
+  <ul class="kept-flashcards">
     <% @questions_to_review.each do |question| %>
-      <li class="saved-flashcard"><%= link_to question.title, quiz_question_path(question.quiz, question) %></li>
+      <li class="to-flashcard">
+        <%= link_to question.title, quiz_question_path(question.quiz, question) %>
+        <p class="flashcard-teaser"><%= t("quiz-title-teaser", title: question.quiz_title) %></p>
+      </li>
     <% end %>
   </ul>
 <% end %>

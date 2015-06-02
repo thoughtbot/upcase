@@ -15,4 +15,8 @@ class Question < ActiveRecord::Base
   def most_recent_attempt_for(user)
     attempts.where(user: user).first || NullAttempt.new
   end
+
+  def quiz_title
+    quiz.title
+  end
 end

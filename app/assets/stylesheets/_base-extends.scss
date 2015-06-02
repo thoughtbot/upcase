@@ -7,14 +7,18 @@
   background: image-url('check.svg') darken($lightwarmgray, 12%) center center no-repeat;
   background-size: .9rem;
   border-color: transparent;
-  color: #ffffff;
+  color: $flashcard-background;
   text-align: center;
 }
 
-%flashcard {
-  background-color: #ffffff;
+%flashcard-colors {
+  background-color: $flashcard-background;
   border: $flashcard-border;
   border-radius: $flashcard-radius;
+}
+
+%flashcard {
+  @extend %flashcard-colors;
   margin-bottom: $flashcard-spacing;
   padding: 1em;
   position: relative;

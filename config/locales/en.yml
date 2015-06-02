@@ -70,8 +70,10 @@ en:
   questions:
     hidden_answer:
       reveal-answer: Reveal Answer
-      save-for-review: add to review queue
+      save-for-review: Save for review
       next-flashcard: next flashcard
+      save-for-review_html: 'Save for review &rarr;'
+      next-flashcard_html: 'next flashcard &rarr;'
     needing_review:
       review-queue: Saved Flashcards
     show:
@@ -79,6 +81,7 @@ en:
       next-question: Next Question
       numbered-title: Question %{position} of %{total}
       return-to-results: Return to Quiz Results
+  quiz-title-teaser: 'From: %{title}'
   quizzes:
     index:
       title: Flashcards
@@ -88,9 +91,10 @@ en:
     view_repository: View this Repository
   results:
     show:
-      explanation: Click any question to review it
-      title: Results for %{title}
       back-to-all-quizzes: return to all quizzes
+      complete: 'Great job! You completed:'
+      explanation: Click any question to review it
+      title: '%{title}'
   shared:
     header:
       contact_your_mentor: Contact your mentor, %{mentor_name}

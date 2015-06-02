@@ -50,10 +50,7 @@ feature "Subscriber views quizzes" do
       navigate_to_quiz(question.quiz)
       add_to_review_queue
 
-      expect(question_summary(question)).to have_content(question.title)
-      expect(question_summary(question)).to(
-        have_css(".confidence", text: "Added to review queue")
-      )
+      expect(current_path).to eq(quiz_results_path(question.quiz))
     end
 
     scenario "and returns to the expanded question to review it" do
@@ -77,7 +74,7 @@ feature "Subscriber views quizzes" do
       add_to_review_queue
       visit quizzes_path
 
-      within(".saved-flashcards") do
+      within(".kept-flashcards") do
         expect(page).to have_link(question.title)
       end
     end
@@ -108,7 +105,7 @@ feature "Subscriber views quizzes" do
   end
 
   def question_summary(question)
-    find(".attempt[data-question='#{question.id}']")
+    find(".to-flashcard[data-question='#{question.id}']")
   end
 
   def last_question_attempt

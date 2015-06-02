@@ -1,21 +1,12 @@
-<h1><%= t(".title", title: @quiz.title) %></h1>
+<h1 class="topic-label"><%= t(".complete") %></h1>
+<h3 class="deck-title"><%= t(".title", title: @quiz.title) %></h3>
 
-<h3><%= t(".explanation") %> or <%= link_to t(".back-to-all-quizzes"), quizzes_path %>.</h3>
+<p><%= t(".explanation") %> or <%= link_to t(".back-to-all-quizzes"), quizzes_path %>.</p>
 
-<table class="results">
-  <tr>
-    <th>Question</th>
-    <th>Your rating</th>
-  </tr>
-
+<ul class="kept-flashcards">
   <% @quiz.questions.each do |question| %>
-    <tr class="attempt" data-question="<%= question.id %>">
-      <td>
-        <%= review_link(question) %>
-      </td>
-      <td class="confidence">
-        <%= if question.most_recent_attempt_for(current_user).confidence == 1 ; "Added to review queue" ; end  %>
-      </td>
-    </tr>
+    <li class="to-flashcard" data-question="<%= question.id %>">
+      <%= review_link(question) %>
+    </li>
   <% end %>
-</table>
+</ul>

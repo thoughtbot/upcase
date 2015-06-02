@@ -1,0 +1,54 @@
+.flashcard-teaser {
+  font-size: $font-size-smallest;
+  padding-left: 2.85rem;
+  width: 100%;
+}
+
+.kept-flashcards {
+  .root-quizzes & {
+    @include dashboard-medium {
+      @include align-items(baseline);
+      @include display(flex);
+      @include flex-wrap(wrap);
+    }
+  }
+
+  .results-show & {
+    margin-top: 2rem;
+  }
+}
+
+.to-flashcard {
+  @include align-items(center);
+  @include display(flex);
+  @include flex-wrap(wrap);
+
+  &:hover::before {
+    border-color: $flashcard-hover-color;
+    color: $flashcard-hover-color;
+  }
+
+  &::before {
+    @extend %flashcard-colors;
+    @include size(2rem 1.35rem);
+    color: $flashcard-border-color;
+    content: "?";
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-right: 0.5rem;
+    text-align: center;
+  }
+
+  .root-quizzes & {
+    @include dashboard-medium {
+      display: inline-block;
+      margin-right: 1em;
+      width: calc((100% - 2em) / 3);
+
+      &:nth-of-type(3n) {
+        margin-right: 0;
+      }
+    }
+  }
+}

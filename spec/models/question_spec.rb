@@ -37,6 +37,15 @@ describe Question do
     end
   end
 
+  describe "#quiz_title" do
+    it "returns the quiz title" do
+      quiz = build_stubbed(:quiz)
+      question = build_stubbed(:question, quiz: quiz)
+
+      expect(question.quiz_title).to eq(quiz.title)
+    end
+  end
+
   describe "#most_recent_attempt_for" do
     context "the user has attempted the question" do
       it "returns the most recent attempt" do

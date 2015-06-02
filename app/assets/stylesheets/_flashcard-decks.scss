@@ -16,7 +16,7 @@
   }
 
   &:hover {
-    border-color: darken($flashcard-border-color, 5%);
+    border-color: $flashcard-hover-color;
 
     &::before {
       @include transform(rotate(1deg));
@@ -62,13 +62,17 @@
 }
 
 .deck-title {
-  margin-bottom: 0;
-  text-align: center;
+  margin-bottom: 1em;
 
-  a {
-    @include align-items(center);
-    @include display(flex);
-    @include justify-content(center);
-    min-height: 8em;
+  .deck & {
+    margin-bottom: 0;
+    text-align: center;
+
+    a {
+      @include align-items(center);
+      @include display(flex);
+      @include justify-content(center);
+      min-height: 8em;
+    }
   }
 }
