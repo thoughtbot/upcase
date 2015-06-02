@@ -6,7 +6,8 @@
     <%= format_markdown question.answer %>
   </div>
 
-  <p>Want to return this question later? Add it to your Review Queue.</p>
+  <p>Want to return this question later? Click "Save for review" to have it added to your Review Queue.</p>
+
   <%= form_for [question, question.attempts.new] do |f| %>
     <%= f.hidden_field :confidence, value: 1 %>
     <%= f.submit "Save for review", class: "keep-flashcard" %>
