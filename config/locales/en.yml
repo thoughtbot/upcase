@@ -90,6 +90,8 @@ en:
   repository:
     view_repository: View this Repository
   results:
+    question:
+      saved_for_review: Saved for review
     show:
       back-to-all-quizzes: return to all quizzes
       complete: 'Great job! You completed:'

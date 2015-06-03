@@ -11,12 +11,12 @@
   clicking "<%= t(".next-flashcard") %>" will remove it.)</p>
 
   <%= form_for [question, question.attempts.new] do |f| %>
-    <%= f.hidden_field :confidence, value: 1 %>
+    <%= f.hidden_field :confidence, value: Attempt::LOW_CONFIDENCE %>
     <%= f.submit t(".save-for-review_html"), class: "keep-flashcard" %>
   <% end %>
 
   <%= form_for [question, question.attempts.new] do |f| %>
-    <%= f.hidden_field :confidence, value: 5 %>
+    <%= f.hidden_field :confidence, value: Attempt::HIGH_CONFIDENCE %>
     <%= f.submit t(".next-flashcard_html"), class: "next-flashcard" %>
   <% end %>
 </div>

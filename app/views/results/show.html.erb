@@ -4,9 +4,5 @@
 <p><%= t(".explanation") %> or <%= link_to t(".back-to-all-quizzes"), quizzes_path %>.</p>
 
 <ul class="kept-flashcards">
-  <% @quiz.questions.each do |question| %>
-    <li class="to-flashcard" data-question="<%= question.id %>">
-      <%= review_link(question) %>
-    </li>
-  <% end %>
+  <%= render collection: @quiz.questions, partial: "results/question" %>
 </ul>

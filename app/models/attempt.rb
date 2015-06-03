@@ -5,4 +5,11 @@ class Attempt < ActiveRecord::Base
 
   belongs_to :question
   belongs_to :user
+
+  LOW_CONFIDENCE = 1
+  HIGH_CONFIDENCE = 5
+
+  def low_confidence?
+    confidence == LOW_CONFIDENCE
+  end
 end

@@ -5,7 +5,7 @@
     <% @questions_to_review.each do |question| %>
       <li class="to-flashcard">
         <%= link_to question.title, quiz_question_path(question.quiz, question) %>
-        <p class="flashcard-teaser"><%= t("quiz-title-teaser", title: question.quiz_title) %></p>
+        <p class="flashcard-about"><%= t("quiz-title-teaser", title: question.quiz_title) %></p>
       </li>
     <% end %>
   </ul>

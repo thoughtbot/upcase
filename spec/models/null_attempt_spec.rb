@@ -6,4 +6,10 @@ describe NullAttempt do
       expect(NullAttempt.new.confidence).to eq(0)
     end
   end
+
+  describe "#low_confidence?" do
+    it "returns false" do
+      expect(NullAttempt.new.low_confidence?).to be_falsey
+    end
+  end
 end

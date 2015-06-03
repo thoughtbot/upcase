@@ -19,4 +19,8 @@ class Question < ActiveRecord::Base
   def quiz_title
     quiz.title
   end
+
+  def saved_for_review?(user)
+    most_recent_attempt_for(user).low_confidence?
+  end
 end

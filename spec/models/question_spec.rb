@@ -66,4 +66,34 @@ describe Question do
       end
     end
   end
+
+  describe "#saved_for_review?" do
+    context "when the user saved it for review" do
+      it "returns true" do
+        question = create(:question)
+        attempt = create(
+          :attempt,
+          question: question,
+          confidence: Attempt::LOW_CONFIDENCE
+        )
+        user = attempt.user
+
+        expect(question.saved_for_review?(user)).to be_truthy
+      end
+    end
+
+    context "when the user did not save it for review" do
+      it "returns false" do
+        question = create(:question)
+        attempt = create(
+          :attempt,
+          question: question,
+          confidence: Attempt::HIGH_CONFIDENCE
+        )
+        user = attempt.user
+
+        expect(question.saved_for_review?(user)).to be_falsey
+      end
+    end
+  end
 end

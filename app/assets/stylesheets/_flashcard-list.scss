@@ -1,6 +1,6 @@
-.flashcard-teaser {
+.flashcard-about {
   font-size: $font-size-smallest;
-  padding-left: 2.85rem;
+  padding-left: 3rem;
   width: 100%;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .to-flashcard {
-  @include align-items(center);
+  @include align-items(baseline);
   @include display(flex);
   @include flex-wrap(wrap);
 
@@ -30,12 +30,13 @@
 
   &::before {
     @extend %flashcard-colors;
-    @include size(2rem 1.35rem);
+    @include size(2.25rem 1.35rem);
     color: $flashcard-border-color;
-    content: "?";
+    content: "card";
     display: inline-block;
+    font-size: $font-size-smallest;
     font-weight: bold;
-    line-height: 1.5;
+    line-height: 1.75;
     margin-bottom: 0;
     margin-right: 0.5rem;
     text-align: center;
@@ -52,4 +53,27 @@
       }
     }
   }
+
+  a {
+    @include flex(1);
+  }
+}
+
+.kept-flashcard {
+  &::before {
+    border-color: $upcase-green;
+    color: $upcase-green;
+    content: "saved";
+  }
+
+  &:hover::before {
+    border-color: darken($upcase-green, 10%);
+    color: darken($upcase-green, 10%);
+  }
+}
+
+.saved-for-review {
+  color: $gray-3;
+  font-size: 0.9em;
+  padding-left: 10px;
 }
