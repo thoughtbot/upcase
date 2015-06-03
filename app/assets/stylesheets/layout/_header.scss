@@ -49,6 +49,13 @@
       font-weight: normal;
       padding: 0.25em 0.5em;
     }
+
+    &:active {
+      @include dashboard-small-only {
+        background-color: rgba($base-background-1, 0.125);
+        border-color: $base-background-1;
+      }
+    }
   }
 
   nav {
