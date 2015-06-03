@@ -21,8 +21,18 @@ module ApplicationHelper
     '/auth/github'
   end
 
-  def format_markdown(resources)
-    BlueCloth.new(resources).to_html.html_safe
+  def format_markdown(markdown)
+    if markdown.present?
+      renderer = Redcarpet::Markdown.new(
+        Redcarpet::Render::HTML,
+        autolink: true,
+        tables: true,
+        fenced_code_blocks: true
+      )
+      renderer.render(markdown).html_safe
+    else
+      ""
+    end
   end
 
   def partial_name(model)

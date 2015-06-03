@@ -2,9 +2,8 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery.ba-throttle-debounce
-//= require prettify/prettify
-//= require prettyprint
 //= require jquery.jsPlumb-1.4.0-all-min
+//= require highlight.min
 //= require plans
 //= require checkout
 //= require header-toggle
@@ -14,6 +13,8 @@
 //= require fastclick
 
 $(function() {
+  hljs.initHighlightingOnLoad();
+
   $('textarea').autosize();
 
   if ($('.landing #header-wrapper').length) {

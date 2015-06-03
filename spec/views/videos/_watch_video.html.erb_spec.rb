@@ -2,11 +2,11 @@ require "rails_helper"
 
 describe 'videos/_watch_video.html.erb' do
   it "includes a video's notes as html" do
-    video = Video.new(wistia_id: '123', notes: 'Some notes')
+    video = Video.new(wistia_id: '123', notes: "### Some notes")
 
     render_view(video)
 
-    expect(rendered).to include(video.notes_html)
+    expect(rendered).to have_css "h3", text: "Some notes"
   end
 
   it "can still render a video without notes" do

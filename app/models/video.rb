@@ -48,10 +48,6 @@ class Video < ActiveRecord::Base
     notes.present?
   end
 
-  def notes_html
-    BlueCloth.new(notes).to_html
-  end
-
   def watchable
     super || step.try(:trail)
   end

@@ -126,14 +126,6 @@ describe Video do
     end
   end
 
-  describe 'notes_html' do
-    it "converts the video's notes to html" do
-      video = build_stubbed(:video, notes: 'Some *awesome* markdown')
-
-      expect(video.notes_html).to eq '<p>Some <em>awesome</em> markdown</p>'
-    end
-  end
-
   describe "#watchable" do
     context "for a video with a watchable" do
       it "returns the watchable directly" do

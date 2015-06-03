@@ -4,6 +4,6 @@
     <h2>Weekly Iteration</h2>
     <h1><%= video.name %></h1>
     <h3><%= teacher_names(video.teachers) %></h3>
-    <p class="description"><%= truncate_html video.notes_html %></p>
+    <p class="description"><%= truncate_html(format_markdown(video.notes)) %></p>
   <% end %>
 </figure>

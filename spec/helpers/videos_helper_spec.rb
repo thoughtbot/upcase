@@ -1,9 +1,11 @@
 require "rails_helper"
 
 describe VideosHelper do
+  include ApplicationHelper
+
   describe "#video_description" do
     it "returns plain text video notes" do
-      video = double("video", notes_html: "<h1>Vim's Power</h1>")
+      video = double("video", notes: "# Vim's Power")
 
       result = video_description(video)
 
@@ -11,7 +13,7 @@ describe VideosHelper do
     end
 
     it "truncates the video notes to 250 characters by default" do
-      video = double("video", notes_html: "D" * 251)
+      video = double("video", notes: "D" * 251)
 
       result = video_description(video)
 
@@ -19,7 +21,7 @@ describe VideosHelper do
     end
 
     it "truncates the video notes to the given character length" do
-      video = double("video", notes_html: "D" * 201)
+      video = double("video", notes: "D" * 201)
 
       result = video_description(video, length: 200)
 

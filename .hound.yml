@@ -1,2 +1,5 @@
 StringLiterals:
   EnforcedStyle: double_quotes
+scss:
+  exclude:
+    - "vendor/assets/stylesheets/**"

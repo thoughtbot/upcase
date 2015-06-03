@@ -66,7 +66,6 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     bcrypt (3.1.9)
-    bluecloth (2.2.0)
     bourbon (3.2.3)
       sass (~> 3.2)
       thor
@@ -271,6 +270,7 @@ GEM
     rake (10.4.2)
     recipient_interceptor (0.1.2)
       mail
+    redcarpet (3.2.3)
     remotipart (1.2.1)
     responders (2.0.2)
       railties (>= 4.2.0.alpha, < 5)
@@ -368,7 +368,6 @@ DEPENDENCIES
   airbrake
   analytics-ruby (~> 2.0.0)
   aws-sdk
-  bluecloth
   bourbon (~> 3.2.1)
   capybara
   capybara-webkit
@@ -411,6 +410,7 @@ DEPENDENCIES
   rails_12factor
   rails_admin (~> 0.6.7)
   recipient_interceptor
+  redcarpet
   responders (~> 2.0)
   rspec-rails
   sass-rails (~> 4.0.4)

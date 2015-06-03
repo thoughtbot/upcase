@@ -1,6 +1,7 @@
 module VideosHelper
   def video_description(video, length: 250)
-    truncate(strip_tags(video.notes_html), escape: false, length: length)
+    notes_html = format_markdown(video.notes)
+    truncate(strip_tags(notes_html), escape: false, length: length).chomp
   end
 
   def topic_slugs(object)

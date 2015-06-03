@@ -56,7 +56,7 @@ pre code {
   line-height: 1.4rem;
   margin: 2rem 0;
   -webkit-overflow-scrolling: touch;
-  overflow-x: scroll;
+  overflow-x: auto;
   padding: 0.5rem;
 
   @include dashboard-medium {
