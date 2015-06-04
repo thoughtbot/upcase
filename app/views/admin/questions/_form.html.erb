@@ -24,6 +24,9 @@
             var previewFetched = $.post(previewUrl, $questionForm.serialize());
             previewFetched.done(function(response) {
               $questionPreview.html(response);
+              $questionPreview.find("code").each(function(_, block) {
+                hljs.highlightBlock(block);
+              });
             });
           });
 
