@@ -76,6 +76,9 @@ en:
       next-flashcard_html: 'next flashcard &rarr;'
     needing_review:
       review-queue: Saved Flashcards
+      blank-state-explanation: If you encounter a card that you want to return
+        to (like if its answer has interesting links that you'd like to read
+        later), just click "%{save_for_review_text}" and it will appear here.
     show:
       answer: 'Answer:'
       next-question: Next Question
@@ -84,7 +87,13 @@ en:
   quiz-title-teaser: 'From: %{title}'
   quizzes:
     index:
-      title: Quiz Decks
+      title: Flashcards
+      subhead: Become a better programmer, even if you've only got five minutes.
+      feature_description: Flashcards are short quizzes with questions and
+        answers provided. They're mobile-friendly, and a perfect fit for
+        commutes, waiting rooms, and coffee breaks. They cover the bite-sized
+        topics, code smells, patterns, and anti-patterns that experts know and
+        intermediates ought to learn.
     quiz:
       number_of_questions: '%{length} flashcards'
   repository:
