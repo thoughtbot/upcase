@@ -342,6 +342,7 @@ ActiveRecord::Schema.define(version: 20150612142911) do
     t.integer  "mentor_id"
     t.integer  "team_id"
     t.string   "utm_source"
+    t.boolean  "completed_welcome",              default: false, null: false
   end
 
   add_index "users", ["admin"], name: "index_users_on_admin", using: :btree

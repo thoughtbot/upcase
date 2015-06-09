@@ -3,7 +3,8 @@ module Subscriptions
     @current_user = create(
       :subscriber,
       *traits,
-      stripe_customer_id: FakeStripe::CUSTOMER_ID
+      stripe_customer_id: FakeStripe::CUSTOMER_ID,
+      completed_welcome: true
     )
     visit practice_path(as: @current_user)
   end

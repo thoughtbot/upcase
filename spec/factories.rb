@@ -238,6 +238,14 @@ FactoryGirl.define do
         plan { create(:basic_plan) }
       end
 
+      trait :onboarded do
+        completed_welcome true
+      end
+
+      trait :needs_onboarding do
+        completed_welcome false
+      end
+
       trait :includes_mentor do
         transient do
           plan { create(:plan, :includes_mentor) }

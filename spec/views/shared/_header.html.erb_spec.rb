@@ -89,14 +89,33 @@ describe "shared/_header.html.erb" do
     end
   end
 
+  context "in welcome mode" do
+    it "shows only a help link" do
+      render(onboarded: false)
+
+      expect(rendered).not_to have_practice_link
+      expect(rendered).to have_link("Help", welcome_path)
+    end
+  end
+
+  def have_practice_link
+    have_link(I18n.t("shared.header.practice"), practice_path)
+  end
+
   def render(
     current_user_email: "user@example.com",
     current_user_has_active_subscription: true,
     current_user_is_eligible_for_annual_upgrade: true,
     current_user_is_subscription_owner: true,
     masquerading: false,
-    signed_in: true
+    signed_in: true,
+    onboarded: true
   )
+    view_stub_with_return(
+      onboarding_policy:
+      double(:onboarding_policy, onboarded?: onboarded)
+    )
+
     view_stub_with_return(
       current_user_has_active_subscription?:
         current_user_has_active_subscription

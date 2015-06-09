@@ -1,38 +1,29 @@
 require "rails_helper"
 
 describe HomesController do
-  it "redirects to join if the visitor is not logged in" do
-    get :show
+  context "the user is not logged in" do
+    it "redirects to /join" do
+      get :show
 
-    expect(response).to redirect_to join_path
+      expect(response).to redirect_to join_path
+    end
   end
 
-  it "redirects to products if the visitor is logged in" do
-    sign_in
+  context "the user is logged in" do
+    it "delegates to the OnboaringPolicy to determine where to send the user" do
+      user = create(:user)
+      onboarding_policy = stub_onbarding_policy(user)
+      sign_in_as user
 
-    get :show
+      get :show
 
-    expect(response).to redirect_to practice_path
+      expect(response).to redirect_to(onboarding_policy.root_path)
+    end
   end
 
-  it "redirects to products if subscriber has access to exercises" do
-    plan = build_stubbed(:plan, includes_trails: true)
-    subscriber = create(:user, :with_subscription, plan: plan)
-    sign_in_as subscriber
-
-    get :show
-
-    expect(response).to redirect_to practice_path
-  end
-
-  it "redirects to The Weekly Iteration if subscriber has no exercise access" do
-    create(:show, name: Show::THE_WEEKLY_ITERATION)
-    plan = build_stubbed(:plan, includes_trails: false)
-    subscriber = create(:user, :with_subscription, plan: plan)
-    sign_in_as subscriber
-
-    get :show
-
-    expect(response).to redirect_to Show.the_weekly_iteration
+  def stub_onbarding_policy(user)
+    instance_double(OnboardingPolicy, root_path: "/my-route").tap do |policy|
+      allow(OnboardingPolicy).to receive(:new).with(user).and_return(policy)
+    end
   end
 end

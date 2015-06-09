@@ -84,6 +84,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_team
 
+  def onboarding_policy
+    OnboardingPolicy.new(current_user)
+  end
+  helper_method :onboarding_policy
+
   def capture_campaign_params
     session[:campaign_params] ||= {
       utm_campaign: params[:utm_campaign],

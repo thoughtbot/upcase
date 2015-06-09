@@ -50,7 +50,7 @@ feature "Accept team invitations" do
       fill_in "Password", with: "secret"
       click_on "Create an account"
 
-      expect(page).to have_content("Practice")
+      expect(page).to have_content(I18n.t("pages.welcome.headline"))
     end
   end
 

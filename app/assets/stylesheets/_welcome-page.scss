@@ -1,0 +1,56 @@
+$quiz-gray-border: #ccc;
+
+.welcome-page {
+  margin: 0 auto;
+  max-width: 780px;
+
+  @include dashboard-medium {
+    .flashcards-overview {
+      float: left;
+      max-width: 58%;
+    }
+  }
+
+  section {
+    @include clearfix;
+    margin-top: 95px;
+  }
+
+  h2 {
+    margin: 10px 0;
+  }
+
+  h1 {
+    margin-bottom: 40px;
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  h3 {
+    font-size: 1.8em;
+    margin-bottom: 22px;
+  }
+
+  .help-widget-image {
+    float: left;
+    height: 75px;
+    margin-right: 20px;
+    margin-top: 8px;
+  }
+
+  .quiz-image {
+    border: 1px solid $quiz-gray-border;
+    float: right;
+  }
+
+  .ben-image {
+    display: block;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .trail-image {
+    margin-top: 20px;
+  }
+}

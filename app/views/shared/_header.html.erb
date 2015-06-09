@@ -9,32 +9,38 @@
     <nav class="closed">
       <ul>
         <% if signed_in? %>
-          <li class="practice">
-            <%= link_to t("shared.header.practice"), practice_path %>
-          </li>
-          <li>
-            <%= link_to t("shared.header.flashcards"), decks_path %>
-          </li>
-          <li class="explore">
-            <%= link_to t("shared.header.explore"), explore_path %>
-          </li>
-          <li class="discuss">
-            <%= link_to t("shared.header.discuss"), Forum.url %>
-          </li>
-          <% if show_upgrade_to_annual_cta? %>
-            <li class="annual">
-              <%= render "shared/annual_billing" %>
+          <% if onboarding_policy.onboarded? %>
+            <li class="practice">
+              <%= link_to t("shared.header.practice"), practice_path %>
+            </li>
+            <li>
+              <%= link_to t("shared.header.flashcards"), decks_path %>
+            </li>
+            <li class="explore">
+              <%= link_to t("shared.header.explore"), explore_path %>
+            </li>
+            <li class="discuss">
+              <%= link_to t("shared.header.discuss"), Forum.url %>
+            </li>
+            <% if show_upgrade_to_annual_cta? %>
+              <li class="annual">
+                <%= render "shared/annual_billing" %>
+              </li>
+            <% end %>
+            <% unless current_user_has_active_subscription? %>
+              <li class="subscription">
+                <%= link_to new_subscription_path do %>
+                  <span><%= t("shared.subscriptions.icon") %></span>
+                  <%= t("shared.subscription.name") %> Membership
+                <% end %>
+              </li>
+            <% end %>
+            <%= yield :additional_header_links %>
+          <% else %>
+            <li class="help">
+              <%= link_to t(".help-link"), welcome_path %>
             </li>
           <% end %>
-          <% unless current_user_has_active_subscription? %>
-            <li class="subscription">
-              <%= link_to new_subscription_path do %>
-                <span><%= t("shared.subscriptions.icon") %></span>
-                <%= t("shared.subscription.name") %> Membership
-              <% end %>
-            </li>
-          <% end %>
-          <%= yield :additional_header_links %>
           <li class="account">
             <%= link_to my_account_path do %>
               <%= image_tag gravatar_url(current_user.email, size: "30") %>

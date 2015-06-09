@@ -8,10 +8,6 @@ class SessionsController < Clearance::SessionsController
   end
 
   def url_after_create
-    if current_user.admin?
-      admin_path
-    else
-      practice_path
-    end
+    onboarding_policy.root_path
   end
 end

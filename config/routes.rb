@@ -35,6 +35,8 @@ Upcase::Application.routes.draw do
   resource :subscription, only: [:new, :edit, :update]
   resources :coupons, only: :show
   resources :topics, only: :index, constraints: { format: "css" }
+  resources :onboardings, only: :create
+  get "pages/welcome", to: "high_voltage#show", as: "welcome"
 
   resources(
     :design_for_developers_resources,
