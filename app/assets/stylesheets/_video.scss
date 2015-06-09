@@ -5,7 +5,9 @@
  * http://wistia.com/doc/video-foam
  */
 .wistia-wrapper {
+  position: relative;
   width: 100%;
+  z-index: 0;
 }
 
 .assets-wrapper {
