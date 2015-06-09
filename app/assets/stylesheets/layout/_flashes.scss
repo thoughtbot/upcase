@@ -5,6 +5,10 @@
   padding: 3em 2em 0 2em;
   text-align: center;
 
+  @include dashboard-small-only {
+    padding: 0;
+  }
+
   .flash {
     background: $light-yellow;
     border: 1px solid $light-brown;

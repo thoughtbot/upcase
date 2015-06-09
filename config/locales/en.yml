@@ -8,6 +8,8 @@ en:
         title: Mentees
     misc:
       filter_date_format: '%D'
+  attempts:
+    question_saved: Saved question for review
   checkout:
     flashes:
       already_subscribed: You are already subscribed. You can change your plan.

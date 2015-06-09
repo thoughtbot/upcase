@@ -2,7 +2,11 @@ class AttemptsController < ApplicationController
   before_action :require_login
 
   def create
-    question.attempts.create!(attempt_params)
+    attempt = question.attempts.create!(attempt_params)
+
+    if attempt.low_confidence?
+      flash[:notice] = I18n.t("attempts.question_saved")
+    end
 
     redirect_to_next_question_or_results(question)
   end
