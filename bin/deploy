@@ -34,7 +34,6 @@ else
 
   if [ "$1" = "production" ]; then
     open https://upcase.com
-    heroku addons:open newrelic --remote "$1"
 
     if command -v watch >/dev/null; then
       watch heroku ps --remote "$1"
