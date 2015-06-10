@@ -10,6 +10,7 @@ en:
       filter_date_format: '%D'
   attempts:
     question_saved: Saved question for review
+    question_removed_from_review_queue: Question removed from review queue
   checkout:
     flashes:
       already_subscribed: You are already subscribed. You can change your plan.

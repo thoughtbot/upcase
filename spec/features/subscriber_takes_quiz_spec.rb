@@ -67,7 +67,7 @@ feature "Subscriber views quizzes" do
       expect(current_path).to eq(quiz_results_path(question.quiz))
     end
 
-    scenario "and marks a question as needing review" do
+    scenario "after marking a question as needing review" do
       question = create(:question)
 
       navigate_to_quiz(question.quiz)
@@ -78,6 +78,25 @@ feature "Subscriber views quizzes" do
         expect(page).to have_link(question.title)
       end
     end
+  end
+
+  scenario "and removes a question from the review queue" do
+    question = create(:question)
+    user = create(:user)
+    create(
+      :attempt,
+      question: question,
+      user: user,
+      confidence: Attempt::LOW_CONFIDENCE
+    )
+
+    visit quizzes_path(as: user)
+    remove_question_from_review_queue
+
+    expect_review_queue_to_be_empty
+    expect(page).to(
+      have_content I18n.t("attempts.question_removed_from_review_queue")
+    )
   end
 
   def navigate_to_quiz(quiz)
@@ -94,6 +113,16 @@ feature "Subscriber views quizzes" do
 
   def add_to_review_queue
     click_button I18n.t("questions.hidden_answer.save-for-review")
+  end
+
+  def remove_question_from_review_queue
+    within(".kept-flashcards") do
+      click_button "Remove"
+    end
+  end
+
+  def expect_review_queue_to_be_empty
+    expect(page).to_not have_css(".kept-flashcards")
   end
 
   def review_question(question)

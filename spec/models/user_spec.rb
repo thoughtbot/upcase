@@ -5,6 +5,7 @@ describe User do
     it { should belong_to(:mentor) }
     it { should belong_to(:team) }
     it { should have_many(:subscriptions).dependent(:destroy) }
+    it { should have_many(:attempts).dependent(:destroy) }
   end
 
   context "validations" do

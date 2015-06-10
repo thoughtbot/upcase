@@ -4,5 +4,5 @@ resources :quizzes, only: [:show, :index] do
 end
 
 resources :questions, only: [] do
-  resources :attempts, only: [:create]
+  resources :attempts, only: [:create, :update]
 end

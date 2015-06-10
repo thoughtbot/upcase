@@ -11,6 +11,16 @@ class AttemptsController < ApplicationController
     redirect_to_next_question_or_results(question)
   end
 
+  def update
+    attempt = current_user.attempts.find(params[:id])
+    attempt.update_attribute(:confidence, params[:confidence])
+
+    redirect_to(
+      quizzes_path,
+      notice: I18n.t("attempts.question_removed_from_review_queue")
+    )
+  end
+
   private
 
   def redirect_to_next_question_or_results(question)

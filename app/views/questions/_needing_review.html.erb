@@ -6,6 +6,12 @@
       <li class="to-flashcard">
         <%= link_to question.title, quiz_question_path(question.quiz, question) %>
         <p class="flashcard-about"><%= t("quiz-title-teaser", title: question.quiz_title) %></p>
+        <%= button_to(
+          "Remove",
+          question_attempt_path(question, question.most_recent_attempt_for(current_user)),
+          method: :put,
+          params: { confidence: Attempt::HIGH_CONFIDENCE },
+          form_class: "remove") %>
       </li>
     <% end %>
   </ul>
