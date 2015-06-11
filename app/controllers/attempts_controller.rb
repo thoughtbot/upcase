@@ -16,7 +16,7 @@ class AttemptsController < ApplicationController
     attempt.update_attribute(:confidence, params[:confidence])
 
     redirect_to(
-      quizzes_path,
+      decks_path,
       notice: I18n.t("attempts.flashcard_removed_from_review_queue")
     )
   end
@@ -25,9 +25,9 @@ class AttemptsController < ApplicationController
 
   def redirect_to_next_flashcard_or_results(flashcard)
     if flashcard.next
-      redirect_to quiz_flashcard_path(flashcard.quiz, flashcard.next)
+      redirect_to deck_flashcard_path(flashcard.deck, flashcard.next)
     else
-      redirect_to quiz_results_path(flashcard.quiz)
+      redirect_to deck_results_path(flashcard.deck)
     end
   end
 

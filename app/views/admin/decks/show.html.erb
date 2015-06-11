@@ -1,0 +1,17 @@
+<%= link_to "< all decks", admin_decks_path %>
+
+<h1><%= @deck.title %></h1>
+
+<h3>Flashcards:</h3>
+<table class="flashcards-list">
+  <% @deck.flashcards.each do |flashcard| %>
+    <tr class="flashcard" data-id="<%= flashcard.id %>">
+      <td><%= flashcard.position %></td>
+      <td class="title"><%= flashcard.title %></td>
+      <td><%= link_to "Edit", edit_admin_deck_flashcard_path(@deck, flashcard) %></td>
+      <td><%= link_to "View", deck_flashcard_path(@deck, flashcard) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "Add Flashcard", new_admin_deck_flashcard_path(@deck) %>

@@ -3,10 +3,10 @@ class Flashcard < ActiveRecord::Base
   validates :prompt, presence: true
   validates :answer, presence: true
 
-  belongs_to :quiz
+  belongs_to :deck
   has_many :attempts, -> { order(created_at: :desc) }
 
-  acts_as_list scope: :quiz
+  acts_as_list scope: :deck
 
   def next
     lower_item
@@ -16,8 +16,8 @@ class Flashcard < ActiveRecord::Base
     attempts.where(user: user).first || NullAttempt.new
   end
 
-  def quiz_title
-    quiz.title
+  def deck_title
+    deck.title
   end
 
   def saved_for_review?(user)

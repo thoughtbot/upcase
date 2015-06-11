@@ -1,7 +1,7 @@
 class Admin::FlashcardPreviewsController < ApplicationController
   def create
-    @quiz = find_quiz
-    @flashcard = @quiz.flashcards.new(flashcard_params)
+    @deck = find_deck
+    @flashcard = @deck.flashcards.new(flashcard_params)
     @reviewing = true
 
     render "flashcards/show", layout: false
@@ -9,8 +9,8 @@ class Admin::FlashcardPreviewsController < ApplicationController
 
   private
 
-  def find_quiz
-    Quiz.find(params[:quiz_id])
+  def find_deck
+    Deck.find(params[:deck_id])
   end
 
   def flashcard_params

@@ -1,0 +1,11 @@
+<h1>Decks List</h1>
+
+<ul class="decks-list">
+  <% @decks.each do |deck| %>
+    <li class="deck">
+      <%= link_to deck.title, admin_deck_path(deck) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Add Deck", new_admin_deck_path %>

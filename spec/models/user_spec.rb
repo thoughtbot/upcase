@@ -421,20 +421,20 @@ describe User do
       end
     end
 
-    context "for quizzes" do
+    context "for decks" do
       context "when the subscriber is an admin" do
         it "returns true" do
           subscriber = build(:admin)
 
-          expect(subscriber).to have_access_to(:quizzes)
+          expect(subscriber).to have_access_to(:decks)
         end
       end
 
-      context "when the subscriber has been flagged as quiz tester" do
+      context "when the subscriber has been flagged as deck tester" do
         it "returns true" do
-          subscriber = build_stubbed(:subscriber, has_quiz_access: true)
+          subscriber = build_stubbed(:subscriber, has_deck_access: true)
 
-          expect(subscriber).to have_access_to(:quizzes)
+          expect(subscriber).to have_access_to(:decks)
         end
       end
 
@@ -442,7 +442,7 @@ describe User do
         it "returns false" do
           subscriber = build(:subscriber)
 
-          expect(subscriber).not_to have_access_to(:quizzes)
+          expect(subscriber).not_to have_access_to(:decks)
         end
       end
     end

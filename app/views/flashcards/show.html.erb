@@ -1,10 +1,10 @@
-<h1 class="topic-label"><%= @quiz.title %></h1>
+<h1 class="topic-label"><%= @deck.title %></h1>
 
 <div class="flashcard">
   <span class="flashcards-count">
     <%= t(".numbered-title",
           position: @flashcard.position,
-          total: @quiz.length) %>
+          total: @deck.length) %>
   </span>
 
   <div class="flashcard-prompt">
@@ -14,7 +14,7 @@
 
 <% if @reviewing %>
   <%= format_markdown @flashcard.answer %>
-  <%= link_to t(".return-to-results"), quiz_results_path(@flashcard.quiz) %>
+  <%= link_to t(".return-to-results"), deck_results_path(@flashcard.deck) %>
 <% else %>
   <h4><%= t(".answer") %></h4>
   <%= render "flashcards/hidden_answer",  flashcard: @flashcard %>

@@ -17,7 +17,7 @@ describe "flashcards/show.html" do
   def render_flashcard(attributes)
     build_stubbed(:flashcard, attributes).tap do |flashcard|
       assign(:flashcard, flashcard)
-      assign(:quiz, flashcard.quiz)
+      assign(:deck, flashcard.deck)
       render template: "flashcards/show"
     end
   end

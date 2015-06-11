@@ -1,38 +1,38 @@
 require "rails_helper"
 
-feature "Admin creates a quiz" do
+feature "Admin creates a deck" do
   scenario "is redirected away if not an admin" do
-    visit new_admin_quiz_path(as: create(:subscriber))
+    visit new_admin_deck_path(as: create(:subscriber))
 
     expect(current_path).to eq(practice_path)
   end
 
   scenario "successfully" do
-    visit admin_quizzes_path(as: create(:admin))
+    visit admin_decks_path(as: create(:admin))
 
-    create_quiz_with_title("A new quiz")
+    create_deck_with_title("A new deck")
 
-    visit admin_quizzes_path
+    visit admin_decks_path
 
-    expect(page).to have_css(".quiz", count: 1, text: "A new quiz")
+    expect(page).to have_css(".deck", count: 1, text: "A new deck")
   end
 
   scenario "and adds a flashcard" do
-    quiz = create(:quiz)
+    deck = create(:deck)
     flashcard = build_stubbed(:flashcard)
 
-    visit admin_quiz_path(quiz, as: create(:admin))
+    visit admin_deck_path(deck, as: create(:admin))
     click_on "Add Flashcard"
     submit_flashcard_form_for flashcard
 
-    expect(current_path).to eq(admin_quiz_path(quiz))
+    expect(current_path).to eq(admin_deck_path(deck))
     expect(page).to have_css(".flashcard", text: flashcard.title)
   end
 
   scenario "and can see a live preview of the flashcard", js: true do
-    quiz = create(:quiz)
+    deck = create(:deck)
 
-    visit new_admin_quiz_flashcard_path(quiz, as: create(:admin))
+    visit new_admin_deck_flashcard_path(deck, as: create(:admin))
     fill_in "Prompt", with: "Hello **world**"
 
     expect(flashcard_preview).to have_css("strong", text: "world")
@@ -59,7 +59,7 @@ feature "Admin creates a quiz" do
   end
 
   def edit_flashcard_as_admin(flashcard = create(:flashcard))
-    visit admin_quiz_path(flashcard.quiz, as: create(:admin))
+    visit admin_deck_path(flashcard.deck, as: create(:admin))
     edit_flashcard(flashcard)
   end
 
@@ -80,9 +80,9 @@ feature "Admin creates a quiz" do
     find(".flashcard-preview")
   end
 
-  def create_quiz_with_title(title)
-    click_on "Add Quiz"
+  def create_deck_with_title(title)
+    click_on "Add Deck"
     fill_in "Title", with: title
-    click_on "Create Quiz"
+    click_on "Create Deck"
   end
 end

@@ -5,7 +5,7 @@ describe Flashcard do
   it { should validate_presence_of(:prompt) }
   it { should validate_presence_of(:answer) }
 
-  it { should belong_to(:quiz) }
+  it { should belong_to(:deck) }
   it { should have_many(:attempts) }
 
   describe "#attempts" do
@@ -21,11 +21,11 @@ describe Flashcard do
   describe "#next" do
     context "when there are more flashcards" do
       it "returns the next flashcard" do
-        quiz = create(:quiz)
+        deck = create(:deck)
         first_flashcard, second_flashcard = create_list(
           :flashcard,
           2,
-          quiz: quiz
+          deck: deck
         )
 
         expect(first_flashcard.next).to eq(second_flashcard)
@@ -41,12 +41,12 @@ describe Flashcard do
     end
   end
 
-  describe "#quiz_title" do
-    it "returns the quiz title" do
-      quiz = build_stubbed(:quiz)
-      flashcard = build_stubbed(:flashcard, quiz: quiz)
+  describe "#deck_title" do
+    it "returns the deck title" do
+      deck = build_stubbed(:deck)
+      flashcard = build_stubbed(:flashcard, deck: deck)
 
-      expect(flashcard.quiz_title).to eq(quiz.title)
+      expect(flashcard.deck_title).to eq(deck.title)
     end
   end
 

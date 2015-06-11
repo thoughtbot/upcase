@@ -5,7 +5,7 @@
 }
 
 .kept-flashcards {
-  .root-quizzes & {
+  .root-decks & {
     @include dashboard-medium {
       @include align-items(baseline);
       @include display(flex);
@@ -42,7 +42,7 @@
     text-align: center;
   }
 
-  .root-quizzes & {
+  .root-decks & {
     @include dashboard-medium {
       display: inline-block;
       margin-right: 1em;

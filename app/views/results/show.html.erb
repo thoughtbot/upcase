@@ -1,8 +1,8 @@
 <h1 class="topic-label"><%= t(".complete") %></h1>
-<h3 class="deck-title"><%= t(".title", title: @quiz.title) %></h3>
+<h3 class="deck-title"><%= t(".title", title: @deck.title) %></h3>
 
-<p><%= t(".explanation") %> or <%= link_to t(".back-to-all-quizzes"), quizzes_path %>.</p>
+<p><%= t(".explanation") %> or <%= link_to t(".back-to-all-decks"), decks_path %>.</p>
 
 <ul class="kept-flashcards">
-  <%= render collection: @quiz.flashcards, partial: "results/flashcard" %>
+  <%= render collection: @deck.flashcards, partial: "results/flashcard" %>
 </ul>

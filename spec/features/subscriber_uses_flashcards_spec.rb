@@ -1,10 +1,10 @@
 require "rails_helper"
 
-feature "Subscriber views quizzes" do
-  scenario "and starts a quiz" do
+feature "Subscriber views decks" do
+  scenario "and starts a deck" do
     flashcard = create(:flashcard)
 
-    navigate_to_quiz(flashcard.quiz)
+    navigate_to_deck(flashcard.deck)
 
     expect(page).to have_content(flashcard.prompt)
   end
@@ -12,7 +12,7 @@ feature "Subscriber views quizzes" do
   scenario "and reveals the answer", js: true do
     flashcard = create(:flashcard)
 
-    navigate_to_quiz(flashcard.quiz)
+    navigate_to_deck(flashcard.deck)
 
     expect(page).not_to have_content(flashcard.answer)
 
@@ -23,10 +23,10 @@ feature "Subscriber views quizzes" do
   end
 
   scenario "and rates their confidence with a flashcard's content" do
-    quiz = create(:quiz)
-    create_list(:flashcard, 2, quiz: quiz)
+    deck = create(:deck)
+    create_list(:flashcard, 2, deck: deck)
 
-    navigate_to_quiz(quiz)
+    navigate_to_deck(deck)
     add_to_review_queue
 
     expect(page).to have_content("Flashcard 2")
@@ -34,29 +34,29 @@ feature "Subscriber views quizzes" do
   end
 
   scenario "and navigates to the next flashcard directly" do
-    quiz = create(:quiz)
-    create_list(:flashcard, 2, quiz: quiz)
+    deck = create(:deck)
+    create_list(:flashcard, 2, deck: deck)
 
-    navigate_to_quiz(quiz)
+    navigate_to_deck(deck)
     navigate_to_next_flashcard
 
     expect(page).to have_content("Flashcard 2")
   end
 
-  context "and completes the quiz" do
-    scenario "is taken to a quiz results summary page" do
+  context "and completes the deck" do
+    scenario "is taken to a deck results summary page" do
       flashcard = create(:flashcard)
 
-      navigate_to_quiz(flashcard.quiz)
+      navigate_to_deck(flashcard.deck)
       add_to_review_queue
 
-      expect(current_path).to eq(quiz_results_path(flashcard.quiz))
+      expect(current_path).to eq(deck_results_path(flashcard.deck))
     end
 
     scenario "and returns to the expanded flashcard to review it" do
       flashcard = create(:flashcard)
 
-      navigate_to_quiz(flashcard.quiz)
+      navigate_to_deck(flashcard.deck)
       add_to_review_queue
       review_flashcard(flashcard)
 
@@ -64,15 +64,15 @@ feature "Subscriber views quizzes" do
 
       return_to_results
 
-      expect(current_path).to eq(quiz_results_path(flashcard.quiz))
+      expect(current_path).to eq(deck_results_path(flashcard.deck))
     end
 
     scenario "after marking a flashcard as needing review" do
       flashcard = create(:flashcard)
 
-      navigate_to_quiz(flashcard.quiz)
+      navigate_to_deck(flashcard.deck)
       add_to_review_queue
-      visit quizzes_path
+      visit decks_path
 
       within(".kept-flashcards") do
         expect(page).to have_link(flashcard.title)
@@ -90,7 +90,7 @@ feature "Subscriber views quizzes" do
       confidence: Attempt::LOW_CONFIDENCE
     )
 
-    visit quizzes_path(as: user)
+    visit decks_path(as: user)
     remove_flashcard_from_review_queue
 
     expect_review_queue_to_be_empty
@@ -99,10 +99,10 @@ feature "Subscriber views quizzes" do
     )
   end
 
-  def navigate_to_quiz(quiz)
-    visit quizzes_path(as: create(:subscriber, :with_quiz_access))
-    within quizzes_list do
-      click_on quiz.title
+  def navigate_to_deck(deck)
+    visit decks_path(as: create(:subscriber, :with_deck_access))
+    within decks_list do
+      click_on deck.title
     end
   end
 
@@ -141,12 +141,12 @@ feature "Subscriber views quizzes" do
     Attempt.last
   end
 
-  def results_title_for(quiz)
-    I18n.t("results.show.title", title: quiz.title)
+  def results_title_for(deck)
+    I18n.t("results.show.title", title: deck.title)
   end
 
-  def quizzes_list
-    find(".quizzes")
+  def decks_list
+    find(".decks")
   end
 
   def reveal_answer

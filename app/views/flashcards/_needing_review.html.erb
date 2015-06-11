@@ -4,8 +4,8 @@
   <ul class="kept-flashcards">
     <% @flashcards_to_review.each do |flashcard| %>
       <li class="to-flashcard">
-        <%= link_to flashcard.title, quiz_flashcard_path(flashcard.quiz, flashcard) %>
-        <p class="flashcard-about"><%= t("quiz-title-teaser", title: flashcard.quiz_title) %></p>
+        <%= link_to flashcard.title, deck_flashcard_path(flashcard.deck, flashcard) %>
+        <p class="flashcard-about"><%= t("deck-title-teaser", title: flashcard.deck_title) %></p>
         <%= button_to(
           "Remove",
           flashcard_attempt_path(flashcard, flashcard.most_recent_attempt_for(current_user)),

@@ -1,4 +1,4 @@
-resources :quizzes, only: [:show, :index] do
+resources :decks, only: [:show, :index] do
   resources :flashcards, only: [:show]
   resource :results, only: [:show]
 end

@@ -2,7 +2,7 @@ class FlashcardsController < ApplicationController
   before_action :require_login
 
   def show
-    @quiz = find_quiz
+    @deck = find_deck
     @flashcard = find_flashcard
     @reviewing = params[:mode] == "reviewing"
   end
@@ -13,7 +13,7 @@ class FlashcardsController < ApplicationController
     Flashcard.find(params[:id])
   end
 
-  def find_quiz
-    Quiz.find(params[:quiz_id])
+  def find_deck
+    Deck.find(params[:deck_id])
   end
 end

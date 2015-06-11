@@ -44,13 +44,13 @@ describe "practice/show.html" do
   end
 
   context "for a non-admin user" do
-    it "does not render the quiz links" do
+    it "does not render the deck links" do
       stub_user_access
-      quiz = build_stubbed(:quiz)
+      deck = build_stubbed(:deck)
 
-      render_show quizzes: [quiz]
+      render_show decks: [deck]
 
-      expect(rendered).not_to have_content(quiz.title)
+      expect(rendered).not_to have_content(deck.title)
     end
   end
 
@@ -61,7 +61,7 @@ describe "practice/show.html" do
       in_progress_trails: [],
       unstarted_trails: [],
       just_finished_trails: [],
-      quizzes: [],
+      decks: [],
       has_completed_trails?: false
     }
     double("Practice", defaults.merge(options))

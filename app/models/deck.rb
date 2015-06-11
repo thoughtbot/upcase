@@ -1,4 +1,4 @@
-class Quiz < ActiveRecord::Base
+class Deck < ActiveRecord::Base
   validates :title, presence: true
 
   has_many :flashcards, -> { order(position: :asc) }, dependent: :destroy

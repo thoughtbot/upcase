@@ -1,7 +1,7 @@
 <div class="flashcard-admin">
-  <h2><%= link_to quiz.title, admin_quiz_path(quiz) %></h2>
+  <h2><%= link_to deck.title, admin_deck_path(deck) %></h2>
 
-  <%= semantic_form_for([:admin, quiz, flashcard]) do |f| %>
+  <%= semantic_form_for([:admin, deck, flashcard]) do |f| %>
     <%= f.input :title %>
     <%= f.input :position %>
     <%= f.input :prompt %>
@@ -16,7 +16,7 @@
     <% content_for :javascript do %>
       <script type="text/javascript">
         $(function() {
-          var previewUrl = "<%= admin_quiz_flashcard_preview_path(quiz) %>";
+          var previewUrl = "<%= admin_deck_flashcard_preview_path(deck) %>";
           var $flashcardForm = $("form.flashcard");
           var $flashcardPreview = $(".flashcard-preview");
 

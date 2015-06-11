@@ -13,8 +13,8 @@
             <%= link_to t("shared.header.practice"), practice_path %>
           </li>
           <li>
-            <% if current_user.has_access_to?(:quizzes) %>
-              <%= link_to t("shared.header.quizzes"), quizzes_path %>
+            <% if current_user.has_access_to?(:decks) %>
+              <%= link_to t("shared.header.flashcards"), decks_path %>
             <% end %>
           </li>
           <li class="explore">

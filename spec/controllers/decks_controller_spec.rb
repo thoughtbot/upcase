@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe QuizzesController do
+describe DecksController do
   describe "#index" do
     context "when no user is signed in" do
       it "redirects to the sign in page" do

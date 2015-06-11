@@ -244,8 +244,8 @@ FactoryGirl.define do
         end
       end
 
-      trait :with_quiz_access do
-        has_quiz_access true
+      trait :with_deck_access do
+        has_deck_access true
       end
     end
 
@@ -487,7 +487,7 @@ FactoryGirl.define do
     sequence(:position) { |n| n }
   end
 
-  factory :quiz do
+  factory :deck do
     title
     published true
   end
@@ -496,7 +496,7 @@ FactoryGirl.define do
     sequence(:title) { |n| "Flashcard Title #{n}" }
     prompt "How could you avoid testing for nil in these lines"
     answer "Use the Null Object pattern!"
-    quiz
+    deck
   end
 
   factory :attempt do

@@ -1,11 +1,11 @@
 class ResultsController < ApplicationController
   def show
-    @quiz = find_quiz
+    @deck = find_deck
   end
 
   private
 
-  def find_quiz
-    Quiz.find(params[:quiz_id])
+  def find_deck
+    Deck.find(params[:deck_id])
   end
 end
