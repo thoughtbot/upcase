@@ -1,6 +1,0 @@
-<li class="to-flashcard <%= saved_class_for(current_user, question) %>" data-question="<%= question.id %>">
-  <%= review_link(question) %>
-  <% if question.saved_for_review?(current_user) %>
-    <p class="flashcard-about"><%= t(".saved_for_review") %></p>
-  <% end %>
-</li>

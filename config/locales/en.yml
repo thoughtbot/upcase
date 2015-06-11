@@ -9,8 +9,8 @@ en:
     misc:
       filter_date_format: '%D'
   attempts:
-    question_saved: Saved question for review
-    question_removed_from_review_queue: Question removed from review queue
+    flashcard_saved: Saved flashcard for review
+    flashcard_removed_from_review_queue: Flashcard removed from review queue
   checkout:
     flashes:
       already_subscribed: You are already subscribed. You can change your plan.
@@ -70,7 +70,7 @@ en:
       upgrade_link: upgrade your subscription
     subscribe_cta: You can access this %{offering_type} and others with a subscription
       to %{subscription_name}
-  questions:
+  flashcards:
     hidden_answer:
       reveal-answer: Reveal Answer
       save-for-review: Save for review
@@ -84,30 +84,30 @@ en:
         later), just click "%{save_for_review_text}" and it will appear here.
     show:
       answer: 'Answer:'
-      next-question: Next Question
-      numbered-title: Question %{position} of %{total}
+      next-flashcard: Next Flashcard
+      numbered-title: Flashcard %{position} of %{total}
       return-to-results: Return to Quiz Results
   quiz-title-teaser: 'From: %{title}'
   quizzes:
     index:
       title: Flashcards
       subhead: Become a better programmer, even if you've only got five minutes.
-      feature_description: Flashcards are short quizzes with questions and
+      feature_description: Flashcards are short quizzes with flashcards and
         answers provided. They're mobile-friendly, and a perfect fit for
         commutes, waiting rooms, and coffee breaks. They cover the bite-sized
         topics, code smells, patterns, and anti-patterns that experts know and
         intermediates ought to learn.
     quiz:
-      number_of_questions: '%{length} flashcards'
+      number_of_flashcards: '%{length} flashcards'
   repository:
     view_repository: View this Repository
   results:
-    question:
+    flashcard:
       saved_for_review: Saved for review
     show:
       back-to-all-quizzes: return to all quizzes
       complete: 'Great job! You completed:'
-      explanation: Click any question to review it
+      explanation: Click any flashcard to review it
       title: '%{title}'
   shared:
     header:

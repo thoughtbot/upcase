@@ -1,17 +1,17 @@
 class Quiz < ActiveRecord::Base
   validates :title, presence: true
 
-  has_many :questions, -> { order(position: :asc) }, dependent: :destroy
+  has_many :flashcards, -> { order(position: :asc) }, dependent: :destroy
 
   def self.published
     where(published: true)
   end
 
-  def first_question
-    questions.first
+  def first_flashcard
+    flashcards.first
   end
 
   def length
-    questions.count
+    flashcards.count
   end
 end

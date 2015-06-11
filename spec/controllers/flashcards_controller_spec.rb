@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe QuestionsController do
+describe FlashcardsController do
   describe "#show" do
     context "when no user is signed in" do
       it "redirects to the sign in page" do

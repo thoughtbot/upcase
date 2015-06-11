@@ -8,9 +8,9 @@ end
 constraints Clearance::Constraints::SignedIn.new(&:admin?) do
   namespace :admin do
     resources :quizzes, only: [:new, :create, :show, :index] do
-      resources :questions, only: [:new, :create, :edit, :update]
-      resource :question_preview, only: [:create]
-      patch :question_preview, to: "question_previews#create"
+      resources :flashcards, only: [:new, :create, :edit, :update]
+      resource :flashcard_preview, only: [:create]
+      patch :flashcard_preview, to: "flashcard_previews#create"
     end
   end
 end

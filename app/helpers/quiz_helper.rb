@@ -1,8 +1,8 @@
 module QuizHelper
-  def review_link(question)
+  def review_link(flashcard)
     link_to(
-      question.title,
-      quiz_question_path(question.quiz, question, mode: "reviewing")
+      flashcard.title,
+      quiz_flashcard_path(flashcard.quiz, flashcard, mode: "reviewing")
     )
   end
 end

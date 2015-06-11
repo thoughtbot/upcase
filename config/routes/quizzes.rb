@@ -1,8 +1,8 @@
 resources :quizzes, only: [:show, :index] do
-  resources :questions, only: [:show]
+  resources :flashcards, only: [:show]
   resource :results, only: [:show]
 end
 
-resources :questions, only: [] do
+resources :flashcards, only: [] do
   resources :attempts, only: [:create, :update]
 end

@@ -11,21 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150601224106) do
+ActiveRecord::Schema.define(version: 20150611144620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_stat_statements"
 
   create_table "attempts", force: :cascade do |t|
-    t.integer  "confidence",  null: false
-    t.integer  "question_id", null: false
-    t.integer  "user_id",     null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "confidence",   null: false
+    t.integer  "flashcard_id", null: false
+    t.integer  "user_id",      null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  add_index "attempts", ["question_id"], name: "index_attempts_on_question_id", using: :btree
+  add_index "attempts", ["flashcard_id"], name: "index_attempts_on_flashcard_id", using: :btree
   add_index "attempts", ["user_id"], name: "index_attempts_on_user_id", using: :btree
 
   create_table "checkouts", force: :cascade do |t|
@@ -82,6 +82,18 @@ ActiveRecord::Schema.define(version: 20150601224106) do
   end
 
   add_index "exercises", ["uuid"], name: "index_exercises_on_uuid", unique: true, using: :btree
+
+  create_table "flashcards", force: :cascade do |t|
+    t.text     "prompt",     null: false
+    t.text     "answer",     null: false
+    t.integer  "position",   null: false
+    t.integer  "quiz_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "title",      null: false
+  end
+
+  add_index "flashcards", ["quiz_id"], name: "index_flashcards_on_quiz_id", using: :btree
 
   create_table "invitations", force: :cascade do |t|
     t.string   "email",        limit: 255, null: false
@@ -197,18 +209,6 @@ ActiveRecord::Schema.define(version: 20150601224106) do
 
   add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
   add_index "products", ["trail_id"], name: "index_products_on_trail_id", using: :btree
-
-  create_table "questions", force: :cascade do |t|
-    t.text     "prompt",     null: false
-    t.text     "answer",     null: false
-    t.integer  "position",   null: false
-    t.integer  "quiz_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "title",      null: false
-  end
-
-  add_index "questions", ["quiz_id"], name: "index_questions_on_quiz_id", using: :btree
 
   create_table "quizzes", force: :cascade do |t|
     t.string   "title",                      null: false
@@ -420,6 +420,6 @@ ActiveRecord::Schema.define(version: 20150601224106) do
   add_index "videos", ["slug"], name: "index_videos_on_slug", unique: true, using: :btree
   add_index "videos", ["watchable_type", "watchable_id"], name: "index_videos_on_watchable_type_and_watchable_id", using: :btree
 
-  add_foreign_key "attempts", "questions", on_delete: :cascade
+  add_foreign_key "attempts", "flashcards", on_delete: :cascade
   add_foreign_key "attempts", "users", on_delete: :cascade
 end

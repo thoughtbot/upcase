@@ -3,11 +3,11 @@ class QuizzesController < ApplicationController
 
   def index
     @quizzes = Quiz.published
-    @questions_to_review = QuestionsNeedingReviewQuery.new(current_user).run
+    @flashcards_to_review = FlashcardsNeedingReviewQuery.new(current_user).run
   end
 
   def show
-    redirect_to quiz_question_path(quiz, quiz.first_question)
+    redirect_to quiz_flashcard_path(quiz, quiz.first_flashcard)
   end
 
   private

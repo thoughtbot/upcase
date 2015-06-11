@@ -492,8 +492,8 @@ FactoryGirl.define do
     published true
   end
 
-  factory :question do
-    sequence(:title) { |n| "Question Title #{n}" }
+  factory :flashcard do
+    sequence(:title) { |n| "Flashcard Title #{n}" }
     prompt "How could you avoid testing for nil in these lines"
     answer "Use the Null Object pattern!"
     quiz
@@ -501,7 +501,7 @@ FactoryGirl.define do
 
   factory :attempt do
     confidence 3
-    question
+    flashcard
     user
   end
 end

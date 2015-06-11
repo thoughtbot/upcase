@@ -1,0 +1,6 @@
+<li class="to-flashcard <%= saved_class_for(current_user, flashcard) %>" data-flashcard="<%= flashcard.id %>">
+  <%= review_link(flashcard) %>
+  <% if flashcard.saved_for_review?(current_user) %>
+    <p class="flashcard-about"><%= t(".saved_for_review") %></p>
+  <% end %>
+</li>

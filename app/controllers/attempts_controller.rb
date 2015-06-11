@@ -2,13 +2,13 @@ class AttemptsController < ApplicationController
   before_action :require_login
 
   def create
-    attempt = question.attempts.create!(attempt_params)
+    attempt = flashcard.attempts.create!(attempt_params)
 
     if attempt.low_confidence?
-      flash[:notice] = I18n.t("attempts.question_saved")
+      flash[:notice] = I18n.t("attempts.flashcard_saved")
     end
 
-    redirect_to_next_question_or_results(question)
+    redirect_to_next_flashcard_or_results(flashcard)
   end
 
   def update
@@ -17,17 +17,17 @@ class AttemptsController < ApplicationController
 
     redirect_to(
       quizzes_path,
-      notice: I18n.t("attempts.question_removed_from_review_queue")
+      notice: I18n.t("attempts.flashcard_removed_from_review_queue")
     )
   end
 
   private
 
-  def redirect_to_next_question_or_results(question)
-    if question.next
-      redirect_to quiz_question_path(question.quiz, question.next)
+  def redirect_to_next_flashcard_or_results(flashcard)
+    if flashcard.next
+      redirect_to quiz_flashcard_path(flashcard.quiz, flashcard.next)
     else
-      redirect_to quiz_results_path(question.quiz)
+      redirect_to quiz_results_path(flashcard.quiz)
     end
   end
 
@@ -35,7 +35,7 @@ class AttemptsController < ApplicationController
     params.require(:attempt).permit(:confidence).merge(user: current_user)
   end
 
-  def question
-    @_question ||= Question.find(params[:question_id])
+  def flashcard
+    @_flashcard ||= Flashcard.find(params[:flashcard_id])
   end
 end

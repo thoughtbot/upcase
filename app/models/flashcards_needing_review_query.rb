@@ -1,4 +1,4 @@
-class QuestionsNeedingReviewQuery
+class FlashcardsNeedingReviewQuery
   CONFIDENCE_THRESHOLD = 4
 
   def initialize(user)
@@ -6,10 +6,10 @@ class QuestionsNeedingReviewQuery
   end
 
   def run
-    Question.
+    Flashcard.
       all.
       map { |q| q.most_recent_attempt_for(@user) }.
       select { |a| a.confidence > 0 && a.confidence < CONFIDENCE_THRESHOLD }.
-      map(&:question)
+      map(&:flashcard)
   end
 end

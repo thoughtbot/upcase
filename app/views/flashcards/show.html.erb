@@ -3,19 +3,19 @@
 <div class="flashcard">
   <span class="flashcards-count">
     <%= t(".numbered-title",
-          position: @question.position,
+          position: @flashcard.position,
           total: @quiz.length) %>
   </span>
 
   <div class="flashcard-prompt">
-    <%= format_markdown @question.prompt %>
+    <%= format_markdown @flashcard.prompt %>
   </div>
 </div>
 
 <% if @reviewing %>
-  <%= format_markdown @question.answer %>
-  <%= link_to t(".return-to-results"), quiz_results_path(@question.quiz) %>
+  <%= format_markdown @flashcard.answer %>
+  <%= link_to t(".return-to-results"), quiz_results_path(@flashcard.quiz) %>
 <% else %>
   <h4><%= t(".answer") %></h4>
-  <%= render "questions/hidden_answer",  question: @question %>
+  <%= render "flashcards/hidden_answer",  flashcard: @flashcard %>
 <% end %>

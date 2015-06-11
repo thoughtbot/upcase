@@ -4,7 +4,7 @@
   <%= render "watchables/preview" %>
   <div class="text-box">
     <%= format_markdown watchable.description %>
-    <%= render "watchables/questions", watchable: watchable %>
+    <%= render "watchables/flashcards", watchable: watchable %>
     <%= render "#{watchable.to_partial_path}_details", watchable: watchable %>
   </div>
 </div>

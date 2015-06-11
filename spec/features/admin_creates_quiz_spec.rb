@@ -17,67 +17,67 @@ feature "Admin creates a quiz" do
     expect(page).to have_css(".quiz", count: 1, text: "A new quiz")
   end
 
-  scenario "and adds a question" do
+  scenario "and adds a flashcard" do
     quiz = create(:quiz)
-    question = build_stubbed(:question)
+    flashcard = build_stubbed(:flashcard)
 
     visit admin_quiz_path(quiz, as: create(:admin))
-    click_on "Add Question"
-    submit_question_form_for question
+    click_on "Add Flashcard"
+    submit_flashcard_form_for flashcard
 
     expect(current_path).to eq(admin_quiz_path(quiz))
-    expect(page).to have_css(".question", text: question.title)
+    expect(page).to have_css(".flashcard", text: flashcard.title)
   end
 
-  scenario "and can see a live preview of the question", js: true do
+  scenario "and can see a live preview of the flashcard", js: true do
     quiz = create(:quiz)
 
-    visit new_admin_quiz_question_path(quiz, as: create(:admin))
+    visit new_admin_quiz_flashcard_path(quiz, as: create(:admin))
     fill_in "Prompt", with: "Hello **world**"
 
-    expect(question_preview).to have_css("strong", text: "world")
+    expect(flashcard_preview).to have_css("strong", text: "world")
   end
 
-  scenario "and edits a question", js: true do
-    edit_question_as_admin
+  scenario "and edits a flashcard", js: true do
+    edit_flashcard_as_admin
 
-    fill_in "Title", with: "Updated Question Title"
-    click_on "Update Question"
+    fill_in "Title", with: "Updated Flashcard Title"
+    click_on "Update Flashcard"
 
-    expect(page).to have_css(".question", text: "Updated Question Title")
+    expect(page).to have_css(".flashcard", text: "Updated Flashcard Title")
   end
 
-  def expect_first_listed_question_to_be(question)
+  def expect_first_listed_flashcard_to_be(flashcard)
     expect(page).
-      to have_css(".question:first-child .title", text: question.title)
+      to have_css(".flashcard:first-child .title", text: flashcard.title)
   end
 
-  def edit_question_position_to_be(question, position)
-    edit_question(question)
+  def edit_flashcard_position_to_be(flashcard, position)
+    edit_flashcard(flashcard)
     fill_in "Position", with: position
-    click_on "Update Question"
+    click_on "Update Flashcard"
   end
 
-  def edit_question_as_admin(question = create(:question))
-    visit admin_quiz_path(question.quiz, as: create(:admin))
-    edit_question(question)
+  def edit_flashcard_as_admin(flashcard = create(:flashcard))
+    visit admin_quiz_path(flashcard.quiz, as: create(:admin))
+    edit_flashcard(flashcard)
   end
 
-  def edit_question(question)
-    within "tr[data-id='#{question.id}']" do
+  def edit_flashcard(flashcard)
+    within "tr[data-id='#{flashcard.id}']" do
       click_on "Edit"
     end
   end
 
-  def submit_question_form_for(question)
-    fill_in "Title", with: question.title
-    fill_in "Prompt", with: question.prompt
-    fill_in "Answer", with: question.answer
-    click_on "Create Question"
+  def submit_flashcard_form_for(flashcard)
+    fill_in "Title", with: flashcard.title
+    fill_in "Prompt", with: flashcard.prompt
+    fill_in "Answer", with: flashcard.answer
+    click_on "Create Flashcard"
   end
 
-  def question_preview
-    find(".question-preview")
+  def flashcard_preview
+    find(".flashcard-preview")
   end
 
   def create_quiz_with_title(title)

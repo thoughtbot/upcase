@@ -1,4 +1,4 @@
-class Question < ActiveRecord::Base
+class Flashcard < ActiveRecord::Base
   validates :title, presence: true
   validates :prompt, presence: true
   validates :answer, presence: true

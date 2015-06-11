@@ -1,7 +1,7 @@
-<div class="question-admin">
+<div class="flashcard-admin">
   <h2><%= link_to quiz.title, admin_quiz_path(quiz) %></h2>
 
-  <%= semantic_form_for([:admin, quiz, question]) do |f| %>
+  <%= semantic_form_for([:admin, quiz, flashcard]) do |f| %>
     <%= f.input :title %>
     <%= f.input :position %>
     <%= f.input :prompt %>
@@ -11,26 +11,26 @@
 
   <div class="preview-wrapper">
     <p>Note -- the title will not be displayed in the preview</p>
-    <div class="question-preview"></div>
+    <div class="flashcard-preview"></div>
 
     <% content_for :javascript do %>
       <script type="text/javascript">
         $(function() {
-          var previewUrl = "<%= admin_quiz_question_preview_path(quiz) %>";
-          var $questionForm = $("form.question");
-          var $questionPreview = $(".question-preview");
+          var previewUrl = "<%= admin_quiz_flashcard_preview_path(quiz) %>";
+          var $flashcardForm = $("form.flashcard");
+          var $flashcardPreview = $(".flashcard-preview");
 
           var loadPreview = $.debounce(300, function() {
-            var previewFetched = $.post(previewUrl, $questionForm.serialize());
+            var previewFetched = $.post(previewUrl, $flashcardForm.serialize());
             previewFetched.done(function(response) {
-              $questionPreview.html(response);
-              $questionPreview.find("code").each(function(_, block) {
+              $flashcardPreview.html(response);
+              $flashcardPreview.find("code").each(function(_, block) {
                 hljs.highlightBlock(block);
               });
             });
           });
 
-          $questionForm.on("keyup", loadPreview);
+          $flashcardForm.on("keyup", loadPreview);
           loadPreview();
         });
       </script>

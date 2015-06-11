@@ -3,7 +3,7 @@ require "rails_helper"
 describe Quiz do
   it { should validate_presence_of(:title) }
 
-  it { should have_many(:questions).dependent(:destroy) }
+  it { should have_many(:flashcards).dependent(:destroy) }
 
   describe ".published" do
     it "returns only quizzes explicitly marked as published" do
@@ -14,31 +14,31 @@ describe Quiz do
     end
   end
 
-  describe "#first_question" do
-    it "returns the first question" do
+  describe "#first_flashcard" do
+    it "returns the first flashcard" do
       quiz = create(:quiz)
-      questions = create_list(:question, 2, quiz: quiz)
+      flashcards = create_list(:flashcard, 2, quiz: quiz)
 
-      expect(quiz.first_question).to eq(questions.first)
+      expect(quiz.first_flashcard).to eq(flashcards.first)
     end
   end
 
-  describe "#questions" do
-    it "returns the questions in position order" do
+  describe "#flashcards" do
+    it "returns the flashcards in position order" do
       quiz = create(:quiz)
 
-      older_question = create(:question, quiz: quiz, position: 2)
-      newer_question = create(:question, quiz: quiz, position: 1)
+      older_flashcard = create(:flashcard, quiz: quiz, position: 2)
+      newer_flashcard = create(:flashcard, quiz: quiz, position: 1)
 
-      expect(quiz.questions).to match([newer_question, older_question])
+      expect(quiz.flashcards).to match([newer_flashcard, older_flashcard])
     end
   end
 
   describe "#length" do
-    it "returns the number of questions the quiz has" do
+    it "returns the number of flashcards the quiz has" do
       quiz = create(:quiz)
-      create(:question, quiz: quiz)
-      create(:question, quiz: quiz)
+      create(:flashcard, quiz: quiz)
+      create(:flashcard, quiz: quiz)
 
       result = quiz.length
 

@@ -1,7 +1,7 @@
 $row-highlight: #eee;
 $light-gray-border: #ccc;
 
-.questions-list {
+.flashcards-list {
   border-collapse: collapse;
   border-spacing: 1px;
   margin: 10px 0;
@@ -19,7 +19,7 @@ td {
   text-align: left;
 }
 
-.question-admin {
+.flashcard-admin {
   form {
     float: left;
     max-width: 350px;
@@ -35,7 +35,7 @@ td {
     float: right;
   }
 
-  .question-preview {
+  .flashcard-preview {
     border: 1px solid $light-gray-border;
     border-radius: 2px;
     height: 568px;

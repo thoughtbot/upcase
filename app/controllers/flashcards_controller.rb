@@ -1,16 +1,16 @@
-class QuestionsController < ApplicationController
+class FlashcardsController < ApplicationController
   before_action :require_login
 
   def show
     @quiz = find_quiz
-    @question = find_question
+    @flashcard = find_flashcard
     @reviewing = params[:mode] == "reviewing"
   end
 
   private
 
-  def find_question
-    Question.find(params[:id])
+  def find_flashcard
+    Flashcard.find(params[:id])
   end
 
   def find_quiz
