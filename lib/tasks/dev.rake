@@ -16,6 +16,7 @@ namespace :dev do
     create_users
     create_team_plan
     create_trails
+    create_decks
   end
 
   def create_individual_plans
@@ -334,6 +335,16 @@ namespace :dev do
       exercise = FactoryGirl.create(:exercise, name: name)
       FactoryGirl.create(:step, trail: trail, completeable: exercise)
     end
+  end
+
+  def create_decks
+    deck_1 = create(:deck, title: "Rails Antipatterns", published: true)
+    create(:flashcard, deck: deck_1)
+    create(:flashcard, deck: deck_1)
+
+    deck_2 = create(:deck, title: "Rails Antipatterns", published: true)
+    create(:flashcard, deck: deck_2)
+    create(:flashcard, deck: deck_2)
   end
 
   def teach(video, bio:)
