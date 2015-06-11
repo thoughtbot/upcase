@@ -1,7 +1,6 @@
 .decks {
   @include display(flex);
   @include flex-wrap(wrap);
-  margin: 2em 0;
 }
 
 .deck {
