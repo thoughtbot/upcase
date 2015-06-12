@@ -420,32 +420,6 @@ describe User do
         expect(user.has_access_to?(:trails)).to eq("expected")
       end
     end
-
-    context "for decks" do
-      context "when the subscriber is an admin" do
-        it "returns true" do
-          subscriber = build(:admin)
-
-          expect(subscriber).to have_access_to(:decks)
-        end
-      end
-
-      context "when the subscriber has been flagged as deck tester" do
-        it "returns true" do
-          subscriber = build_stubbed(:subscriber, has_deck_access: true)
-
-          expect(subscriber).to have_access_to(:decks)
-        end
-      end
-
-      context "when the subscriber is not an admin and not flagged" do
-        it "returns false" do
-          subscriber = build(:subscriber)
-
-          expect(subscriber).not_to have_access_to(:decks)
-        end
-      end
-    end
   end
 
   describe "#subscription" do

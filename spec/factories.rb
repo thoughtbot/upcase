@@ -243,10 +243,6 @@ FactoryGirl.define do
           plan { create(:plan, :includes_mentor) }
         end
       end
-
-      trait :with_deck_access do
-        has_deck_access true
-      end
     end
 
     trait :with_github do

@@ -58,11 +58,7 @@ class User < ActiveRecord::Base
   end
 
   def has_access_to?(feature)
-    if feature == :decks
-      admin? || has_deck_access
-    else
-      subscription.present? && subscription.has_access_to?(feature)
-    end
+    subscription.present? && subscription.has_access_to?(feature)
   end
 
   def subscribed_at

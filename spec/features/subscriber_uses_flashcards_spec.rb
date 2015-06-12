@@ -100,7 +100,7 @@ feature "Subscriber views decks" do
   end
 
   def navigate_to_deck(deck)
-    visit decks_path(as: create(:subscriber, :with_deck_access))
+    visit decks_path(as: create(:subscriber))
     within decks_list do
       click_on deck.title
     end
