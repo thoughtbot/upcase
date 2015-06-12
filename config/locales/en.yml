@@ -116,11 +116,11 @@ en:
   shared:
     header:
       contact_your_mentor: Contact your mentor, %{mentor_name}
-      discuss: Discuss
-      explore: Explore
+      forum: Forum
+      weekly_iteration: Weekly Iteration
+      trails: Trails
       flashcards: Flashcards
       help-link: Help
-      practice: Practice
     subscription:
       name: Upcase
     subscriptions:

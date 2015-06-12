@@ -11,16 +11,16 @@
         <% if signed_in? %>
           <% if onboarding_policy.onboarded? %>
             <li class="practice">
-              <%= link_to t("shared.header.practice"), practice_path %>
+              <%= link_to t("shared.header.trails"), practice_path %>
             </li>
             <li>
               <%= link_to t("shared.header.flashcards"), decks_path %>
             </li>
             <li class="explore">
-              <%= link_to t("shared.header.explore"), explore_path %>
+              <%= link_to t("shared.header.weekly_iteration"), show_path("the-weekly-iteration") %>
             </li>
             <li class="discuss">
-              <%= link_to t("shared.header.discuss"), Forum.url %>
+              <%= link_to t("shared.header.forum"), Forum.url %>
             </li>
             <% if show_upgrade_to_annual_cta? %>
               <li class="annual">
