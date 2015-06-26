@@ -7,4 +7,8 @@ class Marker < ActiveRecord::Base
   def as_json(_options)
     super(only: [:anchor, :time])
   end
+
+  def to_s
+    "<#{video}>@#{time}s"
+  end
 end

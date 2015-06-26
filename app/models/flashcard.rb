@@ -30,4 +30,8 @@ class Flashcard < ActiveRecord::Base
   def search_visible?
     deck.published?
   end
+
+  def to_s
+    title
+  end
 end

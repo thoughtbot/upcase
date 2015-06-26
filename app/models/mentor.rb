@@ -26,6 +26,10 @@ class Mentor < ActiveRecord::Base
     active_mentees.count
   end
 
+  def to_s
+    "Mentor ##{id}"
+  end
+
   private
 
   def self.accepting_new_mentees

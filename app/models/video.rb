@@ -60,6 +60,10 @@ class Video < ActiveRecord::Base
     slug
   end
 
+  def to_s
+    name
+  end
+
   def part_of_trail?
     trail.present?
   end

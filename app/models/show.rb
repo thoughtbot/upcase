@@ -12,4 +12,8 @@ class Show < Product
   def latest_video
     videos.published.recently_published_first.first
   end
+
+  def to_s
+    name
+  end
 end

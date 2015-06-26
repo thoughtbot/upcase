@@ -33,6 +33,10 @@ class Repository < Product
     github_client.collaborator?(github_repository, user.github_username)
   end
 
+  def to_s
+    github_url
+  end
+
   private
 
   def github_client

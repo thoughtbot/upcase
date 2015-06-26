@@ -1,0 +1,7 @@
+<header class="header">
+  <h1 class="header-heading">Edit <%= @page.page_title %></h1>
+  <%= link_to "Show #{@page.resource}", [Administrate::NAMESPACE, @page.resource], class: "button" %>
+</header>
+
+<%= link_to "Edit title and summary", @page.resource.edit_url %>
+<%= render "form" %>

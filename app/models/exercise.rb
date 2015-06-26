@@ -9,4 +9,8 @@ class Exercise < ActiveRecord::Base
   def self.ordered
     order(:created_at)
   end
+
+  def to_s
+    name
+  end
 end

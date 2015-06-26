@@ -11,4 +11,8 @@ class Step < ActiveRecord::Base
   def name
     "#{completeable.class.model_name} - #{completeable.name}"
   end
+
+  def to_s
+    "#{trail} > #{completeable.name}"
+  end
 end
