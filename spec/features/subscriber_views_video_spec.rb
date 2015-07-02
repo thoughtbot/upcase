@@ -21,6 +21,18 @@ feature "subscriber views video trail" do
     end
   end
 
+  scenario "and can seek to a specific point in the video", js: true do
+    video = create(:video, wistia_id: "hello", notes: "# Hello\n\n## Topic")
+    marker = create(:marker, video: video, anchor: "topic")
+
+    visit video_path(video, as: create(:subscriber))
+    within "#topic" do
+      click_jump_to_topic_in_video_button
+    end
+
+    expect(current_url).to include("#" + marker.anchor)
+  end
+
   def first_video
     find(".exercise:first-of-type")
   end
@@ -39,6 +51,10 @@ feature "subscriber views video trail" do
 
   def trail_steps_list
     ".exercises-container"
+  end
+
+  def click_jump_to_topic_in_video_button
+    click_on I18n.t("videos.seek_buttons.jump-to-topic-in-video")
   end
 
   def create_video_trail

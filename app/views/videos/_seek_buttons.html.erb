@@ -1,0 +1,45 @@
+<div class="seek-button-template">
+  <button class="seek-marker">
+    <%= t(".jump-to-topic-in-video") %>
+  </button>
+</div>
+
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    $(function() {
+      var markers = $(".video-notes").data("markers");
+
+      var scrollPageToShowVideo = function() {
+        $(".wistia-wrapper").get(0).scrollIntoViewIfNeeded();
+      };
+
+      var setUrlHashToSectionAnchor = function(anchor) {
+        window.location.hash = anchor;
+      };
+
+      var bindClickToSeek = function(seekButton, marker) {
+        seekButton.on("click", function(event) {
+          wistiaEmbed.time(marker.time);
+          setUrlHashToSectionAnchor(marker.anchor);
+          scrollPageToShowVideo();
+          wistiaEmbed.play();
+        });
+      };
+
+      var headerForAnchorId = function(anchor) {
+        var specialCharacters = /(:|\.|\[|\]|,|'|\&)/g
+        var escapedAnchorString = anchor.replace(specialCharacters, "\\$1" );
+        return $("#" + escapedAnchorString);
+      }
+
+      var attachSeekButton = function(marker) {
+        var headerForMarker = headerForAnchorId(marker.anchor);
+        var seekButton = $(".seek-button-template button").clone();
+        bindClickToSeek(seekButton, marker);
+        headerForMarker.append(seekButton);
+      };
+
+      markers.forEach(attachSeekButton);
+    });
+  </script>
+<% end %>

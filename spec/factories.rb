@@ -508,4 +508,9 @@ FactoryGirl.define do
     flashcard
     user
   end
+
+  factory :marker do
+    anchor "configuration-options"
+    time 322
+  end
 end

@@ -39,6 +39,27 @@
   float: right;
 }
 
+.seek-button-template {
+  display: none;
+}
+
+.seek-marker {
+  background: $white;
+  border: 1px solid $upcase-blue;
+  color: $upcase-blue;
+  font-size: 9px;
+  margin-left: 12px;
+
+  @include dashboard-small-only {
+    display: none;
+  }
+
+  &:hover {
+    color: $white;
+    background-color: $upcase-blue;
+  }
+}
+
 .text-box {
   clear: left;
   margin-top: 1em;

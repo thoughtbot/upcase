@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150612142911) do
+ActiveRecord::Schema.define(version: 20150703154842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,16 @@ ActiveRecord::Schema.define(version: 20150612142911) do
 
   add_index "invitations", ["code"], name: "index_invitations_on_code", using: :btree
   add_index "invitations", ["team_id"], name: "index_invitations_on_team_id", using: :btree
+
+  create_table "markers", force: :cascade do |t|
+    t.string   "anchor",     null: false
+    t.integer  "time",       null: false
+    t.integer  "video_id",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "markers", ["video_id"], name: "index_markers_on_video_id", using: :btree
 
   create_table "mentors", force: :cascade do |t|
     t.integer "user_id",                                                              null: false
@@ -422,4 +432,5 @@ ActiveRecord::Schema.define(version: 20150612142911) do
 
   add_foreign_key "attempts", "flashcards", on_delete: :cascade
   add_foreign_key "attempts", "users", on_delete: :cascade
+  add_foreign_key "markers", "videos", on_delete: :cascade
 end

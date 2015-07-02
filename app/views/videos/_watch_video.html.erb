@@ -10,11 +10,13 @@
 
 <% if video.has_notes? %>
   <div class="text-box">
-    <section class='video-notes'>
+    <section class='video-notes' data-markers="<%= video.markers.to_json %>">
       <h3>Notes</h3>
       <%= format_markdown(video.notes) %>
     </section>
   </div>
 <% end %>
+
+<%= render "seek_buttons" %>
 
 <%= render "comments", video: video %>

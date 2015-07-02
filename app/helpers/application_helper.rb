@@ -24,7 +24,7 @@ module ApplicationHelper
   def format_markdown(markdown)
     if markdown.present?
       renderer = Redcarpet::Markdown.new(
-        Redcarpet::Render::HTML,
+        Redcarpet::Render::HTML.new(with_toc_data: true),
         autolink: true,
         tables: true,
         fenced_code_blocks: true

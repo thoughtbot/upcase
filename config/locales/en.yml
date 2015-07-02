@@ -86,9 +86,9 @@ en:
         subject: Welcome to Upcase! I'm your new mentor
   pages:
     welcome:
-      complete-welcome: "Dismiss this page (for now)"
+      complete-welcome: Dismiss this page (for now)
       headline: Read this to write better code.
-      post-welcome-message: "All content unlocked. Enjoy!"
+      post-welcome-message: All content unlocked. Enjoy!
   plans:
     forum: Private Discourse Forum
     mentoring: 1-1 Mentoring
@@ -116,11 +116,11 @@ en:
   shared:
     header:
       contact_your_mentor: Contact your mentor, %{mentor_name}
-      forum: Forum
-      weekly_iteration: Weekly Iteration
-      trails: Trails
       flashcards: Flashcards
+      forum: Forum
       help-link: Help
+      trails: Trails
+      weekly_iteration: Weekly Iteration
     subscription:
       name: Upcase
     subscriptions:
@@ -195,6 +195,8 @@ en:
       in-progress: In Progress
       next-up: Video
       unstarted: Video
+    seek_buttons:
+      jump-to-topic-in-video: Jump to Topic In Video
   watchables:
     preview:
       cta: This video is a preview. <a href="%{subscribe_url}">Subscribe to Upcase</a>

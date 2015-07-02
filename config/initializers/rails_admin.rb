@@ -164,12 +164,21 @@ RailsAdmin.config do |config|
         field :position
         field :published_on
         field :users
+        field :markers
       end
 
       group :wistia do
         field :wistia_id
         field :preview_wistia_id
       end
+    end
+  end
+
+  config.model Marker do
+    field :video
+    field :anchor
+    field :time do
+      label "Time (seconds)"
     end
   end
 end

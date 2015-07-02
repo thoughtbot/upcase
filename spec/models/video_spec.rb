@@ -3,6 +3,7 @@ require "rails_helper"
 describe Video do
   it { should belong_to(:watchable) }
   it { should have_many(:classifications) }
+  it { should have_many(:markers) }
   it { should have_many(:statuses).dependent(:destroy) }
   it { should have_many(:teachers).dependent(:destroy) }
   it { should have_many(:topics).through(:classifications) }
