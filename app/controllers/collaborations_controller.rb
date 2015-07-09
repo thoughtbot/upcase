@@ -3,6 +3,7 @@ class CollaborationsController < ApplicationController
     require_sign_in do
       require_access_to(:repositories) do
         add_collaborator
+        track_repo_access
       end
     end
   end
@@ -13,6 +14,13 @@ class CollaborationsController < ApplicationController
     repository = find_repository
     repository.add_collaborator(current_user)
     redirect_to repository
+  end
+
+  def track_repo_access
+    Analytics.new(current_user).track(
+      event: "Created Collaboration",
+      properties: { repository_name: find_repository.name }
+    )
   end
 
   def find_repository

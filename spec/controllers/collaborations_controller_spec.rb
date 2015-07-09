@@ -14,6 +14,20 @@ describe CollaborationsController do
           with(current_user)
         expect(controller).to redirect_to(repository)
       end
+
+      it "sends an event noting the user has become a collaborator " do
+        current_user = stub_user(repositories: true)
+        repository = stub_repository
+
+        sign_in_as current_user
+        post :create, repository_id: repository.to_param
+
+        expect(analytics).to(
+          have_tracked("Created Collaboration").
+          for_user(current_user).
+          with_properties(repository_name: repository.name)
+        )
+      end
     end
 
     context "as a user with a subscription but no access to repos" do
