@@ -42,13 +42,15 @@ describe Cancellation do
     it "cancels with Stripe" do
       cancellation = build_cancellation
       allow(Stripe::Customer).to receive(:retrieve).and_return(stripe_customer)
-      analytics_updater = double("AnalyticsUpdater", track_cancelled: true)
-      allow(Analytics).to receive(:new).and_return(analytics_updater)
+      analytics = stub_analytics
 
       cancellation.cancel_now
 
       expect(stripe_customer.subscriptions.first).to have_received(:delete)
-      expect(analytics_updater).to have_received(:track_cancelled)
+      expect(analytics).to(
+        have_received(:track).
+        with(event: "Cancelled", properties: { reason: "reason" })
+      )
     end
 
     it "retrieves the customer correctly" do
@@ -98,8 +100,7 @@ describe Cancellation do
     it "schedules a cancellation with Stripe" do
       cancellation = build_cancellation(subscription: subscription)
       allow(Stripe::Customer).to receive(:retrieve).and_return(stripe_customer)
-      analytics_updater = double("AnalyticsUpdater", track_cancelled: true)
-      allow(Analytics).to receive(:new).and_return(analytics_updater)
+      analytics = stub_analytics
 
       cancellation.schedule
 
@@ -108,17 +109,16 @@ describe Cancellation do
         to have_received(:delete).with(at_period_end: true)
       expect(subscription.scheduled_for_cancellation_on).
         to eq Time.zone.at(1361234235).to_date
-      expect(analytics_updater).
-        to have_received(:track_cancelled).with("reason")
+      expect(analytics).to(
+        have_received(:track).
+        with(event: "Cancelled", properties: { reason: "reason" })
+      )
     end
 
     it "returns true when valid" do
       cancellation = build_cancellation
       allow(Stripe::Customer).to receive(:retrieve).
         and_return(stripe_customer)
-      analytics_updater = double("AnalyticsUpdater", track_cancelled: true)
-      allow(Analytics).to receive(:new).with(anything).
-        and_return(analytics_updater)
 
       expect(cancellation.schedule).to eq true
     end
@@ -126,8 +126,6 @@ describe Cancellation do
     it "returns false when invalid" do
       cancellation = build_cancellation(reason: nil)
       allow(Stripe::Customer).to receive(:retrieve).and_return(stripe_customer)
-      analytics_updater = double("AnalyticsUpdater", track_cancelled: true)
-      allow(Analytics).to receive(:new).and_return(analytics_updater)
 
       expect(cancellation.schedule).to eq false
     end
