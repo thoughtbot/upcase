@@ -1,9 +1,5 @@
 <% content_for :page_title, @video.name.html_safe %>
 
-<% content_for :additional_header_links do %>
-  <li class="all-videos"><%= link_to 'All Videos', @video.watchable %></li>
-<% end %>
-
 <% content_for :subject_block do %>
   <h1><%= @video.name %></h1>
   <h2 class="tagline">
