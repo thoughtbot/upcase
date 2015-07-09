@@ -13,7 +13,7 @@ feature 'Visitor signs up for a subscription' do
     fill_out_account_creation_form
     fill_out_credit_card_form_with_valid_credit_card
 
-    expect(current_path).to be_the_practice_page
+    expect(current_path).to be_the_welcome_page
     expect_to_see_checkout_success_flash_for(@plan.name)
   end
 
@@ -49,7 +49,7 @@ feature 'Visitor signs up for a subscription' do
     fill_out_account_creation_form
     fill_out_subscription_form_with_valid_credit_card
 
-    expect(current_path).to be_the_practice_page
+    expect(current_path).to be_the_welcome_page
     expect_to_see_checkout_success_flash_for(@plan.name)
   end
 
@@ -89,7 +89,7 @@ feature 'Visitor signs up for a subscription' do
 
     fill_out_credit_card_form_with_valid_credit_card
 
-    expect(current_path).to be_the_practice_page
+    expect(current_path).to be_the_welcome_page
     expect_to_see_checkout_success_flash_for(@plan.name)
   end
 

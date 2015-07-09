@@ -85,7 +85,7 @@ class CheckoutsController < ApplicationController
     if @checkout.plan_includes_team?
       edit_team_path
     else
-      practice_path
+      onboarding_policy.root_path
     end
   end
 
