@@ -20,6 +20,7 @@ class @WistiaHelper
     window.wistiaEmbed = Wistia.embed hashedId,
       controlsVisibleOnLoad: true
       videoFoam: true
+      playerPreference: "html5"
     wistiaEmbed.bind "play", ->
       unless wistiaEmbed.started
         $.post "/api/v1/videos/#{hashedId}/status",
