@@ -27,7 +27,7 @@
       };
 
       var headerForAnchorId = function(anchor) {
-        var specialCharacters = /(:|\.|\[|\]|,|'|\&)/g
+        var specialCharacters = /(\W)/g;
         var escapedAnchorString = anchor.replace(specialCharacters, "\\$1" );
         return $("#" + escapedAnchorString);
       }
