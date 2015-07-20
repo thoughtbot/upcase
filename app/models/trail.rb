@@ -1,6 +1,9 @@
 class Trail < ActiveRecord::Base
   extend FriendlyId
 
+  include PgSearch
+  multisearchable against: [:name, :description], if: :published?
+
   validates :name, :description, :topic, presence: true
 
   belongs_to :topic

@@ -1,0 +1,46 @@
+.searches {
+  .searches-form {
+    position: relative;
+  }
+
+  .no-results {
+    margin-top: 100px;
+  }
+
+  .searches-form input[type="submit"] {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    bottom: 0;
+    padding: 5px 15px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .searches-form input[type="text"] {
+    box-sizing: border-box;
+    display: block;
+    margin: 0;
+    position: relative;
+    width: 100%;
+  }
+
+  .search-legend {
+    color: #c0c0c0;
+    margin: 0 auto 2em;
+    max-width: 23em;
+    text-align: center;
+  }
+
+  .search-icon {
+    margin-right: 1em;
+  }
+
+  .search-result .source {
+    line-height: 17px;
+  }
+
+  .search-result .source a {
+    font-weight: 400;
+  }
+}

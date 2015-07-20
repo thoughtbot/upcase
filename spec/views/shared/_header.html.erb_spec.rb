@@ -16,6 +16,24 @@ describe "shared/_header.html.erb" do
     CSS
   end
 
+  describe "search" do
+    context "for admin users" do
+      it "includes a search link" do
+        render(signed_in: true, current_user_is_admin: true)
+
+        expect(rendered).to have_search_link
+      end
+    end
+
+    context "for non-admin users" do
+      it "does not include a search link" do
+        render(signed_in: true, current_user_is_admin: false)
+
+        expect(rendered).not_to have_search_link
+      end
+    end
+  end
+
   context "when user is the subscription owner" do
     it "shows an annual upsell link" do
       render(
@@ -102,9 +120,14 @@ describe "shared/_header.html.erb" do
     have_link(I18n.t("shared.header.practice"), practice_path)
   end
 
+  def have_search_link
+    have_link(I18n.t("shared.header.search"), practice_path)
+  end
+
   def render(
     current_user_email: "user@example.com",
     current_user_has_active_subscription: true,
+    current_user_is_admin: false,
     current_user_is_eligible_for_annual_upgrade: true,
     current_user_is_subscription_owner: true,
     masquerading: false,
@@ -134,6 +157,7 @@ describe "shared/_header.html.erb" do
       current_user: double(
         "user",
         email: current_user_email,
+        admin?: current_user_is_admin,
         has_access_to?: false
       )
     )

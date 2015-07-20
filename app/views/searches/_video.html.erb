@@ -1,0 +1,12 @@
+<li class="search-result">
+  <%= fa_icon "film", title: "Video" %>
+  <p class="title">
+    <%= link_to searchable.name, searchable %>
+  </p>
+  <p class="source">
+    from <%= link_to searchable.watchable.name, searchable.watchable %>
+  </p>
+  <p>
+    <%= cleaned_search_excerpt(highlight) %>
+  </p>
+</li>

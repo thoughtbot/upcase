@@ -251,6 +251,10 @@ FactoryGirl.define do
           plan { create(:plan, :includes_mentor) }
         end
       end
+
+      trait :admin do
+        admin true
+      end
     end
 
     trait :with_github do

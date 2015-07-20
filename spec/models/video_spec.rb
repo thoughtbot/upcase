@@ -167,7 +167,7 @@ describe Video do
       it "returns true" do
         video = create(:video, :with_trail)
 
-        expect(video).to be_part_of_trail
+        expect(video.reload).to be_part_of_trail
       end
     end
 
@@ -176,6 +176,35 @@ describe Video do
         video = build_stubbed(:video)
 
         expect(video).not_to be_part_of_trail
+      end
+    end
+  end
+
+  describe "#search_visible?" do
+    context "it is not part of a trail" do
+      it "returns true" do
+        video = create(:video)
+
+        expect(video).to be_search_visible
+      end
+    end
+
+    context "it is part of a published trail" do
+      it "returns true" do
+        trail = build_stubbed(:trail, published: true)
+        video = create(:video, watchable: trail)
+
+        expect(video).to be_search_visible
+      end
+    end
+
+    context "it is part of an unpublished trail" do
+      it "returns false" do
+        trail = create(:trail, published: false)
+        video = create(:video)
+        create(:step, trail: trail, completeable: video)
+
+        expect(video.reload).not_to be_search_visible
       end
     end
   end

@@ -1,6 +1,9 @@
 class Video < ActiveRecord::Base
   extend FriendlyId
 
+  include PgSearch
+  multisearchable against: [:name, :summary, :notes], if: :search_visible?
+
   belongs_to :watchable, polymorphic: true
   has_many :classifications, as: :classifiable
   has_many :markers, dependent: :destroy
@@ -59,5 +62,13 @@ class Video < ActiveRecord::Base
 
   def part_of_trail?
     trail.present?
+  end
+
+  def search_visible?
+    if part_of_trail?
+      trail.published?
+    else
+      true
+    end
   end
 end

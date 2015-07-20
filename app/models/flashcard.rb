@@ -1,4 +1,7 @@
 class Flashcard < ActiveRecord::Base
+  include PgSearch
+  multisearchable against: [:title, :prompt, :answer], if: :search_visible?
+
   validates :title, presence: true
   validates :prompt, presence: true
   validates :answer, presence: true
@@ -22,5 +25,9 @@ class Flashcard < ActiveRecord::Base
 
   def saved_for_review?(user)
     most_recent_attempt_for(user).low_confidence?
+  end
+
+  def search_visible?
+    deck.published?
   end
 end

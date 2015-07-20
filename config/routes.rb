@@ -9,16 +9,17 @@ end
 Upcase::Application.routes.draw do
   use_doorkeeper
 
+  draw :redirects
   draw :admin
   draw :api
   draw :clearance
+  draw :decks
   draw :exercises
   draw :pages
   draw :plan
   draw :podcasts
-  draw :decks
-  draw :redirects
   draw :repositories
+  draw :search
   draw :shows
   draw :stripe
   draw :subscriber

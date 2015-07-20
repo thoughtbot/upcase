@@ -1,0 +1,15 @@
+.search-result {
+  text-decoration: none;
+
+  .title {
+    display: inline;
+    font-size: 1.2em;
+    margin-left: 0.5em;
+  }
+
+  .highlight {
+    border: 1px solid $search-snippet-border;
+    border-radius: 3px;
+    padding: 1px 4px;
+  }
+}

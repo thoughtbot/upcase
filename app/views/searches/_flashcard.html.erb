@@ -1,0 +1,12 @@
+<li class="search-result">
+  <%= fa_icon "files-o", title: "Flashcard" %>
+  <p class="title">
+    <%= review_link(searchable) %>
+  </p>
+  <p class="source">
+    from <%= link_to searchable.deck.title, deck_results_path(searchable.deck) %>
+  </p>
+  <p>
+    <%= cleaned_search_excerpt(highlight.html_safe) %>
+  </p>
+</li>

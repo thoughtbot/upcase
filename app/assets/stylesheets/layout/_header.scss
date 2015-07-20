@@ -1,6 +1,8 @@
 #header-wrapper {
   @include linear-gradient($upcase-blue-1, $upcase-blue-2);
-  margin: 0 auto 40px;
+  @include dashboard-medium {
+    margin: 0 auto 40px;
+  }
   width: 100%;
   flex: none;
 

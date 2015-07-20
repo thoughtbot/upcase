@@ -1,0 +1,9 @@
+<li class="search-result">
+  <%= fa_icon "road", title: "Trail" %>
+  <p class="title">
+    <%= link_to searchable.name, searchable %>
+  </p>
+  <p>
+    <%= cleaned_search_excerpt(highlight) %>
+  </p>
+</li>

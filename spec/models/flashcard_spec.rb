@@ -100,4 +100,24 @@ describe Flashcard do
       end
     end
   end
+
+  describe "#search_visible?" do
+    context "if the deck is published" do
+      it "returns true" do
+        deck = build_stubbed(:deck, published: true)
+        flashcard = create(:flashcard, deck: deck)
+
+        expect(flashcard).to be_search_visible
+      end
+    end
+
+    context "if the deck is not published" do
+      it "returns false" do
+        deck = build_stubbed(:deck, published: false)
+        flashcard = create(:flashcard, deck: deck)
+
+        expect(flashcard).not_to be_search_visible
+      end
+    end
+  end
 end

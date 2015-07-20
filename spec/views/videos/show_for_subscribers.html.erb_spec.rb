@@ -5,7 +5,7 @@ describe "videos/show_for_subscribers" do
     it "displays the progress bar" do
       video = create(:video, :with_trail)
 
-      render_video video
+      render_video video.reload
 
       expect(rendered).to have_progress_bar
     end

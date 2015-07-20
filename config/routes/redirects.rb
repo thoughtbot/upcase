@@ -9,6 +9,7 @@ get(
     "/getting-started-with-ios-development?utm_source=podcast"
   )
 )
+get "/videos/vim-for-rails-developers" => redirect("https://www.youtube.com/watch?v=9J2OjH8Ao_A")
 get "/humans-present/oss" => redirect( "https://www.youtube.com/watch?v=VMBhumlUP-A")
 get "/ios-on-rails" => redirect("https://gumroad.com/l/ios-on-rails")
 get "/ios-on-rails-beta" => redirect("https://gumroad.com/l/ios-on-rails")

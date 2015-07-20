@@ -1,0 +1,28 @@
+<%= form_tag search_path, class: "searches-form #{'no-results' if @results.none?}" do |form| %>
+  <fieldset>
+    <%= text_field_tag :query, @query %>
+    <%= submit_tag "Search" %>
+  </fieldset>
+<% end %>
+
+<% if @results.any? %>
+  <p class="search-legend">
+    <span class="search-icon"><%= fa_icon "film", text: "Video", title: "Video" %></span>
+    <span class="search-icon"><%= fa_icon "road", text: "Trail", title: "Trail" %></span>
+    <span class="search-icon"><%= fa_icon "files-o", text: "Flashcard", title: "Flashcard" %></span>
+  </p>
+
+  <span class="divider">
+    <h4 class="text">Search Results:</h4>
+  </span>
+
+  <ul>
+    <% @results.each do |result, highlight| %>
+      <%=
+        render "searches/#{result.searchable_type.downcase}",
+        searchable: result.searchable, highlight: highlight
+      %>
+      <hr />
+    <% end %>
+  </ul>
+<% end %>

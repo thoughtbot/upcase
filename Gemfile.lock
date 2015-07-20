@@ -131,7 +131,7 @@ GEM
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     flutie (2.0.0)
-    font-awesome-rails (4.2.0.0)
+    font-awesome-rails (4.4.0.0)
       railties (>= 3.2, < 5.0)
     font_assets (0.1.11)
       rack
@@ -207,6 +207,10 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     pg (0.17.1)
+    pg_search (1.0.4)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -407,6 +411,7 @@ DEPENDENCIES
   omniauth-github (~> 1.1.2)
   paperclip (~> 4.2.0)
   pg
+  pg_search
   pry-rails
   quiet_assets
   rack-rewrite (~> 1.5.1)
