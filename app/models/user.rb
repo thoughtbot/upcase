@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   include Clearance::User
 
-  has_many :completions
   has_many :subscriptions, dependent: :destroy
+  has_many :statuses, dependent: :destroy
   has_many :attempts, dependent: :destroy
   belongs_to :mentor
   belongs_to :team

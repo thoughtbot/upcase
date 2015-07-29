@@ -25,7 +25,8 @@ class Practice
 
   def trails
     Trail.
-      most_recent_published.
+      published.
+      by_topic.
       map { |trail| TrailWithProgress.new(trail, user: user) }
   end
 

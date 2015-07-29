@@ -6,6 +6,7 @@ describe User do
     it { should belong_to(:team) }
     it { should have_many(:subscriptions).dependent(:destroy) }
     it { should have_many(:attempts).dependent(:destroy) }
+    it { should have_many(:statuses).dependent(:destroy) }
   end
 
   context "validations" do

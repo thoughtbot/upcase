@@ -43,6 +43,18 @@ describe Trail do
     end
   end
 
+  describe ".by_topic" do
+    it "returns trails sorted by their topic's name" do
+      create(:trail, topic: create(:topic, name: "A"))
+      create(:trail, topic: create(:topic, name: "C"))
+      create(:trail, topic: create(:topic, name: "B"))
+
+      result = Trail.by_topic.map(&:topic_name)
+
+      expect(result).to eq %w(A B C)
+    end
+  end
+
   describe ".completed_for" do
     it "shows completed trails for a user" do
       _incomplete = create(:trail)
@@ -260,6 +272,15 @@ describe Trail do
 
         expect(trail).not_to be_included_in_plan(plan)
       end
+    end
+  end
+
+  describe "#topic_name" do
+    it "delegates to its topic" do
+      topic = Topic.new(name: "Ruby")
+      trail = Trail.new(topic: topic)
+
+      expect(trail.topic_name).to eq("Ruby")
     end
   end
 

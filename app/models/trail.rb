@@ -24,6 +24,16 @@ class Trail < ActiveRecord::Base
     where(published: true)
   end
 
+  def self.by_topic
+    includes(:topic).order("topics.name")
+  end
+
+  def self.completed_for(user)
+    all.
+      map { |trail| TrailWithProgress.new(trail, user: user) }.
+      select(&:complete?)
+  end
+
   def to_s
     name
   end
@@ -52,12 +62,6 @@ class Trail < ActiveRecord::Base
     TrailWithProgress.new(self, user: user).update_status
   end
 
-  def self.completed_for(user)
-    all.
-      map { |trail| TrailWithProgress.new(trail, user: user) }.
-      select(&:complete?)
-  end
-
   def self.most_recent_published
     order(created_at: :desc).published
   end
@@ -68,5 +72,9 @@ class Trail < ActiveRecord::Base
 
   def included_in_plan?(plan)
     plan.has_feature?(:trails)
+  end
+
+  def topic_name
+    topic.name
   end
 end
