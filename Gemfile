@@ -59,8 +59,8 @@ end
 
 group :production, :staging do
   gem "font_assets"
-  gem "newrelic_rpm", "~> 3.8.1.221"
   gem "rails_12factor"
+  gem "skylight"
 end
 
 group :test do
