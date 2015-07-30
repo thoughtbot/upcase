@@ -1,5 +1,11 @@
 <div class="step <%= video.state.parameterize %>-exercise">
-  <%= render "trails/video_dot", video: video %>
+  <% if video.can_be_accessed? %>
+    <%= completeable_link video_path(video), title: video.name do %>
+      <div class="dot"></div>
+    <% end %>
+  <% else %>
+    <div class="dot"></div>
+  <% end %>
 
   <div class="tooltip">
     <figure class="exercise card <%= video.state.parameterize %>-exercise">

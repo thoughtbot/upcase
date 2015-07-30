@@ -1,5 +1,11 @@
 <div class="step <%= exercise.state.parameterize %>-exercise">
-  <%= render "trails/exercise_dot", exercise: exercise %>
+  <% if exercise.can_be_accessed? %>
+    <%= completeable_link exercise.url, title: exercise.name do %>
+      <div class="dot"></div>
+    <% end %>
+  <% else %>
+    <div class="dot"></div>
+  <% end %>
 
   <div class="tooltip">
     <figure class="exercise card <%= exercise.state.parameterize %>-exercise">
