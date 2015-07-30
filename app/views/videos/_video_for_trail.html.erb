@@ -10,10 +10,6 @@
         <h4><%= video.name %></h4>
         <p><%= video.summary %></p>
       <% end %>
-
-      <% unless current_user_has_access_to?(:trails) %>
-        <%= render "products/locked" %>
-      <% end %>
     </figure>
   </div>
 </div>
