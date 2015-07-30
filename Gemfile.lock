@@ -70,6 +70,9 @@ GEM
       sass (~> 3.2)
       thor
     builder (3.2.2)
+    bullet (4.14.7)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.9.0)
     capybara (2.4.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -352,6 +355,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uniform_notifier (1.9.0)
     validates_email_format_of (1.6.1)
       i18n
     webmock (1.20.2)
@@ -370,6 +374,7 @@ DEPENDENCIES
   analytics-ruby (~> 2.0.0)
   aws-sdk
   bourbon (~> 3.2.1)
+  bullet
   capybara
   capybara-webkit
   capybara_discoball!

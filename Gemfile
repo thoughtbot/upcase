@@ -47,6 +47,7 @@ gem "validates_email_format_of"
 gem "vanity", github: "assaf/vanity"
 
 group :development do
+  gem "bullet"
   gem "quiet_assets"
   gem "spring"
   gem "spring-commands-rspec"

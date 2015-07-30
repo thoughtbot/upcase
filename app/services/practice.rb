@@ -27,6 +27,7 @@ class Practice
     Trail.
       published.
       by_topic.
+      includes(:steps).
       map { |trail| TrailWithProgress.new(trail, user: user) }
   end
 
