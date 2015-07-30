@@ -66,7 +66,7 @@ pre code {
 }
 
 code {
-  background-color: darken($off-white, 7%);
+  background-color: $code-block-brackground;
   border-radius: 3px;
   font-family: monaco;
   font-size: $font-size-smallest;
@@ -79,6 +79,10 @@ code {
   .cursor {
     background: darken($off-white, 25%);
   }
+}
+
+:not(pre) code {
+  background-color: $inline-code-background;
 }
 
 // negate brs inserted into posts
