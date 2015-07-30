@@ -1,9 +1,5 @@
 <div class="step <%= exercise.state.parameterize %>-exercise">
-  <% if exercise.can_be_accessed? %>
-    <%= completeable_link exercise.url, title: exercise.name do %>
-      <div class="dot"></div>
-    <% end %>
-  <% else %>
+  <%= completeable_link exercise.url, title: exercise.name do %>
     <div class="dot"></div>
   <% end %>
 
