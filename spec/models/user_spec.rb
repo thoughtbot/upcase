@@ -4,9 +4,10 @@ describe User do
   context "associations" do
     it { should belong_to(:mentor) }
     it { should belong_to(:team) }
-    it { should have_many(:subscriptions).dependent(:destroy) }
     it { should have_many(:attempts).dependent(:destroy) }
+    it { should have_many(:collaborations).dependent(:destroy) }
     it { should have_many(:statuses).dependent(:destroy) }
+    it { should have_many(:subscriptions).dependent(:destroy) }
   end
 
   context "validations" do

@@ -92,7 +92,7 @@ describe StripeSubscription do
 
       expect(result).to be false
       expect(checkout.errors[:base]).to include(
-        "There was a problem processing your credit card, your card was declined"
+        I18n.t("checkout.problem_with_card", message: "your card was declined")
       )
     end
   end

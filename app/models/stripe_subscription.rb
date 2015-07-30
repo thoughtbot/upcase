@@ -19,8 +19,7 @@ class StripeSubscription
     true
   rescue Stripe::StripeError => exception
     @checkout.errors[:base] <<
-      'There was a problem processing your credit card, ' +
-        exception.message.downcase
+      I18n.t("checkout.problem_with_card", message: exception.message.downcase)
     false
   end
 

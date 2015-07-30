@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   include Clearance::User
 
-  has_many :subscriptions, dependent: :destroy
-  has_many :statuses, dependent: :destroy
   has_many :attempts, dependent: :destroy
+  has_many :collaborations, dependent: :destroy
+  has_many :statuses, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
   belongs_to :mentor
   belongs_to :team
 
