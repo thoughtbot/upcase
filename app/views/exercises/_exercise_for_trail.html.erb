@@ -9,13 +9,11 @@
 
   <div class="tooltip">
     <figure class="exercise card <%= exercise.state.parameterize %>-exercise">
-      <%= completeable_link exercise.url, title: exercise.name do %>
-        <h5>
-          <%= t(exercise.state.parameterize, scope: [:exercises, :statuses]) %>
-        </h5>
-        <h4><%= exercise.name %></h4>
-        <p><%= exercise.summary %></p>
-      <% end %>
+      <h5>
+        <%= t(exercise.state.parameterize, scope: [:exercises, :statuses]) %>
+      </h5>
+      <h4><%= exercise.name %></h4>
+      <p><%= exercise.summary %></p>
     </figure>
   </div>
 </div>
