@@ -22,6 +22,7 @@ $exercise-color: #9cc0ed;
 $repository-color: #8D70C3;
 $video-tutorial-color: #FF633C;
 $weekly-iteration-color: #9C313E;
+$hero-green: #4dd1aa;
 
 $light-yellow: #FFF5C2;
 $light-brown: #EDDAA5;
@@ -79,3 +80,9 @@ $not-started-dot-color: #D8D8D8;
 $flashcard-transition: all 0.25s $ease-in-quad;
 
 $z-flashcard-deck: -1;
+$z-header: 20;
+$z-hero: 10;
+$z-headhesive: 30;
+$z-table-of-contents: $z-headhesive + 1;
+
+$unicode-down-triangle: "\25BE";

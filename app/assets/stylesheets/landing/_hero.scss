@@ -1,5 +1,3 @@
-$hero-green: #4dd1aa;
-
 .hero {
   @include background-image(
     linear-gradient(180deg, rgba($upcase-blue-1, 0.888), rgba($upcase-blue-2, 0.888)),
@@ -12,7 +10,7 @@ $hero-green: #4dd1aa;
   padding: 6em 2em 3em;
   position: relative;
   text-align: center;
-  z-index: 10;
+  z-index: $z-hero;
 
   @include marketing-fullsize {
     padding-top: 6em;

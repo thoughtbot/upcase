@@ -1,0 +1,73 @@
+.has-table-of-contents {
+  overflow: hidden;
+}
+
+.table-of-contents {
+  @include position(fixed, 3.75rem 0px 0px 0px);
+  background-color: $white;
+  display: none;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
+  padding: 2em;
+  z-index: $z-table-of-contents;
+
+  &.slide-down {
+    @include animation(reveal-answer 0.25s ease);
+    @include animation-fill-mode(both);
+    display: block;
+  }
+}
+
+.table-of-contents-container {
+  @include outer-container;
+  padding: 2em 0;
+  position: relative;
+
+  ul {
+    margin-bottom: 3em;
+    padding-left: 4em;
+    position: relative;
+
+    @include marketing-small {
+      @include omega(2n);
+      @include span-columns(6);
+    }
+
+    @include marketing-fullsize {
+      @include omega-reset(2n);
+      @include omega(3n);
+      @include span-columns(4);
+    }
+  }
+
+  img {
+    @include position(absolute, -0.5em 0 0 0px);
+    @include size(3em);
+  }
+}
+
+.table-of-contents-close {
+  @include position(absolute, 0px 0px 0 0);
+  color: $gray-3;
+  font-size: 2em;
+
+  &:hover,
+  &:focus {
+    color: $upcase-green;
+  }
+}
+
+.table-of-contents-toggle {
+  &::after {
+    @include transition;
+    content: $unicode-down-triangle;
+    display: inline-block;
+    margin-left: 6px;
+    position: relative;
+  }
+
+  &.is-open::after {
+    @include transform(rotate(180deg));
+    top: 2px;
+  }
+}

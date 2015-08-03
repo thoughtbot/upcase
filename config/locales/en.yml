@@ -117,6 +117,7 @@ en:
   shared:
     header:
       contact_your_mentor: Contact your mentor, %{mentor_name}
+      explore: Explore
       flashcards: Flashcards
       forum: Forum
       help-link: Help

@@ -10,16 +10,13 @@
 //= require autoresize
 //= require wistia_helper
 //= require headhesive.min.js
+//= require header-setup
 //= require fastclick
 
 $(function() {
   hljs.initHighlightingOnLoad();
 
   $('textarea').autosize();
-
-  if ($('.landing #header-wrapper').length) {
-    var header = new Headhesive('.landing #header-wrapper', { offset: 500 });
-  }
 
   FastClick.attach(document.body);
 });

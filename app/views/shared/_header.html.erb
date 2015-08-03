@@ -1,4 +1,6 @@
-<section id="header-wrapper" class="<%= "subscriber" if current_user_has_active_subscription? %>">
+<section id="header-wrapper"
+  class="<%= "subscriber" if current_user_has_active_subscription? %>"
+  data-role="header">
   <div class="header-container">
     <h1 class="small-logo">
       <%= link_to root_path do %>
@@ -47,6 +49,10 @@
           </li>
           <%= render "shared/masquerade_link" if masquerading? %>
         <% else %>
+          <li>
+            <%= link_to t("shared.header.explore"), '#', class: "table-of-contents-toggle",
+              data: { role: "table-of-contents-toggle" } %>
+          </li>
           <li class="view-plans">
             <%= link_to t("subscriptions.join_cta"), new_subscription_path %>
           </li>
@@ -56,3 +62,5 @@
     </nav>
   </div>
 </section>
+
+<%= render "shared/table_of_contents" %>

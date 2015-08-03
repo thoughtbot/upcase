@@ -1,6 +1,6 @@
 .landing #header-wrapper {
   margin-bottom: 0;
-  z-index: 20;
+  z-index: $z-header;
 
   @include marketing-fullsize {
     padding: 0 2em;
@@ -38,7 +38,7 @@
     @include position(fixed, 0em 0em 0 0em);
     @include transform(translateY(-100%));
     @include transition(transform 0.2s);
-    z-index: 30;
+    z-index: $z-headhesive;
 
     @include dashboard-small-only {
       display: none;
