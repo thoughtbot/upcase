@@ -21,15 +21,15 @@
                 class: "table-of-contents-toggle",
                 data: { role: "table-of-contents-toggle" } %>
             </li>
-            <li class="view-plans">
-              <%= link_to t("subscriptions.join_cta"), "#price" %>
-            </li>
             <li>
               <% if signed_in? %>
                 <%= link_to 'Account', my_account_path %>
               <% else %>
                 <%= link_to 'Sign In', sign_in_path %>
               <% end %>
+            </li>
+            <li class="header-cta">
+              <%= link_to t("subscriptions.join_cta"), "#price", class: "header-cta-link" %>
             </li>
           </ul>
         </nav>

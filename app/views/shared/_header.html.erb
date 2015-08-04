@@ -1,5 +1,5 @@
 <section id="header-wrapper"
-  class="<%= "subscriber" if current_user_has_active_subscription? %>"
+  class="without-hero <%= "subscriber" if current_user_has_active_subscription? %>"
   data-role="header">
   <div class="header-container">
     <h1 class="small-logo">
@@ -53,10 +53,10 @@
             <%= link_to t("shared.header.explore"), '#', class: "table-of-contents-toggle",
               data: { role: "table-of-contents-toggle" } %>
           </li>
-          <li class="view-plans">
-            <%= link_to t("subscriptions.join_cta"), new_subscription_path %>
-          </li>
           <li><%= link_to "Sign in", sign_in_path %></li>
+          <li class="header-cta">
+            <%= link_to t("subscriptions.join_cta"), new_subscription_path, class: "header-cta-link" %>
+          </li>
         <% end %>
       </ul>
     </nav>

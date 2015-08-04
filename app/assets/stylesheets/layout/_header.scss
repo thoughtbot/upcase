@@ -3,6 +3,30 @@
   margin: 0 auto 40px;
   width: 100%;
   flex: none;
+
+  &.headhesive--stick,
+  &.without-hero {
+    .header-cta {
+      padding: $navigation-cta-offset;
+
+      &:hover {
+        background-color: inherit;
+      }
+    }
+
+    .header-cta-link {
+      background-color: $hero-green;
+      border-radius: 3px;
+      height: $navigation-height - ($navigation-cta-offset * 2);
+      line-height: $navigation-height - ($navigation-cta-offset * 2);
+      padding: 0 1rem;
+
+      &:hover,
+      &:focus {
+        background-color: lighten($hero-green, 5%);
+      }
+    }
+  }
 }
 
 .header-container {
@@ -137,6 +161,7 @@
 
     li a {
       border-left: 1px solid darken($upcase-blue, 5);
+      border-right: 1px solid darken($upcase-blue, 5);
       color: white;
       float: left;
       font-family: $sans-serif;
