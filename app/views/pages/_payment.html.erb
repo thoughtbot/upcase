@@ -1,0 +1,40 @@
+Oh boy, it's time to give us money!
+
+<script src="https://checkout.stripe.com/checkout.js"></script>
+
+<button id="customButton">Pay with credit card</button>
+
+<% content_for :javascript do %>
+  <script>
+    var submitToken = function(token) {
+      $("#stripe_token").val(token.id);
+      $(".payment-form").submit();
+    };
+
+    var handler = StripeCheckout.configure({
+      key: 'pk_IUggbBONd079p5jCloGEijOFRBDnq',
+      image: 'https://s3.amazonaws.com/stripe-uploads/ZZmGCK8MYKr0FHOuop7OzJe7Spmxk7nrmerchant-icon-1415719897983-twitter-icon-2-2.png',
+      token: submitToken
+    });
+
+    $('#customButton').on('click', function(e) {
+      handler.open({
+        name: 'Upcase',
+        description: 'Monthly Subscription',
+        amount: <%= Plan.popular.price_in_dollars * 100 %>,
+        email: "<%= current_user.email %>",
+        allowRememberMe: false,
+        panelLabel: "Subscribe for {{amount}}"
+      });
+      e.preventDefault();
+    });
+
+    $(window).on('popstate', function() {
+      handler.close();
+    });
+  </script>
+<% end %>
+
+<%= form_tag signups_path, class: "payment-form" do %>
+  <%= hidden_field_tag "stripe_token" %>
+<% end %>

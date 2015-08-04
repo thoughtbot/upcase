@@ -48,7 +48,7 @@ feature "User creates a subscription" do
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
     expect(current_path).to be_the_welcome_page
-    expect_to_see_checkout_success_flash_for(@plan.name)
+    expect_to_see_checkout_success_flash
     expect(FakeStripe.last_coupon_used).to eq "5OFF"
   end
 
@@ -63,7 +63,7 @@ feature "User creates a subscription" do
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
-    expect_to_see_checkout_success_flash_for(@plan.name)
+    expect_to_see_checkout_success_flash
     expect(FakeStripe.last_coupon_used).to eq "THREEFREE"
   end
 
@@ -79,7 +79,7 @@ feature "User creates a subscription" do
 
     fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
 
-    expect_to_see_checkout_success_flash_for(@plan.name)
+    expect_to_see_checkout_success_flash
     expect(current_path).to be_the_welcome_page
     expect(Checkout.last.stripe_coupon_id).to eq "50OFF"
     expect(FakeStripe.last_coupon_used).to eq "50OFF"

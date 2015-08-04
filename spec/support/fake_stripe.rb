@@ -98,12 +98,19 @@ class FakeStripe < Sinatra::Base
 
   post "/v1/customers" do
     @@last_customer_email = params[:email]
-    @@last_token = params[:card]
+    @@last_token = params[:source]
     content_type :json
 
     if failure
       status 402
-      { type: "card_error", message: "card declined" }.to_json
+      {
+        error: {
+          message: "Your credit card was declined",
+          type: "card_error",
+          param: "number",
+          code: "incorrect_number",
+        },
+      }.to_json
     else
       {
         object: "customer",

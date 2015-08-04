@@ -6,7 +6,7 @@ feature 'Visitor can purchase a subscription for their team' do
     fill_out_account_creation_form email: 'user@fabtabulous.com'
     fill_out_credit_card_form_with_valid_credit_card
 
-    expect_to_see_checkout_success_flash_for(team_plan.name)
+    expect_to_see_checkout_success_flash
 
     my_account_link.click
 

@@ -76,7 +76,7 @@ class CheckoutsController < ApplicationController
 
     redirect_to(
       success_url,
-      notice: t("checkout.flashes.success", name: @checkout.plan_name),
+      notice: t("checkout.flashes.success"),
       flash: { purchase_amount: @checkout.price }
     )
   end

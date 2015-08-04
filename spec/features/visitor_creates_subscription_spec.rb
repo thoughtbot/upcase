@@ -14,7 +14,7 @@ feature 'Visitor signs up for a subscription' do
     fill_out_credit_card_form_with_valid_credit_card
 
     expect(current_path).to be_the_welcome_page
-    expect_to_see_checkout_success_flash_for(@plan.name)
+    expect_to_see_checkout_success_flash
   end
 
   scenario "Visitor signs in with email and password while checking out" do
@@ -50,7 +50,7 @@ feature 'Visitor signs up for a subscription' do
     fill_out_subscription_form_with_valid_credit_card
 
     expect(current_path).to be_the_welcome_page
-    expect_to_see_checkout_success_flash_for(@plan.name)
+    expect_to_see_checkout_success_flash
   end
 
   scenario "without specifying a GitHub username" do
@@ -90,7 +90,7 @@ feature 'Visitor signs up for a subscription' do
     fill_out_credit_card_form_with_valid_credit_card
 
     expect(current_path).to be_the_welcome_page
-    expect_to_see_checkout_success_flash_for(@plan.name)
+    expect_to_see_checkout_success_flash
   end
 
   scenario "visitor attempts to subscribe, signs in with github, but is already subscribed" do

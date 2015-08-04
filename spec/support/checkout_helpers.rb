@@ -48,7 +48,7 @@ module CheckoutHelpers
     expect(page.find("#checkout_submit_action input").value).to include text
   end
 
-  def expect_to_see_checkout_success_flash_for(plan_name)
-    expect(page).to have_content(I18n.t("checkout.flashes.success", name: plan_name))
+  def expect_to_see_checkout_success_flash
+    expect(page).to have_content(I18n.t("checkout.flashes.success"))
   end
 end
