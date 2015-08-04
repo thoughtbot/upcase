@@ -9,10 +9,10 @@
       class="<%= "subscriber" if current_user_has_active_subscription? %>"
       data-role="header">
       <div class="header-container">
-        <h1 class="small-logo">
-          <%= link_to root_path do %>
-            <%= image_tag("upcase/upcase-header-logo-small.svg") %>
-          <% end %>
+        <%= link_to root_path, class: "branding" do %>
+          <h1 class="small-logo"><%= image_tag("upcase/upcase-header-logo-small.svg") %></h1>
+          <span class="header-tagline"><%= t("shared.header.tagline") %></span>
+        <% end %>
         </h1>
         <nav>
           <ul>
@@ -29,7 +29,10 @@
               <% end %>
             </li>
             <li class="header-cta">
-              <%= link_to t("subscriptions.join_cta"), "#price", class: "header-cta-link" %>
+              <%= link_to "#price", class: "header-cta-link" do %>
+                <%= image_tag("ralph-white.svg", class: "header-thoughtbot-logo") %>
+                <%= t("subscriptions.join_cta") %>
+              <% end %>
             </li>
           </ul>
         </nav>

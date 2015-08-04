@@ -2,11 +2,14 @@
   class="without-hero <%= "subscriber" if current_user_has_active_subscription? %>"
   data-role="header">
   <div class="header-container">
-    <h1 class="small-logo">
-      <%= link_to root_path do %>
-        <%= image_tag("upcase/upcase-header-logo-small.svg") %>
+    <%= link_to root_path, class: "branding" do %>
+      <% if signed_in? %>
+        <h1 class="small-logo"><%= image_tag("upcase/upcase-header-logo-small.svg") %></h1>
+      <% else %>
+        <h1 class="small-logo"><%= image_tag("upcase/upcase-header-logo-small.svg") %></h1>
+        <span class="header-tagline"><%= t("shared.header.tagline") %></span>
       <% end %>
-    </h1>
+    <% end %>
     <a class="nav-toggle">Menu</a>
     <nav class="closed">
       <ul>
@@ -55,7 +58,10 @@
           </li>
           <li><%= link_to "Sign in", sign_in_path %></li>
           <li class="header-cta">
-            <%= link_to t("subscriptions.join_cta"), new_subscription_path, class: "header-cta-link" %>
+            <%= link_to new_subscription_path, class: "header-cta-link" do %>
+              <%= image_tag("ralph-white.svg", class: "header-thoughtbot-logo") %>
+              <%= t("subscriptions.join_cta") %>
+            <% end %>
           </li>
         <% end %>
       </ul>
