@@ -1,0 +1,105 @@
+.selling-point {
+  border-bottom: 1px solid $base-border-color-1;
+  color: $base-font-color;
+  font-size: 1.25em;
+  padding-bottom: 3em;
+  padding-top: 3em;
+
+  @include marketing-fullsize {
+    padding-bottom: 8em;
+    padding-top: 8em;
+  }
+
+  &.deconstructed {
+    @include background-image(url("upcase/deconstructed-ralph.svg"), linear-gradient(180deg, rgba(#341642, 0.888), rgba(#6a5b7d, 0.888)));
+    background-size: contain;
+    border-bottom-color: #6a5b7d;
+    color: $white;
+    position: relative;
+  }
+}
+
+.selling-point-title {
+  color: $blue-trail;
+  font-size: 1.5em;
+  font-weight: 300;
+
+  @include marketing-fullsize {
+    font-size: 2em;
+    line-height: 1.25;
+    margin-bottom: 2em;
+    text-align: center;
+  }
+
+  .selling-point-block & {
+    margin-bottom: 1em;
+    text-align: left;
+  }
+
+  .deconstructed & {
+    color: $white;
+  }
+}
+
+.selling-point-image {
+  margin: 1em 0;
+
+  @include marketing-fullsize {
+    width: 50%;
+
+    &:first-child {
+      margin-right: 4em;
+    }
+
+    &:last-child {
+      margin-left: 4em;
+    }
+  }
+}
+
+.selling-point-block {
+  @include align-items(center);
+  @include display(flex);
+  @include flex-direction(column);
+
+  @include marketing-fullsize {
+    @include flex-direction(row);
+  }
+}
+
+.selling-point-body {
+  line-height: 1.5;
+
+  .deconstructed & {
+    color: $white;
+  }
+}
+
+ul.selling-point-body {
+  @extend %default-ul;
+
+  li {
+    line-height: 1.5;
+  }
+}
+
+.deconstructed li {
+  color: $white;
+}
+
+.selling-point-cta {
+  @include linear-gradient($hero-green, shade($hero-green, 5%));
+  border-radius: 2px;
+  box-shadow: $heavy-box-shadow;
+  color: $white;
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1;
+  margin-top: 1em;
+  padding: 0.5em 2em;
+
+  &:hover,
+  &:focus {
+    @include linear-gradient(tint($hero-green, 3%), $hero-green);
+  }
+}

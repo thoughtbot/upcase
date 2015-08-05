@@ -16,7 +16,7 @@
     padding-top: 6em;
   }
 
-  svg {
+  .upcase-arrow {
     @include size(6em);
     margin: 0 0 2em;
 
@@ -75,4 +75,78 @@
       font-size: 1.5em;
     }
   }
+}
+
+.tall-hero {
+  padding: 5em 1em 4em;
+
+  @include dashboard-large {
+    padding-bottom: 8em;
+    padding-top: 11em;
+  }
+}
+
+.hero-video {
+  margin-bottom: 2em;
+
+  @include dashboard-large {
+    @include span-columns(7);
+    margin-bottom: 0;
+  }
+}
+
+.hero-aside {
+  color: $white;
+
+  @include dashboard-large {
+    @include omega;
+    @include shift(0.5);
+    @include span-columns(4.5);
+    text-align: left;
+  }
+
+  .hero-cta {
+    @include align-items(center);
+    @include display(flex);
+    @include linear-gradient($hero-green, shade($hero-green, 5%));
+    border-radius: $base-border-radius;
+    box-shadow: $heavy-box-shadow;
+    color: $white;
+    font-size: 1.25em;
+    font-weight: 300;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 24em;
+    overflow: hidden;
+    padding: 0;
+
+    &:hover,
+    &:focus {
+      @include linear-gradient(tint($hero-green, 3%), $hero-green);
+    }
+  }
+}
+
+.hero-cta-logo {
+  @include size(4em 3em);
+  border-right: 1px solid rgba($gray-1, 0.1);
+  padding: 0.5em 1em;
+}
+
+.hero-cta-text {
+  @include flex(1);
+  text-align: center;
+}
+
+.hero-title {
+  color: $white;
+  font-weight: 300;
+  margin-bottom: 0.5em;
+}
+
+.hero-body {
+  color: $white;
+  font-size: 1.125em;
+  margin-bottom: 2em;
+  opacity: 0.8;
 }

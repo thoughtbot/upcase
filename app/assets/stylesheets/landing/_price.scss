@@ -1,8 +1,9 @@
 $price-width: em(864);
 
 .pricing {
-  background: $base-background-2;
+  @include linear-gradient(darken($celestial-blue, 12%), darken($celestial-blue, 0%));
   fill: $base-background-2;
+  margin-top: -1px;
   padding: 8em 2em 4em;
   position: relative;
 }
@@ -70,6 +71,14 @@ $price-width: em(864);
   border-radius: 5px;
   margin-bottom: 2em;
   max-width: $price-width;
+
+  h5 {
+    font-size: 0.75em;
+    letter-spacing: 0.05em;
+    margin-bottom: 1em;
+    opacity: 0.5;
+    text-transform: uppercase;
+  }
 }
 
 .price-description {
@@ -86,6 +95,16 @@ $price-width: em(864);
     font-size: 1.125em;
     margin-bottom: 2em;
   }
+
+  svg {
+    @include size(3em);
+    margin-right: 1em;
+    vertical-align: middle;
+
+    @include marketing-mobile {
+      display: none;
+    }
+  }
 }
 
 .price-includes {
@@ -98,17 +117,6 @@ $price-width: em(864);
     @include span-columns(4, table);
     border-radius: 0 0 5px;
     vertical-align: top;
-  }
-
-  h5 {
-    font-size: 0.75em;
-    letter-spacing: 0.05em;
-    opacity: 0.5;
-    text-transform: uppercase;
-  }
-
-  ul {
-    margin: 1em 0 0;
   }
 
   li {

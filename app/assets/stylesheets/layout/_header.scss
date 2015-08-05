@@ -221,6 +221,7 @@
   #header-wrapper.without-hero & {
     background-color: $hero-green;
     border-radius: 3px;
+    box-shadow: $heavy-box-shadow;
     height: $navigation-height - ($navigation-cta-offset * 2);
     line-height: $navigation-height - ($navigation-cta-offset * 2);
     padding: 0 1em 0 3.5em;

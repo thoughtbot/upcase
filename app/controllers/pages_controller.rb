@@ -4,10 +4,12 @@ class PagesController < HighVoltage::PagesController
   private
 
   def layout_for_page
-    if params[:id] == 'new-product'
-      'header-only'
+    if params[:id] == "new-product"
+      "header-only"
+    elsif params[:id] == "landing"
+      "landing_pages"
     else
-      'application'
+      "application"
     end
   end
 end

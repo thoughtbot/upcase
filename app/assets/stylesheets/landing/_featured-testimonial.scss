@@ -1,0 +1,74 @@
+.featured-testimonial {
+  background-color: $base-background-2;
+  border-bottom: 1px solid $base-border-color-1;
+  padding-bottom: 3em;
+  padding-top: 3em;
+
+  @include marketing-fullsize {
+    padding-bottom: 8em;
+    padding-top: 8em;
+    text-align: center;
+  }
+
+  img {
+    border-radius: $base-border-radius;
+    display: block;
+    margin: 0 auto 2em;
+    max-width: 14em;
+  }
+
+  blockquote {
+    border-left: none;
+    padding-left: 0;
+    position: relative;
+    quotes: $unicode-left-double-quote $unicode-right-double-quote $unicode-left-single-quote $unicode-right-single-quote;
+
+    @include marketing-fullsize {
+      margin: 0 auto;
+      max-width: 80%;
+    }
+  }
+
+  cite {
+    display: block;
+    font-family: $sans-serif;
+    font-style: normal;
+    margin-top: 2em;
+  }
+}
+
+.featured-testimonial-callout {
+  font-family: $serif;
+  font-size: 1.25em;
+
+  &:first-of-type::before,
+  &:last-of-type::after {
+
+  }
+
+  &:first-of-type::before {
+    content: open-quote;
+    font-size: 1.25em;
+    margin-right: 0.2em;
+  }
+
+  &:last-of-type::after {
+    content: close-quote;
+    font-size: 1.25em;
+    font-weight: 100;
+    margin-left: 0.2em;
+    position: absolute;
+  }
+}
+
+.featured-testimonial-quoter {
+  color: $base-font-color;
+  display: block;
+  font-size: 1.125em;
+  margin-bottom: 0.25em;
+}
+
+.featured-testimonial-position {
+  color: $base-font-color;
+  opacity: 0.8;
+}

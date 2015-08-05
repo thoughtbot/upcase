@@ -1,0 +1,167 @@
+<% content_for :additional_body_classes, "landing" %>
+
+<section class="hero tall-hero">
+  <div class="landing-container">
+    <img src="https://placeholdit.imgix.net/~text?txtsize=19&bg=1c334b&txtclr=ffffff&txt=elevator%20pitch%20video&w=771&h=434" class="hero-video">
+
+    <div class="hero-aside">
+      <h2 class="hero-title">Let&rsquo;s get that &ldquo;junior&rdquo; out of your title</h2>
+      <p class="hero-body">Upcase turns junior Rails developers into ass-kicking
+      name-takers. Vestibulum ante ipsum primis in faucibus orci luctus et
+      ultrices liposuere cubilia.</p>
+      <%= link_to "#price", class: "hero-cta" do %>
+        <%= image_tag("ralph-white.svg", class: "hero-cta-logo") %>
+        <span class="hero-cta-text"><%= t("subscriptions.join_cta") %></span>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section class="featured-testimonial">
+  <div class="landing-container">
+    <%= image_tag "upcase/testimonial_thumbs/bryan-helkamp.jpg", alt: "Bryan Helkamp" %>
+    <blockquote>
+      <p class="featured-testimonial-callout">thoughtbot provided the top-notch
+      Ruby and Rails experience we needed to help drive major improvements to
+      Code Climate. <strong>With Upcase, you can learn from some of the best in
+      the business.</strong></p>
+      <cite>
+        <span class="featured-testimonial-quoter">Bryan Helmkamp, <a href="http://twitter.com/brynary">@brynary</a></span>
+        <span class="featured-testimonial-position">CEO at Code Climate</span>
+      </cite>
+    </blockquote>
+  </div>
+</section>
+
+<section class="selling-point">
+  <div class="landing-container">
+    <h3 class="selling-point-title">Level Up With Community, thoughbot Developer
+      Support and Structured&nbsp;Learning</h3>
+
+    <div class="selling-point-block">
+      <%= image_tag "upcase/features/feature-sample.png", alt: "feature", class: "selling-point-image" %>
+
+      <div class="selling-point-description">
+        <p class="selling-point-body">Upcase allows you to learn and grow with
+        <strong>thousands of motivated peers while receiving mentorship from the
+        best in the business.</strong></p>
+        <ul class="selling-point-body">
+          <li>Organized learning through trails, with videos, flash cards, code
+            review, and exercises.</li>
+          <li>Get unstuck with help from thoughtbot developers in our
+            forum.</li>
+          <li>See the Upcase app get built with access to the Github repo.</li>
+          <li>Stay informed with new videos every week through our Weekly
+            Iteration.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="featured-testimonial">
+  <div class="landing-container">
+    <%= image_tag "upcase/testimonial_thumbs/ralph-wintle.png", alt: "Ralph Wintle" %>
+    <blockquote>
+      <p class="featured-testimonial-callout">Training with thoughtbot (who I
+      consider to be the best developers in the world), and leveraging Upcase’s
+      vital <strong>community of like minded peers has been invaluable for
+      me.</strong></p>
+
+      <p class="featured-testimonial-callout">Skilling up in relative isolation
+      in Australia, it provided the tools and support for me <strong>to land my
+      first Rails job and flourish there.</strong></p>
+
+      <cite>
+        <span class="featured-testimonial-quoter">Ralph Wintle</span>
+        <span class="featured-testimonial-position">Developer at
+          postinvoice.com</span>
+      </cite>
+    </blockquote>
+  </div>
+</section>
+
+<div class="selling-point deconstructed">
+  <div class="landing-container">
+    <div class="selling-point-block">
+      <div class="selling-point-description">
+        <h3 class="selling-point-title">Learn thoughtbot's entire workflow and tech&nbsp;stack</h3>
+        <p class="selling-point-body">Master tools, best practices and new technologies.</p>
+        <ul class="selling-point-body">
+          <li>Learn rapidly: the shortest path to becoming a senior Ruby on
+            Rails developer.</li>
+          <li>Swiftly deploy clean, functional code with refactoring and test
+            driven development.</li>
+          <li>Level up your productivity with Vim, Tmux and Git.</li>
+        </ul>
+        <a href="#" class="selling-point-cta" data-role="table-of-contents-toggle">Explore</a>
+      </div>
+
+      <%= image_tag "upcase/features/feature-sample.png", alt: "feature", class: "selling-point-image" %>
+    </div>
+  </div>
+</div>
+
+<section class="featured-testimonial">
+  <div class="landing-container">
+    <%= image_tag "upcase/testimonial_thumbs/carlisia.jpg", alt: "Carlisia" %>
+    <blockquote>
+      <p class="featured-testimonial-callout">With how busy I am building software for a
+      startup, Upcase is <strong>perfect to skill up between sprints and in
+      small openings</strong> hin my day, allowing me to consume exactly the
+      content I need to <strong>grow professionally on my own
+      schedule</strong>.</p>
+
+      <cite>
+        <span class="featured-testimonial-quoter">carlisia@grokkingtech.io</span>
+        <span class="featured-testimonial-position">Senior Software Engineer at VerveMobile</span>
+      </cite>
+    </blockquote>
+  </div>
+</section>
+
+<section class="featured-testimonial">
+  <div class="landing-container">
+    <%= image_tag "upcase/testimonial_thumbs/matt-sumner.jpg", alt: "Matt" %>
+    <blockquote>
+      <p class="featured-testimonial-callout">Without doubt, Upcase was vital to my
+      professional growth and <strong>led to my dream Rails job</strong> at
+      thoughtbot.</p>
+
+      <cite>
+        <span class="featured-testimonial-quoter">Matt Sumner</span>
+        <span class="featured-testimonial-position">Developer at thoughtbot</span>
+      </cite>
+    </blockquote>
+  </div>
+</section>
+
+<section class="pricing" id="price">
+  <header class="price-header">
+    <h3>Subscribe to Upcase</h3>
+    <h4><sup>$</sup>29 <sub>per Month</sub></h4>
+  </header>
+  <section class="price-info">
+    <div class="price-description">
+      <h5>Join the Upcase Community</h5>
+      <p>For aspiring senior developers looking for insider skills, a killer
+      community, and an awesome future.</p>
+      <%= render "subscriptions/octocat.svg" %>
+      <%= link_to "#", :class => "signup" do %>
+        Auth with GitHub to get started
+      <% end %>
+      <%= render 'shared/flashes' %>
+    </div>
+    <div class="price-includes">
+      <h5>Includes</h5>
+      <ul>
+        <li>Coding exercises</li>
+        <li>Upcase source code</li>
+        <li>Video Tutorials</li>
+        <li>Community Forum</li>
+        <li>The Weekly Iteration</li>
+        <li><strong>30 day money-back guarantee</strong></li>
+      </ul>
+    </div>
+  </section>
+</section>

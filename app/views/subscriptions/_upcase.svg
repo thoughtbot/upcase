@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+<svg class="upcase-arrow" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
 <circle opacity="4.000000e-02" fill="#FFFFFF" enable-background="new    " cx="256" cy="256" r="256"/>
 <linearGradient id="chevron_1_" gradientUnits="userSpaceOnUse" x1="-292.3041" y1="5.2541" x2="-292.3041" y2="5.8158" gradientTransform="matrix(336.1344 0 0 273.7248 98509.8438 -1289.4062)">
 <stop  offset="0" style="stop-color:#3FBCFF"/>

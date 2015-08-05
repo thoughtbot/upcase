@@ -3,18 +3,18 @@
     max-width: none;
     padding: 0;
   }
+}
 
-  h2 {
-    color: $celestial-blue;
-    font-size: 2.5em;
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    line-height: 1.25;
-    margin: 0 auto;
-    max-width: 30em;
-    padding: 2em 0;
-    text-align: center;
-  }
+.section-title {
+  color: $celestial-blue;
+  font-size: 2.5em;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0 auto;
+  max-width: 30em;
+  padding: 2em 0;
+  text-align: center;
 }
 
 .signup {

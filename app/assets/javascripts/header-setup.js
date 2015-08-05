@@ -16,8 +16,9 @@ var setupTableOfContents = function() {
     $body.addClass('has-table-of-contents');
   };
 
+  $tocToggle.off('click');
   $tocToggle.click(function() {
-    if ($(this).hasClass('is-open')) {
+    if ($tocToggle.hasClass('is-open')) {
       closeToc();
     } else {
       openToc();
