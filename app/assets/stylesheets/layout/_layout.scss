@@ -21,13 +21,8 @@ section {
   @include outer-container;
   max-width: $max-width;
   flex: 1;
-  padding: 0 2em 3em 2em;
+  padding: 0 $side-padding 3em;
   width: 100%;
-
-  @include dashboard-medium {
-    padding-left: 0;
-    padding-right: 0;
-  }
 
   ul, ol {
     padding: 0;
@@ -207,7 +202,7 @@ aside {
 
 @include body-mobile {
   .content {
-    padding: 1.5em .5em 2em;
+    padding: 1.5em $side-padding 2em;
 
     .text-box-wrapper {
       @include span-columns(12);

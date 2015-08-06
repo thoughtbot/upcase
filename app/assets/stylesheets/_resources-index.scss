@@ -11,11 +11,11 @@ body.topics.topics-show {
     .topic-header {
       margin: 0 auto;
       max-width: $max-width;
-      padding: 4.5rem 0;
+      padding: 4.5rem $side-padding;
       position: relative;
 
       @include dashboard-small-only {
-        padding: 2rem 0;
+        padding: 2rem $side-padding;
         text-align: center;
       }
     }
@@ -59,13 +59,8 @@ body.topics.topics-show {
     @include outer-container;
     max-width: $max-width;
     flex: 1;
-    padding: 0 2em 3em 2em;
+    padding: 0 $side-padding 3em;
     width: 100%;
-
-    @media only screen and (min-width: 800px)  {
-      padding-left: 0;
-      padding-right: 0;
-    }
 
     &.fullscreen {
       max-width: 100%;

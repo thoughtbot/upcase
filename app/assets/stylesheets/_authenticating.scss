@@ -2,7 +2,7 @@
   .github-signin, .thoughtbot-signin form, .signup-forgot {
     margin: auto;
     max-width: 400px;
-    padding: 0 1rem;
+    padding: 0 $side-padding;
   }
 
   .github-signin  {
