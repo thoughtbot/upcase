@@ -179,7 +179,7 @@ namespace :dev do
   end
 
   def create_team_plan
-    FactoryGirl.create(:plan, :team)
+    FactoryGirl.create(:plan, :team, :featured)
   end
 
   def create_topics
