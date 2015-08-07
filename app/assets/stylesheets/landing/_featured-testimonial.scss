@@ -41,11 +41,6 @@
   font-family: $serif;
   font-size: 1.25em;
 
-  &:first-of-type::before,
-  &:last-of-type::after {
-
-  }
-
   &:first-of-type::before {
     content: open-quote;
     font-size: 1.25em;
