@@ -36,6 +36,11 @@
   padding: 0 $side-padding;
   position: relative;
 
+  @include dashboard-small-only {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .branding {
     float: left;
     padding: 1rem 0;
