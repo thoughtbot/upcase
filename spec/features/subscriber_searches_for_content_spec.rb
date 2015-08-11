@@ -24,8 +24,4 @@ feature "subscriber searches for content" do
   def click_on_search_result
     find(".search-result").find(".title a").click
   end
-
-  def populate_search_index
-    PgSearch::Multisearch.rebuild(Trail)
-  end
 end

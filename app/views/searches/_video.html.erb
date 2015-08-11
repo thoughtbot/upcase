@@ -1,12 +1,12 @@
 <li class="search-result">
   <%= fa_icon "film", title: "Video" %>
   <p class="title">
-    <%= link_to searchable.name, searchable %>
+    <%= link_to video.name, video %>
   </p>
   <p class="source">
-    from <%= link_to searchable.watchable.name, searchable.watchable %>
+    from <%= link_to video.watchable.name, video.watchable %>
   </p>
   <p>
-    <%= cleaned_search_excerpt(highlight) %>
+    <%= cleaned_search_excerpt(video.excerpt) %>
   </p>
 </li>

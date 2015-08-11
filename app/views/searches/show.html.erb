@@ -17,12 +17,6 @@
   </span>
 
   <ul>
-    <% @results.each do |result, highlight| %>
-      <%=
-        render "searches/#{result.searchable_type.downcase}",
-        searchable: result.searchable, highlight: highlight
-      %>
-      <hr />
-    <% end %>
+    <%= render @results %>
   </ul>
 <% end %>
