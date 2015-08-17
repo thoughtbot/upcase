@@ -16,24 +16,6 @@ describe "shared/_header.html.erb" do
     CSS
   end
 
-  describe "search" do
-    context "for admin users" do
-      it "includes a search link" do
-        render(signed_in: true, current_user_is_admin: true)
-
-        expect(rendered).to have_search_link
-      end
-    end
-
-    context "for non-admin users" do
-      it "does not include a search link" do
-        render(signed_in: true, current_user_is_admin: false)
-
-        expect(rendered).not_to have_search_link
-      end
-    end
-  end
-
   context "when user is the subscription owner" do
     it "shows an annual upsell link" do
       render(

@@ -32,11 +32,9 @@
                 <%= render "shared/annual_billing" %>
               </li>
             <% end %>
-            <% if current_user.admin? %>
-              <li>
-                <%= link_to t("shared.header.search"), search_path %>
-              </li>
-            <% end %>
+            <li>
+              <%= link_to t("shared.header.search"), search_path %>
+            </li>
             <% unless current_user_has_active_subscription? %>
               <li class="subscription">
                 <%= link_to new_subscription_path do %>
