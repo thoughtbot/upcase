@@ -13,10 +13,14 @@
   </p>
 
   <span class="divider">
-    <h4 class="text">Search Results:</h4>
+    <h4 class="text">Search Results</h4>
   </span>
 
   <ul>
     <%= render @results %>
   </ul>
+<% else %>
+  <% if @query.present? %>
+    <p>No results found for <em>“<%= @query %>”</em></p>
+  <% end %>
 <% end %>
