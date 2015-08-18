@@ -1,23 +1,25 @@
 .tiles ul,
 .tiles-container {
   @include display(flex);
-  @include flex-direction(row);
   @include flex-wrap(wrap);
   @include justify-content(space-around);
   margin-bottom: 2em;
   width: 100%;
 
   .tile {
+    @include flex-basis(22em);
+    @include flex-grow(1);
+    @include flex-shrink(1);
     border-radius: 0 0 3px 3px;
     border-top: 10px solid $gray-5;
     box-shadow: 0 0 0 1px $gray-4;
     height: 280px;
-    margin: 0 0 2em 0;
+    margin: 0 1em 2em;
     overflow: hidden;
     padding: 40px;
     position: relative;
     text-align: center;
-    width: 47%;
+    // width: 47%;
 
     @include dashboard-small-only {
       width: 100%;
