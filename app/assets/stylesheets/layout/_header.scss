@@ -8,12 +8,8 @@
 
   &.headhesive--stick,
   &.without-hero {
-    .header-cta {
-      padding: 10px 0 10px 10px;
-
-      &:hover {
-        background-color: inherit;
-      }
+    .header-cta:hover {
+      background-color: inherit;
     }
 
     .header-cta-link {
@@ -246,8 +242,8 @@
 
   .headhesive--stick &,
   .without-hero & {
-    @include position(absolute, 0.25em 0 0 1em);
-    @include size(2em);
+    @include position(absolute, 0.48em 0 0 1em);
+    @include size(1.5em);
     display: block;
   }
 }
