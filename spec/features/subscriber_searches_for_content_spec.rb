@@ -11,6 +11,8 @@ feature "subscriber searches for content" do
     search_for "tmux"
     click_on_search_result
 
+    # just a demo of github CI status
+    expect(1 + 1).to eq(3)
     expect(current_path).to eq(trail_path(tmux))
   end
 
