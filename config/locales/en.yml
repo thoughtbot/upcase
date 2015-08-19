@@ -160,6 +160,7 @@ en:
         success: You have successfully updated your subscription credit card information.
       upgrade_required: You must upgrade your plan to access that feature.
     join_cta: Start Leveling Up
+    checkout: Let's do this!
     reason: Why have you decided to leave?
     reason_explanation: This information will help us make Upcase better for future
       members.

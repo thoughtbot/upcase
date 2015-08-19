@@ -25,7 +25,7 @@
     }
 
     circle {
-      fill: #fff;
+      fill: $white;
       opacity: 0.04;
     }
   }
@@ -40,41 +40,34 @@
       font-size: 3.375em;
     }
   }
+
+  &.checkout {
+    @include background-image(
+      linear-gradient(180deg, rgba($upcase-blue-1, 0.888), rgba($upcase-blue-2, 0.888)),
+      url(upcase/team.jpg)
+    );
+  }
+
+  .avatar {
+    border: 6px solid $white;
+    border-radius: 50%;
+    margin-bottom: 2em;
+  }
 }
 
-.hero-cta {
-  padding: 2em 0;
-  text-align: center;
+.hero-title {
+  color: $white;
+  font-size: 2em;
+  font-weight: 300;
+  line-height: 1.4em;
+  margin-bottom: 0.5em;
+}
 
-  @include marketing-fullsize {
-    padding-top: 4em;
-  }
-
-  h5 {
-    color: white;
-    font-size: 1em;
-    font-weight: 600;
-    margin: 0 0 2em;
-
-    @include marketing-fullsize {
-      font-size: 1.25em;
-    }
-
-    strong {
-      font-weight: 700;
-    }
-  }
-
-  .signup {
-    background: $hero-green;
-    font-size: 1.25em;
-    font-weight: 300;
-    margin: 0;
-
-    @include marketing-fullsize {
-      font-size: 1.5em;
-    }
-  }
+.hero-body {
+  color: $white;
+  font-size: 1.125em;
+  margin-bottom: 2em;
+  opacity: 0.8;
 }
 
 .tall-hero {
@@ -104,49 +97,9 @@
     @include span-columns(4.5);
     text-align: left;
   }
-
-  .hero-cta {
-    @include align-items(center);
-    @include display(flex);
-    @include linear-gradient($hero-green, shade($hero-green, 5%));
-    border-radius: $base-border-radius;
-    box-shadow: $heavy-box-shadow;
-    color: $white;
-    font-size: 1.25em;
-    font-weight: 300;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 24em;
-    overflow: hidden;
-    padding: 0;
-
-    &:hover,
-    &:focus {
-      @include linear-gradient(tint($hero-green, 3%), $hero-green);
-    }
-  }
 }
 
-.hero-cta-logo {
-  @include size(4em 3em);
-  border-right: 1px solid rgba($gray-1, 0.1);
-  padding: 0.5em 1em;
-}
-
-.hero-cta-text {
-  @include flex(1);
-  text-align: center;
-}
-
-.hero-title {
-  color: $white;
-  font-weight: 300;
-  margin-bottom: 0.5em;
-}
-
-.hero-body {
-  color: $white;
-  font-size: 1.125em;
-  margin-bottom: 2em;
-  opacity: 0.8;
+.hero-center {
+  margin: auto;
+  max-width: 32em;
 }

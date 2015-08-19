@@ -1,0 +1,23 @@
+<% content_for :additional_body_classes, "landing" %>
+
+<section class="hero checkout tall-hero">
+  <div class="landing-container">
+
+    <div class="hero-center">
+      <%= image_tag "upcase/avatar.jpg", class: 'avatar' %>
+      <h2 class="hero-title">Hey John, welcome to the thoughtbot team!</h2>
+    </div>
+  </div>
+</section>
+
+<div class="centered-section">
+  <div class="landing-container">
+    <h3>Let's get started</h3>
+    <p class="centered-section-text">We want to see you grow, and know how to make that happen. We offer a no-hassle money-back guarantee if you’re not happy with our lessons, community, and commitment to your future. Team discounts available <a href="">here</a>. </p>
+
+    <%= link_to "#", class: "cta-button bottom-image" do %>
+      <%= image_tag("ralph-white.svg", class: "cta-button-logo") %>
+      <span class="cta-button-text"><%= t("subscriptions.checkout") %></span>
+    <% end %>
+  </div>
+</div>
