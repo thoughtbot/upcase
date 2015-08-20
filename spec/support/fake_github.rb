@@ -28,6 +28,12 @@ class FakeGithub < Sinatra::Base
     [{ 'id' => 1, 'key' => 'ssh-rsa AAA' }].to_json
   end
 
+  get "/users/:username" do
+    content_type :json
+
+    { "avatar_url" => "", "name" => "Ralph Robot" }.to_json
+  end
+
   not_found do
     content_type :json
 

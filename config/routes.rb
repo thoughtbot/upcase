@@ -33,6 +33,7 @@ Upcase::Application.routes.draw do
   resource :annual_billing, only: :new
   resource :credit_card, only: [:update]
   resource :forum_sessions, only: :new
+  resources :payments, only: [:new]
   resources :signups, only: [:create]
   resource :subscription, only: [:new, :edit, :update]
   resources :coupons, only: :show

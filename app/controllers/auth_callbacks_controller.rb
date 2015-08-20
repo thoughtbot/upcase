@@ -11,6 +11,8 @@ class AuthCallbacksController < ApplicationController
   def url_after_auth
     if originated_from_sign_in_or_sign_up?
       custom_return_path_or_default(practice_path)
+    elsif signing_up_from_new_checkout_flow?
+      new_payment_path
     else
       auth_origin
     end
@@ -18,6 +20,10 @@ class AuthCallbacksController < ApplicationController
 
   def originated_from_sign_in_or_sign_up?
     auth_origin =~ /^#{sign_in_url}/ || auth_origin =~ /^#{sign_up_url}/
+  end
+
+  def signing_up_from_new_checkout_flow?
+    auth_origin =~ /#{page_path("landing")}/
   end
 
   def custom_return_path_or_default(default_path)

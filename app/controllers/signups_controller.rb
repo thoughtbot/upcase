@@ -7,7 +7,7 @@ class SignupsController < ApplicationController
     redirect_to onboarding_policy.root_path
   rescue Stripe::CardError => error
     flash[:error] = error.message
-    redirect_to page_path("join")
+    redirect_to new_payment_path
   end
 
   private

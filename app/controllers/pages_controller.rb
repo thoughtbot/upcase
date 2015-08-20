@@ -14,6 +14,6 @@ class PagesController < HighVoltage::PagesController
   end
 
   def landing_page?
-    %w{ landing checkout }.include?(params[:id])
+    params[:id] == "landing"
   end
 end

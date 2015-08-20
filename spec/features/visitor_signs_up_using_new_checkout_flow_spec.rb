@@ -23,13 +23,13 @@ feature "Visitor signs up for a subscription", js: true do
 
     expect(User.last).not_to have_active_subscription
     expect(page).to have_content("Your credit card was declined")
-    expect(current_path).to eq(page_path("join"))
+    expect(current_path).to eq(new_payment_path)
   end
 
   def sign_up(token = "fake-token")
-    visit "/pages/join"
-    click_link "Sign up with GitHub"
-    click_button "Pay with credit card"
+    visit "/pages/landing"
+    click_link "Auth with GitHub to get started"
+    click_link "Pay with credit card"
     page.execute_script("submitToken({ id: '#{token}' })")
   end
 
