@@ -14,6 +14,17 @@ describe Deck do
     end
   end
 
+  describe ".most_recent_first" do
+    it "returns the decks with the most recent first" do
+      create(:deck, title: "older", created_at: 5.days.ago)
+      create(:deck, title: "newer", created_at: 1.day.ago)
+
+      result = Deck.most_recent_first.map(&:title)
+
+      expect(result).to eq(%w(newer older))
+    end
+  end
+
   describe "#first_flashcard" do
     it "returns the first flashcard" do
       deck = create(:deck)

@@ -7,6 +7,10 @@ class Deck < ActiveRecord::Base
     where(published: true)
   end
 
+  def self.most_recent_first
+    order(created_at: :desc)
+  end
+
   def first_flashcard
     flashcards.first
   end

@@ -2,7 +2,7 @@ class DecksController < ApplicationController
   before_action :require_login
 
   def index
-    @decks = Deck.published
+    @decks = Deck.published.most_recent_first
     @flashcards_to_review = FlashcardsNeedingReviewQuery.new(current_user).run
   end
 
