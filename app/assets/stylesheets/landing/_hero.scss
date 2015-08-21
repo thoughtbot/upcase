@@ -49,6 +49,7 @@
   }
 
   .avatar {
+    @include size(11em);
     border: 6px solid $white;
     border-radius: 50%;
     margin-bottom: 2em;
