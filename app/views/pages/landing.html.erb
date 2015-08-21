@@ -7,8 +7,7 @@
     <div class="hero-aside">
       <h2 class="hero-title">Let&rsquo;s get that &ldquo;junior&rdquo; out of your title</h2>
       <p class="hero-body">Upcase turns junior Rails developers into ass-kicking
-      name-takers. Vestibulum ante ipsum primis in faucibus orci luctus et
-      ultrices liposuere cubilia.</p>
+      name-takers. We're not a bootcamp, we're a finishing school.</p>
       <%= link_to "#price", class: "cta-button" do %>
         <%= image_tag("ralph-white.svg", class: "cta-button-logo") %>
         <span class="cta-button-text"><%= t("subscriptions.join_cta") %></span>
@@ -35,24 +34,24 @@
 
 <section class="selling-point">
   <div class="landing-container">
-    <h3 class="selling-point-title">Level Up With Community, thoughbot Developer
-      Support and Structured&nbsp;Learning</h3>
+    <h3 class="selling-point-title">The next-best thing to working at thoughtbot full-time</h3>
 
     <div class="selling-point-block">
       <%= image_tag "upcase/features/feature-sample.png", alt: "feature", class: "selling-point-image" %>
 
       <div class="selling-point-description">
-        <p class="selling-point-body">Upcase allows you to learn and grow with
-        <strong>thousands of motivated peers while receiving mentorship from the
-        best in the business.</strong></p>
+        <p class="selling-point-body">Stop learning alone! Join our community
+        of <strong>thousands of motivated peers</strong> and receive mentorship
+      from the best in the business.</strong></p>
+
         <ul class="selling-point-body">
-          <li>Organized learning through trails, with videos, flash cards, code
-            review, and exercises.</li>
-          <li>Get unstuck with help from thoughtbot developers in our
-            forum.</li>
-          <li>See the Upcase app get built with access to the Github repo.</li>
-          <li>Stay informed with new videos every week through our Weekly
-            Iteration.</li>
+          <li>Master vital skills like <strong>TDD</strong>, even if you've tried and
+          failed at it before.</li>
+          <li>Break out of your learning rut with help from thoughtbot developers
+          in our forum.</li>
+          <li>Join our GitHub team and watch us work on real Rails apps
+          (like this one!)</li>
+          <li>Learn your way, with videos, code challenges, or flashcards.</li>
         </ul>
       </div>
     </div>
@@ -85,16 +84,13 @@
   <div class="landing-container">
     <div class="selling-point-block">
       <div class="selling-point-description">
-        <h3 class="selling-point-title">Learn thoughtbot's entire workflow and tech&nbsp;stack</h3>
-        <p class="selling-point-body">Master tools, best practices and new technologies.</p>
+        <h3 class="selling-point-title">Learn the tools and techniques you've been meaning to</h3>
         <ul class="selling-point-body">
-          <li>Learn rapidly: the shortest path to becoming a senior Ruby on
-            Rails developer.</li>
-          <li>Swiftly deploy clean, functional code with refactoring and test
-            driven development.</li>
-          <li>Level up your productivity with Vim, Tmux and Git.</li>
+          <li>Are you <strong>TDD</strong>-ing your Rails apps yet? We'll show you how.</li>
+          <li>Been putting off learning <strong>Vim</strong>, or struggling to get productive in it? We'll fix that.</li>
+          <li>If your OO design chops could use some work, you're in luck.</li>
         </ul>
-        <a href="#" class="selling-point-cta" data-role="table-of-contents-toggle">Explore</a>
+        <a href="#" class="selling-point-cta" data-role="table-of-contents-toggle">See What You'll Learn</a>
       </div>
 
       <%= image_tag "upcase/features/feature-sample.png", alt: "feature", class: "selling-point-image" %>
@@ -125,8 +121,8 @@
     <%= image_tag "upcase/testimonial_thumbs/matt-sumner.jpg", alt: "Matt", class: 'top-image'  %>
     <blockquote>
       <p class="centered-section-callout">Without doubt, Upcase was vital to my
-      professional growth and <strong>led to my dream Rails job</strong> at
-      thoughtbot.</p>
+      professional growth and <strong>led to my dream Rails job at
+      thoughtbot</strong>.</p>
 
       <cite>
         <span class="centered-section-quoter">Matt Sumner</span>
@@ -144,8 +140,8 @@
   <section class="price-info">
     <div class="price-description">
       <h5>Join the Upcase Community</h5>
-      <p>For aspiring senior developers looking for insider skills, a killer
-      community, and an awesome future.</p>
+      <p>For aspiring senior developers looking for battle-tested best
+      practices, a killer community, and an awesome future.</p>
       <%= render "subscriptions/octocat.svg" %>
       <%= link_to github_auth_path, :class => "signup" do %>
         Auth with GitHub to get started
@@ -155,11 +151,11 @@
     <div class="price-includes">
       <h5>Includes</h5>
       <ul>
+        <li>Access to our GitHub repos</li>
         <li>Coding exercises</li>
-        <li>Upcase source code</li>
-        <li>Video Tutorials</li>
-        <li>Community Forum</li>
-        <li>The Weekly Iteration</li>
+        <li>Video tutorials</li>
+        <li>Community forum</li>
+        <li>New videos every week</li>
         <li><strong>30 day money-back guarantee</strong></li>
       </ul>
     </div>
