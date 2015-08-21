@@ -25,6 +25,10 @@
       line-height: 1.5rem;
       padding: 1rem 2rem;
     }
+
+    .flash.error {
+      background: $upcase-red;
+    }
   }
 }
 
