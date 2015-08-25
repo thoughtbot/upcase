@@ -89,13 +89,27 @@
   }
 }
 
+.hero-video-wrapper {
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+
+  embed,
+  object,
+  iframe {
+    @include position(absolute, 0px null null 0px);
+    @include size(100%);
+  }
+}
+
 .hero-aside {
   color: $white;
 
   @include dashboard-large {
     @include omega;
-    @include shift(0.5);
-    @include span-columns(4.5);
+    @include span-columns(5);
+    padding-left: 1em;
     text-align: left;
   }
 }
