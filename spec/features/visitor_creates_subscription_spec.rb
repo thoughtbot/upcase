@@ -1,8 +1,11 @@
 require "rails_helper"
 
 feature 'Visitor signs up for a subscription' do
+  include VanityHelpers
+
   background do
     create_plan
+    stub_ab_test_result(:checkout_flow, :existing)
   end
 
   scenario 'visitor signs up by navigating from landing page' do
@@ -15,6 +18,7 @@ feature 'Visitor signs up for a subscription' do
 
     expect(current_path).to be_the_welcome_page
     expect_to_see_checkout_success_flash
+    expect(vanity_signup_count).to eq 1
   end
 
   scenario "Visitor signs in with email and password while checking out" do

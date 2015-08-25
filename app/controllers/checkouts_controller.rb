@@ -17,6 +17,7 @@ class CheckoutsController < ApplicationController
 
     if @checkout.fulfill
       session.delete(:coupon)
+      track_signup_in_vanity
       sign_in_and_redirect
     else
       render :new

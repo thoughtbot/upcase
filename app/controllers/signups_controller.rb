@@ -4,6 +4,8 @@ class SignupsController < ApplicationController
     fulfill(stripe_customer.subscriptions.first.id)
 
     flash[:notice] = I18n.t("checkout.flashes.success")
+    track_signup_via_segment
+    track_signup_in_vanity
     redirect_to onboarding_policy.root_path
   rescue Stripe::CardError => error
     flash[:error] = error.message
@@ -26,6 +28,10 @@ class SignupsController < ApplicationController
       checkout_duck(stripe_subscription_id),
       current_user,
     )
+  end
+
+  def track_signup_via_segment
+    flash[:purchase_amount] = professional_plan.price_in_dollars
   end
 
   def checkout_duck(stripe_subscription_id)
