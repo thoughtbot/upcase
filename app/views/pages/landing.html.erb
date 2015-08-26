@@ -134,14 +134,18 @@
 
 <section class="pricing" id="price">
   <header class="price-header">
-    <h3>Subscribe to Upcase</h3>
-    <h4><sup>$</sup>29 <sub>per Month</sub></h4>
+    <div class="price-header-title">
+      <h3>Join The Upcase Community</h3>    
+    </div>
+    <div class="price-header-cost">
+      <h4><sup>$</sup>29 <sub>per Month</sub></h4>
+      <p>30-day no-hassle money back guarantee</p>
+    </div>
   </header>
   <section class="price-info">
     <div class="price-description">
-      <h5>Join the Upcase Community</h5>
       <p>For aspiring senior developers looking for battle-tested best
-      practices, a killer community, and an awesome future.</p>
+      practices, a killer community, and mentorship from the right people.</p>
       <div class="price-cta">
         <%= link_to github_auth_path, :class => "signup" do %>
           <%= render "subscriptions/octocat.svg" %>
@@ -151,7 +155,7 @@
       <%= render 'shared/flashes' %>      
     </div>
     <div class="price-includes">
-      <h5>Includes</h5>
+      <h5>Why Upcase?</h5>
       <ul>
         <li>Access to our GitHub repos</li>
         <li>Coding exercises</li>

@@ -12,56 +12,68 @@ $price-width: em(864);
   @include outer-container;
   @include row(table);
   max-width: $price-width;
+}
+
+.price-header-title {
+  background: $celestial-blue;
+  border-radius: 5px 5px 0 0;
+  padding: 2rem;
+
+  @include marketing-fullsize {
+    @include span-columns(8, table);
+    border-radius: 5px 0 0;
+  }
 
   h3 {
-    background: $celestial-blue;
-    border-radius: 5px 5px 0 0;
-    color: white;
+    color: $white;
     font-size: 3em;
     font-weight: 100;
     letter-spacing: -0.04em;
-    line-height: 1;
+    line-height: 1.3;
     margin: 0;
-    padding: 2rem 2rem 1rem 2rem;
+  }
+}
 
-    @include marketing-fullsize {
-      @include span-columns(8, table);
-      border-radius: 5px 0 0;
-    }
+.price-header-cost {
+  background: darken($celestial-blue, 3);
+  padding: 2rem 0 1rem 2rem;
+  position: relative;
+
+  @include marketing-fullsize {
+    @include span-columns(4, table);
+    border-radius: 0 5px 0 0;
   }
 
   h4 {
-    background: darken($celestial-blue, 3);
-    color: white;
+    color: $white;
     font-size: 3em;
     font-weight: 100;
     letter-spacing: -0.08em;
     line-height: 1;
-    margin: 0;
-    padding: 2rem 0rem 1rem 2rem;
-    position: relative;
+    margin: 0 0 0.3em;
+  }
 
-    @include marketing-fullsize {
-      @include span-columns(4, table);
-      border-radius: 0 5px 0 0;
-    }
+  p {
+    color: transparentize($white, 0.4);
+    font-style: italic;
+    line-height: 1.4;
+  }
 
-    sup {
-      @include position(absolute, 2.375rem null null 1.375rem);
-      display: inline-block;
-      font-size: 25%;
-      font-weight: 500;
-      opacity: 0.333;
-    }
+  sup {
+    @include position(absolute, 2.375rem null null 1.375rem);
+    display: inline-block;
+    font-size: 25%;
+    font-weight: 500;
+    opacity: 0.333;
+  }
 
-    sub {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      line-height: 1;
-      opacity: 0.666;
-      text-transform: uppercase;
-    }
+  sub {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    opacity: 0.666;
+    text-transform: uppercase;
   }
 }
 
@@ -82,7 +94,7 @@ $price-width: em(864);
 }
 
 .price-description {
-  background: white;
+  background: $white;
   padding: 1.5rem 2rem 2rem;
 
   @include marketing-fullsize {
