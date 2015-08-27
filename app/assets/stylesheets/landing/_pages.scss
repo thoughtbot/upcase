@@ -16,23 +16,3 @@
   padding: 2em 0;
   text-align: center;
 }
-
-.signup {
-  background: $upcase-green;
-  border-radius: 4px;
-  color: $off-white;
-  display: inline-block;
-  font-family: $sans-serif;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  line-height: 1;
-  margin: 0 0.5em 0.5em 0;
-  min-width: 8em;
-  padding: 0.85em 2em;
-  text-align: center;
-
-  &.grey {
-    background: darken($base-background-2, 2);
-    color: $upcase-green;
-  }
-}

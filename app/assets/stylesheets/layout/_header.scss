@@ -13,8 +13,8 @@
     }
 
     .header-cta-link {
-      background-color: $hero-green;
-      border-radius: 3px;
+      @extend %button;
+      font-size: 1rem;
       height: $navigation-height - ($navigation-cta-offset * 2);
       line-height: $navigation-height - ($navigation-cta-offset * 2);
       padding: 0 1rem;
@@ -23,6 +23,33 @@
       &:focus {
         background-color: lighten($hero-green, 5%);
       }
+    }
+  }
+}
+
+.headhesive--stick .header-cta,
+.without-hero .header-cta {
+  padding: $navigation-cta-offset;
+
+  &:hover {
+    background-color: inherit;
+  }
+}
+
+.header-cta-link {
+  #header-wrapper.headhesive--stick &,
+  #header-wrapper.without-hero & {
+    background-color: $hero-green;
+    border-radius: 3px;
+    box-shadow: $heavy-box-shadow;
+    height: $navigation-height - ($navigation-cta-offset * 2);
+    line-height: $navigation-height - ($navigation-cta-offset * 2);
+    padding: 0 1em 0 3.5em;
+    position: relative;
+
+    &:hover,
+    &:focus {
+      background-color: lighten($hero-green, 5%);
     }
   }
 }
@@ -204,35 +231,6 @@
 
     .subscription a {
       font-weight: 700;
-    }
-  }
-}
-
-.header-cta {
-  .headhesive--stick &,
-  .without-hero & {
-    padding: $navigation-cta-offset;
-
-    &:hover {
-      background-color: inherit;
-    }
-  }
-}
-
-.header-cta-link {
-  #header-wrapper.headhesive--stick &,
-  #header-wrapper.without-hero & {
-    background-color: $hero-green;
-    border-radius: 3px;
-    box-shadow: $heavy-box-shadow;
-    height: $navigation-height - ($navigation-cta-offset * 2);
-    line-height: $navigation-height - ($navigation-cta-offset * 2);
-    padding: 0 1em 0 3.5em;
-    position: relative;
-
-    &:hover,
-    &:focus {
-      background-color: lighten($hero-green, 5%);
     }
   }
 }

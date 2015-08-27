@@ -85,21 +85,4 @@ ul.selling-point-body {
 
 .deconstructed li {
   color: $white;
-}
-
-.selling-point-cta {
-  @include linear-gradient($hero-green, shade($hero-green, 5%));
-  border-radius: 2px;
-  box-shadow: $heavy-box-shadow;
-  color: $white;
-  display: inline-block;
-  font-weight: 400;
-  line-height: 1;
-  margin-top: 1em;
-  padding: 0.5em 2em;
-
-  &:hover,
-  &:focus {
-    @include linear-gradient(tint($hero-green, 3%), $hero-green);
-  }
-}
+}     

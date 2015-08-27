@@ -6,9 +6,11 @@ $upcase-blue: #2387E0;
 $upcase-blue-1: #487BF6;
 $upcase-blue-2: #0093CB;
 
+
 $hero-green: #4dd1aa;
 $upcase-green: $hero-green;
 
+$alert-color: #FFDFDF;
 $red: #ad141e;
 $off-white: darken(white, 1.5);
 $white: #fff;
@@ -57,7 +59,8 @@ $row-highlight: #f9f9f9;
 $max-width: 1100px;
 $navigation-height: 60px;
 $navigation-cta-offset: 10px;
-$button-padding: 0.75em 1em;
+$button-padding: 0.75em 1.2em;
+$button-padding-small: 0.45em 1em;
 $card-height: 370px;
 $card-padding: 30px;
 $card-width: 14rem;

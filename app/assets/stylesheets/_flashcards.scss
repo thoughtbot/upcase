@@ -6,6 +6,10 @@
   }
 }
 
+.revealed-answer .secondary-button {
+  margin-right: 1em;
+}
+
 .flashcard-prompt {
   padding-top: 2.25em;
 }
@@ -25,19 +29,6 @@
 .reveal-answer,
 .next-flashcard[type="submit"] {
   @extend %button;
-}
-
-.keep-flashcard[type="submit"] {
-  @extend %secondary-button;
-  background-color: transparent;
-  border-color: $base-button-color;
-  color: $base-button-color;
-  padding: $button-padding;
-
-  &:hover,
-  &:active {
-    color: $base-button-color;
-  }
 }
 
 .revealed-answer {

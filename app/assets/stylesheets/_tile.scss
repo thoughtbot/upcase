@@ -29,10 +29,14 @@
       font-size: 20px;
       line-height: 26px;
       margin-bottom: em(8);
+      margin-left: 24px;
+      position: relative;
 
       &:before {
         content: image-url('play.svg');
-        margin-right: 10px;
+        left: -25px;
+        position: absolute;
+        top: 3px;
       }
 
       a {

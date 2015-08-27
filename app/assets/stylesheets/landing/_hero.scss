@@ -35,9 +35,25 @@
     font-size: 2em;
     font-weight: 100;
     letter-spacing: -0.02em;
+    margin-bottom: 1em;
 
     @include marketing-fullsize {
       font-size: 3.375em;
+    }
+  }
+
+  h5 {
+    color: $white;
+    font-size: 1em;
+    font-weight: 600;
+    margin: 0 0 2em;
+
+    @include marketing-fullsize {
+      font-size: 1.25em;
+    }
+
+    strong {
+      font-weight: 700;
     }
   }
 
@@ -111,6 +127,10 @@
     @include span-columns(5);
     padding-left: 1em;
     text-align: left;
+  }
+
+  .cta-button {
+    width: 100%;
   }
 }
 

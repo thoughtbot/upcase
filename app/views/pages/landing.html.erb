@@ -19,8 +19,8 @@
       <p class="hero-body">Upcase turns junior Rails developers into ass-kicking
       name-takers. We're not a bootcamp, we're a finishing school.</p>
       <%= link_to "#price", class: "cta-button" do %>
-        <%= image_tag("ralph-white.svg", class: "cta-button-logo") %>
-        <span class="cta-button-text"><%= t("subscriptions.join_cta") %></span>
+        <%= image_tag("ralph-white.svg") %>
+        <span><%= t("subscriptions.join_cta") %></span>
       <% end %>
     </div>
   </div>
@@ -100,7 +100,9 @@
           <li>Been putting off learning <strong>Vim</strong>, or struggling to get productive in it? We'll fix that.</li>
           <li>If your OO design chops could use some work, you're in luck.</li>
         </ul>
-        <a href="#" class="selling-point-cta" data-role="table-of-contents-toggle">See What You'll Learn</a>
+        <div class="selling-point-cta">
+          <a href="#" class="cta-button" data-role="table-of-contents-toggle">See What You'll Learn</a>
+        </div>
       </div>
 
       <%= image_tag "tools-animated.gif", alt: "feature", class: "selling-point-image" %>
@@ -157,12 +159,12 @@
       <p>For aspiring senior developers looking for battle-tested best
       practices, a killer community, and mentorship from the right people.</p>
       <div class="price-cta">
-        <%= link_to github_auth_path, :class => "signup" do %>
-          <%= render "subscriptions/octocat.svg" %>
-          Auth with GitHub to get started
+        <%= link_to github_auth_path, :class => "cta-button" do %>
+          <%= image_tag "octocat.svg" %>
+          <span>Auth with GitHub to get started</span>
         <% end %>
       </div>
-      <%= render 'shared/flashes' %>      
+      <%= render 'shared/flashes' %>
     </div>
     <div class="price-includes">
       <h5>Why Upcase?</h5>

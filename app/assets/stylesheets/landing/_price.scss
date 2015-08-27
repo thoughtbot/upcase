@@ -1,4 +1,6 @@
 $price-width: em(864);
+$pricing-side-padding: 1.5rem;
+$pricing-margin: 0.5rem;
 
 .pricing {
   @include linear-gradient(darken($celestial-blue, 12%), darken($celestial-blue, 0%));
@@ -17,7 +19,7 @@ $price-width: em(864);
 .price-header-title {
   background: $celestial-blue;
   border-radius: 5px 5px 0 0;
-  padding: 2rem;
+  padding: 1em $pricing-side-padding 1.5em;
 
   @include marketing-fullsize {
     @include span-columns(8, table);
@@ -30,13 +32,13 @@ $price-width: em(864);
     font-weight: 100;
     letter-spacing: -0.04em;
     line-height: 1.3;
-    margin: 0;
+    margin: $pricing-margin;
   }
 }
 
 .price-header-cost {
   background: darken($celestial-blue, 3);
-  padding: 2rem 0 1rem 2rem;
+  padding: $pricing-side-padding;
   position: relative;
 
   @include marketing-fullsize {
@@ -50,7 +52,7 @@ $price-width: em(864);
     font-weight: 100;
     letter-spacing: -0.08em;
     line-height: 1;
-    margin: 0 0 0.3em;
+    margin: $pricing-margin;
   }
 
   p {
@@ -95,7 +97,7 @@ $price-width: em(864);
 
 .price-description {
   background: $off-white;
-  padding: 1.5rem 2rem 2rem;
+  padding: $pricing-side-padding $pricing-side-padding 2em;
 
   @include marketing-fullsize {
     @include span-columns(8, table);
@@ -105,7 +107,7 @@ $price-width: em(864);
 
   p {
     font-size: 1.125em;
-    margin-bottom: 2em;
+    margin: 0.5em 0.5em 2em;
   }
 
   .signup {
@@ -130,26 +132,37 @@ $price-width: em(864);
 }
 
 .price-cta {
-  display: flex;
-  flex-wrap: wrap;
+  @include display(flex);
+  @include flex-wrap(wrap);
+  @include justify-content(space-between);
+  text-align: center;
 
   a {
-    flex-basis: 4em;
-    flex-grow: 1;
-    flex-shrink: 0;
+    @include flex-basis(12em);
+    @include flex-shrink(0);
+    @include flex-grow(1);
+    margin: $pricing-margin;
   }
 }
 
 .price-includes {
   background: darken(white, 5);
   border-radius: 0 0 5px 5px;
-  padding: 1.5rem 2rem 2rem;
+  padding: $pricing-side-padding $pricing-side-padding 2em;
   position: relative;
 
   @include marketing-fullsize {
     @include span-columns(4, table);
     border-radius: 0 0 5px;
     vertical-align: top;
+  }
+
+  h5 {
+    margin: $pricing-margin $pricing-margin 2em;
+  }
+
+  ul {
+    margin: $pricing-margin;
   }
 
   li {

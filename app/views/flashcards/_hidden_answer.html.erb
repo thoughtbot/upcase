@@ -1,5 +1,5 @@
 <%= link_to t(".reveal-answer"),
-  "javascript:;", class: "reveal-answer" %>
+  "javascript:;", class: "reveal-answer small-button" %>
 
 <div class="revealed-answer hidden">
   <div class="flashcard">
@@ -12,12 +12,12 @@
 
   <%= form_for [flashcard, flashcard.attempts.new] do |f| %>
     <%= f.hidden_field :confidence, value: Attempt::LOW_CONFIDENCE %>
-    <%= f.submit t(".save-for-review_html"), class: "keep-flashcard" %>
+    <%= f.submit t(".save-for-review_html"), class: "secondary-button small-button" %>
   <% end %>
 
   <%= form_for [flashcard, flashcard.attempts.new] do |f| %>
     <%= f.hidden_field :confidence, value: Attempt::HIGH_CONFIDENCE %>
-    <%= f.submit t(".next-flashcard_html"), class: "next-flashcard" %>
+    <%= f.submit t(".next-flashcard_html"), class: "next-flashcard small-button" %>
   <% end %>
 </div>
 

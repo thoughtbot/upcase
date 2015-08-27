@@ -79,6 +79,6 @@
 }
 
 .remove input {
-  font-size: 12px;
-  background-color: $upcase-blue-2;
+  @extend %button.small-button;
+  @extend %button.alert-button;
 }
