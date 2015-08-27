@@ -146,7 +146,7 @@
       <%= link_to github_auth_path, :class => "signup" do %>
         Auth with GitHub to get started
       <% end %>
-      <%= render 'shared/flashes' %>
+      <%= render 'shared/flashes' %>      
     </div>
     <div class="price-includes">
       <h5>Includes</h5>
@@ -161,3 +161,15 @@
     </div>
   </section>
 </section>
+
+<section class="testimonials">
+  <div class="supporting-quotes">
+    <div class="supporting-quote">
+      <%= render 'subscriptions/testimonials/jhoman' %>
+    </div>
+    <div class="supporting-quote">
+      <%= render 'subscriptions/testimonials/bgoldhaber' %>
+    </div>
+  </div>
+</section>
+

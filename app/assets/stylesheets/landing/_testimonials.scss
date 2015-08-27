@@ -103,10 +103,11 @@
 
   .supporting-quotes {
     @include outer-container;
+    @include display(flex);
+    @include flex-wrap(wrap);
 
     img {
       @include size(70px);
-
       float: left;
       display: inline-block;
       margin-right: 24px;
@@ -114,11 +115,14 @@
     }
 
     .supporting-quote {
-      margin-bottom: 50px;
+      @include flex-basis(12em);
+      @include flex-grow(1);
+      @include flex-shrink(0);
+      margin: 0 1em 50px;
 
-      @include marketing-fullsize {
-        @include span-columns(4);
-      }
+      // @include marketing-fullsize {
+        // @include span-columns(4);
+      // }
 
       figure {
         background-color: $upcase-blue;
