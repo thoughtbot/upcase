@@ -25,7 +25,7 @@ $price-width: em(864);
   }
 
   h3 {
-    color: $white;
+    color: $off-white;
     font-size: 3em;
     font-weight: 100;
     letter-spacing: -0.04em;
@@ -45,7 +45,7 @@ $price-width: em(864);
   }
 
   h4 {
-    color: $white;
+    color: $off-white;
     font-size: 3em;
     font-weight: 100;
     letter-spacing: -0.08em;
@@ -54,7 +54,7 @@ $price-width: em(864);
   }
 
   p {
-    color: transparentize($white, 0.4);
+    color: transparentize($off-white, 0.4);
     font-style: italic;
     line-height: 1.4;
   }
@@ -94,7 +94,7 @@ $price-width: em(864);
 }
 
 .price-description {
-  background: $white;
+  background: $off-white;
   padding: 1.5rem 2rem 2rem;
 
   @include marketing-fullsize {
@@ -120,7 +120,7 @@ $price-width: em(864);
     vertical-align: middle;
 
     path {      
-      fill: $white;
+      fill: $off-white;
     }
 
     @include marketing-mobile {
