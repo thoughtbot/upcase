@@ -97,9 +97,13 @@ $price-width: em(864);
   }
 
   svg {
-    @include size(3em);
-    margin-right: 1em;
+    @include size(1.5em);
+    margin: -3px 0.8em 0;
     vertical-align: middle;
+
+    path {      
+      fill: white;
+    }
 
     @include marketing-mobile {
       display: none;
