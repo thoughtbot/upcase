@@ -8,9 +8,11 @@
       <p>For development professionals who are looking to continue learning new
       skills, stay on top of best practices, and keep up to date with new
       technologies.</p>
-      <%= link_to "Start Learning", new_checkout_path(plan: primary), :class => "signup" %>
-      <%= link_to "Get Your Team Started", teams_path, :class => "signup grey" %>
+      <div class="price-cta">
+        <%= link_to "Start Learning", new_checkout_path(plan: primary), :class => "signup" %>
+        <%= link_to "Get Your Team Started", teams_path, :class => "signup grey" %>
       <%= render 'shared/flashes' %>
+      </div>
     </div>
     <div class="price-includes">
       <h5>Includes</h5>

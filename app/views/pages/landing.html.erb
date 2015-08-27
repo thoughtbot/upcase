@@ -142,11 +142,13 @@
       <h5>Join the Upcase Community</h5>
       <p>For aspiring senior developers looking for battle-tested best
       practices, a killer community, and an awesome future.</p>
-      <%= render "subscriptions/octocat.svg" %>
-      <%= link_to github_auth_path, :class => "signup" do %>
-        Auth with GitHub to get started
-      <% end %>
-      <%= render 'shared/flashes' %>
+      <div class="price-cta">
+        <%= link_to github_auth_path, :class => "signup" do %>
+          <%= render "subscriptions/octocat.svg" %>
+          Auth with GitHub to get started
+        <% end %>
+      </div>
+      <%= render 'shared/flashes' %>      
     </div>
     <div class="price-includes">
       <h5>Includes</h5>
@@ -161,3 +163,15 @@
     </div>
   </section>
 </section>
+
+<section class="testimonials">
+  <div class="supporting-quotes">
+    <div class="supporting-quote">
+      <%= render 'subscriptions/testimonials/jhoman' %>
+    </div>
+    <div class="supporting-quote">
+      <%= render 'subscriptions/testimonials/bgoldhaber' %>
+    </div>
+  </div>
+</section>
+
