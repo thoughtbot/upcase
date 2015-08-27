@@ -23,6 +23,10 @@
   padding: 2em 0;
   position: relative;
 
+  h3 a {
+    color: $darkwarmgray;
+  }
+
   ul {
     margin-bottom: 3em;
     padding-left: 4em;
