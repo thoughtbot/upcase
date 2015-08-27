@@ -107,12 +107,12 @@ $price-width: em(864);
     margin: -4px 0.3em 0;
     vertical-align: middle;
 
-    @include marketing-mobile {
-      display: none;
-    }
-    
     path {      
       fill: $white;
+    }
+
+    @include marketing-mobile {
+      display: none;
     }
   }
 }
