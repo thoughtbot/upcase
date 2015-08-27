@@ -97,9 +97,9 @@ $price-width: em(864);
   }
 
   .signup {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    width: 100%;
+    box-shadow: $heavy-box-shadow;
     line-height: 1.3;
+    width: 100%;
   }
   
   svg {
@@ -108,7 +108,7 @@ $price-width: em(864);
     vertical-align: middle;
 
     path {      
-      fill: white;
+      fill: $white;
     }
 
     @include marketing-mobile {
