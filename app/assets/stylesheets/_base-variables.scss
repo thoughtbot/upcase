@@ -6,8 +6,8 @@ $upcase-blue: #2387E0;
 $upcase-blue-1: #487BF6;
 $upcase-blue-2: #0093CB;
 
-$upcase-green: #57C75C;
 $hero-green: #4dd1aa;
+$upcase-green: $hero-green;
 
 $red: #ad141e;
 $off-white: darken(white, 1.5);
