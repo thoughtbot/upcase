@@ -96,14 +96,35 @@ $price-width: em(864);
     margin-bottom: 2em;
   }
 
+  .signup {
+    box-shadow: $heavy-box-shadow;
+    line-height: 1.3;
+    width: 100%;
+  }
+  
   svg {
-    @include size(3em);
-    margin-right: 1em;
+    @include size(1.5em);
+    margin: -4px 0.3em 0;
     vertical-align: middle;
+
+    path {      
+      fill: $white;
+    }
 
     @include marketing-mobile {
       display: none;
     }
+  }
+}
+
+.price-cta {
+  @include display(flex);
+  @include flex-wrap(wrap);
+
+  a {
+    @include flex-basis(4em);
+    @include flex-shrink(0);
+    @include flex-grow(1);
   }
 }
 

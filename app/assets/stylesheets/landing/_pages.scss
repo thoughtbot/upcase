@@ -19,7 +19,7 @@
 
 .signup {
   background: $upcase-green;
-  border-radius: 2px;
+  border-radius: 4px;
   color: white;
   display: inline-block;
   font-family: $sans-serif;
@@ -28,7 +28,7 @@
   line-height: 1;
   margin: 0 0.5em 0.5em 0;
   min-width: 8em;
-  padding: 0.75em 2em;
+  padding: 0.85em 2em;
   text-align: center;
 
   &.grey {
