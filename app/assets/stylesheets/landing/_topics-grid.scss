@@ -23,8 +23,8 @@
   position: relative;
 
   ol {
-    @include display(flex);
     @include flex-wrap(wrap);
+    display: flex;
     margin: 0 auto;
     max-width: 1116px;
   }

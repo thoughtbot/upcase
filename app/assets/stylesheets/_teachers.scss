@@ -3,13 +3,13 @@
   margin: 2rem 0 0;
 
   li {
-    @include display(flex);
     @include flex-direction(column);
+    display: flex;
   }
 
   .teacher-info {
-    @include display(flex);
     @include flex-direction(row);
+    display: flex;
   }
 
   .teacher-name {

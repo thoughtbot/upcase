@@ -130,8 +130,8 @@ $price-width: em(864);
 }
 
 .price-cta {
-  @include display(flex);
   @include flex-wrap(wrap);
+  display: flex;
 
   a {
     @include flex-basis(4em);

@@ -103,8 +103,8 @@
 
   .supporting-quotes {
     @include outer-container;
-    @include display(flex);
     @include flex-wrap(wrap);
+    display: flex;
 
     img {
       @include size(70px);

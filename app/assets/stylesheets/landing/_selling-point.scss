@@ -59,8 +59,8 @@
 
 .selling-point-block {
   @include align-items(center);
-  @include display(flex);
   @include flex-direction(column);
+  display: flex;
 
   @include marketing-fullsize {
     @include flex-direction(row);
