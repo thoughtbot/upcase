@@ -8,8 +8,8 @@
   .root-decks & {
     @include dashboard-medium {
       @include align-items(baseline);
-      @include display(flex);
       @include flex-wrap(wrap);
+      display: flex;
     }
   }
 
@@ -20,8 +20,8 @@
 
 .to-flashcard {
   @include align-items(baseline);
-  @include display(flex);
   @include flex-wrap(wrap);
+  display: flex;
 
   &:hover::before {
     border-color: $flashcard-hover-color;

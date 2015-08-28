@@ -31,7 +31,7 @@ $yellow: #F3E86B;
     li {
       @include align-items(center);
       @include justify-content(center);
-      @include display(flex);
+      display: flex;
       height: 46px;
     }
   }
@@ -39,8 +39,7 @@ $yellow: #F3E86B;
   header {
     @include align-items(center);
     @include clearfix;
-    @include display(flex);
-    display: block;
+    display: flex;
     width: 100%;
 
 

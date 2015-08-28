@@ -1,8 +1,8 @@
 .tiles ul,
 .tiles-container {
-  @include display(flex);
   @include flex-wrap(wrap);
   @include justify-content(space-around);
+  display: flex;
   margin-bottom: 2em;
   width: 100%;
 

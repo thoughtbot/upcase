@@ -16,7 +16,7 @@
   }
 
   header {
-    @include display(flex);
+    display: flex;
     margin-top: 3.2em;
 
     @include dashboard-small-only {

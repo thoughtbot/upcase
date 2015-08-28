@@ -1,9 +1,9 @@
 .resources-container {
-  @include display(flex);
   @include flex-flow(wrap);
   @include justify-content(space-around);
   @include transition (all 0.3s ease-in-out);
   background: white;
+  display: flex;
   padding: em(30) em(20);
 
   header {

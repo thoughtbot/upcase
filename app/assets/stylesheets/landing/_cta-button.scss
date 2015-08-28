@@ -35,11 +35,11 @@
   .hero-aside &,
   .centered-section & {
     @include align-items(center);
-    @include display(flex);
     @include linear-gradient($hero-green, shade($hero-green, 5%));
     border-radius: $base-border-radius;
     box-shadow: $heavy-box-shadow;
     color: $off-white;
+    display: flex;
     font-size: 1.25em;
     font-weight: 300;
     margin-left: auto;

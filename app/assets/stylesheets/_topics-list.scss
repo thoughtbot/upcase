@@ -6,10 +6,10 @@
   }
 
   .topics-list {
-    @include display(flex);
     @include flex-direction(row);
     @include flex-wrap(wrap);
     @include justify-content(space-around);
+    display: flex;
   }
 
   .topic-link {
@@ -74,8 +74,8 @@
   }
 
   .topic-tile {
-    @include display(flex);
     @include flex-direction(row);
+    display: flex;
     margin: 0;
 
     ul {
