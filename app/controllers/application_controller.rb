@@ -96,8 +96,4 @@ class ApplicationController < ActionController::Base
       utm_source: params[:utm_source],
     }
   end
-
-  def track_signup_in_vanity
-    track! :signups
-  end
 end

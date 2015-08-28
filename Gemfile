@@ -45,7 +45,7 @@ gem "stripe_event"
 gem "uglifier"
 gem "unicorn"
 gem "validates_email_format_of"
-gem "vanity", "2.0.0.beta8"
+gem "vanity", github: "assaf/vanity"
 
 group :development do
   gem "bullet"
