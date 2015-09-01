@@ -34,8 +34,8 @@
   
   .hero-aside &,
   .centered-section & {
-    @include align-items(center);
     @include linear-gradient($hero-green, shade($hero-green, 5%));
+    align-items: center;
     border-radius: $base-border-radius;
     box-shadow: $heavy-box-shadow;
     color: $off-white;
@@ -62,6 +62,6 @@
 }
 
 .cta-button-text {
-  @include flex(1);
+  flex: 1;
   text-align: center;
 }

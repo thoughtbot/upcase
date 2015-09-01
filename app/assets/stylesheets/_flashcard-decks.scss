@@ -1,6 +1,6 @@
 .decks {
-  @include flex-wrap(wrap);
   display: flex;
+  flex-wrap: wrap;
 }
 
 .deck {
@@ -68,9 +68,9 @@
     text-align: center;
 
     a {
-      @include align-items(center);
-      @include justify-content(center);
+      align-items: center;
       display: flex;
+      justify-content: center;
       min-height: 8em;
     }
   }

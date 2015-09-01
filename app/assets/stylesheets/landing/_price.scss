@@ -130,13 +130,13 @@ $price-width: em(864);
 }
 
 .price-cta {
-  @include flex-wrap(wrap);
   display: flex;
+  flex-wrap: wrap;
 
   a {
-    @include flex-basis(4em);
-    @include flex-shrink(0);
-    @include flex-grow(1);
+    flex-basis: 4em;
+    flex-grow: 1;
+    flex-shrink: 0;
   }
 }
 

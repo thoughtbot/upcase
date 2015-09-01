@@ -1,18 +1,18 @@
 .tiles ul,
 .tiles-container {
-  @include flex-wrap(wrap);
-  @include justify-content(space-around);
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
   margin-bottom: 2em;
   width: 100%;
 
   .tile {
-    @include flex-basis(22em);
-    @include flex-grow(1);
-    @include flex-shrink(1);
     border-radius: 0 0 3px 3px;
     border-top: 10px solid $gray-5;
     box-shadow: 0 0 0 1px $gray-4;
+    flex-basis: 22em;
+    flex-grow: 1;
+    flex-shrink: 1;
     height: 280px;
     margin: 0 1em 2em;
     overflow: hidden;

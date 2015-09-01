@@ -194,7 +194,7 @@ body.checkouts-new, body.checkouts-create {
         select {
           border: 1px solid darken($warmgray, 5%);
           box-shadow: none;
-          @include box-sizing(border-box);
+          box-sizing: border-box;
           float: left;
           font: 1rem $sans-serif;
           height: 45px;

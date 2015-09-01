@@ -103,8 +103,8 @@ form {
       border: 1px solid darken($warmgray, 5%);
       border-radius: 4px;
       box-shadow: none;
+      box-sizing: border-box;
       font-family: $sans-serif;
-      @include box-sizing(border-box);
       font-size: 1rem;
       margin: .25em 0;
       padding: .75rem 1em;

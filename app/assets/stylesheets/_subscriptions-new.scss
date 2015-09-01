@@ -29,16 +29,16 @@ $yellow: #F3E86B;
     }
 
     li {
-      @include align-items(center);
-      @include justify-content(center);
+      align-items: center;
       display: flex;
       height: 46px;
+      justify-content: center;
     }
   }
 
   header {
-    @include align-items(center);
     @include clearfix;
+    align-items: center;
     display: flex;
     width: 100%;
 

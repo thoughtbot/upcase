@@ -103,8 +103,8 @@
 
   .supporting-quotes {
     @include outer-container;
-    @include flex-wrap(wrap);
     display: flex;
+    flex-wrap: wrap;
 
     img {
       @include size(70px);
@@ -115,9 +115,9 @@
     }
 
     .supporting-quote {
-      @include flex-basis(12em);
-      @include flex-grow(1);
-      @include flex-shrink(0);
+      flex-basis: 12em;
+      flex-grow: 1;
+      flex-shrink: 0;
       margin: 0 1em 50px;
 
       // @include marketing-fullsize {

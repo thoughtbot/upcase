@@ -7,9 +7,9 @@
 .kept-flashcards {
   .root-decks & {
     @include dashboard-medium {
-      @include align-items(baseline);
-      @include flex-wrap(wrap);
+      align-items: baseline;
       display: flex;
+      flex-wrap: wrap;
     }
   }
 
@@ -19,9 +19,9 @@
 }
 
 .to-flashcard {
-  @include align-items(baseline);
-  @include flex-wrap(wrap);
+  align-items: baseline;
   display: flex;
+  flex-wrap: wrap;
 
   &:hover::before {
     border-color: $flashcard-hover-color;
@@ -55,7 +55,7 @@
   }
 
   a {
-    @include flex(1);
+    flex: 1;
   }
 }
 
