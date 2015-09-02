@@ -7,7 +7,7 @@
 
     <div class="hero-center">
       <%= image_tag @github_user.avatar_url, class: 'avatar' %>
-      <h2 class="hero-title">Hey <%= @github_user.name %>, welcome to the thoughtbot team!</h2>
+      <h2 class="hero-title">Hey <%= @github_user.presence || "there" %>, welcome to the thoughtbot team!</h2>
     </div>
   </div>
 </section>
