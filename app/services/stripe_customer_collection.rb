@@ -1,6 +1,4 @@
 class StripeCustomerCollection
-  REMAINING = 200
-
   include Enumerable
 
   def initialize(per_page:)
@@ -8,20 +6,19 @@ class StripeCustomerCollection
   end
 
   def each(&block)
-    fetch({ limit: per_page }, remaining: REMAINING, block: block)
+    fetch({ limit: per_page }, block: block)
   end
 
   private
 
-  def fetch(options, remaining:, block:)
+  def fetch(options, block:)
     customers = Stripe::Customer.all(options).to_a
 
-    if customers.any? && remaining > 0
+    if customers.any?
       customers.each(&block)
       fetch(
         options.merge(starting_after: customers.last["id"]),
         block: block,
-        remaining: remaining - 1,
       )
     end
   end
