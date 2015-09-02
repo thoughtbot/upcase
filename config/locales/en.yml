@@ -90,6 +90,9 @@ en:
       complete-welcome: Dismiss this page (for now)
       headline: Read this to write better code.
       post-welcome-message: All content unlocked. Enjoy!
+  payments:
+    new:
+      pay-button-cta: Get instant access
   plans:
     forum: Private Discourse Forum
     mentoring: 1-1 Mentoring

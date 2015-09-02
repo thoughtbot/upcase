@@ -35,7 +35,7 @@ feature "Visitor signs up for a subscription", js: true do
   def sign_up(token = "fake-token")
     visit root_path
     click_link "Auth with GitHub to get started"
-    click_link "Pay with credit card"
+    click_link I18n.t("payments.new.pay-button-cta")
     page.execute_script("submitToken({ id: '#{token}' })")
   end
 
