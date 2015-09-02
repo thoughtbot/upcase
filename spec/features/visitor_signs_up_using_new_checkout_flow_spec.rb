@@ -2,6 +2,11 @@ require "rails_helper"
 
 feature "Visitor signs up for a subscription", js: true do
   include CheckoutHelpers
+  include VanityHelpers
+
+  before do
+    stub_ab_test_result(:checkout_flow, :new)
+  end
 
   scenario "using the new checkout flow" do
     create_plan
@@ -13,6 +18,7 @@ feature "Visitor signs up for a subscription", js: true do
     expect(FakeStripe.last_token).to eq("abc123")
     expect(User.last).to have_active_subscription
     expect(current_path).to eq(welcome_path)
+    expect(vanity_signup_count).to eq 1
   end
 
   scenario "and the charge fails" do
@@ -27,7 +33,7 @@ feature "Visitor signs up for a subscription", js: true do
   end
 
   def sign_up(token = "fake-token")
-    visit "/pages/landing"
+    visit root_path
     click_link "Auth with GitHub to get started"
     click_link "Pay with credit card"
     page.execute_script("submitToken({ id: '#{token}' })")
