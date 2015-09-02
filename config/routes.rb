@@ -26,6 +26,7 @@ Upcase::Application.routes.draw do
   draw :teams
   draw :trails
   draw :users
+  draw :vanity
   draw :videos
 
   root to: "homes#show"
