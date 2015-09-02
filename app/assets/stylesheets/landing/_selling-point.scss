@@ -2,12 +2,12 @@
   border-bottom: 1px solid $base-border-color-1;
   color: $base-font-color;
   font-size: 1.25em;
-  padding-bottom: 3em;
-  padding-top: 3em;
+  padding-bottom: 2em;
+  padding-top: 2em;
 
   @include marketing-fullsize {
-    padding-bottom: 8em;
-    padding-top: 8em;
+    padding-bottom: 6em;
+    padding-top: 6em;
   }
 
   &.deconstructed {
@@ -20,9 +20,9 @@
 }
 
 .selling-point-title {
-  color: $blue-trail;
-  font-size: 1.5em;
-  font-weight: 300;
+  color: $darkwarmgray;
+  font-size: 1.75em;
+  font-weight: 500;
 
   @include marketing-fullsize {
     font-size: 2em;
