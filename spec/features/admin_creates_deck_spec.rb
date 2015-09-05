@@ -47,17 +47,6 @@ feature "Admin creates a deck" do
     expect(page).to have_css(".flashcard", text: "Updated Flashcard Title")
   end
 
-  def expect_first_listed_flashcard_to_be(flashcard)
-    expect(page).
-      to have_css(".flashcard:first-child .title", text: flashcard.title)
-  end
-
-  def edit_flashcard_position_to_be(flashcard, position)
-    edit_flashcard(flashcard)
-    fill_in "Position", with: position
-    click_on "Update Flashcard"
-  end
-
   def edit_flashcard_as_admin(flashcard = create(:flashcard))
     visit admin_deck_path(flashcard.deck, as: create(:admin))
     edit_flashcard(flashcard)
