@@ -43,4 +43,27 @@ describe Status do
       end
     end
   end
+
+  describe "#most_recent_for_user" do
+    context "when the user has started the completeable" do
+      it "returns the most recent status for the user" do
+        user = create(:user)
+        status = create(:status, user: user)
+
+        result = Status.most_recent_for_user(user)
+
+        expect(result).to eq(status)
+      end
+    end
+
+    context "when the user has not started the completable" do
+      it "returns an Unstarted null object" do
+        user = build_stubbed(:user)
+
+        result = Status.most_recent_for_user(user)
+
+        expect(result).to be_a Unstarted
+      end
+    end
+  end
 end

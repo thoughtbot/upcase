@@ -4,7 +4,7 @@ class VideoCompletionsController < ApplicationController
       new(video, current_user).
       update_state("Complete")
 
-    redirect_to video.trail
+    redirect_to video.watchable
   end
 
   private

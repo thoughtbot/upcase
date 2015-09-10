@@ -60,7 +60,7 @@ feature "subscriber views video trail" do
   def create_video_trail
     create(:trail, :published, name: "Video Trail").tap do |trail|
       2.times do
-        video = create(:video)
+        video = create(:video, watchable: trail)
         create(:step, trail: trail, completeable: video)
       end
     end

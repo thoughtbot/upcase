@@ -36,15 +36,19 @@ class Status < ActiveRecord::Base
     where(state: [UNSTARTED, IN_PROGRESS])
   end
 
+  def self.most_recent_for_user(user)
+    by_user(user).most_recent || Unstarted.new
+  end
+
   def unstarted?
     false
   end
 
   def in_progress?
-    state == Status::IN_PROGRESS
+    state == IN_PROGRESS
   end
 
   def complete?
-    state == Status::COMPLETE
+    state == COMPLETE
   end
 end

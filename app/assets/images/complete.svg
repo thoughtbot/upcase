@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="19px" height="19px" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
     <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
-    <title>play</title>
+    <title>complete</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="play" sketch:type="MSLayerGroup">
-            <circle id="Oval-Copy" fill="#4DD1AA" sketch:type="MSShapeGroup" cx="9.5" cy="9.5" r="9.5"></circle>
-            <path d="M6.99,13.69 L6.99,5.87 L14.26,9.78 L7,13.69 L6.99,13.69 Z" id="Shape-Copy" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+        <g id="complete" sketch:type="MSLayerGroup">
+            <circle id="Oval" opacity="0.43201959" fill="#4DD1AA" sketch:type="MSShapeGroup" cx="9.5" cy="9.5" r="9.5"></circle>
+            <path d="M7.45459964,12.082414 L12.3260152,12.082414 L12.3260152,3.35313239" id="Path-2" stroke="#FFFFFF" stroke-width="3" sketch:type="MSShapeGroup" transform="translate(9.890307, 7.717773) rotate(45.000000) translate(-9.890307, -7.717773) "></path>
         </g>
     </g>
 </svg>

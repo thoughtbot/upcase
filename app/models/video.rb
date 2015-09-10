@@ -71,4 +71,8 @@ class Video < ActiveRecord::Base
       true
     end
   end
+
+  def state_for(user)
+    statuses.most_recent_for_user(user).state
+  end
 end

@@ -208,4 +208,16 @@ describe Video do
       end
     end
   end
+
+  describe "#state_for" do
+    it "finds the state for the user" do
+      user = create(:user)
+      video = create(:video)
+      status = create(:status, :completed, completeable: video, user: user)
+
+      result = video.state_for(user)
+
+      expect(result).to eq(status.state)
+    end
+  end
 end

@@ -1,12 +1,10 @@
 <%= render video.clip %>
 
-<% if video.part_of_trail? %>
-  <div class="mark-as-complete">
-    <%= form_tag video_completions_path(video) do |f| %>
-      <%= submit_tag t("videos.show.mark-as-complete"), class:"small-button" %>
-    <% end %>
-  </div>
-<% end %>
+<div class="mark-as-complete">
+  <%= form_tag video_completions_path(video) do |f| %>
+    <%= submit_tag t("videos.show.mark-as-complete"), class:"small-button" %>
+  <% end %>
+</div>
 
 <% if video.has_notes? %>
   <div class="text-box">
