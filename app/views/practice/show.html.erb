@@ -4,51 +4,47 @@
   <%= render "products/locked_features" %>
 <% end %>
 
-<section class="root-trails">
-  <div class="content">
-    <section class="trails-progress">
-      <section class="subject">
-        <h1>Trails</h1>
-        <p>
-        These are trails, the perfect thing to tackle on a Saturday or a wide-open
-        evening when you're ready to write some code or watch longer videos.
-        </p>
+<section class="trails-progress">
+  <section class="subject">
+    <h1>Trails</h1>
+    <p>
+    These are trails, the perfect thing to tackle on a Saturday or a wide-open
+    evening when you're ready to write some code or watch longer videos.
+    </p>
 
-        <p>
-          Some trails consist of videos, like our tmux trail. Others use our
-          <strong>exercise system</strong>. In those, you'll clone down a git
-          repo and <strong>write code on your own machine</strong>.
-        </p>
+    <p>
+      Some trails consist of videos, like our tmux trail. Others use our
+      <strong>exercise system</strong>. In those, you'll clone down a git
+      repo and <strong>write code on your own machine</strong>.
+    </p>
+  </section>
+
+  <section class="incomplete-trails">
+    <span class="divider">
+      <h4 class="text">Your Trails</h4>
+    </span>
+    <%= render partial: "trails/incomplete_trail", collection: @practice.in_progress_trails, as: :trail %>
+    <%= render partial: "trails/incomplete_trail", collection: @practice.unstarted_trails, as: :trail %>
+  </section>
+
+  <% if @practice.just_finished_trails.any? %>
+    <section class="completed-trails trails-progress">
+      <span class="divider">
+        <h4 class="text">Recently Completed Trails</h4>
+      </span>
+      <section class="trails-complete">
+        <%= render partial: "completed_trails/just_finished_trail", collection: @practice.just_finished_trails, as: :trail %>
       </section>
-
-      <section class="incomplete-trails">
-        <span class="divider">
-          <h4 class="text">Your Trails</h4>
-        </span>
-        <%= render partial: "trails/incomplete_trail", collection: @practice.in_progress_trails, as: :trail %>
-        <%= render partial: "trails/incomplete_trail", collection: @practice.unstarted_trails, as: :trail %>
-      </section>
-
-      <% if @practice.just_finished_trails.any? %>
-        <section class="completed-trails trails-progress">
-          <span class="divider">
-            <h4 class="text">Recently Completed Trails</h4>
-          </span>
-          <section class="trails-complete">
-            <%= render partial: "completed_trails/just_finished_trail", collection: @practice.just_finished_trails, as: :trail %>
-          </section>
-        </section>
-      <% end %>
-
-      <footer>
-        <% if @practice.has_completed_trails? %>
-          <p>
-            <%= link_to completed_trails_path do %>
-              View all completed trails &rarr;
-            <% end %>
-          </p>
-        <% end %>
-      </footer>
     </section>
-  </div>
+  <% end %>
+
+  <footer>
+    <% if @practice.has_completed_trails? %>
+      <p>
+        <%= link_to completed_trails_path do %>
+          View all completed trails &rarr;
+        <% end %>
+      </p>
+    <% end %>
+  </footer>
 </section>

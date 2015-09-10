@@ -21,7 +21,7 @@ section {
   @include outer-container;
   max-width: $max-width;
   flex: 1;
-  padding: 0 $side-padding 3em;
+  padding: 1.5em $side-padding 3em;
   width: 100%;
 
   ul, ol {

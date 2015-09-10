@@ -5,7 +5,13 @@
 }
 
 .kept-flashcards {
-  .root-decks & {
+  .results-show & {
+    margin-top: 2rem;
+  }
+}
+
+.root-decks {
+  .kept-flashcards {
     @include dashboard-medium {
       align-items: baseline;
       display: flex;
@@ -13,10 +19,23 @@
     }
   }
 
-  .results-show & {
-    margin-top: 2rem;
+  .to-flashcard {
+    @include dashboard-medium {
+      display: inline-block;
+      margin-right: 1em;
+      width: calc((100% - 2em) / 3);
+
+      &:nth-of-type(3n) {
+        margin-right: 0;
+      }
+    }
+  }
+
+  h3 {
+    margin-bottom: 1em;
   }
 }
+
 
 .to-flashcard {
   align-items: baseline;
@@ -40,18 +59,6 @@
     margin-bottom: 0;
     margin-right: 0.5rem;
     text-align: center;
-  }
-
-  .root-decks & {
-    @include dashboard-medium {
-      display: inline-block;
-      margin-right: 1em;
-      width: calc((100% - 2em) / 3);
-
-      &:nth-of-type(3n) {
-        margin-right: 0;
-      }
-    }
   }
 
   a {

@@ -13,7 +13,8 @@ h1, h1 a {
   font-weight: 700;
 }
 
-h2 {
+h2,
+h2 a {
   font: 800 36px/40px $sans-serif;
 }
 
@@ -194,7 +195,7 @@ hr {
 
   h2 {
     font-size: 1em;
-    font-weight: normal;
+    font-weight: 700;
     line-height: 1.75em;
     width: 85%;
   }
