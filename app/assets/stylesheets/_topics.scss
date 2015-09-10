@@ -1,0 +1,28 @@
+@each $topic-name, $topic-color in $topic-colors {
+  body.topics.topics-show.#{$topic-name} {
+    .subject {
+      background: map-get($topic-backgrounds, $topic-name);
+
+      h1 {
+        color: $topic-color;
+      }
+    }
+  }
+
+  .tiles ul .tile.#{$topic-name} {
+    border-top-color: map-get($topic-backgrounds, $topic-name);
+  }
+
+  .tiles-container .tile.#{$topic-name} {
+    border-top-color: map-get($topic-backgrounds, $topic-name);
+  }
+
+  .trail-titles li.#{$topic-name} {
+    border-color: map-get($topic-backgrounds, $topic-name);
+  }
+
+  .trail.#{$topic-name} .topic-label {
+    background: map-get($topic-backgrounds, $topic-name);
+    color: $topic-color;
+  }
+}

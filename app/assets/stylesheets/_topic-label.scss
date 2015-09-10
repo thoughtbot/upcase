@@ -6,6 +6,13 @@
   margin-bottom: .8em;
   text-transform: uppercase;
 
+  @each $topic-name, $topic-color in $topic-colors {
+    &.#{$topic-name} {
+      background: map-get($topic-backgrounds, $topic-name);
+      color: $topic-color;
+    }
+  }
+
   a & {
     float: left;
     padding: 5px 10px;

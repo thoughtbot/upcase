@@ -88,7 +88,7 @@
   display: block;
   float: left;
   margin: 0;
-  padding: 3em 0;
+  padding: 1.5em 0;
   width: 100%;
 
   &:first-of-type {
@@ -109,10 +109,44 @@
     margin: 3px 10px 0 0;
   }
 
+  .video-summary {
+    @include clearfix;
+  }
+
   .video-text h2,
   .video-text h3 {
-    margin: 0;
+    margin: 0 0 0.4em;
     padding: 0;
+  }
+
+  .video-length {
+    font-style: italic;
+  }
+
+  .video-date {
+    float: left;
+    font-weight: 600;
+    margin-right: 0.7em;
+    margin-top: -2px;
+  }
+
+  .video-info {
+    float: left;
+    margin-right: 1em;
+    margin-top: -2px;
+  }
+
+  .video-tags {
+    display: inline;
+    margin: 0.6em 0;
+    width: 100%;
+  }
+
+  .topic-label {
+    display: inline;
+    font-size: 0.5em;
+    margin: 0 0.4em;
+    padding: 3px 10px;
   }
 }
 

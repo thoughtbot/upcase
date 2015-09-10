@@ -11,7 +11,7 @@
       <h4 class="text">Videos</h4>
     </span>
     <section id="videos">
-      <%= render @show.published_videos.recently_published_first %>
+      <%= render @show.published_videos.includes(:topics).recently_published_first %>
     </section>
   </div>
 </div>

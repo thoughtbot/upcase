@@ -102,3 +102,33 @@ $unicode-left-double-quote: "\201C";
 $unicode-right-double-quote: "\201D";
 $unicode-left-single-quote: "\2018";
 $unicode-right-single-quote: "\2019";
+
+$topic-backgrounds: (
+  analytics: #efffb3,
+  clean-code: #e5feff,
+  clojure: #ffd3bc,
+  design: #e8e9ff,
+  foundations: #daffcb,
+  haskell: #ffe7fd,
+  ios: #d7ecff,
+  javascript: #ffe8ca,
+  rails: #ffecee,
+  testing: #e5fdf4,
+  vim: #e1f5ff,
+  workflow:  #fcf5c8
+);
+
+$topic-colors: (
+  analytics: #a5c236,
+  clean-code: #1dc8cf,
+  clojure: #ed6820,
+  design: #2b2f8e,
+  foundations: #77c159,
+  haskell: #cd6fc6,
+  ios: #396189,
+  javascript: #d87d2f,
+  rails: #d5414d,
+  testing: #34d096,
+  vim: #2192cf,
+  workflow: #f4bc15
+);

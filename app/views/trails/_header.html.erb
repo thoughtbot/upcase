@@ -4,11 +4,15 @@
 
 <header>
   <div class="topic-image">
-    <%= image_tag "topics/#{topic.slug}.svg" %>
+    <%= link_to topic do %>
+      <%= image_tag "topics/#{topic.slug}.svg" %>
+    <% end %>
   </div>
 
   <div class="topic-title">
-    <h2><%= trail.topic_name %></h2>
+    <div class="trail-topic-name">
+      <%= render topic %>
+    </div>
     <h1><%= trail.name %></h1>
     <p><%= trail.description %></p>
   </div>

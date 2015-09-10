@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911153011) do
+ActiveRecord::Schema.define(version: 20150916171213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -308,15 +308,13 @@ ActiveRecord::Schema.define(version: 20150911153011) do
   end
 
   create_table "topics", force: :cascade do |t|
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.string   "keywords",     limit: 255
-    t.string   "name",         limit: 255,                 null: false
-    t.string   "slug",         limit: 255,                 null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "keywords",   limit: 255
+    t.string   "name",       limit: 255,                 null: false
+    t.string   "slug",       limit: 255,                 null: false
     t.text     "summary"
-    t.boolean  "explorable",               default: false, null: false
-    t.string   "color",        limit: 255, default: "",    null: false
-    t.string   "color_accent", limit: 255, default: "",    null: false
+    t.boolean  "explorable",             default: false, null: false
   end
 
   add_index "topics", ["explorable"], name: "index_topics_on_explorable", using: :btree
@@ -436,6 +434,7 @@ ActiveRecord::Schema.define(version: 20150911153011) do
     t.string   "preview_wistia_id", limit: 255
     t.string   "slug",              limit: 255,             null: false
     t.text     "summary"
+    t.integer  "length_in_minutes"
   end
 
   add_index "videos", ["slug"], name: "index_videos_on_slug", unique: true, using: :btree

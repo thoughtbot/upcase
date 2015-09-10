@@ -35,15 +35,6 @@ describe Topic do
     end
   end
 
-  context "self.with_colors" do
-    it "returns topics with colors" do
-      _without_color = create(:topic, color: "")
-      with_color = create(:topic, color: "yellow")
-
-      expect(Topic.with_colors).to eq([with_color])
-    end
-  end
-
   context 'validations' do
     context 'uniqueness' do
       before do

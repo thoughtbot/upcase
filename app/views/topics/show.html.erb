@@ -8,7 +8,9 @@
       <h2 class="tagline"><%= @topic.summary %></h2>
     <% end %>
 
-    <div class="topic-image"></div>
+    <div class="topic-image">
+      <%= image_tag "topics/#{@topic.slug}.svg" %>
+    </div>
   </div>
 <% end %>
 

@@ -44,7 +44,6 @@ section {
 
     &:before {
       @include position(absolute, 10px -35px 0px null);
-      border-right: 1px solid $base-border-color-1;
       content: "";
 
       @include dashboard-small-only {

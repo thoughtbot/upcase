@@ -15,7 +15,7 @@
       <% @show.published_videos.recently_published_first.each do |video| %>
         <%= content_tag_for :div, video do %>
           <%= link_to video_path(video) do %>
-            <%= render "videos/summary", clip: video.clip, name: video.name %>
+            <%= render "videos/summary", video: video %>
           <% end %>
         <% end %>
       <% end %>

@@ -37,6 +37,10 @@
     .topic-title {
       margin-top: 1em;
     }
+
+    .trail-topic-name {
+      @include clearfix;
+    }
   }
 
   .trails-progress {
