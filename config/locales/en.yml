@@ -140,7 +140,7 @@ en:
   subscriptions:
     accept_discounted_annual_subscription: Yes! I want to save $$$ and keep learning
     cancel: Cancel
-    cancellation_scheduled_on: Scheduled for cancellation on %{date}
+    deactivation_scheduled_on: Scheduled for deactivation on %{date}
     change_plan: Change plan
     choose_plan: Switch Plan
     confirm_cancel: Yes, cancel my subscription

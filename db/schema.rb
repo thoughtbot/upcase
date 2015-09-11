@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720161005) do
+ActiveRecord::Schema.define(version: 20150911153011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -280,12 +280,13 @@ ActiveRecord::Schema.define(version: 20150720161005) do
     t.datetime "created_at",                                                           null: false
     t.datetime "updated_at",                                                           null: false
     t.date     "deactivated_on"
-    t.date     "scheduled_for_cancellation_on"
+    t.date     "scheduled_for_deactivation_on"
     t.integer  "plan_id",                                                              null: false
     t.string   "plan_type",                     limit: 255, default: "IndividualPlan", null: false
     t.decimal  "next_payment_amount",                       default: 0.0,              null: false
     t.date     "next_payment_on"
     t.string   "stripe_id",                     limit: 255
+    t.date     "user_clicked_cancel_button_on"
   end
 
   add_index "subscriptions", ["plan_id", "plan_type"], name: "index_subscriptions_on_plan_id_and_plan_type", using: :btree

@@ -96,23 +96,29 @@ describe Cancellation do
     end
   end
 
-  describe "schedule" do
+  describe "#schedule" do
     it "schedules a cancellation with Stripe" do
-      cancellation = build_cancellation(subscription: subscription)
-      allow(Stripe::Customer).to receive(:retrieve).and_return(stripe_customer)
-      analytics = stub_analytics
+      Timecop.freeze(Time.now) do
+        cancellation = build_cancellation(subscription: subscription)
+        allow(Stripe::Customer).to(
+          receive(:retrieve).and_return(stripe_customer),
+        )
+        analytics = stub_analytics
 
-      cancellation.schedule
+        cancellation.schedule
 
-      subscription.reload
-      expect(stripe_customer.subscriptions.first).
-        to have_received(:delete).with(at_period_end: true)
-      expect(subscription.scheduled_for_cancellation_on).
-        to eq Time.zone.at(1361234235).to_date
-      expect(analytics).to(
-        have_received(:track).
-        with(event: "Cancelled", properties: { reason: "reason" })
-      )
+        subscription.reload
+        expect(stripe_customer.subscriptions.first).
+          to have_received(:delete).with(at_period_end: true)
+        expect(subscription.scheduled_for_deactivation_on).
+          to eq Time.zone.at(billing_period_end).to_date
+        expect(subscription.user_clicked_cancel_button_on).
+          to eq Date.today
+        expect(analytics).to(
+          have_received(:track).
+          with(event: "Cancelled", properties: { reason: "reason" }),
+        )
+      end
     end
 
     it "returns true when valid" do
@@ -206,10 +212,14 @@ describe Cancellation do
       subscriptions: [
         double(
           "Subscription",
-          current_period_end: 1361234235,
+          current_period_end: billing_period_end,
           delete: true
         )
       ]
     )
+  end
+
+  def billing_period_end
+    1361234235
   end
 end

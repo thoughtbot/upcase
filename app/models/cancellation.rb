@@ -42,7 +42,8 @@ class Cancellation
   def cancel_at_period_end
     Subscription.transaction do
       stripe_customer.subscriptions.first.delete(at_period_end: true)
-      record_scheduled_cancellation_date(stripe_customer)
+      record_date_when_subscription_will_deactivate
+      record_date_user_clicked_cancel
       track_cancelled
     end
   end
@@ -56,10 +57,16 @@ class Cancellation
       )
   end
 
-  def record_scheduled_cancellation_date(stripe_customer)
+  def record_date_when_subscription_will_deactivate
     @subscription.update_column(
-      :scheduled_for_cancellation_on,
-      Time.zone.at(stripe_customer.subscriptions.first.current_period_end)
+      :scheduled_for_deactivation_on,
+      end_of_billing_period,
+    )
+  end
+
+  def record_date_user_clicked_cancel
+    @subscription.update(
+      user_clicked_cancel_button_on: Time.zone.today,
     )
   end
 
@@ -69,5 +76,9 @@ class Cancellation
 
   def stripe_customer_id
     @subscription.stripe_customer_id
+  end
+
+  def end_of_billing_period
+    Time.zone.at(stripe_customer.subscriptions.first.current_period_end)
   end
 end
