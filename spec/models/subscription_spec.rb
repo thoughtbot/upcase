@@ -57,19 +57,19 @@ describe Subscription do
     end
   end
 
-  describe "#scheduled_for_cancellation?" do
-    it "returns false if scheduled_for_cancellation_on is nil" do
-      subscription = Subscription.new(scheduled_for_cancellation_on: nil)
+  describe "#scheduled_for_deactivation?" do
+    it "returns false if scheduled_for_deactivation_on is nil" do
+      subscription = Subscription.new(scheduled_for_deactivation_on: nil)
 
-      expect(subscription).not_to be_scheduled_for_cancellation
+      expect(subscription).not_to be_scheduled_for_deactivation
     end
 
-    it "returns true if scheduled_for_cancellation_on is not nil" do
+    it "returns true if scheduled_for_deactivation_on is not nil" do
       subscription = Subscription.new(
-        scheduled_for_cancellation_on: Time.zone.today
+        scheduled_for_deactivation_on: Time.zone.today
       )
 
-      expect(subscription).to be_scheduled_for_cancellation
+      expect(subscription).to be_scheduled_for_deactivation
     end
   end
 

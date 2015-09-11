@@ -38,8 +38,8 @@ class Subscription < ActiveRecord::Base
     deactivated_on.nil?
   end
 
-  def scheduled_for_cancellation?
-    scheduled_for_cancellation_on.present?
+  def scheduled_for_deactivation?
+    scheduled_for_deactivation_on.present?
   end
 
   def deactivate

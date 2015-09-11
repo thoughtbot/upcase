@@ -28,7 +28,7 @@ describe AnalyticsHelper do
         mentor_name: user.mentor_name,
         name: user.name,
         plan: user.plan_name,
-        scheduled_for_cancellation_on: nil,
+        scheduled_for_deactivation_on: nil,
         stripe_customer_url: StripeCustomer.new(user).url,
         subscribed_at: user.subscribed_at,
         username: user.github_username,

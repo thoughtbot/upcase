@@ -11,7 +11,7 @@ module AnalyticsHelper
       mentor_name: user.mentor_name,
       name: user.name,
       plan: user.plan_name,
-      scheduled_for_cancellation_on: user.scheduled_for_cancellation_on,
+      scheduled_for_deactivation_on: user.scheduled_for_deactivation_on,
       stripe_customer_url: StripeCustomer.new(user).url,
       subscribed_at: user.subscribed_at,
       username: user.github_username,
