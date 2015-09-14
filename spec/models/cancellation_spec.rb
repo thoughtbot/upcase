@@ -98,7 +98,7 @@ describe Cancellation do
 
   describe "#schedule" do
     it "schedules a cancellation with Stripe" do
-      Timecop.freeze(Time.now) do
+      Timecop.freeze(Time.current) do
         cancellation = build_cancellation(subscription: subscription)
         allow(Stripe::Customer).to(
           receive(:retrieve).and_return(stripe_customer),
@@ -113,7 +113,7 @@ describe Cancellation do
         expect(subscription.scheduled_for_deactivation_on).
           to eq Time.zone.at(billing_period_end).to_date
         expect(subscription.user_clicked_cancel_button_on).
-          to eq Date.today
+          to eq Date.current
         expect(analytics).to(
           have_received(:track).
           with(event: "Cancelled", properties: { reason: "reason" }),
