@@ -2,7 +2,7 @@
 
 <% content_for :subject_block do %>
   <h1><%= @video.name %></h1>
-  <h2 class="tagline">
+  <h2 class="parent-collection">
     <%= link_to @video.watchable_name, @video.watchable %>
   </h2>
 <% end %>
