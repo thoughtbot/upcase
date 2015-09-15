@@ -2,7 +2,7 @@ class SubscriptionsController < ApplicationController
   before_filter :must_be_subscription_owner, only: [:edit, :update]
 
   def new
-    if vanity_selects_existing_checkout_flow?
+    if vanity_selects_existing_landing_page?
       @landing_page = LandingPage.new
 
       render layout: "landing_pages"
@@ -25,7 +25,7 @@ class SubscriptionsController < ApplicationController
 
   private
 
-  def vanity_selects_existing_checkout_flow?
-    ab_test(:checkout_flow) == :existing
+  def vanity_selects_existing_landing_page?
+    ab_test(:landing_page) == :existing
   end
 end

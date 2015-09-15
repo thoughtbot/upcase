@@ -5,7 +5,7 @@ feature 'Visitor signs up for a subscription' do
 
   background do
     create_plan
-    stub_ab_test_result(:checkout_flow, :existing)
+    stub_ab_test_result(:landing_page, :existing)
   end
 
   scenario 'visitor signs up by navigating from landing page' do
@@ -13,6 +13,20 @@ feature 'Visitor signs up for a subscription' do
 
     visit "/"
     click_link "Start Learning"
+    fill_out_account_creation_form
+    fill_out_credit_card_form_with_valid_credit_card
+
+    expect(current_path).to be_the_welcome_page
+    expect_to_see_checkout_success_flash
+    expect(vanity_signup_count).to eq 1
+  end
+
+  scenario "visitor signs up by navigating from new landing page" do
+    stub_ab_test_result(:landing_page, :new)
+    create(:trail, :published)
+
+    visit root_path
+    click_link I18n.t("pages.landing.sign_up_cta")
     fill_out_account_creation_form
     fill_out_credit_card_form_with_valid_credit_card
 

@@ -159,9 +159,8 @@
       <p>For aspiring senior developers looking for battle-tested best
       practices, a killer community, and mentorship from the right people.</p>
       <div class="price-cta">
-        <%= link_to github_auth_path, :class => "cta-button" do %>
-          <%= image_tag "octocat.svg" %>
-          <span>Auth with GitHub to get started</span>
+        <%= link_to new_checkout_path(plan: Plan.popular), class: "cta-button" do %>
+          <span><%= t(".sign_up_cta") %></span>
         <% end %>
       </div>
       <%= render 'shared/flashes' %>
