@@ -9,17 +9,6 @@ describe Status do
   it { should validate_presence_of(:user_id) }
   it { should validate_inclusion_of(:state).in_array(Status::STATES) }
 
-  context ".most_recent" do
-    it "returns the latest status" do
-      status = create(:status)
-      Timecop.travel(1.day.ago) do
-        create(:status)
-      end
-
-      expect(Status.most_recent).to eq status
-    end
-  end
-
   context "#state" do
     it "has a default state of In Progress" do
       status = Status.new
