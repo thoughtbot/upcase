@@ -23,4 +23,6 @@ if defined? Rails
   end
 end
 
+Pry.config.pager = false
+
 eval(File.open(".irbrc").read)
