@@ -18,9 +18,9 @@ module Admin
 
       flash.now[:alert] =
         "For performance, Administrate limits the index page to show 20 items.
-      Customize this action to update/remove the limit,
-      or implement the pagination library of your choice."
-        @resources = @resources.limit(20)
+        Customize this action to update/remove the limit,
+        or implement the pagination library of your choice."
+      @resources = @resources.limit(20)
     end
 
     use_vanity :current_user
