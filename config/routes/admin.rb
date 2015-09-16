@@ -35,4 +35,3 @@ namespace :admin do
     resource_class: DashboardManifest::ROOT_DASHBOARD,
   )
 end
-

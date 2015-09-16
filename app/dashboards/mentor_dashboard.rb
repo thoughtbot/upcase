@@ -19,7 +19,7 @@ class MentorDashboard < Administrate::BaseDashboard
     id: Field::Number,
     availability: Field::String,
     accepting_new_mentees: Field::Boolean,
-    active_mentees: Field::HasMany.with_options(class_name: "User")
+    active_mentees: Field::HasMany.with_options(class_name: "User"),
   }
 
   # TABLE_ATTRIBUTES
