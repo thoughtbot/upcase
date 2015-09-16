@@ -40,6 +40,10 @@ class Team < ActiveRecord::Base
     users_count * plan.annualized_savings
   end
 
+  def to_s
+    name
+  end
+
   private
 
   def update_billing_quantity

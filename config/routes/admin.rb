@@ -15,4 +15,23 @@ constraints Clearance::Constraints::SignedIn.new(&:admin?) do
   end
 end
 
-mount RailsAdmin::Engine => "/admin", as: :admin
+namespace :admin do
+  resources :exercises
+  resources :repositories
+  resources :shows
+  resources :plans
+
+  DashboardManifest::DASHBOARDS.each do |resource_class|
+    resources(
+      resource_class,
+      controller: :application,
+      resource_class: resource_class,
+    )
+  end
+
+  root(
+    action: :index,
+    controller: :application,
+    resource_class: DashboardManifest::ROOT_DASHBOARD,
+  )
+end

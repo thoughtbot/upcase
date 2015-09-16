@@ -120,6 +120,10 @@ class User < ActiveRecord::Base
     stripe_customer_id.present?
   end
 
+  def to_s
+    name
+  end
+
   private
 
   def personal_subscription

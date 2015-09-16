@@ -43,6 +43,10 @@ class Invitation < ActiveRecord::Base
     sender.name
   end
 
+  def to_s
+    "Invitation for #{email}"
+  end
+
   def user_by_email
     User.find_by(email: email)
   end

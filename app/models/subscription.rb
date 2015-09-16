@@ -99,6 +99,10 @@ class Subscription < ActiveRecord::Base
     next_payment_amount / 100
   end
 
+  def to_s
+    "Subscription: #{(team || user).try(:name)}"
+  end
+
   private
 
   def self.canceled_within_period(start_time, end_time)

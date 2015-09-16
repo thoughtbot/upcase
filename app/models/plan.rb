@@ -95,6 +95,10 @@ class Plan < ActiveRecord::Base
     annual_plan.sku
   end
 
+  def to_s
+    sku
+  end
+
   private
 
   def stripe_plan

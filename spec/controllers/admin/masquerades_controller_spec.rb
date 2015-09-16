@@ -24,7 +24,7 @@ describe Admin::MasqueradesController do
 
       expect(controller.current_user).to eq(admin)
       expect(session[:admin_id]).to be(nil)
-      expect(response).to redirect_to admin_path
+      expect(response).to redirect_to admin_root_path
     end
   end
 

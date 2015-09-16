@@ -18,4 +18,8 @@ class Deck < ActiveRecord::Base
   def length
     flashcards.count
   end
+
+  def to_s
+    title
+  end
 end

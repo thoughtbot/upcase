@@ -47,4 +47,8 @@ class Status < ActiveRecord::Base
   def complete?
     state == Status::COMPLETE
   end
+
+  def to_s
+    "Status ##{id} (#{state})"
+  end
 end
