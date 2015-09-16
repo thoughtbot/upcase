@@ -1,20 +1,27 @@
 class SearchesController < ApplicationController
   def show
-    @query = get_query
-    @results = results_with_excerpts
+    @query = query
+    @results = results
+    track_search_query
   end
 
   def create
-    redirect_to search_path(query: get_query)
+    redirect_to search_path(query: query)
   end
 
   private
 
-  def results_with_excerpts
-    Search.new(@query).results
+  def track_search_query
+    if query.present?
+      analytics.track_searched(query: query, results_count: results.count)
+    end
   end
 
-  def get_query
+  def results
+    @_results ||= Search.new(@query).results
+  end
+
+  def query
     params[:query]
   end
 end

@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def analytics
+    Analytics.new(current_user)
+  end
+
   def must_be_admin
     unless current_user_is_admin?
       flash[:error] = 'You do not have permission to view that page.'

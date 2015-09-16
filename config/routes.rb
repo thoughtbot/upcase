@@ -10,9 +10,11 @@ Upcase::Application.routes.draw do
   use_doorkeeper
 
   draw :redirects
+
   draw :admin
   draw :api
   draw :clearance
+  draw :clips
   draw :decks
   draw :exercises
   draw :pages

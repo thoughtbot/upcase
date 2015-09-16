@@ -40,17 +40,16 @@ describe Cancellation do
     end
 
     it "cancels with Stripe" do
-      cancellation = build_cancellation
+      subscription = create(:subscription)
+      cancellation = build_cancellation(subscription: subscription)
       allow(Stripe::Customer).to receive(:retrieve).and_return(stripe_customer)
-      analytics = stub_analytics
 
       cancellation.cancel_now
 
       expect(stripe_customer.subscriptions.first).to have_received(:delete)
-      expect(analytics).to(
-        have_received(:track).
-        with(event: "Cancelled", properties: { reason: "reason" })
-      )
+      expect(analytics).to have_tracked("Cancelled").
+        for_user(subscription.user).
+        with_properties(reason: "reason")
     end
 
     it "retrieves the customer correctly" do
@@ -103,7 +102,6 @@ describe Cancellation do
         allow(Stripe::Customer).to(
           receive(:retrieve).and_return(stripe_customer),
         )
-        analytics = stub_analytics
 
         cancellation.schedule
 
@@ -114,10 +112,9 @@ describe Cancellation do
           to eq Time.zone.at(billing_period_end).to_date
         expect(subscription.user_clicked_cancel_button_on).
           to eq Date.current
-        expect(analytics).to(
-          have_received(:track).
-          with(event: "Cancelled", properties: { reason: "reason" }),
-        )
+        expect(analytics).to have_tracked("Cancelled").
+          for_user(subscription.user).
+          with_properties(reason: "reason")
       end
     end
 

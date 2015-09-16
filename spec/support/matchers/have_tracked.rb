@@ -1,10 +1,16 @@
 RSpec::Matchers.define :have_tracked do |event_name|
-  match do |backend|
+  match do |analytics_backend|
     @event_name = event_name
-    @backend = backend
+    @analytics_backend = analytics_backend
 
-    backend.
-      tracked_events_for(@user).
+    events =
+      if @user.present?
+        analytics_backend.tracked_events_for(@user)
+      else
+        analytics_backend.tracked_events
+      end
+
+    events.
       named(@event_name).
       has_properties?(@properties || {})
   end

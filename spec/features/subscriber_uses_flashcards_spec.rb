@@ -22,15 +22,17 @@ feature "Subscriber views decks" do
     expect(page).to have_content(flashcard.answer)
   end
 
-  scenario "and rates their confidence with a flashcard's content" do
+  scenario "and saves it to their review queue" do
     deck = create(:deck)
-    create_list(:flashcard, 2, deck: deck)
+    flashcards = create_list(:flashcard, 2, deck: deck)
 
     navigate_to_deck(deck)
     add_to_review_queue
 
     expect(page).to have_content("Flashcard 2")
     expect(last_flashcard_attempt.confidence).to eq(1)
+    expect(analytics).to have_tracked("Flashcard Attempted").
+      with_properties(deck: deck.title, title: flashcards.first.title)
   end
 
   scenario "and navigates to the next flashcard directly" do

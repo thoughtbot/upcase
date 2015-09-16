@@ -220,4 +220,8 @@ describe Video do
       expect(result).to eq(status.state)
     end
   end
+
+  describe "#download_url" do
+    it { should delegate_method(:download_url).to(:clip) }
+  end
 end

@@ -17,10 +17,7 @@ class CollaborationsController < ApplicationController
   end
 
   def track_repo_access
-    Analytics.new(current_user).track(
-      event: "Created Collaboration",
-      properties: { repository_name: find_repository.name }
-    )
+    analytics.track_collaborated(repository_name: find_repository.name)
   end
 
   def find_repository

@@ -1,4 +1,6 @@
 class FakeAnalyticsRuby
+  attr_reader :tracked_events
+
   def initialize
     @identified_events = EventsList.new([])
     @tracked_events = EventsList.new([])

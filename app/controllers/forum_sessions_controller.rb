@@ -37,6 +37,6 @@ class ForumSessionsController < ApplicationController
   end
 
   def track_forum_access
-    Analytics.new(current_user).track(event: "Logged into Forum")
+    analytics.track_accessed_forum
   end
 end

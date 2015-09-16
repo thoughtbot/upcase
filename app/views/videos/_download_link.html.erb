@@ -1,3 +1,4 @@
-<a class="button-mini <%= download_type %>" href="<%= clip.download_url(download_type) %>">
-  <%=size_display%>
+<a class="button-mini download <%= download_type %>"
+  href="<%= clip_download_path(clip.wistia_id, download_type: download_type) %>">
+  <%= size_display %>
 </a>

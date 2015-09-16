@@ -12,6 +12,8 @@ feature "subscriber searches for content" do
     click_on_search_result
 
     expect(current_path).to eq(trail_path(tmux))
+    expect(analytics).to have_tracked("Searched").
+      with_properties(query: "tmux", results_count: 1)
   end
 
   def search_for(query)

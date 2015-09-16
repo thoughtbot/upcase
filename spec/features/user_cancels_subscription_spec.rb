@@ -16,7 +16,6 @@ feature "User cancels a subscription" do
     expect(page).to have_content I18n.t("subscriptions.flashes.cancel.success")
     expect(analytics).to(
       have_tracked("Cancelled").
-      for_user(@current_user).
       with_properties(reason: "I didn't like it")
     )
   end
@@ -33,9 +32,6 @@ feature "User cancels a subscription" do
     click_button I18n.t("subscriptions.confirm_cancel")
 
     expect(page).to have_content("can't be blank")
-    expect(analytics).not_to(
-      have_tracked("Cancelled").
-      for_user(@current_user)
-    )
+    expect(analytics).not_to have_tracked("Cancelled")
   end
 end

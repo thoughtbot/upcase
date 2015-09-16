@@ -23,8 +23,7 @@ describe "Video status" do
       post "/api/v1/videos/#{video.wistia_id}/status", state: "In Progress"
 
       expect(analytics).to have_tracked("Started video").
-        for_user(@current_user).
-        with_properties(video_slug: video.slug)
+        with_properties(name: video.name)
     end
   end
 
@@ -46,8 +45,10 @@ describe "Video status" do
       post "/api/v1/videos/#{video.wistia_id}/status", state: "Complete"
 
       expect(analytics).to have_tracked("Finished video").
-        for_user(@current_user).
-        with_properties(video_slug: video.slug)
+        with_properties(
+          name: video.name,
+          watchable_name: video.watchable_name,
+        )
     end
   end
 

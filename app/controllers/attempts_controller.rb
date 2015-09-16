@@ -8,6 +8,7 @@ class AttemptsController < ApplicationController
       flash[:notice] = I18n.t("attempts.flashcard_saved")
     end
 
+    track_attempted(flashcard)
     redirect_to_next_flashcard_or_results(flashcard)
   end
 
@@ -22,6 +23,13 @@ class AttemptsController < ApplicationController
   end
 
   private
+
+  def track_attempted(flashcard)
+    analytics.track_flashcard_attempted(
+      deck: flashcard.deck_title,
+      title: flashcard.title,
+    )
+  end
 
   def redirect_to_next_flashcard_or_results(flashcard)
     if flashcard.next

@@ -51,10 +51,7 @@ class Cancellation
   def track_cancelled
     Analytics.
       new(@subscription.user).
-      track(
-        event: "Cancelled",
-        properties: { reason: reason }
-      )
+      track_cancelled(reason: reason)
   end
 
   def record_date_when_subscription_will_deactivate

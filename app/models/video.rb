@@ -21,6 +21,7 @@ class Video < ActiveRecord::Base
 
   delegate :included_in_plan?, to: :watchable
   delegate :name, to: :watchable, prefix: true
+  delegate :download_url, to: :clip
 
   friendly_id :name, use: [:slugged, :finders]
 
