@@ -1,0 +1,41 @@
+.dot {
+  @include size($dot-size);
+  background: $not-started-dot-color;
+  border-radius: $dot-size;
+  margin: $dot-margin;
+  position: relative;
+
+  &:before {
+    @include size($dot-size);
+    border-radius: $dot-size;
+    content: "";
+    position: absolute;
+    z-index: 0;
+  }
+}
+
+.in-progress-exercise .dot {
+  background: $gold-trail;
+
+  &:before {
+    border: 2px solid $gold-trail;
+    @extend %animation-radiate;
+  }
+}
+
+.complete-exercise .dot {
+  background: $upcase-green;
+}
+
+.next-up-exercise .dot {
+  background: $blue-trail;
+
+  &:before {
+    border: 2px solid $blue-trail;
+    @extend %animation-radiate;
+  }
+}
+
+.exercise .dot {
+  position: absolute;
+}

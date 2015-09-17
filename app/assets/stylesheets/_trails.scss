@@ -1,4 +1,4 @@
-$dot-size: 13px;
+$dot-size: 14px;
 $dot-margin: 14px;
 $arrow-size: 20px;
 $not-started-dot-color: #D8D8D8;
@@ -170,37 +170,11 @@ $not-started-dot-color: #D8D8D8;
         }
       }
 
-      .dot {
-        background: $not-started-dot-color;
-        border-radius: $dot-size;
-        margin: $dot-margin;
-        position: relative;
-        @include size($dot-size);
-
-        &:before {
-          border-radius: $dot-size;
-          content: "";
-          margin-left: -2px;
-          margin-top: -2px;
-          position: absolute;
-          @include size($dot-size);
-          z-index: 0;
-        }
-      }
-
       &:hover .tooltip {
         opacity: 1;
         @include transform(translate(-50%, 0));
       }
 
-      &.in-progress-exercise .dot {
-        background: $gold-trail;
-
-        &:before {
-          border: 2px solid $gold-trail;
-          @extend %animation-radiate;
-        }
-      }
 
       &.complete-exercise, &.next-up-exercise {
         @include trail-line;
@@ -222,18 +196,6 @@ $not-started-dot-color: #D8D8D8;
         }
       }
 
-      &.complete-exercise .dot {
-        background: $upcase-green;
-      }
-
-      &.next-up-exercise .dot {
-        background: $blue-trail;
-
-        &:before {
-          border: 2px solid $blue-trail;
-          @extend %animation-radiate;
-        }
-      }
     }
   }
 
