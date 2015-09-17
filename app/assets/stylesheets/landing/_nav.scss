@@ -35,7 +35,7 @@
   }
 
   &.headhesive {
-    @include position(fixed, 0em 0em 0 0em);
+    @include position(fixed, 0em 0em null 0em);
     @include transform(translateY(-100%));
     @include transition(transform 0.2s);
     z-index: $z-headhesive;
