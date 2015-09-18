@@ -164,6 +164,7 @@ RailsAdmin.config do |config|
         field :position
         field :published_on
         field :users
+        field :length_in_minutes
         field :markers
       end
 
