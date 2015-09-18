@@ -3,7 +3,7 @@ require "rails_helper"
 feature "Masquerade" do
   scenario "admin masquerades as a user" do
     email = "foo@bar.com"
-    user = create(:user, email: email)
+    create(:user, email: email)
     admin = create(:user, admin: true)
 
     sign_in_as(admin)

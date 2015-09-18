@@ -1,4 +1,6 @@
-class Admin::DecksController < Admin::ApplicationController
+class Admin::DecksController < ApplicationController
+  before_filter :must_be_admin
+
   def index
     @decks = Deck.all
   end
