@@ -20,6 +20,7 @@ namespace :admin do
   resources :repositories
   resources :shows
   resources :plans
+  resources :users
 
   DashboardManifest::DASHBOARDS.each do |resource_class|
     resources(
@@ -29,9 +30,5 @@ namespace :admin do
     )
   end
 
-  root(
-    action: :index,
-    controller: :application,
-    resource_class: DashboardManifest::ROOT_DASHBOARD,
-  )
+  root action: :index, controller: DashboardManifest::ROOT_DASHBOARD
 end
