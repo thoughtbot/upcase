@@ -10,7 +10,8 @@ color_escape_codes = {
 }
 
 env_colors = {
-  "development" => color_escape_codes[:yellow],
+  "development" => color_escape_codes[:white],
+  "test" => color_escape_codes[:purple],
   "staging" => color_escape_codes[:yellow],
   "production" => color_escape_codes[:red],
 }
