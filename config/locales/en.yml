@@ -11,6 +11,8 @@ en:
   attempts:
     flashcard_removed_from_review_queue: Flashcard removed from review queue
     flashcard_saved: Saved flashcard for review
+  authenticating:
+    github_signin: Sign in with GitHub  
   checkout:
     flashes:
       already_subscribed: You are already subscribed. You can change your plan.

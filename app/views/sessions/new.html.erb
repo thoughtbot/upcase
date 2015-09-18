@@ -1,7 +1,11 @@
 <section id="auth-form-container">
-  <div class="github-signin">
-    <%= link_to "Sign in with GitHub", github_auth_path, class: 'button' %>
-  </div>
+  <%= link_to github_auth_path, class: 'cta-button secondary-button' do %>
+    <%= image_tag("github.svg", class: "github-logo") %>
+    <%= t("authenticating.github_signin") %>
+  <% end %>
+  <span class="divider">
+    <h4 class="text">Or</h4>
+  </span>
   <div class="thoughtbot-signin">
     <%= semantic_form_for :session, url: session_path do |form| %>
       <%= hidden_field_tag :return_to, params[:return_to] if params[:return_to] %>
