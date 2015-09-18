@@ -16,19 +16,9 @@ constraints Clearance::Constraints::SignedIn.new(&:admin?) do
 end
 
 namespace :admin do
-  resources :exercises
-  resources :repositories
-  resources :shows
-  resources :plans
-  resources :users
-
-  DashboardManifest::DASHBOARDS.each do |resource_class|
-    resources(
-      resource_class,
-      controller: :application,
-      resource_class: resource_class,
-    )
+  DashboardManifest::DASHBOARDS.each do |dashboard_resource|
+    resources dashboard_resource
   end
 
-  root action: :index, controller: DashboardManifest::ROOT_DASHBOARD
+  root controller: DashboardManifest::ROOT_DASHBOARD, action: :index
 end

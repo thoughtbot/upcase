@@ -1,4 +1,6 @@
 class Admin::FlashcardPreviewsController < ApplicationController
+  before_filter :must_be_admin
+
   def create
     @deck = find_deck
     @flashcard = @deck.flashcards.new(flashcard_params)

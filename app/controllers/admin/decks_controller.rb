@@ -1,4 +1,4 @@
-class Admin::DecksController < ApplicationController
+class Admin::DecksController < Admin::ApplicationController
   def index
     @decks = Deck.all
   end
