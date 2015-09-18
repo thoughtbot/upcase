@@ -1,30 +1,24 @@
 #auth-form-container {
+  padding: 1.5em $side-padding 3em;
+
   .github-signin, .thoughtbot-signin form, .signup-forgot {
     margin: auto;
     max-width: 400px;
-    padding: 0 $side-padding;
   }
 
-  .github-signin  {
-    padding: 0;
+  .secondary-button {
+    display: block;
+    margin: 0 auto 2em;
+    max-width: 400px;
+  }
 
-    a {
-      color: $darkwarmgray;
-      display: block;
-      margin: 2rem 0;
-      padding-left: 3.8rem;
-      position: relative;
+  .github-logo {
+    max-height: 1.4em;
+  }
 
-      &:after {
-        content: asset-url('GitHub-Mark-32px.png');
-        height: 32px;
-        left: 14px;
-        margin-top: -15px;
-        position: absolute;
-        top: 50%;
-        width: 32px;
-      }
-    }
+  .divider {
+    margin: auto;
+    max-width: 400px;
   }
 
   .thoughtbot-signin {
