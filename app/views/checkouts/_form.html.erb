@@ -5,9 +5,9 @@
       <ul class="checkout-sigin-signup-toggle">
         <li class="video_tutorial-alert sign-in-prompt">
           <%= link_to "Already have an account? Sign in",
-                      sign_in_path(return_to: request.fullpath) %>
+                      sign_in_path(return_to: request.fullpath), class: "cta-button secondary-button" %>
         </li>
-        <li><%= link_to "Sign up with GitHub", github_auth_path %></li>
+        <li><%= link_to "Sign up with GitHub", github_auth_path, class: "cta-button secondary-button" %></li>
       </ul>
     <% end %>
 
