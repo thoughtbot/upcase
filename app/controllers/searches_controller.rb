@@ -1,4 +1,6 @@
 class SearchesController < ApplicationController
+  before_filter :require_login
+
   def show
     @query = query
     @results = results

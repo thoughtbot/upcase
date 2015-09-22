@@ -2,22 +2,10 @@ require "rails_helper"
 
 describe DecksController do
   describe "#index" do
-    context "when no user is signed in" do
-      it "redirects to the sign in page" do
-        get :index
-
-        expect(response).to redirect_to(sign_in_path)
-      end
-    end
+    it { requires_signed_in_user_to { get :index } }
   end
 
   describe "#show" do
-    context "when no user is signed in" do
-      it "redirects to the sign in page" do
-        get :show, id: 1
-
-        expect(response).to redirect_to(sign_in_path)
-      end
-    end
+    it { requires_signed_in_user_to { get :show, id: 1 } }
   end
 end

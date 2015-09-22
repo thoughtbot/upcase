@@ -2,6 +2,8 @@ require "rails_helper"
 
 describe AnnualBillingsController do
   describe "#new" do
+    it { requires_signed_in_user_to { get :new } }
+
     context "when subscriber is eligible for an upgrade" do
       it "does not redirect to the root page" do
         sign_in_as subscriber(eligible_for_annual_upgrade: true)
@@ -19,14 +21,6 @@ describe AnnualBillingsController do
         get :new
 
         expect(response).to redirect_to root_path
-      end
-    end
-
-    context "when not signed in" do
-      it "redirects to the sign in page" do
-        get :new
-
-        expect(response).to redirect_to sign_in_path
       end
     end
 

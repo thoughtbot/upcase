@@ -4,11 +4,7 @@ describe AttemptsController do
   include StubCurrentUserHelper
 
   describe "#create" do
-    it "redirects if not logged in" do
-      post :create, flashcard_id: 1
-
-      expect(response).to redirect_to(sign_in_path)
-    end
+    it { requires_signed_in_user_to { post :create, flashcard_id: 1 } }
 
     context "when the user chose to save the flashcard" do
       it "sets a flash message" do
