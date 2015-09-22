@@ -18,14 +18,30 @@ describe Analytics do
       video = build_stubbed(:video)
 
       analytics_instance.track_video_started(
-        name: video.slug,
+        name: video.name,
         watchable_name: video.watchable_name,
       )
 
       expect(analytics).to have_tracked("Started video").
         for_user(user).
         with_properties(
-          name: video.slug,
+          name: video.name,
+          watchable_name: video.watchable_name,
+        )
+    end
+
+    it "also tracks video touched event" do
+      video = build_stubbed(:video)
+
+      analytics_instance.track_video_started(
+        name: video.name,
+        watchable_name: video.watchable_name,
+      )
+
+      expect(analytics).to have_tracked("Touched Video").
+        for_user(user).
+        with_properties(
+          name: video.name,
           watchable_name: video.watchable_name,
         )
     end
@@ -36,14 +52,14 @@ describe Analytics do
       video = build_stubbed(:video)
 
       analytics_instance.track_video_finished(
-        name: video.slug,
+        name: video.name,
         watchable_name: video.watchable_name,
       )
 
       expect(analytics).to have_tracked("Finished video").
         for_user(user).
         with_properties(
-          name: video.slug,
+          name: video.name,
           watchable_name: video.watchable_name,
         )
     end
@@ -117,6 +133,22 @@ describe Analytics do
       expect(analytics).to have_tracked("Downloaded Video").
         for_user(user).
         with_properties(download_properties)
+    end
+
+    it "also tracks video touched event" do
+      video = build_stubbed(:video)
+
+      analytics_instance.track_video_started(
+        name: video.name,
+        watchable_name: video.watchable_name,
+      )
+
+      expect(analytics).to have_tracked("Touched Video").
+        for_user(user).
+        with_properties(
+          name: video.name,
+          watchable_name: video.watchable_name,
+        )
     end
   end
 end

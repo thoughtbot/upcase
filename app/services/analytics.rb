@@ -13,19 +13,12 @@ class Analytics
   end
 
   def track_video_finished(name:, watchable_name:)
-    track(
-      "Finished video",
-      name: name,
-      watchable_name: watchable_name,
-    )
+    track("Finished video", name: name, watchable_name: watchable_name)
   end
 
   def track_video_started(name:, watchable_name:)
-    track(
-      "Started video",
-      name: name,
-      watchable_name: watchable_name,
-    )
+    track("Started video", name: name, watchable_name: watchable_name)
+    track_touched_video(name: name, watchable_name: watchable_name)
   end
 
   def track_searched(query:, results_count:)
@@ -55,11 +48,16 @@ class Analytics
       watchable_name: watchable_name,
       download_type: download_type,
     )
+    track_touched_video(name: name, watchable_name: watchable_name)
   end
 
   private
 
   attr_reader :user
+
+  def track_touched_video(name:, watchable_name:)
+    track("Touched Video", name: name, watchable_name: watchable_name)
+  end
 
   def track(event, properties = {})
     backend.track(
