@@ -1,6 +1,6 @@
 class Practice
-  def initialize(user)
-    @user = user
+  def initialize(trails)
+    @trails = trails
   end
 
   def has_completed_trails?
@@ -21,15 +21,7 @@ class Practice
 
   private
 
-  attr_reader :user
-
-  def trails
-    Trail.
-      published.
-      by_topic.
-      includes(:steps).
-      map { |trail| TrailWithProgress.new(trail, user: user) }
-  end
+  attr_reader :trails
 
   def completed_trails
     trails.select(&:complete?)

@@ -284,6 +284,31 @@ describe Trail do
     end
   end
 
+  describe "#first_completeable" do
+    it "returns the completeable associated with the first step in the trail" do
+      trail = build_stubbed(:trail)
+      create(:step, trail: trail, position: 3)
+      create(:step, trail: trail, position: 2)
+      step = create(:step, trail: trail, position: 1)
+
+      result = trail.first_completeable
+
+      expect(result).to eq(step.completeable)
+    end
+
+    context "when steps are included and there are other ORDER BY clauses" do
+      it "still orders by step position" do
+        trail = create(:trail)
+        create(:step, trail: trail, position: 2)
+        step = create(:step, trail: trail, position: 1)
+
+        result = Trail.by_topic.includes(:steps).first.first_completeable
+
+        expect(result).to eq(step.completeable)
+      end
+    end
+  end
+
   def trail_with_exercise_states(user, *states)
     exercises =
       states.map { |state| create_exercise_with_state(state, user: user) }

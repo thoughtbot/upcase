@@ -477,6 +477,10 @@ FactoryGirl.define do
       published true
     end
 
+    trait :unpublished do
+      published false
+    end
+
     trait :completed do
       after :create do |instance|
         Timecop.travel(1.week.ago) do

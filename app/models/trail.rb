@@ -80,4 +80,8 @@ class Trail < ActiveRecord::Base
   def topic_name
     topic.name
   end
+
+  def first_completeable
+    steps.order(:position).first.completeable
+  end
 end
