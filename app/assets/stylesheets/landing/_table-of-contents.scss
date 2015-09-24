@@ -54,6 +54,8 @@
   @include position(absolute, 0px 0px 0 0);
   color: $gray-3;
   font-size: 2em;
+  height: 2em;
+  width: 2em;
 
   &:hover,
   &:focus {
