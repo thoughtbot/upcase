@@ -20,14 +20,6 @@ describe CheckoutMailer do
           expect(email_for(checkout)).to have_body_text(/Thank you for subscribing/)
         end
 
-        it 'mentions the mentor email' do
-          plan = create(:plan, :includes_mentor)
-          user = create(:subscriber, plan: plan)
-          checkout = create(:checkout, user: user, plan: plan)
-
-          expect(email_for(checkout)).to have_body_text(/mentor/)
-        end
-
         it 'does not mention the features the user does not have' do
           user = create(:subscriber)
           checkout = create(
@@ -36,7 +28,7 @@ describe CheckoutMailer do
             plan: create(:basic_plan)
           )
 
-          expect(email_for(checkout)).not_to have_body_text(/mentor/)
+          expect(email_for(checkout)).not_to have_body_text(/repositories/)
         end
       end
     end

@@ -1,7 +1,3 @@
-$(function() {
-  showFeatureDetail('.mentor figure[data-target=mentoring]');
-});
-
 $('.plan .features figure:not(.inactive)').on('click', function() {
   showFeatureDetail($(this));
 });

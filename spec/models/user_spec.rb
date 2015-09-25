@@ -2,7 +2,6 @@ require "rails_helper"
 
 describe User do
   context "associations" do
-    it { should belong_to(:mentor) }
     it { should belong_to(:team) }
     it { should have_many(:attempts).dependent(:destroy) }
     it { should have_many(:collaborations).dependent(:destroy) }
@@ -14,16 +13,6 @@ describe User do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:github_username) }
     it { should validate_uniqueness_of(:github_username) }
-  end
-
-  context "with a subscription that includes a mentor" do
-    it "is invalid without a mentor" do
-      plan = create(:plan, includes_mentor: true)
-      subscription = create(:subscription, plan: plan)
-      user = create(:user, :with_mentor, subscriptions: [subscription])
-
-      expect(user).to validate_presence_of(:mentor_id)
-    end
   end
 
   context "#first_name" do
@@ -262,48 +251,6 @@ describe User do
     end
   end
 
-  describe "#assign_mentor" do
-    it "sets the given user as the mentor" do
-      mentee = create(:user)
-      mentor = create(:mentor)
-
-      mentee.assign_mentor(mentor)
-
-      expect(mentee.mentor).not_to be_nil
-    end
-  end
-
-  describe "#has_subscription_with_mentor?" do
-    it "returns true when the subscription includes mentoring" do
-      plan = build(:plan, includes_mentor: true)
-      subscription = build(:subscription, plan: plan)
-      user = build(:user, :with_mentor, subscriptions: [subscription])
-
-      expect(user).to have_subscription_with_mentor
-    end
-
-    it "returns false when the subscription does not include mentoring" do
-      plan = build(:plan, includes_mentor: false)
-      subscription = build(:subscription, plan: plan)
-      user = build(:user, subscription: subscription)
-
-      expect(user).to_not have_subscription_with_mentor
-    end
-
-    it "returns false when the subscription is inactive" do
-      plan = build(:plan, includes_mentor: true)
-      subscription = build(:inactive_subscription, plan: plan)
-      user = build(:user, :with_mentor, subscription: subscription)
-
-      expect(user).to_not have_subscription_with_mentor
-    end
-
-    it "returns false when there is no subscription" do
-      user = build(:user)
-      expect(user).to_not have_subscription_with_mentor
-    end
-  end
-
   describe "#plan" do
     context "for a user with an active subscription" do
       it "delegates to the active subscription" do
@@ -336,47 +283,6 @@ describe User do
     it "returns nil when there is no Subscription" do
       user = create(:user)
       expect(user.plan_name).to be_nil
-    end
-  end
-
-  describe "#mentor_name" do
-    it "returns the mentor name" do
-      mentee = build_stubbed(:user, :with_mentor)
-      mentor = mentee.mentor
-
-      expect(mentee.mentor_name).to eq mentor.name
-    end
-
-    it "returns nil if the user has no mentor" do
-      user = build_stubbed(:user)
-
-      expect(user.mentor_name).to be_nil
-    end
-  end
-
-  describe "#mentor_email" do
-    it "delegates to the user's mentor" do
-      user = create(:user, :with_mentor)
-      expect(user.mentor_email).to eq user.mentor.email
-    end
-
-    it "returns nil if the user has no mentor" do
-      user = build_stubbed(:user)
-
-      expect(user.mentor_email).to be_nil
-    end
-  end
-
-  describe "#mentor_first_name" do
-    it "delegates to the user's mentor" do
-      user = create(:user, :with_mentor)
-      expect(user.mentor_first_name).to eq user.mentor.first_name
-    end
-
-    it "returns nil if the user has no mentor" do
-      user = build_stubbed(:user)
-
-      expect(user.mentor_first_name).to be_nil
     end
   end
 
@@ -416,10 +322,7 @@ describe User do
           :with_team_subscription
         )
 
-        allow(user.team.subscription).to receive(:has_access_to?).
-          and_return("expected")
-
-        expect(user.has_access_to?(:trails)).to eq("expected")
+        expect(user.has_access_to?(:trails)).to eq(true)
       end
     end
   end

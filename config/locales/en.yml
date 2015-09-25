@@ -85,8 +85,6 @@ en:
         subject: '[Upcase] Your receipt and some tips'
       upcoming_payment_notification:
         subject: '[Upcase] thoughtbot is about to charge for your Upcase subscription'
-      welcome_from_mentor:
-        subject: Welcome to Upcase! I'm your new mentor
   pages:
     welcome:
       complete-welcome: Dismiss this page (for now)
@@ -99,7 +97,6 @@ en:
       pay-button-cta: Get instant access
   plans:
     forum: Private Discourse Forum
-    mentoring: 1-1 Mentoring
     video_tutorials: Hands-On Video Tutorials
   practice:
     decks:
@@ -123,7 +120,6 @@ en:
       title: '%{title}'
   shared:
     header:
-      contact_your_mentor: Contact your mentor, %{mentor_name}
       explore: Explore
       flashcards: Flashcards
       forum: Forum

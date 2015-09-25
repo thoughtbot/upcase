@@ -12,12 +12,6 @@ class Subscription < ActiveRecord::Base
   validates :plan_type, presence: true
   validates :user_id, presence: true
 
-  def self.deliver_welcome_emails
-    recent.each do |subscription|
-      subscription.deliver_welcome_email
-    end
-  end
-
   def self.canceled_in_last_30_days
     canceled_within_period(30.days.ago, Time.zone.now)
   end
@@ -71,12 +65,6 @@ class Subscription < ActiveRecord::Base
     subscription.plan = plan.sku
     subscription.quantity = new_quantity
     subscription.save
-  end
-
-  def deliver_welcome_email
-    if has_access_to?(:mentor)
-      SubscriptionMailer.welcome_to_upcase_from_mentor(user).deliver_now
-    end
   end
 
   def has_access_to?(feature)

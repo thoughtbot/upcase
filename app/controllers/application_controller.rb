@@ -59,11 +59,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user_has_access_to?
 
-  def subscription_includes_mentor?
-    current_user.has_subscription_with_mentor?
-  end
-  helper_method :subscription_includes_mentor?
-
   def current_user_is_admin?
     current_user && (current_user.admin? || masquerading?)
   end

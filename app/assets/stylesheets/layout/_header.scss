@@ -183,21 +183,6 @@
       }
     }
 
-    li.mentor {
-      a {
-        padding-right: 0.8rem;
-      }
-
-      img {
-        @include size(30px);
-        margin: 1rem 2.8rem 0 0;
-
-        @include body-mobile {
-          display: none;
-        }
-      }
-    }
-
     li a {
       border-left: 1px solid darken($upcase-blue, 5);
       color: white;

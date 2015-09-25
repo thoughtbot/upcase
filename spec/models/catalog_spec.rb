@@ -16,13 +16,6 @@ describe Catalog do
     end
   end
 
-  describe "#mentors" do
-    it "returns all mentors" do
-      catalog = Catalog.new
-      expect(catalog.mentors).to find_relation(Mentor.all)
-    end
-  end
-
   describe "#plans" do
     it "returns all featured active plans" do
       catalog = Catalog.new

@@ -1,10 +1,6 @@
 Thank you for subscribing to <%= @checkout.plan_name %>!
 
-<%- if @checkout.plan.has_feature?(:mentor) -%>
-You will receive an email from your mentor soon.
-<%- end -%>
-
-In the meantime, one of the first things you might do is visit our Trail Maps
+One of the first things you might do is visit our Trail Maps
 <%- if @checkout.plan.has_feature?(:trails) -%>
 and check off your skills to determine which video tutorials are right for you:
 <%- else -%>

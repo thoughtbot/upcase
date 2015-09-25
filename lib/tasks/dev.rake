@@ -12,7 +12,6 @@ namespace :dev do
     create_topics
     create_products
     create_episodes
-    create_mentors
     create_users
     create_team_plan
     create_trails
@@ -44,16 +43,6 @@ namespace :dev do
       name: "Professional",
       short_description: "Do exercises and become a general whiz kid.",
       sku: "professional",
-    )
-
-    @mentor_plan = create(
-      :plan,
-      :featured,
-      includes_mentor: true,
-      price_in_dollars: 249,
-      name: "1-on-1 Coaching",
-      short_description: "Best for an active learner seeking 1-on-1 personal coaching.",
-      sku: "prime-249",
     )
   end
 
@@ -134,7 +123,7 @@ namespace :dev do
       :with_subscription,
       :with_github,
       email: 'admin@example.com',
-      plan: @mentor_plan
+      plan: @professional_plan
     )
     puts_user user, 'admin'
 
@@ -156,39 +145,20 @@ namespace :dev do
       plan: @basic_plan,
     )
     puts_user user, 'basic subscriber'
-
-    user = FactoryGirl.create(
-      :subscriber,
-      :includes_mentor,
-      email: 'has_mentor@example.com',
-      plan: @mentor_plan,
-    )
-    puts_user user, 'mentor subscriber'
-
-    puts "\n"
   end
 
-  def create_mentors
-    header "Mentors"
-
-    mentor = FactoryGirl.create(:user, email: 'mentor@example.com', admin: true)
-    FactoryGirl.create(:mentor, user: mentor)
-    puts_user mentor, 'mentor'
-
-    puts "\n"
-  end
 
   def create_team_plan
     FactoryGirl.create(:plan, :team, :featured)
   end
 
   def create_topics
-    create_topic color: "#E5FEFF", accent: "#1DC8CF", name: "Clean Code"
-    create_topic color: "#E8E9FF", accent: "#2B2F8E", name: "Design"
-    create_topic color: "#FFE8CA", accent: "#D87D2F", name: "Javascript"
-    create_topic color: "#E1F5FF", accent: "#2192CF", name: "Vim"
-    create_topic color: "#FCF5C8", accent: "#F4BC15", name: "Workflow"
-    create_topic color: "#D7ECFF", accent: "#396189", name: "iOS"
+    create(:topic, name: "Clean Code")
+    create(:topic, name: "Design")
+    create(:topic, name: "Javascript")
+    create(:topic, name: "Vim")
+    create(:topic, name: "Workflow")
+    create(:topic, name: "iOS")
 
     rails = FactoryGirl.create(:topic, :explorable, name: "Ruby on Rails")
     rails.update(slug: "rails")

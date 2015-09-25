@@ -9,10 +9,6 @@ module Subscriptions
     visit practice_path(as: @current_user)
   end
 
-  def sign_in_as_user_with_mentoring_subscription
-    sign_in_as_user_with_subscription(:includes_mentor)
-  end
-
   def sign_in_as_user_with_downgraded_subscription
     sign_in_as_user_with_subscription
     @current_user.subscription.change_plan(sku: create(:basic_plan).sku)

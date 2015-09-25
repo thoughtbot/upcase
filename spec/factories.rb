@@ -113,12 +113,12 @@ FactoryGirl.define do
       featured true
     end
 
-    trait :includes_mentor do
-      includes_mentor true
+    trait :includes_repositories do
+      includes_repositories true
     end
 
-    trait :no_mentor do
-      includes_mentor false
+    trait :no_repositories do
+      includes_repositories false
     end
 
     trait :team do
@@ -177,7 +177,7 @@ FactoryGirl.define do
     name
     github_username
     association :plan, factory: :plan
-    association :user, :with_stripe, :with_mentor, :with_github
+    association :user, :with_stripe, :with_github
   end
 
   factory :teacher do
@@ -213,10 +213,6 @@ FactoryGirl.define do
     end
   end
 
-  factory :mentor do
-    association :user, :with_github, factory: :admin
-  end
-
   factory :user do
     email
     name
@@ -246,12 +242,6 @@ FactoryGirl.define do
         completed_welcome false
       end
 
-      trait :includes_mentor do
-        transient do
-          plan { create(:plan, :includes_mentor) }
-        end
-      end
-
       trait :admin do
         admin true
       end
@@ -272,7 +262,6 @@ FactoryGirl.define do
     end
 
     trait :with_subscription do
-      with_mentor
       with_github
       stripe_customer_id 'cus12345'
 
@@ -298,7 +287,6 @@ FactoryGirl.define do
             :plan,
             includes_trails: true,
             includes_forum: true,
-            includes_mentor: true,
             includes_repositories: true
           )
         end
@@ -329,7 +317,6 @@ FactoryGirl.define do
     end
 
     trait :with_inactive_subscription do
-      with_mentor
       with_github
       stripe_customer_id "cus12345"
 
@@ -340,7 +327,6 @@ FactoryGirl.define do
     end
 
     trait :with_inactive_team_subscription do
-      with_mentor
       with_github
       stripe_customer_id 'cus12345'
       team
@@ -356,7 +342,6 @@ FactoryGirl.define do
     end
 
     trait :with_team_subscription do
-      with_mentor
       with_github
       stripe_customer_id 'cus12345'
       team
@@ -371,15 +356,11 @@ FactoryGirl.define do
         SubscriptionFulfillment.new(instance, subscription.plan).fulfill
       end
     end
-
-    trait :with_mentor do
-      mentor
-    end
   end
 
   factory :subscription, aliases: [:active_subscription] do
     association :plan
-    association :user, :with_stripe, :with_mentor, :with_github
+    association :user, :with_stripe, :with_github
 
     factory :inactive_subscription do
       deactivated_on { Time.zone.today }

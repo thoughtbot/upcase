@@ -11,29 +11,6 @@ describe Subscription do
   it { should validate_presence_of(:plan_type) }
   it { should validate_presence_of(:user_id) }
 
-  describe ".deliver_welcome_emails" do
-    it "sends emails for each new mentored subscriber in the last 24 hours" do
-      plan = create(:plan, includes_mentor: true)
-      old_subscription =
-        create(:subscription, plan: plan, created_at: 25.hours.ago)
-      new_subscription =
-        create(:subscription, plan: plan, created_at: 10.hours.ago)
-      mailer = spy("Mailer")
-      allow(SubscriptionMailer).to receive(:welcome_to_upcase_from_mentor).
-        and_return(mailer)
-
-      Subscription.deliver_welcome_emails
-
-      expect(SubscriptionMailer).
-        to have_received(:welcome_to_upcase_from_mentor).
-        with(new_subscription.user)
-      expect(SubscriptionMailer).
-        not_to have_received(:welcome_to_upcase_from_mentor).
-        with(old_subscription.user)
-      expect(mailer).to have_received(:deliver_now).once
-    end
-  end
-
   describe ".next_payment_in_2_days" do
     it "only includes subscription that will be billed in 2 days" do
       billed_today = create(:subscription, next_payment_on: Date.current)

@@ -20,44 +20,6 @@ RailsAdmin.config do |config|
     init_actions!
   end
 
-  config.model Mentor do
-    list do
-      field :name
-      field :accepting_new_mentees
-      field :active_mentee_count do
-        label 'Mentees'
-      end
-      field :availability
-    end
-
-    show do
-      field :user
-      field :accepting_new_mentees
-      field :availability
-      field :active_mentees do
-        pretty_value do
-          value.map do |user|
-            bindings[:view].link_to(
-              user.name,
-              bindings[:view].url_for(:model_name => 'user', :id => user.to_param),
-              :class => 'pjax'
-            )
-          end.to_sentence.html_safe
-        end
-      end
-    end
-
-    edit do
-      field :user
-      field :accepting_new_mentees
-      field :availability
-    end
-
-    object_label_method do
-      :id
-    end
-  end
-
   config.model User do
     list do
       field :id
@@ -82,7 +44,6 @@ RailsAdmin.config do |config|
       field :admin
       field :bio
       field :github_username
-      field :mentor
       field :stripe_customer_id
     end
   end

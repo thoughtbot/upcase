@@ -53,7 +53,6 @@ describe SubscriptionFulfillment do
 
   def build_subscribable_user
     build_stubbed(:user, :with_github).tap do |user|
-      allow(user).to receive(:assign_mentor)
       allow(user).to receive(:subscription).
         and_return(build_stubbed(:subscription))
       allow(User).to receive(:find).with(user.id).and_return(user)

@@ -5,16 +5,11 @@ class User < ActiveRecord::Base
   has_many :collaborations, dependent: :destroy
   has_many :statuses, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
-  belongs_to :mentor
   belongs_to :team
 
   validates :name, presence: true
-  validates :mentor_id, presence: true, if: :has_subscription_with_mentor?
   validates :github_username, uniqueness: true, presence: true
 
-  delegate :email, to: :mentor, prefix: true, allow_nil: true
-  delegate :first_name, to: :mentor, prefix: true, allow_nil: true
-  delegate :name, to: :mentor, prefix: true, allow_nil: true
   delegate :plan, to: :subscription, allow_nil: true
   delegate :scheduled_for_deactivation_on, to: :subscription, allow_nil: true
 
@@ -72,14 +67,6 @@ class User < ActiveRecord::Base
     if customer
       customer.cards.detect { |card| card.id == customer.default_card }
     end
-  end
-
-  def assign_mentor(mentor)
-    update(mentor: mentor)
-  end
-
-  def has_subscription_with_mentor?
-    has_access_to?(:mentor)
   end
 
   def plan_name

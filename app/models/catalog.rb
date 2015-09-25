@@ -5,10 +5,6 @@ class Catalog
     Product.active.ordered
   end
 
-  def mentors
-    Mentor.all
-  end
-
   def individual_plans
     Plan.individual.featured.active.ordered
   end

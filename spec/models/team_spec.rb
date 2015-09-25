@@ -19,7 +19,7 @@ describe Team do
   describe "#add_user" do
     it "fulfills that user's subscription" do
       team = create(:team)
-      user = create(:user, :with_mentor)
+      user = create(:user)
       fulfillment = stub_team_fulfillment(team, user)
 
       team.add_user(user)
@@ -41,7 +41,7 @@ describe Team do
       it "updates the team's subscription quantity with the minimum" do
         team = team_with_stubbed_subscription_change_quantity
         minimum_quantity = team.subscription.plan.minimum_quantity
-        user = create(:user, :with_mentor, :with_github)
+        user = create(:user, :with_github)
 
         team.add_user(user)
 
@@ -64,6 +64,7 @@ describe Team do
       it "returns savings gained if moved to yearly plan" do
         user = create(:user, :with_team_subscription)
         user.plan.update(annual_plan: create(:plan, :annual))
+        user.reload
         team = user.team
         allow(team).to receive(:users_count).and_return(3)
 
@@ -76,7 +77,7 @@ describe Team do
         team = team_with_stubbed_subscription_change_quantity
         minimum_quantity = team.subscription.plan.minimum_quantity
         create_list(:user, minimum_quantity, team: team)
-        user = create(:user, :with_mentor, :with_github)
+        user = create(:user, :with_github)
 
         team.add_user(user)
 
@@ -90,7 +91,7 @@ describe Team do
   describe "#remove_user" do
     it "removes that user's subscription" do
       team = create(:team)
-      user = create(:user, :with_mentor)
+      user = create(:user)
       fulfillment = stub_team_fulfillment(team, user)
 
       team.remove_user(user)
@@ -103,7 +104,7 @@ describe Team do
       it "updates the team's subscription quantity with the minimum" do
         team = team_with_stubbed_subscription_change_quantity
         minimum_quantity = team.subscription.plan.minimum_quantity
-        user = create(:user, :with_mentor, :with_github, team: team)
+        user = create(:user, :with_github, team: team)
 
         team.remove_user(user)
 
@@ -118,7 +119,7 @@ describe Team do
         team = team_with_stubbed_subscription_change_quantity
         minimum_quantity = team.subscription.plan.minimum_quantity
         create_list(:user, minimum_quantity + 2, team: team)
-        user = create(:user, :with_mentor, :with_github, team: team)
+        user = create(:user, :with_github, team: team)
 
         team.remove_user(user)
 

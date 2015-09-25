@@ -108,13 +108,13 @@ describe Plan do
 
   describe "#has_feature?" do
     it "returns true if the plan has the feature" do
-      plan = build_stubbed(:plan, :includes_mentor)
-      expect(plan).to have_feature(:mentor)
+      plan = build_stubbed(:plan, :includes_repositories)
+      expect(plan).to have_feature(:repositories)
     end
 
     it "returns false if the plan does not have the feature" do
-      plan = build_stubbed(:plan, :no_mentor)
-      expect(plan).to_not have_feature(:mentor)
+      plan = build_stubbed(:plan, :no_repositories)
+      expect(plan).to_not have_feature(:repositories)
     end
 
     it "raises an exception with an invalid feature name" do

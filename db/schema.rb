@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916171213) do
+ActiveRecord::Schema.define(version: 20150925173023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,14 +126,6 @@ ActiveRecord::Schema.define(version: 20150916171213) do
 
   add_index "markers", ["video_id"], name: "index_markers_on_video_id", using: :btree
 
-  create_table "mentors", force: :cascade do |t|
-    t.integer "user_id",                                                              null: false
-    t.string  "availability",          limit: 255, default: "11am to 5pm on Fridays", null: false
-    t.boolean "accepting_new_mentees",             default: true,                     null: false
-  end
-
-  add_index "mentors", ["user_id"], name: "index_mentors_on_user_id", using: :btree
-
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id",             null: false
     t.integer  "application_id",                null: false
@@ -192,7 +184,6 @@ ActiveRecord::Schema.define(version: 20150916171213) do
     t.boolean  "active",                            default: true,  null: false
     t.integer  "price_in_dollars",                                  null: false
     t.text     "terms"
-    t.boolean  "includes_mentor",                   default: false
     t.boolean  "featured",                          default: false, null: false
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
@@ -358,7 +349,6 @@ ActiveRecord::Schema.define(version: 20150916171213) do
     t.string   "country",            limit: 255
     t.string   "name",               limit: 255
     t.text     "bio"
-    t.integer  "mentor_id"
     t.integer  "team_id"
     t.string   "utm_source"
     t.boolean  "completed_welcome",              default: false, null: false
@@ -368,7 +358,6 @@ ActiveRecord::Schema.define(version: 20150916171213) do
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["github_username"], name: "index_users_on_github_username", unique: true, using: :btree
   add_index "users", ["id", "confirmation_token"], name: "index_users_on_id_and_confirmation_token", using: :btree
-  add_index "users", ["mentor_id"], name: "index_users_on_mentor_id", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
   add_index "users", ["team_id"], name: "index_users_on_team_id", using: :btree
 
