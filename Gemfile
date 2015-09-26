@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "2.2.2"
 
 gem "active_model_serializers", "0.8.3"
-gem "administrate", "~> 0.0.11"
+gem "administrate", "~> 0.0.12"
 gem "acts_as_list", "~> 0.6.0"
 gem "airbrake"
 gem "analytics-ruby", "~> 2.0.0", require: "segment/analytics"
