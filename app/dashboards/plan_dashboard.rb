@@ -5,12 +5,14 @@ class PlanDashboard < Administrate::BaseDashboard
     :id,
     :created_at,
     :updated_at,
+    :checkouts,
+    :subscriptions,
   ]
 
   ATTRIBUTE_TYPES = {
     checkouts: Field::HasMany,
     subscriptions: Field::HasMany,
-    annual_plan: Field::BelongsTo,
+    annual_plan: Field::BelongsTo.with_options(class_name: "Plan"),
     id: Field::Number,
     name: Field::String,
     sku: Field::String,

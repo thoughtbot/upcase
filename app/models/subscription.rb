@@ -100,7 +100,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def to_s
-    "Subscription: #{(team || user).try(:name)}"
+    "Subscription ##{id}"
   end
 
   private
