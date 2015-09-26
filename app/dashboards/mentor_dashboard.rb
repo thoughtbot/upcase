@@ -27,7 +27,6 @@ class MentorDashboard < Administrate::BaseDashboard
     :user,
     :accepting_new_mentees,
     :availability,
-    :active_mentees,
   ]
 
   FORM_ATTRIBUTES = [
