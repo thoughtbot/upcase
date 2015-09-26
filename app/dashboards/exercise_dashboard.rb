@@ -28,5 +28,5 @@ class ExerciseDashboard < Administrate::BaseDashboard
 
   SHOW_PAGE_ATTRIBUTES = ATTRIBUTE_TYPES.keys
 
-  FORM_ATTRIBUTES = [ :trail ]
+  FORM_ATTRIBUTES = [:trail]
 end
