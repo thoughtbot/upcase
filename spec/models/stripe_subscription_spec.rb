@@ -61,28 +61,30 @@ describe StripeSubscription do
     end
 
     it "creates a customer if one isn't assigned" do
-      stub_stripe_customer(customer_id: "stripe")
       checkout = build(:checkout, user: create(:user))
+      stub_stripe_customer(returning_customer_id: "stripe")
       subscription = StripeSubscription.new(checkout)
 
       subscription.create
 
       expect(checkout.stripe_customer_id).to eq "stripe"
+      expect(Stripe::Customer).to have_received(:create).
+        with(hash_including(email: checkout.user_email))
     end
 
     it "doesn't create a customer if one is already assigned" do
-      stub_stripe_customer
       checkout = build(:checkout)
-      checkout.stripe_customer_id = 'original'
+      checkout.stripe_customer_id = "original"
+      stub_stripe_customer
       subscription = StripeSubscription.new(checkout)
 
       subscription.create
 
       expect(checkout.stripe_customer_id).to eq "original"
+      expect(Stripe::Customer).not_to have_received(:create)
     end
 
     it "it adds an error message with a bad card" do
-      stub_stripe_customer
       allow(Stripe::Customer).to receive(:create).
         and_raise(Stripe::StripeError, "Your card was declined")
       checkout = build(:checkout)
@@ -104,12 +106,8 @@ describe StripeSubscription do
     customer
   end
 
-  def stub_stripe_customer(overrides = {})
-    arguments = {
-      customer_id: 'stripe',
-    }.merge(overrides)
-
+  def stub_stripe_customer(returning_customer_id: "unspecified")
     allow(Stripe::Customer).to receive(:create).
-      and_return(double("StripeCustomer", id: arguments[:customer_id]))
+      and_return(double("StripeCustomer", id: returning_customer_id))
   end
 end

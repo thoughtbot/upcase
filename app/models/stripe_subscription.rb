@@ -43,8 +43,8 @@ class StripeSubscription
   def create_customer
     new_stripe_customer = Stripe::Customer.create(
       card: @checkout.stripe_token,
-      description: @checkout.email,
-      email: @checkout.email
+      description: @checkout.user_email,
+      email: @checkout.user_email,
     )
     @checkout.stripe_customer_id = new_stripe_customer.id
   end
