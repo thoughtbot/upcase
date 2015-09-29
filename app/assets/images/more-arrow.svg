@@ -1,15 +1,1 @@
-<svg width="92" height="45" viewBox="0 0 92 45" xmlns="http://www.w3.org/2000/svg">
-    <title>
-        Shape
-    </title>
-    <desc>
-        Created with Sketch.
-    </desc>
-    <g fill="none" fill-rule="evenodd">
-        <g fill="#CBCBCB">
-            <g>
-                <path d="M90.205 18.905L59 .887v9.1C26 9.99 8.045 26.323.206 43.962 18.496 26.325 45 27.824 59 27.825v9.097l31.205-18.015z"/>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="92" height="45" viewBox="0 0 92 45" xmlns="http://www.w3.org/2000/svg"><title>Shape</title><path d="M90.205 18.905L59 .887v9.1C26 9.99 8.045 26.323.206 43.962 18.496 26.325 45 27.824 59 27.825v9.097l31.205-18.015z" fill="#CBCBCB" fill-rule="evenodd"/></svg>

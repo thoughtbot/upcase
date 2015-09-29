@@ -1,11 +1,1 @@
-<svg width="88" height="2" viewBox="0 0 88 2" xmlns="http://www.w3.org/2000/svg">
-    <title>
-        flashcard-line
-    </title>
-    <desc>
-        Created with Sketch.
-    </desc>
-    <g fill="none" fill-rule="evenodd">
-        <path d="M1.5 1h85.475" stroke="#E3F8F9" stroke-width="2" stroke-linecap="square"/>
-    </g>
-</svg>
+<svg width="88" height="2" viewBox="0 0 88 2" xmlns="http://www.w3.org/2000/svg"><title>flashcard-line</title><path d="M1.5 1h85.475" stroke="#E3F8F9" stroke-width="2" stroke-linecap="square" fill="none" fill-rule="evenodd"/></svg>
