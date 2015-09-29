@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150925173023) do
+ActiveRecord::Schema.define(version: 20150929171935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -432,4 +432,15 @@ ActiveRecord::Schema.define(version: 20150925173023) do
   add_foreign_key "attempts", "flashcards", on_delete: :cascade
   add_foreign_key "attempts", "users", on_delete: :cascade
   add_foreign_key "markers", "videos", on_delete: :cascade
+      create_view :latest_attempts, sql_definition:<<-SQL
+        SELECT DISTINCT ON (attempts.user_id, attempts.flashcard_id) attempts.id,
+  attempts.confidence,
+  attempts.flashcard_id,
+  attempts.user_id,
+  attempts.created_at,
+  attempts.updated_at
+ FROM attempts
+ORDER BY attempts.user_id, attempts.flashcard_id, attempts.updated_at DESC;
+      SQL
+
 end

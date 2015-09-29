@@ -10,6 +10,9 @@
   </section>
 
   <section class="saved-deck">
-    <%= render "flashcards/needing_review" %>
+    <%= render(
+      "flashcards/needing_review",
+      flashcards_to_review: @flashcards_to_review
+    ) %>
   </section>
 </section>

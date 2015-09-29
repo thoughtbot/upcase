@@ -6,10 +6,9 @@ class FlashcardsNeedingReviewQuery
   end
 
   def run
-    Flashcard.
-      all.
-      map { |q| q.most_recent_attempt_for(@user) }.
-      select { |a| a.confidence > 0 && a.confidence < CONFIDENCE_THRESHOLD }.
+    LatestAttempt.by(@user).
+      confidence_below(CONFIDENCE_THRESHOLD).
+      includes(:flashcard).
       map(&:flashcard)
   end
 end

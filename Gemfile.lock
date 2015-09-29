@@ -306,6 +306,9 @@ GEM
     sawyer (0.5.5)
       addressable (~> 2.3.5)
       faraday (~> 0.8, < 0.10)
+    scenic (0.3.0)
+      activerecord (>= 4.0.0)
+      railties (>= 4.0.0)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
     simplecov (0.9.1)
@@ -420,6 +423,7 @@ DEPENDENCIES
   responders (~> 2.0)
   rspec-rails
   sass-rails
+  scenic
   shoulda-matchers
   simplecov (~> 0.9)
   sinatra
@@ -435,3 +439,6 @@ DEPENDENCIES
   validates_email_format_of
   vanity (= 2.0.0.beta8)
   webmock
+
+BUNDLED WITH
+   1.10.5

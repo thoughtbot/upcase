@@ -1,8 +1,8 @@
 <span class="divider"><h4 class="text"><%= t(".review-queue") %></h4></span>
 
-<% if @flashcards_to_review.present? %>
+<% if flashcards_to_review.present? %>
   <ul class="kept-flashcards">
-    <% @flashcards_to_review.each do |flashcard| %>
+    <% flashcards_to_review.each do |flashcard| %>
       <li class="to-flashcard">
         <%= link_to flashcard.title, deck_flashcard_path(flashcard.deck, flashcard) %>
         <p class="flashcard-about"><%= t("deck-title-teaser", title: flashcard.deck_title) %></p>
