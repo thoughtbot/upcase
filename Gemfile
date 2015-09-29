@@ -50,6 +50,7 @@ gem "vanity", "2.0.0.beta8"
 
 group :development do
   gem "bullet"
+  gem "parallel_tests"
   gem "quiet_assets"
   gem "spring"
   gem "spring-commands-rspec"

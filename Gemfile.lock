@@ -201,6 +201,9 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    parallel (1.6.1)
+    parallel_tests (1.7.0)
+      parallel
     pg (0.17.1)
     pg_search (1.0.4)
       activerecord (>= 3.1)
@@ -406,6 +409,7 @@ DEPENDENCIES
   omniauth (~> 1.2.1)
   omniauth-github (~> 1.1.2)
   paperclip (~> 4.2.0)
+  parallel_tests
   pg
   pg_search
   pry-rails
@@ -435,3 +439,6 @@ DEPENDENCIES
   validates_email_format_of
   vanity (= 2.0.0.beta8)
   webmock
+
+BUNDLED WITH
+   1.10.6

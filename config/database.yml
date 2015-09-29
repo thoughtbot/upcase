@@ -13,4 +13,4 @@ development:
 test:
   <<: *default
   pool: 4
-  database: upcase_test
+  database: upcase_test<%= ENV['TEST_ENV_NUMBER'] %>
