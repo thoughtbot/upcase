@@ -31,7 +31,7 @@ describe "Videos" do
       unpublished_xpath = ".//item/title[text()='#{video.name}']"
       expect(channel.xpath(unpublished_xpath)).to be_empty
 
-      published_videos.each_with_index do |published_video, index|
+      published_videos.reverse.each_with_index do |published_video, index|
         item = channel.xpath(".//item")[index]
 
         expect(text_in(item, ".//title")).to eq(published_video.name)
