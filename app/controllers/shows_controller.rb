@@ -3,7 +3,6 @@ class ShowsController < ApplicationController
 
   def show
     @show = Show.friendly.find(params[:id])
-    @plan = Plan.basic
 
     respond_to do |format|
       format.html do
