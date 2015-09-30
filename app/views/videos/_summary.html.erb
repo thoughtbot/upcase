@@ -1,4 +1,4 @@
-<div class="video-text <%= status_class(video, current_user) %>">
+<div class="video-text <%= video.status_class %>">
   <%= link_to video_path(video) do %>
     <h3><%= video.name %></h3>
   <% end %>

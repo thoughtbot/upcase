@@ -9,8 +9,4 @@ module VideosHelper
       topic.slug.parameterize
     end
   end
-
-  def status_class(video, user)
-    video.state_for(user).parameterize
-  end
 end

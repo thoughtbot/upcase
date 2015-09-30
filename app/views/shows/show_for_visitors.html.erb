@@ -12,7 +12,7 @@
   <div class="text-box">
     <%= render Clip.new("ol6e0miehm") %>
     <section id="videos">
-      <% @show.published_videos.recently_published_first.each do |video| %>
+      <% @show.videos_with_status.each do |video| %>
         <%= content_tag_for :div, video do %>
           <%= link_to video_path(video) do %>
             <%= render "videos/summary", video: video %>

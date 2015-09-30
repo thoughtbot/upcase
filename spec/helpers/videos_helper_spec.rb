@@ -47,28 +47,4 @@ describe VideosHelper do
       expect(result).to eq("test-driven-development")
     end
   end
-
-  describe "#status_class" do
-    context "with a present user" do
-      it "returns the parameterized form of the most recent status" do
-        video = create(:video)
-        status = create(:status, :in_progress, completeable: video)
-
-        result = status_class(video, status.user)
-
-        expect(result).to eq("in-progress")
-      end
-    end
-
-    context "with a nil user" do
-      it "returns the UNSTARTED status" do
-        video = create(:video)
-        current_user = nil
-
-        result = status_class(video, current_user)
-
-        expect(result).to eq("unstarted")
-      end
-    end
-  end
 end

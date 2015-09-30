@@ -2,7 +2,10 @@ class ShowsController < ApplicationController
   layout "landing_pages"
 
   def show
-    @show = Show.friendly.find(params[:id])
+    @show = ShowListing.new(
+      Show.friendly.find(params[:id]),
+      current_user,
+    )
 
     respond_to do |format|
       format.html do
