@@ -50,8 +50,8 @@ gem "validates_email_format_of"
 gem "vanity", "2.0.0.beta8"
 
 group :development do
-  gem "bullet"
   gem "quiet_assets"
+  gem "rack-mini-profiler", require: false
   gem "spring"
   gem "spring-commands-rspec"
 end

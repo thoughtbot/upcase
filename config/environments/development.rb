@@ -41,9 +41,4 @@ Upcase::Application.configure do
 
   GITHUB_KEY = ENV['GITHUB_KEY']
   GITHUB_SECRET = ENV['GITHUB_SECRET']
-
-  config.after_initialize do
-    Bullet.enable = true
-    Bullet.console = true
-  end
 end
