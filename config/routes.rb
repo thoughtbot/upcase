@@ -1,4 +1,6 @@
 Upcase::Application.routes.draw do
+  root to: "homes#show"
+
   use_doorkeeper
 
   get "/5by5" => redirect("/design-for-developers?utm_source=5by5")
@@ -230,8 +232,6 @@ Upcase::Application.routes.draw do
     resource :twitter_player_card, only: [:show]
     resources :completions, only: [:create], controller: "video_completions"
   end
-
-  root to: "homes#show"
 
   resource :annual_billing, only: :new
   resource :credit_card, only: [:update]
