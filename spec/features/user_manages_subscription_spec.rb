@@ -108,7 +108,7 @@ feature "User creates a subscription" do
 
     expect_to_see_the_current_plan(current_user.subscription.plan)
 
-    click_link I18n.t("subscriptions.change_plan")
+    visit edit_subscription_path
     within("[data-sku='#{new_plan.sku}']") do
       click_link I18n.t("subscriptions.choose_plan")
     end

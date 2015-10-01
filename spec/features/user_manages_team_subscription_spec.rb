@@ -15,7 +15,6 @@ feature "User edits a team subscription" do
 
     visit my_account_path(as: owner)
 
-    expect(page).to have_content "Change plan"
     expect(page).to have_content "View all invoices"
     expect(page).to have_content "Cancel"
 
@@ -37,7 +36,6 @@ feature "User edits a team subscription" do
 
     visit my_account_path
 
-    expect(page).to_not have_content "Change plan"
     expect(page).to_not have_content "View all invoices"
     expect(page).to_not have_content "Cancel"
     expect(page).to_not have_content "Manage Users"
