@@ -81,6 +81,11 @@
   h3 {
     margin-top: 0;
   }
+
+  ul li {
+    list-style: initial;
+    margin-left: 1.2em;
+  }
 }
 
 #videos .video {
@@ -107,7 +112,6 @@
     float: left;
     margin: 3px 10px 0 0;
   }
-
 
   .video-summary {
     @include clearfix;
