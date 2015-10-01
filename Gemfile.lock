@@ -272,6 +272,7 @@ GEM
       mail
     redcarpet (3.2.3)
     remotipart (1.2.1)
+    request_store (1.2.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rest-client (1.7.2)
@@ -418,6 +419,7 @@ DEPENDENCIES
   rails_admin (~> 0.6.7)
   recipient_interceptor
   redcarpet
+  request_store
   responders (~> 2.0)
   rspec-rails
   sass-rails

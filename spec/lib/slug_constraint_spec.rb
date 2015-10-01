@@ -1,13 +1,15 @@
 require "rails_helper"
 
 describe SlugConstraint do
+  before(:each) { RequestStore.clear! }
+
   describe "#matches?" do
     context "when request has an id that matches a product slug" do
       it "returns true" do
-        product = create(:product)
+        product = create(:show)
         request = stub_request_with_id(product.slug)
 
-        expect(SlugConstraint.new(Product).matches?(request)).to be true
+        expect(SlugConstraint.new(Show).matches?(request)).to be true
       end
     end
 
@@ -26,7 +28,7 @@ describe SlugConstraint do
       it "returns false" do
         request = stub_request_with_id("test")
 
-        expect(SlugConstraint.new(Product).matches?(request)).to be false
+        expect(SlugConstraint.new(Show).matches?(request)).to be false
       end
     end
 

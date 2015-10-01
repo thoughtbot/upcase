@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150929171935) do
+ActiveRecord::Schema.define(version: 20151001183808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -442,5 +442,15 @@ ActiveRecord::Schema.define(version: 20150929171935) do
  FROM attempts
 ORDER BY attempts.user_id, attempts.flashcard_id, attempts.updated_at DESC;
       SQL
+
+        create_view :slugs, sql_definition:<<-SQL
+          SELECT products.slug,
+    products.type AS model
+   FROM products
+UNION ALL
+ SELECT trails.slug,
+    'Trail'::character varying AS model
+   FROM trails;
+        SQL
 
 end
