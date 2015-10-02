@@ -20,22 +20,10 @@ section {
 
 .content {
   @include outer-container;
-  max-width: $max-width;
   flex: 1;
+  max-width: $max-width;
   padding: 1.5em $side-padding 3em;
   width: 100%;
-
-  ul, ol {
-    padding: 0;
-  }
-
-  li {
-    margin-top: 1rem;
-
-    &:first-child {
-      margin-top: 0;
-    }
-  }
 
   .text-box-wrapper {
     @include span-columns(8.5);
@@ -79,75 +67,6 @@ section {
   }
 }
 
-aside {
-  @include span-columns(3);
-  box-shadow: none;
-  display: inline-block;
-  float: right;
-  font-size: $font-size-small;
-  margin-bottom: 1em;
-  padding-left: 30px;
-  position: relative;
-
-  hgroup {
-    margin-left: 48px;
-
-    h5, h4 {
-      font-style: normal;
-    }
-
-    h5 {
-      background-color: transparent;
-      display: block;
-      margin-top: 18px;
-      padding: 0;
-      position: relative;
-    }
-  }
-
-  h3 {
-    margin: 40px 0 10px;
-
-    &:first-child, &:only-child {
-      margin-top: 0;
-    }
-  }
-
-  &, p {
-    line-height: 1.5;
-    margin-bottom: 1em;
-  }
-
-  > div {
-    ol, ul {
-      list-style-type: none;
-    }
-  }
-
-  ul, ol {
-    padding: 0;
-    margin: 0;
-  }
-
-  li {
-    list-style-type: none;
-    margin: 1rem 0 0;
-
-    a {
-      color: $darkwarmgray;
-      font-style: italic;
-    }
-  }
-
-  dt p {
-    font-weight: bold;
-  }
-}
-
-.hidden {
-  display: none;
-}
-
 @include body-mobile {
   .content {
     padding: 1.5em $side-padding 2em;
@@ -155,14 +74,9 @@ aside {
     .text-box-wrapper {
       @include span-columns(12);
     }
-
-    aside {
-      padding: 0;
-    }
   }
+}
 
-  aside {
-    @include span-columns(12);
-    margin-top: 3em;
-  }
+.hidden {
+  display: none;
 }
