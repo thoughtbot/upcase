@@ -1,0 +1,45 @@
+.exercises-and-teachers {
+  @include display(flex);
+  @include flex-wrap(wrap);
+  @include justify-content(space-between);
+
+  .exercises-container {
+    @include flex-basis(33em);
+    @include flex-shrink(1);
+    margin: 1em;
+
+    .divider {
+      margin-bottom: 1rem;
+    }
+
+    .exercise {
+      border-bottom: 1px solid $base-border-color-1;
+      float: left;
+      margin: 0;
+      padding: 2em 0;
+      width: 100%;
+
+      .exercise-title {
+        margin-bottom: 0.5em;
+      }
+    }
+
+    .exercise-item {
+      display: inline-block;
+      margin-left: 80px;
+    }
+  }
+
+  .text-box-wrapper {
+    @include flex-basis(9em);
+    @include flex-shrink(1);
+    @include flex-grow(1);
+    margin: 1em;
+
+    .text-box h5 {
+      color: $gray-3;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+  }
+}

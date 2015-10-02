@@ -1,9 +1,12 @@
-<div class="text-box-wrapper">
-  <div class="text-box">
-    <%= render(
-      partial: "teachers/details",
-      collection: @trail.teachers,
-      as: :teacher
-    ) %>
+<% if @trail.teachers.any? %>
+  <div class="text-box-wrapper">
+    <div class="text-box">
+      <h5><%= t 'teachers.teacher.header' %></h5>
+      <%= render(
+        partial: "teachers/details",
+        collection: @trail.teachers,
+        as: :teacher
+      ) %>
+    </div>
   </div>
-</div>
+<% end %>

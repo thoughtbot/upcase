@@ -3,16 +3,19 @@
 </div>
 
 <header>
-  <div class="topic-image">
-    <%= link_to topic do %>
-      <%= image_tag "topics/#{topic.slug}.svg" %>
-    <% end %>
-  </div>
+  <% if trail.title_card_image.present? %>
+    <div class="title-card">
+      <%= image_tag trail.title_card_image %>
+    </div>
+  <% else %>
+    <div class="topic-image">
+      <%= link_to topic do %>
+        <%= image_tag "topics/#{topic.slug}.svg" %>
+      <% end %>
+    </div>
+  <% end %>
 
   <div class="topic-title">
-    <div class="trail-topic-name">
-      <%= render topic %>
-    </div>
     <h1><%= trail.name %></h1>
     <p><%= format_markdown trail.description %></p>
   </div>

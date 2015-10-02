@@ -79,67 +79,15 @@ section {
   }
 }
 
-.text-box {
-  @extend %main-content-box;
-
-  h1, h2, h3, h4, h5, h6 {
-    color: $darkwarmgray;
-    margin: 2rem 0 1rem 0;
-  }
-
-  h2 {
-    margin-top: 3rem;
-  }
-
-  p, li, th, td {
-    color: $darkwarmgray;
-  }
-
-  .product-title {
-    h2 {
-      margin-top: .5rem;
-    }
-
-    h3 {
-      font-size: 1.2em;
-      margin-bottom: 1.5rem;
-      margin-top: -.5rem;
-    }
-  }
-
-  .post-link-header {
-    h3 {
-      margin-bottom: .5rem;
-    }
-
-    h6 {
-      color: $darkwarmgray;
-      font-weight: bold;
-      margin: 0 0 1rem 0;
-    }
-  }
-
-  table {
-    color: $darkwarmgray;
-    font: normal 1em/1.5em $serif;
-    margin: 2rem 0;
-    -webkit-font-smoothing: antialiased;
-
-    th {
-      font-weight: bold;
-      padding-bottom: 1rem;
-    }
-  }
-}
-
 aside {
-  @extend %main-content-box;
-  font-size: $font-size-small;
+  @include span-columns(3);
   box-shadow: none;
   display: inline-block;
   float: right;
-  @include span-columns(3);
+  font-size: $font-size-small;
+  margin-bottom: 1em;
   padding-left: 30px;
+  position: relative;
 
   hgroup {
     margin-left: 48px;

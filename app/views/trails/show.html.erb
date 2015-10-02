@@ -3,7 +3,16 @@
   <%= render "header", topic: @trail.topic, trail: @trail %>
 <% end %>
 
-<%= render "trails/progress", trail: @trail %>
-<%= render "trails/repositories", trail: @trail %>
-<%= render "trails/exercises", trail: @trail %>
-<%= render "trails/teachers", trail: @trail %>
+<% if signed_in? %>
+  <%= render "trails/progress", trail: @trail %>
+  <%= render "trails/repositories", trail: @trail %>
+<% end %>
+
+<span class="divider">
+  <h4 class="text">Exercises</h4>
+</span>
+
+<div class="exercises-and-teachers">
+  <%= render "trails/exercises", trail: @trail %>
+  <%= render "trails/teachers", trail: @trail %>
+</div>

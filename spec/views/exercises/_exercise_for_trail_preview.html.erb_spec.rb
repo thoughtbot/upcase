@@ -1,32 +1,45 @@
 require "rails_helper"
 
 describe "exercises/_exercise_for_trail_preview.html" do
-  context "without access to exercises" do
+  context "without an active subscription" do
     it "renders an upgrade link" do
-      stub_access(trails: false)
-      stub_signed_in
+      stub_has_active_subscription(false)
 
       render_exercise
 
       expect(rendered).to have_upgrade_link
     end
+
+    it "does not render a link a to the exercise" do
+      stub_has_active_subscription(false)
+
+      render_exercise
+
+      expect(rendered).not_to have_exercise_link
+    end
   end
 
-  context "with access to exercises" do
+  context "with an active subscription" do
     it "doesn't render an upgrade link" do
-      stub_access(trails: true)
-      stub_signed_in
+      stub_has_active_subscription(true)
 
       render_exercise
 
       expect(rendered).not_to have_upgrade_link
     end
+
+    it "does not render a link a to the exercise" do
+      stub_has_active_subscription(true)
+
+      render_exercise
+
+      expect(rendered).to have_exercise_link
+    end
   end
 
-  def stub_access(features)
-    features.each do |name, access|
-      view_stubs(:current_user_has_access_to?).with(name).and_return(access)
-    end
+  def stub_has_active_subscription(access)
+    stub_signed_in
+    view_stubs(:current_user_has_active_subscription?).and_return(access)
   end
 
   def stub_signed_in
@@ -41,5 +54,9 @@ describe "exercises/_exercise_for_trail_preview.html" do
 
   def have_upgrade_link
     have_css("a.upgrade-link")
+  end
+
+  def have_exercise_link
+    have_css("a.exercise-item")
   end
 end

@@ -1,12 +1,18 @@
 <figure class="exercise <%= video.state.parameterize %>-exercise">
-  <div class="dot"></div>
+  <div class="dot-container">
+    <div class="dot"></div>
+  </div>
 
-  <%= completeable_link video_path(video), title: video.name do %>
-    <h3><%= video.name %></h3>
-    <p><%= video.summary %></p>
-  <% end %>
-
-  <% unless current_user_has_access_to?(:trails) %>
-    <%= render "products/locked" %>
+  <% if current_user_has_active_subscription? %>
+    <%= completeable_link video_path(video), class:"exercise-item", title: video.name do %>
+      <h3><%= video.name %></h3>
+      <p><%= video.summary %></p>
+    <% end %>
+  <% else %>
+    <div class="exercise-item">
+      <h3><%= video.name %></h3>
+      <p><%= video.summary %></p>
+      <%= render "products/locked" %>
+    </div>
   <% end %>
 </figure>

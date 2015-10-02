@@ -1,23 +1,24 @@
 .teachers {
   list-style-type: none;
-  margin: 2rem 0 0;
+  margin: 0 0 2em;
 
   li {
     display: flex;
     flex-direction: column;
   }
 
-  .teacher-info {
-    display: flex;
-    flex-direction: row;
+  .teacher-image {
+    margin-bottom: 1em;
+    width: 7rem;
+  }
+  
+  img {
+    border-radius: 50%;
   }
 
-  .teacher-name {
-    margin: 1rem 0 0 1rem;
-  }
-
-  h2,
-  h5 {
+  h2 {
+    font-size: 1.5em;
+    line-height: 1.1em;
     margin: 0;
   }
 

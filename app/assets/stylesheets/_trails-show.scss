@@ -22,6 +22,18 @@
     @include dashboard-small-only {
       display: block;
       text-align: center;
+      margin: 1.5em auto 3em;
+    }
+
+    .title-card {
+      @include span-columns(5);
+      flex: none;
+      margin-right: 2em;
+
+      @include dashboard-small-only {
+        @include span-columns(12);
+        margin-bottom: 2em;
+      }
     }
 
     .topic-image {
@@ -29,13 +41,22 @@
       margin-right: 2em;
 
       @include dashboard-small-only {
+        @include span-columns(12);
         display: block;
-        margin: 0 auto;
+        margin: 0 auto 2em;
       }
     }
 
-    .topic-title {
-      margin-top: 1em;
+    iframe {
+      height: 100%;
+      width: 100%;
+    }
+
+    .topic-label {
+      @include dashboard-small-only {
+        display: inline-block;
+        float: none;
+      }
     }
 
     .trail-topic-name {
@@ -47,23 +68,12 @@
     margin-bottom: 5em;
   }
 
-  .exercises-container {
-    .divider {
-      margin-bottom: 1rem;
-    }
+  .dot-container {
+    margin: 7px;
+    position: absolute;
+  }
 
-    .exercise {
-      border-bottom: 1px solid $base-border-color-1;
-      display: block;
-      float: left;
-      margin: 0;
-      padding: 3em 0;
-      width: 100%;
-    }
-
-    .exercise a {
-      display: inline-block;
-      margin-left: 100px;
-    }
+  .dot {
+    margin: 0;
   }
 }

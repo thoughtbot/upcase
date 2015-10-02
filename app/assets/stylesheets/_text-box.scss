@@ -1,0 +1,52 @@
+.text-box {
+  margin-bottom: 1em;
+  position: relative;
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 2rem 0 1rem;
+  }
+
+  h2 {
+    margin-top: 3rem;
+  }
+
+  p, li, th, td {
+    color: $darkwarmgray;
+  }
+
+  .product-title {
+    h2 {
+      margin-top: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.2em;
+      margin-bottom: 1.5rem;
+      margin-top: -0.5rem;
+    }
+  }
+
+  .post-link-header {
+    h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    h6 {
+      color: $darkwarmgray;
+      font-weight: bold;
+      margin: 0 0 1rem;
+    }
+  }
+
+  table {
+    color: $darkwarmgray;
+    font: normal 1em/1.5em $serif;
+    -webkit-font-smoothing: antialiased;
+    margin: 2rem 0;
+  }
+
+  th {
+    font-weight: bold;
+    padding-bottom: 1rem;
+  }
+}

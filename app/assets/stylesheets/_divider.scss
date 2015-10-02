@@ -1,0 +1,26 @@
+.divider {
+  color: $gray-3;
+  display: block;
+  margin-bottom: 2rem;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  z-index: 0;
+
+  &:after {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    bottom: 0.5em;
+    left: 0px;
+    border-bottom: 1px solid $gray-4;
+    content: "";
+    z-index: -1;
+  }
+
+  h4 {
+    background: white;
+    display: inline;
+    padding: 0 1em;
+  }
+}
