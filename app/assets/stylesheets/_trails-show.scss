@@ -22,20 +22,31 @@
     @include dashboard-small-only {
       display: block;
       text-align: center;
+      margin: 1.5em auto 3em;
     }
 
     .topic-image {
+      @include span-columns(5);
       flex: none;
       margin-right: 2em;
 
+      iframe {
+        width: 100%;
+        height: 100%;
+      }
+
       @include dashboard-small-only {
+        @include span-columns(12);
         display: block;
-        margin: 0 auto;
+        margin: 0 auto 2em;
       }
     }
 
-    .topic-title {
-      margin-top: 1em;
+    .topic-label {
+      @include dashboard-small-only {
+        float: none;
+        display: inline-block;
+      }
     }
 
     .trail-topic-name {
@@ -48,22 +59,60 @@
   }
 
   .exercises-container {
+    @include span-columns(9);
+
+    @include dashboard-small-only {
+      width: 100%;
+      float: none;
+    }
+
     .divider {
       margin-bottom: 1rem;
     }
 
     .exercise {
+      @include align-items(center);
       border-bottom: 1px solid $base-border-color-1;
-      display: block;
+      display: flex;
+      flex-wrap: no-wrap;
       float: left;
       margin: 0;
       padding: 3em 0;
       width: 100%;
     }
 
-    .exercise a {
-      display: inline-block;
-      margin-left: 100px;
+    .exercise .dot-container {
+      @include flex-basis(4em);
+      @include flex-shrink(0);
+
+      .dot {
+        margin: 0;
+      }
+    }
+
+    .exercise .video {
+      @include flex-basis(9em);
+      @include flex-shrink(0);
+      margin-right: 2em;
+    }
+
+    .exercise p {
+      margin-bottom: 0;
+    }
+  }
+
+  .text-box-wrapper {
+    @include span-columns(3);
+    @include omega;
+    margin-top: 0;
+
+    @include dashboard-small-only {
+      width: 100%;
+      margin-top: 2em;
+    }
+
+    .text-box {
+      margin-top: 0;
     }
   }
 }

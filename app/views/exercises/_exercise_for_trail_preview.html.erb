@@ -1,5 +1,7 @@
 <figure class="exercise <%= exercise.state.parameterize %>-exercise">
-  <div class="dot"></div>
+  <div class="dot-container">
+    <div class="dot"></div>
+  </div>
 
   <%= completeable_link exercise.url, title: exercise.name do %>
     <h3><%= exercise.name %></h3>

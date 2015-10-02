@@ -4,9 +4,11 @@
 
 <header>
   <div class="topic-image">
-    <%= link_to topic do %>
-      <%= image_tag "topics/#{topic.slug}.svg" %>
-    <% end %>
+    <div class="video">
+      <div class="video-wrapper">
+          <iframe src="http://www.youtube.com/embed/8ItNE_DX6Cc?showinfo=0&iv_load_policy=3&controls=0" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
   </div>
 
   <div class="topic-title">
@@ -15,5 +17,9 @@
     </div>
     <h1><%= trail.name %></h1>
     <p><%= trail.description %></p>
+    <%= link_to github_auth_path, class: 'cta-button' do %>
+      <%= image_tag("github-white.svg", class: "github-logo") %>
+      Start Course for Free
+    <% end %>
   </div>
 </header>

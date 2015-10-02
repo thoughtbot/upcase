@@ -179,7 +179,7 @@ hr {
   text-align: left;
   width: 85%;
 
-  @include body-mobile {
+  @include dashboard-small-only {
     width: 100%;
   }
 
