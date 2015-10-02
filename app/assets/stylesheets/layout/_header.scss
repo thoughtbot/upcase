@@ -3,6 +3,7 @@
   @include dashboard-medium {
     margin: 0 auto 40px;
   }
+
   width: 100%;
   flex: none;
 
@@ -36,9 +37,9 @@
   }
 }
 
-.header-cta-link {
-  #header-wrapper.headhesive--stick &,
-  #header-wrapper.without-hero & {
+#header-wrapper {
+  &.headhesive--stick .header-cta-link,
+  &.without-hero .header-cta-link {
     background-color: $hero-green;
     border-radius: 3px;
     box-shadow: $heavy-box-shadow;
@@ -222,11 +223,11 @@
 
 .header-thoughtbot-logo {
   display: none;
+}
 
-  .headhesive--stick &,
-  .without-hero & {
-    @include position(absolute, 0.48em 0 0 1em);
-    @include size(1.5em);
-    display: block;
-  }
+.headhesive--stick .header-thoughtbot-logo,
+.without-hero .header-thoughtbot-logo {
+  @include position(absolute, 0.48em 0 0 1em);
+  @include size(1.5em);
+  display: block;
 }
