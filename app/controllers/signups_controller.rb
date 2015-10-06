@@ -5,7 +5,6 @@ class SignupsController < ApplicationController
 
     flash[:notice] = I18n.t("checkout.flashes.success")
     track_signup_via_segment
-    track_signup_in_vanity
     redirect_to onboarding_policy.root_path
   rescue Stripe::CardError => error
     flash[:error] = error.message

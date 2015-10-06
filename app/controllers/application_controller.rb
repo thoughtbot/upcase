@@ -7,8 +7,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :capture_campaign_params
 
-  use_vanity :current_user
-
   protected
 
   def analytics
@@ -94,9 +92,5 @@ class ApplicationController < ActionController::Base
       utm_medium: params[:utm_medium],
       utm_source: params[:utm_source],
     }
-  end
-
-  def track_signup_in_vanity
-    track! :signups
   end
 end

@@ -12,7 +12,7 @@ en:
     flashcard_removed_from_review_queue: Flashcard removed from review queue
     flashcard_saved: Saved flashcard for review
   authenticating:
-    github_signin: Sign in with GitHub  
+    github_signin: Sign in with GitHub
   checkout:
     flashes:
       already_subscribed: You are already subscribed. You can change your plan.
@@ -163,6 +163,8 @@ en:
         success: You have successfully updated your subscription credit card information.
       upgrade_required: You must upgrade your plan to access that feature.
     join_cta: Start Leveling Up
+    new:
+      sign_up_cta: Sign Up Now!
     checkout: Let's do this!
     reason: Why have you decided to leave?
     reason_explanation: This information will help us make Upcase better for future
