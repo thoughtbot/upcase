@@ -44,9 +44,16 @@ end
 Delayed::Worker.delay_jobs = false
 
 Capybara.javascript_driver = :webkit
+
 Capybara.configure do |config|
   config.match = :prefer_exact
   config.ignore_hidden_elements = true
+end
+
+Capybara::Webkit.configure do |config|
+  config.block_unknown_urls
+  config.allow_url("js.stripe.com")
+  config.allow_url("fast.wistia.com")
 end
 
 ActiveRecord::Migration.maintain_test_schema!

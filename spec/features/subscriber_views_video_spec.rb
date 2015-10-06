@@ -26,6 +26,7 @@ feature "subscriber views video trail" do
     marker = create(:marker, video: video, anchor: "topic")
 
     visit video_path(video, as: create(:subscriber))
+
     within "#topic" do
       click_jump_to_topic_in_video_button
     end

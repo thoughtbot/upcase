@@ -1,6 +1,12 @@
 test:
   pre:
     - cp .sample.env .env
+dependencies:
+  pre:
+    - sudo add-apt-repository -y ppa:beineri/opt-qt541
+    - sudo apt-get -y update -o Dir::Etc::sourcelist="sources.list.d/beineri-opt-qt541-precise.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
+    - sudo apt-get -y install qt54webkit qt54declarative
+    - echo "source /opt/qt54/bin/qt54-env.sh" >> ~/.circlerc
 deployment:
   staging:
     branch: master
