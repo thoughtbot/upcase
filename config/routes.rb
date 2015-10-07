@@ -228,7 +228,7 @@ Upcase::Application.routes.draw do
   post "/vanity/add_participant"
   get "/vanity/image"
 
-  resources :videos, only: [:index, :show] do
+  resources :videos, only: [:show] do
     resource :twitter_player_card, only: [:show]
     resources :completions, only: [:create], controller: "video_completions"
   end

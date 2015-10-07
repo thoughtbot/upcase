@@ -1,12 +1,4 @@
 class VideosController < ApplicationController
-  def index
-    @videos = Video.published.recently_published_first
-
-    respond_to do |format|
-      format.rss
-    end
-  end
-
   def show
     @video = Video.find(params[:id])
     @watchable = @video.watchable
