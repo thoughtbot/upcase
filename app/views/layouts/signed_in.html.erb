@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head prefix="og: http://ogp.me/ns#">
-    <%= render 'application/head_contents' %>
+    <%= render "application/head_contents" %>
   </head>
 
   <body class="<%= body_class %> <%= yield(:additional_body_classes) %>">
     <%= render "shared/environment_banner" %>
-    <%= render 'shared/header' %>
-
-    <%= render 'shared/flashes' %>
+    <%= render "layouts/signed_in_header" %>
+    <%= render "shared/flashes" %>
 
     <div class="content <%= yield(:additional_content_classes) %>">
       <% if content_for?(:subject) %>
@@ -22,8 +21,7 @@
 
     <%= yield(:outside) %>
 
-    <%= render 'shared/footer' %>
-
-    <%= render 'shared/javascript' %>
+    <%= render "shared/footer" %>
+    <%= render "shared/javascript" %>
   </body>
 </html>

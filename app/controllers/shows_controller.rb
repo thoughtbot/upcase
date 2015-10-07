@@ -1,6 +1,4 @@
 class ShowsController < ApplicationController
-  layout "landing_pages"
-
   def show
     @show = ShowListing.new(
       Show.friendly.find(params[:id]),
@@ -10,7 +8,7 @@ class ShowsController < ApplicationController
     respond_to do |format|
       format.html do
         if current_user_has_access_to?(:shows)
-          render "show_subscribed", layout: "application"
+          render "show_subscribed"
         else
           render "show_for_visitors"
         end

@@ -3,8 +3,6 @@ class TeamsController < ApplicationController
 
   def new
     @catalog = Catalog.new
-
-    render layout: "landing_pages"
   end
 
   def edit

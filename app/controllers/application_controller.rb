@@ -1,11 +1,9 @@
 class ApplicationController < ActionController::Base
   include Clearance::Controller
 
-  helper :all
-
   protect_from_forgery with: :exception
-
   before_filter :capture_campaign_params
+  layout :layout_by_signed_in_state
 
   protected
 
@@ -92,5 +90,13 @@ class ApplicationController < ActionController::Base
       utm_medium: params[:utm_medium],
       utm_source: params[:utm_source],
     }
+  end
+
+  def layout_by_signed_in_state
+    if signed_in?
+      "signed_in"
+    else
+      "visitor"
+    end
   end
 end

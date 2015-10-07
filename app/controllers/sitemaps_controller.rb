@@ -1,5 +1,5 @@
 class SitemapsController < ApplicationController
-  layout nil
+  layout false
 
   def show
     @trails = Trail.most_recent_published

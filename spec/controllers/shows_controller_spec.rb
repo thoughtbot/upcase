@@ -10,21 +10,8 @@ describe ShowsController do
       get :show, id: show
 
       expect(response).to render_template(
-        "layouts/application",
+        "layouts/signed_in",
         "show_subscribed"
-      )
-    end
-
-    it "renders the show page if a user has not purchased" do
-      user = create(:user)
-      show = create(:show)
-      sign_in_as user
-
-      get :show, id: show
-
-      expect(response).to render_template(
-        "layouts/landing_pages",
-        "show"
       )
     end
 
@@ -33,7 +20,7 @@ describe ShowsController do
       get :show, id: show
 
       expect(response).to render_template(
-        "layouts/landing_pages",
+        "layouts/visitor",
         "show"
       )
     end

@@ -2,13 +2,10 @@ class SubscriptionsController < ApplicationController
   before_filter :must_be_subscription_owner, only: [:edit, :update]
 
   def new
-    render layout: "landing_pages"
   end
 
   def edit
     @catalog = Catalog.new
-
-    render layout: "header-only"
   end
 
   def update

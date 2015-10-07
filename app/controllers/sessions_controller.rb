@@ -1,6 +1,4 @@
 class SessionsController < Clearance::SessionsController
-  layout 'header-only'
-
   private
 
   def return_to

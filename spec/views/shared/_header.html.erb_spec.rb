@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "shared/_header.html.erb" do
+describe "layouts/_signed_in_header.html.erb" do
   include AnalyticsHelper
   include Gravatarify::Helper
 
@@ -56,14 +56,6 @@ describe "shared/_header.html.erb" do
       )
 
       expect(rendered).not_to have_content(call_to_action_label)
-    end
-  end
-
-  context "when the user isn't signed in" do
-    it "shows a plans and pricing link" do
-      render(signed_in: false)
-
-      expect(rendered).to have_content(I18n.t("subscriptions.join_cta"))
     end
   end
 
