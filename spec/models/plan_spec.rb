@@ -119,7 +119,7 @@ describe Plan do
 
     it "raises an exception with an invalid feature name" do
       plan = build_stubbed(:plan)
-      expect{ plan.has_feature?(:foo) }.to raise_error
+      expect { plan.has_feature?(:foo) }.to raise_error(NoMethodError)
     end
   end
 

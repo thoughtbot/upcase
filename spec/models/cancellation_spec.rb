@@ -67,30 +67,14 @@ describe Cancellation do
 
     it "does not make the subscription inactive if stripe unsubscribe fails" do
       cancellation = build_cancellation(subscription: subscription)
-      stripe_invalid_request_error = double("String::InvalidRequestError")
       allow(stripe_customer.subscriptions.first).to receive(:delete).
-        and_raise(stripe_invalid_request_error)
+        and_raise(Stripe::StripeError)
       allow(Stripe::Customer).to receive(:retrieve).
         and_return(stripe_customer)
       allow(Analytics).to receive(:new)
 
-      expect { cancellation.cancel_now }.to raise_error
+      expect { cancellation.cancel_now }.to raise_error(Stripe::StripeError)
       expect(subscription.reload).to be_active
-      expect(Analytics).not_to have_received(:new)
-    end
-
-    it "does not unsubscribe from stripe if deactivating the subscription failed" do
-      cancellation = build_cancellation(subscription: subscription)
-
-      stripe_customer = double("Stripe::Customer")
-      allow(subscription).to receive(:destroy).
-        and_raise(ActiveRecord::RecordNotSaved, "error")
-      allow(subscription).to receive(:cancel_subscription)
-      allow(Stripe::Customer).to receive(:retrieve).and_return(stripe_customer)
-      allow(Analytics).to receive(:new)
-
-      expect { cancellation.cancel_now }.to raise_error
-      expect(subscription).not_to have_received(:cancel_subscription)
       expect(Analytics).not_to have_received(:new)
     end
   end
@@ -148,32 +132,14 @@ describe Cancellation do
 
     it "does not make the subscription inactive if stripe unsubscribe fails" do
       cancellation = build_cancellation(subscription: subscription)
-
-      stripe_invalid_request_error = double("String::InvalidRequestError")
       allow(stripe_customer.subscriptions.first).to receive(:delete).
-        and_raise(stripe_invalid_request_error)
+        and_raise(Stripe::StripeError)
       allow(Stripe::Customer).to receive(:retrieve).
         and_return(stripe_customer)
       allow(Analytics).to receive(:new)
 
-      expect { cancellation.schedule }.to raise_error
+      expect { cancellation.schedule }.to raise_error(Stripe::StripeError)
       expect(subscription.reload).to be_active
-      expect(Analytics).not_to have_received(:new)
-    end
-
-    it "does not unsubscribe from stripe if deactivating the subscription failed" do
-      cancellation = build_cancellation(subscription: subscription)
-
-      stripe_customer = double("Stripe::Customer")
-      allow(subscription).to receive(:destroy).
-        and_raise(ActiveRecord::RecordNotSaved, "error")
-      allow(subscription).to receive(:cancel_subscription)
-      allow(Stripe::Customer).to receive(:retrieve).
-        and_return(stripe_customer)
-      allow(Analytics).to receive(:new)
-
-      expect { cancellation.schedule }.to raise_error
-      expect(subscription).not_to have_received(:cancel_subscription)
       expect(Analytics).not_to have_received(:new)
     end
   end

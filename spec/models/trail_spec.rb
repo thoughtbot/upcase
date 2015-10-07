@@ -69,7 +69,7 @@ describe Trail do
 
       result = Trail.completed_for(user)
 
-      expect(result).to match_array([completed])
+      expect(result.map(&:id)).to match_array([completed.id])
     end
   end
 
