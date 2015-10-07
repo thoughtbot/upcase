@@ -1,7 +1,11 @@
 require "rails_helper"
 
 describe SlugConstraint do
-  before(:each) { RequestStore.clear! }
+  around do |example|
+    RequestStore.clear!
+    example.run
+    RequestStore.clear!
+  end
 
   describe "#matches?" do
     context "when request has an id that matches a product slug" do
