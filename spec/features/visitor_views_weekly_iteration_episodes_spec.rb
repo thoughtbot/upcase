@@ -36,7 +36,7 @@ feature "Visitor" do
 
   def expect_page_to_have_preview_cta
     expect(page.body).to include(
-      I18n.t("watchables.preview.cta", subscribe_url: subscribe_path).html_safe
+      I18n.t("watchables.preview.cta", subscribe_url: join_path).html_safe
     )
   end
 end

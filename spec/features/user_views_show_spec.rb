@@ -47,6 +47,6 @@ feature "User views show" do
   end
 
   def preview_cta
-    I18n.t("watchables.preview.cta", subscribe_url: subscribe_path).html_safe
+    I18n.t("watchables.preview.cta", subscribe_url: join_path).html_safe
   end
 end

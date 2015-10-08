@@ -8,7 +8,7 @@ describe TrailsHelper do
 
       result = helper.trail_breadcrumbs(trail)
 
-      expect(result).to include trails_path
+      expect(result).to include practice_path
       expect(result).to include "/design"
       expect(result).to include "/sass"
     end

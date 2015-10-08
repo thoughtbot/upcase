@@ -10,7 +10,7 @@ feature 'User can see their trail map progress' do
       trail = create(:trail, :published, topic: topic)
       create(:step, trail: trail)
 
-      visit trails_path
+      visit practice_path
 
       expect(page).to have_content("1 step remaining")
     end
@@ -23,7 +23,7 @@ feature 'User can see their trail map progress' do
         state: Status::COMPLETE
       )
 
-      visit trails_path
+      visit practice_path
 
       expect(page).to have_content("Done!")
     end
@@ -36,7 +36,7 @@ feature 'User can see their trail map progress' do
       )
       create(:topic, trails: [unpublished_trail])
 
-      visit trails_path
+      visit practice_path
 
       expect(page).not_to have_content("This is an unpublished trail")
     end
