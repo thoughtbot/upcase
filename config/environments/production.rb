@@ -26,11 +26,12 @@ Upcase::Application.configure do
   config.log_level = :info
   config.log_formatter = ::Logger::Formatter.new
 
-  config.middleware.use \
-    Rack::SslEnforcer,
-    hsts: false,
-    strict: true,
-    redirect_to: "https://#{ENV["APP_DOMAIN"]}"
+  config.force_ssl = true
+  config.middleware.insert_before(
+    ActionDispatch::SSL,
+    Rack::CanonicalHost,
+    ENV.fetch("APP_DOMAIN"),
+  )
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = MAIL_SETTINGS
