@@ -69,17 +69,10 @@ Rails.configuration.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
 
   # Podcasts
   r301 "/podcast.xml", "http://podcasts.thoughtbot.com/giantrobots.xml"
-  r301 "/podcast", "http://podcasts.thoughtbot.com/giantrobots"
-  r301 "/podcasts", "http://podcasts.thoughtbot.com/giantrobots"
   r301 "/giantrobots.xml", "http://podcasts.thoughtbot.com/giantrobots.xml"
-  r301 "/giantrobots", "http://podcasts.thoughtbot.com/giantrobots"
   r301 "/buildphase.xml", "http://podcasts.thoughtbot.com/buildphase.xml"
-  r301 "/buildphase", "http://podcasts.thoughtbot.com/buildphase"
-
-  r301 %r{^/buildphase/(.*).mp3}, "http://podcasts.thoughtbot.com/buildphase/$1.mp3"
-  r301 %r{^/giantrobots/(.*).mp3}, "http://podcasts.thoughtbot.com/giantrobots/$1.mp3"
-  r301 %r{^/podcast/(.*)}, "http://podcasts.thoughtbot.com/giantrobots/$1"
-  r301 %r{^/podcasts/(.*)}, "http://podcasts.thoughtbot.com/giantrobots/$1"
-  r301 %r{^/buildphase/(.*)}, "http://podcasts.thoughtbot.com/buildphase/$1"
-  r301 %r{^/giantrobots/(.*)}, "http://podcasts.thoughtbot.com/giantrobots/$1"
+  r301 %r{^/(buildphase|giantrobots)/(.*)}, "http://$1.fm/$2"
+  r301 %r{^/(buildphase|giantrobots)$}, "http://$1.fm"
+  r301 %r{^/podcasts?$}, "http://giantrobots.fm"
+  r301 %r{^/podcasts?/(.*)}, "http://giantrobots.fm/$1"
 end
