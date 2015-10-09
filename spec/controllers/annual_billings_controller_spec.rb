@@ -25,15 +25,14 @@ describe AnnualBillingsController do
     end
 
     def subscriber(eligible_for_annual_upgrade:)
-      build_stubbed(:subscriber).tap do |user|
-        if eligible_for_annual_upgrade
-          allow(user).to receive(:plan).
-            and_return(build_stubbed(:plan, :with_annual_plan))
-          allow(user).to receive(:eligible_for_annual_upgrade?).
-            and_return(true)
-          allow(user).to receive(:has_active_subscription?).and_return(true)
-        end
-      end
+      plan = if eligible_for_annual_upgrade
+              create(:plan, :with_annual_plan)
+            else
+              create(:plan)
+            end
+
+      subscription = create(:subscription, plan: plan)
+      subscription.user
     end
   end
 end
