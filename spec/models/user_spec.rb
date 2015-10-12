@@ -394,37 +394,6 @@ describe User do
     end
   end
 
-  describe ".with_active_subscription" do
-    it "returns users with active subscriptions" do
-      with_active_subscription = create(:user, name: "active")
-      with_inactive_subscription = create(:user, name: "inactive")
-      create(:user, name: "without subscription")
-      create(:active_subscription, user: with_active_subscription)
-      create(:inactive_subscription, user: with_inactive_subscription)
-
-      result = User.with_active_subscription
-
-      expect(result.map(&:name)).to eq(%w(active))
-    end
-
-    it "eager loads individual subscriptions" do
-      expect { User.with_active_subscription.map(&:plan_name) }.
-        to eager_load { create(:active_subscription) }
-    end
-
-    it "eager loads team subscriptions" do
-      expect { User.with_active_subscription.map(&:plan_name) }.
-        to eager_load { create_user_with_team }
-    end
-
-    def create_user_with_team
-      owner = create(:user, :with_github)
-      subscription = create(:active_subscription, user: owner)
-      team = create(:team, subscription: subscription)
-      create(:user, team: team)
-    end
-  end
-
   describe "#annualized_payment" do
     it "delegates to the user's plan" do
       user = create(:subscriber)
@@ -453,35 +422,6 @@ describe User do
         and_return("professional-yearly")
 
       expect(user.annual_plan_sku).to eq("professional-yearly")
-    end
-  end
-
-  describe ".subscriber_count" do
-    it "counts users with an active individual subscription" do
-      subscriber("active1", subscriptions: [create(:subscription)])
-      subscriber("active2", subscriptions: [create(:subscription)])
-      subscriber("inactive", subscriptions: [create(:inactive_subscription)])
-
-      result = User.subscriber_count
-
-      expect(result).to eq(2)
-    end
-
-    it "counts users with an active team subscription" do
-      team = create(:team, subscription: create(:subscription))
-      inactive_team =
-        create(:team, subscription: create(:inactive_subscription))
-      subscriber("active1", team: team)
-      subscriber("active2", team: team)
-      subscriber("inactive1", team: inactive_team)
-
-      result = User.subscriber_count
-
-      expect(result).to eq(2)
-    end
-
-    def subscriber(name, subscriptions: [], team: nil)
-      create(:user, name: name, subscriptions: subscriptions, team: team)
     end
   end
 end

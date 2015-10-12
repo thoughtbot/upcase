@@ -15,16 +15,6 @@ class User < ActiveRecord::Base
 
   before_save :clean_github_username
 
-  def self.with_active_subscription
-    includes(subscriptions: :plan, team: { subscription: :plan }).
-      select(&:has_active_subscription?)
-  end
-
-  def self.subscriber_count
-    Subscription.active.joins(team: :users).count +
-      Subscription.active.includes(:team).where(teams: { id: nil }).count
-  end
-
   def first_name
     name.split(" ").first
   end
