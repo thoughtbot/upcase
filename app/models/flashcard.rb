@@ -6,7 +6,7 @@ class Flashcard < ActiveRecord::Base
   validates :prompt, presence: true
   validates :answer, presence: true
 
-  belongs_to :deck
+  belongs_to :deck, counter_cache: true
   has_many :attempts, -> { order(created_at: :desc) }
 
   acts_as_list scope: :deck

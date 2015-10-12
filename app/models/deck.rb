@@ -16,6 +16,6 @@ class Deck < ActiveRecord::Base
   end
 
   def length
-    flashcards.count
+    flashcards_count
   end
 end
