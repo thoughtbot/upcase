@@ -12,4 +12,10 @@ describe NullAttempt do
       expect(NullAttempt.new.low_confidence?).to be_falsey
     end
   end
+
+  describe "#updated_at" do
+    it "returns nil" do
+      expect(NullAttempt.new.updated_at).to be_nil
+    end
+  end
 end

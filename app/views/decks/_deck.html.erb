@@ -1,8 +1,13 @@
-<div class="deck">
+<div id="<%= dom_id deck %>" class="deck">
   <h4 class="deck-title">
     <%= link_to deck.title, deck %>
   </h4>
-  <p class="flashcards-count">
-    <%= t(".number_of_flashcards", length: deck.length) %>
-  </p>
+  <div class="deck-details">
+    <p>
+      <%= t(".number_of_flashcards", length: deck.length) %>
+    </p>
+    <p class="last-attempted">
+      <%= last_attempted_in_words(@deck_list.last_attempted_at(deck)) %>
+    </p>
+  </div>
 </div>

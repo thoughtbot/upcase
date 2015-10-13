@@ -1,6 +1,18 @@
 require "rails_helper"
 
+include ActionView::Helpers::DateHelper
+
 feature "Subscriber views decks" do
+  scenario "and hasn't started a deck" do
+    create(:flashcard)
+
+    visit decks_path(as: create(:subscriber))
+
+    within(".decks-area") do
+      expect(page).to have_content(never_attempted)
+    end
+  end
+
   scenario "and starts a deck" do
     flashcard = create(:flashcard)
 
@@ -38,11 +50,19 @@ feature "Subscriber views decks" do
   scenario "and navigates to the next flashcard directly" do
     deck = create(:deck)
     create_list(:flashcard, 2, deck: deck)
+    subscriber = create(:subscriber)
 
-    navigate_to_deck(deck)
+    navigate_to_deck(deck, user: subscriber)
     navigate_to_next_flashcard
 
     expect(page).to have_content("Flashcard 2")
+
+    visit decks_path(as: subscriber)
+    within("#deck_#{deck.id}") do
+      expect(page).to have_content(
+        last_attempted_at(last_flashcard_attempt.created_at)
+      )
+    end
   end
 
   context "and completes the deck" do
@@ -79,6 +99,12 @@ feature "Subscriber views decks" do
       within(".kept-flashcards") do
         expect(page).to have_link(flashcard.title)
       end
+
+      within(".decks-area") do
+        expect(page).to have_content(
+          last_attempted_at(last_flashcard_attempt.created_at)
+        )
+      end
     end
   end
 
@@ -101,8 +127,8 @@ feature "Subscriber views decks" do
     )
   end
 
-  def navigate_to_deck(deck)
-    visit decks_path(as: create(:subscriber))
+  def navigate_to_deck(deck, user: create(:subscriber))
+    visit decks_path(as: user)
     within decks_list do
       click_on deck.title
     end
@@ -153,5 +179,13 @@ feature "Subscriber views decks" do
 
   def reveal_answer
     I18n.t("flashcards.hidden_answer.reveal-answer")
+  end
+
+  def never_attempted
+    I18n.t("decks.deck.never_attempted")
+  end
+
+  def last_attempted_at(time)
+    I18n.t("decks.deck.last_attempted", distance: time_ago_in_words(time))
   end
 end
