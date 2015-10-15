@@ -34,7 +34,7 @@ class Analytics
   end
 
   def track_cancelled(reason:)
-    track("Cancelled", reason: reason)
+    track("Cancelled", reason: reason, email: user.email)
   end
 
   def track_flashcard_attempted(deck:, title:)
