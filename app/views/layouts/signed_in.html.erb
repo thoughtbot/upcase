@@ -2,6 +2,7 @@
 <html lang="en">
   <head prefix="og: http://ogp.me/ns#">
     <%= render "application/head_contents" %>
+    <%= render "layouts/hide_drip_widget_for_signed_in_users" %>
   </head>
 
   <body class="<%= body_class %> <%= yield(:additional_body_classes) %>">
