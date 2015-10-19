@@ -18,4 +18,8 @@ describe Forum do
       expect(Forum.sso_url).to eq "https://forum.example.com/session/sso_login"
     end
   end
+
+  it "is not accessible without a subscription" do
+    expect(Forum.accessible_without_subscription?).to eq false
+  end
 end

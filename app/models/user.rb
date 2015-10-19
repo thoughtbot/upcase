@@ -39,12 +39,16 @@ class User < ActiveRecord::Base
     subscriptions.create(plan: plan, stripe_id: stripe_id)
   end
 
+  def subscription
+    [personal_subscription, team_subscription].compact.detect(&:active?)
+  end
+
   def has_active_subscription?
     subscription.present?
   end
 
   def has_access_to?(feature)
-    subscription.present? && subscription.has_access_to?(feature)
+    has_active_subscription? || feature.accessible_without_subscription?
   end
 
   def subscribed_at
@@ -65,10 +69,6 @@ class User < ActiveRecord::Base
 
   def team_owner?
     team && team.owner?(self)
-  end
-
-  def subscription
-    [personal_subscription, team_subscription].compact.detect(&:active?)
   end
 
   def eligible_for_annual_upgrade?

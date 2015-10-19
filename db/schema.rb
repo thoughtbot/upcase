@@ -414,18 +414,19 @@ ActiveRecord::Schema.define(version: 20151021150654) do
 
   create_table "videos", force: :cascade do |t|
     t.integer  "watchable_id"
-    t.string   "wistia_id",         limit: 255
-    t.string   "name",              limit: 255
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.string   "watchable_type",    limit: 255
-    t.integer  "position",                      default: 0, null: false
+    t.string   "wistia_id",                       limit: 255
+    t.string   "name",                            limit: 255
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
+    t.string   "watchable_type",                  limit: 255
+    t.integer  "position",                                    default: 0,     null: false
     t.text     "notes"
     t.date     "published_on"
-    t.string   "preview_wistia_id", limit: 255
-    t.string   "slug",              limit: 255,             null: false
+    t.string   "preview_wistia_id",               limit: 255
+    t.string   "slug",                            limit: 255,                 null: false
     t.text     "summary"
     t.integer  "length_in_minutes"
+    t.boolean  "accessible_without_subscription",             default: false
   end
 
   add_index "videos", ["slug"], name: "index_videos_on_slug", unique: true, using: :btree

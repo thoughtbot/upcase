@@ -44,16 +44,6 @@ describe UserSerializer do
     end
   end
 
-  context 'when the user has subscription without access to forum' do
-    it 'includes a key denying forum access' do
-      user = create(:basic_subscriber)
-
-      user_json = parse_serialized_json(user)
-
-      expect(user_json["has_forum_access"]).to be false
-    end
-  end
-
   context 'when the user has subscription with access to forum' do
     it 'includes a key allowing forum access' do
       user = create(:subscriber)

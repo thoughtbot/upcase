@@ -1,16 +1,9 @@
 <% if current_user_has_active_subscription? %>
   <div class="license">
-    <% if included_in_current_users_plan?(watchable) %>
-      <%= link_to \
-        t("#{watchable.offering_type}.checkout_cta"),
-        [watchable, :licenses],
-        class: "license-button button free-with-subscription",
-        method: :post %>
-    <% else %>
-      <%= link_to \
-        t("#{watchable.offering_type}.upgrade_cta"),
-        edit_subscription_path,
-        class: "subscription-button license-button button" %>
-    <% end %>
+    <%= link_to \
+      t("#{watchable.offering_type}.checkout_cta"),
+      [watchable, :licenses],
+      class: "license-button button free-with-subscription",
+      method: :post %>
   </div>
 <% end %>

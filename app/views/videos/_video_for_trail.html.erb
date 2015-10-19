@@ -1,5 +1,5 @@
 <div class="step <%= video.state.parameterize %>-exercise">
-  <%= completeable_link video_path(video), title: video.name do %>
+  <%= link_to video, title: video.name do %>
     <div class="dot"></div>
   <% end %>
 

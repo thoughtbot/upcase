@@ -9,8 +9,8 @@ class Repository < Product
     where(trail_id: nil)
   end
 
-  def included_in_plan?(plan)
-    plan.has_feature?(:repositories)
+  def self.accessible_without_subscription?
+    false
   end
 
   def add_collaborator(user)

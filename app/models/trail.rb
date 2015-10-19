@@ -23,6 +23,10 @@ class Trail < ActiveRecord::Base
 
   friendly_id :name, use: [:slugged, :finders]
 
+  def self.accessible_without_subscription?
+    false
+  end
+
   def self.published
     where(published: true)
   end
@@ -71,10 +75,6 @@ class Trail < ActiveRecord::Base
 
   def teachers
     Teacher.joins(:video).merge(videos).to_a.uniq(&:user_id)
-  end
-
-  def included_in_plan?(plan)
-    plan.has_feature?(:trails)
   end
 
   def topic_name

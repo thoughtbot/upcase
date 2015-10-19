@@ -1,6 +1,6 @@
 <% content_for :page_title, "Practice" %>
 
-<% if locked_features.any? %>
+<% unless current_user_has_active_subscription? %>
   <%= render "products/locked_features" %>
 <% end %>
 

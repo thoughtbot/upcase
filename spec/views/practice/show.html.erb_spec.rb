@@ -3,7 +3,7 @@ require "rails_helper"
 describe "practice/show.html" do
   context "when a user has activity in trails" do
     it "doesn't show 'view completed' link when it has no completed trails" do
-      stub_user_access
+      stub_user_access(has_active_subscription: true)
 
       render_show
 
@@ -11,41 +11,33 @@ describe "practice/show.html" do
     end
   end
 
-  context "when a user has access to all features" do
+  context "when a user has an active subscription" do
     it "does not render the locked_features partial" do
-      stub_user_access shows: true, trails: true
+      stub_user_access(has_active_subscription: true)
 
       render_show
 
-      expect(rendered).not_to have_content("locked")
+      expect(rendered).not_to(
+        have_content(I18n.t("products.locked_features.why_they_are_locked")),
+      )
     end
   end
 
-  context "when a user has access to shows" do
-    it "renders locked features partial with correct features" do
-      stub_user_access shows: true, trails: false
-
-      render_show
-
-      text = "Trails are locked"
-      expect(rendered).to have_content(text)
-    end
-  end
-
-  context "when a user does not have access to any features" do
+  context "when a user does not have an active subscription" do
     it "renders locked features partial with all features" do
-      stub_user_access shows: false, trails: false
+      stub_user_access(has_active_subscription: false)
 
       render_show
 
-      text = "Trails and shows are locked"
-      expect(rendered).to have_content(text)
+      expect(rendered).to(
+        have_content(I18n.t("products.locked_features.why_they_are_locked")),
+      )
     end
   end
 
   context "for a non-admin user" do
     it "does not render the deck links" do
-      stub_user_access
+      stub_user_access(has_active_subscription: true)
       deck = build_stubbed(:deck)
 
       render_show decks: [deck]
@@ -67,13 +59,11 @@ describe "practice/show.html" do
     double("Practice", defaults.merge(options))
   end
 
-  def stub_user_access(features = {})
+  def stub_user_access(has_active_subscription:)
     view_stubs(:current_user).and_return(build_stubbed(:user))
-    view_stubs(:current_user_has_active_subscription?).and_return(true)
+    view_stubs(:current_user_has_active_subscription?).
+      and_return(has_active_subscription)
     view_stubs(:current_user_has_access_to?).and_return(false)
-    features.each do |feature, value|
-      view_stubs(:current_user_has_access_to?).with(feature).and_return(value)
-    end
   end
 
   def render_show(options = {})

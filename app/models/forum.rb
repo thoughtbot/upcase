@@ -6,4 +6,8 @@ class Forum
   def self.sso_url
     url("session/sso_login")
   end
+
+  def self.accessible_without_subscription?
+    false
+  end
 end

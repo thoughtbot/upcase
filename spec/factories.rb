@@ -391,10 +391,6 @@ FactoryGirl.define do
       published_on { 1.day.ago }
     end
 
-    trait :with_preview do
-      preview_wistia_id '1194804'
-    end
-
     trait :with_trail do
       after :create do |video|
         create(:step, trail: create(:trail), completeable: video)

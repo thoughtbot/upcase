@@ -19,7 +19,6 @@ class Video < ActiveRecord::Base
   validates :name, presence: true
   validates :wistia_id, presence: true
 
-  delegate :included_in_plan?, to: :watchable
   delegate :name, to: :watchable, prefix: true
   delegate :download_url, to: :clip
 

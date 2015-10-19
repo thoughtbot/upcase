@@ -1,16 +1,11 @@
 Thank you for subscribing to <%= @checkout.plan_name %>!
 
-One of the first things you might do is visit our Trail Maps
-<%- if @checkout.plan.has_feature?(:trails) -%>
-and check off your skills to determine which video tutorials are right for you:
-<%- else -%>
-and check off your skills to identify new things to learn:
-<%- end -%>
+One of the first things you might do is visit our Trail Maps and check off your
+skills to determine which video tutorials are right for you:
 <%= practice_url %>
 
-<%= @checkout.plan_name %> also includes access to our forum. Get help
-from thoughtbot and other subscribers here:
-<%= Forum.url %>
+<%= @checkout.plan_name %> also includes access to our forum. Get help from
+thoughtbot and other subscribers here: <%= Forum.url %>
 
-If you have any customer support or billing questions, please email us at
-<%= ENV["SUPPORT_EMAIL"] %>.
+If you have any customer support or billing questions, please email us at <%=
+ENV["SUPPORT_EMAIL"] %>.

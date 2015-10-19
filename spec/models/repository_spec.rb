@@ -9,20 +9,6 @@ describe Repository do
   it { should validate_presence_of(:github_repository) }
   it { should validate_presence_of(:github_url) }
 
-  describe "#included_in_plan?" do
-    it "delegates to the plan's repositories feature" do
-      expected = double("plan.has_feature?(:repositories)")
-      plan = double("plan")
-      allow(plan).to receive(:has_feature?).with(:repositories).
-        and_return(expected)
-      repository = Repository.new
-
-      result = repository.included_in_plan?(plan)
-
-      expect(result).to eq(expected)
-    end
-  end
-
   describe "#has_collaborator?" do
     context "after #add_collaborator with that user" do
       it "returns true" do

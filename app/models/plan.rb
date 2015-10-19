@@ -67,10 +67,6 @@ class Plan < ActiveRecord::Base
     end
   end
 
-  def included_in_plan?(plan)
-    false
-  end
-
   def has_annual_plan?
     annual_plan.present?
   end

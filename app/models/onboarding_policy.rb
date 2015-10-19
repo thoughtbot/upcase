@@ -40,7 +40,7 @@ class OnboardingPolicy
   end
 
   def user_has_trails?
-    user.has_access_to?(:trails)
+    user.has_access_to?(Trail)
   end
 
   def welcome_flow_incomplete?

@@ -1,9 +1,0 @@
-<%= link_to topic, class: "topic-link #{topic.slug}" do %>
-  <li class="topic-tile">
-    <%= image_tag "topics/#{topic.slug}.svg" %>
-    <ul>
-      <li class="topic-title"><%= topic.name %></li>
-      <li><span class='topic-num'><%= topic.count %></span> resources</li>
-    </ul>
-  </li>
-<% end %>

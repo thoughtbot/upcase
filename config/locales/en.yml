@@ -103,9 +103,9 @@ en:
       decks-list-title: decks
   products:
     locked_features:
-      subscribe_link: subscribe to Upcase
-      title_html: '%{features} are locked &mdash; %{link} to get access'
+      subscribe_link: Subscribe to Upcase
       upgrade_link: upgrade your subscription
+      why_they_are_locked: All these great trails are locked because you don't yet have a subscription.
     subscribe_cta: You can access this %{offering_type} and others with a subscription
       to %{subscription_name}
   repository:

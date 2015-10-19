@@ -64,11 +64,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :masquerading?
 
-  def included_in_current_users_plan?(licenseable)
-    licenseable.included_in_plan?(current_user.plan)
-  end
-  helper_method :included_in_current_users_plan?
-
   def topics
     Topic.explorable
   end

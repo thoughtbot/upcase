@@ -63,7 +63,7 @@ describe CollaborationsController do
 
   def stub_user(repositories:)
     build_stubbed(:user).tap do |user|
-      allow(user).to receive(:has_access_to?).with(:repositories).
+      allow(user).to receive(:has_access_to?).with(Repository).
         and_return(repositories)
     end
   end

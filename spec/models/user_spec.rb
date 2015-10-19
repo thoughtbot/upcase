@@ -288,29 +288,29 @@ describe User do
 
   describe "#has_access_to?" do
     context "when the user does not have a subscription" do
-      it "returns false" do
+      it "delegates to the object's #accessible_without_subscription method" do
         user = build_stubbed(:user)
+        inaccessible_upcase_feature =
+          double(
+            "inaccessible_upcase_feature",
+            accessible_without_subscription?: false,
+          )
+        accessible_upcase_feature =
+          double(
+            "accessible_upcase_feature",
+            accessible_without_subscription?: true,
+          )
 
-        expect(user).not_to have_access_to(:trails)
-      end
-    end
-
-    context "when the user has an inactive subscription" do
-      it "returns false" do
-        user = create(:subscriber)
-        allow(user.subscription).to receive(:active?).and_return(false)
-
-        expect(user).not_to have_access_to(:trails)
+        expect(user).to have_access_to(accessible_upcase_feature)
+        expect(user).not_to have_access_to(inaccessible_upcase_feature)
       end
     end
 
     context "when the user has an active subscription" do
-      it "delegates to the subscription's has_access_to? method" do
+      it "returns true" do
         user = create(:subscriber)
-        allow(user.subscription).to receive(:has_access_to?).
-          and_return("expected")
 
-        expect(user.has_access_to?(:trails)).to eq("expected")
+        expect(user.has_access_to?(Trail)).to be_truthy
       end
     end
 
@@ -322,7 +322,7 @@ describe User do
           :with_team_subscription
         )
 
-        expect(user.has_access_to?(:trails)).to eq(true)
+        expect(user.has_access_to?(Trail)).to eq(true)
       end
     end
   end

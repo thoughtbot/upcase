@@ -10,7 +10,7 @@
     <%= render "trails/step_dots", trail: trail %>
 
     <% if trail.steps.present? %>
-      <%= completeable_link url_for(trail.first_completeable),
+      <%= link_to url_for(trail.first_completeable),
         class: "start-trail cta-button small-button" do %>
         Start trail
       <% end %>

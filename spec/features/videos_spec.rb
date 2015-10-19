@@ -47,16 +47,6 @@ describe "Videos" do
         expect(text_in(item, ".//description")).to match(/#{notes}/)
       end
     end
-
-    it "user visits The Weekly Iteration video and sees title for the show" do
-      user = create(:user)
-      show = create(:show)
-      video = create(:video, watchable: show)
-
-      visit video_path(video, as: user)
-
-      expect_page_to_have_title("#{show.title} | Upcase")
-    end
   end
 
   def text_in(node, xpath)

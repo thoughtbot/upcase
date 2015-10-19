@@ -1,5 +1,5 @@
 <div class="step <%= exercise.state.parameterize %>-exercise">
-  <%= completeable_link exercise.url, title: exercise.name do %>
+  <%= link_to exercise.url, title: exercise.name do %>
     <div class="dot"></div>
   <% end %>
 

@@ -73,6 +73,14 @@ describe Trail do
     end
   end
 
+  describe ".accessible_without_subscription?" do
+    it "returns false" do
+      result = Trail.accessible_without_subscription?
+
+      expect(result).to be false
+    end
+  end
+
   describe "#steps_remaining_for" do
     it "returns the number of exercises the user hasn't completed" do
       user = create(:user)
@@ -252,26 +260,6 @@ describe Trail do
 
     def teacher(user)
       Teacher.create!(user: user)
-    end
-  end
-
-  describe "#included_in_plan?" do
-    context "for a plan with trails" do
-      it "returns true" do
-        plan = build_stubbed(:plan, includes_trails: true)
-        trail = build_stubbed(:trail)
-
-        expect(trail).to be_included_in_plan(plan)
-      end
-    end
-
-    context "for a plan without trails" do
-      it "returns false" do
-        plan = build_stubbed(:plan, includes_trails: false)
-        trail = build_stubbed(:trail)
-
-        expect(trail).not_to be_included_in_plan(plan)
-      end
     end
   end
 

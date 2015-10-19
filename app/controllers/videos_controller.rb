@@ -4,25 +4,17 @@ class VideosController < ApplicationController
     @watchable = @video.watchable
 
     respond_to do |format|
-      format.html { render_show_template }
+      format.html { render_or_redirect }
     end
   end
 
   private
 
-  def render_show_template
-    if has_access?
+  def render_or_redirect
+    if current_user_has_access_to?(@video)
       render "show_for_subscribers"
-    elsif @video.preview_wistia_id.present?
-      render "show_for_visitors"
     else
-      redirect_to @video.watchable
+      render "show_for_visitors"
     end
-  end
-
-  def has_access?
-    signed_in? &&
-      current_user.plan.present? &&
-      @video.included_in_plan?(current_user.plan)
   end
 end

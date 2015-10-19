@@ -58,15 +58,6 @@ describe OnboardingPolicy do
   end
 
   describe "#root_path" do
-    it "returns the weekly iteration path for weekly iteration subscribers" do
-      stub_weekly_iteration_path
-      user = create(:basic_subscriber)
-
-      onboarding_policy = OnboardingPolicy.new(user)
-
-      expect(onboarding_policy.root_path).to eq(weekly_iteration_path)
-    end
-
     it "returns the welcome page path for new full subscribers" do
       user = create(:subscriber, :with_full_subscription, :needs_onboarding)
 

@@ -67,10 +67,6 @@ class Subscription < ActiveRecord::Base
     subscription.save
   end
 
-  def has_access_to?(feature)
-    active? && plan.has_feature?(feature)
-  end
-
   def team?
     team.present?
   end

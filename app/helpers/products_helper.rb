@@ -10,12 +10,4 @@ module ProductsHelper
   def intermediate_rails_url
     "https://upcase.com/intermediate-ruby-on-rails"
   end
-
-  def completeable_link(url, options = {}, &block)
-    if current_user_has_access_to?(:trails)
-      link_to url, options, &block
-    else
-      link_to edit_subscription_path, options, &block
-    end
-  end
 end

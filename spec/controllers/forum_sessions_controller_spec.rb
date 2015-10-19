@@ -15,7 +15,7 @@ describe ForumSessionsController do
 
         expect(DiscourseSignOn).to have_received(:parse).with(
           "sig=sig&sso=ssohash",
-          ENV["DISCOURSE_SSO_SECRET"]
+          ENV.fetch("DISCOURSE_SSO_SECRET"),
         )
         expect(response).to redirect_to(
           discourse_sso.to_url(
@@ -29,29 +29,11 @@ describe ForumSessionsController do
         )
         expect(discourse_sso).to have_received(:external_id=).with(user.id)
         expect(discourse_sso).to have_received(:sso_secret=).with(
-          ENV["DISCOURSE_SSO_SECRET"]
+          ENV.fetch("DISCOURSE_SSO_SECRET"),
         )
         expect(analytics).to(
           have_tracked("Logged into Forum").
           for_user(user)
-        )
-      end
-    end
-
-    context "when logged in as a subscriber without forum access" do
-      it "redirects to new_subscription_url" do
-        user = create(:basic_subscriber)
-        stub_current_user_with(user)
-
-        get :new, sso: "ssohash", sig: "sig"
-
-        should deny_access(
-          redirect: new_subscription_url,
-          flash: I18n.t(
-            "products.subscribe_cta",
-            offering_type: "forum",
-            subscription_name: I18n.t("shared.upcase")
-          )
         )
       end
     end

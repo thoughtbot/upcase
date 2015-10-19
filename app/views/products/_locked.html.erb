@@ -3,13 +3,7 @@
     <%= image_tag("icons/lock.svg", size: "11x15") %>
   </span>
 
-  <% if signed_in? %>
-    <%= link_to 'Get access by upgrading',
-      edit_subscription_path,
-      class: 'upgrade-link' %>
-  <% else %>
-    <%= link_to 'Get access by joining Upcase',
-      join_path,
-      class: 'upgrade-link' %>
-  <% end %>
+  <%= link_to 'Get access by joining Upcase',
+    join_path,
+    class: 'upgrade-link' %>
 </div>

@@ -1,7 +1,7 @@
 class CollaborationsController < ApplicationController
   def create
     require_sign_in do
-      require_access_to(:repositories) do
+      require_access_to_repositories do
         add_collaborator
         track_repo_access
       end
@@ -35,8 +35,8 @@ class CollaborationsController < ApplicationController
     end
   end
 
-  def require_access_to(feature)
-    if current_user.has_access_to?(feature)
+  def require_access_to_repositories
+    if current_user.has_access_to?(Repository)
       yield
     else
       redirect_to(

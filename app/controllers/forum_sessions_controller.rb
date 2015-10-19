@@ -5,7 +5,7 @@ class ForumSessionsController < ApplicationController
   def new
     sso = DiscourseSignOn.parse(
       request.query_string,
-      ENV["DISCOURSE_SSO_SECRET"]
+      ENV.fetch("DISCOURSE_SSO_SECRET"),
     )
     populate_sso_for_current_user(sso)
     track_forum_access
@@ -16,7 +16,7 @@ class ForumSessionsController < ApplicationController
   private
 
   def must_have_forum_access
-    unless current_user.has_access_to?(:forum)
+    unless current_user.has_access_to?(Forum)
       redirect_to(
         new_subscription_url,
         notice: I18n.t(
