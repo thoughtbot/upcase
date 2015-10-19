@@ -34,11 +34,11 @@ var setupTableOfContents = function() {
 
 $(function() {
   setupTableOfContents();
-  var header = '.landing [data-role="header"]';
+  var header = '.viewed-by-visitor [data-role="header"]';
 
   if ($(header).length) {
     new Headhesive(header, {
-      offset:  500,
+      offset:  window.stickyHeaderStart || 100,
       onStick: setupTableOfContents,
       onUnstick: setupTableOfContents,
     });

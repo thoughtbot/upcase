@@ -58,6 +58,7 @@ $row-highlight: #f9f9f9;
 $max-width: 1100px;
 $navigation-height: 60px;
 $navigation-cta-offset: 10px;
+$header-height: $navigation-height - ($navigation-cta-offset * 2);
 $button-padding: 0.75em 1.2em;
 $button-padding-small: 0.45em 1em;
 $card-height: 370px;

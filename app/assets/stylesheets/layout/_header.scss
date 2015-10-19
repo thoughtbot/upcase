@@ -15,8 +15,8 @@
     .header-cta-link {
       @extend %button;
       font-size: 1rem;
-      height: $navigation-height - ($navigation-cta-offset * 2);
-      line-height: $navigation-height - ($navigation-cta-offset * 2);
+      height: $header-height;
+      line-height: $header-height;
       padding: 0 1rem;
 
       &:hover,
@@ -42,8 +42,8 @@
     background-color: $hero-green;
     border-radius: 3px;
     box-shadow: $heavy-box-shadow;
-    height: $navigation-height - ($navigation-cta-offset * 2);
-    line-height: $navigation-height - ($navigation-cta-offset * 2);
+    height: $header-height;
+    line-height: $header-height;
     padding: 0 1em 0 3.5em;
     position: relative;
 

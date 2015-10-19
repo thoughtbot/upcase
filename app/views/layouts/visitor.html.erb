@@ -4,7 +4,7 @@
     <%= render "application/head_contents" %>
   </head>
 
-  <body class="<%= body_class %> <%= yield(:additional_body_classes) %>">
+  <body class="viewed-by-visitor <%= body_class %> <%= yield(:additional_body_classes) %>">
     <section id="header-wrapper"
       data-role="header">
       <div class="header-container">
@@ -45,6 +45,12 @@
 
       <%= yield %>
     </section>
+
+    <% if content_for?(:sticky_header_height) %>
+      <script type="text/javascript">
+        window.stickyHeaderStart = <%= yield(:sticky_header_height) %>;
+      </script>
+    <% end %>
 
     <%= render "shared/footer" %>
     <%= render "shared/javascript" %>
