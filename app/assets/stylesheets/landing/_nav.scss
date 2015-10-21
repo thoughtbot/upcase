@@ -1,5 +1,7 @@
 .viewed-by-visitor {
-  margin-top: $header-height + 15px;
+  @include marketing-fullsize {
+    margin-top: $header-height + 15px;
+  }
 
   #header-wrapper {
     margin-bottom: 0;
