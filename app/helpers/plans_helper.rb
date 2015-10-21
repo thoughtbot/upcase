@@ -36,9 +36,9 @@ module PlansHelper
     image_tag("pricing-x.svg")
   end
 
-  def popular(plan)
-    if plan.popular?
-      "popular"
+  def professional(plan)
+    if plan.professional?
+      "professional"
     end
   end
 end

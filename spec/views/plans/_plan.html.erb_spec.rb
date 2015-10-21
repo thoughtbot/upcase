@@ -12,24 +12,24 @@ describe "plans/_plan.html" do
     end
   end
 
-  context "popular plan" do
-    it "adds the 'popular' class to the plan designated as popular" do
+  context "professional plan" do
+    it "adds the 'professional' class to plans designated as professional" do
       plan = build_plan
-      allow(plan).to receive(:popular?).and_return(true)
+      allow(plan).to receive(:professional?).and_return(true)
       stub_view
 
       render_plan(plan)
 
-      expect(rendered).to have_css(".popular")
+      expect(rendered).to have_css(".professional")
     end
 
-    it "does not add the 'popular' class to plans not designated as popular" do
+    it "doesn't add the 'professional' class to non-professional plans" do
       plan = build_plan
       stub_view
 
       render_plan(plan)
 
-      expect(rendered).not_to have_css(".popular")
+      expect(rendered).not_to have_css(".professional")
     end
   end
 
@@ -64,7 +64,7 @@ describe "plans/_plan.html" do
 
   def build_plan
     build_stubbed(:plan, sku: Plan::THE_WEEKLY_ITERATION_SKU).tap do |plan|
-      allow(plan).to receive(:popular?).and_return(false)
+      allow(plan).to receive(:professional?).and_return(false)
     end
   end
 

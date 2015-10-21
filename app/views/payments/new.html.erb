@@ -43,7 +43,7 @@
       handler.open({
         name: 'Upcase',
         description: 'Monthly Subscription',
-        amount: <%= Plan.popular.price_in_dollars * 100 %>,
+        amount: <%= Plan.professional.price_in_dollars * 100 %>,
         email: "<%= current_user.email %>",
         allowRememberMe: false,
         panelLabel: "Subscribe for {{amount}}"

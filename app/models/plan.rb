@@ -44,12 +44,12 @@ class Plan < ActiveRecord::Base
     where(sku: THE_WEEKLY_ITERATION_SKU).first
   end
 
-  def self.popular
+  def self.professional
     where(sku: PROFESSIONAL_SKU).first
   end
 
-  def popular?
-    self == self.class.popular
+  def professional?
+    self == self.class.professional
   end
 
   def subscription_interval

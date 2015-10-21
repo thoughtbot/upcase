@@ -38,6 +38,6 @@ class SignupsController < ApplicationController
   end
 
   def professional_plan
-    Plan.popular
+    Plan.professional
   end
 end
