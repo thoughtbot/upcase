@@ -16,10 +16,6 @@ class Topic < ActiveRecord::Base
 
   friendly_id :name, use: [:slugged, :finders]
 
-  def self.explorable
-    where(explorable: true)
-  end
-
   def self.meta_keywords
     pluck(:name).join(", ")
   end

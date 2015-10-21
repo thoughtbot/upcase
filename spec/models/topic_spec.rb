@@ -22,19 +22,6 @@ describe Topic do
     end
   end
 
-  context ".explorable" do
-    it "returns topics to be displayed on the explore page" do
-      create(:topic, :explorable, name: "one")
-      create(:topic, :explorable, name: "two")
-      create(:topic, :explorable, name: "three")
-      create(:topic, name: "hidden")
-
-      result = Topic.explorable
-
-      expect(result.map(&:name)).to eq(%w(one two three))
-    end
-  end
-
   context 'validations' do
     context 'uniqueness' do
       before do
