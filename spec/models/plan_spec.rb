@@ -13,6 +13,16 @@ describe Plan do
 
   it_behaves_like "a Plan for public listing"
 
+  describe ".professional" do
+    it "returns the plan with the appropriate sku" do
+      plan = create(:plan, sku: Plan::PROFESSIONAL_SKU)
+
+      result = Plan.professional
+
+      expect(result).to eq(plan)
+    end
+  end
+
   describe ".active" do
     it "only includes active plans" do
       active = create(:plan, active: true)
@@ -103,6 +113,16 @@ describe Plan do
           plan: plan,
           stripe_id: checkout.stripe_subscription_id
         )
+    end
+  end
+
+  describe "#professional?" do
+    it "returns true if the plan is has the professional sku" do
+      professional_plan = create(:plan, sku: Plan::PROFESSIONAL_SKU)
+      amateur_plan = create(:plan, sku: "amateur")
+
+      expect(professional_plan.professional?).to eq true
+      expect(amateur_plan.professional?).to eq false
     end
   end
 

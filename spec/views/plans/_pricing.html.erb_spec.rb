@@ -12,13 +12,13 @@ describe "plans/_pricing.html" do
       expect(rendered).to have_content(professional.short_description)
     end
 
-    it "adds the 'popular' class to the plan designated as popular" do
+    it "adds the 'professional' class to the plan designated as professional" do
       the_weekly_iteration = build_stubbed(:plan, sku: Plan::THE_WEEKLY_ITERATION_SKU)
-      allow(the_weekly_iteration).to receive(:popular?).and_return(true)
+      allow(the_weekly_iteration).to receive(:professional?).and_return(true)
 
       render_pricing_with_plans [the_weekly_iteration]
 
-      expect(rendered).to have_css(".popular")
+      expect(rendered).to have_css(".professional")
     end
   end
 

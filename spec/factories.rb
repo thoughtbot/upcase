@@ -92,7 +92,7 @@ FactoryGirl.define do
   factory :plan do
     name I18n.t("shared.subscription.name")
     price_in_dollars 99
-    sku "professional"
+    sku Plan::PROFESSIONAL_SKU
     short_description 'A great Subscription'
     description 'A long description'
     includes_trails true

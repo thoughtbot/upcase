@@ -3,7 +3,7 @@ require "rails_helper"
 describe "payments/new.html.erb" do
   context "when the user has a name from GitHub" do
     it "addresses them with that name" do
-      stub_popular_plans
+      stub_professional_plan
       stub_current_user
       name = "Ralph Robot"
       @github_user = github_user(name: name)
@@ -16,7 +16,7 @@ describe "payments/new.html.erb" do
 
   context "when the user does not have a name from GitHub" do
     it "addresses them with 'Hey there'" do
-      stub_popular_plans
+      stub_professional_plan
       stub_current_user
       @github_user = github_user(name: nil)
 
@@ -31,8 +31,10 @@ describe "payments/new.html.erb" do
     allow(view).to receive(:current_user).and_return(user)
   end
 
-  def stub_popular_plans
-    allow(Plan).to receive(:popular).and_return(double(price_in_dollars: 1))
+  def stub_professional_plan
+    allow(Plan).to(
+      receive(:professional).and_return(double(price_in_dollars: 1)),
+    )
   end
 
   def github_user(name:)

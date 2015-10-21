@@ -31,12 +31,12 @@ describe CheckoutsController do
 
     context "with a plan that is not found" do
       it "redirects to the default plan" do
-        popular = build_stubbed(:plan)
-        allow(Plan).to receive(:popular).and_return(popular)
+        professional = build_stubbed(:plan)
+        allow(Plan).to receive(:professional).and_return(professional)
 
         get :new, plan: "notfound"
 
-        expect(response).to redirect_to new_checkout_path(plan: popular)
+        expect(response).to redirect_to new_checkout_path(plan: professional)
         expect(flash[:notice]).to eq I18n.t("checkout.flashes.plan_not_found")
       end
     end
