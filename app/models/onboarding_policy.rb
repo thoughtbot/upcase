@@ -1,6 +1,6 @@
 class OnboardingPolicy
-  def initialize(user)
-    @user = user
+  def initialize(license)
+    @license = license
   end
 
   def needs_onboarding?
@@ -23,27 +23,25 @@ class OnboardingPolicy
 
   private
 
-  attr_reader :user
+  attr_reader :license
 
   def route_helpers
     Rails.application.routes.url_helpers
   end
 
   def user_only_has_access_to_weekly_iteration?
-    user.has_active_subscription? && !user_has_trails?
+    license.active? && !licensed_for_trails?
   end
 
   def full_subscriber_with_incomplete_welcome_flow?
-    user.has_active_subscription? &&
-      user_has_trails? &&
-      welcome_flow_incomplete?
+    license.active? && licensed_for_trails? && welcome_flow_incomplete?
   end
 
-  def user_has_trails?
-    user.has_access_to?(:trails)
+  def licensed_for_trails?
+    license.grants_access_to?(:trails)
   end
 
   def welcome_flow_incomplete?
-    !user.completed_welcome?
+    !license.completed_welcome?
   end
 end

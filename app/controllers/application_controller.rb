@@ -33,25 +33,27 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_license
+    @current_license ||= License.for(current_user)
+  end
+
   def current_user_is_subscription_owner?
-    current_user_has_active_subscription? &&
-      current_user.subscription.owner?(current_user)
+    current_license.owned_by?(current_user)
   end
   helper_method :current_user_is_subscription_owner?
 
   def current_user_has_active_subscription?
-    current_user && current_user.has_active_subscription?
+    current_license.active?
   end
   helper_method :current_user_has_active_subscription?
 
   def current_user_is_eligible_for_annual_upgrade?
-    current_user_has_active_subscription? &&
-      current_user.eligible_for_annual_upgrade?
+    current_license.eligible_for_annual_upgrade?
   end
   helper_method :current_user_is_eligible_for_annual_upgrade?
 
   def current_user_has_access_to?(feature)
-    current_user && current_user.has_access_to?(feature)
+    current_license.grants_access_to?(feature)
   end
   helper_method :current_user_has_access_to?
 
@@ -80,7 +82,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_team
 
   def onboarding_policy
-    OnboardingPolicy.new(current_user)
+    OnboardingPolicy.new(current_license)
   end
   helper_method :onboarding_policy
 

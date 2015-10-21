@@ -11,9 +11,8 @@ describe HomesController do
 
   context "the user is logged in" do
     it "delegates to the OnboaringPolicy to determine where to send the user" do
-      user = create(:user)
-      onboarding_policy = stub_onbarding_policy(user)
-      sign_in_as user
+      onboarding_policy = stub_onbarding_policy
+      sign_in
 
       get :show
 
@@ -21,9 +20,9 @@ describe HomesController do
     end
   end
 
-  def stub_onbarding_policy(user)
+  def stub_onbarding_policy
     instance_double(OnboardingPolicy, root_path: "/my-route").tap do |policy|
-      allow(OnboardingPolicy).to receive(:new).with(user).and_return(policy)
+      allow(OnboardingPolicy).to receive(:new).and_return(policy)
     end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151009144215) do
+ActiveRecord::Schema.define(version: 20151009153142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -443,6 +443,29 @@ ActiveRecord::Schema.define(version: 20151009144215) do
  FROM attempts
 ORDER BY attempts.user_id, attempts.flashcard_id, attempts.updated_at DESC;
       SQL
+
+        create_view :licenses, sql_definition:<<-SQL
+          SELECT subscriptions.id AS subscription_id,
+    subscriptions.user_id,
+    subscriptions.user_id AS owner_id,
+    subscriptions.plan_type,
+    subscriptions.plan_id,
+    users.completed_welcome
+   FROM (subscriptions
+     JOIN users ON ((users.id = subscriptions.user_id)))
+  WHERE (subscriptions.deactivated_on IS NULL)
+UNION ALL
+ SELECT subscriptions.id AS subscription_id,
+    users.id AS user_id,
+    subscriptions.user_id AS owner_id,
+    subscriptions.plan_type,
+    subscriptions.plan_id,
+    users.completed_welcome
+   FROM ((teams
+     JOIN users ON ((users.team_id = teams.id)))
+     JOIN subscriptions ON ((subscriptions.id = teams.subscription_id)))
+  WHERE (subscriptions.deactivated_on IS NULL);
+        SQL
 
         create_view :slugs, sql_definition:<<-SQL
           SELECT products.slug,
