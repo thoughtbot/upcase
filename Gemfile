@@ -73,7 +73,7 @@ end
 group :test do
   gem "capybara"
   gem "capybara-webkit"
-  gem "capybara_discoball", github: "thoughtbot/capybara_discoball"
+  gem "capybara_discoball", git: "https://github.com/thoughtbot/capybara_discoball"
   gem "climate_control"
   gem "codeclimate-test-reporter", require: nil
   gem "database_cleaner"

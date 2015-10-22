@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/thoughtbot/capybara_discoball.git
-  revision: 5435c838e90a1c7f9dfffc36103c6b8040f3ce15
+  remote: https://github.com/thoughtbot/capybara_discoball
+  revision: 560ca2eced51a5d90d1e44758bc47bfc49a7496e
   specs:
     capybara_discoball (0.0.1)
       capybara
