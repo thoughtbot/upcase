@@ -22,6 +22,7 @@
   }
 
   .bio {
+    @include span-columns(8.5);
     margin-top: 0.5rem;
   }
 }

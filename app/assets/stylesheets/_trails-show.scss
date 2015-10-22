@@ -59,6 +59,10 @@
       margin: 0;
       padding: 3em 0;
       width: 100%;
+
+      &:last-of-type {
+        border-bottom: 0;
+      }
     }
 
     .exercise a {
