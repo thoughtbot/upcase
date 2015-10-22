@@ -441,6 +441,3 @@ DEPENDENCIES
   validates_email_format_of
   vanity (= 2.0.0.beta8)
   webmock
-
-BUNDLED WITH
-   1.10.5

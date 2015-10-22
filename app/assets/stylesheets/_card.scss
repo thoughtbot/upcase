@@ -1,28 +1,6 @@
-.resources-container {
-  @include transition (all 0.3s ease-in-out);
-  background: white;
-  display: flex;
-  flex-flow: wrap;
-  justify-content: space-around;
-  padding: em(30) em(20);
-
-  header {
-    width: 100%;
-    display: block;
-    padding: 0 em(15);
-
-    .topic-headline {
-      display: inline-block;
-      float: left;
-      font: 600 24px/30px $sans-serif;
-      margin-bottom: 30px;
-    }
-  }
-}
-
 .card {
   @include transition (all 0.3s ease-in-out);
-  background: white;
+  background: $white;
   border-radius: .25rem;
   border: 1px solid $base-border-color-1;
   box-shadow: $base-box-shadow;
@@ -61,6 +39,7 @@
   }
 
   h5 {
+    border-bottom: 1px solid $base-border-color-1;
     border-radius: .20rem .20rem 0 0;
     color: $darkwarmgray;
     font-size: .8rem;
@@ -93,51 +72,5 @@
     color: darken(#83EBA8, 45%);
     display: block;
     text-indent: 25px;
-  }
-}
-
-.card {
-  &.exercise {
-    h5 {
-      border-bottom: 1px solid $base-border-color-1;
-    }
-
-    .illustration {
-      background-image: image-url('exercise.svg');
-
-      &:after {
-        border-color: $base-border-color-blue;
-      }
-    }
-  }
-
-  &.repository {
-    .illustration {
-      background-image: image-url('repository.svg');
-
-      &:after {
-        border-color: rgba($repository-color, 0.1);
-      }
-    }
-  }
-
-  &.complete-exercise {
-    .illustration {
-      background: image-url('trail-step-complete.svg') center /58px no-repeat;
-
-      &:after {
-        display: none;
-      }
-    }
-  }
-
-  &.in-progress-exercise {
-    .illustration {
-      background: image-url('trail-step-in-progress.svg') center /60px no-repeat;
-
-      &:after {
-        display: none;
-      }
-    }
   }
 }

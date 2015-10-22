@@ -1,0 +1,21 @@
+.resources-container {
+  @include transition (all 0.3s ease-in-out);
+  background: $white;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+  padding: em(30) em(20);
+
+  header {
+    width: 100%;
+    display: block;
+    padding: 0 em(15);
+
+    .topic-headline {
+      display: inline-block;
+      float: left;
+      font: 600 24px/30px $sans-serif;
+      margin-bottom: 30px;
+    }
+  }
+}
