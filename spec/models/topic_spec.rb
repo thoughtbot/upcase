@@ -46,7 +46,7 @@ describe Topic do
   describe "#weekly_iteration_videos" do
     it "returns only videos from the weekly iteration, not from trails" do
       topic = create(:topic, name: "Rails")
-      show = create(:show, :the_weekly_iteration)
+      show = create(:the_weekly_iteration)
       video = create(:video, name: "Railsy", watchable: show, topics: [topic])
       create_trail_video(topic)
 

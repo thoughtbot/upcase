@@ -81,7 +81,7 @@ FactoryGirl.define do
     sku 'TEST'
 
     factory :show, class: 'Show' do
-      trait :the_weekly_iteration do
+      factory :the_weekly_iteration do
         name Show::THE_WEEKLY_ITERATION
       end
     end

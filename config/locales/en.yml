@@ -13,6 +13,7 @@ en:
     flashcard_saved: Saved flashcard for review
   authenticating:
     github_signin: Sign in with GitHub
+    login_required: You must be signed in to view that page
   checkout:
     flashes:
       already_subscribed: You are already subscribed. You can change your plan.

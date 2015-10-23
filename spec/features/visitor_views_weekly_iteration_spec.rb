@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "Visitor" do
   scenario "views Weekly Iteration preview page" do
-    show = create(:show)
+    show = create(:the_weekly_iteration)
     create(:video, watchable: show)
 
     visit show_url(show)
@@ -13,7 +13,7 @@ feature "Visitor" do
   end
 
   scenario "clicks through to an episode" do
-    show = create(:show)
+    show = create(:the_weekly_iteration)
     video = create_video(show)
 
     visit show_url(show)

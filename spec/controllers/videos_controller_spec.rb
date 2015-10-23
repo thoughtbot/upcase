@@ -4,7 +4,7 @@ include StubCurrentUserHelper
 
 describe VideosController do
   describe "#show" do
-    context "when viewing a video as user with access" do
+    context "when the viewer has an active subscription" do
       it "renders the subscriber view so they can watch video" do
         user = create(:subscriber)
         video = create(:video)
@@ -16,13 +16,25 @@ describe VideosController do
       end
     end
 
-    context "when viewing a video the user does not have access to" do
-      it "renders the version intended for visitors" do
-        video = create(:video)
+    context "without an active subscription" do
+      context "when viewing a weekly iteration video" do
+        it "renders the visitor version of the view" do
+          video = create(:video, watchable: create(:the_weekly_iteration))
 
-        get :show, id: video
+          get :show, id: video
 
-        expect(response).to render_template "show_for_visitors"
+          expect(response).to render_template "show_for_visitors"
+        end
+      end
+
+      context "when viewing a trail video" do
+        it "redirects the user to sign_in" do
+          video = create_video_on_trail
+
+          get :show, id: video.id
+
+          expect(response).to redirect_to(sign_in_path)
+        end
       end
     end
   end
@@ -31,5 +43,12 @@ describe VideosController do
     expect do
       get :show, id: create(:video), format: :json
     end.to raise_exception(ActionController::UnknownFormat)
+  end
+
+  def create_video_on_trail
+    trail = create(:trail, name: "Trail")
+    create(:video).tap do |video|
+      create(:step, trail: trail, completeable: video)
+    end
   end
 end

@@ -13,8 +13,14 @@ class VideosController < ApplicationController
   def render_or_redirect
     if current_user_has_access_to?(@video)
       render "show_for_subscribers"
-    else
+    elsif weekly_iteration_video?
       render "show_for_visitors"
+    else
+      redirect_to sign_in_path, notice: I18n.t("authenticating.login_required")
     end
+  end
+
+  def weekly_iteration_video?
+    @watchable == Show.the_weekly_iteration
   end
 end
