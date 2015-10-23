@@ -42,4 +42,22 @@ describe Topic do
       expect(result).to eq 'Ruby, Rails'
     end
   end
+
+  describe "#weekly_iteration_videos" do
+    it "returns only videos from the weekly iteration, not from trails" do
+      topic = create(:topic, name: "Rails")
+      show = create(:show, :the_weekly_iteration)
+      video = create(:video, name: "Railsy", watchable: show, topics: [topic])
+      create_trail_video(topic)
+
+      expect(topic.weekly_iteration_videos.pluck(:name)).to eq([video.name])
+    end
+  end
+
+  def create_trail_video(topic)
+    create(:trail, :published, name: "Video Trail").tap do |trail|
+      video = create(:video, watchable: trail, topics: [topic])
+      create(:step, trail: trail, completeable: video)
+    end
+  end
 end

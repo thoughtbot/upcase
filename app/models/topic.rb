@@ -31,4 +31,8 @@ class Topic < ActiveRecord::Base
   def to_param
     slug
   end
+
+  def weekly_iteration_videos
+    videos.where(watchable: Show.the_weekly_iteration)
+  end
 end

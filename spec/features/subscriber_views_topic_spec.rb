@@ -4,7 +4,7 @@ feature "Subscriber views a topic" do
   scenario "and sees associated resources" do
     topic = create(:topic, :explorable)
     subscriber = create(:subscriber)
-    video = create(:video)
+    video = create(:video, watchable: create(:show, :the_weekly_iteration))
     trail = create(:trail, :published, :video)
     topic.videos << video
     topic.trails << trail
