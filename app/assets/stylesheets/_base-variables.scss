@@ -120,15 +120,15 @@ $topic-backgrounds: (
 
 $topic-colors: (
   analytics: #a5c236,
-  clean-code: #1dc8cf,
+  clean-code: darken(#1dc8cf, 5),
   clojure: #ed6820,
   design: #2b2f8e,
-  foundations: #77c159,
+  foundations: darken(#77c159, 5),
   haskell: #cd6fc6,
   ios: #396189,
   javascript: #d87d2f,
   rails: #d5414d,
-  testing: #34d096,
+  testing: darken(#34d096, 10),
   vim: #2192cf,
-  workflow: #f4bc15
+  workflow: darken(#f4bc15, 8)
 );

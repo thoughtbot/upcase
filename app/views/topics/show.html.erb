@@ -2,11 +2,13 @@
 
 <% content_for :subject_block do %>
   <div class="topic-header">
-    <h1><%= @topic.name %></h1>
+    <div class="topic-header-text">
+      <h1><%= @topic.name %></h1>
 
-    <% if @topic.summary.present? %>
-      <h2 class="tagline"><%= @topic.summary %></h2>
-    <% end %>
+      <% if @topic.summary.present? %>
+        <h2 class="tagline"><%= @topic.summary %></h2>
+      <% end %>
+    </div>
 
     <div class="topic-image">
       <%= image_tag "topics/#{@topic.slug}.svg" %>

@@ -9,9 +9,10 @@ body.topics.topics-show {
     width: 100%;
 
     .topic-header {
+      @include clearfix;
       margin: 0 auto;
       max-width: $max-width;
-      padding: 4.5rem $side-padding;
+      padding: 4.5rem $side-padding 3rem;
       position: relative;
 
       @include dashboard-small-only {
@@ -20,15 +21,26 @@ body.topics.topics-show {
       }
     }
 
+    .topic-header-text {
+      float: left;
+      
+      @include dashboard-small-only {
+        float: none;
+        margin: auto;
+      }
+    }
+
     h1 {
-      margin-bottom: 0.6rem;
+      font-size: 3em;
+      margin-bottom: 0.9rem;
     }
 
     h2 {
-      font-size: 1.125em;
-      font-weight: normal;
+      font-size: 1.6em;
+      font-weight: 200;
       line-height: 1.6em;
       margin-bottom: 2rem;
+      width: 24em;
 
       @include dashboard-small-only {
         margin-bottom: 0;
@@ -36,16 +48,16 @@ body.topics.topics-show {
       }
     }
 
+    img {
+      @include size(220px);
+    }
+
     .topic-image {
-      @include size(180px);
-      position: absolute;
-      right: 0;
-      top: 1em;
+      float: right;
 
       @include dashboard-small-only {
-        top: 0;
-        position: relative;
-        display: inline-block;
+        float: none;
+        margin: auto;
       }
     }
   }
