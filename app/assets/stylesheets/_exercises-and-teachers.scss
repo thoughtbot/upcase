@@ -42,4 +42,11 @@
       margin-bottom: 2rem;
     }
   }
+
+  .available-link {
+    border-radius: $base-border-radius;
+    border: 1px solid $upcase-green;
+    color: $upcase-green;
+    padding: 5px 10px;
+  }
 }

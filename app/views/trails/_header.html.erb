@@ -18,5 +18,9 @@
   <div class="topic-title">
     <h1><%= trail.name %></h1>
     <p><%= format_markdown trail.description %></p>
+    <%= link_to "#price", class: "cta-button" do %>
+      <%= image_tag("github-white.svg", class: "logo") %>
+      <%= t("subscriptions.join_cta") %>
+    <% end %>
   </div>
 </header>
