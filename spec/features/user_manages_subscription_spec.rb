@@ -9,6 +9,7 @@ feature "User creates a subscription" do
   scenario "doesn't create a Stripe subscription with an invalid credit card" do
     subscribe_with_invalid_credit_card
 
+    expect(page).to have_credit_card_error
     expect(current_user).not_to have_active_subscription
   end
 
@@ -162,5 +163,9 @@ feature "User creates a subscription" do
   def have_github_input
     have_content("GitHub username") &&
       have_css("input#checkout_github_username")
+  end
+
+  def have_credit_card_error
+    have_content(I18n.t("checkout.problem_with_card", message: ""))
   end
 end

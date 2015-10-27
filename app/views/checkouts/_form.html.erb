@@ -1,5 +1,7 @@
 <%= semantic_form_for checkout, url: checkouts_path(checkout.plan), html: { method: 'post' } do |form| %>
 
+  <%= form.semantic_errors %>
+
   <%= form.inputs do %>
     <% if signed_out? %>
       <ul class="checkout-sigin-signup-toggle">
