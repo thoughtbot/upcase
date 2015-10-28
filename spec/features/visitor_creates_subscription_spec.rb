@@ -115,6 +115,18 @@ feature 'Visitor signs up for a subscription' do
     expect_error_on_github_username_field
   end
 
+  scenario "visitor signs up with invalid credit card and corrects mistakes" do
+    attempt_to_subscribe
+    fill_out_account_creation_form
+    fill_out_credit_card_form_with_invalid_credit_card
+
+    expect(page).to have_credit_card_error
+
+    fill_out_credit_card_form_with_valid_credit_card
+
+    expect_to_see_checkout_success_flash
+  end
+
   def expect_error_on_github_username_field
     expect(github_username_field[:class]).to include("error")
   end

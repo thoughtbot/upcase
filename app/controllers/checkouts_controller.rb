@@ -11,9 +11,11 @@ class CheckoutsController < ApplicationController
 
   def create
     build_checkout(checkout_params) do |checkout|
-      if checkout.fulfill
+      success = checkout.fulfill
+      sign_in_created_user checkout.user
+      if success
         session.delete(:coupon)
-        sign_in_and_redirect checkout
+        redirect_after_checkout checkout
       else
         @checkout = checkout
         render :new
@@ -92,9 +94,13 @@ class CheckoutsController < ApplicationController
     end
   end
 
-  def sign_in_and_redirect(checkout)
-    sign_in checkout.user
+  def sign_in_created_user(user)
+    if user.persisted?
+      sign_in user
+    end
+  end
 
+  def redirect_after_checkout(checkout)
     redirect_to(
       success_url(checkout),
       notice: t("checkout.flashes.success"),

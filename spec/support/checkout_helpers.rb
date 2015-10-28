@@ -49,4 +49,8 @@ module CheckoutHelpers
   def expect_to_see_checkout_success_flash
     expect(page).to have_content(I18n.t("checkout.flashes.success"))
   end
+
+  def have_credit_card_error
+    have_content(I18n.t("checkout.problem_with_card", message: ""))
+  end
 end
