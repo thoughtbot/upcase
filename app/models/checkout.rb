@@ -52,6 +52,10 @@ class Checkout < ActiveRecord::Base
     @coupon ||= Coupon.new(stripe_coupon_id)
   end
 
+  def has_invalid_coupon?
+    stripe_coupon_id.present? && !coupon.valid?
+  end
+
   private
 
   def issue_with_github_username?

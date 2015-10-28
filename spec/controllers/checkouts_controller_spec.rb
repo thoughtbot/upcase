@@ -53,6 +53,21 @@ describe CheckoutsController do
         expect(assigns(:checkout).stripe_coupon_id).to eq coupon.code
       end
     end
+
+    context "with an invalid strip_coupon in the session" do
+      it "renders an error and removes the coupon" do
+        user = build_stubbed(:user)
+        stub_current_user_with(user)
+        session[:coupon] = stub_coupon(valid: false).code
+        plan_sku = stub_valid_sku
+
+        get :new, plan: plan_sku
+
+        expect(session[:coupon]).to be_nil
+        expect(controller).to redirect_to new_checkout_path plan_sku
+        expect(controller).to set_the_flash
+      end
+    end
   end
 
   describe "#create" do

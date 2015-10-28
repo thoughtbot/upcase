@@ -133,6 +133,45 @@ describe Checkout do
     end
   end
 
+  context "#has_invalid_coupon?" do
+    context "with no coupon" do
+      it "returns false" do
+        checkout = build(:checkout, stripe_coupon_id: nil)
+
+        expect(checkout).not_to have_invalid_coupon
+      end
+    end
+
+    context "with a valid coupon" do
+      it "returns false" do
+        checkout = build(
+          :checkout,
+          stripe_coupon_id: coupon_code(valid?: true),
+        )
+
+        expect(checkout).not_to have_invalid_coupon
+      end
+    end
+
+    context "with an invalid coupon" do
+      it "returns true" do
+        checkout = build(
+          :checkout,
+          stripe_coupon_id: coupon_code(valid?: false),
+        )
+
+        expect(checkout).to have_invalid_coupon
+      end
+    end
+
+    def coupon_code(*attributes)
+      generate(:code).tap do |code|
+        coupon = double(Coupon, *attributes)
+        allow(Coupon).to receive(:new).with(code).and_return(coupon)
+      end
+    end
+  end
+
   context "#needs_github_username?" do
     it "is false if the user has a valid github username" do
       user = build_stubbed(:user, github_username: "githubuser")

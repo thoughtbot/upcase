@@ -1,25 +1,23 @@
 class CheckoutsController < ApplicationController
   before_action :redirect_when_plan_not_found
+  before_action :redirect_when_already_subscribed
 
   def new
-    if current_user_has_active_subscription?
-      redirect_to(
-        edit_subscription_path,
-        notice: t("checkout.flashes.already_subscribed")
-      )
-    else
-      @checkout = build_checkout({})
+    build_checkout({}) do |checkout|
+      @checkout = checkout
+      render :new
     end
   end
 
   def create
-    @checkout = build_checkout(checkout_params)
-
-    if @checkout.fulfill
-      session.delete(:coupon)
-      sign_in_and_redirect
-    else
-      render :new
+    build_checkout(checkout_params) do |checkout|
+      if checkout.fulfill
+        session.delete(:coupon)
+        sign_in_and_redirect checkout
+      else
+        @checkout = checkout
+        render :new
+      end
     end
   end
 
@@ -34,13 +32,36 @@ class CheckoutsController < ApplicationController
     end
   end
 
+  def redirect_when_already_subscribed
+    if current_user_has_active_subscription?
+      redirect_to(
+        edit_subscription_path,
+        notice: t("checkout.flashes.already_subscribed"),
+      )
+    end
+  end
+
   def build_checkout(arguments)
-    plan.checkouts.build(
+    checkout = plan.checkouts.build(
       arguments.
         merge(default_params).
         merge(coupon_param).
         merge(campaign_param)
     )
+
+    if checkout.has_invalid_coupon?
+      redirect_from_invalid_coupon
+    else
+      yield checkout
+    end
+  end
+
+  def redirect_from_invalid_coupon
+    redirect_to(
+      new_checkout_path(plan.sku),
+      notice: t("checkout.flashes.invalid_coupon", code: session[:coupon]),
+    )
+    session.delete(:coupon)
   end
 
   def default_params
@@ -71,18 +92,18 @@ class CheckoutsController < ApplicationController
     end
   end
 
-  def sign_in_and_redirect
-    sign_in @checkout.user
+  def sign_in_and_redirect(checkout)
+    sign_in checkout.user
 
     redirect_to(
-      success_url,
+      success_url(checkout),
       notice: t("checkout.flashes.success"),
-      flash: { purchase_amount: @checkout.price }
+      flash: { purchase_amount: checkout.price },
     )
   end
 
-  def success_url
-    if @checkout.plan_includes_team?
+  def success_url(checkout)
+    if checkout.plan_includes_team?
       edit_team_path
     else
       onboarding_policy.root_path
