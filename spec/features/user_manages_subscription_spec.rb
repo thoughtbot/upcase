@@ -46,7 +46,7 @@ feature "User creates a subscription" do
 
     expect_submit_button_to_contain discount_text("$94.00", "$99")
 
-    fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
+    fill_out_credit_card_form_with_valid_credit_card
 
     expect(current_path).to be_the_welcome_page
     expect_to_see_checkout_success_flash
@@ -68,7 +68,7 @@ feature "User creates a subscription" do
     expect_submit_button_to_contain("$99 per month")
     expect_submit_button_to_contain("$0.00 for 3 months, then $99")
 
-    fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
+    fill_out_credit_card_form_with_valid_credit_card
 
     expect_to_see_checkout_success_flash
     expect(FakeStripe.last_coupon_used).to eq "THREEFREE"
@@ -90,7 +90,7 @@ feature "User creates a subscription" do
 
     expect_submit_button_to_contain discount_text("$49.50", "$99")
 
-    fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
+    fill_out_credit_card_form_with_valid_credit_card
 
     expect_to_see_checkout_success_flash
     expect(current_path).to be_the_welcome_page
@@ -148,13 +148,12 @@ feature "User creates a subscription" do
 
   def subscribe_with_valid_credit_card
     visit_plan_checkout_page
-    fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
+    fill_out_credit_card_form_with_valid_credit_card
   end
 
   def subscribe_with_invalid_credit_card
     visit_plan_checkout_page
-    FakeStripe.failure = true
-    fill_out_subscription_form_with "bad cc number"
+    fill_out_credit_card_form_with_invalid_credit_card
   end
 
   def discount_text(new, original)

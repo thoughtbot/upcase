@@ -6,16 +6,14 @@ module CheckoutHelpers
     fill_in 'Email', with: 'ben@thoughtbot.com'
   end
 
-  def fill_out_subscription_form_with_valid_credit_card
-    fill_out_credit_card_form_with(VALID_SANDBOX_CREDIT_CARD_NUMBER)
-  end
-
-  def fill_out_subscription_form_with(credit_card_number)
-    fill_out_credit_card_form_with(credit_card_number)
-  end
-
   def fill_out_credit_card_form_with_valid_credit_card
+    FakeStripe.failure = false
     fill_out_credit_card_form_with(VALID_SANDBOX_CREDIT_CARD_NUMBER)
+  end
+
+  def fill_out_credit_card_form_with_invalid_credit_card
+    FakeStripe.failure = true
+    fill_out_credit_card_form_with "bad cc number"
   end
 
   def fill_out_credit_card_form_with(credit_card_number)

@@ -11,7 +11,7 @@ feature "User edits a team subscription" do
     owner = create(:user)
 
     visit new_checkout_path(plan, as: owner)
-    fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
+    fill_out_credit_card_form_with_valid_credit_card
 
     visit my_account_path(as: owner)
 

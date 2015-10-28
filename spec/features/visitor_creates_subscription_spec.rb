@@ -41,13 +41,13 @@ feature 'Visitor signs up for a subscription' do
     expect_to_see_required :email
     expect_to_see_required :github_username
 
-    fill_out_subscription_form_with_valid_credit_card
+    fill_out_credit_card_form_with_valid_credit_card
 
     expect_to_see_password_error
     expect_to_see_email_error
 
     fill_out_account_creation_form
-    fill_out_subscription_form_with_valid_credit_card
+    fill_out_credit_card_form_with_valid_credit_card
 
     expect(current_path).to be_the_welcome_page
     expect_to_see_checkout_success_flash
@@ -72,7 +72,7 @@ feature 'Visitor signs up for a subscription' do
     expect_to_be_on_checkout_page
 
     fill_out_account_creation_form(name: existing_user.name, email: existing_user.email)
-    fill_out_subscription_form_with_valid_credit_card
+    fill_out_credit_card_form_with_valid_credit_card
 
     expect_to_see_email_error("has already been taken")
   end

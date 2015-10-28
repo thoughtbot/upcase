@@ -32,7 +32,7 @@ feature "User creates a team subscription" do
 
     expect_submit_button_to_contain discount_text("$262.00", "$267")
 
-    fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
+    fill_out_credit_card_form_with_valid_credit_card
 
     expect(current_path).to eq after_sign_up_path
     expect(FakeStripe.last_coupon_used).to eq "5OFF"
@@ -41,7 +41,7 @@ feature "User creates a team subscription" do
 
   def subscribe_with_valid_credit_card
     visit_team_plan_checkout_page
-    fill_out_subscription_form_with VALID_SANDBOX_CREDIT_CARD_NUMBER
+    fill_out_credit_card_form_with_valid_credit_card
   end
 
   def plan
