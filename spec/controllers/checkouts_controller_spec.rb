@@ -45,12 +45,12 @@ describe CheckoutsController do
       it "should set a stripe_coupon_id on the checkout" do
         user = build_stubbed(:user)
         stub_current_user_with(user)
-        session[:coupon] = "a_coupon"
-        plan = stub_plan_by_sku
+        coupon = stub_coupon(valid: true)
+        session[:coupon] = coupon.code
 
-        get :new, plan: plan.sku
+        get :new, plan: stub_valid_sku
 
-        expect(assigns(:checkout).stripe_coupon_id).to eq "a_coupon"
+        expect(assigns(:checkout).stripe_coupon_id).to eq coupon.code
       end
     end
   end
@@ -76,7 +76,7 @@ describe CheckoutsController do
     end
 
     it "removes any coupon from the session" do
-      create_amount_stripe_coupon("5OFF", "once", 500)
+      create(:coupon, code: "5OFF")
       session[:coupon] = "5OFF"
       stub_current_user_with create(:user)
       plan = create(:plan)
@@ -126,6 +126,13 @@ describe CheckoutsController do
   def stub_plan_by_sku(*attributes)
     build_stubbed(:plan, *attributes).tap do |plan|
       allow(Plan).to receive(:find_by).with(sku: plan.sku).and_return(plan)
+    end
+  end
+
+  def stub_coupon(valid:)
+    create(:coupon).tap do |coupon|
+      allow(Coupon).to receive(:new).with(coupon.code).and_return(coupon)
+      allow(coupon).to receive(:valid?).and_return(valid)
     end
   end
 end

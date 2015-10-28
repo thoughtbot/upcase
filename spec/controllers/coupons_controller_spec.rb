@@ -4,7 +4,7 @@ describe CouponsController do
   describe "#show" do
     context "with valid coupon" do
       it "should set a valid coupon in the session" do
-        create_amount_stripe_coupon("5OFF", "once", 500)
+        create(:coupon, code: "5OFF")
 
         get :show, id: "5OFF"
 

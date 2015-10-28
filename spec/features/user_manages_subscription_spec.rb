@@ -37,7 +37,7 @@ feature "User creates a subscription" do
   end
 
   scenario "with a valid amount off coupon" do
-    create_amount_stripe_coupon("5OFF", "once", 500)
+    create(:coupon, code: "5OFF", duration: "once", amount_off: 500)
 
     visit coupon_path("5OFF")
     visit_plan_checkout_page
@@ -54,7 +54,13 @@ feature "User creates a subscription" do
   end
 
   scenario "with a free month coupon" do
-    create_recurring_stripe_coupon("THREEFREE", 3, 9900)
+    create(
+      :coupon,
+      code: "THREEFREE",
+      duration: "repeating",
+      duration_in_months: 3,
+      amount_off: 9900,
+    )
 
     visit coupon_path("THREEFREE")
     visit_plan_checkout_page
@@ -69,7 +75,13 @@ feature "User creates a subscription" do
   end
 
   scenario "with a valid percent off coupon" do
-    create_percentage_off_stripe_coupon("50OFF", "once", 50)
+    create(
+      :coupon,
+      code: "50OFF",
+      duration: "once",
+      amount_off: nil,
+      percent_off: 50,
+    )
 
     visit coupon_path("50OFF")
     visit_plan_checkout_page

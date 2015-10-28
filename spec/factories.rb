@@ -41,12 +41,25 @@ FactoryGirl.define do
   end
 
   factory :coupon do
-    amount 10
-    code
-    discount_type 'percentage'
+    transient do
+      code
+      amount_off 2500
+      duration "forever"
+      duration_in_months nil
+      percent_off nil
+    end
 
-    factory :one_time_coupon do
-      one_time_use_only true
+    initialize_with { new(code) }
+    to_create {}
+
+    after(:create) do |_, attributes|
+      Stripe::Coupon.create(
+        id: attributes.code,
+        amount_off: attributes.amount_off,
+        duration: attributes.duration,
+        duration_in_months: attributes.duration_in_months,
+        percent_off: attributes.percent_off,
+      )
     end
   end
 

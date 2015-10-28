@@ -126,7 +126,7 @@ describe Checkout do
 
   context "#coupon" do
     it "returns a coupon from stripe_coupon_id" do
-      create_amount_stripe_coupon("5OFF", "once", 500)
+      create(:coupon, code: "5OFF")
       checkout = build(:checkout, stripe_coupon_id: "5OFF")
 
       expect(checkout.coupon.code).to eq "5OFF"

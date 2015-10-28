@@ -23,7 +23,7 @@ feature "User creates a team subscription" do
   end
 
   scenario "creates a subscription with a valid amount off coupon" do
-    create_amount_stripe_coupon("5OFF", "once", 500)
+    create(:coupon, code: "5OFF", duration: "once", amount_off: 500)
 
     visit coupon_path("5OFF")
     visit_team_plan_checkout_page

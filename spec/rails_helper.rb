@@ -65,7 +65,6 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Subscriptions
   config.include CheckoutHelpers
-  config.include StripeHelpers
   config.include SessionHelpers, type: :feature
   config.include PathHelpers, type: :feature
 
