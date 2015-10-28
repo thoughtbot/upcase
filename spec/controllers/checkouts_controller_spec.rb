@@ -9,7 +9,7 @@ describe CheckoutsController do
         user = create(:subscriber)
         stub_current_user_with(user)
 
-        get :new, plan: user.subscription.plan
+        get :new, plan: stub_valid_sku
 
         expect(response).to redirect_to edit_subscription_path
       end
@@ -20,8 +20,8 @@ describe CheckoutsController do
         user = create(:user)
         stub_current_user_with(user)
 
-        create(:plan, :team, sku: "sku1")
-        desired_plan = create(:plan, :team, sku: "sku2")
+        stub_plan_by_sku(:team, sku: "sku1")
+        desired_plan = stub_plan_by_sku(:team, sku: "sku2")
 
         get :new, plan: desired_plan
 
@@ -43,11 +43,12 @@ describe CheckoutsController do
 
     context "with a valid stripe_coupon in the session" do
       it "should set a stripe_coupon_id on the checkout" do
-        user = create(:user)
+        user = build_stubbed(:user)
         stub_current_user_with(user)
         session[:coupon] = "a_coupon"
+        plan = stub_plan_by_sku
 
-        get :new, plan: create(:plan)
+        get :new, plan: plan.sku
 
         expect(assigns(:checkout).stripe_coupon_id).to eq "a_coupon"
       end
@@ -116,5 +117,15 @@ describe CheckoutsController do
       github_username: 'test',
       stripe_token: token
     }
+  end
+
+  def stub_valid_sku
+    stub_plan_by_sku.sku
+  end
+
+  def stub_plan_by_sku(*attributes)
+    build_stubbed(:plan, *attributes).tap do |plan|
+      allow(Plan).to receive(:find_by).with(sku: plan.sku).and_return(plan)
+    end
   end
 end
