@@ -20,7 +20,7 @@ class Coupon
   end
 
   def valid?
-    stripe_coupon.present?
+    stripe_coupon.present? && stripe_coupon.valid
   end
 
   private
