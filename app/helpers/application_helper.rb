@@ -17,8 +17,14 @@ module ApplicationHelper
     keywords.presence || Topic.all.pluck(:name).join(", ")
   end
 
-  def github_auth_path
-    '/auth/github'
+  def github_auth_path(params = {})
+    base_path = "/auth/github"
+
+    if params.any?
+      "#{base_path}?#{params.to_query}"
+    else
+      base_path
+    end
   end
 
   def format_markdown(markdown)

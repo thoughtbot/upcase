@@ -193,6 +193,7 @@ en:
       heading:
         online: Online video tutorial
   trails:
+    start_for_free: Start Course For Free
     other_resources: Use these resources for reference and additional practice
     thoughtbot_resources: Use these thoughtbot resources first
     validations: '%{name} developers should be able to'

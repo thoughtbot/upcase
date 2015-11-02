@@ -297,6 +297,63 @@ describe Trail do
     end
   end
 
+  describe "#trial_video" do
+    context "with videos accessible without a subscription" do
+      it "returns the first match" do
+        trail = create(:trail)
+        create(
+          :step,
+          trail: trail,
+          position: 3,
+          completeable: create(
+            :video,
+            name: "SecondAccessible",
+            accessible_without_subscription: true,
+          ),
+        )
+        create(
+          :step,
+          trail: trail,
+          position: 2,
+          completeable: create(
+            :video,
+            name: "FirstAccessible",
+            accessible_without_subscription: true,
+          ),
+        )
+        create(
+          :step,
+          trail: trail,
+          position: 1,
+          completeable: create(
+            :video,
+            name: "Inaccessible",
+            accessible_without_subscription: false,
+          ),
+        )
+
+        result = trail.trial_video
+
+        expect(result.map(&:name)).to eq("FirstAccessible".wrapped)
+      end
+    end
+
+    context "without any videos accessible without a subscription" do
+      it "returns nil" do
+        trail = create(:trail)
+        create(
+          :step,
+          trail: trail,
+          completeable: create(:video, accessible_without_subscription: false),
+        )
+
+        result = trail.trial_video
+
+        expect(result).to be_blank
+      end
+    end
+  end
+
   def trail_with_exercise_states(user, *states)
     exercises =
       states.map { |state| create_exercise_with_state(state, user: user) }

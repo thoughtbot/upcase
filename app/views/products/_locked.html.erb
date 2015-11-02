@@ -1,9 +1,17 @@
-<div class="product-card-locked">
-  <span class="icon">
-    <%= image_tag("icons/lock.svg", size: "11x15") %>
-  </span>
+<% if feature.accessible_without_subscription? %>
+  <%= link_to(
+    "Free Course",
+    github_auth_path(origin: url_for(feature)),
+    class: "available-link"
+  ) %>
+<% else %>
+  <div class="product-card-locked">
+    <span class="icon">
+      <%= image_tag("icons/lock.svg", size: "11x15") %>
+    </span>
 
-  <%= link_to 'Get access by joining Upcase',
-    join_path,
-    class: 'upgrade-link' %>
-</div>
+    <%= link_to 'Get access by joining Upcase',
+      join_path,
+      class: 'upgrade-link' %>
+  </div>
+<% end %>

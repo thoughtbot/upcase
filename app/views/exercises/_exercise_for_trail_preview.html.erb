@@ -12,7 +12,7 @@
     <div class="exercise-item">
       <h3><%= exercise.name %></h3>
       <p><%= exercise.summary %></p>
-      <%= render "products/locked" %>
+      <%= render "products/locked", feature: exercise %>
     </div>
   <% end %>
 </figure>

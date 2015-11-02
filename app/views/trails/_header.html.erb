@@ -17,6 +17,19 @@
 
   <div class="topic-title">
     <h1><%= trail.name %></h1>
-    <p><%= format_markdown trail.description %></p>
+    <div class="topic-description">
+      <%= format_markdown trail.description %>
+    </div>
+    <% unless signed_in? %>
+      <% trail.trial_video.present do |video| %>
+        <%= link_to(
+          github_auth_path(origin: video_path(video)),
+          class: "cta-button",
+        ) do %>
+          <%= image_tag("github-white.svg", class: "logo") %>
+          <%= t("trails.start_for_free") %>
+        <% end %>
+      <% end %>
+    <% end %>
   </div>
 </header>

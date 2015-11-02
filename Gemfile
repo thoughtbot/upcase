@@ -49,6 +49,7 @@ gem "uglifier"
 gem "unicorn"
 gem "validates_email_format_of"
 gem "vanity", "2.0.0.beta8"
+gem "wrapped"
 
 group :development do
   gem "quiet_assets"

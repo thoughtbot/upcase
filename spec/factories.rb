@@ -413,6 +413,14 @@ FactoryGirl.define do
       end
     end
 
+    trait :with_progress do
+      state { Status::UNSTARTED }
+
+      initialize_with do
+        CompleteableWithProgress.new(new(attributes.except(:state)), state)
+      end
+    end
+
     after(:stub) { |video| video.slug = video.id.to_s }
   end
 

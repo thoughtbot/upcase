@@ -7,8 +7,8 @@ feature "User without a subscription views sample video" do
     video = trail.first_completeable
     video.update accessible_without_subscription: true
 
-    visit trail_path(trail, as: user)
-    click_on video.name
+    visit trail_path(trail)
+    click_on "Start Course For Free"
 
     expect(user.has_active_subscription?).to eq(false)
     expect(current_path).to eq(video_path(video))
