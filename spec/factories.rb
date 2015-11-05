@@ -48,6 +48,7 @@ FactoryGirl.define do
   factory :beta_reply, class: "Beta::Reply" do
     association :offer, factory: :beta_offer
     user
+    accepted true
   end
 
   factory :coupon do

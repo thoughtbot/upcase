@@ -11,9 +11,16 @@
       <div class="step unstarted-exercise"><div class="dot"></div></div>
     </section>
 
-    <%= button_to "Request Access",
+    <%= button_to t("beta.offers.actions.accept"),
       beta_offer_reply_path(offer),
       method: :post,
-      class: "start-trail cta-button small-button"%>
+      params: { accepted: true },
+      class: "accept-beta-offer"%>
+
+    <%= button_to t("beta.offers.actions.decline"),
+      beta_offer_reply_path(offer),
+      method: :post,
+      params: { accepted: false },
+      class: "decline-beta-offer"%>
   </section>
 </div>

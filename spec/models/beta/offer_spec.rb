@@ -17,4 +17,15 @@ describe Beta::Offer do
       expect(result.map(&:name)).to eq(%w(one two three))
     end
   end
+
+  describe "#reply" do
+    it "creates a reply" do
+      user = create(:user)
+      offer = create(:beta_offer)
+
+      offer.reply(user: user, accepted: true)
+
+      expect(offer.replies.where(user_id: user, accepted: true)).to exist
+    end
+  end
 end

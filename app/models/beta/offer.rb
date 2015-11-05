@@ -8,5 +8,9 @@ module Beta
     def self.most_recent_first
       order(created_at: :desc)
     end
+
+    def reply(user:, accepted:)
+      replies.create!(user: user, accepted: accepted)
+    end
   end
 end
