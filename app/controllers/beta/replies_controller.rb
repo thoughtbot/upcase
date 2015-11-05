@@ -4,7 +4,7 @@ module Beta
 
     def create
       Reply.create!(offer: offer, user: current_user)
-      redirect_to practice_path
+      redirect_to practice_path, notice: t("beta.replies.flashes.success")
     end
 
     private

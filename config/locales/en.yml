@@ -14,6 +14,10 @@ en:
   authenticating:
     github_signin: Sign in with GitHub
     login_required: You must be signed in to view that page
+  beta:
+    replies:
+      flashes:
+        success: Request received! We'll let you know when the trail is ready.
   checkout:
     flashes:
       already_subscribed: You are already subscribed. You can change your plan.

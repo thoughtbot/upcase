@@ -13,6 +13,7 @@ feature "subscriber requests access to beta trail" do
 
     click_on "Request Access"
 
+    expect(page).to have_content(I18n.t("beta.replies.flashes.success"))
     expect(page).not_to have_content("Exciting Beta Trail")
   end
 end
