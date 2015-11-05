@@ -151,4 +151,22 @@ describe Analytics do
         )
     end
   end
+
+  describe "#track_replied_to_beta_offer" do
+    it "records the offer name and reply" do
+      offer = build_stubbed(:beta_offer)
+
+      analytics_instance.track_replied_to_beta_offer(
+        name: offer.name,
+        accepted: true,
+      )
+
+      expect(analytics).to have_tracked("Replied to beta offer").
+        for_user(user).
+        with_properties(
+          name: offer.name,
+          accepted: true,
+        )
+    end
+  end
 end

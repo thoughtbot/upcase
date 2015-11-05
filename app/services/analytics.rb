@@ -51,6 +51,14 @@ class Analytics
     track_touched_video(name: name, watchable_name: watchable_name)
   end
 
+  def track_replied_to_beta_offer(name:, accepted:)
+    track(
+      "Replied to beta offer",
+      name: name,
+      accepted: accepted,
+    )
+  end
+
   private
 
   attr_reader :user

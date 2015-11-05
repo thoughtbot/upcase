@@ -4,6 +4,7 @@ module Beta
 
     def create
       create_reply
+      track_reply
       redirect_with_notice
     end
 
@@ -11,6 +12,13 @@ module Beta
 
     def create_reply
       offer.reply(user: current_user, accepted: accepted?)
+    end
+
+    def track_reply
+      analytics.track_replied_to_beta_offer(
+        name: offer.name,
+        accepted: accepted?,
+      )
     end
 
     def redirect_with_notice
