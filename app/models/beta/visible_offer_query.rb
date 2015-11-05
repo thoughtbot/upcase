@@ -18,6 +18,18 @@ module Beta
     end
 
     def find_offers
+      if completed_trails?
+        offers_without_replies
+      else
+        Offer.none
+      end
+    end
+
+    def completed_trails?
+      @user.statuses.by_type(Trail).completed.any?
+    end
+
+    def offers_without_replies
       @relation.
         includes(:replies).
         references(:replies).
