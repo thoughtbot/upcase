@@ -102,6 +102,12 @@ Upcase::Application.routes.draw do
     resource :discount, only: :create
   end
 
+  namespace :beta do
+    resources :offers, only: [] do
+      resource :reply, only: :create
+    end
+  end
+
   get "/teams", to: "teams#new"
   resource :team, only: :edit
 

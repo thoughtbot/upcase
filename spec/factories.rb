@@ -40,6 +40,16 @@ FactoryGirl.define do
     topic
   end
 
+  factory :beta_offer, class: "Beta::Offer" do
+    name
+    description "A great trail"
+  end
+
+  factory :beta_reply, class: "Beta::Reply" do
+    association :offer, factory: :beta_offer
+    user
+  end
+
   factory :coupon do
     transient do
       code

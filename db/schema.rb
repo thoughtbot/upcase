@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021150654) do
+ActiveRecord::Schema.define(version: 20151104202628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,24 @@ ActiveRecord::Schema.define(version: 20151021150654) do
 
   add_index "attempts", ["flashcard_id"], name: "index_attempts_on_flashcard_id", using: :btree
   add_index "attempts", ["user_id"], name: "index_attempts_on_user_id", using: :btree
+
+  create_table "beta_offers", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.text     "description", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "beta_replies", force: :cascade do |t|
+    t.integer  "offer_id",   null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "beta_replies", ["offer_id", "user_id"], name: "index_beta_replies_on_offer_id_and_user_id", unique: true, using: :btree
+  add_index "beta_replies", ["offer_id"], name: "index_beta_replies_on_offer_id", using: :btree
+  add_index "beta_replies", ["user_id"], name: "index_beta_replies_on_user_id", using: :btree
 
   create_table "checkouts", force: :cascade do |t|
     t.integer  "user_id",                      null: false
@@ -434,6 +452,8 @@ ActiveRecord::Schema.define(version: 20151021150654) do
 
   add_foreign_key "attempts", "flashcards", on_delete: :cascade
   add_foreign_key "attempts", "users", on_delete: :cascade
+  add_foreign_key "beta_replies", "beta_offers", column: "offer_id"
+  add_foreign_key "beta_replies", "users"
   add_foreign_key "markers", "videos", on_delete: :cascade
       create_view :latest_attempts, sql_definition:<<-SQL
         SELECT DISTINCT ON (attempts.user_id, attempts.flashcard_id) attempts.id,

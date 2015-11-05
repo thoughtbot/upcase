@@ -1,6 +1,28 @@
 require "rails_helper"
 
 describe "practice/show.html" do
+  context "when there are beta offers to display" do
+    it "renders the beta offers" do
+      stub_user_access
+      beta_offer = build_stubbed(:beta_offer, name: "Great beta offer")
+
+      render_show beta_offers: [beta_offer]
+
+      expect(rendered).to have_beta_offers
+      expect(rendered).to have_content("Great beta offer")
+    end
+  end
+
+  context "when there are no beta offers to display" do
+    it "doesn't render the beta offers" do
+      stub_user_access
+
+      render_show beta_offers: []
+
+      expect(rendered).not_to have_beta_offers
+    end
+  end
+
   context "when a user has activity in trails" do
     it "doesn't show 'view completed' link when it has no completed trails" do
       stub_user_access(has_active_subscription: true)
@@ -50,6 +72,7 @@ describe "practice/show.html" do
     defaults = {
       shows: [],
       topics: [],
+      beta_offers: [],
       in_progress_trails: [],
       unstarted_trails: [],
       just_finished_trails: [],
@@ -59,7 +82,7 @@ describe "practice/show.html" do
     double("Practice", defaults.merge(options))
   end
 
-  def stub_user_access(has_active_subscription:)
+  def stub_user_access(has_active_subscription: false)
     view_stubs(:current_user).and_return(build_stubbed(:user))
     view_stubs(:current_user_has_active_subscription?).
       and_return(has_active_subscription)
@@ -78,5 +101,9 @@ describe "practice/show.html" do
       shows: false,
       trails: false
     }
+  end
+
+  def have_beta_offers
+    have_content("Beta Trails")
   end
 end

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   include Clearance::User
 
   has_many :attempts, dependent: :destroy
+  has_many :beta_replies, dependent: :destroy, class_name: "Beta::Reply"
   has_many :collaborations, dependent: :destroy
   has_many :statuses, dependent: :destroy
   has_many :subscriptions, dependent: :destroy

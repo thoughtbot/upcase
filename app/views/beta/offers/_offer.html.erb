@@ -1,0 +1,19 @@
+<div class="beta unstarted">
+  <section class="trail">
+    <header>
+      <h1><%= offer.name %></h1>
+      <p class="description"><%= offer.description %></p>
+    </header>
+
+    <section class="progress">
+      <div class="step next-up-exercise"><div class="dot"></div></div>
+      <div class="step unstarted-exercise"><div class="dot"></div></div>
+      <div class="step unstarted-exercise"><div class="dot"></div></div>
+    </section>
+
+    <%= button_to "Request Access",
+      beta_offer_reply_path(offer),
+      method: :post,
+      class: "start-trail cta-button small-button"%>
+  </section>
+</div>
