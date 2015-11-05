@@ -17,17 +17,4 @@ describe Beta::Offer do
       expect(result.map(&:name)).to eq(%w(one two three))
     end
   end
-
-  describe "#visible_to" do
-    it "returns only beta offers not replied to by the provided user" do
-      user = create(:user)
-      replied_offer = create(:beta_offer, name: "replied")
-      create(:beta_offer, name: "visible")
-      create(:beta_reply, user: user, offer: replied_offer)
-
-      result = Beta::Offer.visible_to(user)
-
-      expect(result.map(&:name)).to eq(%w(visible))
-    end
-  end
 end

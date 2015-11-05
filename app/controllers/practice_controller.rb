@@ -18,6 +18,9 @@ class PracticeController < ApplicationController
   end
 
   def beta_offers
-    Beta::Offer.most_recent_first.visible_to(current_user)
+    Beta::VisibleOfferQuery.new(
+      Beta::Offer.most_recent_first,
+      user: current_user,
+    ).to_a
   end
 end
