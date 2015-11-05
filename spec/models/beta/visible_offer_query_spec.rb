@@ -14,9 +14,12 @@ describe Beta::VisibleOfferQuery do
     context "for a user who has completed at least one trail" do
       it "yields only beta offers not replied to by the provided user" do
         user = create_user_with_trail_status(Status::COMPLETE)
+        other_user = create(:user)
         replied_offer = create(:beta_offer, name: "replied")
-        create(:beta_offer, name: "visible")
+        visible_offer = create(:beta_offer, name: "visible")
         create(:beta_reply, user: user, offer: replied_offer)
+        create(:beta_reply, user: other_user, offer: replied_offer)
+        create(:beta_reply, user: other_user, offer: visible_offer)
 
         result = visible_offers_for(user: user)
 

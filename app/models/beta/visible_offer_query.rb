@@ -30,13 +30,14 @@ module Beta
     end
 
     def offers_without_replies
-      @relation.
-        includes(:replies).
-        references(:replies).
-        where(<<-SQL, @user.id)
-          beta_replies.user_id <> ?
-          OR beta_replies.user_id IS NULL
-        SQL
+      @relation.where(<<-SQL, @user.id)
+        NOT EXISTS (
+          SELECT NULL
+          FROM beta_replies
+          WHERE beta_replies.offer_id = beta_offers.id
+          AND beta_replies.user_id = ?
+        )
+      SQL
     end
   end
 end
