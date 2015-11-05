@@ -2,8 +2,8 @@
 class CompleteableWithProgressQuery
   include Enumerable
 
-  def initialize(user:, completeables:)
-    @user = user
+  def initialize(status_finder:, completeables:)
+    @status_finder = status_finder
     @completeables = completeables
   end
 
@@ -12,12 +12,15 @@ class CompleteableWithProgressQuery
   end
 
   def includes(*args)
-    self.class.new(user: user, completeables: completeables.includes(*args))
+    self.class.new(
+      status_finder: status_finder,
+      completeables: completeables.includes(*args),
+    )
   end
 
   protected
 
-  attr_reader :completeables, :user
+  attr_reader :completeables, :status_finder
 
   private
 
@@ -37,25 +40,6 @@ class CompleteableWithProgressQuery
   end
 
   def status_for(completeable)
-    statuses["#{completeable.class.model_name}_#{completeable.id}"].
-      try(:first) || Unstarted.new
-  end
-
-  def statuses
-    @statuses ||= Status.
-      where(completeable_id: completeable_ids, user: user).
-      order("created_at DESC").
-      group_by do |status|
-        "#{status.completeable_type}_#{status.completeable_id}"
-      end
-  end
-
-  def completeable_ids
-    completeables.map(&:id)
-  end
-
-  def status_for_completeable?(status:, completeable:)
-    status.completeable_id == completeable.id &&
-      status.completeable_type == completeable.class.to_s
+    @status_finder.status_for(completeable)
   end
 end

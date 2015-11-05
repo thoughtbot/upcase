@@ -36,9 +36,7 @@ class Trail < ActiveRecord::Base
   end
 
   def self.completed_for(user)
-    all.
-      map { |trail| TrailWithProgress.new(trail, user: user) }.
-      select(&:complete?)
+    TrailWithProgressQuery.new(all, user: user).select(&:complete?)
   end
 
   def to_s
@@ -56,17 +54,15 @@ class Trail < ActiveRecord::Base
   end
 
   def completeables
-    steps.includes(:completeable).map(&:completeable)
-  end
-
-  def steps_remaining_for(user)
-    CompleteableWithProgressQuery.
-      new(user: user, completeables: completeables).
-      count { |completeable| completeable.state != Status::COMPLETE }
+    steps.map(&:completeable)
   end
 
   def update_state_for(user)
-    TrailWithProgress.new(self, user: user).update_status
+    TrailWithProgress.new(
+      self,
+      user: user,
+      status_finder: StatusFinder.new(user: user),
+    ).update_status
   end
 
   def self.most_recent_published
@@ -82,10 +78,20 @@ class Trail < ActiveRecord::Base
   end
 
   def first_completeable
-    steps.order(:position).first.completeable
+    first_step.completeable
   end
 
   def trial_video
     videos.where(accessible_without_subscription: true).first.wrapped
+  end
+
+  private
+
+  def first_step
+    if steps.loaded?
+      steps.sort_by(&:position).first
+    else
+      steps.first
+    end
   end
 end

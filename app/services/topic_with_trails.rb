@@ -2,12 +2,11 @@ class TopicWithTrails < SimpleDelegator
   def initialize(topic_slug:, user:)
     @topic = Topic.find_by!(slug: topic_slug)
     @user = user
+    @status_finder = StatusFinder.new(user: @user)
     super(@topic)
   end
 
   def published_trails
-    @topic.published_trails.map do |trail|
-      TrailWithProgress.new(trail, user: @user)
-    end
+    TrailWithProgressQuery.new(@topic.published_trails, user: @user).to_a
   end
 end

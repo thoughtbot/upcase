@@ -4,7 +4,11 @@ describe TrailWithProgress do
   it "decorates its component" do
     user = double("user")
     trail = build_stubbed(:trail)
-    trail_with_progress = TrailWithProgress.new(trail, user: user)
+    trail_with_progress = TrailWithProgress.new(
+      trail,
+      user: user,
+      status_finder: double(StatusFinder),
+    )
 
     expect(trail_with_progress).to be_a(SimpleDelegator)
     expect(trail_with_progress.name).to eq(trail.name)
@@ -55,7 +59,11 @@ describe TrailWithProgress do
           state: Status::COMPLETE,
           created_at: 1.week.ago
         )
-        trail = TrailWithProgress.new(trail, user: user)
+        trail = TrailWithProgress.new(
+          trail,
+          user: user,
+          status_finder: StatusFinder.new(user: user),
+        )
 
         expect(trail).not_to be_unstarted
         expect(trail).not_to be_in_progress
@@ -147,13 +155,58 @@ describe TrailWithProgress do
     end
   end
 
+  describe "#steps_remaining" do
+    it "returns the number of exercises the user hasn't completed" do
+      user = create(:user)
+      other_user = create(:user)
+      exercises = create_list(:exercise, 3)
+      videos = create_list(:video, 2)
+      trail = create(:trail, exercises: exercises, videos: videos)
+      exercises.first.statuses.create!(user: user, state: Status::COMPLETE)
+      exercises.second.statuses.create!(user: user, state: Status::IN_PROGRESS)
+      exercises.first.statuses.create!(
+        user: other_user,
+        state: Status::COMPLETE,
+      )
+      videos.first.statuses.create!(user: user, state: Status::COMPLETE)
+      videos.second.statuses.create!(user: user, state: Status::IN_PROGRESS)
+      videos.second.statuses.create!(user: other_user, state: Status::COMPLETE)
+
+      result = steps_remaining_for(trail, user)
+
+      expect(result).to eq(3)
+    end
+
+    it "returns the total number of steps for a user who hasn't started" do
+      user = create(:user)
+      exercises = create_list(:exercise, 2)
+      trail = create(:trail, exercises: exercises)
+
+      result = steps_remaining_for(trail, user)
+
+      expect(result).to eq(2)
+    end
+
+    def steps_remaining_for(trail, user)
+      TrailWithProgress.new(
+        trail,
+        user: user,
+        status_finder: StatusFinder.new(user: user),
+      ).steps_remaining
+    end
+  end
+
   def create_trail_with_progress(*states)
     user = create(:user)
     exercises =
       states.map { |state| create_exercise_with_state(state, user: user) }
     trail = create(:trail, exercises: exercises)
     trail.update_state_for(user)
-    TrailWithProgress.new(trail, user: user)
+    TrailWithProgress.new(
+      trail,
+      user: user,
+      status_finder: StatusFinder.new(user: user),
+    )
   end
 
   def create_exercise_with_state(state, user:)

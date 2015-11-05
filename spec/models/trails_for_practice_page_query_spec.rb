@@ -1,8 +1,8 @@
 require "rails_helper"
 
 describe TrailsForPracticePageQuery do
-  describe "#call" do
-    it "returns only published trails" do
+  describe "#each" do
+    it "yields only published trails" do
       create(:trail, :published, name: "published-trail")
       create(:trail, :unpublished, name: "unpublished-trail")
 
@@ -11,7 +11,7 @@ describe TrailsForPracticePageQuery do
       expect(result).to eq(["published-trail"])
     end
 
-    it "returns trails sorted by topic name" do
+    it "yields trails sorted by topic name" do
       create(:trail, :published, topic: create(:topic, name: "ZZZ"))
       create(:trail, :published, topic: create(:topic, name: "AAA"))
 
@@ -21,7 +21,10 @@ describe TrailsForPracticePageQuery do
     end
 
     def run_query
-      TrailsForPracticePageQuery.call
+      result = []
+      trails = TrailsForPracticePageQuery.new
+      trails.each { |yielded| result << yielded }
+      result
     end
   end
 end

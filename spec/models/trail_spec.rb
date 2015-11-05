@@ -81,39 +81,6 @@ describe Trail do
     end
   end
 
-  describe "#steps_remaining_for" do
-    it "returns the number of exercises the user hasn't completed" do
-      user = create(:user)
-      other_user = create(:user)
-      exercises = create_list(:exercise, 3)
-      videos = create_list(:video, 2)
-      trail = create(:trail, exercises: exercises, videos: videos)
-      exercises.first.statuses.create!(user: user, state: Status::COMPLETE)
-      exercises.second.statuses.create!(user: user, state: Status::IN_PROGRESS)
-      exercises.first.statuses.create!(
-        user: other_user,
-        state: Status::COMPLETE
-      )
-      videos.first.statuses.create!(user: user, state: Status::COMPLETE)
-      videos.second.statuses.create!(user: user, state: Status::IN_PROGRESS)
-      videos.second.statuses.create!(user: other_user, state: Status::COMPLETE)
-
-      result = trail.steps_remaining_for(user)
-
-      expect(result).to eq(3)
-    end
-
-    it "returns the total number of steps for a user who hasn't started" do
-      user = create(:user)
-      exercises = create_list(:exercise, 2)
-      trail = create(:trail, exercises: exercises)
-
-      result = trail.steps_remaining_for(user)
-
-      expect(result).to eq(2)
-    end
-  end
-
   describe "#find" do
     it "finds its to_param value" do
       trail = create(:trail)

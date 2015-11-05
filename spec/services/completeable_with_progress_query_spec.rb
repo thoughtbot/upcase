@@ -7,9 +7,10 @@ describe CompleteableWithProgressQuery do
       video_step_2 = create(:video)
       exercise_step_3 = create(:exercise)
       user = create(:user)
+      status_finder = StatusFinder.new(user: user)
       completeables = [exercise_step_1, video_step_2, exercise_step_3]
       query = CompleteableWithProgressQuery.
-        new(user: user, completeables: completeables)
+        new(status_finder: status_finder, completeables: completeables)
 
       completeables_query = query.to_a
 
@@ -22,6 +23,7 @@ describe CompleteableWithProgressQuery do
 
     it "properly wraps both exercises and videos" do
       user = create(:user)
+      status_finder = StatusFinder.new(user: user)
       exercise = create(:exercise)
       video = create(:video)
       create(
@@ -34,7 +36,7 @@ describe CompleteableWithProgressQuery do
       completeables = [exercise, video]
 
       query = CompleteableWithProgressQuery.
-        new(user: user, completeables: completeables).to_a
+        new(status_finder: status_finder, completeables: completeables).to_a
 
       expect(query[0].state).to eq(Status::IN_PROGRESS)
       expect(query[1].state).to eq(Status::COMPLETE)
@@ -44,9 +46,10 @@ describe CompleteableWithProgressQuery do
   describe "#includes" do
     it "calls includes in underlying completeables array" do
       user = User.new
+      status_finder = StatusFinder.new(user: user)
       completeables = double("completeables", includes: nil)
       query = CompleteableWithProgressQuery.
-        new(user: user, completeables: completeables)
+        new(status_finder: status_finder, completeables: completeables)
 
       query.includes(:args)
 

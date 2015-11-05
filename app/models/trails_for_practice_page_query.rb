@@ -1,12 +1,16 @@
 class TrailsForPracticePageQuery
-  def self.call
-    new.call
+  include Enumerable
+
+  def each(&block)
+    relation.each(&block)
   end
 
-  def call
-    Trail.
+  private
+
+  def relation
+    @relation ||= Trail.
       published.
       by_topic.
-      includes(:steps)
+      preload(steps: :completeable)
   end
 end

@@ -34,6 +34,10 @@ describe "trails/show.html.erb" do
   def build_trail_with_steps
     trail = create(:trail)
     user = build_stubbed(:user)
-    TrailWithProgress.new(trail, user: user)
+    TrailWithProgress.new(
+      trail,
+      user: user,
+      status_finder: StatusFinder.new(user: user),
+    )
   end
 end

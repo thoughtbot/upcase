@@ -8,8 +8,9 @@ class PracticeController < ApplicationController
   private
 
   def trails
-    TrailsForPracticePageQuery.
-      call.
-      map { |trail| TrailWithProgress.new(trail, user: current_user) }
+    TrailWithProgressQuery.new(
+      TrailsForPracticePageQuery.new,
+      user: current_user,
+    )
   end
 end

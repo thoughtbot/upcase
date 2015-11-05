@@ -8,8 +8,12 @@
 <% end %>
 
 <% if @video.part_of_trail? %>
-  <%= render "trails/progress", trail:
-    TrailWithProgress.new(@video.trail, user: current_user) %>
+  <%= render "trails/progress",
+      trail: TrailWithProgress.new(
+        @video.trail,
+        user: current_user,
+        status_finder: StatusFinder.new(user: current_user)
+      ) %>
 <% end %>
 
 <span class="divider">

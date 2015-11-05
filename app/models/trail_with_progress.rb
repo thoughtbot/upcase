@@ -1,51 +1,42 @@
 class TrailWithProgress < SimpleDelegator
-  delegate :in_progress?, :complete?, to: :status
+  delegate :unstarted?, :in_progress?, :complete?, to: :status
 
-  def initialize(trail, user:)
+  def initialize(trail, user:, status_finder:)
     super(trail)
     @trail = trail
     @user = user
+    @status_finder = status_finder
   end
 
   def just_finished?
     complete? && status.created_at >= 5.days.ago
   end
 
-  def unstarted?
-    statuses_by_id.empty?
-  end
-
   def update_status
     if completeables.all?(&:complete?)
-      statuses.create!(user: @user, state: Status::COMPLETE)
+      statuses.create!(user: user, state: Status::COMPLETE)
     elsif completeables.any?(&:in_progress?) || completeables.any?(&:complete?)
-      statuses.create!(user: @user, state: Status::IN_PROGRESS)
+      statuses.create!(user: user, state: Status::IN_PROGRESS)
     end
   end
 
   def completeables
     CompleteableWithProgressQuery.new(
-      user: @user,
-      completeables: @trail.completeables
+      status_finder: status_finder,
+      completeables: trail.completeables,
     ).to_a
   end
 
   def status
-    statuses_by_id[@trail.id].try(:first) || Unstarted.new
+    status_finder.status_for(trail)
   end
 
   def steps_remaining
-    @trail.steps_remaining_for(@user)
+    completeables.
+      count { |completeable| completeable.state != Status::COMPLETE }
   end
 
   private
 
-  attr_reader :trail, :user
-
-  def statuses_by_id
-    @statuses ||= Status.
-      where(completeable: @trail, user: @user).
-      order("created_at DESC").
-      group_by(&:completeable_id)
-  end
+  attr_reader :trail, :user, :status_finder
 end

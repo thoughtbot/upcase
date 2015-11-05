@@ -1,5 +1,7 @@
 class TrailsController < ApplicationController
   def show
-    @trail = TrailWithProgress.new(Trail.find(params[:id]), user: current_user)
+    @trail = TrailWithProgressQuery.
+      new(Trail.all, user: current_user).
+      find(params[:id])
   end
 end

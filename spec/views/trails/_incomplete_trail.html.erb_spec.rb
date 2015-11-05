@@ -33,14 +33,16 @@ describe "trails/_incomplete_trail.html" do
 
   def create_trail(completeables:)
     trail = create(:trail)
+    user = build_stubbed(:user)
 
-    steps = completeables.map do |completeable|
+    completeables.each do |completeable|
       create(:step, completeable: completeable, trail: trail)
     end
 
     TrailWithProgress.new(
       trail,
-      user: build_stubbed(:user)
+      user: user,
+      status_finder: StatusFinder.new(user: user),
     )
   end
 
