@@ -39,6 +39,7 @@ Rails.configuration.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
   r301 "/users/new", "/join"
   r301 "/sign_up", "/join"
   r301 "/trails", "/practice"
+  r301 "/pages/landing", "/join"
 
   # Books
   r301 "/backbone-js-on-rails", "https://gumroad.com/l/backbone-js-on-rails"
