@@ -149,6 +149,7 @@ Upcase::Application.routes.draw do
   get "/vanity/image"
 
   resources :videos, only: [:show] do
+    resource :auth_to_access, only: [:show]
     resource :twitter_player_card, only: [:show]
     resources :completions, only: [:create], controller: "video_completions"
   end

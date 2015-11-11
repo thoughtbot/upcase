@@ -1,4 +1,8 @@
 module SessionHelpers
+  def stub_signed_in(result = true)
+    view_stubs(:signed_in?).and_return(result)
+  end
+
   def sign_in
     sign_in_as create(:user)
   end

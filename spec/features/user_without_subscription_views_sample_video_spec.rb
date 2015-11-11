@@ -14,5 +14,13 @@ feature "User without a subscription views sample video" do
     expect(current_path).to eq(video_path(video))
     expect(page).to have_css("h1", text: video.name)
     expect(page).not_to have_css(".locked-message")
+    expect_authed_to_access_event_fired_for(video)
+  end
+
+  def expect_authed_to_access_event_fired_for(video)
+    expect(analytics).to have_tracked("Authed to Access").with_properties(
+      video_name: video.name,
+      watchable_name: video.watchable_name,
+    )
   end
 end

@@ -59,6 +59,14 @@ class Analytics
     )
   end
 
+  def track_authed_to_access(video_name:, watchable_name:)
+    track(
+      "Authed to Access",
+      video_name: video_name,
+      watchable_name: watchable_name,
+    )
+  end
+
   private
 
   attr_reader :user

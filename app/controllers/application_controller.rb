@@ -79,6 +79,17 @@ class ApplicationController < ActionController::Base
   end
   helper_method :onboarding_policy
 
+  def github_auth_path(params = {})
+    base_path = "/auth/github"
+
+    if params.any?
+      "#{base_path}?#{params.to_query}"
+    else
+      base_path
+    end
+  end
+  helper_method :github_auth_path
+
   def capture_campaign_params
     session[:campaign_params] ||= {
       utm_campaign: params[:utm_campaign],

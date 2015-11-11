@@ -23,7 +23,7 @@
     <% unless signed_in? %>
       <% trail.trial_video.present do |video| %>
         <%= link_to(
-          github_auth_path(origin: video_path(video)),
+          video_auth_to_access_path(video),
           class: "cta-button",
         ) do %>
           <%= image_tag("github-white.svg", class: "logo") %>

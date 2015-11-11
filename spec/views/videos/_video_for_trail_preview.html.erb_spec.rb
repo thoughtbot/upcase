@@ -30,7 +30,7 @@ describe "videos/_video_for_trail_preview.html" do
   end
 
   context "without access to a video accessible without a subscription" do
-    it "links to the GitHub signin path" do
+    it "links to the auth to access path" do
       stub_access false
       video = create(
         :video,
@@ -40,8 +40,7 @@ describe "videos/_video_for_trail_preview.html" do
 
       render "videos/video_for_trail_preview", video: video
 
-      github_signin_path = github_auth_path(origin: video_path(video))
-      expect(rendered).to have_link_to(github_signin_path)
+      expect(rendered).to have_link_to(video_auth_to_access_path(video))
     end
   end
 

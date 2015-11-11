@@ -1,7 +1,7 @@
 <% if feature.accessible_without_subscription? %>
   <%= link_to(
     "Free Course",
-    github_auth_path(origin: url_for(feature)),
+    video_auth_to_access_path(feature),
     class: "available-link"
   ) %>
 <% else %>

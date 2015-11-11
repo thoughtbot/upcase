@@ -26,19 +26,4 @@ describe ApplicationHelper do
       end
     end
   end
-
-  describe "#github_auth_path" do
-    context "without query parameters" do
-      it "generates a bare path" do
-        expect(helper.github_auth_path).to eq("/auth/github")
-      end
-    end
-
-    context "with query parameters" do
-      it "adds the query parameters to the generated path" do
-        expect(helper.github_auth_path(one: "1", two: "2")).
-          to eq("/auth/github?one=1&two=2")
-      end
-    end
-  end
 end

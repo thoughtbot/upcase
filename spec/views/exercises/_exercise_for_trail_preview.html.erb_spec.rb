@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe "exercises/_exercise_for_trail_preview.html" do
+  include SessionHelpers
+
   context "without an active subscription" do
     it "renders an upgrade link" do
       stub_has_active_subscription(false)
@@ -40,10 +42,6 @@ describe "exercises/_exercise_for_trail_preview.html" do
   def stub_has_active_subscription(access)
     stub_signed_in
     view_stubs(:current_user_has_active_subscription?).and_return(access)
-  end
-
-  def stub_signed_in
-    view_stubs(:signed_in?).and_return(true)
   end
 
   def render_exercise
