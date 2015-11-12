@@ -25,6 +25,16 @@ describe Beta::VisibleOfferQuery do
 
         expect(result.map(&:name)).to eq(%w(visible))
       end
+
+      it "does not yield inactive beta offers" do
+        user = create_user_with_trail_status(Status::COMPLETE)
+        create(:beta_offer, active: true, name: "active")
+        create(:beta_offer, active: false, name: "inactive")
+
+        result = visible_offers_for(user: user)
+
+        expect(result.map(&:name)).to eq(%w(active))
+      end
     end
 
     context "for a user who hasn't completed any trails yet" do

@@ -425,4 +425,23 @@ describe User do
       expect(user.annual_plan_sku).to eq("professional-yearly")
     end
   end
+
+  describe "has_completed_trails?" do
+    context "when the user has completed one or more trails" do
+      it "returns true" do
+        user = create(:user)
+        create(:status, :completed, completeable: create(:trail), user: user)
+
+        expect(user).to have_completed_trails
+      end
+    end
+
+    context "when the user has not completed any trails" do
+      it "returns false" do
+        user = create(:user)
+
+        expect(user).not_to have_completed_trails
+      end
+    end
+  end
 end

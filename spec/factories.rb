@@ -42,6 +42,7 @@ FactoryGirl.define do
 
   factory :beta_offer, class: "Beta::Offer" do
     name
+    active true
     description "A great trail"
   end
 

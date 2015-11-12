@@ -98,6 +98,10 @@ class User < ActiveRecord::Base
     stripe_customer_id.present?
   end
 
+  def has_completed_trails?
+    statuses.by_type(Trail).completed.any?
+  end
+
   private
 
   def personal_subscription

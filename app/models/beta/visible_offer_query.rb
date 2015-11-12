@@ -18,19 +18,15 @@ module Beta
     end
 
     def find_offers
-      if completed_trails?
-        offers_without_replies
+      if @user.has_completed_trails?
+        active_offers_without_replies
       else
         Offer.none
       end
     end
 
-    def completed_trails?
-      @user.statuses.by_type(Trail).completed.any?
-    end
-
-    def offers_without_replies
-      @relation.where(<<-SQL, @user.id)
+    def active_offers_without_replies
+      @relation.active.where(<<-SQL, @user.id)
         NOT EXISTS (
           SELECT NULL
           FROM beta_replies

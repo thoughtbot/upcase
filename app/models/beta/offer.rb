@@ -9,6 +9,10 @@ module Beta
       order(created_at: :desc)
     end
 
+    def self.active
+      where(active: true)
+    end
+
     def reply(user:, accepted:)
       replies.create!(user: user, accepted: accepted)
     end
