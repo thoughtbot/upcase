@@ -20,7 +20,7 @@ describe ShowsController do
       get :show, id: show
 
       expect(response).to render_template(
-        "layouts/visitor",
+        "layouts/landing",
         "show"
       )
     end

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   before_filter :capture_campaign_params
-  layout :layout_by_signed_in_state
+  layout :determine_layout
 
   protected
 
@@ -98,11 +98,16 @@ class ApplicationController < ActionController::Base
     }
   end
 
-  def layout_by_signed_in_state
-    if signed_in?
-      "signed_in"
+  def sales_page?
+    current_path = request.env["PATH_INFO"]
+    [join_path, teams_path].include? current_path
+  end
+
+  def determine_layout
+    if signed_out? || sales_page?
+      "landing"
     else
-      "visitor"
+      "signed_in"
     end
   end
 end
