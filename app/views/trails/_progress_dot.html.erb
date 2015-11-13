@@ -1,0 +1,19 @@
+<div class="step <%= completeable.state.parameterize %>-exercise">
+  <% if current_user_has_access_to?(completeable) %>
+    <%= completeable_link(completeable) do %>
+      <div class="dot"></div>
+    <% end %>
+  <% else %>
+    <div class="dot"></div>
+  <% end %>
+
+  <div class="tooltip">
+    <figure class="exercise card <%= completeable.state.parameterize %>-exercise">
+      <h5>
+        <%= t(completeable.state.parameterize, scope: [:completeables, :statuses]) %>
+      </h5>
+      <h4><%= completeable.name %></h4>
+      <p><%= completeable.summary %></p>
+    </figure>
+  </div>
+</div>

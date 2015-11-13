@@ -1,7 +1,7 @@
 <section class="progress">
-  <%= render(
-    partial: "steps/steps",
-    locals: { completeables: trail.completeables }
-  ) %>
+  <%= render partial: "trails/progress_dot",
+    collection: trail.completeables,
+    as: "completeable"
+  %>
   <%= render "trails/steps_remaining", trail: trail %>
 </section>

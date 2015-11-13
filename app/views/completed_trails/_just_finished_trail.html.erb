@@ -10,10 +10,10 @@
 
     <div class="just-finished-mask">
       <section class="progress just-finished">
-        <%= render(
-          partial: "steps/steps",
-          locals: { completeables: trail.completeables }
-        ) %>
+        <%= render partial: "trails/progress_dot",
+          collection: trail.completeables,
+          as: "completeable"
+        %>
       </section>
     </div>
 

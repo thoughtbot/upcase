@@ -32,6 +32,12 @@ en:
       success: Thank you for subscribing to Upcase! We will email you your receipt
         shortly.
     problem_with_card: "There was a problem processing your credit card: %{message}"
+  completeables:
+    statuses:
+      complete: Complete
+      in-progress: In Progress
+      next-up: Next Up
+      unstarted: Unstarted
   coupons:
     flashes:
       invalid: The coupon code you supplied is not valid.
@@ -48,12 +54,6 @@ en:
         and anti-patterns that experts know and intermediates ought to learn.
       subhead: Become a better programmer, even if you've only got five minutes.
       title: Flashcards
-  exercises:
-    statuses:
-      complete: Complete
-      in-progress: In Progress
-      next-up: Exercise
-      unstarted: Exercise
   exercist_trails:
     show:
       no_trail: No trail found for the exercise.
@@ -215,11 +215,6 @@ en:
   videos:
     show:
       mark-as-complete: Mark as Complete
-    statuses:
-      complete: Complete
-      in-progress: In Progress
-      next-up: Video
-      unstarted: Video
     seek_buttons:
       jump-to-topic-in-video: Jump to Topic In Video
   watchables:
