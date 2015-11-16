@@ -114,6 +114,8 @@ en:
     decks:
       decks-list-title: decks
   products:
+    locked:
+      available_for_free_after_authing: Sign In with GitHub for Free Access
     locked_features:
       subscribe_link: Subscribe to Upcase
       upgrade_link: upgrade your subscription
@@ -202,7 +204,7 @@ en:
       heading:
         online: Online video tutorial
   trails:
-    start_for_free: Start Course For Free
+    start_for_free: Start Course for Free by Signing In with GitHub
     other_resources: Use these resources for reference and additional practice
     thoughtbot_resources: Use these thoughtbot resources first
     validations: '%{name} developers should be able to'
