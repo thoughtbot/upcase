@@ -1,8 +1,6 @@
 <section class="exercises-container">
-  <% trail.completeables.each do |completeable| %>
-    <%= render(
-      partial: "#{completeable.to_partial_path}_for_trail_preview",
-      locals: { completeable.model_name.singular.to_sym => completeable }
-    ) %>
-  <% end %>
+  <%= render partial: "trails/completeable_preview",
+    collection: trail.completeables,
+    as: "completeable"
+  %>
 </section>

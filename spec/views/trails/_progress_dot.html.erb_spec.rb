@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe "trails/_progress_dots" do
   include Rails.application.routes.url_helpers
+  include TrailHelpers
 
   it "applies a class to indicate the state of the exercise" do
     stub_current_user_has_access
@@ -36,9 +37,5 @@ describe "trails/_progress_dots" do
 
   def stub_current_user_has_access(has_access = false)
     view_stubs(:current_user_has_access_to?).and_return(has_access)
-  end
-
-  def build_completeable_with_progress(state: Status::UNSTARTED)
-    CompleteableWithProgress.new(build_stubbed(:video), state)
   end
 end

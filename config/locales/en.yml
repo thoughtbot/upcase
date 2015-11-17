@@ -116,6 +116,7 @@ en:
   products:
     locked:
       available_for_free_after_authing: Sign In with GitHub for Free Access
+      get_access_by_joining: Get access by joining Upcase
     locked_features:
       subscribe_link: Subscribe to Upcase
       upgrade_link: upgrade your subscription

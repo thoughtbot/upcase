@@ -1,16 +1,15 @@
 <% if feature.accessible_without_subscription? %>
-  <%= link_to(
-    t(".available_for_free_after_authing"),
-    video_auth_to_access_path(feature),
-    class: "available-link"
-  ) %>
+  <%= link_to video_auth_to_access_path(feature), class: "available-link" do %>
+    <%= image_tag("github.svg", class: "logo") %>
+    <%= t(".available_for_free_after_authing") %>
+  <% end %>
 <% else %>
   <div class="product-card-locked">
     <span class="icon">
       <%= image_tag("icons/lock.svg", size: "11x15") %>
     </span>
 
-    <%= link_to 'Get access by joining Upcase',
+    <%= link_to t(".get_access_by_joining"),
       join_path,
       class: 'upgrade-link' %>
   </div>

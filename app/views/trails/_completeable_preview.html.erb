@@ -1,0 +1,18 @@
+<figure class="exercise <%= completeable.state.parameterize %>-exercise">
+  <div class="dot-container">
+    <div class="dot"></div>
+  </div>
+
+  <div class="exercise-item">
+    <% if current_user_has_access_to?(completeable) %>
+      <%= completeable_link(completeable) do %>
+        <h3 class="exercise-title"><%= completeable.name %></h3>
+        <p><%= completeable.summary %></p>
+      <% end %>
+    <% else %>
+        <h3 class="exercise-title"><%= completeable.name %></h3>
+        <p><%= completeable.summary %></p>
+        <%= render "products/locked", feature: completeable %>
+    <% end %>
+  </div>
+</figure>

@@ -3,6 +3,10 @@ module SessionHelpers
     view_stubs(:signed_in?).and_return(result)
   end
 
+  def stub_signed_out(result = true)
+    view_stubs(:signed_out?).and_return(result)
+  end
+
   def sign_in
     sign_in_as create(:user)
   end
