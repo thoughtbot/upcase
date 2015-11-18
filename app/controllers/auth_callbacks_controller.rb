@@ -1,17 +1,13 @@
 class AuthCallbacksController < ApplicationController
   def create
-    sign_in_user_from_auth_hash
+    sign_in user_from_auth_hash
     track_authed_to_access
-    redirect_to url_after_auth
+    redirect_to_desired_path
     clear_return_to
+    clear_auth_to_access_slug
   end
 
   private
-
-  def sign_in_user_from_auth_hash
-    user = AuthHashService.new(auth_hash).find_or_create_user_from_auth_hash
-    sign_in user
-  end
 
   def track_authed_to_access
     auth_to_access_video.present do |video|
@@ -19,6 +15,17 @@ class AuthCallbacksController < ApplicationController
         video_name: video.name,
         watchable_name: video.watchable_name,
       )
+    end
+  end
+
+  def redirect_to_desired_path
+    if auth_to_access_video.present?
+      redirect_to(
+        url_after_auth,
+        notice: t("authenticating.auth_to_access_success"),
+      )
+    else
+      redirect_to url_after_auth
     end
   end
 
@@ -30,6 +37,10 @@ class AuthCallbacksController < ApplicationController
     end
   end
 
+  def user_from_auth_hash
+    AuthHashService.new(auth_hash).find_or_create_user_from_auth_hash
+  end
+
   def originated_from_sign_in_or_sign_up?
     auth_origin =~ /^#{sign_in_url}/ || auth_origin =~ /^#{sign_up_url}/
   end
@@ -38,9 +49,16 @@ class AuthCallbacksController < ApplicationController
     ReturnPathFinder.new(auth_origin).return_path || default_path
   end
 
+  def auth_to_access_slug
+    session[:auth_to_access_video_slug]
+  end
+
+  def clear_auth_to_access_slug
+    session.delete(:auth_to_access_video_slug)
+  end
+
   def auth_to_access_video
-    slug = session.delete(:auth_to_access_video_slug)
-    Video.find_by(slug: slug).wrapped
+    @_auth_to_access_video ||= Video.find_by(slug: auth_to_access_slug).wrapped
   end
 
   def auth_hash

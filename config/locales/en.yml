@@ -14,6 +14,7 @@ en:
   authenticating:
     github_signin: Sign in with GitHub
     login_required: You must be signed in to view that page
+    auth_to_access_success: "Success! Enjoy your free videos."
   beta:
     offers:
       actions:
