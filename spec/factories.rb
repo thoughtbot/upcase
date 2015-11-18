@@ -216,6 +216,7 @@ FactoryGirl.define do
   factory :topic do
     keywords 'clean, clear, precise'
     name
+    page_title "Learn stuff from Upcase"
     summary 'short yet descriptive'
 
     trait :explorable do

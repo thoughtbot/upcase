@@ -1,5 +1,5 @@
 <meta charset="utf-8" />
-<title><%= raw [content_for(:page_title), t("layouts.app_name")].compact.uniq.join(" | ") %></title>
+<title><%= page_title_with_app_name(content_for(:page_title), t("layouts.app_name")) %></title>
 <%= render 'layouts/stylesheets' %>
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 <meta http-equiv="Description" name="Description" content="<%= yield(:meta_description).presence || t('layouts.meta_description') %>" />

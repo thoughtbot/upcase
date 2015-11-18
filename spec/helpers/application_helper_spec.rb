@@ -26,4 +26,22 @@ describe ApplicationHelper do
       end
     end
   end
+
+  describe "#page_title_with_app_name" do
+    context "with an empty page_title content_for" do
+      it "returns the application name" do
+        result = helper.page_title_with_app_name(nil, "Upcase")
+
+        expect(result).to eq "Upcase"
+      end
+    end
+
+    context "with a specified page_title content_for" do
+      it "concatenates the page_title content and the app name" do
+        result = helper.page_title_with_app_name("TDD", "Upcase")
+
+        expect(result).to eq "TDD from Upcase"
+      end
+    end
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112165425) do
+ActiveRecord::Schema.define(version: 20151118203141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -327,6 +327,7 @@ ActiveRecord::Schema.define(version: 20151112165425) do
     t.string   "slug",       limit: 255,                 null: false
     t.text     "summary"
     t.boolean  "explorable",             default: false, null: false
+    t.string   "page_title",                             null: false
   end
 
   add_index "topics", ["explorable"], name: "index_topics_on_explorable", using: :btree

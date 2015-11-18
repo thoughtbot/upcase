@@ -51,4 +51,8 @@ module ApplicationHelper
     current_user_is_subscription_owner? &&
       current_user_is_eligible_for_annual_upgrade?
   end
+
+  def page_title_with_app_name(page_specific_title, app_name)
+    [page_specific_title, app_name].compact.uniq.join(" from ")
+  end
 end
