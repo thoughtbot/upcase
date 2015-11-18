@@ -1,38 +1,32 @@
-.trails-progress {
-  .trail {
-    .step {
-      .tooltip {
-        @include transition(all 0.2s $ease-out-quad);
-        @include transform(translate(-50%, 6px));
-        left: 50%;
-        opacity: 0;
-        pointer-events: none;
-        position: absolute;
-        top: 40px;
-        z-index: 2;
+.tooltip {
+  @include transition(all 0.2s $ease-out-quad);
+  @include transform(translate(-50%, 6px));
+  left: 50%;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 40px;
+  z-index: 2;
 
-        &:before, &:after {
-          @include triangle($arrow-size 8px, $base-border-color-1, up);
-          content: "";
-          position: absolute;
-          top: -$arrow-size * 0.5 + 3px;
-          @include calc(left, "50% - #{$arrow-size / 2}");
-          z-index: 1;
-        }
+  &:before, &:after {
+    @include triangle($arrow-size 8px, $base-border-color-1, up);
+    content: "";
+    position: absolute;
+    top: -$arrow-size * 0.5 + 3px;
+    @include calc(left, "50% - #{$arrow-size / 2}");
+    z-index: 1;
+  }
 
-        &:before {
-          @include transform(scale(1.15));
-          @include transform-origin(center bottom);
-        }
+  &:before {
+    @include transform(scale(1.15));
+    @include transform-origin(center bottom);
+  }
 
-        &:after {
-          @include triangle($arrow-size 8px, #fff, up);
-        }
+  &:after {
+    @include triangle($arrow-size 8px, #fff, up);
+  }
 
-        .card {
-          height: auto;
-        }
-      }
-    }
+  .card {
+    height: auto;
   }
 }
