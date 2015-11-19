@@ -7,11 +7,7 @@
           <li><%= link_to('Admin', admin_path) %></li>
         <% end %>
 
-        <% unless current_user.has_active_subscription? %>
-          <li class="subscription">
-            <%= link_to "Upgrade", join_path %>
-          </li>
-        <% end %>
+        <%= render "analytics_upgrade_link" %>
       <% else %>
         <li><%= link_to "Sign in", sign_in_path %></li>
       <% end %>
