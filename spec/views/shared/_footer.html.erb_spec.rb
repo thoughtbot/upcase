@@ -64,7 +64,7 @@ describe "shared/_footer.html.erb" do
 
         render
 
-        expect(rendered).not_to have_link("Admin", href: admin_path)
+        expect(rendered).not_to have_admin_link
       end
     end
 
@@ -75,7 +75,7 @@ describe "shared/_footer.html.erb" do
 
         render
 
-        expect(rendered).to have_link("Admin", href: admin_path)
+        expect(rendered).to have_admin_link
       end
     end
 
@@ -101,6 +101,10 @@ describe "shared/_footer.html.erb" do
         expect(rendered).not_to have_upgrade_link
       end
     end
+  end
+
+  def have_admin_link
+    have_link("Admin", href: admin_path)
   end
 
   def have_upgrade_link
