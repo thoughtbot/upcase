@@ -93,7 +93,7 @@ describe "shared/_footer.html.erb" do
     context "when the user has an active subscription" do
       it "does not include an 'Upgrade' link" do
         stub_signed_in(true)
-        subscriber = build_user_with_Active_subscription
+        subscriber = build_user_with_active_subscription
         stub_current_user_with subscriber
 
         render
@@ -107,8 +107,8 @@ describe "shared/_footer.html.erb" do
     have_link("Upgrade", href: join_path)
   end
 
-  def build_user_with_Active_subscription
-    subscriber = build_stubbed(:subscriber).tap do |subscriber|
+  def build_user_with_active_subscription
+    build_stubbed(:subscriber).tap do |subscriber|
       allow(subscriber).to receive(:has_active_subscription?).and_return(true)
     end
   end
