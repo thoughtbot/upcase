@@ -4,6 +4,17 @@ describe Analytics do
   let(:user) { build_stubbed(:user) }
   let(:analytics_instance) { Analytics.new(user) }
 
+  describe "any individual tracking call" do
+    it "includes the user's email as a properties" do
+      analytics_instance.track_accessed_forum
+
+      expect(analytics).to(
+        have_tracked("Logged into Forum").
+        with_properties(email: user.email)
+      )
+    end
+  end
+
   describe "#track_updated" do
     it "sends updated identify event to backend" do
       analytics_instance.track_updated

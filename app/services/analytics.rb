@@ -34,7 +34,7 @@ class Analytics
   end
 
   def track_cancelled(reason:)
-    track("Cancelled", reason: reason, email: user.email)
+    track("Cancelled", reason: reason)
   end
 
   def track_flashcard_attempted(deck:, title:)
@@ -79,7 +79,7 @@ class Analytics
     backend.track(
       event: event,
       user_id: user.id,
-      properties: properties,
+      properties: properties.merge(email: user.email),
     )
   end
 end
