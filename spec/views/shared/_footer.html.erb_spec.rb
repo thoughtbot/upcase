@@ -87,7 +87,7 @@ describe "shared/_footer.html.erb" do
     view_stub_with_return(signed_in?: signed_in)
     view_stub_with_return(current_user: current_user)
     view_stub_with_return(
-      current_user_has_active_subscription?: has_subscription
+      current_user_has_active_subscription?: has_subscription,
     )
     render
   end
