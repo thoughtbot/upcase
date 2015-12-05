@@ -6,6 +6,11 @@
   width: 100%;
   flex: none;
 
+  .ralph-header-logo {
+    height: 27px;
+    margin-left: 5px;
+  }
+
   &.headhesive--stick,
   &.without-hero {
     .header-cta:hover {
@@ -21,7 +26,8 @@
 
       &:hover,
       &:focus {
-        background-color: lighten($hero-green, 5%);
+        @include linear-gradient(darken($cta-color-light, 2.5%), darken($cta-color-dark, 2.5%));
+        color: $cta-text-color;
       }
     }
   }
@@ -39,17 +45,19 @@
 .header-cta-link {
   #header-wrapper.headhesive--stick &,
   #header-wrapper.without-hero & {
-    background-color: $hero-green;
+    @include linear-gradient($cta-color-light, $cta-color-dark);
     border-radius: 3px;
     box-shadow: $heavy-box-shadow;
+    color: $cta-text-color;
     height: $header-height;
     line-height: $header-height;
-    padding: 0 1em 0 3.5em;
+    padding: 0 2em;
     position: relative;
 
     &:hover,
     &:focus {
-      background-color: lighten($hero-green, 5%);
+      @include linear-gradient(darken($cta-color-light, 2.5%), darken($cta-color-dark, 2.5%));
+      color: $cta-text-color;
     }
   }
 }
@@ -88,7 +96,6 @@
     display: inline-block;
     font-size: $font-size-smallest;
     font-weight: 400;
-    margin-left: 1em;
     position: relative;
     top: 0.5em;
     vertical-align: top;

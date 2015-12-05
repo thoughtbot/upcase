@@ -17,16 +17,26 @@
 }
 
 .topics-grid {
-  background: $base-background-2;
+  background: $landing-purple;
+  border-bottom-color: $landing-purple-border;
   margin-bottom: 0;
-  padding: 2em 1.5em 4em;
+  padding: 2em 0.5em;
   position: relative;
+
+  @include marketing-fullsize {
+    padding-bottom: 4em;
+  }
 
   ol {
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
     max-width: 1116px;
+  }
+
+  .selling-point-title {
+    color: $white;
+    margin-bottom: 1em;
   }
 
   .topic-link {

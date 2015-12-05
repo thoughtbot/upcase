@@ -1,9 +1,4 @@
 .hero {
-  @include background-image(
-    linear-gradient(180deg, rgba($upcase-blue-1, 0.888), rgba($upcase-blue-2, 0.888)),
-    url(upcase/laptop.jpg)
-  );
-
   background-color: $upcase-blue-2;
   background-position: center center;
   background-size: cover;
@@ -88,7 +83,7 @@
 }
 
 .tall-hero {
-  padding: 5em 1em 4em;
+  padding: 5em 0.5em 4em;
 
   @include dashboard-large {
     padding-bottom: 6em;

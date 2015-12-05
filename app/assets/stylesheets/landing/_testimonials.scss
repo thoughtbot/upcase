@@ -183,3 +183,18 @@
     display: inline;
   }
 }
+
+.testimonial-image img {
+  display: block;
+  height: 220px;
+  margin: 0 auto 1em;
+
+  @include marketing-fullsize {
+    float: left;
+    margin-right: 2em;
+  }
+}
+
+.testimonial-quote {
+  text-align: left;
+}

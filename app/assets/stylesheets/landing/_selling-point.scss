@@ -6,14 +6,13 @@
   padding-top: 1em;
 
   @include marketing-fullsize {
-    padding-bottom: 6em;
-    padding-top: 6em;
+    padding-bottom: 1.5em;
+    padding-top: 2em;
   }
 
   &.deconstructed {
-    @include background-image(url("upcase/deconstructed-ralph.svg"), linear-gradient(180deg, rgba(#341642, 0.888), rgba(#6a5b7d, 0.888)));
-    background-size: contain;
-    border-bottom-color: #6a5b7d;
+    background: $landing-purple;
+    border-bottom-color: $landing-purple-border;
     color: $white;
     position: relative;
   }
@@ -27,7 +26,7 @@
   @include marketing-fullsize {
     font-size: 2em;
     line-height: 1.25;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     text-align: center;
   }
 

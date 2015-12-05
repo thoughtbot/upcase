@@ -6,7 +6,8 @@ $pricing-margin: 0.5rem;
   @include linear-gradient(darken($celestial-blue, 12%), darken($celestial-blue, 0%));
   fill: $base-background-2;
   margin-top: -1px;
-  padding: 8em 2em 4em;
+  padding-bottom: 2em;
+  padding-top: 4em;
   position: relative;
 }
 
@@ -85,6 +86,10 @@ $pricing-margin: 0.5rem;
   border-radius: 5px;
   margin-bottom: 2em;
   max-width: $price-width;
+
+  .pricing-guarantee {
+    margin-bottom: 0;
+  }
 
   h5 {
     font-size: 0.75em;

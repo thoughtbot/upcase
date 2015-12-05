@@ -50,8 +50,8 @@
 .landing-container {
   @include outer-container;
   max-width: 32em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding-left: 0.5em;
+  padding-right: 1em;
 
   @include marketing-fullsize {
     max-width: $max-width;
