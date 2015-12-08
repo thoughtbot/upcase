@@ -22,6 +22,7 @@ class AddPageTitleToTopics < ActiveRecord::Migration
       "foundations" => "Learn Ruby Fundamentals",
       "workflow" => "Learn Ruby Workflows | Git, Tmux, and Dotfiles Tutorials",
       "clojure" => "Learn Clojure",
+      "analytics" => "Learn Analytics",
     }.each do |slug, page_title|
       connection.update(<<-SQL)
         UPDATE topics
