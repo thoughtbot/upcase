@@ -6,74 +6,26 @@
       </background>
     </banner>
     <list>
-      <relatedContent>
-        <lockup>
-          <img src="${this.BASEURL}resources/images/italy/italy_5.jpg" width="857" height="482" />
-          <title>Common Related Title</title>
-          <subtitle>Common Related Subtitle</subtitle>
-          <description>Lorem ipsum Sociis mauris in integer, a dolor netus non dui aliquet, sagittis felis sodales, dolor sociis mauris, vel eu libero cras. Interdum at. Eget habitasse elementum est, ipsum purus pede porttitor class, ut adipiscing, aliquet sed auctor, imperdiet arcu per diam dapibus libero duis. Enim eros in vel, volutpat.</description>
-        </lockup>
-      </relatedContent>
+      <header>
+        <title>The Weekly Iteration</title>
+      </header>
       <section>
         <header>
-          <title>Section Title</title>
+          <title>Episodes</title>
         </header>
-        <listItemLockup>
-          <title>Title 1</title>
+        <% @show.videos_with_status.each do |video| %>
+          <listItemLockup data-role="video" data-video="<%= video.download_url("original") %>">
+          <title data-role="primary-title"><%= video.name %></title>
           <relatedContent>
             <lockup>
               <img src="${this.BASEURL}resources/images/italy/italy_1.jpg" width="857" height="482" />
-              <title>Related Title 1</title>
-              <subtitle>Related Subtitle 1</subtitle>
-              <description>Lorem ipsum Sociis mauris in integer, a dolor netus non dui aliquet, sagittis felis sodales, dolor sociis mauris, vel eu libero cras. Interdum at. Eget habitasse elementum est, ipsum purus pede porttitor class, ut adipiscing, aliquet sed auctor, imperdiet arcu per diam dapibus libero duis. Enim eros in vel, volutpat.</description>
+              <title><%= video.name %></title>
+              <subtitle data-role="subtitle"><%= video.published_on.to_formatted_s(:simple) %></subtitle>
+              <description data-role="description"><%= video.summary %></description>
             </lockup>
           </relatedContent>
         </listItemLockup>
-        <listItemLockup>
-          <title>Title 2</title>
-          <relatedContent>
-            <lockup>
-              <img src="${this.BASEURL}resources/images/italy/italy_2.jpg" width="857" height="482" />
-              <title>Related Title 2</title>
-              <subtitle>Related Subtitle 2</subtitle>
-              <description>Lorem ipsum Sociis mauris in integer, a dolor netus non dui aliquet, sagittis felis sodales, dolor sociis mauris, vel eu libero cras. Interdum at. Eget habitasse elementum est, ipsum purus pede porttitor class, ut adipiscing, aliquet sed auctor, imperdiet arcu per diam dapibus libero duis. Enim eros in vel, volutpat.</description>
-            </lockup>
-          </relatedContent>
-        </listItemLockup>
-        <listItemLockup>
-          <title>Title 3</title>
-          <relatedContent>
-            <lockup>
-              <img src="${this.BASEURL}resources/images/italy/italy_3.jpg" width="857" height="482" />
-              <title>Related Title 3</title>
-              <subtitle>Related Subtitle 3</subtitle>
-              <description>Lorem ipsum Sociis mauris in integer, a dolor netus non dui aliquet, sagittis felis sodales, dolor sociis mauris, vel eu libero cras. Interdum at. Eget habitasse elementum est, ipsum purus pede porttitor class, ut adipiscing, aliquet sed auctor, imperdiet arcu per diam dapibus libero duis. Enim eros in vel, volutpat.</description>
-            </lockup>
-          </relatedContent>
-        </listItemLockup>
-        <listItemLockup>
-          <title>Title 4</title>
-          <relatedContent>
-            <lockup>
-              <img src="${this.BASEURL}resources/images/italy/italy_4.jpg" width="857" height="482" />
-              <title>Related Title 4</title>
-              <subtitle>Related Subtitle 4</subtitle>
-              <description>Lorem ipsum Sociis mauris in integer, a dolor netus non dui aliquet, sagittis felis sodales, dolor sociis mauris, vel eu libero cras. Interdum at. Eget habitasse elementum est, ipsum purus pede porttitor class, ut adipiscing, aliquet sed auctor, imperdiet arcu per diam dapibus libero duis. Enim eros in vel, volutpat.</description>
-            </lockup>
-          </relatedContent>
-        </listItemLockup>
-        <listItemLockup>
-          <title>Title 5</title>
-        </listItemLockup>
-        <listItemLockup>
-          <title>Title 6</title>
-        </listItemLockup>
-        <listItemLockup>
-          <title>Title 7</title>
-        </listItemLockup>
-        <listItemLockup>
-          <title>Title 8</title>
-        </listItemLockup>
+        <% end %>
       </section>
     </list>
   </listTemplate>
