@@ -176,6 +176,11 @@ Upcase::Application.routes.draw do
     only: [:index]
   )
 
+  namespace :apple_tv do
+    get "apple_tv" => "apple_tv#show"
+    resource :weekly_iterations, only: [:show]
+  end
+
   get "practice" => "practice#show", as: :practice
   get "sitemap.xml" => "sitemaps#show", as: :sitemap, format: "xml"
   get ":id" => "topics#show", as: :topic
