@@ -178,7 +178,7 @@ Upcase::Application.routes.draw do
 
   namespace :apple_tv do
     get "apple_tv" => "apple_tv#show"
-    resource :weekly_iterations, only: [:show]
+    resources :weekly_iterations, only: [:index, :show]
   end
 
   get "practice" => "practice#show", as: :practice
