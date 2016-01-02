@@ -98,13 +98,8 @@ class ApplicationController < ActionController::Base
     }
   end
 
-  def sales_page?
-    current_path = request.env["PATH_INFO"]
-    [join_path, teams_path].include? current_path
-  end
-
   def determine_layout
-    if signed_out? || sales_page?
+    if signed_out?
       "landing"
     else
       "signed_in"

@@ -1,25 +1,39 @@
 <% content_for :subject_block do %>
-  <h1><%= @checkout.plan_name %></h1>
+  <h1 class="tagline">Join the Upcase Community</h1>
 <% end %>
 
 <% content_for :additional_body_classes, @checkout.plan_name %>
 <% content_for :page_title, "Subscribe to #{@checkout.plan_name}" %>
 
-<div class="text-box-wrapper">
-  <div class="text-box">
+<div class="checkout-content">
+  <div class="payment-form">
     <%= render "checkouts/form", checkout: @checkout %>
-  </div>
-</div>
+    <div class="checkout-notes">
+      <h3>thoughtbot no-hassle guarantee</h3>
+      <p>If you don't love Upcase, just let us know within 30 days and we’ll refund your money. It’s as simple as that.</p>
 
-<aside class="terms">
-  <section id="terms">
-    <dl>
-      <dt><p>Terms and conditions</p></dt>
-      <dd><p>If you&rsquo;re not happy, just let us know within 30 days and we&rsquo;ll refund your money. It&rsquo;s as simple as that.</p></dd>
-      <%= raw @checkout.plan_terms %>
-    </dl>
-  </section>
-</aside>
+      <%= link_to 'Need an address on your receipt?', '#', class: 'reveal-address' %>
+    </div>
+  </div>
+
+  <aside>
+    <h3>Why Upcase?</h3>
+    <div class="upcase">
+      <p class="notes">Join 1000s of developers racing towards their full potential with guidance from some of the best in the business.</p>
+      <%= image_tag "thoughtbot-team.jpg", class: "team-image" %>
+    </div>
+
+    <ul class="upcase-features">
+      <li>Peer &amp; expert feedback</li>
+      <li>Video tutorials</li>
+      <li>Coding exercises</li>
+      <li>Access to our GitHub repos</li>
+      <li>Community forum</li>
+      <li>Flashcard decks</li>
+      <li>New videos every week</li>
+    </ul>
+  </aside>
+</div>
 
 <% content_for :javascript do -%>
   <script type="text/javascript">

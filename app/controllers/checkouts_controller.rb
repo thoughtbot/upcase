@@ -1,6 +1,7 @@
 class CheckoutsController < ApplicationController
   before_action :redirect_when_plan_not_found
   before_action :redirect_when_already_subscribed
+  layout "landing"
 
   def new
     build_checkout({}) do |checkout|

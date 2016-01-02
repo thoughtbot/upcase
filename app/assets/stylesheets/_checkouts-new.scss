@@ -1,4 +1,70 @@
 body.checkouts-new, body.checkouts-create {
+  .checkout-content {
+    display: flex;
+
+    @include marketing-mobile {
+      flex-direction: column;
+    }
+  }
+
+  nav,
+  .headhesive--stick,
+  .footer-content {
+    display: none;
+  }
+
+  .tagline {
+    margin-top: 20px;
+  }
+
+  .one-step-away {
+    font-size: 1.5em;
+    font-weight: 400;
+    margin-bottom: 1em;
+  }
+
+  .upcase-features {
+    margin-top: 1.5em;
+
+    li {
+      margin-top: 0;
+    }
+  }
+
+  aside {
+    flex-grow: 1;
+    padding-left: 4em;
+
+    @include marketing-mobile {
+      padding-left: 0;
+    }
+
+    h3 {
+      line-height: 40px;
+    }
+
+    .notes {
+      margin: 1em 0 2em;
+    }
+  }
+
+  .payment-form {
+    width: 65%;
+
+    @include marketing-mobile {
+      width: 100%;
+    }
+  }
+
+  .price-includes {
+    padding: 5px;
+    top: 20px;
+  }
+
+  .checkout-notes {
+    margin-top: 2em;
+  }
+
   form {
     margin-bottom: 0;
   }
@@ -88,6 +154,7 @@ body.checkouts-new, body.checkouts-create {
   }
 
   .address-info {
+    display: none;
     margin: 3rem 0;
   }
 
@@ -114,11 +181,10 @@ body.checkouts-new, body.checkouts-create {
     }
   }
 
-  .coupon-note, .reveal-address {
-    border-radius: 3px;
-    display: inline-block;
-    margin: 1.5rem 0 1.5rem 115px;
-    padding: .5rem 0;
+  .reveal-address {
+    display: block;
+    font-weight: normal;
+    margin: 10px 0;
   }
 
   @media screen and (max-width: 910px) {
@@ -136,10 +202,6 @@ body.checkouts-new, body.checkouts-create {
       label {
         width: 90px;
       }
-    }
-
-    .coupon-note, .reveal-address,  {
-      margin-left: 90px;
     }
   }
 }

@@ -1,5 +1,6 @@
 class SubscriptionsController < ApplicationController
   before_filter :must_be_subscription_owner, only: [:edit, :update]
+  layout "landing", except: [:edit]
 
   def new
     @topics = define_topics

@@ -27,10 +27,9 @@ function checkValidGithubUsername(username, element) {
   });
 }
 
-$('.address-info').hide();
 $('.reveal-address').click(function() {
   $(this).hide();
-  $('.address-info').show();
+  $('.address-info').slideDown(100);
 
   return false;
 });

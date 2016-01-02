@@ -2,6 +2,10 @@
 
   <%= form.semantic_errors %>
 
+  <% if signed_in? %>
+    <h2 class="one-step-away">Hey <%= current_user.first_name %>, you're one step away. Enter payment below to start learning with Upcase now!</h2>
+  <% end %>
+
   <%= form.inputs do %>
     <% if signed_out? %>
       <ul class="checkout-sigin-signup-toggle">
@@ -24,11 +28,6 @@
       <%= form.input :github_username, required: true, label: "GitHub username",
         hint: "Be sure to enter a valid, unique GitHub username. Organizations are not allowed." %>
     <% end %>
-  <% end %>
-
-  <%= link_to 'Need an address on your receipt?', '#', class: 'reveal-address' %>
-  <%= form.inputs class: 'address-info' do %>
-    <%= render 'users/address_fields', form: form %>
   <% end %>
 
   <%= form.inputs id: 'billing-information' do %>
@@ -55,8 +54,13 @@
     </li>
   <% end %>
 
+  <%= form.inputs class: 'address-info' do %>
+    <%= render 'users/address_fields', form: form %>
+  <% end %>
+
   <%= form.actions do %>
-    <%= form.action :submit, label: "Submit Payment &mdash; #{submit_amount(checkout)}".html_safe %>
+    <%= form.action :submit, label: "Submit Payment &mdash; #{submit_amount(checkout)}".html_safe,
+      button_html: { class: "subscribe-cta light-bg" } %>
   <% end %>
 <% end %>
 
