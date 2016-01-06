@@ -12,6 +12,8 @@
 //= require headhesive.min.js
 //= require header-setup
 //= require fastclick
+//= require readmore
+//= require extended_description
 
 $(function() {
   hljs.initHighlightingOnLoad();

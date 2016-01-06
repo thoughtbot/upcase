@@ -17,9 +17,19 @@
 
   <div class="topic-title">
     <h1><%= trail.name %></h1>
-    <div class="topic-description">
-      <%= format_markdown trail.description %>
+
+    <div class="trail-description">
+      <h2 class="tagline">
+        <%= format_markdown trail.description %>
+      </h2>
+
+      <% if trail.extended_description.present? %>
+        <div class="extended-description">
+          <%= format_markdown trail.extended_description %>
+        </div>
+      <% end %>
     </div>
+
     <% unless signed_in? %>
       <% trail.trial_video.present do |video| %>
         <%= link_to(

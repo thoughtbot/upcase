@@ -20,6 +20,14 @@ body.topics.topics-show {
       }
     }
 
+    .topic-content {
+      width: 80%;
+
+      @include dashboard-small-only {
+        width: 100%;
+      }
+    }
+
     h1 {
       margin-bottom: 0.6rem;
     }
@@ -79,4 +87,8 @@ body.topics.topics-show {
       padding: 0;
     }
   }
+}
+
+.extended-description {
+  display: none;
 }

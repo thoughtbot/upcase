@@ -25,6 +25,17 @@
       margin: 1.5em auto 3em;
     }
 
+    h2 {
+      font-size: 1.125em;
+      font-weight: normal;
+      line-height: 1.6em;
+      margin-bottom: 1rem;
+
+      @include dashboard-small-only {
+        width: 100%;
+      }
+    }
+
     .title-card {
       @include span-columns(5);
       flex: none;
@@ -62,6 +73,10 @@
     .trail-topic-name {
       @include clearfix;
     }
+  }
+
+  .trail-description {
+    padding-bottom: 1em;
   }
 
   .trails-progress {

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118203141) do
+ActiveRecord::Schema.define(version: 20160104200900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -320,29 +320,31 @@ ActiveRecord::Schema.define(version: 20151118203141) do
   end
 
   create_table "topics", force: :cascade do |t|
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.string   "keywords",   limit: 255
-    t.string   "name",       limit: 255,                 null: false
-    t.string   "slug",       limit: 255,                 null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.string   "keywords",             limit: 255
+    t.string   "name",                 limit: 255,                 null: false
+    t.string   "slug",                 limit: 255,                 null: false
     t.text     "summary"
-    t.boolean  "explorable",             default: false, null: false
-    t.string   "page_title",                             null: false
+    t.boolean  "explorable",                       default: false, null: false
+    t.string   "page_title",                                       null: false
+    t.text     "extended_description"
   end
 
   add_index "topics", ["explorable"], name: "index_topics_on_explorable", using: :btree
   add_index "topics", ["slug"], name: "index_topics_on_slug", unique: true, using: :btree
 
   create_table "trails", force: :cascade do |t|
-    t.string   "name",             limit: 255,                 null: false
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
-    t.string   "complete_text",    limit: 255,                 null: false
-    t.boolean  "published",                    default: false, null: false
-    t.string   "slug",             limit: 255,                 null: false
-    t.text     "description",                  default: "",    null: false
-    t.integer  "topic_id",                                     null: false
-    t.string   "title_card_image",             default: ""
+    t.string   "name",                 limit: 255,                 null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.string   "complete_text",        limit: 255,                 null: false
+    t.boolean  "published",                        default: false, null: false
+    t.string   "slug",                 limit: 255,                 null: false
+    t.text     "description",                      default: "",    null: false
+    t.integer  "topic_id",                                         null: false
+    t.string   "title_card_image",                 default: ""
+    t.text     "extended_description"
   end
 
   add_index "trails", ["published"], name: "index_trails_on_published", using: :btree

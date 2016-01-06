@@ -3,14 +3,26 @@
 
 <% content_for :subject_block do %>
   <div class="topic-header">
-    <h1>Learn <%= @topic.name %></h1>
-
-    <% if @topic.summary.present? %>
-      <h2 class="tagline"><%= @topic.summary %></h2>
-    <% end %>
-
     <div class="topic-image">
       <%= image_tag "topics/#{@topic.slug}.svg" %>
+    </div>
+
+    <div class="topic-content">
+      <h1>Learn <%= @topic.name %></h1>
+
+      <% if @topic.summary.present? %>
+        <div class="topic-description">
+          <h2 class="tagline">
+            <%= format_markdown @topic.summary %>
+          </h2>
+
+          <% if @topic.extended_description.present? %>
+            <div class="extended-description">
+              <%= format_markdown @topic.extended_description %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>

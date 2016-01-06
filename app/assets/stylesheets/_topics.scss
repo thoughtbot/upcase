@@ -7,6 +7,12 @@
         color: $topic-color;
       }
     }
+
+    .topic-description {
+      h2 {
+        margin-bottom: 1rem;
+      }
+    }
   }
 
   .tiles ul .tile.#{$topic-name} {
