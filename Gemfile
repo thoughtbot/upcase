@@ -71,7 +71,7 @@ group :development, :test do
   gem "rspec-rails"
 end
 
-group :production, :staging do
+group :production do
   gem "font_assets"
   gem "rails_stdout_logging"
   gem "skylight"

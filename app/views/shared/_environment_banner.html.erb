@@ -1,4 +1,4 @@
-<% unless Rails.env.production? %>
+<% unless production_app? %>
   <div class="environment-banner <%= Rails.env %>">
     <%= Rails.env %> | <%= "#{current_branch} @ #{current_sha}" %>
   </div>

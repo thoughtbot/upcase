@@ -26,8 +26,8 @@ describe StripeCustomerFinder do
     end.to raise_error(Stripe::InvalidRequestError)
   end
 
-  it "returns a fake customer if the error is right and we're on staging" do
-    in_environment("staging")
+  it "returns a fake customer if the error is right and we're on development" do
+    in_environment("development")
     stripe_fails_but_knows_what_you_meant
 
     customer = StripeCustomerFinder.retrieve("cus_123")

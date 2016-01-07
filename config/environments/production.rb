@@ -1,4 +1,4 @@
-require Rails.root.join('config/initializers/mail')
+require Rails.root.join("config/smtp")
 
 Upcase::Application.configure do
   config.cache_classes = true

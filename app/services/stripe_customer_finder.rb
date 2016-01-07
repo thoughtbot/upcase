@@ -8,7 +8,7 @@ class StripeCustomerFinder
   def retrieve(customer_id)
     Stripe::Customer.retrieve(customer_id)
   rescue Stripe::InvalidRequestError => e
-    if valid_environment? && stripe_environent_error?(e)
+    if Rails.env.development? && stripe_environent_error?(e)
       generate_fake_customer(customer_id)
     else
       raise
@@ -19,10 +19,6 @@ class StripeCustomerFinder
 
   def stripe_environent_error?(error)
     error.message.include? ERROR_MESSAGE
-  end
-
-  def valid_environment?
-    Rails.env.staging? || Rails.env.development?
   end
 
   def generate_fake_customer(customer_id)
