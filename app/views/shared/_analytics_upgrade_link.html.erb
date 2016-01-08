@@ -1,0 +1,5 @@
+<% unless current_user_has_active_subscription? %>
+  <li class="subscription" data-analtyics-tag>
+    <%= link_to "Upgrade", join_path %>
+  </li>
+<% end %>

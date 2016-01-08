@@ -3,7 +3,11 @@
     <ul class="sign-out">
       <% if signed_in? %>
         <li><%= link_to("Sign out", sign_out_path, method: :delete) %></li>
-        <li><%= render partial: "shared/admin_sign_out" %></li>
+        <% if current_user.admin? %>
+          <li><%= link_to('Admin', admin_path) %></li>
+        <% end %>
+
+        <%= render "shared/analytics_upgrade_link" %>
       <% else %>
         <li><%= link_to "Sign in", sign_in_path %></li>
       <% end %>
