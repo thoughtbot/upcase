@@ -13,6 +13,34 @@ describe Analytics do
         with_properties(email: user.email)
       )
     end
+
+    context "if the user has an active subscription" do
+      it "identifies the user as a 'subscriber' when tracking" do
+        subscriber = create(:subscriber)
+        subscriber_analytics_instance = Analytics.new(subscriber)
+
+        subscriber_analytics_instance.track_accessed_forum
+
+        expect(analytics).to(
+          have_tracked("Logged into Forum").
+          with_properties(user_type: "subscriber"),
+        )
+      end
+    end
+
+    context "if the user does not have an active subscription" do
+      it "identifies the user as a 'sampler' when tracking" do
+        sampler = build_stubbed(:user)
+        sampler_analytics_instance = Analytics.new(sampler)
+
+        sampler_analytics_instance.track_accessed_forum
+
+        expect(analytics).to(
+          have_tracked("Logged into Forum").
+          with_properties(user_type: "sampler"),
+        )
+      end
+    end
   end
 
   describe "#track_updated" do

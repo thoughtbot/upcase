@@ -1,6 +1,9 @@
 class Analytics
   include AnalyticsHelper
 
+  SAMPLER = "sampler"
+  SUBSCRIBER = "subscriber"
+
   class_attribute :backend
   self.backend = AnalyticsRuby
 
@@ -71,6 +74,14 @@ class Analytics
 
   attr_reader :user
 
+  def user_type(user)
+    if user.has_active_subscription?
+      SUBSCRIBER
+    else
+      SAMPLER
+    end
+  end
+
   def track_touched_video(name:, watchable_name:)
     track("Touched Video", name: name, watchable_name: watchable_name)
   end
@@ -79,7 +90,10 @@ class Analytics
     backend.track(
       event: event,
       user_id: user.id,
-      properties: properties.merge(email: user.email),
+      properties: properties.merge(
+        email: user.email,
+        user_type: user_type(user),
+      ),
     )
   end
 end
