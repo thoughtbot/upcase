@@ -416,6 +416,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   launchy
+  mime-types (~> 2.6)
   neat
   nokogiri (~> 1.6.4)
   octokit (~> 3.5.2)

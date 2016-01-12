@@ -2,6 +2,8 @@ source "https://rubygems.org"
 
 ruby "2.2.3"
 
+gem "mime-types", '~> 2.6', require: 'mime/types/columnar'
+
 gem "active_model_serializers", "0.8.3"
 gem "acts_as_list", "~> 0.6.0"
 gem "airbrake"
