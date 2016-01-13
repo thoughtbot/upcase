@@ -45,8 +45,8 @@ feature "Subscriber views decks" do
     expect(last_flashcard_attempt.confidence).to eq(1)
     expect(analytics).to have_tracked("Flashcard Attempted").
       with_properties(deck: deck.title, title: flashcards.first.title)
-    expect(deck.last_attempted_by(last_flashcard_attempt.user))
-      .to eq(last_flashcard_attempt.created_at)
+    expect(deck.last_attempted_by(last_flashcard_attempt.user)).
+      to eq(last_flashcard_attempt.created_at)
   end
 
   scenario "and navigates to the next flashcard directly" do
@@ -57,8 +57,8 @@ feature "Subscriber views decks" do
     navigate_to_next_flashcard
 
     expect(page).to have_content("Flashcard 2")
-    expect(deck.last_attempted_by(last_flashcard_attempt.user))
-      .to eq(last_flashcard_attempt.created_at)
+    expect(deck.last_attempted_by(last_flashcard_attempt.user)).
+      to eq(last_flashcard_attempt.created_at)
   end
 
   context "and completes the deck" do
