@@ -19,7 +19,7 @@ describe "twitter_player_cards/_meta.html.erb" do
       "site" => "@upcase",
       "title" => name,
       "description" => description,
-      "image" => "http://test.host/assets/twitter-card.png",
+      "image" => "http://test.host/assets/twitter-card",
       "player" => "http://test.host/videos/1986-nba-finals/twitter_player_card",
       "player:width" => "490",
       "player:height" => "276",
@@ -32,6 +32,6 @@ describe "twitter_player_cards/_meta.html.erb" do
   end
 
   def twitter_meta_tag(key, content)
-    "meta[name='twitter:#{key}'][content='#{content}']"
+    "meta[name='twitter:#{key}'][content^='#{content}']"
   end
 end
