@@ -55,24 +55,24 @@ describe Deck do
     context "the user has attempted a flashcard in the deck" do
       it "returns the time of the most recent attempt" do
         first_attempt = create(:attempt,
-          flashcard: flashcards.first,
-          user: user,
-          created_at: 15.minutes.ago)
+                               flashcard: flashcards.first,
+                               user: user,
+                               created_at: 15.minutes.ago)
         second_attempt = create(:attempt,
-          flashcard: flashcards.first,
-          user: user,
-          created_at: 45.minutes.ago)
+                               flashcard: flashcards.first,
+                               user: user,
+                               created_at: 45.minutes.ago)
         third_attempt = create(:attempt,
-          flashcard: flashcards.second,
-          user: user,
-          created_at: 2.minutes.ago)
+                               flashcard: flashcards.second,
+                               user: user,
+                               created_at: 2.minutes.ago)
         fourth_attempt = create(:attempt,
-          flashcard: flashcards.second,
-          user: user,
-          created_at: 10.minutes.ago)
+                               flashcard: flashcards.second,
+                               user: user,
+                               created_at: 10.minutes.ago)
 
-        expect(deck.last_attempted_by(user))
-          .to be_within(1.second).of third_attempt.created_at
+        expect(deck.last_attempted_by(user)).
+          to be_within(1.second).of third_attempt.created_at
       end
     end
 
@@ -103,21 +103,21 @@ describe Deck do
     context "the user has attempted a flashcard in the deck" do
       it "returns the most recent attempt" do
         first_attempt = create(:attempt,
-          flashcard: flashcards.first,
-          user: user,
-          created_at: 15.minutes.ago)
+                               flashcard: flashcards.first,
+                               user: user,
+                               created_at: 15.minutes.ago)
         second_attempt = create(:attempt,
-          flashcard: flashcards.first,
-          user: user,
-          created_at: 45.minutes.ago)
+                               flashcard: flashcards.first,
+                               user: user,
+                               created_at: 45.minutes.ago)
         third_attempt = create(:attempt,
-          flashcard: flashcards.second,
-          user: user,
-          created_at: 2.minutes.ago)
+                               flashcard: flashcards.second,
+                               user: user,
+                               created_at: 2.minutes.ago)
         fourth_attempt = create(:attempt,
-          flashcard: flashcards.second,
-          user: user,
-          created_at: 10.minutes.ago)
+                               flashcard: flashcards.second,
+                               user: user,
+                               created_at: 10.minutes.ago)
 
         expect(deck.most_recent_attempt_for(user)).to eq(third_attempt)
       end
