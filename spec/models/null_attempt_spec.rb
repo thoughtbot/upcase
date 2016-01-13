@@ -12,4 +12,10 @@ describe NullAttempt do
       expect(NullAttempt.new.low_confidence?).to be_falsey
     end
   end
+
+  describe "#created_at" do
+    it "returns nil" do
+      expect(NullAttempt.new.created_at).to be_nil
+    end
+  end
 end

@@ -1,6 +1,18 @@
 require "rails_helper"
 
+include ActionView::Helpers::DateHelper
+
 feature "Subscriber views decks" do
+  scenario "and hasn't started a deck" do
+    create(:flashcard)
+
+    visit decks_path(as: create(:subscriber))
+
+    within(".decks-area") do
+      expect(page).to have_content(never_attempted)
+    end
+  end
+
   scenario "and starts a deck" do
     flashcard = create(:flashcard)
 
@@ -33,6 +45,8 @@ feature "Subscriber views decks" do
     expect(last_flashcard_attempt.confidence).to eq(1)
     expect(analytics).to have_tracked("Flashcard Attempted").
       with_properties(deck: deck.title, title: flashcards.first.title)
+    expect(deck.last_attempted_by(last_flashcard_attempt.user)).
+      to eq(last_flashcard_attempt.created_at)
   end
 
   scenario "and navigates to the next flashcard directly" do
@@ -43,6 +57,8 @@ feature "Subscriber views decks" do
     navigate_to_next_flashcard
 
     expect(page).to have_content("Flashcard 2")
+    expect(deck.last_attempted_by(last_flashcard_attempt.user)).
+      to eq(last_flashcard_attempt.created_at)
   end
 
   context "and completes the deck" do
@@ -78,6 +94,12 @@ feature "Subscriber views decks" do
 
       within(".kept-flashcards") do
         expect(page).to have_link(flashcard.title)
+      end
+
+      within(".decks-area") do
+        expect(page).to have_content(
+          last_attempted_at(last_flashcard_attempt.created_at)
+        )
       end
     end
   end
@@ -153,5 +175,13 @@ feature "Subscriber views decks" do
 
   def reveal_answer
     I18n.t("flashcards.hidden_answer.reveal-answer")
+  end
+
+  def never_attempted
+    I18n.t("decks.deck.never_attempted")
+  end
+
+  def last_attempted_at(time)
+    I18n.t("decks.deck.last_attempted", distance: time_ago_in_words(time))
   end
 end

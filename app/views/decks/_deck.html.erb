@@ -2,7 +2,12 @@
   <h4 class="deck-title">
     <%= link_to deck.title, deck %>
   </h4>
-  <p class="flashcards-count">
-    <%= t(".number_of_flashcards", length: deck.length) %>
-  </p>
+  <div class="deck-details">
+    <p>
+      <%= t(".number_of_flashcards", length: deck.length) %>
+    </p>
+    <p class="last-attempted">
+      <%= last_attempted_in_words(deck.last_attempted_by(current_user)) %>
+    </p>
+  </div>
 </div>

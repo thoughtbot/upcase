@@ -26,6 +26,21 @@
   }
 }
 
+.deck-details {
+  @include position(absolute, null 1em 0.25em null);
+
+  p {
+    font-size: $font-size-smallest;
+    margin-bottom: 0;
+    text-align: right;
+  }
+
+  .last-attempted {
+    color: $gray-3;
+    font-style: italic;
+  }
+}
+
 .reveal-answer,
 .next-flashcard[type="submit"] {
   @extend %button;

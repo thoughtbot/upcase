@@ -5,6 +5,8 @@ describe Deck do
 
   it { should have_many(:flashcards).dependent(:destroy) }
 
+  it { should have_many(:attempts).order(created_at: :desc) }
+
   describe ".published" do
     it "returns only decks explicitly marked as published" do
       published_deck = create(:deck, published: true)
@@ -45,6 +47,42 @@ describe Deck do
     end
   end
 
+  describe "#last_attempted_by" do
+    let(:user)       { create(:user) }
+    let(:deck)       { create(:deck) }
+    let(:flashcards) { create_list(:flashcard, 2, deck: deck) }
+
+    context "the user has attempted a flashcard in the deck" do
+      it "returns the time of the most recent attempt" do
+        first_attempt = create(:attempt,
+                               flashcard: flashcards.first,
+                               user: user,
+                               created_at: 15.minutes.ago)
+        second_attempt = create(:attempt,
+                               flashcard: flashcards.first,
+                               user: user,
+                               created_at: 45.minutes.ago)
+        third_attempt = create(:attempt,
+                               flashcard: flashcards.second,
+                               user: user,
+                               created_at: 2.minutes.ago)
+        fourth_attempt = create(:attempt,
+                               flashcard: flashcards.second,
+                               user: user,
+                               created_at: 10.minutes.ago)
+
+        expect(deck.last_attempted_by(user)).
+          to be_within(1.second).of third_attempt.created_at
+      end
+    end
+
+    context "the user has yet to attempt a flashcard in the deck" do
+      it "returns nil" do
+        expect(deck.last_attempted_by(user)).to be_nil
+      end
+    end
+  end
+
   describe "#length" do
     it "returns the number of flashcards the deck has" do
       deck = create(:deck)
@@ -54,6 +92,41 @@ describe Deck do
       result = deck.length
 
       expect(result).to eq(2)
+    end
+  end
+
+  describe "#most_recent_attempt_for" do
+    let(:user)       { create(:user) }
+    let(:deck)       { create(:deck) }
+    let(:flashcards) { create_list(:flashcard, 2, deck: deck) }
+
+    context "the user has attempted a flashcard in the deck" do
+      it "returns the most recent attempt" do
+        first_attempt = create(:attempt,
+                               flashcard: flashcards.first,
+                               user: user,
+                               created_at: 15.minutes.ago)
+        second_attempt = create(:attempt,
+                               flashcard: flashcards.first,
+                               user: user,
+                               created_at: 45.minutes.ago)
+        third_attempt = create(:attempt,
+                               flashcard: flashcards.second,
+                               user: user,
+                               created_at: 2.minutes.ago)
+        fourth_attempt = create(:attempt,
+                               flashcard: flashcards.second,
+                               user: user,
+                               created_at: 10.minutes.ago)
+
+        expect(deck.most_recent_attempt_for(user)).to eq(third_attempt)
+      end
+    end
+
+    context "the user has yet to attempt a flashcard in the deck" do
+      it "returns a null attempt" do
+        expect(deck.most_recent_attempt_for(user)).to be_a(NullAttempt)
+      end
     end
   end
 end
