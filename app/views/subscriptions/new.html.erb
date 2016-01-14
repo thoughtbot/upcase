@@ -19,7 +19,7 @@
       <h2 class="hero-title">Let&rsquo;s get that &ldquo;junior&rdquo; out of your title</h2>
       <p class="hero-body">Upcase turns junior Rails developers into ass-kicking
       name-takers. We're not a bootcamp, we're a finishing school.</p>
-      <%= link_to "#price", class: "cta-button subscribe-cta" do %>
+      <%= link_to professional_checkout_path, class: "cta-button subscribe-cta" do %>
         <span><%= t("subscriptions.join_cta") %></span>
       <% end %>
     </div>
@@ -170,7 +170,7 @@
       <p>For aspiring senior developers looking for battle-tested best
       practices, a killer community, and mentorship from the right people.</p>
       <div class="price-cta">
-        <%= link_to new_checkout_path(plan: Plan.professional), class: "cta-button subscribe-cta light-bg" do %>
+        <%= link_to professional_checkout_path, class: "cta-button subscribe-cta light-bg" do %>
           <span><%= t(".sign_up_cta") %></span>
         <% end %>
       </div>
