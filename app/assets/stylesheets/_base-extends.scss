@@ -1,3 +1,17 @@
+%available-link {
+  border-radius: $base-border-radius;
+  border: 1px solid $upcase-green;
+  color: $upcase-green;
+  display: inline-block;
+  padding: 5px 10px;
+
+  .logo {
+    max-height: 1.4em;
+    text-align: center;
+    vertical-align: bottom;
+  }
+}
+
 %trail-bullet-complete {
   background: image-url('check.svg') darken($lightwarmgray, 12%) center center no-repeat;
   background-size: .9rem;

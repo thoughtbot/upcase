@@ -1,9 +1,11 @@
-<%= render video.clip %>
+<div class="video-and-assets-wrapper">
+  <%= render video.clip %>
 
-<div class="mark-as-complete">
-  <%= form_tag video_completions_path(video) do |f| %>
-    <%= submit_tag t("videos.show.mark-as-complete"), class:"small-button" %>
-  <% end %>
+  <div class="mark-as-complete">
+    <%= form_tag video_completions_path(video) do |f| %>
+      <%= submit_tag t("videos.show.mark-as-complete"), class:"small-button" %>
+    <% end %>
+  </div>
 </div>
 
 <% if video.has_notes? %>

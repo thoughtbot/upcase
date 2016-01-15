@@ -40,7 +40,7 @@
       <%= render "shared/flashes" %>
     </div>
 
-    <section class="content">
+    <section class="content <%= yield(:additional_content_classes) %>">
       <% if content_for?(:subject_block) %>
         <section class="subject"><%= yield(:subject_block) %></section>
       <% end %>

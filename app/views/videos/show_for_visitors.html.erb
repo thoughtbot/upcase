@@ -1,4 +1,5 @@
 <% content_for :page_title, @video.name.html_safe %>
+<% content_for :additional_content_classes, "content-narrow" %>
 
 <% if @video.preview_wistia_id.present? %>
   <% content_for :head do %>
@@ -10,32 +11,31 @@
   <%= link_to '&larr; All Videos'.html_safe, '/the-weekly-iteration' %>
 <% end %>
 
-<div class="text-box-wrapper">
-  <%= render "watchables/preview" %>
-  <div class="text-box">
-    <span class="divider">
-      <h4 class="text">Video</h4>
-    </span>
-    <%= render @video.preview, name: @video.name %>
+<div class="text-box">
+  <% content_for :subject_block do %>
+    <h1><%= @video.name %></h1>
+    <h2 class="parent-collection">
+      <%= link_to @video.watchable_name, @video.watchable %>
+    </h2>
+  <% end %>
 
-    <section class='video-notes'>
-      <h3>Notes</h3>
-      <%= format_markdown(@video.notes) %>
-    </section>
+  <span class="divider">
+    <h4 class="text">Video</h4>
+  </span>
+
+  <div class="video-and-assets-wrapper">
+    <%= render @video.preview, name: @video.name %>
   </div>
 
-  <%= render "comments", video: @video %>
+  <%= render "access_callout",
+    text: "This video is a preview. Want to see the full-length video right now for free?",
+    link: "#",
+    button_text: "Sign In with GitHub" %>
+
+  <section class='video-notes'>
+    <h3>Notes</h3>
+    <%= format_markdown(@video.notes) %>
+  </section>
 </div>
 
-<aside>
-  <section id="license" class="<%= @watchable.offering_type %>">
-    <% if @watchable.active? %>
-      <%= render "products/subscription", offering: @watchable %>
-      <%= render "watchables/link", watchable: @watchable %>
-    <% else %>
-      <%= render "watchables/inactive", watchable: @watchable %>
-    <% end %>
-  </section>
-
-  <%= render 'watchables/terms', watchable: @watchable %>
-</aside>
+<%= render "comments", video: @video %>

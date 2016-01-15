@@ -35,6 +35,14 @@
   }
 }
 
+.access-button {
+  @extend %available-link;
+}
+
+.video-and-assets-wrapper {
+  @include clearfix;
+}
+
 .mark-as-complete {
   float: right;
 }
@@ -159,6 +167,18 @@
 
 .video-text.complete:before {
   content: image-url("complete.svg");
+}
+
+.access-callout {
+  @include margin($large-spacing null);
+  background: lighten($cta-color-light, 40%);
+  border: 1px solid $base-border-color-yellow;
+  padding: $base-spacing;
+
+  p {
+    font-weight: $sans-serif-semibold;
+    margin-bottom: $base-spacing;
+  }
 }
 
 .parent-collection a {

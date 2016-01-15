@@ -79,6 +79,10 @@ section {
   }
 }
 
+.content-narrow {
+  max-width: $max-width-narrow;
+}
+
 aside {
   @include span-columns(3);
   box-shadow: none;
