@@ -26,11 +26,12 @@ section {
   width: 100%;
 
   ul, ol {
+    margin: 1em 0;
     padding: 0;
   }
 
   li {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 
     &:first-child {
       margin-top: 0;
