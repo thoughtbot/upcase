@@ -66,10 +66,11 @@ $light-gray-border: #ccc;
 $row-highlight: #f9f9f9;
 
 $base-spacing: 1em;
-$large-spacing: 2em;
+$medium-spacing: $base-spacing * 2;
+$large-spacing: $base-spacing * 3.75;
 
 $max-width: 1100px;
-$max-width-narrow: 750px;
+$max-width-narrow: 950px;
 $navigation-height: 60px;
 $navigation-cta-offset: 10px;
 $header-height: $navigation-height - ($navigation-cta-offset * 2);

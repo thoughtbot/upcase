@@ -81,6 +81,24 @@
 }
 
 .video-notes {
+  border: 1px solid $gray-4;
+  border-radius: $base-border-radius;
+}
+
+.video-notes-header {
+  background-color: $gray-5;
+  border-bottom: 1px solid $gray-4;
+  margin-bottom: $large-spacing;
+  padding: $base-spacing;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.video-notes-content {
+  @include padding(null $large-spacing $large-spacing);
+
   h3 {
     margin-top: 0;
   }
@@ -170,7 +188,7 @@
 }
 
 .access-callout {
-  @include margin($large-spacing null);
+  @include margin($medium-spacing null);
   background: lighten($cta-color-light, 40%);
   border: 1px solid $base-border-color-yellow;
   padding: $base-spacing;

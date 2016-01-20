@@ -32,9 +32,14 @@
     link: "#",
     button_text: "Sign In with GitHub" %>
 
-  <section class='video-notes'>
-    <h3>Notes</h3>
-    <%= format_markdown(@video.notes) %>
+  <section class="video-notes">
+    <header class="video-notes-header">
+      <h3>Notes</h3>
+    </header>
+
+    <div class="video-notes-content">
+      <%= format_markdown(@video.notes) %>
+    </div>
   </section>
 </div>
 
