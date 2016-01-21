@@ -8,10 +8,12 @@
   </div>
 </div>
 
-<% if @video.accessible_without_subscription? %>
-  <%= render "subscribe_to_view_all_callout", video: @video %>
-<% else %>
-  <%= render "subscribe_to_view_full_video_callout", video: @video %>
+<% unless current_user_has_active_subscription? %>
+  <% if @video.accessible_without_subscription? %>
+    <%= render "subscribe_to_view_all_callout", video: @video %>
+  <% else %>
+    <%= render "subscribe_to_view_full_video_callout", video: @video %>
+  <% end %>
 <% end %>
 
 <% if video.has_notes? %>
