@@ -1,1 +1,5 @@
-<svg width="19" height="19" viewBox="0 0 19 19" xmlns="http://www.w3.org/2000/svg"><title>in-progress</title><g fill="none" fill-rule="evenodd"><circle fill="#4DD1AA" cx="9.5" cy="9.5" r="9.5"/><circle fill="#FFF" cx="9.5" cy="9.5" r="1.5"/><circle fill="#FFF" cx="14.5" cy="9.5" r="1.5"/><circle fill="#FFF" cx="4.5" cy="9.5" r="1.5"/></g></svg>
+<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle fill="#FFF" cx="4" cy="10" r="2"/>
+  <circle fill="#FFF" cx="10" cy="10" r="2"/>
+  <circle fill="#FFF" cx="16" cy="10" r="2"/>
+</svg>

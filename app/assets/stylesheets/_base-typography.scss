@@ -52,6 +52,10 @@ strong {
   font-weight: bold;
 }
 
+small {
+  font-size: $font-size-smallest;
+}
+
 pre code {
   display: block;
   line-height: 1.4rem;
