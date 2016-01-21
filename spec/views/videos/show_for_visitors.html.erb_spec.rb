@@ -13,22 +13,12 @@ describe "videos/show_for_visitors" do
   end
 
   it "shows a thumbnail when there is no preview" do
-    video = build(
-      :video,
-      :published,
-      watchable: build_stubbed(:show),
-      preview_wistia_id: nil
-    )
+    video = build_stubbed(:video, preview_wistia_id: nil)
+    wistia_id = stub_thumbnail_wistia_id_for(video)
 
-    wistia_id = "123"
-    clip = double("Clip", wistia_id: wistia_id)
-    thumbnail = VideoThumbnail.new(clip)
-    allow(video).to receive(:preview).and_return(thumbnail)
-    stub_controller(video)
+    render_video_page_for_guest(video: video)
 
-    render template: "videos/show_for_visitors"
-
-    expect(rendered).to have_css("img.thumbnail[data-wistia-id='#{wistia_id}']")
+    expect(rendered).to have_wistia_thumbnail(wistia_id)
   end
 
   context "when the video is accessible_without_subscription" do
@@ -67,6 +57,10 @@ describe "videos/show_for_visitors" do
     )
   end
 
+  def have_wistia_thumbnail(wistia_id)
+    have_css("img.thumbnail[data-wistia-id='#{wistia_id}']")
+  end
+
   def have_wistia_preview(wistia_id)
     have_css("p[data-wistia-id='#{wistia_id}']")
   end
@@ -87,5 +81,13 @@ describe "videos/show_for_visitors" do
     preview_video = Clip.new("123")
     allow(video).to receive(:preview).and_return(preview_video)
     preview_video.wistia_id
+  end
+
+  def stub_thumbnail_wistia_id_for(video)
+    wistia_id = "123"
+    clip = double("Clip", wistia_id: wistia_id)
+    thumbnail = VideoThumbnail.new(clip)
+    allow(video).to receive(:preview).and_return(thumbnail)
+    wistia_id
   end
 end

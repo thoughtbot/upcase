@@ -8,6 +8,12 @@
   </div>
 </div>
 
+<% if @video.accessible_without_subscription? %>
+  <%= render "subscribe_to_view_all_callout", video: @video %>
+<% else %>
+  <%= render "subscribe_to_view_full_video_callout", video: @video %>
+<% end %>
+
 <% if video.has_notes? %>
   <div class="text-box">
     <section class='video-notes' data-markers="<%= video.markers.to_json %>">

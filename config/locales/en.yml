@@ -219,8 +219,10 @@ en:
       mark-as-complete: Mark as Complete
       auth_to_access_callout_text: This video is a preview. Want to see the full-length video right now for free?
       auth_to_access_button_text: Sign In with GitHub for Free Access
-      subscribe_to_view_full_video_callout_text: This video is only a partial sample, but you can access the full version by subscribing.
+      subscribe_to_view_full_video_callout_text: This video is only a short sample, but you can access the full version and all our other great content by subscribing.
       subscribe_to_view_full_video_button_text: Subscribe Now
+      subscribe_to_view_all_callout_text: We hope you're enjoying this full-length sample video. Ready to dive into all the other great content?
+      subscribe_to_view_all_button_text: Subscribe Now
     seek_buttons:
       jump-to-topic-in-video: Jump to Topic In Video
   watchables:
