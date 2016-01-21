@@ -88,7 +88,6 @@
 .video-notes-header {
   background-color: $gray-5;
   border-bottom: 1px solid $gray-4;
-  margin-bottom: $large-spacing;
   padding: $base-spacing;
 
   h3 {
@@ -97,7 +96,11 @@
 }
 
 .video-notes-content {
-  @include padding(null $large-spacing $large-spacing);
+  padding: $base-spacing;
+
+  @include dashboard-medium {
+    padding: $large-spacing;
+  }
 
   h3 {
     margin-top: 0;
