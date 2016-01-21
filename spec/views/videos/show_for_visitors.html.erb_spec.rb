@@ -4,22 +4,12 @@ describe "videos/show_for_visitors" do
   include Rails.application.routes.url_helpers
 
   it "embeds a preview when available" do
-    video = create(
-      :video,
-      :published,
-      watchable: create(:show),
-      preview_wistia_id: "123456"
-    )
+    video = build_stubbed(:video)
+    wistia_id = stub_wistia_id_for(video)
 
-    wistia_id = "123"
-    preview_video = Clip.new(wistia_id)
-    allow(video).to receive(:preview).and_return(preview_video)
-    stub_controller(video)
+    render_video_page_for_guest(video: video)
 
-    render template: "videos/show_for_visitors"
-
-    expect(rendered).
-      to have_css("p[data-wistia-id='#{wistia_id}']")
+    expect(rendered).to have_wistia_preview(wistia_id)
   end
 
   it "shows a thumbnail when there is no preview" do
@@ -77,6 +67,10 @@ describe "videos/show_for_visitors" do
     )
   end
 
+  def have_wistia_preview(wistia_id)
+    have_css("p[data-wistia-id='#{wistia_id}']")
+  end
+
   def render_video_page_for_guest(video:)
     plan = double("plan", price: 29)
     assign :plan, plan
@@ -89,14 +83,9 @@ describe "videos/show_for_visitors" do
     render template: "videos/show_for_visitors"
   end
 
-  def stub_controller(video)
-    plan = double("plan", price: 29)
-    assign :plan, plan
-    assign :video, video
-    assign :watchable, video.watchable
-
-    view_stubs(:signed_out?).and_return(true)
-    view_stubs(:signed_in?).and_return(false)
-    view_stubs(:current_user_has_active_subscription?).and_return(false)
+  def stub_wistia_id_for(video)
+    preview_video = Clip.new("123")
+    allow(video).to receive(:preview).and_return(preview_video)
+    preview_video.wistia_id
   end
 end
