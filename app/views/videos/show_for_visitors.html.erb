@@ -27,10 +27,7 @@
     <%= render @video.preview, name: @video.name %>
   </div>
 
-  <%= render "access_callout",
-    text: "This video is a preview. Want to see the full-length video right now for free?",
-    link: "#",
-    button_text: "Sign In with GitHub" %>
+  <%= render "auth_to_access_callout", video: @video %>
 
   <section class="video-notes">
     <header class="video-notes-header">

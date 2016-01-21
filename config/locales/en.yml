@@ -217,6 +217,8 @@ en:
   videos:
     show:
       mark-as-complete: Mark as Complete
+      auth_to_access_callout_text: This video is a preview. Want to see the full-length video right now for free?
+      auth_to_access_button_text: Sign In with GitHub for Free Access
     seek_buttons:
       jump-to-topic-in-video: Jump to Topic In Video
   watchables:
