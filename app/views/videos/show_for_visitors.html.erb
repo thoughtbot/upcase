@@ -27,7 +27,11 @@
     <%= render @video.preview, name: @video.name %>
   </div>
 
-  <%= render "auth_to_access_callout", video: @video %>
+  <% if @video.accessible_without_subscription? %>
+    <%= render "auth_to_access_callout", video: @video %>
+  <% else %>
+    <%= render "subscribe_to_view_full_video_callout", video: @video %>
+  <% end %>
 
   <section class="video-notes">
     <header class="video-notes-header">

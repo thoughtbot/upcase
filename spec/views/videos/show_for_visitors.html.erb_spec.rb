@@ -42,38 +42,50 @@ describe "videos/show_for_visitors" do
   end
 
   context "when the video is accessible_without_subscription" do
-    context "current_user is a guest" do
-      it "displays an 'Auth to Access' CTA" do
-        video = build_stubbed(:video, :free_sample)
+    it "displays an 'Auth to Access' CTA" do
+      video = build_stubbed(:video, :free_sample)
 
-        render_with video: video, signed_in: false
+      render_video_page_for_guest video: video
 
-        expect(rendered).to have_auth_to_access_cta_for(video)
-        expect(rendered).not_to have_subscribe_to_view_all_cta
-      end
+      expect(rendered).to have_auth_to_access_cta_for(video)
+      expect(rendered).not_to have_subscribe_to_view_full_video_cta
+    end
+  end
+
+  context "when the video is not accessible_without_subscription" do
+    it "displays a 'subscriber to view all' CTA" do
+      video = build_stubbed(:video, accessible_without_subscription: false)
+
+      render_video_page_for_guest video: video
+
+      expect(rendered).to have_subscribe_to_view_full_video_cta
+      expect(rendered).not_to have_auth_to_access_cta_for(video)
     end
   end
 
   def have_auth_to_access_cta_for(video)
     have_link(
       I18n.t("videos.show.auth_to_access_button_text"),
-      href: video_auth_to_access_path(video)
+      href: video_auth_to_access_path(video),
     )
   end
 
-  def have_subscribe_to_view_all_cta
-    have_css ".subscription-required"
+  def have_subscribe_to_view_full_video_cta
+    have_link(
+      I18n.t("videos.show.subscribe_to_view_full_video_button_text"),
+      href: join_path
+    )
   end
 
-  def render_with(video:, signed_in:, subscriber: false)
+  def render_video_page_for_guest(video:)
     plan = double("plan", price: 29)
     assign :plan, plan
     assign :video, video
     assign :watchable, video.watchable
 
-    view_stubs(:signed_in?).and_return(signed_in)
-    view_stubs(:signed_out?).and_return(!signed_in)
-    view_stubs(:current_user_has_active_subscription?).and_return(subscriber)
+    view_stubs(:signed_in?).and_return(false)
+    view_stubs(:signed_out?).and_return(true)
+    view_stubs(:current_user_has_active_subscription?).and_return(false)
     render template: "videos/show_for_visitors"
   end
 
