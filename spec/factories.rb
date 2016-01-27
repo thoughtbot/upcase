@@ -434,6 +434,10 @@ FactoryGirl.define do
       end
     end
 
+    trait :with_preview do
+      sequence(:preview_wistia_id) { |n| "preview-#{n}" }
+    end
+
     after(:stub) { |video| video.slug = video.id.to_s }
   end
 

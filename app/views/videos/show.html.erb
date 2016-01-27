@@ -1,0 +1,61 @@
+<% content_for :page_title, @video.name.html_safe %>
+
+<% if @video.preview_wistia_id.present? %>
+  <% content_for :head do %>
+    <%= render "twitter_player_cards/meta", video: @video %>
+  <% end %>
+<% end %>
+
+<% content_for :subject_block do %>
+  <h1><%= @video.name %></h1>
+  <h2 class="parent-collection">
+    <%= link_to @video.watchable_name, @video.watchable %>
+  </h2>
+<% end %>
+
+<% unless current_user_has_access_to?(@video) %>
+  <%= render "watchables/preview" %>
+<% end %>
+
+<span class="divider">
+  <h4 class="text">Video</h4>
+</span>
+
+<% if current_user_has_access_to?(@video) %>
+  <%= render @video.clip %>
+<% else %>
+  <%= render @video.preview, name: @video.name %>
+<% end %>
+
+<% if current_user_has_access_to?(@video) %>
+  <div class="mark-as-complete">
+    <%= form_tag video_completions_path(@video) do |f| %>
+      <%= submit_tag t("videos.show.mark-as-complete"), class:"small-button" %>
+    <% end %>
+  </div>
+<% end %>
+
+<% if @video.part_of_trail? %>
+  <%= render "trails/progress",
+    trail: TrailWithProgress.new(
+      @video.trail,
+      user: current_user,
+      status_finder: StatusFinder.new(user: current_user),
+    )
+  %>
+<% end %>
+
+<% if @video.has_notes? %>
+  <div class="text-box">
+    <section class="video-notes">
+      <h3>Notes</h3>
+      <%= format_markdown(@video.notes) %>
+    </section>
+  </div>
+<% end %>
+
+<%= render "comments", video: @video %>
+
+<% if current_user_has_access_to?(@video) %>
+  <%= render "seek_buttons", markers: @video.markers %>
+<% end %>

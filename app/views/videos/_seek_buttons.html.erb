@@ -7,7 +7,7 @@
 <% content_for :javascript do %>
   <script type="text/javascript">
     $(function() {
-      var markers = $(".video-notes").data("markers");
+      var markers = <%= raw markers.to_json %>;
 
       var scrollPageToShowVideo = function() {
         $(".wistia-wrapper").get(0).scrollIntoViewIfNeeded();
