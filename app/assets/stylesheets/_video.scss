@@ -73,6 +73,28 @@
 }
 
 .video-notes {
+  border: 1px solid $gray-4;
+  border-radius: $base-border-radius;
+}
+
+
+.video-notes-header {
+  background-color: $gray-5;
+  border-bottom: 1px solid $gray-4;
+  padding: $base-spacing;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.video-notes-content {
+  padding: $base-spacing;
+
+  @include dashboard-medium {
+    padding: $large-spacing;
+  }
+
   h3 {
     margin-top: 0;
   }
@@ -81,6 +103,10 @@
     list-style: initial;
     margin-left: 1.2em;
   }
+}
+
+.videos-show .content {
+  max-width: $max-width-narrow;
 }
 
 #videos .video {

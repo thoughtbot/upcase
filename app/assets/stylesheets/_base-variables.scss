@@ -64,7 +64,11 @@ $inline-code-background: hsla(0, 0, 0, 0.07);
 $light-gray-border: #ccc;
 $row-highlight: #f9f9f9;
 
+$base-spacing: 1em;
+$large-spacing: 2em;
+
 $max-width: 1100px;
+$max-width-narrow: 900px;
 $navigation-height: 60px;
 $navigation-cta-offset: 10px;
 $header-height: $navigation-height - ($navigation-cta-offset * 2);

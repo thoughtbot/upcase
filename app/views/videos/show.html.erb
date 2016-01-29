@@ -48,8 +48,13 @@
 <% if @video.has_notes? %>
   <div class="text-box">
     <section class="video-notes">
-      <h3>Notes</h3>
-      <%= format_markdown(@video.notes) %>
+      <header class="video-notes-header">
+        <h3>Notes</h3>
+      </header>
+
+      <div class="video-notes-content">
+        <%= format_markdown(@video.notes) %>
+      </div>
     </section>
   </div>
 <% end %>
