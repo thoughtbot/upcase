@@ -23,7 +23,8 @@ module ApplicationHelper
         Redcarpet::Render::HTML.new(with_toc_data: true),
         autolink: true,
         tables: true,
-        fenced_code_blocks: true
+        fenced_code_blocks: true,
+        no_intra_emphasis: true,
       )
       renderer.render(markdown).html_safe
     else
