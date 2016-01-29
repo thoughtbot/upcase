@@ -434,6 +434,10 @@ FactoryGirl.define do
       end
     end
 
+    trait :free_sample do
+      accessible_without_subscription true
+    end
+
     trait :with_preview do
       sequence(:preview_wistia_id) { |n| "preview-#{n}" }
     end

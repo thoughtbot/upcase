@@ -218,6 +218,12 @@ en:
   videos:
     show:
       mark-as-complete: Mark as Complete
+      auth_to_access_callout_text: This video is a preview. Want to see the full-length video right now for free?
+      auth_to_access_button_text: Sign In with GitHub for Free Access
+      access_callout_for_preview_text: This video is only a short sample, but you can access the full version and all our other great content by subscribing.
+      access_callout_for_preview_button: Subscribe Now
+      access_callout_for_sample_text: We hope you're enjoying this full-length sample video. Ready to dive into all the other great content?
+      access_callout_for_sample_button: Subscribe Now
     seek_buttons:
       jump-to-topic-in-video: Jump to Topic In Video
   watchables:

@@ -1,0 +1,9 @@
+<% if video.accessible_without_subscription? %>
+  <% if signed_out? %>
+    <%= render "videos/auth_to_access", video: video %>
+  <% else %>
+    <%= render "videos/subscribe_callout_for_free_sample" %>
+  <% end %>
+<% else %>
+  <%= render "videos/subscribe_callout_for_preview" %>
+<% end %>

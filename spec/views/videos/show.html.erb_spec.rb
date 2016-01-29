@@ -41,23 +41,23 @@ describe "videos/show" do
   end
 
   describe "preview notice and subscribe CTA" do
-    context "the user does not have access to the full video" do
-      it "displays the notice and subscribe CTA" do
-        video = build_stubbed(:video, watchable: build_stubbed(:show))
+    context "the user is not a subscriber" do
+      it "displays the auth to access CTA for the video" do
+        video = build_stubbed(:video, :free_sample)
 
-        render_video video, has_access: false
+        render_video video, subscriber: false
 
-        expect(rendered).to have_locked_message_with_subscribe_cta
+        expect(rendered).to have_access_callout
       end
     end
 
-    context "the user has access to the full video" do
+    context "the user is a subscriber" do
       it "does not display the notice or subscribe CTA" do
         video = build_stubbed(:video, watchable: build_stubbed(:show))
 
-        render_video video, has_access: true
+        render_video video, subscriber: true
 
-        expect(rendered).not_to have_locked_message_with_subscribe_cta
+        expect(rendered).not_to have_access_callout
       end
     end
   end
@@ -209,8 +209,8 @@ describe "videos/show" do
     have_css(".trails-progress")
   end
 
-  def have_locked_message_with_subscribe_cta
-    have_css(".locked-message", text: /Subscribe/)
+  def have_access_callout
+    have_css ".access-callout"
   end
 
   def be_displaying_video_with_id(video_id)
@@ -239,10 +239,13 @@ describe "videos/show" do
     video.reload
   end
 
-  def render_video(video, has_access: true)
+  def render_video(video, has_access: true, subscriber: false)
     assign :video, video
     allow(view).to receive(:current_user_has_access_to?).and_return(has_access)
     allow(view).to receive(:current_user).and_return(build_stubbed(:user))
+    allow(view).to receive(:signed_out?).and_return(false)
+    allow(view).to receive(:current_user_has_active_subscription?).
+      and_return(subscriber)
     render template: "videos/show"
   end
 end

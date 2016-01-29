@@ -175,6 +175,38 @@
   }
 }
 
+.access-callout {
+  @include margin($medium-spacing null);
+  align-items: center;
+  background: lighten($cta-color-light, 40%);
+  border: 1px solid $base-border-color-yellow;
+  display: flex;
+  padding: $base-spacing;
+
+  @include dashboard-small-only {
+    flex-direction: column;
+  }
+
+  p {
+    font-weight: $sans-serif-semibold;
+    margin-bottom: 0;
+    margin-right: $base-spacing;
+
+    @include dashboard-small-only {
+      margin-bottom: $base-spacing;
+      margin-right: 0;
+    }
+  }
+
+  .cta-button {
+    flex: none;
+
+    @include dashboard-small-only {
+      width: 100%;
+    }
+  }
+}
+
 .video-text.unstarted:before {
   content: image-url("play.svg");
 }
