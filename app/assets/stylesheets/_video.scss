@@ -35,6 +35,14 @@
   }
 }
 
+.access-button {
+  @extend %available-link;
+}
+
+.video-and-assets-wrapper {
+  @include clearfix;
+}
+
 .mark-as-complete {
   float: right;
 }
@@ -73,6 +81,27 @@
 }
 
 .video-notes {
+  border: 1px solid $gray-4;
+  border-radius: $base-border-radius;
+}
+
+.video-notes-header {
+  background-color: $gray-5;
+  border-bottom: 1px solid $gray-4;
+  padding: $base-spacing;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.video-notes-content {
+  padding: $base-spacing;
+
+  @include dashboard-medium {
+    padding: $large-spacing;
+  }
+
   h3 {
     margin-top: 0;
   }
@@ -103,9 +132,44 @@
     border: 0;
   }
 
+  .video-free {
+    letter-spacing: $base-letter-spacing;
+    text-transform: uppercase;
+  }
+
   .video-text:before {
+    @include size(20px);
+    background-color: $upcase-green;
+    border-radius: 10px;
+    content: "";
     float: left;
-    margin: 3px 10px 0 0;
+    margin: 24px 10px 0 0;
+  }
+
+  .video-text.free:before {
+    background-color: $upcase-blue;
+  }
+
+  .video-text.complete:before {
+    opacity: 0.5;
+  }
+
+  $video-states: (
+    unstarted: "play.svg",
+    in-progress: "in-progress.svg",
+    complete: "complete.svg"
+  );
+
+  @each $video-state, $image in $video-states {
+    .video-text.#{$video-state} {
+      &:before {
+        background-image: image-url($image);
+      }
+    }
+  }
+
+  .video-content {
+    margin-left: 30px;
   }
 
   .video-summary {
@@ -149,16 +213,16 @@
   }
 }
 
-.video-text.unstarted:before {
-  content: image-url("play.svg");
-}
+.access-callout {
+  @include margin($medium-spacing null);
+  background: lighten($cta-color-light, 40%);
+  border: 1px solid $base-border-color-yellow;
+  padding: $base-spacing;
 
-.video-text.in-progress:before {
-  content: image-url("in-progress.svg");
-}
-
-.video-text.complete:before {
-  content: image-url("complete.svg");
+  p {
+    font-weight: $sans-serif-semibold;
+    margin-bottom: $base-spacing;
+  }
 }
 
 .parent-collection a {

@@ -24,6 +24,7 @@
 
   &.small-button {
     font-size: 0.9em;
+    line-height: $medium-line-height;
     padding: $button-padding-small;
   }
 
@@ -74,7 +75,7 @@ input[type="submit"].subscribe-cta {
   color: $cta-text-color;
 
   &.light-bg {
-    border: 1px solid lighten($cta-color-dark, 30%);
+    border: $base-border-color-yellow;
   }
 
   &:hover {

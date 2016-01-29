@@ -1,16 +1,31 @@
-<%= render video.clip %>
+<div class="video-and-assets-wrapper">
+  <%= render video.clip %>
 
-<div class="mark-as-complete">
-  <%= form_tag video_completions_path(video) do |f| %>
-    <%= submit_tag t("videos.show.mark-as-complete"), class:"small-button" %>
-  <% end %>
+  <div class="mark-as-complete">
+    <%= form_tag video_completions_path(video) do |f| %>
+      <%= submit_tag t("videos.show.mark-as-complete"), class:"small-button" %>
+    <% end %>
+  </div>
 </div>
+
+<% unless current_user_has_active_subscription? %>
+  <% if @video.accessible_without_subscription? %>
+    <%= render "subscribe_to_view_all_callout", video: @video %>
+  <% else %>
+    <%= render "subscribe_to_view_full_video_callout", video: @video %>
+  <% end %>
+<% end %>
 
 <% if video.has_notes? %>
   <div class="text-box">
     <section class='video-notes' data-markers="<%= video.markers.to_json %>">
-      <h3>Notes</h3>
-      <%= format_markdown(video.notes) %>
+      <header class="video-notes-header">
+        <h3>Notes</h3>
+      </header>
+
+      <div class="video-notes-content">
+        <%= format_markdown(video.notes) %>
+      </div>
     </section>
   </div>
 <% end %>

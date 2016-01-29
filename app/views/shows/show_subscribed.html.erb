@@ -1,3 +1,5 @@
+<% content_for :additional_content_classes, "content-narrow" %>
+
 <% content_for :subject_block do %>
   <h1><%= @show.name %></h1>
   <h2 class="tagline">
@@ -5,15 +7,11 @@
   </h2>
 <% end %>
 
-<div class="text-box-wrapper">
-  <div class="text-box">
-    <span class="divider">
-      <h4 class="text">Videos</h4>
-    </span>
-    <section id="videos">
-      <%= render @show.videos_with_status %>
-    </section>
-  </div>
+<div class="text-box">
+  <span class="divider">
+    <h4 class="text">Videos</h4>
+  </span>
+  <section id="videos">
+    <%= render @show.videos_with_status %>
+  </section>
 </div>
-
-<%= render 'watchables/aside', watchable: @show %>

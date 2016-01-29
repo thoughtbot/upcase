@@ -415,6 +415,7 @@ FactoryGirl.define do
     sequence(:name) { |n| "Video #{n}" }
     wistia_id '1194803'
     published_on { 1.day.from_now }
+    sequence(:slug) { |n| "great-video-#{n}" }
 
     trait :published do
       published_on { 1.day.ago }
@@ -424,6 +425,10 @@ FactoryGirl.define do
       after :create do |video|
         create(:step, trail: create(:trail), completeable: video)
       end
+    end
+
+    trait :free_sample do
+      accessible_without_subscription true
     end
 
     trait :with_progress do

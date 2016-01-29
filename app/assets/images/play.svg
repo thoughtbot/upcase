@@ -1,1 +1,3 @@
-<svg width="19" height="19" viewBox="0 0 19 19" xmlns="http://www.w3.org/2000/svg"><title>play</title><g fill="none" fill-rule="evenodd"><circle fill="#4DD1AA" cx="9.5" cy="9.5" r="9.5"/><path d="M6.99 13.69V5.87l7.27 3.91L7 13.69h-.01z" fill="#FFF"/></g></svg>
+<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#FFF" d="M14 10l-6 4V6"/>
+</svg>

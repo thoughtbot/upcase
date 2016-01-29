@@ -1,16 +1,27 @@
 <%= content_tag_for :div, video do %>
-  <div class="video-text <%= video.status_class %>">
+  <div class="video-text free <%= video.status_class %>">
     <%= link_to video_path(video) do %>
+      <small class="video-free">Free</small>
       <h3><%= video.name %></h3>
     <% end %>
-    <div class="video-tags">
-      <%= render video.topics %>
+
+    <div class="video-content">
+      <div class="video-tags">
+        <%= render video.topics %>
+      </div>
+
+      <p class="video-length" data-wistia-id="<%= video.clip.wistia_id %>">
+        <%= video.length_in_minutes %> minutes
+      </p>
+
+      <p class="video-summary">
+        <%= format_markdown(video.summary) %>
+      </p>
+
+      <a href="#" class="cta-button subscribe-cta small-button access-button">
+        <%= image_tag("github-black.svg", class: "logo") %>
+        Sign In with GitHub for Free Access
+      </a>
     </div>
-    <p class="video-length" data-wistia-id="<%= video.clip.wistia_id %>">
-      <%= video.length_in_minutes %> minutes
-    </p>
-    <p class="video-summary">
-      <%= format_markdown(video.summary) %>
-    </p>
   </div>
 <% end %>
