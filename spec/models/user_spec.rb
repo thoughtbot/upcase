@@ -117,13 +117,14 @@ describe User do
     end
   end
 
-  context "#subscriber?" do
+  context "#subscriber?, #sampler?" do
     it "returns true if the user's associated subscription is active" do
       user = User.new
       subscription = build_stubbed(:active_subscription)
       allow(user).to receive(:subscriptions).and_return([subscription])
 
       expect(user.subscriber?).to eq(true)
+      expect(user.sampler?).to eq(false)
     end
 
     it "returns true with an active team subscription" do
@@ -140,6 +141,7 @@ describe User do
       user = User.new
       user.team = team
       expect(user.subscriber?).to eq(false)
+      expect(user.sampler?).to eq(true)
     end
 
     it "returns false if the user's associated subscription is not active" do
@@ -148,12 +150,14 @@ describe User do
       allow(user).to receive(:subscriptions).and_return([subscription])
 
       expect(user.subscriber?).to eq(false)
+      expect(user.sampler?).to eq(true)
     end
 
     it "returns false if the user doesn't even have a subscription" do
       user = User.new
 
       expect(user.subscriber?).to eq(false)
+      expect(user.sampler?).to eq(true)
     end
 
     context "with an inactive subscription and an active team subscription" do
@@ -161,10 +165,11 @@ describe User do
         user = create(
           :user,
           :with_inactive_subscription,
-          :with_team_subscription
+          :with_team_subscription,
         )
 
         expect(user.subscriber?).to eq(true)
+        expect(user.sampler?).to eq(false)
       end
     end
 
@@ -173,10 +178,11 @@ describe User do
         user = create(
           :user,
           :with_subscription,
-          :with_inactive_team_subscription
+          :with_inactive_team_subscription,
         )
 
         expect(user.subscriber?).to eq(true)
+        expect(user.sampler?).to eq(false)
       end
     end
 
@@ -185,10 +191,11 @@ describe User do
         user = create(
           :user,
           :with_inactive_subscription,
-          :with_inactive_team_subscription
+          :with_inactive_team_subscription,
         )
 
         expect(user.subscriber?).to eq(false)
+        expect(user.sampler?).to eq(true)
       end
     end
   end

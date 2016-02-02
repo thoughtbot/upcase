@@ -221,6 +221,9 @@ en:
     other_resources: Use these resources for reference and additional practice
     thoughtbot_resources: Use these thoughtbot resources first
     validations: '%{name} developers should be able to'
+    start_trail: Start trail
+    visit_trail: Visit trail
+    subscribe: Subscribe
   users:
     flashes:
       update:

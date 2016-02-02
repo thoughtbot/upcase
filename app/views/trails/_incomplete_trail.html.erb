@@ -7,13 +7,12 @@
       <%= render "practice/trail_description_tooltip", trail: trail %>
     </header>
 
-    <%= render "trails/step_dots", trail: trail %>
+    <div class="steps-and-start">
+      <%= render "trails/step_dots", trail: trail %>
 
-    <% if trail.steps.present? %>
-      <%= link_to url_for(trail.first_completeable),
-        class: "start-trail cta-button small-button" do %>
-        Start trail
+      <% if trail.steps.present? %>
+        <%= trail_call_to_action(trail) %>
       <% end %>
-    <% end %>
+    </div>
   </section>
 </div>

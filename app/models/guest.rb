@@ -3,6 +3,10 @@ class Guest
     false
   end
 
+  def sampler?
+    false
+  end
+
   def admin?
     false
   end

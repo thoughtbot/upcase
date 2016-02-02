@@ -517,6 +517,13 @@ FactoryGirl.define do
         create(:step, trail: trail, completeable: video)
       end
     end
+
+    trait :with_sample_video do
+      after :create do |trail|
+        video = create(:video, accessible_without_subscription: true, watchable: nil)
+        create(:step, trail: trail, completeable: video)
+      end
+    end
   end
 
   factory :step do

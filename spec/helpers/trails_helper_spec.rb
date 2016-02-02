@@ -37,4 +37,75 @@ describe TrailsHelper do
       end
     end
   end
+
+  describe "#trail_call_to_action" do
+    context "for a subscriber" do
+      context "for a trail with a trial video" do
+        it "renders a Start Trail link" do
+          trail = create(:trail, :with_sample_video)
+          user = build(:subscriber)
+          allow(helper).to receive(:current_user).and_return(user)
+
+          html = helper.trail_call_to_action(trail)
+
+          expect(html).to include(I18n.t("trails.start_trail"))
+          expect(html).to include(video_path(trail.videos.first))
+        end
+      end
+    end
+
+    context "for a sampler" do
+      context "for a trail with no trial video" do
+        it "renders a Visit Trail link" do
+          trail = create(:trail, :video)
+          user = create(:user)
+          allow(helper).to receive(:current_user).and_return(user)
+
+          html = helper.trail_call_to_action(trail)
+
+          expect(html).to include(I18n.t("trails.visit_trail"))
+          expect(html).to include(trail_path(trail))
+        end
+      end
+
+      context "for a trail with a trial video" do
+        it "renders a Start Trail link" do
+          trail = create(:trail, :with_sample_video)
+          user = create(:user)
+          allow(helper).to receive(:current_user).and_return(user)
+
+          html = helper.trail_call_to_action(trail)
+
+          expect(html).to include(I18n.t("trails.start_trail"))
+          expect(html).to include(video_path(trail.videos.first))
+        end
+      end
+    end
+
+    context "for a guest" do
+      context "for a trail with no trial video" do
+        it "renders a Visit Trail link" do
+          trail = create(:trail, :video)
+          allow(helper).to receive(:current_user).and_return(Guest.new)
+
+          html = helper.trail_call_to_action(trail)
+
+          expect(html).to include(I18n.t("trails.visit_trail"))
+          expect(html).to include(trail_path(trail))
+        end
+      end
+
+      context "for a trail with a trial video" do
+        it "renders an auth to access link" do
+          trail = create(:trail, :with_sample_video)
+          allow(helper).to receive(:current_user).and_return(Guest.new)
+
+          html = helper.trail_call_to_action(trail)
+
+          expect(html).to include(I18n.t("trails.start_for_free"))
+          expect(html).to include(video_auth_to_access_path(trail.videos.first))
+        end
+      end
+    end
+  end
 end

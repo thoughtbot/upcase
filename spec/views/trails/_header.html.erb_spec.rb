@@ -8,7 +8,7 @@ describe "trails/_header" do
       it "includes a 'Start for Free' button" do
         stub_signed_in false
         video = build_stubbed(:video)
-        trail = build_trail(trial_video: video)
+        trail = build_trail(sample_video: video)
 
         render_trail(trail)
 
@@ -21,7 +21,7 @@ describe "trails/_header" do
     context "when there are no trial videos in the trail" do
       it "does not include a 'Start for Free' button" do
         stub_signed_in false
-        trail = build_trail(trial_video: nil)
+        trail = build_trail(sample_video: nil)
 
         render_trail(trail)
 
@@ -42,9 +42,9 @@ describe "trails/_header" do
     have_css "a", text: I18n.t("trails.start_for_free")
   end
 
-  def build_trail(trial_video:)
+  def build_trail(sample_video:)
     build_stubbed(:trail).tap do |trail|
-      allow(trail).to receive(:trial_video).and_return(trial_video.wrapped)
+      allow(trail).to receive(:sample_video).and_return(sample_video.wrapped)
     end
   end
 end

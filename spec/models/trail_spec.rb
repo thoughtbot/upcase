@@ -264,7 +264,7 @@ describe Trail do
     end
   end
 
-  describe "#trial_video" do
+  describe "#sample_video" do
     context "with videos accessible without a subscription" do
       it "returns the first match" do
         trail = create(:trail)
@@ -299,7 +299,7 @@ describe Trail do
           ),
         )
 
-        result = trail.trial_video
+        result = trail.sample_video
 
         expect(result.map(&:name)).to eq("FirstAccessible".wrapped)
       end
@@ -314,7 +314,7 @@ describe Trail do
           completeable: create(:video, accessible_without_subscription: false),
         )
 
-        result = trail.trial_video
+        result = trail.sample_video
 
         expect(result).to be_blank
       end

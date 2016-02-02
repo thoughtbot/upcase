@@ -48,6 +48,10 @@ class User < ActiveRecord::Base
     subscription.present?
   end
 
+  def sampler?
+    !subscriber?
+  end
+
   def has_access_to?(feature)
     subscriber? || feature.accessible_without_subscription?
   end

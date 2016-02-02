@@ -31,7 +31,7 @@
     </div>
 
     <% unless signed_in? %>
-      <% trail.trial_video.present do |video| %>
+      <% trail.sample_video.present do |video| %>
         <%= link_to(
           video_auth_to_access_path(video),
           class: "cta-button subscribe-cta light-bg",

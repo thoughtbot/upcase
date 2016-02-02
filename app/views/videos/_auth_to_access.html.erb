@@ -1,8 +1,5 @@
 <div class="access-callout auth-to-access">
   <p><%= t("videos.show.auth_to_access_callout_text") %></p>
 
-  <%= link_to video_auth_to_access_path(video), class: "cta-button subscribe-cta light-bg" do %>
-    <%= image_tag("github-black.svg", class: "logo", alt: "") %>
-    <span><%= t("videos.show.auth_to_access_button_text") %></span>
-  <% end %>
+  <%= auth_to_access_button(video, cta_text: t("videos.show.auth_to_access_button_text")) %>
 </div>

@@ -81,7 +81,7 @@ class Trail < ActiveRecord::Base
     first_step.completeable
   end
 
-  def trial_video
+  def sample_video
     videos.where(accessible_without_subscription: true).first.wrapped
   end
 

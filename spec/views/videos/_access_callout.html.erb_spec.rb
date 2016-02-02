@@ -11,10 +11,8 @@ describe "videos/_access_callout" do
         expect(rendered).to have_content(
           I18n.t("videos.show.auth_to_access_callout_text")
         )
-        expect(rendered).to have_link(
-          I18n.t("videos.show.auth_to_access_button_text"),
-          href: video_auth_to_access_path(video),
-        )
+        expect(rendered).to have_css ".access-callout.auth-to-access"
+        expect(rendered).to have_auth_to_access_button_for(video)
       end
     end
 
@@ -58,6 +56,13 @@ describe "videos/_access_callout" do
         expect(rendered).to have_subscribe_cta
       end
     end
+  end
+
+  def have_auth_to_access_button_for(video)
+    have_link(
+      I18n.t("videos.show.auth_to_access_button_text"),
+      href: video_auth_to_access_path(video),
+    )
   end
 
   def render_callout(video, signed_out: false)
