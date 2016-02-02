@@ -25,7 +25,7 @@ module Subscriptions
   end
 
   def click_upcase_call_to_action_in_header
-    click_link "Upcase Membership"
+    click_link I18n.t("shared.subscriptions.single_user")
   end
 
   def settings_page
