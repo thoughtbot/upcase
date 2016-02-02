@@ -21,6 +21,11 @@
                 class: "table-of-contents-toggle",
                 data: { role: "table-of-contents-toggle" } %>
             </li>
+            <li>
+              <%= link_to teams_path do %>
+                <%= t("shared.header.teams") %>
+              <% end %>
+            </li>
             <% if signed_out? %>
               <li>
                 <%= link_to "Sign In", sign_in_path %>

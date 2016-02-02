@@ -141,14 +141,16 @@ en:
       forum: Forum
       help-link: Help
       tagline: Learn with thoughtbot
+      teams: Teams
       search: Search
       trails: Trails
       weekly_iteration: Weekly Iteration
     subscription:
       name: Upcase
     subscriptions:
-      single_user: Subscribe Now
       icon: ✶
+      multi_user: Team Membership
+      single_user: Subscribe Now
     team_plan_name: Upcase for Teams
     upcase: Upcase
   show:
@@ -186,6 +188,8 @@ en:
     reason: Why have you decided to leave?
     reason_explanation: This information will help us make Upcase better for future
       members.
+  teams:
+    join_cta: Get your team started today
   teachers:
     teacher:
       header: Taught by
