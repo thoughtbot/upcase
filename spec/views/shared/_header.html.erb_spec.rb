@@ -3,6 +3,7 @@ require "rails_helper"
 describe "layouts/_signed_in_header.html.erb" do
   include AnalyticsHelper
   include Gravatarify::Helper
+  include PlansHelper
 
   let(:call_to_action_label) { "Get two months free" }
 
@@ -66,7 +67,7 @@ describe "layouts/_signed_in_header.html.erb" do
         current_user_has_active_subscription: false
       )
 
-      expect(rendered).to have_css("a[href='#{new_subscription_path}']")
+      expect(rendered).to have_subscribe_checkout_link
     end
   end
 
@@ -77,7 +78,7 @@ describe "layouts/_signed_in_header.html.erb" do
         current_user_has_active_subscription: true
       )
 
-      expect(rendered).not_to have_css("a[href='#{new_subscription_path}']")
+      expect(rendered).not_to have_subscribe_checkout_link
     end
   end
 
@@ -96,6 +97,13 @@ describe "layouts/_signed_in_header.html.erb" do
 
   def have_search_link
     have_link(I18n.t("shared.header.search"), practice_path)
+  end
+
+  def have_subscribe_checkout_link
+    have_link(
+      I18n.t("shared.subscriptions.single_user"),
+      href: professional_checkout_path,
+    )
   end
 
   def render(

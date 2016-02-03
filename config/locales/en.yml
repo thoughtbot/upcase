@@ -147,7 +147,7 @@ en:
     subscription:
       name: Upcase
     subscriptions:
-      single_user: Upcase Membership
+      single_user: Subscribe Now
       icon: ✶
     team_plan_name: Upcase for Teams
     upcase: Upcase
