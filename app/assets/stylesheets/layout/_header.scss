@@ -1,3 +1,11 @@
+.teams {
+  #header-wrapper {
+    @include dashboard-medium {
+      margin: 0 auto;
+    }
+  }
+}
+
 #header-wrapper {
   @include linear-gradient($upcase-blue-1, $upcase-blue-2);
   @include dashboard-medium {
