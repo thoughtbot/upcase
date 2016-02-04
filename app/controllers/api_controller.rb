@@ -10,6 +10,10 @@ class ApiController < ApplicationController
   end
 
   def current_resource_owner
-    current_user || resource_owner
+    if signed_in?
+      current_user
+    else
+      resource_owner
+    end
   end
 end

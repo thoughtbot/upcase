@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
   before_filter :capture_campaign_params
   layout :determine_layout
 
+  def current_user
+    super || Guest.new
+  end
+
   protected
 
   def analytics

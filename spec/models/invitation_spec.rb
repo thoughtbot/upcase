@@ -63,15 +63,6 @@ describe Invitation do
     end
   end
 
-  describe "#user_by_email" do
-    it "returns user by email" do
-      user = create(:user)
-      invitation = build(:invitation, email: user.email)
-
-      expect(invitation.user_by_email).to eq(user)
-    end
-  end
-
   describe ".find" do
     it "finds models by code" do
       invitation = create(:invitation)

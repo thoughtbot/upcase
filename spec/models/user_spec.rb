@@ -426,7 +426,7 @@ describe User do
     end
   end
 
-  describe "has_completed_trails?" do
+  describe "#has_completed_trails?" do
     context "when the user has completed one or more trails" do
       it "returns true" do
         user = create(:user)

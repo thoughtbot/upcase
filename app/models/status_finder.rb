@@ -15,16 +15,12 @@ class StatusFinder
   end
 
   def find_statuses
-    if @user.nil?
-      {}
-    else
-      @user.
-        statuses.
-        order(created_at: :desc).
-        group_by do |status|
-          key(status.completeable_type, status.completeable_id)
-        end
-    end
+    @user.
+      statuses.
+      order(created_at: :desc).
+      group_by do |status|
+        key(status.completeable_type, status.completeable_id)
+      end
   end
 
   def key(type, id)

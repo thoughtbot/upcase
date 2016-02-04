@@ -1,7 +1,6 @@
 class CheckoutsController < ApplicationController
   before_action :redirect_when_plan_not_found
   before_action :redirect_when_already_subscribed
-  layout "landing"
 
   def new
     build_checkout({}) do |checkout|
@@ -68,7 +67,7 @@ class CheckoutsController < ApplicationController
   end
 
   def default_params
-    if current_user
+    if signed_in?
       {
         user: current_user,
         github_username: current_user.github_username,

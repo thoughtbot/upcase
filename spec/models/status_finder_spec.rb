@@ -35,7 +35,7 @@ describe StatusFinder do
     context "without a user" do
       it "returns unstarted" do
         exercise = create(:exercise)
-        status_finder = StatusFinder.new(user: nil)
+        status_finder = StatusFinder.new(user: Guest.new)
 
         result = status_finder.status_for(exercise)
 

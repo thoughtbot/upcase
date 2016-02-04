@@ -43,10 +43,6 @@ class Invitation < ActiveRecord::Base
     sender.name
   end
 
-  def user_by_email
-    User.find_by(email: email)
-  end
-
   private
 
   def generate_code

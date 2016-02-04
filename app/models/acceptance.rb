@@ -9,11 +9,12 @@ class Acceptance
   validate :password_if_user_exists, if: :existing_user
   validate :unused_invitation
 
-  def initialize(invitation:, current_user: nil, attributes: {})
+  def initialize(invitation:, current_user: Guest.new, attributes: {})
     @current_user = current_user
     @invitation = invitation
-    email = (@current_user || @invitation).email
-    @attributes = attributes.merge(email: email)
+    @attributes = attributes.merge(
+      email: @current_user.email || @invitation.email,
+    )
   end
 
   def save
@@ -30,7 +31,7 @@ class Acceptance
   end
 
   def existing_user
-    @existing_user ||= @current_user || @invitation.user_by_email
+    @existing_user ||= User.find_by(email: @attributes[:email])
   end
 
   def user

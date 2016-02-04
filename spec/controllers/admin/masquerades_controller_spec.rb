@@ -33,7 +33,6 @@ describe Admin::MasqueradesController do
       it "redirects to root path if not signed in" do
         post :create, user_id: build_user.id
 
-        expect(controller.current_user).to eq(nil)
         expect(response).to redirect_to root_path
       end
 
@@ -49,21 +48,36 @@ describe Admin::MasqueradesController do
     end
 
     context "#destroy" do
-      it "redirects to root path if not signed in" do
-        delete :destroy
+      context "when not signed_in" do
+        it "redirects to root path" do
+          delete :destroy
 
-        expect(controller.current_user).to eq(nil)
-        expect(response).to redirect_to root_path
+          expect(response).to redirect_to root_path
+        end
       end
 
-      it "redirects to root path if not an admin" do
-        user = build_user
-        sign_in_as user
+      context "when not an admin" do
+        it "redirects to root path" do
+          user = build_user
+          sign_in_as user
 
-        delete :destroy
+          delete :destroy
 
-        expect(controller.current_user).to eq(user)
-        expect(response).to redirect_to root_path
+          expect(response).to redirect_to root_path
+        end
+      end
+
+      context "when an admin" do
+        it "removes the admin_id from the session" do
+          admin = build_user(type: :admin)
+          session[:admin_id] = admin.id
+          sign_in_as admin
+
+          delete :destroy
+
+          expect(session[:admin_id]).to be nil
+          expect(response).to redirect_to admin_path
+        end
       end
     end
   end
