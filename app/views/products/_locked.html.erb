@@ -1,6 +1,6 @@
 <% if feature.accessible_without_subscription? %>
   <%= link_to video_auth_to_access_path(feature), class: "available-link" do %>
-    <%= image_tag("github.svg", class: "logo") %>
+    <%= image_tag("github.svg", class: "logo", alt: "") %>
     <%= t(".available_for_free_after_authing") %>
   <% end %>
 <% else %>
