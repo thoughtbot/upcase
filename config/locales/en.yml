@@ -26,7 +26,7 @@ en:
         declined: Got it. We'll get that trail out of your way.
   checkout:
     flashes:
-      already_subscribed: You are already subscribed. You can change your plan.
+      already_subscribed: You are already subscribed.
       invalid_coupon: The coupon code %{code} is no longer valid and has been
         removed.
       plan_not_found: We have a new subscription plan for you.

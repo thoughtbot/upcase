@@ -5,13 +5,13 @@ include StubCurrentUserHelper
 describe CheckoutsController do
   describe "#new" do
     context "when purchasing an individual plan as an active subscriber" do
-      it "redirects to plan editing" do
+      it "redirects to the root path" do
         user = create(:subscriber)
         stub_current_user_with(user)
 
         get :new, plan: stub_valid_sku
 
-        expect(response).to redirect_to edit_subscription_path
+        expect(response).to redirect_to root_path
       end
     end
 

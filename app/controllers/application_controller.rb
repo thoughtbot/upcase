@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   before_filter :capture_campaign_params
-  layout :determine_layout
 
   def current_user
     super || Guest.new
@@ -100,13 +99,5 @@ class ApplicationController < ActionController::Base
       utm_medium: params[:utm_medium],
       utm_source: params[:utm_source],
     }
-  end
-
-  def determine_layout
-    if signed_out?
-      "landing"
-    else
-      "signed_in"
-    end
   end
 end

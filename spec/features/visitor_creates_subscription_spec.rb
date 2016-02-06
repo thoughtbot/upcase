@@ -100,7 +100,7 @@ feature 'Visitor signs up for a subscription' do
     click_link "Already have an account? Sign in"
     click_on "Sign in with GitHub"
 
-    expect(current_path).to eq edit_subscription_path
+    expect(current_path).to eq welcome_path
     expect(page).to have_content I18n.t("checkout.flashes.already_subscribed")
   end
 

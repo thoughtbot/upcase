@@ -9,20 +9,14 @@ describe ShowsController do
 
       get :show, id: show
 
-      expect(response).to render_template(
-        "layouts/signed_in",
-        "show_subscribed"
-      )
+      expect(response).to render_template("show_subscribed")
     end
 
     it "renders the show page for a visitor" do
       show = create(:show)
       get :show, id: show
 
-      expect(response).to render_template(
-        "layouts/landing",
-        "show"
-      )
+      expect(response).to render_template("show_for_visitors")
     end
 
     it "doesn't render other formats" do

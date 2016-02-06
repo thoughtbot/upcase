@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head prefix="og: http://ogp.me/ns#">
+    <%= render "application/head_contents" %>
+    <% if signed_in? %>
+      <%= render "layouts/hide_drip_widget_for_signed_in_users" %>
+    <% end %>
+  </head>
+
+  <body class="<%= body_class %> <%= yield(:additional_body_classes) %> <%= "viewed-by-visitor" if landing? %>">
+    <% if landing? %>
+      <%= render "layouts/signed_out_header" %>
+    <% else %>
+      <%= render "shared/environment_banner" %>
+      <%= render "layouts/signed_in_header" %>
+    <% end %>
+
+    <div class="header-flash">
+      <%= render "shared/flashes" %>
+    </div>
+
+    <section class="content <%= yield(:additional_content_classes) %>">
+      <% if content_for?(:subject) %>
+        <h1 class="subject"><%= yield(:subject) %></h1>
+      <% end %>
+      <% if content_for?(:subject_block) %>
+        <section class="subject"><%= yield(:subject_block) %></section>
+      <% end %>
+
+      <%= yield %>
+    </section>
+
+    <% if content_for?(:sticky_header_height) %>
+      <script type="text/javascript">
+        window.stickyHeaderStart = <%= yield(:sticky_header_height) %>;
+      </script>
+    <% end %>
+
+    <%= yield(:outside) %>
+
+    <%= render "shared/footer" %>
+    <%= render "shared/javascript" %>
+    <% if landing? %>
+      <%= render "shared/table_of_contents" %>
+    <% end %>
+  </body>
+</html>

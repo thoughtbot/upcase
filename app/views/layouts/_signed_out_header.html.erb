@@ -1,0 +1,34 @@
+<section id="header-wrapper"
+  data-role="header">
+  <div class="header-container">
+    <%= link_to root_path, class: "branding" do %>
+      <h1 class="small-logo"><%= image_tag("upcase/upcase-header-logo-small.svg") %></h1>
+      <%= image_tag("ralph.svg", class: "ralph-header-logo") %>
+      <span class="header-tagline"><%= t("shared.header.tagline") %></span>
+    <% end %>
+    <nav>
+      <ul>
+        <li>
+          <%= link_to t("shared.header.explore"), "#",
+            class: "table-of-contents-toggle",
+            data: { role: "table-of-contents-toggle" } %>
+        </li>
+        <li>
+          <%= link_to teams_path do %>
+            <%= t("shared.header.teams") %>
+          <% end %>
+        </li>
+        <% if signed_out? %>
+          <li>
+            <%= link_to "Sign In", sign_in_path %>
+          </li>
+        <% end %>
+        <li class="header-cta">
+          <%= link_to professional_checkout_path, class: "header-cta-link" do %>
+            <%= t("subscriptions.join_cta") %>
+          <% end %>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>

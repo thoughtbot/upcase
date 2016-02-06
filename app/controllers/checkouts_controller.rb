@@ -4,6 +4,7 @@ class CheckoutsController < ApplicationController
 
   def new
     build_checkout({}) do |checkout|
+      @landing = true
       @checkout = checkout
       render :new
     end
@@ -37,7 +38,7 @@ class CheckoutsController < ApplicationController
   def redirect_when_already_subscribed
     if current_user_has_active_subscription?
       redirect_to(
-        edit_subscription_path,
+        root_path,
         notice: t("checkout.flashes.already_subscribed"),
       )
     end
