@@ -152,7 +152,7 @@ FactoryGirl.define do
     trait :team do
       price_in_dollars 89
       name "Upcase for Teams"
-      sku "team_plan"
+      sku Plan::TEAM_SKU
       includes_team true
       minimum_quantity 3
     end

@@ -1,5 +1,10 @@
 <% content_for :page_title, "Team Pricing" %>
 <% content_for :additional_body_classes, "landing" %>
+<% content_for :header_cta_link do %>
+  <%= link_to team_checkout_path, class: "header-cta-link" do %>
+    <%= t("subscriptions.team_join_cta") %>
+  <% end %>
+<% end %>
 
 <%= render 'teams/hero' %>
 

@@ -6,6 +6,10 @@ module TeamPlansHelper
     end
   end
 
+  def team_page?
+    @team_page.present?
+  end
+
   private
 
   def team_plan_quantity_select_attributes(plan)

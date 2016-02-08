@@ -143,6 +143,7 @@ en:
       tagline: Learn with thoughtbot
       teams: Teams
       search: Search
+      sign_in: Sign In
       trails: Trails
       weekly_iteration: Weekly Iteration
     subscription:
@@ -188,6 +189,7 @@ en:
     reason: Why have you decided to leave?
     reason_explanation: This information will help us make Upcase better for future
       members.
+    team_join_cta: Start Your Team
   teams:
     join_cta: Get your team started today
   teachers:

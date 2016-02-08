@@ -1,8 +1,9 @@
 class Plan < ActiveRecord::Base
-  DISCOUNTED_ANNUAL_PLAN_SKU = "175-annually"
-  PRIME_249_SKU = "prime-249"
-  PROFESSIONAL_SKU = "professional"
-  THE_WEEKLY_ITERATION_SKU = "the-weekly-iteration"
+  DISCOUNTED_ANNUAL_PLAN_SKU = "175-annually".freeze
+  PRIME_249_SKU = "prime-249".freeze
+  PROFESSIONAL_SKU = "professional".freeze
+  TEAM_SKU = "professional-29-team".freeze
+  THE_WEEKLY_ITERATION_SKU = "the-weekly-iteration".freeze
 
   has_many :checkouts
   has_many :subscriptions, as: :plan

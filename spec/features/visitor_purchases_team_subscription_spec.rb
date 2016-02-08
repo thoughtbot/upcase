@@ -22,7 +22,7 @@ feature 'Visitor can purchase a subscription for their team' do
   def navigate_to_team_sign_up
     visit root_path
     click_link I18n.t("shared.header.teams")
-    click_link I18n.t("teams.join_cta")
+    click_link I18n.t("subscriptions.join_cta")
   end
 
   def expect_to_see_team_name(team_name)

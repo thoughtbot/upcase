@@ -23,6 +23,10 @@ module PlansHelper
     new_checkout_path(plan: Plan::PROFESSIONAL_SKU)
   end
 
+  def team_checkout_path
+    new_checkout_path(plan: Plan::TEAM_SKU)
+  end
+
   def formatted_name(plan)
     first_line, _, last_line = plan.name.rpartition(" ")
     [first_line, last_line].join("<br/>").html_safe
