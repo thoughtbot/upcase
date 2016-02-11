@@ -36,7 +36,7 @@ class CheckoutsController < ApplicationController
   end
 
   def redirect_when_already_subscribed
-    if current_user_has_active_subscription?
+    if current_user.has_active_subscription?
       redirect_to(
         root_path,
         notice: t("checkout.flashes.already_subscribed"),

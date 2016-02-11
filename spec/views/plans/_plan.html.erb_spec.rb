@@ -46,9 +46,7 @@ describe "plans/_plan.html" do
 
     it "links to change existing plan when user has a subscription" do
       plan = build_plan
-      user = double("user", plan: build_stubbed(:plan))
-      view_stubs(:current_user).and_return(user)
-      stub_view(active_subscription: true)
+      stub_view(active_subscription: true, plan: build_stubbed(:plan))
 
       render_plan(plan)
 
@@ -57,9 +55,13 @@ describe "plans/_plan.html" do
     end
   end
 
-  def stub_view(active_subscription: false)
-    view_stubs(:current_user_has_active_subscription?).
-      and_return(active_subscription)
+  def stub_view(active_subscription: false, plan: nil)
+    user = double(
+      :current_user,
+      has_active_subscription?: active_subscription,
+      plan: plan,
+    )
+    view_stubs(:current_user).and_return(user)
   end
 
   def build_plan

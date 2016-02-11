@@ -1,9 +1,10 @@
 <section id="header-wrapper"
-  class="without-hero <%= "subscriber" if current_user_has_active_subscription? %>"
+  class="without-hero <%= "subscriber" if current_user.has_active_subscription? %>"
   data-role="header">
   <div class="header-container">
     <%= link_to root_path, class: "branding" do %>
       <h1 class="small-logo"><%= image_tag("upcase/upcase-header-logo-small.svg", alt: "Upcase") %></h1>
+
       <%= image_tag("ralph.svg", class: "ralph-header-logo", alt: "thoughtbot") %>
     <% end %>
     <a class="nav-toggle">Menu</a>
@@ -30,7 +31,7 @@
           <li>
             <%= link_to t("shared.header.search"), search_path %>
           </li>
-          <% unless current_user_has_active_subscription? %>
+          <% unless current_user.has_active_subscription? %>
             <li class="subscription">
               <%= link_to professional_checkout_path do %>
                 <span><%= t("shared.subscriptions.icon") %></span>

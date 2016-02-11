@@ -1,4 +1,4 @@
-<% if current_user_has_active_subscription? %>
+<% if current_user.has_active_subscription? %>
   <div class="forum">
     <%= link_to "Discuss in the Forum", Forum.url, class: "button" %>
   </div>

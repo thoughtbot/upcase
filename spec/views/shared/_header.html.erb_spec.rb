@@ -122,10 +122,6 @@ describe "layouts/_signed_in_header.html.erb" do
     )
 
     view_stub_with_return(
-      current_user_has_active_subscription?:
-        current_user_has_active_subscription
-    )
-    view_stub_with_return(
       current_user_is_eligible_for_annual_upgrade?:
         current_user_is_eligible_for_annual_upgrade
     )
@@ -140,7 +136,8 @@ describe "layouts/_signed_in_header.html.erb" do
         "user",
         email: current_user_email,
         admin?: current_user_is_admin,
-        has_access_to?: false
+        has_access_to?: false,
+        has_active_subscription?: current_user_has_active_subscription,
       )
     )
     super()

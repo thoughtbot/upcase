@@ -1,4 +1,4 @@
-<% unless current_user_has_active_subscription? %>
+<% unless current_user.has_active_subscription? %>
   <div class="subscription-cta">
     <h2><%= t("#{offering.offering_type}.preview_cta") %></h2>
     <div class="license">

@@ -241,11 +241,11 @@ describe "videos/show" do
 
   def render_video(video, has_access: true, subscriber: false)
     assign :video, video
+    user = build_stubbed(:user)
+    allow(user).to receive(:has_active_subscription?).and_return(subscriber)
     allow(view).to receive(:current_user_has_access_to?).and_return(has_access)
-    allow(view).to receive(:current_user).and_return(build_stubbed(:user))
+    allow(view).to receive(:current_user).and_return(user)
     allow(view).to receive(:signed_out?).and_return(false)
-    allow(view).to receive(:current_user_has_active_subscription?).
-      and_return(subscriber)
     render template: "videos/show"
   end
 end

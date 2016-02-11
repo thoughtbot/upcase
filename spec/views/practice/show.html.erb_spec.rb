@@ -83,9 +83,10 @@ describe "practice/show.html" do
   end
 
   def stub_user_access(has_active_subscription: false)
-    view_stubs(:current_user).and_return(build_stubbed(:user))
-    view_stubs(:current_user_has_active_subscription?).
+    user = build_stubbed(:user)
+    allow(user).to receive(:has_active_subscription?).
       and_return(has_active_subscription)
+    view_stubs(:current_user).and_return(user)
     view_stubs(:current_user_has_access_to?).and_return(false)
   end
 
