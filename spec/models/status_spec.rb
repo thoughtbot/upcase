@@ -56,7 +56,7 @@ describe Status do
       end
     end
 
-    context "when the user has not started the completable" do
+    context "when the user has not started the completeable" do
       it "returns an Unstarted null object" do
         user = build_stubbed(:user)
 

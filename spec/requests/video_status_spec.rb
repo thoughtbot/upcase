@@ -54,12 +54,6 @@ describe "Video status" do
 
   def sign_in
     @current_user = create(:user)
-    post(
-      "/session",
-      session: {
-        email: @current_user.email,
-        password: "password"
-      }
-    )
+    sign_in_as(@current_user)
   end
 end

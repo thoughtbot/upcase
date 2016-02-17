@@ -3,21 +3,19 @@ class Api::V1::StatusesController < ApiController
 
   def create
     StatusUpdater.
-      new(completable, current_resource_owner).
+      new(completeable, current_resource_owner).
       update_state(state)
-    track_video_event
+    track_event
     render nothing: true
   end
 
   private
 
-  def track_video_event
-    if completable.is_a? Video
-      if state == Status::IN_PROGRESS
-        analytics.track_video_started(analytics_properties_for_video)
-      elsif state == Status::COMPLETE
-        analytics.track_video_finished(analytics_properties_for_video)
-      end
+  def track_event
+    if state == Status::IN_PROGRESS
+      analytics.track_completeable_started(completeable)
+    elsif state == Status::COMPLETE
+      analytics.track_completeable_finished(completeable)
     end
   end
 
@@ -25,11 +23,11 @@ class Api::V1::StatusesController < ApiController
     params[:state]
   end
 
-  def completable
-    @completable ||= find_completable
+  def completeable
+    @completeable ||= find_completeable
   end
 
-  def find_completable
+  def find_completeable
     if params[:exercise_uuid]
       Exercise.find_by_uuid!(params[:exercise_uuid])
     elsif params[:video_wistia_id]
@@ -37,10 +35,7 @@ class Api::V1::StatusesController < ApiController
     end
   end
 
-  def analytics_properties_for_video
-    {
-      name: completable.name,
-      watchable_name: completable.watchable_name,
-    }
+  def analytics
+    Analytics.new(current_resource_owner)
   end
 end

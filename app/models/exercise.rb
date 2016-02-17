@@ -6,6 +6,10 @@ class Exercise < ActiveRecord::Base
   validates :name, presence: true
   validates :url, presence: true
 
+  def trail_name
+    trail.try(:name)
+  end
+
   def self.ordered
     order(:created_at)
   end

@@ -1,8 +1,13 @@
 class Analytics
   include AnalyticsHelper
 
-  SAMPLER = "sampler"
-  SUBSCRIBER = "subscriber"
+  SAMPLER = "sampler".freeze
+  SUBSCRIBER = "subscriber".freeze
+  TRACKERS = {
+    "Video" => VideoTracker,
+    "Exercise" => ExerciseTracker,
+    "Trail" => TrailTracker,
+  }.freeze
 
   class_attribute :backend
   self.backend = AnalyticsRuby
@@ -11,17 +16,20 @@ class Analytics
     @user = user
   end
 
+  def track_completeable_started(completeable)
+    tracker_for(completeable).started_events.each do |name, properties|
+      track(name, properties)
+    end
+  end
+
+  def track_completeable_finished(completeable)
+    tracker_for(completeable).finished_events.each do |name, properties|
+      track(name, properties)
+    end
+  end
+
   def track_updated
     backend.identify(user_id: user.id, traits: identify_hash(user))
-  end
-
-  def track_video_finished(name:, watchable_name:)
-    track("Finished video", name: name, watchable_name: watchable_name)
-  end
-
-  def track_video_started(name:, watchable_name:)
-    track("Started video", name: name, watchable_name: watchable_name)
-    track_touched_video(name: name, watchable_name: watchable_name)
   end
 
   def track_searched(query:, results_count:)
@@ -52,6 +60,11 @@ class Analytics
       download_type: download_type,
     )
     track_touched_video(name: name, watchable_name: watchable_name)
+    track_touched_step(
+      name: name,
+      watchable_name: watchable_name,
+      type: "Video",
+    )
   end
 
   def track_replied_to_beta_offer(name:, accepted:)
@@ -74,6 +87,10 @@ class Analytics
 
   attr_reader :user
 
+  def tracker_for(completeable)
+    TRACKERS.fetch(completeable.class.name).new(completeable)
+  end
+
   def user_type(user)
     if user.subscriber?
       SUBSCRIBER
@@ -84,6 +101,15 @@ class Analytics
 
   def track_touched_video(name:, watchable_name:)
     track("Touched Video", name: name, watchable_name: watchable_name)
+  end
+
+  def track_touched_step(name:, watchable_name:, type:)
+    track(
+      "Touched Step",
+      name: name,
+      watchable_name: watchable_name,
+      type: type,
+    )
   end
 
   def track(event, properties = {})

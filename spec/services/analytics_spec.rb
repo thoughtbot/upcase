@@ -52,55 +52,132 @@ describe Analytics do
     end
   end
 
-  describe "#track_video_started" do
-    it "tracks started video event" do
-      video = build_stubbed(:video)
+  describe "#track_completeable_started" do
+    context "with a video" do
+      it "tracks started video event" do
+        video = build_stubbed(:video)
 
-      analytics_instance.track_video_started(
-        name: video.name,
-        watchable_name: video.watchable_name,
-      )
+        analytics_instance.track_completeable_started(video)
 
-      expect(analytics).to have_tracked("Started video").
-        for_user(user).
-        with_properties(
-          name: video.name,
-          watchable_name: video.watchable_name,
-        )
+        expect(analytics).to have_tracked("Started video").
+          for_user(user).
+          with_properties(
+            name: video.name,
+            watchable_name: video.watchable_name,
+          )
+      end
+
+      it "also tracks video touched event" do
+        video = build_stubbed(:video)
+
+        analytics_instance.track_completeable_started(video)
+
+        expect(analytics).to have_tracked("Touched Video").
+          for_user(user).
+          with_properties(
+            name: video.name,
+            watchable_name: video.watchable_name,
+          )
+      end
+
+      it "also tracks step touched event" do
+        video = build_stubbed(:video)
+
+        analytics_instance.track_completeable_started(video)
+
+        expect(analytics).to have_tracked("Touched Step").
+          for_user(user).
+          with_properties(
+            name: video.name,
+            watchable_name: video.watchable_name,
+            type: "Video",
+          )
+      end
     end
 
-    it "also tracks video touched event" do
-      video = build_stubbed(:video)
+    context "with an exercise" do
+      it "tracks started exercise event" do
+        exercise = build_stubbed(:exercise)
 
-      analytics_instance.track_video_started(
-        name: video.name,
-        watchable_name: video.watchable_name,
-      )
+        analytics_instance.track_completeable_started(exercise)
 
-      expect(analytics).to have_tracked("Touched Video").
-        for_user(user).
-        with_properties(
-          name: video.name,
-          watchable_name: video.watchable_name,
-        )
+        expect(analytics).to have_tracked("Started exercise").
+          for_user(user).
+          with_properties(
+            name: exercise.name,
+            watchable_name: exercise.trail_name,
+          )
+      end
+
+      it "also tracks step touched event" do
+        exercise = build_stubbed(:exercise)
+
+        analytics_instance.track_completeable_started(exercise)
+
+        expect(analytics).to have_tracked("Touched Step").
+          for_user(user).
+          with_properties(
+            name: exercise.name,
+            watchable_name: exercise.trail_name,
+            type: "Exercise",
+          )
+      end
+    end
+
+    context "with a trail" do
+      it "tracks started trail event" do
+        trail = build_stubbed(:trail)
+
+        analytics_instance.track_completeable_started(trail)
+
+        expect(analytics).to have_tracked("Started trail").
+          for_user(user).
+          with_properties(name: trail.name)
+      end
     end
   end
 
-  describe "#track_video_finished" do
-    it "tracks finished video event" do
-      video = build_stubbed(:video)
+  describe "#track_completeable_finished" do
+    context "with a video" do
+      it "tracks finished video event" do
+        video = build_stubbed(:video)
 
-      analytics_instance.track_video_finished(
-        name: video.name,
-        watchable_name: video.watchable_name,
-      )
+        analytics_instance.track_completeable_finished(video)
 
-      expect(analytics).to have_tracked("Finished video").
-        for_user(user).
-        with_properties(
-          name: video.name,
-          watchable_name: video.watchable_name,
-        )
+        expect(analytics).to have_tracked("Finished video").
+          for_user(user).
+          with_properties(
+            name: video.name,
+            watchable_name: video.watchable_name,
+          )
+      end
+    end
+
+    context "with an exercise" do
+      it "tracks finished exercise event" do
+        exercise = build_stubbed(:exercise)
+
+        analytics_instance.track_completeable_finished(exercise)
+
+        expect(analytics).to have_tracked("Finished exercise").
+          for_user(user).
+          with_properties(
+            name: exercise.name,
+            watchable_name: exercise.trail_name,
+          )
+      end
+    end
+
+    context "with a trail" do
+      it "tracks finished exercise event" do
+        trail = build_stubbed(:trail)
+
+        analytics_instance.track_completeable_finished(trail)
+
+        expect(analytics).to have_tracked("Finished trail").
+          for_user(user).
+          with_properties(name: trail.name)
+      end
     end
   end
 
@@ -177,16 +254,39 @@ describe Analytics do
     it "also tracks video touched event" do
       video = build_stubbed(:video)
 
-      analytics_instance.track_video_started(
+      download_properties = {
         name: video.name,
         watchable_name: video.watchable_name,
-      )
+        download_type: "Original",
+      }
+
+      analytics_instance.track_downloaded(download_properties)
 
       expect(analytics).to have_tracked("Touched Video").
         for_user(user).
         with_properties(
           name: video.name,
           watchable_name: video.watchable_name,
+        )
+    end
+
+    it "also tracks step touched event" do
+      video = build_stubbed(:video)
+
+      download_properties = {
+        name: video.name,
+        watchable_name: video.watchable_name,
+        download_type: "Original",
+      }
+
+      analytics_instance.track_downloaded(download_properties)
+
+      expect(analytics).to have_tracked("Touched Step").
+        for_user(user).
+        with_properties(
+          name: video.name,
+          watchable_name: video.watchable_name,
+          type: "Video",
         )
     end
   end

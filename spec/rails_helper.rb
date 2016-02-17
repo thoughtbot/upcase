@@ -59,6 +59,8 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.include AnalyticsHelper
+  config.include Clearance::Testing::Matchers, type: :request
+  config.include Clearance::Testing::Helpers, type: :request
   config.include Paperclip::Shoulda::Matchers
   config.include EmailSpec::Helpers
   config.include EmailSpec::Matchers
@@ -67,6 +69,7 @@ RSpec.configure do |config|
   config.include CheckoutHelpers
   config.include SessionHelpers, type: :feature
   config.include PathHelpers, type: :feature
+  config.include SignInRequestHelpers, type: :request
 
   config.infer_spec_type_from_file_location!
 end
