@@ -1,0 +1,31 @@
+<ul>
+  <li>
+    <%= link_to t("shared.header.explore"), "#",
+      class: "table-of-contents-toggle",
+      data: { role: "table-of-contents-toggle" } %>
+  </li>
+
+  <% unless team_page? %>
+    <li>
+      <%= link_to teams_path do %>
+        <%= t("shared.header.teams") %>
+      <% end %>
+    </li>
+  <% end %>
+
+  <% if signed_out? %>
+    <li>
+      <%= link_to t("shared.header.sign_in"), sign_in_path %>
+    </li>
+  <% end %>
+
+  <li class="header-cta">
+    <% if content_for?(:header_cta_link) %>
+      <%= content_for(:header_cta_link) %>
+    <% else %>
+      <%= link_to professional_checkout_path, class: "header-cta-link" do %>
+        <%= t("subscriptions.join_cta") %>
+      <% end %>
+    <% end %>
+  </li>
+</ul>

@@ -34,7 +34,7 @@ var setupTableOfContents = function() {
 
 $(function() {
   setupTableOfContents();
-  var header = '.viewed-by-visitor [data-role="header"]';
+  var header = '.sticky-header';
 
   if ($(header).length) {
     new Headhesive(header, {

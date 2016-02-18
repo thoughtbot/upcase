@@ -7,13 +7,13 @@
     <% end %>
   </head>
 
-  <body class="<%= body_class %> <%= yield(:additional_body_classes) %> <%= "viewed-by-visitor" if landing? %>">
-    <% if landing? %>
-      <%= render "layouts/signed_out_header" %>
-    <% else %>
-      <%= render "shared/environment_banner" %>
-      <%= render "layouts/signed_in_header" %>
-    <% end %>
+  <body class="
+    <%= body_class %>
+    <%= yield(:additional_body_classes) %>
+    <%= "landing-page" if encourage_user_to_pay? %>
+    ">
+    <%= render "shared/environment_banner" %>
+    <%= render "layouts/header" %>
 
     <div class="header-flash">
       <%= render "shared/flashes" %>
@@ -40,7 +40,7 @@
 
     <%= render "shared/footer" %>
     <%= render "shared/javascript" %>
-    <% if landing? %>
+    <% if sales_context? %>
       <%= render "shared/table_of_contents" %>
     <% end %>
   </body>

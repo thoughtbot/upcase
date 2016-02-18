@@ -254,6 +254,7 @@ FactoryGirl.define do
 
     factory :admin do
       admin true
+      with_subscription
     end
 
     factory :subscriber do

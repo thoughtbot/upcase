@@ -1,56 +1,58 @@
-.viewed-by-visitor {
+$faded: rgba(#000000, 0.12);
+
+.landing-page {
   @include marketing-fullsize {
     margin-top: $header-height + 15px;
   }
+}
 
-  #header-wrapper {
-    margin-bottom: 0;
-    z-index: $z-header;
+.sticky-header {
+  margin-bottom: 0;
+  z-index: $z-header;
 
-    @include marketing-fullsize {
-      padding: 0 2em;
+  @include marketing-fullsize {
+    padding: 0 2em;
 
-      nav {
-        margin-right: -2em;
+    nav {
+      margin-right: -2em;
+
+      a {
+        padding: 1rem 2rem;
+      }
+    }
+
+    &:not(.headhesive) {
+      @include position(absolute, 0 0 null 0);
+
+      nav li {
+        margin: 8px;
+
+        &:hover {
+          background: $faded;
+          border-radius: 3px;
+        }
 
         a {
-          padding: 1rem 2rem;
-        }
-      }
-
-      &:not(.headhesive) {
-        @include position(absolute, 0em 0em null 0em);
-
-        nav li {
-          margin: 8px;
-
-          &:hover {
-            background: rgba(black, 0.12);
-            border-radius: 3px;
-          }
-
-          a {
-            border-left: none;
-            height: 44px;
-            padding: 0.5rem 1.5rem;
-          }
+          border-left: none;
+          height: 44px;
+          padding: 0.5rem 1.5rem;
         }
       }
     }
+  }
 
-    &.headhesive {
-      @include position(fixed, 0em 0em null 0em);
-      @include transform(translateY(-100%));
-      @include transition(transform 0.2s);
-      z-index: $z-headhesive;
+  &.headhesive {
+    @include position(fixed, 0 0 null 0);
+    @include transform(translateY(-100%));
+    @include transition(transform 0.2s);
+    z-index: $z-headhesive;
 
-      @include dashboard-small-only {
-        display: none;
-      }
+    @include dashboard-small-only {
+      display: none;
     }
+  }
 
-    &.headhesive--stick {
-      @include transform(translateY(0));
-    }
+  &.headhesive--stick {
+    @include transform(translateY(0));
   }
 }

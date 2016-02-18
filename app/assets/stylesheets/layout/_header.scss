@@ -1,12 +1,12 @@
 .teams {
-  #header-wrapper {
+  .header-wrapper {
     @include dashboard-medium {
       margin: 0 auto;
     }
   }
 }
 
-#header-wrapper {
+.header-wrapper {
   @include linear-gradient($upcase-blue-1, $upcase-blue-2);
   @include dashboard-medium {
     margin: 0 auto 40px;
@@ -19,8 +19,7 @@
     margin-left: 5px;
   }
 
-  &.headhesive--stick,
-  &.without-hero {
+  &.headhesive--stick {
     .header-cta:hover {
       background-color: inherit;
     }
@@ -41,8 +40,7 @@
   }
 }
 
-.headhesive--stick .header-cta,
-.without-hero .header-cta {
+.headhesive--stick .header-cta {
   padding: $navigation-cta-offset;
 
   &:hover {
@@ -51,8 +49,7 @@
 }
 
 .header-cta-link {
-  #header-wrapper.headhesive--stick &,
-  #header-wrapper.without-hero & {
+  .header-wrapper.headhesive--stick & {
     @include linear-gradient($cta-color-light, $cta-color-dark);
     border-radius: 3px;
     box-shadow: $heavy-box-shadow;
@@ -238,8 +235,7 @@
 .header-thoughtbot-logo {
   display: none;
 
-  .headhesive--stick &,
-  .without-hero & {
+  .headhesive--stick & {
     @include position(absolute, 0.48em 0 0 1em);
     @include size(1.5em);
     display: block;

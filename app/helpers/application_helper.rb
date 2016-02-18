@@ -53,6 +53,10 @@ module ApplicationHelper
       current_user_is_eligible_for_annual_upgrade?
   end
 
+  def encourage_user_to_pay?
+    !current_user.has_active_subscription? || sales_context?
+  end
+
   def page_title_with_app_name(page_specific_title, app_name)
     [page_specific_title, app_name].compact.uniq.join(" from ")
   end

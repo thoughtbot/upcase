@@ -81,8 +81,8 @@ en:
         github_username: GitHub username
   layouts:
     app_name: Upcase
-    meta_description: Video Tutorials, and videos to help you learn web design and
-      development.
+    meta_description: Video Tutorials, and videos to help you learn web design and development.
+    thoughtbot: thoughtbot
   licenses:
     flashes:
       error: You're already subscribed to Upcase!

@@ -1,0 +1,45 @@
+<ul>
+  <% if onboarding_policy.onboarded? %>
+    <li class="practice">
+      <%= link_to t("shared.header.trails"), practice_path %>
+    </li>
+    <li>
+      <%= link_to t("shared.header.flashcards"), decks_path %>
+    </li>
+    <li class="explore">
+      <%= link_to t("shared.header.weekly_iteration"), show_path("the-weekly-iteration") %>
+    </li>
+    <li class="discuss">
+      <%= link_to t("shared.header.forum"), Forum.url %>
+    </li>
+    <% if show_upgrade_to_annual_cta? %>
+      <li class="annual">
+        <%= render "shared/annual_billing" %>
+      </li>
+    <% end %>
+    <li>
+      <%= link_to t("shared.header.search"), search_path %>
+    </li>
+    <% unless current_user.has_active_subscription? %>
+      <li class="header-cta">
+        <% if content_for?(:header_cta_link) %>
+          <%= content_for(:header_cta_link) %>
+        <% else %>
+          <%= link_to professional_checkout_path, class: "header-cta-link" do %>
+            <%= t("subscriptions.join_cta") %>
+          <% end %>
+        <% end %>
+      </li>
+    <% end %>
+  <% else %>
+    <li class="help">
+      <%= link_to t("shared.header.help-link"), welcome_path %>
+    </li>
+  <% end %>
+  <li class="account">
+    <%= link_to my_account_path do %>
+      <%= image_tag gravatar_url(current_user.email, size: "30") %>
+    <% end %>
+  </li>
+  <%= render "shared/masquerade_link" if masquerading? %>
+</ul>

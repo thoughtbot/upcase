@@ -32,7 +32,8 @@ feature "Admin creates a deck" do
   scenario "and can see a live preview of the flashcard", js: true do
     deck = create(:deck)
 
-    visit new_admin_deck_flashcard_path(deck, as: create(:admin))
+    admin = create(:admin)
+    visit new_admin_deck_flashcard_path(deck, as: admin)
     fill_in "Prompt", with: "Hello **world**"
 
     expect(flashcard_preview).to have_css("strong", text: "world")

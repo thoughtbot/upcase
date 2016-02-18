@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "layouts/_signed_in_header.html.erb" do
+describe "layouts/_header_links.html.erb" do
   include AnalyticsHelper
   include Gravatarify::Helper
   include PlansHelper

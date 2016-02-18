@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "layouts/_signed_out_header.html.erb" do
+describe "layouts/_marketing_header_links.html.erb" do
   include PlansHelper
 
   context "when not on the teams page" do
