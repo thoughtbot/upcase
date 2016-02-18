@@ -1,0 +1,43 @@
+<% if has_access_to_shows? %>
+  <% content_for :subject_block do %>
+    <h1><%= @show.name %></h1>
+    <h2 class="tagline">
+      Watch or download episodes.
+    </h2>
+  <% end %>
+<% else %>
+  <% content_for :head do %>
+    <%= auto_discovery_link_tag(:rss, show_url(@show, format: "rss")) %>
+  <% end %>
+
+  <%= render "products/meta", product: @show %>
+<% end %>
+
+<div class="text-box-wrapper">
+  <div class="text-box">
+
+    <span class="divider">
+      <h4 class="text">Videos</h4>
+    </span>
+
+    <div class="text-box">
+      <% unless has_access_to_shows? %>
+        <%= render "watchables/preview" %>
+        <%= render Clip.new("ol6e0miehm") %>
+      <% end %>
+
+      <section id="videos">
+        <%= render @show.videos_with_status %>
+      </section>
+    </div>
+  </div>
+</div>
+
+<% if has_access_to_shows? %>
+  <%= render 'watchables/aside', watchable: @show %>
+<% else %>
+  <aside>
+    <%= render "watchables/subscribe", watchable: @show %>
+    <%= render "watchables/terms", watchable: @show %>
+  </aside>
+<% end %>

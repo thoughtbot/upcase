@@ -2,23 +2,6 @@ require "rails_helper"
 
 describe ShowsController do
   context "show" do
-    it "renders show_subscribed page if user is subscribed" do
-      user = create(:subscriber)
-      show = create(:show)
-      sign_in_as user
-
-      get :show, id: show
-
-      expect(response).to render_template("show_subscribed")
-    end
-
-    it "renders the show page for a visitor" do
-      show = create(:show)
-      get :show, id: show
-
-      expect(response).to render_template("show_for_visitors")
-    end
-
     it "doesn't render other formats" do
       show = create(:show)
 
