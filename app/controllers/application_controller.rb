@@ -43,8 +43,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_is_subscription_owner?
 
   def current_user_is_eligible_for_annual_upgrade?
-    current_user.subscriber? &&
-      current_user.eligible_for_annual_upgrade?
+    current_user.eligible_for_annual_upgrade?
   end
   helper_method :current_user_is_eligible_for_annual_upgrade?
 
