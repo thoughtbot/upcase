@@ -148,6 +148,12 @@ aside {
   display: none;
 }
 
+@include body-tablet {
+  .progress { 
+    overflow: hidden; 
+  }
+}
+
 @include body-mobile {
   .content {
     padding: 1.5em $side-padding 2em;
