@@ -24,7 +24,7 @@ describe AnalyticsHelper do
       expect(identify_hash(user)).to eq(
         created: user.created_at,
         email: user.email,
-        has_active_subscription: user.has_active_subscription?,
+        has_active_subscription: user.subscriber?,
         name: user.name,
         plan: user.plan_name,
         scheduled_for_deactivation_on: nil,

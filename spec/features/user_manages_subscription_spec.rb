@@ -10,7 +10,7 @@ feature "User creates a subscription" do
     subscribe_with_invalid_credit_card
 
     expect(page).to have_credit_card_error
-    expect(current_user).not_to have_active_subscription
+    expect(@current_user.subscriber?).to eq(false)
   end
 
   scenario "sees that the subscription is per month" do

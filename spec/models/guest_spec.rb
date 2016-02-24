@@ -1,11 +1,11 @@
 require "rails_helper"
 
 describe Guest do
-  describe "#has_active_subscription?" do
+  describe "#subscriber?" do
     it "returns false" do
       guest = Guest.new
 
-      expect(guest).not_to have_active_subscription
+      expect(guest.subscriber?).to eq(false)
     end
   end
 

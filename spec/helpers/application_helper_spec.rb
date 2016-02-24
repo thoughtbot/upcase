@@ -49,7 +49,7 @@ describe ApplicationHelper do
     context "when current_user has an active_subscription" do
       context "and is on a landing page" do
         it "returns true" do
-          stub_user(has_active_subscription: true, on_landing_page: true)
+          stub_user(subscriber: true, on_landing_page: true)
 
           result = helper.encourage_user_to_pay?
 
@@ -59,7 +59,7 @@ describe ApplicationHelper do
 
       context "and is not on a landing page" do
         it "returns false" do
-          stub_user(has_active_subscription: true, on_landing_page: false)
+          stub_user(subscriber: true, on_landing_page: false)
 
           result = helper.encourage_user_to_pay?
 
@@ -71,7 +71,7 @@ describe ApplicationHelper do
     context "when current_user doesn't have an active_subscription" do
       context "and is on a landing page" do
         it "returns true" do
-          stub_user(has_active_subscription: false, on_landing_page: false)
+          stub_user(subscriber: false, on_landing_page: false)
 
           result = helper.encourage_user_to_pay?
 
@@ -81,7 +81,7 @@ describe ApplicationHelper do
 
       context "and is not on a landing page" do
         it "returns true" do
-          stub_user(has_active_subscription: false, on_landing_page: false)
+          stub_user(subscriber: false, on_landing_page: false)
 
           result = helper.encourage_user_to_pay?
 
@@ -91,8 +91,8 @@ describe ApplicationHelper do
     end
   end
 
-  def stub_user(has_active_subscription:, on_landing_page:)
-    user = double(:user, has_active_subscription?: has_active_subscription)
+  def stub_user(subscriber:, on_landing_page:)
+    user = double(:user, subscriber?: subscriber)
     allow(helper).to receive(:signed_out?).and_return(false)
     allow(helper).to receive(:current_user).and_return(user)
     assign(:landing_page, on_landing_page)

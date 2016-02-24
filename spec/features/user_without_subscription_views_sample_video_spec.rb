@@ -10,7 +10,7 @@ feature "User without a subscription views sample video" do
     visit trail_path(trail)
     click_on I18n.t("trails.start_for_free")
 
-    expect(user.has_active_subscription?).to eq(false)
+    expect(user.subscriber?).to eq(false)
     expect(current_path).to eq(video_path(video))
     expect(page).to have_free_access_flash_message
     expect(page).to have_css("h1", text: video.name)

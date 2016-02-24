@@ -137,7 +137,7 @@ describe "layouts/_header_links.html.erb" do
         email: current_user_email,
         admin?: current_user_is_admin,
         has_access_to?: false,
-        has_active_subscription?: current_user_has_active_subscription,
+        subscriber?: current_user_has_active_subscription,
       )
     )
     super()

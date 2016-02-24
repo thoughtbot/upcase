@@ -25,7 +25,7 @@ describe "practice/show.html" do
 
   context "when a user has activity in trails" do
     it "doesn't show 'view completed' link when it has no completed trails" do
-      stub_user_access(has_active_subscription: true)
+      stub_user_access(subscriber: true)
 
       render_show
 
@@ -35,7 +35,7 @@ describe "practice/show.html" do
 
   context "when a user has an active subscription" do
     it "does not render the locked_features partial" do
-      stub_user_access(has_active_subscription: true)
+      stub_user_access(subscriber: true)
 
       render_show
 
@@ -47,7 +47,7 @@ describe "practice/show.html" do
 
   context "when a user does not have an active subscription" do
     it "renders locked features partial with all features" do
-      stub_user_access(has_active_subscription: false)
+      stub_user_access(subscriber: false)
 
       render_show
 
@@ -59,7 +59,7 @@ describe "practice/show.html" do
 
   context "for a non-admin user" do
     it "does not render the deck links" do
-      stub_user_access(has_active_subscription: true)
+      stub_user_access(subscriber: true)
       deck = build_stubbed(:deck)
 
       render_show decks: [deck]
@@ -82,10 +82,9 @@ describe "practice/show.html" do
     double("Practice", defaults.merge(options))
   end
 
-  def stub_user_access(has_active_subscription: false)
+  def stub_user_access(subscriber: false)
     user = build_stubbed(:user)
-    allow(user).to receive(:has_active_subscription?).
-      and_return(has_active_subscription)
+    allow(user).to receive(:subscriber?).and_return(subscriber)
     view_stubs(:current_user).and_return(user)
     view_stubs(:current_user_has_access_to?).and_return(false)
   end

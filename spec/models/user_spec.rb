@@ -117,13 +117,13 @@ describe User do
     end
   end
 
-  context "#has_active_subscription?" do
+  context "#subscriber?" do
     it "returns true if the user's associated subscription is active" do
       user = User.new
       subscription = build_stubbed(:active_subscription)
       allow(user).to receive(:subscriptions).and_return([subscription])
 
-      expect(user).to have_active_subscription
+      expect(user.subscriber?).to eq(true)
     end
 
     it "returns true with an active team subscription" do
@@ -131,7 +131,7 @@ describe User do
       team.subscription = build_stubbed(:active_subscription)
       user = User.new
       user.team = team
-      expect(user).to have_active_subscription
+      expect(user.subscriber?).to eq(true)
     end
 
     it "returns false with an inactive team subscription" do
@@ -139,7 +139,7 @@ describe User do
       team.subscription = build_stubbed(:inactive_subscription)
       user = User.new
       user.team = team
-      expect(user).not_to have_active_subscription
+      expect(user.subscriber?).to eq(false)
     end
 
     it "returns false if the user's associated subscription is not active" do
@@ -147,13 +147,13 @@ describe User do
       subscription = build_stubbed(:inactive_subscription)
       allow(user).to receive(:subscriptions).and_return([subscription])
 
-      expect(user).not_to have_active_subscription
+      expect(user.subscriber?).to eq(false)
     end
 
     it "returns false if the user doesn't even have a subscription" do
       user = User.new
 
-      expect(user).not_to have_active_subscription
+      expect(user.subscriber?).to eq(false)
     end
 
     context "with an inactive subscription and an active team subscription" do
@@ -164,7 +164,7 @@ describe User do
           :with_team_subscription
         )
 
-        expect(user).to have_active_subscription
+        expect(user.subscriber?).to eq(true)
       end
     end
 
@@ -176,7 +176,7 @@ describe User do
           :with_inactive_team_subscription
         )
 
-        expect(user).to have_active_subscription
+        expect(user.subscriber?).to eq(true)
       end
     end
 
@@ -188,7 +188,7 @@ describe User do
           :with_inactive_team_subscription
         )
 
-        expect(user).not_to have_active_subscription
+        expect(user.subscriber?).to eq(false)
       end
     end
   end

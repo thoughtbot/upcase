@@ -75,7 +75,7 @@ class Analytics
   attr_reader :user
 
   def user_type(user)
-    if user.has_active_subscription?
+    if user.subscriber?
       SUBSCRIBER
     else
       SAMPLER

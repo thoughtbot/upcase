@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
 
   def inactive_subscription
-    if has_active_subscription?
+    if subscriber?
       nil
     else
       most_recently_deactivated_subscription
@@ -44,12 +44,12 @@ class User < ActiveRecord::Base
     [personal_subscription, team_subscription].compact.detect(&:active?)
   end
 
-  def has_active_subscription?
+  def subscriber?
     subscription.present?
   end
 
   def has_access_to?(feature)
-    has_active_subscription? || feature.accessible_without_subscription?
+    subscriber? || feature.accessible_without_subscription?
   end
 
   def subscribed_at

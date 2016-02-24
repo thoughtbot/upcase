@@ -6,7 +6,7 @@ feature "User cancels a subscription" do
 
     sign_in_as_user_with_subscription :with_full_subscription
 
-    expect(@current_user).to have_active_subscription
+    expect(@current_user.subscriber?).to eq(true)
 
     visit my_account_path
     click_link I18n.t("subscriptions.cancel")
@@ -25,7 +25,7 @@ feature "User cancels a subscription" do
 
     sign_in_as_user_with_subscription
 
-    expect(@current_user).to have_active_subscription
+    expect(@current_user.subscriber?).to eq(true)
 
     visit my_account_path
     click_link I18n.t("subscriptions.cancel")

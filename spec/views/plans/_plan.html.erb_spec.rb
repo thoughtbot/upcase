@@ -58,7 +58,7 @@ describe "plans/_plan.html" do
   def stub_view(active_subscription: false, plan: nil)
     user = double(
       :current_user,
-      has_active_subscription?: active_subscription,
+      subscriber?: active_subscription,
       plan: plan,
     )
     view_stubs(:current_user).and_return(user)

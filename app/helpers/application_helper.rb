@@ -54,7 +54,7 @@ module ApplicationHelper
   end
 
   def encourage_user_to_pay?
-    !current_user.has_active_subscription? || sales_context?
+    !current_user.subscriber? || sales_context?
   end
 
   def page_title_with_app_name(page_specific_title, app_name)

@@ -1,4 +1,4 @@
-<% if current_user.has_active_subscription? %>
+<% if current_user.subscriber? %>
   <div class="license">
     <%= link_to \
       t("#{watchable.offering_type}.checkout_cta"),

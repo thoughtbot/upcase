@@ -37,13 +37,13 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_is_subscription_owner?
-    current_user.has_active_subscription? &&
+    current_user.subscriber? &&
       current_user.subscription.owner?(current_user)
   end
   helper_method :current_user_is_subscription_owner?
 
   def current_user_is_eligible_for_annual_upgrade?
-    current_user.has_active_subscription? &&
+    current_user.subscriber? &&
       current_user.eligible_for_annual_upgrade?
   end
   helper_method :current_user_is_eligible_for_annual_upgrade?

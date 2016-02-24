@@ -31,7 +31,7 @@ describe AnnualBillingsController do
             and_return(build_stubbed(:plan, :with_annual_plan))
           allow(user).to receive(:eligible_for_annual_upgrade?).
             and_return(true)
-          allow(user).to receive(:has_active_subscription?).and_return(true)
+          allow(user).to receive(:subscriber?).and_return(true)
         end
       end
     end

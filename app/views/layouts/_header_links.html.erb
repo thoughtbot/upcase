@@ -20,7 +20,7 @@
     <li>
       <%= link_to t("shared.header.search"), search_path %>
     </li>
-    <% unless current_user.has_active_subscription? %>
+    <% unless current_user.subscriber? %>
       <li class="header-cta">
         <% if content_for?(:header_cta_link) %>
           <%= content_for(:header_cta_link) %>

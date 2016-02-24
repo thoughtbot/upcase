@@ -1,5 +1,5 @@
 class Guest
-  def has_active_subscription?
+  def subscriber?
     false
   end
 

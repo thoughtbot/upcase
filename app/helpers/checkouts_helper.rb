@@ -33,7 +33,7 @@ module CheckoutsHelper
   end
 
   def choose_plan_link(plan)
-    if current_user.has_active_subscription?
+    if current_user.subscriber?
       change_plan_link(plan)
     else
       new_plan_link(plan)

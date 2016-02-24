@@ -30,11 +30,11 @@ class OnboardingPolicy
   end
 
   def user_only_has_access_to_weekly_iteration?
-    user.has_active_subscription? && !user_has_trails?
+    user.subscriber? && !user_has_trails?
   end
 
   def full_subscriber_with_incomplete_welcome_flow?
-    user.has_active_subscription? &&
+    user.subscriber? &&
       user_has_trails? &&
       welcome_flow_incomplete?
   end

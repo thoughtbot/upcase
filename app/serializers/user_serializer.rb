@@ -18,7 +18,7 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def has_active_subscription
-    object.has_active_subscription?
+    object.subscriber?
   end
 
   def username

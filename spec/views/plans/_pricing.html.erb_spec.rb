@@ -23,7 +23,7 @@ describe "plans/_pricing.html" do
   end
 
   def render_pricing_with_plans(plans)
-    user = double(:current_user, has_active_subscription?: false)
+    user = double(:current_user, subscriber?: false)
     view_stubs(:current_user).and_return(user)
     render "plans/pricing", plans: plans
   end
