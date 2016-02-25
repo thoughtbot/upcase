@@ -12,6 +12,7 @@ feature "subscriber views weekly iteration" do
     expect(page).to have_content(show.name)
     expect(page).to have_content(published_video.name)
     expect(page).not_to have_content(video.name)
+    expect(page).not_to have_subscribe_cta
   end
 
   scenario "and marks the video complete" do
@@ -29,6 +30,10 @@ feature "subscriber views weekly iteration" do
 
   def video_summary(video)
     find(".video-text", text: video.name)
+  end
+
+  def have_subscribe_cta
+    have_content(I18n.t("watchables.preview.subscribe_cta"))
   end
 
   def click_mark_as_complete_button

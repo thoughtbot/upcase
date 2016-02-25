@@ -72,6 +72,7 @@ input[type="submit"],
 input[type="submit"].subscribe-cta {
   @include linear-gradient($cta-color-light, $cta-color-dark);
   color: $cta-text-color;
+  margin-left: auto;
 
   &.light-bg {
     border: 1px solid lighten($cta-color-dark, 30%);

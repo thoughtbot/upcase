@@ -26,8 +26,7 @@ section {
   width: 100%;
 
   .text-box-wrapper {
-    @include span-columns(8.5);
-    margin-right: 3%;
+    @include span-columns(12);
     position: relative;
 
     &:before {

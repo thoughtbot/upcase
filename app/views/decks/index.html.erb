@@ -1,3 +1,9 @@
+<% unless current_user.subscriber? %>
+  <%= render "subscribe_cta",
+    description: t("decks.subscribe_cta"),
+    button_text: t("decks.subscribe_link") %>
+<% end %>
+
 <section class="root-decks">
   <h3><%= t('.title') %></h3>
 

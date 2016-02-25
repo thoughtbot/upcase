@@ -1,7 +1,9 @@
 <% content_for :page_title, "Learn Ruby and Rails Development" %>
 
 <% unless current_user.subscriber? %>
-  <%= render "products/locked_features" %>
+  <%= render "subscribe_cta",
+    description: t("trails.subscribe_cta"),
+    button_text: t("trails.subscribe_link") %>
 <% end %>
 
 <section class="trails-progress">

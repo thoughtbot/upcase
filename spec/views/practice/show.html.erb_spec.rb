@@ -33,26 +33,14 @@ describe "practice/show.html" do
     end
   end
 
-  context "when a user has an active subscription" do
-    it "does not render the locked_features partial" do
-      stub_user_access(subscriber: true)
-
-      render_show
-
-      expect(rendered).not_to(
-        have_content(I18n.t("products.locked_features.why_they_are_locked")),
-      )
-    end
-  end
-
   context "when a user does not have an active subscription" do
-    it "renders locked features partial with all features" do
+    it "renders a cta to subscribe" do
       stub_user_access(subscriber: false)
 
       render_show
 
       expect(rendered).to(
-        have_content(I18n.t("products.locked_features.why_they_are_locked")),
+        have_content(I18n.t("trails.subscribe_cta")),
       )
     end
   end

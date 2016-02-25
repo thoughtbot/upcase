@@ -55,6 +55,8 @@ en:
         and anti-patterns that experts know and intermediates ought to learn.
       subhead: Become a better programmer, even if you've only got five minutes.
       title: Flashcards
+    subscribe_cta: We hope you're enjoying these flashcard decks. Ready to dive into all the other great content?
+    subscribe_link: Subscribe Now
   exercist_trails:
     show:
       no_trail: No trail found for the exercise.
@@ -79,6 +81,7 @@ en:
     labels:
       acceptance:
         github_username: GitHub username
+  github_logo: GitHub
   layouts:
     app_name: Upcase
     fallback_meta_description: Join Upcase by thoughtbot. Explore video tutorials, exercises, forum discussions and the community you need to grow as a web developer.
@@ -119,10 +122,6 @@ en:
     locked:
       available_for_free_after_authing: Sign In with GitHub for Free Access
       get_access_by_joining: Get access by joining Upcase
-    locked_features:
-      subscribe_link: Subscribe to Upcase
-      upgrade_link: upgrade your subscription
-      why_they_are_locked: All these great trails are locked because you don't yet have a subscription.
     subscribe_cta: You can access this %{offering_type} and others with a subscription
       to %{subscription_name}
   repository:
@@ -215,6 +214,9 @@ en:
       heading:
         online: Online video tutorial
   trails:
+    subscribe_cta: Some of these trails are locked because you don't yet have a
+      subscription.  Subscribe to Upcase to start leveling up.
+    subscribe_link: Subscribe Now
     start_for_free: Start Course for Free by Signing In with GitHub
     other_resources: Use these resources for reference and additional practice
     thoughtbot_resources: Use these thoughtbot resources first
@@ -236,8 +238,9 @@ en:
       jump-to-topic-in-video: Jump to Topic In Video
   watchables:
     preview:
-      cta: This video is a preview. <a href="%{subscribe_url}">Subscribe to Upcase</a>
-        to access the full-length video, and all other videos.
+      subscribe_cta: This video is a preview.  Subscribe now to access the
+        full-length video, and all other videos.
+      subscribe_link: Subscribe Now
   dynamic_page_titles:
     show: "%{name} | Video Lessons by thoughtbot"
     topic: "Learn %{name} | Online Courses by thoughtbot"

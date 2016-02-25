@@ -2,8 +2,12 @@
   <% if signed_out? %>
     <%= render "videos/auth_to_access", video: video %>
   <% else %>
-    <%= render "videos/subscribe_callout_for_free_sample" %>
+    <%= render "subscribe_cta",
+      description: t("videos.show.access_callout_for_sample_text"),
+      button_text: t("videos.show.access_callout_for_sample_button") %>
   <% end %>
 <% else %>
-  <%= render "videos/subscribe_callout_for_preview" %>
+  <%= render "subscribe_cta",
+    description: t("videos.show.access_callout_for_preview_text"),
+    button_text: t("videos.show.access_callout_for_preview_button") %>
 <% end %>

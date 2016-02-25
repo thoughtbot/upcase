@@ -8,8 +8,7 @@ feature "Visitor" do
     visit show_url(show)
 
     expect(page).to have_content(show.name)
-    expect_page_to_have_show_preview_cta
-    expect_to_see_call_to_subscribe_to_upcase
+    expect(page).to have_show_preview_cta
   end
 
   scenario "clicks through to an episode" do
@@ -34,16 +33,8 @@ feature "Visitor" do
     )
   end
 
-  def expect_page_to_have_show_preview_cta
-    expect(page.body).to include(
-      I18n.t("watchables.preview.cta", subscribe_url: join_path).html_safe,
-    )
-  end
-
-  def expect_to_see_call_to_subscribe_to_upcase
-    expect(page).to have_content(
-      "Subscribe to #{I18n.t('shared.subscription.name')}",
-    )
+  def have_show_preview_cta
+    have_content(I18n.t("watchables.preview.subscribe_cta"))
   end
 
   def have_video_preview_callout

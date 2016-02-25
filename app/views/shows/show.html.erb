@@ -20,7 +20,9 @@
 
     <div class="text-box">
       <% unless has_access_to_shows? %>
-        <%= render "watchables/preview" %>
+        <%= render "subscribe_cta",
+          description: t("watchables.preview.subscribe_cta"),
+          button_text: t("watchables.preview.subscribe_link") %>
         <%= render Clip.new("ol6e0miehm") %>
       <% end %>
 
@@ -30,12 +32,3 @@
     </div>
   </div>
 </div>
-
-<% if has_access_to_shows? %>
-  <%= render 'watchables/aside', watchable: @show %>
-<% else %>
-  <aside>
-    <%= render "watchables/subscribe", watchable: @show %>
-    <%= render "watchables/terms", watchable: @show %>
-  </aside>
-<% end %>
