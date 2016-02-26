@@ -41,6 +41,10 @@ class Subscription < ActiveRecord::Base
     update_column(:deactivated_on, Time.zone.today)
   end
 
+  def reactivate
+    update_column(:scheduled_for_deactivation_on, nil)
+  end
+
   def change_plan(sku:)
     write_plan(sku: sku)
     change_stripe_plan(sku: sku)
