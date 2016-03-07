@@ -1,11 +1,11 @@
-shared_examples 'a Delayed Job that notifies Airbrake about errors' do
+shared_examples "a Delayed Job that notifies Honeybadger about errors" do
   describe '#error' do
-    it 'notifies Airbrake when an error occurs' do
-      allow(Airbrake).to receive(:notify)
+    it "notifies Honeybadger when an error occurs" do
+      allow(Honeybadger).to receive(:notify)
 
       described_class.new(3).error(double, RuntimeError)
 
-      expect(Airbrake).to have_received(:notify).with(RuntimeError)
+      expect(Honeybadger).to have_received(:notify).with(RuntimeError)
     end
   end
 end

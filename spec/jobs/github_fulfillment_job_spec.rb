@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe GithubFulfillmentJob do
-  it_behaves_like "a Delayed Job that notifies Airbrake about errors"
+  it_behaves_like "a Delayed Job that notifies Honeybadger about errors"
 
   describe "#perform" do
     context "with a GitHub username" do

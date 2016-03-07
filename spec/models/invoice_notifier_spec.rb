@@ -14,14 +14,14 @@ describe InvoiceNotifier do
     end
 
     context 'invoice has no user' do
-      it 'sends a notification to Airbrake for further debugging' do
-        allow(Airbrake).to receive(:notify_or_ignore)
+      it "sends a notification to Honeybadger for further debugging" do
+        allow(Honeybadger).to receive(:notify)
         payment_processor =
           InvoiceNotifier.new(stub_invoice_with_no_user)
 
         payment_processor.send_receipt
 
-        expect(Airbrake).to have_received(:notify_or_ignore)
+        expect(Honeybadger).to have_received(:notify)
       end
     end
   end

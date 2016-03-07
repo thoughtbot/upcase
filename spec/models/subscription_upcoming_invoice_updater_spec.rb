@@ -47,8 +47,8 @@ describe SubscriptionUpcomingInvoiceUpdater do
     expect(subscription).not_to have_received(:update!)
   end
 
-  it "sends the error to Airbrake if it isn't 404" do
-    allow(Airbrake).to receive(:notify)
+  it "sends the error to Honeybadger if it isn't 404" do
+    allow(Honeybadger).to receive(:notify)
     error = Stripe::InvalidRequestError.new("Server error", "", 500)
     allow(Stripe::Invoice).to receive(:upcoming).and_raise(error)
     subscription = create(:subscription)
@@ -56,7 +56,7 @@ describe SubscriptionUpcomingInvoiceUpdater do
 
     SubscriptionUpcomingInvoiceUpdater.new(subscriptions).process
 
-    expect(Airbrake).to have_received(:notify).with(error)
+    expect(Honeybadger).to have_received(:notify).with(error)
   end
 
   private

@@ -11,7 +11,7 @@ class GithubRemovalJob < Struct.new(:repository, :username)
     begin
       github_client.remove_collaborator(repository, username)
     rescue Octokit::NotFound, Net::HTTPBadResponse => e
-      Airbrake.notify(e)
+      Honeybadger.notify(e)
     end
   end
 

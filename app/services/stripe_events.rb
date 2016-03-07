@@ -22,10 +22,10 @@ class StripeEvents
     if subscription = Subscription.find_by(stripe_id: stripe_subscription.id)
       subscription
     else
-      Airbrake.notify_or_ignore(
+      Honeybadger.notify(
         error_message: "No subscription found for #{stripe_subscription.id}",
         error_class: "StripeEvents",
-        parameters: @event.to_hash
+        context: @event.to_hash,
       )
       nil
     end

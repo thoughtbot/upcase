@@ -3,11 +3,11 @@ require "rails_helper"
 describe StripeEvents do
   describe "#customer_subscription_deleted" do
     it "sends notifications if no subscription is found" do
-      allow(Airbrake).to receive(:notify_or_ignore)
+      allow(Honeybadger).to receive(:notify)
 
       StripeEvents.new(event).customer_subscription_deleted
 
-      expect(Airbrake).to have_received(:notify_or_ignore).once
+      expect(Honeybadger).to have_received(:notify).once
     end
 
     it "cancels plan if subscription found" do
@@ -27,11 +27,11 @@ describe StripeEvents do
 
   describe "#customer_subscription_updated" do
     it "sends notifications if no local subscription is found" do
-      allow(Airbrake).to receive(:notify_or_ignore)
+      allow(Honeybadger).to receive(:notify)
 
       StripeEvents.new(event).customer_subscription_updated
 
-      expect(Airbrake).to have_received(:notify_or_ignore).once
+      expect(Honeybadger).to have_received(:notify).once
     end
 
     it "updates subscription plan if local subscription found" do

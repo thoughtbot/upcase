@@ -1,5 +1,5 @@
 module ErrorReporting
   def error(job, exception)
-    Airbrake.notify(exception)
+    Honeybadger.notify(exception)
   end
 end

@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe SendCheckoutReceiptEmailJob do
-  it_behaves_like 'a Delayed Job that notifies Airbrake about errors'
+  it_behaves_like "a Delayed Job that notifies Honeybadger about errors"
 
   describe '.enqueue' do
     it "enqueues a job" do

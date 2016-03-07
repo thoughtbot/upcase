@@ -7,7 +7,7 @@ class InvoiceNotifier
     if invoice_has_a_user?
       email_receipt
     else
-      notify_airbrake_of_missing_user
+      notify_honeybadger_of_missing_user
     end
   end
 
@@ -27,12 +27,12 @@ class InvoiceNotifier
     )
   end
 
-  def notify_airbrake_of_missing_user
-    Airbrake.notify_or_ignore({
+  def notify_honeybadger_of_missing_user
+    Honeybadger.notify(
       error_message: 'No matching user for Stripe Customer ID',
       error_class: 'StripeEvent',
-      parameters: invoice_debugging_information
-    })
+      context: invoice_debugging_information,
+    )
   end
 
   def invoice_debugging_information

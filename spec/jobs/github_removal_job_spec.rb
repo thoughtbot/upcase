@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe GithubRemovalJob do
-  it_behaves_like "a Delayed Job that notifies Airbrake about errors"
+  it_behaves_like "a Delayed Job that notifies Honeybadger about errors"
 
   it "removes a collaborator from a GitHub repo" do
     client = stub_octokit
@@ -15,14 +15,15 @@ describe GithubRemovalJob do
   end
 
   [Octokit::NotFound, Net::HTTPBadResponse].each do |error_class|
-    it "notifies Airbrake when #{error_class} is raised" do
+    it "notifies Honeybadger when #{error_class} is raised" do
       client = stub_octokit
       allow(client).to receive(:remove_collaborator).and_raise(error_class)
-      allow(Airbrake).to receive(:notify)
+      allow(Honeybadger).to receive(:notify)
 
       GithubRemovalJob.new("thoughtbot/upcase", "gabebw").perform
 
-      expect(Airbrake).to have_received(:notify).with(instance_of(error_class))
+      expect(Honeybadger).to have_received(:notify).
+        with(instance_of(error_class))
     end
   end
 
