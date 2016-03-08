@@ -81,7 +81,8 @@ en:
         github_username: GitHub username
   layouts:
     app_name: Upcase
-    meta_description: Video Tutorials, and videos to help you learn web design and development.
+    fallback_meta_description: Join Upcase by thoughtbot. Explore video tutorials, exercises, forum discussions and the community you need to grow as a web developer.
+    fallback_page_title: Upcase by thoughtbot | Learn Web Development Online
     thoughtbot: thoughtbot
   licenses:
     flashes:
@@ -154,6 +155,7 @@ en:
       single_user: Subscribe Now
     team_plan_name: Upcase for Teams
     upcase: Upcase
+    content_meta_description: "Explore thoughtbot's video tutorials, exercises, and forum discussions on %{name}"
   show:
     preview_cta: This video is a preview. The full show is included with your Upcase
       membership.
@@ -236,3 +238,8 @@ en:
     preview:
       cta: This video is a preview. <a href="%{subscribe_url}">Subscribe to Upcase</a>
         to access the full-length video, and all other videos.
+  dynamic_page_titles:
+    show: "%{name} | Video Lessons by thoughtbot"
+    topic: "Learn %{name} | Online Courses by thoughtbot"
+    trail: "%{name} | Online Tutorial by thoughtbot"
+    video: "%{name} | Online Video Tutorial by thoughtbot"

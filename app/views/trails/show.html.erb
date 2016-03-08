@@ -1,4 +1,5 @@
-<% content_for :page_title, @trail.name %>
+<% render "shared/content_specific_head_tags", content: @trail, type: "trail" %>
+
 <% content_for :subject_block do %>
   <%= render "header", topic: @trail.topic, trail: @trail %>
 <% end %>

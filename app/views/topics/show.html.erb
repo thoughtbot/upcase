@@ -1,5 +1,6 @@
+<% render "shared/content_specific_head_tags", content: @topic, type: "topic" %>
+
 <% content_for :additional_body_classes, @topic.slug.parameterize %>
-<% content_for :page_title, @topic.page_title %>
 
 <% content_for :subject_block do %>
   <div class="topic-header">

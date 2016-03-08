@@ -20,6 +20,19 @@ RailsAdmin.config do |config|
     init_actions!
   end
 
+  config.model Show do
+    list do
+      field :name
+      field :slug
+    end
+
+    edit do
+      field :name
+      field :slug
+      field :meta_description
+    end
+  end
+
   config.model User do
     list do
       field :id
@@ -117,6 +130,7 @@ RailsAdmin.config do |config|
         field :summary
         field :notes
         field :topics
+        field :meta_description
 
         field :watchable do
           partial "form_watchable_association"
@@ -141,6 +155,22 @@ RailsAdmin.config do |config|
     field :anchor
     field :time do
       label "Time (seconds)"
+    end
+  end
+
+  config.model Topic do
+    list do
+      field :name
+      field :slug
+    end
+
+    edit do
+      field :name
+      field :slug
+      field :summary
+      field :extended_description
+      field :meta_description
+      field :page_title
     end
   end
 end

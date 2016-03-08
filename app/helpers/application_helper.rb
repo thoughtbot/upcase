@@ -57,7 +57,13 @@ module ApplicationHelper
     !current_user.subscriber? || sales_context?
   end
 
-  def page_title_with_app_name(page_specific_title, app_name)
-    [page_specific_title, app_name].compact.uniq.join(" from ")
+  def content_meta_description(describable)
+    describable.meta_description.presence ||
+      t("shared.content_meta_description", name: describable.name)
+  end
+
+  def dynamic_page_title(titleable, type)
+    titleable.page_title.presence ||
+      t("dynamic_page_titles.#{type}", name: titleable.name)
   end
 end

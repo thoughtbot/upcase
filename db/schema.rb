@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160104200900) do
+ActiveRecord::Schema.define(version: 20160309033100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -244,6 +244,8 @@ ActiveRecord::Schema.define(version: 20160104200900) do
     t.text     "resources",                              default: "",    null: false
     t.string   "github_repository"
     t.integer  "trail_id"
+    t.text     "meta_description",                       default: ""
+    t.text     "page_title",                             default: ""
   end
 
   add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
@@ -329,6 +331,7 @@ ActiveRecord::Schema.define(version: 20160104200900) do
     t.boolean  "explorable",                       default: false, null: false
     t.string   "page_title",                                       null: false
     t.text     "extended_description"
+    t.text     "meta_description",                 default: ""
   end
 
   add_index "topics", ["explorable"], name: "index_topics_on_explorable", using: :btree
@@ -345,6 +348,8 @@ ActiveRecord::Schema.define(version: 20160104200900) do
     t.integer  "topic_id",                                         null: false
     t.string   "title_card_image",                 default: ""
     t.text     "extended_description"
+    t.text     "meta_description",                 default: ""
+    t.text     "page_title",                       default: ""
   end
 
   add_index "trails", ["published"], name: "index_trails_on_published", using: :btree
@@ -450,6 +455,8 @@ ActiveRecord::Schema.define(version: 20160104200900) do
     t.text     "summary"
     t.integer  "length_in_minutes"
     t.boolean  "accessible_without_subscription",             default: false
+    t.text     "meta_description",                            default: ""
+    t.text     "page_title",                                  default: ""
   end
 
   add_index "videos", ["slug"], name: "index_videos_on_slug", unique: true, using: :btree

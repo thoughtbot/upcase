@@ -5,7 +5,7 @@ describe "videos/show" do
     video = build_stubbed(:video, name: "hello world")
 
     render_video video
-    expect(page_title).to eq(video.name)
+    expect(page_title).to include(video.name)
   end
 
   describe "twitter card" do

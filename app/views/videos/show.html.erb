@@ -1,4 +1,4 @@
-<% content_for :page_title, @video.name.html_safe %>
+<% render "shared/content_specific_head_tags", content: @video, type: "video" %>
 
 <% if @video.preview_wistia_id.present? %>
   <% content_for :head do %>

@@ -1,16 +1,14 @@
-<% if has_access_to_shows? %>
-  <% content_for :subject_block do %>
-    <h1><%= @show.name %></h1>
-    <h2 class="tagline">
-      Watch or download episodes.
-    </h2>
-  <% end %>
-<% else %>
-  <% content_for :head do %>
-    <%= auto_discovery_link_tag(:rss, show_url(@show, format: "rss")) %>
-  <% end %>
+<% render "shared/content_specific_head_tags", content: @show, type: "show" %>
 
-  <%= render "products/meta", product: @show %>
+<% content_for :head do %>
+  <%= auto_discovery_link_tag(:rss, show_url(@show, format: "rss")) %>
+<% end %>
+
+<% content_for :subject_block do %>
+  <h1><%= @show.name %></h1>
+  <h2 class="tagline">
+    <%= @show.tagline %>
+  </h2>
 <% end %>
 
 <div class="text-box-wrapper">
