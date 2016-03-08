@@ -4,6 +4,8 @@
 //= require jquery.ba-throttle-debounce
 //= require jquery.jsPlumb-1.4.0-all-min
 //= require highlight.min
+//= require upcase
+//= require dismiss-flashes
 //= require plans
 //= require checkout
 //= require header-toggle
@@ -21,4 +23,6 @@ $(function() {
   $('textarea').autosize();
 
   FastClick.attach(document.body);
+
+  Upcase.dismissFlashesOnClick();
 });
