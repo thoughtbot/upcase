@@ -383,20 +383,24 @@ describe User do
   end
 
   describe "#eligible_for_annual_upgrade?" do
-    it "returns true with eligible plan" do
-      user = User.new
+    it "returns true with active, eligible plan" do
       subscription = build_stubbed(:subscription)
-      allow(user).to receive(:subscription).and_return(subscription)
       subscription.plan.annual_plan = build_stubbed(:plan, :annual)
+      user = User.new(subscriptions: [subscription])
 
       expect(user.eligible_for_annual_upgrade?).to be true
     end
 
-    it "returns false with ineligible plan" do
-      user = User.new
+    it "returns false with active but ineligible plan" do
       subscription = build_stubbed(:subscription)
-      allow(user).to receive(:subscription).and_return(subscription)
       subscription.plan.annual_plan = nil
+      user = User.new(subscriptions: [subscription])
+
+      expect(user.eligible_for_annual_upgrade?).to be false
+    end
+
+    it "returns false if there is no subscription" do
+      user = User.new
 
       expect(user.eligible_for_annual_upgrade?).to be false
     end
