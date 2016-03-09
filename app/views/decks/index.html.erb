@@ -6,13 +6,13 @@
   <p><%= t('.feature_description') %></p>
 
   <section class="decks-area">
-    <%= render @decks %>
+    <%= render @deck_list.decks %>
   </section>
 
   <section class="saved-deck">
     <%= render(
       "flashcards/needing_review",
-      flashcards_to_review: @flashcards_to_review
+      flashcards_to_review: @deck_list.flashcards_to_review
     ) %>
   </section>
 </section>

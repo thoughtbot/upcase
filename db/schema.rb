@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160104200900) do
+ActiveRecord::Schema.define(version: 20160113192505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -469,6 +469,19 @@ ActiveRecord::Schema.define(version: 20160104200900) do
   attempts.updated_at
  FROM attempts
 ORDER BY attempts.user_id, attempts.flashcard_id, attempts.updated_at DESC;
+      SQL
+
+      create_view :latest_deck_attempts, sql_definition:<<-SQL
+        SELECT DISTINCT ON (attempts.user_id, flashcards.deck_id) attempts.id,
+  attempts.confidence,
+  attempts.flashcard_id,
+  attempts.user_id,
+  attempts.created_at,
+  attempts.updated_at,
+  flashcards.deck_id
+ FROM (attempts
+   JOIN flashcards ON ((flashcards.id = attempts.flashcard_id)))
+ORDER BY attempts.user_id, flashcards.deck_id, attempts.updated_at DESC;
       SQL
 
         create_view :slugs, sql_definition:<<-SQL

@@ -6,4 +6,8 @@ class NullAttempt
   def low_confidence?
     false
   end
+
+  def updated_at
+    nil
+  end
 end
