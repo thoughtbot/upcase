@@ -214,7 +214,6 @@ FactoryGirl.define do
   end
 
   factory :topic do
-    keywords 'clean, clear, precise'
     name
     page_title { "Learn #{name}" }
     summary 'short yet descriptive'

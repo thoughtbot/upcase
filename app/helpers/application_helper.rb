@@ -13,10 +13,6 @@ module ApplicationHelper
     end
   end
 
-  def keywords(keywords = nil)
-    keywords.presence || Topic.all.pluck(:name).join(", ")
-  end
-
   def format_markdown(markdown)
     if markdown.present?
       renderer = Redcarpet::Markdown.new(

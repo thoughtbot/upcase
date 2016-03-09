@@ -16,10 +16,6 @@ class Topic < ActiveRecord::Base
 
   friendly_id :name, use: [:slugged, :finders]
 
-  def self.meta_keywords
-    pluck(:name).join(", ")
-  end
-
   def to_s
     name
   end

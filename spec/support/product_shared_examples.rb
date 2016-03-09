@@ -15,10 +15,6 @@ shared_examples "a class inheriting from Product" do
     end
   end
 
-  describe "#meta_keywords" do
-    it { should delegate(:meta_keywords).to(:topics) }
-  end
-
   describe ".newest_first" do
     it "returns products in reverse chronological order" do
       older = create_product(created_at: 1.day.ago)

@@ -32,17 +32,6 @@ describe Topic do
     end
   end
 
-  describe '#meta_keywords' do
-    it 'returns a comma delimited string of topics' do
-      create(:topic, name: 'Ruby')
-      create(:topic, name: 'Rails')
-
-      result = Topic.meta_keywords
-
-      expect(result).to eq 'Ruby, Rails'
-    end
-  end
-
   describe "#weekly_iteration_videos" do
     it "returns only videos from the weekly iteration, not from trails" do
       topic = create(:topic, name: "Rails")

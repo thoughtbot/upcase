@@ -32,10 +32,6 @@ class Product < ActiveRecord::Base
     order 'created_at DESC'
   end
 
-  def meta_keywords
-    topics.meta_keywords
-  end
-
   def subscription?
     false
   end
