@@ -1,3 +1,11 @@
+PAGE_TITLE_HELP = "Text for the <title> tag.".freeze
+META_DESCRIPTION_HELP = %{Text for the <meta name="Description"> tag.}.freeze
+DESCRIPTION_HELP = "Short primary description, always shown".freeze
+EXTENDED_DESCRIPTION_HELP = <<-DESC.strip_heredoc.freeze
+  Detailed additional description. Hidden on initial render,
+  but available by clicking 'Read more' link.
+DESC
+
 RailsAdmin.config do |config|
   config.authenticate_with do
     unless current_user
@@ -29,7 +37,16 @@ RailsAdmin.config do |config|
     edit do
       field :name
       field :slug
-      field :meta_description
+
+      group :seo do
+        field :meta_description do
+          help META_DESCRIPTION_HELP
+        end
+        field :page_title do
+          help PAGE_TITLE_HELP
+        end
+        field :tagline
+      end
     end
   end
 
@@ -99,6 +116,21 @@ RailsAdmin.config do |config|
     edit do
       include_all_fields
 
+      group :seo do
+        field :description do
+          help DESCRIPTION_HELP
+        end
+        field :extended_description do
+          help EXTENDED_DESCRIPTION_HELP
+        end
+        field :meta_description do
+          help META_DESCRIPTION_HELP
+        end
+        field :page_title do
+          help PAGE_TITLE_HELP
+        end
+      end
+
       field :steps do
         orderable true
       end
@@ -130,7 +162,6 @@ RailsAdmin.config do |config|
         field :summary
         field :notes
         field :topics
-        field :meta_description
 
         field :watchable do
           partial "form_watchable_association"
@@ -141,6 +172,18 @@ RailsAdmin.config do |config|
         field :users
         field :length_in_minutes
         field :markers
+      end
+
+      group :seo do
+        field :meta_description do
+          help META_DESCRIPTION_HELP
+        end
+        field :page_title do
+          help PAGE_TITLE_HELP
+        end
+        field :summary do
+          help "Shown on TWI index page"
+        end
       end
 
       group :wistia do
@@ -167,10 +210,21 @@ RailsAdmin.config do |config|
     edit do
       field :name
       field :slug
-      field :summary
-      field :extended_description
-      field :meta_description
-      field :page_title
+
+      group :seo do
+        field :extended_description do
+          help EXTENDED_DESCRIPTION_HELP
+        end
+        field :meta_description do
+          help META_DESCRIPTION_HELP
+        end
+        field :page_title do
+          help PAGE_TITLE_HELP
+        end
+        field :summary do
+          help DESCRIPTION_HELP
+        end
+      end
     end
   end
 end
