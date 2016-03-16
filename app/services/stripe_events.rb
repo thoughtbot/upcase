@@ -6,6 +6,7 @@ class StripeEvents
   def customer_subscription_deleted
     if subscription
       Cancellation.new(subscription: subscription).process
+      track_user_updated(subscription)
     end
   end
 
@@ -13,10 +14,15 @@ class StripeEvents
     if subscription
       subscription.write_plan(sku: stripe_subscription.plan.id)
       SubscriptionUpcomingInvoiceUpdater.new([subscription]).process
+      track_user_updated(subscription)
     end
   end
 
   private
+
+  def track_user_updated(subscription)
+    Analytics.new(subscription.user).track_updated
+  end
 
   def subscription
     if subscription = Subscription.find_by(stripe_id: stripe_subscription.id)
