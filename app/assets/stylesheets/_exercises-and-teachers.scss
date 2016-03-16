@@ -1,11 +1,11 @@
 .exercises-and-teachers {
-  @include display(flex);
-  @include flex-wrap(wrap);
-  @include justify-content(space-between);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 
   .exercises-container {
-    @include flex-basis(33em);
-    @include flex-shrink(1);
+    flex-basis: 33em;
+    flex-shrink: 1;
     margin: 1em;
 
     .divider {
@@ -38,9 +38,9 @@
   }
 
   .text-box-wrapper {
-    @include flex-basis(9em);
-    @include flex-shrink(1);
-    @include flex-grow(1);
+    flex-basis: 9em;
+    flex-grow: 1;
+    flex-shrink: 1;
     margin: 1em;
 
     .text-box h5 {

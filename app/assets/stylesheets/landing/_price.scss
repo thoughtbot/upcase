@@ -137,15 +137,15 @@ $pricing-margin: 0.5rem;
 }
 
 .price-cta {
-  @include display(flex);
-  @include flex-wrap(wrap);
-  @include justify-content(space-between);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   text-align: center;
 
   a {
-    @include flex-basis(12em);
-    @include flex-shrink(0);
-    @include flex-grow(1);
+    flex-basis: 12em;
+    flex-grow: 1;
+    flex-shrink: 0;
     margin: $pricing-margin;
   }
 }
