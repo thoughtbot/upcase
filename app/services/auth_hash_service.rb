@@ -35,6 +35,7 @@ class AuthHashService
   def create_from_auth_hash
     create_user.tap do |user|
       promote_thoughtbot_employee_to_admin(user)
+      track_account_created(user)
     end
   end
 
@@ -66,6 +67,10 @@ class AuthHashService
       user.admin = true
       user.save!
     end
+  end
+
+  def track_account_created(user)
+    Analytics.new(user).track_account_created
   end
 
   def octokit_client

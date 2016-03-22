@@ -32,6 +32,10 @@ class Analytics
     backend.identify(user_id: user.id, traits: identify_hash(user))
   end
 
+  def track_account_created
+    track("Account created")
+  end
+
   def track_searched(query:, results_count:)
     track("Searched", query: query, results_count: results_count)
   end

@@ -308,4 +308,12 @@ describe Analytics do
         )
     end
   end
+
+  describe "#track_account_created" do
+    it "tracks that a new account was created" do
+      analytics_instance.track_account_created
+
+      expect(analytics).to have_tracked("Account created").for_user(user)
+    end
+  end
 end

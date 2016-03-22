@@ -34,6 +34,16 @@ describe AuthHashService, '#find_or_create_user_from_auth_hash' do
     expect(user).to be_admin
   end
 
+  context "when a new account is created" do
+    it "notififes analytics of account_created" do
+      tracker = stub_analytics_tracker
+
+      AuthHashService.new(auth_hash).find_or_create_user_from_auth_hash
+
+      expect(tracker).to have_received(:track_account_created)
+    end
+  end
+
   context 'with an existing user' do
     it "finds the user by email" do
       existing_user = create(:user, email: auth_hash["info"]["email"])
@@ -61,6 +71,15 @@ describe AuthHashService, '#find_or_create_user_from_auth_hash' do
       expect(existing_user).to eq AuthHashService.new(auth_hash).
         find_or_create_user_from_auth_hash
     end
+
+    it "does not track account_created" do
+      tracker = stub_analytics_tracker
+      create_user_with_github_auth
+
+      AuthHashService.new(auth_hash).find_or_create_user_from_auth_hash
+
+      expect(tracker).not_to have_received(:track_account_created)
+    end
   end
 
   def stub_team_member(return_value)
@@ -83,5 +102,16 @@ describe AuthHashService, '#find_or_create_user_from_auth_hash' do
         'nickname' => 'thoughtbot',
       }
     }.merge(options)
+  end
+
+  def stub_analytics_tracker
+    double("Analytics").tap do |tracker|
+      allow(tracker).to receive(:track_account_created)
+      allow(Analytics).to receive(:new).and_return(tracker)
+    end
+  end
+
+  def create_user_with_github_auth
+    create(:user, auth_provider: "github", auth_uid: auth_hash["uid"])
   end
 end
