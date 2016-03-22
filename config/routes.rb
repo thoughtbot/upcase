@@ -73,6 +73,7 @@ Upcase::Application.routes.draw do
   get "/terms" => "pages#show", as: :terms, id: "terms"
 
   scope ":plan" do
+    resource :authenticated_on_checkout, only: [:show]
     resources :checkouts, only: [:new, :create]
   end
 

@@ -48,6 +48,10 @@ class Analytics
     track("Logged into Forum")
   end
 
+  def track_authenticated_on_checkout
+    track("Authenticated on checkout")
+  end
+
   def track_cancelled(reason:)
     track("Cancelled", reason: reason)
   end

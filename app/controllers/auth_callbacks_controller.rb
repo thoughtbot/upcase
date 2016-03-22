@@ -2,9 +2,9 @@ class AuthCallbacksController < ApplicationController
   def create
     sign_in user_from_auth_hash
     track_authed_to_access
+    track_authenticated_on_checkout
     redirect_to_desired_path
-    clear_return_to
-    clear_auth_to_access_slug
+    clear_used_session_values
   end
 
   private
@@ -15,6 +15,12 @@ class AuthCallbacksController < ApplicationController
         video_name: video.name,
         watchable_name: video.watchable_name,
       )
+    end
+  end
+
+  def track_authenticated_on_checkout
+    if session[:authenticated_on_checkout]
+      analytics.track_authenticated_on_checkout
     end
   end
 
@@ -53,10 +59,6 @@ class AuthCallbacksController < ApplicationController
     session[:auth_to_access_video_slug]
   end
 
-  def clear_auth_to_access_slug
-    session.delete(:auth_to_access_video_slug)
-  end
-
   def auth_to_access_video
     @_auth_to_access_video ||= Video.find_by(slug: auth_to_access_slug).wrapped
   end
@@ -69,7 +71,13 @@ class AuthCallbacksController < ApplicationController
     session[:return_to] || request.env["omniauth.origin"] || practice_url
   end
 
-  def clear_return_to
-    session[:return_to] = nil
+  def clear_used_session_values
+    [
+      :return_to,
+      :auth_to_access_video_slug,
+      :authenticated_on_checkout,
+    ].each do |key|
+      session.delete(key)
+    end
   end
 end

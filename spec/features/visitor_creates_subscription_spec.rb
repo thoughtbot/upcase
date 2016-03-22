@@ -127,6 +127,15 @@ feature 'Visitor signs up for a subscription' do
     expect_to_see_checkout_success_flash
   end
 
+  scenario "analytics is notififed when a user auths on the checkout page" do
+    attempt_to_subscribe
+    click_link "with GitHub"
+
+    expect_to_be_on_checkout_page
+
+    expect(analytics).to have_tracked("Authenticated on checkout")
+  end
+
   def expect_error_on_github_username_field
     expect(github_username_field[:class]).to include("error")
   end

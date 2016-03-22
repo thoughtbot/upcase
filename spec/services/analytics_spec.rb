@@ -209,6 +209,16 @@ describe Analytics do
     end
   end
 
+  describe "#track_authenticated_on_checkout" do
+    it "tracks that the user authenticated on the checkout page" do
+      analytics_instance.track_authenticated_on_checkout
+
+      expect(analytics).to(
+        have_tracked("Authenticated on checkout").for_user(user),
+      )
+    end
+  end
+
   describe "#track_cancelled" do
     it "tracks that the user cancelled along with the reason and email" do
       analytics_instance.track_cancelled(reason: "No good")
