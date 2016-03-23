@@ -36,9 +36,20 @@
     clear: left;
   }
 
+  &:last-of-type {
+    margin-right: 1em;
+  }
+
   img {
-    @include size(30px);
+    @include size(72px);
     border-radius: 10%;
+  }
+}
+
+.teacher-names {
+  @include dashboard-small-only {
+    clear: both;
+    padding-top: 1em;
   }
 }
 

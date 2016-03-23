@@ -1,7 +1,7 @@
 <meta name="twitter:card" content="player">
 <meta name="twitter:site" content="@upcase">
 <meta name="twitter:title" content="<%= video.name %>">
-<meta name="twitter:description" content="<%= video_description(video, length: 200) %>">
+<meta name="twitter:description" content="<%= truncate_html(video.summary_or_notes, length: 200) %>">
 <meta name="twitter:image" content="<%= image_url("twitter-card.png") %>">
 <meta name="twitter:player" content="<%= video_twitter_player_card_url(video) %>">
 <meta name="twitter:player:width" content="490">

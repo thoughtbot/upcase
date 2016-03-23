@@ -16,13 +16,15 @@
     height: 280px;
     margin: 0 1em 2em;
     overflow: hidden;
-    padding: 40px;
+    padding: 1.5em;
     position: relative;
     text-align: center;
 
     @include dashboard-small-only {
+      height: auto;
+      margin: 0 0.5em 1em;
+      padding: 1em;
       width: 100%;
-      margin-bottom: 1em;
     }
 
     h1 {

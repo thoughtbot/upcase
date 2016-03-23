@@ -127,6 +127,24 @@ describe Video do
     end
   end
 
+  describe "summary_or_notes" do
+    context "when there is summary text" do
+      it "returns the summary" do
+        video = build_stubbed(:video, summary: "hello world", notes: "nope")
+
+        expect(video.summary_or_notes).to eq("hello world")
+      end
+    end
+
+    context "when there is no summary text defined" do
+      it "returns the notes" do
+        video = build_stubbed(:video, summary: "", notes: "notes please")
+
+        expect(video.summary_or_notes).to eq("notes please")
+      end
+    end
+  end
+
   describe "#watchable" do
     context "for a video with a watchable" do
       it "returns the watchable directly" do

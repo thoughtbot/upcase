@@ -52,6 +52,10 @@ class Video < ActiveRecord::Base
     notes.present?
   end
 
+  def summary_or_notes
+    summary.presence || notes
+  end
+
   def watchable
     super || step.try(:trail)
   end

@@ -1,9 +1,10 @@
 <figure class="tile weekly-iteration <%= topic_slugs(video) %>">
   <%= link_to video, title: video.name do %>
-    <%= render video.teachers %>
-    <h2>Weekly Iteration</h2>
     <h1><%= video.name %></h1>
-    <h3><%= teacher_names(video.teachers) %></h3>
-    <p class="description"><%= truncate_html(format_markdown(video.notes)) %></p>
+    <%= render video.teachers %>
+    <h3 class="teacher-names"><%= teacher_names(video.teachers) %></h3>
+    <p class="description">
+      <%= truncate_html(video.summary_or_notes, length: 250) %>
+    </p>
   <% end %>
 </figure>
