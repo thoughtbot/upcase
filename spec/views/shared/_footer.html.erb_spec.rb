@@ -38,15 +38,6 @@ describe "shared/_footer.html.erb" do
       expect(rendered).to have_content("Upcase source code")
     end
 
-    it "does not show the contact us link" do
-      view_stub_with_return(signed_in?: true)
-      view_stub_with_return(current_user: create(:user))
-
-      render
-
-      expect(rendered).not_to have_content("Contact us")
-    end
-
     it "does show a sign out link" do
       view_stub_with_return(signed_in?: true)
       view_stub_with_return(current_user: create(:user))

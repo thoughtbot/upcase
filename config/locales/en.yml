@@ -77,6 +77,8 @@ en:
       next-flashcard: Next Flashcard
       numbered-title: Flashcard %{position} of %{total}
       return-to-results: Return to Flashcard Results
+  footer:
+    contact_us: Contact us
   formtastic:
     labels:
       acceptance:
@@ -228,6 +230,10 @@ en:
     flashes:
       update:
         success: Your profile has been updated.
+    edit:
+      have_any_questions: Have any questions?
+      here_to_help: We're here to help, so feel free to send any questions in and we'll get back to you right away.
+      contact_us: Contact us
   videos:
     show:
       mark-as-complete: Mark as Complete

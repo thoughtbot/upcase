@@ -53,4 +53,10 @@
     <h3>Your Team</h3>
     <%= render current_team %>
   <% end %>
+
+  <div class="contact">
+    <h3><%= t(".have_any_questions") %></h3>
+    <p><%= t(".here_to_help") %></p>
+    <%= mail_to ENV.fetch("SUPPORT_EMAIL"), t(".contact_us"), class: "cta-button" %>
+  </div>
 </aside>
