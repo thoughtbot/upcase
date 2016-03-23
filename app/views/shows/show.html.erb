@@ -23,7 +23,7 @@
         <%= render "subscribe_cta",
           description: t("watchables.preview.subscribe_cta"),
           button_text: t("watchables.preview.subscribe_link") %>
-        <%= render Clip.new("ol6e0miehm") %>
+        <%= render "clips/preview_only", clip: Clip.new("ol6e0miehm") %>
       <% end %>
 
       <section id="videos">

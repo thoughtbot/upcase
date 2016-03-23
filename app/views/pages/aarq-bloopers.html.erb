@@ -1,0 +1,29 @@
+<div class="bloopers-container">
+  <section class="subject">
+    <h1>Advanced ActiveRecord Querying - Bloopers<h1>
+  </section>
+
+  <div class="text-box">
+    <%= render "clips/preview_only", clip: Clip.new("itprspj843") %>
+  </div>
+
+  <p>
+    We always try to put our best foot forward and give our subscribers focused, clear videos
+    to help them learn. Unfortunately, <strong>we rarely get it perfect on the first take</strong>.
+    That said, we'd hate to waste all the fun that happens between takes.
+  </p>
+
+  <p>
+    These bloopers are from the recording of our recent
+    <%= link_to "Advanced ActiveRecord Querying", Trail.find_by!(slug: "advanced-activerecord-querying") %>
+    course. By the way, if you haven't checked out the course, you should definitely take a look.
+  </p>
+
+  <div class="access-callout subscription-required">
+    <p>Ready to master ActiveRecord and take advantage of the full power of your database?</p>
+
+    <%= link_to Trail.find_by!(slug: "advanced-activerecord-querying"), class: "cta-button subscribe-cta light-bg" do %>
+      <span>Check out the course</span>
+    <% end %>
+  </div>
+</div>
