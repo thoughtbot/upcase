@@ -4,3 +4,5 @@ scss:
   config_file: .scss-style.yml
   exclude:
     - "vendor/assets/stylesheets/**"
+javascript:
+  config_file: .javascript-style.json
