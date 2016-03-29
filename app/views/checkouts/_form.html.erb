@@ -9,7 +9,7 @@
   <%= form.inputs do %>
     <% if signed_out? %>
       <ul class="checkout-signin-signup-toggle">
-        <li class="video_tutorial-alert sign-in-prompt">
+        <li>
           <%= link_to "Already have an account? Sign in",
                       sign_in_path(return_to: request.fullpath), class: "cta-button secondary-button" %>
         </li>
