@@ -8,28 +8,13 @@ feature 'Visitor signs up for a subscription' do
   scenario 'visitor signs up by navigating from landing page' do
     create(:trail, :published)
 
-    visit "/"
+    visit root_path
     click_link "Sign Up Now!"
     fill_out_account_creation_form
     fill_out_credit_card_form_with_valid_credit_card
 
     expect(current_path).to be_the_welcome_page
     expect_to_see_checkout_success_flash
-  end
-
-  scenario "Visitor signs in with email and password while checking out" do
-    user = create(:user, password: "password")
-    attempt_to_subscribe
-
-    click_link 'Already have an account? Sign in'
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: 'password'
-    click_button 'Sign in'
-
-    expect_to_be_on_checkout_page
-    expect(page).to have_no_field "Name"
-    expect(page).to have_no_field "Email"
-    expect(page).to have_content "Sign out"
   end
 
   scenario 'visitor attempts to subscribe and creates email/password user' do
@@ -65,7 +50,7 @@ feature 'Visitor signs up for a subscription' do
     expect(page).to have_css("li.error input#checkout_github_username")
   end
 
-  scenario 'visitor attempts to subscribe with same email address that user exists in system' do
+  scenario "visitor attempts to subscribe with an email address that is already taken" do
     existing_user = create(:user)
 
     attempt_to_subscribe
