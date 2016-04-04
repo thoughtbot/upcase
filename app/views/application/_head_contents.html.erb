@@ -9,6 +9,8 @@
 <%= render 'layouts/typekit' %>
 <%= csrf_meta_tag %>
 <%= render 'layouts/ie_shiv' %>
-<%= render "shared/hotjar" %>
-<%= render 'shared/visual_website_optimizer' %>
+<% if %w(staging production).include?(Rails.env) %>
+  <%= render "shared/hotjar" %>
+  <%= render 'shared/visual_website_optimizer' %>
+<% end %>
 <%= yield :head %>
