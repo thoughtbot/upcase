@@ -16,7 +16,3 @@
 <%= javascript_tag do %>
   WistiaHelper.host = '<%= ENV['WISTIA_HOST'] %>'
 <% end %>
-
-<% if !Rails.env.production? %>
-  <%= javascript_include_tag "//cdn.accesslint.com/accesslint-0.1.js" %>
-<% end %>
