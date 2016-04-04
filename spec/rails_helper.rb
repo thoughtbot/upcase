@@ -38,7 +38,7 @@ Capybara.app = HostMap.new(
 )
 
 silence_warnings do
-  Clip::WISTIA_EMBED_BASE_URL = "localhost/"
+  Clip::WISTIA_DOWNLOAD_BASE_URL = "localhost/"
 end
 
 Delayed::Worker.delay_jobs = false
