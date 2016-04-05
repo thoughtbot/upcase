@@ -3,13 +3,20 @@
   font-size: $font-size-smallest;
   font-weight: 600;
   letter-spacing: 1px;
-  margin-bottom: .8em;
+  margin-bottom: $small-spacing;
   text-transform: uppercase;
+  transition: $fast-transition;
 
   @each $topic-name, $topic-color in $topic-colors {
     &.#{$topic-name} {
       background: map-get($topic-backgrounds, $topic-name);
       color: $topic-color;
+
+      &:hover,
+      &:active {
+        background: darken(map-get($topic-backgrounds, $topic-name), 8%);
+        color: darken($topic-color, 8%);
+      }
     }
   }
 

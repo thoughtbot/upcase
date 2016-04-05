@@ -46,7 +46,7 @@ feature "Visitor" do
   end
 
   def have_show_preview_cta
-    have_content(I18n.t("watchables.preview.subscribe_cta"))
+    have_content(I18n.t("show.weekly_iteration_cta"))
   end
 
   def have_video_preview_callout

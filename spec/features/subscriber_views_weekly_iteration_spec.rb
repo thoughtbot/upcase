@@ -29,7 +29,7 @@ feature "subscriber views weekly iteration" do
   end
 
   def video_summary(video)
-    find(".video-text", text: video.name)
+    find(".tile.weekly-iteration", text: video.name)
   end
 
   def have_subscribe_cta

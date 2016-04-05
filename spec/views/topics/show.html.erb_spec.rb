@@ -1,48 +1,84 @@
 require "rails_helper"
 
-describe "topics/_resources" do
-  it "shows videos and video tutorials" do
-    render_topic
+describe "topics/show" do
+  context "when there are published trails" do
+    it "renders a section listing the trails" do
+      trail_name = "A great trail"
+      trail = build_trail(name: trail_name)
+      topic = build_topic_with_published_trails([trail])
 
-    expect(rendered).to include("The Weekly Iteration")
-  end
+      render_topic(topic)
 
-  context "with published trails" do
-    it "renders the published trails header" do
-      render_topic published_trails: [build_stubbed(:trail)]
-
-      expect(rendered).to have_trails_header
+      expect(rendered).to have_trails_section
+      expect(rendered).to have_css(".trail", text: trail_name)
     end
   end
 
-  context "with only unpublished trails" do
-    it "doesn't render the published trails header" do
-      render_topic published_trails: []
+  context "when there are no published trails" do
+    it "renders nothing related to trails" do
+      topic = build_stubbed(:topic)
+      allow(topic).to receive(:published_trails).and_return([])
 
-      expect(rendered).not_to have_trails_header
+      render_topic topic
+
+      expect(rendered).not_to have_trails_section
     end
   end
 
-  def render_topic(**topic_attributes)
-    topic = topic_with_resources(**topic_attributes)
-    view_stubs(:current_user)
+  context "when there are weekly iteration episdoes" do
+    it "renders a section listing the videos" do
+      video_name = "A great video about coding the tubes"
+      topic = build_stubbed(:topic)
+      video_listing = [stub_video_with_status(name: video_name)]
 
-    stub_template("topics/_trail.html.erb" => "")
-    render partial: "topics/resources", locals: { topic: topic }
-  end
+      render_topic(topic, video_listing: video_listing)
 
-  def topic_with_resources(published_trails: [])
-    build_stubbed(
-      :topic,
-      videos: [build_stubbed(:video, slug: "a-video")]
-    ).tap do |topic|
-      allow(topic).to receive(:published_trails).and_return(published_trails)
-      allow(topic).to receive(:weekly_iteration_videos).
-        and_return([build_stubbed(:video)])
+      expect(rendered).to have_weekly_iteration_section
+      expect(rendered).to have_css(".tile.weekly-iteration", text: video_name)
     end
   end
 
-  def have_trails_header
-    have_text("Trails")
+  context "when there are no weekly iteration episdoes for the topic" do
+    it "renders nothing related to the weekly iteration" do
+      topic = build_stubbed(:topic)
+
+      render_topic(topic)
+
+      expect(rendered).not_to have_weekly_iteration_section
+    end
+  end
+
+  def have_trails_section
+    have_css(".divider", text: "Trails")
+  end
+
+  def have_weekly_iteration_section
+    have_css(".divider", text: "The Weekly Iteration")
+  end
+
+  def render_topic(topic, video_listing: [])
+    assign :topic, topic
+    assign :video_listing, video_listing
+    render template: "topics/show"
+  end
+
+  def build_trail(**trail_args)
+    build_stubbed(:trail, **trail_args).tap do |trail|
+      allow(trail).to receive(:complete?).and_return(false)
+      allow(trail).to receive(:unstarted?).and_return(true)
+      allow(trail).to receive(:steps_remaining).and_return(2)
+    end
+  end
+
+  def build_topic_with_published_trails(trails)
+    build_stubbed(:topic).tap do |topic|
+      allow(topic).to receive(:published_trails).and_return(trails)
+    end
+  end
+
+  def stub_video_with_status(**video_attributes)
+    build_stubbed(:video, **video_attributes).tap do |video|
+      allow(video).to receive(:status_class).and_return("complete")
+    end
   end
 end

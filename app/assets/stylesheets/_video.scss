@@ -10,9 +10,111 @@
   z-index: 0;
 }
 
+.weekly-iteration {
+  @each $video-state, $icon in $video-states {
+    &.#{$video-state} {
+      .video-text::before {
+        @include position(absolute, 3px null null -60px);
+        @include size(42px);
+        background-image: image-url("#{$icon}.svg");
+        background-size: cover;
+        content: "";
+      }
+    }
+  }
+
+  .video-tags {
+    @include clearfix;
+
+    a {
+      float: left;
+
+      &:not(:last-of-type) {
+        margin-right: $small-spacing;
+      }
+    }
+
+    .topic-label {
+      @include padding(3px null);
+      font-size: 10px;
+      margin-bottom: $small-spacing;
+      margin-top: 0;
+    }
+  }
+
+  .video-overview {
+    @include clearfix;
+    border-bottom: 1px solid tint($gray-4, 25%);
+    margin-bottom: $small-spacing;
+    padding-bottom: $small-spacing;
+    text-align: left;
+
+    &.hosts {
+      align-items: center;
+      border: 0;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0;
+    }
+
+    &.title-tags {
+      padding-bottom: $base-spacing;
+    }
+
+    a {
+      display: block;
+
+      &:hover,
+      &:focus {
+        > .video-text,
+        > .video-length {
+          color: shade($hero-green, 25%);
+          transition: $fast-transition;
+        }
+      }
+    }
+
+    .video-text {
+      margin-bottom: 0;
+    }
+
+    .hosts-images {
+      img {
+        @include size(55px);
+        border-radius: 3px;
+      }
+    }
+
+    .video-length,
+    .hosted-by {
+      color: $darkwarmgray;
+      font-size: $font-size-smallest;
+    }
+
+    .video-length,
+    .video-tags {
+      margin-left: 60px;
+    }
+
+    .video-length {
+      margin-bottom: $small-spacing;
+    }
+
+    .teacher-names {
+      @include padding(0 $base-spacing null 0);
+      font-size: em(19);
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .hosts-copy {
+      flex: 1;
+    }
+  }
+}
+
 .assets-wrapper {
   margin-bottom: 1rem;
-  float: left;
 
   .assets {
     .asset-download {
@@ -44,19 +146,19 @@
 }
 
 .seek-marker {
+  @include dashboard-small-only {
+    display: none;
+  }
+
   background: $white;
   border: 1px solid $upcase-blue;
   color: $upcase-blue;
   font-size: 9px;
   margin-left: 12px;
 
-  @include dashboard-small-only {
-    display: none;
-  }
-
   &:hover {
-    color: $white;
     background-color: $upcase-blue;
+    color: $white;
   }
 }
 
@@ -67,8 +169,8 @@
 
   li {
     list-style-type: none;
-    margin-top: 0;
     margin-bottom: 20px;
+    margin-top: 0;
   }
 }
 
@@ -129,7 +231,7 @@
     border: 0;
   }
 
-  .video-text:before {
+  .video-text::before {
     float: left;
     margin: 3px 10px 0 0;
   }
@@ -142,10 +244,6 @@
   .video-text h3 {
     margin: 0 0 0.4em;
     padding: 0;
-  }
-
-  .video-length {
-    font-style: italic;
   }
 
   .video-date {
@@ -177,15 +275,15 @@
 
 .access-callout {
   @include margin($medium-spacing null);
+  @include dashboard-small-only {
+    flex-direction: column;
+  }
+
   align-items: center;
   background: lighten($cta-color-light, 40%);
   border: 1px solid $base-border-color-yellow;
   display: flex;
   padding: $base-spacing;
-
-  @include dashboard-small-only {
-    flex-direction: column;
-  }
 
   p {
     font-weight: $sans-serif-semibold;
@@ -205,18 +303,6 @@
       width: 100%;
     }
   }
-}
-
-.video-text.unstarted:before {
-  content: image-url("play.svg");
-}
-
-.video-text.in-progress:before {
-  content: image-url("in-progress.svg");
-}
-
-.video-text.complete:before {
-  content: image-url("complete.svg");
 }
 
 .parent-collection a {

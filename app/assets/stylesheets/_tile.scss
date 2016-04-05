@@ -13,8 +13,8 @@
     flex-basis: 22em;
     flex-grow: 1;
     flex-shrink: 1;
-    height: 280px;
     margin: 0 1em 2em;
+    min-height: 300px;
     overflow: hidden;
     padding: 1.5em;
     position: relative;
@@ -28,18 +28,11 @@
     }
 
     h1 {
-      font-size: 20px;
+      font-size: 23px;
       line-height: 26px;
       margin-bottom: em(8);
-      margin-left: 24px;
+      margin-left: 60px;
       position: relative;
-
-      &:before {
-        content: image-url('play.svg');
-        left: -25px;
-        position: absolute;
-        top: 3px;
-      }
 
       a {
         color: $darkwarmgray;

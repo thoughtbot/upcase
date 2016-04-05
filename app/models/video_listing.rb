@@ -1,23 +1,29 @@
-class ShowListing < SimpleDelegator
+class VideoListing
+  include Enumerable
+
   UNSTARTED = Unstarted.new
 
-  def initialize(show, user)
-    super(show)
+  def initialize(videos, user)
+    @videos = videos
     @user = user
   end
 
-  def videos_with_status
-    @videos_with_status ||= videos.map do |video|
-      VideoWithStatus.new(video, video_status(video))
-    end
+  def each(&block)
+    videos_with_status.each(&block)
   end
 
   private
 
-  attr_reader :user
+  attr_reader :user, :videos
 
-  def videos
-    @videos ||= published_videos.includes(:topics).recently_published_first
+  def videos_with_status
+    @videos_with_status ||= videos_with_associations.map do |video|
+      VideoWithStatus.new(video, video_status(video))
+    end
+  end
+
+  def videos_with_associations
+    videos.includes(:topics, :users)
   end
 
   def video_status(video)

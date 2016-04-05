@@ -1,16 +1,34 @@
-<%= content_tag_for :div, video do %>
-  <div class="video-text <%= video.status_class %>">
+<figure class="tile weekly-iteration <%= topic_slugs(video) %> <%= video.status_class %>">
+  <% if video.accessible_without_subscription? && marketable_user? %>
+    <span class="free-tag">Free</span>
+  <% end %>
+
+  <div class="video-overview title-tags">
     <%= link_to video_path(video) do %>
-      <h3><%= video.name %></h3>
+      <h1 class="video-text"><%= video.name %></h1>
+
+      <p class="video-length" data-wistia-id="<%= video.clip.wistia_id %>">
+        <%= video.length_in_minutes %> minutes
+      </p>
     <% end %>
+
     <div class="video-tags">
       <%= render video.topics %>
     </div>
-    <p class="video-length" data-wistia-id="<%= video.clip.wistia_id %>">
-      <%= video.length_in_minutes %> minutes
-    </p>
-    <p class="video-summary">
-      <%= format_markdown(video.summary) %>
-    </p>
   </div>
-<% end %>
+
+  <div class="video-overview hosts">
+    <div class="hosts-copy">
+      <small class="hosted-by">Hosted by</small>
+      <h3 class="teacher-names"><%= teacher_names(video.teachers) %></h3>
+    </div>
+
+    <div class="hosts-images">
+      <%= render video.teachers %>
+    </div>
+  </div>
+
+  <p class="description">
+    <%= truncate_html(video.summary_or_notes, length: 250) %>
+  </p>
+</figure>

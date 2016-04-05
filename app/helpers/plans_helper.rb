@@ -49,4 +49,8 @@ module PlansHelper
       "professional"
     end
   end
+
+  def marketable_user?
+    !current_user.subscriber?
+  end
 end

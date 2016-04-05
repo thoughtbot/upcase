@@ -158,6 +158,7 @@ en:
     upcase: Upcase
     content_meta_description: "Explore thoughtbot's video tutorials, exercises, and forum discussions on %{name}"
   show:
+    weekly_iteration_cta: This video is a preview of all the great content in the Weekly Iteration. Scroll down to see some of the great videos. Want to watch them all?
     preview_cta: This video is a preview. The full show is included with your Upcase
       membership.
   subscriptions:

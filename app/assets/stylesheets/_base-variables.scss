@@ -67,6 +67,7 @@ $light-gray-border: #ccc;
 $row-highlight: #f9f9f9;
 
 $base-spacing: 1em;
+$small-spacing: $base-spacing / 2;
 $medium-spacing: $base-spacing * 2;
 $large-spacing: $base-spacing * 3.75;
 
@@ -112,6 +113,7 @@ $arrow-size: 20px;
 $not-started-dot-color: #D8D8D8;
 
 $flashcard-transition: all 0.25s $ease-in-quad;
+$fast-transition: all 0.15s ease-in-out;
 
 $z-flashcard-deck: -1;
 $z-header: 20;
@@ -154,4 +156,10 @@ $topic-colors: (
   testing: #34d096,
   vim: #2192cf,
   workflow: #f4bc15
+);
+
+$video-states: (
+  unstarted: play,
+  in-progress: in-progress,
+  complete: complete,
 );

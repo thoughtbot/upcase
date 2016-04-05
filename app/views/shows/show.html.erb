@@ -1,3 +1,6 @@
+<% content_for :sticky_header_height, "750" %>
+<% content_for :additional_body_classes, "the-weekly-iteration" %>
+
 <% render "shared/content_specific_head_tags", content: @show, type: "show" %>
 
 <% content_for :head do %>
@@ -11,24 +14,23 @@
   </h2>
 <% end %>
 
-<div class="text-box-wrapper">
-  <div class="text-box">
-
-    <span class="divider">
-      <h4 class="text">Videos</h4>
-    </span>
-
-    <div class="text-box">
-      <% unless has_access_to_shows? %>
-        <%= render "subscribe_cta",
-          description: t("watchables.preview.subscribe_cta"),
-          button_text: t("watchables.preview.subscribe_link") %>
-        <%= render "clips/preview_only", clip: Clip.new("ol6e0miehm") %>
-      <% end %>
-
-      <section id="videos">
-        <%= render @show.videos_with_status %>
-      </section>
+<div class="show-info">
+  <% unless has_access_to_shows? %>
+    <div>
+      <%= render "clips/preview_only", clip: Clip.new("ol6e0miehm") %>
     </div>
-  </div>
+    <%= render "subscribe_cta",
+      description: t("show.weekly_iteration_cta"),
+      button_text: t("watchables.preview.subscribe_link") %>
+  <% end %>
 </div>
+
+<span class="divider">
+  <h4 class="text">Videos</h4>
+</span>
+
+<section class="videos tiles-container">
+  <% @video_listing.each do |video| %>
+    <%= render video %>
+  <% end %>
+</section>

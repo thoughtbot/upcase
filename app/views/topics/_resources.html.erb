@@ -11,7 +11,13 @@
     </section>
   <% end %>
 
-  <%= render "cards",
-    title: "The Weekly Iteration",
-    resources: topic.weekly_iteration_videos %>
+  <% if video_listing.any? %>
+    <span class="divider">
+      <h4 class="text">The Weekly Iteration</h4>
+    </span>
+
+    <% video_listing.each do |video| %>
+      <%= render video %>
+    <% end %>
+  <% end %>
 </section>
