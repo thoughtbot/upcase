@@ -62,4 +62,8 @@ module ApplicationHelper
     titleable.page_title.presence ||
       t("dynamic_page_titles.#{type}", name: titleable.name)
   end
+
+  def sign_in_path_with_current_path_return_to
+    sign_in_path(return_to: request.fullpath)
+  end
 end

@@ -13,7 +13,7 @@
       <ul class="checkout-signin-signup-toggle">
         <li>
           <%= link_to "Already have an account? Sign in",
-                      sign_in_path(return_to: request.fullpath), class: "cta-button secondary-button" %>
+                      sign_in_path_with_current_path_return_to, class: "cta-button secondary-button" %>
         </li>
         <li><%= link_to "Sign up with GitHub", authenticated_on_checkout_path(plan: checkout.plan), class: "cta-button secondary-button" %></li>
       </ul>

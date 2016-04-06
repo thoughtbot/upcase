@@ -23,6 +23,18 @@ feature "Visitor" do
     expect(page).to have_subscribe_cta
   end
 
+  scenario "navigates directly to a video and signs in" do
+    show = create(:the_weekly_iteration)
+    video = create_video(show)
+    desired_video_path = video_path(video)
+
+    visit desired_video_path
+    click_link "Sign In"
+    click_link "Sign in with GitHub"
+
+    expect(current_path).to eq(desired_video_path)
+  end
+
   def create_video(show)
     name_with_unsafe_character = "Unfriendly Nil's Unfriendly"
     create(

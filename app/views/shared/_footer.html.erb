@@ -5,7 +5,7 @@
         <li><%= link_to("Sign out", sign_out_path, method: :delete) %></li>
         <li><%= render partial: "shared/admin_sign_out" %></li>
       <% else %>
-        <li><%= link_to "Sign in", sign_in_path %></li>
+        <li><%= link_to "Sign in", sign_in_path_with_current_path_return_to %></li>
       <% end %>
     </ul>
     <section class="thoughtbot">
