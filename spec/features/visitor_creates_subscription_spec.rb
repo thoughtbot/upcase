@@ -1,15 +1,16 @@
 require "rails_helper"
 
-feature 'Visitor signs up for a subscription' do
+feature "Visitor signs up for a subscription" do
   background do
     create_plan
   end
 
-  scenario 'visitor signs up by navigating from landing page' do
+  scenario "visitor signs up by navigating from landing page", js: true do
     create(:trail, :published)
 
     visit root_path
-    click_link "Sign Up Now!"
+    click_link I18n.t("subscriptions.new.sign_up_cta")
+    show_email_and_username_form
     fill_out_account_creation_form
     fill_out_credit_card_form_with_valid_credit_card
 
@@ -17,16 +18,22 @@ feature 'Visitor signs up for a subscription' do
     expect_to_see_checkout_success_flash
   end
 
-  scenario 'visitor attempts to subscribe and creates email/password user' do
-    attempt_to_subscribe
+  scenario "and creates email/password user", js: true do
+    visit new_checkout_path(@plan)
+    expect(page).to have_text "Sign up with GitHub"
+    expect(page).to have_text "Already have an account? Sign in"
+
+    show_email_and_username_form
 
     expect_to_be_on_checkout_page
     expect_to_see_required :name
     expect_to_see_required :password
     expect_to_see_required :email
     expect_to_see_required :github_username
+    expect(page).not_to have_text "Sign up with GitHub"
+    expect(page).not_to have_text "Already have an account? Sign in"
 
-    fill_out_credit_card_form_with_valid_credit_card
+    fill_in_name_and_credit_card
 
     expect_to_see_password_error
     expect_to_see_email_error
@@ -38,39 +45,36 @@ feature 'Visitor signs up for a subscription' do
     expect_to_see_checkout_success_flash
   end
 
-  scenario "without specifying a GitHub username" do
-    attempt_to_subscribe
+  scenario "without specifying a GitHub username", js: true do
+    begin_to_subscribe_with_email_and_password
 
     user = build(:user)
-    fill_in 'Name', with: user.name
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
+    fill_in "Name", with: user.name
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
     click_button "Submit Payment"
 
     expect(page).to have_css("li.error input#checkout_github_username")
   end
 
-  scenario "visitor attempts to subscribe with an email address that is already taken" do
+  scenario "with an email address that is already taken", js: true do
     existing_user = create(:user)
 
-    attempt_to_subscribe
-    expect_to_be_on_checkout_page
-
+    begin_to_subscribe_with_email_and_password
     fill_out_account_creation_form(name: existing_user.name, email: existing_user.email)
     fill_out_credit_card_form_with_valid_credit_card
 
     expect_to_see_email_error("has already been taken")
   end
 
-  scenario 'visitor attempts to subscribe and creates github user' do
-    attempt_to_subscribe
+  scenario "visitor attempts to subscribe and creates github user" do
+    visit new_checkout_path(@plan)
+
+    click_link "Sign up with GitHub"
 
     expect_to_be_on_checkout_page
-    click_link 'with GitHub'
 
-    expect_to_be_on_checkout_page
-
-    expect(page).to have_no_field 'Password'
+    expect(page).to have_no_field "Password"
 
     fill_out_credit_card_form_with_valid_credit_card
 
@@ -78,21 +82,10 @@ feature 'Visitor signs up for a subscription' do
     expect_to_see_checkout_success_flash
   end
 
-  scenario "visitor attempts to subscribe, signs in with github, but is already subscribed" do
-    create(:user, :with_subscription, :with_github_auth)
-
-    attempt_to_subscribe
-    click_link "Already have an account? Sign in"
-    click_on "Sign in with GitHub"
-
-    expect(current_path).to eq welcome_path
-    expect(page).to have_content I18n.t("checkout.flashes.already_subscribed")
-  end
-
-  scenario "visitor attempts to subscribe with existing github username" do
+  scenario "with an existing github username", js: true do
     existing_user = create(:user, :with_github_auth)
 
-    attempt_to_subscribe
+    begin_to_subscribe_with_email_and_password
     fill_out_account_creation_form_as existing_user
     fill_out_credit_card_form_with_valid_credit_card
 
@@ -100,8 +93,8 @@ feature 'Visitor signs up for a subscription' do
     expect_error_on_github_username_field
   end
 
-  scenario "visitor signs up with invalid credit card and corrects mistakes" do
-    attempt_to_subscribe
+  scenario "with invalid credit card and corrects mistakes", js: true do
+    begin_to_subscribe_with_email_and_password
     fill_out_account_creation_form
     fill_out_credit_card_form_with_invalid_credit_card
 
@@ -112,9 +105,9 @@ feature 'Visitor signs up for a subscription' do
     expect_to_see_checkout_success_flash
   end
 
-  scenario "analytics is notififed when a user auths on the checkout page" do
-    attempt_to_subscribe
-    click_link "with GitHub"
+  scenario "analytics is notified when a user auths on the checkout page" do
+    visit new_checkout_path(@plan)
+    click_link I18n.t("checkout.sign_up_with_github")
 
     expect_to_be_on_checkout_page
 
@@ -126,7 +119,7 @@ feature 'Visitor signs up for a subscription' do
   end
 
   def expect_to_be_on_checkout_page
-    expect(current_url).to eq new_checkout_url(@plan)
+    expect(current_path).to eq new_checkout_path(@plan)
   end
 
   def expect_to_see_required(field)
@@ -135,14 +128,14 @@ feature 'Visitor signs up for a subscription' do
 
   def expect_to_see_email_error(text = "can't be blank")
     expect(page).to have_css(
-      '#checkout_email_input.error p.inline-errors',
+      "#checkout_email_input.error p.inline-errors",
       text: text
     )
   end
 
   def expect_to_see_password_error
     expect(page).to have_css(
-      '#checkout_password_input.error p.inline-errors',
+      "#checkout_password_input.error p.inline-errors",
       text: "can't be blank"
     )
   end
@@ -151,8 +144,20 @@ feature 'Visitor signs up for a subscription' do
     @plan = create(:plan, :featured)
   end
 
-  def attempt_to_subscribe
+  def begin_to_subscribe_with_email_and_password
     visit new_checkout_path(@plan)
+    show_email_and_username_form
+  end
+
+  def show_email_and_username_form
+    click_on I18n.t(
+      "checkouts.user_information_fields.sign_up_with_username_and_password",
+    )
+  end
+
+  def fill_in_name_and_credit_card
+    fill_in "Name", with: build(:user).name
+    fill_out_credit_card_form_with_valid_credit_card
   end
 
   def github_username_field

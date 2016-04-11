@@ -24,7 +24,13 @@ en:
       flashes:
         accepted: Request received! We'll let you know when the trail is ready.
         declined: Got it. We'll get that trail out of your way.
+  checkouts:
+    user_information_fields:
+      sign_up_with_username_and_password: "sign up with username and password?"
+    one_step_away_authenticated: "Hey %{name}, you're one step away. Enter payment below to start learning with Upcase now!"
+    one_step_away_anonymous: "Almost there - get instant access with expedited checkout!"
   checkout:
+    sign_up_with_github: "Sign up with GitHub"
     flashes:
       already_subscribed: You are already subscribed.
       invalid_coupon: The coupon code %{code} is no longer valid and has been

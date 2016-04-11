@@ -2,65 +2,35 @@
 
   <%= form.semantic_errors %>
 
-  <% if signed_in? %>
-    <h2 class="one-step-away">Hey <%= current_user.first_name %>, you're one step away. Enter payment below to start learning with Upcase now!</h2>
-  <% end %>
-
-  <%= form.inputs do %>
-    <%= hidden_field_tag "coupon_id" %>
-
-    <% if signed_out? %>
-      <ul class="checkout-signin-signup-toggle">
-        <li>
-          <%= link_to "Already have an account? Sign in",
-                      sign_in_path_with_current_path_return_to, class: "cta-button secondary-button" %>
-        </li>
-        <li><%= link_to "Sign up with GitHub", authenticated_on_checkout_path(plan: checkout.plan), class: "cta-button secondary-button" %></li>
-      </ul>
-
-      <%= form.input :name, required: true %>
-      <%= form.input :email, as: :email, required: true %>
-      <%= form.input :password, required: true %>
+  <h2 class="one-step-away">
+    <% if signed_in? %>
+      <%= t("checkouts.one_step_away_authenticated", name: current_user.first_name) %>
+    <% else %>
+      <%= t("checkouts.one_step_away_anonymous") %>
     <% end %>
+  </h2>
 
-    <% if checkout.needs_github_username? %>
-      <%= form.input :github_username, required: true, label: "GitHub username",
-        hint: "Be sure to enter a valid, unique GitHub username. Organizations are not allowed." %>
-    <% end %>
-  <% end %>
+  <%= render "user_information_fields", form: form, checkout: checkout %>
 
-  <%= form.inputs id: 'billing-information' do %>
-    <h3>Secure Credit Card Payment</h3>
-    <li id="credit-card-icons">
-      <%= image_tag "icons/visa.png" %>
-      <%= image_tag "icons/master.png" %>
-      <%= image_tag "icons/american_express.png" %>
-      <%= image_tag "icons/discover.png" %>
-    </li>
-    <li class="payment-errors"></li>
-    <li id="checkout_cc_input" class="stripe">
-      <label for='card-number'>Card Number</label>
-      <input type='text' size='20' autocomplete='off' id='card-number' class='card-number'/>
-    </li>
-    <li id="checkout_expiration_input" class="stripe">
-      <label>Expiration</label>
-      <%= select_month nil, { prompt: 'Month', add_month_numbers: true }, class: 'card-expiry-month' %>
-      <%= select_year nil, { prompt: 'Year', start_year: Time.zone.today.year, end_year: 10.years.from_now.year }, class: 'card-expiry-year' %>
-    </li>
-    <li id="checkout_cvc_input" class="stripe">
-      <label for='card-cvc'>CVC</label>
-      <input type='text' size='4' autocomplete='off' id='card-cvc' class='card-cvc'/>
-    </li>
-  <% end %>
-
-  <%= form.inputs class: 'address-info' do %>
-    <%= render 'users/address_fields', form: form %>
-  <% end %>
+  <%= render "billing_information", form: form %>
 
   <%= form.actions do %>
     <%= form.action :submit, label: "Submit Payment &mdash; #{submit_amount(checkout)}".html_safe,
-      button_html: { class: "subscribe-cta light-bg" } %>
+      button_html: { class: "subscribe-cta light-bg", "data-role": "submit" } %>
   <% end %>
 <% end %>
 
-<%= render partial: 'shared/stripe' %>
+<%= render "shared/stripe" %>
+
+<% content_for :javascript do %>
+  <%= javascript_tag do %>
+    $(function() {
+      var $paymentForm = $(".payment-form");
+
+      $(".toggle-auth").click(function(){
+        $paymentForm.toggleClass("github-auth").toggleClass("username-password-auth");
+        return false;
+      });
+    });
+  <% end %>
+<% end %>

@@ -40,6 +40,14 @@ module CheckoutsHelper
     end
   end
 
+  def auth_method_class(checkout)
+    if checkout.signing_up_with_username_and_password?
+      "username-password-auth"
+    else
+      "github-auth"
+    end
+  end
+
   private
 
   def change_plan_link(plan)

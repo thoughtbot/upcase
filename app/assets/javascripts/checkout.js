@@ -26,10 +26,3 @@ function checkValidGithubUsername(username, element) {
       }
   });
 }
-
-$('.reveal-address').click(function() {
-  $(this).hide();
-  $('.address-info').slideDown(100);
-
-  return false;
-});

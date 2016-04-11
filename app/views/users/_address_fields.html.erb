@@ -1,7 +1,27 @@
-<%= form.input :organization %>
-<%= form.input :address1, label: 'Address 1' %>
-<%= form.input :address2, label: 'Address 2' %>
-<%= form.input :city %>
-<%= form.input :state, label: "State / Province" %>
-<%= form.input :zip_code, label: "Postal / Zip Code" %>
-<%= form.input :country, as: :string %>
+<div class="address-fields-wrapper">
+  <%= link_to "Need an address on your receipt?", "#", class: "reveal-address" %>
+
+  <%= form.inputs class: "address-info" do %>
+    <%= link_to "Hide address fields", "#", class: "hide-address" %>
+
+    <%= form.input :organization %>
+    <%= form.input :address1, label: "Address 1" %>
+    <%= form.input :address2, label: "Address 2" %>
+    <%= form.input :city %>
+    <%= form.input :state, label: "State / Province" %>
+    <%= form.input :zip_code, label: "Postal / Zip Code" %>
+    <%= form.input :country, as: :string %>
+  <% end %>
+</div>
+
+
+<% content_for :javascript do %>
+  <%= javascript_tag do %>
+    $addressFieldsWrapper = $('.address-fields-wrapper');
+
+    $('.reveal-address, .hide-address').click(function() {
+      $addressFieldsWrapper.toggleClass("displayed");
+      return false;
+    });
+  <% end %>
+<% end %>

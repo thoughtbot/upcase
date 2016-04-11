@@ -1,0 +1,27 @@
+<%= form.inputs id: "billing-information" do %>
+  <%= render "users/address_fields", form: form %>
+
+  <fieldset>
+    <h3>Secure Credit Card Payment</h3>
+    <li id="credit-card-icons">
+      <%= image_tag "icons/visa.png" %>
+      <%= image_tag "icons/master.png" %>
+      <%= image_tag "icons/american_express.png" %>
+      <%= image_tag "icons/discover.png" %>
+    </li>
+    <li class="payment-errors"></li>
+    <li id="checkout_cc_input" class="stripe">
+      <label for="card-number">Card Number</label>
+      <input type="text" size="20" autocomplete="off" id="card-number" class="card-number"/>
+    </li>
+    <li id="checkout_expiration_input" class="stripe">
+      <label>Expiration</label>
+      <%= select_month nil, { prompt: "Month", add_month_numbers: true }, class: "card-expiry-month" %>
+      <%= select_year nil, { prompt: "Year", start_year: Time.zone.today.year, end_year: 10.years.from_now.year }, class: "card-expiry-year" %>
+    </li>
+    <li id="checkout_cvc_input" class="stripe">
+      <label for="card-cvc">CVC</label>
+      <input type="text" size="4" autocomplete="off" id="card-cvc" class="card-cvc"/>
+    </li>
+  </fieldset>
+<% end %>

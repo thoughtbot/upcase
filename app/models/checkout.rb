@@ -56,6 +56,10 @@ class Checkout < ActiveRecord::Base
     stripe_coupon_id.present? && !coupon.valid?
   end
 
+  def signing_up_with_username_and_password?
+    [email, name, password, github_username].any?(&:present?)
+  end
+
   private
 
   def issue_with_github_username?

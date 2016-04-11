@@ -1,0 +1,37 @@
+<%= form.inputs do %>
+  <%= hidden_field_tag "coupon_id" %>
+
+  <% if signed_out? %>
+    <div class="github-or-sign-in-buttons">
+      <ul class="checkout-signin-signup-toggle">
+        <li>
+          <%= link_to authenticated_on_checkout_path(plan: checkout.plan), class: "cta-button subscribe-cta light-bg" do %>
+            <%= image_tag("github-black.svg", class: "logo", alt: "") + t("checkout.sign_up_with_github") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "Already have an account? Sign in",
+            sign_in_path_with_current_path_return_to, class: "cta-button secondary-button" %>
+        </li>
+      </ul>
+
+      <span class="divider">
+        <h4>Prefer to <a href="#" class="toggle-auth"><%= t(".sign_up_with_username_and_password") %></a></h4>
+      </span>
+    </div>
+
+    <div class="username-password">
+      <span class="divider">
+        <h4>Prefer to <a href="#" class="toggle-auth">sign up with GitHub?</a></h4>
+      </span>
+
+      <%= form.input :name, required: true %>
+      <%= form.input :email, as: :email, required: true %>
+      <%= form.input :password, required: true %>
+      <% if checkout.needs_github_username? %>
+        <%= form.input :github_username, required: true, label: "GitHub username",
+          hint: "Be sure to enter a valid, unique GitHub username. Organizations are not allowed." %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

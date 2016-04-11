@@ -6,13 +6,11 @@
 <% content_for :page_title, "Subscribe to #{@checkout.plan_name}" %>
 
 <div class="checkout-content">
-  <div class="payment-form">
+  <div class="payment-form <%= auth_method_class(@checkout) %>">
     <%= render "checkouts/form", checkout: @checkout %>
     <div class="checkout-notes">
       <h3>thoughtbot no-hassle guarantee</h3>
       <p>If you don't love Upcase, just let us know within 30 days and we’ll refund your money. It’s as simple as that.</p>
-
-      <%= link_to 'Need an address on your receipt?', '#', class: 'reveal-address' %>
     </div>
   </div>
 

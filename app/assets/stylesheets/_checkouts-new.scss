@@ -5,6 +5,23 @@ body.checkouts-new, body.checkouts-create {
     @include marketing-mobile {
       flex-direction: column;
     }
+
+    .github-auth {
+      .username-password {
+        display: none;
+      }
+
+      #billing-information,
+      .actions {
+        display: none;
+      }
+    }
+
+    .username-password-auth {
+      .github-or-sign-in-buttons {
+        display: none;
+      }
+    }
   }
 
   nav,
@@ -69,7 +86,7 @@ body.checkouts-new, body.checkouts-create {
     margin-bottom: 0;
   }
 
-  .checkout-signin-signup-toggle {
+  .github-or-sign-in-buttons ul {
     display: table;
     margin-bottom: 2em;
     width: 100%;
@@ -81,16 +98,10 @@ body.checkouts-new, body.checkouts-create {
     }
 
     a {
-      background: #f0f0f0;
-      border-radius: 3px;
       display: block;
       margin: 2px;
       padding: 1em;
       text-align: center;
-
-      &:active {
-        background: #ccc;
-      }
     }
   }
 
@@ -153,9 +164,32 @@ body.checkouts-new, body.checkouts-create {
     }
   }
 
-  .address-info {
-    display: none;
-    margin: 3rem 0;
+  .address-fields-wrapper {
+    .address-info,
+    .hide-address {
+      display: none;
+    }
+
+    .reveal-address {
+      display: block;
+      font-style: italic;
+      font-weight: lighter;
+    }
+
+    &.displayed {
+      .address-info {
+        display: block;
+        margin: 3rem 0;
+      }
+
+      .reveal-address {
+        display: none;
+      }
+
+      .hide-address {
+        display: block;
+      }
+    }
   }
 
   .coupon {
@@ -181,12 +215,6 @@ body.checkouts-new, body.checkouts-create {
     }
   }
 
-  .reveal-address {
-    display: block;
-    font-weight: normal;
-    margin: 10px 0;
-  }
-
   @media screen and (max-width: 910px) {
     fieldset ol, #billing-information ol {
       li#checkout_zip_code_input,
@@ -207,12 +235,14 @@ body.checkouts-new, body.checkouts-create {
 }
 
 #billing-information {
-  background-color: $base-background-1;
-  border: 1px solid $base-border-color-1;
-  border-radius: 3px;
-  width: 100%;
-  margin: em(20) 0;
-  padding: em(20);
+  fieldset {
+    background-color: $base-background-1;
+    border: 1px solid $base-border-color-1;
+    border-radius: 3px;
+    margin: 0 0 em(20);
+    padding: em(20);
+    width: 100%;
+  }
 
   h3 {
     color: $gray-3;
@@ -230,7 +260,6 @@ body.checkouts-new, body.checkouts-create {
   }
 
   #credit-card-icons {
-
     img {
       padding: 0 em(5);
 

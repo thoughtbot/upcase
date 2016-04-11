@@ -195,4 +195,20 @@ describe Checkout do
       expect(checkout.needs_github_username?).to be(true)
     end
   end
+
+  context "#signing_up_with_username_and_password?" do
+    %i(email name password github_username).each do |field|
+      it "returns true if #{field} is present" do
+        checkout = Checkout.new(field => "floop")
+
+        expect(checkout.signing_up_with_username_and_password?).to be true
+      end
+    end
+
+    it "returns false if none of those fields are set on user" do
+      checkout = Checkout.new
+
+      expect(checkout.signing_up_with_username_and_password?).to be false
+    end
+  end
 end
