@@ -11,11 +11,9 @@ $faded: rgba(#000000, 0.12);
   z-index: $z-header;
 
   @include marketing-fullsize {
-    padding: 0 2em;
+    padding: 0;
 
     nav {
-      margin-right: -2em;
-
       a {
         padding: 1rem 2rem;
       }
@@ -25,7 +23,7 @@ $faded: rgba(#000000, 0.12);
       @include position(absolute, 0 0 null 0);
 
       nav li {
-        margin: 8px;
+        margin: 7px;
 
         &:hover {
           background: $faded;
@@ -35,7 +33,7 @@ $faded: rgba(#000000, 0.12);
         a {
           border-left: none;
           height: 44px;
-          padding: 0.5rem 1.5rem;
+          padding: 0.5em 1rem;
         }
       }
     }

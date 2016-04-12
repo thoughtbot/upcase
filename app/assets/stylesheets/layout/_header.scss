@@ -69,12 +69,16 @@
 
 .header-container {
   @include user-select(none);
-  @include outer-container;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
   max-width: $max-width;
   padding: 0 $side-padding;
   position: relative;
 
   @include dashboard-small-only {
+    display: block;
     padding-left: 0;
     padding-right: 0;
   }
@@ -110,6 +114,14 @@
     }
   }
 
+  .marketing-extra {
+    display: none;
+
+    @include dashboard-large {
+      display: inline;
+    }
+  }
+
   .nav-toggle {
     display: none;
 
@@ -138,10 +150,6 @@
       max-height: 100em;
       overflow-y: hidden;
       transition: all 0.75s $ease-in-out-sine;
-    }
-
-    @include dashboard-medium {
-      float: right;
     }
 
     @media print {
@@ -203,7 +211,7 @@
       font-size: 100%;
       font-weight: 600;
       height: $navigation-height;
-      padding: 1rem 1.4rem;
+      padding: 1rem;
 
       @include dashboard-small-only {
         text-align: center;

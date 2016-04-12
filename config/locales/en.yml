@@ -138,7 +138,7 @@ en:
       title: '%{title}'
   shared:
     header:
-      explore: Explore
+      content: Content
       flashcards: Flashcards
       forum: Forum
       help-link: Help
