@@ -18,11 +18,26 @@
   }
 }
 
-.table-of-contents-container {
+.table-of-contents-outer-container {
   @include outer-container;
-  padding: 2em 0;
   position: relative;
+  margin-top: $base-spacing;
 
+  h2 {
+    padding-bottom: $medium-spacing;
+
+    @include marketing-mobile {
+      padding-bottom: $base-spacing;
+    }
+  }
+
+  .see-all a {
+    font-style: italic;
+    font-weight: 500;
+  }
+}
+
+.table-of-contents-container {
   h3 a {
     color: $darkwarmgray;
   }
@@ -44,6 +59,14 @@
     }
   }
 
+  li {
+    margin-bottom: 0.4em;
+
+    @include marketing-mobile {
+      margin-bottom: 0.7em;
+    }
+  }
+
   img {
     @include position(absolute, -0.5em 0 0 0px);
     @include size(3em);
@@ -51,11 +74,9 @@
 }
 
 .table-of-contents-close {
-  @include position(absolute, 0px 0px 0 0);
   color: $gray-3;
+  float: right;
   font-size: 2em;
-  height: 2em;
-  width: 2em;
 
   &:hover,
   &:focus {
