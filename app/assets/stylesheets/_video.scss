@@ -113,9 +113,23 @@
   }
 }
 
-.assets-wrapper {
-  margin-bottom: 1rem;
+.video-player {
+  margin-bottom: $large-spacing;
 
+  @include body-mobile {
+    .download {
+      display: none;
+    }
+  }
+
+  .actions {
+    align-items: center;
+    display: flex;
+    margin-top: $base-spacing;
+  }
+}
+
+.assets-wrapper {
   .assets {
     .asset-download {
       float: left;
@@ -137,8 +151,8 @@
   }
 }
 
-.mark-as-complete {
-  float: right;
+.mark-as-complete form {
+  margin-bottom: 0;
 }
 
 .seek-button-template {

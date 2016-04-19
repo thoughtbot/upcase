@@ -74,12 +74,24 @@ describe "videos/show" do
     end
 
     context "when the user does not have access to the video" do
-      it "displays a video preview" do
-        video = build_stubbed(:video, preview_wistia_id: "preview-123")
+      context "when the video has a preview clip available" do
+        it "displays a video preview" do
+          video = build_stubbed(:video, preview_wistia_id: "preview-123")
 
-        render_video video, has_access: false
+          render_video video, has_access: false
 
-        expect(rendered).to be_displaying_preview(video)
+          expect(rendered).to be_displaying_preview(video)
+        end
+      end
+
+      context "when the video does not have a preview clip available" do
+        it "displays a preview image" do
+          video = build_stubbed(:video, preview_wistia_id: "")
+
+          render_video video, has_access: false
+
+          expect(rendered).to have_video_preview_thumbnail(video)
+        end
       end
     end
   end
@@ -215,6 +227,10 @@ describe "videos/show" do
 
   def be_displaying_video_with_id(video_id)
     have_css("p[data-wistia-id='#{video_id}']")
+  end
+
+  def have_video_preview_thumbnail(video)
+    have_css(".thumbnail[data-wistia-id='#{video.wistia_id}']")
   end
 
   def head_content

@@ -17,7 +17,7 @@
 <div class="show-info">
   <% unless has_access_to_shows? %>
     <div>
-      <%= render "clips/preview_only", clip: Clip.new("ol6e0miehm") %>
+      <%= render Clip.new("ol6e0miehm") %>
     </div>
     <%= render "subscribe_cta",
       description: t("show.weekly_iteration_cta"),

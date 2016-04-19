@@ -57,16 +57,6 @@ body.videos-show {
     }
   }
 
-  @include body-mobile {
-    .assets-wrapper {
-      .assets {
-        .button-mini {
-          @include span-columns(12);
-        }
-      }
-    }
-  }
-
   @media screen and (max-device-width: 800px), screen and (max-width: 800px) {
    .video-headline {
      text-align: left;
@@ -76,11 +66,6 @@ body.videos-show {
   @include body-mobile {
     .text-box-wrapper .get-video {
       width: 80% !important;
-    }
-
-    .assets-wrapper .assets .button-mini {
-      @include span-columns(12);
-      margin-top: 20px;
     }
   }
 }
