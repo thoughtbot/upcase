@@ -102,6 +102,20 @@ describe Video do
     end
   end
 
+  context "has_preview_clip?" do
+    it "returns true if there is a preview clip present" do
+      video = Video.new(preview_wistia_id: "abc124")
+
+      expect(video.has_preview_clip?).to eq(true)
+    end
+
+    it "returns false if there is not a preview clip present" do
+      video = Video.new(preview_wistia_id: "")
+
+      expect(video.has_preview_clip?).to eq(false)
+    end
+  end
+
   context "watchable_name" do
     it "returns the name of the watchable" do
       show = create(:show, name: "A show")

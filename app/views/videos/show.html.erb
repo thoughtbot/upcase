@@ -24,7 +24,11 @@
 <% if current_user_has_access_to?(@video) %>
   <%= render @video.clip %>
 <% else %>
-  <%= render @video.preview, name: @video.name %>
+  <% if @video.has_preview_clip? %>
+    <%= render "clips/preview_only", clip: @video.preview %>
+  <% else %>
+    <%= render @video.preview, name: @video.name %>
+  <% end %>
 <% end %>
 
 <% if current_user_has_access_to?(@video) %>

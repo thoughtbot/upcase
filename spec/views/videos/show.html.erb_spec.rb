@@ -30,6 +30,23 @@ describe "videos/show" do
     end
   end
 
+  describe "video clip" do
+    context "when the current_user has access to the video" do
+      it "renders the full video" do
+        video = build_stubbed(:video)
+
+        render_video video, has_access: true
+
+        require 'pry'; binding.pry
+        expect(rendered).to have_css(".assets .download")
+
+        expect(rendered).to have_css("[data-wistia-id='#{video.wistia_id}']")
+        puts rendered
+        expect(rendered).to have_full_video_clip(video)
+      end
+    end
+  end
+
   it "include the video name and link to the parent watchable" do
     show = create(:show)
     video = create(:video, watchable: show)
