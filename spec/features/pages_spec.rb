@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "Pages" do
-  ["/privacy", "/terms"].each do |page_url|
+  ["/upcase/privacy", "/upcase/terms"].each do |page_url|
     scenario "able to visit #{page_url}" do
       visit page_url
 

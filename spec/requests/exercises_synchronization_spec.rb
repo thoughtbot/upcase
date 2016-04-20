@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "PUT /api/v1/exercises/:id" do
+describe "PUT /upcase/api/v1/exercises/:id" do
   context "when an exercise with a given uuid does not exist" do
     it "creates a new exercise" do
       perform_request("uuid-1234", exercise_attributes)

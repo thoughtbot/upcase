@@ -19,6 +19,10 @@ Upcase::Application.configure do
   # ranking.
   config.static_cache_control = 'public, max-age=31536000'
 
+  config.exceptions_app = ActionDispatch::PublicExceptions.new(
+    Rails.public_path.join("upcase"),
+  )
+
   config.eager_load = true
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
@@ -27,11 +31,6 @@ Upcase::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.force_ssl = true
-  config.middleware.insert_before(
-    ActionDispatch::SSL,
-    Rack::CanonicalHost,
-    ENV.fetch("APP_DOMAIN"),
-  )
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = MAIL_SETTINGS

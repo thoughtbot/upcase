@@ -5,7 +5,9 @@ feature 'An OAuth client authenticates', js: true do
     create_client_app
     visit_client_app
     user = create(:subscriber)
+
     authorize_via_redirect(user)
+
     verify_signed_in_user_details_from_page(user)
   end
 
@@ -71,7 +73,9 @@ feature 'An OAuth client authenticates', js: true do
     client = OAuth2::Client.new(
       FakeOauthClientApp.client_id,
       FakeOauthClientApp.client_secret,
-      :site => FakeOauthClientApp.server_url
+      site: FakeOauthClientApp.server_url,
+      authorize_url: "/upcase/oauth/authorize",
+      token_url: "/upcase/oauth/token",
     )
     access_token = client.password.get_token(user.email, user.password)
     JSON.parse access_token.get(resource_owner_path).body

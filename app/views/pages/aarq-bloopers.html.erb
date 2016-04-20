@@ -4,7 +4,7 @@
   </section>
 
   <div class="text-box">
-    <%= render Clip.new("itprspj843") %>
+    <%= render partial: "clips/clip", locals: { clip: Clip.new("itprspj843") } %>
   </div>
 
   <p>

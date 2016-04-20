@@ -18,14 +18,14 @@ class @WistiaHelper
       playerPreference: "html5"
     wistiaEmbed.bind "play", ->
       unless wistiaEmbed.started
-        $.post "/api/v1/videos/#{hashedId}/status",
+        $.post "/upcase/api/v1/videos/#{hashedId}/status",
           state: "In Progress"
         wistiaEmbed.started = true
     wistiaEmbed.bind "secondchange", (second) ->
       wistiaEmbed.watchedThreshold ||= Math.floor(wistiaEmbed.duration() * 0.8)
 
       if second > wistiaEmbed.watchedThreshold && !wistiaEmbed.watched
-        $.post "/api/v1/videos/#{hashedId}/status",
+        $.post "/upcase/api/v1/videos/#{hashedId}/status",
           state: "Complete"
         wistiaEmbed.watched = true
 

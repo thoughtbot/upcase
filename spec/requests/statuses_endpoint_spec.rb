@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "POST /api/v1/exercises/:exercise_uuid/status" do
+describe "POST /upcase/api/v1/exercises/:exercise_id/status" do
   context "#create" do
     it "updates the status of the given exercise for the authenticated user" do
       exercise = create(:exercise)

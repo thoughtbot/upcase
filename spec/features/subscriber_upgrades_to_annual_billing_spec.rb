@@ -22,7 +22,8 @@ feature "Subscriber upgrades to annual billing" do
   end
 
   scenario "visitor doesn't see link" do
-    visit practice_path
+    create(:plan)
+    visit root_path
 
     expect_to_not_see_upgrade_link
   end

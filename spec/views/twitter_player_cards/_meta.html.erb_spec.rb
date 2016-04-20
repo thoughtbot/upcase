@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "twitter_player_cards/_meta.html.erb" do
   it "renders Twitter Player Card meta tags" do
-    name = "1986 NBA Finals"
+    name = "NBA"
     summary = "Bird steals the ball! Underneath to DJ and he lays it in!!!"
     wistia_id = "abc123"
     video = create(
@@ -19,8 +19,8 @@ describe "twitter_player_cards/_meta.html.erb" do
       "site" => "@upcase",
       "title" => name,
       "description" => summary,
-      "image" => "http://test.host/assets/twitter-card",
-      "player" => "http://test.host/videos/1986-nba-finals/twitter_player_card",
+      "image" => "http://test.host/upcase/assets/twitter-card",
+      "player" => "http://test.host/upcase/videos/nba/twitter_player_card",
       "player:width" => "490",
       "player:height" => "276",
       "player:stream" => "https://thoughtbotlearn.wistia.com/medias/#{wistia_id}",

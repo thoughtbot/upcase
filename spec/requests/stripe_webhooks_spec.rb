@@ -109,6 +109,6 @@ describe "Stripe webhooks" do
   end
 
   def simulate_stripe_webhook_firing(id)
-    post "/stripe-webhook", "id" => id
+    post stripe_event_path, id: id
   end
 end

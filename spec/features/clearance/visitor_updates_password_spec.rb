@@ -3,6 +3,7 @@ require "rails_helper"
 feature 'Visitor updates password' do
   scenario 'with valid password' do
     user = user_with_reset_password
+
     update_password user, 'newpassword'
 
     user_should_be_signed_in

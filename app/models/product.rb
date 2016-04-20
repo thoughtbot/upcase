@@ -36,11 +36,6 @@ class Product < ActiveRecord::Base
     false
   end
 
-  def image_url
-    raw_url = product_image.url
-    product_image_file_name? ? raw_url : "/assets/#{raw_url}"
-  end
-
   def product_type_symbol
     type.underscore.to_sym
   end

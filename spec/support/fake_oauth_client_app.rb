@@ -32,7 +32,9 @@ class FakeOauthClientApp < Sinatra::Base
     OAuth2::Client.new(
       client_id,
       client_secret,
-      site: server_url
+      site: server_url,
+      authorize_url: "/upcase/oauth/authorize",
+      token_url: "/upcase/oauth/token",
     )
   end
 

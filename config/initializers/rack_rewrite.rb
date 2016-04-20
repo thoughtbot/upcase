@@ -2,7 +2,16 @@ require "rack/rewrite"
 
 Rails.configuration.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
   def licenseable_id_url_for(licenseable)
-    %r{/#{licenseable}/\d+-(.+)(\?.*)?}
+    %r{/upcase/#{licenseable}/\d+-(.+)(\?.*)?}
+  end
+
+  if Rails.env.staging? || Rails.env.production?
+    PATH_PATTERN = %r{^/((?!upcase).*)}
+    REPLACEMENT_TEMPLATE = "https://#{ENV.fetch('APP_DOMAIN')}/upcase$&".freeze
+
+    r301 PATH_PATTERN, REPLACEMENT_TEMPLATE, if: Proc.new { |rack_env|
+      rack_env["SERVER_NAME"] != ENV.fetch("APP_DOMAIN")
+    }
   end
 
   r301 licenseable_id_url_for("products"), "/$1$2"
@@ -11,72 +20,72 @@ Rails.configuration.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
   r301 licenseable_id_url_for("workshops"), "/$1$2"
 
   # Upcase content
-  r301 "/5by5", "/design-for-developers"
-  r301 "/d4d-resources", "/design-for-developers-resources"
-  r301 "/gettingstartedwithios", "/getting-started-with-ios-development?utm_source=podcast"
-  r301 "/live", "https://forum.upcase.com"
-  r301 "/prime", "/"
-  r301 "/subscribe", "/"
-  r301 "/dashboard", "/practice"
-  r301 "/test-driven+development", "/testing"
-  r301 "/test-driven+development/resources", "/testing"
-  r301 "/clean+code", "/clean-code"
-  r301 "/clean+code/resources", "/clean-code"
-  r301 "/ruby", "/rails"
-  r301 "/rubymotion", "/ios"
-  r301 "/swift", "/ios"
-  r301 "/git", "/workflow"
-  r301 "/heroku", "/workflow"
-  r301 "/sql", "/workflow"
-  r301 "/unix", "/workflow"
-  r301 "/typography", "/design"
-  r301 "/visual-principles", "/design"
-  r301 "/web+design", "/design"
-  r301 "/grids", "/design"
-  r301 "/html-css", "/design"
-  r301 "/sass", "/design"
-  r301 "/products", "/practice"
-  r301 "/users/new", "/join"
-  r301 "/sign_up", "/join"
-  r301 "/trails", "/practice"
-  r301 "/pages/landing", "/join"
+  r301 "/upcase/5by5", "/upcase/design-for-developers"
+  r301 "/upcase/d4d-resources", "/upcase/design-for-developers-resources"
+  r301 "/upcase/gettingstartedwithios", "/upcase/getting-started-with-ios-development?utm_source=podcast"
+  r301 "/upcase/live", "https://forum.upcase.com"
+  r301 "/upcase/prime", "/upcase/"
+  r301 "/upcase/subscribe", "/upcase/"
+  r301 "/upcase/dashboard", "/upcase/practice"
+  r301 "/upcase/test-driven+development", "/upcase/testing"
+  r301 "/upcase/test-driven+development/resources", "/upcase/testing"
+  r301 "/upcase/clean+code", "/upcase/clean-code"
+  r301 "/upcase/clean+code/resources", "/upcase/clean-code"
+  r301 "/upcase/ruby", "/upcase/rails"
+  r301 "/upcase/rubymotion", "/upcase/ios"
+  r301 "/upcase/swift", "/upcase/ios"
+  r301 "/upcase/git", "/upcase/workflow"
+  r301 "/upcase/heroku", "/upcase/workflow"
+  r301 "/upcase/sql", "/upcase/workflow"
+  r301 "/upcase/unix", "/upcase/workflow"
+  r301 "/upcase/typography", "/upcase/design"
+  r301 "/upcase/visual-principles", "/upcase/design"
+  r301 "/upcase/web+design", "/upcase/design"
+  r301 "/upcase/grids", "/upcase/design"
+  r301 "/upcase/html-css", "/upcase/design"
+  r301 "/upcase/sass", "/upcase/design"
+  r301 "/upcase/products", "/upcase/practice"
+  r301 "/upcase/users/new", "/upcase/join"
+  r301 "/upcase/sign_up", "/upcase/join"
+  r301 "/upcase/trails", "/upcase/practice"
+  r301 "/upcase/pages/landing", "/upcase/join"
 
   # Books
-  r301 "/backbone-js-on-rails", "https://gumroad.com/l/backbone-js-on-rails"
-  r301 "/geocoding-on-rails", "https://gumroad.com/l/geocoding-on-rails"
-  r301 "/ios-on-rails", "https://gumroad.com/l/ios-on-rails"
-  r301 "/ios-on-rails-beta", "https://gumroad.com/l/ios-on-rails"
-  r301 "/ruby-science", "https://gumroad.com/l/ruby-science"
+  r301 "/upcase/backbone-js-on-rails", "https://gumroad.com/l/backbone-js-on-rails"
+  r301 "/upcase/geocoding-on-rails", "https://gumroad.com/l/geocoding-on-rails"
+  r301 "/upcase/ios-on-rails", "https://gumroad.com/l/ios-on-rails"
+  r301 "/upcase/ios-on-rails-beta", "https://gumroad.com/l/ios-on-rails"
+  r301 "/upcase/ruby-science", "https://gumroad.com/l/ruby-science"
 
   # Videos
-  r301 "/videos/vim-for-rails-developers", "https://www.youtube.com/watch?v=9J2OjH8Ao_A"
-  r301 "/humans-present/oss", "https://www.youtube.com/watch?v=VMBhumlUP-A"
-  r301 "/pages/tmux", "https://www.youtube.com/watch?v=CKC8Ph-s2F4"
+  r301 "/upcase/videos/vim-for-rails-developers", "https://www.youtube.com/watch?v=9J2OjH8Ao_A"
+  r301 "/upcase/humans-present/oss", "https://www.youtube.com/watch?v=VMBhumlUP-A"
+  r301 "/upcase/pages/tmux", "https://www.youtube.com/watch?v=CKC8Ph-s2F4"
 
   # Dynamic
-  r301 %r{^/(.+)/articles}, "https://robots.thoughtbot.com/tags/$1"
-  r301 %r{^/courses/(.+)}, "/$1"
-  r301 %r{^/products/(.+)/purchases/(.*)}, "/purchases/$2"
-  r301 %r{^/workshops/(.+)}, "/$1"
-  r301 %r{^/([^/]+)/resources}, "/$1"
+  r301 %r{^/upcase/(.+)/articles}, "https://robots.thoughtbot.com/tags/$1"
+  r301 %r{^/upcase/courses/(.+)}, "/upcase/$1"
+  r301 %r{^/upcase/products/(.+)/purchases/(.*)}, "/upcase/purchases/$2"
+  r301 %r{^/upcase/workshops/(.+)}, "/upcase/$1"
+  r301 %r{^/upcase/([^/]+)/resources}, "/upcase/$1"
 
   if Rails.env.production? || Rails.env.staging?
-    r301 %r{^/products/(10|12)\D}, "/test-driven-rails"
-    r301 %r{^/products/(9|11)\D}, "/design-for-developers"
-    r301 "/products/4", "https://www.youtube.com/watch?v=CKC8Ph-s2F4"
-    r301 "/products/14", "/"
-    r301 "/products/14-prime", "/"
+    r301 %r{^/upcase/products/(10|12)\D}, "/upcase/test-driven-rails"
+    r301 %r{^/upcase/products/(9|11)\D}, "/upcase/design-for-developers"
+    r301 "/upcase/products/4", "https://www.youtube.com/watch?v=CKC8Ph-s2F4"
+    r301 "/upcase/products/14", "/upcase/"
+    r301 "/upcase/products/14-prime", "/upcase/"
   end
 
   # Coupons
-  r301 "/halfoff", "https://tbot.io/podcoupon"
+  r301 "/upcase/halfoff", "https://tbot.io/podcoupon"
 
   # Podcasts
-  r301 "/podcast.xml", "http://podcasts.thoughtbot.com/giantrobots.xml"
-  r301 "/giantrobots.xml", "http://podcasts.thoughtbot.com/giantrobots.xml"
-  r301 "/buildphase.xml", "http://podcasts.thoughtbot.com/buildphase.xml"
-  r301 %r{^/(buildphase|giantrobots)/(.*)}, "http://$1.fm/$2"
-  r301 %r{^/(buildphase|giantrobots)$}, "http://$1.fm"
-  r301 %r{^/podcasts?$}, "http://giantrobots.fm"
-  r301 %r{^/podcasts?/(.*)}, "http://giantrobots.fm/$1"
+  r301 "/upcase/podcast.xml", "http://podcasts.thoughtbot.com/giantrobots.xml"
+  r301 "/upcase/giantrobots.xml", "http://podcasts.thoughtbot.com/giantrobots.xml"
+  r301 "/upcase/buildphase.xml", "http://podcasts.thoughtbot.com/buildphase.xml"
+  r301 %r{^/upcase/(buildphase|giantrobots)/(.*)}, "http://$1.fm/$2"
+  r301 %r{^/upcase/(buildphase|giantrobots)$}, "http://$1.fm"
+  r301 %r{^/upcase/podcasts?$}, "http://giantrobots.fm"
+  r301 %r{^/upcase/podcasts?/(.*)}, "http://giantrobots.fm/$1"
 end
