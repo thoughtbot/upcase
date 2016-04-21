@@ -14,6 +14,9 @@
 #
 # The slug is the `video.slug` in the database.
 
+UNDERLINE_HEADER = /^([^\n]+) \d+(\n[-=]+)/m
+ATX_HEADER = /^(#+.+) \d+$/
+
 renderer = Redcarpet::Markdown.new(
   Redcarpet::Render::HTML.new(with_toc_data: true),
   autolink: true,
@@ -24,14 +27,16 @@ renderer = Redcarpet::Markdown.new(
 
 video_slug = ARGV.first
 raw_notes = STDIN.read
+
 # When we run `STDIN.read`, Heroku prints out everything it just read. In order
 # to separate that from error messages or output we actually care about, we
 # print blank lines.
 puts "\n" * 10
 
 doc = Nokogiri::HTML(renderer.render(raw_notes))
+
 # Remove the timestamps from the end of the headers
-notes = raw_notes.gsub(/^(##+ .+) \d+$/, '\1')
+notes = raw_notes.gsub(UNDERLINE_HEADER, '\1\2').gsub(ATX_HEADER, '\1')
 
 video = Video.find_by!(slug: video_slug)
 video.update!(notes: notes)
