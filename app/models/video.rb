@@ -48,10 +48,6 @@ class Video < ActiveRecord::Base
     end
   end
 
-  def has_preview_clip?
-    preview_wistia_id.present?
-  end
-
   def has_notes?
     notes.present?
   end
