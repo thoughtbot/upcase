@@ -147,7 +147,7 @@ GEM
     heroku-deflater (0.5.3)
       rack (>= 1.4.5)
     high_voltage (2.2.1)
-    honeybadger (2.5.1)
+    honeybadger (2.6.0)
     htmlentities (4.3.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
