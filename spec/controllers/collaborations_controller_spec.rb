@@ -40,7 +40,7 @@ describe CollaborationsController do
 
         expect(repository).not_to have_received(:add_collaborator)
         expect(controller).to redirect_to(edit_subscription_path)
-        expect(flash[:notice]).to eq(
+        expect(controller).to set_flash.to(
           I18n.t("subscriptions.flashes.upgrade_required")
         )
       end
@@ -54,7 +54,7 @@ describe CollaborationsController do
 
         expect(repository).not_to have_received(:add_collaborator)
         expect(controller).to redirect_to(new_subscription_path)
-        expect(flash[:notice]).to eq(
+        expect(controller).to set_flash.to(
           I18n.t("subscriptions.flashes.subscription_required")
         )
       end

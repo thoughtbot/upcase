@@ -66,7 +66,7 @@ describe CheckoutsController do
 
         expect(session[:coupon]).to be_nil
         expect(controller).to redirect_to new_checkout_path plan_sku
-        expect(flash[:notice]).to eq(
+        expect(controller).to set_flash.to(
           I18n.t("checkout.flashes.invalid_coupon", code: coupon_code),
         )
       end
