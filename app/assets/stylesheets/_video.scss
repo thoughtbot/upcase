@@ -117,8 +117,22 @@
   margin-bottom: $large-spacing;
 
   @include body-mobile {
-    .download {
-      display: none;
+    margin-bottom: $base-spacing;
+  }
+
+  .download-links {
+    display: flex;
+
+    @include body-mobile {
+      flex-direction: column;
+    }
+  }
+
+  .download {
+    margin-right: 1em;
+
+    @include body-mobile {
+      margin-bottom: 1em;
     }
   }
 
@@ -126,27 +140,9 @@
     align-items: center;
     display: flex;
     margin-top: $base-spacing;
-  }
-}
 
-.assets-wrapper {
-  .assets {
-    .asset-download {
-      float: left;
-      margin: 0 20px 0 0;
-    }
-
-    .asset {
-      background-color: #efefef;
-      float: left;
-      margin: 4px 4px 0 0;
-      padding: 10px;
-      width: 20%;
-    }
-
-    a {
-      padding-right: 10px;
-      text-decoration: none;
+    @include body-mobile {
+      align-items: flex-start;
     }
   }
 }
