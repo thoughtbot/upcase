@@ -1,3 +1,6 @@
+machine:
+  pre:
+    - wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 test:
   override:
     - bundle exec rake
