@@ -61,10 +61,10 @@ class User < ActiveRecord::Base
   end
 
   def credit_card
-    customer = stripe_customer
-
-    if customer
-      customer.cards.detect { |card| card.id == customer.default_card }
+    if has_credit_card?
+      @credit_card ||= stripe_customer.cards.detect do |card|
+        card.id == stripe_customer.default_card
+      end
     end
   end
 
@@ -126,7 +126,7 @@ class User < ActiveRecord::Base
 
   def stripe_customer
     if stripe_customer_id.present?
-      Stripe::Customer.retrieve(stripe_customer_id)
+      @stripe_customer ||= Stripe::Customer.retrieve(stripe_customer_id)
     end
   end
 
