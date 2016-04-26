@@ -78,7 +78,7 @@ class ApplicationController < ActionController::Base
   helper_method :onboarding_policy
 
   def github_auth_path(params = {})
-    base_path = "/auth/github"
+    base_path = "#{OmniAuth.config.path_prefix}/github"
 
     if params.any?
       "#{base_path}?#{params.to_query}"
