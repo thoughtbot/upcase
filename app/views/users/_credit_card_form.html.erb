@@ -1,6 +1,16 @@
 <div class='text-box'>
   <%= semantic_form_for current_user, url: credit_card_path, html: { class: 'credit_card' } do |form| %>
     <%= form.inputs "Your Billing Info", id: 'billing-information' do %>
+      <dl class="card-on-file">
+        <dt>Card Type</dt>
+        <dd class="cc-brand-<%= current_user.credit_card.brand.downcase %>">
+          <%= current_user.credit_card.brand %>
+        </dd>
+        <dt>Number</dt>
+        <dd>**** **** **** <%= current_user.credit_card.last4 %></dd>
+        <dt>Expiration Date</dt>
+        <dd><%= current_user.credit_card.exp_month %>/<%= current_user.credit_card.exp_year %></dd>
+      </dl>
       <li class="subscription-errors"></li>
       <li id="checkout_cc_input" class="stripe">
         <label for='card-number'>Card Number</label>
