@@ -48,13 +48,26 @@ describe "layouts/_marketing_header_links.html.erb" do
   end
 
   context "when signed_out" do
-    it "renders the sign_in link" do
-      render_header(signed_out: true)
+    context "on a sales landing page" do
+      it "renders the plain sign_in link" do
+        render_header(signed_out: true, landing_page: true)
 
-      expect(rendered).to have_link(
-        t("shared.header.sign_in"),
-        sign_in_path,
-      )
+        expect(rendered).to have_link(
+          t("shared.header.sign_in"),
+          href: sign_in_path,
+        )
+      end
+    end
+
+    context "when on a non-sales page" do
+      it "renders the sign_in link with return_to provided for current_path" do
+        render_header(signed_out: true, landing_page: false)
+
+        expect(rendered).to have_link(
+          t("shared.header.sign_in"),
+          href: sign_in_path_with_return_to,
+        )
+      end
     end
   end
 
@@ -69,9 +82,15 @@ describe "layouts/_marketing_header_links.html.erb" do
     end
   end
 
-  def render_header(signed_out: false, team_page: false, header_cta_link: nil)
+  def render_header(
+    signed_out: false,
+    team_page: false,
+    header_cta_link: nil,
+    landing_page: false
+  )
     allow(view).to receive(:signed_out?).and_return(signed_out)
     allow(view).to receive(:team_page?).and_return(team_page)
+    allow(view).to receive(:landing_page?).and_return(landing_page)
 
     if header_cta_link
       allow(view).to receive(:content_for?).
@@ -83,5 +102,9 @@ describe "layouts/_marketing_header_links.html.erb" do
     end
 
     render
+  end
+
+  def sign_in_path_with_return_to
+    sign_in_path(return_to: "")
   end
 end

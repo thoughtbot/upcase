@@ -23,7 +23,11 @@
 
   <% if signed_out? %>
     <li>
-      <%= link_to t("shared.header.sign_in"), sign_in_path_with_current_path_return_to %>
+      <% if landing_page? %>
+        <%= link_to t("shared.header.sign_in"), sign_in_path %>
+      <% else %>
+        <%= link_to t("shared.header.sign_in"), sign_in_path_with_current_path_return_to %>
+      <% end %>
     </li>
   <% end %>
 
