@@ -86,6 +86,25 @@ describe Subscription do
     end
   end
 
+  describe "#reactivate" do
+    it "clears the scheduled_for_deactivation_on field" do
+      subscription = create(
+        :subscription,
+        scheduled_for_deactivation_on: Date.today,
+      )
+      fake_subscription = spy(plan: double(id: "sorny-magnetbox"))
+      allow(subscription).
+        to receive(:stripe_subscription).
+        and_return(fake_subscription)
+
+      subscription.reactivate
+
+      expect(fake_subscription).to have_received(:plan=).with("sorny-magnetbox")
+      expect(fake_subscription).to have_received(:save)
+      expect(subscription.scheduled_for_deactivation_on).to be_nil
+    end
+  end
+
   describe "#change_plan" do
     it "updates upcase and stripe plans" do
       subscription = build(:subscription)
