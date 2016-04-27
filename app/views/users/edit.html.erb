@@ -3,6 +3,10 @@
 <% end %>
 
 <div class="text-box-wrapper right">
+  <% if current_user.scheduled_for_deactivation? %>
+    <%= render "reactivate", user: current_user, card: current_user.credit_card %>
+  <% end %>
+
   <div class="text-box">
     <%= semantic_form_for current_user, url: edit_my_account_path do |form| %>
       <%= form.inputs "Your Information [#{link_to("Sign out", sign_out_path, method: :delete)}]" do %>

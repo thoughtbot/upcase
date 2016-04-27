@@ -41,6 +41,13 @@ class Subscription < ActiveRecord::Base
     update_column(:deactivated_on, Time.zone.today)
   end
 
+  def reactivate
+    update_column(:scheduled_for_deactivation_on, nil)
+    stripe_sub = stripe_subscription
+    stripe_sub.plan = stripe_sub.plan.id
+    stripe_sub.save
+  end
+
   def change_plan(sku:)
     write_plan(sku: sku)
     change_stripe_plan(sku: sku)
@@ -130,5 +137,9 @@ class Subscription < ActiveRecord::Base
 
   def stripe_customer
     Stripe::Customer.retrieve(stripe_customer_id)
+  end
+
+  def stripe_subscription
+    stripe_customer.subscriptions.retrieve(stripe_id)
   end
 end

@@ -12,7 +12,12 @@ class User < ActiveRecord::Base
   validates :github_username, uniqueness: true, presence: true
 
   delegate :plan, to: :subscription, allow_nil: true
-  delegate :scheduled_for_deactivation_on, to: :subscription, allow_nil: true
+  delegate(
+    :scheduled_for_deactivation_on,
+    :scheduled_for_deactivation?,
+    to: :subscription,
+    allow_nil: true
+  )
 
   before_save :clean_github_username
 

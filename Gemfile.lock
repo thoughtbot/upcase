@@ -66,6 +66,7 @@ GEM
     bundler-audit (0.4.0)
       bundler (~> 1.2)
       thor (~> 0.18)
+    byebug (8.2.5)
     capybara (2.6.2)
       addressable
       mime-types (>= 1.16)
@@ -213,6 +214,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.3.0)
+      byebug (~> 8.0)
+      pry (~> 0.10)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
     puma (2.15.3)
@@ -417,6 +421,7 @@ DEPENDENCIES
   paperclip (~> 4.2.2)
   pg
   pg_search
+  pry-byebug
   pry-rails
   puma
   quiet_assets
@@ -451,4 +456,4 @@ DEPENDENCIES
   wrapped
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

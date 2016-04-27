@@ -192,6 +192,9 @@ en:
       update:
         success: You have successfully updated your subscription credit card information.
       upgrade_required: You must upgrade your plan to access that feature.
+      reactivate:
+        success: Awesome! You won't regret this!
+        failure: "Ok, so we couldn't do that for some reason. :/"
     join_cta: Subscribe Now
     new:
       sign_up_cta: Sign Up Now!
@@ -241,6 +244,10 @@ en:
       have_any_questions: Have any questions?
       here_to_help: We're here to help, so feel free to send any questions in and we'll get back to you right away.
       contact_us: Contact us
+    reactivate:
+      title: It would be awesome if you came back!
+      plea: We get it, though. But we'd love to have you back, friend! Just mash this big green button!
+      call_to_action: Reactivate My Account
   videos:
     show:
       mark-as-complete: Mark as Complete
