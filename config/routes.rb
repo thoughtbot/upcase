@@ -28,8 +28,10 @@ Upcase::Application.routes.draw do
     namespace :v1 do
       resources :exercises, only: [:update]
 
-      post "exercises/:exercise_uuid/status" => "statuses#create"
-      post "videos/:video_wistia_id/status" => "statuses#create"
+      post "exercises/:exercise_uuid/status" => "statuses#create",
+        as: :exercise_status
+      post "videos/:video_wistia_id/status" => "statuses#create",
+        as: :video_status
     end
   end
 

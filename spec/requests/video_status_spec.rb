@@ -7,7 +7,7 @@ describe "Video status" do
     it "creates an In Progress status object" do
       video = create(:video)
 
-      post "/api/v1/videos/#{video.wistia_id}/status", state: "In Progress"
+      post api_v1_video_status_path(video.wistia_id), state: "In Progress"
 
       expect(response).to be_success
 
@@ -20,7 +20,7 @@ describe "Video status" do
     it "sends data to analytics backend" do
       video = create(:video)
 
-      post "/api/v1/videos/#{video.wistia_id}/status", state: "In Progress"
+      post api_v1_video_status_path(video.wistia_id), state: "In Progress"
 
       expect(analytics).to have_tracked("Started video").
         with_properties(name: video.name)
@@ -32,7 +32,7 @@ describe "Video status" do
       video = create(:video)
       video.statuses.create(user: @current_user, state: Status::IN_PROGRESS)
 
-      post "/api/v1/videos/#{video.wistia_id}/status", state: "Complete"
+      post api_v1_video_status_path(video.wistia_id), state: "Complete"
 
       video.reload
       expect(video.statuses.most_recent).to be_complete
@@ -42,7 +42,7 @@ describe "Video status" do
       video = create(:video)
       video.statuses.create(user: @current_user, state: Status::IN_PROGRESS)
 
-      post "/api/v1/videos/#{video.wistia_id}/status", state: "Complete"
+      post api_v1_video_status_path(video.wistia_id), state: "Complete"
 
       expect(analytics).to have_tracked("Finished video").
         with_properties(

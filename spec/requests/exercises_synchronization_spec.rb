@@ -33,7 +33,7 @@ describe "PUT /api/v1/exercises/:id" do
 
   def perform_request(uuid, attributes)
     put(
-      "/api/v1/exercises/#{uuid}",
+      api_v1_exercise_path(uuid),
       access_token: access_token,
       exercise: attributes
     )

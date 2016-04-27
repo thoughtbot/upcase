@@ -16,7 +16,7 @@ describe "POST /api/v1/exercises/:exercise_uuid/status" do
 
   def perform_request(uuid, state)
     post(
-      "/api/v1/exercises/#{uuid}/status",
+      api_v1_exercise_status_path(uuid),
       access_token: access_token,
       state: state,
     )

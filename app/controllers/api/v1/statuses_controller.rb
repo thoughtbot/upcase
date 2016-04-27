@@ -29,9 +29,9 @@ class Api::V1::StatusesController < ApiController
 
   def find_completeable
     if params[:exercise_uuid]
-      Exercise.find_by_uuid!(params[:exercise_uuid])
+      Exercise.find_by!(uuid: params[:exercise_uuid])
     elsif params[:video_wistia_id]
-      Video.find_by_wistia_id!(params[:video_wistia_id])
+      Video.find_by!(wistia_id: params[:video_wistia_id])
     end
   end
 

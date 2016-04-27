@@ -3,6 +3,10 @@ require "rails_helper"
 describe "layouts/_marketing_header_links.html.erb" do
   include PlansHelper
 
+  before do
+    allow(Show).to receive(:the_weekly_iteration).and_return("")
+  end
+
   context "when not on the teams page" do
     it "renders a link to the teams page" do
       render_header(team_page: false)

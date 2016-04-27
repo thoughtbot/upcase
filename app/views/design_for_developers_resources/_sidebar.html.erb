@@ -1,26 +1,26 @@
 <aside>
-  <%= link_to 'Take the video tutorial', design_for_developers_url, class: 'cta-button' %>
+  <%= link_to "Take the video tutorial", design_for_developers_url, class: "cta-button" %>
   <div class="resource-links">
     <h3>Resource Links</h3>
     <ul>
-      <li><a href="/design-for-developers-resources/#design-fundamentals">Design Fundamentals</a></li>
-      <li><a href="/design-for-developers-resources/#grid-systems">Grid Systems</a></li>
-      <li><a href="/design-for-developers-resources/#typography">Typography</a></li>
-      <li><a href="/design-for-developers-resources/#color-texture">Color &amp; Texture</a></li>
-      <li><a href="/design-for-developers-resources/#icons">Icons</a></li>
-      <li><a href="/design-for-developers-resources/#html-css">HTML, CSS &amp; Sass</a></li>
-      <li><a href="/design-for-developers-resources/#ux">UX &amp; Design Thinking</a></li>
-      <li><a href="/design-for-developers-resources/#inspiration">Design Inspiration</a></li>
+      <li><%= link_to "Design Fundamentals", design_for_developers_resources_path(anchor: "design-fundamentals") %></li>
+      <li><%= link_to "Grid Systems", design_for_developers_resources_path(anchor: "grid-systems") %></li>
+      <li><%= link_to "Typography", design_for_developers_resources_path(anchor: "typography") %></li>
+      <li><%= link_to "Color & Texture", design_for_developers_resources_path(anchor: "color-texture") %></li>
+      <li><%= link_to "Icons", design_for_developers_resources_path(anchor: "icons") %></li>
+      <li><%= link_to "HTML, CSS & Sass", design_for_developers_resources_path(anchor: "html-css") %></li>
+      <li><%= link_to "UX & Design Thinking", design_for_developers_resources_path(anchor: "ux") %></li>
+      <li><%= link_to "Design Inspiration", design_for_developers_resources_path(anchor: "inspiration") %></li>
     </ul>
   </div>
   <div class="cheat-sheets">
     <h3>Cheat sheets</h3>
     <ul>
-      <li><a href="/design-for-developers-resources/brief">Brief</a></li>
-      <li><a href="/design-for-developers-resources/principles">Principles</a></li>
-      <li><a href="/design-for-developers-resources/grid"</a>Grid</li>
-      <li><a href="/design-for-developers-resources/typography"</a>Typography</li>
-      <li><a href="/design-for-developers-resources/color">Color</a></li>
+      <li><%= link_to "Brief", design_for_developers_resource_path("brief") %></li>
+      <li><%= link_to "Principles", design_for_developers_resource_path("principles") %></li>
+      <li><%= link_to "Grid", design_for_developers_resource_path("grid") %></li>
+      <li><%= link_to "Typography", design_for_developers_resource_path("typography") %></li>
+      <li><%= link_to "Color", design_for_developers_resource_path("color") %></li>
     </ul>
   </div>
 </aside>
