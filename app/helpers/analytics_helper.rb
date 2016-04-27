@@ -1,6 +1,6 @@
 module AnalyticsHelper
-  def analytics?
-    ENV["ANALYTICS"].present?
+  def can_use_analytics?
+    ENV["ANALYTICS"].present? && !masquerading?
   end
 
   def identify_hash(user = current_user)

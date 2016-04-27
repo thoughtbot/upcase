@@ -1,19 +1,33 @@
 require "rails_helper"
 
 describe AnalyticsHelper do
-  describe '#analytics?' do
-    it "is true when ENV['ANALYTICS'] is present" do
-      ENV["ANALYTICS"] = "anything"
+  describe "#can_use_analytics?" do
+    context "when an ENV['ANALYTICS'] value is present and not masquerading?" do
+      it "returns true" do
+        ClimateControl.modify ANALYTICS: "anything" do
+          allow(helper).to receive(:masquerading?).and_return(false)
 
-      expect(helper).to be_analytics
-
-      ENV["ANALYTICS"] = nil
+          expect(helper.can_use_analytics?).to eq(true)
+        end
+      end
     end
 
-    it "is false when ENV['ANALYTICS'] is not present" do
-      ENV["ANALYTICS"] = nil
+    context "when we're masquerading" do
+      it "returns false" do
+        allow(helper).to receive(:masquerading?).and_return(true)
 
-      expect(helper).to_not be_analytics
+        expect(helper.can_use_analytics?).to eq(false)
+      end
+    end
+
+    context "when no ENV['ANALYTICS'] value is present" do
+      it "returns false" do
+        ClimateControl.modify ANALYTICS: nil do
+          allow(helper).to receive(:masquerading?).and_return(false)
+
+          expect(helper.can_use_analytics?).to eq(false)
+        end
+      end
     end
   end
 

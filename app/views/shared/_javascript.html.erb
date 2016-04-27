@@ -1,6 +1,6 @@
 <%= javascript_include_tag "application" %>
 
-<% if analytics? %>
+<% if can_use_analytics? %>
   <%= render "analytics" %>
 <% end %>
 
