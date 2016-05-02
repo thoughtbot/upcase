@@ -188,6 +188,8 @@ en:
           balance has been applied to future invoices.
       discount:
         success: You've switched to a discounted subscription! Congrats.
+      reactivate:
+        success: Subscription successfully reactivated!
       subscription_required: You need a subscription to Upcase to access that feature.
       update:
         success: You have successfully updated your subscription credit card information.
@@ -199,6 +201,7 @@ en:
     reason: Why have you decided to leave?
     reason_explanation: This information will help us make Upcase better for future
       members.
+    reactivate: Reactivate!
     team_join_cta: Start Your Team
   teams:
     join_cta: Get your team started today

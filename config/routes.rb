@@ -101,6 +101,7 @@ Upcase::Application.routes.draw do
     resources :invoices, only: [:index, :show]
     resource :cancellation, only: [:new, :create]
     resource :discount, only: :create
+    resource :reactivation, only: :create
   end
 
   namespace :beta do

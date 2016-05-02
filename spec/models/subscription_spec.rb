@@ -302,6 +302,16 @@ describe Subscription do
     end
   end
 
+  describe "#reactivate" do
+    it "unsets scheduled_for_deactivation_on" do
+      subscription = create(:subscription, scheduled_for_deactivation_on: 1.day.from_now)
+      subscription.reactivate
+      subscription.reload
+
+      expect(subscription.scheduled_for_deactivation_on).to be_nil
+    end
+  end
+
   def setup_cutomer
     stripe_customer = double(
       "StripeCustomer",
