@@ -10,8 +10,8 @@ if ! command -v open >/dev/null; then
   }
 fi
 
-if printenv | grep CIRCLE_SHA1 > /dev/null; then
-  branch=$CIRCLE_SHA1
+if printenv | grep CIRCLE_BRANCH > /dev/null; then
+  branch=$CIRCLE_BRANCH
 else
   branch="$(basename "$(git symbolic-ref HEAD)")"
 fi
@@ -25,7 +25,7 @@ else
   heroku restart --remote "$1"
 
   if [ "$1" = "staging" ]; then
-    current_sha="$(git log -1 --abbrev-commit --oneline | cut -d ' ' -f 1)"
+    current_sha="$(git log --oneline -1)"
     heroku config:set \
       CURRENT_BRANCH="$branch" \
       CURRENT_SHA="$current_sha" \

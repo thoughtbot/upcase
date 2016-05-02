@@ -9,7 +9,7 @@ module EnvironmentBannerHelper
 
   def current_sha
     if git_available?
-      `git log -1 --abbrev-commit --oneline | cut -d ' ' -f 1`
+      `git log --oneline -1`
     else
       ENV.fetch("CURRENT_SHA", "--sha-not-found--")
     end
