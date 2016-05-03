@@ -196,6 +196,9 @@ en:
       reactivate:
         success: Awesome! You won't regret this!
         failure: "Ok, so we couldn't do that for some reason. :/"
+      resubscribe:
+        success: Awesome! You won't regret this!
+        failure: "Ok, so we couldn't do that for some reason. :/"
     join_cta: Subscribe Now
     new:
       sign_up_cta: Sign Up Now!
@@ -245,6 +248,10 @@ en:
       have_any_questions: Have any questions?
       here_to_help: We're here to help, so feel free to send any questions in and we'll get back to you right away.
       contact_us: Contact us
+    resubscribe:
+      title: It would be awesome if you came back!
+      plea_html: We get it, things change. But we have your card on file and you can resubscribe just by mashing this button! If you want to change your card first, <a href="%{billing_url}">click here to change it</a>
+      call_to_action: Resubscribe Me
     reactivate:
       plea: You can reactivate your account without any interruption in service, just like you never left!
       call_to_action: Reactivate My Account

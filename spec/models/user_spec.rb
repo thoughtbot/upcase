@@ -95,6 +95,23 @@ describe User do
     end
   end
 
+  context "#previously_subscribed?" do
+    it "is true if the user has 1+ subscriptions but no active ones" do
+      user = create(:user, :with_inactive_subscription)
+      expect(user).to be_previously_subscribed
+    end
+
+    it "is false if the user has an active subscription" do
+      user = create(:user, :with_subscription)
+      expect(user).to_not be_previously_subscribed
+    end
+
+    it "is false if the user has no subscriptions at all" do
+      user = create(:user, subscriptions: [])
+      expect(user).to_not be_previously_subscribed
+    end
+  end
+
   context "#deactivate_personal_subscription" do
     it "cancels subscription" do
       user = create(:user, :with_subscription)
