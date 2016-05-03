@@ -3,6 +3,7 @@ module Subscriber
     def create
       resubscription = make_resubscription
       if resubscription.fulfill
+        analytics.track_resubscription
         flash[:notice] = t("subscriptions.flashes.resubscribe.success")
       else
         flash[:error] = t("subscriptions.flashes.resubscribe.failure")
