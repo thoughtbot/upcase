@@ -10,7 +10,18 @@ describe "users/edit.html.erb" do
     expect(doc).to have_css(".come-back.reactivate .subscribe-cta")
   end
 
+  it "implores uses to resubscribe if they cancelled" do
+    create(:plan, sku: "professional", price_in_dollars: 29)
+    setup_user_with_deactivated_subscription
+
+    render template: "users/edit"
+
+    doc = Capybara.string(rendered)
+    expect(doc).to have_css(".come-back.resubscribe .subscribe-cta")
+  end
+
   it "includes an invoice link" do
+    create(:plan, sku: "professional", price_in_dollars: 29)
     setup_user_with_deactivated_subscription
 
     render template: "users/edit"

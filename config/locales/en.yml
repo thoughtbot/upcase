@@ -194,8 +194,11 @@ en:
         success: You have successfully updated your subscription credit card information.
       upgrade_required: You must upgrade your plan to access that feature.
       reactivate:
-        success: Awesome! You won't regret this!
-        failure: "Ok, so we couldn't do that for some reason. :/"
+        success: Awesome! We've reactivated your subscription!
+        failure: Unfortunately we were unable to reactivate you.
+      resubscribe:
+        success: Awesome! We've resubscribed you. Enjoy the Upcase!
+        failure: Unfortunately we were unable to resubscribe you. Please check your payment info and try again.
     join_cta: Subscribe Now
     new:
       sign_up_cta: Sign Up Now!
@@ -245,6 +248,10 @@ en:
       have_any_questions: Have any questions?
       here_to_help: We're here to help, so feel free to send any questions in and we'll get back to you right away.
       contact_us: Contact us
+    resubscribe:
+      plea_html: We get it, things change. But if you want to come back, we have your card on file, and you just have to click this button. Oh, and if you want to change your card beforehand, <a href="%{billing_url}">you can do that right here</a>.
+      call_to_action: Resubscribe
+      call_to_action_price: "$%{price}/month"
     reactivate:
       plea: You can reactivate your account without any interruption in service, just like you never left!
       call_to_action: Reactivate My Account

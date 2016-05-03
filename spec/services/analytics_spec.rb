@@ -334,4 +334,12 @@ describe Analytics do
       expect(analytics).to have_tracked("Subscription reactivated")
     end
   end
+
+  describe "#track_resubscribe" do
+    it "tracks that a user resubscribed via the 'resubscribe' button" do
+      analytics_instance.track_resubscribe
+
+      expect(analytics).to have_tracked("Resubscribe")
+    end
+  end
 end

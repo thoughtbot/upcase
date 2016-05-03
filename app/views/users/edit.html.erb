@@ -4,8 +4,10 @@
 <% end %>
 
 <div class="text-box-wrapper right">
-  <% if current_user.scheduled_for_deactivation? %>
-    <%= render "reactivate", user: current_user, card: current_user.credit_card %>
+  <% if current_user.previously_subscribed? %>
+    <%= render "resubscribe", user: current_user %>
+  <% elsif current_user.scheduled_for_deactivation? %>
+    <%= render "reactivate", user: current_user %>
   <% end %>
 
   <div class="text-box">
