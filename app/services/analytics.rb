@@ -83,6 +83,14 @@ class Analytics
     )
   end
 
+  def track_subscription_reactivated
+    track("Subscription reactivated")
+  end
+
+  def track_resubscription
+    track("Resubscription")
+  end
+
   def track_authed_to_access(video_name:, watchable_name:)
     track(
       "Authed to Access",
