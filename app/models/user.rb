@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def previously_subscribed?
+    inactive_subscription.present?
+  end
+
   def create_subscription(plan:, stripe_id:)
     subscriptions.create(plan: plan, stripe_id: stripe_id)
   end

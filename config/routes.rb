@@ -104,6 +104,7 @@ Upcase::Application.routes.draw do
     resource :cancellation, only: [:new, :create]
     resource :discount, only: :create
     resource :reactivation, only: [:create]
+    resource :resubscription, only: [:create]
   end
 
   namespace :beta do
