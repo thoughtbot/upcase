@@ -13,6 +13,13 @@ body.users-edit {
     margin-top: $medium-spacing;
   }
 
+  .card-on-file {
+    .cc-brand,
+    .cc-expiration {
+      margin-left: $small-spacing;
+    }
+  }
+
   #account-sidebar {
     a {
       font-size: $font-size-small;;
