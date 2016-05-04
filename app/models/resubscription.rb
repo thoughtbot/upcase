@@ -7,7 +7,7 @@ class Resubscription
   attr_reader :user, :plan
 
   def fulfill
-    if has_no_subscription? && stripe_customer?
+    if former_subscriber?
       stripe_subscription_id = create_new_stripe_subscription
       create_new_app_subscription(stripe_subscription_id)
       true
@@ -15,6 +15,10 @@ class Resubscription
   end
 
   private
+
+  def former_subscriber?
+    has_no_subscription? && stripe_customer?
+  end
 
   def has_no_subscription?
     !user.subscriber?
@@ -33,6 +37,6 @@ class Resubscription
   end
 
   def stripe_customer
-    Stripe::Customer.retrieve(user.stripe_customer_id)
+    StripeCustomerFinder.retrieve(user.stripe_customer_id)
   end
 end
