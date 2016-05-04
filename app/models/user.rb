@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
     :scheduled_for_deactivation_on,
     :scheduled_for_deactivation?,
     to: :subscription,
-    allow_nil: true
+    allow_nil: true,
   )
 
   before_save :clean_github_username

@@ -90,7 +90,7 @@ describe Subscription do
     it "clears the scheduled_for_deactivation_on field" do
       subscription = create(
         :subscription,
-        scheduled_for_deactivation_on: Date.today
+        scheduled_for_deactivation_on: Date.today,
       )
       fake_subscription = spy(plan: double(id: "sorny-magnetbox"))
       allow(subscription).

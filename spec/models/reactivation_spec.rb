@@ -12,7 +12,7 @@ describe Reactivation do
     it "tries to reactivate on the subscription if it can fulfill" do
       subscription = spy(
         scheduled_for_deactivation?: true,
-        reactivate: true
+        reactivate: true,
       )
       reactivation = Reactivation.new(subscription: subscription)
 
