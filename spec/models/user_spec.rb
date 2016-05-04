@@ -245,7 +245,7 @@ describe User do
     end
   end
 
-  describe "#has_credit_card?" do
+  describe "#has_stripe_customer?" do
     it "returns false if there is no stripe_customer_id" do
       user = build(:user, stripe_customer_id: "")
 
@@ -256,6 +256,24 @@ describe User do
       user = build(:user, stripe_customer_id: "cus_123")
 
       expect(user.has_credit_card?).to eq(true)
+    end
+  end
+
+  describe "#has_credit_card?" do
+    it "returns false if the stripe customer does not have any cards" do
+      customer = double("Stripe::Customer", cards: [])
+      allow(Stripe::Customer).to receive(:retrieve).and_return(customer)
+      user = build(:user, stripe_customer_id: 1)
+
+      expect(user).to_not have_credit_card
+    end
+
+    it "returns true if the stripe customer has any cards" do
+      customer = double("Stripe::Customer", cards: [:credit_card])
+      allow(Stripe::Customer).to receive(:retrieve).and_return(customer)
+      user = build(:user, stripe_customer_id: 1)
+
+      expect(user).to have_credit_card
     end
   end
 

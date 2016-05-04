@@ -61,11 +61,15 @@ class User < ActiveRecord::Base
   end
 
   def credit_card
-    if has_credit_card?
+    if has_stripe_customer?
       @credit_card ||= stripe_customer.cards.detect do |card|
         card.id == stripe_customer.default_card
       end
     end
+  end
+
+  def has_credit_card?
+    stripe_customer.cards.any?
   end
 
   def plan_name
@@ -98,7 +102,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def has_credit_card?
+  def has_stripe_customer?
     stripe_customer_id.present?
   end
 
