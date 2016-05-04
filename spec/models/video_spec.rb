@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe Video do
+  include VideoHelpers
+
   it { should belong_to(:watchable) }
   it { should have_many(:classifications) }
   it { should have_many(:markers) }
@@ -241,5 +243,45 @@ describe Video do
 
   describe "#download_url" do
     it { should delegate_method(:download_url).to(:clip) }
+  end
+
+  describe "#published?" do
+    context "when the video is part of a show" do
+      context "and the video has a published_on date <= today" do
+        it "returns true" do
+          video = build_stubbed(:video, published_on: Date.current)
+
+          expect(video.published?).to eq(true)
+        end
+      end
+
+      context "and the video has a published_on date in the future" do
+        it "returns false" do
+          video = build_stubbed(:video, published_on: Date.tomorrow)
+
+          expect(video.published?).to eq(false)
+        end
+      end
+    end
+  end
+
+  context "when the video is part of a trail" do
+    context "and the trail is published" do
+      it "returns true" do
+        trail = create(:trail, :published)
+        video = create_video_on_a_trail(trail: trail)
+
+        expect(video.published?).to eq(true)
+      end
+    end
+
+    context "and the trail is not published" do
+      it "returns false" do
+        trail = create(:trail, :unpublished)
+        video = create_video_on_a_trail(trail: trail)
+
+        expect(video.published?).to eq(false)
+      end
+    end
   end
 end

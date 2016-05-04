@@ -79,4 +79,12 @@ class Video < ActiveRecord::Base
   def state_for(user)
     statuses.most_recent_for_user(user).state
   end
+
+  def published?
+    if part_of_trail?
+      trail.published?
+    else
+      published_on <= Date.current
+    end
+  end
 end

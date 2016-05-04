@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe "videos/show" do
+  include VideoHelpers
+
   it "sets the page title to the video title" do
     video = build_stubbed(:video, name: "hello world")
 
@@ -163,6 +165,28 @@ describe "videos/show" do
     end
   end
 
+  describe "comments" do
+    context "when the video is published" do
+      it "renders the comments for the video" do
+        video = build_video(published: true)
+
+        render_video video
+
+        expect(rendered).to have_css("#discourse-comments")
+      end
+    end
+
+    context "when the video is not published" do
+      it "does not render the comments for the video" do
+        video = build_video(published: false)
+
+        render_video video
+
+        expect(rendered).not_to have_css("#discourse-comments")
+      end
+    end
+  end
+
   describe "seek markers" do
     context "when the user has access to the video" do
       it "renders the markers" do
@@ -241,10 +265,10 @@ describe "videos/show" do
     Capybara.string("<div>#{content}</div>")
   end
 
-  def create_video_on_a_trail
-    video = create(:video)
-    create(:step, trail: create(:trail), completeable: video)
-    video.reload
+  def build_video(published:)
+    build_stubbed(:video, :published).tap do |video|
+      allow(video).to receive(:published?).and_return(published)
+    end
   end
 
   def render_video(video, has_access: true, subscriber: false)
