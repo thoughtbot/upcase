@@ -1,6 +1,6 @@
 class CreditCardsController < ApplicationController
   def update
-    customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+    customer = StripeCustomerFinder.retrieve(current_user.stripe_customer_id)
     customer.card = params['stripe_token']
     begin
       customer.save

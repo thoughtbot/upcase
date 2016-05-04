@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
   end
 
   def has_credit_card?
-    stripe_customer.cards.any?
+    has_stripe_customer? && stripe_customer.cards.any?
   end
 
   def plan_name
@@ -130,7 +130,7 @@ class User < ActiveRecord::Base
 
   def stripe_customer
     if stripe_customer_id.present?
-      @stripe_customer ||= Stripe::Customer.retrieve(stripe_customer_id)
+      @stripe_customer ||= StripeCustomerFinder.retrieve(stripe_customer_id)
     end
   end
 

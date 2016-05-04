@@ -83,6 +83,6 @@ class StripeSubscription
 
   def stripe_customer
     @stripe_customer ||=
-      Stripe::Customer.retrieve(@checkout.stripe_customer_id)
+      StripeCustomerFinder.retrieve(@checkout.stripe_customer_id)
   end
 end

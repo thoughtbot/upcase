@@ -68,7 +68,7 @@ class Cancellation
   end
 
   def stripe_customer
-    @stripe_customer ||= Stripe::Customer.retrieve(stripe_customer_id)
+    @stripe_customer ||= StripeCustomerFinder.retrieve(stripe_customer_id)
   end
 
   def stripe_customer_id

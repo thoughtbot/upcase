@@ -129,6 +129,6 @@ class Subscription < ActiveRecord::Base
   end
 
   def stripe_customer
-    Stripe::Customer.retrieve(stripe_customer_id)
+    StripeCustomerFinder.retrieve(stripe_customer_id)
   end
 end
