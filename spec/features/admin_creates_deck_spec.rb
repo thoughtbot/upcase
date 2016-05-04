@@ -7,6 +7,12 @@ feature "Admin creates a deck" do
     expect(current_path).to eq(practice_path)
   end
 
+  scenario "is redirected away if not a user" do
+    visit new_admin_deck_path
+
+    expect(current_path).to eq(sign_up_path)
+  end
+
   scenario "successfully" do
     visit admin_decks_path(as: create(:admin))
 
