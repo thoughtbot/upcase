@@ -326,4 +326,12 @@ describe Analytics do
       expect(analytics).to have_tracked("Account created").for_user(user)
     end
   end
+
+  describe "#track_subscription_reactivated" do
+    it "tracks that an account was reactivated before it cancelled" do
+      analytics_instance.track_subscription_reactivated
+
+      expect(analytics).to have_tracked("Subscription reactivated")
+    end
+  end
 end

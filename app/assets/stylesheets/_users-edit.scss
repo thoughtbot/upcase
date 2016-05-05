@@ -20,9 +20,13 @@ body.users-edit {
     }
   }
 
+  .come-back {
+    margin-top: 0;
+  }
+
   #account-sidebar {
     a {
-      font-size: $font-size-small;;
+      font-size: $font-size-small;
     }
 
     h3 {
