@@ -163,14 +163,6 @@ describe "videos/show" do
     end
   end
 
-  it "renders the comments for the video" do
-    video = build_stubbed(:video)
-
-    render_video video
-
-    expect(rendered).to have_css("#discourse-comments")
-  end
-
   describe "seek markers" do
     context "when the user has access to the video" do
       it "renders the markers" do
