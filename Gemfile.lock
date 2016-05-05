@@ -337,11 +337,11 @@ GEM
     sprockets (3.6.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (2.3.3)
-      actionpack (>= 3.0)
-      activesupport (>= 3.0)
-      sprockets (>= 2.8, < 4.0)
-    sprockets-redirect (0.2.0)
+    sprockets-rails (3.0.4)
+      actionpack (>= 4.0)
+      activesupport (>= 4.0)
+      sprockets (>= 3.0.0)
+    sprockets-redirect (1.0.0)
       activesupport (>= 3.1.0)
       rack
     stripe (1.16.0)
@@ -442,7 +442,7 @@ DEPENDENCIES
   skylight
   spring
   spring-commands-rspec
-  sprockets-rails (~> 2.3)
+  sprockets-rails
   sprockets-redirect
   stripe
   stripe_event
