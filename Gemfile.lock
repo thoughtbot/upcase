@@ -180,7 +180,7 @@ GEM
       bourbon (>= 4.0)
       sass (>= 3.3)
     nested_form (0.3.2)
-    netrc (0.10.3)
+    netrc (0.11.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     oauth2 (1.0.0)
