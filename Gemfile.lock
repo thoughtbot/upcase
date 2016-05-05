@@ -91,7 +91,7 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     concurrent-ruby (1.0.1)
-    crack (0.4.2)
+    crack (0.4.3)
       safe_yaml (~> 1.0.0)
     database_cleaner (1.5.3)
     delayed_job (4.0.6)
@@ -139,6 +139,7 @@ GEM
     gravatarify (3.1.1)
     haml (4.0.7)
       tilt
+    hashdiff (0.3.0)
     hashie (3.3.1)
     heroku-deflater (0.5.3)
       rack (>= 1.4.5)
@@ -366,9 +367,10 @@ GEM
       i18n
     vanity (2.0.0.beta8)
       i18n
-    webmock (1.20.2)
+    webmock (2.0.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
+      hashdiff
     wrapped (0.1.0)
     xpath (2.0.0)
       nokogiri (~> 1.3)
