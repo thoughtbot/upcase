@@ -24,6 +24,11 @@ body.users-edit {
     margin-top: 0;
   }
 
+  a[name="billing-info-anchor"] {
+    position: relative;
+    top: -50px;
+  }
+
   #account-sidebar {
     a {
       font-size: $font-size-small;

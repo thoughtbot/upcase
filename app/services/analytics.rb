@@ -60,6 +60,10 @@ class Analytics
     track("Subscription reactivated")
   end
 
+  def track_resubscribe
+    track("Resubscribe")
+  end
+
   def track_flashcard_attempted(deck:, title:)
     track("Flashcard Attempted", deck: deck, title: title)
   end
