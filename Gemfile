@@ -84,7 +84,7 @@ group :test do
   gem "factory_girl_rails"
   gem "launchy"
   gem "shoulda-matchers", require: false
-  gem "simplecov", "~> 0.9", require: false
+  gem "simplecov", require: false
   gem "sinatra"
   gem "timecop"
   gem "webmock"

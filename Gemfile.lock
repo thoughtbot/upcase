@@ -173,7 +173,7 @@ GEM
     mime-types (2.99.1)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
-    multi_json (1.11.2)
+    multi_json (1.12.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     neat (1.7.2)
@@ -319,11 +319,11 @@ GEM
       railties (>= 4.0.0)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
-    simplecov (0.9.1)
+    simplecov (0.11.2)
       docile (~> 1.1.0)
-      multi_json (~> 1.0)
-      simplecov-html (~> 0.8.0)
-    simplecov-html (0.8.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -438,7 +438,7 @@ DEPENDENCIES
   sass-rails
   scenic
   shoulda-matchers
-  simplecov (~> 0.9)
+  simplecov
   sinatra
   skylight
   spring
