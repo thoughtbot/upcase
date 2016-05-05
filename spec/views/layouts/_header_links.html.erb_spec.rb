@@ -87,16 +87,12 @@ describe "layouts/_header_links.html.erb" do
       render(onboarded: false)
 
       expect(rendered).not_to have_practice_link
-      expect(rendered).to have_link("Help", welcome_path)
+      expect(rendered).to have_link("Help", href: welcome_path)
     end
   end
 
   def have_practice_link
-    have_link(I18n.t("shared.header.practice"), practice_path)
-  end
-
-  def have_search_link
-    have_link(I18n.t("shared.header.search"), practice_path)
+    have_link(I18n.t("shared.header.practice"), href: practice_path)
   end
 
   def have_subscribe_checkout_link

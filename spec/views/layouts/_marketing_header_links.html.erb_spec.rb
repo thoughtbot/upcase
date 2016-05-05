@@ -13,7 +13,7 @@ describe "layouts/_marketing_header_links.html.erb" do
 
       expect(rendered).to have_link(
         t("shared.header.teams"),
-        team_checkout_path,
+        href: teams_path,
       )
     end
   end
@@ -24,7 +24,7 @@ describe "layouts/_marketing_header_links.html.erb" do
 
       expect(rendered).not_to have_link(
         t("shared.header.teams"),
-        team_checkout_path,
+        href: teams_path,
       )
     end
   end
@@ -46,7 +46,7 @@ describe "layouts/_marketing_header_links.html.erb" do
 
       expect(rendered).to have_link(
         t("subscriptions.join_cta"),
-        professional_checkout_path,
+        href: professional_checkout_path,
       )
     end
   end
@@ -57,7 +57,7 @@ describe "layouts/_marketing_header_links.html.erb" do
 
       expect(rendered).not_to have_link(
         t("shared.header.sign_in"),
-        sign_in_path,
+        href: sign_in_path,
       )
     end
   end
@@ -92,7 +92,7 @@ describe "layouts/_marketing_header_links.html.erb" do
 
       expect(rendered).not_to have_link(
         t("shared.header.sign_in"),
-        sign_in_path,
+        href: sign_in_path,
       )
     end
   end

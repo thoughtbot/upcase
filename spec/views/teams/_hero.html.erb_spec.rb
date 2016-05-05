@@ -8,7 +8,7 @@ describe "teams/_hero.html.erb" do
 
     expect(rendered).to have_link(
       t("subscriptions.join_cta"),
-      team_checkout_path,
+      href: team_checkout_path,
     )
   end
 end
