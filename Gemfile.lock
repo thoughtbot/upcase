@@ -141,7 +141,7 @@ GEM
       tilt
     hashdiff (0.3.0)
     hashie (3.3.1)
-    heroku-deflater (0.5.3)
+    heroku-deflater (0.6.2)
       rack (>= 1.4.5)
     high_voltage (3.0.0)
     honeybadger (2.6.0)
