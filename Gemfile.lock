@@ -276,7 +276,7 @@ GEM
     rake (11.1.2)
     recipient_interceptor (0.1.2)
       mail
-    redcarpet (3.2.3)
+    redcarpet (3.3.4)
     remotipart (1.2.1)
     request_store (1.2.0)
     responders (2.1.0)
