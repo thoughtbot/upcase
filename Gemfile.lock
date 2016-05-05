@@ -363,7 +363,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.1)
-    validates_email_format_of (1.6.1)
+    validates_email_format_of (1.6.3)
       i18n
     vanity (2.0.0.beta8)
       i18n
