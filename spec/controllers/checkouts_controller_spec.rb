@@ -54,18 +54,21 @@ describe CheckoutsController do
       end
     end
 
-    context "with an invalid strip_coupon in the session" do
+    context "with an invalid stripe_coupon in the session" do
       it "renders an error and removes the coupon" do
         user = build_stubbed(:user)
         stub_current_user_with(user)
-        session[:coupon] = stub_coupon(valid: false).code
+        coupon_code = stub_coupon(valid: false).code
+        session[:coupon] = coupon_code
         plan_sku = stub_valid_sku
 
         get :new, plan: plan_sku
 
         expect(session[:coupon]).to be_nil
         expect(controller).to redirect_to new_checkout_path plan_sku
-        expect(controller).to set_the_flash
+        expect(flash[:notice]).to eq(
+          I18n.t("checkout.flashes.invalid_coupon", code: coupon_code),
+        )
       end
     end
   end
