@@ -381,7 +381,7 @@ DEPENDENCIES
   active_model_serializers (= 0.8.3)
   acts_as_list (~> 0.6.0)
   analytics-ruby (~> 2.0.0)
-  autoprefixer-rails
+  autoprefixer-rails (< 6.0)
   aws-sdk
   bourbon (~> 4.0)
   bundler-audit
