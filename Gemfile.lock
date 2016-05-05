@@ -176,7 +176,7 @@ GEM
     multi_json (1.12.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    neat (1.7.2)
+    neat (1.7.4)
       bourbon (>= 4.0)
       sass (>= 3.3)
     nested_form (0.3.2)
