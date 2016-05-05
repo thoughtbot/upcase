@@ -101,7 +101,7 @@ GEM
       delayed_job (>= 3.0, < 4.1)
     diff-lcs (1.2.5)
     docile (1.1.5)
-    domain_name (0.5.25)
+    domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
     doorkeeper (2.1.2)
       railties (>= 3.1)
@@ -361,7 +361,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.1)
+    unf_ext (0.0.7.2)
     validates_email_format_of (1.6.3)
       i18n
     vanity (2.0.0.beta8)
