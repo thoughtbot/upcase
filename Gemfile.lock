@@ -254,7 +254,7 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
-    rails_admin (0.6.7)
+    rails_admin (0.8.1)
       builder (~> 3.1)
       coffee-rails (~> 4.0)
       font-awesome-rails (>= 3.0, < 5)
@@ -427,7 +427,7 @@ DEPENDENCIES
   rack-mini-profiler
   rack-rewrite (~> 1.5.1)
   rails (~> 4.2.5)
-  rails_admin (~> 0.6.7)
+  rails_admin
   rails_stdout_logging
   recipient_interceptor
   redcarpet
