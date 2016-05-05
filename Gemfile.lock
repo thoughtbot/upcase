@@ -208,7 +208,7 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
     pg (0.18.4)
-    pg_search (1.0.4)
+    pg_search (1.0.5)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
       arel
