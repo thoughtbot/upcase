@@ -22,6 +22,17 @@ describe Topic do
     end
   end
 
+  describe ".explorable" do
+    it "finds topics with explorable flag set to true" do
+      visible_topic = create(:topic, :explorable)
+      _hidden_topic = create(:topic, explorable: false)
+
+      result = Topic.explorable.map(&:slug)
+
+      expect(result).to eq([visible_topic.slug])
+    end
+  end
+
   context 'validations' do
     context 'uniqueness' do
       before do

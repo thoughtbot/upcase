@@ -66,4 +66,8 @@ module ApplicationHelper
   def sign_in_path_with_current_path_return_to
     sign_in_path(return_to: request.fullpath)
   end
+
+  def url_with_path_prefix
+    "https://#{ENV.fetch('APP_DOMAIN')}/upcase"
+  end
 end

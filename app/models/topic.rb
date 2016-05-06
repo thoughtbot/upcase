@@ -16,6 +16,10 @@ class Topic < ActiveRecord::Base
 
   friendly_id :name, use: [:slugged, :finders]
 
+  def self.explorable
+    where(explorable: true)
+  end
+
   def to_s
     name
   end
