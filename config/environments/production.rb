@@ -30,8 +30,6 @@ Upcase::Application.configure do
   config.log_level = :info
   config.log_formatter = ::Logger::Formatter.new
 
-  config.force_ssl = true
-
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = MAIL_SETTINGS
   config.action_mailer.perform_deliveries = true
