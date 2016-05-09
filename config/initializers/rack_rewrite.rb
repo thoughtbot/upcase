@@ -5,13 +5,15 @@ Rails.configuration.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
     %r{/upcase/#{licenseable}/\d+-(.+)(\?.*)?}
   end
 
-  if Rails.env.staging? || Rails.env.production?
-    PATH_PATTERN = %r{^/((?!upcase).*)}
-    REPLACEMENT_TEMPLATE = "https://#{ENV.fetch('APP_DOMAIN')}/upcase$&".freeze
+  not_thoughtbot_proxy = lambda do |rack_env|
+    rack_env["HTTP_X_THOUGHTBOT_DOT_COM_PROXY"].blank?
+  end
 
-    r301 PATH_PATTERN, REPLACEMENT_TEMPLATE, if: Proc.new { |rack_env|
-      rack_env["SERVER_NAME"] != ENV.fetch("APP_DOMAIN")
-    }
+  if Rails.env.staging? || Rails.env.production?
+    PATH_PATTERN = %r{^(?:/upcase)?(/.*)}
+    REPLACEMENT_TEMPLATE = "https://#{ENV.fetch('APP_DOMAIN')}/upcase$1".freeze
+
+    r301 PATH_PATTERN, REPLACEMENT_TEMPLATE, if: not_thoughtbot_proxy
   end
 
   r301 licenseable_id_url_for("products"), "/$1$2"
