@@ -63,6 +63,8 @@
   </div>
 <% end %>
 
+<%= render "comments", video: @video %>
+
 <% if current_user_has_access_to?(@video) %>
   <%= render "seek_buttons", markers: @video.markers %>
 <% end %>

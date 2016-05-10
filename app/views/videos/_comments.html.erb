@@ -2,7 +2,7 @@
 <% unless Rails.env.test? %>
   <script type="text/javascript">
     var discourseUrl = "<%= Forum.url %>";
-    var discourseEmbedUrl = "<%= video_url(video) %>";
+    var discourseEmbedUrl = "<%= upcase_video_url(video) %>";
 
     (function() {
       var d = document.createElement("script"); d.type = "text/javascript"; d.async = true;

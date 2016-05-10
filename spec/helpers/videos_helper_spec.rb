@@ -19,4 +19,14 @@ describe VideosHelper do
       expect(result).to eq("test-driven-development")
     end
   end
+
+  describe "#upcase_video_url" do
+    it "returns a video url as though it were still on upcase.com" do
+      video = double("video", to_s: "test-video")
+
+      result = upcase_video_url(video)
+
+      expect(result).to_not include("/upcase")
+    end
+  end
 end
