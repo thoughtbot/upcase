@@ -30,10 +30,13 @@
     </ul>
 
     <%= button_to \
-      "Switch to annual billing",
+      t(".submit", price: @discounted_annual_payment),
       subscription_path(plan_id: @annual_plan_sku),
       method: "put",
-      form_class: "switch-subscription" %>
+      form_class: "switch-subscription",
+      class: "subscribe-cta upgrade-button",
+      data: { confirm: t(".confirmation", price: @discounted_annual_payment) }
+    %>
   </div>
 </div>
 
