@@ -10,7 +10,7 @@ feature "Admin creates a deck" do
   scenario "is redirected away if not a user" do
     visit new_admin_deck_path
 
-    expect(current_path).to eq(sign_up_path)
+    expect(current_path).to eq(root_path)
   end
 
   scenario "successfully" do

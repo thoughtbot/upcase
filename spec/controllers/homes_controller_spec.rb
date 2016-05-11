@@ -2,10 +2,10 @@ require "rails_helper"
 
 describe HomesController do
   context "the user is not logged in" do
-    it "redirects to /join" do
+    it "renders the content of /join, but stays on /" do
       get :show
 
-      expect(response).to redirect_to join_path
+      expect(response).to render_template("subscriptions/new")
     end
   end
 

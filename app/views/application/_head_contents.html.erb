@@ -2,6 +2,7 @@
 <title><%= content_for(:page_title).presence || t("layouts.fallback_page_title") %></title>
 <%= render 'layouts/stylesheets' %>
 <link rel="icon" href="/upcase/favicon.ico" type="image/x-icon">
+<%= content_for :additional_head_content %>
 <meta http-equiv="Description" name="Description" content="<%= yield(:meta_description).presence || t('layouts.fallback_meta_description') %>" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="google-site-verification" content="pFoYtgbd6tc74KGxv5yWxu2QTH0oKllYLrYbTt35iNM" />
