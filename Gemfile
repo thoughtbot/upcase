@@ -33,8 +33,6 @@ gem "omniauth-github", "~> 1.1.2"
 gem "paperclip", "~> 4.2.2"
 gem "pg"
 gem "pg_search"
-gem "pry-byebug"
-gem "pry-rails"
 gem "puma"
 gem "rack-rewrite", "~> 1.5.1"
 gem "rails", "~> 4.2.5"
@@ -64,6 +62,8 @@ end
 group :development, :test do
   gem "bundler-audit", require: false
   gem "dotenv-rails"
+  gem "pry-byebug"
+  gem "pry-rails"
   gem "rspec-rails"
 end
 
