@@ -70,4 +70,8 @@ module ApplicationHelper
   def url_with_path_prefix
     "https://#{ENV.fetch('APP_DOMAIN')}/upcase"
   end
+
+  def not_on_signin_path?
+    !current_page? controller: "sessions", action: "new"
+  end
 end

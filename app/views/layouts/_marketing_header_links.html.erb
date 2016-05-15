@@ -21,7 +21,7 @@
     </li>
   <% end %>
 
-  <% if signed_out? %>
+  <% if signed_out? && not_on_signin_path? %>
     <li>
       <% if landing_page? %>
         <%= link_to t("shared.header.sign_in"), sign_in_path %>

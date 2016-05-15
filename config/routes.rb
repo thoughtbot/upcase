@@ -143,7 +143,6 @@ Upcase::Application.routes.draw do
     )
 
     get "/sign_up" => "users#new", as: "sign_up_app"
-    get "/sign_in" => "sessions#new", as: "sign_in_app"
 
     get "/my_account" => "users#edit", as: "my_account"
     patch "/my_account" => "users#update", as: "edit_my_account"
