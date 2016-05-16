@@ -3,7 +3,9 @@ require "rails_helper"
 feature 'User signs out' do
   scenario 'signs out' do
     user = signed_in_user
+
     sign_out
-    user_should_be_signed_out
+
+    expect(current_path).to eq(sign_in_path)
   end
 end

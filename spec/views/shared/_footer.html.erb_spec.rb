@@ -19,24 +19,12 @@ describe "shared/_footer.html.erb" do
     end
 
     context "when not on the signin page" do
-      it "does show a sign in link" do
+      it "does not show a sign out link" do
         view_stub_with_return(signed_in?: false)
 
         render
 
-        expect(rendered).to have_content("Sign in")
         expect(rendered).not_to have_content("Sign out")
-      end
-    end
-
-    context "when on the signin page" do
-      it "does not show a sign in link" do
-        view_stub_with_return(signed_in?: false)
-        view_stub_with_return(not_on_signin_path?: false)
-
-        render
-
-        expect(rendered).not_to have_content("Sign in")
       end
     end
   end
@@ -58,7 +46,6 @@ describe "shared/_footer.html.erb" do
       render
 
       expect(rendered).to have_content("Sign out")
-      expect(rendered).not_to have_content("Sign in")
     end
   end
 end

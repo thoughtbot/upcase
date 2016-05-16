@@ -31,7 +31,7 @@ module Features
   end
 
   def user_should_be_signed_out
-    expect(page).to have_content I18n.t('layouts.application.sign_in')
+    expect(page).to have_content I18n.t("shared.header.sign_in")
   end
 
   def user_with_reset_password

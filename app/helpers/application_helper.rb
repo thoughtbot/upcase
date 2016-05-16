@@ -72,6 +72,6 @@ module ApplicationHelper
   end
 
   def not_on_signin_path?
-    !current_page? controller: "sessions", action: "new"
+    !(params[:controller] == "sessions" && params[:action] == "new")
   end
 end
