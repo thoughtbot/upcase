@@ -1,8 +1,6 @@
 class GithubRemovalJob < Struct.new(:repository, :username)
   include ErrorReporting
 
-  PRIORITY = 1
-
   def self.enqueue(repository, username)
     Delayed::Job.enqueue(new(repository, username))
   end
