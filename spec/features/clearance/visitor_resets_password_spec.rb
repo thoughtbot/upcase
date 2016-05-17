@@ -27,20 +27,25 @@ feature 'Visitor resets password' do
 
   def reset_notification_should_be_sent_to(user)
     expect(user.confirmation_token).not_to be_blank
-    mailer_should_have_delivery user.email, 'password', user.confirmation_token
+    expect_mailer_to_have_delivery(
+      user.email,
+      "password",
+      user.confirmation_token,
+    )
   end
 
   def page_should_display_change_password_message
     expect(page).to have_content I18n.t("passwords.create.description")
   end
 
-  def mailer_should_have_delivery(recipient, subject, body)
+  def expect_mailer_to_have_delivery(recipient, subject, body)
     expect(ActionMailer::Base.deliveries).not_to be_empty
 
     message = ActionMailer::Base.deliveries.any? do |email|
       email.to == [recipient] &&
         email.subject =~ /#{subject}/i &&
-        email.body =~ /#{body}/
+        email.html_part.body =~ /#{body}/ &&
+        email.text_part.body =~ /#{body}/
     end
 
     expect(message).to be

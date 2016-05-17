@@ -72,10 +72,13 @@ GEM
       json
     capybara_discoball (0.0.2)
       capybara (~> 2.7)
-    clearance (1.8.1)
+    clearance (1.11.0)
       bcrypt
       email_validator (~> 1.4)
       rails (>= 3.1)
+    clearance-deprecated_password_strategies (1.10.1)
+      activesupport
+      clearance (>= 1.10)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -170,9 +173,9 @@ GEM
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
-    mime-types (2.99.1)
+    mime-types (2.99.2)
     mini_portile2 (2.1.0)
-    minitest (5.8.4)
+    minitest (5.9.0)
     multi_json (1.12.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -390,7 +393,8 @@ DEPENDENCIES
   capybara
   capybara-webkit
   capybara_discoball
-  clearance (~> 1.8.0)
+  clearance (= 1.11.0)
+  clearance-deprecated_password_strategies
   climate_control
   codeclimate-test-reporter
   coffee-rails
@@ -456,7 +460,7 @@ DEPENDENCIES
   wrapped
 
 RUBY VERSION
-   ruby 2.3.1p112
+   ruby 2.3.0p0
 
 BUNDLED WITH
-   1.12.4
+   1.12.5

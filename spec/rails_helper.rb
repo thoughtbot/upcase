@@ -67,7 +67,6 @@ RSpec.configure do |config|
 
   config.include AnalyticsHelper
   config.include Clearance::Testing::Matchers, type: :request
-  config.include Clearance::Testing::Helpers, type: :request
   config.include Paperclip::Shoulda::Matchers
   config.include EmailSpec::Helpers
   config.include EmailSpec::Matchers
