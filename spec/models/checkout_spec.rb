@@ -42,12 +42,12 @@ describe Checkout do
 
     it "sends a receipt" do
       checkout = build(:checkout)
-      allow(SendCheckoutReceiptEmailJob).to receive(:enqueue)
+      allow(SendCheckoutReceiptEmailJob).to receive(:perform_later)
 
       checkout.fulfill
 
       expect(SendCheckoutReceiptEmailJob).
-        to have_received(:enqueue).with(checkout.id)
+        to have_received(:perform_later).with(checkout.id)
     end
 
     it "copies checkout info to the user" do

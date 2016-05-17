@@ -6,13 +6,13 @@ class GithubFulfillment
 
   def fulfill
     if fulfilled_with_github?
-      GithubFulfillmentJob.enqueue(@repository.id, @user.id)
+      GithubFulfillmentJob.perform_later(@repository.id, @user.id)
     end
   end
 
   def remove
     if fulfilled_with_github?
-      GithubRemovalJob.enqueue(github_repository, github_username)
+      GithubRemovalJob.perform_later(github_repository, github_username)
     end
   end
 

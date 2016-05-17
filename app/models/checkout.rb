@@ -113,7 +113,7 @@ class Checkout < ActiveRecord::Base
   end
 
   def send_receipt
-    SendCheckoutReceiptEmailJob.enqueue(id)
+    SendCheckoutReceiptEmailJob.perform_later(id)
   end
 
   def stripe_subscription

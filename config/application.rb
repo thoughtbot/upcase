@@ -23,6 +23,8 @@ module Upcase
       "#{config.root}/app/modules"
     ]
 
+    config.active_job.queue_adapter = :delayed_job
+
     config.paths['app/views'] << "#{config.root}/app/modules/teams/views"
 
     config.generators do |generate|

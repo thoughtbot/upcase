@@ -7,7 +7,7 @@ describe GithubRemovalJob do
     client = stub_octokit
     allow(client).to receive(:remove_collaborator).and_return(nil)
 
-    GithubRemovalJob.new("thoughtbot/upcase", "gabebw").perform
+    GithubRemovalJob.perform_later("thoughtbot/upcase", "gabebw")
 
     expect(client).
       to have_received(:remove_collaborator).
@@ -20,7 +20,7 @@ describe GithubRemovalJob do
       allow(client).to receive(:remove_collaborator).and_raise(error_class)
       allow(Honeybadger).to receive(:notify)
 
-      GithubRemovalJob.new("thoughtbot/upcase", "gabebw").perform
+      GithubRemovalJob.perform_later("thoughtbot/upcase", "gabebw")
 
       expect(Honeybadger).to have_received(:notify).
         with(instance_of(error_class))

@@ -1,11 +1,7 @@
-class GithubRemovalJob < Struct.new(:repository, :username)
+class GithubRemovalJob < ActiveJob::Base
   include ErrorReporting
 
-  def self.enqueue(repository, username)
-    Delayed::Job.enqueue(new(repository, username))
-  end
-
-  def perform
+  def perform(repository, username)
     begin
       github_client.remove_collaborator(repository, username)
     rescue Octokit::NotFound, Net::HTTPBadResponse => e

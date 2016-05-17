@@ -11,7 +11,7 @@ describe GithubFulfillmentJob do
         repository = stub_repository(github_repository: "thoughtbot/upcase")
         user = stub_user(github_username: "gabebw")
 
-        GithubFulfillmentJob.new(repository.id, user.id).perform
+        GithubFulfillmentJob.perform_later(repository.id, user.id)
 
         expect(client).to(
           have_received(:add_collaborator).
@@ -32,7 +32,7 @@ describe GithubFulfillmentJob do
         repository = stub_repository(github_repository: "thoughtbot/upcase")
         user = stub_user(github_username: nil)
 
-        GithubFulfillmentJob.new(repository.id, user.id).perform
+        GithubFulfillmentJob.perform_later(repository.id, user.id)
 
         expect(client).not_to have_received(:add_collaborator)
       end
@@ -49,9 +49,10 @@ describe GithubFulfillmentJob do
           allow(LicenseMailer).to receive(:fulfillment_error).
             with(repository, user).
             and_return(mailer)
-          job = GithubFulfillmentJob.new(repository.id, user.id)
 
-          expect { job.perform }.to raise_error(error_class)
+          expect {
+            GithubFulfillmentJob.perform_later(repository.id, user.id)
+          }.to raise_error(error_class)
           expect(mailer).to have_received(:deliver_now)
         end
       end
