@@ -48,4 +48,4 @@ doc.css("h1, h2, h3, h4, h5, h6").each do |header|
 end
 
 puts "\n==================================================\n"
-puts "!!! Don't forget to set a summary: https://#{ENV.fetch("APP_DOMAIN")}/admin/video/#{video.id}/edit"
+puts "!!! Don't forget to set a summary: https://thoughtbot.com/upcase/admin/video/#{video.id}/edit"
