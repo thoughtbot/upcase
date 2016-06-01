@@ -197,5 +197,6 @@ Upcase::Application.routes.draw do
     get "sitemap.xml" => "sitemaps#show", as: :sitemap, format: "xml"
     get ":id" => "topics#show", as: :topic
     get "/auth/:provider/callback", to: "auth_callbacks#create"
+    get "/robots.txt" => "robots_txts#show"
   end
 end
