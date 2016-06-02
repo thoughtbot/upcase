@@ -60,6 +60,28 @@ describe VideosController do
         end
       end
     end
+
+    context "when video slug is used for param" do
+      it "renders the view" do
+        stub_current_user_with(build_stubbed(:user))
+        video = create_video_on_trail(free_sample: true)
+
+        get :show, id: video.slug
+
+        expect(response).to render_the_show_view
+      end
+    end
+
+    context "when video id is used for param" do
+      it "redirects to video slug version" do
+        stub_current_user_with(build_stubbed(:user))
+        video = create_video_on_trail(free_sample: true)
+
+        get :show, id: video.id
+
+        expect(response).to redirect_to video_path(video.slug)
+      end
+    end
   end
 
   it "doesn't recognize other formats" do
