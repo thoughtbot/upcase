@@ -244,6 +244,7 @@ en:
     start_trail: Start trail
     visit_trail: Visit trail
     subscribe: Subscribe
+    promoted_message: "🎉 Check out our newest trail, hot off the presses!"
   users:
     flashes:
       update:

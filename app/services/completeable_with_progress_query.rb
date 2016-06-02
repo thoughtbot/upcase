@@ -36,10 +36,10 @@ class CompleteableWithProgressQuery
   end
 
   def state_for(completeable)
-    status_for(completeable).state
+    current_status_for(completeable).state
   end
 
-  def status_for(completeable)
-    @status_finder.status_for(completeable)
+  def current_status_for(completeable)
+    @status_finder.current_status_for(completeable)
   end
 end

@@ -38,13 +38,14 @@ describe Practice do
     end
   end
 
-  describe "#unstarted_trails" do
-    it "returns trails that the user hasn't started" do
-      started_trail = double("started-trail", unstarted?: false)
-      unstarted_trail = double("unstarted-trail", unstarted?: true)
-      trails = [unstarted_trail, started_trail]
+  describe "#unpromoted_unstarted_trails" do
+    it "returns trails that the user hasn't started and are unpromoted" do
+      started_trail = build_trail(unstarted: false)
+      unstarted_trail = build_trail(unstarted: true)
+      promoted_unstarted_trail = build_trail(unstarted: true, promoted: true)
+      trails = [unstarted_trail, started_trail, promoted_unstarted_trail]
 
-      result = build_practice(trails: trails).unstarted_trails
+      result = build_practice(trails: trails).unpromoted_unstarted_trails
 
       expect(result).to eq([unstarted_trail])
     end
@@ -52,10 +53,11 @@ describe Practice do
 
   describe "#in_progress_trails" do
     it "returns trails the user has started" do
+      today = Date.today
       in_progress_trail =
-        double("in-progress-trail", in_progress?: true)
+        double("in-progress-trail", in_progress?: true, started_on: today)
       not_in_progress_trail =
-        double("not-in-progress-trail", in_progress?: false)
+        double("not-in-progress-trail", in_progress?: false, started_on: today)
 
       result =
         build_practice(trails: [in_progress_trail, not_in_progress_trail]).
@@ -79,5 +81,20 @@ describe Practice do
 
   def build_practice(trails: [], beta_offers: [])
     Practice.new(trails: trails, beta_offers: beta_offers)
+  end
+
+  def build_trail(
+    unstarted: false,
+    in_progress: true,
+    started_on: Date.today,
+    promoted: false
+  )
+    double(
+      "trail",
+      unstarted?: unstarted,
+      in_progress?: in_progress,
+      started_on: started_on,
+      promoted?: promoted,
+    )
   end
 end

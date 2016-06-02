@@ -23,6 +23,18 @@ describe "practice/show.html" do
     end
   end
 
+  context "when there is a promoted trail that the user has not started" do
+    it "renders the promoted trail at the top with a promo message" do
+      trail = build_stubbed_promoted_trail_with_progress
+      stub_user_access(subscriber: true)
+
+      render_show promoted_unstarted_trails: [trail]
+
+      expect(rendered).to have_css(".promoted-trails")
+      expect(rendered).to have_content(I18n.t("trails.promoted_message"))
+    end
+  end
+
   context "when a user has activity in trails" do
     it "doesn't show 'view completed' link when it has no completed trails" do
       stub_user_access(subscriber: true)
@@ -62,7 +74,8 @@ describe "practice/show.html" do
       topics: [],
       beta_offers: [],
       in_progress_trails: [],
-      unstarted_trails: [],
+      promoted_unstarted_trails: [],
+      unpromoted_unstarted_trails: [],
       just_finished_trails: [],
       decks: [],
       has_completed_trails?: false
@@ -93,5 +106,12 @@ describe "practice/show.html" do
 
   def have_beta_offers
     have_content("Beta Trails")
+  end
+
+  def build_stubbed_promoted_trail_with_progress
+    build_stubbed(:trail, :promoted).tap do |trail|
+      allow(trail).to receive(:unstarted?).and_return(true)
+      allow(trail).to receive(:steps_remaining).and_return(1)
+    end
   end
 end

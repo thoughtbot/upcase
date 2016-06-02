@@ -3,12 +3,19 @@ class StatusFinder
     @user = user
   end
 
-  def status_for(completeable)
-    statuses[key(completeable.class.name, completeable.id)].try(:first) ||
-      Unstarted.new
+  def current_status_for(completeable)
+    statuses_for(completeable).try(:first) || Unstarted.new
+  end
+
+  def earliest_status_for(completeable)
+    statuses_for(completeable).try(:last) || Unstarted.new
   end
 
   private
+
+  def statuses_for(completeable)
+    statuses[key(completeable.class.name, completeable.id)]
+  end
 
   def statuses
     @statuses ||= find_statuses

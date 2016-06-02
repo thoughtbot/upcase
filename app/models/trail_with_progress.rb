@@ -28,7 +28,12 @@ class TrailWithProgress < SimpleDelegator
   end
 
   def status
-    status_finder.status_for(trail)
+    status_finder.current_status_for(trail)
+  end
+
+  def started_on
+    status = status_finder.earliest_status_for(trail)
+    status.try(:created_at).try(:to_date) || Date.tomorrow
   end
 
   def steps_remaining

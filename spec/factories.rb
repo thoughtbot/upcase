@@ -499,6 +499,10 @@ FactoryGirl.define do
       published true
     end
 
+    trait :promoted do
+      promoted true
+    end
+
     trait :unpublished do
       published false
     end
