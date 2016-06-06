@@ -213,6 +213,8 @@ en:
     team_join_cta: Start Your Team
   teams:
     join_cta: Get your team started today
+    team:
+      team_owner_html: Your team owner, %{owner_email}, can make changes to your subscription.
   teachers:
     teacher:
       header: Taught by
