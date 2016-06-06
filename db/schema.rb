@@ -467,25 +467,26 @@ ActiveRecord::Schema.define(version: 20160601181617) do
   add_foreign_key "beta_replies", "beta_offers", column: "offer_id"
   add_foreign_key "beta_replies", "users"
   add_foreign_key "markers", "videos", on_delete: :cascade
-      create_view :latest_attempts, sql_definition:<<-SQL
-        SELECT DISTINCT ON (attempts.user_id, attempts.flashcard_id) attempts.id,
-  attempts.confidence,
-  attempts.flashcard_id,
-  attempts.user_id,
-  attempts.created_at,
-  attempts.updated_at
- FROM attempts
-ORDER BY attempts.user_id, attempts.flashcard_id, attempts.updated_at DESC;
-      SQL
 
-        create_view :slugs, sql_definition:<<-SQL
-          SELECT products.slug,
-    products.type AS model
-   FROM products
-UNION ALL
- SELECT trails.slug,
-    'Trail'::character varying AS model
-   FROM trails;
-        SQL
+  create_view :latest_attempts,  sql_definition: <<-SQL
+      SELECT DISTINCT ON (attempts.user_id, attempts.flashcard_id) attempts.id,
+      attempts.confidence,
+      attempts.flashcard_id,
+      attempts.user_id,
+      attempts.created_at,
+      attempts.updated_at
+     FROM attempts
+    ORDER BY attempts.user_id, attempts.flashcard_id, attempts.updated_at DESC;
+  SQL
+
+  create_view :slugs,  sql_definition: <<-SQL
+      SELECT products.slug,
+      products.type AS model
+     FROM products
+  UNION ALL
+   SELECT trails.slug,
+      'Trail'::character varying AS model
+     FROM trails;
+  SQL
 
 end
