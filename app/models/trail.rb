@@ -4,9 +4,8 @@ class Trail < ActiveRecord::Base
   include PgSearch
   multisearchable against: [:name, :description], if: :published?
 
-  validates :name, :description, :topic, presence: true
+  validates :name, :description, presence: true
 
-  belongs_to :topic
   has_many :classifications, as: :classifiable
   has_many :repositories, dependent: :destroy
   has_many :statuses, as: :completeable, dependent: :destroy
@@ -31,10 +30,6 @@ class Trail < ActiveRecord::Base
 
   def self.published
     where(published: true)
-  end
-
-  def self.by_topic
-    includes(:topic).order("topics.name")
   end
 
   def self.completed_for(user)

@@ -1,9 +1,7 @@
 <div class="just-finished">
-  <section class="trail just-finished <%= topic_class(trail.topic) %>">
+  <section class="trail just-finished <%= topic_classes(trail.topics) %>">
     <header>
-      <%= link_to trail.topic do %>
-        <span class="topic-label"><%= trail.topic %></span>
-      <% end %>
+      <%= render trail.topics %>
       <span class="just-finished-subhead">You just finished</span>
       <h1><%= link_to trail, trail %></h1>
     </header>

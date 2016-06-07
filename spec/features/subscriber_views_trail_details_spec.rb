@@ -10,6 +10,7 @@ feature "subscriber views trail details" do
     create(
       :trail,
       :published,
+      :with_topic,
       name: "Baby Exercises",
       exercises: exercises,
       videos: [video]

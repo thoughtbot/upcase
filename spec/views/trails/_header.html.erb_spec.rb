@@ -43,7 +43,7 @@ describe "trails/_header" do
   end
 
   def build_trail(sample_video:)
-    build_stubbed(:trail).tap do |trail|
+    build_stubbed(:trail, topics: [build_stubbed(:topic)]).tap do |trail|
       allow(trail).to receive(:sample_video).and_return(sample_video.wrapped)
     end
   end

@@ -7,9 +7,8 @@ class Topic < ActiveRecord::Base
     options.has_many :products, source_type: 'Product'
     options.has_many :topics, source_type: 'Topic'
     options.has_many :videos, source_type: 'Video'
+    options.has_many :trails, source_type: 'Trail'
   end
-
-  has_many :trails
 
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true

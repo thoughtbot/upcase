@@ -3,7 +3,7 @@ require "rails_helper"
 feature "User without a subscription views sample video" do
   scenario "successfully" do
     user = create(:user)
-    trail = create(:trail, :video)
+    trail = create(:trail, :video, :with_topic)
     video = trail.first_completeable
     video.update accessible_without_subscription: true
 

@@ -493,7 +493,12 @@ FactoryGirl.define do
     sequence(:name) { |n| "Trail number #{n}" }
     description "Trail description"
     complete_text "Way to go!"
-    topic
+
+    trait :with_topic do
+      after(:build) do |trail|
+        trail.topics = [build(:topic)]
+      end
+    end
 
     trait :published do
       published true

@@ -1,8 +1,12 @@
 module TrailsHelper
   def trail_breadcrumbs(trail, separator = ">")
-    [trail.topic, trail].map { |obj| link_to(obj, obj) }.
-      unshift(link_to("Trails", practice_path)).
-      join(" #{separator} ").html_safe
+    links = [
+      link_to("Trails", practice_path),
+      trail.topics.map { |topic| link_to(topic, topic) },
+      link_to(trail, trail),
+    ].flatten
+
+    links.join(" #{separator} ").html_safe
   end
 
   def completeable_link(completeable, &block)

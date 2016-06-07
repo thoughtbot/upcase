@@ -3,7 +3,7 @@ require "rails_helper"
 feature "subscriber searches for content" do
   scenario "finds the desired content" do
     create(:trail, name: "regex", published: true)
-    tmux = create(:trail, name: "tmux", published: true)
+    tmux = create(:trail, :with_topic, name: "tmux", published: true)
     populate_search_index
     sign_in_as_user_with_subscription
 
