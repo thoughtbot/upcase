@@ -49,7 +49,10 @@
 
     .topic-image {
       flex: none;
-      margin-right: 2em;
+
+      a {
+        margin-right: 2em;
+      }
 
       @include dashboard-small-only {
         @include span-columns(12);

@@ -9,7 +9,6 @@
     </div>
   <% else %>
     <div class="topic-image">
-      <%# FIXME: ugly %>
       <% topics.each do |topic| %>
         <%= link_to topic do %>
           <%= image_tag "topics/#{topic.slug}.svg" %>
