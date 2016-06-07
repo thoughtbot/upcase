@@ -37,7 +37,7 @@ describe "topics/_trail.html" do
 
   def stub_trail(complete:, just_finished:, unstarted: false)
     topic = build_stubbed(:topic, slug: "clean+code")
-    build_stubbed(:trail, topic: topic).tap do |trail|
+    build_stubbed(:trail, topics: [topic]).tap do |trail|
       allow(trail).to receive(:complete?).and_return(complete)
       allow(trail).to receive(:just_finished?).and_return(just_finished)
       allow(trail).to receive(:unstarted?).and_return(unstarted)
