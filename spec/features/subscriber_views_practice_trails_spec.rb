@@ -13,11 +13,11 @@ feature "Subscriber views completed trails" do
 
     within ".completed-trails" do
       expect(page).to have_content(just_finished_trail.name)
-      expect(page).to have_no_content(incomplete_trail.name)
+      expect(page).not_to have_content(incomplete_trail.name)
     end
 
     within ".incomplete-trails" do
-      expect(page).to have_no_content(just_finished_trail.name)
+      expect(page).not_to have_content(just_finished_trail.name)
       expect(page).to have_content(incomplete_trail.name)
     end
 
