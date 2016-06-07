@@ -10,6 +10,6 @@ class TrailsForPracticePageQuery
   def relation
     @relation ||= Trail.
       published.
-      preload(steps: :completeable)
+      preload(:topics, steps: :completeable)
   end
 end
