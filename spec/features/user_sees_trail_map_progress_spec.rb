@@ -16,11 +16,16 @@ feature 'User can see their trail map progress' do
     end
 
     scenario "A user with a completed trails sees their progress" do
-      trail = create(:trail, :published, topics: [topic], complete_text: "Done!")
+      trail = create(
+        :trail,
+        :published,
+        topics: [topic],
+        complete_text: "Done!",
+      )
       Status.create!(
         user: current_user,
         completeable: trail,
-        state: Status::COMPLETE
+        state: Status::COMPLETE,
       )
 
       visit practice_path
