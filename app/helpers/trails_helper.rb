@@ -1,8 +1,11 @@
 module TrailsHelper
   def trail_breadcrumbs(trail, separator = ">")
-    [trail.topic, trail].map { |obj| link_to(obj, obj) }.
-      unshift(link_to("Trails", practice_path)).
-      join(" #{separator} ").html_safe
+    # FIXME: I'd like to link to all the topics, but this will have to do :/
+    [
+      link_to("Trails", practice_path),
+      link_to(trail.topics.first, trail.topics.first),
+      link_to(trail, trail),
+    ].join(" #{separator} ").html_safe
   end
 
   def completeable_link(completeable, &block)

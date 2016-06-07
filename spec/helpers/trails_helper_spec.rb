@@ -6,7 +6,7 @@ describe TrailsHelper do
   describe "#trail_breadcrumbs" do
     it "constructs breadcrumbs for a trail" do
       topic = build_stubbed(:topic, slug: "design")
-      trail = build_stubbed(:trail, slug: "sass", topic: topic)
+      trail = build_stubbed(:trail, slug: "sass", topics: [topic])
 
       result = helper.trail_breadcrumbs(trail)
 

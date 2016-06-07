@@ -31,7 +31,7 @@ describe "trails/_header" do
   end
 
   def render_trail(trail)
-    render "trails/header", trail: trail, topic: build_stubbed(:topic)
+    render "trails/header", trail: trail, topics: [build_stubbed(:topic)]
   end
 
   def have_start_for_free_link_to(target)
@@ -43,7 +43,7 @@ describe "trails/_header" do
   end
 
   def build_trail(sample_video:)
-    build_stubbed(:trail).tap do |trail|
+    build_stubbed(:trail, topics: [build_stubbed(:topic)]).tap do |trail|
       allow(trail).to receive(:sample_video).and_return(sample_video.wrapped)
     end
   end

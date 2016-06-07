@@ -147,7 +147,6 @@ namespace :dev do
     puts_user user, 'basic subscriber'
   end
 
-
   def create_team_plan
     FactoryGirl.create(:plan, :team, :featured)
   end
@@ -212,7 +211,7 @@ namespace :dev do
     puts_trail trail, "unstarted"
 
     trail = FactoryGirl.create(:trail, :published, name: "Design Essentials")
-    trail.update(topic: Topic.find_by(slug: "design"))
+    trail.update(topics: [Topic.find_by(slug: "design")])
     video = create(
       :video,
       notes: "Blah" + " blah" * 100,
@@ -233,7 +232,7 @@ namespace :dev do
     puts_trail trail, "unstarted"
 
     trail = FactoryGirl.create(:trail, :published, name: "Refactoring")
-    trail.update(topic: Topic.find_by(slug: "clean-code"))
+    trail.update(topics: [Topic.find_by(slug: "clean-code")])
     create_steps_for(
       trail,
       "Extract Method",
