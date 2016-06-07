@@ -1,7 +1,6 @@
 <div class="just-finished">
   <section class="trail just-finished <%= topic_classes(trail.topics) %>">
     <header>
-      <%# FIXME: probably looks horrible %>
       <% trail.topics.each do |topic| %>
         <%= link_to topic do %>
           <span class="topic-label"><%= topic %></span>

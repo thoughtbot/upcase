@@ -1,5 +1,4 @@
 module TrailsHelper
-  # FIXME: does this look good
   def trail_breadcrumbs(trail, separator = ">")
     topics_links = trail.topics.map { |topic| link_to(topic, topic) }
     links = [ link_to("Trails", practice_path) ] +
