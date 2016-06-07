@@ -3,9 +3,8 @@ require "rails_helper"
 describe Trail do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:description) }
-  it { should validate_presence_of(:topic) }
 
-  it { should belong_to(:topic) }
+  it { should have_many(:topics) }
   it { should have_many(:repositories).dependent(:destroy) }
   it { should have_many(:statuses).dependent(:destroy) }
   it { should have_many(:steps).dependent(:destroy) }
@@ -40,18 +39,6 @@ describe Trail do
       published = create(:trail, published: true)
 
       expect(Trail.published).to eq([published])
-    end
-  end
-
-  describe ".by_topic" do
-    it "returns trails sorted by their topic's name" do
-      create(:trail, topic: create(:topic, name: "A"))
-      create(:trail, topic: create(:topic, name: "C"))
-      create(:trail, topic: create(:topic, name: "B"))
-
-      result = Trail.by_topic.map(&:topic_name)
-
-      expect(result).to eq %w(A B C)
     end
   end
 
@@ -230,15 +217,6 @@ describe Trail do
     end
   end
 
-  describe "#topic_name" do
-    it "delegates to its topic" do
-      topic = Topic.new(name: "Ruby")
-      trail = Trail.new(topic: topic)
-
-      expect(trail.topic_name).to eq("Ruby")
-    end
-  end
-
   describe "#first_completeable" do
     it "returns the completeable associated with the first step in the trail" do
       trail = build_stubbed(:trail)
@@ -249,18 +227,6 @@ describe Trail do
       result = trail.first_completeable
 
       expect(result).to eq(step.completeable)
-    end
-
-    context "when steps are included and there are other ORDER BY clauses" do
-      it "still orders by step position" do
-        trail = create(:trail)
-        create(:step, trail: trail, position: 2)
-        step = create(:step, trail: trail, position: 1)
-
-        result = Trail.by_topic.includes(:steps).first.first_completeable
-
-        expect(result).to eq(step.completeable)
-      end
     end
   end
 

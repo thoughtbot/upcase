@@ -11,15 +11,6 @@ describe TrailsForPracticePageQuery do
       expect(result).to eq(["published-trail"])
     end
 
-    it "yields trails sorted by topic name" do
-      create(:trail, :published, topic: create(:topic, name: "ZZZ"))
-      create(:trail, :published, topic: create(:topic, name: "AAA"))
-
-      result = run_query.map(&:topic_name)
-
-      expect(result).to eq(["AAA", "ZZZ"])
-    end
-
     def run_query
       result = []
       trails = TrailsForPracticePageQuery.new

@@ -71,7 +71,7 @@ describe StatusFinder do
     end
   end
 
-  def create_status(user, exercise, state, created_at: Date.current)
+  def create_status(user, exercise, state, created_at: Time.current)
     create(
       :status,
       user: user,
