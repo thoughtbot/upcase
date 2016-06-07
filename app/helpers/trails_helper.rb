@@ -1,11 +1,12 @@
 module TrailsHelper
+  # FIXME: does this look good
   def trail_breadcrumbs(trail, separator = ">")
-    # FIXME: I'd like to link to all the topics, but this will have to do :/
-    [
-      link_to("Trails", practice_path),
-      link_to(trail.topics.first, trail.topics.first),
-      link_to(trail, trail),
-    ].join(" #{separator} ").html_safe
+    topics_links = trail.topics.map { |topic| link_to(topic, topic) }
+    links = [ link_to("Trails", practice_path) ] +
+      topics_links +
+      [ link_to(trail, trail) ]
+
+    links.join(" #{separator} ").html_safe
   end
 
   def completeable_link(completeable, &block)
