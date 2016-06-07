@@ -9,8 +9,11 @@
     </div>
   <% else %>
     <div class="topic-image">
-      <%= link_to topic do %>
-        <%= image_tag "topics/#{topic.slug}.svg" %>
+      <%# FIXME: ugly %>
+      <% topics.each do |topic| %>
+        <%= link_to topic do %>
+          <%= image_tag "topics/#{topic.slug}.svg" %>
+        <% end %>
       <% end %>
     </div>
   <% end %>

@@ -1,11 +1,14 @@
 <div class="just-finished">
-  <section class="trail just-finished <%= topic_class(trail.topic) %>">
+  <section class="trail just-finished <%= topic_classes(trail.topics) %>">
     <header>
-      <%= link_to trail.topic do %>
-        <span class="topic-label"><%= trail.topic %></span>
+      <%# FIXME: probably looks horrible %>
+      <% trail.topics.each do |topic| %>
+        <%= link_to topic do %>
+          <span class="topic-label"><%= topic %></span>
+        <% end %>
+        <span class="just-finished-subhead">You just finished</span>
+        <h1><%= link_to trail, trail %></h1>
       <% end %>
-      <span class="just-finished-subhead">You just finished</span>
-      <h1><%= link_to trail, trail %></h1>
     </header>
 
     <div class="just-finished-mask">

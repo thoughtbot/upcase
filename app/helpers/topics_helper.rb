@@ -1,6 +1,6 @@
 module TopicsHelper
-  def topic_class(topic)
-    topic.slug.parameterize
+  def topic_classes(topics)
+    topics.map { |topic| topic.slug.parameterize }.join(" ")
   end
 
   def resource_classes(resource)

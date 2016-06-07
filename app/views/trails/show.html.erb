@@ -1,7 +1,7 @@
 <% render "shared/content_specific_head_tags", content: @trail, type: "trail" %>
 
 <% content_for :subject_block do %>
-  <%= render "header", topic: @trail.topic, trail: @trail %>
+  <%= render "header", topics: @trail.topics, trail: @trail %>
 <% end %>
 
 <% if signed_in? %>
