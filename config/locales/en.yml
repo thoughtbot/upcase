@@ -1,5 +1,9 @@
 ---
 en:
+  acceptances:
+    new:
+      sign_in_to_join_the_team: Please sign in to join the %{team_name} team
+      invitation_taken: That invitation is already taken
   admin:
     actions:
       mentees:

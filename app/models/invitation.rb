@@ -29,9 +29,11 @@ class Invitation < ActiveRecord::Base
   end
 
   def accept(user)
-    transaction do
-      update_attributes! accepted_at: Time.now, recipient: user
-      team.add_user(user)
+    unless accepted?
+      transaction do
+        update_attributes! accepted_at: Time.now, recipient: user
+        team.add_user(user)
+      end
     end
   end
 

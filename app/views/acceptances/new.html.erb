@@ -1,17 +1,11 @@
 <section id="auth-form-container">
-  <div class="thoughtbot-signin">
-    <%= semantic_form_for(
-      @acceptance,
-      url: invitation_acceptances_path(@acceptance.invitation)
-    ) do |form| %>
-      <%= form.semantic_errors :invitation %>
-      <%= form.inputs do %>
-        <% if @acceptance.existing_user %>
-          <%= render "existing_user", form: form %>
-        <% else %>
-          <%= render "new_user", form: form %>
-        <% end %>
-      <% end %>
+  <section class="thoughtbot-signin">
+    <h3 class="authentication-message">
+      <%= t(".sign_in_to_join_the_team", team_name: @invitation.team.name) %>
+    </h3>
+    <%= link_to github_auth_path, class: "cta-button secondary-button" do %>
+      <%= image_tag("github.svg", class: "github-logo", alt: "") %>
+      <%= t("authenticating.github_signin") %>
     <% end %>
-  </div>
+  </section>
 </section>

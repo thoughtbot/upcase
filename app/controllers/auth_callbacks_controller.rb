@@ -25,11 +25,10 @@ class AuthCallbacksController < ApplicationController
   end
 
   def redirect_to_desired_path
-    if auth_to_access_video.present?
-      redirect_to(
-        url_after_auth,
-        notice: t("authenticating.auth_to_access_success"),
-      )
+    if accepting_invitation?
+      redirect_to new_invitation_acceptance_path(invitation)
+    elsif auth_to_access_video.present?
+      redirect_to_auth_to_access_video
     else
       redirect_to url_after_auth
     end
@@ -76,8 +75,24 @@ class AuthCallbacksController < ApplicationController
       :return_to,
       :auth_to_access_video_slug,
       :authenticated_on_checkout,
+      :invitation_id,
     ].each do |key|
       session.delete(key)
     end
+  end
+
+  def accepting_invitation?
+    session[:invitation_id].present?
+  end
+
+  def invitation
+    Invitation.find(session[:invitation_id])
+  end
+
+  def redirect_to_auth_to_access_video
+    redirect_to(
+      url_after_auth,
+      notice: t("authenticating.auth_to_access_success"),
+    )
   end
 end

@@ -1,38 +1,20 @@
 class AcceptancesController < ApplicationController
   def new
-    @acceptance = build_acceptance
-  end
+    @invitation = Invitation.find(params[:invitation_id])
 
-  def create
-    @acceptance = build_acceptance(acceptance_attributes)
-    if @acceptance.save
-      sign_in @acceptance.user
-      redirect_to(
-        onboarding_policy.root_path,
-        notice: "You've been added to the team. Enjoy!"
-      )
+    if signed_in?
+      if @invitation.accept(current_user)
+        redirect_to(
+          onboarding_policy.root_path,
+          notice: "You've been added to the team. Enjoy!",
+        )
+      else
+        flash[:error] = t(".invitation_taken")
+        render :new
+      end
     else
+      session[:invitation_id] = params[:invitation_id]
       render :new
     end
-  end
-
-  private
-
-  def build_acceptance(attributes = {})
-    Acceptance.new(
-      invitation: find_invitation,
-      current_user: current_user,
-      attributes: attributes
-    )
-  end
-
-  def find_invitation
-    Invitation.find(params[:invitation_id])
-  end
-
-  def acceptance_attributes
-    params.
-      require(:acceptance).
-      permit(:github_username, :name, :password)
   end
 end

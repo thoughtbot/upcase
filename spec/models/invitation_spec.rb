@@ -92,6 +92,17 @@ describe Invitation do
         expect(invitation.reload.recipient).to eq(user)
       end
     end
+
+    context "when the invitation is already accepted" do
+      it "returns falsey" do
+        invitation = Invitation.new(accepted_at: Time.current)
+        user = User.new
+
+        result = invitation.accept(user)
+
+        expect(result).to be_falsey
+      end
+    end
   end
 
   describe "#accepted?" do
