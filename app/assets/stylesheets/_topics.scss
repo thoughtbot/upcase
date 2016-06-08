@@ -26,9 +26,4 @@
   .trail-titles li.#{$topic-name} {
     border-color: map-get($topic-backgrounds, $topic-name);
   }
-
-  .trail.#{$topic-name} .topic-label {
-    background: map-get($topic-backgrounds, $topic-name);
-    color: $topic-color;
-  }
 }
