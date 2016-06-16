@@ -250,12 +250,12 @@ body.checkouts-new, body.checkouts-create {
     font-weight: 600;
 
     &:before {
-      @include size(18 24);
+      @include size(18px 24px);
       background: image-url('icons/secure.svg') no-repeat;
       content: "";
       display: inline-block;
-      padding: 0 em(2) 0;
-      vertical-align: -5%;
+      margin-right: 0.5em;
+      vertical-align: -10%;
     }
   }
 

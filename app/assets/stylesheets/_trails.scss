@@ -175,8 +175,8 @@ $not-started-dot-color: #D8D8D8;
 
       &:last-of-type {
         &.complete-exercise .dot {
-          @include size(36);
-          background: image-url('trail-complete-check.svg') center /36px no-repeat;
+          @include size(36px);
+          background: image-url('trail-complete-check.svg') center no-repeat;
         }
       }
 
