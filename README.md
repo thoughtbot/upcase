@@ -34,7 +34,7 @@ your work.
 
 5. Verify that the app is up and running.
 
-        % open http://localhost:5000
+        % open http://localhost:5000/upcase
 
 ### Protocol
 
