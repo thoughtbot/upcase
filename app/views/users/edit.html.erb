@@ -17,9 +17,7 @@
         <%= form.input :bio, label: "About You", as: :text, input_html: { rows: 4 } %>
         <%= form.input :email, as: :email %>
         <%= form.input :github_username %>
-        <% if !current_user.external_auth? %>
-          <%= form.input :password %>
-        <% end %>
+        <%= form.input :password, label: "Password (not required for GitHub auth)" %>
       <% end %>
 
       <%= form.actions do %>
