@@ -49,11 +49,11 @@ namespace :dev do
   def create_products
     header "Products"
 
-    @weekly_iteration = FactoryGirl.create(:show, name: "The Weekly Iteration")
+    @weekly_iteration = create(:show, name: "The Weekly Iteration")
 
     puts_product @weekly_iteration
 
-    repository = FactoryGirl.create(
+    repository = create(
       :repository,
       name: "Upcase",
       tagline: <<-TAGLINE.strip_heredoc,
@@ -118,7 +118,7 @@ namespace :dev do
   def create_users
     header "Users"
 
-    user = FactoryGirl.create(
+    user = create(
       :admin,
       :with_subscription,
       :with_github,
@@ -127,7 +127,7 @@ namespace :dev do
     )
     puts_user user, 'admin'
 
-    user = FactoryGirl.create(
+    user = create(
       :admin,
       :with_subscription,
       :with_github,
@@ -136,10 +136,10 @@ namespace :dev do
     )
     puts_user user, 'ready to auth against whetstone'
 
-    user = FactoryGirl.create(:user, email: 'none@example.com')
+    user = create(:user, email: 'none@example.com')
     puts_user user, 'no purchases'
 
-    user = FactoryGirl.create(
+    user = create(
       :basic_subscriber,
       email: 'basic@example.com',
       plan: @basic_plan,
@@ -148,7 +148,7 @@ namespace :dev do
   end
 
   def create_team_plan
-    FactoryGirl.create(:plan, :team, :featured)
+    create(:plan, :team, :featured)
   end
 
   def create_topics
@@ -158,39 +158,26 @@ namespace :dev do
     create(:topic, name: "Vim")
     create(:topic, name: "Workflow")
     create(:topic, name: "iOS")
-
-    rails = FactoryGirl.create(:topic, :explorable, name: "Ruby on Rails")
-    rails.update(slug: "rails")
-    testing = FactoryGirl.create(:topic, :explorable, name: "Testing")
-    testing.update(slug: "testing")
-  end
-
-  def create_topic(name:, color:, accent:)
-    FactoryGirl.create(
-      :topic,
-      :explorable,
-      name: name,
-      color: color,
-      color_accent: accent
-    )
+    create(:topic, :explorable, name: "Ruby on Rails", slug: "rails")
+    create(:topic, :explorable, name: "Testing", slug: "testing")
   end
 
   def create_trails
     header "Trails"
     user = User.find_by_email!("whetstone@example.com")
 
-    trail = FactoryGirl.create(:trail, :published, name: "Testing Fundamentals")
-    FactoryGirl.create(
+    trail = create(:trail, :published, name: "Testing Fundamentals")
+    create(
       :repository,
       name: "Testing Fundamentals First Repo",
       trail: trail
     )
-    FactoryGirl.create(
+    create(
       :repository,
       name: "Testing Fundamentals Second Repo",
       trail: trail
     )
-    trail.update(topic: Topic.find_by(slug: "testing"))
+    classify(trail, "Testing")
     create_steps_for(
       trail,
       "Passing Your First Test",
@@ -206,12 +193,12 @@ namespace :dev do
       preview_wistia_id: "uaxw299qz9"
     )
     teach video, bio: "The Amazing Dan"
-    FactoryGirl.create(:step, trail: trail, completeable: video)
+    create(:step, trail: trail, completeable: video)
 
     puts_trail trail, "unstarted"
 
-    trail = FactoryGirl.create(:trail, :published, name: "Design Essentials")
-    trail.update(topics: [Topic.find_by(slug: "design")])
+    trail = create(:trail, :published, name: "Design Essentials")
+    classify(trail, "Design")
     video = create(
       :video,
       notes: "Blah" + " blah" * 100,
@@ -219,7 +206,7 @@ namespace :dev do
       name: "Squares",
     )
     teach video, bio: "I am Dan"
-    FactoryGirl.create(:step, trail: trail, completeable: video)
+    create(:step, trail: trail, completeable: video)
     video = create(
       :video,
       notes: "Blah" + " blah" * 100,
@@ -227,40 +214,40 @@ namespace :dev do
       name: "Circles",
     )
     teach video, bio: "Dan I am"
-    FactoryGirl.create(:step, trail: trail, completeable: video)
+    create(:step, trail: trail, completeable: video)
 
     puts_trail trail, "unstarted"
 
-    trail = FactoryGirl.create(:trail, :published, name: "Refactoring")
-    trail.update(topics: [Topic.find_by(slug: "clean-code")])
+    trail = create(:trail, :published, name: "Refactoring")
+    classify(trail, "Clean Code")
     create_steps_for(
       trail,
       "Extract Method",
       "Extract Class",
       "Replace Variable with Query"
     )
-    FactoryGirl.create(:status,
+    create(:status,
       completeable: trail,
       state: Status::IN_PROGRESS,
       user: user
     )
     puts_trail trail, "in-progress"
 
-    trail = FactoryGirl.create(:trail, :published, name: "iOS Development")
+    trail = create(:trail, :published, name: "iOS Development")
     steps = create_steps_for(
       trail,
       "Install Xcode",
       "Install Homebrew",
       "Intro to the App Store"
     )
-    FactoryGirl.create(:status,
+    create(:status,
       completeable: trail,
       state: Status::COMPLETE,
       user: user
     )
 
     steps.each do |step|
-      FactoryGirl.create(
+      create(
         :status,
         completeable: step.completeable,
         state: Status::COMPLETE,
@@ -270,14 +257,14 @@ namespace :dev do
 
     puts_trail trail, "completed recently"
 
-    trail = FactoryGirl.create(:trail, :published, name: "Android Development")
+    trail = create(:trail, :published, name: "Android Development")
     steps = create_steps_for(
       trail,
       "Install Java",
       "Learn FRP",
       "Root your phone"
     )
-    FactoryGirl.create(:status,
+    create(:status,
       completeable: trail,
       state: Status::COMPLETE,
       user: user,
@@ -285,7 +272,7 @@ namespace :dev do
     )
 
     steps.each do |step|
-      FactoryGirl.create(
+      create(
         :status,
         completeable: step.completeable,
         state: Status::COMPLETE,
@@ -301,8 +288,8 @@ namespace :dev do
 
   def create_steps_for(trail, *names)
     names.map do |name|
-      exercise = FactoryGirl.create(:exercise, name: name)
-      FactoryGirl.create(:step, trail: trail, completeable: exercise)
+      exercise = create(:exercise, name: name)
+      create(:step, trail: trail, completeable: exercise)
     end
   end
 
@@ -317,8 +304,8 @@ namespace :dev do
   end
 
   def teach(video, bio:)
-    user = FactoryGirl.create(:user, bio: bio)
-    FactoryGirl.create(:teacher, video: video, user: user)
+    user = create(:user, bio: bio)
+    create(:teacher, video: video, user: user)
   end
 
   def classify(classifiable, topic_name)
