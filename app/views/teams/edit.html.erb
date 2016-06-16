@@ -24,7 +24,7 @@
     <ul class="members">
       <% @team.users.each do |user| %>
         <li class="<%= "owner" if @team.owner?(user) %>">
-          <%= user.name %>
+          <span class="username"><%= user.name %></span>
           <%= link_to(
             "✖",
             membership_path(user),

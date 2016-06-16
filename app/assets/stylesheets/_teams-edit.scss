@@ -10,6 +10,10 @@ body.teams-edit {
     margin: 0;
     padding: 0;
 
+    .username {
+      margin-left: 1.5em;
+    }
+
     li {
       border: 1px solid $warmgray;
       border-radius: 3px;
