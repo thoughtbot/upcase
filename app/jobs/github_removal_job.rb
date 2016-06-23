@@ -12,6 +12,6 @@ class GithubRemovalJob < ActiveJob::Base
   private
 
   def github_client
-    Octokit::Client.new(login: GITHUB_USER, password: GITHUB_PASSWORD)
+    Octokit::Client.new(access_token: GITHUB_ACCESS_TOKEN)
   end
 end

@@ -110,7 +110,7 @@ describe Repository do
     def stub_github_client
       double("github_client").tap do |client|
         allow(Octokit::Client).to receive(:new).
-          with(login: GITHUB_USER, password: GITHUB_PASSWORD).
+          with(access_token: GITHUB_ACCESS_TOKEN).
           and_return(client)
       end
     end

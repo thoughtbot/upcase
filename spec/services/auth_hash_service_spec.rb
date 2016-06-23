@@ -88,7 +88,7 @@ describe AuthHashService, '#find_or_create_user_from_auth_hash' do
       with(AuthHashService::THOUGHTBOT_GITHUB_TEAM_ID, 'thoughtbot').
       and_return(return_value)
     allow(Octokit::Client).to receive(:new).
-      with(login: GITHUB_USER, password: GITHUB_PASSWORD).
+      with(access_token: GITHUB_ACCESS_TOKEN).
       and_return(client)
   end
 
