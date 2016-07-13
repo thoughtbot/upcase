@@ -39,11 +39,15 @@ doc = Nokogiri::HTML(renderer.render(raw_notes))
 notes = raw_notes.gsub(UNDERLINE_HEADER, '\1\2').gsub(ATX_HEADER, '\1')
 
 video = Video.find_by!(slug: video_slug)
-video.update!(notes: notes)
 
-doc.css("h1, h2, h3, h4, h5, h6").each do |header|
-  header[:id].scan(/^(.+)-(\d+)$/).each do |anchor, time|
-    video.markers.find_or_create_by!(anchor: anchor, time: time.to_i)
+Video.transaction do
+  video.update!(notes: notes)
+
+  video.markers.delete_all
+  doc.css("h1, h2, h3, h4, h5, h6").each do |header|
+    header[:id].scan(/^(.+)-(\d+)$/).each do |anchor, time|
+      video.markers.find_or_create_by!(anchor: anchor, time: time.to_i)
+    end
   end
 end
 
