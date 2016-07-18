@@ -6,75 +6,39 @@
 
     <%= image_tag "welcome/help-widget.png", class: "help-widget-image" %>
 
-    <div class="overview">
-      <p>
-        The most important thing for your learning is that you <strong>never get
-          stuck</strong>. Stuck sucks.
-      </p>
+    <p>
+      The most important thing for your learning is that you <strong>never get
+        stuck</strong>. Stuck sucks.
+    </p>
 
-      <p>
-        Stuck could mean you're having trouble completing an exercise. Or maybe
-        you don't know what to study next.
-      </p>
+    <p>
+      Stuck could mean you're having trouble completing an exercise. Or maybe
+      you don't know what to study next.
+    </p>
 
-      <p><strong>Do not stay stuck. Ask for help.</strong></p>
+    <p><strong>Do not stay stuck. Ask for help.</strong></p>
 
-      <p>
-        Every page has a question mark in the bottom right hand corner. Use it
-        liberally. We're here to help.
-      </p>
-    </div>
+    <p>
+      Every page has a question mark in the bottom right hand corner. Use it
+      liberally. We're here to help.
+    </p>
   </section>
 
   <section>
-    <div class="flashcards-overview">
-      <h3>You only need five minutes a day</h3>
+    <h3>The Weekly Iteration</h3>
 
-      <p>
-        You can become a noticeably-better programmer while you're commuting.
-        Or drinking coffee. Or waiting for a train.
-      </p>
+    <p>
+      <%= link_to "The Weekly Iteration", show_path("the-weekly-iteration") %>
+      comes out every Tuesday (we'll email you!). It's a 10-20 minute show
+      hosted by thoughtbot designers and developers.
+    </p>
 
-      <p>
-        Don't waste your down-time. Sign into Upcase on your phone and head to
-        our <%= link_to "flashcards", decks_path, target: "_blank" %> area.
-      </p>
+    <p>
+      Topics include <abbr title="Test-driven development">TDD</abbr>, advanced
+      Rails techniques, Vim, landing a Rails job, how thoughtbot works and
+      much more.
+    </p>
 
-      <p>
-        Flashcards are quick, digestible, and will make you amazing at code
-        review (and writing your own code, of course.)
-      </p>
-
-      <p>
-        If this is the only Upcase feature you ever have time for, you'll still
-        improve regularly.
-      </p>
-    </div>
-
-    <%= link_to image_tag("welcome/quiz-screen.png", class: "quiz-image"),
-      decks_path
-    %>
-  </section>
-
-  <section>
-    <div class="overview">
-      <h3>More time == More progress</h3>
-
-      <p>
-        If you can dedicate a bit more time, you should check out
-        <%= link_to "The Weekly Iteration", show_path("the-weekly-iteration") %>.
-      </p>
-
-      <p>
-        The Weekly Iteration comes out every Friday (we'll email you). It's a
-        10-20 minute show hosted by thoughtbotters.
-      </p>
-
-      <p>
-        Topics include TDD, advanced Rails techniques, Vim, landing a Rails
-        job, and how thoughtbot works.
-      </p>
-    </div>
 
     <%= link_to image_tag("welcome/ben-on-weekly-iteration.png", class: "ben-image"),
       show_path("the-weekly-iteration"),
@@ -83,26 +47,24 @@
   </section>
 
   <section>
-    <div class="overview">
-      <h3>Trails: high effort. High reward.</h3>
+    <h3>Trails</h3>
 
-      <p>
-        Trails are the perfect thing to tackle on a Saturday or a wide-open
-        evening when you're ready to write some code or watch longer videos.
-      </p>
+    <p>
+      <%= link_to "Trails", trail_path("tmux") %> are the perfect thing to
+      tackle on a Saturday or a wide-open evening when you're ready to write
+      some code or watch longer videos.
+    </p>
 
-      <p>
-        Some trails consist of videos, like our tmux trail. Others use our
-        <strong> exercise system</strong>. In those, you'll clone down a git
-        repo and <strong>write code on your own machine</strong>.
-      </p>
+    <p>
+      Some trails consist of videos, like our tmux trail. Others use our
+      <strong>exercise system</strong>. In those, you'll clone down a Git
+      repo and <strong>write code on your own machine</strong>.
+    </p>
 
-      <p>
-        Then, once your solution is complete, you'll <strong>push to our git
-          server</strong> and <strong>see thoughtbot's featured
-        solution</strong>.
-      </p>
-    </div>
+    <p>
+      Then, once your solution is complete, you'll <strong>push to our Git
+      server</strong> and <strong>see thoughtbot's featured solution</strong>.
+    </p>
 
     <%= link_to image_tag("welcome/trail.png", class: "trail-image"),
       trail_path("tmux"),
@@ -111,32 +73,7 @@
   </section>
 
   <section>
-    <div class="overview">
-      <h3>Don't learn alone</h3>
-
-      <p>
-        Want to <strong>find someone to pair with?</strong> Need advice on
-        <strong>great Vim plugins?</strong> How about getting <strong>expert
-        opinions on a recent problem you tackled?</strong>
-      </p>
-
-      <p>
-        Well, my friend, get yourself over to <%= link_to "our forum",
-        forum_url %> and start a topic.
-      </p>
-    </div>
-
-    <%= link_to image_tag("welcome/forum.png"), forum_url, target: "_blank" %>
-  </section>
-
-  <section>
     <h3>Start Now</h3>
-    <p>
-
-    <p>
-      Click the link below to dismiss this page (you can come to it later via
-      the header).
-    </p>
 
     <p>
       Remember: <strong>the most important thing is to try something.</strong>
