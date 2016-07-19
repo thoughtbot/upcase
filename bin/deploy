@@ -33,7 +33,7 @@ else
   fi
 
   if [ "$1" = "production" ]; then
-    open https://upcase.com
+    open https://thoughtbot.com/upcase
 
     if command -v watch >/dev/null; then
       watch heroku ps --remote "$1"
