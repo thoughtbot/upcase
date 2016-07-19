@@ -100,8 +100,8 @@ en:
   github_logo: GitHub
   layouts:
     app_name: Upcase
-    fallback_meta_description: Join Upcase by thoughtbot. Explore video tutorials, exercises, forum discussions and the community you need to grow as a web developer.
     fallback_page_title: Upcase by thoughtbot | Learn Web Development Online
+    home_description: Join Upcase by thoughtbot. Explore video tutorials, exercises, forum discussions and the community you need to grow as a web developer.
     thoughtbot: thoughtbot
   licenses:
     flashes:
