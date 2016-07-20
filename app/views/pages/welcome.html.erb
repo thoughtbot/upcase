@@ -1,77 +1,40 @@
 <div class="welcome-page">
-  <h1><%= t("pages.welcome.headline") %></h1>
+  <h2 class="welcome-page-title"><%= t("pages.welcome.headline") %></h2>
 
   <section>
-    <h3>Don't get stuck</h3>
+    <div class="welcome-page-intro">
+      <p>The…</p>
+    </div>
 
-    <p>
-      The most important thing for your learning is that you <strong>never get
-        stuck</strong>. Stuck sucks.
-    </p>
+    <div class="welcome-page-topics">
+      <h3 class="welcome-page-topic-title">Dive into a topic:</h3>
 
-    <p>
-      Stuck could mean you're having trouble completing an exercise. Or maybe
-      you don't know what to study next.
-    </p>
-
-    <p><strong>Do not stay stuck. Ask for help.</strong></p>
-
-    <p>
-      Every page has a question mark in the bottom right hand corner. Use it
-      liberally. We're here to help.
-    </p>
-  </section>
-
-  <section>
-    <h3>The Weekly Iteration</h3>
-
-    <p>
-      <%= link_to "The Weekly Iteration", show_path("the-weekly-iteration") %>
-      comes out every Tuesday (we'll email you!). It's a 10-20 minute show
-      hosted by thoughtbot designers and developers.
-    </p>
-
-    <p>
-      Topics include <abbr title="Test-driven development">TDD</abbr>, advanced
-      Rails techniques, Vim, landing a Rails job, how thoughtbot works and
-      much more.
-    </p>
-  </section>
-
-  <section>
-    <h3>Trails</h3>
-
-    <p>
-      <%= link_to "Trails", trail_path("tmux") %> are the perfect thing to
-      tackle on a Saturday or a wide-open evening when you're ready to write
-      some code or watch longer videos.
-    </p>
-
-    <p>
-      Some trails consist of videos, like our tmux trail. Others use our
-      <strong>exercise system</strong>. In those, you'll clone down a Git
-      repo and <strong>write code on your own machine</strong>.
-    </p>
-
-    <p>
-      Then, once your solution is complete, you'll <strong>push to our Git
-      server</strong> and <strong>see thoughtbot's featured solution</strong>.
-    </p>
-  </section>
-
-  <section>
-    <h3>Start Now</h3>
-
-    <p>
-      Remember: <strong>the most important thing is to try something.</strong>
-      Use the question mark in the bottom right if you feel like you don't know
-      where to start.
-    </p>
+      <div class="welcome-page-topics">
+        <%= link_to "Ruby on Rails",
+                    topic_path("rails"),
+                    class: "welcome-page-topic welcome-page-topic-rails" %>
+        <%= link_to "Learn Vim",
+                    topic_path("vim"),
+                    class: "welcome-page-topic welcome-page-topic-vim" %>
+        <%= link_to "Ruby Testing",
+                    topic_path("testing"),
+                    class: "welcome-page-topic welcome-page-topic-testing" %>
+        <%= link_to "Workflow",
+                    topic_path("workflow"),
+                    class: "welcome-page-topic welcome-page-topic-workflow" %>
+      </div>
+    </div>
 
     <div id="complete-welcome-form">
       <%= form_tag(onboardings_path, id: "complete-welcome-form") do %>
-        <%= submit_tag t("pages.welcome.complete-welcome") %>
+        <%= submit_tag t("pages.welcome.complete-welcome"),
+            class: "secondary-button" %>
       <% end %>
     </div>
+  </section>
+
+  <section class="welcome-page-help">
+    Not sure where to start? We're here to help! Just click the question mark in
+    the bottom right corner.
   </section>
 </div>

@@ -1,23 +1,61 @@
 .welcome-page {
   margin: 0 auto;
-  max-width: 780px;
+  max-width: 600px;
+  text-align: center;
 
-  section {
-    margin-top: 95px;
+  .welcome-page-title {
+    margin-bottom: $base-spacing;
   }
 
-  h2 {
-    margin: 10px 0;
+  .welcome-page-intro {
+    margin-bottom: $base-spacing;
   }
 
-  h1 {
-    margin-bottom: 40px;
-    margin-top: 40px;
-    text-align: center;
+  .welcome-page-topic-title {
+    margin-bottom: $base-spacing;
   }
 
-  h3 {
-    font-size: 1.8em;
-    margin-bottom: 22px;
+  .welcome-page-topics {
+    @include clearfix;
+  }
+
+  .welcome-page-topic {
+    border-radius: $base-border-radius;
+    display: block;
+    float: left;
+    font-size: 1.2em;
+    margin-bottom: $base-spacing;
+    padding: ($base-spacing * 2) $base-spacing;
+    width: calc(50% - (#{$base-spacing} / 2));
+
+    &:nth-child(odd) {
+      margin-right: $base-spacing;
+    }
+  }
+
+  .welcome-page-topic-rails {
+    background-color: map-get($topic-backgrounds, rails);
+    color: map-get($topic-colors, rails);
+  }
+
+  .welcome-page-topic-vim {
+    background-color: map-get($topic-backgrounds, vim);
+    color: map-get($topic-colors, vim);
+  }
+
+  .welcome-page-topic-testing {
+    background-color: map-get($topic-backgrounds, testing);
+    color: map-get($topic-colors, testing);
+  }
+
+  .welcome-page-topic-workflow {
+    background-color: map-get($topic-backgrounds, workflow);
+    color: map-get($topic-colors, workflow);
+  }
+
+  .welcome-page-help {
+    border-top: 1px solid $base-border-color-1;
+    color: tint($base-font-color, 20%);
+    padding-top: $base-spacing * 2;
   }
 }
