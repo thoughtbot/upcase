@@ -2,13 +2,6 @@
   margin: 0 auto;
   max-width: 780px;
 
-  @include dashboard-medium {
-    .flashcards-overview {
-      float: left;
-      max-width: 58%;
-    }
-  }
-
   section {
     @include clearfix;
     margin-top: 95px;
