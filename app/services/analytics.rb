@@ -2,6 +2,7 @@ class Analytics
   include AnalyticsHelper
 
   SAMPLER = "sampler".freeze
+  SUBSCRIBED_EVENT_NAME = "Subscribed".freeze
   SUBSCRIBER = "subscriber".freeze
   TRACKERS = {
     "Video" => VideoTracker,
@@ -54,6 +55,15 @@ class Analytics
 
   def track_cancelled(reason:)
     track("Cancelled", reason: reason)
+  end
+
+  def track_subscribed(context:, plan:, revenue:)
+    track(
+      SUBSCRIBED_EVENT_NAME,
+      context: context,
+      plan: plan,
+      revenue: revenue,
+    )
   end
 
   def track_subscription_reactivated

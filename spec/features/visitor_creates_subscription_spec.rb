@@ -8,7 +8,7 @@ feature "Visitor signs up for a subscription" do
   scenario "visitor signs up by navigating from landing page", js: true do
     create(:trail, :published)
 
-    visit root_path
+    visit root_path(campaign_params)
     click_link I18n.t("subscriptions.new.sign_up_cta")
     show_email_and_username_form
     fill_out_account_creation_form
@@ -16,6 +16,7 @@ feature "Visitor signs up for a subscription" do
 
     expect(current_path).to be_the_welcome_page
     expect_to_see_checkout_success_flash
+    expect_analytics_to_have_received_subscribed_event
   end
 
   scenario "and creates email/password user", js: true do
@@ -140,6 +141,19 @@ feature "Visitor signs up for a subscription" do
     )
   end
 
+  def expect_analytics_to_have_received_subscribed_event
+    expect(analytics).to(
+      have_tracked(Analytics::SUBSCRIBED_EVENT_NAME).
+        with_properties(
+          context: {
+            campaign: campaign_params,
+          },
+          plan: @plan.sku,
+          revenue: @plan.price_in_dollars,
+        ),
+    )
+  end
+
   def create_plan
     @plan = create(:plan, :featured)
   end
@@ -162,5 +176,13 @@ feature "Visitor signs up for a subscription" do
 
   def github_username_field
     find("#checkout_github_username_input")
+  end
+
+  def campaign_params
+    {
+      utm_campaign: "my_utm_campaign",
+      utm_medium: "my_utm_medium",
+      utm_source: "my_utm_source",
+    }
   end
 end

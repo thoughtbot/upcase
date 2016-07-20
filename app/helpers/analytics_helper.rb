@@ -31,10 +31,6 @@ module AnalyticsHelper
     }
   end
 
-  def purchased_hash
-    campaign_hash.merge(revenue: flash[:purchase_amount])
-  end
-
   def campaign_hash
     {
       context: {

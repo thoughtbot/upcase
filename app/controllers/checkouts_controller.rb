@@ -16,6 +16,7 @@ class CheckoutsController < ApplicationController
       sign_in_created_user checkout.user
       if success
         session.delete(:coupon)
+        track_subscription(checkout)
         redirect_after_checkout checkout
       else
         @checkout = checkout
@@ -57,6 +58,16 @@ class CheckoutsController < ApplicationController
     else
       yield checkout
     end
+  end
+
+  def track_subscription(checkout)
+    analytics.track_subscribed(
+      context: {
+        campaign: session[:campaign_params],
+      },
+      plan: checkout.plan_sku,
+      revenue: checkout.price,
+    )
   end
 
   def redirect_from_invalid_coupon

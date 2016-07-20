@@ -50,32 +50,4 @@ describe AnalyticsHelper do
       )
     end
   end
-
-  describe "#purchased_hash" do
-    it "tracks the purchase amount" do
-      purchase_amount = "29.00"
-      flash[:purchase_amount] = purchase_amount
-
-      expect(purchased_hash[:revenue]).to eq(purchase_amount)
-    end
-
-    context "without campaign params" do
-      it "tracks nil" do
-        expect(purchased_hash[:context]).to eq(campaign: nil)
-      end
-    end
-
-    context "with campaign params" do
-      it "tracks the campaign params" do
-        campaign_params = {
-          utm_source: "twitter",
-          utm_medium: "twitter-ads",
-          utm_campaign: "e123a"
-        }
-        session[:campaign_params] = campaign_params
-
-        expect(purchased_hash[:context]).to eq(campaign: campaign_params)
-      end
-    end
-  end
 end

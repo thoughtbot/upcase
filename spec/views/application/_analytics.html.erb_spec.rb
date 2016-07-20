@@ -25,22 +25,6 @@ describe "application/_analytics.html.erb" do
     end
   end
 
-  context "when signing up" do
-    it "aliases the user id" do
-      user = build_stubbed(:user)
-      view_stub_with_return(
-        current_user: user,
-        flash: { purchase_amount: 29 },
-        purchased_hash: "",
-        signed_in?: false
-      )
-
-      render
-
-      expect(rendered).to include(%{analytics.alias("#{user.id}")})
-    end
-  end
-
   context 'when signed in' do
     around(:each) do |example|
       ClimateControl.modify INTERCOM_API_SECRET: secret do
