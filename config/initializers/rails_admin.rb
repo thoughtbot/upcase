@@ -172,6 +172,12 @@ RailsAdmin.config do |config|
         field :markers
       end
 
+      group :weekly_iteration do
+        field :email_subject
+        field :email_body_text
+        field :email_cta_label
+      end
+
       group :seo do
         field :meta_description do
           help META_DESCRIPTION_HELP

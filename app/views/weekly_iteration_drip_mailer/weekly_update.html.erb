@@ -1,0 +1,664 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+  #PreviewIntercomModal .ic_message_content h1,
+  #PreviewIntercomModal .ic_message_content h2 {
+    color: #0072b0 !important;
+  }
+  #PreviewIntercomModal .ic_message_without_image > .ic_message_internals > .ic_message_content {
+    border-color: #0072b0 !important;
+  }
+  #PreviewIntercomModal .ic_user_comment_body {
+    background-color: #0072b0 !important;
+    border-color: #0072b0 !important;
+  }
+  #PreviewIntercomModal .ic_message_content a {
+    color: #0072b0 !important;
+  }
+  #PreviewIntercomModal .ic_message_content a:hover {
+    color: #0072b0 !important;
+  }
+  #PreviewIntercomModal .ic_user_comment_body {
+    background-color: #0072b0 !important;
+    border-color: #0072b0 !important;
+  }
+  .intercom-h2b-button br {
+    display: none;
+  }
+</style>
+<style type="text/css" data-premailer="ignore">
+  /* styles in here will not be inlined. Use for media queries etc */
+  /* force Outlook to provide a "view in browser" menu link. */
+  #outlook a {padding:0;}
+  /* prevent Webkit and Windows Mobile platforms from changing default font sizes.*/
+  body{width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0;}
+  /* force Hotmail to display emails at full width */
+  .ExternalClass {width:100%;}
+  /* force Hotmail to display normal line spacing. http://www.emailonacid.com/forum/viewthread/43/ */
+  .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;}
+  /* fix a padding issue on Outlook 07, 10 */
+  table td {border-collapse: collapse;}
+  table {
+    table-layout: fixed;
+  }
+
+  @media only screen and (max-width: 480px)
+  {
+    br.hidden { display: block !important; }
+    td.padding_cell { display: none !important; }
+    table.message_footer_table td {
+      font-size: 11px !important;
+    }
+  }
+  @media only screen and (max-device-width: 480px)
+  {
+    br.hidden { display: block !important; }
+    td.padding_cell { display: none !important; }
+    table.message_footer_table td {
+      font-size: 11px !important;
+    }
+  }
+</style>
+
+<style type="text/css" data-premailer="ignore">
+  /* styles in here will not be inlined. Use for media queries etc */
+  /* force Outlook to provide a "view in browser" menu link. */
+  #outlook a {padding:0;}
+  /* prevent Webkit and Windows Mobile platforms from changing default font sizes.*/
+  body{width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0;}
+  /* force Hotmail to display emails at full width */
+  .ExternalClass {width:100%;}
+  /* force Hotmail to display normal line spacing. http://www.emailonacid.com/forum/viewthread/43/ */
+  .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;}
+  /* fix a padding issue on Outlook 07, 10 */
+  table td {border-collapse: collapse;}
+
+  @media only screen and (max-width: 480px)
+  {
+    br.hidden { display: block !important; }
+    td.padding_cell { display: none !important; }
+    table.message_footer_table td {
+      font-size: 11px !important;
+    }
+  }
+  @media only screen and (max-device-width: 480px)
+  {
+    br.hidden { display: block !important; }
+    td.padding_cell { display: none !important; }
+    table.message_footer_table td {
+      font-size: 11px !important;
+    }
+  }
+</style>
+
+<style type="text/css">
+
+  .admin_name b {
+    color: #6f6f6f;
+  }
+
+  .date_cell a {
+    color: #999999;
+  }
+
+  .comment_header_td {
+    width: 100%;
+    background: #2388e0;
+    border: none;
+    font-family: 'Helvetica Neue',Arial,sans-serif
+  }
+
+  .content-td {
+    color: #525252;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+    font-family: Helvetica, Arial, sans-serif;
+  }
+
+  .content-td h1 {
+    font-size: 26px;
+    line-height: 33px;
+    color: #282F33;
+    margin-bottom: 7px;
+    margin-top: 30px;
+    font-weight: normal;
+  }
+
+  .content-td h1 a {
+    color: #282F33;
+  }
+
+  .content-td h2 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #282F33;
+    margin: 30px 0 7px;
+  }
+
+  .content-td h2 a {
+    color: #282F33;
+  }
+
+  .content-td h1 + h2 {
+    margin-top: 0 !important;
+  }
+
+  .content-td h2 + h1 {
+    margin-top: 0 !important;
+  }
+
+  .content-td h3 ,
+  .content-td h4 ,
+  .content-td h5 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .content-td p {
+    margin: 0 0 17px 0;
+    line-height: 1.5;
+  }
+
+  .content-td p img,
+  .content-td h1 img,
+  .content-td h2 img,
+  .content-td li img,
+  .content-td .intercom-h2b-button img {
+    margin: 0;
+    padding: 0;
+  }
+
+  .content-td a {
+    color: #1251ba;
+  }
+
+  .content-td p.intro {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .content-td blockquote {
+    margin: 40px 0;
+    font-style: italic;
+    color: #8C8C8C;
+    font-size: 18px;
+    text-align: center;
+    padding: 0 30px;
+    font-family: Georgia, sans-serif;
+    quotes: none;
+  }
+
+  .content-td blockquote a {
+    color: #8C8C8C;
+  }
+
+  .content-td ul {
+    list-style: disc;
+    margin: 0 0 20px 40px;
+    padding: 0;
+  }
+
+  .content-td ol {
+    list-style: decimal;
+    margin: 0 0 20px 40px;
+    padding: 0;
+  }
+
+  .content-td img {
+    margin: 17px 0;
+    max-width: 100%;
+  }
+
+  .content-td .intercom-container {
+    margin-bottom: 16px;
+  }
+
+  .content-td hr {
+    border: none;
+    border-top: 1px solid #DDD;
+    border-bottom: 0;
+    margin: 50px 30% 50px 30%;
+  }
+
+  table.intercom-container {
+    margin: 17px 0;
+  }
+  table.intercom-container.intercom-align-center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  table.intercom-container td {
+    background-color: #2388e0;
+    padding: 12px 35px;
+    border-radius: 3px;
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 0;
+  }
+
+  .content-td .intercom-h2b-button {
+    font-size: 14px;
+    color: #FFF;
+    font-weight: bold;
+    display: inline-block;
+    text-decoration: none;
+    background-color: #2388e0;
+    border: none !important;
+
+      padding: 13px 35px;
+
+  }
+
+  a.intercom-h2b-button {
+    background-color: #0E4595;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,0.2);
+    color:#fff;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    min-height: 20px;
+    text-decoration: none;
+  }
+
+  .content-td .intercom-h2b-button:hover {
+    background-color:#459ce9;
+  }
+
+  .message_footer_table .avatar {
+    -ms-interpolation-mode: bicubic;
+    -webkit-background-clip: padding-box;
+    -webkit-border-radius: 20px;
+    background-clip: padding-box;
+    border-radius: 20px;
+    display: inline-block;
+    height: 40px;
+    max-width: 100%;
+    outline: none;
+    text-decoration: none;
+    width: 40px;
+  }
+
+  .powered-by-table .powered-by-text a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #999;
+  }
+
+  .main_wrapper {
+    padding: 0 20px;
+  }
+
+  .margin-arrow {
+    display: none;
+    mso-hide: all;
+    visibility:hidden;
+    width:0;
+    height:0;
+    max-width: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+  .content-td > :first-child {
+    margin-top: 0;
+    padding-top: 0;
+  }
+</style>
+
+
+<style type="text/css" data-premailer="ignore">
+
+  @media screen and (max-width: 635px) {
+    .main-wrap {
+      width: 100% !important;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .content-td {
+      padding: 30px 15px !important;
+    }
+    .content-td h1 {
+      margin-bottom: 5px;
+    }
+    .message_footer_table .space {
+      width: 20px !important;
+    }
+
+    .message_footer_table .arrow-wrap {
+      padding-left: 20px !important;
+    }
+
+    .message_footer_table .admin_name b{
+      display: block !important;
+    }
+
+    .main_wrapper {
+      padding: 0;
+    }
+
+    .image-arrow {
+      display: none !important;
+    }
+
+    .margin-arrow {
+      display: table !important;
+      visibility:visible !important;
+      width: 100% !important;
+      height: auto !important;
+      max-width: none !important;
+      max-height: none !important;
+      opacity: 1 !important;
+      overflow: visible !important;
+    }
+
+    .comment_body {
+      border-bottom: 1px solid #DDD !important;
+    }
+
+    .footer-td-wrapper {
+      display: block !important;
+      width: 100% !important;
+      text-align: left !important;
+    }
+    .footer-td-wrapper .date_cell {
+      text-align: left !important;
+      padding: 15px 0 0 20px !important;
+    }
+  }
+
+</style>
+
+
+<style type="text/css" data-premailer="ignore">
+  .content-td blockquote + * {
+    margin-top: 20px !important;
+  }
+
+  .ExternalClass .content-td h1 {
+    padding: 20px 0 !important;
+  }
+
+  .ExternalClass .content-td h2 {
+    padding: 0 0 5px !important;
+  }
+
+  .ExternalClass .content-td p {
+    padding: 10px 0 !important;
+  }
+
+.ExternalClass .content-td .intercom-container {
+    padding: 5px 0 !important;
+  }
+
+  .ExternalClass .content-td hr + * {
+    padding-top: 30px !important;
+  }
+
+  .ExternalClass .content-td ol ,
+  .ExternalClass .content-td ul {
+    padding: 0 0 20px 40px !important;
+    margin: 0 !important;
+  }
+
+  .ExternalClass .content-td ol li,
+  .ExternalClass .content-td ul li {
+    padding: 3px 0 !important;
+    margin: 0 !important;
+  }
+  .content-td > :first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .ExternalClass .content-td > :first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+</style>
+
+
+
+<style type="text/css">
+  .intercom-align-right {
+  text-align: right !important;
+}
+.intercom-align-center {
+  text-align: center !important;
+}
+.intercom-align-left {
+  text-align: left !important;
+}
+/* Over-ride for RTL */
+.right-to-left .intercom-align-right{
+  text-align: left !important;
+}
+.right-to-left .intercom-align-left{
+  text-align: right !important;
+}
+.right-to-left .intercom-align-left {
+  text-align:right !important;
+}
+.right-to-left li {
+  text-align:right !important;
+  direction: rtl;
+}
+.right-to-left .intercom-align-left img,
+.right-to-left .intercom-align-left .intercom-h2b-button {
+  margin-left: 0 !important;
+}
+.intercom-attachment,
+.intercom-attachments,
+.intercom-attachments td,
+.intercom-attachments th,
+.intercom-attachments tr,
+.intercom-attachments tbody,
+.intercom-attachments .icon,
+.intercom-attachments .icon img {
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.intercom-attachments {
+  margin: 10px 0 !important;
+}
+.intercom-attachments .icon,
+.intercom-attachments .icon img {
+  width: 16px !important;
+  height: 16px !important;
+}
+.intercom-attachments .icon {
+  padding-right: 5px !important;
+}
+.intercom-attachment {
+  display: inline-block !important;
+  margin-bottom: 5px !important;
+}
+
+.intercom-interblocks-content-card {
+  width: 334px;
+  max-height: 136px;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  font-size: 16px;
+  border: 1px solid #e0e0e0;
+}
+
+.intercom-interblocks-article-icon {
+  width: 22.5%;
+  height: 136px;
+  float: left;
+  background-color: #fafafa;
+  background-image: url('https://static.intercom-mail.com/assets/article_book-1a595be287f73c0d02f548f513bfc831.png');
+  background-repeat: no-repeat;
+  background-size: 32px;
+  background-position: center;
+}
+
+.intercom-interblocks-article-text {
+  width: 77.5%;
+  float: right;
+  background-color: #fff;
+}
+
+.intercom-interblocks-article-title {
+  color: #455a64;
+  height: 40px;
+  margin: 10px 15px;
+  line-height: 1.3;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.intercom-interblocks-article-body {
+  color: #74848b;
+  height: 30px;
+  margin: 10px 15px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  overflow: hidden;
+}
+
+.intercom-interblocks-article-author {
+  margin: 10px 15px;
+  height: 24px;
+  line-height: normal;
+}
+
+.intercom-interblocks-article-author-avatar {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+img.intercom-interblocks-article-author-avatar-image {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin: 0;
+  vertical-align: top;
+}
+
+.intercom-interblocks-article-author-name {
+  color: #74848b;
+  line-height: 1.2;
+  margin: 0 0 0 5px;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+</style>
+
+
+
+
+</head>
+<body>
+
+
+<table cellpadding="0" cellspacing="0" border="0" class="bgtc personal" align="center" style="border-collapse: collapse; line-height: 100% !important; margin: 0; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 0; width: 100% !important; background-color: #f9f9f9;">
+  <tr>
+    <td>
+    <!--[if (gte mso 10)]>
+      <tr>
+      <td>
+      <table style="width: 600px">
+    <![endif]-->
+      <table style="border-collapse: collapse; margin: auto; width: 100%; max-width: 635px; min-width: 320px; mso-table-lspace: 0pt; mso-table-rspace: 0pt" class="main-wrap">
+        <tr>
+          <td valign="top">
+            <table cellpadding="0" cellspacing="0" border="0" class="reply_header_table" style="border-collapse: collapse; color: #c0c0c0; font-family: 'Helvetica Neue',Arial,sans-serif; font-size: 13px; line-height: 26px; margin: 0 auto 26px; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%">
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" class="main_wrapper">
+
+            <table cellpadding="0" cellspacing="0" border="0" class="comment_wrapper_table admin_comment" align="center" style="-webkit-background-clip: padding-box; -webkit-border-radius: 3px; background-clip: padding-box; border-collapse: collapse; border-radius: 3px; color: #545454; font-family: 'Helvetica Neue',Arial,sans-serif; font-size: 13px; line-height: 20px; margin: 0 auto; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%">
+              <tr>
+                <td valign="top" class="comment_wrapper_td">
+                  <table cellpadding="0" cellspacing="0" border="0" class="comment_header" style="border-collapse: separate; border: none; font-size: 1px; height: 2px; line-height: 3px; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%">
+                    <tr>
+                      <td valign="top" class="comment_header_td"> </td>
+                    </tr>
+                  </table>
+                  <table cellpadding="0" cellspacing="0" border="0" class="comment_body" style="-webkit-background-clip: padding-box; -webkit-border-radius: 0 0 3px 3px; background-clip: padding-box; border-collapse: collapse; border-color: #dddddd; border-radius: 0 0 3px 3px; border-style: solid; border-width: 0 1px 1px; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-bottom: none">
+                    <tr>
+                      <td class="comment_body_td content-td" style="-webkit-background-clip: padding-box; -webkit-border-radius: 0 0 3px 3px; background-clip: padding-box; border-radius: 0 0 3px 3px; color: #525252; font-family: 'Helvetica Neue',Arial,sans-serif; font-size: 15px; line-height: 22px; overflow: hidden; padding: 40px 40px 30px; background-color: white;">
+
+
+<p>Hi <%= @user.first_name %>,</p>
+
+<p><%= @video.email_body_text %></p>
+
+<p style="text-align: center">
+<ic-block data-generated-at="14775965965790.22154604114587806" data-type="button" data-link-url="<%= video_url(@video, @utm_params) %>" data-text="Check it Out" data-id="block-ember4053" data-align="center"><zws>&#8203;</zws><insert contenteditable="false"><insert-point></insert-point></insert><a class="intercom-h2b-button" href="<%= video_url(@video, @utm_params) %>" contenteditable="false"><%= @video.email_cta_label %></a><insert contenteditable="false"><insert-point></insert-point></insert><zws>&#8203;</zws></ic-block>
+</p>
+
+
+                      </td>
+                    </tr>
+                   </table>
+                  </td>
+                 </tr>
+                </table>
+
+                <div class="margin-arrow">
+                  <table cellpadding="0" cellspacing="0" border="0" class="message_footer_table margin-arrow" align="center" style="border-collapse: collapse; color: #545454; font-family: 'Helvetica Neue',Arial,sans-serif; font-size: 13px; line-height: 20px; margin: 0 auto; max-width: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%">
+                    <tr>
+                      <td valign="top" width="80" class="arrow-wrap" style="color: #272727; height: 18px; text-align: left; padding-left: 40px;">
+                        <img alt="Triangle" class="image_fix" height="18" src="https://marketing.intercomassets.com/assets/email/personal/triangle-8747882e9ef8882f9bc057241fd3c049.png" style="-ms-interpolation-mode: bicubic; display: inline-block; max-width: 100%; outline: none; text-decoration: none; margin-top: -1px;" width="40">
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <table cellpadding="0" cellspacing="0" border="0" class="message_footer_table" align="center" style="border-collapse: collapse; color: #545454; font-family: 'Helvetica Neue',Arial,sans-serif; font-size: 13px; line-height: 20px; margin: 0 auto; max-width: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%">
+                  <tr>
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td class="footer-td-wrapper">
+                          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; color: #545454; font-family: 'Helvetica Neue',Arial,sans-serif; font-size: 13px; line-height: 20px; margin: 0 auto; max-width: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%" class="message_footer_table">
+                            <tr>
+                              <td valign="middle" align="right" class="date_cell" style="color: #999999; text-align: right; font-size: 11px;">
+
+Not interested in receiving content from Upcase?
+<%= link_to "Unsubscribe", unsubscribe_url(token: @unsubscribe_token) %>
+
+                              </td>
+                            </tr>
+<tr>
+                          </tr>
+</table>
+                        </td>
+                      </tr>
+                    </table>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top" height="20"></td>
+            </tr>
+          </table>
+          <!--[if (gte mso 10)]>
+            </td>
+            </tr>
+            </table>
+          <![endif]-->
+        </td>
+      </tr>
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+Hi <%= @user.first_name %>,
+
+<%= @video.email_body_text %>
+
+<%= @video.email_cta_label %>:
+<%= video_url(@video, @utm_params) %>
+
+Not interested? Stop receiving emails:
+<%= unsubscribe_url(token: @unsubscribe_token) %>
