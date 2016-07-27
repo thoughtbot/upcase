@@ -1,0 +1,2 @@
+
+Check it out: <%= video_url @video %>
