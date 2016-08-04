@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160601215621) do
+ActiveRecord::Schema.define(version: 20160804181146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -355,32 +355,33 @@ ActiveRecord::Schema.define(version: 20160601215621) do
   add_index "trails", ["slug"], name: "index_trails_on_slug", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",              limit: 255
-    t.string   "encrypted_password", limit: 128
-    t.string   "salt",               limit: 128
-    t.string   "confirmation_token", limit: 128
-    t.string   "remember_token",     limit: 128
-    t.boolean  "email_confirmed",                default: true,  null: false
+    t.string   "email",                    limit: 255
+    t.string   "encrypted_password",       limit: 128
+    t.string   "salt",                     limit: 128
+    t.string   "confirmation_token",       limit: 128
+    t.string   "remember_token",           limit: 128
+    t.boolean  "email_confirmed",                      default: true,  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "reference",          limit: 255
-    t.boolean  "admin",                          default: false, null: false
-    t.string   "stripe_customer_id", limit: 255, default: "",    null: false
-    t.string   "github_username",                                null: false
-    t.string   "auth_provider",      limit: 255
+    t.string   "reference",                limit: 255
+    t.boolean  "admin",                                default: false, null: false
+    t.string   "stripe_customer_id",       limit: 255, default: "",    null: false
+    t.string   "github_username",                                      null: false
+    t.string   "auth_provider",            limit: 255
     t.integer  "auth_uid"
-    t.string   "organization",       limit: 255
-    t.string   "address1",           limit: 255
-    t.string   "address2",           limit: 255
-    t.string   "city",               limit: 255
-    t.string   "state",              limit: 255
-    t.string   "zip_code",           limit: 255
-    t.string   "country",            limit: 255
-    t.string   "name",               limit: 255
+    t.string   "organization",             limit: 255
+    t.string   "address1",                 limit: 255
+    t.string   "address2",                 limit: 255
+    t.string   "city",                     limit: 255
+    t.string   "state",                    limit: 255
+    t.string   "zip_code",                 limit: 255
+    t.string   "country",                  limit: 255
+    t.string   "name",                     limit: 255
     t.text     "bio"
     t.integer  "team_id"
     t.string   "utm_source"
-    t.boolean  "completed_welcome",              default: false, null: false
+    t.boolean  "completed_welcome",                    default: false, null: false
+    t.boolean  "unsubscribed_from_emails",             default: false, null: false
   end
 
   add_index "users", ["admin"], name: "index_users_on_admin", using: :btree

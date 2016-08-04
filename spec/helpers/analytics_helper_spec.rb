@@ -45,6 +45,7 @@ describe AnalyticsHelper do
         scheduled_for_deactivation_on: nil,
         stripe_customer_url: StripeCustomer.new(user).url,
         subscribed_at: user.subscribed_at,
+        unsubscribed_from_emails: user.unsubscribed_from_emails,
         user_id: user.id,
         username: user.github_username,
       )

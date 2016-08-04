@@ -21,6 +21,17 @@ describe User do
     end
   end
 
+  context "callbacks" do
+    it "identifies the user with analytics after saving" do
+      user = build(:user)
+      analytics_stub = stub_analytics_for(user)
+
+      user.save
+
+      expect(analytics_stub).to have_received(:track_updated)
+    end
+  end
+
   context "#first_name" do
     it "has a first_name that is the first part of name" do
       user = User.new(name: "first last")

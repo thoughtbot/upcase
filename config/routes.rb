@@ -59,6 +59,8 @@ Upcase::Application.routes.draw do
       )
     end
 
+    get "/unsubscribes/:token" => "unsubscribes#show", as: :unsubscribe
+
     get "/join" => "subscriptions#new", as: :sign_up
     get "/join" => "subscriptions#new", as: :join
     get "/sign_in" => "sessions#new", as: "sign_in"

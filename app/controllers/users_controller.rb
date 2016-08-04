@@ -15,7 +15,8 @@ class UsersController < Clearance::UsersController
   def create_user_from_params
     params.require(:user).permit(
       :email, :password, :name, :github_username, :bio, :organization,
-      :address1, :address2, :city, :state, :zip_code, :country
+      :address1, :address2, :city, :state, :zip_code, :country,
+      :unsubscribed_from_emails
     )
   end
 

@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   )
 
   before_save :clean_github_username
+  after_save :track_update_via_analytics
 
   def first_name
     name.split(" ").first
@@ -152,5 +153,13 @@ class User < ActiveRecord::Base
       compact.
       reject(&:active?).
       max_by(&:deactivated_on)
+  end
+
+  def track_update_via_analytics
+    analytics.track_updated
+  end
+
+  def analytics
+    Analytics.new(self)
   end
 end

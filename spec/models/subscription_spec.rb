@@ -140,8 +140,10 @@ describe Subscription do
 
         subscription.write_plan(sku: create(:plan).sku)
 
-        expect(Analytics).to have_received(:new).with(subscription.user)
-        expect(analytics_updater).to have_received(:track_updated)
+        expect(Analytics).
+          to have_received(:new).with(subscription.user).at_least(:once)
+        expect(analytics_updater).
+          to have_received(:track_updated).at_least(:once)
       end
     end
 
@@ -155,9 +157,12 @@ describe Subscription do
 
         subscription.write_plan(sku: create(:plan).sku)
 
-        expect(Analytics).to have_received(:new).with(users.first)
-        expect(Analytics).to have_received(:new).with(users.second)
-        expect(analytics_updater).to have_received(:track_updated).twice
+        expect(Analytics).
+          to have_received(:new).with(users.first).at_least(:once)
+        expect(Analytics).
+          to have_received(:new).with(users.second).at_least(:once)
+        expect(analytics_updater).
+          to have_received(:track_updated).at_least(:twice)
       end
     end
 

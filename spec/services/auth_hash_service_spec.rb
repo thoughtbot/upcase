@@ -107,6 +107,7 @@ describe AuthHashService, '#find_or_create_user_from_auth_hash' do
   def stub_analytics_tracker
     double("Analytics").tap do |tracker|
       allow(tracker).to receive(:track_account_created)
+      allow(tracker).to receive(:track_updated)
       allow(Analytics).to receive(:new).and_return(tracker)
     end
   end
