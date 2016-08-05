@@ -60,6 +60,9 @@ Upcase::Application.routes.draw do
     end
 
     get "/unsubscribes/:token" => "unsubscribes#show", as: :unsubscribe
+    namespace "webhooks" do
+      post "intercom-unsubscribes", to: "intercom_unsubscribes#create"
+    end
 
     get "/join" => "subscriptions#new", as: :sign_up
     get "/join" => "subscriptions#new", as: :join
