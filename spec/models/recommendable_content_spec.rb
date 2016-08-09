@@ -2,7 +2,6 @@ require "rails_helper"
 
 describe RecommendableContent do
   it { should belong_to(:recommendable) }
-  it { should validate_presence_of(:position) }
 
   describe "uniqueness criteria" do
     before { create(:recommendable_content) }

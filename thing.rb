@@ -3,7 +3,12 @@
 
 recommendable_weekly_iterations = RecommendableContent.priority_ordered
 
-subscribers_to_email = ActiveSubscribers.new.reject(&:unsubscribed_from_emails?)
+# Video.order(:published_on).last(5).each do |video|
+#   RecommendableContent.create(recommendable: video)
+# end
+
+
+subscribers_to_email = ActiveSubscribers.new.reject(&:unsubscribed_from_emails?).count
 
 subscribers_to_email.each do |subscriber|
   previously_recommended = ContentRecommendation.where(user: user)

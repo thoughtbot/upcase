@@ -3,7 +3,7 @@ class RecommendableContent < ActiveRecord::Base
 
   belongs_to :recommendable, polymorphic: true
 
-  validates :position, presence: true, uniqueness: true
+  validates :position, uniqueness: true
 
   def self.priority_ordered
     order(position: :asc)
