@@ -1,9 +1,7 @@
 
 
 
-recommendable_weekly_iterations = RecommendableContent.
-  from_the_weekly_iteration.
-  priority_ordered
+recommendable_weekly_iterations = RecommendableContent.priority_ordered
 
 subscribers_to_email = ActiveSubscribers.new.reject(&:unsubscribed_from_emails?)
 

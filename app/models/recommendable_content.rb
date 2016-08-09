@@ -5,7 +5,7 @@ class RecommendableContent < ActiveRecord::Base
 
   validates :position, presence: true, uniqueness: true
 
-  def self.in_order
+  def self.priority_ordered
     order(position: :asc)
   end
 end
