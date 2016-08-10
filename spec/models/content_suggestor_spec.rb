@@ -5,11 +5,11 @@ RSpec.describe ContentSuggestor do
     context "when the user has not viewed any Weekly Iterations" do
       it "returns the first Weekly Iteration in the set sequence" do
         first_video, second_video = build_stubbed_list(:video, 2)
-        content_sequence = build_content_sequence(
+        suggester = build_content_suggester(
           recommendables: [first_video, second_video],
         )
 
-        result = content_sequence.next_up.unwrap
+        result = suggester.next_up.unwrap
 
         expect(result).to eq(first_video)
       end
@@ -20,12 +20,12 @@ RSpec.describe ContentSuggestor do
         first_video, second_video = create_list(:video, 2)
         user = create(:user)
         create(:status, user: user, completeable: first_video)
-        content_sequence = build_content_sequence(
+        suggester = build_content_suggester(
           user: user,
           recommendables: [first_video, second_video, nil],
         )
 
-        result = content_sequence.next_up.unwrap
+        result = suggester.next_up.unwrap
 
         expect(result).to eq(second_video)
       end
@@ -36,12 +36,12 @@ RSpec.describe ContentSuggestor do
         video = create(:video)
         user = create(:user)
         create(:status, user: user, completeable: video)
-        content_sequence = build_content_sequence(
+        suggester = build_content_suggester(
           user: user,
           recommendables: [video],
         )
 
-        result = content_sequence.next_up
+        result = suggester.next_up
 
         expect(result).to be_blank
       end
@@ -51,20 +51,19 @@ RSpec.describe ContentSuggestor do
       it "recommends the next in the sequence" do
         first_video, second_video = create_list(:video, 2)
         user = create(:user)
-        create(:content_recommendation, user: user, recommendable: first_video)
-        content_sequence = build_content_sequence(
+        suggester = build_content_suggester(
           user: user,
           recommendables: [first_video, second_video],
-          recommendations: ContentRecommendation.all,
+          recommendations: [first_video],
         )
 
-        result = content_sequence.next_up.unwrap
+        result = suggester.next_up.unwrap
 
         expect(result).to eq(second_video)
       end
     end
 
-    def build_content_sequence(
+    def build_content_suggester(
       user: build_stubbed(:user),
       recommendations: ContentRecommendation.none,
       recommendables:

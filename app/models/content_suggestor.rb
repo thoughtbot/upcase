@@ -14,7 +14,7 @@ class ContentSuggestor
   attr_reader :recommendables, :recommendations, :status_finder
 
   def unrecommended_recommendables
-    recommendables - recommendations.map(&:recommendable)
+    recommendables - recommendations
   end
 
   def first_unseen_recommendable
