@@ -54,7 +54,7 @@ RSpec.describe ContentSuggestor do
         suggester = build_content_suggester(
           user: user,
           recommendables: [first_video, second_video],
-          recommendations: [first_video],
+          recommended: [first_video],
         )
 
         result = suggester.next_up.unwrap
@@ -65,13 +65,13 @@ RSpec.describe ContentSuggestor do
 
     def build_content_suggester(
       user: build_stubbed(:user),
-      recommendations: ContentRecommendation.none,
+      recommended: [],
       recommendables:
     )
       ContentSuggestor.new(
         user: user,
         recommendables: recommendables,
-        recommendations: recommendations
+        recommended: recommended
       )
     end
   end

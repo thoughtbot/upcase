@@ -1,8 +1,8 @@
 class ContentSuggestor
-  def initialize(recommendables:, user:, recommendations:)
+  def initialize(recommendables:, user:, recommended:)
     @recommendables = recommendables
     @status_finder = StatusFinder.new(user: user)
-    @recommendations = recommendations
+    @recommended = recommended
   end
 
   def next_up
@@ -11,10 +11,10 @@ class ContentSuggestor
 
   private
 
-  attr_reader :recommendables, :recommendations, :status_finder
+  attr_reader :recommendables, :recommended, :status_finder
 
   def unrecommended_recommendables
-    recommendables - recommendations
+    recommendables - recommended
   end
 
   def first_unseen_recommendable
