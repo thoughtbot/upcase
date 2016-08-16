@@ -3,13 +3,61 @@
 #   RecommendableContent.create(recommendable: video)
 # end
 
+def user_has_seen_video(user, video)
+  video.statuses.where(user: user).any?
+end
+
+def has_seen_all_recommendables(user, recommendables)
+  !recommendables.reject do |video|
+    user_has_seen_video(user, video)
+  end.any?
+end
+
+subscribers_to_email.select do |user|
+  has_seen_all_recommendables(user, recoms)
+end.map(&:email)
+
+have_watched_all = _
+have_watched_all.first
+
+recoms.reject do |video|
+  video.statuses.where(user: user).any?
+end
 
 
+recoms = RecommendableContent.all.map(&:recommendable);nil
 
-recommendable_weekly_iterations = RecommendableContent.priority_ordered;nil
+recoms.map do |video|
+  [video.slug, video.statuses.where(user: subscribers_to_email).map(&:user).uniq.count]
+end
+
+have_seen_all = [12401, 15742, 4631]
+
+videos = [
+  'regular-expressions',
+  "tell-don-t-ask",
+  "composition-over-inheritance",
+  'enumerable-and-comparable',
+  "optimizing-sql-queries-in-postgres",
+].map do |slug|
+  Video.find_by(slug: slug)
+end;nil
+subscribers_to_email.reject do |user|
+  have_seen_all.include?(user.id) ||
+  videos.reject do |video|
+    user_has_seen_video(user, video)
+  end.any?
+end.map(&:email)
 
 
+recoms.select do |video|
+  video.statuses.where(user: dem).none?
+end.map(&:slug)
+
+recommendables = RecommendableContent.priority_ordered;nil
 subscribers_to_email = ActiveSubscribers.new.reject(&:unsubscribed_from_emails?);nil
+
+next_up_for_user(subscribers_to_email.first, recommendables)
 
 def next_up_for_user(user, recommendables)
   ContentSuggestor.new(
@@ -25,9 +73,6 @@ dem = subscribers_to_email.map do |user|
   end.blank { "NONE FOUND" }
   [next_up.unwrap, "#{user.email} [#{user.id}]"]
 end
-
-user = User.find_by email: 'chris@thoughtbot.com'
-video = Video.last
 
 WeeklyIterationDripMailer.delay(run_at: Date.tomorrow).weekly_update(
   user: user,
