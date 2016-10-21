@@ -13,11 +13,17 @@ class UsersController < Clearance::UsersController
   end
 
   def create_user_from_params
-    params.require(:user).permit(
+    user_params = params.require(:user).permit(
       :email, :password, :name, :github_username, :bio, :organization,
       :address1, :address2, :city, :state, :zip_code, :country,
       :unsubscribed_from_emails
     )
+
+    unless user_params[:password].present?
+      user_params.delete(:password)
+    end
+
+    user_params
   end
 
   def return_to
