@@ -1,10 +1,32 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Upcase](#upcase)
+- [Development](#development)
+  - [Rules of the road](#rules-of-the-road)
+  - [Setup](#setup)
+  - [Protocol](#protocol)
+  - [Continuous Integration](#continuous-integration)
+  - [Ongoing](#ongoing)
+  - [Payment Testing](#payment-testing)
+    - [Stripe](#stripe)
+  - [Amazon AWS S3](#amazon-aws-s3)
+  - [Deployment](#deployment)
+  - [Sending email on staging](#sending-email-on-staging)
+- [Product Management](#product-management)
+- [Admin Access](#admin-access)
+- [Credits](#credits)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Upcase
 
 Upcase is a Rails 4 app deployed to Heroku.
 
-## Development
+# Development
 
-### Rules of the road
+## Rules of the road
 
 This project is now following Sandi Metz's Rules.
 
@@ -14,7 +36,7 @@ All new code should follow these rules. If you make changes in a pre-existing
 file that violates these rules you should fix the violations as part of
 your work.
 
-### Setup
+## Setup
 
 1. Get the code.
 
@@ -36,7 +58,7 @@ your work.
 
         % open http://localhost:5000/upcase
 
-### Protocol
+## Protocol
 
 1. Look for cards in the **Next Up** list.
 2. When you start a card, add yourself and move the card to the **In Progress**
@@ -63,12 +85,12 @@ For more information, check out the [guides] and [Playbook].
 [guides]: https://github.com/thoughtbot/guides/tree/master/protocol/rails
 [Playbook]: http://playbook.thoughtbot.com/#tasks
 
-### Continuous Integration
+## Continuous Integration
 
 CI is hosted with [CircleCI](https://circleci.com/gh/thoughtbot/upcase). The
 build is run automatically whenever any branch is updated on Github.
 
-### Ongoing
+## Ongoing
 
 * Run test suite before committing to the master branch.
 
@@ -87,9 +109,9 @@ build is run automatically whenever any branch is updated on Github.
 * To test that adding/removing GitHub users works, use the GitHub user
   "cpyteltest".
 
-### Payment Testing
+## Payment Testing
 
-#### Stripe
+### Stripe
 
 To test Stripe payments on staging use a fake credit card.
 
@@ -144,7 +166,15 @@ To see what the current recipient is:
 
     heroku config:get EMAIL_RECIPIENTS -r staging
 
-## Admin Access
+# Product Management
+
+Check the [Upcase processes] repository for guides on where to find and how to
+do common tasks like customer support, content production, related repositories
+and trello boards, and others.
+
+[Upcase processes]: https://github.com/thoughtbot/upcase-processes
+
+# Admin Access
 
 1. Register on the [Upcase](https://upcase.com/sign_up) site.
 
@@ -159,8 +189,7 @@ To see what the current recipient is:
 3. Access the [general admin panel](http://upcase.com/admin) or
    the [workshop admin panel](http://upcase.com/admin).
 
-Credits
--------
+# Credits
 
 ![thoughtbot](http://thoughtbot.com/logo.png)
 
@@ -171,8 +200,7 @@ Thank you to all [the contributors](https://github.com/thoughtbot/upcase/contrib
 The names and logos for Upcase and thoughtbot are registered trademarks of
 thoughtbot, inc.
 
-License
--------
+# License
 
 This application is Copyright © 2007 thoughtbot, inc. It is provided to
 subscribers for educational purposes only, and Subscribers do not have a license
