@@ -75,6 +75,17 @@ ActiveRecord::Schema.define(version: 20160804181146) do
 
   add_index "collaborations", ["repository_id", "user_id"], name: "index_collaborations_on_repository_id_and_user_id", unique: true, using: :btree
 
+  create_table "content_recommendations", force: :cascade do |t|
+    t.integer  "user_id",            null: false
+    t.integer  "recommendable_id",   null: false
+    t.string   "recommendable_type", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "content_recommendations", ["user_id", "recommendable_type", "recommendable_id"], name: "index_content_recommendations_on_recommendable_and_user", unique: true, using: :btree
+  add_index "content_recommendations", ["user_id"], name: "index_content_recommendations_on_user_id", using: :btree
+
   create_table "decks", force: :cascade do |t|
     t.string   "title",                            null: false
     t.datetime "created_at",                       null: false
@@ -263,6 +274,16 @@ ActiveRecord::Schema.define(version: 20160804181146) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
+
+  create_table "recommendable_contents", force: :cascade do |t|
+    t.integer  "recommendable_id",   null: false
+    t.string   "recommendable_type", null: false
+    t.integer  "position",           null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "recommendable_contents", ["recommendable_type", "recommendable_id"], name: "rec_contents_on_rec_type_rec_id", using: :btree
 
   create_table "statuses", force: :cascade do |t|
     t.integer  "completeable_id",                                       null: false
@@ -466,6 +487,7 @@ ActiveRecord::Schema.define(version: 20160804181146) do
   add_foreign_key "attempts", "users", on_delete: :cascade
   add_foreign_key "beta_replies", "beta_offers", column: "offer_id"
   add_foreign_key "beta_replies", "users"
+  add_foreign_key "content_recommendations", "users"
   add_foreign_key "markers", "videos", on_delete: :cascade
 
   create_view :latest_attempts,  sql_definition: <<-SQL

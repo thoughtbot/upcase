@@ -410,7 +410,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :video do
+  factory :video, aliases: [:recommendable] do
     association :watchable, factory: :show
     sequence(:name) { |n| "Video #{n}" }
     wistia_id '1194803'
@@ -562,5 +562,16 @@ FactoryGirl.define do
   factory :marker do
     anchor "configuration-options"
     time 322
+  end
+
+  factory :content_recommendation do
+    recommendable
+    user
+  end
+
+  factory :recommendable_content do
+    sequence(:position)
+
+    recommendable
   end
 end
