@@ -1,4 +1,12 @@
 module EnvironmentBannerHelper
+  def production_app?
+    Rails.env.production? && !app_name.include?("staging")
+  end
+
+  def app_name
+    ENV.fetch("HEROKU_APP_NAME") { "upcase-#{Rails.env}" }
+  end
+
   def current_branch
     if git_available?
       `git rev-parse --abbrev-ref HEAD`.chomp

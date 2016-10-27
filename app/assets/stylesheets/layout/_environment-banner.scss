@@ -4,12 +4,12 @@
 
   $dev-green: #008000;
 
-  &.development {
+  &.upcase-development {
     background: lighten($dev-green, 10%);
     color: lighten($dev-green, 70%);
   }
 
-  &.staging {
+  &.upcase-staging {
     background: lighten($upcase-red, 10%);
     color: lighten($upcase-red, 70%);
   }

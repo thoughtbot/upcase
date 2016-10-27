@@ -71,7 +71,7 @@ Rails.configuration.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
   r301 %r{^/upcase/workshops/(.+)}, "/upcase/$1"
   r301 %r{^/upcase/([^/]+)/resources}, "/upcase/$1"
 
-  if Rails.env.production? || Rails.env.staging?
+  if Rails.env.production?
     r301 %r{^/upcase/products/(10|12)\D}, "/upcase/test-driven-rails"
     r301 %r{^/upcase/products/(9|11)\D}, "/upcase/design-for-developers"
     r301 "/upcase/products/4", "https://www.youtube.com/watch?v=CKC8Ph-s2F4"
