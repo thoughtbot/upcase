@@ -3,7 +3,9 @@
     <header>
       <%= render trail.topics %>
       <h1><%= link_to trail, trail %></h1>
-      <%= format_markdown trail.description %>
+      <div class="description">
+        <%= format_markdown trail.description %>
+      </div>
       <%= render "practice/trail_description_tooltip", trail: trail %>
     </header>
 
