@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161025154304) do
+ActiveRecord::Schema.define(version: 20161028180937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -479,7 +479,7 @@ ActiveRecord::Schema.define(version: 20161025154304) do
     t.text     "meta_description",                            default: "",    null: false
     t.text     "page_title",                                  default: "",    null: false
     t.string   "email_subject"
-    t.string   "email_body_text"
+    t.text     "email_body_text"
     t.string   "email_cta_label"
   end
 
