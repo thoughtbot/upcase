@@ -5,5 +5,5 @@ Hi <%= @user.first_name %>,
 <%= @video.email_cta_label %>:
 <%= video_url(@video, @utm_params) %>
 
-Not interested? Stop receiving emails:
+Not interested in receiving content from Upcase? Unsubscribe following the link:
 <%= unsubscribe_url(token: @unsubscribe_token) %>

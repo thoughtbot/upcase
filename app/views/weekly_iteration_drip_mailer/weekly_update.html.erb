@@ -600,7 +600,7 @@ img.intercom-interblocks-article-author-avatar-image {
 
 <p>Hi <%= @user.first_name %>,</p>
 
-<p><%= @video.email_body_text %></p>
+<p><%= @html_content %></p>
 
 <p style="text-align: center">
 <ic-block data-generated-at="14775965965790.22154604114587806" data-type="button" data-link-url="<%= video_url(@video, @utm_params) %>" data-text="Check it Out" data-id="block-ember4053" data-align="center"><zws>&#8203;</zws><insert contenteditable="false"><insert-point></insert-point></insert><a class="intercom-h2b-button" href="<%= video_url(@video, @utm_params) %>" contenteditable="false"><%= @video.email_cta_label %></a><insert contenteditable="false"><insert-point></insert-point></insert><zws>&#8203;</zws></ic-block>

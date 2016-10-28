@@ -1,4 +1,5 @@
 class WeeklyIterationDripMailer < ActionMailer::Base
+  include ApplicationHelper
   include UnsubscribesHelper
 
   default(
@@ -7,13 +8,14 @@ class WeeklyIterationDripMailer < ActionMailer::Base
   )
 
   def weekly_update(user:, video:)
+    @html_content = format_markdown(video.email_body_text)
     @unsubscribe_token = unsubscribe_token_verifier.generate(user.id)
     @user = user
+    @video = video
     @utm_params = {
       utm_campaign: "#{video.slug}-weekly-drip",
       utm_medium: "email",
     }
-    @video = video
 
     mail(
       to: user.email,

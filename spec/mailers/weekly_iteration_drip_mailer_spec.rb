@@ -46,6 +46,14 @@ describe WeeklyIterationDripMailer do
       )
     end
 
+    it "renders markdown" do
+      video = build_stubbed(:video, email_body_text: "The **body**")
+
+      message = build_message(video: video)
+
+      expect(message).to have_body_text("The <strong>body</strong>")
+    end
+
     it "contains a summary and CTA of the video" do
       video = build_stubbed(
         :video,
