@@ -25,19 +25,26 @@ describe "topics/_trail.html" do
 
   context "with an unstarted trail" do
     it "renders as unstarted" do
-      trail = stub_trail(complete: false, just_finished: false, unstarted: true)
+      trail = stub_trail(
+        complete: false,
+        just_finished: false,
+        unstarted: true,
+        description: "**Markdown**",
+      )
 
       render_trail trail
 
       expect(rendered).to have_selector(".unstarted")
       expect(rendered).to have_content(trail.name)
+      expect(rendered).to match(/<strong>Markdown<\/strong>/)
       expect(rendered).not_to have_completed_text(trail)
     end
   end
 
-  def stub_trail(complete:, just_finished:, unstarted: false)
+  def stub_trail(complete:, just_finished:, unstarted: false, description: "")
     topic = build_stubbed(:topic, slug: "clean+code")
-    build_stubbed(:trail, topics: [topic]).tap do |trail|
+    stubbed_trail = build_stubbed(:trail, topics: [topic], description: description)
+    stubbed_trail.tap do |trail|
       allow(trail).to receive(:complete?).and_return(complete)
       allow(trail).to receive(:just_finished?).and_return(just_finished)
       allow(trail).to receive(:unstarted?).and_return(unstarted)
