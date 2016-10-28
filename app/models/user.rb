@@ -91,7 +91,7 @@ class User < ActiveRecord::Base
   end
 
   def eligible_for_annual_upgrade?
-    plan.present? && plan.has_annual_plan?
+    has_active_subscription? && plan.present? && plan.has_annual_plan?
   end
 
   def annualized_payment
