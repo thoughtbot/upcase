@@ -6,7 +6,6 @@ class Subscription < ActiveRecord::Base
   has_one :team, dependent: :destroy
 
   delegate :name, to: :plan, prefix: true
-  delegate :stripe_customer_id, to: :user
 
   validates :plan_id, presence: true
   validates :plan_type, presence: true
@@ -30,6 +29,14 @@ class Subscription < ActiveRecord::Base
 
   def active?
     deactivated_on.nil?
+  end
+
+  def stripe_customer_id
+    if team.present?
+      team.owner.stripe_customer_id
+    else
+      user.stripe_customer_id
+    end
   end
 
   def scheduled_for_deactivation?

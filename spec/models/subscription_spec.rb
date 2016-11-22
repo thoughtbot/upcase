@@ -5,8 +5,6 @@ describe Subscription do
   it { should belong_to(:plan) }
   it { should belong_to(:user) }
 
-  it { should delegate(:stripe_customer_id).to(:user) }
-
   it { should validate_presence_of(:plan_id) }
   it { should validate_presence_of(:plan_type) }
   it { should validate_presence_of(:user_id) }
@@ -19,6 +17,24 @@ describe Subscription do
       billed_3_days_from_now = create(:subscription, next_payment_on: Date.current + 3.days)
 
       expect(Subscription.next_payment_in_2_days).to eq [billed_2_days_from_now]
+    end
+  end
+
+  describe "#stripe_customer_id" do
+    it "should return users stripe customer id if they are not on a team" do
+      user = create(:user, :with_subscription, stripe_customer_id: "cus_123")
+
+      expect(user.subscription.stripe_customer_id). to eq("cus_123")
+    end
+
+    it "should return team stripe customer id if users are a part of a team" do
+      owner = create(:user,
+                     :with_team_subscription,
+                     stripe_customer_id: "team_123")
+      team = owner.team
+      user = create(:user, team: team, stripe_customer_id: "cus_123")
+
+      expect(user.subscription.stripe_customer_id). to eq("team_123")
     end
   end
 
