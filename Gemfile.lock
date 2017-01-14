@@ -152,6 +152,10 @@ GEM
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
+    inline_svg (0.11.1)
+      activesupport (>= 4.0)
+      loofah (>= 2.0)
+      nokogiri (~> 1.6)
     jmespath (1.2.4)
       json_pure (>= 1.8.1)
     jquery-rails (4.1.1)
@@ -414,6 +418,7 @@ DEPENDENCIES
   heroku-deflater
   high_voltage
   honeybadger
+  inline_svg
   jquery-rails
   jquery-ui-rails
   launchy
@@ -463,4 +468,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.13.3
+   1.13.6

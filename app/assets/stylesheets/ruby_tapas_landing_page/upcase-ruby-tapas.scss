@@ -1,0 +1,45 @@
+.upcase-ruby-tapas {
+  $dark-foam: #0e6752;
+  $sea-foam: #2fe7bb;
+  $white: #fff;
+
+  margin: 2rem 0;
+  text-align: center;
+
+  .title {
+    margin: 2rem 0;
+
+    a {
+      color: $base-font-color;
+    }
+  }
+
+  p {
+    font-size: 1.25rem;
+    margin-bottom: 0;
+  }
+
+  mark {
+    background: linear-gradient(0deg, rgba($sea-foam, 0.17) 50%, $white 0%);
+    border-bottom: solid 0.125rem rgba($sea-foam, 0.17);
+    color: $dark-foam;
+    font-weight: bold;
+    padding: 0 0.25rem;
+  }
+
+  input[type="email"] {
+    display: block;
+    margin: 1.5rem auto 0.5rem;
+    max-width: 420px;
+  }
+
+  input[type="checkbox"] {
+    margin: 0.5rem;
+  }
+
+  label {
+    display: block;
+    margin: 1.5rem auto 0.9rem;
+    max-width: 420px;
+  }
+}
