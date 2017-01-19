@@ -91,6 +91,7 @@ Upcase::Application.routes.draw do
     get "/pages/*id" => "pages#show", format: false
     get "/privacy" => "pages#show", as: :privacy, id: "privacy"
     get "/terms" => "pages#show", as: :terms, id: "terms"
+    get "/tapas" => "pages#show", as: :tapas, id: "tapas"
 
     scope ":plan" do
       resource :authenticated_on_checkout, only: [:show]
