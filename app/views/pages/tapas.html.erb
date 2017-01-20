@@ -18,6 +18,8 @@
       <input type="hidden" name="fields[manages_developers]" value="false"/>
       <label><input type="checkbox" name="fields[manages_developers]" value="true"/>Check this box if you manage other developers</label>
       <input type="hidden" name="fields[utm_source]" value="<%= session[:campaign_params][:utm_source] %>" id="utm_source" />
+      <input type="hidden" name="fields[utm_medium]" value="<%= session[:campaign_params][:utm_medium] %>" id="utm_medium" />
+      <input type="hidden" name="fields[utm_campaign]" value="<%= session[:campaign_params][:utm_campaign] %>" id="utm_campaign" />
       <input type="submit" name="submit" value="Keep Me In The Loop" data-drip-attribute="sign-up-button" />
     </fieldset>
   </form>
