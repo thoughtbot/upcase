@@ -16,6 +16,7 @@
 //= require fastclick
 //= require readmore
 //= require extended_description
+//= require tapas
 
 $(function() {
   hljs.initHighlightingOnLoad();
