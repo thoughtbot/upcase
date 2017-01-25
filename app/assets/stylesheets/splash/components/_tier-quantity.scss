@@ -1,0 +1,10 @@
+.tier-quantity {
+  border-radius: $base-border-radius;
+  border: solid 1px $base-button-background-color;
+  margin-bottom: $base-spacing;
+  padding: 0.6rem $base-spacing 0.8rem;
+
+  select {
+    float: right;
+  }
+}

@@ -1,0 +1,12 @@
+.testimonial-heading {
+  font-weight: bold;
+  margin-bottom: $medium-spacing;
+}
+
+.testimonial-heading--tapas {
+  color: $tapas-salmon;
+}
+
+.testimonial-heading--upcase {
+  color: darken($upcase-light-blue, 30%);
+}

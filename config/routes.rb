@@ -92,6 +92,8 @@ Upcase::Application.routes.draw do
     get "/privacy" => "pages#show", as: :privacy, id: "privacy"
     get "/terms" => "pages#show", as: :terms, id: "terms"
     get "/tapas" => "pages#show", as: :tapas, id: "tapas"
+    get "/tapas-for-teams", to: "pages#show", id: "tapas-for-teams"
+    get "/tapas-for-one", to: "pages#show", id: "tapas-for-one"
 
     scope ":plan" do
       resource :authenticated_on_checkout, only: [:show]
@@ -198,6 +200,8 @@ Upcase::Application.routes.draw do
       path: "test-driven-rails-resources",
       only: [:index],
     )
+
+    resources :tapas_payments, only: [:create]
 
     get "/practice" => "practice#show", as: :practice
     get "sitemap.xml" => "sitemaps#show", as: :sitemap, format: "xml"

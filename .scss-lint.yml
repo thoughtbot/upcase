@@ -74,7 +74,7 @@ linters:
     enabled: true
 
   ImportantRule:
-    enabled: true
+    enabled: false
 
   ImportPath:
     enabled: true
@@ -157,7 +157,7 @@ linters:
 
   SelectorFormat:
     enabled: true
-    convention: hyphenated_lowercase
+    convention: hyphenated_BEM
 
   Shorthand:
     enabled: true

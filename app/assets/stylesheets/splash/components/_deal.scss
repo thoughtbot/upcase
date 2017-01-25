@@ -1,0 +1,20 @@
+.deal {
+  background-color: $tapas-salmon;
+  border-bottom: solid 1px darken($tapas-salmon, 4%);
+  color: $white;
+  font-family: $strong-font-family;
+  margin: -$large-spacing;
+  margin-bottom: $medium-spacing;
+  padding: $small-spacing;
+  text-align: center;
+
+  @media (min-width: $medium-screen) {
+    margin: -$medium-spacing;
+    margin-bottom: $medium-spacing;
+  }
+
+  @media (min-width: $large-screen) {
+    margin: -$large-spacing;
+    margin-bottom: $medium-spacing;
+  }
+}

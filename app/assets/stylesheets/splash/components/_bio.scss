@@ -1,0 +1,42 @@
+.bios {
+  background-color: $white;
+  border: $base-border;
+  border-radius: 2px;
+  box-shadow: $base-content-shadow;
+  margin: $large-spacing auto $base-spacing;
+
+  @media(min-width: $medium-screen) {
+    display: flex;
+    max-width: 820px;
+  }
+}
+
+.bio {
+  margin: $large-spacing;
+
+  @media(min-width: $medium-screen) {
+    width: 50%;
+
+    + .bio {
+      margin-left: 0;
+    }
+  }
+}
+
+.bio__photo {
+  @include size(78px);
+  border-radius: 4px;
+  display: block;
+  margin: 0 auto $small-spacing;
+}
+
+.bio__name {
+  margin-bottom: $small-spacing;
+  text-align: center;
+}
+
+.bio__contact {
+  font-size: $small-font-size;
+  margin-bottom: $medium-spacing;
+  text-align: center;
+}

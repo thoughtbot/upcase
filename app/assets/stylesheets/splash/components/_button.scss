@@ -1,0 +1,21 @@
+.button {
+  background-color: $base-button-background-color;
+  border-radius: $base-border-radius;
+  border: 0;
+  box-shadow: $base-button-shadow;
+  color: $base-button-color;
+  display: inline-block;
+  font-family: $heading-font-family;
+  font-size: $base-font-size;
+  line-height: 1.3;
+  padding: $small-spacing $medium-spacing;
+  text-align: center;
+  text-decoration: none;
+  transition: transform $base-duration, color ($base-duration * 4);
+
+  &:hover {
+    color: rgba($white, 0.75);
+    cursor: pointer;
+    transform: translateY(-2px);
+  }
+}

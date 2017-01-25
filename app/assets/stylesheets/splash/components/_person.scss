@@ -1,0 +1,10 @@
+.person {
+  align-items: center;
+  display: flex;
+  margin-top: $base-spacing;
+}
+
+.person__face {
+  @include size(60px);
+  margin-right: $small-spacing;
+}

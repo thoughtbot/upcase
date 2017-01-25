@@ -1,0 +1,60 @@
+body {
+  color: $base-font-color;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $heading-font-color;
+  font-family: $heading-font-family;
+  font-weight: normal;
+  line-height: 1;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.45rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  line-height: $base-line-height * 1.4;
+  margin: 0 0 $base-spacing;
+}
+
+a {
+  color: $action-color;
+  text-decoration: underline;
+  transition: color $base-duration;
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: shade($action-color, 25%);
+  }
+}
+
+strong {
+  font-family: $strong-font-family;
+}
+
+mark {
+  background: linear-gradient(
+    0deg,
+    rgba($mark-color, 0.075) 50%,
+    rgba($white, 0) 50%
+  );
+  border-bottom: solid 0.25rem rgba($mark-color, 0.075);
+  color: mix($mark-color, $black, 95%);
+  font-family: $heading-font-family;
+  padding: 0 0.125rem;
+}

@@ -1,0 +1,43 @@
+<div class="tier">
+  <%= render "pages/tapas/deal" %>
+
+  <h2 class="tier__title">
+    Tier 1
+  </h2>
+
+  <ul class="tier__feature-list">
+    <li>
+      1 year of Upcase
+      <small class="tier__normal-price">normally $290</small>
+    </li>
+
+    <li>
+      1 year of Ruby Tapas
+      <small class="tier__normal-price">normally $349</small>
+    </li>
+  </ul>
+
+  <div class="tier-price">
+    <strike>$639</strike>
+
+    <div class="tier-price__price">
+      <strong>
+        $<%= TapasPaymentsController::TIER_1_PRICE / 100 %>
+      </strong>
+    </div>
+  </div>
+
+  <form action="/upcase/tapas_team_payments" method="POST">
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_IUggbBONd079p5jCloGEijOFRBDnq"
+            data-amount="<%= TapasPaymentsController::TIER_1_PRICE %>"
+            data-name="Upcase"
+            data-description="Tier 1"
+            data-image="https://s3.amazonaws.com/stripe-uploads/ZZmGCK8MYKr0FHOuop7OzJe7Spmxk7nrmerchant-icon-1415719897983-twitter-icon-2-2.png"
+            data-locale="auto">
+    </script>
+
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :tier, 1 %>
+  </form>
+</div>

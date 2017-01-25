@@ -1,0 +1,67 @@
+.page-content {
+  margin: 0 auto;
+  padding: $large-spacing $base-spacing;
+
+  @media (min-width: $medium-screen) {
+    padding: $x-large-spacing $base-spacing;
+  }
+
+  + .page-content {
+    @include margin(0 null null);
+    @include padding(0 null null);
+  }
+}
+
+.page-content--columns {
+  @media(min-width: $large-screen) {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: $large-screen;
+  }
+}
+
+.page-content--centered {
+  text-align: center;
+}
+
+.page-content--reading {
+  max-width: $reading-width;
+  line-height: $base-line-height * 1.2;
+}
+
+.page-content--half {
+  max-width: $medium-screen * 0.65;
+}
+
+.page-content__heading {
+  margin-bottom: $small-spacing;
+  text-align: center;
+}
+
+.page-content__intro {
+  margin: 0 auto $medium-spacing;
+  max-width: $reading-width;
+  text-align: center;
+}
+
+.page-content__column {
+  margin: 0 auto $large-spacing;
+  width: 80%;
+
+  @media(min-width: $medium-screen) {
+    width: 50%;
+  }
+
+  @media(min-width: $large-screen) {
+    @include margin(null 0 $medium-spacing);
+    padding: 0 $large-spacing;
+  }
+
+  strong {
+    display: block;
+    line-height: 1.3;
+    margin-bottom: $small-spacing;
+  }
+}
+

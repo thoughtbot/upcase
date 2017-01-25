@@ -1,0 +1,22 @@
+.tier-price {
+  margin: $base-spacing 0 $small-spacing;
+
+  strike {
+    color: $gray-3;
+    display: block;
+    margin-bottom: $base-spacing;
+  }
+}
+
+.tier-price__price {
+  display: block;
+  margin-bottom: $small-spacing;
+
+  strong {
+    font-size: 2.5rem;
+  }
+}
+
+.tier-price__value {
+  display: inline-block;
+}

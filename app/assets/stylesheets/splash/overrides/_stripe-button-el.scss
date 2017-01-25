@@ -1,0 +1,26 @@
+.stripe-button-el {
+  background: $base-button-background-color !important;
+  border: none !important;
+  border-radius: $base-border-radius !important;
+  box-shadow: $base-button-shadow !important;
+  padding: $small-spacing $medium-spacing !important;
+  transition: transform $base-duration, color ($base-duration * 4);
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+  }
+
+  span {
+    background: transparent !important;
+    box-shadow: none !important;
+    font-family: $heading-font-family !important;
+    font-size: $base-font-size !important;
+    line-height: 1.6 !important;
+    text-shadow: none !important;
+
+    &:hover {
+      color: rgba($white, 0.75);
+    }
+  }
+}

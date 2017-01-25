@@ -1,0 +1,43 @@
+.page-split {
+  max-width: $large-screen;
+  margin: $medium-spacing auto 0;
+  padding: 0 $base-spacing;
+
+  @media(min-width: $medium-screen) {
+    display: flex;
+  }
+}
+
+.page-split__section {
+  margin-top: $large-spacing;
+
+  @media(min-width: $medium-screen) {
+    margin-top: $base-spacing;
+    padding: 0 $x-large-spacing;
+    width: 50%;
+  }
+}
+
+.page-split__heading {
+  margin-bottom: $medium-spacing;
+}
+
+.page-split__item {
+  margin: $base-spacing 0;
+  min-height: 7rem;
+  position: relative;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .page-split__section:first-child &::after {
+    @include size(5rem 2px);
+    background-color: rgba($upcase-blue, 0.25);
+    border-radius: 1rem;
+    content: "";
+    position: absolute;
+    right: calc(-#{$x-large-spacing} - 2.5rem);
+    top: 0.35rem;
+  }
+}

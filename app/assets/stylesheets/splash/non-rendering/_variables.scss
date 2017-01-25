@@ -1,0 +1,37 @@
+// Colors
+$blue-de-france: #3c7fef;
+$carribean-green: #1bdfb0;
+$chillean-heath: #ffffe6;
+$egyptian-blue: #1736a4;
+$hacienda: #9b8f11;
+$havelock-blue: #3c7fef;
+$tapas-pink: #fcf8f8;
+$tapas-salmon: #ff4340;
+$united-nations-blue: #698fe1;
+$upcase-light-blue: #fbfcff;
+$white: #fff;
+
+// Borders
+$base-border: solid 1px darken($upcase-light-blue, 3%);
+
+// Shadows
+$base-content-shadow: 0 1rem 2rem rgba($havelock-blue, 0.1);
+
+// Component specific
+$base-button-background-color: $carribean-green;
+$base-button-color: $white;
+$base-button-shadow: 0 0.5rem 1rem rgba($carribean-green, 0.15);
+
+// Colors in action
+$action-color: $blue-de-france;
+$base-font-size: 1.1rem;
+$heading-font-color: $united-nations-blue;
+$mark-color: $blue-de-france;
+
+// Font families
+$base-font-family: "calibre-light";
+$heading-font-family: "calibre-regular";
+$strong-font-family: "calibre-medium";
+
+// Font sizes
+$small-font-size: 0.85rem;
