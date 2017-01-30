@@ -17,7 +17,8 @@ class TapasPaymentsController < ApplicationController
       currency: "USD",
       source: params["stripeToken"],
       receipt_email: email,
-      metadata: { email: email, tier: tier, quantity: quantity }
+      metadata: { email: email, tier: tier, quantity: quantity },
+      description: "Upcase/RubyTapas bundle",
     )
 
     flash[:notice] = "Success!"

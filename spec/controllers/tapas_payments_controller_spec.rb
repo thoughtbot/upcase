@@ -22,6 +22,7 @@ describe TapasPaymentsController do
             source: "tok",
             receipt_email: email,
             metadata: { email: email, tier: tier, quantity: 1 },
+            description: "Upcase/RubyTapas bundle",
           )
         )
       end
@@ -47,6 +48,7 @@ describe TapasPaymentsController do
             source: "tok",
             receipt_email: email,
             metadata: { email: email, tier: tier, quantity: 1 },
+            description: "Upcase/RubyTapas bundle",
           )
         )
       end
@@ -74,6 +76,7 @@ describe TapasPaymentsController do
             source: "tok",
             receipt_email: email,
             metadata: { email: email, tier: tier, quantity: quantity },
+            description: "Upcase/RubyTapas bundle",
           )
         )
       end
@@ -100,6 +103,7 @@ describe TapasPaymentsController do
               source: "tok",
               receipt_email: email,
               metadata: { email: email, tier: tier, quantity: quantity },
+              description: "Upcase/RubyTapas bundle",
             )
           )
         end
