@@ -91,7 +91,7 @@ Upcase::Application.routes.draw do
     get "/pages/*id" => "pages#show", format: false
     get "/privacy" => "pages#show", as: :privacy, id: "privacy"
     get "/terms" => "pages#show", as: :terms, id: "terms"
-    get "/tapas", to: redirect("/upcase/tapas-for-one")
+    get "/tapas", to: redirect("/upcase/tapas-for-teams")
     get "/tapas-for-teams", to: "pages#show", id: "tapas-for-teams"
     get "/tapas-for-one", to: "pages#show", id: "tapas-for-one"
 
