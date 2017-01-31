@@ -1,10 +1,10 @@
-@import "reset";
 @import "bourbon";
 @import "neat";
 
-@import "base-variables";
+@import "defaults/reset";
+@import "base/variables";
 
-@import "splash/non-rendering/**/*";
-@import "splash/defaults/**/*";
-@import "splash/overrides/**/*";
-@import "splash/components/**/*";
+@import "splashes/base/**/*";
+@import "splashes/defaults/**/*";
+@import "splashes/overrides/**/*";
+@import "splashes/components/**/*";

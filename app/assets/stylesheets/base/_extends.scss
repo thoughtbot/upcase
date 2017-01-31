@@ -22,3 +22,8 @@
     padding: 1em;
   }
 }
+
+%default-ul {
+  list-style-type: disc;
+  padding-left: $side-padding;
+}

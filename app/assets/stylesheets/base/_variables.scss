@@ -2,6 +2,7 @@
 $alert-color: #ffdfdf;
 $black: #000;
 $blue-trail: #4a90e2;
+$celestial-blue: #4a90e2;
 $cta-color-dark: #fb0;
 $cta-color-light: #ff0;
 $cta-text-color: #333;
@@ -28,13 +29,14 @@ $thoughtbot-red: #ad141e;
 $upcase-blue-1: #487bf6;
 $upcase-blue-2: #0093cb;
 $upcase-blue: #2387e0;
-$upcase-green: $hero-green;
 $upcase-darkred: #600;
+$upcase-green: $hero-green;
 $upcase-red: #ff4856;
 $video-tutorial-color: #ff633c;
 $warmgray: #d9d4cc;
 $weekly-iteration-color: #9c313e;
 $white: #fff;
+$yellow: #f3e86b;
 
 // Colors in action
 $base-background-1: $white;
@@ -131,6 +133,11 @@ $dot-margin: 14px;
 $dot-size: 13px;
 $flashcard-radius: 5px;
 $flashcard-spacing: 2em;
+$plan-width: 190px;
+$plan-width-callout: $plan-width + 10px;
+$plan-padding: 35px;
+$plan-header-height: 59px;
+$plan-max-width: 960px;
 $video-states: (
   unstarted: play,
   in-progress: in-progress,
@@ -160,6 +167,7 @@ $unicode-right-single-quote: "\2019";
 $medium-screen: 600px;
 $small-screen: 420px;
 $large-screen: 1000px;
+$large-screen: em(860);
 
 // Layout sizes
 $reading-width: 520px;
