@@ -1,49 +1,61 @@
 .welcome-page {
   margin: 0 auto;
-  max-width: 780px;
+  max-width: 600px;
+  text-align: center;
 
-  @include dashboard-medium {
-    .flashcards-overview {
-      float: left;
-      max-width: 58%;
+  .welcome-page-title {
+    margin-bottom: $base-spacing;
+  }
+
+  .welcome-page-intro {
+    margin-bottom: $base-spacing;
+  }
+
+  .welcome-page-topic-title {
+    margin-bottom: $base-spacing;
+  }
+
+  .welcome-page-topics {
+    @include clearfix;
+  }
+
+  .welcome-page-topic {
+    border-radius: $base-border-radius;
+    display: block;
+    float: left;
+    font-size: 1.2em;
+    margin-bottom: $base-spacing;
+    padding: ($base-spacing * 2) $base-spacing;
+    width: calc(50% - (#{$base-spacing} / 2));
+
+    &:nth-child(odd) {
+      margin-right: $base-spacing;
     }
   }
 
-  section {
-    @include clearfix;
-    margin-top: 95px;
+  .welcome-page-topic-rails {
+    background-color: map-get($topic-backgrounds, rails);
+    color: map-get($topic-colors, rails);
   }
 
-  h2 {
-    margin: 10px 0;
+  .welcome-page-topic-vim {
+    background-color: map-get($topic-backgrounds, vim);
+    color: map-get($topic-colors, vim);
   }
 
-  h1 {
-    margin-bottom: 40px;
-    margin-top: 40px;
-    text-align: center;
+  .welcome-page-topic-testing {
+    background-color: map-get($topic-backgrounds, testing);
+    color: map-get($topic-colors, testing);
   }
 
-  h3 {
-    font-size: 1.8em;
-    margin-bottom: 22px;
+  .welcome-page-topic-workflow {
+    background-color: map-get($topic-backgrounds, workflow);
+    color: map-get($topic-colors, workflow);
   }
 
-  .help-widget-image {
-    float: left;
-    height: 75px;
-    margin-right: 20px;
-    margin-top: 8px;
-  }
-
-  .ben-image {
-    display: block;
-    height: 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .trail-image {
-    margin-top: 20px;
+  .welcome-page-help {
+    border-top: 1px solid $base-border-color-1;
+    color: tint($base-font-color, 20%);
+    padding-top: $base-spacing * 2;
   }
 }
