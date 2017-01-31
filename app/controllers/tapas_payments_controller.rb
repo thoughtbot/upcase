@@ -1,15 +1,8 @@
 class TapasPaymentsController < ApplicationController
-  # Normal prices:
-  # TIER_1_PRICE = 39900
-  # TIER_2_PRICE = 59900
-  # TIER_3_PRICE = 49900
-  # TIER_4_PRICE = 149900
-
-  # 10% off
-  TIER_1_PRICE = 35900
-  TIER_2_PRICE = 53900
-  TIER_3_PRICE = 44900
-  TIER_4_PRICE = 134900
+  TIER_1_PRICE = 39900
+  TIER_2_PRICE = 59900
+  TIER_3_PRICE = 49900
+  TIER_4_PRICE = 149900
 
   def create
     Stripe::Charge.create(
