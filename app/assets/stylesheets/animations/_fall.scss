@@ -1,0 +1,18 @@
+@include keyframes(fall) {
+  0% {
+    @include transform(translateY(-200%));
+  }
+
+  10% {
+    @include transform(translateY(0%));
+  }
+
+  90% {
+    @include transform(translateY(0%));
+  }
+
+  0% {
+    @include transform(translateY(-200%));
+  }
+}
+
