@@ -5,6 +5,10 @@ EXTENDED_DESCRIPTION_HELP = <<-DESC.strip_heredoc.freeze
   Detailed additional description. Hidden on initial render,
   but available by clicking 'Read more' link.
 DESC
+TEAM_CONVERSION_HELP = <<-DESC.strip_heredoc.freeze
+  Submitting a new team name will convert individual subscription to a new team
+  and team account
+DESC
 
 RailsAdmin.config do |config|
   config.authorize_with do
@@ -73,6 +77,12 @@ RailsAdmin.config do |config|
       field :bio
       field :github_username
       field :stripe_customer_id
+
+      group :convert_to_team do
+        field :team_name do
+          help TEAM_CONVERSION_HELP
+        end
+      end
     end
   end
 

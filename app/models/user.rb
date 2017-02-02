@@ -21,6 +21,21 @@ class User < ActiveRecord::Base
 
   before_save :clean_github_username
   after_save :track_update_via_analytics
+  after_save :convert_to_team, if: :new_team_name_given?
+
+  attr_accessor :team_name
+
+  def new_team_name_given?
+    team_name.present? && subscription && team.nil?
+  end
+
+  def convert_to_team
+    transaction do
+      team = Team.create!(name: team_name, subscription: subscription)
+      update!(team: team)
+      subscription.change_plan(sku: Plan::TEAM_SKU)
+    end
+  end
 
   def first_name
     name.split(" ").first

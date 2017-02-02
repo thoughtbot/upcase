@@ -32,6 +32,32 @@ describe User do
     end
   end
 
+  context "#team_name" do
+    it "creates a new team" do
+      user = create(:user, :with_subscription)
+      user.subscription.stub(:change_plan)
+
+      user.team_name = "team name"
+      user.save
+
+      expect(user.team).to be_present
+      expect(user.team.owner).to eq user
+      expect(user.team.name).to eq "team name"
+    end
+
+    it "changes the subscription plan" do
+      user = create(:user, :with_subscription)
+      subscription = user.subscription
+      allow(subscription).to receive(:change_plan).with(sku: Plan::TEAM_SKU)
+
+      user.team_name = "team name"
+      user.save
+
+      expect(subscription).
+        to have_received(:change_plan).with(sku: Plan::TEAM_SKU)
+    end
+  end
+
   context "#first_name" do
     it "has a first_name that is the first part of name" do
       user = User.new(name: "first last")
