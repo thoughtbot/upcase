@@ -1,33 +1,33 @@
 var setupTableOfContents = function() {
-  var $tocToggle = $('[data-role="table-of-contents-toggle"]');
-  var $tocClose = $('[data-role="table-of-contents-close"]');
-  var $toc = $('[data-role="table-of-contents"]');
+  var $tableOfContentsToggle = $('[data-role="table-of-contents-toggle"]');
+  var $tableOfContentsClose = $('[data-role="table-of-contents-close"]');
+  var $tableOfContents = $('[data-role="table-of-contents"]');
   var $body = $('body');
 
-  var closeToc = function() {
-    $toc.removeClass('slide-down');
-    $tocToggle.removeClass('is-open');
-    $body.removeClass('has-table-of-contents');
+  var closeTableOfContents = function() {
+    $tableOfContents.removeClass('slide-down');
+    $tableOfContentsToggle.removeClass('is-open');
+    $body.removeClass('u-overflow-hidden');
   };
 
-  var openToc = function() {
-    $toc.addClass('slide-down');
-    $tocToggle.addClass('is-open');
-    $body.addClass('has-table-of-contents');
+  var openTableOfContents = function() {
+    $tableOfContents.addClass('slide-down');
+    $tableOfContentsToggle.addClass('is-open');
+    $body.addClass('u-overflow-hidden');
   };
 
-  $tocToggle.off('click');
-  $tocToggle.click(function() {
-    if ($tocToggle.hasClass('is-open')) {
-      closeToc();
+  $tableOfContentsToggle.off('click');
+  $tableOfContentsToggle.click(function() {
+    if ($tableOfContentsToggle.hasClass('is-open')) {
+      closeTableOfContents();
     } else {
-      openToc();
+      openTableOfContents();
     }
     return false;
   });
 
-  $tocClose.click(function() {
-    closeToc();
+  $tableOfContentsClose.click(function() {
+    closeTableOfContents();
     return false;
   });
 };

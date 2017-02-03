@@ -1,173 +1,249 @@
 <section class="table-of-contents" data-role="table-of-contents">
-  <div class="table-of-contents-outer-container">
-    <a href="#" class="table-of-contents-close" data-role="table-of-contents-close">&times;</a>
-    <h2>15 Full Courses, 100+ Screencasts &amp; New Content Weekly</h2>
-    <div class="table-of-contents-container">
-      <ul>
+  <a href="#" class="table-of-contents__close"
+    data-role="table-of-contents-close">
+    &times;
+  </a>
+
+  <div class="table-of-contents__inner-container">
+    <h2>
+      15 Full Courses, 100+ Screencasts &amp; New Content Weekly
+    </h2>
+
+    <div class="table-of-contents-list">
+      <ul class="table-of-contents-list__unit">
         <li>
           <%= image_tag "topics/rails.svg" %>
-          <h3><%= link_to "Master Rails", topic_path("rails") %></h3>
+
+          <h3 class="table-of-contents-list__unit-title">
+            <%= link_to "Master Rails", topic_path("rails") %>
+          </h3>
         </li>
+
         <li>
-          <%= link_to "Advanced ActiveRecord Querying", trail_path("advanced-activerecord-querying") %>
+          <%= link_to "Advanced ActiveRecord Querying",
+            trail_path("advanced-activerecord-querying") %>
         </li>
+
         <li>
           <%= link_to "Test-Driven Rails", trail_path("test-driven-rails") %>
         </li>
+
         <li>
           <%= link_to "Form Objects", video_path("form_objects") %>
         </li>
-        <li class="see-all">
+
+        <li>
           <%= link_to "See all Rails content...", topic_path("rails") %>
         </li>
       </ul>
 
-      <ul>
+      <ul class="table-of-contents-list__unit">
         <li>
           <%= image_tag "topics/vim.svg" %>
-          <h3><%= link_to "Learn Vim", topic_path("vim") %></h3>
+
+          <h3 class="table-of-contents-list__unit-title">
+            <%= link_to "Learn Vim", topic_path("vim") %>
+          </h3>
         </li>
+
         <li>
           <%= link_to "Onramp to Vim", trail_path("onramp-to-vim") %>
         </li>
+
         <li>
           <%= link_to "The Art of Vim", trail_path("the-art-of-vim") %>
         </li>
+
         <li>
-          <%= link_to "Navigating Ruby in Vim", trail_path("navigating-ruby-files-with-vim") %>
+          <%= link_to "Navigating Ruby in Vim",
+            trail_path("navigating-ruby-files-with-vim") %>
         </li>
-        <li class="see-all">
+
+        <li>
           <%= link_to "See all Vim content...", topic_path("vim") %>
         </li>
       </ul>
 
-      <ul>
+      <ul class="table-of-contents-list__unit">
         <li>
           <%= image_tag "topics/workflow.svg" %>
-          <h3><%= link_to "Seamless Workflow", topic_path("workflow") %></h3>
+
+          <h3 class="table-of-contents-list__unit-title">
+            <%= link_to "Seamless Workflow", topic_path("workflow") %>
+          </h3>
         </li>
+
         <li>
           <%= link_to "Learn tmux", trail_path("tmux") %>
         </li>
+
         <li>
-          <%= link_to "Introduction to Dotfiles", video_path("intro-to-dotfiles") %>
+          <%= link_to "Introduction to Dotfiles",
+            video_path("intro-to-dotfiles") %>
         </li>
+
         <li>
           <%= link_to "Let's Build a CLI", video_path("lets-build-a-cli") %>
         </li>
-        <li class="see-all">
+
+        <li>
           <%= link_to "See all workflow content...", topic_path("workflow") %>
-        </li>
         </li>
       </ul>
 
-      <ul>
+      <ul class="table-of-contents-list__unit">
         <li>
           <%= image_tag "topics/testing.svg" %>
-          <h3><%= link_to "Ruby Testing", topic_path("testing") %></h3>
+
+          <h3 class="table-of-contents-list__unit-title">
+            <%= link_to "Ruby Testing", topic_path("testing") %>
+          </h3>
         </li>
+
         <li>
           <%= link_to "Fundamentals of TDD", trail_path("fundamentals-of-tdd") %>
         </li>
+
         <li>
           <%= link_to "Testing Fundamentals", trail_path("testing-fundamentals") %>
         </li>
+
         <li>
           <%= link_to "Test Doubles", trail_path("test-doubles") %>
         </li>
-        <li class="see-all">
+
+        <li>
           <%= link_to "See all testing content...", topic_path("testing") %>
         </li>
       </ul>
 
-      <ul>
+      <ul class="table-of-contents-list__unit">
         <li>
           <%= image_tag "topics/workflow.svg" %>
-          <h3><%= link_to "Up Your Git Game", topic_path("git") %></h3>
+
+          <h3 class="table-of-contents-list__unit-title">
+            <%= link_to "Up Your Git Game", topic_path("git") %>
+          </h3>
         </li>
+
         <li>
           <%= link_to "Mastering Git", trail_path("mastering-git") %>
         </li>
+
         <li>
           <%= link_to "Git Workflow", video_path("git-workflow") %>
         </li>
+
         <li>
           <%= link_to "Gitsh - the Git Shell", video_path("gitsh") %>
         </li>
-        <li class="see-all">
+
+        <li>
           <%= link_to "See all Git content...", topic_path("git") %>
         </li>
       </ul>
 
-      <ul>
+      <ul class="table-of-contents-list__unit">
         <li>
           <%= image_tag "topics/clean-code.svg" %>
-          <h3><%= link_to "Cleaner Ruby", topic_path("clean-code") %></h3>
+
+          <h3 class="table-of-contents-list__unit-title">
+            <%= link_to "Cleaner Ruby", topic_path("clean-code") %>
+          </h3>
         </li>
+
         <li>
           <%= link_to "Refactoring", trail_path("refactoring") %>
         </li>
+
         <li>
           <%= link_to "Form Objects", video_path("form_objects") %>
         </li>
+
         <li>
-          <%= link_to "Ruby Science: Move Method", video_path("ruby-science-move-method") %>
+          <%= link_to "Ruby Science: Move Method",
+            video_path("ruby-science-move-method") %>
         </li>
-        <li class="see-all">
+
+        <li>
           <%= link_to "See all clean code content...", topic_path("clean-code") %>
         </li>
       </ul>
 
-      <ul>
+      <ul class="table-of-contents-list__unit">
         <li>
           <%= image_tag "topics/javascript.svg" %>
-          <h3><%= link_to "Learn JavaScript", topic_path("javascript") %></h3>
+
+          <h3 class="table-of-contents-list__unit-title">
+            <%= link_to "Learn JavaScript", topic_path("javascript") %>
+          </h3>
         </li>
+
         <li>
           <%= link_to "Intro to React", video_path("intro-to-react") %>
         </li>
+
         <li>
           <%= link_to "Intro to Ember", video_path("intro-to-ember") %>
         </li>
+
         <li>
-          <%= link_to "Unit Testing JavaScript", video_path("unit-testing-javascript") %>
+          <%= link_to "Unit Testing JavaScript",
+            video_path("unit-testing-javascript") %>
         </li>
-        <li class="see-all">
-          <%= link_to "See all JavaScript content...", topic_path("javascript") %>
+
+        <li>
+          <%= link_to "See all JavaScript content...",
+            topic_path("javascript") %>
         </li>
       </ul>
 
-      <ul>
+      <ul class="table-of-contents-list__unit">
         <li>
           <%= image_tag "topics/foundations.svg" %>
-          <h3>Fix Your Code</h3>
+
+          <h3 class="table-of-contents-list__unit-title">
+            Fix Your Code
+          </h3>
         </li>
+
         <li>
           <%= link_to "Chrome Dev Tools", video_path("chrome-dev-tools") %>
         </li>
+
         <li>
           <%= link_to "Debugging", video_path("debugging-for-fun-and-profit") %>
         </li>
+
         <li>
           <%= link_to "Code Review", video_path("tips-for-code-review") %>
         </li>
       </ul>
 
-      <ul>
+      <ul class="table-of-contents-list__unit">
         <li>
           <%= image_tag "topics/design.svg" %>
-          <h3><%= link_to "Explore Design", topic_path("design") %></h3>
+
+          <h3 class="table-of-contents-list__unit-title">
+            <%= link_to "Explore Design", topic_path("design") %>
+          </h3>
         </li>
+
         <li>
           <%= link_to "Bourbon Smash", trail_path("bourbon-smash") %>
         </li>
+
         <li>
-          <%= link_to "Design for Developers", trail_path("design-for-developers") %>
+          <%= link_to "Design for Developers",
+            trail_path("design-for-developers") %>
         </li>
+
         <li>
-          <%= link_to "The Playbook: Video Edition", trail_path("the-playbook-video-edition") %>
+          <%= link_to "The Playbook: Video Edition",
+            trail_path("the-playbook-video-edition") %>
         </li>
-        <li class="see-all">
+
+        <li>
           <%= link_to "See all design content...", topic_path("design") %>
         </li>
       </ul>

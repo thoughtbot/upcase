@@ -16,6 +16,8 @@
 @import "defaults/forms";
 @import "defaults/typography";
 
+@import "utilities/u-overflow-hidden";
+
 @import "components/address";
 @import "components/animations";
 @import "components/annual-billing";
@@ -79,9 +81,13 @@
 @import "components/pages";
 @import "components/price";
 @import "components/selling-point";
-@import "components/table-of-contents";
 @import "components/testimonials";
 @import "components/topics-grid";
 @import "components/welcome-page";
+
+// Styles exclusive to splash (marketing) pages
+@import "splashes/components/table-of-contents";
+@import "splashes/components/table-of-contents-list";
+@import "splashes/components/table-of-contents-toggle";
 
 @import "highlight-js-gist";

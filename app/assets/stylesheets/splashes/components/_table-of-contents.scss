@@ -1,0 +1,34 @@
+.table-of-contents {
+  @include position(fixed, 3.75rem 0 0 0);
+  background-color: $white;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
+  padding: $medium-spacing;
+  transform: translateY(-120%);
+  transition: transform 250ms;
+  z-index: $z-table-of-contents--mobile;
+
+  @include marketing-small {
+    padding: $medium-spacing $base-spacing;
+    z-index: $z-table-of-contents;
+  }
+
+  &.slide-down {
+    transform: translateY(0%);
+  }
+}
+
+.table-of-contents__inner-container {
+  margin: $base-spacing auto;
+  max-width: $large-screen;
+}
+
+.table-of-contents__close {
+  @include position(absolute, 1rem 1rem null null);
+  cursor: pointer;
+  font-size: 2em;
+
+  @include marketing-fullsize {
+    display: none;
+  }
+}
