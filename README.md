@@ -189,6 +189,18 @@ and trello boards, and others.
 3. Access the [general admin panel](http://upcase.com/admin) or
    the [workshop admin panel](http://upcase.com/admin).
 
+# Testing With User Accounts
+
+`rake dev:prime` will create user accounts that you can test with in
+development. The account that is associated with a team, requires
+additional configuration to test in your development environment.
+
+You will need the Test Secret and Test Publishable Strip keys. You can get them
+from https://manage.stripe.com/account/apikeys. Add them to your `.env` file.
+
+`STRIPE_API_KEY=api_key`
+`STRIPE_PUBLIC_KEY=publishable_key`
+
 # Credits
 
 ![thoughtbot](http://thoughtbot.com/logo.png)

@@ -39,6 +39,7 @@ body.teams-edit {
   .invitations li {
     background: #eee;
     border-style: dashed;
+    padding-left: 2.75rem;
   }
 
   .invite-members {
@@ -58,7 +59,11 @@ body.teams-edit {
     }
 
     li.email {
-      @include span-columns(10);
+      width: 100%;
+
+      @include media($large-screen) {
+        @include span-columns(9);
+      }
 
       label {
         display: none;
@@ -66,7 +71,9 @@ body.teams-edit {
     }
 
     input[type=submit] {
-      @include span-columns(2);
+      @include media($large-screen) {
+        @include span-columns(3);
+      }
     }
 
     input[type=email] {

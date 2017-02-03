@@ -380,7 +380,8 @@ FactoryGirl.define do
           :subscription,
           user: instance,
           plan: create(:plan, :team),
-          team: instance.team
+          team: instance.team,
+          next_payment_on: 2.days.from_now,
         )
         SubscriptionFulfillment.new(instance, subscription.plan).fulfill
       end
