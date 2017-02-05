@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>close-black</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g stroke-width="26" stroke="#000000">
+            <path d="M100,99.2928932 L55.3610791,54.6539723 L54.6539723,55.3610791 L99.2928932,100 L54.6539723,144.638921 L55.3610791,145.346028 L100,100.707107 L144.638921,145.346028 L145.346028,144.638921 L100.707107,100 L145.346028,55.3610791 L144.638921,54.6539723 L100,99.2928932 Z"></path>
+        </g>
+    </g>
+</svg>
