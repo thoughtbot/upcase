@@ -46,30 +46,4 @@
   <div class="tier__sale tier__sale-placeholder">
     Many packages remaining
   </div>
-
-  <form action="/upcase/tapas_payments" method="POST">
-    <div class="tier-quantity">
-      <label for="quantity">Number of team members</label>
-
-      <select id="quantity" name="quantity">
-        <%= (2..40).each do |number| %>
-          <option><%= number %></option>
-        <% end %>
-      </select>
-    </div>
-
-    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="pk_dS1rNV9KKlKqKkgnXzXYPdYzwM228"
-            data-amount="<%= TapasPaymentsController::TIER_3_PRICE %>"
-            data-name="Upcase"
-            data-panel-label="{{amount}} per team member"
-            data-description="Silver Tier"
-            data-label="I want this"
-            data-image="https://s3.amazonaws.com/stripe-uploads/ZZmGCK8MYKr0FHOuop7OzJe7Spmxk7nrmerchant-icon-1415719897983-twitter-icon-2-2.png"
-            data-locale="auto">
-    </script>
-
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <%= hidden_field_tag :tier, 3 %>
-  </form>
 </div>

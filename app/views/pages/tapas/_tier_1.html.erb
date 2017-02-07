@@ -24,19 +24,4 @@
       </strong>
     </div>
   </div>
-
-  <form action="/upcase/tapas_payments" method="POST">
-    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="pk_dS1rNV9KKlKqKkgnXzXYPdYzwM228"
-            data-amount="<%= TapasPaymentsController::TIER_1_PRICE %>"
-            data-name="Upcase"
-            data-description="Tier 1"
-            data-image="https://s3.amazonaws.com/stripe-uploads/ZZmGCK8MYKr0FHOuop7OzJe7Spmxk7nrmerchant-icon-1415719897983-twitter-icon-2-2.png"
-            data-label="I want this"
-            data-locale="auto">
-    </script>
-
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <%= hidden_field_tag :tier, 1 %>
-  </form>
 </div>
