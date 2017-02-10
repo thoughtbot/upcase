@@ -35,7 +35,7 @@ describe User do
   context "#team_name" do
     it "creates a new team" do
       user = create(:user, :with_subscription)
-      user.subscription.stub(:change_plan)
+      allow(user.subscription).to receive(:change_plan)
 
       user.team_name = "team name"
       user.save
