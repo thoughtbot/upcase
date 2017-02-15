@@ -53,6 +53,10 @@
       <% end %>
       <%= link_to "View all invoices", subscriber_invoices_path, class: "invoices" %>
     </ol>
+
+    <h3><%= t(".refer_a_friend") %></h3>
+    <p><%= t(".referral_benefits", percent: ENV.fetch("REFERRAL_DISCOUNT", "10")) %></p>
+    <%= link_to t(".referral_link"), "#", class: "cta-button squatchpop" %>
   <% end %>
 
   <% if current_team %>

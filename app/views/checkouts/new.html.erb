@@ -35,7 +35,7 @@
 
 <% content_for :javascript do -%>
   <script type="text/javascript">
-    // this identifies your website in the createToken call below
+  // this identifies your website in the createToken call below
   Stripe.setPublishableKey('<%= STRIPE_PUBLIC_KEY %>');
 
   function stripeResponseHandler(status, response) {

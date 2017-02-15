@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include Clearance::Controller
 
   protect_from_forgery with: :exception
-  before_filter :capture_campaign_params
+  before_filter :capture_campaign_params, :apply_referral_coupon
 
   def current_user
     super || Guest.new
@@ -41,6 +41,11 @@ class ApplicationController < ActionController::Base
       current_user.subscription.owner?(current_user)
   end
   helper_method :current_user_is_subscription_owner?
+
+  def current_user_is_subscriber?
+    current_user.subscriber?
+  end
+  helper_method :current_user_is_subscriber?
 
   def current_user_is_eligible_for_annual_upgrade?
     current_user.eligible_for_annual_upgrade?
@@ -86,6 +91,12 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :github_auth_path
+
+  def apply_referral_coupon
+    if params[:rsCode].present?
+      redirect_to coupon_path(params[:rsCode])
+    end
+  end
 
   def capture_campaign_params
     session[:campaign_params] ||= {

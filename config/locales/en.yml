@@ -259,6 +259,9 @@ en:
       have_any_questions: Have any questions?
       here_to_help: We're here to help, so feel free to send any questions in and we'll get back to you right away.
       contact_us: Contact us
+      refer_a_friend: Refer a friend
+      referral_benefits: "Referring a friend or colleague to Upcase will give both you, and them, a %{percent}% discount on next month's bill."
+      referral_link: Create your referral code
     resubscribe:
       plea_html: We get it, things change. But if you want to come back, we have your card on file, and you just have to click this button. Oh, and if you want to change your card beforehand, <a href="%{billing_url}">you can do that right here</a>.
       call_to_action: Resubscribe

@@ -6,6 +6,10 @@
 
 <%= yield :javascript %>
 
+<% if current_user_is_subscriber? %>
+  <%= render "shared/squatch_js" %>
+<% end %>
+
 <% if Rails.env.test? || Rails.env.cucumber? %>
   <%= javascript_tag do %>
     jQuery.fx.off = true;
