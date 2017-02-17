@@ -7,7 +7,10 @@
       <%= link_to t("shared.header.flashcards"), decks_path %>
     </li>
     <li class="explore">
-      <%= link_to t("shared.header.weekly_iteration"), show_path("the-weekly-iteration") %>
+      <%= link_to t(
+        "shared.header.weekly_iteration"),
+        show_path("the-weekly-iteration")
+      %>
     </li>
     <li class="discuss">
       <%= link_to t("shared.header.forum"), Forum.url %>
@@ -25,7 +28,7 @@
         <% if content_for?(:header_cta_link) %>
           <%= content_for(:header_cta_link) %>
         <% else %>
-          <%= link_to professional_checkout_path, class: "header-cta-link" do %>
+          <%= link_to professional_checkout_path, class: "site-nav__cta" do %>
             <%= t("subscriptions.join_cta") %>
           <% end %>
         <% end %>

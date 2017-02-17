@@ -26,7 +26,8 @@
       <% if landing_page? %>
         <%= link_to t("shared.header.sign_in"), sign_in_path %>
       <% else %>
-        <%= link_to t("shared.header.sign_in"), sign_in_path_with_current_path_return_to %>
+        <%= link_to t("shared.header.sign_in"),
+          sign_in_path_with_current_path_return_to %>
       <% end %>
     </li>
   <% end %>
@@ -35,7 +36,8 @@
     <% if content_for?(:header_cta_link) %>
       <%= content_for(:header_cta_link) %>
     <% else %>
-      <%= link_to professional_checkout_path, class: "header-cta-link" do %>
+      <%= link_to professional_checkout_path,
+        class: "site-nav__cta" do %>
         <%= t("subscriptions.join_cta") %>
       <% end %>
     <% end %>

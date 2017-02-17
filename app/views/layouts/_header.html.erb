@@ -4,16 +4,24 @@
   <div class="header-container">
     <%= link_to root_path, class: "branding" do %>
       <h1 class="small-logo">
-        <%= image_tag("upcase/upcase-header-logo-small.svg", alt: t("layouts.app_name")) %>
+        <%= image_tag("upcase/upcase-header-logo-small.svg",
+                      alt: t("layouts.app_name")) %>
       </h1>
 
-      <%= image_tag("ralph.svg", class: "ralph-header-logo", alt: t("layouts.thoughtbot")) %>
+      <%= image_tag("ralph.svg", class: "ralph-header-logo",
+                    alt: t("layouts.thoughtbot")) %>
       <% if sales_context? %>
-        <span class="header-tagline"><%= t("shared.header.tagline") %></span>
+        <span class="header-tagline">
+          <%= t("shared.header.tagline") %>
+        </span>
       <% end %>
     <% end %>
-    <a class="nav-toggle">Menu</a>
-    <nav class="closed">
+
+    <a class="site-nav__menu js-data-toggle-menu-trigger">
+      Menu
+    </a>
+
+    <nav>
       <% if sales_context? %>
         <%= render "layouts/marketing_header_links" %>
       <% else %>

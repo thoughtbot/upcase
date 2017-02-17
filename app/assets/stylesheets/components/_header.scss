@@ -8,11 +8,13 @@
 
 .header-wrapper {
   @include linear-gradient($upcase-blue-1, $upcase-blue-2);
+  flex: none;
+  min-height: 4rem;
+  width: 100%;
+
   @include dashboard-medium {
     margin: 0 auto 40px;
   }
-  width: 100%;
-  flex: none;
 
   .ralph-header-logo {
     height: 27px;
@@ -24,7 +26,7 @@
       background-color: inherit;
     }
 
-    .header-cta-link {
+    .site-nav__cta {
       @extend %button;
       font-size: 1rem;
       height: $header-height;
@@ -48,7 +50,7 @@
   }
 }
 
-.header-cta-link {
+.site-nav__cta {
   .header-wrapper.headhesive--stick & {
     @include linear-gradient($cta-color-light, $cta-color-dark);
     border-radius: 3px;
@@ -122,7 +124,7 @@
     }
   }
 
-  .nav-toggle {
+  .site-nav__menu {
     display: none;
 
     @include dashboard-small-only {
@@ -147,19 +149,22 @@
 
   nav {
     @include dashboard-small-only {
-      max-height: 100em;
-      overflow-y: hidden;
-      transition: all 0.75s $ease-in-out-sine;
+      margin-top: -100%;
+      opacity: 0;
+      transition: opacity 250ms $ease-in-out-sine,
+                  margin 750ms $ease-in-out-sine;
     }
 
     @media print {
       display: none;
     }
 
-    &.closed {
+    .is-open & {
       @include dashboard-small-only {
-        max-height: 0;
-        opacity: 0;
+        margin-top: 0;
+        opacity: 1;
+        transition: opacity 500ms $ease-in-out-sine 250ms,
+                    margin 500ms $ease-in-out-sine;
       }
     }
 
