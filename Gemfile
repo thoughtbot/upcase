@@ -60,7 +60,9 @@ gem "vanity", "2.0.0.beta8"
 gem "wrapped"
 
 group :development do
+  gem "guard-livereload", "~> 2.5", require: false
   gem "quiet_assets"
+  gem "rack-livereload"
   gem "rack-mini-profiler", require: false
   gem "spring"
   gem "spring-commands-rspec"

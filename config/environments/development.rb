@@ -34,6 +34,9 @@ Upcase::Application.configure do
 
   config.action_view.raise_on_missing_translations = true
 
+  # Add Rack::LiveReload to bottom of middleware stack with default options:
+  config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
+
   PAPERCLIP_STORAGE_OPTIONS = {
      storage: :s3,
      s3_credentials: "#{Rails.root}/config/s3.yml",

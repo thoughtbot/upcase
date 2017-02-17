@@ -58,6 +58,14 @@ your work.
 
         % open http://localhost:5000/upcase
 
+## Designing In The Browser
+
+We are using `https://github.com/guard/guard-livereload` and
+`https://github.com/johnbintz/rack-livereload`. When you save a file, the open
+browser will automatically refresh, and you can view your changes.
+
+Run `bundle exec guard` to start the guard server to auto refresh your browser.
+
 ## Protocol
 
 1. Look for cards in the **Next Up** list.
