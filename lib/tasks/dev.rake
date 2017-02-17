@@ -152,6 +152,9 @@ namespace :dev do
       email: "team@example.com",
     )
     puts_user user, "team subscriber"
+
+    user = create(:user, email: "new@example.com")
+    puts_user user, "unsubscribed user"
   end
 
   def create_team_plan
