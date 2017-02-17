@@ -1,7 +1,7 @@
 $(function() {
-  var $trigger = $(".js-data-toggle-menu-trigger");
+  var $trigger = $(".js-toggle-menu-trigger");
 
   $trigger.click(function() {
-    $("body").toggleClass("open");
+    $("body").toggleClass("is-open");
   });
 });
