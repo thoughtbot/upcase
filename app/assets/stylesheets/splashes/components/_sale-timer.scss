@@ -1,0 +1,66 @@
+.sale-timer {
+  @include position(fixed, null 0 0 0);
+  background: lighten($egyptian-blue, 55%);
+  border-top: solid 1px lighten($egyptian-blue, 52%);
+  box-shadow: 0 0 2rem rgba(mix($egyptian-blue, $black), 0.125);
+  color: transparentize(darken($egyptian-blue, 30%), 0.5);
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  padding: 0.75rem 0 1.5rem;
+  text-align: center;
+  transition: transform 250ms, padding 250ms;
+  z-index: 999;
+
+  @media(min-width: $medium-screen) {
+    padding: 1.5rem;
+  }
+
+  span {
+    background-color: lighten($egyptian-blue, 52%);
+    border-radius: 3px;
+    font-family: $strong-font-family;
+    font-size: $base-font-size * 1.25;
+    padding: 0.125rem 0.5rem;
+
+    @media(min-width: $medium-screen) {
+      padding: 0.25rem 1rem;
+    }
+  }
+
+  &.closed {
+    transform: translateY(120%);
+  }
+}
+
+.sale-timer__trigger {
+  @include position(absolute, 2.5rem null null 1rem);
+  cursor: pointer;
+
+  @media(min-width: $medium-screen) {
+    top: 1.75rem;
+  }
+
+  &::before {
+    @include size(1rem);
+    background-image: url("icons/close-black.svg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    content: "";
+    opacity: 0.5;
+    position: absolute;
+  }
+}
+
+.sale-timer__helper-text {
+  @media(min-width: $medium-screen) {
+    display: inline-block;
+    line-height: 1;
+    margin: 0;
+  }
+}
+
+.sale-timer__time {
+  @media(min-width: $medium-screen) {
+    display: inline-block;
+  }
+}
