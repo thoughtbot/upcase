@@ -7,13 +7,6 @@ describe Cancellation do
     expect(cancellation).to be_a(ActiveModel::Model)
   end
 
-  it "validates presence of reason" do
-    cancellation = build_cancellation(reason: "")
-
-    expect(cancellation).to be_invalid
-    expect(cancellation.errors[:reason]).to eq(["can't be blank"])
-  end
-
   describe "#process" do
     before :each do
       allow(subscription).to receive(:stripe_customer_id).
@@ -48,8 +41,7 @@ describe Cancellation do
 
       expect(stripe_customer.subscriptions.first).to have_received(:delete)
       expect(analytics).to have_tracked("Cancelled").
-        for_user(subscription.user).
-        with_properties(reason: "reason")
+        for_user(subscription.user)
     end
 
     it "retrieves the customer correctly" do
@@ -97,24 +89,16 @@ describe Cancellation do
         expect(subscription.user_clicked_cancel_button_on).
           to eq Date.current
         expect(analytics).to have_tracked("Cancelled").
-          for_user(subscription.user).
-          with_properties(reason: "reason")
+          for_user(subscription.user)
       end
     end
 
-    it "returns true when valid" do
+    it "returns true" do
       cancellation = build_cancellation
       allow(Stripe::Customer).to receive(:retrieve).
         and_return(stripe_customer)
 
       expect(cancellation.schedule).to eq true
-    end
-
-    it "returns false when invalid" do
-      cancellation = build_cancellation(reason: nil)
-      allow(Stripe::Customer).to receive(:retrieve).and_return(stripe_customer)
-
-      expect(cancellation.schedule).to eq false
     end
 
     it "retrieves the customer correctly" do
@@ -153,12 +137,8 @@ describe Cancellation do
     end
   end
 
-  def build_cancellation(subscription: create(:subscription),
-                         reason: "reason")
-    Cancellation.new(
-      subscription: subscription,
-      reason: reason
-    )
+  def build_cancellation(subscription: create(:subscription))
+    Cancellation.new(subscription: subscription)
   end
 
   def subscription

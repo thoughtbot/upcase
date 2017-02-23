@@ -11,6 +11,16 @@ class Subscription < ActiveRecord::Base
   validates :plan_type, presence: true
   validates :user_id, presence: true
 
+  def self.restarting_today
+    where.not(deactivated_on: nil).
+      where(scheduled_for_reactivation_on: Time.zone.today)
+  end
+
+  def self.restarting_in_two_days
+    where.not(deactivated_on: nil).
+      where(scheduled_for_reactivation_on: Time.zone.today + 2.days)
+  end
+
   def self.canceled_in_last_30_days
     canceled_within_period(30.days.ago, Time.zone.now)
   end

@@ -138,7 +138,7 @@ describe Subscription do
   describe "#change_stripe_plan" do
     it "updates the plan in Stripe" do
       different_plan = create(:plan, sku: "different")
-      stripe_customer = setup_cutomer
+      stripe_customer = setup_customer
       subscription = create(:active_subscription)
 
       subscription.change_stripe_plan(sku: different_plan.sku)
@@ -214,7 +214,7 @@ describe Subscription do
 
   describe "#change_quantity" do
     it "updates the plan in Stripe" do
-      stripe_customer = setup_cutomer
+      stripe_customer = setup_customer
       subscription = create(:active_subscription)
 
       subscription.change_quantity(4)
@@ -229,6 +229,51 @@ describe Subscription do
       subscription = build_stubbed(:subscription, plan: plan)
 
       expect(subscription.plan_name).to eq "Individual"
+    end
+  end
+
+  describe ".restarting_today" do
+    it "returns nothing when there are no subscriptions scheduled" do
+      create(
+        :inactive_subscription,
+        scheduled_for_reactivation_on: 4.days.ago,
+      )
+      create(
+        :inactive_subscription,
+        scheduled_for_reactivation_on: 4.days.from_now,
+      )
+
+      expect(Subscription.restarting_today).to be_empty
+    end
+
+    it "returns subscriptions that are cancelled but restart today" do
+      create_list(:paused_subscription_restarting_today, 2)
+
+      expect(Subscription.restarting_today.count).to eq 2
+    end
+  end
+
+  describe ".restarting_in_two_days" do
+    it "returns nothing when no subscriptions are scheduled" do
+      create(
+        :inactive_subscription,
+        scheduled_for_reactivation_on: 4.days.ago,
+      )
+      create(
+        :inactive_subscription,
+        scheduled_for_reactivation_on: 4.days.from_now,
+      )
+
+      expect(Subscription.restarting_in_two_days).to be_empty
+    end
+
+    it "returns subscriptions that restart in 2 days" do
+      create(
+        :inactive_subscription,
+        scheduled_for_reactivation_on: 2.days.from_now,
+      )
+
+      expect(Subscription.restarting_in_two_days.count).to eq 1
     end
   end
 
@@ -342,7 +387,7 @@ describe Subscription do
     end
   end
 
-  def setup_cutomer
+  def setup_customer
     stripe_customer = double(
       "StripeCustomer",
       subscriptions: [FakeSubscription.new]

@@ -1,7 +1,48 @@
 <div class="text-box-wrapper solo cancellation-discount">
   <article>
-    <%= render 'cancellation_confirmation' %>
+    <h2>Pause your subscription</h2>
+
+    <p>
+      Too busy to study right now? Pausing that Ruby project? Money a
+      little tight? 
+    </p>
+
+    <p>
+      If you need a little time away from Upcase we can pause your subscription
+      for 3 months. You won't be charged again during this period.
+    </p>
+
+    <p>
+      Progress on your exercises, trail progress, forum posts, etc, will be
+      saved.
+    </p>
+
+    <p>
+      We'll email you 2 days before we restart your subscription to
+      make sure you're ready.
+    </p>
+
+    <p>
+      <%= link_to t("subscriptions.pause"), subscriber_paused_subscription_path, class: 'cta-button', method: :post %>
+    </p>
   </article>
 
-  <%= render 'form' %>
+  <br />
+
+  <article>
+    <h2>Cancel your subscription</h2>
+
+    <p>
+      Want to cancel more permanently?
+    </p>
+
+    <p>
+      If you're sure you won't want to come back Upcase in the future, choose
+      this option.
+    </p>
+
+    <p>
+      <%= link_to t("subscriptions.confirm_cancel"), subscriber_cancellation_path, class: 'cta-button', method: :post %>
+    </p>
+  </article>
 </div>

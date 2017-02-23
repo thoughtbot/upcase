@@ -36,9 +36,11 @@ feature "User edits a team subscription" do
 
     visit my_account_path
 
-    expect(page).to_not have_content "View all invoices"
-    expect(page).to_not have_content "Cancel"
-    expect(page).to_not have_content "Manage Users"
+    within "#account-sidebar" do
+      expect(page).to_not have_content "View all invoices"
+      expect(page).to_not have_content "Cancel"
+      expect(page).to_not have_content "Manage Users"
+    end
   end
 
   def plan

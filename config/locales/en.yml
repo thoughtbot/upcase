@@ -179,10 +179,11 @@ en:
   subscriptions:
     accept_discounted_annual_subscription: Yes! I want to save $$$ and keep learning
     cancel: Cancel
+    pause: Pause my subscription for 3 months
     deactivation_scheduled_on: Scheduled for deactivation on %{date}
     change_plan: Change plan
     choose_plan: Switch Plan
-    confirm_cancel: Yes, cancel my subscription
+    confirm_cancel: Cancel my subscription
     current_plan_html: <p class="current-plan">This is your current plan</p>
     discount:
       forever: '%{final_price}'
@@ -192,6 +193,9 @@ en:
       cancel:
         success: We're sorry to see you go. You will have access to all the features
           of your plan until the end of your current billing cycle.
+      pause:
+        success: We've paused your account for 90 days, and will be in touch just before
+          your plan is set to restart.
       change:
         success: You have successfully changed your subscription plan, any remaining
           balance has been applied to future invoices.

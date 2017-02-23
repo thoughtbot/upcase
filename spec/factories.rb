@@ -394,6 +394,15 @@ FactoryGirl.define do
 
     factory :inactive_subscription do
       deactivated_on { Time.zone.today }
+      user_clicked_cancel_button_on { Time.zone.today }
+
+      factory :paused_subscription_restarting_today do
+        scheduled_for_reactivation_on { Time.zone.today }
+      end
+
+      factory :paused_subscription_restarting_tomorrow do
+        scheduled_for_reactivation_on { Time.zone.tomorrow }
+      end
     end
 
     factory :team_subscription do

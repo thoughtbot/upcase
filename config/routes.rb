@@ -123,6 +123,7 @@ Upcase::Application.routes.draw do
     namespace :subscriber do
       resources :invoices, only: [:index, :show]
       resource :cancellation, only: [:new, :create]
+      resource :paused_subscription, only: [:create]
       resource :discount, only: :create
       resource :reactivation, only: [:create]
       resource :resubscription, only: [:create]
@@ -189,6 +190,7 @@ Upcase::Application.routes.draw do
     resources :topics, only: :index, constraints: { format: "css" }
     resources :onboardings, only: :create
     get "pages/welcome", to: "high_voltage#show", as: "welcome"
+    get "forum", to: redirect("https://forum.upcase.com"), as: "forum"
 
     resources(
       :design_for_developers_resources,

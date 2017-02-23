@@ -1,0 +1,9 @@
+We're sorry to see you go, but we understand!
+
+We've paused your subscription until <%= @restart_date %>, which is 3 months after your final billing date (<%= @last_billing_date %>).
+
+We'll email you 2 days before <%= @restart_date %> to remind you that we're restarting your subscription.
+
+If you would like to restart before then, you may do so at your account page: <%= my_account_url %>
+
+If you have any other support or billing questions, please email us at <%= ENV["SUPPORT_EMAIL"] %>.

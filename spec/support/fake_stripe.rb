@@ -11,6 +11,7 @@ class FakeStripe < Sinatra::Base
   INVOICE_ID = "in_1s4JSgbcUaElzU"
   PLAN_ID = "JAVA-PLAN-1b3a5c51-5c1a-421b-8822-69138c2d937b"
   SUBSCRIPTION_ID = "sub_4uJxAs8DlW3Z0w"
+  SUBSCRIPTION_BILLING_PERIOD_END = 1361234235
 
   cattr_reader :last_charge, :last_customer_email, :last_token, :coupons,
     :customer_plan_id, :last_coupon_used, :customer_plan_quantity
@@ -695,7 +696,7 @@ class FakeStripe < Sinatra::Base
       customer: CUSTOMER_ID,
       cancel_at_period_end: false,
       current_period_start: 1358555835,
-      current_period_end: 1361234235,
+      current_period_end: SUBSCRIPTION_BILLING_PERIOD_END,
       ended_at: nil,
       trial_start: nil,
       trial_end: nil,

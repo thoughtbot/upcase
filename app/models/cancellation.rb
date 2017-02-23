@@ -1,13 +1,8 @@
 class Cancellation
   include ActiveModel::Model
 
-  attr_accessor :reason
-
-  validates :reason, presence: true
-
-  def initialize(subscription:, reason: "")
+  def initialize(subscription:)
     @subscription = subscription
-    @reason = reason
   end
 
   def schedule
@@ -51,7 +46,7 @@ class Cancellation
   def track_cancelled
     Analytics.
       new(@subscription.user).
-      track_cancelled(reason: reason)
+      track_cancelled
   end
 
   def record_date_when_subscription_will_deactivate
