@@ -24,7 +24,7 @@ class Topic < ActiveRecord::Base
   end
 
   def published_trails
-    trails.published
+    trails.published.order(:priority)
   end
 
   def to_param
