@@ -14,6 +14,8 @@ class SubscriptionsRestarter
       user: subscription.user,
       plan: subscription.plan,
     ).fulfill
+
+    PauseMailer.restarted(subscription).deliver_later
   end
 
   protected

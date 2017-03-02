@@ -11,6 +11,16 @@ RSpec.describe SubscriptionsRestarter do
 
       expect(user.subscriptions.count).to eq 2
     end
+
+    it "sends an email to the subscription owner" do
+      subscription = create(:paused_subscription_restarting_today)
+      restarter = SubscriptionsRestarter.new(subscription)
+      PauseMailer.stub(restarted: double("mailer", deliver_later: true))
+
+      restarter.restart
+
+      expect(PauseMailer).to have_received(:restarted).with(subscription)
+    end
   end
 
   describe ".restart_todays_paused_subscriptions" do

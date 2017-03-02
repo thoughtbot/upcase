@@ -17,9 +17,9 @@ class PauseMailer < BaseMailer
     )
   end
 
-  def restarted(subscription)
+  def restarted(previous_subscription)
     mail(
-      to: subscription.user.email,
+      to: previous_subscription.user.email,
       subject: "Your Upcase subscription is back!",
     )
   end
