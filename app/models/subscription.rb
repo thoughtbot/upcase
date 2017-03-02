@@ -13,7 +13,10 @@ class Subscription < ActiveRecord::Base
 
   def self.restarting_today
     where.not(deactivated_on: nil).
-      where(scheduled_for_reactivation_on: Time.zone.today)
+      where(
+        reactivated_on: nil,
+        scheduled_for_reactivation_on: Time.zone.today,
+      )
   end
 
   def self.restarting_in_two_days

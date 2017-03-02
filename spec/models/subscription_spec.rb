@@ -233,17 +233,27 @@ describe Subscription do
   end
 
   describe ".restarting_today" do
-    it "returns nothing when there are no subscriptions scheduled" do
-      create(
-        :inactive_subscription,
-        scheduled_for_reactivation_on: 4.days.ago,
-      )
-      create(
-        :inactive_subscription,
-        scheduled_for_reactivation_on: 4.days.from_now,
-      )
+    context "subscription has already been reactivated today" do
+      it "returns nothing" do
+        create(:paused_subscription_restarting_today, reactivated_on: Time.now)
 
-      expect(Subscription.restarting_today).to be_empty
+        expect(Subscription.restarting_today).to be_empty
+      end
+    end
+
+    context "no subscriptions are scheduled for today" do
+      it "returns nothing" do
+        create(
+          :inactive_subscription,
+          scheduled_for_reactivation_on: 4.days.ago,
+        )
+        create(
+          :inactive_subscription,
+          scheduled_for_reactivation_on: 4.days.from_now,
+        )
+
+        expect(Subscription.restarting_today).to be_empty
+      end
     end
 
     it "returns subscriptions that are cancelled but restart today" do
