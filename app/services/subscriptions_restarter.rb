@@ -10,12 +10,16 @@ class SubscriptionsRestarter
   end
 
   def restart
-    Resubscription.new(
-      user: subscription.user,
-      plan: subscription.plan,
-    ).fulfill
+    Subscription.transaction do
+      subscription.update!(reactivated_on: Time.zone.now)
 
-    PauseMailer.restarted(subscription).deliver_later
+      Resubscription.new(
+        user: subscription.user,
+        plan: subscription.plan,
+      ).fulfill
+
+      PauseMailer.restarted(subscription).deliver_later
+    end
   end
 
   protected

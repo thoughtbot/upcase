@@ -12,6 +12,18 @@ RSpec.describe SubscriptionsRestarter do
       expect(user.subscriptions.count).to eq 2
     end
 
+    it "marks previous subscription as having been reactivated" do
+      subscription = create(
+        :paused_subscription_restarting_today,
+        reactivated_on: nil,
+      )
+      restarter = SubscriptionsRestarter.new(subscription)
+
+      restarter.restart
+
+      expect(subscription.reactivated_on).not_to be_nil
+    end
+
     it "sends an email to the subscription owner" do
       subscription = create(:paused_subscription_restarting_today)
       restarter = SubscriptionsRestarter.new(subscription)
