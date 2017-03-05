@@ -1,16 +1,15 @@
 .table-of-contents {
-  @include position(fixed, 3.75rem 0 0 0);
-  background-color: $white;
+  @include position(fixed, $site-header-height 0 0 0);
   -webkit-overflow-scrolling: touch;
+  background-color: $white;
   overflow-y: scroll;
   padding: $medium-spacing;
   transform: translateY(-120%);
   transition: transform 250ms;
-  z-index: $z-table-of-contents--mobile;
+  z-index: $z-table-of-contents;
 
-  @include marketing-small {
+  @include marketing-fullsize {
     padding: $medium-spacing $base-spacing;
-    z-index: $z-table-of-contents;
   }
 
   &.slide-down {

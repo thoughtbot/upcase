@@ -1,0 +1,20 @@
+.marketing-video {
+  border-radius: $base-border-radius;
+  box-shadow: $base-content-shadow;
+  margin: -($large-spacing) auto 0;
+  max-width: $medium-screen;
+  overflow: hidden;
+}
+
+.marketing-video__video {
+  height: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+
+  embed,
+  object,
+  iframe {
+    @include position(absolute, 0 null null 0);
+    @include size(100%);
+  }
+}

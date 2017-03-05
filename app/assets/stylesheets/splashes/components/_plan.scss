@@ -1,0 +1,26 @@
+.plan {
+  color: $white;
+  font-family: $heading-font-family;
+  letter-spacing: 0.02rem;
+}
+
+.plan__title {
+  color: rgba($white, 0.6);
+  display: block;
+  margin-bottom: $small-spacing;
+}
+
+.plan__cost {
+  font-family: $strong-font-family;
+  font-size: $large-font-size;
+  margin-right: -0.25rem;
+}
+
+.plan__payment-frequency {
+  color: rgba($white, 0.6);
+}
+
+.plan__closer {
+  display: block;
+  margin-bottom: $medium-spacing;
+}

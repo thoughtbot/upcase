@@ -1,0 +1,42 @@
+<header class="site-header">
+  <nav class="site-nav">
+    <%= link_to root_path do %>
+      <%= inline_svg "upcase/upcase-header-logo-small.svg",
+        alt: t("layouts.app_name") %>
+    <% end %>
+
+    <a class="site-nav__menu-trigger js-toggle-menu-trigger">
+      Menu
+    </a>
+
+    <div class="site-nav__menu">
+      <ul>
+        <li>
+          <%= link_to "Weekly Videos", Show.the_weekly_iteration %>
+        </li>
+
+        <li>
+          <%= link_to "Forum", "https://forum.upcase.com", target: "_blank" %>
+        </li>
+
+        <li>
+          <%= link_to t("shared.header.content"), "#",
+            class: "table-of-contents-toggle",
+            data: { role: "table-of-contents-toggle" } %>
+        </li>
+
+        <li>
+          <%= link_to t("shared.header.sign_in"), sign_in_path %>
+        </li>
+
+        <li>
+          <%= link_to(
+            t("subscriptions.join_cta"),
+            professional_checkout_path,
+            class: "site-nav__cta"
+          ) %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

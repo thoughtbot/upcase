@@ -20,12 +20,17 @@
 
   li {
     display: block;
-    margin-bottom: 0.4em;
+    margin-bottom: $base-spacing;
   }
 
   li:last-of-type a {
     font-style: italic;
     font-weight: 500;
+    opacity: 0.5;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   img {
@@ -35,6 +40,8 @@
 }
 
 .table-of-contents-list__unit-title {
+  font-family: $strong-font-family;
+
   a {
     color: $darkwarmgray;
   }

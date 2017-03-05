@@ -4,7 +4,7 @@
   flex-direction: column;
   height: 75vh;
   justify-content: center;
-  padding: $small-spacing;
+  padding: $small-spacing $small-spacing $x-large-spacing;
   position: relative;
   text-align: center;
 
@@ -17,7 +17,19 @@
 .hero--pattern-background {
   &::after {
     @include position(absolute, 0 0 0 0);
-    background: linear-gradient( rgba($egyptian-blue, 0.8), rgba($egyptian-blue, 0.15));
+    background: linear-gradient(
+      rgba($egyptian-blue, 0.75),
+      rgba($egyptian-blue, 0)
+    );
+    content: "";
+    z-index: -1;
+  }
+}
+
+.hero--upcase-background {
+  &::after {
+    @include position(absolute, 0 0 0 0);
+    background: linear-gradient(rgba($blue, 1), rgba($blue, 0));
     content: "";
     z-index: -1;
   }
@@ -25,8 +37,8 @@
 
 .hero__tagline {
   color: $white;
+  font-family: $title-font-family;
   font-size: 1.75rem;
-  font-weight: bold;
   margin: $small-spacing 0 $small-spacing;
   transition: font-size $base-duration;
 
@@ -37,15 +49,15 @@
 
 .hero__uvp {
   color: rgba($white, 0.65);
-  font-family: $base-font-family;
+  font-family: $heading-font-family;
   font-size: $base-font-size * 1.1;
-  line-height: 1.35;
+  line-height: 1.2;
   margin-bottom: $base-spacing;
   max-width: 320px;
   transition: font-size $base-duration;
 
   strong {
-    color: rgba($white, 0.85);
+    color: rgba($white, 0.9);
   }
 
   @media (min-width: $medium-screen) {

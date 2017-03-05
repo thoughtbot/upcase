@@ -5,10 +5,11 @@
   box-shadow: $base-button-shadow;
   color: $base-button-color;
   display: inline-block;
-  font-family: $heading-font-family;
-  font-size: $base-font-size;
-  line-height: 1.3;
-  padding: $small-spacing $medium-spacing;
+  font-family: $strong-font-family;
+  font-size: 20px;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1;
+  padding: ($small-spacing * 1.25) $large-spacing ($small-spacing * 1.5);
   text-align: center;
   text-decoration: none;
   transition: transform $base-duration, color ($base-duration * 4);
@@ -18,4 +19,8 @@
     cursor: pointer;
     transform: translateY(-2px);
   }
+}
+
+.button--on-dark {
+  box-shadow: $dark-button-shadow;
 }

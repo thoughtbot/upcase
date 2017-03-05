@@ -1,0 +1,89 @@
+.site-nav {
+  margin: 0 auto;
+  max-width: $large-screen;
+  padding: $base-spacing;
+  z-index: $z-site-nav;
+
+  @include marketing-fullsize {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.site-nav__menu-trigger {
+  @include position(absolute, 1rem 1rem null null);
+  background-color: rgba($black, 0.075);
+  border-radius: $base-border-radius;
+  color: $white;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+
+  @include marketing-fullsize {
+    display: none;
+  }
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.site-nav__menu {
+  background-color: $blue;
+  box-shadow: 0 1rem 2rem rgba($black, 0.125);
+  display: block;
+  margin-top: -200%;
+  transition: margin 250ms ease-in-out;
+
+  @include marketing-fullsize {
+    background-color: transparent;
+    box-shadow: none;
+    margin-top: 0;
+    width: auto;
+  }
+
+  li {
+    border-top: solid 1px darken($havelock-blue, 13%);
+    display: block;
+    padding: $base-spacing;
+    text-align: center;
+
+    @include marketing-fullsize {
+      border: 0;
+      display: inline-block;
+      margin-left: $medium-spacing;
+      padding: 0;
+    }
+  }
+
+  a {
+    color: rgba($white, 0.9);
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.025rem;
+    text-decoration: none;
+
+    &:active,
+    &:focus,
+    &:hover {
+      color: rgba($white, 0.6);
+    }
+
+    &.is-open {
+      background: rgba($black, 0.125);
+      margin: -$base-spacing;
+      padding: $base-spacing;
+    }
+  }
+
+  .is-open & {
+    margin: $base-spacing (-$base-spacing);
+
+    @include marketing-fullsize {
+      margin: 0;
+    }
+  }
+}

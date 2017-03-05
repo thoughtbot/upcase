@@ -1,53 +1,14 @@
 .background {
+  @include position(absolute, 0);
   z-index: -1;
 }
 
 .background--upcase-hero {
-  @include position(absolute, 0 50% 0 0);
-  background-color: $egyptian-blue;
+  background-color: $blue;
   background-image: url("splash/upcase-background.svg");
-  background-position: top right;
-}
-
-.background--tapas-hero {
-  @include position(absolute, 0 0 0 50%);
-  background-color: $egyptian-blue;
-  background-image: url("splash/tapas-background.svg");
-  background-position: top left;
 }
 
 .background--upcase-light {
-  @include position(absolute, 0 50% 0 0);
   background-image: url("splash/upcase-background--light.svg");
   background-position: top right;
-}
-
-.background--tapas-light {
-  @include position(absolute, 0 0 0 50%);
-  background-image: url("splash/tapas-background--light.svg");
-  background-position: top left;
-}
-
-.background--upcase-solid {
-  @include position(absolute, 0 0 0 0);
-  background-color: $upcase-light-blue;
-  border-bottom: $base-border;
-  border-right: $base-border;
-  border-top: $base-border;
-
-  @media(min-width: $medium-screen) {
-    right: 50%;
-  }
-}
-
-.background--tapas-solid {
-  @include position(absolute, 0 0 0 50%);
-  background-color: $tapas-pink;
-  border-bottom: solid 1px darken($tapas-pink, 3%);
-  border-top: solid 1px darken($tapas-pink, 3%);
-  display: none;
-
-  @media(min-width: $medium-screen) {
-    display: block;
-  }
 }

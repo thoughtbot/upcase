@@ -1,10 +1,10 @@
 .table-of-contents-toggle {
   &::after {
-    @include transition;
     content: $unicode-down-triangle;
     display: inline-block;
     margin-left: 6px;
     position: relative;
+    transition: transform $base-duration;
   }
 
   &.is-open {

@@ -1,0 +1,29 @@
+<footer class="marketing-footer">
+  <ul class="marketing-footer__links">
+    <li>
+      <%= link_to "About thoughtbot", "https://thoughtbot.com" %>
+    </li>
+
+    <li>
+      <%= link_to "Privacy Policy", privacy_path %>
+    </li>
+
+    <li>
+      <%= link_to "Terms & Conditions", terms_path %>
+    </li>
+
+    <li>
+      <%= mail_to ENV["SUPPORT_EMAIL"], t("footer.contact_us") %>
+    </li>
+  </ul>
+
+  <a href="https://www.thoughtbot.com">
+    <%= inline_svg "splash/ralph--dark.svg", class: "marketing-footer__logo" %>
+  </a>
+
+  <small class="marketing-footer__copyright">
+    &copy; 2012 - <%= Time.zone.today.year %> thoughtbot, inc. Upcase, the
+    design of a robot, and thoughtbot are registered trademarks of thoughtbot,
+    inc.
+  </small>
+</footer>

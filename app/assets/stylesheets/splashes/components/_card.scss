@@ -1,0 +1,73 @@
+.card {
+  background-color: $white;
+  border-radius: $base-border-radius;
+  box-shadow: $base-content-shadow;
+}
+
+.card--one-per-line {
+  margin-bottom: $medium-spacing;
+  max-width: $medium-screen;
+}
+
+.card--two-per-line {
+  display: inline-block;
+  margin-bottom: $base-spacing;
+
+  @media (min-width: $medium-screen) {
+    margin: $base-spacing $base-spacing $large-spacing;
+    width: calc(49% - #{$base-spacing * 2});
+  }
+}
+
+.card__content {
+  padding: $base-spacing;
+
+  @media (min-width: $small-screen) {
+    padding: $medium-spacing;
+  }
+}
+
+.card__content--halves {
+  @include border-bottom-radius($base-border-radius);
+  background: $blue;
+  color: $white;
+  overflow: hidden;
+  padding: 0;
+
+  @media (min-width: $medium-screen) {
+    display: flex;
+  }
+
+  > .card__content {
+    @media (min-width: $medium-screen) {
+      width: 50%;
+    }
+  }
+
+  .card__content:nth-child(even) {
+    background: $blue-de-france;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  ul {
+    color: rgba($white, 0.7);
+    font-size: $small-font-size;
+    line-height: 1.4;
+    margin: $base-spacing 0;
+  }
+}
+
+.card__heading {
+  color: $heading-font-color;
+  font-family: $heading-font-family;
+  font-size: $medium-font-size;
+  margin-bottom: $base-spacing;
+}
+
+.card__copy {
+  color: $light-font-color;
+  max-width: $reading-width;
+}

@@ -1,0 +1,28 @@
+.selling-point {
+  @include padding(null 2rem null 4rem);
+  margin: 0 $base-spacing $large-spacing;
+  position: relative;
+  width: 100%;
+
+  @media (min-width: $small-screen) {
+    max-width: 220px;
+    padding: 0;
+    width: 33%;
+  }
+}
+
+.selling-point__title {
+  display: block;
+  margin-bottom: $base-spacing;
+}
+
+.selling-point__image {
+  @include position(absolute, -1rem null null -1rem);
+  @include size(5rem);
+  display: block;
+
+  @media (min-width: $small-screen) {
+    @include size(6rem);
+    position: relative;
+  }
+}

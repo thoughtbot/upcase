@@ -1,37 +1,80 @@
 // Colors
+$bees-wax: #fcf5c8;
 $blue-de-france: #3c7fef;
-$carribean-green: #1bdfb0;
+$blue: #0b5fec;
+$caribbean-green: #1bdfb0;
 $chillean-heath: #ffffe6;
+$eclipse: #3d3939;
 $egyptian-blue: #1736a4;
+$fair-pink: #ffecee;
+$glitter: #e8e9ff;
+$grey-chateau: #a4a4a4;
 $hacienda: #9b8f11;
+$haiti: #16193e;
 $havelock-blue: #3c7fef;
+$hawkes-blue: #d7ecff;
+$honey-dew: #f1fff0;
+$java: #2ea49c;
+$pattens-blue: #e1f5ff;
+$polar: #e5fdf4;
+$sandy-beach: #ffe8ca;
 $tapas-pink: #fcf8f8;
 $tapas-salmon: #ff4340;
+$tranquil: #e5feff;
+$tutu: #ffe9fd;
 $united-nations-blue: #698fe1;
 $upcase-light-blue: #fbfcff;
 $white: #fff;
 
-// Borders
-$base-border: solid 1px darken($upcase-light-blue, 3%);
-
-// Shadows
-$base-content-shadow: 0 1rem 2rem rgba($havelock-blue, 0.1);
-
-// Component specific
-$base-button-background-color: $carribean-green;
-$base-button-color: $white;
-$base-button-shadow: 0 0.5rem 1rem rgba($carribean-green, 0.15);
-
 // Colors in action
 $action-color: $blue-de-france;
-$base-font-size: 1.1rem;
-$heading-font-color: $united-nations-blue;
-$mark-color: $blue-de-france;
+$category-clean-code-color: $tranquil;
+$category-design-color: $glitter;
+$category-git-color: $bees-wax;
+$category-haskel-color: $tutu;
+$category-ios-color: $hawkes-blue;
+$category-javascript-color: $sandy-beach;
+$category-ruby-on-rails-color: $fair-pink;
+$category-testing-color: $polar;
+$category-tmux-color: $bees-wax;
+$category-vim-color: $pattens-blue;
+$heading-font-color: lighten($blue, 5%);
+$light-font-color: $grey-chateau;
+$mark-background-color: $honey-dew;
+$mark-color: $java;
 
 // Font families
 $base-font-family: "calibre-light";
 $heading-font-family: "calibre-regular";
 $strong-font-family: "calibre-medium";
+$title-font-family: "averta-bold";
 
 // Font sizes
 $small-font-size: 0.85rem;
+$base-font-size: 1.05rem;
+$medium-font-size: 1.4rem;
+$large-font-size: 2.2rem;
+
+// Line height
+$base-line-height: 1;
+
+// Z-index
+$z-site-header: 15;
+$z-site-nav: 10;
+$z-table-of-contents: 5;
+
+// Borders
+$base-border: 1px solid darken($upcase-light-blue, 3%);
+
+// Shadows
+$base-content-shadow: 0 0.5rem 1.5rem rgba($havelock-blue, 0.2);
+
+// Component sizes
+$site-header-height: 4rem;
+$reading-width: 33rem;
+
+// Component specific
+$base-button-background-color: $caribbean-green;
+$base-button-color: $white;
+$base-button-shadow: 0 0 1.5rem rgba($caribbean-green, 0.5);
+$dark-button-shadow: 0 0 1.5rem rgba($egyptian-blue, 0.75);

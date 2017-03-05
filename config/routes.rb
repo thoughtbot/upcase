@@ -4,6 +4,7 @@ Upcase::Application.routes.draw do
   scope "upcase" do
     root to: "homes#show"
     get "/pages/:id" => 'high_voltage/pages#show', as: :page, format: false
+    get "/welcome-to-upcase", to: "pages#show", id: "welcome-b"
 
     use_doorkeeper
 

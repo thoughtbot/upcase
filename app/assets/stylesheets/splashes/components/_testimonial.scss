@@ -1,0 +1,41 @@
+.testimonial {
+  color: mix($blue-de-france, $white, 65%);
+  line-height: 1.3;
+  max-width: 24rem;
+  position: relative;
+
+  &::before {
+    @include position(absolute, -0.5rem null null -0.6rem);
+    color: $blue-de-france;
+    content: '"';
+    font-family: $heading-font-family;
+    font-size: 1.5rem;
+  }
+
+  strong {
+    color: $blue-de-france;
+    font-family: $heading-font-family;
+  }
+}
+
+.testimonial--large {
+  font-size: 1.6rem;
+
+  &::before {
+    font-size: 2.5rem;
+    left: -1rem;
+  }
+}
+
+.testimonial__person {
+  align-items: center;
+  color: $light-font-color;
+  display: flex;
+  margin-top: $medium-spacing;
+
+  img {
+    @include size(4rem);
+    border-radius: ($base-border-radius * 2);
+    margin-right: 1rem;
+  }
+}

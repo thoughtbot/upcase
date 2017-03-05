@@ -11,6 +11,8 @@ class PagesController < HighVoltage::PagesController
       "splash"
     when "tapas-for-one"
       "splash"
+    when "welcome-b"
+      "splash"
     end
   end
 end
