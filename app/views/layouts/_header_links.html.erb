@@ -15,9 +15,9 @@
     <li class="discuss">
       <%= link_to t("shared.header.forum"), Forum.url %>
     </li>
-    <% if show_upgrade_to_annual_cta? %>
-      <li class="annual">
-        <%= render "shared/annual_billing" %>
+    <% if current_user_is_subscription_owner? %>
+      <li class="refer-friend">
+        <%= link_to t("shared.header.referral_link"), "#", class: "squatchpop" %>
       </li>
     <% end %>
     <li>

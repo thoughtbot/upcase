@@ -17,18 +17,6 @@ describe "layouts/_header_links.html.erb" do
     CSS
   end
 
-  context "when user is the subscription owner" do
-    it "shows an annual upsell link" do
-      render(
-        current_user_has_active_subscription: true,
-        current_user_is_subscription_owner: true,
-        signed_in: true
-      )
-
-      expect(rendered).to have_content(call_to_action_label)
-    end
-  end
-
   context "when user is not the subscription owner" do
     it "does not show an annual upsell link" do
       render(
