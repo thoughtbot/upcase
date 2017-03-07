@@ -7,12 +7,8 @@ class PagesController < HighVoltage::PagesController
 
   def layout_for_page
     case params[:id]
-    when "tapas-for-teams"
-      "splash"
-    when "tapas-for-one"
-      "splash"
     when "welcome-b"
-      "splash"
+      "marketing"
     end
   end
 end
