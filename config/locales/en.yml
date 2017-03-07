@@ -163,6 +163,7 @@ en:
       sign_out: Sign Out
       trails: Trails
       weekly_iteration: Weekly Iteration
+      referral_link: Refer a Friend and Get a Discount
     subscription:
       name: Upcase
     subscriptions:
@@ -266,6 +267,9 @@ en:
       refer_a_friend: Refer a friend
       referral_benefits: "Referring a friend or colleague to Upcase will give both you, and them, a %{percent}% discount on next month's bill."
       referral_link: Create your referral code
+      annual_plan_title: Switch to annual Plan
+      annual_plan_benefits: If you upgrade to annual billing you'll get 12 months of Upcase for the price of 10 months. That's a 17% discount!
+      annual_plan_link: Get two months free!
     resubscribe:
       plea_html: We get it, things change. But if you want to come back, we have your card on file, and you just have to click this button. Oh, and if you want to change your card beforehand, <a href="%{billing_url}">you can do that right here</a>.
       call_to_action: Resubscribe

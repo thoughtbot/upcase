@@ -3,7 +3,7 @@ require "rails_helper"
 feature "Subscriber upgrades to annual billing", js: true do
   scenario "Successfully" do
     sign_in_as_user_with_subscription_that_is_eligible_for_annual_upgrade
-    click_link "Get two months free"
+    visit new_annual_billing_path
 
     expect(page.body).to include("$1188")
     expect(page.body).to include("$990")
@@ -19,7 +19,7 @@ feature "Subscriber upgrades to annual billing", js: true do
 
   scenario "but changes their mind at the last minute" do
     sign_in_as_user_with_subscription_that_is_eligible_for_annual_upgrade
-    click_link "Get two months free"
+    visit new_annual_billing_path
 
     expect(page.body).to include("$1188")
     expect(page.body).to include("$990")
@@ -31,19 +31,6 @@ feature "Subscriber upgrades to annual billing", js: true do
     expect(page.body).to include("$1188")
     expect(page.body).to include("$990")
     expect(page.body).to include("Get two free months of Upcase")
-  end
-
-  scenario "user with no subscription doesn't see link" do
-    sign_in
-
-    expect_to_not_see_upgrade_link
-  end
-
-  scenario "visitor doesn't see link" do
-    create(:plan)
-    visit root_path
-
-    expect_to_not_see_upgrade_link
   end
 
   def last_email

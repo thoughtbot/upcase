@@ -59,6 +59,12 @@
     <%= link_to t(".referral_link"), "#", class: "cta-button squatchpop" %>
   <% end %>
 
+  <% if show_upgrade_to_annual_cta? %>
+    <h3><%= t(".annual_plan_title") %></h3>
+    <p><%= t(".annual_plan_benefits") %></p>
+    <%= link_to t(".annual_plan_link"), new_annual_billing_path, class: "cta-button" %>
+  <% end %>
+
   <% if current_team %>
     <h3>Your Team</h3>
     <%= render current_team %>
