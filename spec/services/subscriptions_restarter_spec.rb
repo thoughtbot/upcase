@@ -27,7 +27,9 @@ RSpec.describe SubscriptionsRestarter do
     it "sends an email to the subscription owner" do
       subscription = create(:paused_subscription_restarting_today)
       restarter = SubscriptionsRestarter.new(subscription)
-      PauseMailer.stub(restarted: double("mailer", deliver_later: true))
+      allow(PauseMailer).to(
+        receive(:restarted).and_return(double("mailer", deliver_later: true)),
+      )
 
       restarter.restart
 

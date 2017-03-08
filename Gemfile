@@ -10,7 +10,7 @@ gem "analytics-ruby", "~> 2.0.0", require: "segment/analytics"
 # autoprefixer-rails 6.0+ prints a warning (not an error) about outdated
 # `gradient` usage in rails-admin's CSS. In order to not show the warning, use a
 # lower version until rails-admin has better CSS.
-gem "autoprefixer-rails", "< 6.0"
+gem "autoprefixer-rails"
 gem "aws-sdk"
 gem "bourbon", "~> 4.0"
 gem "clearance", "~> 1.15.1"
