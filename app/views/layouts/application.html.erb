@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head prefix="og: http://ogp.me/ns#">
+    <%- if Rails.env.production? %>
+      <script src="https://cdn.optimizely.com/js/8273439110.js"></script>
+    <% end %>
     <%= render "application/head_contents" %>
     <% if signed_in? %>
       <%= render "layouts/hide_drip_widget_for_signed_in_users" %>
