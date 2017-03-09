@@ -12,15 +12,26 @@
   padding: ($small-spacing * 1.25) $large-spacing ($small-spacing * 1.5);
   text-align: center;
   text-decoration: none;
-  transition: transform $base-duration, color ($base-duration * 4);
+  transition-duration: $base-duration * 2;
+  transition-property: transform, color, background-color, box-shadow;
+  transition-timing-function: $ease-in-out-sine;
 
   &:hover {
-    color: rgba($white, 0.75);
+    box-shadow: 0 4px 1.5rem rgba($caribbean-green, 0.7);
+    color: $base-button-color;
     cursor: pointer;
-    transform: translateY(-2px);
+    transform: translateY(-4px);
   }
+}
+
+.button--large {
+  padding: $base-spacing $large-spacing;
 }
 
 .button--on-dark {
   box-shadow: $dark-button-shadow;
+
+  &:hover {
+    box-shadow: 0 4px 2.5rem $egyptian-blue;
+  }
 }

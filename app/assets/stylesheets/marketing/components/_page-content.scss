@@ -3,6 +3,10 @@
   max-width: $large-screen;
   padding: $large-spacing $base-spacing;
 
+  @media (min-width: $medium-screen) {
+    @include padding($x-large-spacing null);
+  }
+
   + .page-content {
     margin-top: -($large-spacing);
     padding-top: 0;

@@ -58,6 +58,13 @@ $large-font-size: 2.2rem;
 // Line height
 $base-line-height: 1;
 
+// Spacing
+$small-spacing: 0.5rem;
+$base-spacing: 1rem;
+$medium-spacing: 2rem;
+$large-spacing: 3.75rem;
+$x-large-spacing: 6rem;
+
 // Z-index
 $z-site-header: 15;
 $z-site-nav: 10;
@@ -77,4 +84,4 @@ $reading-width: 33rem;
 $base-button-background-color: $caribbean-green;
 $base-button-color: $white;
 $base-button-shadow: 0 0 1.5rem rgba($caribbean-green, 0.5);
-$dark-button-shadow: 0 0 1.5rem rgba($egyptian-blue, 0.75);
+$dark-button-shadow: 0 0 2.5rem $egyptian-blue;

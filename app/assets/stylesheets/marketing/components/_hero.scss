@@ -9,8 +9,8 @@
   text-align: center;
 
   @media (min-width: $medium-screen) {
-    height: 50vh;
-    min-height: 540px;
+    height: 65vh;
+    min-height: 580px;
   }
 }
 
@@ -39,7 +39,7 @@
   color: $white;
   font-family: $title-font-family;
   font-size: 1.75rem;
-  margin: $small-spacing 0 $small-spacing;
+  margin: $base-spacing 0;
   transition: font-size $base-duration;
 
   @media (min-width: $medium-screen) {
@@ -50,9 +50,9 @@
 .hero__uvp {
   color: rgba($white, 0.65);
   font-family: $heading-font-family;
-  font-size: $base-font-size * 1.1;
-  line-height: 1.2;
-  margin-bottom: $base-spacing;
+  font-size: $base-font-size;
+  line-height: 1.1;
+  margin-bottom: $large-spacing;
   max-width: 320px;
   transition: font-size $base-duration;
 
@@ -61,7 +61,7 @@
   }
 
   @media (min-width: $medium-screen) {
-    font-size: 1.65rem;
-    max-width: 560px;
+    font-size: 1.45rem;
+    max-width: $reading-width;
   }
 }
