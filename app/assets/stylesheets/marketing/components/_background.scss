@@ -5,10 +5,10 @@
 
 .background--upcase-hero {
   background-color: $blue;
-  background-image: url("marketing/upcase-background.svg");
+  background-image: asset-url("marketing/upcase-background.svg");
 }
 
 .background--upcase-light {
-  background-image: url("marketing/upcase-background--light.svg");
+  background-image: asset-url("marketing/upcase-background--light.svg");
   background-position: top right;
 }
