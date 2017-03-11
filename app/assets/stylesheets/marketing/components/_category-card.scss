@@ -1,18 +1,18 @@
 .category-card {
   align-items: center;
-  border-bottom: 5px solid $upcase-blue;
   display: flex;
   margin: $small-spacing 0;
   padding: 0;
   position: relative;
   text-decoration: none;
   transition: transform $base-duration;
-  width: 10.5rem;
+  width: 100%;
 
   @media (min-width: $small-screen) {
     @include margin($small-spacing);
     flex-direction: column;
-    padding: $base-spacing;
+    padding: $base-spacing $base-spacing $medium-spacing;
+    width: 10.5rem;
   }
 
   &:hover {
@@ -20,16 +20,24 @@
     transform: translateY(-5%);
 
     &::after {
-      @include position(absolute, null 0 -5px 0);
+      @include position(absolute, null 0 0 0);
     }
   }
 
+  &::before,
   &::after {
-    @include position(absolute, null 50% -5px 50%);
     @include border-bottom-radius($base-border-radius);
     content: "";
     height: 6px;
     transition: left $base-duration, right $base-duration;
+  }
+
+  &::after {
+    @include position(absolute, null 50% 0 50%);
+  }
+
+  &::before {
+    @include position(absolute, null 0 0 0);
   }
 }
 
@@ -40,12 +48,11 @@
 }
 
 .category-card__image {
-  @include size(4rem);
-  margin-right: $base-spacing;
+  @include size(3rem);
+  margin: $base-spacing;
 
   @media (min-width: $small-screen) {
-    @include size(auto);
-    margin-right: 0;
+    @include size(5rem);
   }
 }
 
@@ -57,12 +64,15 @@
   "ios": $category-ios-color,
   "javascript": $category-javascript-color,
   "ruby-on-rails": $category-ruby-on-rails-color,
+  "swift": $category-swift-color,
   "testing": $category-testing-color,
   "tmux": $category-tmux-color,
   "vim": $category-vim-color,
 ) {
   .category-card--#{$category} {
-    border-bottom-color: $color;
+    &::before {
+      background-color: $color;
+    }
 
     &::after {
       background-color: darken($color, 12%);
