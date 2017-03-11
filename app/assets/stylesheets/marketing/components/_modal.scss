@@ -1,0 +1,75 @@
+.modal {
+  @include position(fixed, 0);
+  align-items: center;
+  animation-delay: $base-duration * 2;
+  animation-duration: 0;
+  animation-fill-mode: forwards;
+  animation-name: fade-out;
+  display: flex;
+  justify-content: center;
+  padding: $base-spacing;
+  z-index: $z-modal;
+
+  &.is-open {
+    animation-delay: 0;
+    animation-name: fade-in;
+  }
+}
+
+.modal__content {
+  transform: translateY(200%);
+  transition: transform ($base-duration * 2) $ease-in-out-sine;
+  z-index: $z-base;
+
+  .is-open & {
+    transform: translateY(0);
+  }
+}
+
+.modal__background {
+  @include position(absolute, 0);
+  background-color: rgba($white, 0.98);
+  opacity: 0;
+  transition: opacity ($base-duration * 2) $ease-in-out-sine;
+
+  .is-open & {
+    opacity: 1;
+  }
+}
+
+.modal__tease {
+  @include position(fixed, null -1px -0.25rem);
+  align-items: center;
+  background: $white;
+  border: $base-border;
+  box-shadow: 0 0 1rem rgba($blue, 0.125);
+  cursor: pointer;
+  display: flex;
+  height: 5.25rem;
+  justify-content: center;
+  padding: $small-spacing;
+  padding-right: $base-spacing;
+  transform: translateY(0);
+  transition: transform ($base-duration * 2) $ease-in-out-sine;
+
+  &:hover {
+    transform: translateY(-0.25rem);
+  }
+
+  .is-open & {
+    transform: translateY(125%);
+  }
+
+  svg {
+    @include size(4rem);
+    margin-right: $base-spacing;
+  }
+}
+
+@each $category, $color in $category-color-list {
+  .modal__tease--#{$category} {
+    background-color: lighten($color, 2%);
+    border-color: darken($color, 2%);
+    color: darken($color, 25%);
+  }
+}

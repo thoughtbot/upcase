@@ -1,0 +1,13 @@
+[type=email] {
+  border: 0;
+  border-radius: $base-border-radius;
+  box-shadow: $base-box-shadow;
+  font-size: $base-font-size;
+  margin: $base-spacing 0;
+  padding: ($small-spacing * 1.5) $base-spacing;
+  width: 100%;
+
+  .card__content--dark & {
+    box-shadow: $dark-content-shadow;
+  }
+}

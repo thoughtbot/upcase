@@ -2,10 +2,11 @@
   background-color: $white;
   border-radius: $base-border-radius;
   box-shadow: $base-content-shadow;
+  overflow: auto;
 }
 
 .card--one-per-line {
-  margin-bottom: $medium-spacing;
+  margin: 0 auto $medium-spacing;
   max-width: $medium-screen;
 }
 
@@ -25,6 +26,11 @@
   @media (min-width: $small-screen) {
     padding: $medium-spacing;
   }
+}
+
+.card__content--dark {
+  background: $blue;
+  color: $white;
 }
 
 .card__content--halves {
@@ -62,8 +68,10 @@
 
 .card__heading {
   color: $heading-font-color;
+  display: block;
   font-family: $heading-font-family;
   font-size: $medium-font-size;
+  font-weight: normal;
   margin-bottom: $base-spacing;
 }
 

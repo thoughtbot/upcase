@@ -7,6 +7,7 @@
 //= require upcase
 //= require dismiss-flashes
 //= require plans
+//= require close
 //= require checkout
 //= require header-toggle
 //= require autoresize

@@ -3,7 +3,6 @@
 Upcase::Application.routes.draw do
   scope "upcase" do
     root to: "homes#show"
-    get "/pages/:id" => 'high_voltage/pages#show', as: :page, format: false
 
     use_doorkeeper
 
@@ -86,15 +85,14 @@ Upcase::Application.routes.draw do
       resource :trail, controller: "exercise_trails", only: [:show]
     end
 
-    get "/purchases/:lookup" => "pages#show", id: "purchase-show"
-    get "/welcome-to-upcase", to: "marketing#welcome"
+    get '/welcome-to-upcase', to: 'marketing#welcome'
+    get '/new-languages', to: 'marketing#new_languages'
+    get '/new-languages-thanks', to: 'marketing#new_languages_thanks'
 
-    get "/pages/*id" => "pages#show", format: false
-    get "/privacy" => "pages#show", as: :privacy, id: "privacy"
-    get "/terms" => "pages#show", as: :terms, id: "terms"
-    get "/tapas", to: redirect("/upcase/tapas-for-one")
-    get "/tapas-for-teams", to: "pages#show", id: "tapas-for-teams"
-    get "/tapas-for-one", to: "pages#show", id: "tapas-for-one"
+    get '/pages/:id', to: 'high_voltage/pages#show', as: :page, format: false
+    get '/privacy', to: 'pages#show', as: :privacy, id: 'privacy'
+    get '/purchases/:lookup', to: 'pages#show', id: 'purchase-show'
+    get '/terms', to: 'pages#show', as: :terms, id: 'terms'
 
     scope ":plan" do
       resource :authenticated_on_checkout, only: [:show]

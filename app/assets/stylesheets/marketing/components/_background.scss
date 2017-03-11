@@ -8,7 +8,15 @@
   background-image: asset-url("marketing/upcase-background.svg");
 }
 
-.background--upcase-light {
-  background-image: asset-url("marketing/upcase-background--light.svg");
-  background-position: top right;
+@each $theme in (
+    elixer
+    light
+    python
+    react
+    swift
+  ) {
+  .background--upcase-#{$theme} {
+    background-image: asset-url("marketing/upcase-background--#{$theme}.svg");
+    background-position: top right;
+  }
 }

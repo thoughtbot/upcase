@@ -1,0 +1,11 @@
+.flash {
+  font-family: $strong-font-family;
+  padding: $base-spacing;
+  text-align: center;
+
+  &.notice {
+    background-color: $notice-color;
+    border-bottom: solid 1px darken($notice-color, 25%);
+    color: mix($notice-color, $black, 50%);
+  }
+}

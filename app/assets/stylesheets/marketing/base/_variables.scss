@@ -1,5 +1,7 @@
 // Colors
+$azure: #f3fcff;
 $bees-wax: #fcf5c8;
+$blue-chalk: #f8eaff;
 $blue-de-france: #3c7fef;
 $blue: #0b5fec;
 $caribbean-green: #1bdfb0;
@@ -15,6 +17,7 @@ $havelock-blue: #3c7fef;
 $hawkes-blue: #d7ecff;
 $honey-dew: #f1fff0;
 $java: #2ea49c;
+$linen: #ffeee4;
 $pattens-blue: #e1f5ff;
 $polar: #e5fdf4;
 $sandy-beach: #ffe8ca;
@@ -25,16 +28,21 @@ $tutu: #ffe9fd;
 $united-nations-blue: #698fe1;
 $upcase-light-blue: #fbfcff;
 $white: #fff;
+$zicron: #f4faff;
 
 // Colors in action
 $action-color: $blue-de-france;
 $category-clean-code-color: $tranquil;
 $category-design-color: $glitter;
+$category-elixer-color: $blue-chalk;
 $category-git-color: $bees-wax;
 $category-haskel-color: $tutu;
 $category-ios-color: $hawkes-blue;
 $category-javascript-color: $sandy-beach;
+$category-python-color: $tranquil;
+$category-react-color: $azure;
 $category-ruby-on-rails-color: $fair-pink;
+$category-swift-color: $linen;
 $category-testing-color: $polar;
 $category-tmux-color: $bees-wax;
 $category-vim-color: $pattens-blue;
@@ -46,8 +54,8 @@ $mark-color: $java;
 // Font families
 $base-font-family: "calibre-light";
 $heading-font-family: "calibre-regular";
-$strong-font-family: "calibre-medium";
-$title-font-family: "averta-std-bold";
+$strong-font-family: "calibre-regular";
+$title-font-family: "averta-bold";
 
 // Font sizes
 $small-font-size: 0.85rem;
@@ -69,12 +77,15 @@ $x-large-spacing: 6rem;
 $z-site-header: 15;
 $z-site-nav: 10;
 $z-table-of-contents: 5;
+$z-base: 1;
+$z-modal: 25;
 
 // Borders
 $base-border: 1px solid darken($upcase-light-blue, 3%);
 
 // Shadows
 $base-content-shadow: 0 0.5rem 1.5rem rgba($havelock-blue, 0.2);
+$dark-content-shadow: 0 0.5rem 2.5rem $egyptian-blue;
 
 // Component sizes
 $site-header-height: 4rem;
@@ -85,3 +96,23 @@ $base-button-background-color: $caribbean-green;
 $base-button-color: $white;
 $base-button-shadow: 0 0 1.5rem rgba($caribbean-green, 0.5);
 $dark-button-shadow: 0 0 2.5rem $egyptian-blue;
+$modal-content-shadow: 0 0 5rem $egyptian-blue;
+$notice-color: $bees-wax;
+
+// Category Colors
+$category-color-list: (
+  "clean-code": $category-clean-code-color,
+  "design": $category-design-color,
+  "elixer" : $category-elixer-color,
+  "git": $category-git-color,
+  "haskell": $category-haskel-color,
+  "ios": $category-ios-color,
+  "javascript": $category-javascript-color,
+  "python" : $category-python-color,
+  "react" : $category-react-color,
+  "ruby-on-rails": $category-ruby-on-rails-color,
+  "swift" : $category-swift-color,
+  "testing": $category-testing-color,
+  "tmux": $category-tmux-color,
+  "vim": $category-vim-color,
+);

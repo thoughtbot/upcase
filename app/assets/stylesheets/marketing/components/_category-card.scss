@@ -20,7 +20,7 @@
     transform: translateY(-5%);
 
     &::after {
-      @include position(absolute, null 0 0 0);
+      @include position(absolute, null 0 0);
     }
   }
 
@@ -33,11 +33,11 @@
   }
 
   &::after {
-    @include position(absolute, null 50% 0 50%);
+    @include position(absolute, null 50% 0);
   }
 
   &::before {
-    @include position(absolute, null 0 0 0);
+    @include position(absolute, null 0 0);
   }
 }
 
@@ -56,18 +56,7 @@
   }
 }
 
-@each $category, $color in (
-  "clean-code": $category-clean-code-color,
-  "design": $category-design-color,
-  "git": $category-git-color,
-  "haskell": $category-haskel-color,
-  "ios": $category-ios-color,
-  "javascript": $category-javascript-color,
-  "ruby-on-rails": $category-ruby-on-rails-color,
-  "testing": $category-testing-color,
-  "tmux": $category-tmux-color,
-  "vim": $category-vim-color,
-) {
+@each $category, $color in $category-color-list {
   .category-card--#{$category} {
     &::before {
       background-color: $color;
