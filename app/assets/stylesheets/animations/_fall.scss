@@ -1,18 +1,18 @@
-@include keyframes(fall) {
+@keyframes fall {
   0% {
-    @include transform(translateY(-200%));
+    transform: translateY(-200%);
   }
 
   10% {
-    @include transform(translateY(0%));
+    transform: translateY(0%);
   }
 
   90% {
-    @include transform(translateY(0%));
+    transform: translateY(0%);
   }
 
   0% {
-    @include transform(translateY(-200%));
+    transform: translateY(-200%);
   }
 }
 
