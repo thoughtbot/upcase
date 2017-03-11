@@ -6,7 +6,6 @@
   justify-content: center;
   padding: $small-spacing $small-spacing $x-large-spacing;
   position: relative;
-  text-align: center;
 
   @media (min-width: $medium-screen) {
     height: 65vh;
@@ -49,11 +48,12 @@
 
 .hero__uvp {
   color: rgba($white, 0.65);
-  font-family: $heading-font-family;
+  font-family: $base-font-family;
   font-size: $base-font-size;
-  line-height: 1.1;
+  line-height: 1.2;
   margin-bottom: $large-spacing;
   max-width: 320px;
+  text-align: center;
   transition: font-size $base-duration;
 
   strong {

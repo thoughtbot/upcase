@@ -31,9 +31,13 @@
 }
 
 .page-content__heading {
-  font-family: $strong-font-family;
+  color: $blue;
+  display: block;
+  font-family: $heading-font-family;
+  font-weight: normal;
   margin-bottom: $base-spacing;
   text-align: center;
+  font-size: $medium-font-size;
 }
 
 .page-content__intro {

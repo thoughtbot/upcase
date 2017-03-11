@@ -16,6 +16,10 @@
     color: $blue-de-france;
     font-family: $heading-font-family;
   }
+
+  p:last-of-type {
+    margin-bottom: $medium-spacing;
+  }
 }
 
 .testimonial--large {
@@ -24,18 +28,5 @@
   &::before {
     font-size: 2.5rem;
     left: -1rem;
-  }
-}
-
-.testimonial__person {
-  align-items: center;
-  color: $light-font-color;
-  display: flex;
-  margin-top: $medium-spacing;
-
-  img {
-    @include size(4rem);
-    border-radius: ($base-border-radius * 2);
-    margin-right: 1rem;
   }
 }

@@ -1,3 +1,7 @@
+<%- if @language %>
+  <%= render "marketing/new_languages" %>
+<% end %>
+
 <%= render "marketing/header" %>
 <%= render "shared/table_of_contents" %>
 
@@ -116,12 +120,14 @@
   <section class="page-section page-section--dark">
     <div class="page-content page-content--reading">
       <span class="testimonial testimonial--large">
-        thoughtbot provided the top-notch Ruby and Rails experience we needed to
-        help drive major improvements to Code Climate. <strong>With Upcase, you
-        can learn from some of the best in the business.</strong>
+        <p>
+          thoughtbot provided the top-notch Ruby and Rails experience we needed to
+          help drive major improvements to Code Climate. <strong>With Upcase, you
+          can learn from some of the best in the business.</strong>
+        </p>
       </span>
 
-      <div class="testimonial__person">
+      <div class="media-object">
         <%= image_tag "marketing/testimonial-bryan.png" %>
 
         <span>
@@ -204,10 +210,12 @@
     <div class="page-section--split__column">
       <div class="page-content page-content--reading">
         <div class="testimonial">
-          Without doubt, Upcase was vital to my professional growth and
-          <strong>led to my dream Rails job at thoughtbot.</strong>
+          <p>
+            Without doubt, Upcase was vital to my professional growth and
+            <strong>led to my dream Rails job at thoughtbot.</strong>
+          </p>
 
-          <div class="testimonial__person">
+          <div class="media-object">
             <%= image_tag "marketing/testimonial-matt.png" %>
 
             <span>
@@ -234,7 +242,7 @@
             flourish there.</strong>
           </p>
 
-          <div class="testimonial__person">
+          <div class="media-object">
             <%= image_tag "marketing/testimonial-ralph.png" %>
 
             <span>
@@ -312,9 +320,9 @@
     </div>
 
     <div class="page-content flex-grid">
-      <h3>
+      <strong>
         <%= link_to "Have a team?", teams_path, class: :team %>
-      </h3>
+      </strong>
     </div>
 
     <div class="background background--upcase-light"></div>
