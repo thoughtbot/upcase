@@ -44,6 +44,4 @@ Upcase::Application.configure do
 
   GITHUB_KEY = ENV['GITHUB_KEY']
   GITHUB_SECRET = ENV['GITHUB_SECRET']
-
-  config.font_assets.origin = "https://#{ENV["APP_DOMAIN"]}"
 end
