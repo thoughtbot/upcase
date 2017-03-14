@@ -75,7 +75,6 @@ group :development, :test do
 end
 
 group :production do
-  gem "font_assets"
   gem "rails_stdout_logging"
   gem "skylight"
 end
