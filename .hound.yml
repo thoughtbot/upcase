@@ -1,3 +1,5 @@
+Documentation:
+  Enabled: false
 StringLiterals:
   EnforcedStyle: double_quotes
 scss:
