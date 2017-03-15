@@ -44,4 +44,15 @@ Upcase::Application.configure do
 
   GITHUB_KEY = ENV['GITHUB_KEY']
   GITHUB_SECRET = ENV['GITHUB_SECRET']
+
+  config.middleware.insert_before 0,
+                                  'Rack::Cors',
+                                  debug: false,
+                                  logger: (-> { Rails.logger }) do
+
+    allow do
+      origins 'thoughtbot.com', 'staging.thoughtbot.com'
+      resource '/upcase/assets/*', headers: :any, methods: :get
+    end
+  end
 end
