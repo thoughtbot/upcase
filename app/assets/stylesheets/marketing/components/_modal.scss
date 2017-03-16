@@ -28,7 +28,7 @@
 
 .modal__background {
   @include position(absolute, 0);
-  background-color: rgba($white, 0.98);
+  background-color: $white;
   opacity: 0;
   transition: opacity ($base-duration * 2) $ease-in-out-sine;
 
