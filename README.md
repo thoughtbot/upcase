@@ -199,15 +199,20 @@ and trello boards, and others.
 
 # Testing With User Accounts
 
-`rake dev:prime` will create user accounts that you can test with in
-development. The account that is associated with a team, requires
-additional configuration to test in your development environment.
+The `rake dev:prime` task will create user accounts that you can test with in
+development mode. The account that is associated with a team requires additional
+configuration to test in your development environment, because it needs to
+connect to Stripe.
 
-You will need the Test Secret and Test Publishable Strip keys. You can get them
-from https://manage.stripe.com/account/apikeys. Add them to your `.env` file.
+You will need the Stripe Test Secret and Test Publishable keys. You can get them
+from https://manage.stripe.com/account/apikeys. Add them to your `.env` file on
+the appropriate lines:
 
 `STRIPE_API_SECRET_KEY=api_secret_key`
 `STRIPE_API_PUBLISHABLE_KEY=api_publishable_key`
+
+After you've added them, running `rake dev:prime` will be able to run
+successfully.
 
 # Credits
 
