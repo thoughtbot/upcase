@@ -160,7 +160,7 @@ GEM
       multi_json (~> 1.8)
     haml (4.0.7)
       tilt
-    hashdiff (0.3.0)
+    hashdiff (0.3.2)
     hashie (3.4.4)
     heroku-deflater (0.6.2)
       rack (>= 1.4.5)
@@ -409,7 +409,7 @@ GEM
       i18n
     vanity (2.0.0.beta8)
       i18n
-    webmock (2.0.1)
+    webmock (2.3.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
