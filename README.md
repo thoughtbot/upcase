@@ -206,8 +206,8 @@ additional configuration to test in your development environment.
 You will need the Test Secret and Test Publishable Strip keys. You can get them
 from https://manage.stripe.com/account/apikeys. Add them to your `.env` file.
 
-`STRIPE_API_KEY=api_key`
-`STRIPE_PUBLIC_KEY=publishable_key`
+`STRIPE_API_SECRET_KEY=api_secret_key`
+`STRIPE_API_PUBLISHABLE_KEY=api_publishable_key`
 
 # Credits
 

@@ -38,7 +38,7 @@
 
 <% content_for :javascript do -%>
   <script type="text/javascript" charset="utf-8">
-    Stripe.setPublishableKey('<%= STRIPE_PUBLIC_KEY %>');
+    Stripe.setPublishableKey('<%= STRIPE_API_PUBLISHABLE_KEY %>');
 
     stripeResponseHandler = function(status, response){
       if (response.error) {

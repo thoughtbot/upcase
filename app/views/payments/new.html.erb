@@ -34,7 +34,7 @@
     };
 
     var handler = StripeCheckout.configure({
-      key: "<%= ENV.fetch('STRIPE_PUBLIC_KEY') %>",
+      key: "<%= ENV.fetch('STRIPE_API_PUBLISHABLE_KEY') %>",
       image: 'https://s3.amazonaws.com/stripe-uploads/ZZmGCK8MYKr0FHOuop7OzJe7Spmxk7nrmerchant-icon-1415719897983-twitter-icon-2-2.png',
       token: submitToken
     });
