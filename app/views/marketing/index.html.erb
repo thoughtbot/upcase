@@ -2,6 +2,14 @@
   <%= render "marketing/new_languages" %>
 <% end %>
 
+<%- if params[:confirmation]%>
+  <script>
+    fbq('track', 'CompletedRegistration', {
+      language: "<%= params[:language_selected] %>"
+    });
+  </script>
+<% end %>
+
 <%= render "marketing/header" %>
 <%= render "shared/table_of_contents" %>
 
