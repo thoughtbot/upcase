@@ -35,3 +35,20 @@
     box-shadow: 0 4px 2.5rem $egyptian-blue;
   }
 }
+
+.button--tight {
+  @include padding(null $base-spacing);
+}
+
+.button--empty {
+  background-color: transparent;
+  box-shadow: none;
+
+  &:active,
+  &:focus,
+  &:hover {
+    box-shadow: none;
+    color: $base-button-color;
+    transform: translateY(0);
+  }
+}

@@ -12,28 +12,45 @@
     <div class="site-nav__menu">
       <ul>
         <li>
-          <%= link_to "Weekly Videos", Show.the_weekly_iteration %>
+          <%= link_to(
+            "Weekly Videos",
+            Show.the_weekly_iteration,
+            class: "site-nav__link",
+          ) %>
         </li>
 
         <li>
-          <%= link_to "Forum", "https://forum.upcase.com", target: "_blank" %>
+          <%= link_to(
+            "Forum",
+            "https://forum.upcase.com",
+            class: "site-nav__link",
+            target: "_blank",
+          ) %>
         </li>
 
         <li>
-          <%= link_to t("shared.header.content"), "#",
-            class: "table-of-contents-toggle",
-            data: { role: "table-of-contents-toggle" } %>
+          <%= link_to(
+            t("shared.header.content"),
+            "#",
+            class: "table-of-contents-toggle site-nav__link",
+            data: { role: "table-of-contents-toggle" }
+          ) %>
         </li>
 
         <li>
-          <%= link_to t("shared.header.sign_in"), sign_in_path %>
+          <%= link_to(
+            t("shared.header.sign_in"),
+            sign_in_path,
+            class: "site-nav__link",
+          ) %>
         </li>
 
         <li>
           <%= link_to(
             t("subscriptions.join_cta"),
             professional_checkout_path,
-            class: "site-nav__cta"
+            class: "js-site-nav-button site-nav__link button button--empty
+              button--tight button--on-dark"
           ) %>
         </li>
       </ul>

@@ -58,32 +58,32 @@
     }
   }
 
-  a {
-    color: rgba($white, 0.9);
-    display: block;
-    font-size: 1rem;
-    font-weight: bold;
-    letter-spacing: 0.025rem;
-    text-decoration: none;
-
-    &:active,
-    &:focus,
-    &:hover {
-      color: rgba($white, 0.6);
-    }
-
-    &.is-open {
-      background: rgba($black, 0.125);
-      margin: -$base-spacing;
-      padding: $base-spacing;
-    }
-  }
-
   .is-open & {
     margin: $base-spacing (-$base-spacing);
 
     @include marketing-fullsize {
       margin: 0;
     }
+  }
+}
+
+.site-nav__link {
+  color: rgba($white, 0.9);
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 0.025rem;
+  text-decoration: none;
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: rgba($white, 0.6);
+  }
+
+  &.is-open {
+    background: rgba($black, 0.125);
+    margin: -$base-spacing;
+    padding: $base-spacing;
   }
 }

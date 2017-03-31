@@ -59,6 +59,10 @@ gem "validates_email_format_of"
 gem "vanity", "2.0.0.beta8"
 gem "wrapped"
 
+source "https://rails-assets.org" do
+  gem "rails-assets-lodash"
+end
+
 group :development do
   gem "guard-livereload", "~> 2.5", require: false
   gem "quiet_assets"

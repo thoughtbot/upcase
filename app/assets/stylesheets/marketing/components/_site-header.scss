@@ -1,9 +1,6 @@
 .site-header {
+  @include position(fixed, 0 0 null 0);
   background-color: $blue;
   min-height: $site-header-height;
-  position: relative;
-
-  @include marketing-fullsize {
-    z-index: $z-site-header;
-  }
+  z-index: $z-site-header;
 }
