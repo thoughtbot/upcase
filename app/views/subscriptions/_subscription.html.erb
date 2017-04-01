@@ -1,12 +1,29 @@
 <li class="subscription">
   <% if subscription.active? %>
-    <p><strong><%= subscription.plan.name %></strong> <br /> Active since <%= subscription.created_at.to_s(:simple) %></p>
+    <p>
+      <strong><%= subscription.plan.name %></strong><br />
+      Active since <%= subscription.created_at.to_s(:simple) %>
+    </p>
+
     <% if subscription.scheduled_for_deactivation? %>
-      <p><%= t('subscriptions.deactivation_scheduled_on', date: subscription.scheduled_for_deactivation_on.to_s(:simple)) %></p>
+      <p>
+        <%= t("subscriptions.deactivation_scheduled_on",
+            date: subscription.scheduled_for_deactivation_on.to_s(:simple)) %>
+      </p>
     <% end %>
   <% else %>
-    <p>Canceled on <%= subscription.deactivated_on.to_s(:simple) %></p>
+    <p>
+      Canceled on <%= subscription.deactivated_on.to_s(:simple) %>
+    </p>
   <% end %>
 
-  <%= render 'subscriptions/management', subscription: subscription %>
+  <% if subscription.owner?(current_user) %>
+    <% if subscription.active? && !subscription.scheduled_for_deactivation? %>
+      <%= link_to(
+        t('subscriptions.cancel'),
+        new_subscriber_cancellation_path,
+        class: 'cancel',
+      ) %>
+    <% end %>
+  <% end %>
 </li>

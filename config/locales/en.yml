@@ -101,7 +101,6 @@ en:
   layouts:
     app_name: Upcase
     fallback_page_title: Upcase by thoughtbot | Learn Web Development Online
-    home_description: Join Upcase by thoughtbot. Explore video tutorials, exercises, forum discussions and the community you need to grow as a web developer.
     marketing:
       page_title: Upcase by thoughtbot | Learn Web Development Online
       description: Join Upcase by thoughtbot. Explore video tutorials,
@@ -185,13 +184,17 @@ en:
       single_user: Subscribe Now
     team_plan_name: Upcase for Teams
     upcase: Upcase
-    content_meta_description: "Explore thoughtbot's video tutorials, exercises, and forum discussions on %{name}"
+    content_meta_description: "Explore thoughtbot's video tutorials, exercises,
+      and forum discussions on %{name}"
   show:
-    weekly_iteration_cta: This video is a preview of all the great content in the Weekly Iteration. Scroll down to see some of the great videos. Want to watch them all?
-    preview_cta: This video is a preview. The full show is included with your Upcase
-      membership.
+    weekly_iteration_cta: This video is a preview of all the great content in
+      the Weekly Iteration. Scroll down to see some of the great videos. Want to
+      watch them all?
+    preview_cta: This video is a preview. The full show is included with your
+      Upcase membership.
   subscriptions:
-    accept_discounted_annual_subscription: Yes! I want to save $$$ and keep learning
+    accept_discounted_annual_subscription: Yes! I want to save $$$ and keep
+      learning
     cancel: Cancel
     pause: Pause my subscription for 3 months
     deactivation_scheduled_on: Scheduled for deactivation on %{date}

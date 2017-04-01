@@ -62,7 +62,10 @@ feature "Visitor signs up for a subscription" do
     existing_user = create(:user)
 
     begin_to_subscribe_with_email_and_password
-    fill_out_account_creation_form(name: existing_user.name, email: existing_user.email)
+    fill_out_account_creation_form(
+      name: existing_user.name,
+      email: existing_user.email,
+    )
     fill_out_credit_card_form_with_valid_credit_card
 
     expect_to_see_email_error("has already been taken")

@@ -1,5 +1,0 @@
-<% if subscription.owner?(current_user) %>
-  <% if subscription.active? && !subscription.scheduled_for_deactivation? %>
-    <%= link_to t('subscriptions.cancel'), new_subscriber_cancellation_path, class: 'cancel' %>
-  <% end %>
-<% end %>
