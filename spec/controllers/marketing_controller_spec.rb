@@ -1,11 +1,11 @@
 require "rails_helper"
 
-describe HomesController do
+describe MarketingController do
   context "the user is not logged in" do
     it "renders the content of /join, but stays on /" do
       get :show
 
-      expect(response).to render_template("subscriptions/new")
+      expect(response).to render_template("marketing/show")
     end
   end
 
