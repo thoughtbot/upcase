@@ -1,89 +1,108 @@
 .site-nav {
   margin: 0 auto;
   max-width: $large-screen;
-  padding: $base-spacing;
-  z-index: $z-site-nav;
 
   @include marketing-fullsize {
     align-items: center;
     display: flex;
     justify-content: space-between;
   }
+
+  &::after {
+    @include position(absolute, 0 0 null 0);
+    background-color: $blue;
+    content: "";
+    height: $site-header-height;
+    z-index: $z-site-nav;
+  }
+}
+
+.site-nav__action {
+  padding: $base-spacing;
+  position: absolute;
+  width: 100%;
+  z-index: $z-site-nav + 1;
+
+  @include marketing-fullsize {
+    position: relative;
+    width: auto;
+  }
 }
 
 .site-nav__menu-trigger {
-  @include position(absolute, 1rem 1rem null null);
+  @include position(absolute, $base-spacing $base-spacing null null);
   background-color: rgba($black, 0.075);
   border-radius: $base-border-radius;
   color: $white;
   cursor: pointer;
   font-weight: bold;
-  padding: 0.5rem 1rem;
+  padding: $small-spacing $base-spacing;
   text-decoration: none;
 
   @include marketing-fullsize {
     display: none;
   }
 
+  &:active,
+  &:focus,
   &:hover {
     color: $white;
   }
 }
 
 .site-nav__menu {
+  @include position(absolute, $site-header-height 0 null);
   background-color: $blue;
   box-shadow: 0 1rem 2rem rgba($black, 0.125);
   display: block;
   margin-top: -200%;
+  padding: 0;
   transition: margin 250ms ease-in-out;
 
   @include marketing-fullsize {
+    @include position(relative, 0 null null);
     background-color: transparent;
     box-shadow: none;
     margin-top: 0;
-    width: auto;
+    padding: $base-spacing;
+    z-index: $z-site-nav + 1;
   }
 
   li {
-    border-top: solid 1px darken($havelock-blue, 13%);
     display: block;
-    padding: $base-spacing;
-    text-align: center;
+    padding: $small-spacing;
 
     @include marketing-fullsize {
-      border: 0;
       display: inline-block;
-      margin-left: $medium-spacing;
       padding: 0;
     }
   }
 
   .is-open & {
-    margin: $base-spacing (-$base-spacing);
-
-    @include marketing-fullsize {
-      margin: 0;
-    }
+    margin-top: 0;
   }
 }
 
 .site-nav__link {
+  border-top: solid 1px darken($havelock-blue, 13%);
   color: rgba($white, 0.9);
   display: block;
   font-size: 1rem;
   font-weight: bold;
   letter-spacing: 0.025rem;
+  padding: $base-spacing;
+  text-align: center;
   text-decoration: none;
+
+  @include marketing-fullsize {
+    border: 0;
+    padding: $small-spacing $base-spacing;
+  }
 
   &:active,
   &:focus,
   &:hover {
     color: rgba($white, 0.6);
-  }
-
-  &.is-open {
-    background: rgba($black, 0.125);
-    margin: -$base-spacing;
-    padding: $base-spacing;
+    cursor: pointer;
   }
 }

@@ -6,11 +6,10 @@
   padding: $medium-spacing;
   transform: translateY(-120%);
   transition: transform ($base-duration * 2);
-  z-index: $z-table-of-contents--mobile;
+  z-index: $z-table-of-contents;
 
   @include marketing-fullsize {
     padding: $medium-spacing $base-spacing;
-    z-index: $z-table-of-contents;
   }
 
   &.slide-down {

@@ -1,13 +1,15 @@
 <header class="site-header">
   <nav class="site-nav">
-    <%= link_to root_path do %>
-      <%= inline_svg "upcase/upcase-header-logo-small.svg",
-        alt: t("layouts.app_name") %>
-    <% end %>
+    <div class="site-nav__action">
+      <%= link_to root_path do %>
+        <%= inline_svg "upcase/upcase-header-logo-small.svg",
+          alt: t("layouts.app_name") %>
+      <% end %>
 
-    <a class="site-nav__menu-trigger js-toggle-menu-trigger">
-      Menu
-    </a>
+      <a class="site-nav__menu-trigger js-toggle-menu-trigger">
+        Menu
+      </a>
+    </div>
 
     <div class="site-nav__menu">
       <ul>
@@ -55,5 +57,7 @@
         </li>
       </ul>
     </div>
+
+    <%= render "shared/table_of_contents" %>
   </nav>
 </header>

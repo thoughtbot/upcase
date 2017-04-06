@@ -20,6 +20,10 @@
   <body class="<%= body_class %>">
     <%= render "layouts/google_tag_manager" %>
     <%= render "shared/flashes" %>
+    <%- if @language %>
+      <%= render "marketing/languages" %>
+    <% end %>
+    <%= render "marketing/header" %>
     <%= yield %>
   </body>
 
