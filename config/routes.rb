@@ -85,8 +85,7 @@ Upcase::Application.routes.draw do
       resource :trail, controller: "exercise_trails", only: [:show]
     end
 
-    get "/new-languages", to: "marketing#new_languages"
-    get "/new-languages-thanks", to: "marketing#new_languages_thanks"
+    get "/new-language-confirmation", to: "new_language_confirmations#index"
     get '/pages/:id', to: 'high_voltage/pages#show', as: :page, format: false
     get '/privacy', to: 'pages#show', as: :privacy, id: 'privacy'
     get '/purchases/:lookup', to: 'pages#show', id: 'purchase-show'

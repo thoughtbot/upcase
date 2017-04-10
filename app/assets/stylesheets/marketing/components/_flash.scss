@@ -1,7 +1,11 @@
 .flash {
+  align-items: center;
+  display: flex;
   font-family: $strong-font-family;
-  padding: $base-spacing;
+  justify-content: center;
+  min-height: $site-header-height;
   text-align: center;
+  width: 100%;
 
   &.notice {
     background-color: $notice-color;

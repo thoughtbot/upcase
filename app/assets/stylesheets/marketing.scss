@@ -5,6 +5,10 @@
 @import "base/variables";
 @import "base/breakpoints";
 
+// shared
+@import "animations/fall";
+
+// marketing specific
 @import "marketing/animations/**/*";
 @import "marketing/base/**/*";
 @import "marketing/defaults/**/*";
