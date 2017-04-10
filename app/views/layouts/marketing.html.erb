@@ -9,7 +9,9 @@
     <meta name="google-site-verification"
       content="<%= ENV.fetch("GOOGLE_SITE_VERIFICATION") %>" />
     <%= open_graph_tags %>
-    <title><%= t(".page_title") %></title>
+    <title>
+      <%= content_for(:page_title).presence || t(".page_title") %>
+    </title>
     <%= stylesheet_link_tag :marketing, media: "all" %>
     <%= favicon_link_tag "favicon.ico" %>
     <link rel="canonical" href="https://thoughtbot.com/upcase" />

@@ -102,7 +102,6 @@ en:
     app_name: Upcase
     fallback_page_title: Upcase by thoughtbot | Learn Web Development Online
     marketing:
-      page_title: Upcase by thoughtbot | Learn Web Development Online
       description: Join Upcase by thoughtbot. Explore video tutorials,
         exercises, forum discussions and the community you need to grow as a web
         developer.
@@ -128,6 +127,7 @@ en:
       hero_uvp_html: We turn <strong>junior developers into ass-kicking name
         takers.</strong> We're not a bootcamp, we're a finishing school.
       language_flash: Thanks for signing up. We will be in touch!
+      page_title: Upcase by thoughtbot | Learn Web Development Online
       start_learning: Start Learning Today
       have_a_team: Have a team?
   pages:
