@@ -90,6 +90,7 @@ Upcase::Application.routes.draw do
     get '/privacy', to: 'pages#show', as: :privacy, id: 'privacy'
     get '/purchases/:lookup', to: 'pages#show', id: 'purchase-show'
     get '/terms', to: 'pages#show', as: :terms, id: 'terms'
+    get "/upcase-on-mobile", to: "marketing#mobile"
 
     scope ":plan" do
       resource :authenticated_on_checkout, only: [:show]

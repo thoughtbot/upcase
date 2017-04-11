@@ -1,7 +1,12 @@
-<%= content_for(:page_title, t(".page_title")) %>
+<%- if @mobile %>
+  <%= content_for(:page_title, t(".page_title_mobile")) %>
+<%- else %>
+  <%= content_for(:page_title, t(".page_title")) %>
+<%- end %>
+
 
 <main>
-  <section class="hero hero--upcase-background">
+  <section class="hero background background--logo-on-dark-gradient">
     <%= inline_svg("welcome/upcase-logo--hero.svg") %>
 
     <h1 class="hero__tagline">
@@ -17,8 +22,6 @@
       professional_checkout_path,
       class: "button button--large button--on-dark"
     )%>
-
-    <div class="background background--upcase-hero"></div>
   </section>
 
   <section>
@@ -69,7 +72,11 @@
     </div>
   </section>
 
-  <section class="page-section">
+  <%- if @mobile %>
+    <%= render "mobile_section" %>
+  <% end %>
+
+  <section class="page-section background background--logo-on-light-gradient">
     <div class="page-content flex-grid">
       <div class="card card--two-per-line">
         <div class="card__content">
@@ -249,7 +256,7 @@
     </div>
   </section>
 
-  <section class="page-section">
+  <section class="page-section background background--logo-on-light">
     <div class="page-content flex-grid">
       <div class="card card--one-per-line">
         <div class="card__content">
@@ -318,8 +325,6 @@
         <%= link_to t(".have_a_team"), teams_path, class: :team %>
       </strong>
     </div>
-
-    <div class="background background--upcase-light"></div>
   </section>
 </main>
 

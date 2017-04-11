@@ -56,7 +56,7 @@ strong {
 }
 
 mark {
-  background: linear-gradient(0deg, $mark-background-color 50%, $white 50%);
+  background: linear-gradient(0, $mark-background-color 50%, rgba($white, 0) 50%);
   border-bottom: solid 0.25rem $mark-background-color;
   color: $mark-color;
   font-family: $heading-font-family;

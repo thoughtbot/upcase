@@ -1,16 +1,57 @@
 .background {
-  @include position(absolute, 0);
-  z-index: -1;
+  &::after,
+  &::before {
+    @include position(absolute, 0);
+    content: "";
+    z-index: -1;
+  }
 }
 
-.background--upcase-hero {
-  background-color: $blue;
-  background-image: asset-url("marketing/upcase-background.svg");
+.background--mobile {
+  background-image: asset-url("marketing/upcase-on-mobile.png");
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: 1000px;
+  border-bottom: 1px solid rgba($blue, 0.125);
+  border-top: 1px solid rgba($blue, 0.125);
+  height: 700px;
+  transition: height $base-duration;
+
+  @media (min-width: $x-large-screen) {
+    background-size: $x-large-screen;
+    height: 880px;
+  }
+}
+
+.background--logo-on-dark-gradient {
+  &::after {
+    background: linear-gradient(rgba($blue, 1), rgba($blue, 0));
+  }
+
+  &::before {
+    background-color: $blue;
+    background-image: asset-url("marketing/upcase-background.svg");
+  }
+}
+
+.background--logo-on-light {
+  &::before {
+    background-image: asset-url("marketing/upcase-background--light.svg");
+  }
+}
+
+.background--logo-on-light-gradient {
+  &::after {
+    background: linear-gradient(rgba($white, 0.75), rgba($white, 0));
+  }
+
+  &::before {
+    background-image: asset-url("marketing/upcase-background--light.svg");
+  }
 }
 
 @each $theme in (
     elixir
-    light
     python
     react
     swift

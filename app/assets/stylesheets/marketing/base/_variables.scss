@@ -48,7 +48,7 @@ $category-tmux-color: $bees-wax;
 $category-vim-color: $pattens-blue;
 $heading-font-color: lighten($blue, 5%);
 $light-font-color: $grey-chateau;
-$mark-background-color: $honey-dew;
+$mark-background-color: rgba($honey-dew, 0.5);
 $mark-color: $java;
 
 // Font families

@@ -8,4 +8,10 @@ class MarketingController < ApplicationController
       @language = params[:language]
     end
   end
+
+  def mobile
+    @mobile = true
+
+    render "show"
+  end
 end

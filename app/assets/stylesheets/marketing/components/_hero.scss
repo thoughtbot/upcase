@@ -13,27 +13,6 @@
   }
 }
 
-.hero--pattern-background {
-  &::after {
-    @include position(absolute, 0 0 0 0);
-    background: linear-gradient(
-      rgba($egyptian-blue, 0.75),
-      rgba($egyptian-blue, 0)
-    );
-    content: "";
-    z-index: -1;
-  }
-}
-
-.hero--upcase-background {
-  &::after {
-    @include position(absolute, 0 0 0 0);
-    background: linear-gradient(rgba($blue, 1), rgba($blue, 0));
-    content: "";
-    z-index: -1;
-  }
-}
-
 .hero__tagline {
   color: $white;
   font-family: $title-font-family;
