@@ -63,8 +63,7 @@ Upcase::Application.routes.draw do
       post "intercom-unsubscribes", to: "intercom_unsubscribes#create"
     end
 
-    get "/join" => "subscriptions#new", as: :sign_up
-    get "/join" => "subscriptions#new", as: :join
+    get "/join" => "checkouts#new", plan: "professional", as: :sign_up
     get "/sign_in" => "sessions#new", as: "sign_in"
     delete "/sign_out" => "sessions#destroy", as: "sign_out"
 

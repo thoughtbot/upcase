@@ -33,6 +33,6 @@ describe "trails/_completeablel_preview.html" do
   end
 
   def have_get_access_by_joining_link
-    have_link I18n.t("products.locked.get_access_by_joining"), href: join_path
+    have_link I18n.t("products.locked.get_access_by_joining"), href: sign_up_path
   end
 end

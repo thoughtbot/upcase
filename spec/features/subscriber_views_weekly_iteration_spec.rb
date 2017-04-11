@@ -41,7 +41,7 @@ feature "subscriber views weekly iteration" do
   end
 
   def preview_cta
-    I18n.t("watchables.preview.cta", subscribe_url: join_path).html_safe
+    I18n.t("watchables.preview.cta", subscribe_url: sign_up_path).html_safe
   end
 
   matcher :have_video_status do |status|
