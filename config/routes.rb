@@ -3,7 +3,7 @@
 Upcase::Application.routes.draw do
   scope "upcase" do
     root to: "marketing#show"
-    get "/welcome-to-upcase" => "marketing#show"
+    get "/welcome-to-upcase", to: redirect("/upcase/")
 
     use_doorkeeper
 
