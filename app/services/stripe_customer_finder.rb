@@ -1,5 +1,6 @@
 class StripeCustomerFinder
-  ERROR_MESSAGE = "a similar object exists in live mode".freeze
+  SIMILAR_OBJECT_ERROR = "a similar object exists in live mode".freeze
+  NO_CUSTOMER_ERROR = "No such customer".freeze
 
   def self.retrieve(customer_id)
     new.retrieve(customer_id)
@@ -8,7 +9,7 @@ class StripeCustomerFinder
   def retrieve(customer_id)
     Stripe::Customer.retrieve(customer_id)
   rescue Stripe::InvalidRequestError => e
-    if Rails.env.development? && stripe_environent_error?(e)
+    if dev? && has_whitelisted_error?(e)
       generate_fake_customer(customer_id)
     else
       raise
@@ -17,8 +18,13 @@ class StripeCustomerFinder
 
   private
 
-  def stripe_environent_error?(error)
-    error.message.include? ERROR_MESSAGE
+  def dev?
+    Rails.env.development?
+  end
+
+  def has_whitelisted_error?(error)
+    error.message.include?(SIMILAR_OBJECT_ERROR) ||
+      error.message.include?(NO_CUSTOMER_ERROR)
   end
 
   def generate_fake_customer(customer_id)
@@ -27,6 +33,9 @@ class StripeCustomerFinder
       "object" => "customer",
       "default_card" => "card_12345",
       "default_source" => "card_12345",
+      "subscriptions" => [Stripe::Subscription.construct_from(
+          "current_period_end" => 1.month.from_now
+      )],
       "cards" => Stripe::ListObject.construct_from(
         "data" => [Stripe::Card.construct_from(
           "id" => "card_12345",
