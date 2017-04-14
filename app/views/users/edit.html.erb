@@ -55,7 +55,7 @@
     </ol>
 
     <h3><%= t(".refer_a_friend") %></h3>
-    <p><%= t(".referral_benefits", percent: ENV.fetch("REFERRAL_DISCOUNT", "10")) %></p>
+    <p><%= t(".referral_benefits", percent: referral_discount) %></p>
     <%= link_to t(".referral_link"), "#", class: "cta-button squatchpop" %>
   <% end %>
 

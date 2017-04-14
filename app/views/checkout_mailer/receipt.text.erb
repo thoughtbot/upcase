@@ -7,5 +7,11 @@ skills to determine which video tutorials are right for you:
 <%= @checkout.plan_name %> also includes access to our forum. Get help from
 thoughtbot and other subscribers here: <%= Forum.url %>
 
+If you have friends or colleagues that you think would benefit from
+subscribing to Upcase, we have a referral program that will get you, *and*
+your referred subscriber, <%= referral_discount %>% off your next month's invoice:
+
+<%= edit_my_account_url(squatch_open: true) %>
+
 If you have any customer support or billing questions, please email us at <%=
 ENV["SUPPORT_EMAIL"] %>.

@@ -6,6 +6,17 @@ describe CheckoutMailer do
 
     context 'for user who has a subscription' do
       describe 'for a subscription product' do
+        it "mentions the referral program" do
+          percent_off = '50'
+
+          ClimateControl.modify REFERRAL_DISCOUNT: percent_off do
+            user = create(:subscriber)
+            checkout = create(:checkout, user: user)
+
+            expect(email_for(checkout)).to have_body_text("#{percent_off}% off")
+          end
+        end
+
         it 'includes support' do
           user = create(:subscriber)
           checkout = create(:checkout, user: user)
