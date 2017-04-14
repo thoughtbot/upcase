@@ -53,7 +53,7 @@ describe StripeCustomerFinder do
   end
 
   def stripe_error_message
-    "Hark! An error! #{StripeCustomerFinder::ERROR_MESSAGE}"
+    "Hark! An error! #{StripeCustomerFinder::SIMILAR_OBJECT_ERROR}"
   end
 
   def in_environment(env)

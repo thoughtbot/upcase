@@ -9,7 +9,7 @@ class StripeCustomerFinder
   def retrieve(customer_id)
     Stripe::Customer.retrieve(customer_id)
   rescue Stripe::InvalidRequestError => e
-    if has_whitelisted_error?(e)
+    if dev? && has_whitelisted_error?(e)
       generate_fake_customer(customer_id)
     else
       raise
@@ -18,12 +18,11 @@ class StripeCustomerFinder
 
   private
 
-  def has_whitelisted_error?(error)
-    stripe_environent_error?(error) &&
-      Rails.env.in?(%w[test development])
+  def dev?
+    Rails.env.development?
   end
 
-  def stripe_environent_error?(error)
+  def has_whitelisted_error?(error)
     error.message.include?(SIMILAR_OBJECT_ERROR) ||
       error.message.include?(NO_CUSTOMER_ERROR)
   end
