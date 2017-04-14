@@ -174,6 +174,15 @@ To see what the current recipient is:
 
     heroku config:get EMAIL_RECIPIENTS -r staging
 
+# Viewing email in development
+
+To preview how emails look in the browser without having to send them (via
+staging) you can visit the rails mailer preview index and navigate to the
+emails that have preview classes implemented.
+
+To preview the emails point your browser to
+`http://localhost:5000/rails/mailers` and select the mailer there.
+
 # Product Management
 
 Check the [Upcase processes] repository for guides on where to find and how to
