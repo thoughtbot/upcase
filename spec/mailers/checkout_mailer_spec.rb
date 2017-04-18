@@ -1,13 +1,13 @@
 require "rails_helper"
 
 describe CheckoutMailer do
-  describe '.receipt' do
+  describe ".receipt" do
     include Rails.application.routes.url_helpers
 
-    context 'for user who has a subscription' do
-      describe 'for a subscription product' do
+    context "for user who has a subscription" do
+      describe "for a subscription product" do
         it "mentions the referral program" do
-          percent_off = '50'
+          percent_off = "50"
 
           ClimateControl.modify REFERRAL_DISCOUNT: percent_off do
             user = create(:subscriber)
@@ -17,21 +17,21 @@ describe CheckoutMailer do
           end
         end
 
-        it 'includes support' do
+        it "includes support" do
           user = create(:subscriber)
           checkout = create(:checkout, user: user)
 
           expect(email_for(checkout)).to have_body_text(/support/)
         end
 
-        it 'has a thank you for subscribing' do
+        it "has a thank you for subscribing" do
           user = create(:subscriber)
           checkout = create(:checkout, user: user)
 
           expect(email_for(checkout)).to have_body_text(/Thank you for subscribing/)
         end
 
-        it 'does not mention the features the user does not have' do
+        it "does not mention the features the user does not have" do
           user = create(:subscriber)
           checkout = create(
             :checkout,
@@ -57,8 +57,13 @@ describe CheckoutMailer do
     end
 
     def checkout
-      @checkout ||= create(:checkout, created_at: Time.zone.now, email: 'joe@example.com',
-                           lookup: 'asdf', name: 'Joe Smith')
+      @checkout ||= create(
+        :checkout,
+        created_at: Time.zone.now,
+        email: "joe@example.com",
+        lookup: "asdf",
+        name: "Joe Smith"
+      )
     end
   end
 end

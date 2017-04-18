@@ -13,7 +13,7 @@ describe SubscriptionMailer do
     end
 
     it "mentions the referral program" do
-      percent_off = '50'
+      percent_off = "50"
 
       ClimateControl.modify REFERRAL_DISCOUNT: percent_off do
         expect(subscription_receipt_email).
