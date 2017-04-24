@@ -1,0 +1,144 @@
+{
+  "name": "upcase",
+  "scripts": {
+    "postdeploy": "bundle exec rake db:setup"
+  },
+  "env": {
+    "AIRBRAKE_API_KEY": {
+      "required": true
+    },
+    "ANALYTICS": {
+      "required": true
+    },
+    "APP_DOMAIN": {
+      "required": true
+    },
+    "ASSET_HOST": {
+      "required": true
+    },
+    "AWS_ACCESS_KEY_ID": {
+      "required": true
+    },
+    "AWS_BUCKET": {
+      "required": true
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "required": true
+    },
+    "CHAT_LINK": {
+      "required": true
+    },
+    "CLEARANCE_COOKIE_DOMAIN": {
+      "required": true
+    },
+    "CLEARANCE_COOKIE_NAME": {
+      "required": true
+    },
+    "CURRENT_BRANCH": {
+      "required": true
+    },
+    "CURRENT_SHA": {
+      "required": true
+    },
+    "DEPLOYHOOKS_HTTP_URL": {
+      "required": true
+    },
+    "DISCOURSE_SSO_SECRET": {
+      "required": true
+    },
+    "EMAIL_RECIPIENTS": {
+      "required": true
+    },
+    "FOG_DIRECTORY": {
+      "required": true
+    },
+    "FOG_PROVIDER": {
+      "required": true
+    },
+    "FORUM_URL": {
+      "required": true
+    },
+    "GEM_PATH": {
+      "required": true
+    },
+    "GITHUB_KEY": {
+      "required": true
+    },
+    "GITHUB_PASSWORD": {
+      "required": true
+    },
+    "GITHUB_SECRET": {
+      "required": true
+    },
+    "GITHUB_USER": {
+      "required": true
+    },
+    "INTERCOM_API_SECRET": {
+      "required": true
+    },
+    "LANG": {
+      "required": true
+    },
+    "LEARN_REPO_URL": {
+      "required": true
+    },
+    "NEW_RELIC_APP_NAME": {
+      "required": true
+    },
+    "NEW_RELIC_ID": {
+      "required": true
+    },
+    "PATH": {
+      "required": true
+    },
+    "PAYPAL_PASSWORD": {
+      "required": true
+    },
+    "PAYPAL_SIGNATURE": {
+      "required": true
+    },
+    "PAYPAL_USERNAME": {
+      "required": true
+    },
+    "RACK_ENV": {
+      "required": true
+    },
+    "RACKSPACE_API_KEY": {
+      "required": true
+    },
+    "RACKSPACE_USERNAME": {
+      "required": true
+    },
+    "RAILS_ENV": {
+      "required": true
+    },
+    "SCHEDULER_URL": {
+      "required": true
+    },
+    "SECRET_KEY_BASE": {
+      "required": true
+    },
+    "SEGMENT_KEY": {
+      "required": true
+    },
+    "STRIPE_API_KEY": {
+      "required": true
+    },
+    "STRIPE_PUBLIC_KEY": {
+      "required": true
+    },
+    "SUPPORT_EMAIL": {
+      "required": true
+    },
+    "WEB_TIMEOUT": {
+      "required": true
+    },
+    "WISTIA_HOST": {
+      "required": true
+    }
+  },
+  "addons": [
+    "sendgrid",
+    "heroku-postgresql"
+  ]
+}
