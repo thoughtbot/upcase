@@ -11,6 +11,8 @@ feature "subscriber searches for content" do
     search_for "tmux"
     click_on_search_result
 
+    # just a demo of github CI status
+    expect(1 + 1).to eq(3)
     expect(current_path).to eq(trail_path(tmux))
     expect(analytics).to have_tracked("Searched").
       with_properties(query: "tmux", results_count: 1)
