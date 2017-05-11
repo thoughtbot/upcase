@@ -122,6 +122,7 @@ describe "layouts/_header_links.html.erb" do
         admin?: current_user_is_admin,
         has_access_to?: false,
         subscriber?: current_user_has_active_subscription,
+        referral_discount_in_dollars: "10.00",
       )
     )
     super()
