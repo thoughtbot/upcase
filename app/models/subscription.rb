@@ -40,6 +40,12 @@ class Subscription < ActiveRecord::Base
     where(next_payment_on: 2.days.from_now)
   end
 
+  def referral_discount_in_dollars
+    discount_percentage = ENV.fetch("REFERRAL_DISCOUNT", "50").to_i
+    discount = (plan.price_in_dollars * discount_percentage).to_f / 100
+    sprintf("%.2f", discount)
+  end
+
   def active?
     deactivated_on.nil?
   end

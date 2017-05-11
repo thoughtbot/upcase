@@ -11,7 +11,12 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :github_username, uniqueness: true, presence: true
 
-  delegate :plan, to: :subscription, allow_nil: true
+  delegate(
+    :plan,
+    :referral_discount_in_dollars,
+    to: :subscription,
+    allow_nil: true
+  )
   delegate(
     :scheduled_for_deactivation_on,
     :scheduled_for_deactivation?,
