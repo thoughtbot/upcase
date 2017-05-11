@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
     :plan,
     :referral_discount_in_dollars,
     to: :subscription,
-    allow_nil: true
+    allow_nil: true,
   )
   delegate(
     :scheduled_for_deactivation_on,

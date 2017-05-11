@@ -22,7 +22,7 @@ describe Subscription do
 
   describe "#referral_discount_in_dollars" do
     context "discount is 25% off" do
-      it "returns how much, in dollars, a user gets for a successfull referral" do
+      it "returns how much a user gets back for a successfull referral" do
         percent_off_discount = "25"
 
         ClimateControl.modify REFERRAL_DISCOUNT: percent_off_discount do
