@@ -2,13 +2,12 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 75vh;
+  height: 85vh;
   justify-content: center;
   padding: ($site-header-height + $small-spacing) $small-spacing $x-large-spacing;
   position: relative;
 
   @media (min-width: $medium-screen) {
-    height: 65vh;
     min-height: 640px;
   }
 }
