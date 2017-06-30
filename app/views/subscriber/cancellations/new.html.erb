@@ -37,12 +37,21 @@
     </p>
 
     <p>
-      If you're sure you won't want to come back Upcase in the future, choose
+      If you're sure you won't want to come back to Upcase in the future, choose
       this option.
     </p>
 
-    <p>
-      <%= link_to t("subscriptions.confirm_cancel"), subscriber_cancellation_path, class: 'cta-button', method: :post %>
-    </p>
+    <%= semantic_form_for(
+      @cancellation,
+      url: [:subscriber, :cancellation],
+      html: { class: "cancellation-feedback" }
+    ) do |form| %>
+      <%= form.inputs do %>
+        <%= form.input :reason, as: :text, label: t("subscriptions.reason"), hint: t("subscriptions.reason_explanation") %>
+      <% end %>
+      <%= form.actions do %>
+        <%= form.action :submit, label: t("subscriptions.confirm_cancel") %>
+      <% end %>
+    <% end %>
   </article>
 </div>
