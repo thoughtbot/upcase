@@ -220,12 +220,12 @@ describe Analytics do
   end
 
   describe "#track_cancelled" do
-    it "tracks that the user cancelled along with their email" do
-      analytics_instance.track_cancelled
+    it "tracks that the user cancelled along with the reason and their email" do
+      analytics_instance.track_cancelled(reason: "No good")
 
       expect(analytics).to have_tracked("Cancelled").
         for_user(user).
-        with_properties(email: user.email)
+        with_properties(reason: "No good", email: user.email)
     end
   end
 

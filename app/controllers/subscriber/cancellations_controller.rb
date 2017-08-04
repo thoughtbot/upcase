@@ -6,7 +6,10 @@ class Subscriber::CancellationsController < ApplicationController
   end
 
   def create
-    @cancellation = Cancellation.new(subscription: current_user.subscription)
+    @cancellation = Cancellation.new(
+      subscription: current_user.subscription,
+      reason: cancellation_params[:reason],
+    )
 
     if @cancellation.schedule
       redirect_to(
@@ -16,5 +19,11 @@ class Subscriber::CancellationsController < ApplicationController
     else
       render :new
     end
+  end
+
+  private
+
+  def cancellation_params
+    params.require(:cancellation).permit(:reason)
   end
 end

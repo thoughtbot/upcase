@@ -53,8 +53,8 @@ class Analytics
     track("Authenticated on checkout")
   end
 
-  def track_cancelled
-    track("Cancelled")
+  def track_cancelled(reason:)
+    track("Cancelled", reason: reason)
   end
 
   def track_paused

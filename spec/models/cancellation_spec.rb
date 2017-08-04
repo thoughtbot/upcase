@@ -41,7 +41,8 @@ describe Cancellation do
 
       expect(stripe_customer.subscriptions.first).to have_received(:delete)
       expect(analytics).to have_tracked("Cancelled").
-        for_user(subscription.user)
+        for_user(subscription.user).
+        with_properties(reason: "reason")
     end
 
     it "retrieves the customer correctly" do
@@ -89,7 +90,8 @@ describe Cancellation do
         expect(subscription.user_clicked_cancel_button_on).
           to eq Date.current
         expect(analytics).to have_tracked("Cancelled").
-          for_user(subscription.user)
+          for_user(subscription.user).
+          with_properties(reason: "reason")
       end
     end
 
@@ -137,8 +139,8 @@ describe Cancellation do
     end
   end
 
-  def build_cancellation(subscription: create(:subscription))
-    Cancellation.new(subscription: subscription)
+  def build_cancellation(subscription: create(:subscription), reason: "reason")
+    Cancellation.new(subscription: subscription, reason: reason)
   end
 
   def subscription
