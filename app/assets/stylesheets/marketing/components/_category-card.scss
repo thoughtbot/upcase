@@ -1,16 +1,16 @@
 .category-card {
   align-items: center;
   display: flex;
-  margin: $small-spacing 0;
-  padding: 0;
+  flex-direction: column;
+  margin: $x-small-spacing;
+  padding: $small-spacing;
   position: relative;
   text-decoration: none;
   transition: transform $base-duration;
-  width: 100%;
+  width: calc(50% - #{$small-spacing});
 
   @media (min-width: $small-screen) {
-    @include margin($small-spacing);
-    flex-direction: column;
+    margin: $small-spacing;
     padding: $base-spacing $base-spacing $medium-spacing;
     width: 10.5rem;
   }
@@ -49,10 +49,10 @@
 
 .category-card__image {
   @include size(3rem);
-  margin: $base-spacing;
 
   @media (min-width: $small-screen) {
     @include size(5rem);
+    margin: $base-spacing;
   }
 }
 
