@@ -1,11 +1,11 @@
 .marketing-footer {
   background-color: $haiti;
   color: rgba($white, 0.4);
-  padding: $large-spacing 0;
-  text-align: center;
+  padding: $large-spacing;
 
   @media (min-width: $medium-screen) {
     padding: $x-large-spacing 0;
+    text-align: center;
   }
 }
 
@@ -14,11 +14,11 @@
   margin: 0 auto $medium-spacing;
 
   li {
-    margin: $base-spacing;
+    margin-bottom: $base-spacing;
 
     @media (min-width: $medium-screen) {
       display: inline-block;
-      margin: $base-spacing 0;
+      margin-right: $base-spacing;
     }
   }
 
@@ -33,12 +33,15 @@
 }
 
 .marketing-footer__logo {
-  margin: $base-spacing auto;
+  margin: $small-spacing auto;
 }
 
 .marketing-footer__copyright {
   display: block;
   line-height: 1.3;
-  margin: $base-spacing auto 0;
   max-width: 17.5rem;
+
+  @media (min-width: $medium-screen) {
+    margin: 0 auto;
+  }
 }

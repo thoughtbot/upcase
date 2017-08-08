@@ -2,12 +2,13 @@
   background: $white;
   border-radius: $base-border-radius;
   box-shadow: $base-content-shadow;
-  margin: -($large-spacing) $base-spacing 0;
+  margin: 0 auto;
   max-width: 40rem;
   overflow: hidden;
+  padding: 1rem;
 
   @media (min-width: $medium-screen) {
-    @include margin(null auto);
+    padding: 0;
   }
 }
 

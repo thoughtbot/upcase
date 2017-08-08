@@ -21,6 +21,11 @@
   }
 }
 
+.page-content--interstitial {
+  @include padding(0 null);
+  margin: -($large-spacing) auto 0;
+}
+
 .page-content--reading {
   @include padding(null $medium-spacing);
   max-width: $reading-width;
