@@ -17,7 +17,7 @@
     </h2>
 
     <%= link_to(
-      t(".start_learning"),
+      t(".hero_call_to_action"),
       professional_checkout_path,
       class: "button button--large button--on-dark"
     )%>
@@ -42,11 +42,6 @@
       <h2 class="page-content__heading">
         A wide variety of challenging exercises.
       </h3>
-
-      <p class="page-content__intro">
-        <mark>Stop learning alone!</mark> Join our community of thousands of
-        motivated peers and receive mentorship from the best in the business.
-      </p>
 
       <div class="flex-grid">
         <% LandingPageTopics.new.topics.each do |topic|  %>
