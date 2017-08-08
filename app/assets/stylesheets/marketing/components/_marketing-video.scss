@@ -2,9 +2,13 @@
   background: $white;
   border-radius: $base-border-radius;
   box-shadow: $base-content-shadow;
-  margin: -($large-spacing) auto 0;
+  margin: -($large-spacing) $base-spacing 0;
   max-width: 40rem;
   overflow: hidden;
+
+  @media (min-width: $medium-screen) {
+    @include margin(null auto);
+  }
 }
 
 .marketing-video__video {

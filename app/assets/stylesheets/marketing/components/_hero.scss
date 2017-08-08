@@ -2,9 +2,9 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 85vh;
   justify-content: center;
-  padding: ($site-header-height + $small-spacing) $small-spacing $x-large-spacing;
+  min-height: 80vh;
+  padding: ($site-header-height + $base-spacing) $small-spacing $x-large-spacing;
   position: relative;
 
   @media (min-width: $medium-screen) {
@@ -15,9 +15,14 @@
 .hero__tagline {
   color: $white;
   font-family: $title-font-family;
-  font-size: 1.75rem;
+  font-size: 1.4rem;
   margin: $base-spacing 0;
+  text-align: center;
   transition: font-size $base-duration;
+
+  @media (min-width: $small-screen) {
+    font-size: 1.75rem;
+  }
 
   @media (min-width: $medium-screen) {
     font-size: 3rem;

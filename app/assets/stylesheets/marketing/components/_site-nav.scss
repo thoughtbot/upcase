@@ -2,7 +2,7 @@
   margin: 0 auto;
   max-width: $large-screen;
 
-  @include marketing-fullsize {
+  @media (min-width: $medium-screen) {
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -19,11 +19,12 @@
 
 .site-nav__action {
   padding: $base-spacing;
+  padding-right: 0;
   position: absolute;
   width: 100%;
   z-index: $z-site-nav + 1;
 
-  @include marketing-fullsize {
+  @media (min-width: $medium-screen) {
     position: relative;
     width: auto;
   }
@@ -39,7 +40,7 @@
   padding: $small-spacing $base-spacing;
   text-decoration: none;
 
-  @include marketing-fullsize {
+  @media (min-width: $medium-screen) {
     display: none;
   }
 
@@ -59,12 +60,13 @@
   padding: 0;
   transition: margin 250ms ease-in-out;
 
-  @include marketing-fullsize {
+  @media (min-width: $medium-screen) {
     @include position(relative, 0 null null);
     background-color: transparent;
     box-shadow: none;
     margin-top: 0;
     padding: $base-spacing;
+    padding-left: 0;
     z-index: $z-site-nav + 1;
   }
 
@@ -72,9 +74,8 @@
     display: block;
     padding: $small-spacing;
 
-    @include marketing-fullsize {
+    @media (min-width: $medium-screen) {
       display: inline-block;
-      padding: 0;
     }
   }
 
@@ -87,16 +88,18 @@
   border-top: solid 1px darken($havelock-blue, 13%);
   color: rgba($white, 0.9);
   display: block;
+  font-family: $strong-font-family;
   font-size: 1rem;
-  font-weight: bold;
-  letter-spacing: 0.025rem;
+  letter-spacing: 0.02rem;
+  margin-left: 0;
   padding: $base-spacing;
   text-align: center;
   text-decoration: none;
 
-  @include marketing-fullsize {
+  @media (min-width: $medium-screen) {
     border: 0;
-    padding: $small-spacing $base-spacing;
+    margin-left: $small-spacing;
+    padding: 0;
   }
 
   &:active,
@@ -104,5 +107,10 @@
   &:hover {
     color: rgba($white, 0.6);
     cursor: pointer;
+  }
+
+  &.button {
+    margin: -$small-spacing;
+    padding: $small-spacing;
   }
 }

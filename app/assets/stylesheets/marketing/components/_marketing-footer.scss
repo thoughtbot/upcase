@@ -1,8 +1,12 @@
 .marketing-footer {
   background-color: $haiti;
   color: rgba($white, 0.4);
-  padding: $x-large-spacing 0;
+  padding: $large-spacing 0;
   text-align: center;
+
+  @media (min-width: $medium-screen) {
+    padding: $x-large-spacing 0;
+  }
 }
 
 .marketing-footer__links {
@@ -10,8 +14,12 @@
   margin: 0 auto $medium-spacing;
 
   li {
-    display: inline-block;
-    margin: 0 $base-spacing;
+    margin: $base-spacing;
+
+    @media (min-width: $medium-screen) {
+      display: inline-block;
+      margin: $base-spacing 0;
+    }
   }
 
   a {

@@ -23,7 +23,11 @@
 }
 
 .testimonial--large {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
+
+  @media (min-width: $medium-screen) {
+    font-size: 1.6rem;
+  }
 
   &::before {
     font-size: 2.5rem;
