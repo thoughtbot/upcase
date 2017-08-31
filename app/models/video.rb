@@ -87,4 +87,12 @@ class Video < ActiveRecord::Base
       published_on <= Date.current
     end
   end
+
+  def update_duration(duration = nil)
+    if duration.present?
+      update(length_in_minutes: duration)
+    else
+      VideoDurationUpdater.update_duration(self)
+    end
+  end
 end

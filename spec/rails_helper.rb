@@ -25,6 +25,7 @@ Capybara.app = HostMap.new(
   "www.example.com" => Capybara.app,
   "127.0.0.1" => Capybara.app,
   "github.com" => FakeGithub,
+  "api.wistia.com" => FakeWistia,
   "exercises.upcase.com" => FakeUpcaseExercises,
   "localhost" => FakeUpcaseExercises
 )
