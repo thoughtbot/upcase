@@ -54,7 +54,7 @@
 .site-nav__menu {
   @include position(absolute, $site-header-height 0 null);
   background-color: $blue;
-  box-shadow: 0 1rem 2rem rgba($black, 0.125);
+  box-shadow: 0 1rem 2rem rgba(mix($black, $blue), 0.5);
   display: block;
   margin-top: -200%;
   padding: 0;
@@ -65,17 +65,17 @@
     background-color: transparent;
     box-shadow: none;
     margin-top: 0;
-    padding: $base-spacing;
+    padding: $small-spacing;
     padding-left: 0;
     z-index: $z-site-nav + 1;
   }
 
   li {
     display: block;
-    padding: $small-spacing;
 
     @media (min-width: $medium-screen) {
       display: inline-block;
+      padding: $small-spacing;
     }
   }
 
@@ -92,7 +92,7 @@
   font-size: 1rem;
   letter-spacing: 0.02rem;
   margin-left: 0;
-  padding: $base-spacing;
+  padding: $medium-spacing;
   text-align: center;
   text-decoration: none;
 
@@ -108,9 +108,17 @@
     color: rgba($white, 0.6);
     cursor: pointer;
   }
+}
 
-  &.button {
-    margin: -$small-spacing;
-    padding: $small-spacing;
+.site-nav__button {
+  color: rgba($white, 0.9);
+  display: block;
+  font-size: 1rem;
+  margin: $base-spacing;
+  padding: $base-spacing;
+
+  @media (min-width: $medium-screen) {
+    @include padding($small-spacing null);
+    margin: 0;
   }
 }

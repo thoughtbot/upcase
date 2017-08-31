@@ -1,7 +1,7 @@
 .button {
   background-color: $base-button-background-color;
-  border-radius: $base-border-radius;
   border: 0;
+  border-radius: $base-border-radius;
   box-shadow: $base-button-shadow;
   color: $base-button-color;
   display: inline-block;
@@ -33,10 +33,6 @@
   &:hover {
     box-shadow: 0 4px 2.5rem $egyptian-blue;
   }
-}
-
-.button--tight {
-  @include padding(null $base-spacing);
 }
 
 .button--empty {

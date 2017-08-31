@@ -10,6 +10,9 @@
   &.is-open {
     background: rgba($black, 0.12);
     border-radius: 3px;
+    margin: -($small-spacing);
+    margin-left: 0;
+    padding: $small-spacing;
 
     &::after {
       @include transform(rotate(180deg));
