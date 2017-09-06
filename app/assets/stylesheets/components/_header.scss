@@ -149,7 +149,7 @@
 
   nav {
     @include dashboard-small-only {
-      margin-top: -100%;
+      margin-top: -200%;
       opacity: 0;
       transition: opacity 250ms $ease-in-out-sine,
                   margin 750ms $ease-in-out-sine;
