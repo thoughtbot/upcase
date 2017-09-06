@@ -29,10 +29,6 @@
 .page-content--reading {
   @include padding(null $medium-spacing);
   max-width: $reading-width;
-
-  @media (min-width: $medium-screen) {
-    @include padding(null null);
-  }
 }
 
 .page-content__heading {
@@ -41,7 +37,8 @@
   font-family: $heading-font-family;
   font-size: $medium-font-size;
   font-weight: normal;
-  margin-bottom: $base-spacing;
+  margin: 0 auto $base-spacing;
+  max-width: $reading-width;
   text-align: center;
 }
 

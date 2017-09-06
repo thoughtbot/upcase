@@ -123,15 +123,20 @@ en:
         subject: '[Upcase] thoughtbot is about to charge for your Upcase subscription'
   marketing:
     show:
-      hero_tagline: Get "junior" out of your title
-      hero_uvp_html: We turn <strong>junior developers into ass-kicking name
-        takers.</strong> We're not a bootcamp, we're a finishing school.
+      content:
+        heading: Choose from a variety of languages and tools.
+        body_html: <mark>Our trails are intermediate and advanced.</mark> Learn
+          from experienced developers and move from beginner to proficient at a
+          steady and sustainable pace.
+      have_a_team: Have a team?
+      hero_call_to_action: Start Learning Today!
+      hero_tagline: Take "junior" out of your title
+      hero_uvp_html: <strong>Become an experienced developer.</strong> We're not
+        a bootcamp, we're a finishing school.
       language_flash: Thanks for signing up. We will be in touch!
       page_title: Upcase by thoughtbot | Learn Web Development Online
       page_title_mobile: Upcase by thoughtbot | Learn Web Development from
         Anywhere
-      hero_call_to_action: Start Leveling Up!
-      have_a_team: Have a team?
   pages:
     welcome:
       complete-welcome: Dismiss this page (for now)
@@ -183,7 +188,7 @@ en:
     subscriptions:
       icon: ✶
       multi_user: Team Membership
-      single_user: Subscribe Now
+      single_user: Join Upcase
     team_plan_name: Upcase for Teams
     upcase: Upcase
     content_meta_description: "Explore thoughtbot's video tutorials, exercises,
@@ -230,7 +235,7 @@ en:
       resubscribe:
         success: Awesome! We've resubscribed you. Enjoy the Upcase!
         failure: Unfortunately we were unable to resubscribe you. Please check your payment info and try again.
-    join_cta: Subscribe Now
+    join_cta: Join Upcase
     new:
       sign_up_cta: Sign Up Now!
     checkout: Let's do this!

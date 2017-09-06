@@ -1,8 +1,4 @@
-<%- if @mobile %>
-  <%= content_for(:page_title, t(".page_title_mobile")) %>
-<%- else %>
-  <%= content_for(:page_title, t(".page_title")) %>
-<%- end %>
+<%= content_for(:page_title, t(".page_title")) %>
 
 <main>
   <section class="hero background background--logo-on-dark-gradient">
@@ -25,15 +21,19 @@
 
   <section class="page-section">
     <div class="page-content page-content--interstitial">
-      <div class="marketing-video">
-        <div class="marketing-video__video">
-          <iframe
-            src="//fast.wistia.net/embed/iframe/wb6xiv8f3b?playerPreference=html5"
-            allowtransparency="true" frameborder="0" scrolling="no"
-            class="wistia_embed" name="wistia_embed" allowfullscreen
-            mozallowfullscreen webkitallowfullscreen oallowfullscreen
-            msallowfullscreen></iframe>
-          <script src="//fast.wistia.net/assets/external/E-v1.js" async></script>
+      <div class="card card--narrower">
+        <div class="card__content">
+          <p class="card__copy card__copy--centered">
+            <mark>Join our community of motivated peers</mark> and
+            receive mentorship from the best in the business.
+          </p>
+          <p>
+            <%= image_tag "marketing/many-faces.png" %>
+          </p>
+          <p class="card__copy card__copy--centered">
+          Listen to their stories on our
+            <a href="https://medium.com/@upcase">podcast.</a>
+          </p>
         </div>
       </div>
     </div>
@@ -42,8 +42,12 @@
   <section class="page-section">
     <div class="page-content">
       <h2 class="page-content__heading">
-        A wide variety of challenging exercises.
-      </h3>
+        <%= t(".content.heading") %>
+      </h2>
+
+      <p class="page-content__intro">
+        <%= t(".content.body_html") %>
+      </p>
 
       <div class="flex-grid">
         <% LandingPageTopics.new.topics.each do |topic|  %>
@@ -68,11 +72,50 @@
     </div>
   </section>
 
-  <%- if @mobile %>
-    <%= render "mobile_section" %>
-  <% end %>
+  <section class="page-section page-section--dark">
+    <div class="page-content">
+      <h2 class="page-content__heading">
+        We asked an experienced developer how they demonstrate curiosity during
+        the job hunt.
+      </h2>
 
-  <section class="page-section background background--logo-on-light-gradient">
+      <div class="conversation">
+        <%= image_tag "marketing/conversation-upcase.png",
+          class: "conversation__avatar" %>
+
+        <div class="conversation__bubble">
+          <p>
+            So let's say I've come straight out of a coding bootcamp, and joined
+            a consultancy, or a startup. How do you show that you are curious and
+            ready to learn?
+          </p>
+        </div>
+      </div>
+
+      <div class="conversation">
+        <div class="conversation__bubble conversation__bubble--right">
+          <p>
+            When it comes time to interview, companies are going to be looking
+            for that additional work. That's when I'll ramp up and spend some
+            evenings and even weekends creating personal projects. They might not
+            be the fanciest pieces...they might not be the next Facebook, but they
+            are something that showcases the work that I'm capable of doing.
+          <p>
+        </div>
+
+          <%= image_tag "marketing/conversation-avi.png",
+            class: "conversation__avatar" %>
+      </div>
+    </div>
+
+    <div class="page-content flex-grid">
+      <%= link_to(
+        "Join Our Community", professional_checkout_path, class: "button"
+      )%>
+    </div>
+  </section>
+
+  <section class="page-section background background--logo-on-light">
     <div class="page-content flex-grid">
       <div class="card card--two-per-line">
         <div class="card__content">
@@ -111,7 +154,6 @@
       )%>
     </div>
 
-    <div class="background background--upcase-light"></div>
   </section>
 
   <section class="page-section page-section--dark">
@@ -136,17 +178,6 @@
   </section>
 
   <section class="page-section">
-    <div class="page-content">
-      <h2 class="page-content__heading">
-        The next best thing to working at thoughtbot fulltime.
-      </h3>
-
-      <p class="page-content__intro">
-        <mark>Stop learning alone!</mark> Join our community of thousands of
-        motivated peers and receive mentorship from the best in the business.
-      </p>
-    </div>
-
     <div class="page-content page-content--centered">
       <div class="selling-point">
         <%= inline_svg(
@@ -194,12 +225,6 @@
           failed at it before.
         </p>
       </div>
-    </div>
-
-    <div class="page-content flex-grid">
-      <%= link_to(
-        "Start Learning Today", professional_checkout_path, class: "button"
-      )%>
     </div>
   </section>
 

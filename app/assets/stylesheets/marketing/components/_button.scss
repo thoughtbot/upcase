@@ -8,7 +8,7 @@
   font-family: $strong-font-family;
   font-size: 1.25rem;
   line-height: 1;
-  padding: ($small-spacing * 1.25) $large-spacing ($small-spacing * 1.5);
+  padding: $base-spacing $large-spacing ($base-spacing * 1.15);
   text-align: center;
   text-decoration: none;
   transition-duration: $base-duration * 2;

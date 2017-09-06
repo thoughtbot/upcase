@@ -1,8 +1,14 @@
 .card {
   background-color: $white;
+  border: 1px solid rgba($blue, 0.075);
   border-radius: $base-border-radius;
   box-shadow: $base-content-shadow;
   overflow: auto;
+}
+
+.card--narrower {
+  margin: 0 auto;
+  max-width: $max-width-narrower;
 }
 
 .card--one-per-line {
@@ -78,4 +84,9 @@
 .card__copy {
   color: $light-font-color;
   max-width: $reading-width;
+}
+
+.card__copy--centered {
+  margin: 0 auto;
+  text-align: center;
 }
