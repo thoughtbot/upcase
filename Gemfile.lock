@@ -242,7 +242,7 @@ GEM
       activesupport (>= 3.2.0)
       cocaine (~> 0.5.5)
       mime-types
-    pg (0.20.0)
+    pg (0.21.0)
     pg_search (1.0.5)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
