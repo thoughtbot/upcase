@@ -11,7 +11,7 @@ gem "analytics-ruby", "~> 2.0.0", require: "segment/analytics"
 # `gradient` usage in rails-admin's CSS. In order to not show the warning, use a
 # lower version until rails-admin has better CSS.
 gem "autoprefixer-rails"
-gem "aws-sdk"
+gem "aws-sdk", "~> 2.2"
 gem "bourbon", "~> 4.0"
 gem "clearance", "~> 1.15.1"
 gem "clearance-deprecated_password_strategies"
