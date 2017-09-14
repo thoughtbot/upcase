@@ -1,11 +1,3 @@
-if ENV["CODECLIMATE_REPO_TOKEN"]
-  require "codeclimate-test-reporter"
-  CodeClimate::TestReporter.configure do |config|
-    config.logger.level = Logger::WARN
-  end
-  CodeClimate::TestReporter.start
-end
-
 if ENV["COVERAGE"]
   require "simplecov"
   SimpleCov.start "rails"
