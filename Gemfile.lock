@@ -241,10 +241,10 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
     pg (0.21.0)
-    pg_search (1.0.5)
-      activerecord (>= 3.1)
-      activesupport (>= 3.1)
-      arel
+    pg_search (2.1.0)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
+      arel (>= 6)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
