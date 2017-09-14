@@ -24,6 +24,8 @@ RailsAdmin.config do |config|
 
   config.main_app_name = ['Upcase', 'Admin']
 
+  config.parent_controller = "::ApplicationController"
+
   config.yell_for_non_accessible_fields = false
 
   config.actions do
