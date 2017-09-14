@@ -86,7 +86,7 @@ end
 
 group :test do
   gem "capybara"
-  gem "capybara-webkit"
+  gem "capybara-webkit", ">= 1.11.1"
   gem "capybara_discoball"
   gem "climate_control"
   gem "codeclimate-test-reporter", require: nil
