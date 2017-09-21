@@ -3,7 +3,6 @@
 Upcase::Application.routes.draw do
   scope "upcase" do
     root to: "marketing#show"
-    get "/welcome-to-upcase", to: redirect("/upcase/")
 
     use_doorkeeper
 
@@ -85,12 +84,11 @@ Upcase::Application.routes.draw do
       resource :trail, controller: "exercise_trails", only: [:show]
     end
 
-    get "/new-language-confirmation", to: "new_language_confirmations#index"
     get '/pages/:id', to: 'high_voltage/pages#show', as: :page, format: false
     get '/privacy', to: 'pages#show', as: :privacy, id: 'privacy'
     get '/purchases/:lookup', to: 'pages#show', id: 'purchase-show'
     get '/terms', to: 'pages#show', as: :terms, id: 'terms'
-    get "/upcase-on-mobile", to: "marketing#mobile"
+    get "/pages/welcome", to: "pages#show", as: "welcome"
 
     scope ":plan" do
       resource :authenticated_on_checkout, only: [:show]
@@ -186,7 +184,6 @@ Upcase::Application.routes.draw do
     resources :coupons, only: :show
     resources :topics, only: :index, constraints: { format: "css" }
     resources :onboardings, only: :create
-    get "pages/welcome", to: "high_voltage#show", as: "welcome"
     get "forum", to: redirect("https://forum.upcase.com"), as: "forum"
 
     resources(
