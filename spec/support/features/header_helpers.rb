@@ -1,5 +1,5 @@
 module Features
   def my_account_link
-    find(".header-wrapper .account a")
+    find("#my_account_link")
   end
 end

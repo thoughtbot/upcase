@@ -1,11 +1,15 @@
 @import "bourbon";
 @import "neat";
+
+@import "shared/base/variables";
+@import "shared/animations/fall";
+@import "shared/components/site-nav";
+@import "shared/components/site-header";
+
 @import "font-awesome";
 
 // Load order dependency with variables
 @import "base/variables";
-
-@import "animations/fall";
 
 @import "base/breakpoints";
 @import "base/mixins";
@@ -43,7 +47,7 @@
 @import "components/flashcards-admin";
 @import "components/footer";
 @import "components/free-tag";
-@import "components/header";
+// @import "components/header";
 @import "components/invoices";
 @import "components/land-your-dream-rails-job";
 @import "components/landing-pages";
@@ -77,7 +81,7 @@
 @import "components/centered-section";
 @import "components/features";
 @import "components/hero";
-@import "components/nav";
+// @import "components/nav";
 @import "components/pages";
 @import "components/price";
 @import "components/selling-point";

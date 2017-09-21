@@ -3,7 +3,6 @@ $azure: #f3fcff;
 $bees-wax: #fcf5c8;
 $blue-chalk: #f8eaff;
 $blue-de-france: #3c7fef;
-$blue: #0b5fec;
 $caribbean-green: #1bdfb0;
 $chillean-heath: #ffffe6;
 $eclipse: #3d3939;
@@ -13,7 +12,6 @@ $glitter: #e8e9ff;
 $grey-chateau: #a4a4a4;
 $hacienda: #9b8f11;
 $haiti: #16193e;
-$havelock-blue: #3c7fef;
 $hawkes-blue: #d7ecff;
 $honey-dew: #f1fff0;
 $java: #2ea49c;
@@ -27,7 +25,6 @@ $tranquil: #e5feff;
 $tutu: #ffe9fd;
 $united-nations-blue: #698fe1;
 $upcase-light-blue: #fbfcff;
-$white: #fff;
 $zicron: #f4faff;
 
 // Colors in action
@@ -53,8 +50,8 @@ $mark-color: $java;
 
 // Font families
 $base-font-family: "calibre-light";
-$heading-font-family: "calibre-regular";
 $strong-font-family: "calibre-regular";
+$heading-font-family: "calibre-regular";
 $title-font-family: "averta-standard-bold";
 
 // Font sizes
@@ -70,14 +67,11 @@ $base-line-height: 1;
 $x-small-spacing: 0.25rem;
 $small-spacing: 0.5rem;
 $base-spacing: 1rem;
-$medium-spacing: 2rem;
 $large-spacing: 3.75rem;
 $x-large-spacing: 6rem;
 
 // Z-index
 $z-flashes: 20;
-$z-site-header: 15;
-$z-site-nav: 10;
 $z-table-of-contents: 5;
 $z-base: 1;
 $z-modal: 25;
@@ -90,7 +84,6 @@ $base-content-shadow: 0 0.5rem 1.5rem rgba($havelock-blue, 0.2);
 $dark-content-shadow: 0 0.5rem 2.5rem $egyptian-blue;
 
 // Component sizes
-$site-header-height: 4rem;
 $reading-width: 33rem;
 
 // Component specific

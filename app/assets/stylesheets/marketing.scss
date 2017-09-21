@@ -1,12 +1,15 @@
 @import "bourbon";
 @import "neat";
 
+@import "shared/base/fonts";
+@import "shared/base/variables";
+@import "shared/animations/fall";
+@import "shared/components/site-nav";
+@import "shared/components/site-header";
+
 @import "defaults/reset";
 @import "base/variables";
 @import "base/breakpoints";
-
-// shared
-@import "animations/fall";
 
 // marketing specific
 @import "marketing/animations/**/*";

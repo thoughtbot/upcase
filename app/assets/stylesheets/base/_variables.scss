@@ -1,6 +1,5 @@
 // Colors
 $alert-color: #ffdfdf;
-$black: #000;
 $blue-trail: #4a90e2;
 $celestial-blue: #4a90e2;
 $cta-color-dark: #fb0;
@@ -36,7 +35,6 @@ $upcase-red: #ff4856;
 $video-tutorial-color: #ff633c;
 $warmgray: #d9d4cc;
 $weekly-iteration-color: #9c313e;
-$white: #fff;
 $yellow: #f3e86b;
 
 // Colors in action
@@ -44,7 +42,7 @@ $base-background-1: $white;
 $base-background-2: #fafafa;
 $base-button-color: $upcase-green;
 $code-block-brackground: #f7f7f7;
-$flashcard-background: #ffffff;
+$flashcard-background: #fff;
 $flashcard-border-color: lighten($gray-4, 5%);
 $flashcard-hover-color: $gray-4;
 $footer-background: rgba(46, 48, 58, 0.96);
@@ -153,9 +151,6 @@ $fast-transition: all 0.15s ease-in-out;
 $base-box-shadow: 1px 1px 2px rgba($black, 0.08);
 $heavy-box-shadow: 0 1px 3px rgba($black, 0.2);
 
-// Border radiuses
-$base-border-radius: 3px;
-
 // Unicode characters
 $unicode-down-triangle: "\25BE";
 $unicode-left-double-quote: "\201C";
@@ -165,8 +160,6 @@ $unicode-right-single-quote: "\2019";
 
 // Screen sizes
 $small-screen: 420px;
-$medium-screen: 620px;
-$large-screen: 1000px;
 $x-large-screen: 1300px;
 
 // Layout sizes

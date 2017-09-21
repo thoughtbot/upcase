@@ -1,6 +1,9 @@
 <meta charset="utf-8" />
 <title><%= content_for(:page_title).presence || t("layouts.fallback_page_title") %></title>
-<%= render 'layouts/stylesheets' %>
+
+<%= stylesheet_link_tag "application", media: "all" %>
+<%= stylesheet_link_tag "shared", media: "all" %>
+
 <link rel="icon" href="/upcase/favicon.ico" type="image/x-icon">
 <%= content_for :additional_head_content %>
 <meta http-equiv="Description" name="Description" content="<%= yield(:meta_description).presence %>" />

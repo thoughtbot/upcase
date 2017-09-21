@@ -1,38 +1,20 @@
-<section
-  class="header-wrapper <%= "sticky-header" if encourage_user_to_pay? %>"
-  data-role="header">
-  <div class="header-container">
-    <%= link_to root_path, class: "branding" do %>
-      <h1 class="small-logo">
-        <%= image_tag(
-          "upcase/upcase-header-logo-small.svg",
-          alt: t("layouts.app_name"))
-        %>
-      </h1>
-
-      <%= image_tag(
-        "ralph.svg",
-        class: "ralph-header-logo",
-        alt: t("layouts.thoughtbot"))
-      %>
-
-      <% if sales_context? %>
-        <span class="header-tagline">
-          <%= t("shared.header.tagline") %>
-        </span>
+<header class="site-header">
+  <nav class="site-nav">
+    <div class="site-nav__action">
+      <%= link_to root_path do %>
+        <%= inline_svg "upcase/upcase-header-logo-small.svg",
+          alt: t("layouts.app_name") %>
       <% end %>
+
+      <a class="site-nav__menu-trigger js-toggle-menu-trigger">
+        Menu
+      </a>
+    </div>
+
+    <% if sales_context? %>
+      <%= render "layouts/header_marketing_links" %>
+    <% else %>
+      <%= render "layouts/header_application_links" %>
     <% end %>
-
-    <a class="site-nav__menu js-toggle-menu-trigger">
-      Menu
-    </a>
-
-    <nav>
-      <% if sales_context? %>
-        <%= render "layouts/marketing_header_links" %>
-      <% else %>
-        <%= render "layouts/header_links" %>
-      <% end %>
-    </nav>
-  </div>
-</section>
+  </nav>
+</header>

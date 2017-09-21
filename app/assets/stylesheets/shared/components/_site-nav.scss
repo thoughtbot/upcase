@@ -18,7 +18,7 @@
 }
 
 .site-nav__action {
-  padding: $base-spacing;
+  padding: $spacing-base;
   padding-right: 0;
   position: absolute;
   width: 100%;
@@ -31,13 +31,13 @@
 }
 
 .site-nav__menu-trigger {
-  @include position(absolute, $base-spacing $base-spacing null null);
+  @include position(absolute, $spacing-base $spacing-base null null);
   background-color: rgba($black, 0.075);
   border-radius: $base-border-radius;
   color: $white;
   cursor: pointer;
   font-weight: bold;
-  padding: $small-spacing $base-spacing;
+  padding: $spacing-small $spacing-base;
   text-decoration: none;
 
   @media (min-width: $medium-screen) {
@@ -65,17 +65,18 @@
     background-color: transparent;
     box-shadow: none;
     margin-top: 0;
-    padding: $small-spacing;
+    padding: $spacing-small;
     padding-left: 0;
     z-index: $z-site-nav + 1;
   }
 
   li {
     display: block;
+    margin: 0;
 
     @media (min-width: $medium-screen) {
       display: inline-block;
-      padding: $small-spacing;
+      padding: $spacing-small;
     }
   }
 
@@ -89,16 +90,15 @@
   color: rgba($white, 0.9);
   display: block;
   font-family: $strong-font-family;
-  font-size: 1rem;
-  letter-spacing: 0.02rem;
+  font-size: 1.1rem;
   margin-left: 0;
-  padding: $medium-spacing;
+  padding: $spacing-medium;
   text-align: center;
   text-decoration: none;
 
   @media (min-width: $medium-screen) {
     border: 0;
-    margin-left: $small-spacing;
+    margin-left: $spacing-small;
     padding: 0;
   }
 
@@ -114,11 +114,11 @@
   color: rgba($white, 0.9);
   display: block;
   font-size: 1rem;
-  margin: $base-spacing;
-  padding: $base-spacing;
+  margin: $spacing-base;
+  padding: $spacing-base;
 
   @media (min-width: $medium-screen) {
-    @include padding($small-spacing null);
+    @include padding($spacing-small null);
     margin: 0;
   }
 }

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "layouts/_marketing_header_links.html.erb" do
+describe "layouts/_header_marketing_links.html.erb" do
   include PlansHelper
 
   before do
@@ -34,7 +34,7 @@ describe "layouts/_marketing_header_links.html.erb" do
       render_header(header_cta_link: "result")
 
       expect(rendered).to have_css(
-        ".header-cta",
+        "#site_nav_call_to_action",
         text: "result",
       )
     end
