@@ -84,10 +84,10 @@ Upcase::Application.routes.draw do
       resource :trail, controller: "exercise_trails", only: [:show]
     end
 
-    get '/pages/:id', to: 'high_voltage/pages#show', as: :page, format: false
-    get '/privacy', to: 'pages#show', as: :privacy, id: 'privacy'
-    get '/purchases/:lookup', to: 'pages#show', id: 'purchase-show'
-    get '/terms', to: 'pages#show', as: :terms, id: 'terms'
+    get "/pages/:id", to: "high_voltage/pages#show", as: :page, format: false
+    get "/privacy", to: "pages#show", as: :privacy, id: "privacy"
+    get "/purchases/:lookup", to: "pages#show", id: "purchase-show"
+    get "/terms", to: "pages#show", as: :terms, id: "terms"
     get "/pages/welcome", to: "pages#show", as: "welcome"
 
     scope ":plan" do

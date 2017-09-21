@@ -121,8 +121,9 @@ en:
         subject: '[Upcase] Your receipt and some tips'
       upcoming_payment_notification:
         subject: '[Upcase] thoughtbot is about to charge for your Upcase subscription'
-  marketing:
-    show:
+
+  pages:
+    landing:
       content:
         heading: Choose from a variety of languages and tools.
         body_html: <mark>Our trails are intermediate and advanced.</mark> Learn
@@ -137,22 +138,26 @@ en:
       page_title: Upcase by thoughtbot | Learn Web Development Online
       page_title_mobile: Upcase by thoughtbot | Learn Web Development from
         Anywhere
-  pages:
     welcome:
       complete-welcome: Dismiss this page (for now)
       headline: Read this to write better code.
       post-welcome-message: All content unlocked. Enjoy!
-    landing:
-      sign_up_cta: Sign Up Now!
+
   payments:
     new:
       pay-button-cta: Get instant access
   plans:
     forum: Private Discourse Forum
     video_tutorials: Hands-On Video Tutorials
+
   practice:
     decks:
       decks-list-title: decks
+    show:
+      trail_description: These are trails, the perfect thing to tackle on a
+        Saturday or a wide-open evening when you're ready to write some code or
+        watch longer videos.
+
   products:
     locked:
       available_for_free_after_authing: Sign In with GitHub for Free Access

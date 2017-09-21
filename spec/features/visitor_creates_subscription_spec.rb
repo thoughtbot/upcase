@@ -9,7 +9,7 @@ feature "Visitor signs up for a subscription" do
     create(:trail, :published)
 
     visit root_path(campaign_params)
-    click_link I18n.t("marketing.show.hero_call_to_action")
+    click_link I18n.t("pages.landing.hero_call_to_action")
     show_email_and_username_form
     fill_out_account_creation_form
     fill_out_credit_card_form_with_valid_credit_card

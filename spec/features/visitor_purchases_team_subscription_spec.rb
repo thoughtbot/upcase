@@ -21,7 +21,7 @@ feature 'Visitor can purchase a subscription for their team' do
 
   def navigate_to_team_sign_up
     visit root_path
-    click_link I18n.t("marketing.show.have_a_team")
+    click_link I18n.t("pages.landing.have_a_team")
     click_link I18n.t("subscriptions.join_cta")
   end
 

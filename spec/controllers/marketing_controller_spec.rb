@@ -5,7 +5,7 @@ describe MarketingController do
     it "renders the content of /join, but stays on /" do
       get :show
 
-      expect(response).to render_template("marketing/show")
+      expect(response).to render_template("pages/landing")
     end
   end
 
