@@ -13,7 +13,15 @@
     background-color: $blue;
     content: "";
     height: $site-header-height;
+    transition: background-color ($base-duration * 2);
     z-index: $z-site-nav;
+  }
+
+  .light &::after {
+    @media (min-width: $medium-screen) {
+      background-color: $white;
+      border-bottom: $base-border;
+    }
   }
 }
 
@@ -90,7 +98,7 @@
   display: block;
   font-family: $strong-font-family;
   font-size: 1rem;
-  letter-spacing: 0.02rem;
+  letter-spacing: 0.025rem;
   margin-left: 0;
   padding: $medium-spacing;
   text-align: center;
@@ -107,6 +115,33 @@
   &:hover {
     color: rgba($white, 0.6);
     cursor: pointer;
+
+    .light & {
+      @media (min-width: $medium-screen) {
+        color: rgba($blue, 0.6);
+      }
+    }
+  }
+
+  .light & {
+    @media (min-width: $medium-screen) {
+      color: $blue;
+
+      &.button {
+        box-shadow: $base-button-shadow;
+        color: $white;
+      }
+    }
+  }
+}
+
+.upcase-logotype {
+  @media (min-width: $medium-screen) {
+    .light & {
+      path {
+        fill: $blue;
+      }
+    }
   }
 }
 

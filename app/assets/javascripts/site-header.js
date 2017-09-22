@@ -17,13 +17,16 @@ Upcase.siteHeader = {
 
   setSiteNavButtonClasses: function () {
     var button = $(".js-site-nav-button");
+    var body = $("body");
     var buttonClass = "button--empty";
-    var heroHeight = $(".js-hero").height();
+    var heroHeight = $(".hero").outerHeight();
     var scrollPosition = $(document).scrollTop();
 
     if(scrollPosition > heroHeight) {
+      body.addClass("light");
       button.removeClass(buttonClass);
     } else {
+      body.removeClass("light");
       button.addClass(buttonClass);
     }
   },
