@@ -18,7 +18,6 @@
 //= require wistia_helper
 //= require headhesive.min.js
 //= require header-setup
-//= require site-header
 //= require toggle-menu
 //= require fastclick
 //= require readmore
