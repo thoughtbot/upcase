@@ -7,18 +7,21 @@
 <% end %>
 
 <section class="trails-progress">
-  <section class="subject">
-    <h1>Trails</h1>
-    <p>
-      <%= t(".trail_description") %>
-    </p>
+  <header class="page-header">
+    <h1 class="page-header__title">
+      Trails
+    </h1>
 
-    <p>
+    <h4 class="page-header__tagline">
+      <%= t(".trail_description") %>
+    </h4>
+
+    <p class="page-header__intro">
       Some trails consist of videos, like our tmux trail. Others use our
       <strong>exercise system</strong>. In those, you'll clone down a git
       repo and <strong>write code on your own machine</strong>.
     </p>
-  </section>
+  </header>
 
   <% if @practice.beta_offers.any? %>
     <section class="beta-offers">

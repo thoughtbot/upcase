@@ -1,10 +1,21 @@
 @import "bourbon";
 @import "neat";
 
+@import "shared/base/reset";
+@import "shared/base/fonts";
 @import "shared/base/variables";
+
 @import "shared/animations/fall";
-@import "shared/components/site-nav";
+@import "shared/base/typography";
+@import "shared/components/avatar";
+@import "shared/components/default-list";
+@import "shared/components/page-header";
 @import "shared/components/site-header";
+@import "shared/components/site-footer";
+@import "shared/components/site-nav";
+@import "shared/components/table-of-contents";
+@import "shared/components/table-of-contents-list";
+@import "shared/components/table-of-contents-toggle";
 
 @import "font-awesome";
 
@@ -15,10 +26,8 @@
 @import "base/mixins";
 @import "base/extends";
 
-@import "defaults/reset";
 @import "defaults/lists";
 @import "defaults/forms";
-@import "defaults/typography";
 
 @import "utilities/u-overflow-hidden";
 
@@ -45,9 +54,7 @@
 @import "components/flashcard-list";
 @import "components/flashcards";
 @import "components/flashcards-admin";
-@import "components/footer";
 @import "components/free-tag";
-// @import "components/header";
 @import "components/invoices";
 @import "components/land-your-dream-rails-job";
 @import "components/landing-pages";
@@ -81,17 +88,11 @@
 @import "components/centered-section";
 @import "components/features";
 @import "components/hero";
-// @import "components/nav";
 @import "components/pages";
 @import "components/price";
 @import "components/selling-point";
 @import "components/testimonials";
 @import "components/topics-grid";
 @import "components/welcome-page";
-
-// Styles exclusive to marketing pages
-@import "components/table-of-contents";
-@import "components/table-of-contents-list";
-@import "components/table-of-contents-toggle";
 
 @import "highlight-js-gist";

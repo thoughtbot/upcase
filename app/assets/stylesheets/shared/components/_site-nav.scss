@@ -55,10 +55,10 @@
   @include position(absolute, $site-header-height 0 null);
   background-color: $blue;
   box-shadow: 0 1rem 2rem rgba(mix($black, $blue), 0.5);
-  display: block;
   margin-top: -200%;
   padding: 0;
   transition: margin 250ms ease-in-out;
+  z-index: $z-site-nav;
 
   @media (min-width: $medium-screen) {
     @include position(relative, 0 null null);
@@ -70,8 +70,17 @@
     z-index: $z-site-nav + 1;
   }
 
+  ul {
+    @media (min-width: $medium-screen) {
+      align-items: center;
+      display: flex;
+    }
+  }
+
   li {
     display: block;
+    font: normal 1.1rem $strong-font-family;
+    -webkit-font-smoothing: antialiased;
     margin: 0;
 
     @media (min-width: $medium-screen) {
@@ -111,14 +120,32 @@
 }
 
 .site-nav__button {
+  background-color: $base-button-background-color;
+  border-radius: $base-border-radius;
+  box-shadow: 0 0.5rem 2rem rgba(darken($blue, 25%), 0.35);
   color: rgba($white, 0.9);
   display: block;
   font-size: 1rem;
   margin: $spacing-base;
   padding: $spacing-base;
+  text-align: center;
+  transition-duration: $base-duration * 2;
+  transition-property: transform, color, background-color, box-shadow;
+  transition-timing-function: $ease-in-out-sine;
 
   @media (min-width: $medium-screen) {
     @include padding($spacing-small null);
     margin: 0;
+  }
+
+  &:hover {
+    color: $base-button-color;
+    cursor: pointer;
+    transform: translateY(-2px);
+  }
+
+  &:active,
+  &:visited {
+    color: $base-button-color;
   }
 }

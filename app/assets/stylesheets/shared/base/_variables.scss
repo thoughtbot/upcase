@@ -1,30 +1,76 @@
 // Colors
 $black: #000;
 $blue: #0b5fec;
+$blue-de-france: #3c7fef;
+$caribbean-green: #1bdfb0;
+$eclipse: #3d3939;
+$haiti: #16193e;
 $havelock-blue: #3c7fef;
+$honey-dew: #f1fff0;
+$java: #2ea49c;
 $white: #fff;
 
+// Colors in action
+$action-color: $blue-de-france;
+$code-block-background-color: lighten($eclipse, 71%);
+$code-block-font-color: $black;
+$footer-background-color: $haiti;
+$mark-background-color: rgba($honey-dew, 0.5);
+$mark-color: $java;
+
 // Font families
-$base-font-family: "calibre-light";
-$strong-font-family: "calibre-regular";
-$heading-font-family: "calibre-regular";
-$title-font-family: "averta-standard-bold";
+$base-font-family: "calibre-regular", sans-serif;
+$strong-font-family: "calibre-medium", sans-serif;
+$heading-font-family: "calibre-medium", sans-serif;
+$title-font-family: "averta-standard-bold", sans-serif;
+$code-font-family: monaco;
+
+// Font size
+$small-font-size: 0.95rem;
+$base-font-size: 1.2rem;
+
+// Font colors
+$base-font-color: $eclipse;
+$base-heading-font-color: $eclipse;
+$marketing-heading-font-color: lighten($blue, 5%);
+
+// Line height
+$base-line-height: 1;
+$reading-line-height: 1.5;
 
 // Spacing
+$spacing-x-small: 0.125rem;
 $spacing-small: 0.5rem;
 $spacing-base: 1rem;
 $spacing-medium: 2rem;
+$spacing-large: 3.75rem;
+$spacing-x-large: 5rem;
 
 // Screen sizes
-$medium-screen: 620px;
+$medium-screen: 680px;
 $large-screen: 1000px;
 
-// Component sizes
-$site-header-height: 4rem;
+// Layout sizes
+$reading-width: 560px;
+
+// Animations
+$base-duration: 150ms;
 
 // Border radiuses
 $base-border-radius: 3px;
 
+// Component sizes
+$site-header-height: 4.2rem;
+
+// Component specific
+$base-button-background-color: $caribbean-green;
+$base-button-color: $white;
+$base-button-shadow: 0 0 1.5rem rgba($caribbean-green, 0.5);
+
+// Unicode characters
+$unicode-down-triangle: "\25BE";
+
 // Z-index
 $z-site-nav: 10;
+$z-table-of-contents: 5;
 $z-site-header: 15;

@@ -29,28 +29,6 @@ describe "layouts/_header_marketing_links.html.erb" do
     end
   end
 
-  context "where there is content_for `header_cta_link`" do
-    it "shows the content in the CTA button" do
-      render_header(header_cta_link: "result")
-
-      expect(rendered).to have_css(
-        "#site_nav_call_to_action",
-        text: "result",
-      )
-    end
-  end
-
-  context "where there isn't content_for `header_cta_link`" do
-    it "renders a CTA link to the professional_checkout" do
-      render_header(header_cta_link: nil)
-
-      expect(rendered).to have_link(
-        t("subscriptions.join_cta"),
-        href: professional_checkout_path,
-      )
-    end
-  end
-
   context "when signed_out and on the signing path" do
     it "renders the sign_in link" do
       render_header(signed_out: true, not_on_signin_path: false)
@@ -100,7 +78,6 @@ describe "layouts/_header_marketing_links.html.erb" do
   def render_header(
     signed_out: false,
     team_page: false,
-    header_cta_link: nil,
     landing_page: false,
     not_on_signin_path: true
   )
@@ -108,15 +85,6 @@ describe "layouts/_header_marketing_links.html.erb" do
     allow(view).to receive(:team_page?).and_return(team_page)
     allow(view).to receive(:landing_page?).and_return(landing_page)
     allow(view).to receive(:not_on_signin_path?).and_return(not_on_signin_path)
-
-    if header_cta_link
-      allow(view).to receive(:content_for?).
-        with(:header_cta_link).
-        and_return(true)
-      allow(view).to receive(:content_for).
-        with(:header_cta_link).
-        and_return(header_cta_link)
-    end
 
     render
   end

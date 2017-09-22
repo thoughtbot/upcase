@@ -9,9 +9,7 @@
     }
 
     .topic-description {
-      h2 {
-        margin-bottom: 1rem;
-      }
+       margin-bottom: 1rem;
     }
   }
 
@@ -25,5 +23,10 @@
 
   .trail-titles li.#{$topic-name} {
     border-color: map-get($topic-backgrounds, $topic-name);
+  }
+
+  .topic-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
   }
 }

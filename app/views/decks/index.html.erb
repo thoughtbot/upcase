@@ -5,11 +5,19 @@
 <% end %>
 
 <section class="root-decks">
-  <h3><%= t('.title') %></h3>
+  <header class="page-header">
+    <h1 class="page-header__title">
+      <%= t('.title') %>
+    </h3>
 
-  <h4><%= t(".subhead") %></h4>
+    <h4 class="page-header__tagline">
+      <%= t(".subhead") %>
+    </h4>
 
-  <p><%= t('.feature_description') %></p>
+    <p class="page-header__intro">
+      <%= t('.feature_description') %>
+    </p>
+  </header>
 
   <section class="decks-area">
     <%= render @decks %>

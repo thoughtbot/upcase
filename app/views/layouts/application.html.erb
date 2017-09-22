@@ -61,10 +61,7 @@
 
     <%= yield(:outside) %>
 
-    <%= render "shared/footer" %>
     <%= render "shared/javascript" %>
-    <% if sales_context? %>
-      <%= render "shared/table_of_contents" %>
-    <% end %>
+    <%= render "layouts/footer" %>
   </body>
 </html>

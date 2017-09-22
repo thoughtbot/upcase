@@ -1,31 +1,31 @@
 .table-of-contents-list {
   display: flex;
   flex-wrap: wrap;
-  padding-top: $large-spacing;
+  font-family: $base-font-family;
+  padding-top: $spacing-large;
 }
 
 .table-of-contents-list__unit {
   margin-bottom: 3em;
   padding-left: 4em;
   position: relative;
-  width: calc(#{100%} - #{$base-spacing});
+  width: calc(#{100%} - #{$spacing-base});
 
-  @include marketing-small {
-    width: calc(#{50%} - #{$base-spacing});
+  @media (min-width: $medium-screen) {
+    width: calc(#{50%} - #{$spacing-base});
   }
 
-  @include marketing-fullsize {
-    width: calc(#{33%} - #{$base-spacing});
+  @media (min-width: $large-screen) {
+    width: calc(#{33%} - #{$spacing-base});
   }
 
   li {
     display: block;
-    margin-bottom: $base-spacing;
+    margin-bottom: $spacing-base;
   }
 
   li:last-of-type a {
     font-style: italic;
-    font-weight: 500;
     opacity: 0.5;
   }
 
@@ -40,9 +40,7 @@
 }
 
 .table-of-contents-list__unit-title {
-  font-family: $strong-font-family;
-
   a {
-    color: $darkwarmgray;
+    color: $base-heading-font-color;
   }
 }

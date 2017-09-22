@@ -21,6 +21,10 @@
     cursor: pointer;
     transform: translateY(-4px);
   }
+
+  &:active {
+    color: $base-button-color;
+  }
 }
 
 .button--large {

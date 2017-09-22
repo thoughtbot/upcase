@@ -2,19 +2,13 @@
 $azure: #f3fcff;
 $bees-wax: #fcf5c8;
 $blue-chalk: #f8eaff;
-$blue-de-france: #3c7fef;
-$caribbean-green: #1bdfb0;
 $chillean-heath: #ffffe6;
-$eclipse: #3d3939;
 $egyptian-blue: #1736a4;
 $fair-pink: #ffecee;
 $glitter: #e8e9ff;
 $grey-chateau: #a4a4a4;
 $hacienda: #9b8f11;
-$haiti: #16193e;
 $hawkes-blue: #d7ecff;
-$honey-dew: #f1fff0;
-$java: #2ea49c;
 $linen: #ffeee4;
 $pattens-blue: #e1f5ff;
 $polar: #e5fdf4;
@@ -28,7 +22,6 @@ $upcase-light-blue: #fbfcff;
 $zicron: #f4faff;
 
 // Colors in action
-$action-color: $blue-de-france;
 $category-clean-code-color: $tranquil;
 $category-design-color: $glitter;
 $category-elixir-color: $blue-chalk;
@@ -43,25 +36,11 @@ $category-swift-color: $linen;
 $category-testing-color: $polar;
 $category-tmux-color: $bees-wax;
 $category-vim-color: $pattens-blue;
-$heading-font-color: lighten($blue, 5%);
 $light-font-color: $grey-chateau;
-$mark-background-color: rgba($honey-dew, 0.5);
-$mark-color: $java;
-
-// Font families
-$base-font-family: "calibre-light";
-$strong-font-family: "calibre-regular";
-$heading-font-family: "calibre-regular";
-$title-font-family: "averta-standard-bold";
 
 // Font sizes
-$small-font-size: 0.95rem;
-$base-font-size: 1.2rem;
 $medium-font-size: 1.4rem;
 $large-font-size: 2.2rem;
-
-// Line height
-$base-line-height: 1;
 
 // Spacing
 $x-small-spacing: 0.25rem;
@@ -72,7 +51,6 @@ $x-large-spacing: 6rem;
 
 // Z-index
 $z-flashes: 20;
-$z-table-of-contents: 5;
 $z-base: 1;
 $z-modal: 25;
 
@@ -83,13 +61,7 @@ $base-border: 1px solid darken($upcase-light-blue, 3%);
 $base-content-shadow: 0 0.5rem 1.5rem rgba($havelock-blue, 0.2);
 $dark-content-shadow: 0 0.5rem 2.5rem $egyptian-blue;
 
-// Component sizes
-$reading-width: 33rem;
-
 // Component specific
-$base-button-background-color: $caribbean-green;
-$base-button-color: $white;
-$base-button-shadow: 0 0 1.5rem rgba($caribbean-green, 0.5);
 $dark-button-shadow: 0 0 2.5rem $egyptian-blue;
 $modal-content-shadow: 0 0 5rem $egyptian-blue;
 $notice-color: $bees-wax;

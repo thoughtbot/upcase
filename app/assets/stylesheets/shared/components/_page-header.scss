@@ -1,0 +1,20 @@
+.page-header {
+  margin: $spacing-large 0;
+}
+
+.page-header__title {
+  font-family: $title-font-family;
+  font-size: 2.25rem;
+  margin-bottom: $spacing-base;
+}
+
+.page-header__tagline {
+  line-height: $reading-line-height;
+  margin-bottom: $spacing-base;
+  max-width: $medium-screen;
+}
+
+.page-header__intro {
+  max-width: $medium-screen;
+}
+

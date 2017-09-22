@@ -1,6 +1,9 @@
 .site-header {
-  @include position(fixed, 0 0 null 0);
   background-color: $blue;
   min-height: $site-header-height;
   z-index: $z-site-header;
+
+  @media (max-width: $medium-screen) {
+    @include position(fixed, 0 0 null 0);
+  }
 }

@@ -1,6 +1,10 @@
 <% content_for :subject_block do %>
-  <h1>Account</h1>
-  <%= link_to(t("shared.header.sign_out"), sign_out_path, method: :delete) %>
+  <header class="page-header">
+    <h1 class="page-header__title">
+      Account
+    </h1>
+    <%= link_to(t("shared.header.sign_out"), sign_out_path, method: :delete) %>
+  </header>
 <% end %>
 
 <div class="text-box-wrapper right">

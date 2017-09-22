@@ -40,7 +40,6 @@ $yellow: #f3e86b;
 // Colors in action
 $base-background-1: $white;
 $base-background-2: #fafafa;
-$base-button-color: $upcase-green;
 $code-block-brackground: #f7f7f7;
 $flashcard-background: #fff;
 $flashcard-border-color: lighten($gray-4, 5%);
@@ -83,18 +82,12 @@ $topic-colors: (
 $sans-serif: "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
 $serif: "adelle-1", "adelle-2", $helvetica;
 
-// Font families in action
-$base-font-family: $sans-serif;
-
 // Font weights
 $sans-serif-semibold: 600;
 
 // Font sizes
 $font-size-smallest: rem(12);
 $font-size-small: 0.96rem;
-
-// Font colors
-$base-font-color: $darkwarmgray;
 
 // Line height
 $base-line-height: 1em;
@@ -143,7 +136,6 @@ $video-states: (
 );
 
 // Animations
-$base-duration: 150ms;
 $flashcard-transition: all 0.25s $ease-in-quad;
 $fast-transition: all 0.15s ease-in-out;
 
@@ -152,7 +144,6 @@ $base-box-shadow: 1px 1px 2px rgba($black, 0.08);
 $heavy-box-shadow: 0 1px 3px rgba($black, 0.2);
 
 // Unicode characters
-$unicode-down-triangle: "\25BE";
 $unicode-left-double-quote: "\201C";
 $unicode-right-double-quote: "\201D";
 $unicode-left-single-quote: "\2018";
@@ -163,7 +154,6 @@ $small-screen: 420px;
 $x-large-screen: 1300px;
 
 // Layout sizes
-$reading-width: 520px;
 $max-width: 1100px;
 $max-width-narrow: 900px;
 $max-width-narrower: 760px;

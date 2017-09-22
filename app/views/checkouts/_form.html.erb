@@ -2,14 +2,6 @@
 
   <%= form.semantic_errors %>
 
-  <h2 class="one-step-away">
-    <% if signed_in? %>
-      <%= t("checkouts.one_step_away_authenticated", name: current_user.first_name) %>
-    <% else %>
-      <%= t("checkouts.one_step_away_anonymous") %>
-    <% end %>
-  </h2>
-
   <%= render "user_information_fields", form: form, checkout: checkout %>
 
   <%= render "billing_information", form: form %>

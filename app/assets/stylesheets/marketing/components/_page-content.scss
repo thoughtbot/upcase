@@ -23,12 +23,25 @@
 
 .page-content--interstitial {
   @include padding(0 null);
-  margin: -($large-spacing) auto 0;
+  margin: -($x-large-spacing) auto 0;
 }
 
 .page-content--reading {
   @include padding(null $medium-spacing);
   max-width: $reading-width;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: $medium-spacing 0;
+  }
+
+  p {
+    margin-bottom: $base-spacing;
+  }
 }
 
 .page-content__heading {

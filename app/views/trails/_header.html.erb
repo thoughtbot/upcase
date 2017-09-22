@@ -2,7 +2,7 @@
   <%= trail_breadcrumbs(trail) %>
 </div>
 
-<header>
+<header class="trail-header">
   <% if trail.title_card_image.present? %>
     <div class="title-card">
       <%= image_tag trail.title_card_image %>
@@ -15,13 +15,11 @@
     </div>
   <% end %>
 
-  <div class="topic-title">
-    <h1><%= trail.name %></h1>
+  <div>
+    <h1 class="trail-title"><%= trail.name %></h1>
 
     <div class="trail-description">
-      <h2 class="tagline">
-        <%= format_markdown trail.description %>
-      </h2>
+      <%= format_markdown trail.description %>
 
       <% if trail.extended_description.present? %>
         <div class="extended-description">

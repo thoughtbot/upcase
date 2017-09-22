@@ -3,15 +3,19 @@
 
 <% render "shared/content_specific_head_tags", content: @show, type: "show" %>
 
-<% content_for :head do %>
+<% content_for :additional_head_content do %>
   <%= auto_discovery_link_tag(:rss, show_url(@show, format: "rss")) %>
 <% end %>
 
 <% content_for :subject_block do %>
-  <h1><%= @show.name %></h1>
-  <h2 class="tagline">
-    <%= @show.tagline %>
-  </h2>
+  <header class="page-header">
+    <h1 class="page-header__title">
+      <%= @show.name %>
+    </h1>
+    <h4 class="page-header__tagline">
+      <%= @show.tagline %>
+    </h4>
+  </header>
 <% end %>
 
 <div class="show-info">

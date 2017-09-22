@@ -7,10 +7,12 @@
 <% end %>
 
 <% content_for :subject_block do %>
-  <h1><%= @video.name %></h1>
-  <h2 class="parent-collection">
-    <%= link_to @video.watchable_name, @video.watchable %>
-  </h2>
+  <header class="page-header">
+    <h1 class="page-header__title"><%= @video.name %></h1>
+    <h2 class="parent-collection">
+      <%= link_to @video.watchable_name, @video.watchable %>
+    </h2>
+  </header>
 <% end %>
 
 <% unless current_user.subscriber? %>

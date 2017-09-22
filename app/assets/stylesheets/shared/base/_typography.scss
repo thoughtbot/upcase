@@ -1,0 +1,102 @@
+body {
+  color: $base-font-color;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  -webkit-font-smoothing: antialiased;
+  line-height: $base-line-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $base-heading-font-color;
+  font-family: $heading-font-family;
+  font-weight: normal;
+  line-height: 1;
+  margin: 0;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.45rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  line-height: $reading-line-height;
+  margin: 0 0 $spacing-base;
+}
+
+a {
+  color: $action-color;
+  text-decoration: none;
+  transition: color $base-duration;
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: shade($action-color, 25%);
+  }
+}
+
+small {
+  font-size: $small-font-size;
+}
+
+span {
+  line-height: $base-line-height * 1.3;
+}
+
+strong {
+  font-family: $strong-font-family;
+}
+
+mark {
+  background: linear-gradient(0, $mark-background-color 50%, rgba($white, 0) 50%);
+  border-bottom: solid 0.25rem $mark-background-color;
+  color: $mark-color;
+  font-family: $heading-font-family;
+  padding: 0 0.125rem;
+}
+
+pre {
+  code {
+    display: block;
+    margin-bottom: $spacing-base;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    padding: $spacing-medium;
+  }
+}
+
+code {
+  background-color: $code-block-background-color;
+  border: 1px solid darken($code-block-background-color, 4%);
+  border-radius: $base-border-radius;
+  color: $code-block-font-color;
+  font-family: $code-font-family;
+  font-size: $small-font-size;
+  line-height: $reading-line-height;
+  padding: $spacing-x-small $spacing-small;
+
+  @media (miin-width: $medium-screen) {
+    font-size: $base-font-size;
+  }
+
+  .cursor {
+    background: darken($white, 25%);
+  }
+}
+
+:not(pre) code {
+  background-color: $code-block-background-color;
+}

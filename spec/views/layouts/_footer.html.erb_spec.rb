@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "shared/_footer.html.erb" do
+describe "layouts/_footer.html.erb" do
   context "when not signed in" do
     it "does not show the repositories link" do
       view_stub_with_return(signed_in?: false)

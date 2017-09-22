@@ -2,44 +2,59 @@
   <ul>
     <% if onboarding_policy.onboarded? %>
       <li class="practice">
-        <%= link_to t("shared.header.trails"), practice_path %>
+        <%= link_to(
+          t("shared.header.trails"),
+          practice_path,
+          class: "site-nav__link",
+        ) %>
       </li>
 
       <li>
-        <%= link_to t("shared.header.flashcards"), decks_path %>
+        <%= link_to(
+          t("shared.header.flashcards"),
+          decks_path,
+          class: "site-nav__link",
+        ) %>
       </li>
 
       <li class="explore">
-        <%= link_to t(
-          "shared.header.weekly_iteration"),
-          show_path("the-weekly-iteration")
-        %>
+        <%= link_to(
+          t("shared.header.weekly_iteration"),
+          show_path("the-weekly-iteration"),
+          class: "site-nav__link",
+        ) %>
       </li>
 
       <li class="discuss">
-        <%= link_to t("shared.header.forum"), Forum.url %>
+        <%= link_to(
+          t("shared.header.forum"),
+          Forum.url,
+          class: "site-nav__link",
+        ) %>
       </li>
 
       <% if current_user_is_subscription_owner? %>
         <li class="refer-friend">
           <%= link_to(
-            t("shared.header.referral_link"), "#", class: "squatchpop"
-          )%>
+            t("shared.header.referral_link"),
+            "#",
+            class: "site-nav__link"
+          ) %>
         </li>
       <% end %>
 
       <li>
-        <%= link_to t("shared.header.search"), search_path %>
+        <%= link_to(
+          t("shared.header.search"),
+          search_path,
+          class: "site-nav__link",
+        ) %>
       </li>
 
       <% unless current_user.subscriber? %>
-        <li class="header-cta">
-          <% if content_for?(:header_cta_link) %>
-            <%= content_for(:header_cta_link) %>
-          <% else %>
-            <%= link_to professional_checkout_path, class: "site-nav__cta" do %>
-              <%= t("shared.subscriptions.single_user") %>
-            <% end %>
+        <li id="site_nav_call_to_action">
+          <%= link_to professional_checkout_path, class: "site-nav__cta" do %>
+            <%= t("shared.subscriptions.single_user") %>
           <% end %>
         </li>
       <% end %>
@@ -49,9 +64,12 @@
       </li>
     <% end %>
 
-    <li class="account">
-      <%= link_to my_account_path, id: "my_account_link" do %>
-        <%= image_tag gravatar_url(current_user.email, size: "30") %>
+    <li>
+      <%= link_to my_account_path, id: "my_account_link", class: "avatar" do %>
+        <%= image_tag(
+          gravatar_url(current_user.email, size: "30"),
+          class: "avatar__image",
+        )%>
       <% end %>
     </li>
 

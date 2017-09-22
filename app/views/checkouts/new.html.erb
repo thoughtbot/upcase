@@ -1,5 +1,17 @@
 <% content_for :subject_block do %>
-  <h1 class="tagline">Join the Upcase Community</h1>
+  <header class="page-header">
+    <h1 class="page-header__title">
+      Join the Upcase Community
+    </h1>
+
+    <h4 class="page-header__tagline">
+      <% if signed_in? %>
+        <%= t("checkouts.one_step_away_authenticated", name: current_user.first_name) %>
+      <% else %>
+        <%= t("checkouts.one_step_away_anonymous") %>
+      <% end %>
+    </h2>
+  </header>
 <% end %>
 
 <% content_for :additional_body_classes, @checkout.plan_name %>

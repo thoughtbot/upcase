@@ -1,5 +1,19 @@
-<footer class="marketing-footer">
-  <ul class="marketing-footer__links">
+<footer class="site-footer">
+  <ul class="site-footer__links">
+    <% if signed_in? %>
+      <li>
+        <%= link_to("Sign out", sign_out_path, method: :delete) %>
+      </li>
+
+      <li>
+        <%= render partial: "shared/admin_sign_out" %>
+      </li>
+
+      <li>
+        <%= link_to "Upcase source code on GitHub", repositories_path %>
+      </li>
+    <% end %>
+
     <li>
       <%= link_to "About thoughtbot", "https://thoughtbot.com" %>
     </li>
@@ -18,10 +32,10 @@
   </ul>
 
   <a href="https://www.thoughtbot.com">
-    <%= inline_svg "marketing/ralph--dark.svg", class: "marketing-footer__logo" %>
+    <%= inline_svg "marketing/ralph--dark.svg", class: "site-footer__logo" %>
   </a>
 
-  <small class="marketing-footer__copyright">
+  <small class="site-footer__copyright">
     &copy; 2012 - <%= Time.zone.today.year %> thoughtbot, inc. Upcase, the
     design of a robot, and thoughtbot are registered trademarks of thoughtbot,
     inc.

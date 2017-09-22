@@ -29,14 +29,15 @@ form {
   fieldset {
     legend {
       color: $darkwarmgray;
-      font: 700 26px/25px $sans-serif;
+      font-weight: 600;
       padding: 24px 0 12px 0;
     }
 
     label {
       color: $darkwarmgray;
       display: block;
-      font: normal 17px $serif;
+      font-size: $small-font-size;
+      font-weight: normal;
     }
 
     input[type="text"],

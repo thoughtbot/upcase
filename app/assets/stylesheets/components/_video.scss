@@ -103,7 +103,7 @@
     .teacher-names {
       @include padding(0 $base-spacing null 0);
       font-size: em(19);
-      font-weight: 700;
+      line-height: $reading-line-height;
       margin: 0;
     }
 
@@ -207,12 +207,22 @@
     padding: $large-spacing;
   }
 
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
   h3 {
+    font-size: 1.5rem;
     margin-top: 0;
   }
 
   ul li {
     list-style: initial;
+    margin-bottom: $spacing-base;
     margin-left: 1.2em;
   }
 }

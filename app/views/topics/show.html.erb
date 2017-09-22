@@ -9,13 +9,13 @@
     </div>
 
     <div class="topic-content">
-      <h1>Learn <%= @topic.name %></h1>
+      <h1 class="topic-title">
+        Learn <%= @topic.name %>
+      </h1>
 
       <% if @topic.summary.present? %>
         <div class="topic-description">
-          <h2 class="tagline">
-            <%= format_markdown @topic.summary %>
-          </h2>
+          <%= format_markdown @topic.summary %>
 
           <% if @topic.extended_description.present? %>
             <div class="extended-description">

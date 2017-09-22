@@ -1,24 +1,24 @@
-.marketing-footer {
-  background-color: $haiti;
+.site-footer {
+  background-color: $footer-background-color;
   color: rgba($white, 0.4);
-  padding: $large-spacing;
+  padding: $spacing-large;
 
   @media (min-width: $medium-screen) {
-    padding: $x-large-spacing 0;
+    padding: $spacing-x-large 0;
     text-align: center;
   }
 }
 
-.marketing-footer__links {
+.site-footer__links {
   font-size: $small-font-size;
-  margin: 0 auto $medium-spacing;
+  margin: 0 auto $spacing-medium;
 
   li {
-    margin-bottom: $base-spacing;
+    margin-bottom: $spacing-base;
 
     @media (min-width: $medium-screen) {
       display: inline-block;
-      margin-right: $base-spacing;
+      margin-right: $spacing-base;
     }
   }
 
@@ -32,11 +32,11 @@
   }
 }
 
-.marketing-footer__logo {
-  margin: $small-spacing auto;
+.site-footer__logo {
+  margin: $spacing-small auto;
 }
 
-.marketing-footer__copyright {
+.site-footer__copyright {
   display: block;
   line-height: 1.3;
   max-width: 17.5rem;

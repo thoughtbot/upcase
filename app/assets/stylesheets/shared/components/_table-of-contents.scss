@@ -1,15 +1,15 @@
 .table-of-contents {
   @include position(fixed, $site-header-height 0 0 0);
-  -webkit-overflow-scrolling: touch;
   background-color: $white;
+  -webkit-overflow-scrolling: touch;
   overflow-y: scroll;
-  padding: $medium-spacing;
+  padding: $spacing-medium;
   transform: translateY(-120%);
   transition: transform 250ms;
   z-index: $z-table-of-contents;
 
-  @include marketing-fullsize {
-    padding: $medium-spacing $base-spacing;
+  @media (min-width: $large-screen) {
+    padding: $spacing-medium $spacing-base;
   }
 
   &.slide-down {
@@ -18,7 +18,7 @@
 }
 
 .table-of-contents__inner-container {
-  margin: $base-spacing auto;
+  margin: $spacing-base auto;
   max-width: $large-screen;
 }
 
@@ -27,7 +27,7 @@
   cursor: pointer;
   font-size: 2em;
 
-  @include marketing-fullsize {
+  @media (min-width: $large-screen) {
     display: none;
   }
 }

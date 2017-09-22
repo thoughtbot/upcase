@@ -1,5 +1,4 @@
 .divider {
-  color: $gray-3;
   display: block;
   margin-bottom: 2rem;
   position: relative;
@@ -20,6 +19,7 @@
 
   h4 {
     background: white;
+    color: $gray-3;
     display: inline;
     padding: 0 1em;
   }

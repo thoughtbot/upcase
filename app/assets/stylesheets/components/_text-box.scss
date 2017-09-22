@@ -41,13 +41,15 @@
 
   table {
     color: $darkwarmgray;
-    font: normal 1em/1.5em $serif;
-    -webkit-font-smoothing: antialiased;
     margin: 2rem 0;
   }
 
   th {
     font-weight: bold;
     padding-bottom: 1rem;
+  }
+
+  td {
+    padding: $spacing-small;
   }
 }

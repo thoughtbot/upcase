@@ -1,15 +1,18 @@
 .table-of-contents-toggle {
   &::after {
-    @include transition;
     content: $unicode-down-triangle;
     display: inline-block;
     margin-left: 6px;
     position: relative;
+    transition: transform $base-duration;
   }
 
   &.is-open {
     background: rgba($black, 0.12);
     border-radius: 3px;
+    margin: -($spacing-small);
+    margin-left: 0;
+    padding: $spacing-small;
 
     &::after {
       @include transform(rotate(180deg));

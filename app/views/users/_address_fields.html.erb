@@ -1,9 +1,16 @@
 <div class="address-fields-wrapper">
-  <%= link_to "Need an address on your receipt?", "#", class: "reveal-address" %>
+  <ul class="default-list">
+    <li>
+      <%= link_to "Need an address on your receipt?", "#", class: "reveal-address" %>
+    </li>
+
+    <li>
+      <%= link_to "Hide address fields", "#", class: "hide-address" %>
+    </li>
+  </ul>
+
 
   <%= form.inputs class: "address-info" do %>
-    <%= link_to "Hide address fields", "#", class: "hide-address" %>
-
     <%= form.input :organization %>
     <%= form.input :address1, label: "Address 1" %>
     <%= form.input :address2, label: "Address 2" %>

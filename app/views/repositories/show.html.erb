@@ -1,8 +1,15 @@
 <% content_for :page_title, @repository.title %>
 <% content_for :meta_description, @repository.short_description %>
 <% content_for :subject_block do %>
-  <h1><%= @repository.name %></h1>
-  <h2 class="tagline"><%= @repository.tagline %></h2>
+  <header class="page-header">
+    <h1 class="page-header__title">
+      <%= @repository.name %>
+    </h1>
+
+    <h4 class="page-header__tagline">
+      <%= @repository.tagline %>
+    </h4>
+  </header>
 <% end %>
 
 <div class="text-box-wrapper">
