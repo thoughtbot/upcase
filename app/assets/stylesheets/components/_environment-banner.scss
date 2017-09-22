@@ -1,6 +1,8 @@
 .environment-banner {
+  @include position(fixed, null null 0 0);
   font-size: 0.8em;
   text-align: center;
+  z-index: 99;
 
   $dev-green: #008000;
 
