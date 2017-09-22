@@ -20,6 +20,21 @@ describe Subscription do
     end
   end
 
+  describe "#referral_discount_in_dollars" do
+    context "discount is 25% off" do
+      it "returns how much a user gets back for a successfull referral" do
+        percent_off_discount = "25"
+
+        ClimateControl.modify REFERRAL_DISCOUNT: percent_off_discount do
+          plan = create(:plan, price_in_dollars: 40)
+          subscription = create(:subscription, plan: plan)
+
+          expect(subscription.referral_discount_in_dollars).to eq "10.00"
+        end
+      end
+    end
+  end
+
   describe "#stripe_customer_id" do
     it "should return users stripe customer id if they are not on a team" do
       user = create(:user, :with_subscription, stripe_customer_id: "cus_123")

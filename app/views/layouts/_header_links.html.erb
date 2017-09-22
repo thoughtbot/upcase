@@ -17,7 +17,10 @@
     </li>
     <% if current_user_is_subscription_owner? %>
       <li class="refer-friend">
-        <%= link_to t("shared.header.referral_link"), "#", class: "squatchpop" %>
+        <%= link_to t(
+            "shared.header.referral_link",
+            discount: current_user.referral_discount_in_dollars
+          ), "#", class: "squatchpop" %>
       </li>
     <% end %>
     <li>

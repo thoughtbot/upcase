@@ -182,7 +182,7 @@ en:
       sign_out: Sign Out
       trails: Trails
       weekly_iteration: Weekly Iteration
-      referral_link: Refer a Friend and Get a Discount
+      referral_link: "Refer a Friend, Get $%{discount}"
     subscription:
       name: Upcase
     subscriptions:
