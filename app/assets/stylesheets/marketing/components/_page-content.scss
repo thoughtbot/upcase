@@ -23,7 +23,11 @@
 
 .page-content--interstitial {
   @include padding(0 null);
-  margin: -($x-large-spacing) auto 0;
+  margin: -($large-spacing) auto 0;
+
+  @media (min-width: $medium-screen) {
+    margin-top: $x-large-spacing;
+  }
 }
 
 .page-content--reading {

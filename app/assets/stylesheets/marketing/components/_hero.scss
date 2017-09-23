@@ -4,11 +4,12 @@
   flex-direction: column;
   justify-content: center;
   min-height: 80vh;
-  padding: $base-spacing $small-spacing $x-large-spacing;
+  padding: ($base-spacing + $site-header-height) $small-spacing $x-large-spacing;
   position: relative;
 
   @media (min-width: $medium-screen) {
     min-height: 680px;
+    padding-top: $base-spacing;
   }
 }
 
