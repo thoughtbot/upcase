@@ -19,7 +19,6 @@
 
 .site-nav__action {
   padding: $spacing-base;
-  padding-right: 0;
   position: absolute;
   width: 100%;
   z-index: $z-site-nav + 1;
@@ -95,7 +94,7 @@
 }
 
 .site-nav__link {
-  border-top: solid 1px darken($havelock-blue, 13%);
+  border-top: solid 1px darken($havelock-blue, 20%);
   color: rgba($white, 0.9);
   display: block;
   font-family: $strong-font-family;

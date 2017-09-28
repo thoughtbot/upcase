@@ -1,6 +1,14 @@
 .avatar {
   align-items: center;
+  border-top: solid 1px darken($havelock-blue, 20%);
   display: flex;
+  justify-content: center;
+  padding: $spacing-medium;
+
+  @media (min-width: $medium-screen) {
+    border: 0;
+    padding: 0;
+  }
 }
 
 .avatar__image {
