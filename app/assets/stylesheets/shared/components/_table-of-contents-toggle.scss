@@ -9,10 +9,13 @@
 
   &.is-open {
     background: rgba($black, 0.12);
-    border-radius: 3px;
-    margin: -($spacing-small);
-    margin-left: 0;
-    padding: $spacing-small;
+
+    @media (min-width: $medium-screen) {
+      border-radius: 3px;
+      margin: -($spacing-small);
+      margin-left: 0;
+      padding: $spacing-small;
+    }
 
     &::after {
       @include transform(rotate(180deg));

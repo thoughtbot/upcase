@@ -21,7 +21,7 @@
   padding: $spacing-base;
   position: absolute;
   width: 100%;
-  z-index: $z-site-nav + 1;
+  z-index: $z-site-nav-menu;
 
   @media (min-width: $medium-screen) {
     position: relative;
@@ -57,7 +57,7 @@
   margin-top: -200%;
   padding: 0;
   transition: margin 250ms ease-in-out;
-  z-index: $z-site-nav;
+  z-index: $z-site-nav-menu-mobile;
 
   @media (min-width: $medium-screen) {
     @include position(relative, 0 null null);
@@ -66,7 +66,7 @@
     margin-top: 0;
     padding: $spacing-small;
     padding-left: 0;
-    z-index: $z-site-nav + 1;
+    z-index: $z-site-nav-menu;
   }
 
   ul {
