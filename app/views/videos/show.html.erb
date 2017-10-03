@@ -12,6 +12,9 @@
     <h2 class="parent-collection">
       <%= link_to @video.watchable_name, @video.watchable %>
     </h2>
+    <h3 class="page-header__time-to-complete">
+      <%= "#{@video.length_in_minutes} minutes" %>
+    </h3>
   </header>
 <% end %>
 

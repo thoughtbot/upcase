@@ -2,7 +2,14 @@
   <section class="trail <%= topic_classes(trail.topics) %>">
     <header>
       <%= render trail.topics %>
-      <h1><%= link_to trail, trail %></h1>
+      <h1>
+        <%= link_to trail, trail %>
+      </h1>
+      <% if trail.id == 34 %>
+        <p class="completion-time">
+          <%= "#{trail.time_to_complete} minutes" %>
+        </p>
+      <% end %>
       <div class="description">
         <%= format_markdown trail.description %>
       </div>

@@ -82,6 +82,10 @@ class Trail < ActiveRecord::Base
     videos.where(accessible_without_subscription: true).first.wrapped
   end
 
+  def time_to_complete
+    videos.sum(:length_in_minutes) + exercise_time
+  end
+
   private
 
   def first_step
@@ -90,5 +94,9 @@ class Trail < ActiveRecord::Base
     else
       steps.first
     end
+  end
+
+  def exercise_time
+    exercises.count * Exercise::AVERAGE_COMPLETION_TIME_IN_MINUTES
   end
 end

@@ -49,3 +49,9 @@
 .page-header__intro {
   max-width: $reading-width;
 }
+
+.page-header__time-to-complete {
+  color: $gray-3;
+  line-height: $reading-line-height;
+  margin: $spacing-base 0;
+}

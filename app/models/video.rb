@@ -68,6 +68,10 @@ class Video < ActiveRecord::Base
     trail.present?
   end
 
+  def show_timing?
+    trail.slug == "intermediate-ruby-on-rails-five"
+  end
+
   def search_visible?
     if part_of_trail?
       trail.published?
