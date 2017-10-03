@@ -28,6 +28,9 @@ Upcase::Application.routes.draw do
     namespace :api do
       namespace :v1 do
         resources :exercises, only: [:update]
+        resources :shows, only: [] do
+          resources :videos, only: [:index]
+        end
 
         post(
           "exercises/:exercise_uuid/status" => "statuses#create",
