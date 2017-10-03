@@ -9,11 +9,11 @@ describe "weekly iteration videos" do
       get "/upcase/api/v1/shows/the-weekly-iteration/videos"
 
       expect(response).to be_success
-      expect(response_json).to match({
+      expect(response_json).to match(
         "videos" => [
           a_hash_including("id" => video.id),
-        ]
-      })
+        ],
+      )
     end
   end
 
