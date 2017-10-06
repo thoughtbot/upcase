@@ -1,47 +1,51 @@
 .background {
+  position: relative;
+
   &::after,
   &::before {
     @include position(absolute, 0);
+    background-position: top right;
     content: "";
     z-index: -1;
   }
 }
 
-.background--logo-on-dark-gradient {
-  &::after {
-    background: linear-gradient(rgba($blue, 1), rgba($blue, 0));
-  }
-
+.background--upcase-logo-light {
   &::before {
     background-color: $blue;
     background-image: asset-url("marketing/upcase-background.svg");
   }
 }
 
-.background--logo-on-light {
+.background--upcase-logo-dark {
   &::before {
     background-image: asset-url("marketing/upcase-background--light.svg");
   }
 }
 
-.background--logo-on-light-gradient {
+@each $theme in (elixir python react swift) {
+  .background--#{$theme}-logo {
+    &::before {
+      background-image: asset-url("marketing/upcase-background--#{$theme}.svg");
+    }
+  }
+}
+
+.background--light-gradient-cover-top-half {
   &::after {
-    background: linear-gradient(rgba($white, 0.75), rgba($white, 0));
-  }
-
-  &::before {
-    background-image: asset-url("marketing/upcase-background--light.svg");
+    background: linear-gradient(rgba($white, 1), rgba($white, 0));
   }
 }
 
-@each $theme in (
-    elixir
-    python
-    react
-    swift
-  ) {
-  .background--upcase-#{$theme} {
-    background-image: asset-url("marketing/upcase-background--#{$theme}.svg");
-    background-position: top right;
+.background--light-gradient-cover-bottom-half {
+  &::after {
+    background: linear-gradient(rgba($white, 0), rgba($white, 1));
   }
 }
+
+.background--dark-gradient-cover-top-half {
+  &::after {
+    background: linear-gradient(rgba($blue, 1), rgba($blue, 0));
+  }
+}
+
