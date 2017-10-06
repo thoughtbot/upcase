@@ -7,22 +7,6 @@
   }
 }
 
-.background--mobile {
-  background-image: asset-url("marketing/upcase-on-mobile.png");
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  background-size: 1000px;
-  border-bottom: 1px solid rgba($blue, 0.125);
-  border-top: 1px solid rgba($blue, 0.125);
-  height: 700px;
-  transition: height $base-duration;
-
-  @media (min-width: $x-large-screen) {
-    background-size: $x-large-screen;
-    height: 880px;
-  }
-}
-
 .background--logo-on-dark-gradient {
   &::after {
     background: linear-gradient(rgba($blue, 1), rgba($blue, 0));
