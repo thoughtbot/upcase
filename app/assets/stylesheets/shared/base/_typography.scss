@@ -33,7 +33,10 @@ h3 {
 
 p {
   line-height: $reading-line-height;
-  margin: 0 0 $spacing-base;
+
+  + p {
+    margin: 0 0 $spacing-base;
+  }
 }
 
 a {

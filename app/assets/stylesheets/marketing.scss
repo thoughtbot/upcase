@@ -4,6 +4,7 @@
 @import "shared/base/reset";
 @import "shared/base/fonts";
 @import "shared/base/variables";
+@import "shared/base/layout";
 
 @import "shared/animations/fall";
 @import "shared/base/typography";
@@ -16,6 +17,9 @@
 @import "shared/components/table-of-contents";
 @import "shared/components/table-of-contents-list";
 @import "shared/components/table-of-contents-toggle";
+@import "shared/patterns/media-object";
+@import "shared/patterns/single-line-form";
+@import "shared/utilities/margin";
 
 @import "base/variables";
 @import "base/breakpoints";

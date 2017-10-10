@@ -1,11 +1,43 @@
 .page-header {
-  margin: $spacing-large 0;
+  margin: 0 auto;
+  max-width: $large-screen;
+  padding: $spacing-large $spacing-base;
+
+  @media (min-width: $medium-screen) {
+    @include padding($spacing-x-large null);
+  }
+
+  &.media-object {
+    display: block;
+
+    @media (min-width: $medium-screen) {
+      display: flex;
+    }
+  }
+}
+
+.page-header__offset-image {
+  margin-right: $spacing-medium;
+
+  @media (max-width: $medium-screen) {
+    @include size(10rem);
+    display: block;
+    margin: 0 auto $spacing-medium;
+  }
 }
 
 .page-header__title {
   font-family: $title-font-family;
-  font-size: 2.25rem;
+  font-size: 1.75rem;
   margin-bottom: $spacing-base;
+
+  @media (min-width: $medium-screen) {
+    font-size: 2.25rem;
+  }
+
+  &.python {
+    color: $category-python-color;
+  }
 }
 
 .page-header__tagline {
@@ -15,6 +47,5 @@
 }
 
 .page-header__intro {
-  max-width: $medium-screen;
+  max-width: $reading-width;
 }
-

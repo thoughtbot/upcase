@@ -1,0 +1,260 @@
+<% content_for(:page_title, "Hello") %>
+
+<main>
+  <section class="background background--python-logo
+    background--light-gradient-cover-bottom-half">
+      <div class="media-object page-header">
+        <%= image_tag("marketing/python-logo.svg",
+              class: "page-header__offset-image") %>
+
+        <div>
+          <h1 class="page-header__title python">
+            Python & Django
+          </h1>
+
+          <h2 class="u-margin-bottom-medium">
+            You want it? We'll make it.
+          </h2>
+
+          <p class="page-header__intro u-margin-bottom-large">
+            We have experts Developers ready to share the ins-and-outs of Python
+            &amp; Django with you.  Sign up for our pre-launch and <mark>get 25%
+            off your first month of Upcase.</mark>
+          </p>
+
+          <a href="#sign-up" class="button">
+            Sign me up for the pre release!
+          </a>
+        </div>
+    </div>
+  </section>
+
+  <section class="page-section page-section--dark">
+    <div class="page-content">
+      <h1 class="u-margin-bottom-medium">
+        Proposed Classes*
+      </h1>
+
+      <div class="card u-margin-bottom-medium">
+        <div class="card__content media-object media-object--top-down">
+          <span class="dot"></span>
+
+          <div>
+            <h2 class="u-margin-bottom">
+              Installing Python & Django
+            </h2>
+
+            <p>
+              This is a video in which we walk through the many details of
+              setting up a computer with Django running.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card u-margin-bottom-medium">
+        <div class="card__content media-object media-object--top-down">
+          <span class="dot"></span>
+
+          <div>
+            <h2 class="u-margin-bottom">
+              Custom User Model
+            </h2>
+
+            <p>
+              In this exercise we implement a story: As a user I want to sign up
+              using my email addresses and a password. I don't like password
+              confirmation fields.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card u-margin-bottom-medium">
+        <div class="card__content media-object media-object--top-down">
+          <span class="dot"></span>
+
+          <div>
+            <h2 class="u-margin-bottom">
+              User Signs in Via Email
+            </h2>
+
+            <p>
+              Download a repo containing a Django app with failing tests.
+              Implement a user story to make the tests pass.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card u-margin-bottom-medium">
+        <div class="card__content media-object media-object--top-down">
+          <span class="dot"></span>
+
+          <div>
+            <h2 class="u-margin-bottom">
+              Forms and Django Structure
+            </h2>
+
+            <p>
+              A video in which we describe the anatomy of a Django app, and walk
+              through in detail on a form, from showing the page in the browser
+              to what happens when the user presses submit to showing the
+              resulting screen. This is TDD'ed.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card u-margin-bottom-medium">
+        <div class="card__content media-object media-object--top-down">
+          <span class="dot"></span>
+
+          <div>
+            <h2 class="u-margin-bottom">
+              Uploading to S3
+            </h2>
+
+            <p>
+              In this video we start to work with S3 attachments: how to set it
+              up, and then detail on how S3 interacts with Django forms.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card u-margin-bottom-medium">
+        <div class="card__content media-object media-object--top-down">
+          <span class="dot"></span>
+
+          <div>
+            <h2 class="u-margin-bottom">
+              Creator Creates a Zine
+            </h2>
+
+            <p>
+              An exercise where we implement this story: As a creator I want to
+              upload a zine (PDF) to the service. The PDF itself goes to S3, the
+              metadata goes to the Django app.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card u-margin-bottom-medium">
+        <div class="card__content media-object media-object--top-down">
+          <span class="dot"></span>
+
+          <div>
+            <h2 class="u-margin-bottom">
+              The Manager
+            </h2>
+
+            <p>
+              This is a video in which we show all the cool things you can do
+              with the ORM manager, including multiple managers, raw SQL,
+              complex queries.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card u-margin-bottom-medium">
+        <div class="card__content media-object media-object--top-down">
+          <span class="dot"></span>
+
+          <div>
+            <h2 class="u-margin-bottom">
+              Filtering Zines
+            </h2>
+
+            <p>
+              In this exercise we add this functionality:
+
+              <ul class="u-margin-bottom default-list">
+                <li>
+                  A list of all the zines (/zines).
+                </li>
+                <li>
+                  Search on zine creator name (/zines?author=?).
+                </li>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card u-margin-bottom-medium">
+        <div class="card__content media-object media-object--top-down">
+          <span class="dot"></span>
+
+          <div>
+            <h2 class="u-margin-bottom">
+              Following Authors
+            </h2>
+
+            <p>
+              We build a dashboard page with a list of all zines from creators
+              they follow, to satisfy this story: As a reader I want to
+              subscribe to a creator so that I can know more easily when they
+              publish new work.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card u-margin-bottom-medium">
+        <div class="card__content media-object media-object--top-down">
+          <span class="dot"></span>
+
+          <div>
+            <h2 class="u-margin-bottom">
+              Wrapping Up
+            </h2>
+
+            <p class="u-margin-bottom">
+              A quick summary of what we've learned and some jokes.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p class="reading u-margin-bottom-large">
+        * The actual class structure may vary slightly.
+      </p>
+    </div>
+  </section>
+
+  <section id="sign-up" class="background background--upcase-logo-dark
+    background--light-gradient-cover-top-half">
+    <div class="page-content">
+      <div class="card card--narrow">
+        <div class="card__content">
+          <h2 class="card__heading">
+            Learn Python & Django with the experts at Upcase
+          </h2>
+
+          <p class="card__copy">
+            Sign up for our pre-launch and <mark>get 25% off your first month of
+            Upcase</mark>
+          </p>
+        </div>
+
+        <div class="card__content card__content--dark">
+          <form accept-charset="UTF-8"
+            action="https://formkeep.com/f/9baea90e4fc2" method="POST">
+            <input type="hidden" name="utf8" value="✓">
+            <label for="email-address">Email Address</label>
+            <div class="single-line-form">
+              <input type="email" name="email" class="single-line-form__input">
+              <input type="hidden" name="language" value="Python & Django">
+              <button class="button button--on-dark single-line-form__button" type="submit">
+                Add me to the list
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

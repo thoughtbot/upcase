@@ -2,11 +2,11 @@
   background-color: $white;
   border: 1px solid rgba($blue, 0.075);
   border-radius: $base-border-radius;
-  box-shadow: $base-content-shadow;
+  box-shadow: 0 0.5rem 2.5rem rgba($havelock-blue, 0.15);
   overflow: auto;
 }
 
-.card--narrower {
+.card--narrow {
   margin: 0 auto;
   max-width: $max-width-narrower;
 }
@@ -27,11 +27,7 @@
 }
 
 .card__content {
-  padding: $base-spacing;
-
-  @media (min-width: $small-screen) {
-    padding: $medium-spacing;
-  }
+  padding: $medium-spacing;
 }
 
 .card__content--dark {
@@ -73,7 +69,7 @@
 }
 
 .card__heading {
-  color: $base-heading-font-color;
+  color: $marketing-heading-font-color;
   display: block;
   font-family: $heading-font-family;
   font-size: $medium-font-size;

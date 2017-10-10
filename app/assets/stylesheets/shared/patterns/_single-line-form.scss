@@ -1,0 +1,24 @@
+.single-line-form {
+  @media (min-width: $medium-screen) {
+    align-items: center;
+    display: flex;
+  }
+}
+
+.single-line-form__input {
+  flex-grow: 1;
+  height: 3.25rem;
+}
+
+.single-line-form__button {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  height: 3.25rem;
+  width: 100%;
+
+  @media (min-width: $medium-screen) {
+    margin-left: $spacing-base;
+    width: auto;
+  }
+}

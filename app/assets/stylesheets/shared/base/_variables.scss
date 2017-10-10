@@ -8,6 +8,7 @@ $haiti: #16193e;
 $havelock-blue: #3c7fef;
 $honey-dew: #f1fff0;
 $java: #2ea49c;
+$mariner: #2155d5;
 $white: #fff;
 
 // Colors in action
@@ -17,6 +18,9 @@ $code-block-font-color: $black;
 $footer-background-color: $haiti;
 $mark-background-color: rgba($honey-dew, 0.5);
 $mark-color: $java;
+
+// Category colors
+$category-python-color: $mariner;
 
 // Font families
 $base-font-family: "calibre-regular", sans-serif;
@@ -28,6 +32,7 @@ $code-font-family: monaco;
 // Font size
 $small-font-size: 0.95rem;
 $base-font-size: 1.2rem;
+$large-font-size: 1.5rem;
 
 // Font colors
 $base-font-color: $eclipse;
@@ -47,6 +52,7 @@ $spacing-large: 3.75rem;
 $spacing-x-large: 5rem;
 
 // Screen sizes
+$small-screen: 380px;
 $medium-screen: 680px;
 $large-screen: 1024px;
 

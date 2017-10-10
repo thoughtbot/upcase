@@ -8,9 +8,12 @@
   }
 
   + .page-content {
-    margin-top: -($large-spacing);
     padding-top: 0;
   }
+}
+
+.page-content--tight {
+  @include padding(0 null);
 }
 
 .page-content--centered {
@@ -33,6 +36,10 @@
 .page-content--reading {
   @include padding(null $medium-spacing);
   max-width: $reading-width;
+
+  @media (min-width: $medium-screen) {
+    @include padding(null 0);
+  }
 
   h1,
   h2,

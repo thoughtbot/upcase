@@ -1,0 +1,9 @@
+.dot {
+  @include size(0.8rem);
+  background: $blue;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba($blue, 0.125);
+  display: block;
+  flex-shrink: 0;
+  margin: 0.3rem $spacing-medium 0 0;
+}
