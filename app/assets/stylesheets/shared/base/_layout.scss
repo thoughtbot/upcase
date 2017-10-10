@@ -1,0 +1,5 @@
+body {
+  @media (max-width: $medium-screen) {
+    margin-top: $site-header-height;
+  }
+}
