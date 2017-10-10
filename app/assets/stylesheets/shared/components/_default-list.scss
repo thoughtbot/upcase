@@ -1,5 +1,9 @@
 .default-list {
+  margin-bottom: $spacing-medium;
+
   li {
-    margin-bottom: $spacing-medium;
+    line-height: $reading-line-height;
+    list-style-type: disc;
+    margin-left: $spacing-medium;
   }
 }
