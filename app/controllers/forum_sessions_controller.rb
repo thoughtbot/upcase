@@ -18,7 +18,7 @@ class ForumSessionsController < ApplicationController
   def must_have_forum_access
     unless current_user.has_access_to?(Forum)
       redirect_to(
-        new_subscription_url,
+        root_path,
         notice: I18n.t(
           "products.subscribe_cta",
           offering_type: "forum",

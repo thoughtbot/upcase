@@ -29,7 +29,7 @@ class CollaborationsController < ApplicationController
       yield
     else
       redirect_to(
-        new_subscription_path,
+        root_path,
         notice: t("subscriptions.flashes.subscription_required")
       )
     end

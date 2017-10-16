@@ -47,13 +47,13 @@ describe CollaborationsController do
     end
 
     context "as a visitor" do
-      it "redirects to the sign up page" do
+      it "redirects to the landing page" do
         repository = stub_repository
 
         post :create, repository_id: repository.to_param
 
         expect(repository).not_to have_received(:add_collaborator)
-        expect(controller).to redirect_to(new_subscription_path)
+        expect(controller).to redirect_to(root_path)
         expect(controller).to set_flash.to(
           I18n.t("subscriptions.flashes.subscription_required")
         )

@@ -181,7 +181,7 @@ Upcase::Application.routes.draw do
     resource :forum_sessions, only: :new
     resources :payments, only: [:new]
     resources :signups, only: [:create]
-    resource :subscription, only: [:new, :edit, :update]
+    resource :subscription, only: [:edit, :update]
     resources :coupons, only: :show
     resources :topics, only: :index, constraints: { format: "css" }
     resources :onboardings, only: :create

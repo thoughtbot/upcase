@@ -39,14 +39,14 @@ describe ForumSessionsController do
     end
 
     context "when logged in but not subscribed" do
-      it "redirects to new_subscription_url" do
+      it "redirects to the landing page" do
         user = build_stubbed(:user)
         stub_current_user_with(user)
 
         get :new, sso: "ssohash", sig: "sig"
 
         should deny_access(
-          redirect: new_subscription_url,
+          redirect: root_path,
           flash: I18n.t(
             "products.subscribe_cta",
             offering_type: "forum",
