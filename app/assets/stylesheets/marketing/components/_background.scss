@@ -23,11 +23,27 @@
   }
 }
 
-@each $theme in (elixir python react swift) {
-  .background--#{$theme}-logo {
-    &::before {
-      background-image: asset-url("marketing/upcase-background--#{$theme}.svg");
-    }
+.background--elixir-logo {
+  &::before {
+    background-image: asset-url("marketing/upcase-background--elixir.svg");
+  }
+}
+
+.background--python-logo {
+  &::before {
+    background-image: asset-url("marketing/upcase-background--python.svg");
+  }
+}
+
+.background--react-logo {
+  &::before {
+    background-image: asset-url("marketing/upcase-background-react.svg");
+  }
+}
+
+.background--swift-logo {
+  &::before {
+    background-image: asset-url("marketing/upcase-background-swift.svg");
   }
 }
 
