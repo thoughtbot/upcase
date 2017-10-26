@@ -6,6 +6,7 @@ describe SubscriptionFulfillment do
       user = build_subscribable_user
       plan = build_stubbed(:plan)
       fulfillment = stub_feature_fulfillment
+      allow(user.subscription).to receive(:update!).and_return(nil)
 
       SubscriptionFulfillment.new(user, plan).fulfill
 

@@ -105,7 +105,7 @@ describe Flashcard do
     context "if the deck is published" do
       it "returns true" do
         deck = build_stubbed(:deck, published: true)
-        flashcard = create(:flashcard, deck: deck)
+        flashcard = Flashcard.new(deck: deck)
 
         expect(flashcard).to be_search_visible
       end
@@ -114,7 +114,7 @@ describe Flashcard do
     context "if the deck is not published" do
       it "returns false" do
         deck = build_stubbed(:deck, published: false)
-        flashcard = create(:flashcard, deck: deck)
+        flashcard = Flashcard.new(deck: deck)
 
         expect(flashcard).not_to be_search_visible
       end
