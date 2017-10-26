@@ -154,6 +154,7 @@ describe Team do
     team = create(:team)
     subscription = build_stubbed(:team_subscription)
     allow(subscription).to receive(:change_quantity).and_return(nil)
+    allow(subscription).to receive(:update!).and_return(nil)
     allow(team).to receive(:subscription).and_return(subscription)
     team
   end
