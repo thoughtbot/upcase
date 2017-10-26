@@ -62,7 +62,7 @@ RSpec.configure do |config|
   config.include Paperclip::Shoulda::Matchers
   config.include EmailSpec::Helpers
   config.include EmailSpec::Matchers
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include Subscriptions
   config.include CheckoutHelpers
   config.include SessionHelpers, type: :feature
