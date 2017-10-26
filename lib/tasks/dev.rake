@@ -5,8 +5,8 @@ namespace :dev do
       raise 'This task can only be run in the development environment'
     end
 
-    require 'factory_girl_rails'
-    include FactoryGirl::Syntax::Methods
+    require "factory_bot_rails"
+    include FactoryBot::Syntax::Methods
 
     create_individual_plans
     create_topics
