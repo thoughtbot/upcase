@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   sequence :bio do |n|
     "The Amazing Brian the #{n}th"
   end

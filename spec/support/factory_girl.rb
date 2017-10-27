@@ -1,5 +1,5 @@
-require 'factory_girl_rails'
+require 'factory_bot_rails'
 
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 end

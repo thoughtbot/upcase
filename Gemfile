@@ -92,7 +92,7 @@ group :test do
   gem "codeclimate-test-reporter", require: nil
   gem "database_cleaner"
   gem "email_spec"
-  gem "factory_girl_rails"
+  gem "factory_bot_rails"
   gem "launchy"
   gem "shoulda-matchers", require: false
   gem "simplecov", require: false
