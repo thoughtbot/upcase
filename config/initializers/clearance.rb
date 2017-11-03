@@ -5,4 +5,5 @@ Clearance.configure do |config|
   config.cookie_domain = ENV["CLEARANCE_COOKIE_DOMAIN"]
   config.routes = false
   config.redirect_url = "/upcase"
+  config.rotate_csrf_on_sign_in = true
 end
