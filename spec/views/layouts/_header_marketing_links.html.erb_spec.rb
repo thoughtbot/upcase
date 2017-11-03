@@ -54,6 +54,7 @@ describe "layouts/_header_marketing_links.html.erb" do
 
     context "when on a non-sales page" do
       it "renders the sign_in link with return_to provided for current_path" do
+        allow(view).to receive(:sign_in_path_with_current_path_return_to).and_return sign_in_path_with_return_to
         render_header(signed_out: true, landing_page: false)
 
         expect(rendered).to have_link(
