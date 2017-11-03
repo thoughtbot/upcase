@@ -1,6 +1,6 @@
 class FakeSubscription < Hash
   def id
-    FactoryGirl.generate(:uuid)
+    FactoryBot.generate(:uuid)
   end
 
   def save
