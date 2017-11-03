@@ -75,7 +75,7 @@ GEM
       json
     capybara_discoball (0.0.2)
       capybara (~> 2.7)
-    clearance (1.15.1)
+    clearance (1.16.1)
       bcrypt
       email_validator (~> 1.4)
       rails (>= 3.1)
@@ -439,7 +439,7 @@ DEPENDENCIES
   capybara
   capybara-webkit (>= 1.11.1)
   capybara_discoball
-  clearance (~> 1.15.1)
+  clearance
   clearance-deprecated_password_strategies
   climate_control
   codeclimate-test-reporter
