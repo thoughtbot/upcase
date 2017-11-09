@@ -1,15 +1,6 @@
 .flashes {
   text-align: center;
 
-  .header-flash & {
-    @include position(absolute, 0 0 null 0);
-    z-index: 25;
-
-    @include marketing-fullsize {
-      position: fixed;
-    }
-  }
-
   .pricing & {
     margin: 1em 0;
     padding: 0;
