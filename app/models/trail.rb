@@ -86,6 +86,13 @@ class Trail < ActiveRecord::Base
     videos.sum(:length_in_minutes) + exercise_time
   end
 
+  # Currently this functionality is limited to the intermediate ruby on rails
+  # trail as a pilot. If that pilot is successful, we'll define a different
+  # criteria for hiding trail timing
+  def show_timing?
+    slug == "intermediate-ruby-on-rails"
+  end
+
   private
 
   def first_step

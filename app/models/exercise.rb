@@ -1,5 +1,5 @@
 class Exercise < ActiveRecord::Base
-  AVERAGE_COMPLETION_TIME_IN_MINUTES = 7
+  AVERAGE_COMPLETION_TIME_IN_MINUTES = 60
 
   has_many :statuses, as: :completeable, dependent: :destroy
   has_one :trail, through: :step, as: :completeables

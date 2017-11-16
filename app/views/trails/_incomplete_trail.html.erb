@@ -5,7 +5,7 @@
       <h1>
         <%= link_to trail, trail %>
       </h1>
-      <% if trail.id == 34 %>
+      <% if trail.show_timing? %>
         <p class="completion-time">
           <%= "#{trail.time_to_complete} minutes" %>
         </p>
