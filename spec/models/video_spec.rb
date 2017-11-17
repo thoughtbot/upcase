@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe Video do
   include VideoHelpers
+  include WistiaApiClientStubs
 
   it { should belong_to(:watchable) }
   it { should have_many(:classifications) }
@@ -251,7 +252,7 @@ describe Video do
         it "returns true" do
           video = build_stubbed(:video, published_on: Date.current)
 
-          expect(video.published?).to eq(true)
+          expect(video).to be_published
         end
       end
 
@@ -259,28 +260,58 @@ describe Video do
         it "returns false" do
           video = build_stubbed(:video, published_on: Date.tomorrow)
 
-          expect(video.published?).to eq(false)
+          expect(video).not_to be_published
+        end
+      end
+    end
+
+    context "when the video is part of a trail" do
+      context "and the trail is published" do
+        it "returns true" do
+          trail = create(:trail, :published)
+          video = create_video_on_a_trail(trail: trail)
+
+          expect(video).to be_published
+        end
+      end
+
+      context "and the trail is not published" do
+        it "returns false" do
+          trail = create(:trail, :unpublished)
+          video = create_video_on_a_trail(trail: trail)
+
+          expect(video).not_to be_published
         end
       end
     end
   end
 
-  context "when the video is part of a trail" do
-    context "and the trail is published" do
-      it "returns true" do
-        trail = create(:trail, :published)
-        video = create_video_on_a_trail(trail: trail)
+  describe "update_duration" do
+    context "when a duration is provided" do
+      it "updates the duration_in_minutes to the provided duration" do
+        video = create(:video, length_in_minutes: nil)
 
-        expect(video.published?).to eq(true)
+        video.update_duration(18)
+        video.reload
+
+        expect(video.length_in_minutes).to eq 18
       end
     end
 
-    context "and the trail is not published" do
-      it "returns false" do
-        trail = create(:trail, :unpublished)
-        video = create_video_on_a_trail(trail: trail)
+    context "when a duration is not provided" do
+      it "gets the duration from wistia and updates" do
+        video = create(:video, length_in_minutes: nil)
+        wistia_response = {
+          "name" => video.name,
+          "duration" => 661.4,
+          "hashed_id" => video.wistia_id,
+        }
+        stub_wistia_api_client(response: wistia_response)
 
-        expect(video.published?).to eq(false)
+        video.update_duration
+        video.reload
+
+        expect(video.length_in_minutes).to eq 11
       end
     end
   end
