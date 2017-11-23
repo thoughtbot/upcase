@@ -158,6 +158,40 @@ describe Trail do
     end
   end
 
+  describe "#time_to_complete" do
+    context "for videos in the trail" do
+      it "returns the sum of length_in_minutes for the trail's videos" do
+        video1 = create(:video, length_in_minutes: 10)
+        video2 = create(:video, length_in_minutes: 30)
+        trail = create(:trail, videos: [video1, video2])
+
+        expect(trail.time_to_complete).to eq 40
+      end
+    end
+
+    context "for exercises in the trail" do
+      it "returns the number of exercises x the average completion time" do
+        trail = create(:trail)
+        create_list(:exercise, 3, trail: trail)
+
+        average_completion_time = Exercise::AVERAGE_COMPLETION_TIME_IN_MINUTES
+
+        expect(trail.time_to_complete).to eq 3 * average_completion_time
+      end
+    end
+
+    context "for a trail with videos and exercises" do
+      it "returns the total video time and approximate exercise time" do
+        trail = create(:trail)
+        create_list(:exercise, 3, trail: trail)
+        create_list(:video, 2, length_in_minutes: 15, trail: trail)
+        exercise_time = 3 * Exercise::AVERAGE_COMPLETION_TIME_IN_MINUTES
+
+        expect(trail.time_to_complete).to eq 30 + exercise_time
+      end
+    end
+  end
+
   describe "#step_ids=" do
     it "should preserve ordering" do
       trail = create(:trail)
