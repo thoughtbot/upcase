@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def on_staging?
-    Rails.env.production? && app_name.include?("staging")
+    Rails.env.production? && ENV.fetch("HEROKU_APP_NAME").include?("staging")
   end
 
   def analytics
