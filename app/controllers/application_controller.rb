@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   http_basic_authenticate_with(
     name: ENV["HTTP_NAME"],
     password: ENV["HTTP_PASSWORD"],
-    if: Proc.new { on_staging? }
+    if: Proc.new { on_staging? },
   )
 
   def current_user
