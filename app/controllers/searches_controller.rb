@@ -2,6 +2,7 @@ class SearchesController < ApplicationController
   before_filter :require_login
 
   def show
+    @topics = Topic.explorable
     @query = query
     @results = results
     track_search_query

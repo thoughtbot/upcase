@@ -1,10 +1,26 @@
 .searches {
-  .searches-form {
-    position: relative;
+  .search-topics {
+    @media (min-width: $medium-screen) {
+      padding-left: 4em;
+    }
   }
 
-  .no-results {
-    margin-top: 100px;
+  .search-section-title {
+    padding-bottom: 1em;
+    padding-top: 1em;
+  }
+
+  .search-form-container {
+    padding-left: 1em;
+    padding-right: 1em;
+
+    .search-section-title {
+      clear: both;
+    }
+  }
+
+  .searches-form {
+    position: relative;
   }
 
   .searches-form input[type="submit"] {

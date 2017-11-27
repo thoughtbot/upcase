@@ -1,26 +1,45 @@
-<%= form_tag search_path, class: "searches-form #{'no-results' if @results.none?}" do |form| %>
-  <fieldset>
-    <%= text_field_tag :query, @query %>
-    <%= submit_tag "Search" %>
-  </fieldset>
-<% end %>
+<div class="page-header media-object">
+  <div>
+    <h1 class="page-header__title"><%= t(".title") %></h1>
+    <h4 class="page-header__tagline"><%= t(".tagline") %></h4>
+  </div>
+  <div class="search-topics">
+    <h3 class="search-section-title"><%= t(".topics_title") %></h3>
+    <%= render @topics %>
+  </div>
+</div>
 
-<% if @results.any? %>
-  <p class="search-legend">
-    <span class="search-icon"><%= fa_icon "film", text: "Video", title: "Video" %></span>
-    <span class="search-icon"><%= fa_icon "road", text: "Trail", title: "Trail" %></span>
-    <span class="search-icon"><%= fa_icon "files-o", text: "Flashcard", title: "Flashcard" %></span>
-  </p>
+<div class="search-form-container">
 
-  <span class="divider">
-    <h4 class="text">Search Results</h4>
-  </span>
-
-  <ul>
-    <%= render @results %>
-  </ul>
-<% else %>
-  <% if @query.present? %>
-    <p>No results found for <em>“<%= @query %>”</em></p>
+  <h3 class="search-section-title"><%= t(".keywords_title") %></h3>
+  <%= form_tag search_path, class: "searches-form" do |form| %>
+    <fieldset>
+      <%= text_field_tag :query, @query, placeholder: t(".placeholder") %>
+      <%= submit_tag t(".submit") %>
+    </fieldset>
   <% end %>
-<% end %>
+
+  <% if @results.any? %>
+    <span class="divider">
+      <h4 class="text"><%= t(".legend_title") %></h4>
+    </span>
+
+    <p class="search-legend">
+      <span class="search-icon"><%= fa_icon "film", text: t(".video_legend_text"), title: t(".video_legend_title") %></span>
+      <span class="search-icon"><%= fa_icon "road", text: t(".trail_legend_text"), title: t(".trail_legend_title") %></span>
+      <span class="search-icon"><%= fa_icon "files-o", text: t(".flashcard_legend_text"), title: t(".flashcard_legend_text") %></span>
+    </p>
+
+    <span class="divider">
+      <h4 class="text"><%= (".results_title") %></h4>
+    </span>
+
+    <ul>
+      <%= render @results %>
+    </ul>
+  <% else %>
+    <% if @query.present? %>
+      <p><%= t(".no_results") %> <em>“<%= @query %>”</em></p>
+    <% end %>
+  <% end %>
+</div>
