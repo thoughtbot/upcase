@@ -67,7 +67,22 @@ class AuthCallbacksController < ApplicationController
   end
 
   def auth_origin
-    session[:return_to] || request.env["omniauth.origin"] || practice_url
+    session[:return_to] || omniauth_redirect || practice_url
+  end
+
+  def omniauth_redirect
+    if request.env["omniauth.origin"].present? && safe_redirect?
+      request.env["omniauth.origin"]
+    end
+  end
+
+  def safe_redirect?
+    # This method prevents attackers from redirecting our users to lookalike
+    # phishing websites
+    host = URI.parse(request.env["omniauth.origin"]).host
+
+    host.nil? || host == request.host
+>>>>>>> 9c2d155d... Prevent phishing
   end
 
   def clear_used_session_values
