@@ -57,4 +57,12 @@ module TrailsHelper
       image_tag("github-black.svg", class: "logo", alt: "") + cta_text
     end
   end
+
+  def time_to_complete(minutes)
+    if minutes < 60.0
+      "#{minutes} minutes"
+    else
+      pluralize((minutes / 60.0).round, "hour")
+    end
+  end
 end

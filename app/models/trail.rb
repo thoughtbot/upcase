@@ -90,7 +90,7 @@ class Trail < ActiveRecord::Base
   # trail as a pilot. If that pilot is successful, we'll define a different
   # criteria for hiding trail timing
   def show_timing?
-    slug == "intermediate-ruby-on-rails"
+    slug == "intermediate-ruby-on-rails-five"
   end
 
   private

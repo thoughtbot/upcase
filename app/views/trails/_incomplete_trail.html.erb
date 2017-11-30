@@ -7,7 +7,7 @@
       </h1>
       <% if trail.show_timing? %>
         <p class="completion-time">
-          <%= "#{trail.time_to_complete} minutes" %>
+          <%= time_to_complete(trail.time_to_complete) %>
         </p>
       <% end %>
       <div class="description">

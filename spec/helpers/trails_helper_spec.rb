@@ -113,6 +113,26 @@ describe TrailsHelper do
     end
   end
 
+  describe "#time_to_complete" do
+    context "when the time is less than an hour" do
+      it "returns the time in minutes" do
+        time = helper.time_to_complete(55)
+
+        expect(time).to eq("55 minutes")
+      end
+    end
+
+    context "when the time is more than an hour" do
+      it "rounds to the nearest hour" do
+        rounded_up_time = helper.time_to_complete(110)
+        rounded_down_time = helper.time_to_complete(61)
+
+        expect(rounded_up_time).to eq("2 hours")
+        expect(rounded_down_time).to eq("1 hour")
+      end
+    end
+  end
+
   def ordered_links_in(html)
     Nokogiri::HTML(html).css("a").map { |x| x[:href] }
   end
