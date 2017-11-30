@@ -82,7 +82,6 @@ class AuthCallbacksController < ApplicationController
     host = URI.parse(request.env["omniauth.origin"]).host
 
     host.nil? || host == request.host
->>>>>>> 9c2d155d... Prevent phishing
   end
 
   def clear_used_session_values
