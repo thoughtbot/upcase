@@ -1,16 +1,34 @@
 <% content_for :subject_block do %>
-  <header class="page-header">
-    <h1 class="page-header__title">
-      Join the Upcase Community
-    </h1>
-
-    <h4 class="page-header__tagline">
-      <% if signed_in? %>
+  <header class="page-header page-header--checkout">
+    <div class="checkout__title">
+      <h1 class="page-header__title">
+        Join the Upcase Community
+      </h1>
+      <h4 class="page-header__tagline">
+        <% if signed_in? %>
         <%= t("checkouts.one_step_away_authenticated", name: current_user.first_name) %>
-      <% else %>
+        <% else %>
         <%= t("checkouts.one_step_away_anonymous") %>
-      <% end %>
-    </h2>
+        <% end %>
+      </h2>
+    </div>
+    <div class="plan__subscription">
+      <span class="plan__title">
+        Monthly Subscription
+      </span>
+
+      <span class="plan__cost">
+        $29
+      </span>
+
+      <span class="plan__payment-frequency">
+        per month
+      </span>
+
+      <small class="plan__closer">
+        Full access for less than $1 a day
+      </small>
+    </div>
   </header>
 <% end %>
 
