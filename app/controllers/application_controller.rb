@@ -4,11 +4,21 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :capture_campaign_params, :apply_referral_coupon
 
+  http_basic_authenticate_with(
+    name: ENV["HTTP_NAME"],
+    password: ENV["HTTP_PASSWORD"],
+    if: Proc.new { on_staging? },
+  )
+
   def current_user
     super || Guest.new
   end
 
   protected
+
+  def on_staging?
+    ENV.fetch("HEROKU_APP_NAME", "").include?("staging")
+  end
 
   def analytics
     Analytics.new(current_user)
