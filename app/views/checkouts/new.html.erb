@@ -14,15 +14,15 @@
     </div>
     <div class="plan__subscription">
       <span class="plan__title">
-        Monthly Subscription
+        <%= @checkout.plan_name %>
       </span>
 
       <span class="plan__cost">
-        $29
+        <%= formatted_subscription_price(@checkout) %>
       </span>
 
       <span class="plan__payment-frequency">
-        per month
+        per <%= subscription_interval(@checkout) %>
       </span>
 
       <small class="plan__closer">
