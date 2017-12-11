@@ -33,20 +33,29 @@
     </section>
   <% end %>
 
-  <section class="incomplete-trails">
-    <span class="divider">
-      <h4 class="text">Your Trails</h4>
-    </span>
-    <% if @practice.promoted_unstarted_trails.any? %>
-      <div class="promoted-trails">
-        <h3 class="promo-message"><%= t("trails.promoted_message") %></h3>
-        <% @practice.promoted_unstarted_trails.each do |trail| %>
-          <%= render "trails/incomplete_trail", trail: trail %>
-        <% end %>
-      </div>
+  <% if @practice.promoted_unstarted_trails.any? %>
+  <div class="promoted-trails">
+    <h3 class="promo-message"><%= t("trails.promoted_message") %></h3>
+    <% @practice.promoted_unstarted_trails.each do |trail| %>
+    <%= render "trails/incomplete_trail", trail: trail %>
     <% end %>
-    <%= render partial: "trails/incomplete_trail", collection: @practice.in_progress_trails, as: :trail %>
-    <%= render partial: "trails/incomplete_trail", collection: @practice.unpromoted_unstarted_trails, as: :trail %>
+  </div>
+  <% end %>
+
+  <section class="incomplete-trails">
+    <% if @practice.in_progress_trails.any? %>
+      <span class="divider">
+        <h4 class="text">Your Trails</h4>
+      </span>
+      <%= render partial: "trails/incomplete_trail", collection: @practice.in_progress_trails, as: :trail %>
+    <% end %>
+
+    <% if @practice.unpromoted_unstarted_trails.any? %>
+      <span class="divider">
+        <h4 class="text">Unstarted Trails</h4>
+      </span>
+      <%= render partial: "trails/incomplete_trail", collection: @practice.unpromoted_unstarted_trails, as: :trail %>
+    <% end %>
   </section>
 
   <% if @practice.just_finished_trails.any? %>
