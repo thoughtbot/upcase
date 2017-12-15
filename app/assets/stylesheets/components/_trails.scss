@@ -35,6 +35,10 @@ $not-started-dot-color: #D8D8D8;
 
   .steps-and-start {
     flex: 1;
+
+    .completion-time {
+      color: $gray-3;
+    }
   }
 
   .trail {
@@ -64,16 +68,6 @@ $not-started-dot-color: #D8D8D8;
             text-decoration: underline;
           }
         }
-      }
-
-      .completion-time {
-        color: $gray-3;
-        margin-bottom: $base-spacing;
-        margin-top: -($base-spacing / 2);
-      }
-
-      .description {
-        clear: left;
       }
     }
 
@@ -215,6 +209,14 @@ $not-started-dot-color: #D8D8D8;
   .started {
     .trail {
       flex-direction: column;
+    }
+
+    header {
+      margin-bottom: 0;
+    }
+
+    .completion-time {
+      margin-bottom: $base-spacing;
     }
 
     .description,
@@ -473,6 +475,7 @@ $not-started-dot-color: #D8D8D8;
 
   .trail {
     margin-bottom: 0;
+    margin-top: $base-spacing;
   }
 
   .promo-message {

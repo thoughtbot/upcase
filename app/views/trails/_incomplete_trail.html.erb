@@ -5,11 +5,6 @@
       <h1>
         <%= link_to trail, trail %>
       </h1>
-      <% if trail.show_timing? %>
-        <p class="completion-time">
-          <%= time_to_complete(trail.time_to_complete) %>
-        </p>
-      <% end %>
       <div class="description">
         <%= format_markdown trail.description %>
       </div>
@@ -17,6 +12,10 @@
     </header>
 
     <div class="steps-and-start">
+      <div class="completion-time">
+        <%= get_completion_time_hours_minutes(trail.time_to_complete) %>
+      </div>
+
       <%= render "trails/step_dots", trail: trail %>
 
       <% if trail.steps.present? %>
