@@ -62,6 +62,6 @@ module TrailsHelper
     hours = total_in_minutes / 60
     minutes = total_in_minutes % 60
     "#{pluralize(hours, 'hour') if hours != 0}
-     #{pluralize(minutes, 'minute') if minutes != 0}"
+    #{pluralize(minutes, 'minute') if minutes != 0}"
   end
 end
