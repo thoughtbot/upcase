@@ -113,22 +113,20 @@ describe TrailsHelper do
     end
   end
 
-  describe "#time_to_complete" do
+  describe "#completion_time" do
     context "when the time is less than an hour" do
       it "returns the time in minutes" do
-        time = helper.get_completion_time_hours_minutes(55)
+        time = helper.completion_time(55)
 
-        expect(time).not_to include("hours")
-        expect(time).to include("minutes")
+        expect(time).to eq("55 minutes")
       end
     end
 
     context "when the time is more than an hour" do
       it "returns time in hours and minutes" do
-        time = helper.get_completion_time_hours_minutes(110)
+        time = helper.completion_time(110)
 
-        expect(time).to include("hour")
-        expect(time).to include("minutes")
+        expect(time).to eq("1 hour 50 minutes")
       end
     end
   end

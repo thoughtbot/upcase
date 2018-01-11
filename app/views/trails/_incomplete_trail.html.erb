@@ -13,7 +13,7 @@
 
     <div class="steps-and-start">
       <div class="completion-time">
-        <%= get_completion_time_hours_minutes(trail.time_to_complete) %>
+        <%= completion_time(trail.time_to_complete) %>
       </div>
 
       <%= render "trails/step_dots", trail: trail %>

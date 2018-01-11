@@ -14,7 +14,7 @@
     </h2>
     <% if @video.length_in_minutes %>
       <h3 class="page-header__time-to-complete">
-        <%= get_completion_time_hours_minutes(@video.length_in_minutes) %>
+        <%= completion_time(@video.length_in_minutes) %>
       </h3>
     <% end  %>
   </header>
