@@ -63,15 +63,14 @@ module TrailsHelper
   end
 
   def hours(num_hours)
-    return if num_hours == 0
+    return if num_hours.zero?
 
     pluralize(num_hours, "hour")
   end
 
   def minutes(num_minutes)
-    return if num_minutes == 0
+    return if num_minutes.zero?
 
     pluralize(num_minutes, "minute")
   end
-
 end
