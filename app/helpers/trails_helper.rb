@@ -58,11 +58,19 @@ module TrailsHelper
     end
   end
 
-  def time_to_complete(minutes)
-    if minutes < 60.0
-      "#{minutes} minutes"
-    else
-      pluralize((minutes / 60.0).round, "hour")
-    end
+  def completion_time(total_in_minutes)
+    "#{hours(total_in_minutes / 60)} #{minutes(total_in_minutes % 60)}".strip
+  end
+
+  def hours(num_hours)
+    return if num_hours.zero?
+
+    pluralize(num_hours, "hour")
+  end
+
+  def minutes(num_minutes)
+    return if num_minutes.zero?
+
+    pluralize(num_minutes, "minute")
   end
 end
