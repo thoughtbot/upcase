@@ -11,6 +11,11 @@
   max-width: $max-width-narrower;
 }
 
+.card--narrowest {
+  margin: 0 auto;
+  max-width: $max-width-narrowest;
+}
+
 .card--one-per-line {
   margin: 0 auto $medium-spacing;
   max-width: $medium-screen;

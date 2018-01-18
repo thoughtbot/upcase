@@ -61,7 +61,8 @@ $topic-backgrounds: (
   rails: #ffecee,
   testing: #e5fdf4,
   vim: #e1f5ff,
-  workflow: #fcf5c8
+  workflow: #fcf5c8,
+  virtual-reality: #16193e
 );
 $topic-colors: (
   analytics: #a5c236,
@@ -75,7 +76,8 @@ $topic-colors: (
   rails: #d5414d,
   testing: #34d096,
   vim: #2192cf,
-  workflow: #f4bc15
+  workflow: #f4bc15,
+  virtual-reality: #d2cfe3
 );
 
 // Font families
@@ -157,6 +159,7 @@ $x-large-screen: 1300px;
 $max-width: 1024px;
 $max-width-narrow: 900px;
 $max-width-narrower: 760px;
+$max-width-narrowest: 600px;
 $navigation-height: 60px;
 $navigation-cta-offset: 10px;
 $header-height: $navigation-height - ($navigation-cta-offset * 2);

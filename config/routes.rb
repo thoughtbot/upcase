@@ -90,6 +90,7 @@ Upcase::Application.routes.draw do
     get "/terms", to: "pages#show", as: :terms, id: "terms"
     get "/pages/welcome", to: "pages#show", as: "welcome"
     get "/pre-sales/python", to: "pages#show", id: "pre_sale_python"
+    get "/promos/getting-started-vr", to: "pages#show", id: "getting-started-vr"
 
     scope ":plan" do
       resource :authenticated_on_checkout, only: [:show]
