@@ -43,7 +43,7 @@
 
       <% unless current_user.subscriber? %>
         <li id="site_nav_call_to_action">
-          <%= link_to professional_checkout_path, class: "site-nav__cta" do %>
+          <%= link_to professional_checkout_path, class: "site-nav__button" do %>
             <%= t("shared.subscriptions.single_user") %>
           <% end %>
         </li>
