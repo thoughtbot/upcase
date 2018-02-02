@@ -50,7 +50,11 @@
       <% end %>
     <% else %>
       <li class="help">
-        <%= link_to t("shared.header.help-link"), welcome_path %>
+        <%= link_to(
+          t("shared.header.help-link"),
+          welcome_path,
+          class: "site-nav__link",
+        ) %>
       </li>
     <% end %>
 
