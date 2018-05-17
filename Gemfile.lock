@@ -366,7 +366,7 @@ GEM
     sawyer (0.8.1)
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 1.0)
-    scenic (1.4.0)
+    scenic (1.4.1)
       activerecord (>= 4.0.0)
       railties (>= 4.0.0)
     shellany (0.0.1)
