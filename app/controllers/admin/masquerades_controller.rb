@@ -12,7 +12,7 @@ module Admin
     def destroy
       sign_in User.find(session[:admin_id])
       session.delete(:admin_id)
-      redirect_to admin_path, notice: "Stopped masquerading"
+      redirect_to rails_admin_path, notice: "Stopped masquerading"
     end
   end
 end

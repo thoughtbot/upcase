@@ -2,6 +2,8 @@ class LatestAttempt < ActiveRecord::Base
   belongs_to :user
   belongs_to :flashcard
 
+  default_scope { order(:id) }
+
   def self.by(user)
     where(user_id: user.id)
   end

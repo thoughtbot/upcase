@@ -23,7 +23,7 @@ Upcase::Application.routes.draw do
       end
     end
 
-    mount RailsAdmin::Engine => "/admin", as: :admin
+    mount RailsAdmin::Engine => "/admin", as: :rails_admin
 
     namespace :api do
       namespace :v1 do
