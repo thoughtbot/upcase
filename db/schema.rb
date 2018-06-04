@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302213159) do
+ActiveRecord::Schema.define(version: 20180604170322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20170302213159) do
     t.datetime "updated_at"
   end
 
+  add_index "checkouts", ["plan_id"], name: "index_checkouts_on_plan_id", using: :btree
   add_index "checkouts", ["user_id"], name: "index_checkouts_on_user_id", using: :btree
 
   create_table "classifications", force: :cascade do |t|
@@ -65,6 +66,9 @@ ActiveRecord::Schema.define(version: 20170302213159) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end
+
+  add_index "classifications", ["classifiable_id", "classifiable_type"], name: "index_classifications_on_classifiable_id_and_classifiable_type", using: :btree
+  add_index "classifications", ["topic_id"], name: "index_classifications_on_topic_id", using: :btree
 
   create_table "collaborations", force: :cascade do |t|
     t.integer  "repository_id", null: false
@@ -146,6 +150,8 @@ ActiveRecord::Schema.define(version: 20170302213159) do
   end
 
   add_index "invitations", ["code"], name: "index_invitations_on_code", using: :btree
+  add_index "invitations", ["recipient_id"], name: "index_invitations_on_recipient_id", using: :btree
+  add_index "invitations", ["sender_id"], name: "index_invitations_on_sender_id", using: :btree
   add_index "invitations", ["team_id"], name: "index_invitations_on_team_id", using: :btree
 
   create_table "markers", force: :cascade do |t|
@@ -344,6 +350,8 @@ ActiveRecord::Schema.define(version: 20170302213159) do
     t.integer  "subscription_id",             null: false
   end
 
+  add_index "teams", ["subscription_id"], name: "index_teams_on_subscription_id", using: :btree
+
   create_table "topics", force: :cascade do |t|
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
@@ -495,7 +503,7 @@ ActiveRecord::Schema.define(version: 20170302213159) do
   add_foreign_key "content_recommendations", "users"
   add_foreign_key "markers", "videos", on_delete: :cascade
 
-  create_view :latest_attempts,  sql_definition: <<-SQL
+  create_view "latest_attempts",  sql_definition: <<-SQL
       SELECT DISTINCT ON (attempts.user_id, attempts.flashcard_id) attempts.id,
       attempts.confidence,
       attempts.flashcard_id,
@@ -506,7 +514,7 @@ ActiveRecord::Schema.define(version: 20170302213159) do
     ORDER BY attempts.user_id, attempts.flashcard_id, attempts.updated_at DESC;
   SQL
 
-  create_view :slugs,  sql_definition: <<-SQL
+  create_view "slugs",  sql_definition: <<-SQL
       SELECT products.slug,
       products.type AS model
      FROM products
