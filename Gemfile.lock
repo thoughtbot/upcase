@@ -422,7 +422,7 @@ GEM
       i18n
     vanity (2.0.0.beta8)
       i18n
-    webmock (3.4.1)
+    webmock (3.4.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
