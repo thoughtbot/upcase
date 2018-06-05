@@ -1,4 +1,4 @@
-class Classification < ActiveRecord::Base
+class Classification < ApplicationRecord
   belongs_to :classifiable, polymorphic: true
   belongs_to :topic
 

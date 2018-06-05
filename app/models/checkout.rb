@@ -1,4 +1,4 @@
-class Checkout < ActiveRecord::Base
+class Checkout < ApplicationRecord
   COMMON_ATTRIBUTES = %i(
     address1
     address2
@@ -89,7 +89,7 @@ class Checkout < ActiveRecord::Base
   def copy_errors_to_user
     if user.invalid?
       %i(email name password github_username).each do |attribute|
-        errors[attribute] = user.errors[attribute]
+        errors.add(attribute, user.errors[attribute])
       end
     end
   end

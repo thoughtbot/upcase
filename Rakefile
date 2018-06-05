@@ -4,7 +4,7 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-Upcase::Application.load_tasks
+Rails.application.load_tasks
 
 if defined? RSpec
   task(:spec).clear

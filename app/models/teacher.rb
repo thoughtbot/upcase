@@ -1,4 +1,4 @@
-class Teacher < ActiveRecord::Base
+class Teacher < ApplicationRecord
   belongs_to :user
   belongs_to :video
 

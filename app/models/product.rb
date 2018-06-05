@@ -1,4 +1,4 @@
-class Product < ActiveRecord::Base
+class Product < ApplicationRecord
   extend FriendlyId
 
   has_many :classifications, as: :classifiable, dependent: :destroy

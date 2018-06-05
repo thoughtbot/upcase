@@ -1,5 +1,5 @@
 module Beta
-  class Offer < ActiveRecord::Base
+  class Offer < ApplicationRecord
     has_many :replies, dependent: :destroy
 
     validates :name, presence: true

@@ -1,5 +1,5 @@
 class Subscriber::CancellationsController < ApplicationController
-  before_filter :must_be_subscription_owner
+  before_action :must_be_subscription_owner
 
   def new
     @cancellation = Cancellation.new(subscription: current_user.subscription)

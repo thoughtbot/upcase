@@ -59,7 +59,7 @@ describe RepositoriesController do
 
   def show_repository(repository, params = {})
     sign_in_as current_user
-    get :show, params.merge(id: repository.to_param)
+    get :show, params: params.merge(id: repository.to_param)
   end
 
   let(:current_user) { build_stubbed(:user) }

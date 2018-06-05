@@ -1,6 +1,6 @@
 require Rails.root.join("config/smtp")
 
-Upcase::Application.configure do
+Rails.application.configure do
   config.cache_classes = true
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
@@ -10,14 +10,12 @@ Upcase::Application.configure do
   config.assets.digest = true
   config.assets.js_compressor = :uglifier
 
-  # Serve static assets, which allows us to populate the CDN with compressed
-  # assets if a client supports them
-  config.serve_static_files = true
-
   # Fiddling with expires values is kind of pointless as we use hashing to bust
   # caches during redeploys, but it should bump up our google pagespeed
   # ranking.
-  config.static_cache_control = 'public, max-age=31536000'
+  config.public_file_server.headers = {
+    "Cache-Control" => "public, max-age=3600",
+  }
 
   config.exceptions_app = ActionDispatch::PublicExceptions.new(
     Rails.public_path.join("upcase"),

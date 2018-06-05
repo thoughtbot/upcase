@@ -42,8 +42,6 @@ module Upcase
     config.i18n.enforce_available_locales = true
 
     config.action_mailer.default_url_options = { host: ENV["APP_DOMAIN"] }
-    config.active_record.raise_in_transactional_callbacks = true
-
     config.assets.prefix = "/upcase/assets"
   end
 end

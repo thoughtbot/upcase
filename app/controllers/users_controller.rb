@@ -1,5 +1,5 @@
 class UsersController < Clearance::UsersController
-  before_filter :require_login, only: [:edit, :update]
+  before_action :require_login, only: %i(edit update)
 
   def edit
   end

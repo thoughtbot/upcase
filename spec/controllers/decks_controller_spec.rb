@@ -6,6 +6,6 @@ describe DecksController do
   end
 
   describe "#show" do
-    it { requires_signed_in_user_to { get :show, id: 1 } }
+    it { requires_signed_in_user_to { get :show, params: { id: 1 } } }
   end
 end
