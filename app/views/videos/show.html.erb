@@ -1,6 +1,6 @@
 <% render "shared/content_specific_head_tags", content: @video, type: "video" %>
 
-<% if @video.preview_wistia_id.present? %>
+<% if @video.preview_wistia_id? %>
   <% content_for :head do %>
     <%= render "twitter_player_cards/meta", video: @video %>
   <% end %>

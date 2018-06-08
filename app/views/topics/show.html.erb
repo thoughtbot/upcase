@@ -13,11 +13,11 @@
         Learn <%= @topic.name %>
       </h1>
 
-      <% if @topic.summary.present? %>
+      <% if @topic.summary? %>
         <div class="topic-description">
           <%= format_markdown @topic.summary %>
 
-          <% if @topic.extended_description.present? %>
+          <% if @topic.extended_description? %>
             <div class="extended-description">
               <%= format_markdown @topic.extended_description %>
             </div>
