@@ -6,7 +6,7 @@ class Api::V1::StatusesController < ApiController
       new(completeable, current_resource_owner).
       update_state(state)
     track_event
-    render nothing: true
+    head :ok
   end
 
   private

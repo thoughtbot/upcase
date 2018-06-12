@@ -1,5 +1,5 @@
 class MembershipsController < ApplicationController
-  before_filter :must_be_team_owner
+  before_action :must_be_team_owner
 
   def destroy
     user = current_team.users.find(params[:id])
