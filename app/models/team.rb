@@ -1,5 +1,5 @@
 # A Team represents a company that has a TeamPlan subscription.
-class Team < ActiveRecord::Base
+class Team < ApplicationRecord
   belongs_to :subscription
 
   has_many :users, dependent: :nullify
