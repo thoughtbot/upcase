@@ -9,7 +9,7 @@ describe CheckoutsController do
         user = create(:subscriber)
         stub_current_user_with(user)
 
-        get :new, plan: stub_valid_sku
+        get :new, params: { plan: stub_valid_sku }
 
         expect(response).to redirect_to root_path
       end
@@ -23,7 +23,7 @@ describe CheckoutsController do
         stub_plan_by_sku(:team, sku: "sku1")
         desired_plan = stub_plan_by_sku(:team, sku: "sku2")
 
-        get :new, plan: desired_plan
+        get :new, params: { plan: desired_plan }
 
         expect(assigns(:checkout).plan).to eq desired_plan
       end
@@ -34,7 +34,7 @@ describe CheckoutsController do
         professional = build_stubbed(:plan)
         allow(Plan).to receive(:professional).and_return(professional)
 
-        get :new, plan: "notfound"
+        get :new, params: { plan: "notfound" }
 
         expect(response).to redirect_to new_checkout_path(plan: professional)
         expect(flash[:notice]).to eq I18n.t("checkout.flashes.plan_not_found")
@@ -48,7 +48,7 @@ describe CheckoutsController do
         coupon = stub_coupon(valid: true)
         session[:coupon] = coupon.code
 
-        get :new, plan: stub_valid_sku
+        get :new, params: { plan: stub_valid_sku }
 
         expect(assigns(:checkout).stripe_coupon_id).to eq coupon.code
       end
@@ -62,7 +62,7 @@ describe CheckoutsController do
         session[:coupon] = coupon_code
         plan_sku = stub_valid_sku
 
-        get :new, plan: plan_sku
+        get :new, params: { plan: plan_sku }
 
         expect(session[:coupon]).to be_nil
         expect(controller).to redirect_to new_checkout_path plan_sku
@@ -79,7 +79,10 @@ describe CheckoutsController do
       plan = create(:plan)
       stripe_token = "token"
 
-      post :create, checkout: customer_params(stripe_token), plan: plan
+      post :create, params: {
+        checkout: customer_params(stripe_token),
+        plan: plan,
+      }
 
       expect(FakeStripe.customer_plan_id).to eq plan.sku
     end
@@ -88,7 +91,7 @@ describe CheckoutsController do
       stub_current_user_with create(:user)
       plan = create(:plan)
 
-      post :create, checkout: customer_params, plan: plan
+      post :create, params: { checkout: customer_params, plan: plan }
 
       expect(flash[:purchase_amount]).to eq plan.price_in_dollars
     end
@@ -100,10 +103,15 @@ describe CheckoutsController do
       plan = create(:plan)
       stripe_token = "token"
 
+      params_with_coupon = customer_params(stripe_token).
+        merge(stripe_coupon_id: "5OFF")
+
       post(
         :create,
-        checkout: customer_params(stripe_token).merge(stripe_coupon_id: "5OFF"),
-        plan: plan
+        params: {
+          checkout: params_with_coupon,
+          plan: plan,
+        },
       )
 
       expect(session[:coupon]).to be_nil
@@ -119,8 +127,10 @@ describe CheckoutsController do
 
         post(
           :create,
-          checkout: customer_params(stripe_token),
-          plan: plan
+          params: {
+            checkout: customer_params(stripe_token),
+            plan: plan,
+          },
         )
 
         expect(user.reload.utm_source).to eq "adwords"

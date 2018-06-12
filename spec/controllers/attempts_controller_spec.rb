@@ -4,7 +4,11 @@ describe AttemptsController do
   include StubCurrentUserHelper
 
   describe "#create" do
-    it { requires_signed_in_user_to { post :create, flashcard_id: 1 } }
+    it { requires_signed_in_user_to { create_an_attempt } }
+
+    def create_an_attempt
+      post :create, params: { flashcard_id: 1 }
+    end
 
     context "when the user chose to save the flashcard" do
       it "sets a flash message" do
@@ -13,8 +17,10 @@ describe AttemptsController do
 
         post(
           :create,
-          flashcard_id: flashcard.id,
-          attempt: { confidence: Attempt::LOW_CONFIDENCE }
+          params: {
+            flashcard_id: flashcard.id,
+            attempt: { confidence: Attempt::LOW_CONFIDENCE },
+          },
         )
 
         expect(controller).to(
