@@ -24,7 +24,6 @@ gem "font-awesome-rails"
 gem "formtastic", "~> 3.1.3"
 gem "friendly_id"
 gem "gravatarify", "~> 3.1.0"
-gem "heroku-deflater"
 gem "high_voltage"
 gem "honeybadger"
 gem "inline_svg"
@@ -42,7 +41,7 @@ gem "pry-byebug"
 gem "pry-rails"
 gem "puma"
 gem "rack-rewrite", "~> 1.5.1"
-gem "rails", "~> 4.2.5"
+gem "rails", "~> 5.0.7"
 gem "rails_admin"
 gem "recipient_interceptor"
 gem "redcarpet"
@@ -65,7 +64,6 @@ end
 
 group :development do
   gem "guard-livereload", "~> 2.5", require: false
-  gem "quiet_assets"
   gem "rack-livereload"
   gem "rack-mini-profiler", require: false
   gem "spring"
@@ -94,6 +92,7 @@ group :test do
   gem "email_spec"
   gem "factory_bot_rails"
   gem "launchy"
+  gem "rails-controller-testing"
   gem "shoulda-matchers", require: false
   gem "simplecov", require: false
   gem "sinatra"
