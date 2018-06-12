@@ -34,8 +34,10 @@ describe "PUT /upcase/api/v1/exercises/:id" do
   def perform_request(uuid, attributes)
     put(
       api_v1_exercise_path(uuid),
-      access_token: access_token,
-      exercise: attributes
+      params: {
+        access_token: access_token,
+        exercise: attributes,
+      },
     )
   end
 
