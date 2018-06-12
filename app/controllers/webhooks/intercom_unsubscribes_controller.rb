@@ -4,14 +4,14 @@ class Webhooks::IntercomUnsubscribesController < ApplicationController
   def create
     if signature_valid?
       unsubscribe_identified_user
-      render nothing: true
+      head :ok
     else
       report_invalid_signature
-      render nothing: true, status: :unprocessable_entity
+      head :unprocessable_entity
     end
   rescue ActiveRecord::RecordNotFound
     report_user_not_found_error
-    render nothing: true, status: :unprocessable_entity
+    head :unprocessable_entity
   end
 
   private

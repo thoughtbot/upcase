@@ -1,5 +1,5 @@
 # This class represents a user or team's subscription to Upcase content
-class Subscription < ActiveRecord::Base
+class Subscription < ApplicationRecord
   belongs_to :user
   belongs_to :plan, polymorphic: true
 

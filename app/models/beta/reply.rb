@@ -1,5 +1,5 @@
 module Beta
-  class Reply < ActiveRecord::Base
+  class Reply < ApplicationRecord
     belongs_to :offer
     belongs_to :user
 

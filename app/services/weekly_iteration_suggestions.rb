@@ -1,4 +1,4 @@
-class WeeklyIterationSuggestions < ActiveJob::Base
+class WeeklyIterationSuggestions < ApplicationJob
   include ErrorReporting
 
   def initialize(subscribers)

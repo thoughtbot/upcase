@@ -3,7 +3,7 @@ require "rails_helper"
 describe Api::V1::StatusesController do
   describe "#create" do
     it "returns a 401 when users are not authenticated" do
-      post :create, exercise_uuid: "exercise-uuid"
+      post :create, params: { exercise_uuid: "exercise-uuid" }
 
       expect(response.code).to eq "401"
     end
@@ -12,7 +12,7 @@ describe Api::V1::StatusesController do
       stub_oauth_authenticated_user
 
       expect do
-        post :create, exercise_uuid: "exercise-uuid"
+        post :create, params: { exercise_uuid: "exercise-uuid" }
       end.to raise_error(ActiveRecord::RecordNotFound)
     end
 
@@ -24,7 +24,10 @@ describe Api::V1::StatusesController do
         exercise = stub_exercise
         updater = stub_updater
 
-        post :create, exercise_uuid: exercise.uuid, state: Status::COMPLETE
+        post :create, params: {
+          exercise_uuid: exercise.uuid,
+          state: Status::COMPLETE,
+        }
 
         expect(response.code).to eq "200"
         expect(StatusUpdater).to have_received(:new)

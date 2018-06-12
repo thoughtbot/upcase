@@ -8,7 +8,7 @@ describe CollaborationsController do
         repository = stub_repository
 
         sign_in_as current_user
-        post :create, repository_id: repository.to_param
+        post :create, params: { repository_id: repository.to_param }
 
         expect(repository).to have_received(:add_collaborator).
           with(current_user)
@@ -20,7 +20,7 @@ describe CollaborationsController do
         repository = stub_repository
 
         sign_in_as current_user
-        post :create, repository_id: repository.to_param
+        post :create, params: { repository_id: repository.to_param }
 
         expect(analytics).to(
           have_tracked("Created Collaboration").
@@ -36,7 +36,7 @@ describe CollaborationsController do
         repository = stub_repository
 
         sign_in_as current_user
-        post :create, repository_id: repository.to_param
+        post :create, params: { repository_id: repository.to_param }
 
         expect(repository).not_to have_received(:add_collaborator)
         expect(controller).to redirect_to(edit_subscription_path)
@@ -50,7 +50,7 @@ describe CollaborationsController do
       it "redirects to the landing page" do
         repository = stub_repository
 
-        post :create, repository_id: repository.to_param
+        post :create, params: { repository_id: repository.to_param }
 
         expect(repository).not_to have_received(:add_collaborator)
         expect(controller).to redirect_to(root_path)

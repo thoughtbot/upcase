@@ -17,8 +17,10 @@ describe "POST /upcase/api/v1/exercises/:exercise_id/status" do
   def perform_request(uuid, state)
     post(
       api_v1_exercise_status_path(uuid),
-      access_token: access_token,
-      state: state,
+      params: {
+        access_token: access_token,
+        state: state,
+      },
     )
   end
 

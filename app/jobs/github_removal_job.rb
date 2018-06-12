@@ -1,4 +1,4 @@
-class GithubRemovalJob < ActiveJob::Base
+class GithubRemovalJob < ApplicationJob
   include ErrorReporting
 
   def perform(repository, username)

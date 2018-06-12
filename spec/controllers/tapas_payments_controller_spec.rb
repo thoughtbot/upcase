@@ -10,9 +10,11 @@ describe TapasPaymentsController do
 
         post(
           :create,
-          "stripeToken" => "tok",
-          "stripeEmail" => email,
-          tier: tier,
+          params: {
+            "stripeToken" => "tok",
+            "stripeEmail" => email,
+            tier: tier,
+          },
         )
 
         expect(Stripe::Charge).to(
@@ -36,9 +38,11 @@ describe TapasPaymentsController do
 
         post(
           :create,
-          "stripeToken" => "tok",
-          "stripeEmail" => email,
-          tier: tier,
+          params: {
+            "stripeToken" => "tok",
+            "stripeEmail" => email,
+            tier: tier,
+          },
         )
 
         expect(Stripe::Charge).to(
@@ -63,10 +67,12 @@ describe TapasPaymentsController do
 
         post(
           :create,
-          "stripeToken" => "tok",
-          "stripeEmail" => email,
-          quantity: quantity,
-          tier: tier,
+          params: {
+            "stripeToken" => "tok",
+            "stripeEmail" => email,
+            quantity: quantity,
+            tier: tier,
+          },
         )
 
         expect(Stripe::Charge).to(
@@ -90,10 +96,12 @@ describe TapasPaymentsController do
 
           post(
             :create,
-            "stripeToken" => "tok",
-            "stripeEmail" => email,
-            quantity: quantity,
-            tier: tier,
+            params: {
+              "stripeToken" => "tok",
+              "stripeEmail" => email,
+              quantity: quantity,
+              tier: tier,
+            },
           )
 
           expect(Stripe::Charge).to(
@@ -120,9 +128,11 @@ describe TapasPaymentsController do
 
           post(
             :create,
-            "stripeToken" => "tok",
-            "stripeEmail" => email,
-            tier: tier,
+            params: {
+              "stripeToken" => "tok",
+              "stripeEmail" => email,
+              tier: tier,
+            },
           )
 
           expect(response).to render_template(:error)

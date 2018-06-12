@@ -1,4 +1,4 @@
-class Flashcard < ActiveRecord::Base
+class Flashcard < ApplicationRecord
   include PgSearch
   multisearchable against: [:title, :prompt, :answer], if: :search_visible?
 

@@ -1,6 +1,6 @@
 class Api::V1::ExercisesController < ApiController
   before_action :doorkeeper_authorize!
-  skip_before_filter :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
 
   def update
     if authenticated_via_client_credentials_token?

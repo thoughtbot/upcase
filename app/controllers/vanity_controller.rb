@@ -1,5 +1,5 @@
 class VanityController < ApplicationController
-  before_filter :must_be_admin
+  before_action :must_be_admin
 
   include Vanity::Rails::Dashboard
 

@@ -1,4 +1,4 @@
-class Status < ActiveRecord::Base
+class Status < ApplicationRecord
   UNSTARTED = "Unstarted"
   IN_PROGRESS = "In Progress"
   COMPLETE = "Complete"

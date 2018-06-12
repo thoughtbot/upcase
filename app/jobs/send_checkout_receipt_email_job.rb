@@ -1,4 +1,4 @@
-class SendCheckoutReceiptEmailJob < ActiveJob::Base
+class SendCheckoutReceiptEmailJob < ApplicationJob
   include ErrorReporting
 
   def perform(checkout_id)

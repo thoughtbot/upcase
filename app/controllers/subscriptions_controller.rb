@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  before_filter :must_be_subscription_owner, only: [:edit, :update]
+  before_action :must_be_subscription_owner, only: %i(edit update)
 
   def new
     @landing_page = true
