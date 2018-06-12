@@ -6,7 +6,7 @@ describe CouponsController do
       it "should set a valid coupon in the session" do
         create(:coupon, code: "5OFF")
 
-        get :show, id: "5OFF"
+        get :show, params: { id: "5OFF" }
 
         expect(session[:coupon]).to eq("5OFF")
         expect(flash[:notice]).to(
@@ -18,7 +18,7 @@ describe CouponsController do
 
     context "with invalid coupon" do
       it "should not set a coupon in session" do
-        get :show, id: "5OFF"
+        get :show, params: { id: "5OFF" }
 
         expect(session[:coupon]).to be_nil
         expect(flash[:error]).to eq I18n.t("coupons.flashes.invalid")

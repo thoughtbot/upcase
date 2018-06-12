@@ -3,7 +3,7 @@ require "rails_helper"
 describe Api::V1::ExercisesController do
   describe "#update" do
     it "returns a 401 when client is not authenticated" do
-      put :update, id: "uuid-1234"
+      put :update, params: { id: "uuid-1234" }
 
       expect(response.code).to eq "401"
     end
@@ -12,7 +12,7 @@ describe Api::V1::ExercisesController do
       access_token = build_stubbed(:oauth_access_token, resource_owner_id: 1)
       authenticate_with(access_token)
 
-      put :update, id: "uuid-1234"
+      put :update, params: { id: "uuid-1234" }
 
       expect(response.code).to eq "401"
     end
@@ -24,7 +24,7 @@ describe Api::V1::ExercisesController do
       exercise = double("exercise", update_attributes: false, errors: errors)
       allow(Exercise).to receive(:find_or_initialize_by).and_return(exercise)
 
-      put :update, id: "uuid-1234", exercise: { name: "", url: "" }
+      put :update, params: { id: "uuid-1234", exercise: { name: "", url: "" } }
 
       expect(response.status).to eq 422
       expect(response.body).to eq({ errors: errors }.to_json)

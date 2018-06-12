@@ -55,7 +55,10 @@ describe Beta::RepliesController do
     end
 
     def post_create(offer: stub_offer, accepted: false)
-      post :create, offer_id: offer.to_param, accepted: accepted.to_s
+      post :create, params: {
+        offer_id: offer.to_param,
+        accepted: accepted.to_s,
+      }
     end
 
     def have_received_reply(user:, accepted:)

@@ -11,7 +11,7 @@ describe ForumSessionsController do
         discourse_sso = discourse_sso_stub
         allow(DiscourseSignOn).to receive(:parse).and_return(discourse_sso)
 
-        get :new, sso: "ssohash", sig: "sig"
+        get :new, params: { sso: "ssohash", sig: "sig" }
 
         expect(DiscourseSignOn).to have_received(:parse).with(
           "sig=sig&sso=ssohash",
@@ -43,7 +43,7 @@ describe ForumSessionsController do
         user = build_stubbed(:user)
         stub_current_user_with(user)
 
-        get :new, sso: "ssohash", sig: "sig"
+        get :new, params: { sso: "ssohash", sig: "sig" }
 
         should deny_access(
           redirect: root_path,
@@ -58,7 +58,7 @@ describe ForumSessionsController do
 
     context "when not logged in" do
       it "denies access" do
-        get :new, sso: "ssohash", sig: "sig"
+        get :new, params: { sso: "ssohash", sig: "sig" }
 
         should deny_access
       end

@@ -8,7 +8,7 @@ describe Webhooks::IntercomUnsubscribesController do
         payload = build_payload(user)
         set_valid_signature_header_for(payload)
 
-        post :create, payload
+        post :create, body: payload
 
         expect(user.reload).to be_unsubscribed_from_emails
       end
@@ -18,7 +18,7 @@ describe Webhooks::IntercomUnsubscribesController do
         payload = build_payload(user)
         set_valid_signature_header_for(payload)
 
-        post :create, payload
+        post :create, body: payload
 
         expect(response).to have_http_status(:success)
       end
@@ -29,7 +29,7 @@ describe Webhooks::IntercomUnsubscribesController do
         allow(Honeybadger).to receive(:notify)
         set_incorrect_signature_header
 
-        post :create, build_payload
+        post :create, body: build_payload
 
         expect(Honeybadger).to have_received(:notify)
       end
@@ -37,7 +37,7 @@ describe Webhooks::IntercomUnsubscribesController do
       it "should respond with an error status" do
         set_incorrect_signature_header
 
-        post :create, build_payload
+        post :create, body: build_payload
 
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -49,7 +49,7 @@ describe Webhooks::IntercomUnsubscribesController do
         payload = unknown_user_payload
         set_valid_signature_header_for(payload)
 
-        post :create, payload
+        post :create, body: payload
 
         expect(Honeybadger).to have_received(:notify)
       end
@@ -58,7 +58,7 @@ describe Webhooks::IntercomUnsubscribesController do
         payload = unknown_user_payload
         set_valid_signature_header_for(payload)
 
-        post :create, payload
+        post :create, body: payload
 
         expect(response).to have_http_status(:unprocessable_entity)
       end
