@@ -197,12 +197,12 @@ describe Trail do
       trail = create(:trail)
       steps = create_list(:step, 3, trail: trail)
 
-      expect(trail.steps(true).map(&:id)).to eq(steps.map(&:id))
+      expect(trail.steps.reload.map(&:id)).to eq(steps.map(&:id))
 
       trail.step_ids = [steps[0], steps[2], steps[1]].map(&:id)
       trail.save!
 
-      expect(trail.steps(true).map(&:id)).to eq(
+      expect(trail.steps.reload.map(&:id)).to eq(
         [steps[0], steps[2], steps[1]].map(&:id)
       )
     end
