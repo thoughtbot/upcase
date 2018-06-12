@@ -1,4 +1,4 @@
-class GithubFulfillmentJob < ActiveJob::Base
+class GithubFulfillmentJob < ApplicationJob
   include ErrorReporting
 
   PREVIEW_MEDIA_TYPE = "application/vnd.github.moondragon+json".freeze
