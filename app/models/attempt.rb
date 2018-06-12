@@ -1,4 +1,4 @@
-class Attempt < ActiveRecord::Base
+class Attempt < ApplicationRecord
   validates :user_id, presence: true
   validates :flashcard_id, presence: true
   validates :confidence, presence: true

@@ -1,4 +1,4 @@
-class LatestAttempt < ActiveRecord::Base
+class LatestAttempt < ApplicationRecord
   belongs_to :user
   belongs_to :flashcard
 

@@ -1,4 +1,4 @@
-class Slug < ActiveRecord::Base
+class Slug < ApplicationRecord
   private
 
   def read_only

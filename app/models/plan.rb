@@ -1,4 +1,4 @@
-class Plan < ActiveRecord::Base
+class Plan < ApplicationRecord
   DISCOUNTED_ANNUAL_PLAN_SKU = "175-annually".freeze
   PRIME_249_SKU = "prime-249".freeze
   PROFESSIONAL_SKU = "professional".freeze

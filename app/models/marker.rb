@@ -1,4 +1,4 @@
-class Marker < ActiveRecord::Base
+class Marker < ApplicationRecord
   belongs_to :video
 
   validates :anchor, presence: true

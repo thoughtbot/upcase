@@ -9,7 +9,7 @@ class WatchableRailsAdminField < SimpleDelegator
 
   def polymorphic_type_collection
     super.select do |(_, class_name)|
-      class_name.constantize.superclass == ActiveRecord::Base
+      class_name.constantize.superclass == ApplicationRecord
     end
   end
 end

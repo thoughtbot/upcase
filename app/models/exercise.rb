@@ -1,4 +1,4 @@
-class Exercise < ActiveRecord::Base
+class Exercise < ApplicationRecord
   AVERAGE_COMPLETION_TIME_IN_MINUTES = 60
 
   has_many :statuses, as: :completeable, dependent: :destroy
