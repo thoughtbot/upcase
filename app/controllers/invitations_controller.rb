@@ -1,5 +1,5 @@
 class InvitationsController < ApplicationController
-  before_filter :must_be_team_owner
+  before_action :must_be_team_owner
 
   def create
     if deliver_invitation

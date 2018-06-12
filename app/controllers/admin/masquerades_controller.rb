@@ -1,6 +1,6 @@
 module Admin
   class MasqueradesController < ApplicationController
-    before_filter :must_be_admin
+    before_action :must_be_admin
 
     def create
       session[:admin_id] = current_user.id

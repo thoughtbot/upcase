@@ -1,6 +1,6 @@
 module Subscriber
   class PausedSubscriptionsController < ApplicationController
-    before_filter :must_be_subscription_owner
+    before_action :must_be_subscription_owner
 
     def create
       @subscription_pauser = PausedSubscription.new(current_user.subscription)
