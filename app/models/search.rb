@@ -28,7 +28,7 @@ class Search
   end
 
   def sanitized_query
-    ActiveRecord::Base::sanitize(@raw_query)
+    ActiveRecord::Base.connection.quote(@raw_query)
   end
 
   def excerpt_query
