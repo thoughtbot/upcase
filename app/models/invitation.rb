@@ -5,8 +5,8 @@ class Invitation < ApplicationRecord
   validates :sender_id, presence: true
   validates :team_id, presence: true
 
-  belongs_to :recipient, class_name: User
-  belongs_to :sender, class_name: User
+  belongs_to :recipient, class_name: "User"
+  belongs_to :sender, class_name: "User"
   belongs_to :team
 
   delegate :name, to: :recipient, prefix: true, allow_nil: true
