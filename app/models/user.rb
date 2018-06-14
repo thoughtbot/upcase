@@ -32,8 +32,9 @@ class User < ApplicationRecord
   def convert_to_team
     transaction do
       team = Team.create!(name: team_name, subscription: subscription)
-      update!(team: team)
       subscription.change_plan(sku: Plan::TEAM_SKU)
+      reload
+      update!(team: team)
     end
   end
 
