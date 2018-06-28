@@ -1,14 +1,25 @@
 class MembershipsController < ApplicationController
   before_action :must_be_team_owner
+  before_action :stop_self_removal, if: :removing_self?
 
   def destroy
-    user = current_team.users.find(params[:id])
-    if user == current_user
-      flash[:notice] = "You cannot remove yourself from the team."
-    else
-      current_team.remove_user(user)
-      flash[:notice] = "#{user.name} has been removed."
-    end
+    current_team.remove_user(requested_team_user)
+    flash[:notice] = "#{requested_team_user.name} has been removed."
     redirect_to edit_team_path
+  end
+
+  private
+
+  def requested_team_user
+    @_requested_team_user ||= current_team.users.find(params[:id])
+  end
+
+  def stop_self_removal
+    flash[:notice] = "You cannot remove yourself from the team."
+    redirect_to edit_team_path
+  end
+
+  def removing_self?
+    requested_team_user == current_user
   end
 end
