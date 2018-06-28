@@ -44,7 +44,7 @@ Rails.application.configure do
   GITHUB_SECRET = ENV['GITHUB_SECRET']
 
   config.middleware.insert_before 0,
-                                  'Rack::Cors',
+                                  Rack::Cors,
                                   debug: false,
                                   logger: (-> { Rails.logger }) do
 
