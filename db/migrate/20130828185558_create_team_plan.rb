@@ -1,4 +1,4 @@
-class CreateTeamPlan < ActiveRecord::Migration
+class CreateTeamPlan < ActiveRecord::Migration[4.2]
   def change
     create_table :team_plans do |t|
       t.string :sku, null: false

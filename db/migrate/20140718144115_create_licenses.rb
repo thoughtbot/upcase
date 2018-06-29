@@ -1,4 +1,4 @@
-class CreateLicenses < ActiveRecord::Migration
+class CreateLicenses < ActiveRecord::Migration[4.2]
   def change
     create_table :licenses do |t|
       t.belongs_to :user, null: false, index: true

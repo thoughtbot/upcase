@@ -1,4 +1,4 @@
-class CreatePurchases < ActiveRecord::Migration
+class CreatePurchases < ActiveRecord::Migration[4.2]
   def self.up
     create_table :purchases do |t|
       t.belongs_to  :product

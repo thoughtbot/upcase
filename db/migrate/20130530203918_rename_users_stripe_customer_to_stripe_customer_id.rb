@@ -1,4 +1,4 @@
-class RenameUsersStripeCustomerToStripeCustomerId < ActiveRecord::Migration
+class RenameUsersStripeCustomerToStripeCustomerId < ActiveRecord::Migration[4.2]
   def up
     rename_column :users, :stripe_customer, :stripe_customer_id
     rename_column :purchases, :stripe_customer, :stripe_customer_id

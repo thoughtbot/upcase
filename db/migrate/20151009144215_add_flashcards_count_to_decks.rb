@@ -1,4 +1,4 @@
-class AddFlashcardsCountToDecks < ActiveRecord::Migration
+class AddFlashcardsCountToDecks < ActiveRecord::Migration[4.2]
   def up
     add_column :decks, :flashcards_count, :integer, default: 0
 

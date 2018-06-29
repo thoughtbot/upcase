@@ -1,4 +1,4 @@
-class RemoveAudiences < ActiveRecord::Migration
+class RemoveAudiences < ActiveRecord::Migration[4.2]
   def up
     remove_column :workshops, :audience_id
     drop_table :audiences

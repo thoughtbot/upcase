@@ -1,4 +1,4 @@
-class AddTitleToQuestion < ActiveRecord::Migration
+class AddTitleToQuestion < ActiveRecord::Migration[4.2]
   def up
     add_column :questions, :title, :string
     backfill_existing_question_titles

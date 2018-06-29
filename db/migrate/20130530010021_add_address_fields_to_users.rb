@@ -1,4 +1,4 @@
-class AddAddressFieldsToUsers < ActiveRecord::Migration
+class AddAddressFieldsToUsers < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :organization, :string
     add_column :users, :address1, :string

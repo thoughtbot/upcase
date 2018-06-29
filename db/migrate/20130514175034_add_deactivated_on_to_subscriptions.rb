@@ -1,4 +1,4 @@
-class AddDeactivatedOnToSubscriptions < ActiveRecord::Migration
+class AddDeactivatedOnToSubscriptions < ActiveRecord::Migration[4.2]
   def up
     change_table :subscriptions do |t|
       t.date :deactivated_on

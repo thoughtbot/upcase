@@ -1,4 +1,4 @@
-class CreateRecommendableContents < ActiveRecord::Migration
+class CreateRecommendableContents < ActiveRecord::Migration[4.2]
   def change
     create_table :recommendable_contents do |t|
       t.integer :recommendable_id, null: false

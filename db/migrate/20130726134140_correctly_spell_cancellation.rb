@@ -1,4 +1,4 @@
-class CorrectlySpellCancellation < ActiveRecord::Migration
+class CorrectlySpellCancellation < ActiveRecord::Migration[4.2]
   def up
     rename_column :subscriptions,
       :scheduled_for_cancelation_on,

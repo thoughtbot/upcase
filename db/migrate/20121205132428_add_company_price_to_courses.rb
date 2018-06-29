@@ -1,4 +1,4 @@
-class AddCompanyPriceToCourses < ActiveRecord::Migration
+class AddCompanyPriceToCourses < ActiveRecord::Migration[4.2]
   def up
     rename_column :courses, :price, :individual_price
     add_column :courses, :company_price, :integer

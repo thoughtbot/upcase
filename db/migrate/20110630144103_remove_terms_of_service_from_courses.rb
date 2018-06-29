@@ -1,4 +1,4 @@
-class RemoveTermsOfServiceFromCourses < ActiveRecord::Migration
+class RemoveTermsOfServiceFromCourses < ActiveRecord::Migration[4.2]
   def self.up
     remove_column :courses, :terms_of_service
   end

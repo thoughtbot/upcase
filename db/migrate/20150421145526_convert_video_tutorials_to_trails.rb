@@ -1,4 +1,4 @@
-class ConvertVideoTutorialsToTrails < ActiveRecord::Migration
+class ConvertVideoTutorialsToTrails < ActiveRecord::Migration[4.2]
   def up
     trail_offset = say_with_time "Calculating ID offset for new trails" do
       select_value("SELECT COUNT(*) FROM trails").to_i

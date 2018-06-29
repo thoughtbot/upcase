@@ -1,4 +1,4 @@
-class AddTermsToProducts < ActiveRecord::Migration
+class AddTermsToProducts < ActiveRecord::Migration[4.2]
   def self.up
     add_column :products, :terms, :text
   end

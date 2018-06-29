@@ -1,4 +1,4 @@
-class RemoveOfficeHoursFeature < ActiveRecord::Migration
+class RemoveOfficeHoursFeature < ActiveRecord::Migration[4.2]
   def up
     remove_column :plans, :includes_office_hours
   end

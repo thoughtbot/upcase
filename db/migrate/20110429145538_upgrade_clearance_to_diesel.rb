@@ -1,4 +1,4 @@
-class UpgradeClearanceToDiesel < ActiveRecord::Migration
+class UpgradeClearanceToDiesel < ActiveRecord::Migration[4.2]
   def self.up
     change_table(:users) do |t|
     end

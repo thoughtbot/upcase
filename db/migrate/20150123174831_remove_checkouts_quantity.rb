@@ -1,4 +1,4 @@
-class RemoveCheckoutsQuantity < ActiveRecord::Migration
+class RemoveCheckoutsQuantity < ActiveRecord::Migration[4.2]
   def up
     remove_column :checkouts, :quantity
     add_column :plans, :minimum_quantity, :integer, default: 1, null: false

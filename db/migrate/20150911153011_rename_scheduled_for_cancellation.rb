@@ -1,4 +1,4 @@
-class RenameScheduledForCancellation < ActiveRecord::Migration
+class RenameScheduledForCancellation < ActiveRecord::Migration[4.2]
   def change
     rename_column(
       :subscriptions,

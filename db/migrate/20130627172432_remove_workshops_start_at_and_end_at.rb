@@ -1,4 +1,4 @@
-class RemoveWorkshopsStartAtAndEndAt < ActiveRecord::Migration
+class RemoveWorkshopsStartAtAndEndAt < ActiveRecord::Migration[4.2]
   def up
     remove_column :workshops, :start_at
     remove_column :workshops, :stop_at

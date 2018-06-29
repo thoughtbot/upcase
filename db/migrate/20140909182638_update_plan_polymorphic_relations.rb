@@ -1,4 +1,4 @@
-class UpdatePlanPolymorphicRelations < ActiveRecord::Migration
+class UpdatePlanPolymorphicRelations < ActiveRecord::Migration[4.2]
   def up
     update_polymorphic_references :checkouts,
                                   :subscribeable_type,

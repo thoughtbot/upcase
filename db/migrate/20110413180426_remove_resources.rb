@@ -1,4 +1,4 @@
-class RemoveResources < ActiveRecord::Migration
+class RemoveResources < ActiveRecord::Migration[4.2]
   def self.up
     drop_table :resources
   end

@@ -1,4 +1,4 @@
-class UpdatePolymorphicRelations < ActiveRecord::Migration
+class UpdatePolymorphicRelations < ActiveRecord::Migration[4.2]
   def up
     update_polymorphic_references :classifications,
                                   :classifiable_type,

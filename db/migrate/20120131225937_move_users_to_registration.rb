@@ -1,4 +1,4 @@
-class MoveUsersToRegistration < ActiveRecord::Migration
+class MoveUsersToRegistration < ActiveRecord::Migration[4.2]
   def self.up
     add_column :registrations, :email, :string
     add_column :registrations, :billing_email, :string

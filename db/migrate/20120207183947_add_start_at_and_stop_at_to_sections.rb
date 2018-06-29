@@ -1,4 +1,4 @@
-class AddStartAtAndStopAtToSections < ActiveRecord::Migration
+class AddStartAtAndStopAtToSections < ActiveRecord::Migration[4.2]
   def self.up
     add_column :sections, :start_at, :time
     add_column :sections, :stop_at, :time

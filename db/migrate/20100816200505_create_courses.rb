@@ -1,4 +1,4 @@
-class CreateCourses < ActiveRecord::Migration
+class CreateCourses < ActiveRecord::Migration[4.2]
   def self.up
     create_table :courses do |t|
       t.string :name, :price, :location, :null => false, :default => ''

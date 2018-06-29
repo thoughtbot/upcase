@@ -1,4 +1,4 @@
-class ChangePublicColumnDefaultInCourses < ActiveRecord::Migration
+class ChangePublicColumnDefaultInCourses < ActiveRecord::Migration[4.2]
   def self.up
     change_column_default :courses, :public, true
     execute "UPDATE courses SET public='true';"

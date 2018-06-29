@@ -1,4 +1,4 @@
-class TeachersTiedToVideosNotVideoTutorials < ActiveRecord::Migration
+class TeachersTiedToVideosNotVideoTutorials < ActiveRecord::Migration[4.2]
   # Thom informs: joe has been on every episode of WI except #3
   # (improving-your-workflow-with-chris-toomey) and #35 (landing-a-rails-job)
   # Ben has been present until episode 47, Rubyisms in Swift

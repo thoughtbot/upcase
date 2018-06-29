@@ -1,4 +1,4 @@
-class AddEmailToTeachers < ActiveRecord::Migration
+class AddEmailToTeachers < ActiveRecord::Migration[4.2]
   def self.up
     add_column :teachers, :email, :string, :default => ''
   end

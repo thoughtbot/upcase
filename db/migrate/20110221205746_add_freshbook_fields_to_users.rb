@@ -1,4 +1,4 @@
-class AddFreshbookFieldsToUsers < ActiveRecord::Migration
+class AddFreshbookFieldsToUsers < ActiveRecord::Migration[4.2]
   def self.up
     change_table :users do |t|
       t.string  :phone

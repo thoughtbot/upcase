@@ -1,4 +1,4 @@
-class IntroducePurchaseable < ActiveRecord::Migration
+class IntroducePurchaseable < ActiveRecord::Migration[4.2]
   def up
     add_column :purchases, :purchaseable_id, :integer
     add_column :purchases, :purchaseable_type, :string

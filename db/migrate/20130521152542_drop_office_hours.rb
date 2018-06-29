@@ -1,4 +1,4 @@
-class DropOfficeHours < ActiveRecord::Migration
+class DropOfficeHours < ActiveRecord::Migration[4.2]
   def up
     drop_table :office_hours
     add_column :workshops, :office_hours, :string, null: false, default: ''

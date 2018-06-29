@@ -1,4 +1,4 @@
-class MergeVideoTutorialAndExercisePermissions < ActiveRecord::Migration
+class MergeVideoTutorialAndExercisePermissions < ActiveRecord::Migration[4.2]
   def up
     add_column :plans, :includes_trails, :boolean, default: false, null: false
     connection.update(<<-SQL)

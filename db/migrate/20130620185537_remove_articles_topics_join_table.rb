@@ -1,4 +1,4 @@
-class RemoveArticlesTopicsJoinTable < ActiveRecord::Migration
+class RemoveArticlesTopicsJoinTable < ActiveRecord::Migration[4.2]
   def up
     drop_table :articles_topics
   end

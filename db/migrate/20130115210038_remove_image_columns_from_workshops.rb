@@ -1,4 +1,4 @@
-class RemoveImageColumnsFromWorkshops < ActiveRecord::Migration
+class RemoveImageColumnsFromWorkshops < ActiveRecord::Migration[4.2]
   def self.up
     change_table :workshops do |t|
       t.remove :course_image_file_name

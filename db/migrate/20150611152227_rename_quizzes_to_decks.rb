@@ -1,4 +1,4 @@
-class RenameQuizzesToDecks < ActiveRecord::Migration
+class RenameQuizzesToDecks < ActiveRecord::Migration[4.2]
   def change
     rename_table :quizzes, :decks
 

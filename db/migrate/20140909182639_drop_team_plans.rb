@@ -1,4 +1,4 @@
-class DropTeamPlans < ActiveRecord::Migration
+class DropTeamPlans < ActiveRecord::Migration[4.2]
   def up
     drop_table :team_plans
   end

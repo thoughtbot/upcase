@@ -1,4 +1,4 @@
-class RenameReadersToGithubUsernames < ActiveRecord::Migration
+class RenameReadersToGithubUsernames < ActiveRecord::Migration[4.2]
   def up
     rename_column :purchases, :readers, :github_usernames
   end

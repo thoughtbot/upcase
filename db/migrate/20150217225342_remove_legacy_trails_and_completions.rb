@@ -1,4 +1,4 @@
-class RemoveLegacyTrailsAndCompletions < ActiveRecord::Migration
+class RemoveLegacyTrailsAndCompletions < ActiveRecord::Migration[4.2]
   def up
     drop_table :legacy_trails
     drop_table :completions

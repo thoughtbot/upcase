@@ -1,4 +1,4 @@
-class AddAddressesToSections < ActiveRecord::Migration
+class AddAddressesToSections < ActiveRecord::Migration[4.2]
   def up
     add_column :sections, :address, :string
     add_column :sections, :city, :string

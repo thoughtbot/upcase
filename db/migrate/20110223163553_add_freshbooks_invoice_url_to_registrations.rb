@@ -1,4 +1,4 @@
-class AddFreshbooksInvoiceUrlToRegistrations < ActiveRecord::Migration
+class AddFreshbooksInvoiceUrlToRegistrations < ActiveRecord::Migration[4.2]
   def self.up
     change_table :registrations do |t|
       t.string :freshbooks_invoice_url

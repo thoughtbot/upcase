@@ -1,4 +1,4 @@
-class RemovePricingABTestColumns < ActiveRecord::Migration
+class RemovePricingABTestColumns < ActiveRecord::Migration[4.2]
   def up
     remove_column :products, :alternate_company_price
     remove_column :products, :alternate_individual_price

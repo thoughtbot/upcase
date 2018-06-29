@@ -1,4 +1,4 @@
-class ChangePlanToIndividualPlanInPurchases < ActiveRecord::Migration
+class ChangePlanToIndividualPlanInPurchases < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
       UPDATE purchases

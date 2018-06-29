@@ -1,4 +1,4 @@
-class MoveReminderEmailToSections < ActiveRecord::Migration
+class MoveReminderEmailToSections < ActiveRecord::Migration[4.2]
   def up
     add_column :sections, :reminder_email, :text
     remove_column :courses, :reminder_email

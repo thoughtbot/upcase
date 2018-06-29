@@ -1,4 +1,4 @@
-class CreateTeachers < ActiveRecord::Migration
+class CreateTeachers < ActiveRecord::Migration[4.2]
   def self.up
     create_table :teachers do |t|
       t.string :name, :gravatar_hash

@@ -1,4 +1,4 @@
-class AddPageTitleToTopics < ActiveRecord::Migration
+class AddPageTitleToTopics < ActiveRecord::Migration[4.2]
   def change
     add_column :topics, :page_title, :string
 

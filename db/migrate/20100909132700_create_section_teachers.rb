@@ -1,4 +1,4 @@
-class CreateSectionTeachers < ActiveRecord::Migration
+class CreateSectionTeachers < ActiveRecord::Migration[4.2]
   def self.up
     create_table :section_teachers do |t|
       t.belongs_to :section, :teacher

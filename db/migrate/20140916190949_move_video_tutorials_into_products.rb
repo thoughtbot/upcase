@@ -1,4 +1,4 @@
-class MoveVideoTutorialsIntoProducts < ActiveRecord::Migration
+class MoveVideoTutorialsIntoProducts < ActiveRecord::Migration[4.2]
   def up
     say_with_time "Moving video_tutorials into products" do
       # Move team_plans data into individual_plans

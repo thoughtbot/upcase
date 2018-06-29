@@ -1,4 +1,4 @@
-class CreateAttempts < ActiveRecord::Migration
+class CreateAttempts < ActiveRecord::Migration[4.2]
   def change
     create_table :attempts do |t|
       t.integer :confidence, null: false

@@ -1,4 +1,4 @@
-class MakeVideosAndDownloadPolymorphic < ActiveRecord::Migration
+class MakeVideosAndDownloadPolymorphic < ActiveRecord::Migration[4.2]
   def up
     rename_column :videos, :product_id, :purchaseable_id
     add_column :videos, :purchaseable_type, :string

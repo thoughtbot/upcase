@@ -1,4 +1,4 @@
-class RemovePricesFromWorkshops < ActiveRecord::Migration
+class RemovePricesFromWorkshops < ActiveRecord::Migration[4.2]
   def up
     remove_column :workshops, :individual_price
     remove_column :workshops, :company_price

@@ -1,4 +1,4 @@
-class AddPublishedOnToVideos < ActiveRecord::Migration
+class AddPublishedOnToVideos < ActiveRecord::Migration[4.2]
   def up
     add_column :videos, :published_on, :date
     execute <<-SQL

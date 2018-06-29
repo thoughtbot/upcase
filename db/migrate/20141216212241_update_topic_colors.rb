@@ -1,4 +1,4 @@
-class UpdateTopicColors < ActiveRecord::Migration
+class UpdateTopicColors < ActiveRecord::Migration[4.2]
   COLORS = {
     analytics:                   ["#EFFFB3", "#A5C236"],
     "clean+code" =>              ["#E5FEFF", "#1DC8CF"],

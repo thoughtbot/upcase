@@ -1,4 +1,4 @@
-class CreateCollaborations < ActiveRecord::Migration
+class CreateCollaborations < ActiveRecord::Migration[4.2]
   def up
     create_table :collaborations do |table|
       table.integer :repository_id, null: false

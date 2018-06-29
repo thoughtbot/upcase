@@ -1,4 +1,4 @@
-class CreateTrails < ActiveRecord::Migration
+class CreateTrails < ActiveRecord::Migration[4.2]
   def up
     create_table :trails do |t|
       t.belongs_to :topic

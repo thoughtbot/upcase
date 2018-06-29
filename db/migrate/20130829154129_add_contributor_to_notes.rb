@@ -1,4 +1,4 @@
-class AddContributorToNotes < ActiveRecord::Migration
+class AddContributorToNotes < ActiveRecord::Migration[4.2]
   def up
     add_column :notes, :contributor_id, :integer
     execute <<-SQL

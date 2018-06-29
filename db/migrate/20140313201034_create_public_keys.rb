@@ -1,4 +1,4 @@
-class CreatePublicKeys < ActiveRecord::Migration
+class CreatePublicKeys < ActiveRecord::Migration[4.2]
   def change
     create_table :public_keys do |table|
       table.integer :user_id, null: false

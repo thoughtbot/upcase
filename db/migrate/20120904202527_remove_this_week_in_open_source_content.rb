@@ -1,4 +1,4 @@
-class RemoveThisWeekInOpenSourceContent < ActiveRecord::Migration
+class RemoveThisWeekInOpenSourceContent < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
       DELETE FROM "articles"

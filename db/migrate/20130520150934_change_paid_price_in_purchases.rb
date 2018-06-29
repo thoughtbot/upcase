@@ -1,4 +1,4 @@
-class ChangePaidPriceInPurchases < ActiveRecord::Migration
+class ChangePaidPriceInPurchases < ActiveRecord::Migration[4.2]
   def up
     change_column :purchases, :paid_price, :decimal
   end

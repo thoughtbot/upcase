@@ -1,4 +1,4 @@
-class AddFeaturesToIndividualPlans < ActiveRecord::Migration
+class AddFeaturesToIndividualPlans < ActiveRecord::Migration[4.2]
   def change
     with_options default: true, null: false do |table|
       table.add_column :individual_plans, :includes_exercises, :boolean

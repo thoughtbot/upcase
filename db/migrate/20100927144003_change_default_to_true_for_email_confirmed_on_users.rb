@@ -1,4 +1,4 @@
-class ChangeDefaultToTrueForEmailConfirmedOnUsers < ActiveRecord::Migration
+class ChangeDefaultToTrueForEmailConfirmedOnUsers < ActiveRecord::Migration[4.2]
   def self.up
     change_column :users, :email_confirmed, :boolean, :default => true
   end

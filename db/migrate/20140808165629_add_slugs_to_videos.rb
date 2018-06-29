@@ -1,4 +1,4 @@
-class AddSlugsToVideos < ActiveRecord::Migration
+class AddSlugsToVideos < ActiveRecord::Migration[4.2]
   def change
     add_column :videos, :slug, :string, null: true
 

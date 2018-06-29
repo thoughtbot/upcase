@@ -1,4 +1,4 @@
-class UpdateTrailsTopics < ActiveRecord::Migration
+class UpdateTrailsTopics < ActiveRecord::Migration[4.2]
   def up
     create_topic name: "Foundations"
 

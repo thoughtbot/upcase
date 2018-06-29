@@ -1,4 +1,4 @@
-class CreateMarkers < ActiveRecord::Migration
+class CreateMarkers < ActiveRecord::Migration[4.2]
   def change
     create_table :markers do |t|
       t.string :anchor, null: false

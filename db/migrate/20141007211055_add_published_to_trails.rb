@@ -1,4 +1,4 @@
-class AddPublishedToTrails < ActiveRecord::Migration
+class AddPublishedToTrails < ActiveRecord::Migration[4.2]
   def up
     add_column :trails, :published, :boolean, default: false, null: false
     update("UPDATE trails SET published = true")

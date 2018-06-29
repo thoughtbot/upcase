@@ -1,4 +1,4 @@
-class RemoveInpersonWorkshops < ActiveRecord::Migration
+class RemoveInpersonWorkshops < ActiveRecord::Migration[4.2]
   def up
     ip_workshops = select_all "SELECT * FROM workshops WHERE online = false"
     ip_workshops.each do |ip_workshop|

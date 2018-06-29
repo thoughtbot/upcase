@@ -1,4 +1,4 @@
-class UrlEncodeTopicSlugs < ActiveRecord::Migration
+class UrlEncodeTopicSlugs < ActiveRecord::Migration[4.2]
   def up
     topics = select_all("select id, name from topics")
     topics.each do |topic|

@@ -1,4 +1,4 @@
-class RemoveBookReferences < ActiveRecord::Migration
+class RemoveBookReferences < ActiveRecord::Migration[4.2]
   def up
     remove_book_references_from(:classifications, :classifiable_type, :classifiable_id)
     remove_book_references_from(:downloads, :purchaseable_type, :purchaseable_id)
