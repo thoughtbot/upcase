@@ -9,7 +9,7 @@ module Subscriber
 
     def show
       @invoice = Invoice.new(params[:id])
-      if @invoice.user == current_user
+      if invoice_belongs_to_current_user?
         render
       else
         not_found
@@ -19,6 +19,10 @@ module Subscriber
     end
 
     private
+
+    def invoice_belongs_to_current_user?
+      @invoice.user == current_user
+    end
 
     def not_found
       raise ActionController::RoutingError, "No invoice #{params[:id]}"
