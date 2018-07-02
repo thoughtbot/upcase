@@ -12,7 +12,7 @@ class PauseMailer < BaseMailer
     @pause_date = subscription.user_clicked_cancel_button_on.strftime("%B %-e")
 
     mail(
-      to: subscription.user.email,
+      to: subscription.user_email,
       subject: "Your Upcase subscription is about to restart",
     )
   end

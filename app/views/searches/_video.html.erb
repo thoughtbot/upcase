@@ -4,7 +4,7 @@
     <%= link_to video.name, video %>
   </p>
   <p class="source">
-    from <%= link_to video.watchable.name, video.watchable %>
+    from <%= link_to video.watchable_name, video.watchable %>
   </p>
   <p>
     <%= cleaned_search_excerpt(video.excerpt) %>

@@ -10,6 +10,7 @@ class Invitation < ApplicationRecord
   belongs_to :team
 
   delegate :name, to: :recipient, prefix: true, allow_nil: true
+  delegate :name, to: :team, prefix: true
 
   before_create :generate_code
 

@@ -4,7 +4,7 @@
     <%= review_link(flashcard) %>
   </p>
   <p class="source">
-    from <%= link_to flashcard.deck.title, deck_results_path(flashcard.deck) %>
+    from <%= link_to flashcard.deck_title, deck_results_path(flashcard.deck) %>
   </p>
   <p>
     <%= cleaned_search_excerpt(flashcard.excerpt) %>

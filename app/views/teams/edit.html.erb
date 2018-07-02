@@ -11,7 +11,7 @@
 
     <span>
       Your next charge will be on
-      <%= @team.subscription.next_payment_on.to_s(:simple) %> for
+      <%= next_payment_date(@team.subscription) %> for
       <%= number_to_currency(@team.subscription.next_payment_amount_in_dollars) %>
     </span>
   </div>

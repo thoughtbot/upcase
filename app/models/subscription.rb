@@ -6,6 +6,7 @@ class Subscription < ApplicationRecord
   has_one :team, dependent: :destroy
 
   delegate :name, to: :plan, prefix: true
+  delegate :email, to: :user, prefix: true
 
   validates :plan_id, presence: true
   validates :plan_type, presence: true
