@@ -14,10 +14,10 @@ module CheckoutsHelper
   end
 
   def formatted_subscription_price(checkout)
-    if checkout.stripe_coupon_id.blank?
-      number_to_currency(checkout.price, precision: 0)
-    else
+    if checkout.stripe_coupon_id?
       formatted_subscription_price_with_coupon(checkout)
+    else
+      number_to_currency(checkout.price, precision: 0)
     end
   end
 
