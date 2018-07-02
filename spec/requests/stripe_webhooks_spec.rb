@@ -23,7 +23,7 @@ describe "Stripe webhooks" do
           FakeStripe::EVENT_ID_FOR_SUCCESSFUL_INVOICE_PAYMENT
         )
 
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
@@ -46,7 +46,7 @@ describe "Stripe webhooks" do
           FakeStripe::EVENT_ID_FOR_INVOICE_PAYMENT_FOR_UNSUBSCRIBED_USER
         )
 
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end
@@ -89,7 +89,7 @@ describe "Stripe webhooks" do
       )
 
       expect(subscription.reload).not_to be_active
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it "accepts an inactive subscription without error" do
@@ -104,7 +104,7 @@ describe "Stripe webhooks" do
         FakeStripe::EVENT_ID_FOR_SUBSCRIPTION_DELETION
       )
 
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 

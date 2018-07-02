@@ -20,6 +20,8 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.excluded_models = ["ActiveStorage::Blob", "ActiveStorage::Attachment"]
+
   config.current_user_method { current_user }
 
   config.main_app_name = ['Upcase', 'Admin']

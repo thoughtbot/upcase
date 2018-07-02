@@ -13,7 +13,7 @@ describe Subscriber::InvoicesController do
 
       get :index
 
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -40,7 +40,7 @@ describe Subscriber::InvoicesController do
 
             get :show, params: { id: FakeStripe::INVOICE_ID }
 
-            expect(response).to be_success
+            expect(response).to be_successful
           end
         end
 

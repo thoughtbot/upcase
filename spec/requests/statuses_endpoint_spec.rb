@@ -8,7 +8,7 @@ describe "POST /upcase/api/v1/exercises/:exercise_id/status" do
       perform_request(exercise.uuid, Status::COMPLETE)
 
       state = exercise.statuses.where(user: user).most_recent.state
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(Status.count).to eq 1
       expect(state).to eq Status::COMPLETE
     end

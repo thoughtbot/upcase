@@ -20,7 +20,7 @@ describe Webhooks::IntercomUnsubscribesController do
 
         post :create, body: payload
 
-        expect(response).to have_http_status(:success)
+        expect(response).to be_successful
       end
     end
 
