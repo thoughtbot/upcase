@@ -11,7 +11,7 @@ describe "Video status" do
         state: "In Progress",
       }
 
-      expect(response).to be_success
+      expect(response).to be_successful
 
       status = video.statuses.first
       expect(status).not_to be_nil
