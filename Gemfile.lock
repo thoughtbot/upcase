@@ -416,9 +416,9 @@ GEM
       rack
     stripe (1.58.0)
       rest-client (>= 1.4, < 4.0)
-    stripe_event (1.4.0)
+    stripe_event (1.7.0)
       activesupport (>= 3.1)
-      stripe (~> 1.6)
+      stripe (>= 1.6, < 4.0)
     temple (0.8.0)
     thor (0.20.0)
     thread_safe (0.3.6)
@@ -521,7 +521,7 @@ DEPENDENCIES
   sprockets-rails
   sprockets-redirect
   stripe (~> 1.58.0)
-  stripe_event
+  stripe_event (~> 1.7.0)
   timecop
   uglifier
   validates_email_format_of
