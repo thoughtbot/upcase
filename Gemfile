@@ -7,9 +7,6 @@ gem "mime-types", "~> 2.6", require: "mime/types/columnar"
 gem "active_model_serializers", "0.8.3"
 gem "acts_as_list"
 gem "analytics-ruby", "~> 2.0.0", require: "segment/analytics"
-# autoprefixer-rails 6.0+ prints a warning (not an error) about outdated
-# `gradient` usage in rails-admin's CSS. In order to not show the warning, use a
-# lower version until rails-admin has better CSS.
 gem "autoprefixer-rails"
 gem "aws-sdk", "~> 2.2"
 gem "bootsnap"
