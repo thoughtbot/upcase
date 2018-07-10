@@ -6,7 +6,7 @@ gem "mime-types", "~> 2.6", require: "mime/types/columnar"
 
 gem "active_model_serializers", "0.8.3"
 gem "acts_as_list"
-gem "analytics-ruby", "~> 2.0.0", require: "segment/analytics"
+gem "analytics-ruby", require: "segment/analytics"
 gem "autoprefixer-rails"
 gem "aws-sdk", "~> 2.2"
 gem "bootsnap"

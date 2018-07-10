@@ -49,7 +49,8 @@ GEM
       activerecord (>= 3.0)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    analytics-ruby (2.0.13)
+    analytics-ruby (2.2.5)
+      commander (~> 4.4)
     arel (9.0.0)
     autoprefixer-rails (8.6.5)
       execjs
@@ -104,6 +105,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    commander (4.4.5)
+      highline (~> 1.7.2)
     concurrent-ruby (1.0.5)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -177,6 +180,7 @@ GEM
     hashdiff (0.3.7)
     hashie (3.5.7)
     high_voltage (3.1.0)
+    highline (1.7.10)
     honeybadger (3.3.0)
     htmlentities (4.3.4)
     http-cookie (1.0.3)
@@ -462,7 +466,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (= 0.8.3)
   acts_as_list
-  analytics-ruby (~> 2.0.0)
+  analytics-ruby
   autoprefixer-rails
   aws-sdk (~> 2.2)
   bootsnap
