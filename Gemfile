@@ -53,7 +53,7 @@ gem "stripe", "~> 1.58.0"
 gem "stripe_event", "~> 1.7.0"
 gem "uglifier"
 gem "validates_email_format_of"
-gem "vanity", "~> 2.0.0"
+gem "vanity"
 gem "wrapped"
 
 source "https://rails-assets.org" do

@@ -454,7 +454,7 @@ GEM
     unf_ext (0.0.7.5)
     validates_email_format_of (1.6.3)
       i18n
-    vanity (2.0.1)
+    vanity (2.2.10)
       i18n
     webmock (3.4.2)
       addressable (>= 2.3.6)
@@ -547,7 +547,7 @@ DEPENDENCIES
   timecop
   uglifier
   validates_email_format_of
-  vanity (~> 2.0.0)
+  vanity
   webmock
   wrapped
 
