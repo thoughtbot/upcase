@@ -1,6 +1,8 @@
 if ENV["COVERAGE"]
   require "simplecov"
-  SimpleCov.start "rails"
+  SimpleCov.start :rails do
+    add_filter "app/mailer_previews"
+  end
 end
 
 ENV["RAILS_ENV"] ||= "test"
