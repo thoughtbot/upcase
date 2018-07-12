@@ -125,10 +125,6 @@ class Subscription < ApplicationRecord
     where(deactivated_on: nil)
   end
 
-  def self.recent
-    where('created_at > ?', 24.hours.ago)
-  end
-
   def update_features
     old_plan = plan
     yield
