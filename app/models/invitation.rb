@@ -32,7 +32,7 @@ class Invitation < ApplicationRecord
   def accept(user)
     unless accepted?
       transaction do
-        update_attributes! accepted_at: Time.now, recipient: user
+        update_attributes! accepted_at: Time.current, recipient: user
         team.add_user(user)
       end
     end

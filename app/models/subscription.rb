@@ -26,7 +26,7 @@ class Subscription < ApplicationRecord
   end
 
   def self.canceled_in_last_30_days
-    canceled_within_period(30.days.ago, Time.zone.now)
+    canceled_within_period(30.days.ago, Time.current)
   end
 
   def self.active_as_of(time)

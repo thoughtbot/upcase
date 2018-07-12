@@ -46,7 +46,7 @@ describe Video do
 
   context 'self.published' do
     it 'returns only published videos' do
-      Timecop.freeze(Time.zone.now) do
+      Timecop.freeze(Time.current) do
         published_videos = [
           create(:video, published_on: 1.day.ago.to_date),
           create(:video, published_on: Time.zone.today),

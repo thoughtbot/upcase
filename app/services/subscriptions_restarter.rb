@@ -11,7 +11,7 @@ class SubscriptionsRestarter
 
   def restart
     Subscription.transaction do
-      subscription.update!(reactivated_on: Time.zone.now)
+      subscription.update!(reactivated_on: Time.current)
 
       Resubscription.new(
         user: subscription.user,

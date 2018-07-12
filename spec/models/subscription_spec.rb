@@ -235,7 +235,7 @@ describe Subscription do
   describe ".restarting_today" do
     context "subscription has already been reactivated today" do
       it "returns nothing" do
-        create(:paused_subscription_restarting_today, reactivated_on: Time.now)
+        create(:paused_subscription_restarting_today, reactivated_on: Time.current)
 
         expect(Subscription.restarting_today).to be_empty
       end
@@ -303,7 +303,7 @@ describe Subscription do
 
   describe ".active_as_of" do
     it "returns nothing when no subscriptions canceled" do
-      expect(Subscription.active_as_of(Time.zone.now)).to be_empty
+      expect(Subscription.active_as_of(Time.current)).to be_empty
     end
 
     it "returns nothing when subscription canceled before the given date" do
@@ -327,7 +327,7 @@ describe Subscription do
 
   describe ".created_before" do
     it "returns nothing when the are no subscriptions" do
-      expect(Subscription.created_before(Time.zone.now)).to be_empty
+      expect(Subscription.created_before(Time.current)).to be_empty
     end
 
     it "returns nothing when nothing has been created before the given date" do

@@ -53,7 +53,7 @@ Rails.application.configure do
   config.action_view.raise_on_missing_translations = true
 
   config.after_initialize do
-    Timecop.travel(Time.now)
+    Timecop.travel(Time.current)
   end
 
   PAPERCLIP_STORAGE_OPTIONS = {}
