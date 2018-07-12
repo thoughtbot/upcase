@@ -3,6 +3,11 @@ require "rails_helper"
 describe Show do
   it_behaves_like "a class inheriting from Product"
 
+  describe "accessing without subscription" do
+    subject { described_class }
+    it { is_expected.not_to be_accessible_without_subscription }
+  end
+
   describe ".the_weekly_iteration" do
     it "finds the show named The Weekly Iteration" do
       show = create(:show, name: Show::THE_WEEKLY_ITERATION)
