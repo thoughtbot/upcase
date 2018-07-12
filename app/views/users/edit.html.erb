@@ -38,7 +38,13 @@
   <div class="text-box">
     <%= semantic_form_for current_user, url: edit_my_account_path, html: { id: :billing_address_form } do |form| %>
       <%= form.inputs "Your Billing Address" do %>
-        <%= render "users/address_fields", form: form %>
+        <%= form.input :organization %>
+        <%= form.input :address1, label: "Address 1" %>
+        <%= form.input :address2, label: "Address 2" %>
+        <%= form.input :city %>
+        <%= form.input :state, label: "State / Province" %>
+        <%= form.input :zip_code, label: "Postal / Zip Code" %>
+        <%= form.input :country, as: :string %>
       <% end %>
 
       <%= form.actions do %>
