@@ -11,6 +11,17 @@ describe ApplicationHelper do
     end
   end
 
+  describe "#google_map_link_to" do
+    it "links to a google map for an address" do
+      address = "41 Winter Street, Boston MA 02108"
+
+      result = helper.google_map_link_to(address)
+
+      expect(result).to include("maps.google.com")
+      expect(result).to include("q=41+Winter+Street")
+    end
+  end
+
   describe "#format_markdown" do
     it "returns the rendered html for the input markdown" do
       markdown = "hello **world**"
