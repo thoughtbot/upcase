@@ -85,7 +85,6 @@ group :test do
   gem "capybara-webkit", ">= 1.11.1"
   gem "capybara_discoball"
   gem "climate_control"
-  gem "codeclimate-test-reporter", require: nil
   gem "database_cleaner"
   gem "email_spec"
   gem "factory_bot_rails"

@@ -100,8 +100,6 @@ GEM
       activesupport
       clearance (>= 1.10)
     climate_control (0.2.0)
-    codeclimate-test-reporter (1.0.8)
-      simplecov (<= 0.13)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -485,7 +483,6 @@ DEPENDENCIES
   clearance
   clearance-deprecated_password_strategies
   climate_control
-  codeclimate-test-reporter
   coffee-rails
   database_cleaner
   delayed_job_active_record
