@@ -1,4 +1,4 @@
-class AddNumberToEpisodes < ActiveRecord::Migration
+class AddNumberToEpisodes < ActiveRecord::Migration[4.2]
   def change
     add_column :episodes, :number, :integer
     add_index :episodes, :number

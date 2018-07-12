@@ -1,4 +1,4 @@
-class CreateCheckouts < ActiveRecord::Migration
+class CreateCheckouts < ActiveRecord::Migration[4.2]
   def change
     create_table :checkouts do |t|
       t.belongs_to :user, null: false, index: true

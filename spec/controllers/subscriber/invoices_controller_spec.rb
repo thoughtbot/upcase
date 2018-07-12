@@ -13,14 +13,14 @@ describe Subscriber::InvoicesController do
 
       get :index
 
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
   context "show" do
     context "signed in user" do
       it "unauthenticated visitor can't access" do
-        get :show, id: FakeStripe::INVOICE_ID
+        get :show, params: { id: FakeStripe::INVOICE_ID }
 
         expect(response).to be_redirect
       end
@@ -38,9 +38,9 @@ describe Subscriber::InvoicesController do
             allow(Invoice).to receive(:new).and_return(invoice)
             sign_in_as user
 
-            get :show, id: FakeStripe::INVOICE_ID
+            get :show, params: { id: FakeStripe::INVOICE_ID }
 
-            expect(response).to be_success
+            expect(response).to be_successful
           end
         end
 
@@ -53,7 +53,7 @@ describe Subscriber::InvoicesController do
             sign_in_as user
 
             expect do
-              get :show, id: FakeStripe::INVOICE_ID
+              get :show, params: { id: FakeStripe::INVOICE_ID }
             end.to raise_exception(ActionController::RoutingError)
           end
         end
@@ -68,7 +68,7 @@ describe Subscriber::InvoicesController do
           sign_in_as user
 
           expect do
-            get :show, id: "bad-stripe-invoice-id"
+            get :show, params: { id: "bad-stripe-invoice-id" }
           end.to raise_exception(ActionController::RoutingError)
         end
       end

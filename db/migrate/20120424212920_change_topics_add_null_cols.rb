@@ -1,4 +1,4 @@
-class ChangeTopicsAddNullCols < ActiveRecord::Migration
+class ChangeTopicsAddNullCols < ActiveRecord::Migration[4.2]
   def up
     change_column :topics, :body_html, :text, null: true
   end

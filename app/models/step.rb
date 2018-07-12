@@ -1,4 +1,4 @@
-class Step < ActiveRecord::Base
+class Step < ApplicationRecord
   belongs_to :trail
   belongs_to :completeable, polymorphic: true
 

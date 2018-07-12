@@ -1,4 +1,4 @@
-class Topic < ActiveRecord::Base
+class Topic < ApplicationRecord
   extend FriendlyId
 
   has_many :classifications, dependent: :destroy

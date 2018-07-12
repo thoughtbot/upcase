@@ -1,4 +1,4 @@
-class AddQuestionsToProducts < ActiveRecord::Migration
+class AddQuestionsToProducts < ActiveRecord::Migration[4.2]
   def self.up
     rename_column :products, :terms, :questions
     add_column :products, :terms, :text

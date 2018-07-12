@@ -1,4 +1,4 @@
-class CreateSections < ActiveRecord::Migration
+class CreateSections < ActiveRecord::Migration[4.2]
   def self.up
     create_table :sections do |t|
       t.belongs_to :course

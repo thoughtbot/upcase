@@ -1,6 +1,8 @@
-class LatestAttempt < ActiveRecord::Base
+class LatestAttempt < ApplicationRecord
   belongs_to :user
   belongs_to :flashcard
+
+  default_scope { order(:id) }
 
   def self.by(user)
     where(user_id: user.id)
@@ -12,7 +14,9 @@ class LatestAttempt < ActiveRecord::Base
 
   private
 
+  # :nocov:
   def read_only
     true
   end
+  # :nocov:
 end

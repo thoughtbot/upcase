@@ -1,4 +1,4 @@
-class MoveTeamPlanDataToDatabase < ActiveRecord::Migration
+class MoveTeamPlanDataToDatabase < ActiveRecord::Migration[4.2]
   def change
     add_column :team_plans, :individual_price, :integer, null: true
     add_column :team_plans, :terms, :text

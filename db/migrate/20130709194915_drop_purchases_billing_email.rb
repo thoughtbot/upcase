@@ -1,4 +1,4 @@
-class DropPurchasesBillingEmail < ActiveRecord::Migration
+class DropPurchasesBillingEmail < ActiveRecord::Migration[4.2]
   def up
     remove_column :purchases, :billing_email
   end

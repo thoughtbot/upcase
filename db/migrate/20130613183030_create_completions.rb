@@ -1,4 +1,4 @@
-class CreateCompletions < ActiveRecord::Migration
+class CreateCompletions < ActiveRecord::Migration[4.2]
   def change
     create_table :completions do |t|
       t.string :trail_object_id

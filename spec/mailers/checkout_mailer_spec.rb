@@ -59,7 +59,7 @@ describe CheckoutMailer do
     def checkout
       @checkout ||= create(
         :checkout,
-        created_at: Time.zone.now,
+        created_at: Time.current,
         email: "joe@example.com",
         lookup: "asdf",
         name: "Joe Smith"

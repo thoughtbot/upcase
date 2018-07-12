@@ -1,4 +1,4 @@
-class AddCouponToPurchase < ActiveRecord::Migration
+class AddCouponToPurchase < ActiveRecord::Migration[4.2]
   def self.up
     add_column :purchases, :coupon_id, :integer
   end

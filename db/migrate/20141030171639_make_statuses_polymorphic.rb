@@ -1,4 +1,4 @@
-class MakeStatusesPolymorphic < ActiveRecord::Migration
+class MakeStatusesPolymorphic < ActiveRecord::Migration[4.2]
   def change
     rename_column :statuses, :exercise_id, :completeable_id
     add_column :statuses, :completeable_type, :string

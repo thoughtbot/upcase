@@ -1,7 +1,7 @@
 <li class="subscription">
   <% if subscription.active? %>
     <p>
-      <strong><%= subscription.plan.name %></strong><br />
+      <strong><%= subscription.plan_name %></strong><br />
       Active since <%= subscription.created_at.to_s(:simple) %>
     </p>
 

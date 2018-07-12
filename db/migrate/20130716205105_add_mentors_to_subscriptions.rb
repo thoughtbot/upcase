@@ -1,4 +1,4 @@
-class AddMentorsToSubscriptions < ActiveRecord::Migration
+class AddMentorsToSubscriptions < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :mentor, :boolean, default: false
     update "update users set mentor=true where email = 'ben@thoughtbot.com'"

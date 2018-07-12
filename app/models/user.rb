@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include Clearance::User
 
   has_many :attempts, dependent: :destroy
@@ -32,8 +32,9 @@ class User < ActiveRecord::Base
   def convert_to_team
     transaction do
       team = Team.create!(name: team_name, subscription: subscription)
-      update!(team: team)
       subscription.change_plan(sku: Plan::TEAM_SKU)
+      reload
+      update!(team: team)
     end
   end
 
@@ -132,7 +133,7 @@ class User < ActiveRecord::Base
   end
 
   def has_completed_trails?
-    statuses.by_type(Trail).completed.any?
+    statuses.by_type("Trail").completed.any?
   end
 
   private

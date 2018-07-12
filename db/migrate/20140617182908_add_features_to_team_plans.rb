@@ -1,4 +1,4 @@
-class AddFeaturesToTeamPlans < ActiveRecord::Migration
+class AddFeaturesToTeamPlans < ActiveRecord::Migration[4.2]
   def change
     with_options default: true, null: false do |table|
       table.add_column :team_plans, :includes_exercises, :boolean

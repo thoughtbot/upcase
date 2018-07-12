@@ -1,4 +1,4 @@
-class CombineUsersFirstNameLastName < ActiveRecord::Migration
+class CombineUsersFirstNameLastName < ActiveRecord::Migration[4.2]
   def up
     add_column :users, :name, :string
     update "update users set name = first_name || ' ' || last_name"

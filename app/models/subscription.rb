@@ -1,11 +1,12 @@
 # This class represents a user or team's subscription to Upcase content
-class Subscription < ActiveRecord::Base
+class Subscription < ApplicationRecord
   belongs_to :user
   belongs_to :plan, polymorphic: true
 
   has_one :team, dependent: :destroy
 
   delegate :name, to: :plan, prefix: true
+  delegate :email, to: :user, prefix: true
 
   validates :plan_id, presence: true
   validates :plan_type, presence: true
@@ -25,7 +26,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def self.canceled_in_last_30_days
-    canceled_within_period(30.days.ago, Time.zone.now)
+    canceled_within_period(30.days.ago, Time.current)
   end
 
   def self.active_as_of(time)
@@ -122,10 +123,6 @@ class Subscription < ActiveRecord::Base
 
   def self.active
     where(deactivated_on: nil)
-  end
-
-  def self.recent
-    where('created_at > ?', 24.hours.ago)
   end
 
   def update_features

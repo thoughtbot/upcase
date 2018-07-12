@@ -1,4 +1,4 @@
-class ArticlesTumblrUrlAllowsNil < ActiveRecord::Migration
+class ArticlesTumblrUrlAllowsNil < ActiveRecord::Migration[4.2]
   def up
     change_column :articles, :tumblr_url, :string, null: true
   end

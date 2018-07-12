@@ -1,4 +1,4 @@
-class AddChargifyToUsers < ActiveRecord::Migration
+class AddChargifyToUsers < ActiveRecord::Migration[4.2]
   def self.up
     add_column :users, :customer_id, :string, :default => ''
     add_column :users, :first_name, :string, :default => ''

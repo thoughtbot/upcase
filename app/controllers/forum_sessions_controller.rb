@@ -1,9 +1,11 @@
+require "discourse_sign_on"
+
 class ForumSessionsController < ApplicationController
   before_action :require_login
   before_action :must_have_forum_access
 
   def new
-    sso = DiscourseSignOn.parse(
+    sso = ::DiscourseSignOn.parse(
       request.query_string,
       ENV.fetch("DISCOURSE_SSO_SECRET"),
     )

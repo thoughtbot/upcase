@@ -1,4 +1,4 @@
-class AddIndexOnSectionIdAndTeacherIdToSectionTeachers < ActiveRecord::Migration
+class AddIndexOnSectionIdAndTeacherIdToSectionTeachers < ActiveRecord::Migration[4.2]
   def up
     change_table :section_teachers do |t|
       t.remove_index :section_id

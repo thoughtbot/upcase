@@ -180,7 +180,7 @@ FactoryBot.define do
 
     trait :accepted do
       recipient factory: :user
-      accepted_at { Time.now }
+      accepted_at { Time.current }
     end
   end
 

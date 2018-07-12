@@ -1,4 +1,4 @@
-class CreateResources < ActiveRecord::Migration
+class CreateResources < ActiveRecord::Migration[4.2]
   def self.up
     create_table :resources do |table|
       table.column :course_id, :integer

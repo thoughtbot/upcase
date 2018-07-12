@@ -1,4 +1,4 @@
-class RenameTopicBodyHtmlToTrailMap < ActiveRecord::Migration
+class RenameTopicBodyHtmlToTrailMap < ActiveRecord::Migration[4.2]
   def up
     remove_column :topics, :body_html
     add_column :topics, :trail_map, :text

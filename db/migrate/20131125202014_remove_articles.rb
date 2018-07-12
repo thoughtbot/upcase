@@ -1,4 +1,4 @@
-class RemoveArticles < ActiveRecord::Migration
+class RemoveArticles < ActiveRecord::Migration[4.2]
   def up
     drop_table :articles
   end

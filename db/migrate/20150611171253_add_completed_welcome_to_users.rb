@@ -1,4 +1,4 @@
-class AddCompletedWelcomeToUsers < ActiveRecord::Migration
+class AddCompletedWelcomeToUsers < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :completed_welcome, :boolean, default: false
 

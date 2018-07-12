@@ -1,4 +1,4 @@
-class AddAlternatePricesToProductsAndWorkshops < ActiveRecord::Migration
+class AddAlternatePricesToProductsAndWorkshops < ActiveRecord::Migration[4.2]
   def change
     %w(workshops products).each do |table|
       add_column table, :alternate_individual_price, :integer

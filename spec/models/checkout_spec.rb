@@ -6,11 +6,11 @@ describe Checkout do
 
   it { should validate_presence_of(:user) }
 
-  it { should delegate(:plan_includes_team?).to(:plan).as(:includes_team?) }
-  it { should delegate(:plan_name).to(:plan).as(:name) }
-  it { should delegate(:plan_sku).to(:plan).as(:sku) }
-  it { should delegate(:plan_terms).to(:plan).as(:terms) }
-  it { should delegate(:user_email).to(:user).as(:email) }
+  it { should delegate_method(:plan_includes_team?).to(:plan).as(:includes_team?) }
+  it { should delegate_method(:plan_name).to(:plan).as(:name) }
+  it { should delegate_method(:plan_sku).to(:plan).as(:sku) }
+  it { should delegate_method(:plan_terms).to(:plan).as(:terms) }
+  it { should delegate_method(:user_email).to(:user).as(:email) }
 
   context "#fulfill" do
     it "fulfills a subscription when purchasing a plan" do

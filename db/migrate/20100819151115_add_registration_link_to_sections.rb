@@ -1,4 +1,4 @@
-class AddRegistrationLinkToSections < ActiveRecord::Migration
+class AddRegistrationLinkToSections < ActiveRecord::Migration[4.2]
   def self.up
     add_column :sections, :registration_link, :string, :null => false, :default => ''
   end

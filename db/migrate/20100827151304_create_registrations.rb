@@ -1,4 +1,4 @@
-class CreateRegistrations < ActiveRecord::Migration
+class CreateRegistrations < ActiveRecord::Migration[4.2]
   def self.up
     create_table :registrations do |t|
       t.belongs_to :user, :section

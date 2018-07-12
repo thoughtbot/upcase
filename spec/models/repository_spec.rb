@@ -9,6 +9,11 @@ describe Repository do
   it { should validate_presence_of(:github_repository) }
   it { should validate_presence_of(:github_url) }
 
+  describe "accessing without subscription" do
+    subject { described_class }
+    it { is_expected.not_to be_accessible_without_subscription }
+  end
+
   describe "#has_collaborator?" do
     context "after #add_collaborator with that user" do
       it "returns true" do

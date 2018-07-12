@@ -1,4 +1,4 @@
-class UpdateTeamPlansType < ActiveRecord::Migration
+class UpdateTeamPlansType < ActiveRecord::Migration[4.2]
   def up
     update_type :subscriptions, :plan_type, 'TeamPlan', 'Teams::TeamPlan'
     update_type :purchases, :purchaseable_type, 'TeamPlan', 'Teams::TeamPlan'

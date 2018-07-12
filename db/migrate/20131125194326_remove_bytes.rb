@@ -1,4 +1,4 @@
-class RemoveBytes < ActiveRecord::Migration
+class RemoveBytes < ActiveRecord::Migration[4.2]
   def up
     drop_table :bytes
   end

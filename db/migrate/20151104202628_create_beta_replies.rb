@@ -1,4 +1,4 @@
-class CreateBetaReplies < ActiveRecord::Migration
+class CreateBetaReplies < ActiveRecord::Migration[4.2]
   def change
     create_table :beta_replies do |t|
       t.belongs_to :offer, index: true, null: false

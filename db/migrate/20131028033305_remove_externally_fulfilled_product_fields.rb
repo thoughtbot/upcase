@@ -1,4 +1,4 @@
-class RemoveExternallyFulfilledProductFields < ActiveRecord::Migration
+class RemoveExternallyFulfilledProductFields < ActiveRecord::Migration[4.2]
   def up
     remove_column :products, :external_purchase_url
     remove_column :products, :external_purchase_name

@@ -1,6 +1,6 @@
 # NOTE: There are several rewrite rules defined in
 # config/initializers/rack_rewrite.rb which run before these routes.
-Upcase::Application.routes.draw do
+Rails.application.routes.draw do
   scope "upcase" do
     root to: "marketing#show"
 
@@ -23,7 +23,7 @@ Upcase::Application.routes.draw do
       end
     end
 
-    mount RailsAdmin::Engine => "/admin", as: :admin
+    mount RailsAdmin::Engine => "/admin", as: :rails_admin
 
     namespace :api do
       namespace :v1 do

@@ -1,4 +1,4 @@
-class InitializeActsAsListForCourses < ActiveRecord::Migration
+class InitializeActsAsListForCourses < ActiveRecord::Migration[4.2]
   def self.up
     execute <<-SQL
       CREATE SEQUENCE list_import START 1;

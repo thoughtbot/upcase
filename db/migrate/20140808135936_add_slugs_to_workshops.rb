@@ -1,4 +1,4 @@
-class AddSlugsToWorkshops < ActiveRecord::Migration
+class AddSlugsToWorkshops < ActiveRecord::Migration[4.2]
   def change
     add_column :workshops, :slug, :string, null: true
 

@@ -1,4 +1,4 @@
-class RemovePromoLocationFromProductsAndWorkshops < ActiveRecord::Migration
+class RemovePromoLocationFromProductsAndWorkshops < ActiveRecord::Migration[4.2]
   def up
     remove_column :products, :promo_location
     remove_column :workshops, :promo_location

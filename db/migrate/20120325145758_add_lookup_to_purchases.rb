@@ -1,4 +1,4 @@
-class AddLookupToPurchases < ActiveRecord::Migration
+class AddLookupToPurchases < ActiveRecord::Migration[4.2]
   def self.up
     add_column :purchases, :lookup, :string
     add_index :purchases, :lookup

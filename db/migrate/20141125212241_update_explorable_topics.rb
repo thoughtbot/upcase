@@ -1,4 +1,4 @@
-class UpdateExplorableTopics < ActiveRecord::Migration
+class UpdateExplorableTopics < ActiveRecord::Migration[4.2]
   def change
     other_topic = Topic.find_by(slug: "other")
     if other_topic

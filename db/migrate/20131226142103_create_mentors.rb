@@ -1,4 +1,4 @@
-class CreateMentors < ActiveRecord::Migration
+class CreateMentors < ActiveRecord::Migration[4.2]
   def up
     create_table :mentors do |t|
       t.belongs_to :user, null: false

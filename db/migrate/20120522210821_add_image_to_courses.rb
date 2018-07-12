@@ -1,4 +1,4 @@
-class AddImageToCourses < ActiveRecord::Migration
+class AddImageToCourses < ActiveRecord::Migration[4.2]
   def change
     add_column :courses, :course_image_file_name, :string
     add_column :courses, :course_image_file_size, :string

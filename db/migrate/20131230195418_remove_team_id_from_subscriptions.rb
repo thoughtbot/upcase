@@ -1,4 +1,4 @@
-class RemoveTeamIdFromSubscriptions < ActiveRecord::Migration
+class RemoveTeamIdFromSubscriptions < ActiveRecord::Migration[4.2]
   def up
     say_with_time 'Deleting subscriptions for team members' do
       connection.delete(<<-SQL)

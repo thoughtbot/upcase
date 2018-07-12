@@ -1,4 +1,4 @@
-class AddIncludesTeamToIndividualPlans < ActiveRecord::Migration
+class AddIncludesTeamToIndividualPlans < ActiveRecord::Migration[4.2]
   def change
     add_column :individual_plans,
                :includes_team,

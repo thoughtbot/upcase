@@ -1,4 +1,4 @@
-class CreateContentRecommendations < ActiveRecord::Migration
+class CreateContentRecommendations < ActiveRecord::Migration[4.2]
   def change
     create_table :content_recommendations do |t|
       t.references :user, index: true, foreign_key: true, null: false

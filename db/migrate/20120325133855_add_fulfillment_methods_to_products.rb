@@ -1,4 +1,4 @@
-class AddFulfillmentMethodsToProducts < ActiveRecord::Migration
+class AddFulfillmentMethodsToProducts < ActiveRecord::Migration[4.2]
   def self.up
     add_column :products, :fulfillment_method, :string
     add_column :products, :github_team, :integer

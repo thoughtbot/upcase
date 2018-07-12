@@ -1,4 +1,4 @@
-class ReplaceRegistrationLinkWithChargifyIdOnSections < ActiveRecord::Migration
+class ReplaceRegistrationLinkWithChargifyIdOnSections < ActiveRecord::Migration[4.2]
   def self.up
     remove_column :sections, :registration_link
     add_column :sections, :chargify_id, :string

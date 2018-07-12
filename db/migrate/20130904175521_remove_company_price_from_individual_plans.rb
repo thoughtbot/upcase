@@ -1,4 +1,4 @@
-class RemoveCompanyPriceFromIndividualPlans < ActiveRecord::Migration
+class RemoveCompanyPriceFromIndividualPlans < ActiveRecord::Migration[4.2]
   def up
     remove_column :individual_plans, :company_price
   end

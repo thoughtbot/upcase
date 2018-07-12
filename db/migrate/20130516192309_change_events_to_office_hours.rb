@@ -1,4 +1,4 @@
-class ChangeEventsToOfficeHours < ActiveRecord::Migration
+class ChangeEventsToOfficeHours < ActiveRecord::Migration[4.2]
   def up
     rename_table :events, :office_hours
     add_column :office_hours, :occurs_in_week, :integer

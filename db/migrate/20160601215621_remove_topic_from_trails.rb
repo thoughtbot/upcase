@@ -1,4 +1,4 @@
-class RemoveTopicFromTrails < ActiveRecord::Migration
+class RemoveTopicFromTrails < ActiveRecord::Migration[4.2]
   def up
     remove_column :trails, :topic_id
   end

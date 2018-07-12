@@ -1,4 +1,4 @@
-class MoveMentorToUsers < ActiveRecord::Migration
+class MoveMentorToUsers < ActiveRecord::Migration[4.2]
   def up
     add_column :users, :mentor_id, :integer
     execute <<-SQL

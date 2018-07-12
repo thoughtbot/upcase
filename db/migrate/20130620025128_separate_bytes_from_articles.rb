@@ -1,4 +1,4 @@
-class SeparateBytesFromArticles < ActiveRecord::Migration
+class SeparateBytesFromArticles < ActiveRecord::Migration[4.2]
   def up
     create_table "bytes", force: true do |t|
       t.datetime "created_at", null: false

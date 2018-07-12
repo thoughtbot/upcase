@@ -1,4 +1,4 @@
-class MoveTeamPlansIntoPlans < ActiveRecord::Migration
+class MoveTeamPlansIntoPlans < ActiveRecord::Migration[4.2]
   def up
     say_with_time "Moving team_plans into plans" do
       # Need to reset the id_seq, because:

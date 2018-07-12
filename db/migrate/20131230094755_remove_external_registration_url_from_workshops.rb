@@ -1,4 +1,4 @@
-class RemoveExternalRegistrationUrlFromWorkshops < ActiveRecord::Migration
+class RemoveExternalRegistrationUrlFromWorkshops < ActiveRecord::Migration[4.2]
   def up
     remove_column :workshops, :external_registration_url
   end

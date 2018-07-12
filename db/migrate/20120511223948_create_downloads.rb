@@ -1,4 +1,4 @@
-class CreateDownloads < ActiveRecord::Migration
+class CreateDownloads < ActiveRecord::Migration[4.2]
   def self.up
     create_table :downloads do |t|
       t.integer :product_id

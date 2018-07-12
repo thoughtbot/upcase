@@ -1,4 +1,4 @@
-class RemoveFeaturedFromTopics < ActiveRecord::Migration
+class RemoveFeaturedFromTopics < ActiveRecord::Migration[4.2]
   def up
     remove_column :topics, :featured
   end

@@ -1,4 +1,4 @@
-class ChangeCoursePriceToInteger < ActiveRecord::Migration
+class ChangeCoursePriceToInteger < ActiveRecord::Migration[4.2]
   def self.up
     add_column :courses, :price_int, :integer, :null => true, :default => nil
     execute <<-SQL

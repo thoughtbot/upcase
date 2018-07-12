@@ -8,6 +8,6 @@ describe CompletedTrailsController do
     get :index
 
     expect(assigns(:trails)).to eq(completed_trails)
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 end

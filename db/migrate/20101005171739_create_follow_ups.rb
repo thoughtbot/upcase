@@ -1,4 +1,4 @@
-class CreateFollowUps < ActiveRecord::Migration
+class CreateFollowUps < ActiveRecord::Migration[4.2]
   def self.up
     create_table :follow_ups do |t|
       t.string :email

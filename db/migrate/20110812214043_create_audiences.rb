@@ -1,4 +1,4 @@
-class CreateAudiences < ActiveRecord::Migration
+class CreateAudiences < ActiveRecord::Migration[4.2]
   def self.up
     create_table :audiences do |t|
       t.string :name

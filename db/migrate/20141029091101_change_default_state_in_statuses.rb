@@ -1,4 +1,4 @@
-class ChangeDefaultStateInStatuses < ActiveRecord::Migration
+class ChangeDefaultStateInStatuses < ActiveRecord::Migration[4.2]
   def up
     change_column_default :statuses, :state, "In Progress"
   end

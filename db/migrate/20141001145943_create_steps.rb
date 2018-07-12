@@ -1,4 +1,4 @@
-class CreateSteps < ActiveRecord::Migration
+class CreateSteps < ActiveRecord::Migration[4.2]
   def change
     create_table :steps do |t|
       t.references :trail, null: false

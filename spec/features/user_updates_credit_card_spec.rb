@@ -42,7 +42,7 @@ feature 'User updated credit card' do
   private
 
   def enter_credit_card_info(card_number)
-    credit_card_expires_on = Time.now.advance(years: 1)
+    credit_card_expires_on = Time.current.advance(years: 1)
     month_selection = credit_card_expires_on.strftime('%-m - %B')
 
     year_selection = credit_card_expires_on.strftime('%Y')

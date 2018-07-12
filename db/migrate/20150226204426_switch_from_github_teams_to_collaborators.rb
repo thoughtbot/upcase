@@ -1,4 +1,4 @@
-class SwitchFromGithubTeamsToCollaborators < ActiveRecord::Migration
+class SwitchFromGithubTeamsToCollaborators < ActiveRecord::Migration[4.2]
   MAPPINGS = {
     1036719 => "thoughtbot/upcase",
     1036722 => "thoughtbot/upcase-exercises",

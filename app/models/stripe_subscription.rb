@@ -74,7 +74,7 @@ class StripeSubscription
   end
 
   def coupon_attributes
-    if @checkout.stripe_coupon_id.present?
+    if @checkout.stripe_coupon_id?
       { coupon: @checkout.stripe_coupon_id }
     else
       {}

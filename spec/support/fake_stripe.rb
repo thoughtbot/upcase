@@ -62,7 +62,7 @@ class FakeStripe < Sinatra::Base
     ).to_json
   end
 
-  post "/v1/customers/:customer_id/subscriptions/:id" do
+  post "/v1/subscriptions/:id" do
     @@customer_plan_id = params[:plan]
     @@last_coupon_used = params[:coupon]
     @@customer_plan_quantity = params[:quantity]
@@ -77,7 +77,7 @@ class FakeStripe < Sinatra::Base
     else
       customer_subscription.merge(
         id: params[:id],
-        customer: params[:customer_id]
+        customer: params[:customer],
       ).to_json
     end
   end
@@ -224,19 +224,19 @@ class FakeStripe < Sinatra::Base
     }.to_json
   end
 
-  delete "/v1/customers/:customer_id/subscriptions/:id" do
+  delete "/v1/subscriptions/:id" do
     content_type :json
     if params[:at_period_end] == "true"
       customer_subscription.merge(
         id: params[:id],
-        customer: params[:customer_id],
+        customer: params[:customer],
         status: "active",
         cancel_at_period_end: true
       ).to_json
     else
       customer_subscription.merge(
         id: params[:id],
-        customer: params[:customer_id],
+        customer: params[:customer],
         status: "canceled",
       ).to_json
     end

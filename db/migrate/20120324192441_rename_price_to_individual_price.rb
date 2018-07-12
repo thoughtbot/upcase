@@ -1,4 +1,4 @@
-class RenamePriceToIndividualPrice < ActiveRecord::Migration
+class RenamePriceToIndividualPrice < ActiveRecord::Migration[4.2]
   def self.up
     rename_column :products, :price, :individual_price
   end

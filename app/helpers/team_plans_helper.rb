@@ -10,6 +10,12 @@ module TeamPlansHelper
     @team_page.present?
   end
 
+  def next_payment_date(subscription)
+    subscription.
+      next_payment_on.
+      to_s(:simple)
+  end
+
   private
 
   def team_plan_quantity_select_attributes(plan)

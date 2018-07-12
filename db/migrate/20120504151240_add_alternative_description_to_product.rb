@@ -1,4 +1,4 @@
-class AddAlternativeDescriptionToProduct < ActiveRecord::Migration
+class AddAlternativeDescriptionToProduct < ActiveRecord::Migration[4.2]
   def self.up
     add_column :products, :alternative_description, :text
   end

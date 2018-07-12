@@ -1,4 +1,4 @@
-class RenameVideosOrderToPosition < ActiveRecord::Migration
+class RenameVideosOrderToPosition < ActiveRecord::Migration[4.2]
   def up
     rename_column :videos, :order, :position
   end

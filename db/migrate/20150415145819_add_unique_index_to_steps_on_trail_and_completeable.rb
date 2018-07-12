@@ -1,4 +1,4 @@
-class AddUniqueIndexToStepsOnTrailAndCompleteable < ActiveRecord::Migration
+class AddUniqueIndexToStepsOnTrailAndCompleteable < ActiveRecord::Migration[4.2]
   def up
     add_index :steps,
               [:trail_id, :completeable_id, :completeable_type],

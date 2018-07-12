@@ -1,4 +1,4 @@
-class AddUsersAllowedToTeams < ActiveRecord::Migration
+class AddUsersAllowedToTeams < ActiveRecord::Migration[4.2]
   def up
     add_column :teams, :max_users, :integer
 

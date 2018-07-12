@@ -1,4 +1,4 @@
-class RenameCoursesToWorkshops < ActiveRecord::Migration
+class RenameCoursesToWorkshops < ActiveRecord::Migration[4.2]
   def change
     rename_table :courses, :workshops
 

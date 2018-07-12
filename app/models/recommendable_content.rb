@@ -1,4 +1,4 @@
-class RecommendableContent < ActiveRecord::Base
+class RecommendableContent < ApplicationRecord
   acts_as_list
 
   belongs_to :recommendable, polymorphic: true

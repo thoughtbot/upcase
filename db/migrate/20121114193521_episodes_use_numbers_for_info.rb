@@ -1,4 +1,4 @@
-class EpisodesUseNumbersForInfo < ActiveRecord::Migration
+class EpisodesUseNumbersForInfo < ActiveRecord::Migration[4.2]
   def up
     remove_column :episodes, :size
     remove_column :episodes, :length

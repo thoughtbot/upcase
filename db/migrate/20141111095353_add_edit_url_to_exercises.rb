@@ -1,4 +1,4 @@
-class AddEditUrlToExercises < ActiveRecord::Migration
+class AddEditUrlToExercises < ActiveRecord::Migration[4.2]
   def up
     add_column :exercises, :edit_url, :string
 

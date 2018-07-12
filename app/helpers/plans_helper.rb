@@ -27,11 +27,6 @@ module PlansHelper
     new_checkout_path(plan: Plan::TEAM_SKU)
   end
 
-  def formatted_name(plan)
-    first_line, _, last_line = plan.name.rpartition(" ")
-    [first_line, last_line].join("<br/>").html_safe
-  end
-
   def large_check_image
     image_tag("pricing-check-lg.svg")
   end

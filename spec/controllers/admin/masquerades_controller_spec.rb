@@ -7,7 +7,7 @@ describe Admin::MasqueradesController do
       user = build_user
       sign_in_as admin
 
-      post :create, user_id: user.id
+      post :create, params: { user_id: user.id }
 
       expect(controller.current_user).to eq(user)
       expect(session[:admin_id]).to eq(admin.id)
@@ -24,14 +24,14 @@ describe Admin::MasqueradesController do
 
       expect(controller.current_user).to eq(admin)
       expect(session[:admin_id]).to be(nil)
-      expect(response).to redirect_to admin_path
+      expect(response).to redirect_to rails_admin_path
     end
   end
 
   context "as a non admin" do
     context "#create" do
       it "redirects to root path if not signed in" do
-        post :create, user_id: build_user.id
+        post :create, params: { user_id: build_user.id }
 
         expect(response).to redirect_to root_path
       end
@@ -40,7 +40,7 @@ describe Admin::MasqueradesController do
         user = build_user
         sign_in_as user
 
-        post :create, user_id: build_user.id
+        post :create, params: { user_id: build_user.id }
 
         expect(controller.current_user).to eq(user)
         expect(response).to redirect_to root_path
@@ -76,7 +76,7 @@ describe Admin::MasqueradesController do
           delete :destroy
 
           expect(session[:admin_id]).to be nil
-          expect(response).to redirect_to admin_path
+          expect(response).to redirect_to rails_admin_path
         end
       end
     end

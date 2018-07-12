@@ -1,4 +1,4 @@
-class ChangeBodyToText < ActiveRecord::Migration
+class ChangeBodyToText < ActiveRecord::Migration[4.2]
   def up
     change_column :videos, :email_body_text, :text
   end

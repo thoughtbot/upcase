@@ -1,4 +1,4 @@
-class VanityMigration < ActiveRecord::Migration
+class VanityMigration < ActiveRecord::Migration[4.2]
   def self.up
     create_table :vanity_metrics do |t|
       t.string :metric_id

@@ -1,4 +1,4 @@
-class CreateTeachersJoinTable < ActiveRecord::Migration
+class CreateTeachersJoinTable < ActiveRecord::Migration[4.2]
   def change
     create_table :teachers do |t|
       t.belongs_to :user

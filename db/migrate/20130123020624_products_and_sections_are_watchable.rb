@@ -1,4 +1,4 @@
-class ProductsAndSectionsAreWatchable < ActiveRecord::Migration
+class ProductsAndSectionsAreWatchable < ActiveRecord::Migration[4.2]
   def up
     rename_column :videos, :purchaseable_type, :watchable_type
     rename_column :videos, :purchaseable_id, :watchable_id

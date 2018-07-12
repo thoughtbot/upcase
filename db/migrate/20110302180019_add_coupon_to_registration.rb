@@ -1,4 +1,4 @@
-class AddCouponToRegistration < ActiveRecord::Migration
+class AddCouponToRegistration < ActiveRecord::Migration[4.2]
   def self.up
     add_column :registrations, :coupon_id, :integer
   end

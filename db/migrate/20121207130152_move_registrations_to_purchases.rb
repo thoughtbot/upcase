@@ -1,4 +1,4 @@
-class MoveRegistrationsToPurchases < ActiveRecord::Migration
+class MoveRegistrationsToPurchases < ActiveRecord::Migration[4.2]
   def up
     insert "insert into purchases (variant, name, email, organization, address1, address2, city, state, zip_code, created_at, updated_at, lookup, coupon_id, paid, payment_method, user_id, paid_price, purchaseable_id, purchaseable_type, comments, billing_email) (select 'individual', first_name || ' ' || last_name, email, organization, address1, address2, registrations.city, registrations.state, registrations.zip_code, registrations.created_at, registrations.updated_at, md5(registrations.id || first_name || last_name), coupon_id, paid, 'freshbooks', user_id, individual_price, section_id, 'Section', comments, billing_email from registrations, sections, courses where registrations.section_id=sections.id and sections.course_id=courses.id)"
     drop_table :registrations

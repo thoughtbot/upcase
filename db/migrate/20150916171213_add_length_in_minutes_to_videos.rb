@@ -1,4 +1,4 @@
-class AddLengthInMinutesToVideos < ActiveRecord::Migration
+class AddLengthInMinutesToVideos < ActiveRecord::Migration[4.2]
   def up
     add_column :videos, :length_in_minutes, :integer
 

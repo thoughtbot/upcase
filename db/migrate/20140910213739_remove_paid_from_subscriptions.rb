@@ -1,4 +1,4 @@
-class RemovePaidFromSubscriptions < ActiveRecord::Migration
+class RemovePaidFromSubscriptions < ActiveRecord::Migration[4.2]
   def up
     remove_column :subscriptions, :paid
   end

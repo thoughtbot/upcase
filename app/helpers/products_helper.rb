@@ -6,8 +6,4 @@ module ProductsHelper
   def design_for_developers_url
     "https://upcase.com/design-for-developers"
   end
-
-  def intermediate_rails_url
-    "https://upcase.com/intermediate-ruby-on-rails"
-  end
 end

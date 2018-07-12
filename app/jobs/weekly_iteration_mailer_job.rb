@@ -1,4 +1,4 @@
-class WeeklyIterationMailerJob < ActiveJob::Base
+class WeeklyIterationMailerJob < ApplicationJob
   include ErrorReporting
 
   def perform(user_id, video_id)

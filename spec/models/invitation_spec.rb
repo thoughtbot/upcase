@@ -79,7 +79,7 @@ describe Invitation do
 
   describe "#accept" do
     it "adds the user to the team" do
-      Timecop.freeze Time.now.beginning_of_day do
+      Timecop.freeze Time.current.beginning_of_day do
         team = build_stubbed(:team)
         allow(team).to receive(:add_user)
         user = create(:user)
@@ -88,7 +88,7 @@ describe Invitation do
         invitation.accept(user)
 
         expect(team).to have_received(:add_user).with(user)
-        expect(invitation.reload.accepted_at).to eq(Time.now)
+        expect(invitation.reload.accepted_at).to eq(Time.current)
         expect(invitation.reload.recipient).to eq(user)
       end
     end
@@ -107,7 +107,7 @@ describe Invitation do
 
   describe "#accepted?" do
     it "returns true if accepted" do
-      invitation = build_stubbed(:invitation, accepted_at: Time.now)
+      invitation = build_stubbed(:invitation, accepted_at: Time.current)
 
       expect(invitation).to be_accepted
     end

@@ -1,4 +1,4 @@
-class RemoveQuestionsModel < ActiveRecord::Migration
+class RemoveQuestionsModel < ActiveRecord::Migration[4.2]
   def up
     questions = select_all(
       "SELECT * FROM questions WHERE video_tutorial_id IS NOT NULL"

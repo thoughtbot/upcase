@@ -6,7 +6,7 @@ describe SubscriptionsController do
       def perform_request
         plan = create(:plan)
 
-        post :update, plan_id: plan
+        post :update, params: { plan_id: plan }
       end
 
       def authorize

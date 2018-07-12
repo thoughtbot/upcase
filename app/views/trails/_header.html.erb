@@ -3,14 +3,14 @@
 </div>
 
 <header class="trail-header">
-  <% if trail.title_card_image.present? %>
+  <% if trail.title_card_image? %>
     <div class="title-card">
       <%= image_tag trail.title_card_image %>
     </div>
   <% else %>
     <div class="topic-image">
       <%= link_to topic do %>
-        <%= image_tag "topics/#{topic.slug}.svg" %>
+        <%= inline_svg "topics/#{topic.slug}.svg" %>
       <% end %>
     </div>
   <% end %>
@@ -21,7 +21,7 @@
     <div class="trail-description">
       <%= format_markdown trail.description %>
 
-      <% if trail.extended_description.present? %>
+      <% if trail.extended_description? %>
         <div class="extended-description">
           <%= format_markdown trail.extended_description %>
         </div>

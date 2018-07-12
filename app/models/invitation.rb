@@ -1,15 +1,16 @@
-class Invitation < ActiveRecord::Base
+class Invitation < ApplicationRecord
   extend FriendlyId
 
   validates :email, presence: true
   validates :sender_id, presence: true
   validates :team_id, presence: true
 
-  belongs_to :recipient, class_name: User
-  belongs_to :sender, class_name: User
+  belongs_to :recipient, class_name: "User"
+  belongs_to :sender, class_name: "User"
   belongs_to :team
 
   delegate :name, to: :recipient, prefix: true, allow_nil: true
+  delegate :name, to: :team, prefix: true
 
   before_create :generate_code
 
@@ -31,7 +32,7 @@ class Invitation < ActiveRecord::Base
   def accept(user)
     unless accepted?
       transaction do
-        update_attributes! accepted_at: Time.now, recipient: user
+        update_attributes! accepted_at: Time.current, recipient: user
         team.add_user(user)
       end
     end

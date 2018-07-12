@@ -1,4 +1,4 @@
-class AddPositionToCourses < ActiveRecord::Migration
+class AddPositionToCourses < ActiveRecord::Migration[4.2]
   def self.up
     add_column :courses, :position, :integer
   end

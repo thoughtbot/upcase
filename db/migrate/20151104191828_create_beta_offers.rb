@@ -1,4 +1,4 @@
-class CreateBetaOffers < ActiveRecord::Migration
+class CreateBetaOffers < ActiveRecord::Migration[4.2]
   def change
     create_table :beta_offers do |t|
       t.string :name, null: false

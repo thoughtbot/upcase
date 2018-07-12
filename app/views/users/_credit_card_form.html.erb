@@ -1,6 +1,6 @@
 <div class='text-box'>
   <a name="billing-info-anchor"></a>
-  <%= semantic_form_for current_user, url: credit_card_path, html: { class: 'credit_card' } do |form| %>
+  <%= semantic_form_for current_user, url: credit_card_path, html: { class: 'credit_card', id: :credit_card_form } do |form| %>
     <%= form.inputs "Your Billing Info", id: 'billing-information' do %>
       <p class="card-on-file">
         <i class="fa fa-credit-card" aria-hidden="true"></i>

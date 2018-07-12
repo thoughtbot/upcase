@@ -1,4 +1,4 @@
-class AddSlugToTrails < ActiveRecord::Migration
+class AddSlugToTrails < ActiveRecord::Migration[4.2]
   def up
     add_column :trails, :slug, :string
     generate_slug :trails, :name, :slug

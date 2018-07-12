@@ -1,4 +1,4 @@
-class AddPaymentMethodToPurchases < ActiveRecord::Migration
+class AddPaymentMethodToPurchases < ActiveRecord::Migration[4.2]
   def self.up
     add_column :purchases, :payment_method, :string, :default => "stripe", :null => false
   end
