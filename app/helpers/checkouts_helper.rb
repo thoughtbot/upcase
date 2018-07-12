@@ -1,12 +1,4 @@
 module CheckoutsHelper
-  def display_card_type(type)
-    if type == "American Express"
-      "AMEX"
-    else
-      type
-    end
-  end
-
   def submit_amount(checkout)
     formatted_subscription_price(checkout) +
       " per " +

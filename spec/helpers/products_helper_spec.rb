@@ -16,12 +16,4 @@ describe ProductsHelper do
       expect(result).to include("design-for-developers")
     end
   end
-
-  describe "#intermediate_rails_url" do
-    it "returns a link to the right page" do
-      result = helper.intermediate_rails_url
-
-      expect(result).to include("intermediate-ruby-on-rails")
-    end
-  end
 end
