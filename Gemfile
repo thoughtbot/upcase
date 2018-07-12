@@ -2,8 +2,6 @@ source "https://rubygems.org"
 
 ruby "2.5.1"
 
-gem "mime-types", "~> 2.6", require: "mime/types/columnar"
-
 gem "active_model_serializers", "0.8.3"
 gem "acts_as_list"
 gem "analytics-ruby", require: "segment/analytics"
@@ -27,6 +25,7 @@ gem "honeybadger"
 gem "inline_svg"
 gem "jquery-rails"
 gem "jquery-ui-rails"
+gem "mime-types"
 gem "neat", "~> 1.8"
 gem "nokogiri", ">= 1.6.7.2"
 gem "octokit"
