@@ -5,8 +5,8 @@ describe Team do
   it { should have_many(:users).dependent(:nullify) }
   it { should validate_presence_of(:name) }
 
-  it { should delegate(:plan).to(:subscription) }
-  it { should delegate(:owner?).to(:subscription) }
+  it { should delegate_method(:plan).to(:subscription) }
+  it { should delegate_method(:owner?).to(:subscription) }
 
   describe "#owner" do
     it "gets the team owner" do
