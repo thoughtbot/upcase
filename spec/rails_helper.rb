@@ -32,6 +32,9 @@ Capybara.app = HostMap.new(
   "localhost" => FakeUpcaseExercises
 )
 
+# Do not announce that capybara is starting puma
+Capybara.server = :puma, { Silent: true }
+
 silence_warnings do
   Clip::WISTIA_DOWNLOAD_BASE_URL = "localhost/"
 end
