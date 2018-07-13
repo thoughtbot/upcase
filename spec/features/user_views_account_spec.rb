@@ -21,7 +21,7 @@ feature "Account Settings" do
 
     visit edit_my_account_path(as: user)
 
-    expect(field_labeled("Name").value).to eq "Change Name"
+    expect(field_value_from_name("Name")).to eq "Change Name"
   end
 
   scenario "user edits address information" do
@@ -36,10 +36,14 @@ feature "Account Settings" do
 
     visit edit_my_account_path(as: user)
 
-    expect(field_labeled("Address 1").value).to eq "New Address"
+    expect(field_value_from_name("Address 1")).to eq "New Address"
   end
 
   private
+
+  def field_value_from_name(name)
+    find_field(name).value
+  end
 
   def expect_to_see_my_subscription
     expect(page).to have_css("ol.subscription li")

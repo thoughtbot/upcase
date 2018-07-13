@@ -2,6 +2,10 @@ source "https://rubygems.org"
 
 ruby "2.5.1"
 
+git_source(:github) do |repo_name|
+  "https://github.com/#{repo_name}.git"
+end
+
 gem "active_model_serializers", "0.8.3"
 gem "acts_as_list"
 gem "analytics-ruby", require: "segment/analytics"
@@ -81,7 +85,7 @@ end
 
 group :test do
   gem "capybara"
-  gem "capybara-webkit", ">= 1.11.1"
+  gem "capybara-webkit", github: "thoughtbot/capybara-webkit"
   gem "capybara_discoball"
   gem "climate_control"
   gem "database_cleaner"
