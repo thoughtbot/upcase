@@ -183,7 +183,6 @@ Rails.application.routes.draw do
     resources :signups, only: [:create]
     resource :subscription, only: [:edit, :update]
     resources :coupons, only: :show
-    resources :topics, only: :index, constraints: { format: "css" }
     resources :onboardings, only: :create
     get "forum", to: redirect("https://forum.upcase.com"), as: "forum"
 
