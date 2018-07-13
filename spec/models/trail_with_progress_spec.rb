@@ -140,6 +140,25 @@ describe TrailWithProgress do
     end
   end
 
+  describe "#started_on" do
+    it "returns date of status" do
+      trail = create_trail_with_progress
+      expect(trail.statuses.size).to eq(1)
+
+      result = trail.started_on
+      expect(result).to eq(trail.statuses.last.created_at.to_date)
+    end
+
+    it "returns tomorrow with no statuses" do
+      trail = create_trail_with_progress
+      trail.statuses.destroy_all
+      expect(trail.reload.statuses.size).to eq(0)
+
+      result = trail.started_on
+      expect(result).to eq(Date.tomorrow)
+    end
+  end
+
   describe "#steps_remaining" do
     it "delegates to the trail" do
       trail = create_trail_with_progress(
