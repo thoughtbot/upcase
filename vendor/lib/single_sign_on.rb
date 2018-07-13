@@ -1,15 +1,16 @@
 # Implementation from Discourse
 # https://github.com/discourse/discourse/blob/master/lib/single_sign_on.rb
 
-class DiscourseSignOn
-  ACCESSORS = [:nonce, :name, :username, :email, :avatar_url, :avatar_force_update,
-               :about_me, :external_id, :return_sso_url, :admin, :moderator]
+class SingleSignOn
+  ACCESSORS = [:nonce, :name, :username, :email, :avatar_url, :avatar_force_update, :require_activation,
+               :bio, :external_id, :return_sso_url, :admin, :moderator, :suppress_welcome_message, :title,
+               :add_groups, :remove_groups, :groups, :profile_background_url, :card_background_url, :website]
   FIXNUMS = []
-  BOOLS = [:avatar_force_update, :admin, :moderator]
+  BOOLS = [:avatar_force_update, :admin, :moderator, :require_activation, :suppress_welcome_message]
   NONCE_EXPIRY_TIME = 10.minutes
 
   attr_accessor(*ACCESSORS)
-  attr_accessor :sso_secret, :sso_url
+  attr_writer :sso_secret, :sso_url
 
   def self.sso_secret
     raise RuntimeError, "sso_secret not implemented on class, be sure to set it on instance"
@@ -25,7 +26,12 @@ class DiscourseSignOn
 
     parsed = Rack::Utils.parse_query(payload)
     if sso.sign(parsed["sso"]) != parsed["sig"]
-      raise RuntimeError, "Bad signature for payload"
+      diags = "\n\nsso: #{parsed["sso"]}\n\nsig: #{parsed["sig"]}\n\nexpected sig: #{sso.sign(parsed["sso"])}"
+      if parsed["sso"] =~ /[^a-zA-Z0-9=\r\n\/+]/m
+        raise RuntimeError, "The SSO field should be Base64 encoded, using only A-Z, a-z, 0-9, +, /, and = characters. Your input contains characters we don't understand as Base64, see http://en.wikipedia.org/wiki/Base64 #{diags}"
+      else
+        raise RuntimeError, "Bad signature for payload #{diags}"
+      end
     end
 
     decoded = Base64.decode64(parsed["sso"])
@@ -40,17 +46,17 @@ class DiscourseSignOn
       sso.send("#{k}=", val)
     end
 
-    decoded_hash.each do |k,v|
-      # 1234567
-      # custom.
-      #
-      if k[0..6] == "custom."
-        field = k[7..-1]
+    decoded_hash.each do |k, v|
+      if field = k[/^custom\.(.+)$/, 1]
         sso.custom_fields[field] = v
       end
     end
 
     sso
+  end
+
+  def diagnostics
+    SingleSignOn::ACCESSORS.map { |a| "#{a}: #{send(a)}" }.join("\n")
   end
 
   def sso_secret
@@ -65,34 +71,30 @@ class DiscourseSignOn
     @custom_fields ||= {}
   end
 
-
   def sign(payload)
     OpenSSL::HMAC.hexdigest("sha256", sso_secret, payload)
   end
 
-
-  def to_url(base_url=nil)
+  def to_url(base_url = nil)
     base = "#{base_url || sso_url}"
     "#{base}#{base.include?('?') ? '&' : '?'}#{payload}"
   end
 
   def payload
-    payload = Base64.encode64(unsigned_payload)
+    payload = Base64.strict_encode64(unsigned_payload)
     "sso=#{CGI::escape(payload)}&sig=#{sign(payload)}"
   end
 
   def unsigned_payload
     payload = {}
-    ACCESSORS.each do |k|
-     next if (val = send k) == nil
 
+    ACCESSORS.each do |k|
+      next if (val = send k) == nil
      payload[k] = val
     end
 
-    if @custom_fields
-      @custom_fields.each do |k,v|
-        payload["custom.#{k}"] = v.to_s
-      end
+    @custom_fields&.each do |k, v|
+      payload["custom.#{k}"] = v.to_s
     end
 
     Rack::Utils.build_query(payload)

@@ -9,11 +9,11 @@ describe ForumSessionsController do
         user = create(:subscriber)
         stub_current_user_with(user)
         discourse_sso = discourse_sso_stub
-        allow(DiscourseSignOn).to receive(:parse).and_return(discourse_sso)
+        allow(SingleSignOn).to receive(:parse).and_return(discourse_sso)
 
         get :new, params: { sso: "ssohash", sig: "sig" }
 
-        expect(DiscourseSignOn).to have_received(:parse).
+        expect(SingleSignOn).to have_received(:parse).
           with(
             "sig=sig&sso=ssohash",
             ENV.fetch("DISCOURSE_SSO_SECRET"),
@@ -65,7 +65,7 @@ describe ForumSessionsController do
     end
 
     def discourse_sso_stub
-      sso = double("DiscourseSignOn")
+      sso = double("SingleSignOn")
       [:email, :name, :username, :external_id, :sso_secret].each do |accessor|
         allow(sso).to receive(:"#{accessor}=")
       end
