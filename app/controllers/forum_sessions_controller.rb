@@ -31,11 +31,19 @@ class ForumSessionsController < ApplicationController
   end
 
   def populate_sso_for_current_user(sso)
-    sso.email = current_user.email
-    sso.name = current_user.name
-    sso.username = current_user.github_username
-    sso.external_id = current_user.id
+    single_sign_on_mapping.each do |sso_attr, user_attr|
+      sso.send("#{sso_attr}=", current_user.send(user_attr))
+    end
     sso.sso_secret = ENV["DISCOURSE_SSO_SECRET"]
+  end
+
+  def single_sign_on_mapping
+    {
+      email: :email,
+      name: :name,
+      username: :github_username,
+      external_id: :id,
+    }
   end
 
   def track_forum_access
