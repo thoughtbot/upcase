@@ -797,10 +797,7 @@ RSpec.configure do |config|
 end
 
 Stripe.verify_ssl_certs = false
-
 module Stripe
-  # Overriding this so it does not warn us about turning off SSL
-  def self.ssl_preflight_passed?
-    true
-  end
+  # Avoid warning about turning off SSL
+  @verify_ssl_warned = true
 end
