@@ -8,6 +8,7 @@ feature 'Test-Driven Rails Resources' do
   end
 
   def amazon_product_id
+    # https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882
     '0132350882'
   end
 end
