@@ -57,10 +57,6 @@
       <% end %>
       <%= link_to "View all invoices", subscriber_invoices_path, class: "invoices" %>
     </ol>
-
-    <h3><%= t(".refer_a_friend") %></h3>
-    <p><%= t(".referral_benefits", percent: referral_discount) %></p>
-    <%= link_to t(".referral_link"), "#", class: "cta-button squatchpop" %>
   <% end %>
 
   <% if show_upgrade_to_annual_cta? %>

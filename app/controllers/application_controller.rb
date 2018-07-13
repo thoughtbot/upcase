@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include Clearance::Controller
 
   protect_from_forgery with: :exception
-  before_action :capture_campaign_params, :apply_referral_coupon
+  before_action :capture_campaign_params
 
   http_basic_authenticate_with(
     name: ENV["HTTP_NAME"],
@@ -52,11 +52,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user_is_subscription_owner?
 
-  def current_user_is_subscriber?
-    current_user.subscriber?
-  end
-  helper_method :current_user_is_subscriber?
-
   def current_user_is_eligible_for_annual_upgrade?
     current_user.eligible_for_annual_upgrade?
   end
@@ -101,12 +96,6 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :github_auth_path
-
-  def apply_referral_coupon
-    if params[:rsCode].present?
-      redirect_to coupon_path(params[:rsCode])
-    end
-  end
 
   def capture_campaign_params
     session[:campaign_params] ||= {

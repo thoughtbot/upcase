@@ -12,15 +12,6 @@ describe SubscriptionMailer do
       expect(subscription_receipt_email).to have_body_text(/\$99.00/)
     end
 
-    it "mentions the referral program" do
-      percent_off = "50"
-
-      ClimateControl.modify REFERRAL_DISCOUNT: percent_off do
-        expect(subscription_receipt_email).
-          to have_body_text("#{percent_off}% off")
-      end
-    end
-
     it "includes a link to the invoice" do
       expect(subscription_receipt_email).to have_body_text(
         subscriber_invoice_url("invoice_id")
@@ -60,10 +51,6 @@ describe SubscriptionMailer do
 
     it "is sent from upcase" do
       expect(upcoming_payment_notification_email.from).to include ENV["SUPPORT_EMAIL"]
-    end
-
-    it "mentions the referral program" do
-      expect(upcoming_payment_notification_email).to have_body_text("50% off")
     end
 
     it "includes a link to account page" do

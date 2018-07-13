@@ -204,7 +204,6 @@ en:
       sign_out: Sign Out
       trails: Trails
       weekly_iteration: Weekly Iteration
-      referral_link: Refer a Friend
     subscription:
       name: Upcase
     subscriptions:
@@ -309,9 +308,6 @@ en:
       have_any_questions: Have any questions?
       here_to_help: We're here to help, so feel free to send any questions in and we'll get back to you right away.
       contact_us: Contact us
-      refer_a_friend: Refer a friend
-      referral_benefits: "Referring a friend or colleague to Upcase will give both you, and them, a %{percent}% discount on next month's bill."
-      referral_link: Create your referral code
       annual_plan_title: Switch to annual Plan
       annual_plan_benefits: If you upgrade to annual billing you'll get 12 months of Upcase for the price of 10 months. That's a 17% discount!
       annual_plan_link: Get two months free!
