@@ -60,7 +60,7 @@
     </p>
   </dd>
   <%- if current_user.team_owner? %>
-    <%= render partial: "annual_savings", locals: { team: current_user.team } %>
+    <%= render "annual_savings", team: current_user.team %>
   <% end %>
   <dd>
     <p class="disclaimer">Annual plans are charged up-front, once a year. We
