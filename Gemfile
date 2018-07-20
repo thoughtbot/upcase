@@ -48,7 +48,7 @@ gem "recipient_interceptor"
 gem "redcarpet"
 gem "request_store"
 gem "responders", "~> 2.0"
-gem 'sassc'
+gem "sassc"
 gem "scenic"
 gem "sprockets-rails"
 gem "sprockets-redirect"
