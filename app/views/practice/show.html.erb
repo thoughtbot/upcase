@@ -1,9 +1,14 @@
 <% content_for :page_title, "Learn Ruby and Rails Development" %>
 
-<% unless current_user.subscriber? %>
-  <%= render "subscribe_cta",
-    description: t("trails.subscribe_cta"),
-    button_text: t("trails.subscribe_link") %>
+<% if signed_out? %>
+  <div class="access-callout">
+    <p><%= t("trails.sign_up_cta") %></p>
+
+    <%= link_to github_auth_path, class: "pull-right cta-button subscribe-cta light-bg" do %>
+      <%= image_tag("github-black.svg", class: "logo", alt: "") %>
+      <%= t("authenticating.github_signin") %>
+    <% end %>
+  </div>
 <% end %>
 
 <section class="trails-progress">
@@ -23,21 +28,11 @@
     </p>
   </header>
 
-  <% if @practice.beta_offers.any? %>
-    <section class="beta-offers">
-      <span class="divider">
-        <h4 class="text">Beta Trails</h4>
-      </span>
-      <p>Let us know if you're interested in any of these upcoming trails.</p>
-      <%= render @practice.beta_offers %>
-    </section>
-  <% end %>
-
   <% if @practice.promoted_unstarted_trails.any? %>
   <div class="promoted-trails">
     <h3 class="promo-message"><%= t("trails.promoted_message") %></h3>
     <% @practice.promoted_unstarted_trails.each do |trail| %>
-    <%= render "trails/incomplete_trail", trail: trail %>
+      <%= render "trails/incomplete_trail", trail: trail %>
     <% end %>
   </div>
   <% end %>

@@ -27,17 +27,5 @@
         </div>
       <% end %>
     </div>
-
-    <% unless signed_in? %>
-      <% trail.sample_video.present do |video| %>
-        <%= link_to(
-          video_auth_to_access_path(video),
-          class: "cta-button subscribe-cta light-bg",
-        ) do %>
-          <%= image_tag("github-black.svg", class: "logo", alt: "") %>
-          <%= t("trails.start_for_free") %>
-        <% end %>
-      <% end %>
-    <% end %>
   </div>
 </header>

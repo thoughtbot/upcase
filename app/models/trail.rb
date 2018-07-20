@@ -2,6 +2,9 @@ class Trail < ApplicationRecord
   extend FriendlyId
 
   include PgSearch
+
+  DEFAULT_IMAGE_URL = "https://images.thoughtbot.com/upcase/trail-title-cards/default.jpg"
+
   multisearchable against: [:name, :description], if: :published?
 
   validates :name, :description, presence: true
@@ -48,6 +51,10 @@ class Trail < ApplicationRecord
     new_step_ids.each_with_index do |step_id, index|
       steps.where(id: step_id).update_all(position: index + 1)
     end
+  end
+
+  def title_card_image
+    super.presence || DEFAULT_IMAGE_URL
   end
 
   def completeables

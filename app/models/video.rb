@@ -43,8 +43,6 @@ class Video < ApplicationRecord
   def preview
     if preview_wistia_id.present?
       Clip.new(preview_wistia_id)
-    else
-      VideoThumbnail.new(clip)
     end
   end
 
