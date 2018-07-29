@@ -59,11 +59,11 @@ $base-border: 1px solid darken($upcase-light-blue, 3%);
 
 // Shadows
 $base-content-shadow: 0 0.5rem 1.5rem rgba($havelock-blue, 0.2);
-$dark-content-shadow: 0 0.5rem 2.5rem $egyptian-blue;
+$dark-content-shadow: 0 0.5rem 2.5rem $color-red-darker;
 
 // Component specific
-$dark-button-shadow: 0 0 2.5rem $egyptian-blue;
-$modal-content-shadow: 0 0 5rem $egyptian-blue;
+$dark-button-shadow: 0 0 0.75rem $color-red-darker;
+$modal-content-shadow: 0 0 5rem $color-red-darker;
 $notice-color: $bees-wax;
 
 // Category Colors

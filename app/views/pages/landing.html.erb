@@ -170,7 +170,7 @@
         <%= image_tag "marketing/testimonial-bryan.png" %>
 
         <span>
-          Bryan Helmkamp</br>
+          <span class="testimonial__person--name">Bryan Helmkamp</span></br>
           CEO at Code Climate
         </span>
       </div>
@@ -241,7 +241,7 @@
             <%= image_tag "marketing/testimonial-matt.png" %>
 
             <span>
-              Matt Sumner</br>
+              <span class="testimonial__person--name">Matt Sumner</span></br>
               Developer at thoughtbot
             </span>
           </div>
@@ -268,7 +268,7 @@
             <%= image_tag "marketing/testimonial-ralph.png" %>
 
             <span>
-              Ralph White</br>
+              <span class="testimonial__person--name">Ralph White</span></br>
               Developer at postinvoice.com
             </span>
           </div>
@@ -277,74 +277,4 @@
     </div>
   </section>
 
-  <section class="page-section background background--upcase-logo-dark">
-    <div class="page-content flex-grid">
-      <div class="card card--one-per-line">
-        <div class="card__content">
-          <span class="card__heading">
-            Join the Upcase community.
-          </span>
-
-          <p class="card__copy">
-            <mark>
-              30-day, hassle-free money back guarantee
-            </mark>
-          </p>
-
-          <p class="card__copy">
-            For aspiring senior developers looking for battle-tested best
-            practices, a killer community, and mentorship from the right people.
-          </p>
-        </div>
-
-        <div class="card__content card__content--halves">
-          <div class="card__content">
-            <div class="plan">
-              <span class="plan__title">
-                Monthly Subscription
-              </span>
-
-              <span class="plan__cost">
-                $29
-              </span>
-
-              <span class="plan__payment-frequency">
-                per month
-              </span>
-
-              <small class="plan__closer">
-                Full access for less than $1 a day
-              </small>
-            </div>
-
-            <%= link_to(
-              "Sign Up",
-              professional_checkout_path,
-              class: "button button--on-dark"
-            )%>
-          </div>
-
-          <div class="card__content">
-            <span>Why Upcase?</span>
-
-            <ul>
-              <li>Peer &amp; expert feedback</li>
-              <li>Video tutorials</li>
-              <li>Coding exercises</li>
-              <li>Access to our GitHub repos</li>
-              <li>Community forum</li>
-              <li>Flashcard decks</li>
-              <li>New videos every week</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="page-content flex-grid">
-      <strong>
-        <%= link_to t(".have_a_team"), teams_path, class: :team %>
-      </strong>
-    </div>
-  </section>
 </main>
