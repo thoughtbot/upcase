@@ -10,7 +10,7 @@
 
   &::after {
     @include position(absolute, 0 0 null 0);
-    background-color: $blue;
+    background-color: $color-red;
     content: "";
     height: $site-header-height;
     z-index: $z-site-nav;
@@ -52,8 +52,8 @@
 
 .site-nav__menu {
   @include position(absolute, $site-header-height 0 null);
-  background-color: $blue;
-  box-shadow: 0 1rem 2rem rgba(mix($black, $blue), 0.5);
+  background-color: $color-red;
+  box-shadow: 0 1rem 2rem $color-gray-darker;
   margin-top: -200%;
   padding: 0;
   transition: margin 250ms ease-in-out;
@@ -94,8 +94,8 @@
 }
 
 .site-nav__link {
-  border-top: solid 1px darken($havelock-blue, 20%);
-  color: rgba($white, 0.9);
+  border-top: solid 1px $color-red-darkest;
+  color: $color-white;
   display: block;
   font-family: $strong-font-family;
   font-size: 1.1rem;
@@ -119,15 +119,17 @@
 }
 
 .site-nav__button {
-  background-color: $base-button-background-color;
+  background-color: $color-gray-darkest;
   border-radius: $base-border-radius;
-  box-shadow: 0 0.5rem 2rem rgba(darken($blue, 25%), 0.35);
-  color: rgba($white, 0.9);
+  box-shadow: 0 0.25rem 0.5rem $color-red-darkest;
+  color: $color-white;
   display: block;
   font-size: 1rem;
   margin: $spacing-base;
   padding: $spacing-base;
+  position: relative;
   text-align: center;
+  top: 1px;
   transition-duration: $base-duration * 2;
   transition-property: transform, color, background-color, box-shadow;
   transition-timing-function: $ease-in-out-sine;
@@ -138,13 +140,19 @@
   }
 
   &:hover {
-    color: $base-button-color;
+    color: $color-white;
     cursor: pointer;
     transform: translateY(-2px);
   }
 
-  &:active,
   &:visited {
-    color: $base-button-color;
+    color: $color-white;
+  }
+
+  &:active {
+    box-shadow: 0;
+    color: $color-white;
+    transform: translateY(0);
+    transition: none;
   }
 }
