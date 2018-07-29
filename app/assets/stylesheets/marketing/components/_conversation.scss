@@ -12,7 +12,7 @@
   border-bottom-right-radius: 1rem;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  box-shadow: 0 1rem 2rem rgba($blue, 0.125);
+  box-shadow: 0 1rem 2rem rgba($color-gray-darkest, 0.125);
   margin-left: 1rem;
   padding: $medium-spacing;
   position: relative;
@@ -27,7 +27,7 @@
 }
 
 .conversation__bubble--right {
-  background-color: $blue;
+  background-color: $color-gray-darkest;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 0;
   color: rgba($white, 0.9);
@@ -40,7 +40,7 @@
 
 .conversation__avatar {
   border-radius: 1rem;
-  box-shadow: 0 1rem 2rem rgba($blue, 0.125);
+  box-shadow: 0 1rem 2rem rgba($color-gray-darkest, 0.125);
   flex-shrink: 0;
   width: 4rem;
 
