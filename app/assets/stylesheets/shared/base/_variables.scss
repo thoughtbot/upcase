@@ -12,6 +12,22 @@ $java: #2ea49c;
 $mariner: #2155d5;
 $white: #fff;
 
+// Rebrand
+$color-blue-lightest: #FAFBFD;
+$color-blue: #4a8ae5;
+$color-gray-light: #b5b5c0;
+$color-gray-darker: #999999;
+$color-gray-darkest: #29292c;
+$color-orange-light: #FFF6EB;
+$color-orange: #FFCD8D;
+$color-orange-darker: #FFB34D;
+$color-orange-darkest: #EE6F05;
+$color-red: #ed3e44;
+$color-red-darker: #da393f;
+$color-red-darkest: #bd2329;
+$color-tan: #fcf8f2;
+$color-white: #ffffff;
+
 // Colors in action
 $action-color: $blue-de-france;
 $code-block-background-color: lighten($eclipse, 71%);
@@ -70,9 +86,9 @@ $base-border-radius: 3px;
 $site-header-height: 4.2rem;
 
 // Component specific
-$base-button-background-color: $caribbean-green;
+$base-button-background-color: $color-red;
 $base-button-color: $white;
-$base-button-shadow: 0 0 1.5rem rgba($caribbean-green, 0.5);
+$base-button-shadow: 0 0 1.5rem rgba($color-red-darker, 0.5);
 
 // Unicode characters
 $unicode-down-triangle: "\25BE";

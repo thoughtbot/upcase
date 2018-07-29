@@ -11,9 +11,12 @@
 }
 
 .background--upcase-logo-light {
+  border-bottom: 1px solid #ecf1ff;
+
   &::before {
-    background-color: $blue;
+    background-color: $color-blue-lightest;
     background-image: asset-url("marketing/upcase-background.svg");
+    background-size: 25%;
   }
 }
 
@@ -61,7 +64,7 @@
 
 .background--dark-gradient-cover-top-half {
   &::after {
-    background: linear-gradient(rgba($blue, 1), rgba($blue, 0));
+    background: linear-gradient(rgba(#ffffff, 1), rgba(#FAFBFD, 0));
   }
 }
 

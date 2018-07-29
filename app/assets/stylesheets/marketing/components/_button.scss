@@ -1,9 +1,9 @@
 .button {
-  background-color: $base-button-background-color;
-  border: 0;
+  background-color: $color-red;
+  border: 1px solid $color-red-darkest;
   border-radius: $base-border-radius;
   box-shadow: $base-button-shadow;
-  color: $base-button-color;
+  color: $color-white;
   display: inline-block;
   font-family: $strong-font-family;
   font-size: 1.25rem;
@@ -16,14 +16,22 @@
   transition-timing-function: $ease-in-out-sine;
 
   &:hover {
-    box-shadow: 0 4px 1.5rem rgba($caribbean-green, 0.7);
-    color: $base-button-color;
+    box-shadow: 0 4px 1.25rem $color-red-darker;
+    color: $color-white;
     cursor: pointer;
     transform: translateY(-4px);
   }
 
   &:active {
-    color: $base-button-color;
+    background-color: $color-red-darker;
+    box-shadow: 0;
+    color: $color-white;
+    transform: translateY(0);
+    transition: none;
+  }
+
+  &:focus {
+      color: $color-white;
   }
 }
 
@@ -32,9 +40,27 @@
 }
 
 .button--on-dark {
-  box-shadow: $dark-button-shadow;
+  box-shadow: $color-red-darker;
 
   &:hover {
-    box-shadow: 0 4px 2.5rem $egyptian-blue;
+    box-shadow: 0 4px 1.5rem darken($color-red-darker, 20%);
+  }
+}
+
+.button--on-red {
+  background-color: $color-gray-darkest;
+  border-radius: $base-border-radius;
+  box-shadow: 0 0.25rem 0.5rem $color-red-darkest;
+  color: $color-white;
+
+  &:hover {
+    background-color: $color-gray-darkest;
+    box-shadow: 0 0.5rem 1rem $color-red-darkest;
+  }
+
+  &:active {
+    box-shadow: 0;
+    color: $color-white;
+    transform: translateY(0);
   }
 }
