@@ -3,9 +3,10 @@ class Trail < ApplicationRecord
 
   include PgSearch
 
-  DEFAULT_IMAGE_URL = "https://images.thoughtbot.com/upcase/trail-title-cards/default.jpg"
+  DEFAULT_IMAGE_URL =
+    "https://images.thoughtbot.com/upcase/trail-title-cards/default.jpg".freeze
 
-  multisearchable against: [:name, :description], if: :published?
+  multisearchable against: %i{name description}, if: :published?
 
   validates :name, :description, presence: true
 
@@ -25,7 +26,7 @@ class Trail < ApplicationRecord
     source_type: "Exercise"
   has_many :videos, through: :steps, source: :completeable, source_type: "Video"
 
-  friendly_id :name, use: [:slugged, :finders]
+  friendly_id :name, use: %i{slugged finders}
 
   def self.accessible_without_subscription?
     false
