@@ -113,7 +113,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    commander (4.4.5)
+    commander (4.4.6)
       highline (~> 1.7.2)
     concurrent-ruby (1.0.5)
     crack (0.4.3)
