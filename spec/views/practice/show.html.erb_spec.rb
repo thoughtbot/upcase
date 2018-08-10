@@ -1,28 +1,6 @@
 require "rails_helper"
 
 describe "practice/show.html" do
-  context "when there are beta offers to display" do
-    it "renders the beta offers" do
-      stub_user_access
-      beta_offer = build_stubbed(:beta_offer, name: "Great beta offer")
-
-      render_show beta_offers: [beta_offer]
-
-      expect(rendered).to have_beta_offers
-      expect(rendered).to have_content("Great beta offer")
-    end
-  end
-
-  context "when there are no beta offers to display" do
-    it "doesn't render the beta offers" do
-      stub_user_access
-
-      render_show beta_offers: []
-
-      expect(rendered).not_to have_beta_offers
-    end
-  end
-
   context "when there is a promoted trail that the user has not started" do
     it "renders the promoted trail at the top with a promo message" do
       trail = build_stubbed_promoted_trail_with_progress
@@ -47,13 +25,11 @@ describe "practice/show.html" do
 
   context "when a user does not have an active subscription" do
     it "renders a cta to subscribe" do
-      stub_user_access(subscriber: false)
+      view_stubs(:github_auth_path).and_return("/auth/github")
 
       render_show
 
-      expect(rendered).to(
-        have_content(I18n.t("trails.subscribe_cta")),
-      )
+      expect(rendered).to have_content(I18n.t("trails.sign_up_cta"))
     end
   end
 

@@ -92,17 +92,6 @@ describe Video do
 
       expect(Clip).to have_received(:new).with(video.preview_wistia_id)
     end
-
-    it 'returns a thumbnail if preview_wistia_id is not set' do
-      video = Video.new
-      clip = double("Clip", wistia_id: double)
-      allow(Clip).to receive(:new).and_return(clip)
-      allow(VideoThumbnail).to receive(:new)
-
-      video.preview
-
-      expect(VideoThumbnail).to have_received(:new).with(clip)
-    end
   end
 
   context "watchable_name" do
