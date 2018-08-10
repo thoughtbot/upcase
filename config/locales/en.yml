@@ -76,6 +76,7 @@ en:
       no_trail: No trail found for the exercise.
   flashcards:
     hidden_answer:
+      all-flashcards: Back to all flaschards
       next-flashcard: next flashcard
       next-flashcard_html: next flashcard &rarr;
       reveal-answer: Reveal Answer
