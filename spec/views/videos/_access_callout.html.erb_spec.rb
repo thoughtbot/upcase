@@ -44,11 +44,4 @@ describe "videos/_access_callout" do
     allow(view).to receive(:signed_out?).and_return(signed_out)
     render template: "videos/_access_callout", locals: { video: video }
   end
-
-  def have_subscribe_cta
-    have_link(
-      "Subscribe Now",
-      href: new_checkout_path(:professional),
-    )
-  end
 end

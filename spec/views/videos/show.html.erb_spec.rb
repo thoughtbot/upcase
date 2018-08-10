@@ -98,28 +98,6 @@ describe "videos/show" do
     end
   end
 
-  describe "trail progress bar" do
-    context "when the video is part of a trail" do
-      it "displays the progress bar" do
-        video = create_video_on_a_trail
-
-        render_video video
-
-        expect(rendered).to have_progress_bar
-      end
-    end
-
-    context "when the video is part of a show, not a trail" do
-      it "does not display a trail progress bar" do
-        video = create(:video, watchable: create(:show))
-
-        render_video video
-
-        expect(rendered).not_to have_progress_bar
-      end
-    end
-  end
-
   describe "mark as complete button" do
     context "when the user is signed in" do
       it "displays the button" do
@@ -231,10 +209,6 @@ describe "videos/show" do
 
   def have_seek_buttons
     have_css(".seek-button-template")
-  end
-
-  def have_progress_bar
-    have_css(".trails-progress")
   end
 
   def have_access_callout

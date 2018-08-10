@@ -1,0 +1,27 @@
+<span class="divider">
+  <h4 class="text">Video</h4>
+</span>
+
+<div class="video-player">
+  <%= render video.clip %>
+
+  <div class="actions">
+    <%= render "clips/download_links", clip: video.clip %>
+
+    <div class="mark-as-complete">
+      <%= form_tag video_completions_path(video) do %>
+        <%= submit_tag t("videos.show.mark-as-complete"), class:"small-button" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% if video.part_of_trail? %>
+  <%= render "trails/progress",
+    trail: TrailWithProgress.new(
+      video.trail,
+      user: current_user,
+      status_finder: StatusFinder.new(user: current_user),
+    )
+  %>
+<% end %>

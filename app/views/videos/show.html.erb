@@ -20,40 +20,10 @@
   </header>
 <% end %>
 
-<% if signed_out? %>
-  <%= render "videos/access_callout", video: @video %>
-<% end %>
-
-<span class="divider">
-  <h4 class="text">Video</h4>
-</span>
-
-<div class="video-player">
-  <% if signed_in? %>
-    <%= render @video.clip %>
-
-    <div class="actions">
-      <%= render "clips/download_links", clip: @video.clip %>
-
-      <div class="mark-as-complete">
-        <%= form_tag video_completions_path(@video) do %>
-          <%= submit_tag t("videos.show.mark-as-complete"), class:"small-button" %>
-        <% end %>
-      </div>
-    </div>
-  <% else %>
-    <%= render "preview_clip_or_image", video: @video %>
-  <% end %>
-</div>
-
-<% if @video.part_of_trail? && signed_in? %>
-  <%= render "trails/progress",
-    trail: TrailWithProgress.new(
-      @video.trail,
-      user: current_user,
-      status_finder: StatusFinder.new(user: current_user),
-    )
-  %>
+<% if signed_in? %>
+  <%= render "video_player", video: @video %>
+<% else %>
+  <%= render "video_player_placeholder", video: @video %>
 <% end %>
 
 <% if @video.has_notes? %>
