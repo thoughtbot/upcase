@@ -18,21 +18,11 @@ module TrailsHelper
   end
 
   def trail_call_to_action(trail)
-    if current_user.subscriber?
+    if signed_in?
       start_trail_link(trail.first_completeable)
-    elsif current_user.sampler?
-      or_visit_trail(trail) { |video| start_trail_link(video) }
     else
-      or_visit_trail(trail) { |video| auth_to_access_button(video) }
-    end
-  end
-
-  def or_visit_trail(trail)
-    trail.sample_video.map { |video|
-      yield video
-    }.unwrap_or(
       visit_trail_link(trail)
-    )
+    end
   end
 
   def start_trail_link(url)

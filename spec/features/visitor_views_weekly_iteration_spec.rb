@@ -20,7 +20,7 @@ feature "Visitor" do
 
     expect(page).to have_content(video.notes)
     expect(page).to have_video_preview_callout
-    expect(page).to have_subscribe_cta
+    expect(page).to have_auth_cta(video)
   end
 
   scenario "navigates directly to a video and signs in" do
@@ -40,6 +40,7 @@ feature "Visitor" do
     create(
       :video,
       :published,
+      :with_preview,
       name: name_with_unsafe_character,
       watchable: show,
     )
@@ -50,17 +51,13 @@ feature "Visitor" do
   end
 
   def have_video_preview_callout
-    have_content I18n.t("videos.show.access_callout_for_preview_text")
+    have_content I18n.t("videos.show.auth_to_access_with_preview_callout_text")
   end
 
-  def have_subscribe_cta
+  def have_auth_cta(video)
     have_link(
-      I18n.t("videos.show.access_callout_for_preview_button"),
-      href: professional_checkout_path,
+      I18n.t("videos.show.auth_to_access_button_text"),
+      href: video_auth_to_access_path(video),
     )
-  end
-
-  def professional_checkout_path
-    new_checkout_path(plan: Plan::PROFESSIONAL_SKU)
   end
 end
