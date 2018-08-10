@@ -1,8 +1,4 @@
 <figure class="tile weekly-iteration <%= topic_slugs(video) %> <%= video.status_class %>">
-  <% if video.accessible_without_subscription? && marketable_user? %>
-    <span class="free-tag">Free</span>
-  <% end %>
-
   <div class="video-overview title-tags">
     <%= link_to video_path(video) do %>
       <h1 class="video-text"><%= video.name %></h1>
