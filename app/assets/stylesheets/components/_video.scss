@@ -115,6 +115,7 @@
 
 .video-player {
   margin-bottom: $large-spacing;
+  position: relative;
 
   @include body-mobile {
     margin-bottom: $base-spacing;
@@ -143,6 +144,20 @@
 
     @include body-mobile {
       align-items: flex-start;
+    }
+  }
+
+  .video-placeholder {
+    .title-card img {
+      filter: blur(10px);
+      width: 100%;
+    }
+
+    .access-callout {
+      left: 0;
+      margin: 6em 4em;
+      position:absolute;
+      top: 0;
     }
   }
 }

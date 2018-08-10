@@ -1,7 +1,11 @@
 <% if video.preview.present? %>
   <%= render video.preview, name: video.name %>
+  <%= render "videos/access_callout", video: video %>
 <% elsif video.part_of_trail? %>
-  <div class="title-card">
-    <%= image_tag video.trail.title_card_image %>
+  <div class="video-placeholder">
+    <div class="title-card">
+      <%= image_tag video.trail.title_card_image %>
+    </div>
+    <%= render "videos/access_callout", video: video %>
   </div>
 <% end %>
