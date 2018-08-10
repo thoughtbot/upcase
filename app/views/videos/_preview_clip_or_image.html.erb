@@ -1,0 +1,7 @@
+<% if video.preview.present? %>
+  <%= render video.preview, name: video.name %>
+<% elsif video.part_of_trail? %>
+  <div class="title-card">
+    <%= image_tag video.trail.title_card_image %>
+  </div>
+<% end %>
