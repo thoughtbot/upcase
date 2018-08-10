@@ -24,7 +24,7 @@
     <% if flashcard.next %>
       <%= link_to t(".next-flashcard_html"), deck_flashcard_path(flashcard.deck, flashcard.next), class: "next-flashcard small-button" %>
     <% else %>
-      <%= link_to t(".all-flashcards"), decks_path, class: "next-flashcard small-button" %>
+      <%= link_to t(".next-flashcard_html"), deck_results_path(flashcard.deck), class: "next-flashcard small-button" %>
     <% end %>
   <% end %>
 </div>
