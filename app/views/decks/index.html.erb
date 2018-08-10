@@ -1,4 +1,4 @@
-<% if signed_out? %>
+<% unless signed_in? %>
   <div class="access-callout subscription-required" data-role="subscribe_cta">
     <p><%= t("decks.auth_to_access_cta") %></p>
 
