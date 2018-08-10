@@ -2,7 +2,11 @@ class Trail < ApplicationRecord
   extend FriendlyId
 
   include PgSearch
-  multisearchable against: [:name, :description], if: :published?
+
+  DEFAULT_IMAGE_URL =
+    "https://images.thoughtbot.com/upcase/trail-title-cards/default.jpg".freeze
+
+  multisearchable against: %i{name description}, if: :published?
 
   validates :name, :description, presence: true
 
@@ -22,7 +26,7 @@ class Trail < ApplicationRecord
     source_type: "Exercise"
   has_many :videos, through: :steps, source: :completeable, source_type: "Video"
 
-  friendly_id :name, use: [:slugged, :finders]
+  friendly_id :name, use: %i{slugged finders}
 
   def self.accessible_without_subscription?
     false
@@ -48,6 +52,10 @@ class Trail < ApplicationRecord
     new_step_ids.each_with_index do |step_id, index|
       steps.where(id: step_id).update_all(position: index + 1)
     end
+  end
+
+  def title_card_image
+    super.presence || DEFAULT_IMAGE_URL
   end
 
   def completeables

@@ -42,22 +42,22 @@ describe "videos/show" do
     expect(subject_block).to have_link(show.name, href: show_path(show))
   end
 
-  describe "preview notice and subscribe CTA" do
-    context "the user is not a subscriber" do
+  describe "preview notice and CTA" do
+    context "the user is signed out" do
       it "displays the auth to access CTA for the video" do
         video = build_stubbed(:video, :free_sample)
 
-        render_video video, subscriber: false
+        render_video video, signed_in: false
 
         expect(rendered).to have_access_callout
       end
     end
 
-    context "the user is a subscriber" do
-      it "does not display the notice or subscribe CTA" do
+    context "the user is signed in" do
+      it "does not display the notice or sign in CTA" do
         video = build_stubbed(:video, watchable: build_stubbed(:show))
 
-        render_video video, subscriber: true
+        render_video video, signed_in: true
 
         expect(rendered).not_to have_access_callout
       end
@@ -65,77 +65,55 @@ describe "videos/show" do
   end
 
   describe "video player" do
-    context "when the user has access to the video" do
+    context "when the user is signed in" do
       it "displays the full video" do
         video = build_stubbed(:video)
 
-        render_video video, has_access: true
+        render_video video, signed_in: true
 
         expect(rendered).to be_displaying_full_video(video)
       end
     end
 
-    context "when the user does not have access to the video" do
+    context "when the user is signed out" do
       context "when the video has a preview clip available" do
         it "displays a video preview" do
           video = build_stubbed(:video, preview_wistia_id: "preview-123")
 
-          render_video video, has_access: false
+          render_video video, signed_in: false
 
           expect(rendered).to be_displaying_preview(video)
         end
       end
 
-      context "when the video does not have a preview clip available" do
-        it "displays a preview image" do
-          video = build_stubbed(:video, preview_wistia_id: "")
+      context "when the video is part of a trail and does not have a preview" do
+        it "displays the title card image" do
+          video = create_video_on_a_trail
 
-          render_video video, has_access: false
+          render_video video, signed_in: false
 
-          expect(rendered).to have_video_preview_thumbnail(video)
+          expect(rendered).to have_video_title_card_image
         end
       end
     end
   end
 
-  describe "trail progress bar" do
-    context "when the video is part of a trail" do
-      it "displays the progress bar" do
-        video = create_video_on_a_trail
-
-        render_video video
-
-        expect(rendered).to have_progress_bar
-      end
-    end
-
-    context "when the video is part of a show, not a trail" do
-      it "does not display a trail progress bar" do
-        video = create(:video, watchable: create(:show))
-
-        render_video video
-
-        expect(rendered).not_to have_progress_bar
-      end
-    end
-  end
-
   describe "mark as complete button" do
-    context "when the user has_access to the full video" do
+    context "when the user is signed in" do
       it "displays the button" do
         video = build_stubbed(:video)
 
-        render_video video, has_access: true
+        render_video video, signed_in: true
 
         expect(rendered).to have_mark_as_complete_button
       end
     end
 
-    context "when the user does not have access to the full video" do
+    context "when the user is signed out" do
       it "does not display the button" do
         video = build_stubbed(:video)
 
-        render_video video, has_access: false
+        render_video video, signed_in: false
 
         expect(rendered).not_to have_mark_as_complete_button
       end
@@ -188,21 +166,21 @@ describe "videos/show" do
   end
 
   describe "seek markers" do
-    context "when the user has access to the video" do
+    context "when the user is signed in" do
       it "renders the markers" do
         video = build_stubbed(:video)
 
-        render_video video, has_access: true
+        render_video video, signed_in: true
 
         expect(rendered).to have_seek_buttons
       end
     end
 
-    context "when the user does not have access to the video" do
+    context "when the user is signed out" do
       it "does not render the markers" do
         video = build_stubbed(:video)
 
-        render_video video, has_access: false
+        render_video video, signed_in: false
 
         expect(rendered).not_to have_seek_buttons
       end
@@ -233,20 +211,16 @@ describe "videos/show" do
     have_css(".seek-button-template")
   end
 
-  def have_progress_bar
-    have_css(".trails-progress")
-  end
-
   def have_access_callout
-    have_css ".access-callout"
+    have_css(".access-callout")
   end
 
   def be_displaying_video_with_id(video_id)
     have_css("p[data-wistia-id='#{video_id}']")
   end
 
-  def have_video_preview_thumbnail(video)
-    have_css(".thumbnail[data-wistia-id='#{video.wistia_id}']")
+  def have_video_title_card_image
+    have_css(".title-card")
   end
 
   def head_content
@@ -271,13 +245,14 @@ describe "videos/show" do
     end
   end
 
-  def render_video(video, has_access: true, subscriber: false)
-    assign :video, video
+  def render_video(video, signed_in: true)
+    assign(:video, video)
     user = build_stubbed(:user)
-    allow(user).to receive(:subscriber?).and_return(subscriber)
-    allow(view).to receive(:current_user_has_access_to?).and_return(has_access)
+    allow(user).to receive(:subscriber?).and_return(false)
     allow(view).to receive(:current_user).and_return(user)
-    allow(view).to receive(:signed_out?).and_return(false)
+    allow(view).to receive(:current_user_has_access_to?).and_return(false)
+    allow(view).to receive(:signed_in?).and_return(signed_in)
+    allow(view).to receive(:signed_out?).and_return(!signed_in)
     render template: "videos/show"
   end
 end
