@@ -1,6 +1,4 @@
 class FlashcardsController < ApplicationController
-  before_action :require_login
-
   def show
     @deck = find_deck
     @flashcard = find_flashcard

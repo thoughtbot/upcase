@@ -1,9 +1,7 @@
 class DecksController < ApplicationController
-  before_action :require_login
-
   def index
     @decks = Deck.published.most_recent_first
-    @flashcards_to_review = FlashcardsNeedingReviewQuery.new(current_user).run
+    @flashcards_to_review = flashcards_to_review
   end
 
   def show
@@ -14,5 +12,13 @@ class DecksController < ApplicationController
 
   def deck
     Deck.find(params[:id])
+  end
+
+  def flashcards_to_review
+    if signed_in?
+      FlashcardsNeedingReviewQuery.new(current_user).run
+    else
+      Flashcard.none
+    end
   end
 end

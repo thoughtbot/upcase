@@ -1,3 +1,14 @@
+<% if signed_out? %>
+  <div class="access-callout subscription-required" data-role="subscribe_cta">
+    <p><%= t("decks.auth_to_access_cta") %></p>
+
+    <%= link_to github_auth_path, class: "pull-right cta-button subscribe-cta light-bg" do %>
+      <%= image_tag("github-black.svg", class: "logo", alt: "") %>
+      <%= t("decks.auth_to_access_link")  %>
+    <% end %>
+  </div>
+<% end %>
+
 <h1 class="topic-label"><%= t(".complete") %></h1>
 <h3 class="deck-title"><%= t(".title", title: @deck.title) %></h3>
 
