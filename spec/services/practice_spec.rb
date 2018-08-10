@@ -67,20 +67,8 @@ describe Practice do
     end
   end
 
-  describe "#beta_offers" do
-    it "returns the list of beta offers" do
-      beta_offer = create(:beta_offer)
-      beta_offers = Beta::Offer.all
-      practice = build_practice(beta_offers: beta_offers)
-
-      result = practice.beta_offers
-
-      expect(result).to eq([beta_offer])
-    end
-  end
-
-  def build_practice(trails: [], beta_offers: [])
-    Practice.new(trails: trails, beta_offers: beta_offers)
+  def build_practice(trails: [])
+    Practice.new(trails: trails)
   end
 
   def build_trail(
