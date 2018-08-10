@@ -48,17 +48,6 @@ describe "layouts/_header_application_links.html.erb" do
     end
   end
 
-  context "when the user isn't subscribed" do
-    it "shows a membership link" do
-      render(
-        signed_in: true,
-        current_user_has_active_subscription: false
-      )
-
-      expect(rendered).to have_subscribe_checkout_link
-    end
-  end
-
   context "when the user has a subscription" do
     it "does not show a membership link" do
       render(
