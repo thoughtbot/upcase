@@ -69,8 +69,8 @@ en:
         and anti-patterns that experts know and intermediates ought to learn.
       subhead: Become a better programmer, even if you've only got five minutes.
       title: Flashcards
-    subscribe_cta: We hope you're enjoying these flashcard decks. Ready to dive into all the other great content?
-    subscribe_link: Subscribe Now
+    auth_to_access_cta: We hope you're enjoying these flashcard decks. Ready to dive in to all the other great content?
+    auth_to_access_link: Sign In with GitHub for Free Access
   exercist_trails:
     show:
       no_trail: No trail found for the exercise.
@@ -289,9 +289,8 @@ en:
       heading:
         online: Online video tutorial
   trails:
-    subscribe_cta: Some of these trails are locked because you don't yet have a
-      subscription.  Subscribe to Upcase to start leveling up.
-    subscribe_link: Subscribe Now
+    sign_up_cta: Join Upcase for free to keep track of your progress and start leveling up.
+    sign_up_link: Sign Up Now
     start_for_free: Start Course for Free by Signing In with GitHub
     other_resources: Use these resources for reference and additional practice
     thoughtbot_resources: Use these thoughtbot resources first
@@ -321,19 +320,14 @@ en:
   videos:
     show:
       mark-as-complete: Mark as Complete
-      auth_to_access_callout_text: This video is a preview. Want to see the full-length video right now for free?
+      auth_to_access_with_preview_callout_text: This video is a preview. Want to see the full-length video right now for free?
+      auth_to_access_without_preview_callout_text: Want to see the full-length video right now for free?
       auth_to_access_button_text: Sign In with GitHub for Free Access
-      access_callout_for_preview_text: This video is only a short sample, but you can access the full version and all our other great content by subscribing.
-      access_callout_for_preview_button: Subscribe Now
-      access_callout_for_sample_text: We hope you're enjoying this full-length sample video. Ready to dive into all the other great content?
-      access_callout_for_sample_button: Subscribe Now
     seek_buttons:
       jump-to-topic-in-video: Jump to Topic In Video
   watchables:
     preview:
-      subscribe_cta: This video is a preview.  Subscribe now to access the
-        full-length video, and all other videos.
-      subscribe_link: Subscribe Now
+      auth_to_access_button_text: Sign In with GitHub for Free Access
   dynamic_page_titles:
     show: "%{name} | Video Lessons by thoughtbot"
     topic: "Learn %{name} | Online Courses by thoughtbot"

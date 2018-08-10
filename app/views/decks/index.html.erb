@@ -1,7 +1,12 @@
-<% unless current_user.subscriber? %>
-  <%= render "subscribe_cta",
-    description: t("decks.subscribe_cta"),
-    button_text: t("decks.subscribe_link") %>
+<% unless signed_in? %>
+  <div class="access-callout subscription-required" data-role="subscribe_cta">
+    <p><%= t("decks.auth_to_access_cta") %></p>
+
+    <%= link_to github_auth_path, class: "pull-right cta-button subscribe-cta light-bg" do %>
+      <%= image_tag("github-black.svg", class: "logo", alt: "") %>
+      <%= t("decks.auth_to_access_link")  %>
+    <% end %>
+  </div>
 <% end %>
 
 <section class="root-decks">

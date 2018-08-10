@@ -68,6 +68,25 @@ describe Trail do
     end
   end
 
+  describe "#title_card_image" do
+    it "returns a default image if none is present" do
+      trail = create(:trail, title_card_image: "")
+
+      image_url = trail.title_card_image
+
+      expect(image_url).to eq Trail::DEFAULT_IMAGE_URL
+    end
+
+    it "returns the title card image if it is found" do
+      title_card_image = "http://thoughtbot.com/image"
+      trail = create(:trail, title_card_image: title_card_image)
+
+      image_url = trail.title_card_image
+
+      expect(image_url).to eq title_card_image
+    end
+  end
+
   describe "#find" do
     it "finds its to_param value" do
       trail = create(:trail)
