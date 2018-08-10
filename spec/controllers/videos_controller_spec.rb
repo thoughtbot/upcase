@@ -26,37 +26,13 @@ describe VideosController do
         end
       end
 
-      context "when the user is a 'sampler'" do
-        context "and the video is a free sample" do
-          it "renders the view" do
-            stub_current_user_with(build_stubbed(:user))
-            video = create_video_on_trail(free_sample: true)
-
-            get :show, params: { id: video }
-
-            expect(response).to render_the_show_view
-          end
-        end
-
-        context "and the video is not a free sample" do
-          it "redirects with 'login required' notice" do
-            stub_current_user_with(build_stubbed(:user))
-            video = create_video_on_trail(free_sample: false)
-
-            get :show, params: { id: video }
-
-            expect(response).to redirect_to_sign_in_path
-          end
-        end
-      end
-
       context "when the user is logged out" do
-        it "redirects" do
+        it "renders the view" do
           video = create_video_on_trail
 
           get :show, params: { id: video }
 
-          expect(response).to redirect_to_sign_in_path
+          expect(response).to render_the_show_view
         end
       end
     end

@@ -13,10 +13,8 @@ class VideosController < ApplicationController
   def render_or_redirect
     if params[:id] != @video.slug
       redirect_to video_path(@video.slug), status: 301
-    elsif current_user_has_access_to?(@video) || weekly_iteration_video?
-      render
     else
-      redirect_to sign_in_path, notice: I18n.t("authenticating.login_required")
+      render
     end
   end
 
