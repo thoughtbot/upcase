@@ -3,10 +3,7 @@ require "rails_helper"
 describe "decks/index.html.erb" do
   context "when the current_user is a subscriber" do
     it "doesn't render a cta" do
-      user = build_stubbed(:user)
-      allow(user).to receive(:subscription).
-        and_return(build_stubbed(:subscription))
-      allow(view).to receive(:current_user).and_return(user)
+      allow(view).to receive(:signed_in?).and_return(true)
       stub_translations
       assign(:decks, build_stubbed_list(:deck, 2))
 
@@ -18,8 +15,8 @@ describe "decks/index.html.erb" do
 
   context "when the current_user is not a subscriber" do
     it "renders a cta" do
-      user = build_stubbed(:user)
-      allow(view).to receive(:current_user).and_return(user)
+      allow(view).to receive(:signed_in?).and_return(false)
+      allow(view).to receive(:github_auth_path).and_return("/auth/github")
       stub_translations
       assign(:decks, build_stubbed_list(:deck, 2))
 
