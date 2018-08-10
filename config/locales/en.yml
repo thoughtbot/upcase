@@ -327,9 +327,7 @@ en:
       jump-to-topic-in-video: Jump to Topic In Video
   watchables:
     preview:
-      subscribe_cta: This video is a preview.  Subscribe now to access the
-        full-length video, and all other videos.
-      subscribe_link: Subscribe Now
+      auth_to_access_button_text: Sign In with GitHub for Free Access
   dynamic_page_titles:
     show: "%{name} | Video Lessons by thoughtbot"
     topic: "Learn %{name} | Online Courses by thoughtbot"
