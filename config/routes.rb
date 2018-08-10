@@ -1,6 +1,8 @@
 # NOTE: There are several rewrite rules defined in
 # config/initializers/rack_rewrite.rb which run before these routes.
 Rails.application.routes.draw do
+  get "/", to: redirect("/upcase")
+
   scope "upcase" do
     root to: "marketing#show"
 
