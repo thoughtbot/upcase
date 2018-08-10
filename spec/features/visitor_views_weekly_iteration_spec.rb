@@ -29,6 +29,7 @@ feature "Visitor" do
     desired_video_path = video_path(video)
 
     visit desired_video_path
+
     click_link "Sign In"
     click_link "Sign in with GitHub"
 
