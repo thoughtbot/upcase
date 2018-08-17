@@ -42,23 +42,23 @@ FactoryBot.define do
 
   factory :beta_offer, class: "Beta::Offer" do
     name
-    active true
-    description "A great trail"
+    active { true }
+    description { "A great trail" }
   end
 
   factory :beta_reply, class: "Beta::Reply" do
     association :offer, factory: :beta_offer
     user
-    accepted true
+    accepted { true }
   end
 
   factory :coupon do
     transient do
       code
-      amount_off 2500
-      duration "forever"
-      duration_in_months nil
-      percent_off nil
+      amount_off { 2500 }
+      duration { "forever" }
+      duration_in_months { nil }
+      percent_off { nil }
     end
 
     initialize_with { new(code) }
@@ -76,92 +76,92 @@ FactoryBot.define do
   end
 
   factory :note do
-    body 'Default note body'
+    body { 'Default note body' }
     user
     contributor { user }
 
     trait :current_week do
-      created_at Time.zone.local(2013, 'aug', 5)
+      created_at { Time.zone.local(2013, 'aug', 5) }
     end
   end
 
   factory :product, traits: [:active], class: "Show" do
     after(:stub) { |product| product.slug = product.name.parameterize }
-    description 'Solve 8-Queens over and over again'
+    description { 'Solve 8-Queens over and over again' }
     tagline
 
     trait :active do
-      active true
+      active { true }
     end
 
     trait :inactive do
-      active false
+      active { false }
     end
 
     trait :promoted do
-      promoted true
+      promoted { true }
     end
 
     name { generate(:name) }
-    sku 'TEST'
+    sku { 'TEST' }
 
     factory :show, class: 'Show' do
       factory :the_weekly_iteration do
-        name Show::THE_WEEKLY_ITERATION
+        name { Show::THE_WEEKLY_ITERATION }
       end
     end
 
     factory :repository, class: 'Repository' do
-      github_repository "thoughtbot/upcase"
-      github_url "https://github.com/thoughtbot/upcase"
+      github_repository { "thoughtbot/upcase" }
+      github_url { "https://github.com/thoughtbot/upcase" }
     end
   end
 
   factory :plan do
-    name I18n.t("shared.subscription.name")
-    price_in_dollars 99
-    sku Plan::PROFESSIONAL_SKU
-    short_description 'A great Subscription'
-    description 'A long description'
-    includes_trails true
+    name { I18n.t("shared.subscription.name") }
+    price_in_dollars { 99 }
+    sku { Plan::PROFESSIONAL_SKU }
+    short_description { 'A great Subscription' }
+    description { 'A long description' }
+    includes_trails { true }
 
     factory :basic_plan do
-      sku Plan::THE_WEEKLY_ITERATION_SKU
-      includes_trails false
-      includes_forum false
-      includes_repositories false
+      sku { Plan::THE_WEEKLY_ITERATION_SKU }
+      includes_trails { false }
+      includes_forum { false }
+      includes_repositories { false }
     end
 
     factory :discounted_annual_plan do
-      sku Plan::DISCOUNTED_ANNUAL_PLAN_SKU
-      annual true
+      sku { Plan::DISCOUNTED_ANNUAL_PLAN_SKU }
+      annual { true }
     end
 
     trait :featured do
-      featured true
+      featured { true }
     end
 
     trait :includes_repositories do
-      includes_repositories true
+      includes_repositories { true }
     end
 
     trait :no_repositories do
-      includes_repositories false
+      includes_repositories { false }
     end
 
     trait :team do
-      price_in_dollars 89
-      name "Upcase for Teams"
-      sku Plan::TEAM_SKU
-      includes_team true
-      minimum_quantity 3
+      price_in_dollars { 89 }
+      name { "Upcase for Teams" }
+      sku { Plan::TEAM_SKU }
+      includes_team { true }
+      minimum_quantity { 3 }
     end
 
     trait :annual do
-      name "#{I18n.t("shared.subscription.name")} (Yearly)"
-      price_in_dollars 990
-      sku "professional-yearly"
-      annual true
+      name { "#{I18n.t("shared.subscription.name")} (Yearly)" }
+      price_in_dollars { 990 }
+      sku { "professional-yearly" }
+      annual { true }
     end
 
     trait :with_annual_plan do
@@ -188,7 +188,7 @@ FactoryBot.define do
     github_username
     invitation
     name
-    password 'secret'
+    password { 'secret' }
 
     initialize_with do
       new(invitation: invitation, attributes: attributes.except(:invitation))
@@ -196,7 +196,7 @@ FactoryBot.define do
   end
 
   factory :team, class: 'Team' do
-    name 'Google'
+    name { 'Google' }
     association :subscription, factory: :team_subscription
   end
 
@@ -216,10 +216,10 @@ FactoryBot.define do
   factory :topic do
     name
     page_title { "Learn #{name}" }
-    summary 'short yet descriptive'
+    summary { 'short yet descriptive' }
 
     trait :explorable do
-      explorable true
+      explorable { true }
     end
 
     after :stub do |topic|
@@ -228,31 +228,31 @@ FactoryBot.define do
   end
 
   factory :completion do
-    trail_object_id '2f720eaa8bcd602a7dc731feb224ff99bb85a03c'
-    trail_name 'Git'
+    trail_object_id { '2f720eaa8bcd602a7dc731feb224ff99bb85a03c' }
+    trail_name { 'Git' }
     user
 
     trait :previous_week do
-      created_at Time.zone.local(2013, 'jul', 29)
+      created_at { Time.zone.local(2013, 'jul', 29) }
     end
 
     trait :current_week do
-      created_at Time.zone.local(2013, 'aug', 5)
+      created_at { Time.zone.local(2013, 'aug', 5) }
     end
   end
 
   factory :user do
     email
     name
-    password 'password'
+    password { 'password' }
     github_username
 
     transient do
-      subscription nil
+      subscription { nil }
     end
 
     factory :admin do
-      admin true
+      admin { true }
       with_subscription
     end
 
@@ -264,15 +264,15 @@ FactoryBot.define do
       end
 
       trait :onboarded do
-        completed_welcome true
+        completed_welcome { true }
       end
 
       trait :needs_onboarding do
-        completed_welcome false
+        completed_welcome { false }
       end
 
       trait :admin do
-        admin true
+        admin { true }
       end
     end
 
@@ -282,17 +282,17 @@ FactoryBot.define do
 
     trait :with_github_auth do
       github_username
-      auth_provider 'github'
-      auth_uid 1
+      auth_provider { 'github' }
+      auth_uid { 1 }
     end
 
     trait :with_stripe do
-      stripe_customer_id 'cus12345'
+      stripe_customer_id { 'cus12345' }
     end
 
     trait :with_subscription do
       with_github
-      stripe_customer_id 'cus12345'
+      stripe_customer_id { 'cus12345' }
 
       transient do
         plan { create(:plan) }
@@ -337,7 +337,7 @@ FactoryBot.define do
 
     trait :with_basic_subscription do
       with_github
-      stripe_customer_id 'cus12345'
+      stripe_customer_id { 'cus12345' }
 
       after :create do |instance|
         plan = create(:basic_plan)
@@ -347,7 +347,7 @@ FactoryBot.define do
 
     trait :with_inactive_subscription do
       with_github
-      stripe_customer_id "cus12345"
+      stripe_customer_id { "cus12345" }
 
       after :create do |instance|
         instance.subscriptions <<
@@ -357,7 +357,7 @@ FactoryBot.define do
 
     trait :with_inactive_team_subscription do
       with_github
-      stripe_customer_id 'cus12345'
+      stripe_customer_id { 'cus12345' }
       team
 
       after :create do |instance|
@@ -372,7 +372,7 @@ FactoryBot.define do
 
     trait :with_team_subscription do
       with_github
-      stripe_customer_id 'cus12345'
+      stripe_customer_id { 'cus12345' }
       team
 
       after :create do |instance|
@@ -423,7 +423,7 @@ FactoryBot.define do
   factory :video, aliases: [:recommendable] do
     association :watchable, factory: :show
     sequence(:name) { |n| "Video #{n}" }
-    wistia_id '1194803'
+    wistia_id { '1194803' }
     published_on { 1.day.from_now }
 
     trait :published do
@@ -445,7 +445,7 @@ FactoryBot.define do
     end
 
     trait :free_sample do
-      accessible_without_subscription true
+      accessible_without_subscription { true }
     end
 
     trait :with_preview do
@@ -460,7 +460,7 @@ FactoryBot.define do
       slug { name.downcase.gsub(/\s+/, "-") }
     end
 
-    summary "Exercise summary"
+    summary { "Exercise summary" }
     sequence(:name) { |n| "Exercise #{n}" }
     url { "http://localhost:7000/exercises/#{slug}" }
     uuid
@@ -468,12 +468,12 @@ FactoryBot.define do
 
   factory :oauth_access_token, class: "Doorkeeper::AccessToken" do
     transient do
-      user nil
+      user { nil }
     end
 
     resource_owner_id { user.try(:id) }
-    application_id 1
-    token 'abc123'
+    application_id { 1 }
+    token { 'abc123' }
 
     trait :with_application do
       association :application, factory: :oauth_application
@@ -483,7 +483,7 @@ FactoryBot.define do
   factory :oauth_application, class: "Doorkeeper::Application" do
     sequence(:name) { |n| "Application #{n}" }
     sequence(:uid) { |n| n }
-    redirect_uri "http://www.example.com/callback"
+    redirect_uri { "http://www.example.com/callback" }
   end
 
   factory :status do
@@ -491,18 +491,18 @@ FactoryBot.define do
     association :completeable, factory: :exercise
 
     trait :in_progress do
-      state Status::IN_PROGRESS
+      state { Status::IN_PROGRESS }
     end
 
     trait :completed do
-      state Status::COMPLETE
+      state { Status::COMPLETE }
     end
   end
 
   factory :trail do
     sequence(:name) { |n| "Trail number #{n}" }
-    description "Trail description"
-    complete_text "Way to go!"
+    description { "Trail description" }
+    complete_text { "Way to go!" }
 
     trait :with_topic do
       after(:build) do |trail|
@@ -511,15 +511,15 @@ FactoryBot.define do
     end
 
     trait :published do
-      published true
+      published { true }
     end
 
     trait :promoted do
-      promoted true
+      promoted { true }
     end
 
     trait :unpublished do
-      published false
+      published { false }
     end
 
     trait :completed do
@@ -553,25 +553,25 @@ FactoryBot.define do
 
   factory :deck do
     title
-    published true
+    published { true }
   end
 
   factory :flashcard do
     sequence(:title) { |n| "Flashcard Title #{n}" }
-    prompt "How could you avoid testing for nil in these lines"
-    answer "Use the Null Object pattern!"
+    prompt { "How could you avoid testing for nil in these lines" }
+    answer { "Use the Null Object pattern!" }
     deck
   end
 
   factory :attempt do
-    confidence 3
+    confidence { 3 }
     flashcard
     user
   end
 
   factory :marker do
-    anchor "configuration-options"
-    time 322
+    anchor { "configuration-options" }
+    time { 322 }
   end
 
   factory :content_recommendation do
