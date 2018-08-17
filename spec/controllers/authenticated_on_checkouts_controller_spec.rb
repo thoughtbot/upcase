@@ -21,7 +21,7 @@ describe AuthenticatedOnCheckoutsController do
 
   def response_query_params
     parsed_uri = URI.parse(response.location)
-    unescaped_query_params = URI.unescape(parsed_uri.query || "")
+    unescaped_query_params = CGI.unescape(parsed_uri.query || "")
     Hash[unescaped_query_params.split("&").map { |q| q.split("=") }]
   end
 end
