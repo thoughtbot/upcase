@@ -2,7 +2,7 @@ shared_examples 'a Plan for public listing' do
   describe '.featured' do
     it 'only includes featured plans' do
       featured = create(factory_name, featured: true)
-      not_featured = create(factory_name, featured: false)
+      _not_featured = create(factory_name, featured: false)
 
       expect(described_class.featured).to eq [featured]
     end

@@ -11,10 +11,10 @@ describe Subscription do
 
   describe ".next_payment_in_2_days" do
     it "only includes subscription that will be billed in 2 days" do
-      billed_today = create(:subscription, next_payment_on: Date.current)
-      billed_tomorrow = create(:subscription, next_payment_on: Date.current + 1.day)
+      _billed_today = create(:subscription, next_payment_on: Date.current)
+      _billed_tomorrow = create(:subscription, next_payment_on: Date.current + 1.day)
       billed_2_days_from_now = create(:subscription, next_payment_on: Date.current + 2.days)
-      billed_3_days_from_now = create(:subscription, next_payment_on: Date.current + 3.days)
+      _billed_3_days_from_now = create(:subscription, next_payment_on: Date.current + 3.days)
 
       expect(Subscription.next_payment_in_2_days).to eq [billed_2_days_from_now]
     end
