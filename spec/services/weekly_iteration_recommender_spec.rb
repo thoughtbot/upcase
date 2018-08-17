@@ -42,7 +42,7 @@ describe WeeklyIterationRecommender do
             user: user,
             sorted_recommendable_videos: [video],
           ).recommend
-        end.not_to change { ContentRecommendation.count }
+        end.not_to change_content_recommendation_count
       end
 
       it "doesn't enqueue email job" do
@@ -59,6 +59,10 @@ describe WeeklyIterationRecommender do
         ).recommend
 
         expect(WeeklyIterationMailerJob).not_to have_received(:perform_later)
+      end
+
+      def change_content_recommendation_count
+        change { ContentRecommendation.count }
       end
     end
   end
