@@ -114,7 +114,11 @@
 }
 
 .video-player {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   margin-bottom: $large-spacing;
+  position: relative;
 
   @include body-mobile {
     margin-bottom: $base-spacing;
@@ -294,21 +298,27 @@
 }
 
 .access-callout {
-  @include margin($medium-spacing null);
-  @include dashboard-small-only {
-    flex-direction: column;
-  }
-
-  align-items: center;
   background: lighten($cta-color-light, 40%);
   border: 1px solid $base-border-color-yellow;
   display: flex;
+  flex-direction: column;
+  box-shadow: $base-box-shadow;
   padding: $base-spacing;
+
+  // Contextual formatting
+  .video-player & {
+    @include position(absolute, 50% null null 50%);
+    transform: translate(-50%, -50%);
+    z-index: 1; // Keeps the access callout visible when filter effects are applied
+
+    @media (max-width: $medium-screen) {
+      width: 85%; // Ensures callout stays inside video-player area
+    }
+  }
 
   p {
     font-weight: $sans-serif-semibold;
-    margin-bottom: 0;
-    margin-right: $base-spacing;
+    margin-bottom: $base-spacing;
 
     @include dashboard-small-only {
       margin-bottom: $base-spacing;
@@ -318,6 +328,7 @@
 
   .cta-button {
     flex: none;
+    margin-left: 0;
 
     @include dashboard-small-only {
       width: 100%;
@@ -341,4 +352,9 @@
     @include position(absolute, 0 null null 0);
     @include size(100%);
   }
+}
+
+.title-card__filter {
+  filter: saturate(25%) blur(2px);
+  opacity: 0.5;
 }
