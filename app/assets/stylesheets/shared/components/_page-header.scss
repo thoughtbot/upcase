@@ -1,10 +1,10 @@
 .page-header {
   margin: 0 auto;
   max-width: $large-screen;
-  padding: $spacing-large $spacing-base;
+  padding: $spacing-medium $spacing-base;
 
   @media (min-width: $medium-screen) {
-    @include padding($spacing-x-large null);
+    @include padding($spacing-large null 0 null);
   }
 
   &.media-object {
