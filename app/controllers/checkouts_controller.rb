@@ -1,6 +1,5 @@
 class CheckoutsController < ApplicationController
-  before_action :redirect_when_plan_not_found
-  before_action :redirect_when_already_subscribed
+  before_action :redirect_subscription_needed
 
   def new
     build_checkout({}) do |checkout|
@@ -27,22 +26,11 @@ class CheckoutsController < ApplicationController
 
   private
 
-  def redirect_when_plan_not_found
-    unless plan.present?
-      redirect_to(
-        new_checkout_path(plan: Plan.professional),
-        notice: I18n.t("checkout.flashes.plan_not_found")
-      )
-    end
-  end
-
-  def redirect_when_already_subscribed
-    if current_user.subscriber?
-      redirect_to(
-        root_path,
-        notice: t("checkout.flashes.already_subscribed"),
-      )
-    end
+  def redirect_subscription_needed
+    redirect_to(
+      sign_in_path,
+      notice: t("checkout.flashes.subscription_not_needed"),
+    )
   end
 
   def build_checkout(arguments)
