@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_19_134251) do
+ActiveRecord::Schema.define(version: 2018_09_21_190309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -360,7 +360,7 @@ ActiveRecord::Schema.define(version: 2018_07_19_134251) do
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
-    t.string "email", limit: 255
+    t.string "email"
     t.string "encrypted_password", limit: 128
     t.string "salt", limit: 128
     t.string "confirmation_token", limit: 128
@@ -368,20 +368,20 @@ ActiveRecord::Schema.define(version: 2018_07_19_134251) do
     t.boolean "email_confirmed", default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "reference", limit: 255
+    t.string "reference", default: ""
     t.boolean "admin", default: false, null: false
-    t.string "stripe_customer_id", limit: 255, default: "", null: false
+    t.string "stripe_customer_id", default: "", null: false
     t.string "github_username", null: false
-    t.string "auth_provider", limit: 255
+    t.string "auth_provider"
     t.integer "auth_uid"
-    t.string "organization", limit: 255
-    t.string "address1", limit: 255
-    t.string "address2", limit: 255
-    t.string "city", limit: 255
-    t.string "state", limit: 255
-    t.string "zip_code", limit: 255
-    t.string "country", limit: 255
-    t.string "name", limit: 255
+    t.string "organization"
+    t.string "address1"
+    t.string "address2"
+    t.string "city"
+    t.string "state"
+    t.string "zip_code"
+    t.string "country"
+    t.string "name"
     t.text "bio"
     t.integer "team_id"
     t.string "utm_source"

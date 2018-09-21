@@ -51,6 +51,7 @@ Rails.configuration.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
   r301 "/upcase/sign_up", "/upcase/join"
   r301 "/upcase/trails", "/upcase/practice"
   r301 "/upcase/pages/landing", "/upcase/join"
+  r301 "/upcase/testing-fundamentals", "/upcase/rails-testing-exercises"
 
   # Books
   r301 "/upcase/backbone-js-on-rails", "https://gumroad.com/l/backbone-js-on-rails"
