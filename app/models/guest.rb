@@ -1,4 +1,10 @@
 class Guest
+  GUEST_TRACKING_ID = "guest".freeze
+
+  def id
+    GUEST_TRACKING_ID
+  end
+
   def subscriber?
     false
   end
