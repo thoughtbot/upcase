@@ -1,13 +1,9 @@
-<% if video.accessible_without_subscription? %>
-  <% if signed_out? %>
-    <%= render "videos/auth_to_access", video: video %>
+<div class="access-callout auth-to-access">
+  <% if video.preview.present? %>
+    <p><%= t("videos.show.auth_to_access_with_preview_callout_text") %></p>
   <% else %>
-    <%= render "subscribe_cta",
-      description: t("videos.show.access_callout_for_sample_text"),
-      button_text: t("videos.show.access_callout_for_sample_button") %>
+    <p><%= t("videos.show.auth_to_access_without_preview_callout_text") %></p>
   <% end %>
-<% else %>
-  <%= render "subscribe_cta",
-    description: t("videos.show.access_callout_for_preview_text"),
-    button_text: t("videos.show.access_callout_for_preview_button") %>
-<% end %>
+
+  <%= auth_to_access_button(video, cta_text: t("videos.show.auth_to_access_button_text")) %>
+</div>

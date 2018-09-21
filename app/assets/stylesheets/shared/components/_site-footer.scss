@@ -1,6 +1,6 @@
 .site-footer {
-  background-color: $footer-background-color;
-  color: rgba($white, 0.4);
+  background-color: $color-gray-darkest;
+  color: $color-gray-light;
   padding: $spacing-large;
 
   @media (min-width: $medium-screen) {
@@ -23,12 +23,12 @@
   }
 
   a {
-    color: rgba($white, 0.4);
+    color: $color-gray-light;
     text-decoration: none;
   }
 
   a:hover {
-    color: rgba($white, 0.7);
+    color: $color-red;
   }
 }
 

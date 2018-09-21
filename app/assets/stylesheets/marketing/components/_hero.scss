@@ -14,7 +14,7 @@
 }
 
 .hero__tagline {
-  color: $white;
+  color: $color-gray-darkest;
   font-family: $title-font-family;
   font-size: 1.4rem;
   margin: $base-spacing 0;
@@ -31,7 +31,7 @@
 }
 
 .hero__uvp {
-  color: rgba($white, 0.65);
+  color: rgba($color-gray-darkest, 0.65);
   font-family: $base-font-family;
   font-size: $base-font-size;
   line-height: 1.2;
@@ -41,7 +41,7 @@
   transition: font-size $base-duration;
 
   strong {
-    color: rgba($white, 0.9);
+    color: rgba($color-gray-darkest, 0.9);
   }
 
   @media (min-width: $medium-screen) {

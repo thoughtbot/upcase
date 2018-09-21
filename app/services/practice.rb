@@ -1,7 +1,6 @@
 class Practice
-  def initialize(trails:, beta_offers:)
+  def initialize(trails:)
     @trails = trails
-    @beta_offers = beta_offers
   end
 
   def has_completed_trails?
@@ -23,8 +22,6 @@ class Practice
   def in_progress_trails
     trails.select(&:in_progress?).sort_by(&:started_on).reverse
   end
-
-  attr_reader :beta_offers
 
   private
 

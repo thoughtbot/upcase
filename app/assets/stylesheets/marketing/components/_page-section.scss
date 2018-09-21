@@ -3,7 +3,7 @@
 }
 
 .page-section--dark {
-  background-color: darken($upcase-light-blue, 1%);
+  background-color: $color-blue-lightest;
   border-bottom: $base-border;
   border-top: $base-border;
 }
@@ -23,8 +23,8 @@
     width: 50%;
   }
 
-  &:first-child {
-    background-color: $upcase-light-blue;
-    border-right: $base-border;
+  &:last-child {
+    background-color: darken($upcase-light-blue, 0.5%);
+    border-left: $base-border;
   }
 }

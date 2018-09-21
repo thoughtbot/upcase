@@ -12,7 +12,7 @@ feature "subscriber views weekly iteration" do
     expect(page).to have_content(show.name)
     expect(page).to have_content(published_video.name)
     expect(page).not_to have_content(video.name)
-    expect(page).not_to have_subscribe_cta
+    expect(page).not_to have_auth_to_access_link
   end
 
   scenario "and marks the video complete" do
@@ -32,8 +32,8 @@ feature "subscriber views weekly iteration" do
     find(".tile.weekly-iteration", text: video.name)
   end
 
-  def have_subscribe_cta
-    have_content(I18n.t("watchables.preview.subscribe_cta"))
+  def have_auth_to_access_link
+    have_content(I18n.t("watchables.preview.auth_to_access_button_text"))
   end
 
   def click_mark_as_complete_button

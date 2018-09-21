@@ -41,10 +41,20 @@
         ) %>
       </li>
 
-      <% unless current_user.subscriber? %>
-        <li id="site_nav_call_to_action">
-          <%= link_to professional_checkout_path, class: "site-nav__button" do %>
-            <%= t("shared.subscriptions.single_user") %>
+      <% if signed_out? %>
+        <li>
+          <% if landing_page? %>
+            <%= link_to(
+              t("shared.header.sign_in"),
+              sign_in_path,
+              class: "site-nav__link",
+            ) %>
+          <% else %>
+            <%= link_to(
+              t("shared.header.sign_in"),
+              sign_in_path_with_current_path_return_to,
+              class: "site-nav__link",
+            ) %>
           <% end %>
         </li>
       <% end %>
@@ -58,14 +68,16 @@
       </li>
     <% end %>
 
-    <li>
-      <%= link_to my_account_path, id: "my_account_link", class: "avatar" do %>
-        <%= image_tag(
-          gravatar_url(current_user.email, size: "30"),
-          class: "avatar__image",
-        )%>
-      <% end %>
-    </li>
+    <% if signed_in? %>
+      <li>
+        <%= link_to my_account_path, id: "my_account_link", class: "avatar" do %>
+          <%= image_tag(
+            gravatar_url(current_user.email, size: "30"),
+            class: "avatar__image",
+          )%>
+        <% end %>
+      </li>
+    <% end %>
 
     <%= render "shared/masquerade_link" if masquerading? %>
   </ul>
