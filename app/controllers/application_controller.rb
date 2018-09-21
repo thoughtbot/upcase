@@ -4,12 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :capture_campaign_params
 
-  http_basic_authenticate_with(
-    name: ENV["HTTP_NAME"],
-    password: ENV["HTTP_PASSWORD"],
-    if: Proc.new { on_staging? },
-  )
-
   def current_user
     super || Guest.new
   end
