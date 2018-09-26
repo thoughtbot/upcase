@@ -401,9 +401,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    sassc (1.12.1)
+    sassc (2.0.0)
       ffi (~> 1.9.6)
-      sass (>= 3.3.0)
+      rake
     sawyer (0.8.1)
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 1.0)
