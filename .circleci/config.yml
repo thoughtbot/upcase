@@ -23,10 +23,6 @@ jobs:
           name: Copy environment
           command: cp .sample.env .env
 
-      - run:
-          name: Install capybara-webkit dependencies
-          command: sudo apt-get install qt5-default libqt5webkit5-dev
-
       # Which version of bundler?
       - run:
           name: Which bundler?

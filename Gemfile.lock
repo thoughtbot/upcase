@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/thoughtbot/capybara-webkit.git
-  revision: 41c43062677c1628e09f9dc00dc24528ba161ed7
-  specs:
-    capybara-webkit (1.15.0)
-      capybara (>= 2.3, < 4.0)
-      json
-
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -59,6 +51,8 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     analytics-ruby (2.2.5)
       commander (~> 4.4)
+    archive-zip (0.11.0)
+      io-like (~> 0.3.0)
     arel (9.0.0)
     autoprefixer-rails (9.1.4)
       execjs
@@ -95,8 +89,16 @@ GEM
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
       xpath (~> 3.1)
+    capybara-selenium (0.0.6)
+      capybara
+      selenium-webdriver
     capybara_discoball (0.1.0)
       capybara (>= 2.7, < 4)
+    childprocess (0.9.0)
+      ffi (~> 1.0, >= 1.0.11)
+    chromedriver-helper (2.1.0)
+      archive-zip (~> 0.10)
+      nokogiri (~> 1.8)
     clearance (1.16.1)
       bcrypt
       email_validator (~> 1.4)
@@ -199,6 +201,7 @@ GEM
     inline_svg (1.3.1)
       activesupport (>= 3.0)
       nokogiri (>= 1.6)
+    io-like (0.3.0)
     jmespath (1.4.0)
     jquery-rails (4.3.3)
       rails-dom-testing (>= 1, < 3)
@@ -389,6 +392,7 @@ GEM
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
     ruby_dep (1.5.0)
+    rubyzip (1.2.2)
     safe_yaml (1.0.4)
     sass (3.6.0)
       sass-listen (~> 4.0.0)
@@ -410,6 +414,9 @@ GEM
     scenic (1.4.1)
       activerecord (>= 4.0.0)
       railties (>= 4.0.0)
+    selenium-webdriver (3.14.0)
+      childprocess (~> 0.5)
+      rubyzip (~> 1.2)
     shellany (0.0.1)
     shoulda-matchers (3.1.2)
       activesupport (>= 4.0.0)
@@ -488,8 +495,9 @@ DEPENDENCIES
   bourbon (~> 4.0)
   bundler-audit
   capybara
-  capybara-webkit!
+  capybara-selenium
   capybara_discoball
+  chromedriver-helper
   clearance
   clearance-deprecated_password_strategies
   climate_control

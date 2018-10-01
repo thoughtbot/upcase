@@ -85,8 +85,9 @@ end
 
 group :test do
   gem "capybara"
-  gem "capybara-webkit", github: "thoughtbot/capybara-webkit"
+  gem "capybara-selenium"
   gem "capybara_discoball"
+  gem "chromedriver-helper"
   gem "climate_control"
   gem "database_cleaner"
   gem "email_spec"
