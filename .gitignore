@@ -13,3 +13,4 @@ tags
 .bundle
 .foreman
 dump.rdb
+/test_results

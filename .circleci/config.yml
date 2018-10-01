@@ -55,13 +55,11 @@ jobs:
       # Run rspec in parallel
       - type: shell
         command: |
-          xvfb-run -a \
-            bundle exec rspec --profile 10 \
+          bundle exec rspec --profile 10 \
+            --format RspecJunitFormatter \
+            --out test_results/rspec.xml \
             --format progress \
-            $(circleci tests glob 'spec/**/*_spec.rb' \
-            | circleci tests split --split-by=timings \
-            | tee tests-split.txt)
-
+            $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
 
       # Save test results for timing analysis
       - store_test_results:
@@ -69,4 +67,5 @@ jobs:
 
       # Save the tests split for replication of failures with the same seed
       - store_artifacts:
-          path: tests-split.txt
+          path: test_results
+          destination: test_results

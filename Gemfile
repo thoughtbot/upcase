@@ -94,6 +94,7 @@ group :test do
   gem "factory_bot_rails"
   gem "launchy"
   gem "rails-controller-testing"
+  gem "rspec_junit_formatter"
   gem "shoulda-matchers", require: false
   gem "simplecov", require: false
   gem "sinatra"
