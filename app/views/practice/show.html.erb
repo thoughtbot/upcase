@@ -1,16 +1,5 @@
 <% content_for :page_title, "Learn Ruby and Rails Development" %>
 
-<% if signed_out? %>
-  <div class="access-callout">
-    <p><%= t("trails.sign_up_cta") %></p>
-
-    <%= link_to github_auth_path, class: "pull-right cta-button subscribe-cta light-bg" do %>
-      <%= image_tag("github-black.svg", class: "logo", alt: "") %>
-      <%= t("authenticating.github_signin") %>
-    <% end %>
-  </div>
-<% end %>
-
 <section class="trails-progress">
   <header class="page-header">
     <h1 class="page-header__title">
