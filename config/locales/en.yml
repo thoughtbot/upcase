@@ -43,6 +43,7 @@ en:
       already_subscribed: You are already subscribed.
       invalid_coupon: The coupon code %{code} is no longer valid and has been
         removed.
+      not_creating_new_teams: We are not accepting new teams at the moment.
       plan_not_found: We have a new subscription plan for you.
       success: Thank you for subscribing to Upcase! We will email you your receipt
         shortly.
