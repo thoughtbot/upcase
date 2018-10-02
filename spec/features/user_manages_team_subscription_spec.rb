@@ -7,11 +7,8 @@ feature "User edits a team subscription" do
     sign_in
   end
 
-  scenario "a team owner can manage the subscription" do
-    owner = create(:user)
-
-    visit new_checkout_path(plan, as: owner)
-    fill_out_credit_card_form_with_valid_credit_card
+  scenario "a team owner can see invoices and manage team" do
+    owner = create(:user, :with_team_subscription)
 
     visit my_account_path(as: owner)
 

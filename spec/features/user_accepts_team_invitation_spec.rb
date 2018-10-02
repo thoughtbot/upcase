@@ -3,8 +3,8 @@ require "rails_helper"
 feature "Accept team invitations" do
   context "when user is signed in" do
     it "accepts the invitation immediately" do
-      user = create(:user)
       create_team_account
+      user = create(:user)
 
       fill_in "Email", with: user.email
       click_on "Send"
@@ -99,7 +99,7 @@ feature "Accept team invitations" do
         my_account_link.click
 
         expect(page).to have_field("Email", with: github_email)
-        expect(page).to have_content("Team: Somedomain")
+        expect(page).to have_content("Your Team")
         expect(page).to have_content(
           I18n.t("teams.team.team_owner_html", owner_email: owner_name),
         )
@@ -138,14 +138,17 @@ feature "Accept team invitations" do
     owner_name: "Cool Person",
     owner_email: "owner@somedomain.com"
   )
-    visit_team_plan_checkout_page
-    fill_out_account_creation_form name: owner_name, email: owner_email
-    fill_out_credit_card_form_with_valid_credit_card
+
+    owner = create(
+      :user, :with_team_subscription, email: owner_email, name: owner_name
+    )
+    sign_in_as(owner)
+    visit edit_team_path(owner.team)
   end
 
   def have_team_member(user:)
     have_field("Email", with: user.email).and(
-      have_content("Team: Somedomain"),
+      have_content("Your Team"),
     )
   end
 end
