@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
   before_action :must_be_team_owner, only: :edit
+  before_action :redirect_from_teams_new, only: :new
 
   def new
     @landing_page = true
@@ -9,5 +10,14 @@ class TeamsController < ApplicationController
 
   def edit
     @team = current_team
+  end
+
+  private
+
+  def redirect_from_teams_new
+    redirect_to(
+      sign_in_path,
+      notice: t("checkout.flashes.not_creating_new_teams"),
+    )
   end
 end
