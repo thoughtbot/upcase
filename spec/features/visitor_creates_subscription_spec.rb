@@ -5,20 +5,6 @@ feature "Visitor signs up for a subscription" do
     create_plan
   end
 
-  scenario "visitor signs up by navigating from landing page", js: true do
-    create(:trail, :published)
-
-    visit root_path(campaign_params)
-    click_link I18n.t("pages.landing.hero_call_to_action")
-    show_email_and_username_form
-    fill_out_account_creation_form
-    fill_out_credit_card_form_with_valid_credit_card
-
-    expect(current_path).to be_the_welcome_page
-    expect_to_see_checkout_success_flash
-    expect_analytics_to_have_received_subscribed_event
-  end
-
   scenario "and creates email/password user", js: true do
     visit new_checkout_path(@plan)
     expect(page).to have_text "Sign up with GitHub"
