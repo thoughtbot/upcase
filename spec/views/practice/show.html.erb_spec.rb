@@ -23,16 +23,6 @@ describe "practice/show.html" do
     end
   end
 
-  context "when a user does not have an active subscription" do
-    it "renders a cta to subscribe" do
-      view_stubs(:github_auth_path).and_return("/auth/github")
-
-      render_show
-
-      expect(rendered).to have_content(I18n.t("trails.sign_up_cta"))
-    end
-  end
-
   context "for a non-admin user" do
     it "does not render the deck links" do
       stub_user_access(subscriber: true)
