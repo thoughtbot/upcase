@@ -41,6 +41,14 @@
         ) %>
       </li>
 
+      <li>
+        <%= link_to(
+          t("shared.header.about_us"),
+          "https://thoughtbot.com/services",
+          class: "site-nav__link",
+        ) %>
+      </li>
+
       <% if signed_out? %>
         <li>
           <% if landing_page? %>

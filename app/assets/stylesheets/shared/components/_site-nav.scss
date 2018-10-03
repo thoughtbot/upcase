@@ -2,10 +2,11 @@
   margin: 0 auto;
   max-width: $large-screen;
 
-  @media (min-width: $medium-screen) {
+  @media (min-width: $large-screen) {
     align-items: center;
     display: flex;
     justify-content: space-between;
+    padding-top: 0.2rem;
   }
 
   &::after {
@@ -18,19 +19,25 @@
 }
 
 .site-nav__action {
-  padding: $spacing-base;
+  padding: 1.3rem;
   position: absolute;
   width: 100%;
   z-index: $z-site-nav-menu;
 
-  @media (min-width: $medium-screen) {
+  @media (min-width: $large-screen) {
+    padding: $spacing-base;
     position: relative;
     width: auto;
   }
 }
 
+.site-nav__thoughtbot {
+  color: $white;
+  margin-left: $spacing-small;
+}
+
 .site-nav__menu-trigger {
-  @include position(absolute, $spacing-base $spacing-base null null);
+  @include position(absolute, 0.9rem $spacing-base null null);
   background-color: rgba($black, 0.075);
   border-radius: $base-border-radius;
   color: $white;
@@ -39,7 +46,7 @@
   padding: $spacing-small $spacing-base;
   text-decoration: none;
 
-  @media (min-width: $medium-screen) {
+  @media (min-width: $large-screen) {
     display: none;
   }
 
@@ -59,7 +66,7 @@
   transition: margin 250ms ease-in-out;
   z-index: $z-site-nav-menu-mobile;
 
-  @media (min-width: $medium-screen) {
+  @media (min-width: $large-screen) {
     @include position(relative, 0 null null);
     background-color: transparent;
     box-shadow: none;
@@ -70,7 +77,7 @@
   }
 
   ul {
-    @media (min-width: $medium-screen) {
+    @media (min-width: $large-screen) {
       align-items: center;
       display: flex;
     }
@@ -82,7 +89,7 @@
     -webkit-font-smoothing: antialiased;
     margin: 0;
 
-    @media (min-width: $medium-screen) {
+    @media (min-width: $large-screen) {
       display: inline-block;
       padding: $spacing-small;
     }
@@ -100,11 +107,11 @@
   font-family: $strong-font-family;
   font-size: 1.1rem;
   margin-left: 0;
-  padding: $spacing-medium;
+  padding: $spacing-base;
   text-align: center;
   text-decoration: none;
 
-  @media (min-width: $medium-screen) {
+  @media (min-width: $large-screen) {
     border: 0;
     margin-left: $spacing-small;
     padding: 0;
@@ -134,7 +141,7 @@
   transition-property: transform, color, background-color, box-shadow;
   transition-timing-function: $ease-in-out-sine;
 
-  @media (min-width: $medium-screen) {
+  @media (min-width: $large-screen) {
     @include padding($spacing-small null);
     margin: 0;
   }
