@@ -8,12 +8,6 @@
 <% end %>
 
 <div class="text-box-wrapper right">
-  <% if current_user.previously_subscribed? %>
-    <%= render "resubscribe", user: current_user %>
-  <% elsif current_user.scheduled_for_deactivation? %>
-    <%= render "reactivate", user: current_user %>
-  <% end %>
-
   <div class="text-box">
     <%= semantic_form_for current_user, url: edit_my_account_path, html: { id: :information_form } do |form| %>
       <%= form.inputs "Your Information" do %>
@@ -30,22 +24,6 @@
       <% end %>
     <% end %>
   </div>
-
-  <% if current_user.has_credit_card? %>
-    <%= render "credit_card_form" %>
-  <% end %>
-
-  <div class="text-box">
-    <%= semantic_form_for current_user, url: edit_my_account_path, html: { id: :billing_address_form } do |form| %>
-      <%= form.inputs "Your Billing Address" do %>
-        <%= render "users/address_fields", form: form %>
-      <% end %>
-
-      <%= form.actions do %>
-        <li><%= form.submit "Update address" %></li>
-      <% end %>
-    <% end %>
-  </div>
 </div>
 
 <aside id="account-sidebar">
@@ -57,12 +35,6 @@
       <% end %>
       <%= link_to "View all invoices", subscriber_invoices_path, class: "invoices" %>
     </ol>
-  <% end %>
-
-  <% if show_upgrade_to_annual_cta? %>
-    <h3><%= t(".annual_plan_title") %></h3>
-    <p><%= t(".annual_plan_benefits") %></p>
-    <%= link_to t(".annual_plan_link"), new_annual_billing_path, class: "cta-button" %>
   <% end %>
 
   <% if current_team %>
