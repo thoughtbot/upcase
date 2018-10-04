@@ -7,5 +7,9 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 
+  if config.files_to_run.one?
+    config.default_formatter = "doc"
+  end
+
   config.backtrace_exclusion_patterns << %r{/gems/}
 end

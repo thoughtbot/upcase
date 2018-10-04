@@ -47,6 +47,7 @@ en:
       plan_not_found: We have a new subscription plan for you.
       success: Thank you for subscribing to Upcase! We will email you your receipt
         shortly.
+      subscription_not_needed: You can sign in and directly access all of the content without a subscription!
     problem_with_card: "There was a problem processing your credit card: %{message}"
   completeables:
     statuses:

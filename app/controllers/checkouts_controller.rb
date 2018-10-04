@@ -1,6 +1,7 @@
 class CheckoutsController < ApplicationController
-  before_action :redirect_when_plan_not_found
-  before_action :redirect_when_already_subscribed
+  before_action :redirect_check_out_not_needed, only: [:new]
+  before_action :redirect_when_plan_not_found, only: [:create]
+  before_action :redirect_when_already_subscribed, only: [:create]
 
   def new
     build_checkout({}) do |checkout|
@@ -27,11 +28,18 @@ class CheckoutsController < ApplicationController
 
   private
 
+  def redirect_check_out_not_needed
+    redirect_to(
+      sign_in_path,
+      notice: t("checkout.flashes.subscription_not_needed"),
+    )
+  end
+
   def redirect_when_plan_not_found
     unless plan.present?
       redirect_to(
         new_checkout_path(plan: Plan.professional),
-        notice: I18n.t("checkout.flashes.plan_not_found")
+        notice: I18n.t("checkout.flashes.plan_not_found"),
       )
     end
   end
@@ -50,7 +58,7 @@ class CheckoutsController < ApplicationController
       arguments.
         merge(default_params).
         merge(coupon_param).
-        merge(campaign_param)
+        merge(campaign_param),
     )
 
     if checkout.has_invalid_coupon?
@@ -92,14 +100,14 @@ class CheckoutsController < ApplicationController
 
   def coupon_param
     {
-      stripe_coupon_id: session[:coupon]
+      stripe_coupon_id: session[:coupon],
     }
   end
 
   def campaign_param
     if session[:campaign_params]
       {
-        utm_source: session[:campaign_params][:utm_source]
+        utm_source: session[:campaign_params][:utm_source],
       }
     else
       {}
@@ -147,7 +155,7 @@ class CheckoutsController < ApplicationController
       :quantity,
       :state,
       :stripe_token,
-      :zip_code
+      :zip_code,
     )
   end
 
