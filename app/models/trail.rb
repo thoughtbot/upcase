@@ -4,7 +4,7 @@ class Trail < ApplicationRecord
   include PgSearch
 
   DEFAULT_IMAGE_URL =
-    "https://images.thoughtbot.com/upcase/trail-title-cards/default.jpg".freeze
+    "https://images.thoughtbot.com/upcase/trail-title-cards/default.png".freeze
 
   multisearchable against: %i{name description}, if: :published?
 
