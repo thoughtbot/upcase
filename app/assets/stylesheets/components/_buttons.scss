@@ -1,20 +1,22 @@
 %button {
-  @include linear-gradient($hero-green, shade($hero-green, 3%));
+  background-color: $color-red;
+  border: 1px solid $color-red-darkest;
   border-radius: $base-border-radius;
-  color: $white;
+  color: $color-white;
   display: inline-block;
-  font-family: $sans-serif;
-  font-size: 1.1rem;
-  -webkit-font-smoothing: antialiased;
-  font-weight: 600;
-  line-height: 1.3;
-  padding: $button-padding;
+  font-family: $strong-font-family;
+  font-size: 1.25rem;
+  line-height: 1;
+  padding: $base-spacing $large-spacing ($base-spacing * 1.15);
   text-align: center;
   text-decoration: none;
+  transition-duration: $base-duration * 2;
+  transition-property: transform, color, background-color, box-shadow;
+  transition-timing-function: $ease-in-out-sine;
 
   &:hover {
-    @include linear-gradient($hero-green, shade($hero-green, 0%));
-    color: $white;
+    background-color: $color-red-darkest;
+    color: $color-white;
   }
 
   &:disabled {
@@ -29,13 +31,12 @@
 
   &.secondary-button {
     @extend %button;
-    background: darken($base-background-2, 3);
-    box-shadow: 0 1px 1px darken($base-background-2, 11);
-    color: $upcase-green;
+    @include linear-gradient($cta-color-light, $cta-color-dark);
+    color: $cta-text-color;
 
     &:hover {
-      background: darken($base-background-2, 1);
-      color: $upcase-green;
+      @include linear-gradient(darken($cta-color-light, 2.5%), darken($cta-color-dark, 2.5%));
+      color: $cta-text-color;
     }
   }
 
