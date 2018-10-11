@@ -19,6 +19,8 @@ GEM
       rack-test (>= 0.6.3)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    actionpack-action_caching (1.2.0)
+      actionpack (>= 4.0.0, < 6)
     actionview (5.2.1)
       activesupport (= 5.2.1)
       builder (~> 3.1)
@@ -364,6 +366,7 @@ GEM
     recipient_interceptor (0.2.0)
       mail
     redcarpet (3.4.0)
+    redis (4.0.2)
     remotipart (1.4.2)
     request_store (1.4.1)
       rack (>= 1.4)
@@ -488,6 +491,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionpack-action_caching
   active_model_serializers (= 0.8.3)
   acts_as_list
   analytics-ruby
@@ -546,6 +550,7 @@ DEPENDENCIES
   rails_stdout_logging
   recipient_interceptor
   redcarpet
+  redis (~> 4.0)
   request_store
   responders (~> 2.0)
   rspec-rails
