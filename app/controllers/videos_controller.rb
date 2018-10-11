@@ -1,4 +1,6 @@
 class VideosController < ApplicationController
+  cache_signed_out_action :show
+
   def show
     @video = Video.find(params[:id])
     @watchable = @video.watchable

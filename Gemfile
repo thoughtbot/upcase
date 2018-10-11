@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem "actionpack-action_caching"
 gem "active_model_serializers", "0.8.3"
 gem "acts_as_list"
 gem "analytics-ruby", require: "segment/analytics"
@@ -46,6 +47,7 @@ gem "rails", "~> 5.2.0"
 gem "rails_admin"
 gem "recipient_interceptor"
 gem "redcarpet"
+gem "redis", "~> 4.0"
 gem "request_store"
 gem "responders", "~> 2.0"
 gem "sassc"
