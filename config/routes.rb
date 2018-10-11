@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
     use_doorkeeper
 
+    get "the-weekly-iteration", to: "shows#show", id: "the-weekly-iteration"
+
     scope module: "admin" do
       resources :users, only: [] do
         resource :masquerade, only: :create
