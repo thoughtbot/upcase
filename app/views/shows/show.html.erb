@@ -19,7 +19,7 @@
 <% end %>
 
 <div class="show-info">
-  <% unless has_access_to_shows? %>
+  <% unless signed_in? %>
     <div>
       <%= render Clip.new("ol6e0miehm") %>
     </div>
