@@ -88,6 +88,7 @@ Rails.application.routes.draw do
       resource :trail, controller: "exercise_trails", only: [:show]
     end
 
+    get "/about-us", to: "pages#show", id: "about_us"
     get "/pages/:id", to: "high_voltage/pages#show", as: :page, format: false
     get "/privacy", to: "pages#show", as: :privacy, id: "privacy"
     get "/purchases/:lookup", to: "pages#show", id: "purchase-show"
