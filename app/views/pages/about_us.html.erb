@@ -1,0 +1,47 @@
+<div class="welcome-page">
+  <%= content_for(:page_title, "About Us") %>
+
+  <p>
+    Hi! We’re <a href="https://thoughtbot.com">thoughtbot</a>, a design and
+    development consultancy that brings your digital product ideas to life. When
+    we’re not partnering with clients to build or grow their web and mobile
+    apps, you’ll find us out in the community sharing what we’ve learned.
+  </p>
+
+
+  <p>Enter Upcase by thoughtbot!</p>
+
+  <p>
+    Since 2012, one way we’ve shared thoughtbot expertise is through the
+    learning platform you find yourself on today - Upcase. With Upcase, we’ve
+    helped thousands of developers level up their skills through workshops,
+    videos, flash cards, and coding exercises.
+  </p>
+
+  <h2>Why Upcase?</h2>
+
+  <p>While mentoring client teams, we identified a lack of educational content for intermediate developers. We decided to to fill that gap ourselves with Upcase.</p>
+
+  <p>The core of the Upcase platform is hundreds of hours of videos and
+  screencasts, neatly organized into courses and by topic so that you can find
+  exactly what you need and get to learning.</p>
+
+  <p>Some of the topics we feature on Upcase include:</p>
+
+  <ul>
+    <li>Test Driven Development in theory and in practice</li>
+    <li>Workflow & developer tooling like Vim, tmux  and the command line</li>
+    <li>Opinionated introductions to new frameworks and languages</li>
+    <li>Techniques and patterns for building maintainable large scale applications</li>
+  </ul>
+
+  <p>
+  Upcase represents the collective best practices of the team here at thoughtbot, and we’re thrilled to have opened it up to the public for free.
+  </p>
+
+  <%= link_to(
+    "Start Learning Today!",
+    practice_path,
+    class: "button button--large button--on-dark"
+  )%>
+</div>
