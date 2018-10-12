@@ -47,3 +47,107 @@
     margin-top: 20px;
   }
 }
+
+.about-us__video {
+  margin: 0 auto;
+  padding-top: $spacing-large;
+  max-width: 900px;
+}
+
+.about-us__lede {
+  max-width: 560px;
+  margin-bottom: $spacing-large;
+
+  p {
+    color: $color-gray-darker;
+    font-size: 1.4rem;
+    line-height: 1.3;
+    margin-bottom: $spacing-medium;
+    text-align: center;
+
+    &:first-of-type {
+      color: rgba(41, 41, 44, 0.9);;
+      font-family: "calibre-medium", sans-serif;
+      font-size: $large-font-size;
+      font-weight: normal;
+      line-height: 1.2;
+    }
+  }
+}
+
+.about-us__enter-upcase {
+  color: $color-red;
+  font-family: "calibre-medium", sans-serif;
+  font-size: $large-font-size;
+  font-weight: normal;
+  margin-bottom: $spacing-medium;
+  text-align: center;
+}
+
+.about-us__why-upcase {
+  color: rgba(41, 41, 44, 0.9);;
+  font-family: "calibre-medium", sans-serif;
+  font-size: $large-font-size;
+  font-weight: normal;
+  line-height: 1.2;
+  margin-top: -$spacing-base !important;
+  margin-bottom: $spacing-base !important;
+  text-align: center;
+}
+
+.about-us__history {
+  color: #a4a4a4;
+  text-align: center;
+}
+
+.about-us__topics-title {
+  color: $color-red;
+  font-family: "calibre-medium", sans-serif;
+  font-size: 1.5rem;
+  font-weight: normal;
+  margin-bottom: $spacing-base;
+  text-align: center;
+}
+
+.about-us__topic-list {
+  margin-bottom: 4rem;
+
+  @media (min-width: 800px) {
+    align-content: stretch;
+    display: flex;
+  }
+}
+
+.about-us__topic {
+  border-radius: 0 0 3px 3px;
+  border-top: 10px solid #f3f3f3;
+  box-shadow: 0 0 0 1px #ddd;
+  margin: 1em 0.5em;
+  overflow: hidden;
+  padding: 1.5em;
+  text-align: left;
+
+  @media (min-width: 800px) {
+    width: 25%;
+  }
+
+  strong {
+    color: #555;
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.about-us__upcase-reppresents {
+  margin: 0 auto 2rem auto;
+  max-width: 560px;
+  padding-left: $spacing-base;
+  padding-right: $spacing-base;
+  text-align: center;
+}
+
+.about-us__cta {
+  display: flex;
+  justify-content: center;
+}
