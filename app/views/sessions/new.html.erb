@@ -1,7 +1,7 @@
 <% content_for :page_title, "Sign In to Upcase" %>
 <section id="auth-form-container">
   <%= link_to github_auth_path, class: 'cta-button secondary-button' do %>
-    <%= image_tag("github.svg", class: "github-logo", alt: "") %>
+    <%= image_tag("github-black.svg", class: "github-logo", alt: "") %>
     <%= t("authenticating.github_signin") %>
   <% end %>
   <span class="divider">
@@ -18,13 +18,8 @@
         <%= form.action :submit, label: "Sign in" %>
       <% end %>
     <% end %>
-    <ul class="signup-forgot">
-      <li>
-        <%= link_to "Sign up", sign_up_path(return_to: params[:return_to]) %>
-      </li>
-      <li>
-        <%= link_to "Forgot password?", new_password_path %>
-      </li>
-    </ul>
+    <p class="signup-forgot">
+      <%= link_to "Forgot password?", new_password_path %>
+    </p>
   </div>
 </section>
