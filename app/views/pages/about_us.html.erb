@@ -1,49 +1,82 @@
-<div class="welcome-page">
-  <%= content_for(:page_title, "About Us") %>
+<section class="page-section background background--upcase-logo-light">
+  <div class="about-us__video">
+    <%= render "clips/clip", clip: OpenStruct.new(wistia_id: "0nx71cjkbx") %>
+  </div>
+  <div class="page-content page-content--reading">
 
-  <%= render "clips/clip", clip: OpenStruct.new(wistia_id: "0nx71cjkbx") %>
+    <%= content_for(:page_title, "About Us") %>
 
-  <p>
-    Hi! We’re <a href="https://thoughtbot.com">thoughtbot</a>, a design and
-    development consultancy that brings your digital product ideas to life. When
-    we’re not partnering with clients to build or grow their web and mobile
-    apps, you’ll find us out in the community sharing what we’ve learned.
-  </p>
+    <div class="about-us__lede">
+      <p>
+        We’re <a href="https://thoughtbot.com">thoughtbot</a>, a design and
+        development consultancy that brings your digital product ideas to life
+      </p>
+      <p>
+        When we’re not partnering with clients to build or grow their web and
+        mobile apps, you’ll find us out in the community sharing what we’ve
+        learned.
+      </p>
+    <div>
+  </div>
+</section>
 
+<section class="page-section">
+    <div class="page-content page-content--interstitial">
+      <div class="card card--narrow">
+        <div class="card__content">
+          <h2 class="about-us__enter-upcase">Enter Upcase by thoughtbot!</h2>
+          <p class="card__copy card__copy--centered">
+            Since 2012, one way we’ve shared thoughtbot expertise is through the
+            learning platform you find yourself on today - Upcase. With Upcase,
+            we’ve helped thousands of developers level up their skills through
+            workshops, videos, flash cards, and coding exercises.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
 
-  <p>Enter Upcase by thoughtbot!</p>
+<section class="page-section">
+  <div class="page-content page-content--reading">
+    <h2 class="about-us__why-upcase">Why Upcase?</h2>
 
-  <p>
-    Since 2012, one way we’ve shared thoughtbot expertise is through the
-    learning platform you find yourself on today - Upcase. With Upcase, we’ve
-    helped thousands of developers level up their skills through workshops,
-    videos, flash cards, and coding exercises.
-  </p>
+    <div class="about-us__history">
+      <p>
+        While mentoring client teams, we identified a lack of educational content
+        for intermediate developers. We decided to to fill that gap ourselves with
+        Upcase.
+      </p>
+      <p>
+        The core of the Upcase platform is <mark>hundreds of hours of videos and
+        screencasts</mark>, neatly organized into courses and by topic so that
+        you can find exactly what you need and get to learning.
+      </p>
+    </div>
+  </div>
+</section>
 
-  <h2>Why Upcase?</h2>
+<section class="page-section page-section--dark">
+  <div class="page-content">
+    <h2 class="about-us__topics-title">Some of the topics we feature on Upcase include:</h2>
 
-  <p>While mentoring client teams, we identified a lack of educational content for intermediate developers. We decided to to fill that gap ourselves with Upcase.</p>
+    <ul class="about-us__topic-list">
+      <li class="about-us__topic"><strong>Test Driven Development</strong> in theory and in practice</li>
+      <li class="about-us__topic"><strong>Workflow &amp; developer</strong> tooling like Vim, tmux  and the command line</li>
+      <li class="about-us__topic"><strong>Opinionated</strong> introductions to new frameworks and languages</li>
+      <li class="about-us__topic"><strong>Techniques and patterns</strong> for building maintainable large scale applications</li>
+    </ul>
 
-  <p>The core of the Upcase platform is hundreds of hours of videos and
-  screencasts, neatly organized into courses and by topic so that you can find
-  exactly what you need and get to learning.</p>
+    <p class="about-us__upcase-reppresents">
+      Upcase represents the collective best practices of the team here at
+      thoughtbot. We’re thrilled to have opened it up to the public for free.
+    </p>
 
-  <p>Some of the topics we feature on Upcase include:</p>
-
-  <ul>
-    <li>Test Driven Development in theory and in practice</li>
-    <li>Workflow & developer tooling like Vim, tmux  and the command line</li>
-    <li>Opinionated introductions to new frameworks and languages</li>
-    <li>Techniques and patterns for building maintainable large scale applications</li>
-  </ul>
-
-  <p>
-  Upcase represents the collective best practices of the team here at thoughtbot, and we’re thrilled to have opened it up to the public for free.
-  </p>
-
-  <%= link_to(
-    "Start Learning Today!",
-    practice_path,
-    class: "button button--large button--on-dark"
-  )%>
-</div>
+    <div class="about-us__cta">
+      <%= link_to(
+        "Start Learning Today!",
+        practice_path,
+        class: "button button--large button--on-dark"
+      )%>
+    </div>
+  </div>
+</section>
