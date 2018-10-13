@@ -19,7 +19,6 @@ feature "Visitor" do
     click_link video.name
 
     expect(page).to have_content(video.notes)
-    expect(page).to have_video_preview_callout
     expect(page).to have_auth_cta(video)
   end
 
