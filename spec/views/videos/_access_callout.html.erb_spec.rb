@@ -9,7 +9,7 @@ describe "videos/_access_callout" do
 
       expect_to_have_callout_content_with(
         video: video,
-        message: "auth_to_access_with_preview_callout_text",
+        message: "auth_to_access_without_preview_callout_text",
       )
     end
   end
