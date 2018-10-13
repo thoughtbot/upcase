@@ -1,6 +1,8 @@
 <div class="welcome-page">
   <%= content_for(:page_title, "About Us") %>
 
+  <%= render "clips/clip", clip: OpenStruct.new(wistia_id: "0nx71cjkbx") %>
+
   <p>
     Hi! We’re <a href="https://thoughtbot.com">thoughtbot</a>, a design and
     development consultancy that brings your digital product ideas to life. When
