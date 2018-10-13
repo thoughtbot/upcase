@@ -40,6 +40,14 @@ class Video < ApplicationRecord
     @video ||= Clip.new(wistia_id)
   end
 
+  def title_card_image
+    if part_of_trail?
+      trail.title_card_image
+    else
+      Trail::DEFAULT_IMAGE_URL
+    end
+  end
+
   def preview
     if preview_wistia_id.present?
       Clip.new(preview_wistia_id)

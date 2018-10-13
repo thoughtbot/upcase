@@ -76,16 +76,6 @@ describe "videos/show" do
     end
 
     context "when the user is signed out" do
-      context "when the video has a preview clip available" do
-        it "displays a video preview" do
-          video = build_stubbed(:video, preview_wistia_id: "preview-123")
-
-          render_video video, signed_in: false
-
-          expect(rendered).to be_displaying_preview(video)
-        end
-      end
-
       context "when the video is part of a trail and does not have a preview" do
         it "displays the title card image" do
           video = create_video_on_a_trail

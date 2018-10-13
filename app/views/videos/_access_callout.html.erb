@@ -1,9 +1,5 @@
 <div class="access-callout auth-to-access">
-  <% if video.preview.present? %>
-    <p><%= t("videos.show.auth_to_access_with_preview_callout_text") %></p>
-  <% else %>
-    <p><%= t("videos.show.auth_to_access_without_preview_callout_text") %></p>
-  <% end %>
+  <p><%= t("videos.show.auth_to_access_without_preview_callout_text") %></p>
 
   <%= auth_to_access_button(video, cta_text: t("videos.show.auth_to_access_button_text")) %>
 </div>
