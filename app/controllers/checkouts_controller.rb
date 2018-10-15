@@ -3,11 +3,7 @@ class CheckoutsController < ApplicationController
   before_action :redirect_when_already_subscribed
 
   def new
-    build_checkout({}) do |checkout|
-      @landing = true
-      @checkout = checkout
-      render :new
-    end
+    redirect_to root_path
   end
 
   def create

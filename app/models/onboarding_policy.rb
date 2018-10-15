@@ -4,7 +4,7 @@ class OnboardingPolicy
   end
 
   def needs_onboarding?
-    full_subscriber_with_incomplete_welcome_flow?
+    false
   end
 
   def onboarded?

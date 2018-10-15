@@ -4,7 +4,7 @@ feature "Admin creates a deck" do
   scenario "is redirected away if not an admin" do
     visit new_admin_deck_path(as: create(:subscriber, :onboarded))
 
-    expect(current_path).to eq(practice_path)
+    expect(current_path).to eq(root_path)
   end
 
   scenario "is redirected away if not a user" do

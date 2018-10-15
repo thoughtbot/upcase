@@ -7,7 +7,7 @@ feature "Completed Trails" do
     just_finished_trail = create_trail_completed_by(user, at: 1.day.ago)
     sign_in_as user
 
-    visit root_path
+    visit practice_path
 
     click_on "View all completed trails →"
 

@@ -8,7 +8,6 @@ feature "Visitor" do
     visit show_url(show)
 
     expect(page).to have_content(show.name)
-    expect(page).to have_show_preview_cta
   end
 
   scenario "clicks through to an episode" do

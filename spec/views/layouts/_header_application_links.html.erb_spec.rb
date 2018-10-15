@@ -59,15 +59,6 @@ describe "layouts/_header_application_links.html.erb" do
     end
   end
 
-  context "in welcome mode" do
-    it "shows only a help link" do
-      render(onboarded: false)
-
-      expect(rendered).not_to have_practice_link
-      expect(rendered).to have_link("Help", href: welcome_path)
-    end
-  end
-
   def have_practice_link
     have_link(I18n.t("shared.header.practice"), href: practice_path)
   end
