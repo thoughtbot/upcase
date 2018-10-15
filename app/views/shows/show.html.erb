@@ -13,21 +13,18 @@
       <%= @show.name %>
     </h1>
     <h4 class="page-header__tagline">
-      <%= @show.tagline %>
+      Learn to write better code in less than 30 minutes a week.
     </h4>
+    <p>
+      The Weekly Iteration is our video series where we explore new
+      frameworks and languages, dig in to advanced coding patterns, and share
+      the techniques we use on projects to build robust and maintainable
+      applications.
+      We're currently on a break from recording new episodes,
+      but be sure to check out the many videos we've released previously.
+    </p>
   </header>
 <% end %>
-
-<div class="show-info">
-  <% unless signed_in? %>
-    <div>
-      <%= render Clip.new("ol6e0miehm") %>
-    </div>
-    <%= render "subscribe_cta",
-      description: t("show.weekly_iteration_cta"),
-      button_text: t("watchables.preview.auth_to_access_button_text") %>
-  <% end %>
-</div>
 
 <span class="divider">
   <h4 class="text">Videos</h4>

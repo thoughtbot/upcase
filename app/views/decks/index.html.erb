@@ -1,25 +1,14 @@
-<% unless signed_in? %>
-  <div class="access-callout subscription-required" data-role="subscribe_cta">
-    <p><%= t("decks.auth_to_access_cta") %></p>
-
-    <%= link_to github_auth_path, class: "pull-right cta-button subscribe-cta light-bg" do %>
-      <%= image_tag("github-black.svg", class: "logo", alt: "") %>
-      <%= t("decks.auth_to_access_link")  %>
-    <% end %>
-  </div>
-<% end %>
-
 <section class="root-decks">
   <header class="page-header">
     <h1 class="page-header__title">
       <%= t('.title') %>
-    </h3>
+    </h1>
 
     <h4 class="page-header__tagline">
       <%= t(".subhead") %>
     </h4>
 
-    <p class="page-header__intro">
+    <p>
       <%= t('.feature_description') %>
     </p>
   </header>
