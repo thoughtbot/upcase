@@ -61,6 +61,7 @@ Rails.configuration.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
   r301 "/upcase/ruby-science", "https://gumroad.com/l/ruby-science"
 
   # Videos
+  r301 "/upcase/videos/factory-girl", "/upcase/videos/factory-bot"
   r301 "/upcase/videos/vim-for-rails-developers", "https://www.youtube.com/watch?v=9J2OjH8Ao_A"
   r301 "/upcase/humans-present/oss", "https://www.youtube.com/watch?v=VMBhumlUP-A"
   r301 "/upcase/pages/tmux", "https://www.youtube.com/watch?v=CKC8Ph-s2F4"
