@@ -331,6 +331,7 @@
 
     @include dashboard-small-only {
       width: 100%;
+      padding: $small-spacing;
     }
   }
 }
