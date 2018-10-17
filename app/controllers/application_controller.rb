@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def self.cache_signed_out_action(*actions)
-    caches_action(*actions, if: :signed_out?, expires_in: 2.hours)
+    caches_action(*actions, if: :signed_out?)
   end
 
   protected
