@@ -120,7 +120,6 @@ Rails.application.routes.draw do
     )
 
     namespace :subscriber do
-      resources :invoices, only: [:index, :show]
       resource :cancellation, only: [:new, :create]
       resource :paused_subscription, only: [:create]
       resource :discount, only: :create

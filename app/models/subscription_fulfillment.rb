@@ -6,7 +6,6 @@ class SubscriptionFulfillment
 
   def fulfill
     fulfill_gained_features
-    update_next_invoice_info
   end
 
   def remove
@@ -29,9 +28,5 @@ class SubscriptionFulfillment
       new_plan: NullPlan.new,
       user: @user
     ).unfulfill_lost_features
-  end
-
-  def update_next_invoice_info
-    SubscriptionUpcomingInvoiceUpdater.new([@user.subscription]).process
   end
 end
