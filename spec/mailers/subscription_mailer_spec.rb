@@ -1,47 +1,6 @@
 require "rails_helper"
 
 describe SubscriptionMailer do
-  describe ".subscription_receipt" do
-    include Rails.application.routes.url_helpers
-
-    it "is sent to the given email" do
-      expect(subscription_receipt_email.to).to eq(%w(email@example.com))
-    end
-
-    it "includes the billed amount as currency" do
-      expect(subscription_receipt_email).to have_body_text(/\$99.00/)
-    end
-
-    it "includes a link to the invoice" do
-      expect(subscription_receipt_email).to have_body_text(
-        subscriber_invoice_url("invoice_id")
-      )
-    end
-
-    it "is sent from upcase" do
-      expect(subscription_receipt_email.from).to include(ENV["SUPPORT_EMAIL"])
-    end
-
-    it "specifies the subject" do
-      expect(subscription_receipt_email.subject).to eq(
-        I18n.t("mailers.subscription.subscription_receipt.subject")
-      )
-    end
-
-    it "links to the forum" do
-      expect(subscription_receipt_email).
-        to(have_body_text("https://forum.upcase.com"))
-    end
-
-    def subscription_receipt_email
-      SubscriptionMailer.subscription_receipt(
-        "email@example.com",
-        99,
-        "invoice_id"
-      )
-    end
-  end
-
   describe ".upcoming_payment_notification" do
     include Rails.application.routes.url_helpers
 
