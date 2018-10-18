@@ -118,8 +118,6 @@ en:
     subscription:
       cancellation_survey:
         subject: Suggestions for improving Upcase
-      upcoming_payment_notification:
-        subject: '[Upcase] thoughtbot is about to charge for your Upcase subscription'
 
   pages:
     landing:
