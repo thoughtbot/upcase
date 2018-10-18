@@ -27,14 +27,6 @@ describe UserSerializer do
   end
 
   context 'when the user does not have an active subscription' do
-    it 'includes a key denying forum access' do
-      user = build_stubbed(:user)
-
-      user_json = parse_serialized_json(user)
-
-      expect(user_json["has_forum_access"]).to be false
-    end
-
     it 'includes a key indicating no subscription' do
       user = build_stubbed(:user)
 

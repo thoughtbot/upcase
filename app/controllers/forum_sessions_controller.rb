@@ -2,7 +2,6 @@ require "single_sign_on"
 
 class ForumSessionsController < ApplicationController
   before_action :require_login
-  before_action :must_have_forum_access
 
   def new
     sso = ::SingleSignOn.parse(
@@ -16,19 +15,6 @@ class ForumSessionsController < ApplicationController
   end
 
   private
-
-  def must_have_forum_access
-    unless current_user.has_access_to?(Forum)
-      redirect_to(
-        root_path,
-        notice: I18n.t(
-          "products.subscribe_cta",
-          offering_type: "forum",
-          subscription_name: I18n.t("shared.upcase")
-        )
-      )
-    end
-  end
 
   def populate_sso_for_current_user(sso)
     single_sign_on_mapping.each do |sso_attr, user_attr|

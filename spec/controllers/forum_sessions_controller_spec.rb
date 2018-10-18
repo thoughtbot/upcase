@@ -39,20 +39,36 @@ describe ForumSessionsController do
     end
 
     context "when logged in but not subscribed" do
-      it "redirects to the landing page" do
+      it "properly redirects to the forum" do
         user = build_stubbed(:user)
         stub_current_user_with(user)
+        discourse_sso = discourse_sso_stub
+        allow(SingleSignOn).to receive(:parse).and_return(discourse_sso)
 
         get :new, params: { sso: "ssohash", sig: "sig" }
 
-        should deny_access(
-          redirect: root_path,
-          flash: I18n.t(
-            "products.subscribe_cta",
-            offering_type: "forum",
-            subscription_name: I18n.t("shared.upcase")
+        expect(SingleSignOn).to have_received(:parse).
+          with(
+            "sig=sig&sso=ssohash",
+            ENV.fetch("DISCOURSE_SSO_SECRET"),
           )
+        expect(response).to redirect_to(
+          discourse_sso.to_url(
+            Forum.sso_url,
+          ),
         )
+        expect(discourse_sso).to have_received(:email=).
+          with(user.email)
+        expect(discourse_sso).to have_received(:name=).
+          with(user.name)
+        expect(discourse_sso).to have_received(:username=).
+          with(user.github_username)
+        expect(discourse_sso).to have_received(:external_id=).
+          with(user.id)
+        expect(discourse_sso).to have_received(:sso_secret=).
+          with(ENV.fetch("DISCOURSE_SSO_SECRET"))
+        expect(analytics).to have_tracked("Logged into Forum").
+          for_user(user)
       end
     end
 

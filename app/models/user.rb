@@ -79,7 +79,7 @@ class User < ApplicationRecord
   end
 
   def has_access_to?(feature)
-    subscriber? || feature.accessible_without_subscription?
+    true
   end
 
   def subscribed_at
