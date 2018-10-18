@@ -118,8 +118,6 @@ en:
     subscription:
       cancellation_survey:
         subject: Suggestions for improving Upcase
-      subscription_receipt:
-        subject: '[Upcase] Your receipt and some tips'
       upcoming_payment_notification:
         subject: '[Upcase] thoughtbot is about to charge for your Upcase subscription'
 
@@ -133,7 +131,7 @@ en:
       have_a_team: Have a team?
       hero_call_to_action: Start Learning Today!
       hero_tagline: Upcase by thoughtbot
-      hero_uvp_html: <strong>We're not a bootcamp, we're a finishing school.</strong> 
+      hero_uvp_html: <strong>We're not a bootcamp, we're a finishing school.</strong>
         Become an experienced developer and take "junior" out of your title.
       language_flash: Thanks for signing up. We will be in touch!
       page_title: Upcase by thoughtbot | Learn Web Development Online

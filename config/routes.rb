@@ -119,8 +119,6 @@ Rails.application.routes.draw do
       constraints: SlugConstraint.new(Show),
     )
 
-    mount StripeEvent::Engine, at: "stripe-webhook"
-
     namespace :subscriber do
       resources :invoices, only: [:index, :show]
       resource :cancellation, only: [:new, :create]
