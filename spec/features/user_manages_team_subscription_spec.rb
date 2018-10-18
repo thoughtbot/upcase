@@ -7,12 +7,11 @@ feature "User edits a team subscription" do
     sign_in
   end
 
-  scenario "a team owner can see invoices and manage team" do
+  scenario "a team owner can manage team" do
     owner = create(:user, :with_team_subscription)
 
     visit my_account_path(as: owner)
 
-    expect(page).to have_content "View all invoices"
     expect(page).to have_content "Cancel"
 
     click_link "Manage Users"
@@ -34,7 +33,6 @@ feature "User edits a team subscription" do
     visit my_account_path
 
     within "#account-sidebar" do
-      expect(page).to_not have_content "View all invoices"
       expect(page).to_not have_content "Cancel"
       expect(page).to_not have_content "Manage Users"
     end
