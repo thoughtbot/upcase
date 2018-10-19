@@ -9,7 +9,7 @@ describe "trails/show.html.erb" do
     end
   end
 
-  context "viewed by a subscriber" do
+  context "viewed by a user" do
     it "renders the progress bar" do
       render_trail(signed_in: true)
 

@@ -3,10 +3,10 @@ include ActionView::RecordIdentifier
 
 feature "Remove team members" do
   scenario "an owner removes a team member" do
-    owner = create(:user, :with_team_subscription)
-    team = owner.team
+    owner = create(:user, :with_attached_team)
+    owner.team.update(owner: owner)
     user_to_remove = create(:user, :with_github)
-    add_user_to_team(user_to_remove, team)
+    add_user_to_team(user_to_remove, owner.team)
 
     visit my_account_path(as: owner)
     click_link "Manage Users"

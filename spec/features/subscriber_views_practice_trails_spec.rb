@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Subscriber views completed trails" do
+feature "user views completed trails" do
   scenario "completed and incompleted trails are separated" do
     completed_trail = create(:trail, :published, :completed)
     user = completed_trail.users.last

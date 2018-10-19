@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "User without subscription" do
+feature "User looking for content" do
   scenario "accesses the practice page" do
     visit practice_path(as: create(:user))
 

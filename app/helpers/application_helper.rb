@@ -27,20 +27,6 @@ module ApplicationHelper
     exercise.url
   end
 
-  def current_user_is_subscription_owner?
-    current_user.subscriber? &&
-      current_user.subscription.owner?(current_user)
-  end
-
-  def show_upgrade_to_annual_cta?
-    current_user_is_subscription_owner? &&
-      current_user.eligible_for_annual_upgrade?
-  end
-
-  def encourage_user_to_pay?
-    !current_user.subscriber? || sales_context?
-  end
-
   def content_meta_description(describable)
     describable.meta_description.presence ||
       t("shared.content_meta_description", name: describable.name)

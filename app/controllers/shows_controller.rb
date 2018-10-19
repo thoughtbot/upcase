@@ -20,9 +20,4 @@ class ShowsController < ApplicationController
   def find_show
     Show.friendly.find(params[:id])
   end
-
-  def has_access_to_shows?
-    current_user_has_access_to?(Show)
-  end
-  helper_method :has_access_to_shows?
 end

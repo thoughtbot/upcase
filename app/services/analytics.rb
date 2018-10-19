@@ -1,9 +1,8 @@
 class Analytics
   include AnalyticsHelper
 
-  SAMPLER = "sampler".freeze
   SUBSCRIBED_EVENT_NAME = "Subscribed".freeze
-  SUBSCRIBER = "subscriber".freeze
+  USER = "user".freeze
   TRACKERS = {
     "Video" => VideoTracker,
     "Exercise" => ExerciseTracker,
@@ -49,16 +48,8 @@ class Analytics
     track("Logged into Forum")
   end
 
-  def track_authenticated_on_checkout
-    track("Authenticated on checkout")
-  end
-
   def track_cancelled(reason:)
     track("Cancelled", reason: reason)
-  end
-
-  def track_paused
-    track("Paused")
   end
 
   def track_subscribed(context:, plan:, revenue:)
@@ -68,14 +59,6 @@ class Analytics
       plan: plan,
       revenue: revenue,
     )
-  end
-
-  def track_subscription_reactivated
-    track("Subscription reactivated")
-  end
-
-  def track_resubscribe
-    track("Resubscribe")
   end
 
   def track_flashcard_attempted(deck:, title:)
@@ -121,14 +104,6 @@ class Analytics
     TRACKERS.fetch(completeable.class.name).new(completeable)
   end
 
-  def user_type(user)
-    if user.subscriber?
-      SUBSCRIBER
-    else
-      SAMPLER
-    end
-  end
-
   def track_touched_video(name:, watchable_name:)
     track("Touched Video", name: name, watchable_name: watchable_name)
   end
@@ -148,7 +123,7 @@ class Analytics
       user_id: user.id,
       properties: properties.merge(
         email: user.email,
-        user_type: user_type(user),
+        user_type: USER,
       ),
     )
   end

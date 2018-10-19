@@ -1,17 +1,17 @@
 class WeeklyIterationSuggestions < ApplicationJob
   include ErrorReporting
 
-  def initialize(subscribers)
-    @subscribers = subscribers
+  def initialize(users)
+    @users = users
     @sorted_recommendable_videos = RecommendableContent.
       priority_ordered.
       map(&:recommendable)
   end
 
   def send
-    subscribers.each do |subscriber|
+    users.each do |user|
       WeeklyIterationRecommender.new(
-        user: subscriber,
+        user: user,
         sorted_recommendable_videos: sorted_recommendable_videos,
       ).recommend
     end
@@ -19,5 +19,5 @@ class WeeklyIterationSuggestions < ApplicationJob
 
   private
 
-  attr_reader :subscribers, :sorted_recommendable_videos
+  attr_reader :users, :sorted_recommendable_videos
 end

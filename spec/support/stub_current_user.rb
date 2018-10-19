@@ -5,7 +5,7 @@ module StubCurrentUserHelper
   end
 
   def stub_current_user
-    build_stubbed(:subscriber).tap do |user|
+    build_stubbed(:user).tap do |user|
       stub_current_user_with(user)
     end
   end

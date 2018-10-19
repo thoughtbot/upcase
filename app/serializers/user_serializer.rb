@@ -6,7 +6,6 @@ class UserSerializer < ActiveModel::Serializer
     :avatar_url,
     :email,
     :first_name,
-    :has_active_subscription,
     :has_forum_access,
     :id,
     :last_name,
@@ -15,10 +14,6 @@ class UserSerializer < ActiveModel::Serializer
 
   def has_forum_access
     object.has_access_to?(Forum) || object.admin?
-  end
-
-  def has_active_subscription
-    object.subscriber?
   end
 
   def username

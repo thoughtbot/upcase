@@ -9,10 +9,6 @@ class Repository < Product
     where(trail_id: nil)
   end
 
-  def self.accessible_without_subscription?
-    false
-  end
-
   def add_collaborator(user)
     collaborations.create!(user: user)
     GithubFulfillment.new(self, user).fulfill

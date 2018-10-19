@@ -2,7 +2,6 @@ class AuthCallbacksController < ApplicationController
   def create
     sign_in user_from_auth_hash
     track_authed_to_access
-    track_authenticated_on_checkout
     redirect_to_desired_path
     clear_used_session_values
   end
@@ -15,12 +14,6 @@ class AuthCallbacksController < ApplicationController
         video_name: video.name,
         watchable_name: video.watchable_name,
       )
-    end
-  end
-
-  def track_authenticated_on_checkout
-    if session[:authenticated_on_checkout]
-      analytics.track_authenticated_on_checkout
     end
   end
 
@@ -88,7 +81,6 @@ class AuthCallbacksController < ApplicationController
     [
       :return_to,
       :auth_to_access_video_slug,
-      :authenticated_on_checkout,
       :invitation_id,
     ].each do |key|
       session.delete(key)

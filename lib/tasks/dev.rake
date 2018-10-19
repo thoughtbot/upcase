@@ -8,42 +8,12 @@ namespace :dev do
     require "factory_bot_rails"
     include FactoryBot::Syntax::Methods
 
-    create_individual_plans
     create_topics
     create_products
     create_episodes
     create_users
-    create_team_plan
     create_trails
     create_decks
-  end
-
-  def create_individual_plans
-    @basic_plan = create(
-      :plan,
-      :featured,
-      price_in_dollars: 9,
-      name: "The Weekly Iteration",
-      short_description: "One new video per week on advanced Ruby topics.",
-      sku: "the-weekly-iteration",
-    )
-
-    @discounted_annual_plan = create(
-      :discounted_annual_plan,
-      price_in_dollars: 199,
-      name: "Discounted Annual Plan",
-      short_description: "Everything you're used to, but a bit cheaper",
-      sku: Plan::DISCOUNTED_ANNUAL_PLAN_SKU,
-    )
-
-    @professional_plan = create(
-      :plan,
-      :featured,
-      price_in_dollars: 29,
-      name: "Professional",
-      short_description: "Do exercises and become a general whiz kid.",
-      sku: "professional",
-    )
   end
 
   def create_products
@@ -74,19 +44,18 @@ namespace :dev do
       ALTERNATIVE_DESCRIPTION
       description: <<-DESCRIPTION.strip_heredoc
         This is the full source code the Rails app that runs the Upcase
-        website. It includes authentication, users, subscription billing with
-        Stripe, video tutorials, and more.
+        website. It includes authentication, users, video tutorials, and more.
 
-        As a subscriber, you have access to the source code of Upcase, this
+        As a user, you have access to the source code of Upcase, this
         application. Clone it, disect it, and follow code reviews. See what a
         real-world, complex, fully tested production application looks like.
 
         We've been working full-time on Upcase for more than a year, and we
         think it's a good example of a large app with great code. Upcase has
-        extensive test coverage, a full implementation of SaaS billing with
-        Stripe, and serves as an OAuth endpoint for our Discourse forum, among
-        other things. We encourage you to make changes and participate in pull
-        request discussions. It has a 4.0 score on Code Climate.
+        extensive test coverage, and serves as an OAuth endpoint for our
+        Discourse forum, among other things. We encourage you to make changes
+        and participate in pull request discussions. It has a 4.0 score on Code
+        Climate.
       DESCRIPTION
     )
     puts_product repository
@@ -118,47 +87,45 @@ namespace :dev do
   def create_users
     header "Users"
 
-    user = create(
+    admin = create(
       :admin,
-      :with_subscription,
       :with_github,
       email: 'admin@example.com',
-      plan: @professional_plan
     )
-    puts_user user, 'admin'
+    puts_user admin, "admin"
 
-    user = create(
+    whet_ready = create(
       :admin,
-      :with_subscription,
       :with_github,
       email: 'whetstone@example.com',
-      plan: @professional_plan,
     )
-    puts_user user, 'ready to auth against whetstone'
+    puts_user whet_ready, "ready to auth against whetstone"
 
-    user = create(:user, email: 'none@example.com')
-    puts_user user, 'no purchases'
+    no_purchases = create(:user, email: 'none@example.com')
+    puts_user no_purchases, 'no purchases'
 
-    user = create(
-      :basic_subscriber,
+    basic = create(
+      :user,
       email: 'basic@example.com',
-      plan: @basic_plan,
     )
-    puts_user user, 'basic subscriber'
+    puts_user basic, 'basic user'
 
-    user = create(
-      :basic_subscriber,
-      :with_team_subscription,
-      email: "team@example.com",
+    owner = create(
+      :user,
+      email: "team-owner@example.com",
+      team_name: "All stars",
     )
-    puts_user user, "team subscriber"
+    puts_user owner, "team owner user"
 
-    user = create(:user, email: "new@example.com")
-    puts_user user, "unsubscribed user"
-  end
+    member = create(
+      :user,
+      email: "team-member@example.com",
+      team: owner.team,
+    )
+    puts_user member, "team member user"
 
-  def create_team_plan
-    create(:plan, :team, :featured)
+    unsub = create(:user, email: "new@example.com")
+    puts_user unsub, "unsubscribed user"
   end
 
   def create_topics

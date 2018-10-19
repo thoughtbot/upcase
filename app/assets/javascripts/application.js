@@ -10,9 +10,7 @@
 // Upcase
 //= require upcase
 //= require dismiss-flashes
-//= require plans
 //= require close
-//= require checkout
 //= require header-toggle
 //= require autoresize
 //= require wistia_helper

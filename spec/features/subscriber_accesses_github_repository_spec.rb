@@ -1,9 +1,9 @@
 require "rails_helper"
 
-feature "Subscriber accesses GitHub repository" do
+feature "User accesses GitHub repository" do
   scenario "gets added as a collaborator" do
     repository = create(:repository)
-    sign_in_as_user_with_subscription
+    sign_in
 
     visit practice_path
     click_on "Upcase source code on GitHub"

@@ -4,9 +4,9 @@ describe ForumSessionsController do
   include StubCurrentUserHelper
 
   describe "#new" do
-    context "when logged in as a subscriber" do
+    context "when logged in as a user" do
       it "properly redirects to the forum" do
-        user = create(:subscriber)
+        user = create(:user)
         stub_current_user_with(user)
         discourse_sso = discourse_sso_stub
         allow(SingleSignOn).to receive(:parse).and_return(discourse_sso)

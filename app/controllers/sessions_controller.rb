@@ -6,6 +6,6 @@ class SessionsController < Clearance::SessionsController
   end
 
   def url_after_create
-    onboarding_policy.root_path
+    practice_path
   end
 end

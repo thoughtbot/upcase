@@ -23,13 +23,6 @@ shared_examples "a class inheriting from Product" do
     end
   end
 
-  describe "#subscription?" do
-    it "returns false" do
-      product = build_stubbed_product
-      expect(product).not_to be_subscription
-    end
-  end
-
   context "title" do
     it "describes the product name and type" do
       product = build_stubbed_product(name: "Juice")

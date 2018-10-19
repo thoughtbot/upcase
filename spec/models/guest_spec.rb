@@ -1,14 +1,6 @@
 require "rails_helper"
 
 describe Guest do
-  describe "#subscriber?" do
-    it "returns false" do
-      guest = Guest.new
-
-      expect(guest.subscriber?).to eq(false)
-    end
-  end
-
   describe "#sampler?" do
     it "returns false" do
       guest = Guest.new

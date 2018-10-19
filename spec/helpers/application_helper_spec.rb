@@ -17,52 +17,6 @@ describe ApplicationHelper do
     end
   end
 
-  describe "#encourage_user_to_pay?" do
-    context "when current_user has an active_subscription" do
-      context "and is on a landing page" do
-        it "returns true" do
-          stub_user(subscriber: true, on_landing_page: true)
-
-          result = helper.encourage_user_to_pay?
-
-          expect(result).to be(true)
-        end
-      end
-
-      context "and is not on a landing page" do
-        it "returns false" do
-          stub_user(subscriber: true, on_landing_page: false)
-
-          result = helper.encourage_user_to_pay?
-
-          expect(result).to be(false)
-        end
-      end
-    end
-
-    context "when current_user doesn't have an active_subscription" do
-      context "and is on a landing page" do
-        it "returns true" do
-          stub_user(subscriber: false, on_landing_page: false)
-
-          result = helper.encourage_user_to_pay?
-
-          expect(result).to be(true)
-        end
-      end
-
-      context "and is not on a landing page" do
-        it "returns true" do
-          stub_user(subscriber: false, on_landing_page: false)
-
-          result = helper.encourage_user_to_pay?
-
-          expect(result).to be(true)
-        end
-      end
-    end
-  end
-
   describe "#content_meta_description" do
     context "when the content has a meta_description defined" do
       it "uses the provided meta_description" do
@@ -116,12 +70,5 @@ describe ApplicationHelper do
       video = create(:video, watchable: trail, topics: [topic])
       create(:step, trail: trail, completeable: video)
     end
-  end
-
-  def stub_user(subscriber:, on_landing_page:)
-    user = double(:user, subscriber?: subscriber)
-    allow(helper).to receive(:signed_out?).and_return(false)
-    allow(helper).to receive(:current_user).and_return(user)
-    assign(:landing_page, on_landing_page)
   end
 end

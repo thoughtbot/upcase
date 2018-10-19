@@ -16,29 +16,9 @@ describe UserSerializer do
     expect(user_json['avatar_url']).to eq gravatar_url(user.email)
   end
 
-  context 'when the user has an active subscription' do
-    it 'includes a key indicating a subscription' do
-      user = create(:subscriber)
-
-      user_json = parse_serialized_json(user)
-
-      expect(user_json["has_active_subscription"]).to be true
-    end
-  end
-
-  context 'when the user does not have an active subscription' do
-    it 'includes a key indicating no subscription' do
-      user = build_stubbed(:user)
-
-      user_json = parse_serialized_json(user)
-
-      expect(user_json["has_active_subscription"]).to be false
-    end
-  end
-
-  context 'when the user has subscription with access to forum' do
+  context 'when the user has access to forum' do
     it 'includes a key allowing forum access' do
-      user = create(:subscriber)
+      user = create(:user)
 
       user_json = parse_serialized_json(user)
 
@@ -46,7 +26,7 @@ describe UserSerializer do
     end
   end
 
-  context 'when the user does not have an active subscription but is an admin' do
+  context 'when the user is an admin' do
     it 'includes a key granting forum access' do
       user = create(:admin)
 

@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe MembershipsController do
   it "does not allow you to remove yourself" do
-    user = create(:user, :with_team_subscription)
+    user = create(:user, :with_attached_team)
     sign_in_as user
 
     delete :destroy, params: { id: user }
@@ -13,7 +13,7 @@ describe MembershipsController do
   end
 
   it "allows a user with a team" do
-    user = create(:user, :with_team_subscription)
+    user = create(:user, :with_attached_team)
     sign_in_as user
 
     remove_other_user_from_team
@@ -24,6 +24,7 @@ describe MembershipsController do
 
   it "redirects a user who is not owner" do
     team = create(:team)
+    _owner = create(:user, team: team)
     user = create(:user, team: team)
     sign_in_as user
 

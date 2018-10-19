@@ -5,7 +5,7 @@ class AcceptancesController < ApplicationController
     if signed_in?
       if @invitation.accept(current_user)
         redirect_to(
-          onboarding_policy.root_path,
+          practice_path,
           notice: "You've been added to the team. Enjoy!",
         )
       else

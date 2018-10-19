@@ -1,10 +1,11 @@
 require "rails_helper"
 
-feature "subscriber views video trail" do
+feature "user views video trail" do
   scenario "and marks a video as complete" do
     trail = create_video_trail
 
-    sign_in_as_user_with_subscription
+    sign_in
+    click_on I18n.t("pages.landing.hero_call_to_action")
     click_on trail.name
 
     within trail_steps_list do
@@ -25,7 +26,7 @@ feature "subscriber views video trail" do
     video = create(:video, wistia_id: "hello", notes: "# Hello\n\n## Topic")
     marker = create(:marker, video: video, anchor: "topic")
 
-    visit video_path(video, as: create(:subscriber))
+    visit video_path(video, as: create(:user))
     within "#topic" do
       click_jump_to_topic_in_video_button
     end

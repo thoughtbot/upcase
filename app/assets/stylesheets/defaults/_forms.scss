@@ -15,15 +15,6 @@ form {
 
   li {
     list-style-type: none;
-
-    &.payment-errors, &.subscription-errors {
-      color: $upcase-blue;
-      font-style: bold;
-
-      &:empty {
-        display: none;
-      }
-    }
   }
 
   fieldset {

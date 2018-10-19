@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Subscriber views decks" do
+feature "user views decks" do
   scenario "and starts a deck" do
     flashcard = create(:flashcard)
 
@@ -103,7 +103,7 @@ feature "Subscriber views decks" do
   end
 
   def navigate_to_deck(deck)
-    visit decks_path(as: create(:subscriber))
+    visit decks_path(as: create(:user))
     within decks_list do
       click_on deck.title
     end

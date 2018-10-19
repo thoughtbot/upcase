@@ -67,7 +67,6 @@ Rails.application.routes.draw do
       post "intercom-unsubscribes", to: "intercom_unsubscribes#create"
     end
 
-    get "/join" => "checkouts#new", plan: "professional", as: :sign_up
     get "/sign_in" => "sessions#new", as: "sign_in"
     delete "/sign_out" => "sessions#destroy", as: "sign_out"
 
@@ -96,11 +95,6 @@ Rails.application.routes.draw do
     get "/pages/welcome", to: "pages#show", as: "welcome"
     get "/pre-sales/python", to: "pages#show", id: "pre_sale_python"
 
-    scope ":plan" do
-      resource :authenticated_on_checkout, only: [:show]
-      resources :checkouts, only: [:new, :create]
-    end
-
     resources :repositories, only: [:index] do
       resource :collaboration, only: [:create]
     end
@@ -118,14 +112,6 @@ Rails.application.routes.draw do
       as: :show,
       constraints: SlugConstraint.new(Show),
     )
-
-    namespace :subscriber do
-      resource :cancellation, only: [:new, :create]
-      resource :paused_subscription, only: [:create]
-      resource :discount, only: :create
-      resource :reactivation, only: [:create]
-      resource :resubscription, only: [:create]
-    end
 
     namespace :beta do
       resources :offers, only: [] do
@@ -149,7 +135,7 @@ Rails.application.routes.draw do
       constraints: SlugConstraint.new(Trail),
     )
 
-    get "/sign_up" => "users#new", as: "sign_up_app"
+    get "/sign_up" => "users#new", as: :sign_up
 
     get "/my_account" => "users#edit", as: "my_account"
     patch "/my_account" => "users#update", as: "edit_my_account"
@@ -178,13 +164,7 @@ Rails.application.routes.draw do
       resources :completions, only: [:create], controller: "video_completions"
     end
 
-    resource :annual_billing, only: :new
-    resource :credit_card, only: [:update]
     resource :forum_sessions, only: :new
-    resources :payments, only: [:new]
-    resources :signups, only: [:create]
-    resource :subscription, only: [:edit, :update]
-    resources :coupons, only: :show
     resources :onboardings, only: :create
     get "forum", to: redirect("https://forum.upcase.com"), as: "forum"
 
@@ -198,8 +178,6 @@ Rails.application.routes.draw do
       path: "test-driven-rails-resources",
       only: [:index],
     )
-
-    resources :tapas_payments, only: [:create]
 
     get "/practice" => "practice#show", as: :practice
     get "sitemap.xml" => "sitemaps#show", as: :sitemap, format: "xml"

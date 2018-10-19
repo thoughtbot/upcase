@@ -1,8 +1,8 @@
 require "rails_helper"
 
 feature "Completed Trails" do
-  scenario "subscriber navigates to completed trails" do
-    user = create(:subscriber, :with_full_subscription, :onboarded)
+  scenario "user navigates to completed trails" do
+    user = create(:user)
     complete_trail = create_trail_completed_by(user, at: 1.week.ago)
     just_finished_trail = create_trail_completed_by(user, at: 1.day.ago)
     sign_in_as user

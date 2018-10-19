@@ -1,20 +1,22 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [Upcase](#upcase)
 - [Development](#development)
   - [Rules of the road](#rules-of-the-road)
   - [Setup](#setup)
+  - [Designing In The Browser](#designing-in-the-browser)
   - [Protocol](#protocol)
   - [Continuous Integration](#continuous-integration)
   - [Ongoing](#ongoing)
-  - [Payment Testing](#payment-testing)
-    - [Stripe](#stripe)
   - [Amazon AWS S3](#amazon-aws-s3)
   - [Deployment](#deployment)
   - [Sending email on staging](#sending-email-on-staging)
+- [Viewing email in development](#viewing-email-in-development)
 - [Product Management](#product-management)
 - [Admin Access](#admin-access)
+- [Testing With User Accounts](#testing-with-user-accounts)
 - [Credits](#credits)
 - [License](#license)
 
@@ -46,15 +48,11 @@ your work.
 
         % bin/setup
 
-3. Follow instructions in .env to configure Stripe.
-
-        % vim .env
-
-4. Start Foreman.
+3. Start Foreman.
 
         % foreman start
 
-5. Verify that the app is up and running.
+4. Verify that the app is up and running.
 
         % open http://localhost:5000/upcase
 
@@ -116,31 +114,6 @@ build is run automatically whenever any branch is updated on Github.
 
 * To test that adding/removing GitHub users works, use the GitHub user
   "cpyteltest".
-
-## Payment Testing
-
-### Stripe
-
-To test Stripe payments on staging use a fake credit card.
-
-<table>
-  <thead>
-    <tr>
-      <th>Card</th>
-      <th>Number</th>
-      <th>Expiration</th>
-      <th>CVV</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Visa</td>
-      <td>4242424242424242</td>
-      <td>Any future date</td>
-      <td>Any 3 digits</td>
-    </tr>
-  </tbody>
-</table>
 
 ## Amazon AWS S3
 
@@ -209,19 +182,7 @@ and trello boards, and others.
 # Testing With User Accounts
 
 The `rake dev:prime` task will create user accounts that you can test with in
-development mode. The account that is associated with a team requires additional
-configuration to test in your development environment, because it needs to
-connect to Stripe.
-
-You will need the Stripe Test Secret and Test Publishable keys. You can get them
-from https://manage.stripe.com/account/apikeys. Add them to your `.env` file on
-the appropriate lines:
-
-`STRIPE_API_SECRET_KEY=api_secret_key`
-`STRIPE_API_PUBLISHABLE_KEY=api_publishable_key`
-
-After you've added them, running `rake dev:prime` will be able to run
-successfully.
+development mode.
 
 # Credits
 
@@ -236,9 +197,7 @@ thoughtbot, inc.
 
 # License
 
-This application is Copyright © 2007 thoughtbot, inc. It is provided to
-subscribers for educational purposes only, and Subscribers do not have a license
-to reuse or distribute the application or its source code.
+This application is Copyright © 2007 thoughtbot, inc.
 
 If you submit a Contribution to this application's source code, you hereby grant
 to thoughtbot, inc. a worldwide, royalty-free, exclusive, perpetual and

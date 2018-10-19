@@ -1,8 +1,8 @@
 require "rails_helper"
 
-feature "subscriber views weekly iteration" do
+feature "user views weekly iteration" do
   scenario "and sees relevant details on the page" do
-    user = create(:subscriber)
+    user = create(:user)
     show = create(:show)
     published_video = create(:video, :published, watchable: show)
     video = create(:video, watchable: show)
@@ -19,7 +19,7 @@ feature "subscriber views weekly iteration" do
     show = create(:show, name: "The Weekly Iteration")
     video = create(:video, :published, watchable: show)
 
-    visit show_path(show, as: create(:subscriber))
+    visit show_path(show, as: create(:user))
     expect(video_summary(video)).to have_video_status("unstarted")
 
     visit video_path(video)
