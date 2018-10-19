@@ -60,14 +60,6 @@ describe Trail do
     end
   end
 
-  describe ".accessible_without_subscription?" do
-    it "returns false" do
-      result = Trail.accessible_without_subscription?
-
-      expect(result).to be false
-    end
-  end
-
   describe "#title_card_image" do
     it "returns a default image if none is present" do
       trail = create(:trail, title_card_image: "")
@@ -284,7 +276,7 @@ describe Trail do
   end
 
   describe "#sample_video" do
-    context "with videos accessible without a subscription" do
+    context "with some videos" do
       it "returns the first match" do
         trail = create(:trail)
         create(
@@ -294,7 +286,6 @@ describe Trail do
           completeable: create(
             :video,
             name: "SecondAccessible",
-            accessible_without_subscription: true,
           ),
         )
         create(
@@ -304,38 +295,11 @@ describe Trail do
           completeable: create(
             :video,
             name: "FirstAccessible",
-            accessible_without_subscription: true,
           ),
         )
-        create(
-          :step,
-          trail: trail,
-          position: 1,
-          completeable: create(
-            :video,
-            name: "Inaccessible",
-            accessible_without_subscription: false,
-          ),
-        )
-
         result = trail.sample_video
 
         expect(result.map(&:name)).to eq("FirstAccessible".wrapped)
-      end
-    end
-
-    context "without any videos accessible without a subscription" do
-      it "returns nil" do
-        trail = create(:trail)
-        create(
-          :step,
-          trail: trail,
-          completeable: create(:video, accessible_without_subscription: false),
-        )
-
-        result = trail.sample_video
-
-        expect(result).to be_blank
       end
     end
   end

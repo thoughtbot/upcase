@@ -11,7 +11,7 @@
     margin-bottom: 1em;
     width: 7rem;
   }
-  
+
   img {
     border-radius: 50%;
   }
@@ -64,17 +64,6 @@ body.products-show aside,
 body.shows-show aside,
 body.videos-show aside {
 
-  .subscription-cta {
-    margin: 0 0 1.5em 0;
-  }
-
-  .subscription-cta h2 {
-    color: $darkwarmgray;
-    font: 800 1.4rem/1.2 $sans-serif;
-    line-height: 1.5em;
-    margin: 0 0 0.75rem 0;
-  }
-
   #terms {
     margin-top: 1.5em;
   }
@@ -91,11 +80,6 @@ body.videos-show aside {
     color: $darkwarmgray;
     font-family: $sans-serif;
     font-weight: 800;
-  }
-
-  div .active-subscription, .active-subscription span {
-    font: italic 400 0.9rem/1.5em $serif;
-    margin: 0.5rem 0 0.8rem;
   }
 
   div .when {

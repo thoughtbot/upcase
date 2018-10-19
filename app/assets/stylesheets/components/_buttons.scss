@@ -69,22 +69,6 @@ input[type="submit"],
   vertical-align: middle;
 }
 
-.subscribe-cta,
-input[type="submit"].subscribe-cta {
-  @include linear-gradient($cta-color-light, $cta-color-dark);
-  color: $cta-text-color;
-  margin-left: auto;
-
-  &.light-bg {
-    border: 1px solid lighten($cta-color-dark, 30%);
-  }
-
-  &:hover {
-    @include linear-gradient(darken($cta-color-light, 2.5%), darken($cta-color-dark, 2.5%));
-    color: $cta-text-color;
-  }
-}
-
 .cta-button span {
   line-height: 1.8;
 }

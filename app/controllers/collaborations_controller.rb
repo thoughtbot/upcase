@@ -30,7 +30,6 @@ class CollaborationsController < ApplicationController
     else
       redirect_to(
         root_path,
-        notice: t("subscriptions.flashes.subscription_required")
       )
     end
   end
@@ -40,8 +39,7 @@ class CollaborationsController < ApplicationController
       yield
     else
       redirect_to(
-        edit_subscription_path,
-        notice: t("subscriptions.flashes.upgrade_required")
+        root_path,
       )
     end
   end

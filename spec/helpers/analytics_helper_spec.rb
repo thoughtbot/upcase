@@ -33,18 +33,13 @@ describe AnalyticsHelper do
 
   describe "#identify_hash" do
     it "returns a hash of data to be sent to analytics" do
-      user = build_stubbed(:user, stripe_customer_id: "something")
+      user = build_stubbed(:user)
 
       expect(identify_hash(user)).to eq(
         created: user.created_at,
         email: user.email,
         first_name: user.first_name,
-        has_active_subscription: user.subscriber?,
         name: user.name,
-        plan: user.plan_name,
-        scheduled_for_deactivation_on: nil,
-        stripe_customer_url: StripeCustomer.new(user).url,
-        subscribed_at: user.subscribed_at,
         unsubscribed_from_emails: user.unsubscribed_from_emails,
         user_id: user.id,
         username: user.github_username,

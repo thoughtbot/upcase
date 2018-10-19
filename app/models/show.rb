@@ -1,10 +1,6 @@
 class Show < Product
   THE_WEEKLY_ITERATION = 'The Weekly Iteration'
 
-  def self.accessible_without_subscription?
-    false
-  end
-
   def self.the_weekly_iteration
     where(name: THE_WEEKLY_ITERATION).first
   end

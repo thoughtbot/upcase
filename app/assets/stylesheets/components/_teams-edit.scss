@@ -70,12 +70,6 @@ body.teams-edit {
       }
     }
 
-    input[type=submit] {
-      @include media($large-screen) {
-        @include span-columns(3);
-      }
-    }
-
     input[type=email] {
       margin: 0 0 0.5rem 0;
     }

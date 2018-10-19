@@ -15,8 +15,4 @@ class Exercise < ApplicationRecord
   def self.ordered
     order(:created_at)
   end
-
-  def accessible_without_subscription?
-    false
-  end
 end

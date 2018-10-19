@@ -14,30 +14,15 @@ describe Analytics do
       )
     end
 
-    context "if the user has an active subscription" do
-      it "identifies the user as a 'subscriber' when tracking" do
-        subscriber = create(:subscriber)
-        subscriber_analytics_instance = Analytics.new(subscriber)
+    context "if the user is signed in" do
+      it "identifies the user when tracking" do
+        user = create(:user)
+        user_analytics_instance = Analytics.new(user)
 
-        subscriber_analytics_instance.track_accessed_forum
-
-        expect(analytics).to(
-          have_tracked("Logged into Forum").
-          with_properties(user_type: "subscriber"),
-        )
-      end
-    end
-
-    context "if the user does not have an active subscription" do
-      it "identifies the user as a 'sampler' when tracking" do
-        sampler = build_stubbed(:user)
-        sampler_analytics_instance = Analytics.new(sampler)
-
-        sampler_analytics_instance.track_accessed_forum
+        user_analytics_instance.track_accessed_forum
 
         expect(analytics).to(
-          have_tracked("Logged into Forum").
-          with_properties(user_type: "sampler"),
+          have_tracked("Logged into Forum")
         )
       end
     end
@@ -209,16 +194,6 @@ describe Analytics do
     end
   end
 
-  describe "#track_authenticated_on_checkout" do
-    it "tracks that the user authenticated on the checkout page" do
-      analytics_instance.track_authenticated_on_checkout
-
-      expect(analytics).to(
-        have_tracked("Authenticated on checkout").for_user(user),
-      )
-    end
-  end
-
   describe "#track_cancelled" do
     it "tracks that the user cancelled along with the reason and their email" do
       analytics_instance.track_cancelled(reason: "No good")
@@ -324,22 +299,6 @@ describe Analytics do
       analytics_instance.track_account_created
 
       expect(analytics).to have_tracked("Account created").for_user(user)
-    end
-  end
-
-  describe "#track_subscription_reactivated" do
-    it "tracks that an account was reactivated before it cancelled" do
-      analytics_instance.track_subscription_reactivated
-
-      expect(analytics).to have_tracked("Subscription reactivated")
-    end
-  end
-
-  describe "#track_resubscribe" do
-    it "tracks that a user resubscribed via the 'resubscribe' button" do
-      analytics_instance.track_resubscribe
-
-      expect(analytics).to have_tracked("Resubscribe")
     end
   end
 end

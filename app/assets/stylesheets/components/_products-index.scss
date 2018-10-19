@@ -2,11 +2,4 @@ body.products-index {
   h1 {
     margin-bottom: 1em;
   }
-
-  .subscription {
-    .button {
-      @extend %button;
-      margin-right: 5px;
-    }
-  }
 }

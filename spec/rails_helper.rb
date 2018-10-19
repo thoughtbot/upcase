@@ -20,7 +20,6 @@ WebMock.disable_net_connect!(allow_localhost: true, allow: "codeclimate.com")
 
 Dir[File.expand_path(File.join(File.dirname(__FILE__),"support","**","*.rb"))].each {|f| require f}
 
-FakeStripeRunner.boot
 FakeGithubRunner.boot
 FakeWistiaRunner.boot
 
@@ -69,8 +68,6 @@ RSpec.configure do |config|
   config.include EmailSpec::Helpers
   config.include EmailSpec::Matchers
   config.include FactoryBot::Syntax::Methods
-  config.include Subscriptions
-  config.include CheckoutHelpers
   config.include SessionHelpers, type: :feature
   config.include PathHelpers, type: :feature
   config.include SignInRequestHelpers, type: :request

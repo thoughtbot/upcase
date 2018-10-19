@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "subscriber views trail details" do
+feature "user views trail details" do
   scenario "sees progress" do
     exercises = [
       create(:exercise, name: "First Exercise"),
@@ -17,7 +17,7 @@ feature "subscriber views trail details" do
     )
     teacher = create(:user, bio: generate(:bio))
     create(:teacher, user: teacher, video: video)
-    user = create(:subscriber)
+    user = create(:user)
     exercises.first.statuses.create!(user: user, state: Status::COMPLETE)
 
     visit practice_path(as: user)

@@ -81,9 +81,6 @@ Rails.configuration.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
     r301 "/upcase/products/14-prime", "/upcase/"
   end
 
-  # Coupons
-  r301 "/upcase/halfoff", "https://tbot.io/podcoupon"
-
   # Podcasts
   r301 "/upcase/podcast.xml", "http://podcasts.thoughtbot.com/giantrobots.xml"
   r301 "/upcase/giantrobots.xml", "http://podcasts.thoughtbot.com/giantrobots.xml"

@@ -46,7 +46,7 @@ describe TrailsHelper do
     context "for a signed in user" do
       it "renders a Start Trail link" do
         trail = create(:trail, :with_sample_video)
-        user = build(:subscriber)
+        user = build(:user)
         allow(helper).to receive(:current_user).and_return(user)
 
         html = helper.trail_call_to_action(trail)

@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "View team invitations" do
   scenario "when some have been accepted" do
-    owner = create(:user, :with_team_subscription)
+    owner = create(:user, :with_attached_team)
     team = owner.team
     add_user_to_team(create(:user, :with_github), team)
     create_list(:invitation, 2, team: team)
@@ -16,8 +16,9 @@ feature "View team invitations" do
   end
 
   scenario "a non-team owner can't manage the team" do
+    owner = create(:user, :with_attached_team)
     sign_in_as create(:user, :with_github)
-    add_user_to_team(current_user, create(:team))
+    add_user_to_team(current_user, owner.team)
 
     visit my_account_path
 
@@ -25,7 +26,7 @@ feature "View team invitations" do
   end
 
   scenario "a team owner is marked as the owner" do
-    owner = create(:user, :with_team_subscription)
+    owner = create(:user, :with_attached_team)
 
     visit my_account_path(as: owner)
     click_link "Manage Users"

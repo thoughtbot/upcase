@@ -1,7 +1,7 @@
-<div class="access-callout subscription-required" data-role="subscribe_cta">
+<div class="access-callout">
   <p><%= description %></p>
 
-  <%= link_to video_auth_to_access_path(video), class: "pull-right cta-button subscribe-cta light-bg" do %>
+  <%= link_to video_auth_to_access_path(video), class: "pull-right cta-button light-bg" do %>
     <%= image_tag("github-black.svg", class: "logo", alt: t("github_logo")) %>
     <span><%= button_text %></span>
   <% end %>

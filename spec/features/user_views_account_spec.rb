@@ -1,14 +1,6 @@
 require "rails_helper"
 
 feature "Account Settings" do
-  scenario "user views subscription" do
-    user = create(:subscriber)
-
-    visit edit_my_account_path(as: user)
-
-    expect_to_see_my_subscription
-  end
-
   scenario "user edits account information" do
     user = create(:user, name: "Test User")
 
@@ -28,9 +20,5 @@ feature "Account Settings" do
 
   def field_value_from_name(name)
     find_field(name).value
-  end
-
-  def expect_to_see_my_subscription
-    expect(page).to have_css("ol.subscription li")
   end
 end

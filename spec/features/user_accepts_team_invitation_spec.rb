@@ -140,7 +140,7 @@ feature "Accept team invitations" do
   )
 
     owner = create(
-      :user, :with_team_subscription, email: owner_email, name: owner_name
+      :user, :with_attached_team, email: owner_email, name: owner_name
     )
     sign_in_as(owner)
     visit edit_team_path(owner.team)

@@ -38,23 +38,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def must_be_subscription_owner
-    unless current_user_is_subscription_owner?
-      deny_access("You must be the owner of the subscription.")
-    end
-  end
-
-  def current_user_is_subscription_owner?
-    current_user.subscriber? &&
-      current_user.subscription.owner?(current_user)
-  end
-  helper_method :current_user_is_subscription_owner?
-
-  def current_user_is_eligible_for_annual_upgrade?
-    current_user.eligible_for_annual_upgrade?
-  end
-  helper_method :current_user_is_eligible_for_annual_upgrade?
-
   def current_user_has_access_to?(feature)
     current_user && current_user.has_access_to?(feature)
   end
@@ -78,11 +61,6 @@ class ApplicationController < ActionController::Base
     current_user.team
   end
   helper_method :current_team
-
-  def onboarding_policy
-    OnboardingPolicy.new(current_user)
-  end
-  helper_method :onboarding_policy
 
   def github_auth_path(params = {})
     base_path = "#{OmniAuth.config.path_prefix}/github"

@@ -15,10 +15,6 @@ en:
   attempts:
     flashcard_removed_from_review_queue: Flashcard removed from review queue
     flashcard_saved: Saved flashcard for review
-  annual_billings:
-    new:
-      submit: "Switch to annual billing - $%{price} per member"
-      confirmation: "This will charge you $%{price} and switch you to annualized billing. That's what you wanted, right?"
   authenticating:
     github_signin: Sign in with GitHub
     login_required: You must be signed in to view that page
@@ -32,33 +28,12 @@ en:
       flashes:
         accepted: Request received! We'll let you know when the trail is ready.
         declined: Got it. We'll get that trail out of your way.
-  checkouts:
-    user_information_fields:
-      sign_up_with_username_and_password: "sign up with username and password?"
-    one_step_away_authenticated: "Hey %{name}, you're one step away. Enter payment below to start learning with Upcase now!"
-    one_step_away_anonymous: "Almost there - get instant access with expedited checkout!"
-  checkout:
-    sign_up_with_github: "Sign up with GitHub"
-    flashes:
-      already_subscribed: You are already subscribed.
-      invalid_coupon: The coupon code %{code} is no longer valid and has been
-        removed.
-      not_creating_new_teams: We are not accepting new teams at the moment.
-      plan_not_found: We have a new subscription plan for you.
-      success: Thank you for subscribing to Upcase! We will email you your receipt
-        shortly.
-    problem_with_card: "There was a problem processing your credit card: %{message}"
   completeables:
     statuses:
       complete: Complete
       in-progress: In Progress
       next-up: Next Up
       unstarted: Unstarted
-  coupons:
-    flashes:
-      invalid: The coupon code you supplied is not valid.
-      success: Your coupon %{code} was processed successfully. The discount will be
-        applied at checkout.
   deck-title-teaser: 'From: %{title}'
   decks:
     deck:
@@ -111,14 +86,6 @@ en:
     flashes:
       error: You're already subscribed to Upcase!
       success: Success! Enjoy your shiny new product.
-  line_item:
-    canceled_description: (Canceled) Subscription to Upcase
-    plan_description: Subscription to %{plan_name}
-  mailers:
-    subscription:
-      cancellation_survey:
-        subject: Suggestions for improving Upcase
-
   pages:
     landing:
       content:
@@ -140,13 +107,6 @@ en:
       headline: Read this to write better code.
       post-welcome-message: All content unlocked. Enjoy!
 
-  payments:
-    new:
-      pay-button-cta: Get instant access
-  plans:
-    forum: Private Discourse Forum
-    video_tutorials: Hands-On Video Tutorials
-
   practice:
     decks:
       decks-list-title: decks
@@ -159,8 +119,6 @@ en:
     locked:
       available_for_free_after_authing: Sign In with GitHub for Free Access
       get_access_by_joining: Get access by joining Upcase
-    subscribe_cta: You can access this %{offering_type} and others with a subscription
-      to %{subscription_name}
   repository:
     view_repository: View this Repository
   results:
@@ -208,7 +166,6 @@ en:
       icon: ✶
       multi_user: Team Membership
       single_user: Join Upcase
-    team_plan_name: Upcase for Teams
     upcase: Upcase
     content_meta_description: "Explore thoughtbot's video tutorials, exercises,
       and forum discussions on %{name}"
@@ -218,50 +175,6 @@ en:
       watch them all?
     preview_cta: This video is a preview. The full show is included with your
       Upcase membership.
-  subscriptions:
-    accept_discounted_annual_subscription: Yes! I want to save $$$ and keep
-      learning
-    cancel: Cancel
-    pause: Pause my subscription for 3 months
-    deactivation_scheduled_on: Scheduled for deactivation on %{date}
-    change_plan: Change plan
-    choose_plan: Switch Plan
-    confirm_cancel: Cancel my subscription
-    current_plan_html: <p class="current-plan">This is your current plan</p>
-    discount:
-      forever: '%{final_price}'
-      once: '%{final_price} the first month, then %{full_price}'
-      repeating: '%{final_price} for %{duration_in_months} months, then %{full_price}'
-    flashes:
-      cancel:
-        success: We're sorry to see you go. You will have access to all the features
-          of your plan until the end of your current billing cycle.
-      pause:
-        success: We've paused your account for 90 days, and will be in touch just before
-          your plan is set to restart.
-      change:
-        success: You have successfully changed your subscription plan, any remaining
-          balance has been applied to future invoices.
-      discount:
-        success: You've switched to a discounted subscription! Congrats.
-      subscription_required: You need a subscription to Upcase to access that feature.
-      update:
-        success: You have successfully updated your subscription credit card information.
-      upgrade_required: You must upgrade your plan to access that feature.
-      reactivate:
-        success: Awesome! We've reactivated your subscription!
-        failure: Unfortunately we were unable to reactivate you.
-      resubscribe:
-        success: Awesome! We've resubscribed you. Enjoy the Upcase!
-        failure: Unfortunately we were unable to resubscribe you. Please check your payment info and try again.
-    join_cta: Join Upcase
-    new:
-      sign_up_cta: Sign Up Now!
-    checkout: Let's do this!
-    reason: Why have you decided to leave?
-    reason_explanation: This information will help us make Upcase better for future
-      members.
-    team_join_cta: Start Your Team
   teams:
     join_cta: Get your team started today
     team:
@@ -305,16 +218,6 @@ en:
       have_any_questions: Have any questions?
       here_to_help: We're here to help, so feel free to send any questions in and we'll get back to you right away.
       contact_us: Contact us
-      annual_plan_title: Switch to annual Plan
-      annual_plan_benefits: If you upgrade to annual billing you'll get 12 months of Upcase for the price of 10 months. That's a 17% discount!
-      annual_plan_link: Get two months free!
-    resubscribe:
-      plea_html: We get it, things change. But if you want to come back, we have your card on file, and you just have to click this button. Oh, and if you want to change your card beforehand, <a href="%{billing_url}">you can do that right here</a>.
-      call_to_action: Resubscribe
-      call_to_action_price: "$%{price}/month"
-    reactivate:
-      plea: You can reactivate your account without any interruption in service, just like you never left!
-      call_to_action: Reactivate My Account
   videos:
     show:
       mark-as-complete: Mark as Complete

@@ -32,10 +32,6 @@ class Product < ApplicationRecord
     order 'created_at DESC'
   end
 
-  def subscription?
-    false
-  end
-
   def product_type_symbol
     type.underscore.to_sym
   end

@@ -27,15 +27,6 @@
 </div>
 
 <aside id="account-sidebar">
-  <% if current_user.subscriptions.any? %>
-    <h3>Your subscription</h3>
-    <ol class="subscription">
-      <% if current_user.subscription %>
-        <%= render current_user.subscription %>
-      <% end %>
-    </ol>
-  <% end %>
-
   <% if current_team %>
     <h3>Your Team</h3>
     <%= render current_team %>

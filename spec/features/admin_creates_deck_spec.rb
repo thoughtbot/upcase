@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "Admin creates a deck" do
   scenario "is redirected away if not an admin" do
-    visit new_admin_deck_path(as: create(:subscriber, :onboarded))
+    visit new_admin_deck_path(as: create(:user))
 
     expect(current_path).to eq(root_path)
   end

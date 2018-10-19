@@ -42,7 +42,7 @@ module TrailsHelper
   end
 
   def auth_to_access_button(video, cta_text: t("trails.start_for_free"))
-    cta_classes = "cta-button subscribe-cta light-bg"
+    cta_classes = "cta-button light-bg"
     link_to video_auth_to_access_path(video), class: cta_classes do
       image_tag("github-black.svg", class: "logo", alt: "") + cta_text
     end

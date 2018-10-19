@@ -3,7 +3,7 @@ include ActionView::RecordIdentifier
 
 feature "Remove pending invitations" do
   scenario "an owner removes a team member" do
-    owner = create(:user, :with_team_subscription)
+    owner = create(:user, :with_attached_team)
     invitation_to_remove = create(:invitation, team: owner.team)
 
     visit my_account_path(as: owner)

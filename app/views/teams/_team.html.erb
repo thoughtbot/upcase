@@ -1,17 +1,13 @@
-<ol class="subscription team">
-  <li class="subscription team">
-    <p class="subscription-name"><strong>Team:</strong> <%= team.name %></p>
+<ol class="team">
+  <li class="team">
+    <p><strong>Team:</strong> <%= team.name %></p>
 
-    <% if team.subscription %>
-      <% if team.owner?(current_user) %>
-        <%= link_to 'Manage Users', edit_team_path %>
-      <% else %>
-        <%= t(".team_owner_html",
-              owner_email: mail_to(team.owner.email, team.owner.name, class: "owner-email"))
-        %>
-      <% end %>
+    <% if team.owner?(current_user) %>
+      <%= link_to 'Manage Users', edit_team_path %>
     <% else %>
-      Your team currently has no subscription.
+      <%= t(".team_owner_html",
+            owner_email: mail_to(team.owner.email, team.owner.name, class: "owner-email"))
+      %>
     <% end %>
   </li>
 </ol>

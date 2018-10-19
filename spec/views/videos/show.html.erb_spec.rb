@@ -45,7 +45,7 @@ describe "videos/show" do
   describe "preview notice and CTA" do
     context "the user is signed out" do
       it "displays the auth to access CTA for the video" do
-        video = build_stubbed(:video, :free_sample)
+        video = build_stubbed(:video)
 
         render_video video, signed_in: false
 
@@ -238,7 +238,6 @@ describe "videos/show" do
   def render_video(video, signed_in: true)
     assign(:video, video)
     user = build_stubbed(:user)
-    allow(user).to receive(:subscriber?).and_return(false)
     allow(view).to receive(:current_user).and_return(user)
     allow(view).to receive(:current_user_has_access_to?).and_return(false)
     allow(view).to receive(:signed_in?).and_return(signed_in)

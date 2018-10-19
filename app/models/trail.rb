@@ -28,10 +28,6 @@ class Trail < ApplicationRecord
 
   friendly_id :name, use: %i{slugged finders}
 
-  def self.accessible_without_subscription?
-    false
-  end
-
   def self.published
     where(published: true)
   end
@@ -87,7 +83,7 @@ class Trail < ApplicationRecord
   end
 
   def sample_video
-    videos.where(accessible_without_subscription: true).first.wrapped
+    videos.first.wrapped
   end
 
   def time_to_complete

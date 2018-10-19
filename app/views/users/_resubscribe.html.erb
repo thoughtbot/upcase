@@ -1,7 +1,0 @@
-<div class="come-back resubscribe access-callout">
-  <p><%= t(".plea_html", billing_url: "#billing-info-anchor") %></p>
-  <%= button_to  subscriber_resubscription_path, class: "subscribe-cta" do %>
-    <%= t(".call_to_action") %><br>
-    <%= t(".call_to_action_price", price: Plan.professional.price_in_dollars) %>
-  <% end %>
-</div>
