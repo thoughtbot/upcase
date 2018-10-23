@@ -117,8 +117,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    commander (4.4.6)
-      highline (~> 1.7.2)
+    commander (4.4.7)
+      highline (~> 2.0.0)
     concurrent-ruby (1.0.5)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -192,7 +192,7 @@ GEM
     hashdiff (0.3.7)
     hashie (3.5.7)
     high_voltage (3.1.0)
-    highline (1.7.10)
+    highline (2.0.0)
     honeybadger (4.1.0)
     htmlentities (4.3.4)
     http-cookie (1.0.3)
