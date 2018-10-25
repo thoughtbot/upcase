@@ -56,7 +56,7 @@ GEM
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
-    autoprefixer-rails (9.3.0)
+    autoprefixer-rails (9.3.1)
       execjs
     aws-eventstream (1.0.1)
     aws-partitions (1.106.0)
