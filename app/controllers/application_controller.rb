@@ -14,10 +14,6 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def on_staging?
-    ENV.fetch("HEROKU_APP_NAME", "").include?("staging")
-  end
-
   def analytics
     Analytics.new(current_user)
   end
