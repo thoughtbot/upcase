@@ -19,8 +19,4 @@ class VideosController < ApplicationController
       render
     end
   end
-
-  def weekly_iteration_video?
-    @watchable == Show.the_weekly_iteration
-  end
 end
