@@ -19,10 +19,6 @@ module ApplicationHelper
     end
   end
 
-  def forum_url(suffix=nil)
-    "https://forum.upcase.com/#{suffix}"
-  end
-
   def exercise_path(exercise)
     exercise.url
   end
