@@ -1,15 +1,15 @@
 .resources-container {
-  @include transition (all 0.3s ease-in-out);
   background: white;
   display: flex;
   flex-flow: wrap;
   justify-content: space-around;
-  padding: em(30) em(20);
+  padding: 1.875em 1.25em;
+  transition: 0.3s ease-in-out;
 
   header {
     width: 100%;
     display: block;
-    padding: 0 em(15);
+    padding: 0 0.9375em;
 
     .topic-headline {
       display: inline-block;
@@ -21,22 +21,22 @@
 }
 
 .card {
-  @include transition (all 0.3s ease-in-out);
+  transition: 0.3s ease-in-out;
   background: white;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   border: 1px solid $base-border-color-1;
   box-shadow: $base-box-shadow;
   display: inline-block;
   height: $card-height;
-  margin-bottom: em(30);
+  margin-bottom: 1.875em;
   overflow: hidden;
   padding: 5px;
   position: relative;
   width: $card-width;
 
   &:hover {
-    @include transform(translateY(-5px));
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
   }
 
   > a {
@@ -50,32 +50,32 @@
   p {
     font-size: $font-size-small;
     line-height: 1.6;
-    margin: 0 .6rem .6rem;
+    margin: 0 0.6rem 0.6rem;
   }
 
   h4 {
     color: $darkwarmgray;
     font-weight: 700;
     margin-bottom: 0;
-    padding: .75rem .6rem;
+    padding: 0.75rem 0.6rem;
   }
 
   h5 {
-    border-radius: .20rem .20rem 0 0;
+    border-radius: 0.2rem 0.2rem 0 0;
     color: $darkwarmgray;
-    font-size: .8rem;
-    margin-bottom: em(5);
-    padding: em(15);
+    font-size: 0.8rem;
+    margin-bottom: 0.3125em;
+    padding: 0.9375em;
     text-align: center;
     text-transform: uppercase;
   }
 
   .status {
-    border-radius: 0 0 .20rem .20rem;
+    border-radius: 0 0 0.2rem 0.2rem;
     display: none;
-    font-size: em(14);
+    font-size: 0.875em;
     margin: 6px 0;
-    padding: em(5);
+    padding: 0.3125em;
     text-indent: 5px;
     text-transform: uppercase;
   }

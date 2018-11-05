@@ -102,7 +102,7 @@
 
     .teacher-names {
       @include padding(0 $base-spacing null 0);
-      font-size: em(19);
+      font-size: 1.1875em;
       line-height: $reading-line-height;
       margin: 0;
     }

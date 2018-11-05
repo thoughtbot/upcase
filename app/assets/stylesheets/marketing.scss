@@ -25,9 +25,36 @@
 @import "base/breakpoints";
 
 // marketing specific
-@import "marketing/animations/**/*";
-@import "marketing/base/**/*";
-@import "marketing/defaults/**/*";
-@import "marketing/overrides/**/*";
-@import "marketing/components/**/*";
+@import "marketing/animations/fade-in";
+@import "marketing/animations/fade-out";
+@import "marketing/base/variables";
+@import "marketing/defaults/images";
+@import "marketing/overrides/stripe-button-el";
+@import "marketing/components/background";
+@import "marketing/components/bio";
+@import "marketing/components/button";
+@import "marketing/components/card-halves";
+@import "marketing/components/card";
+@import "marketing/components/category-card";
+@import "marketing/components/conversation";
+@import "marketing/components/deal";
+@import "marketing/components/dot";
+@import "marketing/components/flash";
+@import "marketing/components/flashes";
+@import "marketing/components/flex-grid";
+@import "marketing/components/forms";
+@import "marketing/components/hero";
+@import "marketing/components/marketing-video";
+@import "marketing/components/modal";
+@import "marketing/components/page-content";
+@import "marketing/components/page-section";
+@import "marketing/components/page-split";
+@import "marketing/components/person";
+@import "marketing/components/selling-point";
+@import "marketing/components/testimonial-heading";
+@import "marketing/components/testimonial";
+@import "marketing/components/tier-price";
+@import "marketing/components/tier-quantity";
+@import "marketing/components/tier";
+
 @import "components/welcome-page";

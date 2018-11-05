@@ -1,9 +1,9 @@
-$price-width: em(864);
+$price-width: 54em;
 $pricing-side-padding: 1.5rem;
 $pricing-margin: 0.5rem;
 
 .pricing {
-  @include linear-gradient(darken($celestial-blue, 12%), darken($celestial-blue, 0%));
+  background: linear-gradient(darken($celestial-blue, 12%), darken($celestial-blue, 0%));
   fill: $base-background-2;
   margin-top: -1px;
   padding-bottom: 2em;
@@ -120,13 +120,13 @@ $pricing-margin: 0.5rem;
     line-height: 1.3;
     width: 100%;
   }
-  
+
   svg {
     @include size(1.5em);
     margin: -4px 0.3em 0;
     vertical-align: middle;
 
-    path {      
+    path {
       fill: $off-white;
     }
 
@@ -193,4 +193,4 @@ $pricing-margin: 0.5rem;
   }
 }
 
-@include reset-all;
+@include reset-display;

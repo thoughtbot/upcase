@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: column;
   padding: $large-spacing;
-  transition: all $base-duration;
+  transition: $base-duration;
 
   @media (min-width: $medium-screen) {
     margin: 0 ($medium-spacing / 2) $medium-spacing;

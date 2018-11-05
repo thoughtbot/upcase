@@ -1,28 +1,28 @@
 %animation-radiate {
-  @include animation(radiate 2s $ease-out-sine 0s forwards);
-  @include animation-iteration-count(infinite);
+  animation: radiate 2s $ease-out-sine 0s forwards;
+  animation-iteration-count: infinite;
   opacity: 1;
 }
 
-@include keyframes(radiate) {
-  0% {
+@keyframes radiate {
+  from {
     opacity: 0.7;
-    @include transform(scale(0.8));
+    transform: scale(0.8);
   }
-  100% {
+  to {
     opacity: 0;
-    @include transform(scale(2.2));
+    transform: scale(2.2);
   }
 }
 
-@include keyframes(reveal-answer) {
-  0% {
-    @include transform(translate3d(0,-1em,0));
+@keyframes reveal-answer {
+  from {
     opacity: 0;
+    transform: translate3d(0, -1em, 0);
   }
 
-  100% {
-    @include transform(translate3d(0,0,0));
+  to {
     opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }

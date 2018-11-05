@@ -53,10 +53,7 @@
   }
 
   &.checkout {
-    @include background-image(
-      linear-gradient(180deg, rgba($upcase-blue-1, 0.888), rgba($upcase-blue-2, 0.888)),
-      url(upcase/team.jpg)
-    );
+    background-image: linear-gradient(180deg, rgba($upcase-blue-1, 0.888), rgba($upcase-blue-2, 0.888), url(upcase/team.jpg));
   }
 
   .avatar {

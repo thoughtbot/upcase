@@ -31,22 +31,22 @@
 
   &.secondary-button {
     @extend %button;
-    @include linear-gradient($cta-color-light, $cta-color-dark);
+    background: linear-gradient($cta-color-light, $cta-color-dark);
     color: $cta-text-color;
 
     &:hover {
-      @include linear-gradient(darken($cta-color-light, 2.5%), darken($cta-color-dark, 2.5%));
+      background: linear-gradient(darken($cta-color-light, 2.5%), darken($cta-color-dark, 2.5%));
       color: $cta-text-color;
     }
   }
 
   &.alert-button {
     @extend %button;
-    @include linear-gradient($alert-color, lighten($alert-color, 0%));
+    background: linear-gradient($alert-color, lighten($alert-color, 0%));
     color: darken(desaturate($alert-color, 50), 30);
 
     &:hover {
-      @include linear-gradient($alert-color, lighten($alert-color, 2%));
+      background: linear-gradient($alert-color, lighten($alert-color, 2%));
       color: darken(desaturate($alert-color, 50), 30);
     }
   }
@@ -62,7 +62,7 @@ button,
 input[type="submit"],
 .cta-button {
   @extend %button;
-  @include appearance(none);
+  appearance: none;
   border: none;
   cursor: pointer;
   user-select: none;

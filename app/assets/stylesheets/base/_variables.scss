@@ -22,6 +22,8 @@ $light-yellow: #fff5c2;
 $lightwarmgray: #f5f5f0;
 $melon: #f8bcba;
 $off-white: #fbfbfb;
+$quote-outline-blue: #1c6cc9;
+$quote-background-blue: #2879d6;
 $red: #ad141e;
 $repository-color: #8d70c3;
 $search-snippet-border: #abd2f4;
@@ -80,13 +82,13 @@ $topic-colors: (
 
 // Font families
 $sans-serif: "proxima-nova-1", "proxima-nova-2", "museo-sans-1", "museo-sans-2", helvetica neue, sans-serif;
-$serif: "adelle-1", "adelle-2", $helvetica;
+$serif: "adelle-1", "adelle-2", $font-stack-helvetica;
 
 // Font weights
 $sans-serif-semibold: 600;
 
 // Font sizes
-$font-size-smallest: rem(12);
+$font-size-smallest: 0.75rem;
 $font-size-small: 0.96rem;
 
 // Line height

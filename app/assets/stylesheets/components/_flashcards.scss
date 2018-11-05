@@ -32,7 +32,7 @@
 }
 
 .revealed-answer {
-  @include animation(reveal-answer 0.5s $ease-out-quad forwards);
+  animation: reveal-answer 0.5s $ease-out-quad forwards;
 
   form {
     display: inline-block;
