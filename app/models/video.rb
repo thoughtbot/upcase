@@ -48,12 +48,6 @@ class Video < ApplicationRecord
     end
   end
 
-  def preview
-    if preview_wistia_id.present?
-      Clip.new(preview_wistia_id)
-    end
-  end
-
   def has_notes?
     notes.present?
   end
