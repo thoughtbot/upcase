@@ -5,10 +5,6 @@ class Guest
     GUEST_TRACKING_ID
   end
 
-  def sampler?
-    false
-  end
-
   def admin?
     false
   end
