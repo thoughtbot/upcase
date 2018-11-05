@@ -53,7 +53,7 @@
         <h4 class="text">Recently Completed Trails</h4>
       </span>
       <section class="trails-complete">
-        <%= render partial: "completed_trails/just_finished_trail", collection: @practice.just_finished_trails, as: :trail %>
+        <%= render partial: "trails/just_finished_trail", collection: @practice.just_finished_trails, as: :trail %>
       </section>
     </section>
   <% end %>
