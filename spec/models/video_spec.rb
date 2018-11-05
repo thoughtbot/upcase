@@ -83,17 +83,6 @@ describe Video do
     end
   end
 
-  context 'preview' do
-    it 'returns a promo video if preview_wistia_id is set' do
-      video = Video.new(preview_wistia_id: '123')
-      allow(Clip).to receive(:new)
-
-      video.preview
-
-      expect(Clip).to have_received(:new).with(video.preview_wistia_id)
-    end
-  end
-
   context "watchable_name" do
     it "returns the name of the watchable" do
       show = create(:show, name: "A show")
