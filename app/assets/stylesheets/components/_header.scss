@@ -7,7 +7,7 @@
 }
 
 .header-wrapper {
-  @include linear-gradient($upcase-blue-1, $upcase-blue-2);
+  background: linear-gradient($upcase-blue-1, $upcase-blue-2);
   flex: none;
   min-height: 4rem;
   width: 100%;
@@ -35,7 +35,7 @@
 
       &:hover,
       &:focus {
-        @include linear-gradient(darken($cta-color-light, 2.5%), darken($cta-color-dark, 2.5%));
+        background: linear-gradient(darken($cta-color-light, 2.5%), darken($cta-color-dark, 2.5%));
         color: $cta-text-color;
       }
     }
@@ -52,7 +52,7 @@
 
 .site-nav__cta {
   .header-wrapper.headhesive--stick & {
-    @include linear-gradient($cta-color-light, $cta-color-dark);
+    background: linear-gradient($cta-color-light, $cta-color-dark);
     border-radius: 3px;
     box-shadow: $heavy-box-shadow;
     color: $cta-text-color;
@@ -63,7 +63,7 @@
 
     &:hover,
     &:focus {
-      @include linear-gradient(darken($cta-color-light, 2.5%), darken($cta-color-dark, 2.5%));
+      background: linear-gradient(darken($cta-color-light, 2.5%), darken($cta-color-dark, 2.5%));
       color: $cta-text-color;
     }
   }
@@ -226,8 +226,8 @@
 
     .account a {
       background: image-url("account.svg") center center no-repeat;
-      background-size: em(26);
-      padding: em(15);
+      background-size: 1.625em;
+      padding: 0.9375em;
       width: $navigation-height + 1px;
 
       @include dashboard-small-only {
@@ -235,7 +235,7 @@
       }
 
       img {
-        @include linear-gradient(#3481ea, #118ed5);
+        background: linear-gradient(#3481ea, #118ed5);
       }
     }
   }

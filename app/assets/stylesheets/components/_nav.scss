@@ -39,8 +39,8 @@
 
   &.headhesive {
     @include position(fixed, 0 0 null 0);
-    @include transform(translateY(-100%));
-    @include transition(transform 0.2s);
+    transform: translateY(-100%);
+    transition: transform 0.2s;
     z-index: $z-headhesive;
 
     @include dashboard-small-only {
@@ -49,6 +49,6 @@
   }
 
   &.headhesive--stick {
-    @include transform(translateY(0));
+    transform: translateY(0);
   }
 }

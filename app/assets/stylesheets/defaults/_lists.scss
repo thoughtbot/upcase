@@ -1,15 +1,15 @@
 ul,
 ol {
+  list-style-type: none;
   margin: 0;
   padding: 0;
-  list-style-type: none;
 }
 
 ul {
   .list-title {
-    margin-bottom: .5em;
+    font-size: 1.375em;
     font-weight: 700;
-    font-size: em(22);
+    margin-bottom: 0.5em;
   }
 
   .number {

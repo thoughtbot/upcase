@@ -32,7 +32,7 @@
   }
 
   .page-split__section:first-child &::after {
-    @include size(5rem 2px);
+    @include size(5rem, 2px);
     background-color: rgba($upcase-blue, 0.25);
     border-radius: 1rem;
     content: "";

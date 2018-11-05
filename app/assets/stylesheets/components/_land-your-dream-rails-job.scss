@@ -3,15 +3,15 @@
   @include shift(1);
 
   h3 {
-    margin-top: em(16*0.5);
+    margin-top: 0.5em;
   }
 
   ol {
-    margin-top: em(16*2);
-    margin-bottom: em(16*1);
+    margin-bottom: 1em;
+    margin-top: 2em;
   }
 
   form {
-    margin-bottom: em(16*0.5);
+    margin-bottom: 0.5em;
   }
 }

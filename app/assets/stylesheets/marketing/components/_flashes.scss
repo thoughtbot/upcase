@@ -1,6 +1,6 @@
 .flashes {
-  @include animation(fall 5s);
-  @include animation-delay(0.75s);
+  animation: fall 5s;
+  animation-delay: 0.75s;
   @include position(fixed, 0 0 null 0);
   transform: translateY(-200%);
   z-index: $z-flashes;

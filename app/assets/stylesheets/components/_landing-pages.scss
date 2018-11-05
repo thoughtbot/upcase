@@ -34,7 +34,6 @@
     padding: 2em;
 
     a {
-      @include transform(translateY(-0.2rem));
       background: #4A90E2;
       border-radius: 2px;
       color: #fff;
@@ -43,6 +42,7 @@
       font-weight: 700;
       padding: 0.8rem 0;
       text-align: center;
+      transform: translateY(-0.2rem);
     }
   }
 }
