@@ -1,14 +1,6 @@
 require "rails_helper"
 
 describe Guest do
-  describe "#sampler?" do
-    it "returns false" do
-      guest = Guest.new
-
-      expect(guest.sampler?).to be_falsy
-    end
-  end
-
   describe "#admin?" do
     it "returns false" do
       guest = Guest.new
