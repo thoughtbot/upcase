@@ -82,10 +82,6 @@ class Trail < ApplicationRecord
     first_step.completeable
   end
 
-  def sample_video
-    videos.first.wrapped
-  end
-
   def time_to_complete
     videos.sum(:length_in_minutes) + exercise_time
   end

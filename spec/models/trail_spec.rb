@@ -275,35 +275,6 @@ describe Trail do
     end
   end
 
-  describe "#sample_video" do
-    context "with some videos" do
-      it "returns the first match" do
-        trail = create(:trail)
-        create(
-          :step,
-          trail: trail,
-          position: 3,
-          completeable: create(
-            :video,
-            name: "SecondAccessible",
-          ),
-        )
-        create(
-          :step,
-          trail: trail,
-          position: 2,
-          completeable: create(
-            :video,
-            name: "FirstAccessible",
-          ),
-        )
-        result = trail.sample_video
-
-        expect(result.map(&:name)).to eq("FirstAccessible".wrapped)
-      end
-    end
-  end
-
   def trail_with_exercise_states(user, *states)
     exercises =
       states.map { |state| create_exercise_with_state(state, user: user) }
