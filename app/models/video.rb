@@ -24,6 +24,8 @@ class Video < ApplicationRecord
 
   friendly_id :name, use: [:slugged, :finders]
 
+  paginates_per 16
+
   def self.ordered
     order('position asc')
   end

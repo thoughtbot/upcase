@@ -511,6 +511,7 @@ DEPENDENCIES
   inline_svg
   jquery-rails
   jquery-ui-rails
+  kaminari
   launchy
   mime-types
   neat (~> 1.8)

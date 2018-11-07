@@ -12,6 +12,15 @@ class VideoListing
     videos_with_status.each(&block)
   end
 
+  delegate(
+    :current_page,
+    :total_pages,
+    :limit_value,
+    :model_name,
+    :total_count,
+    to: :videos,
+  )
+
   private
 
   attr_reader :user, :videos
