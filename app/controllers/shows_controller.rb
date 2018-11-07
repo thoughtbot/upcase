@@ -14,7 +14,11 @@ class ShowsController < ApplicationController
   private
 
   def sorted_published_videos
-    find_show.published_videos.recently_published_first
+    find_show.published_videos.recently_published_first.page(page_param)
+  end
+
+  def page_param
+    params[:page].to_i
   end
 
   def find_show
