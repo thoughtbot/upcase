@@ -34,8 +34,10 @@ class AuthHashService
 
   def create_from_auth_hash
     create_user.tap do |user|
-      promote_thoughtbot_employee_to_admin(user)
-      track_account_created(user)
+      if user.persisted?
+        promote_thoughtbot_employee_to_admin(user)
+        track_account_created(user)
+      end
     end
   end
 

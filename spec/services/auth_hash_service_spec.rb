@@ -35,12 +35,29 @@ describe AuthHashService, '#find_or_create_user_from_auth_hash' do
   end
 
   context "when a new account is created" do
-    it "notififes analytics of account_created" do
-      tracker = stub_analytics_tracker
+    context "and successfully saves" do
+      it "notififes analytics of account_created" do
+        tracker = stub_analytics_tracker
 
-      AuthHashService.new(auth_hash).find_or_create_user_from_auth_hash
+        AuthHashService.new(auth_hash).
+          find_or_create_user_from_auth_hash
 
-      expect(tracker).to have_received(:track_account_created)
+        expect(tracker).to have_received(:track_account_created)
+      end
+    end
+
+    context "and fails to save" do
+      it "does not notify analytics of account_created" do
+        tracker = stub_analytics_tracker
+        invalid_auth_hash = auth_hash.merge(
+          "info" => { "name" => nil, "nickname" => nil },
+        )
+
+        AuthHashService.new(invalid_auth_hash).
+          find_or_create_user_from_auth_hash
+
+        expect(tracker).not_to have_received(:track_account_created)
+      end
     end
   end
 
