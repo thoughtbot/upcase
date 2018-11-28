@@ -17,13 +17,13 @@ class AuthHashService
   attr_accessor :auth_hash
 
   def find_by_github
-    user = User.find_by(github_username: auth_hash["info"]["nickname"])
+    user = User.find_by(github_username: auth_info["nickname"])
     update_provider_info(user)
     user
   end
 
   def find_by_email
-    user = User.find_by(email: auth_hash["info"]["email"])
+    user = User.find_by(email: auth_info["email"])
     update_provider_info(user)
     user
   end
@@ -53,13 +53,17 @@ class AuthHashService
       auth_provider: auth_hash['provider'],
       auth_uid: auth_hash['uid'],
       name: name,
-      email: auth_hash['info']['email'],
-      github_username: auth_hash['info']['nickname']
+      email: auth_info["email"],
+      github_username: auth_info["nickname"]
     )
   end
 
   def name
-    auth_hash['info']['name'] || auth_hash['info']['nickname']
+    auth_info["name"] || auth_info["nickname"]
+  end
+
+  def auth_info
+    auth_hash.fetch("info", {})
   end
 
   def promote_thoughtbot_employee_to_admin(user)
