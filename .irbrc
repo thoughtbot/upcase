@@ -1,3 +1,3 @@
 def find_user(email)
-  User.find_by_email(email)
+  User.find_by(email: email)
 end
