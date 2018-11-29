@@ -141,7 +141,7 @@ namespace :dev do
 
   def create_trails
     header "Trails"
-    user = User.find_by_email!("whetstone@example.com")
+    user = User.find_by!(email: "whetstone@example.com")
 
     trail = create(:trail, :published, name: "Testing Fundamentals")
     create(
