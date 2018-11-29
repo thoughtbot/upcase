@@ -6,4 +6,10 @@ describe "User_signup redirect" do
 
     expect(response).to redirect_to "/upcase/join"
   end
+
+  it "redirects join to practice" do
+    get "/upcase/join"
+
+    expect(response).to redirect_to "/upcase/practice"
+  end
 end

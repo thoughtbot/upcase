@@ -49,6 +49,7 @@ Rails.configuration.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
   r301 "/upcase/products", "/upcase/practice"
   r301 "/upcase/users/new", "/upcase/join"
   r301 "/upcase/sign_up", "/upcase/join"
+  r301 "/upcase/join", "/upcase/practice"
   r301 "/upcase/trails", "/upcase/practice"
   r301 "/upcase/pages/landing", "/upcase/join"
   r301 "/upcase/testing-fundamentals", "/upcase/rails-testing-exercises"
