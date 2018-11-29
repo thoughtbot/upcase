@@ -7,7 +7,9 @@ class Flashcard < ApplicationRecord
   validates :answer, presence: true
 
   belongs_to :deck, counter_cache: true
-  has_many :attempts, -> { order(created_at: :desc) }
+  has_many :attempts,
+    -> { order(created_at: :desc) },
+    inverse_of: :flashcard
 
   acts_as_list scope: :deck
 

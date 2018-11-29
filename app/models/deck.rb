@@ -1,7 +1,10 @@
 class Deck < ApplicationRecord
   validates :title, presence: true
 
-  has_many :flashcards, -> { order(position: :asc) }, dependent: :destroy
+  has_many :flashcards,
+    -> { order(position: :asc) },
+    dependent: :destroy,
+    inverse_of: :deck
 
   def self.published
     where(published: true)
