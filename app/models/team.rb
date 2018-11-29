@@ -1,7 +1,7 @@
 # A Team represents a company or other group
 class Team < ApplicationRecord
   has_many :users, dependent: :nullify
-  has_many :invitations
+  has_many :invitations, dependent: :destroy
   belongs_to :owner, class_name: "User"
 
   validates :name, presence: true

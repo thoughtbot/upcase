@@ -10,7 +10,7 @@ class Trail < ApplicationRecord
 
   validates :name, :description, presence: true
 
-  has_many :classifications, as: :classifiable
+  has_many :classifications, as: :classifiable, dependent: :destroy
   has_many :repositories, dependent: :destroy
   has_many :statuses, as: :completeable, dependent: :destroy
   has_many :topics, through: :classifications
