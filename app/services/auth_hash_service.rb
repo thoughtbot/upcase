@@ -6,9 +6,9 @@ class AuthHashService
   end
 
   def find_or_create_user_from_auth_hash
-    find_by_auth_hash ||
-      find_by_github ||
-      find_by_email ||
+    user_from_auth_hash ||
+      user_from_github ||
+      user_from_email ||
       create_from_auth_hash
   end
 
@@ -16,20 +16,23 @@ class AuthHashService
 
   attr_accessor :auth_hash
 
-  def find_by_github
-    user = User.find_by(github_username: auth_info["nickname"])
-    update_provider_info(user)
-    user
+  def user_from_auth_hash
+    User.find_by(
+      auth_provider: auth_hash['provider'],
+      auth_uid: auth_hash['uid'],
+    )
   end
 
-  def find_by_email
-    user = User.find_by(email: auth_info["email"])
-    update_provider_info(user)
-    user
+  def user_from_github
+    github_user.tap do |user|
+      update_provider_info(user)
+    end
   end
 
-  def find_by_auth_hash
-    User.find_by(auth_provider: auth_hash['provider'], auth_uid: auth_hash['uid'])
+  def user_from_email
+    email_user.tap do |user|
+      update_provider_info(user)
+    end
   end
 
   def create_from_auth_hash
@@ -45,9 +48,17 @@ class AuthHashService
     if user
       user.update_attributes(
         auth_provider: auth_hash["provider"],
-        auth_uid: auth_hash["uid"]
+        auth_uid: auth_hash["uid"],
       )
     end
+  end
+
+  def github_user
+    User.find_by(github_username: auth_info["nickname"])
+  end
+
+  def email_user
+    User.find_by(email: auth_info["email"])
   end
 
   def create_user
@@ -56,7 +67,7 @@ class AuthHashService
       auth_uid: auth_hash['uid'],
       name: name,
       email: auth_info["email"],
-      github_username: auth_info["nickname"]
+      github_username: auth_info["nickname"],
     )
   end
 
@@ -69,10 +80,17 @@ class AuthHashService
   end
 
   def promote_thoughtbot_employee_to_admin(user)
-    if octokit_client.team_member?(THOUGHTBOT_GITHUB_TEAM_ID, user.github_username)
+    if github_user_on_thoughtbot_team?(user)
       user.admin = true
       user.save!
     end
+  end
+
+  def github_user_on_thoughtbot_team?(user)
+    octokit_client.team_member?(
+      THOUGHTBOT_GITHUB_TEAM_ID,
+      user.github_username,
+    )
   end
 
   def track_account_created(user)
@@ -80,6 +98,8 @@ class AuthHashService
   end
 
   def octokit_client
-    Octokit::Client.new(access_token: GITHUB_ACCESS_TOKEN)
+    Octokit::Client.new(
+      access_token: GITHUB_ACCESS_TOKEN,
+    )
   end
 end
