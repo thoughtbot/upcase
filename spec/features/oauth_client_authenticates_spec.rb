@@ -18,8 +18,8 @@ feature 'An OAuth client authenticates', js: true do
     click_on 'Sign Into Upcase'
     click_link 'with GitHub'
 
-    user = User.find_by_email!(
-      OmniAuth.config.mock_auth[:github]['info']['email']
+    user = User.find_by!(
+      email: OmniAuth.config.mock_auth[:github]['info']['email']
     )
 
     expect(current_path).not_to eq practice_path
