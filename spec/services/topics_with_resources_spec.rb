@@ -32,7 +32,7 @@ describe TopicsWithResources do
       topic = double("topic")
       topic_slug = double("topic_slug")
       topics = double("topics")
-      allow(topics).to receive(:find_by_slug!).with(topic_slug).
+      allow(topics).to receive(:find_by!).with(slug: topic_slug).
         and_return(topic)
       decorated = double("decorated")
       factory = double("factory")

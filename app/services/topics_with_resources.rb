@@ -9,7 +9,7 @@ class TopicsWithResources
   end
 
   def find(topic_slug)
-    @factory.decorate @topics.find_by_slug!(topic_slug)
+    @factory.decorate @topics.find_by!(slug: topic_slug)
   end
 
   def each
