@@ -14,7 +14,7 @@ class VideosController < ApplicationController
 
   def render_or_redirect
     if params[:id] != @video.slug
-      redirect_to video_path(@video.slug), status: 301
+      redirect_to video_path(@video.slug), status: :moved_permanently
     else
       render
     end
