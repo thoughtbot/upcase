@@ -13,8 +13,8 @@ describe Trail do
 
   describe ".most_recent_published" do
     it "returns more recent trails first" do
-      create :trail, published: true, created_at: 2.day.ago, name: "two"
-      create :trail, published: true, created_at: 1.days.ago, name: "one"
+      create :trail, published: true, created_at: 2.days.ago, name: "two"
+      create :trail, published: true, created_at: 1.day.ago, name: "one"
       create :trail, published: true, created_at: 3.days.ago, name: "three"
 
       result = Trail.most_recent_published
