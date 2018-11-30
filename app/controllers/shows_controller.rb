@@ -1,7 +1,7 @@
 class ShowsController < ApplicationController
   def show
     @show = find_show
-    @video_listing = VideoListing.new(sorted_published_videos, current_user)
+    @video_listing = video_listing_for_user
 
     respond_to do |format|
       format.html
@@ -21,5 +21,9 @@ class ShowsController < ApplicationController
 
   def find_show
     Show.friendly.find(params[:id])
+  end
+
+  def video_listing_for_user
+    VideoListing.new(sorted_published_videos, current_user)
   end
 end
