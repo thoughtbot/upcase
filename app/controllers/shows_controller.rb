@@ -1,6 +1,4 @@
 class ShowsController < ApplicationController
-  cache_signed_out_action :show
-
   def show
     @show = find_show
     @video_listing = VideoListing.new(sorted_published_videos, current_user)
