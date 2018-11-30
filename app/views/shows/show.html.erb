@@ -31,9 +31,11 @@
 </span>
 
 <section class="videos tiles-container">
-  <% @video_listing.each do |video| %>
-    <%= render video %>
-  <% end %>
+  <%= render(
+    partial: "videos/video",
+    collection: @video_listing.to_a,
+    cached: true,
+  ) %>
 </section>
 
 <%= paginate @video_listing %>

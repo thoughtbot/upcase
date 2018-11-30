@@ -6,7 +6,7 @@ class Status < ApplicationRecord
 
   STATES = [IN_PROGRESS, COMPLETE]
 
-  belongs_to :completeable, polymorphic: true
+  belongs_to :completeable, polymorphic: true, touch: true
   belongs_to :user
 
   validates :completeable_type, :completeable_id, :user_id, presence: true
