@@ -459,7 +459,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     validates_email_format_of (1.6.3)
       i18n
-    vanity (2.2.10)
+    vanity (3.0.0)
       i18n
     webmock (3.4.2)
       addressable (>= 2.3.6)
