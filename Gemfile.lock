@@ -559,7 +559,7 @@ DEPENDENCIES
   wrapped
 
 RUBY VERSION
-   ruby 2.5.3p105
+   ruby 2.6.0p0
 
 BUNDLED WITH
    1.17.2
