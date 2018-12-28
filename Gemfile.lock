@@ -461,7 +461,7 @@ GEM
       i18n
     vanity (3.0.0)
       i18n
-    webmock (3.4.2)
+    webmock (3.5.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
