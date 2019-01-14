@@ -255,7 +255,7 @@ GEM
     nenv (0.3.0)
     nested_form (0.3.2)
     nio4r (2.3.1)
-    nokogiri (1.10.0)
+    nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
