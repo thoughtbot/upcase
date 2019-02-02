@@ -113,7 +113,7 @@ describe Invitation do
     end
 
     it "returns false if unaccepted" do
-      invitation = build_stubbed(:invitation, nil)
+      invitation = build_stubbed(:invitation, accepted_at: nil)
 
       expect(invitation).not_to be_accepted
     end

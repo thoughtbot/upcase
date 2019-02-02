@@ -1,3 +1,5 @@
+FactoryBot.use_parent_strategy = false
+
 FactoryBot.define do
   sequence :bio do |n|
     "The Amazing Brian the #{n}th"
