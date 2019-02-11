@@ -408,7 +408,7 @@ GEM
     sawyer (0.8.1)
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 1.0)
-    scenic (1.5.0)
+    scenic (1.5.1)
       activerecord (>= 4.0.0)
       railties (>= 4.0.0)
     selenium-webdriver (3.141.0)
