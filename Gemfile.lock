@@ -102,10 +102,13 @@ GEM
     chromedriver-helper (2.1.0)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
-    clearance (1.16.1)
+    clearance (1.16.2)
+      actionmailer (>= 3.1)
+      activemodel (>= 3.1)
+      activerecord (>= 3.1)
       bcrypt
       email_validator (~> 1.4)
-      rails (>= 3.1)
+      railties (>= 3.1)
     clearance-deprecated_password_strategies (1.10.1)
       activesupport
       clearance (>= 1.10)
