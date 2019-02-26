@@ -32,7 +32,7 @@ Upcase is a Rails 4 app deployed to Heroku.
 
 This project is now following Sandi Metz's Rules.
 
-You can read a [description of the rules here](http://robots.thoughtbot.com/post/50655960596/sandi-metz-rules-for-developers).
+You can read a [description of the rules here](https://thoughtbot.com/blog/sandi-metz-rules-for-developers).
 
 All new code should follow these rules. If you make changes in a pre-existing
 file that violates these rules you should fix the violations as part of
