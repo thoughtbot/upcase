@@ -123,7 +123,7 @@ GEM
     coffee-script-source (1.12.2)
     commander (4.4.7)
       highline (~> 2.0.0)
-    concurrent-ruby (1.1.4)
+    concurrent-ruby (1.1.5)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
