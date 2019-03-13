@@ -58,8 +58,8 @@ GEM
     arel (9.0.0)
     autoprefixer-rails (9.4.10.2)
       execjs
-    aws-eventstream (1.0.1)
-    aws-partitions (1.143.0)
+    aws-eventstream (1.0.2)
+    aws-partitions (1.144.0)
     aws-sdk-core (3.46.2)
       aws-eventstream (~> 1.0)
       aws-partitions (~> 1.0)
