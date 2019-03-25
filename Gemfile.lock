@@ -259,7 +259,7 @@ GEM
     nenv (0.3.0)
     nested_form (0.3.2)
     nio4r (2.3.1)
-    nokogiri (1.10.1)
+    nokogiri (1.10.2)
       mini_portile2 (~> 2.4.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
@@ -307,7 +307,7 @@ GEM
       rack
     rack-mini-profiler (1.0.2)
       rack (>= 1.2.0)
-    rack-pjax (1.0.0)
+    rack-pjax (1.1.0)
       nokogiri (~> 1.5)
       rack (>= 1.1)
     rack-protection (2.0.5)
