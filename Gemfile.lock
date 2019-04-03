@@ -51,8 +51,7 @@ GEM
       activerecord (>= 3.0)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    analytics-ruby (2.2.5)
-      commander (~> 4.4)
+    analytics-ruby (2.2.6)
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
@@ -122,8 +121,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    commander (4.4.7)
-      highline (~> 2.0.0)
     concurrent-ruby (1.1.5)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -195,7 +192,6 @@ GEM
     hashdiff (0.3.8)
     hashie (3.6.0)
     high_voltage (3.1.0)
-    highline (2.0.1)
     honeybadger (4.2.1)
     htmlentities (4.3.4)
     http_parser.rb (0.6.0)
