@@ -249,8 +249,8 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     mustermann (1.0.3)
-    neat (1.9.1)
-      sass (>= 3.3)
+    neat (3.0.1)
+      sass (~> 3.4)
       thor (~> 0.19)
     nenv (0.3.0)
     nested_form (0.3.2)
@@ -513,7 +513,7 @@ DEPENDENCIES
   kaminari
   launchy
   mime-types
-  neat (~> 1.9.1)
+  neat (~> 3.0.1)
   nokogiri (>= 1.6.7.2)
   octokit
   omniauth
