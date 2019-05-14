@@ -12,6 +12,7 @@ Capybara.register_driver :headless_chrome do |app|
         disable-gpu
         no-sandbox
         window-size=1920,1080
+        --enable-features=NetworkService,NetworkServiceInProcess
       ),
     },
   )
