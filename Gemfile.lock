@@ -191,7 +191,7 @@ GEM
       tilt
     hashdiff (0.3.9)
     hashie (3.6.0)
-    high_voltage (3.1.0)
+    high_voltage (3.1.1)
     honeybadger (4.2.2)
     htmlentities (4.3.4)
     http_parser.rb (0.6.0)
