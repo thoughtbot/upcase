@@ -1,10 +1,6 @@
 require "selenium/webdriver"
 
-Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
-end
-
-Capybara.register_driver :headless_chrome do |app|
+Capybara.register_driver :custom_headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
     chromeOptions: {
       args: %w(
@@ -28,12 +24,12 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :system, js: true) do
-    driven_by :headless_chrome
+    driven_by :custom_headless_chrome
   end
 
   config.before(:each, type: :system, visible_js: true) do
-    driven_by :chrome
+    driven_by :selenium_chrome
   end
 end
 
-Capybara.javascript_driver = :headless_chrome
+Capybara.javascript_driver = :custom_headless_chrome

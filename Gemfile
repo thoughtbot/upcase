@@ -88,7 +88,6 @@ group :test do
   gem "capybara"
   gem "capybara-selenium"
   gem "capybara_discoball"
-  gem "chromedriver-helper"
   gem "climate_control"
   gem "database_cleaner"
   gem "email_spec"
@@ -100,5 +99,6 @@ group :test do
   gem "simplecov", require: false
   gem "sinatra"
   gem "timecop"
+  gem "webdrivers"
   gem "webmock"
 end

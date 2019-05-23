@@ -16,7 +16,15 @@ require "rspec/rails"
 require "webmock/rspec"
 require "shoulda/matchers"
 
-WebMock.disable_net_connect!(allow_localhost: true, allow: "codeclimate.com")
+WebMock.disable_net_connect!(
+  allow_localhost: true,
+  allow: [
+    Webdrivers::Common.subclasses.map(&:base_url),
+    "codeclimate.com",
+  ],
+)
+
+Webdrivers.cache_time = 86_400
 
 Dir[File.expand_path(File.join(File.dirname(__FILE__),"support","**","*.rb"))].each {|f| require f}
 
