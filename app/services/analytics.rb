@@ -40,10 +40,6 @@ class Analytics
     track("Searched", query: query, results_count: results_count)
   end
 
-  def track_collaborated(repository_name:)
-    track("Created Collaboration", repository_name: repository_name)
-  end
-
   def track_accessed_forum
     track("Logged into Forum")
   end
