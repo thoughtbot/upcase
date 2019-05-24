@@ -3,30 +3,14 @@ require "rails_helper"
 describe CollaborationsController do
   describe "#create" do
     context "as a user with access to repos" do
-      it "adds the current user as a collaborator" do
+      it "redirects to the repository" do
         current_user = stub_user(repositories: true)
         repository = stub_repository
 
         sign_in_as current_user
         post :create, params: { repository_id: repository.to_param }
 
-        expect(repository).to have_received(:add_collaborator).
-          with(current_user)
         expect(controller).to redirect_to(repository)
-      end
-
-      it "sends an event noting the user has become a collaborator " do
-        current_user = stub_user(repositories: true)
-        repository = stub_repository
-
-        sign_in_as current_user
-        post :create, params: { repository_id: repository.to_param }
-
-        expect(analytics).to(
-          have_tracked("Created Collaboration").
-          for_user(current_user).
-          with_properties(repository_name: repository.name)
-        )
       end
     end
 
@@ -36,7 +20,6 @@ describe CollaborationsController do
 
         post :create, params: { repository_id: repository.to_param }
 
-        expect(repository).not_to have_received(:add_collaborator)
         expect(controller).to redirect_to(root_path)
       end
     end
@@ -55,8 +38,6 @@ describe CollaborationsController do
       allow(finder).to receive(:find).with(repository.to_param).
         and_return(repository)
       allow(Repository).to receive(:friendly).and_return(finder)
-
-      allow(repository).to receive(:add_collaborator)
     end
   end
 end

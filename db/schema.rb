@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_21_120619) do
+ActiveRecord::Schema.define(version: 2019_05_24_154805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -53,14 +53,6 @@ ActiveRecord::Schema.define(version: 2018_10_21_120619) do
     t.datetime "updated_at"
     t.index ["classifiable_id", "classifiable_type"], name: "index_classifications_on_classifiable_id_and_classifiable_type"
     t.index ["topic_id"], name: "index_classifications_on_topic_id"
-  end
-
-  create_table "collaborations", id: :serial, force: :cascade do |t|
-    t.integer "repository_id", null: false
-    t.integer "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["repository_id", "user_id"], name: "index_collaborations_on_repository_id_and_user_id", unique: true
   end
 
   create_table "content_recommendations", id: :serial, force: :cascade do |t|
@@ -417,7 +409,7 @@ ActiveRecord::Schema.define(version: 2018_10_21_120619) do
   add_foreign_key "content_recommendations", "users"
   add_foreign_key "markers", "videos", on_delete: :cascade
 
-  create_view "latest_attempts",  sql_definition: <<-SQL
+  create_view "latest_attempts", sql_definition: <<-SQL
       SELECT DISTINCT ON (attempts.user_id, attempts.flashcard_id) attempts.id,
       attempts.confidence,
       attempts.flashcard_id,
@@ -427,8 +419,7 @@ ActiveRecord::Schema.define(version: 2018_10_21_120619) do
      FROM attempts
     ORDER BY attempts.user_id, attempts.flashcard_id, attempts.updated_at DESC;
   SQL
-
-  create_view "slugs",  sql_definition: <<-SQL
+  create_view "slugs", sql_definition: <<-SQL
       SELECT products.slug,
       products.type AS model
      FROM products
@@ -437,5 +428,4 @@ ActiveRecord::Schema.define(version: 2018_10_21_120619) do
       'Trail'::character varying AS model
      FROM trails;
   SQL
-
 end

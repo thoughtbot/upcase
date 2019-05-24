@@ -176,16 +176,6 @@ describe Analytics do
     end
   end
 
-  describe "#track_collaborated" do
-    it "tracks that the user created a collaboration" do
-      analytics_instance.track_collaborated(repository_name: "upcase")
-
-      expect(analytics).to have_tracked("Created Collaboration").
-        for_user(user).
-        with_properties(repository_name: "upcase")
-    end
-  end
-
   describe "#track_accessed_forum" do
     it "tracks that the user accessed the forum" do
       analytics_instance.track_accessed_forum

@@ -5,7 +5,6 @@ describe User do
     it { should belong_to(:team) }
     it { should have_many(:beta_replies).dependent(:destroy) }
     it { should have_many(:attempts).dependent(:destroy) }
-    it { should have_many(:collaborations).dependent(:destroy) }
     it { should have_many(:statuses).dependent(:destroy) }
   end
 
