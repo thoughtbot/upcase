@@ -1,6 +1,8 @@
 class UserSerializer < ActiveModel::Serializer
   include Gravatarify::Helper
 
+  type :user
+
   attributes(
     :admin,
     :avatar_url,

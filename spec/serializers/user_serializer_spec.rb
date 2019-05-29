@@ -45,6 +45,11 @@ describe UserSerializer do
   end
 
   def parse_serialized_json(user)
-    JSON.parse(UserSerializer.new(user).to_json)['user']
+    user_json = serialized_user(user).to_json
+    JSON.parse(user_json)['user']
+  end
+
+  def serialized_user(user)
+    ActiveModelSerializers::SerializableResource.new(user)
   end
 end

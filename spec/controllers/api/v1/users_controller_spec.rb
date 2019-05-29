@@ -5,14 +5,16 @@ describe Api::V1::UsersController do
     context "authenticated" do
       it "serializes the user" do
         user = stub_oauth_authenticated_user
-        expected_json = { "expected" => "result" }
-        serializer = double("serializer", as_json: expected_json)
-        allow(UserSerializer).to receive(:new).with(user).and_return(serializer)
+        expected_json = { user: UserSerializer.new(user).as_json }
 
         get :show, format: :json
 
         expect(controller).to respond_with(:success)
-        expect(JSON.parse(response.body)).to eq(expected_json)
+        expect(parsed_response_json).to eq(expected_json)
+      end
+
+      def parsed_response_json
+        JSON.parse(response.body, symbolize_names: true)
       end
     end
 
