@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
 end
 
 gem "actionpack-action_caching"
-gem "active_model_serializers", "0.8.3"
+gem "active_model_serializers", "0.10.9"
 gem "acts_as_list"
 gem "analytics-ruby", require: "segment/analytics"
 gem "autoprefixer-rails"
