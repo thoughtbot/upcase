@@ -361,7 +361,7 @@ GEM
     recipient_interceptor (0.2.0)
       mail
     redcarpet (3.4.0)
-    redis (4.1.1)
+    redis (4.1.2)
     regexp_parser (1.5.1)
     remotipart (1.4.3)
     request_store (1.4.1)
