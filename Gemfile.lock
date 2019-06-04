@@ -56,7 +56,7 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     analytics-ruby (2.2.7)
     arel (9.0.0)
-    autoprefixer-rails (9.5.1.1)
+    autoprefixer-rails (9.6.0)
       execjs
     aws-eventstream (1.0.3)
     aws-partitions (1.170.0)
