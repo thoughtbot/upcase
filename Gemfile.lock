@@ -366,9 +366,9 @@ GEM
     remotipart (1.4.3)
     request_store (1.4.1)
       rack (>= 1.4)
-    responders (2.4.1)
-      actionpack (>= 4.2.0, < 6.0)
-      railties (>= 4.2.0, < 6.0)
+    responders (3.0.0)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.3)
@@ -539,7 +539,7 @@ DEPENDENCIES
   redcarpet
   redis (~> 4.1)
   request_store
-  responders (~> 2.0)
+  responders (~> 3.0)
   rspec-rails
   rspec_junit_formatter
   sassc
