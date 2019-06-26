@@ -460,10 +460,10 @@ GEM
       i18n
     vanity (3.0.0)
       i18n
-    webdrivers (4.0.0)
+    webdrivers (4.0.1)
       nokogiri (~> 1.6)
       rubyzip (~> 1.0)
-      selenium-webdriver (~> 3.0)
+      selenium-webdriver (>= 3.0, < 4.0)
     webmock (3.6.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
