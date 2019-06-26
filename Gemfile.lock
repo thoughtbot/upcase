@@ -208,7 +208,7 @@ GEM
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     json (2.2.0)
-    jsonapi-renderer (0.2.0)
+    jsonapi-renderer (0.2.2)
     jwt (2.2.1)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
