@@ -1,7 +1,7 @@
 class Trail < ApplicationRecord
   extend FriendlyId
 
-  include PgSearch
+  include PgSearch::Model
 
   DEFAULT_IMAGE_URL =
     "https://images.thoughtbot.com/upcase/trail-title-cards/default.png".freeze
