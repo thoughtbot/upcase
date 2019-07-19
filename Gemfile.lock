@@ -460,7 +460,7 @@ GEM
       i18n
     vanity (3.0.0)
       i18n
-    webdrivers (4.1.0)
+    webdrivers (4.1.1)
       nokogiri (~> 1.6)
       rubyzip (~> 1.0)
       selenium-webdriver (>= 3.0, < 4.0)
