@@ -40,6 +40,7 @@ feature "Visitor" do
       :published,
       :with_preview,
       name: name_with_unsafe_character,
+      notes: 'Notes',
       watchable: show,
     )
   end
