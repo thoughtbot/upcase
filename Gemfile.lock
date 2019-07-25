@@ -363,7 +363,7 @@ GEM
       mail
     redcarpet (3.4.0)
     redis (4.1.2)
-    regexp_parser (1.5.1)
+    regexp_parser (1.6.0)
     remotipart (1.4.3)
     request_store (1.4.1)
       rack (>= 1.4)
