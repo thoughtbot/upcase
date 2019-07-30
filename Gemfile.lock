@@ -360,7 +360,7 @@ GEM
       ffi (~> 1.0)
     recipient_interceptor (0.2.0)
       mail
-    redcarpet (3.4.0)
+    redcarpet (3.5.0)
     redis (4.1.2)
     regexp_parser (1.6.0)
     remotipart (1.4.3)
