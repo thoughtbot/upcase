@@ -191,7 +191,7 @@ GEM
     hashdiff (1.0.0)
     hashie (3.6.0)
     high_voltage (3.1.2)
-    honeybadger (4.4.2)
+    honeybadger (4.5.0)
     htmlentities (4.3.4)
     http_parser.rb (0.6.0)
     i18n (1.6.0)
