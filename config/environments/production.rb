@@ -7,7 +7,6 @@ Rails.application.configure do
 
   config.cache_store = :redis_cache_store, { url: ENV.fetch("REDIS_URL") }
 
-  config.action_controller.asset_host = ENV.fetch("ASSET_HOST")
   config.assets.compile = false
   config.assets.digest = true
   config.assets.js_compressor = :uglifier
