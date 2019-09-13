@@ -135,20 +135,6 @@ FactoryBot.define do
     end
   end
 
-  factory :completion do
-    trail_object_id { '2f720eaa8bcd602a7dc731feb224ff99bb85a03c' }
-    trail_name { 'Git' }
-    user
-
-    trait :previous_week do
-      created_at { Time.zone.local(2013, 'jul', 29) }
-    end
-
-    trait :current_week do
-      created_at { Time.zone.local(2013, 'aug', 5) }
-    end
-  end
-
   factory :user do
     email
     name
