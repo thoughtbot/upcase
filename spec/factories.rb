@@ -54,16 +54,6 @@ FactoryBot.define do
     accepted { true }
   end
 
-  factory :note do
-    body { 'Default note body' }
-    user
-    contributor { user }
-
-    trait :current_week do
-      created_at { Time.zone.local(2013, 'aug', 5) }
-    end
-  end
-
   factory :product, traits: [:active], class: "Show" do
     after(:stub) { |product| product.slug = product.name.parameterize }
     description { 'Solve 8-Queens over and over again' }
