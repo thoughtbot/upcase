@@ -258,7 +258,7 @@ describe Trail do
     end
 
     def teacher(user)
-      Teacher.create!(user: user)
+      create(:teacher, user: user)
     end
   end
 
