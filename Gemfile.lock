@@ -446,7 +446,7 @@ GEM
     sprockets-redirect (1.0.0)
       activesupport (>= 3.1.0)
       rack
-    temple (0.8.1)
+    temple (0.8.2)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (0.20.3)
