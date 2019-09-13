@@ -6,7 +6,7 @@ class Api::V1::ExercisesController < ApiController
     if authenticated_via_client_credentials_token?
       exercise = Exercise.find_or_initialize_by(uuid: params[:id])
 
-      if exercise.update_attributes(exercise_parameters)
+      if exercise.update(exercise_parameters)
         render json: exercise
       else
         render json: { errors: exercise.errors }, status: :unprocessable_entity

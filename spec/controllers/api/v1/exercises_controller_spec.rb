@@ -21,7 +21,7 @@ describe Api::V1::ExercisesController do
       access_token = build_stubbed(:oauth_access_token, resource_owner_id: nil)
       authenticate_with(access_token)
       errors = "errors"
-      exercise = double("exercise", update_attributes: false, errors: errors)
+      exercise = double("exercise", update: false, errors: errors)
       allow(Exercise).to receive(:find_or_initialize_by).and_return(exercise)
 
       put :update, params: { id: "uuid-1234", exercise: { name: "", url: "" } }

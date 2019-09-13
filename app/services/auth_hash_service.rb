@@ -46,7 +46,7 @@ class AuthHashService
 
   def update_provider_info(user)
     if user
-      user.update_attributes(
+      user.update(
         auth_provider: auth_hash["provider"],
         auth_uid: auth_hash["uid"],
       )
