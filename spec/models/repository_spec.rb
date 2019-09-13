@@ -3,7 +3,7 @@ require "rails_helper"
 describe Repository do
   it_behaves_like 'a class inheriting from Product'
 
-  it { should belong_to(:trail) }
+  it { should belong_to(:trail).optional }
 
   it { should validate_presence_of(:github_repository) }
   it { should validate_presence_of(:github_url) }
