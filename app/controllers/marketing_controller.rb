@@ -1,6 +1,4 @@
 class MarketingController < ApplicationController
-  cache_signed_out_action :show
-
   layout "marketing"
 
   def show

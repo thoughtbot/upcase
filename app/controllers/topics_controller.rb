@@ -1,6 +1,4 @@
 class TopicsController < ApplicationController
-  cache_signed_out_action :show
-
   def show
     @topic = TopicWithTrails.new(
       topic_slug: params[:id],

@@ -8,10 +8,6 @@ class ApplicationController < ActionController::Base
     super || Guest.new
   end
 
-  def self.cache_signed_out_action(*actions)
-    caches_action(*actions, if: :signed_out?)
-  end
-
   protected
 
   def analytics

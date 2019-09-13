@@ -1,6 +1,4 @@
 class DecksController < ApplicationController
-  cache_signed_out_action :index
-
   def index
     @decks = Deck.published.most_recent_first
     @flashcards_to_review = flashcards_to_review

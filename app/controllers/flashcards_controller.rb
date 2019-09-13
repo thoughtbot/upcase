@@ -1,6 +1,4 @@
 class FlashcardsController < ApplicationController
-  cache_signed_out_action :show
-
   def show
     @deck = find_deck
     @flashcard = find_flashcard
