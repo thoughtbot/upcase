@@ -4,7 +4,7 @@ describe Video do
   include VideoHelpers
   include WistiaApiClientStubs
 
-  it { should belong_to(:watchable) }
+  it { should belong_to(:watchable).optional }
   it { should have_many(:classifications) }
   it { should have_many(:markers) }
   it { should have_many(:statuses).dependent(:destroy) }

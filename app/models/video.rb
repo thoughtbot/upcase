@@ -4,7 +4,7 @@ class Video < ApplicationRecord
   include PgSearch::Model
   multisearchable against: [:name, :summary, :notes], if: :search_visible?
 
-  belongs_to :watchable, polymorphic: true
+  belongs_to :watchable, polymorphic: true, optional: true
   has_many :classifications, as: :classifiable, dependent: :destroy
   has_many :markers, dependent: :destroy
   has_many :statuses, as: :completeable, dependent: :destroy
