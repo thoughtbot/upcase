@@ -101,17 +101,6 @@ FactoryBot.define do
     end
   end
 
-  factory :acceptance, class: 'Acceptance' do
-    github_username
-    invitation
-    name
-    password { 'secret' }
-
-    initialize_with do
-      new(invitation: invitation, attributes: attributes.except(:invitation))
-    end
-  end
-
   factory :team, class: 'Team' do
     owner factory: :user
     name { 'Google' }
