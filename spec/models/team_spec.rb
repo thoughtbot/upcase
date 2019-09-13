@@ -5,14 +5,6 @@ describe Team do
   it { should have_many(:users).dependent(:nullify) }
   it { should validate_presence_of(:name) }
 
-  describe "#owner" do
-    it "gets the first team member" do
-      team = create(:team)
-
-      expect(team.owner).to eq(team.users.first)
-    end
-  end
-
   describe "#add_user" do
     it "puts the user on the team" do
       team = create(:team)
