@@ -303,6 +303,7 @@ FactoryBot.define do
   end
 
   factory :marker do
+    video
     anchor { "configuration-options" }
     time { 322 }
   end
