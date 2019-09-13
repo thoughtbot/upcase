@@ -113,6 +113,7 @@ FactoryBot.define do
   end
 
   factory :team, class: 'Team' do
+    owner factory: :user
     name { 'Google' }
   end
 
