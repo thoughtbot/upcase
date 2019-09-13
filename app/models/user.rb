@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :attempts, dependent: :destroy
   has_many :beta_replies, dependent: :destroy, class_name: "Beta::Reply"
   has_many :statuses, dependent: :destroy
-  belongs_to :team
+  belongs_to :team, optional: true
 
   validates :name, presence: true
   validates :github_username, uniqueness: true, presence: true
