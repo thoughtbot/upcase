@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_09_195453) do
+ActiveRecord::Schema.define(version: 2020_05_09_152617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 2020_02_09_195453) do
     t.string "redirect_uri", null: false
     t.datetime "created_at", null: false
     t.datetime "revoked_at"
-    t.string "scopes"
+    t.string "scopes", default: "", null: false
     t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true
   end
 
