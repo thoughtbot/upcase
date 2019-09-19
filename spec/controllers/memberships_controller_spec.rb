@@ -8,7 +8,7 @@ describe MembershipsController do
     delete :destroy, params: { id: user }
 
     expect(response).to redirect_to edit_team_path
-    expect(flash[:notice]).to include "cannot remove yourself"
+    expect(flash[:alert]).to include "cannot remove yourself"
     expect(user.reload).to be_persisted
   end
 
@@ -19,7 +19,7 @@ describe MembershipsController do
     remove_other_user_from_team
 
     expect(response).to redirect_to edit_team_path
-    expect(flash[:notice]).to include "has been removed"
+    expect(flash[:alert]).to include "has been removed"
   end
 
   it "redirects a user who is not owner" do

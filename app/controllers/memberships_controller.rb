@@ -4,7 +4,7 @@ class MembershipsController < ApplicationController
 
   def destroy
     current_team.remove_user(requested_team_user)
-    flash[:notice] = "#{requested_team_user.name} has been removed."
+    flash[:alert] = "#{requested_team_user.name} has been removed."
     redirect_to edit_team_path
   end
 
@@ -15,7 +15,7 @@ class MembershipsController < ApplicationController
   end
 
   def stop_self_removal
-    flash[:notice] = "You cannot remove yourself from the team."
+    flash[:alert] = "You cannot remove yourself from the team."
     redirect_to edit_team_path
   end
 
