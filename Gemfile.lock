@@ -305,7 +305,7 @@ GEM
     rack-cors (1.0.3)
     rack-livereload (0.3.17)
       rack
-    rack-mini-profiler (1.0.2)
+    rack-mini-profiler (1.1.0)
       rack (>= 1.2.0)
     rack-pjax (1.1.0)
       nokogiri (~> 1.5)
