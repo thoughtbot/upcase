@@ -6,6 +6,9 @@ class Team < ApplicationRecord
 
   validates :name, presence: true
 
+  delegate :email, to: :owner, allow_nil: true, prefix: true
+  delegate :name, to: :owner, allow_nil: true, prefix: true
+
   def owner?(user)
     owner.eql?(user)
   end
