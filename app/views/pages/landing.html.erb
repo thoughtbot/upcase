@@ -2,7 +2,7 @@
 
 <main>
   <section class="hero background background--upcase-logo-light background--dark-gradient-cover-top-half">
-    <%= inline_svg("welcome/upcase-logo--hero.svg") %>
+    <%= inline_svg_tag("welcome/upcase-logo--hero.svg") %>
 
     <h1 class="hero__tagline">
       <%= t(".hero_tagline") %>
@@ -57,7 +57,7 @@
                 category-card--#{topic.name.downcase.gsub(" ", "-")}"
             ) do %>
 
-            <%= inline_svg(
+            <%= inline_svg_tag(
               "marketing/symbol-#{topic.name.downcase.gsub(" ","-")}.svg",
               class: "category-card__image",
             )
@@ -180,7 +180,7 @@
   <section class="page-section">
     <div class="page-content page-content--centered">
       <div class="selling-point">
-        <%= inline_svg(
+        <%= inline_svg_tag(
           "marketing/icon-join-our-github.svg",
           class: "selling-point__image"
         )%>
@@ -195,7 +195,7 @@
       </div>
 
       <div class="selling-point">
-        <%= inline_svg(
+        <%= inline_svg_tag(
           "marketing/icon-huge-forum.svg",
           class: "selling-point__image"
         )%>
@@ -211,7 +211,7 @@
       </div>
 
       <div class="selling-point">
-        <%= inline_svg(
+        <%= inline_svg_tag(
           "marketing/icon-master-vital-skills.svg",
           class: "selling-point__image"
         )%>
