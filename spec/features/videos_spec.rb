@@ -10,8 +10,8 @@ describe "Videos" do
       )
       notes = "a" * 251
       published_videos = [
-        create(:video, :published, watchable: show, summary: notes),
-        create(:video, :published, watchable: show, summary: notes),
+        create(:video, :published, watchable: show, summary: notes, published_on: 3.days.ago),
+        create(:video, :published, watchable: show, summary: notes, published_on: 2.days.ago),
       ]
       video = create(:video, watchable: show)
 
