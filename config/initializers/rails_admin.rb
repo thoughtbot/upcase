@@ -33,7 +33,7 @@ RailsAdmin.config do |config|
     init_actions!
   end
 
-  config.model Show do
+  config.model "Show" do
     list do
       field :name
       field :slug
@@ -55,7 +55,7 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model User do
+  config.model "User" do
     list do
       field :id
       field :name
@@ -87,7 +87,7 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model Product do
+  config.model "Product" do
     list do
       field :id
       field :name
@@ -98,7 +98,7 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model Exercise do
+  config.model "Exercise" do
     list do
       field :id
       field :name
@@ -115,7 +115,7 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model Trail do
+  config.model "Trail" do
     list do
       field :id
       field :name
@@ -148,7 +148,7 @@ RailsAdmin.config do |config|
      end
    end
 
-  config.model Video do
+  config.model "Video" do
     list do
       field :id
 
@@ -208,7 +208,7 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model Marker do
+  config.model "Marker" do
     field :video
     field :anchor
     field :time do
@@ -216,7 +216,7 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model Topic do
+  config.model "Topic" do
     list do
       field :name
       field :slug
