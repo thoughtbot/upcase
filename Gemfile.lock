@@ -102,13 +102,13 @@ GEM
     case_transform (0.2)
       activesupport
     childprocess (3.0.0)
-    clearance (1.17.0)
-      actionmailer (>= 3.1)
-      activemodel (>= 3.1)
-      activerecord (>= 3.1)
-      bcrypt
+    clearance (2.0.0)
+      actionmailer (>= 5.0)
+      activemodel (>= 5.0)
+      activerecord (>= 5.0)
+      bcrypt (>= 3.1.1)
       email_validator (~> 1.4)
-      railties (>= 3.1)
+      railties (>= 5.0)
     clearance-deprecated_password_strategies (1.10.2)
       activesupport
       clearance (>= 1.10)
