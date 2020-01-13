@@ -296,7 +296,7 @@ GEM
     public_suffix (4.0.3)
     puma (4.3.1)
       nio4r (~> 2.0)
-    rack (2.1.0)
+    rack (2.1.1)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
     rack-livereload (0.3.17)
