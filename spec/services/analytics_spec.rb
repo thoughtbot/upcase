@@ -201,7 +201,7 @@ describe Analytics do
         title: "What Is Better Than A For Loop?",
       }
 
-      analytics_instance.track_flashcard_attempted(flashcard_properties)
+      analytics_instance.track_flashcard_attempted(**flashcard_properties)
 
       expect(analytics).to have_tracked("Flashcard Attempted").
         for_user(user).
@@ -219,7 +219,7 @@ describe Analytics do
         download_type: "Original",
       }
 
-      analytics_instance.track_downloaded(download_properties)
+      analytics_instance.track_downloaded(**download_properties)
 
       expect(analytics).to have_tracked("Downloaded Video").
         for_user(user).
@@ -235,7 +235,7 @@ describe Analytics do
         download_type: "Original",
       }
 
-      analytics_instance.track_downloaded(download_properties)
+      analytics_instance.track_downloaded(**download_properties)
 
       expect(analytics).to have_tracked("Touched Video").
         for_user(user).
@@ -254,7 +254,7 @@ describe Analytics do
         download_type: "Original",
       }
 
-      analytics_instance.track_downloaded(download_properties)
+      analytics_instance.track_downloaded(**download_properties)
 
       expect(analytics).to have_tracked("Touched Step").
         for_user(user).
