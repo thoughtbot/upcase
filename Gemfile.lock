@@ -300,7 +300,7 @@ GEM
       rack (>= 2.0.0)
     rack-livereload (0.3.17)
       rack
-    rack-mini-profiler (1.1.5)
+    rack-mini-profiler (1.1.6)
       rack (>= 1.2.0)
     rack-pjax (1.1.0)
       nokogiri (~> 1.5)
