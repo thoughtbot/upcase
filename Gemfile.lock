@@ -156,7 +156,7 @@ GEM
       railties (>= 4.2.0)
     faraday (1.0.0)
       multipart-post (>= 1.2, < 3)
-    ffi (1.12.1)
+    ffi (1.12.2)
     flutie (2.2.0)
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
