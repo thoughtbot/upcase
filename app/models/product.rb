@@ -52,10 +52,6 @@ class Product < ApplicationRecord
     "#{self.class.name.underscore.pluralize}/aside"
   end
 
-  def fulfill(user)
-    GithubFulfillment.new(self, user).fulfill
-  end
-
   def published_videos
     videos.published
   end

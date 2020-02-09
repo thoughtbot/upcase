@@ -44,18 +44,4 @@ describe Product do
       expect(product.product_image).to have_received(:clear)
     end
   end
-
-  describe "#fulfill" do
-    it "fulfills using GitHub with a GitHub repo" do
-      user = build_stubbed(:user)
-      fulfillment = spy("fulfillment")
-      product = build_stubbed(:product, github_repository: "thoughtbot/upcase")
-      allow(GithubFulfillment).to receive(:new).with(product, user).
-        and_return(fulfillment)
-
-      product.fulfill(user)
-
-      expect(fulfillment).to have_received(:fulfill)
-    end
-  end
 end
