@@ -20,14 +20,4 @@ describe Repository do
       expect(result.map(&:name)).to match_array(%w(no_parent1 no_parent2))
     end
   end
-
-  def stub_fulfillment(repository, user)
-    spy("fulfillment").tap do |fulfillment|
-      allow(fulfillment).to receive(:fulfill)
-      allow(fulfillment).to receive(:remove)
-      allow(GithubFulfillment).to receive(:new).
-        with(repository, user).
-        and_return(fulfillment)
-    end
-  end
 end
