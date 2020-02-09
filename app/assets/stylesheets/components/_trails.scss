@@ -456,15 +456,6 @@ $not-started-dot-color: #D8D8D8;
   .button_to {
     display: inline-block;
   }
-
-  .accept-beta-offer,
-  .decline-beta-offer {
-    @extend .small-button;
-  }
-
-  .decline-beta-offer {
-    @extend .secondary-button;
-  }
 }
 
 .promoted-trails {

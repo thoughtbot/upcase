@@ -42,18 +42,6 @@ FactoryBot.define do
     topic
   end
 
-  factory :beta_offer, class: "Beta::Offer" do
-    name
-    active { true }
-    description { "A great trail" }
-  end
-
-  factory :beta_reply, class: "Beta::Reply" do
-    association :offer, factory: :beta_offer
-    user
-    accepted { true }
-  end
-
   factory :product, traits: [:active], class: "Show" do
     after(:stub) { |product| product.slug = product.name.parameterize }
     description { 'Solve 8-Queens over and over again' }
