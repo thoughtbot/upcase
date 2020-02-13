@@ -38,7 +38,6 @@ describe "practice/show.html" do
     defaults = {
       shows: [],
       topics: [],
-      beta_offers: [],
       in_progress_trails: [],
       promoted_unstarted_trails: [],
       unpromoted_unstarted_trails: [],
@@ -67,10 +66,6 @@ describe "practice/show.html" do
       shows: false,
       trails: false
     }
-  end
-
-  def have_beta_offers
-    have_content("Beta Trails")
   end
 
   def build_stubbed_promoted_trail_with_progress

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_24_154805) do
+ActiveRecord::Schema.define(version: 2020_02_09_195453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -24,25 +24,6 @@ ActiveRecord::Schema.define(version: 2019_05_24_154805) do
     t.datetime "updated_at", null: false
     t.index ["flashcard_id"], name: "index_attempts_on_flashcard_id"
     t.index ["user_id"], name: "index_attempts_on_user_id"
-  end
-
-  create_table "beta_offers", id: :serial, force: :cascade do |t|
-    t.string "name", null: false
-    t.text "description", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "active", default: true, null: false
-  end
-
-  create_table "beta_replies", id: :serial, force: :cascade do |t|
-    t.integer "offer_id", null: false
-    t.integer "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "accepted", null: false
-    t.index ["offer_id", "user_id"], name: "index_beta_replies_on_offer_id_and_user_id", unique: true
-    t.index ["offer_id"], name: "index_beta_replies_on_offer_id"
-    t.index ["user_id"], name: "index_beta_replies_on_user_id"
   end
 
   create_table "classifications", id: :serial, force: :cascade do |t|
@@ -404,8 +385,6 @@ ActiveRecord::Schema.define(version: 2019_05_24_154805) do
 
   add_foreign_key "attempts", "flashcards", on_delete: :cascade
   add_foreign_key "attempts", "users", on_delete: :cascade
-  add_foreign_key "beta_replies", "beta_offers", column: "offer_id"
-  add_foreign_key "beta_replies", "users"
   add_foreign_key "content_recommendations", "users"
   add_foreign_key "markers", "videos", on_delete: :cascade
 

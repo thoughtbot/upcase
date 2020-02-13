@@ -19,15 +19,6 @@ en:
     github_signin: Sign in with GitHub
     login_required: You must be signed in to view that page
     auth_to_access_success: "Success! Enjoy your free videos."
-  beta:
-    offers:
-      actions:
-        accept: "Request Access"
-        decline: "No Thanks"
-    replies:
-      flashes:
-        accepted: Request received! We'll let you know when the trail is ready.
-        declined: Got it. We'll get that trail out of your way.
   completeables:
     statuses:
       complete: Complete

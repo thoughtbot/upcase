@@ -76,14 +76,6 @@ class Analytics
     )
   end
 
-  def track_replied_to_beta_offer(name:, accepted:)
-    track(
-      "Replied to beta offer",
-      name: name,
-      accepted: accepted,
-    )
-  end
-
   def track_authed_to_access(video_name:, watchable_name:)
     track(
       "Authed to Access",

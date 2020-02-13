@@ -3,7 +3,6 @@ require "rails_helper"
 describe User do
   context "associations" do
     it { should belong_to(:team).optional }
-    it { should have_many(:beta_replies).dependent(:destroy) }
     it { should have_many(:attempts).dependent(:destroy) }
     it { should have_many(:statuses).dependent(:destroy) }
   end
