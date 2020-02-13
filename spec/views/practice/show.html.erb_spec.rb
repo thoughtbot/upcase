@@ -59,15 +59,6 @@ describe "practice/show.html" do
     render template: "practice/show"
   end
 
-  def default_options
-    {
-      repositories: false,
-      forum: false,
-      shows: false,
-      trails: false
-    }
-  end
-
   def build_stubbed_promoted_trail_with_progress
     build_stubbed(:trail, :promoted).tap do |trail|
       allow(trail).to receive(:unstarted?).and_return(true)

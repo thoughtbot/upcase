@@ -1,7 +1,6 @@
 class Analytics
   include AnalyticsHelper
 
-  SUBSCRIBED_EVENT_NAME = "Subscribed".freeze
   USER = "user".freeze
   TRACKERS = {
     "Video" => VideoTracker,
@@ -42,19 +41,6 @@ class Analytics
 
   def track_accessed_forum
     track("Logged into Forum")
-  end
-
-  def track_cancelled(reason:)
-    track("Cancelled", reason: reason)
-  end
-
-  def track_subscribed(context:, plan:, revenue:)
-    track(
-      SUBSCRIBED_EVENT_NAME,
-      context: context,
-      plan: plan,
-      revenue: revenue,
-    )
   end
 
   def track_flashcard_attempted(deck:, title:)

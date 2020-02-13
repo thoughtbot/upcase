@@ -34,14 +34,6 @@ describe Status do
         expect(Status.active).to include(status)
       end
     end
-
-    describe ".incompleted" do
-      it "#self.incompleted" do
-        status = create(:status)
-
-        expect(Status.incompleted).to include(status)
-      end
-    end
   end
 
   describe "#most_recent_for_user" do

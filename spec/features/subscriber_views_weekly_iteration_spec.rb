@@ -40,10 +40,6 @@ feature "user views weekly iteration" do
     click_on I18n.t("videos.show.mark-as-complete")
   end
 
-  def preview_cta
-    I18n.t("watchables.preview.cta", subscribe_url: sign_up_path).html_safe
-  end
-
   matcher :have_video_status do |status|
     match do |node|
       node[:class].include? "#{status}"

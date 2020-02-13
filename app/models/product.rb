@@ -28,14 +28,6 @@ class Product < ApplicationRecord
     order 'name ASC'
   end
 
-  def self.newest_first
-    order 'created_at DESC'
-  end
-
-  def product_type_symbol
-    type.underscore.to_sym
-  end
-
   def to_param
     slug
   end
@@ -46,10 +38,6 @@ class Product < ApplicationRecord
 
   def offering_type
     type.underscore
-  end
-
-  def to_aside_partial
-    "#{self.class.name.underscore.pluralize}/aside"
   end
 
   def published_videos
