@@ -54,7 +54,6 @@ gem "scenic"
 gem "sprockets-rails"
 gem "sprockets-redirect"
 gem "uglifier"
-gem "validates_email_format_of"
 gem "vanity"
 gem "wrapped"
 
@@ -90,7 +89,6 @@ group :test do
   gem "database_cleaner"
   gem "email_spec"
   gem "factory_bot_rails"
-  gem "launchy"
   gem "rails-controller-testing"
   gem "rspec_junit_formatter"
   gem "shoulda-matchers", require: false

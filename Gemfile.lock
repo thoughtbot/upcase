@@ -451,8 +451,6 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    validates_email_format_of (1.6.3)
-      i18n
     vanity (3.0.0)
       i18n
     webdrivers (4.2.0)
@@ -507,7 +505,6 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   kaminari
-  launchy
   mime-types
   neat (~> 1.9.1)
   nokogiri (>= 1.6.7.2)
@@ -548,7 +545,6 @@ DEPENDENCIES
   sprockets-redirect
   timecop
   uglifier
-  validates_email_format_of
   vanity
   webdrivers
   webmock
