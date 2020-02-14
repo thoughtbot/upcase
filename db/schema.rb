@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_09_195453) do
+ActiveRecord::Schema.define(version: 2020_02_14_144927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -34,16 +34,6 @@ ActiveRecord::Schema.define(version: 2020_02_09_195453) do
     t.datetime "updated_at"
     t.index ["classifiable_id", "classifiable_type"], name: "index_classifications_on_classifiable_id_and_classifiable_type"
     t.index ["topic_id"], name: "index_classifications_on_topic_id"
-  end
-
-  create_table "content_recommendations", id: :serial, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "recommendable_type", null: false
-    t.integer "recommendable_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id", "recommendable_type", "recommendable_id"], name: "index_content_recommendations_on_recommendable_and_user", unique: true
-    t.index ["user_id"], name: "index_content_recommendations_on_user_id"
   end
 
   create_table "decks", id: :serial, force: :cascade do |t|
@@ -202,15 +192,6 @@ ActiveRecord::Schema.define(version: 2020_02_09_195453) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["item", "table", "month", "year"], name: "index_rails_admin_histories"
-  end
-
-  create_table "recommendable_contents", id: :serial, force: :cascade do |t|
-    t.integer "recommendable_id", null: false
-    t.string "recommendable_type", null: false
-    t.integer "position", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["recommendable_type", "recommendable_id"], name: "rec_contents_on_rec_type_rec_id"
   end
 
   create_table "statuses", id: :serial, force: :cascade do |t|
@@ -385,7 +366,6 @@ ActiveRecord::Schema.define(version: 2020_02_09_195453) do
 
   add_foreign_key "attempts", "flashcards", on_delete: :cascade
   add_foreign_key "attempts", "users", on_delete: :cascade
-  add_foreign_key "content_recommendations", "users"
   add_foreign_key "markers", "videos", on_delete: :cascade
 
   create_view "latest_attempts", sql_definition: <<-SQL

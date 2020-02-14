@@ -145,7 +145,7 @@ FactoryBot.define do
     end
   end
 
-  factory :video, aliases: [:recommendable] do
+  factory :video do
     association :watchable, factory: :show
     sequence(:name) { |n| "Video #{n}" }
     wistia_id { '1194803' }
@@ -294,15 +294,5 @@ FactoryBot.define do
     video
     anchor { "configuration-options" }
     time { 322 }
-  end
-
-  factory :content_recommendation do
-    recommendable
-    user
-  end
-
-  factory :recommendable_content do
-    sequence(:position)
-    recommendable
   end
 end
