@@ -1,4 +1,4 @@
-require 'redirect_uri_validator'
+require "redirect_uri_validator"
 
 Doorkeeper.configure do
   # Change the ORM that doorkeeper will use.
