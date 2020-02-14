@@ -42,7 +42,7 @@ gem "pry-byebug"
 gem "pry-rails"
 gem "puma"
 gem "rack-rewrite", "~> 1.5.1"
-gem "rails", "~> 5.2.0"
+gem "rails", "~> 6.0.2"
 gem "rails_admin"
 gem "recipient_interceptor"
 gem "redcarpet"
@@ -73,7 +73,7 @@ end
 group :development, :test do
   gem "bundler-audit", require: false
   gem "dotenv-rails"
-  gem "rspec-rails"
+  gem "rspec-rails", "~> 4.0.0.beta4"
 end
 
 group :production do
