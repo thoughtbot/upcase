@@ -2,9 +2,9 @@ require "rails_helper"
 
 describe SlugConstraint do
   around do |example|
-    RequestStore.clear!
+    Current.reset
     example.run
-    RequestStore.clear!
+    Current.reset
   end
 
   describe "#matches?" do
