@@ -186,7 +186,7 @@ GEM
     haml (5.1.2)
       temple (>= 0.8.0)
       tilt
-    hashdiff (1.0.0)
+    hashdiff (1.0.1)
     hashie (3.6.0)
     high_voltage (3.1.2)
     honeybadger (4.5.6)
