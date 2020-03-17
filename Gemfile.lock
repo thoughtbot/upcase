@@ -194,7 +194,7 @@ GEM
     http_parser.rb (0.6.0)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
-    inline_svg (1.7.0)
+    inline_svg (1.7.1)
       activesupport (>= 3.0)
       nokogiri (>= 1.6)
     jmespath (1.4.0)
