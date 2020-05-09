@@ -550,7 +550,7 @@ DEPENDENCIES
   redis (~> 4.1)
   request_store
   responders (~> 3.0)
-  rspec-rails (~> 4.0.0.beta3)
+  rspec-rails
   rspec_junit_formatter
   sassc
   scenic
