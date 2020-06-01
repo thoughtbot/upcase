@@ -379,7 +379,7 @@ GEM
     remotipart (1.4.4)
     request_store (1.5.0)
       rack (>= 1.4)
-    responders (3.0.0)
+    responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
     rspec-core (3.9.2)
