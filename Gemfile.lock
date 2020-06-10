@@ -374,7 +374,7 @@ GEM
     recipient_interceptor (0.2.0)
       mail
     redcarpet (3.5.0)
-    redis (4.1.4)
+    redis (4.2.0)
     regexp_parser (1.7.0)
     remotipart (1.4.4)
     request_store (1.5.0)
@@ -547,7 +547,7 @@ DEPENDENCIES
   rails_stdout_logging
   recipient_interceptor
   redcarpet
-  redis (~> 4.1)
+  redis (~> 4.2)
   request_store
   responders (~> 3.0)
   rspec-rails
