@@ -14,15 +14,6 @@ describe Team do
 
       expect(user.reload.team).to eq team
     end
-
-    context "#users_count" do
-      it "returns the number of team members" do
-        team = build_stubbed(:team)
-        create_list(:user, 2, team: team)
-
-        expect(team.users_count).to eq(2)
-      end
-    end
   end
 
   describe "#remove_user" do

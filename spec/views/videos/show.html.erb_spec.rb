@@ -185,10 +185,6 @@ describe "videos/show" do
     be_displaying_video_with_id(video.wistia_id)
   end
 
-  def be_displaying_preview(video)
-    be_displaying_video_with_id(video.preview_wistia_id)
-  end
-
   def have_mark_as_complete_button
     have_css(".mark-as-complete")
   end

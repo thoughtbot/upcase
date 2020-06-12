@@ -22,8 +22,4 @@ class Team < ApplicationRecord
     user.team = nil
     user.save!
   end
-
-  def users_count
-    users.count
-  end
 end

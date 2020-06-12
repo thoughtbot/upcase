@@ -36,10 +36,6 @@ describe Search do
     Capybara.string(excerpts_for(results).first)
   end
 
-  def matching_models_from(results)
-    results.map(&:model)
-  end
-
   def excerpts_for(results)
     results.map(&:excerpt)
   end

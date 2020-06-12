@@ -70,10 +70,6 @@ describe VideosController do
     render_template "show"
   end
 
-  def redirect_to_sign_in_path
-    redirect_to sign_in_path
-  end
-
   def create_video_on_trail
     trail = create(:trail, name: "Trail")
     create(:video).tap do |video|

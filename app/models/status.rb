@@ -20,10 +20,6 @@ class Status < ApplicationRecord
     where(state: COMPLETE)
   end
 
-  def self.incompleted
-    where.not(state: COMPLETE)
-  end
-
   def self.by_user(user)
     where(user: user)
   end

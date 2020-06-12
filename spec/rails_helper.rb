@@ -77,7 +77,6 @@ RSpec.configure do |config|
   config.include EmailSpec::Matchers
   config.include FactoryBot::Syntax::Methods
   config.include SessionHelpers, type: :feature
-  config.include PathHelpers, type: :feature
   config.include SignInRequestHelpers, type: :request
 
   config.infer_spec_type_from_file_location!

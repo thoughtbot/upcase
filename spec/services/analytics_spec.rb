@@ -184,16 +184,6 @@ describe Analytics do
     end
   end
 
-  describe "#track_cancelled" do
-    it "tracks that the user cancelled along with the reason and their email" do
-      analytics_instance.track_cancelled(reason: "No good")
-
-      expect(analytics).to have_tracked("Cancelled").
-        for_user(user).
-        with_properties(reason: "No good", email: user.email)
-    end
-  end
-
   describe "#track_flashcard_attempted" do
     it "tracks the flashcard and deck from the attempt" do
       flashcard_properties = {

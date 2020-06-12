@@ -28,14 +28,6 @@ class Product < ApplicationRecord
     order 'name ASC'
   end
 
-  def self.newest_first
-    order 'created_at DESC'
-  end
-
-  def product_type_symbol
-    type.underscore.to_sym
-  end
-
   def to_param
     slug
   end

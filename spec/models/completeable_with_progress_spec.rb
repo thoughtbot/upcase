@@ -38,28 +38,4 @@ describe CompleteableWithProgress do
       expect(result).to eq("In Progress")
     end
   end
-
-  describe "#can_be_accessed?" do
-    [Status::IN_PROGRESS, Status::COMPLETE, Status::NEXT_UP].each do |state|
-      it "can be accessed if is #{state}" do
-        exercise = Exercise.new
-        completeable_with_progress = CompleteableWithProgress.
-          new(exercise, state)
-
-        result = completeable_with_progress.can_be_accessed?
-
-        expect(result).to be_truthy
-      end
-    end
-
-    it "can't be accessed if is Unstarted" do
-      exercise = Exercise.new
-      completeable_with_progress = CompleteableWithProgress.
-        new(exercise, "Unstarted")
-
-      result = completeable_with_progress.can_be_accessed?
-
-      expect(result).to be_falsy
-    end
-  end
 end

@@ -127,17 +127,6 @@ describe TrailWithProgress do
         ])
       end
     end
-
-    describe "#can_be_accessed?" do
-      it "can access if its state is Next Up, or already had access" do
-        trail = create_trail_with_progress(Status::COMPLETE, nil, nil, nil)
-
-        result = trail.completeables.to_a
-
-        expect(result.map(&:can_be_accessed?)).
-          to match_array([true, true, false, false])
-      end
-    end
   end
 
   describe "#started_on" do
