@@ -14,10 +14,6 @@ class CompleteableWithProgress < SimpleDelegator
     end
   end
 
-  def can_be_accessed?
-    state != Status::UNSTARTED
-  end
-
   def unstarted?
     [Status::UNSTARTED, Status::NEXT_UP].include? state
   end

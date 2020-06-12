@@ -6,23 +6,6 @@ shared_examples "a class inheriting from Product" do
   it { should validate_presence_of(:sku) }
   it { should validate_presence_of(:type) }
 
-  describe "#product_type_symbol" do
-    it "returns product_type_symbol" do
-      video = create_product
-
-      expect(video.product_type_symbol).
-        to eq(described_class.name.underscore.to_sym)
-    end
-  end
-
-  describe ".newest_first" do
-    it "returns products in reverse chronological order" do
-      older = create_product(created_at: 1.day.ago)
-      newer = create_product(created_at: Time.zone.today)
-      expect(described_class.newest_first).to eq [newer, older]
-    end
-  end
-
   context "title" do
     it "describes the product name and type" do
       product = build_stubbed_product(name: "Juice")
@@ -56,9 +39,5 @@ shared_examples "a class inheriting from Product" do
 
   def build_stubbed_product(attributes = {})
     build_stubbed(factory_name, attributes)
-  end
-
-  def build_product(attributes = {})
-    build(factory_name, attributes)
   end
 end

@@ -45,14 +45,6 @@ feature "Visitor" do
     )
   end
 
-  def have_show_preview_cta
-    have_content(I18n.t("show.weekly_iteration_cta"))
-  end
-
-  def have_video_preview_callout
-    have_content I18n.t("videos.show.auth_to_access_with_preview_callout_text")
-  end
-
   def have_auth_cta(video)
     have_link(
       I18n.t("videos.show.auth_to_access_button_text"),

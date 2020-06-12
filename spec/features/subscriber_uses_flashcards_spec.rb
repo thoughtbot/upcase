@@ -136,16 +136,8 @@ feature "user views decks" do
     click_on I18n.t("flashcards.show.return-to-results")
   end
 
-  def flashcard_summary(flashcard)
-    find(".to-flashcard[data-flashcard='#{flashcard.id}']")
-  end
-
   def last_flashcard_attempt
     Attempt.last
-  end
-
-  def results_title_for(deck)
-    I18n.t("results.show.title", title: deck.title)
   end
 
   def decks_list
