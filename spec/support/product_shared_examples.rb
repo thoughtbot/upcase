@@ -22,19 +22,8 @@ shared_examples "a class inheriting from Product" do
     end
   end
 
-  context "#to_aside_partial" do
-    it "returns the path to the aside partial" do
-      expect(described_class.new.to_aside_partial).
-        to eq "#{described_class.name.underscore.pluralize}/aside"
-    end
-  end
-
   def factory_name
     described_class.name.underscore.to_sym
-  end
-
-  def create_product(attributes = {})
-    create(factory_name, attributes)
   end
 
   def build_stubbed_product(attributes = {})

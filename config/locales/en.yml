@@ -164,8 +164,6 @@ en:
     weekly_iteration_cta: This video is a preview of all the great content in
       the Weekly Iteration. Scroll down to see some of the great videos. Want to
       watch them all?
-    preview_cta: This video is a preview. The full show is included with your
-      Upcase membership.
   teams:
     join_cta: Get your team started today
     team:
@@ -212,7 +210,6 @@ en:
   videos:
     show:
       mark-as-complete: Mark as Complete
-      auth_to_access_with_preview_callout_text: This video is a preview. Want to see the full-length video right now for free?
       auth_to_access_without_preview_callout_text: Want to see the full-length video right now for free?
       auth_to_access_button_text: Sign In with GitHub for Free Access
     seek_buttons:

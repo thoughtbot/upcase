@@ -40,10 +40,6 @@ class Product < ApplicationRecord
     type.underscore
   end
 
-  def to_aside_partial
-    "#{self.class.name.underscore.pluralize}/aside"
-  end
-
   def published_videos
     videos.published
   end
