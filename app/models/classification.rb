@@ -2,5 +2,5 @@ class Classification < ApplicationRecord
   belongs_to :classifiable, polymorphic: true
   belongs_to :topic
 
-  validates :classifiable_id, :uniqueness => { :scope=> [:topic_id, :classifiable_type] }
+  validates :topic_id, uniqueness: { scope: [:classifiable_id, :classifiable_type] }
 end

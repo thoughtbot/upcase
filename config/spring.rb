@@ -1,3 +1,6 @@
-require 'spring/commands/rspec'
-
-Spring.watch("config/routes")
+Spring.watch(
+  ".ruby-version",
+  ".rbenv-vars",
+  "tmp/restart.txt",
+  "tmp/caching-dev.txt"
+)

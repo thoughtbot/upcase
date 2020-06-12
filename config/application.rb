@@ -9,18 +9,16 @@ Bundler.require(:default, Rails.env)
 
 module Upcase
   class Application < Rails::Application
+    config.load_defaults 6.0
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
-    config.autoload_paths += [
+    config.eager_load_paths += [
       "#{config.root}/lib",
       "#{config.root}/vendor/lib",
-      "#{config.root}/app/serializers",
-      "#{config.root}/app/jobs",
-      "#{config.root}/app/modules"
     ]
 
     config.active_job.queue_adapter = :delayed_job

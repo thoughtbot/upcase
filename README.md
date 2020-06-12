@@ -24,7 +24,8 @@
 
 # Upcase
 
-Upcase is a Rails 5 app deployed to Heroku.
+Upcase is a Rails application deployed to Heroku.
+This project is in **maintenance mode** and is not being actively developed.
 
 # Development
 

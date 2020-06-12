@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.7.0"
+ruby "2.7.1"
 
 git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
@@ -42,7 +42,7 @@ gem "pry-byebug"
 gem "pry-rails"
 gem "puma"
 gem "rack-rewrite", "~> 1.5.1"
-gem "rails", "~> 5.2.0"
+gem "rails"
 gem "rails_admin"
 gem "recipient_interceptor"
 gem "redcarpet"

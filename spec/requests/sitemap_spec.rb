@@ -7,6 +7,6 @@ describe "The sitemap" do
     get "/upcase/sitemap.xml", params: { format: :xml }
 
     expect(response).to be_successful
-    expect(response.content_type).to eq("application/xml")
+    expect(response.media_type).to eq("application/xml")
   end
 end
