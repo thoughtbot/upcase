@@ -118,7 +118,7 @@ GEM
     case_transform (0.2)
       activesupport
     childprocess (3.0.0)
-    clearance (2.2.0)
+    clearance (2.2.1)
       actionmailer (>= 5.0)
       activemodel (>= 5.0)
       activerecord (>= 5.0)
@@ -135,7 +135,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.6)
+    concurrent-ruby (1.1.7)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
