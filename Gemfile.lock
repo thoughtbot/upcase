@@ -449,7 +449,7 @@ GEM
       skylight-core (= 4.3.1)
     skylight-core (4.3.1)
       activesupport (>= 4.2.0)
-    spring (2.1.0)
+    spring (2.1.1)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
     sprockets (4.0.2)
