@@ -154,7 +154,7 @@ GEM
       dotenv (= 2.7.6)
       railties (>= 3.2)
     dynamic_form (1.1.4)
-    em-websocket (0.5.1)
+    em-websocket (0.5.2)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
     email_spec (2.2.0)
