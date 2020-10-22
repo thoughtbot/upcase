@@ -382,7 +382,7 @@ GEM
       mail
     redcarpet (3.5.0)
     redis (4.2.2)
-    regexp_parser (1.8.1)
+    regexp_parser (1.8.2)
     remotipart (1.4.4)
     request_store (1.5.0)
       rack (>= 1.4)
