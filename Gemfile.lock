@@ -162,7 +162,7 @@ GEM
       mail (~> 2.7)
     email_validator (2.0.1)
       activemodel
-    erubi (1.9.0)
+    erubi (1.10.0)
     eventmachine (1.2.7)
     execjs (2.7.0)
     factory_bot (6.1.0)
