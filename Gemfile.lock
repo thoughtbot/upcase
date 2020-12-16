@@ -380,7 +380,7 @@ GEM
       ffi (~> 1.0)
     recipient_interceptor (0.2.0)
       mail
-    redcarpet (3.5.0)
+    redcarpet (3.5.1)
     redis (4.2.5)
     regexp_parser (1.8.2)
     remotipart (1.4.4)
