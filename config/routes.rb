@@ -63,9 +63,6 @@ Rails.application.routes.draw do
     end
 
     get "/unsubscribes/:token" => "unsubscribes#show", as: :unsubscribe
-    namespace "webhooks" do
-      post "intercom-unsubscribes", to: "intercom_unsubscribes#create"
-    end
 
     get "/sign_in" => "sessions#new", as: "sign_in"
     delete "/sign_out" => "sessions#destroy", as: "sign_out"

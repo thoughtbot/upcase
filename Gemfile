@@ -8,7 +8,6 @@ end
 
 gem "active_model_serializers"
 gem "acts_as_list"
-gem "analytics-ruby", require: "segment/analytics"
 gem "autoprefixer-rails"
 gem "aws-sdk-s3"
 gem "bootsnap"

@@ -32,8 +32,6 @@ feature "user views decks" do
     expect(page).to have_content("Flashcard 2")
     expect(page).to have_content(I18n.t("attempts.flashcard_saved"))
     expect(last_flashcard_attempt.confidence).to eq(1)
-    expect(analytics).to have_tracked("Flashcard Attempted").
-      with_properties(deck: deck.title, title: flashcards.first.title)
   end
 
   scenario "and navigates to the next flashcard directly" do

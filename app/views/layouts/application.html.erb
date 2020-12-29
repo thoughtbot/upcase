@@ -20,8 +20,8 @@
     <%= csrf_meta_tag %>
     <%= content_for :additional_head_content %>
 
-    <% if Rails.env.production? %>
-      <%= render 'shared/visual_website_optimizer' %>
+    <% if can_use_analytics? %>
+      <script src="<%= ENV.fetch("ANALYTICS_URL") %>" data-site="<%= ENV.fetch("ANALYTICS") %>" defer></script>
     <% end %>
 
     <% if signed_in? %>
@@ -33,7 +33,6 @@
     <%= body_class %>
     <%= yield(:additional_body_classes) %>
     ">
-    <%= render "layouts/google_tag_manager" %>
     <%= render "shared/environment_banner" %>
     <%= render "layouts/header" %>
 

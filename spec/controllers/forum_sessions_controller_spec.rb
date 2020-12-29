@@ -33,8 +33,6 @@ describe ForumSessionsController do
           with(user.id)
         expect(discourse_sso).to have_received(:sso_secret=).
           with(ENV.fetch("DISCOURSE_SSO_SECRET"))
-        expect(analytics).to have_tracked("Logged into Forum").
-          for_user(user)
       end
     end
 
@@ -67,8 +65,6 @@ describe ForumSessionsController do
           with(user.id)
         expect(discourse_sso).to have_received(:sso_secret=).
           with(ENV.fetch("DISCOURSE_SSO_SECRET"))
-        expect(analytics).to have_tracked("Logged into Forum").
-          for_user(user)
       end
     end
 

@@ -19,8 +19,6 @@ describe Api::V1::StatusesController do
     context "with existing exercise and authenticated user" do
       it "updates the status of the given exercise" do
         stub_oauth_authenticated_user
-        analytics = double(:analytics, track_completeable_finished: true)
-        allow(controller).to receive(:analytics).and_return(analytics)
         exercise = stub_exercise
         updater = stub_updater
 
@@ -32,8 +30,6 @@ describe Api::V1::StatusesController do
         expect(response.code).to eq "200"
         expect(StatusUpdater).to have_received(:new)
         expect(updater).to have_received(:update_state).with(Status::COMPLETE)
-        expect(analytics).to have_received(:track_completeable_finished).
-          with(exercise)
       end
     end
   end

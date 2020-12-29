@@ -39,7 +39,6 @@ class AuthHashService
     create_user.tap do |user|
       if user.persisted?
         promote_thoughtbot_employee_to_admin(user)
-        track_account_created(user)
       end
     end
   end
@@ -91,10 +90,6 @@ class AuthHashService
       THOUGHTBOT_GITHUB_TEAM_ID,
       user.github_username,
     )
-  end
-
-  def track_account_created(user)
-    Analytics.new(user).track_account_created
   end
 
   def octokit_client

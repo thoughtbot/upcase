@@ -1,21 +1,11 @@
 class AuthCallbacksController < ApplicationController
   def create
     sign_in user_from_auth_hash
-    track_authed_to_access
     redirect_to_desired_path
     clear_used_session_values
   end
 
   private
-
-  def track_authed_to_access
-    auth_to_access_video.present do |video|
-      analytics.track_authed_to_access(
-        video_name: video.name,
-        watchable_name: video.watchable_name,
-      )
-    end
-  end
 
   def redirect_to_desired_path
     if accepting_invitation?

@@ -9,7 +9,6 @@ class User < ApplicationRecord
   validates :github_username, uniqueness: true, presence: true
 
   before_save :clean_github_username
-  after_save :track_update_via_analytics
   after_save :convert_to_team, if: :new_team_name_given?
 
   attr_accessor :team_name
@@ -56,13 +55,5 @@ class User < ApplicationRecord
 
   def password_optional?
     super || external_auth?
-  end
-
-  def track_update_via_analytics
-    analytics.track_updated
-  end
-
-  def analytics
-    Analytics.new(self)
   end
 end

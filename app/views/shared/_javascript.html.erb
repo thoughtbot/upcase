@@ -1,9 +1,5 @@
 <%= javascript_include_tag "application" %>
 
-<% if can_use_analytics? %>
-  <%= render "analytics" %>
-<% end %>
-
 <%= yield :javascript %>
 
 <% if Rails.env.test? || Rails.env.cucumber? %>

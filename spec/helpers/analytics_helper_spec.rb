@@ -30,20 +30,4 @@ describe AnalyticsHelper do
       end
     end
   end
-
-  describe "#identify_hash" do
-    it "returns a hash of data to be sent to analytics" do
-      user = build_stubbed(:user)
-
-      expect(identify_hash(user)).to eq(
-        created: user.created_at,
-        email: user.email,
-        first_name: user.first_name,
-        name: user.name,
-        unsubscribed_from_emails: user.unsubscribed_from_emails,
-        user_id: user.id,
-        username: user.github_username,
-      )
-    end
-  end
 end

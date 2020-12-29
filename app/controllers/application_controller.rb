@@ -2,17 +2,12 @@ class ApplicationController < ActionController::Base
   include Clearance::Controller
 
   protect_from_forgery with: :exception
-  before_action :capture_campaign_params
 
   def current_user
     super || Guest.new
   end
 
   protected
-
-  def analytics
-    Analytics.new(current_user)
-  end
 
   def must_be_admin
     unless current_user_is_admin?
@@ -64,12 +59,4 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :github_auth_path
-
-  def capture_campaign_params
-    session[:campaign_params] ||= {
-      utm_campaign: params[:utm_campaign],
-      utm_medium: params[:utm_medium],
-      utm_source: params[:utm_source],
-    }
-  end
 end

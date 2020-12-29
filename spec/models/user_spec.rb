@@ -18,17 +18,6 @@ describe User do
     end
   end
 
-  context "callbacks" do
-    it "identifies the user with analytics after saving" do
-      user = build(:user)
-      analytics_stub = stub_analytics_for(user)
-
-      user.save
-
-      expect(analytics_stub).to have_received(:track_updated)
-    end
-  end
-
   context "#team_name" do
     it "creates a new team" do
       user = create(:user)

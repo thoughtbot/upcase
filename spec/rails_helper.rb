@@ -64,8 +64,6 @@ end
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.before(:each) { Analytics.backend = FakeAnalyticsRuby.new }
-
   config.use_transactional_fixtures = false
   config.use_instantiated_fixtures  = false
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

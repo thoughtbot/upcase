@@ -9,7 +9,6 @@ class ForumSessionsController < ApplicationController
       ENV.fetch("DISCOURSE_SSO_SECRET"),
     )
     populate_sso_for_current_user(sso)
-    track_forum_access
 
     redirect_to sso.to_url(Forum.sso_url)
   end
@@ -30,9 +29,5 @@ class ForumSessionsController < ApplicationController
       username: :github_username,
       external_id: :id,
     }
-  end
-
-  def track_forum_access
-    analytics.track_accessed_forum
   end
 end

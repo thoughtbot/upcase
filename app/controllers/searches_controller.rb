@@ -3,7 +3,6 @@ class SearchesController < ApplicationController
     @topics = Topic.explorable
     @query = query
     @results = results
-    track_search_query
   end
 
   def create
@@ -11,12 +10,6 @@ class SearchesController < ApplicationController
   end
 
   private
-
-  def track_search_query
-    if query.present?
-      analytics.track_searched(query: query, results_count: results.count)
-    end
-  end
 
   def results
     @_results ||= Search.new(@query).results

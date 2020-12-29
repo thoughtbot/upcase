@@ -18,17 +18,6 @@ describe "Video status" do
       expect(status).to be_in_progress
       expect(status.user).to eq @current_user
     end
-
-    it "sends data to analytics backend" do
-      video = create(:video)
-
-      post api_v1_video_status_path(video.wistia_id), params: {
-        state: "In Progress",
-      }
-
-      expect(analytics).to have_tracked("Started video").
-        with_properties(name: video.name)
-    end
   end
 
   describe "when user finish the video" do
@@ -51,12 +40,6 @@ describe "Video status" do
       post api_v1_video_status_path(video.wistia_id), params: {
         state: "Complete",
       }
-
-      expect(analytics).to have_tracked("Finished video").
-        with_properties(
-          name: video.name,
-          watchable_name: video.watchable_name,
-        )
     end
   end
 
