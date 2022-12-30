@@ -1,5 +1,5 @@
 module ErrorReporting
   def error(job, exception)
-    Honeybadger.notify(exception)
+    Sentry.capture_exception(exception)
   end
 end

@@ -172,7 +172,7 @@ GEM
     faraday (1.1.0)
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
-    ffi (1.13.1)
+    ffi (1.15.5)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
@@ -208,7 +208,6 @@ GEM
     hashdiff (1.0.1)
     hashie (4.1.0)
     high_voltage (3.1.2)
-    honeybadger (4.7.2)
     htmlentities (4.3.4)
     http_parser.rb (0.6.0)
     i18n (1.8.5)
@@ -433,6 +432,11 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    sentry-rails (5.7.0)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.7.0)
+    sentry-ruby (5.7.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     shellany (0.0.1)
     shoulda-matchers (4.4.1)
       activesupport (>= 4.2.0)
@@ -527,7 +531,6 @@ DEPENDENCIES
   gravatarify (~> 3.1.0)
   guard-livereload (~> 2.5)
   high_voltage
-  honeybadger
   inline_svg
   jquery-rails
   jquery-ui-rails
@@ -564,6 +567,8 @@ DEPENDENCIES
   rspec_junit_formatter
   sassc
   scenic
+  sentry-rails
+  sentry-ruby
   shoulda-matchers
   simplecov
   sinatra

@@ -1,11 +1,11 @@
-shared_examples "a Delayed Job that notifies Honeybadger about errors" do
+shared_examples "a Delayed Job that notifies Sentry about errors" do
   describe '#error' do
-    it "notifies Honeybadger when an error occurs" do
-      allow(Honeybadger).to receive(:notify)
+    it "notifies Sentry when an error occurs" do
+      allow(Sentry).to receive(:capture_exception)
 
       described_class.new(3).error(double, RuntimeError)
 
-      expect(Honeybadger).to have_received(:notify).with(RuntimeError)
+      expect(Sentry).to have_received(:capture_exception).with(RuntimeError)
     end
   end
 end
