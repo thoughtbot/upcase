@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.7.2"
+ruby "3.0.6"
 
 git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
@@ -48,6 +48,7 @@ gem "redcarpet"
 gem "redis", "~> 4.2"
 gem "request_store"
 gem "responders", "~> 3.0"
+gem "rexml"
 gem "sassc"
 gem "scenic"
 gem "sentry-ruby"
@@ -58,6 +59,7 @@ gem "uglifier"
 gem "validates_email_format_of"
 gem "vanity"
 gem "wrapped"
+gem "webrick"
 
 source "https://rails-assets.org" do
   gem "rails-assets-lodash"

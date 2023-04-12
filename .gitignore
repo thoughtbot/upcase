@@ -12,5 +12,6 @@ tags
 .env
 .bundle
 .foreman
+.irb_history
 dump.rdb
 /test_results

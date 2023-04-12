@@ -2,10 +2,7 @@ require_relative "boot"
 
 require 'rails/all'
 
-# If you have a Gemfile, require the default gems, the ones in the
-# current environment and also include :assets gems if in development
-# or test environments.
-Bundler.require(:default, Rails.env)
+Bundler.require(*Rails.groups)
 
 module Upcase
   class Application < Rails::Application
