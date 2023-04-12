@@ -27,8 +27,6 @@ RailsAdmin.config do |config|
 
   config.parent_controller = "::ApplicationController"
 
-  config.yell_for_non_accessible_fields = false
-
   config.actions do
     init_actions!
   end
