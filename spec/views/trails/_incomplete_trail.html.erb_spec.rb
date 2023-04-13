@@ -20,10 +20,10 @@ describe "trails/_incomplete_trail.html" do
     end
   end
 
-  def render_trail(*trail_args)
+  def render_trail(...)
     view_stubs(:current_user_has_access_to?).and_return(true)
 
-    render "trails/incomplete_trail", trail: create_trail(*trail_args)
+    render "trails/incomplete_trail", trail: create_trail(...)
   end
 
   def create_trail(completeables:)
