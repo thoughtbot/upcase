@@ -1,4 +1,4 @@
 @include font-face("calibre-medium", "calibre-medium", $asset-pipeline: true, $file-formats: woff);
 @include font-face("calibre-regular", "calibre-regular", $asset-pipeline: true, $file-formats: woff);
 @include font-face("calibre-light", "calibre-light", $asset-pipeline: true, $file-formats: woff);
-@include font-face("averta-standard-bold", "averta-standard-bold", $asset-pipeline: true, $file-formats: woff2 woff);
+@include font-face("calibre-semibold", "calibre-semibold", $asset-pipeline: true, $file-formats: woff2);
