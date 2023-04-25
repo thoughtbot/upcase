@@ -1,9 +1,9 @@
 class Api::V1::StatusesController < ApiController
-  before_action :doorkeeper_authorize!, unless: :signed_in?
+  before_action :require_login
 
   def create
     StatusUpdater.
-      new(completeable, current_resource_owner).
+      new(completeable, current_user).
       update_state(state)
     head :ok
   end

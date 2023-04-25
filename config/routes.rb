@@ -6,8 +6,6 @@ Rails.application.routes.draw do
   scope "upcase" do
     root to: "marketing#show"
 
-    use_doorkeeper
-
     get "the-weekly-iteration", to: "shows#show", id: "the-weekly-iteration"
 
     scope module: "admin" do
@@ -31,13 +29,6 @@ Rails.application.routes.draw do
 
     namespace :api do
       namespace :v1 do
-        resources :exercises, only: [:update]
-
-        post(
-          "exercises/:exercise_uuid/status" => "statuses#create",
-          as: :exercise_status,
-        )
-
         post(
           "videos/:video_wistia_id/status" => "statuses#create",
           as: :video_status,
