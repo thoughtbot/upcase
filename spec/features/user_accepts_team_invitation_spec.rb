@@ -26,7 +26,6 @@ feature "Accept team invitations" do
         user = create(:user, email: "home@example.com")
         create_team_account(owner_email: "owner@somedomain.com")
 
-        save_and_open_page
         fill_in "Email", with: work_email
         click_on "Send"
 
