@@ -139,6 +139,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.2.2)
+    connection_pool (2.4.1)
     crack (0.4.4)
     crass (1.0.6)
     database_cleaner (1.8.5)
@@ -386,7 +387,10 @@ GEM
     recipient_interceptor (0.2.0)
       mail
     redcarpet (3.5.1)
-    redis (4.2.5)
+    redis (5.0.6)
+      redis-client (>= 0.9.0)
+    redis-client (0.14.1)
+      connection_pool
     regexp_parser (1.8.2)
     remotipart (1.4.4)
     request_store (1.5.0)
@@ -566,7 +570,7 @@ DEPENDENCIES
   rails_stdout_logging
   recipient_interceptor
   redcarpet
-  redis (~> 4.2)
+  redis
   request_store
   responders (~> 3.0)
   rexml
