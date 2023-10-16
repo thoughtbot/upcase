@@ -81,7 +81,6 @@ end
 group :production do
   gem "rack-cors"
   gem "rails_stdout_logging"
-  gem "skylight"
 end
 
 group :test do
