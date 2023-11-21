@@ -68,7 +68,6 @@ RSpec.configure do |config|
   config.use_instantiated_fixtures  = false
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
-  config.include AnalyticsHelper
   config.include Clearance::Testing::Matchers, type: :request
   config.include Paperclip::Shoulda::Matchers
   config.include EmailSpec::Helpers

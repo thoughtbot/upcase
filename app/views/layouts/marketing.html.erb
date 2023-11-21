@@ -17,9 +17,6 @@
     <%= favicon_link_tag "favicon.ico" %>
     <link rel="canonical" href="https://thoughtbot.com/upcase" />
     <%= csrf_meta_tags %>
-    <% if can_use_analytics? %>
-      <script src="<%= ENV.fetch("ANALYTICS_URL") %>" data-site="<%= ENV.fetch("ANALYTICS") %>" defer></script>
-    <% end %>
   </head>
 
   <body class="<%= body_class %>">

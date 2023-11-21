@@ -20,10 +20,6 @@
     <%= csrf_meta_tag %>
     <%= content_for :additional_head_content %>
 
-    <% if can_use_analytics? %>
-      <script src="<%= ENV.fetch("ANALYTICS_URL") %>" data-site="<%= ENV.fetch("ANALYTICS") %>" defer></script>
-    <% end %>
-
     <% if signed_in? %>
       <%= render "layouts/hide_drip_widget_for_signed_in_users" %>
     <% end %>
