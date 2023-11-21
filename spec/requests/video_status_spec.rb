@@ -32,15 +32,6 @@ describe "Video status" do
       video.reload
       expect(video.statuses.most_recent).to be_complete
     end
-
-    it "sends data to analytics backend" do
-      video = create(:video)
-      video.statuses.create(user: @current_user, state: Status::IN_PROGRESS)
-
-      post api_v1_video_status_path(video.wistia_id), params: {
-        state: "Complete",
-      }
-    end
   end
 
   def sign_in
