@@ -185,17 +185,6 @@ and trello boards, and others.
 The `rake dev:prime` task will create user accounts that you can test with in
 development mode.
 
-# Credits
-
-![thoughtbot](http://thoughtbot.com/logo.png)
-
-This application is maintained and funded by [thoughtbot, inc](http://thoughtbot.com/community)
-
-Thank you to all [the contributors](https://github.com/thoughtbot/upcase/contributors)!
-
-The names and logos for Upcase and thoughtbot are registered trademarks of
-thoughtbot, inc.
-
 # License
 
 This application is Copyright © 2007 thoughtbot, inc.
@@ -214,3 +203,10 @@ not limited to:
 * to reproduce the Contribution in original or modified form,
 * to distribute, to make the Contribution available to the public, display and
   publicly perform the Contribution in original or modified form.
+
+# Credits
+
+Thank you to all [the contributors](https://github.com/thoughtbot/upcase/contributors)!
+
+<!-- START /templates/footer.md -->
+<!-- END /templates/footer.md -->
