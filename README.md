@@ -49,9 +49,9 @@ your work.
 
         % bin/setup
 
-3. Start Foreman.
+3. Start the application.
 
-        % foreman start
+        % bin/dev
 
 4. Verify that the app is up and running.
 
