@@ -38,7 +38,7 @@ en:
       title: Flashcards
     auth_to_access_cta: We hope you're enjoying these flashcard decks. Ready to dive in to all the other great content?
     auth_to_access_link: Sign In with GitHub for Free Access
-  exercist_trails:
+  exercise_trails:
     show:
       no_trail: No trail found for the exercise.
   flashcards:
