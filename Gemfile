@@ -94,10 +94,10 @@ group :test do
   gem "launchy"
   gem "rails-controller-testing"
   gem "rspec_junit_formatter"
+  gem "selenium-webdriver"
   gem "shoulda-matchers", require: false
   gem "simplecov", require: false
   gem "sinatra"
   gem "timecop"
-  gem "webdrivers"
   gem "webmock"
 end
