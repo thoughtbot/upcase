@@ -1,7 +1,12 @@
 #!/usr/bin/env sh
 
-# Set up Rails app. Run this script immediately after cloning the codebase.
-# https://github.com/thoughtbot/guides/tree/master/protocol
+# Set up asdf if available
+if command -v asdf > /dev/null; then
+  printf 'Setting up tool dependencies via asdf...\n'
+  asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby || true
+  asdf plugin-update --all || true
+  asdf install
+fi
 
 # Set up Ruby dependencies via Bundler
 if ! command -v bundle > /dev/null; then
