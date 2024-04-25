@@ -74,9 +74,9 @@ GEM
       activerecord (>= 4.2)
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
-    argon2 (2.0.2)
-      ffi (~> 1.9)
-      ffi-compiler (>= 0.1)
+    argon2 (2.3.0)
+      ffi (~> 1.15)
+      ffi-compiler (~> 1.0)
     autoprefixer-rails (10.1.0.0)
       execjs
     aws-eventstream (1.1.0)
@@ -96,7 +96,7 @@ GEM
     aws-sigv4 (1.2.2)
       aws-eventstream (~> 1, >= 1.0.2)
     base64 (0.2.0)
-    bcrypt (3.1.16)
+    bcrypt (3.1.20)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     bourbon (6.0.0)
@@ -122,7 +122,7 @@ GEM
       capybara (>= 2.7, < 4)
     case_transform (0.2)
       activesupport
-    clearance (2.3.0)
+    clearance (2.7.0)
       actionmailer (>= 5.0)
       activemodel (>= 5.0)
       activerecord (>= 5.0)
@@ -144,6 +144,7 @@ GEM
     crack (0.4.4)
     crass (1.0.6)
     database_cleaner (1.8.5)
+    date (3.3.4)
     delayed_job (4.1.9)
       activesupport (>= 3.0, < 6.2)
     delayed_job_active_record (4.1.5)
@@ -163,7 +164,7 @@ GEM
       htmlentities (~> 4.3.3)
       launchy (~> 2.1)
       mail (~> 2.7)
-    email_validator (2.0.1)
+    email_validator (2.2.4)
       activemodel
     erubi (1.12.0)
     eventmachine (1.2.7)
@@ -176,9 +177,9 @@ GEM
     faraday (1.1.0)
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
-    ffi (1.15.5)
-    ffi-compiler (1.0.1)
-      ffi (>= 1.0.0)
+    ffi (1.16.3)
+    ffi-compiler (1.3.2)
+      ffi (>= 1.15.5)
       rake
     flutie (2.2.0)
     font-awesome-rails (4.7.0.5)
@@ -214,7 +215,7 @@ GEM
     high_voltage (3.1.2)
     htmlentities (4.3.4)
     http_parser.rb (0.6.0)
-    i18n (1.14.1)
+    i18n (1.14.4)
       concurrent-ruby (~> 1.0)
     inline_svg (1.7.2)
       activesupport (>= 3.0)
@@ -246,16 +247,19 @@ GEM
     listen (3.3.3)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    loofah (2.20.0)
+    loofah (2.22.0)
       crass (~> 1.0.2)
-      nokogiri (>= 1.5.9)
+      nokogiri (>= 1.12.0)
     lumberjack (1.2.8)
-    mail (2.7.1)
+    mail (2.8.1)
       mini_mime (>= 0.1.1)
+      net-imap
+      net-pop
+      net-smtp
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     matrix (0.4.2)
-    method_source (1.0.0)
+    method_source (1.1.0)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2020.1104)
@@ -264,7 +268,7 @@ GEM
       rake
     mini_mime (1.1.5)
     mini_portile2 (2.8.6)
-    minitest (5.21.2)
+    minitest (5.22.3)
     msgpack (1.7.0)
     multi_json (1.15.0)
     multi_xml (0.6.0)
@@ -276,6 +280,15 @@ GEM
       thor (~> 0.19)
     nenv (0.3.0)
     nested_form (0.3.2)
+    net-imap (0.4.10)
+      date
+      net-protocol
+    net-pop (0.1.2)
+      net-protocol
+    net-protocol (0.2.2)
+      timeout
+    net-smtp (0.5.0)
+      net-protocol
     nio4r (2.7.0)
     nokogiri (1.16.4)
       mini_portile2 (~> 2.8.2)
@@ -361,11 +374,13 @@ GEM
       actionpack (>= 5.0.1.rc1)
       actionview (>= 5.0.1.rc1)
       activesupport (>= 5.0.1.rc1)
-    rails-dom-testing (2.0.3)
-      activesupport (>= 4.2.0)
+    rails-dom-testing (2.2.0)
+      activesupport (>= 5.0.0)
+      minitest
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.5.0)
-      loofah (~> 2.19, >= 2.19.1)
+    rails-html-sanitizer (1.6.0)
+      loofah (~> 2.21)
+      nokogiri (~> 1.14)
     rails_admin (2.2.1)
       activemodel-serializers-xml (>= 1.0)
       builder (~> 3.1)
@@ -385,7 +400,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
-    rake (13.0.1)
+    rake (13.2.1)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -491,6 +506,7 @@ GEM
     thread_safe (0.3.6)
     tilt (2.3.0)
     timecop (0.9.2)
+    timeout (0.4.1)
     tzinfo (1.2.11)
       thread_safe (~> 0.1)
     uglifier (4.2.0)
@@ -512,7 +528,7 @@ GEM
     wrapped (0.1.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.12)
+    zeitwerk (2.6.13)
 
 PLATFORMS
   ruby
