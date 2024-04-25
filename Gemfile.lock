@@ -551,15 +551,15 @@ DEPENDENCIES
   database_cleaner
   delayed_job_active_record
   dotenv-rails
-  dynamic_form (~> 1.1.4)
+  dynamic_form
   email_spec
   factory_bot_rails
   flutie
   font-awesome-rails
-  formtastic (~> 4.0.0)
+  formtastic
   friendly_id
-  gravatarify (~> 3.1.0)
-  guard-livereload (~> 2.5)
+  gravatarify
+  guard-livereload
   high_voltage
   inline_svg
   jquery-rails
@@ -567,12 +567,12 @@ DEPENDENCIES
   kaminari
   launchy
   mime-types
-  mimemagic (~> 0.3.10)
-  neat (~> 1.9.1)
-  nokogiri (>= 1.6.7.2)
+  mimemagic
+  neat
+  nokogiri
   octokit
-  omniauth (~> 1.9.1)
-  omniauth-github (~> 1.4.0)
+  omniauth
+  omniauth-github
   paperclip
   pg
   pg_search
@@ -582,7 +582,7 @@ DEPENDENCIES
   rack-cors
   rack-livereload
   rack-mini-profiler
-  rack-rewrite (~> 1.5.1)
+  rack-rewrite
   rails
   rails-assets-lodash!
   rails-controller-testing
@@ -592,7 +592,7 @@ DEPENDENCIES
   redcarpet
   redis
   request_store
-  responders (~> 3.0)
+  responders
   rexml
   rspec-rails
   rspec_junit_formatter
