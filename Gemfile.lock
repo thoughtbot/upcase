@@ -77,8 +77,8 @@ GEM
     argon2 (2.3.0)
       ffi (~> 1.15)
       ffi-compiler (~> 1.0)
-    autoprefixer-rails (10.1.0.0)
-      execjs
+    autoprefixer-rails (10.4.16.0)
+      execjs (~> 2)
     aws-eventstream (1.1.0)
     aws-partitions (1.406.0)
     aws-sdk-core (3.110.0)
@@ -168,7 +168,7 @@ GEM
       activemodel
     erubi (1.12.0)
     eventmachine (1.2.7)
-    execjs (2.7.0)
+    execjs (2.9.1)
     factory_bot (6.1.0)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.1.0)
