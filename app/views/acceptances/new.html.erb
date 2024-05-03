@@ -3,7 +3,7 @@
     <h3 class="authentication-message">
       <%= t(".sign_in_to_join_the_team", team_name: @invitation.team_name) %>
     </h3>
-    <%= link_to github_auth_path, class: "cta-button secondary-button" do %>
+    <%= link_to github_auth_path, method: :post, class: "cta-button secondary-button" do %>
       <%= image_tag("github.svg", class: "github-logo", alt: "") %>
       <%= t("authenticating.github_signin") %>
     <% end %>
