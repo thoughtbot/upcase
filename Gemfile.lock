@@ -502,6 +502,8 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
+    simpleidn (0.2.2)
+      unf (~> 0.1.4)
     sinatra (3.2.0)
       mustermann (~> 3.0)
       rack (~> 2.2, >= 2.2.4)
@@ -535,8 +537,12 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    validates_email_format_of (1.6.3)
-      i18n
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.9.1)
+    validates_email_format_of (1.8.2)
+      i18n (>= 0.8.0)
+      simpleidn
     vanity (3.0.0)
       i18n
     version_gem (1.1.4)
