@@ -442,7 +442,8 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    rexml (3.2.5)
+    rexml (3.2.8)
+      strscan (>= 3.0.9)
     rspec-core (3.10.0)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.0)
@@ -525,6 +526,7 @@ GEM
     sprockets-redirect (1.0.0)
       activesupport (>= 3.1.0)
       rack
+    strscan (3.1.0)
     temple (0.10.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
