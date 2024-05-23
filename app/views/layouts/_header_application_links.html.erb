@@ -71,7 +71,8 @@
         <%= link_to my_account_path, id: "my_account_link", class: "avatar" do %>
           <%= image_tag(
             gravatar_url(current_user.email, size: "30"),
-            class: "avatar__image",
+            alt: "avatar image",
+            class: "avatar__image"
           )%>
         <% end %>
       </li>
