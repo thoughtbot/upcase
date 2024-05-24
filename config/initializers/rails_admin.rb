@@ -10,6 +10,7 @@ TEAM_CONVERSION_HELP = <<-DESC.strip_heredoc.freeze
 DESC
 
 RailsAdmin.config do |config|
+  config.asset_source = :sprockets
   config.authorize_with do
     unless current_user.admin?
       redirect_to(
