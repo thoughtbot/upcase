@@ -279,7 +279,7 @@ GEM
     nested_form (0.3.2)
     net-http (0.4.1)
       uri
-    net-imap (0.4.12)
+    net-imap (0.4.13)
       date
       net-protocol
     net-pop (0.1.2)
@@ -399,7 +399,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    recipient_interceptor (0.2.0)
+    recipient_interceptor (0.3.2)
       mail
     redcarpet (3.5.1)
     redis (5.0.6)
