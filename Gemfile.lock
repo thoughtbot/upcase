@@ -346,7 +346,7 @@ GEM
       nio4r (~> 2.0)
     racc (1.8.0)
     rack (2.2.9)
-    rack-cors (1.1.1)
+    rack-cors (2.0.2)
       rack (>= 2.0.0)
     rack-livereload (0.3.17)
       rack
