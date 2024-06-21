@@ -1,0 +1,47 @@
+# Auto generated files with errors to ignore.
+# Remove from this list as you refactor files.
+---
+ignore:
+- ".pryrc":
+  - Security/Eval
+- app/controllers/application_controller.rb:
+  - Style/SafeNavigation
+- app/helpers/videos_helper.rb:
+  - Lint/AssignmentInCondition
+- app/models/trail.rb:
+  - Style/RedundantSort
+- app/services/auth_hash_service.rb:
+  - Style/SafeNavigation
+- config/environments/development.rb:
+  - Lint/ConstantDefinitionInBlock
+- config/environments/production.rb:
+  - Style/GlobalStdStream
+  - Lint/ConstantDefinitionInBlock
+- config/environments/test.rb:
+  - Lint/ConstantDefinitionInBlock
+- config/initializers/time_formats.rb:
+  - Performance/RedundantMerge
+- db/migrate/20141125212241_update_explorable_topics.rb:
+  - Style/SafeNavigation
+- lib/tasks/search.rake:
+  - Lint/ConstantDefinitionInBlock
+- spec/controllers/memberships_controller_spec.rb:
+  - Style/SafeNavigation
+- spec/controllers/videos_controller_spec.rb:
+  - Style/MixinUsage
+- spec/features/clearance/user_signs_out_spec.rb:
+  - Lint/UselessAssignment
+- spec/features/subscriber_uses_flashcards_spec.rb:
+  - Lint/UselessAssignment
+- spec/features/subscriber_views_weekly_iteration_spec.rb:
+  - Style/RedundantInterpolation
+- spec/features/user_manages_team_subscription_spec.rb:
+  - Style/MixinUsage
+- spec/features/user_removes_pending_invitation_spec.rb:
+  - Style/MixinUsage
+- spec/features/user_removes_team_member_spec.rb:
+  - Style/MixinUsage
+- spec/support/fake_wistia.rb:
+  - Style/SlicingWithRange
+- spec/views/practice/show.html.erb_spec.rb:
+  - Lint/ShadowedArgument

@@ -79,6 +79,7 @@ group :development, :test do
   gem "bundler-audit", require: false
   gem "dotenv-rails"
   gem "rspec-rails"
+  gem "standard"
 end
 
 group :production do
