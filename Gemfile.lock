@@ -124,7 +124,7 @@ GEM
       capybara (>= 2.7, < 4)
     case_transform (0.2)
       activesupport
-    clearance (2.7.1)
+    clearance (2.7.2)
       actionmailer (>= 5.0)
       activemodel (>= 5.0)
       activerecord (>= 5.0)
