@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.0.7"
+ruby "3.1.6"
 
 git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
@@ -40,6 +40,7 @@ gem "pg"
 gem "pg_search"
 gem "pry-byebug"
 gem "pry-rails"
+gem "psych", "< 4"
 gem "puma"
 gem "rack-rewrite"
 gem "rails"
