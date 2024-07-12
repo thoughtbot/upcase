@@ -3,45 +3,647 @@
 ---
 ignore:
 - ".pryrc":
+  - Style/TrailingCommaInHashLiteral
   - Security/Eval
+  - Style/FileRead
+- Guardfile:
+  - Style/StringLiterals
+  - Style/TrailingCommaInHashLiteral
+  - Style/PercentLiteralDelimiters
+  - Style/StringLiteralsInInterpolation
+- Rakefile:
+  - Style/StringLiterals
+- app/controllers/acceptances_controller.rb:
+  - Style/TrailingCommaInArguments
+- app/controllers/api/v1/statuses_controller.rb:
+  - Layout/DotPosition
 - app/controllers/application_controller.rb:
+  - Style/StringLiterals
   - Style/SafeNavigation
+- app/controllers/auth_callbacks_controller.rb:
+  - Style/TrailingCommaInArrayLiteral
+  - Style/TrailingCommaInArguments
+- app/controllers/collaborations_controller.rb:
+  - Style/TrailingCommaInArguments
+- app/controllers/forum_sessions_controller.rb:
+  - Style/TrailingCommaInArguments
+  - Performance/StringIdentifierArgument
+  - Style/TrailingCommaInHashLiteral
+- app/controllers/invitations_controller.rb:
+  - Layout/DotPosition
+- app/controllers/practice_controller.rb:
+  - Style/TrailingCommaInArguments
+- app/controllers/teams_controller.rb:
+  - Style/TrailingCommaInArguments
+- app/controllers/topics_controller.rb:
+  - Style/TrailingCommaInArguments
+- app/controllers/trails_controller.rb:
+  - Layout/DotPosition
+- app/controllers/unsubscribes_controller.rb:
+  - Style/TrailingCommaInArrayLiteral
+- app/controllers/users_controller.rb:
+  - Style/PercentLiteralDelimiters
+- app/controllers/video_completions_controller.rb:
+  - Layout/DotPosition
+- app/helpers/application_helper.rb:
+  - Performance/StringReplacement
+  - Style/StringLiterals
+  - Layout/SpaceAfterComma
+  - Style/TrailingCommaInArguments
+  - Style/StringLiteralsInInterpolation
+- app/helpers/open_graph_helper.rb:
+  - Style/StringLiterals
+  - Style/TrailingCommaInArrayLiteral
+- app/helpers/teacher_helper.rb:
+  - Layout/SpaceAroundEqualsInParameterDefault
+- app/helpers/trails_helper.rb:
+  - Style/TrailingCommaInArrayLiteral
+  - Style/ArgumentsForwarding
+  - Style/TrailingCommaInArguments
+- app/helpers/unsubscribes_helper.rb:
+  - Style/TrailingCommaInArguments
 - app/helpers/videos_helper.rb:
   - Lint/AssignmentInCondition
+- app/helpers/wistia_helper.rb:
+  - Style/StringLiterals
+  - Layout/SpaceInsideHashLiteralBraces
+- app/jobs/weekly_iteration_mailer_job.rb:
+  - Layout/DotPosition
+- app/lib/watchable_rails_admin_field.rb:
+  - Style/SuperArguments
+- app/mailer_previews/invitation_mailer_preview.rb:
+  - Style/TrailingCommaInArguments
+- app/mailers/base_mailer.rb:
+  - Layout/ArgumentAlignment
+- app/mailers/weekly_iteration_drip_mailer.rb:
+  - Style/TrailingCommaInArguments
+  - Style/TrailingCommaInHashLiteral
+- app/models/classification.rb:
+  - Layout/SpaceInsideHashLiteralBraces
+- app/models/clip.rb:
+  - Style/StringLiterals
+- app/models/flashcards_needing_review_query.rb:
+  - Layout/DotPosition
+- app/models/landing_page_topics.rb:
+  - Style/TrailingCommaInArrayLiteral
+- app/models/product.rb:
+  - Style/StringLiterals
+- app/models/return_path_finder.rb:
+  - Style/StringLiterals
+- app/models/search.rb:
+  - Style/RedundantStringEscape
+- app/models/show.rb:
+  - Style/StringLiterals
+- app/models/status.rb:
+  - Layout/SpaceInsideHashLiteralBraces
+- app/models/status_finder.rb:
+  - Layout/DotPosition
+- app/models/step.rb:
+  - Layout/SpaceInsideHashLiteralBraces
+- app/models/topic.rb:
+  - Style/StringLiterals
 - app/models/trail.rb:
+  - Style/PercentLiteralDelimiters
+  - Style/TrailingCommaInArguments
   - Style/RedundantSort
+- app/models/trail_with_progress.rb:
+  - Style/TrailingCommaInArguments
+  - Layout/DotPosition
+- app/models/trail_with_progress_query.rb:
+  - Style/TrailingCommaInArguments
+- app/models/trails_for_practice_page_query.rb:
+  - Style/ArgumentsForwarding
+  - Layout/DotPosition
+- app/models/user.rb:
+  - Style/StringLiterals
+- app/models/video.rb:
+  - Style/StringLiterals
+- app/models/video_listing.rb:
+  - Style/ArgumentsForwarding
+  - Style/TrailingCommaInArguments
+  - Layout/DotPosition
+- app/models/video_thumbnail.rb:
+  - Style/StringLiterals
 - app/services/auth_hash_service.rb:
+  - Style/StringLiterals
+  - Style/TrailingCommaInArguments
   - Style/SafeNavigation
+- app/services/completeable_with_progress_query.rb:
+  - Style/ArgumentsForwarding
+  - Style/TrailingCommaInArguments
+  - Layout/DotPosition
+- app/services/video_duration_updater.rb:
+  - Layout/SpaceInsideHashLiteralBraces
+- app/services/weekly_iteration_recommender.rb:
+  - Layout/DotPosition
+  - Style/TrailingCommaInArguments
+- app/services/weekly_iteration_suggestions.rb:
+  - Layout/DotPosition
+  - Style/TrailingCommaInArguments
+- app/views/shows/show.rss.builder:
+  - Style/StringLiterals
+- app/views/videos/index.rss.builder:
+  - Style/StringLiterals
+- config.ru:
+  - Style/StringLiterals
+  - Layout/ExtraSpacing
+- config/application.rb:
+  - Style/StringLiterals
+  - Style/TrailingCommaInArrayLiteral
+  - Layout/SpaceInsideHashLiteralBraces
+- config/boot.rb:
+  - Style/StringLiterals
+- config/environment.rb:
+  - Style/StringLiterals
 - config/environments/development.rb:
+  - Style/StringLiterals
   - Lint/ConstantDefinitionInBlock
+  - Layout/FirstHashElementIndentation
+  - Style/TrailingCommaInHashLiteral
 - config/environments/production.rb:
+  - Layout/ExtraSpacing
+  - Style/StringLiterals
+  - Layout/SpaceInsideArrayLiteralBrackets
+  - Layout/SpaceInsideHashLiteralBraces
   - Style/GlobalStdStream
+  - Style/TrailingCommaInArguments
   - Lint/ConstantDefinitionInBlock
+  - Style/RedundantParentheses
+  - Layout/IndentationWidth
 - config/environments/test.rb:
+  - Style/StringLiterals
+  - Layout/ExtraSpacing
   - Lint/ConstantDefinitionInBlock
+- config/initializers/assets.rb:
+  - Style/StringLiterals
+- config/initializers/backtrace_silencers.rb:
+  - Style/PercentLiteralDelimiters
+- config/initializers/errors.rb:
+  - Style/StringLiterals
+  - Layout/ArrayAlignment
+- config/initializers/github.rb:
+  - Style/StringLiterals
+- config/initializers/omniauth.rb:
+  - Style/StringLiterals
+- config/initializers/rack_rewrite.rb:
+  - Style/StringLiteralsInInterpolation
+- config/initializers/rails_admin.rb:
+  - Style/PercentLiteralDelimiters
+  - Style/TrailingCommaInArguments
+  - Style/StringLiterals
+  - Layout/IndentationWidth
+  - Layout/BlockAlignment
+- config/initializers/session_store.rb:
+  - Layout/ArgumentAlignment
 - config/initializers/time_formats.rb:
+  - Style/StringLiterals
   - Performance/RedundantMerge
+- config/routes.rb:
+  - Style/HashSyntax
+  - Style/TrailingCommaInArguments
+- config/smtp.rb:
+  - Style/TrailingCommaInHashLiteral
+  - Style/TrailingCommaInArguments
+- db/migrate/20100810204907_clearance_create_users.rb:
+  - Layout/ExtraSpacing
+  - Style/HashSyntax
+- db/migrate/20100816200505_create_courses.rb:
+  - Style/HashSyntax
+  - Style/StringLiterals
+- db/migrate/20100819151115_add_registration_link_to_sections.rb:
+  - Style/HashSyntax
+  - Style/StringLiterals
+- db/migrate/20100823201314_add_chargify_to_users.rb:
+  - Style/HashSyntax
+  - Style/StringLiterals
+- db/migrate/20100907181652_add_admin_to_user.rb:
+  - Style/HashSyntax
+- db/migrate/20100907194846_add_location_name_to_courses.rb:
+  - Style/HashSyntax
+  - Style/StringLiterals
+- db/migrate/20100910153615_add_email_to_teachers.rb:
+  - Style/HashSyntax
+  - Style/StringLiterals
+- db/migrate/20100916145619_create_questions.rb:
+  - Layout/ExtraSpacing
+  - Style/HashSyntax
+- db/migrate/20100917161421_create_resources.rb:
+  - Layout/ExtraSpacing
+  - Style/HashSyntax
+- db/migrate/20100927144003_change_default_to_true_for_email_confirmed_on_users.rb:
+  - Style/HashSyntax
+- db/migrate/20101203155002_ensure_maximum_students.rb:
+  - Style/HashSyntax
+- db/migrate/20110221205746_add_freshbook_fields_to_users.rb:
+  - Layout/ExtraSpacing
+- db/migrate/20110302155621_add_active_to_coupons.rb:
+  - Style/HashSyntax
+- db/migrate/20110302175223_change_course_price_to_integer.rb:
+  - Style/HashSyntax
+- db/migrate/20110413180426_remove_resources.rb:
+  - Style/HashSyntax
+  - Layout/ExtraSpacing
+- db/migrate/20110429145538_upgrade_clearance_to_diesel.rb:
+  - Layout/EmptyLinesAroundMethodBody
+- db/migrate/20120202132518_add_paid_to_registrations.rb:
+  - Style/HashSyntax
+- db/migrate/20120319205750_create_topics.rb:
+  - Layout/ExtraSpacing
+- db/migrate/20120324163715_create_products.rb:
+  - Layout/ExtraSpacing
+  - Style/HashSyntax
+- db/migrate/20120324181739_create_purchases.rb:
+  - Layout/ExtraSpacing
+- db/migrate/20120326013213_add_paid_to_purchases.rb:
+  - Style/HashSyntax
+- db/migrate/20120326014034_add_payment_method_to_purchases.rb:
+  - Style/HashSyntax
+- db/migrate/20120327143007_add_discount_type_to_coupons.rb:
+  - Style/HashSyntax
+- db/migrate/20120329154310_create_articles.rb:
+  - Layout/ExtraSpacing
+- db/migrate/20120329161804_create_articles_topics_join_table.rb:
+  - Layout/ExtraSpacing
+- db/migrate/20120424205118_change_article_author_allow_null.rb:
+  - Layout/EmptyLineBetweenDefs
+- db/migrate/20120522210822_add_image_to_products.rb:
+  - Layout/TrailingEmptyLines
+- db/migrate/20120525171246_add_count_to_topics.rb:
+  - Layout/EmptyLinesAroundMethodBody
+- db/migrate/20120530203434_create_rails_admin_histories_table.rb:
+  - Layout/IndentationWidth
+  - Style/HashSyntax
+  - Layout/BlockAlignment
+  - Layout/IndentationConsistency
+  - Style/StringLiterals
+  - Layout/SpaceInsideParens
+  - Layout/DefEndAlignment
+  - Layout/TrailingEmptyLines
+- db/migrate/20120713141337_multiple_videos_on_products.rb:
+  - Layout/ExtraSpacing
+- db/migrate/20120803150234_url_encode_topic_slugs.rb:
+  - Style/ColonMethodCall
+  - Style/StringLiteralsInInterpolation
+- db/migrate/20121207130152_move_registrations_to_purchases.rb:
+  - Layout/ExtraSpacing
+  - Style/HashSyntax
+- db/migrate/20130102163245_create_delayed_jobs.rb:
+  - Style/HashSyntax
+  - Layout/ExtraSpacing
+  - Style/StringLiterals
+- db/migrate/20130109204805_rename_courses_to_workshops.rb:
+  - Style/PercentLiteralDelimiters
+- db/migrate/20130122220646_add_alternate_prices_to_products_and_workshops.rb:
+  - Style/PercentLiteralDelimiters
+- db/migrate/20130129200950_add_resources_to_workshops.rb:
+  - Style/StringLiterals
+- db/migrate/20130205194322_remove_authors.rb:
+  - Style/HashSyntax
+- db/migrate/20130411143358_create_doorkeeper_tables.rb:
+  - Layout/ExtraSpacing
+  - Style/HashSyntax
+  - Layout/EmptyLinesAroundMethodBody
+- db/migrate/20130521152542_drop_office_hours.rb:
+  - Style/StringLiterals
+  - Style/HashSyntax
+  - Layout/ExtraSpacing
+- db/migrate/20130610210831_allow_null_maximim_students_on_workshops.rb:
+  - Style/StringLiterals
+- db/migrate/20130613191147_create_trails.rb:
+  - Style/StringLiterals
+  - Style/StringLiteralsInInterpolation
+- db/migrate/20130620025128_separate_bytes_from_articles.rb:
+  - Layout/ExtraSpacing
+- db/migrate/20130620185537_remove_articles_topics_join_table.rb:
+  - Layout/ExtraSpacing
+- db/migrate/20130721190245_add_number_to_episodes.rb:
+  - Style/StringLiterals
+- db/migrate/20130725152531_add_stripe_plan_id_to_subscriptions.rb:
+  - Style/StringLiterals
+- db/migrate/20130903181127_make_plans_polymorphic.rb:
+  - Style/StringLiterals
+- db/migrate/20131024150525_add_availability_to_users.rb:
+  - Style/StringLiterals
+- db/migrate/20131031134316_move_team_plan_data_to_database.rb:
+  - Style/StringLiterals
+- db/migrate/20131125194326_remove_bytes.rb:
+  - Layout/ExtraSpacing
+- db/migrate/20131125202014_remove_articles.rb:
+  - Layout/ExtraSpacing
+- db/migrate/20131226142103_create_mentors.rb:
+  - Style/StringLiterals
+  - Style/StringLiteralsInInterpolation
+- db/migrate/20131230192546_add_team_id_to_users.rb:
+  - Style/StringLiterals
+- db/migrate/20131230193510_add_subscription_id_to_teams.rb:
+  - Style/StringLiterals
+- db/migrate/20131230195418_remove_team_id_from_subscriptions.rb:
+  - Style/StringLiterals
+- db/migrate/20140116184523_remove_inperson_workshops.rb:
+  - Style/StringLiteralsInInterpolation
+  - Naming/HeredocDelimiterCase
+  - Layout/IndentationWidth
+  - Layout/ExtraSpacing
+- db/migrate/20140123145010_update_team_plans_type.rb:
+  - Style/StringLiterals
+- db/migrate/20140813130414_update_plan_type.rb:
+  - Style/StringLiterals
+- db/migrate/20140908153238_update_polymorphic_relations.rb:
+  - Layout/ArgumentAlignment
+- db/migrate/20140908185015_add_includes_team_to_individual_plans.rb:
+  - Layout/ArgumentAlignment
+- db/migrate/20140909182638_update_plan_polymorphic_relations.rb:
+  - Layout/ArgumentAlignment
+- db/migrate/20140926183202_create_statuses.rb:
+  - Layout/ExtraSpacing
 - db/migrate/20141125212241_update_explorable_topics.rb:
   - Style/SafeNavigation
+- db/migrate/20141216212241_update_topic_colors.rb:
+  - Layout/HashAlignment
+  - Style/HashSyntax
+- db/migrate/20141217203321_remove_questions_model.rb:
+  - Style/StringLiteralsInInterpolation
+- db/migrate/20150108200739_teachers_tied_to_videos_not_video_tutorials.rb:
+  - Layout/SpaceInsideStringInterpolation
+- db/migrate/20150226204426_switch_from_github_teams_to_collaborators.rb:
+  - Style/TrailingCommaInHashLiteral
+- db/migrate/20150407193958_vanity_migration.rb:
+  - Style/HashSyntax
+- db/migrate/20150415145819_add_unique_index_to_steps_on_trail_and_completeable.rb:
+  - Layout/ArgumentAlignment
+- db/migrate/20150720161005_create_pg_search_documents.rb:
+  - Style/HashSyntax
+- db/migrate/20150911153011_rename_scheduled_for_cancellation.rb:
+  - Style/TrailingCommaInArguments
+- db/migrate/20150916171213_add_length_in_minutes_to_videos.rb:
+  - Style/TrailingCommaInHashLiteral
+- db/migrate/20151019151416_add_accessible_without_subscription_to_video.rb:
+  - Style/TrailingCommaInArguments
+- db/migrate/20151118203141_add_page_title_to_topics.rb:
+  - Layout/HashAlignment
+  - Style/TrailingCommaInHashLiteral
+- db/migrate/20160601215621_remove_topic_from_trails.rb:
+  - Style/TrailingCommaInArguments
+- db/migrate/20160727183445_create_content_recommendations.rb:
+  - Style/TrailingCommaInArguments
+- db/migrate/20160803180148_create_recommendable_contents.rb:
+  - Style/TrailingCommaInArguments
+- db/migrate/20160804181146_add_unsubscribed_from_emails_to_user.rb:
+  - Style/TrailingCommaInArguments
+- lib/slug_constraint.rb:
+  - Layout/DotPosition
+- lib/tasks/bundler_audit.rake:
+  - Style/PercentLiteralDelimiters
+- lib/tasks/dev.rake:
+  - Style/StringLiterals
+  - Style/TrailingCommaInArguments
+  - Layout/MultilineMethodCallBraceLayout
 - lib/tasks/search.rake:
   - Lint/ConstantDefinitionInBlock
+  - Style/StringLiteralsInInterpolation
+- spec/controllers/admin/masquerades_controller_spec.rb:
+  - Layout/SpaceInsideHashLiteralBraces
+- spec/controllers/attempts_controller_spec.rb:
+  - Layout/SpaceInsideHashLiteralBraces
+  - Style/TrailingCommaInHashLiteral
+  - Style/TrailingCommaInArguments
+- spec/controllers/auth_callbacks_controller_spec.rb:
+  - Layout/SpaceInsideHashLiteralBraces
+- spec/controllers/collaborations_controller_spec.rb:
+  - Layout/SpaceInsideHashLiteralBraces
+  - Layout/DotPosition
+- spec/controllers/downloads_controller_spec.rb:
+  - Layout/SpaceInsideHashLiteralBraces
+- spec/controllers/exercise_trails_controller_spec.rb:
+  - Layout/SpaceInsideHashLiteralBraces
+  - Layout/DotPosition
+- spec/controllers/forum_sessions_controller_spec.rb:
+  - Layout/SpaceInsideHashLiteralBraces
+  - Layout/DotPosition
+  - Style/TrailingCommaInArguments
+- spec/controllers/invitations_controller_spec.rb:
+  - Layout/SpaceInsideHashLiteralBraces
 - spec/controllers/memberships_controller_spec.rb:
+  - Layout/SpaceInsideHashLiteralBraces
   - Style/SafeNavigation
+- spec/controllers/repositories_controller_spec.rb:
+  - Layout/DotPosition
+  - Layout/EmptyLinesAroundBlockBody
+- spec/controllers/shows_controller_spec.rb:
+  - Layout/SpaceInsideHashLiteralBraces
+- spec/controllers/twitter_player_cards_controller_spec.rb:
+  - Layout/SpaceInsideHashLiteralBraces
+- spec/controllers/unsubscribes_controller_spec.rb:
+  - Layout/SpaceInsideHashLiteralBraces
+  - Style/TrailingCommaInHashLiteral
 - spec/controllers/videos_controller_spec.rb:
   - Style/MixinUsage
+  - Layout/SpaceInsideHashLiteralBraces
+- spec/factories.rb:
+  - Style/StringLiterals
 - spec/features/clearance/user_signs_out_spec.rb:
+  - Style/StringLiterals
   - Lint/UselessAssignment
+- spec/features/clearance/visitor_resets_password_spec.rb:
+  - Style/StringLiterals
+  - Style/TrailingCommaInArguments
+- spec/features/clearance/visitor_signs_in_spec.rb:
+  - Style/StringLiterals
+  - Style/HashSyntax
+- spec/features/clearance/visitor_updates_password_spec.rb:
+  - Style/StringLiterals
+  - Style/HashSyntax
+- spec/features/design_for_developers_resources_spec.rb:
+  - Style/StringLiterals
 - spec/features/subscriber_uses_flashcards_spec.rb:
   - Lint/UselessAssignment
+  - Style/NestedParenthesizedCalls
 - spec/features/subscriber_views_weekly_iteration_spec.rb:
   - Style/RedundantInterpolation
+- spec/features/test_driven_rails_resources_spec.rb:
+  - Style/StringLiterals
+- spec/features/user_accepts_team_invitation_spec.rb:
+  - Style/TrailingCommaInArguments
 - spec/features/user_manages_team_subscription_spec.rb:
   - Style/MixinUsage
 - spec/features/user_removes_pending_invitation_spec.rb:
   - Style/MixinUsage
 - spec/features/user_removes_team_member_spec.rb:
   - Style/MixinUsage
+- spec/features/user_sees_trail_map_progress_spec.rb:
+  - Style/StringLiterals
+  - Style/TrailingCommaInArguments
+- spec/features/user_signs_out_spec.rb:
+  - Style/StringLiterals
+- spec/features/user_views_account_spec.rb:
+  - Style/StringLiterals
+- spec/features/videos_spec.rb:
+  - Style/TrailingCommaInArrayLiteral
+  - Layout/DotPosition
+- spec/features/visitor_views_weekly_iteration_spec.rb:
+  - Style/StringLiterals
+  - Style/TrailingCommaInArguments
+- spec/helpers/html_helper_spec.rb:
+  - Layout/DotPosition
+- spec/helpers/open_graph_helper_spec.rb:
+  - Layout/DotPosition
+- spec/helpers/trails_helper_spec.rb:
+  - Style/TrailingCommaInArrayLiteral
+- spec/jobs/weekly_iteration_mailer_job_spec.rb:
+  - Style/TrailingCommaInArguments
+- spec/lib/slug_constraint_spec.rb:
+  - Layout/SpaceInsideHashLiteralBraces
+- spec/lib/watchable_rails_admin_field_spec.rb:
+  - Layout/DotPosition
+  - Style/PercentLiteralDelimiters
+- spec/mailers/invitation_mailer_spec.rb:
+  - Style/StringLiterals
+  - Layout/DotPosition
+- spec/mailers/weekly_iteration_drip_mailer_spec.rb:
+  - Layout/DotPosition
+  - Style/TrailingCommaInArguments
+- spec/models/catalog_spec.rb:
+  - Layout/DotPosition
+- spec/models/completeable_with_progress_spec.rb:
+  - Layout/DotPosition
+- spec/models/content_suggestor_spec.rb:
+  - Style/TrailingCommaInArguments
+  - Style/KeywordParametersOrder
+- spec/models/deck_spec.rb:
+  - Style/PercentLiteralDelimiters
+- spec/models/exercise_spec.rb:
+  - Style/PercentLiteralDelimiters
+- spec/models/repository_spec.rb:
+  - Style/StringLiterals
+  - Style/PercentLiteralDelimiters
+- spec/models/return_path_finder_spec.rb:
+  - Style/StringLiterals
+- spec/models/search_spec.rb:
+  - Layout/DotPosition
+- spec/models/status_finder_spec.rb:
+  - Style/TrailingCommaInArguments
+- spec/models/status_spec.rb:
+  - Style/StringLiterals
+- spec/models/teacher_spec.rb:
+  - Style/StringLiterals
+- spec/models/topic_spec.rb:
+  - Style/StringLiterals
+- spec/models/trail_spec.rb:
+  - Style/PercentLiteralDelimiters
+  - Layout/DotPosition
+- spec/models/trail_with_progress_spec.rb:
+  - Style/TrailingCommaInArguments
+- spec/models/video_spec.rb:
+  - Style/StringLiterals
+  - Style/TrailingCommaInArrayLiteral
+  - Style/PercentLiteralDelimiters
+  - Style/TrailingCommaInHashLiteral
+- spec/models/video_thumbnail_spec.rb:
+  - Style/StringLiterals
+- spec/rails_helper.rb:
+  - Layout/SpaceAfterComma
+  - Layout/SpaceInsideBlockBraces
+  - Layout/SpaceInsideHashLiteralBraces
+  - Layout/ExtraSpacing
+- spec/requests/sitemap_spec.rb:
+  - Layout/SpaceInsideHashLiteralBraces
+- spec/requests/video_status_spec.rb:
+  - Style/TrailingCommaInHashLiteral
+- spec/serializers/user_serializer_spec.rb:
+  - Style/StringLiterals
+- spec/services/auth_hash_service_spec.rb:
+  - Style/StringLiterals
+  - Layout/DotPosition
+  - Layout/SpaceInsideHashLiteralBraces
+  - Style/TrailingCommaInHashLiteral
+- spec/services/completeable_with_progress_query_spec.rb:
+  - Layout/DotPosition
+- spec/services/practice_spec.rb:
+  - Layout/DotPosition
+  - Style/TrailingCommaInArguments
+- spec/services/status_updater_spec.rb:
+  - Layout/DotPosition
+- spec/services/video_duration_updater_spec.rb:
+  - Style/TrailingCommaInArguments
+  - Style/TrailingCommaInHashLiteral
+  - Layout/HashAlignment
+  - Style/TrailingCommaInArrayLiteral
+- spec/services/weekly_iteration_recommender_spec.rb:
+  - Style/TrailingCommaInArguments
+  - Layout/DotPosition
+- spec/services/weekly_iteration_suggestions_spec.rb:
+  - Style/TrailingCommaInArguments
+  - Layout/DotPosition
+- spec/support/airbrake.rb:
+  - Style/StringLiterals
+- spec/support/database_cleaner.rb:
+  - Style/HashSyntax
+- spec/support/delegate_matcher.rb:
+  - Style/StringLiterals
+- spec/support/fake_github.rb:
+  - Style/StringLiterals
+  - Layout/SpaceInsideHashLiteralBraces
+- spec/support/fake_oauth_client_app.rb:
+  - Style/StringLiterals
+  - Style/PercentLiteralDelimiters
+  - Style/TrailingCommaInArguments
 - spec/support/fake_wistia.rb:
+  - Style/StringLiterals
+  - Style/TrailingCommaInArguments
+  - Lint/SymbolConversion
+  - Style/TrailingCommaInHashLiteral
+  - Style/TrailingCommaInArrayLiteral
   - Style/SlicingWithRange
+  - Layout/DotPosition
+- spec/support/features.rb:
+  - Style/StringLiterals
+- spec/support/features/clearance_helpers.rb:
+  - Style/StringLiterals
+  - Style/HashSyntax
+- spec/support/host_map.rb:
+  - Layout/SpaceInsideHashLiteralBraces
+- spec/support/matchers/eager_load.rb:
+  - Style/StringLiterals
+  - Style/ArgumentsForwarding
+- spec/support/matchers/have_identified.rb:
+  - Layout/DotPosition
+- spec/support/matchers/have_link_to.rb:
+  - Layout/DotPosition
+- spec/support/omniauth.rb:
+  - Style/StringLiterals
+  - Style/TrailingCommaInHashLiteral
+- spec/support/paperclip.rb:
+  - Style/StringLiterals
+- spec/support/sign_in_request_helper.rb:
+  - Style/TrailingCommaInHashLiteral
+  - Style/TrailingCommaInArguments
+- spec/support/stub_view_method.rb:
+  - Layout/DotPosition
+- spec/views/layouts/_header_application_links.html.erb_spec.rb:
+  - Style/TrailingCommaInArguments
 - spec/views/practice/show.html.erb_spec.rb:
   - Lint/ShadowedArgument
+- spec/views/products/_forum.html.erb_spec.rb:
+  - Style/StringLiterals
+  - Layout/SpaceInsideHashLiteralBraces
+- spec/views/products/shows/_show.html.erb_spec.rb:
+  - Style/StringLiterals
+- spec/views/results/_flashcard.html.erb_spec.rb:
+  - Layout/DotPosition
+- spec/views/shared/_flashes.html.erb_spec.rb:
+  - Style/TrailingCommaInHashLiteral
+- spec/views/topics/_trail.html.erb_spec.rb:
+  - Style/TrailingCommaInArguments
+- spec/views/trails/_incomplete_trail.html.erb_spec.rb:
+  - Style/TrailingCommaInArguments
+- spec/views/trails/show.html.erb_spec.rb:
+  - Style/TrailingCommaInArguments
+- spec/views/twitter_player_cards/_meta.html.erb_spec.rb:
+  - Style/TrailingCommaInArguments
+  - Style/TrailingCommaInHashLiteral
+  - Layout/DotPosition
+- spec/views/videos/_access_callout.html.erb_spec.rb:
+  - Style/TrailingCommaInArguments
+  - Layout/SpaceInsideHashLiteralBraces
+- spec/views/videos/_video_player.html.erb_spec.rb:
+  - Layout/SpaceInsideHashLiteralBraces
