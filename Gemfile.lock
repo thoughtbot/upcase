@@ -143,7 +143,9 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.3.3)
     connection_pool (2.4.1)
-    crack (0.4.4)
+    crack (1.0.0)
+      bigdecimal
+      rexml
     crass (1.0.6)
     database_cleaner (2.0.2)
       database_cleaner-active_record (>= 2, < 3)
@@ -220,7 +222,7 @@ GEM
       guard (~> 2.8)
       guard-compat (~> 1.0)
       multi_json (~> 1.8)
-    hashdiff (1.0.1)
+    hashdiff (1.1.0)
     hashie (5.0.0)
     high_voltage (3.1.2)
     htmlentities (4.3.4)
@@ -574,8 +576,8 @@ GEM
     vanity (4.0.4)
       i18n
     version_gem (1.1.4)
-    webmock (3.11.0)
-      addressable (>= 2.3.6)
+    webmock (3.23.1)
+      addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
     webrick (1.8.1)
