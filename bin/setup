@@ -3,8 +3,13 @@
 # Set up asdf if available
 if command -v asdf > /dev/null; then
   printf 'Setting up tool dependencies via asdf...\n'
-  asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby || true
+
+  asdf plugin-add nodejs || true
+  asdf plugin-add ruby || true
+  asdf plugin-add yarn || true
+
   asdf plugin-update --all || true
+
   asdf install
 fi
 
