@@ -2,10 +2,6 @@
 # Remove from this list as you refactor files.
 ---
 ignore:
-- ".pryrc":
-  - Style/TrailingCommaInHashLiteral
-  - Security/Eval
-  - Style/FileRead
 - Guardfile:
   - Style/StringLiterals
   - Style/TrailingCommaInHashLiteral

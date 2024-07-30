@@ -13,7 +13,7 @@ env_colors = {
   "development" => color_escape_codes[:white],
   "test" => color_escape_codes[:purple],
   "staging" => color_escape_codes[:yellow],
-  "production" => color_escape_codes[:red],
+  "production" => color_escape_codes[:red]
 }
 
 if defined? Rails
@@ -24,4 +24,4 @@ if defined? Rails
   end
 end
 
-eval(File.open(".irbrc").read)
+eval(File.read(".irbrc"))
