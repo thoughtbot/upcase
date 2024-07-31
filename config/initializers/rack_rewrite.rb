@@ -11,7 +11,7 @@ Rails.configuration.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
 
   if Rails.env.production?
     PATH_PATTERN = %r{^(?:/upcase)?(/.*)}
-    REPLACEMENT_TEMPLATE = "https://#{ENV.fetch('APP_DOMAIN')}/upcase$1".freeze
+    REPLACEMENT_TEMPLATE = "https://#{ENV.fetch("APP_DOMAIN")}/upcase$1".freeze
 
     r301 PATH_PATTERN, REPLACEMENT_TEMPLATE, if: not_thoughtbot_proxy
   end

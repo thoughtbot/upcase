@@ -7,8 +7,8 @@
 # by setting BACKTRACE=1 before calling your invocation, like "BACKTRACE=1 ./bin/rails runner 'MyClass.perform'".
 Rails.backtrace_cleaner.remove_silencers! if ENV["BACKTRACE"]
 
-SHOULDA_NOISE = %w(shoulda).freeze
-FACTORY_BOT_NOISE = %w(factory_bot).freeze
+SHOULDA_NOISE = %w[shoulda].freeze
+FACTORY_BOT_NOISE = %w[factory_bot].freeze
 THOUGHTBOT_NOISE = SHOULDA_NOISE + FACTORY_BOT_NOISE
 
 Rails.backtrace_cleaner.add_silencer do |line|

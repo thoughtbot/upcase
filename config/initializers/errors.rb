@@ -1,4 +1,4 @@
-require 'net/smtp'
+require "net/smtp"
 # Example:
 #   begin
 #     some http call
@@ -7,20 +7,20 @@ require 'net/smtp'
 #   end
 
 HTTP_ERRORS = [Timeout::Error,
-               Errno::EINVAL,
-               Errno::ECONNRESET,
-               EOFError,
-               Net::HTTPBadResponse,
-               Net::HTTPHeaderSyntaxError,
-               Net::ProtocolError]
+  Errno::EINVAL,
+  Errno::ECONNRESET,
+  EOFError,
+  Net::HTTPBadResponse,
+  Net::HTTPHeaderSyntaxError,
+  Net::ProtocolError]
 
 SMTP_SERVER_ERRORS = [Timeout::Error,
-                      IOError,
-                      Net::SMTPUnknownError,
-                      Net::SMTPServerBusy,
-                      Net::SMTPAuthenticationError]
+  IOError,
+  Net::SMTPUnknownError,
+  Net::SMTPServerBusy,
+  Net::SMTPAuthenticationError]
 
 SMTP_CLIENT_ERRORS = [Net::SMTPFatalError,
-                      Net::SMTPSyntaxError]
+  Net::SMTPSyntaxError]
 
 SMTP_ERRORS = SMTP_SERVER_ERRORS + SMTP_CLIENT_ERRORS

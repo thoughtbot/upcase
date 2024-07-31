@@ -3,5 +3,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     config.path_prefix = "/upcase/auth"
   end
 
-  provider :github, GITHUB_KEY, GITHUB_SECRET, scope: 'user:email'
+  provider :github, GITHUB_KEY, GITHUB_SECRET, scope: "user:email"
 end

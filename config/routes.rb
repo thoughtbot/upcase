@@ -25,23 +25,23 @@ Rails.application.routes.draw do
       end
     end
 
-    mount RailsAdmin::Engine => "/admin", as: :rails_admin
+    mount RailsAdmin::Engine => "/admin", :as => :rails_admin
 
     namespace :api do
       namespace :v1 do
         post(
           "videos/:video_wistia_id/status" => "statuses#create",
-          as: :video_status,
+          :as => :video_status
         )
       end
     end
 
-    get "/api/v1/me.json" => "api/v1/users#show", as: :resource_owner
+    get "/api/v1/me.json" => "api/v1/users#show", :as => :resource_owner
 
     resources(
       :passwords,
       controller: "clearance/passwords",
-      only: [:create, :new],
+      only: [:create, :new]
     )
     resource :session, controller: "sessions", only: [:create]
 
@@ -49,14 +49,14 @@ Rails.application.routes.draw do
       resource(
         :password,
         controller: "clearance/passwords",
-        only: [:create, :edit, :update],
+        only: [:create, :edit, :update]
       )
     end
 
-    get "/unsubscribes/:token" => "unsubscribes#show", as: :unsubscribe
+    get "/unsubscribes/:token" => "unsubscribes#show", :as => :unsubscribe
 
-    get "/sign_in" => "sessions#new", as: "sign_in"
-    delete "/sign_out" => "sessions#destroy", as: "sign_out"
+    get "/sign_in" => "sessions#new", :as => "sign_in"
+    delete "/sign_out" => "sessions#destroy", :as => "sign_out"
 
     resources :clips, only: [] do
       resource :download, only: [:show]
@@ -89,16 +89,16 @@ Rails.application.routes.draw do
 
     get(
       ":id" => "repositories#show",
-      as: :repository,
-      constraints: SlugConstraint.new(Repository),
+      :as => :repository,
+      :constraints => SlugConstraint.new(Repository)
     )
 
     resource :search, only: [:show, :create]
 
     get(
       ":id" => "shows#show",
-      as: :show,
-      constraints: SlugConstraint.new(Show),
+      :as => :show,
+      :constraints => SlugConstraint.new(Show)
     )
 
     get "/teams", to: "teams#new"
@@ -109,25 +109,25 @@ Rails.application.routes.draw do
     end
     resources :memberships, only: [:destroy]
 
-    get "/trails/completed" => "completed_trails#index", as: :completed_trails
+    get "/trails/completed" => "completed_trails#index", :as => :completed_trails
 
     get(
       ":id" => "trails#show",
-      as: :trail,
-      constraints: SlugConstraint.new(Trail),
+      :as => :trail,
+      :constraints => SlugConstraint.new(Trail)
     )
 
-    get "/sign_up" => "users#new", as: :sign_up
+    get "/sign_up" => "users#new", :as => :sign_up
 
-    get "/my_account" => "users#edit", as: "my_account"
-    patch "/my_account" => "users#update", as: "edit_my_account"
+    get "/my_account" => "users#edit", :as => "my_account"
+    patch "/my_account" => "users#update", :as => "edit_my_account"
 
     resources :users, controller: "users" do
       resources :notes, only: [:create, :edit, :update]
       resource(
         :password,
         controller: "passwords",
-        only: [:create, :edit, :update],
+        only: [:create, :edit, :update]
       )
     end
     resources :passwords, controller: "passwords", only: [:create, :new]
@@ -153,17 +153,17 @@ Rails.application.routes.draw do
     resources(
       :design_for_developers_resources,
       path: "design-for-developers-resources",
-      only: [:index, :show],
+      only: [:index, :show]
     )
     resources(
       :test_driven_rails_resources,
       path: "test-driven-rails-resources",
-      only: [:index],
+      only: [:index]
     )
 
-    get "/practice" => "practice#show", as: :practice
-    get "sitemap.xml" => "sitemaps#show", as: :sitemap, format: "xml"
-    get ":id" => "topics#show", as: :topic
+    get "/practice" => "practice#show", :as => :practice
+    get "sitemap.xml" => "sitemaps#show", :as => :sitemap, :format => "xml"
+    get ":id" => "topics#show", :as => :topic
     get "/auth/:provider/callback", to: "auth_callbacks#create"
   end
 end

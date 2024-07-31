@@ -1,5 +1,5 @@
 PAGE_TITLE_HELP = "Text for the <title> tag.".freeze
-META_DESCRIPTION_HELP = %{Text for the <meta name="Description"> tag.}.freeze
+META_DESCRIPTION_HELP = %(Text for the <meta name="Description"> tag.).freeze
 DESCRIPTION_HELP = "Short primary description, always shown".freeze
 EXTENDED_DESCRIPTION_HELP = <<-DESC.strip_heredoc.freeze
   Detailed additional description. Hidden on initial render,
@@ -15,7 +15,7 @@ RailsAdmin.config do |config|
     unless current_user.admin?
       redirect_to(
         main_app.root_path,
-        alert: "You are not authorized to access that page",
+        alert: "You are not authorized to access that page"
       )
     end
   end
@@ -24,7 +24,7 @@ RailsAdmin.config do |config|
 
   config.current_user_method { current_user }
 
-  config.main_app_name = ['Upcase', 'Admin']
+  config.main_app_name = ["Upcase", "Admin"]
 
   config.parent_controller = "::ApplicationController"
 
@@ -63,7 +63,7 @@ RailsAdmin.config do |config|
       field :masquerade do
         pretty_value do
           bindings[:view].link_to(
-            'Masquerade',
+            "Masquerade",
             bindings[:view].main_app.user_masquerade_path(bindings[:object]),
             method: :post
           )
@@ -144,8 +144,8 @@ RailsAdmin.config do |config|
       end
 
       exclude_fields :exercises, :videos, :statuses, :users
-     end
-   end
+    end
+  end
 
   config.model "Video" do
     list do

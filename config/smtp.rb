@@ -4,11 +4,11 @@ MAIL_SETTINGS = {
   authentication: :plain,
   user_name: ENV["SENDGRID_USERNAME"],
   password: ENV["SENDGRID_PASSWORD"],
-  domain: "heroku.com",
+  domain: "heroku.com"
 }.freeze
 
 if ENV["EMAIL_RECIPIENTS"]
   Mail.register_interceptor(
-    RecipientInterceptor.new(ENV.fetch("EMAIL_RECIPIENTS")),
+    RecipientInterceptor.new(ENV.fetch("EMAIL_RECIPIENTS"))
   )
 end
