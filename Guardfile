@@ -1,4 +1,4 @@
-guard 'livereload' do
+guard "livereload" do
   extensions = {
     css: :css,
     scss: :css,
@@ -9,12 +9,12 @@ guard 'livereload' do
     png: :png,
     gif: :gif,
     jpg: :jpg,
-    jpeg: :jpeg,
+    jpeg: :jpeg
   }
 
-  rails_view_exts = %w(erb haml slim)
+  rails_view_exts = %w[erb haml slim]
   compiled_exts = extensions.values.uniq
-  watch(%r{public/.+\.(#{compiled_exts * '|'})})
+  watch(%r{public/.+\.(#{compiled_exts * "|"})})
 
   extensions.each do |ext, type|
     watch(%r{
@@ -28,7 +28,7 @@ guard 'livereload' do
     end
   end
 
-  watch(%r{app/views/.+\.(#{rails_view_exts * '|'})$})
+  watch(%r{app/views/.+\.(#{rails_view_exts * "|"})$})
   watch(%r{app/helpers/.+\.rb})
   watch(%r{config/locales/.+\.yml})
 end

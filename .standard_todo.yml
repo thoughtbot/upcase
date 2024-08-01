@@ -2,13 +2,6 @@
 # Remove from this list as you refactor files.
 ---
 ignore:
-- Guardfile:
-  - Style/StringLiterals
-  - Style/TrailingCommaInHashLiteral
-  - Style/PercentLiteralDelimiters
-  - Style/StringLiteralsInInterpolation
-- Rakefile:
-  - Style/StringLiterals
 - app/controllers/acceptances_controller.rb:
   - Style/TrailingCommaInArguments
 - app/controllers/api/v1/statuses_controller.rb:
