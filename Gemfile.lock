@@ -228,7 +228,7 @@ GEM
       multi_json (~> 1.8)
     hashdiff (1.1.0)
     hashie (5.0.0)
-    high_voltage (3.1.2)
+    high_voltage (4.0.0)
     htmlentities (4.3.4)
     http_parser.rb (0.6.0)
     i18n (1.14.5)
