@@ -51,7 +51,7 @@ Rails.application.config.action_view.form_with_generates_remote_forms = false
 Rails.application.config.active_storage.queues.analysis = nil
 
 # Set the default queue name for the purge job to the queue adapter default.
-# Rails.application.config.active_storage.queues.purge = nil
+Rails.application.config.active_storage.queues.purge = nil
 
 # Set the default queue name for the incineration job to the queue adapter default.
 # Rails.application.config.action_mailbox.queues.incineration = nil
