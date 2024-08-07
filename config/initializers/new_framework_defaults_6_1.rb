@@ -48,7 +48,7 @@ Rails.application.config.active_record.legacy_connection_handling = false
 Rails.application.config.action_view.form_with_generates_remote_forms = false
 
 # Set the default queue name for the analysis job to the queue adapter default.
-# Rails.application.config.active_storage.queues.analysis = nil
+Rails.application.config.active_storage.queues.analysis = nil
 
 # Set the default queue name for the purge job to the queue adapter default.
 # Rails.application.config.active_storage.queues.purge = nil
