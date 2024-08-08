@@ -4,7 +4,7 @@ class AddAccessibleWithoutSubscriptionToVideo < ActiveRecord::Migration[4.2]
       :videos,
       :accessible_without_subscription,
       :boolean,
-      default: false,
+      default: false
     )
   end
 end

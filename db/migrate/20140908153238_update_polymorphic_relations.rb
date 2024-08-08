@@ -1,36 +1,36 @@
 class UpdatePolymorphicRelations < ActiveRecord::Migration[4.2]
   def up
     update_polymorphic_references :classifications,
-                                  :classifiable_type,
-                                  "Workshop",
-                                  "VideoTutorial"
+      :classifiable_type,
+      "Workshop",
+      "VideoTutorial"
 
     update_polymorphic_references :licenses,
-                                  :licenseable_type,
-                                  "Workshop",
-                                  "VideoTutorial"
+      :licenseable_type,
+      "Workshop",
+      "VideoTutorial"
 
     update_polymorphic_references :videos,
-                                  :watchable_type,
-                                  "Workshop",
-                                  "VideoTutorial"
+      :watchable_type,
+      "Workshop",
+      "VideoTutorial"
   end
 
   def down
     update_polymorphic_references :classifications,
-                                  :classifiable_type,
-                                  "VideoTutorial",
-                                  "Workshop"
+      :classifiable_type,
+      "VideoTutorial",
+      "Workshop"
 
     update_polymorphic_references :licenses,
-                                  :licenseable_type,
-                                  "VideoTutorial",
-                                  "Workshop"
+      :licenseable_type,
+      "VideoTutorial",
+      "Workshop"
 
     update_polymorphic_references :videos,
-                                  :watchable_type,
-                                  "VideoTutorial",
-                                  "Workshop"
+      :watchable_type,
+      "VideoTutorial",
+      "Workshop"
   end
 
   private

@@ -1,6 +1,6 @@
 class RemoveTeamIdFromSubscriptions < ActiveRecord::Migration[4.2]
   def up
-    say_with_time 'Deleting subscriptions for team members' do
+    say_with_time "Deleting subscriptions for team members" do
       connection.delete(<<-SQL)
         DELETE FROM subscriptions
         WHERE team_id IS NOT NULL
@@ -15,7 +15,7 @@ class RemoveTeamIdFromSubscriptions < ActiveRecord::Migration[4.2]
     add_column :subscriptions, :team_id, :integer
     add_index :subscriptions, :team_id
 
-    say_with_time 'Create subscriptions for team members' do
+    say_with_time "Create subscriptions for team members" do
       connection.insert(<<-SQL)
         INSERT INTO subscriptions
           (user_id, created_at, updated_at, plan_id, team_id, plan_type)
@@ -33,7 +33,7 @@ class RemoveTeamIdFromSubscriptions < ActiveRecord::Migration[4.2]
       SQL
     end
 
-    say_with_time 'Setting subscription teams' do
+    say_with_time "Setting subscription teams" do
       connection.update(<<-SQL)
         UPDATE subscriptions
         SET team_id = teams.id

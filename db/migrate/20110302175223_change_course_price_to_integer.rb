@@ -1,6 +1,6 @@
 class ChangeCoursePriceToInteger < ActiveRecord::Migration[4.2]
   def self.up
-    add_column :courses, :price_int, :integer, :null => true, :default => nil
+    add_column :courses, :price_int, :integer, null: true, default: nil
     execute <<-SQL
       UPDATE courses SET price_int = price::integer;
     SQL
@@ -9,7 +9,7 @@ class ChangeCoursePriceToInteger < ActiveRecord::Migration[4.2]
   end
 
   def self.down
-    add_column :courses, :price_text, :string, :null => false, :default => ""
+    add_column :courses, :price_text, :string, null: false, default: ""
     execute <<-SQL
       UPDATE courses SET price_text = price::text;
     SQL

@@ -5,7 +5,7 @@ class AddAvailabilityToUsers < ActiveRecord::Migration[4.2]
       :availability,
       :string,
       null: false,
-      default: '11am to 5pm on Fridays'
+      default: "11am to 5pm on Fridays"
     )
   end
 end

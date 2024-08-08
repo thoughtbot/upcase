@@ -10,7 +10,7 @@ class SwitchFromGithubTeamsToCollaborators < ActiveRecord::Migration[4.2]
     1241260 => "thoughtbot/intro-rails-app",
     1241271 => "thoughtbot/test-driven-rails-app1",
     1241320 => "thoughtbot/test-driven-rails-app2",
-    1241364 => "thoughtbot/getting-started-with-ios-workshop",
+    1241364 => "thoughtbot/getting-started-with-ios-workshop"
   }
 
   def up

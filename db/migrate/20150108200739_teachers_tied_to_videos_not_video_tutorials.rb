@@ -34,7 +34,7 @@ class TeachersTiedToVideosNotVideoTutorials < ActiveRecord::Migration[4.2]
         (SELECT #{JOE_USER_ID}, videos.id FROM videos
           WHERE watchable_id = 23
             AND id != #{IMPROVING_YOUR_WORKFLOW_ID}
-            AND id != #{LANDING_A_RAILS_JOB_ID })
+            AND id != #{LANDING_A_RAILS_JOB_ID})
     SQL
   end
 

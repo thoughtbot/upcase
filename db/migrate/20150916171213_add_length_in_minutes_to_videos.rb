@@ -99,7 +99,7 @@ class AddLengthInMinutesToVideos < ActiveRecord::Migration[4.2]
       "Polymorphic Finder, with Joe Ferris" => 21,
       "Improving your Workflow, with Chris Toomey" => 17,
       "Coupling, with Joe Ferris" => 17,
-      "Nil is Unfriendly, with Joe Ferris" => 35,
+      "Nil is Unfriendly, with Joe Ferris" => 35
     }
 
     video_times.each do |name, length|

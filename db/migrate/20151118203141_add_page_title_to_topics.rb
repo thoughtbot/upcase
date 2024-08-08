@@ -11,7 +11,7 @@ class AddPageTitleToTopics < ActiveRecord::Migration[4.2]
 
   def backfill_page_titles
     {
-      "vim" =>  "Learn Vim | Vim Training and Tutorials",
+      "vim" => "Learn Vim | Vim Training and Tutorials",
       "rails" => "Learn Ruby on Rails | Ruby on Rails Tutorials",
       "ios" => "Learn iOS Development | iOS Development Tutorials",
       "haskell" => "Learn Haskell | Haskell Online Courses",
@@ -22,7 +22,7 @@ class AddPageTitleToTopics < ActiveRecord::Migration[4.2]
       "foundations" => "Learn Ruby Fundamentals",
       "workflow" => "Learn Ruby Workflows | Git, Tmux, and Dotfiles Tutorials",
       "clojure" => "Learn Clojure",
-      "analytics" => "Learn Analytics",
+      "analytics" => "Learn Analytics"
     }.each do |slug, page_title|
       connection.update(<<-SQL)
         UPDATE topics

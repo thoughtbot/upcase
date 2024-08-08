@@ -1,12 +1,12 @@
 class AddFreshbookFieldsToUsers < ActiveRecord::Migration[4.2]
   def self.up
     change_table :users do |t|
-      t.string  :phone
-      t.string  :address1
-      t.string  :address2
-      t.string  :city
-      t.string  :state
-      t.string  :zip_code
+      t.string :phone
+      t.string :address1
+      t.string :address2
+      t.string :city
+      t.string :state
+      t.string :zip_code
       t.string :freshbooks_client_id
     end
   end

@@ -6,10 +6,10 @@ class CreateMentors < ActiveRecord::Migration[4.2]
     end
     add_index :mentors, :user_id
 
-    mentors = select_all('SELECT id, availability FROM users WHERE available_to_mentor = true')
+    mentors = select_all("SELECT id, availability FROM users WHERE available_to_mentor = true")
     mentors.each do |mentor|
-      id = insert("INSERT into mentors (user_id, availability) VALUES (#{mentor['id']}, #{quote(mentor['availability'])})")
-      update "UPDATE users SET mentor_id=#{id} WHERE mentor_id=#{mentor['id']}"
+      id = insert("INSERT into mentors (user_id, availability) VALUES (#{mentor["id"]}, #{quote(mentor["availability"])})")
+      update "UPDATE users SET mentor_id=#{id} WHERE mentor_id=#{mentor["id"]}"
     end
 
     remove_column :users, :available_to_mentor
@@ -20,14 +20,14 @@ class CreateMentors < ActiveRecord::Migration[4.2]
     add_column :users, :available_to_mentor, :boolean, default: false, null: false
     add_column :users, :availability, :string, default: "11am to 5pm on Fridays", null: false
 
-    mentors = select_all('SELECT user_id, availability FROM mentors')
+    mentors = select_all("SELECT user_id, availability FROM mentors")
     mentors.each do |mentor|
       update <<-SQL
         UPDATE users
         SET
           available_to_mentor=true,
-          availability=#{quote(mentor['availability'])}
-        WHERE id=#{mentor['user_id']}
+          availability=#{quote(mentor["availability"])}
+        WHERE id=#{mentor["user_id"]}
       SQL
     end
 

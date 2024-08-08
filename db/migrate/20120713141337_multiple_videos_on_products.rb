@@ -2,8 +2,8 @@ class MultipleVideosOnProducts < ActiveRecord::Migration[4.2]
   def up
     create_table :videos do |t|
       t.integer :product_id
-      t.string  :wistia_id
-      t.string  :title
+      t.string :wistia_id
+      t.string :title
 
       t.timestamps
     end

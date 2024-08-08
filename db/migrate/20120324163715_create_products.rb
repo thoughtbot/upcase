@@ -6,11 +6,11 @@ class CreateProducts < ActiveRecord::Migration[4.2]
       t.string :tagline
       t.string :call_to_action
       t.string :short_description
-      t.text   :description
+      t.text :description
       t.integer :price
       t.integer :company_price
-      t.string  :product_type
-      t.boolean :active, :default => true, :null => false
+      t.string :product_type
+      t.boolean :active, default: true, null: false
 
       t.timestamps
     end

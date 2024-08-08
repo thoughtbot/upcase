@@ -2,7 +2,7 @@ class AddSubscriptionIdToTeams < ActiveRecord::Migration[4.2]
   def up
     add_column :teams, :subscription_id, :integer
 
-    say_with_time 'Setting team subscriptions' do
+    say_with_time "Setting team subscriptions" do
       connection.update(<<-SQL)
         WITH teams_with_first_subscription AS (
           SELECT

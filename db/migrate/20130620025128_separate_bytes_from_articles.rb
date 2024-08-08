@@ -3,11 +3,11 @@ class SeparateBytesFromArticles < ActiveRecord::Migration[4.2]
     create_table "bytes", force: true do |t|
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
-      t.string   "title", null: false
-      t.text     "body_html", null: false
-      t.date     "published_on", null: false
-      t.text     "body"
-      t.boolean  "draft", default: false, null: false
+      t.string "title", null: false
+      t.text "body_html", null: false
+      t.date "published_on", null: false
+      t.text "body"
+      t.boolean "draft", default: false, null: false
     end
 
     insert <<-SQL

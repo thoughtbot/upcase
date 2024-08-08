@@ -6,7 +6,7 @@ class RemoveTopicFromTrails < ActiveRecord::Migration[4.2]
   def down
     raise(
       ActiveRecord::IrreversibleMigration,
-      "Can't turn multiple associated topics back into one topic",
+      "Can't turn multiple associated topics back into one topic"
     )
   end
 end

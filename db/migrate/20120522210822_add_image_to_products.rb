@@ -6,4 +6,3 @@ class AddImageToProducts < ActiveRecord::Migration[4.2]
     add_column :products, :product_image_updated_at, :string
   end
 end
-

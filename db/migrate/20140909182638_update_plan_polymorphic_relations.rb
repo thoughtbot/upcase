@@ -1,15 +1,15 @@
 class UpdatePlanPolymorphicRelations < ActiveRecord::Migration[4.2]
   def up
     update_polymorphic_references :checkouts,
-                                  :subscribeable_type,
-                                  "IndividualPlan",
-                                  "Plan"
+      :subscribeable_type,
+      "IndividualPlan",
+      "Plan"
     update_team_plan_ids(:checkouts, :subscribeable)
 
     update_polymorphic_references :subscriptions,
-                                  :plan_type,
-                                  "IndividualPlan",
-                                  "Plan"
+      :plan_type,
+      "IndividualPlan",
+      "Plan"
     update_team_plan_ids(:subscriptions, :plan)
   end
 

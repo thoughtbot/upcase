@@ -2,7 +2,7 @@ class AddTeamIdToUsers < ActiveRecord::Migration[4.2]
   def up
     add_column :users, :team_id, :integer
 
-    say_with_time 'Setting user team IDs' do
+    say_with_time "Setting user team IDs" do
       connection.update(<<-SQL)
         WITH team_subscriptions AS (
           SELECT

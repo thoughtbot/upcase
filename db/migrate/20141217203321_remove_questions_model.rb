@@ -7,7 +7,7 @@ class RemoveQuestionsModel < ActiveRecord::Migration[4.2]
       update <<-SQL
         UPDATE products
         SET questions = questions ||
-          #{quote("\n### #{question['question']}\n\n#{question['answer']}\n")}
+          #{quote("\n### #{question["question"]}\n\n#{question["answer"]}\n")}
         WHERE id=#{question["video_tutorial_id"]} AND
         type='VideoTutorial'
       SQL

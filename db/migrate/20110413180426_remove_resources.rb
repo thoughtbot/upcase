@@ -4,11 +4,11 @@ class RemoveResources < ActiveRecord::Migration[4.2]
   end
 
   def self.down
-    create_table "resources", :force => true do |t|
+    create_table "resources", force: true do |t|
       t.integer "course_id"
-      t.string  "name"
-      t.string  "url"
+      t.string "name"
+      t.string "url"
     end
-    add_index "resources", ["course_id"], :name => "index_resources_on_course_id"
+    add_index "resources", ["course_id"], name: "index_resources_on_course_id"
   end
 end

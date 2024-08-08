@@ -11,7 +11,7 @@ class CreateContentRecommendations < ActiveRecord::Migration[4.2]
       :content_recommendations,
       [:user_id, :recommendable_type, :recommendable_id],
       name: "index_content_recommendations_on_recommendable_and_user",
-      unique: true,
+      unique: true
     )
   end
 end

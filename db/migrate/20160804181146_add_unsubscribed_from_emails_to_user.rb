@@ -5,7 +5,7 @@ class AddUnsubscribedFromEmailsToUser < ActiveRecord::Migration[4.2]
       :unsubscribed_from_emails,
       :boolean,
       null: false,
-      default: false,
+      default: false
     )
   end
 end

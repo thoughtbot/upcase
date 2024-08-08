@@ -11,7 +11,7 @@ class CreateRecommendableContents < ActiveRecord::Migration[4.2]
     add_index(
       :recommendable_contents,
       [:recommendable_type, :recommendable_id],
-      name: "rec_contents_on_rec_type_rec_id",
+      name: "rec_contents_on_rec_type_rec_id"
     )
   end
 end
