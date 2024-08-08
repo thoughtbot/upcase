@@ -2,8 +2,6 @@
 # Remove from this list as you refactor files.
 ---
 ignore:
-- app/mailer_previews/invitation_mailer_preview.rb:
-  - Style/TrailingCommaInArguments
 - app/mailers/base_mailer.rb:
   - Layout/ArgumentAlignment
 - app/mailers/weekly_iteration_drip_mailer.rb:

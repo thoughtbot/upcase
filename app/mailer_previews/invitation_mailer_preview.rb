@@ -5,7 +5,7 @@ class InvitationMailerPreview < ActionMailer::Preview
     invitation = Invitation.first_or_create(
       email: "user@example.com",
       sender_id: user.id,
-      team_id: team.id,
+      team_id: team.id
     )
 
     InvitationMailer.invitation(invitation.id)
