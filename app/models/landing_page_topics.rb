@@ -14,7 +14,7 @@ class LandingPageTopics
       ["JavaScript", "javascript", "javascript", topic_path("javascript")],
       ["Vim", "vim", "vim", topic_path("vim")],
       ["tmux", "tmux", "workflow", trail_path("tmux")],
-      ["Design", "design", "design", topic_path("design")],
+      ["Design", "design", "design", topic_path("design")]
     ].map { |topic_details| LandingTopic.new(*topic_details) }
   end
 end

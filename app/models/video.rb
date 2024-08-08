@@ -27,15 +27,15 @@ class Video < ApplicationRecord
   paginates_per 16
 
   def self.ordered
-    order('position asc')
+    order("position asc")
   end
 
   def self.published
-    where('published_on <= ?', Time.zone.today)
+    where("published_on <= ?", Time.zone.today)
   end
 
   def self.recently_published_first
-    order('published_on desc')
+    order("published_on desc")
   end
 
   def clip

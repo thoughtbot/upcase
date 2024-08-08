@@ -6,7 +6,7 @@ class Trail < ApplicationRecord
   DEFAULT_IMAGE_URL =
     "https://images.thoughtbot.com/upcase/trail-title-cards/default.png".freeze
 
-  multisearchable against: %i{name description}, if: :published?
+  multisearchable against: %i[name description], if: :published?
 
   validates :name, :description, presence: true
 
@@ -26,7 +26,7 @@ class Trail < ApplicationRecord
     source_type: "Exercise"
   has_many :videos, through: :steps, source: :completeable, source_type: "Video"
 
-  friendly_id :name, use: %i{slugged finders}
+  friendly_id :name, use: %i[slugged finders]
 
   def self.published
     where(published: true)
@@ -62,7 +62,7 @@ class Trail < ApplicationRecord
     TrailWithProgress.new(
       self,
       user: user,
-      status_finder: StatusFinder.new(user: user),
+      status_finder: StatusFinder.new(user: user)
     ).update_status
   end
 

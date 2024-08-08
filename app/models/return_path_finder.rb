@@ -5,7 +5,7 @@ class ReturnPathFinder
   end
 
   def return_path
-    query_string['return_to']
+    query_string["return_to"]
   end
 
   private

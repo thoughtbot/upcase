@@ -4,10 +4,10 @@ class Topic < ApplicationRecord
   has_many :classifications, dependent: :destroy
 
   with_options(through: :classifications, source: :classifiable) do
-    has_many :products, source_type: 'Product'
-    has_many :topics, source_type: 'Topic'
-    has_many :videos, source_type: 'Video'
-    has_many :trails, source_type: 'Trail'
+    has_many :products, source_type: "Product"
+    has_many :topics, source_type: "Topic"
+    has_many :videos, source_type: "Video"
+    has_many :trails, source_type: "Trail"
   end
 
   validates :name, presence: true

@@ -6,9 +6,9 @@ class FlashcardsNeedingReviewQuery
   end
 
   def run
-    LatestAttempt.by(@user).
-      confidence_below(CONFIDENCE_THRESHOLD).
-      includes(:flashcard).
-      map(&:flashcard)
+    LatestAttempt.by(@user)
+      .confidence_below(CONFIDENCE_THRESHOLD)
+      .includes(:flashcard)
+      .map(&:flashcard)
   end
 end

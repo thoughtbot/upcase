@@ -1,5 +1,5 @@
 class Clip
-  WISTIA_DOWNLOAD_BASE_URL = 'http://thoughtbotlearn.wistia.com/medias/'
+  WISTIA_DOWNLOAD_BASE_URL = "http://thoughtbotlearn.wistia.com/medias/"
 
   attr_reader :wistia_id
 
@@ -8,10 +8,10 @@ class Clip
   end
 
   def download_url(type)
-    WISTIA_DOWNLOAD_BASE_URL + wistia_id + '/download?asset=' + type
+    WISTIA_DOWNLOAD_BASE_URL + wistia_id + "/download?asset=" + type
   end
 
   def to_partial_path
-    'clips/clip'
+    "clips/clip"
   end
 end

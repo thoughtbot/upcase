@@ -39,9 +39,9 @@ class Search
         'MaxFragments=2,
         MinWords=5,
         MaxWords=15,
-        FragmentDelimiter=\"...<br/>\",
-        StartSel=\"<span class=highlight>\",
-        StopSel=\"</span>\"'
+        FragmentDelimiter="...<br/>",
+        StartSel="<span class=highlight>",
+        StopSel="</span>"'
       ) AS excerpt
     EXCERPT_QUERY
   end

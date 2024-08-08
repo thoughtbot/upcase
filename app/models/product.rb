@@ -25,7 +25,7 @@ class Product < ApplicationRecord
   end
 
   def self.ordered
-    order 'name ASC'
+    order "name ASC"
   end
 
   def to_param

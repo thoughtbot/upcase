@@ -23,7 +23,7 @@ class TrailWithProgress < SimpleDelegator
   def completeables
     CompleteableWithProgressQuery.new(
       status_finder: status_finder,
-      completeables: trail.completeables,
+      completeables: trail.completeables
     ).to_a
   end
 
@@ -36,8 +36,8 @@ class TrailWithProgress < SimpleDelegator
   end
 
   def steps_remaining
-    completeables.
-      count { |completeable| completeable.state != Status::COMPLETE }
+    completeables
+      .count { |completeable| completeable.state != Status::COMPLETE }
   end
 
   private

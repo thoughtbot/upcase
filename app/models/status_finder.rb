@@ -22,10 +22,10 @@ class StatusFinder
   end
 
   def find_statuses
-    @user.
-      statuses.
-      order(created_at: :desc).
-      group_by do |status|
+    @user
+      .statuses
+      .order(created_at: :desc)
+      .group_by do |status|
         key(status.completeable_type, status.completeable_id)
       end
   end

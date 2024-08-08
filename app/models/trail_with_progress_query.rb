@@ -22,7 +22,7 @@ class TrailWithProgressQuery
     TrailWithProgress.new(
       trail,
       user: @user,
-      status_finder: status_finder,
+      status_finder: status_finder
     )
   end
 

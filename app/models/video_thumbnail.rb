@@ -6,6 +6,6 @@ class VideoThumbnail
   end
 
   def to_partial_path
-    'video_thumbnails/video_thumbnail'
+    "video_thumbnails/video_thumbnail"
   end
 end

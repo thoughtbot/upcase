@@ -10,7 +10,7 @@ class Status < ApplicationRecord
   belongs_to :user
 
   validates :completeable_type, :completeable_id, :user_id, presence: true
-  validates :state, inclusion: { in: STATES }
+  validates :state, inclusion: {in: STATES}
 
   def self.most_recent
     order(:created_at).last

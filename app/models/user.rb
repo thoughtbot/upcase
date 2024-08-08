@@ -30,7 +30,7 @@ class User < ApplicationRecord
   end
 
   def last_name
-    name.split(' ').drop(1).join(' ')
+    name.split(" ").drop(1).join(" ")
   end
 
   def external_auth?
