@@ -1,9 +1,9 @@
 module OpenGraphHelper
   def open_graph_tags
     raw [
-      tag('meta', property: 'og:image', content: image_url('ralph-gradient.png')),
-      tag('meta', property: 'og:url', content: url_for(only_path: false)),
-      tag('meta', property: 'og:title', content: page_title),
+      tag("meta", property: "og:image", content: image_url("ralph-gradient.png")),
+      tag("meta", property: "og:url", content: url_for(only_path: false)),
+      tag("meta", property: "og:title", content: page_title)
     ].join("\n")
   end
 

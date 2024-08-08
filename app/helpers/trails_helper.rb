@@ -3,17 +3,17 @@ module TrailsHelper
     links = [
       link_to("Trails", practice_path),
       trail.topics.map { |topic| link_to(topic, topic) },
-      link_to(trail, trail),
+      link_to(trail, trail)
     ].flatten
 
     links.join(" #{separator} ").html_safe
   end
 
-  def completeable_link(completeable, &block)
+  def completeable_link(completeable, &)
     if completeable.is_a?(Exercise)
-      link_to completeable.url, title: completeable.name, &block
+      link_to(completeable.url, title: completeable.name, &)
     else
-      link_to completeable, title: completeable.name, &block
+      link_to completeable, title: completeable.name, &
     end
   end
 
@@ -29,7 +29,7 @@ module TrailsHelper
     link_to(
       t("trails.start_trail"),
       url,
-      class: "start-trail cta-button small-button",
+      class: "start-trail cta-button small-button"
     )
   end
 
@@ -37,7 +37,7 @@ module TrailsHelper
     link_to(
       t("trails.visit_trail"),
       trail,
-      class: "cta-button small-button",
+      class: "cta-button small-button"
     )
   end
 

@@ -2,28 +2,6 @@
 # Remove from this list as you refactor files.
 ---
 ignore:
-- app/helpers/application_helper.rb:
-  - Performance/StringReplacement
-  - Style/StringLiterals
-  - Layout/SpaceAfterComma
-  - Style/TrailingCommaInArguments
-  - Style/StringLiteralsInInterpolation
-- app/helpers/open_graph_helper.rb:
-  - Style/StringLiterals
-  - Style/TrailingCommaInArrayLiteral
-- app/helpers/teacher_helper.rb:
-  - Layout/SpaceAroundEqualsInParameterDefault
-- app/helpers/trails_helper.rb:
-  - Style/TrailingCommaInArrayLiteral
-  - Style/ArgumentsForwarding
-  - Style/TrailingCommaInArguments
-- app/helpers/unsubscribes_helper.rb:
-  - Style/TrailingCommaInArguments
-- app/helpers/videos_helper.rb:
-  - Lint/AssignmentInCondition
-- app/helpers/wistia_helper.rb:
-  - Style/StringLiterals
-  - Layout/SpaceInsideHashLiteralBraces
 - app/jobs/weekly_iteration_mailer_job.rb:
   - Layout/DotPosition
 - app/mailer_previews/invitation_mailer_preview.rb:

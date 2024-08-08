@@ -1,6 +1,6 @@
 module ApplicationHelper
   def body_class
-    qualified_controller_name = controller.controller_path.gsub('/','-')
+    qualified_controller_name = controller.controller_path.tr("/", "-")
     "#{qualified_controller_name} #{qualified_controller_name}-#{controller.action_name}"
   end
 
@@ -11,7 +11,7 @@ module ApplicationHelper
         autolink: true,
         tables: true,
         fenced_code_blocks: true,
-        no_intra_emphasis: true,
+        no_intra_emphasis: true
       )
       renderer.render(markdown).html_safe
     else
@@ -38,6 +38,6 @@ module ApplicationHelper
   end
 
   def url_with_path_prefix
-    "https://#{ENV.fetch('APP_DOMAIN')}/upcase"
+    "https://#{ENV.fetch("APP_DOMAIN")}/upcase"
   end
 end

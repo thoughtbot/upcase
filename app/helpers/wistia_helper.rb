@@ -1,7 +1,7 @@
 module WistiaHelper
   def large_wistia_iframe_for(clip)
     content_tag(
-      'p',
+      "p",
       nil,
       class: "wistia-video",
       data: {
@@ -20,12 +20,12 @@ module WistiaHelper
 
   def thumbnail(thumbnail, title, width, height)
     image_tag(
-      '',
+      "",
       width: width,
       height: height,
       alt: title,
-      class: 'thumbnail wistia-thumbnail',
-      data: { wistia_id: thumbnail.wistia_id }
+      class: "thumbnail wistia-thumbnail",
+      data: {wistia_id: thumbnail.wistia_id}
     )
   end
 end
