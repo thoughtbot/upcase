@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def must_be_admin
     unless current_user_is_admin?
-      flash[:error] = 'You do not have permission to view that page.'
+      flash[:error] = "You do not have permission to view that page."
       redirect_to root_url
     end
   end

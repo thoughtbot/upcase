@@ -31,9 +31,9 @@ class InvitationsController < ApplicationController
   end
 
   def invitation_attributes
-    params.
-      require(:invitation).
-      permit(:email).
-      merge(sender: current_user, team: current_team)
+    params
+      .require(:invitation)
+      .permit(:email)
+      .merge(sender: current_user, team: current_team)
   end
 end

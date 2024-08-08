@@ -16,7 +16,7 @@ class CollaborationsController < ApplicationController
       yield
     else
       redirect_to(
-        root_path,
+        root_path
       )
     end
   end

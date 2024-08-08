@@ -8,7 +8,7 @@ class PracticeController < ApplicationController
   def trails
     TrailWithProgressQuery.new(
       TrailsForPracticePageQuery.new,
-      user: current_user,
+      user: current_user
     )
   end
 end

@@ -2,9 +2,9 @@ class Api::V1::StatusesController < ApiController
   before_action :require_login
 
   def create
-    StatusUpdater.
-      new(completeable, current_user).
-      update_state(state)
+    StatusUpdater
+      .new(completeable, current_user)
+      .update_state(state)
     head :ok
   end
 

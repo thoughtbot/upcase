@@ -17,7 +17,7 @@ class TeamsController < ApplicationController
   def redirect_from_teams_new
     redirect_to(
       root_path,
-      alert: t("checkout.flashes.not_creating_new_teams"),
+      alert: t("checkout.flashes.not_creating_new_teams")
     )
   end
 end

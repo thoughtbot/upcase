@@ -3,7 +3,7 @@ class UnsubscribesController < ApplicationController
 
   UNSUBSCRIBE_ERRORS = [
     ActiveRecord::RecordNotFound,
-    ActiveSupport::MessageVerifier::InvalidSignature,
+    ActiveSupport::MessageVerifier::InvalidSignature
   ].freeze
 
   def show

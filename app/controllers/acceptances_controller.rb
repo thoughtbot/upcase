@@ -6,7 +6,7 @@ class AcceptancesController < ApplicationController
       if @invitation.accept(current_user)
         redirect_to(
           practice_path,
-          notice: "You've been added to the team. Enjoy!",
+          notice: "You've been added to the team. Enjoy!"
         )
       else
         flash[:error] = t(".invitation_taken")

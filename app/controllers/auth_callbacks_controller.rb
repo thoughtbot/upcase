@@ -71,7 +71,7 @@ class AuthCallbacksController < ApplicationController
     [
       :return_to,
       :auth_to_access_video_slug,
-      :invitation_id,
+      :invitation_id
     ].each do |key|
       session.delete(key)
     end
@@ -88,7 +88,7 @@ class AuthCallbacksController < ApplicationController
   def redirect_to_auth_to_access_video
     redirect_to(
       url_after_auth,
-      notice: t("authenticating.auth_to_access_success"),
+      notice: t("authenticating.auth_to_access_success")
     )
   end
 end

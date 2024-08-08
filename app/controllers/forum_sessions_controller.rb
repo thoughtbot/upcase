@@ -6,7 +6,7 @@ class ForumSessionsController < ApplicationController
   def new
     sso = ::SingleSignOn.parse(
       request.query_string,
-      ENV.fetch("DISCOURSE_SSO_SECRET"),
+      ENV.fetch("DISCOURSE_SSO_SECRET")
     )
     populate_sso_for_current_user(sso)
 
@@ -17,7 +17,7 @@ class ForumSessionsController < ApplicationController
 
   def populate_sso_for_current_user(sso)
     single_sign_on_mapping.each do |sso_attr, user_attr|
-      sso.send("#{sso_attr}=", current_user.send(user_attr))
+      sso.send(:"#{sso_attr}=", current_user.send(user_attr))
     end
     sso.sso_secret = ENV["DISCOURSE_SSO_SECRET"]
   end
@@ -27,7 +27,7 @@ class ForumSessionsController < ApplicationController
       email: :email,
       name: :name,
       username: :github_username,
-      external_id: :id,
+      external_id: :id
     }
   end
 end
