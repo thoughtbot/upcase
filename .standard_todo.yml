@@ -26,8 +26,6 @@ ignore:
   - Layout/SpaceInsideHashLiteralBraces
 - app/jobs/weekly_iteration_mailer_job.rb:
   - Layout/DotPosition
-- app/lib/watchable_rails_admin_field.rb:
-  - Style/SuperArguments
 - app/mailer_previews/invitation_mailer_preview.rb:
   - Style/TrailingCommaInArguments
 - app/mailers/base_mailer.rb:

@@ -1,10 +1,10 @@
 class WatchableRailsAdminField < SimpleDelegator
   def initialize(decorated_field)
-    super(decorated_field)
+    super
   end
 
   def associated_collection(type)
-    super(type).sort
+    super.sort
   end
 
   def polymorphic_type_collection
