@@ -14,8 +14,8 @@ class SlugConstraint
   def slug_type(request)
     requested_slug = request.path_parameters[:id]
 
-    RequestStore.store[:slug_type] ||= Slug.
-      find_by(slug: requested_slug).
-      try(:model)
+    RequestStore.store[:slug_type] ||= Slug
+      .find_by(slug: requested_slug)
+      .try(:model)
   end
 end

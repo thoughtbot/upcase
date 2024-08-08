@@ -1,8 +1,8 @@
 namespace :dev do
-  desc 'Creates sample data for local development'
-  task prime: ['db:setup'] do
+  desc "Creates sample data for local development"
+  task prime: ["db:setup"] do
     unless Rails.env.development?
-      raise 'This task can only be run in the development environment'
+      raise "This task can only be run in the development environment"
     end
 
     require "factory_bot_rails"
@@ -90,37 +90,37 @@ namespace :dev do
     admin = create(
       :admin,
       :with_github,
-      email: 'admin@example.com',
+      email: "admin@example.com"
     )
     puts_user admin, "admin"
 
     whet_ready = create(
       :admin,
       :with_github,
-      email: 'whetstone@example.com',
+      email: "whetstone@example.com"
     )
     puts_user whet_ready, "ready to auth against whetstone"
 
-    no_purchases = create(:user, email: 'none@example.com')
-    puts_user no_purchases, 'no purchases'
+    no_purchases = create(:user, email: "none@example.com")
+    puts_user no_purchases, "no purchases"
 
     basic = create(
       :user,
-      email: 'basic@example.com',
+      email: "basic@example.com"
     )
-    puts_user basic, 'basic user'
+    puts_user basic, "basic user"
 
     owner = create(
       :user,
       email: "team-owner@example.com",
-      team_name: "All stars",
+      team_name: "All stars"
     )
     puts_user owner, "team owner user"
 
     member = create(
       :user,
       email: "team-member@example.com",
-      team: owner.team,
+      team: owner.team
     )
     puts_user member, "team member user"
 
@@ -180,7 +180,7 @@ namespace :dev do
       :video,
       notes: "Blah" + " blah" * 100,
       published_on: 1.day.ago,
-      name: "Squares",
+      name: "Squares"
     )
     teach video, bio: "I am Dan"
     create(:step, trail: trail, completeable: video)
@@ -188,7 +188,7 @@ namespace :dev do
       :video,
       notes: "Blah" + " blah" * 100,
       published_on: 1.day.ago,
-      name: "Circles",
+      name: "Circles"
     )
     teach video, bio: "Dan I am"
     create(:step, trail: trail, completeable: video)
@@ -206,8 +206,7 @@ namespace :dev do
     create(:status,
       completeable: trail,
       state: Status::IN_PROGRESS,
-      user: user
-    )
+      user: user)
     puts_trail trail, "in-progress"
 
     trail = create(:trail, :published, name: "iOS Development")
@@ -220,8 +219,7 @@ namespace :dev do
     create(:status,
       completeable: trail,
       state: Status::COMPLETE,
-      user: user
-    )
+      user: user)
 
     steps.each do |step|
       create(
@@ -245,8 +243,7 @@ namespace :dev do
       completeable: trail,
       state: Status::COMPLETE,
       user: user,
-      created_at: 30.days.ago
-    )
+      created_at: 30.days.ago)
 
     steps.each do |step|
       create(
