@@ -2,8 +2,6 @@
 # Remove from this list as you refactor files.
 ---
 ignore:
-- app/jobs/weekly_iteration_mailer_job.rb:
-  - Layout/DotPosition
 - app/mailer_previews/invitation_mailer_preview.rb:
   - Style/TrailingCommaInArguments
 - app/mailers/base_mailer.rb:

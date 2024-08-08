@@ -13,9 +13,9 @@ class WeeklyIterationMailerJob < ApplicationJob
   attr_reader :user_id, :video_id
 
   def send_weekly_iteration_mailer
-    WeeklyIterationDripMailer.
-      weekly_update(user: user, video: video).
-      deliver_now
+    WeeklyIterationDripMailer
+      .weekly_update(user: user, video: video)
+      .deliver_now
   end
 
   def user
