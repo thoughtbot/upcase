@@ -4,7 +4,7 @@ class WeeklyIterationDripMailer < ActionMailer::Base
 
   default(
     from: ENV.fetch("WEEKLY_ITERATION_DRIP_MAILER_FROM"),
-    reply_to: ENV.fetch("SUPPORT_EMAIL"),
+    reply_to: ENV.fetch("SUPPORT_EMAIL")
   )
 
   def weekly_update(user:, video:)
@@ -14,12 +14,12 @@ class WeeklyIterationDripMailer < ActionMailer::Base
     @video = video
     @utm_params = {
       utm_campaign: "#{video.slug}-weekly-drip",
-      utm_medium: "email",
+      utm_medium: "email"
     }
 
     mail(
       to: user.email,
-      subject: @video.email_subject,
+      subject: @video.email_subject
     )
   end
 end
