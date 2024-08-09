@@ -5,13 +5,13 @@ class WeeklyIterationRecommender
   end
 
   def recommend
-    suggestor.
-      next_up.
-      present do |video|
+    suggestor
+      .next_up
+      .present do |video|
         create_recommendation(video)
         enqueue_email_for(video)
-      end.
-      blank { log_no_further_recommendations(user) }
+      end
+      .blank { log_no_further_recommendations(user) }
   end
 
   private
@@ -21,7 +21,7 @@ class WeeklyIterationRecommender
   def create_recommendation(video)
     ContentRecommendation.create!(
       user: user,
-      recommendable: video,
+      recommendable: video
     )
   end
 
@@ -33,19 +33,19 @@ class WeeklyIterationRecommender
     ContentSuggestor.new(
       user: user,
       recommendables: sorted_recommendable_videos,
-      recommended: previously_recommended,
+      recommended: previously_recommended
     )
   end
 
   def previously_recommended
-    ContentRecommendation.
-      where(user: user).
-      map(&:recommendable)
+    ContentRecommendation
+      .where(user: user)
+      .map(&:recommendable)
   end
 
   def log_no_further_recommendations(user)
     Rails.logger.warn(
-      "No further recommendable videos for user: #{user.id} <#{user.email}>",
+      "No further recommendable videos for user: #{user.id} <#{user.email}>"
     )
   end
 end

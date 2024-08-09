@@ -35,7 +35,7 @@ class VideoDurationUpdater
   end
 
   def get_duration(data)
-    { data["name"] => seconds_to_minutes(data["duration"]) }
+    {data["name"] => seconds_to_minutes(data["duration"])}
   end
 
   def seconds_to_minutes(seconds)

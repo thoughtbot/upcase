@@ -2,22 +2,6 @@
 # Remove from this list as you refactor files.
 ---
 ignore:
-- app/services/auth_hash_service.rb:
-  - Style/StringLiterals
-  - Style/TrailingCommaInArguments
-  - Style/SafeNavigation
-- app/services/completeable_with_progress_query.rb:
-  - Style/ArgumentsForwarding
-  - Style/TrailingCommaInArguments
-  - Layout/DotPosition
-- app/services/video_duration_updater.rb:
-  - Layout/SpaceInsideHashLiteralBraces
-- app/services/weekly_iteration_recommender.rb:
-  - Layout/DotPosition
-  - Style/TrailingCommaInArguments
-- app/services/weekly_iteration_suggestions.rb:
-  - Layout/DotPosition
-  - Style/TrailingCommaInArguments
 - app/views/shows/show.rss.builder:
   - Style/StringLiterals
 - app/views/videos/index.rss.builder:

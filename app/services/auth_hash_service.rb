@@ -18,8 +18,8 @@ class AuthHashService
 
   def user_from_auth_hash
     User.find_by(
-      auth_provider: auth_hash['provider'],
-      auth_uid: auth_hash['uid'],
+      auth_provider: auth_hash["provider"],
+      auth_uid: auth_hash["uid"]
     )
   end
 
@@ -47,7 +47,7 @@ class AuthHashService
     if user
       user.update(
         auth_provider: auth_hash["provider"],
-        auth_uid: auth_hash["uid"],
+        auth_uid: auth_hash["uid"]
       )
     end
   end
@@ -62,11 +62,11 @@ class AuthHashService
 
   def create_user
     User.create(
-      auth_provider: auth_hash['provider'],
-      auth_uid: auth_hash['uid'],
+      auth_provider: auth_hash["provider"],
+      auth_uid: auth_hash["uid"],
       name: name,
       email: auth_info["email"],
-      github_username: auth_info["nickname"],
+      github_username: auth_info["nickname"]
     )
   end
 
@@ -88,13 +88,13 @@ class AuthHashService
   def github_user_on_thoughtbot_team?(user)
     octokit_client.team_member?(
       THOUGHTBOT_GITHUB_TEAM_ID,
-      user.github_username,
+      user.github_username
     )
   end
 
   def octokit_client
     Octokit::Client.new(
-      access_token: GITHUB_ACCESS_TOKEN,
+      access_token: GITHUB_ACCESS_TOKEN
     )
   end
 end

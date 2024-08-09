@@ -7,14 +7,14 @@ class CompleteableWithProgressQuery
     @completeables = completeables
   end
 
-  def each(&block)
-    wrapped_completeables.each(&block)
+  def each(&)
+    wrapped_completeables.each(&)
   end
 
   def includes(*args)
     self.class.new(
       status_finder: status_finder,
-      completeables: completeables.includes(*args),
+      completeables: completeables.includes(*args)
     )
   end
 
@@ -28,8 +28,8 @@ class CompleteableWithProgressQuery
     previous_completeable_state = Status::COMPLETE
     completeables.map do |completeable|
       state = state_for(completeable)
-      CompleteableWithProgress.
-        new(completeable, state, previous_completeable_state).tap do
+      CompleteableWithProgress
+        .new(completeable, state, previous_completeable_state).tap do
         previous_completeable_state = state
       end
     end
