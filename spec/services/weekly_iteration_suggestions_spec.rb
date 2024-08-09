@@ -8,7 +8,7 @@ describe WeeklyIterationSuggestions do
 
       recommender = stub_weekly_iteration_recommender_with(
         user: user,
-        sorted_recommendable_videos: [video],
+        sorted_recommendable_videos: [video]
       )
 
       WeeklyIterationSuggestions.new([user]).send
@@ -19,10 +19,10 @@ describe WeeklyIterationSuggestions do
 
   def stub_weekly_iteration_recommender_with(args)
     double("recommender", recommend: true).tap do |recommender|
-      allow(WeeklyIterationRecommender).
-        to receive(:new).
-        with(args).
-        and_return(recommender)
+      allow(WeeklyIterationRecommender)
+        .to receive(:new)
+        .with(args)
+        .and_return(recommender)
     end
   end
 end

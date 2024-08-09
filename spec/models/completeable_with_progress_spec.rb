@@ -5,8 +5,8 @@ describe CompleteableWithProgress do
     it "delegates to its completeable" do
       name = "some-name"
       exercise = Exercise.new(name: name)
-      completeable_with_progress = CompleteableWithProgress.
-        new(exercise, "Unstarted")
+      completeable_with_progress = CompleteableWithProgress
+        .new(exercise, "Unstarted")
 
       result = completeable_with_progress.name
 
@@ -30,8 +30,8 @@ describe CompleteableWithProgress do
 
     it "is what was passed in initializer otherwise" do
       exercise = Exercise.new
-      completeable_with_progress = CompleteableWithProgress.
-        new(exercise, "In Progress")
+      completeable_with_progress = CompleteableWithProgress
+        .new(exercise, "In Progress")
 
       result = completeable_with_progress.state
 

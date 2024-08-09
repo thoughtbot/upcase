@@ -7,7 +7,7 @@ describe AttemptsController do
     it { requires_signed_in_user_to { create_an_attempt } }
 
     def create_an_attempt
-      post :create, params: { flashcard_id: 1 }
+      post :create, params: {flashcard_id: 1}
     end
 
     context "when the user chose to save the flashcard" do
@@ -19,8 +19,8 @@ describe AttemptsController do
           :create,
           params: {
             flashcard_id: flashcard.id,
-            attempt: { confidence: Attempt::LOW_CONFIDENCE },
-          },
+            attempt: {confidence: Attempt::LOW_CONFIDENCE}
+          }
         )
 
         expect(controller).to(

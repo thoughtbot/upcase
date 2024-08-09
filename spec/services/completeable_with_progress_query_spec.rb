@@ -9,8 +9,8 @@ describe CompleteableWithProgressQuery do
       user = create(:user)
       status_finder = StatusFinder.new(user: user)
       completeables = [exercise_step_1, video_step_2, exercise_step_3]
-      query = CompleteableWithProgressQuery.
-        new(status_finder: status_finder, completeables: completeables)
+      query = CompleteableWithProgressQuery
+        .new(status_finder: status_finder, completeables: completeables)
 
       completeables_query = query.to_a
 
@@ -35,8 +35,8 @@ describe CompleteableWithProgressQuery do
       create(:status, completeable: video, user: user, state: Status::COMPLETE)
       completeables = [exercise, video]
 
-      query = CompleteableWithProgressQuery.
-        new(status_finder: status_finder, completeables: completeables).to_a
+      query = CompleteableWithProgressQuery
+        .new(status_finder: status_finder, completeables: completeables).to_a
 
       expect(query[0].state).to eq(Status::IN_PROGRESS)
       expect(query[1].state).to eq(Status::COMPLETE)
@@ -48,8 +48,8 @@ describe CompleteableWithProgressQuery do
       user = User.new
       status_finder = StatusFinder.new(user: user)
       completeables = double("completeables", includes: nil)
-      query = CompleteableWithProgressQuery.
-        new(status_finder: status_finder, completeables: completeables)
+      query = CompleteableWithProgressQuery
+        .new(status_finder: status_finder, completeables: completeables)
 
       query.includes(:args)
 

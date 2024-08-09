@@ -8,7 +8,7 @@ describe VideosController do
       it "renders the view" do
         video = create(:video, watchable: create(:the_weekly_iteration))
 
-        get :show, params: { id: video }
+        get :show, params: {id: video}
 
         expect(response).to render_the_show_view
       end
@@ -20,7 +20,7 @@ describe VideosController do
           stub_current_user_with(create(:user))
           video = create_video_on_trail
 
-          get :show, params: { id: video }
+          get :show, params: {id: video}
 
           expect(response).to render_the_show_view
         end
@@ -30,7 +30,7 @@ describe VideosController do
         it "renders the view" do
           video = create_video_on_trail
 
-          get :show, params: { id: video }
+          get :show, params: {id: video}
 
           expect(response).to render_the_show_view
         end
@@ -42,7 +42,7 @@ describe VideosController do
         stub_current_user_with(build_stubbed(:user))
         video = create_video_on_trail
 
-        get :show, params: { id: video.slug }
+        get :show, params: {id: video.slug}
 
         expect(response).to render_the_show_view
       end
@@ -53,7 +53,7 @@ describe VideosController do
         stub_current_user_with(build_stubbed(:user))
         video = create_video_on_trail
 
-        get :show, params: { id: video.id }
+        get :show, params: {id: video.id}
 
         expect(response).to redirect_to video_path(video.slug)
       end
@@ -62,7 +62,7 @@ describe VideosController do
 
   it "doesn't recognize other formats" do
     expect do
-      get :show, params: { id: create(:video) }, format: :json
+      get :show, params: {id: create(:video)}, format: :json
     end.to raise_exception(ActionController::UnknownFormat)
   end
 

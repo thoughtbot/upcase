@@ -9,7 +9,7 @@ describe "twitter_player_cards/_meta.html.erb" do
       :video,
       name: name,
       summary: summary,
-      wistia_id: wistia_id,
+      wistia_id: wistia_id
     )
 
     render "twitter_player_cards/meta", video: video
@@ -24,10 +24,10 @@ describe "twitter_player_cards/_meta.html.erb" do
       "player:width" => "490",
       "player:height" => "276",
       "player:stream" => "https://thoughtbotlearn.wistia.com/medias/#{wistia_id}",
-      "player:stream:content_type" => "video/mp4",
+      "player:stream:content_type" => "video/mp4"
     }.each do |key, content|
-      expect(rendered).
-        to have_css(twitter_meta_tag(key, content), visible: false)
+      expect(rendered)
+        .to have_css(twitter_meta_tag(key, content), visible: false)
     end
   end
 

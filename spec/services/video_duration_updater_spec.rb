@@ -9,24 +9,24 @@ describe VideoDurationUpdater do
         video1 = create(
           :video,
           name: "Vim for Rails Developers",
-          length_in_minutes: nil,
+          length_in_minutes: nil
         )
         video2 = create(
           :video,
           name: "humans present tmux",
-          length_in_minutes: 17,
+          length_in_minutes: 17
         )
         wistia_response = [
           {
             "name" => video1.name,
             "duration" => 3600,
-            "hashed_id" => video1.wistia_id,
+            "hashed_id" => video1.wistia_id
           },
           {
-            "name" =>  video2.name,
+            "name" => video2.name,
             "duration" => 578,
-            "hashed_id" => video2.wistia_id,
-          },
+            "hashed_id" => video2.wistia_id
+          }
         ]
         stub_wistia_api_client(response: wistia_response)
 
@@ -46,18 +46,18 @@ describe VideoDurationUpdater do
           {
             "name" => "Vim for Rails Developers",
             "duration" => 3600.05,
-            "hashed_id" => "947f4c35d9",
+            "hashed_id" => "947f4c35d9"
           },
           {
             "name" => "chrome-dev-tools.mov",
             "duration" => 630,
-            "hashed_id" => "04ccec11ed",
+            "hashed_id" => "04ccec11ed"
           },
           {
             "name" => local_video.name,
             "duration" => 1500,
-            "hashed_id" => "m4keb3li3v3",
-          },
+            "hashed_id" => "m4keb3li3v3"
+          }
         ]
         stub_wistia_api_client(response: wistia_response)
 
@@ -76,7 +76,7 @@ describe VideoDurationUpdater do
         show_response = {
           "name" => video.name,
           "duration" => 68,
-          "hashed_id" => "m4keb3li3v3",
+          "hashed_id" => "m4keb3li3v3"
         }
         stub_wistia_api_client(response: show_response)
 
@@ -93,7 +93,7 @@ describe VideoDurationUpdater do
         show_response = {
           "name" => video.name,
           "duration" => 71,
-          "hashed_id" => "m4keb3li3v3",
+          "hashed_id" => "m4keb3li3v3"
         }
         stub_wistia_api_client(response: show_response)
 
@@ -109,7 +109,7 @@ describe VideoDurationUpdater do
         :video,
         wistia_id: "foo",
         name: "humans present refactoring",
-        length_in_minutes: nil,
+        length_in_minutes: nil
       )
 
       described_class.update_duration(video)

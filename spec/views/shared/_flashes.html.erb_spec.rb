@@ -6,7 +6,7 @@ describe "shared/_flashes.html.erb" do
       view_stub_with_return(
         flash: {
           "notice" => "Thank you",
-          "purchase_amount" => 29,
+          "purchase_amount" => 29
         }
       )
     end

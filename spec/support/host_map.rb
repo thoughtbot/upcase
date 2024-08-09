@@ -16,7 +16,7 @@ class HostMap
   NOT_FOUND = lambda do |env|
     [
       404,
-      { "Content-Type" => "text/html" },
+      {"Content-Type" => "text/html"},
       ["Unmapped server name: #{env["SERVER_NAME"]}"]
     ]
   end

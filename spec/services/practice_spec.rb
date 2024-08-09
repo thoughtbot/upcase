@@ -60,8 +60,8 @@ describe Practice do
         double("not-in-progress-trail", in_progress?: false, started_on: today)
 
       result =
-        build_practice(trails: [in_progress_trail, not_in_progress_trail]).
-          in_progress_trails
+        build_practice(trails: [in_progress_trail, not_in_progress_trail])
+          .in_progress_trails
 
       expect(result).to eq([in_progress_trail])
     end
@@ -82,7 +82,7 @@ describe Practice do
       unstarted?: unstarted,
       in_progress?: in_progress,
       started_on: started_on,
-      promoted?: promoted,
+      promoted?: promoted
     )
   end
 end

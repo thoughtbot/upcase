@@ -11,28 +11,28 @@ describe ForumSessionsController do
         discourse_sso = discourse_sso_stub
         allow(SingleSignOn).to receive(:parse).and_return(discourse_sso)
 
-        get :new, params: { sso: "ssohash", sig: "sig" }
+        get :new, params: {sso: "ssohash", sig: "sig"}
 
-        expect(SingleSignOn).to have_received(:parse).
-          with(
+        expect(SingleSignOn).to have_received(:parse)
+          .with(
             "sig=sig&sso=ssohash",
-            ENV.fetch("DISCOURSE_SSO_SECRET"),
+            ENV.fetch("DISCOURSE_SSO_SECRET")
           )
         expect(response).to redirect_to(
           discourse_sso.to_url(
             Forum.sso_url
           )
         )
-        expect(discourse_sso).to have_received(:email=).
-          with(user.email)
-        expect(discourse_sso).to have_received(:name=).
-          with(user.name)
-        expect(discourse_sso).to have_received(:username=).
-          with(user.github_username)
-        expect(discourse_sso).to have_received(:external_id=).
-          with(user.id)
-        expect(discourse_sso).to have_received(:sso_secret=).
-          with(ENV.fetch("DISCOURSE_SSO_SECRET"))
+        expect(discourse_sso).to have_received(:email=)
+          .with(user.email)
+        expect(discourse_sso).to have_received(:name=)
+          .with(user.name)
+        expect(discourse_sso).to have_received(:username=)
+          .with(user.github_username)
+        expect(discourse_sso).to have_received(:external_id=)
+          .with(user.id)
+        expect(discourse_sso).to have_received(:sso_secret=)
+          .with(ENV.fetch("DISCOURSE_SSO_SECRET"))
       end
     end
 
@@ -43,34 +43,34 @@ describe ForumSessionsController do
         discourse_sso = discourse_sso_stub
         allow(SingleSignOn).to receive(:parse).and_return(discourse_sso)
 
-        get :new, params: { sso: "ssohash", sig: "sig" }
+        get :new, params: {sso: "ssohash", sig: "sig"}
 
-        expect(SingleSignOn).to have_received(:parse).
-          with(
+        expect(SingleSignOn).to have_received(:parse)
+          .with(
             "sig=sig&sso=ssohash",
-            ENV.fetch("DISCOURSE_SSO_SECRET"),
+            ENV.fetch("DISCOURSE_SSO_SECRET")
           )
         expect(response).to redirect_to(
           discourse_sso.to_url(
-            Forum.sso_url,
-          ),
+            Forum.sso_url
+          )
         )
-        expect(discourse_sso).to have_received(:email=).
-          with(user.email)
-        expect(discourse_sso).to have_received(:name=).
-          with(user.name)
-        expect(discourse_sso).to have_received(:username=).
-          with(user.github_username)
-        expect(discourse_sso).to have_received(:external_id=).
-          with(user.id)
-        expect(discourse_sso).to have_received(:sso_secret=).
-          with(ENV.fetch("DISCOURSE_SSO_SECRET"))
+        expect(discourse_sso).to have_received(:email=)
+          .with(user.email)
+        expect(discourse_sso).to have_received(:name=)
+          .with(user.name)
+        expect(discourse_sso).to have_received(:username=)
+          .with(user.github_username)
+        expect(discourse_sso).to have_received(:external_id=)
+          .with(user.id)
+        expect(discourse_sso).to have_received(:sso_secret=)
+          .with(ENV.fetch("DISCOURSE_SSO_SECRET"))
       end
     end
 
     context "when not logged in" do
       it "denies access" do
-        get :new, params: { sso: "ssohash", sig: "sig" }
+        get :new, params: {sso: "ssohash", sig: "sig"}
 
         should deny_access
       end

@@ -14,10 +14,9 @@ describe RepositoriesController do
   def stub_repository
     build_stubbed(:repository).tap do |repository|
       finder = double("finder")
-      allow(finder).to receive(:find).with(repository.to_param).
-        and_return(repository)
+      allow(finder).to receive(:find).with(repository.to_param)
+        .and_return(repository)
       allow(Repository).to receive(:friendly).and_return(finder)
-
     end
   end
 

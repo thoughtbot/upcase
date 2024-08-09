@@ -5,9 +5,9 @@ module SignInRequestHelpers
       params: {
         session: {
           email: user.email,
-          password: user.password,
-        },
-      },
+          password: user.password
+        }
+      }
     )
   end
 end

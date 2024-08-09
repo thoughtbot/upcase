@@ -40,15 +40,15 @@ feature "Visitor" do
       :published,
       :with_preview,
       name: name_with_unsafe_character,
-      notes: 'Notes',
-      watchable: show,
+      notes: "Notes",
+      watchable: show
     )
   end
 
   def have_auth_cta(video)
     have_link(
       I18n.t("videos.show.auth_to_access_button_text"),
-      href: video_auth_to_access_path(video),
+      href: video_auth_to_access_path(video)
     )
   end
 end

@@ -19,7 +19,7 @@ describe Trail do
 
       result = Trail.most_recent_published
 
-      expect(result.map(&:name)).to eq(%w(one two three))
+      expect(result.map(&:name)).to eq(%w[one two three])
     end
 
     it "only returns published trails" do
@@ -29,7 +29,7 @@ describe Trail do
 
       result = Trail.most_recent_published
 
-      expect(result.map(&:name)).to match_array(%w(one two))
+      expect(result.map(&:name)).to match_array(%w[one two])
     end
   end
 
@@ -152,8 +152,8 @@ describe Trail do
       second_step = create(:step, trail: trail, position: 2)
       first_step = create(:step, trail: trail, position: 1)
 
-      expect(trail.exercises).
-        to eq([first_step.completeable, second_step.completeable])
+      expect(trail.exercises)
+        .to eq([first_step.completeable, second_step.completeable])
     end
   end
 
@@ -254,7 +254,7 @@ describe Trail do
 
       result = trail.teachers
 
-      expect(result.map(&:name)).to match_array(%w(only_first only_second both))
+      expect(result.map(&:name)).to match_array(%w[only_first only_second both])
     end
 
     def teacher(user)

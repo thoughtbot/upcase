@@ -2,8 +2,8 @@ require "rails_helper"
 
 describe OpenGraphHelper do
   before :each do
-    helper.request.path_parameters.
-      merge!(controller: "marketing", action: "show")
+    helper.request.path_parameters
+      .merge!(controller: "marketing", action: "show")
   end
 
   it "produces the desired open graph tags" do

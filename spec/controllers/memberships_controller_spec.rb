@@ -5,7 +5,7 @@ describe MembershipsController do
     user = create(:user, :with_attached_team)
     sign_in_as user
 
-    delete :destroy, params: { id: user }
+    delete :destroy, params: {id: user}
 
     expect(response).to redirect_to edit_team_path
     expect(flash[:alert]).to include "cannot remove yourself"
@@ -58,6 +58,6 @@ describe MembershipsController do
       @controller.current_user.team.add_user(user_to_remove)
     end
 
-    delete :destroy, params: { id: user_to_remove }
+    delete :destroy, params: {id: user_to_remove}
   end
 end

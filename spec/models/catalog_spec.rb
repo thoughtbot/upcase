@@ -11,16 +11,16 @@ describe Catalog do
   describe "#videos" do
     it "returns published videos in order" do
       catalog = Catalog.new
-      expect(catalog.videos).
-        to find_relation(Video.published.recently_published_first)
+      expect(catalog.videos)
+        .to find_relation(Video.published.recently_published_first)
     end
   end
 
   describe "#repositories" do
     it "returns all top-level, active repositories in order" do
       catalog = Catalog.new
-      expect(catalog.repositories).
-        to find_relation(Repository.active.top_level.ordered)
+      expect(catalog.repositories)
+        .to find_relation(Repository.active.top_level.ordered)
     end
   end
 

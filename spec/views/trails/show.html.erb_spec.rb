@@ -37,7 +37,7 @@ describe "trails/show.html.erb" do
     TrailWithProgress.new(
       trail,
       user: user,
-      status_finder: StatusFinder.new(user: user),
+      status_finder: StatusFinder.new(user: user)
     )
   end
 end

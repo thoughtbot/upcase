@@ -7,7 +7,7 @@ describe TrailWithProgress do
     trail_with_progress = TrailWithProgress.new(
       trail,
       user: user,
-      status_finder: double(StatusFinder),
+      status_finder: double(StatusFinder)
     )
 
     expect(trail_with_progress).to be_a(SimpleDelegator)
@@ -62,7 +62,7 @@ describe TrailWithProgress do
         trail = TrailWithProgress.new(
           trail,
           user: user,
-          status_finder: StatusFinder.new(user: user),
+          status_finder: StatusFinder.new(user: user)
         )
 
         expect(trail).not_to be_unstarted
@@ -174,7 +174,7 @@ describe TrailWithProgress do
       exercises.second.statuses.create!(user: user, state: Status::IN_PROGRESS)
       exercises.first.statuses.create!(
         user: other_user,
-        state: Status::COMPLETE,
+        state: Status::COMPLETE
       )
       videos.first.statuses.create!(user: user, state: Status::COMPLETE)
       videos.second.statuses.create!(user: user, state: Status::IN_PROGRESS)
@@ -199,7 +199,7 @@ describe TrailWithProgress do
       TrailWithProgress.new(
         trail,
         user: user,
-        status_finder: StatusFinder.new(user: user),
+        status_finder: StatusFinder.new(user: user)
       ).steps_remaining
     end
   end
@@ -213,7 +213,7 @@ describe TrailWithProgress do
     TrailWithProgress.new(
       trail,
       user: user,
-      status_finder: StatusFinder.new(user: user),
+      status_finder: StatusFinder.new(user: user)
     )
   end
 

@@ -35,8 +35,8 @@ describe Video do
     end
   end
 
-  context 'self.ordered' do
-    it 'returns videos in order by position' do
+  context "self.ordered" do
+    it "returns videos in order by position" do
       video1 = create(:video, position: 2)
       video2 = create(:video, position: 1)
 
@@ -44,12 +44,12 @@ describe Video do
     end
   end
 
-  context 'self.published' do
-    it 'returns only published videos' do
+  context "self.published" do
+    it "returns only published videos" do
       Timecop.freeze(Time.current) do
         published_videos = [
           create(:video, published_on: 1.day.ago.to_date),
-          create(:video, published_on: Time.zone.today),
+          create(:video, published_on: Time.zone.today)
         ]
         unpublished_videos = [
           create(:video, published_on: 1.day.from_now.to_date)
@@ -61,20 +61,20 @@ describe Video do
     end
   end
 
-  context '.recently_published_first' do
-    it 'sorts the collection so that recently published videos are first' do
-      create(:video, published_on: Date.today, name: 'new')
-      create(:video, published_on: 2.days.ago, name: 'old')
-      create(:video, published_on: Date.yesterday, name: 'middle')
-      names = %w(new middle old)
+  context ".recently_published_first" do
+    it "sorts the collection so that recently published videos are first" do
+      create(:video, published_on: Date.today, name: "new")
+      create(:video, published_on: 2.days.ago, name: "old")
+      create(:video, published_on: Date.yesterday, name: "middle")
+      names = %w[new middle old]
 
       expect(Video.recently_published_first.map(&:name)).to eq names
     end
   end
 
-  context 'video' do
-    it 'creates a Video object with the correct wistia_id' do
-      video = Video.new(wistia_id: '123')
+  context "video" do
+    it "creates a Video object with the correct wistia_id" do
+      video = Video.new(wistia_id: "123")
       allow(Clip).to receive(:new)
 
       video.clip
@@ -92,16 +92,16 @@ describe Video do
     end
   end
 
-  describe 'has_notes?' do
-    it 'returns true when the video has notes' do
-      video = build_stubbed(:video, notes: 'Some notes')
+  describe "has_notes?" do
+    it "returns true when the video has notes" do
+      video = build_stubbed(:video, notes: "Some notes")
 
       expect(video).to have_notes
     end
 
-    it 'returns false for videos with empty or no notes' do
+    it "returns false for videos with empty or no notes" do
       video_one = build_stubbed(:video)
-      video_two = build_stubbed(:video, notes: '')
+      video_two = build_stubbed(:video, notes: "")
 
       expect(video_one).not_to have_notes
       expect(video_two).not_to have_notes
@@ -282,7 +282,7 @@ describe Video do
         wistia_response = {
           "name" => video.name,
           "duration" => 661.4,
-          "hashed_id" => video.wistia_id,
+          "hashed_id" => video.wistia_id
         }
         stub_wistia_api_client(response: wistia_response)
 

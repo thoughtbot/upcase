@@ -9,8 +9,8 @@ describe StatusUpdater do
 
       updater.update_state("New state")
 
-      expect(Status).to have_received(:create!).
-        with(user: user, completeable: completeable, state: "New state")
+      expect(Status).to have_received(:create!)
+        .with(user: user, completeable: completeable, state: "New state")
     end
 
     it "updates the state for the trail associated with the completeable" do

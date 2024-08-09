@@ -29,7 +29,7 @@ describe "videos/_video_player" do
     user = build_stubbed(:user)
     allow(view).to receive(:current_user).and_return(user)
     allow(view).to receive(:current_user_has_access_to?).and_return(false)
-    render template: "videos/_video_player", locals: { video: video }
+    render template: "videos/_video_player", locals: {video: video}
   end
 
   def have_progress_bar

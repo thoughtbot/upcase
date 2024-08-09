@@ -9,7 +9,7 @@ feature "Account Settings" do
     fill_in "Name", with: "Change Name"
     click_button "Update account"
 
-    expect(page).to have_content I18n.t('users.flashes.update.success')
+    expect(page).to have_content I18n.t("users.flashes.update.success")
 
     visit edit_my_account_path(as: user)
 

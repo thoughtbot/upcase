@@ -11,7 +11,7 @@ describe "Videos" do
       notes = "a" * 251
       published_videos = [
         create(:video, :published, watchable: show, summary: notes, published_on: 3.days.ago),
-        create(:video, :published, watchable: show, summary: notes, published_on: 2.days.ago),
+        create(:video, :published, watchable: show, summary: notes, published_on: 2.days.ago)
       ]
       video = create(:video, watchable: show)
 
@@ -34,14 +34,14 @@ describe "Videos" do
         item = channel.xpath(".//item")[index]
 
         expect(text_in(item, ".//title")).to eq(published_video.name)
-        expect(text_in(item, ".//link")).
-          to eq(video_url(published_video))
+        expect(text_in(item, ".//link"))
+          .to eq(video_url(published_video))
 
-        expect(text_in(item, ".//guid")).
-          to eq(video_url(published_video))
+        expect(text_in(item, ".//guid"))
+          .to eq(video_url(published_video))
 
-        expect(text_in(item, ".//pubDate")).
-          to eq(published_video.created_at.to_s(:rfc822))
+        expect(text_in(item, ".//pubDate"))
+          .to eq(published_video.created_at.to_s(:rfc822))
 
         expect(text_in(item, ".//description")).to match(/#{notes}/)
       end

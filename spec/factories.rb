@@ -44,7 +44,7 @@ FactoryBot.define do
 
   factory :product, traits: [:active], class: "Show" do
     after(:stub) { |product| product.slug = product.name.parameterize }
-    description { 'Solve 8-Queens over and over again' }
+    description { "Solve 8-Queens over and over again" }
     tagline
 
     trait :active do
@@ -60,27 +60,27 @@ FactoryBot.define do
     end
 
     name { generate(:name) }
-    sku { 'TEST' }
+    sku { "TEST" }
 
-    factory :show, class: 'Show' do
+    factory :show, class: "Show" do
       factory :the_weekly_iteration do
         name { Show::THE_WEEKLY_ITERATION }
       end
     end
 
-    factory :repository, class: 'Repository' do
+    factory :repository, class: "Repository" do
       github_repository { "thoughtbot/upcase" }
       github_url { "https://github.com/thoughtbot/upcase" }
     end
   end
 
-  factory :invitation, class: 'Invitation' do
+  factory :invitation, class: "Invitation" do
     email
     sender factory: :user
     team
 
     after :stub do |invitation|
-      invitation.code = 'abc'
+      invitation.code = "abc"
     end
 
     trait :accepted do
@@ -89,9 +89,9 @@ FactoryBot.define do
     end
   end
 
-  factory :team, class: 'Team' do
+  factory :team, class: "Team" do
     owner factory: :user
-    name { 'Google' }
+    name { "Google" }
   end
 
   factory :teacher do
@@ -102,7 +102,7 @@ FactoryBot.define do
   factory :topic do
     name
     page_title { "Learn #{name}" }
-    summary { 'short yet descriptive' }
+    summary { "short yet descriptive" }
 
     trait :explorable do
       explorable { true }
@@ -116,7 +116,7 @@ FactoryBot.define do
   factory :user do
     email
     name
-    password { 'password' }
+    password { "password" }
     github_username
 
     factory :admin do
@@ -148,7 +148,7 @@ FactoryBot.define do
   factory :video, aliases: [:recommendable] do
     association :watchable, factory: :show
     sequence(:name) { |n| "Video #{n}" }
-    wistia_id { '1194803' }
+    wistia_id { "1194803" }
     published_on { 1.day.from_now }
 
     trait :published do

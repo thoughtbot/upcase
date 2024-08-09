@@ -1,1 +1,1 @@
-require 'paperclip/matchers'
+require "paperclip/matchers"

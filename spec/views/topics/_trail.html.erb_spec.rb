@@ -29,7 +29,7 @@ describe "topics/_trail.html" do
         complete: false,
         just_finished: false,
         unstarted: true,
-        description: "**Markdown**",
+        description: "**Markdown**"
       )
 
       render_trail trail

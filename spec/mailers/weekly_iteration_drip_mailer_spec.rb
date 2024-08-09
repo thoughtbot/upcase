@@ -5,8 +5,8 @@ describe WeeklyIterationDripMailer do
     it "comes from Ben Orenstein" do
       message = build_message
 
-      expect(message).
-        to deliver_from("Ben from thoughtbot <ben@thoughtbot.com>")
+      expect(message)
+        .to deliver_from("Ben from thoughtbot <ben@thoughtbot.com>")
     end
 
     it "replies to the generic Upcase email" do
@@ -42,7 +42,7 @@ describe WeeklyIterationDripMailer do
       expect(message).to have_body_text(slug)
       expect(message).to have_body_text("utm_medium=email")
       expect(message).to have_body_text(
-        "utm_campaign=#{video.slug}-weekly-drip",
+        "utm_campaign=#{video.slug}-weekly-drip"
       )
     end
 
@@ -58,7 +58,7 @@ describe WeeklyIterationDripMailer do
       video = build_stubbed(
         :video,
         email_cta_label: "The CTA",
-        email_body_text: "The body",
+        email_body_text: "The body"
       )
 
       message = build_message(video: video)

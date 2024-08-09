@@ -12,7 +12,7 @@ describe Exercise do
       create(:exercise, name: "third", created_at: 1.day.ago)
       create(:exercise, name: "second", created_at: 2.days.ago)
 
-      expect(Exercise.ordered.pluck(:name)).to eq(%w(first second third))
+      expect(Exercise.ordered.pluck(:name)).to eq(%w[first second third])
     end
   end
 end

@@ -6,7 +6,7 @@ RSpec.describe ContentSuggestor do
       it "returns the first Weekly Iteration in the set sequence" do
         first_video, second_video = build_stubbed_list(:video, 2)
         suggester = build_content_suggester(
-          recommendables: [first_video, second_video],
+          recommendables: [first_video, second_video]
         )
 
         result = suggester.next_up.unwrap
@@ -22,7 +22,7 @@ RSpec.describe ContentSuggestor do
         create(:status, user: user, completeable: first_video)
         suggester = build_content_suggester(
           user: user,
-          recommendables: [first_video, second_video, nil],
+          recommendables: [first_video, second_video, nil]
         )
 
         result = suggester.next_up.unwrap
@@ -38,7 +38,7 @@ RSpec.describe ContentSuggestor do
         create(:status, user: user, completeable: video)
         suggester = build_content_suggester(
           user: user,
-          recommendables: [video],
+          recommendables: [video]
         )
 
         result = suggester.next_up
@@ -54,7 +54,7 @@ RSpec.describe ContentSuggestor do
         suggester = build_content_suggester(
           user: user,
           recommendables: [first_video, second_video],
-          recommended: [first_video],
+          recommended: [first_video]
         )
 
         result = suggester.next_up.unwrap
@@ -64,14 +64,13 @@ RSpec.describe ContentSuggestor do
     end
 
     def build_content_suggester(
-      user: build_stubbed(:user),
-      recommended: [],
-      recommendables:
+      recommendables:, user: build_stubbed(:user),
+      recommended: []
     )
       ContentSuggestor.new(
         user: user,
         recommendables: recommendables,
-        recommended: recommended,
+        recommended: recommended
       )
     end
   end

@@ -13,7 +13,7 @@ describe WeeklyIterationMailerJob do
 
       expect(WeeklyIterationDripMailer).to have_received(:weekly_update).with(
         user: user,
-        video: video,
+        video: video
       )
       expect(mailer_stub).to have_received(:deliver_now)
     end

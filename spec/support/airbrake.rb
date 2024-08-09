@@ -1,5 +1,5 @@
 shared_examples "a Delayed Job that notifies Sentry about errors" do
-  describe '#error' do
+  describe "#error" do
     it "notifies Sentry when an error occurs" do
       allow(Sentry).to receive(:capture_exception)
 

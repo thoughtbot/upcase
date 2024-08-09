@@ -12,12 +12,12 @@ describe Topic do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:slug) }
 
-  context '.create' do
+  context ".create" do
     before do
-      @topic = create(:topic, name: ' Test Driven Development ')
+      @topic = create(:topic, name: " Test Driven Development ")
     end
 
-    it 'generates a stripped, url encoded slug based on name' do
+    it "generates a stripped, url encoded slug based on name" do
       expect(@topic.slug).to eq "test-driven-development"
     end
   end
@@ -33,8 +33,8 @@ describe Topic do
     end
   end
 
-  context 'validations' do
-    context 'uniqueness' do
+  context "validations" do
+    context "uniqueness" do
       before do
         create :topic
       end

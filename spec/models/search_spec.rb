@@ -23,8 +23,8 @@ describe Search do
     end
 
     it "sanitizes the query" do
-      expect { run_search_for("hackers'); DROP TABLE users;") }.
-        not_to raise_error
+      expect { run_search_for("hackers'); DROP TABLE users;") }
+        .not_to raise_error
     end
   end
 

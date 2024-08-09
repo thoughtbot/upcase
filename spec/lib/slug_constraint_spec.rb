@@ -37,7 +37,7 @@ describe SlugConstraint do
     end
 
     def stub_request_with_id(id)
-      double("request", path_parameters: { id: id })
+      double("request", path_parameters: {id: id})
     end
   end
 end

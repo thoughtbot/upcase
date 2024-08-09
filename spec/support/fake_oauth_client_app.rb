@@ -1,5 +1,5 @@
-require 'sinatra/base'
-require 'oauth2'
+require "sinatra/base"
+require "oauth2"
 
 class FakeOauthClientApp < Sinatra::Base
   include Rails.application.routes.url_helpers
@@ -7,7 +7,7 @@ class FakeOauthClientApp < Sinatra::Base
   disable :dump_errors
   disable :logging
 
-  REDIRECT_PATH = '/fake_oauth_client_app/authorize'
+  REDIRECT_PATH = "/fake_oauth_client_app/authorize"
 
   cattr_accessor :client_id
   cattr_accessor :client_secret
@@ -17,15 +17,15 @@ class FakeOauthClientApp < Sinatra::Base
     URI.parse(client_url).merge(REDIRECT_PATH).to_s
   end
 
-  get '/fake_oauth_client_app' do
+  get "/fake_oauth_client_app" do
     auth_url = client.auth_code.authorize_url(redirect_uri: self.class.redirect_uri)
-    %{<a href="#{auth_url}">Sign Into Upcase</a>}
+    %(<a href="#{auth_url}">Sign Into Upcase</a>)
   end
 
-  get '/fake_oauth_client_app/authorize' do
+  get "/fake_oauth_client_app/authorize" do
     token_response = client.auth_code.get_token(params[:code], redirect_uri: self.class.redirect_uri)
 
-    %{<div id='data'>#{token_response.get(resource_owner_path).body}</div>}
+    %(<div id='data'>#{token_response.get(resource_owner_path).body}</div>)
   end
 
   def client
@@ -34,7 +34,7 @@ class FakeOauthClientApp < Sinatra::Base
       client_secret,
       site: server_url,
       authorize_url: "/upcase/oauth/authorize",
-      token_url: "/upcase/oauth/token",
+      token_url: "/upcase/oauth/token"
     )
   end
 

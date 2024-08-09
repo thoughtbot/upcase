@@ -21,7 +21,7 @@ describe Deck do
 
       result = Deck.most_recent_first.map(&:title)
 
-      expect(result).to eq(%w(newer older))
+      expect(result).to eq(%w[newer older])
     end
   end
 

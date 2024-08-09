@@ -77,7 +77,7 @@ describe StatusFinder do
       user: user,
       completeable: exercise,
       state: state,
-      created_at: created_at,
+      created_at: created_at
     )
   end
 

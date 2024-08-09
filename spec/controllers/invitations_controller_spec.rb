@@ -6,7 +6,7 @@ describe InvitationsController do
       invitation = double("invitation", deliver: true)
       allow(Invitation).to receive(:new).and_return(invitation)
 
-      post :create, params: { invitation: { email: "somebody@example.com" } }
+      post :create, params: {invitation: {email: "somebody@example.com"}}
     end
 
     def authorize

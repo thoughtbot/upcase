@@ -16,10 +16,10 @@ RSpec::Matchers.define :have_link_to do |target|
   end
 
   def links(rendered)
-    Capybara.
-      string(rendered).
-      all("a").
-      map { |link| link["href"] }.
-      compact
+    Capybara
+      .string(rendered)
+      .all("a")
+      .map { |link| link["href"] }
+      .compact
   end
 end

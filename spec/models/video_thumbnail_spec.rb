@@ -1,8 +1,8 @@
 require "rails_helper"
 
 describe VideoThumbnail do
-  context '#url' do
-    it 'returns the url' do
+  context "#url" do
+    it "returns the url" do
       wistia_id = double("wista_id")
       clip = double("clip", wistia_id: wistia_id)
       thumbnail = VideoThumbnail.new(clip)

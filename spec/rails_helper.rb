@@ -18,7 +18,7 @@ require "shoulda/matchers"
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
-Dir[File.expand_path(File.join(File.dirname(__FILE__),"support","**","*.rb"))].each {|f| require f}
+Dir[File.expand_path(File.join(File.dirname(__FILE__), "support", "**", "*.rb"))].each { |f| require f }
 
 FakeGithubRunner.boot
 FakeWistiaRunner.boot
@@ -33,7 +33,7 @@ Capybara.app = HostMap.new(
 )
 
 # Do not announce that capybara is starting puma
-Capybara.server = :puma, { Silent: true }
+Capybara.server = :puma, {Silent: true}
 
 silence_warnings do
   Clip::WISTIA_DOWNLOAD_BASE_URL = "localhost/"
@@ -57,7 +57,7 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
-  config.use_instantiated_fixtures  = false
+  config.use_instantiated_fixtures = false
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.include Clearance::Testing::Matchers, type: :request

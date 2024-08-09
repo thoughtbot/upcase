@@ -21,9 +21,9 @@ describe "results/_flashcard.html.erb" do
       user = double("user")
       flashcard = build_stubbed(:flashcard)
       allow(flashcard).to(
-        receive(:saved_for_review?).
-        with(user).
-        and_return(false)
+        receive(:saved_for_review?)
+        .with(user)
+        .and_return(false)
       )
 
       render "results/flashcard", flashcard: flashcard, current_user: user

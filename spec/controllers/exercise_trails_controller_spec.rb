@@ -10,7 +10,7 @@ describe ExerciseTrailsController do
         exercise = create(:exercise)
         trail.exercises << exercise
 
-        get :show, params: { exercise_id: exercise.uuid }
+        get :show, params: {exercise_id: exercise.uuid}
 
         expect(response).to redirect_to(trail)
       end
@@ -18,8 +18,8 @@ describe ExerciseTrailsController do
 
     context "with an unrecognized exercise" do
       it "returns a 404" do
-        expect { get :show, params: { exercise_id: "not-a-real-id" } }.
-          to raise_error(ActiveRecord::RecordNotFound)
+        expect { get :show, params: {exercise_id: "not-a-real-id"} }
+          .to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
@@ -27,7 +27,7 @@ describe ExerciseTrailsController do
       it "redirects to the root with a notice" do
         exercise = create(:exercise)
 
-        get :show, params: { exercise_id: exercise.uuid }
+        get :show, params: {exercise_id: exercise.uuid}
 
         expect(response).to redirect_to(root_path)
         expect(flash[:notice]).to eq(no_trail_notice)

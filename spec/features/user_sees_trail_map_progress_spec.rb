@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature 'User can see their trail map progress' do
+feature "User can see their trail map progress" do
   background do
     sign_in
   end
@@ -20,12 +20,12 @@ feature 'User can see their trail map progress' do
         :trail,
         :published,
         topics: [topic],
-        complete_text: "Done!",
+        complete_text: "Done!"
       )
       Status.create!(
         user: current_user,
         completeable: trail,
-        state: Status::COMPLETE,
+        state: Status::COMPLETE
       )
 
       visit practice_path

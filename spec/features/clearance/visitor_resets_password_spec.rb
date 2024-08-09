@@ -1,23 +1,23 @@
 require "rails_helper"
 
-feature 'Visitor resets password' do
-  scenario 'by navigating to the page' do
+feature "Visitor resets password" do
+  scenario "by navigating to the page" do
     visit sign_in_path
 
-    click_link I18n.t('sessions.form.forgot_password')
+    click_link I18n.t("sessions.form.forgot_password")
 
     expect(current_path).to eq new_password_path
   end
 
-  scenario 'with valid email' do
+  scenario "with valid email" do
     user = user_with_reset_password
 
     page_should_display_change_password_message
     reset_notification_should_be_sent_to user
   end
 
-  scenario 'with non-user account' do
-    reset_password_for 'unknown.email@example.com'
+  scenario "with non-user account" do
+    reset_password_for "unknown.email@example.com"
 
     page_should_display_change_password_message
     mailer_should_have_no_deliveries
@@ -30,7 +30,7 @@ feature 'Visitor resets password' do
     expect_mailer_to_have_delivery(
       user.email,
       "password",
-      user.confirmation_token,
+      user.confirmation_token
     )
   end
 

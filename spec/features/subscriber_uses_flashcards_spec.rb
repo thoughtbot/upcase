@@ -96,7 +96,7 @@ feature "user views decks" do
 
     expect_review_queue_to_be_empty
     expect(page).to(
-      have_content I18n.t("attempts.flashcard_removed_from_review_queue")
+      have_content(I18n.t("attempts.flashcard_removed_from_review_queue"))
     )
   end
 

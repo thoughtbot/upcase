@@ -1,5 +1,5 @@
-require 'sinatra/base'
-require 'capybara_discoball'
+require "sinatra/base"
+require "capybara_discoball"
 
 class FakeGithub < Sinatra::Base
   disable :protection
@@ -10,34 +10,34 @@ class FakeGithub < Sinatra::Base
     {}.to_json
   end
 
-  delete '/teams/:team_id/members/:id' do
+  delete "/teams/:team_id/members/:id" do
     content_type :json
 
     {}.to_json
   end
 
-  get '/teams/:team_id/members/:id' do
+  get "/teams/:team_id/members/:id" do
     content_type :json
 
     {}.to_json
   end
 
-  get '/users/:username/keys' do
+  get "/users/:username/keys" do
     content_type :json
 
-    [{ 'id' => 1, 'key' => 'ssh-rsa AAA' }].to_json
+    [{"id" => 1, "key" => "ssh-rsa AAA"}].to_json
   end
 
   get "/users/:username" do
     content_type :json
 
-    { "avatar_url" => "", "name" => "Ralph Robot" }.to_json
+    {"avatar_url" => "", "name" => "Ralph Robot"}.to_json
   end
 
   not_found do
     content_type :json
 
-    { 'error' => "Edit #{__FILE__} to fake out this request" }.to_json
+    {"error" => "Edit #{__FILE__} to fake out this request"}.to_json
   end
 end
 

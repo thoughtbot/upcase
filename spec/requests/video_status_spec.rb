@@ -8,7 +8,7 @@ describe "Video status" do
       video = create(:video)
 
       post api_v1_video_status_path(video.wistia_id), params: {
-        state: "In Progress",
+        state: "In Progress"
       }
 
       expect(response).to be_successful
@@ -26,7 +26,7 @@ describe "Video status" do
       video.statuses.create(user: @current_user, state: Status::IN_PROGRESS)
 
       post api_v1_video_status_path(video.wistia_id), params: {
-        state: "Complete",
+        state: "Complete"
       }
 
       video.reload

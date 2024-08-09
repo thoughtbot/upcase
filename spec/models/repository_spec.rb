@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Repository do
-  it_behaves_like 'a class inheriting from Product'
+  it_behaves_like "a class inheriting from Product"
 
   it { should belong_to(:trail).optional }
 
@@ -17,7 +17,7 @@ describe Repository do
 
       result = Repository.top_level
 
-      expect(result.map(&:name)).to match_array(%w(no_parent1 no_parent2))
+      expect(result.map(&:name)).to match_array(%w[no_parent1 no_parent2])
     end
   end
 end

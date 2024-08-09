@@ -6,7 +6,7 @@ describe Teacher do
 
   [:name, :email, :bio].each do |attribute|
     describe "##{attribute}" do
-      it 'delegates to the user' do
+      it "delegates to the user" do
         user = build_stubbed(:user)
         allow(user).to receive(attribute).and_return("text")
         teacher = build_stubbed(:teacher, user: user)

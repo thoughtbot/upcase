@@ -21,8 +21,8 @@ describe HtmlHelper do
     it "truncates longer text" do
       expect(helper.truncate_html("Ben and Joe tackle the third principle " \
                                   "in SOLID: the Liskov Substitution " \
-                                  "Principle")).
-        to eq("Ben and Joe tackle the third principle in SOLID: the Liskov " \
+                                  "Principle"))
+        .to eq("Ben and Joe tackle the third principle in SOLID: the Liskov " \
               "Substitution...")
     end
 

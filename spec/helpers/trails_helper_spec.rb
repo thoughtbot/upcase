@@ -15,7 +15,7 @@ describe TrailsHelper do
         practice_path,
         topic_path(topic),
         topic_path(other_topic),
-        trail_path(trail),
+        trail_path(trail)
       ]
     end
   end

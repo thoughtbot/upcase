@@ -16,7 +16,7 @@ module EagerLoadMatcher
     end
 
     def failure_message
-      'Expected block to be eager loaded, but received extra queries. ' \
+      "Expected block to be eager loaded, but received extra queries. " \
         "Queries:\n#{@output.third.join("\n")}"
     end
 
@@ -26,10 +26,10 @@ module EagerLoadMatcher
 
     private
 
-    def trace_queries(&block)
+    def trace_queries(&)
       output = StringIO.new
       logger = ActiveSupport::Logger.new(output)
-      with_logger(logger, &block)
+      with_logger(logger, &)
       output.rewind
       output
         .read

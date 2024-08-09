@@ -6,7 +6,7 @@ describe ShowsController do
       show = create(:show)
 
       expect do
-        get :show, params: { id: show }, format: :json
+        get :show, params: {id: show}, format: :json
       end.to raise_exception(ActionController::UnknownFormat)
     end
   end

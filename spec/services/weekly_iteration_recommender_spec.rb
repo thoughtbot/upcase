@@ -10,7 +10,7 @@ describe WeeklyIterationRecommender do
         expect do
           WeeklyIterationRecommender.new(
             user: user,
-            sorted_recommendable_videos: [video],
+            sorted_recommendable_videos: [video]
           ).recommend
         end.to change { ContentRecommendation.count }.by(1)
       end
@@ -18,13 +18,13 @@ describe WeeklyIterationRecommender do
       it "enqueues email job" do
         user = create(:user)
         video = create(:video)
-        allow(WeeklyIterationMailerJob).
-          to receive(:perform_later).
-          with(user.id, video.id)
+        allow(WeeklyIterationMailerJob)
+          .to receive(:perform_later)
+          .with(user.id, video.id)
 
         WeeklyIterationRecommender.new(
           user: user,
-          sorted_recommendable_videos: [video],
+          sorted_recommendable_videos: [video]
         ).recommend
 
         expect(WeeklyIterationMailerJob).to have_received(:perform_later)
@@ -40,7 +40,7 @@ describe WeeklyIterationRecommender do
         expect do
           WeeklyIterationRecommender.new(
             user: user,
-            sorted_recommendable_videos: [video],
+            sorted_recommendable_videos: [video]
           ).recommend
         end.not_to change_content_recommendation_count
       end
@@ -49,13 +49,13 @@ describe WeeklyIterationRecommender do
         user = create(:user)
         video = create(:video)
         create(:content_recommendation, recommendable: video, user: user)
-        allow(WeeklyIterationMailerJob).
-          to receive(:perform_later).
-          with(user.id, video.id)
+        allow(WeeklyIterationMailerJob)
+          .to receive(:perform_later)
+          .with(user.id, video.id)
 
         WeeklyIterationRecommender.new(
           user: user,
-          sorted_recommendable_videos: [video],
+          sorted_recommendable_videos: [video]
         ).recommend
 
         expect(WeeklyIterationMailerJob).not_to have_received(:perform_later)

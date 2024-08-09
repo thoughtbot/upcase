@@ -6,8 +6,8 @@ describe WatchableRailsAdminField do
       unsorted = [2, 1, 3]
       type = double("type")
       field = double("field")
-      allow(field).to receive(:associated_collection).with(type).
-        and_return(unsorted)
+      allow(field).to receive(:associated_collection).with(type)
+        .and_return(unsorted)
       sorted_field = WatchableRailsAdminField.new(field)
 
       result = sorted_field.associated_collection(type)
@@ -19,16 +19,16 @@ describe WatchableRailsAdminField do
   context "#polymorphic_type_collection" do
     it "filters STI subclasses out" do
       types = [
-        %w(Product Product),
-        %w(Show Show),
-        %w(Exercise Exercise)
+        %w[Product Product],
+        %w[Show Show],
+        %w[Exercise Exercise]
       ]
       field = double("field", polymorphic_type_collection: types)
       sorted_field = WatchableRailsAdminField.new(field)
 
       result = sorted_field.polymorphic_type_collection
 
-      expect(result).to eq([%w(Product Product), %w(Exercise Exercise)])
+      expect(result).to eq([%w[Product Product], %w[Exercise Exercise]])
     end
   end
 

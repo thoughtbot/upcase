@@ -37,7 +37,7 @@ describe "trails/_incomplete_trail.html" do
     TrailWithProgress.new(
       trail,
       user: user,
-      status_finder: StatusFinder.new(user: user),
+      status_finder: StatusFinder.new(user: user)
     )
   end
 

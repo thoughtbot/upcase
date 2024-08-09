@@ -101,7 +101,7 @@ feature "Accept team invitations" do
         expect(page).to have_field("Email", with: github_email)
         expect(page).to have_content("Your Team")
         expect(page).to have_content(
-          I18n.t("teams.team.team_owner_html", owner_email: owner_name),
+          I18n.t("teams.team.team_owner_html", owner_email: owner_name)
         )
       end
     end
@@ -148,7 +148,7 @@ feature "Accept team invitations" do
 
   def have_team_member(user:)
     have_field("Email", with: user.email).and(
-      have_content("Your Team"),
+      have_content("Your Team")
     )
   end
 end

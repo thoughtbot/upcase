@@ -6,7 +6,7 @@ describe AuthCallbacksController do
       request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:github]
       request.env["omniauth.origin"] = nil
 
-      get :create, params: { provider: "github" }
+      get :create, params: {provider: "github"}
 
       should redirect_to(practice_url)
     end
@@ -17,7 +17,7 @@ describe AuthCallbacksController do
       request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:github]
       request.env["omniauth.origin"] = "//google.com"
 
-      get :create, params: { provider: "github" }
+      get :create, params: {provider: "github"}
 
       should redirect_to(practice_url)
     end

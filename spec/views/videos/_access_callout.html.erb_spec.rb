@@ -9,7 +9,7 @@ describe "videos/_access_callout" do
 
       expect_to_have_callout_content_with(
         video: video,
-        message: "auth_to_access_without_preview_callout_text",
+        message: "auth_to_access_without_preview_callout_text"
       )
     end
   end
@@ -22,7 +22,7 @@ describe "videos/_access_callout" do
 
       expect_to_have_callout_content_with(
         video: video,
-        message: "auth_to_access_without_preview_callout_text",
+        message: "auth_to_access_without_preview_callout_text"
       )
     end
   end
@@ -36,12 +36,12 @@ describe "videos/_access_callout" do
   def have_auth_to_access_button_for(video)
     have_link(
       I18n.t("videos.show.auth_to_access_button_text"),
-      href: video_auth_to_access_path(video),
+      href: video_auth_to_access_path(video)
     )
   end
 
   def render_callout(video, signed_out: false)
     allow(view).to receive(:signed_out?).and_return(signed_out)
-    render template: "videos/_access_callout", locals: { video: video }
+    render template: "videos/_access_callout", locals: {video: video}
   end
 end
