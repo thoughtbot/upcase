@@ -2,10 +2,6 @@
 # Remove from this list as you refactor files.
 ---
 ignore:
-- app/views/shows/show.rss.builder:
-  - Style/StringLiterals
-- app/views/videos/index.rss.builder:
-  - Style/StringLiterals
 - spec/controllers/admin/masquerades_controller_spec.rb:
   - Layout/SpaceInsideHashLiteralBraces
 - spec/controllers/attempts_controller_spec.rb:
