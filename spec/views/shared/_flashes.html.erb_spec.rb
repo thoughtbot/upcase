@@ -12,7 +12,7 @@ describe "shared/_flashes.html.erb" do
     end
 
     it "loads the Segment.io JavaScript library" do
-      render
+      render template: "shared/_flashes"
 
       expect(rendered).to include("Thank you")
       expect(rendered).not_to include("29")

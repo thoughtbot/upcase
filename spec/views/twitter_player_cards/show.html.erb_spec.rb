@@ -6,7 +6,7 @@ describe "twitter_player_cards/show.html.erb" do
     video = double("video", preview_wistia_id: preview_wistia_id)
 
     assign :video, video
-    render
+    render template: "twitter_player_cards/show"
 
     expect(rendered)
       .to have_css("source[src='https://thoughtbotlearn.wistia.com/medias/#{preview_wistia_id}/download?asset=hd_mp4']")

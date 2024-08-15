@@ -59,6 +59,11 @@ if [ ! -f .env ]; then
   cp .sample.env .env
 fi
 
+# Set up Puma's process ID folder
+if [ ! -d tmp/pids ]; then
+  mkdir -p tmp/pids
+fi
+
 # Pick a port for Foreman
 if ! command -v foreman > /dev/null; then
   printf 'Foreman is not installed.\n'

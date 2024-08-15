@@ -13,7 +13,7 @@ describe "layouts/_header_application_links.html.erb" do
     view_stub_with_return(
       current_user: double("user", email: email)
     )
-    render
+    render template: "layouts/_header_application_links"
 
     expect(rendered).to have_css(<<-CSS.strip)
       img[src='#{gravatar_url(email, size: "30")}']
