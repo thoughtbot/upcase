@@ -20,7 +20,7 @@ if [ -z "$1" ]; then
   printf "You must provide an environment (staging|production).\n"
   exit 1
 else
-  git push --force "$1" "$branch:master"
+  git push --force "$1" "$branch:main"
   heroku run rake db:migrate --remote "$1"
   heroku restart --remote "$1"
 
