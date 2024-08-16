@@ -87,6 +87,32 @@ describe TrailsHelper do
     end
   end
 
+  describe "#auth_to_access_button" do
+    it "renders a link to github auth" do
+      allow(helper).to receive(:github_auth_path).and_return("/fake/auth/path")
+      video = build_stubbed(:video)
+
+      page = Capybara.string(helper.auth_to_access_button(video))
+
+      link = page.find_link(
+        I18n.t("trails.start_for_free"),
+        href: "/fake/auth/path"
+      )
+      expect(link["data-method"]).to eql("post")
+    end
+
+    it "can override CTA" do
+      allow(helper).to receive(:github_auth_path).and_return("/fake/auth/path")
+      video = build_stubbed(:video)
+
+      page = Capybara.string(
+        helper.auth_to_access_button(video, cta_text: "woah")
+      )
+
+      expect(page).to have_link("woah")
+    end
+  end
+
   def ordered_links_in(html)
     Nokogiri::HTML(html).css("a").map { |x| x[:href] }
   end
