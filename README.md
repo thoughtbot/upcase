@@ -92,11 +92,6 @@ For more information, check out the [guides] and [Playbook].
 [guides]: https://github.com/thoughtbot/guides/tree/master/protocol/rails
 [Playbook]: http://playbook.thoughtbot.com/#tasks
 
-## Continuous Integration
-
-CI is hosted with [CircleCI](https://circleci.com/gh/thoughtbot/upcase). The
-build is run automatically whenever any branch is updated on Github.
-
 ## Ongoing
 
 * Run test suite before committing to the master branch.
