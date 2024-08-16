@@ -238,6 +238,7 @@ describe "videos/show" do
     allow(view).to receive(:current_user_has_access_to?).and_return(false)
     allow(view).to receive(:signed_in?).and_return(signed_in)
     allow(view).to receive(:signed_out?).and_return(!signed_in)
+    allow(view).to receive(:github_auth_path).and_return("/fake/auth/path")
     render template: "videos/show"
   end
 end

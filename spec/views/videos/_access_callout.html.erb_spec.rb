@@ -30,18 +30,21 @@ describe "videos/_access_callout" do
   def expect_to_have_callout_content_with(video:, message:)
     expect(rendered).to have_content(I18n.t(message, scope: "videos.show"))
     expect(rendered).to have_css(".access-callout.auth-to-access")
-    expect(rendered).to have_auth_to_access_button_for(video)
+    expect(rendered).to have_sign_in_button_for(video)
   end
 
-  def have_auth_to_access_button_for(video)
+  def have_sign_in_button_for(video)
     have_link(
       I18n.t("videos.show.auth_to_access_button_text"),
-      href: video_auth_to_access_path(video)
+      href: fake_github_auth_path
     )
   end
 
   def render_callout(video, signed_out: false)
     allow(view).to receive(:signed_out?).and_return(signed_out)
+    allow(view).to receive(:github_auth_path).and_return(fake_github_auth_path)
     render template: "videos/_access_callout", locals: {video: video}
   end
+
+  def fake_github_auth_path = "/fake/auth/path"
 end
