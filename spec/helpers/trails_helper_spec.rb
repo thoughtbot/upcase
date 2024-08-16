@@ -94,11 +94,8 @@ describe TrailsHelper do
 
       page = Capybara.string(helper.auth_to_access_button(video))
 
-      link = page.find_link(
-        I18n.t("trails.start_for_free"),
-        href: "/fake/auth/path"
-      )
-      expect(link["data-method"]).to eql("post")
+      expect(page).to have_button(I18n.t("trails.start_for_free"))
+      expect(page).to have_css("form") { _1["action"] == "/fake/auth/path" }
     end
 
     it "can override CTA" do
@@ -109,7 +106,7 @@ describe TrailsHelper do
         helper.auth_to_access_button(video, cta_text: "woah")
       )
 
-      expect(page).to have_link("woah")
+      expect(page).to have_button("woah")
     end
   end
 

@@ -46,6 +46,6 @@ feature "Visitor" do
   end
 
   def have_auth_cta(video)
-    have_link(I18n.t("videos.show.auth_to_access_button_text"))
+    have_button(I18n.t("videos.show.auth_to_access_button_text"))
   end
 end
