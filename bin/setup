@@ -25,15 +25,6 @@ if [ ! -d .git/safe ]; then
   mkdir .git/safe
 fi
 
-# Set up deploys
-if ! git remote | grep 'staging' > /dev/null; then
-  git remote add staging git@heroku.com:upcase-staging.git
-fi
-
-if ! git remote | grep 'production' > /dev/null; then
-  git remote add production git@heroku.com:upcase-production.git
-fi
-
 if ! command -v heroku > /dev/null; then
   printf 'Heroku Toolbelt is not installed.\n'
   printf 'See https://toolbelt.heroku.com/ for install instructions.\n'
@@ -49,6 +40,15 @@ if heroku join --app upcase-production > /dev/null; then
   printf 'You are a collaborator on the "upcase-production" Heroku app\n'
 else
   printf 'Ask for access to the "upcase-production" Heroku app\n'
+fi
+
+# Set up deploys
+if ! git remote | grep 'staging' > /dev/null; then
+  heroku git:remote -a upcase-staging -r staging
+fi
+
+if ! git remote | grep 'production' > /dev/null; then
+  heroku git:remote -a upcase-production -r production
 fi
 
 # Set up the database
