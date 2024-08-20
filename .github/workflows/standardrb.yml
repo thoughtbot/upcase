@@ -1,0 +1,22 @@
+---
+name: Lint with StandardRB
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      checks: write
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: StandardRB Linter
+        uses: testdouble/standard-ruby-action@1.2.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          ruby-version: "3.3.5"
+          autofix: false
