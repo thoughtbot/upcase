@@ -176,9 +176,9 @@ GEM
     em-websocket (0.5.2)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
-    email_spec (2.2.2)
+    email_spec (2.3.0)
       htmlentities (~> 4.3.3)
-      launchy (~> 2.1)
+      launchy (>= 2.1, < 4.0)
       mail (~> 2.7)
     email_validator (2.2.4)
       activemodel
@@ -369,7 +369,7 @@ GEM
       pry (>= 0.13.0)
     psych (5.1.2)
       stringio
-    public_suffix (6.0.0)
+    public_suffix (6.0.1)
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.8.1)
