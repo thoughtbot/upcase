@@ -11,10 +11,10 @@ class CompleteableWithProgressQuery
     wrapped_completeables.each(&)
   end
 
-  def includes(*args)
+  def includes(*)
     self.class.new(
       status_finder: status_finder,
-      completeables: completeables.includes(*args)
+      completeables: completeables.includes(*)
     )
   end
 
