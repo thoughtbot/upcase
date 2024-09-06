@@ -1,4 +1,4 @@
-SEARCHABLE_MODELS = [Video, Flashcard, Trail]
+SEARCHABLE_MODELS = ["Video", "Flashcard", "Trail"]
 
 namespace :search do
   desc "Rebuild search index for all searchables"
@@ -8,7 +8,7 @@ namespace :search do
 
     puts "Rebuilding index for #{SEARCHABLE_MODELS.join(", ")}."
     SEARCHABLE_MODELS.each do |model|
-      PgSearch::Multisearch.rebuild(model)
+      PgSearch::Multisearch.rebuild(model.constantize)
     end
   end
 end
