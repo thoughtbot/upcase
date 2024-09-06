@@ -1,5 +1,13 @@
 require "active_support/core_ext/integer/time"
 
+GITHUB_KEY = ENV["GITHUB_KEY"]
+GITHUB_SECRET = ENV["GITHUB_SECRET"]
+
+PAPERCLIP_STORAGE_OPTIONS = {
+  storage: :s3,
+  s3_credentials: "#{Rails.root}/config/s3.yml"
+}
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -72,14 +80,6 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_mailer.delivery_method = :test
-
-  PAPERCLIP_STORAGE_OPTIONS = {
-    storage: :s3,
-    s3_credentials: "#{Rails.root}/config/s3.yml"
-  }
-
-  GITHUB_KEY = ENV["GITHUB_KEY"]
-  GITHUB_SECRET = ENV["GITHUB_SECRET"]
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true

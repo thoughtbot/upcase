@@ -1,6 +1,15 @@
 require Rails.root.join("config/smtp")
 require "active_support/core_ext/integer/time"
 
+GITHUB_KEY = ENV["GITHUB_KEY"]
+GITHUB_SECRET = ENV["GITHUB_SECRET"]
+
+PAPERCLIP_STORAGE_OPTIONS = {
+  storage: :s3,
+  s3_credentials: "#{Rails.root}/config/s3.yml",
+  s3_protocol: "https"
+}
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -131,15 +140,6 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default(charset: "utf-8")
   config.action_mailer.raise_delivery_errors = true
-
-  PAPERCLIP_STORAGE_OPTIONS = {
-    storage: :s3,
-    s3_credentials: "#{Rails.root}/config/s3.yml",
-    s3_protocol: "https"
-  }
-
-  GITHUB_KEY = ENV["GITHUB_KEY"]
-  GITHUB_SECRET = ENV["GITHUB_SECRET"]
 
   config.middleware.insert_before(
     0,

@@ -1,5 +1,13 @@
 require "active_support/core_ext/integer/time"
 
+ENV["AWS_ACCESS_KEY_ID"] = "xxxxxxxxxxxxxxxxxxxx"
+ENV["AWS_SECRET_ACCESS_KEY"] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+GITHUB_KEY = "githubkey"
+GITHUB_SECRET = "githubsecret"
+
+PAPERCLIP_STORAGE_OPTIONS = {}
+
 # The test environment is used exclusively to run your application's
 # test suite. You never need to work with it otherwise. Remember that
 # your test database is "scratch space" for the test suite and is wiped
@@ -68,12 +76,4 @@ Rails.application.configure do
   config.after_initialize do
     Timecop.travel(Time.current)
   end
-
-  ENV["AWS_ACCESS_KEY_ID"] = "xxxxxxxxxxxxxxxxxxxx"
-  ENV["AWS_SECRET_ACCESS_KEY"] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-
-  GITHUB_KEY = "githubkey"
-  GITHUB_SECRET = "githubsecret"
-
-  PAPERCLIP_STORAGE_OPTIONS = {}
 end

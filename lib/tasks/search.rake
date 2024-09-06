@@ -1,8 +1,8 @@
+SEARCHABLE_MODELS = [Video, Flashcard, Trail]
+
 namespace :search do
   desc "Rebuild search index for all searchables"
   task rebuild: :environment do
-    SEARCHABLE_MODELS = [Video, Flashcard, Trail]
-
     puts "Clearing existing search index entries..."
     PgSearch::Document.delete_all
 
