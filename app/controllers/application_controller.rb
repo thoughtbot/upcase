@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_has_access_to?(feature)
-    current_user && current_user.has_access_to?(feature)
+    current_user&.has_access_to?(feature)
   end
   helper_method :current_user_has_access_to?
 

@@ -89,7 +89,7 @@ class FakeWistia < Sinatra::Base
     if starting_index > (collection.size / limit) + 1
       "[]"
     else
-      collection[starting_index..-1]
+      collection[starting_index..]
         .take(limit)
         .to_json
     end

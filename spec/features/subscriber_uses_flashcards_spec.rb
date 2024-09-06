@@ -24,7 +24,7 @@ feature "user views decks" do
 
   scenario "and saves it to their review queue" do
     deck = create(:deck)
-    flashcards = create_list(:flashcard, 2, deck: deck)
+    create_list(:flashcard, 2, deck: deck)
 
     navigate_to_deck(deck)
     add_to_review_queue

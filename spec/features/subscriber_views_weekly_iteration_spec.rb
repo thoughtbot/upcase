@@ -42,7 +42,7 @@ feature "user views weekly iteration" do
 
   matcher :have_video_status do |status|
     match do |node|
-      node[:class].include? "#{status}"
+      node[:class].include? status.to_s
     end
   end
 end

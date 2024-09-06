@@ -44,12 +44,10 @@ class AuthHashService
   end
 
   def update_provider_info(user)
-    if user
-      user.update(
-        auth_provider: auth_hash["provider"],
-        auth_uid: auth_hash["uid"]
-      )
-    end
+    user&.update(
+      auth_provider: auth_hash["provider"],
+      auth_uid: auth_hash["uid"]
+    )
   end
 
   def github_user

@@ -16,6 +16,4 @@ end
 #
 # Time formats
 #
-Time::DATE_FORMATS.merge!({
-  time: "%l:%M%p"
-})
+Time::DATE_FORMATS[:time] = "%l:%M%p"

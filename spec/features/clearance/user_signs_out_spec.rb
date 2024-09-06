@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "User signs out" do
   scenario "signs out" do
-    user = signed_in_user
+    signed_in_user
 
     sign_out
 

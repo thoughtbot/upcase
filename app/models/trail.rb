@@ -90,7 +90,7 @@ class Trail < ApplicationRecord
 
   def first_step
     if steps.loaded?
-      steps.sort_by(&:position).first
+      steps.min_by(&:position)
     else
       steps.first
     end
