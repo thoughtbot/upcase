@@ -1,8 +1,8 @@
 require "rails_helper"
 
-include StubCurrentUserHelper
-
 describe VideosController do
+  include StubCurrentUserHelper
+
   describe "#show" do
     context "when the video is part of the weekly iteration" do
       it "renders the view" do

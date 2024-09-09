@@ -1,7 +1,8 @@
 require "rails_helper"
-include ActionView::Helpers::NumberHelper
 
 feature "User edits a team" do
+  include ActionView::Helpers::NumberHelper
+
   background do
     sign_in
   end

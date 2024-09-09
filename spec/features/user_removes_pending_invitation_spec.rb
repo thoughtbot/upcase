@@ -1,7 +1,8 @@
 require "rails_helper"
-include ActionView::RecordIdentifier
 
 feature "Remove pending invitations" do
+  include ActionView::RecordIdentifier
+
   scenario "an owner removes a team member" do
     owner = create(:user, :with_attached_team)
     invitation_to_remove = create(:invitation, team: owner.team)
