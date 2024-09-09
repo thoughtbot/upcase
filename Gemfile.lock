@@ -382,8 +382,8 @@ GEM
     rack (2.2.9)
     rack-cors (2.0.2)
       rack (>= 2.0.0)
-    rack-livereload (0.3.17)
-      rack
+    rack-livereload (0.5.2)
+      rack (< 3)
     rack-mini-profiler (3.3.1)
       rack (>= 1.2.0)
     rack-protection (3.2.0)
