@@ -49,8 +49,8 @@ describe "practice/show.html" do
   end
 
   def stub_user_access(user: false)
-    user = build_stubbed(:user)
-    view_stubs(:current_user).and_return(user)
+    stubbed_user = build_stubbed(:user)
+    view_stubs(:current_user).and_return(stubbed_user)
     view_stubs(:current_user_has_access_to?).and_return(false)
   end
 
