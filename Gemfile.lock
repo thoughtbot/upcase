@@ -215,7 +215,7 @@ GEM
     formatador (0.2.5)
     formtastic (5.0.0)
       actionpack (>= 6.0.0)
-    friendly_id (5.4.1)
+    friendly_id (5.5.1)
       activerecord (>= 4.0.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
