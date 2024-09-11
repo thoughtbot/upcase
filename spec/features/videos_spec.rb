@@ -41,7 +41,7 @@ describe "Videos" do
           .to eq(video_url(published_video))
 
         expect(text_in(item, ".//pubDate"))
-          .to eq(published_video.created_at.to_s(:rfc822))
+          .to eq(published_video.created_at.to_fs(:rfc822))
 
         expect(text_in(item, ".//description")).to match(/#{notes}/)
       end

@@ -5,5 +5,5 @@ xml.item do
   end
   xml.guid video_url(video)
   xml.link video_url(video)
-  xml.pubDate video.created_at.to_s(:rfc822)
+  xml.pubDate video.created_at.to_fs(:rfc822)
 end
