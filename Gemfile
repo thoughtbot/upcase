@@ -18,6 +18,7 @@ gem "csv"
 gem "delayed_job_active_record"
 gem "drb"
 gem "dynamic_form"
+gem "faraday-multipart", require: false
 gem "faraday-retry"
 gem "flutie"
 gem "font-awesome-rails"

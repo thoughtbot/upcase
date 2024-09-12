@@ -201,6 +201,8 @@ GEM
       railties (>= 5.0.0)
     faraday (2.9.2)
       faraday-net_http (>= 2.0, < 3.2)
+    faraday-multipart (1.0.4)
+      multipart-post (~> 2)
     faraday-net_http (3.1.0)
       net-http
     faraday-retry (2.2.1)
@@ -303,6 +305,7 @@ GEM
     msgpack (1.7.2)
     multi_json (1.15.0)
     multi_xml (0.6.0)
+    multipart-post (2.4.1)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
     mutex_m (0.2.0)
@@ -633,6 +636,7 @@ DEPENDENCIES
   dynamic_form
   email_spec
   factory_bot_rails
+  faraday-multipart
   faraday-retry
   flutie
   font-awesome-rails
