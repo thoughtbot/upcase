@@ -650,6 +650,7 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari
   launchy
+  logger
   mime-types
   mimemagic
   mutex_m
