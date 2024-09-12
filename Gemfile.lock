@@ -439,7 +439,7 @@ GEM
       ffi (~> 1.0)
     recipient_interceptor (0.3.2)
       mail
-    redcarpet (3.5.1)
+    redcarpet (3.6.0)
     redis (5.3.0)
       redis-client (>= 0.22.0)
     redis-client (0.22.2)
