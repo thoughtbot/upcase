@@ -662,7 +662,7 @@ DEPENDENCIES
   paperclip
   pg
   pg_search
-  psych (< 6)
+  psych
   puma
   rack-cors
   rack-livereload
