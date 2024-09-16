@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: StandardRB Linter
-        uses: testdouble/standard-ruby-action@1.2.0
+        uses: testdouble/standard-ruby-action@v1.3.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
