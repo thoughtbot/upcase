@@ -136,7 +136,7 @@ GEM
       activesupport
     childprocess (5.1.0)
       logger (~> 1.5)
-    clearance (2.7.2)
+    clearance (2.8.0)
       actionmailer (>= 5.0)
       activemodel (>= 5.0)
       activerecord (>= 5.0)
@@ -221,8 +221,8 @@ GEM
       actionpack (>= 6.0.0)
     friendly_id (5.5.1)
       activerecord (>= 4.0.0)
-    globalid (1.1.0)
-      activesupport (>= 5.0)
+    globalid (1.2.1)
+      activesupport (>= 6.1)
     gravatarify (3.1.1)
     guard (2.16.2)
       formatador (>= 0.2.4)
@@ -316,7 +316,7 @@ GEM
     nested_form (0.3.2)
     net-http (0.4.1)
       uri
-    net-imap (0.4.14)
+    net-imap (0.4.16)
       date
       net-protocol
     net-pop (0.1.2)
