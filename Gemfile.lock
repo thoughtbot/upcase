@@ -239,7 +239,7 @@ GEM
       guard (~> 2.8)
       guard-compat (~> 1.0)
       multi_json (~> 1.8)
-    hashdiff (1.1.0)
+    hashdiff (1.1.1)
     hashie (5.0.0)
     high_voltage (4.0.0)
     htmlentities (4.3.4)
@@ -594,7 +594,7 @@ GEM
     vanity (4.0.4)
       i18n
     version_gem (1.1.4)
-    webmock (3.23.1)
+    webmock (3.24.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
