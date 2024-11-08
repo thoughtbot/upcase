@@ -3,7 +3,7 @@ jobs:
   build:
     parallelism: 3
     docker:
-      - image: cimg/ruby:3.3.5-node-browsers
+      - image: cimg/ruby:3.3.6-node-browsers
         environment:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
