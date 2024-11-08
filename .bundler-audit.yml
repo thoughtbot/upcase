@@ -1,0 +1,2 @@
+ignore:
+  - CVE-2024-21510 # https://github.com/thoughtbot/upcase/security/dependabot/113
