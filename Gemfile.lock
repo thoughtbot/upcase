@@ -216,8 +216,8 @@ GEM
       ffi (>= 1.15.5)
       rake
     flutie (2.2.0)
-    font-awesome-rails (4.7.0.8)
-      railties (>= 3.2, < 8.0)
+    font-awesome-rails (4.7.0.9)
+      railties (>= 3.2, < 9.0)
     formatador (0.2.5)
     formtastic (5.0.0)
       actionpack (>= 6.0.0)
