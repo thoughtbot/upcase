@@ -80,7 +80,7 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-    acts_as_list (1.2.3)
+    acts_as_list (1.2.4)
       activerecord (>= 6.1)
       activesupport (>= 6.1)
     addressable (2.8.7)
@@ -304,7 +304,7 @@ GEM
       rake
     mini_mime (1.1.5)
     mini_portile2 (2.8.8)
-    minitest (5.25.1)
+    minitest (5.25.2)
     msgpack (1.7.2)
     multi_json (1.15.0)
     multi_xml (0.6.0)
