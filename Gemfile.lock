@@ -1,9 +1,4 @@
 GEM
-  remote: https://rails-assets.org/
-  specs:
-    rails-assets-lodash (4.17.21)
-
-GEM
   remote: https://rubygems.org/
   specs:
     actioncable (7.0.8.6)
@@ -61,10 +56,6 @@ GEM
       globalid (>= 0.3.6)
     activemodel (7.0.8.6)
       activesupport (= 7.0.8.6)
-    activemodel-serializers-xml (1.0.3)
-      activemodel (>= 5.0.0.a)
-      activesupport (>= 5.0.0.a)
-      builder (~> 3.1)
     activerecord (7.0.8.6)
       activemodel (= 7.0.8.6)
       activesupport (= 7.0.8.6)
@@ -282,6 +273,8 @@ GEM
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    lodash-rails (4.17.21)
+      railties (>= 3.1)
     logger (1.6.1)
     loofah (2.23.1)
       crass (~> 1.0.2)
@@ -316,7 +309,6 @@ GEM
       bourbon (>= 4.0)
       sass (>= 3.3)
     nenv (0.3.0)
-    nested_form (0.3.2)
     net-http (0.5.0)
       uri
     net-imap (0.5.1)
@@ -641,6 +633,7 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari
   launchy
+  lodash-rails
   logger
   mime-types
   mimemagic
@@ -662,7 +655,6 @@ DEPENDENCIES
   rack-mini-profiler
   rack-rewrite
   rails (= 7.0.8.6)
-  rails-assets-lodash!
   rails-controller-testing
   rails_stdout_logging
   recipient_interceptor

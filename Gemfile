@@ -30,6 +30,7 @@ gem "inline_svg"
 gem "jquery-rails"
 gem "jquery-ui-rails"
 gem "kaminari"
+gem "lodash-rails"
 gem "logger"
 gem "mime-types"
 gem "mimemagic"
@@ -67,10 +68,6 @@ gem "validates_email_format_of"
 gem "vanity"
 gem "webrick"
 gem "wrapped"
-
-source "https://rails-assets.org" do
-  gem "rails-assets-lodash"
-end
 
 group :development do
   gem "guard-livereload", require: false
