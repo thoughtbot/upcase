@@ -66,7 +66,6 @@ gem "sprockets-redirect"
 gem "uglifier"
 gem "validates_email_format_of"
 gem "vanity"
-gem "webrick"
 gem "wrapped"
 
 group :development do
@@ -75,6 +74,7 @@ group :development do
   gem "rack-mini-profiler", require: false
   gem "spring"
   gem "spring-commands-rspec"
+  gem "webrick"
 end
 
 group :development, :test do
