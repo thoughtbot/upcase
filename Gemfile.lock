@@ -545,6 +545,7 @@ GEM
     sprockets-redirect (1.0.0)
       activesupport (>= 3.1.0)
       rack
+    stackprof (0.2.26)
     standard (1.40.1)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
@@ -679,6 +680,7 @@ DEPENDENCIES
   spring-commands-rspec
   sprockets-rails
   sprockets-redirect
+  stackprof
   standard
   timecop
   uglifier
