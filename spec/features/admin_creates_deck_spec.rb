@@ -1,16 +1,16 @@
 require "rails_helper"
 
 feature "Admin creates a deck" do
-  scenario "is redirected away if not an admin" do
-    visit new_admin_deck_path(as: create(:user))
-
-    expect(current_path).to eq(root_path)
+  scenario "is 404 if not an admin" do
+    expect do
+      visit new_admin_deck_path(as: create(:user))
+    end.to raise_error(ActionController::RoutingError)
   end
 
-  scenario "is redirected away if not a user" do
-    visit new_admin_deck_path
-
-    expect(current_path).to eq(root_path)
+  scenario "is 404 if not a user" do
+    expect do
+      visit new_admin_deck_path
+    end.to raise_error(ActionController::RoutingError)
   end
 
   scenario "successfully" do

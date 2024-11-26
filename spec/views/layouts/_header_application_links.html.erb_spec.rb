@@ -8,7 +8,6 @@ describe "layouts/_header_application_links.html.erb" do
   it "renders the user's avatar" do
     email = generate(:email)
 
-    view_stub_with_return(masquerading?: false)
     view_stub_with_return(signed_in?: true)
     view_stub_with_return(
       current_user: double("user", email: email)

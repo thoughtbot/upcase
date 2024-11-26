@@ -31,13 +31,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_has_access_to?
 
   def current_user_is_admin?
-    current_user && (current_user.admin? || masquerading?)
+    current_user&.admin?
   end
-
-  def masquerading?
-    session[:admin_id].present?
-  end
-  helper_method :masquerading?
 
   def topics
     Topic.explorable
