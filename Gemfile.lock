@@ -61,10 +61,6 @@ GEM
       globalid (>= 0.3.6)
     activemodel (7.0.8.4)
       activesupport (= 7.0.8.4)
-    activemodel-serializers-xml (1.0.3)
-      activemodel (>= 5.0.0.a)
-      activesupport (>= 5.0.0.a)
-      builder (~> 3.1)
     activerecord (7.0.8.4)
       activemodel (= 7.0.8.4)
       activesupport (= 7.0.8.4)
@@ -314,7 +310,6 @@ GEM
       bourbon (>= 4.0)
       sass (>= 3.3)
     nenv (0.3.0)
-    nested_form (0.3.2)
     net-http (0.4.1)
       uri
     net-imap (0.4.16)
@@ -422,13 +417,6 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
-    rails_admin (3.2.0)
-      activemodel-serializers-xml (>= 1.0)
-      csv
-      kaminari (>= 0.14, < 2.0)
-      nested_form (~> 0.3)
-      rails (>= 6.0, < 8)
-      turbo-rails (>= 1.0, < 3)
     rails_stdout_logging (0.0.5)
     railties (7.0.8.4)
       actionpack (= 7.0.8.4)
@@ -576,9 +564,6 @@ GEM
     tilt (2.3.0)
     timecop (0.9.10)
     timeout (0.4.1)
-    turbo-rails (2.0.10)
-      actionpack (>= 6.0.0)
-      railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.1)
@@ -672,7 +657,6 @@ DEPENDENCIES
   rails (= 7.0.8.4)
   rails-assets-lodash!
   rails-controller-testing
-  rails_admin
   rails_stdout_logging
   recipient_interceptor
   redcarpet

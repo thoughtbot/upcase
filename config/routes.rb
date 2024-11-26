@@ -8,13 +8,6 @@ Rails.application.routes.draw do
 
     get "the-weekly-iteration", to: "shows#show", id: "the-weekly-iteration"
 
-    scope module: "admin" do
-      resources :users, only: [] do
-        resource :masquerade, only: :create
-      end
-      resource :masquerade, only: :destroy
-    end
-
     constraints Clearance::Constraints::SignedIn.new(&:admin?) do
       namespace :admin do
         resources :decks, only: [:new, :create, :show, :index] do
@@ -24,8 +17,6 @@ Rails.application.routes.draw do
         end
       end
     end
-
-    mount RailsAdmin::Engine => "/admin", :as => :rails_admin
 
     namespace :api do
       namespace :v1 do
