@@ -138,7 +138,6 @@ feature "Accept team invitations" do
     owner_name: "Cool Person",
     owner_email: "owner@somedomain.com"
   )
-
     owner = create(
       :user, :with_attached_team, email: owner_email, name: owner_name
     )
