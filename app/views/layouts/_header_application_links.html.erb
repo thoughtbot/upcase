@@ -48,6 +48,14 @@
       ) %>
     </li>
 
+    <li>
+      <%= link_to(
+        t("shared.header.hire_us"),
+        "https://thoughtbot.com/services/custom-training-learning-course-upcase",
+        class: "site-nav__link site-nav__link_cta",
+      ) %>
+    </li>
+
     <% if signed_out? %>
       <li>
         <% if landing_page? %>
