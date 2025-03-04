@@ -125,6 +125,12 @@
   }
 }
 
+.site-nav__link_cta {
+  border: 1px solid $color-white;
+  border-radius: $base-border-radius;
+  padding: $spacing-base / 2;
+}
+
 .site-nav__button {
   background-color: $color-gray-darkest;
   border-radius: $base-border-radius;
