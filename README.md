@@ -32,7 +32,7 @@ This project is in **maintenance mode** and is not being actively developed.
 
 Want to contribute to our educational content?
 
-👉 [Read the Course Authoring Guide](./trail-authoring/COURSE_GUIDE.md)
+[Read the Course Authoring Guide](./trail-authoring/COURSE_GUIDE.md)
 
 # Development
 
