@@ -3,6 +3,7 @@
 
 
 - [Upcase](#upcase)
+- [Course Authoring](#course-authoring)
 - [Development](#development)
   - [Rules of the road](#rules-of-the-road)
   - [Setup](#setup)
@@ -26,6 +27,12 @@
 
 Upcase is a Rails application deployed to Heroku.
 This project is in **maintenance mode** and is not being actively developed.
+
+# Course Authoring
+
+Want to contribute to our educational content?
+
+👉 [Read the Course Authoring Guide](./trail-authoring/COURSE_GUIDE.md)
 
 # Development
 
