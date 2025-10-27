@@ -36,7 +36,7 @@ gem "logger"
 gem "mime-types"
 gem "mimemagic"
 gem "mutex_m"
-gem "neat", "< 2.0"
+gem "neat"
 gem "net-imap", ">= 0.5.7"
 gem "nokogiri", ">= 1.18.8"
 gem "octokit"
@@ -73,6 +73,7 @@ gem "wrapped"
 
 group :development do
   gem "guard-livereload", require: false
+  gem "irb"
   gem "rack-livereload"
   gem "rack-mini-profiler", require: false
   gem "spring", "~> 4.2.1"
@@ -81,6 +82,7 @@ group :development do
 end
 
 group :development, :test do
+  gem "benchmark"
   gem "bundler-audit", require: false
   gem "dotenv-rails"
   gem "rspec-rails"
