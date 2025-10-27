@@ -54,10 +54,7 @@ RSpec.describe MembershipsController do
 
   def remove_other_user_from_team
     user_to_remove = create(:user, :with_github)
-    if @controller.current_user&.team
-      @controller.current_user.team.add_user(user_to_remove)
-    end
-
+    @controller.current_user&.team&.add_user(user_to_remove)
     delete :destroy, params: {id: user_to_remove}
   end
 end

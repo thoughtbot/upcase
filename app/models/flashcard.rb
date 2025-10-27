@@ -1,5 +1,6 @@
 class Flashcard < ApplicationRecord
   include PgSearch::Model
+
   multisearchable against: [:title, :prompt, :answer], if: :search_visible?
 
   validates :title, presence: true

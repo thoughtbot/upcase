@@ -95,7 +95,7 @@ RSpec.describe TrailsHelper do
       page = Capybara.string(helper.auth_to_access_button(video))
 
       expect(page).to have_button(I18n.t("trails.start_for_free"))
-      expect(page).to have_css("form") { _1["action"] == "/fake/auth/path" }
+      expect(page).to have_css("form") { it["action"] == "/fake/auth/path" }
     end
 
     it "can override CTA" do
