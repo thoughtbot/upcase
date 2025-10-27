@@ -691,7 +691,7 @@ DEPENDENCIES
   rack-livereload
   rack-mini-profiler
   rack-rewrite
-  rails (= 7.0.8.7)
+  rails (>= 7.0.8.7, < 7.1)
   rails-controller-testing
   rails_stdout_logging
   recipient_interceptor
