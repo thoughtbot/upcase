@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user searches for content" do
+RSpec.feature "user searches for content" do
   scenario "finds the desired content" do
     create(:trail, name: "regex", published: true)
     tmux = create(:trail, :with_topic, name: "tmux", published: true)

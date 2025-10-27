@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Practice do
+RSpec.describe Practice do
   describe "#has_completed_trails?" do
     it "returns false if there are no completed trails" do
       practice = build_practice(trails: [])

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe SearchResult do
+RSpec.describe SearchResult do
   describe "#to_partial_path" do
     it "returns a partial path based on the model type" do
       video = build_stubbed(:video)

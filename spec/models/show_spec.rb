@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Show do
+RSpec.describe Show do
   it_behaves_like "a class inheriting from Product"
 
   describe ".the_weekly_iteration" do

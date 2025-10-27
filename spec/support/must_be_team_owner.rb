@@ -1,4 +1,4 @@
-shared_examples_for "must be team owner" do
+RSpec.shared_examples_for "must be team owner" do
   it "allows a user with a team" do
     user = create(:user, :with_attached_team)
     sign_in_as user

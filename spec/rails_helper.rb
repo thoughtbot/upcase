@@ -1,6 +1,7 @@
 if ENV["COVERAGE"]
   require "simplecov"
   SimpleCov.start :rails do
+    enable_coverage :branch
     add_filter "app/mailer_previews"
     add_filter "vendor/lib"
   end

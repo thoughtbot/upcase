@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Videos" do
+RSpec.describe "Videos" do
   context "GET /" do
     it "provides RSS to distribute the Weekly Iteration to various channels" do
       show = create(

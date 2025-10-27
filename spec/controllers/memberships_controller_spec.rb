@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe MembershipsController do
+RSpec.describe MembershipsController do
   it "does not allow you to remove yourself" do
     user = create(:user, :with_attached_team)
     sign_in_as user

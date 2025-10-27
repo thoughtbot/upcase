@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Guest do
+RSpec.describe Guest do
   describe "#admin?" do
     it "returns false" do
       guest = Guest.new

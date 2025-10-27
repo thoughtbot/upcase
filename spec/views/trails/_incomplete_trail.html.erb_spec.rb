@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "trails/_incomplete_trail.html" do
+RSpec.describe "trails/_incomplete_trail.html" do
   context "for a trail with only videos" do
     it "renders a CTA link" do
       view_stubs(:current_user).and_return(Guest.new)

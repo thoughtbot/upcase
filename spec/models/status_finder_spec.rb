@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe StatusFinder do
+RSpec.describe StatusFinder do
   describe "#current_status_for" do
     context "with a status in the database" do
       it "returns the state for the given completeable" do

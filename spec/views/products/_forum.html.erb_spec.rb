@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "products/_forum_link" do
+RSpec.describe "products/_forum_link" do
   context "with a user" do
     it "includes a link to the forum" do
       render partial: "products/forum_link", locals: {current_user: site_user}

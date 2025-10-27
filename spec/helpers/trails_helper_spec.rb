@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe TrailsHelper do
+RSpec.describe TrailsHelper do
   include Rails.application.routes.url_helpers
 
   describe "#trail_breadcrumbs" do

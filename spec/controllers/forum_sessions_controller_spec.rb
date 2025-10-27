@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe ForumSessionsController do
+RSpec.describe ForumSessionsController do
   include StubCurrentUserHelper
 
   describe "#new" do

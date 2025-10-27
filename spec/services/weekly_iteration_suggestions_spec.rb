@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe WeeklyIterationSuggestions do
+RSpec.describe WeeklyIterationSuggestions do
   describe "#perform" do
     it "calls WeeklyIterationRecommender for each user" do
       user = create(:user)

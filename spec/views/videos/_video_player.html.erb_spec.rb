@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "videos/_video_player" do
+RSpec.describe "videos/_video_player" do
   include VideoHelpers
 
   describe "trail progress bar" do

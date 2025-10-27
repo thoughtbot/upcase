@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Account Settings" do
+RSpec.feature "Account Settings" do
   scenario "user edits account information" do
     user = create(:user, name: "Test User")
 

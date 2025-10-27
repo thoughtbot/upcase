@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Marker do
+RSpec.describe Marker do
   it { should belong_to(:video) }
   it { should validate_presence_of(:anchor) }
   it { should validate_presence_of(:time) }

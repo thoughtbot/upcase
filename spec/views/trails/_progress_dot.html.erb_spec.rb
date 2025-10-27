@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "trails/_progress_dots" do
+RSpec.describe "trails/_progress_dots" do
   include Rails.application.routes.url_helpers
   include TrailHelpers
 

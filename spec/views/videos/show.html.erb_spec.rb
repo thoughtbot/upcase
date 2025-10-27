@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "videos/show" do
+RSpec.describe "videos/show" do
   include VideoHelpers
 
   it "sets the page title to the video title" do
