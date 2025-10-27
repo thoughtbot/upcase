@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Product do
+RSpec.describe Product do
   it { should have_many(:classifications).dependent(:destroy) }
   it { should have_many(:topics).through(:classifications) }
   it { should have_many(:videos).dependent(:destroy) }

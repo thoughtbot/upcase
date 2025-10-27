@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "trails/_completeable_preview.html" do
+RSpec.describe "trails/_completeable_preview.html" do
   include TrailHelpers
 
   it "links to the completeable page" do

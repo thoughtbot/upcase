@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "trails/show.html.erb" do
+RSpec.describe "trails/show.html.erb" do
   context "viewed by a visitor" do
     it "does not render the progress bar" do
       render_trail(signed_in: false)

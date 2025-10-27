@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe SlugConstraint do
+RSpec.describe SlugConstraint do
   around do |example|
     RequestStore.clear!
     example.run

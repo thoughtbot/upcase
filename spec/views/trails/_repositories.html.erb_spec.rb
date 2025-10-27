@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "trails/_repositories.html" do
+RSpec.describe "trails/_repositories.html" do
   context "with repositories" do
     it "renders a link to each repository" do
       repositories = build_stubbed_list(:repository, 2)

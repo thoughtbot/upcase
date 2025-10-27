@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "layouts/_header_application_links.html.erb" do
+RSpec.describe "layouts/_header_application_links.html.erb" do
   include Gravatarify::Helper
 
   let(:call_to_action_label) { "Get two months free" }

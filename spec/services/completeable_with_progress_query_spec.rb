@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe CompleteableWithProgressQuery do
+RSpec.describe CompleteableWithProgressQuery do
   describe "#each" do
     it "decorates completeables with progress" do
       exercise_step_1 = create(:exercise)

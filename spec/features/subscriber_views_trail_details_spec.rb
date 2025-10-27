@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user views trail details" do
+RSpec.feature "user views trail details" do
   scenario "sees progress" do
     exercises = [
       create(:exercise, name: "First Exercise"),

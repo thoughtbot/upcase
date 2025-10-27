@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "products/shows/_show.html.erb" do
+RSpec.describe "products/shows/_show.html.erb" do
   it "includes published episodes count" do
     show = build_stubbed(:show)
     create_list(:video, 2, :published, watchable: show)

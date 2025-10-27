@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe UnsubscribesController do
+RSpec.describe UnsubscribesController do
   include UnsubscribesHelper
 
   describe "#show" do

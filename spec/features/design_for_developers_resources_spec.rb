@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Design For Developers Resources" do
+RSpec.feature "Design For Developers Resources" do
   scenario "View the resources" do
     visit "/upcase/design-for-developers-resources"
 

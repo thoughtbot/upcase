@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "topics/_trail.html" do
+RSpec.describe "topics/_trail.html" do
   context "with a just_finished trail" do
     it "renders as just_finished" do
       trail = stub_trail(complete: true, just_finished: true)

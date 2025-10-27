@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe RepositoriesController do
+RSpec.describe RepositoriesController do
   describe "#show" do
     it "redirects to the repository on GitHub" do
       repository = stub_repository

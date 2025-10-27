@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "results/_flashcard.html.erb" do
+RSpec.describe "results/_flashcard.html.erb" do
   context "when the user saved it for review" do
     it "indicates that the flashcard was saved for review" do
       user = double("user")

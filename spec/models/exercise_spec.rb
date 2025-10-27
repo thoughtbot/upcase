@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Exercise do
+RSpec.describe Exercise do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:url) }
   it { should have_one(:trail).through(:step) }

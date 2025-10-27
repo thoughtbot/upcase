@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Visitor updates password" do
+RSpec.feature "Visitor updates password" do
   scenario "with valid password" do
     user = user_with_reset_password
 

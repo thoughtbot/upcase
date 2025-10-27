@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe InvitationsController do
+RSpec.describe InvitationsController do
   it_behaves_like "must be team owner" do
     def perform_request
       invitation = double("invitation", deliver: true)

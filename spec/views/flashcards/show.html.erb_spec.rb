@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "flashcards/show.html" do
+RSpec.describe "flashcards/show.html" do
   it "renders the prompt as markdown" do
     render_flashcard(prompt: "Hey **you** guys")
 

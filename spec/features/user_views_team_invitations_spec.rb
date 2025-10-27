@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "View team invitations" do
+RSpec.feature "View team invitations" do
   scenario "when some have been accepted" do
     owner = create(:user, :with_attached_team)
     team = owner.team

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe FlashcardsNeedingReviewQuery do
+RSpec.describe FlashcardsNeedingReviewQuery do
   describe "#run" do
     it "returns flashcards whose last attempt had low confidence" do
       user = create(:user)

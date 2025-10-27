@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Video do
+RSpec.describe Video do
   include VideoHelpers
   include WistiaApiClientStubs
 

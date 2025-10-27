@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Invitation do
+RSpec.describe Invitation do
   it { should validate_presence_of(:email) }
   it { should validate_presence_of(:sender_id) }
   it { should validate_presence_of(:team_id) }

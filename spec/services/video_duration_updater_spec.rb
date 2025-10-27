@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe VideoDurationUpdater do
+RSpec.describe VideoDurationUpdater do
   include WistiaApiClientStubs
 
   describe ".update_all_durations" do
