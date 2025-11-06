@@ -23,6 +23,6 @@ RSpec.describe "flashcards/show.html" do
   end
 
   def rendered_content
-    Capybara.string(rendered)
+    Capybara.string(rendered.to_s)
   end
 end

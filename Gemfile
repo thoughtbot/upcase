@@ -51,7 +51,7 @@ gem "psych"
 gem "puma"
 gem "rack", ">= 2.2.14", "< 3.0"
 gem "rack-rewrite"
-gem "rails", ">= 7.0.8.7", "< 7.1"
+gem "rails", "7.1.2"
 gem "recipient_interceptor"
 gem "redcarpet"
 gem "redis"
@@ -76,8 +76,8 @@ group :development do
   gem "irb"
   gem "rack-livereload"
   gem "rack-mini-profiler", require: false
-  gem "spring", "~> 4.2.1"
-  gem "spring-commands-rspec"
+  # gem "spring", "~> 4.2.1"
+  # gem "spring-commands-rspec"
   gem "webrick"
 end
 

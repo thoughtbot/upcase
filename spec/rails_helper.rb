@@ -57,9 +57,11 @@ end
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.raise_errors_for_deprecations!
+
   config.use_transactional_fixtures = false
   config.use_instantiated_fixtures = false
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_paths = ["#{::Rails.root}/spec/fixtures"]
 
   config.include Clearance::Testing::Matchers, type: :request
   config.include Paperclip::Shoulda::Matchers

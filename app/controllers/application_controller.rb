@@ -9,13 +9,6 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def must_be_admin
-    unless current_user_is_admin?
-      flash[:error] = "You do not have permission to view that page."
-      redirect_to root_url
-    end
-  end
-
   def must_be_team_owner
     require_login
     if signed_in?
@@ -29,10 +22,6 @@ class ApplicationController < ActionController::Base
     current_user&.has_access_to?(feature)
   end
   helper_method :current_user_has_access_to?
-
-  def current_user_is_admin?
-    current_user&.admin?
-  end
 
   def topics
     Topic.explorable

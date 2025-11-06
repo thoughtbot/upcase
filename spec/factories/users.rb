@@ -4,6 +4,7 @@ FactoryBot.define do
     sequence(:name) { |n| "User #{n}" }
     password { "password" }
     sequence(:github_username) { |n| "github_user_#{n}" }
+    admin { false }
 
     factory :admin do
       admin { true }
@@ -11,6 +12,10 @@ FactoryBot.define do
 
     trait :admin do
       admin { true }
+    end
+
+    trait :with_bio do
+      sequence(:bio) { |n| "The Amazing Brian the #{n}th" }
     end
 
     trait :with_github do

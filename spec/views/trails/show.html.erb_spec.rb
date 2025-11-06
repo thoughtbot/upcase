@@ -28,7 +28,7 @@ RSpec.describe "trails/show.html.erb" do
   end
 
   def rendered_content
-    Capybara.string(rendered)
+    Capybara.string(rendered.to_s)
   end
 
   def build_trail_with_steps
