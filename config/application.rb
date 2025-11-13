@@ -24,10 +24,9 @@ module Upcase
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # config.eager_load_paths += [
-    #   "#{config.root}/lib",
-    #   "#{config.root}/vendor/lib"
-    # ]
+    config.eager_load_paths += [
+      "#{config.root}/lib"
+    ]
 
     config.action_mailer.default_url_options = {host: ENV["APP_DOMAIN"]}
     config.assets.prefix = "/upcase/assets"

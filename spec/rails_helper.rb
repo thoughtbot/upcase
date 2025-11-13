@@ -73,10 +73,3 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
 end
-
-Rails.application.config.before_initialize do
-  if ENV["CI"]
-    $stderr.puts "Load paths frozen: #{$LOAD_PATH.frozen?}"
-    $stderr.puts "Autoload paths: #{Rails.application.config.autoload_paths.frozen?}"
-  end
-end
