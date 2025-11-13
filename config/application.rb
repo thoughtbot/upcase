@@ -25,7 +25,8 @@ module Upcase
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.eager_load_paths += [
-      "#{config.root}/lib"
+      "#{config.root}/lib",
+      "#{config.root}/vendor/lib"
     ]
 
     config.action_mailer.default_url_options = {host: ENV["APP_DOMAIN"]}
