@@ -17,6 +17,7 @@
 # of the bootsnap cache if you use it.
 #++
 # Rails.application.config.add_autoload_paths_to_load_path = false
+Rails.application.config.add_autoload_paths_to_load_path = true
 
 ###
 # Remove the default X-Download-Options headers since it is used only by Internet Explorer.
