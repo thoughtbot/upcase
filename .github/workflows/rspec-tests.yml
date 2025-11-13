@@ -33,5 +33,5 @@ jobs:
           bundler-cache: true
       - name: Run tests
         run: |
-          bin/rails bootsnap:precompile
+          rm -rf tmp/cache/bootsnap*
           bundle exec rspec
