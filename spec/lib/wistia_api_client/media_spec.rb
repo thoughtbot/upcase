@@ -47,16 +47,16 @@ RSpec.describe WistiaApiClient::Media do
   end
 
   def mock_wistia_api_response_with(uri:, response: {})
-    mock_response = { body: "", headers: {} }.merge(response)
+    mock_response = {body: "", headers: {}}.merge(response)
 
     stub_request(:get, uri)
       .with(
         headers: {
-          'Accept'=>'*/*',
-          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-          'Authorization'=>'Basic YXBpOmFwaV9rZXk=',
-          'Host'=>'api.wistia.com',
-          'User-Agent'=>'Ruby'
+          "Accept" => "*/*",
+          "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+          "Authorization" => "Basic YXBpOmFwaV9rZXk=",
+          "Host" => "api.wistia.com",
+          "User-Agent" => "Ruby"
         }
       )
       .to_return(

@@ -113,8 +113,8 @@ RSpec.describe VideoDurationUpdater do
       )
 
       show_response = {
-          "name" => video.name,
-          "duration" => 4_265 # seconds
+        "name" => video.name,
+        "duration" => 4_265 # seconds
       }
 
       stub_wistia_api_client(response: show_response)
