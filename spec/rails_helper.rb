@@ -9,7 +9,8 @@ end
 
 ENV["RAILS_ENV"] ||= "test"
 require "spec_helper"
-require File.expand_path("../../config/environment", __FILE__)
+# require File.expand_path("../../config/environment", __FILE__)
+require_relative "../config/environment"
 require "clearance/rspec"
 require "email_spec"
 require "paperclip/matchers"
