@@ -38,4 +38,5 @@ jobs:
       - name: Run tests
         run: |
           rm -rf tmp/cache/bootsnap*
+          bundle install
           bundle exec rspec
