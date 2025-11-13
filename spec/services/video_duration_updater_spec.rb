@@ -112,6 +112,13 @@ RSpec.describe VideoDurationUpdater do
         length_in_minutes: nil
       )
 
+      show_response = {
+          "name" => video.name,
+          "duration" => 4_265 # seconds
+      }
+
+      stub_wistia_api_client(response: show_response)
+
       described_class.update_duration(video)
       video.reload
 
