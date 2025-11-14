@@ -26,15 +26,13 @@ module Upcase
 
     config.eager_load_paths += [
       "#{config.root}/lib",
-      "#{config.root}/vendor/lib"
+      "#{config.root}/vendor/lib",
+      "#{config.root}/app/mailer_previews"
     ]
 
     config.action_mailer.default_url_options = {host: ENV["APP_DOMAIN"]}
     config.assets.prefix = "/upcase/assets"
-puts "8888888888"
-puts config.action_mailer.preview_paths
-    config.action_mailer.preview_paths += ["#{Rails.root}/lib/mailer_previews"]
-    # config.action_mailer.preview_paths << "#{Rails.root}/lib/mailer_previews"
+    config.action_mailer.preview_paths += ["#{Rails.root}/app/mailer_previews"]
 
     # Bypass protection from open redirect attacks
     # in `redirect_back_or_to` and `redirect_to`.
