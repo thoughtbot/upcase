@@ -27,7 +27,8 @@ module Upcase
     config.eager_load_paths += [
       "#{config.root}/lib",
       "#{config.root}/vendor/lib",
-      "#{config.root}/app/mailer_previews"
+      "#{config.root}/app/mailer_previews",
+      "#{config.root}/test/mailers/previews"
     ]
 
     config.action_mailer.default_url_options = {host: ENV["APP_DOMAIN"]}
