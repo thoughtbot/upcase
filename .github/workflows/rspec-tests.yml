@@ -27,16 +27,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Clear caches
-        run: |
-          rm -rf vendor/bundle
-          rm -rf ~/.bundle
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
-          bundler-cache: false
+          bundler-cache: true
       - name: Run tests
-        run: |
-          rm -rf tmp/cache/bootsnap*
-          bundle install
-          bundle exec rspec
+        run: bundle exec rspec

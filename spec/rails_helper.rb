@@ -7,33 +7,10 @@ if ENV["COVERAGE"]
   end
 end
 
-TracePoint.trace(:raise) do |tp|
-  if tp.raised_exception.is_a?(FrozenError) && tp.raised_exception.message.include?("can't modify frozen Array")
-    puts "=" * 80
-    puts "FROZEN ERROR CAUGHT"
-    puts "Message: #{tp.raised_exception.message}"
-    puts "Location: #{tp.path}:#{tp.lineno}"
-    puts "\nBacktrace (first 30 lines):"
-    puts tp.raised_exception.backtrace.first(30).join("\n")
-    puts "=" * 80
-  end
-end
-trace = TracePoint.new(:call, :return) do |tp|
-  if tp.defined_class == Array && tp.method_id == :freeze
-    caller_info = caller(1, 5).join("\n  ")
-    puts "ARRAY FROZEN at #{tp.path}:#{tp.lineno}"
-    puts "  Caller:\n  #{caller_info}"
-  end
-end
-
 ENV["RAILS_ENV"] ||= "test"
 require "spec_helper"
 # require File.expand_path("../../config/environment", __FILE__)
-
-trace.enable
 require_relative "../config/environment"
-trace.disable
-
 require "clearance/rspec"
 require "email_spec"
 require "paperclip/matchers"
