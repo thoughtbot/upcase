@@ -4,8 +4,6 @@ require "openssl"
 RSpec.describe WistiaApiClient::Media do
   describe "#list" do
     it "returns a parsed JSON response" do
-      pending "needs mocking"
-
       media_client = described_class.new
 
       mock_wistia_api_response_with(
@@ -22,8 +20,6 @@ RSpec.describe WistiaApiClient::Media do
     end
 
     it "combines multi-page responses into a single response" do
-      pending "needs mocking"
-
       media_client = described_class.new
 
       result = media_client.list(limit: 1, starting_page: 1)
@@ -34,8 +30,6 @@ RSpec.describe WistiaApiClient::Media do
 
   describe "#show" do
     it "returns a parsed JSON response for a single media object" do
-      pending "needs mocking"
-
       media_client = described_class.new
       wistia_id = "123foo"
 
