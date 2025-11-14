@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Catalog do
+RSpec.describe Catalog do
   describe "#products" do
     it "returns active products in order" do
       catalog = Catalog.new

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user views a topic" do
+RSpec.feature "user views a topic" do
   scenario "and sees associated resources" do
     topic = create(:topic, :explorable)
     user = create(:user)

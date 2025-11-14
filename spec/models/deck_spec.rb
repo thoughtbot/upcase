@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Deck do
+RSpec.describe Deck do
   it { should validate_presence_of(:title) }
 
   it { should have_many(:flashcards).dependent(:destroy) }

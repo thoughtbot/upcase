@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Search do
+RSpec.describe Search do
   describe "#results_with_excerpts" do
     it "returns relevant search results" do
       hello_video = create(:video, notes: "Hello world")

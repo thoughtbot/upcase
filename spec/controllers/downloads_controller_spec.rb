@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe DownloadsController do
+RSpec.describe DownloadsController do
   include StubCurrentUserHelper
 
   describe "#show" do

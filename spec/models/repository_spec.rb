@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Repository do
+RSpec.describe Repository do
   it_behaves_like "a class inheriting from Product"
 
   it { should belong_to(:trail).optional }

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe WeeklyIterationRecommender do
+RSpec.describe WeeklyIterationRecommender do
   describe "#recommend" do
     context "with video to recommend" do
       it "creates a recommendation" do

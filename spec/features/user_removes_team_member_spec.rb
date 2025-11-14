@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Remove team members" do
+RSpec.feature "Remove team members" do
   include ActionView::RecordIdentifier
 
   scenario "an owner removes a team member" do

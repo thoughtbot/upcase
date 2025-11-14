@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe StatusUpdater do
+RSpec.describe StatusUpdater do
   describe "#update_state" do
     it "creates a status" do
       completeable = mock_completeable

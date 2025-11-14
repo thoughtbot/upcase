@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe TwitterPlayerCardsController do
+RSpec.describe TwitterPlayerCardsController do
   it "removes the 'X-Frame-Options' header to allow cross-domain iframes" do
     stub_video
 

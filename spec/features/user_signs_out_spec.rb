@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Users signs out" do
+RSpec.feature "Users signs out" do
   scenario "from account page" do
     visit my_account_path(as: create(:user))
     click_link "Sign out"

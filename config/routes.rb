@@ -123,14 +123,6 @@ Rails.application.routes.draw do
     end
     resources :passwords, controller: "passwords", only: [:create, :new]
 
-    get "/vanity" => "vanity#index"
-    get "/vanity/participant/:id" => "vanity#participant"
-    post "/vanity/complete"
-    post "/vanity/chooses"
-    post "/vanity/reset"
-    post "/vanity/add_participant"
-    get "/vanity/image"
-
     resources :videos, only: [:show] do
       resource :twitter_player_card, only: [:show]
       resources :completions, only: [:create], controller: "video_completions"
@@ -151,9 +143,23 @@ Rails.application.routes.draw do
       only: [:index]
     )
 
+    get(
+      ":id" => "topics#show",
+      :as => :topic,
+      :constraints => SlugConstraint.new(Topic)
+    )
+
     get "/practice" => "practice#show", :as => :practice
     get "sitemap.xml" => "sitemaps#show", :as => :sitemap, :format => "xml"
-    get ":id" => "topics#show", :as => :topic
     get "/auth/:provider/callback", to: "auth_callbacks#create"
+
+    # DEPRECATED as of 1/1/2024 (https://github.com/assaf/vanity)
+    get "/vanity" => "vanity#index", :as => :vanity_index
+    get "/vanity/participant/:id" => "vanity#participant", :as => :vanity_participant
+    post "/vanity/complete"
+    post "/vanity/chooses"
+    post "/vanity/reset"
+    post "/vanity/add_participant"
+    get "/vanity/image"
   end
 end

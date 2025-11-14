@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.3.6"
+ruby "3.4.7"
 
 git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
@@ -14,6 +14,7 @@ gem "bootsnap"
 gem "bourbon"
 gem "clearance"
 gem "coffee-rails"
+gem "concurrent-ruby", "1.3.4"
 gem "csv"
 gem "delayed_job_active_record"
 gem "drb"
@@ -50,7 +51,7 @@ gem "psych"
 gem "puma"
 gem "rack", ">= 2.2.14", "< 3.0"
 gem "rack-rewrite"
-gem "rails", "7.0.8.7"
+gem "rails", "7.1.5"
 gem "recipient_interceptor"
 gem "redcarpet"
 gem "redis"
@@ -72,14 +73,16 @@ gem "wrapped"
 
 group :development do
   gem "guard-livereload", require: false
+  gem "irb"
   gem "rack-livereload"
   gem "rack-mini-profiler", require: false
-  gem "spring"
-  gem "spring-commands-rspec"
+  # gem "spring", "~> 4.2.1"
+  # gem "spring-commands-rspec"
   gem "webrick"
 end
 
 group :development, :test do
+  gem "benchmark"
   gem "bundler-audit", require: false
   gem "dotenv-rails"
   gem "rspec-rails"

@@ -1,6 +1,7 @@
 if ENV["COVERAGE"]
   require "simplecov"
   SimpleCov.start :rails do
+    enable_coverage :branch
     add_filter "app/mailer_previews"
     add_filter "vendor/lib"
   end
@@ -8,7 +9,8 @@ end
 
 ENV["RAILS_ENV"] ||= "test"
 require "spec_helper"
-require File.expand_path("../../config/environment", __FILE__)
+# require File.expand_path("../../config/environment", __FILE__)
+require_relative "../config/environment"
 require "clearance/rspec"
 require "email_spec"
 require "paperclip/matchers"
@@ -56,9 +58,11 @@ end
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.raise_errors_for_deprecations!
+
   config.use_transactional_fixtures = false
   config.use_instantiated_fixtures = false
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_paths = ["#{::Rails.root}/spec/fixtures"]
 
   config.include Clearance::Testing::Matchers, type: :request
   config.include Paperclip::Shoulda::Matchers

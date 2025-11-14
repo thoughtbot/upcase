@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "practice/show.html" do
+RSpec.describe "practice/show.html" do
   context "when there is a promoted trail that the user has not started" do
     it "renders the promoted trail at the top with a promo message" do
       trail = build_stubbed_promoted_trail_with_progress

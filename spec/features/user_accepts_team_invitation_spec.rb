@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Accept team invitations" do
+RSpec.feature "Accept team invitations" do
   context "when user is signed in" do
     it "accepts the invitation immediately" do
       create_team_account

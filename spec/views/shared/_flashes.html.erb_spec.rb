@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "shared/_flashes.html.erb" do
+RSpec.describe "shared/_flashes.html.erb" do
   context "when signed out" do
     before do
       view_stub_with_return(

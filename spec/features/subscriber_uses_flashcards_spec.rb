@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user views decks" do
+RSpec.feature "user views decks" do
   scenario "and starts a deck" do
     flashcard = create(:flashcard)
 

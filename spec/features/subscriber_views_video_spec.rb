@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user views video trail" do
+RSpec.feature "user views video trail" do
   scenario "and marks a video as complete" do
     trail = create_video_trail
 

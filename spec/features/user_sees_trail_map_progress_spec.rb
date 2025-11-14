@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "User can see their trail map progress" do
+RSpec.feature "User can see their trail map progress" do
   background do
     sign_in
   end

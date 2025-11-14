@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe ApplicationHelper do
+RSpec.describe ApplicationHelper do
   describe "#format_markdown" do
     it "returns the rendered html for the input markdown" do
       markdown = "hello **world**"

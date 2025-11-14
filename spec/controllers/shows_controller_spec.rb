@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe ShowsController do
+RSpec.describe ShowsController do
   context "show" do
     it "doesn't render other formats" do
       show = create(:show)

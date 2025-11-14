@@ -4,7 +4,7 @@ class Marker < ApplicationRecord
   validates :anchor, presence: true
   validates :time, presence: true
 
-  def as_json(_options)
-    super(only: [:anchor, :time])
+  def as_json(*)
+    super({only: [:anchor, :time]})
   end
 end

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe ProductsHelper do
+RSpec.describe ProductsHelper do
   describe "#test_driven_rails_url" do
     it "returns a link to the right page" do
       result = helper.test_driven_rails_url

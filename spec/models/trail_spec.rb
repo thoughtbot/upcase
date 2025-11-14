@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Trail do
+RSpec.describe Trail do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:description) }
 
