@@ -72,6 +72,10 @@ en:
       description: Join Upcase by thoughtbot. Explore video tutorials,
         exercises, forum discussions and the community you need to grow as a web
         developer.
+    marketing_redesign:
+      description: Join Upcase by thoughtbot. Explore video tutorials,
+        exercises, forum discussions and the community you need to grow as a web
+        developer.
     thoughtbot: thoughtbot
   licenses:
     flashes:
@@ -223,3 +227,14 @@ en:
     topic: "Learn %{name} | Online Courses by thoughtbot"
     trail: "%{name} | Online Tutorial by thoughtbot"
     video: "%{name} | Online Video Tutorial by thoughtbot"
+
+  marketing_redesign:
+    home:
+      show:
+        page_title: Upcase by thoughtbot | Learn Web Development Online
+    about:
+      show:
+        page_title: About Us
+    contacts:
+      new:
+        page_title: Contact Us

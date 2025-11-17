@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="ROBOTS" content="NOODP" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="Description" http-equiv="Description" content="<%= t(".description") %>" />
+    <meta name="google-site-verification" content="<%= ENV.fetch("GOOGLE_SITE_VERIFICATION") %>" />
+    <%= open_graph_tags %>
+    <title><%= content_for(:page_title).presence || t(".page_title") %></title>
+    <%= favicon_link_tag "favicon.ico" %>
+    <% if content_for?(:link_canonical) %>
+      <%= content_for(:link_canonical) %>
+    <% else %>
+      <link rel="canonical" href="<%= url_for(only_path: false) %>" />
+    <% end %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body class="<%= body_class %>">
+    <%= render "shared/flashes" %>
+    <%= yield %>
+  </body>
+
+  <%= render "application/visitor_analytics" %>
+</html>

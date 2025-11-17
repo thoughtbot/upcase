@@ -156,4 +156,19 @@ Rails.application.routes.draw do
     get ":id" => "topics#show", :as => :topic
     get "/auth/:provider/callback", to: "auth_callbacks#create"
   end
+
+  constraints(-> { ActiveModel::Type::Boolean.new.serialize(ENV["ENABLE_MARKETING_REDESIGN"]) }) do
+    namespace :marketing_redesign do
+      root controller: :home, action: :show
+      get "about-us", controller: :about, action: :show
+      resources(
+        :contacts,
+        only: %i[new create],
+        path: "contact-us",
+        path_names: {
+          new: ""
+        }
+      )
+    end
+  end
 end
