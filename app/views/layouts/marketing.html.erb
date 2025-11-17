@@ -15,7 +15,11 @@
     </title>
     <%= stylesheet_link_tag :marketing, media: "all" %>
     <%= favicon_link_tag "favicon.ico" %>
-    <link rel="canonical" href="https://thoughtbot.com/upcase" />
+    <% if ActiveModel::Type::Boolean.new.serialize(ENV["ENABLE_MARKETING_REDESIGN"]) %>
+      <link rel="canonical" href="https://thoughtbot.com/upcase/classic" />
+    <% else %>
+      <link rel="canonical" href="https://thoughtbot.com/upcase" />
+    <% end %>
     <%= csrf_meta_tags %>
   </head>
 
