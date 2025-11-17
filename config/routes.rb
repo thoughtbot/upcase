@@ -4,7 +4,28 @@ Rails.application.routes.draw do
   get "/", to: redirect("/upcase")
 
   scope "upcase" do
-    root to: "marketing#show"
+    if ActiveModel::Type::Boolean.new.serialize(ENV["ENABLE_MARKETING_REDESIGN"])
+      scope module: :marketing_redesign do
+        root controller: :home, action: :show
+        get "about-us", controller: :about, action: :show
+        resources(
+          :contacts,
+          only: %i[new create],
+          path: "contact-us",
+          path_names: {
+            new: ""
+          }
+        )
+      end
+
+      scope "classic" do
+        get "", to: "marketing#show"
+        get "/about-us", to: "pages#show", id: "about_us"
+      end
+    else
+      root to: "marketing#show"
+      get "/about-us", to: "pages#show", id: "about_us"
+    end
 
     get "the-weekly-iteration", to: "shows#show", id: "the-weekly-iteration"
 
@@ -66,7 +87,6 @@ Rails.application.routes.draw do
       resource :trail, controller: "exercise_trails", only: [:show]
     end
 
-    get "/about-us", to: "pages#show", id: "about_us"
     get "/pages/:id", to: "high_voltage/pages#show", as: :page, format: false
     get "/privacy", to: "pages#show", as: :privacy, id: "privacy"
     get "/purchases/:lookup", to: "pages#show", id: "purchase-show"
