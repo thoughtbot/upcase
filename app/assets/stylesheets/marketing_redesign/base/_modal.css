@@ -1,0 +1,66 @@
+dialog {
+  background-color: var(--color--background-base);
+  border: var(--border--base);
+  border-radius: var(--border-radius--base);
+  color: var(--color--text);
+  flex-direction: column;
+  gap: var(--space--base);
+  max-width: var(--container--base);
+  width: calc(100% - var(--space--base));
+  
+  &[open] {
+    display: flex;
+  }
+
+  &[open]::backdrop {
+    background-color: color-mix(
+      in srgb,
+      var(--color--primary-base),
+      transparent 10%
+    );
+  }
+}
+
+dialog button[data-dialogClose] {
+  align-self: flex-end;
+}
+
+dialog.slide-in {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: 0;
+  transform: translateY(100%);
+  transition:
+    calc(var(--transition-duration--base) * 2) var(--transition-timing--base)
+      transform,
+    display var(--transition-duration--base) var(--transition-timing--base)
+      allow-discrete,
+    overlay var(--transition-duration--base) var(--transition-timing--base)
+      allow-discrete;
+
+  &::backdrop {
+    transition:
+      overlay var(--transition-duration--base) allow-discrete,
+      display var(--transition-duration--base) allow-discrete,
+      var(--transition-duration--base) background-color
+        var(--transition-timing--base);
+  }
+
+  &[open] {
+    transform: translateY(0);
+    transition: calc(var(--transition-duration--base) * 2)
+      var(--transition-timing--base) transform;
+
+    @starting-style {
+      transform: translateY(100%);
+
+      &::backdrop {
+        background-color: transparent;
+      }
+
+      @media screen and (prefers-reduced-motion: reduce) {
+        transform: translateY(0);
+      }
+    }
+  }
+}

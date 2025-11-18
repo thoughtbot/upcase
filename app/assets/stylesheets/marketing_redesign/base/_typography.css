@@ -1,0 +1,56 @@
+html {
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  color: var(--color--text);
+  font-family: var(--font-family--body);
+  font-size: var(--font-size--body);
+  font-weight: var(--font-weight--normal);
+  line-height: var(--line-height--base);
+}
+
+:where(
+  h1,
+  h2,
+  h3,
+  h4,
+  strong
+) {
+  font-weight: var(--font-weight--bold);
+}
+
+h1 {
+  text-wrap: balance;
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--color--link);
+  transition: var(--transition-duration--base) color var(--transition-timing--base);
+
+  &:hover {
+    color: var(--color--link-hover);
+  }
+}
+
+label {
+  font-size: var(--font-size--ui);
+  font-weight: var(--font-weight--bold);
+  text-align: left;
+}
+
+input {
+  font-size: var(--font-size--body);
+}
+
+legend {
+  font-size: var(--font-size--body);
+  font-weight: var(--font-weight--bold);
+}
+
+hr {
+  border: var(--border--light);
+  width: 100%;
+}

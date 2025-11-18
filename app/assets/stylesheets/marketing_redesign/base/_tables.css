@@ -1,0 +1,64 @@
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+
+  p {
+    margin: 0;
+  }
+}
+
+:where(thead, tbody) :where(th, td) {
+  border-right: var(--border--light);
+  border-bottom: var(--border--light);
+  padding: var(--space--small);
+}
+
+:where(tfoot) td, caption {
+  font-weight: var(--font-weight--bold);
+  padding: var(--space--xx-small) var(--space--small);
+  text-align: left;
+}
+
+:where(thead, tbody) :where(th, td):first-child {
+  border-left: var(--border--light);
+}
+
+th {
+  background-color: var(--color--background-light);
+  border-top: var(--border--light);
+  font-size: var(--font-size--small);
+  font-weight: var(--font-weight--bold);
+  text-align: left;
+}
+
+tr:first-child th:first-child {
+  border-top-left-radius: var(--border-radius--base);
+}
+
+tr:first-child th:last-child {
+  border-top-right-radius: var(--border-radius--base);
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: var(--border-radius--base);
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: var(--border-radius--base);
+}
+
+.table--striped tbody tr:nth-child(even) {
+  background-color: var(--color--background-x-light);
+}
+
+.table-outer-wrapper {
+  display: flex;
+}
+
+.table-inner-wrapper {
+  overflow-x: auto;
+  flex: 1 1 0%;
+  margin-bottom: var(--space--base);
+  width: 1rem;
+}

@@ -1,0 +1,23 @@
+.u-hide-visually {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.u-hide-visually--focus-unhide:focus {
+  clip: auto;
+  clip-path: none;
+  height: auto;
+  overflow: visible;
+  white-space: inherit;
+  width: auto;
+  padding: var(--space--small) var(--space--medium);
+  position: absolute;
+  text-align: center;
+  z-index: calc(var(--z-index--layout) + 1);
+}
