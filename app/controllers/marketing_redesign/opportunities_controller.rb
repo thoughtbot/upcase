@@ -1,5 +1,5 @@
 module MarketingRedesign
-  class ContactsController < BaseController
+  class OpportunitiesController < BaseController
     def new
     end
   end
