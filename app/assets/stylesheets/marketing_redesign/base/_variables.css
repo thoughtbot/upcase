@@ -93,6 +93,7 @@
   --line-height--base: 1.5;
   --line-height--tight: 1.2;
 
+  // Border
   --border-radius--small: 0.25rem;
   --border-radius--base: 0.5rem;
   --border-radius--large: 1.5rem;
@@ -105,6 +106,8 @@
   --border--base: var(--border-width--base) solid var(--color--primary-light);
   --border--light: var(--border-width--base) solid var(--color--gray-500);
   --border--dark: var(--border-width--base) solid var(--color--primary-base);
+
+  // Layout & Misc
 
   --container--base: 50rem;
   --container--large: 85rem;
