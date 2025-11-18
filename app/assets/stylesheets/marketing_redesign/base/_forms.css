@@ -1,18 +1,14 @@
 :is(
-  button,
-  input[type="checkbox"],
-  input[type="radio"],
-  input[type="range"],
-  select
-) {
+    button,
+    input[type="checkbox"],
+    input[type="radio"],
+    input[type="range"],
+    select
+  ) {
   cursor: pointer;
 }
 
-:is(
-  input,
-  label,
-  select
-) {
+:is(input, label, select) {
   display: block;
 }
 
@@ -29,17 +25,13 @@ form {
 }
 
 fieldset > *:not(:last-child) {
- margin-bottom: var(--space--base);
+  margin-bottom: var(--space--base);
 }
 
-:is(
-  input,
-  textarea,
-  select
-) {
+:is(input, textarea, select) {
   accent-color: var(--color--primary-base);
   border: var(--border--light);
-  
+
   &:focus {
     outline: var(--border-width--base) solid var(--color--primary-base);
   }
@@ -57,25 +49,25 @@ fieldset > *:not(:last-child) {
 }
 
 :where(
-  input:not([type]),
-  select,
-  textarea,
-  [type="color"],
-  [type="date"],
-  [type="datetime"],
-  [type="datetime-local"],
-  [type="email"],
-  [type="month"],
-  [type="month"],
-  [type="number"],
-  [type="password"],
-  [type="search"],
-  [type="tel"],
-  [type="text"],
-  [type="time"],
-  [type="url"],
-  [type="week"]
-) {
+    input:not([type]),
+    select,
+    textarea,
+    [type="color"],
+    [type="date"],
+    [type="datetime"],
+    [type="datetime-local"],
+    [type="email"],
+    [type="month"],
+    [type="month"],
+    [type="number"],
+    [type="password"],
+    [type="search"],
+    [type="tel"],
+    [type="text"],
+    [type="time"],
+    [type="url"],
+    [type="week"]
+  ) {
   background-color: var(--color--background-base);
   border-radius: var(--border-radius--base);
   color: var(--color--text);
@@ -113,11 +105,7 @@ label:has([type="radio"], [type="checkbox"]) {
   justify-self: start;
 }
 
-label:has(
-  input[required],
-  select[required],
-  textarea[required]
-) > span::after,
+label:has(input[required], select[required], textarea[required]) > span::after,
 .fieldset-required > legend::after {
   content: "*";
   margin-left: var(--space--xx-small);
@@ -165,7 +153,7 @@ label:has(input[type="range"]) {
 
 [type="range"]::-webkit-slider-thumb {
   --size: var(--space--large);
-  
+
   appearance: none;
   background-color: var(--color--background-base);
   background-image: url('data:image/svg+xml,<svg width="16" height="9" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.65812 9C4.43757 8.99995 4.22607 8.90521 4.07014 8.73662L0.743499 5.14104C0.587587 4.97247 0.5 4.74388 0.5 4.50552C0.5 4.26717 0.587587 4.03857 0.743499 3.87L4.07014 0.274422C4.14686 0.188569 4.23862 0.120089 4.34009 0.0729785C4.44156 0.0258683 4.55069 0.0010711 4.66111 3.39396e-05C4.77154 -0.00100322 4.88105 0.0217402 4.98326 0.0669374C5.08547 0.112135 5.17833 0.17888 5.25641 0.26328C5.3345 0.34768 5.39625 0.448043 5.43807 0.558514C5.47988 0.668985 5.50093 0.787352 5.49997 0.906706C5.49901 1.02606 5.47607 1.14401 5.43248 1.25368C5.38889 1.36335 5.32554 1.46254 5.2461 1.54546L2.50745 4.50552L5.2461 7.46559C5.36238 7.5913 5.44156 7.75145 5.47363 7.92579C5.50571 8.10014 5.48924 8.28084 5.42631 8.44507C5.36337 8.6093 5.25681 8.74967 5.12007 8.84845C4.98334 8.94722 4.82258 8.99996 4.65812 9Z" fill="%2332314C"/><path d="M11.3419 9C11.1774 8.99996 11.0167 8.94722 10.8799 8.84845C10.7432 8.74967 10.6366 8.6093 10.5737 8.44507C10.5108 8.28084 10.4943 8.10014 10.5264 7.92579C10.5584 7.75145 10.6376 7.5913 10.7539 7.46559L13.4926 4.50552L10.7539 1.54546C10.6745 1.46254 10.6111 1.36335 10.5675 1.25368C10.5239 1.14401 10.501 1.02606 10.5 0.906706C10.4991 0.787352 10.5201 0.668985 10.5619 0.558514C10.6037 0.448043 10.6655 0.34768 10.7436 0.26328C10.8217 0.17888 10.9145 0.112135 11.0167 0.0669374C11.1189 0.0217402 11.2285 -0.00100322 11.3389 3.39396e-05C11.4493 0.0010711 11.5584 0.0258683 11.6599 0.0729785C11.7614 0.120089 11.8531 0.188569 11.9299 0.274422L15.2565 3.87C15.4124 4.03857 15.5 4.26717 15.5 4.50552C15.5 4.74388 15.4124 4.97247 15.2565 5.14104L11.9299 8.73662C11.7739 8.90521 11.5624 8.99995 11.3419 9Z" fill="%2332314C"/></svg>');

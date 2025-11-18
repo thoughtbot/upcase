@@ -15,7 +15,7 @@
   transition-duration: var(--transition-duration--base);
   transition-property: background-color, color;
   transition-timing-function: var(--transition-timing--base);
-  
+
   &:focus-visible {
     outline: var(--border-width--thick) solid var(--color--primary-base);
     outline-offset: 2px;

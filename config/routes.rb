@@ -16,7 +16,7 @@ Rails.application.routes.draw do
             new: ""
           }
         )
-        if Rails.env.development? 
+        if Rails.env.development?
           get "library", controller: :library, action: :show
         end
       end
