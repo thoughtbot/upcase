@@ -1,5 +1,5 @@
 :root {
-  // Base Colors
+  /* Base Colors */
   --color--aqua-100: #e3fdfe;
   --color--aqua-500: #a2f6f9;
   --color--aqua-900: #006164;
@@ -32,7 +32,7 @@
 
   --color--white-500: #ffffff;
 
-  // Semantic Colors
+  /* Semantic Colors */
   --color--primary-base: var(--color--blue-500);
   --color--primary-dark: var(--color--blue-900);
   --color--primary-light: var(--color--blue-100);
@@ -64,7 +64,7 @@
   --color--link: var(--color--primary-base);
   --color--link-hover: var(--color--primary-dark);
 
-  // Typography
+  /* Typography */
 
   --font-size--50: 0.875rem;
   --font-size--100: 1rem;
@@ -93,7 +93,7 @@
   --line-height--base: 1.5;
   --line-height--tight: 1.2;
 
-  // Border
+  /* Border */
   --border-radius--small: 0.25rem;
   --border-radius--base: 0.5rem;
   --border-radius--large: 1.5rem;
@@ -107,7 +107,7 @@
   --border--light: var(--border-width--base) solid var(--color--gray-500);
   --border--dark: var(--border-width--base) solid var(--color--primary-base);
 
-  // Layout & Misc
+  /* Layout & Misc */
 
   --container--base: 50rem;
   --container--large: 85rem;
